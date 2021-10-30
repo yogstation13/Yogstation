@@ -357,6 +357,7 @@
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	..()
 	. = 1
+//Teas
 
 /datum/reagent/consumable/tea
 	name = "Black Tea"
@@ -384,7 +385,7 @@
 	description = "A reddish-brown tea with needles submerged at the bottom."
 	color = "bc6f63" // rgb: 188, 111, 99
 	taste_description = "slightly sweet and nutty"
-	glass_icon_state = "teaglass"
+	glass_icon_state = "teaglass" //to do
 	glass_name = "glass of rooibos tea"
 	glass_desc = "You can see small pins and needles swirling at the bottom."
 	
@@ -393,7 +394,7 @@
 	description = "A traditional Japanese tea consisting of popped brown rice. You feel a sense of calm holding this."
 	color = "bc6f63" // rgb: 188, 111, 99
 	taste_description = "toasted rice"
-	glass_icon_state = "teaglass"
+	glass_icon_state = "teaglass" //to do
 	glass_name = "glass of genmaicha tea"
 	glass_desc = "Bits of green leaves and brown rice are scattered."
 	
@@ -402,31 +403,68 @@
 	description = "A type of tea originating from China, passed onto the entirety of East Asia."
 	color = "bc6f63" // rgb: 188, 111, 99
 	taste_description = "green leaves and calmness"
-	glass_icon_state = "teaglass"
+	glass_icon_state = "teaglass" //to do
 	glass_name = "glass of ryokucha tea"
 	glass_desc = "Some tea never goes wrong."
 	
-
-/datum/reagent/consumable/tea/rice
-	name = "Genmaicha Tea"
-	description = "A traditional Japanese tea consisting of popped brown rice. You feel a sense of calm holding this."
-	color = "bc6f63" // rgb: 188, 111, 99
-	taste_description = "toasted rice"
-	glass_icon_state = "teaglass"
-	glass_name = "glass of genmaicha tea"
-	glass_desc = "Bits of green leaves and brown rice are scattered."
-	
-
 /datum/reagent/consumable/tea/mint
 	name = "Peppermint Tea"
 	description = "A refreshing tea made of peppermint leaves."
 	color = "bc6f63" // rgb: 188, 111, 99
 	nutriment_factor = 0
 	taste_description = "sweet mint"
-	glass_icon_state = "teaglass"
+	glass_icon_state = "teaglass" //to do
 	glass_name = "glass of peppermint tea"
 	glass_desc = "drink this before a date."
 
+//Sweet Teas
+
+/datum/reagent/consumable/tea/sweet
+	name = "Sweetened Black Tea"
+	description = "Tasty black tea, it has antioxidants, it's good for you! It has also been sweetened."
+	color = "#101000" // rgb: 16, 16, 0
+	nutriment_factor = 0
+	taste_description = "sweet black tea"
+	glass_icon_state = "teaglass" //to do
+	glass_name = "glass of black tea"
+	glass_desc = "Drinking it from here would not seem right. Some sugar residues are seen."
+
+/datum/reagent/consumable/tea/red/sweet
+	name = "Sweetened Rooibos Tea"
+	description = "Rooibos tea. It has been sweetened to taste."
+	color = "bc6f63" // rgb: 188, 111, 99
+	taste_description = "sweet and nutty"
+	glass_icon_state = "teaglass" //to do
+	glass_name = "glass of sweetened rooibos tea"
+	glass_desc = "You can see small pins and needles swirling at the bottom. Some sugar residues are seen."
+
+/datum/reagent/consumable/tea/rice/sweet
+	name = "Sweetened Genmaicha Tea"
+	description = "A traditional Japanese tea. It has been sweetened according to taste."
+	color = "bc6f63" // rgb: 188, 111, 99
+	taste_description = "toasted rice"
+	glass_icon_state = "teaglass" //to do
+	glass_name = "glass of genmaicha tea"
+	glass_desc = "Bits of green leaves and brown rice are scattered. Some sugar residues are seen."
+
+/datum/reagent/consumable/tea/green/sweet
+	name = "Sweetened Ryokucha Tea"
+	description = "A type of tea originating from China, passed onto the entirety of East Asia."
+	color = "bc6f63" // rgb: 188, 111, 99
+	taste_description = "green leaves and calmness"
+	glass_icon_state = "teaglass" //to do
+	glass_name = "glass of ryokucha tea"
+	glass_desc = "Some tea never goes wrong. Some sugar residues are seen."
+
+/datum/reagent/consumable/tea/mint/sweet
+	name = "Sweetened Peppermint Tea"
+	description = "A refreshing tea made of peppermint leaves. It has been sweetened to taste."
+	color = "bc6f63" // rgb: 188, 111, 99
+	nutriment_factor = 0
+	taste_description = "sweeter mint"
+	glass_icon_state = "teaglass" //to do
+	glass_name = "glass of sweetened peppermint tea"
+	glass_desc = "drink this before a date. Some sugar residues are seen."
 
 /datum/reagent/consumable/aloejuice
 	name = "Aloe Juice"

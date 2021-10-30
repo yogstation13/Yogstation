@@ -33,6 +33,7 @@
 	var/has_panel_overlay = TRUE
 	var/macroresolution = 1
 	var/obj/item/reagent_containers/beaker = null
+	var/auto_sort = TRUE
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminium,
 		/datum/reagent/bromine,
@@ -82,7 +83,8 @@
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
-	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
+	if(auto_sort == TRUE)
+		dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
 	if(emagged_reagents)
 		emagged_reagents = sortList(emagged_reagents, /proc/cmp_reagents_asc)
 	if(upgrade_reagents)
@@ -573,6 +575,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "coffee_machine"
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/tea //to do
+	auto_sort = FALSE
 	dispensable_reagents = list(
 		/datum/reagent/consumable/tea,
 		/datum/reagent/consumable/tea/rice,
@@ -582,23 +585,8 @@
 		/datum/reagent/consumable/cream,
 		/datum/reagent/consumable/sugar,
 	)
-	upgrade_reagents = list(
-		/datum/reagent/consumable/milk
-	)
+	upgrade_reagents = null
 	emagged_reagents = null
-
-/obj/machinery/chem_dispenser/drinks/tea/Initialize()
-	. = ..()
-	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
-	component_parts += new /obj/item/stack/sheet/glass(null)
-	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
-	RefreshParts()
-
 
 
 
