@@ -1,4 +1,5 @@
 #define PRINTER_COOLDOWN 60
+#define PAGESIZE 10
 
 GLOBAL_LIST_EMPTY(cachedbooks) // List of our cached book datums
 GLOBAL_LIST_EMPTY(checkouts)
@@ -40,6 +41,8 @@ GLOBAL_LIST_EMPTY(checkouts)
 	/// Saved scanner
 	var/obj/machinery/libraryscanner/scanner
 	clockwork = TRUE //it'd look weird
+	var/page = 0
+	var/totalpages = 0
 
 /obj/machinery/computer/libraryconsole/Initialize(mapload)
 	. = ..()
@@ -100,6 +103,8 @@ GLOBAL_LIST_EMPTY(checkouts)
 	data["author"] = author
 	data["error"] = errorstate
 	data["librarianconsole"] = librarianconsole
+	data["page"] = page
+	data["totalpages"] = CEILING(GLOB.cachedbooks.len/PAGESIZE, 1)
 	data["emagged"] = (obj_flags & EMAGGED)
 	var/list/books = list()
 	for(var/id in GLOB.cachedbooks)
@@ -109,7 +114,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 			books += list("[id]"=book)
 		else if(book["category"] == category)
 			books += list("[id]"=book)
-	data["result"] = books
+	data["result"] = books.Copy(page*PAGESIZE, clamp(page*PAGESIZE+PAGESIZE, 0, books.len))
 	if(!scanner)
 		scanner = findscanner(4)
 	if(!scanner || !scanner.cache)
@@ -120,10 +125,11 @@ GLOBAL_LIST_EMPTY(checkouts)
 
 /obj/machinery/computer/libraryconsole/ui_act(action, list/params)
 	. = ..()
-	to_chat(world, json_encode(params))
 	if(.)
 		return
 	switch(action)
+		if("setpage")
+			page = clamp(params["page"], 0, totalpages)
 		if("settitle")
 			title = pretty_filter(params["name"])
 		if("setauthor")
@@ -215,7 +221,8 @@ GLOBAL_LIST_EMPTY(checkouts)
 	var/duedate
 	var/instance
 
-/proc/load_library_db_to_cache()
+/obj/machinery/computer/libraryconsole/proc/load_library_db_to_cache()
+	set waitfor = 0
 	if(!SSdbcore.Connect())
 		return
 	var/datum/DBQuery/query_library_cache = SSdbcore.NewQuery("SELECT id, author, title, category FROM [format_table_name("library")] WHERE deleted IS NULL")
@@ -229,6 +236,8 @@ GLOBAL_LIST_EMPTY(checkouts)
 			"category" = query_library_cache.item[4]
 		)
 	qdel(query_library_cache)
+	totalpages = CEILING(GLOB.cachedbooks.len/PAGESIZE, 1)
+	GLOB.cachedbooks = sortList(GLOB.cachedbooks)
 
 
 /obj/machinery/computer/libraryconsole/proc/findscanner(viewrange)
@@ -255,7 +264,6 @@ GLOBAL_LIST_EMPTY(checkouts)
 	var/upload_category = "Fiction"
 	var/checkoutperiod = 5 // In minutes
 	var/list/libcomp_menu
-	var/page = 1	//current page of the external archives
 	librarianconsole = TRUE
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/build_library_menu()

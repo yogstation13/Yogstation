@@ -2,8 +2,8 @@ import { useBackend, useSharedState } from '../backend';
 import { Button, Dropdown, LabeledList, Section, Table, Input, Tabs, NumberInput, Divider, Box } from '../components';
 import { Window } from '../layouts';
 
-var width = 500
-var height = 200
+let width = 500;
+let height = 200;
 
 export const LibraryConsole = (props, context) => {
   const { act, data } = useBackend(context);
@@ -103,17 +103,14 @@ export const Search = (props, context) => {
 export const BookDB = (props, context) => {
   width = 600;
   height = 600;
-  var perPage = 10;
   const { act, data } = useBackend(context);
   const [tab, setTab] = useSharedState(context, 'tab', 2);
-  var [page, setPage] = useSharedState(context, 'page', 0);
   const {
     result,
     librarianconsole,
+    page,
+    totalpages,
   } = data;
-  //var totalPages = Math.floor(result.length/10);
-  var totalPages = 1;
-  setPage(0)
   return (
     <Section>
       <Button
@@ -130,7 +127,7 @@ export const BookDB = (props, context) => {
               <Table.Cell textAlign="center">Print</Table.Cell>
             )}
           </Table.Row>
-          {Object.keys(result).slice(page*perPage, (page*perPage)+perPage).map(key => (
+          {Object.keys(result).map(key => (
             <Table.Row key={key}>
               <Table.Cell py={1.5} textAlign="center">{key}</Table.Cell>
               <Table.Cell textAlign="center">{result[key]["title"]}</Table.Cell>
@@ -150,21 +147,61 @@ export const BookDB = (props, context) => {
           ))}
         </Table>
         <Section textAlign="center">
-        <Button
-          content={0}
-          onClick={() => setPage(0)} />
-
-        {!page==0 &&
           <Button
+            content={1}
+            width={3}
+            onClick={() => act('setpage', {
+              page: 0,
+            })} mx={1} />
+
+          {(!(page-3<0))
+            && <Button
+              width={3}
+              content={page-1}
+              onClick={() => act('setpage', {
+                page: page-2,
+              })} />}
+
+          {(!(page-2<0) && !(page===totalpages))
+            && <Button
               content={page}
-              onClick={(value) => setPage(value)} />
-        }
+              width={3}
+              onClick={() => act('setpage', {
+                page: page-1,
+              })} />}
 
-        {!!totalPages &&
-          <Button
-            content={totalPages}
-            onClick={(value) => setPage(value)} />
-          }
+          {(!(page===0) && !(page===totalpages))
+            && <Button
+              content={page+1}
+              width={3}
+              selected
+              onClick={() => act('setpage', {
+                page: page,
+              })} mx={1} />}
+
+          {(!(page+2>=totalpages))
+            && <Button
+              content={page+2}
+              width={3}
+              onClick={() => act('setpage', {
+                page: page+1,
+              })} />}
+
+          {(!(page+3>=totalpages))
+            && <Button
+              content={page+3}
+              width={3}
+              onClick={() => act('setpage', {
+                page: page+2,
+              })} />}
+
+          {(!(totalpages===0))
+            && <Button
+              content={totalpages}
+              width={3}
+              onClick={() => act('setpage', {
+                page: totalpages,
+              })} mx={1} />}
         </Section>
       </Box>
     </Section>
