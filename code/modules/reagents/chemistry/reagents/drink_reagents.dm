@@ -383,37 +383,37 @@
 /datum/reagent/consumable/tea/red
 	name = "Rooibos Tea"
 	description = "A reddish-brown tea with needles submerged at the bottom."
-	color = "bc6f63" // rgb: 188, 111, 99
+	color = "955b5b" // rgb: 149, 91, 91
 	taste_description = "slightly sweet and nutty"
-	glass_icon_state = "teaglass" //to do
+	glass_icon_state = "glass_rooibos" 
 	glass_name = "glass of rooibos tea"
 	glass_desc = "You can see small pins and needles swirling at the bottom."
 	
 /datum/reagent/consumable/tea/rice
 	name = "Genmaicha Tea"
 	description = "A traditional Japanese tea consisting of popped brown rice. You feel a sense of calm holding this."
-	color = "bc6f63" // rgb: 188, 111, 99
+	color = "c9cf9b" // rgb: 201, 207, 155
 	taste_description = "toasted rice"
-	glass_icon_state = "teaglass" //to do
+	glass_icon_state = "glass_rice" 
 	glass_name = "glass of genmaicha tea"
 	glass_desc = "Bits of green leaves and brown rice are scattered."
 	
 /datum/reagent/consumable/tea/green
 	name = "Ryokucha Tea"
 	description = "A type of tea originating from China, passed onto the entirety of East Asia."
-	color = "bc6f63" // rgb: 188, 111, 99
+	color = "82975d" // rgb: 130, 151, 93
 	taste_description = "green leaves and calmness"
-	glass_icon_state = "teaglass" //to do
+	glass_icon_state = "glass_green" 
 	glass_name = "glass of ryokucha tea"
 	glass_desc = "Some tea never goes wrong."
 	
 /datum/reagent/consumable/tea/mint
 	name = "Peppermint Tea"
 	description = "A refreshing tea made of peppermint leaves."
-	color = "bc6f63" // rgb: 188, 111, 99
+	color = "d9dea2" // rgb: 217, 222, 162
 	nutriment_factor = 0
 	taste_description = "sweet mint"
-	glass_icon_state = "teaglass" //to do
+	glass_icon_state = "glass_mint" 
 	glass_name = "glass of peppermint tea"
 	glass_desc = "drink this before a date."
 
@@ -449,7 +449,7 @@
 
 /datum/reagent/consumable/tea/green/sweet
 	name = "Sweetened Ryokucha Tea"
-	description = "A type of tea originating from China, passed onto the entirety of East Asia."
+	description = "A type of tea originating from China, passed onto the entirety of East Asia. It has been sweetened to taste."
 	color = "bc6f63" // rgb: 188, 111, 99
 	taste_description = "green leaves and calmness"
 	glass_icon_state = "teaglass" //to do
