@@ -141,26 +141,16 @@
 		show_camera_static()
 		return
 
+	var/originator = active_camera
+	if(active_camera.built_in)
+		originator = get_turf(active_camera.built_in)
+
 	var/list/visible_turfs = list()
-
-	// Is this camera located in or attached to a living thing? If so, assume the camera's loc is the living thing.
-	var/cam_location = isliving(active_camera.loc) ? active_camera.loc : active_camera
-
-	// If we're not forcing an update for some reason and the cameras are in the same location,
-	// we don't need to update anything.
-	// Most security cameras will end here as they're not moving.
-	var/newturf = get_turf(cam_location)
-	if(last_camera_turf == newturf)
-		return
-
-	// Cameras that get here are moving, and are likely attached to some moving atom such as cyborgs.
-	last_camera_turf = get_turf(cam_location)
-
-	var/list/visible_things = active_camera.isXRay() ? range(active_camera.view_range, cam_location) : view(active_camera.view_range, cam_location)
-
-	for(var/turf/visible_turf in visible_things)
-		visible_turfs += visible_turf
-
+	for(var/turf/T in (active_camera.isXRay() \
+			? range(active_camera.view_range, originator) \
+			: view(active_camera.view_range, originator)))
+		visible_turfs += T
+	
 	var/list/bbox = get_bbox_of_atoms(visible_turfs)
 	var/size_x = bbox[3] - bbox[1] + 1
 	var/size_y = bbox[4] - bbox[2] + 1
