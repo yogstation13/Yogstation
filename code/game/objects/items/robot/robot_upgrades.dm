@@ -151,6 +151,62 @@
 	if (.)
 		R.ionpulse = FALSE
 
+/obj/item/borg/upgrade/language
+	name = "translation matrix upgrade"
+	desc = "Increases the translation matrix to include all xeno languages"
+	icon_state = "cyborg_upgrade2"
+	var/list/languages = list(
+		/datum/language/bonespeak,
+		/datum/language/draconic,
+		/datum/language/english,
+		/datum/language/etherean,
+		/datum/language/felinid,
+		/datum/language/mothian,
+		/datum/language/polysmorph,
+		/datum/language/sylvan
+	)
+
+/obj/item/borg/upgrade/language/expanded
+	name = "advanced translation matrix upgrade"
+	desc = "Increases the translation matrix to include an even wider variety in langauges"
+	languages = list(
+		/datum/language/bonespeak,
+		/datum/language/draconic,
+		/datum/language/english,
+		/datum/language/etherean,
+		/datum/language/felinid,
+		/datum/language/mothian,
+		/datum/language/polysmorph,
+		/datum/language/sylvan,
+		/datum/language/aphasia,
+		/datum/language/beachbum,
+		/datum/language/egg,
+		/datum/language/monkey,
+		/datum/language/mouse,
+		/datum/language/mushroom,
+		/datum/language/slime
+	)
+
+/obj/item/borg/upgrade/language/omni
+	name = "universal translation matrix upgrade"
+	desc = "Allow the translation matrix to handle any language"
+	languages = list()
+
+/obj/item/borg/upgrade/language/omni/Initialize(mapload)
+	. = ..()
+	languages = subtypesof(/datum/language)
+
+/obj/item/borg/upgrade/language/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		for(var/datum/language/lang as anything in languages)
+			R.grant_language(lang, TRUE, TRUE, LANGUAGE_SOFTWARE)
+
+/obj/item/borg/upgrade/language/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		R.remove_all_languages(LANGUAGE_SOFTWARE)
+
 /obj/item/borg/upgrade/ddrill
 	name = "mining cyborg diamond drill"
 	desc = "A diamond drill replacement for the mining module's standard drill."
