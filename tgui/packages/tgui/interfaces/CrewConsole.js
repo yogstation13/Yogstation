@@ -81,10 +81,10 @@ export const CrewConsole = (props, context) => {
       <Window.Content scrollable>
         <Flex>
           <Flex.Item>
-            <Section minHeight={90} buttons={{<Button.Checkbox checked={originalTitles} onClick={() => setoriginalTitles(!originalTitles)}>
+            <Section minHeight={90} buttons={(<Button.Checkbox checked={originalTitles} onClick={() => setoriginalTitles(!originalTitles)}>
                 Use Original Job Titles
                </Button.Checkbox>
-              }}>
+              )}>
               <Table>
                 <Table.Row>
                   <Table.Cell bold>
