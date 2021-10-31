@@ -60,10 +60,7 @@
 			to_chat(user, "Hit water")
 			if(attemptcatch)
 				//you catch the fish
-				new /obj/item/reagent_containers/food/snacks/fishfingers(get_turf(user.loc))
-				fishing = FALSE;
-				fishing_turf.cut_overlay(mutable_appearance(bobber_image,bobber_icon_state))
-				attemptcatch = FALSE
+				catch_fish(target,user)
 				return
 			else
 				to_chat(user, "attempting to feesh")
@@ -120,6 +117,14 @@
 	fishing = FALSE
 	if(fishing_turf)
 		fishing_turf.cut_overlay(mutable_appearance(bobber_image,bobber_icon_state))
+
+/obj/item/fishingrod/proc/catch_fish(atom/target, mob/living/user)
+	var/obj/spawned_loot = new /obj/item/reagent_containers/food/snacks/fishfingers(get_turf(target.loc))
+	if(!user.put_in_hands(spawned_loot)) //if they are holding something besides their rod, naughty naughty
+		spawned_loot.throw_at(user,2,3) //whip it at them
+	fishing = FALSE;
+	fishing_turf.cut_overlay(mutable_appearance(bobber_image,bobber_icon_state))
+	attemptcatch = FALSE
 
 
 
