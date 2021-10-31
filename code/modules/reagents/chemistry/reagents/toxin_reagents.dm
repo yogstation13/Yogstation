@@ -365,6 +365,27 @@
 	color = "#571e07" // rgb: 87, 30, 7
 	toxpwr = 0.5
 
+/datum/reagent/toxin/teapowder/green
+	name = "Ground Ryokucha Tea Powder"
+	description = "Finely shredded green leaves, used for making tea."
+	reagent_state = SOLID
+	color = "#7a8e5c" // rgb: 122, 142, 92
+	toxpwr = 0.5
+
+/datum/reagent/toxin/teapowder/rice
+	name = "Ground Genmaicha"
+	description = "Mixture of rice and green tea leaves."
+	reagent_state = SOLID
+	color = "#dac46c" // rgb: 218, 196, 107
+	toxpwr = 0.5
+
+/datum/reagent/toxin/teapowder/mint
+	name = "Ground Peppermint Leaves"
+	description = "Mixture of rice and green tea leaves."
+	reagent_state = SOLID
+	color = "#6dce9d" // rgb: 109, 206, 157
+	toxpwr = 0.5
+
 /datum/reagent/toxin/mutetoxin //the new zombie powder.
 	name = "Mute Toxin"
 	description = "A nonlethal poison that inhibits speech in its victim."

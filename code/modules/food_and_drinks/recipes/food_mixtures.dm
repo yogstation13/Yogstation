@@ -70,6 +70,24 @@
 	results = list(/datum/reagent/consumable/tea/red = 5)
 	required_reagents = list(/datum/reagent/toxin/teapowder/red = 1, /datum/reagent/water = 5)
 
+/datum/chemical_reaction/tea/green
+	name = "Ryokucha Tea"
+	id = /datum/reagent/consumable/tea/green
+	results = list(/datum/reagent/consumable/tea/green = 5)
+	required_reagents = list(/datum/reagent/toxin/teapowder/green = 1, /datum/reagent/water = 5)
+
+/datum/chemical_reaction/tea/rice
+	name = "Genmaicha Tea"
+	id = /datum/reagent/consumable/tea/rice
+	results = list(/datum/reagent/consumable/tea/rice = 5)
+	required_reagents = list(/datum/reagent/toxin/teapowder/rice = 1, /datum/reagent/water = 5) //remember to make recipe for rice teapowder
+
+/datum/chemical_reaction/tea/mint
+	name = "Peppermint Tea"
+	id = /datum/reagent/consumable/tea/mint
+	results = list(/datum/reagent/consumable/tea/mint = 5)
+	required_reagents = list(/datum/reagent/toxin/teapowder/mint = 1, /datum/reagent/water = 5)
+
 /datum/chemical_reaction/soysauce
 	name = "Soy Sauce"
 	id = /datum/reagent/consumable/soysauce
@@ -167,6 +185,12 @@
 /datum/chemical_reaction/cakebatter/vegan
 	id = "vegancakebatter"
 	required_reagents = list(/datum/reagent/consumable/soymilk = 15, /datum/reagent/consumable/flour = 15, /datum/reagent/consumable/sugar = 5)
+
+/datum/chemical_reaction/genmaicha
+	name = "Genmaicha bits"
+	id = "riceteapowder" 
+	results = list(/datum/reagent/toxin/teapowder/rice = 1)
+	required_reagents = list(/datum/reagent/consumable/rice = 1, /datum/reagent/toxin/teapowder = 1)
 
 /datum/chemical_reaction/ricebowl
 	name = "Rice Bowl"
