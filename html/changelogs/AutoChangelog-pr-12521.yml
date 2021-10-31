@@ -1,4 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "titles on crew monitors now show custom names without breaking the formatting"
