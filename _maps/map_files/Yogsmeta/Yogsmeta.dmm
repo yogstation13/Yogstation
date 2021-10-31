@@ -33310,13 +33310,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"boj" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "bok" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -43038,20 +43031,6 @@
 "bKe" = (
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
-"bKf" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "Serving Hatch"
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "bKg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46393,36 +46372,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"bRP" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/kitchen";
-	name = "Kitchen APC";
-	pixel_y = -23
-	},
-/obj/structure/cable/yellow,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"bRS" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/item/kitchen/rollingpin,
-/obj/machinery/camera{
-	c_tag = "Kitchen";
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "bRU" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -73936,6 +73885,21 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"iwb" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "Serving Hatch"
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/item/reagent_containers/food/snacks/mint,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "iwq" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -74130,6 +74094,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/cryopods)
+"iKo" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "iKO" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -76677,6 +76650,17 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"new" = (
+/obj/machinery/button/door{
+	id = "kitchenhydro";
+	name = "Service Shutter Control";
+	pixel_y = -24;
+	req_access_txt = "28"
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "neL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -77104,6 +77088,22 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"nBw" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/table,
+/obj/item/kitchen/rollingpin,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "nEg" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -77419,6 +77419,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ofR" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "ogP" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -78653,6 +78663,22 @@
 /obj/effect/landmark/start/janitor,
 /turf/open/floor/plasteel,
 /area/janitor)
+"qjx" = (
+/obj/structure/table,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/kitchen";
+	name = "Kitchen APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow,
+/obj/item/stack/packageWrap,
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "qle" = (
 /obj/machinery/bookbinder,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -80738,14 +80764,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"tsY" = (
-/obj/structure/table,
-/obj/item/stack/packageWrap,
-/obj/item/hand_labeler,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "tuk" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -80766,6 +80784,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"twH" = (
+/obj/machinery/camera{
+	c_tag = "Kitchen";
+	dir = 1
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "twS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -80803,21 +80828,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"tya" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/machinery/button/door{
-	id = "kitchenhydro";
-	name = "Service Shutter Control";
-	pixel_y = -24;
-	req_access_txt = "28"
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "tys" = (
 /obj/machinery/computer/cryopod{
 	dir = 4;
@@ -117031,7 +117041,7 @@ bLI
 bnW
 bOQ
 bQA
-bRP
+qjx
 bKe
 aJI
 eUO
@@ -117540,12 +117550,12 @@ bwO
 brc
 bwO
 bBT
-bKf
+iwb
 bLK
 bLK
 rQn
-bQB
-tsY
+iKo
+bLK
 bKe
 rGa
 mod
@@ -117800,9 +117810,9 @@ bBT
 bna
 bLK
 dDe
-boj
-bQB
-tya
+ofR
+iKo
+new
 bKe
 bUd
 yde
@@ -118058,8 +118068,8 @@ bKh
 bLM
 bLK
 boq
-bQB
-bRS
+nBw
+twH
 oub
 bUe
 bVr
