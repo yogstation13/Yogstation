@@ -1,0 +1,7 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - rscadd: "Adds meson sunglasses"
+  - rscadd: "Adds a crafting recipe for meson sunglasses"
+  - imageadd: "Added sprites for meson sunglasses"
+  - tweak: "the CE now spawns with meson sunglasses"
