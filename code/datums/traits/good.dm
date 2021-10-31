@@ -141,6 +141,33 @@
 	H.equip_to_slot(camera, SLOT_NECK)
 	H.regenerate_icons()
 
+/datum/quirk/robust_diet
+	name = "Robust Diet"
+	desc = "You reguarly eat things that would make your peers unwell."
+	value = 1
+	gain_text = span_notice("Your stomach feels robust.")
+	lose_text = span_notice("Your stomach feels normal again.")
+	medical_record_text = "Patient demonstrates abnormally robust digestive abilities."
+
+/datum/quirk/robust_diet/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/datum/species/species = H.dna.species
+	var/liked = species.liked_food
+	var/toxic = species.toxic_food
+	species.toxic_food = null //removes toxic foods
+	if(/datum/species/moth) //mothcheck
+		species.liked_food |= MEAT //Meat is tasty.
+	if(/datum/species/human/felinid) //catcheck
+		species.liked_food |= CHOCOLATE //Chocolate is tasty.
+
+
+/datum/quirk/robust_diet/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		var/datum/species/species = H.dna.species
+		species.toxic_food = initial(species.toxic_food)
+		species.liked_food = initial(species.liked_food)
+
 /datum/quirk/selfaware
 	name = "Self-Aware"
 	desc = "You know your body well, and can accurately assess the extent of your wounds."
