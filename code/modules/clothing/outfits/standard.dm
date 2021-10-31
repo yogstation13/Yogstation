@@ -422,4 +422,4 @@
 		/obj/item/card/emag/bluespace=1,\
 		/obj/item/dnainjector/hulkmut=1,\
 		/obj/item/storage/box/materials=1,\
-		/obj/item/modular_computer/tablet/preset/syndicate=1)
+		/obj/item/modular_computer/tablet/nukeops=1)

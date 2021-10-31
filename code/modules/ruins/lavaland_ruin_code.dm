@@ -160,7 +160,7 @@
 	r_hand = /obj/item/melee/transforming/energy/sword/saber
 	mask = /obj/item/clothing/mask/chameleon/gps
 	suit = /obj/item/clothing/suit/armor/vest
-	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1)
+	backpack_contents = list(/obj/item/modular_computer/tablet/nukeops=1)
 
 /obj/item/clothing/mask/chameleon/gps/Initialize()
 	. = ..()
