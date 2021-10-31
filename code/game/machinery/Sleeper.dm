@@ -300,9 +300,6 @@
 		return
 	return mob_occupant.reagents.get_reagent_amount(/datum/reagent/medicine/morphine) + 10 <= 20
 
-/obj/machinery/sleeper/emag_act(mob/user)
-	to_chat(user, "<span class='warning'>You scramble the sleeper's user interface!</span>")
-
 /obj/machinery/sleeper/syndie
 	icon_state = "sleeper_s"
 	controls_inside = TRUE
