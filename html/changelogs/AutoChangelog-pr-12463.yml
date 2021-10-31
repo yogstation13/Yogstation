@@ -1,0 +1,4 @@
+author: "  zxaber"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a camera viewing app, SecurEye, available for download on laptops and modular consoles to those that have security access."
