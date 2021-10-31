@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "add reagent's enter reagent button now works as intended instead of not at all"
