@@ -1,17 +1,17 @@
 /obj/item/fishingrod
 	name = "fishing rod"
 	desc = "A fishing rod used for fishing."
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "crowbar"
+	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
+	icon_state = "fishing_rod"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	usesound = 'sound/items/crowbar.ogg'
-	flags_1 = CONDUCT_1
-	slot_flags = ITEM_SLOT_BELT
-	force = 5
-	throwforce = 7
+	slot_flags = ITEM_SLOT_BACK
+	force = 2
+	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(/datum/material/iron=50)
+
 	var/initial_fishing_power = 10
 	var/fishing_power = 10
 	var/obj/item/reagent_containers/food/snacks/bait/bait = null //what bait is attached to the rod
@@ -24,6 +24,17 @@
 	var/fishing_timer
 	var/turf/fishing_turf //what turf we are fishing in
 
+	var/list/rewards = list(
+		/obj/item/reagent_containers/food/snacks/fish/goldfish,
+		/obj/item/reagent_containers/food/snacks/fish/goldfish/giant,
+		/obj/item/reagent_containers/food/snacks/fish/salmon,
+		/obj/item/reagent_containers/food/snacks/fish/bass,
+		/obj/item/reagent_containers/food/snacks/fish/tuna,
+		/obj/item/reagent_containers/food/snacks/fish/shrimp,
+		/obj/item/reagent_containers/food/snacks/fish/squid,
+		/obj/item/reagent_containers/food/snacks/fish/puffer
+	)
+
 
 /obj/item/fishingrod/attackby(obj/item/B, mob/user, params)
 	if(istype(B,/obj/item/reagent_containers/food/snacks/bait))
@@ -33,11 +44,14 @@
 				return
 			bait = B
 			to_chat(user, "you attach the [bait] to the fishing rod.")
+			cut_overlays()
+			add_overlay(bait)
 			user.put_in_hands(oldbait)
 		else
 			if(!user.transferItemToLoc(B,src))
 				return
 			bait = B
+			add_overlay(bait)
 		calculate_fishing_power()
 
 /obj/item/fishingrod/proc/calculate_fishing_power()
@@ -119,7 +133,8 @@
 		fishing_turf.cut_overlay(mutable_appearance(bobber_image,bobber_icon_state))
 
 /obj/item/fishingrod/proc/catch_fish(atom/target, mob/living/user)
-	var/obj/spawned_loot = new /obj/item/reagent_containers/food/snacks/fishfingers(get_turf(target.loc))
+	var/obj/picked_loot = pick(rewards)
+	var/obj/spawned_loot = new picked_loot(get_turf(target.loc))
 	if(!user.put_in_hands(spawned_loot)) //if they are holding something besides their rod, naughty naughty
 		spawned_loot.throw_at(user,2,3) //whip it at them
 	fishing = FALSE;
