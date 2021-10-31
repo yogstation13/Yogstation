@@ -68,20 +68,22 @@
 		bait = null
 
 /obj/item/fishingrod/pre_attack(atom/target, mob/living/user)
-	fishing_turf = target;
-	if(fishing_turf)
+	if(!fishing_turf)
+		fishing_turf = target;
+	else if(target == fishing_turf)
 		if(istype(fishing_turf,/turf/open/water/safe))
 			to_chat(user, "Hit water")
-			if(attemptcatch)
+			if(fishing && attemptcatch)
 				//you catch the fish
 				catch_fish(target,user)
 				return
 			else
-				to_chat(user, "attempting to feesh")
+				to_chat(user, "You attempt to cast your rod.")
 				if(!fishing)
-					if(!do_after(user, 2 SECONDS,TRUE,user))
-						return
 					fishing = TRUE
+					if(!do_after(user, 2 SECONDS,TRUE,user))
+						fishing = FALSE
+						return
 					to_chat(user, "You cast out your fishing rod.")
 					//you are attempting to fish
 					fishing_turf.add_overlay(mutable_appearance(bobber_image,bobber_icon_state))
@@ -106,6 +108,8 @@
 					reel_in(user)
 				else
 					reel_in(user)
+	else
+		to_chat(user, "You are not fishing on this turf!")
 		
 /obj/item/fishingrod/proc/reaction_check(mob/user)
 	if(attemptcatch) 
@@ -140,6 +144,10 @@
 	fishing = FALSE;
 	fishing_turf.cut_overlay(mutable_appearance(bobber_image,bobber_icon_state))
 	attemptcatch = FALSE
+	if(istype(spawned_loot,/obj/item/reagent_containers/food/snacks/fish))
+		to_chat(user,"You pull a [spawned_loot.name] off your line!")
+	else
+		to_chat(user,"you fish up [spawned_loot.name].")
 
 
 

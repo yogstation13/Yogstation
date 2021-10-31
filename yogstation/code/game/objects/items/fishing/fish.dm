@@ -11,6 +11,7 @@
 	var/max_length = 10
 	var/min_weight = 1
 	var/max_weight = 15
+	throwforce = 10
 
 /obj/item/reagent_containers/food/snacks/fish/Initialize(mapload)
 	. = ..()
@@ -24,8 +25,12 @@
 	. = ..()
 	. += "It's [length] inches and [weight] oz!"
 
+/obj/item/reagent_containers/food/snacks/fish/attack_self(mob/M)
+	M.visible_message("[M] shows off \his [src]. It's [length] inches long and [weight] ounces!", \
+						 span_notice("You show off your [src]. It's [length] inches long and [weight] ounces!"))
+
 /obj/item/reagent_containers/food/snacks/fish/goldfish
-	name = "galaxy goldfish"
+	name = "galactic goldfish"
 	desc = "it's so... small!"
 	icon_state = "fish_goldfish"
 	min_length = 1
@@ -34,7 +39,7 @@
 	max_weight = 8
 
 /obj/item/reagent_containers/food/snacks/fish/goldfish/giant
-	name = "giant galaxy goldfish"
+	name = "giant galactic goldfish"
 	desc = "it's so... big!"
 	icon_state = "fish_goldfish_big"
 	min_length = 6
