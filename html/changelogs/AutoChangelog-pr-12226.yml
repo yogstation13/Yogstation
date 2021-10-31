@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscdel: "sleepers no longer inject healing chems"
+  - rscadd: "sleepers now heal passively over time, with different forms of healing being unlocked by different levels of parts. They're still kind of slow."
