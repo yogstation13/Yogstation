@@ -107,7 +107,7 @@
 	if(is_operational() && occupant)
 		open_machine()
 
-/obj/machinery/particle_accelerator/control_box/emag_act(mob/user)
+/obj/machinery/sleeper/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, span_danger("You disable the chemical injection inhibitors on the sleeper..."))
