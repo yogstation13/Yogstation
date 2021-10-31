@@ -43,6 +43,8 @@
 	results = list(/datum/reagent/consumable/icecoffee = 4)
 	required_reagents = list(/datum/reagent/consumable/ice = 1, /datum/reagent/consumable/coffee = 3)
 
+
+
 /datum/chemical_reaction/nuka_cola
 	name = "Nuka Cola"
 	id = /datum/reagent/consumable/nuka_cola
@@ -574,7 +576,7 @@
 	name = "Arnold Palmer"
 	id = /datum/reagent/consumable/tea/arnold_palmer
 	results = list(/datum/reagent/consumable/tea/arnold_palmer = 2)
-	required_reagents = list(/datum/reagent/consumable/tea = 1, /datum/reagent/consumable/lemonade = 1)
+	required_reagents = list(/datum/reagent/consumable/tea/sweet = 1, /datum/reagent/consumable/lemonade = 1)
 	mix_message = "The smells of fresh green grass and sand traps waft through the air as the mixture turns a friendly yellow-orange."
 
 /datum/chemical_reaction/chocolate_milk
