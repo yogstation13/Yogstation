@@ -1,0 +1,5 @@
+author: "cuackles"
+delete-after: true 
+changes: 
+  - rscadd: "Adds suspicious goat to the game and to exotic goat crates"
+  - imageadd: "added suspicious goat sprites"
