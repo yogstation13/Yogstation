@@ -2314,6 +2314,7 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\decentralized_os.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\expansion_card.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\expansion_card_holder.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\management\ai_controlpanel.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\ai_dashboard.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\resource_distribution.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\_ai_project.dm"

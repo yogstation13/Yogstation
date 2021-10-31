@@ -30,6 +30,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core/proc/can_transfer_ai()
 	if(stat & (BROKEN|NOPOWER|EMPED))
 		return FALSE
+	return TRUE
 	
 /obj/machinery/ai/data_core/proc/transfer_AI(mob/living/silicon/ai/AI)
 	AI.forceMove(src)

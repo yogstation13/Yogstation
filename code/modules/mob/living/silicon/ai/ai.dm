@@ -29,6 +29,9 @@
 	sec_hud = DATA_HUD_SECURITY_ADVANCED
 	d_hud = DATA_HUD_DIAGNOSTIC_ADVANCED
 	mob_size = MOB_SIZE_LARGE
+
+	invisibility = INVISIBILITY_OBSERVER 
+
 	var/battery = 200 //emergency power if the AI's APC is off
 	var/list/network = list("ss13")
 	var/obj/machinery/camera/current
@@ -100,6 +103,8 @@
 	var/datum/robot_control/robot_control
 
 	var/datum/ai_dashboard/dashboard
+	//override for the can_download, checked first in case we have other code in can_download
+	var/can_download = TRUE
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
 	. = ..()
@@ -911,6 +916,7 @@
 	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 30 seconds.")
 	view_core() //A BYOND bug requires you to be viewing your core before your verbs update
 	add_verb(src, /mob/living/silicon/ai/proc/choose_modules)
+	add_verb(src, /mob/living/silicon/ai/proc/toggle_download)
 	malf_picker = new /datum/module_picker
 
 /mob/living/silicon/ai/reset_perspective(atom/A)

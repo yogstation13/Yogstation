@@ -1,4 +1,23 @@
+/proc/available_ai_cores()
+	if(!GLOB.data_cores.len)
+		return FALSE
+	var/obj/machinery/ai/data_core/new_data_core = GLOB.primary_data_core
+	if(!new_data_core || !new_data_core.can_transfer_ai())
+		for(var/obj/machinery/ai/data_core/DC in GLOB.data_cores)
+			if(DC.can_transfer_ai())
+				new_data_core = DC
+				break
+	if(!new_data_core || (new_data_core && !new_data_core.can_transfer_ai()))
+		return FALSE
+	return new_data_core
 
+/mob/living/silicon/ai/proc/toggle_download()
+	set category = "AI Commands"
+	set name = "Toggle Download"
+	if(usr.stat == DEAD)
+		return //won't work if dead
+	src.can_download = !src.can_download
+	to_chat(src, "<span class='warning'>You [src.can_download ? "enable" : "disable"] read/write permission to your memorybanks! You [src.can_download ? "CAN" : "CANNOT"] be downloaded!</span>")
 
 /mob/living/silicon/ai/proc/relocate(silent = FALSE)
 	if(!silent)
@@ -10,13 +29,9 @@
 
 
 
-	var/obj/machinery/ai/data_core/new_data_core = GLOB.primary_data_core
-	if(!new_data_core || !new_data_core.can_transfer_ai())
-		for(var/obj/machinery/ai/data_core/DC in GLOB.data_cores)
-			if(DC.can_transfer_ai())
-				new_data_core = DC
-				break
-	if(!new_data_core)
+	var/obj/machinery/ai/data_core/new_data_core = available_ai_cores()
+
+	if(!new_data_core || (new_data_core && !new_data_core.can_transfer_ai()))
 		INVOKE_ASYNC(src, /mob/living/silicon/ai.proc/death_prompt)
 		return
 
