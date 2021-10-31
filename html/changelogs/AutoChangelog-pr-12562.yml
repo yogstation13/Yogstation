@@ -1,0 +1,5 @@
+author: "   TheGamerdk & Wuba"
+delete-after: true 
+changes: 
+  - bugfix: "you cannot freely pass through turnstiles in a box/mech anymore, because they are too thicc to fit"
+  - tweak: "Bots can now pass turnstiles both ways"
