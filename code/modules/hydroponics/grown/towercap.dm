@@ -268,7 +268,7 @@
 /obj/structure/bonfire/proc/Cook()
 	var/turf/current_location = get_turf(src)
 	for(var/A in current_location)
-		var/obj/G = A;
+		var/obj/G = A
 		if(A == src)
 			continue
 		else if(isliving(A)) //It's still a fire, idiot.
