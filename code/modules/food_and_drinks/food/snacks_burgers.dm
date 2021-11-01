@@ -67,7 +67,7 @@
 	icon_state = "fishburger"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("bun" = 4, "fish" = 4)
-	foodtype = GRAIN | MEAT
+	foodtype = GRAIN | SEAFOOD
 
 /obj/item/reagent_containers/food/snacks/burger/tofu
 	name = "tofu burger"

@@ -65,7 +65,7 @@
 	filling_color = "#CD853F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/capsaicin = 1)
 	tastes = list("fish" = 4, "batter" = 1, "hot peppers" = 1)
-	foodtype = MEAT
+	foodtype = SEAFOOD
 
 /obj/item/reagent_containers/food/snacks/carpmeat
 	name = "carp fillet"
@@ -75,7 +75,7 @@
 	bitesize = 6
 	filling_color = "#FA8072"
 	tastes = list("fish" = 1)
-	foodtype = MEAT
+	foodtype = SEAFOOD
 
 /obj/item/reagent_containers/food/snacks/carpmeat/Initialize()
 	. = ..()
@@ -94,7 +94,7 @@
 	bitesize = 1
 	filling_color = "#CD853F"
 	tastes = list("fish" = 1, "breadcrumbs" = 1)
-	foodtype = MEAT
+	foodtype = SEAFOOD
 
 /obj/item/reagent_containers/food/snacks/fishandchips
 	name = "fish and chips"
@@ -104,7 +104,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	filling_color = "#FA8072"
 	tastes = list("fish" = 1, "chips" = 1)
-	foodtype = MEAT | VEGETABLES | FRIED
+	foodtype = SEAFOOD | VEGETABLES | FRIED
 
 /obj/item/reagent_containers/food/snacks/fishfry
 	name = "fish fry"
@@ -113,7 +113,7 @@
 	list_reagents = list (/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
 	filling_color = "#ee7676"
 	tastes = list("fish" = 1, "pan seared vegtables" = 1)
-	foodtype = MEAT | VEGETABLES | FRIED
+	foodtype = SEAFOOD | VEGETABLES | FRIED
 
 /obj/item/reagent_containers/food/snacks/sashimi
 	name = "carp sashimi"
@@ -123,7 +123,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/capsaicin = 5)
 	filling_color = "#FA8072"
 	tastes = list("fish" = 1, "hot peppers" = 1)
-	foodtype = MEAT | TOXIC
+	foodtype = SEAFOOD | TOXIC
 
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 
