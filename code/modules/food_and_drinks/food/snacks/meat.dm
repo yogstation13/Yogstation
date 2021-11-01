@@ -421,7 +421,7 @@
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet
 	name = "raw cutlet"
 	desc = "A raw meat cutlet."
-	icon_state = "raw_cutlet"
+	icon_state = "rawcutlet"
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	filling_color = "#B22222"
