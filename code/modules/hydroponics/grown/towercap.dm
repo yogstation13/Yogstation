@@ -280,7 +280,7 @@
 				continue
 			G.fire_act(1000) //Hot hot hot!
 			if(prob(10))
-				visible_message("<span class='danger'>[G] doesn't seem to be doing too great on the [src]!</span>")
+				visible_message("<span class='danger'>[G] doesn't seem to be doing too great on [src]!</span>")
 		else if(istype(A, /obj/item) && prob(20))
 			var/obj/item/O = A
 			O.microwave_act()
