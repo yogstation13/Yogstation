@@ -910,8 +910,8 @@
 /datum/chemical_reaction/royaltea
 	name = "Royal-Tea"
 	id = /datum/reagent/consumable/ethanol/royaltea
-	results = list(/datum/reagent/consumable/ethanol/royaltea = 4)
-	required_reagents = list(/datum/reagent/consumable/tea = 1, /datum/reagent/consumable/ethanol/gin = 1, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ice = 1)
+	results = list(/datum/reagent/consumable/ethanol/royaltea = 3)
+	required_reagents = list(/datum/reagent/consumable/ethanol/gin = 1, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/icetea = 1 )
 
 /datum/chemical_reaction/tea/red/chai
 	name = "Rooibos Chai Tea"
