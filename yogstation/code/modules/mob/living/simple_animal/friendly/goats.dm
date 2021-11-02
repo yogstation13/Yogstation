@@ -436,7 +436,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/suspicious
 	name = "suspicious goat"
-	desc = "A suspicious looking goat"
+	desc = "A suspicious looking goat."
 	icon = 'yogstation/icons/mob/goats/suspicious_goat.dmi'
 	icon_state = "suspiciusgoat"
 	icon_living = "suspiciusgoat"
