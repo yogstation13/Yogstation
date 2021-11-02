@@ -43,7 +43,35 @@
 	results = list(/datum/reagent/consumable/icecoffee = 4)
 	required_reagents = list(/datum/reagent/consumable/ice = 1, /datum/reagent/consumable/coffee = 3)
 
+/datum/chemical_reaction/tea/sweet 
+	name = "Sweetened Black Tea"
+	id = /datum/reagent/consumable/tea/sweet
+	results = list(/datum/reagent/consumable/tea/sweet = 5)
+	required_reagents = list(/datum/reagent/consumable/tea = 5, /datum/reagent/consumable/sugar = 1)
 
+/datum/chemical_reaction/tea/sweet/red 
+	name = "Sweetened Rooibos Tea"
+	id = /datum/reagent/consumable/tea/red/sweet
+	results = list(/datum/reagent/consumable/tea/red/sweet = 5)
+	required_reagents = list(/datum/reagent/consumable/tea/red = 5, /datum/reagent/consumable/sugar = 1)
+
+/datum/chemical_reaction/tea/sweet/green
+	name = "Sweetened Ryokucha Tea"
+	id = /datum/reagent/consumable/tea/sweet
+	results = list(/datum/reagent/consumable/tea/green/sweet = 5)
+	required_reagents = list(/datum/reagent/consumable/tea/green = 5, /datum/reagent/consumable/sugar = 1)
+
+/datum/chemical_reaction/tea/sweet/rice
+	name = "Sweetened Genmaicha Tea"
+	id = /datum/reagent/consumable/tea/sweet
+	results = list(/datum/reagent/consumable/tea/rice/sweet = 5)
+	required_reagents = list(/datum/reagent/consumable/tea/rice = 5, /datum/reagent/consumable/sugar = 1)
+
+/datum/chemical_reaction/tea/sweet/mint
+	name = "Sweetened Peppermint Tea"
+	id = /datum/reagent/consumable/tea/sweet
+	results = list(/datum/reagent/consumable/tea/mint/sweet = 5)
+	required_reagents = list(/datum/reagent/consumable/tea/mint = 5, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/nuka_cola
 	name = "Nuka Cola"
@@ -866,3 +894,48 @@
     id = /datum/reagent/consumable/ethanol/ambermoon
     results = list(/datum/reagent/consumable/ethanol/ambermoon = 10)
     required_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/consumable/ethanol/whiskey = 5, /datum/reagent/consumable/capsaicin = 1)
+
+/datum/chemical_reaction/tea/milktea
+	name = "Hong Kong-style Milk Tea"
+	id = /datum/reagent/consumable/tea/hkmilktea
+	results = list(/datum/reagent/consumable/tea/hkmilktea = 3)
+	required_reagents = list(/datum/reagent/consumable/tea/sweet = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/consumable/ice = 1)
+
+/datum/chemical_reaction/tea/yuenyeung
+	name = "Yuen Yeung"
+	id =/datum/reagent/consumable/tea/yuenyeung
+	results = list(/datum/reagent/consumable/tea/yuenyeung = 2)
+	required_reagents = list(/datum/reagent/consumable/tea/hkmilktea = 1, /datum/reagent/consumable/coffee = 1)
+
+/datum/chemical_reaction/royaltea
+	name = "Royal-Tea"
+	id = /datum/reagent/consumable/ethanol/royaltea
+	results = list(/datum/reagent/consumable/ethanol/royaltea = 4)
+	required_reagents = list(/datum/reagent/consumable/tea = 1, /datum/reagent/consumable/ethanol/gin = 1, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ice = 1)
+
+/datum/chemical_reaction/tea/red/chai
+	name = "Rooibos Chai Tea"
+	id = /datum/reagent/consumable/tea/red/chai
+	results = list(/datum/reagent/consumable/tea/red/chai = 10)
+	required_reagents = list(/datum/reagent/consumable/tea/red/sweet = 5, /datum/reagent/consumable/cream = 5, /datum/reagent/consumable/cinnamon = 1 )
+
+/datum/chemical_reaction/tea/red/punch
+	name = "Rooibos Punch"
+	id = /datum/reagent/consumable/tea/red/punch
+	results = list(/datum/reagent/consumable/tea/red/punch = 5)
+	required_reagents = list(/datum/reagent/consumable/tea/red = 1, /datum/reagent/consumable/lemon_lime = 1, /datum/reagent/consumable/pineapplejuice = 2, /datum/reagent/consumable/ethanol/vodka = 1)
+
+/datum/chemical_reaction/tea/green/latte
+	name = "Matcha Latte"
+	id = /datum/reagent/consumable/tea/green/latte
+	results = list(/datum/reagent/consumable/tea/green/latte = 2)
+	required_reagents = list(/datum/reagent/consumable/tea/green = 1, /datum/reagent/consumable/cream = 1 )
+
+/datum/chemica_reaction/tea/mint/moroccan
+	name = "Moroccan Mint Tea"
+	id = /datum/reagent/consumable/tea/mint/moroccan
+	results = list(/datum/reagent/consumable/tea/mint/moroccan = 3)
+	required_reagents = list(/datum/reagent/consumable/tea/green/sweet = 2, /datum/reagent/consumable/tea/mint = 1)
+
+/datum/chemica_reaction/tea/mint/moroccan/alt
+	required_reagents = list(/datum/reagent/consumable/tea/green/sweet = 2, /datum/reagent/toxin/teapowder/mint = 1)

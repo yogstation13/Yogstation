@@ -461,11 +461,77 @@
 	description = "A refreshing tea made of peppermint leaves. It has been sweetened to taste."
 	color = "d9dea2" // rgb: 217, 222, 162
 	nutriment_factor = 0
-	taste_description = "sweetened sweet mint"
+	taste_description = "sweetened peppermint"
 	glass_icon_state = "glass_mint" 
 	glass_name = "glass of peppermint tea"
 	glass_desc = "drink this before a date. Some sugar residues are seen."
 
+//Tea "cocktails"
+
+/datum/reagent/consumable/tea/hkmilktea
+	name = "Hong Kong-Style Milk Tea"
+	description = "An authentic recipe of milk tea from Space China."
+	color = "b9673f" // 185, 105, 63
+	taste_description = "creamy sweetness and silky smoothness"
+	glass_icon_state = "glass_green" //WIP
+	glass_name = "cup of Hong Kong-Style Milk Tea"
+	glass_desc = "Reminds me of the dai pai dongs." 
+
+/datum/reagent/consumable/tea/yuenyeung
+	name = "Yuen Yeung"
+	description = "A fusion of creamy milk tea and bitter coffee."
+	color = "b9673f" // 185, 105, 63
+	taste_description = "light sweetness and slight bitterness"
+	glass_icon_state = "glass_green" //WIP
+	glass_name = "cup of yuen yeung"
+	glass_desc = "tastes rather pleasant." 
+
+/datum/reagent/consumable/ethanol/royaltea
+	name = "Royal-Tea"
+	description = "It's gin and tea, how british can you even be?"
+	color = "f2f3da" // 242, 243, 218
+	taste_description = "sourness and a hint of bitterness"
+	glass_icon_state = "glass_green" //WIP
+	glass_name = "cup of royal-tea"
+	glass_desc = "delightfully british." 
+
+/datum/reagent/consumable/tea/red/chai
+	name = "Rooibos Chai Tea"
+	description = "Rooibos tea with traditional chai recipes."
+	color = "c59221" // 197, 146, 33
+	taste_description = "sweet spices and cream"
+	glass_icon_state = "glass_green" //WIP
+	glass_name = "cup of rooibos chai"
+	glass_desc = "Just the aroma itself makes you feel refreshed."
+
+/datum/reagent/consumable/tea/red/punch
+	name = "Rooibos Punch"
+	description = "A fruity, alcoholic cocktail with a rooibos mix."
+	color = "c07363" // 192, 115, 99
+	taste_description = "fruits and nuttiness"
+	glass_icon_state = "glass_green" //WIP
+	glass_name = "cup of rooibos punch"
+	glass_desc = "Refreshing after a night's party."
+
+/datum/reagent/consumable/tea/green/latte
+	name = "Matcha Latte"
+	description = "A latte made with ground green tea powder."
+	color = "76aa6c" // 118, 170, 108
+	taste_description = "cream froth and light bitterness"
+	glass_icon_state = "glass_green" //WIp
+	glass_name = "cup of matcha latte"
+	glass_desc = "Green colored goodness."
+
+/datum/reagent/consumable/tea/mint/moroccan
+	name = "Moroccan Mint Tea"
+	description = "A traditional drink from a place long long ago in Mother Earth."
+	color = "bc8312" // 188, 131, 18
+	taste_decription = "strong mint"
+	glass_icon_state = "glass_mint" //WIP
+	glass_name = "shot of moroccan mint tea"
+	glass_desc = "the mintiness in your mouth lingers."
+ 
+///////////////////////////////////////////////////////////////////////////////////////////
 /datum/reagent/consumable/aloejuice
 	name = "Aloe Juice"
 	color = "#A3C48B"
