@@ -931,11 +931,11 @@
 	results = list(/datum/reagent/consumable/tea/green/latte = 2)
 	required_reagents = list(/datum/reagent/consumable/tea/green = 1, /datum/reagent/consumable/cream = 1 )
 
-/datum/chemica_reaction/tea/mint/moroccan
+/datum/chemical_reaction/tea/mint/moroccan
 	name = "Moroccan Mint Tea"
 	id = /datum/reagent/consumable/tea/mint/moroccan
 	results = list(/datum/reagent/consumable/tea/mint/moroccan = 3)
 	required_reagents = list(/datum/reagent/consumable/tea/green/sweet = 2, /datum/reagent/consumable/tea/mint = 1)
 
-/datum/chemica_reaction/tea/mint/moroccan/alt
+/datum/chemical_reaction/tea/mint/moroccan/alt
 	required_reagents = list(/datum/reagent/consumable/tea/green/sweet = 2, /datum/reagent/toxin/teapowder/mint = 1)

@@ -526,7 +526,7 @@
 	name = "Moroccan Mint Tea"
 	description = "A traditional drink from a place long long ago in Mother Earth."
 	color = "bc8312" // 188, 131, 18
-	taste_decription = "strong mint"
+	taste_description = "strong mint"
 	glass_icon_state = "glass_mint" //WIP
 	glass_name = "shot of moroccan mint tea"
 	glass_desc = "the mintiness in your mouth lingers."
