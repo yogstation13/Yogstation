@@ -576,6 +576,7 @@
 	icon_state = "coffee_machine"
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/tea //to do
 	auto_sort = FALSE
+	var/mugs = 30
 	dispensable_reagents = list(
 		/datum/reagent/consumable/tea,
 		/datum/reagent/consumable/tea/rice,
@@ -588,6 +589,26 @@
 	upgrade_reagents = null
 	emagged_reagents = null
 
+/obj/machinery/chem_dispenser/drinks/tea/examine(mob/user)
+	. = ..()
+	if (mugs > 1)
+		. += "There are [mugs] mugs left."
+	else if (mugs == 1)
+		. += "There is one mug left."
+	else
+		. += "There are no mugs left."
+
+/obj/machinery/chem_dispenser/drinks/tea/AltClick(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(!mugs)
+		to_chat(user, span_warning("There aren't any mugs left!"))
+		return
+	user.visible_message(span_notice("[user] takes a mug from [src]."), span_notice("You take a mug from [src]."))
+	var/obj/item/reagent_containers/food/drinks/mug/S = new(get_turf(src))
+	user.put_in_hands(S)
+	mugs--
 
 
 /obj/machinery/chem_dispenser/mutagen
