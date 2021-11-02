@@ -43,6 +43,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 	clockwork = TRUE //it'd look weird
 	var/page = 0
 	var/totalpages = 0
+	var/list/validcategorys = list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
 
 /obj/machinery/computer/libraryconsole/Initialize(mapload)
 	. = ..()
@@ -63,18 +64,33 @@ GLOBAL_LIST_EMPTY(checkouts)
 		ui.open()
 
 /obj/machinery/computer/libraryconsole/ui_data(mob/user)
-	/**
-	dat += "<h3>Check Out a Book</h3><BR>"
-	dat += "Book: [src.buffer_book] "
-	dat += "<A href='?src=[REF(src)];editbook=1'>\[Edit\]</A><BR>"
-	dat += "Recipient: [src.buffer_mob] "
-	dat += "<A href='?src=[REF(src)];editmob=1'>\[Edit\]</A><BR>"
-	dat += "Checkout Date : [world.time/600]<BR>"
-	dat += "Due Date: [(world.time + checkoutperiod)/600]<BR>"
-	dat += "(Checkout Period: [checkoutperiod] minutes) (<A href='?src=[REF(src)];increasetime=1'>+</A>/<A href='?src=[REF(src)];decreasetime=1'>-</A>)"
-	dat += "<A href='?src=[REF(src)];checkout=1'>(Commit Entry)</A><BR>"
-	dat += "<A href='?src=[REF(src)];switchscreen=0'>(Return to main menu)</A><BR>"
-	*/
+	var/list/data = list()
+	data["validcategorys"] = validcategorys
+	data["category"] = category
+	data["title"] = title
+	data["author"] = author
+	data["error"] = errorstate
+	data["librarianconsole"] = librarianconsole
+	data["page"] = page
+	data["totalpages"] = CEILING(GLOB.cachedbooks.len/PAGESIZE, 1)
+	data["emagged"] = (obj_flags & EMAGGED)
+	if(!scanner)
+		scanner = findscanner(4)
+	if(!scanner || !scanner.cache)
+		data["scanner"] = null
+	else
+		data["scanner"] = list(
+			"author" = scanner.cache.author,
+			"title" = scanner.cache.title,
+			"id" = REF(scanner.cache),
+			"idname" = scanner.idcard.registered_name,
+			"assignment" = scanner.idcard.assignment
+		)
+	return data
+
+
+/obj/machinery/computer/libraryconsole/ui_static_data(mob/user)
+	. = ..()
 	var/list/data = list()
 	var/list/checkedout = list()
 	for(var/borrower in GLOB.checkouts)
@@ -95,36 +111,21 @@ GLOBAL_LIST_EMPTY(checkouts)
 			borrowedbook["title"] = b.title
 			borrowedbook["category"] = b.category
 			borrowedbook["author"] = b.author
-			//checkedout[REF(borrower)]["books"][REF(b.instance)] = borrowedbook
-	data["checkouts"] = checkedout
-	data["validcategorys"] = list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
-	data["category"] = category
-	data["title"] = title
-	data["author"] = author
-	data["error"] = errorstate
-	data["librarianconsole"] = librarianconsole
-	data["page"] = page
-	data["totalpages"] = CEILING(GLOB.cachedbooks.len/PAGESIZE, 1)
-	data["emagged"] = (obj_flags & EMAGGED)
+
 	var/list/books = list()
 	for(var/id in GLOB.cachedbooks)
 		var/book = GLOB.cachedbooks[id]
 		// Certified byond moment interpreting a var as a string
-		if(category == "Any")
+		if((category == "Any") || (book["category"] == category))
 			books += list("[id]"=book)
-		else if(book["category"] == category)
-			books += list("[id]"=book)
+
 	data["result"] = books.Copy(page*PAGESIZE, clamp(page*PAGESIZE+PAGESIZE, 0, books.len))
-	if(!scanner)
-		scanner = findscanner(4)
-	if(!scanner || !scanner.cache)
-		data["scanner"] = null
-	else
-		data["scanner"] = list("author" = scanner.cache.author, "title" = scanner.cache.title, "id" = REF(scanner.cache))
+	data["checkouts"] = checkedout
 	return data
 
 /obj/machinery/computer/libraryconsole/ui_act(action, list/params)
 	. = ..()
+	update_static_data(usr)
 	if(.)
 		return
 	switch(action)
@@ -135,18 +136,23 @@ GLOBAL_LIST_EMPTY(checkouts)
 		if("setauthor")
 			author = pretty_filter(params["name"])
 		if("setcategory")
-			category = params["category"]
+			if(category in validcategorys)
+				category = params["category"]
+			else
+				category = "Any"
 		if("checkoutbook")
+			if (!(scanner.cache) || !(scanner.idcard))
+				say("Missing an ID or Book")
 			var/datum/cachedbook/borrowbook/b = new /datum/cachedbook/borrowbook
 			var/found = FALSE
 			for(var/person in GLOB.checkouts)
-				if(person != usr)
+				if(person != scanner.idcard.name)
 					continue
 				else
 					found = TRUE
 			if(!found)
-				GLOB.checkouts[usr] = list()
-			var/list/bookthing = GLOB.checkouts[usr]
+				GLOB.checkouts[scanner.idcard.name] = list()
+			var/list/bookthing = GLOB.checkouts[scanner.idcard.name]
 			for(var/datum/cachedbook/borrowbook/book in bookthing)
 				if(params["id"] == book.instance)
 					say("Book is already checked out to this user")
@@ -154,10 +160,11 @@ GLOBAL_LIST_EMPTY(checkouts)
 			b.instance = params["id"]
 			b.title = params["title"]
 			b.author = params["author"]
-			b.mobname = usr
+			b.mobname = scanner.idcard.name
 			b.getdate = world.time
 			b.duedate = world.time + params["time"] MINUTES
-			GLOB.checkouts[usr] |= b 
+			GLOB.checkouts[scanner.idcard.name] |= b 
+
 		if("uploadbook")
 			var/msg = "[key_name(usr)] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs"
 			var/datum/DBQuery/query_library_upload = SSdbcore.NewQuery({"
@@ -184,7 +191,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 					list("id" = id)
 				)
 				if(!query_library_print.Execute())
-					qdel(query_library_print)
+					qdel(query_library_print.item)
 					say("PRINTER ERROR! Failed to print document (0x0000000F)")
 					return
 				while(query_library_print.NextRow())
@@ -193,7 +200,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 					var/bookcontent = query_library_print.item[4]
 					if(!QDELETED(src))
 						var/obj/item/book/B = new(get_turf(src))
-						B.name = "Book: [title]"
+						B.name = "Book: [booktitle]"
 						B.title = booktitle
 						B.author = bookauthor
 						B.dat = bookcontent
@@ -266,22 +273,6 @@ GLOBAL_LIST_EMPTY(checkouts)
 	var/list/libcomp_menu
 	librarianconsole = TRUE
 
-/obj/machinery/computer/libraryconsole/bookmanagement/proc/build_library_menu()
-	if(libcomp_menu)
-		return
-	load_library_db_to_cache()
-	if(!GLOB.cachedbooks)
-		return
-	libcomp_menu = list("")
-
-	for(var/i in 1 to GLOB.cachedbooks.len)
-		var/datum/cachedbook/C = GLOB.cachedbooks[i]
-		var/page = round(i/250)+1
-		if (libcomp_menu.len < page)
-			libcomp_menu.len = page
-			libcomp_menu[page] = ""
-		libcomp_menu[page] += "<tr><td>[C.author]</td><td>[C.title]</td><td>[C.category]</td><td><A href='?src=[REF(src)];targetid=[C.id]'>\[Order\]</A></td></tr>\n"
-
 /obj/machinery/computer/libraryconsole/bookmanagement/Initialize()
 	. = ..()
 	if(circuit)
@@ -298,51 +289,48 @@ GLOBAL_LIST_EMPTY(checkouts)
 	desc = "It servers the purpose of scanning stuff."
 	density = TRUE
 	var/obj/item/book/cache		// Last scanned book
+	var/obj/item/card/id/idcard
+
+/obj/machinery/libraryscanner/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "LibraryScanner", name)
+		ui.open()
+
+/obj/machinery/libraryscanner/ui_data(mob/user)
+	. = ..()
+	var/list/data = list()
+	data["cache"] = list()
+	data["id"] = list()
+	if(cache)
+		data["cache"]["author"] = cache.author
+		data["cache"]["name"] = cache.title
+	if(idcard)
+		data["id"]["name"] = idcard.registered_name
+		data["id"]["assignment"] = idcard.assignment
+	return data
+
+/obj/machinery/libraryscanner/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("ejectbook")
+			cache.forceMove(drop_location())
+			cache = null
+		if("clearid")
+			idcard = null
 
 /obj/machinery/libraryscanner/attackby(obj/O, mob/user, params)
 	if(istype(O, /obj/item/book))
 		if(!user.transferItemToLoc(O, src))
 			return
+		cache = O
+
+	else if(istype(O, /obj/item/card/id))
+		idcard = O
 	else
 		return ..()
-
-/obj/machinery/libraryscanner/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
-	usr.set_machine(src)
-	var/dat = "" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
-	if(cache)
-		dat += "<FONT color=#005500>Data stored in memory.</FONT><BR>"
-	else
-		dat += "No data stored in memory.<BR>"
-	dat += "<A href='?src=[REF(src)];scan=1'>\[Scan\]</A>"
-	if(cache)
-		dat += "       <A href='?src=[REF(src)];clear=1'>\[Clear Memory\]</A><BR><BR><A href='?src=[REF(src)];eject=1'>\[Remove Book\]</A>"
-	else
-		dat += "<BR>"
-	var/datum/browser/popup = new(user, "scanner", name, 600, 400)
-	popup.set_content(dat)
-	popup.open()
-
-/obj/machinery/libraryscanner/Topic(href, href_list)
-	if(..())
-		usr << browse(null, "window=scanner")
-		onclose(usr, "scanner")
-		return
-
-	if(href_list["scan"])
-		for(var/obj/item/book/B in contents)
-			cache = B
-			break
-	if(href_list["clear"])
-		cache = null
-	if(href_list["eject"])
-		for(var/obj/item/book/B in contents)
-			B.forceMove(drop_location())
-	src.add_fingerprint(usr)
-	src.updateUsrDialog()
-	return
 
 
 /*

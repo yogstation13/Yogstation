@@ -320,8 +320,10 @@ export const LibraryMangement = (props, context) => {
             {scanner
               ?(
                 <Section>
-                  Book: {scanner["title"]} by {scanner["author"]}<br /><br />
-                  Checkout Time <br />
+                  Book: {scanner["title"]} by {scanner["author"]}
+                    Loan To: {scanner["idname"]} ({scanner["assignment"]})
+                  <br /><br />
+                  Checkout Time
                   <NumberInput
                     minValue={5}
                     maxValue={60}
@@ -329,6 +331,7 @@ export const LibraryMangement = (props, context) => {
                     unit={"Minutes"}
                     onChange={(e, value) => setTime(value)}
                   />
+                  <br />
                   <Button
                     content="Check Out"
                     onClick={() => act('checkoutbook', {
