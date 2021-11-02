@@ -90,7 +90,8 @@
 					data = json_decode(stdout)
 				catch(var/exception/e)
 					to_chat(src, span_boldwarning("Youtube-dl JSON parsing FAILED:"), confidential=TRUE)
-					to_chat(src, span_warning("[e]: [stdout]"), confidential=TRUE)
+					to_chat(src, span_warning("[e]: '[stdout]'"), confidential=TRUE)
+					to_chat(src, span_warning("stderr: '[stderr]'"), confidential=TRUE)
 					return
 
 				if (data["url"])
