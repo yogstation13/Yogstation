@@ -898,14 +898,14 @@
 /datum/chemical_reaction/tea/milktea
 	name = "Hong Kong-style Milk Tea"
 	id = /datum/reagent/consumable/tea/hkmilktea
-	results = list(/datum/reagent/consumable/tea/hkmilktea = 3)
-	required_reagents = list(/datum/reagent/consumable/tea/sweet = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/consumable/ice = 1)
+	results = list(/datum/reagent/consumable/tea/hkmilktea = 2)
+	required_reagents = list(/datum/reagent/consumable/tea/sweet = 1, /datum/reagent/consumable/cream = 1)
 
 /datum/chemical_reaction/tea/yuenyeung
 	name = "Yuen Yeung"
 	id =/datum/reagent/consumable/tea/yuenyeung
-	results = list(/datum/reagent/consumable/tea/yuenyeung = 2)
-	required_reagents = list(/datum/reagent/consumable/tea/hkmilktea = 1, /datum/reagent/consumable/coffee = 1)
+	results = list(/datum/reagent/consumable/tea/yuenyeung = 3)
+	required_reagents = list(/datum/reagent/consumable/tea/hkmilktea = 1, /datum/reagent/consumable/coffee = 1, /datum/reagent/consumable/ice = 1 )
 
 /datum/chemical_reaction/royaltea
 	name = "Royal-Tea"

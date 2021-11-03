@@ -600,6 +600,7 @@
 
 
 /obj/machinery/chem_dispenser/drinks/tea/AltClick(mob/living/user)
+	..()
 	var/obj/item/I = user.get_active_held_item()
 	if(istype(I, /obj/item/reagent_containers/food/drinks/mug))
 		qdel(I)
@@ -615,6 +616,12 @@
 		user.put_in_hands(M)
 		mugs--
 		return
+
+/obj/machinery/chem_dispenser/drinks/tea/display_beaker()
+	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	b_o.pixel_y = -4
+	b_o.pixel_x = 0
+	return b_o
 
 /obj/machinery/chem_dispenser/mutagen
 	name = "mutagen dispenser"
