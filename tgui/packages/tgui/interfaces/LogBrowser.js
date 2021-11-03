@@ -42,10 +42,13 @@ const generate_logs = (logs, act) => {
     if (log["is_error"])
     {
       mapped_logs.push(
-        <NoticeBox textAlign="center" warning mb={5}>
+        <Box>
+        <Button backgroundColor="bad" onClick={(e, value) => { act('DeleteLog', { "name": log["packet_id"] }); }}>Delete</Button>
+        <NoticeBox textAlign="center" warning mb={2} pb={2} pl={1} pt={1}>
           <Icon name="exclamation-triangle" size={2} /><br />
           {log["message"]}
-        </NoticeBox>);
+        </NoticeBox>
+        </Box>);
     }
     else
     {
