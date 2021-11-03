@@ -598,18 +598,23 @@
 	else
 		. += "There are no mugs left."
 
-/obj/machinery/chem_dispenser/drinks/tea/AltClick(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	if(!mugs)
-		to_chat(user, span_warning("There aren't any mugs left!"))
-		return
-	user.visible_message(span_notice("[user] takes a mug from [src]."), span_notice("You take a mug from [src]."))
-	var/obj/item/reagent_containers/food/drinks/mug/S = new(get_turf(src))
-	user.put_in_hands(S)
-	mugs--
 
+/obj/machinery/chem_dispenser/drinks/tea/AltClick(mob/living/user)
+	var/obj/item/S = user.get_active_held_item(S)
+    if(istype(S, obj/item/reagent_containers/food/drinks/mug))
+        user.transferItemToLoc(src)
+        mugs ++
+        to_chat(user, span_notice("You put back the mug into \the [src]."))
+        return
+    else if((!mugs))
+        to_chat(user, span_warning("There aren't any mugs left!"))
+        return
+    else
+        var/obj/item/S = new obj/item/reagent_containers/food/drinks/mug(src.loc)
+        user.visible_message(span_notice("[user] takes a mug from [src]."), span_notice("You take a mug from [src]."))
+        user.put_in_hands(S)
+        mugs--
+        return
 
 /obj/machinery/chem_dispenser/mutagen
 	name = "mutagen dispenser"
