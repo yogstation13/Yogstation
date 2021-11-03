@@ -72,20 +72,21 @@ GLOBAL_LIST_EMPTY(checkouts)
 	data["error"] = errorstate
 	data["librarianconsole"] = librarianconsole
 	data["page"] = page
-	data["totalpages"] = CEILING(GLOB.cachedbooks.len/PAGESIZE, 1)
 	data["emagged"] = (obj_flags & EMAGGED)
 	if(!scanner)
 		scanner = findscanner(4)
 	if(!scanner || !scanner.cache)
 		data["scanner"] = null
 	else
-		data["scanner"] = list(
-			"author" = scanner.cache.author,
-			"title" = scanner.cache.title,
-			"id" = REF(scanner.cache),
-			"idname" = scanner.idcard.registered_name,
-			"assignment" = scanner.idcard.assignment
-		)
+		data["scanner"] = list()
+		if(scanner.cache)
+			data["scanner"]["author"] = scanner.cache.author
+			data["scanner"]["title"] = scanner.cache.title
+			data["scanner"]["id"] = REF(scanner.cache)
+
+		if(scanner.idcard)
+			data["scanner"]["idname"] = scanner.idcard.registered_name
+			data["scanner"]["assignment"] = scanner.idcard.assignment
 	return data
 
 
@@ -115,42 +116,51 @@ GLOBAL_LIST_EMPTY(checkouts)
 	var/list/books = list()
 	for(var/id in GLOB.cachedbooks)
 		var/book = GLOB.cachedbooks[id]
-		// Certified byond moment interpreting a var as a string
-		if((category == "Any") || (book["category"] == category))
-			books += list("[id]"=book)
+		if(author && !(lowertext(author) in lowertext(book["author"])))
+			continue
 
-	data["result"] = books.Copy(page*PAGESIZE, clamp(page*PAGESIZE+PAGESIZE, 0, books.len))
+		if(title && !(lowertext(title) in lowertext(book["title"])))
+			continue
+
+		if((category == "Any") || (book["category"] == category))
+			// Certified byond moment interpreting a var as a string
+			books += list("[id]"=book)
+			
+
+	if(books)
+		var/totalpages = CEILING(books.len/PAGESIZE, 1)-1
+		data["totalpages"] = totalpages
+		if(page > totalpages) // Sanity Check
+			page = 0
+		data["result"] = books.Copy(page*PAGESIZE, clamp(page*PAGESIZE+PAGESIZE, 0, books.len))
 	data["checkouts"] = checkedout
 	return data
 
 /obj/machinery/computer/libraryconsole/ui_act(action, list/params)
 	. = ..()
-	update_static_data(usr)
 	if(.)
 		return
 	switch(action)
 		if("setpage")
 			page = clamp(params["page"], 0, totalpages)
+			update_static_data(usr)
 		if("settitle")
 			title = pretty_filter(params["name"])
+			update_static_data(usr)
 		if("setauthor")
 			author = pretty_filter(params["name"])
+			update_static_data(usr)
 		if("setcategory")
 			if(category in validcategorys)
 				category = params["category"]
 			else
 				category = "Any"
+			update_static_data(usr)
 		if("checkoutbook")
 			if (!(scanner.cache) || !(scanner.idcard))
 				say("Missing an ID or Book")
 			var/datum/cachedbook/borrowbook/b = new /datum/cachedbook/borrowbook
-			var/found = FALSE
-			for(var/person in GLOB.checkouts)
-				if(person != scanner.idcard.name)
-					continue
-				else
-					found = TRUE
-			if(!found)
+			if(!GLOB.checkouts[scanner.idcard.name])
 				GLOB.checkouts[scanner.idcard.name] = list()
 			var/list/bookthing = GLOB.checkouts[scanner.idcard.name]
 			for(var/datum/cachedbook/borrowbook/book in bookthing)
@@ -174,12 +184,12 @@ GLOBAL_LIST_EMPTY(checkouts)
 
 			if(!query_library_upload.Execute())
 				qdel(query_library_upload)
-				alert("Database error encountered uploading to Archive")
+				say("ERR: Connection to archive severed")
 				return
 			else
 				log_game(msg)
 				qdel(query_library_upload)
-				alert("Upload Complete. Uploaded title will be unavailable for printing for a short period")
+				say("Upload Complete. Uploaded title will be unavailable for printing for a short period")
 		if("vendbook")
 			var/id = params["book"]
 			if(cooldown > world.time)
@@ -371,7 +381,9 @@ GLOBAL_LIST_EMPTY(checkouts)
 			var/obj/item/book/B = new(src.loc)
 			for(var/datum/langtext/L in P.written)
 				B.dat = L.text
-			B.name = "Print Job #" + "[rand(100, 999)]"
+			var/title = "Print Job #" + "[rand(100, 999)]"
+			B.name = title
+			B.title = title
 			B.icon_state = "book[rand(1,7)]"
 			B.author = user
 			qdel(P)

@@ -14,7 +14,7 @@ export const LibraryScanner = (props, context) => {
       width={400}
       height={180}>
       <Window.Content>
-        {cache.length != 0 ? (
+        {cache.length !== 0 ? (
           <Section>
             Book loaded
             <br />
@@ -22,15 +22,15 @@ export const LibraryScanner = (props, context) => {
             <br />
             <Button
               content="Eject"
-              onClick={() => act('ejectbook')
-            } />
+              onClick={() => act('ejectbook')}
+            />
           </Section>
         ) : (
           <Section>
             No book loaded into memory
           </Section>
         )}
-        {id.length != 0 ? (
+        {id.length !== 0 ? (
           <Section>
             ID Loaded
             <br />
@@ -38,8 +38,8 @@ export const LibraryScanner = (props, context) => {
             <br />
             <Button
               content="Clear"
-              onClick={() => act('clearid')
-            } />
+              onClick={() => act('clearid')}
+            />
           </Section>
         ) : (
           <Section>
