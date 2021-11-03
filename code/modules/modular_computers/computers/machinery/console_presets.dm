@@ -57,9 +57,8 @@
 
 /obj/machinery/modular_computer/console/preset/tcomms/install_programs()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
-	hard_drive.store_file(new/datum/computer_file/program/power_monitor())
-	hard_drive.store_file(new/datum/computer_file/program/alarm_monitor())
-	hard_drive.store_file(new/datum/computer_file/program/supermatter_monitor())
+	hard_drive.store_file(new/datum/computer_file/program/ntnetmonitor())
+	hard_drive.store_file(new/datum/computer_file/program/chatclient())
 
 // ===== RESEARCH CONSOLE =====
 /obj/machinery/modular_computer/console/preset/research
@@ -125,6 +124,8 @@
 	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
 	hard_drive.store_file(new/datum/computer_file/program/job_management())
 	hard_drive.store_file(new/datum/computer_file/program/crew_manifest())
+	hard_drive.store_file(new/datum/computer_file/program/bounty_board())
+	hard_drive.store_file(new/datum/computer_file/program/secureye/mining())
 
 // ===== HoS =====
 /obj/machinery/modular_computer/console/preset/command/hos
