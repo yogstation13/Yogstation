@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, Divider, Section, LabeledList, Icon, NoticeBox, Input, ProgressBar, Tooltip } from '../components';
+import { Box, Button, Divider, Section, LabeledList, Icon, NoticeBox, Input, ProgressBar, Tooltip, Flex } from '../components';
 import { Window } from '../layouts';
 
 
@@ -124,7 +124,15 @@ export const LogBrowser = (props, context) => {
         width={460}
         height={550}>
         <Window.Content scrollable>
-          <Button onClick={(e, value) => { act('Back', {}); }}><Icon name="backward" />Back</Button>
+          <Flex>
+            <Flex.Item>
+              <Button onClick={(e, value) => { act('Back', {}); }}><Icon name="backward" />Back</Button>
+            </Flex.Item>
+            <Flex.Item grow={1} />
+            <Flex.Item>
+              <Button onClick={(e, value) => { act('Refresh', {}); }}><Icon name="sync-alt" />Refresh</Button>
+            </Flex.Item>
+          </Flex>
           <Divider />
           <Section title="Server Information">
             <Icon name="wifi" size={1} />&emsp;Network:<br /> {network}<br /><br />
