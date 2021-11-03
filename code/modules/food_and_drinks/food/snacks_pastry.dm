@@ -119,6 +119,11 @@
 	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
 	filling_color = "#803280"
 
+/obj/item/reagent_container/food/snacks/donut/spaghetti
+	name = "Spagh-o-nut"
+	desc = "Its a fucking spaghetti donut."\
+	desc = "Donut1" //placeholder
+	tastes = list("Spaghetti"= 3, "Carbs" = 2, "Regret" = 1)
 
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
 
