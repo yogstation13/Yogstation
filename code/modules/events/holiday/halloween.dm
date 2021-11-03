@@ -42,6 +42,8 @@
 	desc = "A pumpkin-shaped bag that holds all sorts of goodies!"
 	icon = 'icons/obj/halloween_items.dmi'
 	icon_state = "treatbag"
+	lefthand_file = 'icon/mob/inhand/item_lefthand.dmi'
+	righthand_file = 'icon/mob/inhand/item_rigthhand.dmi'
 
 /obj/item/storage/spooky/Initialize()
 	. = ..()
