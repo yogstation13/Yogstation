@@ -121,9 +121,10 @@
 
 /obj/item/reagent_container/food/snacks/donut/spaghetti
 	name = "Spagh-o-nut"
-	desc = "Its a fucking spaghetti donut."\
-	desc = "Donut1" //placeholder
-	tastes = list("Spaghetti"= 3, "Carbs" = 2, "Regret" = 1)
+	desc = "An unholy mixture of carbs. It's a donut made out of spaghetti."
+	icon_state = "Donut1" //placeholder
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	tastes = list("Spaghetti"= 3, "Carbs" = 2, "Bewilderment" = 1)
 
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
 
