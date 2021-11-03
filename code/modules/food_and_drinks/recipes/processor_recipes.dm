@@ -41,7 +41,7 @@
 	output = /obj/item/reagent_containers/food/snacks/raw_meatball/bear
 
 /datum/food_processor_process/bacon
-	input = /obj/item/reagent_containers/food/snacks/meat/rawcutlet
+	input = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet
 	output = /obj/item/reagent_containers/food/snacks/meat/rawbacon
 
 /datum/food_processor_process/potatowedges
