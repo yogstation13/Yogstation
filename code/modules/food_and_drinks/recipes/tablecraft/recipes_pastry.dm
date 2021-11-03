@@ -88,9 +88,9 @@ datum/crafting_recipe/food/donut/meat
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/donut/spaghetti
-	name ="Spagh-O-Nut"	
-	req= list(
-		/obj/item/reagent_containers/food/snacks/pastrybase = 1
+	name = "Spagh-O-Nut"	
+	req = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
 		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1
 	)
 	results = /obj/item/reagent_container/food/snacks/donut/spaghetti
