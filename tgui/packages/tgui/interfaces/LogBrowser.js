@@ -52,25 +52,27 @@ const generate_logs = (logs,act) => {
             if(log["job"])
             {
                 mapped_logs.push(
-                    <Box backgroundColor="#333340" mb={5} nowrap={false}>
+                    <Box backgroundColor="#333340" mb={2} pb={2} pl={1} pt={1} nowrap={false}>
                         <Box>
-                            Data Packet ({log["packet_id"]})
+                            <Button backgroundColor='bad' onClick={(e,value) => {act('DeleteLog',{"name":log["packet_id"]})}}>Delete</Button> {log["packet_id"]} 
                         </Box>
+                        <Divider/>
                         <b>Name: </b> {log["name"]}<br/>
                         <b>Job: </b> {log["job"]}<br/>
                         <b>Received Message: </b> {log["message"]}<br/>
+                        
                     </Box>
                 );
                 continue;
             }
             mapped_logs.push(
-            <Box backgroundColor="#333340" mb={5} nowrap={false}>
+            <Box backgroundColor="#333340"  mb={2} pb={2} pl={1} pt={1} nowrap={false}>
                 <Box>
-                    Data Packet ({log["packet_id"]})
+                <Button backgroundColor='bad' onClick={(e,value) => {act('DeleteLog',{"name":log["packet_id"]})}}>Delete</Button> {log["packet_id"]}
                 </Box>
                 <b>Name: </b> {log["name"]}<br/>
                 <b>Received Message: </b> {log["message"]}<br/>
-
+                <Button bad onClick={(e,value) => {act('DeleteLog',{"name":log["packet_id"]})}}>Delete</Button>
             </Box>);
         }
     }
