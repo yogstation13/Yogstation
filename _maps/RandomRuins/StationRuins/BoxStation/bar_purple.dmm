@@ -391,13 +391,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"aV" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/bar)
 "aW" = (
 /obj/effect/spawner/structure/window{
 	color = "purple"
@@ -421,6 +414,9 @@
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = 26
+	},
+/obj/machinery/vending/boozeomat{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -754,7 +750,6 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bO" = (
-/obj/machinery/vending/boozeomat,
 /obj/effect/turf_decal/tile/purple{
 	dir = 8;
 	icon_state = "tile_corner"
@@ -762,6 +757,14 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1;
 	icon_state = "tile_corner"
+	},
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -1812,7 +1815,7 @@ aL
 bb
 aI
 aN
-aV
+aw
 ch
 aw
 aw

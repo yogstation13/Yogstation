@@ -465,6 +465,9 @@
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
 	},
+/obj/machinery/vending/boozeomat{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
@@ -548,7 +551,14 @@
 	},
 /area/crew_quarters/bar)
 "by" = (
-/obj/machinery/vending/boozeomat,
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},

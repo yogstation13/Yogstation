@@ -358,6 +358,7 @@
 	dir = 4;
 	light_color = "#e8eaff"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "bg" = (
@@ -644,6 +645,7 @@
 /mob/living/carbon/monkey{
 	name = "Pun Pun"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "cf" = (
@@ -931,16 +933,17 @@
 	},
 /area/crew_quarters/kitchen)
 "eZ" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 4;
+	pixel_x = 2
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -1038,6 +1041,21 @@
 /area/crew_quarters/kitchen)
 "kM" = (
 /obj/machinery/holopad,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"lH" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "conveyorbar"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"ml" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "nE" = (
@@ -1210,9 +1228,7 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "HW" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "KY" = (
@@ -1256,9 +1272,6 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
 "Rl" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
@@ -1527,9 +1540,9 @@ ai
 cA
 HW
 bf
-cL
+lH
 ce
-ao
+at
 cz
 ao
 cE
@@ -1545,7 +1558,7 @@ bB
 bK
 cL
 cy
-ao
+ml
 dK
 ao
 dx

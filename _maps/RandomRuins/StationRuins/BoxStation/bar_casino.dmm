@@ -204,12 +204,6 @@
 /obj/item/storage/bag/money/vault,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"aI" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "aJ" = (
 /obj/structure/chair/stool/bar,
 /obj/machinery/light{
@@ -613,8 +607,8 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "bM" = (
-/mob/living/carbon/monkey{
-	name = "Pun Pun"
+/obj/structure/disposalpipe/segment{
+	dir = 2
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -836,6 +830,18 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"nn" = (
+/obj/effect/landmark/start/assistant,
+/obj/machinery/disposal/bin,
+/turf/open/floor/carpet,
+/area/crew_quarters/bar)
+"ol" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "pr" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -851,9 +857,6 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "qD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
@@ -863,6 +866,11 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"wL" = (
+/obj/structure/grille,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "yX" = (
 /obj/machinery/holopad,
 /turf/open/floor/carpet,
@@ -897,16 +905,17 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "CC" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
+	},
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 4;
+	pixel_x = 2
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -996,6 +1005,12 @@
 	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/carpet,
+/area/crew_quarters/bar)
+"Sg" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Sl" = (
 /obj/effect/landmark/event_spawn,
@@ -1225,7 +1240,7 @@ ap
 aD
 aD
 aD
-bW
+nn
 ap
 ap
 aE
@@ -1303,11 +1318,11 @@ Qz
 aL
 ai
 bf
-aI
-cm
 bM
-cm
-cm
+bM
+bM
+bM
+Sg
 bb
 ap
 da
@@ -1323,7 +1338,7 @@ aR
 bq
 cm
 bh
-cm
+ol
 Dp
 ap
 db
@@ -1339,7 +1354,7 @@ am
 am
 Tn
 am
-Tn
+wL
 am
 bE
 am

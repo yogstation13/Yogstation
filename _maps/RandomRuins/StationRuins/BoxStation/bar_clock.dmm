@@ -429,6 +429,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
+"pc" = (
+/obj/structure/table/bronze,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/item/clothing/head/collectable/tophat,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "pv" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -921,11 +930,17 @@
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
 "MF" = (
-/obj/item/lighter,
 /obj/structure/table/bronze,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft,
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 4
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
@@ -983,12 +998,12 @@
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "QP" = (
-/obj/item/clothing/head/that,
 /obj/structure/table/bronze,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
 	},
+/obj/item/lighter,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "QQ" = (
@@ -1379,7 +1394,7 @@ gJ
 WQ
 gJ
 AD
-EX
+AD
 EX
 EX
 EX
@@ -1397,7 +1412,7 @@ Ws
 Ws
 MF
 QP
-fa
+pc
 fa
 fa
 GK

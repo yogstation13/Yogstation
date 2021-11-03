@@ -299,9 +299,7 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "aS" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aT" = (
@@ -627,6 +625,7 @@
 /mob/living/carbon/monkey{
 	name = "Pun Pun"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bZ" = (
@@ -681,7 +680,10 @@
 	dir = 8;
 	network = list("SS13")
 	},
-/obj/structure/fermenting_barrel,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal/bin,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "co" = (
@@ -802,6 +804,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
+"hr" = (
+/obj/structure/fermenting_barrel,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "kM" = (
 /obj/machinery/smartfridge/drinks,
 /obj/machinery/door/poddoor/preopen{
@@ -849,16 +855,17 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "pw" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 4;
+	pixel_x = 2
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -893,9 +900,6 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "Cr" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
@@ -1076,6 +1080,12 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"VW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Zg" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme{
@@ -1251,7 +1261,7 @@ at
 ar
 ar
 an
-an
+hr
 an
 bz
 bz
@@ -1300,9 +1310,9 @@ aJ
 ag
 bq
 aS
-cv
+aS
 bV
-cv
+VW
 cv
 bh
 an

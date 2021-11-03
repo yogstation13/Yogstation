@@ -628,6 +628,8 @@
 	id = "barshutters";
 	name = "bar shutters"
 	},
+/obj/machinery/chem_dispenser/drinks/tea,
+/obj/machinery/door/window/southleft,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "rb" = (

@@ -812,9 +812,6 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/item/radio/intercom{
-	pixel_y = 25
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "hk" = (
@@ -1020,8 +1017,13 @@
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
+	pixel_x = 9;
 	pixel_y = 24;
 	req_access_txt = "25"
+	},
+/obj/item/radio/intercom{
+	pixel_x = -5;
+	pixel_y = 22
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1065,6 +1067,13 @@
 	name = "privacy shutters"
 	},
 /turf/open/floor/plating,
+/area/crew_quarters/bar)
+"Rg" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "SE" = (
 /obj/machinery/smartfridge/drinks,
@@ -1364,7 +1373,7 @@ UZ
 aM
 ag
 ag
-ag
+Rg
 dI
 kC
 SE

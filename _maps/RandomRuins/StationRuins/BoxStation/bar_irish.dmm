@@ -1764,6 +1764,26 @@
 /obj/item/toy/figure/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"LF" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/item/lighter,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "MM" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1830,7 +1850,6 @@
 /area/crew_quarters/bar)
 "Wp" = (
 /obj/structure/table/reinforced,
-/obj/item/lighter,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
@@ -1846,6 +1865,11 @@
 	id = "barshutters";
 	name = "bar shutters"
 	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft,
+/obj/machinery/chem_dispenser/drinks/tea,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 
@@ -2035,7 +2059,7 @@ ad
 Wp
 Nh
 Bj
-Nh
+LF
 Nh
 cH
 cW

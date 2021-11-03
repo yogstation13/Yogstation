@@ -421,6 +421,30 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"jg" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/item/paper_bin/bundlenatural,
+/obj/item/pen/fountain{
+	pixel_x = -10;
+	pixel_y = -5
+	},
+/obj/item/pen/fountain{
+	pixel_x = -5;
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "jy" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/flour{
@@ -748,21 +772,15 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/obj/item/paper_bin/bundlenatural{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/pen/fountain{
-	pixel_x = 6
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/item/pen/fourcolor,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
 	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft,
+/obj/machinery/chem_dispenser/drinks/tea,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "zJ" = (
@@ -1670,7 +1688,7 @@ OC
 OC
 OC
 yH
-qY
+jg
 HS
 qY
 gN

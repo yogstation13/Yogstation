@@ -132,6 +132,7 @@
 	c_tag = "Theatre Stage";
 	dir = 2
 	},
+/obj/item/lighter,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "au" = (
@@ -1330,6 +1331,19 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"zL" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/item/lighter,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "Bo" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar,
@@ -1449,7 +1463,6 @@
 /area/crew_quarters/bar)
 "TX" = (
 /obj/structure/table/reinforced,
-/obj/item/lighter,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -1458,6 +1471,11 @@
 	id = "barshutters";
 	name = "bar shutters"
 	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft,
+/obj/machinery/chem_dispenser/drinks/tea,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 
@@ -1628,7 +1646,7 @@ aN
 aQ
 aN
 bz
-bH
+bx
 bH
 bH
 bH
@@ -1645,7 +1663,7 @@ ag
 ag
 ag
 TX
-CJ
+zL
 vA
 CJ
 CJ
