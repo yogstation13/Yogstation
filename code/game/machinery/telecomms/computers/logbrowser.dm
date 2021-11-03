@@ -73,6 +73,18 @@
 		if("Refresh")
 			return TRUE // Welp, you asked for it
 
+/obj/machinery/computer/telecomms/server/proc/generate_message(datum/comm_log_entry/log, mob/user)
+	if(!log.parameters["message"])
+		return "***"
+	var/lang = log.parameters["language"] 
+	if(universal_translate || !lang)
+		return log.parameters["message"]
+	if(user.has_language(lang))
+		return log.parameters["message"]
+	else
+		var/datum/language/D = GLOB.language_datum_instances[lang]
+		return D.scramble(log.parameters["message"])
+	
 /obj/machinery/computer/telecomms/server/ui_data(mob/user)
 	var/list/data = list()
 	data["screen_state"] = screen_state
@@ -95,7 +107,7 @@
 			datalog["is_error"] = (log.input_type == "Execution Error")
 			datalog["name"] = log.parameters["name"] || "Unknown"
 			datalog["job"] = log.parameters["job"] || FALSE
-			datalog["message"] = log.parameters["message"] || "***"
+			datalog["message"] = generate_message(log,user)
 			datalog["packet_id"] = log.name // since this is some MD5 thing we can actually use this to ID this packet later in ui_act()
 			data["logs"] += list(datalog)
 
