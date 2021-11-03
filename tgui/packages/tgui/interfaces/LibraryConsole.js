@@ -321,7 +321,7 @@ export const LibraryMangement = (props, context) => {
               ?(
                 <Section>
                   Book: {scanner["title"]} by {scanner["author"]}
-                    Loan To: {scanner["idname"]} ({scanner["assignment"]})
+                  Loan To: {scanner["idname"]} ({scanner["assignment"]})
                   <br /><br />
                   Checkout Time
                   <NumberInput
