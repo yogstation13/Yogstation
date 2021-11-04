@@ -93,7 +93,7 @@ datum/crafting_recipe/food/donut/meat
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
 		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1
 	)
-	result = /obj/item/reagent_container/food/snacks/donut/spaghetti
+	result = /obj/item/reagent_containers/food/snacks/donut/spaghetti
 	subcategory = CAT_PASTRY
 ////////////////////////////////////////////////WAFFLES AND PANCAKES////////////////////////////////////////////////
 
