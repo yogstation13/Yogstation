@@ -36630,24 +36630,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"bgs" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/bag/tray,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"bgt" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/bowl,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"bgu" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "bgv" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -37663,26 +37645,6 @@
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/bot,
 /obj/item/book/manual/wiki/cooking_to_serve_man,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"bhS" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "bhT" = (
@@ -68092,23 +68054,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"bZK" = (
-/obj/structure/cable/white{
-	icon_state = "0-4"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "brigwindows";
-	name = "Brig Front Blast door"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/security/brig)
 "bZL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -68116,20 +68061,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/library)
-"bZM" = (
-/obj/structure/cable/white{
-	icon_state = "1-4"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "brigfront";
-	name = "Brig Blast door"
-	},
-/obj/effect/turf_decal/delivery,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "bZN" = (
 /obj/structure/cable/white{
 	icon_state = "0-8"
@@ -109107,53 +109038,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"dkp" = (
-/obj/structure/cable/white{
-	icon_state = "2-4"
-	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
-"dkq" = (
-/obj/structure/cable/white{
-	icon_state = "2-8"
-	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "brigfront";
-	name = "Brig Blast door"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/delivery,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "dkr" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -109550,19 +109434,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"dkP" = (
-/obj/structure/cable/white{
-	icon_state = "1-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "dkQ" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -124544,19 +124415,6 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/storage_shared)
-"fnf" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/dough{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/bot,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 12;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "fyd" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -124712,6 +124570,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"fWK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "fXG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -124739,6 +124607,16 @@
 /obj/item/pen,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"fXK" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/bag/tray,
+/obj/effect/turf_decal/bot,
+/obj/item/reagent_containers/food/snacks/dough{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "gbI" = (
 /obj/structure/table/glass,
 /obj/structure/cable/white{
@@ -124782,6 +124660,12 @@
 "gnJ" = (
 /turf/open/floor/plasteel/dark/corner,
 /area/maintenance/disposal/incinerator)
+"gye" = (
+/obj/machinery/turnstile/brig{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "gCK" = (
 /turf/closed/wall,
 /area/maintenance/department/science)
@@ -125565,6 +125449,24 @@
 	heat_capacity = 1e+006
 	},
 /area/crew_quarters/locker)
+"kMO" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "kNc" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -125684,6 +125586,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"lvG" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/bowl,
+/obj/effect/turf_decal/bot,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "lED" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -126689,6 +126601,29 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"pqy" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "brigfront";
+	name = "Brig Blast door"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "prJ" = (
 /obj/structure/sign/poster/official/science{
 	pixel_x = -32
@@ -126737,6 +126672,22 @@
 	dir = 1
 	},
 /area/maintenance/disposal/incinerator)
+"pGo" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "brigwindows";
+	name = "Brig Front Blast door"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/turnstile/brig{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "pHD" = (
 /obj/structure/particle_accelerator/end_cap{
 	dir = 8
@@ -128034,6 +127985,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"wpQ" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/effect/turf_decal/bot,
+/obj/item/reagent_containers/food/condiment/flour,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "wrp" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/tile/neutral{
@@ -128174,6 +128146,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"wUl" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "brigfront";
+	name = "Brig Blast door"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "wWE" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -128249,6 +128231,11 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"xAi" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/griddle,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "xDZ" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -165577,8 +165564,8 @@ aKz
 bcj
 bdJ
 bfe
-bgs
-fnf
+fXK
+xAi
 aYI
 aJj
 aYD
@@ -165834,8 +165821,8 @@ aLL
 aYC
 bdK
 bff
-bgt
-bhR
+lvG
+xAi
 bjG
 aJs
 bnq
@@ -166091,8 +166078,8 @@ aKA
 bcj
 bdJ
 bfg
-bgu
-bhS
+bhR
+wpQ
 bjF
 blA
 bnq
@@ -178452,7 +178439,7 @@ bJs
 bLk
 bgZ
 dkn
-bZK
+pGo
 bnf
 bgZ
 bgZ
@@ -178708,8 +178695,8 @@ bPo
 bXo
 bjy
 bNj
-dkp
-dkP
+kMO
+fWK
 bni
 bNj
 cfe
@@ -178965,8 +178952,8 @@ bJt
 bXt
 dns
 bNj
-dkq
-bZM
+pqy
+wUl
 bno
 bNj
 ceI
@@ -179223,7 +179210,7 @@ bXw
 bmc
 bNj
 dks
-bZN
+gye
 bnp
 bNj
 biy

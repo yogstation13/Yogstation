@@ -299,7 +299,9 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "aS" = (
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aT" = (
@@ -430,15 +432,6 @@
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
 	},
-/area/crew_quarters/kitchen)
-"bn" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "bq" = (
 /obj/machinery/door/airlock{
@@ -625,7 +618,6 @@
 /mob/living/carbon/monkey{
 	name = "Pun Pun"
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bZ" = (
@@ -680,22 +672,11 @@
 	dir = 8;
 	network = list("SS13")
 	},
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/machinery/disposal/bin,
+/obj/structure/fermenting_barrel,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "co" = (
 /obj/machinery/deepfryer,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"cp" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
-	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "ct" = (
@@ -738,6 +719,15 @@
 /area/crew_quarters/kitchen)
 "cU" = (
 /obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"cV" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "cX" = (
@@ -804,10 +794,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
-"hr" = (
-/obj/structure/fermenting_barrel,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "kM" = (
 /obj/machinery/smartfridge/drinks,
 /obj/machinery/door/poddoor/preopen{
@@ -833,6 +819,12 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
+"nk" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "nK" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -855,6 +847,10 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "pw" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -862,13 +858,12 @@
 	id = "barshutters";
 	name = "bar shutters"
 	},
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks/tea{
-	dir = 4;
-	pixel_x = 2
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"qv" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "vH" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -886,20 +881,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"xw" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"BD" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "Cr" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
@@ -1046,6 +1031,17 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"Sy" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "SI" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen";
@@ -1080,20 +1076,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"VW" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"Zg" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1261,7 +1243,7 @@ at
 ar
 ar
 an
-hr
+an
 an
 bz
 bz
@@ -1310,9 +1292,9 @@ aJ
 ag
 bq
 aS
-aS
+cv
 bV
-VW
+cv
 cv
 bh
 an
@@ -1392,8 +1374,8 @@ bj
 ak
 bG
 bZ
-xw
-Zg
+cV
+qv
 cy
 cy
 li
@@ -1408,8 +1390,8 @@ bk
 bv
 bH
 aX
-cp
-BD
+Sy
+qv
 cA
 cy
 pp
@@ -1440,7 +1422,7 @@ ba
 ak
 bJ
 cc
-bn
+nk
 co
 cy
 cy

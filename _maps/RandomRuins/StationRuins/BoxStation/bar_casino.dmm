@@ -204,6 +204,12 @@
 /obj/item/storage/bag/money/vault,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
+"aI" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "aJ" = (
 /obj/structure/chair/stool/bar,
 /obj/machinery/light{
@@ -445,15 +451,6 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"bm" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "bp" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -32
@@ -607,8 +604,8 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "bM" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2
+/mob/living/carbon/monkey{
+	name = "Pun Pun"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -714,14 +711,6 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"cg" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "ck" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/chair/americandiner,
@@ -805,6 +794,15 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"fG" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "ge" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -830,18 +828,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"nn" = (
-/obj/effect/landmark/start/assistant,
-/obj/machinery/disposal/bin,
-/turf/open/floor/carpet,
-/area/crew_quarters/bar)
-"ol" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "pr" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -857,6 +843,9 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "qD" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
@@ -866,9 +855,8 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"wL" = (
-/obj/structure/grille,
-/obj/effect/spawner/structure/window/reinforced,
+"tZ" = (
+/obj/machinery/griddle,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "yX" = (
@@ -896,26 +884,17 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"AK" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "CC" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
-/obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/chem_dispenser/drinks/tea{
-	dir = 4;
-	pixel_x = 2
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -940,11 +919,14 @@
 /obj/item/toy/figure/bartender,
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
-"Fj" = (
+"Fx" = (
 /obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
 	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -967,6 +949,12 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"KE" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "LT" = (
@@ -1006,12 +994,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
-"Sg" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Sl" = (
 /obj/effect/landmark/event_spawn,
 /turf/closed/wall,
@@ -1042,11 +1024,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"TA" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "Uk" = (
@@ -1240,7 +1217,7 @@ ap
 aD
 aD
 aD
-nn
+bW
 ap
 ap
 aE
@@ -1318,11 +1295,11 @@ Qz
 aL
 ai
 bf
+aI
+cm
 bM
-bM
-bM
-bM
-Sg
+cm
+cm
 bb
 ap
 da
@@ -1338,7 +1315,7 @@ aR
 bq
 cm
 bh
-ol
+cm
 Dp
 ap
 db
@@ -1354,7 +1331,7 @@ am
 am
 Tn
 am
-wL
+Tn
 am
 bE
 am
@@ -1401,8 +1378,8 @@ bi
 am
 bA
 bQ
-TA
-AK
+fG
+tZ
 co
 co
 Kb
@@ -1417,8 +1394,8 @@ bj
 bs
 bB
 bc
-cg
-Fj
+Fx
+tZ
 cq
 co
 Ul
@@ -1449,7 +1426,7 @@ aQ
 am
 aU
 bT
-bm
+KE
 cf
 co
 co
