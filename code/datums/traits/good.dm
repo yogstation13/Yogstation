@@ -180,7 +180,6 @@
 /datum/quirk/toxic_tastes/add()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/datum/species/species = H.dna.species
-	var/liked = species.liked_food
 	var/toxic = species.toxic_food
 	species.liked_food |= toxic
 	species.toxic_food = null //removes toxic foods
