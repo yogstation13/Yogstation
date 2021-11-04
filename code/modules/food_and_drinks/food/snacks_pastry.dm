@@ -123,7 +123,7 @@
 	name = "Spagh-o-nut"
 	desc = "An unholy mixture of carbs. It's a donut made out of spaghetti."
 	icon_state = "donut_spaghetti"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("Spaghetti"= 3, "Carbs" = 2, "Bewilderment" = 1)
 
 /obj/item/reagent_containers/food/snacks/donut/spaghetti/jelly
