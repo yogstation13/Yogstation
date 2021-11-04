@@ -166,6 +166,11 @@
 	max_capacity = 70
 	var/datum/antagonist/traitor/traitor_data // Syndicate hard drive has the user's data baked directly into it on creation
 
+/obj/item/computer_hardware/hard_drive/small/syndicate/proc/install_default_programs()
+	store_file(new/datum/computer_file/program/computerconfig(src))
+	store_file(new/datum/computer_file/program/ntnetdownload/emagged(src))
+	store_file(new/datum/computer_file/program/filemanager(src))
+
 /// For tablets given to nuke ops
 /obj/item/computer_hardware/hard_drive/small/nukeops
 	power_usage = 8

@@ -189,6 +189,10 @@
 	abort_file_download()
 	return ..(forced)
 
+/// A simple pre-emagged version
+/datum/computer_file/program/ntnetdownload/emagged
+	emagged = TRUE
+
 ////////////////////////
 //Syndicate Downloader//
 ////////////////////////

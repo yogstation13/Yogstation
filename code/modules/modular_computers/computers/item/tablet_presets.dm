@@ -38,6 +38,18 @@
 	install_component(new /obj/item/computer_hardware/sensorpackage)
 	install_component(new /obj/item/computer_hardware/card_slot/secondary)
 
+/// A simple syndicate tablet, used for comms agents
+/obj/item/modular_computer/tablet/preset/syndicate/Initialize()
+	. = ..()
+	finish_color = "red"
+	install_component(new /obj/item/computer_hardware/processor_unit/small)
+	install_component(new /obj/item/computer_hardware/battery(src, /obj/item/stock_parts/cell/computer))
+	install_component(new /obj/item/computer_hardware/hard_drive/small/syndicate)
+	install_component(new /obj/item/computer_hardware/network_card/advanced)
+	install_component(new /obj/item/computer_hardware/card_slot)
+	install_component(new /obj/item/computer_hardware/printer/mini)
+	update_icon()
+
 /// Given by the syndicate as part of the contract uplink bundle - loads in the Contractor Uplink.
 /obj/item/modular_computer/tablet/syndicate_contract_uplink/preset/uplink/Initialize()
 	. = ..()
