@@ -29,8 +29,7 @@
 /obj/machinery/reagentgrinder,
 /obj/machinery/airalarm{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -24
+	pixel_x = -19
 	},
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
@@ -161,6 +160,10 @@
 	network = list("SS13")
 	},
 /turf/open/floor/carpet,
+/area/crew_quarters/bar)
+"ib" = (
+/obj/machinery/chem_dispenser/drinks/tea,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "it" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -1057,7 +1060,13 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "PX" = (
-/obj/machinery/vending/boozeomat,
+/obj/machinery/vending/boozeomat{
+	pixel_x = 32
+	},
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Qd" = (
@@ -1589,7 +1598,7 @@ oS
 Qd
 nr
 hy
-al
+ib
 Kt
 YX
 YX

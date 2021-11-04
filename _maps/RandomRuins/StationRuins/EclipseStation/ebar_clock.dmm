@@ -1221,7 +1221,13 @@
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
 "VP" = (
-/obj/machinery/vending/boozeomat,
+/obj/machinery/vending/boozeomat{
+	pixel_x = 32
+	},
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 8
+	},
+/obj/structure/table,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "VV" = (

@@ -22147,7 +22147,6 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
 "aKB" = (
-/obj/structure/chair/stool/bar,
 /obj/item/radio/intercom{
 	pixel_x = 26
 	},
@@ -128067,6 +128066,32 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"wGY" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/machinery/chem_dispenser/drinks/tea,
+/obj/machinery/door/window/southleft,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "wJG" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -166577,7 +166602,7 @@ aDL
 wrp
 oGu
 aHE
-jrG
+wGY
 aKB
 aLM
 aLL

@@ -29572,19 +29572,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/item/clipboard,
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/toy/figure/bartender{
-	pixel_x = 8;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/glass/rag,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/chem_dispenser/drinks/tea,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "aXq" = (
@@ -102095,6 +102086,24 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"vAL" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/item/clipboard,
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/toy/figure/bartender{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/glass/rag,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "vCg" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -130451,7 +130460,7 @@ aIA
 cfa
 btE
 aXm
-btX
+vAL
 bva
 aVe
 btX

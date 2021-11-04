@@ -31246,24 +31246,20 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/rag{
-	pixel_x = 5;
-	pixel_y = 15
-	},
 /obj/machinery/newscaster{
 	pixel_y = -30
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 26
 	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -9
-	},
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
-	pixel_x = 5;
-	pixel_y = -2
+	pixel_x = -13;
+	pixel_y = -23
+	},
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -37084,6 +37080,13 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -9
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = 5;
+	pixel_y = 15
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)

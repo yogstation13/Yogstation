@@ -205,9 +205,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "aI" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aJ" = (
@@ -607,6 +605,7 @@
 /mob/living/carbon/monkey{
 	name = "Pun Pun"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bO" = (
@@ -819,6 +818,13 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
+"ie" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "jz" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/that,
@@ -828,6 +834,11 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"nx" = (
+/obj/structure/grille,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "pr" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -843,9 +854,6 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "qD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
@@ -885,16 +893,16 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "CC" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -970,6 +978,12 @@
 	name = "privacy shutters"
 	},
 /turf/open/floor/plating,
+/area/crew_quarters/bar)
+"Os" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Qz" = (
 /obj/structure/disposalpipe/segment,
@@ -1296,10 +1310,10 @@ aL
 ai
 bf
 aI
-cm
+aI
 bM
-cm
-cm
+aI
+Os
 bb
 ap
 da
@@ -1315,7 +1329,7 @@ aR
 bq
 cm
 bh
-cm
+ie
 Dp
 ap
 db
@@ -1331,7 +1345,7 @@ am
 am
 Tn
 am
-Tn
+nx
 am
 bE
 am

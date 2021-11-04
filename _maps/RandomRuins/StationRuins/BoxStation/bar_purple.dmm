@@ -415,9 +415,6 @@
 	dir = 8;
 	pixel_x = 26
 	},
-/obj/machinery/vending/boozeomat{
-	pixel_y = 32
-	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "aZ" = (
@@ -519,9 +516,6 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bk" = (
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
-	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 8;
 	icon_state = "tile_corner"
@@ -530,6 +524,7 @@
 	dir = 1;
 	icon_state = "tile_corner"
 	},
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bl" = (
@@ -1250,6 +1245,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
+"vB" = (
+/obj/machinery/computer/security/telescreen/entertainment,
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "vD" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1766,7 +1765,7 @@ QV
 QV
 Ki
 bF
-ab
+vB
 "}
 (12,1,1) = {"
 ab

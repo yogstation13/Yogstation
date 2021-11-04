@@ -449,7 +449,13 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "oF" = (
-/obj/machinery/vending/boozeomat,
+/obj/machinery/vending/boozeomat{
+	pixel_x = 32
+	},
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 8
+	},
+/obj/structure/table,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},

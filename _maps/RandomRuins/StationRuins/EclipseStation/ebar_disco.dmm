@@ -925,7 +925,13 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "PX" = (
-/obj/machinery/vending/boozeomat,
+/obj/machinery/vending/boozeomat{
+	pixel_x = 32
+	},
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 8
+	},
+/obj/structure/table,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Qc" = (

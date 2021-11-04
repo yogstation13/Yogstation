@@ -56233,6 +56233,19 @@
 /obj/machinery/atmospherics/pipe/manifold4w/yellow/visible,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"cQx" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/item/lighter,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "cSf" = (
 /obj/structure/sign/warning/vacuum{
 	name = "EXTERNAL AIRLOCK";
@@ -58991,7 +59004,6 @@
 /area/quartermaster/storage)
 "jRX" = (
 /obj/structure/table/reinforced,
-/obj/item/lighter,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -59000,6 +59012,11 @@
 	id = "barshutters";
 	name = "bar shutters"
 	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft,
+/obj/machinery/chem_dispenser/drinks/tea,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "jTt" = (
@@ -102121,7 +102138,7 @@ cbc
 cbE
 cbc
 cch
-cct
+cba
 cct
 cct
 cct
@@ -102379,7 +102396,7 @@ cam
 cam
 cam
 jRX
-etS
+cQx
 ijl
 etS
 etS

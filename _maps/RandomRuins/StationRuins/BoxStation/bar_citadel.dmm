@@ -18,13 +18,19 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "ac" = (
-/obj/machinery/vending/boozeomat,
+/obj/machinery/vending/boozeomat{
+	pixel_x = 31
+	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)

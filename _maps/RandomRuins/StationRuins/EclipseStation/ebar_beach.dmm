@@ -163,7 +163,6 @@
 /area/crew_quarters/bar)
 "fh" = (
 /obj/structure/table/wood,
-/obj/item/flashlight/lamp,
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 8
 	},
@@ -174,6 +173,9 @@
 	id = "barshutters";
 	name = "bar shutters"
 	},
+/obj/machinery/door/window,
+/obj/structure/window/reinforced/spawner/west,
+/obj/machinery/chem_dispenser/drinks/tea,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "fw" = (
@@ -1566,7 +1568,7 @@ Ic
 OU
 jb
 OU
-sW
+OU
 sW
 sW
 sW

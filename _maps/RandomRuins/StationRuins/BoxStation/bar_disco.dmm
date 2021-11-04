@@ -317,6 +317,9 @@
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
 	},
+/obj/machinery/vending/boozeomat{
+	pixel_y = 32
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aW" = (
@@ -446,10 +449,9 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "br" = (
-/obj/machinery/vending/boozeomat,
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks/tea{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
