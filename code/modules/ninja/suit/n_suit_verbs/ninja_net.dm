@@ -7,6 +7,17 @@
 	if(QDELETED(C)||!(C in oview(H)))
 		return 0
 
+	for(var/datum/antagonist/A in H.mind.antag_datums)
+		if(istype(A,/datum/antagonist/ninja)) {
+			var/datum/antagonist/ninja/ninja_datum = A;
+			if(ninja_datum.helping_station) {
+				if(C.stat == DEAD) {
+					to_chat(H, span_warning("[C.p_they(TRUE)] will bring no honor to your Clan!"))
+					return
+				}
+			}
+		}
+
 	if(!C.client)//Monkeys without a client can still step_to() and bypass the net. Also, netting inactive people is lame.
 		to_chat(H, span_warning("[C.p_they(TRUE)] will bring no honor to your Clan!"))
 		return

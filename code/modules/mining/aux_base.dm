@@ -214,7 +214,7 @@
 	if(is_mining_level(z)) //The console switches to controlling the mining shuttle once landed.
 		req_one_access = list()
 		shuttleId = "mining" //The base can only be dropped once, so this gives the console a new purpose.
-		possible_destinations = "mining_home;mining_away;landing_zone_dock;mining_public"
+		possible_destinations = "mining_home;mining_away;landing_zone_dock;mining_public;auxiliary_construction"
 
 /obj/machinery/computer/auxiliary_base/proc/set_landing_zone(turf/T, mob/user, no_restrictions)
 	var/obj/docking_port/mobile/auxiliary_base/base_dock = locate(/obj/docking_port/mobile/auxiliary_base) in SSshuttle.mobile
