@@ -67,7 +67,7 @@
 
 
 /datum/computer_file/program/alarm_monitor/proc/cancelAlarm(class, area/A, obj/origin)
-	var/list/L = alarms[class]
+	var/list/L = GLOB.alarms[class]
 	var/cleared = 0
 	for (var/I in L)
 		if (I == A.name)
