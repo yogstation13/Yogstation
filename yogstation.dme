@@ -3306,6 +3306,8 @@
 #include "yogstation\code\game\objects\structures\ladders.dm"
 #include "yogstation\code\game\objects\structures\table_frames.dm"
 #include "yogstation\code\game\objects\structures\tables_racks.dm"
+#include "yogstation\code\game\objects\structures\toilet_bong.dm"
+#include "yogstation\code\game\objects\structures\watercloset.dm"
 #include "yogstation\code\game\objects\structures\window.dm"
 #include "yogstation\code\game\objects\structures\bar_stuff\bar_stuff.dm"
 #include "yogstation\code\game\objects\structures\beds_chairs\chair.dm"
