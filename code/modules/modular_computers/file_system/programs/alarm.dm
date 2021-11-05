@@ -10,7 +10,6 @@
 	tgui_id = "NtosStationAlertConsole"
 
 	var/has_alert = 0
-	var/alarms = list("Fire" = list(), "Atmosphere" = list(), "Power" = list())
 
 /datum/computer_file/program/alarm_monitor/process_tick()
 	..()
@@ -30,9 +29,9 @@
 	var/list/data = get_header_data()
 
 	data["alarms"] = list()
-	for(var/class in alarms)
+	for(var/class in GLOB.alarms)
 		data["alarms"][class] = list()
-		for(var/area in alarms[class])
+		for(var/area in GLOB.alarms[class])
 			data["alarms"][class] += area
 
 	return data
@@ -44,7 +43,7 @@
 	else if(!is_mining_level(source.z) || istype(A, /area/ruin))
 		return
 
-	var/list/L = alarms[class]
+	var/list/L = GLOB.alarms[class]
 	for(var/I in L)
 		if (I == A.name)
 			var/list/alarm = L[I]
@@ -85,8 +84,8 @@
 
 /datum/computer_file/program/alarm_monitor/proc/update_alarm_display()
 	has_alert = FALSE
-	for(var/cat in alarms)
-		var/list/L = alarms[cat]
+	for(var/cat in GLOB.alarms)
+		var/list/L = GLOB.alarms[cat]
 		if(L.len)
 			has_alert = TRUE
 
