@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "mindshields no longer delete themselves without telling anyone when failing to implant rev or gang leaders"
