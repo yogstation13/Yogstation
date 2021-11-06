@@ -47,6 +47,7 @@
 		smoke.set_up(boof.reagents, smoke_spread, location, silent = TRUE)
 		smoke.start()
 		qdel(boof)
+		update_icon()
 
 // It's a bong powered by a **flamethrower**, it's definitely an open flame!!
 /obj/structure/toilet_bong/process()
