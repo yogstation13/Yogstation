@@ -17,6 +17,7 @@
 
 	var/cooldown = 2 SECONDS
 	var/stunforce = 100
+	var/stamina_damage = 70
 	var/status = 0
 	var/obj/item/stock_parts/cell/cell
 	var/hitcost = 1000
@@ -180,11 +181,14 @@
 
 
 /obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/user)
+	var/effective_stamina_damage = stamina_damage
+
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
 			playsound(L, 'sound/weapons/genhit.ogg', 50, 1)
 			return 0
+		effective_stamina_damage *= 1 - H.getarmor(type = "energy") * 0.02
 	if(iscyborg(loc))
 		var/mob/living/silicon/robot/R = loc
 		if(!R || !R.cell || !R.cell.use(hitcost))
@@ -193,14 +197,35 @@
 		if(!deductcharge(hitcost))
 			return 0
 
-	/// After a target is hit, we do a chunk of stamina damage, along with other effects.
-	/// After a period of time, we then check to see what stun duration we give.
-	L.Jitter(20)
-	L.confused = max(8, L.confused)
-	L.apply_effect(EFFECT_STUTTER, stunforce)
-	L.adjustStaminaLoss(60)
+	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
+
+	if(trait_check)
+		effective_stamina_damage *= 0.1
+
+	if(effective_stamina_damage < 0)
+		effective_stamina_damage = 0
+
+	L.adjustStaminaLoss(effective_stamina_damage)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
-	addtimer(CALLBACK(src, .proc/apply_stun_effect_end, L), 2.5 SECONDS)
+	var/current_stamina_damage = L.getStaminaLoss()
+
+	if(current_stamina_damage >= 90)
+		if(!L.IsParalyzed())
+			to_chat(L, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
+		if(trait_check)
+			L.Paralyze(stunforce * 0.1)
+		else
+			L.Paralyze(stunforce)
+		L.Jitter(20)
+		L.confused = max(8, L.confused)
+		L.apply_effect(EFFECT_STUTTER, stunforce)
+	else if(current_stamina_damage > 70)
+		L.Jitter(10)
+		L.confused = max(8, L.confused)
+		L.apply_effect(EFFECT_STUTTER, stunforce)
+	else if(current_stamina_damage >= 20)
+		L.Jitter(5)
+		L.apply_effect(EFFECT_STUTTER, stunforce)
 
 	if(user)
 		L.lastattacker = user.real_name
@@ -219,16 +244,6 @@
 
 	return 1
 
-/// After the initial stun period, we check to see if the target needs to have the stun applied.
-/obj/item/melee/baton/proc/apply_stun_effect_end(mob/living/target)
-	var/trait_check = HAS_TRAIT(target, TRAIT_STUNRESISTANCE) //var since we check it in out to_chat as well as determine stun duration
-	if(!target.IsParalyzed())
-		to_chat(target, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
-	if(trait_check)
-		target.Paralyze(stunforce * 0.1)
-	else
-		target.Paralyze(stunforce)
-
 /obj/item/melee/baton/emp_act(severity)
 	. = ..()
 	if (!(. & EMP_PROTECT_SELF))
@@ -246,6 +261,7 @@
 	force = 3
 	throwforce = 5
 	stunforce = 100
+	stamina_damage = 45
 	hitcost = 2000
 	throw_hit_chance = 10
 	slot_flags = ITEM_SLOT_BACK
