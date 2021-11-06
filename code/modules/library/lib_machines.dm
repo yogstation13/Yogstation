@@ -453,7 +453,6 @@ GLOBAL_LIST_EMPTY(checkouts)
 	user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
 	audible_message("[src] begins to hum as it warms up its printing drums.")
 	busy = TRUE
-	sleep(rand(200,400))
 	busy = FALSE
 	if(P)
 		if(!stat)
