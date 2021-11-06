@@ -339,6 +339,15 @@
 	icon_state = "shadowmeat"
 	desc = "It is covered in a strange darkness. This slab's magical properties appear to be drastically weakened due to the synthetic nature of the meat."
 
+/obj/item/reagent_containers/food/snacks/meat/chicken
+	name = "whole chicken"
+	icon_state = "birdmeat" //sprite WIP
+	desc = "A whole chicken with the neck cut off and the feathers plucked. It's organs are all removed."
+	bitesize = 10
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12)
+	tastes = list("Raw" = 1, "Salmonella" = 2, "Slime" = 1)
+	foodtype = MEAT | RAW | GROSS
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 
