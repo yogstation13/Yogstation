@@ -1079,7 +1079,7 @@
 	tick_interval = 15 SECONDS
 	var/list/unspooked_limbs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 	var/list/all_limbs = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_CHEST, BODY_ZONE_HEAD)
-	var/fuckywuckycounter = 0
+	var/next_event_timer = 0
 	var/list/limb_removal_flavor = list("The skin on your %LIMB falls off, revealing the skeleton beneath!")
 	var/dam_type = BRUTE
 	var/wound_type = /datum/wound/blunt/critical
@@ -1105,9 +1105,9 @@
 		return
 	if(prob(20))
 		to_chat(owner, span_velvet(pick("The stars flicker in the distance.", "You faintly see movement.", "You feel something turn its gaze to you, then move on.", "This can't be it, can it?")))
-	fuckywuckycounter++
+	next_event_timer++
 	var/mob/living/carbon/C = owner
-	if(!(fuckywuckycounter % HERETIC_SACRIFICE_EFFECT_THRESHOLD))
+	if(!(next_event_timer % HERETIC_SACRIFICE_EFFECT_THRESHOLD))
 		if(prob(1)) //small chance of no effect
 			to_chat(owner, span_boldnotice("You float, The glow of the dark stars oddly relaxing. Everything feels alright for once.</span>"))
 			return
@@ -1157,7 +1157,7 @@
 	. = ..()
 	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar, with no recollection of the past few minutes, or any proof of it beyond your mangled state.</span>")
 	owner.SetStun(2 SECONDS, ignore_canstun = TRUE)
-	var/turf/open/floor/safe_turf = find_safe_turf(zlevels = 2)
+	var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary))
 	if(safe_turf)
 		owner.forceMove(safe_turf)
 
