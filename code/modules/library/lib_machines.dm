@@ -1,21 +1,22 @@
-#define PRINTER_COOLDOWN 60
+/// Cooldown duration for using print/post functionality
+#define PRINTER_COOLDOWN 6 SECONDS
+/// How many pages to send to the UI
 #define PAGESIZE 10
 
-GLOBAL_LIST_EMPTY(cachedbooks) // List of our cached book datums
+/// Saved books from the DB
+GLOBAL_LIST_EMPTY(cachedbooks)
+/// Books that are currently checked out
 GLOBAL_LIST_EMPTY(checkouts)
 
 /* Library Machines
  *
  * Contains:
  *		Borrowbook datum
- *		Library Public Computer
  *		Cachedbook datum
  *		Library Computer
  *		Library Scanner
  *		Book Binder
  */
-
-
 
 /*
  * Library Public Computer
@@ -27,18 +28,25 @@ GLOBAL_LIST_EMPTY(checkouts)
 	icon_keyboard = null
 	circuit = /obj/item/circuitboard/computer/libraryconsole
 	desc = "Checked out books MUST be returned on time."
+	// Search Parameters
+	/// Title to search
 	var/title
+	/// Category to search
 	var/category = "Any"
+	/// Author to search
 	var/author
-	var/list/results = list()
+
+	/// How long until next print
 	var/cooldown = 0
-	var/list/inventory = list()
 	/// Is it the curators book management console
 	var/librarianconsole = FALSE
 	/// Saved scanner
 	var/obj/machinery/libraryscanner/scanner
-	clockwork = TRUE //it'd look weird
+	// Whatever this does
+	clockwork = TRUE
+	/// What page are we on
 	var/page = 0
+	/// How many pages do we have
 	var/totalpages = 0
 	/// Categorys in the DB
 	var/list/validcategorys = list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
@@ -110,10 +118,12 @@ GLOBAL_LIST_EMPTY(checkouts)
 			var/timedue = (b.duedate - world.time)/600
 			checkedout[REF(borrower)]["books"][REF(b.instance)] = list()
 			var/list/borrowedbook = checkedout[REF(borrower)]["books"][REF(b.instance)]
+
 			if(timedue <= 0)
 				borrowedbook["overdue"] = TRUE
 			else
 				borrowedbook["overdue"] = FALSE
+
 			borrowedbook["borrower"] = b.mobname
 			borrowedbook["due"] = round(timedue)
 			borrowedbook["ref"] = REF(b)
@@ -131,8 +141,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 			continue
 
 		if((category == "Any") || (book["category"] == category))
-			// Certified byond moment interpreting a var as a string
-			books += list("[id]"=book)
+			books[id] = book
 			
 
 	if(books)
@@ -190,6 +199,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 		if("checkoutbook")
 			if (!(scanner.cache) || !(scanner.idcard))
 				say("Missing an ID or Book")
+				return
 			var/datum/cachedbook/borrowbook/b = new /datum/cachedbook/borrowbook
 			if(!GLOB.checkouts[scanner.idcard.name])
 				GLOB.checkouts[scanner.idcard.name] = list()
@@ -205,6 +215,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 			b.getdate = world.time
 			b.duedate = world.time + params["time"] MINUTES
 			GLOB.checkouts[scanner.idcard.name] |= b 
+			update_static_data(usr)
 
 		if("uploadbook")
 			var/msg = "[key_name(usr)] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs"
@@ -287,8 +298,11 @@ GLOBAL_LIST_EMPTY(checkouts)
 			cooldown = world.time + PRINTER_COOLDOWN
 
 /obj/machinery/computer/libraryconsole/emag_act(mob/user)
-	if(density && !(obj_flags & EMAGGED))
-		obj_flags |= EMAGGED
+	obj_flags ^= EMAGGED
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<font color='red'>You short out the safeties on [src]!</font>")
+	else
+		to_chat(user, "<font color='red'>You reset the safeties on [src]!</font>")
 
 /*
  * Cachedbook datum
@@ -343,15 +357,10 @@ GLOBAL_LIST_EMPTY(checkouts)
 /obj/machinery/computer/libraryconsole/bookmanagement
 	name = "book inventory management console"
 	desc = "Librarian's command station."
-	//screenstate = 0 // 0 - Main Menu, 1 - Inventory, 2 - Checked Out, 3 - Check Out a Book
 	verb_say = "beeps"
 	verb_ask = "beeps"
 	verb_exclaim = "beeps"
 	pass_flags = PASSTABLE
-	var/arcanecheckout = 0
-	var/upload_category = "Fiction"
-	var/checkoutperiod = 5 // In minutes
-	var/list/libcomp_menu
 	librarianconsole = TRUE
 
 /obj/machinery/computer/libraryconsole/bookmanagement/Initialize()

@@ -13,7 +13,7 @@ export const LibraryConsole = (props, context) => {
     librarianconsole,
   } = data;
   return (
-    <Window resizeable theme="hackerman" width={width} height={height}>
+    <Window resizeable width={width} height={height}>
       <Window.Content>
         <Tabs>
           <Tabs.Tab
@@ -102,7 +102,7 @@ export const Search = (props, context) => {
 
 export const BookDB = (props, context) => {
   width = 600;
-  height = 510;
+  height = 550;
   const { act, data } = useBackend(context);
   const [tab, setTab] = useSharedState(context, 'tab', 2);
   const {
@@ -208,6 +208,8 @@ export const BookDB = (props, context) => {
   ); };
 
 export const LibraryMangement = (props, context) => {
+  width = 600;
+  height = 380;
   const { act, data } = useBackend(context);
   const [tab2, setTab2] = useSharedState(context, 'tab2', 1);
   let [checkoutTime, setTime] = useSharedState(context, "checkoutTime", 5);
@@ -225,47 +227,35 @@ export const LibraryMangement = (props, context) => {
     <Box>
       <Box>
         <Divider />
-        <Tabs fontSize="11px" py={1.5} mx={1}>
+        <Tabs py={1.5} mx={1}>
           <Tabs.Tab
             lineHeight="23px"
             onClick={() => setTab2(1)}
             selected={tab2 === 1}>
-            General Inventory
+            Checked Out
           </Tabs.Tab>
           <Tabs.Tab
             lineHeight="23px"
             onClick={() => setTab2(2)}
             selected={tab2 === 2}>
-            Checked Out
+            Book Check Out
           </Tabs.Tab>
           <Tabs.Tab
             lineHeight="23px"
             onClick={() => setTab2(3)}
             selected={tab2 === 3}>
-            Book Check Out
+            Upload to Archive
           </Tabs.Tab>
           <Tabs.Tab
             lineHeight="23px"
             onClick={() => setTab2(4)}
             selected={tab2 === 4}>
-            External Archive
+            Upload to Newscaster
           </Tabs.Tab>
           <Tabs.Tab
             lineHeight="23px"
             onClick={() => setTab2(5)}
             selected={tab2 === 5}>
-            Upload to Archive
-          </Tabs.Tab>
-          <Tabs.Tab
-            lineHeight="23px"
-            onClick={() => setTab2(6)}
-            selected={tab2 === 6}>
-            Upload to Newscaster
-          </Tabs.Tab>
-          <Tabs.Tab
-            lineHeight="23px"
-            onClick={() => setTab2(7)}
-            selected={tab2 === 7}>
             Print Corporate Materials
           </Tabs.Tab>
         </Tabs>
@@ -273,16 +263,10 @@ export const LibraryMangement = (props, context) => {
       </Box>
       <Section>
         {tab2 === 1 && (
-          <Section>
-            <h3>Inventory</h3><br />
-            ERR 404: Inventory Not Found
-          </Section>
-        )}
-        {tab2 === 2 && (
-          <Section>
+          <Box>
             <h3>Checked Out Books</h3>
             {Object.keys(checkouts).map(user => (
-              <Section key={user}>
+              <Box key={user}>
                 {Object.keys(checkouts[user]["books"]).map(book => (
                   <Box key={book}>
                     {!checkouts[user]["books"][book]["overdue"]
@@ -290,8 +274,8 @@ export const LibraryMangement = (props, context) => {
                         <Box>
                           {checkouts[user]["books"][book]["title"]} by {checkouts[user]["books"][book]["author"]}<br />
                           <Box pl={0.5}>
-                            Borrowed By: {checkouts[user]["books"][book]["borrower"]}<br />
-                            Due in {checkouts[user]["books"][book]["due"]} Minutes
+                            &nbsp;&nbsp;Borrowed By: {checkouts[user]["books"][book]["borrower"]}<br />
+                            &nbsp;&nbsp;Due in {checkouts[user]["books"][book]["due"]} Minutes
                           </Box>
                         </Box>
                       ):(
@@ -305,20 +289,24 @@ export const LibraryMangement = (props, context) => {
                   </Box>
                 ))}
                 <Divider />
-              </Section>
+              </Box>
             ))}
-          </Section>
+          </Box>
         )}
-        {tab2 === 3 && (
-          <Section>
+        {tab2 === 2 && (
+          <Box>
             <h3>Check Out a Book</h3>
             {scanner
               ?(
-                <Section>
-                  Book: {scanner["title"]} by {scanner["author"]}
-                  Loan To: {scanner["idname"]} ({scanner["assignment"]})
+                <Box>
+                  Book: {scanner["title"]} by {scanner["author"]}<br />
+                  {!!scanner["idname"] && (
+                    <Box>
+                      &nbsp;&nbsp;Loan To: {scanner["idname"]} ({scanner["assignment"]})
+                    </Box>
+                  )}
                   <br /><br />
-                  Checkout Time:{ }
+                  Checkout Time:&nbsp;
                   <NumberInput
                     minValue={5}
                     maxValue={60}
@@ -326,6 +314,7 @@ export const LibraryMangement = (props, context) => {
                     unit={"Minutes"}
                     onChange={(e, value) => setTime(value)}
                   />
+                  <br />
                   <br />
                   <Button
                     content="Check Out"
@@ -335,20 +324,15 @@ export const LibraryMangement = (props, context) => {
                       title: scanner["title"],
                       author: scanner["author"],
                     })} />
-                </Section>
+                </Box>
               ):(
-                <Section>
+                <Box>
                   No book loaded in the scanner
-                </Section>
+                </Box>
               )}
-          </Section>
-        )}
-        {tab2 === 4 && (
-          <Box>
-            <BookDB />
           </Box>
         )}
-        {tab2 === 5 && (
+        {tab2 === 3 && (
           <Box>
             <h3>Upload a New Title</h3>
             {scanner
@@ -370,35 +354,43 @@ export const LibraryMangement = (props, context) => {
                 </Section>
               ):(
                 <Box>
-                  Scanner not found
+                  Scanner info not found
                 </Box>
               )}
           </Box>
         )}
-        {tab2 === 6 && (
-          <Section>
+        {tab2 === 4 && (
+          <Box>
             <h3>Post Title to Newscaster</h3>
             {newscast ? (
               <Box>
-                {scanner.title} by {scanner.author}
-                <br />
-                <br />
-                <Button
-                  content="Post"
-                  onClick={() => act('newsupload', {
-                    id: scanner["id"],
-                    category: category,
-                  })} />
+                {scanner ? (
+                  <Box>
+                    {scanner.title} by {scanner.author}
+                    <br />
+                    <br />
+                    <Button
+                      content="Post"
+                      onClick={() => act('newsupload', {
+                        id: scanner["id"],
+                        category: category,
+                      })} />
+                    </Box>
+                ) : (
+                  <Box>
+                    Scanner info not found
+                  </Box>
+                )}
               </Box>
             ) : (
               <Box>
                 No Newscaster Network Found
               </Box>
             )}
-          </Section>
+          </Box>
         )}
-        {tab2 === 7 && (
-          <Section>
+        {tab2 === 5 && (
+          <Box>
             <h3>Universal Printing Module</h3>
             <Dropdown
               options={corpmaterials}
@@ -410,11 +402,11 @@ export const LibraryMangement = (props, context) => {
             <br />
             <br />
             <Button
-              content="Post"
+              content="Print"
               onClick={() => act('printtype', {
                 type: type,
               })} />
-          </Section>
+          </Box>
         )}
       </Section>
     </Box>
