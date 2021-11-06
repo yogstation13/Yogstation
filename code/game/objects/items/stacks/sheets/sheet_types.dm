@@ -795,3 +795,16 @@ GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
 	recipes = GLOB.ruinous_metal_recipes
 	. = ..()
 
+/obj/item/stack/sheet/ashresin
+	name = "ashy resin"
+	desc = "A solidified mass of sticky plant resin. Useful as an incredibly strong bonding agent."
+	icon_state = "sheet-resin"
+	item_state = "sheet-resin"
+	icon = 'icons/obj/stack_objects.dmi'
+	sheettype = null
+	singular_name = "resin droplet"
+	max_amount = 10
+	novariants = TRUE
+	grind_results = list(/datum/reagent/consumable/ashresin = 5)
+	merge_type = /obj/item/stack/sheet/ashresin
+	
