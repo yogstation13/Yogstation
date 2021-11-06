@@ -30,12 +30,9 @@ GLOBAL_LIST_EMPTY(checkouts)
 	var/title
 	var/category = "Any"
 	var/author
-	var/SQLquery = ""
 	var/list/results = list()
-	var/errorstate = FALSE
 	var/cooldown = 0
 	var/list/inventory = list()
-	var/buffer_book
 	/// Is it the curators book management console
 	var/librarianconsole = FALSE
 	/// Saved scanner
@@ -43,7 +40,12 @@ GLOBAL_LIST_EMPTY(checkouts)
 	clockwork = TRUE //it'd look weird
 	var/page = 0
 	var/totalpages = 0
+	/// Categorys in the DB
 	var/list/validcategorys = list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
+	/// Types of items the corprate materials tab can print
+	var/list/corpratecategorys = list("Bible", "Poster")
+	/// Types of forbidden items the corporate tab can print
+	var/list/forbiddenitems = list("Blood Cult", "Clockwork Cult", "Forbidden Book")
 
 /obj/machinery/computer/libraryconsole/Initialize(mapload)
 	. = ..()
@@ -69,7 +71,6 @@ GLOBAL_LIST_EMPTY(checkouts)
 	data["category"] = category
 	data["title"] = title
 	data["author"] = author
-	data["error"] = errorstate
 	data["librarianconsole"] = librarianconsole
 	data["page"] = page
 	data["emagged"] = (obj_flags & EMAGGED)
@@ -87,6 +88,13 @@ GLOBAL_LIST_EMPTY(checkouts)
 		if(scanner.idcard)
 			data["scanner"]["idname"] = scanner.idcard.registered_name
 			data["scanner"]["assignment"] = scanner.idcard.assignment
+
+	data["corpmaterials"] = corpratecategorys
+	if(obj_flags & EMAGGED)
+		data["corpmaterials"] |= "Arcane"
+
+	data["newscast"] = 1 && GLOB.news_network
+
 	return data
 
 
@@ -116,10 +124,10 @@ GLOBAL_LIST_EMPTY(checkouts)
 	var/list/books = list()
 	for(var/id in GLOB.cachedbooks)
 		var/book = GLOB.cachedbooks[id]
-		if(author && !(lowertext(author) in lowertext(book["author"])))
+		if(author && !(findtext(book["author"], author)))
 			continue
 
-		if(title && !(lowertext(title) in lowertext(book["title"])))
+		if(title && !(findtext(book["title"], title)))
 			continue
 
 		if((category == "Any") || (book["category"] == category))
@@ -128,7 +136,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 			
 
 	if(books)
-		var/totalpages = CEILING(books.len/PAGESIZE, 1)-1
+		var/totalpages = CEILING(books.len/PAGESIZE, 1)
 		data["totalpages"] = totalpages
 		if(page > totalpages) // Sanity Check
 			page = 0
@@ -144,18 +152,41 @@ GLOBAL_LIST_EMPTY(checkouts)
 		if("setpage")
 			page = clamp(params["page"], 0, totalpages)
 			update_static_data(usr)
+
 		if("settitle")
 			title = pretty_filter(params["name"])
 			update_static_data(usr)
+
 		if("setauthor")
 			author = pretty_filter(params["name"])
 			update_static_data(usr)
+
 		if("setcategory")
 			if(category in validcategorys)
 				category = params["category"]
 			else
 				category = "Any"
 			update_static_data(usr)
+
+		if("newsupload")
+			if(!GLOB.news_network)
+				say("No news network found... Aborting.")
+				return
+
+			if(cooldown > world.time)
+				say("Request blocked... Please allow time for the network to cooldown.")
+				return
+
+			var/channelexists = 0
+			for(var/datum/newscaster/feed_channel/FC in GLOB.news_network.network_channels)
+				if(FC.channel_name == "Nanotrasen Book Club")
+					channelexists = 1
+					break
+			if(!channelexists)
+				GLOB.news_network.CreateFeedChannel("Nanotrasen Book Club", "Library", null)
+			GLOB.news_network.SubmitArticle(scanner.cache.dat, "[scanner.cache.name]", "Nanotrasen Book Club", null)
+			say("Upload complete. Your uploaded title is now available on station newscasters.")
+
 		if("checkoutbook")
 			if (!(scanner.cache) || !(scanner.idcard))
 				say("Missing an ID or Book")
@@ -190,6 +221,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 				log_game(msg)
 				qdel(query_library_upload)
 				say("Upload Complete. Uploaded title will be unavailable for printing for a short period")
+
 		if("vendbook")
 			var/id = params["book"]
 			if(cooldown > world.time)
@@ -218,6 +250,45 @@ GLOBAL_LIST_EMPTY(checkouts)
 						visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
 					break
 				qdel(query_library_print)
+
+		if("printtype")
+			if(cooldown > world.time)
+				say("Printer currently unavailable, please wait a moment.")
+				return
+
+			switch(params["type"])
+				if("Bible")
+					var/obj/item/storage/book/bible/B = new /obj/item/storage/book/bible(src.loc)
+					if(GLOB.bible_icon_state && GLOB.bible_item_state)
+						B.icon_state = GLOB.bible_icon_state
+						B.item_state = GLOB.bible_item_state
+						B.name = GLOB.bible_name
+						B.deity_name = GLOB.deity
+
+				if("Poster")
+					new /obj/item/poster/random_official(src.loc)
+
+				if("Arcane")
+					var/toprint = pick(forbiddenitems)
+					switch(toprint) // are you crying yet; I am
+						if("Blood Cult")
+							new /obj/item/melee/cultblade/dagger(get_turf(src))
+							to_chat(usr, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a sinister dagger sitting on the desk. You don't even remember where it came from..."))
+						
+						if("Clockwork Cult")
+							new /obj/item/clockwork/slab(get_turf(src))
+							to_chat(usr, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a strange metal tablet sitting on the desk. You don't even remember where it came from..."))
+						
+						if("Forbidden Book")
+							new /obj/item/forbidden_book(get_turf(src))
+							to_chat(usr, span_warning("You lose your train of thought, the longer you stare into the vault's browsing window, the deeper you reach into timeless eons. You tear away from the screen, and a book fashioned in a strange leather, bound in chains, appears before you..."))
+							usr.visible_message("[usr] stares at the blank screen for a few moments, [usr.p_their()] expression frozen in fear. When [usr.p_they()] finally awaken[usr.p_s()] from it, [usr.p_they()] look[usr.p_s()] a lot older.", 2)
+				
+			cooldown = world.time + PRINTER_COOLDOWN
+
+/obj/machinery/computer/libraryconsole/emag_act(mob/user)
+	if(density && !(obj_flags & EMAGGED))
+		obj_flags |= EMAGGED
 
 /*
  * Cachedbook datum

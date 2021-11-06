@@ -14,7 +14,7 @@ export const LibraryConsole = (props, context) => {
   } = data;
   return (
     <Window resizeable theme="hackerman" width={width} height={height}>
-      <Window.Content scrollable>
+      <Window.Content>
         <Tabs>
           <Tabs.Tab
             icon="list"
@@ -102,7 +102,7 @@ export const Search = (props, context) => {
 
 export const BookDB = (props, context) => {
   width = 600;
-  height = 600;
+  height = 510;
   const { act, data } = useBackend(context);
   const [tab, setTab] = useSharedState(context, 'tab', 2);
   const {
@@ -212,11 +212,14 @@ export const LibraryMangement = (props, context) => {
   const [tab2, setTab2] = useSharedState(context, 'tab2', 1);
   let [checkoutTime, setTime] = useSharedState(context, "checkoutTime", 5);
   let [category, setcategory] = useSharedState(context, "category", "Fiction");
+  let [type, setType] = useSharedState(context, "type", "Bible");
   const validcategorys=["Fiction", "Non-Fiction", "Adult", "Reference", "Religion"];
   const {
     emagged,
     scanner,
     checkouts,
+    corpmaterials,
+    newscast,
   } = data;
   return (
     <Box>
@@ -265,14 +268,6 @@ export const LibraryMangement = (props, context) => {
             selected={tab2 === 7}>
             Print Corporate Materials
           </Tabs.Tab>
-          {!!emagged && (
-            <Tabs.Tab
-              lineHeight="23px"
-              onClick={() => setTab2(8)}
-              selected={tab2 === 8}>
-              Access the Forbidden Lore Vault
-            </Tabs.Tab>
-          )}
         </Tabs>
         <Divider />
       </Box>
@@ -323,7 +318,7 @@ export const LibraryMangement = (props, context) => {
                   Book: {scanner["title"]} by {scanner["author"]}
                   Loan To: {scanner["idname"]} ({scanner["assignment"]})
                   <br /><br />
-                  Checkout Time
+                  Checkout Time:{ }
                   <NumberInput
                     minValue={5}
                     maxValue={60}
@@ -383,22 +378,43 @@ export const LibraryMangement = (props, context) => {
         {tab2 === 6 && (
           <Section>
             <h3>Post Title to Newscaster</h3>
+            {newscast ? (
+              <Box>
+                {scanner.title} by {scanner.author}
+                <br />
+                <br />
+                <Button
+                  content="Post"
+                  onClick={() => act('newsupload', {
+                    id: scanner["id"],
+                    category: category,
+                  })} />
+              </Box>
+            ) : (
+              <Box>
+                No Newscaster Network Found
+              </Box>
+            )}
           </Section>
         )}
         {tab2 === 7 && (
           <Section>
             <h3>Universal Printing Module</h3>
             <Dropdown
-              options={["A", "B"]}
-              selected={"A"}
-              onSelected={value => act('printtype', {
-                type: value,
-              })}
+              options={corpmaterials}
+              selected={type}
+              onSelected={
+                value => setType(value)
+              }
             />
+            <br />
+            <br />
+            <Button
+              content="Post"
+              onClick={() => act('printtype', {
+                type: type,
+              })} />
           </Section>
-        )}
-        {tab2 === 8 && (
-          <h3 />
         )}
       </Section>
     </Box>

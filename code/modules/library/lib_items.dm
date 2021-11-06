@@ -260,36 +260,6 @@
 			else
 				return
 
-	else if(istype(I, /obj/item/barcodescanner))
-		var/obj/item/barcodescanner/scanner = I
-		if(!scanner.computer)
-			to_chat(user, "[I]'s screen flashes: 'No associated computer found!'")
-		else
-			switch(scanner.mode)
-				if(0)
-					scanner.book = src
-					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer.'")
-				if(1)
-					scanner.book = src
-					scanner.computer.buffer_book = name
-					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Book title stored in associated computer buffer.'")
-				if(2)
-					scanner.book = src
-					for(var/datum/cachedbook/borrowbook/b in GLOB.checkouts)
-						if(b.bookname == name)
-							GLOB.checkouts.Remove(b)
-							to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Book has been checked in.'")
-							return
-					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. No active check-out record found for current title.'")
-				if(3)
-					scanner.book = src
-					for(var/obj/item/book in scanner.computer.inventory)
-						if(book == src)
-							to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Title already present in inventory, aborting to avoid duplicate entry.'")
-							return
-					scanner.computer.inventory.Add(src)
-					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'")
-
 	else if(istype(I, /obj/item/kitchen/knife) || I.tool_behaviour == TOOL_WIRECUTTER)
 		to_chat(user, span_notice("You begin to carve out [title]..."))
 		if(do_after(user, 30, target = src))
