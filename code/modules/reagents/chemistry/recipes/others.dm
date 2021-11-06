@@ -663,6 +663,6 @@
 	required_temp = 800
 
 /datum/chemical_reaction/resinsolidification/on_reaction(datum/reagents/holder, created_volume)
-		var/location = get_turf(holder.my_atom)
-		for(var/i in 1 to created_volume)
-			new /obj/item/stack/sheet/ashresin(location)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/sheet/ashresin(location)
