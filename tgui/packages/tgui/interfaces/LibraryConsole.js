@@ -57,7 +57,7 @@ export const LibraryConsole = (props, context) => {
 
 export const Search = (props, context) => {
   width = 350;
-  height = 200;
+  height = 250;
   const { act, data } = useBackend(context);
   const [tab, setTab] = useSharedState(context, 'tab', 1);
   const {
@@ -375,7 +375,7 @@ export const LibraryMangement = (props, context) => {
                         id: scanner["id"],
                         category: category,
                       })} />
-                    </Box>
+                  </Box>
                 ) : (
                   <Box>
                     Scanner info not found
