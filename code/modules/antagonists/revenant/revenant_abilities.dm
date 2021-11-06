@@ -72,7 +72,7 @@
 					draining = FALSE
 					return
 				var/datum/beam/B = Beam(target,icon_state="drain_life",time=INFINITY)
-				if(do_after(src, 46, 0, target)) //As one cannot prove the existance of ghosts, ghosts cannot prove the existance of the target they were draining.
+				if(do_after(src, 4.6 SECONDS, 0, target)) //As one cannot prove the existance of ghosts, ghosts cannot prove the existance of the target they were draining.
 					change_essence_amount(essence_drained, FALSE, target)
 					if(essence_drained <= 90 && target.stat != DEAD)
 						essence_regen_cap += 5
@@ -304,7 +304,7 @@
 		new /obj/effect/temp_visual/revenant(human.loc)
 		human.emp_act(EMP_HEAVY)
 	for(var/obj/thing in T)
-		if(istype(thing, /obj/machinery/power/apc) || istype(thing, /obj/machinery/power/smes)) //Doesn't work on SMES and APCs, to prevent kekkery
+		if(istype(thing, /obj/machinery/power/apc) || istype(thing, /obj/machinery/power/smes) || istype(thing, /obj/machinery/particle_accelerator/control_box)) //Doesn't work on SMES and APCs or the PA control box, to prevent kekkery
 			continue
 		if(prob(20))
 			if(prob(50))

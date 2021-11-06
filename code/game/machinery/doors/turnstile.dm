@@ -18,7 +18,7 @@
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
 	//Seccies and brig phys may always pass, either way.
-	req_one_access = list(ACCESS_BRIG)
+	req_one_access = list(ACCESS_SEC_DOORS)
 	
 /obj/machinery/turnstile/Initialize()
 	. = ..()
@@ -31,8 +31,14 @@
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
-	if(!isliving(mover))
+	if(istype(mover, /mob/living/simple_animal/bot))
+		flick("operate", src)
+		playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE
+	else if (!isliving(mover))
+		flick("deny", src)
+		playsound(src,'sound/machines/deniedbeep.ogg',50,0,3)
+		return FALSE
 	var/allowed = allowed(mover)
 	//Sec can drag you out unceremoniously.
 	if(!allowed && mover.pulledby)

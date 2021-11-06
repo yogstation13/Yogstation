@@ -441,7 +441,8 @@
 		objectives += destroy_objective
 	else
 		if(prob(70))
-			var/datum/objective/assassinate/kill_objective = new
+			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+			var/datum/objective/assassinate/kill_objective = new N
 			kill_objective.owner = owner
 			if(team_mode) //No backstabbing while in a team
 				kill_objective.find_target_by_role(role = ROLE_CHANGELING, role_type = TRUE, invert = TRUE)

@@ -55,7 +55,7 @@
 			to_chat(user, span_warning("You need two reinforced glass sheets to fix [src]!"))//yogs - change to reinforced glass
 			return
 		to_chat(user, span_notice("You start fixing [src]..."))
-		if(do_after(user, 20, target = src) && G.use(2))
+		if(do_after(user, 2 SECONDS, target = src) && G.use(2))
 			broken = 0
 			obj_integrity = max_integrity
 			update_icon()
@@ -211,7 +211,7 @@
 /obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)
 	to_chat(user, "<span class = 'caution'> Resetting circuitry...</span>")
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, 1)
-	if(do_after(user, 20, target = src))
+	if(do_after(user, 2 SECONDS, target = src))
 		to_chat(user, span_caution("You [locked ? "disable" : "re-enable"] the locking modules."))
 		locked = !locked
 		update_icon()

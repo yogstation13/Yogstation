@@ -464,6 +464,8 @@
 	..()
 
 /datum/objective/revenant/check_completion()
+	if(..())
+		return TRUE
 	if(!isrevenant(owner.current))
 		return FALSE
 	var/mob/living/simple_animal/revenant/R = owner.current

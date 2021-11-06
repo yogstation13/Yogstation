@@ -291,15 +291,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// Instantiate tgui panel
 	tgui_panel = new(src)
 
-	tgui_panel?.send_connected()
+	tgui_panel.send_connected()
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.
 	//Admin Authorisation
 	holder = GLOB.admin_datums[ckey]
 	if(holder)
-		GLOB.admins |= src
-		holder.owner = src
+		if(!holder.associate(src, FALSE)) // Prevent asking for MFA at this point, it likely won't work
+			holder = null
 		connecting_admin = TRUE
 	else if(GLOB.deadmins[ckey])
 		add_verb(src, /client/proc/readmin)
@@ -416,7 +416,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// Initialize tgui panel
 	tgui_panel.initialize()
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
-	addtimer(CALLBACK(src, .proc/check_panel_loaded), 30 SECONDS)
+	addtimer(CALLBACK(src, .proc/check_panel_loaded), 5 SECONDS)
 
 
 	if(alert_mob_dupe_login)
@@ -1128,3 +1128,4 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(statbrowser_ready)
 		return
 	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
+	tgui_panel.initialize()

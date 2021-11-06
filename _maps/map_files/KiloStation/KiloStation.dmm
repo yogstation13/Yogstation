@@ -39769,17 +39769,6 @@
 /obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
-"bmT" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/item/storage/bag/tray,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "bmU" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/rack,
@@ -40932,24 +40921,6 @@
 "boC" = (
 /turf/closed/wall,
 /area/hallway/primary/port)
-"boD" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/item/book/manual/chef_recipes{
-	pixel_x = -4;
-	pixel_y = 6
-	},
-/obj/item/book/manual/chef_recipes{
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "boF" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/clothing/suit/hooded/wintercoat/engineering,
@@ -41109,26 +41080,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"boQ" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/microwave{
-	pixel_y = 5
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "boS" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -68910,16 +68861,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"cjb" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/security/brig)
 "cjd" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "brigfrontdoor";
@@ -72864,19 +72805,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/brig)
-"cpR" = (
-/obj/machinery/door/airlock/security/glass{
-	id_tag = null;
-	name = "Brig";
-	req_access_txt = "63"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/warden)
 "cpS" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/disposalpipe/segment{
@@ -88019,6 +87947,14 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"fkV" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "flG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -88056,6 +87992,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/atmos)
+"fnv" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/item/storage/bag/tray,
+/obj/item/book/manual/chef_recipes{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "fnA" = (
 /obj/machinery/igniter{
 	id = "Incinerator"
@@ -88320,15 +88271,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"fBQ" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/reagentgrinder/kitchen,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "fDt" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -88561,6 +88503,15 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"fTJ" = (
+/obj/machinery/turnstile/brig{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "fTT" = (
 /obj/machinery/door/airlock/external{
 	name = "Labor Camp Shuttle Airlock";
@@ -91562,6 +91513,24 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"jkA" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/reagentgrinder/kitchen,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "jmB" = (
 /obj/machinery/door/airlock/mining{
 	name = "Auxiliary Base";
@@ -93232,8 +93201,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/mob/living/simple_animal/bot/cleanbot{
-	name = "Scrubs, MD";
+/mob/living/simple_animal/bot/cleanbot/medical{
 	on = 0
 	},
 /turf/open/floor/plasteel/dark,
@@ -95361,6 +95329,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"ntO" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "nuj" = (
 /obj/machinery/door/poddoor{
 	id = "toxinsdriver";
@@ -100836,6 +100815,17 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/disposal/incinerator)
+"ujk" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/turnstile/brig{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
 "ukm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -126389,7 +126379,7 @@ agE
 ahq
 cjO
 crC
-cpR
+ujk
 cxM
 bHT
 cjM
@@ -126905,7 +126895,7 @@ bWL
 apq
 aef
 aGE
-cjb
+fTJ
 cjP
 aaj
 bpE
@@ -127676,7 +127666,7 @@ ain
 apr
 agX
 aHp
-cjb
+fTJ
 cjT
 aaf
 awk
@@ -138951,7 +138941,7 @@ brM
 bmA
 aDh
 bmR
-fBQ
+fkV
 aGJ
 bmL
 bmF
@@ -139207,8 +139197,8 @@ brH
 brr
 ruL
 bqk
-bmT
-boD
+fnv
+ntO
 aGM
 boV
 bjn
@@ -139720,7 +139710,7 @@ brq
 brF
 brG
 ajt
-boQ
+jkA
 boH
 bqo
 aGP

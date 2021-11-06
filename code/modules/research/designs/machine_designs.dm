@@ -2,6 +2,38 @@
 //////////////MISC Boards///////////////
 ////////////////////////////////////////
 
+/datum/design/board/shuttle/engine/plasma
+	name = "Machine Design (Plasma Thruster Board)"
+	desc = "The circuit board for a plasma thruster."
+	id = "engine_plasma"
+	build_path = /obj/item/circuitboard/machine/shuttle/engine/plasma
+	category = list ("Shuttle Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/shuttle/engine/void
+	name = "Machine Design (Void Thruster Board)"
+	desc = "The circuit board for a void thruster."
+	id = "engine_void"
+	build_path = /obj/item/circuitboard/machine/shuttle/engine/void
+	category = list ("Shuttle Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/shuttle/engine/heater
+	name = "Machine Design (Engine Heater Board)"
+	desc = "The circuit board for an engine heater."
+	id = "engine_heater"
+	build_path = /obj/item/circuitboard/machine/shuttle/heater
+	category = list ("Shuttle Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+	
+/datum/design/board/spaceship_navigation_beacon
+	name = "Machine Design (Bluespace Navigation Gigabeacon)"
+	desc = "The circuit board for a Bluespace Navigation Gigabeacon."
+	id = "spaceship_navigation_beacon"
+	build_path = /obj/item/circuitboard/machine/spaceship_navigation_beacon
+	category = list ("Shuttle Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+	
 /datum/design/board/smes
 	name = "Machine Design (SMES Board)"
 	desc = "The circuit board for an SMES."
@@ -528,6 +560,14 @@
 	desc = "The circuit board for a Deep Fryer."
 	id = "deepfryer"
 	build_path = /obj/item/circuitboard/machine/deep_fryer
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/board/griddle
+	name = "Machine Design (Griddle)"
+	desc = "The circuit board for a Griddle."
+	id = "griddle"
+	build_path = /obj/item/circuitboard/machine/griddle
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 

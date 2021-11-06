@@ -454,7 +454,7 @@
 	if(!resting)
 		set_resting(TRUE, FALSE)
 	else
-		if(do_after(src, 10, target = src))
+		if(do_after(src, 1 SECONDS, target = src))
 			set_resting(FALSE, FALSE)
 		else
 			to_chat(src, span_notice("You fail to get up."))
@@ -1217,7 +1217,6 @@
 	if(!(mobility_flags & MOBILITY_UI))
 		unset_machine()
 	density = !lying
-	var/changed = lying == lying_prev
 	if(lying)
 		if(!lying_prev)
 			fall(!canstand_involuntary)
@@ -1227,9 +1226,6 @@
 		if(layer == LYING_MOB_LAYER)
 			layer = initial(layer)
 	update_transform()
-	if(changed)
-		if(client)
-			client.move_delay = world.time + movement_delay()
 	lying_prev = lying
 
 /mob/living/proc/fall(forced)
@@ -1322,7 +1318,7 @@
 		to_chat(user, span_warning("[src] is buckled to something!"))
 		return FALSE
 	user.visible_message(span_notice("[user] starts trying to scoop up [src]!"))
-	if(!do_after(user, 20, target = src))
+	if(!do_after(user, 2 SECONDS, target = src))
 		return FALSE
 	mob_pickup(user)
 	return TRUE

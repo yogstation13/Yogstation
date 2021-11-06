@@ -184,7 +184,7 @@ All foods are distributed among various categories. Use common sense.
 			C.initialize_custom_food(src, S, user)
 			return 0
 	var/sharp = W.is_sharp()
-	if(sharp)
+	if(sharp == SHARP_EDGED)
 		if(slice(sharp, W, user))
 			return 1
 	else
