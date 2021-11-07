@@ -95839,6 +95839,26 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"ojg" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
+/obj/machinery/computer/security/mining{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/quartermaster/miningoffice)
 "omq" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -96200,26 +96220,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"oQI" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/status_display/evac{
-	pixel_x = 32
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 28
-	},
-/obj/machinery/modular_computer/console/preset/mining{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/quartermaster/miningoffice)
 "oTH" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "Skynet_launch";
@@ -145915,7 +145915,7 @@ bbN
 bbp
 bgf
 bhH
-oQI
+ojg
 bis
 baO
 aPN

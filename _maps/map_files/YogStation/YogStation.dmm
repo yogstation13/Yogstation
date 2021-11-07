@@ -43890,6 +43890,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"kmz" = (
+/obj/machinery/camera{
+	c_tag = "Mining Dock";
+	dir = 4
+	},
+/obj/machinery/computer/security/mining,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "kmT" = (
 /obj/machinery/computer/med_data,
 /turf/open/floor/plasteel/grimy,
@@ -45844,14 +45852,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"lDi" = (
-/obj/machinery/camera{
-	c_tag = "Mining Dock";
-	dir = 4
-	},
-/obj/machinery/modular_computer/console/preset/mining,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "lDw" = (
 /obj/structure/table/wood,
 /obj/item/pen{
@@ -89546,7 +89546,7 @@ lAQ
 byE
 bCo
 bDk
-lDi
+kmz
 byE
 byE
 eSR

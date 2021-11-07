@@ -86480,14 +86480,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"ppf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/modular_computer/console/preset/mining,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "pqy" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -119970,7 +119962,7 @@ bSZ
 bTG
 dfd
 agz
-ppf
+bRG
 cSZ
 bXX
 bYM
