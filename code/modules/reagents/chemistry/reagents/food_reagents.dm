@@ -698,10 +698,10 @@
 	description = "A sticky and in large quantities toxic substance found in lavaland flora that helps retain water and keep out pests."
 	color = "#ad8604"
 	taste_description = "sticky ash"
-	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/ashresin/on_mob_life(mob/living/carbon/M) //nothing to worry about when eaten sparsely
-	if(prob(50))
+	if(prob(90))
 		M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 1)
 		. = 1
 	..()

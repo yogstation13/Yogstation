@@ -328,7 +328,7 @@
 ////////////////////////ash resin//////////////
 /obj/structure/statue/resin
 	max_integrity = 50
-	material_drop_type = /obj/item/stack/sheet/mineral/sandstone
+	material_drop_type = /obj/item/stack/sheet/ashresin
 	impressiveness = 20
 	desc = "A decently well done statue made of solid resin."
 
