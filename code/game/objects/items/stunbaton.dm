@@ -181,14 +181,11 @@
 
 
 /obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/user)
-	var/effective_stamina_damage = stamina_damage
-
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
 			playsound(L, 'sound/weapons/genhit.ogg', 50, 1)
 			return 0
-		effective_stamina_damage *= 1 - H.getarmor(type = "energy") * 0.02
 	if(iscyborg(loc))
 		var/mob/living/silicon/robot/R = loc
 		if(!R || !R.cell || !R.cell.use(hitcost))
@@ -199,13 +196,9 @@
 
 	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
 
-	if(trait_check)
-		effective_stamina_damage *= 0.1
-
-	if(effective_stamina_damage < 0)
-		effective_stamina_damage = 0
-
-	L.adjustStaminaLoss(effective_stamina_damage)
+	var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
+	var/armor_block = L.run_armor_check(affecting, "energy") * 2
+	L.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 	var/current_stamina_damage = L.getStaminaLoss()
 
