@@ -203,7 +203,7 @@
 
 /obj/item/clothing/accessory/medal/silver/engineering
 	name = "medal of engineering integrity"
-	desc = "A medal made of silver portaying the bearer as a crewmember who demonstrates notable engineering prowess. The merits of those who earn this award can range from atmospheric wizardry to simply rebuilding half the station after a toxins explosion."
+	desc = "A medal made of silver portraying the bearer as a crewmember who demonstrates notable engineering prowess. The merits of those who earn this award can range from atmospheric wizardry to simply rebuilding half the station after a toxins explosion."
 
 /obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
