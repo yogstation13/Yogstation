@@ -204,16 +204,16 @@
 
 /obj/item/storage/lockbox/medal/med/PopulateContents()
 	for(var/i in 1 to 3)
-		new obj/item/clothing/accessory/medal/silver/medical(src)
+		new /obj/item/clothing/accessory/medal/silver/medical(src)
 
-obj/item/storage/lockbox/medal/eng
+/obj/item/storage/lockbox/medal/eng
 	name = "engineering medal box"
 	desc = "A locked box used to store medals to be given to members of the engineering department."
 	req_access = list(ACCESS_CE)
 
 /obj/item/storage/lockbox/medal/eng/PopulateContents()
 	for(var/i in 1 to 3)
-		new obj/item/clothing/accessory/medal/silver/engineering(src)
+		new /obj/item/clothing/accessory/medal/silver/engineering(src)
 
 //Yogs: Vial Holder
 /obj/item/storage/lockbox/vialbox
