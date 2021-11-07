@@ -197,6 +197,14 @@
 	name = "head of personnel award for outstanding achievement in the field of excellence"
 	desc = "Nanotrasen's dictionary defines excellence as \"the quality or condition of being excellent\". This is awarded to those rare crewmembers who fit that definition."
 
+/obj/item/clothing/accessory/medal/silver/medical
+	name = "award for medical excellence"
+	desc = "An award for an exceptional application of medical service. Can be awarded to any crewmember who provides an outstanding benefit to the station through their medical knowledge."
+
+/obj/item/clothing/accessory/medal/silver/engineering
+	name = "medal of engineering integrity"
+	desc = "A medal made of silver portaying the bearer as a crewmember who demonstrates notable engineering prowess. The merits of those who earn this award can range from atmospheric wizardry to simply rebuilding half the station after a toxins explosion."
+
 /obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
 	desc = "A prestigious golden medal."
@@ -232,8 +240,6 @@
 /obj/item/clothing/accessory/medal/plasma/nobel_science
 	name = "nobel sciences award"
 	desc = "A plasma medal which represents significant contributions to the field of science or engineering."
-
-
 
 ////////////
 //Armbands//
@@ -377,4 +383,4 @@
 	light_range = 1.4 //Same as cosmic bedsheet
 	light_color = "#9E1F1F" //dim red
 	w_class = WEIGHT_CLASS_TINY
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // Good luck destroying a singularity 
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // Good luck destroying a singularity
