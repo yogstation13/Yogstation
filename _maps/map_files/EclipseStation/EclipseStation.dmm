@@ -50007,27 +50007,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
-"bZx" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cafeteria)
-"bZy" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel,
-/area/crew_quarters/cafeteria)
 "bZz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -82278,6 +82257,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"gws" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel,
+/area/crew_quarters/cafeteria)
 "gzm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer2{
 	dir = 4
@@ -86978,6 +86964,20 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
 /area/hallway/primary/fore)
+"qxS" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/plasteel,
+/area/crew_quarters/cafeteria)
 "qyI" = (
 /obj/structure/table,
 /obj/item/camera,
@@ -110444,7 +110444,7 @@ bVN
 amq
 bWZ
 amJ
-bZx
+qxS
 amJ
 cbf
 aeF
@@ -110701,7 +110701,7 @@ amq
 amq
 cCP
 amJ
-bZy
+gws
 amJ
 cbf
 aeF
