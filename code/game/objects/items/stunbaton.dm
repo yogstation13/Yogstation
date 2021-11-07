@@ -197,7 +197,7 @@
 	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
 
 	var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
-	var/armor_block = L.run_armor_check(affecting, "energy") * 2
+	var/armor_block = L.run_armor_check(affecting, "energy")
 	L.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 	var/current_stamina_damage = L.getStaminaLoss()
