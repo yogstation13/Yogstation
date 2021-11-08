@@ -438,8 +438,8 @@
 	name = "suspicious goat"
 	desc = "A suspicious looking goat."
 	icon = 'yogstation/icons/mob/goats/suspicious_goat.dmi'
-	icon_state = "suspiciusgoat"
-	icon_living = "suspiciusgoat"
-	icon_dead = "suspiciusgoat_dead"
+	icon_state = "suspiciousgoat"
+	icon_living = "suspiciousgoat"
+	icon_dead = "suspiciousgoat_dead"
 	gold_core_spawnable = NO_SPAWN
 	ventcrawler = VENTCRAWLER_ALWAYS
