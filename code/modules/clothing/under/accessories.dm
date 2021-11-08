@@ -239,7 +239,7 @@
 
 /obj/item/clothing/accessory/medal/plasma/nobel_science
 	name = "nobel sciences award"
-	desc = "A plasma medal which represents significant contributions to the field of science or engineering."
+	desc = "A plasma medal which represents significant contributions to the field of science or robotics."
 
 ////////////
 //Armbands//
