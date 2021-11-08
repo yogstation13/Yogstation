@@ -4120,13 +4120,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"akr" = (
-/obj/structure/table,
-/obj/item/folder/red,
-/obj/item/taperecorder,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "aks" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -39379,6 +39372,21 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"hwx" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "hwW" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
@@ -46027,6 +46035,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"lCT" = (
+/obj/structure/table,
+/obj/item/folder/red,
+/obj/item/taperecorder,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "lDg" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
@@ -55509,6 +55527,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"rAb" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	dir = 1;
+	name = "Fuel Port"
+	},
+/turf/open/space/basic,
+/area/solar/port/fore)
 "rAz" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -56566,14 +56592,6 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
-"shR" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	dir = 2;
-	name = "Fuel Port"
-	},
-/turf/open/space/basic,
-/area/solar/port/fore)
 "sia" = (
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
@@ -56666,18 +56684,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"skc" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "skk" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /turf/open/floor/plasteel,
@@ -76897,7 +76903,7 @@ aaa
 aSm
 aSm
 awW
-skc
+hwx
 aRX
 arB
 aaa
@@ -80978,7 +80984,7 @@ aaa
 aaa
 aaa
 rwS
-shR
+rAb
 arp
 lTO
 tWf
@@ -93053,7 +93059,7 @@ afI
 acd
 agI
 ahq
-akr
+lCT
 agH
 acd
 ack
