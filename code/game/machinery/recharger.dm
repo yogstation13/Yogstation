@@ -125,14 +125,12 @@
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		return PROCESS_KILL
 
-	var/using_power = 0
 	if(charging)
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
 		if(C)
 			if(C.charge < C.maxcharge)
 				C.give(C.chargerate * recharge_coeff)
 				use_power(250 * recharge_coeff)
-				using_power = 1
 			update_icon()
 
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
@@ -140,7 +138,6 @@
 			if(R.stored_ammo.len < R.max_ammo)
 				R.stored_ammo += new R.ammo_type(R)
 				use_power(200 * recharge_coeff)
-				using_power = 1
 			update_icon()
 			return
 	else
