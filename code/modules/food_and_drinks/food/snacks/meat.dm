@@ -340,13 +340,33 @@
 	desc = "It is covered in a strange darkness. This slab's magical properties appear to be drastically weakened due to the synthetic nature of the meat."
 
 /obj/item/reagent_containers/food/snacks/meat/chicken
-	name = "whole chicken"
-	icon_state = "birdmeat" //sprite WIP
-	desc = "A whole chicken with the neck cut off and the feathers plucked. It's organs are all removed."
-	bitesize = 10
-	list_reagents = list(/datum/reagent/consumable/nutriment = 12)
+	name = "chicken breast"
+	icon_state = "birdmeat" 
+	desc = "The breast of the chicken, its like a smooth blob."
+	bitesize = 4
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("Raw" = 1, "Salmonella" = 2, "Slime" = 1)
 	foodtype = MEAT | RAW | GROSS
+
+/obj/item/reagent_containers/food/snacks/meat/chicken/wing
+	name = "chicken breast"
+	icon_state = "raw_wing" 
+	desc = "The wing of the chicken... now it definitely won't fly."
+	bitesize = 2
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
+	tastes = list("Raw" = 1, "Salmonella" = 2, "Slime" = 1)
+	foodtype = MEAT | RAW | GROSS
+
+/obj/item/reagent_containers/food/snacks/meat/chicken/drumstick
+	name = "chicken breast"
+	icon_state = "raw_drumstick" 
+	desc = "Its like a small club!"
+	bitesize = 2
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
+	tastes = list("Raw" = 1, "Salmonella" = 2, "Slime" = 1)
+	foodtype = MEAT | RAW | GROSS
+
+
 
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
