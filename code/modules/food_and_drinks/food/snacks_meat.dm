@@ -571,3 +571,11 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
 	tastes = list("fur" = 1, "blood" = 1, "rage" = 1)
 	spawned_mob = /mob/living/simple_animal/hostile/retaliate/goat
+
+/obj/item/reagent_containers/food/snacks/monkeycube/chicken
+	name = "chicken cube"
+	desc = "A Farm Town brand chicken cube. Just add water!"
+	bitesize = 16
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
+	tastes = list("feathers" = 1, "the farm" = 1)
+	spawned_mob = /mob/living/simple_animal/chicken
