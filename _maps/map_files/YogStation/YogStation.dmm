@@ -50823,35 +50823,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"oBd" = (
-/obj/structure/rack,
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/circuitboard/computer/shuttle/flight_control{
-	pixel_x = -2;
-	pixel_y = 3
-	},
-/obj/item/circuitboard/machine/shuttle/engine{
-	pixel_x = 1
-	},
-/obj/item/circuitboard/machine/shuttle/heater{
-	pixel_x = 4;
-	pixel_y = -3
-	},
-/obj/machinery/camera{
-	c_tag = "Auxillary Base Construction Storage";
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/construction/mining/aux_base)
 "oBE" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -64509,6 +64480,35 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
+"xAP" = (
+/obj/structure/rack,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/circuitboard/computer/shuttle/flight_control{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/machinery/camera{
+	c_tag = "Auxillary Base Construction Storage";
+	dir = 5
+	},
+/obj/item/circuitboard/machine/shuttle/engine/plasma{
+	pixel_x = 1
+	},
+/obj/item/circuitboard/machine/shuttle/heater{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "xAW" = (
 /obj/machinery/door/airlock/wood{
 	name = "Psychiatrists office";
@@ -81759,7 +81759,7 @@ liu
 xmv
 tNk
 tsO
-oBd
+xAP
 xmv
 alF
 anj
