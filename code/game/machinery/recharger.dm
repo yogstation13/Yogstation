@@ -133,7 +133,7 @@
 				C.give(C.chargerate * recharge_coeff)
 				use_power(250 * recharge_coeff)
 				using_power = 1
-			update_icon(round(C.charge/C.maxcharge, 0.01))
+			update_icon()
 
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 			var/obj/item/ammo_box/magazine/recharge/R = charging
@@ -141,7 +141,7 @@
 				R.stored_ammo += new R.ammo_type(R)
 				use_power(200 * recharge_coeff)
 				using_power = 1
-			update_icon(using_power)
+			update_icon()
 			return
 	else
 		return PROCESS_KILL
@@ -162,11 +162,16 @@
 				B.cell.charge = 0
 
 
-/obj/machinery/recharger/update_icon(chargepercent = 0)	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
+/obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
 	cut_overlays()
 	if(charging)
 		var/mutable_appearance/scan = mutable_appearance(icon, "[initial(icon_state)]filled")
-		scan.color = gradient(list("#ff0000", "#00ff00"), chargepercent)
+		var/obj/item/stock_parts/cell/C = charging.get_cell()
+		if(C)
+			scan.color = gradient(list("#ff0000", "#00ff00"), round(C.charge/C.maxcharge, 0.01))
+		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
+			var/obj/item/ammo_box/magazine/recharge/R = charging
+			scan.color = gradient(list("#ff0000", "#00ff00"), round(R.stored_ammo.len/R.max_ammo, 0.01))
 		add_overlay(scan)
 
 /obj/machinery/recharger/wallrecharger
