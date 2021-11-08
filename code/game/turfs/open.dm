@@ -297,7 +297,7 @@
 /turf/open/indestructible/brazil/Initialize(mapload)
 	. = ..()
 	icon_state = "[rand(1,25)]"
-	add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
+	add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), FIXED_COLOUR_PRIORITY)
 
 /turf/open/indestructible/brazil/Enter(atom/movable/AM, atom/old_loc)
 	if(isliving(AM))
