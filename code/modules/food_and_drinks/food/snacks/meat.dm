@@ -347,6 +347,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("Raw" = 1, "Salmonella" = 2, "Slime" = 1)
 	foodtype = MEAT | RAW | GROSS
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken
 
 /obj/item/reagent_containers/food/snacks/meat/chicken/wing
 	name = "chicken breast"
@@ -354,8 +355,7 @@
 	desc = "The wing of the chicken... now it definitely won't fly."
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
-	tastes = list("Raw" = 1, "Salmonella" = 2, "Slime" = 1)
-	foodtype = MEAT | RAW | GROSS
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken/wing
 
 /obj/item/reagent_containers/food/snacks/meat/chicken/drumstick
 	name = "chicken breast"
@@ -363,11 +363,16 @@
 	desc = "Its like a small club!"
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
-	tastes = list("Raw" = 1, "Salmonella" = 2, "Slime" = 1)
-	foodtype = MEAT | RAW | GROSS
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken/drumstick
 
-
-
+/obj/item/reagent_containers/food/snacks/meat/chicken/whole
+	name = "chicken breast"
+	icon_state = "birdmeat" 
+	desc = "The whole chicken without feathers and organs, the head is gone as well."
+	bitesize = 14
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken/whole
+	
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 
@@ -442,6 +447,46 @@
 	desc = "A synthetic meat steak. It doesn't look quite right, now does it?"
 	icon_state = "meatsteak_old"
 	tastes = list("meat" = 4, "cryoxandone" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/steak/chicken
+	name = "cooked chicken breast"
+	icon_state = "birdsteak"
+	desc = "freshly cooked chicken breasts, come get some!"
+	bitesize = 4
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("Chicken" = 3, "Keto" = 1)
+	foodtype = MEAT 
+
+/obj/item/reagent_containers/food/snacks/meat/steak/chicken/wing
+	name = "cooked chicken wings"
+	icon_state = "fried_chicken1"
+	desc = "freshly cooked chicken breasts, come get some!"
+	bitesize = 4
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/cooking_oil = 1)
+	tastes = list("Spices" = 2, "Chicken" = 1)
+	foodtype = MEAT 
+
+/obj/item/reagent_containers/food/snacks/meat/steak/chicken/drumstick
+	name = "cooked chicken drumsticks"
+	icon_state = "birdsteak"
+	desc = "freshly cooked chicken breasts, come get some!"
+	bitesize = 4
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/cooking_oil = 1)
+	tastes = list("Spices" = 2, "Chicken" = 1)
+	foodtype = MEAT 
+
+/obj/item/reagent_containers/food/snacks/meat/steak/chicken/whole
+	name = "cooked chicken"
+	icon_state = "cooked_chicken_whole"
+	desc = "A whole chicken that just came out the oven... where's the stuffing?"
+	bitesize = 14
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("Spices" = 2, "Chicken" = 1, "thanksgiving" = 1)
+	foodtype = MEAT 
 
 //////////////////////////////// MEAT CUTLETS ///////////////////////////////////////////////////////
 
