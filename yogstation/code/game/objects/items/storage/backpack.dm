@@ -195,6 +195,14 @@
 	item_state = "snail_green"
 	icon_state = "snail_green"
 
+/obj/item/storage/backpack/fakesnail
+	name = "green shell backpack"
+	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt."
+	icon = 'yogstation/icons/obj/storage.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	item_state = "snail_green"
+	icon_state = "snail_green"
+
 /obj/item/storage/backpack/banana
 	name = "banana backpack"
 	desc = "Is it a backpack made of bananas or a backpack with a banana texture? The world may never know."
