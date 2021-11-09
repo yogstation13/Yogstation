@@ -1,7 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - rscadd: "Added Medical and Engineering Awards (one each)"
-  - rscadd: "Added a medal box in CMO and CE locker for respective awards"
-  - rscadd: "Added 1 of each new award to Captain's award box"
-  - tweak: "Adjusted Award Box from 10 to 15 to allow the Captain to put an award back if they take out the wrong one."

@@ -1,4 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - tweak: "sm monitor program now requires engine access"
