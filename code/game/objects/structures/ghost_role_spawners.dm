@@ -14,7 +14,7 @@
 	short_desc = "You are a sentient ecosystem, an example of the mastery over life that your creators possessed."
 	flavour_text = "Your masters, benevolent as they were, created uncounted \
 	seed vaults and spread them across the universe to every planet they could chart. You are in one such seed vault. Your goal is to cultivate and spread life wherever it will go while waiting \
-	for contact from your creators. Estimated time of last contact: Deployment, 5x10^3 millennia ago.</b>"
+	for contact from your creators. Estimated time of last contact: Deployment, 5x10^3 millennia ago."
 	assignedrole = "Lifebringer"
 
 /obj/effect/mob_spawn/human/seed_vault/special(mob/living/new_spawn)
@@ -47,7 +47,7 @@
 	density = FALSE
 	short_desc = "You are an ash walker. Your tribe worships the Necropolis."
 	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. \
-	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. Fresh sacrifices for your nest.</b>"
+	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. Fresh sacrifices for your nest."
 	assignedrole = "Ash Walker"
 	var/datum/team/ashwalkers/team
 
@@ -240,7 +240,7 @@
 			outfit.suit = /obj/item/clothing/suit/toggle/labcoat
 			outfit.back = /obj/item/storage/backpack/medic
 		if(4)
-			flavour_text += "you were always joked about by your friends for \"not playing with a full deck\", as they so <i>kindly</i> put it. It seems that they were right when you, on a tour \
+			flavour_text += "you were always joked about by your friends for \"not playing with a full deck\", as they so kindly put it. It seems that they were right when you, on a tour \
 			at one of Nanotrasen's state-of-the-art research facilities, were in one of the escape pods alone and saw the red button. It was big and shiny, and it caught your eye. You pressed \
 			it, and after a terrifying and fast ride for days, you landed here. You've had time to wisen up since then, and you think that your old friends wouldn't be laughing now."
 
