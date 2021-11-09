@@ -74,7 +74,7 @@
 	set name = "Self Destruct"
 
 	if(usr.stat == DEAD || usr.incapacitated())
-		return //won't work if dead
+		return //won't work if dead or incapacitated
 
 	if(alert("WARNING: Are you sure you wish to self-destruct? This action cannot be undone!",,"Yes","No") != "Yes")
 		return
