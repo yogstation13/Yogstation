@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "replaced shuttle engine board in aux base construction with a plasma engine board"
