@@ -82,10 +82,11 @@ export const CrewConsole = (props, context) => {
         <Flex>
           <Flex.Item>
             <Section minHeight={90} 
-              buttons={(<Button.Checkbox checked={originalTitles} onClick={() => setoriginalTitles(!originalTitles)}>
+                buttons={(<Button.Checkbox checked={originalTitles} 
+              onClick={() => setoriginalTitles(!originalTitles)}>
               Use Original Job Titles
-             </Button.Checkbox>
-            )}>
+              </Button.Checkbox>
+              )}>
               <Table>
                 <Table.Row>
                   <Table.Cell bold>
