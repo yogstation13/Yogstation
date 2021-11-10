@@ -1,4 +1,4 @@
-import { useBackend, useLocalState  } from '../backend';
+import { useBackend, useLocalState } from '../backend';
 import { Box, Button, ColorBox, Section, Table, Flex } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
@@ -81,10 +81,11 @@ export const CrewConsole = (props, context) => {
       <Window.Content scrollable>
         <Flex>
           <Flex.Item>
-            <Section minHeight={90} buttons={(<Button.Checkbox checked={originalTitles} onClick={() => setoriginalTitles(!originalTitles)}>
-                Use Original Job Titles
-               </Button.Checkbox>
-              )}>
+            <Section minHeight={90} 
+              buttons={(<Button.Checkbox checked={originalTitles} onClick={() => setoriginalTitles(!originalTitles)}>
+              Use Original Job Titles
+             </Button.Checkbox>
+            )}>
               <Table>
                 <Table.Row>
                   <Table.Cell bold>
@@ -108,7 +109,8 @@ export const CrewConsole = (props, context) => {
                     <Table.Cell
                       bold={jobIsHead(sensor.ijob)}
                       color={jobToColor(sensor.ijob)}>
-                      {sensor.name} ({!originalTitles ? sensor.assignment_title : sensor.assignment})
+                      {sensor.name} 
+                      ({!originalTitles ? sensor.assignment_title : sensor.assignment})
                     </Table.Cell>
                     <Table.Cell collapsing textAlign="center">
                       <ColorBox
