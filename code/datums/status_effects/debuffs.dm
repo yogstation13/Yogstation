@@ -1088,9 +1088,13 @@
 	var/list/brain_damage_flavor = list("You see... nothing...? It hurts.", "The stars are wrong.", "One of the dark stars suddenly vanishes. You think? Your mind slips.", "You catch a glimpse of something of something of something- that shouldn't- that's too- that's... old. Then it's gone.")
 
 /datum/status_effect/heretic_sacrifice/on_apply()
+	var/datum/effect_system/smoke_spread/S = new
+	S.set_up(1, get_turf(owner))
+	S.start()
 	owner.revive(full_heal = TRUE) //this totally won't be used to bypass stuff(tm)
 	owner.regenerate_organs()
 	owner.regenerate_limbs()
+	owner.grab_ghost()
 	owner.SetStun(60 MINUTES, ignore_canstun = TRUE)
 	to_chat(owner, "<span class='revenbignotice'>You find yourself floating in a strange, unfamiliar void. Are you dead? ... no ... that feels different... Maybe there's a way out?</span>")
 	for(var/i in GLOB.brazil_reception)
