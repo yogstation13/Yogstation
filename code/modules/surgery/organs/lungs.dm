@@ -157,7 +157,10 @@
 	breath.adjust_moles(/datum/gas/nitrogen, -gas_breathed)
 	breath.adjust_moles(/datum/gas/carbon_dioxide, gas_breathed)
 	gas_breathed = 0
-
+	
+	//Handle subtypes' breath processing
+	handle_gas_override(breather,breath_gases, gas_breathed)
+	
 	//-- CO2 --//
 
 	//CO2 does not affect failed_last_breath. So if there was enough oxygen in the air but too much co2, this will hurt you, but only once per 4 ticks, instead of once per tick.
@@ -189,6 +192,10 @@
 				H.adjustOxyLoss(-5)
 			gas_breathed = breath.get_moles(/datum/gas/carbon_dioxide)
 			H.clear_alert("not_enough_co2")
+	
+	///override this for breath handling unique to lung subtypes, breath_gas is the list of gas in the breath while gas breathed is just what is being added or removed from that list, just as they are when this is called in check_breath()
+/obj/item/organ/lungs/proc/handle_gas_override(mob/living/carbon/human/breather, list/breath_gas, gas_breathed)
+	return
 
 	//Exhale
 	breath.adjust_moles(/datum/gas/carbon_dioxide, -gas_breathed)
@@ -538,3 +545,19 @@
 	heat_level_1_threshold = 500
 	heat_level_2_threshold = 800
 	heat_level_3_threshold = 1400
+
+/obj/item/organ/lungs/ethereal
+	name = "aeration reticulum"
+	desc = "These exotic lungs seem crunchier than most."
+	icon_state = "lungs_ethereal"
+	heat_level_1_threshold = FIRE_MINIMUM_TEMPERATURE_TO_SPREAD // 150C or 433k, in line with ethereal max safe body temperature
+	heat_level_2_threshold = 473
+	heat_level_3_threshold = 1073
+
+
+/obj/item/organ/lungs/ethereal/handle_gas_override(mob/living/carbon/human/breather, list/breath_gases, gas_breathed)
+	// H2O electrolysis
+	gas_breathed = breath_gases[/datum/gas/water_vapor][MOLES]
+	breath_gases[/datum/gas/oxygen][MOLES] += gas_breathed
+	breath_gases[/datum/gas/hydrogen][MOLES] += gas_breathed*2
+	breath_gases[/datum/gas/water_vapor][MOLES] -= gas_breathed
