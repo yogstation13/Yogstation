@@ -85,7 +85,7 @@
 	boost_item_paths = list(/obj/item/weed_extract, /obj/item/xenos_claw, /obj/item/stack/sheet/xenochitin, /obj/item/organ/alien, /obj/item/organ/brain/alien)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 20000
-	hidden = TRUE
+	
 
 /datum/techweb_node/xenology/New() //this is faster and more readable than putting them all in
 	. = ..()
