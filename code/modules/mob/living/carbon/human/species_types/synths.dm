@@ -154,10 +154,5 @@
 		H.AdjustStun(-3)
 		H.AdjustKnockdown(-3)
 		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
-		charge = clamp(charge - 10 * REAGENTS_METABOLISM,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
 		burnmod = 200
-		tesliumtrip = TRUE
-	else if(tesliumtrip)
-		burnmod = initial(burnmod)
-		tesliumtrip = FALSE
-		H.remove_movespeed_modifier("preternis_teslium")
+
