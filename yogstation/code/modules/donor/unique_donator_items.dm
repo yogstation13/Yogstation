@@ -403,7 +403,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 //Generic donator items
 /datum/donator_gear/snail
 	name = "Snail Backpack"
-	unlock_path = /obj/item/storage/backpack/snail/green
+	unlock_path = /obj/item/storage/backpack/fakesnail
 
 /datum/donator_gear/toyhammer
 	name = "banhammer"
