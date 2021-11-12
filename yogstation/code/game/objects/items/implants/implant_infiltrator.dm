@@ -98,8 +98,8 @@
 /obj/screen/alert/status_effect/infiltrator_pinpointer
 	name = "Infilitrator Integrated Pinpointer"
 	desc = "The stealthiest pinpointer."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "pinpointer_syndicate"
+	icon = 'yogstation/icons/misc/infiltrator_pinpointer.dmi'
+	icon_state = "overlay"
 
 /obj/screen/alert/status_effect/infiltrator_pinpointer/examine(mob/user)
 	. = ..()
@@ -129,24 +129,24 @@
 /datum/status_effect/infiltrator_pinpointer/proc/point_to_target() //If we found what we're looking for, show the distance and direction
 	linked_alert.cut_overlays()
 	if(!scan_target)
-		linked_alert.add_overlay("pinonnull")
+		linked_alert.add_overlay("unknown")
 		return
 	var/turf/here = get_turf(owner)
 	var/turf/there = get_turf(scan_target)
 	if(here.z != there.z)
-		linked_alert.add_overlay("pinonnull")
+		linked_alert.add_overlay("unknown")
 		return
 	if(get_dist_euclidian(here,there)<=minimum_range)
-		linked_alert.add_overlay("pinondirect")
+		linked_alert.add_overlay("direct")
 	else
 		linked_alert.setDir(get_dir(here, there))
 		var/dist = (get_dist(here, there))
 		if(dist >= 1 && dist <= range_mid)
-			linked_alert.add_overlay("pinonclose")
+			linked_alert.add_overlay("close")
 		else if(dist > range_mid && dist <= range_far)
-			linked_alert.add_overlay("pinonmedium")
+			linked_alert.add_overlay("medium")
 		else if(dist > range_far)
-			linked_alert.add_overlay("pinonfar")
+			linked_alert.add_overlay("far")
 
 /datum/status_effect/infiltrator_pinpointer/tick()
 	if(!owner)
