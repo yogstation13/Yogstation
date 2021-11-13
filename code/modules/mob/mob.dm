@@ -424,7 +424,7 @@
   * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
   * for why this isn't atom/verb/examine()
   */
-/mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
+/mob/verb/examinate(atom/A as mob|obj|turf in view(), simple_examine = FALSE) //It used to be oview(12), but I can't really say why
 	set name = "Examine"
 	set category = "IC"
 
@@ -448,9 +448,14 @@
 			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
 			
 	else
-		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
+		if(simple_examine && istype(A, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = A
+			result = H.simple_examine(src)
+		else
+			result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 	to_chat(src, result.Join("\n"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
+
 
 /mob/proc/clear_from_recent_examines(atom/A)
 	if(QDELETED(A) || !client)

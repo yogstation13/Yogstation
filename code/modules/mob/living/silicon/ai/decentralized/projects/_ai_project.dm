@@ -42,10 +42,3 @@ GLOBAL_LIST_EMPTY(ai_projects)
 /datum/ai_project/proc/canRun()
 	SHOULD_CALL_PARENT(TRUE)
 	return !running
-
-/datum/ai_project/test_project
-	name = "Test Project"
-	description = "I'm a test! How quirky"
-	research_cost = 2
-	ram_required = 1
-	research_requirements = "None"

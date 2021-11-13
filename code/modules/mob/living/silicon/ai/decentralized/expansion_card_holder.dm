@@ -41,6 +41,8 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/env = T.return_air()
+	if(!env)
+		return FALSE
 	var/total_moles = env.total_moles()
 	if(istype(T, /turf/open/space) || total_moles < 10)
 		return FALSE

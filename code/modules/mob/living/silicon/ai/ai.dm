@@ -26,7 +26,7 @@
 	see_in_dark = 8
 	hud_type = /datum/hud/ai
 	med_hud = DATA_HUD_MEDICAL_ADVANCED
-	sec_hud = DATA_HUD_SECURITY_ADVANCED
+	sec_hud = DATA_HUD_SECURITY_BASIC				
 	d_hud = DATA_HUD_DIAGNOSTIC_ADVANCED
 	mob_size = MOB_SIZE_LARGE
 
@@ -48,7 +48,7 @@
 	var/obj/item/multitool/aiMulti
 	var/mob/living/simple_animal/bot/Bot
 	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
-	var/datum/effect_system/spark_spread/spark_system//So they can initialize sparks whenever/N
+	var/datum/effect_system/spark_spread/spark_system //So they can initialize sparks whenever/N
 
 	//MALFUNCTION
 	var/datum/module_picker/malf_picker
@@ -80,9 +80,11 @@
 	var/obj/machinery/doomsday_device/doomsday_device
 
 	var/mob/camera/aiEye/eyeobj
+	//How fast you move your camera
 	var/sprint = 10
 	var/cooldown = 0
 	var/acceleration = 1
+	var/max_camera_sprint = 50
 
 	var/obj/structure/AIcore/deactivated/linked_core //For exosuit control
 	var/mob/living/silicon/robot/deployed_shell = null //For shell control
@@ -105,6 +107,11 @@
 	var/datum/ai_dashboard/dashboard
 	//override for the can_download, checked first in case we have other code in can_download
 	var/can_download = TRUE
+	//Can we (simple) examine humans?
+	var/canExamineHumans = FALSE
+	//Reduces/Increases download speed by this modifier
+	var/downloadSpeedModifier = 1
+
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
 	. = ..()
