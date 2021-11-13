@@ -626,3 +626,11 @@
 	build_path = /obj/item/circuitboard/machine/crystallizer
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/board/expansion_card_holder
+	name = "Machine Design (Expansion Card Bus Board)"
+	desc = "The circuit board for an expansion card bus."
+	id = "expansion_card_holder"
+	build_path = /obj/item/circuitboard/machine/expansion_card_holder
+	category = list("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

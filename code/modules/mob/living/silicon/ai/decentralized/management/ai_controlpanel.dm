@@ -17,6 +17,8 @@
 	var/mob/user_downloading
 	var/download_progress = 0
 
+	circuit = /obj/item/circuitboard/computer/ai_upload_download
+
 /obj/machinery/computer/ai_control_console/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/aicard))
 		if(intellicard)
@@ -25,6 +27,33 @@
 		to_chat(user, "<span class='notice'>You inserted [W].</span>")
 		W.forceMove(src)
 		return FALSE
+	if(istype(W, /obj/item/mmi/posibrain))
+		var/obj/item/mmi/posibrain/brain = W
+		if(!brain.brainmob)
+			to_chat(user, "<span class='warning'>[W] is not active!</span>")
+			return ..()
+		SSticker.mode.remove_antag_for_borging(brain.brainmob.mind)
+		if(!istype(brain.laws, /datum/ai_laws/ratvar))
+			remove_servant_of_ratvar(brain.brainmob, TRUE)
+		var/mob/living/silicon/ai/A = null
+
+		var/datum/ai_laws/laws = new
+		laws.set_laws_config()
+
+		if (brain.overrides_aicore_laws)
+			A = new /mob/living/silicon/ai(loc, brain.laws, brain.brainmob)
+		else
+			A = new /mob/living/silicon/ai(loc, laws, brain.brainmob)
+		
+		A.relocate(TRUE)
+
+		if(brain.force_replace_ai_name)
+			A.fully_replace_character_name(A.name, brain.replacement_ai_name())
+		SSblackbox.record_feedback("amount", "ais_created", 1)
+		qdel(W)
+		to_chat(user, "<span class='notice'>AI succesfully uploaded.</span>")
+		return FALSE
+
 	return ..()
 
 /obj/machinery/computer/ai_control_console/process()

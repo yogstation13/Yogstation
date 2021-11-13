@@ -11,6 +11,8 @@
 
 	var/human_only = TRUE
 
+	circuit = /obj/item/circuitboard/computer/ai_resource_distribution
+
 
 /obj/machinery/computer/ai_resource_distribution/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

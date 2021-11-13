@@ -6,7 +6,7 @@ import { Window } from '../layouts';
 export const AiResources = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { username, has_access } = data
+  const { username, has_access } = data;
 
   const [tab, setTab] = useLocalState(context, 'tab', 1);
 
@@ -16,97 +16,101 @@ export const AiResources = (props, context) => {
       height={450}
       resizable>
       <Window.Content scrollable>
-      {!!data.authenticated && (
-        <Fragment>
-          <Tabs>
-            <Tabs.Tab
-              selected={tab === 1}
-              onClick={(() => setTab(1))}>
-              Resource Allocation
-            </Tabs.Tab>
-            <Tabs.Tab
-              selected={tab === 2}
-              onClick={(() => setTab(2))}>
-              Settings
-            </Tabs.Tab>
-          </Tabs>
-          {tab === 1 && (
-            <Fragment>
-              <Section title="Cloud CPU Resources" buttons={(
-                <Button icon="sign-out-alt" color="bad" onClick={() => act("log_out")}>Log Out</Button>
-              )}>
-                <ProgressBar
-                  value={data.total_assigned_cpu}
-                  ranges={{
-                    good: [data.total_cpu * 0.8, Infinity],
-                    average: [data.total_cpu * 0.4, data.total_cpu * 0.8],
-                    bad: [-Infinity, data.total_cpu * 0.4],
-                  }}
-                maxValue={data.total_cpu}>{data.total_assigned_cpu}/{data.total_cpu} THz</ProgressBar>
+        {!!data.authenticated && (
+          <Fragment>
+            <Tabs>
+              <Tabs.Tab
+                selected={tab === 1}
+                onClick={(() => setTab(1))}>
+                Resource Allocation
+              </Tabs.Tab>
+              <Tabs.Tab
+                selected={tab === 2}
+                onClick={(() => setTab(2))}>
+                Settings
+              </Tabs.Tab>
+            </Tabs>
+            {tab === 1 && (
+              <Fragment>
+                <Section title="Cloud CPU Resources" buttons={(
+                  <Button icon="sign-out-alt" color="bad" onClick={() => act("log_out")}>Log Out</Button>
+                )}>
+                  <ProgressBar
+                    value={data.total_assigned_cpu}
+                    ranges={{
+                      good: [data.total_cpu * 0.8, Infinity],
+                      average: [data.total_cpu * 0.4, data.total_cpu * 0.8],
+                      bad: [-Infinity, data.total_cpu * 0.4],
+                    }}
+                    maxValue={data.total_cpu}>{data.total_assigned_cpu}/{data.total_cpu} THz
+                  </ProgressBar>
                 </Section>
                 <Section title="Cloud RAM Resources">
-                <ProgressBar ranges={{
-                  good: [data.total_ram * 0.8, Infinity],
-                  average: [data.total_ram * 0.4, data.total_ram * 0.8],
-                  bad: [-Infinity, data.total_ram * 0.4],
-                }}
-                value={data.total_assigned_ram}
-                maxValue={data.total_ram}>{data.total_assigned_ram}/{data.total_ram} TB</ProgressBar>
+                  <ProgressBar
+                    ranges={{
+                      good: [data.total_ram * 0.8, Infinity],
+                      average: [data.total_ram * 0.4, data.total_ram * 0.8],
+                      bad: [-Infinity, data.total_ram * 0.4],
+                    }}
+                    value={data.total_assigned_ram}
+                    maxValue={data.total_ram}>{data.total_assigned_ram}/{data.total_ram} TB
+                  </ProgressBar>
                 </Section>
-              <Section title="Active AI's">
-                <LabeledList>
+                <Section title="Active AI's">
+                  <LabeledList>
 
 
-              {data.ais.map(ai => {
-                    return (
-                      <Section title={ai.name}
-                        buttons={(
-                          <Button icon="trash" onClick={() => act("clear_ai_resources", { targetAI: ai.ref })}>Clear AI Resources</Button>
-                        )}>
-                        <LabeledList.Item>
-                          CPU Capacity:
-                          <Flex>
-                            <ProgressBar minValue={0} value={ai.assigned_cpu} maxValue={data.total_cpu} >{ai.assigned_cpu} THz</ProgressBar>
-                            <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_cpu", {
-                              targetAI: ai.ref
-                            })}></Button>
-                            <Button height={1.75} icon="minus" onClick={() => act("remove_cpu", {
-                              targetAI: ai.ref
-                            })}></Button>
-                          </Flex>
+                    {data.ais.map((ai, index) => {
+                      return (
+                        <Section key={index} title={ai.name}
+                          buttons={(
+                            <Button icon="trash" onClick={() => act("clear_ai_resources", { targetAI: ai.ref })}>Clear AI Resources</Button>
+                          )}>
+                          <LabeledList.Item>
+                            CPU Capacity:
+                            <Flex>
+                              <ProgressBar minValue={0} value={ai.assigned_cpu}
+                                maxValue={data.total_cpu} >{ai.assigned_cpu} THz
+                              </ProgressBar>
+                              <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_cpu", {
+                                targetAI: ai.ref,
+                              })} />
+                              <Button height={1.75} icon="minus" onClick={() => act("remove_cpu", {
+                                targetAI: ai.ref,
+                              })} />
+                            </Flex>
 
-                        </LabeledList.Item>
-                        <LabeledList.Item>
-                          RAM Capacity:
-                          <Flex>
-                            <ProgressBar minValue={0} value={ai.assigned_ram} maxValue={data.total_ram} >{ai.assigned_ram} TB</ProgressBar>
-                            <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_ram", {
-                              targetAI: ai.ref
-                            })}></Button>
-                            <Button height={1.75} icon="minus" onClick={() => act("remove_ram", {
-                              targetAI: ai.ref
-                            })}></Button>
-                          </Flex>
+                          </LabeledList.Item>
+                          <LabeledList.Item>
+                            RAM Capacity:
+                            <Flex>
+                              <ProgressBar minValue={0} value={ai.assigned_ram}
+                                maxValue={data.total_ram} >{ai.assigned_ram} TB
+                              </ProgressBar>
+                              <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_ram", {
+                                targetAI: ai.ref,
+                              })} />
+                              <Button height={1.75} icon="minus" onClick={() => act("remove_ram", {
+                                targetAI: ai.ref,
+                              })} />
+                            </Flex>
 
-                        </LabeledList.Item>
-                      </Section>
-                    );
-                  })}
+                          </LabeledList.Item>
+                        </Section>
+                      );
+                    })}
                   </LabeledList>
-              </Section>
-            </Fragment>
-          )}
-          {tab === 2 && (
-            <Fragment>
+                </Section>
+              </Fragment>
+            )}
+            {tab === 2 && (
               <Section title="Settings">
-                  <Button icon="male" color={data.human_only ? "bad" : "good"} onClick={() => act("toggle_human_status")}>{data.human_only ? "Allow Silicon Console Usage" : "Ban Silicon Console Usage"}</Button>
+                <Button icon="male" color={data.human_only ? "bad" : "good"} onClick={() => act("toggle_human_status")}>{data.human_only ? "Allow Silicon Console Usage" : "Ban Silicon Console Usage"}</Button>
               </Section>
-            </Fragment>
-          )}
+            )}
 
-        </Fragment>
-      ) || (
-        <Fragment>
+          </Fragment>
+        ) || (
           <Section title="Welcome">
             <Flex align="center" justify="center" mt="0.5rem">
               <Flex.Item>
@@ -144,8 +148,7 @@ export const AiResources = (props, context) => {
               </Flex.Item>
             </Flex>
           </Section>
-        </Fragment>
-      )}
+        )}
       </Window.Content>
     </Window>
   );

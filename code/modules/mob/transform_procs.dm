@@ -393,6 +393,7 @@
 
 	. = new /mob/living/silicon/ai(pick(landmark_loc), null, src)
 
+
 	if(preference_source)
 		apply_pref_name("ai",preference_source)
 

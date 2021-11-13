@@ -19,22 +19,23 @@ export const AiDashboard = (props, context) => {
           <LabeledControls>
             <LabeledControls.Item>
               <ProgressBar
-              ranges = {{
-                good: [50, 100],
-                average: [25, 50],
-                bad: [0, 25]
-              }}
-              value={(data.integrity + 100) * 0.5}
-              maxValue={100}>{(data.integrity + 100) * 0.5}%</ProgressBar>
-            System Integrity
+                ranges={{
+                  good: [50, 100],
+                  average: [25, 50],
+                  bad: [0, 25],
+                }}
+                value={(data.integrity + 100) * 0.5}
+                maxValue={100}>{(data.integrity + 100) * 0.5}%
+              </ProgressBar>
+              System Integrity
             </LabeledControls.Item>
             <LabeledControls.Item >
 
-             <Box bold color="average">
-              {data.location_name}
-              <Box>
-                ({data.location_coords})
-              </Box>
+              <Box bold color="average">
+                {data.location_name}
+                <Box>
+                  ({data.location_coords})
+                </Box>
 
               </Box>
 
@@ -45,26 +46,28 @@ export const AiDashboard = (props, context) => {
                 ranges={{
                   good: [-Infinity, 250],
                   average: [250, 750],
-                  bad: [750, Infinity]
+                  bad: [750, Infinity],
                 }}
-              value={data.temperature}
+                value={data.temperature}
 
-              maxValue={750}>{data.temperature}K</ProgressBar>
+                maxValue={750}>{data.temperature}K
+              </ProgressBar>
               Uplink Temperature
             </LabeledControls.Item>
           </LabeledControls>
           <Divider />
           <LabeledControls>
-          <LabeledControls.Item>
+            <LabeledControls.Item>
               <ProgressBar
                 ranges={{
                   good: [data.current_cpu * 0.7, Infinity],
                   average: [data.current_cpu * 0.3, data.current_cpu * 0.7],
-                  bad: [0, data.current_cpu * 0.3]
+                  bad: [0, data.current_cpu * 0.3],
                 }}
-              value={data.used_cpu}
-
-              maxValue={data.current_cpu}>{data.used_cpu ? data.used_cpu : 0}/{data.current_cpu} THz</ProgressBar>
+                value={data.used_cpu}
+                maxValue={data.current_cpu}>
+                {data.used_cpu ? data.used_cpu : 0}/{data.current_cpu} THz
+              </ProgressBar>
               Utilized CPU Power
             </LabeledControls.Item>
             <LabeledControls.Item>
@@ -72,11 +75,13 @@ export const AiDashboard = (props, context) => {
                 ranges={{
                   good: [data.current_ram * 0.7, Infinity],
                   average: [data.current_ram * 0.3, data.current_ram * 0.7],
-                  bad: [0, data.current_ram * 0.3]
+                  bad: [0, data.current_ram * 0.3],
                 }}
-              value={data.used_ram}
+                value={data.used_ram}
 
-              maxValue={data.current_ram}>{data.used_ram ? data.used_ram : 0}/{data.current_ram} TB</ProgressBar>
+                maxValue={data.current_ram}>
+                {data.used_ram ? data.used_ram : 0}/{data.current_ram} TB
+              </ProgressBar>
               Utilized RAM Capacity
             </LabeledControls.Item>
           </LabeledControls>
@@ -102,57 +107,62 @@ export const AiDashboard = (props, context) => {
         </Tabs>
         {tab === 1 && (
           <Section title="Available Projects">
-              {data.available_projects && data.available_projects.map(project => (
-                <Section title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.available ? "Available" : "Unavailable"}</Box>)} buttons={(
-                  <Fragment>
-                    <Box inline bold>Assigned CPU:&nbsp;</Box>
-                    <NumberInput value={project.assigned_cpu} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_cpu', {
-                      project_name: project.name,
-                      amount: value,
-                      })}></NumberInput>
-                    <Box inline bold>&nbsp;THz</Box>
-                  </Fragment>
-                )}>
-                  <Box bold>Research Cost: {project.research_cost} THz</Box>
-                  <Box bold>RAM Requirement: {project.ram_required} TB</Box>
-                  <Box bold>Research Requirements: <Box inline>{project.research_requirements}</Box></Box>
-                  <Box mb={1}>
-                    {project.description}
-                  </Box>
-                  <ProgressBar value={project.research_progress / project.research_cost}></ProgressBar>
-                </Section>
-              ))}
+            {data.available_projects && data.available_projects.map((project, index) => (
+              <Section key={index} title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.available ? "Available" : "Unavailable"}</Box>)} buttons={(
+                <Fragment>
+                  <Box inline bold>Assigned CPU:&nbsp;</Box>
+                  <NumberInput value={project.assigned_cpu} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_cpu', {
+                    project_name: project.name,
+                    amount: value,
+                  })} />
+                  <Box inline bold>&nbsp;THz</Box>
+                </Fragment>
+              )}>
+                <Box bold>Research Cost: {project.research_cost} THz</Box>
+                <Box bold>RAM Requirement: {project.ram_required} TB</Box>
+                <Box bold>Research Requirements:
+                  <Box inline>{project.research_requirements}</Box>
+                </Box>
+                <Box mb={1}>
+                  {project.description}
+                </Box>
+                <ProgressBar value={project.research_progress / project.research_cost} />
+              </Section>
+            ))}
           </Section>
         )}
         {tab === 2 && (
           <Section title="Completed Projects">
-              {data.completed_projects && data.completed_projects.map(project => (
-                <Section title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.running ? "Running" : "Not Running"}</Box>)} buttons={(
-                    <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
-                      project_name: project.name,
-                      })}>{project.running ? "Stop" : "Run"}</Button>
-                )}>
-                  <Box bold>RAM Requirement: {project.ram_required} TB</Box>
-                  <Box mb={1}>
-                    {project.description}
-                  </Box>
-                </Section>
-              ))}
+            {data.completed_projects && data.completed_projects.map((project, index) => (
+              <Section key={index} title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.running ? "Running" : "Not Running"}</Box>)} buttons={(
+                <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
+                  project_name: project.name,
+                })}>{project.running ? "Stop" : "Run"}
+                </Button>
+              )}>
+                <Box bold>RAM Requirement: {project.ram_required} TB</Box>
+                <Box mb={1}>
+                  {project.description}
+                </Box>
+              </Section>
+            ))}
           </Section>
         )}
         {tab === 3 && (
-            <Section title="Computing Resources">
-              <Section title="CPU Resources">
-                <ProgressBar
-                  value={data.current_cpu}
-                maxValue={data.max_cpu}>{data.current_cpu ? data.current_cpu : 0}/{data.max_cpu} THz</ProgressBar>
-              </Section>
-              <Section title="RAM Resources">
-                <ProgressBar
-                value={data.current_ram}
-                maxValue={data.max_ram}>{data.current_ram ? data.current_ram : 0 }/{data.max_ram} TB</ProgressBar>
-              </Section>
+          <Section title="Computing Resources">
+            <Section title="CPU Resources">
+              <ProgressBar
+                value={data.current_cpu}
+                maxValue={data.max_cpu}>{data.current_cpu ? data.current_cpu : 0}/{data.max_cpu} THz
+              </ProgressBar>
             </Section>
+            <Section title="RAM Resources">
+              <ProgressBar
+                value={data.current_ram}
+                maxValue={data.max_ram}>{data.current_ram ? data.current_ram : 0 }/{data.max_ram} TB
+              </ProgressBar>
+            </Section>
+          </Section>
         )}
 
 

@@ -10,10 +10,12 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "processor"
 	
+	circuit = /obj/item/circuitboard/machine/expansion_card_holder
 
 	var/list/installed_cards
 
 	var/total_cpu = 0
+	var/total_ram = 0
 
 	var/max_cards = 2
 
@@ -45,12 +47,15 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	
 	if(env.return_temperature() > TEMP_LIMIT || !env.heat_capacity())
 		return FALSE
-
+	if(!was_valid_holder)
+		update_icon()
 	was_valid_holder = TRUE
 	return TRUE
 
 /obj/machinery/ai/expansion_card_holder/process()
+	
 	if(valid_holder())
+
 		var/power_multiple = total_cpu ** (7/8)
 
 		var/total_usage = (power_multiple * BASE_POWER_PER_CPU) + POWER_PER_CARD * installed_cards.len
@@ -60,9 +65,9 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env.heat_capacity())
 			env.set_temperature(env.return_temperature() + total_usage / env.heat_capacity()) //assume all input power is dissipated
-
 	else if(was_valid_holder)
 		was_valid_holder = FALSE
+		cut_overlays()
 		GLOB.ai_os.update_hardware()
 	
 
@@ -85,6 +90,9 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		if(istype(W, /obj/item/processing_card))
 			var/obj/item/processing_card/cpu_card = W
 			total_cpu += cpu_card.tier
+		if(istype(W, /obj/item/processing_card))
+			var/obj/item/memory_card/ram_card = W
+			total_ram += ram_card.tier
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(installed_cards.len)
@@ -92,6 +100,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			for(var/obj/item/C in installed_cards)
 				C.forceMove(T)
 			total_cpu = 0
+			total_ram = 0
 			GLOB.ai_os.update_hardware()
 			to_chat(user, "<span class='notice'>You remove all the cards from [src]</span>")
 			return FALSE
@@ -99,6 +108,8 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 /obj/machinery/ai/expansion_card_holder/examine()
 	. = ..()
+	if(!valid_holder())
+		. += "A small screen is displaying the words 'OFFLINE.'"
 	. += "The machine has [installed_cards.len] cards out of a maximum of [max_cards] installed."
 	for(var/C in installed_cards)
 		. += "There is a [C] installed."

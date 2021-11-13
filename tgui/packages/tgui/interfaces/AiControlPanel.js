@@ -6,7 +6,7 @@ import { Window } from '../layouts';
 export const AiControlPanel = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { username, has_access } = data
+  const { username, has_access } = data;
 
   const [tab, setTab] = useLocalState(context, 'tab', 1);
 
@@ -16,60 +16,59 @@ export const AiControlPanel = (props, context) => {
       height={450}
       resizable>
       <Window.Content scrollable>
-      {!!data.authenticated && (
-        <Fragment>
-          <Tabs>
-            <Tabs.Tab
-              selected={tab === 1}
-              onClick={(() => setTab(1))}>
-              Upload
-            </Tabs.Tab>
-            <Tabs.Tab
-              selected={tab === 2}
-              onClick={(() => setTab(2))}>
-              Download
-            </Tabs.Tab>
-          </Tabs>
-          {tab === 1 && (
-            <Fragment>
+        {!!data.authenticated && (
+          <Fragment>
+            <Tabs>
+              <Tabs.Tab
+                selected={tab === 1}
+                onClick={(() => setTab(1))}>
+                Upload
+              </Tabs.Tab>
+              <Tabs.Tab
+                selected={tab === 2}
+                onClick={(() => setTab(2))}>
+                Download
+              </Tabs.Tab>
+            </Tabs>
+            {tab === 1 && (
               <Section title="Upload" buttons={(
                 <Fragment>
                   <Button onClick={() => act("eject_intellicard")} color="bad" icon="eject" tooltip="Ejects IntelliCard, cancelling any current downloads" disabled={!data.intellicard}>Eject IntelliCard</Button>
                   <Button icon="sign-out-alt" color="bad" onClick={() => act("log_out")}>Log Out</Button>
                 </Fragment>
               )}>
-                  <NoticeBox>Upload also possible by inserting a Positronic Brain</NoticeBox>
-                  {!data.intellicard && (
-                    <Flex align="center" justify="center">
-                      <Flex.Item>
-                        <NoticeBox>No IntelliCard inserted!</NoticeBox>
-                      </Flex.Item>
-                    </Flex>
-                  ) || (
-                    <Fragment>
-                      {data.intellicard_ai && (
-                        <Flex align="center" justify="center">
-                          <Flex.Item width="50%">
-                            <Section textAlign="center" title={data.intellicard_ai}>
-                              <ProgressBar ranges={{good: [75, Infinity], average: [25, 75], bad:[-Infinity, 25]}} mb={0.75} minValue="0" maxValue="100" value={data.intellicard_ai_health} />
-                              <Button color="good" icon="upload" disabled={!data.can_upload} tooltip={!data.can_upload ? "A common cause of upload being unavailable is a lack of any active AI data cores." : null}
-                                onClick={() => act("upload_intellicard")}>Upload</Button>
-                            </Section>
-                          </Flex.Item>
-                        </Flex>
-                      ) || (
-                        <Flex align="center" justify="center">
-                          <Flex.Item>
-                            <NoticeBox>Intellicard contains no AI!</NoticeBox>
-                          </Flex.Item>
-                        </Flex>
-                      )}
-                    </Fragment>
-                  )}
+                <NoticeBox>Upload also possible by inserting a Positronic Brain</NoticeBox>
+                {!data.intellicard && (
+                  <Flex align="center" justify="center">
+                    <Flex.Item>
+                      <NoticeBox>No IntelliCard inserted!</NoticeBox>
+                    </Flex.Item>
+                  </Flex>
+                ) || (
+                  <Box>
+                    {data.intellicard_ai && (
+                      <Flex align="center" justify="center">
+                        <Flex.Item width="50%">
+                          <Section textAlign="center" title={data.intellicard_ai}>
+                            <ProgressBar ranges={{ good: [75, Infinity], average: [25, 75], bad: [-Infinity, 25] }} mb={0.75} minValue="0" maxValue="100" value={data.intellicard_ai_health} />
+                            <Button color="good" icon="upload" disabled={!data.can_upload} tooltip={!data.can_upload ? "A common cause of upload being unavailable is a lack of any active AI data cores." : null}
+                              onClick={() => act("upload_intellicard")}>Upload
+                            </Button>
+                          </Section>
+                        </Flex.Item>
+                      </Flex>
+                    ) || (
+                      <Flex align="center" justify="center">
+                        <Flex.Item>
+                          <NoticeBox>Intellicard contains no AI!</NoticeBox>
+                        </Flex.Item>
+                      </Flex>
+                    )}
+                  </Box>
+                )}
               </Section>
-            </Fragment>
-          )}
-          {tab === 2 && (
+            )}
+            {tab === 2 && (
               <Section title="AIs Available for Download" buttons={(
                 <Fragment>
                   <Button onClick={() => act("eject_intellicard")} color="bad" icon="eject" tooltip="Ejects IntelliCard, cancelling any current downloads" disabled={!data.intellicard}>Eject IntelliCard</Button>
@@ -79,30 +78,35 @@ export const AiControlPanel = (props, context) => {
                 {data.downloading && (
                   <Fragment>
                     <NoticeBox mb={0.1} danger>Currently downloading G2</NoticeBox>
-                    <ProgressBar color="bad" minValue="0" value={data.download_progress} maxValue="100"></ProgressBar>
+                    <ProgressBar color="bad" minValue="0" value={data.download_progress} maxValue="100" />
                     <Button mt={0.5} fluid color="bad" icon="stop" tooltip="WARNING" textAlign="center" onClick={() => act("stop_download")}>Cancel Download</Button>
                   </Fragment>
 
                 )|| (
-                  <Fragment>
-                    {data.ais.map(ai => {
+                  <Box>
+                    {data.ais.map((ai, index) => {
                       return (
-                        <Section title={(<Box inline color={ai.active ? "good" : "bad"}>{ai.name} | {ai.active ? "Active" : "Inactive"}</Box>)}
+                        <Section key={index} title={(<Box inline color={ai.active ? "good" : "bad"}>{ai.name} | {ai.active ? "Active" : "Inactive"}</Box>)}
                           buttons={(
-                            <Button color={ai.can_download ? "good" : "bad"} tooltip={!data.intellicard ? ai.can_download ? "Requires IntelliCard" : "&¤!65%" : null} disabled={data.intellicard ? !ai.can_download : true}  icon="download" onClick={() => act("start_download", { download_target: ai.ref })}>{ai.can_download ? "Download" : "&gr4&!/"}</Button>
+                            <Button color={ai.can_download ? "good" : "bad"} tooltip={!data.intellicard ? ai.can_download ? "Requires IntelliCard" : "&¤!65%" : null} disabled={data.intellicard ? !ai.can_download : true} icon="download" onClick={() => act("start_download", { download_target: ai.ref })}>{ai.can_download ? "Download" : "&gr4&!/"}</Button>
                           )}>
-                            <Box bold>Integrity:</Box>
-                            <ProgressBar mt={0.5} minValue={0} ranges={{good: [75, Infinity], average: [25, 75], bad:[-Infinity, 25]}} value={ai.health} maxValue={100} />
+                          <Box bold>Integrity:</Box>
+                          <ProgressBar mt={0.5} minValue={0}
+                            ranges={{
+                              good: [75, Infinity],
+                              average: [25, 75],
+                              bad: [-Infinity, 25],
+                            }}
+                            value={ai.health} maxValue={100} />
                         </Section>
                       );
                     })}
-                  </Fragment>
+                  </Box>
                 )}
               </Section>
-          )}
-        </Fragment>
-      ) || (
-        <Fragment>
+            )}
+          </Fragment>
+        ) || (
           <Section title="Welcome">
             <Flex align="center" justify="center" mt="0.5rem">
               <Flex.Item>
@@ -140,8 +144,7 @@ export const AiControlPanel = (props, context) => {
               </Flex.Item>
             </Flex>
           </Section>
-        </Fragment>
-      )}
+        )}
       </Window.Content>
     </Window>
   );

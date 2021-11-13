@@ -1,6 +1,5 @@
 GLOBAL_LIST_EMPTY(ai_projects)
 
-
 /datum/ai_project
 	///Name of the project. This is used as an ID so please keep all names unique (Or refactor it to use an ID like you should)
 	var/name = "DEBUG"
@@ -23,10 +22,8 @@ GLOBAL_LIST_EMPTY(ai_projects)
 		qdel(src)
 	..()
 
-
 /datum/ai_project/proc/canResearch()
 	return TRUE
-
 
 /datum/ai_project/proc/run_project(force_run = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
@@ -45,7 +42,6 @@ GLOBAL_LIST_EMPTY(ai_projects)
 /datum/ai_project/proc/canRun()
 	SHOULD_CALL_PARENT(TRUE)
 	return !running
-
 
 /datum/ai_project/test_project
 	name = "Test Project"

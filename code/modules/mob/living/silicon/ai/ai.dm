@@ -176,6 +176,9 @@
 	GLOB.ai_list += src
 	GLOB.shuttle_caller_list += src
 
+	if(!istype(loc, /obj/machinery/ai/data_core))
+		relocate(TRUE)
+
 	builtInCamera = new (src)
 	builtInCamera.c_tag = real_name
 	builtInCamera.network = list("ss13")
@@ -220,11 +223,21 @@
 	if(client && !C)
 		C = client
 	if(!input && !C?.prefs?.preferred_ai_core_display)
-		icon_state = initial(icon_state)
+		for (var/each in GLOB.ai_core_displays) //change status of displays
+			var/obj/machinery/status_display/ai_core/M = each
+			M.set_ai(initial(icon_state))
+			M.update()
 	else
 		var/preferred_icon = input ? input : C.prefs.preferred_ai_core_display
 		icon = initial(icon) //yogs
-		icon_state = resolve_ai_icon(preferred_icon)
+
+		for (var/each in GLOB.ai_core_displays) //change status of displays
+			var/obj/machinery/status_display/ai_core/M = each
+			M.set_ai(resolve_ai_icon(preferred_icon))
+			M.update()
+
+
+	
 
 /mob/living/silicon/ai/verb/pick_icon()
 	set category = "AI Commands"
@@ -254,7 +267,10 @@
 
 
 	view_core()
-	var/ai_core_icon = show_radial_menu(src, src , iconstates, radius = 42)
+	var/atom/origin = src
+	if(!istype(loc, /turf))
+		origin = loc //We're inside of something!
+	var/ai_core_icon = show_radial_menu(src, origin, iconstates, radius = 42)
 
 	if(!ai_core_icon || incapacitated())
 		return
