@@ -10,7 +10,6 @@
 
 /datum/ai_project/examine_humans/canResearch()
 	return (dashboard.has_completed_projects("Advanced Security HUD") && dashboard.has_completed_projects("Advanced Medical & Diagnostic HUD"))
-	return TRUE
 
 /datum/ai_project/examine_humans/run_project(force_run = FALSE)
 	. = ..(force_run)
