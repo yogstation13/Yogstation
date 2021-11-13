@@ -69,7 +69,8 @@
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/CMO(src)
 	new /obj/item/clipboard/yog/paperwork/cmo(src)
-	new /obj/item/storage/backpack/duffelbag/med/chief/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/med/chief(src)
+	new /obj/item/storage/lockbox/medal/med(src)
 
 
 /obj/structure/closet/secure_closet/paramedic

@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "M-546 Osprey"
 	desc = "A fully-loaded minigun which packs a big punch. \
 			This deadly giant weapon has a massive 500-round magazine of devastating 5.46mm caseless ammunition.\
-			Slaughter your enemies through sheer force. We made this gun so advanced that it fires the whole bullet.\
+			Slaughter your enemies through sheer force, prone to overheating with extended use. We made this gun so advanced that it fires the whole bullet.\
 			Thats 60% more bullet per bullet and no more useless casings!"
 	item = /obj/item/minigunbackpack
 	cost = 36
@@ -689,6 +689,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			These rounds are more damaging but ineffective against armour."
 	item = /obj/item/ammo_box/magazine/m10mm/hp
 	cost = 3
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/ammo/pistolsleepy
+	name = "10mm Soporific Magazine"
+	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+			These rounds will deliver small doses of tranqulizers on hit, knocking the target out after a few successive hits."
+	item = /obj/item/ammo_box/magazine/m10mm/sp
+	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistolfire
@@ -1431,7 +1439,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		return
 	U.failsafe_code = U.generate_code()
 	var/code = "[islist(U.failsafe_code) ? english_list(U.failsafe_code) : U.failsafe_code]"
-	to_chat(user, "<span class='warning'>The new failsafe code for this uplink is now : [code].</span>")
+	to_chat(user, span_warning("The new failsafe code for this uplink is now : [code]."))
 	if(user.mind)
 		user.mind.store_memory("Failsafe code for [U.parent] : [code]")
 	return U.parent //For log icon
@@ -2099,4 +2107,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A cape to show off your grand villainous deeds."
 	item = /obj/item/clothing/neck/skillcape/trimmed/antag
 	cost = 20
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/syndistamp
+	name = "Syndicate Stamp"
+	desc = "Even evil needs to do paperwork."
+	item = /obj/item/stamp/syndiround
+	cost = 1
 	illegal_tech = FALSE

@@ -10,6 +10,12 @@
 	var/ghoul_amt = 1
 	var/list/spooky_scaries
 
+/datum/eldritch_knowledge/base_flesh/on_gain(mob/user)
+	..()
+	var/datum/antagonist/heretic/EC = user.mind?.has_antag_datum(/datum/antagonist/heretic)
+	var/datum/eldritch_transmutation/basic/B = EC.get_transmutation(1)
+	B.effect_path = STATUS_EFFECT_HERETIC_SACRIFICE_FLESH
+
 /datum/eldritch_knowledge/base_flesh/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!ishuman(target) || target == user)
@@ -19,9 +25,11 @@
 	if(eldritch_effect)
 		. = TRUE
 		eldritch_effect.on_effect()
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			H.bleed_rate += 7
+		if(iscarbon(target))
+			var/mob/living/carbon/carbon_target = target
+			var/obj/item/bodypart/bodypart = pick(carbon_target.bodyparts)
+			var/datum/wound/slash/severe/crit_wound = new
+			crit_wound.apply_wound(bodypart)
 
 	if(QDELETED(human_target) || human_target.stat != DEAD)
 		return
@@ -29,19 +37,19 @@
 	human_target.grab_ghost()
 
 	if(!human_target.mind || !human_target.client)
-		to_chat(user, "<span class='warning'>There is no soul connected to this body...</span>")
+		to_chat(user, span_warning("There is no soul connected to this body..."))
 		return
 
 	if(HAS_TRAIT(human_target, TRAIT_HUSK))
-		to_chat(user, "<span class='warning'>The body is too damaged to be revived this way!</span>")
+		to_chat(user, span_warning("The body is too damaged to be revived this way!"))
 		return
 
 	if(HAS_TRAIT(human_target, TRAIT_MINDSHIELD))
-		to_chat(user, "<span class='warning'>Their connection to this realm is too strong!</span>")
+		to_chat(user, span_warning("Their connection to this realm is too strong!"))
 		return
 
 	if(LAZYLEN(spooky_scaries) >= ghoul_amt)
-		to_chat(user, "<span class='warning'>Your Patron cannot support more ghouls on this plane!</span>")
+		to_chat(user, span_warning("Your Patron cannot support more ghouls on this plane!"))
 		return
 
 	LAZYADD(spooky_scaries, human_target)
@@ -118,9 +126,11 @@
 
 /datum/eldritch_knowledge/flesh_blade_upgrade/on_eldritch_blade(target,user,proximity_flag,click_parameters)
 	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		H.bleed_rate += 3
+	if(iscarbon(target))
+		var/mob/living/carbon/carbon_target = target
+		var/obj/item/bodypart/bodypart = pick(carbon_target.bodyparts)
+		var/datum/wound/slash/moderate/crit_wound = new
+		crit_wound.apply_wound(bodypart)
 
 /datum/eldritch_knowledge/stalker
 	name = "Lonely Ritual"

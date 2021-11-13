@@ -46,7 +46,7 @@
 	starting_node = TRUE
 	display_name = "Basic Tools"
 	description = "Basic mechanical, electronic, surgical and botanical tools."
-	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "scalpel", "circular_saw", "surgicaldrill", "retractor", "cautery", "hemostat", "surgical_drapes", "syringe", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet",  "mop")
+	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "scalpel", "circular_saw", "bonesetter", "surgicaldrill", "retractor", "cautery", "hemostat", "surgical_drapes", "syringe", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet",  "mop")
 
 /////////////////////////Biotech/////////////////////////
 /datum/techweb_node/biotech
@@ -72,7 +72,7 @@
 	display_name = "Biological Processing"
 	description = "From slimes to kitchens."
 	prereq_ids = list("biotech")
-	design_ids = list("smartfridge", "gibber", "deepfryer", "monkey_recycler", "processor", "microwave", "reagentgrinder", "dish_drive", "fat_sucker")
+	design_ids = list("smartfridge", "gibber", "deepfryer", "monkey_recycler", "processor", "microwave", "reagentgrinder", "dish_drive", "fat_sucker","griddle")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -272,6 +272,43 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
+/////////////////////////shuttle tech/////////////////////////
+/datum/techweb_node/basic_shuttle_tech
+	id = "basic_shuttle"
+	display_name = "Basic Shuttle Research"
+	description = "Research the technology required to create and use basic shuttles."
+	prereq_ids = list("bluespace_travel", "adv_engi")
+	design_ids = list("shuttle_creator", "engine_plasma", "engine_heater", "shuttle_control", "shuttle_docker")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	export_price = 5000
+
+/datum/techweb_node/shuttle_route_upgrade
+	id = "shuttle_route_upgrade"
+	display_name = "Route Optimisation Upgrade"
+	description = "Research into bluespace tunnelling, allowing us to reduce flight times by up to 20%!"
+	prereq_ids = list("basic_shuttle")
+	design_ids = list("disk_shuttle_route")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 2500
+
+/datum/techweb_node/shuttle_route_upgrade_hyper
+	id = "shuttle_route_upgrade_hyper"
+	display_name = "Hyperlane Optimisation Upgrade"
+	description = "Research into bluespace hyperlane, allowing us to reduce flight times by up to 40%!"
+	prereq_ids = list("shuttle_route_upgrade", "micro_bluespace")
+	design_ids = list("disk_shuttle_route_hyper")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	export_price = 5000
+
+/datum/techweb_node/shuttle_route_upgrade_void
+	id = "shuttle_route_upgrade_void"
+	display_name = "Nullspace Breaching Upgrade"
+	description = "Research into voidspace tunnelling, allowing us to significantly reduce flight times."
+	prereq_ids = list("shuttle_route_upgrade_hyper", "alientech")
+	design_ids = list("disk_shuttle_route_void", "engine_void")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 12500)
+	export_price = 5000
+
 /////////////////////////robotics tech/////////////////////////
 /datum/techweb_node/robotics
 	id = "robotics"
@@ -313,7 +350,7 @@
 	display_name = "Cyborg Upgrades: Utility"
 	description = "Utility upgrades for cyborgs."
 	prereq_ids = list("engineering")
-	design_ids = list("borg_upgrade_holding", "borg_upgrade_lavaproof", "borg_upgrade_thrusters", "borg_upgrade_selfrepair", "borg_upgrade_expand", "borg_upgrade_rped")
+	design_ids = list("borg_upgrade_holding", "borg_upgrade_lavaproof", "borg_upgrade_thrusters", "borg_upgrade_selfrepair", "borg_upgrade_expand", "borg_upgrade_rped", "borg_upgrade_language")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 5000
 

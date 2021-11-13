@@ -12,6 +12,7 @@
 	var/datum/tgui_window/window
 	var/broken = FALSE
 	var/initialized_at
+	var/retries = 0
 
 /datum/tgui_panel/New(client/client)
 	src.client = client
@@ -37,6 +38,9 @@
  * Initializes tgui panel.
  */
 /datum/tgui_panel/proc/initialize(force = FALSE)
+	set waitfor = FALSE
+	// Minimal sleep to defer initialization to after client constructor
+	sleep(1)
 	initialized_at = world.time
 	// Perform a clean initialization
 	window.initialize(inline_assets = list(
@@ -46,16 +50,37 @@
 	window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/fontawesome))
 	window.send_asset(get_asset_datum(/datum/asset/spritesheet/chat))
 	request_telemetry()
+	if(!telemetry_connections && retries < 6)
+		addtimer(CALLBACK(src, .proc/check_telemetry), 2 SECONDS)
 	addtimer(CALLBACK(src, .proc/on_initialize_timed_out), 2 SECONDS)
+
+/datum/tgui_panel/proc/check_telemetry()
+	if(!telemetry_connections) /// Somethings fucked lets try again.
+		if(retries > 2)
+			if(client && istype(client))
+				winset(client, null, "command=.reconnect") /// Kitchen Sink
+				qdel(client)
+		if(retries > 3)
+			qdel(client)
+		if(retries > 5)
+			return // I give up
+		if(retries < 6)
+			retries++
+		src << browse(file('html/statbrowser.html'), "window=statbrowser")  /// Reloads the statpanel as well
+		initialize() /// Lets just start again
+		var/mob/dead/new_player/M = client?.mob
+		if(istype(M))
+			M.Login()
 
 /**
  * private
  *
  * Called when initialization has timed out.
  */
+ 
 /datum/tgui_panel/proc/on_initialize_timed_out()
 	// Currently does nothing but sending a message to old chat.
-	SEND_TEXT(client, "<span class=\"userdanger\">Failed to load fancy chat, click <a href='?src=[REF(src)];reload_tguipanel=1'>HERE</a> to attempt to reload it.</span>")
+	SEND_TEXT(client, span_userdanger("Failed to load fancy chat, click <a href='?src=[REF(src)];reload_tguipanel=1'>HERE</a> to attempt to reload it."))
 
 /**
  * private

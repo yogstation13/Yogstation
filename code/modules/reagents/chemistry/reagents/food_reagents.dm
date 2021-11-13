@@ -100,6 +100,12 @@
 		M.satiety += 30
 	. = ..()
 
+/datum/reagent/consumable/nutriment/protein
+	name = "Protein"
+	description = "A natural polyamide made up of amino acids. An essential constituent of mosts known forms of life."
+	brute_heal = 0.8 //Rewards the player for eating a balanced diet.
+	nutriment_factor = 9 * REAGENTS_METABOLISM //45% as calorie dense as corn oil.
+
 /datum/reagent/consumable/cooking_oil
 	name = "Cooking Oil"
 	description = "A variety of cooking oil derived from fat or plants. Used in food preparation and frying."
@@ -113,7 +119,7 @@
 /datum/reagent/consumable/cooking_oil/reaction_obj(obj/O, reac_volume)
 	if(holder && holder.chem_temp >= fry_temperature)
 		if(isitem(O) && !istype(O, /obj/item/reagent_containers/food/snacks/deepfryholder))
-			O.loc.visible_message("<span class='warning'>[O] rapidly fries as it's splashed with hot oil! Somehow.</span>")
+			O.loc.visible_message(span_warning("[O] rapidly fries as it's splashed with hot oil! Somehow."))
 			var/obj/item/reagent_containers/food/snacks/deepfryholder/F = new(O.drop_location(), O)
 			F.fry(volume)
 			F.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, reac_volume)
@@ -133,8 +139,8 @@
 		oil_damage *= 1 - M.get_permeability_protection()
 	var/FryLoss = round(min(38, oil_damage * reac_volume))
 	if(!HAS_TRAIT(M, TRAIT_OIL_FRIED))
-		M.visible_message("<span class='warning'>The boiling oil sizzles as it covers [M]!</span>", \
-		"<span class='userdanger'>You're covered in boiling oil!</span>")
+		M.visible_message(span_warning("The boiling oil sizzles as it covers [M]!"), \
+		span_userdanger("You're covered in boiling oil!"))
 		if(FryLoss)
 			M.emote("scream")
 		playsound(M, 'sound/machines/fryer/deep_fryer_emerge.ogg', 25, TRUE)
@@ -164,7 +170,7 @@
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
-	to_chat(M, "<span class='userdanger'>You go into hyperglycaemic shock! Lay off the twinkies!</span>")
+	to_chat(M, span_userdanger("You go into hyperglycaemic shock! Lay off the twinkies!"))
 	M.AdjustSleeping(600, FALSE)
 	. = 1
 
@@ -321,7 +327,7 @@
 
 /datum/reagent/consumable/condensedcapsaicin/on_mob_life(mob/living/carbon/M)
 	if(prob(15))
-		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","splutters!")]</span>")
+		M.visible_message(span_warning("[M] [pick("dry heaves!","splutters!")]"))
 	if(prob(20))
 		M.emote("cough")
 
@@ -417,7 +423,7 @@
 /datum/reagent/consumable/garlic/on_mob_life(mob/living/carbon/M)
 	if(isvampire(M)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit.
 		if(prob(min(25,current_cycle)))
-			to_chat(M, "<span class='danger'>You can't get the scent of garlic out of your nose! You can barely think...</span>")
+			to_chat(M, span_danger("You can't get the scent of garlic out of your nose! You can barely think..."))
 			M.Paralyze(10)
 			M.Jitter(10)
 	else if(ishuman(M))

@@ -25,32 +25,32 @@
 		return FALSE
 
 	if(battery)
-		to_chat(user, "<span class='warning'>You try to connect \the [I] to \the [src], but its connectors are occupied.</span>")
+		to_chat(user, span_warning("You try to connect \the [I] to \the [src], but its connectors are occupied."))
 		return FALSE
 
 	if(I.w_class > holder.max_hardware_size)
-		to_chat(user, "<span class='warning'>This power cell is too large for \the [holder]!</span>")
+		to_chat(user, span_warning("This power cell is too large for \the [holder]!"))
 		return FALSE
 
 	if(user && !user.transferItemToLoc(I, src))
 		return FALSE
 
 	battery = I
-	to_chat(user, "<span class='notice'>You connect \the [I] to \the [src].</span>")
+	to_chat(user, span_notice("You connect \the [I] to \the [src]."))
 
 	return TRUE
 
 
 /obj/item/computer_hardware/battery/try_eject(slot=0, mob/living/user = null, forced = 0)
 	if(!battery)
-		to_chat(user, "<span class='warning'>There is no power cell connected to \the [src].</span>")
+		to_chat(user, span_warning("There is no power cell connected to \the [src]."))
 		return FALSE
 	else
 		if(user)
 			user.put_in_hands(battery)
 		else
 			battery.forceMove(drop_location())
-		to_chat(user, "<span class='notice'>You detach \the [battery] from \the [src].</span>")
+		to_chat(user, span_notice("You detach \the [battery] from \the [src]."))
 		battery = null
 
 		if(holder)
@@ -85,7 +85,7 @@
 	name = "super battery"
 	desc = "An advanced power cell, often used in high-end laptops."
 	icon_state = "cell"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 	maxcharge = 2000
 
 /obj/item/stock_parts/cell/computer/micro

@@ -19,31 +19,31 @@
 
 /obj/machinery/power/stationarybike/examine(mob/user)
 	. = ..()
-	. +="<span class='notice'>It is generating [generating]kw of power.</span>"
+	. +=span_notice("It is generating [generating]kw of power.")
 
 /obj/machinery/power/stationarybike/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
 	lifeweb = 1
-	to_chat(user, "<span class='warning'>You disabled safeties</span>")
+	to_chat(user, span_warning("You disabled safeties"))
 
 /obj/machinery/power/stationarybike/wrench_act(mob/living/user, obj/item/I)
 	if(!anchored && !isinspace())
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
-		if(do_after(user, 20, target = src))
+		if(do_after(user, 2 SECONDS, target = src))
 			connect_to_network()
-			to_chat(user, "<span class='notice'>You secure [src] to the floor.</span>")
+			to_chat(user, span_notice("You secure [src] to the floor."))
 			anchored  = TRUE
 			playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 	else if(anchored)
 		if(operating)
-			to_chat(user, "<span class='warning'>You can't detach [src] from the floor while its moving!</span>")
+			to_chat(user, span_warning("You can't detach [src] from the floor while its moving!"))
 			return TRUE
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
-		if(do_after(user, 20, target = src))
+		if(do_after(user, 2 SECONDS, target = src))
 			disconnect_from_network()
-			to_chat(user, "<span class='notice'>You unsecure [src] from the floor.</span>")
+			to_chat(user, span_notice("You unsecure [src] from the floor."))
 			anchored = FALSE
 			playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 	return TRUE
@@ -51,7 +51,7 @@
 /obj/machinery/power/stationarybike/crowbar_act(mob/living/user, obj/item/I)
 	for(var/mob/living/BM in buckled_mobs)
 		if(lifeweb)
-			to_chat(user, "<span class='notice'>You forcefully yank the emergency brake.</span>")
+			to_chat(user, span_notice("You forcefully yank the emergency brake."))
 			unbuckle_mob(BM)
 			check_buckled()
 	return TRUE
@@ -61,7 +61,7 @@
 
 /obj/machinery/power/stationarybike/attack_hand(mob/user)
 	if(lifeweb)
-		to_chat(user, "<span class='danger'>It's spinning too fast! You might hurt yourself if you try to get them off!</span>")
+		to_chat(user, span_danger("It's spinning too fast! You might hurt yourself if you try to get them off!"))
 		return
 	. = ..()
 
