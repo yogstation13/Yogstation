@@ -121,7 +121,15 @@
 
 /datum/antagonist/changeling/proc/remove_changeling_powers()
 	if(ishuman(owner.current) || ismonkey(owner.current))
+		var/additionalpoints = (initial(geneticpoints) * -1) + geneticpoints // negative of initial + any points you had left over
+
+		for(var/datum/action/changeling/p in purchasedpowers)
+			additionalpoints += p.dna_cost // Refunds all of your points into the additional points. If you had no absorbed points, this would add up to 0
+
 		reset_properties()
+
+		geneticpoints += additionalpoints // Gives the extra points you had
+
 		for(var/datum/action/changeling/p in purchasedpowers)
 			purchasedpowers -= p
 			p.Remove(owner.current)
