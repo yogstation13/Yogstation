@@ -17,3 +17,5 @@
 	ai.max_camera_sprint *= 0.5
 	ai.sprint *= 0.5
 	..()
+
+

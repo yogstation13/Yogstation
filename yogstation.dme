@@ -2346,6 +2346,8 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\_ai_project.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\ai_huds.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\camera_mobility.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\projects\examine.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\projects\firewall.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\cameranet.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\chunk.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\eye.dm"

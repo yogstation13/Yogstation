@@ -424,19 +424,17 @@
 
 
 
-/mob/living/carbon/human/examine_simple(mob/user)
+/mob/living/carbon/human/proc/examine_simple(mob/user)
 //this is very slightly better than it was because you can use it more places. still can't do \his[src] though.
 	var/t_He = p_they(TRUE)
 	var/t_His = p_their(TRUE)
 	var/t_his = p_their()
-	var/t_him = p_them()
 	var/t_has = p_have()
 	var/t_is = p_are()
 
 	. = list("<span class='info'>*---------*\nThis is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
-	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
 	//uniform
 	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
@@ -463,7 +461,6 @@
 		if(!(I.item_flags & ABSTRACT))
 			. += "[t_He] [t_is] holding a [weightclass2text(I.w_class)] item in [t_his] [get_held_index_name(get_held_index_of_item(I))]."
 
-	var/datum/component/forensics/FR = GetComponent(/datum/component/forensics)
 	//gloves
 	if(gloves && !(SLOT_GLOVES in obscured))
 		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands."
@@ -503,12 +500,9 @@
 		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
 
 
-	var/temp = getBruteLoss() //no need to calculate each of these twice
-
 	var/list/msg = list("")
 
 	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-	var/list/disabled = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/body_part = X
 		missing -= body_part.body_zone
