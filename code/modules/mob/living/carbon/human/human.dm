@@ -686,8 +686,8 @@
   * Called on the COMSIG_COMPONENT_CLEAN_FACE_ACT signal
   */
 /mob/living/carbon/human/proc/clean_face(datum/source, clean_types)
-	grad_color = dna.features["gradientstyle"]
-	grad_style = dna.features["gradientcolor"]
+	grad_color = dna.features["grad_color"]
+	grad_style = dna.features["grad_style"]
 	update_hair()
 
 	if(!is_mouth_covered() && clean_lips())
