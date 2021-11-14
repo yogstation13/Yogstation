@@ -59,9 +59,6 @@
 /// Prevents hijacking same way as non-antags
 #define HIJACK_PREVENT 2
 
-///Overthrow time to update heads obj
-#define OBJECTIVE_UPDATING_TIME 300
-
 //Assimilation
 #define TRACKER_DEFAULT_TIME 900
 #define TRACKER_MINDSHIELD_TIME 1200
