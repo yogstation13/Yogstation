@@ -7,6 +7,7 @@
 
 	var/enabled = 0											// Whether the computer is turned on.
 	var/screen_on = 1										// Whether the computer is active/opened/it's screen is on.
+	var/device_theme = "ntos"								// Sets the theme for the main menu, hardware config, and file browser apps. Overridden by certain non-NT devices.
 	var/datum/computer_file/program/active_program = null	// A currently active program running on the computer.
 	var/hardware_flag = 0									// A flag that describes this device type
 	var/last_power_usage = 0
@@ -33,11 +34,12 @@
 	max_integrity = 100
 	armor = list("melee" = 0, "bullet" = 20, "laser" = 20, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
 
-	// Important hardware (must be installed for computer to work)
-
-	// Optional hardware (improves functionality, but is not critical for computer to work)
-
-	var/list/all_components = list()						// List of "connection ports" in this computer and the components with which they are plugged
+	/// List of "connection ports" in this computer and the components with which they are plugged
+	var/list/all_components = list()
+	/// Lazy List of extra hardware slots that can be used modularly.
+	var/list/expansion_bays
+	/// Number of total expansion bays this computer has available.
+	var/max_bays = 0
 
 	var/list/idle_threads							// Idle programs on background. They still receive process calls but can't be interacted with.
 	var/obj/physical = null									// Object that represents our computer. It's used for Adjacent() and UI visibility checks.
@@ -69,61 +71,22 @@
 	physical = null
 	return ..()
 
-
-/obj/item/modular_computer/proc/add_verb(var/path)
-	switch(path)
-		if(MC_CARD)
-			verbs += /obj/item/modular_computer/proc/eject_id
-		if(MC_SDD)
-			verbs += /obj/item/modular_computer/proc/eject_disk
-		if(MC_AI)
-			verbs += /obj/item/modular_computer/proc/eject_card
-
-/obj/item/modular_computer/proc/remove_verb(path)
-	switch(path)
-		if(MC_CARD)
-			verbs -= /obj/item/modular_computer/proc/eject_id
-		if(MC_SDD)
-			verbs -= /obj/item/modular_computer/proc/eject_disk
-		if(MC_AI)
-			verbs -= /obj/item/modular_computer/proc/eject_card
-
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/item/modular_computer/proc/eject_id()
-	set name = "Eject ID"
-	set category = "Object"
-	set src in view(1)
-
-	if(issilicon(usr))
-		return
-	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	if(usr.canUseTopic(src, BE_CLOSE))
-		card_slot.try_eject(null, usr)
-
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/item/modular_computer/proc/eject_card()
-	set name = "Eject Intellicard"
-	set category = "Object"
-
-	if(issilicon(usr))
-		return
-	var/obj/item/computer_hardware/ai_slot/ai_slot = all_components[MC_AI]
-	if(usr.canUseTopic(src, BE_CLOSE))
-		ai_slot.try_eject(null, usr,1)
+/obj/item/modular_computer/attack(atom/A, mob/living/user, params)
+	if(active_program?.tap(A, user, params))
+		user.do_attack_animation(A) //Emulate this animation since we kill the attack in three lines
+		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
+		addtimer(CALLBACK(src, .proc/play_ping), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
+		return 
+	return ..()
 
 
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/item/modular_computer/proc/eject_disk()
-	set name = "Eject Data Disk"
-	set category = "Object"
-
-	if(issilicon(usr))
-		return
-
-	if(usr.canUseTopic(src, BE_CLOSE))
-		var/obj/item/computer_hardware/hard_drive/portable/portable_drive = all_components[MC_SDD]
-		if(uninstall_component(portable_drive, usr))
-			portable_drive.verb_pickup()
+/**
+ * Plays a ping sound.
+ *
+ * Timers runtime if you try to make them call playsound. Yep.
+ */
+/obj/item/modular_computer/proc/play_ping()
+	playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), FALSE, -1)
 
 /obj/item/modular_computer/AltClick(mob/user)
 	..()
@@ -131,17 +94,9 @@
 		return
 
 	if(user.canUseTopic(src, BE_CLOSE))
+		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-		var/obj/item/computer_hardware/ai_slot/ai_slot = all_components[MC_AI]
-		var/obj/item/computer_hardware/hard_drive/portable/portable_drive = all_components[MC_SDD]
-		if(portable_drive)
-			if(uninstall_component(portable_drive, user))
-				portable_drive.verb_pickup()
-		else
-			if(card_slot && card_slot.try_eject(null, user))
-				return
-			if(ai_slot)
-				ai_slot.try_eject(null, user)
+		return (card_slot2?.try_eject(user) || card_slot?.try_eject(user)) //Try the secondary one first.
 
 
 // Gets IDs/access levels from card slot. Would be useful when/if PDAs would become modular PCs.
@@ -151,11 +106,47 @@
 		return card_slot.GetAccess()
 	return ..()
 
+/obj/item/modular_computer/RemoveID()
+	var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
+	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+	return (card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
+
+/obj/item/modular_computer/InsertID(obj/item/inserting_item)
+	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+	var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
+	if(!(card_slot || card_slot2))
+		//to_chat(user, "<span class='warning'>There isn't anywhere you can fit a card into on this computer.</span>")
+		return FALSE
+
+	var/obj/item/card/inserting_id = inserting_item.RemoveID()
+	if(!inserting_id)
+		return FALSE
+
+	if((card_slot?.try_insert(inserting_id)) || (card_slot2?.try_insert(inserting_id)))
+		return TRUE
+	//to_chat(user, "<span class='warning'>This computer doesn't have an open card slot.</span>")
+	return FALSE
+
 /obj/item/modular_computer/GetID()
 	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
 	if(card_slot)
 		return card_slot.GetID()
 	return ..()
+
+/obj/item/modular_computer/RemoveID()
+	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+	if(!card_slot)
+		return
+	return card_slot.RemoveID()
+
+/obj/item/modular_computer/InsertID(obj/item/inserting_item)
+	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+	if(!card_slot)
+		return FALSE
+	var/obj/item/card/inserting_id = inserting_item.RemoveID()
+	if(!inserting_id)
+		return FALSE
+	return card_slot.try_insert(inserting_id)
 
 /obj/item/modular_computer/MouseDrop(obj/over_object, src_location, over_location)
 	var/mob/M = usr
@@ -178,13 +169,22 @@
 			turn_on(user)
 
 /obj/item/modular_computer/emag_act(mob/user)
-	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning("\The [src] was already emagged."))
-		return 0
-	else
-		obj_flags |= EMAGGED
-		to_chat(user, span_notice("You emag \the [src]. It's screen briefly shows a \"OVERRIDE ACCEPTED: New software downloads available.\" message."))
-		return 1
+	if(!enabled)
+		to_chat(user, "<span class='warning'>You'd need to turn the [src] on first.</span>")
+		return FALSE
+	obj_flags |= EMAGGED //Mostly for consistancy purposes; the programs will do their own emag handling
+	var/newemag = FALSE
+	var/obj/item/computer_hardware/hard_drive/drive = all_components[MC_HDD]
+	for(var/datum/computer_file/program/app in drive.stored_files)
+		if(!istype(app))
+			continue
+		if(app.run_emag())
+			newemag = TRUE
+	if(newemag)
+		to_chat(user, "<span class='notice'>You swipe \the [src]. A console window momentarily fills the screen, with white text rapidly scrolling past.</span>")
+		return TRUE
+	to_chat(user, "<span class='notice'>You swipe \the [src]. A console window fills the screen, but it quickly closes itself after only a few lines are written to it.</span>")
+	return FALSE
 
 /obj/item/modular_computer/examine(mob/user)
 	. = ..()
@@ -282,9 +282,33 @@
 	handle_power() // Handles all computer power interaction
 	//check_update_ui_need()
 
+/**
+  * Displays notification text alongside a soundbeep when requested to by a program.
+  *
+  * After checking tha the requesting program is allowed to send an alert, creates
+  * a visible message of the requested text alongside a soundbeep. This proc adds
+  * text to indicate that the message is coming from this device and the program
+  * on it, so the supplied text should be the exact message and ending punctuation.
+  *
+  * Arguments:
+  * The program calling this proc.
+  * The message that the program wishes to display.
+ */
+
+/obj/item/modular_computer/proc/alert_call(datum/computer_file/program/caller, alerttext, sound = 'sound/machines/twobeep_high.ogg')
+	if(!caller || !caller.alert_able || caller.alert_silenced || !alerttext) //Yeah, we're checking alert_able. No, you don't get to make alerts that the user can't silence.
+		return
+	playsound(src, sound, 50, TRUE)
+	visible_message("<span class='notice'>The [src] displays a [caller.filedesc] notification: [alerttext]</span>")
+	var/mob/living/holder = loc
+	if(istype(holder))
+		to_chat(holder, "[icon2html(src)] <span class='notice'>The [src] displays a [caller.filedesc] notification: [alerttext]</span>")
+
 // Function used by NanoUI's to obtain data for header. All relevant entries begin with "PC_"
 /obj/item/modular_computer/proc/get_header_data()
 	var/list/data = list()
+
+	data["PC_device_theme"] = device_theme
 
 	var/obj/item/computer_hardware/battery/battery_module = all_components[MC_CELL]
 	var/obj/item/computer_hardware/recharger/recharger = all_components[MC_CHARGE]

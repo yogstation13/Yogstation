@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(hair_styles_female_list)	//stores only hair names
 GLOBAL_LIST_EMPTY(facial_hair_styles_list)	//stores /datum/sprite_accessory/facial_hair indexed by name
 GLOBAL_LIST_EMPTY(facial_hair_styles_male_list)	//stores only hair names
 GLOBAL_LIST_EMPTY(facial_hair_styles_female_list)	//stores only hair names
+GLOBAL_LIST_EMPTY(hair_gradients_list) //stores /datum/sprite_accessory/hair_gradient indexed by name
 	//Underwear
 GLOBAL_LIST_EMPTY(underwear_list)		//stores /datum/sprite_accessory/underwear indexed by name
 GLOBAL_LIST_EMPTY(underwear_m)	//stores only underwear name

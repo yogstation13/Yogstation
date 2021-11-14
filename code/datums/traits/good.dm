@@ -169,6 +169,28 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/box/fancy/candle_box(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), SLOT_IN_BACKPACK)
 
+/datum/quirk/toxic_tastes
+	name = "Toxic Tastes"
+	desc = "You have a taste for normally dangerous foods."
+	value = 1
+	gain_text = span_notice("Your stomach feels robust.")
+	lose_text = span_notice("Your stomach feels normal again.")
+	medical_record_text = "Patient demonstrates abnormal ability to process certain toxins."
+
+/datum/quirk/toxic_tastes/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/datum/species/species = H.dna.species
+	var/toxic = species.toxic_food
+	species.liked_food |= toxic
+	species.toxic_food = null //removes toxic foods
+
+/datum/quirk/toxic_tastes/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		var/datum/species/species = H.dna.species
+		species.toxic_food = initial(species.toxic_food)
+		species.liked_food = initial(species.liked_food)
+
 /datum/quirk/tagger
 	name = "Tagger"
 	desc = "You're an experienced artist. While drawing graffiti, you can get twice as many uses out of drawing supplies."

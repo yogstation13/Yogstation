@@ -11,7 +11,7 @@
 
 	outfit = /datum/outfit/job/janitor
 
-	alt_titles = list("Custodian", "Sanitation Worker", "Cleaner", "Caretaker")
+	alt_titles = list("Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid")
 
 	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)

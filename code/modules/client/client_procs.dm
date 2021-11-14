@@ -298,8 +298,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//Admin Authorisation
 	holder = GLOB.admin_datums[ckey]
 	if(holder)
-		GLOB.admins |= src
-		holder.owner = src
+		if(!holder.associate(src, FALSE)) // Prevent asking for MFA at this point, it likely won't work
+			holder = null
 		connecting_admin = TRUE
 	else if(GLOB.deadmins[ckey])
 		add_verb(src, /client/proc/readmin)
