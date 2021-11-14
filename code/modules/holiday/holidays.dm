@@ -565,6 +565,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // Twelve Days of Christmas
 		"https://www.youtube.com/watch?v=Dkq3LD-4pmM",  // Michael Bublé - Holly Jolly Christmas
 		"https://www.youtube.com/watch?v=noMhM1CjM78",	// Christopher Lee - Silent Night
+		"https://www.youtube.com/watch?v=KmddeUJJEuU",	// Perry Como - It's Beginning to Look a Lot Like Christmas
 		"https://www.youtube.com/watch?v=kfZtNVEqsBs"  // Christopher Lee - Jingle Hell
 		)
 
