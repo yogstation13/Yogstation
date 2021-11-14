@@ -99,7 +99,8 @@
 			add_objective(/datum/objective/assassinate)
 	else
 		if(prob(15) && !(locate(/datum/objective/download) in objectives))
-			add_objective(/datum/objective/download)
+			var/datum/objective/download/objective = add_objective(/datum/objective/download)
+			objective.gen_amount_goal()
 		else
 			add_objective(/datum/objective/steal)
 
@@ -117,6 +118,7 @@
 				for(var/turf/T in GLOB.infiltrator_objective_items)
 					if(!(item in T.contents))
 						new item(T)
+	return O
 
 /datum/team/infiltrator/proc/update_objectives()
 	if(LAZYLEN(objectives))
