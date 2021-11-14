@@ -138,6 +138,7 @@
 #include "code\__DEFINES\{yogs_defines}\reactions.dm"
 #include "code\__DEFINES\{yogs_defines}\shuttles.dm"
 #include "code\__DEFINES\{yogs_defines}\spacepods.dm"
+#include "code\__DEFINES\{yogs_defines}\telecomms.dm"
 #include "code\__DEFINES\{yogs_defines}\wires.dm"
 #include "code\__HELPERS\_lists.dm"
 #include "code\__HELPERS\_logging.dm"
