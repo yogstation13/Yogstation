@@ -787,6 +787,22 @@
 /obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"lq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/storage/box/monkeycubes{
+	pixel_y = 4
+	},
+/obj/item/kitchen/knife,
+/obj/item/storage/box/fancy/egg_box{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "lL" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/titanium,
@@ -1158,22 +1174,6 @@
 /obj/item/wrench,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"VW" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/fancy/egg_box{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/obj/item/storage/box/monkeycubes{
-	pixel_y = 4
-	},
-/obj/item/kitchen/knife,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "Xq" = (
 /obj/item/mecha_parts/chassis/ripley,
 /turf/open/floor/mineral/titanium/white,
@@ -1399,7 +1399,7 @@ aL
 bk
 aI
 mu
-VW
+Nw
 ae
 "}
 (12,1,1) = {"
@@ -1414,7 +1414,7 @@ bI
 bk
 bk
 bk
-Nw
+lq
 cz
 CQ
 ae
