@@ -33,6 +33,13 @@
 		qdel(src)
 
 /obj/item/implant/infiltrator/activate()
+	var/obj/item/stack/telecrystal/TC = imp_in.is_holding(/obj/item/stack/telecrystal)
+	if (TC)
+		to_chat(imp_in, span_notice("You put [TC.amount] TC into your hidden uplink."))
+		var/datum/component/uplink/uplink = GetComponent(/datum/component/uplink)
+		uplink.telecrystals += TC.amount
+		TC.use(TC.amount)
+		return
 	var/list/radial_menu = list()
 	radial_menu["Syndicate Uplink"] = image(icon = 'icons/obj/radio.dmi', icon_state = "radio")
 	radial_menu["Change Pinpointer Target"] = image(icon = icon = 'icons/obj/device.dmi', icon_state = "pinpointer_syndicate")
