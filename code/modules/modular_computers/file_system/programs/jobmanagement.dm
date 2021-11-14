@@ -1,12 +1,14 @@
 /datum/computer_file/program/job_management
 	filename = "job_manage"
 	filedesc = "Job Manager"
+	category = PROGRAM_CATEGORY_CREW
 	program_icon_state = "id"
 	extended_desc = "Program for viewing and changing job slot avalibility."
 	transfer_access = ACCESS_HEADS
 	requires_ntnet = 0
 	size = 4
 	tgui_id = "NtosJobManager"
+	program_icon = "address-book"
 
 	var/change_position_cooldown = 30
 	//Jobs you cannot open new positions for

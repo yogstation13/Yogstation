@@ -1,6 +1,7 @@
 /datum/computer_file/program/alarm_monitor
 	filename = "alarmmonitor"
 	filedesc = "Alarm Monitor"
+	category = PROGRAM_CATEGORY_ENGI
 	ui_header = "alarm_green.gif"
 	program_icon_state = "alert-green"
 	extended_desc = "This program provides visual interface for station's alarm system."
@@ -8,6 +9,7 @@
 	network_destination = "alarm monitoring network"
 	size = 5
 	tgui_id = "NtosStationAlertConsole"
+	program_icon = "bell"
 
 	var/has_alert = 0
 	var/alarms = list("Fire" = list(), "Atmosphere" = list(), "Power" = list())
