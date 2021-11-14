@@ -44,30 +44,6 @@
 /datum/game_mode/infiltration/generate_report() //make this less shit
 	return "Reports show that the Syndicate is rounding up it's elite agents, possibly for a raid on a NanoTrasen-controlled station. Keep an eye out for unusual people."
 
-/datum/game_mode/infiltration/check_finished() //to be called by SSticker
-	if(!sit_team || !LAZYLEN(sit_team.objectives) || CONFIG_GET(keyed_list/continuous)["infiltration"])
-		return ..()
-	if(replacementmode && round_converted == 2)
-		return replacementmode.check_finished()
-	if((SSshuttle.emergency.mode == SHUTTLE_ENDGAME) || station_was_nuked)
-		return TRUE
-	var/objectives_complete = TRUE
-	var/all_at_base = TRUE
-	for(var/A in sit_team.objectives)
-		var/datum/objective/O = A
-		if(!O.check_completion())
-			objectives_complete = FALSE
-	if(objectives_complete)
-		for(var/B in sit_team.members)
-			var/datum/mind/M = B
-			if(M && M.current && M.current.stat && M.current.client)
-				var/turf/T = get_turf(M.current)
-				var/area/A = get_area(T)
-				if(!is_centcom_level(T.z) && !is_type_in_typecache(A, areas_that_can_finish))
-					all_at_base = FALSE
-	return all_at_base && objectives_complete
-
-
 /datum/game_mode/infiltration/set_round_result()
 	..()
 	var/result = sit_team.get_result()
