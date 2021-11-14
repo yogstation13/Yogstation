@@ -2853,9 +2853,6 @@
 "gK" = (
 /turf/template_noop,
 /area/space/nearstation)
-"gL" = (
-/turf/template_noop,
-/area/ruin/space/has_grav/ancientstation/sec)
 "gM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/xenoblood/xgibs/core,
@@ -8386,7 +8383,7 @@
 /area/ruin/space/has_grav/ancientstation/atmo)
 "KQ" = (
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/sec)
+/area/ruin/space/has_grav/ancientstation)
 "Lh" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/engine/o2,
@@ -11178,7 +11175,7 @@ aT
 dV
 fl
 bX
-eJ
+aT
 eJ
 eJ
 dv
@@ -11190,7 +11187,7 @@ eJ
 eJ
 eJ
 eJ
-eJ
+aT
 aT
 pc
 aG
@@ -11227,7 +11224,7 @@ aT
 lI
 bN
 aT
-gL
+gK
 eJ
 iA
 hO
@@ -11276,7 +11273,7 @@ aT
 dY
 bN
 aT
-gL
+gK
 eJ
 iB
 kc
@@ -11325,7 +11322,7 @@ bO
 cq
 cq
 aT
-gL
+gK
 eJ
 ev
 kc
@@ -11337,7 +11334,7 @@ fr
 eu
 ik
 eJ
-eJ
+aT
 RR
 ps
 KA
@@ -11374,7 +11371,7 @@ bd
 lI
 cq
 aT
-gL
+gK
 fd
 ew
 Dm
@@ -11386,7 +11383,7 @@ uY
 OV
 il
 eJ
-gL
+gK
 gK
 pw
 gK
@@ -11473,7 +11470,7 @@ bN
 bN
 bO
 gK
-gL
+gK
 eJ
 eJ
 eJ
@@ -11483,7 +11480,7 @@ eJ
 dv
 dv
 dv
-gL
+gK
 gK
 aa
 pw
