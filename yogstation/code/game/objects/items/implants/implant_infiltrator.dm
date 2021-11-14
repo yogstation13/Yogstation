@@ -25,11 +25,12 @@
 		target.apply_status_effect(/datum/status_effect/infiltrator_pinpointer)
 
 /obj/item/implant/infiltrator/removed(mob/living/target, silent = FALSE, special = 0)
+	var/turf/T = get_turf(src)
 	. = ..()
 	if (.)
 		target.remove_status_effect(/datum/status_effect/infiltrator_pinpointer)
-		visible_message(src, span_notice("[src] explodes into a bunch of sparks!"))
-		do_sparks(8, FALSE, src)
+		visible_message(T, span_notice("[src] explodes into a bunch of sparks!"))
+		do_sparks(8, FALSE, T)
 		qdel(src)
 
 /obj/item/implant/infiltrator/activate()
