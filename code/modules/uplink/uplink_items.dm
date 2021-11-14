@@ -451,7 +451,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
-	//exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops) //yogs: removes restrictions on liabilit- I mean punchghosts
+	exclude_modes = list(/datum/game_mode/infiltration) //yogs: removes restrictions on liabilit- I mean punchghosts, but restrict them for infiltrators
 	player_minimum = 25
 	restricted = TRUE
 
