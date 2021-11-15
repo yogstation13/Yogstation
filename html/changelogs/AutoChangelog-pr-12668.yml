@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "admin reagent adding with select ID now actually works instead of pretending to"
