@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - rscdel: "removes an old unmaintained gamemode we kept around for no reason"
