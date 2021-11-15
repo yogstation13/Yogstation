@@ -1395,9 +1395,9 @@
 /turf/closed/mineral/random/low_chance,
 /area/ruin/unpowered)
 "dx" = (
-/obj/structure/girder,
-/turf/open/space/basic,
-/area/ruin/space/has_grav/ancientstation/betacorridor)
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/space/nearstation)
 "dy" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/ancientstation/rnd)
@@ -8858,6 +8858,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"ZW" = (
+/obj/item/stack/rods,
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
 aa
@@ -9002,7 +9006,7 @@ EV
 kQ
 gK
 aa
-nr
+ZW
 aa
 aa
 "}
@@ -9067,7 +9071,7 @@ aa
 aa
 ab
 eg
-dx
+qx
 ec
 eg
 eA
@@ -9297,7 +9301,7 @@ nr
 aa
 cD
 aa
-nr
+ZW
 aa
 "}
 (10,1,1) = {"
@@ -9795,7 +9799,7 @@ aa
 aa
 aa
 aa
-gK
+dx
 aq
 aM
 aM
@@ -9844,7 +9848,7 @@ aa
 aa
 aa
 aa
-gK
+dx
 ar
 aN
 aN
@@ -9893,7 +9897,7 @@ aa
 aa
 aa
 aa
-gK
+dx
 aq
 aM
 aM
