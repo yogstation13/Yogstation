@@ -70,7 +70,7 @@ Contents:
 	Mind.add_antag_datum(ninjadatum)
 
 	var/datum/language_holder/H = Ninja.get_language_holder() //yogs start
-	H.remove_language(/datum/language/common)
+	H.remove_all_languages()
 	H.grant_language(/datum/language/japanese) //yogs end
 
 	if(Ninja.mind != Mind)			//something has gone wrong!

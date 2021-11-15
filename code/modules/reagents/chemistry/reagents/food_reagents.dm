@@ -100,6 +100,12 @@
 		M.satiety += 30
 	. = ..()
 
+/datum/reagent/consumable/nutriment/protein
+	name = "Protein"
+	description = "A natural polyamide made up of amino acids. An essential constituent of mosts known forms of life."
+	brute_heal = 0.8 //Rewards the player for eating a balanced diet.
+	nutriment_factor = 9 * REAGENTS_METABOLISM //45% as calorie dense as corn oil.
+
 /datum/reagent/consumable/cooking_oil
 	name = "Cooking Oil"
 	description = "A variety of cooking oil derived from fat or plants. Used in food preparation and frying."
@@ -678,14 +684,26 @@
 	name = "Vitrium Froth"
 	description = "A bubbly paste that heals wounds of the skin."
 	color = "#d3a308"
-	nutriment_factor = 3 * REAGENTS_METABOLISM
 	taste_description = "fruity mushroom"
 
 /datum/reagent/consumable/vitfro/on_mob_life(mob/living/carbon/M)
-	if(prob(80))
+	if(prob(60))
 		M.adjustBruteLoss(-1*REM, 0)
 		M.adjustFireLoss(-1*REM, 0)
 		. = TRUE
+	..()
+
+/datum/reagent/consumable/ashresin
+	name = "Ash Resin"
+	description = "A sticky and in large quantities toxic substance found in lavaland flora that helps retain water and keep out pests."
+	color = "#ad8604"
+	taste_description = "sticky ash"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+
+/datum/reagent/consumable/ashresin/on_mob_life(mob/living/carbon/M) //nothing to worry about when eaten sparsely
+	if(prob(90))
+		M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 1)
+		. = 1
 	..()
 
 /datum/reagent/consumable/clownstears

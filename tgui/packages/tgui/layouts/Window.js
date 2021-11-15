@@ -41,6 +41,31 @@ export class Window extends Component {
     recallWindowGeometry(options);
   }
 
+  componentDidUpdate(prevProps) {
+    const shouldUpdateGeometry = (
+      this.props.width !== prevProps.width
+      || this.props.height !== prevProps.height
+    );
+    if (shouldUpdateGeometry) {
+      this.updateGeometry();
+    }
+  }
+
+  updateGeometry() {
+    const { config } = useBackend(this.context);
+    const options = {
+      size: DEFAULT_SIZE,
+      ...config.window,
+    };
+    if (this.props.width && this.props.height) {
+      options.size = [this.props.width, this.props.height];
+    }
+    if (config.window?.key) {
+      setWindowKey(config.window.key);
+    }
+    recallWindowGeometry(options);
+  }
+
   render() {
     const {
       resizable,

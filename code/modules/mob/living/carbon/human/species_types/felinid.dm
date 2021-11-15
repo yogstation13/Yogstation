@@ -6,6 +6,7 @@
 
 	mutant_bodyparts = list("ears", "tail_human")
 	default_features = list("mcolor" = "FFF", "tail_human" = "Cat", "ears" = "Cat", "wings" = "None")
+	liked_food = SEAFOOD | DAIRY
 	toxic_food = TOXIC | CHOCOLATE
 	mutantears = /obj/item/organ/ears/cat
 	mutanttail = /obj/item/organ/tail/cat
@@ -104,3 +105,8 @@
 
 	if(!silent)
 		to_chat(H, "You are no longer a cat.")
+		
+/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+	if(H.reagents.has_reagent(/datum/reagent/consumable/ethanol/catsip))
+		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)

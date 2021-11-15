@@ -79,7 +79,9 @@
 
 	if(mentor_datum && isnotpretty(msg)) // If this is, specifically, a mentor, and not an admin nor a normal player
 		to_chat(src,"<span class='danger mentor'>You cannot send bigoted language as a mentor.</span>", confidential=TRUE)
-		message_admins("[discord_id ? discord_id : key_name(src)] just tripped the pretty filter in a mentorpm: [msg]")
+		var/log_message = "[discord_id ? discord_id : key_name(src)] just tripped the pretty filter in a mentorpm: [msg]"
+		message_admins(log_message)
+		log_mentor(log_message)
 		return
 	msg = emoji_parse(msg)
 	if(C)

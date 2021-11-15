@@ -117,3 +117,26 @@
 		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
 	H.mind.accent_name = pick(assoc_list_strip_value(GLOB.accents_name2file))// Right now this pick just picks a straight random one from all implemented.
 
+/datum/quirk/colorist
+	name = "Colorist"
+	desc = "You like carrying around a hair dye spray to quickly apply color patterns to your hair."
+	value = 0
+	medical_record_text = "Patient enjoys dyeing their hair with pretty colors."
+	var/where
+
+/datum/quirk/colorist/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/dyespray/spraycan = new(get_turf(H))
+	var/list/slots = list(
+		"in your left pocket" = SLOT_L_STORE,
+		"in your right pocket" = SLOT_R_STORE,
+		"in your backpack" = SLOT_IN_BACKPACK
+	)
+	where = H.equip_in_one_of_slots(spraycan, slots, FALSE) || "at your feet"
+
+/datum/quirk/colorist/post_add()
+	if(where == "in your backpack")
+		var/mob/living/carbon/human/H = quirk_holder
+		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
+
+	to_chat(quirk_holder, span_boldnotice("Your bottle of hair dye spray is [where]."))
