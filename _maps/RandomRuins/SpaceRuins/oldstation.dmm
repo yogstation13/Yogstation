@@ -7711,16 +7711,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating/airless,
 /area/solar/port)
-"qt" = (
-/obj/machinery/power/solar,
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating/airless,
-/area/solar/port)
 "qu" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -10279,7 +10269,7 @@ qm
 qq
 ql
 aa
-qt
+qm
 qM
 qr
 aa
