@@ -1238,7 +1238,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/deltacorridor)
+/area/ruin/space/has_grav/ancientstation/rnd)
 "dd" = (
 /obj/machinery/door/airlock/highsecurity,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -1255,8 +1255,8 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltaai)
 "de" = (
-/turf/closed/indestructible/rock,
-/area/ruin/space/has_grav/ancientstation/betacorridor)
+/turf/closed/wall,
+/area/space)
 "df" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/science{
@@ -1603,6 +1603,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "dZ" = (
@@ -2629,7 +2630,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/deltacorridor)
+/area/ruin/space/has_grav/ancientstation/rnd)
 "go" = (
 /obj/machinery/door/airlock/science,
 /obj/effect/decal/cleanable/dirt,
@@ -2880,8 +2881,11 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/rnd)
 "gR" = (
-/turf/template_noop,
-/area/ruin/space/has_grav/ancientstation/deltacorridor)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/comm)
 "gS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
@@ -4226,10 +4230,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "jy" = (
@@ -6417,11 +6421,11 @@
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "nY" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/tracks,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "nZ" = (
@@ -6717,8 +6721,9 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "oC" = (
-/turf/open/space/basic,
-/area/ruin/space/has_grav/ancientstation/atmo)
+/obj/structure/lattice,
+/turf/closed/wall,
+/area/ruin/space/has_grav/ancientstation/betacorridor)
 "oD" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/end{
 	dir = 8
@@ -6959,6 +6964,7 @@
 /area/ruin/space/has_grav/ancientstation)
 "pb" = (
 /obj/effect/decal/cleanable/cobweb,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "pc" = (
@@ -7249,6 +7255,7 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Electrical Maintanace"
 	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "pG" = (
@@ -8166,6 +8173,13 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+"Bl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation)
 "Bs" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/engine/o2,
@@ -8378,7 +8392,11 @@
 /obj/machinery/light/small,
 /turf/open/floor/engine/n2,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"KG" = (
+/turf/closed/mineral/diamond,
+/area/ruin/unpowered)
 "KQ" = (
+/obj/structure/closet/emcloset/anchored,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "Lh" = (
@@ -8436,6 +8454,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"LW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation)
 "LY" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
 	dir = 8;
@@ -8454,6 +8478,10 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
+"Nm" = (
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation)
 "NQ" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -8494,6 +8522,17 @@
 /obj/structure/chair,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
+"OZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation)
+"Pc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/xenoblood/xgibs/core,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation)
 "Pn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red{
@@ -8530,9 +8569,6 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/comm)
 "PV" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-25"
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/departments/restroom{
 	pixel_y = 32
@@ -8607,6 +8643,11 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+"Sh" = (
+/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Sn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -8653,6 +8694,18 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"Ts" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "TL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer{
@@ -8712,6 +8765,10 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"VS" = (
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/ancientstation/betacorridor)
 "Wp" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -8818,7 +8875,7 @@ aa
 aa
 aa
 aa
-aa
+gK
 gK
 gK
 gK
@@ -8882,7 +8939,7 @@ cD
 br
 br
 cD
-oC
+kQ
 kQ
 mH
 DT
@@ -9009,7 +9066,7 @@ aa
 aa
 aa
 ab
-de
+eg
 dx
 ec
 eg
@@ -9058,9 +9115,9 @@ aa
 aa
 aa
 aa
-dF
+oC
+VS
 dA
-ee
 eg
 eO
 gt
@@ -9107,7 +9164,7 @@ aa
 aa
 aa
 aa
-gK
+ee
 dA
 ee
 ei
@@ -9156,8 +9213,8 @@ aa
 aa
 aa
 aa
-de
-de
+eg
+eg
 de
 ec
 eT
@@ -10868,7 +10925,7 @@ aa
 gK
 an
 ax
-aI
+gR
 aI
 aI
 aI
@@ -11219,7 +11276,7 @@ gK
 az
 aT
 lI
-bN
+OZ
 aT
 gK
 eJ
@@ -11236,7 +11293,7 @@ eJ
 KQ
 cW
 pr
-Ro
+Bl
 aG
 gK
 gK
@@ -11282,7 +11339,7 @@ hA
 eu
 tW
 eJ
-KQ
+Nm
 Ro
 pr
 Ro
@@ -11414,8 +11471,8 @@ aa
 gK
 az
 bd
-cq
-bN
+Pc
+LW
 aT
 gK
 eJ
@@ -11463,7 +11520,7 @@ aa
 gK
 gK
 bd
-bN
+LW
 bN
 bO
 gK
@@ -11564,7 +11621,7 @@ bd
 bN
 cq
 dU
-aa
+gK
 aa
 aa
 aa
@@ -11613,7 +11670,7 @@ bd
 cq
 lI
 aT
-aa
+gK
 cD
 cD
 aa
@@ -11662,7 +11719,7 @@ bd
 cq
 cq
 aT
-gK
+KG
 br
 fU
 cD
@@ -11711,8 +11768,8 @@ dU
 lI
 cq
 aT
-gR
 gK
+fU
 br
 cD
 bE
@@ -11760,7 +11817,7 @@ aT
 bZ
 bN
 aT
-gR
+gK
 gK
 cD
 gK
@@ -11775,7 +11832,7 @@ gK
 bE
 pb
 pD
-fV
+Sh
 bE
 gK
 aa
@@ -11809,7 +11866,7 @@ aT
 bN
 cx
 aT
-gR
+gK
 gK
 gK
 gK
@@ -11823,7 +11880,7 @@ dF
 gK
 bD
 lB
-pD
+Ts
 dh
 bE
 gK
@@ -12004,7 +12061,7 @@ gK
 bE
 fG
 ge
-bE
+eY
 eY
 eY
 eY
@@ -12053,7 +12110,7 @@ gK
 bE
 Re
 fK
-bE
+eY
 hh
 di
 eE
@@ -12102,7 +12159,7 @@ gK
 bE
 ex
 fK
-bE
+eY
 hC
 dZ
 eF
@@ -12151,7 +12208,7 @@ dH
 bE
 Re
 gk
-bE
+eY
 hj
 gW
 gM
@@ -12200,7 +12257,7 @@ dL
 bE
 Re
 fK
-bE
+eY
 hG
 hC
 iF
@@ -12347,7 +12404,7 @@ dT
 bD
 eB
 op
-bE
+eY
 hh
 im
 fo
@@ -12396,7 +12453,7 @@ dH
 bE
 ff
 oq
-bD
+dy
 hC
 it
 fu
@@ -12445,7 +12502,7 @@ gK
 bE
 Re
 op
-bE
+eY
 hC
 iz
 fo
@@ -12494,7 +12551,7 @@ gK
 bE
 Re
 op
-bD
+dy
 hM
 eD
 fw
@@ -12543,7 +12600,7 @@ gK
 bE
 fG
 go
-bD
+dy
 eY
 eY
 dy
