@@ -484,7 +484,8 @@
 		/datum/reagent/consumable/limejuice,
 		/datum/reagent/consumable/tomatojuice,
 		/datum/reagent/consumable/lemonjuice,
-		/datum/reagent/consumable/menthol
+		/datum/reagent/consumable/menthol,
+		/datum/reagent/consumable/berryjuice
 	)
 	upgrade_reagents = null
 	emagged_reagents = list(
