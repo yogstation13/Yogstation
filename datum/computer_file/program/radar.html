@@ -16,39 +16,73 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/computer_file/program.html">computer_file/program</a>/<a href="datum/computer_file/program/radar.html">radar</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/acffcf7e22ddecd796a11281ff36777e5bb26885/code/modules/modular_computers/file_system/programs/radar.dm#L1">
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L1">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 1"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/computer_file/program/radar.html#var/arrowstyle">arrowstyle</a></th><td>Used by the tgui interface, themed NT or Syndicate.</td></tr>
+            <tr><th><a href="datum/computer_file/program/radar.html#var/last_icon_state">last_icon_state</a></th><td>Used to keep track of the last value program_icon_state was set to, to prevent constant unnecessary update_icon() calls</td></tr>
             <tr><th><a href="datum/computer_file/program/radar.html#var/next_scan">next_scan</a></th><td>Used to store when the next scan is available. Updated by the scan() proc.</td></tr>
             <tr><th><a href="datum/computer_file/program/radar.html#var/objects">objects</a></th><td>List of trackable entities. Updated by the scan() proc.</td></tr>
+            <tr><th><a href="datum/computer_file/program/radar.html#var/pointercolor">pointercolor</a></th><td>Used by the tgui interface, themed for NT or Syndicate colors.</td></tr>
             <tr><th><a href="datum/computer_file/program/radar.html#var/selected">selected</a></th><td>Ref of the last trackable object selected by the user in the tgui window. Updated in the ui_act() proc.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/computer_file/program/radar.html#proc/find_atom">find_atom</a></th><td>Finds the atom in the appropriate list that the <code>selected</code> var indicates</td></tr>
             <tr><th><a href="datum/computer_file/program/radar.html#proc/scan">scan</a></th><td>Runs a scan of all the trackable atoms.</td></tr>
             <tr><th><a href="datum/computer_file/program/radar.html#proc/track">track</a></th><td>Updates tracking information of the selected target.</td></tr>
             <tr><th><a href="datum/computer_file/program/radar.html#proc/trackable">trackable</a></th><td>Checks the trackability of the selected target.</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/next_scan"><aside class="declaration">var </aside>next_scan
+    <h2 id="var">Var Details</h2><h3 id="var/arrowstyle"><aside class="declaration">var </aside>arrowstyle
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/acffcf7e22ddecd796a11281ff36777e5bb26885/code/modules/modular_computers/file_system/programs/radar.dm#L19">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 19"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 24"/></a></h3>
+        <p>Used by the tgui interface, themed NT or Syndicate.</p><h3 id="var/last_icon_state"><aside class="declaration">var </aside>last_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 22"/></a></h3>
+        <p>Used to keep track of the last value program_icon_state was set to, to prevent constant unnecessary update_icon() calls</p><h3 id="var/next_scan"><aside class="declaration">var </aside>next_scan
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 20"/></a></h3>
         <p>Used to store when the next scan is available. Updated by the scan() proc.</p><h3 id="var/objects"><aside class="declaration">var </aside>objects
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/acffcf7e22ddecd796a11281ff36777e5bb26885/code/modules/modular_computers/file_system/programs/radar.dm#L15">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 15"/></a></h3>
-        <p>List of trackable entities. Updated by the scan() proc.</p><h3 id="var/selected"><aside class="declaration">var </aside>selected
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 16"/></a></h3>
+        <p>List of trackable entities. Updated by the scan() proc.</p><h3 id="var/pointercolor"><aside class="declaration">var </aside>pointercolor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 26"/></a></h3>
+        <p>Used by the tgui interface, themed for NT or Syndicate colors.</p><h3 id="var/selected"><aside class="declaration">var </aside>selected
             <aside>&ndash; /<a href="atom.html">atom</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/acffcf7e22ddecd796a11281ff36777e5bb26885/code/modules/modular_computers/file_system/programs/radar.dm#L17">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 17"/></a></h3>
-        <p>Ref of the last trackable object selected by the user in the tgui window. Updated in the ui_act() proc.</p><h2 id="proc">Proc Details</h2><h3 id="proc/scan"><aside class="declaration">proc </aside>scan<aside>() 
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 18"/></a></h3>
+        <p>Ref of the last trackable object selected by the user in the tgui window. Updated in the ui_act() proc.</p><h2 id="proc">Proc Details</h2><h3 id="proc/find_atom"><aside class="declaration">proc </aside>find_atom<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/acffcf7e22ddecd796a11281ff36777e5bb26885/code/modules/modular_computers/file_system/programs/radar.dm#L103">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 103"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 168"/></a></aside>
+        </h3>
+        <p>Finds the atom in the appropriate list that the <code>selected</code> var indicates</p>
+<p>The <code>selected</code> var holds a REF, which is a string. A mob REF may be
+something like &quot;mob_209&quot;. In order to find the actual atom, we need
+to search the appropriate list for the REF string. This is dependant
+on the program (Lifeline uses GLOB.human_list, while Fission360 uses
+GLOB.poi_list), but the result will be the same; evaluate the string and
+return an atom reference.</p><h3 id="proc/scan"><aside class="declaration">proc </aside>scan<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 154"/></a></aside>
         </h3>
         <p>Runs a scan of all the trackable atoms.</p>
 <p>Checks each entry in the GLOB of the specific trackable atoms against
@@ -60,8 +94,8 @@ as to limit the load players may place on the server using these
 somewhat costly loops.</p><h3 id="proc/track"><aside class="declaration">proc </aside>track<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/acffcf7e22ddecd796a11281ff36777e5bb26885/code/modules/modular_computers/file_system/programs/radar.dm#L72">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 72"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 91"/></a></aside>
         </h3>
         <p>Updates tracking information of the selected target.</p>
 <p>The track() proc updates the entire set of information about the location
@@ -70,8 +104,8 @@ crosshair over the up/down arrows, or none in favor of a rotating arrow
 for far away targets. This information is returned in the form of a list.</p><h3 id="proc/trackable"><aside class="declaration">proc </aside>trackable<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/signal) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/acffcf7e22ddecd796a11281ff36777e5bb26885/code/modules/modular_computers/file_system/programs/radar.dm#L84">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 84"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/91097e5088a755f2d0804655a2081525f398ff8d/code/modules/modular_computers/file_system/programs/radar.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar.dm 133"/></a></aside>
         </h3>
         <p>Checks the trackability of the selected target.</p>
 <p>If the target is on the computer's Z level, or both are on station Z
@@ -80,7 +114,7 @@ Arguments:
 *arg1 is the atom being evaluated.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/acffcf7e22ddecd796a11281ff36777e5bb26885">acffcf7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/91097e5088a755f2d0804655a2081525f398ff8d">91097e5</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
