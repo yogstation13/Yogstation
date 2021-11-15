@@ -1300,9 +1300,6 @@
 /obj/effect/spawner/structure/window/hollow/reinforced,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/mining)
-"dk" = (
-/turf/template_noop,
-/area/ruin/space/has_grav/ancientstation/deltaai)
 "dl" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/ancientstation/engi)
@@ -12444,7 +12441,7 @@ ae
 cM
 ae
 ac
-dk
+gK
 bE
 Re
 op
@@ -12493,7 +12490,7 @@ ae
 ae
 ae
 ac
-dk
+gK
 bE
 Re
 op
@@ -12542,7 +12539,7 @@ ae
 cN
 ag
 ac
-dk
+gK
 bE
 fG
 go
@@ -12591,7 +12588,7 @@ ag
 ck
 ag
 ac
-dk
+gK
 bE
 ea
 gC
@@ -12640,7 +12637,7 @@ cu
 ae
 bq
 ac
-dk
+gK
 bE
 ea
 ou
@@ -12737,7 +12734,7 @@ bz
 bR
 cB
 ac
-dk
+gK
 gK
 bE
 fv
@@ -12878,9 +12875,9 @@ aa
 gK
 gK
 gK
-gK
-gK
-gK
+ac
+ac
+ac
 gK
 gK
 gK
@@ -12926,11 +12923,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+gK
+gK
+gK
+gK
+gK
 aa
 aa
 aa
