@@ -4,6 +4,7 @@
 	icon_screen = "alert:0"
 	icon_keyboard = "atmos_key"
 	circuit = /obj/item/circuitboard/computer/stationalert
+	var/alarms = list("Fire" = list(), "Atmosphere" = list(), "Power" = list())
 
 	light_color = LIGHT_COLOR_CYAN
 
@@ -25,9 +26,9 @@
 	var/list/data = list()
 
 	data["alarms"] = list()
-	for(var/class in GLOB.alarms)
+	for(var/class in alarms)
 		data["alarms"][class] = list()
-		for(var/area in GLOB.alarms[class])
+		for(var/area in alarms[class])
 			data["alarms"][class] += area
 
 	return data
@@ -38,7 +39,7 @@
 	if(stat & (BROKEN))
 		return
 
-	var/list/L = GLOB.alarms[class]
+	var/list/L = alarms[class]
 	for(var/I in L)
 		if (I == A.name)
 			var/list/alarm = L[I]
@@ -61,7 +62,7 @@
 /obj/machinery/computer/station_alert/proc/cancelAlarm(class, area/A, obj/origin)
 	if(stat & (BROKEN))
 		return
-	var/list/L = GLOB.alarms[class]
+	var/list/L = alarms[class]
 	var/cleared = 0
 	for (var/I in L)
 		if (I == A.name)
@@ -79,8 +80,8 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	var/active_alarms = FALSE
-	for(var/cat in GLOB.alarms)
-		var/list/L = GLOB.alarms[cat]
+	for(var/cat in alarms)
+		var/list/L = alarms[cat]
 		if(L.len)
 			active_alarms = TRUE
 	if(active_alarms)

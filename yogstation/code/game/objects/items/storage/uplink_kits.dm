@@ -29,4 +29,5 @@
 /obj/item/storage/box/syndie_kit/xeno_organ_kit/PopulateContents()
 	new /obj/item/autosurgeon/plasmavessel(src)
 	new /obj/item/organ/alien/resinspinner(src)
+	new /obj/item/organ/alien/neurotoxin(src)
 	new /obj/item/organ/alien/acid(src)

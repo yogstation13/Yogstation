@@ -12,6 +12,7 @@
 	program_icon = "bell"
 
 	var/has_alert = 0
+	var/alarms = list("Fire" = list(), "Atmosphere" = list(), "Power" = list())
 
 /datum/computer_file/program/alarm_monitor/process_tick()
 	..()
@@ -31,9 +32,9 @@
 	var/list/data = get_header_data()
 
 	data["alarms"] = list()
-	for(var/class in GLOB.alarms)
+	for(var/class in alarms)
 		data["alarms"][class] = list()
-		for(var/area in GLOB.alarms[class])
+		for(var/area in alarms[class])
 			data["alarms"][class] += area
 
 	return data
@@ -45,7 +46,7 @@
 	else if(!is_mining_level(source.z) || istype(A, /area/ruin))
 		return
 
-	var/list/L = GLOB.alarms[class]
+	var/list/L = alarms[class]
 	for(var/I in L)
 		if (I == A.name)
 			var/list/alarm = L[I]
@@ -69,7 +70,7 @@
 
 
 /datum/computer_file/program/alarm_monitor/proc/cancelAlarm(class, area/A, obj/origin)
-	var/list/L = GLOB.alarms[class]
+	var/list/L = alarms[class]
 	var/cleared = 0
 	for (var/I in L)
 		if (I == A.name)
@@ -86,8 +87,8 @@
 
 /datum/computer_file/program/alarm_monitor/proc/update_alarm_display()
 	has_alert = FALSE
-	for(var/cat in GLOB.alarms)
-		var/list/L = GLOB.alarms[cat]
+	for(var/cat in alarms)
+		var/list/L = alarms[cat]
 		if(L.len)
 			has_alert = TRUE
 
