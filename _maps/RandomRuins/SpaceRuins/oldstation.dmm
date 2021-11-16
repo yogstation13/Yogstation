@@ -1255,8 +1255,9 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltaai)
 "de" = (
-/turf/closed/wall,
-/area/space)
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "df" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/science{
@@ -2210,10 +2211,6 @@
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-25"
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "fu" = (
@@ -9209,7 +9206,7 @@ aa
 aa
 eg
 eg
-de
+eg
 ec
 eT
 gx
@@ -11955,8 +11952,8 @@ aa
 aa
 gK
 bE
-ea
-ft
+de
+fE
 fE
 gz
 gS
@@ -12690,7 +12687,7 @@ bq
 ac
 gK
 bE
-ea
+ft
 ou
 Re
 jx
