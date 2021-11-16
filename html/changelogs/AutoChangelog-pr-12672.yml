@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "fixed modular consoles not being able to hold some componets"
