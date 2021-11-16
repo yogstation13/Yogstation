@@ -25,9 +25,6 @@
 	var/base_active_power_usage = 100					// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_idle_power_usage = 10						// Power usage when the computer is idle and screen is off (currently only applies to laptops)
 
-	var/list/expansion_bays								/// Lazy List of extra hardware slots that can be used modularly.
-	var/max_bays = 0									/// Number of total expansion bays this computer has available.
-
 	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 
 /obj/machinery/modular_computer/Initialize()
