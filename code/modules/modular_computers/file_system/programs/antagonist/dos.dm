@@ -48,10 +48,7 @@
 			for(var/obj/machinery/ntnet_relay/R in SSnetworks.station_network.relays)
 				if(R.uid == text2num(params["targid"]))
 					target = R
-					message_admins("Succeded: [R.uid] & [params["targid"]]")
 					break
-				else
-					message_admins("Failed: [R.uid] & [params["targid"]]")
 			return TRUE
 		if("PRG_reset")
 			if(target)
