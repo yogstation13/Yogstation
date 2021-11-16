@@ -126,7 +126,10 @@
 		for(var/datum/action/changeling/p in purchasedpowers)
 			additionalpoints += p.dna_cost // Refunds all of your points into the additional points. If you had no absorbed points, this would add up to 0
 
-		reset_properties()
+		changeling_speak = 0
+		chosen_sting = null
+		geneticpoints = initial(geneticpoints)
+		mimicing = ""
 
 		geneticpoints += additionalpoints // Gives the extra points you had
 
