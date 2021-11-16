@@ -160,7 +160,6 @@
 		/datum/language/draconic,
 		/datum/language/english,
 		/datum/language/etherean,
-		/datum/language/felinid,
 		/datum/language/mothian,
 		/datum/language/polysmorph,
 		/datum/language/sylvan
@@ -174,7 +173,6 @@
 		/datum/language/draconic,
 		/datum/language/english,
 		/datum/language/etherean,
-		/datum/language/felinid,
 		/datum/language/mothian,
 		/datum/language/polysmorph,
 		/datum/language/sylvan,
