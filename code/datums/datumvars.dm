@@ -1012,7 +1012,7 @@
 								var/datum/reagent/selected = reagent_options[ID]
 								if(selected?.name == chosen_id) //apparently I have to do this because the other method wasn't WORKING
 									valid_id = TRUE
-									chosen_id = selected
+									chosen_id = ID
 							if(!valid_id)
 								to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 					if("Choose ID")
