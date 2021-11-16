@@ -25,6 +25,9 @@
 	var/base_active_power_usage = 100					// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_idle_power_usage = 10						// Power usage when the computer is idle and screen is off (currently only applies to laptops)
 
+	var/list/expansion_bays								/// Lazy List of extra hardware slots that can be used modularly.
+	var/max_bays = 0									/// Number of total expansion bays this computer has available.
+
 	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 
 /obj/machinery/modular_computer/Initialize()
@@ -48,7 +51,10 @@
 		cpu.attack_ghost(user)
 
 /obj/machinery/modular_computer/emag_act(mob/user)
-	return cpu ? cpu.emag_act(user) : 1
+	if(!cpu)
+		to_chat(user, "<span class='warning'>You'd need to turn the [src] on first.</span>")
+		return FALSE
+	return (cpu.emag_act(user))
 
 /obj/machinery/modular_computer/update_icon()
 	cut_overlays()
@@ -71,29 +77,6 @@
 		add_overlay("bsod")
 		add_overlay("broken")
 
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/machinery/modular_computer/proc/eject_id()
-	set name = "Eject ID"
-	set category = "Object"
-
-	if(cpu)
-		cpu.eject_id()
-
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/machinery/modular_computer/proc/eject_disk()
-	set name = "Eject Data Disk"
-	set category = "Object"
-
-	if(cpu)
-		cpu.eject_disk()
-
-/obj/machinery/modular_computer/proc/eject_card()
-	set name = "Eject Intellicard"
-	set category = "Object"
-	set src in view(1)
-
-	if(cpu)
-		cpu.eject_card()
 
 /obj/machinery/modular_computer/AltClick(mob/user)
 	if(cpu)
@@ -133,7 +116,7 @@
 	. = ..()
 
 /obj/machinery/modular_computer/attackby(var/obj/item/W as obj, mob/user)
-	if(cpu && !(flags_1 & NODECONSTRUCT_1))
+	if(user.a_intent == INTENT_HELP && cpu && !(flags_1 & NODECONSTRUCT_1))
 		return cpu.attackby(W, user)
 	return ..()
 

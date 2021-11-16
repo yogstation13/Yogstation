@@ -300,7 +300,8 @@
 		"https://www.youtube.com/watch?v=1vrEljMfXYo", // country roads
 		"https://www.youtube.com/watch?v=FqxJ_iuBPCs", // Star Spangled Banner
 		"https://www.youtube.com/watch?v=H0bhSGfKTs4", // Surfin' USA
-		"https://www.youtube.com/watch?v=FAVQsnr4uYg"  // Lone Star - Tony Marcus
+		"https://www.youtube.com/watch?v=FAVQsnr4uYg",  // Lone Star - Tony Marcus
+		"https://www.youtube.com/watch?v=kQzdJUiALBk"	// wyoming - In the Shadow of the Valley - Don Burnham
 	)
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
@@ -563,7 +564,9 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=jCjrcjFGQCA", // Frosty The Snowman
 		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // Twelve Days of Christmas
 		"https://www.youtube.com/watch?v=Dkq3LD-4pmM",  // Michael Bublé - Holly Jolly Christmas
+		"https://www.youtube.com/watch?v=WgEVI8DEkF8",	// Nat King Cole - Deck the Halls
 		"https://www.youtube.com/watch?v=noMhM1CjM78",	// Christopher Lee - Silent Night
+		"https://www.youtube.com/watch?v=KmddeUJJEuU",	// Perry Como - It's Beginning to Look a Lot Like Christmas
 		"https://www.youtube.com/watch?v=kfZtNVEqsBs"  // Christopher Lee - Jingle Hell
 		)
 
@@ -672,7 +675,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=61MR40PG8K4", // What Do You Do with an Innsmouth Sailor? - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
 		"https://www.youtube.com/watch?v=P2csnVNai-o", // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
 		"https://www.youtube.com/watch?v=Jr5DG6QheEc",  // Look! Professor Angell Brings - H. P. Lovecraft Historical Society - An Even Scarier Solstice
-		"https://www.youtube.com/watch?v=LA4TMacjYMw"  // Slay Ride - H. P. Lovecraft Historical Society - An Even Scarier Solstice
+		"https://www.youtube.com/watch?v=LA4TMacjYMw",  // Slay Ride - H. P. Lovecraft Historical Society - An Even Scarier Solstice
+		"https://www.youtube.com/watch?v=tM08p2sxDVE"	// Embrace the Darkness - Andrew Hulshult - DUSK
 		)
 
 /datum/holiday/twofoursixohfive
