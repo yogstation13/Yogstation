@@ -491,6 +491,7 @@
 		new /obj/item/reagent_containers/food/snacks/monkeycube/goat(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/sheep(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/chicken(src)
 
 /obj/item/storage/box/ids
 	name = "box of spare IDs"

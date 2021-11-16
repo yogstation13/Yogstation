@@ -213,3 +213,13 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishfry
 	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/chicken
+	name = "Whole Chicken"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/meat/chicken = 2,
+		/obj/item/reagent_containers/food/snacks/meat/chicken/wing = 2,
+		/obj/item/reagent_containers/food/snacks/meat/chicken/drumstick = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/meat/chicken/whole
+	subcategory = CAT_MEAT
