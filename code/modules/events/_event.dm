@@ -98,6 +98,7 @@
 
 /datum/round_event_control/Topic(href, href_list)
 	..()
+	check_rights(R_ADMIN)
 	if(href_list["cancel"])
 		if(!triggering)
 			to_chat(usr, span_admin("You are too late to cancel that event"))
