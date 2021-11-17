@@ -7,19 +7,22 @@
 /obj/item/ai_hijack_device/examine(mob/living/user)
 	. = ..()
 	if (user?.mind?.has_antag_datum(/datum/antagonist/infiltrator))
-		. += span_notice(span_italics("To use, attach to the core of an AI unit and wait. <i>This will alert the victim AI!"))
+		. += span_notice("To use, attach to the core of an AI unit and wait. [span_italics("This will alert the victim AI!")]")
 
 /obj/item/ai_hijack_device/afterattack(atom/O, mob/user, proximity)
 	if(isAI(O))
 		var/mob/living/silicon/ai/A = O
 		if(A.mind && A.mind.has_antag_datum(/datum/antagonist/hijacked_ai))
-			to_chat(user, span_warning("[A] has already been hijacked!</span>"))
+			to_chat(user, span_warning("[A] has already been hijacked!"))
+			return
+		if(A.stat == DEAD)
+			to_chat(user, span_warning("[A] is dead!"))
 			return
 		if(A.hijacking)
 			to_chat(user, span_warning("[A] is already in the process of being hijacked!"))
 			return
 		user.visible_message(span_warning("[user] begins attaching something to [A]..."))
-		if(do_after(user,55,target = A))
+		if(do_after(user, 55, target = A))
 			user.dropItemToGround(src)
 			forceMove(A)
 			A.hijacking = src
