@@ -1,0 +1,7 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "Removes the pod from charlie and adds a bridge instead"
+  - tweak: "Stuff the PA in charlie station into a crate"
+  - tweak: "Adds another pack of cable coils to charlie station"
+  - bugfix: "Fixes some issues on charlie station"
