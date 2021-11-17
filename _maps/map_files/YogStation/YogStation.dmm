@@ -5451,17 +5451,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
-"anN" = (
-/obj/machinery/camera{
-	c_tag = "Engineering Foyer";
-	dir = 1
-	},
-/obj/structure/noticeboard{
-	dir = 1;
-	pixel_y = -27
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "anO" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -6034,20 +6023,6 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"apr" = (
-/obj/machinery/light,
-/obj/structure/table,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "aps" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -58286,6 +58261,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
+"tsf" = (
+/obj/machinery/camera{
+	c_tag = "Engineering Foyer";
+	dir = 1
+	},
+/obj/item/modular_computer/telescreen/preset/engineering{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "tsI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -63507,6 +63492,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wLm" = (
+/obj/machinery/light,
+/obj/structure/table,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/noticeboard{
+	dir = 8;
+	pixel_x = 27
+	},
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "wLC" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -98313,7 +98316,7 @@ caA
 caA
 aiv
 ane
-anN
+tsf
 cfb
 cfb
 cgS
@@ -99085,7 +99088,7 @@ caA
 als
 anu
 aol
-apr
+wLm
 ctR
 ccn
 aSc
