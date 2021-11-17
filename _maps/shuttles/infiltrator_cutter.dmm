@@ -497,7 +497,7 @@
 	pixel_y = 24;
 	req_access = 150
 	},
-/obj/machinery/recharger,
+/obj/effect/landmark/start/infiltrator_objective,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/yogs/stealthcruiser)
 "bo" = (
@@ -689,6 +689,9 @@
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
