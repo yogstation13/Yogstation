@@ -123,18 +123,16 @@
 	if(ishuman(owner.current) || ismonkey(owner.current))
 		var/additionalpoints = geneticpoints
 
-		for(var/datum/action/changeling/p in purchasedpowers)
-			additionalpoints += p.dna_cost
-
 		changeling_speak = 0
 		chosen_sting = null
 		mimicing = ""
 
-		geneticpoints = additionalpoints
-
 		for(var/datum/action/changeling/p in purchasedpowers)
+			additionalpoints += p.dna_cost
 			purchasedpowers -= p
 			p.Remove(owner.current)
+			
+		geneticpoints = additionalpoints
 
 	//MOVE THIS
 	if(owner.current.hud_used && owner.current.hud_used.lingstingdisplay)
