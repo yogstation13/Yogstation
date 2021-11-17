@@ -122,6 +122,7 @@
 	desc = "A stationary computer. This one comes preloaded with bureaucratic programs."
 
 /obj/machinery/modular_computer/console/preset/command/hop/install_programs()
+	. = ..()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
 	hard_drive.store_file(new/datum/computer_file/program/job_management())
 	hard_drive.store_file(new/datum/computer_file/program/crew_manifest())
@@ -134,6 +135,7 @@
 	desc = "A stationary computer. This one comes preloaded with security programs."
 
 /obj/machinery/modular_computer/console/preset/command/hos/install_programs()
+	. = ..()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
 	hard_drive.store_file(new/datum/computer_file/program/secureye())
 
@@ -143,6 +145,7 @@
 	desc = "A stationary computer. This one comes preloaded with engineering programs."
 
 /obj/machinery/modular_computer/console/preset/command/ce/install_programs()
+	. = ..()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
 	hard_drive.store_file(new/datum/computer_file/program/power_monitor())
 	hard_drive.store_file(new/datum/computer_file/program/alarm_monitor())
@@ -156,6 +159,7 @@
 	_has_ai = TRUE
 
 /obj/machinery/modular_computer/console/preset/command/rd/install_programs()
+	. = ..()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
 	hard_drive.store_file(new/datum/computer_file/program/ntnetmonitor())
 	hard_drive.store_file(new/datum/computer_file/program/aidiag())
@@ -168,6 +172,7 @@
 
 /*
 /obj/machinery/modular_computer/console/preset/command/cmo/install_programs()
+	. = ..()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
 */
 
