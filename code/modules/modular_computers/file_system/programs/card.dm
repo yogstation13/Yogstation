@@ -63,9 +63,6 @@
 	if(!id_card)
 		return
 
-	if(istype(id_card, /obj/item/card/id/captains_spare/temporary))
-		to_chat(user, span_warning("ERROR: [id_card] is not compatable with this program"))
-		return
 	region_access = list()
 	if(!target_dept && (ACCESS_CHANGE_IDS in id_card.access))
 		minor = FALSE
@@ -265,15 +262,6 @@
 			target_id_card.access -= get_region_accesses(region)
 			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 			return TRUE
-		if("PRG_denyregion")
-			if(!computer || !authenticated)
-				return
-			var/region = text2num(params["region"])
-			if(isnull(region) || !(region in region_access))
-				return
-			target_id_card.access -= get_region_accesses(region)
-			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
-			return TRUE
 
 
 
@@ -362,7 +350,6 @@
 			data["id_rank"] = id_card.assignment ? id_card.assignment : "Unassigned"
 			data["id_owner"] = id_card.registered_name ? id_card.registered_name : "-----"
 			data["access_on_card"] = id_card.access
-			data["id_age"] = id_card.registered_age
 
 	return data
 

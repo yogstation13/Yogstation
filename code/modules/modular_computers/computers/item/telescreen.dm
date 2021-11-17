@@ -17,11 +17,6 @@
 //	broken_damage = 150
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/modular_computer/telescreen/New()
-	..()
-	// Allows us to create "north bump" "south bump" etc. named objects, for more comfortable mapping.
-	name = "telescreen"
-
 /obj/item/modular_computer/telescreen/interact(mob/user)
 	. = ..()
 	attack_self(user)
