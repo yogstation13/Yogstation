@@ -175,4 +175,6 @@
 		if(picture_image)
 			P.picture_image.Crop(cropx, cropy, psize_x - cropx, psize_y - cropy)
 		P.regenerate_small_icon()
+	if(mobs_seen)
+		P.mobs_seen = mobs_seen
 	return P
