@@ -508,8 +508,10 @@
 			CRASH("[src] failed to install starting files for an unknown reason")
 		if(istype(result, initial_program) && istype(result, /datum/computer_file/program))
 			var/datum/computer_file/program/program = result
-			if(program.run_program())
-				active_program = program
-				program.alert_pending = FALSE
-				turn_on()
-				update_icon()
+			if(program.requires_ntnet && program.network_destination)
+				program.generate_network_log("Connection opened to [network_destination].")
+			program.program_state = PROGRAM_STATE_ACTIVE
+			active_program = program
+			program.alert_pending = FALSE
+			turn_on()
+			update_icon()

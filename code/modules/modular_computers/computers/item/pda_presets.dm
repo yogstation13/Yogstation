@@ -11,7 +11,7 @@
 
 // Honk
 /obj/item/modular_computer/tablet/pda/preset/basic/clown
-	desc = "A halarius PDA often given to station pranksters."
+	desc = "A hilarious PDA often given to station pranksters."
 	finish_color = "pink"
 
 /obj/item/modular_computer/tablet/pda/preset/basic/clown/Initialize()
