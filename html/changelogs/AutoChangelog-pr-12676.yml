@@ -1,4 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "fixed Atmospheric Scanner and DoS Traffic Generator modular PC programs not functioning"
