@@ -9493,21 +9493,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"aBi" = (
-/obj/structure/table/glass,
-/obj/item/book/manual/wiki/medical_cloning{
-	pixel_y = 6
-	},
-/obj/item/pen,
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = -23;
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "aBj" = (
 /obj/structure/rack,
 /obj/machinery/light{
@@ -40265,6 +40250,29 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
+"ieb" = (
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/medical_cloning{
+	pixel_y = 6
+	},
+/obj/item/pen,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23;
+	pixel_y = 10
+	},
+/obj/item/storage/pill_bottle/mutadone{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "ieh" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -108059,7 +108067,7 @@ dsG
 rkx
 kYK
 dpw
-aBi
+ieb
 oMM
 wXJ
 oob
