@@ -38,3 +38,9 @@
 		card.assignment = "Assistant"
 		card.access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
 		card.update_label()
+	
+	var/obj/item/pda/pda = H.belt
+	if(istype(pda))
+		pda.owner = H.real_name
+		pda.ownjob = "Assistant"
+		pda.update_label()
