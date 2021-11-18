@@ -12,14 +12,6 @@
 	base_active_power_usage = 300
 	max_hardware_size = WEIGHT_CLASS_NORMAL
 	steel_sheet_cost = 10
-//	light_strength = 4
-//	max_damage = 300
-//	broken_damage = 150
-	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/modular_computer/telescreen/interact(mob/user)
-	. = ..()
-	attack_self(user)
 
 /obj/machinery/modular_computer/telescreen/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.tool_behaviour == TOOL_CROWBAR)
