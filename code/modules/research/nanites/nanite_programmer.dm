@@ -129,7 +129,7 @@
 			if(!isnull(timer))
 				playsound(src, "terminal_type", 25, 0)
 				if(!timer == 0)
-					timer = clamp(round(timer, 1),10,3600)
+					timer = clamp(round(timer, 1),5,3600)
 				program.timer = timer
 			. = TRUE
 		if("set_timer_type")
