@@ -37333,6 +37333,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"fZZ" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/misc_lab)
 "gaI" = (
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
@@ -38010,6 +38020,18 @@
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"gvY" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/science/misc_lab)
 "gwn" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
 	dir = 1
@@ -53942,15 +53964,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/processing)
-"qxK" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/turf/open/floor/plasteel/white,
-/area/science/misc_lab)
 "qyQ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -54076,6 +54089,15 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"qCW" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plasteel/white,
+/area/science/misc_lab)
 "qDi" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -55580,10 +55602,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"rDD" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plasteel/white,
-/area/science/misc_lab)
 "rDX" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -57641,15 +57659,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"sWO" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/misc_lab)
 "sWS" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -62805,14 +62814,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"wkk" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/white,
-/area/science/misc_lab)
 "wkE" = (
 /obj/machinery/door/airlock/external{
 	name = "External Access";
@@ -115547,8 +115548,8 @@ bwU
 lvK
 bQZ
 fFS
-sWO
-wkk
+gvY
+fZZ
 bQZ
 cmo
 cOe
@@ -115804,7 +115805,7 @@ eTc
 xUz
 wcB
 bOf
-qxK
+qCW
 njE
 bQZ
 cOT
@@ -116060,9 +116061,9 @@ bwT
 bxG
 peg
 bQZ
-rDD
+bZZ
 hjz
-rDD
+bZZ
 bQZ
 upw
 cOe
