@@ -1,4 +1,4 @@
 author: "boodaliboo"
 delete-after: true 
 changes: 
-  - rscadd: "Added berry juice to soda dispenser"
+  - tweak: "tweaked minimum nanite timer"

@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "DRAGnet spread is reduced"
+  - tweak: "DRAGnet cannot be dual-fired anymore"

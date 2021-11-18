@@ -74,7 +74,7 @@
 
 /datum/holiday/new_year/getStationPrefix()
 	return pick("Party","New","Hangover","Resolution","Auld")
-	
+
 /datum/holiday/new_year/greet()
 	return "Happy New Years!"
 
@@ -86,7 +86,7 @@
 
 /datum/holiday/groundhog/getStationPrefix()
 	return pick("Groundhog")
-	
+
 /datum/holiday/groundhog/greet()
 	return "Happy Groundhog day!"
 
@@ -151,7 +151,7 @@
 	name = "Leap Day"
 	begin_day = 29
 	begin_month = FEBRUARY
-	
+
 /datum/holiday/leap/greet()
 	return "Today is Leap Day!"
 
@@ -192,7 +192,7 @@
 	for(var/mob/dead/new_player/P in GLOB.mob_list)
 		if(P.client)
 			P.client.playtitlemusic()
-			
+
 /datum/holiday/april_fools/greet()
 	return "NOTICE: Yogstation will be down from April 2nd to April 5th as we transfer to the Source engine. Please join our discord for more info."
 
@@ -212,7 +212,7 @@
 
 /datum/holiday/fourtwenty/getStationPrefix()
 	return pick("Snoop","Blunt","Toke","Dank","Cheech","Chong")
-	
+
 /datum/holiday/fourtwenty/greet()
 	return "Smoke weed every day!"
 
@@ -234,7 +234,7 @@
 	begin_day = 1
 	begin_month = MAY
 	drone_hat = /obj/item/clothing/head/hardhat
-	
+
 /datum/holiday/labor/getStationPrefix()
 	return pick("Union","Labor","Worker","Trade")
 
@@ -260,7 +260,7 @@
 	name = "Summer Solstice"
 	begin_day = 21
 	begin_month = JUNE
-	
+
 /datum/holiday/summersolstice/greet()
 	return "Happy Summer Solstice!"
 
@@ -321,7 +321,7 @@
 		"https://www.youtube.com/watch?v=c5OdCqUWRyo", // Le Chant du Depart
 		"https://www.youtube.com/watch?v=wS10laW0rFo", // Chant du 9 Thermidor
 		"https://www.youtube.com/watch?v=o3wivTC1gOw", // Bonjour mon vieux Paris
-		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Maréchal, nous voilà 
+		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Maréchal, nous voilà
 		)
 
 /datum/holiday/france/getStationPrefix()
@@ -436,6 +436,18 @@
 
 /datum/holiday/october_revolution/getStationPrefix()
 	return pick("Communist", "Soviet", "Bolshevik", "Socialist", "Red", "Workers'")
+
+/datum/holiday/remembrance
+    name = "Remembrance Day"
+    begin_day = 11
+    begin_month = NOVEMBER
+
+/datum/holiday/remembrance/celebrate()
+    SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
+
+/datum/holiday/remembrance/proc/roundstart_celebrate()
+    for(var/mob/living/carbon/human/H in GLOB.player_list)
+        H.put_in_hands(new /obj/item/clothing/accessory/poppypin)
 
 /datum/holiday/kindness
 	name = "Kindness Day"
@@ -654,7 +666,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 /datum/holiday/easter/getStationPrefix()
 	return pick("Fluffy","Bunny","Easter","Egg")
-	
+
 /datum/holiday/lovecraft
 	name = "H.P. Lovecraft's Birthday"
 	begin_day = 20
