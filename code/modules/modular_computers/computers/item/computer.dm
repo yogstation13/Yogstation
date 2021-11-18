@@ -509,7 +509,7 @@
 		if(istype(result, initial_program) && istype(result, /datum/computer_file/program))
 			var/datum/computer_file/program/program = result
 			if(program.requires_ntnet && program.network_destination)
-				program.generate_network_log("Connection opened to [network_destination].")
+				program.generate_network_log("Connection opened to [program.network_destination].")
 			program.program_state = PROGRAM_STATE_ACTIVE
 			active_program = program
 			program.alert_pending = FALSE
