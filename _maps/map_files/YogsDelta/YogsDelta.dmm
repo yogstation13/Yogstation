@@ -59693,17 +59693,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
-"bNV" = (
-/obj/structure/table/reinforced,
-/obj/item/stock_parts/cell/high,
-/obj/item/stock_parts/cell/high,
-/obj/machinery/cell_charger,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "bNW" = (
 /obj/machinery/light,
 /obj/machinery/light_switch{
@@ -60960,10 +60949,6 @@
 /area/maintenance/starboard/aft)
 "bPW" = (
 /obj/structure/sign/warning/electricshock,
-/turf/closed/wall/r_wall,
-/area/crew_quarters/heads/chief)
-"bPX" = (
-/obj/structure/sign/nanotrasen,
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/chief)
 "bPY" = (
@@ -128149,6 +128134,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"wWB" = (
+/obj/structure/table/reinforced,
+/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/cell/high,
+/obj/machinery/cell_charger,
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/machinery/modular_computer/telescreen/preset/engineering{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "wWE" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -153539,8 +153538,8 @@ btn
 bAq
 bzr
 bLo
-bNV
-bPX
+wWB
+bHV
 bSh
 bQi
 bWp

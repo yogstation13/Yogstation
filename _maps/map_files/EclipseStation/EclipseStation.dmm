@@ -86183,6 +86183,13 @@
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
+"oMx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/modular_computer/telescreen/preset/engineering{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/break_room)
 "oPl" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -144386,7 +144393,7 @@ bDR
 bGS
 bHU
 bIE
-bJl
+oMx
 bKl
 bLk
 bLy

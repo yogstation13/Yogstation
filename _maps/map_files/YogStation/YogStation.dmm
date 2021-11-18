@@ -38758,6 +38758,16 @@
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"hjC" = (
+/obj/machinery/camera{
+	c_tag = "Engineering Foyer";
+	dir = 1
+	},
+/obj/machinery/modular_computer/telescreen/preset/engineering{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "hkd" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 1
@@ -58261,16 +58271,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
-"tsf" = (
-/obj/machinery/camera{
-	c_tag = "Engineering Foyer";
-	dir = 1
-	},
-/obj/item/modular_computer/telescreen/preset/engineering{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "tsI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -98316,7 +98316,7 @@ caA
 caA
 aiv
 ane
-tsf
+hjC
 cfb
 cfb
 cgS

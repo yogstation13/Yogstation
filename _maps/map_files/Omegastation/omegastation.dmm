@@ -18600,18 +18600,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"aRT" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -32
-	},
-/obj/machinery/camera{
-	c_tag = "Library 2";
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/library)
 "aRU" = (
 /obj/structure/table/wood,
 /obj/item/folder,
@@ -20517,6 +20505,29 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"aZI" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/modular_computer/telescreen/preset/engineering{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "aZM" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -39138,6 +39149,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
+"rJZ" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp,
+/obj/machinery/camera{
+	c_tag = "Library 2";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/library)
 "rLg" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
@@ -40081,26 +40101,6 @@
 /obj/machinery/status_display/supply,
 /turf/closed/wall/rust,
 /area/quartermaster/storage)
-"swQ" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "swZ" = (
 /turf/closed/wall/r_wall/rust,
 /area/security/brig)
@@ -43533,6 +43533,25 @@
 /obj/machinery/status_display/evac,
 /turf/closed/wall,
 /area/crew_quarters/lounge)
+"uvP" = (
+/obj/structure/table/wood,
+/obj/item/folder,
+/obj/item/pen,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/library)
 "uwe" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -80805,7 +80824,7 @@ aEt
 akd
 ddE
 prM
-swQ
+aZI
 ded
 ddE
 aQW
@@ -81319,8 +81338,8 @@ sHV
 ake
 aPO
 sJI
-aRT
-aRU
+rJZ
+uvP
 vOn
 omq
 hQl
