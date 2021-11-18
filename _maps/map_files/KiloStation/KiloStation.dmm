@@ -29700,27 +29700,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/explab)
-"aXV" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/disposal/bin,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/status_display/evac{
-	pixel_y = 32
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/break_room)
 "aXW" = (
 /turf/closed/wall/rust,
 /area/maintenance/starboard/fore)
@@ -76366,30 +76345,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/port/fore)
-"cys" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical{
-	pixel_y = 4
-	},
-/obj/item/storage/belt/utility,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/camera{
-	c_tag = "Engineering Desk";
-	dir = 2;
-	name = "engineering camera";
-	network = list("ss13","engine")
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/break_room)
 "cyu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/barricade/wooden/crude,
@@ -89340,6 +89295,27 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port)
+"hFT" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/disposal/bin,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/break_room)
 "hGB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -98610,6 +98586,17 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard/aft)
+"rBs" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "ceprivate";
+	name = "Chief Engineer's Privacy Shutters"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/status_display/evac{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/break_room)
 "rBA" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/delivery,
@@ -101772,6 +101759,30 @@
 	},
 /turf/closed/mineral/random/labormineral,
 /area/space/nearstation)
+"vlt" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 4
+	},
+/obj/item/storage/belt/utility,
+/obj/machinery/camera{
+	c_tag = "Engineering Desk";
+	dir = 2;
+	name = "engineering camera";
+	network = list("ss13","engine")
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/modular_computer/telescreen/preset/engineering{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/break_room)
 "vly" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -139266,7 +139277,7 @@ cff
 cNv
 cjn
 awN
-cys
+vlt
 aYI
 axp
 axs
@@ -139523,7 +139534,7 @@ axF
 lRF
 axF
 awN
-aXV
+hFT
 bFt
 ckC
 ckY
@@ -139780,7 +139791,7 @@ bEC
 cNy
 bOj
 awL
-bKp
+rBs
 ckm
 bKp
 awW
