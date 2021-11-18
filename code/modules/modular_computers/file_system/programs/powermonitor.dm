@@ -60,6 +60,10 @@
 	if(world.time >= next_record)
 		next_record = world.time + record_interval
 
+		if(history.len < 1)
+			history["supply"] = list()
+			history["demand"] = list()
+
 		var/datum/powernet/connected_powernet = get_powernet()
 
 		var/list/supply = history["supply"]

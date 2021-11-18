@@ -350,6 +350,7 @@
 			data["id_rank"] = id_card.assignment ? id_card.assignment : "Unassigned"
 			data["id_owner"] = id_card.registered_name ? id_card.registered_name : "-----"
 			data["access_on_card"] = id_card.access
+			data["id_age"] = id_card.registered_age
 
 	return data
 

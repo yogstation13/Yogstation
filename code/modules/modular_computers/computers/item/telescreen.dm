@@ -1,4 +1,4 @@
-/obj/item/modular_computer/telescreen
+/obj/machinery/modular_computer/telescreen
 	name = "telescreen"
 	desc = "A wall-mounted touchscreen computer."
 	icon = 'icons/obj/modular_telescreen.dmi'
@@ -21,14 +21,14 @@
 	. = ..()
 	attack_self(user)
 
-/obj/item/modular_computer/telescreen/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/modular_computer/telescreen/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.tool_behaviour == TOOL_CROWBAR)
-		if(all_components.len)
+		if(cpu.all_components.len)
 			to_chat(user, span_warning("Remove all components from \the [src] before unsecuring it."))
 			return
 		new /obj/item/wallframe/telescreen(get_turf(src.loc))
-		physical.visible_message("\The [src] has been unsecured by [user].")
-		relay_qdel()
+		visible_message("\The [src] has been unsecured by [user].")
+		cpu.relay_qdel()
 		qdel(src)
 		return
 	..()
@@ -38,5 +38,5 @@
 	icon = 'icons/obj/modular_telescreen.dmi'
 	icon_state = "telescreen"
 	w_class = WEIGHT_CLASS_BULKY
-	result_path = /obj/item/modular_computer/telescreen
+	result_path = /obj/machinery/modular_computer/telescreen
 	pixel_shift = -32

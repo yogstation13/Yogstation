@@ -237,14 +237,14 @@
 	// If we have a recharger, enable it automatically. Lets computer without a battery work.
 	var/obj/item/computer_hardware/recharger/recharger = all_components[MC_CHARGE]
 	if(recharger)
-		recharger.enabled = 1
+		recharger.enabled = TRUE
 
 	if(all_components[MC_CPU] && use_power()) // use_power() checks if the PC is powered
 		if(issynth)
 			to_chat(user, span_notice("You send an activation signal to \the [src], turning it on."))
 		else
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
-		enabled = 1
+		enabled = TRUE
 		update_icon()
 		ui_interact(user)
 	else // Unpowered
@@ -257,11 +257,11 @@
 /obj/item/modular_computer/process()
 	if(!enabled) // The computer is turned off
 		last_power_usage = 0
-		return 0
+		return FALSE
 
 	if(obj_integrity <= integrity_failure)
 		shutdown_computer()
-		return 0
+		return FALSE
 
 	if(active_program && active_program.requires_ntnet && !get_ntnet_status(active_program.requires_ntnet_feature))
 		active_program.event_networkfailure(0) // Active program requires NTNet to run but we've just lost connection. Crash.
@@ -402,7 +402,7 @@
 		idle_threads.Remove(P)
 	if(loud)
 		physical.visible_message(span_notice("\The [src] shuts down."))
-	enabled = 0
+	enabled = FALSE
 	update_icon()
 
 
@@ -513,5 +513,5 @@
 			program.program_state = PROGRAM_STATE_ACTIVE
 			active_program = program
 			program.alert_pending = FALSE
-			turn_on()
+			enabled = TRUE
 			update_icon()

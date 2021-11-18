@@ -157,5 +157,5 @@
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer)
 
-	starting_files = list(	/datum/computer_file/program/portrait_printer)
+	starting_files = list(	new /datum/computer_file/program/portrait_printer)
 	initial_program = /datum/computer_file/program/portrait_printer
