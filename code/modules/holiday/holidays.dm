@@ -446,7 +446,7 @@
     SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
 
 /datum/holiday/remembrance/proc/roundstart_celebrate()
-    for(var/mob/living/carbon/human/H in GLOB.alive_player_list)
+    for(var/mob/living/carbon/human/H in GLOB.player_list)
         H.put_in_hands(new /obj/item/clothing/accessory/poppypin)
 
 /datum/holiday/kindness
