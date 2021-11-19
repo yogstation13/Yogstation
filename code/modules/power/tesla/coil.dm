@@ -153,7 +153,7 @@
 	icon_state = "grounding_rod0"
 	anchored = FALSE
 	density = TRUE
-
+	circuit = /obj/item/circuitboard/machine/grounding_rod
 	can_buckle = TRUE
 	buckle_lying = FALSE
 	buckle_requires_restraints = TRUE
