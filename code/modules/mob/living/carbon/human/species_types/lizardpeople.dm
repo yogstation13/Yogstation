@@ -49,6 +49,7 @@
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE)
 	inherent_traits = list(TRAIT_NOGUNS) //yogs start - ashwalkers have special lungs and actually breathe
 	mutantlungs = /obj/item/organ/lungs/ashwalker
+	mutanteyes = /obj/item/organ/eyes/night_vision/ash_walker
 	breathid = "n2" // yogs end
 	species_language_holder = /datum/language_holder/lizard/ash
 

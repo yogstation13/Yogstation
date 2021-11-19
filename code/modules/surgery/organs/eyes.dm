@@ -119,6 +119,11 @@
 	name = "fung-eye"
 	desc = "While on the outside they look inert and dead, the eyes of mushroom people are actually very advanced."
 
+/obj/item/organ/eyes/night_vision/ash_walker
+	name = "lizard eyes"
+	desc = "Centuries of evolutions gave those scale wearing specimens night vision to aid their unending hunt"
+	sight_flags = TRAIT_NIGHT_VISION
+
 ///Robotic
 
 /obj/item/organ/eyes/robotic
