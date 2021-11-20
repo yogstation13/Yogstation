@@ -24,14 +24,21 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/yogs/s
 
 
 /datum/objective/infiltrator/exploit/find_target(dupe_search_range)
-	var/list/possible_targets = active_ais()
+	var/list/possible_targets = active_ais(TRUE)
+	for (var/mob/living/silicon/ai/AI in possible_targets)
+		if (AI.mind.quiet_round)
+			possible_targets -= AI
 	var/mob/living/silicon/ai/target_ai = pick(possible_targets)
 	target = target_ai.mind
 	update_explanation_text()
 	return target
 
 /datum/objective/infiltrator/exploit/is_possible()
-	return LAZYLEN(active_ais())
+	var/list/possible_targets = active_ais(TRUE)
+	for (var/mob/living/silicon/ai/AI in possible_targets)
+		if (AI.mind.quiet_round)
+			possible_targets -= AI
+	return LAZYLEN(possible_targets)
 
 /datum/objective/infiltrator/exploit/update_explanation_text()
 	..()
@@ -77,7 +84,7 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/yogs/s
 /datum/objective/infiltrator/kidnap/proc/potential_targets()
 	var/list/possible_targets = list()
 	for(var/datum/mind/M in SSticker.minds)
-		if(!M || !considered_alive(M) || considered_afk(M) || !M.current || !M.current.client || !ishuman(M.current))
+		if(!M || !considered_alive(M) || considered_afk(M) || !M.current || !M.current.client || !ishuman(M.current) || M.quiet_round)
 			continue
 		if (M.has_antag_datum(/datum/antagonist/infiltrator) || M.has_antag_datum(/datum/antagonist/traitor) || M.has_antag_datum(/datum/antagonist/nukeop))
 			continue
@@ -105,4 +112,4 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/yogs/s
 
 /datum/objective/infiltrator/kidnap/check_completion()
 	var/target_area = get_area(target.current)
-	return !target || (target.current && target.current.suiciding) || (considered_alive(target) && is_type_in_typecache(target_area, GLOB.infiltrator_kidnap_areas))
+	return QDELETED(target) || (target.current && (!target.current.ckey || target.current.suiciding)) || (considered_alive(target) && is_type_in_typecache(target_area, GLOB.infiltrator_kidnap_areas))
