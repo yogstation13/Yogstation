@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/yogs/s
 			continue
 		if(M.assigned_role in GLOB.command_positions)
 			possible_targets[M] = 25
-		else if("Head of Security" in get_department_heads(M.assigned_role))
+		else if(M.assigned_role in GLOB.security_positions)
 			possible_targets[M] = 5
 		else
 			possible_targets[M] = 1
