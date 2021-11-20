@@ -1,0 +1,4 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - bugfix: "reflectors now rotate properly when welded on top of a shuttle"
