@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "adds circuit to grounding rod so it gets components, all grounding rods were missing the circuit."
