@@ -34,7 +34,7 @@
 	var/mob/living/M = A.affected_mob
 	if(prob(100)) //2% chance to make a new tumor somewhere
 		var/obj/item/organ/tumor/T = new()
-		T.Insert(M)
+		T.Insert(M,FALSE,FALSE,BODY_ZONE_R_ARM)
 
 /datum/symptom/tumor/End(datum/disease/advance/A)
 	..()
