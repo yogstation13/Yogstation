@@ -230,7 +230,7 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggle_vox)()
 	set category = "Preferences"
 	set desc = "Hear VOX Announcements"
 	usr.client.prefs.toggles ^= SOUND_VOX
-	to_chat(usr, "You will now [(usr.client.prefs.toggles & SOUND_VOX) ? "hear VOX announcements" : "hear VOX announcements"].")
+	to_chat(usr, "You will now [(usr.client.prefs.toggles & SOUND_VOX) ? "hear VOX announcements" : "no longer hear VOX announcements"].")
 	usr.client.prefs.save_preferences()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle VOX", "[usr.client.prefs.toggles & SOUND_VOX ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /datum/verbs/menu/Settings/Sound/toggle_vox/Get_checked(client/C)
