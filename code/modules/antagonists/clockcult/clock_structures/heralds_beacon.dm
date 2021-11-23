@@ -68,7 +68,7 @@
 	if(!available)
 		to_chat(user, span_danger("You can no longer vote with [src]."))
 		return
-	if(istype(M, /mob/living/simple_animal/drone/cogscarab))
+	if(istype(user, /mob/living/simple_animal/drone/cogscarab))
 		to_chat(user, span_danger("You are unable to activate [src]."))
 		return
 
