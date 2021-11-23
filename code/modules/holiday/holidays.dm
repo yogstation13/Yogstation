@@ -189,15 +189,11 @@
 		"https://www.youtube.com/watch?v=5QtxOr4iSBY", // Gay Activity - Clive Richardson
 		"https://www.youtube.com/watch?v=ytWz0qVvBZ0", // Diggy Diggy Hole - Sparkles*
 		"https://www.youtube.com/watch?v=ko_A6YW6Krk", // Blockbuster - Jack Waldenmaier
-		"https://www.youtube.com/watch?v=qOVLUiha1B8", // Welcome To YogLabs - Mattokamus
+		"https://www.youtube.com/watch?v=qOVLUiha1B8" // Welcome To YogLabs - Mattokamus
 	)
 
 /datum/holiday/april_fools/celebrate()
 	SSjob.set_overflow_role("Clown")
-	SSticker.login_music = 'sound/ambience/clown.ogg'
-	for(var/mob/dead/new_player/P in GLOB.mob_list)
-		if(P.client)
-			P.client.playtitlemusic()
 
 /datum/holiday/april_fools/greet()
 	return "NOTICE: Yogstation will be down from April 2nd to April 5th as we transfer to the Source engine. Please join our discord for more info."
