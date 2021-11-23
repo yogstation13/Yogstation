@@ -340,16 +340,16 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bag"
 	desc = "A bag for storing pills, patches, and bottles."
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
 
 /obj/item/storage/bag/chemistry/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_combined_w_class = 200
-	STR.max_items = 50
+	STR.max_combined_w_class = 50
+	STR.max_items = 40
 	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper))
+	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/hypospray/medipen))
 
 /*
  *  Biowaste bag (mostly for xenobiologists)
@@ -360,7 +360,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "biobag"
 	desc = "A bag for the safe transportation and disposal of biowaste and other biological materials."
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
 
 /obj/item/storage/bag/bio/ComponentInitialize()
@@ -369,7 +369,7 @@
 	STR.max_combined_w_class = 200
 	STR.max_items = 25
 	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/slime_extract, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/blood, /obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/food/snacks/deadmouse, /obj/item/reagent_containers/food/snacks/monkeycube))
+	STR.set_holdable(list(/obj/item/slime_extract, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/blood, /obj/item/reagent_containers/food/snacks/deadmouse, /obj/item/reagent_containers/food/snacks/monkeycube, /obj/item/organ, /obj/item/bodypart))
 
 /*
  *  Construction bag (for engineering, holds stock parts and electronics)
@@ -380,7 +380,7 @@
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "construction_bag"
 	desc = "A bag for storing small construction components."
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
 
 /obj/item/storage/bag/construction/ComponentInitialize()
@@ -390,7 +390,7 @@
 	STR.max_items = 50
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/stack/ore/bluespace_crystal, /obj/item/assembly, /obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker, /obj/item/stack/cable_coil, /obj/item/circuitboard, /obj/item/electronics, /obj/item/organ, /obj/item/bodypart))
+	STR.set_holdable(list(/obj/item/stack/ore/bluespace_crystal, /obj/item/assembly, /obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker, /obj/item/stack/cable_coil, /obj/item/circuitboard, /obj/item/electronics))
 
 
 /obj/item/storage/bag/construction/admin/full/ComponentInitialize()
