@@ -391,9 +391,6 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
 "aV" = (
-/obj/machinery/computer/crew/syndie{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
@@ -1015,10 +1012,8 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
 "Ir" = (
-/obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/fancy/donut_box,
+/obj/machinery/computer/crew/syndie,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
 "Lb" = (
