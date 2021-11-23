@@ -3,6 +3,7 @@
 	roundend_category = "syndicate infiltrators" //just in case
 	antagpanel_category = "Infiltrator"
 	job_rank = ROLE_INFILTRATOR
+	show_to_ghosts = TRUE
 	var/datum/team/infiltrator/infiltrator_team
 	var/always_new_team = FALSE //If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
 	var/send_to_spawnpoint = TRUE //Should the user be moved to default spawnpoint.
