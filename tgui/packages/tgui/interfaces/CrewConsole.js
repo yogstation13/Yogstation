@@ -97,7 +97,7 @@ export const CrewConsoleContent = (props, context) => {
   return (
     <Flex>
       <Flex.Item>
-        <Section minHeight={90}
+        <Section minHeight={90} title="Crew Monitor"
           buttons={(
             <Button.Checkbox checked={originalTitles}
               onClick={() => setoriginalTitles(!originalTitles)}>

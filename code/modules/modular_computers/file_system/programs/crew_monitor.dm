@@ -13,8 +13,37 @@
 	size = 5
 	tgui_id = "NtosCrewMonitor"
 	program_icon = "heartbeat"
+	var/program_icon_state_alarm = "crew-red"
+	var/alarm = FALSE
+
+/datum/computer_file/program/crew_monitor/New()
+	..()
+	set_signals()
+
+/datum/computer_file/program/crew_monitor/Destroy()
+	..()
+	clear_signals()
+
+/datum/computer_file/program/crew_monitor/proc/set_signals()
+	RegisterSignal(GLOB.crewmonitor, COMSIG_MACHINERY_CREWMON_UPDATE, .proc/update_overlay, override = TRUE)
+
+/datum/computer_file/program/crew_monitor/proc/clear_signals()
+	UnregisterSignal(GLOB.crewmonitor, COMSIG_MACHINERY_CREWMON_UPDATE)
+
+/datum/computer_file/program/crew_monitor/proc/update_overlay()
+	if(GLOB.crewmonitor.death_list.len > 0)
+		alarm = TRUE
+	else
+		alarm = FALSE
+	if(alarm)
+		program_icon_state = program_icon_state_alarm
+	else
+		program_icon_state = initial(program_icon_state)
+	if(istype(computer))
+		computer.update_icon()
 
 /datum/computer_file/program/crew_monitor/ui_data(mob/user)
 	var/list/data = get_header_data()
 	data |= GLOB.crewmonitor.ui_data(user)
+	update_overlay()
 	return data

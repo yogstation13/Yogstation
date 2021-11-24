@@ -26,6 +26,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/list/jobs
 	var/list/data_by_z = list()
 	var/list/last_update = list()
+	var/list/death_list = list()
 
 /datum/crewmonitor/New()
 	. = ..()
@@ -114,6 +115,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		return data_by_z["[z]"]
 
 	var/list/results = list()
+	var/list/new_death_list = list()
 	var/obj/item/clothing/under/U
 	var/obj/item/card/id/I
 	var/turf/pos
@@ -187,10 +189,15 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					pos_x = null
 					pos_y = null
 
+				if(life_status == FALSE)
+					new_death_list.Add(H)
+
+				death_list = new_death_list
 				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time
+	SEND_SIGNAL(src, COMSIG_MACHINERY_CREWMON_UPDATE)
 
 	return results
 
