@@ -183,13 +183,21 @@
 				Inside, I shall teach you various important healing recipes and crafting techniques.
 
 
-				<h2>Tribalordrazine:</h2>
+				<h2>Poultice:</h2>
 
 				To prepare, first gather mushroom stems, cacti or porcini leaves, ashes from a burnt item, and a heat source such as a welder.
-				Next, mash together a stem and cacti fruit/porcini leaf within a mortar with the help of a pestle.
+				Next, mash together 4 mushroom stems and either 3 cacti fruit.
 				Afterwards, scoop up ashes with the mortar. If the ashes are warm enough, it may mix without extra heat needed.
 				If it has yet to mix, heat up the bowl by using the welder on it until it has done so.
-				Consume in moderation in order to heal burns and bruises.
+				Apply product to wounded parts to heal them. May cause loss of breath.
+
+				<h2>Bone Gel:</h2>
+
+				To prepare, first mash up either 3 of any plant or 1 polypore mushroom shaving.
+				Next, milk a gutlunch, one of which should be near the tendril.
+				Afterwards, once enough honey is gathered, mix the two together and heat.
+				Once heated enough it will solidify into a usable product.
+				Apply product to broken bones in order to mend them.
 
 				<h2>Capmix:</h2>
 
@@ -205,7 +213,7 @@
 				Either way, it is known to cause belly aches and toxicity within our bodies when consumed in large amounts.
 				However there is several methods for avoiding this:
 				Consuming plants in small quantities, or not consuming them at all.
-				Mashing the plants up and heating the bowl to solidify and remove most of the resin.
+				Mashing the plants up and adding water to the bowl to solidify and remove most of the resin.
 				Ingesting capmix in order to expel the resin.
 
 				Resin is also useful for ensuring things stick together, and is a stronger binder than watcher sinew.
