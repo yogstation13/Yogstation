@@ -45,18 +45,29 @@ CREATE TABLE IF NOT EXISTS `SS13_admin_ranks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `SS13_admin_tickets`;
-CREATE TABLE IF NOT EXISTS `SS13_admin_tickets` (
+DROP TABLE IF EXISTS `ss13_admin_tickets`;
+CREATE TABLE IF NOT EXISTS `ss13_admin_tickets` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `round_id` int(10) unsigned NOT NULL DEFAULT 0,
   `ticket_id` int(10) unsigned NOT NULL DEFAULT 0,
   `when` datetime NOT NULL DEFAULT current_timestamp(),
   `ckey` varchar(32) NOT NULL,
-  `a_ckey` varchar(32) NOT NULL,
-  `content` text NOT NULL,
-  `rating` tinyint(3) unsigned NOT NULL DEFAULT 5,
-  PRIMARY KEY (`id`)
+  `a_ckey` varchar(32),
+  PRIMARY KEY (`id`),
+  KEY `idx_round` (`round_id`),
+  KEY `idx_round_ticket` (`round_id`,`ticket_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=157319 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ss13_admin_ticket_interactions`;
+CREATE TABLE IF NOT EXISTS `ss13_admin_ticket_content` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ticket_id` int(10) unsigned,
+  `when` datetime NOT NULL DEFAULT current_timestamp(),
+  `user` varchar(32) NOT NULL,
+  `text` text,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`ticket_id`) REFERENCES `ss13_admin_tickets`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `SS13_antag_tokens`;
@@ -314,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `SS13_mfa_logins` (
 	`ip` int(10) unsigned NOT NULL,
 	`cid` varchar(32) NOT NULL,
 	`datetime` timestamp NOT NULL DEFAULT current_timestamp(),
-	PRIMARY KEY (`ckey`,`ip`,`cid`)
+	PRIMARY KEY (`ckey`,`ip`,`cid`,`datetime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `SS13_misc`;

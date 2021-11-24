@@ -90,6 +90,14 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 
+/obj/item/clothing/glasses/meson/sunglasses
+	name= "meson sunglasses"
+	desc = "Sunglasses that also function as a meson scanner."
+	icon_state = "sunhudmeson"
+	item_state = "sunhudmeson"
+	flash_protect = 1
+	tint = 1
+
 /obj/item/clothing/glasses/science
 	name = "science goggles"
 	desc = "A pair of snazzy goggles used to protect against chemical spills. Fitted with an analyzer for scanning items and reagents."

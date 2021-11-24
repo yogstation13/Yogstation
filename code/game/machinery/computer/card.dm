@@ -64,7 +64,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	change_position_cooldown = CONFIG_GET(number/id_console_jobslot_delay)
 
 /obj/machinery/computer/card/attackby(obj/O, mob/user, params)//TODO:SANITY
-	if(istype(O, /obj/item/card/id))
+	if(isidcard(O))
 		var/obj/item/card/id/idcard = O
 		if(!modify)
 			if (!user.transferItemToLoc(idcard,src))
@@ -390,10 +390,11 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		if ("assign")
 			if (authenticated == 2)
 				var/t1 = href_list["assign_target"]
+				var/t2 = href_list["assign_target"]
 				if(t1 == "Custom")
 					var/newJob = reject_bad_text(input("Enter a custom job assignment.", "Assignment", modify ? modify.assignment : "Unassigned"), MAX_NAME_LEN)
 					if(newJob)
-						t1 = newJob
+						t2 = newJob
 
 				else if(t1 == "Unassigned")
 					modify.access -= get_all_accesses()
@@ -419,7 +420,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 				if (modify)
 					log_game("[modify.registered_name]'s ID had its job changed to [t1] from [modify.assignment] by [usr.name]") // yogs - ID card change logging
 					modify.originalassignment = t1
-					modify.assignment = t1
+					modify.assignment = t2
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 		if ("demote")
 			if(modify.assignment in head_subordinates || modify.originalassignment == "Assistant")

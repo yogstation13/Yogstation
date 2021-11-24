@@ -119,6 +119,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/turf/pos
 	var/ijob
 	var/name
+	var/assignment_title
 	var/assignment
 	var/oxydam
 	var/toxdam
@@ -150,10 +151,12 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 				if (I)
 					name = I.registered_name
+					assignment_title = I.assignment
 					assignment = I.originalassignment
 					ijob = jobs[I.originalassignment]
 				else
 					name = "Unknown"
+					assignment_title = ""
 					assignment = ""
 					ijob = 80
 
@@ -184,7 +187,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					pos_x = null
 					pos_y = null
 
-				results[++results.len] = list("name" = name, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time

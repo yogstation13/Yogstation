@@ -52,12 +52,22 @@ CREATE TABLE IF NOT EXISTS `admin_tickets` (
   `ticket_id` int(10) unsigned NOT NULL DEFAULT 0,
   `when` datetime NOT NULL DEFAULT current_timestamp(),
   `ckey` varchar(32) NOT NULL,
-  `a_ckey` varchar(32) NOT NULL,
-  `content` text NOT NULL,
-  `rating` tinyint(3) unsigned NOT NULL DEFAULT 5,
-  PRIMARY KEY (`id`)
+  `a_ckey` varchar(32),
+  PRIMARY KEY (`id`),
+  KEY `idx_round` (`round_id`),
+  KEY `idx_round_ticket` (`round_id`,`ticket_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=157319 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `admin_ticket_interactions`;
+CREATE TABLE IF NOT EXISTS `admin_ticket_content` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ticket_id` int(10) unsigned,
+  `when` datetime NOT NULL DEFAULT current_timestamp(),
+  `user` varchar(32) NOT NULL,
+  `text` text,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`ticket_id`) REFERENCES `admin_tickets`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `antag_tokens`;
 CREATE TABLE IF NOT EXISTS `antag_tokens` (
@@ -314,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `mfa_logins` (
 	`ip` int(10) unsigned NOT NULL,
 	`cid` varchar(32) NOT NULL,
 	`datetime` timestamp NOT NULL DEFAULT current_timestamp(),
-	PRIMARY KEY (`ckey`,`ip`,`cid`)
+	PRIMARY KEY (`ckey`,`ip`,`cid`, `datetime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `misc`;

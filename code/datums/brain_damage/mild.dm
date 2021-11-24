@@ -192,7 +192,36 @@
 
 	var/static/list/common_words = world.file2list("strings/1000_most_common.txt")
 
+// Returns false if word has more than 4 distinct letters
+/datum/brain_trauma/mild/expressive_aphasia/proc/is_simple(word)
+	var/list/distinct = list()
+	for(var/i=1, i<=length(word), i++)
+		var/c = lowertext(word[i])
+		if(!(c in distinct) && !(c in list(".", ",", ";", "!", ":", "?")))
+			distinct += c
+		if(distinct.len > 4)
+			return 0
+	return 1
+
+/datum/brain_trauma/mild/expressive_aphasia/proc/stutter(word)
+	var/new_word = copytext(word, 1, rand(2, 5))
+	if(prob(40))
+		new_word += pick("- uh", "- erm")
+	return new_word + "..  "
+
+// Shuffle letters from index randNum to last letter
+/datum/brain_trauma/mild/expressive_aphasia/proc/partial_shuffle(word)
+	var/randNum = rand(2, 5)
+	var/new_word = copytext(word, 1, randNum)
+	var/list/shuffled = shuffle(text2charlist(copytext(word, randNum, length(word))))
+	return new_word + jointext(shuffled, "") + word[length(word)]
+
 /datum/brain_trauma/mild/expressive_aphasia/handle_speech(datum/source, list/speech_args)
+	if(ishuman(source))
+		var/mob/living/carbon/human/H = source
+		if(H.drunkenness > 10)
+			return
+	
 	var/message = speech_args[SPEECH_MESSAGE]
 
 	if(message)
@@ -205,7 +234,7 @@
 			for(var/potential_suffix in list(".", ",", ";", "!", ":", "?"))
 				suffix_foundon = findtext(word, potential_suffix, -length(potential_suffix))
 				if(suffix_foundon)
-					suffix = potential_suffix
+					suffix = copytext(word,suffix_foundon,length(word)+1)
 					break
 
 			if(suffix_foundon)
@@ -213,18 +242,18 @@
 
 			word = html_decode(word)
 
-			if((length(word) < 5) || (lowertext(word) in common_words))
+			if((length(word) < 8) || (lowertext(word) in common_words) || is_simple(word))
 				new_message += word + suffix
 			else
-				if(prob(60) && message_split.len > 2)
-					new_message += pick("uh","erm")
-					break
+				var/new_word = ""
+				if(prob(70))
+					new_word += stutter(word)
+					if(prob(40))
+						new_word += pick(stutter(lowertext(word)), partial_shuffle(lowertext(word)) + suffix)
 				else
-					var/list/charlist = text2charlist(word) // Stupid shit code
-
-					charlist.len = round(charlist.len * 0.5,1)
-					shuffle_inplace(charlist)
-					new_message += jointext(charlist,"") + suffix
+					new_word += partial_shuffle(word) + suffix
+				new_message += new_word
+				break
 
 		message = jointext(new_message, " ")
 

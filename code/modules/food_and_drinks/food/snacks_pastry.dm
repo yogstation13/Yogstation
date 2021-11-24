@@ -119,6 +119,19 @@
 	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
 	filling_color = "#803280"
 
+/obj/item/reagent_containers/food/snacks/donut/spaghetti
+	name = "Spagh-o-nut"
+	desc = "An unholy mixture of carbs. It's a donut made out of spaghetti."
+	icon_state = "donut_spaghetti"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("Spaghetti"= 3, "Carbs" = 2, "Bewilderment" = 1)
+
+/obj/item/reagent_containers/food/snacks/donut/spaghetti/jelly
+	name = "'Jelly' Spagh-o-nut"
+	desc = "A Spaghetti Donut stuffed with ketchup."
+	icon_state = "jdonut_spaghetti"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/ketchup = 2)
+	tastes = list("Spaghetti"= 3, "Carbs" = 2, "Ketchup" = 1)
 
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
 

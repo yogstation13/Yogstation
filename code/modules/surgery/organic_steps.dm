@@ -99,7 +99,7 @@
 		var/mob/living/carbon/human/H = target
 		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
 		if(BP)
-			BP.generic_bleedstacks -= 3
+			BP.generic_bleedstacks -= 10
 	return ..()
 
 /datum/surgery_step/close/nofail

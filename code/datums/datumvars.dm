@@ -1005,12 +1005,14 @@
 					if("Enter ID")
 						var/valid_id
 						while(!valid_id)
-							chosen_id = stripped_input(usr, "Enter the ID of the reagent you want to add.")
+							chosen_id = stripped_input(usr, "Enter the name of the reagent you want to add. (Case Sensitive!)")
 							if(!chosen_id) //Get me out of here!
 								break
 							for(var/ID in reagent_options)
-								if(ID == chosen_id)
-									valid_id = 1
+								var/datum/reagent/selected = reagent_options[ID]
+								if(selected?.name == chosen_id) //apparently I have to do this because the other method wasn't WORKING
+									valid_id = TRUE
+									chosen_id = ID
 							if(!valid_id)
 								to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 					if("Choose ID")

@@ -138,6 +138,14 @@
 	filling_color = "#8B4513"
 	foodtype = GROSS
 
+/obj/item/reagent_containers/food/snacks/badrecipe/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_GRILLED, .proc/OnGrill)
+
+///Prevents grilling burnt shit from well, burning.
+/obj/item/reagent_containers/food/snacks/badrecipe/proc/OnGrill()
+	return COMPONENT_HANDLED_GRILLING
+
 /obj/item/reagent_containers/food/snacks/carrotfries
 	name = "carrot fries"
 	desc = "Tasty fries from fresh carrots."
