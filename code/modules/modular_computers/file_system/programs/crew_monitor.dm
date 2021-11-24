@@ -3,7 +3,7 @@
 	filedesc = "Crew Suit Sensor Monitor"
 	extended_desc = "This program allows for viewing of crew members vitals via their suit sensors."
 	category = PROGRAM_CATEGORY_CREW
-	ui_header = "borg_mon.gif"
+	ui_header = "alarm_green.gif"
 	program_icon_state = "crew"
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_MEDICAL
@@ -37,8 +37,10 @@
 		alarm = FALSE
 	if(alarm)
 		program_icon_state = program_icon_state_alarm
+		ui_header = "alarm_red.gif"
 	else
 		program_icon_state = initial(program_icon_state)
+		ui_header = "alarm_green.gif"
 	if(istype(computer))
 		computer.update_icon()
 
