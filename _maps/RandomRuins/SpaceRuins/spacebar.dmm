@@ -900,6 +900,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"MD" = (
+/obj/structure/sign/poster/contraband/eat{
+	pixel_y = 32
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "Na" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -1130,12 +1137,6 @@
 	name = "bar shutters"
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/spacebar)
-"Wl" = (
-/obj/structure/sign/poster/contraband/eat{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "WM" = (
 /obj/structure/closet,
@@ -1890,7 +1891,7 @@ sM
 sM
 sM
 FB
-Wl
+MD
 Ow
 Ow
 Ow
