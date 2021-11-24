@@ -137,6 +137,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
 /area/ruin/space/has_grav/powered/spacebar)
+"fg" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "fy" = (
 /obj/structure/chair{
 	dir = 8
@@ -239,11 +245,6 @@
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered/spacebar)
-"is" = (
-/obj/machinery/vending/dinnerware,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "iP" = (
 /obj/structure/fans/tiny,
@@ -401,6 +402,15 @@
 /obj/structure/chair,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"oq" = (
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 2
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/no_grav)
 "oC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -460,6 +470,10 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
+"rp" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "rE" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -477,15 +491,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered/spacebar)
-"rT" = (
-/obj/structure/table,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_y = 3
-	},
-/obj/item/storage/box/donkpockets,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "sM" = (
 /turf/closed/mineral,
@@ -826,6 +831,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
+"IG" = (
+/obj/structure/sign/poster/contraband/eat{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "Jq" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -890,6 +901,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"Mi" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "Mk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/wallmed{
@@ -899,13 +915,6 @@
 	use_power = 0
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
-"MD" = (
-/obj/structure/sign/poster/contraband/eat{
-	pixel_y = 32
-	},
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "Na" = (
 /obj/effect/turf_decal/tile/bar{
@@ -1036,15 +1045,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"RH" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 2
-	},
-/obj/structure/disposaloutlet{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered/no_grav)
 "RY" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -1137,6 +1137,14 @@
 	name = "bar shutters"
 	},
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/spacebar)
+"Wm" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table,
+/obj/item/book/manual/wiki/cooking_to_serve_man{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "WM" = (
 /obj/structure/closet,
@@ -1856,11 +1864,11 @@ YH
 sM
 sM
 sM
-sM
 FB
 go
+rp
 vR
-rT
+fg
 FD
 FB
 sZ
@@ -1889,9 +1897,9 @@ YH
 sM
 sM
 sM
-sM
 FB
-MD
+IG
+Ow
 Ow
 Ow
 Ow
@@ -1921,10 +1929,10 @@ YH
 YH
 YH
 ZN
-ZN
-RH
+oq
 ff
-is
+Mi
+Wm
 IA
 mR
 oX
@@ -1955,7 +1963,7 @@ YH
 sM
 sM
 sM
-sM
+FB
 FB
 FB
 FB
