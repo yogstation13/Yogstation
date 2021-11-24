@@ -34,7 +34,7 @@
 		zone = special_zone
 
 	var/obj/item/organ/replaced = M.getorganslot(slot)
-	if(replaced)
+	if(replaced && !special_zone)
 		replaced.Remove(M, special = 1)
 		if(drop_if_replaced)
 			replaced.forceMove(get_turf(M))
