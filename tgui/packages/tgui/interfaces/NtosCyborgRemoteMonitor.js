@@ -6,6 +6,7 @@ import { NtosWindow } from '../layouts';
 export const NtosCyborgRemoteMonitor = (props, context) => {
   return (
     <NtosWindow
+      theme="ntos"
       width={600}
       height={800}
       resizable>

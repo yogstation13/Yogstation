@@ -78,7 +78,7 @@
 
 /datum/uplink_item/race_restricted/xeno_organ_kit
 	name = "Xenomorph Organ Kit"
-	desc = "A kit containing some organs that were... \"donated\" by your ancestors. Contains an autosurgeon, a plasma vessel, a resin spinner, an acid gland, and a neurotoxin gland."
+	desc = "A kit containing some organs that were... \"donated\" by your ancestors. Contains an autosurgeon, a plasma vessel, a resin spinner, and an acid gland."
 	cost = 15
 	item = /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	restricted_species = list("polysmorph")
