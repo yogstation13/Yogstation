@@ -774,6 +774,14 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Medbay Storage"
 	icon_state = "medbay2"
 
+/area/medical/storage/locker
+	name = "Medbay Locker Room"
+	icon_state = "medbay2"
+
+/area/medical/storage/backroom
+	name = "Medbay Backroom"
+	icon_state = "medbay2"
+
 /area/medical/patients_rooms
 	name = "Patients' Rooms"
 	icon_state = "patients"
@@ -784,6 +792,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/medical/patients_rooms/room_b
 	name = "Patient Room B"
+	icon_state = "patients"
+
+/area/medical/patients_rooms/room_c
+	name = "Patient Room C"
 	icon_state = "patients"
 
 /area/medical/virology
