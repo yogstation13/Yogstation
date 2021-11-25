@@ -57389,8 +57389,7 @@
 "cpq" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -76972,8 +76971,7 @@
 /area/teleporter/hub/evac)
 "ddp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
 	dir = 8;
