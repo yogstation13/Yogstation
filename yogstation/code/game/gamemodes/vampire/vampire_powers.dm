@@ -369,7 +369,7 @@
 				to_chat(C, span_warning("<font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b>"))
 				C.Knockdown(40)
 				C.adjustEarDamage(0, 30)
-				C.stuttering = 250
+				C.stuttering = 30
 				C.Paralyze(40)
 				C.Jitter(150)
 	for(var/obj/structure/window/W in view(4))
