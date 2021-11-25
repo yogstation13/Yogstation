@@ -34,7 +34,7 @@
 		qdel(src)
 
 /obj/item/implant/infiltrator/activate()
-	var/obj/item/stack/telecrystal/TC = imp_in.is_holding(/obj/item/stack/telecrystal)
+	var/obj/item/stack/telecrystal/TC = imp_in.is_holding_item_of_type(/obj/item/stack/telecrystal)
 	if (TC)
 		to_chat(imp_in, span_notice("You put [TC.amount] TC into your hidden uplink."))
 		var/datum/component/uplink/uplink = GetComponent(/datum/component/uplink)
