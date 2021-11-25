@@ -10,6 +10,7 @@
 
 AshCorr	=	Host
 Xantam	=	Host
+Aquizit =       Host
  
 Ynot01  =   Council Member
 MenacingManatee = Council Member
