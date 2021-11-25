@@ -128,7 +128,7 @@
 		mimicing = ""
 
 		for(var/datum/action/changeling/p in purchasedpowers)
-			if p.dna_cost > 0
+			if(p.dna_cost > 0)
 				additionalpoints += p.dna_cost
 			
 			purchasedpowers -= p
