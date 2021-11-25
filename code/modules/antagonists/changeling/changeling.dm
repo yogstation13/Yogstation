@@ -128,7 +128,9 @@
 		mimicing = ""
 
 		for(var/datum/action/changeling/p in purchasedpowers)
-			additionalpoints += p.dna_cost
+			if p.dna_cost > 0
+				additionalpoints += p.dna_cost
+			
 			purchasedpowers -= p
 			p.Remove(owner.current)
 			
