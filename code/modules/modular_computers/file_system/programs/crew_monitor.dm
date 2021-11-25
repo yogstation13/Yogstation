@@ -31,16 +31,21 @@
 	UnregisterSignal(GLOB.crewmonitor, COMSIG_MACHINERY_CREWMON_UPDATE)
 
 /datum/computer_file/program/crew_monitor/proc/update_overlay()
-	if(GLOB.crewmonitor.death_list.len > 0)
+	var/z = usr.z
+	if(!z)
+		var/turf/T = get_turf(usr)
+		z = T.z
+
+	if(GLOB.crewmonitor?["[z]"].death_list.len > 0)
 		alarm = TRUE
 	else
 		alarm = FALSE
 	if(alarm)
 		program_icon_state = program_icon_state_alarm
-		ui_header = "alarm_red.gif"
+		ui_header = "crew_red.gif"
 	else
 		program_icon_state = initial(program_icon_state)
-		ui_header = "alarm_green.gif"
+		ui_header = "crew_green.gif"
 	if(istype(computer))
 		computer.update_icon()
 
