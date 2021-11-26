@@ -70,7 +70,7 @@ ENABLE_LOCALHOST_RANK
 TICK_LIMIT_MC_INIT 500
 
 ## Should SQL be enabled? Uncomment to enable
-SQL_ENABLED
+#SQL_ENABLED
 
 ## Should discord based MFA be enabled for admins? Uncomment to enable
 #MFA_ENABLED

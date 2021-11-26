@@ -12,9 +12,13 @@
 		battery = new battery_type(src)
 	..()
 
+/obj/item/computer_hardware/battery/Destroy()
+	. = ..()
+	QDEL_NULL(battery)
+
 /obj/item/computer_hardware/battery/handle_atom_del(atom/A)
 	if(A == battery)
-		try_eject(0, null, TRUE)
+		try_eject(forced = TRUE)
 	. = ..()
 
 /obj/item/computer_hardware/battery/try_insert(obj/item/I, mob/living/user = null)
@@ -41,7 +45,7 @@
 	return TRUE
 
 
-/obj/item/computer_hardware/battery/try_eject(slot=0, mob/living/user = null, forced = 0)
+/obj/item/computer_hardware/battery/try_eject(mob/living/user = null, forced = FALSE)
 	if(!battery)
 		to_chat(user, span_warning("There is no power cell connected to \the [src]."))
 		return FALSE

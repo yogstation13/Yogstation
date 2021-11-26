@@ -615,6 +615,14 @@
 	reqs = list(/obj/item/stack/sheet/bone = 4)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/resincrown
+	name = "Resin Crown"
+	result = /obj/item/clothing/head/crown/resin 
+	time = 4 SECONDS
+	reqs = list(/obj/item/stack/sheet/ashresin = 2,
+		/obj/item/stack/sheet/mineral/mythril = 1)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/goliathcloak
 	name = "Goliath Cloak"
 	result = /obj/item/clothing/suit/hooded/cloak/goliath
@@ -732,10 +740,11 @@
 
 /datum/crafting_recipe/chitinspear
 	name = "Chitin Spear"
-	result = /obj/item/twohanded/chitinspear //take a bonespear, reinforce it with some chitin, profit?
+	result = /obj/item/twohanded/chitinspear //take a bonespear, reinforce it with some chitin and resin, profit?
 	time = 7.5 SECONDS
 	reqs = list(/obj/item/twohanded/bonespear = 1,
 				/obj/item/stack/sheet/sinew = 4,
+				/obj/item/stack/sheet/ashresin = 1,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 6)
 	category = CAT_PRIMAL
 

@@ -8,6 +8,12 @@
 	route = PATH_RUST
 	tier = TIER_PATH
 
+/datum/eldritch_knowledge/base_rust/on_gain(mob/user)
+	..()
+	var/datum/antagonist/heretic/EC = user.mind?.has_antag_datum(/datum/antagonist/heretic)
+	var/datum/eldritch_transmutation/basic/B = EC.get_transmutation(1)
+	B.effect_path = STATUS_EFFECT_HERETIC_SACRIFICE_RUST
+
 /datum/eldritch_knowledge/base_rust/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(ishuman(target))
@@ -22,7 +28,7 @@
 /datum/eldritch_knowledge/rust_regen
 	name = "Leeching Walk"
 	desc = "Passively heals you when you are on rusted tiles."
-	gain_text = "His strength was unparallel, it was unnatural. The Blacksmith was smiling."
+	gain_text = "His strength was unparalleled, it was unnatural. The Blacksmith was smiling."
 	cost = 1
 	route = PATH_RUST
 	tier = TIER_1
@@ -50,7 +56,7 @@
 /datum/eldritch_knowledge/essence
 	name = "Priest's ritual"
 	desc = "You can now transmute a tank of water into a bottle of eldritch water."
-	gain_text = "I learned an old recipe, tought by an Owl in my dreams."
+	gain_text = "I learned an old recipe, taught by an Owl in my dreams."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/water)
 	tier = TIER_1

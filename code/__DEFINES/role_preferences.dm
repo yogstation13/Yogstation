@@ -29,7 +29,6 @@
 #define ROLE_SERVANT_OF_RATVAR	"Servant of Ratvar"
 #define ROLE_BROTHER			"Blood Brother"
 #define ROLE_BRAINWASHED		"Brainwashed Victim"
-#define ROLE_OVERTHROW			"Syndicate Mutineer"
 #define ROLE_HIVE				"Hivemind Host"
 #define ROLE_OBSESSED			"Obsessed"
 #define ROLE_SENTIENCE			"Sentience Potion Spawn"
@@ -74,7 +73,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_DEVIL = /datum/game_mode/devil,
 	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // Yogs
-	ROLE_OVERTHROW = /datum/game_mode/overthrow,
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
 	ROLE_GANG = /datum/game_mode/gang, // yogs
 	ROLE_HERETIC = /datum/game_mode/heretics,
