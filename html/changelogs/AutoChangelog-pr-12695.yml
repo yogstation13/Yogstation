@@ -1,4 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed Servants of Ratvar's IDs not having an original assignment, causing them to appear at the top of the crew monitor"

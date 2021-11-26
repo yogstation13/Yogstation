@@ -296,6 +296,7 @@
 	filling_color = "#854817"
 	tastes = list("bacon" = 1)
 	foodtype = MEAT | BREAKFAST
+	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/meat/slab/gondola
 	name = "gondola meat"
