@@ -369,6 +369,7 @@
 	new /obj/item/circular_saw(src)
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
+	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/bonesetter(src)
 	new /obj/item/surgical_drapes(src)
 	new /obj/item/clothing/mask/surgical(src)
@@ -393,6 +394,7 @@
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
 	new /obj/item/surgical_drapes(src)
+	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/clothing/mask/surgical(src)
 
 /obj/item/storage/backpack/duffelbag/engineering
