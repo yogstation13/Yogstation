@@ -1351,16 +1351,15 @@
 /datum/species/golem/ruinous //slightly weaker and faster,gets telepathy,speaks louder, and their text is cult colored
 	name = "Ruinous Golem"
 	id = "ruinous golem"
-	//limbs_id = "ruingolem" //i cant get it to work, if someone else finds out what the problem is later on, be my guest, and please fix it.
-	//sexes = FALSE
+	limbs_id = "ruingolem"
+	sexes = FALSE
 	armor = 40 //down from 55
-	//species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES) //no mutcolors or eyesprites
+	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES) //no mutcolors or eyesprites
 	speedmod = 1.5 //inbetween gold golem and iron
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/blessed
-	fixed_mut_color = "333"
 	info_text = "As an <span class='danger'>Ruinous Golem</span>, you are made of an ancient powerful metal. While not particularly tough, you have a connection with the old gods that grants you a selection of abilities."
 	prefix = "Ruinous"
-	special_names = list("One", "Elder", "Watcher", "Walker") //ominous 
+	special_names = list("One", "Elder", "Watcher", "Walker") //ominous
 	var/obj/effect/proc_holder/spell/targeted/telepathy/eldritch/ruinoustelepathy
 	var/obj/effect/proc_holder/spell/targeted/touch/flagellate/flagellate
 
