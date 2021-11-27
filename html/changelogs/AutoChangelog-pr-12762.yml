@@ -1,4 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "fixed grant/deny region for the card modification program not working if the signed in card has card modification access"
