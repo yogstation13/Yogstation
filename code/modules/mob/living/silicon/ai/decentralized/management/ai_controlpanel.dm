@@ -26,6 +26,7 @@
 			return ..()
 		to_chat(user, "<span class='notice'>You inserted [W].</span>")
 		W.forceMove(src)
+		intellicard = W
 		return FALSE
 	if(istype(W, /obj/item/mmi/posibrain))
 		var/obj/item/mmi/posibrain/brain = W
@@ -65,6 +66,7 @@
 		if(intellicard)
 			downloading.transfer_ai(AI_TRANS_TO_CARD, user_downloading, null, intellicard)
 			intellicard.forceMove(get_turf(src))
+			intellicard = null
 		stop_download(TRUE)
 
 	if(downloading)
@@ -195,6 +197,7 @@
 		if("eject_intellicard")
 			stop_download()
 			intellicard.forceMove(get_turf(src))
+			intellicard = null
 
 		if("stop_download")
 			stop_download()
