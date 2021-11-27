@@ -56,7 +56,7 @@
 
 /obj/item/organ/cyberimp/chest/reviver/on_life()
 	if(reviving)
-		if(owner.stat == UNCONSCIOUS || owner.stat == LIGHT_CRIT)
+		if(owner.stat == UNCONSCIOUS || owner.stat == SOFT_CRIT)
 			addtimer(CALLBACK(src, .proc/heal), 2 SECONDS)
 		else
 			cooldown = revive_cost + world.time
