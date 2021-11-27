@@ -1363,12 +1363,6 @@
 /obj/structure/curtain,
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
-"ob" = (
-/obj/machinery/computer/security/mining{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
 "og" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
@@ -1594,6 +1588,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
+"rB" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = 20
+	},
+/obj/machinery/modular_computer/console/preset/mining,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "sp" = (
 /obj/structure/ore_box,
 /obj/machinery/light/small{
@@ -2307,6 +2309,12 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"Dr" = (
+/obj/machinery/modular_computer/console/preset/mining{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
 "Du" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -2771,14 +2779,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"Jq" = (
-/obj/machinery/computer/security/mining,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = 20
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "Jt" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -4565,7 +4565,7 @@ qf
 Dv
 jA
 zW
-Jq
+rB
 OF
 hd
 iz
@@ -4964,7 +4964,7 @@ fA
 fA
 fA
 Cs
-ob
+Dr
 ez
 ez
 ak

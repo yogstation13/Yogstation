@@ -11,7 +11,7 @@
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP
 	size = 10
 	tgui_id = "NtosSecurEye"
-//	program_icon = "eye" //Yogs: We uh, dont have this var
+	program_icon = "eye"
 
 	var/list/network = list("ss13")
 	var/obj/machinery/camera/active_camera

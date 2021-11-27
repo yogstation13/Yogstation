@@ -60,6 +60,7 @@
 		message_admins("[key_name(client)] was kicked for sending a huge telemetry payload")
 		qdel(client)
 		return
+	log_admin_private("Telemetry data for [key_name(client)]: [json_encode(payload)]")
 	var/list/found
 	for(var/i in 1 to len)
 		if(QDELETED(client))

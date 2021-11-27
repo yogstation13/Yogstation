@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - rscadd: "Added a crew monitor program to modular computers"

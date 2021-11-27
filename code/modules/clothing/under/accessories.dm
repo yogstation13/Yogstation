@@ -367,6 +367,14 @@
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = GROIN
 
+/////////////
+//Poppy Pin//
+/////////////
+/obj/item/clothing/accessory/poppypin
+	name = "Poppy pins"
+	desc = "A poppy pin that is meant to commemorate the fallen soldiers in wars. It symbolizes the gunshot that killed the soldiers."
+	icon_state = "poppy"
+	item_color = "poppy"
 //////////////
 //Ooh shiny!//
 //////////////

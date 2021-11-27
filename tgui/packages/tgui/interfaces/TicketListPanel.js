@@ -173,7 +173,7 @@ export const TicketSummary = (props, context) => {
       <Button
         icon="reply"
         onClick={() => act('reply', {
-          'id': ticket.id,
+          'index': ticket.index,
         })}>
         {ticket.initiator_key_name}
       </Button><br />
@@ -190,7 +190,7 @@ export const TicketSummary = (props, context) => {
                   disabled={button.disabled}
                   selected={button.selected}
                   onClick={(val => () => act(val, {
-                    'id': ticket.id,
+                    'index': ticket.index,
                   }))(button.act)}>
                   {button.name}
                 </Button>

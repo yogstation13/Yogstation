@@ -7,6 +7,7 @@
 	network_destination = "arcade network"
 	size = 6
 	tgui_id = "NtosArcade"
+	program_icon = "gamepad"
 
 	var/game_active = TRUE //Checks to see if a game is in progress.
 	var/pause_state = FALSE //This disables buttons in order to prevent multiple actions before the opponent's actions.
