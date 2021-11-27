@@ -281,6 +281,7 @@
 	time = 1 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+	always_availible = FALSE
 
 /datum/crafting_recipe/pulseslug
 	name = "Pulse Slug Shell"
