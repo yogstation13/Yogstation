@@ -84,11 +84,6 @@
 			beat = BEAT_NONE
 	if(HAS_TRAIT(owner, TRAIT_FAT) && owner.stat != DEAD) //yogs: being fat causes heart damage
 		owner.adjustOrganLoss(ORGAN_SLOT_HEART, maxHealth * STANDARD_ORGAN_DECAY, 85) //eat happy, eat healthy
-		if(damage >= 80 && beating)
-			if(prob(1))
-				if(owner.stat == CONSCIOUS)
-					owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
-				owner.set_heartattack(TRUE) //yogs end
 	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
 		if(owner.stat == CONSCIOUS)
 			owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
