@@ -11961,14 +11961,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"zX" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/soap/deluxe,
-/turf/open/floor/plasteel/cafeteria,
-/area/centcom/holding)
 "zY" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -17226,6 +17218,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
+"JV" = (
+/obj/structure/table,
+/obj/item/soap/deluxe,
+/turf/open/floor/plasteel/cafeteria,
+/area/centcom/holding)
 "JX" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
@@ -18880,10 +18877,6 @@
 /obj/item/clothing/gloves/color/brown,
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
-"Nv" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/cafeteria,
-/area/centcom/holding)
 "Nw" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/plasteel/white,
@@ -22841,6 +22834,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+"Wu" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/centcom/holding)
 "Ww" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/tile/yellow{
@@ -51868,7 +51868,7 @@ Xk
 Xk
 Xk
 Nd
-zX
+Wu
 Fh
 pS
 Nd
@@ -52127,7 +52127,7 @@ Xk
 Nd
 QA
 Fh
-Nv
+JV
 ED
 Yo
 Yf
