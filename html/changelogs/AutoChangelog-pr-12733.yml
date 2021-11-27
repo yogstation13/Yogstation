@@ -1,0 +1,8 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "tweaked chemistry, bio, and construction bags to be small sized items instead of tiny"
+  - tweak: "decreased the size of chemistry bags and construction bags from 200 max combined weight class and 50 max items to 50 and 40 respectfully"
+  - tweak: "decreased the max combined weight class of bio bags from 200 to 100"
+  - tweak: "chemistry bags can now hold medipens, bio bags can now hold organs and body parts, and construction bags can now hold mod pc components"
+  - tweak: "bio bags can no longer hold medipens, and construction bags can no longer hold organs and body parts"
