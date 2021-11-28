@@ -2516,6 +2516,7 @@
 #include "code\modules\modular_computers\file_system\programs\bounty_board.dm"
 #include "code\modules\modular_computers\file_system\programs\card.dm"
 #include "code\modules\modular_computers\file_system\programs\configurator.dm"
+#include "code\modules\modular_computers\file_system\programs\crew_monitor.dm"
 #include "code\modules\modular_computers\file_system\programs\crewmanifest.dm"
 #include "code\modules\modular_computers\file_system\programs\energyharvestercontrol.dm"
 #include "code\modules\modular_computers\file_system\programs\file_browser.dm"
