@@ -2623,6 +2623,7 @@
 #include "code\modules\power\rtg.dm"
 #include "code\modules\power\smes.dm"
 #include "code\modules\power\solar.dm"
+#include "code\modules\power\stationarybike.dm"
 #include "code\modules\power\terminal.dm"
 #include "code\modules\power\tracker.dm"
 #include "code\modules\power\turbine.dm"
