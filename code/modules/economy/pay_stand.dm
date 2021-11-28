@@ -113,3 +113,7 @@
 		to_chat(user, span_warning("The anchored bolts on this paystand are currently locked!"))
 		return
 	. = ..()
+
+/obj/machinery/paystand/register
+	icon = 'yogstation/icons/obj/register.dmi'
+	icon_state = "register"
