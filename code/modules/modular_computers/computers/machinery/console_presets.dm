@@ -42,6 +42,14 @@
 	starting_files = list(	new /datum/computer_file/program/robocontrol)
 	initial_program = /datum/computer_file/program/robocontrol
 
+// ===== MEDICAL CONSOLE =====
+/obj/machinery/modular_computer/console/preset/medical
+	console_department = "Medical"
+	name = "medical console"
+	desc = "A stationary computer. This one comes preloaded with medical programs."
+	starting_files = list(	new /datum/computer_file/program/crew_monitor)
+	initial_program = /datum/computer_file/program/crew_monitor
+
 // ===== CARGO CONSOLE =====
 /obj/machinery/modular_computer/console/preset/cargo
 	console_department = "Supply"

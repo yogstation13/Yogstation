@@ -15,3 +15,9 @@
 	starting_files = list(	new /datum/computer_file/program/alarm_monitor,
 							new /datum/computer_file/program/supermatter_monitor)
 	initial_program = /datum/computer_file/program/alarm_monitor
+
+// ===== MEDICAL TELESCREEN =====
+/obj/machinery/modular_computer/telescreen/preset/medical
+	
+	starting_files = list(	new /datum/computer_file/program/crew_monitor)
+	initial_program = /datum/computer_file/program/crew_monitor
