@@ -24,7 +24,7 @@
 		var/mob/living/M = target
 		if(!M.anchored && M != guardian.summoner?.current && !guardian.hasmatchingsummoner(M))
 			new /obj/effect/temp_visual/guardian/phase/out(get_turf(M))
-			do_teleport(M, M, 10, channel = TELEPORT_CHANNEL_BLUESPACE)
+			do_teleport(M, M, 10, channel = TELEPORT_CHANNEL_WORMHOLE)
 			for(var/mob/living/L in range(1, M))
 				if(guardian.hasmatchingsummoner(L)) //if the summoner matches don't hurt them
 					continue

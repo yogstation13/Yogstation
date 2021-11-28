@@ -4,8 +4,8 @@
 	cost = 2
 	spell_type = /obj/effect/proc_holder/spell/self/predator
 	has_mode = TRUE
-	mode_on_msg = "<span class='danger'><B>You switch to analysis mode.</span></B>"
-	mode_off_msg = "<span class='danger'><B>You switch to combat mode.</span></B>"
+	mode_on_msg = span_bolddanger("You switch to analysis mode")
+	mode_off_msg = span_bolddanger("You switch to combat mode.")
 	var/list/can_track = list()
 
 /datum/guardian_ability/major/predator/Apply()
@@ -28,7 +28,7 @@
 				for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 					if(H.dna && blood[H.dna.unique_enzymes])
 						if(!(H in can_track))
-							to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
+							to_chat(guardian, span_italics(span_notice("<span class='notice italics'>We learn the identity of [H.real_name].")))
 							can_track += H
 			return TRUE
 		if(isobj(target))
@@ -39,14 +39,14 @@
 				for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 					if(H.dna && prints[md5(H.dna.uni_identity)])
 						if(!(H in can_track))
-							to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
+							to_chat(guardian, span_italics(span_notice("We learn the identity of [H.real_name].")))
 							can_track += H
 			var/list/blood = O.return_blood_DNA()
 			if(LAZYLEN(blood))
 				for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 					if(H.dna && blood[H.dna.unique_enzymes])
 						if(!(H in can_track))
-							to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
+							to_chat(guardian, span_italics(span_notice("We learn the identity of [H.real_name].")))
 							can_track += H
 			return TRUE
 

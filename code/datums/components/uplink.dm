@@ -102,23 +102,14 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return	//no hitting everyone/everything just to try to slot tcs in!
 	if(istype(I, /obj/item/stack/telecrystal))
 		LoadTC(user, I)
-	for(var/category in uplink_items)
-		for(var/item in uplink_items[category])
-			var/datum/uplink_item/UI = uplink_items[category][item]
-			var/path = UI.refund_path || UI.item
-			var/cost = UI.refund_amount || UI.cost
-			if(I.type == path && UI.refundable && I.check_uplink_validity())
-				var/obj/item/antag_spawner/S = I
-				refundAntagSpawner(cost, S, user)
-				return
-
-/datum/component/uplink/proc/refundAntagSpawner(cost, obj/item/antag_spawner/I, mob/user)
-	if (I.discountPrice)
-		cost = I.discountPrice
-	telecrystals += cost
+		return
+	var/datum/component/refundable/R = I.GetComponent(/datum/component/refundable)
+	if (!R || R.buyer != user.mind || SEND_SIGNAL(I, COMSIG_ITEM_REFUND, user))
+		return
+	telecrystals += R.tc_cost
 	if(purchase_log)
-		purchase_log.total_spent -= cost
-		to_chat(user, span_notice("[I] refunded."))
+		purchase_log.total_spent -= R.tc_cost
+		to_chat(user, span_notice("[I] was refunded for [span_bold("[R.tc_cost] TC")]."))
 	qdel(I)
 
 /datum/component/uplink/proc/interact(datum/source, mob/user)

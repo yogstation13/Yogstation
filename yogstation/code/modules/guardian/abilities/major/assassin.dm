@@ -1,7 +1,7 @@
 /datum/guardian_ability/major/assassin
 	name = "Assassin"
 	desc = "The guardian can sneak up on people and do a powerful attack."
-	cost = 4
+	cost = 3
 	has_mode = TRUE
 	recall_mode = TRUE
 	mode_on_msg = "<span class='danger'><B>You enter stealth, empowering your next attack.</span></B>"
@@ -15,12 +15,12 @@
 
 /datum/guardian_ability/major/assassin/Apply()
 	. = ..()
-	guardian.do_the_cool_invisible_thing = FALSE
+	guardian.do_temp_anchor = FALSE
 	stealthcooldown = 75 / master_stats.potential
 
 /datum/guardian_ability/major/assassin/Remove()
 	. = ..()
-	guardian.do_the_cool_invisible_thing = initial(guardian.do_the_cool_invisible_thing)
+	guardian.do_temp_anchor = initial(guardian.do_temp_anchor)
 
 /datum/guardian_ability/major/assassin/Health(amount)
 	if(amount > 0)
