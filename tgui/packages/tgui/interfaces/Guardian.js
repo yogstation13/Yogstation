@@ -72,184 +72,172 @@ const GuardianStatsScene = (props, context) => {
     Range: "Affects how far your guardian can travel from you.",
   };
   return (
-    <Fragment>
-      <Section title="Stats">
-        <Box>
-          {data.ratedskills.map((skill, index) => (
-            <Box textAlign="left">
-              <Box
-                inline
-                position="relative"
-                mr={1}
-                width="60px"
-                textAlign="center"
-              >
-                <Icon name={icons[skill.name]} size={4} />
-                <Tooltip content={tooltips[skill.name]} position="right" />
-              </Box>
-              <Box inline>
-                {levels.map((letter, index) => {
-                  let cost = 4 - index;
-                  let level = 5 - index;
-                  return (
-                    <Button
-                      bold
-                      mb="6px"
-                      content={letter}
-                      selected={skill.level === level}
-                      disabled={
-                        skill.level < level &&
-                        data.points + (skill.level - 1) < cost
-                      }
-                      fontSize="30px"
-                      width="110px"
-                      onClick={() => act("set", { name: skill.name, level })}
-                    />
-                  );
-                })}
-              </Box>
+    <Section title="Stats">
+      <Box>
+        {data.ratedskills.map((skill, index) => (
+          <Box key={skill.name} textAlign="left">
+            <Box
+              inline
+              position="relative"
+              mr={1}
+              width="60px"
+              textAlign="center">
+              <Icon name={icons[skill.name]} size={4} />
+              <Tooltip content={tooltips[skill.name]} position="right" />
             </Box>
-          ))}
-        </Box>
-      </Section>
-    </Fragment>
+            <Box inline>
+              {levels.map((letter, index) => {
+                let cost = 4 - index;
+                let level = 5 - index;
+                return (
+                  <Button
+                    bold
+                    key={letter}
+                    mb="6px"
+                    content={letter}
+                    selected={skill.level === level}
+                    disabled={
+                      skill.level < level
+                      && data.points + (skill.level - 1) < cost
+                    }
+                    fontSize="30px"
+                    width="110px"
+                    onClick={() => act("set", { name: skill.name, level })}
+                  />
+                );
+              })}
+            </Box>
+          </Box>
+        ))}
+      </Box>
+    </Section>
   );
 };
 
 const GuardianMajorAbilityScene = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Fragment>
-      <Section title="Major Ability">
-        {data.abilities_major.map((ability) => (
-          <LabeledList.Item
-            key={ability.name}
-            className="candystripe"
-            label={ability.name}
-            labelColor={ability.requiem ? "gold" : null}
-          >
-            {ability.desc}
-            <br />
-            <Button
-              content={ability.cost + " points"}
-              selected={ability.selected}
-              disabled={
-                !ability.selected &&
-                (data.points < ability.cost || !ability.available)
-              }
-              onClick={() => act("ability_major", { path: ability.path })}
-            />
-          </LabeledList.Item>
-        ))}
-      </Section>
-    </Fragment>
+    <Section title="Major Ability">
+      {data.abilities_major.map(ability => (
+        <LabeledList.Item
+          key={ability.name}
+          className="candystripe"
+          label={ability.name}
+          labelColor={ability.requiem ? "gold" : null}>
+          {ability.desc}
+          <br />
+          <Button
+            content={ability.cost + " points"}
+            selected={ability.selected}
+            disabled={
+              !ability.selected
+              && (data.points < ability.cost || !ability.available)
+            }
+            onClick={() => act("ability_major", { path: ability.path })}
+          />
+        </LabeledList.Item>
+      ))}
+    </Section>
   );
 };
 
 const GuardianMinorAbilityScene = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Fragment>
-      <Section title="Minor Abilities">
-        {data.abilities_minor.map((ability) => (
-          <LabeledList.Item
-            key={ability.name}
-            className="candystripe"
-            label={ability.name}
-          >
-            {ability.desc}
-            <br />
-            <Button
-              content={ability.cost + " points"}
-              selected={ability.selected}
-              disabled={
-                !ability.selected &&
-                (data.points < ability.cost || !ability.available)
-              }
-              onClick={() => act("ability_minor", { path: ability.path })}
-            />
-          </LabeledList.Item>
-        ))}
-      </Section>
-    </Fragment>
+    <Section title="Minor Abilities">
+      {data.abilities_minor.map(ability => (
+        <LabeledList.Item
+          key={ability.name}
+          className="candystripe"
+          label={ability.name}>
+          {ability.desc}
+          <br />
+          <Button
+            content={ability.cost + " points"}
+            selected={ability.selected}
+            disabled={
+              !ability.selected
+              && (data.points < ability.cost || !ability.available)
+            }
+            onClick={() => act("ability_minor", { path: ability.path })}
+          />
+        </LabeledList.Item>
+      ))}
+    </Section>
   );
 };
 
 const GuardianSummaryScene = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Fragment>
-      <Section title="Summary">
-        <Section title="Name">{data.guardian_name || "Random Name"}</Section>
-        <Section title="Stats">
+    <Section title="Summary">
+      <Section title="Name">{data.guardian_name || "Random Name"}</Section>
+      <Section title="Stats">
+        <LabeledList>
+          {data.ratedskills.map(skill => (
+            <LabeledList.Item
+              key={skill.name}
+              className="candystripe"
+              label={skill.name}>
+              {number2grade[skill.level]}
+            </LabeledList.Item>
+          ))}
+        </LabeledList>
+      </Section>
+      {data.abilities_major.filter(ability => ability.selected).length
+        > 0 && (
+        <Section title="Major Ability">
           <LabeledList>
-            {data.ratedskills.map((skill) => (
-              <LabeledList.Item
-                key={skill.name}
-                className="candystripe"
-                label={skill.name}
-              >
-                {number2grade[skill.level]}
-              </LabeledList.Item>
-            ))}
+            {data.abilities_major.map(
+              ability =>
+                !!ability.selected && (
+                  <LabeledList.Item key={ability.name} label={ability.name}>
+                    {ability.desc}
+                  </LabeledList.Item>
+                )
+            )}
           </LabeledList>
         </Section>
-        {data.abilities_major.filter((ability) => ability.selected).length >
-          0 && (
-          <Section title="Major Ability">
-            <LabeledList>
-              {data.abilities_major.map(
-                (ability) =>
-                  !!ability.selected && (
-                    <LabeledList.Item key={ability.name} label={ability.name}>
-                      {ability.desc}
-                    </LabeledList.Item>
-                  )
-              )}
-            </LabeledList>
-          </Section>
-        )}
-        {data.abilities_minor.filter((ability) => ability.selected).length >
-          0 && (
-          <Section title="Minor Abilities">
-            <LabeledList>
-              {data.abilities_minor.map(
-                (ability) =>
-                  !!ability.selected && (
-                    <LabeledList.Item
-                      key={ability.name}
-                      className="candystripe"
-                      label={ability.name}
-                    >
-                      {ability.desc}
-                      <br />
-                      <br />
-                    </LabeledList.Item>
-                  )
-              )}
-            </LabeledList>
-          </Section>
-        )}
-        <Button
-          content={"Summon " + data.name}
-          style={{
-            width: "94%",
-            "text-align": "center",
-            position: "fixed",
-            bottom: "0px",
-          }}
-          mb={2}
-          height="50px"
-          fontSize="30px"
-          onClick={() => act("spawn")}
-        />
-      </Section>
-    </Fragment>
+      )}
+      {data.abilities_minor.filter(ability => ability.selected).length
+        > 0 && (
+        <Section title="Minor Abilities">
+          <LabeledList>
+            {data.abilities_minor.map(
+              ability =>
+                !!ability.selected && (
+                  <LabeledList.Item
+                    key={ability.name}
+                    className="candystripe"
+                    label={ability.name}>
+                    {ability.desc}
+                    <br />
+                    <br />
+                  </LabeledList.Item>
+                )
+            )}
+          </LabeledList>
+        </Section>
+      )}
+      <Button
+        content={"Summon " + data.name}
+        style={{
+          width: "94%",
+          "text-align": "center",
+          position: "fixed",
+          bottom: "0px",
+        }}
+        mb={2}
+        height="50px"
+        fontSize="30px"
+        onClick={() => act("spawn")}
+      />
+    </Section>
   );
 };
 
 export const Guardian = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { data } = useBackend(context);
   const [tabIndex, setTabIndex] = useLocalState(context, "tab-index", 1);
   return (
     <Window resizable width={700} height={600}>
@@ -257,8 +245,7 @@ export const Guardian = (props, context) => {
         <LabeledList>
           <LabeledList.Item
             label="Points"
-            color={data.points > 0 ? "good" : "bad"}
-          >
+            color={data.points > 0 ? "good" : "bad"}>
             {data.points}
           </LabeledList.Item>
         </LabeledList>
@@ -267,40 +254,35 @@ export const Guardian = (props, context) => {
             selected={tabIndex === 1}
             onClick={() => {
               setTabIndex(1);
-            }}
-          >
+            }}>
             General
           </Tabs.Tab>
           <Tabs.Tab
             selected={tabIndex === 2}
             onClick={() => {
               setTabIndex(2);
-            }}
-          >
+            }}>
             Stats
           </Tabs.Tab>
           <Tabs.Tab
             selected={tabIndex === 3}
             onClick={() => {
               setTabIndex(3);
-            }}
-          >
+            }}>
             Major Ability
           </Tabs.Tab>
           <Tabs.Tab
             selected={tabIndex === 4}
             onClick={() => {
               setTabIndex(4);
-            }}
-          >
+            }}>
             Minor Abilities
           </Tabs.Tab>
           <Tabs.Tab
             selected={tabIndex === 5}
             onClick={() => {
               setTabIndex(5);
-            }}
-          >
+            }}>
             Summary
           </Tabs.Tab>
         </Tabs>
