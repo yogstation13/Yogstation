@@ -142,7 +142,10 @@
 // ===== CMO =====
 /obj/machinery/modular_computer/console/preset/command/cmo
 	name = "chief medical officer's console"
-	desc = "A stationary computer. This one comes preloaded with medical programs." //One day
+	desc = "A stationary computer. This one comes preloaded with medical programs."
+	starting_files = list(	new /datum/computer_file/program/chatclient,
+							new /datum/computer_file/program/card_mod,
+							new /datum/computer_file/program/crew_monitor)
 
 
 // ===== CIVILIAN CONSOLE =====
