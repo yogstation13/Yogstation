@@ -39,7 +39,7 @@
 /datum/guardian_ability/major/assassin/Mode(forced = FALSE)
 	if(mode)
 		if(next_stealth >= world.time)
-			to_chat(guardian, "<span class='danger'><B>You cannot yet enter stealth, wait another [DisplayTimeText(next_stealth - world.time)]!</span></B>")
+			to_chat(guardian, span_bolddanger("You cannot yet enter stealth, wait another [DisplayTimeText(next_stealth - world.time)]!"))
 			mode = FALSE
 			Mode()
 			return
@@ -60,7 +60,7 @@
 		guardian.alpha = initial(guardian.alpha)
 		master_stats.Apply(guardian)
 		if(!forced)
-			guardian.visible_message(span_danger("\The [guardian] suddenly appears!"))
+			guardian.visible_message(span_danger("[guardian] suddenly appears!"))
 			next_stealth = world.time + stealthcooldown
 			guardian.cooldown = world.time + 40
 		updatestealthalert()

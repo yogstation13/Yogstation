@@ -76,7 +76,7 @@
 		revert_cast()
 		to_chat(G, span_notice("You didn't select anyone to track!"))
 		return
-	to_chat(G, span_notice("We begin to track <B>[prey.real_name]</B>.[get_final_z(prey) == get_final_z(G) ? "" : " They are far away from here[G.stats.potential >= 4 ? ", on z-level [get_final_z(prey)]." : "."]"]"))
+	to_chat(G, span_notice("We begin to track [span_bold(prey.real_name)].[get_final_z(prey) == get_final_z(G) ? "" : " They are far away from here[G.stats.potential >= 4 ? ", on z-level [get_final_z(prey)]." : "."]"]"))
 	log_game("[key_name(G)] began to track [key_name(prey)] using Predator.") // why log this? Simple. Some idiot will eventually cry metacomms because someone used this ability to track them to their autistic maint base or random-ass locker.
 	for(var/datum/status_effect/agent_pinpointer/predator/status in G.status_effects)
 		status.scan_target = prey

@@ -18,6 +18,7 @@
 		guardian.range = world.maxx
 		guardian.do_temp_anchor = FALSE
 		guardian.status_flags |= GODMODE
+		ADD_TRAIT(guardian, TRAIT_NOINTERACT, GUARDIAN_TRAIT)
 	else
 		guardian.ranged = initial(guardian.ranged)
 		guardian.melee_damage_lower = initial(guardian.melee_damage_lower)
@@ -28,6 +29,7 @@
 		guardian.range = initial(guardian.range)
 		guardian.do_temp_anchor = initial(guardian.do_temp_anchor)
 		guardian.status_flags &= ~GODMODE
+		REMOVE_TRAIT(guardian, TRAIT_NOINTERACT, GUARDIAN_TRAIT)
 		guardian.stats.Apply(guardian)
 
 /datum/guardian_ability/major/scout/Manifest()
