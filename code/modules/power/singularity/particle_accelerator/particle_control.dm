@@ -7,7 +7,7 @@
 	density = TRUE
 	use_power = NO_POWER_USE
 	idle_power_usage = 500
-	active_power_usage = 10000
+	active_power_usage = 5000 // The power usage when at lvl 0
 	dir = NORTH
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	var/strength_upper_limit = 2

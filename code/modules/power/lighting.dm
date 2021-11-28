@@ -20,6 +20,17 @@
 	result_path = /obj/structure/light_construct
 	inverse = TRUE
 
+/obj/machinery/light/ComponentInitialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_light)
+
+/obj/machinery/light/proc/clean_light(O,strength)
+	if(strength < CLEAN_TYPE_BLOOD)
+		return
+	bulb_colour = initial(bulb_colour)
+	update()
+
+
 /obj/item/wallframe/light_fixture/small
 	name = "small light fixture frame"
 	icon_state = "bulb-construct-item"
@@ -34,7 +45,6 @@
 		to_chat(user, span_warning("You cannot place [src] in this area!"))
 		return
 	return TRUE
-
 
 /obj/structure/light_construct
 	name = "light fixture frame"

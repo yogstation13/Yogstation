@@ -1453,6 +1453,11 @@
 			L.update(FALSE)
 		CHECK_TICK
 
+/obj/machinery/power/apc/tcomms
+	req_access = null
+	req_one_access = list(ACCESS_TCOM_ADMIN, ACCESS_ENGINE_EQUIP)
+	cell_type = /obj/item/stock_parts/cell/upgraded/plus // Apparently it's always been this? *shrug
+
 #undef UPSTATE_CELL_IN
 #undef UPSTATE_OPENED1
 #undef UPSTATE_OPENED2
