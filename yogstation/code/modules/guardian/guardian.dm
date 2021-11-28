@@ -193,6 +193,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 					if (!summoner.current.dropItemToGround(W))
 						qdel(W)
 				death(TRUE)
+				summoner.current.dust()
 	else
 		if (transforming)
 			GoBerserk()
@@ -395,7 +396,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if (summoner?.current && summoner.current.stat != DEAD)
 		to_chat(summoner, span_bolddanger("Your [name] died somehow!"))
 		summoner.current.death()
-	summoner?.current?.adjustOrganLoss(ORGAN_SLOT_HEART, 30)
 	ghostize(FALSE)
 	nullspace() // move ourself into nullspace for the time being
 
@@ -422,7 +422,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				summoner.current.visible_message(span_bolddanger("Blood sprays from [summoner] as [src] takes damage!"))
 			if (summoner.current.stat == UNCONSCIOUS)
 				to_chat(summoner.current, span_bolddanger("Your body can't take the strain of sustaining [src] in this condition, it begins to fall apart!"))
-				summoner.current.adjustOrganLoss(ORGAN_SLOT_HEART, amount * 0.5) //dying hosts take 50% bonus damage as heart damage
+				summoner.current.adjustCloneLoss(amount * 0.5) //dying hosts take 50% bonus damage as cloneloss
 		update_health_hud()
 	if (stats.ability)
 		stats.ability.Health(amount)
