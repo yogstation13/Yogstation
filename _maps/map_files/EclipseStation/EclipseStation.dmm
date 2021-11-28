@@ -35848,13 +35848,6 @@
 /obj/structure/disposalpipe/junction,
 /turf/open/floor/plasteel,
 /area/medical/medbay/central)
-"bxm" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/lobby)
 "bxn" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -36201,14 +36194,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical/sleeper)
-"bxX" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel,
-/area/medical/medbay/central)
 "bxY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -51379,15 +51364,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/central)
-"ccv" = (
-/obj/machinery/computer/crew,
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Common Channel";
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel,
-/area/medical/paramedic/a)
 "ccw" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/quantumpad{
@@ -81025,6 +81001,13 @@
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating,
 /area/teleporter)
+"eoh" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/medical/medbay/central)
 "eoL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -82787,6 +82770,16 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"hSG" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "hTd" = (
 /obj/structure/easel,
 /obj/machinery/airalarm/directional/south{
@@ -87647,6 +87640,18 @@
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"rSo" = (
+/obj/machinery/computer/crew,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Common Channel";
+	pixel_x = 30
+	},
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/medical/paramedic/a)
 "rSJ" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -90610,6 +90615,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"xXr" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel,
+/area/medical/medbay/central)
 "yai" = (
 /obj/item/radio/intercom{
 	freerange = 1;
@@ -97828,10 +97845,10 @@ aSM
 eMp
 qlZ
 iMz
-bgm
+xXr
 bgo
 bwu
-bxX
+eoh
 cdU
 atC
 bEt
@@ -102202,7 +102219,7 @@ bgh
 bmF
 cCi
 bpD
-bxm
+hSG
 cNt
 cNu
 atM
@@ -104531,7 +104548,7 @@ bBY
 aeF
 aeF
 cat
-ccv
+rSo
 cpy
 cqU
 cqU
