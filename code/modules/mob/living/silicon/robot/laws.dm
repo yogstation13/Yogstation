@@ -1,11 +1,3 @@
-/mob/living/silicon/robot/verb/cmd_show_laws()
-	set category = "Robot Commands"
-	set name = "Show Laws"
-
-	if(usr.stat == DEAD)
-		return //won't work if dead
-	show_laws()
-
 /mob/living/silicon/robot/show_laws(everyone = 0)
 	laws_sanity_check()
 	var/who
@@ -78,6 +70,14 @@
 			temp = master.supplied[index]
 			if (length(temp) > 0)
 				laws.supplied[index] = temp
+		if(modularInterface)
+			var/datum/computer_file/program/robotact/program = modularInterface.get_robotact()
+			if(program)
+				program.force_full_update()
 
 		update_law_history() //yogs
 	picturesync()
+
+/mob/living/silicon/robot/post_lawchange(announce = TRUE)
+	. = ..()
+	addtimer(CALLBACK(src, .proc/logevent,"Law update processed."), 0, TIMER_UNIQUE | TIMER_OVERRIDE) //Post_Lawchange gets spammed by some law boards, so let's wait it out
