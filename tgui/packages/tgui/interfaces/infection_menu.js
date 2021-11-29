@@ -6,10 +6,10 @@ export const infection_menu = (props, context) => {
   const { act, data } = useBackend(context);
 
   const {
-    evolution_points
+    evolution_points,
   } = data;
 
-  const upgrade_list = data.upgrades
+  const upgrade_list = data.upgrades;
   return (
     <Window
       width={500}
