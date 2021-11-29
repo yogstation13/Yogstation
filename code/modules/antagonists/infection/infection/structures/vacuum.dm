@@ -11,6 +11,7 @@
 	health_regen = 3
 	point_return = 10
 	build_time = 100
+	canpass_bypass = TRUE
 	upgrade_subtype = /datum/infection_upgrade/vacuum
 	// the range to pull objects from
 	var/suck_range = 7
@@ -22,9 +23,6 @@
 /obj/structure/infection/vacuum/Destroy()
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
-
-/obj/structure/infection/vacuum/CanPass(atom/movable/mover, turf/target)
-	return TRUE
 
 /obj/structure/infection/vacuum/Life()
 	update_icon()
