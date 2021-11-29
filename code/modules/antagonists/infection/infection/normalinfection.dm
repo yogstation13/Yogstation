@@ -390,9 +390,9 @@
 		if(CLONE)
 		else
 			return 0
-	var/armor_protection = 0
+	var/armor_block = 0
 	if(damage_flag)
-		var/armor_block = run_armor_check(affecting, damage_flag)
+		armor_block = armor.getRating(damage_flag)
 	damage_amount = round(damage_amount * (100 - armor_block)*0.01, 0.1)
 	return damage_amount
 
