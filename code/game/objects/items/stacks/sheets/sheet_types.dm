@@ -257,6 +257,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 /obj/item/stack/sheet/mineral/wood/fifty
 	amount = 50
 
+/obj/item/stack/sheet/mineral/wood/mushroom
+	desc = "Wood made of packed together mushroom shavings that have dried and changed color. Just tough enough to pass as wood."
+
 /*
  * Bamboo
  */

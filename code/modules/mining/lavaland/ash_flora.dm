@@ -267,6 +267,12 @@
 	reagents_add = list(/datum/reagent/consumable/tinlux = 0.04, /datum/reagent/consumable/nutriment = 0.02, /datum/reagent/drug/space_drugs = 0.02, /datum/reagent/consumable/ashresin = 0.02)
 
 //CRAFTING
+/datum/crafting_recipe/mushroomwood
+	name = "Wood Substitute"
+	result = /obj/item/stack/sheet/mineral/wood/mushroom
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 2)
+	time = 2 SECONDS
+	category = CAT_PRIMAL
 
 /datum/crafting_recipe/mushroom_bowl
 	name = "Mushroom Bowl"

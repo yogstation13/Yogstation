@@ -121,10 +121,20 @@
 
 /datum/antagonist/changeling/proc/remove_changeling_powers()
 	if(ishuman(owner.current) || ismonkey(owner.current))
-		reset_properties()
+		var/additionalpoints = geneticpoints
+
+		changeling_speak = 0
+		chosen_sting = null
+		mimicing = ""
+
 		for(var/datum/action/changeling/p in purchasedpowers)
+			if(p.dna_cost > 0)
+				additionalpoints += p.dna_cost
+			
 			purchasedpowers -= p
 			p.Remove(owner.current)
+			
+		geneticpoints = additionalpoints
 
 	//MOVE THIS
 	if(owner.current.hud_used && owner.current.hud_used.lingstingdisplay)
