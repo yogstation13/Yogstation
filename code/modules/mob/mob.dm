@@ -446,7 +446,7 @@
 			client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
 			result = A.examine(src)
 			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
-			
+
 	else
 		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 	to_chat(src, result.Join("\n"))
@@ -699,6 +699,7 @@
   *
   * * Unset machines if "mach_close" sent
   * * refresh the inventory of machines in range if "refresh" sent
+  * * moves the mob to a referenced target
   * * handles the strip panel equip and unequip as well if "item" sent
   */
 /mob/Topic(href, href_list)
@@ -711,6 +712,10 @@
 		if(machine && in_range(src, usr))
 			show_inv(machine)
 
+	if(href_list["walk_to"])
+		var/target = locate(href_list["walk_to"])
+		if(target && isatom(target))
+			walk_to(src, target, 0, movement_delay())
 
 	if(href_list["item"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
 		var/slot = text2num(href_list["item"])

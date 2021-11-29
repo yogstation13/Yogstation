@@ -26,6 +26,11 @@ SUBSYSTEM_DEF(statpanels)
 			var/ETA = SSshuttle.emergency.getModeStr()
 			if(ETA)
 				global_data += "[ETA] [SSshuttle.emergency.getTimerStr()]"
+		if(SSevents.infectionmode)
+			var/TILL = SSevents.timetonext()
+			if(TILL)
+				global_data +=  "Doom Event: [TILL]"
+		encoded_global_data = url_encode(json_encode(global_data))
 		encoded_global_data = url_encode(json_encode(global_data))
 		src.currentrun = GLOB.clients.Copy()
 		mc_data_encoded = null

@@ -3,6 +3,7 @@
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
+	var/spacemove_backup = 0 // backup allowing non-dense objects to allow spacemove
 	var/move_resist = MOVE_RESIST_DEFAULT
 	var/move_force = MOVE_FORCE_DEFAULT
 	var/pull_force = PULL_FORCE_DEFAULT

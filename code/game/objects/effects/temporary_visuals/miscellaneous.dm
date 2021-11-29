@@ -338,6 +338,13 @@
 	randomdir = 0
 	duration = 6
 
+/obj/effect/temp_visual/infection
+	name = "infection"
+	icon_state = "infection_attack"
+	alpha = 140
+	randomdir = 0
+	duration = 6
+
 /obj/effect/temp_visual/desynchronizer
 	name = "desynchronizer field"
 	icon_state = "chronofield"
@@ -483,3 +490,9 @@
 	layer = FLY_LAYER
 	duration = 0.48 SECONDS
 	mouse_opacity = 0
+
+/obj/effect/temp_visual/fading_person
+	name = "fading person"
+	icon = 'icons/mob/infection/crystal_effect.dmi'
+	icon_state = "shadowed_out"
+	duration = 20

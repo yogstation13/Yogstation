@@ -26,8 +26,7 @@ SUBSYSTEM_DEF(statpanels)
 			var/ETA = SSshuttle.emergency.getModeStr()
 			if(ETA)
 				global_data += "[ETA] [SSshuttle.emergency.getTimerStr()]"
-		encoded_global_data = url_encode(json_encode(global_data))
-		
+
 		var/list/mc_data = list(
 			list("CPU:", world.cpu),
 			list("Instances:", "[num2text(world.contents.len, 10)]"),
@@ -44,7 +43,7 @@ SUBSYSTEM_DEF(statpanels)
 		mc_data[++mc_data.len] = list("Camera Net", "Cameras: [GLOB.cameranet.cameras.len] | Chunks: [GLOB.cameranet.chunks.len]", "\ref[GLOB.cameranet]")
 		mc_data_encoded = url_encode(json_encode(mc_data))
 		src.currentrun = GLOB.clients.Copy()
-	
+
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
 		var/client/C = currentrun[currentrun.len]

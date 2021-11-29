@@ -17,6 +17,7 @@
 		/obj/effect/hotspot,
 		/obj/effect/landmark,
 		/obj/effect/temp_visual,
+		/obj/structure/infection,
 		/obj/effect/light_emitter/tendril,
 		/obj/effect/collapse,
 		/obj/effect/particle_effect/ion_trails,
