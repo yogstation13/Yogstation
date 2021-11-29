@@ -170,7 +170,7 @@
 
 /obj/structure/infection/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSBLOB))
-		return TRUE
+		return ..()
 	return FALSE
 
 /obj/structure/infection/CanAtmosPass(turf/T)
