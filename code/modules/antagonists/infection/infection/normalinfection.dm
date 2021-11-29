@@ -172,8 +172,8 @@
 
 /obj/structure/infection/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSBLOB))
-		return canpass_bypass || ..()
-	return FALSE
+		return ..()
+	return canpass_bypass
 
 /obj/structure/infection/CanAtmosPass(turf/T)
 	// override for shield blobs etc
