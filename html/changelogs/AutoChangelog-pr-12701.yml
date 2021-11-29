@@ -1,6 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - rscadd: "Added 1 Sterilizine spray bottle to Medbay and Brig Medbay surgery duffel bags."
-  - rscdel: "Removed the bottles of Sterilizine from the 2 Vending Machines in medbay (the wall one and the stock room one)."
-  - tweak: "This gives Mining Medic a bottle of the stuff now too in their own bag because it's the \"same\" one as the Medbay one."
