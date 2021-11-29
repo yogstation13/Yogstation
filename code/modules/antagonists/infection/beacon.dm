@@ -175,4 +175,4 @@ GLOBAL_LIST_EMPTY(beacon_spawns)
 /obj/structure/beacon_wall/CanPass(atom/movable/mover, turf/target)
 	if(mover.GetComponent(/datum/component/no_beacon_crossing))
 		return FALSE
-	return TRUE
+	return ..()
