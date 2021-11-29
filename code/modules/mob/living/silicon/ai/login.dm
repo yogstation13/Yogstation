@@ -10,3 +10,5 @@
 	if(multicam_on)
 		end_multicam()
 	view_core()
+
+	to_chat(src, span_userdanger("WARNING. THE WAY AI IS PLAYED HAS CHANGED. PLEASE REFER TO https://github.com/yogstation13/Yogstation/pull/12388"))
