@@ -1,0 +1,7 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "metastation janitor airlock is only one instead of two stacked on top of each other"
+  - bugfix: "metastation janitor apc connected"
+  - tweak: "metastation jani room gets access to maint"
+  - tweak: "metastation sci breakroom that nobody uses is slightly smaller"
