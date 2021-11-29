@@ -58,8 +58,6 @@
 	return ..()
 
 /obj/machinery/computer/ai_control_console/process()
-	if(downloading && download_progress)
-		to_chat(downloading, "<span class='userdanger'>Warning! Someone is attempting to download you from [get_area(src)]!</span>")
 	if(downloading && download_progress >= 50)
 		to_chat(downloading, "<span class='userdanger'>Warning! Download is 50% completed! Download location: [get_area(src)]!</span>")
 	if(downloading && download_progress >= 100)
@@ -70,7 +68,7 @@
 		stop_download(TRUE)
 
 	if(downloading)
-		downloading += AI_DOWNLOAD_PER_PROCESS * downloading.downloadSpeedModifier
+		download_progress += AI_DOWNLOAD_PER_PROCESS * downloading.downloadSpeedModifier
 
 
 /obj/machinery/computer/ai_control_console/ui_interact(mob/user, datum/tgui/ui)
@@ -211,6 +209,7 @@
 			if(!target.can_download)
 				return
 			downloading = target
+			to_chat(downloading, "<span class='userdanger'>Warning! Someone is attempting to download you from [get_area(src)]!</span>")
 			user_downloading = usr
 			download_progress = 0
 			. = TRUE

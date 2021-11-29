@@ -38,10 +38,10 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 /datum/ai_os/proc/update_hardware()
 	previous_cpu = total_cpu
 	previous_ram = total_ram
-	total_cpu = 0;
-	total_ram = 0;
+	total_cpu = 0
+	total_ram = 0
 	for(var/obj/machinery/ai/expansion_card_holder/C in GLOB.expansion_card_holders)
-		if(!C.valid_holder())
+		if(!C.valid_holder() && !C.roundstart)
 			continue
 		for(var/CARD in C.installed_cards)
 			if(istype(CARD, /obj/item/processing_card))

@@ -438,21 +438,21 @@
 	face_atom(A)
 	var/list/result
 	if(client)
-		LAZYINITLIST(client.recent_examines)
-		if(!(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
-			var/extra_info = A.examine_more(src)
-			result = extra_info
-		if(!result)
-			client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
-			result = A.examine(src)
-			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
-			
-	else
-		if(istype(src, /mob/living/silicon/ai) && istype(A, /mob/living/carbon/human))
+		if(istype(src, /mob/living/silicon/ai) && istype(A, /mob/living/carbon/human)) //Override for AI's examining humans
 			var/mob/living/carbon/human/H = A
 			result = H.examine_simple(src)
-		else
-			result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
+		else	
+			LAZYINITLIST(client.recent_examines)
+			if(!(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
+				var/extra_info = A.examine_more(src)
+				result = extra_info
+			if(!result)
+				client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
+				result = A.examine(src)
+				addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)		
+	else
+		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
+
 	to_chat(src, result.Join("\n"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
 

@@ -20,10 +20,13 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	var/max_cards = 2
 
 	var/was_valid_holder = FALSE
+	//Atmos hasn't run at the start so this has to be set to true if you map it in
+	var/roundstart = FALSE
 
 
-/obj/machinery/ai/expansion_card_holder/Initialize()
+/obj/machinery/ai/expansion_card_holder/Initialize(mapload)
 	..()
+	roundstart = mapload
 	installed_cards = list()
 	GLOB.expansion_card_holders += src
 	update_icon()
@@ -126,6 +129,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	cpu.forceMove(src)
 	total_cpu++
 	ram.forceMove(src)
+	total_ram++
 	installed_cards += cpu
 	installed_cards += ram
 	GLOB.ai_os.update_hardware()

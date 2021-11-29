@@ -31,6 +31,7 @@ GLOBAL_LIST_EMPTY(ai_projects)
 		if(!canRun())
 			return FALSE
 	running = TRUE
+	return TRUE
 
 
 /datum/ai_project/proc/stop()
