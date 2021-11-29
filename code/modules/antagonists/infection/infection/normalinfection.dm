@@ -392,8 +392,8 @@
 			return 0
 	var/armor_protection = 0
 	if(damage_flag)
-		armor_protection = armor.getRating(damage_flag)
-	damage_amount = round(damage_amount * (100 - armor_protection)*0.01, 0.1)
+		var/armor_block = run_armor_check(affecting, damage_flag)
+	damage_amount = round(damage_amount * (100 - armor_block)*0.01, 0.1)
 	return damage_amount
 
 /obj/structure/infection/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
