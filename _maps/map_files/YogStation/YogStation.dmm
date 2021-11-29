@@ -297,7 +297,6 @@
 /area/space/nearstation)
 "aaI" = (
 /obj/effect/landmark/event_spawn,
-/obj/effect/landmark/beacon_start/east,
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
 "aaJ" = (
@@ -20907,6 +20906,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/effect/landmark/beacon_start/east,
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bmT" = (
