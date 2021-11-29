@@ -143,9 +143,9 @@
 
 /obj/structure/infection/shield/barrier/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSBLOB))
-		return TRUE
+		return ..()
 	if(mover.pulledby && isliving(mover.pulledby)) // pulled through by other infection creatures
 		var/mob/living/L = mover.pulledby
 		if(L.pass_flags & PASSBLOB)
-			return TRUE
+			return ..()
 	return FALSE

@@ -6,14 +6,14 @@ export const infection_menu = (props, context) => {
   const { act, data } = useBackend(context);
 
   const {
-  evolution_points
+    evolution_points,
   } = data;
 
- const upgrade_list = data.upgrades
-  return(
+  const upgrade_list = data.upgrades;
+  return (
     <Window
-      width = {500}
-      height = {900}
+      width={500}
+      height={900}
       resizable>
       <Window.Content scrollable>
         <Section title="Evolution Menu">
