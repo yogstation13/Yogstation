@@ -108,6 +108,7 @@ GLOBAL_LIST_EMPTY(beacon_spawns)
 	shield_overlay.icon = 'icons/effects/effects.dmi'
 	shield_overlay.icon_state = "shield"
 	shield_overlay.layer = layer
+	shield_overlay.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/matrix/M = matrix()
 	var/scale = (obj_integrity / max_integrity) * 3
 	M.Scale(scale, scale)
