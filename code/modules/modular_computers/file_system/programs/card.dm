@@ -70,6 +70,7 @@
 	if(!target_dept && (ACCESS_CHANGE_IDS in id_card.access))
 		minor = FALSE
 		authenticated = TRUE
+		region_access = list(CARDCON_DEPARTMENT_SERVICE, CARDCON_DEPARTMENT_COMMAND, CARDCON_DEPARTMENT_SECURITY, CARDCON_DEPARTMENT_MEDICAL, CARDCON_DEPARTMENT_SCIENCE, CARDCON_DEPARTMENT_ENGINEERING)
 		update_static_data(user)
 		return TRUE
 
@@ -251,7 +252,7 @@
 			if(!computer || !authenticated)
 				return
 			var/region = text2num(params["region"])
-			if(isnull(region) || !(region in region_access))
+			if(isnull(region) || (!(region in region_access) && minor))
 				return
 			target_id_card.access |= get_region_accesses(region)
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
@@ -260,7 +261,7 @@
 			if(!computer || !authenticated)
 				return
 			var/region = text2num(params["region"])
-			if(isnull(region) || !(region in region_access))
+			if(isnull(region) || (!(region in region_access) && minor))
 				return
 			target_id_card.access -= get_region_accesses(region)
 			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)

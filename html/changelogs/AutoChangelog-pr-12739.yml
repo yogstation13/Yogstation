@@ -1,0 +1,6 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - rscadd: "Adds griddle to Space Bar"
+  - rscadd: "Adds new cleanbot for Space Bar that the bartender can use"
+  - tweak: "Expanded Space Bar kitchen very slightly to make it fit"

@@ -1296,7 +1296,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Reinforced with nanite technology, you are able to stay looking good while bashing heads in. \
 			Beware, you can only polish suits and headgear!"
 	item = /obj/item/armorpolish
-	cost = 6
+	cost = 2
 
 
 
