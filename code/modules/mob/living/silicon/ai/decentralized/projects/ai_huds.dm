@@ -10,10 +10,16 @@
 	if(!.)
 		return .
 	ai.sec_hud = DATA_HUD_SECURITY_ADVANCED
+	if(ai.sensors_on)
+		ai.toggle_sensors()
+	ai.toggle_sensors()
 
 
 /datum/ai_project/security_hud/stop()
 	ai.sec_hud = DATA_HUD_SECURITY_BASIC
+	if(ai.sensors_on)
+		ai.toggle_sensors()
+	ai.toggle_sensors()
 	..()
 
 /datum/ai_project/diag_med_hud
@@ -29,9 +35,16 @@
 		return .
 	ai.d_hud = DATA_HUD_DIAGNOSTIC_ADVANCED
 	ai.med_hud = DATA_HUD_MEDICAL_ADVANCED
+	
+	if(ai.sensors_on)
+		ai.toggle_sensors()
+	ai.toggle_sensors()
 
 
 /datum/ai_project/diag_med_hud/stop()
 	ai.d_hud = DATA_HUD_DIAGNOSTIC_BASIC
 	ai.med_hud = DATA_HUD_MEDICAL_BASIC
+	if(ai.sensors_on)
+		ai.toggle_sensors()
+	ai.toggle_sensors()
 	..()

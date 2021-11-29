@@ -186,7 +186,7 @@
 /mob/living/carbon/human/AIShiftClick(mob/living/silicon/ai/user)
 	if(!user.canExamineHumans)
 		return
-	if(user.client && user.client.eye == user || user.client.eye == user.loc)
+	if(user.client && (user.client.eye == user.eyeobj || user.client.eye == user.loc))
 		user.examinate(src)
 	return
 
