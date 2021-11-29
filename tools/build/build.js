@@ -178,8 +178,8 @@ let tasksToRun = [];
 switch (BUILD_MODE) {
   case STANDARD_BUILD:
     tasksToRun = [
-      //taskYarn,
-      //taskTgui,
+      taskYarn,
+      taskTgui,
       taskDm('CBT'),
     ]
     break;
