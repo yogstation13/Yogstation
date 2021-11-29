@@ -86,6 +86,10 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aan" = (
+/obj/effect/landmark/infection_start,
+/turf/open/space/basic,
+/area/space)
 "aao" = (
 /obj/machinery/light{
 	dir = 4
@@ -114,6 +118,26 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"aar" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/infection_gravity_spawn,
+/turf/open/floor/plasteel,
+/area/storage/primary)
+"aas" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/landmark/beacon_start/east,
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
 "aat" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -241,6 +265,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness)
+"aaF" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/beacon_start/east,
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
 "aaG" = (
 /obj/structure/window/reinforced,
 /obj/structure/chair{
@@ -264,6 +295,30 @@
 "aaH" = (
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"aaI" = (
+/obj/effect/landmark/event_spawn,
+/obj/effect/landmark/beacon_start/east,
+/turf/open/floor/carpet/purple,
+/area/chapel/main)
+"aaJ" = (
+/obj/machinery/camera{
+	c_tag = "Arrivals Bay 2";
+	dir = 8
+	},
+/obj/effect/landmark/beacon_start/east,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
+"aaK" = (
+/obj/machinery/holopad,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/landmark/beacon_start/east,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "aaL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -342,6 +397,11 @@
 /obj/structure/grille,
 /turf/open/space,
 /area/space/nearstation)
+"aaU" = (
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/landmark/beacon_start/east,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "aaV" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -361,6 +421,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
+"aaW" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/beacon_start/east,
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
+"aaX" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/effect/landmark/beacon_start/east,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/medical)
+"aaY" = (
+/obj/effect/landmark/beacon_start/east,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "aaZ" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/security/armory)
@@ -391,6 +469,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abc" = (
+/obj/structure/chair/comfy/brown{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/landmark/beacon_start/east,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "abd" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall,
@@ -11589,15 +11677,6 @@
 /obj/structure/closet/secure_closet/contraband/armory,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"aHw" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/storage/primary)
 "aHx" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -15503,13 +15582,6 @@
 	dir = 4
 	},
 /area/chapel/main)
-"aUM" = (
-/obj/machinery/camera{
-	c_tag = "Arrivals Bay 2";
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "aUN" = (
 /obj/structure/chair/office/dark{
 	dir = 4
@@ -29387,10 +29459,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cdl" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/carpet/purple,
-/area/chapel/main)
 "cdm" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -38877,16 +38945,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/sleeper)
-"hmq" = (
-/obj/machinery/holopad,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "hmr" = (
 /obj/structure/cloth_curtain{
 	color = "#99ccff"
@@ -44449,12 +44507,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"kJb" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "kJl" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -62496,15 +62548,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
-"wdi" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "wdx" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -25
@@ -80277,7 +80320,7 @@ uiF
 nCm
 ayl
 aTr
-aUM
+aaJ
 ayl
 bcz
 aUo
@@ -83613,7 +83656,7 @@ aAQ
 aKm
 aLE
 aVn
-wdi
+aas
 asE
 aPz
 aPz
@@ -85920,7 +85963,7 @@ amC
 aBQ
 aDn
 aDo
-aHw
+aar
 aMA
 aIZ
 aBQ
@@ -87982,7 +88025,7 @@ tPm
 aSs
 aLE
 aLE
-aOl
+aaF
 aPH
 aRa
 ioi
@@ -92620,7 +92663,7 @@ jby
 eUC
 eUC
 eUC
-eUC
+aaU
 eUC
 dBV
 jwK
@@ -96468,7 +96511,7 @@ aPS
 cwI
 pLw
 hRj
-hmq
+aaK
 igi
 aPR
 fmC
@@ -99301,7 +99344,7 @@ xFL
 aZV
 bbv
 bcm
-bcm
+abc
 bem
 bfD
 bfu
@@ -101627,7 +101670,7 @@ ocA
 pVE
 wiA
 bhi
-kJb
+aaX
 oCO
 bZg
 bfK
@@ -104199,7 +104242,7 @@ vlj
 bvj
 hmg
 mxh
-bDR
+aaY
 vvO
 yhk
 bvj
@@ -108297,7 +108340,7 @@ cBg
 bam
 aYV
 aYV
-jTR
+aaW
 bfL
 wec
 wec
@@ -114455,7 +114498,7 @@ aFz
 aFz
 sZG
 jUt
-cdl
+aaI
 aXB
 oef
 baY
@@ -117258,7 +117301,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aan
 aaa
 aae
 aaa
@@ -118299,7 +118342,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aan
 aaa
 xnF
 iOa
@@ -120627,7 +120670,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aan
 aaa
 aaa
 aaa
