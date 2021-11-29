@@ -29,7 +29,7 @@
 	if(isliving(target) && world.time >= next_rush && guardian.is_deployed())
 		var/mob/living/L = target
 		if(guardian.summoner?.current && get_dist_euclidian(guardian.summoner.current, L) > master_stats.range)
-			to_chat(guardian, span_italics(span_danger("[L] is out of your range!</span>")))
+			to_chat(guardian, span_italics(span_danger("[L] is out of your range!")))
 			return
 		playsound(guardian, 'yogstation/sound/effects/vector_rush.ogg', 100, FALSE)
 		guardian.forceMove(get_step(get_turf(L), get_dir(L, guardian)))
@@ -64,7 +64,7 @@
 		revert_cast()
 		return
 	if(get_dist_euclidian(G.summoner?.current, A) > G.range)
-		to_chat(G, span_italics(span_danger("[A] is out of your range!</span>")))
+		to_chat(G, span_italics(span_danger("[A] is out of your range!")))
 		revert_cast()
 		return
 	remove_ranged_ability()
