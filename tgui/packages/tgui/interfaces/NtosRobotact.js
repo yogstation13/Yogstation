@@ -78,155 +78,154 @@ export const NtosRobotactContent = (props, context) => {
         </Tabs>
       </Flex.Item>
       {tab_main === 1 && (
-        <Fragment>
-          <Flex
-            direction={"row"}>
-            <Flex.Item
-              width="50%">
-              <Section
-                title="Details"
-                buttons={(
-                  <Button
-                    content="Power Alert"
-                    disabled={charge}
-                    onClick={() => act('alertPower')} />
-                )}>
-                <LabeledList>
-                  <LabeledList.Item
-                    label="Unit">
-                    {borgName.slice(0, 17)}
-                  </LabeledList.Item>
-                  <LabeledList.Item
-                    label="Type">
-                    {borgType}
-                  </LabeledList.Item>
-                  <LabeledList.Item
-                    label="AI">
-                    {masterAI.slice(0, 17)}
-                  </LabeledList.Item>
-                  <LabeledList.Item
-                    label="Charge">
-                    <ProgressBar
+        <Flex
+          direction={"row"}>
+          <Flex.Item
+            width="50%">
+            <Section
+              title="Details"
+              buttons={(
+                <Button
+                  content="Power Alert"
+                  disabled={charge}
+                  onClick={() => act('alertPower')} />
+              )}>
+              <LabeledList>
+                <LabeledList.Item
+                  label="Unit">
+                  {borgName.slice(0, 17)}
+                </LabeledList.Item>
+                <LabeledList.Item
+                  label="Type">
+                  {borgType}
+                </LabeledList.Item>
+                <LabeledList.Item
+                  label="AI">
+                  {masterAI.slice(0, 17)}
+                </LabeledList.Item>
+                <LabeledList.Item
+                  label="Charge">
+                  <ProgressBar
                     value={charge / maxcharge}
                     ranges={{
                       good: [0.5, Infinity],
                       average: [0.1, 0.5],
                       bad: [-Infinity, 0.1],
                     }}>
-                      <AnimatedNumber value={charge} />
-                    </ProgressBar>
+                    <AnimatedNumber value={charge} />
+                  </ProgressBar>
+                </LabeledList.Item>
+                <LabeledList.Item
+                  label="Chassis Integrity">
+                  <ProgressBar
+                    value={integrity}
+                    minValue={0}
+                    maxValue={100}
+                    ranges={{
+                      bad: [-Infinity, 25],
+                      average: [25, 75],
+                      good: [75, Infinity],
+                    }} />
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+            <Section
+              title="Lamp Power">
+              <Slider
+                value={lampIntensity}
+                step={1}
+                stepPixelSize={25}
+                maxValue={5}
+                minValue={1}
+                onChange={(e, value) => act('lampIntensity', {
+                  ref: value,
+                })} />
+              Lamp power usage: {lampIntensity/2} watts
+            </Section>
+          </Flex.Item>
+          <Flex.Item
+            width="50%"
+            ml={1}>
+            <Section
+              fitted>
+              <Tabs
+                fluid={1}
+                textAlign="center">
+                <Tabs.Tab
+                  icon=""
+                  lineHeight="23px"
+                  selected={tab_sub === 1}
+                  onClick={() => setTab_sub(1)}>
+                  Actions
+                </Tabs.Tab>
+                <Tabs.Tab
+                  icon=""
+                  lineHeight="23px"
+                  selected={tab_sub === 2}
+                  onClick={() => setTab_sub(2)}>
+                  Upgrades
+                </Tabs.Tab>
+                <Tabs.Tab
+                  icon=""
+                  lineHeight="23px"
+                  selected={tab_sub === 3}
+                  onClick={() => setTab_sub(3)}>
+                  Diagnostics
+                </Tabs.Tab>
+              </Tabs>
+            </Section>
+            {tab_sub === 1 && (
+              <Section>
+                <LabeledList>
+                  <LabeledList.Item
+                    label="Maintenance Cover">
+                    <Button.Confirm
+                      content="Unlock"
+                      disabled={cover==="UNLOCKED"}
+                      onClick={() => act('coverunlock')} />
                   </LabeledList.Item>
                   <LabeledList.Item
-                    label="Chassis Integrity">
+                    label="Sensor Overlay">
+                    <Button
+                      content={sensors}
+                      onClick={() => act('toggleSensors')} />
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label={"Stored Photos (" + printerPictures + ")"}>
+                    <Button
+                      content="View"
+                      disabled={!printerPictures}
+                      onClick={() => act('viewImage')} />
+                    <Button
+                      content="Print"
+                      disabled={!printerPictures}
+                      onClick={() => act('printImage')} />
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Printer Toner">
                     <ProgressBar
-                      value={integrity}
-                      minValue={0}
-                      maxValue={100}
-                      ranges={{
-                        bad: [-Infinity, 25],
-                        average: [25, 75],
-                        good: [75, Infinity],
-                      }} />
+                      value={printerToner / printerTonerMax} />
+                  </LabeledList.Item>
+                  {!!thrustersInstalled && (
+                    <LabeledList.Item
+                      label="Toggle Thrusters">
+                      <Button
+                        content={thrustersStatus}
+                        onClick={() => act('toggleThrusters')} />
+                    </LabeledList.Item>
+                  )}
+                  <LabeledList.Item
+                    label="Self Destruct">
+                    <Button.Confirm
+                      content="ACTIVATE"
+                      color="red"
+                      onClick={() => act('selfDestruct')} />
                   </LabeledList.Item>
                 </LabeledList>
               </Section>
-              <Section
-                title="Lamp Power">
-                <Slider
-                  value={lampIntensity}
-                  step={1}
-                  stepPixelSize={25}
-                  maxValue={5}
-                  minValue={1}
-                  onChange={(e, value) => act('lampIntensity', {
-                    ref: value,
-                  })} />
-                Lamp power usage: {lampIntensity/2} watts
-              </Section>
-            </Flex.Item>
-            <Flex.Item
-              width="50%"
-              ml={1}>
-              <Section
-                fitted>
-                <Tabs
-                  fluid={1}
-                  textAlign="center">
-                  <Tabs.Tab
-                    icon=""
-                    lineHeight="23px"
-                    selected={tab_sub === 1}
-                    onClick={() => setTab_sub(1)}>
-                    Actions
-                  </Tabs.Tab>
-                  <Tabs.Tab
-                    icon=""
-                    lineHeight="23px"
-                    selected={tab_sub === 2}
-                    onClick={() => setTab_sub(2)}>
-                    Upgrades
-                  </Tabs.Tab>
-                  <Tabs.Tab
-                    icon=""
-                    lineHeight="23px"
-                    selected={tab_sub === 3}
-                    onClick={() => setTab_sub(3)}>
-                    Diagnostics
-                  </Tabs.Tab>
-                </Tabs>
-              </Section>
-              {tab_sub === 1 && (
-                <Section>
-                  <LabeledList>
-                    <LabeledList.Item
-                      label="Maintenance Cover">
-                      <Button.Confirm
-                        content="Unlock"
-                        disabled={cover==="UNLOCKED"}
-                        onClick={() => act('coverunlock')} />
-                    </LabeledList.Item>
-                    <LabeledList.Item
-                      label="Sensor Overlay">
-                      <Button
-                        content={sensors}
-                        onClick={() => act('toggleSensors')} />
-                    </LabeledList.Item>
-                    <LabeledList.Item
-                      label={"Stored Photos (" + printerPictures + ")"}>
-                      <Button
-                        content="View"
-                        disabled={!printerPictures}
-                        onClick={() => act('viewImage')} />
-                      <Button
-                        content="Print"
-                        disabled={!printerPictures}
-                        onClick={() => act('printImage')} />
-                    </LabeledList.Item>
-                    <LabeledList.Item
-                      label="Printer Toner">
-                      <ProgressBar
-                        value={printerToner / printerTonerMax} />
-                    </LabeledList.Item>
-                    {!!thrustersInstalled && (
-                      <LabeledList.Item
-                        label="Toggle Thrusters">
-                        <Button
-                          content={thrustersStatus}
-                          onClick={() => act('toggleThrusters')} />
-                      </LabeledList.Item>
-                    )}
-                    <LabeledList.Item
-                      label="Self Destruct">
-                      <Button.Confirm
-                        content="ACTIVATE"
-                        color="red"
-                        onClick={() => act('selfDestruct')} />
-                    </LabeledList.Item>
-                  </LabeledList>
-                </Section>
-              )}
-              {tab_sub === 2 && (
-                <Section>
+            )}
+            {tab_sub === 2 && (
+              <Section>
                 {borgUpgrades.map(upgrade => (
                   <Box
                     mb={1}
@@ -234,47 +233,46 @@ export const NtosRobotactContent = (props, context) => {
                     {upgrade}
                   </Box>
                 ))}
-                </Section>
-              )}
-              {tab_sub === 3 && (
-                <Section>
-                  <LabeledList>
-                    <LabeledList.Item
-                      label="AI Connection"
-                      color={wireAI==="FAULT"?'red': wireAI==="READY"?'yellow': 'green'}>
-                      {wireAI}
-                    </LabeledList.Item>
-                    <LabeledList.Item
-                      label="LawSync"
-                      color={wireLaw==="FAULT"?"red":"green"}>
-                      {wireLaw}
-                    </LabeledList.Item>
-                    <LabeledList.Item
-                      label="Camera"
-                      color={wireCamera==="FAULT"?'red': wireCamera==="DISABLED"?'yellow': 'green'}>
-                      {wireCamera}
-                    </LabeledList.Item>
-                    <LabeledList.Item
-                      label="Module Controller"
-                      color={wireModule==="FAULT"?"red":"green"}>
-                      {wireModule}
-                    </LabeledList.Item>
-                    <LabeledList.Item
-                      label="Motor Controller"
-                      color={locomotion==="FAULT"?'red': locomotion==="DISABLED"?'yellow': 'green'}>
-                      {locomotion}
-                    </LabeledList.Item>
-                    <LabeledList.Item
-                      label="Maintenance Cover"
-                      color={cover==="UNLOCKED"?"red":"green"}>
-                      {cover}
-                    </LabeledList.Item>
-                  </LabeledList>
-                </Section>
-              )}
-            </Flex.Item>
-          </Flex>
-        </Fragment>
+              </Section>
+            )}
+            {tab_sub === 3 && (
+              <Section>
+                <LabeledList>
+                  <LabeledList.Item
+                    label="AI Connection"
+                    color={wireAI==="FAULT"?'red': wireAI==="READY"?'yellow': 'green'}>
+                    {wireAI}
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="LawSync"
+                    color={wireLaw==="FAULT"?"red":"green"}>
+                    {wireLaw}
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Camera"
+                    color={wireCamera==="FAULT"?'red': wireCamera==="DISABLED"?'yellow': 'green'}>
+                    {wireCamera}
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Module Controller"
+                    color={wireModule==="FAULT"?"red":"green"}>
+                    {wireModule}
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Motor Controller"
+                    color={locomotion==="FAULT"?'red': locomotion==="DISABLED"?'yellow': 'green'}>
+                    {locomotion}
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Maintenance Cover"
+                    color={cover==="UNLOCKED"?"red":"green"}>
+                    {cover}
+                  </LabeledList.Item>
+                </LabeledList>
+              </Section>
+            )}
+          </Flex.Item>
+        </Flex>
       )}
       {tab_main === 2 && (
         <Flex.Item
