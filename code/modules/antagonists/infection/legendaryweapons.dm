@@ -166,7 +166,7 @@
 
 /obj/item/infectionkiller/staff
 	name = "Golden Staff of the Honkmother"
-	desc = "The golden staff of the honkmother, capable of summoning honkbominations from clown planet."
+	desc = "The golden staff of the honkmother, containing a stable bluespace portal to a clown monastary on clown planet."
 	icon = 'icons/obj/guns/magic.dmi'
 	icon_state = "honker"
 	item_state = "honker"
