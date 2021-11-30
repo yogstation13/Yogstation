@@ -648,8 +648,6 @@
 						BP.dismember()
 					else
 						gib()
-				else
-					set_species(/datum/species/dullahan)
 			if(4)
 				visible_message(span_warning("[src]'s skin melts off!"), span_boldwarning("Your skin melts off!"))
 				spawn_gibs()
