@@ -196,9 +196,7 @@
 						/mob/living/simple_animal/hostile/retaliate/clown/longface=3,
 						/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown=2,
 						/mob/living/simple_animal/hostile/retaliate/clown/mutant/blob=3,
-						/mob/living/simple_animal/hostile/retaliate/clown/lube=3,
 						/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/destroyer=2,
-						/mob/living/simple_animal/hostile/retaliate/clown/banana=2,
 						/mob/living/simple_animal/hostile/retaliate/clown/fleshclown=2,
 						/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus=2,
 						/mob/living/simple_animal/hostile/retaliate/clown/mutant=2)
@@ -220,7 +218,7 @@
 		if(LAZYLEN(candidates))
 			var/mob/dead/observer/C = pick(candidates)
 			var/picked_type = pickweight(possible_mobs)
-			var/mob/living/SM = new picked_type(owner.loc)
+			var/mob/living/simple_animal/SM = new picked_type(owner.loc)
 			SM.loot = list(/obj/effect/gibspawner/human)
 			SM.key = C.key
 			clowns_created += SM
