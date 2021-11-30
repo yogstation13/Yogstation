@@ -342,8 +342,6 @@
 		return I
 	else
 		T.blob_act(src)
-		for(var/atom/A in T)
-			A.blob_act(src) //also hit everything in the turf
 		qdel(I)
 		return null
 
