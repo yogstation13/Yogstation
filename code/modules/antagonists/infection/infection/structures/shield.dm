@@ -4,7 +4,7 @@
 
 /obj/structure/infection/shield
 	name = "strong infection"
-	desc = "A solid wall of slightly twitching tendrils."
+	desc = "A solid wall of slightly twitching tendrils, strange crystals appear to be jutting out of it."
 	icon = 'icons/obj/smooth_structures/infection_wall.dmi'
 	icon_state = "smooth"
 	smooth = SMOOTH_TRUE
@@ -97,7 +97,7 @@
 
 /obj/structure/infection/shield/reflective
 	name = "reflective infection"
-	desc = "A solid wall of slightly twitching tendrils with a reflective glow."
+	desc = "A solid wall of reflective crystal. It appears extremely brittle"
 	icon = 'icons/mob/infection/infection.dmi'
 	icon_state = "reflective"
 	smooth = SMOOTH_FALSE
@@ -131,7 +131,7 @@
 
 /obj/structure/infection/shield/barrier
 	name = "infection barrier"
-	desc = "A thin mesh barrier preventing entry of non infectious creatures."
+	desc = "A thin mesh barrier preventing voluntary entry of non infectious creatures."
 	icon = 'icons/mob/infection/infection.dmi'
 	icon_state = "door"
 	smooth = SMOOTH_FALSE

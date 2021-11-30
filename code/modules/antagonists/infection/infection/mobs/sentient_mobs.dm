@@ -68,6 +68,9 @@
 	. = ..()
 	client.images |= image('icons/mob/cameramob.dmi', respawnmob, "marker")
 
+/mob/living/simple_animal/hostile/infection/infectionspore/sentient/gib()
+	death()
+
 /mob/living/simple_animal/hostile/infection/infectionspore/sentient/Life()
 	. = ..()
 	if(!client)

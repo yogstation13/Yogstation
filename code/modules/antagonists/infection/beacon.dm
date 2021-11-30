@@ -30,15 +30,16 @@ GLOBAL_LIST_EMPTY(beacon_spawns)
 */
 
 /obj/structure/beacon_generator
-	name = "beacon generator"
+	name = "bluespace causality anchor"
 	icon = 'icons/mob/infection/infection.dmi'
 	icon_state = "generator"
 	light_range = 4
-	desc = "It sustains the barriers."
+	desc = "A bluespace causality anchor, it produces a barrier of bluespace energy capable of destroying any infestation that comes into contact with it. The built in causality shield is however vulnerable to being overcharged from direct attacks by infested nodes."
 	density = TRUE
 	anchored = TRUE
 	move_force = INFINITY
 	move_resist = INFINITY
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = FLY_LAYER
 	max_integrity = 1000
 	resistance_flags = INDESTRUCTIBLE
@@ -62,10 +63,10 @@ GLOBAL_LIST_EMPTY(beacon_spawns)
 		C.max_infection_points += 50
 		C.infection_core.point_rate++
 		C.add_points(C.max_infection_points)
-		to_chat(C, "<span class='notice'>You feel pure energy surge through you...</span>")
+		to_chat(C, "<span class='notice'>With the destruction of a causality anchor the restrictions on your power have been lightened!</span>")
 	for(var/mob/living/simple_animal/hostile/infection/infectionspore/sentient/spore in C.infection_mobs)
 		spore.add_points(200)
-		to_chat(spore, "<span class='notice'>You feel pure energy surge through you...</span>")
+		to_chat(spore, "<span class='notice'>With the destruction of a causality anchor the restrictions on your power have been lightened!</span>")
 	if(GLOB.infection_beacons.len > 0)
 		INVOKE_ASYNC(src, .proc/destroyed_announcement)
 	return ..()
@@ -75,7 +76,7 @@ GLOBAL_LIST_EMPTY(beacon_spawns)
 */
 /obj/structure/beacon_generator/proc/destroyed_announcement(beacons_left = GLOB.infection_beacons.len)
 	sleep(80)
-	priority_announce("A beacon has been consumed by the infection, only [num2text(beacons_left)] remain[beacons_left == 1 ? "s" : ""].","CentCom Biohazard Division", 'sound/misc/notice1.ogg')
+	priority_announce("An anchor has been consumed by the infection, only [num2text(beacons_left)] remain[beacons_left == 1 ? "s" : ""].","CentCom Exotic Material Reseach Division", 'sound/misc/notice1.ogg')
 
 /obj/structure/beacon_generator/process()
 	obj_integrity = min(obj_integrity + 10, max_integrity)
@@ -156,7 +157,7 @@ GLOBAL_LIST_EMPTY(beacon_spawns)
 	icon = 'icons/mob/infection/infection.dmi'
 	icon_state = "beaconbarrier"
 	light_range = 4
-	desc = "A generated wall keeping any infection out."
+	desc = "A wall of intense bluespace energy, any infestation that attempts to cross it is torn apart in a matter of seconds."
 	density = FALSE
 	anchored = TRUE
 	layer = FLY_LAYER

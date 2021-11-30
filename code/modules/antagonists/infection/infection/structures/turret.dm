@@ -4,7 +4,7 @@
 
 /obj/structure/infection/turret
 	name = "infection turret"
-	desc = "A solid wall with a radiating material on the inside."
+	desc = "A tower of crystal with an unfriendly looking peak."
 	icon = 'icons/mob/infection/crystaline_infection_medium.dmi'
 	icon_state = "crystalturret-layer"
 	pixel_x = -16
@@ -162,7 +162,7 @@
 
 /obj/structure/infection/turret/core
 	name = "core turret"
-	desc = "A turret for the core of the infection. It holds destructive capabilities that many might find unbeatable."
+	desc = "A turret for the core of the infection, filled with a massive amount of slime."
 	point_return = -1
 	upgrade_subtype = null
 

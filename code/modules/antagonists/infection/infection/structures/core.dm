@@ -9,7 +9,7 @@
 	layer = BELOW_OBJ_LAYER
 	pixel_x = -32
 	pixel_y = -16
-	desc = "A huge, pulsating infectious mass. It almost seems to beckon you."
+	desc = "A huge, mass of crystalline matter, completely unscathed. Purple matter is pouring out of its base."
 	max_integrity = 400
 	explosion_block = 6
 	point_return = -1

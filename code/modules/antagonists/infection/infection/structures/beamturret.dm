@@ -4,7 +4,7 @@
 
 /obj/structure/infection/turret/beam
 	name = "infection beam turret"
-	desc = "A solid wall with a radiating material on the inside."
+	desc = "A tall crystal holding a ball of energy."
 	icon = 'icons/mob/infection/crystaline_infection_medium.dmi'
 	icon_state = "crystalhitscan-layer"
 	pixel_x = -16

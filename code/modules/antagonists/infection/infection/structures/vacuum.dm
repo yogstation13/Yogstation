@@ -4,7 +4,7 @@
 
 /obj/structure/infection/vacuum
 	name = "infection vacuum"
-	desc = "A large mass with a pulsing void in the center."
+	desc = "A large uncomfortably shaped crystalline mass with a pulsing void in the center."
 	icon = 'icons/mob/infection/infection.dmi'
 	icon_state = "vacuum"
 	max_integrity = 100
@@ -42,7 +42,7 @@
 			if(L.stat == DEAD) // left for core to grab
 				continue
 			L.adjustBruteLoss(15)
-			to_chat(L, "<span class='danger'>You feel a terrible pain as you slam into the vacuum!</span>")
+			to_chat(L, "<span class='danger'>You feel a terrible pain as you are slammed into the vacuum!</span>")
 			playsound(src.loc, 'sound/effects/splat.ogg', 100, 1, pressure_affected = FALSE)
 		else
 			A.blob_act()

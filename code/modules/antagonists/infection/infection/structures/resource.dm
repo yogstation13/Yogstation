@@ -4,7 +4,7 @@
 
 /obj/structure/infection/resource
 	name = "resource infection"
-	desc = "A thin spire of slightly swaying tendrils."
+	desc = "A chunk of crystalline mass that appears to be drawing something in from the surrounding infestion."
 	icon = 'icons/mob/infection/crystaline_infection_medium.dmi'
 	icon_state = "crystalresource-layer"
 	pixel_x = -16

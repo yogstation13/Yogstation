@@ -6,7 +6,7 @@
 	name = "factory infection"
 	icon = 'icons/mob/infection/crystaline_infection_medium.dmi'
 	icon_state = "crystalinvasion-layer"
-	desc = "A thick spire of tendrils."
+	desc = "A thick spire of crystalline mass, this one appears more brittle than the rest."
 	pixel_x = -16
 	pixel_y = 0
 	max_integrity = 200

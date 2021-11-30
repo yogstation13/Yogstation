@@ -6,7 +6,7 @@
 	name = "infection"
 	icon = 'icons/mob/infection/infection.dmi'
 	light_range = 4
-	desc = "A thick wall of writhing tendrils."
+	desc = "A thick carpet of writhing tendrils."
 	density = FALSE
 	spacemove_backup = TRUE
 	opacity = 0
@@ -293,17 +293,8 @@
 			continue
 		if(ismecha(O))
 			continue
-		INVOKE_ASYNC(src, .proc/eatObject, O)
 	if(iswallturf(loc))
 		loc.blob_act(src) //don't ask how a wall got on top of the core, just eat it
-
-/obj/structure/infection/proc/eatObject(obj/O)
-	O.take_damage(100, BURN, "", FALSE)
-	if(!QDELETED(O))
-		O.add_overlay(GLOB.infection_destroy_overlay)
-	sleep(5)
-	if(!QDELETED(O))
-		O.cut_overlay(GLOB.infection_destroy_overlay)
 
 /*
 	Attack animation for infection expansion
