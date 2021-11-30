@@ -129,6 +129,8 @@
 		if("lampIntensity")
 			borgo.lamp_intensity = params["ref"]
 			borgo.toggle_headlamp(FALSE, TRUE)
+		if("selfDestruct")
+			borgo.self_self_destruct()
 
 /**
   * Forces a full update of the UI, if currently open.

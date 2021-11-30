@@ -10,7 +10,7 @@ export const NtosRobotact = (props, context) => {
   return (
     <NtosWindow
       width={800}
-      height={600}
+      height={400}
       theme={PC_device_theme}>
       <NtosWindow.Content>
         <NtosRobotactContent />
@@ -66,6 +66,13 @@ export const NtosRobotactContent = (props, context) => {
             lineHeight="23px"
             selected={tab_main === 2}
             onClick={() => setTab_main(2)}>
+            Laws
+          </Tabs.Tab>
+          <Tabs.Tab
+            icon="list"
+            lineHeight="23px"
+            selected={tab_main === 3}
+            onClick={() => setTab_main(3)}>
             Logs
           </Tabs.Tab>
         </Tabs>
@@ -75,10 +82,15 @@ export const NtosRobotactContent = (props, context) => {
           <Flex
             direction={"row"}>
             <Flex.Item
-              width="30%">
+              width="50%">
               <Section
-                title="Configuration"
-                fill>
+                title="Details"
+                buttons={(
+                  <Button
+                    content="Power Alert"
+                    disabled={charge}
+                    onClick={() => act('alertPower')} />
+                )}>
                 <LabeledList>
                   <LabeledList.Item
                     label="Unit">
@@ -92,38 +104,31 @@ export const NtosRobotactContent = (props, context) => {
                     label="AI">
                     {masterAI.slice(0, 17)}
                   </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Charge">
+                    <ProgressBar
+                    value={charge / maxcharge}
+                    ranges={{
+                      good: [0.5, Infinity],
+                      average: [0.1, 0.5],
+                      bad: [-Infinity, 0.1],
+                    }}>
+                      <AnimatedNumber value={charge} />
+                    </ProgressBar>
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Chassis Integrity">
+                    <ProgressBar
+                      value={integrity}
+                      minValue={0}
+                      maxValue={100}
+                      ranges={{
+                        bad: [-Infinity, 25],
+                        average: [25, 75],
+                        good: [75, Infinity],
+                      }} />
+                  </LabeledList.Item>
                 </LabeledList>
-              </Section>
-            </Flex.Item>
-            <Flex.Item
-              grow={1}
-              ml={1}>
-              <Section
-                title="Status">
-                Charge:
-                <Button
-                  content="Power Alert"
-                  disabled={charge}
-                  onClick={() => act('alertPower')} />
-                <ProgressBar
-                  value={charge / maxcharge}
-                  ranges={{
-                    good: [0.5, Infinity],
-                    average: [0.1, 0.5],
-                    bad: [-Infinity, 0.1],
-                  }}>
-                  <AnimatedNumber value={charge} />
-                </ProgressBar>
-                Chassis Integrity:
-                <ProgressBar
-                  value={integrity}
-                  minValue={0}
-                  maxValue={100}
-                  ranges={{
-                    bad: [-Infinity, 25],
-                    average: [25, 75],
-                    good: [75, Infinity],
-                  }} />
               </Section>
               <Section
                 title="Lamp Power">
@@ -210,21 +215,28 @@ export const NtosRobotactContent = (props, context) => {
                           onClick={() => act('toggleThrusters')} />
                       </LabeledList.Item>
                     )}
+                    <LabeledList.Item
+                      label="Self Destruct">
+                      <Button.Confirm
+                        content="ACTIVATE"
+                        color="red"
+                        onClick={() => act('selfDestruct')} />
+                    </LabeledList.Item>
                   </LabeledList>
                 </Section>
               )}
               {tab_sub === 2 && (
                 <Section>
-                  {borgUpgrades.map(upgrade => (
-                    <Box
-                      mb={1}
-                      key={upgrade}>
-                      {upgrade}
-                    </Box>
-                  ))}
+                {borgUpgrades.map(upgrade => (
+                  <Box
+                    mb={1}
+                    key={upgrade}>
+                    {upgrade}
+                  </Box>
+                ))}
                 </Section>
               )}
-              {tab_sub === 3 && ( 
+              {tab_sub === 3 && (
                 <Section>
                   <LabeledList>
                     <LabeledList.Item
@@ -262,39 +274,40 @@ export const NtosRobotactContent = (props, context) => {
               )}
             </Flex.Item>
           </Flex>
-          <Flex.Item
-            height={21}
-            mt={1}>
-            <Section
-              title="Laws"
-              fill
-              scrollable
-              buttons={(
-                <Fragment>
-                  <Button
-                    content="State Laws"
-                    onClick={() => act('lawstate')} />
-                  <Button
-                    icon="volume-off"
-                    onClick={() => act('lawchannel')} />
-                </Fragment>
-              )}>
-              {laws.map(law => (
-                <Box
-                  mb={1}
-                  key={law}>
-                  {law}
-                </Box>
-              ))}
-            </Section>
-          </Flex.Item>
         </Fragment>
       )}
       {tab_main === 2 && (
+        <Flex.Item
+          height={24}>
+          <Section
+            title="Laws"
+            fill
+            scrollable
+            buttons={(
+              <Fragment>
+                <Button
+                  content="State Laws"
+                  onClick={() => act('lawstate')} />
+                <Button
+                  icon="volume-off"
+                  onClick={() => act('lawchannel')} />
+              </Fragment>
+            )}>
+            {laws.map(law => (
+              <Box
+                mb={1}
+                key={law}>
+                {law}
+              </Box>
+            ))}
+          </Section>
+        </Flex.Item>
+      )}
+      {tab_main === 3 && (
         <Flex.Item>
           <Section
             backgroundColor="black"
-            height={40}>
+            height={24}>
             <NtosWindow.Content scrollable>
               {borgLog.map(log => (
                 <Box
