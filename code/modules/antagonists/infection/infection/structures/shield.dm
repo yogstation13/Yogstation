@@ -4,7 +4,7 @@
 
 /obj/structure/infection/shield
 	name = "strong infection"
-	desc = "A solid wall of slightly twitching tendrils, strange crystals appear to be jutting out of it."
+	desc = "A solid wall of slightly twitching tendrils."
 	icon = 'icons/obj/smooth_structures/infection_wall.dmi'
 	icon_state = "smooth"
 	smooth = SMOOTH_TRUE
@@ -147,5 +147,5 @@
 	if(mover.pulledby && isliving(mover.pulledby)) // pulled through by other infection creatures
 		var/mob/living/L = mover.pulledby
 		if(L.pass_flags & PASSBLOB)
-			return ..()
+			return TRUE
 	return FALSE
