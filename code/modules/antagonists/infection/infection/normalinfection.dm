@@ -342,6 +342,8 @@
 		return I
 	else
 		T.blob_act(src)
+		for(var/obj/structure/S in T)
+			S.blob_act(src)
 		qdel(I)
 		return null
 
