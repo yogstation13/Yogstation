@@ -5,7 +5,7 @@
 	implements = list(TOOL_SCALPEL = 100, /obj/item/melee/transforming/energy/sword = 75, /obj/item/kitchen/knife = 65,
 		/obj/item/shard = 45, /obj/item = 30) // 30% success with any sharp item.
 	time = 16
-	var/bleeding = 10 //how much bleeding you get from this being done
+	var/bleeding = 5 //how much bleeding you get from this being done
 
 /datum/surgery_step/incise/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to make an incision in [target]'s [parse_zone(target_zone)]..."),
@@ -99,7 +99,7 @@
 		var/mob/living/carbon/human/H = target
 		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
 		if(BP)
-			BP.generic_bleedstacks -= 3
+			BP.generic_bleedstacks -= 10
 	return ..()
 
 /datum/surgery_step/close/nofail

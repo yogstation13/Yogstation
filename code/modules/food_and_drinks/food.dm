@@ -14,12 +14,21 @@
 	resistance_flags = FLAMMABLE
 	var/foodtype = NONE
 	var/last_check_time
+	///Will this food turn into badrecipe on a grill? Don't use this for everything; preferably mostly for food that is made on a grill to begin with so it burns after some time
+	var/burns_on_grill = FALSE
 
 /obj/item/reagent_containers/food/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		pixel_x = rand(-5, 5)
 		pixel_y = rand(-5, 5)
+	MakeGrillable()
+
+///This proc handles grillable components, overwrite if you want different grill results etc.
+/obj/item/reagent_containers/food/proc/MakeGrillable()
+	if(burns_on_grill)
+		AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/badrecipe, rand(20 SECONDS, 30 SECONDS), FALSE)
+	return
 
 /obj/item/reagent_containers/food/proc/checkLiked(var/fraction, mob/M)
 	if(last_check_time + 50 < world.time)
