@@ -165,8 +165,9 @@
 	project.stop()
 	if(ram_usage[project.name])
 		ram_usage[project.name] -= project.ram_required
+		return project.ram_required
 
-	return TRUE
+	return FALSE
 
 /datum/ai_dashboard/proc/has_completed_projects(project_name)
 	for(var/datum/ai_project/P as anything in completed_projects)
@@ -201,14 +202,15 @@
 		while(total_ram_used > current_ram)
 			for(var/I in ram_usage)
 				var/datum/ai_project/project = get_project_by_name(I)
-				stop_project(project)
+				total_ram_used -= stop_project(project)
 				reduction_of_resources = TRUE
 
 	if(total_cpu_used > current_cpu)
-		while(total_cpu_used > current_cpu)
+		while(total_cpu_used > current_cpu) 
 			for(var/I in cpu_usage)
 				if(cpu_usage[I] > 0)
 					cpu_usage[I]--
+					total_cpu_used--
 					reduction_of_resources = TRUE
 
 	if(reduction_of_resources)
