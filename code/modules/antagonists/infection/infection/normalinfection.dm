@@ -48,7 +48,7 @@
 	var/upgrade_subtype = null
 	// menu handler for the upgrade menus
 	var/datum/infection_menu/menu_handler
-	// appeases the linter gods to prevent this from failing PRs
+	// if this thing can be stepped on by non blobbies
 	var/canpass_bypass = FALSE
 	// types of objects to eat
 	var/list/types_to_eat = list(/obj/singularity,
