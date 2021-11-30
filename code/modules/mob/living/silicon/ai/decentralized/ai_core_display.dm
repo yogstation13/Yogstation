@@ -6,6 +6,8 @@
 	icon = 'icons/mob/ai.dmi'
 	icon_state = "ai-empty"
 
+	density = TRUE
+
 	var/mode = SD_BLANK
 	var/emotion = "Neutral"
 

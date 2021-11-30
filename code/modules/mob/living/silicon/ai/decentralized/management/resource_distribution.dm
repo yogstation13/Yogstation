@@ -9,7 +9,7 @@
 
 	authenticated = FALSE
 
-	var/human_only = TRUE
+	var/human_only = FALSE
 
 	circuit = /obj/item/circuitboard/computer/ai_resource_distribution
 
