@@ -221,6 +221,7 @@
 			var/mob/dead/observer/C = pick(candidates)
 			var/picked_type = pickweight(possible_mobs)
 			var/mob/living/SM = new picked_type(owner.loc)
+			SM.loot = list(/obj/effect/gibspawner/human)
 			SM.key = C.key
 			clowns_created += SM
 			to_chat(SM, "<span class='userdanger'>You are grateful to be chosen to reclaim the clown motherland! Serve and assist [owner.real_name] and the station in defeating the infection as your first task!</span>")
