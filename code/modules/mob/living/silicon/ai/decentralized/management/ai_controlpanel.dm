@@ -68,6 +68,9 @@
 		stop_download(TRUE)
 
 	if(downloading)
+		if(!downloading.can_download)
+			stop_download()
+			return
 		download_progress += AI_DOWNLOAD_PER_PROCESS * downloading.downloadSpeedModifier
 
 

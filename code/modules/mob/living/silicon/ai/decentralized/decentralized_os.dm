@@ -86,8 +86,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 		cpu_assigned[A] = cpu_assigned[A] - cpu_removal[A]
 		affected_AIs |= A
 	
-	for(var/A in affected_AIs)
-		to_chat(A, "<span class='warning'>You have been deducted processing capabilities. Please contact your network administrator if you believe this to be an error.</span>")
+	to_chat(affected_AIs, "<span class='warning'>You have been deducted processing capabilities. Please contact your network administrator if you believe this to be an error.</span>")
 
 
 /datum/ai_os/proc/add_cpu(mob/living/silicon/ai/AI, amount)
