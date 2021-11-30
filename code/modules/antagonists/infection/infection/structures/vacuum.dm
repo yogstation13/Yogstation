@@ -33,7 +33,7 @@
 			if(ROLE_INFECTION in L.faction)
 				continue
 		if(!M.anchored && !M.pulledby)
-			M.experience_pressure_difference(MOVE_FORCE_STRONG, get_dir(M, src))
+			M.experience_pressure_difference(MOVE_FORCE_VERY_WEAK, get_dir(M, src))
 	for(var/atom/A in get_turf(src)) // eating time
 		if(isliving(A))
 			var/mob/living/L = A
