@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 
 
 	if(total_cpu < previous_cpu)
-		while(previous_cpu > total_cpu)
+		while(previous_cpu >= total_cpu) previous = 5, total = 4
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
 			if(cpu_assigned[AI] > 1)
 				cpu_removal[AI]++
@@ -72,7 +72,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 			
 
 	if(total_ram < previous_ram)
-		while(previous_ram > total_ram)
+		while(previous_ram >= total_ram)
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
 			if(ram_assigned[AI] > 1)
 				ram_removal[AI]++
