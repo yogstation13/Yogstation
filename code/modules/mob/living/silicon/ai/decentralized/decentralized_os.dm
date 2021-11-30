@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 
 
 	if(total_cpu < previous_cpu)
-		while(total_cpu <= previous_cpu) previous = 5, total = 4
+		while(total_cpu <= previous_cpu)
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
 			if(cpu_assigned[AI] > 1)
 				cpu_removal[AI]++
