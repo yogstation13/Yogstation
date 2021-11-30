@@ -93,7 +93,7 @@
 
 /obj/item/infectionkiller/excaliju
 	name = "Excaliju"
-	desc = "A legendary sword once wielded by a dwarven king. The blood of fallen infectious foes fuels the powerful runes carved on the sword."
+	desc = "An ancient sword with several runes carved along the blade. Deathblows to infested creatures massively increase its damage for 5 seconds."
 	icon_state = "excaliju"
 	item_state = "excaliju"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -124,8 +124,8 @@
 	playsound(src.loc, 'sound/weapons/wpnProc.ogg', 300, 1, vary = FALSE, pressure_affected = FALSE)
 	if(!is_procced() && prob(20))
 		to_chat(user, "<span class='colossus'><b>[pick("DEATH FEARS ME!","PROTECT THE SHRINE!","OLDDD MAAAN WILLAKERRRS!")]</b></span>")
-	proctime = world.time + 30 // 3 seconds of big ass damage to other infection mobs if you manage to kill one infection mob, chain procs
-	addtimer(CALLBACK(src, .proc/proc_end), 30)
+	proctime = world.time + 50 // 5 seconds of big ass damage to other infection mobs if you manage to kill one infection mob, chain procs
+	addtimer(CALLBACK(src, .proc/proc_end), 50)
 
 /*
 	Ends the proc and plays a sound to indicate so
@@ -152,7 +152,7 @@
 
 /obj/item/infectionkiller/drill
 	name = "Drill of Legends"
-	desc = "A glowing golden drill, able to pierce through most material with ease."
+	desc = "A glowing golden drill, bluespace energies infused into the drill bit allow it to slice thick infection with ease."
 	icon_state = "drilloflegends"
 	item_state = "drilloflegends"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
@@ -166,7 +166,7 @@
 
 /obj/item/infectionkiller/staff
 	name = "Golden Staff of the Honkmother"
-	desc = "The golden staff of the honkmother, only given to those worthy of her greatest blessing."
+	desc = "The golden staff of the honkmother, capable of summoning honkbominations from clown planet."
 	icon = 'icons/obj/guns/magic.dmi'
 	icon_state = "honker"
 	item_state = "honker"
@@ -232,7 +232,7 @@
 
 /obj/item/infectionkiller/tonic
 	name = "Spinel Tonic"
-	desc = "A glass filled with a highly illegal substance that improves the consumers body to almost godhood."
+	desc = "An ancient recreational substance, when imbibed it boosts the drinker's physical capabilities to near godhood. Gives stunproofing, speed, and a strong unarmed attack."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "atomicbombglass"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
@@ -250,7 +250,7 @@
 
 /obj/item/infectionkiller/tonicfists
 	name = "Tonic Powered Fists"
-	desc = "They attack so fast!"
+	desc = "H-He's fast!"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "bloodhand_left"
 	force = 30
