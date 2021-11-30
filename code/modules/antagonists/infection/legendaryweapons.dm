@@ -18,9 +18,9 @@
 		notify_ghosts("The Legendary Weapon [name] Was Found!", source = src, action = NOTIFY_ORBIT, header = "Legendary Weapon")
 		if(GLOB.infection_core)
 			priority_announce("The Legendary Item \"[name]\" has been discovered somewhere on the station.\n\n\
-							   We've attached a GPS signaller and teleportation beacon to it so that you can find it.\n\
+							   The bluespace radiation present inside the item allows it to be detected by standard issue GPS units.\n\
 							   We believe this item contains enough power to destroy the infection core.",
-							   "CentCom Biohazard Division", 'sound/magic/summonitems_generic.ogg')
+							   "CentCom Exotic Materials Research Division", 'sound/magic/summonitems_generic.ogg')
 		AddComponent(/datum/component/stationloving, FALSE, FALSE)
 		var/obj/item/gps/internal/legendary/L = new /obj/item/gps/internal/legendary(src)
 		L.gpstag = "Legendary [name] Signal"
