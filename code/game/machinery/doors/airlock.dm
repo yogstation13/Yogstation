@@ -1462,6 +1462,8 @@
 	icon = initial(airlock.icon)
 	overlays_file = initial(airlock.overlays_file)
 	assemblytype = initial(airlock.assemblytype)
+	anim_parts = initial(airlock.anim_parts)
+	rebuild_parts()
 	update_icon()
 
 /obj/machinery/door/airlock/CanAStarPass(obj/item/card/id/ID)
