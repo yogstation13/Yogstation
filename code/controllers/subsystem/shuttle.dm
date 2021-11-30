@@ -175,6 +175,9 @@ SUBSYSTEM_DEF(shuttle)
 	if(world.time - SSticker.round_start_time < srd)
 		return "The emergency shuttle is refueling. Please wait [DisplayTimeText(srd - (world.time - SSticker.round_start_time))] before attempting to call."
 
+	if(GLOB.infection_core)
+		return "The emergency shuttle may not be called while class 5 hazardous exotic material remains uncontained aboard your station."
+
 	switch(emergency.mode)
 		if(SHUTTLE_RECALL)
 			return "The emergency shuttle may not be called while returning to CentCom."
@@ -317,6 +320,9 @@ SUBSYSTEM_DEF(shuttle)
 
 /datum/controller/subsystem/shuttle/proc/autoEvac()
 	if (!SSticker.IsRoundInProgress())
+		return
+
+	if(GLOB.infection_core)
 		return
 
 	var/callShuttle = 1
