@@ -12,6 +12,7 @@
 	point_return = 10
 	build_time = 100
 	canpass_bypass = TRUE
+	layer = ABOVE_MOB_LAYER
 	upgrade_subtype = /datum/infection_upgrade/vacuum
 	// the range to pull objects from
 	var/suck_range = 7
