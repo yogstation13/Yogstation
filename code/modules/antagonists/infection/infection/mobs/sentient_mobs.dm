@@ -10,7 +10,7 @@
 	crystal_color = "#ff8c00"
 	obj_damage = 40
 	// respawn time for the slime
-	var/respawn_time = 600
+	var/respawn_time = 1 MINUTES
 	// the time left to respawn
 	var/current_respawn_time = 0
 	// the upgrade points the spore has stored
