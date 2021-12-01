@@ -62,7 +62,6 @@
 
 		if(INTERACTING_WITH(user, src))//prevents message spam
 			return
-		last_act = world.time
 		to_chat(user, "<span class='notice'>You start picking...</span>")
 
 		if(I.use_tool(src, user, mining_time_mod, volume=50))
