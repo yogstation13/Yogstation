@@ -29,8 +29,7 @@
 							  /obj/item/stack/ore/gold=2,
 							  /obj/item/stack/ore/diamond=2,
 							  /obj/item/stack/ore/bananium=2,
-							  /obj/item/stack/ore/titanium=2,
-							  /obj/item/twohanded/required/gibtonite=1)
+							  /obj/item/stack/ore/titanium=2)
 
 /obj/structure/infection/shield/Initialize(mapload)
 	canSmoothWith = typesof(/obj/structure/infection/shield)
