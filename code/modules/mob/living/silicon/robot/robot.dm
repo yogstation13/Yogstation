@@ -294,6 +294,14 @@
 	var/datum/browser/alerts = new(usr, "robotalerts", "Current Station Alerts", 400, 410)
 	alerts.set_content(dat)
 	alerts.open()
+
+/mob/living/silicon/robot/proc/robot_alerts_length()
+	var/length = 0
+	for (var/cat in alarms)
+		var/list/L = alarms[cat]
+		length += L.len
+
+	return length
 	
 /mob/living/silicon/robot/verb/view_manifest()
 	set name = "View Crew Manifest"

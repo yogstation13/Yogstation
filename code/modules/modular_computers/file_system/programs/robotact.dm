@@ -49,11 +49,15 @@
 	data["charge"] = charge //Current cell charge
 	data["maxcharge"] = maxcharge //Cell max charge
 	data["integrity"] = ((borgo.health + 100) / 2) //Borgo health, as percentage
+	data["light_on"] = borgo?.lamp_enabled
+	data["comp_light_color"] = borgo?.lamp_color
 	data["lampIntensity"] = borgo.lamp_intensity //Borgo lamp power setting
+	data["alertLength"] = borgo.robot_alerts_length() //Number of alerts
 	data["sensors"] = "[borgo.sensors_on?"ACTIVE":"DISABLED"]"
 	data["printerPictures"] = borgo.aicamera.stored.len //Number of pictures taken
 	data["printerToner"] = borgo.toner //amount of toner
 	data["printerTonerMax"] = borgo.tonermax //It's a variable, might as well use it
+	data["cameraActive"] = borgo.aicamera.in_camera_mode //If the camera is active
 	data["thrustersInstalled"] = borgo.ionpulse //If we have a thruster uprade
 	data["thrustersStatus"] = "[borgo.ionpulse_on?"ACTIVE":"DISABLED"]" //Feedback for thruster status
 
@@ -91,6 +95,8 @@
 	var/mob/living/silicon/robot/borgo = tablet.borgo
 
 	switch(action)
+		if("viewAlerts")
+			borgo.robot_alerts()
 		if("coverunlock")
 			if(borgo.locked)
 				borgo.locked = FALSE
@@ -123,6 +129,10 @@
 			var/obj/item/camera/siliconcam/robot_camera/borgcam = borgo.aicamera
 			borgcam?.borgprint(usr)
 
+		if("takeImage")
+			var/obj/item/camera/siliconcam/robot_camera/borgcam = borgo.aicamera
+			borgcam?.toggle_camera_mode(usr)
+
 		if("toggleThrusters")
 			borgo.toggle_ionpulse()
 
@@ -131,6 +141,23 @@
 			borgo.toggle_headlamp(FALSE, TRUE)
 		if("selfDestruct")
 			borgo.self_self_destruct()
+		if("toggle_light")
+			borgo.toggle_headlamp()
+			return TRUE
+
+		if("light_color")
+			var/mob/user = usr
+			var/new_color
+			while(!new_color)
+				new_color = input(user, "Choose a new color for [src]'s flashlight.", "Light Color",holder.light_color) as color|null
+				if(!new_color || QDELETED(borgo))
+					return
+				if(color_hex2num(new_color) < 200) //Colors too dark are rejected
+					to_chat(user, "<span class='warning'>That color is too dark! Choose a lighter one.</span>")
+					new_color = null
+			borgo.lamp_color = new_color
+			borgo.toggle_headlamp(FALSE, TRUE)
+			return TRUE
 
 /**
   * Forces a full update of the UI, if currently open.

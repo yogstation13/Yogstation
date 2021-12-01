@@ -1,7 +1,7 @@
 import { classes } from 'common/react';
 import { resolveAsset } from '../assets';
 import { useBackend, useSharedState } from '../backend';
-import { AnimatedNumber, Box, Button, Flex, Fragment, Icon, NoticeBox, Section, Slider, ProgressBar, LabeledList, Table, Tabs } from '../components';
+import { AnimatedNumber, Box, Button, Flex, Fragment, Icon, NoticeBox, ColorBox, Section, Slider, ProgressBar, LabeledList, Table, Tabs } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosRobotact = (props, context) => {
@@ -34,12 +34,16 @@ export const NtosRobotactContent = (props, context) => {
     wireCamera,
     wireAI,
     wireLaw,
+    alertLength,
     sensors,
     printerPictures,
     printerToner,
     printerTonerMax,
+    cameraActive,
     thrustersInstalled,
     thrustersStatus,
+    light_on,
+    comp_light_color,
   } = data;
   const borgName = data.name || [];
   const borgType = data.designation || [];
@@ -55,14 +59,14 @@ export const NtosRobotactContent = (props, context) => {
         mb={1}>
         <Tabs>
           <Tabs.Tab
-            icon="list"
+            icon="heart"
             lineHeight="23px"
             selected={tab_main === 1}
             onClick={() => setTab_main(1)}>
             Status
           </Tabs.Tab>
           <Tabs.Tab
-            icon="list"
+            icon="list-ol"
             lineHeight="23px"
             selected={tab_main === 2}
             onClick={() => setTab_main(2)}>
@@ -130,7 +134,24 @@ export const NtosRobotactContent = (props, context) => {
               </LabeledList>
             </Section>
             <Section
-              title="Lamp Power">
+              title="Lamp Power"
+              buttons={(
+                <Fragment>
+                  <Button
+                    width="144px"
+                    icon="lightbulb"
+                    selected={light_on}
+                    onClick={() => act('toggle_light')}>
+                    Flashlight: {light_on ? 'ON' : 'OFF'}
+                  </Button>
+                  <Button
+                    ml={1}
+                    onClick={() => act('light_color')}>
+                    Color:
+                    <ColorBox ml={1} color={comp_light_color} />
+                  </Button>
+                </Fragment>
+              )}>
               <Slider
                 value={lampIntensity}
                 step={1}
@@ -178,6 +199,12 @@ export const NtosRobotactContent = (props, context) => {
               <Section>
                 <LabeledList>
                   <LabeledList.Item
+                    label={"Alerts (" + alertLength + ")"}>
+                    <Button
+                      content="View"
+                      onClick={() => act('viewAlerts')} />
+                  </LabeledList.Item>
+                  <LabeledList.Item
                     label="Maintenance Cover">
                     <Button.Confirm
                       content="Unlock"
@@ -200,6 +227,10 @@ export const NtosRobotactContent = (props, context) => {
                       content="Print"
                       disabled={!printerPictures}
                       onClick={() => act('printImage')} />
+                    <Button
+                      icon="camera"
+                      selected={cameraActive}
+                      onClick={() => act('takeImage')} />
                   </LabeledList.Item>
                   <LabeledList.Item
                     label="Printer Toner">
