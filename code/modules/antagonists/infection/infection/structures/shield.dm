@@ -19,7 +19,7 @@
 	// the last time something tried to mine this to avoid message spam
 	var/last_act = 0
 	// multiplicative delay to mining speed on this type
-	var/mining_time_mod = 20
+	var/mining_time_mod = 10 SECONDS
 	// list of ore drops weighted
 	var/list/ore_drops = list(/obj/item/stack/ore/uranium=2,
 							  /obj/item/stack/ore/iron=2,
@@ -61,13 +61,13 @@
 		if (!isturf(T))
 			return
 
-		if(last_act + (mining_time_mod * I.toolspeed) > world.time)//prevents message spam
+		if(INTERACTING_WITH(user, src))//prevents message spam
 			return
 		last_act = world.time
 		to_chat(user, "<span class='notice'>You start picking...</span>")
 
-		if(I.use_tool(src, user, 8 SECONDS, volume=50))
-			to_chat(user, "<span class='notice'>You finish cutting into the rock.</span>")
+		if(I.use_tool(src, user, mining_time_mod, volume=50))
+			to_chat(user, "<span class='notice'>You slice through the infection.</span>")
 			change_to(/obj/structure/infection/normal, overmind)
 			SSblackbox.record_feedback("tally", "pick_used_mining", 1, I.type)
 		return
@@ -103,7 +103,7 @@
 	brute_resist = 0.8
 	fire_resist = 0.2
 	explosion_block = 2
-	mining_time_mod = 10
+	mining_time_mod = 5 SECONDS
 
 /obj/structure/infection/shield/reflective/Initialize(mapload)
 	. = ..()
