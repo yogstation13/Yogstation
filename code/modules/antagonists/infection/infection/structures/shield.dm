@@ -98,7 +98,7 @@
 	icon_state = "reflective"
 	smooth = SMOOTH_FALSE
 	flags_1 = CHECK_RICOCHET_1
-	brute_resist = 0.8
+	brute_resist = 3
 	fire_resist = 0.2
 	explosion_block = 2
 	mining_time_mod = 4 SECONDS
