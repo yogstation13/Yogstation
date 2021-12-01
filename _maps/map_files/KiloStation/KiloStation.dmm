@@ -2544,7 +2544,6 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/effect/landmark/beacon_start/north,
 /turf/open/floor/plasteel/dark,
 /area/library)
 "adX" = (
@@ -3025,15 +3024,6 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/space/nearstation)
-"aeG" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/landmark/beacon_start/north,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "aeH" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -3053,7 +3043,6 @@
 	pixel_y = -24
 	},
 /obj/effect/turf_decal/stripes/corner,
-/obj/effect/landmark/beacon_start/north,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aeI" = (
@@ -119266,7 +119255,7 @@ atTbXt
 atTaLC
 bRMbSf
 cNgbVi
-aeGcbr
+cbqcbr
 bIqbCM
 bDuuXi
 bXQbCM

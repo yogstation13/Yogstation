@@ -386,7 +386,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/effect/landmark/beacon_start/south,
 /mob/living/simple_animal/bot/secbot{
 	arrest_type = 1;
 	health = 45;
@@ -645,7 +644,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/effect/landmark/beacon_start/south,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "abu" = (
@@ -796,19 +794,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
-"abL" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/effect/landmark/beacon_start/south,
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "abM" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -818,7 +803,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/landmark/beacon_start/south,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "abN" = (
@@ -989,7 +973,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
-/obj/effect/landmark/beacon_start/south,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "acg" = (
@@ -31551,6 +31534,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/landmark/beacon_start/south,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bkG" = (
@@ -110939,7 +110923,7 @@ axp
 aAY
 aCk
 aDw
-abL
+ayy
 axQ
 aHx
 cAl

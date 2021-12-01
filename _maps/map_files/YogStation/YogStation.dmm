@@ -135,7 +135,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/effect/landmark/beacon_start/east,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "aat" = (
@@ -265,13 +264,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness)
-"aaF" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/landmark/beacon_start/east,
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "aaG" = (
 /obj/structure/window/reinforced,
 /obj/structure/chair{
@@ -304,7 +296,6 @@
 	c_tag = "Arrivals Bay 2";
 	dir = 8
 	},
-/obj/effect/landmark/beacon_start/east,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aaK" = (
@@ -396,11 +387,6 @@
 /obj/structure/grille,
 /turf/open/space,
 /area/space/nearstation)
-"aaU" = (
-/obj/effect/turf_decal/tile/slightlydarkerblue,
-/obj/effect/landmark/beacon_start/east,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "aaV" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -88025,7 +88011,7 @@ tPm
 aSs
 aLE
 aLE
-aaF
+aOl
 aPH
 aRa
 ioi
@@ -92663,7 +92649,7 @@ jby
 eUC
 eUC
 eUC
-aaU
+eUC
 eUC
 dBV
 jwK
