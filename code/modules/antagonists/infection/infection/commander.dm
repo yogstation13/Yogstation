@@ -103,27 +103,29 @@ GLOBAL_VAR(infection_commander)
 	First info announcement when the infection has just been spotted
 */
 /mob/camera/commander/proc/generate_announcement()
-	priority_announce("[station_name()]: A self replicating and all consuming entity has been detected on a collision course with your station. \n\
+	priority_announce("[station_name()]: A self replicating hostile entity has been detected on a collision course with your station. \n\
 					   Our calculations estimate the substance will impact in [(autoplace_time - world.time)/600] minutes.\n\n\
-					   We will be deploying beacons that will defend the majority of your station, prepare to go to war to protect them. \n\
+					   The substance reacts negatively to strong bluespace fields, and as such we are deploying several generators across your station to stave it off. \n\
+					   Be advised the infection can overwhelm these generators if it maintains direct contact with them. The generators are irreplacable so do not let them be destroyed. \n\
 					   There will also be a gravity generator near your arrivals shuttle, we recommend that you power it unless you want to fight while floating around.",
-					  "CentCom Biohazard Division", 'sound/misc/notice1.ogg')
+					  "CentCom Exotic Materials Research Division", 'sound/misc/notice1.ogg')
 
 /*
 	Extra info announcement to hopefully avoid people running in and dying to an unkillable enemy
 */
 /mob/camera/commander/proc/info_announcement()
-	priority_announce("[station_name()]: The entity appears to have a core that is virtually indestructible, normal destructive methods will not affect it in any way. \n\n\
-					   The core is also heavily defended, so we recommend that you don't rush in blindly unless you want to feed the infection. \n\n\
-					   On that note, the infection appears to be able to assimilate sentient creatures into its own army, top priority should be saving those killed by the infection.",
-					  "CentCom Biohazard Division", 'sound/misc/notice1.ogg')
+	priority_announce("[station_name()]: The entity's core has proven immune to nuclear, laser, and ballistic weaponry. You will have to hold it off until a means of destroying the core is discovered. \n\n\
+					   The core also appears to be protected by several short range anti-personnel structures. Unplanned attacks are likely to result in death. \n\n\
+					   On that note, the infection appears to be able to assimilate deceased complex life, turning them into rapidly adapting slimes through an unknown means. \n\n\
+					   Assimilation into a class 5 entity is in violation of your contracts and is not covered under NT insurance policy.",
+					  "CentCom Exotic Materials Research Division", 'sound/misc/notice1.ogg')
 
 /*
 	Players win, infection is defeated
 */
 /mob/camera/commander/proc/defeated_announcement()
-	priority_announce("Our scanners detect no trace of any sentient infectious substance, threat neutralized.",
-					  "CentCom Biohazard Division", 'sound/misc/notice2.ogg')
+	priority_announce("The core's energy signature has terminated. Fragments will be brought in for research. Excellent field work.",
+					  "CentCom Exotic Materials Research Division", 'sound/misc/notice2.ogg')
 
 /*
 	Places the beacons down at all of the landmarks in the map files, slightly delayed to make it look cool
@@ -151,7 +153,7 @@ GLOBAL_VAR(infection_commander)
 			qdel(src)
 	else if(!victory_in_progress && !GLOB.infection_beacons.len)
 		victory_in_progress = TRUE
-		priority_announce("The infection is replicating at an unstoppable rate, total station takeover estimated at T-minus 25 seconds.", "CentCom Biohazard Division")
+		priority_announce("Your last bluespace generator has been destroyed, without the presence of a stable bluespace field the infection has free reign of your station. Estimated time until takeover: 25 seconds.", "CentCom Exotic Materials Research Division")
 		set_security_level("delta")
 		max_infection_points = INFINITY
 		infection_points = INFINITY
