@@ -61,7 +61,7 @@
 	return isnull(GLOB.infection_commander)
 
 /datum/game_mode/infection/generate_report()
-	return "Exotic Material Research has recently discovered several anomalous objects exiting the [EMR CLEARANCE REQUIRED] sector at high speeds. \
+	return "Exotic Material Research has recently discovered several anomalous objects exiting the \[EMR CLEARANCE REQUIRED\] sector at high speeds. \
 			These objects seem to be similar in nature to the supermatter crystals used to power several NT stations, being neigh indestructible and capable of self replication. \
 			Research into the objects has lead EMR to believe this is a repeat occurence, and although the material reacts negatively to bluespace, far more ancient ejections are possibly on a collision course with fringe research stations such as your own. \
 			The objects fly completely dark, and are too small to be detected by most scanners. Long range warning systems will be able to pick them up however if one happens to enter your system, although given their speed you will have very little time to prepare. \
