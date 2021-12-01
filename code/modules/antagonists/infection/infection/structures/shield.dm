@@ -9,16 +9,15 @@
 	icon_state = "smooth"
 	smooth = SMOOTH_TRUE
 	max_integrity = 150
-	fire_resist = 0.75
+	brute_resist = 0.4
+	fire_resist = 0.8
 	explosion_block = 3
 	point_return = 0
 	build_time = 100
 	atmosblock = TRUE
 	// possible weighted crystal colors to display on the shield
 	var/list/crystal_colors = list("#3333aa" = 20, "#33aa33" = 15, "#aa3333" = 15, "#ffffff" = 8, "#822282" = 4, "#444444" = 1)
-	// the last time something tried to mine this to avoid message spam
-	var/last_act = 0
-	// multiplicative delay to mining speed on this type
+	// time requierd to mine the blocc
 	var/mining_time_mod = 8 SECONDS
 	// list of ore drops weighted
 	var/list/ore_drops = list(/obj/item/stack/ore/uranium=2,
@@ -28,7 +27,7 @@
 							  /obj/item/stack/ore/silver=2,
 							  /obj/item/stack/ore/gold=2,
 							  /obj/item/stack/ore/diamond=2,
-							  /obj/item/stack/ore/bananium=2,
+							  /obj/item/stack/ore/bananium=2, //build the honk mech. do it. you know you want to.
 							  /obj/item/stack/ore/titanium=2)
 
 /obj/structure/infection/shield/Initialize(mapload)
