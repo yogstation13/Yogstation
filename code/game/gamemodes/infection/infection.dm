@@ -61,10 +61,10 @@
 	return isnull(GLOB.infection_commander)
 
 /datum/game_mode/infection/generate_report()
-	return "An extremely dangerous infectious core was recently shot out into space at incredible speed after some form of planetary explosion. \
-			Typically these cores are restricted to dead planets where they will be unable to expand, as there is no currently known way to destroy them. \
-			We cannot currently track the cores location at this time as it seems to have noticed and evolved to stop us, now seemingly invisible to any of our methods. \
-			It is believed that we will be able to spot the core once it enters any solar system, giving very little time to prepare against it. \
+	return "Exotic Material Research has recently discovered several anomalous objects exiting the [EMR CLEARANCE REQUIRED] sector at high speeds. \
+			These objects seem to be similar in nature to the supermatter crystals used to power several NT stations, being neigh indestructible and capable of self replication. \
+			Research into the objects has lead EMR to believe this is a repeat occurence, and although the material reacts negatively to bluespace, far more ancient ejections are possibly on a collision course with fringe research stations such as your own. \
+			The objects fly completely dark, and are too small to be detected by most scanners. Long range warning systems will be able to pick them up however if one happens to enter your system, although given their speed you will have very little time to prepare. \
 			Ensure that you are prepared at all times to fight back as evacuation requests will be denied due to the danger of spreading this infection."
 
 /datum/game_mode/infection/send_intercept()
