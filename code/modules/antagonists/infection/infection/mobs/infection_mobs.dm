@@ -100,7 +100,7 @@
 
 /mob/living/simple_animal/hostile/infection/infectionspore
 	name = "infection slime"
-	desc = "A floating, fragile slime."
+	desc = "A fragile floating crystal, generating a floating ball of slime."
 	icon_state = "infest-slime-core"
 	icon_living = "infest-slime-core"
 	health = 70
