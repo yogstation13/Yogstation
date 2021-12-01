@@ -186,8 +186,9 @@
 	cost = 200
 
 /datum/infection_upgrade/hunter/napalm/upgrade_effect(atom/parent)
-	parent.melee_damage_type = BURN
-	parent.wound_bonus = 20
+	var/mob/living/simple_animal/S = parent
+	S.melee_damage_type = BURN
+	S.wound_bonus = 20
 
 /datum/infection_upgrade/hunter/flash
 	name = "Bright Flash"
