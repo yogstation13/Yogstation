@@ -56,7 +56,7 @@
 		if (!isturf(T))
 			return
 
-		if(last_act + (40 * I.toolspeed) > world.time)//prevents message spam
+		if(INTERACTING_WITH(user, src))//prevents message spam
 			return
 		last_act = world.time
 		to_chat(user, span_notice("You start picking..."))
