@@ -9,6 +9,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = INDESTRUCTIBLE
 	light_range = 4
+	layer = ABOVE_ALL_MOB_LAYER
 	// if the item should actually be treated as a real legendary, and not just a temporary item
 	var/is_item = TRUE
 
