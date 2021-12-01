@@ -511,8 +511,8 @@
 	name = "Clockcult"
 	antag_flag = ROLE_SERVANT_OF_RATVAR
 	antag_datum = /datum/antagonist/clockcult
-	protected_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Brig Physician")
-	restricted_jobs = list("Chaplain", "Captain")
+	protected_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Brig Physician")
+	restricted_roles = list("Chaplain", "Captain")
 	required_candidates = 4
 	weight = 1
 	cost = 40
