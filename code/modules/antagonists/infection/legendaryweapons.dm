@@ -9,6 +9,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = INDESTRUCTIBLE
 	light_range = 4
+	layer = ABOVE_ALL_MOB_LAYER
 	// if the item should actually be treated as a real legendary, and not just a temporary item
 	var/is_item = TRUE
 
@@ -18,9 +19,9 @@
 		notify_ghosts("The Legendary Weapon [name] Was Found!", source = src, action = NOTIFY_ORBIT, header = "Legendary Weapon")
 		if(GLOB.infection_core)
 			priority_announce("The Legendary Item \"[name]\" has been discovered somewhere on the station.\n\n\
-							   We've attached a GPS signaller and teleportation beacon to it so that you can find it.\n\
+							   The bluespace radiation present inside the item allows it to be detected by standard issue GPS units.\n\
 							   We believe this item contains enough power to destroy the infection core.",
-							   "CentCom Biohazard Division", 'sound/magic/summonitems_generic.ogg')
+							   "CentCom Exotic Materials Research Division", 'sound/magic/summonitems_generic.ogg')
 		AddComponent(/datum/component/stationloving, FALSE, FALSE)
 		var/obj/item/gps/internal/legendary/L = new /obj/item/gps/internal/legendary(src)
 		L.gpstag = "Legendary [name] Signal"
@@ -166,7 +167,7 @@
 
 /obj/item/infectionkiller/staff
 	name = "Golden Staff of the Honkmother"
-	desc = "The golden staff of the honkmother, capable of summoning honkbominations from clown planet."
+	desc = "The golden staff of the honkmother, containing a stable bluespace portal to a clown monastary on clown planet."
 	icon = 'icons/obj/guns/magic.dmi'
 	icon_state = "honker"
 	item_state = "honker"
@@ -196,9 +197,7 @@
 						/mob/living/simple_animal/hostile/retaliate/clown/longface=3,
 						/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown=2,
 						/mob/living/simple_animal/hostile/retaliate/clown/mutant/blob=3,
-						/mob/living/simple_animal/hostile/retaliate/clown/lube=3,
 						/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/destroyer=2,
-						/mob/living/simple_animal/hostile/retaliate/clown/banana=2,
 						/mob/living/simple_animal/hostile/retaliate/clown/fleshclown=2,
 						/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus=2,
 						/mob/living/simple_animal/hostile/retaliate/clown/mutant=2)
@@ -220,7 +219,8 @@
 		if(LAZYLEN(candidates))
 			var/mob/dead/observer/C = pick(candidates)
 			var/picked_type = pickweight(possible_mobs)
-			var/mob/living/SM = new picked_type(owner.loc)
+			var/mob/living/simple_animal/SM = new picked_type(owner.loc)
+			SM.loot = list(/obj/effect/gibspawner/human)
 			SM.key = C.key
 			clowns_created += SM
 			to_chat(SM, "<span class='userdanger'>You are grateful to be chosen to reclaim the clown motherland! Serve and assist [owner.real_name] and the station in defeating the infection as your first task!</span>")

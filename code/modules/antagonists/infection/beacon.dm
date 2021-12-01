@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(beacon_spawns)
 	playsound(loc, 'sound/magic/repulse.ogg', 300, 1, 10, pressure_affected = FALSE)
 	var/mob/camera/commander/OM = GLOB.infection_commander
 	OM.playsound_local(OM, 'sound/magic/repulse.ogg', 300, 1)
-	explosion(src, 1, 2, 4, 10, FALSE, TRUE, 5, TRUE, FALSE)
+	explosion(src, -1, -1, 4, 10, FALSE, TRUE, 5, TRUE, FALSE)
 	for(var/obj/structure/infection/I in orange(10, src))
 		if(istype(I, /obj/structure/infection/core))
 			continue

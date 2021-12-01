@@ -12,6 +12,7 @@
 	point_return = 10
 	build_time = 100
 	canpass_bypass = TRUE
+	layer = ABOVE_MOB_LAYER
 	upgrade_subtype = /datum/infection_upgrade/vacuum
 	// the range to pull objects from
 	var/suck_range = 7
@@ -32,6 +33,8 @@
 			var/mob/living/L = M
 			if(ROLE_INFECTION in L.faction)
 				continue
+		if(istype(M, /obj/item/infectionkiller))
+			continue
 		if(!M.anchored && !M.pulledby)
 			M.experience_pressure_difference(MOVE_FORCE_VERY_WEAK, get_dir(M, src))
 	for(var/atom/A in get_turf(src)) // eating time

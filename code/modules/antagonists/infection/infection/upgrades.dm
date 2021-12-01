@@ -166,7 +166,7 @@
 	times = 5
 
 /datum/infection_upgrade/infector/respawn_time/upgrade_effect(mob/living/simple_animal/hostile/infection/infectionspore/sentient/infector/parentinfector)
-	parentinfector.respawn_time -= 6
+	parentinfector.respawn_time -= 6 SECONDS
 
 /*
 	Upgrade exclusively for the hunter spore type

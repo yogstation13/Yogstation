@@ -9,8 +9,7 @@
 	icon_state = "smooth"
 	smooth = SMOOTH_TRUE
 	max_integrity = 150
-	brute_resist = 0.6
-	fire_resist = 0.4
+	fire_resist = 0.75
 	explosion_block = 3
 	point_return = 0
 	build_time = 100
@@ -30,8 +29,7 @@
 							  /obj/item/stack/ore/gold=2,
 							  /obj/item/stack/ore/diamond=2,
 							  /obj/item/stack/ore/bananium=2,
-							  /obj/item/stack/ore/titanium=2,
-							  /obj/item/twohanded/required/gibtonite=1)
+							  /obj/item/stack/ore/titanium=2)
 
 /obj/structure/infection/shield/Initialize(mapload)
 	canSmoothWith = typesof(/obj/structure/infection/shield)
@@ -68,7 +66,7 @@
 		last_act = world.time
 		to_chat(user, "<span class='notice'>You start picking...</span>")
 
-		if(I.use_tool(src, user, 400, volume=50))
+		if(I.use_tool(src, user, 8 SECONDS, volume=50))
 			to_chat(user, "<span class='notice'>You finish cutting into the rock.</span>")
 			change_to(/obj/structure/infection/normal, overmind)
 			SSblackbox.record_feedback("tally", "pick_used_mining", 1, I.type)
