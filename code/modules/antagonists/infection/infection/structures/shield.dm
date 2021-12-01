@@ -9,8 +9,7 @@
 	icon_state = "smooth"
 	smooth = SMOOTH_TRUE
 	max_integrity = 150
-	brute_resist = 0.6
-	fire_resist = 0.4
+	fire_resist = 0.75
 	explosion_block = 3
 	point_return = 0
 	build_time = 100
