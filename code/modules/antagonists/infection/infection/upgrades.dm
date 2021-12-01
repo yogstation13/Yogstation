@@ -182,11 +182,12 @@
 
 /datum/infection_upgrade/hunter/napalm
 	name = "Burning Fists"
-	description = "Your body now produces fluid which allows you to increasingly set on fire targets that you hit."
+	description = "Your body now produces a flammable fluid which can cause lasting damage to your targets."
 	cost = 200
 
 /datum/infection_upgrade/hunter/napalm/upgrade_effect(atom/parent)
-	parent.AddComponent(/datum/component/igniter, 1)
+	parent.melee_damage_type = BURN
+	parent.wound_bonus = 20
 
 /datum/infection_upgrade/hunter/flash
 	name = "Bright Flash"
