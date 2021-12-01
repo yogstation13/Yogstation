@@ -19,7 +19,7 @@
 	// the last time something tried to mine this to avoid message spam
 	var/last_act = 0
 	// multiplicative delay to mining speed on this type
-	var/mining_time_mod = 10 SECONDS
+	var/mining_time_mod = 8 SECONDS
 	// list of ore drops weighted
 	var/list/ore_drops = list(/obj/item/stack/ore/uranium=2,
 							  /obj/item/stack/ore/iron=2,
@@ -103,7 +103,7 @@
 	brute_resist = 0.8
 	fire_resist = 0.2
 	explosion_block = 2
-	mining_time_mod = 5 SECONDS
+	mining_time_mod = 4 SECONDS
 
 /obj/structure/infection/shield/reflective/Initialize(mapload)
 	. = ..()
