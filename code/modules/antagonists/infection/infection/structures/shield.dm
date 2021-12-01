@@ -66,7 +66,7 @@
 		last_act = world.time
 		to_chat(user, "<span class='notice'>You start picking...</span>")
 
-		if(I.use_tool(src, user, 400, volume=50))
+		if(I.use_tool(src, user, 8 SECONDS, volume=50))
 			to_chat(user, "<span class='notice'>You finish cutting into the rock.</span>")
 			change_to(/obj/structure/infection/normal, overmind)
 			SSblackbox.record_feedback("tally", "pick_used_mining", 1, I.type)
