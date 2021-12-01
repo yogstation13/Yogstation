@@ -33,12 +33,9 @@
 	var/mob/camera/infectionslime/respawnmob
 	// things that can drop after the slime dies a fake death
 	var/list/slime_drops = list(/obj/item/gun/energy/laser=1,
-								/obj/item/stack/spacecash/c500=1,
-								/obj/item/clothing/head/hardhat/cakehat=2,
-								/obj/item/clothing/gloves/color/yellow=1,
-								/obj/item/extinguisher=2,
-								/obj/item/pickaxe/drill/diamonddrill=1,
-								/obj/item/clothing/shoes/magboots=1)
+								/obj/item/slimecrossbeaker/autoinjector/regenpack=1,
+								/obj/item/pickaxe/drill/diamonddrill=2,
+								/obj/item/clothing/shoes/magboots=2)
 
 /mob/living/simple_animal/hostile/infection/infectionspore/sentient/Initialize(mapload, var/obj/structure/infection/factory/linked_node, commander)
 	. = ..()
@@ -62,7 +59,7 @@
 	if(statpanel("Status"))
 		stat(null, "Upgrade Points: [upgrade_points]")
 	if(overmind && !overmind.placed)
-		stat(null, "Time Before Automatic Placement: [max(round((overmind.autoplace_time - world.time)*0.1, 0.1), 0)]")
+		stat(null, "Time Before Collission: [max(round((overmind.autoplace_time - world.time)*0.1, 0.1), 0)]")
 
 /mob/living/simple_animal/hostile/infection/infectionspore/sentient/Login()
 	. = ..()
@@ -170,7 +167,7 @@
 	if(ISRESPAWNING(src))
 		return // no you dont
 	if(overmind && overmind.infection_core) // cant die as long as core is still alive
-		playsound(src.loc, 'sound/effects/splat.ogg', 100, FALSE, pressure_affected = FALSE)
+		playsound(loc, 'sound/effects/splat.ogg', 100, FALSE, pressure_affected = FALSE)
 		visible_message("<span class='notice'>[src] fades into pure energy that races towards the core of the infection.</span>",
 			"<span class='notice'>You return to the core of the infection to reform your body.</span>")
 		var/type_of_drop = pickweight(slime_drops)

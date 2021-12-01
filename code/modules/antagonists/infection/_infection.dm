@@ -32,7 +32,9 @@ GLOBAL_DATUM_INIT(infection_destroy_overlay, /mutable_appearance, mutable_appear
 	create_objectives()
 	var/turf/start = pick(GLOB.infection_spawns)
 	var/mob/newmob = create_mob_type(start)
+	var/mob/currentmob = owner.current
 	owner.transfer_to(newmob, TRUE)
+	qdel(currentmob)
 	return ..()
 
 // Creates the mob for the infection commander and then returns the mob created
