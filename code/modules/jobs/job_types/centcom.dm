@@ -39,6 +39,7 @@
 	W.access = get_centcom_access("CentCom Official")
 	W.access += ACCESS_WEAPONS
 	W.assignment = "CentCom Official"
+	W.originalassignment = "CentCom Official"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -73,6 +74,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Official")
 	W.assignment = "CentCom Captain"
+	W.originalassignment = "CentCom Captain"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -106,6 +108,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Official")
 	W.assignment = "CentCom Major"
+	W.originalassignment = "CentCom Major"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -140,6 +143,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
 	W.assignment = "CentCom Commodore"
+	W.originalassignment = "CentCom Commodore"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -174,6 +178,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
 	W.assignment = "CentCom Colonel"
+	W.originalassignment = "CentCom Colonel"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -208,6 +213,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
 	W.assignment = "CentCom Rear-Admiral"
+	W.originalassignment = "CentCom Rear-Admiral"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -242,6 +248,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
 	W.assignment = "CentCom Admiral"
+	W.originalassignment = "CentCom Admiral"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -276,6 +283,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
 	W.assignment = "CentCom Grand Admiral"
+	W.originalassignment = "CentCom Grand Admiral"
 	W.registered_name = H.real_name
 	W.update_label()
 
