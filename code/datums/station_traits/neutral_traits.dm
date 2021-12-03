@@ -51,7 +51,7 @@
 /datum/station_trait/announcement_medbot
 	name = "Announcement \"System\""
 	trait_type = STATION_TRAIT_NEUTRAL
-	weight = 0.01
+	weight = 0.2
 	show_in_report = TRUE
 	report_message = "Our announcement system is under scheduled maintenance at the moment. Thankfully, we have a backup."
 	blacklist = list(/datum/station_trait/announcement_intern)
