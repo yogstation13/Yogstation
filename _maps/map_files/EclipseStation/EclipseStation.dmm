@@ -49638,7 +49638,6 @@
 	dir = 8;
 	network = list("ss13","Cargo","Command")
 	},
-/obj/machinery/computer/stockexchange,
 /obj/machinery/status_display/supply{
 	pixel_x = 32
 	},
