@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		LoadTC(user, I)
 		return
 	var/datum/component/refundable/R = I.GetComponent(/datum/component/refundable)
-	if (!R || R.buyer != user.mind || SEND_SIGNAL(I, COMSIG_ITEM_REFUND, user))
+	if (!R || R.buyer != user.mind || !SEND_SIGNAL(I, COMSIG_ITEM_REFUND, user))
 		return
 	telecrystals += R.tc_cost
 	if(purchase_log)

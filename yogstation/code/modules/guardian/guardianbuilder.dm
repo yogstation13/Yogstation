@@ -260,7 +260,7 @@
 	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
 	
 /obj/item/guardiancreator/proc/refund_check()
-	return builder.used
+	return !builder.used
 
 /obj/item/guardiancreator/attack_self(mob/living/user)
 	if(isguardian(user) && !allowguardian)

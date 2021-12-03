@@ -15,7 +15,7 @@
 	return
 
 /obj/item/antag_spawner/proc/refund_check()
-	return used
+	return !used
 
 ///////////WIZARD
 

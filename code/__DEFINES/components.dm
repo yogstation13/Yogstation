@@ -21,10 +21,6 @@
 /// old component is given the initialization args of the new
 #define COMPONENT_DUPE_UNIQUE_PASSARGS	4
 
-// dumb defines to make Bibby happy
-#define ALLOW_REFUND 1
-#define DENY_REFUND 0
-
 // All signals. Format:
 // When the signal is called: (signal arguments)
 // All signals send the source datum of the signal as the first argument
@@ -284,7 +280,7 @@
 #define COMSIG_ITEM_MARK_RETRIEVAL "item_mark_retrieval"			//called before marking an object for retrieval, checked in /obj/effect/proc_holder/spell/targeted/summonitem/cast() : (mob/user)
 #define COMPONENT_BLOCK_MARK_RETRIEVAL 1
 #define COMSIG_ITEM_HIT_REACT "item_hit_react"					//from base of obj/item/hit_reaction(): (list/args)
-#define COMSIG_ITEM_REFUND	"item_refund"						//for tc refunding items: (mob/living/user); returns ALLOW_REFUND if okay to refund, DENY_REFUND if not. DENY_REFUND always takes priority!
+#define COMSIG_ITEM_REFUND	"item_refund"						//for tc refunding items: (mob/living/user); returns TRUE if refund is allowed, FALSE if not.
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
