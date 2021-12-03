@@ -5,6 +5,7 @@
 	required_players = 25
 	required_enemies = 3
 	recommended_enemies = 5
+	enemy_minimum_age = 21
 	antag_flag = ROLE_INFILTRATOR
 
 	announce_span = "danger"

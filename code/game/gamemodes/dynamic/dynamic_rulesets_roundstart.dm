@@ -947,3 +947,58 @@
 		M.mind.restricted_roles = restricted_roles
 		log_game("[key_name(M)] has been selected as a Darkspawn")
 	return TRUE
+
+//////////////////////////////////////////////
+//                                          //
+//          SYNDICATE INFILTRATORS          //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/infiltrator
+	name = "Syndicate Infiltration Unit"
+	antag_flag = ROLE_INFILTRATOR
+	antag_datum = /datum/antagonist/infiltrator
+	minimum_required_age = 21
+	required_candidates = 3
+	weight = 3
+	cost = 25
+	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	antag_cap = list("denominator" = 18, "offset" = 1)
+	minimum_players = 25
+	var/datum/team/infiltrator/team
+
+/datum/dynamic_ruleset/roundstart/infiltrator/ready(population, forced = FALSE)
+	required_candidates = get_antag_cap(population)
+	. = ..()
+
+/datum/dynamic_ruleset/roundstart/infiltrator/pre_execute(population)
+	. = ..()
+	// If ready() did its job, candidates should have 5 or more members in it
+	var/infiltrators = get_antag_cap(population)
+	for(var/i = 0, i < infiltrators, ++i)
+		if(candidates.len <= 0)
+			break
+		var/datum/mind/new_sit = pick_n_take(candidates)
+		assigned += new_sit
+		new_sit.assigned_role = "Syndicate Infiltrator"
+		new_sit.special_role = "Syndicate Infiltrator"
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/infiltrator/execute()
+	team = new /datum/team/infiltrator
+	for(var/datum/mind/infiltrator in assigned)
+		infiltrator.add_antag_datum(/datum/antagonist/infiltrator, team)
+	team.update_objectives()
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/infiltrator/round_result()
+	var/result = team.get_result()
+	switch(result)
+		if(INFILTRATION_ALLCOMPLETE)
+			SSticker.mode_result = "major win - objectives complete"
+		if(INFILTRATION_MOSTCOMPLETE)
+			SSticker.mode_result = "semi-major win - most objectives complete"
+		if(INFILTRATION_SOMECOMPLETE)
+			SSticker.mode_result = "minor win - some objectives complete"
+		else
+			SSticker.mode_result = "loss - no objectives complete"
