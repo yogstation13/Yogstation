@@ -1,4 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "fixed some IDs appearing in the wrong spot on crew monitors"
