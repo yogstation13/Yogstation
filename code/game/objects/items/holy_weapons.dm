@@ -795,3 +795,15 @@
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("bashes", "smacks", "whacks")
+
+/obj/item/nullrod/servoskull
+	name = "servitor skull"
+	desc = "heho skull"
+	icon = 'icons/obj/clothing/neck.dmi'
+	slot_flags = ITEM_SLOT_NECK
+	icon_state = "servoskull"
+	item_state = "servoskull"
+	w_class = WEIGHT_CLASS_SMALL
+	force = 0
+	throwforce = 15
+	attack_verb = list("bashes", "smacks", "whacks")
