@@ -368,7 +368,7 @@
 	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-var/parrying = FALSE
+	var/parrying = FALSE
 	var/parry_cd = 0
 	var/parry_frames = 10
 	
