@@ -483,3 +483,19 @@
 	layer = FLY_LAYER
 	duration = 0.48 SECONDS
 	mouse_opacity = 0
+
+/obj/effect/temp_visual/dir_setting/eye_glint
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "eye_glint"
+	duration = 0.5 SECONDS
+	
+/obj/effect/temp_visual/dir_setting/eye_glint/Initialize(mapload, set_dir, set_color = "#ff4444")
+	. = ..()
+	add_atom_colour(set_color, FIXED_COLOUR_PRIORITY)
+	
+/obj/effect/temp_visual/dir_setting/eye_glint/setDir(newdir)
+	if(newdir == NORTH)
+		layer = BELOW_MOB_LAYER
+	else
+		layer = ABOVE_MOB_LAYER
+	..()
