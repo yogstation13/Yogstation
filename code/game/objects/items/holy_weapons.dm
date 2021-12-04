@@ -368,8 +368,44 @@
 	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+var/parrying = FALSE
+	var/parry_cd = 0
+	var/parry_frames = 10
+	
+/obj/item/nullrod/claymore/proc/stop_parrying()
+	if(parrying)
+		parrying = FALSE
+	
+/obj/item/nullrod/claymore/attack_self(mob/user)
+	if (parrying || world.time < parry_cd)
+		return
+	
+	//slowed down, can't attack until parry frames are over (mostly to avoid being able to attack another parried person)
+	user.changeNext_move(parry_frames)
+	user.add_movespeed_modifier(MOVESPEED_ID_PARRYING, update=TRUE, priority=100, multiplicative_slowdown=3)
+	
+	parrying = TRUE
+	parry_cd = world.time + 5 SECONDS
+	addtimer(CALLBACK(src, .proc/stop_parrying), parry_frames)
+	addtimer(CALLBACK(user, /mob.proc/remove_movespeed_modifier, MOVESPEED_ID_PARRYING), parry_frames)
+	playsound(src, 'sound/weapons/parry.ogg', 75, 1)
+	user.visible_message("[user] performs a parrying stance!", "You get into a parrying stance.")
+	if(ishuman(user)) //eye glint gets actual user eye color
+		var/mob/living/carbon/human/H = user
+		new /obj/effect/temp_visual/dir_setting/eye_glint(get_turf(src), user.dir, "#"+H.eye_color)
+	else
+		new /obj/effect/temp_visual/dir_setting/eye_glint(get_turf(src), user.dir)
+
+
+/obj/item/nullrod/claymore/IsReflect()
+	return (parrying)
 
 /obj/item/nullrod/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(parrying)
+		if(attack_type == MELEE_ATTACK && isliving(hitby.loc))
+			owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
+			final_block_chance = 100
+			return ..()
 	if(attack_type == PROJECTILE_ATTACK)
 		final_block_chance = 0 //Don't bring a sword to a gunfight
 	return ..()
