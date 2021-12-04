@@ -47860,12 +47860,6 @@
 "bxh" = (
 /turf/open/floor/circuit/green,
 /area/security/nuke_storage)
-"bxi" = (
-/obj/structure/table/optable,
-/obj/item/storage/backpack/duffelbag/sec/surgery,
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "bxj" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -124459,6 +124453,17 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"hfb" = (
+/obj/machinery/camera{
+	c_tag = "Security - Medbay";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig/infirmary)
 "hfd" = (
 /obj/machinery/igniter/incinerator_atmos,
 /obj/structure/cable{
@@ -125466,18 +125471,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
-"mbP" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/machinery/camera{
-	c_tag = "Security - Medbay";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "mcJ" = (
 /obj/structure/table,
 /obj/item/folder,
@@ -128427,6 +128420,16 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"ycv" = (
+/obj/structure/table/optable,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
+/obj/effect/turf_decal/tile/blue,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig/infirmary)
 "ydq" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "bridgedoors";
@@ -180280,7 +180283,7 @@ bgZ
 bgZ
 btG
 dmv
-mbP
+hfb
 clA
 clz
 rpv
@@ -180537,7 +180540,7 @@ ciI
 bgZ
 btI
 dmw
-bxi
+ycv
 clA
 crB
 ctg

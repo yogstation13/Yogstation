@@ -80034,6 +80034,30 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"szL" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "szP" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -83125,27 +83149,6 @@
 	},
 /turf/open/floor/wood,
 /area/vacant_room/office)
-"wBM" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "wCn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -108373,7 +108376,7 @@ ahx
 pss
 alE
 alp
-wBM
+szL
 ahx
 aqY
 asd

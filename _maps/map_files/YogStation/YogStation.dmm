@@ -56113,15 +56113,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"rVu" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "rVx" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -59778,6 +59769,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"upk" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "upt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -94649,7 +94652,7 @@ agj
 ahs
 imy
 ewO
-rVu
+upk
 agj
 ajA
 ajG

@@ -80601,21 +80601,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/red,
 /area/hallway/primary/fore)
-"dqn" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "dsj" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -83244,15 +83229,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/teleporter/hub/science)
-"iHR" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
-/turf/open/space/basic,
-/area/security/physician)
 "iJc" = (
 /obj/machinery/camera{
 	c_tag = "Robotics Office";
@@ -84939,6 +84915,14 @@
 "mfz" = (
 /turf/closed/wall/r_wall,
 /area/security/brig/infirmary)
+"mfL" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1
+	},
+/turf/open/floor/plating,
+/area/security/physician)
 "mgj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 6
@@ -86840,6 +86824,20 @@
 	},
 /turf/open/floor/wood,
 /area/maintenance/department/chapel)
+"qtb" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig/infirmary)
 "quc" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -86959,28 +86957,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/hallway/primary/port)
-"qDM" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Prison Infirmary";
-	dir = 8;
-	network = list("ss13","prison")
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "qEa" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -88297,14 +88273,6 @@
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/vacant_room)
-"tsf" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
-/turf/open/space/basic,
-/area/security/physician)
 "tsE" = (
 /obj/machinery/button/door{
 	id = "commissarydoor";
@@ -89140,6 +89108,14 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"uUy" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1
+	},
+/turf/open/floor/plating,
+/area/security/brig/infirmary)
 "uVi" = (
 /obj/structure/chair{
 	dir = 4
@@ -89254,14 +89230,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"vhr" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
-/turf/open/space/basic,
-/area/security/brig/infirmary)
 "vhW" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating,
@@ -89999,6 +89967,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"wvG" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1
+	},
+/turf/open/floor/plating,
+/area/security/physician)
 "wyi" = (
 /obj/structure/table,
 /obj/machinery/camera{
@@ -90390,6 +90367,32 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/chief)
+"xpb" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Prison Infirmary";
+	dir = 8;
+	network = list("ss13","prison")
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig/infirmary)
 "xsd" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plating,
@@ -127324,7 +127327,7 @@ adK
 kIl
 mfz
 mfz
-vhr
+uUy
 kij
 mfz
 mfz
@@ -127840,7 +127843,7 @@ mfz
 ixV
 tAg
 rbX
-dqn
+qtb
 mfz
 fDf
 aib
@@ -128097,7 +128100,7 @@ mfz
 vKG
 ids
 pmh
-qDM
+xpb
 mfz
 fDf
 aib
@@ -128351,8 +128354,8 @@ adr
 adM
 ael
 iUq
-tsf
-iHR
+mfL
+wvG
 tvc
 iUq
 iUq
