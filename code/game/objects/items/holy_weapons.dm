@@ -806,6 +806,3 @@
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
 	throwforce = 15
-	attack_verb = list("bashes", "smacks", "whacks")
-	var/hud_type = DATA_HUD_MEDICAL_ADVANCED
-	hud_type = DATA_HUD_DIAGNOSTIC_ADVANCED
