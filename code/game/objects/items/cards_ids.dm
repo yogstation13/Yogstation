@@ -280,6 +280,7 @@ update_label("John Doe", "Clowny")
 	name = "Thirteen's ID Card (Reaper)"
 	access = list(ACCESS_MAINT_TUNNELS)
 	assignment = "Reaper"
+	originalassignment = "Reaper"
 	registered_name = "Thirteen"
 
 /obj/item/card/id/gold
@@ -346,6 +347,7 @@ update_label("John Doe", "Clowny")
 
 			registered_name = input_name
 			assignment = target_occupation
+			originalassignment = target_occupation
 			update_label()
 			forged = TRUE
 			to_chat(user, span_notice("You successfully forge the ID card."))
@@ -366,6 +368,7 @@ update_label("John Doe", "Clowny")
 		else if (popup_input == "Forge/Reset" && forged)
 			registered_name = initial(registered_name)
 			assignment = initial(assignment)
+			originalassignment = initial(originalassignment)
 			log_game("[key_name(user)] has reset \the [initial(name)] named \"[src]\" to default.")
 			update_label()
 			forged = FALSE
@@ -423,6 +426,7 @@ update_label("John Doe", "Clowny")
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
+	originalassignment = "Syndicate Overlord"
 	access = list(ACCESS_SYNDICATE)
 
 /obj/item/card/id/captains_spare
@@ -434,6 +438,7 @@ update_label("John Doe", "Clowny")
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	registered_name = "Captain"
 	assignment = "Captain"
+	originalassignment = "Captain"
 	registered_age = null
 
 /obj/item/card/id/captains_spare/Initialize()
@@ -469,6 +474,7 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "CentCom Official"
+	originalassignment = "CentCom Official"
 	registered_age = null
 
 /obj/item/card/id/centcom/silver
@@ -493,6 +499,7 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
+	originalassignment = "Emergency Response Team Commander"
 	registered_age = null
 
 /obj/item/card/id/ert/debug/Initialize()
@@ -503,11 +510,13 @@ update_label("John Doe", "Clowny")
 	name = "\improper Amber Task Force ID"
 	desc = "An Amber Task Force ID card."
 	assignment = "Amber Task Force"
+	originalassignment = "Amber Task Force"
 
 /obj/item/card/id/ert/occupying
 	name = "\improper Occupying Force ID"
 	desc = "An Occupying Force ID card."
 	assignment = "Occupying Officer"
+	originalassignment = "Occupying Officer"
 
 /obj/item/card/id/ert/occupying/Initialize()
     access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
@@ -520,6 +529,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/Security
 	registered_name = "Security Response Officer"
 	assignment = "Security Response Officer"
+	originalassignment = "Security Response Officer"
 
 /obj/item/card/id/ert/Security/Initialize()
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
@@ -528,6 +538,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/Engineer
 	registered_name = "Engineer Response Officer"
 	assignment = "Engineer Response Officer"
+	originalassignment = "Engineer Response Officer"
 
 /obj/item/card/id/ert/Engineer/Initialize()
 	access = get_all_accesses()+get_ert_access("eng")-ACCESS_CHANGE_IDS
@@ -536,6 +547,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/Medical
 	registered_name = "Medical Response Officer"
 	assignment = "Medical Response Officer"
+	originalassignment = "Medical Response Officer"
 
 /obj/item/card/id/ert/Medical/Initialize()
 	access = get_all_accesses()+get_ert_access("med")-ACCESS_CHANGE_IDS
@@ -544,6 +556,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/chaplain
 	registered_name = "Religious Response Officer"
 	assignment = "Religious Response Officer"
+	originalassignment = "Religious Response Officer"
 
 /obj/item/card/id/ert/chaplain/Initialize()
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
@@ -552,6 +565,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/Janitor
 	registered_name = "Janitorial Response Officer"
 	assignment = "Janitorial Response Officer"
+	originalassignment = "Janitorial Response Officer"
 
 /obj/item/card/id/ert/Janitor/Initialize()
 	access = get_all_accesses()
@@ -560,6 +574,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/clown
 	registered_name = "Clown"
 	assignment = "Clown ERT"
+	originalassignment = "Clown ERT"
 
 /obj/item/card/id/ert/clown/Initialize()
 	access = get_all_accesses()
@@ -573,6 +588,7 @@ update_label("John Doe", "Clowny")
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	assignment = "Prisoner"
+	originalassignment = "Prisoner"
 	registered_name = "Scum"
 	var/goal = 0 //How far from freedom?
 	var/points = 0
@@ -637,18 +653,21 @@ update_label("John Doe", "Clowny")
 	name = "Charlie Station Security Officer's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Security Officer\"."
 	assignment = "Charlie Station Security Officer"
+	originalassignment = "Security Officer"
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_SEC)
 
 /obj/item/card/id/away/old/sci
 	name = "Charlie Station Scientist's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Scientist\"."
 	assignment = "Charlie Station Scientist"
+	originalassignment = "Scientist"
 	access = list(ACCESS_AWAY_GENERAL)
 
 /obj/item/card/id/away/old/eng
 	name = "Charlie Station Engineer's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Station Engineer\"."
 	assignment = "Charlie Station Engineer"
+	originalassignment = "Engineer"
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_ENGINE)
 
 /obj/item/card/id/away/old/apc

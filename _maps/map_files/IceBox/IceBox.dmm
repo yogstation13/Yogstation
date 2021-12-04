@@ -36894,7 +36894,6 @@
 /area/quartermaster/storage)
 "bvZ" = (
 /obj/structure/table,
-/obj/machinery/computer/stockexchange,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bwa" = (
