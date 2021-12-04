@@ -69,6 +69,68 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
+	var/parrying = FALSE
+	var/parry_cd = 0
+	var/parry_frames = 10
+	
+/obj/item/claymore/proc/stop_parrying()
+	if(parrying)
+		parrying = FALSE
+	
+/obj/item/claymore/attack_self(mob/user)
+	if (parrying || world.time < parry_cd)
+		return
+	
+	//slowed down, can't attack until parry frames are over (mostly to avoid being able to attack another parried person)
+	user.changeNext_move(parry_frames)
+	user.add_movespeed_modifier(MOVESPEED_ID_PARRYING, update=TRUE, priority=100, multiplicative_slowdown=3)
+	
+	parrying = TRUE
+	parry_cd = world.time + 5 SECONDS
+	addtimer(CALLBACK(src, .proc/stop_parrying), parry_frames)
+	addtimer(CALLBACK(user, /mob.proc/remove_movespeed_modifier, MOVESPEED_ID_PARRYING), parry_frames)
+	playsound(src, 'sound/weapons/parry.ogg', 75, 1)
+	user.visible_message("[user] performs a parrying stance!", "You get into a parrying stance.")
+	if(ishuman(user)) //eye glint gets actual user eye color
+		var/mob/living/carbon/human/H = user
+		new /obj/effect/temp_visual/dir_setting/eye_glint(get_turf(src), user.dir, "#"+H.eye_color)
+	else
+		new /obj/effect/temp_visual/dir_setting/eye_glint(get_turf(src), user.dir)
+
+/obj/item/claymore/IsReflect()
+	return (parrying)
+
+/obj/item/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(parrying)
+		if(attack_type == MELEE_ATTACK && isliving(hitby.loc))
+			var/mob/living/A = hitby.loc
+			owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
+			final_block_chance = 100
+			
+			if(get_dist(A, owner) <= reach) //you're within my reach now!
+				switch(owner.a_intent)
+					if(INTENT_HELP)
+						return ..()
+					if(INTENT_GRAB)
+						owner.visible_message("<span class='danger'>[owner] knocks [A] down with [src]!</span>","<span class='danger'>You knock [A] down with your [src]!</span>")
+						//essentially a stun, but without dropping their items
+						A.Immobilize(3 SECONDS)
+						A.Jitter(4 SECONDS)
+						A.changeNext_move(3 SECONDS)
+					if(INTENT_DISARM)
+						if(iscarbon(A))
+							var/mob/living/carbon/C = A
+							var/obj/item/I = C.get_active_held_item()
+							if(I)
+								if(C.dropItemToGround(I))
+									I.throw_at(get_edge_target_turf(A,pick(GLOB.alldirs)),rand(1,3),5)
+									playsound(loc, "sound/weapons/riposte.ogg", 30)
+									C.visible_message("<span class='danger'>[I] is thrown away from [C]'s hand by [owner]!</span>","<span class='userdanger'>[owner] whips [I] out of your hand!</span>")
+								else
+									to_chat(owner, "<span class='danger'>You can't seem to pry [I] off [C]'s hands!</span>")
+					else
+						attack(A, owner)
+	return ..()
 
 /obj/item/claymore/Initialize()
 	. = ..()
@@ -222,6 +284,68 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
+	var/parrying = FALSE
+	var/parry_cd = 0
+	var/parry_frames = 18
+	
+/obj/item/katana/proc/stop_parrying()
+	if(parrying)
+		parrying = FALSE
+	
+/obj/item/katana/attack_self(mob/user)
+	if (parrying || world.time < parry_cd)
+		return
+	
+	//slowed down, can't attack until parry frames are over (mostly to avoid being able to attack another parried person)
+	user.changeNext_move(parry_frames)
+	user.add_movespeed_modifier(MOVESPEED_ID_PARRYING, update=TRUE, priority=100, multiplicative_slowdown=3)
+	
+	parrying = TRUE
+	parry_cd = world.time + 5 SECONDS
+	addtimer(CALLBACK(src, .proc/stop_parrying), parry_frames)
+	addtimer(CALLBACK(user, /mob.proc/remove_movespeed_modifier, MOVESPEED_ID_PARRYING), parry_frames)
+	playsound(src, 'sound/weapons/parry.ogg', 75, 1)
+	user.visible_message("[user] performs a parrying stance!", "You get into a parrying stance.")
+	if(ishuman(user)) //eye glint gets actual user eye color
+		var/mob/living/carbon/human/H = user
+		new /obj/effect/temp_visual/dir_setting/eye_glint(get_turf(src), user.dir, "#"+H.eye_color)
+	else
+		new /obj/effect/temp_visual/dir_setting/eye_glint(get_turf(src), user.dir)
+
+/obj/item/katana/IsReflect()
+	return (parrying)
+
+/obj/item/katana/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(parrying)
+		if(attack_type == MELEE_ATTACK && isliving(hitby.loc))
+			var/mob/living/A = hitby.loc
+			owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
+			final_block_chance = 100
+			
+			if(get_dist(A, owner) <= reach) //you're within my reach now!
+				switch(owner.a_intent)
+					if(INTENT_HELP)
+						return ..()
+					if(INTENT_GRAB)
+						owner.visible_message("<span class='danger'>[owner] knocks [A] down with [src]!</span>","<span class='danger'>You knock [A] down with your [src]!</span>")
+						//essentially a stun, but without dropping their items
+						A.Immobilize(3 SECONDS)
+						A.Jitter(4 SECONDS)
+						A.changeNext_move(3 SECONDS)
+					if(INTENT_DISARM)
+						if(iscarbon(A))
+							var/mob/living/carbon/C = A
+							var/obj/item/I = C.get_active_held_item()
+							if(I)
+								if(C.dropItemToGround(I))
+									I.throw_at(get_edge_target_turf(A,pick(GLOB.alldirs)),rand(1,3),5)
+									playsound(loc, "sound/weapons/riposte.ogg", 30)
+									C.visible_message("<span class='danger'>[I] is thrown away from [C]'s hand by [owner]!</span>","<span class='userdanger'>[owner] whips [I] out of your hand!</span>")
+								else
+									to_chat(owner, "<span class='danger'>You can't seem to pry [I] off [C]'s hands!</span>")
+					else
+						attack(A, owner)
+	return ..()
 
 /obj/item/katana/cursed
 	slot_flags = null
