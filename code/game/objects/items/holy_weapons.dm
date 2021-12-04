@@ -798,7 +798,7 @@
 
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
-	desc = "heho skull"
+	desc = "a skull implanted with the sensory augments to help its masters"
 	icon = 'icons/obj/clothing/neck.dmi'
 	slot_flags = ITEM_SLOT_NECK
 	icon_state = "servoskull"
