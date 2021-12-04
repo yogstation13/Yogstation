@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "the bounty board, energy harvester controller, and portrait painter programs now have program icons"
