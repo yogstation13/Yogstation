@@ -10,6 +10,8 @@
 	l += "<div id='techweb-container' unselectable='on'><div id='techweb'>[RDSCREEN_NOBREAK]"
 	for (var/node_ in stored_research.tiers)
 		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_)
+		if(node.id in stored_research.hidden_nodes)
+			continue
 		var/class = ""
 		if(stored_research.researched_nodes[node_])
 			class = ""
@@ -145,4 +147,4 @@
 	for (var/node_ in stored_research.tiers)
 		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_)
 		text += "[node.type]\n\tui_x = [node.ui_x]\n\tui_y = [node.ui_y]\n\n"
-	return text	
+	return text
