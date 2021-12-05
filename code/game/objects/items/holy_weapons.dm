@@ -806,3 +806,16 @@
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
 	throwforce = 15
+	var/hud_type = null
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
+/obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(hud_type && slot == SLOT_GLASSES)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.add_hud_to(user)
+
+/obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
+	..()
+	if(hud_type && istype(user) && user.glasses == src)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.remove_hud_from(user)
