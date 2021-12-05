@@ -120,6 +120,9 @@
 	layer = CURSE_LAYER
 	plane = FULLSCREEN_PLANE
 
+/obj/screen/fullscreen/curse/infection
+	alpha = 150
+
 /obj/screen/fullscreen/hive_mc
 	icon_state = "hive_mc"
 	layer = CURSE_LAYER
@@ -134,7 +137,7 @@
 	icon_state = "infection"
 	layer = INFECTION_LAYER
 	plane = FULLSCREEN_PLANE
-	alpha = 60
+	alpha = 150
 
 /obj/screen/fullscreen/impaired
 	icon_state = "impairedoverlay"
