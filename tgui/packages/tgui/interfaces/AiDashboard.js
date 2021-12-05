@@ -118,8 +118,7 @@ export const AiDashboard = (props, context) => {
                 </Tabs.Tab>
               ))}
             </Tabs>
-            {data.available_projects &&
-              data.available_projects.filter(project => { return project.category === selectedCategory; }).map((project, index) => (
+            {data.available_projects.filter(project => { return project.category === selectedCategory; }).map((project, index) => (
               <Section key={index} title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.available ? "Available" : "Unavailable"}</Box>)} buttons={(
                 <Fragment>
                   <Box inline bold>Assigned CPU:&nbsp;</Box>
@@ -154,8 +153,7 @@ export const AiDashboard = (props, context) => {
                 </Tabs.Tab>
               ))}
             </Tabs>
-            {data.completed_projects &&
-              data.completed_projects.filter(project => { return project.category === selectedCategory; }).map((project, index) => (
+            {data.completed_projects.filter(project => { return project.category === selectedCategory; }).map((project, index) => (
               <Section key={index} title={(<Box inline color={project.running ? "lightgreen" : "bad"}>{project.name} | {project.running ? "Running" : "Not Running"}</Box>)} buttons={(
                 <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
                   project_name: project.name,
