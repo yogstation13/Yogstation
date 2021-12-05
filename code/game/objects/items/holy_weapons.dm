@@ -818,7 +818,7 @@
 	force = 0
 	throwforce = 15
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
-	hud_type = DATA_HUD_MEDICAL_ADVANCED
+	var/hud_type = DATA_HUD_MEDICAL_ADVANCED
 	
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
