@@ -104,11 +104,8 @@ GLOBAL_PROTECT(mentor_href_token)
 /proc/send_mentor_sound(client/C)
 	var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
 	pingsound.volume = 90
-	if(GLOB.mentornoot || prob(10))
-		pingsound = sound('sound/misc/nootnoot.ogg')
-		pingsound.volume = 100
 	pingsound.pan = 80
-	SEND_SOUND(C,pingsound)
+	SEND_SOUND(C, pingsound)
 
 // new client var: mentor_datum. Acts the same way holder does towards admin: it holds the mentor datum. if set, the guy's a mentor.
 /client
