@@ -417,7 +417,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
-/obj/effect/landmark/beacon_start/east,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "aaY" = (
