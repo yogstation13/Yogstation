@@ -3,7 +3,7 @@
 	config_tag = "infection"
 	report_type = "infection"
 	false_report_weight = 10
-	required_players = 50 // this is an all out station war
+	required_players = 40 // this is an all out station war
 	required_enemies = 8
 	recommended_enemies = 8
 	antag_flag = ROLE_INFECTION
