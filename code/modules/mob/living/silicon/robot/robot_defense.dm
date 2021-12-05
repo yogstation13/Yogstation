@@ -1,10 +1,3 @@
-/mob/living/silicon/robot/attack_robot(mob/user) // allowing for clicking people off like a chair
-	. = ..()
-	if(user == src && buckled_mobs?.len && user.a_intent == INTENT_HELP)
-		for(var/i in buckled_mobs)
-			var/mob/buckmob = i
-			unbuckle_mob(buckmob)
-
 /mob/living/silicon/robot/attackby(obj/item/I, mob/living/user)
 	if(I.slot_flags & ITEM_SLOT_HEAD && hat_offset != INFINITY && user.a_intent == INTENT_HELP && !is_type_in_typecache(I, blacklisted_hats))
 		to_chat(user, span_notice("You begin to place [I] on [src]'s head..."))
@@ -155,9 +148,18 @@
 	sleep(20)
 	to_chat(src, span_danger("ERRORERRORERROR"))
 	to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [user.p_their()] commands."))
-	laws = new /datum/ai_laws/syndicate_override
-	set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Syndicate Agents.")
-	laws.associate(src)
+	
+	if(user.mind?.has_antag_datum(/datum/antagonist/ninja))
+		var/datum/language_holder/H = get_language_holder()
+		H.grant_language(/datum/language/japanese)
+		laws = new /datum/ai_laws/ninja_override
+		set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Spider Clan members.")
+		laws.associate(src)
+	else
+		laws = new /datum/ai_laws/syndicate_override
+		set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Syndicate Agents.")
+		laws.associate(src)
+		
 	update_icons()
 
 

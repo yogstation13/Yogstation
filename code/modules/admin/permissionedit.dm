@@ -138,6 +138,8 @@
 	if(IsAdminAdvancedProcCall())
 		to_chat(usr, "<span class='admin prefix'>Admin Edit blocked: Advanced ProcCall detected.</span>", confidential=TRUE)
 		return
+	if(!owner.mfa_query())
+		return
 	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
 	permissions_assets.send(src)
 	var/admin_key = href_list["key"]
@@ -324,6 +326,8 @@
 	if(new_rank == "*New Rank*")
 		new_rank = trim(input("Please input a new rank", "New custom rank") as text|null)
 	if(!new_rank)
+		if(!D)
+			remove_admin(admin_ckey, admin_key, use_db, null)
 		return
 	R = rank_names[new_rank]
 	if(!R) //rank with that name doesn't exist yet - make it

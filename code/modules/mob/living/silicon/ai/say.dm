@@ -177,11 +177,11 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 		voice.status = SOUND_STREAM
 		voice.frequency = pitch //Yogs -- Pitch variation
 
- 		// If there is no single listener, broadcast to everyone in the same z level
+ 		// If there is no single listener, broadcast to everyone in the same z level 
 		if(!only_listener)
 			// Play voice for all mobs in the z level
 			for(var/mob/M in GLOB.player_list)
-				if(M.client && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS))
+				if(M.client && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS) && (M.client.prefs.toggles & SOUND_VOX))
 					var/turf/T = get_turf(M)
 					if(T.z == z_level)
 						SEND_SOUND(M, voice)
