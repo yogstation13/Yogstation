@@ -16,7 +16,6 @@ GLOBAL_LIST_EMPTY(infection_techs)
 	description = "Basic research into infected crystalline structures, specifically the energy distributing behavior of node crystals."
 	research_costs = list(TECHWEB_POINT_TYPE_INFECTION = 2500)
 	design_ids = list("infection_charger")
-	category = list("equipment")
 	hidden = TRUE
 
 /datum/techweb_node/infection/New()
@@ -29,19 +28,16 @@ GLOBAL_LIST_EMPTY(infection_techs)
 	description = "Advanced research into infested crystalline structures, creating an experimental disruptor 'turret' which destroys nearby creep."
 	prereq_ids = list("infection_base")
 	design_ids = list("infection_turret")
-	category = list("equipment")
 
 /datum/techweb_node/infection/sleeper //bio 1
 	id = "infection_sleeper"
 	display_name = "Infected Biomass Research (Sleeper Enhancement)"
 	description = "Basic research into infected creep and its replication. Advances here will have applications with conventional medical technology."
 	design_ids = list("infection_sleeper_upgrade")
-	category = list("Medical Designs")
 
-/datum/techweb_node/infection/syringegun //bio 2
+/datum/techweb_node/infection/portableheal //bio 2
 	id = "infection_injector"
 	display_name = "Infected Biomass Research (Compact Medical Apparatus)"
 	description = "Advanced research into infected creep, exploiting the replicating nature of infected biomass to create a fast acting medical apparatus."
 	prereq_ids = list("infection_sleeper")
 	design_ids = list("infection_injector")
-	category = list("Medical Designs")
