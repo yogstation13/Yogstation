@@ -1,6 +1,6 @@
-#define BASE_POWER_PER_CPU 250
-#define POWER_PER_CARD 150
-#define TEMP_LIMIT 323.15 //50C, much hotter than a normal server room for leniency :)
+#define BASE_POWER_PER_CPU 400
+#define POWER_PER_CARD 250
+#define TEMP_LIMIT 290.15 //17C, much hotter than a normal server room for leniency :)
 
 GLOBAL_LIST_EMPTY(expansion_card_holders)
 
@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	
 	if(valid_holder())
 
-		var/power_multiple = total_cpu ** (7/8)
+		var/power_multiple = total_cpu ** (8/9)
 
 		var/total_usage = (power_multiple * BASE_POWER_PER_CPU) + POWER_PER_CARD * installed_cards.len
 		use_power(total_usage)
