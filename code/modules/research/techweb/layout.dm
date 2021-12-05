@@ -526,3 +526,19 @@
 /datum/techweb_node/mech_xray
 	ui_x = -640
 	ui_y = -896
+
+/datum/techweb_node/infection/turret
+	ui_x = 32
+	ui_y = -32
+
+/datum/techweb_node/infection/sleeper
+	ui_x = -32
+	ui_y = 32
+
+/datum/techweb_node/infection/portableheal
+	ui_x = 32
+	ui_y = 32
+
+/datum/techweb_node/infection
+	ui_x = -32
+	ui_y = -32

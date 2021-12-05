@@ -114,7 +114,7 @@ GLOBAL_VAR(infection_commander)
 	Extra info announcement to hopefully avoid people running in and dying to an unkillable enemy
 */
 /mob/camera/commander/proc/info_announcement()
-	priority_announce("[station_name()]: The entity's core has proven immune to nuclear, laser, and ballistic weaponry. You will have to hold it off until a means of destroying the core is discovered. \n\n\
+	priority_announce("[station_name()]: The entity's core has proven immune to nuclear, laser, and ballistic weaponry. You will have to hold it off until a means of destroying it is discovered. \n\n\
 					   The core also appears to be protected by several short range anti-personnel structures. Unplanned attacks are likely to result in death. \n\n\
 					   On that note, the infection appears to be able to assimilate deceased complex life, turning them into rapidly adapting slimes through an unknown means. \n\n\
 					   Assimilation into a class 5 entity is in violation of your contracts and is not covered under NT insurance policy.",
@@ -153,7 +153,7 @@ GLOBAL_VAR(infection_commander)
 			qdel(src)
 	else if(!victory_in_progress && !GLOB.infection_beacons.len)
 		victory_in_progress = TRUE
-		priority_announce("Your last bluespace generator has been destroyed, without the presence of a stable bluespace field the infection has free reign of your station. Estimated time until takeover: 25 seconds.", "CentCom Exotic Materials Research Division")
+		priority_announce("Your last bluespace generator has been destroyed, without the presence of a bluespace causality anchor the infection has free reign of your station. Estimated time until takeover: 25 seconds.", "CentCom Exotic Materials Research Division")
 		set_security_level("delta")
 		max_infection_points = INFINITY
 		infection_points = INFINITY
@@ -191,7 +191,7 @@ GLOBAL_VAR(infection_commander)
 				continue
 			if(!A.blob_allowed)
 				continue
-			A.name = "normal infection"
+			A.name = "infection"
 			A.icon = 'icons/mob/infection/infection.dmi'
 			A.icon_state = "normal"
 			A.layer = BELOW_MOB_LAYER
@@ -254,7 +254,7 @@ GLOBAL_VAR(infection_commander)
 	if (!message)
 		return
 
-	if (src.client)
+	if (client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "You cannot send IC messages (muted).")
 			return
@@ -276,7 +276,7 @@ GLOBAL_VAR(infection_commander)
 	if (!message)
 		return
 
-	src.log_talk(message, LOG_SAY)
+	log_talk(message, LOG_SAY)
 
 	var/rendered = "<span class='big'><font color=\"#EE4000\"><b>(<font color=\"[color]\">[src.name]</font>)</b> [message]</font></span>"
 
@@ -311,7 +311,7 @@ GLOBAL_VAR(infection_commander)
 			stat(null, "Upgrade Points: [upgrade_points]")
 			stat(null, "Beacons Remaining: [GLOB.infection_beacons.len]")
 		if(!placed)
-			stat(null, "Time Before Automatic Placement: [max(round((autoplace_time - world.time)*0.1, 0.1), 0)]")
+			stat(null, "Time Before Landing: [max(round((autoplace_time - world.time)*0.1, 0.1), 0)]")
 
 /mob/camera/commander/Move(NewLoc, Dir = 0)
 	if(freecam || !placed)

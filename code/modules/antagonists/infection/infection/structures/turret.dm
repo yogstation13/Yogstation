@@ -4,7 +4,7 @@
 
 /obj/structure/infection/turret
 	name = "infection turret"
-	desc = "A tower of crystal with an unfriendly looking peak."
+	desc = "A tower of crystal with a large hole in the side, exposing the structure within."
 	icon = 'icons/mob/infection/crystaline_infection_medium.dmi'
 	icon_state = "crystalturret-layer"
 	pixel_x = -16
@@ -13,6 +13,7 @@
 	point_return = 10
 	build_time = 100
 	upgrade_subtype = /datum/infection_upgrade/turret
+	crystal_drop = 2
 	// the amount of times the turret will fire every time it finds a target
 	var/frequency = 1
 	// the range that this turret will search to find targets
@@ -30,6 +31,10 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/infection/turret/Destroy()
+	var/turf/T = get_turf(src)
+	var/amount = rand(1, 4)
+	for(var/i in 1 to amount)
+		new /obj/item/crystal_shards(T)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 

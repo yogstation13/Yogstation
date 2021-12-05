@@ -14,6 +14,7 @@
 	point_return = 5
 	build_time = 100
 	upgrade_subtype = /datum/infection_upgrade/factory
+	crystal_drop = 4
 	// spores the factory has spawned
 	var/list/spores = list()
 	// the maximum spores that can be spawned
@@ -38,6 +39,10 @@
 	underlays += infection_base
 
 /obj/structure/infection/factory/Destroy()
+	var/turf/T = get_turf(src)
+	var/amount = rand(1, 4)
+	for(var/i in 1 to amount)
+		new /obj/item/crystal_shards(T)
 	for(var/mob/living/simple_animal/hostile/infection/infectionspore/spore in spores)
 		if(spore.factory == src)
 			spore.factory = null

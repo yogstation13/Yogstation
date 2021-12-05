@@ -14,6 +14,7 @@
 	point_return = 5
 	build_time = 150
 	upgrade_subtype = /datum/infection_upgrade/node
+	crystal_drop = 3
 	// range of the expansion
 	var/expansion_range = 8
 	// amount of the node expands each pulse
@@ -73,6 +74,7 @@
 	health_regen = 2
 	point_return = 0
 	upgrade_subtype = null
+	crystal_drop = 0
 	expansion_range = 6
 	expansion_amount = 6
 

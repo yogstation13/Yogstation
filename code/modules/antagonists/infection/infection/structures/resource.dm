@@ -13,6 +13,7 @@
 	point_return = 5
 	build_time = 50
 	upgrade_subtype = /datum/infection_upgrade/resource
+	crystal_drop = 1
 	// delay in resource gain
 	var/resource_delay = 0
 	// the amount that this resource gains to its point return every time it pulses
@@ -27,6 +28,10 @@
 		overmind.resource_infection += src
 
 /obj/structure/infection/resource/Destroy()
+	var/turf/T = get_turf(src)
+	var/amount = rand(1, 4)
+	for(var/i in 1 to amount)
+		new /obj/item/crystal_shards(T)
 	if(overmind)
 		overmind.resource_infection -= src
 	STOP_PROCESSING(SSobj, src)

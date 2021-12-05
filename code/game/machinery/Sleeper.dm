@@ -18,6 +18,8 @@
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
 
+	///healing per process. Not increased by parts. var currently only used for infection sleeper buff hardware
+	var/heal_rate = SLEEPER_HEAL_RATE
 	///efficiency, used to increase the effect of some healing methods
 	var/efficiency = 1
 	///maximum status stasis will activate at, occurs automatically
@@ -192,7 +194,7 @@
 			C.reagents.add_reagent(/datum/reagent/toxin/amanitin, max(0, 1 - existing)) //this should be enough that you immediately eat shit on exiting but not before
 		switch(active_treatment)
 			if(SLEEPER_TEND)
-				C.heal_bodypart_damage(SLEEPER_HEAL_RATE,SLEEPER_HEAL_RATE) //this is slow as hell, use the rest of medbay you chumps
+				C.heal_bodypart_damage(heal_rate,heal_rate) //this is slow as hell, use the rest of medbay you chumps
 			if(SLEEPER_ORGANS)
 				var/heal_reps = efficiency * 2
 				var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
@@ -208,7 +210,7 @@
 						if(healed)
 							break
 			if(SLEEPER_CHEMPURGE)
-				C.adjustToxLoss(-SLEEPER_HEAL_RATE)
+				C.adjustToxLoss(-heal_rate)
 				var/purge_rate = 0.5 * efficiency
 				for(var/datum/reagent/R in C.reagents.reagent_list)
 					if(istype(R, /datum/reagent/toxin))

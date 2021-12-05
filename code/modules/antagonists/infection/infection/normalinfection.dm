@@ -50,6 +50,8 @@
 	var/datum/infection_menu/menu_handler
 	// if this thing can be stepped on by non blobbies
 	var/canpass_bypass = FALSE
+	//how many crystals does this drop on being destroyed
+	var/crystal_drop = 0
 	// types of objects to eat
 	var/list/types_to_eat = list(/obj/singularity,
 								 /obj/singularity/energy_ball,
@@ -110,6 +112,8 @@
 		air_update_turf(1)
 	GLOB.infections -= src //it's no longer in the all infections list either
 	var/turf/T = get_turf(src)
+	for(var/i in 1 to crystal_drop)
+		new /obj/item/crystal_shards(T)
 	var/list/stored_contents = list()
 	if(T)
 		stored_contents = T.contents
@@ -335,6 +339,8 @@
 		T.blob_act(src)
 		for(var/obj/structure/S in T)
 			S.blob_act(src)
+		for(var/obj/machinery/M in T)
+			M.blob_act(src)
 		qdel(I)
 		return null
 
@@ -438,7 +444,7 @@
 	The actual standard infection that is created when things expand
 */
 /obj/structure/infection/normal
-	name = "normal infection"
+	name = "infection creep"
 	icon_state = "normal"
 	layer = TURF_LAYER
 	light_range = 2
@@ -458,7 +464,7 @@
 		return TRUE
 	if(ismob(mover))
 		var/mob/M = mover
-		M.add_movespeed_modifier(MOVESPEED_ID_INFECTION_STRUCTURE, update=TRUE, priority=100, multiplicative_slowdown=2)
+		M.add_movespeed_modifier(MOVESPEED_ID_INFECTION_STRUCTURE, update=TRUE, priority=100, multiplicative_slowdown=1)
 		M.overlay_fullscreen("infectionvision", /obj/screen/fullscreen/curse, 1)
 
 /obj/structure/infection/normal/Uncrossed(atom/movable/mover)
@@ -475,14 +481,14 @@
 		return
 	if(obj_integrity <= 15)
 		icon_state = "normal"
-		name = "fragile infection"
+		name = "fragile infection creep"
 		desc = "A thin lattice of slightly twitching tendrils."
 	else if (overmind)
 		icon_state = "normal"
 		name = "infection"
-		desc = "A thick wall of writhing tendrils."
+		desc = "A thick carpet of writhing tendrils."
 	else
 		icon_state = "normal"
-		name = "dead infection"
-		desc = "A thick wall of lifeless tendrils."
+		name = "dead infection creep"
+		desc = "A thick carpet of lifeless tendrils."
 		light_range = 0

@@ -9,7 +9,7 @@
 	layer = BELOW_OBJ_LAYER
 	pixel_x = -32
 	pixel_y = -16
-	desc = "A huge, mass of crystalline matter, completely unscathed. Purple matter is pouring out of its base."
+	desc = "A huge towering mass of crystalline matter, Purple matter is pouring out of its base."
 	max_integrity = 400
 	explosion_block = 6
 	point_return = -1
@@ -40,6 +40,9 @@
 			S.respawnmob.forceMove(get_turf(src))
 	point_rate = new_rate
 	addtimer(CALLBACK(src, .proc/generate_announcement), 40)
+	for(var/i in GLOB.infection_techs)
+		SSresearch.science_tech.hidden_nodes -= i
+		SSresearch.science_tech.update_node_status(SSresearch.techweb_node_by_id(i))
 	SSevents.frequency_lower = DOOM_CLOCK_EVENT_DELAY
 	SSevents.frequency_upper = DOOM_CLOCK_EVENT_DELAY
 	SSevents.toggleInfectionmode()
@@ -50,9 +53,10 @@
 	Info announcement when the core has landed
 */
 /obj/structure/infection/core/proc/generate_announcement()
-	priority_announce("The substance has landed, we will update you once we find a way to destroy it. \n\
-					   In the meantime, take down the infections outer defenses and attempt to expose the core.",
-					   "CentCom Biohazard Division", 'sound/effects/crystal_fire.ogg')
+	priority_announce("The entity has landed, we will update you once we find a way to destroy it. \n\
+					   Related research has been added to your station's RnD database, \n\
+					   Researching crystal shards dropped by infected structures is likely to help massively in sustaining your defense.",
+					   "CentCom Exotic Materials Research Division", 'sound/effects/crystal_fire.ogg')
 
 /obj/structure/infection/core/evolve_menu(var/mob/camera/commander/C)
 	return
@@ -68,6 +72,9 @@
 	add_overlay(core_crystal)
 
 /obj/structure/infection/core/Destroy()
+	playsound('sound/machines/clockcult/ark_scream.ogg', 60, 1, 10, pressure_affected = FALSE)
+	visible_message(span_danger("Cracks begin to quickly develop across the entirety of [src]'s surface, and it begins resonating at an unearthly frequency!"))
+	sleep(5 SECONDS)
 	deathExplosion()
 	GLOB.infection_core = null
 	if(overmind)
@@ -82,7 +89,7 @@
 	Death explosion when the core has been destroyed
 */
 /obj/structure/infection/core/proc/deathExplosion()
-	playsound(src.loc, 'sound/magic/repulse.ogg', 300, 1, 10, pressure_affected = FALSE)
+	playsound(loc, 'sound/magic/repulse.ogg', 100, 1, 10, pressure_affected = FALSE)
 	explosion(src, 10, 20, 30, 40, FALSE, TRUE, 5, TRUE, FALSE)
 	for(var/obj/structure/infection/I in orange(20, src))
 		if(istype(I, /obj/structure/infection/core))
@@ -100,8 +107,8 @@
 
 	var/random_y = rand(-32, 32)
 	AT.pixel_y += random_y
-	playsound(src.loc, pick('sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg', 'sound/weapons/effects/ric3.ogg', 'sound/weapons/effects/ric4.ogg', 'sound/weapons/effects/ric5.ogg'), 100, 1, 10, pressure_affected = FALSE)
-	src.visible_message("<span class='notice'>[P] plinks off of [src]!</span>")
+	playsound(loc, pick('sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg', 'sound/weapons/effects/ric3.ogg', 'sound/weapons/effects/ric4.ogg', 'sound/weapons/effects/ric5.ogg'), 100, 1, 10, pressure_affected = FALSE)
+	visible_message(span_notice("[P] plinks off of [src]!"))
 
 /obj/structure/infection/core/attacked_by(obj/item/I, mob/living/user)
 	if(!istype(I, /obj/item/infectionkiller))
@@ -112,10 +119,10 @@
 		var/random_y = rand(-32, 32)
 		AT.pixel_y += random_y
 		playsound(src.loc, 'sound/effects/bang.ogg', 100, 1, 10, pressure_affected = FALSE)
-		user.visible_message("[user]'s [I] plinks off of [src]!", "<span class='notice'>[user]'s [I] plinks off of [src]!</span>")
+		user.visible_message(span_warning("[user]'s [I] plinks off of [src]!"), span_notice("[user]'s [I] plinks off of [src]!"))
 		return
 	if(I.force)
-		visible_message("<span class='danger'>[src] bellows as [user] hits it with [I]!</span>", null, null, COMBAT_MESSAGE_RANGE)
+		visible_message(span_danger("A mass of cracks appear in [src] as [user] hits it with [I]!"), null, null, COMBAT_MESSAGE_RANGE)
 		//only witnesses close by and the victim see a hit message.
 		log_combat(user, src, "attacked", I)
 	take_damage(I.force*5, I.damtype, "melee", 1, override = "infection_core")
@@ -154,7 +161,7 @@
 		converting.Add(C.mind)
 		INVOKE_ASYNC(src, .proc/convert_carbon, C)
 	INVOKE_ASYNC(src, .proc/pulseNodes)
-	playsound(src.loc, 'sound/effects/singlebeat.ogg', 600, 1, pressure_affected = FALSE)
+	playsound(loc, 'sound/effects/singlebeat.ogg', 100, 1, pressure_affected = FALSE)
 	..()
 
 /*
@@ -162,7 +169,7 @@
 */
 /obj/structure/infection/core/proc/convert_carbon(mob/living/carbon/C)
 	var/timeleft = world.time + CORE_CONVERSION_TIME
-	C.visible_message("<span class='notice'>[C] begins to have their energy sucked as their corpse enters the cores radius!</span>")
+	C.visible_message(span_notice("[src] begins to draw something from [C] as they enter its radius!"))
 	var/stored_mind = C.mind
 	var/turf/T = get_turf(src)
 	var/datum/beam/B = T.Beam(C, icon_state="drain_life", time=INFINITY, maxdistance=INFINITY)
@@ -173,7 +180,7 @@
 			qdel(B)
 			return
 	qdel(B)
-	C.visible_message("<span class='notice'>[C] disintegrates as their energy begins to circle the core!</span>")
+	C.visible_message(span_notice("[C] disintegrates as [src] begins to glow brighter..."))
 	C.dust()
 	converting.Remove(stored_mind)
 	overmind.create_spore()

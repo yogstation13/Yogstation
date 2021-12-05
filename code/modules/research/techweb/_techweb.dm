@@ -252,6 +252,8 @@
 				for (var/id in node.prereq_ids)
 					var/prereq_tier = tiers[id]
 					tier = max(tier, prereq_tier + 1)
+				if(!tier) //fallback if we don't have any prereqs
+					tier++
 
 			if (tier != tiers[node.id])
 				tiers[node.id] = tier

@@ -74,7 +74,8 @@
 ///Associative names for techweb point values, see: [/modules/research/techweb/all_nodes][all_nodes]
 #define TECHWEB_POINT_TYPE_LIST_ASSOCIATIVE_NAMES list(\
 	TECHWEB_POINT_TYPE_GENERIC = "General Research",\
-	TECHWEB_POINT_TYPE_NANITES = "Nanite Research"\
+	TECHWEB_POINT_TYPE_NANITES = "Nanite Research",\
+	TECHWEB_POINT_TYPE_INFECTION = "Infection Research"\
 	)
 
 #define TECHWEB_BOMB_POINTCAP		50000 //Adjust as needed; Stops toxins from nullifying RND progression mechanics. Current Value Cap Radius: 100
