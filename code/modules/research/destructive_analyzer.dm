@@ -142,7 +142,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		var/loaded_type = loaded_item.type
 		if(destroy_item(loaded_item))
 			linked_console.stored_research.add_point_list(point_value)
-			if(!loaded_type in SSresearch.techweb_repeatable_items)
+			if(!(loaded_type in SSresearch.techweb_repeatable_items))
 				linked_console.stored_research.deconstructed_items[loaded_type] = point_value
 	return TRUE
 
