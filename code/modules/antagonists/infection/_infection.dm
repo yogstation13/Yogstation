@@ -11,6 +11,7 @@ GLOBAL_DATUM_INIT(infection_destroy_overlay, /mutable_appearance, mutable_appear
 	roundend_category = "infections"
 	antagpanel_category = "Infection"
 	job_rank = ROLE_INFECTION
+	show_to_ghosts = TRUE
 
 	var/starting_points_human_infection = 60
 	var/point_rate_human_infection = 2

@@ -4,7 +4,7 @@
 
 /obj/structure/infection/node
 	name = "infection node"
-	desc = "A large, pulsating mass."
+	desc = "A large, pulsing crystal. A vile purple substance is pouring out its base."
 	icon = 'icons/mob/infection/crystaline_infection_large.dmi'
 	icon_state = "crystalnode-layer"
 	pixel_x = -32
@@ -65,7 +65,7 @@
 
 /obj/structure/infection/node/mini
 	name = "miniature infection node"
-	desc = "A smaller, pulsating mass."
+	desc = "A smaller, pulsing crystal. Its structure is rapidly degrading."
 	icon = 'icons/mob/infection/crystaline_infection_large.dmi'
 	icon_state = "crystalnode-layer"
 	transform = matrix(0.5, 0, 0, 0, 0.5, 0)

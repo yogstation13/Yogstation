@@ -134,6 +134,7 @@
 	icon_state = "infection"
 	layer = INFECTION_LAYER
 	plane = FULLSCREEN_PLANE
+	alpha = 60
 
 /obj/screen/fullscreen/impaired
 	icon_state = "impairedoverlay"

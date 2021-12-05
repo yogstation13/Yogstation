@@ -282,7 +282,7 @@
 	obj_damage = 80
 	crystal_color = "#4169e1"
 	transform = matrix(1.5, 0, 0, 0, 1.5, 0)
-	environment_smash = ENVIRONMENT_SMASH_RWALLS
+	environment_smash = ENVIRONMENT_SMASH_WALLS
 	upgrade_subtype = /datum/infection_upgrade/destructive
 
 /mob/camera/infectionslime

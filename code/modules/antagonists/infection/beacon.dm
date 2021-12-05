@@ -159,6 +159,7 @@ GLOBAL_LIST_EMPTY(beacon_spawns)
 	light_range = 4
 	desc = "A wall of intense bluespace energy, any infestation that attempts to cross it is torn apart in a matter of seconds."
 	density = FALSE
+	move_resist = INFINITY
 	anchored = TRUE
 	layer = FLY_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
