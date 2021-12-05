@@ -7,7 +7,7 @@
 	density = TRUE
 	use_power = NO_POWER_USE
 	idle_power_usage = 500
-	active_power_usage = 10000
+	active_power_usage = 5000 // The power usage when at lvl 0
 	dir = NORTH
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	var/strength_upper_limit = 2
@@ -34,6 +34,21 @@
 	connected_parts.Cut()
 	QDEL_NULL(wires)
 	return ..()
+
+/obj/machinery/particle_accelerator/control_box/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		return
+	to_chat(user, span_danger("The laws of physics no longer apply in the future, god help you..."))
+	SSachievements.unlock_achievement(/datum/achievement/engineering/pa_emag, user.client)
+	do_sparks(5, 0, src)
+	obj_flags |= EMAGGED
+
+	strength = 4 // Set the new strength to lvl 4
+	strength_change() // Update the emitter
+
+	if(!active)
+		toggle_power()
+	update_icon()
 
 /obj/machinery/particle_accelerator/control_box/multitool_act(mob/living/user, obj/item/I)
 	..()

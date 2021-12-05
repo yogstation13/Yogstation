@@ -21,6 +21,9 @@
 	movement_range = 20
 	energy = 50
 
+/obj/effect/accelerated_particle/catastrophic
+	movement_range = 25
+	energy = 75 // 50% more than powerful
 
 /obj/effect/accelerated_particle/New(loc)
 	..()

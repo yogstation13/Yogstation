@@ -63,6 +63,16 @@
 	QDEL_NULL(cell)
 	return ..()
 
+/obj/machinery/light/ComponentInitialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_light)
+
+/obj/machinery/light/proc/clean_light(O,strength)
+	if(strength < CLEAN_TYPE_BLOOD)
+		return
+	bulb_colour = initial(bulb_colour)
+	update()
+
 /obj/structure/light_construct/get_cell()
 	return cell
 
@@ -183,7 +193,6 @@
 /obj/structure/light_construct/blob_act(obj/structure/blob/B)
 	if(B && B.loc == loc)
 		qdel(src)
-
 
 /obj/structure/light_construct/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

@@ -10,6 +10,7 @@
 	icon_keyboard = "tech_key"
 	var/auth_need = 3
 	var/list/authorized = list()
+	var/last_early_auth = 0
 
 /obj/machinery/computer/emergency_shuttle/attackby(obj/item/I, mob/user,params)
 	if(istype(I, /obj/item/card/id))
