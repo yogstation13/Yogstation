@@ -69,6 +69,7 @@
 	data["max_cpu"] = GLOB.ai_os.total_cpu
 	data["max_ram"] = GLOB.ai_os.total_ram
 
+	data["categories"] = GLOB.ai_project_categories
 	data["available_projects"] = list()
 
 	var/turf/current_turf = get_turf(owner)
@@ -83,12 +84,12 @@
 
 	for(var/datum/ai_project/AP as anything in available_projects)
 		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.canResearch(), "research_cost" = AP.research_cost, "research_progress" = AP.research_progress, 
-		"assigned_cpu" = cpu_usage[AP.name] ? cpu_usage[AP.name] : 0, "research_requirements" = AP.research_requirements))
+		"assigned_cpu" = cpu_usage[AP.name] ? cpu_usage[AP.name] : 0, "research_requirements" = AP.research_requirements, "category" = AP.category))
 
 
 	data["completed_projects"] = list()
 	for(var/datum/ai_project/P as anything in completed_projects)
-		data["completed_projects"] += list(list("name" = P.name, "description" = P.description, "ram_required" = P.ram_required, "running" = P.running))
+		data["completed_projects"] += list(list("name" = P.name, "description" = P.description, "ram_required" = P.ram_required, "running" = P.running, "category" = P.category))
 
 	return data
 

@@ -6,7 +6,9 @@ import { Window } from '../layouts';
 export const AiDashboard = (props, context) => {
   const { act, data } = useBackend(context);
 
+
   const [tab, setTab] = useLocalState(context, 'tab', 1);
+  const [selectedCategory, setCategory] = useLocalState(context, 'selectedCategory', data.categories[0]);
 
   return (
     <Window
@@ -107,7 +109,16 @@ export const AiDashboard = (props, context) => {
         </Tabs>
         {tab === 1 && (
           <Section title="Available Projects">
-            {data.available_projects && data.available_projects.map((project, index) => (
+            <Tabs>
+              {data.categories.map((category) => (
+                <Tabs.Tab
+                  selected={selectedCategory === category}
+                  onClick={(() => setCategory(category))}>
+                  {category}
+                </Tabs.Tab>
+              ))}
+            </Tabs>
+            {data.available_projects && data.available_projects.filter(project => { return project.category == selectedCategory}).map((project, index) => (
               <Section key={index} title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.available ? "Available" : "Unavailable"}</Box>)} buttons={(
                 <Fragment>
                   <Box inline bold>Assigned CPU:&nbsp;</Box>
@@ -133,7 +144,16 @@ export const AiDashboard = (props, context) => {
         )}
         {tab === 2 && (
           <Section title="Completed Projects">
-            {data.completed_projects && data.completed_projects.map((project, index) => (
+            <Tabs>
+              {data.categories.map((category) => (
+                <Tabs.Tab
+                  selected={selectedCategory === category}
+                  onClick={(() => setCategory(category))}>
+                  {category}
+                </Tabs.Tab>
+              ))}
+            </Tabs>
+            {data.completed_projects && data.completed_projects.filter(project => { return project.category == selectedCategory}).map((project, index) => (
               <Section key={index} title={(<Box inline color={project.running ? "lightgreen" : "bad"}>{project.name} | {project.running ? "Running" : "Not Running"}</Box>)} buttons={(
                 <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
                   project_name: project.name,

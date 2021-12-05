@@ -6,6 +6,7 @@
 	research_cost = 2500
 	ram_required = 3
 	research_requirements = "Advanced Security HUD & Advanced Medical & Diagnostic HUD"
+	category = AI_PROJECT_CAMERAS
 
 
 /datum/ai_project/examine_humans/canResearch()

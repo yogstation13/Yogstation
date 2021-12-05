@@ -1,3 +1,14 @@
+//AI Project Categories.
+#define AI_PROJECT_HUDS "Sensor HUDs"
+#define AI_PROJECT_CAMERAS "Visiblity Upgrades"
+#define AI_PROJECT_MISC "Misc."
+
+GLOBAL_LIST_INIT(ai_project_categories, list(
+	AI_PROJECT_HUDS,
+	AI_PROJECT_CAMERAS,
+	AI_PROJECT_MISC
+))
+
 GLOBAL_LIST_EMPTY(ai_projects)
 
 /datum/ai_project
@@ -5,6 +16,7 @@ GLOBAL_LIST_EMPTY(ai_projects)
 	var/name = "DEBUG"
 	var/description = "DEBUG"
 	var/research_progress = 0
+	var/category = AI_PROJECT_MISC
 	///Research cost of project in seconds of CPU time.
 	var/research_cost = 0
 	var/ram_required = 0

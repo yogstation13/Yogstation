@@ -4,6 +4,7 @@
 	research_cost = 1000
 	ram_required = 2
 	research_requirements = "None"
+	category = AI_PROJECT_HUDS
 
 /datum/ai_project/security_hud/run_project(force_run = FALSE)
 	. = ..(force_run)
@@ -16,9 +17,10 @@
 
 
 /datum/ai_project/security_hud/stop()
-	ai.sec_hud = DATA_HUD_SECURITY_BASIC
-	if(ai.sensors_on)
+	if(ai.sensors_on) //HUDs are weird. This has to be first so we're removed from the "advanced" HUD. It checks the sec_hud variable to see which one we remove from first.
 		ai.toggle_sensors()
+	ai.sec_hud = DATA_HUD_SECURITY_BASIC
+
 	ai.toggle_sensors()
 	..()
 
@@ -28,6 +30,7 @@
 	research_cost = 750
 	ram_required = 1
 	research_requirements = "None"
+	category = AI_PROJECT_HUDS
 
 /datum/ai_project/diag_med_hud/run_project(force_run = FALSE)
 	. = ..(force_run)
@@ -42,9 +45,11 @@
 
 
 /datum/ai_project/diag_med_hud/stop()
+	if(ai.sensors_on) //HUDs are weird. This has to be first so we're removed from the "advanced" HUD. It checks the d_hud and med_hud variable to see which one we remove from first.
+		ai.toggle_sensors()
+
 	ai.d_hud = DATA_HUD_DIAGNOSTIC_BASIC
 	ai.med_hud = DATA_HUD_MEDICAL_BASIC
-	if(ai.sensors_on)
-		ai.toggle_sensors()
+	
 	ai.toggle_sensors()
 	..()

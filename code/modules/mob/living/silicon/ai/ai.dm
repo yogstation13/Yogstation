@@ -113,7 +113,7 @@
 	var/downloadSpeedModifier = 1
 
 
-/mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
+/mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
 		// new/obj/structure/AIcore/deactivated(loc) //New empty terminal.
@@ -183,7 +183,7 @@
 	GLOB.ai_list += src
 	GLOB.shuttle_caller_list += src
 
-	if(!istype(loc, /obj/machinery/ai/data_core))
+	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
 		relocate(TRUE)
 
 	builtInCamera = new (src)
@@ -859,8 +859,8 @@
 			return
 		ShutOffDoomsdayDevice()
 		builtInCamera.toggle_cam(user)
-		var/obj/structure/AIcore/new_core = new /obj/structure/AIcore/deactivated(loc)//Spawns a deactivated terminal at AI location.
-		new_core.circuit.battery = battery
+		//var/obj/structure/AIcore/new_core = new /obj/structure/AIcore/deactivated(loc)//Spawns a deactivated terminal at AI location.
+		//new_core.circuit.battery = battery
 		ai_restore_power()//So the AI initially has power.
 		control_disabled = TRUE //Can't control things remotely if you're stuck in a card!
 		radio_enabled = FALSE 	//No talking on the built-in radio for you either!
@@ -890,6 +890,8 @@
 	if(isturf(loc) || istype(loc, /obj/machinery/ai/data_core)) //AI in core, check if on cameras
 		//get_turf_pixel() is because APCs in maint aren't actually in view of the inner camera
 		//apc_override is needed here because AIs use their own APC when depowered
+		if(istype(loc, /obj/machinery/ai/data_core))
+			A = get_turf(loc)
 		return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(get_turf_pixel(A))) || apc_override
 	//AI is carded/shunted
 	//view(src) returns nothing for carded/shunted AIs and they have X-ray vision so just use get_dist
@@ -937,10 +939,18 @@
 /mob/living/silicon/ai/proc/add_malf_picker()
 	to_chat(src, "In the top right corner of the screen you will find the Malfunctions tab, where you can purchase various abilities, from upgraded surveillance to station ending doomsday devices.")
 	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 30 seconds.")
+	
 	view_core() //A BYOND bug requires you to be viewing your core before your verbs update
 	add_verb(src, /mob/living/silicon/ai/proc/choose_modules)
 	add_verb(src, /mob/living/silicon/ai/proc/toggle_download)
 	malf_picker = new /datum/module_picker
+	if(istype(loc, /obj/machinery/ai/data_core)) //A BYOND bug requires you to be viewing your core before your verbs update
+		var/obj/machinery/ai/data_core/core = loc
+		forceMove(get_turf(loc))
+		view_core()
+		sleep(1)
+		forceMove(core)
+
 
 /mob/living/silicon/ai/reset_perspective(atom/A)
 	if(camera_light_on)

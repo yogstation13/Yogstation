@@ -4,6 +4,7 @@
 	research_cost = 1000
 	ram_required = 2
 	research_requirements = "None"
+	category = AI_PROJECT_MISC
 
 /datum/ai_project/firewall/run_project(force_run = FALSE)
 	. = ..(force_run)
