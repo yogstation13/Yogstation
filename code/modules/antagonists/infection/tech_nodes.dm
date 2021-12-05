@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(infection_techs)
 	hidden = TRUE
 
 /datum/techweb_node/infection/New()
-	. = ..()
+	..()
 	GLOB.infection_techs += id
 
 /datum/techweb_node/infection/turret //infra 2
