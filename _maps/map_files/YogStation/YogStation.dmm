@@ -39860,30 +39860,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"hOZ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/highsecurity{
-	name = "AI Core";
-	req_access_txt = "16"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
 "hPk" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -42665,23 +42641,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space/basic,
 /area/engine/atmos_distro)
-"jwt" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
-/obj/machinery/door/airlock/command/glass{
-	name = "Physical Core Access";
-	req_access_txt = "30"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plasteel/white,
-/area/science/misc_lab)
 "jwH" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -43885,6 +43844,30 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"kmh" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "AI Core";
+	req_access_txt = "16"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "kmp" = (
 /obj/machinery/computer/telecomms/traffic{
 	dir = 8;
@@ -64797,6 +64780,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"xDS" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/obj/machinery/door/airlock/command/glass{
+	name = "Physical Core Access";
+	req_access_txt = "30"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel/white,
+/area/science/misc_lab)
 "xEg" = (
 /obj/structure/closet/crate,
 /obj/item/toy/figure/miner,
@@ -107674,7 +107674,7 @@ tgv
 tgv
 cva
 cva
-hOZ
+kmh
 cva
 cva
 gtB
@@ -116122,7 +116122,7 @@ bxG
 bwn
 bQZ
 bZZ
-jwt
+xDS
 bZZ
 bQZ
 phB
