@@ -1,6 +1,0 @@
-author: " Absolucy"
-delete-after: true 
-changes: 
-  - rscadd: "Added the Infiltration game mode!"
-  - rscadd: "In Infiltration, there's a team of Syndicate infiltrators who will attempt to infiltrate Space Station 13."
-  - rscadd: "The infiltrators can have various objectives, ranging from simple traitor objectives, to kidnapping someone important, hijacking the AI unit, or stealing power!"
