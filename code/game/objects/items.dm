@@ -830,10 +830,3 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
-
-/// Returns if this item is allowed to play "alternative" sounds
-/obj/item/proc/can_play_alt_sound()
-	. = TRUE
-	var/mob/living/L = recursive_loc_check(src, /mob/living)
-	if (L?.client?.prefs)
-		. = L.client.prefs.toggles & SOUND_ALT

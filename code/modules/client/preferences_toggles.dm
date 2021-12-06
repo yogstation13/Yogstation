@@ -241,7 +241,7 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggle_alt)()
 	set category = "Preferences"
 	set desc = "Hear potentially annoying \"alternative\" sounds"
 	usr.client.prefs.toggles ^= SOUND_ALT
-	to_chat(usr, "You will now [(usr.client.prefs.toggles & SOUND_ALT) ? "hear alternative sounds" : "no longer hear hear alternative sounds"].")
+	to_chat(usr, "You will now [(usr.client.prefs.toggles & SOUND_ALT) ? "hear alternative sounds" : "no longer hear alternative sounds"].")
 	usr.client.prefs.save_preferences()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Alternative Sounds", "[usr.client.prefs.toggles & SOUND_ALT ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /datum/verbs/menu/Settings/Sound/toggle_alt/Get_checked(client/C)

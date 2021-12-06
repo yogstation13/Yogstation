@@ -799,7 +799,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	tnote += signal
 
 	if (!silent)
-		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED) && can_play_alt_sound())
+		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
 			playsound(src, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 50, TRUE)
 		else
 			playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
@@ -830,7 +830,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 /obj/item/pda/proc/receive_ping(message)
 	if (!silent)
-		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED) && can_play_alt_sound())
+		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
 			playsound(src, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 50, TRUE)
 		else
 			playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
