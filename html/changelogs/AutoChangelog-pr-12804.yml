@@ -1,5 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "grilling items dont spam steam overlays"
-  - bugfix: "placing things on the griddle doesn't have the item move animation"
