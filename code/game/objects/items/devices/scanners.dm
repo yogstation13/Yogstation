@@ -452,11 +452,15 @@ GENE SCANNER
 	icon_state = "health_adv"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject with high accuracy."
 	advanced = TRUE
+	var/borg = FALSE
 	var/list/advanced_surgeries = list()
+
+/obj/item/healthanalyzer/advanced/borg
+	borg = TRUE
 
 /obj/item/healthanalyzer/advanced/afterattack(obj/item/O, mob/user, proximity)
 	. = ..()
-	if(!proximity)
+	if(!proximity || borg) // Borgs already have a surgical processor
 		return
 	if(istype(O, /obj/item/disk/surgery))
 		to_chat(user, span_notice("You load the surgery protocol from [O] into [src]."))

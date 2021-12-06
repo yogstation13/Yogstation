@@ -365,10 +365,10 @@
 
 /datum/techweb_node/cyborg_upg_surgkit
 	id = "cyborg_upg_surgkit"
-	display_name = "Cyborg Upgrade: Medical Advanced Surgical Kit"
-	description = "Advanced Surgical Kit upgrade design for medical cyborgs."
+	display_name = "Cyborg Upgrade: Medical Advanced Medical Tools"
+	description = "Advanced Surgical Kit and Advanced Health Scanner upgrade design for medical cyborgs."
 	prereq_ids = list("cyborg_upg_med", "exp_tools")
-	design_ids = list("borg_upgrade_surgerykit")
+	design_ids = list("borg_upgrade_surgerykit, borg_upgrade_analyzer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	export_price = 2000
 

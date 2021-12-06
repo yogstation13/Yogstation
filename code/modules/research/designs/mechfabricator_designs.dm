@@ -751,6 +751,16 @@
 	construction_time = 140
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_analyzer
+	name = "Cyborg Upgrade (Advanced Analyzer)"
+	id = "borg_upgrade_analyzer"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/adv_analyzer
+	/// Materials for advanced analyzer
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 2000, /datum/material/gold = 1500, /datum/material/plastic = 1000)
+	construction_time = 140
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_trashofholding
 	name = "Cyborg Upgrade (Trash Bag of Holding)"
 	id = "borg_upgrade_trashofholding"

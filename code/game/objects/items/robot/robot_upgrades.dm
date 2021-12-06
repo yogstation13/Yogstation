@@ -607,6 +607,47 @@
 		for(var/obj/item/surgical_processor/SP in R.module.modules)
 			R.module.remove_module(SP, TRUE)
 
+/obj/item/borg/upgrade/adv_analyzer
+	name = "medical cyborg advanced health analyzer"
+	desc = "An upgrade to the Medical module, loading a more advanced \
+		health analyzer into the holder's module, \
+		replacing the old one."
+	icon_state = "cyborg_upgrade5"
+	require_module = TRUE
+	module_type = /obj/item/robot_module/medical
+	module_flags = BORG_MODULE_MEDICAL
+
+/obj/item/borg/upgrade/adv_analyzer/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		/// Removes old analyzer
+		for(var/obj/item/healthanalyzer/healthanalyzer in R.module.modules)
+			R.module.remove_module(healthanalyzer, TRUE)
+
+		var/obj/item/healthanalyzer/advanced/borg/advancedanal = locate() in R.module.module_flags
+
+		if(advancedanal)
+			to_chat(user, span_warning("This unit is already equipped with an advanced health analyzer."))
+			return FALSE
+
+		/// Puts in new advanced analyzer
+		advancedanal = new(R.module)
+		R.module.basic_modules += advancedanal
+		R.module.add_module(advancedanal, FALSE, TRUE)
+
+/obj/item/borg/upgrade/adv_analyzer/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		/// Removes new advanced analyzer
+		for(var/obj/item/healthanalyzer/advanced/borg/advancedanal in R.module.modules)
+			R.module.remove_module(advancedanal, TRUE)
+
+		/// Puts in old analyzer
+		var/obj/item/healthanalyzer/healthanalyzer = locate() in R.module.modules
+		healthanalyzer = new(R.module)
+		R.module.basic_modules += healthanalyzer
+		R.module.add_module(healthanalyzer, FALSE, TRUE)
+
 /obj/item/borg/upgrade/surgerykit
 	name = "medical cyborg advanced surgical kit"
 	desc = "An upgrade to the Medical module, loading a more advanced \
