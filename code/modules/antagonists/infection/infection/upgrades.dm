@@ -182,13 +182,13 @@
 
 /datum/infection_upgrade/hunter/napalm
 	name = "Burning Fists"
-	description = "Your body now produces a flammable fluid which can cause lasting damage to your targets."
+	description = "Your body now produces a flammable fluid, causing your attacks to pierce armor."
 	cost = 200
 
 /datum/infection_upgrade/hunter/napalm/upgrade_effect(atom/parent)
 	var/mob/living/simple_animal/S = parent
 	S.melee_damage_type = BURN
-	S.wound_bonus = 20
+	S.armour_penetration = 20
 
 /datum/infection_upgrade/hunter/flash
 	name = "Bright Flash"
