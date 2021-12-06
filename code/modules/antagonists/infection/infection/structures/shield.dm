@@ -27,7 +27,6 @@
 							  /obj/item/stack/ore/silver=2,
 							  /obj/item/stack/ore/gold=2,
 							  /obj/item/stack/ore/diamond=2,
-							  /obj/item/stack/ore/bananium=2, //build the honk mech. do it. you know you want to.
 							  /obj/item/stack/ore/titanium=2)
 
 /obj/structure/infection/shield/Initialize(mapload)
