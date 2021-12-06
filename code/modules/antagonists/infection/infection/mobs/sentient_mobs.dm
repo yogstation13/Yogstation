@@ -227,7 +227,7 @@
 */
 /mob/living/simple_animal/hostile/infection/infectionspore/sentient/proc/transfer_to_type(var/new_type)
 	var/mob/living/simple_animal/hostile/infection/infectionspore/sentient/new_spore = new new_type(loc, null, overmind)
-	new_spore.key = key
+	mind.transfer_to(new_spore)
 	new_spore.upgrade_points = upgrade_points
 	new_spore.spent_upgrade_points = spent_upgrade_points
 	new_spore.create_respawn_mob(respawnmob.loc)
