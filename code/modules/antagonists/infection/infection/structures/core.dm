@@ -43,6 +43,7 @@
 	for(var/i in GLOB.infection_techs)
 		SSresearch.science_tech.hidden_nodes -= i
 		SSresearch.science_tech.update_node_status(SSresearch.techweb_node_by_id(i))
+	SSatmospherics.can_fire = FALSE //prevents air fuckery because monstermos, I don't c urrently have a better way to do this
 	SSevents.frequency_lower = DOOM_CLOCK_EVENT_DELAY
 	SSevents.frequency_upper = DOOM_CLOCK_EVENT_DELAY
 	SSevents.toggleInfectionmode()
