@@ -24,17 +24,17 @@ endmap
 
 map yogsmeta
 	minplayers 25
-	votable
+	disabled
 endmap
 
 map yogsdelta
 	minplayers 50
-	votable
+	disabled
 endmap
 
 map kilostation
 	maxplayers 40
-	votable
+	disabled
 endmap
 
 map icebox
