@@ -809,7 +809,7 @@
 		H.remove_hud_from(user)
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
-	desc = "a skull implanted with the sensory augments to help its masters"
+	desc = "Even in death, i still serve"
 	icon = 'icons/obj/clothing/neck.dmi'
 	slot_flags = ITEM_SLOT_NECK
 	icon_state = "servoskull"
@@ -824,7 +824,7 @@
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if(hud_type && slot == SLOT_NECK)
-		to_chat(user, "wewo skull")
+		to_chat(user, "Sensory augmentation initiated")
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.add_hud_to(user)
 		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
