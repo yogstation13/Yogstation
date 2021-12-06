@@ -1,11 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "c" = (
-/obj/machinery/abductor/gland_dispenser,
-/obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/cleanable/blood/gibs/limb,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "TEMP=2.7"
-	},
+/turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
 "d" = (
 /obj/item/stack/sheet/mineral/abductor,
@@ -33,13 +28,6 @@
 "k" = (
 /turf/closed/wall/mineral/abductor,
 /area/ruin/unpowered)
-"n" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/ruin/unpowered)
 "o" = (
 /turf/open/floor/plating/abductor{
 	initial_gas_mix = "TEMP=2.7"
@@ -61,6 +49,10 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/ruin/unpowered)
+"v" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/asteroid/airless,
+/area/template_noop)
 "x" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/plating/abductor{
@@ -99,6 +91,12 @@
 /obj/item/stack/rods,
 /turf/template_noop,
 /area/template_noop)
+"M" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
 "P" = (
 /obj/structure/closet/abductor,
 /obj/item/screwdriver/abductor,
@@ -109,6 +107,15 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/ruin/unpowered)
+"R" = (
+/obj/machinery/abductor/gland_dispenser,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"T" = (
+/turf/open/floor/plating/asteroid/airless,
+/area/template_noop)
 "U" = (
 /obj/structure/table/abductor,
 /obj/item/paper/guides/antag/abductor,
@@ -142,7 +149,7 @@ D
 D
 D
 D
-D
+T
 C
 D
 D
@@ -165,8 +172,8 @@ C
 C
 C
 C
-D
-D
+T
+T
 D
 d
 D
@@ -223,11 +230,11 @@ C
 C
 t
 o
-c
+R
 k
-K
+v
 D
-D
+T
 D
 D
 "}
@@ -259,7 +266,7 @@ C
 k
 I
 x
-n
+M
 C
 p
 C
@@ -274,7 +281,7 @@ d
 D
 D
 D
-D
+T
 k
 k
 P
@@ -293,14 +300,14 @@ D
 K
 D
 D
-D
-D
+T
+T
 k
 k
 k
 C
 C
-C
+c
 D
 D
 D
@@ -312,9 +319,9 @@ D
 D
 D
 C
-D
-D
-D
+T
+T
+T
 C
 C
 C
@@ -333,8 +340,8 @@ C
 C
 D
 D
-D
-D
+T
+T
 D
 D
 D
