@@ -811,7 +811,7 @@
 	name = "servitor skull"
 	desc = "a skull implanted with the sensory augments to help its masters"
 	icon = 'icons/obj/clothing/neck.dmi'
-	slot_flags = SLOT_NECK
+	slot_flags = ITEM_SLOT_NECK
 	icon_state = "servoskull"
 	item_state = "servoskull"
 	w_class = WEIGHT_CLASS_SMALL
@@ -822,7 +822,7 @@
 	
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if(hud_type && slot == SLOT_NECK)
+	if(hud_type && slot == ITEM_SLOT_NECK)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.add_hud_to(user)
 
