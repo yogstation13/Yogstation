@@ -86,13 +86,6 @@
 	icon_state = "defensepylon"
 	var/list/effected_types = list(/obj/structure/infection/normal, /obj/structure/infection/shield)
 
-
-/obj/structure/destructible/infection_pylon/turret/can_be_unfasten_wrench(mob/user)
-	if(locate(/obj/structure/beacon_generator) in range(PYLON_RANGE, src))
-		to_chat(user, span_warning("A warning light flashes on [src], the causality field emitted by the nearby anchor would prevent it from drawing power!"))
-		return FAILED_UNFASTEN
-	. = ..()
-
 /obj/structure/destructible/infection_pylon/turret/process()
 	if(!anchored)
 		return
