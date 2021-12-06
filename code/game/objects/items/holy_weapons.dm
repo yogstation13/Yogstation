@@ -822,7 +822,8 @@
 	
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if(hud_type && slot == ITEM_SLOT_NECK)
+	if(hud_type && slot == SLOT_NECK)
+		to_chat(user, "wewo skull")
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.add_hud_to(user)
 
