@@ -624,7 +624,7 @@
 		for(var/obj/item/healthanalyzer/healthanalyzer in R.module.modules)
 			R.module.remove_module(healthanalyzer, TRUE)
 
-		var/obj/item/healthanalyzer/advanced/borg/advancedanal = locate() in R.module.module_flags
+		var/obj/item/healthanalyzer/advanced/borg/advancedanal = locate() in R.module.modules
 
 		if(advancedanal)
 			to_chat(user, span_warning("This unit is already equipped with an advanced health analyzer."))
