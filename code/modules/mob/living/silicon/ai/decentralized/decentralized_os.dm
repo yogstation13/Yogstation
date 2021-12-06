@@ -79,7 +79,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 						message_admins("<h3>Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len]</h3>")
 				break
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
-			if(cpu_assigned[AI] > 1)
+			if(cpu_assigned[AI] >= 1)
 				cpu_removal[AI]++
 				previous_cpu--
 			
@@ -100,7 +100,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 						message_admins("<h3>Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len]</h3>")
 				break
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
-			if(ram_assigned[AI] > 1)
+			if(ram_assigned[AI] >= 1)
 				ram_removal[AI]++
 				previous_ram--
 	
