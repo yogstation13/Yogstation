@@ -811,18 +811,18 @@
 	name = "servitor skull"
 	desc = "a skull implanted with the sensory augments to help its masters"
 	icon = 'icons/obj/clothing/neck.dmi'
-	slot_flags = ITEM_SLOT_NECK
+	slot_flags = SLOT_NECK
 	icon_state = "servoskull"
 	item_state = "servoskull"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
 	throwforce = 15
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
-	var/hud_type = DATA_HUD_MEDICAL_ADVANCED
+	var/hud_type = DATA_HUD_DIAGNOSTIC_ADVANCED
 	
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if(hud_type && slot == slot_flags)
+	if(hud_type && slot == SLOT_NECK)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.add_hud_to(user)
 
