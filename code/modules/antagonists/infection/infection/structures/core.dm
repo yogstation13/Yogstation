@@ -72,8 +72,8 @@
 	add_overlay(core_crystal)
 
 /obj/structure/infection/core/Destroy()
-	playsound('sound/machines/clockcult/ark_scream.ogg', 60, 1, 10, pressure_affected = FALSE)
-	visible_message(span_danger("Cracks begin to quickly develop across the entirety of [src]'s surface, and it begins resonating at an unearthly frequency!"))
+	playsound(src, 'sound/machines/clockcult/ark_scream.ogg', 60, 1, 10, pressure_affected = FALSE)
+	visible_message(span_boldwarning("Cracks begin to quickly develop across the entirety of [src]'s surface, and it begins resonating at an unearthly frequency!"))
 	sleep(5 SECONDS)
 	deathExplosion()
 	GLOB.infection_core = null
