@@ -62,17 +62,43 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 
 	var/list/affected_AIs = list()
 
-
+	var/iterator = 1
 	if(total_cpu < previous_cpu)
 		while(total_cpu < previous_cpu)
+			iterator++
+			if(iterator >= 10)
+				if(!GLOB.sent_crash_message)
+					GLOB.sent_crash_message = TRUE
+					game_log("Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len]")
+					var/list/adm = get_admin_counts(requiredflags)
+					var/list/allmins = adm["total"]
+					if(!allmins.len)
+						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
+						 Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len]</h2>")
+					else
+						message_admins("<h3>Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len]</h3>")
+				break
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
 			if(cpu_assigned[AI] > 1)
 				cpu_removal[AI]++
 				previous_cpu--
 			
-
+	iterator = 1
 	if(total_ram < previous_ram)
 		while(total_ram < previous_ram)
+			iterator++
+			if(iterator >= 10)
+				if(!GLOB.sent_crash_message)
+					GLOB.sent_crash_message = TRUE
+					game_log("Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len]")
+					var/list/adm = get_admin_counts(requiredflags)
+					var/list/allmins = adm["total"]
+					if(!allmins.len)
+						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
+						 Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len]</h2>")
+					else
+						message_admins("<h3>Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len]</h3>")
+				break
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
 			if(ram_assigned[AI] > 1)
 				ram_removal[AI]++
