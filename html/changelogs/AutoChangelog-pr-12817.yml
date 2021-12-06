@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "Positronic brains now show up in ghost menu"
