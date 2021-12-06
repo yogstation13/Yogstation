@@ -156,15 +156,13 @@ export const NtosRobotactContent = (props, context) => {
                     disabled={lampIntensity >= 5}
                     onClick={() => act('lampIntensity', {
                       ref: lampIntensity + 1,
-                    })}>
-                  </Button>
+                    })}/>
                   <Button
                     icon="angle-down"
                     disabled={lampIntensity <= 1}
                     onClick={() => act('lampIntensity', {
                       ref: lampIntensity - 1,
-                    })}>
-                  </Button>
+                    })}/>
                 </Fragment>
               )}>
               <Slider
