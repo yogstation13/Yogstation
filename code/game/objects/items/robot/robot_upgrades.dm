@@ -579,34 +579,6 @@
 		for(var/obj/item/twohanded/shockpaddles/cyborg/S in R.module.modules)
 			R.module.remove_module(S, TRUE)
 
-/obj/item/borg/upgrade/processor
-	name = "medical cyborg surgical processor"
-	desc = "An upgrade to the Medical module, installing a processor \
-		capable of scanning surgery disks and carrying \
-		out procedures"
-	icon_state = "cyborg_upgrade3"
-	require_module = 1
-	module_type = /obj/item/robot_module/medical
-	module_flags = BORG_MODULE_MEDICAL
-
-/obj/item/borg/upgrade/processor/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/surgical_processor/SP = locate() in R.module.modules  //yogs start
-		if(SP)
-			to_chat(user, span_warning("This unit is already equipped with a surgical processor module."))
-			return FALSE
-
-		SP = new(R.module) //yogs end
-		R.module.basic_modules += SP
-		R.module.add_module(SP, FALSE, TRUE)
-
-/obj/item/borg/upgrade/processor/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		for(var/obj/item/surgical_processor/SP in R.module.modules)
-			R.module.remove_module(SP, TRUE)
-
 /obj/item/borg/upgrade/adv_analyzer
 	name = "medical cyborg advanced health analyzer"
 	desc = "An upgrade to the Medical module, loading a more advanced \
@@ -624,7 +596,7 @@
 		for(var/obj/item/healthanalyzer/healthanalyzer in R.module.modules)
 			R.module.remove_module(healthanalyzer, TRUE)
 
-		var/obj/item/healthanalyzer/advanced/borg/advancedanal = locate() in R.module.modules
+		var/obj/item/healthanalyzer/advanced/advancedanal = locate() in R.module.modules
 
 		if(advancedanal)
 			to_chat(user, span_warning("This unit is already equipped with an advanced health analyzer."))
@@ -639,7 +611,7 @@
 	. = ..()
 	if(.)
 		/// Removes new advanced analyzer
-		for(var/obj/item/healthanalyzer/advanced/borg/advancedanal in R.module.modules)
+		for(var/obj/item/healthanalyzer/advanced/advancedanal in R.module.modules)
 			R.module.remove_module(advancedanal, TRUE)
 
 		/// Puts in old analyzer

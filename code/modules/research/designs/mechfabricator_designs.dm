@@ -732,15 +732,6 @@
 	construction_time = 80
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/borg_upgrade_surgicalprocessor
-	name = "Cyborg Upgrade (Surgical Processor)"
-	id = "borg_upgrade_surgicalprocessor"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/processor
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 4000, /datum/material/silver = 4000)
-	construction_time = 40
-	category = list("Cyborg Upgrade Modules")
-
 /datum/design/borg_upgrade_surgerykit
 	name = "Cyborg Upgrade (Advanced Surgical Kit)"
 	id = "borg_upgrade_surgerykit"
