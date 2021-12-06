@@ -69,8 +69,8 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 			if(iterator >= 10)
 				if(!GLOB.sent_crash_message)
 					GLOB.sent_crash_message = TRUE
-					game_log("Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len]")
-					var/list/adm = get_admin_counts(requiredflags)
+					log_game("Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len]")
+					var/list/adm = get_admin_counts(R_BAN)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
 						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
@@ -90,8 +90,8 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 			if(iterator >= 10)
 				if(!GLOB.sent_crash_message)
 					GLOB.sent_crash_message = TRUE
-					game_log("Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len]")
-					var/list/adm = get_admin_counts(requiredflags)
+					log_game("Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len]")
+					var/list/adm = get_admin_counts(R_BAN)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
 						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \

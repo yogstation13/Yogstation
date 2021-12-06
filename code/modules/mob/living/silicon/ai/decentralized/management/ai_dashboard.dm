@@ -6,8 +6,8 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 	var/available_projects
 
 	//What we're currently using, not what we're being granted by the ai data core
-	var/cpu_usage
-	var/ram_usage 
+	var/list/cpu_usage
+	var/list/ram_usage 
 
 	var/completed_projects
 
@@ -208,8 +208,8 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 			if(iterator >= 10)
 				if(!GLOB.sent_crash_message)
 					GLOB.sent_crash_message = TRUE
-					game_log("Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len]")
-					var/list/adm = get_admin_counts(requiredflags)
+					log_game("Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len]")
+					var/list/adm = get_admin_counts(R_BAN)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
 						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
@@ -229,8 +229,8 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 			if(iterator >= 10)
 				if(!GLOB.sent_crash_message)
 					GLOB.sent_crash_message = TRUE
-					game_log("Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len]")
-					var/list/adm = get_admin_counts(requiredflags)
+					log_game("Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len]")
+					var/list/adm = get_admin_counts(R_BAN)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
 						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
