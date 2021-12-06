@@ -819,6 +819,7 @@
 	throwforce = 15
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
 	var/hud_type = DATA_HUD_DIAGNOSTIC_ADVANCED
+	var/hud_type2 = DATA_HUD_MEDICAL_ADVANCED
 	
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -826,9 +827,13 @@
 		to_chat(user, "wewo skull")
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.add_hud_to(user)
+		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
+		H2.add_hud_to(user)
 
 /obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
 	..()
 	if(hud_type && istype(user) && user.wear_neck == src)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.remove_hud_from(user)
+		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
+		H2.remove_hud_from(user)
