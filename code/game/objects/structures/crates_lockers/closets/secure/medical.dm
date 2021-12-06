@@ -134,7 +134,6 @@
 	new /obj/item/radio/headset/headset_cargo(src)
 	new /obj/item/storage/firstaid/toxin(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
-	new /obj/item/storage/belt/medical(src)
 	new /obj/item/pickaxe(src)
 	new /obj/item/twohanded/binoculars(src)
 	new /obj/item/clothing/ears/earmuffs(src)

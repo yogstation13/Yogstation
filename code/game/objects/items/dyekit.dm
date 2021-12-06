@@ -19,7 +19,7 @@
  */
 
 /obj/item/dyespray/proc/dye(mob/target)
-	if(!ishuman(target))
+	if(!ishuman(target) || isethereal(target))
 		return
 	var/mob/living/carbon/human/human_target = target
 

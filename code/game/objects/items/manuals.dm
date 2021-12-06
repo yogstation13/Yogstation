@@ -231,7 +231,7 @@
 				All are not dangerous when consumed in moderation, save for mushroom caps.
 				All may be fermented and brewed into substances that induce a woozy and feel-good high.
 				Cacti fruit is rich in juices that will nurtur and heal your body.
-				Polypore shavings are tough and can be used for crafts such as bowls and contain a higher than average resin content.
+				Polypore shavings are tough and can be used for crafts such as bowls and wood substitute, and contain a higher than average resin content.
 				Porcini leaves contain a similar content to cacti fruit along with a substance that increases brain focus.
 				Inocybe caps contain deadly toxins in their raw state, but with ash and heat can be neutralized to instead detox the body.
 				Embershroom stems contain a bioluminescient substance that manages to even light up the body when consumed.
