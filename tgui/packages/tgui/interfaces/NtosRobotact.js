@@ -134,7 +134,7 @@ export const NtosRobotactContent = (props, context) => {
               </LabeledList>
             </Section>
             <Section
-              title="Lamp Power"
+              title="Lamp"
               buttons={(
                 <Fragment>
                   <Button
@@ -146,9 +146,24 @@ export const NtosRobotactContent = (props, context) => {
                   </Button>
                   <Button
                     ml={1}
+                    mr={1}
                     onClick={() => act('light_color')}>
                     Color:
                     <ColorBox ml={1} color={comp_light_color} />
+                  </Button>
+                  <Button
+                    icon="angle-up"
+                    disabled={lampIntensity >= 5}
+                    onClick={() => act('lampIntensity', {
+                      ref: lampIntensity + 1,
+                    })}>
+                  </Button>
+                  <Button
+                    icon="angle-down"
+                    disabled={lampIntensity <= 1}
+                    onClick={() => act('lampIntensity', {
+                      ref: lampIntensity - 1,
+                    })}>
                   </Button>
                 </Fragment>
               )}>
