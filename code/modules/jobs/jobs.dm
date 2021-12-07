@@ -64,12 +64,12 @@ GLOBAL_LIST_INIT(alt_command_positions, list(
 	"Station Commander", "Facility Director",
 	"Chief of Staff", "Head of Internal Affairs", "First Officer",
 	"Security Commander", "Security Chief",
-	"Head of Engineering", "Engineering Director",
+	"Head of Engineering", "Engineering Director", "Chief Arsonist",
 	"Chief Science Officer", "Head of Research",
 	"Medical Director", "Head of Medical"))
 
 GLOBAL_LIST_INIT(alt_engineering_positions, list(
-	"Head of Engineering", "Engineering Director",
+	"Head of Engineering", "Engineering Director", "Chief Arsonist,",
 	"Engine Technician", "Solar Engineer", "Project Engineer", "Junior Engineer", "Construction Specialist",
 	"Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer",
 	"NTSL Programmer", "Comms Tech", "Station IT Support"
