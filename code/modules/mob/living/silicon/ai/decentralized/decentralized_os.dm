@@ -129,7 +129,10 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 		return
 	if(!istype(AI))
 		return
-	cpu_assigned[AI] -= amount
+	if(cpu_assigned[AI] - amount < 0)
+		cpu_assigned[AI] = 0
+	else
+		cpu_assigned[AI] -= amount
 
 	update_allocations()
 
@@ -147,7 +150,10 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 		return
 	if(!istype(AI))
 		return
-	ram_assigned[AI] -= amount
+	if(ram_assigned[AI] - amount < 0)
+		ram_assigned[AI] = 0
+	else
+		ram_assigned[AI] -= amount
 
 	update_allocations()
 

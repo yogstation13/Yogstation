@@ -221,6 +221,8 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 				var/datum/ai_project/project = get_project_by_name(I)
 				total_ram_used -= stop_project(project)
 				reduction_of_resources = TRUE
+			if(total_ram_used == 0)
+				break
 
 	iterator = 1
 	if(total_cpu_used > current_cpu)
@@ -243,6 +245,8 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 					cpu_usage[I]--
 					total_cpu_used--
 					reduction_of_resources = TRUE
+			if(total_cpu_used == 0)
+				break
 
 	if(reduction_of_resources)
 		to_chat(owner, "<span class='warning'>Lack of computational capacity. Some programs may have been stopped.</span>")

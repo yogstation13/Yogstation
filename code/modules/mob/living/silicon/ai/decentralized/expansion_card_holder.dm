@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		if(istype(W, /obj/item/processing_card))
 			var/obj/item/processing_card/cpu_card = W
 			total_cpu += cpu_card.tier
-		if(istype(W, /obj/item/processing_card))
+		if(istype(W, /obj/item/memory_card))
 			var/obj/item/memory_card/ram_card = W
 			total_ram += ram_card.tier
 		return FALSE
