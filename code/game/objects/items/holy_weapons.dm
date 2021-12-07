@@ -815,7 +815,7 @@
 	icon_state = "servoskull"
 	item_state = "servoskull"
 	w_class = WEIGHT_CLASS_SMALL
-	force = 0
+	force = 7
 	throwforce = 15
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
 	var/hud_type = DATA_HUD_DIAGNOSTIC_ADVANCED
