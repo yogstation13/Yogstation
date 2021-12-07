@@ -71,7 +71,7 @@
 		if(!downloading.can_download)
 			stop_download()
 			return
-		download_progress += AI_DOWNLOAD_PER_PROCESS * downloading.downloadSpeedModifier
+		download_progress += AI_DOWNLOAD_PER_PROCESS / downloading.downloadSpeedModifier
 
 
 /obj/machinery/computer/ai_control_console/ui_interact(mob/user, datum/tgui/ui)
