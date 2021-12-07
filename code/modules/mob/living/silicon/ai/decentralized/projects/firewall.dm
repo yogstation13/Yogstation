@@ -10,9 +10,9 @@
 	. = ..(force_run)
 	if(!.)
 		return .
-	ai.downloadSpeedModifier += 1
+	ai.downloadSpeedModifier *= 0.5
 
 
 /datum/ai_project/firewall/stop()
-	ai.downloadSpeedModifier -= 1
+	ai.downloadSpeedModifier *= 2
 	..()
