@@ -183,6 +183,7 @@
 					/obj/item/clothing/suit/toggle/labcoat = 2,
 					/obj/item/clothing/suit/toggle/labcoat/wardtlab = 2,
 					/obj/item/clothing/suit/toggle/labcoat/aeneasrinil = 2,
+					/obj/item/clothing/suit/hooded/techpriest = 2,
 					/obj/item/clothing/shoes/sneakers/black = 2,
 					/obj/item/clothing/gloves/fingerless = 2,
 					/obj/item/clothing/head/soft/black = 2,
