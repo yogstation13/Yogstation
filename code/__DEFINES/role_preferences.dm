@@ -43,8 +43,9 @@
 #define ROLE_SHADOWLING 		"Shadowling" // Yogs
 #define ROLE_VAMPIRE			"Vampire" // Yogs
 #define ROLE_GANG				"gangster" // Yogs
-#define ROLE_DARKSPAWN			"darkspawn" //Yogs
+#define ROLE_DARKSPAWN			"darkspawn" // Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
+#define ROLE_INFILTRATOR		"Infiltrator" // Yogs
 #define ROLE_ZOMBIE				"Zombie"
 
 
@@ -79,6 +80,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_GANG = /datum/game_mode/gang, // yogs
 	ROLE_HERETIC = /datum/game_mode/heretics,
 	ROLE_HIVE = /datum/game_mode/hivemind,
+	ROLE_INFILTRATOR = /datum/game_mode/infiltration, // Yogs
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_DARKSPAWN = /datum/game_mode/darkspawn,
 	ROLE_SENTIENCE,
