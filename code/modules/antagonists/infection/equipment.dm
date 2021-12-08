@@ -84,6 +84,7 @@
 	desc = "A large shard left over from an infected crystal, you should take these to a destructive analyzer."
 	icon = 'icons/mob/infection/infection.dmi'
 	icon_state = "crystal"
+	layer = ABOVE_MOB_LAYER
 
 /obj/item/crystal_shards/Initialize()
 	. = ..()

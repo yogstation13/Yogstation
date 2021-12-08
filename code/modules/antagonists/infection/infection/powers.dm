@@ -149,7 +149,7 @@ GLOBAL_LIST_EMPTY(infection_gravity_spawns)
 	var/list/mob/dead/observer/candidates = list()
 	if(poll_ghosts)
 		to_chat(src, "<span class='warning'>Attempting to create a sentient slime...</span>")
-		candidates = pollGhostCandidates("Do you want to play as an evolving infection slime?", ROLE_INFECTION, null, ROLE_INFECTION, 50) //players must answer rapidly
+		candidates = pollGhostCandidates("Do you want to play as an evolving infection slime?", ROLE_INFECTION, null, ROLE_INFECTION, 50, POLL_IGNORE_INFECTION_SLIME) //players must answer rapidly
 	if(LAZYLEN(candidates) || !poll_ghosts) //if we got at least one candidate, they're a sentient spore now.
 		var/mob/living/simple_animal/hostile/infection/infectionspore/sentient/S = new /mob/living/simple_animal/hostile/infection/infectionspore/sentient(src, null, src)
 		if(poll_ghosts)

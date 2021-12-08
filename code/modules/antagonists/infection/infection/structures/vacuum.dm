@@ -28,7 +28,7 @@
 /obj/structure/infection/vacuum/Life()
 	update_icon()
 	playsound(src.loc, 'sound/effects/podwoosh.ogg', 10, 1, pressure_affected = FALSE)
-	for(var/atom/movable/M in orange(7, src))
+	for(var/atom/movable/M in orange(4, src))
 		if(isliving(M))
 			var/mob/living/L = M
 			if(ROLE_INFECTION in L.faction)
