@@ -155,6 +155,7 @@ GLOBAL_LIST_EMPTY(infection_gravity_spawns)
 		if(poll_ghosts)
 			var/mob/dead/observer/C = pick(candidates)
 			S.key = C.key
+			S.mind.add_antag_datum(/datum/antagonist/infection/spore)
 		var/turf/T = get_turf(src)
 		S.create_respawn_mob(T)
 		if(!infection_core)

@@ -47,13 +47,21 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/game_mode/infection/post_setup()
-	//Assign leader
-	var/datum/mind/leader = pre_spores[1] // what a lucky boy gets to be the commander
-	leader.add_antag_datum(commander_datum_type)
-	//Assign the remaining operatives
-	for(var/i in 2 to pre_spores.len)
-		var/datum/mind/spore_mind = pre_spores[i]
-		spore_mind.add_antag_datum(spore_datum_type)
+	//Assign the commander and sloimes and give everyone their body
+	var/datum/antagonist/infection/I
+	var/datum/mind/M
+	for(var/i in 1 to pre_spores.len)
+		if(i == 1)
+			M = pre_spores[i] // what a lucky boy gets to be the commander
+			I = M.add_antag_datum(commander_datum_type)
+		else
+			M = pre_spores[i]
+			I = M.add_antag_datum(spore_datum_type)
+		var/turf/start = pick(GLOB.infection_spawns)
+		var/mob/newmob = I.create_mob_type(start)
+		var/mob/currentmob = M.current
+		M.transfer_to(newmob, TRUE)
+		qdel(currentmob)
 	return ..()
 
 /datum/game_mode/infection/check_finished()

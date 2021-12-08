@@ -148,7 +148,7 @@
 	to_chat(src, "<b>You are an evolving slime!</b>")
 	to_chat(src, "You are an evolving creature that can select evolutions in order to become stronger \n<b>You will respawn as long as the core still exists.</b>")
 	to_chat(src, "<b>Attempt to help expand your army of infectious slimes by bringing sentient human corpses near the infection core!</b>")
-	to_chat(src, "You can communicate with other infectious creatures via <b>:b</b>")
+	to_chat(src, "You can communicate with other infectious creatures via <b>.b</b>")
 	return
 
 /mob/living/simple_animal/hostile/infection/infectionspore/sentient/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
@@ -166,7 +166,7 @@
 /mob/living/simple_animal/hostile/infection/infectionspore/sentient/death(gibbed)
 	if(ISRESPAWNING(src))
 		return // no you dont
-	if(overmind && overmind.infection_core) // cant die as long as core is still alive
+	if(overmind?.infection_core) // cant die as long as core is still alive
 		playsound(loc, 'sound/effects/splat.ogg', 100, FALSE, pressure_affected = FALSE)
 		visible_message("<span class='notice'>[src] fades into pure energy that races towards the core of the infection.</span>",
 			"<span class='notice'>You return to the core of the infection to reform your body.</span>")
@@ -177,7 +177,7 @@
 		if(!respawnmob)
 			create_respawn_mob(get_turf(overmind.infection_core))
 		forceMove(respawnmob)
-		client.images |= image('icons/mob/cameramob.dmi', respawnmob, "marker")
+		client?.images |= image('icons/mob/cameramob.dmi', respawnmob, "marker")
 		INVOKE_ASYNC(src, .proc/start_spawn)
 		return
 	. = ..()
@@ -220,7 +220,7 @@
 		QDEL_NULL(respawnmob)
 	respawnmob = new /mob/camera/infectionslime(T)
 	forceMove(respawnmob)
-	client.images |= image('icons/mob/cameramob.dmi', respawnmob, "marker")
+	client?.images |= image('icons/mob/cameramob.dmi', respawnmob, "marker")
 
 /*
 	Try to transfer this slimes mind and data to a new slime type
@@ -231,6 +231,7 @@
 	new_spore.upgrade_points = upgrade_points
 	new_spore.spent_upgrade_points = spent_upgrade_points
 	new_spore.create_respawn_mob(respawnmob.loc)
+	qdel(respawnmob)
 	INVOKE_ASYNC(new_spore, .proc/start_spawn, current_respawn_time - world.time)
 	overmind.infection_mobs += new_spore
 	qdel(src)
