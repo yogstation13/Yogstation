@@ -24,7 +24,7 @@
 		return
 	job = SSjob.GetJob(result)
 	name = "access kit ([job.title])"
-	to_chat(user, span_success("You set up [src] to spoof and grant access to [job.title]."))
+	to_chat(user, span_notice("You set up [src] to spoof and grant access to [job.title]."))
 
 /obj/item/access_kit/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
