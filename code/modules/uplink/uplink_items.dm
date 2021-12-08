@@ -1470,6 +1470,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/aiModule/syndicate
 	cost = 4
 	manufacturer = /datum/corporation/traitor/cybersun
+	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/device_tools/hypnotic_flash
 	name = "Hypnotic Flash"
