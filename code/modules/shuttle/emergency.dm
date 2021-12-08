@@ -176,6 +176,7 @@
 		var/datum/job/J = pick(SSjob.occupations)
 		ID.registered_name = S.random_name(pick(MALE, FEMALE))
 		ID.assignment = J.title
+		ID.originalassignment = J.title
 
 		authorized += ID
 
