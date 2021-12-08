@@ -16,6 +16,7 @@
 	var/mob/living/silicon/ai/downloading
 	var/mob/user_downloading
 	var/download_progress = 0
+	var/download_announced = FALSE
 
 	circuit = /obj/item/circuitboard/computer/ai_upload_download
 
@@ -59,7 +60,12 @@
 
 /obj/machinery/computer/ai_control_console/process()
 	if(downloading && download_progress >= 50)
-		to_chat(downloading, "<span class='userdanger'>Warning! Download is 50% completed! Download location: [get_area(src)]!</span>")
+		if(!download_announced)
+			to_chat(downloading, "<span class='userdanger'>Warning! Download is 50% completed! Download location: [get_area(src)]!</span>")
+			download_announced = TRUE
+	else
+		download_announced = FALSE
+
 	if(downloading && download_progress >= 100)
 		if(intellicard)
 			downloading.transfer_ai(AI_TRANS_TO_CARD, user_downloading, null, intellicard)
