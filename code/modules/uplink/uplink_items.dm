@@ -1742,6 +1742,56 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
+// Events
+/datum/uplink_item/services
+	category = "Services"
+	include_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear)
+	surplus = 0
+	restricted = TRUE
+
+/datum/uplink_item/services/manifest_spoof
+	name = "Crew Manifest Spoof"
+	desc = "A button capable of adding a single person to the crew manifest."
+	item = /obj/item/service/manifest
+	cost = 15 //Maybe this is too cheap??
+
+/datum/uplink_item/services/fake_ion
+	name = "Fake Ion Storm"
+	desc = "Fakes an ion storm announcment. A good distraction, especially if the AI is weird anyway."
+	item = /obj/item/service/ion
+	cost = 7
+
+/datum/uplink_item/services/fake_meteor
+	name = "Fake Meteor Announcement"
+	desc = "Fakes an meteor announcment. A good way to get any C4 on the station exterior, or really any small explosion, brushed off as a meteor hit."
+	item = /obj/item/service/meteor
+	cost = 7
+
+/datum/uplink_item/services/fake_rod
+	name = "Fake Immovable Rod"
+	desc = "Fakes an immovable rod announcement. Good for a short-lasting distraction."
+	item = /obj/item/service/rodgod
+	cost = 6 //less likely to be believed
+
+//Infiltrator shit
+/datum/uplink_item/infiltration
+	category = "Infiltration Gear"
+	include_modes = list(/datum/game_mode/infiltration)
+	surplus = 0
+
+/datum/uplink_item/infiltration/extra_stealthsuit
+	name = "Extra Chameleon Hardsuit"
+	desc = "An infiltration hardsuit, capable of changing it's appearance instantly."
+	item = /obj/item/clothing/suit/space/hardsuit/infiltration
+	cost = 10
+
+/datum/uplink_item/infiltration/access_kit
+	name = "Access Kit"
+	desc = "A secret device, reverse engineered by gear retrieved from previous Nanotrasen infiltration missions. Allows you to spoof an ID card to have the assignment and access of a single low-level job."
+	item = /obj/item/access_kit/syndicate
+	limited_stock = 1
+	cost = 5
+
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
