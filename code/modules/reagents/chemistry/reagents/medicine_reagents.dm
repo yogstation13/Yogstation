@@ -838,6 +838,8 @@
 	. = 1
 	if(prob(20))
 		M.AdjustAllImmobility(-20, FALSE)
+	if(holder.has_reagent(/datum/reagent/toxin/lexorin))
+		holder.remove_reagent(/datum/reagent/toxin/lexorin, 1)
 	..()
 
 /datum/reagent/medicine/epinephrine/overdose_process(mob/living/M)
