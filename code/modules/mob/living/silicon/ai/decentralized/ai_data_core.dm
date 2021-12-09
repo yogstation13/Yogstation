@@ -27,10 +27,10 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	..()
 
 /obj/machinery/ai/data_core/examine(mob/user)
-	. = .()
+	. = ..()
 	if(!isobserver(user))
 		return
-	. += "<b>Network AI Laws:</b>"
+	. += "<b>Networked AI Laws:</b>"
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
 		var/active_status = !AI.mind ? "(<span class='warning'>OFFLINE</span>)" : ""
 		. += "<b>[AI] [active_status] has the following laws:"
