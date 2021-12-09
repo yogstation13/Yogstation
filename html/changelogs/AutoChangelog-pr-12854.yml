@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "on delta, the medbay security checkpoint and bottom left maints door now have the correct areas"
