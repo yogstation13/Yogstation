@@ -29,7 +29,7 @@ endmap
 
 map yogsdelta
 	minplayers 50
-	votable
+	disabled
 endmap
 
 map kilostation
