@@ -138,6 +138,7 @@
 	resistance_flags = NONE
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+	force = 1
 
 /obj/item/clothing/shoes/jackboots/fast
 	slowdown = -1

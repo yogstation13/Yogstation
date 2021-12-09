@@ -20,10 +20,10 @@
 	if(mode)
 		var/list/guardians = guardian.summoner?.current?.hasparasites()
 		if(target == guardian)
-			to_chat(guardian, "<span class='danger bold'>You can't heal yourself!</span>")
+			to_chat(guardian, span_bolddanger("You can't heal yourself!"))
 			return TRUE
-		if((target == guardian.summoner?.current || guardians.Find(target)) && healuser == FALSE)
-			to_chat(guardian, "<span class='danger bold'>You can't heal your user!</span>")
+		if((target == guardian.summoner?.current || guardians.Find(target)) && !healuser)
+			to_chat(guardian, span_bolddanger("You can't heal your user!"))
 			return TRUE
 		if(isliving(target))
 			var/mob/living/L = target
@@ -54,5 +54,5 @@
 /datum/guardian_ability/major/healing/limited
 	name = "Limited Healing"
 	desc = "Allows the guardian to heal anything with the exception of its user"
-	cost = 3
+	cost = 2
 	healuser = FALSE
