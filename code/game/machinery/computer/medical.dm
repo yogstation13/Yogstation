@@ -248,7 +248,7 @@
 				src.screen = text2num(href_list["screen"])
 				if(src.screen < 1)
 					src.screen = 1
-				if(src.screen = 5)
+				if(src.screen == 5)
 					src.screen = 1
 
 				src.active1 = null
