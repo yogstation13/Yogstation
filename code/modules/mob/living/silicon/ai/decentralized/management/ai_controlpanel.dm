@@ -16,6 +16,7 @@
 	var/mob/living/silicon/ai/downloading
 	var/mob/user_downloading
 	var/download_progress = 0
+	var/download_warning = FALSE
 
 	circuit = /obj/item/circuitboard/computer/ai_upload_download
 
@@ -58,14 +59,12 @@
 	return ..()
 
 /obj/machinery/computer/ai_control_console/process()
-	if(downloading && download_progress >= 50)
-		to_chat(downloading, "<span class='userdanger'>Warning! Download is 50% completed! Download location: [get_area(src)]!</span>")
+	if(downloading && download_progress >= 50 && !download_warning)
+		var/turf/T = get_turf(src)
+		to_chat(downloading, "<span class='userdanger'>Warning! Download is 50% completed! Download location: [get_area(src)] ([T.x], [T.y], [T.z])!</span>")
+		download_warning = TRUE
 	if(downloading && download_progress >= 100)
-		if(intellicard)
-			downloading.transfer_ai(AI_TRANS_TO_CARD, user_downloading, null, intellicard)
-			intellicard.forceMove(get_turf(src))
-			intellicard = null
-		stop_download(TRUE)
+		finish_download()
 
 	if(downloading)
 		if(!downloading.can_download)
@@ -142,14 +141,24 @@
 		data["download_progress"] = 0
 
 	data["ais"] = list()
+	data["current_ai_ref"] = null
+	if(isAI(user))
+		data["current_ai_ref"] = REF(user)
 
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list)
 		var/being_hijacked = A.hijacking ? TRUE : FALSE
-		data["ais"] += list(list("name" = A.name, "ref" = REF(A), "can_download" = A.can_download, "health" = A.health, "active" = A.mind ? TRUE : FALSE, "being_hijacked" = being_hijacked))
+		data["ais"] += list(list("name" = A.name, "ref" = REF(A), "can_download" = A.can_download, "health" = A.health, "active" = A.mind ? TRUE : FALSE, "being_hijacked" = being_hijacked, "in_core" = istype(A.loc, /obj/machinery/ai/data_core)))
 
 	data["is_infiltrator"] = is_infiltrator(user)
 
 	return data
+
+/obj/machinery/computer/ai_control_console/proc/finish_download()
+	if(intellicard)
+		downloading.transfer_ai(AI_TRANS_TO_CARD, user_downloading, null, intellicard)
+		intellicard.forceMove(get_turf(src))
+		intellicard = null
+	stop_download(TRUE)
 
 /obj/machinery/computer/ai_control_console/proc/stop_download(silent = FALSE)
 	if(downloading)
@@ -158,13 +167,14 @@
 		downloading = null
 		user_downloading = null
 		download_progress = 0
+		download_warning = FALSE
 
 /obj/machinery/computer/ai_control_console/proc/upload_ai(silent = FALSE)
 	to_chat(intellicard.AI, "<span class='notice'>You are being uploaded. Please stand by...</span>")
 	intellicard.AI.radio_enabled = TRUE
 	intellicard.AI.control_disabled = FALSE
-	intellicard.AI = null
 	intellicard.AI.relocate(TRUE)
+	intellicard.AI = null
 
 /obj/machinery/computer/ai_control_console/ui_act(action, params)
 	if(..())
@@ -199,11 +209,17 @@
 			upload_ai()
 
 		if("eject_intellicard")
+			if(issilicon(usr))
+				to_chat(usr, span_warning("You're unable to remotely eject the IntelliCard!"))
+				return
 			stop_download()
 			intellicard.forceMove(get_turf(src))
 			intellicard = null
 
 		if("stop_download")
+			if(isAI(usr))
+				to_chat(span_warning("You need physical access to stop the download!"))
+				return
 			stop_download()
 
 		if("start_download")
@@ -212,6 +228,8 @@
 			var/mob/living/silicon/ai/target = locate(params["download_target"])
 			if(!target || !istype(target))
 				return
+			if(!istype(target.loc, /obj/machinery/ai/data_core))
+				return
 			if(!target.can_download)
 				return
 			downloading = target
@@ -219,6 +237,12 @@
 			user_downloading = usr
 			download_progress = 0
 			. = TRUE
+		if("skip_download")
+			if(!downloading)
+				return
+			if(usr == downloading)
+				finish_download()
+
 		if("start_hijack")
 			var/mob/user = usr
 			if(!is_infiltrator(usr))

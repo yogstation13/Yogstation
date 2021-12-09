@@ -26,6 +26,17 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		AI.relocate()
 	..()
 
+/obj/machinery/ai/data_core/examine(mob/user)
+	. = .()
+	if(!isobserver(user))
+		return
+	. += "<b>Network AI Laws:</b>"
+	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
+		var/active_status = !AI.mind ? "(<span class='warning'>OFFLINE</span>)" : ""
+		. += "<b>[AI] [active_status] has the following laws:"
+		for(var/law in AI.laws.get_law_list(include_zeroth = TRUE))
+			. += law
+
 
 /obj/machinery/ai/data_core/proc/can_transfer_ai()
 	if(stat & (BROKEN|NOPOWER|EMPED))

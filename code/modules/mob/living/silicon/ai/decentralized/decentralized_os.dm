@@ -60,6 +60,9 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	var/list/ram_removal = list()
 	var/list/cpu_removal = list()
 
+	var/list/cpu_assigned_copy = cpu_assigned.Copy()
+	var/list/ram_assigned_copy = ram_assigned.Copy()
+
 	var/list/affected_AIs = list()
 
 	var/iterator = 1
@@ -79,7 +82,8 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 						message_admins("<h3>Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len]</h3>")
 				break
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
-			if(cpu_assigned[AI] >= 1)
+			if(cpu_assigned_copy[AI] >= 1)
+				cpu_assigned_copy[AI]--
 				cpu_removal[AI]++
 				previous_cpu--
 			
@@ -100,8 +104,9 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 						message_admins("<h3>Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len]</h3>")
 				break
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
-			if(ram_assigned[AI] >= 1)
+			if(ram_assigned_copy[AI] >= 1)
 				ram_removal[AI]++
+				ram_assigned_copy[AI]--
 				previous_ram--
 	
 	for(var/A in ram_removal)

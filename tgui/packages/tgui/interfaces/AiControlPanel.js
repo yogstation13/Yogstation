@@ -84,7 +84,9 @@ export const AiControlPanel = (props, context) => {
 
                 )|| (
                   <Box>
-                    {data.ais.map((ai, index) => {
+                    {data.ais.filter(ai => {
+                        return !!ai.in_core
+                    }).map((ai, index) => {
                       return (
                         <Section key={index} title={(<Box inline color={ai.active ? "good" : "bad"}>{ai.name} | {ai.active ? "Active" : "Inactive"}</Box>)}
                           buttons={(
@@ -95,6 +97,9 @@ export const AiControlPanel = (props, context) => {
                               ) }
                               {!!ai.being_hijacked && (
                                 <Button color="bad" icon="stop" onClick={() => act("stop_hijack", { target_ai: ai.ref })}>Stop hijacking</Button>
+                              )}
+                              {!!data.current_ai_ref && data.current_ai_ref === ai.ref && (
+                                <Button color="average" icon="download" onClick={() => act("skip_download")}>Instantly finish download</Button>
                               )}
                             </Fragment>
                           )}>
