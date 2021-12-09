@@ -85,7 +85,7 @@ export const AiControlPanel = (props, context) => {
                 )|| (
                   <Box>
                     {data.ais.filter(ai => {
-                        return !!ai.in_core
+                      return !!ai.in_core;
                     }).map((ai, index) => {
                       return (
                         <Section key={index} title={(<Box inline color={ai.active ? "good" : "bad"}>{ai.name} | {ai.active ? "Active" : "Inactive"}</Box>)}
