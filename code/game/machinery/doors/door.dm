@@ -128,6 +128,8 @@
 					return
 				mecha.occupant.last_bumped = world.time
 			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
+				var/username = get_username(mecha.occupant)
+				machinelog(string = "Door opened[username ? " by [username]":""]")
 				open()
 			else
 				do_animate("deny")
@@ -139,7 +141,8 @@
 			return
 		if(check_access(I))
 			open()
-			logaccess(I)
+			var/username = get_username(I)
+			machinelog(string = "Door opened[username ? " by [username]":""]")
 		else
 			do_animate("deny")
 		return
@@ -166,7 +169,8 @@
 
 	if(density && !(obj_flags & EMAGGED))
 		if(allowed(user))
-			logaccess(user)
+			var/username = get_username(user)
+			machinelog(string = "Door opened[username ? " by [username]":""]")
 			open()
 		else
 			do_animate("deny")
@@ -191,10 +195,12 @@
 		user = null //so allowed(user) always succeeds
 	if(allowed(user))
 		if(density)
-			logaccess(user)
+			var/username = get_username(user)
+			machinelog(string = "Door opened[username ? " by [username]":""]")
 			open()
 		else
-			logaccess(user, FALSE)
+			var/username = get_username(user)
+			machinelog(string = "Door closed[username ? " by [username]":""]")
 			close()
 		return TRUE
 	if(density)
@@ -446,39 +452,3 @@
 
 /obj/machinery/door/GetExplosionBlock()
 	return density ? real_explosion_block : 0
-
-/obj/machinery/door/proc/logopen(name, var/open = TRUE)
-	if(!has_logs)
-		return
-	machinelog(string = "Door [open ? "opened" : "closed"][name ? " by [name]":""]")
-
-/obj/machinery/door/proc/logaccess(atom/A, var/open = TRUE)
-	if(!has_logs)
-		return
-	var/username
-	var/obj/item/card/id/id
-	if(ismob(A))
-		var/mob/user = A
-		if(issilicon(user))
-			username = user.name
-		else
-			var/obj/item/item = user.get_active_held_item()
-			if(item && isidcard(item.GetID()))
-				id = item.GetID()
-			else if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				item = H.wear_id
-				if(item && isidcard(item.GetID()))
-					id = item.GetID()
-			else if(isanimal(user))
-				var/mob/living/simple_animal/S = user
-				item = S.access_card
-				if(item && isidcard(item.GetID()))
-					id = item.GetID()
-	if(isitem(A))
-		var/obj/item/item = A
-		if(item.GetID())
-			id = item.GetID()
-	if(!username && id)
-		username = "[id.registered_name] - [id.assignment] [id.originalassignment == id.assignment?"":"([id.originalassignment])"]" 
-	logopen(username, open)

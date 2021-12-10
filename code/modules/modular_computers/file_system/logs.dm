@@ -7,7 +7,7 @@
 
 /datum/computer_file/log/clone()
 	var/datum/computer_file/log/temp = ..()
-	temp.entries = entries
+	temp.entries = entries.Copy()
 	temp.max_entries = max_entries
 	return temp
 

@@ -658,7 +658,7 @@ Class Procs:
 // Transfers the log to the given computer, with all of the theatrics included
 
 /obj/machinery/proc/storelog(var/obj/item/modular_computer/computer, var/mob/user)
-	if(!computer)
+	if(!computer || !computer.enabled)
 		return
 	var/obj/item/computer_hardware/hard_drive/drive = computer.all_components[MC_HDD]
 	if(!has_logs || !internal_log)
@@ -667,10 +667,40 @@ Class Procs:
 		to_chat(user, span_danger("\The [computer] displays a \"Not enough space. Unable to download log.\" error."))
 	else
 		machinediagnostic()
-		drive.store_file(internal_log)
+		drive.store_file(internal_log.clone())
 		computer.play_ping()
 
 // Adds logs with information on the machine, to be overwriten by children
 
 /obj/machinery/proc/machinediagnostic()
 	return
+
+// Returns what the logs should refer to the user as
+
+/obj/machinery/proc/get_username(atom/A)
+	var/username
+	var/obj/item/card/id/id
+	if(ismob(A))
+		var/mob/user = A
+		if(issilicon(user))
+			username = user.name
+		else
+			var/obj/item/item = user.get_active_held_item()
+			if(item && isidcard(item.GetID()))
+				id = item.GetID()
+			else if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				item = H.wear_id
+				if(item && isidcard(item.GetID()))
+					id = item.GetID()
+			else if(isanimal(user))
+				var/mob/living/simple_animal/S = user
+				item = S.access_card
+				if(item && isidcard(item.GetID()))
+					id = item.GetID()
+	if(isitem(A))
+		var/obj/item/item = A
+		if(item.GetID())
+			id = item.GetID()
+	if(!username && id)
+		username = "[id.registered_name] - [id.assignment] [id.originalassignment == id.assignment?"":"([id.originalassignment])"]" 
