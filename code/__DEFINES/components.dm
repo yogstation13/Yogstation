@@ -281,6 +281,7 @@
 #define COMPONENT_BLOCK_MARK_RETRIEVAL 1
 #define COMSIG_ITEM_HIT_REACT "item_hit_react"					//from base of obj/item/hit_reaction(): (list/args)
 #define COMSIG_ITEM_PRINT "item_print"							//returns when an item is printed by an autolathe/protolathe/techfab: (obj/machinery/printed_from)
+#define COMSIG_ITEM_REFUND	"item_refund"						//for tc refunding items: (mob/living/user); returns TRUE if refund is allowed, FALSE if not.
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()

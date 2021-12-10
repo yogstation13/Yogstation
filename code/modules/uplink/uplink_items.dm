@@ -74,10 +74,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		A.name += " ([round(((initial(A.cost)-A.cost)/initial(A.cost))*100)]% off!)"
 		A.desc += " Normally costs [initial(A.cost)] TC. All sales final. [pick(disclaimer)]"
 		A.item = I.item
-		if (A.refundable)
-			var/obj/item/antag_spawner/S = new A.item()
-			S.discountPrice = A.cost
-			A.item = S
 		uplink_items[category_name][A.name] = A
 
 
@@ -114,6 +110,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/proc/purchase(mob/user, datum/component/uplink/U)
 	var/atom/A = spawn_item(item, user, U)
+	if(refundable)
+		A.AddComponent(/datum/component/refundable, user.mind, cost)
 	if(purchase_log_vis && U.purchase_log)
 		U.purchase_log.LogPurchase(A, src, cost)
 
@@ -448,12 +446,19 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \
 			organic host as a home base and source of fuel. Holoparasites come in various types and share damage with their host."
 	item = /obj/item/guardiancreator/tech
-	cost = 15
+	cost = 12
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/infiltration) //yogs: removes restrictions on liabilit- I mean punchghosts, but restrict them for infiltrators
+	exclude_modes = list(/datum/game_mode/infiltration)
 	player_minimum = 25
 	restricted = TRUE
+	refundable = TRUE
+
+// nukies don't get the 3 TC discount
+/datum/uplink_item/dangerous/guardian/nuclear
+	cost = 15
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list()
 
 /datum/uplink_item/dangerous/machinegun
 	name = "L6 Squad Automatic Weapon"

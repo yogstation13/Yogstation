@@ -235,6 +235,7 @@
 		qdel(helmet)
 		//YOGS END
 	target.icon = initial(picked_item.icon)
+	target.on_chameleon_change()
 
 /datum/action/item_action/chameleon/change/Trigger()
 	if(!IsAvailable())
@@ -673,6 +674,10 @@
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
+/obj/item/pda/chameleon/on_chameleon_change()
+	. = ..()
+	update_label()
+
 /obj/item/stamp/chameleon
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -691,3 +696,6 @@
 /obj/item/stamp/chameleon/broken/Initialize()
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
+
+/obj/item/proc/on_chameleon_change()
+	return
