@@ -89,6 +89,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	desc = "A strangely translucent and iridescent crystal."
 	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter"
+	layer = 4
 	density = TRUE
 	anchored = TRUE
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
@@ -121,7 +122,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/warning_alert = "Danger! Crystal hyperstructure integrity faltering!"
 	var/emergency_alert = "CRYSTAL DELAMINATION IMMINENT."
 
-	/// How much force the SM expldoes with
+	/// How much force the SM explodes with
 	var/explosion_power = 35
 	
 	/// Factor for power generation. AirTemp*(temp_factor/(0C))
