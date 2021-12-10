@@ -20,7 +20,7 @@ export const NtosFileManager = (props, context) => {
             usbconnected={usbconnected}
             onUpload={file => act('PRG_copytousb', { name: file })}
             onDelete={file => act('PRG_deletefile', { name: file })}
-            onPrint={file => act("PRG_printfile", {name: file})}
+            onPrint={file => act("PRG_printfile", { name: file })}
             onRename={(file, newName) => act('PRG_rename', {
               name: file,
               new_name: newName,
@@ -36,7 +36,7 @@ export const NtosFileManager = (props, context) => {
               usbconnected={usbconnected}
               onUpload={file => act('PRG_copyfromusb', { name: file })}
               onDelete={file => act('PRG_deletefile', { name: file })}
-              onPrint={file => act("PRG_printfromusb", {name: file})}
+              onPrint={file => act("PRG_printfromusb", { name: file })}
               onRename={(file, newName) => act('PRG_rename', {
                 name: file,
                 new_name: newName,

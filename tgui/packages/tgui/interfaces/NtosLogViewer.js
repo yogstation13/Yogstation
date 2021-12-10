@@ -71,13 +71,6 @@ export const NtosLogViewerContent = (props, context) => {
           backgroundColor="black"
           height={32}>
           <NtosWindow.Content scrollable mt={0}>
-            {hasactivefile === false && (
-              <Box
-                mb={1}>
-                key="Please open a file"
-                <font color="blue">Please open a file</font>
-              </Box>
-            )}
             {Log.map(logentry => (
               <Box
                 mb={1}
