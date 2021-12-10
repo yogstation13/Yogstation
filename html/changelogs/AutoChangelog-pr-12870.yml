@@ -1,0 +1,4 @@
+author: " Lucy"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed holoparasite masters not being able to communicate with their holoparasites. Whoops."
