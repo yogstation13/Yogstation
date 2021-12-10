@@ -43,8 +43,7 @@ map icebox
 endmap
 
 map eclipsestation
-	minplayers 60
-	disabled 
+	votable 
 endmap
 
 map runtimestation
