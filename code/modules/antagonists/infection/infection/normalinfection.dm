@@ -465,7 +465,7 @@
 	if(ismob(mover))
 		var/mob/M = mover
 		M.add_movespeed_modifier(MOVESPEED_ID_INFECTION_STRUCTURE, update=TRUE, priority=100, multiplicative_slowdown=1)
-		M.overlay_fullscreen("infectionvision", /obj/screen/fullscreen/curse/infection, 1)
+		M.overlay_fullscreen("infectionvision", /obj/screen/fullscreen/curse/infection, 0.4)
 
 /obj/structure/infection/normal/Uncrossed(atom/movable/mover)
 	. = ..()
