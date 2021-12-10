@@ -52,6 +52,7 @@
 	normalspeed = TRUE
 	explosion_block = 1
 	hud_possible = list(DIAG_AIRLOCK_HUD)
+	has_logs = TRUE
 
 	FASTDMM_PROP(\
 		pinned_vars = list("req_access_txt", "req_one_access_txt", "name")\
@@ -1070,6 +1071,9 @@
 											span_notice("You cut through \the [src]'s outer grille."))
 						security_level = AIRLOCK_SECURITY_PLASTEEL_O
 					return
+		if(C.is_modular_computer())
+			storelog(C, user)
+			return
 	if(C.tool_behaviour == TOOL_SCREWDRIVER)
 		if(panel_open && detonated)
 			to_chat(user, span_warning("[src] has no maintenance panel!"))

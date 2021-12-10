@@ -43,6 +43,18 @@
 	P = null
 	return TRUE
 
+/obj/item/computer_hardware/printer/proc/print_file(var/datum/computer_file/file)
+	if(!stored_paper)
+		return FALSE
+	if(!check_functionality())
+		return FALSE
+	if(!file.can_print)
+		return FALSE
+	var/new_item = file.print(TRUE)
+	if(new_item)
+		return TRUE
+	return FALSE
+
 /obj/item/computer_hardware/printer/try_insert(obj/item/I, mob/living/user = null)
 	if(istype(I, /obj/item/paper))
 		if(stored_paper >= max_paper)

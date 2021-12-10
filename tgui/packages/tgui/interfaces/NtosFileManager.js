@@ -20,6 +20,7 @@ export const NtosFileManager = (props, context) => {
             usbconnected={usbconnected}
             onUpload={file => act('PRG_copytousb', { name: file })}
             onDelete={file => act('PRG_deletefile', { name: file })}
+            onPrint={file => act("PRG_printfile", {name: file})}
             onRename={(file, newName) => act('PRG_rename', {
               name: file,
               new_name: newName,
@@ -35,6 +36,7 @@ export const NtosFileManager = (props, context) => {
               usbconnected={usbconnected}
               onUpload={file => act('PRG_copyfromusb', { name: file })}
               onDelete={file => act('PRG_deletefile', { name: file })}
+              onPrint={file => act("PRG_printfromusb", {name: file})}
               onRename={(file, newName) => act('PRG_rename', {
                 name: file,
                 new_name: newName,
@@ -54,6 +56,7 @@ const FileTable = props => {
     usbmode,
     onUpload,
     onDelete,
+    onPrint,
     onRename,
     onToggleSilence,
   } = props;
@@ -91,6 +94,11 @@ const FileTable = props => {
             {file.size}
           </Table.Cell>
           <Table.Cell collapsing>
+            {!!file.printable && (
+              <Button
+                icon="print"
+                onClick={() => onPrint(file.name)} />
+            )}
             {!!file.alert_able && (
               <Button
                 icon={file.alert_silenced ? 'bell-slash' : 'bell'}

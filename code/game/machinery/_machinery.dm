@@ -130,6 +130,11 @@ Class Procs:
 	var/climb_stun = 20
 	var/mob/living/machineclimber
 
+	// IC Logs
+	var/has_logs = FALSE
+	var/datum/computer_file/log/internal_log
+	var/max_log_entries = 200
+
 /obj/machinery/Initialize()
 	if(!armor)
 		armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
@@ -147,6 +152,11 @@ Class Procs:
 
 	if (occupant_typecache)
 		occupant_typecache = typecacheof(occupant_typecache)
+
+	if (has_logs)
+		internal_log = new()
+		internal_log.max_entries = max_log_entries
+		internal_log.filename = stringmerge(lowertext(name),replace = "_")
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -166,6 +176,7 @@ Class Procs:
 		for(var/atom/A in component_parts)
 			qdel(A)
 		component_parts.Cut()
+	qdel(internal_log)
 	return ..()
 
 /obj/machinery/proc/locate_machinery()
@@ -633,3 +644,33 @@ Class Procs:
 			else
 				to_chat(user, "<span class='warning'>You fail to climb onto [src].</span>")
 	machineclimber = null
+
+// Adds an entry to the internal log
+
+/obj/machinery/proc/machinelog(var/string = "", var/time_override = null, var/overwright = TRUE)
+	if(!has_logs)
+		stack_trace("Machine [src] ( [type] ) tried to make a log even though it doesnt have one.")
+		return
+	if(!internal_log)
+		internal_log = new
+	internal_log.addentry(string = string, time_override = time_override, overwright = overwright)
+
+// Transfers the log to the given computer, with all of the theatrics included
+
+/obj/machinery/proc/storelog(var/obj/item/modular_computer/computer, var/mob/user)
+	if(!computer)
+		return
+	var/obj/item/computer_hardware/hard_drive/drive = computer.all_components[MC_HDD]
+	if(!has_logs || !internal_log)
+		to_chat(user, span_danger("\The [computer] displays a \"No log found. Unable to download log.\" error."))
+	else if(!drive || !drive.can_store_file(internal_log))
+		to_chat(user, span_danger("\The [computer] displays a \"Not enough space. Unable to download log.\" error."))
+	else
+		machinediagnostic()
+		drive.store_file(internal_log)
+		computer.play_ping()
+
+// Adds logs with information on the machine, to be overwriten by children
+
+/obj/machinery/proc/machinediagnostic()
+	return

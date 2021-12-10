@@ -7,6 +7,7 @@
 	var/undeletable = FALSE										// Whether the file may be deleted. Setting to TRUE prevents deletion/renaming/etc.
 	var/uid													// UID of this file
 	var/static/file_uid = 0
+	var/can_print = FALSE
 
 /datum/computer_file/New()
 	..()
@@ -35,3 +36,19 @@
 		temp.filename = filename
 	temp.filetype = filetype
 	return temp
+
+/datum/computer_file/proc/calculate_size()
+	return
+
+/datum/computer_file/proc/get_contents()
+	return
+
+/datum/computer_file/proc/get_all_contents()
+	var/list/contents = get_contents()
+	var/list/all_contents = contents
+	for(var/datum/computer_file/file in contents)
+		all_contents |= file.get_all_contents()
+	return all_contents
+
+/datum/computer_file/proc/print(var/drop = FALSE)
+	return
