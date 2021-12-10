@@ -15,8 +15,8 @@
 
 	// Config actually from the JSON - should default to Box
 	var/map_name = "YogsBox"
-	var/map_path = "map_files/YogBox"
-	var/map_file = "YogBox.dmm"
+	var/map_path = "map_files/YogsBox"
+	var/map_file = "YogsBox.dmm"
 
 	var/traits = null
 	var/space_ruin_levels = 7
