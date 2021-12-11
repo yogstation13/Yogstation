@@ -1,15 +1,15 @@
 /datum/outfit/infiltrator
 	name = "Syndicate Infiltrator"
 
-	uniform = /obj/item/clothing/under/chameleon
-	shoes = /obj/item/clothing/shoes/chameleon/noslip
-	gloves = /obj/item/clothing/gloves/chameleon
-	back = /obj/item/storage/backpack/chameleon
-	ears = /obj/item/radio/headset/chameleon
+	uniform = /obj/item/clothing/under/chameleon/syndicate
+	shoes = /obj/item/clothing/shoes/chameleon/noslip/syndicate
+	gloves = /obj/item/clothing/gloves/chameleon/syndicate
+	back = /obj/item/storage/backpack/chameleon/syndicate
+	ears = /obj/item/radio/headset/chameleon/syndicate
 	id = /obj/item/card/id/syndicate
-	mask = /obj/item/clothing/mask/chameleon
-	belt = /obj/item/pda/chameleon
-	backpack_contents = list(/obj/item/storage/box/syndie=1,\
+	mask = /obj/item/clothing/mask/chameleon/syndicate
+	belt = /obj/item/pda/chameleon/syndicate
+	backpack_contents = list(/obj/item/storage/box/engineer=1,\
 		/obj/item/kitchen/knife/combat/survival=1,\
 		/obj/item/gun/ballistic/automatic/pistol=1)
 
