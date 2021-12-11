@@ -1,7 +1,7 @@
 /datum/guardian_ability/major/time
 	name = "Time Erasure"
 	desc = "The guardian can erase a short period of time."
-	cost = 6
+	cost = 4
 	spell_type = /obj/effect/proc_holder/spell/self/erase_time
 	arrow_weight = 0.2
 
@@ -51,9 +51,9 @@
 		if(isguardian(L))
 			var/mob/living/simple_animal/hostile/guardian/G = L
 			G.erased_time = TRUE
-		ADD_TRAIT(L, TRAIT_PACIFISM, "king_crimson")
-		ADD_TRAIT(L, TRAIT_NO_STUN_WEAPONS, "king_crimson")
-		ADD_TRAIT(L, TRAIT_NOINTERACT, "king_crimson") // no touching anything ever
+		ADD_TRAIT(L, TRAIT_PACIFISM, GUARDIAN_TRAIT)
+		ADD_TRAIT(L, TRAIT_NO_STUN_WEAPONS, GUARDIAN_TRAIT)
+		ADD_TRAIT(L, TRAIT_NOINTERACT, GUARDIAN_TRAIT) // no touching anything ever
 		L.remove_alt_appearance("king_crimson")
 		L.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/king_crimson, "king_crimson", I, NONE, immune)
 	sleep(length)
@@ -73,9 +73,9 @@
 		L.density = initial(L.density)
 		L.alpha = initial(L.alpha)
 		L.remove_alt_appearance("king_crimson")
-		REMOVE_TRAIT(L, TRAIT_PACIFISM, "king_crimson")
-		REMOVE_TRAIT(L, TRAIT_NO_STUN_WEAPONS, "king_crimson")
-		REMOVE_TRAIT(L, TRAIT_NOINTERACT, "king_crimson")
+		REMOVE_TRAIT(L, TRAIT_PACIFISM, GUARDIAN_TRAIT)
+		REMOVE_TRAIT(L, TRAIT_NO_STUN_WEAPONS, GUARDIAN_TRAIT)
+		REMOVE_TRAIT(L, TRAIT_NOINTERACT, GUARDIAN_TRAIT)
 
 /datum/atom_hud/alternate_appearance/basic/king_crimson
 	var/list/seers

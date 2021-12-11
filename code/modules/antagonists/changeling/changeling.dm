@@ -42,6 +42,7 @@
 	var/datum/action/innate/cellular_emporium/emporium_action
 
 	var/static/list/all_powers = typecacheof(/datum/action/changeling,TRUE)
+	var/list/stored_snapshots = list() //list of stored snapshots
 
 /datum/antagonist/changeling/New()
 	. = ..()
@@ -330,6 +331,12 @@
 
 /datum/antagonist/changeling/proc/add_new_profile(mob/living/carbon/human/H, protect = 0)
 	var/datum/changelingprofile/prof = create_profile(H, protect)
+	var/datum/icon_snapshot/entry = new
+	entry.name = H.real_name
+	entry.icon = H.icon
+	entry.icon_state = H.icon_state
+	entry.overlays = H.get_overlays_copy(list(HANDS_LAYER))	//ugh
+	stored_snapshots[entry.name] = entry
 	add_profile(prof)
 	return prof
 

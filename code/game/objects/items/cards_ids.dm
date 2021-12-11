@@ -379,6 +379,10 @@ update_label("John Doe", "Clowny")
 			return
 	return ..()
 
+/obj/item/card/id/syndicate/on_chameleon_change()
+	. = ..()
+	update_label()
+
 // Returns true if new account was set.
 /obj/item/card/id/proc/set_new_account(mob/living/user)
 	. = FALSE
