@@ -629,7 +629,6 @@
 	id = /obj/item/card/id/prisoner
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
-	l_hand = /obj/item/storage/box/plasmaman
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman
 	shoes = /obj/item/clothing/shoes/sneakers/orange

@@ -18,7 +18,6 @@
 	jobtype = /datum/job/prisoner
 
 	id = /obj/item/card/id/prisoner
-	l_hand = /obj/item/storage/box/bare
 	uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/sneakers/orange
 	alt_shoes = /obj/item/clothing/shoes/xeno_wraps
