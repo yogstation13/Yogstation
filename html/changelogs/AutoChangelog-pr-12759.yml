@@ -1,0 +1,5 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - rscadd: "Adds 4 new traits: Hemophiliac, Efficient Metabolism, Crafty, and Cyber Organ."
+  - tweak: "trait points are doubled across the board to allow for more middleground. Voracious, tagger, photographer, musician, spiritual, empath, and friendly cost less while Blind and Paraplegic give an extra point."
