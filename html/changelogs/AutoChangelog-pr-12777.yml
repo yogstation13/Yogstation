@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "sleepers with the stasis upgrade will now put people into stasis under more specific circumstances"
