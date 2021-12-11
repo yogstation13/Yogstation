@@ -583,7 +583,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=noMhM1CjM78",	// Christopher Lee - Silent Night
 		"https://www.youtube.com/watch?v=KmddeUJJEuU",	// Perry Como - It's Beginning to Look a Lot Like Christmas
 		"https://www.youtube.com/watch?v=kfZtNVEqsBs",  // Christopher Lee - Jingle Hell
-		"https://www.youtube.com/watch?v=KGEfBop0nkI"	// Julia Ecklar - "Christmastime in Sector 5" - "Little Drummer Boy"
+		"https://soundcloud.com/garym03062/beacons-in-the-darkness",	// Gary McGath - Beacons in the Darkness
+		"https://www.youtube.com/watch?v=KGEfBop0nkI",	// Julia Ecklar - "Christmastime in Sector 5" - "Little Drummer Boy"
 		"https://www.youtube.com/watch?v=1twga61Kd14"	// Julia Ecklar - #1 - Christmas Time
 		)
 
