@@ -24,7 +24,7 @@ endmap
 
 map yogsmeta
 	minplayers 25
-	disabled
+	votable
 endmap
 
 map yogsdelta
@@ -34,7 +34,7 @@ endmap
 
 map kilostation
 	maxplayers 40
-	disabled
+	votable
 endmap
 
 map icebox
