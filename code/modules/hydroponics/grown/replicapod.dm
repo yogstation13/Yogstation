@@ -43,10 +43,10 @@
 				factions = B.data["factions"]
 				quirks = B.data["quirks"]
 				contains_sample = TRUE
-				visible_message("<span class='notice'>The [src] is injected with a fresh blood sample.</span>")
+				visible_message(span_notice("The [src] is injected with a fresh blood sample."))
 				log_cloning("[key_name(mind)]'s cloning record was added to [src] at [AREACOORD(src)].")
 			else
-				visible_message("<span class='warning'>The [src] rejects the sample!</span>")
+				visible_message(span_warning("The [src] rejects the sample!"))
 
 	if(!reagents.has_reagent(/datum/reagent/blood))
 		mind = null
@@ -119,7 +119,7 @@
 		podman.hardset_dna(null,null,null,podman.real_name,blood_type, new /datum/species/pod,features)//Discard SE's and UI's, podman cloning is inaccurate, and always make them a podman
 		podman.set_cloned_appearance()
 		log_cloning("[key_name(mind)] cloned as a podman via [src] in [parent] at [AREACOORD(parent)].")
-		to_chat(podman, "<span class='notice'>You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.</span>") //yogs
+		to_chat(podman, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
 
 	else //else, one packet of seeds. maybe two
 		var/seed_count = 1

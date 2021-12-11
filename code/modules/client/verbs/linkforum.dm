@@ -4,7 +4,7 @@
 	set desc = "Link your Forum account to your BYOND account."
 
 	if(!CONFIG_GET(string/xenforo_key))
-		to_chat(src, "<span class='warning'>Error: Please contact your system administrator</span>", confidential = TRUE)
+		to_chat(src, span_warning("Error: Please contact your system administrator"), confidential = TRUE)
 		return
 
 	var/datum/http_request/req = new()
@@ -20,4 +20,4 @@
 
 /client/proc/givelinkforum()
 	add_verb(src, /client/verb/linkforum)
-	to_chat(src, "<span class='notice'>Your forum verification link has expired, and the verb has been returned to you. You can ignore this if you have already linked your accounts.</span>", confidential = TRUE)
+	to_chat(src, span_notice("Your forum verification link has expired, and the verb has been returned to you. You can ignore this if you have already linked your accounts."), confidential = TRUE)

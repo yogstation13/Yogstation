@@ -35,16 +35,16 @@
 	if(istype(W, /obj/item/hemostat/antinoblium))
 		var/obj/item/hemostat/antinoblium/tongs = W
 		if (tongs.shard)
-			to_chat(user, "<span class='notice'>\The [tongs] is already holding an antinoblium shard!</span>")
+			to_chat(user, span_notice("\The [tongs] is already holding an antinoblium shard!"))
 			return FALSE
 		forceMove(tongs)
 		tongs.shard = src
 		tongs.update_icon()
-		to_chat(user, "<span class='notice'>You carefully pick up [src] with [tongs].</span>")
+		to_chat(user, span_notice("You carefully pick up [src] with [tongs]."))
 	else if(istype(W, /obj/item/antinoblium_container/)) // we don't want it to dust
 		return
 	else
-		to_chat(user, "<span class='notice'>As it touches \the [src], both \the [src] and \the [W] burst into dust!</span>")
+		to_chat(user, span_notice("As it touches \the [src], both \the [src] and \the [W] burst into dust!"))
 		radiation_pulse(user, 100)
 		playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 		qdel(W)
@@ -55,9 +55,9 @@
 	if(!iscarbon(user))
 		return FALSE
 	var/mob/ded = user
-	user.visible_message("<span class='danger'>[ded] reaches out and tries to pick up [src]. [ded.p_their()] body starts to glow and bursts into flames before flashing into dust!</span>",\
-			"<span class='userdanger'>You reach for [src] with your hands. That was dumb.</span>",\
-			"<span class='italics'>Everything suddenly goes silent.</span>")
+	user.visible_message(span_danger("[ded] reaches out and tries to pick up [src]. [ded.p_their()] body starts to glow and bursts into flames before flashing into dust!"),\
+			span_userdanger("You reach for [src] with your hands. That was dumb."),\
+			span_italics("Everything suddenly goes silent."))
 	radiation_pulse(user, 500, 2)
 	playsound(get_turf(user), 'sound/effects/supermatter.ogg', 50, 1)
 	ded.dust()
@@ -86,7 +86,7 @@
 	T.shard = null
 	T.update_icon()
 	update_icon()
-	to_chat(user, "<span class='warning'>Container is resealing...</span>")
+	to_chat(user, span_warning("Container is resealing..."))
 	addtimer(CALLBACK(src, .proc/seal), 50)
 	return TRUE
 
@@ -98,7 +98,7 @@
 	shard = null
 	T.update_icon()
 	update_icon()
-	visible_message("<span class='warning'>[user] gingerly takes out the antinoblium shard with the tongs...</span>")
+	visible_message(span_warning("[user] gingerly takes out the antinoblium shard with the tongs..."))
 	return TRUE
 
 /obj/item/antinoblium_container/proc/seal()
@@ -133,10 +133,10 @@
 		return
 	if(sealed)
 		unseal()
-		to_chat(user, "<span class='warning'>[user] opens the [src] revealing the [shard] contained inside!</span>")
+		to_chat(user, span_warning("[user] opens the [src] revealing the [shard] contained inside!"))
 	else 
 		seal()
-		to_chat(user, "<span class='warning'>[user] seals the [src].</span>")
+		to_chat(user, span_warning("[user] seals the [src]."))
 
 /obj/item/antinoblium_container/update_icon()
 	if(sealed)
@@ -176,7 +176,7 @@
 /obj/item/hemostat/antinoblium/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum) // no instakill supermatter javelins
 	if(shard)
 		shard.forceMove(loc)
-		visible_message("<span class='notice'>\The [shard] falls out of \the [src] as it hits the ground.</span>")
+		visible_message(span_notice("\The [shard] falls out of \the [src] as it hits the ground."))
 		shard = null
 		update_icon()
 	..()
@@ -193,9 +193,9 @@
 		investigate_log("has consumed [AM].", "supermatter")
 		qdel(AM)
 	if (user)
-		user.visible_message("<span class='danger'>As [user] touches [AM] with \the [src], both flash into dust and silence fills the room...</span>",\
-			"<span class='userdanger'>You touch [AM] with [src], and everything suddenly goes silent.\n[AM] and [shard] flash into dust, and soon as you can register this, you do as well.</span>",\
-			"<span class='italics'>Everything suddenly goes silent.</span>")
+		user.visible_message(span_danger("As [user] touches [AM] with \the [src], both flash into dust and silence fills the room..."),\
+			span_userdanger("You touch [AM] with [src], and everything suddenly goes silent.\n[AM] and [shard] flash into dust, and soon as you can register this, you do as well."),\
+			span_italics("Everything suddenly goes silent."))
 		message_admins("[src] has consumed [key_name_admin(user)] [ADMIN_JMP(src)].")
 		investigate_log("has consumed [key_name(user)].", "supermatter")
 		user.dust()

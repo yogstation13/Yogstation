@@ -48,7 +48,10 @@
 		cpu.attack_ghost(user)
 
 /obj/machinery/modular_computer/emag_act(mob/user)
-	return cpu ? cpu.emag_act(user) : 1
+	if(!cpu)
+		to_chat(user, "<span class='warning'>You'd need to turn the [src] on first.</span>")
+		return FALSE
+	return (cpu.emag_act(user))
 
 /obj/machinery/modular_computer/update_icon()
 	cut_overlays()
@@ -71,29 +74,6 @@
 		add_overlay("bsod")
 		add_overlay("broken")
 
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/machinery/modular_computer/proc/eject_id()
-	set name = "Eject ID"
-	set category = "Object"
-
-	if(cpu)
-		cpu.eject_id()
-
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/machinery/modular_computer/proc/eject_disk()
-	set name = "Eject Data Disk"
-	set category = "Object"
-
-	if(cpu)
-		cpu.eject_disk()
-
-/obj/machinery/modular_computer/proc/eject_card()
-	set name = "Eject Intellicard"
-	set category = "Object"
-	set src in view(1)
-
-	if(cpu)
-		cpu.eject_card()
 
 /obj/machinery/modular_computer/AltClick(mob/user)
 	if(cpu)
@@ -118,7 +98,7 @@
 /obj/machinery/modular_computer/proc/power_failure(malfunction = 0)
 	var/obj/item/computer_hardware/battery/battery_module = cpu.all_components[MC_CELL]
 	if(cpu && cpu.enabled) // Shut down the computer
-		visible_message("<span class='danger'>\The [src]'s screen flickers [battery_module ? "\"BATTERY [malfunction ? "MALFUNCTION" : "CRITICAL"]\"" : "\"EXTERNAL POWER LOSS\""] warning as it shuts down unexpectedly.</span>")
+		visible_message(span_danger("\The [src]'s screen flickers [battery_module ? "\"BATTERY [malfunction ? "MALFUNCTION" : "CRITICAL"]\"" : "\"EXTERNAL POWER LOSS\""] warning as it shuts down unexpectedly."))
 		if(cpu)
 			cpu.shutdown_computer(0)
 	stat |= NOPOWER
@@ -133,7 +113,7 @@
 	. = ..()
 
 /obj/machinery/modular_computer/attackby(var/obj/item/W as obj, mob/user)
-	if(cpu && !(flags_1 & NODECONSTRUCT_1))
+	if(user.a_intent == INTENT_HELP && cpu && !(flags_1 & NODECONSTRUCT_1))
 		return cpu.attackby(W, user)
 	return ..()
 

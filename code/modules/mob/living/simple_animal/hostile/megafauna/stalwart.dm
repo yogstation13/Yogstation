@@ -74,7 +74,7 @@
 		bombsaway(E)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/backup()
-	visible_message("<span class='danger'>[src] constructs a flock of mini mechanoid!</span>")
+	visible_message(span_danger("[src] constructs a flock of mini mechanoid!"))
 	for(var/turf/open/H in range(src, 2))
 		if(prob(25))
 			new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone(H.loc)
@@ -173,5 +173,5 @@
 	color = "#6CA4E3"
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/devour(mob/living/L)
-	visible_message("<span class='danger'>[src] melts [L]!</span>")
+	visible_message(span_danger("[src] melts [L]!"))
 	L.dust()

@@ -314,6 +314,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"cu" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/item/storage/box/donkpockets,
+/obj/item/kitchen/knife,
+/turf/open/floor/plasteel/cafeteria,
+/area/mine/break_room)
 "cz" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Mining Station Construction Area"
@@ -986,6 +993,18 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance)
+"iP" = (
+/obj/structure/table,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -32
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/storage/box/drinkingglasses,
+/obj/machinery/reagentgrinder,
+/turf/open/floor/plasteel/cafeteria,
+/area/mine/break_room)
 "iQ" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -1344,12 +1363,6 @@
 /obj/structure/curtain,
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
-"ob" = (
-/obj/machinery/computer/security/mining{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
 "og" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
@@ -1575,6 +1588,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
+"rB" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = 20
+	},
+/obj/machinery/modular_computer/console/preset/mining,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "sp" = (
 /obj/structure/ore_box,
 /obj/machinery/light/small{
@@ -1989,6 +2010,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
+"Aa" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/mine/break_room)
 "Ad" = (
 /obj/structure/table,
 /obj/item/storage/box/bodybags,
@@ -2013,13 +2038,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
-"Av" = (
-/obj/structure/table,
-/obj/machinery/microwave,
-/obj/item/kitchen/knife,
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
 "Ax" = (
 /obj/structure/sign/poster/random{
 	pixel_y = -32
@@ -2060,11 +2078,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"AL" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
 "AP" = (
 /obj/structure/closet/secure_closet/miner{
 	anchored = 1
@@ -2296,6 +2309,12 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"Dr" = (
+/obj/machinery/modular_computer/console/preset/mining{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
 "Du" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -2448,17 +2467,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"EQ" = (
-/obj/structure/table,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -32
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/item/storage/box/drinkingglasses,
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
 "ET" = (
 /obj/machinery/mineral/mint{
 	input_dir = 4
@@ -2771,14 +2779,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"Jq" = (
-/obj/machinery/computer/security/mining,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = 20
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "Jt" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -3014,6 +3014,20 @@
 	},
 /turf/open/floor/plating,
 /area/mine/eva)
+"NN" = (
+/obj/structure/table,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/item/storage/lockbox/vialbox/blood{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/obj/item/book/random{
+	pixel_x = -4
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
 "NP" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -3554,14 +3568,6 @@
 "Vt" = (
 /turf/open/floor/plasteel,
 /area/mine/production)
-"Vu" = (
-/obj/structure/table,
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/obj/item/book/random,
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
 "VJ" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "mining_internal";
@@ -4559,7 +4565,7 @@ qf
 Dv
 jA
 zW
-Jq
+rB
 OF
 hd
 iz
@@ -4817,7 +4823,7 @@ zW
 jp
 zW
 zW
-EQ
+iP
 pl
 NP
 By
@@ -4865,7 +4871,7 @@ YH
 wu
 bl
 kD
-Vu
+NN
 Er
 Vk
 kD
@@ -4901,7 +4907,7 @@ qr
 At
 Jx
 zW
-Av
+Aa
 Oe
 YL
 DS
@@ -4943,7 +4949,7 @@ gm
 AG
 qe
 zW
-AL
+cu
 Oe
 YV
 aZ
@@ -4958,7 +4964,7 @@ fA
 fA
 fA
 Cs
-ob
+Dr
 ez
 ez
 ak

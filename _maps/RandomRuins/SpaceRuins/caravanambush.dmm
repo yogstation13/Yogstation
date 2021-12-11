@@ -583,26 +583,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter3)
-"ha" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/yellow,
-/obj/item/pen{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/shuttle/caravan/freighter3)
 "hm" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/caravan/freighter2)
@@ -1308,6 +1288,27 @@
 /obj/item/gun/ballistic/shotgun/sc_pump,
 /turf/template_noop,
 /area/template_noop)
+"Xi" = (
+/obj/structure/table/reinforced,
+/obj/item/folder/yellow,
+/obj/item/pen{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/stamp/syndiround,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/shuttle/caravan/freighter3)
 
 (1,1,1) = {"
 aa
@@ -5753,7 +5754,7 @@ aa
 aa
 gd
 gd
-ha
+Xi
 aI
 ih
 iH

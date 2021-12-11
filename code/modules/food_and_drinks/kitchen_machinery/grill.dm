@@ -32,7 +32,7 @@
 	if(istype(I, /obj/item/stack/sheet/mineral/coal) || istype(I, /obj/item/stack/sheet/mineral/wood))
 		var/obj/item/stack/S = I
 		var/stackamount = S.get_amount()
-		to_chat(user, "<span class='notice'>You put [stackamount] [I]s in [src].</span>")
+		to_chat(user, span_notice("You put [stackamount] [I]s in [src]."))
 		if(istype(I, /obj/item/stack/sheet/mineral/coal))
 			grill_fuel += (500 * stackamount)
 		else
@@ -41,7 +41,7 @@
 		update_icon()
 		return
 	if(I.resistance_flags & INDESTRUCTIBLE)
-		to_chat(user, "<span class='warning'>You don't feel it would be wise to grill [I]...</span>")
+		to_chat(user, span_warning("You don't feel it would be wise to grill [I]..."))
 		return ..()
 	if(istype(I, /obj/item/reagent_containers))
 		if(istype(I, /obj/item/reagent_containers/food) && !istype(I, /obj/item/reagent_containers/food/drinks))
@@ -49,22 +49,23 @@
 			if(HAS_TRAIT(food_item, TRAIT_NODROP) || (food_item.item_flags & (ABSTRACT | DROPDEL)))
 				return ..()
 			else if(food_item.foodtype & GRILLED)
-				to_chat(user, "<span class='notice'>[food_item] has already been grilled!</span>")
+				to_chat(user, span_notice("[food_item] has already been grilled!"))
 				return
 			else if(grill_fuel <= 0)
-				to_chat(user, "<span class='warning'>There is not enough fuel!</span>")
+				to_chat(user, span_warning("There is not enough fuel!"))
 				return
 			else if(!grilled_item && user.transferItemToLoc(food_item, src))
 				grilled_item = food_item
+				RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
 				grilled_item.foodtype |= GRILLED
-				to_chat(user, "<span class='notice'>You put the [grilled_item] on [src].</span>")
+				to_chat(user, span_notice("You put the [grilled_item] on [src]."))
 				update_icon()
 				grill_loop.start()
 				return
 		else
 			if(I.reagents.has_reagent(/datum/reagent/consumable/monkey_energy))
 				grill_fuel += (20 * (I.reagents.get_reagent_amount(/datum/reagent/consumable/monkey_energy)))
-				to_chat(user, "<span class='notice'>You pour the Monkey Energy in [src].</span>")
+				to_chat(user, span_notice("You pour the Monkey Energy in [src]."))
 				I.reagents.remove_reagent(/datum/reagent/consumable/monkey_energy, I.reagents.get_reagent_amount(/datum/reagent/consumable/monkey_energy))
 				update_icon()
 				return
@@ -83,6 +84,7 @@
 			smoke.set_up(1, loc)
 			smoke.start()
 	if(grilled_item)
+		SEND_SIGNAL(grilled_item, COMSIG_ITEM_GRILLED, src, 1)
 		grill_time++
 		grilled_item.reagents.add_reagent(/datum/reagent/consumable/char, 0.2)
 		grill_fuel -= GRILL_FUELUSAGE_ACTIVE
@@ -120,7 +122,7 @@
 
 /obj/machinery/grill/attack_hand(mob/user)
 	if(grilled_item)
-		to_chat(user, "<span class='notice'>You take out [grilled_item] from [src].</span>")
+		to_chat(user, span_notice("You take out [grilled_item] from [src]."))
 		grilled_item.forceMove(drop_location())
 		update_icon()
 		return
@@ -144,7 +146,12 @@
 			grilled_item.desc = "A [grilled_item.name]. Reminds you of your wife, wait, no, it's prettier!"
 			grilled_item.foodtype |= GRILLED
 	grill_time = 0
+	UnregisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
 	grill_loop.stop()
+
+///Called when a food is transformed by the grillable component
+/obj/machinery/grill/proc/GrillCompleted(obj/item/source, atom/grilled_result)
+	grilled_item = grilled_result //use the new item!!
 
 /obj/machinery/grill/unwrenched
 	anchored = FALSE

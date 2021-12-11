@@ -19,8 +19,8 @@
 
 /obj/item/holotool/examine(mob/user)
 	..()
-	. += "<span class='notice'>It is currently set to [current_tool ? current_tool.name : "'off'"] mode.</span>"
-	. += "<span class='notice'>Ctrl+Click it to open the radial menu!</span>"
+	. += span_notice("It is currently set to [current_tool ? current_tool.name : "'off'"] mode.")
+	. += span_notice("Ctrl+Click it to open the radial menu!")
 
 /obj/item/holotool/ui_action_click(mob/user, datum/action/action)
 	if(istype(action, /datum/action/item_action/change_tool))
@@ -104,7 +104,7 @@
 /obj/item/holotool/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, "<span class='danger'>ZZT- ILLEGAL BLUEPRINT UNLOCKED- CONTACT !#$@^%$# NANOTRASEN SUPPORT-@*%$^%!</span>")
+	to_chat(user, span_danger("ZZT- ILLEGAL BLUEPRINT UNLOCKED- CONTACT !#$@^%$# NANOTRASEN SUPPORT-@*%$^%!"))
 	do_sparks(5, 0, src)
 	obj_flags |= EMAGGED
 

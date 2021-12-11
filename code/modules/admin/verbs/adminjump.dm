@@ -103,9 +103,9 @@
 		return
 
 	var/atom/loc = get_turf(usr)
-	log_admin("[key_name(usr)] teleported [key_name(M)] to [AREACOORD(loc)]")
-	var/msg = "[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)] to [ADMIN_VERBOSEJMP(loc)]"
-	message_admins(msg)
+	message_admins("[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)] to [ADMIN_VERBOSEJMP(loc)]")
+	var/msg = "[key_name(usr)] teleported [key_name(M)] to [AREACOORD(loc)]"
+	log_admin(msg)
 	admin_ticket_log(M, msg)
 	M.forceMove(loc)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Get Mob") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -129,9 +129,9 @@
 
 	if(!M)
 		return
-	log_admin("[key_name(usr)] teleported [key_name(M)]")
-	var/msg = "[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)]"
-	message_admins(msg)
+	message_admins("[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)]")
+	var/msg = "[key_name(usr)] teleported [key_name(M)]"
+	log_admin(msg)
 	admin_ticket_log(M, msg)
 	if(M)
 		M.forceMove(get_turf(usr))
@@ -148,10 +148,11 @@
 	if(A && istype(A))
 		if(M.forceMove(safepick(get_area_turfs(A))))
 
-			log_admin("[key_name(usr)] teleported [key_name(M)] to [AREACOORD(A)]")
-			var/msg = "[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)] to [AREACOORD(A)]"
-			message_admins(msg)
-			admin_ticket_log(M, msg)
+			message_admins("[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)] to [AREACOORD(A)]")
+
+			var/log_msg = "[key_name(usr)] teleported [key_name(M)] to [AREACOORD(A)]"
+			log_admin(log_msg)
+			admin_ticket_log(M, log_msg, TRUE)
 		else
 			to_chat(src, "Failed to move mob to a valid location.", confidential=TRUE)
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Send Mob") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

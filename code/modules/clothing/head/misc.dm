@@ -224,7 +224,7 @@
 	if(user.gender == FEMALE)
 		return 0
 	var/mob/living/carbon/human/H = user
-	user.visible_message("<span class='suicide'>[user] is donning [src]! It looks like [user.p_theyre()] trying to be nice to girls.</span>")
+	user.visible_message(span_suicide("[user] is donning [src]! It looks like [user.p_theyre()] trying to be nice to girls."))
 	user.say("M'lady.", forced = "fedora suicide")
 	sleep(10)
 	H.facial_hair_style = "Neckbeard"
@@ -314,7 +314,7 @@
 	name = "crown"
 	desc = "A crown fit for a king, a petty king maybe."
 	icon_state = "crown"
-	armor = list("melee" = 15, "bullet" = 0, "laser" = 0,"energy" = 15, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 15, "bullet" = 0, "laser" = 0,"energy" = 15, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50, "wound" = 5)
 	resistance_flags = FIRE_PROOF
 	dynamic_hair_suffix = ""
 
@@ -322,6 +322,13 @@
 	name = "magnificent crown"
 	desc = "A crown worn by only the highest emperors of the <s>land</s> space."
 	icon_state = "fancycrown"
+
+/obj/item/clothing/head/crown/resin
+	name = "resin crown"
+	desc = "Despite being formed with incredibly tough resin and given a mythril insert, it's still more of a fashion statement than a helmet."
+	icon_state = "resincrown"
+	armor = list("melee" = 25,"energy" = 10,"fire" = 0, "acid" = 10)
+	resistance_flags = NONE
 
 /obj/item/clothing/head/scarecrow_hat
 	name = "scarecrow hat"

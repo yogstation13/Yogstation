@@ -37,13 +37,13 @@
 	if(!SSticker.HasRoundStarted() || !loc || !ghost_usable)
 		return
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER) && !(flags_1 & ADMIN_SPAWNED_1))
-		to_chat(user, "<span class='warning'>An admin has temporarily disabled non-admin ghost roles!</span>")
+		to_chat(user, span_warning("An admin has temporarily disabled non-admin ghost roles!"))
 		return
 	if(!uses)
-		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
+		to_chat(user, span_warning("This spawner is out of charges!"))
 		return
 	if(is_banned_from(user.key, banType))
-		to_chat(user, "<span class='warning'>You are job banned!</span>")
+		to_chat(user, span_warning("You are job banned!"))
 		return
 	if(QDELETED(src) || QDELETED(user))
 		return
@@ -107,9 +107,9 @@
 		if(show_flavour)
 			var/output_message = "<span class='big bold'>[short_desc]</span>"
 			if(flavour_text != "")
-				output_message += "\n<span class='bold'>[flavour_text]</span>"
+				output_message += "\n[span_bold("[flavour_text]")]"
 			if(important_info != "")
-				output_message += "\n<span class='userdanger'>[important_info]</span>"
+				output_message += "\n[span_userdanger("[important_info]")]"
 			to_chat(M, output_message)
 			MM.memory += flavour_text
 		if(antagonist_type)
@@ -233,6 +233,7 @@
 			W.access |= id_access_list
 		if(id_job)
 			W.assignment = id_job
+			W.originalassignment = id_job
 		W.registered_name = H.real_name
 		W.update_label()
 
@@ -412,7 +413,8 @@
 
 /obj/effect/mob_spawn/human/bartender/alive/space
 	name = "space bartender sleeper"
-	flavour_text = "<span class='big bold'>You are a space bartender!</span> You got this place from your old man, a bar in the middle of nowhere. Or at least, until NanoTrasen decided to move in. Time to mix drinks and change lives. <b>Do not leave your post under any circumstances!</b>"
+	flavour_text = "You got this place from your old man, a bar in the middle of nowhere. Or at least, until NanoTrasen decided to move in. Time to mix drinks and change lives."
+	important_info = "Do not leave your post under any circumstances!"
 	outfit = /datum/outfit/spacebartender/space
 
 /obj/effect/mob_spawn/human/bartender/alive/space/special(mob/living/L)
@@ -597,7 +599,7 @@
 	var/despawn = alert("Return to cryosleep? (Warning, Your mob will be deleted!)",,"Yes","No")
 	if(despawn == "No" || !loc || !Adjacent(user))
 		return
-	user.visible_message("<span class='notice'>[user.name] climbs back into cryosleep...</span>")
+	user.visible_message(span_notice("[user.name] climbs back into cryosleep..."))
 	qdel(user)
 
 /datum/outfit/cryobartender

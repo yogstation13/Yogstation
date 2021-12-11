@@ -20,10 +20,15 @@
 			perform(target)
 			return
 	revert_cast()
-	to_chat(user, "<span class='warning'>There must be a nearby source of blood!</span>")
+	to_chat(user, span_warning("There must be a nearby source of blood!"))
 
 /obj/effect/proc_holder/spell/bloodcrawl/perform(obj/effect/decal/cleanable/target, recharge = 1, mob/living/user = usr)
 	if(istype(user))
+		if(istype(user, /mob/living/simple_animal/slaughter))
+			var/mob/living/simple_animal/slaughter/slaught = user
+			slaught.current_hitstreak = 0
+			slaught.wound_bonus = initial(slaught.wound_bonus)
+			slaught.bare_wound_bonus = initial(slaught.bare_wound_bonus)
 		if(phased)
 			if(user.phasein(target))
 				phased = FALSE
@@ -33,4 +38,4 @@
 		start_recharge()
 		return
 	revert_cast()
-	to_chat(user, "<span class='warning'>You are unable to blood crawl!</span>")
+	to_chat(user, span_warning("You are unable to blood crawl!"))

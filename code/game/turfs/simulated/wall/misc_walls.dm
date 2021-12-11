@@ -101,20 +101,20 @@
 /turf/closed/wall/clockwork/attack_hulk(mob/living/user, does_attack_animation = 0)
 	..()
 	if(heated)
-		to_chat(user, "<span class='userdanger'>The wall is searing hot to the touch!</span>")
+		to_chat(user, span_userdanger("The wall is searing hot to the touch!"))
 		user.adjustFireLoss(5)
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50, TRUE)
 
 /turf/closed/wall/clockwork/mech_melee_attack(obj/mecha/M)
 	..()
 	if(heated)
-		to_chat(M.occupant, "<span class='userdanger'>The wall's intense heat completely reflects your [M.name]'s attack!</span>")
+		to_chat(M.occupant, span_userdanger("The wall's intense heat completely reflects your [M.name]'s attack!"))
 		M.take_damage(20, BURN)
 
 /turf/closed/wall/clockwork/proc/turn_up_the_heat()
 	if(!heated)
 		name = "superheated [name]"
-		visible_message("<span class='warning'>[src] sizzles with heat!</span>")
+		visible_message(span_warning("[src] sizzles with heat!"))
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50, TRUE)
 		heated = TRUE
 		hardness = -100 //Lower numbers are tougher, so this makes the wall essentially impervious to smashing
@@ -122,7 +122,7 @@
 		animate(realappearance, color = "#FFC3C3", time = 5)
 	else
 		name = initial(name)
-		visible_message("<span class='notice'>[src] cools down.</span>")
+		visible_message(span_notice("[src] cools down."))
 		heated = FALSE
 		hardness = initial(hardness)
 		slicing_duration = initial(slicing_duration)

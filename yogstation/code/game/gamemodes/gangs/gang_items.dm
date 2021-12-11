@@ -15,7 +15,7 @@
 	var/real_cost = get_cost(user, gang, gangtool)
 	if(!spawn_item(user, gang, gangtool))
 		gang.adjust_influence(-real_cost)
-		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
+		to_chat(user, span_notice("You bought \the [name]."))
 		return TRUE
 
 /datum/gang_item/proc/weapon_purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool, check_canbuy_weapon = TRUE)
@@ -24,7 +24,7 @@
 	var/actual_cost = get_weapon_cost(user, gang, gangtool)
 	if(!spawn_item(user, gang, gangtool))
 		gang.adjust_uniform_influence(-actual_cost)
-		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
+		to_chat(user, span_notice("You bought \the [name]."))
 		return TRUE
 
 /datum/gang_item/proc/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool) // If this returns anything other than null, something fucked up and influence won't lower.
@@ -289,7 +289,7 @@
 	id = "force_converter"
 	cost = 20
 	item_path = /obj/item/implanter/gang
-	spawn_msg = "<span class='notice'>The <b>force converter</b> is a single-use device that converts enemy gangsters.</span>"
+	spawn_msg = span_notice("The <b>force converter</b> is a single-use device that converts enemy gangsters.")
 
 /datum/gang_item/equipment/force_converter/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	var/obj/item/O = new item_path(user.loc, gang)
@@ -313,7 +313,7 @@
 	id = "pen"
 	cost = 25
 	item_path = /obj/item/pen/gang
-	spawn_msg = "<span class='notice'>More <b>recruitment pens</b> will allow you to recruit gangsters faster. Only gang leaders can recruit with pens.</span>"
+	spawn_msg = span_notice("More <b>recruitment pens</b> will allow you to recruit gangsters faster. Only gang leaders can recruit with pens.")
 
 /datum/gang_item/equipment/pen/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	if(..())
@@ -341,7 +341,7 @@
 	if(gang)
 		item_type = /obj/item/gangtool/spare/lt
 		if(gang.leaders.len < MAX_LEADERS_GANG)
-			to_chat(user, "<span class='notice'><b>Gangtools</b> allow you to promote a gangster to be your Lieutenant, enabling them to recruit and purchase items like you. Simply have them register the gangtool. You may promote up to [MAX_LEADERS_GANG-gang.leaders.len] more Lieutenants</span>")
+			to_chat(user, span_notice("<b>Gangtools</b> allow you to promote a gangster to be your Lieutenant, enabling them to recruit and purchase items like you. Simply have them register the gangtool. You may promote up to [MAX_LEADERS_GANG-gang.leaders.len] more Lieutenants"))
 	else
 		item_type = /obj/item/gangtool/spare
 	var/obj/item/gangtool/spare/tool = new item_type(user.loc)
@@ -357,7 +357,7 @@
 	id = "dominator"
 	cost = 30
 	item_path = /obj/machinery/dominator
-	spawn_msg = "<span class='notice'>The <b>dominator</b> will secure your gang's dominance over the station. Turn it on when you are ready to defend it.</span>"
+	spawn_msg = span_notice("The <b>dominator</b> will secure your gang's dominance over the station. Turn it on when you are ready to defend it.")
 
 /datum/gang_item/equipment/dominator/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	if(!gang || !gang.dom_attempts)
@@ -381,11 +381,11 @@
 /datum/gang_item/equipment/dominator/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	var/area/userarea = get_area(user)
 	if(!(userarea.type in gang.territories|gang.new_territories))
-		to_chat(user,"<span class='warning'>The <b>dominator</b> can only be bought in territory controlled by your gang!</span>")
+		to_chat(user,span_warning("The <b>dominator</b> can only be bought in territory controlled by your gang!"))
 		return FALSE
 	for(var/obj/obj in get_turf(user))
 		if(obj.density)
-			to_chat(user, "<span class='warning'>There's not enough room here!</span>")
+			to_chat(user, span_warning("There's not enough room here!"))
 			return FALSE
 
 	return ..()

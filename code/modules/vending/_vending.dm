@@ -374,7 +374,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			add_overlay("[initial(icon_state)]-panel")
 		updateUsrDialog()
 	else
-		to_chat(user, "<span class='warning'>You must first secure [src].</span>")
+		to_chat(user, span_warning("You must first secure [src]."))
 	return TRUE
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
@@ -383,21 +383,21 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return
 	if(refill_canister && istype(I, refill_canister))
 		if (!panel_open)
-			to_chat(user, "<span class='notice'>You should probably unscrew the service panel first.</span>")
+			to_chat(user, span_notice("You should probably unscrew the service panel first."))
 		else if (stat & (BROKEN|NOPOWER))
-			to_chat(user, "<span class='notice'>[src] does not respond.</span>")
+			to_chat(user, span_notice("[src] does not respond."))
 		else
 			//if the panel is open we attempt to refill the machine
 			var/obj/item/vending_refill/canister = I
 			if(canister.get_part_rating() == 0)
-				to_chat(user, "<span class='notice'>[canister] is empty!</span>")
+				to_chat(user, span_notice("[canister] is empty!"))
 			else
 				// instantiate canister if needed
 				var/transferred = restock(canister)
 				if(transferred)
-					to_chat(user, "<span class='notice'>You loaded [transferred] items in [src].</span>")
+					to_chat(user, span_notice("You loaded [transferred] items in [src]."))
 				else
-					to_chat(user, "<span class='notice'>There's nothing to restock!</span>")
+					to_chat(user, span_notice("There's nothing to restock!"))
 			return
 	if(user.a_intent != INTENT_HARM && compartmentLoadAccessCheck(user))
 		if(canLoadItem(I))
@@ -410,7 +410,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/denied_items = 0
 			for(var/obj/item/the_item in T.contents)
 				if(contents.len >= MAX_VENDING_INPUT_AMOUNT) // no more than 30 item can fit inside, legacy from snack vending although not sure why it exists
-					to_chat(user, "<span class='warning'>[src]'s chef compartment is full.</span>")
+					to_chat(user, span_warning("[src]'s chef compartment is full."))
 					break
 				if(canLoadItem(the_item) && loadingAttempt(the_item,user))
 					SEND_SIGNAL(T, COMSIG_TRY_STORAGE_TAKE, the_item, src, TRUE)
@@ -418,9 +418,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 				else
 					denied_items++
 			if(denied_items)
-				to_chat(user, "<span class='notice'>[src] refuses some items.</span>")
+				to_chat(user, span_notice("[src] refuses some items."))
 			if(loaded)
-				to_chat(user, "<span class='notice'>You insert [loaded] dishes into [src]'s chef compartment.</span>")
+				to_chat(user, span_notice("You insert [loaded] dishes into [src]'s chef compartment."))
 				updateUsrDialog()
 	else
 		..()
@@ -432,7 +432,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	for(var/datum/data/vending_product/R as anything in product_records)
 		if(R.product_path == I.type)
 			R.amount++
-			to_chat(user, "<span class='notice'>You insert [I] into [src]'s input compartment.</span>")
+			to_chat(user, span_notice("You insert [I] into [src]'s input compartment."))
 			qdel(I)
 			break
 		
@@ -469,7 +469,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='notice'>You short out the product lock on [src].</span>")
+	to_chat(user, span_notice("You short out the product lock on [src]."))
 
 /obj/machinery/vending/_try_interact(mob/user)
 	if(seconds_electrified && !(stat & NOPOWER))
@@ -564,7 +564,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(!vend_ready)
 				return
 			if(panel_open)
-				to_chat(usr, "<span class='warning'>The vending machine cannot dispense products while its service panel is open!</span>")
+				to_chat(usr, span_warning("The vending machine cannot dispense products while its service panel is open!"))
 				return
 			vend_ready = FALSE //One thing at a time!!
 			var/datum/data/vending_product/R = locate(params["ref"])
@@ -717,7 +717,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	pre_throw(throw_item)
 
 	throw_item.throw_at(target, 16, 3)
-	visible_message("<span class='danger'>[src] launches [throw_item] at [target]!</span>")
+	visible_message(span_danger("[src] launches [throw_item] at [target]!"))
 	return 1
 /**
   * A callback called before an item is tossed out
@@ -782,7 +782,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(do_you_have_access)
 			return TRUE
 		else
-			to_chat(user, "<span class='warning'>[src]'s input compartment blinks red: Access denied.</span>")
+			to_chat(user, span_warning("[src]'s input compartment blinks red: Access denied."))
 			return FALSE
 
 /obj/machinery/vending/onTransitZ()

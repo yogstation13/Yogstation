@@ -7,7 +7,7 @@
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_MENTORHELP)
-		to_chat(src, "<span class='danger'>Error: Mentorhelp: You cannot send mentorhelps (Muted).</span>", confidential=TRUE)
+		to_chat(src, span_danger("Error: Mentorhelp: You cannot send mentorhelps (Muted)."), confidential=TRUE)
 		return
 	if(handle_spam_prevention(msg,MUTE_MENTORHELP))
 		return

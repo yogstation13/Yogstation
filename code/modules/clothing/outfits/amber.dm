@@ -85,6 +85,7 @@
 	W.icon_state = "centcom"
 	W.registered_name = "Unknown"
 	W.assignment = "Amber Task Force"
+	W.originalassignment = "Amber Task Force"
 	W.update_label(W.registered_name, W.assignment)
 
 	H.ignores_capitalism = TRUE // Yogs -- Lets the Amber force buy a damned smoke for christ's sake

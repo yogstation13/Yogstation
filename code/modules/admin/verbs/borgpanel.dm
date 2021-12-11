@@ -9,7 +9,7 @@
 	if (!istype(borgo, /mob/living/silicon/robot))
 		borgo = input("Select a borg", "Select a borg", null, null) as null|anything in GLOB.silicon_mobs
 	if (!istype(borgo, /mob/living/silicon/robot))
-		to_chat(usr, "<span class='warning'>Borg is required for borgpanel</span>", confidential=TRUE)
+		to_chat(usr, span_warning("Borg is required for borgpanel"), confidential=TRUE)
 
 	var/datum/borgpanel/borgpanel = new(usr, borgo)
 
@@ -227,7 +227,7 @@
 		return
 	var/chosensilicon = input("Select a Silicon", "Select a Silicon", null, null) as null|anything in GLOB.silicon_mobs
 	if (!istype(chosensilicon, /mob/living/silicon))
-		to_chat(usr, "<span class='warning'>Silicon is required for law changes</span>", confidential=TRUE)
+		to_chat(usr, span_warning("Silicon is required for law changes"), confidential=TRUE)
 		return
 	var/chosen = pick_closest_path(null, make_types_fancy(typesof(/obj/item/aiModule)))
 	if (!chosen)

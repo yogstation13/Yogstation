@@ -5,7 +5,7 @@
 	name = "processor board"
 	desc = "A standard CPU board used in most computers. It can run up to three programs simultaneously."
 	icon_state = "cpuboard"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 	power_usage = 50
 	critical = 1
 	malfunction_probability = 1
@@ -27,7 +27,7 @@
 	name = "photonic processor board"
 	desc = "An advanced experimental CPU board that uses photonic core instead of regular circuitry. It can run up to five programs simultaneously, but uses a lot of power."
 	icon_state = "cpuboard_super"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 	power_usage = 250
 	max_idle_programs = 4
 

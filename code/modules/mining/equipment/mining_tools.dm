@@ -18,10 +18,10 @@
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 
 /obj/item/pickaxe/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] begins digging into [user.p_their()] chest!  It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins digging into [user.p_their()] chest!  It looks like [user.p_theyre()] trying to commit suicide!"))
 	if(use_tool(user, user, 30, volume=50))
 		return BRUTELOSS
-	user.visible_message("<span class='suicide'>[user] couldn't do it!</span>")
+	user.visible_message(span_suicide("[user] couldn't do it!"))
 	return SHAME
 
 /obj/item/pickaxe/mini
@@ -119,17 +119,17 @@ obj/item/pickaxe/bonepickaxe
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(/datum/material/iron=50)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/shovel/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 150, 40) //it's sharp, so it works, but barely.
 
 /obj/item/shovel/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] begins digging their own grave!  It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins digging their own grave!  It looks like [user.p_theyre()] trying to commit suicide!"))
 	if(use_tool(user, user, 30, volume=50))
 		return BRUTELOSS
-	user.visible_message("<span class='suicide'>[user] couldn't do it!</span>")
+	user.visible_message(span_suicide("[user] couldn't do it!"))
 	return SHAME
 
 /obj/item/shovel/spade

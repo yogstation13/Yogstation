@@ -6,7 +6,7 @@
 		if(T.active_hotspot)
 			burning = TRUE
 
-	var/list/lines = list("<span class='adminnotice'>[AREACOORD(target)]: [env.return_temperature()] K ([env.return_temperature() - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]</span>")
+	var/list/lines = list(span_adminnotice("[AREACOORD(target)]: [env.return_temperature()] K ([env.return_temperature() - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]"))
 	for(var/id in env.get_gases())
 		var/moles = env.get_moles(id)
 		if (abs(moles) >= 0.00001)
@@ -128,7 +128,7 @@
 			message_admins("[key_name_admin(usr)] re-enabled the CDN asset transport")
 			log_admin("[key_name(usr)] re-enabled the CDN asset transport")
 		else
-			to_chat(usr, "<span class='adminnotice'>The CDN is not enabled!</span>")
+			to_chat(usr, span_adminnotice("The CDN is not enabled!"))
 			if (alert(usr, "The CDN asset transport is not enabled! If you having issues with assets you can also try disabling filename mutations.", "The CDN asset transport is not enabled!", "Try disabling filename mutations", "Nevermind") == "Try disabling filename mutations")
 				SSassets.transport.dont_mutate_filenames = !SSassets.transport.dont_mutate_filenames
 				message_admins("[key_name_admin(usr)] [(SSassets.transport.dont_mutate_filenames ? "disabled" : "re-enabled")] asset filename transforms")

@@ -43,7 +43,7 @@
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
 
 	if(!usr.client || !usr.client.holder) //The usr vs src abuse in this proc is intentional and must not be changed
-		to_chat(usr, "<span class='danger'>You need to be an administrator to access this.</span>")
+		to_chat(usr, span_danger("You need to be an administrator to access this."))
 		return
 
 	if(!D)
@@ -465,10 +465,10 @@
 
 	var/item
 	if (isnull(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>null</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("null")]"
 
 	else if (istext(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>\"[VV_HTML_ENCODE(value)]\"</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("\"[VV_HTML_ENCODE(value)]\"")]"
 
 	else if (isicon(value))
 		#ifdef VARSICON
@@ -476,13 +476,13 @@
 		var/rnd = rand(1,10000)
 		var/rname = "tmp[REF(I)][rnd].png"
 		usr << browse_rsc(I, rname)
-		item = "[VV_HTML_ENCODE(name)] = (<span class='value'>[value]</span>) <img class=icon src=\"[rname]\">"
+		item = "[VV_HTML_ENCODE(name)] = ([span_value("[value]")]) <img class=icon src=\"[rname]\">"
 		#else
-		item = "[VV_HTML_ENCODE(name)] = /icon (<span class='value'>[value]</span>)"
+		item = "[VV_HTML_ENCODE(name)] = /icon ([span_value("[value]")])"
 		#endif
 
 	else if (isfile(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("'[value]'")]"
 
 	else if(istype(value,/matrix)) // Needs to be before datum
 		var/matrix/M = value
@@ -498,7 +498,7 @@
 
 	else if(isappearance(value))
 		var/image/I = value
-		item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = appearance(<span class='value'>[I.icon]</span>, <span class='value'>\"[I.icon_state]\"</span>)"
+		item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = appearance([span_value("[I.icon]")], [span_value("\"[I.icon_state]\"")])"
 
 	else if (istype(value, /datum))
 		var/datum/D = value
@@ -534,7 +534,7 @@
 				flags += i
 			item = "[VV_HTML_ENCODE(name)] = [VV_HTML_ENCODE(jointext(flags, ", "))]"
 	else
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>[VV_HTML_ENCODE(value)]</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("[VV_HTML_ENCODE(value)]")]"
 
 	return "[header][item]</li>"
 
@@ -937,7 +937,7 @@
 			                  fire = text2num(result["values"]["fire"]),\
 			                  acid = text2num(result["values"]["acid"]))
 				log_admin("[key_name(usr)] modified the armor on [O] ([O.type]) to melee: [O.armor.melee], bullet: [O.armor.bullet], laser: [O.armor.laser], energy: [O.armor.energy], bomb: [O.armor.bomb], bio: [O.armor.bio], rad: [O.armor.rad], fire: [O.armor.fire], acid: [O.armor.acid]")
-				message_admins("<span class='notice'>[key_name_admin(usr)] modified the armor on [O] ([O.type]) to melee: [O.armor.melee], bullet: [O.armor.bullet], laser: [O.armor.laser], energy: [O.armor.energy], bomb: [O.armor.bomb], bio: [O.armor.bio], rad: [O.armor.rad], fire: [O.armor.fire], acid: [O.armor.acid]</span>")
+				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [O] ([O.type]) to melee: [O.armor.melee], bullet: [O.armor.bullet], laser: [O.armor.laser], energy: [O.armor.energy], bomb: [O.armor.bomb], bio: [O.armor.bio], rad: [O.armor.rad], fire: [O.armor.fire], acid: [O.armor.acid]"))
 			else
 				return
 
@@ -973,7 +973,7 @@
 						to_chat(usr, "No objects of this type exist")
 						return
 					log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) </span>")
+					message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
 				if("Type and subtypes")
 					var/i = 0
 					for(var/obj/Obj in world)
@@ -985,7 +985,7 @@
 						to_chat(usr, "No objects of this type exist")
 						return
 					log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
-					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
+					message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
 
 		else if(href_list["addreagent"])
 			if(!check_rights(NONE))
@@ -1005,14 +1005,16 @@
 					if("Enter ID")
 						var/valid_id
 						while(!valid_id)
-							chosen_id = stripped_input(usr, "Enter the ID of the reagent you want to add.")
+							chosen_id = stripped_input(usr, "Enter the name of the reagent you want to add. (Case Sensitive!)")
 							if(!chosen_id) //Get me out of here!
 								break
 							for(var/ID in reagent_options)
-								if(ID == chosen_id)
-									valid_id = 1
+								var/datum/reagent/selected = reagent_options[ID]
+								if(selected?.name == chosen_id) //apparently I have to do this because the other method wasn't WORKING
+									valid_id = TRUE
+									chosen_id = ID
 							if(!valid_id)
-								to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
+								to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 					if("Choose ID")
 						chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in reagent_options
 				if(chosen_id)
@@ -1020,7 +1022,7 @@
 					if(amount)
 						A.reagents.add_reagent(chosen_id, amount)
 						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]")
-						message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]</span>")
+						message_admins(span_notice("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]"))
 
 		else if(href_list["explode"])
 			if(!check_rights(R_FUN))
@@ -1131,7 +1133,7 @@
 				var/datum/martial_art/MA = new chosenart
 				MA.teach(C)
 				log_admin("[key_name(usr)] has taught [MA] to [key_name(C)].")
-				message_admins("<span class='notice'>[key_name_admin(usr)] has taught [MA] to [key_name_admin(C)].</span>")
+				message_admins(span_notice("[key_name_admin(usr)] has taught [MA] to [key_name_admin(C)]."))
 
 		else if(href_list["givetrauma"])
 			if(!check_rights(NONE))
@@ -1156,7 +1158,7 @@
 			var/datum/brain_trauma/BT = C.gain_trauma(result)
 			if(BT)
 				log_admin("[key_name(usr)] has traumatized [key_name(C)] with [BT.name]")
-				message_admins("<span class='notice'>[key_name_admin(usr)] has traumatized [key_name_admin(C)] with [BT.name].</span>")
+				message_admins(span_notice("[key_name_admin(usr)] has traumatized [key_name_admin(C)] with [BT.name]."))
 
 		else if(href_list["curetraumas"])
 			if(!check_rights(NONE))
@@ -1169,7 +1171,7 @@
 
 			C.cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
 			log_admin("[key_name(usr)] has cured all traumas from [key_name(C)].")
-			message_admins("<span class='notice'>[key_name_admin(usr)] has cured all traumas from [key_name_admin(C)].</span>")
+			message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(C)]."))
 
 		else if(href_list["hallucinate"])
 			if(!check_rights(NONE))
@@ -1399,7 +1401,7 @@
 				to_chat(usr, "Mob doesn't exist anymore")
 				return
 			H.cluwneify()
-			message_admins("<span class='notice'>[key_name(usr)] has made [key_name(H)] into a Cluwne.</span>")
+			message_admins(span_notice("[key_name(usr)] has made [key_name(H)] into a Cluwne."))
 			return // yogs end
 
 		else if(href_list["makepacman"])
@@ -1466,7 +1468,7 @@
 				var/log_msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]"
 				message_admins("[key_name(usr)] dealt [amount] amount of [Text] damage to [ADMIN_LOOKUPFLW(L)]")
 				log_admin(log_msg)
-				admin_ticket_log(L, "<font color='blue'>[log_msg]</font>")
+				admin_ticket_log(L, log_msg)
 				vv_update_display(L, Text, "[newamt]")
 		else if(href_list["copyoutfit"])
 			if(!check_rights(R_SPAWN))
@@ -1508,7 +1510,7 @@
 
 			var/mob/user = usr
 			if(!P.persistence_id || !P.C)
-				to_chat(user,"<span class='warning'>This is not a persistent painting.</span>")
+				to_chat(user,span_warning("This is not a persistent painting."))
 				return
 			var/md5 = md5(P.C.get_data_string())
 			var/author = P.C.author_ckey
@@ -1523,4 +1525,4 @@
 				if(PA.C && md5(PA.C.get_data_string()) == md5)
 					QDEL_NULL(PA.C)
 			log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
-			message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")
+			message_admins(span_notice("[key_name_admin(user)] has deleted persistent painting made by [author]."))

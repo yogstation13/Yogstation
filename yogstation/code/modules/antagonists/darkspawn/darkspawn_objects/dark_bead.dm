@@ -23,7 +23,7 @@
 
 /obj/item/dark_bead/Destroy(force)
 	if(isliving(loc) && !eating && !force)
-		to_chat(loc, "<span class='warning'>You were too slow! [src] faded away...</span>")
+		to_chat(loc, span_warning("You were too slow! [src] faded away..."))
 	if(!eating || force)
 		. = ..()
 	else
@@ -41,51 +41,51 @@
 		qdel(src)
 		return
 	if(!L.mind || isdarkspawn(L))
-		to_chat(user, "<span class='warning'>You cannot drain allies or the mindless.</span>")
+		to_chat(user, span_warning("You cannot drain allies or the mindless."))
 		return
 	if(!L.health || L.stat)
-		to_chat(user, "<span class='warning'>[L] is too weak to drain.</span>")
+		to_chat(user, span_warning("[L] is too weak to drain."))
 		return
 	if(linked_ability.victims[L])
-		to_chat(user, "<span class='warning'>[L] must be given time to recover from their last draining.</span>")
+		to_chat(user, span_warning("[L] must be given time to recover from their last draining."))
 		return
 	if(linked_ability.last_victim == L.ckey)
-		to_chat(user, "<span class='warning'>[L]'s mind is still too scrambled. Drain someone else first.</span>")
+		to_chat(user, span_warning("[L]'s mind is still too scrambled. Drain someone else first."))
 		return
 	if(isveil(L))
 		full_restore = FALSE
-		to_chat(user, "<span class='warning'>[L] has been veiled and will not produce as much psi as an unmodified victim.</span>")
+		to_chat(user, span_warning("[L] has been veiled and will not produce as much psi as an unmodified victim."))
 	eating = TRUE
 	if(user.loc != L)
-		user.visible_message("<span class='warning'>[user] grabs [L] and leans in close...</span>", "<span class='velvet bold'>cera qo...</span><br>\
-		<span class='danger'>You begin siphoning [L]'s mental energy...</span>")
-		to_chat(L, "<span class='userdanger'><i>AAAAAAAAAAAAAA-</i></span>")
+		user.visible_message(span_warning("[user] grabs [L] and leans in close..."), "<span class='velvet bold'>cera qo...</span><br>\
+		[span_danger("You begin siphoning [L]'s mental energy...")]")
+		to_chat(L, span_userdanger("<i>AAAAAAAAAAAAAA-</i>"))
 		L.Stun(50)
 		L.silent += 4
 		playsound(L, 'yogstation/sound/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
 		if(!do_mob(user, L, 30))
 			user.Knockdown(30)
-			to_chat(L, "<span class='boldwarning'>All right. You're all right.</span>")
+			to_chat(L, span_boldwarning("All right. You're all right."))
 			L.Knockdown(30)
 			qdel(src, force = TRUE)
 			return
 	else
 		L.visible_message("<span class='userdanger italics'>[L] suddenly howls and clutches as their face as violet light screams from their eyes!</span>", \
 		"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
-		to_chat(user, "<span class='velvet'><b>cera qo...</b><br>You begin siphoning [L]'s will...</span>")
+		to_chat(user, span_velvet("<b>cera qo...</b><br>You begin siphoning [L]'s will..."))
 		L.Stun(50)
 		playsound(L, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
 		if(!do_mob(user, L, 50))
 			user.Knockdown(50)
-			to_chat(L, "<span class='boldwarning'>All right. You're all right.</span>")
+			to_chat(L, span_boldwarning("All right. You're all right."))
 			L.Knockdown(50)
 			qdel(src, force = TRUE)
 			return
-	user.visible_message("<span class='warning'>[user] gently lowers [L] to the ground...</span>", "<span class='velvet'><b>...aranupdejc</b><br>\
+	user.visible_message(span_warning("[user] gently lowers [L] to the ground..."), "<span class='velvet'><b>...aranupdejc</b><br>\
 	You devour [L]'s will. Your Psi has been [!full_restore ? "partially restored." : "fully restored.\n\
 	Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities."]<br>\
-	<span class='warning'>[L] is now severely weakened and will take some time to recover.</span> \
-	<span class='warning'>Additionally, you can not drain them again without first draining someone else.</span>")
+	[span_warning("[L] is now severely weakened and will take some time to recover.")] \
+	[span_warning("Additionally, you can not drain them again without first draining someone else.")]")
 	playsound(L, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
 	if(full_restore)
 		darkspawn.psi = darkspawn.psi_cap
@@ -100,7 +100,7 @@
 	darkspawn.update_psi_hud()
 	linked_ability.victims[L] = TRUE
 	linked_ability.last_victim = L.ckey
-	to_chat(L, "<span class='userdanger'>You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber...</span>")
+	to_chat(L, span_userdanger("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
 	L.playsound_local(L, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
 	L.Unconscious(15)
 	L.apply_effect(EFFECT_STUTTER, 20)

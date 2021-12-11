@@ -248,6 +248,16 @@
 	time = 4 SECONDS
 	category = CAT_ROBOT
 
+/datum/crafting_recipe/Atmosbot
+	name = "Automatic Station Stabilizer Bot"
+	result = /mob/living/simple_animal/bot/atmosbot
+	reqs = list(/obj/item/analyzer = 1,
+				/obj/item/bodypart/r_arm/robot = 1,
+				/obj/item/assembly/prox_sensor = 1,
+				/obj/item/grenade/chem_grenade/smart_metal_foam = 1)
+	time = 6 SECONDS
+	category = CAT_ROBOT
+
 /datum/crafting_recipe/improvised_pneumatic_cannon //Pretty easy to obtain but
 	name = "Pneumatic Cannon"
 	result = /obj/item/pneumatic_cannon/ghetto
@@ -605,6 +615,14 @@
 	reqs = list(/obj/item/stack/sheet/bone = 4)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/resincrown
+	name = "Resin Crown"
+	result = /obj/item/clothing/head/crown/resin 
+	time = 4 SECONDS
+	reqs = list(/obj/item/stack/sheet/ashresin = 2,
+		/obj/item/stack/sheet/mineral/mythril = 1)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/goliathcloak
 	name = "Goliath Cloak"
 	result = /obj/item/clothing/suit/hooded/cloak/goliath
@@ -673,6 +691,15 @@
 				/obj/item/stack/sheet/animalhide/ashdrake = 5)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/carpsuit
+	name = "Space Dragon Armour"
+	result = /obj/item/clothing/suit/space/hardsuit/carp/dragon
+	time = 6 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 10,
+				/obj/item/stack/sheet/sinew = 2,
+				/obj/item/stack/sheet/animalhide/carpdragon = 5)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/firebrand
 	name = "Firebrand"
 	result = /obj/item/match/firebrand
@@ -713,10 +740,11 @@
 
 /datum/crafting_recipe/chitinspear
 	name = "Chitin Spear"
-	result = /obj/item/twohanded/chitinspear //take a bonespear, reinforce it with some chitin, profit?
+	result = /obj/item/twohanded/chitinspear //take a bonespear, reinforce it with some chitin and resin, profit?
 	time = 7.5 SECONDS
 	reqs = list(/obj/item/twohanded/bonespear = 1,
 				/obj/item/stack/sheet/sinew = 4,
+				/obj/item/stack/sheet/ashresin = 1,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 6)
 	category = CAT_PRIMAL
 

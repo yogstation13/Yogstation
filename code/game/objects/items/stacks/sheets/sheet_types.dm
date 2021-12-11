@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	return ..()
 
 /obj/item/stack/sheet/metal/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins whacking [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins whacking [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /*
@@ -256,6 +256,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/wood/fifty
 	amount = 50
+
+/obj/item/stack/sheet/mineral/wood/mushroom
+	desc = "Wood made of packed together mushroom shavings that have dried and changed color. Just tough enough to pass as wood."
 
 /*
  * Bamboo
@@ -468,9 +471,23 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 		var/atom/droploc = drop_location()
 		if(use(1))
 			playsound(I, 'sound/items/bikehorn.ogg', 50, 1, -1)
-			to_chat(user, "<span class='notice'>You stamp the cardboard! It's a clown box! Honk!</span>")
+			to_chat(user, span_notice("You stamp the cardboard! It's a clown box! Honk!"))
 			if (amount >= 0)
 				new/obj/item/storage/box/clown(droploc) //bugfix
+
+	if(istype(I, /obj/item/stamp/chameleon) && !istype(loc, /obj/item/storage))
+		var/atom/droploc = drop_location()
+		if(use(1))
+			to_chat(user, span_notice("You stamp the cardboard in a sinister way"))
+			if (amount >= 0)
+				new/obj/item/storage/box/syndie_kit(droploc)
+	
+	if(istype(I, /obj/item/stamp/syndiround) && !istype(loc, /obj/item/storage))
+		var/atom/droploc = drop_location()
+		if(use(1))
+			to_chat(user, span_notice("You stamp the cardboard in a sinister way"))
+			if (amount >= 0)
+				new/obj/item/storage/box/syndie_kit(droploc)
 
 	else if(I.is_hot())
 		fire_act(I.is_hot())
@@ -509,12 +526,12 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 
 /obj/item/stack/sheet/runed_metal/attack_self(mob/living/user)
 	if(!iscultist(user))
-		to_chat(user, "<span class='warning'>Only one with forbidden knowledge could hope to work this metal...</span>")
+		to_chat(user, span_warning("Only one with forbidden knowledge could hope to work this metal..."))
 		return
 	var/turf/T = get_turf(user) //we may have moved. adjust as needed...
 	var/area/A = get_area(user)
 	if((!is_station_level(T.z) && !is_mining_level(T.z) && !is_reebe(T.z)) || (A && !A.blob_allowed))
-		to_chat(user, "<span class='warning'>The veil is not weak enough here.</span>")
+		to_chat(user, span_warning("The veil is not weak enough here."))
 		return FALSE
 	return ..()
 
@@ -577,7 +594,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 
 /obj/item/stack/tile/brass/attack_self(mob/living/user)
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='danger'>[src] seems far too fragile and rigid to build with.</span>") //haha that's because it's actually replicant alloy you DUMMY
+		to_chat(user, span_danger("[src] seems far too fragile and rigid to build with.")) //haha that's because it's actually replicant alloy you DUMMY
 		return
 	..()
 
@@ -626,7 +643,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 
 /obj/item/stack/tile/bronze/attack_self(mob/living/user)
 	if(is_servant_of_ratvar(user)) //still lets them build with it, just gives a message
-		to_chat(user, "<span class='danger'>Wha... what is this cheap imitation crap? This isn't brass at all!</span>")
+		to_chat(user, span_danger("Wha... what is this cheap imitation crap? This isn't brass at all!"))
 	..()
 
 /obj/item/stack/tile/bronze/Initialize(mapload, new_amount, merge = TRUE)
@@ -781,3 +798,23 @@ GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
 	recipes = GLOB.ruinous_metal_recipes
 	. = ..()
 
+/obj/item/stack/sheet/ashresin
+	name = "ashy resin"
+	desc = "A solidified mass of sticky plant resin. Useful as an incredibly strong bonding agent."
+	icon_state = "sheet-resin"
+	item_state = "sheet-resin"
+	icon = 'icons/obj/stack_objects.dmi'
+	sheettype = null
+	singular_name = "resin droplet"
+	max_amount = 10
+	novariants = TRUE
+	grind_results = list(/datum/reagent/consumable/ashresin = 5)
+	merge_type = /obj/item/stack/sheet/ashresin
+	
+GLOBAL_LIST_INIT(ashresin_recipes, list (
+	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40)
+	))
+
+/obj/item/stack/sheet/ashresin/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.ashresin_recipes
+	. = ..()

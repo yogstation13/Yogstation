@@ -50,6 +50,18 @@
 	time = 2 SECONDS
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/hudsunmeson
+	name = "Meson Sunglasses"
+	result = /obj/item/clothing/glasses/meson/sunglasses
+	time = 2 SECONDS
+	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/meson = 1, 
+				  /obj/item/clothing/glasses/sunglasses = 1,
+				  /obj/item/stack/cable_coil = 5)
+	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
+	category = CAT_CLOTHING
+	
+
 /datum/crafting_recipe/hudsunsec
 	name = "Security HUDsunglasses"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses

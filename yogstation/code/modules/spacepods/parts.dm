@@ -57,10 +57,10 @@
 		var/obj/item/stack/rods/R = O
 		var/list/linkedparts = find_square()
 		if(!linkedparts)
-			to_chat(user, "<span class='warning'>You cannot assemble a pod frame because you do not have the necessary assembly.</span>")
+			to_chat(user, span_warning("You cannot assemble a pod frame because you do not have the necessary assembly."))
 			return TRUE
 		if(!R.use(10))
-			to_chat(user, "<span class='warning'>You need 10 rods for this.</span>")
+			to_chat(user, span_warning("You need 10 rods for this."))
 			return TRUE
 		var/obj/spacepod/pod = new
 		pod.forceMove(loc)
@@ -74,14 +74,14 @@
 			if(EAST)
 				pod.angle = 90
 		pod.process(2)
-		to_chat(user, "<span class='notice'>You strut the pod frame together.</span>")
+		to_chat(user, span_notice("You strut the pod frame together."))
 		for(var/obj/item/pod_parts/pod_frame/F in linkedparts)
 			if(1 == turn(F.dir, -F.link_angle)) //if the part links north during construction, as the bottom left part always does
 				pod.forceMove(F.loc)
 			qdel(F)
 		return TRUE
 	if(O.tool_behaviour == TOOL_WRENCH)
-		to_chat(user, "<span class='notice'>You [!anchored ? "secure \the [src] in place."  : "remove the securing bolts."]</span>")
+		to_chat(user, span_notice("You [!anchored ? "secure \the [src] in place."  : "remove the securing bolts."]"))
 		anchored = !anchored
 		density = anchored
 		O.play_tool_sound(src)

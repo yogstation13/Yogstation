@@ -32,16 +32,16 @@
 /obj/structure/deployed_brace/examine(mob/user)
 	. = ..()
 	if(!cover_open)
-		. += "<span class='notice'>The cover is <b>screwed</b> in place.</span>"
+		. += span_notice("The cover is <b>screwed</b> in place.")
 	else
-		. += "<span class='notice'>The inside is filled with <b>pipes</b>.</span>"
+		. += span_notice("The inside is filled with <b>pipes</b>.")
 
 /obj/structure/deployed_brace/attackby(obj/item/I, mob/user, params)
 	if(get_dist(user, placed_on) > 1)
 		return
 	if(I.GetID())
 		if(!allowed(user))
-			to_chat(user, "<span class='warning'>Access denied.</span>")
+			to_chat(user, span_warning("Access denied."))
 			return
 		remove(user)
 
@@ -52,7 +52,7 @@
 		return TRUE
 	cover_open = !cover_open
 	tool.play_tool_sound(src)
-	to_chat(user, "<span class='notice'>You [cover_open ? "open" : "close"] the cover.</span>")
+	to_chat(user, span_notice("You [cover_open ? "open" : "close"] the cover."))
 	update_icon()
 
 /obj/structure/deployed_brace/wrench_act(mob/user, obj/item/tool)
@@ -61,17 +61,17 @@
 	if(..())
 		return TRUE
 	if(!cover_open)
-		to_chat(user, "<span class='warning'>Open the cover first!</span>")
+		to_chat(user, span_warning("Open the cover first!"))
 		return
-	to_chat(user, "<span class='notice'>You struggle to disable the hydraulics...</span>")
+	to_chat(user, span_notice("You struggle to disable the hydraulics..."))
 	playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
-	if(do_after(user, 20 SECONDS, target = src))
+	if(do_after(user, 2 SECONDS SECONDS, target = src))
 		remove(user)
 
 /obj/structure/deployed_brace/proc/remove(mob/user = null)
 	playsound(src, 'sound/items/deconstruct.ogg', 50)
 	if(user)
-		to_chat(user, "<span class='notice'>You remove [src] from [placed_on].</span>") //and screw the cover back on but ssshhh
+		to_chat(user, span_notice("You remove [src] from [placed_on].")) //and screw the cover back on but ssshhh
 		if(user.put_in_hands(brace_item))
 			brace_item = null
 	qdel(src)

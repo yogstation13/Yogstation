@@ -61,7 +61,7 @@ Made by Xhuis
 
 /datum/game_mode/shadowling/announce()
 	to_chat(world, "<b>The current game mode is - Shadowling!</b>")
-	to_chat(world, "<b>There are alien <span class='shadowling'>shadowlings</span> on the station. Crew: Kill the shadowlings before they can enthrall the crew. Shadowlings: Enthrall the crew while remaining in hiding.</b>")
+	to_chat(world, "<b>There are alien [span_shadowling("shadowlings")] on the station. Crew: Kill the shadowlings before they can enthrall the crew. Shadowlings: Enthrall the crew while remaining in hiding.</b>")
 
 /datum/game_mode/shadowling/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
@@ -179,7 +179,7 @@ Made by Xhuis
 			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN)
 			H.remove_movespeed_modifier(id)
 			if(H.stat != DEAD)
-				to_chat(H, "<span class='userdanger'>The light burns you!</span>") //Message spam to say "GET THE FUCK OUT"
+				to_chat(H, span_userdanger("The light burns you!")) //Message spam to say "GET THE FUCK OUT"
 				H.playsound_local(get_turf(H), 'sound/weapons/sear.ogg', 150, 1, pressure_affected = FALSE)
 		else if (light_amount < LIGHT_HEAL_THRESHOLD  && !istype(H.loc, /obj/effect/dummy/phased_mob/shadowling)) //Can't heal while jaunting
 			H.heal_overall_damage(5,5)
@@ -200,7 +200,7 @@ Made by Xhuis
 	if(istype(T) && shadow_charges > 0)
 		var/light_amount = T.get_lumcount()
 		if(light_amount < LIGHT_DAM_THRESHOLD)
-			H.visible_message("<span class='danger'>The shadows around [H] ripple as they absorb \the [P]!</span>")
+			H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
 			playsound(T, "bullet_miss", 75, 1)
 			shadow_charges = min(shadow_charges - 1, 0)
 			return -1

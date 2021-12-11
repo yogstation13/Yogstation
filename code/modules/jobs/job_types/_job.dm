@@ -244,9 +244,9 @@
 	if(DIGITIGRADE in H.dna.species.species_traits)
 		if(IS_COMMAND(H)) // command gets snowflake shoes too.
 			shoes = alt_shoes_c
-		else if(IS_SECURITY(H)) // Special shoes for sec, roll first to avoid defaulting
+		else if(IS_SECURITY(H) || find_job(H) == "Brig Physician") // Special shoes for sec and brig phys, roll first to avoid defaulting
 			shoes = alt_shoes_s
-		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" || IS_ENGINEERING(H)) // Check to assign default digitigrade shoes
+		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" || IS_ENGINEERING(H)) // Check to assign default digitigrade shoes to special cases
 			shoes = alt_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -268,6 +268,8 @@
 			C.assignment = J.title
 		if(H.mind?.assigned_role)
 			C.originalassignment = H.mind.assigned_role
+		else
+			C.originalassignment = J.title
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()

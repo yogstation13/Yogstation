@@ -178,13 +178,18 @@
 			altogether."
 
 /datum/game_mode/proc/begin_bloodstone_phase()
-	for(var/i = 0, i < 4, i++) //four bloodstones
-		var/spawnpoint = get_turf(pick(GLOB.generic_event_spawns))
-		new /obj/structure/destructible/cult/bloodstone(spawnpoint)
+	var/list/stone_spawns = GLOB.generic_event_spawns.Copy()
 	var/list/bloodstone_areas = list()
-	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
-		var/area/A = get_area(B)
+	for(var/i = 0, i < 4, i++) //four bloodstones
+		var/stone_spawn = pick_n_take(stone_spawns)
+		if(!stone_spawn)
+			stone_spawn = pick(GLOB.generic_event_spawns) // Fallback on all spawns
+		var/spawnpoint = get_turf(stone_spawn)
+		var/stone = new /obj/structure/destructible/cult/bloodstone(spawnpoint)
+		notify_ghosts("Bloodcult has an object of interest: [stone]!", source=stone, action=NOTIFY_ORBIT, header="Praise the Geometer!")
+		var/area/A = get_area(stone)
 		bloodstone_areas.Add(A.map_name)
+
 	priority_announce("Figments of an eldritch god are being pulled through the veil anomaly in [bloodstone_areas[1]], [bloodstone_areas[2]], [bloodstone_areas[3]], and [bloodstone_areas[4]]! Destroy any occult structures located in those areas!","Central Command Higher Dimensional Affairs")
 	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 30 SECONDS)
 	set_security_level(SEC_LEVEL_GAMMA)
@@ -232,13 +237,13 @@
 			continue
 		cultist.playsound_local(cultist, 'sound/magic/demon_dies.ogg', 75, FALSE)
 		if(isconstruct(cultist))
-			to_chat(cultist, "<span class='cultbold'>You feel your form lose some of its density, becoming more fragile!</span>")
+			to_chat(cultist, span_cultbold("You feel your form lose some of its density, becoming more fragile!"))
 			cultist.maxHealth *= 0.75
 			cultist.health *= 0.75
 		else
 			cultist.Stun(20)
 			cultist.confused += 15 //30 seconds of confusion
-		to_chat(cultist, "<span class='narsiesmall'>Your mind is flooded with pain as the last bloodstone is destroyed!</span>")
+		to_chat(cultist, span_narsiesmall("Your mind is flooded with pain as the last bloodstone is destroyed!"))
 
 /datum/game_mode/proc/cult_loss_anchor()
 	priority_announce("Whatever you did worked. Veil density has returned to a safe level. Shuttle locks lifted.","Central Command Higher Dimensional Affairs")
@@ -252,23 +257,23 @@
 				continue
 			cultist.playsound_local(cultist, 'sound/effects/screech.ogg', 75, FALSE)
 			if(isconstruct(cultist))
-				to_chat(cultist, "<span class='cultbold'>You feel your form lose most of its density, becoming incredibly fragile!</span>")
+				to_chat(cultist, span_cultbold("You feel your form lose most of its density, becoming incredibly fragile!"))
 				cultist.maxHealth *= 0.5
 				cultist.health *= 0.5
 			else
 				cultist.Stun(40)
 				cultist.confused += 30 //one minute of confusion
-			to_chat(cultist, "<span class='narsiesmall'>You feel a bleakness as the destruction of the anchor cuts off your connection to Nar-Sie!</span>")
+			to_chat(cultist, span_narsiesmall("You feel a bleakness as the destruction of the anchor cuts off your connection to Nar-Sie!"))
 
 /datum/game_mode/proc/disable_bloodstone_cooldown()
 	bloodstone_cooldown = FALSE
 	for(var/datum/mind/M in cult)
 		var/mob/living/L = M.current
 		if(L)
-			to_chat(M, "<span class='narsiesmall'>The veil has weakened enough for another attempt, prepare the summoning!</span>")
+			to_chat(M, span_narsiesmall("The veil has weakened enough for another attempt, prepare the summoning!"))
 		if(isconstruct(L))
 			L.maxHealth = initial(L.maxHealth)
-			to_chat(L, "<span class='cult'>Your form regains its original durability!</span>")
+			to_chat(L, span_cult("Your form regains its original durability!"))
 	//send message to cultists saying they can do stuff again
 
 /datum/game_mode/cult/generate_credit_text()

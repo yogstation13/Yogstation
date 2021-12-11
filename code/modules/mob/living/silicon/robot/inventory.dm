@@ -27,18 +27,18 @@
 		CRASH("activate_module called with item_module not in module.modules")
 
 	if(activated(item_module))
-		to_chat(src, "<span class='warning'>That module is already activated.</span>")
+		to_chat(src, span_warning("That module is already activated."))
 		return FALSE
 
 	if(disabled_modules & BORG_MODULE_ALL_DISABLED)
-		to_chat(src, "<span class='warning'>All modules are disabled!</span>")
+		to_chat(src, span_warning("All modules are disabled!"))
 		return FALSE
 
 	/// What's the first free slot for the borg?
 	var/first_free_slot = !held_items[1] ? 1 : (!held_items[2] ? 2 : (!held_items[3] ? 3 : null))
 
 	if(!first_free_slot || is_invalid_module_number(first_free_slot))
-		to_chat(src, "<span class='warning'>Deactivate a module first!</span>")
+		to_chat(src, span_warning("Deactivate a module first!"))
 		return FALSE
 
 	return equip_module_to_slot(item_module, first_free_slot)
@@ -149,8 +149,8 @@
 
 			if(!quiet)
 				playsound(src, 'sound/machines/warning-buzzer.ogg', 75, TRUE, TRUE)
-				audible_message("<span class='warning'>[src] sounds an alarm! \"CRITICAL ERROR: ALL modules OFFLINE.\"</span>")
-				to_chat(src, "<span class='userdanger'>CRITICAL ERROR: ALL modules OFFLINE.</span>")
+				audible_message(span_warning("[src] sounds an alarm! \"CRITICAL ERROR: ALL modules OFFLINE.\""))
+				to_chat(src, span_userdanger("CRITICAL ERROR: ALL modules OFFLINE."))
 
 		if(2)
 			if(disabled_modules & BORG_MODULE_TWO_DISABLED)
@@ -161,8 +161,8 @@
 
 			if(!quiet)
 				playsound(src, 'sound/machines/warning-buzzer.ogg', 60, TRUE, TRUE)
-				audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module [module_num] OFFLINE.\"</span>")
-				to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module [module_num] OFFLINE.</span>")
+				audible_message(span_warning("[src] sounds an alarm! \"SYSTEM ERROR: Module [module_num] OFFLINE.\""))
+				to_chat(src, span_userdanger("SYSTEM ERROR: Module [module_num] OFFLINE."))
 
 		if(3)
 			if(disabled_modules & BORG_MODULE_THREE_DISABLED)
@@ -173,8 +173,8 @@
 
 			if(!quiet)
 				playsound(src, 'sound/machines/warning-buzzer.ogg', 50, TRUE, TRUE)
-				audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module [module_num] OFFLINE.\"</span>")
-				to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module [module_num] OFFLINE.</span>")
+				audible_message(span_warning("[src] sounds an alarm! \"SYSTEM ERROR: Module [module_num] OFFLINE.\""))
+				to_chat(src, span_userdanger("SYSTEM ERROR: Module [module_num] OFFLINE."))
 
 	return TRUE
 
@@ -216,7 +216,7 @@
 			inv3.icon_state = initial(inv3.icon_state)
 			disabled_modules &= ~BORG_MODULE_THREE_DISABLED
 
-	to_chat(src, "<span class='notice'>ERROR CLEARED: Module [module_num] back online.</span>")
+	to_chat(src, span_notice("ERROR CLEARED: Module [module_num] back online."))
 
 	return TRUE
 

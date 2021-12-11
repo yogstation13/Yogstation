@@ -15,20 +15,20 @@
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='warning'>You crank up the love harvesting regulator to hardware maximum.</span>")
+	to_chat(user, span_warning("You crank up the love harvesting regulator to hardware maximum."))
 
 /obj/machinery/power/hugbox_engine/wrench_act(mob/living/user, obj/item/I)
 	if(!anchored && !isinspace())
 		connect_to_network()
-		to_chat(user, "<span class='notice'>You secure [src] to the floor.</span>")
+		to_chat(user, span_notice("You secure [src] to the floor."))
 		anchored = TRUE
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 	else if(anchored)
 		if(has_buckled_mobs())
-			to_chat(user, "<span class='warning'>You can't detach [src] from the floor, it's holding on too tightly!</span>")
+			to_chat(user, span_warning("You can't detach [src] from the floor, it's holding on too tightly!"))
 			return TRUE
 		disconnect_from_network()
-		to_chat(user, "<span class='notice'>You unsecure [src] from the floor.</span>")
+		to_chat(user, span_notice("You unsecure [src] from the floor."))
 		anchored = FALSE
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 	return TRUE
@@ -41,11 +41,11 @@
 		return
 	if(has_buckled_mobs())
 		var/mob/living/carbon/H = buckled_mobs[1]
-		to_chat(C, "<span class='notice'>You press the emergency release button.</span>")
+		to_chat(C, span_notice("You press the emergency release button."))
 		unbuckle_mob(H)
 		return
 	if(obj_flags & EMAGGED)
-		to_chat(C, "<span class='userdanger'>[src] grips you with its manipulators tightly!</span>")
+		to_chat(C, span_userdanger("[src] grips you with its manipulators tightly!"))
 		C.forceMove(get_turf(src))
 		playsound(src, 'sound/machines/honkbot_evil_laugh.ogg', 50, 1)
 		C.notransform = TRUE
@@ -54,7 +54,7 @@
 		sleep(30) //better beg for help
 		crunch(C)
 		return
-	to_chat(C, "<span class='notice'>You hug [src].</span>")
+	to_chat(C, span_notice("You hug [src]."))
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1)
 	add_avail(power_per_hug)
 	return ..()
@@ -63,7 +63,7 @@
 	while(crunched.buckled)
 		var/turf/location = get_turf(crunched)
 		if(crunched.health > 25)
-			crunched.visible_message("<span class='danger'>[src] hugs [crunched]!</span>", "<span class='userdanger'>[src] hugs you!</span>")
+			crunched.visible_message(span_danger("[src] hugs [crunched]!"), span_userdanger("[src] hugs you!"))
 			crunched.adjustBruteLoss(15)
 			playsound(src, "desceration", 60, 1)
 			shake_camera(crunched, 3, 1)
@@ -72,17 +72,17 @@
 			crunched.Stun(20)
 			sleep(20)
 		else
-			crunched.visible_message("<span class='danger'>[src] hugs [crunched] tighter!</span>", "<span class='userdanger'>[src] starts hugging you tighter!</span>")
+			crunched.visible_message(span_danger("[src] hugs [crunched] tighter!"), span_userdanger("[src] starts hugging you tighter!"))
 			crunched.Stun(30)
 			crunched.adjustBruteLoss(5)
 			sleep(30)
 			if(crunched.buckled) //Are they still buckled?
-				crunched.visible_message("<span class='danger'>[src] hugs [crunched] tighter!</span>", "<span class='userdanger'>WAY TOO TIGHT.</span>")
+				crunched.visible_message(span_danger("[src] hugs [crunched] tighter!"), span_userdanger("WAY TOO TIGHT."))
 				crunched.Stun(40)
 				crunched.adjustBruteLoss(5)
 				sleep(40)
 			if(crunched.buckled)
-				crunched.visible_message("<span class='danger'>You hear a loud crunch coming from [crunched]!</span>", "<span class='colossus'>CRUNCH</span>")
+				crunched.visible_message(span_danger("You hear a loud crunch coming from [crunched]!"), span_colossus("CRUNCH"))
 				crunched.add_splatter_floor(location)
 				crunched.emote("scream")
 				crunched.adjustBruteLoss(5)
@@ -95,4 +95,4 @@
 
 	crunched.notransform = FALSE
 	crunched.Knockdown(40)
-	crunched.visible_message("<span class='warning'>[src] lets go of [crunched].</span>", "<span class='warning'>[src] lets you go.</span>")
+	crunched.visible_message(span_warning("[src] lets go of [crunched]."), span_warning("[src] lets you go."))

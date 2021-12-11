@@ -104,17 +104,17 @@
 /turf/open/floor/pod
 	name = "pod floor"
 	icon_state = "podfloor"
-	icon_regular_floor = "podfloor"
+	icon_state_regular_floor = "podfloor"
 	floor_tile = /obj/item/stack/tile/pod
 
 /turf/open/floor/pod/light
 	icon_state = "podfloor_light"
-	icon_regular_floor = "podfloor_light"
+	icon_state_regular_floor = "podfloor_light"
 	floor_tile = /obj/item/stack/tile/pod/light
 
 /turf/open/floor/pod/dark
 	icon_state = "podfloor_dark"
-	icon_regular_floor = "podfloor_dark"
+	icon_state_regular_floor = "podfloor_dark"
 	floor_tile = /obj/item/stack/tile/pod/dark
 
 
@@ -207,9 +207,9 @@
 			return TRUE
 	else if(baseturfs == type)
 		return TRUE
-	user.visible_message("<span class='notice'>[user] begins slowly prying up [src]...</span>", "<span class='notice'>You begin painstakingly prying up [src]...</span>")
+	user.visible_message(span_notice("[user] begins slowly prying up [src]..."), span_notice("You begin painstakingly prying up [src]..."))
 	if(I.use_tool(src, user, 70, volume=80))
-		user.visible_message("<span class='notice'>[user] pries up [src]!</span>", "<span class='notice'>You pry up [src]!</span>")
+		user.visible_message(span_notice("[user] pries up [src]!"), span_notice("You pry up [src]!"))
 		make_plating()
 	return TRUE
 

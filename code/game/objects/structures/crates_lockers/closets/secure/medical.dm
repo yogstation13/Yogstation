@@ -69,7 +69,8 @@
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/CMO(src)
 	new /obj/item/clipboard/yog/paperwork/cmo(src)
-	new /obj/item/storage/backpack/duffelbag/med/chief/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/med/chief(src)
+	new /obj/item/storage/lockbox/medal/med(src)
 
 
 /obj/structure/closet/secure_closet/paramedic
@@ -133,7 +134,6 @@
 	new /obj/item/radio/headset/headset_cargo(src)
 	new /obj/item/storage/firstaid/toxin(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
-	new /obj/item/storage/belt/medical(src)
 	new /obj/item/pickaxe(src)
 	new /obj/item/twohanded/binoculars(src)
 	new /obj/item/clothing/ears/earmuffs(src)

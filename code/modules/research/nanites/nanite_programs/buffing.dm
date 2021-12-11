@@ -61,22 +61,22 @@
 		H.physiology.armor.energy -= 25
 
 /datum/nanite_program/coagulating
-	name = "Rapid Coagulation"
-	desc = "The nanites induce rapid coagulation when the host is wounded, dramatically reducing bleeding rate."
-	use_rate = 0.10
+	name = "Vein Repressurization"
+	desc = "The nanites re-route circulating blood away from open wounds, dramatically reducing bleeding rate."
+	use_rate = 0.20
 	rogue_types = list(/datum/nanite_program/suffocating)
 
 /datum/nanite_program/coagulating/enable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.bleed_mod *= 0.1
+		H.physiology.bleed_mod *= 0.5
 
 /datum/nanite_program/coagulating/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.bleed_mod *= 10
+		H.physiology.bleed_mod *= 2
 
 /datum/nanite_program/conductive
 	name = "Electric Conduction"
@@ -101,9 +101,23 @@
 
 /datum/nanite_program/mindshield/enable_passive_effect()
 	. = ..()
-	if(!host_mob.mind.has_antag_datum(/datum/antagonist/rev, TRUE) && !is_hivemember(host_mob) && !host_mob.is_wokevessel()) //won't work if on a rev, to avoid having implanted revs. same applies for hivemind members.
-		ADD_TRAIT(host_mob, TRAIT_MINDSHIELD, "nanites")
-		host_mob.sec_hud_set_implants()
+	//won't work if on a rev, to avoid having implanted revs. same applies for hivemind members.
+	if(host_mob.mind.has_antag_datum(/datum/antagonist/rev, TRUE))
+		return
+	if(is_hivemember(host_mob))
+		return
+	if(host_mob.is_wokevessel())
+		return
+	if(host_mob.mind.has_antag_datum(/datum/antagonist/brainwashed))
+		return
+	if(host_mob.mind.has_antag_datum(/datum/antagonist/gang, TRUE))
+		return
+	if(is_shadow_or_thrall(host_mob))
+		return
+	if(host_mob.mind.has_antag_datum(/datum/antagonist/veil) || host_mob.mind.has_antag_datum(/datum/antagonist/darkspawn))
+		return
+	ADD_TRAIT(host_mob, TRAIT_MINDSHIELD, "nanites")
+	host_mob.sec_hud_set_implants()
 
 /datum/nanite_program/mindshield/disable_passive_effect()
 	. = ..()

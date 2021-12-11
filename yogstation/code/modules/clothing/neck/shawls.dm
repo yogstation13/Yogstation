@@ -17,7 +17,7 @@
 	if(istype(user, /mob/living/carbon/human))
 		human_user = user
 		if(human_user.wear_neck == src)
-			to_chat(user, "<span class='warning'>You can't adjust [src] while wearing it!</span>")
+			to_chat(user, span_warning("You can't adjust [src] while wearing it!"))
 			return
 	if(alticon_state)
 		toggle_alt(user)

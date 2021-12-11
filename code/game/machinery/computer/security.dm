@@ -656,7 +656,7 @@
 						var/name = stripped_input(usr, "Please input citation crime:", "Security Records", "")
 						var/fine = FLOOR(input(usr, "Please input citation fine:", "Security Records", 50) as num, 1)
 						if(!fine || fine < 0)
-							to_chat(usr, "<span class='warning'>You're pretty sure that's not how money works.</span>")
+							to_chat(usr, span_warning("You're pretty sure that's not how money works."))
 							return
 						fine = min(fine, maxFine)
 						if(!valid_record_change(usr, name, null, active_security_record))

@@ -41,8 +41,8 @@
 	name = "Cerebral Blindness"
 	desc = "Patient's brain is no longer connected to its eyes."
 	scan_desc = "extensive damage to the brain's occipital lobe"
-	gain_text = "<span class='warning'>You can't see!</span>"
-	lose_text = "<span class='notice'>Your vision returns.</span>"
+	gain_text = span_warning("You can't see!")
+	lose_text = span_notice("Your vision returns.")
 
 /datum/brain_trauma/severe/blindness/on_gain()
 	owner.become_blind(TRAUMA_TRAIT)
@@ -97,20 +97,18 @@
 			subject = "your left leg"
 			paralysis_traits = list(TRAIT_PARALYSIS_L_LEG)
 
-	gain_text = "<span class='warning'>You can't feel [subject] anymore!</span>"
-	lose_text = "<span class='notice'>You can feel [subject] again!</span>"
+	gain_text = span_warning("You can't feel [subject] anymore!")
+	lose_text = span_notice("You can feel [subject] again!")
 
 /datum/brain_trauma/severe/paralysis/on_gain()
 	..()
 	for(var/X in paralysis_traits)
 		ADD_TRAIT(owner, X, "trauma_paralysis")
-	owner.update_disabled_bodyparts()
 
 /datum/brain_trauma/severe/paralysis/on_lose()
 	..()
 	for(var/X in paralysis_traits)
 		REMOVE_TRAIT(owner, X, "trauma_paralysis")
-	owner.update_disabled_bodyparts()
 
 /datum/brain_trauma/severe/paralysis/paraplegic
 	random_gain = FALSE
@@ -134,10 +132,10 @@
 	if(owner.drowsyness)
 		sleep_chance += 3
 	if(prob(sleep_chance))
-		to_chat(owner, "<span class='warning'>You fall asleep.</span>")
+		to_chat(owner, span_warning("You fall asleep."))
 		owner.Sleeping(60)
 	else if(!owner.drowsyness && prob(sleep_chance * 2))
-		to_chat(owner, "<span class='warning'>You feel tired...</span>")
+		to_chat(owner, span_warning("You feel tired..."))
 		owner.drowsyness += 10
 
 /datum/brain_trauma/severe/monophobia
@@ -151,9 +149,9 @@
 /datum/brain_trauma/severe/monophobia/on_gain()
 	..()
 	if(check_alone())
-		to_chat(owner, "<span class='warning'>You feel really lonely...</span>")
+		to_chat(owner, span_warning("You feel really lonely..."))
 	else
-		to_chat(owner, "<span class='notice'>You feel safe, as long as you have people around you.</span>")
+		to_chat(owner, span_notice("You feel safe, as long as you have people around you."))
 
 /datum/brain_trauma/severe/monophobia/on_life()
 	..()
@@ -182,18 +180,18 @@
 	switch(rand(1,6))
 		if(1)
 			if(!high_stress)
-				to_chat(owner, "<span class='warning'>You feel sick...</span>")
+				to_chat(owner, span_warning("You feel sick..."))
 			else
-				to_chat(owner, "<span class='warning'>You feel really sick at the thought of being alone!</span>")
+				to_chat(owner, span_warning("You feel really sick at the thought of being alone!"))
 			addtimer(CALLBACK(owner, /mob/living/carbon.proc/vomit, high_stress), 50) //blood vomit if high stress
 		if(2)
 			if(!high_stress)
-				to_chat(owner, "<span class='warning'>You can't stop shaking...</span>")
+				to_chat(owner, span_warning("You can't stop shaking..."))
 				owner.dizziness += 20
 				owner.confused += 20
 				owner.Jitter(20)
 			else
-				to_chat(owner, "<span class='warning'>You feel weak and scared! If only you weren't alone...</span>")
+				to_chat(owner, span_warning("You feel weak and scared! If only you weren't alone..."))
 				owner.dizziness += 20
 				owner.confused += 20
 				owner.Jitter(20)
@@ -201,22 +199,22 @@
 
 		if(3, 4)
 			if(!high_stress)
-				to_chat(owner, "<span class='warning'>You feel really lonely...</span>")
+				to_chat(owner, span_warning("You feel really lonely..."))
 			else
-				to_chat(owner, "<span class='warning'>You're going mad with loneliness!</span>")
+				to_chat(owner, span_warning("You're going mad with loneliness!"))
 				owner.hallucination += 30
 
 		if(5)
 			if(!high_stress)
-				to_chat(owner, "<span class='warning'>Your heart skips a beat.</span>")
+				to_chat(owner, span_warning("Your heart skips a beat."))
 				owner.adjustOxyLoss(8)
 			else
 				if(prob(15) && ishuman(owner))
 					var/mob/living/carbon/human/H = owner
 					H.set_heartattack(TRUE)
-					to_chat(H, "<span class='userdanger'>You feel a stabbing pain in your heart!</span>")
+					to_chat(H, span_userdanger("You feel a stabbing pain in your heart!"))
 				else
-					to_chat(owner, "<span class='userdanger'>You feel your heart lurching in your chest...</span>")
+					to_chat(owner, span_userdanger("You feel your heart lurching in your chest..."))
 					owner.adjustOxyLoss(8)
 
 /datum/brain_trauma/severe/discoordination

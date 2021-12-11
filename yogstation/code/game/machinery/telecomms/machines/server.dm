@@ -50,7 +50,7 @@
 
 /obj/machinery/telecomms/server/proc/compile(mob/user = usr)
 	if(is_banned_from(user.ckey, "Signal Technician"))
-		to_chat(user, "<span class='warning'>You are banned from using NTSL.</span>")
+		to_chat(user, span_warning("You are banned from using NTSL."))
 		return
 	if(Compiler)
 		var/list/compileerrors = Compiler.Compile(rawcode)

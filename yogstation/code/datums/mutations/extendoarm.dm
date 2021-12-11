@@ -3,8 +3,8 @@
 	desc = "Allows the affected to stretch their arms to grab objects from a distance."
 	quality = POSITIVE
 	difficulty = 16
-	text_gain_indication = "<span class='notice'>Your arms feel stretchy.</span>"
-	text_lose_indication = "<span class='warning'>Your arms feel solid again.</span>"
+	text_gain_indication = span_notice("Your arms feel stretchy.")
+	text_lose_indication = span_warning("Your arms feel solid again.")
 	power = /obj/effect/proc_holder/spell/aimed/extendoarm
 	instability = 30
 

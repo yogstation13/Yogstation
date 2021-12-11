@@ -100,6 +100,7 @@
 		            /obj/item/clothing/under/blacktango = 1,
 		            /obj/item/clothing/suit/ianshirt = 1,
 		            /obj/item/clothing/suit/nerdshirt = 1,
+		            /obj/item/clothing/under/yogs/tourist = 3,
 		            /obj/item/clothing/shoes/laceup = 2,
 		            /obj/item/clothing/shoes/sandal = 2,
 		            /obj/item/clothing/shoes/cowboy = 2,

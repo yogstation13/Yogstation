@@ -37,6 +37,7 @@
 	production = 12
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/shell/eggy
 	seed = /obj/item/seeds/eggplant/eggy

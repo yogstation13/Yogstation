@@ -79,6 +79,9 @@ TICK_LIMIT_MC_INIT 98
 ## Should SQL be enabled? Uncomment to enable
 SQL_ENABLED
 
+## Should discord based MFA be enabled for admins? Uncomment to enable
+MFA_ENABLED
+
 ## Prefix to be added to the name of every table, older databases will require this be set to erro_
 ## Note, this does not change the table names in the database, you will have to do that yourself.
 ##IE:

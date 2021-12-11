@@ -138,6 +138,14 @@
 	filling_color = "#8B4513"
 	foodtype = GROSS
 
+/obj/item/reagent_containers/food/snacks/badrecipe/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_GRILLED, .proc/OnGrill)
+
+///Prevents grilling burnt shit from well, burning.
+/obj/item/reagent_containers/food/snacks/badrecipe/proc/OnGrill()
+	return COMPONENT_HANDLED_GRILLING
+
 /obj/item/reagent_containers/food/snacks/carrotfries
 	name = "carrot fries"
 	desc = "Tasty fries from fresh carrots."
@@ -410,6 +418,7 @@
 	throwforce = 10
 	block_chance = 50
 	armour_penetration = 75
+	wound_bonus = -50
 	attack_verb = list("slapped", "slathered")
 	w_class = WEIGHT_CLASS_BULKY
 	tastes = list("cherry" = 1, "crepe" = 1)

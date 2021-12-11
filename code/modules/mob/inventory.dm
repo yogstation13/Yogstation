@@ -235,13 +235,13 @@
 		if (merge_stacks)
 			if (istype(active_stack) && istype(I_stack, active_stack.merge_type))
 				if (I_stack.merge(active_stack))
-					to_chat(usr, "<span class='notice'>Your [active_stack.name] stack now contains [active_stack.get_amount()] [active_stack.singular_name]\s.</span>")
+					to_chat(usr, span_notice("Your [active_stack.name] stack now contains [active_stack.get_amount()] [active_stack.singular_name]\s."))
 					return TRUE
 			else
 				var/obj/item/stack/inactive_stack = get_inactive_held_item()
 				if (istype(inactive_stack) && istype(I_stack, inactive_stack.merge_type))
 					if (I_stack.merge(inactive_stack))
-						to_chat(usr, "<span class='notice'>Your [inactive_stack.name] stack now contains [inactive_stack.get_amount()] [inactive_stack.singular_name]\s.</span>")
+						to_chat(usr, span_notice("Your [inactive_stack.name] stack now contains [inactive_stack.get_amount()] [inactive_stack.singular_name]\s."))
 						return TRUE
 
 	if(put_in_active_hand(I, forced))
@@ -392,6 +392,7 @@
 
 	for(var/obj/item/I in get_equipped_items())
 		hidden_slots |= I.flags_inv
+		hidden_slots |= I.flags_prot
 		if(transparent_protection)
 			hidden_slots |= I.transparent_protection
 
@@ -417,7 +418,7 @@
 
 /obj/item/proc/equip_to_best_slot(mob/M)
 	if(src != M.get_active_held_item())
-		to_chat(M, "<span class='warning'>You are not holding anything to equip!</span>")
+		to_chat(M, span_warning("You are not holding anything to equip!"))
 		return FALSE
 
 	if(M.equip_to_appropriate_slot(src))
@@ -438,7 +439,7 @@
 		if(SEND_SIGNAL(I, COMSIG_TRY_STORAGE_INSERT, src, M))
 			return TRUE
 
-	to_chat(M, "<span class='warning'>You are unable to equip that!</span>")
+	to_chat(M, span_warning("You are unable to equip that!"))
 	return FALSE
 
 

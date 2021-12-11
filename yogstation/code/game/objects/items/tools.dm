@@ -27,10 +27,10 @@
 /obj/item/jawsoflife/suicide_act(mob/user)
 	switch(tool_behaviour)
 		if(TOOL_CROWBAR)
-			user.visible_message("<span class='suicide'>[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!</span>")
+			user.visible_message(span_suicide("[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!"))
 			playsound(loc, 'sound/items/jaws_pry.ogg', 50, 1, -1)
 		if(TOOL_WIRECUTTER)
-			user.visible_message("<span class='suicide'>[user] is wrapping \the [src] around [user.p_their()] neck. It looks like [user.p_theyre()] trying to rip [user.p_their()] head off!</span>")
+			user.visible_message(span_suicide("[user] is wrapping \the [src] around [user.p_their()] neck. It looks like [user.p_theyre()] trying to rip [user.p_their()] head off!"))
 			playsound(loc, 'sound/items/jaws_cut.ogg', 50, 1, -1)
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
@@ -43,7 +43,7 @@
 /obj/item/jawsoflife/attack(mob/living/carbon/C, mob/user)
 	if (tool_behaviour == TOOL_WIRECUTTER)
 		if(istype(C) && C.handcuffed)
-			user.visible_message("<span class='notice'>[user] cuts [C]'s restraints with [src]!</span>")
+			user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
 			qdel(C.handcuffed)
 			return
 		else
@@ -60,9 +60,9 @@
 	icon_state = "jaws_pry"
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
 	if (iscyborg(user))
-		to_chat(user,"<span class='notice'>Your servos whirr as the cutting head reconfigures into a prying head.</span>")
+		to_chat(user,span_notice("Your servos whirr as the cutting head reconfigures into a prying head."))
 	else
-		to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")
+		to_chat(user, span_notice("You attach the pry jaws to [src]."))
 	update_icon()
 
 /obj/item/jawsoflife/proc/transform_cutters(mob/user)
@@ -74,9 +74,9 @@
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
 	if (iscyborg(user))
-		to_chat(user,"<span class='notice'>Your servos whirr as the prying head reconfigures into a cutting head.</span>")
+		to_chat(user,span_notice("Your servos whirr as the prying head reconfigures into a cutting head."))
 	else
-		to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
+		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
 	update_icon()
 
 //better handdrill
@@ -107,7 +107,7 @@
 		transform_screwdriver(user)
 
 /obj/item/handdrill/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is putting [src] to [user.p_their()] temple. It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is putting [src] to [user.p_their()] temple. It looks like [user.p_theyre()] trying to commit suicide!"))
 	return(BRUTELOSS)
 
 /obj/item/handdrill/proc/transform_wrench(mob/user)
@@ -116,9 +116,9 @@
 	tool_behaviour = TOOL_WRENCH
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	if (iscyborg(user))
-		to_chat(user,"<span class='notice'>Your servos whirr as the drill reconfigures into bolt mode.</span>")
+		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into bolt mode."))
 	else
-		to_chat(user, "<span class='notice'>You attach the bolt driver bit to [src].</span>")
+		to_chat(user, span_notice("You attach the bolt driver bit to [src]."))
 	update_icon()
 
 /obj/item/handdrill/proc/transform_screwdriver(mob/user)
@@ -127,9 +127,9 @@
 	tool_behaviour = TOOL_SCREWDRIVER
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	if (iscyborg(user))
-		to_chat(user,"<span class='notice'>Your servos whirr as the drill reconfigures into screw mode.</span>")
+		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into screw mode."))
 	else
-		to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
+		to_chat(user, span_notice("You attach the screw driver bit to [src]."))
 	update_icon()
 
 /obj/item/jawsoflife/jimmy
@@ -184,9 +184,9 @@
 
 /obj/item/jawsoflife/jimmy/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
-		to_chat(user, "<span class='warning'>Nothing new seems to happen when you swipe the emag.</span>")
+		to_chat(user, span_warning("Nothing new seems to happen when you swipe the emag."))
 		return
-	to_chat(user, "<span class='notice'>You swipe the emag on [src]'s pressure gage' enabling you to pump more pressure. </span>")
+	to_chat(user, span_notice("You swipe the emag on [src]'s pressure gage' enabling you to pump more pressure. "))
 	obj_flags |= EMAGGED
 	pump_max = 150
 	pump_cost = 75
@@ -195,6 +195,6 @@
 /obj/item/jawsoflife/jimmy/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += "<span class='danger'>The pressure gage has been tampered with.</span>"
+		. += span_danger("The pressure gage has been tampered with.")
 	if(user)
 		show_gage(user)

@@ -5,8 +5,8 @@
 	slot = ORGAN_SLOT_APPENDIX
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
-	now_failing = "<span class='warning'>An explosion of pain erupts in your lower right abdomen!</span>"
-	now_fixed = "<span class='info'>The pain in your abdomen has subsided.</span>"
+	now_failing = span_warning("An explosion of pain erupts in your lower right abdomen!")
+	now_fixed = span_info("The pain in your abdomen has subsided.")
 	var/inflamed
 
 /obj/item/organ/appendix/update_icon()
@@ -48,8 +48,8 @@
 	desc = "One of the most advanced cybernetic organs ever created."
 	icon_state = "implant-filter"
 	organ_flags = ORGAN_SYNTHETIC
-	now_failing = "<span class='warning'>NOT AGAIN!</span>"
-	now_fixed = "<span class='info'>Thank god that's over.</span>"
+	now_failing = span_warning("NOT AGAIN!")
+	now_fixed = span_info("Thank god that's over.")
 
 /obj/item/organ/appendix/cybernetic/on_life()
 	..()

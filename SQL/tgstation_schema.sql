@@ -52,12 +52,22 @@ CREATE TABLE IF NOT EXISTS `admin_tickets` (
   `ticket_id` int(10) unsigned NOT NULL DEFAULT 0,
   `when` datetime NOT NULL DEFAULT current_timestamp(),
   `ckey` varchar(32) NOT NULL,
-  `a_ckey` varchar(32) NOT NULL,
-  `content` text NOT NULL,
-  `rating` tinyint(3) unsigned NOT NULL DEFAULT 5,
-  PRIMARY KEY (`id`)
+  `a_ckey` varchar(32),
+  PRIMARY KEY (`id`),
+  KEY `idx_round` (`round_id`),
+  KEY `idx_round_ticket` (`round_id`,`ticket_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=157319 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `admin_ticket_interactions`;
+CREATE TABLE IF NOT EXISTS `admin_ticket_content` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ticket_id` int(10) unsigned,
+  `when` datetime NOT NULL DEFAULT current_timestamp(),
+  `user` varchar(32) NOT NULL,
+  `text` text,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`ticket_id`) REFERENCES `admin_tickets`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `antag_tokens`;
 CREATE TABLE IF NOT EXISTS `antag_tokens` (
@@ -308,6 +318,14 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `idx_msg_type_ckey_time_odr` (`type`,`targetckey`,`timestamp`,`deleted`)
 ) ENGINE=InnoDB AUTO_INCREMENT=75629 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `mfa_logins`;
+CREATE TABLE IF NOT EXISTS `mfa_logins` (
+	`ckey` varchar(32) NOT NULL,
+	`ip` int(10) unsigned NOT NULL,
+	`cid` varchar(32) NOT NULL,
+	`datetime` timestamp NOT NULL DEFAULT current_timestamp(),
+	PRIMARY KEY (`ckey`,`ip`,`cid`, `datetime`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `misc`;
 CREATE TABLE IF NOT EXISTS `misc` (
@@ -335,6 +353,8 @@ CREATE TABLE IF NOT EXISTS `player` (
   `credits` bigint(20) unsigned NOT NULL DEFAULT 0,
   `antag_weight` mediumint(8) unsigned NOT NULL DEFAULT 100,
   `job_whitelisted` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `totp_seed` varchar(20),
+  `mfa_backup` varchar(128),
   PRIMARY KEY (`ckey`),
   KEY `idx_player_cid_ckey` (`computerid`,`ckey`),
   KEY `idx_player_ip_ckey` (`ip`,`ckey`)

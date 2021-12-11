@@ -54,7 +54,7 @@
 			if(get_location_accessible(target, target_zone) || surgery.ignore_clothes)
 				initiate(user, target, target_zone, tool, surgery, try_to_fail)
 			else
-				to_chat(user, "<span class='warning'>You need to expose [target]'s [parse_zone(target_zone)] to perform surgery on it!</span>")
+				to_chat(user, span_warning("You need to expose [target]'s [parse_zone(target_zone)] to perform surgery on it!"))
 			return TRUE	//returns TRUE so we don't stab the guy in the dick or wherever.
 
 	if(repeatable)
@@ -114,19 +114,19 @@
 
 
 /datum/surgery_step/proc/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You begin to perform surgery on [target]...</span>",
+	display_results(user, target, span_notice("You begin to perform surgery on [target]..."),
 		"[user] begins to perform surgery on [target].",
 		"[user] begins to perform surgery on [target].")
 
 /datum/surgery_step/proc/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You succeed.</span>",
+	display_results(user, target, span_notice("You succeed."),
 		"[user] succeeds!",
 		"[user] finishes.")
 	return TRUE
 
 /datum/surgery_step/proc/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='warning'>You screw up!</span>",
-		"<span class='warning'>[user] screws up!</span>",
+	display_results(user, target, span_warning("You screw up!"),
+		span_warning("[user] screws up!"),
 		"[user] finishes.", TRUE) //By default the patient will notice if the wrong thing has been cut
 	return FALSE
 
@@ -187,8 +187,8 @@
 	var/final_ouchie_chance = SURGERY_FUCKUP_CHANCE * ouchie_mod
 	if(!prob(final_ouchie_chance))
 		return
-	user.visible_message("<span class='boldwarning'>[target] flinches, bumping [user]'s [tool ? tool.name : "hand"] into something important!</span>", "<span class='boldwarning'>[target]  flinches, bumping your [tool ? tool.name : "hand"] into something important!</span>")
+	user.visible_message(span_boldwarning("[target] flinches, bumping [user]'s [tool ? tool.name : "hand"] into something important!"), span_boldwarning("[target]  flinches, bumping your [tool ? tool.name : "hand"] into something important!"))
 	target.apply_damage(fuckup_damage, fuckup_damage_type, target_zone)
-	if(ishuman(target) &&fuckup_damage_type == BRUTE && prob(final_ouchie_chance/2))
-		var/mob/living/carbon/human/H = target
-		H.bleed_rate += min(fuckup_damage/4, 10)
+	//if(ishuman(target) &&fuckup_damage_type == BRUTE && prob(final_ouchie_chance/2))
+		//var/mob/living/carbon/human/H = target
+		//H.bleed_rate += min(fuckup_damage/4, 10)

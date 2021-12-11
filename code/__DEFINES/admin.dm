@@ -79,6 +79,10 @@
 #define ADMIN_PUNISHMENT_WHISTLE "Whistle"
 #define ADMIN_PUNISHMENT_CLUWNE "Cluwne"
 #define ADMIN_PUNISHMENT_MCNUGGET "Nugget"
+#define ADMIN_PUNISHMENT_CRACK ":B:oneless"
+#define ADMIN_PUNISHMENT_BLEED ":B:loodless"
+#define ADMIN_PUNISHMENT_PERFORATE ":B:erforate"
+#define ADMIN_PUNISHMENT_SCARIFY "Scarify"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2

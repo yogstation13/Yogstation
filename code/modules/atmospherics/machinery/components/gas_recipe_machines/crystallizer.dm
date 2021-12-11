@@ -160,6 +160,18 @@
 	if(internal.return_temperature() >= (median_temperature * MIN_DEVIATION_RATE) && internal.return_temperature() <= (median_temperature * MAX_DEVIATION_RATE))
 		quality_loss = max(quality_loss - 5.5, 100)
 
+/obj/machinery/atmospherics/components/binary/crystallizer/proc/apply_cooling()
+	var/datum/gas_mixture/cooling_port = airs[1]
+	if(cooling_port.total_moles() > MINIMUM_MOLE_COUNT)
+		if(internal.total_moles() > 0)
+			var/coolant_temperature_delta = cooling_port.return_temperature() - internal.return_temperature()
+			var/cooling_heat_capacity = cooling_port.heat_capacity()
+			var/internal_heat_capacity = internal.heat_capacity()
+			var/cooling_heat_amount = HIGH_CONDUCTIVITY_RATIO * coolant_temperature_delta * (cooling_heat_capacity * internal_heat_capacity / (cooling_heat_capacity + internal_heat_capacity))
+			cooling_port.set_temperature(max(cooling_port.return_temperature() - cooling_heat_amount / cooling_heat_capacity, TCMB))
+			internal.set_temperature(max(internal.return_temperature() + cooling_heat_amount / internal_heat_capacity, TCMB))
+		update_parents()
+
 ///Calculate the total moles needed for the recipe
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/moles_calculations()
 	var/amounts = 0
@@ -186,6 +198,7 @@
 		return
 
 	if(internal_check())
+		apply_cooling()
 		if(check_temp_requirements())
 			heat_calculations()
 			progress_bar = min(progress_bar + (MIN_PROGRESS_AMOUNT * 5 / (round(log(10, total_recipe_moles * 0.1), 0.01))), 100)

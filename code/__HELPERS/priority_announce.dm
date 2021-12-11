@@ -34,7 +34,7 @@
 	if(SSstation.announcer.custom_alert_message && !has_important_message)
 		announcement +=  SSstation.announcer.custom_alert_message
 	else
-		announcement += "<br><span class='alert'>[sanitize ? html_encode(text) : text]</span><br>"
+		announcement += "<br>[span_alert("[sanitize ? html_encode(text) : text]")]<br>"
 	announcement += "<br>"
 
 	var/s = sound(sound)
@@ -75,7 +75,5 @@
 			else
 				to_chat(M, "<span class='big bold'><font color = red>[html_encode(title)]</font color><BR>[html_encode(message)]</span><BR>")
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
-				if(alert)
-					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
-				else
+				if(!alert)
 					SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
