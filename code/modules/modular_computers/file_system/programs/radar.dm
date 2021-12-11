@@ -273,6 +273,7 @@
 	available_on_ntnet = FALSE
 	available_on_syndinet = TRUE
 	tgui_id = "NtosRadarSyndicate"
+	program_icon = "radiation"
 	arrowstyle = "ntosradarpointerS.png"
 	pointercolor = "red"
 
