@@ -13717,6 +13717,7 @@
 	prison_radio = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "azV" = (
@@ -13762,12 +13763,14 @@
 	prison_radio = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aAc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/stripes/line,
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aAd" = (

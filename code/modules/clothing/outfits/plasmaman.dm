@@ -621,3 +621,26 @@
 	satchel = /obj/item/storage/backpack/satchel/tox
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
+/datum/outfit/job/plasmaman/prisoner
+	name = "Plasmaman Prisoner"
+
+	jobtype = /datum/job/prisoner
+
+	id = /obj/item/card/id/prisoner
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	l_hand = /obj/item/storage/box/plasmaman
+	mask = /obj/item/clothing/mask/breath
+	uniform = /obj/item/clothing/under/plasmaman
+	shoes = /obj/item/clothing/shoes/sneakers/orange
+	suit = /obj/item/clothing/suit/space/eva/plasmaman
+
+	backpack = null
+	satchel  = null
+	duffelbag = null
+	belt = null
+	ears = null
+
+/datum/outfit/job/plasmaman/prisoner/post_equip(mob/living/carbon/human/H, visualsOnly)
+	return // No bank cards 4 u
+	

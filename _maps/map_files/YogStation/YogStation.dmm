@@ -50537,6 +50537,12 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"oyw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "oyA" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -92046,7 +92052,7 @@ xwU
 aat
 baa
 kxP
-baa
+oyw
 aat
 bab
 sQI
@@ -93591,7 +93597,7 @@ aaM
 bad
 baa
 lJp
-baa
+oyw
 baB
 acf
 abB
@@ -93846,9 +93852,9 @@ aaM
 aaM
 aaM
 bad
-baa
+oyw
 dvj
-baa
+oyw
 aat
 acd
 lIi
@@ -94103,7 +94109,7 @@ aaM
 aaM
 aaM
 bad
-baa
+oyw
 rZf
 baa
 abF

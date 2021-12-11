@@ -845,6 +845,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abY" = (
@@ -1596,6 +1597,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bedsheet/prisoner,
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adt" = (
@@ -1621,6 +1623,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bedsheet/prisoner,
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adv" = (
@@ -1666,6 +1669,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bedsheet/prisoner,
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ady" = (
@@ -73051,6 +73055,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"hRg" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "hRp" = (
 /obj/structure/closet/crate,
 /obj/item/coin/silver,
@@ -107827,7 +107837,7 @@ aaJ
 abE
 gLX
 acw
-abD
+hRg
 aby
 aaI
 abE
