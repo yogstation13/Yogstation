@@ -52,6 +52,8 @@
 	see_in_dark = 7
 	can_be_held = TRUE
 	held_items = list(null, null)
+	ignores_capitalism = TRUE // Yogs -- Lets drones buy a damned smoke for christ's sake
+	var/pacifism = TRUE // Marks whether pacifism should be enabled for this drone type
 	var/staticChoice = "static"
 	var/list/staticChoices = list("static", "blank", "letter", "animal")
 	var/picked = FALSE //Have we picked our visual appearence (+ colour if applicable)
@@ -79,6 +81,7 @@
 	"<span class='notify'>     - Interacting with non-living beings (dragging bodies, looting bodies, etc.)</span>\n"+\
 	"<span class='warning'>These rules are at admin discretion and will be heavily enforced.</span>\n"+\
 	span_warning("<u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u>")
+	
 
 /mob/living/simple_animal/drone/get_status_tab_items()
 	. = ..()
@@ -108,6 +111,10 @@
 
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.add_to_hud(src)
+
+	if(pacifism)
+		ADD_TRAIT(src, TRAIT_PACIFISM, JOB_TRAIT)
+		ADD_TRAIT(src, TRAIT_NOGUNS, JOB_TRAIT) //love drones t. Altoids <3
 
 
 /mob/living/simple_animal/drone/med_hud_set_health()
