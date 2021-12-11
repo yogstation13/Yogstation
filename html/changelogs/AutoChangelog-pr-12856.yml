@@ -1,0 +1,5 @@
+author: "Inari-Whitebear"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed Remote signaling device UI being cut off"
+  - bugfix: "Fixed Remote signaling device UI button not having cyan/magenta colours, resulting in black button when those were selected"
