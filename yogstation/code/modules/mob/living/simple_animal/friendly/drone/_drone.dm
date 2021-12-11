@@ -4,7 +4,7 @@
 
 /mob/living/simple_animal/drone/syndrone
 	pacifism = FALSE
-	
+
 /mob/living/simple_animal/drone/cogscarab
 	pacifism = FALSE
 
