@@ -1,0 +1,5 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed but allowing antag tokens to be used more than once"
+  - bugfix: "fixed  revs not properly prioritizing antag tokens"
