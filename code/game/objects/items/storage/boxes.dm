@@ -131,6 +131,12 @@
 		new /obj/item/flashlight/flare(src)
 		new /obj/item/radio/off(src)
 
+// Bare survival box
+/obj/item/storage/box/bare/PopulateContents()
+	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/tank/internals/emergency_oxygen(src)
+	new /obj/item/reagent_containers/hypospray/medipen(src)
+
 /obj/item/storage/box/survival/radio/PopulateContents()
 	..() // we want the survival stuff too.
 	new /obj/item/radio/off(src)
