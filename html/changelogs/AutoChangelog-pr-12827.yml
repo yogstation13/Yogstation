@@ -1,0 +1,5 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscadd: "Added advanced health analyzer upgrade to med borgs"
+  - rscdel: "Removed surgical processor from med borgs"
