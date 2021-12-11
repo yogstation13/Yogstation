@@ -134,6 +134,9 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	/// Sound played when an ability is unlocked
 	var/unlock_sound
 
+/datum/AI_Module/proc/can_use(mob/living/silicon/ai/AI)
+	return TRUE
+
  /// Applies upgrades
 /datum/AI_Module/proc/upgrade(mob/living/silicon/ai/AI)
 	return
@@ -158,6 +161,9 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	one_purchase = TRUE
 	power_type = /datum/action/innate/ai/nuke_station
 	unlock_text = span_notice("You slowly, carefully, establish a connection with the on-station self-destruct. You can now activate it at any time.")
+
+/datum/AI_Module/destructive/nuke_station/can_use(mob/living/silicon/ai/AI)
+	return !AI.mind.has_antag_datum(/datum/antagonist/hijacked_ai)
 
 /datum/action/innate/ai/nuke_station
 	name = "Doomsday Device"
@@ -544,6 +550,9 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	power_type = /datum/action/innate/ai/place_transformer
 	unlock_text = span_notice("You make contact with Space Amazon and request a robotics factory for delivery.")
 	unlock_sound = 'sound/machines/ping.ogg'
+
+/datum/AI_Module/utility/place_cyborg_transformer/can_use(mob/living/silicon/ai/AI)
+	return !AI.mind.has_antag_datum(/datum/antagonist/hijacked_ai)
 
 /datum/action/innate/ai/place_transformer
 	name = "Place Robotics Factory"
