@@ -582,7 +582,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=WgEVI8DEkF8",	// Nat King Cole - Deck the Halls
 		"https://www.youtube.com/watch?v=noMhM1CjM78",	// Christopher Lee - Silent Night
 		"https://www.youtube.com/watch?v=KmddeUJJEuU",	// Perry Como - It's Beginning to Look a Lot Like Christmas
-		"https://www.youtube.com/watch?v=kfZtNVEqsBs"  // Christopher Lee - Jingle Hell
+		"https://www.youtube.com/watch?v=kfZtNVEqsBs",  // Christopher Lee - Jingle Hell
+		"https://www.youtube.com/watch?v=1twga61Kd14"	// Julia Ecklar - #1 - Christmas Time
 		)
 
 /datum/holiday/xmas/greet()
