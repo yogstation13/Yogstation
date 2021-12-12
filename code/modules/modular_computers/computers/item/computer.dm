@@ -28,8 +28,10 @@
 	var/icon_state_powered = null							// Icon state when the computer is turned on.
 	var/icon_state_menu = "menu"							// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
 	var/id_rename = FALSE										// If we should update the name of the computer with the name and job of the stored ID.
+	var/icon_state_screensaver = "standby"					// Icon state overlay when the computer is turned off, but not out of power.
 	var/max_hardware_size = 0								// Maximal hardware w_class. Tablets/PDAs have 1, laptops 2, consoles 4.
 	var/steel_sheet_cost = 5								// Amount of steel sheets refunded when disassembling an empty frame of this computer.
+	var/overlay_skin = null									// What set of icons should be used for program overlays.
 
 	integrity_failure = 50
 	max_integrity = 100
@@ -202,19 +204,39 @@
 	. += get_modular_computer_parts_examine(user)
 
 /obj/item/modular_computer/update_icon()
-	cut_overlays()
+	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
+	var/program_overlay = ""
+	var/is_broken = obj_integrity <= integrity_failure
+	if(overlay_skin)
+		program_overlay = "[overlay_skin]-"
 	if(!enabled)
-		icon_state = icon_state_unpowered
+		if(use_power() && !isnull(icon_state_screensaver))
+			program_overlay += icon_state_screensaver
+		else
+			icon_state = icon_state_unpowered
 	else
 		icon_state = icon_state_powered
-		if(active_program)
-			add_overlay(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
+		if(is_broken)
+			program_overlay += "bsod"
 		else
-			add_overlay(icon_state_menu)
+			if(active_program)
+				program_overlay += active_program.program_icon_state ? "[active_program.program_icon_state]" : "[icon_state_menu]"
+			else
+				program_overlay += icon_state_menu
 
-	if(obj_integrity <= integrity_failure)
-		add_overlay("bsod")
-		add_overlay("broken")
+	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, physical.plane, physical.dir)
+	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, EMISSIVE_PLANE, physical.dir)
+	if(is_broken)
+		SSvis_overlays.add_vis_overlay(physical, physical.icon, "broken", physical.layer, physical.plane, physical.dir)
+
+/obj/item/modular_computer/equipped()
+	. = ..()
+	update_icon()
+
+/obj/item/modular_computer/dropped()
+	. = ..()
+	update_icon()
+
 
 /obj/item/modular_computer/proc/update_label()
 	var/obj/item/card/id/stored_id = GetID()
@@ -222,7 +244,6 @@
 		name = "[stored_id.registered_name]'s [initial(name)] ([stored_id.assignment])"
 	else
 		name = initial(name)
-
 
 // On-click handling. Turns on the computer if it's off and opens the GUI.
 /obj/item/modular_computer/interact(mob/user)

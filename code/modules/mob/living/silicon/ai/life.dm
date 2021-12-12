@@ -12,6 +12,7 @@
 		update_gravity(mob_has_gravity())
 
 		handle_status_effects()
+		process_hijack() // yogs
 
 		if(malfhack && malfhack.aidisabled)
 			deltimer(malfhacking)
