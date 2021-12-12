@@ -30,6 +30,7 @@
 	var/last_warning
 	var/consumedSupermatter = 0 //If the singularity has eaten a supermatter shard and can go to stage six
 	var/maxStage = 0 //The largest stage this singularity has been
+	var/does_targeting = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
@@ -351,7 +352,7 @@
 	if (random_target && (random_target.z != z || get_dist(src, random_target) <= 2))
 		random_target = null
 
-	if (!random_target && prob(50))
+	if (does_targeting && !random_target && prob(50))
 		pick_random_target()
 
 /obj/singularity/proc/check_cardinals_range(steps, retry_with_move = FALSE)
