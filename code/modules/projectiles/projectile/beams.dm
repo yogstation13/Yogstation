@@ -33,7 +33,7 @@
 		var/mob/M = target
 		var/mob/F = firer
 		if(!(target == original) && faction_check(M.faction,F.faction))
-			damage = damage * 0.8 //20% damage reduced per shot
+			damage *= 0.8 //20% damage reduced per shot
 			return FALSE
 
 //overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
