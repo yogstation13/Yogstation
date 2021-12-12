@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "fixes pickaxes not being allowed to touch the same rock for the length of the initial mining attempt"

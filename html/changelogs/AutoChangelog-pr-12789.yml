@@ -1,9 +1,0 @@
-author: " deathrider58"
-delete-after: true 
-changes: 
-  - rscadd: "When an item is thrown, it will now be rotated and displaced."
-  - rscadd: "Shards of glass will now be rotated when spawned."
-  - rscadd: "Bullet casings will now be rotated when they're ejected from a gun."
-  - rscadd: "Bottles now have random rotations and pixel offsets when smashed via throwing."
-  - rscadd: "Picking up an item will now reset its rotation."
-  - rscadd: "Glasses thrown onto tables by bartenders will now have their rotation reset."
