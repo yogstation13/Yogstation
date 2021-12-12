@@ -1,4 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "fixed crew monitors labeling people in soft crit and unconscious as dead"
