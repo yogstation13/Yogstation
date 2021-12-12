@@ -27,14 +27,14 @@
 /obj/item/projectile/beam/laser/passfriendlies
 	name = "targetted laser"
 
-/obj/item/projectile/beam/laser/passfriendlies/can_hit_target(atom/target, list/passthrough, direct_target = FALSE, ignore_loc = FALSE)
-	. = ..()
+/obj/item/projectile/beam/laser/passfriendlies/on_hit(atom/target)
 	if(ismob(target) && ismob(firer))
 		var/mob/M = target
 		var/mob/F = firer
 		if(!(target == original) && faction_check(M.faction,F.faction))
 			damage *= 0.8 //20% damage reduced per shot
-			return FALSE
+			return BULLET_ACT_FORCE_PIERCE
+	. = ..()
 
 //overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
 /obj/item/projectile/beam/laser/hellfire
