@@ -97,7 +97,7 @@
 		to_chat(user, span_warning("[target] has already been modified too heavily for [src] to be compatible!"))
 		return
 	to_chat(user, span_notice("You install [src] into [target]."))
-	L.name = "modified [L.name]"
+	ourgun.name = "modified [L.name]"
 	L.projectile_type = /obj/item/projectile/beam/laser/passfriendlies
 	QDEL_NULL(L.BB) //goodbye, old bullet
 	L.newshot() //hello, new bullet
