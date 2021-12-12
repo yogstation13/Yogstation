@@ -15,7 +15,7 @@
 	var/view_range = 0
 	var/x_offset = 0
 	var/y_offset = 0
-	var/list/whitelist_turfs = list(/turf/open/space, /turf/open/floor/plating, /turf/open/lava)
+	var/list/whitelist_turfs = list(/turf/open/space, /turf/open/floor/plating/asteroid, /turf/open/lava)
 	var/space_turfs_only = TRUE
 	var/see_hidden = FALSE
 	var/designate_time = 0
