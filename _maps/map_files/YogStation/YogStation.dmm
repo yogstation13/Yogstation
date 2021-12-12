@@ -7639,7 +7639,6 @@
 	icon_state = "1-8"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/infection_start,
 /turf/open/floor/plasteel,
 /area/maintenance/department/electrical)
 "auO" = (
@@ -38767,6 +38766,10 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
+"hfI" = (
+/obj/effect/landmark/infection_start,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "hgw" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -46547,6 +46550,12 @@
 /obj/structure/spirit_board,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
+"meg" = (
+/obj/structure/sign/warning/docking,
+/obj/structure/grille,
+/obj/effect/landmark/infection_start,
+/turf/open/floor/plating/airless,
+/area/escapepodbay)
 "mey" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -49501,15 +49510,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
-"nTF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/landmark/infection_start,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "nUj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -50432,6 +50432,7 @@
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/crowbar/red,
+/obj/effect/landmark/infection_start,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "osN" = (
@@ -113182,7 +113183,7 @@ kYG
 sAl
 aDX
 hxu
-nTF
+aDX
 aDX
 aDX
 aDX
@@ -116529,7 +116530,7 @@ atS
 aoV
 aoV
 aoV
-aaH
+hfI
 aoV
 aoV
 aoV
@@ -116782,7 +116783,7 @@ aaa
 aaa
 aaa
 aaa
-aaH
+hfI
 aoV
 aoV
 aoV
@@ -118592,7 +118593,7 @@ aaa
 aaa
 aaa
 aaa
-dgz
+meg
 uxv
 uxv
 uxv

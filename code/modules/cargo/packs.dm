@@ -1730,6 +1730,12 @@
 	cost = 2000
 	contains = list(/obj/item/gun/energy/plasmacutter/adv)
 
+/datum/supply_pack/clearance/targettingcomputer
+	name = "Laser Rifle Targetting Upgrade Crate"
+	desc = "A 9-pack upgrade kit of 'smartfire' targetting computers for standard issue NT laser rifles. Applying one of these to a laser will allow it to fire around friendlies."
+	cost = 800
+	contains = list(/obj/item/targettingcomputer,/obj/item/targettingcomputer,/obj/item/targettingcomputer,/obj/item/targettingcomputer,/obj/item/targettingcomputer,/obj/item/targettingcomputer,/obj/item/targettingcomputer,/obj/item/targettingcomputer,/obj/item/targettingcomputer)
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Organic /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////

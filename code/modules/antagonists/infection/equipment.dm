@@ -79,6 +79,30 @@
 			to_chat(user, span_warning("[src] hasn't finished recharging yet!"))
 		return FALSE
 
+/obj/item/targettingcomputer
+	name = "\improper NT laser rifle 'SmartFire' target acquisition and fire assist"
+	desc = "An advanced tactical computer attachable to a laser rifle, the computer will automatically account for any friendlies between the user and target, preventing friendly fire scenarios, although each friendly the laser avoids will decrease its effective stopping power."
+	icon = 'icons/mob/infection/infection.dmi'
+	icon_state = "tcomp"
+
+/obj/item/targettingcomputer/pre_attack(atom/target, mob/living/user)
+	if(istype(target, /obj/item/gun/energy) && !(target.type == /obj/item/gun/energy/laser)) //exact type match to prevent projectile shenanigans
+		to_chat(user, span_warning("[target] is not compatible with [src]!"))
+		return
+	var/obj/item/gun/energy/laser/ourgun = target
+	if(!istype(ourgun))
+		return
+	var/obj/item/ammo_casing/energy/lasergun/L = ourgun.ammo_type[1]
+	if(L.projectile_type != initial(L.projectile_type))
+		to_chat(user, span_warning("[target] has already been modified too heavily for [src] to be compatible!"))
+		return
+	to_chat(user, span_notice("You install [src] into [target]."))
+	L.name = "modified [L.name]"
+	L.projectile_type = /obj/item/projectile/beam/laser/passfriendlies
+	QDEL_NULL(L.BB) //goodbye, old bullet
+	L.newshot() //hello, new bullet
+	qdel(src)
+
 /obj/item/crystal_shards
 	name = "infected crystal shard"
 	desc = "A large shard left over from an infected crystal, you should take these to a destructive analyzer."

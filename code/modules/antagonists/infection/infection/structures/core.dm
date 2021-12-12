@@ -43,6 +43,8 @@
 	for(var/i in GLOB.infection_techs)
 		SSresearch.science_tech.hidden_nodes -= i
 		SSresearch.science_tech.update_node_status(SSresearch.techweb_node_by_id(i))
+	var/datum/supply_pack/to_unlock = SSshuttle.supply_packs[/datum/supply_pack/clearance/targettingcomputer] //will expand on this later if necessary
+	to_unlock.special_enabled = TRUE
 	SSevents.frequency_lower = DOOM_CLOCK_EVENT_DELAY
 	SSevents.frequency_upper = DOOM_CLOCK_EVENT_DELAY
 	SSevents.toggleInfectionmode()
@@ -55,7 +57,8 @@
 /obj/structure/infection/core/proc/generate_announcement()
 	priority_announce("The entity has landed, we will update you once we find a way to destroy it. \n\
 					   Related research has been added to your station's RnD database, \n\
-					   Researching crystal shards dropped by infected structures is likely to help massively in sustaining your defense.",
+					   Researching crystal shards dropped by infected structures is likely to help massively in sustaining your defense. \n\
+					   Additionally, cargo can now order specialized gear from the clearance category.",
 					   "CentCom Exotic Materials Research Division", 'sound/effects/crystal_fire.ogg')
 
 /obj/structure/infection/core/evolve_menu(var/mob/camera/commander/C)
