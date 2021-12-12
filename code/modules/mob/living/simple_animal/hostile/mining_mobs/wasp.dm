@@ -18,8 +18,8 @@
 	aggro_vision_range = 9
 	see_in_dark = 7
 	speed = 2
-	maxHealth = 200
-	health = 200
+	maxHealth = 50
+	health = 50
 	environment_smash = ENVIRONMENT_SMASH_NONE //held off by walls and windows, stupid oversized bee
 	melee_damage_lower = 12  //not that lethal, but it'll catch up to you easily
 	melee_damage_upper = 12
