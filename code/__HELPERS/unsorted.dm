@@ -1579,3 +1579,11 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	return call(source, proctype)(arglist(arguments))
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
+
+/proc/get_box(corner_x, corner_y, z, size_x, size_y)
+	. = list()
+	for	(var/x in corner_x to corner_x + size_x)
+		for (var/y in corner_y to corner_y + size_y)
+			var/turf/T = locate(x, y, z)
+			if (T && istype(T))
+				. |= T

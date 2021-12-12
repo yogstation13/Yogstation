@@ -1,4 +1,5 @@
-
+#define SINGULARITY_QUADRANT_SIZE 3
+#define SINGULARITY_QUADRANT_DISTANCE 15
 
 /obj/singularity
 	name = "gravitational singularity"
@@ -23,6 +24,7 @@
 	var/grav_pull = 4 //How many tiles out do we pull?
 	var/consume_range = 0 //How many tiles out do we eat
 	var/event_chance = 10 //Prob for event each tick
+	var/turf/random_target = null // a randomly chosen target.
 	var/target = null //its target. moves towards the target if it has one
 	var/last_failed_movement = 0//Will not move in the same dir if it couldnt before, will help with the getting stuck on fields thing
 	var/last_warning
@@ -334,10 +336,23 @@
 	if(force_move)
 		movement_dir = force_move
 
-	if(target && prob(60))
+
+	if (target && prob(60))
 		movement_dir = get_dir(src,target) //moves to a singulo beacon, if there is one
+	else if (!target && random_target && prob(55))
+		var/new_movement_dir = get_dir(src, random_target)
+		if (last_failed_movement == movement_dir)
+			random_target = null
+		else
+			movement_dir = new_movement_dir
 
 	step(src, movement_dir)
+
+	if (random_target && (random_target.z != z || get_dist(src, random_target) <= 2))
+		random_target = null
+
+	if (!random_target && prob(50))
+		pick_random_target()
 
 /obj/singularity/proc/check_cardinals_range(steps, retry_with_move = FALSE)
 	. = length(GLOB.cardinals)			//Should be 4.
@@ -349,6 +364,31 @@
 				if(check_cardinals_range(steps, FALSE))		//New location passes, return true.
 					return TRUE
 	. = !.
+
+/obj/singularity/proc/pick_random_target()
+	var/list/sections = list()
+	for (var/section_x = -SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_x <= SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_x += SINGULARITY_QUADRANT_SIZE)
+		for (var/section_y = -SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_y <= SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_y += SINGULARITY_QUADRANT_SIZE)
+			var/turf/section_loc = locate(x + section_x, y + section_y, z)
+			if (!section_loc || !istype(section_loc))
+				continue
+			var/list/box = get_box(x + section_x, y + section_y, z, SINGULARITY_QUADRANT_SIZE, SINGULARITY_QUADRANT_SIZE)
+			var/interest = 0
+			for (var/turf/T in box)
+				if (!isspaceturf(T))
+					interest += 2
+				var/list/objs = list()
+				for (var/A in T.contents)
+					if (istype(A, /atom/movable))
+						objs += A
+				interest += CEILING(length(objs) / 7.5, 0.5)
+			sections[section_loc] = interest
+	to_chat(world, "singularity sees [LAZYLEN(sections)] sections.")
+	var/turf/section = pickweight(sections)
+	if (section && istype(section))
+		to_chat(world, "singularity picked target at [section.x],[section.y],[section.z] (interest value of [sections[section]])")
+		random_target = section
+		
 
 /obj/singularity/proc/check_turfs_in(direction = 0, step = 0)
 	if(!direction)
