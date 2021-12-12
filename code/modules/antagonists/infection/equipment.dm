@@ -81,7 +81,7 @@
 
 /obj/item/targettingcomputer
 	name = "\improper NT laser rifle 'SmartFire' target acquisition and fire assist"
-	desc = "An advanced tactical computer attachable to a laser rifle, the computer will automatically account for any friendlies between the user and target, preventing friendly fire scenarios, although each friendly the laser avoids will decrease its effective stopping power."
+	desc = "An advanced tactical computer attachable to a laser rifle, the computer will automatically account for any friendlies between the user and target."
 	icon = 'icons/mob/infection/infection.dmi'
 	icon_state = "tcomp"
 
