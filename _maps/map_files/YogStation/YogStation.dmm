@@ -86,10 +86,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aan" = (
-/obj/effect/landmark/infection_start,
-/turf/open/space/basic,
-/area/space)
 "aao" = (
 /obj/machinery/light{
 	dir = 4
@@ -7643,6 +7639,7 @@
 	icon_state = "1-8"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/infection_start,
 /turf/open/floor/plasteel,
 /area/maintenance/department/electrical)
 "auO" = (
@@ -33089,6 +33086,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"djf" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/flasher{
+	id = "Cell 1";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 1";
+	name = "Cell 1 Locker"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "djy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -49489,6 +49501,15 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"nTF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/landmark/infection_start,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "nUj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -60753,21 +60774,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"uWQ" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/flasher{
-	id = "Cell 1";
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 1";
-	name = "Cell 1 Locker"
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "uWW" = (
 /obj/structure/grille/broken,
 /obj/effect/decal/cleanable/glass,
@@ -93895,7 +93901,7 @@ ajy
 aki
 akM
 aor
-uWQ
+djf
 amQ
 anw
 anz
@@ -113176,7 +113182,7 @@ kYG
 sAl
 aDX
 hxu
-aDX
+nTF
 aDX
 aDX
 aDX
@@ -117286,7 +117292,7 @@ aaa
 aaa
 aaa
 aaa
-aan
+aaa
 aaa
 aae
 aaa
@@ -118327,7 +118333,7 @@ aaa
 aaa
 aaa
 aaa
-aan
+aaa
 aaa
 xnF
 iOa
@@ -120655,7 +120661,7 @@ aaa
 aaa
 aaa
 aaa
-aan
+aaa
 aaa
 aaa
 aaa
