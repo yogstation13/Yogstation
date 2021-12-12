@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "custom shuttle landing points can now be placed on specifically asteroid/lavaland turfs not station maintenance"
