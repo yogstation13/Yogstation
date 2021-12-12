@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(400 modules,
-    613/6959 macros, 8.8%)</aside></h3>
+<aside>(401 modules,
+    613/6962 macros, 8.8%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -453,6 +453,7 @@ transformations and other events that cause new languages to become available.</
     <li><a href="code/modules/modular_computers/file_system/programs/portrait_printer.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;portrait_printer">portrait_printer</a></li>
     <li><a href="code/modules/modular_computers/file_system/programs/powermonitor.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;powermonitor">powermonitor</a></li>
     <li><a href="code/modules/modular_computers/file_system/programs/radar.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar">radar</a></li>
+    <li><a href="code/modules/modular_computers/file_system/programs/secureye.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;secureye">secureye</a></li>
     </ul></li>
     <li><span class="no-substance">hardware&#x2F;</span><a href="code/modules/modular_computers/hardware/hard_drive.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;hardware&#x2F;hard_drive">hard_drive</a></li>
     </ul></li>
@@ -624,7 +625,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(382 detailed/934 documented/23692 total, 3.9%)</aside></h3>
+<aside>(384 detailed/938 documented/23698 total, 4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -793,7 +794,10 @@ Refundable items are expected to register COMSIG_ITEM_REFUND themselves.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;radar&#x2F;lifeline">lifeline</span> - A program that tracks crew members via suit sensors</li>
     </ul></li>
     <li><a href="datum/computer_file/program/robocontrol.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;robocontrol">robocontrol</a></li>
-    <li><a href="datum/computer_file/program/secureye.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;secureye">secureye</a></li>
+    <li class="has-children"><a href="datum/computer_file/program/secureye.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;secureye">secureye</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;secureye&#x2F;laborcamp">laborcamp</span> - A program that allows you to view the cameras on the Labor Camp</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;secureye&#x2F;mining">mining</span> - A program that allows you to view the cameras on the Mining Base</li>
+    </ul></li>
     <li><a href="datum/computer_file/program/supermatter_monitor.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;supermatter_monitor">supermatter_monitor</a></li>
     </ul></li>
     <li><span class="no-substance">config_entry&#x2F;number&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;config_entry&#x2F;number&#x2F;outdated_movedelay">outdated_movedelay</span> - Outdated move delay</li>
@@ -869,6 +873,7 @@ Set our target list with the new set we've generated.</li>
     <li><span class="no-substance">shuttle&#x2F;engine&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;board&#x2F;shuttle&#x2F;engine&#x2F;plasma">Machine Design (Plasma Thruster Board)</span> - MISC Boards</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;board&#x2F;subspace_receiver">Machine Design (Subspace Receiver)</span> - Subspace Telecomms</li>
     </ul></li>
+    <li><a href="datum/design/borg_upgrade_analyzer.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_analyzer">Cyborg Upgrade (Advanced Analyzer)</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_rename">Cyborg Upgrade (Rename Board)</span> - Borg Upgrades</li>
     <li><a href="datum/design/borg_upgrade_surgerykit.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_surgerykit">Cyborg Upgrade (Advanced Surgical Kit)</a></li>
     <li><span class="no-substance">c38&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;c38&#x2F;sec">sec</span> - Weapons</li>
@@ -1430,9 +1435,11 @@ It's attacks are as follows:</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;borg">borg</span> - Cyborg Spec Items<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;sight">sight</span> - HUD/SIGHT things</li>
     <li class="has-children"><a href="obj/item/borg/upgrade.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade">borg upgrade module.</a><ul class="index-tree">
+    <li><a href="obj/item/borg/upgrade/adv_analyzer.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;adv_analyzer">medical cyborg advanced health analyzer</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;ai">B.O.R.I.S. module</span> - Removes new surgery tools
 Puts in old surgery tools</li>
-    <li><a href="obj/item/borg/upgrade/surgerykit.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;surgerykit">medical cyborg advanced surgical kit</a></li>
+    <li><a href="obj/item/borg/upgrade/surgerykit.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;surgerykit">medical cyborg advanced surgical kit</a> - Removes new advanced analyzer
+Puts in old analyzer</li>
     </ul></li>
     </ul></li>
     <li><a href="obj/item/canvas.html" title="&#x2F;obj&#x2F;item&#x2F;canvas">canvas</a></li>
@@ -1915,7 +1922,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/6b59f55f70e35c7c9301cc43461fa84102ea53b0">6b59f55</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/b9e3f721355bd8c717e163c7c7614cd64560b05a">b9e3f72</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
