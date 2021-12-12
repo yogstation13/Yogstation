@@ -371,9 +371,10 @@
 	for (var/section_x = -SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_x <= SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_x += SINGULARITY_QUADRANT_SIZE)
 		for (var/section_y = -SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_y <= SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_y += SINGULARITY_QUADRANT_SIZE)
 			var/turf/section_loc = locate(x + section_x, y + section_y, z)
-			if (!section_loc || !istype(section_loc))
+			var/turf/bottom_corner = locate(x + section_x + SINGULARITY_QUADRANT_SIZE - 1, y + section_y + SINGULARITY_QUADRANT_SIZE - 1, z)
+			if (!section_loc || !istype(section_loc) || !bottom_corner || !istype(bottom_corner))
 				continue
-			var/list/box = get_box(x + section_x, y + section_y, z, SINGULARITY_QUADRANT_SIZE, SINGULARITY_QUADRANT_SIZE)
+			var/list/box = block(section_loc, bottom_corner)
 			var/interest = 0
 			for (var/turf/T in box)
 				if (!isspaceturf(T))
