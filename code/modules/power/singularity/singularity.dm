@@ -377,18 +377,15 @@
 			for (var/turf/T in box)
 				if (!isspaceturf(T))
 					interest += 2
-				var/list/objs = list()
+				var/objs = 0
 				for (var/A in T.contents)
 					if (istype(A, /atom/movable))
-						objs += A
-				interest += CEILING(length(objs) / 7.5, 0.5)
+						objs += 1
+				interest += CEILING(objs / 7.5, 0.5)
 			sections[section_loc] = interest
-	to_chat(world, "singularity sees [LAZYLEN(sections)] sections.")
 	var/turf/section = pickweight(sections)
 	if (section && istype(section))
-		to_chat(world, "singularity picked target at [section.x],[section.y],[section.z] (interest value of [sections[section]])")
 		random_target = section
-		
 
 /obj/singularity/proc/check_turfs_in(direction = 0, step = 0)
 	if(!direction)
