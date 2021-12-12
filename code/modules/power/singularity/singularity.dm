@@ -1,5 +1,7 @@
 #define SINGULARITY_QUADRANT_SIZE 3
 #define SINGULARITY_QUADRANT_DISTANCE 15
+#define SINGULARITY_INTEREST_OBJECT 7.5
+#define SINGULARITY_INTEREST_NONSPACE 2
 
 /obj/singularity
 	name = "gravitational singularity"
@@ -368,8 +370,8 @@
 
 /obj/singularity/proc/pick_random_target()
 	var/list/sections = list()
-	for (var/section_x = -SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_x <= SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_x += SINGULARITY_QUADRANT_SIZE)
-		for (var/section_y = -SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_y <= SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_y += SINGULARITY_QUADRANT_SIZE)
+	for (var/section_x = -SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_x < SINGULARITY_QUADRANT_DISTANCE + SINGULARITY_QUADRANT_SIZE; section_x += SINGULARITY_QUADRANT_SIZE)
+		for (var/section_y = -SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_y < SINGULARITY_QUADRANT_DISTANCE + SINGULARITY_QUADRANT_SIZE; section_y += SINGULARITY_QUADRANT_SIZE)
 			var/turf/section_loc = locate(x + section_x, y + section_y, z)
 			var/turf/bottom_corner = locate(x + section_x + SINGULARITY_QUADRANT_SIZE - 1, y + section_y + SINGULARITY_QUADRANT_SIZE - 1, z)
 			if (!section_loc || !istype(section_loc) || !bottom_corner || !istype(bottom_corner))
@@ -378,12 +380,12 @@
 			var/interest = 0
 			for (var/turf/T in box)
 				if (!isspaceturf(T))
-					interest += 2
+					interest += SINGULARITY_INTEREST_NONSPACE
 				var/objs = 0
 				for (var/A in T.contents)
 					if (istype(A, /atom/movable))
 						objs += 1
-				interest += CEILING(objs / 7.5, 0.5)
+				interest += CEILING(objs / SINGULARITY_INTEREST_OBJECT, 0.5)
 			sections[section_loc] = interest
 	var/turf/section = pickweight(sections)
 	if (section && istype(section))
