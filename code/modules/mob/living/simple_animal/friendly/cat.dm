@@ -87,7 +87,7 @@
 	if(prob(5))
 			name = pick(rare_pet_kitten_names)
 		else
-			name = pick(pet_kitten_names)
+		name = pick(pet_kitten_names)
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~
 /mob/living/simple_animal/pet/cat/Runtime
