@@ -46,9 +46,10 @@
 	// time to go
 	parentatom.visible_message("[parentatom] dissolves into nothing as the energy of the beacons destroys it!")
 	playsound(get_turf(parentatom), 'sound/effects/supermatter.ogg', 50, 1)
-	if(isliving(parent) && !parent.stat)
+	if(isliving(parent))
 		var/mob/living/todie = parent
-		todie.health = 0
-		todie.death()
+		if(!parent.stat)
+			todie.health = 0
+			todie.death()
 	else
 		qdel(parent)
