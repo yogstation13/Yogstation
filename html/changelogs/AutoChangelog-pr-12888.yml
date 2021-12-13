@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed quirk exploit that allowed for more positive quirks than there were points for"
