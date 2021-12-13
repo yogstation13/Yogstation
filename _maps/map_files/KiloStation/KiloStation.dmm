@@ -29318,31 +29318,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/medical/medbay/central)
-"aXD" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/door/airlock/medical/glass{
-	name = "Chemistry Lab";
-	req_access_txt = "5; 33"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/chemistry)
 "aXE" = (
 /obj/machinery/nanite_chamber,
 /obj/effect/turf_decal/bot,
@@ -87394,6 +87369,27 @@
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plating,
 /area/crew_quarters/locker)
+"fPd" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Paramedic Staging";
+	network = list("ss13","medbay")
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/machinery/computer/crew,
+/turf/open/floor/plasteel/showroomfloor,
+/area/medical/paramedic)
 "fPg" = (
 /obj/machinery/door/airlock/external{
 	name = "Labor Camp Shuttle Airlock";
@@ -88213,6 +88209,31 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
+"gGL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/medical/glass{
+	name = "Chemistry Lab";
+	req_access_txt = "5; 33"
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/chemistry)
 "gHd" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "0";
@@ -91480,28 +91501,6 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/holodeck/rec_center)
-"jWl" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/machinery/computer/med_data,
-/obj/structure/table,
-/obj/machinery/camera{
-	c_tag = "Paramedic Staging";
-	network = list("ss13","medbay")
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/medical/paramedic)
 "jWt" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -92363,6 +92362,24 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/space/nearstation)
+"kPP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/airlock/medical{
+	name = "Operating Theatre A";
+	req_access_txt = "45;5"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/medical/paramedic)
 "kQp" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -95969,11 +95986,6 @@
 "oGL" = (
 /turf/template_noop,
 /area/maintenance/starboard)
-"oHm" = (
-/obj/machinery/suit_storage_unit,
-/obj/machinery/suit_storage_unit,
-/turf/open/space/basic,
-/area/space)
 "oHZ" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
@@ -98331,24 +98343,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
-"roV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/door/airlock/medical{
-	name = "Operating Theatre A";
-	req_access_txt = "45"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/medical/paramedic)
 "rpb" = (
 /obj/effect/turf_decal/caution/stand_clear,
 /obj/machinery/door/firedoor/border_only,
@@ -100525,10 +100519,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
-"tSw" = (
-/obj/machinery/suit_storage_unit,
-/turf/open/space/basic,
-/area/space)
 "tSG" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -109980,8 +109970,8 @@ aaa
 aaa
 aaa
 aaa
-tSw
-tSw
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -110238,9 +110228,9 @@ aaa
 aaa
 aaa
 aaa
-oHm
-oHm
-tSw
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -110495,9 +110485,9 @@ aaa
 aaa
 aaa
 aaa
-tSw
-oHm
-tSw
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -110751,10 +110741,10 @@ aaa
 aaa
 aaa
 aaa
-tSw
-tSw
-tSw
-tSw
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -111008,10 +110998,10 @@ aaa
 aaa
 aaa
 aaa
-tSw
-tSw
-tSw
-tSw
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -111266,8 +111256,8 @@ aaa
 aaa
 aaa
 aaa
-tSw
-tSw
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -123440,7 +123430,7 @@ ayr
 oLe
 mUQ
 hMz
-roV
+kPP
 teH
 lvr
 txU
@@ -123698,7 +123688,7 @@ eeQ
 rLS
 fZr
 dMm
-jWl
+fPd
 kkG
 iva
 nWP
@@ -125232,7 +125222,7 @@ aNm
 aQb
 aNn
 aQV
-aXD
+gGL
 aRn
 aQW
 aQW
