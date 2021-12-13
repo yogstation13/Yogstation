@@ -86,7 +86,7 @@
 /mob/living/simple_animal/pet/cat/kitten/initialize()
 	if(prob(5))
 			name = pick(rare_pet_kitten_names)
-		else
+	else
 		name = pick(pet_kitten_names)
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~
