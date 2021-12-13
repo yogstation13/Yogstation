@@ -5,6 +5,7 @@
 /datum/component/mindcontroller
 	// original mob stored
 	var/mob/original
+	var/key
 
 /datum/component/mindcontroller/Initialize(mob/original, list/new_mob_factions = list())
 	if(!original || !ismob(parent))
@@ -14,8 +15,9 @@
 	RegisterSignal(parent, COMSIG_HOSTILE_ATTACKINGTARGET, .proc/hostile_attackingtarget)
 	var/mob/controlledmob = parent
 	src.original = original
+	key = original.key
 	// transfer original player to new body, change key so they don't retain the same abilities
-	controlledmob.key = original.key
+	controlledmob.key = key
 	controlledmob.faction = new_mob_factions
 
 /*
@@ -25,7 +27,7 @@
 	if(!original)
 		controlledmob.ghostize()
 	else
-		original.key = controlledmob.key
+		original.key = key
 
 /*
 	Interrupts the controlled mob from attacking anything in its faction with an item
