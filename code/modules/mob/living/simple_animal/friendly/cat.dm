@@ -83,7 +83,7 @@
 	var/list/pet_kitten_names = list("Fajita", "Pumpkin", "Meowchael", "Catrick", "Genghis Kat", "Sir Isaac Mewton", "Nugget", "Meowchelangelo", "Meowgaret", "Lemon", "Meowria", "Todd Meoward", "Dolly Purrton", "Pickle", "Runt", "Claws")
 	var/list/rare_pet_kitten_names = list("Fuckface", "Chief Meowdical Officer", "Mewcular Opurrative")
 
-/mob/living/simple_animal/pet/cat/kitten/initialize()
+/mob/living/simple_animal/pet/cat/kitten/Initialize()
 	. = ..()
 	if(prob(5))
 		name = pick(rare_pet_kitten_names)
