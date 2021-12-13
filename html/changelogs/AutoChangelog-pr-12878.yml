@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "borgs can see their progress bar when buckling again, also they can buckle incapacitated people"
-  - bugfix: "failing to buckle to a borg will no longer result in you trying to buckle to the same borg a second time"
