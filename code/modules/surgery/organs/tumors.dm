@@ -4,7 +4,7 @@
 	icon_state = "heart-on"
 
 	var/strength = 0.125
-	var/spread_chance = 2
+	var/spread_chance = 0.25
 
 	var/helpful = FALSE //keeping track if they're helpful or not
 	var/datum/disease/advance/ownerdisease //what disease it comes from
@@ -55,10 +55,10 @@
 	name = "premalignant tumor"
 	desc = "It doesn't look too bad... at least you're not dead, right?"
 	strength = 0.25
-	spread_chance = 4
+	spread_chance = 0.5
 
 /obj/item/organ/tumor/malignant
 	name = "malignant tumor"
 	desc = "Yikes. There's probably more of these in you."
 	strength = 0.5
-	spread_chance = 6
+	spread_chance = 1
