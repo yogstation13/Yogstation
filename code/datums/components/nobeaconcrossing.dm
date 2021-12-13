@@ -48,7 +48,7 @@
 	playsound(get_turf(parentatom), 'sound/effects/supermatter.ogg', 50, 1)
 	if(isliving(parent))
 		var/mob/living/todie = parent
-		if(!parent.stat)
+		if(!todie.stat)
 			todie.health = 0
 			todie.death()
 	else
