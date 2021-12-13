@@ -167,6 +167,7 @@
 	if(ISRESPAWNING(src))
 		return // no you dont
 	if(overmind?.infection_core) // cant die as long as core is still alive
+		stop_pulling()
 		playsound(loc, 'sound/effects/splat.ogg', 100, FALSE, pressure_affected = FALSE)
 		visible_message("<span class='notice'>[src] fades into pure energy that races towards the core of the infection.</span>",
 			"<span class='notice'>You return to the core of the infection to reform your body.</span>")
