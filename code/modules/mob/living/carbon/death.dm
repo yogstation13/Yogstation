@@ -28,7 +28,7 @@
 		if(ishorror(M))	//eldritch horror(aka. borer) check, they die along with their host to prevent mind controlled suicides
 			M.gib()
 		else
-			visible_message("<span class='danger'>[M] bursts out of [src]!</span>")
+			visible_message(span_danger("[M] bursts out of [src]!"))
 	..()
 
 /mob/living/carbon/spill_organs(no_brain, no_organs, no_bodyparts)
