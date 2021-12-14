@@ -91,20 +91,20 @@
 		H.key = C.key
 		H.mind.enslave_mind_to_creator(user)
 		H.mind.add_antag_datum(C)
-		H.mind.memory += "You are <span class='purple'><b>[H.truename]</b></span>, an eldritch horror. Consume souls to evolve.<br>"
+		H.mind.memory += "You are " + span_purple(span_bold("[H.truename]")) + ", an eldritch horror. Consume souls to evolve.<br>"
 		var/datum/antagonist/horror/S = new
 		S.summoner = user.mind
 		S.antag_memory += "<b>[user.mind]</b> woke you from your eternal slumber. Aid them in their objectives as a token of gratitude.<br>"
 		H.mind.add_antag_datum(S)
 		log_game("[key_name(user)] has summoned [key_name(H)], an eldritch horror.")
-		to_chat(user, "<span><b>[H.truename]</b> has awoken into your service!</span>")
+		to_chat(user, span_bold("[H.truename]</b> has awoken into your service!"))
 		used = TRUE
 		icon_state = "pet_carrier_open"
 		sleep(5)
 		var/obj/item/horrorsummonhorn/horn = new /obj/item/horrorsummonhorn(get_turf(src))
 		horn.summoner = user.mind
 		horn.horror = H
-		to_chat(user, "<span class='notice'>A strange looking [horn] falls out of [src]!</span>")
+		to_chat(user, span_notice("A strange looking [horn] falls out of [src]!"))
 	else
 		to_chat(user, "The creatures looks at you with one of it's eyes before going back to slumber.")
 		used = FALSE
@@ -126,18 +126,18 @@
 /obj/item/horrorsummonhorn/examine(mob/user)
 	. = ..()
 	if(user.mind == summoner)
-		to_chat(user, "<span class='velvet'>Blowing into this horn will recall the horror back to you. Be wary, the horn is loud, and may attract <B>unwanted</B> attention.<span>")
+		to_chat(user, span_purple("Blowing into this horn will recall the horror back to you. Be wary, the horn is loud, and may attract <B>unwanted</B> attention."))
 
 /obj/item/horrorsummonhorn/attack_self(mob/living/user)
 	if(cooldown > world.time)
-		to_chat(user, "<span class='notice'>Take a breath before you blow [src] again.</span>")
+		to_chat(user, span_notice("Take a breath before you blow [src] again."))
 		return
-	to_chat(user, "<span class='notice'>You take a deep breath and prepare to blow into [src]...</span>")
+	to_chat(user, span_notice("You take a deep breath and prepare to blow into [src]..."))
 	if(do_mob(user, src, 10 SECONDS))
 		if(cooldown > world.time)
 			return
 		cooldown = world.time + 10 SECONDS
-		to_chat(src, "<span class='notice'>You blow the horn...</span>")
+		to_chat(src, span_notice("You blow the horn..."))
 		playsound(loc, "sound/items/airhorn.ogg", 100, 1, 30)
 		var/turf/summonplace = get_turf(src)
 		sleep(5 SECONDS)
@@ -147,25 +147,25 @@
 			var/type = pick(typesof(/mob/living/simple_animal/hostile/abomination))
 			var/mob/R = new type(summonplace)
 			playsound(summonplace, "sound/effects/phasein.ogg", 30)
-			summonplace.visible_message("<span class='danger'>[R] emerges!</span>")
+			summonplace.visible_message(span_danger("[R] emerges!"))
 		else
 			if(!horror || horror.stat == DEAD)
-				summonplace.visible_message("<span class='danger'>But nothing responds to the call!</span>")
+				summonplace.visible_message(span_danger("But nothing responds to the call!"))
 			else
 				new /obj/effect/temp_visual/summon(summonplace)
 				sleep(10)
 				horror.leave_victim()
 				horror.forceMove(summonplace)
 				playsound(summonplace, "sound/effects/phasein.ogg", 30)
-				summonplace.visible_message("<span class='notice'>[horror] appears out of nowhere!</span>")
+				summonplace.visible_message(span_notice("[horror] appears out of nowhere!"))
 				if(user.mind != summoner)
 					sleep(2 SECONDS)
 					playsound(summonplace, "sound/effects/glassbr2.ogg", 30, 1)
-					to_chat(user, "<span class='danger'>[src] breaks!</span>")
+					to_chat(user, "span_danger("[src] breaks!"))
 					qdel(src)
 
 /obj/item/horrorsummonhorn/suicide_act(mob/living/user)  //"I am the prettiest unicorn that ever was!" ~Spy 2013
-	user.visible_message("<span class='suicide'>[user] stabs [user.p_their()] forehead with [src]!  It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] stabs [user.p_their()] forehead with [src]!  It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 //Tentacle arm
@@ -189,13 +189,13 @@
 
 /obj/item/horrortentacle/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='velvet bold'>Functions:<span>")
-	to_chat(user, "<span class='velvet'><b>All attacks work up to 2 tiles away.</b></span>")
-	to_chat(user, "<span class='velvet'><b>Help intent:</b> Usual help function of an arm.</span>")
-	to_chat(user, "<span class='velvet'><b>Disarm intent:</b> Whips the tentacle, disarming your opponent.</span>")
-	to_chat(user, "<span class='velvet'><b>Grab intent:</b> Instant aggressive grab on an opponent. Can also throw them!</span>")
-	to_chat(user, "<span class='velvet'><b>Harm intent:</b> Whips the tentacle, damaging your opponent.</span>")
-	to_chat(user, "<span class='velvet'>Also functions to pry open unbolted airlocks.</span>")
+	to_chat(user, span_velvet(span_bold("Functions:")))
+	to_chat(user, span_velvet("<b>All attacks work up to 2 tiles away.</b>"))
+	to_chat(user, span_velvet("<b>Help intent:</b> Usual help function of an arm."))
+	to_chat(user, span_velvet("<b>Disarm intent:</b> Whips the tentacle, disarming your opponent."))
+	to_chat(user, span_velvet("<b>Grab intent:</b> Instant aggressive grab on an opponent. Can also throw them!"))
+	to_chat(user, span_velvet("<b>Harm intent:</b> Whips the tentacle, damaging your opponent."))
+	to_chat(user, span_velvet("Also functions to pry open unbolted airlocks."))
 
 /obj/item/horrortentacle/attack(atom/target, mob/living/user)
 	if(isliving(target))
@@ -218,10 +218,10 @@
 					if(I)
 						if(C.dropItemToGround(I))
 							playsound(loc, "sound/weapons/whipgrab.ogg", 30)
-							target.visible_message("<span class='danger'>[I] is whipped out of [C]'s hand by [user]!</span>","<span class='userdanger'>A tentacle whips [I] out of your hand!</span>")
+							target.visible_message(span_danger("[I] is whipped out of [C]'s hand by [user]!"),span_userdanger("A tentacle whips [I] out of your hand!"))
 							return
 						else
-							to_chat(user, "<span class='danger'>You can't seem to pry [I] off [C]'s hands!</span>")
+							to_chat(user, span_danger("You can't seem to pry [I] off [C]'s hands!"))
 							return
 					else
 						C.attack_hand(user)
@@ -231,7 +231,7 @@
 /obj/item/horrortentacle/afterattack(atom/target, mob/user, proximity)
 	if(isliving(user.pulling) && user.pulling != target)
 		var/mob/living/H = user.pulling
-		user.visible_message("<span class='warning'>[user] throws [H] with [user.p_their()] [src]!</span>", "<span class='warning'>You throw [H] with [src].</span>")
+		user.visible_message(span_warning("[user] throws [H] with [user.p_their()] [src]!"), span_warning("You throw [H] with [src]."))
 		H.throw_at(target, 8, 2)
 		H.Knockdown(30)
 		return
@@ -243,23 +243,23 @@
 		if((!A.requiresID() || A.allowed(user)) && A.hasPower())
 			return
 		if(A.locked)
-			to_chat(user, "<span class='warning'>The airlock's bolts prevent it from being forced!</span>")
+			to_chat(user, span_warning("The airlock's bolts prevent it from being forced!"))
 			return
 
 		if(A.hasPower())
-			user.visible_message("<span class='warning'>[user] jams [src] into the airlock and starts prying it open!</span>", "<span class='warning'>You start forcing the airlock open.</span>",
-			"<span class='italics'>You hear a metal screeching sound.</span>")
+			user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("You start forcing the airlock open."),
+			span_italics("You hear a metal screeching sound."))
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 150, 1)
 			if(!do_after(user, 10 SECONDS, target = A))
 				return
-		user.visible_message("<span class='warning'>[user] forces the airlock to open with [user.p_their()] [src]!</span>", "<span class='warning'>You force the airlock to open.</span>",
-		"<span class='italics'>You hear a metal screeching sound.</span>")
+		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("You force the airlock to open."),
+		span_italics("You hear a metal screeching sound."))
 		A.open(2)
 		return
 	. = ..()
 
-/obj/item/horrortentacle/suicide_act(mob/user) //funnily enough, this will never be called, since horror stops suicide
-	user.visible_message("<span class='suicide'>[src] coils itself around [user] tightly gripping [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+/obj/item/horrortentacle/suicide_act(mob/user) //this will never be called, since horror stops suicide, but might as well if they get tentacle through other means
+	user.visible_message(span_suicide("[src] coils itself around [user] tightly gripping [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (OXYLOSS)
 
 //Pinpointer
@@ -292,7 +292,7 @@
 /mob/living/captive_brain/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "<span class='danger'>You cannot speak in IC (muted).</span>")
+			to_chat(src, span_danger("You cannot speak in IC (muted).")
 			return
 		if(client.handle_spam_prevention(message,MUTE_IC))
 			return
@@ -305,8 +305,8 @@
 		if(stat == 2)
 			return say_dead(message)
 
-		to_chat(src, "<i><span class='alien'>You whisper silently, \"[message]\"</span></i>")
-		to_chat(H.victim, "<i><span class='alien'>The captive mind of [src] whispers, \"[message]\"</span></i>")
+		to_chat(src, span_alien(span_italics("You whisper silently, \"[message]\"")))
+		to_chat(H.victim, span_alien(span_italics("The captive mind of [src] whispers, \"[message]\"")))
 
 		for (var/mob/M in GLOB.player_list)
 			if(isnewplayer(M))
@@ -336,13 +336,13 @@
 	var/delay = rand(20 SECONDS,30 SECONDS)
 	if(H.horrorupgrades["deep_control"])
 		delay += rand(20 SECONDS,30 SECONDS)
-	to_chat(src, "<span class='danger'>You begin doggedly resisting the parasite's control.</span>")
-	to_chat(H.victim, "<span class='danger'>You feel the captive mind of [src] begin to resist your control.</span>")
+	to_chat(src, span_danger("You begin doggedly resisting the parasite's control."))
+	to_chat(H.victim, span_danger("You feel the captive mind of [src] begin to resist your control."))
 	addtimer(CALLBACK(src, .proc/return_control), delay)
 
 /mob/living/captive_brain/proc/return_control()
     if(!H || !H.controlling)
         return
-    to_chat(src, "<span class='userdanger'>With an immense exertion of will, you regain control of your body!</span>")
-    to_chat(H.victim, "<span class='danger'>You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you.</span>")
+    to_chat(src, span_userdanger("With an immense exertion of will, you regain control of your body!"))
+    to_chat(H.victim, span_danger("You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you."))
     H.detatch()
