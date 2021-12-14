@@ -161,7 +161,7 @@
 				if(user.mind != summoner)
 					sleep(2 SECONDS)
 					playsound(summonplace, "sound/effects/glassbr2.ogg", 30, 1)
-					to_chat(user, "span_danger("[src] breaks!"))
+					to_chat(user, span_danger("[src] breaks!"))
 					qdel(src)
 
 /obj/item/horrorsummonhorn/suicide_act(mob/living/user)  //"I am the prettiest unicorn that ever was!" ~Spy 2013
