@@ -338,7 +338,7 @@
 
 	var/list/choices = list()
 	for(var/mob/living/carbon/C in view(1,src))
-		if(H!=src && Adjacent(C))
+		if(C!=src && Adjacent(C))
 			choices += C
 
 	if(!choices.len)
