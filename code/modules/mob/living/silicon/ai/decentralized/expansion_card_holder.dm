@@ -102,6 +102,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			var/turf/T = get_turf(src)
 			for(var/obj/item/C in installed_cards)
 				C.forceMove(T)
+			installed_cards.len = 0
 			total_cpu = 0
 			total_ram = 0
 			GLOB.ai_os.update_hardware()
