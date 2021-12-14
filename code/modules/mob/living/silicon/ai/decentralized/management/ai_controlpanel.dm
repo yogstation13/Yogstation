@@ -58,6 +58,13 @@
 
 	return ..()
 
+/obj/machinery/computer/ai_control_console/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		return
+	to_chat(user, span_warning("You bypass the access restrictions"))
+	authenticated = TRUE
+	obj_flags |= EMAGGED
+
 /obj/machinery/computer/ai_control_console/process()
 	if(downloading && download_progress >= 50 && !download_warning)
 		var/turf/T = get_turf(src)
@@ -93,7 +100,7 @@
 		data["username"] = user.client.holder.admin_signature
 		data["has_access"] = TRUE
 
-	if(ishuman(user))
+	if(ishuman(user) && !(obj_flags & EMAGGED))
 		var/username = user.get_authentification_name("Unknown")
 		data["username"] = user.get_authentification_name("Unknown")
 		if(username != "Unknown")
@@ -119,6 +126,10 @@
 
 					data["user_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
 		data["has_access"] = check_access(user.get_idcard())
+	
+	if(obj_flags & EMAGGED)
+		data["username"] = "ERROR"
+		data["has_access"] = TRUE
 
 	if(!authenticated)
 		return data
@@ -187,6 +198,9 @@
 				return
 
 			if(IsAdminGhost(usr))
+				authenticated = TRUE
+
+			if(obj_flags & EMAGGED)
 				authenticated = TRUE
 
 			var/mob/living/carbon/human/H = usr

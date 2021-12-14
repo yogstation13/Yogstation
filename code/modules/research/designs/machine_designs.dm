@@ -674,3 +674,11 @@
 	build_path = /obj/item/circuitboard/machine/expansion_card_holder
 	category = list("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/ai_data_core
+	name = "Machine Design (AI Data Core Board)"
+	desc = "The circuit board for an AI data core."
+	id = "ai_data_core"
+	build_path = /obj/item/circuitboard/machine/ai_data_core
+	category = list("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

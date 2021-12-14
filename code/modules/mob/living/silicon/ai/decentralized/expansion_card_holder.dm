@@ -38,25 +38,6 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	GLOB.ai_os.update_hardware()
 	..()
 
-/obj/machinery/ai/expansion_card_holder/proc/valid_holder()
-	if(stat & (BROKEN|NOPOWER|EMPED))
-		return FALSE
-	
-	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/env = T.return_air()
-	if(!env)
-		return FALSE
-	var/total_moles = env.total_moles()
-	if(istype(T, /turf/open/space) || total_moles < 10)
-		return FALSE
-	
-	if(env.return_temperature() > TEMP_LIMIT || !env.heat_capacity())
-		return FALSE
-	if(!was_valid_holder)
-		update_icon()
-	was_valid_holder = TRUE
-	return TRUE
-
 /obj/machinery/ai/expansion_card_holder/process()
 	
 	if(valid_holder())

@@ -4,3 +4,22 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "RD-server-on"
 	density = TRUE
+
+/obj/machinery/ai/proc/valid_holder()
+	if(stat & (BROKEN|NOPOWER|EMPED))
+		return FALSE
+	
+	var/turf/T = get_turf(src)
+	var/datum/gas_mixture/env = T.return_air()
+	if(!env)
+		return FALSE
+	var/total_moles = env.total_moles()
+	if(istype(T, /turf/open/space) || total_moles < 10)
+		return FALSE
+	
+	if(env.return_temperature() > TEMP_LIMIT || !env.heat_capacity())
+		return FALSE
+	if(!was_valid_holder)
+		update_icon()
+	was_valid_holder = TRUE
+	return TRUE
