@@ -67,7 +67,7 @@
 
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/R = user
-		var/obj/item/surgical_processor/SP = locate() in R.module.modules
+		var/obj/item/healthanalyzer/advanced/SP = locate() in R.module.modules
 		if(!SP || (replaced_by in SP.advanced_surgeries))
 			return FALSE
 		if(type in SP.advanced_surgeries)
