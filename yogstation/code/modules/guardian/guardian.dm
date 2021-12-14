@@ -582,7 +582,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		return
 
 	var/preliminary_message = span_holoparasite(input) //apply basic color/bolding
-	var/my_message = "[span_holoparasite(span_bold(src))]: [preliminary_message]" //add source, color source with default grey...
+	var/my_message = "[span_holoparasite(span_bold("[src]"))]: [preliminary_message]" //add source, color source with default grey...
 
 	to_chat(src, my_message)
 	var/list/guardians = hasparasites()

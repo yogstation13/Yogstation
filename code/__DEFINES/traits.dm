@@ -250,6 +250,9 @@
 #define TRAIT_FRIENDLY			"friendly"
 #define TRAIT_ALLERGIC			"allergic"
 #define TRAIT_KLEPTOMANIAC		"kleptomaniac"
+#define TRAIT_EAT_LESS			"eat_less"
+#define TRAIT_CRAFTY			"crafty"
+#define TRAIT_ANOREXIC			"anorexic"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
