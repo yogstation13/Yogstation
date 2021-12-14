@@ -16,7 +16,7 @@
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			C.vomit(0, toxic = TRUE)
-			to_chat(user, "<span class='notice'>A parasite exits our form.</span>")
+			to_chat(user, span_notice("A parasite exits our form."))
 	..()
 	var/list/bad_organs = list(
 		user.getorgan(/obj/item/organ/body_egg),
