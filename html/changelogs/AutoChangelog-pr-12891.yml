@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "fixed some skirts having no icons when worn by someone with digitigrade legs"
