@@ -60,7 +60,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	return FALSE
 
 /obj/machinery/ai/data_core/proc/calculate_validity()
-	clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
+	valid_ticks = clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
 	
 	if(stat & (BROKEN|NOPOWER|EMPED))
 		return FALSE
