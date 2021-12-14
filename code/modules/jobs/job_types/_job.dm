@@ -268,6 +268,8 @@
 			C.assignment = J.title
 		if(H.mind?.assigned_role)
 			C.originalassignment = H.mind.assigned_role
+		else
+			C.originalassignment = J.title
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()

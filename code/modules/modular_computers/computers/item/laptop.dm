@@ -11,6 +11,7 @@
 	hardware_flag = PROGRAM_LAPTOP
 	max_hardware_size = WEIGHT_CLASS_NORMAL
 	w_class = WEIGHT_CLASS_NORMAL
+	max_bays = 4
 
 	// No running around with open laptops in hands.
 	item_flags = SLOWS_WHILE_IN_HAND
@@ -36,7 +37,7 @@
 	if(screen_on)
 		..()
 	else
-		cut_overlays()
+		SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
 		icon_state = icon_state_closed
 
 /obj/item/modular_computer/laptop/attack_self(mob/user)
