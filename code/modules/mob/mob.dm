@@ -322,7 +322,7 @@
 			if(!disable_warning)
 				to_chat(src, span_warning("You are unable to equip that!"))
 		return FALSE
-	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+	equip_to_slot(W, slot, redraw_mob, initial) //This proc should not ever fail.
 	return TRUE
 
 /**
@@ -344,8 +344,8 @@
   *
   * Also bypasses equip delay checks, since the mob isn't actually putting it on.
   */
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot)
-	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, initial = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE, initial)
 
 /**
   * Auto equip the passed in item the appropriate slot based on equipment priority
