@@ -1,3 +1,5 @@
+#define TEMP_LIMIT 290.15 //17C, much hotter than a normal server room for leniency :)
+
 /obj/machinery/ai
 	name = "You shouldn't see this!"
 	desc = "You shouldn't see this!"
