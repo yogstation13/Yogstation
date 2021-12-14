@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(alt_science_positions, list(
 
 GLOBAL_LIST_INIT(alt_supply_positions, list(
 	"Chief of Staff", "Head of Internal Affairs",
-	"Stock Controller", "Cargo Coordinator", "Shipping Overseer",
+	"Stock Controller", "Cargo Coordinator", "Shipping Overseer", "Head of Cargo",
 	"Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher",
 	"Lavaland Scout", "Prospector", "Junior Miner", "Major Miner"))
 
