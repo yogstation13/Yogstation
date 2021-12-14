@@ -11,7 +11,7 @@
 
 	outfit = /datum/outfit/job/quartermaster
 
-	alt_titles = list("Stock Controller", "Cargo Coordinator", "Shipping Overseer")
+	alt_titles = list("Stock Controller", "Cargo Coordinator", "Shipping Overseer", "Head of Cargo")
 
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)
