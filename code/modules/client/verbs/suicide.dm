@@ -257,6 +257,9 @@
 		if(UNCONSCIOUS)
 			to_chat(src, span_warning("You need to be conscious to commit suicide!"))
 			return FALSE
+		if(has_horror_inside())
+			to_chat(src, "Something inside your head stops your action!")
+			return
 		if(DEAD)
 			to_chat(src, span_warning("You're already dead!"))
 			return FALSE
