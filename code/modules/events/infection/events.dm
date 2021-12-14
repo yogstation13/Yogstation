@@ -100,6 +100,8 @@ GLOBAL_LIST_EMPTY(doom_event_mobs)
 			minion.AddComponent(/datum/component/no_beacon_crossing)
 			minion.loot = minion_drop_list
 			minion.pass_flags |= PASSBLOB
+			if(istype(minion, /mob/living/simple_animal/hostile/asteroid))
+				minion.damage_coeff[BURN] = 3 //asteroid mobs take 1/3 damage from lasers and generally have high health
 			GLOB.doom_event_mobs += minion
 	if(warning_message && warning_jingle)
 		priority_announce("[warning_message]","CentCom Biohazard Division", warning_jingle)
