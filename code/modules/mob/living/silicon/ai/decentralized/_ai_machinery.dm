@@ -21,7 +21,4 @@
 	
 	if(env.return_temperature() > TEMP_LIMIT || !env.heat_capacity())
 		return FALSE
-	if(!was_valid_holder)
-		update_icon()
-	was_valid_holder = TRUE
 	return TRUE
