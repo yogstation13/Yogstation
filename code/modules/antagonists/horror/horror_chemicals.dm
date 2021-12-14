@@ -23,10 +23,10 @@
 			return
 
 		if(chemicals < C.chemuse)
-			to_chat(src, "<span class='boldnotice'>You need [C.chemuse] chemicals stored to use this chemical!</span>")
+			to_chat(src, span_boldnotice("You need [C.chemuse] chemicals stored to use this chemical!"))
 			return
 
-		to_chat(src, "<span class='userdanger'>You squirt a measure of [C.chemname] from your reservoirs into [victim]'s bloodstream.</span>")
+		to_chat(src, span_danger("You squirt a measure of [C.chemname] from your reservoirs into [victim]'s bloodstream."))
 		victim.reagents.add_reagent(C.R, C.quantity)
 		chemicals -= C.chemuse
 		log_game("[src]/([src.ckey]) has injected [C.chemname] into their host [victim]/([victim.ckey])")
