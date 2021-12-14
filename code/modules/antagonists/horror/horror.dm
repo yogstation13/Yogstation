@@ -26,10 +26,9 @@
 	minbodytemp = 0
 	maxbodytemp = 1500
 
-	var/playstyle_string = "<span class='big bold'>You are an eldritch horror,</span><B> an evermutating parasitic abomination. Seek human souls to consume. \
+	var/playstyle_string = span_bold(span_big("You are an eldritch horror,") + " an evermutating parasitic abomination. Seek human souls to consume. \
 							Crawl into people's heads and steal their essence. Use it to mutate yourself, giving you access to more power and abilities. \
-							You operate on chemicals that get built up while you spend time in someone's head. You are weak when outside, play carefully.\
-							Check your notes to see which chemical reagent is your bane, and avoid from getting in contact with it. </B>"
+							You operate on chemicals that get built up while you spend time in someone's head. You are weak when outside, play carefully.")
 
 	var/mob/living/carbon/victim
 	var/datum/mind/target
@@ -116,7 +115,7 @@
 /mob/living/simple_animal/horror/proc/SearchTarget()
 	if(target)
 		if(world.time - used_target < 3 MINUTES)
-			to_chat(src, "<span class='warning'>You cannot use that ability again so soon.</span>")
+			to_chat(src, span_warning("You cannot use that ability again so soon."))
 			return
 		if(alert("You already have a target ([target.name]). Would you like to change that target?","Swap targets?","Yes","No") != "Yes")
 			return
@@ -150,14 +149,14 @@
 		target = pick(selected_targets)
 
 	if(target)
-		to_chat(src,"<span class='warning'>You caught their scent. Go and consume [target.current.real_name], the [target.assigned_role]'s soul!</span>")
+		to_chat(src, span_warning("You caught their scent. Go and consume [target.current.real_name], the [target.assigned_role]'s soul!"))
 		apply_status_effect(/datum/status_effect/agent_pinpointer/horror)
 		for(var/datum/status_effect/agent_pinpointer/horror/status in status_effects)
 			status.scan_target = target.current
 	else
 		//refund cooldown
 		used_target = 0
-		to_chat(src,"<span class='warning'>Failed to select a target!</span>")
+		to_chat(src, span_warning("Failed to select a target!"))
 
 /mob/living/simple_animal/horror/proc/ConsumeSoul()
 	if(!can_use_ability())
@@ -168,7 +167,7 @@
 		return
 
 	if(victim == mind.enslaved_to)
-		to_chat(src, "<span class='userdanger'>No, not yet... We still need them...</span>")
+		to_chat(src, span_userdanger("No, not yet... We still need them..."))
 		return
 
 	if(victim.mind != target)
@@ -184,8 +183,8 @@
 		return
 	consumed_souls++
 	available_points++
-	to_chat(src, "<span class='userdanger'>You succeed in consuming [victim.name]'s soul!</span>")
-	to_chat(src.victim, "<span class='userdanger'>You suddenly feel weak and hollow inside...</span>")
+	to_chat(src, span_userdanger("You succeed in consuming [victim.name]'s soul!"))
+	to_chat(src.victim, span_userdanger("You suddenly feel weak and hollow inside..."))
 	victim.health -= 20
 	victim.maxHealth -= 20
 	victim.mind.hasSoul = FALSE
@@ -207,14 +206,14 @@
 
 	if(src && !QDELETED(src) && !QDELETED(src.victim))
 		if(src.victim)
-			to_chat(victim, "<span class='changeling'><i>[truename] slurs:</i> [input]</span>")
+			to_chat(victim, span_changeling("<i>[truename] slurs:</i> [input]"))
 			log_say("Horror Communication: [key_name(src)] -> [key_name(victim)] : [input]")
 			for(var/M in GLOB.dead_mob_list)
 				if(isobserver(M))
-					var/rendered = "<span class='changeling'><i>Horror Communication from <b>[truename]</b> : [input]</i>"
+					var/rendered = span_changeling("<i>Horror Communication from <b>[truename]</b> : [input]</i>")
 					var/link = FOLLOW_LINK(M, src)
 					to_chat(M, "[link] [rendered]")
-		to_chat(src, "<span class='changeling'><i>[truename] slurs:</i> [input]</span>")
+		to_chat(src, span_changeling("<i>[truename] slurs:</i> [input]"))
 		add_verb(victim, /mob/living/proc/horror_comm)
 		talk_to_horror_action.Grant(victim)
 
@@ -229,15 +228,15 @@
 		if(!input)
 			return
 
-		to_chat(B, "<span class='changeling'><i>[src.name] says:</i> [input]</span>")
+		to_chat(B, span_changeling("<i>[src.name] says:</i> [input]"))
 		src.log_talk("Horror Communication: [key_name(src)] -> [key_name(B)] : [input]", LOG_SAY, tag="changeling")
 
 		for(var/M in GLOB.dead_mob_list)
 			if(isobserver(M))
-				var/rendered = "<span class='changeling'><i>Horror Communication from <b>[B.truename]</b> : [input]</i>"
+				var/rendered = span_changeling("<i>Horror Communication from <b>[B.truename]</b> : [input]</i>")
 				var/link = FOLLOW_LINK(M, src)
 				to_chat(M, "[link] [rendered]")
-		to_chat(src, "<span class='changeling'><i>[src] says:</i> [input]</span>")
+		to_chat(src, span_changeling("<i>[src] says:</i> [input]"))
 
 /mob/living/proc/trapped_mind_comm()
 	var/mob/living/simple_animal/horror/B = has_horror_inside()
@@ -248,15 +247,15 @@
 	if(!input)
 		return
 
-	to_chat(CB, "<span class='changeling'><i>[B.truename] says:</i> [input]</span>")
+	to_chat(CB, span_changeling("<i>[B.truename] says:</i> [input]"))
 	log_say("Horror Communication: [key_name(B)] -> [key_name(CB)] : [input]")
 
 	for(var/M in GLOB.dead_mob_list)
 		if(isobserver(M))
-			var/rendered = "<span class='changeling'><i>Horror Communication from <b>[B.truename]</b> : [input]</i>"
+			var/rendered = span_changeling("<i>Horror Communication from <b>[B.truename]</b> : [input]</i>")
 			var/link = FOLLOW_LINK(M, src)
 			to_chat(M, "[link] [rendered]")
-	to_chat(src, "<span class='changeling'><i>[B.truename] says:</i> [input]</span>")
+	to_chat(src, span_changeling("<i>[B.truename] says:</i> [input]"))
 
 /mob/living/simple_animal/horror/Life()
 	..()
@@ -268,7 +267,7 @@
 			use_chemicals(5)
 			alpha = max(alpha - 100, 1)
 		else
-			to_chat(src, "<span class='warning'>You ran out of chemicals to support your invisibility.</span>")
+			to_chat(src, span_warning("You ran out of chemicals to support your invisibility."))
 			invisible = FALSE
 			Update_Invisibility_Button()
 	else
@@ -287,23 +286,23 @@
 
 /mob/living/simple_animal/horror/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(victim)
-		to_chat(src, "<span class='warning'>You cannot speak out loud while inside a host!</span>")
+		to_chat(src, span_warning("You cannot speak out loud while inside a host!"))
 		return
 	return ..()
 
 /mob/living/simple_animal/horror/emote(act, m_type = null, message = null, intentional = FALSE)
 	if(victim)
-		to_chat(src, "<span class='warning'>You cannot emote while inside a host!</span>")
+		to_chat(src, span_warning("You cannot emote while inside a host!"))
 		return
 	return ..()
 
 /mob/living/simple_animal/horror/UnarmedAttack(atom/A)
 	if(istype(A, /obj/machinery/door/airlock))
-		visible_message("<span class='warning'>[src] slips their tentacles into the airlock and starts prying it open!</span>", "<span class='warning'>You start moving onto the airlock.</span>")
+		visible_message(span_warning("[src] slips their tentacles into the airlock and starts prying it open!"), span_warning("You start moving onto the airlock."))
 		playsound(A, 'sound/misc/splort.ogg', 50, 1)
 		if(!do_after(src, 5 SECONDS, target = A))
 			return
-		visible_message("<span class='warning'>[src] forces themselves through the airlock!</span>", "<span class='warning'>You force yourself through the airlock.</span>")
+		visible_message(span_warning("[src] forces themselves through the airlock!"), span_warning("You force yourself through the airlock"))
 		forceMove(get_turf(A))
 		playsound(A, 'sound/machines/airlock_alien_prying.ogg', 50, 1)
 		return
@@ -332,60 +331,57 @@
 	if(!can_use_ability())
 		return
 	if(victim)
-		to_chat(src, "<span class='warning'>You are already within a host.</span>")
+		to_chat(src, span_warning("You are already within a host."))
 
 	if(stat == DEAD)
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/carbon/H in view(1,src))
-		if(H!=src && Adjacent(H))
-			choices += H
+	for(var/mob/living/carbon/C in view(1,src))
+		if(H!=src && Adjacent(C))
+			choices += C
 
 	if(!choices.len)
 		return
-	var/mob/living/carbon/H = choices.len > 1 ? input(src,"Who do you wish to infest?") in null|choices : choices[1]
-	if(!H || !src)
+	var/mob/living/carbon/C = choices.len > 1 ? input(src,"Who do you wish to infest?") in null|choices : choices[1]
+	if(!C || !src || !Adjacent(C))
 		return
 
-	if(!Adjacent(H))
+	if(C.has_horror_inside())
+		to_chat(src, span_warning("[C] is already infested!"))
 		return
 
-	if(H.has_horror_inside())
-		to_chat(src, "<span class='warning'>[H] is already infested!</span>")
+	to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at their ear canal..."))
+	if(!do_mob(src, C, 30))
+		to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
 		return
 
-	to_chat(src, "<span class='warning'>You slither your tentacles up [H] and begin probing at their ear canal...</span>")
-	if(!do_mob(src, H, 30))
-		to_chat(src, "<span class='warning'>As [H] moves away, you are dislodged and fall to the ground.</span>")
+	if(!C || !src)
 		return
 
-	if(!H || !src)
-		return
-
-	Infect(H)
+	Infect(C)
 
 /mob/living/simple_animal/horror/proc/Infect(mob/living/carbon/C)
 	if(!C)
 		return
 	var/obj/item/bodypart/head/head = C.get_bodypart(BODY_ZONE_HEAD)
 	if(!head)
-		to_chat(src, "<span class='warning'>[C] doesn't have a head!</span>")
+		to_chat(src, span_warning("[C] doesn't have a head!"))
 		return
 	var/hasbrain = FALSE
 	for(var/obj/item/organ/brain/X in C.internal_organs)
 		hasbrain = TRUE
 		break
 	if(!hasbrain)
-		to_chat(src, "<span class='warning'>[C] doesn't have a brain! </span>")
+		to_chat(src, span_warning("[C] doesn't have a brain!"))
 		return
 
 	if(C.has_horror_inside())
-		to_chat(src, "<span class='warning'>[C] is already infested!</span>")
+		to_chat(src, span_warning("[C] is already infested!"))
 		return
 
 	if((!C.key || !C.mind) && C != target.current)
-		to_chat(src, "<span class='warning'>[C]'s mind seems unresponsive. Try someone else!</span>")
+		to_chat(src, span_warning("[C]'s mind seems unresponsive. Try someone else!"))
 		return
 
 	invisible = FALSE
@@ -397,7 +393,7 @@
 
 /mob/living/simple_animal/horror/proc/secrete_chemicals()
 	if(!victim)
-		to_chat(src, "<span class='warning'>You are not inside a host body.</span>")
+		to_chat(src, span_warning("You are not inside a host body."))
 		return
 
 	if(!can_use_ability())
@@ -405,7 +401,6 @@
 
 	var content = ""
 	content += "<p>Chemicals: <span id='chemicals'>[chemicals]</span></p>"
-
 	content += "<table>"
 
 	for(var/datum in horror_chems)
@@ -422,7 +417,7 @@
 
 /mob/living/simple_animal/horror/proc/hide()
 	if(victim)
-		to_chat(src, "<span class='warning'>You cannot do this while you're inside a host.</span>")
+		to_chat(src, span_warning("You cannot do this while you're inside a host."))
 		return
 
 	if(stat != CONSCIOUS)
@@ -430,41 +425,41 @@
 
 	if(!hiding)
 		layer = LATTICE_LAYER
-		visible_message("<span class='name'>[src] scurries to the ground!</span>", \
-						"<span class='noticealien'>You are now hiding.</span>")
+		visible_message(span_name("[src] scurries to the ground!"), \
+						span_noticealien("You are now hiding."))
 		hiding = TRUE
 	else
 		layer = MOB_LAYER
 		visible_message("[src] slowly peaks up from the ground...", \
-					"<span class='noticealien'>You stop hiding.</span>")
+					span_noticealien("You stop hiding."))
 		hiding = FALSE
 
 /mob/living/simple_animal/horror/proc/go_invisible()
 	if(victim)
-		to_chat(src, "<span class='warning'>You cannot do this while you're inside a host.</span>")
+		to_chat(src, span_warning("You cannot do this while you're inside a host."))
 		return
 
 	if(!can_use_ability())
 		return
 
 	if(!has_chemicals(10))
-		to_chat(src, "<span class='warning'>You don't have enough chemicals to do that.</span>")
+		to_chat(src, span_warning("You don't have enough chemicals to do that."))
 		return
 
 	if(!invisible)
-		to_chat(src, "<span class='noticealien'>You focus your chameleon skin to blend into the environment.</span>")
+		to_chat(src, span_noticealien("You focus your chameleon skin to blend into the environment."))
 		invisible = TRUE
 	else
-		to_chat(src, "<span class='noticealien'>You stop your camouflage.</span>")
+		to_chat(src, span_noticealien("You stop your camouflage."))
 		invisible = FALSE
 
 /mob/living/simple_animal/horror/proc/freeze_victim()
 	if(world.time - used_freeze < 150)
-		to_chat(src, "<span class='warning'>You cannot use that ability again so soon.</span>")
+		to_chat(src, span_warning("You cannot use that ability again so soon."))
 		return
 
 	if(victim)
-		to_chat(src, "<span class='warning'>You cannot do that from within a host body.</span>")
+		to_chat(src, span_warning("You cannot do that from within a host body."))
 		return
 
 	if(!can_use_ability())
@@ -492,7 +487,7 @@
 			M.SetSleeping(70)
 			M.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, 1, FALSE)
 		else
-			to_chat(M, "<span class='userdanger'>You feel something wrapping around your leg, pulling you down!</span>")
+			to_chat(M, span_userdanger("You feel something wrapping around your leg, pulling you down!"))
 			playsound(loc, "sound/weapons/whipgrab.ogg", 30, 1, -1)
 			M.Stun(50)
 			M.Knockdown(70)
@@ -503,7 +498,7 @@
 
 /mob/living/simple_animal/horror/proc/release_victim()
 	if(!victim)
-		to_chat(src, "<span class='danger'>You are not inside a host body.</span>")
+		to_chat(src, span_danger("You are not inside a host body."))
 		return
 
 	if(!can_use_ability())
@@ -511,27 +506,24 @@
 
 	if(leaving)
 		leaving = FALSE
-		to_chat(src, "<span class='danger'>You decide against leaving your host.</span>")
+		to_chat(src, span_danger("You decide against leaving your host."))
 		return
 
-	to_chat(src, "<span class='danger'>You begin disconnecting from [victim]'s synapses and prodding at their internal ear canal.</span>")
+	to_chat(src, span_danger("You begin disconnecting from [victim]'s synapses and prodding at their internal ear canal."))
 
 	if(victim.stat != DEAD && !horrorupgrades["invisible_exit"])
-		to_chat(victim, "<span class='userdanger'>An odd, uncomfortable pressure begins to build inside your skull, behind your ear...</span>")
+		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	leaving = TRUE
 	if(do_after(src, 100, target = victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE))
 		release_host()
 
 /mob/living/simple_animal/horror/proc/release_host()
-	if(!victim || !src || QDELETED(victim) || QDELETED(src))
-		return
-
-	if(controlling)
+	if(!victim || !src || QDELETED(victim) || QDELETED(src) || controlling)
 		return
 
 	if(stat != CONSCIOUS)
-		to_chat(src, "<span class='userdanger'>You cannot release your host in your current state.</span>")
+		to_chat(src, span_userdanger("You cannot release your host in your current state."))
 		return
 
 	if(horrorupgrades["invisible_exit"])
@@ -539,12 +531,12 @@
 		if(has_ability("chameleon"))
 			invisible = TRUE
 			Update_Invisibility_Button()
-		to_chat(src, "<span class='danger'>You silently wiggle out of [victim]'s ear and plop to the ground before vanishing via reflective solution that covers you.</span>")
+		to_chat(src, span_danger("You silently wiggle out of [victim]'s ear and plop to the ground before vanishing via reflective solution that covers you."))
 	else
-		to_chat(src, "<span class='danger'>You wiggle out of [victim]'s ear and plop to the ground.</span>")
+		to_chat(src, span_danger("You wiggle out of [victim]'s ear and plop to the ground."))
 	if(victim.mind)
 		if(!horrorupgrades["invisible_exit"])
-			to_chat(victim, "<span class='danger'>Something slimy wiggles out of your ear and plops to the ground!</span>")
+			to_chat(victim, span_danger("Something slimy wiggles out of your ear and plops to the ground!"))
 
 	leaving = FALSE
 
@@ -570,7 +562,7 @@
 	talk_to_horror_action.Remove(victim)
 
 	for(var/obj/item/horrortentacle/T in victim)
-		victim.visible_message("<span class='warning'>[victim]'s tentacle transforms back!</span>", "<span class='notice'>Your tentacle disappears!</span>")
+		victim.visible_message(span_warning("[victim]'s tentacle transforms back!"), span_notice("Your tentacle disappears!"))
 		playsound(victim, 'sound/effects/blobattack.ogg', 30, 1)
 		qdel(T)
 	victim = null
@@ -580,18 +572,18 @@
 
 /mob/living/simple_animal/horror/proc/jumpstart()
 	if(!victim)
-		to_chat(src, "<span class='warning'>You need a host to be able to use this.</span>")
+		to_chat(src, span_warning("You need a host to be able to use this."))
 		return
 
 	if(!can_use_ability())
 		return
 
 	if(victim.stat != DEAD)
-		to_chat(src, "<span class='warning'>Your host is already alive!</span>")
+		to_chat(src, span_warning("Your host is already alive!"))
 		return
 
 	if(!has_chemicals(250))
-		to_chat(src, "<span class='warning'>You need 250 chemicals to use this!</span>")
+		to_chat(src, span_warning("You need 250 chemicals to use this!"))
 		return
 
 	if(victim.stat == DEAD)
@@ -613,44 +605,44 @@
 		victim.revive()
 		log_game("[src]/([src.ckey]) has revived [victim]/([victim.ckey]")
 		chemicals -= 250
-		to_chat(src, "<span class='notice'>You send a jolt of energy to your host, reviving them!</span>")
+		to_chat(src, span_notice("You send a jolt of energy to your host, reviving them!"))
 		victim.grab_ghost(force = TRUE) //brings the host back, no eggscape
-		to_chat(victim, "<span class='notice'>You bolt upright, gasping for breath!</span>")
+		to_chat(victim, span_userdanger("You bolt upright, gasping for breath!"))
 
 /mob/living/simple_animal/horror/proc/view_memory()
 	if(!victim)
-		to_chat(src, "<span class='warning'>You need a host to be able to use this.</span>")
+		to_chat(src, span_warning("You need a host to be able to use this."))
 		return
 
 	if(!can_use_ability())
 		return
 
 	if(victim.stat == DEAD)
-		to_chat(src, "<span class='warning'>Your host brain is unresponsive. They are dead!</span>")
+		to_chat(src, span_warning("Your host brain is unresponsive. They are dead!"))
 		return
 
 	if(prob(20))
-		to_chat(victim, "<span class='danger'>You suddenly feel your memory being tangled with...</span>")//chance to alert the victim
+		to_chat(victim, span_danger("You suddenly feel your memory being tangled with..."))//chance to alert the victim
 
 	if(victim.mind)
 		var/datum/mind/suckedbrain = victim.mind
-		to_chat(src, "<span class='boldnotice'>You skim through [victim]'s memories...[suckedbrain.memory]</span>")
+		to_chat(src, span_boldnotice("You skim through [victim]'s memories...[suckedbrain.memory]"))
 		for(var/A in suckedbrain.antag_datums)
 			var/datum/antagonist/antag_types = A
 			var/list/all_objectives = antag_types.objectives.Copy()
 			if(antag_types.antag_memory)
-				to_chat(src, "<span class='notice'>[antag_types.antag_memory]</span>")
+				to_chat(src, span_notice("[antag_types.antag_memory]"))
 			if(LAZYLEN(all_objectives))
-				to_chat(src, "<span class='boldnotice'>Objectives:</span>")
+				to_chat(src, span_boldnotice("Objectives:"))
 				var/obj_count = 1
 				for(var/O in all_objectives)
 					var/datum/objective/objective = O
-					to_chat(src, "<span class='notice'>Objective #[obj_count++]: [objective.explanation_text]</span>")
+					to_chat(src, span_notice("Objective #[obj_count++]: [objective.explanation_text]"))
 					var/list/datum/mind/other_owners = objective.get_owners() - suckedbrain
 					if(other_owners.len)
 						for(var/mind in other_owners)
 							var/datum/mind/M = mind
-							to_chat(src, "<span class='notice'>Conspirator: [M.name]</span>")
+							to_chat(src, span_notice("Conspirator: [M.name]"))
 
 		var/list/recent_speech = list()
 		var/list/say_log = list()
@@ -669,35 +661,35 @@
 				if(prob(50))
 					recent_speech[spoken_memory] = say_log[spoken_memory]
 		if(recent_speech.len)
-			to_chat(src, "<span class='boldnotice'>You catch some drifting memories of their past conversations...</span>")
+			to_chat(src, span_boldnotice("You catch some drifting memories of their past conversations..."))
 			for(var/spoken_memory in recent_speech)
-				to_chat(src, "<span class='notice'>[recent_speech[spoken_memory]]</span>")
+				to_chat(src, span_notice("[recent_speech[spoken_memory]]"))
 		var/mob/living/carbon/human/H = victim
 		var/datum/dna/the_dna = H.has_dna()
 		if(the_dna)
-			to_chat(src, "<span class='boldnotice'>You uncover that [H.p_their()] true identity is [the_dna.real_name].</span>")
+			to_chat(src, span_boldnotice("You uncover that [H.p_their()] true identity is [the_dna.real_name]."))
 
 /mob/living/simple_animal/horror/proc/is_bonding()
 	return bonding
 
 /mob/living/simple_animal/horror/proc/bond_brain()
 	if(!victim)
-		to_chat(src, "<span class='warning'>You are not inside a host body.</span>")
+		to_chat(src, span_warning("You are not inside a host body."))
 		return
 
 	if(!can_use_ability())
 		return
 
 	if(victim.stat == DEAD)
-		to_chat(src, "<span class='warning'>This host lacks enough brain function to control.</span>")
+		to_chat(src, span_notice("This host lacks enough brain function to control."))
 		return
 
 	if(bonding)
 		bonding = FALSE
-		to_chat(src, "<span class='danger'>You stop attempting to take control of your host.</span>")
+		to_chat(src, span_danger("You stop attempting to take control of your host."))
 		return
 
-	to_chat(src, "<span class='danger'>You begin delicately adjusting your connection to the host brain...</span>")
+	to_chat(src, span_danger("You begin delicately adjusting your connection to the host brain..."))
 
 	if(QDELETED(src) || QDELETED(victim))
 		return
@@ -714,18 +706,18 @@
 	if(!victim || !src || controlling || victim.stat == DEAD)
 		return
 	if(is_servant_of_ratvar(victim) || iscultist(victim))
-		to_chat(src, "<span class='warning'>[victim]'s mind seems to be blocked by some unknown force!</span>")
+		to_chat(src, span_warning("[victim]'s mind seems to be blocked by some unknown force!"))
 		bonding = FALSE
 		return
 	if(HAS_TRAIT(victim, TRAIT_MINDSHIELD))
-		to_chat(src, "<span class='warning'>[victim]'s mind seems to be shielded from your influence!</span>")
+		to_chat(src, span_warning("[victim]'s mind seems to be shielded from your influence!"))
 		bonding = FALSE
 		return
 	else
 		RegisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE, .proc/hit_detatch)
 		log_game("[src]/([src.ckey]) assumed control of [victim]/([victim.ckey] with eldritch powers.")
-		to_chat(src, "<span class='warning'>You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system.</span>")
-		to_chat(victim, "<span class='userdanger'>You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours.</span>")
+		to_chat(src, span_warning("You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system."))
+		to_chat(victim, span_userdanger("You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours."))
 
 		qdel(host_brain)
 		host_brain = new(src)
@@ -754,7 +746,7 @@
 /mob/living/carbon/proc/release_control()
 	var/mob/living/simple_animal/horror/B = has_horror_inside()
 	if(B && B.host_brain)
-		to_chat(src, "<span class='danger'>You withdraw your probosci, releasing control of [B.host_brain]</span>")
+		to_chat(src, span_danger("You withdraw your probosci, releasing control of [B.host_brain]"))
 		B.detatch()
 
 //Check for brain worms in head.
@@ -767,8 +759,8 @@
 /mob/living/simple_animal/horror/proc/hit_detatch()
 	if(victim.health <= 75)
 		detatch()
-		to_chat(src, "<span class='danger'>Upon taking damage, [victim]s brain detected danger, and hastily took over.</span>")
-		to_chat(victim, "<span class='danger'>Your body is under attack, your brain immediately took over!</span>")
+		to_chat(src, span_warning("It appears that [victim]s brain detected danger, and hastily took over."))
+		to_chat(victim, span_danger("Your body is under attack, you unconciously forced your brain to immediately take over!"))
 
 /mob/living/simple_animal/horror/proc/detatch()
 	if(!victim || !controlling)
