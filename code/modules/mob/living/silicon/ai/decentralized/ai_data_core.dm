@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	. += "<b>Networked AI Laws:</b>"
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
 		var/active_status = !AI.mind ? "(<span class='warning'>OFFLINE</span>)" : ""
-		. += "<b>[AI] [active_status] has the following laws:"
+		. += "<b>[AI] [active_status] has the following laws: </b>"
 		for(var/law in AI.laws.get_law_list(include_zeroth = TRUE))
 			. += law
 
