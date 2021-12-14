@@ -234,7 +234,7 @@
 	var/transferring = FALSE
 
 /datum/action/innate/horror/transfer_host/proc/is_transferring(var/mob/living/carbon/C)
-	return transferring && C in range(1, B.victim)
+	return transferring && (C in range(1, B.victim))
 
 /datum/action/innate/horror/transfer_host/Activate()
 	if(transferring)
