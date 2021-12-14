@@ -30,7 +30,7 @@
 	category = list("horror")
 
 /datum/action/innate/horror/mutate/Activate()
-	to_chat(usr, "<span class='velvet bold'>You focus on mutating your body...</span>")
+	to_chat(usr, span_velvet(span_bold("You focus on mutating your body...")))
 	B.ui_interact(usr)
 	return TRUE
 
@@ -209,17 +209,17 @@
 
 /datum/action/innate/horror/tentacle/Activate()
 	B.use_chemicals(50)
-	B.victim.visible_message("<span class='warning'>[B.victim]'s arm contorts into tentacles!</span>", "<span class='notice'>Your arm transforms into a giant tentacle. Examine it to see possible uses.</span>")
+	B.victim.visible_message(span_warning("[B.victim]'s arm contorts into tentacles!"), span_notice("Your arm transforms into a giant tentacle. Examine it to see possible uses."))
 	playsound(B.victim, 'sound/effects/blobattack.ogg', 30, 1)
-	to_chat(B, "<span class='warning'>You transform [B.victim]'s arm into a tentacle!</span>")
+	to_chat(B, span_warning("You transform [B.victim]'s arm into a tentacle!"))
 	var/obj/item/horrortentacle/T = new
 	B.victim.put_in_hands(T)
 	return TRUE
 
 /datum/action/innate/horror/tentacle/Deactivate()
-	B.victim.visible_message("<span class='warning'>[B.victim]'s tentacle transforms back!</span>", "<span class='notice'>Your tentacle disappears!</span>")
+	B.victim.visible_message(span_warning("[B.victim]'s tentacle transforms back!"), span_notice("Your tentacle disappears!"))
 	playsound(B.victim, 'sound/effects/blobattack.ogg', 30, 1)
-	to_chat(B, "<span class='warning'>You transform [B.victim]'s arm back.</span>")
+	to_chat(B, span_warning("You transform [B.victim]'s arm back."))
 	for(var/obj/item/horrortentacle/T in B.victim)
 		qdel(T)
 	return TRUE
@@ -234,12 +234,12 @@
 	var/transferring = FALSE
 
 /datum/action/innate/horror/transfer_host/proc/is_transferring(var/mob/living/carbon/C)
-	return transferring && (C in range(1, B.victim))
+	return transferring && C.Adjacent(B.victim))
 
 /datum/action/innate/horror/transfer_host/Activate()
 	if(transferring)
 		transferring = FALSE
-		to_chat(src, "<span class='danger'>You decide against leaving your host.</span>")
+		to_chat(src, span_warning("You decide against leaving your host."))
 		return
 
 	var/list/choices = list()
@@ -256,23 +256,23 @@
 		return
 	var/obj/item/bodypart/head/head = C.get_bodypart(BODY_ZONE_HEAD)
 	if(!head)
-		to_chat(owner, "<span class='warning'>[C] doesn't have a head!</span>")
+		to_chat(owner, span_warning("[C] doesn't have a head!"))
 		return
 	var/hasbrain = FALSE
 	for(var/obj/item/organ/brain/X in C.internal_organs)
 		hasbrain = TRUE
 		break
 	if(!hasbrain)
-		to_chat(owner, "<span class='warning'>[C] doesn't have a brain! </span>")
+		to_chat(owner, span_warning("[C] doesn't have a brain!"))
 		return
 	if((!C.key || !C.mind) && C != B.target.current)
-		to_chat(owner, "<span class='warning'>[C]'s mind seems unresponsive. Try someone else!</span>")
+		to_chat(owner, span_warning("[C]'s mind seems unresponsive. Try someone else!"))
 		return
 	if(C.has_horror_inside())
-		to_chat(owner, "<span class='warning'>[C] is already infested!</span>")
+		to_chat(owner, span_warning("[C] is already infested!"))
 		return
 
-	to_chat(owner, "<span class='warning'>You move your tentacles away from [B.victim] and begin to transfer to [C]...</span>")
+	to_chat(owner, span_warning("You move your tentacles away from [B.victim] and begin to transfer to [C]..."))
 	var/delay = 20 SECONDS
 	var/silent
 	if(B.victim.pulling != C)
@@ -290,16 +290,16 @@
 
 	transferring = TRUE
 	if(!do_after(B.victim, delay, target = C, extra_checks = CALLBACK(src, .proc/is_transferring, C), stayStill = FALSE))
-		to_chat(owner, "<span class='warning'>As [C] moves away, your transfer gets interrupted!</span>")
+		to_chat(owner, span_warning("As [C] moves away, your transfer gets interrupted!"))
 		transferring = FALSE
 		return
 	transferring = FALSE
-	if(!C || !B || !(C in range(1,B.victim)))
+	if(!C || !B || !C.Adjacent(B.victim))
 		return
 	B.leave_victim()
 	B.Infect(C)
 	if(!silent)
-		to_chat(C, "<span class='warning'>Something slimy wiggles into your ear!</span>")
+		to_chat(C, span_warning("Something slimy wiggles into your ear!"))
 		playsound(B, 'sound/effects/blobattack.ogg', 30, 1)
 
 /datum/action/innate/horror/jumpstart_host
