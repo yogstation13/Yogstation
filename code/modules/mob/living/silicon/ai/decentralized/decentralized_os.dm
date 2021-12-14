@@ -77,15 +77,20 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
 						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
-						 Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len]</h2>")
+						 Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len] round: [GLOB.round_id]</h2>")
 					else
-						message_admins("<h3>Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len]</h3>")
+						message_admins("<h3>Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len] round: [GLOB.round_id]</h3>")
+					for(var/ai in cpu_assigned_copy)
+						log_game("[ai] number: [cpu_assigned_copy[ai]]")
 				break
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
+			log_game(cpu_assigned_copy[AI])
+			log_game(AI)
 			if(cpu_assigned_copy[AI] >= 1)
 				cpu_assigned_copy[AI]--
 				cpu_removal[AI]++
 				previous_cpu--
+				
 			
 	iterator = 1
 	if(total_ram < previous_ram)
@@ -99,11 +104,15 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
 						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
-						 Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len]</h2>")
+						 Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len] round: [GLOB.round_id]</h2>")
 					else
-						message_admins("<h3>Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len]</h3>")
+						message_admins("<h3>Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len] round: [GLOB.round_id]</h3>")
+					for(var/ai in ram_assigned_copy)
+						log_game("[ai] number: [ram_assigned_copy[ai]]")
 				break
 			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
+			log_game(ram_assigned_copy[AI])
+			log_game(AI)
 			if(ram_assigned_copy[AI] >= 1)
 				ram_removal[AI]++
 				ram_assigned_copy[AI]--

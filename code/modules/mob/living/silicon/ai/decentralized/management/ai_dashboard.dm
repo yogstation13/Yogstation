@@ -213,9 +213,11 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
 						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
-						 Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len]</h2>")
+						 Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len] round: [GLOB.round_id]</h2>")
 					else
-						message_admins("<h3>Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len]</h3>")
+						message_admins("<h3>Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len] round: [GLOB.round_id]</h3>")
+					for(var/I in ram_usage)
+						log_game("[I] + ram usage: [ram_usage[I]]")
 				break
 			for(var/I in ram_usage)
 				var/datum/ai_project/project = get_project_by_name(I)
@@ -236,9 +238,11 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
 						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
-						 Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len]</h2>")
+						 Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len] round: [GLOB.round_id]</h2>")
 					else
-						message_admins("<h3>Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len]</h3>")
+						message_admins("<h3>Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len] round: [GLOB.round_id]</h3>")
+					for(var/I in cpu_usage)
+						log_game("[I] + cpu usage: [ram_usage[I]]")
 				break
 			for(var/I in cpu_usage)
 				if(cpu_usage[I] > 0)
