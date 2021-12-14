@@ -29,9 +29,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	obj_flags = NONE
 	var/item_flags = NONE
-
-	var/hitsound = null
-	var/usesound = null
+	
+	var/hitsound
+	var/usesound
 	///Used when yate into a mob
 	var/mob_throw_hit_sound
 	///Sound used when equipping the item into a valid slot
