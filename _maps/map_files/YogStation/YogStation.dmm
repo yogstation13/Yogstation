@@ -35950,6 +35950,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"fek" = (
+/obj/structure/sign/warning/docking,
+/obj/structure/grille,
+/obj/effect/landmark/infection_start,
+/turf/open/floor/plating/airless,
+/area/escapepodbay)
 "feu" = (
 /obj/machinery/nuclearbomb/selfdestruct,
 /obj/effect/turf_decal/tile/neutral,
@@ -38766,10 +38772,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
-"hfI" = (
-/obj/effect/landmark/infection_start,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
 "hgw" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -46550,12 +46552,6 @@
 /obj/structure/spirit_board,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"meg" = (
-/obj/structure/sign/warning/docking,
-/obj/structure/grille,
-/obj/effect/landmark/infection_start,
-/turf/open/floor/plating/airless,
-/area/escapepodbay)
 "mey" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -50432,7 +50428,6 @@
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/crowbar/red,
-/obj/effect/landmark/infection_start,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "osN" = (
@@ -64913,6 +64908,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"xMR" = (
+/obj/effect/landmark/infection_start,
+/turf/closed/wall,
+/area/space/nearstation)
 "xNu" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -116530,7 +116529,7 @@ atS
 aoV
 aoV
 aoV
-hfI
+aaH
 aoV
 aoV
 aoV
@@ -116783,7 +116782,7 @@ aaa
 aaa
 aaa
 aaa
-hfI
+aaH
 aoV
 aoV
 aoV
@@ -117040,11 +117039,11 @@ aaa
 aaa
 aaa
 aaa
-atS
+xMR
 aoV
 aoV
 aoV
-atS
+xMR
 aoV
 aoV
 aoV
@@ -117297,11 +117296,11 @@ aaa
 aaa
 aae
 aaa
-atS
+xMR
 aoV
 aoV
 aoV
-atS
+xMR
 aoV
 aoV
 aoV
@@ -117558,7 +117557,7 @@ aaf
 aoV
 aoV
 aoV
-atS
+xMR
 aoV
 aoV
 aoV
@@ -118593,7 +118592,7 @@ aaa
 aaa
 aaa
 aaa
-meg
+fek
 uxv
 uxv
 uxv
