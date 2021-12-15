@@ -5,6 +5,8 @@
 	chemical_cost = 0
 	dna_cost = 0
 	req_human = 1
+	var/absorbtimer
+
 
 /datum/action/changeling/absorbDNA/can_sting(mob/living/carbon/user)
 	if(!..())
@@ -29,6 +31,7 @@
 
 /datum/action/changeling/absorbDNA/sting_action(mob/user)
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
+	absorbtimer = clamp((16 - changeling.trueabsorbs) * 10, 0, 5 SECONDS) //the more people you eat, the faster you can absorb
 	var/mob/living/carbon/human/target = user.pulling
 	changeling.isabsorbing = 1
 	for(var/i in 1 to 3)
