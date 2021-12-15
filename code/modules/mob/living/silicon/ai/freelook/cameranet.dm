@@ -77,11 +77,6 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 			var/x_value = eye.x
 			var/y_value = eye.y
 			var/z_value = eye.z
-			if(istype(eye.loc, /obj/machinery/ai/data_core))
-				var/turf/T = get_turf(eye.loc)
-				x_value = T.x
-				y_value = T.y
-				z_value = T.z
 			// 0xf = 15
 			var/static_range = eye.static_visibility_range
 			var/x1 = max(0, x_value - static_range) & ~(CHUNK_SIZE - 1)

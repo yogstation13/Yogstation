@@ -147,6 +147,7 @@
 	if(downloading)
 		data["downloading"] = downloading.real_name
 		data["download_progress"] = download_progress
+		data["downloading_ref"] = REF(downloading)
 	else
 		data["downloading"] = null
 		data["download_progress"] = 0

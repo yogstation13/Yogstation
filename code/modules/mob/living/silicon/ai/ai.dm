@@ -112,12 +112,17 @@
 	//Reduces/Increases download speed by this modifier
 	var/downloadSpeedModifier = 1
 
+	var/login_warned_temp = FALSE
+
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
 		// new/obj/structure/AIcore/deactivated(loc) //New empty terminal.
 		return INITIALIZE_HINT_QDEL //Delete AI.
+
+	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
+		relocate(TRUE)
 
 	if(L && istype(L, /datum/ai_laws))
 		laws = L
@@ -145,6 +150,7 @@
 	to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
 
 	job = "AI"
+	
 
 	create_eye()
 	if(client)
@@ -183,8 +189,6 @@
 	GLOB.ai_list += src
 	GLOB.shuttle_caller_list += src
 
-	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
-		relocate(TRUE)
 
 	builtInCamera = new (src)
 	builtInCamera.c_tag = real_name

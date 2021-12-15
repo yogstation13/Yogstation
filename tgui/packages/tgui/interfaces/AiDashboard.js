@@ -13,7 +13,7 @@ export const AiDashboard = (props, context) => {
   return (
     <Window
       width={650}
-      height={450}
+      height={600}
       resizable
       title="Dashboard">
       <Window.Content scrollable>
@@ -133,7 +133,7 @@ export const AiDashboard = (props, context) => {
               )}>
                 <Box bold>Research Cost: {project.research_cost} THz</Box>
                 <Box bold>RAM Requirement: {project.ram_required} TB</Box>
-                <Box bold>Research Requirements:
+                <Box bold>Research Requirements: &nbsp
                   <Box inline>{project.research_requirements}</Box>
                 </Box>
                 <Box mb={1}>

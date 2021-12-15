@@ -80,6 +80,9 @@ export const AiControlPanel = (props, context) => {
                     <NoticeBox mb={0.1} danger>Currently downloading G2</NoticeBox>
                     <ProgressBar color="bad" minValue="0" value={data.download_progress} maxValue="100" />
                     <Button mt={0.5} fluid color="bad" icon="stop" tooltip="WARNING" textAlign="center" onClick={() => act("stop_download")}>Cancel Download</Button>
+                    {!!data.current_ai_ref && data.current_ai_ref === data.downloading_ref && (
+                      <Button color="average" icon="download" onClick={() => act("skip_download")}>Instantly finish download</Button>
+                    )}
                   </Fragment>
 
                 )|| (
@@ -97,9 +100,6 @@ export const AiControlPanel = (props, context) => {
                               ) }
                               {!!ai.being_hijacked && (
                                 <Button color="bad" icon="stop" onClick={() => act("stop_hijack", { target_ai: ai.ref })}>Stop hijacking</Button>
-                              )}
-                              {!!data.current_ai_ref && data.current_ai_ref === ai.ref && (
-                                <Button color="average" icon="download" onClick={() => act("skip_download")}>Instantly finish download</Button>
                               )}
                             </Fragment>
                           )}>
