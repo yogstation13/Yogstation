@@ -44,7 +44,7 @@ export const HorrorMutate = (props, context) => {
                   selected={upgrade.owned}
                   disabled={!upgrade.can_purchase}
                   onClick={() => act('upgrade', {
-                    'id': upgrade.id,
+                    'typepath': upgrade.typepath,
                   })}
                   content={upgrade.owned ? "Unlocked" : "Unlock"}
                 />
