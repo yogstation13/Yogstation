@@ -37,8 +37,12 @@
 		if(target.mind.has_antag_datum(/datum/antagonist/rev/head) || target.mind.has_antag_datum(/datum/antagonist/hivemind) || target.mind.unconvertable)
 			if(!silent)
 				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
-			removed(target, 1)
-			qdel(src)
+			removed(target, TRUE)
+			return FALSE
+		if(target.mind.has_antag_datum(/datum/antagonist/gang/boss) || is_shadow_or_thrall(target))
+			if(!silent)
+				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
+			removed(target, TRUE)
 			return FALSE
 
 		var/datum/antagonist/hivevessel/woke = target.is_wokevessel()
@@ -63,16 +67,12 @@
 		var/datum/antagonist/rev/rev = target.mind.has_antag_datum(/datum/antagonist/rev)
 		if(rev)
 			rev.remove_revolutionary(FALSE, user)
-		if(target.mind.has_antag_datum(/datum/antagonist/gang/boss) || is_shadow_or_thrall(target))
-			if(!silent)
-				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
-			removed(target, 1)
-			qdel(src)
-			return FALSE
 		if(target.mind.has_antag_datum(/datum/antagonist/gang))
 			target.mind.remove_antag_datum(/datum/antagonist/gang)
 		if(target.mind.has_antag_datum(/datum/antagonist/veil))
 			target.mind.remove_antag_datum(/datum/antagonist/veil)
+		if(target.mind.has_antag_datum(/datum/antagonist/mindslave))
+			target.mind.remove_antag_datum(/datum/antagonist/mindslave)
 		if(!silent)
 			if(target.mind in SSticker.mode.cult)
 				to_chat(target, span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
@@ -81,7 +81,6 @@
 		ADD_TRAIT(target, TRAIT_MINDSHIELD, "implant")
 		target.sec_hud_set_implants()
 		return TRUE
-	return FALSE
 
 /obj/item/implant/mindshield/removed(mob/target, silent = FALSE, special = 0)
 	if(..())
@@ -91,8 +90,7 @@
 			L.sec_hud_set_implants()
 		if(target.stat != DEAD && !silent)
 			to_chat(target, span_boldnotice("Your mind suddenly feels terribly vulnerable. You are no longer safe from brainwashing."))
-		return 1
-	return 0
+		return TRUE
 
 /obj/item/implanter/mindshield
 	name = "implanter (mindshield)"

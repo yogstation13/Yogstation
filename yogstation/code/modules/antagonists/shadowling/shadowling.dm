@@ -89,6 +89,8 @@
 	explanation_text = "Ascend to your true form by use of the Ascendance ability. This may only be used with 15 or more collective thralls, while hatched, and is unlocked with the Collective Mind ability."
 
 /datum/objective/ascend/check_completion()
+	if(..())
+		return TRUE
 	return (SSticker && SSticker.mode && SSticker.mode.shadowling_ascended)
 
 /datum/objective/ascend/update_explanation_text()

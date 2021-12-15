@@ -195,6 +195,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	if(!occupant)
 		open_machine()
 
+/obj/machinery/cryopod/proc/PowerOff()
+	if(!occupant)
+		icon_state = "cryopod-off"
+
 /obj/machinery/cryopod/proc/find_control_computer(urgent = 0)
 	for(var/M in GLOB.cryopod_computers)
 		var/obj/machinery/computer/cryopod/C = M
@@ -362,7 +366,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		return
 
 	if(!GLOB.cryopods_enabled)
-		to_chat(user, span_boldnotice("[src] is currently disabled. It will be enabled in [round(((30 MINUTES) - world.time) / (1 MINUTES))] minutes"))
+		to_chat(user, span_boldnotice("NanoTrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
 		return
 
 	if(occupant)

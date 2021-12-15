@@ -104,6 +104,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
+#define isAIShell(A) (istype(A, /mob/living/silicon/robot/shell))
+
 #define ispAI(A) (istype(A, /mob/living/silicon/pai))
 
 //Simple animals
@@ -210,6 +212,8 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 #define isobj(A) istype(A, /obj) //override the byond proc because it returns true on children of /atom/movable that aren't objs
 
 #define isitem(A) (istype(A, /obj/item))
+
+#define isidcard(I) (istype(I, /obj/item/card/id))
 
 #define isstructure(A) (istype(A, /obj/structure))
 

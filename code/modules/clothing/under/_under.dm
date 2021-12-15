@@ -101,13 +101,13 @@
 		H.update_inv_w_uniform()
 //Yogs End
 	if(attached_accessory && slot != SLOT_HANDS)
-		attached_accessory.on_uniform_equip(src, user)
+		attached_accessory.on_clothing_equip(src, user)
 		if(attached_accessory.above_suit)
 			H.update_inv_wear_suit()
 
 /obj/item/clothing/under/dropped(mob/user)
 	if(attached_accessory)
-		attached_accessory.on_uniform_dropped(src, user)
+		attached_accessory.on_clothing_dropped(src, user)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(attached_accessory.above_suit)

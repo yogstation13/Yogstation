@@ -1157,6 +1157,7 @@
 /obj/item/storage/box/materials/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/stack/sheet/metal/fifty = 2,
+		/obj/item/stack/sheet/glass/fifty = 2,
 		/obj/item/stack/rods/fifty = 2,
 		/obj/item/stack/sheet/plasteel/fifty = 2,
 		/obj/item/stack/sheet/plastic/fifty = 2,
@@ -1174,3 +1175,10 @@
 		/obj/item/stack/sheet/mineral/silver/fifty = 1,
 		/obj/item/stack/sheet/mineral/bananium/fifty = 1)
 	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/materials/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 200
+	STR.max_items = 30
+	STR.max_w_class = WEIGHT_CLASS_GIGANTIC

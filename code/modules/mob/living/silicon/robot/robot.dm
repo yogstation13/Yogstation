@@ -414,7 +414,7 @@
 		if (getFireLoss() > 0 || getToxLoss() > 0)
 			if(src == user)
 				to_chat(user, span_notice("You start fixing yourself..."))
-				if(!do_after(user, 50, target = src))
+				if(!do_after(user, 5 SECONDS, target = src))
 					return
 			if (coil.use(1))
 				adjustFireLoss(-30)
@@ -1180,14 +1180,16 @@
 	shell = TRUE
 
 /mob/living/silicon/robot/MouseDrop_T(mob/living/M, mob/living/user)
-	. = ..()
 	if(!(M in buckled_mobs) && isliving(M) && user && user.can_buckle)
-		buckle_mob(M)
+		buckle_mob(M, TRUE)
+	 . = ..()
 
 /mob/living/silicon/robot/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
 	if(!is_type_in_typecache(M, can_ride_typecache))
 		M.visible_message(span_warning("[M] really can't seem to mount [src]..."))
 		return
+	if(!force)
+		return //buckling is called twice if we don't do this which is a mess
 	var/datum/component/riding/riding_datum = LoadComponent(/datum/component/riding/cyborg)
 	if(has_buckled_mobs())
 		if(buckled_mobs.len >= max_buckled_mobs)
@@ -1203,8 +1205,9 @@
 			M.visible_message(span_boldwarning("Unfortunately, [M] just can't seem to hold onto [src]!"))
 			return
 	M.visible_message(span_warning("[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]..."))
-	if(!do_after(usr, 1.5 SECONDS, target = M))
-		visible_message(span_boldwarning("[M] was prevented from buckling to [src]!"))
+	var/_target = usr == M ? src : M
+	if(!do_after(usr, 0.75 SECONDS, target = _target))
+		M.visible_message(span_boldwarning("[M] was prevented from buckling to [src]!"))
 		return
 
 	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))

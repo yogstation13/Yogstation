@@ -11,7 +11,7 @@
 
 /obj/item/twohanded/ctf
 	name = "banner"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/banners.dmi'
 	icon_state = "banner"
 	item_state = "banner"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
@@ -678,7 +678,7 @@
 	capture(user)
 
 /obj/machinery/control_point/proc/capture(mob/user)
-	if(do_after(user, 30, target = src))
+	if(do_after(user, 3 SECONDS, target = src))
 		for(var/obj/machinery/capture_the_flag/CTF in GLOB.machines)
 			if(CTF.ctf_enabled && (user.ckey in CTF.team_members))
 				controlling = CTF

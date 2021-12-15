@@ -217,7 +217,7 @@
 	if(burning)
 		to_chat(user, span_warning("You need to extinguish [src] before removing the logs!"))
 		return
-	if(!has_buckled_mobs() && do_after(user, 50, target = src))
+	if(!has_buckled_mobs() && do_after(user, 5 SECONDS, target = src))
 		for(var/I in 1 to 5)
 			var/obj/item/grown/log/L = new /obj/item/grown/log(src.loc)
 			L.pixel_x += rand(1,4)
@@ -268,12 +268,19 @@
 /obj/structure/bonfire/proc/Cook()
 	var/turf/current_location = get_turf(src)
 	for(var/A in current_location)
+		var/obj/G = A
 		if(A == src)
 			continue
 		else if(isliving(A)) //It's still a fire, idiot.
 			var/mob/living/L = A
 			L.adjust_fire_stacks(fire_stack_strength)
 			L.IgniteMob()
+		else if(G.GetComponent(/datum/component/grillable))
+			if(SEND_SIGNAL(G, COMSIG_ITEM_GRILLED, src) & COMPONENT_HANDLED_GRILLING)
+				continue
+			G.fire_act(1000) //Hot hot hot!
+			if(prob(10))
+				visible_message("<span class='danger'>[G] doesn't seem to be doing too great on [src]!</span>")
 		else if(istype(A, /obj/item) && prob(20))
 			var/obj/item/O = A
 			O.microwave_act()

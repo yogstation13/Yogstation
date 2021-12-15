@@ -119,6 +119,8 @@
 	update_explanation_text()
 
 /datum/objective/destroy_nation/check_completion()
+	if(..())
+		return TRUE
 	if(!target_team)
 		return TRUE
 

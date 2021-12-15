@@ -47,6 +47,12 @@
 	for(var/path in subtypesof(/datum/surgery))
 		GLOB.surgeries_list += new path()
 
+	// Hair Gradients - Initialise all /datum/sprite_accessory/hair_gradient into an list indexed by gradient-style name
+	for(var/path in subtypesof(/datum/sprite_accessory/hair_gradient))
+		var/datum/sprite_accessory/hair_gradient/H = new path()
+		GLOB.hair_gradients_list[H.name] = H
+
+	
 	GLOB.emote_list = init_emote_list()
 	//Skillcapes
 	for(var/path in subtypesof(/datum/skillcape))

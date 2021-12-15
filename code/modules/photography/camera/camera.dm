@@ -2,7 +2,7 @@
 
 /obj/item/camera
 	name = "camera"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/artstuff.dmi'
 	desc = "A polaroid camera."
 	icon_state = "camera"
 	item_state = "camera"

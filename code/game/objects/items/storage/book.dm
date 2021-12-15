@@ -197,7 +197,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		var/obj/item/twohanded/required/cult_bastard/sword = A
 		to_chat(user, span_notice("You begin to exorcise [sword]."))
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
-		if(do_after(user, 40, target = sword))
+		if(do_after(user, 4 SECONDS, target = sword))
 			playsound(src,'sound/effects/pray_chaplain.ogg',60,1)
 			for(var/obj/item/soulstone/SS in sword.contents)
 				SS.usability = TRUE
@@ -217,7 +217,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			return
 		to_chat(user, span_notice("You begin to exorcise [SS]."))
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
-		if(do_after(user, 40, target = SS))
+		if(do_after(user, 4 SECONDS, target = SS))
 			playsound(src,'sound/effects/pray_chaplain.ogg',60,1)
 			SS.usability = TRUE
 			SS.purified = TRUE

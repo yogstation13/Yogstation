@@ -2,11 +2,61 @@ Any time you make a change to the schema files, remember to increment the databa
 
 The latest database version is 5.6; The query to update the schema revision table is:
 
-INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 6);
+INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 9);
 or
-INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 6);
+INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 9);
 
 In any query remember to add a prefix to the table names if you use one.
+
+version 5.9 23 November 2021, by adamsogm
+
+Adds the datetime column to the primary key for the MFA table
+
+ALTER TABLE ss13_mfa_logins
+    DROP PRIMARY KEY,
+    ADD PRIMARY KEY (`ckey`,`ip`,`cid`, `datetime`);
+
+version 5.8 25 October 2021, by adamsogm
+
+Modifies the admin_tickets table, and adds the admin_ticket_interactions table
+Do not forget to apply the prefix to the foreign key on the admin_ticket_interactions table
+
+ALTER TABLE `admin_tickets`
+DROP COLUMN `content`,
+DROP COLUMN `rating`,
+MODIFY `a_ckey` varchar(32),
+ADD INDEX `idx_round` (`round_id`),
+ADD INDEX `idx_round_ticket` (`round_id`,`ticket_id`);
+
+DROP TABLE IF EXISTS `admin_ticket_interactions`;
+CREATE TABLE IF NOT EXISTS `admin_ticket_interactions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ticket_id` int(10) unsigned,
+  `when` datetime NOT NULL DEFAULT current_timestamp(),
+  `user` varchar(32) NOT NULL,
+  `text` text,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`ticket_id`) REFERENCES `admin_tickets`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+version 5.7 23 September 2021, by adamsogm
+
+Adds table for storing mfa login cache and a column for storing TOTP seeds and one for mfa backup code
+
+ALTER TABLE player
+ADD COLUMN totp_seed varchar(20),
+ADD COLUMN mfa_backup varchar(128);
+
+DROP TABLE IF EXISTS `mfa_logins`;
+CREATE TABLE IF NOT EXISTS `mfa_logins` (
+	`ckey` varchar(32) NOT NULL,
+	`ip` int(10) unsigned NOT NULL,
+	`cid` varchar(32) NOT NULL,
+	`datetime` timestamp NOT NULL DEFAULT current_timestamp(),
+	PRIMARY KEY (`ckey`,`ip`,`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+----------------------------------------------------
 
 version 5.6 14 August 2021, by alexkar598
 

@@ -11,7 +11,7 @@
 	item_state = "artistic_toolbox"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/storage.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	force = 12
 	attack_verb = list("robusted")

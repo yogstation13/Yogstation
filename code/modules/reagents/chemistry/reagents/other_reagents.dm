@@ -1467,7 +1467,12 @@
 	color = "#9D9D00" // RBG: 157, 157, 0
 	tox_prob = 15
 
-
+/datum/reagent/plantnutriment/tribalnutriment
+	name = "Mushroom Paste Fertilizer"
+	description = "A fertilizer made from mushrooms and gutlunch honey found on lavaland that preventes plants from mutating."
+	color = "#800000"
+	tox_prob = 15
+	taste_description = "actual hell"
 
 
 

@@ -12,7 +12,7 @@
 
 /obj/item/book/granter/proc/turn_page(mob/user)
 	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, 1)
-	if(do_after(user,50, user))
+	if(do_after(user, 5 SECONDS, user))
 		if(remarks.len)
 			to_chat(user, span_notice("[pick(remarks)]"))
 		else
@@ -56,7 +56,7 @@
 				on_reading_stopped()
 				reading = FALSE
 				return
-		if(do_after(user,50, user))
+		if(do_after(user, 5 SECONDS, user))
 			on_reading_finished(user)
 		reading = FALSE
 	return TRUE
@@ -439,6 +439,6 @@
 /obj/item/book/granter/crafting_recipe/weapons
 	name = "makeshift weapons 101"
 	desc = "A book filled with directions on how to make various weaponry."
-	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing)
+	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/flamethrower)
 	icon_state = "bookCrafting"
 	oneuse = TRUE

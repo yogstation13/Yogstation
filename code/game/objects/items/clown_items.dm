@@ -154,6 +154,16 @@
 	throw_range = 7
 	attack_verb = list("HONKED")
 
+/obj/item/bikehorn/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(istype(target, /obj/item/organ/tongue))
+		var/obj/item/organ/tongue/T = target
+		if(T) // this would be awkward if there wasn't a tongue here at this point
+			user.visible_message(span_alert("[user] shoves [src] inside of [T]!"))
+			T.honked = TRUE
+			T.update_icon()
+			qdel(src)
+
 /obj/item/bikehorn/Initialize()
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)

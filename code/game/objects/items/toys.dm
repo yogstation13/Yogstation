@@ -117,7 +117,7 @@
 	throw_speed = 3
 	throw_range = 7
 	force = 0
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "syndballoon"
 	item_state = "syndballoon"
 	lefthand_file = 'icons/mob/inhands/antag/balloons_lefthand.dmi'
@@ -331,7 +331,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	var/active = FALSE
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/storage.dmi'
 	attack_verb = list("robusted")
 
 /obj/item/toy/windupToolbox/attack_self(mob/user)

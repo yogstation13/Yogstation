@@ -461,13 +461,13 @@ GENE SCANNER
 	if(istype(O, /obj/item/disk/surgery))
 		to_chat(user, span_notice("You load the surgery protocol from [O] into [src]."))
 		var/obj/item/disk/surgery/D = O
-		if(do_after(user, 10, target = O))
+		if(do_after(user, 1 SECONDS, target = O))
 			advanced_surgeries |= D.surgeries
 		return TRUE
 	if(istype(O, /obj/machinery/computer/operating))
 		to_chat(user, span_notice("You copy surgery protocols from [O] into [src]."))
 		var/obj/machinery/computer/operating/OC = O
-		if(do_after(user, 10, target = O))
+		if(do_after(user, 1 SECONDS, target = O))
 			advanced_surgeries |= OC.advanced_surgeries
 		return TRUE
 	return
@@ -567,6 +567,15 @@ GENE SCANNER
 	user.visible_message(span_suicide("[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!"))
 	return BRUTELOSS
 
+/obj/item/analyzer/attackby(obj/O, mob/living/user)
+	if(istype(O, /obj/item/bodypart/l_arm/robot) || istype(O, /obj/item/bodypart/r_arm/robot))
+		to_chat(user, "<span class='notice'>You add [O] to [src].</span>")
+		qdel(O)
+		qdel(src)
+		user.put_in_hands(new /obj/item/bot_assembly/atmosbot)
+	else
+		..()
+		
 /obj/item/analyzer/attack_self(mob/user)
 	add_fingerprint(user)
 	scangasses(user)			//yogs start: Makes the gas scanning able to be used elseware

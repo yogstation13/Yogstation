@@ -112,8 +112,9 @@
 	for(var/i in 1 to 2)
 		var/pck = pick("assassinate","protect")
 		switch(pck)
-			if("assassinate")
-				var/datum/objective/assassinate/A = new
+			if("assasinate")
+				var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+				var/datum/objective/assassinate/A = new N
 				A.owner = owner
 				var/list/owners = A.get_owners()
 				A.find_target(owners,protection)
@@ -268,6 +269,8 @@
 	explanation_text = "Sacrifice at least [target_amount] people."
 
 /datum/objective/sacrifice_ecult/check_completion()
+	if(..())
+		return TRUE
 	if(!owner)
 		return FALSE
 	var/datum/antagonist/heretic/cultie = owner.has_antag_datum(/datum/antagonist/heretic)

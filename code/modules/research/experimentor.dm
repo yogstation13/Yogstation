@@ -541,7 +541,7 @@
 		visible_message(span_warning("Experimentor draws the life essence of those nearby!"))
 		for(var/mob/living/m in view(4,src))
 			to_chat(m, span_danger("You feel your flesh being torn from you, mists of blood drifting to [src]!"))
-			m.apply_damage(50, BRUTE, BODY_ZONE_CHEST)
+			m.apply_damage(50, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 			investigate_log("Experimentor has taken 50 brute a blood sacrifice from [m]", INVESTIGATE_EXPERIMENTOR)
 	if(prob(EFFECT_PROB_VERYLOW-badThingCoeff) && prob(23) && loaded_item)
 		autoexperiment = 0

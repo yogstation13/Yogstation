@@ -372,7 +372,8 @@
 			var/mob/dead/new_player/player = M
 			if(player.ready == PLAYER_READY_TO_PLAY)
 				if(!is_banned_from(player.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(player))
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/antag_token_used, C.ckey, C), 30 SECONDS)
+					addtimer(CALLBACK(GLOBAL_PROC, .proc/antag_token_used, C.ckey, C), 5 MINUTES + 10 SECONDS)
+					player.mind.token_picked = TRUE
 					return player.mind
 
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
@@ -636,8 +637,8 @@
 		return 0
 	if(!CONFIG_GET(flag/use_age_restriction_for_jobs))
 		return 0
-	if(!isnum(C.player_age))
-		return 0 //This is only a number if the db connection is established, otherwise it is text: "Requires database", meaning these restrictions cannot be enforced
+	if(C.player_age < 0)
+		return 0
 	if(!isnum(enemy_minimum_age))
 		return 0
 

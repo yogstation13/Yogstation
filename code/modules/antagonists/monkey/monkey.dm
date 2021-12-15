@@ -132,6 +132,8 @@
 	var/escaped_monkeys = 0
 
 /datum/objective/monkey/check_completion()
+	if(..())
+		return TRUE
 	var/datum/disease/D = new /datum/disease/transformation/jungle_fever()
 	for(var/mob/living/carbon/monkey/M in GLOB.alive_mob_list)
 		if (M.HasDisease(D) && (M.onCentCom() || M.onSyndieBase()))

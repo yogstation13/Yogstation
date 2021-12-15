@@ -24,7 +24,7 @@
 /obj/item/melee/synthetic_arm_blade
 	name = "synthetic arm blade"
 	desc = "A grotesque blade that on closer inspection seems made of synthetic flesh, it still feels like it would hurt very badly as a weapon."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/changeling.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
@@ -551,8 +551,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
 	force = 12
-	wound_bonus = 15
-	bare_wound_bonus = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 	hitsound = 'sound/weapons/whip.ogg'
@@ -659,7 +657,7 @@
 			playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
 		else
 			return
-		if(do_after(user, 100, target = user))
+		if(do_after(user, 10 SECONDS, target = user))
 			finish_roasting(user, target)
 		else
 			QDEL_NULL(beam)

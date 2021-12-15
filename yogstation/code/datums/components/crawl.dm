@@ -140,7 +140,7 @@
 
 /datum/component/crawl/blood/stop_crawling(atom/target, mob/living/user)
 	target.visible_message(span_warning("[target] starts to bubble..."))
-	if(!do_after(user, 20, target = target))
+	if(!do_after(user, 2 SECONDS, target = target))
 		return
 	if(!target)
 		return
@@ -375,7 +375,7 @@
 
 /datum/component/crawl/vomit/stop_crawling(atom/target, mob/living/user)
 	target.visible_message(span_warning("[target] starts to bubble...?"))
-	if(!do_after(user, 20, target = target))
+	if(!do_after(user, 2 SECONDS, target = target))
 		return
 	if(!target)
 		return

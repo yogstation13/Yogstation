@@ -22,6 +22,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/hair_color
 	/// the alpha used by the hair. 255 is completely solid, 0 is transparent.
 	var/hair_alpha = 255
+	///The gradient style used for the mob's hair.
+	var/grad_style
+	///The gradient color used to color the gradient.
+	var/grad_color
 
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/use_skintones = FALSE
@@ -503,6 +507,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if(hair_color)
 					if(hair_color == "mutcolor")
 						facial_overlay.color = "#" + H.dna.features["mcolor"]
+					else if(hair_color == "fixedmutcolor")
+						facial_overlay.color = "#[fixed_mut_color]"
 					else
 						facial_overlay.color = "#" + hair_color
 				else
@@ -531,6 +537,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	if(!hair_hidden || dynamic_hair_suffix)
 		var/mutable_appearance/hair_overlay = mutable_appearance(layer = -HAIR_LAYER)
+		var/mutable_appearance/gradient_overlay = mutable_appearance(layer = -HAIR_LAYER)
 		if(!hair_hidden && !H.getorgan(/obj/item/organ/brain)) //Applies the debrained overlay if there is no brain
 			if(!(NOBLOOD in species_traits))
 				hair_overlay.icon = 'icons/mob/human_face.dmi'
@@ -563,18 +570,34 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					if(hair_color)
 						if(hair_color == "mutcolor")
 							hair_overlay.color = "#" + H.dna.features["mcolor"]
+						else if(hair_color == "fixedmutcolor")
+							hair_overlay.color = "#[fixed_mut_color]"
 						else
 							hair_overlay.color = "#" + hair_color
 					else
 						hair_overlay.color = "#" + H.hair_color
+
+					//Gradients
+					grad_style = H.grad_style
+					grad_color = H.grad_color
+					if(grad_style)
+						var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[grad_style]
+						var/icon/temp = icon(gradient.icon, gradient.icon_state)
+						var/icon/temp_hair = icon(hair_file, hair_state)
+						temp.Blend(temp_hair, ICON_ADD)
+						gradient_overlay.icon = temp
+						gradient_overlay.color = "#" + grad_color
+
 				else
 					hair_overlay.color = forced_colour
+
 				hair_overlay.alpha = hair_alpha
 				if(OFFSET_FACE in H.dna.species.offset_features)
 					hair_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
 					hair_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
 		if(hair_overlay.icon)
 			standing += hair_overlay
+			standing += gradient_overlay
 
 	if(standing.len)
 		H.overlays_standing[HAIR_LAYER] = standing
@@ -842,13 +865,17 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if(!forced_colour)
 					switch(S.color_src)
 						if(MUTCOLORS)
-							if(fixed_mut_color)
+							if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))			//HULK GO FIRST
+								accessory_overlay.color = "#00aa00"
+							else if(fixed_mut_color)													//Then fixed color if applicable
 								accessory_overlay.color = "#[fixed_mut_color]"
-							else
+							else																		//Then snowflake color
 								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
 						if(HAIR)
 							if(hair_color == "mutcolor")
 								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+							else if(hair_color == "fixedmutcolor")
+								accessory_overlay.color = "#[fixed_mut_color]"
 							else
 								accessory_overlay.color = "#[H.hair_color]"
 						if(FACEHAIR)
@@ -1152,6 +1179,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 		if(mood && mood.sanity > SANITY_DISTURBED)
 			hunger_rate *= max(0.5, 1 - 0.002 * mood.sanity) //0.85 to 0.75
+		if(HAS_TRAIT(H, TRAIT_EAT_LESS))
+			hunger_rate *= 0.75 //hunger rate reduced by about 25%
 		// Whether we cap off our satiety or move it towards 0
 		if(H.satiety > MAX_SATIETY)
 			H.satiety = MAX_SATIETY

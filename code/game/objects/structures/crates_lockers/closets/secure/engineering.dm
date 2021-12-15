@@ -27,6 +27,7 @@
 	new /obj/item/clipboard/yog/paperwork/ce(src)
 	new /obj/item/poster/firstsingularity(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/ce(src)
+	new /obj/item/storage/lockbox/medal/eng(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies locker"
