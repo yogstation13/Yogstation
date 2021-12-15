@@ -36,8 +36,8 @@
 	var/truename = null
 	var/available_points = 4
 	var/consumed_souls = 0
-	var/list/horrorabilities = list() //An associative list ("id" = ability datum) containing the abilities the horror has
-	var/list/horrorupgrades = list()		  //same, but for permanent upgrades
+	var/list/horrorabilities = list() //An associative list (associated by ability typepaths) containing the abilities the horror has
+	var/list/horrorupgrades = list()		  //same (associated by their ID), but for permanent upgrades
 	var/bonding = FALSE
 	var/controlling = FALSE
 	var/chemicals = 10
@@ -58,19 +58,18 @@
 	truename = "[pick(GLOB.horror_names)]"
 
 	//default abilities
-	add_ability("mutate")
-	add_ability("seek_soul")
-	add_ability("consume_soul")
-	add_ability("talk_to_host")
-	add_ability("freeze_victim")
-	add_ability("infest")
-	add_ability("toggle_hide")
-	add_ability("talk_to_brain")
-	add_ability("take_control")
-	add_ability("leave_body")
-	add_ability("make_chems")
-	add_ability("talk_to_brain")
-	add_ability("release_control")
+	add_ability(/datum/action/innate/horror/mutate)
+	add_ability(/datum/action/innate/horror/seek_soul)
+	add_ability(/datum/action/innate/horror/consume_soul)
+	add_ability(/datum/action/innate/horror/talk_to_host)
+	add_ability(/datum/action/innate/horror/freeze_victim)
+	add_ability(/datum/action/innate/horror/infest_host)
+	add_ability(/datum/action/innate/horror/toggle_hide)
+	add_ability(/datum/action/innate/horror/talk_to_brain)
+	add_ability(/datum/action/innate/horror/take_control)
+	add_ability(/datum/action/innate/horror/leave_body)
+	add_ability(/datum/action/innate/horror/make_chems)
+	add_ability(/datum/action/innate/horror/give_back_control)
 	RefreshAbilities()
 
 	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
@@ -313,10 +312,10 @@
 		else
 			alpha = 255
 			if(hiding)
-				var/datum/action/innate/horror/H = has_ability("toggle_hide")
+				var/datum/action/innate/horror/H = has_ability(/datum/action/innate/horror/toggle_hide)
 				H.Activate()
 			if(invisible)
-				var/datum/action/innate/horror/H = has_ability("chameleon")
+				var/datum/action/innate/horror/H = has_ability(/datum/action/innate/horror/chameleon)
 				H.Activate()
 			Update_Invisibility_Button()
 			..()
@@ -528,7 +527,7 @@
 
 	if(horrorupgrades["invisible_exit"])
 		alpha = 60
-		if(has_ability("chameleon"))
+		if(has_ability(/datum/action/innate/horror/chameleon))
 			invisible = TRUE
 			Update_Invisibility_Button()
 		to_chat(src, span_danger("You silently wiggle out of [victim]'s ear and plop to the ground before vanishing via reflective solution that covers you."))
@@ -786,46 +785,40 @@
 	qdel(host_brain)
 
 /mob/living/simple_animal/horror/proc/Update_Invisibility_Button()
-	var/datum/action/innate/horror/action = has_ability("chameleon")
+	var/datum/action/innate/horror/action = has_ability(/datum/action/innate/horror/chameleon)
 	if(action)
 		action.button_icon_state = "horror_sneak_[invisible ? "true" : "false"]"
 		action.UpdateButtonIcon()
 
 /mob/living/simple_animal/horror/proc/GrantHorrorActions()
-	for(var/A in horrorabilities)
-		var/datum/action/innate/horror/ability = horrorabilities[A]
+	for(var/datum/action/innate/horror/ability in horrorabilities)
 		if("horror" in ability.category)
 			ability.Grant(src)
 
 /mob/living/simple_animal/horror/proc/RemoveHorrorActions()
-	for(var/A in horrorabilities)
-		var/datum/action/innate/horror/ability = horrorabilities[A]
+	for(var/datum/action/innate/horror/ability in horrorabilities)
 		if("horror" in ability.category)
 			ability.Remove(src)
 
 /mob/living/simple_animal/horror/proc/GrantInfestActions()
-	for(var/A in horrorabilities)
-		var/datum/action/innate/horror/ability = horrorabilities[A]
+	for(var/datum/action/innate/horror/ability in horrorabilities)
 		if("infest" in ability.category)
 			ability.Grant(src)
 
 /mob/living/simple_animal/horror/proc/RemoveInfestActions()
-	for(var/A in horrorabilities)
-		var/datum/action/innate/horror/ability = horrorabilities[A]
+	for(var/datum/action/innate/horror/ability in horrorabilities)
 		if("infest" in ability.category)
 			ability.Remove(src)
 
 /mob/living/simple_animal/horror/proc/GrantControlActions()
-	for(var/A in horrorabilities)
-		var/datum/action/innate/horror/ability = horrorabilities[A]
+	for(var/datum/action/innate/horror/ability in horrorabilities)
 		if("control" in ability.category)
-			ability.Grant(victim)
+			ability.Grant(src)
 
 /mob/living/simple_animal/horror/proc/RemoveControlActions()
-	for(var/A in horrorabilities)
-		var/datum/action/innate/horror/ability = horrorabilities[A]
+	for(var/datum/action/innate/horror/ability in horrorabilities)
 		if("control" in ability.category)
-			ability.Remove(victim)
+			ability.Remove(src)
 
 /mob/living/simple_animal/horror/proc/RefreshAbilities() //control abilities technically don't belong to horror
 	if(victim)
