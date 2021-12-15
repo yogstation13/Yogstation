@@ -432,7 +432,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			A.Grant(user)
 	item_flags |= IN_INVENTORY
 	if(!initial)
-	if(equip_sound && !initial &&(slot_flags & slotdefine2slotbit(slot)))
+		if(equip_sound && !initial &&(slot_flags & slotdefine2slotbit(slot)))
 			playsound(src, equip_sound, EQUIP_SOUND_VOLUME, TRUE, ignore_walls = FALSE)
 		else if(slot == SLOT_HANDS)
 			playsound(src, pickup_sound, PICKUP_SOUND_VOLUME, ignore_walls = FALSE)
