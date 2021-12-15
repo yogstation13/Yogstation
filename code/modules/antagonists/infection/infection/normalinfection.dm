@@ -429,8 +429,9 @@
 	vis_contents += newicon
 	name = "building [I.name]"
 	building = type
-	brute_resist = 1
-	fire_resist = 1
+	density = TRUE
+	brute_resist = 2
+	fire_resist = 2
 	qdel(I)
 	sleep(structure_build_time)
 	I = new type(src.loc, controller)
