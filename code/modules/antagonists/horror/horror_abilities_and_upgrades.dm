@@ -3,16 +3,11 @@
 /datum/action/innate/horror
 	background_icon_state = "bg_ecult"
 	icon_icon = 'icons/mob/actions/actions_horror.dmi'
-	var/id //The ability's ID, for giving, taking and such
 	var/blacklisted = FALSE //If the ability can't be mutated
 	var/soul_price = 0 //How much souls the ability costs to buy; if this is 0, it isn't listed on the catalog
 	var/chemical_cost = 0 //How much chemicals the ability costs to use
 	var/mob/living/simple_animal/horror/B //Horror holding the ability
 	var/category  //category for when the ability is active, "horror" is for creature, "infest" is during infestation, "controlling" is when a horror is controlling a body
-
-/datum/action/innate/horror/New(Target, horror)
-	B = horror
-	..()
 
 /datum/action/innate/horror/IsAvailable()
 	if(!B)
@@ -23,7 +18,6 @@
 
 /datum/action/innate/horror/mutate
 	name = "Mutate"
-	id = "mutate"
 	desc = "Use consumed souls to mutate your abilities."
 	button_icon_state = "mutate"
 	blacklisted = TRUE
@@ -36,7 +30,6 @@
 
 /datum/action/innate/horror/seek_soul
 	name = "Seek target soul"
-	id = "seek_soul"
 	desc = "Search for a soul weak enough for you to consume."
 	button_icon_state = "seek_soul"
 	blacklisted = TRUE
@@ -47,7 +40,6 @@
 
 /datum/action/innate/horror/consume_soul
 	name = "Consume soul"
-	id = "consume_soul"
 	desc = "Consume your target's soul."
 	button_icon_state = "consume_soul"
 	blacklisted = TRUE
@@ -58,7 +50,6 @@
 
 /datum/action/innate/horror/talk_to_host
 	name = "Converse with Host"
-	id = "talk_to_host"
 	desc = "Send a silent message to your host."
 	button_icon_state = "talk_to_host"
 	blacklisted = TRUE
@@ -69,7 +60,6 @@
 
 /datum/action/innate/horror/infest_host
 	name = "Infest"
-	id = "infest"
 	desc = "Infest a suitable humanoid host."
 	button_icon_state = "infest"
 	blacklisted = TRUE
@@ -80,7 +70,6 @@
 
 /datum/action/innate/horror/toggle_hide
 	name = "Toggle Hide"
-	id = "toggle_hide"
 	desc = "Become invisible to the common eye. Toggled on or off."
 	button_icon_state = "horror_hiding_false"
 	blacklisted = TRUE
@@ -93,7 +82,6 @@
 
 /datum/action/innate/horror/talk_to_horror
 	name = "Converse with Horror"
-	id = "talk_to_horror"
 	desc = "Communicate mentally with your horror."
 	button_icon_state = "talk_to_horror"
 	blacklisted = TRUE
@@ -104,7 +92,6 @@
 
 /datum/action/innate/horror/talk_to_brain
 	name = "Converse with Trapped Mind"
-	id = "talk_to_brain"
 	desc = "Communicate mentally with the trapped mind of your host."
 	button_icon_state = "talk_to_trapped_mind"
 	blacklisted = TRUE
@@ -115,7 +102,6 @@
 
 /datum/action/innate/horror/take_control
 	name = "Assume Control"
-	id = "take_control"
 	desc = "Fully connect to the brain of your host."
 	button_icon_state = "horror_brain"
 	blacklisted = TRUE
@@ -126,7 +112,6 @@
 
 /datum/action/innate/horror/give_back_control
 	name = "Release Control"
-	id = "release_control"
 	desc = "Release control of your host's body."
 	button_icon_state = "horror_leave"
 	blacklisted = TRUE
@@ -137,7 +122,6 @@
 
 /datum/action/innate/horror/leave_body
 	name = "Release Host"
-	id = "leave_body"
 	desc = "Slither out of your host."
 	button_icon_state = "horror_leave"
 	blacklisted = TRUE
@@ -148,7 +132,6 @@
 
 /datum/action/innate/horror/make_chems
 	name = "Secrete chemicals"
-	id = "make_chems"
 	desc = "Push some chemicals into your host's bloodstream."
 	icon_icon = 'icons/obj/chemical.dmi'
 	button_icon_state = "minidispenser"
@@ -160,7 +143,6 @@
 
 /datum/action/innate/horror/freeze_victim
 	name = "Knockdown victim"
-	id = "freeze_victim"
 	desc = "Use your tentacle to trip a victim, stunning for a short duration."
 	button_icon_state = "trip"
 	blacklisted = TRUE
@@ -181,7 +163,6 @@
 
 /datum/action/innate/horror/tentacle
 	name = "Grow Tentacle"
-	id = "tentacle"
 	desc = "Makes your host grow a tentacle in their arm. Costs 50 chemicals to activate."
 	button_icon_state = "tentacle"
 	chemical_cost = 50
@@ -226,7 +207,6 @@
 
 /datum/action/innate/horror/transfer_host
 	name = "Transfer to another Host"
-	id = "transfer_host"
 	desc = "Move into another host directly. Grabbing makes the process faster."
 	button_icon_state = "transfer_host"
 	category = list("infest", "control")
@@ -304,7 +284,6 @@
 
 /datum/action/innate/horror/jumpstart_host
 	name = "Revive Host"
-	id = "jumpstart_host"
 	desc = "Bring your host back to life."
 	button_icon_state = "revive"
 	category = list("infest")
@@ -315,7 +294,6 @@
 
 /datum/action/innate/horror/view_memory
 	name = "View Memory"
-	id = "view_memory"
 	desc = "Read recent memory of the host you're inside of."
 	button_icon_state = "view_memory"
 	category = list("infest")
@@ -326,7 +304,6 @@
 
 /datum/action/innate/horror/chameleon
 	name = "Chameleon Skin"
-	id = "chameleon"
 	desc = "Adjust your skin color to blend into environment. Costs 5 chemicals per tick, also stopping chemical regeneration while active. Attacking stops the invisibility completely."
 	button_icon_state = "horror_sneak_false"
 	category = list("horror")
@@ -367,7 +344,7 @@
 	soul_price = 3
 
 /datum/horror_upgrade/paralysis/apply_effects()
-	var/datum/action/innate/horror/A = B.has_ability("freeze_victim")
+	var/datum/action/innate/horror/A = B.has_ability(/datum/action/innate/horror/freeze_victim)
 	if(A)
 		A.name = "Paralyze Victim"
 		A.desc = "Shock a victim with an electrically charged tentacle."
