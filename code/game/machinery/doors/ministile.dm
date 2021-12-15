@@ -31,7 +31,7 @@
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
-	if(istype(mover, /mob/living/simple_animal/bot))
+	if(istype(mover, /mob/living/simple_animal/bot) || istype(/obj/vehicle/ridden/wheelchair))
 		flick("operate", src)
 		playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE
