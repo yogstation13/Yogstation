@@ -1,24 +1,22 @@
 // Horror mutation menu
-// Totally not a copypaste of darkspawn menu, not a copypaste of cellular emporium, i swear.
+// Totally not a copypaste of darkspawn menu, not a copypaste of cellular emporium, i swear. Edit: now looks like guardianbuilder too
 
-/mob/living/simple_animal/horror/proc/has_ability(id)
-	if(isnull(horrorabilities[id]))
-		return
-	return horrorabilities[id]
+/mob/living/simple_animal/horror/proc/has_ability(typepath)
+	for(var/datum/action/innate/horror/ability in horrorabilities)
+		if(istype(ability, typepath))
+			return ability
+	return
 
-/mob/living/simple_animal/horror/proc/add_ability(id)
-	if(has_ability(id))
+/mob/living/simple_animal/horror/proc/add_ability(typepath)
+	if(has_ability(typepath))
 		return
-	for(var/V in subtypesof(/datum/action/innate/horror))
-		var/datum/action/innate/horror/H = V
-		if(initial(H.id) == id)
-			var/datum/action/innate/horror/action = new H(null, src)
-			horrorabilities[id] = action
-			action.B = src
-			RefreshAbilities()
-			to_chat(src, "<span class='velvet'>You have mutated the <b>[action.name]</b>.</span>")
-			available_points = max(0, available_points - action.soul_price)
-			return TRUE
+	var/datum/action/innate/horror/action = new typepath
+	action.B = src
+	horrorabilities += action
+	RefreshAbilities()
+	to_chat(src, span_velvet("You have mutated the <b>[action.name]</b>."))
+	available_points = max(0, available_points - action.soul_price)
+	return TRUE
 
 /mob/living/simple_animal/horror/proc/has_upgrade(id)
 	return horrorupgrades[id]
@@ -62,10 +60,10 @@
 
 		var/list/AL = list()
 		AL["name"] = initial(ability.name)
-		AL["id"] = initial(ability.id)
+		AL["typepath"] = path
 		AL["desc"] = initial(ability.desc)
 		AL["soul_cost"] = initial(ability.soul_price)
-		AL["owned"] = has_ability(initial(ability.id))
+		AL["owned"] = has_ability(path)
 		AL["can_purchase"] = !AL["owned"] && available_points >= initial(ability.soul_price)
 
 		abilities += list(AL)
@@ -94,6 +92,6 @@
 		return
 	switch(action)
 		if("unlock")
-			add_ability(params["id"])
+			add_ability(params["typepath"])
 		if("upgrade")
 			add_upgrade(params["id"])
