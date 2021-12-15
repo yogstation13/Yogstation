@@ -89,7 +89,7 @@
 	color = "#7DC3A0"
 	toxpwr = 0
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
-	taste_description = "nothing" //You can't taste if you can't smell, you can't smell if you can't breathe
+	taste_mult = 0 //You can't taste if you can't smell, you can't smell if you can't breathe
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/carbon/C)
 	. = TRUE
