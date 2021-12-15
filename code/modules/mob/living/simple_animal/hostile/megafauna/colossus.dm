@@ -750,6 +750,10 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/lightgeist/healing/slime
 	name = "crystalline lightgeist"
 
+/mob/living/simple_animal/hostile/lightgeist/healing/slime/Initialize()
+	. = ..()
+		ADD_TRAIT(L, TRAIT_MUTE, TRAIT_EMOTEMUTE)
+		
 /obj/machinery/anomalous_crystal/refresher //Deletes and recreates a copy of the item, "refreshing" it.
 	observer_desc = "This crystal \"refreshes\" items that it affects, rendering them as new."
 	activation_method = ACTIVATE_TOUCH
