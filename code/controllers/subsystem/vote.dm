@@ -73,8 +73,10 @@ SUBSYSTEM_DEF(vote)
 					if(isnull(global.config.defaultmap))
 						continue
 					if(!preferred_map)
-						preferred_map = global.config.defaultmap.map_name
-					choices[preferred_map] += 1
+						if(global.config.defaultmap.map_name)
+							preferred_map = global.config.defaultmap.map_name
+					if(preferred_map)
+						choices[preferred_map] += 1
 					greatest_votes = max(greatest_votes, choices[preferred_map])
 	. = list()
 	if(greatest_votes)
