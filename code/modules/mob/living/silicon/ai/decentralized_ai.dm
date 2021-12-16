@@ -54,7 +54,7 @@
 	sleep(2 SECONDS)
 	to_chat(src, span_notice("Unless..."))
 	sleep(2 SECONDS)
-	if(available_ai_cores)
+	if(available_ai_cores())
 		to_chat(src, span_usernotice("Yes! I am alive!"))
 		relocate(TRUE)
 		return
