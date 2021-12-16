@@ -65,7 +65,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 
 	var/list/affected_AIs = list()
 
-
+	log_game("allocations running")
 
 	if(total_cpu < previous_cpu)
 		var/needed_amount = previous_cpu - total_cpu
@@ -126,7 +126,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 		affected_AIs |= A
 	
 	to_chat(affected_AIs, span_warning("You have been deducted processing capabilities. Please contact your network administrator if you believe this to be an error."))
-
+	log_game("allocations ending")
 
 /datum/ai_os/proc/add_cpu(mob/living/silicon/ai/AI, amount)
 	if(!AI || !amount)
