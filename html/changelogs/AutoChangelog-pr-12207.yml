@@ -1,5 +1,0 @@
-author: "  Identification, Kor"
-delete-after: true 
-changes: 
-  - imageadd: "Unifies both the old cloaks and recently added new cloaks into a single set of cloaks."
-  - tweak: "Backpacks don't appear over the top of cloaks"
