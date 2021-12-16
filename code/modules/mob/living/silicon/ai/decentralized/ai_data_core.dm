@@ -55,6 +55,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			. += law
 
 /obj/machinery/ai/data_core/proc/valid_data_core()
+	if(!is_reebe(z) || !is_station_level(z))
+		return FALSE
 	if(valid_ticks > 0)
 		return TRUE
 	return FALSE
