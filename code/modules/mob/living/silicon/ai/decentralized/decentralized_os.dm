@@ -21,7 +21,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 /datum/ai_os/proc/remove_ai(mob/living/silicon/ai/AI)
 	cpu_assigned.Remove(AI)
 	ram_assigned.Remove(AI)
-
+	update_allocations()
 
 /datum/ai_os/proc/total_cpu_assigned()
 	var/total = 0
@@ -65,9 +65,12 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 
 	var/list/affected_AIs = list()
 
+
+
 	if(total_cpu < previous_cpu)
 		var/needed_amount = previous_cpu - total_cpu
-		for(var/mob/living/silicon/AI in GLOB.ai_list)
+		for(var/A in cpu_assigned_copy)
+			var/mob/living/silicon/ai/AI = A
 			if(cpu_assigned_copy[AI] >= needed_amount)
 				cpu_assigned_copy[AI] -= needed_amount
 				cpu_removal[AI] += needed_amount
@@ -81,12 +84,18 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 				needed_amount -= amount
 				if(total_cpu >= previous_cpu)
 					break
+		//If that somehow didn't work which it sometimes doesn't we just clear everything
 		if(total_cpu < previous_cpu)
-			message_admins("This is still super buggy! os-cpu")
+			for(var/A in cpu_assigned_copy)
+				var/amount = cpu_assigned_copy[AI]
+				cpu_assigned_copy[AI] = 0
+				cpu_removal[AI] += amount
+				previous_cpu -= amount
 					
 	if(total_ram < previous_ram)
 		var/needed_amount = previous_ram - total_ram
-		for(var/mob/living/silicon/AI in GLOB.ai_list)
+		for(var/A in ram_assigned_copy)
+			var/mob/living/silicon/ai/AI = A
 			if(ram_assigned_copy[AI] >= needed_amount)
 				ram_assigned_copy[AI] -= needed_amount
 				ram_removal[AI] += needed_amount
@@ -100,8 +109,13 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 				previous_ram -= amount
 				if(total_ram >= previous_ram)
 					break
+		//If that somehow didn't work which it sometimes doesn't we just clear everything
 		if(total_ram < previous_ram)
-			message_admins("This is still super buggy! os-ram")
+			for(var/A in ram_assigned_copy)
+				var/amount = ram_assigned_copy[AI]
+				ram_assigned_copy[AI] = 0
+				ram_removal[AI] += amount
+				previous_ram -= amount
 	
 	for(var/A in ram_removal)
 		ram_assigned[A] = ram_assigned[A] - ram_removal[A]
