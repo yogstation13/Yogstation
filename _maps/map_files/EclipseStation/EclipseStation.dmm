@@ -21584,12 +21584,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/captain)
-"aVo" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "aVp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -59293,14 +59287,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
-"cto" = (
-/obj/structure/rack,
-/obj/item/circuitboard/aicore{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hor)
 "ctp" = (
 /obj/structure/rack,
 /obj/item/taperecorder{
@@ -87566,6 +87552,11 @@
 /obj/effect/turf_decal/tile/white,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"rLe" = (
+/obj/structure/rack,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hor)
 "rLM" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -124360,7 +124351,7 @@ crA
 cvA
 cwh
 csO
-cto
+rLe
 cOk
 aoU
 aaa
@@ -141471,7 +141462,7 @@ azB
 hMY
 aRF
 aUP
-aVo
+aye
 axD
 aWW
 bas
@@ -146610,7 +146601,7 @@ aBj
 aBj
 aJK
 aRX
-aVo
+aye
 ach
 aFk
 aFk

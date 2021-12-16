@@ -59457,17 +59457,6 @@
 	dir = 5
 	},
 /area/crew_quarters/heads/hor)
-"cuP" = (
-/obj/structure/table,
-/obj/item/aicard,
-/obj/item/circuitboard/aicore{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/heads/hor)
 "cuQ" = (
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -80036,6 +80025,14 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"sTq" = (
+/obj/structure/table,
+/obj/item/aicard,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/heads/hor)
 "sTu" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/stripes/corner{
@@ -116274,7 +116271,7 @@ cdc
 crQ
 ctc
 ctT
-cuP
+sTq
 bHF
 cwS
 crQ

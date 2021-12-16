@@ -108326,13 +108326,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"doM" = (
-/obj/structure/table/reinforced,
-/obj/item/aicard,
-/obj/item/circuitboard/aicore,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hor)
 "doN" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -128879,6 +128872,13 @@
 /obj/machinery/griddle,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"xBj" = (
+/obj/structure/table/reinforced,
+/obj/item/aicard,
+/obj/effect/turf_decal/bot,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hor)
 "xBR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -163153,7 +163153,7 @@ cgA
 ceU
 dlE
 dmS
-doM
+xBj
 dqC
 drX
 dtq
