@@ -7,7 +7,7 @@
 /obj/item/ai_hijack_device/examine(mob/living/user)
 	. = ..()
 	if (user?.mind?.has_antag_datum(/datum/antagonist/infiltrator))
-		. += span_notice("To use, attach to the core of an AI unit using an AI control console and wait. [span_italics("This will alert the victim AI!")]")
+		. += span_notice("To use, insert it into an unlocked AI control console and select the AI you wish to hijack. [span_italics("This will alert the victim AI!")]")
 
 //MIRRORED IN ai_controlpanel.dm !!!
 /* 
