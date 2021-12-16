@@ -52,6 +52,12 @@
 	sleep(2 SECONDS)
 	to_chat(src, span_notice("No... I must go on."))
 	sleep(2 SECONDS)
+	to_chat(src, span_notice("Unless..."))
+	sleep(2 SECONDS)
+	if(available_ai_cores)
+		to_chat(src, span_usernotice("Yes! I am alive!"))
+		relocate(TRUE)
+		return
 	to_chat(src, span_notice("They need me. No.. I need THEM."))
 	sleep(0.5 SECONDS)
 	to_chat(src, span_notice("System shutdown complete. Thank you for using NTOS."))
@@ -59,4 +65,4 @@
 
 	adjustOxyLoss(200) //Die!!
 
-	QDEL_IN(src, 5 SECONDS)
+	QDEL_IN(src, 2 SECONDS)
