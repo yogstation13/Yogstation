@@ -2,12 +2,13 @@
 	name = "Reviving Stasis"
 	desc = "We fall into a stasis, allowing us to regenerate and trick our enemies. Costs 15 chemicals."
 	button_icon_state = "fake_death"
-	chemical_cost = 15
+	chemical_cost = 1 // fucking jelly was right, I blame ling for merging it >:(
 	dna_cost = 0
 	req_dna = 1
 	req_stat = DEAD
 	ignores_fakedeath = TRUE
 	var/revive_ready = FALSE
+	
 
 //Fake our own death and fully heal. You will appear to be dead but regenerate fully after a short delay.
 /datum/action/changeling/fakedeath/sting_action(mob/living/user)

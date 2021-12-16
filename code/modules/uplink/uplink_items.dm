@@ -1475,6 +1475,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/aiModule/syndicate
 	cost = 4
 	manufacturer = /datum/corporation/traitor/cybersun
+	exclude_modes = list(/datum/game_mode/infiltration)
+
+/datum/uplink_item/device_tools/brainwash_disk
+	name = "Brainwashing Surgery Program"
+	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
+	Insert into an Operating Console to enable the procedure."
+	item = /obj/item/disk/surgery/brainwashing
+	cost = 5
+	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/device_tools/hypnotic_flash
 	name = "Hypnotic Flash"
@@ -1873,15 +1882,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
-
-/datum/uplink_item/role_restricted/brainwash_disk
-	name = "Brainwashing Surgery Program"
-	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
-	Insert into an Operating Console to enable the procedure."
-	item = /obj/item/disk/surgery/brainwashing
-	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist", "Mining Medic") //yogs
-	cost = 5
-	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/role_restricted/clown_bomb
 	name = "Clown Bomb"

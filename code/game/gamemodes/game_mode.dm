@@ -372,7 +372,8 @@
 			var/mob/dead/new_player/player = M
 			if(player.ready == PLAYER_READY_TO_PLAY)
 				if(!is_banned_from(player.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(player))
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/antag_token_used, C.ckey, C), 30 SECONDS)
+					addtimer(CALLBACK(GLOBAL_PROC, .proc/antag_token_used, C.ckey, C), 5 MINUTES + 10 SECONDS)
+					player.mind.token_picked = TRUE
 					return player.mind
 
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
