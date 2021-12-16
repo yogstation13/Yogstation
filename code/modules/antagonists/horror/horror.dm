@@ -206,7 +206,6 @@
 	if(src && !QDELETED(src) && !QDELETED(src.victim))
 		if(src.victim)
 			to_chat(victim, span_changeling("<i>[truename] slurs:</i> [input]"))
-			log_say("Horror Communication: [key_name(src)] -> [key_name(victim)] : [input]")
 			for(var/M in GLOB.dead_mob_list)
 				if(isobserver(M))
 					var/rendered = span_changeling("<i>Horror Communication from <b>[truename]</b> : [input]</i>")
@@ -228,7 +227,6 @@
 			return
 
 		to_chat(B, span_changeling("<i>[src.name] says:</i> [input]"))
-		src.log_talk("Horror Communication: [key_name(src)] -> [key_name(B)] : [input]", LOG_SAY, tag="changeling")
 
 		for(var/M in GLOB.dead_mob_list)
 			if(isobserver(M))
@@ -247,7 +245,6 @@
 		return
 
 	to_chat(CB, span_changeling("<i>[B.truename] says:</i> [input]"))
-	log_say("Horror Communication: [key_name(B)] -> [key_name(CB)] : [input]")
 
 	for(var/M in GLOB.dead_mob_list)
 		if(isobserver(M))
@@ -584,8 +581,14 @@
 	if(!has_chemicals(250))
 		to_chat(src, span_warning("You need 250 chemicals to use this!"))
 		return
+	
+	if(HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN))
+		to_chat(src, span_warning("Their DNA is completely destroyed! You can't revive them"))
+		return
 
 	if(victim.stat == DEAD)
+		playsound(src, 'sound/machines/defib_charge.ogg', 50, 1, -1)
+		sleep(1 SECONDS)
 		victim.tod = null
 		victim.setToxLoss(0)
 		victim.setOxyLoss(0)
@@ -596,6 +599,8 @@
 		victim.radiation = 0
 		victim.heal_overall_damage(victim.getBruteLoss(), victim.getFireLoss())
 		victim.reagents.clear_reagents()
+		if(HAS_TRAIT_FROM(victim, TRAIT_HUSK, BURN))
+			victim.cure_husk(BURN)
 		for(var/organ in victim.internal_organs)
 			var/obj/item/organ/O = organ
 			O.setOrganDamage(0)
@@ -606,7 +611,11 @@
 		chemicals -= 250
 		to_chat(src, span_notice("You send a jolt of energy to your host, reviving them!"))
 		victim.grab_ghost(force = TRUE) //brings the host back, no eggscape
+		victim.adjustOxyLoss(30)
 		to_chat(victim, span_userdanger("You bolt upright, gasping for breath!"))
+		victim.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, 1, FALSE)
+		playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
+		
 
 /mob/living/simple_animal/horror/proc/view_memory()
 	if(!victim)
@@ -813,12 +822,12 @@
 /mob/living/simple_animal/horror/proc/GrantControlActions()
 	for(var/datum/action/innate/horror/ability in horrorabilities)
 		if("control" in ability.category)
-			ability.Grant(src)
+			ability.Grant(victim)
 
 /mob/living/simple_animal/horror/proc/RemoveControlActions()
 	for(var/datum/action/innate/horror/ability in horrorabilities)
 		if("control" in ability.category)
-			ability.Remove(src)
+			ability.Remove(victim)
 
 /mob/living/simple_animal/horror/proc/RefreshAbilities() //control abilities technically don't belong to horror
 	if(victim)
