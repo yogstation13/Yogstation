@@ -87,9 +87,9 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 		//If that somehow didn't work which it sometimes doesn't we just clear everything
 		if(total_cpu < previous_cpu)
 			for(var/A in cpu_assigned_copy)
-				var/amount = cpu_assigned_copy[AI]
-				cpu_assigned_copy[AI] = 0
-				cpu_removal[AI] += amount
+				var/amount = cpu_assigned_copy[A]
+				cpu_assigned_copy[A] = 0
+				cpu_removal[A] += amount
 				previous_cpu -= amount
 					
 	if(total_ram < previous_ram)
@@ -112,9 +112,9 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 		//If that somehow didn't work which it sometimes doesn't we just clear everything
 		if(total_ram < previous_ram)
 			for(var/A in ram_assigned_copy)
-				var/amount = ram_assigned_copy[AI]
-				ram_assigned_copy[AI] = 0
-				ram_removal[AI] += amount
+				var/amount = ram_assigned_copy[A]
+				ram_assigned_copy[A] = 0
+				ram_removal[A] += amount
 				previous_ram -= amount
 	
 	for(var/A in ram_removal)
