@@ -201,56 +201,35 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 
 	var/reduction_of_resources = FALSE
 
-	var/iterator = 1
-	if(total_ram_used > current_ram)
-		while(total_ram_used > current_ram)
-			iterator++
-			if(iterator >= 10)
-				if(!GLOB.sent_crash_message)
-					GLOB.sent_crash_message = TRUE
-					log_game("Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len]")
-					var/list/adm = get_admin_counts(R_BAN)
-					var/list/allmins = adm["total"]
-					if(!allmins.len)
-						to_chat(world, "[span_adminnotice("<b>Server Announces:</b>")]\n \t <h2> Please show this to Bibby: \
-						 Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len] round: [GLOB.round_id]</h2>")
-					else
-						message_admins("<h3>Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len] round: [GLOB.round_id]</h3>")
-					for(var/I in ram_usage)
-						log_game("[I] + ram usage: [ram_usage[I]]")
-				break
-			for(var/I in ram_usage)
-				var/datum/ai_project/project = get_project_by_name(I)
-				total_ram_used -= stop_project(project)
-				reduction_of_resources = TRUE
-			if(total_ram_used == 0)
-				break
 
-	iterator = 1
+	if(total_ram_used > current_ram)
+		for(var/I in ram_usage)
+			var/datum/ai_project/project = get_project_by_name(I)
+			total_ram_used -= stop_project(project)
+			reduction_of_resources = TRUE
+			if(total_ram_used <= current_ram)
+				break
+		if(total_ram_used > current_ram)
+			message_admins("this is still broken. dashboard-ram")
+
 	if(total_cpu_used > current_cpu)
-		while(total_cpu_used > current_cpu) 
-			iterator++
-			if(iterator >= 10)
-				if(!GLOB.sent_crash_message)
-					GLOB.sent_crash_message = TRUE
-					log_game("Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len]")
-					var/list/adm = get_admin_counts(R_BAN)
-					var/list/allmins = adm["total"]
-					if(!allmins.len)
-						to_chat(world, "[span_adminnotice("<b>Server Announces:</b>")]\n \t <h2> Please show this to Bibby: \
-						 Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len] round: [GLOB.round_id]</h2>")
-					else
-						message_admins("<h3>Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len] round: [GLOB.round_id]</h3>")
-					for(var/I in cpu_usage)
-						log_game("[I] + cpu usage: [ram_usage[I]]")
+		var/amount_needed = total_cpu_used - current_cpu
+		for(var/I in cpu_usage)
+
+			if(cpu_usage[I] >= amount_needed)
+				cpu_usage[I] -= amount_needed
+				reduction_of_resources = TRUE
+				total_cpu_used -= amount_needed
 				break
-			for(var/I in cpu_usage)
-				if(cpu_usage[I] > 0)
-					cpu_usage[I]--
-					total_cpu_used--
-					reduction_of_resources = TRUE
-			if(total_cpu_used == 0)
-				break
+			if(cpu_usage[I])
+				total_cpu_used -= cpu_usage[I]
+				amount_needed -= cpu_usage[I]
+				cpu_usage[I] = 0
+				reduction_of_resources = TRUE
+				if(total_cpu_used <= current_cpu)
+					break
+		if(total_cpu_used > current_cpu)
+			message_admins("this is still broken. dashboard-cpu")
 
 	if(reduction_of_resources)
 		to_chat(owner, span_warning("Lack of computational capacity. Some programs may have been stopped."))

@@ -65,58 +65,43 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 
 	var/list/affected_AIs = list()
 
-	var/iterator = 1
 	if(total_cpu < previous_cpu)
-		while(total_cpu < previous_cpu)
-			iterator++
-			if(iterator >= 10)
-				if(!GLOB.sent_crash_message)
-					GLOB.sent_crash_message = TRUE
-					log_game("Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len]")
-					var/list/adm = get_admin_counts(R_BAN)
-					var/list/allmins = adm["total"]
-					if(!allmins.len)
-						to_chat(world, "[span_adminnotice("<b>Server Announces:</b>")]\n \t <h2> Please show this to Bibby: \
-						 Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len] round: [GLOB.round_id]</h2>")
-					else
-						message_admins("<h3>Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len] round: [GLOB.round_id]</h3>")
-					for(var/ai in cpu_assigned_copy)
-						log_game("[ai] number: [cpu_assigned_copy[ai]]")
+		var/needed_amount = previous_cpu - total_cpu
+		for(var/mob/living/silicon/AI in GLOB.ai_list)
+			if(cpu_assigned_copy[AI] >= needed_amount)
+				cpu_assigned_copy[AI] -= needed_amount
+				cpu_removal[AI] += needed_amount
+				previous_cpu -= needed_amount
 				break
-			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
-			log_game(cpu_assigned_copy[AI])
-			log_game(AI)
-			if(cpu_assigned_copy[AI] >= 1)
-				cpu_assigned_copy[AI]--
-				cpu_removal[AI]++
-				previous_cpu--
-				
-			
-	iterator = 1
+			else if(cpu_assigned_copy[AI])
+				var/amount = cpu_assigned_copy[AI]
+				cpu_assigned_copy[AI] -= amount
+				cpu_removal[AI] += amount
+				previous_cpu -= amount
+				needed_amount -= amount
+				if(total_cpu >= previous_cpu)
+					break
+		if(total_cpu < previous_cpu)
+			message_admins("This is still super buggy! os-cpu")
+					
 	if(total_ram < previous_ram)
-		while(total_ram < previous_ram)
-			iterator++
-			if(iterator >= 10)
-				if(!GLOB.sent_crash_message)
-					GLOB.sent_crash_message = TRUE
-					log_game("Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len]")
-					var/list/adm = get_admin_counts(R_BAN)
-					var/list/allmins = adm["total"]
-					if(!allmins.len)
-						to_chat(world, "[span_adminnotice("<b>Server Announces:</b>")]\n \t <h2> Please show this to Bibby: \
-						 Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len] round: [GLOB.round_id]</h2>")
-					else
-						message_admins("<h3>Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len] round: [GLOB.round_id]</h3>")
-					for(var/ai in ram_assigned_copy)
-						log_game("[ai] number: [ram_assigned_copy[ai]]")
+		var/needed_amount = previous_ram - total_ram
+		for(var/mob/living/silicon/AI in GLOB.ai_list)
+			if(ram_assigned_copy[AI] >= needed_amount)
+				ram_assigned_copy[AI] -= needed_amount
+				ram_removal[AI] += needed_amount
+				previous_ram -= needed_amount
 				break
-			var/mob/living/silicon/ai/AI = pick(GLOB.ai_list)
-			log_game(ram_assigned_copy[AI])
-			log_game(AI)
-			if(ram_assigned_copy[AI] >= 1)
-				ram_removal[AI]++
-				ram_assigned_copy[AI]--
-				previous_ram--
+			else if(cpu_assigned_copy[AI])
+				var/amount = cpu_assigned_copy[AI]
+				ram_assigned_copy[AI] -= amount
+				ram_removal[AI] += amount
+				needed_amount -= amount
+				previous_ram -= amount
+				if(total_ram >= previous_ram)
+					break
+		if(total_ram < previous_ram)
+			message_admins("This is still super buggy! os-ram")
 	
 	for(var/A in ram_removal)
 		ram_assigned[A] = ram_assigned[A] - ram_removal[A]
