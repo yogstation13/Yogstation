@@ -795,7 +795,6 @@
 			to_chat(user, "[span_boldnotice("Transfer successful")]: [AI.name] ([rand(1000,9999)].exe) removed from [name] and stored within local memory.")
 
 		if(AI_MECH_HACK) //Called by AIs on the mech
-			AI.linked_core = new /obj/structure/AIcore/deactivated(AI.loc)
 			if(AI.can_dominate_mechs)
 				if(occupant) //Oh, I am sorry, were you using that?
 					to_chat(AI, span_warning("Pilot detected! Forced ejection initiated!"))
@@ -1053,6 +1052,7 @@
 	if(!occupant)
 		return
 	var/atom/movable/mob_container
+	var/is_ai_user = FALSE
 	occupant.clear_alert("charge")
 	occupant.clear_alert("mech damage")
 	if(ishuman(occupant))
@@ -1071,23 +1071,23 @@
 			silicon_pilot = FALSE
 			return
 		else
-			if(!AI.linked_core)
-				to_chat(AI, span_userdanger("Inactive core destroyed. Unable to return."))
-				AI.linked_core = null
-				return
-			to_chat(AI, span_notice("Returning to core..."))
+			to_chat(AI, span_notice("Attempting to return to core..."))
 			AI.controlled_mech = null
 			AI.remote_control = null
 			RemoveActions(occupant, 1)
 			mob_container = AI
-			newloc = get_turf(AI.linked_core)
-			qdel(AI.linked_core)
+			newloc = GLOB.primary_data_core ? GLOB.primary_data_core : GLOB.data_cores[1]
+			if(!newloc)
+				to_chat(AI, span_userdanger("No cores available. Core code corrupted. Goodbye."))
+				qdel(AI)
+				return
+			is_ai_user = TRUE
 	else
 		return
 	var/mob/living/L = occupant
 	occupant = null //we need it null when forceMove calls Exited().
 	silicon_pilot = FALSE
-	if(mob_container.forceMove(newloc))//ejecting mob container
+	if(mob_container.forceMove(newloc) && !is_ai_user)//ejecting mob container
 		log_message("[mob_container] moved out.", LOG_MECHA)
 		L << browse(null, "window=exosuit")
 
@@ -1101,6 +1101,10 @@
 			L.mobility_flags = NONE
 		icon_state = initial(icon_state)+"-open"
 		setDir(dir_in)
+		if(is_ai_user)
+			var/mob/living/silicon/ai/AI = occupant
+			AI.relocate(TRUE)
+
 
 	if(L && L.client)
 		L.update_mouse_pointer()

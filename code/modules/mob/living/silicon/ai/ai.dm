@@ -86,7 +86,6 @@
 	var/acceleration = 1
 	var/max_camera_sprint = 50
 
-	var/obj/structure/AIcore/deactivated/linked_core //For exosuit control
 	var/mob/living/silicon/robot/deployed_shell = null //For shell control
 	var/datum/action/innate/deploy_shell/deploy_action = new
 	var/datum/action/innate/deploy_last_shell/redeploy_action = new
@@ -118,7 +117,6 @@
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
-		// new/obj/structure/AIcore/deactivated(loc) //New empty terminal.
 		return INITIALIZE_HINT_QDEL //Delete AI.
 
 	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
@@ -863,8 +861,7 @@
 			return
 		ShutOffDoomsdayDevice()
 		builtInCamera.toggle_cam(user)
-		//var/obj/structure/AIcore/new_core = new /obj/structure/AIcore/deactivated(loc)//Spawns a deactivated terminal at AI location.
-		//new_core.circuit.battery = battery
+
 		ai_restore_power()//So the AI initially has power.
 		control_disabled = TRUE //Can't control things remotely if you're stuck in a card!
 		radio_enabled = FALSE 	//No talking on the built-in radio for you either!
