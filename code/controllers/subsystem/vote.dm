@@ -197,7 +197,11 @@ SUBSYSTEM_DEF(vote)
 				var/list/maps = list()
 				for(var/map in global.config.maplist)
 					var/datum/map_config/VM = config.maplist[map]
-					if(!VM.votable || (VM.map_name in SSpersistence.blocked_maps))
+					if(!VM.votable)
+						continue
+					if(VM.config_min_users > 0 && GLOB.clients.len < VM.config_min_users)
+						continue
+					if(VM.config_max_users > 0 && GLOB.clients.len > VM.config_max_users)
 						continue
 					maps += VM.map_name
 					shuffle_inplace(maps)
