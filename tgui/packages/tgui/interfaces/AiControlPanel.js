@@ -37,7 +37,7 @@ export const AiControlPanel = (props, context) => {
                   <Button icon="sign-out-alt" color="bad" onClick={() => act("log_out")}>Log Out</Button>
                 </Fragment>
               )}>
-                <NoticeBox>Upload also possible by inserting a Positronic Brain</NoticeBox>
+                <NoticeBox>Upload also possible by inserting an MMI or Positronic Brain</NoticeBox>
                 {!data.intellicard && (
                   <Flex align="center" justify="center">
                     <Flex.Item>

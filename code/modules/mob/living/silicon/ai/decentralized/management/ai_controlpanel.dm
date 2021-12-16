@@ -29,8 +29,8 @@
 		W.forceMove(src)
 		intellicard = W
 		return FALSE
-	if(istype(W, /obj/item/mmi/posibrain))
-		var/obj/item/mmi/posibrain/brain = W
+	if(istype(W, /obj/item/mmi))
+		var/obj/item/mmi/brain = W
 		if(!brain.brainmob)
 			to_chat(user, span_warning("[W] is not active!"))
 			return ..()
