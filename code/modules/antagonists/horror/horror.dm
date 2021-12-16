@@ -342,10 +342,12 @@
 	var/mob/living/carbon/C = choices.len > 1 ? input(src,"Who do you wish to infest?") in null|choices : choices[1]
 	if(!C || !src || !Adjacent(C))
 		return
-
 	if(C.has_horror_inside())
 		to_chat(src, span_warning("[C] is already infested!"))
 		return
+		
+	if(C.stat == DEAD) //hey look something's entered your head, maybe they'll try to revive you
+		victim.grab_ghost(force = TRUE)
 
 	to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at their ear canal..."))
 	if(!do_mob(src, C, 30))
