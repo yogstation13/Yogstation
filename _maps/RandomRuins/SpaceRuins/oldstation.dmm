@@ -705,10 +705,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/comm)
-"bQ" = (
-/obj/structure/AIcore/deactivated,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/ancientstation/deltaai)
 "bR" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -8797,6 +8793,9 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
+"XP" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/ancientstation/deltaai)
 "Yh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -12871,7 +12870,7 @@ gK
 ac
 ac
 ac
-bQ
+XP
 ac
 ac
 ac
