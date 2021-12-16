@@ -11,7 +11,7 @@ export const Vote = (props, context) => {
    */
   let windowTitle = 'Vote';
   if (mode) {
-    windowTitle += ': ' + (question || mode).replace(/^\w/, (c) => c.toUpperCase());
+    windowTitle += ': ' + (question || mode).replace(/^\w/, c => c.toUpperCase());
   }
 
   return (
@@ -126,7 +126,7 @@ const VotersList = (props, context) => {
     <Stack.Item>
       <Collapsible title={`View Voters${voting.length ? `: ${voting.length}` : ""}`}>
         <Section height={8} fill scrollable>
-          {voting.map((voter) => {
+          {voting.map(voter => {
             return <Box key={voter}>{voter}</Box>;
           })}
         </Section>
@@ -151,7 +151,7 @@ const ChoicesPanel = (props, context) => {
             {choices.map((choice, i) => (
               <Box key={choice.id}>
                 <LabeledList.Item
-                  label={choice.name.replace(/^\w/, (c) => c.toUpperCase())}
+                  label={choice.name.replace(/^\w/, c => c.toUpperCase())}
                   textAlign="right"
                   buttons={
                     <Button
