@@ -66,13 +66,16 @@
 	obj_flags |= EMAGGED
 
 /obj/machinery/computer/ai_control_console/process()
+	if(stat & (BROKEN|NOPOWER|EMPED))
+		return
+
 	if(downloading && download_progress >= 50 && !download_warning)
 		var/turf/T = get_turf(src)
 		to_chat(downloading, span_userdanger("Warning! Download is 50% completed! Download location: [get_area(src)] ([T.x], [T.y], [T.z])!"))
 		download_warning = TRUE
 	if(downloading && download_progress >= 100)
 		finish_download()
-
+	
 	if(downloading)
 		if(!downloading.can_download)
 			stop_download()
