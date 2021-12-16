@@ -124,14 +124,14 @@ export const AiDashboard = (props, context) => {
               <Section key={index} title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.available ? "Available" : "Unavailable"}</Box>)} buttons={(
                 <Fragment>
                   {!!project.can_be_run && (
-                      <Fragment>
-                        <Box inline bold>Assigned CPU:&nbsp;</Box>
-                        <NumberInput value={project.assigned_cpu} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_cpu', {
-                          project_name: project.name,
-                          amount: value,
-                        })} />
-                        <Box inline bold>&nbsp;THz</Box>
-                      </Fragment>
+                    <Fragment>
+                      <Box inline bold>Assigned CPU:&nbsp;</Box>
+                      <NumberInput value={project.assigned_cpu} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_cpu', {
+                        project_name: project.name,
+                        amount: value,
+                      })} />
+                      <Box inline bold>&nbsp;THz</Box>
+                    </Fragment>
                   )}
                 </Fragment>
               )}>
