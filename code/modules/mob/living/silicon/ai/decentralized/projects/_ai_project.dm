@@ -1,11 +1,13 @@
 //AI Project Categories.
 #define AI_PROJECT_HUDS "Sensor HUDs"
 #define AI_PROJECT_CAMERAS "Visiblity Upgrades"
+#define AI_PROJECT_INDUCTION "Induction"
 #define AI_PROJECT_MISC "Misc."
 
 GLOBAL_LIST_INIT(ai_project_categories, list(
 	AI_PROJECT_HUDS,
 	AI_PROJECT_CAMERAS,
+	AI_PROJECT_INDUCTION,
 	AI_PROJECT_MISC
 ))
 
@@ -23,6 +25,8 @@ GLOBAL_LIST_EMPTY(ai_projects)
 	var/running = FALSE
 	//Text for canResearch()
 	var/research_requirements = "None"
+	///Should we be able to even run this program?
+	var/can_be_run = TRUE 
 
 	var/mob/living/silicon/ai/ai
 	var/datum/ai_dashboard/dashboard
@@ -39,6 +43,8 @@ GLOBAL_LIST_EMPTY(ai_projects)
 
 /datum/ai_project/proc/run_project(force_run = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
+	if(!can_be_run)
+		return FALSE
 	if(!force_run)
 		if(!canRun())
 			return FALSE
