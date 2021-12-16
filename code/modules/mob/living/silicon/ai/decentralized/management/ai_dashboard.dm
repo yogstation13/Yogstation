@@ -31,7 +31,7 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 	if(user != owner || owner.incapacitated())
 		return FALSE
 	if(owner.control_disabled)
-		to_chat(user, "<span class='warning'>Wireless control is disabled.</span>")
+		to_chat(user, span_warning("Wireless control is disabled."))
 		return FALSE
 	return TRUE
 
@@ -105,21 +105,21 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 		if("run_project")
 			var/datum/ai_project/project = get_project_by_name(params["project_name"])
 			if(!project || !run_project(project))
-				to_chat(owner, "<span class='warning'>Unable to run the program '[params["project_name"]].'</span>")
+				to_chat(owner, span_warning("Unable to run the program '[params["project_name"]].'"))
 			else
-				to_chat(owner, "<span class='notice'>Spinning up instance of [params["project_name"]]...</span>")
+				to_chat(owner, span_notice("Spinning up instance of [params["project_name"]]..."))
 				. = TRUE
 		if("stop_project")
 			var/datum/ai_project/project = get_project_by_name(params["project_name"])
 			if(project)
 				stop_project(project) 
-				to_chat(owner, "<span class='notice'>Instance of [params["project_name"]] succesfully ended.</span>")
+				to_chat(owner, span_notice("Instance of [params["project_name"]] succesfully ended."))
 				. = TRUE
 		if("allocate_cpu")
 			var/datum/ai_project/project = get_project_by_name(params["project_name"])
 
 			if(!project || !set_project_cpu(project, text2num(params["amount"])))
-				to_chat(owner, "<span class='warning'>Unable to add CPU to [params["project_name"]]. Either not enough free CPU or project is unavailable.</span>")
+				to_chat(owner, span_warning("Unable to add CPU to [params["project_name"]]. Either not enough free CPU or project is unavailable."))
 			. = TRUE
 			
 /datum/ai_dashboard/proc/get_project_by_name(project_name, only_available = FALSE)
@@ -184,7 +184,7 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 	completed_projects += project
 	cpu_usage[project.name] = 0
 	if(notify_user)
-		to_chat(owner, "<span class='notice'>[project] has been completed. User input required.</span>")
+		to_chat(owner, span_notice("[project] has been completed. User input required."))
 	
 
 //Stuff is handled in here per tick :)
@@ -212,7 +212,7 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 					var/list/adm = get_admin_counts(R_BAN)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
-						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
+						to_chat(world, "[span_adminnotice("<b>Server Announces:</b>")]\n \t <h2> Please show this to Bibby: \
 						 Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len] round: [GLOB.round_id]</h2>")
 					else
 						message_admins("<h3>Averted crash in dashboard-ram loop. Following vars used: ram_used: [total_ram_used], current_ram: [current_ram], ram_usage length: [ram_usage.len] round: [GLOB.round_id]</h3>")
@@ -237,7 +237,7 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 					var/list/adm = get_admin_counts(R_BAN)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
-						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
+						to_chat(world, "[span_adminnotice("<b>Server Announces:</b>")]\n \t <h2> Please show this to Bibby: \
 						 Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len] round: [GLOB.round_id]</h2>")
 					else
 						message_admins("<h3>Averted crash in dashboard-cpu loop. Following vars used: cpu_used: [total_cpu_used], current_cpu: [current_cpu], cpu_usage length: [cpu_usage.len] round: [GLOB.round_id]</h3>")
@@ -253,7 +253,7 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 				break
 
 	if(reduction_of_resources)
-		to_chat(owner, "<span class='warning'>Lack of computational capacity. Some programs may have been stopped.</span>")
+		to_chat(owner, span_warning("Lack of computational capacity. Some programs may have been stopped."))
 
 	for(var/project_being_researched in cpu_usage)
 		if(!cpu_usage[project_being_researched])

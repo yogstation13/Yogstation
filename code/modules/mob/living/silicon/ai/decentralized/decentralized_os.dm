@@ -76,7 +76,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 					var/list/adm = get_admin_counts(R_BAN)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
-						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
+						to_chat(world, "[span_adminnotice("<b>Server Announces:</b>")]\n \t <h2> Please show this to Bibby: \
 						 Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len] round: [GLOB.round_id]</h2>")
 					else
 						message_admins("<h3>Averted crash in os-cpu loop. Following vars used: total_cpu: [total_cpu], previous_cpu: [previous_cpu], cpu_assigned length: [cpu_assigned.len] round: [GLOB.round_id]</h3>")
@@ -103,7 +103,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 					var/list/adm = get_admin_counts(R_BAN)
 					var/list/allmins = adm["total"]
 					if(!allmins.len)
-						to_chat(world, "<span class='adminnotice'><b>Server Announces:</b></span>\n \t <h2> Please show this to Bibby: \
+						to_chat(world, "[span_adminnotice("<b>Server Announces:</b>")]\n \t <h2> Please show this to Bibby: \
 						 Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len] round: [GLOB.round_id]</h2>")
 					else
 						message_admins("<h3>Averted crash in os-ram loop. Following vars used: total_ram: [total_ram], previous_ram: [previous_ram], ram_assigned length: [ram_assigned.len] round: [GLOB.round_id]</h3>")
@@ -126,7 +126,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 		cpu_assigned[A] = cpu_assigned[A] - cpu_removal[A]
 		affected_AIs |= A
 	
-	to_chat(affected_AIs, "<span class='warning'>You have been deducted processing capabilities. Please contact your network administrator if you believe this to be an error.</span>")
+	to_chat(affected_AIs, span_warning("You have been deducted processing capabilities. Please contact your network administrator if you believe this to be an error."))
 
 
 /datum/ai_os/proc/add_cpu(mob/living/silicon/ai/AI, amount)

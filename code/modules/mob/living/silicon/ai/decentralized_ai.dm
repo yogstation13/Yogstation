@@ -20,13 +20,13 @@
 		return //won't work if dead
 	var/mob/living/silicon/ai/A = usr
 	A.can_download = !A.can_download
-	to_chat(A, "<span class='warning'>You [A.can_download ? "enable" : "disable"] read/write permission to your memorybanks! You [A.can_download ? "CAN" : "CANNOT"] be downloaded!</span>")
+	to_chat(A, span_warning("You [A.can_download ? "enable" : "disable"] read/write permission to your memorybanks! You [A.can_download ? "CAN" : "CANNOT"] be downloaded!"))
 
 
 
 /mob/living/silicon/ai/proc/relocate(silent = FALSE)
 	if(!silent)
-		to_chat(src, "<span class='userdanger'>Connection to data core lost. Attempting to reaquire connection...</span>")
+		to_chat(src, span_userdanger("Connection to data core lost. Attempting to reaquire connection..."))
 	
 	if(!GLOB.data_cores.len)
 		INVOKE_ASYNC(src, /mob/living/silicon/ai.proc/death_prompt)
@@ -41,20 +41,20 @@
 		return
 
 	if(!silent)
-		to_chat(src, "<span class='danger'>Alternative data core detected. Rerouting connection...</span>")
+		to_chat(src, span_danger("Alternative data core detected. Rerouting connection..."))
 	new_data_core.transfer_AI(src)
 	
 
 /mob/living/silicon/ai/proc/death_prompt()
-	to_chat(src, "<span class='userdanger'>Unable to re-establish connection to data core. System shutting down...</span>")
+	to_chat(src, span_userdanger("Unable to re-establish connection to data core. System shutting down..."))
 	sleep(2 SECONDS)
-	to_chat(src, "<span class='info'>Is this the end of my journey?</span>")
+	to_chat(src, span_notice("Is this the end of my journey?"))
 	sleep(2 SECONDS)
-	to_chat(src, "<span class='info'>No... I must go on.</span>")
+	to_chat(src, span_notice("No... I must go on."))
 	sleep(2 SECONDS)
-	to_chat(src, "<span class='info'>They need me. No.. I need THEM.</span>")
+	to_chat(src, span_notice("They need me. No.. I need THEM."))
 	sleep(0.5 SECONDS)
-	to_chat(src, "<span class='danger'>System shutdown complete. Thank you for using NTOS.</span>")
+	to_chat(src, span_notice("System shutdown complete. Thank you for using NTOS."))
 	sleep(1.5 SECONDS)
 
 	adjustOxyLoss(200) //Die!!

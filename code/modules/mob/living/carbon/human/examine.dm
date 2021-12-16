@@ -431,7 +431,7 @@
 	var/t_his = p_their()
 	var/t_has = p_have()
 	var/t_is = p_are()
-
+	
 	. = list("<span class='info'>*---------*\nThis is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
