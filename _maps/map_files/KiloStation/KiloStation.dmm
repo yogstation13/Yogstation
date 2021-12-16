@@ -92182,20 +92182,6 @@
 /obj/item/clothing/mask/cigarette/cigar/cohiba,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
-"kSR" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/structure/table,
-/obj/item/hand_labeler,
-/obj/item/circuitboard/computer/ai_upload_download,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/hor)
 "kTk" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -101544,6 +101530,20 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"vhE" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/structure/table,
+/obj/item/hand_labeler,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/hor)
 "viP" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/turf_decal/stripes/corner{
@@ -143024,7 +143024,7 @@ smw
 ayt
 azR
 aAu
-kSR
+vhE
 aVJ
 aVJ
 aYU

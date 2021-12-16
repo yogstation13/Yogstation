@@ -60135,16 +60135,6 @@
 "nds" = (
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"nfL" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/sign/plaques/cave{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "ngU" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -63033,6 +63023,16 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"uRu" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/sign/plaques/cave{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "uUM" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer2{
@@ -113690,7 +113690,7 @@ bqk
 brp
 bmW
 bvK
-nfL
+uRu
 bys
 bzM
 bya

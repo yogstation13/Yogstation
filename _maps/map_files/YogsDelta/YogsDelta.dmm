@@ -126518,6 +126518,13 @@
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/wood,
 /area/medical/psych)
+"tcJ" = (
+/obj/structure/table/reinforced,
+/obj/item/aicard,
+/obj/effect/turf_decal/bot,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hor)
 "tdY" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue,
@@ -128872,13 +128879,6 @@
 /obj/machinery/griddle,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"xBj" = (
-/obj/structure/table/reinforced,
-/obj/item/aicard,
-/obj/effect/turf_decal/bot,
-/obj/item/circuitboard/computer/ai_upload_download,
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hor)
 "xBR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -163153,7 +163153,7 @@ cgA
 ceU
 dlE
 dmS
-xBj
+tcJ
 dqC
 drX
 dtq

@@ -79277,6 +79277,14 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
+"rTF" = (
+/obj/structure/table,
+/obj/item/aicard,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/heads/hor)
 "rTU" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -80025,14 +80033,6 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"sTq" = (
-/obj/structure/table,
-/obj/item/aicard,
-/obj/item/circuitboard/computer/ai_upload_download,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/heads/hor)
 "sTu" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/stripes/corner{
@@ -116271,7 +116271,7 @@ cdc
 crQ
 ctc
 ctT
-sTq
+rTF
 bHF
 cwS
 crQ

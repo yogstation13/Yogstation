@@ -87552,11 +87552,6 @@
 /obj/effect/turf_decal/tile/white,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"rLe" = (
-/obj/structure/rack,
-/obj/item/circuitboard/computer/ai_upload_download,
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hor)
 "rLM" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -89108,6 +89103,11 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
+"uRy" = (
+/obj/structure/rack,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hor)
 "uSP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/snack/random,
@@ -124351,7 +124351,7 @@ crA
 cvA
 cwh
 csO
-rLe
+uRy
 cOk
 aoU
 aaa

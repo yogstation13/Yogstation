@@ -35932,6 +35932,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"fdU" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/sign/plaques/cave{
+	pixel_y = 32
+	},
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "feu" = (
 /obj/machinery/nuclearbomb/selfdestruct,
 /obj/effect/turf_decal/tile/neutral,
@@ -64692,17 +64703,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"xAi" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/sign/plaques/cave{
-	pixel_y = 32
-	},
-/obj/item/circuitboard/computer/ai_upload_download,
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "xAP" = (
 /obj/structure/rack,
 /obj/item/electronics/airlock,
@@ -115419,7 +115419,7 @@ bqk
 brp
 bmW
 bvK
-xAi
+fdU
 bys
 bzM
 bya

@@ -8148,6 +8148,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"AC" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/ancientstation/deltaai)
 "AF" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -8571,9 +8574,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
-"QV" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/ancientstation/deltaai)
 "Re" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -12870,7 +12870,7 @@ gK
 ac
 ac
 ac
-QV
+AC
 ac
 ac
 ac
