@@ -160,7 +160,7 @@ GLOBAL_LIST_EMPTY(infection_gravity_spawns)
 		S.create_respawn_mob(T)
 		if(!infection_core)
 			// roundstart boys get gifts
-			S.add_points(1000)
+			S.add_points(400)
 			to_chat(S, "<b>It costs no points to revert your form before the meteor has landed, explore your evolutions while you have time.</b>")
 		S.update_icons()
 		S.infection_help()
