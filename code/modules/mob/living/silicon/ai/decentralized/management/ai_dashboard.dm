@@ -86,7 +86,7 @@ GLOBAL_VAR_INIT(sent_crash_message, FALSE)
 
 	for(var/datum/ai_project/AP as anything in available_projects)
 		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.canResearch(), "research_cost" = AP.research_cost, "research_progress" = AP.research_progress, 
-		"assigned_cpu" = cpu_usage[AP.name] ? cpu_usage[AP.name] : 0, "research_requirements" = AP.research_requirements, "category" = AP.category))
+		"assigned_cpu" = cpu_usage[AP.name] ? cpu_usage[AP.name] : 0, "research_requirements" = AP.research_requirements, "category" = AP.category, "can_be_run" = AP.can_be_run))
 
 
 	data["completed_projects"] = list()
