@@ -40,7 +40,7 @@
 	id.originalassignment = job.title
 	id.access |= job.minimal_access
 	id.update_label()
-	to_chat(user, span_notice("You apply [src] to [id], granting it the access of that job!"))
+	to_chat(user, span_notice("You apply [src] to [id], granting it the access of a [job.title]!"))
 	if (is_infiltrator(user))
 		to_chat(user, span_boldnotice("Ensure to properly update your chameleon clothes to reflect that of a [job.title]!"))
 	do_sparks(5, FALSE, user)
