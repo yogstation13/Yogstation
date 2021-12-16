@@ -23935,20 +23935,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"bxl" = (
-/obj/structure/rack,
-/obj/item/circuitboard/aicore{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/sign/plaques/cave{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "bxm" = (
 /obj/effect/spawner/xmastree/rdrod,
 /obj/effect/turf_decal/stripes/line{
@@ -35946,6 +35932,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"fdU" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/sign/plaques/cave{
+	pixel_y = 32
+	},
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "feu" = (
 /obj/machinery/nuclearbomb/selfdestruct,
 /obj/effect/turf_decal/tile/neutral,
@@ -115422,7 +115419,7 @@ bqk
 brp
 bmW
 bvK
-bxl
+fdU
 bys
 bzM
 bya

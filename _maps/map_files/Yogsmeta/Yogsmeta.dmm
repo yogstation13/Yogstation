@@ -59457,17 +59457,6 @@
 	dir = 5
 	},
 /area/crew_quarters/heads/hor)
-"cuP" = (
-/obj/structure/table,
-/obj/item/aicard,
-/obj/item/circuitboard/aicore{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/heads/hor)
 "cuQ" = (
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -79288,6 +79277,14 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
+"rTF" = (
+/obj/structure/table,
+/obj/item/aicard,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/heads/hor)
 "rTU" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -116274,7 +116271,7 @@ cdc
 crQ
 ctc
 ctT
-cuP
+rTF
 bHF
 cwS
 crQ

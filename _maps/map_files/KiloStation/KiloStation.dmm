@@ -98916,22 +98916,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/showroomfloor,
 /area/science/server)
-"smx" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/structure/table,
-/obj/item/hand_labeler,
-/obj/item/circuitboard/aicore{
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/hor)
 "snc" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -101546,6 +101530,20 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"vhE" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/structure/table,
+/obj/item/hand_labeler,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/hor)
 "viP" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/turf_decal/stripes/corner{
@@ -143026,7 +143024,7 @@ smw
 ayt
 azR
 aAu
-smx
+vhE
 aVJ
 aVJ
 aYU
