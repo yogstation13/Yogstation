@@ -85,6 +85,12 @@
 	desc = "Communicate mentally with your horror."
 	button_icon_state = "talk_to_horror"
 	blacklisted = TRUE
+	var/mob/living/O
+	
+/datum/action/innate/horror/talk_to_horror/IsAvailable()
+	if(owner.stat == DEAD)
+		return
+	return TRUE
 
 /datum/action/innate/horror/talk_to_horror/Activate()
 	var/mob/living/O = owner
