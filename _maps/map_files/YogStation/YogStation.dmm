@@ -53962,28 +53962,6 @@
 /obj/item/storage/box,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"qEj" = (
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 4;
-	icon_state = "right";
-	name = "Brig Infirmary";
-	red_alert_access = 1;
-	req_access_txt = "5";
-	req_one_access_txt = "5;3"
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "qEu" = (
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -60059,20 +60037,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
-"uzn" = (
-/obj/machinery/door/window/westleft{
-	dir = 4;
-	name = "Brig Infirmary";
-	red_alert_access = 1;
-	req_access_txt = "5";
-	req_one_access_txt = "5;3"
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "uzs" = (
 /obj/machinery/light{
 	dir = 8
@@ -64015,6 +63979,19 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"xit" = (
+/obj/machinery/door/window/westleft{
+	dir = 4;
+	name = "Brig Infirmary";
+	red_alert_access = 1;
+	req_access_txt = "5"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "xjm" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -64143,6 +64120,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"xng" = (
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	name = "Brig Infirmary";
+	red_alert_access = 1;
+	req_access_txt = "5"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "xnF" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -94889,8 +94887,8 @@ aiB
 acd
 agj
 ahm
-uzn
-qEj
+xit
+xng
 ctf
 agj
 ajA
