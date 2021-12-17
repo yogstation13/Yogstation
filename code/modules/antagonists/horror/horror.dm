@@ -482,12 +482,12 @@
 		if(horrorupgrades["paralysis"])
 			playsound(loc, "sound/effects/sparks4.ogg", 30, 1, -1)
 			M.Stun(50)
-			M.SetSleeping(70)
+			M.SetSleeping(70)  //knocked out cold
 			M.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, 1, FALSE)
 		else
 			to_chat(M, span_userdanger("You feel something wrapping around your leg, pulling you down!"))
 			playsound(loc, "sound/weapons/whipgrab.ogg", 30, 1, -1)
-			M.Stun(50)
+			M.Immobilize(50)
 			M.Knockdown(70)
 	used_freeze = world.time
 
