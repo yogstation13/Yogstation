@@ -543,9 +543,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		CL.logout(mob)
 
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
+
 	if(movingmob != null)
-		movingmob.client_mobs_in_contents -= mob
-		UNSETEMPTY(movingmob.client_mobs_in_contents)
+		LAZYREMOVE(movingmob.client_mobs_in_contents, mob)
 	seen_messages = null
 	Master.UpdateTickRate()
 	world.sync_logout_with_db(connection_number) // yogs - logout logging
