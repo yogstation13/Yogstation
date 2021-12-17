@@ -1,0 +1,181 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"g" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/unpowered)
+"m" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/unpowered)
+"r" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
+"s" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/unpowered)
+"u" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/unpowered)
+"A" = (
+/obj/machinery/computer{
+	desc = "A console meant for calling and sending a transit ferry. It seems iced-over and non-functional.";
+	dir = 1;
+	icon_screen = null;
+	name = "Shuttle Transist Console"
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/unpowered)
+"I" = (
+/obj/item/chair,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/unpowered)
+"S" = (
+/obj/machinery/door/airlock/shuttle,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/unpowered)
+"T" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall/mineral/titanium,
+/area/ruin/unpowered)
+"V" = (
+/turf/template_noop,
+/area/template_noop)
+"W" = (
+/obj/structure/chair,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/unpowered)
+"X" = (
+/obj/structure/chair,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/unpowered)
+"Y" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/unpowered)
+"Z" = (
+/turf/open/floor/plating/snowed/smoothed,
+/area/icemoon/surface/outdoors)
+
+(1,1,1) = {"
+V
+V
+V
+V
+r
+r
+r
+r
+r
+r
+r
+r
+r
+V
+"}
+(2,1,1) = {"
+V
+V
+r
+r
+r
+r
+r
+u
+T
+S
+T
+u
+r
+r
+"}
+(3,1,1) = {"
+r
+r
+r
+r
+r
+r
+r
+m
+X
+g
+Y
+m
+r
+r
+"}
+(4,1,1) = {"
+r
+r
+Z
+r
+Z
+Z
+Z
+m
+W
+g
+A
+m
+Z
+r
+"}
+(5,1,1) = {"
+r
+r
+r
+r
+r
+r
+r
+m
+I
+g
+s
+m
+r
+r
+"}
+(6,1,1) = {"
+V
+r
+r
+r
+r
+r
+r
+u
+T
+S
+T
+u
+r
+r
+"}
+(7,1,1) = {"
+V
+V
+V
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+V
+"}

@@ -1,0 +1,87 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/structure/chair/wood,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"i" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/maintenance/aft)
+"o" = (
+/obj/structure/table/wood,
+/obj/machinery/light/small,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/maintenance/aft)
+"y" = (
+/obj/structure/closet/crate/necropolis,
+/obj/item/clothing/head/helmet/gladiator,
+/obj/item/clothing/under/gladiator,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"z" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb,
+/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime,
+/obj/item/reagent_containers/food/drinks/soda_cans/sodawater,
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"E" = (
+/obj/item/paper_bin,
+/obj/item/pen/blue,
+/obj/item/pen/red,
+/obj/item/pen,
+/obj/structure/table_frame/wood,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"M" = (
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"O" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/maintenance/aft)
+"Y" = (
+/obj/structure/table/wood,
+/obj/item/toy/figure/wizard{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/storage/pill_bottle/dice,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"Z" = (
+/obj/structure/bookcase/random/fiction,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+
+(1,1,1) = {"
+i
+M
+Y
+"}
+(2,1,1) = {"
+M
+d
+o
+"}
+(3,1,1) = {"
+M
+M
+E
+"}
+(4,1,1) = {"
+z
+O
+M
+"}
+(5,1,1) = {"
+Z
+M
+y
+"}

@@ -1,0 +1,68 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"c" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/head/cone,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"e" = (
+/obj/structure/rack,
+/obj/item/toy/ammo/gun,
+/obj/item/toy/ammo/gun{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/revolver{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"l" = (
+/obj/structure/rack,
+/obj/item/toy/ammo/gun,
+/obj/item/toy/ammo/gun{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"s" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/toy/gun,
+/obj/item/toy/gun{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"M" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/clothing/head/cone,
+/turf/open/floor/plasteel,
+/area/template_noop)
+
+(1,1,1) = {"
+M
+b
+l
+"}
+(2,1,1) = {"
+b
+c
+b
+"}
+(3,1,1) = {"
+s
+b
+e
+"}

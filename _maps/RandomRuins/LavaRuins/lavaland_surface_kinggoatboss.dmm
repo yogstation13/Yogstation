@@ -1,0 +1,833 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/stone_tile/block/burnt,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"b" = (
+/obj/structure/mineral_door/transparent/diamond{
+	sheetAmount = 1
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered/kinggoatlair)
+"c" = (
+/obj/item/hatchet,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/kinggoatlair)
+"d" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"e" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/kinggoatlair)
+"f" = (
+/mob/living/simple_animal/hostile/retaliate/goat,
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/kinggoatlair)
+"g" = (
+/obj/effect/decal/cleanable/blood/old,
+/mob/living/simple_animal/hostile/retaliate/goat,
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/kinggoatlair)
+"h" = (
+/turf/closed/wall/mineral/gold,
+/area/ruin/powered/kinggoatlair)
+"i" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/kinggoatlair)
+"j" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/kinggoatlair)
+"k" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"m" = (
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/kinggoatlair)
+"n" = (
+/turf/open/floor/carpet/red,
+/area/ruin/powered/kinggoatlair)
+"o" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"p" = (
+/turf/template_noop,
+/area/template_noop)
+"q" = (
+/obj/effect/decal/cleanable/blood/old,
+/mob/living/simple_animal/hostile/retaliate/goat,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/kinggoatlair)
+"r" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"s" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/powered/kinggoatlair)
+"t" = (
+/obj/structure/mineral_door/iron,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/kinggoatlair)
+"u" = (
+/obj/structure/ladder/unbreakable{
+	desc = "This seems to be the ladder to the King of Goats lair. Looks to be a one way trip...";
+	id = "goatlayer";
+	name = "Ladder to the King of Goats Lair"
+	},
+/obj/item/gps/internal{
+	desc = "Something about this signal seems a bit more rich then the average signal.";
+	gpstag = "Bleating Signal";
+	name = "kinggoat"
+	},
+/turf/open/floor/mineral/diamond,
+/area/ruin/powered/kinggoatlair)
+"v" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/mineral/diamond,
+/area/ruin/powered/kinggoatlair)
+"x" = (
+/mob/living/simple_animal/hostile/retaliate/goat,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"y" = (
+/obj/structure/mineral_door/silver,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/kinggoatlair)
+"B" = (
+/obj/item/paper/crumpled{
+	info = "Lest ye be prepared, abandon all hope ye who enter here.";
+	name = "Wise Man's Warning"
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered/kinggoatlair)
+"C" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/mob_spawn/human/miner,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/kinggoatlair)
+"D" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"E" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/kinggoatlair)
+"F" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"G" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/twohanded/spear,
+/mob/living/simple_animal/hostile/retaliate/goat,
+/turf/open/floor/wood,
+/area/ruin/powered/kinggoatlair)
+"H" = (
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"I" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"J" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"K" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"L" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/kinggoatlair)
+"M" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"N" = (
+/turf/closed/wall/r_wall,
+/area/ruin/powered/kinggoatlair)
+"O" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/wood,
+/area/ruin/powered/kinggoatlair)
+"P" = (
+/turf/open/floor/mineral/gold,
+/area/ruin/powered/kinggoatlair)
+"Q" = (
+/obj/structure/stone_tile/slab/burnt,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"R" = (
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"S" = (
+/turf/open/floor/mineral/diamond,
+/area/ruin/powered/kinggoatlair)
+"T" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 10
+	},
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/kinggoatlair)
+"U" = (
+/turf/closed/wall/mineral/silver,
+/area/ruin/powered/kinggoatlair)
+"V" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/kinggoatlair)
+"W" = (
+/turf/open/floor/wood,
+/area/ruin/powered/kinggoatlair)
+"Y" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/carpet/red,
+/area/ruin/powered/kinggoatlair)
+"Z" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/mob_spawn/human/miner,
+/turf/open/floor/carpet/cyan,
+/area/ruin/powered/kinggoatlair)
+
+(1,1,1) = {"
+p
+p
+p
+p
+p
+p
+H
+H
+H
+H
+H
+H
+H
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+"}
+(2,1,1) = {"
+p
+p
+p
+H
+H
+H
+H
+H
+H
+H
+H
+H
+H
+H
+H
+H
+H
+p
+p
+p
+p
+p
+p
+"}
+(3,1,1) = {"
+p
+p
+p
+p
+p
+H
+H
+D
+D
+D
+D
+D
+H
+H
+H
+H
+H
+H
+H
+p
+p
+p
+p
+"}
+(4,1,1) = {"
+p
+p
+H
+H
+H
+H
+D
+D
+D
+D
+D
+D
+H
+H
+H
+D
+D
+D
+H
+p
+p
+p
+p
+"}
+(5,1,1) = {"
+p
+p
+H
+H
+H
+H
+N
+N
+s
+s
+N
+N
+s
+H
+H
+D
+r
+D
+K
+D
+D
+H
+p
+"}
+(6,1,1) = {"
+p
+D
+D
+H
+H
+H
+N
+m
+m
+m
+m
+m
+s
+s
+s
+N
+N
+D
+F
+K
+D
+H
+p
+"}
+(7,1,1) = {"
+p
+D
+D
+H
+D
+H
+s
+m
+Z
+L
+L
+T
+N
+O
+W
+W
+s
+H
+D
+D
+o
+o
+p
+"}
+(8,1,1) = {"
+p
+p
+D
+H
+H
+s
+s
+m
+m
+m
+m
+e
+N
+N
+W
+W
+s
+N
+D
+D
+x
+o
+o
+"}
+(9,1,1) = {"
+p
+p
+D
+H
+H
+N
+U
+U
+h
+U
+U
+E
+f
+y
+G
+W
+W
+N
+d
+J
+o
+o
+o
+"}
+(10,1,1) = {"
+p
+H
+H
+H
+H
+N
+U
+S
+P
+P
+U
+i
+Y
+y
+n
+n
+Y
+t
+k
+a
+o
+o
+o
+"}
+(11,1,1) = {"
+H
+H
+H
+D
+H
+N
+h
+P
+S
+P
+h
+n
+n
+N
+n
+C
+n
+N
+H
+H
+H
+o
+o
+"}
+(12,1,1) = {"
+H
+H
+D
+D
+H
+N
+U
+P
+u
+B
+b
+Y
+n
+s
+j
+n
+n
+s
+H
+H
+H
+H
+H
+"}
+(13,1,1) = {"
+H
+H
+D
+D
+D
+N
+h
+P
+v
+P
+h
+n
+n
+N
+n
+c
+n
+N
+d
+D
+H
+H
+o
+"}
+(14,1,1) = {"
+p
+H
+H
+H
+H
+N
+U
+S
+P
+P
+U
+i
+n
+y
+n
+q
+Y
+t
+Q
+I
+M
+o
+o
+"}
+(15,1,1) = {"
+p
+H
+H
+H
+H
+s
+U
+U
+h
+U
+U
+m
+V
+y
+W
+W
+W
+s
+Q
+D
+D
+o
+x
+"}
+(16,1,1) = {"
+p
+p
+p
+H
+H
+s
+s
+m
+m
+m
+g
+m
+s
+s
+W
+W
+s
+s
+R
+D
+D
+o
+o
+"}
+(17,1,1) = {"
+p
+D
+D
+D
+H
+H
+s
+m
+m
+m
+m
+m
+s
+O
+W
+W
+s
+H
+D
+D
+H
+H
+o
+"}
+(18,1,1) = {"
+p
+D
+D
+D
+H
+H
+s
+m
+m
+m
+m
+m
+N
+N
+N
+N
+N
+H
+H
+H
+p
+p
+p
+"}
+(19,1,1) = {"
+p
+D
+D
+D
+H
+H
+s
+s
+N
+N
+N
+N
+N
+H
+H
+D
+D
+D
+D
+H
+H
+p
+p
+"}
+(20,1,1) = {"
+p
+D
+D
+H
+H
+H
+H
+H
+H
+H
+H
+H
+H
+H
+D
+D
+D
+D
+D
+H
+H
+p
+p
+"}
+(21,1,1) = {"
+p
+p
+H
+H
+H
+D
+H
+D
+D
+D
+D
+H
+H
+H
+D
+D
+H
+H
+H
+H
+H
+p
+p
+"}
+(22,1,1) = {"
+p
+p
+H
+H
+H
+H
+H
+H
+D
+D
+D
+H
+H
+p
+H
+H
+H
+H
+H
+p
+p
+p
+p
+"}
+(23,1,1) = {"
+p
+p
+p
+p
+p
+H
+H
+H
+H
+H
+H
+H
+H
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+"}
+(24,1,1) = {"
+p
+p
+p
+p
+p
+p
+p
+H
+H
+H
+H
+H
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+"}

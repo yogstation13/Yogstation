@@ -1,0 +1,106 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/machinery/computer/arcade,
+/turf/open/floor/sepia{
+	blocks_air = 0;
+	slowdown = 10
+	},
+/area/ruin/powered)
+"e" = (
+/turf/open/floor/sepia{
+	blocks_air = 0;
+	slowdown = 10
+	},
+/area/ruin/powered)
+"f" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/turf/open/floor/sepia{
+	blocks_air = 0;
+	slowdown = 10
+	},
+/area/ruin/powered)
+"g" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered)
+"n" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ruin/powered)
+"q" = (
+/obj/item/coin/iron,
+/turf/open/floor/sepia{
+	blocks_air = 0;
+	slowdown = 10
+	},
+/area/ruin/powered)
+"y" = (
+/obj/structure/table/wood,
+/obj/item/paper/fluff/stations/lavaland/sloth,
+/turf/open/floor/sepia{
+	blocks_air = 0;
+	slowdown = 10
+	},
+/area/ruin/powered)
+"E" = (
+/obj/item/trash/syndi_cakes,
+/obj/item/trash/chips{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/obj/item/trash/can{
+	pixel_x = -8;
+	pixel_y = 10
+	},
+/turf/open/floor/sepia{
+	blocks_air = 0;
+	slowdown = 10
+	},
+/area/ruin/powered)
+"M" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/wood.dmi';
+	name = "sloth's house"
+	},
+/turf/open/floor/sepia{
+	blocks_air = 0;
+	slowdown = 10
+	},
+/area/ruin/powered)
+
+(1,1,1) = {"
+g
+g
+n
+g
+g
+"}
+(2,1,1) = {"
+g
+c
+q
+e
+g
+"}
+(3,1,1) = {"
+g
+e
+E
+e
+M
+"}
+(4,1,1) = {"
+g
+f
+e
+y
+g
+"}
+(5,1,1) = {"
+g
+g
+n
+g
+g
+"}

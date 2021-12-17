@@ -1,0 +1,3180 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/obj/structure/fluff/paper/corner,
+/turf/template_noop,
+/area/template_noop)
+"ac" = (
+/obj/structure/fluff/paper,
+/turf/template_noop,
+/area/template_noop)
+"ad" = (
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
+"ae" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/turf/template_noop,
+/area/template_noop)
+"af" = (
+/turf/closed/indestructible/paper,
+/area/ruin/powered)
+"ag" = (
+/obj/structure/fluff/paper{
+	dir = 10
+	},
+/turf/template_noop,
+/area/template_noop)
+"ah" = (
+/obj/structure/fluff/paper/corner,
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
+"ai" = (
+/obj/structure/fluff/paper{
+	dir = 6
+	},
+/turf/template_noop,
+/area/template_noop)
+"aw" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
+"aA" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"aK" = (
+/obj/structure/fluff/paper/stack{
+	dir = 9
+	},
+/obj/structure/fluff/paper,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"aV" = (
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/obj/structure/fluff/paper,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"aZ" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/item/toy/crayon/yellow,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"bc" = (
+/obj/structure/fluff/paper{
+	dir = 9
+	},
+/turf/template_noop,
+/area/template_noop)
+"bd" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/turf/template_noop,
+/area/template_noop)
+"be" = (
+/obj/structure/fluff/paper/corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/template_noop)
+"bf" = (
+/obj/structure/fluff/paper{
+	dir = 10
+	},
+/obj/structure/table/wood,
+/obj/item/storage/crayons,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"bn" = (
+/obj/structure/fluff/paper{
+	dir = 9
+	},
+/obj/structure/fluff/paper{
+	dir = 10
+	},
+/turf/template_noop,
+/area/template_noop)
+"bo" = (
+/obj/structure/fluff/paper/corner{
+	dir = 4
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
+"bw" = (
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/template_noop)
+"bx" = (
+/obj/structure/fluff/paper{
+	dir = 5
+	},
+/turf/template_noop,
+/area/template_noop)
+"bI" = (
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/obj/structure/fluff/paper/corner,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"cr" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"dm" = (
+/obj/structure/fluff/paper,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"ds" = (
+/obj/item/toy/crayon/blue,
+/mob/living/simple_animal/hostile/stickman/ranged,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"ey" = (
+/obj/structure/fluff/paper/stack,
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"eH" = (
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 6
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"fh" = (
+/obj/structure/fluff/paper/stack{
+	dir = 9
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"fj" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 6
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"fw" = (
+/obj/structure/fluff/paper,
+/mob/living/simple_animal/hostile/stickman/dog,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"fK" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"fU" = (
+/obj/structure/fluff/paper/corner{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"ga" = (
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"gH" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"he" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"jw" = (
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"jO" = (
+/mob/living/simple_animal/hostile/stickman/ranged,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"kw" = (
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"kD" = (
+/obj/structure/fluff/paper/corner,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"kW" = (
+/obj/structure/fluff/paper/stack{
+	dir = 9
+	},
+/obj/item/toy/crayon/purple,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"kY" = (
+/obj/structure/fluff/paper/stack{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"lK" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"lU" = (
+/obj/structure/fluff/paper{
+	dir = 6
+	},
+/obj/structure/fluff/paper{
+	dir = 5
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"mg" = (
+/obj/item/toy/crayon/spraycan,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"nB" = (
+/obj/machinery/door/airlock/freezer{
+	name = "airlock";
+	opacity = 0
+	},
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/obj/structure/fluff/paper,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"ok" = (
+/obj/structure/fluff/paper,
+/obj/structure/easel,
+/obj/item/paper/pamphlet/ruin/originalcontent/yelling,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"oJ" = (
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"pQ" = (
+/obj/machinery/door/airlock/freezer{
+	name = "airlock";
+	opacity = 0
+	},
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"qJ" = (
+/obj/structure/fluff/paper{
+	dir = 10
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/obj/structure/barricade/wooden,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"qZ" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"rr" = (
+/obj/item/toy/crayon/yellow,
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"rx" = (
+/obj/structure/easel,
+/obj/item/paper/pamphlet/ruin/originalcontent/stickman,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"rJ" = (
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/stickman,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"rU" = (
+/obj/structure/fluff/paper{
+	dir = 10
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"sk" = (
+/obj/structure/fluff/paper,
+/mob/living/simple_animal/hostile/stickman,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"sw" = (
+/obj/structure/fluff/paper{
+	dir = 6
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"sF" = (
+/obj/item/toy/crayon/red,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"tb" = (
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack,
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"tn" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"tP" = (
+/obj/item/storage/crayons,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"tR" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/stickman,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"tU" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack,
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"ui" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"ur" = (
+/obj/structure/fluff/paper,
+/obj/structure/fluff/paper/stack{
+	dir = 6
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"uu" = (
+/obj/structure/fluff/paper/corner,
+/obj/structure/fluff/paper/corner{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"uT" = (
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"vc" = (
+/obj/structure/fluff/paper{
+	dir = 9
+	},
+/obj/structure/closet/crate/bin,
+/obj/item/paper/crumpled/ruins/originalcontent,
+/obj/item/paper/crumpled/ruins/originalcontent,
+/obj/item/paper/crumpled/ruins/originalcontent,
+/obj/item/gps{
+	gpstag = "Pulpy Signal"
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"vf" = (
+/mob/living/simple_animal/hostile/stickman/dog,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"vs" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/item/toy/crayon/yellow,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"wp" = (
+/obj/structure/fluff/paper,
+/obj/structure/table/wood,
+/obj/item/storage/crayons,
+/obj/item/storage/crayons,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"xB" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/stickman/dog,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"xY" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/stickman/ranged,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"yd" = (
+/obj/structure/fluff/paper{
+	dir = 5
+	},
+/obj/structure/fluff/paper{
+	dir = 9
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"yF" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/item/toy/crayon/rainbow,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"zM" = (
+/obj/structure/fluff/paper,
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"zN" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/rainbow,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Ap" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"AR" = (
+/obj/item/paper/secretrecipe,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Bq" = (
+/obj/structure/fluff/paper/stack{
+	dir = 10
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"BB" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/obj/item/toy/crayon/red,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Cb" = (
+/obj/structure/fluff/paper/corner,
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Ce" = (
+/obj/structure/fluff/paper,
+/obj/structure/table/wood,
+/obj/item/storage/crayons,
+/obj/item/pen/fourcolor,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"CL" = (
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/obj/structure/fluff/paper{
+	dir = 5
+	},
+/obj/structure/barricade/wooden,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"DC" = (
+/obj/structure/fluff/paper{
+	dir = 10
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"DY" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 9
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Er" = (
+/obj/structure/fluff/paper,
+/obj/structure/fluff/paper/stack{
+	dir = 9
+	},
+/obj/item/toy/crayon/blue,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Ew" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/obj/structure/easel,
+/obj/item/paper/pamphlet/ruin/originalcontent/treeside,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"EU" = (
+/obj/structure/fluff/paper{
+	dir = 6
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Fn" = (
+/obj/structure/fluff/paper{
+	dir = 6
+	},
+/obj/structure/table/wood,
+/obj/item/canvas/twentythreeXtwentythree,
+/obj/item/canvas,
+/obj/item/canvas/nineteenXnineteen,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Fp" = (
+/obj/item/toy/crayon/yellow,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Fw" = (
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"FA" = (
+/obj/structure/fluff/paper/stack{
+	dir = 4
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Hp" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"IL" = (
+/obj/structure/fluff/paper{
+	dir = 5
+	},
+/obj/structure/table/wood,
+/obj/item/storage/crayons,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"IU" = (
+/mob/living/simple_animal/hostile/stickman,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Jv" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/fluff/paper/stack,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"JM" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/spraycan,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"KE" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/barricade/wooden,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Lh" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/stickman,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"LA" = (
+/obj/structure/fluff/paper/corner,
+/mob/living/simple_animal/hostile/stickman/dog,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"LL" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/stickman,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"LT" = (
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"NS" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Oi" = (
+/obj/item/toy/crayon/blue,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Ok" = (
+/obj/structure/fluff/paper/stack,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"OA" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/easel,
+/obj/item/paper/pamphlet/ruin/originalcontent/pennywise,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"OO" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/obj/structure/fluff/paper,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"PL" = (
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"PO" = (
+/mob/living/simple_animal/hostile/boss/paper_wizard,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"PZ" = (
+/obj/structure/fluff/paper{
+	dir = 10
+	},
+/obj/machinery/photocopier,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"QB" = (
+/obj/structure/fluff/paper,
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Ra" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/obj/structure/fluff/paper/corner,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Rd" = (
+/obj/structure/fluff/paper{
+	dir = 9
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Ro" = (
+/obj/item/toy/crayon/purple,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Si" = (
+/obj/structure/fluff/paper,
+/obj/structure/fluff/paper/corner{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"SB" = (
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/obj/structure/fluff/paper/corner,
+/mob/living/simple_animal/hostile/stickman,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"TM" = (
+/obj/structure/fluff/paper/corner,
+/obj/structure/fluff/paper/stack{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Uk" = (
+/obj/structure/fluff/paper{
+	dir = 5
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Vj" = (
+/obj/item/toner,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"WZ" = (
+/obj/structure/fluff/paper,
+/obj/item/paper/crumpled/ruins/originalcontent,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Xi" = (
+/obj/structure/fluff/paper,
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/stickman/dog,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Xn" = (
+/obj/structure/fluff/paper{
+	dir = 1
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 4
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Xv" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Yf" = (
+/obj/item/paper/crumpled/ruins/originalcontent,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Yh" = (
+/obj/structure/fluff/paper/corner{
+	dir = 1
+	},
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Zb" = (
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"Zy" = (
+/obj/structure/fluff/paper/corner{
+	dir = 8
+	},
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"ZA" = (
+/obj/machinery/door/airlock/freezer{
+	name = "airlock";
+	opacity = 0
+	},
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+"ZS" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 6
+	},
+/turf/open/indestructible/paper{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ae
+ae
+bw
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+af
+af
+bd
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ai
+af
+af
+bx
+bw
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+af
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ae
+ae
+ai
+af
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+af
+af
+af
+af
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ai
+af
+af
+af
+af
+af
+af
+af
+bx
+ae
+ae
+bw
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ae
+ae
+ae
+ai
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+bx
+ae
+ae
+ae
+ae
+ae
+bw
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+bx
+ae
+bw
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ae
+ai
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+bx
+ae
+ae
+ae
+ae
+bw
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+af
+af
+af
+af
+af
+af
+af
+Rd
+qZ
+qZ
+DC
+af
+Rd
+qZ
+qZ
+qZ
+qZ
+qZ
+qZ
+qZ
+qZ
+qZ
+DC
+af
+af
+af
+af
+af
+af
+af
+bx
+ae
+ae
+bw
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ai
+af
+af
+af
+af
+af
+af
+Rd
+uu
+aA
+aA
+rJ
+yF
+uu
+aA
+aA
+aA
+aA
+ZS
+aA
+LL
+LT
+uT
+WZ
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+bd
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+af
+af
+af
+af
+af
+af
+af
+fK
+dm
+af
+af
+Uk
+Ap
+EU
+af
+af
+af
+af
+af
+af
+af
+Uk
+aA
+zM
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+bd
+"}
+(14,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+af
+af
+af
+af
+af
+af
+af
+Hp
+dm
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+he
+DC
+af
+af
+af
+af
+af
+af
+bc
+aw
+aw
+be
+"}
+(15,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ae
+ai
+af
+af
+af
+af
+af
+af
+af
+fK
+dm
+af
+af
+af
+af
+Rd
+qZ
+qZ
+qZ
+DC
+af
+af
+af
+af
+af
+tR
+Er
+af
+af
+af
+bc
+aw
+aw
+be
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ac
+af
+af
+af
+af
+af
+af
+af
+af
+af
+Uk
+kw
+DC
+af
+af
+af
+fK
+uT
+uT
+uT
+Zb
+qZ
+DC
+af
+af
+af
+fK
+dm
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(17,1,1) = {"
+aa
+aa
+aa
+ab
+ae
+ai
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+fK
+dm
+af
+af
+Rd
+fU
+uT
+uT
+uT
+uT
+uT
+dm
+af
+af
+af
+Uk
+kw
+DC
+af
+af
+bd
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+aa
+aa
+ac
+af
+af
+af
+af
+af
+af
+Rd
+DC
+af
+af
+af
+af
+xB
+Zb
+aZ
+qZ
+fU
+fh
+uT
+jO
+uT
+uT
+Bq
+dm
+af
+af
+af
+af
+fK
+dm
+af
+af
+bd
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+ac
+af
+af
+af
+af
+af
+af
+fK
+dm
+af
+af
+af
+af
+Uk
+aA
+LT
+uT
+uT
+uT
+uT
+uT
+Vj
+vf
+uT
+Zb
+qZ
+DC
+af
+af
+fK
+dm
+af
+af
+bd
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+ab
+ai
+af
+af
+af
+af
+af
+af
+fK
+Zb
+DC
+af
+af
+af
+af
+af
+fK
+fh
+uT
+tP
+uT
+uT
+uT
+uT
+uT
+uT
+uT
+dm
+af
+af
+Uk
+kw
+DC
+af
+bx
+ae
+bw
+aa
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+ac
+af
+af
+af
+af
+af
+yd
+PL
+fU
+ga
+dm
+af
+af
+af
+af
+af
+Uk
+LT
+uT
+uT
+uT
+uT
+rx
+uT
+uT
+uT
+jO
+dm
+af
+af
+af
+fK
+dm
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+ab
+ae
+ai
+af
+af
+af
+af
+af
+af
+Uk
+aA
+bI
+jw
+lK
+PL
+qZ
+DC
+af
+af
+Uk
+LT
+jO
+kD
+aA
+aA
+tb
+uT
+uT
+tP
+dm
+af
+af
+af
+fK
+dm
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+ac
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+OO
+af
+af
+fK
+Ok
+dm
+af
+af
+af
+Uk
+LT
+dm
+af
+af
+fK
+Yf
+kY
+uT
+dm
+af
+af
+af
+fK
+ur
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+ac
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+Lh
+DC
+af
+Uk
+aA
+Yh
+qZ
+DC
+af
+af
+fK
+aK
+af
+af
+fK
+Ro
+uT
+uT
+Zb
+DC
+af
+af
+Ra
+EU
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+ac
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+fK
+dm
+af
+af
+af
+fK
+uT
+dm
+af
+af
+fK
+Zb
+qZ
+rr
+fU
+uT
+uT
+Fp
+uT
+dm
+af
+af
+Xi
+af
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(26,1,1) = {"
+ac
+af
+af
+af
+Rd
+qZ
+qZ
+DC
+af
+af
+af
+fK
+fw
+af
+af
+af
+Uk
+DY
+kw
+DC
+af
+fK
+uT
+uT
+uT
+ds
+uT
+Ro
+uT
+uT
+dm
+af
+af
+QB
+af
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(27,1,1) = {"
+ac
+af
+af
+af
+fK
+uT
+uT
+dm
+af
+af
+af
+Uk
+jw
+rU
+af
+af
+af
+af
+BB
+dm
+af
+fK
+uT
+ga
+kD
+vs
+Cb
+aA
+aA
+LT
+dm
+af
+af
+QB
+af
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(28,1,1) = {"
+ac
+af
+af
+af
+fK
+Yf
+uT
+dm
+af
+af
+af
+af
+af
+he
+DC
+af
+af
+af
+fK
+sk
+af
+fK
+uT
+uT
+dm
+af
+nB
+af
+af
+Uk
+jw
+rU
+af
+he
+DC
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(29,1,1) = {"
+ac
+af
+af
+af
+fK
+uT
+uT
+Zb
+DC
+af
+af
+af
+af
+Uk
+aV
+af
+af
+af
+Ra
+EU
+af
+fK
+Ok
+uT
+dm
+af
+Xn
+DC
+af
+af
+af
+lU
+af
+Uk
+zM
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(30,1,1) = {"
+ac
+af
+af
+Rd
+fU
+uT
+uT
+ey
+SB
+KE
+qJ
+af
+af
+af
+OO
+af
+af
+Rd
+Si
+af
+af
+fK
+uT
+uT
+dm
+af
+fK
+AR
+OA
+bf
+af
+af
+af
+af
+he
+DC
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(31,1,1) = {"
+ac
+af
+af
+fK
+uT
+uT
+uT
+uT
+dm
+af
+CL
+cr
+cr
+cr
+sw
+af
+af
+fK
+dm
+af
+af
+Uk
+aA
+aA
+EU
+af
+tU
+uT
+uT
+Zb
+Jv
+qZ
+PZ
+af
+fK
+dm
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(32,1,1) = {"
+ad
+ag
+af
+fK
+uT
+IU
+uT
+uT
+dm
+af
+af
+af
+af
+af
+af
+af
+af
+fK
+dm
+af
+af
+af
+af
+af
+af
+af
+fK
+oJ
+Oi
+uT
+kY
+uT
+Ce
+af
+Uk
+kw
+DC
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(33,1,1) = {"
+aa
+ac
+af
+fK
+uT
+uT
+uT
+uT
+Zb
+DC
+af
+af
+af
+af
+af
+af
+af
+fK
+dm
+af
+af
+af
+af
+af
+af
+vc
+fU
+Ro
+tP
+kW
+uT
+uT
+ok
+af
+af
+fK
+dm
+af
+bx
+bw
+aa
+aa
+aa
+"}
+(34,1,1) = {"
+aa
+ac
+af
+fK
+uT
+uT
+uT
+uT
+uT
+Zb
+qZ
+DC
+af
+af
+af
+af
+af
+Uk
+Yh
+DC
+af
+af
+af
+af
+af
+Ew
+Vj
+uT
+sF
+PO
+uT
+TM
+EU
+af
+af
+fK
+dm
+af
+af
+bd
+aa
+aa
+aa
+"}
+(35,1,1) = {"
+aa
+ac
+af
+Uk
+aA
+FA
+uT
+uT
+uT
+uT
+uT
+dm
+af
+af
+af
+af
+af
+af
+fK
+dm
+af
+af
+af
+af
+af
+IL
+aA
+eH
+uT
+uT
+uT
+wp
+af
+af
+Rd
+fU
+dm
+af
+af
+bd
+aa
+aa
+aa
+"}
+(36,1,1) = {"
+aa
+ac
+af
+af
+af
+fK
+uT
+uT
+IU
+Yf
+uT
+Zb
+DC
+af
+af
+af
+af
+af
+Uk
+Yh
+NS
+DC
+af
+af
+af
+af
+af
+Uk
+zN
+JM
+Xv
+Fn
+af
+af
+fK
+uT
+dm
+af
+af
+bd
+aa
+aa
+aa
+"}
+(37,1,1) = {"
+aa
+ah
+ZA
+ui
+pQ
+Fw
+uT
+uT
+uT
+uT
+uT
+uT
+Zb
+qZ
+DC
+af
+af
+af
+af
+fK
+mg
+dm
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+xY
+uT
+dm
+af
+af
+bd
+aa
+aa
+aa
+"}
+(38,1,1) = {"
+aa
+ac
+af
+af
+af
+Uk
+LT
+uT
+uT
+uT
+uT
+Bq
+uT
+uT
+dm
+af
+af
+af
+af
+Uk
+aA
+Zy
+PL
+qZ
+DC
+af
+af
+af
+af
+af
+af
+af
+Rd
+fj
+uu
+aA
+EU
+af
+af
+bd
+aa
+aa
+aa
+"}
+(39,1,1) = {"
+aa
+ad
+ag
+af
+af
+af
+Uk
+aA
+aA
+LT
+uT
+uT
+uT
+LA
+EU
+af
+af
+af
+af
+af
+af
+af
+fK
+jO
+dm
+af
+af
+af
+af
+Rd
+qZ
+qZ
+uu
+aA
+EU
+af
+af
+af
+af
+bd
+aa
+aa
+aa
+"}
+(40,1,1) = {"
+aa
+aa
+ad
+ag
+af
+af
+af
+af
+af
+Uk
+aA
+aA
+LT
+dm
+af
+af
+af
+af
+af
+af
+af
+af
+Uk
+aA
+gH
+cr
+cr
+cr
+cr
+tn
+Ap
+aA
+EU
+af
+af
+af
+af
+af
+bc
+be
+aa
+aa
+aa
+"}
+(41,1,1) = {"
+aa
+aa
+aa
+ad
+ag
+af
+af
+af
+af
+af
+af
+af
+Uk
+EU
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(42,1,1) = {"
+aa
+aa
+aa
+aa
+ad
+aw
+ag
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+bn
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+"}
+(43,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+af
+af
+af
+af
+af
+af
+af
+af
+af
+bc
+aw
+aw
+bo
+aw
+aw
+aw
+ag
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+bc
+aw
+aw
+be
+aa
+aa
+aa
+aa
+"}
+(44,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+aw
+aw
+ag
+af
+af
+af
+af
+af
+af
+bd
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+be
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(45,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+aw
+aw
+aw
+aw
+aw
+aw
+be
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

@@ -1,0 +1,55 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"e" = (
+/obj/item/toy/figure/hop,
+/obj/structure/chair/office{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/template_noop)
+"h" = (
+/obj/item/chair,
+/turf/open/floor/plating,
+/area/template_noop)
+"i" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/britcup,
+/turf/open/floor/wood,
+/area/template_noop)
+"y" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/item/toy/figure/cmo,
+/turf/open/floor/wood,
+/area/template_noop)
+"F" = (
+/turf/open/floor/wood,
+/area/template_noop)
+"G" = (
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating,
+/area/template_noop)
+"K" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"X" = (
+/obj/structure/chair/office,
+/obj/item/toy/figure/captain,
+/turf/open/floor/wood,
+/area/template_noop)
+
+(1,1,1) = {"
+G
+h
+F
+"}
+(2,1,1) = {"
+X
+i
+e
+"}
+(3,1,1) = {"
+K
+y
+K
+"}

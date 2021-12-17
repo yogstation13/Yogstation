@@ -1,0 +1,21 @@
+###############################################################################################
+# Basically, ckey goes first. Rank goes after the "="                                         #
+# Case is not important for ckey.                                                             #
+# Case IS important for the rank.                                                             #
+# Ranks can be anything defined in admin_ranks.txt                                            #
+# NOTE: if the rank-name cannot be found in admin_ranks.txt, they will not be adminned! ~Carn #
+# If SQL-based admin loading is enabled, admins listed here will always be loaded first		  #
+# and will override any duplicate entries in the database.									  #
+###############################################################################################
+
+AshCorr	=	Host
+Xantam	=	Host
+ 
+Ynot01  =   Council Member
+MenacingManatee = Council Member
+Num1bamf = Council Member
+adamsogm = Council Member
+zxmongoose = Council Member
+ 
+jamied12	=	Head Developer
+theos		=	Head Developer

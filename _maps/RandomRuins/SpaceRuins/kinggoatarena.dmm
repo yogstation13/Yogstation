@@ -1,0 +1,643 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/riveted,
+/area/ruin/powered/kinggoat_arena)
+"b" = (
+/turf/open/indestructible/carpet,
+/area/ruin/powered/kinggoat_arena)
+"d" = (
+/obj/structure/bed,
+/obj/item/bedsheet/yellow,
+/mob/living/simple_animal/hostile/retaliate/goat/guard/harem,
+/turf/open/indestructible/carpet{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"f" = (
+/turf/open/indestructible{
+	icon_state = "silver";
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"h" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/indestructible/carpet,
+/area/ruin/powered/kinggoat_arena)
+"i" = (
+/mob/living/simple_animal/hostile/retaliate/goat/huge,
+/obj/structure/lattice/catwalk,
+/turf/open/lava,
+/area/ruin/powered/kinggoat_arena)
+"j" = (
+/obj/structure/fluff/big_chain,
+/turf/open/indestructible{
+	icon_state = "engine"
+	},
+/area/ruin/powered/kinggoat_arena)
+"k" = (
+/turf/open/lava,
+/area/ruin/powered/kinggoat_arena)
+"l" = (
+/obj/effect/mob_spawn/human/miner/explorer{
+	mob_gender = "female";
+	mob_name = "Lyna Lavas";
+	name = "Lyna Lavas"
+	},
+/obj/item/stack/ore/bluespace_crystal,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/indestructible{
+	icon_state = "engine"
+	},
+/area/ruin/powered/kinggoat_arena)
+"n" = (
+/turf/open/indestructible{
+	icon_state = "diamond";
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"p" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/indestructible{
+	icon_state = "engine"
+	},
+/area/ruin/powered/kinggoat_arena)
+"t" = (
+/obj/structure/ladder/unbreakable{
+	desc = "This seems to be the ladder to the King of Goats' lair. Looks to be a one way trip...";
+	height = 1;
+	id = "goatlayer";
+	name = "Ladder to the King of Goats Lair"
+	},
+/turf/open/indestructible/carpet,
+/area/ruin/powered/kinggoat_arena)
+"u" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/indestructible{
+	icon_state = "engine"
+	},
+/area/ruin/powered/kinggoat_arena)
+"v" = (
+/obj/structure/table/wood,
+/obj/item/clothing/head/crown/fancy,
+/turf/open/indestructible/carpet{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"z" = (
+/obj/structure/chair/bronze,
+/mob/living/simple_animal/hostile/retaliate/goat/king,
+/turf/open/indestructible{
+	icon_state = "gold";
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"A" = (
+/turf/open/indestructible{
+	icon_state = "gold";
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"B" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/indestructible/carpet,
+/area/ruin/powered/kinggoat_arena)
+"C" = (
+/obj/structure/bed,
+/obj/item/bedsheet/yellow,
+/turf/open/indestructible/carpet{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"D" = (
+/turf/open/indestructible/carpet{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"E" = (
+/obj/effect/portal/permanent/one_way/keep{
+	id = "king goat arena";
+	name = "king goat arena portal";
+	teleport_channel = "free"
+	},
+/turf/open/indestructible/carpet,
+/area/ruin/powered/kinggoat_arena)
+"G" = (
+/turf/open/indestructible/hoteltile,
+/area/ruin/powered/kinggoat_arena)
+"I" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/indestructible/carpet,
+/area/ruin/powered/kinggoat_arena)
+"J" = (
+/obj/structure/lattice/catwalk,
+/turf/open/lava,
+/area/ruin/powered/kinggoat_arena)
+"K" = (
+/mob/living/simple_animal/hostile/retaliate/goose{
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0);
+	damage_coeff = list("brute" = 0, "fire" = 0, "toxin" = 0, "clone" = 0, "stamina" = 0, "oxygen" = 0);
+	desc = "If you are alive and reading this you should not be in this room and should prob tell a admin how you got here.";
+	name = "The Paradox Goose"
+	},
+/turf/open/indestructible/hoteltile,
+/area/ruin/powered/kinggoat_arena)
+"L" = (
+/mob/living/simple_animal/hostile/retaliate/goat/guard/harem,
+/turf/open/indestructible{
+	icon_state = "gold";
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"M" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/indestructible/carpet,
+/area/ruin/powered/kinggoat_arena)
+"N" = (
+/obj/structure/dresser,
+/turf/open/indestructible/carpet{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"P" = (
+/turf/open/indestructible{
+	icon_state = "engine"
+	},
+/area/ruin/powered/kinggoat_arena)
+"Q" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/lava,
+/area/ruin/powered/kinggoat_arena)
+"R" = (
+/mob/living/simple_animal/hostile/retaliate/goat/guard/pope,
+/obj/structure/chair/wood,
+/turf/open/indestructible{
+	icon_state = "gold";
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"T" = (
+/obj/machinery/door/airlock/gold/glass{
+	desc = "Once you go in the portal past this door there is no going back...";
+	name = "POINT OF NO RETURN"
+	},
+/turf/open/indestructible/carpet,
+/area/ruin/powered/kinggoat_arena)
+"V" = (
+/obj/effect/portal/permanent/one_way/destroy{
+	id = "king goat arena";
+	name = "king goat arena portal";
+	teleport_channel = "free"
+	},
+/turf/open/indestructible/carpet{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/kinggoat_arena)
+"W" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/indestructible{
+	icon_state = "engine"
+	},
+/area/ruin/powered/kinggoat_arena)
+"Y" = (
+/obj/effect/mob_spawn/human/miner/rig,
+/turf/open/lava,
+/area/ruin/powered/kinggoat_arena)
+"Z" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/indestructible/carpet,
+/area/ruin/powered/kinggoat_arena)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+n
+A
+n
+A
+n
+A
+n
+A
+n
+a
+G
+G
+G
+G
+a
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+a
+"}
+(3,1,1) = {"
+a
+f
+f
+f
+f
+f
+f
+f
+f
+f
+a
+G
+G
+G
+G
+a
+k
+j
+k
+k
+k
+j
+k
+k
+k
+j
+k
+k
+Q
+a
+"}
+(4,1,1) = {"
+a
+f
+f
+f
+f
+f
+f
+f
+f
+f
+a
+G
+G
+G
+G
+a
+k
+l
+k
+k
+k
+P
+k
+Y
+k
+W
+k
+k
+k
+a
+"}
+(5,1,1) = {"
+a
+A
+A
+A
+A
+A
+A
+A
+A
+A
+a
+G
+a
+a
+a
+a
+k
+u
+k
+k
+k
+u
+k
+k
+k
+u
+k
+k
+k
+a
+"}
+(6,1,1) = {"
+a
+R
+A
+D
+D
+D
+D
+D
+D
+D
+a
+G
+a
+b
+b
+a
+J
+J
+J
+J
+J
+J
+J
+J
+J
+J
+J
+B
+h
+a
+"}
+(7,1,1) = {"
+a
+z
+D
+D
+D
+D
+D
+D
+D
+V
+a
+K
+a
+E
+b
+T
+J
+J
+J
+J
+J
+i
+J
+J
+J
+J
+J
+Z
+t
+a
+"}
+(8,1,1) = {"
+a
+L
+A
+D
+D
+D
+D
+D
+D
+D
+a
+G
+a
+b
+b
+a
+J
+J
+J
+J
+J
+J
+J
+J
+J
+J
+J
+I
+M
+a
+"}
+(9,1,1) = {"
+a
+L
+A
+A
+A
+A
+A
+A
+A
+A
+a
+G
+a
+a
+a
+a
+k
+p
+k
+k
+k
+p
+k
+k
+k
+p
+k
+k
+k
+a
+"}
+(10,1,1) = {"
+a
+f
+f
+f
+f
+f
+f
+f
+f
+f
+a
+G
+G
+G
+G
+a
+k
+P
+k
+k
+k
+P
+k
+k
+k
+P
+k
+k
+k
+a
+"}
+(11,1,1) = {"
+a
+f
+D
+D
+D
+D
+f
+f
+f
+f
+a
+G
+G
+G
+G
+a
+k
+j
+k
+k
+k
+j
+k
+k
+k
+j
+k
+Q
+k
+a
+"}
+(12,1,1) = {"
+a
+n
+N
+d
+C
+v
+A
+n
+A
+n
+a
+G
+G
+G
+G
+a
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
