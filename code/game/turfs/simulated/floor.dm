@@ -116,7 +116,6 @@
 	return
 
 /turf/open/floor/proc/update_icon()
-	update_visuals()
 	return 1
 
 /turf/open/floor/attack_paw(mob/user)
