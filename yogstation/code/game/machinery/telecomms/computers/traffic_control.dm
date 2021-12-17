@@ -235,7 +235,7 @@
 					screen = 0
 
 			if("editcode")
-				if(is_banned_from(usr.ckey, "Signal Technician"))
+				if(is_banned_from(usr.ckey, "Network Admin"))
 					to_chat(usr, span_warning("You are banned from using NTSL."))
 					return
 				if(editingcode == usr)

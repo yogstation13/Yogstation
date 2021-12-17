@@ -413,10 +413,10 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/clown
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
-/datum/outfit/job/plasmaman/sigtech
-	name = "Plasmaman Signal Technician"
+/datum/outfit/job/plasmaman/network_admin
+	name = "Plasmaman Network Admin"
 	
-	jobtype = /datum/job/signal_tech
+	jobtype = /datum/job/network_admin
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full

@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(original_engineering_positions, list(
 	"Chief Engineer",
 	"Station Engineer",
 	"Atmospheric Technician",
-	"Signal Technician"))
+	"Network Admin"))
 
 GLOBAL_LIST_INIT(original_medical_positions, list(
 	"Chief Medical Officer",

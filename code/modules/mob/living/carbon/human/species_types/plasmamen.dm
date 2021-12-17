@@ -129,8 +129,8 @@
 		if("Clown")
 			O = new /datum/outfit/job/plasmaman/clown
 
-		if("Signal Technician")
-			O = new /datum/outfit/job/plasmaman/sigtech
+		if("Network Admin")
+			O = new /datum/outfit/job/plasmaman/network_admin
 
 		if("Mining Medic")
 			O = new /datum/outfit/job/plasmaman/miningmedic

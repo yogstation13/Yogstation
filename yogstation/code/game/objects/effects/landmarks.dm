@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon_state = "Mining Medic"
 
 /obj/effect/landmark/start/yogs/signal_technician
-	name = "Signal Technician"
+	name = "Network Admin"
 	icon_state = "Signal Technician"
 
 /obj/effect/landmark/start/yogs/clerk

@@ -18,7 +18,7 @@
 	"Chief Medical Officer" = list("medical","silver"),
 	"Station Engineer" = list("engineering","yellow"),
 	"Atmospheric Technician" = list("engineering","white"),
-	"Signal Technician" = list("engineering","green"),
+	"Network Admin" = list("engineering","green"),
 	"Medical Doctor" = list("medical","blue"),
 	"Geneticist" = list("medical","purple"),
 	"Virologist" = list("medical","green"),

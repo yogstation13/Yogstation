@@ -188,7 +188,7 @@
 	name = "the telecommunications blackbox."
 	targetitem = /obj/item/blackbox
 	difficulty = 10
-	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician","Signal Technician")
+	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician","Network Admin")
 
 //Unique Objectives
 /datum/objective_item/unique/docs_red

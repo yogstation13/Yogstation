@@ -131,8 +131,8 @@
 	machine_name = "AtmosDrobe"
 
 /obj/machinery/vending/wardrobe/sig_wardrobe
-	name = "SigDrobe"
-	desc = "A rarely used vending machine that provides clothing for Signal Technicians."
+	name = "AdminDrobe"
+	desc = "A rarely used vending machine that provides clothing for Network Admins."
 	icon_state = "sigdrobe"
 	product_ads = "Dress to impress yourself!;The drones will love you!;Get your clothing here!"
 	vend_reply = "Thank you for using the SigDrobe!"
