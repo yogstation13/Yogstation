@@ -263,7 +263,7 @@
 /obj/effect/mine/pickup/bloodbath
 	name = "Red Orb"
 	desc = "You feel angry just looking at it."
-	duration = 1200 //2min
+	duration = 2 MINUTES //2min
 	color = "#FF0000"
 
 /obj/effect/mine/pickup/bloodbath/mineEffect(mob/living/carbon/victim)
