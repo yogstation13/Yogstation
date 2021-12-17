@@ -381,16 +381,16 @@
 	desc = "Your skin adapts to sustained damage and slowly regenerates itself, healing your wounds over time."
 	soul_price = 1
 
-//Triples horror's health pool
+//Doubles horror's health pool
 /datum/horror_upgrade/hp_up
 	name = "Rhino skin"  //Horror can....roll?
 	id = "hp_up"
-	desc = "Your skin becomes hard as rock, greatly increasing your maximum health - and odds of survival outside of host."
+	desc = "Your skin becomes hard as rock, greatly increasing your maximum health - and odds of survival outside of a host."
 	soul_price = 2
 
 /datum/horror_upgrade/hp_up/apply_effects()
-	B.health = round(min(B.maxHealth,B.health * 3))
-	B.maxHealth = round(B.maxHealth * 3)
+	B.health = round(min(B.maxHealth,B.health * 2))
+	B.maxHealth = round(B.maxHealth * 2)
 
 //Makes horror almost invisible for a short time after leaving a host
 /datum/horror_upgrade/invisibility
