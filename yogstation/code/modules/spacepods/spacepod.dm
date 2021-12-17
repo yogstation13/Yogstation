@@ -85,10 +85,10 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	cabin_air = new
 	cabin_air.set_temperature(T20C)
 	cabin_air.set_volume(200)
-	/*cabin_air.assert_gas(/datum/gas/oxygen)
-	cabin_air.assert_gas(/datum/gas/nitrogen)
-	cabin_air.gases[/datum/gas/oxygen][MOLES] = ONE_ATMOSPHERE*O2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)
-	cabin_air.gases[/datum/gas/nitrogen][MOLES] = ONE_ATMOSPHERE*N2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)*/
+	/*cabin_air.assert_gas(GAS_O2)
+	cabin_air.assert_gas(GAS_N2)
+	cabin_air.gases[GAS_O2][MOLES] = ONE_ATMOSPHERE*O2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)
+	cabin_air.gases[GAS_N2][MOLES] = ONE_ATMOSPHERE*N2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)*/
 
 /obj/spacepod/Destroy()
 	GLOB.spacepods_list -= src

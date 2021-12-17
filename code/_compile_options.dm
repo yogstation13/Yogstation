@@ -56,8 +56,6 @@
 #define TESTING
 #endif
 
-#define EXTOOLS (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so")
-
 //If you update these values, update the message in the #error
 #define MAX_BYOND_MAJOR 514
 #define MAX_BYOND_MINOR 1569

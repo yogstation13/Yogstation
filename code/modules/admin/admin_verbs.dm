@@ -173,6 +173,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/callproc,
 	/client/proc/callproc_datum,
 	/client/proc/cmd_admin_list_open_jobs,
+	/client/proc/fixcorruption,
 	#ifdef TESTING //Xoxeyos 3/14/2021
 	/client/proc/export_dynamic_json,
 	/client/proc/run_dynamic_simulations,

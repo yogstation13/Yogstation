@@ -30,7 +30,7 @@
 			return FALSE
 	return TRUE
 
-/obj/effect/clockwork/servant_blocker/BlockSuperconductivity()
+/obj/effect/clockwork/servant_blocker/BlockThermalConductivity()
 	return TRUE
 
 /obj/effect/clockwork/servant_blocker/singularity_act()

@@ -200,7 +200,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/Initialize()
 	. = ..()
 	uid = gl_uid++
-	SSair.atmos_machinery += src
+	SSair.atmos_air_machinery += src
 	countdown = new(src)
 	countdown.start()
 	GLOB.poi_list |= src
@@ -216,7 +216,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/Destroy()
 	investigate_log("has been destroyed.", INVESTIGATE_SUPERMATTER)
-	SSair.atmos_machinery -= src
+	SSair.atmos_air_machinery -= src
 	QDEL_NULL(radio)
 	GLOB.poi_list -= src
 	QDEL_NULL(countdown)
@@ -421,7 +421,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	if(produces_gas)
 		//Remove gas from surrounding area
-		removed = env.remove(gasefficency * env.total_moles())
+		removed = env.remove_ratio(gasefficency)
 	else
 		// Pass all the gas related code an empty gas container
 		removed = new()
@@ -448,17 +448,17 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		// Calculate the gas mix ratio
 		combined_gas = max(removed.total_moles(), 0)
 
-		var/plasmacomp = max(removed.get_moles(/datum/gas/plasma)/combined_gas, 0)
-		var/o2comp = max(removed.get_moles(/datum/gas/oxygen)/combined_gas, 0)
-		var/co2comp = max(removed.get_moles(/datum/gas/carbon_dioxide)/combined_gas, 0)
-		var/n2ocomp = max(removed.get_moles(/datum/gas/nitrous_oxide)/combined_gas, 0)
-		var/n2comp = max(removed.get_moles(/datum/gas/nitrogen)/combined_gas, 0)
-		var/pluoxiumcomp = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
-		var/tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
-		var/bzcomp = max(removed.get_moles(/datum/gas/bz)/combined_gas, 0)
+		var/plasmacomp = max(removed.get_moles(GAS_PLASMA)/combined_gas, 0)
+		var/o2comp = max(removed.get_moles(GAS_O2)/combined_gas, 0)
+		var/co2comp = max(removed.get_moles(GAS_CO2)/combined_gas, 0)
+		var/n2ocomp = max(removed.get_moles(GAS_NITROUS)/combined_gas, 0)
+		var/n2comp = max(removed.get_moles(GAS_N2)/combined_gas, 0)
+		var/pluoxiumcomp = max(removed.get_moles(GAS_PLUOXIUM)/combined_gas, 0)
+		var/tritiumcomp = max(removed.get_moles(GAS_TRITIUM)/combined_gas, 0)
+		var/bzcomp = max(removed.get_moles(GAS_BZ)/combined_gas, 0)
 
 		// Mole releated calculations
-		var/bzmol = max(removed.get_moles(/datum/gas/bz), 0)
+		var/bzmol = max(removed.get_moles(GAS_BZ), 0)
 
 		// Power of the gas. Scale of 0 to 1
 		gasmix_power_ratio = min(max(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp - pluoxiumcomp - n2comp, 0), 1)
@@ -521,11 +521,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		//Calculate how much gas to release, antinoblium seeded SM produces much more gas
 
 		if(antinoblium_attached)
-			removed.adjust_moles(/datum/gas/plasma, max(((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
-			removed.adjust_moles(/datum/gas/oxygen, max((((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
+			removed.adjust_moles(GAS_PLASMA, max(((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
+			removed.adjust_moles(GAS_O2, max((((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
 		else
-			removed.adjust_moles(/datum/gas/plasma, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0))
-			removed.adjust_moles(/datum/gas/oxygen, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
+			removed.adjust_moles(GAS_PLASMA, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0))
+			removed.adjust_moles(GAS_O2, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
 
 		if(produces_gas)
 			env.merge(removed)

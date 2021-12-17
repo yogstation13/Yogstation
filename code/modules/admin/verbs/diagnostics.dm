@@ -10,7 +10,7 @@
 	for(var/id in env.get_gases())
 		var/moles = env.get_moles(id)
 		if (abs(moles) >= 0.00001)
-			lines += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [moles] mol"
+			lines += "GLOB.gas_data.names[id]]: [moles] mol"
 	to_chat(usr, lines.Join("\n"))
 
 /client/proc/air_status(turf/target)

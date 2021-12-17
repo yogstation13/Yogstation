@@ -20,3 +20,6 @@ export PHP_VERSION=7.2
 
 # SpacemanDMM git tag
 export SPACEMAN_DMM_VERSION=suite-1.7
+
+# Auxmos git tag
+export AUXMOS_VERSION=fe6be06610fe366d01edf5b66e6ee602323050cf

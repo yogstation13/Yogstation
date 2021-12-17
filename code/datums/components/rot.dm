@@ -25,14 +25,14 @@
 	if(!stank_breath)
 		return
 	stank_breath.set_volume(1)
-	var/oxygen_pp = stank_breath.get_moles(/datum/gas/oxygen) * R_IDEAL_GAS_EQUATION * stank_breath.return_temperature() / stank_breath.return_volume()
+	var/oxygen_pp = stank_breath.get_moles(GAS_O2) * R_IDEAL_GAS_EQUATION * stank_breath.return_temperature() / stank_breath.return_volume()
 	
 	if(oxygen_pp > 18)
 		var/this_amount = min((oxygen_pp - 8) * stank_breath.return_volume() / stank_breath.return_temperature() / R_IDEAL_GAS_EQUATION, amount)
-		stank_breath.adjust_moles(/datum/gas/oxygen, -this_amount)
+		stank_breath.adjust_moles(GAS_O2, -this_amount)
 
 		var/datum/gas_mixture/stank = new
-		stank.set_moles(/datum/gas/miasma, this_amount)
+		stank.set_moles(GAS_MIASMA, this_amount)
 		stank.set_temperature(BODYTEMP_NORMAL) // otherwise we have gas below 2.7K which will break our lag generator
 		stank_breath.merge(stank)
 	T.assume_air(stank_breath)

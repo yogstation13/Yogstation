@@ -46,8 +46,6 @@
 	name = "preternis lungs"
 	desc = "An experimental set of lungs.Due to the cybernetic nature of these lungs,they are less resistant to heat and cold but are more efficent at filtering oxygen."
 	icon_state = "lungs-c"
-	safe_oxygen_min = 12
-	safe_toxins_max = 10
 	gas_stimulation_min = 0.1 //fucking filters removing my stimulants
 
 	cold_level_1_threshold = 280

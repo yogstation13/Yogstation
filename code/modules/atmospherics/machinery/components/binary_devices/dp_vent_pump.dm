@@ -15,6 +15,7 @@
 	desc = "Has a valve and pump attached to it. There are two ports."
 
 	level = 1
+	interacts_with_air = TRUE
 	var/frequency = 0
 	var/id = null
 	var/datum/radio_frequency/radio_connection
@@ -73,12 +74,7 @@
 			if(air1.return_temperature() > 0)
 				var/transfer_moles = pressure_delta*environment.return_volume()/(air1.return_temperature() * R_IDEAL_GAS_EQUATION)
 
-				var/datum/gas_mixture/removed = air1.remove(transfer_moles)
-				//Removed can be null if there is no atmosphere in air1
-				if(!removed)
-					return
-
-				loc.assume_air(removed)
+				loc.assume_air_moles(air1, transfer_moles)
 				air_update_turf()
 
 				var/datum/pipeline/parent1 = parents[1]
@@ -95,11 +91,7 @@
 				moles_delta = min(moles_delta, (input_pressure_min - air2.return_pressure()) * our_multiplier)
 		
 			if(moles_delta > 0)
-				var/datum/gas_mixture/removed = loc.remove_air(moles_delta)
-				if (isnull(removed)) // in space
-					return
-
-				air2.merge(removed)
+				loc.transfer_air(air2, moles_delta)
 				air_update_turf()
 
 				var/datum/pipeline/parent2 = parents[2]

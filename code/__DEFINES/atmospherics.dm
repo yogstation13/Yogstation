@@ -1,15 +1,3 @@
-//LISTMOS
-//indices of values in gas lists.
-#define MOLES			1
-#define ARCHIVE			2
-#define GAS_META		3
-#define META_GAS_SPECIFIC_HEAT	1
-#define META_GAS_NAME			2
-#define META_GAS_MOLES_VISIBLE	3
-#define META_GAS_OVERLAY		4
-#define META_GAS_DANGER			5
-#define META_GAS_ID				6
-#define META_GAS_FUSION_POWER   7
 //ATMOS
 //stuff you should probably leave well alone!
 /// kPa*L/(K*mol)
@@ -438,6 +426,32 @@
 /// north/south east/west doesn't matter, auto normalize on build.
 #define PIPING_CARDINAL_AUTONORMALIZE	(1<<3)
 
+// Gas defines because i hate typepaths
+#define GAS_O2					"o2"
+#define GAS_N2					"n2"
+#define GAS_CO2					"co2"
+#define GAS_PLASMA				"plasma"
+#define GAS_H2O					"water_vapor"
+#define GAS_HYPERNOB			"nob"
+#define GAS_NITROUS				"n2o"
+#define GAS_NITRYL				"no2"
+#define GAS_TRITIUM				"tritium"
+#define GAS_BZ					"bz"
+#define GAS_STIMULUM			"stim"
+#define GAS_PLUOXIUM			"pluox"
+#define GAS_MIASMA				"miasma"
+#define GAS_H2					"hydrogen"
+#define GAS_FREON				"freon"
+#define GAS_HEALIUM				"healium"
+#define GAS_PLUONIUM			"pluonium"
+#define GAS_HALON				"halon"
+#define GAS_ZAUKER				"zauker"
+#define GAS_HEXANE				"hexane"
+#define GAS_DILITHIUM			"dilithium"
+
+#define GAS_FLAG_DANGEROUS		(1<<0)
+#define GAS_FLAG_BREATH_PROC	(1<<1)
+
 //HELPERS
 #define PIPING_LAYER_SHIFT(T, PipingLayer) \
 	if(T.dir & (NORTH|SOUTH)) {									\
@@ -465,17 +479,6 @@ GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
 #else
 #define CALCULATE_ADJACENT_TURFS(T) SSadjacent_air.queue[T] = 1
 #endif
-
-GLOBAL_VAR(atmos_extools_initialized) // this must be an uninitialized (null) one or init_monstermos will be called twice because reasons
-#define ATMOS_EXTOOLS_CHECK if(!GLOB.atmos_extools_initialized){\
-	GLOB.atmos_extools_initialized=TRUE;\
-	if(fexists(EXTOOLS)){\
-		var/result = call(EXTOOLS,"init_monstermos")();\
-		if(result != "ok") {CRASH(result);}\
-	} else {\
-		CRASH("byond-extools.dll does not exist!");\
-	}\
-}
 
 GLOBAL_LIST_INIT(pipe_paint_colors, list(
 		"amethyst" = rgb(130,43,255), //supplymain

@@ -3,11 +3,16 @@
 	desc = "The grey-ish lungs of an ashwalker."
 	icon = 'yogstation/icons/obj/surgery.dmi'
 	icon_state = "lungs-ash"
+	
+	gas_min = list(
+		GAS_O2 = 0,
+		GAS_N2 = 16,
+	)
+	gas_max = list(
+		GAS_CO2 = 20,
+		GAS_PLASMA = 0.05
+	)
 
-	safe_oxygen_min = 0
-	safe_nitro_min = 16
-	safe_toxins_max = 0.05
-	safe_co2_max = 20
 	SA_para_min = 1
 	SA_sleep_min = 5
 	BZ_trip_balls_min = 1
