@@ -96,7 +96,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 			for(var/A in cpu_assigned_copy)
 				var/amount = cpu_assigned_copy[A]
 				cpu_assigned_copy[A] = 0
-				affected_AIs |= AI
+				affected_AIs |= A
 				total_assigned_cpu -= amount
 	
 	if(total_assigned_ram > total_ram)
@@ -122,7 +122,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 			for(var/A in ram_assigned_copy)
 				var/amount = ram_assigned_copy[A]
 				ram_assigned_copy[A] = 0
-				affected_AIs |= AI
+				affected_AIs |= A
 				total_assigned_ram -= amount
 	//Set the actual values of the assigned to our manipulated copies. Bypass helper procs as we assume we're correct.
 	ram_assigned = ram_assigned_copy
