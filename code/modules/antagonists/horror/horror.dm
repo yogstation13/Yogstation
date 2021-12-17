@@ -360,7 +360,7 @@
 	Infect(C)
 
 /mob/living/simple_animal/horror/proc/Infect(mob/living/carbon/C)
-	if(!C)
+	if(stat == DEAD || !C)
 		return
 	var/obj/item/bodypart/head/head = C.get_bodypart(BODY_ZONE_HEAD)
 	if(!head)
