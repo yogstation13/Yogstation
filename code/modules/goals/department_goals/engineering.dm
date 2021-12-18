@@ -1,8 +1,9 @@
 /datum/department_goal/eng
 	account = ACCOUNT_ENG
 
-// Store like 70e6 joules
-// Which is like, 14 roundstart SMES' worth (so requires upgrades)
+// Store 1.4e9J
+// Which is around 21 roundstart SMES' worth (so requires upgrades)
+// Or 6 fully upgraded SMES'
 /datum/department_goal/eng/SMES
 	name = "Store 1.4GJ"
 	desc = "Store 1.4GJ of energy in the station's SMES"
