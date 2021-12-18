@@ -172,6 +172,7 @@
 	if(intellicard)
 		downloading.transfer_ai(AI_TRANS_TO_CARD, user_downloading, null, intellicard)
 		intellicard.forceMove(get_turf(src))
+		intellicard.update_icon()
 		intellicard = null
 	stop_download(TRUE)
 
