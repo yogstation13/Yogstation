@@ -89,8 +89,9 @@
 	dat = {"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 			<html>
 			<head>
+				<meta charset='UTF-8'>
 				<style type=\"text/css\">
-					body { background-image:url('html/paigrid.png'); }
+					body { background-image:url('[SSassets.transport.get_asset_url("paigrid.png")]'); }
 
 					#header { text-align:center; color:white; font-size: 30px; height: 35px; width: 100%; letter-spacing: 2px; z-index: 5}
 					#content {position: relative; left: 10px; height: 400px; width: 100%; z-index: 0}
@@ -268,18 +269,14 @@
 				if(href_list["toggle"])
 					var/mob/living/silicon/pai/pAI = usr
 					pAI.hostscan.attack_self(usr)
-				if(href_list["toggle2"])
-					var/mob/living/silicon/pai/pAI = usr
-					pAI.hostscan.toggle_mode()
 
 			if("encryptionkeys")
 				if(href_list["toggle"])
 					encryptmod = TRUE
 
 			if("translator")
-				if(href_list["toggle"])
-					grant_all_languages(TRUE)
-						// this is PERMAMENT.
+				if(href_list["toggle"])	//This is permanent.
+					grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_SOFTWARE)
 
 			if("doorjack")
 				if(href_list["jack"])
@@ -291,13 +288,11 @@
 				if(href_list["cable"])
 					var/turf/T = get_turf(loc)
 					cable = new /obj/item/pai_cable(T)
-					T.visible_message("<span class='warning'>A port on [src] opens to reveal [cable], which promptly falls to the floor.</span>", "<span class='italics'>You hear the soft click of something light and hard falling to the ground.</span>")
+					T.visible_message(span_warning("A port on [src] opens to reveal [cable], which promptly falls to the floor."), span_italics("You hear the soft click of something light and hard falling to the ground."))
 
 			if("loudness")
 				if(subscreen == 1) // Open Instrument
 					internal_instrument.interact(src)
-				if(subscreen == 2) // Change Instrument type
-					internal_instrument.selectInstrument()
 
 		paiInterface()
 
@@ -413,9 +408,9 @@
 		return
 	var/answer = input(M, "[P] is requesting a DNA sample from you. Will you allow it to confirm your identity?", "[P] Check DNA", "No") in list("Yes", "No")
 	if(answer == "Yes")
-		M.visible_message("<span class='notice'>[M] presses [M.p_their()] thumb against [P].</span>",\
-						"<span class='notice'>You press your thumb against [P].</span>",\
-						"<span class='notice'>[P] makes a sharp clicking sound as it extracts DNA material from [M].</span>")
+		M.visible_message(span_notice("[M] presses [M.p_their()] thumb against [P]."),\
+						span_notice("You press your thumb against [P]."),\
+						span_notice("[P] makes a sharp clicking sound as it extracts DNA material from [M]."))
 		if(!M.has_dna())
 			to_chat(P, "<b>No DNA detected</b>")
 			return
@@ -497,7 +492,18 @@
 			else
 				. += "<pre>Requested security record not found,</pre><BR>"
 			if(securityActive2 in GLOB.data_core.security)
-				. += "<BR>\nSecurity Data<BR>\nCriminal Status: [securityActive2.fields["criminal"]]<BR>\n<BR>\nMinor Crimes: <A href='?src=[REF(src)];field=mi_crim'>[securityActive2.fields["mi_crim"]]</A><BR>\nDetails: <A href='?src=[REF(src)];field=mi_crim_d'>[securityActive2.fields["mi_crim_d"]]</A><BR>\n<BR>\nMajor Crimes: <A href='?src=[REF(src)];field=ma_crim'>[securityActive2.fields["ma_crim"]]</A><BR>\nDetails: <A href='?src=[REF(src)];field=ma_crim_d'>[securityActive2.fields["ma_crim_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=[REF(src)];field=notes'>[securityActive2.fields["notes"]]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+				. += "<BR>"
+				. += "Security Data<BR>"
+				. += "Criminal Status: [securityActive2.fields["criminal"]]<BR><BR>"
+				. += "Crimes:<BR>"
+				for(var/datum/data/crime/crime in securityActive2.fields["crimes"])
+					. += "\t[crime.crimeName]: [crime.crimeDetails]<BR>"
+				. += "<BR>"
+				. += "Important Notes:<BR>"
+				. += "\t[securityActive2.fields["notes"]]<BR><BR>"
+				. += "<CENTER><B>Comments/Log</B></CENTER><BR>"
+				for(var/datum/data/comment/comment in securityActive2.fields["comments"])
+					. += "\t[comment.commentText] - [comment.author] [comment.time]<BR>"
 			else
 				. += "<pre>Requested security record not found,</pre><BR>"
 			. += "<BR>\n<A href='?src=[REF(src)];software=securityrecord;sub=0'>Back</A><BR>"
@@ -546,7 +552,6 @@
 
 			<a href='byond://?src=[REF(src)];software=hostscan;sub=0;toggle=1'>Change Scan Type</a><br>
 
-			<a href='byond://?src=[REF(src)];software=hostscan;sub=0;toggle2=1'>Toggle Verbosity</a><br>
 			"}
 	return dat
 // Atmospheric Scanner
@@ -558,7 +563,6 @@
 		dat += "Unable to obtain a reading.<br>"
 	else
 		var/datum/gas_mixture/environment = T.return_air()
-		var/list/env_gases = environment.gases
 
 		var/pressure = environment.return_pressure()
 		var/total_moles = environment.total_moles()
@@ -566,11 +570,11 @@
 		dat += "Air Pressure: [round(pressure,0.1)] kPa<br>"
 
 		if (total_moles)
-			for(var/id in env_gases)
-				var/gas_level = env_gases[id][MOLES]/total_moles
+			for(var/id in environment.get_gases())
+				var/gas_level = environment.get_moles(id)/total_moles
 				if(gas_level > 0.01)
-					dat += "[env_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_level*100)]%<br>"
-		dat += "Temperature: [round(environment.temperature-T0C)]&deg;C<br>"
+					dat += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [round(gas_level*100)]%<br>"
+		dat += "Temperature: [round(environment.return_temperature()-T0C)]&deg;C<br>"
 	dat += "<a href='byond://?src=[REF(src)];software=atmosensor;sub=0'>Refresh Reading</a> <br>"
 	dat += "<br>"
 	return dat

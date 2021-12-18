@@ -22,6 +22,7 @@
 		footstep++
 
 /obj/item/clothing/shoes/yogs/cluwne/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_SHOES)

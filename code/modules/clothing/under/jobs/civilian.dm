@@ -7,6 +7,7 @@
 	item_state = "bar_suit"
 	item_color = "barman"
 	alt_covers_chest = TRUE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/bartender/purple
 	desc = "It looks like it has lots of flair!"
@@ -25,6 +26,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
 	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."
@@ -34,6 +36,8 @@
 	item_color = "captain"
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 15)
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/captain/skirt
 	name = "captain's jumpskirt"
@@ -44,6 +48,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/cargo
 	name = "quartermaster's jumpsuit"
@@ -51,6 +56,7 @@
 	icon_state = "qm"
 	item_state = "lb_suit"
 	item_color = "qm"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/cargo/skirt
 	name = "quartermaster's jumpskirt"
@@ -61,6 +67,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/cargotech
 	name = "cargo technician's jumpsuit"
@@ -71,6 +78,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	mutantrace_variation = MUTANTRACE_VARIATION
 	alt_covers_chest = TRUE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/cargotech/skirt
 	name = "cargo technician's jumpskirt"
@@ -79,8 +87,10 @@
 	item_state = "lb_suit"
 	item_color = "cargo_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/chaplain
 	desc = "It's a black jumpsuit, often worn by religious folk."
@@ -89,6 +99,7 @@
 	item_state = "bl_suit"
 	item_color = "chapblack"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/chaplain/skirt
 	name = "chaplain's jumpskirt"
@@ -99,6 +110,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/chef
 	name = "cook's suit"
@@ -106,6 +118,7 @@
 	icon_state = "chef"
 	item_color = "chef"
 	alt_covers_chest = TRUE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/chef/skirt
 	name = "cook's skirt"
@@ -115,7 +128,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
-
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 /obj/item/clothing/under/rank/clown
 	name = "clown suit"
 	desc = "<i>'HONK!'</i>"
@@ -124,6 +137,7 @@
 	item_color = "clown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/blueclown
 	name = "blue clown suit"
@@ -133,6 +147,7 @@
 	item_color = "blueclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/greenclown
 	name = "green clown suit"
@@ -142,6 +157,7 @@
 	item_color = "greenclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/yellowclown
 	name = "yellow clown suit"
@@ -151,6 +167,7 @@
 	item_color = "yellowclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/purpleclown
 	name = "purple clown suit"
@@ -160,6 +177,7 @@
 	item_color = "purpleclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/orangeclown
 	name = "orange clown suit"
@@ -169,6 +187,7 @@
 	item_color = "orangeclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/rainbowclown
 	name = "rainbow clown suit"
@@ -178,6 +197,7 @@
 	item_color = "rainbowclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/clown/Initialize()
 	. = ..()
@@ -190,6 +210,7 @@
 	item_state = "b_suit"
 	item_color = "hop"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/head_of_personnel/skirt
 	name = "head of personnel's jumpskirt"
@@ -200,6 +221,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/hydroponics
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."
@@ -208,6 +230,7 @@
 	item_state = "g_suit"
 	item_color = "hydroponics"
 	permeability_coefficient = 0.5
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/hydroponics/skirt
 	name = "botanist's jumpskirt"
@@ -218,6 +241,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/janitor
 	desc = "It's the official uniform of the station's janitor. It has minor protection from biohazards."
@@ -225,6 +249,7 @@
 	icon_state = "janitor"
 	item_color = "janitor"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/janitor/skirt
 	name = "janitor's jumpskirt"
@@ -234,6 +259,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer
 	desc = "Slick threads."
@@ -244,6 +270,7 @@
 	icon_state = "lawyer_black"
 	item_state = "lawyer_black"
 	item_color = "lawyer_black"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/black/skirt
 	name = "Lawyer black suitskirt"
@@ -251,16 +278,19 @@
 	item_state = "lawyer_black"
 	item_color = "lawyer_black_skirt"
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/female
 	icon_state = "black_suit_fem"
 	item_state = "black_suit_fem"
 	item_color = "black_suit_fem"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/red
 	icon_state = "lawyer_red"
 	item_state = "lawyer_red"
 	item_color = "lawyer_red"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/red/skirt
 	name = "Lawyer red suitskirt"
@@ -268,11 +298,13 @@
 	item_state = "lawyer_red"
 	item_color = "lawyer_red_skirt"
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/blue
 	icon_state = "lawyer_blue"
 	item_state = "lawyer_blue"
 	item_color = "lawyer_blue"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/blue/skirt
 	name = "Lawyer blue suitskirt"
@@ -280,6 +312,7 @@
 	item_state = "lawyer_blue"
 	item_color = "lawyer_blue_skirt"
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/bluesuit
 	name = "blue suit"
@@ -289,6 +322,7 @@
 	item_color = "bluesuit"
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/bluesuit/skirt
 	name = "blue suitskirt"
@@ -299,6 +333,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/purpsuit
 	name = "purple suit"
@@ -308,6 +343,7 @@
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/purpsuit/skirt
 	name = "purple suitskirt"
@@ -317,6 +353,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/blacksuit
 	name = "black suit"
@@ -326,6 +363,7 @@
 	item_color = "blacksuit"
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lawyer/blacksuit/skirt
 	name = "black suitskirt"
@@ -336,6 +374,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/curator
 	name = "sensible suit"
@@ -344,6 +383,7 @@
 	item_state = "red_suit"
 	item_color = "red_suit"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/curator/skirt
 	name = "sensible suitskirt"
@@ -354,6 +394,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/curator/treasure_hunter
 	name = "treasure hunter uniform"
@@ -368,6 +409,7 @@
 	icon_state = "mime"
 	item_state = "mime"
 	item_color = "mime"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/mime/skirt
 	name = "mime's skirt"
@@ -378,6 +420,29 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/artist
+	name = "post-modern suit"
+	desc = "Only the most modern of folk have the right to wear this suit."
+	icon_state = "artist"
+	item_state = "artist"
+	item_color = "artist"
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/artist/skirt
+	name = "post-modern skirt"
+	desc = "Only the most modern of folk have the right to wear this suit."
+	icon_state = "artist_skirt"
+	item_state = "artist"
+	item_color = "artist_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	
 
 /obj/item/clothing/under/rank/miner
 	desc = "It's a snappy jumpsuit with a sturdy set of overalls. It is very dirty."
@@ -385,6 +450,8 @@
 	icon_state = "miner"
 	item_state = "miner"
 	item_color = "miner"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 0, "wound" = 10)
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/miner/lavaland
 	desc = "A green uniform for operating in hazardous environments."

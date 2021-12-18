@@ -29,6 +29,7 @@
 	user.set_machine(src)
 	var/list/dat = list()
 	dat += {"
+	<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
 	<HR>
 	<span class='big bold'>[name]</span>
 	<HR>"}
@@ -45,6 +46,7 @@
 	dat += {"
 	<BR>
 	<BR><A href='?src=[REF(user)];mach_close=mob[REF(src)]'>Close</A>
+	</BODY></HTML>
 	"}
 	user << browse(dat.Join(), "window=mob[REF(src)];size=325x500")
 	onclose(user, "mob[REF(src)]")
@@ -53,8 +55,8 @@
 /mob/living/carbon/alien/humanoid/Topic(href, href_list)
 	//strip panel
 	if(href_list["pouches"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
-		visible_message("<span class='danger'>[usr] tries to empty [src]'s pouches.</span>", \
-						"<span class='userdanger'>[usr] tries to empty [src]'s pouches.</span>")
+		visible_message(span_danger("[usr] tries to empty [src]'s pouches."), \
+						span_userdanger("[usr] tries to empty [src]'s pouches."))
 		if(do_mob(usr, src, POCKET_STRIP_DELAY * 0.5))
 			dropItemToGround(r_store)
 			dropItemToGround(l_store)
@@ -68,7 +70,7 @@
 
 /mob/living/carbon/alien/humanoid/resist_grab(moving_resist)
 	if(pulledby.grab_state)
-		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
+		visible_message(span_danger("[src] has broken free of [pulledby]'s grip!"))
 	pulledby.stop_pulling()
 	. = 0
 

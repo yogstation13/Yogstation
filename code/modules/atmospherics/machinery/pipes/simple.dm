@@ -3,7 +3,7 @@
 
 /obj/machinery/atmospherics/pipe/simple
 	icon = 'icons/obj/atmospherics/pipes/simple.dmi'
-	icon_state = "pipe11-2"
+	icon_state = "pipe11-3"
 
 	name = "pipe"
 	desc = "A one meter section of regular pipe."
@@ -16,6 +16,11 @@
 
 	construction_type = /obj/item/pipe/binary/bendable
 	pipe_state = "simple"
+
+	FASTDMM_PROP(\
+		pipe_type = PIPE_TYPE_SIMPLE,\
+		pipe_interference_group = "atmos-[piping_layer]"\
+	)
 
 /obj/machinery/atmospherics/pipe/simple/SetInitDirections()
 	if(dir in GLOB.diagonals)

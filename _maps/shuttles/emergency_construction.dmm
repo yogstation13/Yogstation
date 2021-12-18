@@ -15,14 +15,8 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/escape)
 "d" = (
-/obj/structure/window/reinforced,
-/obj/structure/shuttle/engine/heater{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "e" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
@@ -34,10 +28,12 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
 	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"h" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "i" = (
@@ -51,6 +47,12 @@
 	port_direction = 4;
 	preferred_direction = 2;
 	width = 26
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -175,13 +177,35 @@
 "p" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
+"t" = (
+/obj/structure/window/reinforced,
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"L" = (
+/obj/machinery/computer/emergency_shuttle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"X" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/shuttle/escape)
 
 (1,1,1) = {"
 a
 c
 e
 e
-h
+X
 e
 e
 g
@@ -189,7 +213,7 @@ e
 i
 e
 e
-h
+X
 e
 e
 g
@@ -206,7 +230,7 @@ a
 "}
 (2,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -234,7 +258,7 @@ a
 "}
 (3,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -283,14 +307,14 @@ f
 f
 e
 e
-h
-h
-h
+X
+X
+X
 a
 "}
 (5,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -313,11 +337,21 @@ f
 f
 f
 f
-h
-h
+X
+X
 "}
 (6,1,1) = {"
 b
+t
+f
+f
+f
+f
+f
+f
+f
+d
+d
 d
 f
 f
@@ -332,21 +366,11 @@ f
 f
 f
 f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-h
+X
 "}
 (7,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -370,7 +394,7 @@ f
 f
 f
 f
-h
+X
 "}
 (8,1,1) = {"
 c
@@ -397,12 +421,12 @@ f
 f
 f
 f
-f
-h
+L
+X
 "}
 (9,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -426,11 +450,11 @@ f
 f
 f
 f
-h
+X
 "}
 (10,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -454,11 +478,11 @@ f
 f
 f
 f
-h
+X
 "}
 (11,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -481,8 +505,8 @@ f
 f
 f
 f
-h
-h
+X
+X
 "}
 (12,1,1) = {"
 c
@@ -507,14 +531,14 @@ f
 f
 e
 e
-h
-h
-h
+X
+X
+X
 a
 "}
 (13,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -542,7 +566,7 @@ a
 "}
 (14,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -573,19 +597,19 @@ a
 c
 e
 e
-h
+X
 e
 e
 e
-h
+X
 e
 e
 e
-h
+X
 e
 e
 e
-h
+X
 e
 e
 p

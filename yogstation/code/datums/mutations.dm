@@ -3,7 +3,7 @@
 	name = "Cluwne"
 	quality = NEGATIVE
 	locked = TRUE
-	text_gain_indication = "<span class='danger'>You feel like your brain is tearing itself apart.</span>"
+	text_gain_indication = span_danger("You feel like your brain is tearing itself apart.")
 
 /datum/mutation/human/cluwne/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
@@ -15,15 +15,15 @@
 	var/mob/living/carbon/human/H = owner
 
 	if(!istype(H.wear_mask, /obj/item/clothing/mask/yogs/cluwne))
-		if(!H.doUnEquip(H.wear_mask))
+		if(!H.temporarilyRemoveItemFromInventory(H.wear_mask))
 			qdel(H.wear_mask)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/yogs/cluwne(H), SLOT_WEAR_MASK)
 	if(!istype(H.w_uniform, /obj/item/clothing/under/yogs/cluwne))
-		if(!H.doUnEquip(H.w_uniform))
+		if(!H.temporarilyRemoveItemFromInventory(H.w_uniform))
 			qdel(H.w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/yogs/cluwne(H), SLOT_W_UNIFORM)
 	if(!istype(H.shoes, /obj/item/clothing/shoes/yogs/cluwne))
-		if(!H.doUnEquip(H.shoes))
+		if(!H.temporarilyRemoveItemFromInventory(H.shoes))
 			qdel(H.shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/yogs/cluwne(H), SLOT_SHOES)
 
@@ -52,8 +52,8 @@
 	dna.add_mutation(CLUWNEMUT)
 	emote("scream")
 	regenerate_icons()
-	visible_message("<span class='danger'>[src]'s body glows green, the glow dissipating only to leave behind a cluwne formerly known as [src]!</span>", \
-					"<span class='danger'>Your brain feels like it's being torn apart, and after a short while, you notice that you've become a cluwne!</span>")
+	visible_message(span_danger("[src]'s body glows green, the glow dissipating only to leave behind a cluwne formerly known as [src]!"), \
+					span_danger("Your brain feels like it's being torn apart, and after a short while, you notice that you've become a cluwne!"))
 	flash_act()
 
 /datum/mutation/human/tourettes/on_life()

@@ -7,7 +7,7 @@
 
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
 	if( !cracked && ishuman(target) && (target.stat == CONSCIOUS) && !target.get_active_held_item() )
-		target.visible_message("[user] and [target] pop \an [src]! *pop*", "<span class='notice'>You pull \an [src] with [target]! *pop*</span>", "<span class='italics'>You hear a pop.</span>")
+		target.visible_message("[user] and [target] pop \an [src]! *pop*", span_notice("You pull \an [src] with [target]! *pop*"), span_italics("You hear a pop."))
 		var/obj/item/paper/Joke = new /obj/item/paper(user.loc)
 		Joke.name = "[pick("awful","terrible","unfunny")] joke"
 		Joke.info = pick("What did one snowman say to the other?\n\n<i>'Is it me or can you smell carrots?'</i>",
@@ -18,8 +18,7 @@
 			"Where do you find chili beans?\n\n<i>The north pole.</i>",
 			"What do you get from eating tree decorations?\n\n<i>Tinsilitis!</i>",
 			"What do snowmen wear on their heads?\n\n<i>Ice caps!</i>",
-			"Why is Christmas just like life on ss13?\n\n<i>You do all the work and the fat guy gets all the credit.</i>",
-			"Why doesn't Santa have any children?\n\n<i>Because he only comes down the chimney.</i>")
+			"Why is Christmas just like life on ss13?\n\n<i>You do all the work and the fat guy gets all the credit.</i>")
 		new /obj/item/clothing/head/festive(target.loc)
 		user.update_icons()
 		cracked = 1
@@ -63,7 +62,7 @@
 	christmas_tree = null
 
 /datum/round_event_control/santa
-	name = "Vist by Santa"
+	name = "Visit by Santa"
 	holidayID = CHRISTMAS
 	typepath = /datum/round_event/santa
 	weight = 20
@@ -86,3 +85,8 @@
 		var/datum/antagonist/santa/A = new
 		santa.mind.add_antag_datum(A)
 
+/datum/recipe/snowman
+	items = list(
+		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,
+    /obj/item/stack/sheet/mineral/snow = 10)
+	result = /mob/living/simple_animal/snowman

@@ -11,6 +11,7 @@
 	throw_speed = 3
 	throw_range = 7
 	max_amount = 60
+	mats_per_stack = 500
 	var/turf_type = null
 	var/mineralType = null
 	novariants = TRUE
@@ -24,26 +25,26 @@
 
 	if (W.tool_behaviour == TOOL_WELDER)
 		if(get_amount() < 4)
-			to_chat(user, "<span class='warning'>You need at least four tiles to do this!</span>")
+			to_chat(user, span_warning("You need at least four tiles to do this!"))
 			return
 
 		if(!mineralType)
-			to_chat(user, "<span class='warning'>You can not reform this!</span>")
+			to_chat(user, span_warning("You can not reform this!"))
 			return
 
 		if(W.use_tool(src, user, 0, volume=40))
 			if(mineralType == "plasma")
 				atmos_spawn_air("plasma=5;TEMP=1000")
-				user.visible_message("<span class='warning'>[user.name] sets the plasma tiles on fire!</span>", \
-									"<span class='warning'>You set the plasma tiles on fire!</span>")
+				user.visible_message(span_warning("[user.name] sets the plasma tiles on fire!"), \
+									span_warning("You set the plasma tiles on fire!"))
 				qdel(src)
 				return
 
 			if (mineralType == "metal")
 				var/obj/item/stack/sheet/metal/new_item = new(user.loc)
-				user.visible_message("<span class='notice'>[user.name] shaped [src] into metal with the welding tool.</span>", \
-							 "<span class='notice'>You shaped [src] into metal with the welding tool.</span>", \
-							 "<span class='hear'>You hear welding.</span>")
+				user.visible_message(span_notice("[user.name] shaped [src] into metal with the welding tool."), \
+							 span_notice("You shaped [src] into metal with the welding tool."), \
+							 span_hear("You hear welding."))
 				var/obj/item/stack/rods/R = src
 				src = null
 				var/replace = (user.get_inactive_held_item()==R)
@@ -54,9 +55,9 @@
 			else
 				var/sheet_type = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
 				var/obj/item/stack/sheet/mineral/new_item = new sheet_type(user.loc)
-				user.visible_message("<span class='notice'>[user.name] shaped [src] into a sheet with the welding tool.</span>", \
-							 "<span class='notice'>You shaped [src] into a sheet with the welding tool.</span>", \
-							 "<span class='hear'>You hear welding.</span>")
+				user.visible_message(span_notice("[user.name] shaped [src] into a sheet with the welding tool."), \
+							 span_notice("You shaped [src] into a sheet with the welding tool."), \
+							 span_hear("You hear welding."))
 				var/obj/item/stack/rods/R = src
 				src = null
 				var/replace = (user.get_inactive_held_item()==R)
@@ -303,16 +304,27 @@
 	icon_state = "tile"
 	item_state = "tile"
 	force = 6
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	turf_type = /turf/open/floor/plasteel
 	mineralType = "metal"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 70)
 	resistance_flags = FIRE_PROOF
+	matter_amount = 1
 
 /obj/item/stack/tile/plasteel/cyborg
 	desc = "The ground you walk on." //Not the usual floor tile desc as that refers to throwing, Cyborgs can't do that - RR
 	materials = list() // All other Borg versions of items have no Metal or Glass - RR
 	is_cyborg = 1
 	cost = 125
+	
+/obj/item/stack/tile/eighties
+	name = "retro tile"
+	singular_name = "retro floor tile"
+	desc = "A stack of floor tiles that remind you of an age of funk."
+	icon_state = "tile_eighties"
+	turf_type = /turf/open/floor/eighties
+	
+/obj/item/stack/tile/eighties/loaded
+	amount = 15

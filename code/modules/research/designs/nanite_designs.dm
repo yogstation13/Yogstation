@@ -25,6 +25,20 @@
 	program_type = /datum/nanite_program/viral
 	category = list("Utility Nanites")
 
+/datum/design/nanites/research
+	name = "Distributed Computing"
+	desc = "The nanites aid the research servers by performing a portion of its calculations, increasing research point generation."
+	id = "research_nanites"
+	program_type = /datum/nanite_program/research
+	category = list("Utility Nanites")
+
+/datum/design/nanites/researchplus
+	name = "Neural Network"
+	desc = "The nanites link the host's brains together forming a neural research network, that becomes more efficient with the amount of total hosts. Can be overloaded to increase research output."
+	id = "researchplus_nanites"
+	program_type = /datum/nanite_program/researchplus
+	category = list("Utility Nanites")
+
 /datum/design/nanites/monitoring
 	name = "Monitoring"
 	desc = "The nanites monitor the host's vitals and location, sending them to the suit sensor network."
@@ -37,6 +51,13 @@
 	desc = "The nanites display a detailed readout of a body scan to the host."
 	id = "selfscan_nanites"
 	program_type = /datum/nanite_program/triggered/self_scan
+	category = list("Utility Nanites")
+
+/datum/design/nanites/dermal_button
+	name = "Dermal Button"
+	desc = "Displays a button on the host's skin, which can be used to send a signal to the nanites."
+	id = "dermal_button_nanites"
+	program_type = /datum/nanite_program/dermal_button
 	category = list("Utility Nanites")
 
 /datum/design/nanites/stealth
@@ -206,13 +227,6 @@
 	desc = "The nanites act as a grounding rod for electric shocks, protecting the host. Shocks can still damage the nanites themselves."
 	id = "conductive_nanites"
 	program_type = /datum/nanite_program/conductive
-	category = list("Augmentation Nanites")
-
-/datum/design/nanites/adrenaline
-	name = "Adrenaline Burst"
-	desc = "The nanites cause a burst of adrenaline when triggered, waking the host from stuns and temporarily increasing their speed."
-	id = "adrenaline_nanites"
-	program_type = /datum/nanite_program/triggered/adrenaline
 	category = list("Augmentation Nanites")
 
 /datum/design/nanites/mindshield
@@ -474,11 +488,11 @@
 	desc = "The nanites receive a signal when the nanite supply is above/below a certain percentage."
 	id = "sensor_nanite_volume"
 	program_type = /datum/nanite_program/sensor/nanite_volume
-	category = list("Sensor Nanites") 
-	
+	category = list("Sensor Nanites")
+
 /datum/design/nanites/sensor_race
 	name = "Race Sensor"
 	desc = "When triggered, the nanites scan the host to determine their race and output a signal depending on the conditions set in the settings."
 	id = "sensor_race_nanites"
 	program_type = /datum/nanite_program/sensor/race
-	category = list("Sensor Nanites") 
+	category = list("Sensor Nanites")

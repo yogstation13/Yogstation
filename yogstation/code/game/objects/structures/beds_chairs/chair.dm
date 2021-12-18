@@ -6,7 +6,10 @@
 	resistance_flags = NONE
 	max_integrity = 70
 	buildstacktype = /obj/item/stack/sheet/mineral/bananium
-	buildstackamount = 3
+	buildstackamount = 2
+
+/obj/structure/chair/bananium/honk_act()
+	return FALSE
 
 /obj/item/chair/bananium
 	name = "bananium chair"

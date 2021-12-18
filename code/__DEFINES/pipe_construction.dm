@@ -24,6 +24,7 @@
 #define TRANSIT_TUBE_STATION			6
 #define TRANSIT_TUBE_TERMINUS			7
 #define TRANSIT_TUBE_POD				8
+#define TRANSIT_TUBE_CARGO_POD			9
 
 //the open status of the transit tube station
 #define STATION_TUBE_OPEN		0

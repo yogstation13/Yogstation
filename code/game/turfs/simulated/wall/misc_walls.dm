@@ -90,24 +90,6 @@
 		animate(src, color = previouscolor, time = 8)
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
 
-/turf/closed/wall/clockwork/dismantle_wall(devastated=0, explode=0)
-	if(devastated)
-		devastate_wall()
-		ScrapeAway()
-	else
-		playsound(src, 'sound/items/welder.ogg', 100, 1)
-		var/newgirder = break_wall()
-		if(newgirder) //maybe we want a gear!
-			transfer_fingerprints_to(newgirder)
-		ScrapeAway()
-
-	for(var/obj/O in src) //Eject contents!
-		if(istype(O, /obj/structure/sign/poster))
-			var/obj/structure/sign/poster/P = O
-			P.roll_and_drop(src)
-		else
-			O.forceMove(src)
-
 /turf/closed/wall/clockwork/devastate_wall()
 	for(var/i in 1 to 2)
 		new/obj/item/clockwork/alloy_shards/large(src)
@@ -119,20 +101,20 @@
 /turf/closed/wall/clockwork/attack_hulk(mob/living/user, does_attack_animation = 0)
 	..()
 	if(heated)
-		to_chat(user, "<span class='userdanger'>The wall is searing hot to the touch!</span>")
+		to_chat(user, span_userdanger("The wall is searing hot to the touch!"))
 		user.adjustFireLoss(5)
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50, TRUE)
 
 /turf/closed/wall/clockwork/mech_melee_attack(obj/mecha/M)
 	..()
 	if(heated)
-		to_chat(M.occupant, "<span class='userdanger'>The wall's intense heat completely reflects your [M.name]'s attack!</span>")
+		to_chat(M.occupant, span_userdanger("The wall's intense heat completely reflects your [M.name]'s attack!"))
 		M.take_damage(20, BURN)
 
 /turf/closed/wall/clockwork/proc/turn_up_the_heat()
 	if(!heated)
 		name = "superheated [name]"
-		visible_message("<span class='warning'>[src] sizzles with heat!</span>")
+		visible_message(span_warning("[src] sizzles with heat!"))
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50, TRUE)
 		heated = TRUE
 		hardness = -100 //Lower numbers are tougher, so this makes the wall essentially impervious to smashing
@@ -140,7 +122,7 @@
 		animate(realappearance, color = "#FFC3C3", time = 5)
 	else
 		name = initial(name)
-		visible_message("<span class='notice'>[src] cools down.</span>")
+		visible_message(span_notice("[src] cools down."))
 		heated = FALSE
 		hardness = initial(hardness)
 		slicing_duration = initial(slicing_duration)
@@ -166,11 +148,19 @@
 	icon = 'icons/turf/walls/rusty_wall.dmi'
 	hardness = 45
 
+/turf/closed/wall/rust/rust_heretic_act()
+	ScrapeAway()
+
 /turf/closed/wall/r_wall/rust
 	name = "rusted reinforced wall"
 	desc = "A huge chunk of rusted reinforced metal."
 	icon = 'icons/turf/walls/rusty_reinforced_wall.dmi'
 	hardness = 15
+
+/turf/closed/wall/r_wall/rust/rust_heretic_act()
+	if(prob(50))
+		return
+	ScrapeAway()
 
 /turf/closed/wall/mineral/bronze
 	name = "clockwork wall"

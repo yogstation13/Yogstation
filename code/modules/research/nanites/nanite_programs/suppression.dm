@@ -6,11 +6,12 @@
 	trigger_cost = 15
 	trigger_cooldown = 1200
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
+	harmful = TRUE
 
 /datum/nanite_program/triggered/sleepy/trigger()
 	if(!..())
 		return
-	to_chat(host_mob, "<span class='warning'>You start to feel very sleepy...</span>")
+	to_chat(host_mob, span_warning("You start to feel very sleepy..."))
 	host_mob.drowsyness += 20
 	addtimer(CALLBACK(host_mob, /mob/living.proc/Sleeping, 200), rand(60,200))
 
@@ -19,17 +20,18 @@
 	desc = "The nanites force muscle contraction, effectively paralyzing the host."
 	use_rate = 3
 	rogue_types = list(/datum/nanite_program/nerve_decay)
+	harmful = TRUE
 
 /datum/nanite_program/paralyzing/active_effect()
 	host_mob.Stun(40)
 
 /datum/nanite_program/paralyzing/enable_passive_effect()
 	. = ..()
-	to_chat(host_mob, "<span class='warning'>Your muscles seize! You can't move!</span>")
+	to_chat(host_mob, span_warning("Your muscles seize! You can't move!"))
 
 /datum/nanite_program/paralyzing/disable_passive_effect()
 	. = ..()
-	to_chat(host_mob, "<span class='notice'>Your muscles relax, and you can move again.</span>")
+	to_chat(host_mob, span_notice("Your muscles relax, and you can move again."))
 
 /datum/nanite_program/triggered/shocking
 	name = "Electric Shock"
@@ -38,6 +40,7 @@
 	trigger_cooldown = 300
 	program_flags = NANITE_SHOCK_IMMUNE
 	rogue_types = list(/datum/nanite_program/toxic)
+	harmful = TRUE
 
 /datum/nanite_program/triggered/shocking/trigger()
 	if(!..())
@@ -50,6 +53,7 @@
 	trigger_cost = 4
 	trigger_cooldown = 300
 	rogue_types = list(/datum/nanite_program/triggered/shocking, /datum/nanite_program/nerve_decay)
+	harmful = TRUE
 
 /datum/nanite_program/triggered/stun/trigger()
 	if(!..())
@@ -76,6 +80,7 @@
 	desc = "The nanites suppress the host's ocular nerves, blinding them while they're active."
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/nerve_decay)
+	harmful = TRUE
 
 /datum/nanite_program/blinding/enable_passive_effect()
 	. = ..()
@@ -90,6 +95,7 @@
 	desc = "The nanites suppress the host's speech, making them mute while they're active."
 	use_rate = 0.75
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
+	harmful = TRUE
 
 /datum/nanite_program/mute/enable_passive_effect()
 	. = ..()
@@ -104,6 +110,7 @@
 	desc = "The nanites induce a death-like coma into the host, able to fool most medical scans."
 	use_rate = 3.5
 	rogue_types = list(/datum/nanite_program/nerve_decay, /datum/nanite_program/necrotic, /datum/nanite_program/brain_decay)
+	harmful = TRUE
 
 /datum/nanite_program/fake_death/enable_passive_effect()
 	. = ..()
@@ -133,6 +140,7 @@
 	trigger_cost = 3
 	trigger_cooldown = 20
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
+	harmful = TRUE
 
 	extra_settings = list("Sentence","Comm Code")
 	var/sentence = ""
@@ -149,7 +157,7 @@
 		var/new_code = input(user, "Set the communication code (1-9999) or set to 0 to disable external signals.", name, null) as null|num
 		if(isnull(new_code))
 			return
-		comm_code = CLAMP(round(new_code, 1), 0, 9999)
+		comm_code = clamp(round(new_code, 1), 0, 9999)
 
 /datum/nanite_program/triggered/comm/speech/get_extra_setting(setting)
 	if(setting == "Sentence")
@@ -169,7 +177,7 @@
 		sent_message = sentence
 	if(host_mob.stat == DEAD)
 		return
-	to_chat(host_mob, "<span class='warning'>You feel compelled to speak...</span>")
+	to_chat(host_mob, span_warning("You feel compelled to speak..."))
 	host_mob.say(sent_message, forced = "nanite speech")
 
 /datum/nanite_program/triggered/comm/voice
@@ -179,6 +187,7 @@
 	trigger_cost = 1
 	trigger_cooldown = 20
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
+	harmful = TRUE
 
 	extra_settings = list("Message","Comm Code")
 	var/message = ""
@@ -193,7 +202,7 @@
 		var/new_code = input(user, "Set the communication code (1-9999) or set to 0 to disable external signals.", name, null) as null|num
 		if(isnull(new_code))
 			return
-		comm_code = CLAMP(round(new_code, 1), 0, 9999)
+		comm_code = clamp(round(new_code, 1), 0, 9999)
 
 /datum/nanite_program/triggered/comm/voice/get_extra_setting(setting)
 	if(setting == "Message")
@@ -213,7 +222,7 @@
 		sent_message = message
 	if(host_mob.stat == DEAD)
 		return
-	to_chat(host_mob, "<i>You hear a strange, robotic voice in your head...</i> \"<span class='robot'>[sent_message]</span>\"")
+	to_chat(host_mob, "<i>You hear a strange, robotic voice in your head...</i> \"[span_robot("[html_encode(sent_message)]")]\"")
 
 /datum/nanite_program/triggered/comm/hallucination
 	name = "Hallucination"
@@ -222,6 +231,7 @@
 	trigger_cooldown = 80
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/brain_misfire)
+	harmful = TRUE
 	extra_settings = list("Hallucination Type", "Comm Code")
 	var/hal_type
 	var/hal_details
@@ -269,7 +279,7 @@
 		var/new_code = input(user, "(Only for Message) Set the communication code (1-9999) or set to 0 to disable external signals.", name, null) as null|num
 		if(isnull(new_code))
 			return
-		comm_code = CLAMP(round(new_code, 1), 0, 9999)
+		comm_code = clamp(round(new_code, 1), 0, 9999)
 
 	if(setting == "Hallucination Type")
 		var/list/possible_hallucinations = list("Random","Message","Battle","Sound","Weird Sound","Station Message","Health","Alert","Fire","Shock","Plasma Flood")

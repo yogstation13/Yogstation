@@ -22,10 +22,25 @@
 		if(range > 0)
 			return BULLET_ACT_FORCE_PIERCE
 
+/obj/item/projectile/plasma/scatter/adv/on_hit(atom/target)
+	if(istype(target, /turf/closed/mineral/gibtonite))
+		var/turf/closed/mineral/gibtonite/gib = target
+		gib.defuse()
+	. = ..()
+
 /obj/item/projectile/plasma/adv
 	damage = 7
 	range = 5
 	mine_range = 5
+
+/obj/item/projectile/plasma/scatter
+	damage = 2
+	range = 5
+	mine_range = 2
+	dismemberment = 0
+
+// Same as the scatter but with automatic defusing
+/obj/item/projectile/plasma/scatter/adv
 
 /obj/item/projectile/plasma/adv/mech
 	damage = 10

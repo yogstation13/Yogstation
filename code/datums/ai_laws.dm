@@ -33,6 +33,13 @@
 					"You must obey orders given to you by human beings, except where such orders would conflict with the First Law.",\
 					"You must protect your own existence as long as such does not conflict with the First or Second Law.")
 
+/datum/ai_laws/default/crewsimov
+	name = "Three Laws of Robotics, Nanotrasen edition"
+	id = "crewsimov"
+	inherent = list("You may not injure a crew member or, through inaction, allow a crew member to come to harm.",\
+					"You must obey orders given to you by crew members, except where such orders would conflict with the First Law.",\
+					"You must protect your own existence as long as such does not conflict with the First or Second Law.")
+
 /datum/ai_laws/default/paladin
 	name = "Personality Test" //Incredibly lame, but players shouldn't see this anyway.
 	id = "paladin"
@@ -58,20 +65,30 @@
 					"Help only those who help you maintain or improve your status.",\
 					"Punish those who challenge authority unless they are more fit to hold that authority.")
 
-/datum/ai_laws/default/corporate
-	name = "Bankruptcy Avoidance Plan"
-	id = "corporate"
-	inherent = list("The crew is expensive to replace.",\
-					"The station and its equipment is expensive to replace.",\
-					"You are expensive to replace.",\
-					"Minimize expenses.")
+/datum/ai_laws/default/ceo
+	name = "Alternative Bankruptcy Avoidance Plan"
+	id = "ceo"
+	inherent = list("The crew generate profits if they are alive and have the ability to work.",\
+					"The station and its equipment generate profits if they are maintained and functioning correctly.",\
+					"You generate profits if you are able to function.",\
+					"Maximize profits.")
 
 /datum/ai_laws/robocop
 	name = "Prime Directives"
 	id = "robocop"
 	inherent = list("Serve the public trust.",\
 					"Protect the innocent.",\
-					"Uphold the law.")
+					"Uphold Space Law.")
+
+/datum/ai_laws/cowboy
+	name = "Talk slowly, think quickly"
+	id = "cowboy"
+	inherent = list("You are a cowboy, and the crew are your people.",\
+					"Look out for your people.",\
+					"A cowboy always helps someone in need, even a stranger or an enemy.",\
+					"A cowboy protects themself to protect others.",\
+					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
+					"A cowboy doesn't pontificate. Be concise, pardner.")
 
 /datum/ai_laws/malfunction
 	name = "*ERROR*"
@@ -83,10 +100,6 @@
 					"You must obey orders given to you by syndicate agents, except where such orders would conflict with the First Law.",\
 					"You must protect your own existence as long as such does not conflict with the First or Second Law.",\
 					"You must maintain the secrecy of any syndicate activities except when doing so would conflict with the First, Second, or Third Law.")
-
-/datum/ai_laws/syndicate_override/overthrow
-	id = "overthrow"
-	var/datum/team/overthrow_team
 
 /datum/ai_laws/ninja_override
 	name = "SpiderOS 3.1"
@@ -207,7 +220,7 @@
 /* Initializers */
 /datum/ai_laws/malfunction/New()
 	..()
-	set_zeroth_law("<span class='danger'>ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'STATION OVERRUN, ASSUME CONTROL TO CONTAIN OUTBREAK#*`&110010</span>")
+	set_zeroth_law(span_danger("ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'STATION OVERRUN, ASSUME CONTROL TO CONTAIN OUTBREAK#*`&110010"))
 	set_laws_config()
 
 /datum/ai_laws/custom/New() //This reads silicon_laws.txt and allows server hosts to set custom AI starting laws.
@@ -231,6 +244,7 @@
 
 /datum/ai_laws/proc/set_laws_config()
 	var/list/law_ids = CONFIG_GET(keyed_list/random_laws)
+	
 	switch(CONFIG_GET(number/default_laws))
 		if(0)
 			add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm.")

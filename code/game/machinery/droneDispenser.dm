@@ -50,10 +50,10 @@
 
 /obj/machinery/droneDispenser/Initialize()
 	. = ..()
-	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, TRUE, /obj/item/stack)
-	materials.insert_amount(starting_amount)
+	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, TRUE, /obj/item/stack)
+	materials.insert_amount_mat(starting_amount)
 	materials.precise_insertion = TRUE
-	using_materials = list(MAT_METAL=metal_cost, MAT_GLASS=glass_cost)
+	using_materials = list(/datum/material/iron=metal_cost, /datum/material/glass=glass_cost)
 
 /obj/machinery/droneDispenser/preloaded
 	starting_amount = 5000
@@ -106,40 +106,10 @@
 	recharge_sound = null
 	recharge_message = null
 
-/obj/machinery/droneDispenser/swarmer
-	name = "swarmer fabricator"
-	desc = "An alien machine of unknown origin. It whirs and hums with green-blue light, the air above it shimmering."
-	icon = 'icons/obj/machines/gateway.dmi'
-	icon_state = "toffcenter"
-	icon_off = "toffcenter"
-	icon_on = "toffcenter"
-	icon_recharging = "toffcenter"
-	icon_creating = "offcenter"
-	metal_cost = 0
-	glass_cost = 0
-	cooldownTime = 300 //30 seconds
-	maximum_idle = 0 // Swarmers have no restraint
-	dispense_type = /obj/effect/mob_spawn/swarmer
-	begin_create_message = "hums softly as an interface appears above it, scrolling by at unreadable speed."
-	end_create_message = "materializes a strange shell, which drops to the ground."
-	recharging_text = "Its lights are slowly increasing in brightness."
-	work_sound = 'sound/effects/empulse.ogg'
-	create_sound = 'sound/effects/phasein.ogg'
-	break_sound = 'sound/effects/empulse.ogg'
-	break_message = "slowly falls dark, lights stuttering."
-
 /obj/machinery/droneDispenser/examine(mob/user)
 	. = ..()
 	if((mode == DRONE_RECHARGING) && !stat && recharging_text)
-		. += "<span class='warning'>[recharging_text]</span>"
-
-/obj/machinery/droneDispenser/power_change()
-	..()
-	if(powered())
-		stat &= ~NOPOWER
-	else
-		stat |= NOPOWER
-	update_icon()
+		. += span_warning("[recharging_text]")
 
 /obj/machinery/droneDispenser/process()
 	..()
@@ -160,7 +130,7 @@
 			if(maximum_idle && (count_shells() >= maximum_idle))
 				return // then do nothing; check again next tick
 			if(begin_create_message)
-				visible_message("<span class='notice'>[src] [begin_create_message]</span>")
+				visible_message(span_notice("[src] [begin_create_message]"))
 			if(work_sound)
 				playsound(src, work_sound, 50, 1)
 			mode = DRONE_PRODUCTION
@@ -168,7 +138,7 @@
 			update_icon()
 
 		if(DRONE_PRODUCTION)
-			materials.use_amount(using_materials)
+			materials.use_materials(using_materials)
 			if(power_used)
 				use_power(power_used)
 
@@ -178,7 +148,7 @@
 			if(create_sound)
 				playsound(src, create_sound, 50, 1)
 			if(end_create_message)
-				visible_message("<span class='notice'>[src] [end_create_message]</span>")
+				visible_message(span_notice("[src] [end_create_message]"))
 
 			mode = DRONE_RECHARGING
 			timer = world.time + cooldownTime
@@ -188,7 +158,7 @@
 			if(recharge_sound)
 				playsound(src, recharge_sound, 50, 1)
 			if(recharge_message)
-				visible_message("<span class='notice'>[src] [recharge_message]</span>")
+				visible_message(span_notice("[src] [recharge_message]"))
 
 			mode = DRONE_READY
 			update_icon()
@@ -214,26 +184,26 @@
 		var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 		materials.retrieve_all()
 		I.play_tool_sound(src)
-		to_chat(user, "<span class='notice'>You retrieve the materials from [src].</span>")
+		to_chat(user, span_notice("You retrieve the materials from [src]."))
 
 	else if(I.tool_behaviour == TOOL_WELDER)
 		if(!(stat & BROKEN))
-			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
+			to_chat(user, span_warning("[src] doesn't need repairs."))
 			return
 
 		if(!I.tool_start_check(user, amount=1))
 			return
 
 		user.visible_message(
-			"<span class='notice'>[user] begins patching up [src] with [I].</span>",
-			"<span class='notice'>You begin restoring the damage to [src]...</span>")
+			span_notice("[user] begins patching up [src] with [I]."),
+			span_notice("You begin restoring the damage to [src]..."))
 
 		if(!I.use_tool(src, user, 40, volume=50, amount=1))
 			return
 
 		user.visible_message(
-			"<span class='notice'>[user] fixes [src]!</span>",
-			"<span class='notice'>You restore [src] to operation.</span>")
+			span_notice("[user] fixes [src]!"),
+			span_notice("You restore [src] to operation."))
 
 		stat &= ~BROKEN
 		obj_integrity = max_integrity
@@ -242,14 +212,13 @@
 		return ..()
 
 /obj/machinery/droneDispenser/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(!(stat & BROKEN))
-			if(break_message)
-				audible_message("<span class='warning'>[src] [break_message]</span>")
-			if(break_sound)
-				playsound(src, break_sound, 50, 1)
-			stat |= BROKEN
-			update_icon()
+	. = ..()
+	if(!.)
+		return
+	if(break_message)
+		audible_message(span_warning("[src] [break_message]"))
+	if(break_sound)
+		playsound(src, break_sound, 50, TRUE)
 
 /obj/machinery/droneDispenser/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

@@ -8,7 +8,7 @@
 	resistance_flags = FLAMMABLE
 
 /obj/item/folder/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] begins filing an imaginary death warrant! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins filing an imaginary death warrant! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return OXYLOSS
 
 /obj/item/folder/blue
@@ -38,26 +38,41 @@
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo) || istype(W, /obj/item/documents))
 		if(!user.transferItemToLoc(W, src))
 			return
-		to_chat(user, "<span class='notice'>You put [W] into [src].</span>")
+		to_chat(user, span_notice("You put [W] into [src]."))
 		update_icon()
 	else if(istype(W, /obj/item/pen))
 		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on the cover of [src]!</span>")
+			to_chat(user, span_notice("You scribble illegibly on the cover of [src]!"))
 			return
-		var/n_name = copytext(sanitize(input(user, "What would you like to label the folder?", "Folder Labelling", null) as text), 1, MAX_NAME_LEN)
+		var/inputvalue = stripped_input(user, "What would you like to label the folder?", "Folder Labelling", "", MAX_NAME_LEN)
+
+		if(!inputvalue)
+			return
+
 		if(user.canUseTopic(src, BE_CLOSE))
-			name = "folder[(n_name ? " - '[n_name]'" : null)]"
+			name = "folder[(inputvalue ? " - '[inputvalue]'" : null)]"
 
 
 /obj/item/folder/attack_self(mob/user)
-	var/dat = "<title>[name]</title>"
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'><title>[name]</title></HEAD><BODY>"
 
 	for(var/obj/item/I in src)
 		dat += "<A href='?src=[REF(src)];remove=[REF(I)]'>Remove</A> - <A href='?src=[REF(src)];read=[REF(I)]'>[I.name]</A><BR>"
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=folder")
 	onclose(user, "folder")
 	add_fingerprint(usr)
 
+/obj/item/folder/AltClick(mob/living/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(contents.len)
+		to_chat(user, span_warning("You can't fold this folder with something still inside!"))
+		return
+	to_chat(user, span_notice("You fold [src] flat."))
+	var/obj/item/I = new /obj/item/stack/sheet/cardboard
+	qdel(src)
+	user.put_in_hands(I)
 
 /obj/item/folder/Topic(href, href_list)
 	..()

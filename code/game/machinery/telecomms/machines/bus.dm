@@ -68,13 +68,8 @@
 /obj/machinery/telecomms/bus/preset_four
 	id = "Bus 4"
 	network = "tcommsat"
-	freq_listening = list(FREQ_ENGINEERING)
+	freq_listening = list(FREQ_ENGINEERING, FREQ_AI_PRIVATE, FREQ_COMMON)
 	autolinkers = list("processor4", "engineering", "common", "messaging")
-
-/obj/machinery/telecomms/bus/preset_four/Initialize()
-	. = ..()
-	for(var/i = MIN_FREQ, i <= MAX_FREQ, i += 2)
-		freq_listening |= i
 
 /obj/machinery/telecomms/bus/preset_one/birdstation
 	name = "Bus"

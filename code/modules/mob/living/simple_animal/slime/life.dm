@@ -114,8 +114,9 @@
 		return
 
 	var/loc_temp = get_temperature(environment)
+	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
 
-	adjust_bodytemperature(adjust_body_temperature(bodytemperature, loc_temp, 1))
+	adjust_bodytemperature(adjust_body_temperature(bodytemperature, loc_temp, 1) * heat_capacity_factor)
 
 	//Account for massive pressure differences
 
@@ -133,20 +134,18 @@
 		Tempstun = 0
 
 	if(stat != DEAD)
-		var/bz_percentage =0
-		if(environment.gases[/datum/gas/bz])
-			bz_percentage = environment.gases[/datum/gas/bz][MOLES] / environment.total_moles()
+		var/bz_percentage = environment.total_moles() ? (environment.get_moles(/datum/gas/bz) / environment.total_moles()) : 0
 		var/stasis = (bz_percentage >= 0.05 && bodytemperature < (T0C + 100)) || force_stasis
 
 		if(stat == CONSCIOUS && stasis)
-			to_chat(src, "<span class='danger'>Nerve gas in the air has put you in stasis!</span>")
+			to_chat(src, span_danger("Nerve gas in the air has put you in stasis!"))
 			stat = UNCONSCIOUS
 			powerlevel = 0
 			rabid = 0
 			update_mobility()
 			regenerate_icons()
 		else if(stat == UNCONSCIOUS && !stasis)
-			to_chat(src, "<span class='notice'>You wake up from the stasis.</span>")
+			to_chat(src, span_notice("You wake up from the stasis."))
 			stat = CONSCIOUS
 			update_mobility()
 			regenerate_icons()

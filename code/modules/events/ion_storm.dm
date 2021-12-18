@@ -26,7 +26,7 @@
 
 /datum/round_event/ion_storm/announce(fake)
 	if(announceEvent == ION_ANNOUNCE || (announceEvent == ION_RANDOM && prob(ionAnnounceChance)) || fake)
-		priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", 'sound/ai/ionstorm.ogg')
+		priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", ANNOUNCER_IONSTORM)
 
 
 /datum/round_event/ion_storm/start()
@@ -51,6 +51,7 @@
 				M.shuffle_laws(list(LAW_INHERENT, LAW_SUPPLIED, LAW_ION))
 
 			log_game("Ion storm changed laws of [key_name(M)] to [english_list(M.laws.get_law_list(TRUE, TRUE))]")
+			message_admins("[ADMIN_LOOKUPFLW(M)] has had their laws changed by an ion storm to [english_list(M.laws.get_law_list(TRUE, TRUE))]")
 			M.post_lawchange()
 
 	if(botEmagChance)

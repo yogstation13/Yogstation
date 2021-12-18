@@ -7,7 +7,7 @@
 /area/ruin/unpowered)
 "c" = (
 /obj/structure/falsewall/titanium,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/ruin/unpowered)
 "d" = (
 /obj/structure/window/shuttle,

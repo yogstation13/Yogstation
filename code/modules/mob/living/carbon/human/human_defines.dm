@@ -6,9 +6,15 @@
 	can_buckle = TRUE
 	buckle_lying = FALSE
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	//Hair colour and style
 	var/hair_color = "000"
 	var/hair_style = "Bald"
+
+	///Colour used for the hair gradient.
+	var/grad_color = "000"
+	///Style used for the hair gradient.
+	var/grad_style
 
 	//Facial hair colour and style
 	var/facial_hair_color = "000"
@@ -40,7 +46,6 @@
 
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
-	var/bleed_rate = 0 //how much are we bleeding
 	var/bleedsuppress = 0 //for stopping bloodloss, eventually this will be limb-based like bleeding
 
 	var/name_override //For temporary visible name changes
@@ -54,3 +59,5 @@
 	var/lastpuke = 0
 	var/last_fire_update
 	var/account_id
+	var/xylophone = 0 //For the spoooooooky xylophone cooldown
+	var/blood_in_hands = 0

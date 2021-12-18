@@ -11,17 +11,23 @@
 
 	outfit = /datum/outfit/job/botanist
 
+	alt_titles = list("Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist")
+
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BOTANIST
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/hydro/proc/OmegaStationChanges()
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
+
+/datum/job/hydro/proc/EclipseStationChanges()
+	total_positions = 4
+	spawn_positions = 3
 
 /datum/outfit/job/botanist
 	name = "Botanist"

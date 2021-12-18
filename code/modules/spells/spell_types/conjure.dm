@@ -31,7 +31,7 @@
 		if(ispath(summoned_object_type, /turf))
 			var/turf/O = spawn_place
 			var/N = summoned_object_type
-			O.ChangeTurf(N, flags = CHANGETURF_INHERIT_AIR)
+			O.ChangeTurf(N, list(/turf/baseturf_bottom, /turf/open/floor/plating), flags = CHANGETURF_INHERIT_AIR)
 		else
 			var/atom/summoned_object = new summoned_object_type(spawn_place)
 
@@ -76,7 +76,7 @@
 	range = -1
 	clothes_req = FALSE
 	var/obj/item/item
-	var/item_type = /obj/item/banhammer
+	var/item_type = /obj/item/bikehorn
 	school = "conjuration"
 	charge_max = 150
 	cooldown_min = 10

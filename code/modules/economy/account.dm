@@ -3,19 +3,23 @@
 /datum/bank_account
 	var/account_holder = "Rusty Venture"
 	var/account_balance = 0
+	var/payday_modifier
 	var/datum/job/account_job
 	var/list/bank_cards = list()
 	var/add_to_accounts = TRUE
 	var/account_id
 	var/being_dumped = FALSE //pink levels are rising
 	var/withdrawDelay = 0
+	var/is_bourgeois = FALSE // Marks whether we've tried giving them the achievement already, this round.
+	var/bounties_claimed = 0 // Marks how many bounties this person has successfully claimed
 
-/datum/bank_account/New(newname, job)
+/datum/bank_account/New(newname, job, modifier = 1)
 	if(add_to_accounts)
 		SSeconomy.bank_accounts += src
 	account_holder = newname
 	account_job = job
 	account_id = rand(111111,999999)
+	payday_modifier = modifier
 
 /datum/bank_account/Destroy()
 	if(add_to_accounts)
@@ -28,8 +32,14 @@
 
 /datum/bank_account/proc/_adjust_money(amt)
 	account_balance += amt
-	if(account_balance < 0)
-		account_balance = 0
+	if(account_balance > 1000000 && !is_bourgeois) // if we are now a millionaire, give the achievement
+		//So we currently only know what is *supposed* to be the real_name of the client's mob. If we can find them, we can get them this achievement.
+		for(var/x in GLOB.player_list)
+			var/mob/M = x
+			if(M.real_name == account_holder)
+				SSachievements.unlock_achievement(/datum/achievement/cargo/bourgeois, M.client)
+				is_bourgeois = TRUE
+				//break would result in the possibility of this being given to changeling who has duplicated the millionaire, and not to the actual millionaire.
 
 /datum/bank_account/proc/has_money(amt)
 	return account_balance >= amt
@@ -48,9 +58,10 @@
 	return FALSE
 
 /datum/bank_account/proc/payday(amt_of_paychecks, free = FALSE)
-	var/money_to_transfer = account_job.paycheck * amt_of_paychecks
+	var/money_to_transfer = account_job.paycheck * payday_modifier * amt_of_paychecks
 	if(free)
 		adjust_money(money_to_transfer)
+		return TRUE
 	else
 		var/datum/bank_account/D = SSeconomy.get_dep_account(account_job.paycheck_department)
 		if(D)

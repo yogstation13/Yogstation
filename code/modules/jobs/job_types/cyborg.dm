@@ -5,19 +5,23 @@
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 0
-	spawn_positions = 1
+	spawn_positions = 2
 	supervisors = "your laws and the AI"	//Nodrak
 	selection_color = "#ddffdd"
 	minimal_player_age = 21
 	exp_requirements = 120
 	exp_type = EXP_TYPE_CREW
+	alt_titles = list("Droid", "Robot", "Automaton")
 
 	display_order = JOB_DISPLAY_ORDER_CYBORG
 
-	changed_maps = list("MinskyStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
 
-/datum/job/cyborg/proc/MinskyStationChanges()
-	spawn_positions = 2
+/datum/job/cyborg/proc/EclipseStationChanges()
+	spawn_positions = 3
+
+/datum/job/cyborg/proc/OmegaStationChanges()
+	spawn_positions = 1
 
 /datum/job/cyborg/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source = null)
 	if(visualsOnly)

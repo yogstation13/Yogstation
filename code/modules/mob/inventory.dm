@@ -188,6 +188,7 @@
 		update_inv_hands()
 		I.pixel_x = initial(I.pixel_x)
 		I.pixel_y = initial(I.pixel_y)
+		I.transform = initial(I.transform)
 		return hand_index || TRUE
 	return FALSE
 
@@ -235,13 +236,13 @@
 		if (merge_stacks)
 			if (istype(active_stack) && istype(I_stack, active_stack.merge_type))
 				if (I_stack.merge(active_stack))
-					to_chat(usr, "<span class='notice'>Your [active_stack.name] stack now contains [active_stack.get_amount()] [active_stack.singular_name]\s.</span>")
+					to_chat(usr, span_notice("Your [active_stack.name] stack now contains [active_stack.get_amount()] [active_stack.singular_name]\s."))
 					return TRUE
 			else
 				var/obj/item/stack/inactive_stack = get_inactive_held_item()
 				if (istype(inactive_stack) && istype(I_stack, inactive_stack.merge_type))
 					if (I_stack.merge(inactive_stack))
-						to_chat(usr, "<span class='notice'>Your [inactive_stack.name] stack now contains [inactive_stack.get_amount()] [inactive_stack.singular_name]\s.</span>")
+						to_chat(usr, span_notice("Your [inactive_stack.name] stack now contains [inactive_stack.get_amount()] [inactive_stack.singular_name]\s."))
 						return TRUE
 
 	if(put_in_active_hand(I, forced))
@@ -309,6 +310,7 @@
 /mob/proc/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE) //Force overrides TRAIT_NODROP for things like wizarditis and admin undress.
 													//Use no_move if the item is just gonna be immediately moved afterward
 													//Invdrop is used to prevent stuff in pockets dropping. only set to false if it's going to immediately be replaced
+	PROTECTED_PROC(TRUE)
 	if(!I) //If there's nothing to drop, the drop is automatically succesfull. If(unEquip) should generally be used to check for TRAIT_NODROP.
 		return TRUE
 
@@ -391,6 +393,7 @@
 
 	for(var/obj/item/I in get_equipped_items())
 		hidden_slots |= I.flags_inv
+		hidden_slots |= I.flags_prot
 		if(transparent_protection)
 			hidden_slots |= I.transparent_protection
 
@@ -416,7 +419,7 @@
 
 /obj/item/proc/equip_to_best_slot(mob/M)
 	if(src != M.get_active_held_item())
-		to_chat(M, "<span class='warning'>You are not holding anything to equip!</span>")
+		to_chat(M, span_warning("You are not holding anything to equip!"))
 		return FALSE
 
 	if(M.equip_to_appropriate_slot(src))
@@ -437,13 +440,13 @@
 		if(SEND_SIGNAL(I, COMSIG_TRY_STORAGE_INSERT, src, M))
 			return TRUE
 
-	to_chat(M, "<span class='warning'>You are unable to equip that!</span>")
+	to_chat(M, span_warning("You are unable to equip that!"))
 	return FALSE
 
 
 /mob/verb/quick_equip()
 	set name = "quick-equip"
-	set hidden = 1
+	set hidden = TRUE
 
 	var/obj/item/I = get_active_held_item()
 	if (I)
@@ -495,3 +498,16 @@
 			bodyparts += BP
 			hand_bodyparts[i] = BP
 	..() //Don't redraw hands until we have organs for them
+
+//GetAllContents that is reasonable and not stupid
+/mob/living/carbon/proc/get_all_gear()
+	var/list/processing_list = get_equipped_items(TRUE) + held_items
+	listclearnulls(processing_list) // handles empty hands
+	var/i = 0
+	while(i < length(processing_list) )
+		var/atom/A = processing_list[++i]
+		if(SEND_SIGNAL(A, COMSIG_CONTAINS_STORAGE))
+			var/list/item_stuff = list()
+			SEND_SIGNAL(A, COMSIG_TRY_STORAGE_RETURN_INVENTORY, item_stuff)
+			processing_list += item_stuff
+	return processing_list

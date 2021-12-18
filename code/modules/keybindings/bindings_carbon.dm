@@ -5,15 +5,15 @@
 			toggle_throw_mode()
 			return
 		if("1")
-			a_intent_change("help")
+			a_intent_change(INTENT_HELP)
 			return
 		if("2")
-			a_intent_change("disarm")
+			a_intent_change(INTENT_DISARM)
 			return
 		if("3")
-			a_intent_change("grab")
+			a_intent_change(INTENT_GRAB)
 			return
 		if("4")
-			a_intent_change("harm")
+			a_intent_change(INTENT_HARM)
 			return
 	return ..()

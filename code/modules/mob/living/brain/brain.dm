@@ -82,6 +82,8 @@
 		doMove(destination)
 	else if (istype(destination, /obj/item/mmi))
 		doMove(destination)
+	else if (istype(destination, /obj/item/reagent_containers/food/snacks/egg))
+		doMove(destination)
 	else
 		CRASH("Brainmob without a container [src] attempted to move to [destination].")
 

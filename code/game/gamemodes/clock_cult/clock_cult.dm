@@ -45,7 +45,7 @@ Credit where due:
 ///////////
 
 /proc/is_servant_of_ratvar(mob/M)
-	return istype(M) && !isobserver(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/clockcult)
+	return M?.mind?.has_antag_datum(/datum/antagonist/clockcult)
 
 /proc/is_eligible_servant(mob/M)
 	if(!istype(M))
@@ -84,9 +84,14 @@ Credit where due:
 		if(R.deployed)
 			var/mob/living/silicon/ai/AI = R.mainframe
 			R.undeploy()
-			to_chat(AI, "<span class='userdanger'>Anomaly Detected. Returned to core!</span>") //The AI needs to be in its core to properly be converted
+			to_chat(AI, span_userdanger("Anomaly Detected. Returned to core!")) //The AI needs to be in its core to properly be converted
 
 	. = L.mind.add_antag_datum(C)
+
+	if(.)
+		var/datum/antagonist/clockcult/servant = .
+		var/datum/team/clockcult/cult = servant.get_team()
+		cult.check_size()
 
 	if(!silent && L)
 		if(.)
@@ -95,7 +100,7 @@ Credit where due:
 			Ratvar, the Clockwork Justiciar, [GLOB.ratvar_awakens ? "has been freed from his eternal prison" : "lies in exile, derelict and forgotten in an unseen realm"].</span>")
 			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 50)
 		else
-			L.visible_message("<span class='boldwarning'>[L] seems to resist an unseen force!</span>", null, null, 7, L)
+			L.visible_message(span_boldwarning("[L] seems to resist an unseen force!"), null, null, 7, L)
 			to_chat(L, "<span class='heavy_brass'>The world before you suddenly glows a brilliant yellow. [issilicon(L) ? "You cannot compute this truth!" : \
 			"Your mind is racing!"] You hear the whooshing steam and cl[pick("ank", "ink", "unk", "ang")]ing cogs of a billion billion machines, and the sound</span> <span class='boldwarning'>\
 			is a meaningless cacophony.</span><br>\
@@ -135,7 +140,7 @@ Credit where due:
 	required_enemies = 4
 	recommended_enemies = 4
 	enemy_minimum_age = 14
-	protected_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain") //Silicons can eventually be converted
+	protected_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Brig Physician") //Silicons can eventually be converted //Yogs: Added Brig Physician
 	restricted_jobs = list("Chaplain", "Captain")
 	announce_span = "brass"
 	announce_text = "Servants of Ratvar are trying to summon the Justiciar!\n\
@@ -144,18 +149,11 @@ Credit where due:
 	var/servants_to_serve = list()
 	var/roundstart_player_count
 	var/ark_time //In minutes, how long the Ark waits before activation; this is equal to 20 + (number of players / 5) (max 35 mins.)
+	title_icon = "clockcult"
 
 	var/datum/team/clockcult/main_clockcult
 
 /datum/game_mode/clockwork_cult/pre_setup()
-	var/list/errorList = list()
-	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
-	if(errorList.len)	// reebe failed to load
-		message_admins("Reebe failed to load!")
-		log_game("Reebe failed to load!")
-		return FALSE
-	for(var/datum/parsed_map/PM in reebes)
-		PM.initTemplateBounds()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
@@ -191,6 +189,9 @@ Credit where due:
 		greet_servant(L)
 		equip_servant(L)
 		add_servant_of_ratvar(L, TRUE)
+	var/list/cog_spawns = GLOB.servant_spawns_scarabs.Copy()
+	for(var/turf/T in cog_spawns)
+		new /obj/item/clockwork/construct_chassis/cogscarab(T)
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar //that's a mouthful
 	G.final_countdown(ark_time)
 	..()
@@ -200,9 +201,9 @@ Credit where due:
 	if(!M)
 		return 0
 	to_chat(M, "<span class='bold large_brass'>You are a servant of Ratvar, the Clockwork Justiciar!</span>")
-	to_chat(M, "<span class='brass'>You have approximately <b>[ark_time]</b> minutes until the Ark activates.</span>")
-	to_chat(M, "<span class='brass'>Unlock <b>Script</b> scripture by converting a new servant.</span>")
-	to_chat(M, "<span class='brass'><b>Application</b> scripture will be unlocked halfway until the Ark's activation.</span>")
+	to_chat(M, span_brass("You have approximately <b>[ark_time]</b> minutes until the Ark activates."))
+	to_chat(M, span_brass("Unlock <b>Script</b> scripture by converting a new servant."))
+	to_chat(M, span_brass("<b>Application</b> scripture will be unlocked halfway until the Ark's activation."))
 	M.playsound_local(get_turf(M), 'sound/ambience/antag/clockcultalr.ogg', 100, FALSE, pressure_affected = FALSE)
 	return 1
 
@@ -226,7 +227,7 @@ Credit where due:
 		to_chat(L, "<span class='bold large_brass'>There is a paper in your backpack! It'll tell you if anything's changed, as well as what to expect.</span>")
 		to_chat(L, "<span class='alloy'>[slot] is a <b>clockwork slab</b>, a multipurpose tool used to construct machines and invoke ancient words of power. If this is your first time \
 		as a servant, you can find a concise tutorial in the Recollection category of its interface.</span>")
-		to_chat(L, "<span class='alloy italics'>If you want more information, you can read <a href=\"https://tgstation13.org/wiki/Clockwork_Cult\">the wiki page</a> to learn more.</span>")
+		to_chat(L, "<span class='alloy italics'>If you want more information, you can read <a href=\"https://wiki.yogstation.net/wiki/Clockwork_Cult\">the wiki page</a> to learn more.</span>")
 		return TRUE
 	return FALSE
 
@@ -242,7 +243,7 @@ Credit where due:
 	..()
 	if(GLOB.clockwork_gateway_activated)
 		SSticker.news_report = CLOCK_SUMMON
-		SSticker.mode_result = "win - servants completed their objective (summon ratvar)"
+		SSticker.mode_result = ("win - servants completed their objective (summon ratvar)")
 	else
 		SSticker.news_report = CULT_FAILURE
 		SSticker.mode_result = "loss - servants failed their objective (summon ratvar)"
@@ -293,12 +294,14 @@ Credit where due:
 	var/obj/item/card/id/W = new(H)
 	var/obj/item/pda/PDA = H.wear_id
 	W.assignment = "Assistant"
+	W.originalassignment = "Assistant"
 	W.access += ACCESS_MAINT_TUNNELS
 	W.registered_name = H.real_name
 	W.update_label()
 	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
 		H.internal = H.get_item_for_held_index(2)
 		H.update_internals_hud_icon(1)
+	PDA.hidden = TRUE
 	PDA.owner = H.real_name
 	PDA.ownjob = "Assistant"
 	PDA.update_label()
@@ -353,7 +356,7 @@ Credit where due:
 /obj/item/paper/servant_primer/examine(mob/user)
 	. = ..()
 	if(!is_servant_of_ratvar(user) && !isobserver(user))
-		. += "<span class='danger'>You can't understand any of the words on [src].</span>"
+		. += span_danger("You can't understand any of the words on [src].")
 
 /obj/effect/spawner/lootdrop/clockcult
 	name = "clock tile"
@@ -365,5 +368,21 @@ Credit where due:
 				/obj/item/clockwork/alloy_shards/large = 15,
 				/obj/structure/destructible/clockwork/wall_gear = 20,
 				/obj/structure/table_frame/brass = 20,
-				/obj/item/stack/tile/brass/ten = 23,
-				/obj/item/clockwork/construct_chassis/cogscarab = 1)
+				/obj/item/stack/tile/brass/ten = 23)
+
+/datum/game_mode/clockwork_cult/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Servants of Ratvar:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/servant in servants_of_ratvar)
+		round_credits += "<center><h2>[servant.name] as a faithful servant of Ratvar</h2>"
+	if(GLOB.ratvar_awakens)
+		round_credits += "<center><h2>Ratvar as himself, returned at last</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The servants were cast astray in the void!</h2>", "<center><h2>None shall remember their names!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

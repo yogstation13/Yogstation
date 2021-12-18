@@ -100,12 +100,26 @@
 //cheddar
 /obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar
 	name = "cheddar wheel"
-	desc = "A big wheel of delcious cheddar."
+	desc = "A big wheel of delicious cheddar."
 	icon_state = "cheesewheel"
 	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/cheesewheel/cheddar
 	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("cheddar" = 1)
+
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(W.tool_behaviour == TOOL_WELDER)
+		if(W.use_tool(src, user, 0, volume=40))
+			var/obj/item/stack/sheet/cheese/new_item = new(usr.loc, 5)
+			user.visible_message("[user.name] shaped [src] into a sturdier looking cheese with [W].", \
+						 span_notice("You shape [src] into a sturdier looking cheese with [W]."), \
+						 span_italics("You hear welding."))
+			var/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/R = src
+			qdel(src)
+			var/replace = (user.get_inactive_held_item()==R)
+			if (!R && replace)
+				user.put_in_hands(new_item)
 
 /obj/item/reagent_containers/food/snacks/cheesemix/cheddar
 	name = "cheddar mix"
@@ -229,12 +243,14 @@
 	name = "parmesan cheese wheel"
 	desc = "A big wheel of parmesan cheese."
 	icon_state = "parmesan_wheel"
+	bitesize = 5
+	volume = 200
 	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/parmesan
-	list_reagents = list(/datum/reagent/consumable/nutriment = 200, /datum/reagent/consumable/nutriment/vitamin = 50, /datum/reagent/consumable/parmesan_delight = 20)
-	tastes = list("salt" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 100, /datum/reagent/consumable/nutriment/vitamin = 30, /datum/reagent/consumable/parmesan_delight = 20)
+	tastes = list("salt" = 1, "magnificence" = 1, "italy" = 1)
 
 /obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan
-	name = "unmature parmesan cheese wheel"
+	name = "unmatured parmesan cheese wheel"
 	desc = "A big wheel of unmature parmesan cheese."
 	icon_state = "preparmesan_wheel"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -243,6 +259,7 @@
 	tastes = list("bitter salt" = 1)
 
 /obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan/Initialize()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/ageCheese), 20 MINUTES)
 
 /obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan/proc/ageCheese()
@@ -261,8 +278,8 @@
 	desc = "A wedge of parmesan cheese. You feel incredibly artisnal holding this."
 	icon_state = "parmesan_wedge"
 	filling_color = "#F0DF9C"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 40, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/parmesan_delight = 4)
-	tastes = list("salt" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/consumable/parmesan_delight = 4)
+	tastes = list("salt" = 1, "magnificence" = 1, "italy" = 1)
 
 //swiss
 /obj/item/reagent_containers/food/snacks/store/cheesewheel/swiss
@@ -287,3 +304,22 @@
 	filling_color = "#FFD700"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("holes" = 1)
+
+//bug cheese
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/bug
+	name = "bug cheese ball"
+	desc = "A big ball of gutlunch \"honey\", with a similar consistency to cheese."
+	icon_state = "bug_ball"
+	foodtype = SUGAR | MEAT //honey made by a carnivorous scavenging bug
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/bug
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
+	tastes = list("a rather large serving of sugar" = 1, "meat" = 1)
+
+/obj/item/reagent_containers/food/snacks/cheesewedge/bug
+	name = "bug cheese piece"
+	desc = "A piece of gutlunch \"honey\"."
+	icon_state = "bug_piece"
+	filling_color = "#ddedd5"
+	foodtype = SUGAR | MEAT
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("a rather large serving of sugar" = 1, "meat" = 1)

@@ -8,12 +8,13 @@
 
 /obj/machinery/telecomms/receiver
 	name = "subspace receiver"
-	icon_state = "broadcast receiver"
+	icon_state = "caster"
 	desc = "This machine has a dish-like shape and green lights. It is designed to detect and process subspace radio activity."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	circuit = /obj/item/circuitboard/machine/telecomms/receiver
+	on_icon = "reciever_on"
 
 /obj/machinery/telecomms/receiver/receive_signal(datum/signal/subspace/signal)
 	if(!on || !istype(signal) || !check_receive_level(signal) || signal.transmission_method != TRANSMISSION_SUBSPACE)
@@ -33,7 +34,7 @@
 
 	for(var/obj/machinery/telecomms/hub/H in links)
 		for(var/obj/machinery/telecomms/relay/R in H.links)
-			if(R.can_receive(signal) && R.z in signal.levels)
+			if(R.can_receive(signal) && (R.z in signal.levels))
 				return TRUE
 
 	return FALSE

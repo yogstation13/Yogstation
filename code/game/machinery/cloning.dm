@@ -1,3 +1,4 @@
+GLOBAL_VAR_INIT(clones, 0)
 //Cloning revival method.
 //The pod handles the actual cloning while the computer manages the clone profiles
 
@@ -24,6 +25,17 @@
 	var/attempting = FALSE //One clone attempt at a time thanks
 	var/speed_coeff
 	var/efficiency
+	// the three variables that handle meatcloning
+	var/biomass = 0 //Start with no biomass inserted.
+	///List of special meat that gives extra/less biomass
+	var/list/accepted_biomass = list(
+		/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 25, 
+		/obj/item/reagent_containers/food/snacks/meat/slab/synthmeat = 34,
+		/obj/item/reagent_containers/food/snacks/meat/slab/human = 50,
+		/obj/item/stack/sheet/animalhide/human = 50
+		)
+	///How much biomass does regular meat that isn't in the above list give
+	var/biomass_per_slab = 20
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -40,6 +52,7 @@
 	var/datum/bank_account/current_insurance
 	fair_market_price = 5 // He nodded, because he knew I was right. Then he swiped his credit card to pay me for arresting him.
 	payment_department = ACCOUNT_MED
+
 /obj/machinery/clonepod/Initialize()
 	. = ..()
 
@@ -76,9 +89,10 @@
 
 /obj/machinery/clonepod/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>The <i>linking</i> device can be <i>scanned<i> with a multitool.</span>"
+	. += span_notice("The <i>linking</i> device can be <i>scanned<i> with a multitool.")
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.<span>"
+		. += "<span class='notice'>The status display reads: Biomass levels at <b>[biomass]%</b><span>" // read out the amount of biomass if you examine
 		if(efficiency > 5)
 			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.<span>"
 
@@ -88,6 +102,7 @@
 	name = "cloning data disk"
 	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
 	var/list/fields = list()
+	var/list/genetic_makeup_buffer = list()
 	var/list/mutations = list()
 	var/max_mutations = 6
 	var/read_only = FALSE //Well,it's still a floppy disk
@@ -100,12 +115,41 @@
 
 /obj/item/disk/data/attack_self(mob/user)
 	read_only = !read_only
-	to_chat(user, "<span class='notice'>You flip the write-protect tab to [read_only ? "protected" : "unprotected"].</span>")
+	to_chat(user, span_notice("You flip the write-protect tab to [read_only ? "protected" : "unprotected"]."))
 
 /obj/item/disk/data/examine(mob/user)
 	. = ..()
 	. += "The write-protect tab is set to [read_only ? "protected" : "unprotected"]."
 
+// Biomass
+
+/obj/machinery/clonepod/proc/handle_biomass(W, tempbiomass, user) // updates the value
+	if(biomass >= 100)
+		to_chat(user, "<span class = 'notice'>[src]'s biomass containers are full!.</span>")
+		return // if biomass is already 100 then yell at those stupid idiots
+	else
+		to_chat(user, "<span class = 'notice'>You insert [W] into [src].</span>") // feel free to fill it.
+		biomass = tempbiomass
+		qdel(W)
+		if(biomass > 100) // hidden check to make sure we don't get an end value of like 106 or something.
+			biomass = 100
+	return
+
+/obj/machinery/clonepod/attackby(obj/item/W, mob/user, params)
+	var/tempbiomass = biomass
+	if(W.type in accepted_biomass)
+		if(istype(W, /obj/item/stack/sheet))
+			var/obj/item/stack/S = W
+			tempbiomass += S.amount * accepted_biomass[W.type] //we need special code because stacks are cringe
+			handle_biomass(W, tempbiomass, user)
+
+		else
+			tempbiomass += accepted_biomass[W.type] // changes biomass to whatever slab it picked
+			handle_biomass(W, tempbiomass, user)
+
+	else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab)) // If no special slab was picked it reverts to var/biomass_per_slab
+		tempbiomass += biomass_per_slab
+		handle_biomass(W, tempbiomass, user)
 
 //Clonepod
 
@@ -137,7 +181,7 @@
 	return examine(user)
 
 //Start growing a human clone in the pod!
-/obj/machinery/clonepod/proc/growclone(clonename, ui, mutation_index, mindref, last_death, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty)
+/obj/machinery/clonepod/proc/growclone(clonename, ui, mutation_index, makeup, mindref, last_death, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty)
 	if(panel_open)
 		return NONE
 	if(mess || attempting)
@@ -167,13 +211,20 @@
 			icon_state = "pod_g"
 			update_icon()
 			return NONE
+		if(clonemind.zombified) //Can't clone the damned x2
+			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			mess = TRUE
+			icon_state = "pod_g"
+			update_icon()
+			return NONE
 		current_insurance = insurance
 	attempting = TRUE //One at a time!!
+	biomass -= 100
 	countdown.start()
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
 
-	H.hardset_dna(ui, mutation_index, H.real_name, null, mrace, features)
+	H.hardset_dna(ui, mutation_index, makeup, H.real_name, null, mrace, features)
 
 	if(!HAS_TRAIT(H, TRAIT_RADIMMUNE))//dont apply mutations if the species is Mutation proof.
 		if(efficiency > 2)
@@ -185,6 +236,13 @@
 			var/mob/M = H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
 			if(ismob(M))
 				H = M
+	if((AGENDER || MGENDER || FGENDER) in H.dna.species.species_traits)
+		if((FGENDER in H.dna.species.species_traits) && (H.gender != FEMALE))
+			H.gender = FEMALE
+		if((MGENDER in H.dna.species.species_traits) && (H.gender != MALE))
+			H.gender = MALE
+		if((AGENDER in H.dna.species.species_traits) && (H.gender != PLURAL))
+			H.gender = PLURAL
 
 	H.silent = 20 //Prevents an extreme edge case where clones could speak if they said something at exactly the right moment.
 	occupant = H
@@ -209,11 +267,11 @@
 
 		if(grab_ghost_when == CLONER_FRESH_CLONE)
 			H.grab_ghost()
-			to_chat(H, "<span class='notice'><b>Consciousness slowly creeps over you as your body regenerates.</b><br><i>So this is what cloning feels like?</i></span>")
+			to_chat(H, span_notice("<b>Consciousness slowly creeps over you as your body regenerates.</b><br><i>So this is what cloning feels like?</i>"))
 
 		if(grab_ghost_when == CLONER_MATURE_CLONE)
 			H.ghostize(TRUE)	//Only does anything if they were still in their old body and not already a ghost
-			to_chat(H.get_ghost(TRUE), "<span class='notice'>Your body is beginning to regenerate in a cloning pod. You will become conscious when it is complete.</span>")
+			to_chat(H.get_ghost(TRUE), span_notice("Your body is beginning to regenerate in a cloning pod. You will become conscious when it is complete."))
 
 	if(H)
 		H.faction |= factions
@@ -352,10 +410,10 @@
 	var/mob/living/mob_occupant = occupant
 	if(W.GetID())
 		if(!check_access(W))
-			to_chat(user, "<span class='danger'>Access Denied.</span>")
+			to_chat(user, span_danger("Access Denied."))
 			return
 		if(!(mob_occupant || mess))
-			to_chat(user, "<span class='danger'>Error: Pod has no occupant.</span>")
+			to_chat(user, span_danger("Error: Pod has no occupant."))
 			return
 		else
 			add_fingerprint(user)
@@ -363,7 +421,7 @@
 			log_combat(user, mob_occupant, "ejected", W, "from [src]")
 			connected_message("Emergency Ejection")
 			SPEAK("An emergency ejection of [clonemind.name] has occurred. Survival not guaranteed.")
-			to_chat(user, "<span class='notice'>You force an emergency ejection. </span>")
+			to_chat(user, span_notice("You force an emergency ejection. "))
 			go_out()
 	else
 		return ..()
@@ -371,7 +429,7 @@
 /obj/machinery/clonepod/emag_act(mob/user)
 	if(!occupant)
 		return
-	to_chat(user, "<span class='warning'>You corrupt the genetic compiler.</span>")
+	to_chat(user, span_warning("You corrupt the genetic compiler."))
 	malfunction()
 	add_fingerprint(user)
 	log_cloning("[key_name(user)] emagged [src] at [AREACOORD(src)], causing it to malfunction.")
@@ -402,7 +460,7 @@
 		unattached_flesh.Cut()
 		mess = FALSE
 		new /obj/effect/gibspawner/generic(get_turf(src), mob_occupant)
-		audible_message("<span class='italics'>You hear a splat.</span>")
+		audible_message(span_italics("You hear a splat."))
 		icon_state = "pod_0"
 		return
 
@@ -418,9 +476,10 @@
 
 	if(grab_ghost_when == CLONER_MATURE_CLONE)
 		mob_occupant.grab_ghost()
-		to_chat(occupant, "<span class='notice'><b>There is a bright flash!</b><br><i>You feel like a new being.</i></span>")
-		to_chat(occupant, "<span class='notice'>You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 1.7</a>.</span>") //yogs
+		to_chat(occupant, span_notice("<b>There is a bright flash!</b><br><i>You feel like a new being.</i>"))
+		to_chat(occupant, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
 		mob_occupant.flash_act()
+		GLOB.clones++
 
 	occupant.forceMove(T)
 	icon_state = "pod_0"
@@ -445,7 +504,7 @@
 			clonemind.transfer_to(mob_occupant)
 		mob_occupant.grab_ghost() // We really just want to make you suffer.
 		flash_color(mob_occupant, flash_color="#960000", flash_time=100)
-		to_chat(mob_occupant, "<span class='warning'><b>Agony blazes across your consciousness as your body is torn apart.</b><br><i>Is this what dying is like? Yes it is.</i></span>")
+		to_chat(mob_occupant, span_warning("<b>Agony blazes across your consciousness as your body is torn apart.</b><br><i>Is this what dying is like? Yes it is.</i>"))
 		playsound(src, 'sound/machines/warning-buzzer.ogg', 50)
 		SEND_SOUND(mob_occupant, sound('sound/hallucinations/veryfar_noise.ogg',0,1,50))
 		log_cloning("[key_name(mob_occupant)] destroyed within [src] at [AREACOORD(src)] due to malfunction.")

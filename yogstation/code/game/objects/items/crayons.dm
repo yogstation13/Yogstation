@@ -14,7 +14,7 @@
 		var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
 		if(G)
 			if(G.gang != gang)
-				to_chat(user, "<span class='danger'>This spraycan's color isn't your gang's one! You cannot use it.</span>")
+				to_chat(user, span_danger("This spraycan's color isn't your gang's one! You cannot use it."))
 				return FALSE
 			gang_mode = TRUE
 			instant = FALSE
@@ -36,7 +36,7 @@
 	// Reject space, player-created areas, and non-station z-levels.
 	var/area/A = get_area(target)
 	if(!A || (!is_station_level(A.z)) || !A.valid_territory)
-		to_chat(user, "<span class='warning'>[A] is unsuitable for tagging.</span>")
+		to_chat(user, span_warning("[A] is unsuitable for tagging."))
 		return FALSE
 
 	var/spraying_over = FALSE
@@ -49,12 +49,12 @@
 				break
 
 	for(var/obj/machinery/power/apc in target)
-		to_chat(user, "<span class='warning'>You can't tag an APC.</span>")
+		to_chat(user, span_warning("You can't tag an APC."))
 		return FALSE
 
 	var/occupying_gang = territory_claimed(A, user)
 	if(occupying_gang && !spraying_over)
-		to_chat(user, "<span class='danger'>[A] has already been tagged by the [occupying_gang] gang! You must get rid of or spray over the old tag first!</span>")
+		to_chat(user, span_danger("[A] has already been tagged by the [occupying_gang] gang! You must get rid of or spray over the old tag first!"))
 		return FALSE
 
 	// If you pass the gaunlet of checks, you're good to proceed
@@ -73,8 +73,8 @@
 
 	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
 	var/area/territory = get_area(target)
-	new /obj/effect/decal/cleanable/crayon/gang(target,G.gang,"graffiti",0,user)
-	to_chat(user, "<span class='notice'>You tagged [territory] for your gang!</span>")
+	new /obj/effect/decal/cleanable/crayon/gang(target,G.gang,"letter",0,user)
+	to_chat(user, span_notice("You tagged [territory] for your gang!"))
 
 /obj/item/toy/crayon/spraycan/gang
 	//desc = "A modified container containing suspicious paint."
@@ -107,7 +107,7 @@
 		return
 
 	if(is_capped)
-		to_chat(user, "<span class='warning'>Take the cap off first!</span>")
+		to_chat(user, span_warning("Take the cap off first!"))
 		return
 
 	if(check_empty(user))

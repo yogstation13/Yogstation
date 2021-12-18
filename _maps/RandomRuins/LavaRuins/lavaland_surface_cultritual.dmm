@@ -45,9 +45,6 @@
 	},
 /turf/open/floor/mineral/gold,
 /area/ruin/powered)
-"l" = (
-/turf/open/lava/smooth/lava_land_surface,
-/area/ruin/powered)
 "m" = (
 /obj/item/coin/gold,
 /turf/open/floor/engine/cult,
@@ -197,6 +194,9 @@
 /obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/mineral/gold,
 /area/ruin/powered)
+"R" = (
+/turf/open/lava/smooth,
+/area/ruin/powered)
 
 (1,1,1) = {"
 a
@@ -253,13 +253,13 @@ a
 b
 b
 b
-l
+R
 b
 a
 b
 b
 b
-l
+R
 b
 a
 o
@@ -381,7 +381,7 @@ d
 e
 b
 a
-l
+R
 b
 b
 a
@@ -584,7 +584,7 @@ e
 m
 e
 b
-l
+R
 b
 a
 o
@@ -630,7 +630,7 @@ h
 b
 h
 b
-l
+R
 b
 b
 b
@@ -677,7 +677,7 @@ o
 a
 b
 b
-l
+R
 b
 b
 b

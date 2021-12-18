@@ -1,21 +1,22 @@
 macro "default"
 
+
 menu "menu"
-	elem
+	elem 
 		name = "&File"
 		command = ""
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Quick screenshot\tF2"
 		command = ".screenshot auto"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Save screenshot as...\tShift+F2"
 		command = ".screenshot"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = ""
 		command = ""
 		category = "&File"
@@ -25,21 +26,21 @@ menu "menu"
 		command = ".reconnect"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Quit\tAlt-F4"
 		command = ".quit"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Help"
 		command = ""
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Admin Help\tF1"
 		command = "adminhelp"
 		category = "&Help"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Hotkeys"
 		command = "hotkeys-help"
 		category = "&Help"
@@ -115,6 +116,7 @@ window "mainwindow"
 		anchor2 = none
 		is-visible = false
 		saved-params = ""
+		auto-format = false
 	elem "tooltip"
 		type = BROWSER
 		pos = 0,0
@@ -143,113 +145,112 @@ window "mapwindow"
 		font-size = 7
 		text-color = none
 		is-default = true
-		saved-params = "icon-size"
-		zoom-mode = distort
+		saved-params = "zoom;letterbox;zoom-mode"
+		style = ".center { text-align: center; } .maptext { font-family: 'Small Fonts'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; } .command_headset { font-weight: bold;\tfont-size: 8px; } .small { font-size: 6px; } .big { font-size: 8px; } .reallybig { font-size: 8px; } .extremelybig { font-size: 8px; } .greentext { color: #00FF00; font-size: 7px; } .redtext { color: #FF0000; font-size: 7px; } .clown { color: #FF69Bf; font-size: 7px;  font-weight: bold; } .his_grace { color: #15D512; } .hypnophrase { color: #0d0d0d; font-weight: bold; } .yell { font-weight: bold; } .italics { font-size: 6px; }"
 
 window "infowindow"
 	elem "infowindow"
 		type = MAIN
-		pos = 0,0
+		pos = 281,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
+		outer-size = 656x538
+		inner-size = 640x499
+	elem "demoview"
+		type = BUTTON
+		pos = 480,5
+		size = 80x20
+		anchor1 = 75,0
+		anchor2 = 88,0
+		background-color = none
+		saved-params = "is-checked"
+		text = "View Replay"
+		command = "demoview"
 	elem "info"
 		type = CHILD
 		pos = 0,30
 		size = 640x445
 		anchor1 = 0,0
 		anchor2 = 100,100
+		background-color = none
 		saved-params = "splitter"
 		left = "statwindow"
 		right = "outputwindow"
 		is-vert = false
 	elem "changelog"
 		type = BUTTON
-		pos = 16,5
+		pos = 0,5
 		size = 80x20
-		anchor1 = 3,0
-		anchor2 = 19,0
-		text-color = #99aab5
-		background-color = #494949
+		anchor1 = 0,0
+		anchor2 = 13,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Changelog"
 		command = "changelog"
 	elem "rules"
 		type = BUTTON
-		pos = 100,5
+		pos = 80,5
 		size = 80x20
-		anchor1 = 19,0
-		anchor2 = 34,0
-		text-color = #99aab5
-		background-color = #494949
+		anchor1 = 13,0
+		anchor2 = 25,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
 	elem "wiki"
 		type = BUTTON
-		pos = 180,5
+		pos = 160,5
 		size = 80x20
-		anchor1 = 34,0
-		anchor2 = 50,0
+		anchor1 = 25,0
+		anchor2 = 38,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
 	elem "forum"
 		type = BUTTON
-		pos = 260,5
+		pos = 240,5
 		size = 80x20
-		anchor1 = 50,0
-		anchor2 = 66,0
+		anchor1 = 38,0
+		anchor2 = 50,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
 	elem "github"
 		type = BUTTON
-		pos = 340,5
+		pos = 320,5
 		size = 80x20
-		anchor1 = 66,0
-		anchor2 = 81,0
+		anchor1 = 50,0
+		anchor2 = 63,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Github"
 		command = "github"
 	elem "report-issue"
 		type = BUTTON
-		pos = 420,5
+		pos = 400,5
 		size = 80x20
-		anchor1 = 81,0
-		anchor2 = 97,0
+		anchor1 = 63,0
+		anchor2 = 75,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Report Issue"
 		command = "report-issue"
 	elem "tickets"
 		type = BUTTON
-		button-type = pushbutton
-		pos = 520,5
+		pos = 560,5
 		size = 80x20
-		anchor1 = 97,0
-		anchor2 = 113,0
-		font-family = ""
-		font-size = 0
-		font-style = ""
-		text-color = #000000
+		anchor1 = 88,0
+		anchor2 = 100,0
 		background-color = none
-		is-visible = true
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
 		saved-params = "is-checked"
-		on-size = ""
 		text = "Tickets"
-		image = ""
 		command = "tickets"
-		is-flat = false
-		stretch = false
-		is-checked = false
 
 window "outputwindow"
 	elem "outputwindow"
@@ -270,7 +271,6 @@ window "outputwindow"
 		is-visible = false
 		is-disabled = true
 		saved-params = ""
-		auto-format = false
 	elem "output"
 		type = OUTPUT
 		pos = 0,0
@@ -280,14 +280,25 @@ window "outputwindow"
 		is-default = true
 		saved-params = ""
 
+window "popupwindow"
+	elem "popupwindow"
+		type = MAIN
+		pos = 281,0
+		size = 120x120
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+		can-resize = false
+
 window "preferences_window"
 	elem "preferences_window"
 		type = MAIN
-		pos = 372,0
+		pos = 281,0
 		size = 1280x1000
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		is-visible = false
 		saved-params = "pos;size;is-minimized;is-maximized"
 		statusbar = false
@@ -297,7 +308,6 @@ window "preferences_window"
 		size = 960x1008
 		anchor1 = 0,0
 		anchor2 = 75,100
-		background-color = none
 		saved-params = ""
 	elem "character_preview_map"
 		type = MAP
@@ -307,23 +317,23 @@ window "preferences_window"
 		anchor2 = 75,100
 		right-click = true
 		saved-params = "zoom;letterbox;zoom-mode"
-		
+
 window "statwindow"
 	elem "statwindow"
 		type = MAIN
-		pos = 0,0
+		pos = 372,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
-	elem "stat"
-		type = INFO
+	elem "statbrowser"
+		type = BROWSER
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		is-default = true
+		is-visible = false
 		saved-params = ""
 
 window "Telecomms IDE"
@@ -333,8 +343,8 @@ window "Telecomms IDE"
 		size = 569x582
 		anchor1 = none
 		anchor2 = none
-		background-color = #222222
 		text-color = #eeeeee
+		background-color = #222222
 		is-visible = false
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "TCS IDE"
@@ -346,8 +356,8 @@ window "Telecomms IDE"
 		size = 70x20
 		anchor1 = 37,80
 		anchor2 = 49,83
-		background-color = #555555
 		text-color = #eeeeee
+		background-color = #555555
 		saved-params = "is-checked"
 		text = "Clear Memory"
 		command = "tcsclearmem"
@@ -357,8 +367,8 @@ window "Telecomms IDE"
 		size = 52x20
 		anchor1 = 28,80
 		anchor2 = 37,83
-		background-color = #555555
 		text-color = #eeeeee
+		background-color = #555555
 		saved-params = "is-checked"
 		text = "Revert"
 		command = "tcsrevert"
@@ -368,8 +378,8 @@ window "Telecomms IDE"
 		size = 52x20
 		anchor1 = 18,80
 		anchor2 = 28,83
-		background-color = #555555
 		text-color = #eeeeee
+		background-color = #555555
 		saved-params = "is-checked"
 		text = "Execute"
 		command = "tcsrun"
@@ -379,10 +389,10 @@ window "Telecomms IDE"
 		size = 566x94
 		anchor1 = 0,84
 		anchor2 = 99,100
-		background-color = #333334
-		text-color = #eeeeee
 		font-family = "sans-serif"
 		font-size = 9
+		text-color = #eeeeee
+		background-color = #333334
 		saved-params = "max-lines"
 	elem "button2"
 		type = BUTTON
@@ -390,8 +400,8 @@ window "Telecomms IDE"
 		size = 52x20
 		anchor1 = 9,80
 		anchor2 = 18,83
-		background-color = #555555
 		text-color = #eeeeee
+		background-color = #555555
 		saved-params = "is-checked"
 		text = "Compile"
 		command = "tcscompile"
@@ -401,8 +411,8 @@ window "Telecomms IDE"
 		size = 53x20
 		anchor1 = 0,80
 		anchor2 = 9,83
-		background-color = #555555
 		text-color = #eeeeee
+		background-color = #555555
 		saved-params = "is-checked"
 		text = "Save"
 		command = "tcssave"
@@ -412,11 +422,12 @@ window "Telecomms IDE"
 		size = 569x464
 		anchor1 = 0,0
 		anchor2 = 100,80
-		background-color = #333334
-		text-color = #eeeeee
 		font-family = "Courier"
 		font-size = 10
+		text-color = #eeeeee
+		background-color = #333334
 		saved-params = ""
 		command = "cancel"
 		multi-line = true
 		no-command = true
+

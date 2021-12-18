@@ -4,7 +4,7 @@
 	icon_state = "laser"
 	item_state = "laser"
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun)
 	ammo_x_offset = 1
 	shaded_charge = 1
@@ -28,6 +28,12 @@
 	desc = "First generation lasergun, developed by Nanotrasen. Suffers from ammo issues but its unique ability to recharge its ammo without the need of a magazine helps compensate. You really hope someone has developed a better lasergun while you were in cryo."
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/old)
 	ammo_x_offset = 3
+
+/obj/item/gun/energy/laser/hellgun
+	name ="hellfire laser gun"
+	desc = "A relic of a weapon, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds it caused, and was quietly discontinued once it began to affect NT's reputation."
+	icon_state = "hellgun"
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire)
 
 /obj/item/gun/energy/laser/captain
 	name = "antique laser gun"
@@ -66,10 +72,10 @@
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "cshotgun"
 	item_state = "shotgun"
-	desc = "A combat shotgun gutted and refitted with an internal laser system. Can switch between taser and scattered disabler shots."
+	desc = "A combat shotgun gutted and refitted with an internal disabler system."
 	shaded_charge = 0
 	pin = /obj/item/firing_pin/implant/mindshield
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter/disabler, /obj/item/ammo_casing/energy/electrode)
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter/disabler)
 
 ///Laser Cannon
 
@@ -102,6 +108,7 @@
 	damage += 7
 	transform *= 1 + ((damage/7) * 0.2)//20% larger per tile
 
+///X-ray gun
 /obj/item/gun/energy/xray
 	name = "\improper X-ray laser gun"
 	desc = "A high-power laser gun capable of expelling concentrated X-ray blasts that pass through multiple soft targets and heavier materials."
@@ -140,3 +147,37 @@
 
 /obj/item/gun/energy/laser/redtag/hitscan
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag/hitscan)
+
+/obj/item/gun/energy/laser/makeshiftlasrifle
+	name = "makeshift laser rifle"
+	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but the screwable bulb allows modulating the photonic output."
+	icon_state = "lasrifle"
+	item_state = "makeshiftlas"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/makeshiftlasrifle, /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak)
+	icon = 'icons/obj/guns/energy.dmi'
+	can_charge = TRUE
+	charge_sections = 1
+	ammo_x_offset = 2
+	shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle
+	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle
+	select_name = "strong"
+	variance = 2
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle
+	damage = 17
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak
+	e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle/weak
+	select_name = "weak"
+	fire_sound = 'sound/weapons/laser2.ogg'
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle/weak
+	name = "weak laser"
+	damage = 5

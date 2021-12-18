@@ -64,7 +64,7 @@
 		return FALSE
 	if(istype(I, /obj/item/clothing))
 		if(charges)
-			SEND_SIGNAL(I, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
+			I.wash(CLEAN_WASH)
 			playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
 			to_chat(user, "You've successfully cleaned [I] with [src]")
 			charges --

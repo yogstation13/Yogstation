@@ -173,18 +173,21 @@
 	desc = "Aviators not included. Now in dark blue!"
 	icon_state = "navymiljacket"
 	item_state = "navymiljacket"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/yogs/desertmiljacket
 	name = "desert military jacket"
 	desc = "Aviators not included. Now in dark brown!"
 	icon_state = "desertmiljacket"
 	item_state = "desertmiljacket"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/yogs/denimjacket
 	name = "denim jacket"
 	desc = "A bit scratchy but pretty cool looking."
 	icon_state = "denim_jacket"
 	item_state = "denim_jacket"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/hooded/fiendcowl
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
@@ -248,19 +251,12 @@
 	icon_state = "janitor_coat"
 	item_state = "janitor_item"
 
-/obj/item/clothing/suit/toggle/labcoat/pmedic_jacket
-	name = "yellow paramedic jacket"
-	desc = "Bright yellow so people can see you coming from a mile away."
-	icon = 'yogstation/icons/obj/clothing/suits.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
-	icon_state = "pmedic_jacket"
-	item_state = "pmedic_jacket"
-
 /obj/item/clothing/suit/yogs/detectivecoat
 	name = "detective long coat"
 	desc = "For those detectives that value fashion over function."
 	icon_state = "detective_coat"
 	item_state = "detective_item"
+
 
 /obj/item/clothing/suit/yogs/blacktrenchcoat
 	name = "black trenchcoat"
@@ -286,6 +282,12 @@
 	desc = "A detective jacket that is blue!"
 	icon_state = "blue_detective"
 	item_state = "blue_item"
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 45)
+
+/obj/item/clothing/suit/yogs/bluedetective/Initialize()
+	. = ..()
+	allowed = GLOB.detective_vest_allowed
+
 
 /obj/item/clothing/suit/hooded/spesshoodie
     alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'

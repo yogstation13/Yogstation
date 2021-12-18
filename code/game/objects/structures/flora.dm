@@ -17,9 +17,9 @@
 		if(W.is_sharp() && W.force > 0)
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, 0, 0)
-			user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
+			user.visible_message(span_notice("[user] begins to cut down [src] with [W]."),span_notice("You begin to cut down [src] with [W]."), "You hear the sound of sawing.")
 			if(do_after(user, 1000/W.force, target = src)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
-				user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
+				user.visible_message(span_notice("[user] fells [src] with the [W]."),span_notice("You fell [src] with the [W]."), "You hear the sound of a tree falling.")
 				playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
 				for(var/i=1 to log_amount)
 					new /obj/item/grown/log/tree(get_turf(src))
@@ -79,9 +79,9 @@
 		return
 
 	if(took_presents[user.ckey] && !unlimited)
-		to_chat(user, "<span class='warning'>There are no presents with your name on.</span>")
+		to_chat(user, span_warning("There are no presents with your name on."))
 		return
-	to_chat(user, "<span class='warning'>After a bit of rummaging, you locate a gift with your name on it!</span>")
+	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
 
 	if(!unlimited)
 		took_presents[user.ckey] = TRUE
@@ -119,6 +119,10 @@
 	desc = "A true feat of strength, almost as good as last year."
 	icon_state = "anchored_rod"
 	anchored = TRUE
+
+/obj/structure/festivus/erp
+	name = "pole"
+	desc = "Don't think too hard about what it'll be used for."
 
 /obj/structure/flora/tree/dead/Initialize()
 	icon_state = "tree_[rand(1, 6)]"
@@ -303,7 +307,7 @@
 
 /obj/item/twohanded/required/kirbyplants
 	name = "potted plant"
-	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed path
+	icon = 'icons/obj/flora/plants.dmi'
 	icon_state = "plant-01"
 	desc = "A little bit of nature contained in a pot."
 	layer = ABOVE_MOB_LAYER
@@ -324,7 +328,7 @@
 
 /obj/item/twohanded/required/kirbyplants/random/Initialize()
 	. = ..()
-	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed icon path
+	icon = 'icons/obj/flora/plants.dmi'
 	if(!states)
 		generate_states()
 	icon_state = pick(states)
@@ -353,6 +357,14 @@
 	light_color = "#2cb2e8"
 	light_range = 3
 
+/obj/item/twohanded/required/kirbyplants/Initialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/kirbyplants)
+
+/datum/component/storage/concrete/kirbyplants
+	max_items = 1
+	max_w_class = WEIGHT_CLASS_NORMAL
+
 
 //a rock is flora according to where the icon file is
 //and now these defines
@@ -363,10 +375,23 @@
 	icon = 'icons/obj/flora/rocks.dmi'
 	resistance_flags = FIRE_PROOF
 	density = TRUE
+	var/obj/item/stack/mineResult = /obj/item/stack/ore/glass/basalt
 
 /obj/structure/flora/rock/Initialize()
 	. = ..()
 	icon_state = "[icon_state][rand(1,3)]"
+
+/obj/structure/flora/rock/attackby(obj/item/W, mob/user, params)
+	if(mineResult && (!(flags_1 & NODECONSTRUCT_1)))
+		if(W.tool_behaviour == TOOL_MINING)
+			to_chat(user, span_notice("You start mining..."))
+			if(W.use_tool(src, user, 40, volume=50))
+				to_chat(user, span_notice("You finish mining the rock."))
+				new mineResult(get_turf(src), 20)
+				SSblackbox.record_feedback("tally", "pick_used_mining", 1, W.type)
+				qdel(src)
+			return
+	return ..()
 
 /obj/structure/flora/rock/pile
 	icon_state = "lavarocks"
@@ -438,3 +463,5 @@
 /obj/structure/flora/rock/pile/largejungle/Initialize()
 	. = ..()
 	icon_state = "[initial(icon_state)][rand(1,3)]"
+
+

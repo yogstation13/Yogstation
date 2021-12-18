@@ -26,7 +26,7 @@
 	across the station so have fun!</b>")
 	var/new_name = stripped_input(src, "Enter your name, or press \"Cancel\" to stick with Egg Dog.", "Name Change")
 	if(new_name)
-		to_chat(src, "<span class='notice'>Your name is now <b>\"new_name\"</b>!</span>")
+		to_chat(src, span_notice("Your name is now <b>\"new_name\"</b>!"))
 		name = new_name
 
 /mob/living/simple_animal/pet/eggdog/Life()

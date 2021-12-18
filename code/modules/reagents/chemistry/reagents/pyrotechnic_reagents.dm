@@ -60,6 +60,8 @@
 					new /obj/effect/hotspot(F)
 	if(iswallturf(T))
 		var/turf/closed/wall/W = T
+		if(istype(T, /turf/closed/wall/r_wall))
+			return
 		if(prob(reac_volume))
 			W.ScrapeAway()
 
@@ -257,8 +259,8 @@
 	if(hotspot && !isspaceturf(T))
 		if(T.air)
 			var/datum/gas_mixture/G = T.air
-			if(G.temperature > T20C)
-				G.temperature = max(G.temperature/2,T20C)
+			if(G.return_temperature() > T20C)
+				G.set_temperature(max(G.return_temperature()/2,T20C))
 			G.react(src)
 			qdel(hotspot)
 

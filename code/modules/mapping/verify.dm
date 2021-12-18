@@ -14,7 +14,7 @@
 
 /// Show a rendered version of this report to a client.
 /datum/map_report/proc/show_to(client/C)
-	var/list/html = list()
+	var/list/html = list("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>")
 	html += "<p>Report for map file <tt>[original_path]</tt></p>"
 	if(crashed)
 		html += "<p><b>Validation crashed</b>: check the runtime logs.</p>"
@@ -39,6 +39,7 @@
 				html += "<ul><li>[messages.Join("</li><li>")]</li></ul>"
 			html += "</li>"
 		html += "</ul></p>"
+	html += "</BODY></HTML>"
 	C << browse(html.Join(), "window=[tag];size=600x400")
 
 /datum/map_report/Topic(href, href_list)
@@ -60,8 +61,9 @@
 	// build_cache will check bad paths for us
 	var/list/modelCache = build_cache(TRUE, report.bad_paths)
 
+	var/static/regex/area_or_turf = regex(@"/(turf|area)/")
 	for(var/path in report.bad_paths)
-		if(copytext(path, 1, 7) == "/turf/" || copytext(path, 1, 7) == "/area/")
+		if(area_or_turf.Find("[path]", 1, 1))
 			report.loadable = FALSE
 
 	// check for tiles with the wrong number of turfs or areas

@@ -1,5 +1,3 @@
-
-
 /obj/item/projectile/magic/spell
 	name = "custom spell projectile"
 	var/list/ignored_factions //Do not hit these
@@ -44,7 +42,7 @@
 	. = ..()
 	if(linger && target != original)
 		return FALSE
-	if(ismob(target) && !direct_target) //Unsure about the direct target, i guess it could always skip these.
+	if(ismob(target))
 		var/mob/M = target
 		if(M.anti_magic_check(check_antimagic, check_holy))
 			return FALSE
@@ -54,7 +52,7 @@
 /obj/item/projectile/magic/spell/on_hit(mob/living/carbon/target)
 	.=..()
 	if(target.anti_magic_check())
-		target.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+		target.visible_message(span_warning("[src] vanishes on contact with [target]!"))
 		return BULLET_ACT_BLOCK
 
 

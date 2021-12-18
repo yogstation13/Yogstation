@@ -273,7 +273,7 @@ Code:
 
 
 			if(!powercount)
-				menu += "<span class='danger'>No connection<BR></span>"
+				menu += span_danger("No connection<BR>")
 			else
 
 				menu += "<FONT SIZE=-1>"
@@ -287,7 +287,7 @@ Code:
 		if (433)
 			menu = "<h4>[PDAIMG(power)] Power Monitor </h4><BR>"
 			if(!powmonitor || !powmonitor.get_powernet())
-				menu += "<span class='danger'>No connection<BR></span>"
+				menu += span_danger("No connection<BR>")
 			else
 				var/list/L = list()
 				var/datum/powernet/connected_powernet = powmonitor.get_powernet()
@@ -307,8 +307,8 @@ Code:
 					var/list/chg = list("N","C","F")
 
 					for(var/obj/machinery/power/apc/A in L)
-						menu += copytext(add_tspace(A.area.name, 30), 1, 30)
-						menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_lspace(DisplayPower(A.lastused_total), 6)]  [A.cell ? "[add_lspace(round(A.cell.percent()), 3)]% [chg[A.charging+1]]" : "  N/C"]<BR>"
+						menu += copytext_char(add_trailing(A.area.name, 30, " "), 1, 30)
+						menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_leading(DisplayPower(A.lastused_total), 6, " ")]  [A.cell ? "[add_leading(round(A.cell.percent()), 3, " ")]% [chg[A.charging+1]]" : "  N/C"]<BR>"
 
 				menu += "</FONT></PRE>"
 
@@ -382,7 +382,7 @@ Code:
 			if(active3 in GLOB.data_core.security)
 				menu += "Criminal Status: [active3.fields["criminal"]]<br>"
 
-				menu += text("<BR>\nMinor Crimes:")
+				menu += text("<BR>\nCrimes:")
 
 				menu +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
@@ -391,7 +391,7 @@ Code:
 <th>Author</th>
 <th>Time Added</th>
 </tr>"}
-				for(var/datum/data/crime/c in active3.fields["mi_crim"])
+				for(var/datum/data/crime/c in active3.fields["crimes"])
 					menu += "<tr><td>[c.crimeName]</td>"
 					menu += "<td>[c.crimeDetails]</td>"
 					menu += "<td>[c.author]</td>"
@@ -399,18 +399,16 @@ Code:
 					menu += "</tr>"
 				menu += "</table>"
 
-				menu += text("<BR>\nMajor Crimes:")
+				menu += text("<BR>\nComments:")
 
 				menu +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th>Crime</th>
-<th>Details</th>
+<th>Comment</th>
 <th>Author</th>
 <th>Time Added</th>
 </tr>"}
-				for(var/datum/data/crime/c in active3.fields["ma_crim"])
-					menu += "<tr><td>[c.crimeName]</td>"
-					menu += "<td>[c.crimeDetails]</td>"
+				for(var/datum/data/comment/c in active3.fields["comments"])
+					menu += "<tr><td>[c.commentText]</td>"
 					menu += "<td>[c.author]</td>"
 					menu += "<td>[c.time]</td>"
 					menu += "</tr>"
@@ -606,6 +604,7 @@ Code:
 			switch(href_list["statdisp"])
 				if("message")
 					post_status("message", message1, message2)
+					message_admins("[ADMIN_LOOKUPFLW(usr)] set the status lines to: [message1] - [message2].")
 				if("alert")
 					post_status("alert", href_list["alert"])
 				if("setmsg1")

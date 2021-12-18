@@ -16,12 +16,12 @@
 	victims = list()
 
 /datum/action/innate/darkspawn/devour_will/IsAvailable()
-	if(!owner || !owner.get_empty_held_indexes())
+	if(!owner || istype(owner, /mob/living/simple_animal/hostile/crawling_shadows) ||istype(owner, /mob/living/simple_animal/hostile/darkspawn_progenitor) || !owner.get_empty_held_indexes())
 		return
 	return ..()
 
 /datum/action/innate/darkspawn/devour_will/Activate()
-	owner.visible_message("<span class='warning'>A glowing black orb appears in [owner]'s hand!</span>", "<span class='velvet'><b>pwga...iejz</b><br>\
+	owner.visible_message(span_warning("A glowing black orb appears in [owner]'s hand!"), "<span class='velvet'><b>pwga...iejz</b><br>\
 	You form a dark bead in your hand.</span>")
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 	var/obj/item/dark_bead/B = new
@@ -33,5 +33,5 @@
 	if(!L || !victims[L])
 		return
 	victims[L] = FALSE
-	to_chat(owner, "<span class='notice'>[L] has recovered from their draining and is vulnerable to Devour Will again.</span>")
+	to_chat(owner, span_notice("[L] has recovered from their draining and is vulnerable to Devour Will again."))
 	return TRUE

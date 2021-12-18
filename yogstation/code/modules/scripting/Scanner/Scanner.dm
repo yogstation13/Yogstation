@@ -59,33 +59,32 @@
 		linepos 			 = 0 										 //column=codepos-linepos
 		n_scriptOptions/nS_Options/options
 
-		list
 /*
 	Variable: ignore
 	A list of characters that are ignored by the scanner.
 	Default Value:
 	Whitespace
 */
-			ignore 			 = list(" ", "\t", "\n") //Don't add tokens for whitespace
+		list/ignore 			 = list(" ", "\t", "\n") //Don't add tokens for whitespace
 /*
 	Variable: end_stmt
 	A list of characters that end a statement. Each item may only be one character long.
 	Default Value:
 	Semicolon
 */
-			end_stmt		 = list(";")
+		list/end_stmt		 = list(";")
 /*
 	Variable: string_delim
 	A list of characters that can start and end strings.
 	Default Value:
 	Double and single quotes.
 */
-			string_delim = list("\"", "'")
+		list/string_delim = list("\"", "'")
 /*
 	Variable: delim
 	A list of characters that denote the start of a new token. This list is automatically populated.
 */
-			delim 			 = new
+		list/delim 			 = new
 
 /*
 	Macro: COL
@@ -108,7 +107,7 @@
 
 	Scan() //Creates a list of tokens from source code
 		var/list/tokens=new
-		for(, src.codepos<=lentext(code), src.codepos++)
+		for(, src.codepos<=length(code), src.codepos++)
 			var/char = copytext(code, codepos, codepos + 1)
 			var/twochar = copytext(code, codepos, codepos + 2) // For finding comment syntax
 			if(char == "\n")
@@ -146,7 +145,7 @@
 */
 		ReadString(start)
 			var/buf
-			for(, codepos <= lentext(code), codepos++)//codepos to lentext(code))
+			for(, codepos <= length(code), codepos++)//codepos to length(code))
 				var/char=copytext(code, codepos, codepos+1)
 				switch(char)
 					if("\\")					//Backslash (\) encountered in string
@@ -183,7 +182,7 @@
 			var/char = copytext(code, codepos, codepos+1)
 			var/buf
 			
-			while(!delim.Find(char) && codepos<=lentext(code))
+			while(!delim.Find(char) && codepos<=length(code))
 				buf+=char
 				char=copytext(code, ++codepos, codepos+1)
 			codepos-- //allow main Scan() proc to read the delimiter
@@ -202,7 +201,7 @@
 
 			while(options.symbols.Find(buf+char))
 				buf+=char
-				if(++codepos>lentext(code)) break
+				if(++codepos>length(code)) break
 				char=copytext(code, codepos, codepos+1)
 
 			codepos-- //allow main Scan() proc to read the next character
@@ -239,7 +238,7 @@
 */
 		ReadComment()
 			// Remember that we still have that $codepos "pointer" variable to use.
-			var/longeur = lentext(code) // So I don't call for var/code's length every while loop
+			var/longeur = length(code) // So I don't call for var/code's length every while loop
 
 			if(copytext(code, codepos, codepos+2) == "//") // If line comment
 				++codepos // Eat the current comment start, halfway

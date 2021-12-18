@@ -10,7 +10,7 @@
 	if(GLOB.ratvar_awakens)
 		current_power = GLOB.clockwork_power = INFINITY
 	else
-		current_power = GLOB.clockwork_power = CLAMP(GLOB.clockwork_power + amount, 0, MAX_CLOCKWORK_POWER)
+		current_power = GLOB.clockwork_power = clamp(GLOB.clockwork_power + amount, 0, MAX_CLOCKWORK_POWER)
 	for(var/obj/effect/clockwork/sigil/transmission/T in GLOB.all_clockwork_objects)
 		T.update_icon()
 	var/unlock_message

@@ -36,7 +36,7 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/screwdriver,
 		/obj/item/stamp),
-		list(/obj/item/screwdriver/power))
+		list(/obj/item/handdrill))
 
 /obj/item/storage/wallet/Exited(atom/movable/AM)
 	. = ..()
@@ -70,6 +70,21 @@
 
 /obj/item/storage/wallet/GetID()
 	return front_id
+
+/obj/item/storage/wallet/RemoveID()
+	if(!front_id)
+		return
+	. = front_id
+	front_id.forceMove(get_turf(src))
+
+/obj/item/storage/wallet/InsertID(obj/item/inserting_item)
+	var/obj/item/card/inserting_id = inserting_item.RemoveID()
+	if(!inserting_id)
+		return FALSE
+	attackby(inserting_id)
+	if(inserting_id in contents)
+		return TRUE
+	return FALSE
 
 /obj/item/storage/wallet/GetAccess()
 	if(LAZYLEN(combined_access))

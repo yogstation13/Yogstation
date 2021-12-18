@@ -153,20 +153,20 @@
 					else if(istype(S, /node/statement/IfStatement))
 						. = RunIf(S, scope)
 					else if(istype(S, /node/statement/ReturnStatement))
-						if(!scope.allowed_status & RETURNING)
+						if(!(scope.allowed_status & RETURNING))
 							RaiseError(new/runtimeError/UnexpectedReturn(), scope, S)
 							continue
 						scope.status |= RETURNING
 						. = (scope.return_val=Eval(S:value, scope))
 						break
 					else if(istype(S, /node/statement/BreakStatement))
-						if(!scope.allowed_status & BREAKING)
+						if(!(scope.allowed_status & BREAKING))
 							//RaiseError(new/runtimeError/UnexpectedReturn())
 							continue
 						scope.status |= BREAKING
 						break
 					else if(istype(S, /node/statement/ContinueStatement))
-						if(!scope.allowed_status & CONTINUING)
+						if(!(scope.allowed_status & CONTINUING))
 							//RaiseError(new/runtimeError/UnexpectedReturn())
 							continue
 						scope.status |= CONTINUING

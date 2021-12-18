@@ -54,7 +54,7 @@ handles linking back and forth.
 /datum/component/remote_materials/proc/_MakeLocal()
 	silo = null
 	mat_container = parent.AddComponent(/datum/component/material_container,
-		list(MAT_METAL, MAT_GLASS, MAT_SILVER, MAT_GOLD, MAT_DIAMOND, MAT_PLASMA, MAT_URANIUM, MAT_BANANIUM, MAT_TITANIUM, MAT_BLUESPACE, MAT_PLASTIC),
+		list(/datum/material/iron, /datum/material/glass, /datum/material/silver, /datum/material/gold, /datum/material/diamond, /datum/material/plasma, /datum/material/uranium, /datum/material/bananium, /datum/material/titanium, /datum/material/bluespace, /datum/material/plastic),
 		local_size,
 		FALSE,
 		/obj/item/stack)
@@ -80,7 +80,7 @@ handles linking back and forth.
 		var/obj/item/multitool/M = I
 		if (!QDELETED(M.buffer) && istype(M.buffer, /obj/machinery/ore_silo))
 			if (silo == M.buffer)
-				to_chat(user, "<span class='notice'>[parent] is already connected to [silo].</span>")
+				to_chat(user, span_notice("[parent] is already connected to [silo]."))
 				return COMPONENT_NO_AFTERATTACK
 			if (silo)
 				silo.connected -= src
@@ -92,7 +92,7 @@ handles linking back and forth.
 			silo.connected += src
 			silo.updateUsrDialog()
 			mat_container = silo.GetComponent(/datum/component/material_container)
-			to_chat(user, "<span class='notice'>You connect [parent] to [silo] from the multitool's buffer.</span>")
+			to_chat(user, span_notice("You connect [parent] to [silo] from the multitool's buffer."))
 			return COMPONENT_NO_AFTERATTACK
 
 	else if (silo && istype(I, /obj/item/stack))

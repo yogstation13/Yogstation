@@ -44,6 +44,9 @@
 	var/charge = 0
 	var/last_projectile_params
 
+	var/throwing_range = 5
+	var/throwing_speed = 3
+
 
 /obj/machinery/power/emitter/anchored
 	anchored = TRUE
@@ -100,7 +103,7 @@
 
 /obj/machinery/power/emitter/proc/can_be_rotated(mob/user,rotation_type)
 	if (anchored)
-		to_chat(user, "<span class='warning'>It is fastened to the floor!</span>")
+		to_chat(user, span_warning("It is fastened to the floor!"))
 		return FALSE
 	return TRUE
 
@@ -120,23 +123,19 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/emitter/power_change()
-	. = ..()
-	update_icon()
-
 /obj/machinery/power/emitter/interact(mob/user)
 	add_fingerprint(user)
 	if(state == EMITTER_WELDED)
 		if(!powernet)
-			to_chat(user, "<span class='warning'>\The [src] isn't connected to a wire!</span>")
+			to_chat(user, span_warning("\The [src] isn't connected to a wire!"))
 			return TRUE
 		if(!locked && allow_switch_interact)
 			if(active == TRUE)
 				active = FALSE
-				to_chat(user, "<span class='notice'>You turn off [src].</span>")
+				to_chat(user, span_notice("You turn off [src]."))
 			else
 				active = TRUE
-				to_chat(user, "<span class='notice'>You turn on [src].</span>")
+				to_chat(user, span_notice("You turn on [src]."))
 				shot_number = 0
 				fire_delay = maximum_fire_delay
 
@@ -147,16 +146,16 @@
 			update_icon()
 
 		else
-			to_chat(user, "<span class='warning'>The controls are locked!</span>")
+			to_chat(user, span_warning("The controls are locked!"))
 	else
-		to_chat(user, "<span class='warning'>[src] needs to be firmly secured to the floor first!</span>")
+		to_chat(user, span_warning("[src] needs to be firmly secured to the floor first!"))
 		return TRUE
 
 /obj/machinery/power/emitter/attack_animal(mob/living/simple_animal/M)
 	if(ismegafauna(M) && anchored)
 		state = EMITTER_UNWRENCHED
 		anchored = FALSE
-		M.visible_message("<span class='warning'>[M] rips [src] free from its moorings!</span>")
+		M.visible_message(span_warning("[M] rips [src] free from its moorings!"))
 	else
 		..()
 	if(!anchored)
@@ -206,7 +205,20 @@
 		fire_beam()
 
 /obj/machinery/power/emitter/proc/fire_beam(mob/user)
-	var/obj/item/projectile/P = new projectile_type(get_turf(src))
+	var/obj/item/K = new projectile_type(get_turf(src))
+
+	/// If it isn't a projectile, throw it
+	if(!istype(K, /obj/item/projectile))
+		if(istype(K, /obj/item/grenade))
+			var/obj/item/grenade/I = K
+			I.preprime()
+		K.throw_at(get_edge_target_turf(src, dir), throwing_range, throwing_speed)
+		playsound(get_turf(src), projectile_sound, 50, TRUE)
+		if(prob(35))
+			sparks.start()
+		return K
+
+	var/obj/item/projectile/P = K
 	playsound(get_turf(src), projectile_sound, 50, TRUE)
 	if(prob(35))
 		sparks.start()
@@ -231,12 +243,12 @@
 /obj/machinery/power/emitter/can_be_unfasten_wrench(mob/user, silent)
 	if(active)
 		if(!silent)
-			to_chat(user, "<span class='warning'>Turn \the [src] off first!</span>")
+			to_chat(user, span_warning("Turn \the [src] off first!"))
 		return FAILED_UNFASTEN
 
 	else if(state == EMITTER_WELDED)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] is welded to the floor!</span>")
+			to_chat(user, span_warning("[src] is welded to the floor!"))
 		return FAILED_UNFASTEN
 
 	return ..()
@@ -260,26 +272,26 @@
 
 	switch(state)
 		if(EMITTER_UNWRENCHED)
-			to_chat(user, "<span class='warning'>The [src.name] needs to be wrenched to the floor!</span>")
+			to_chat(user, span_warning("The [src.name] needs to be wrenched to the floor!"))
 		if(EMITTER_WRENCHED)
 			if(!I.tool_start_check(user, amount=0))
 				return TRUE
 			user.visible_message("[user.name] starts to weld the [name] to the floor.", \
-				"<span class='notice'>You start to weld \the [src] to the floor...</span>", \
-				"<span class='italics'>You hear welding.</span>")
+				span_notice("You start to weld \the [src] to the floor..."), \
+				span_italics("You hear welding."))
 			if(I.use_tool(src, user, 20, volume=50) && state == EMITTER_WRENCHED)
 				state = EMITTER_WELDED
-				to_chat(user, "<span class='notice'>You weld \the [src] to the floor.</span>")
+				to_chat(user, span_notice("You weld \the [src] to the floor."))
 				connect_to_network()
 		if(EMITTER_WELDED)
 			if(!I.tool_start_check(user, amount=0))
 				return TRUE
 			user.visible_message("[user.name] starts to cut the [name] free from the floor.", \
-				"<span class='notice'>You start to cut \the [src] free from the floor...</span>", \
-				"<span class='italics'>You hear welding.</span>")
+				span_notice("You start to cut \the [src] free from the floor..."), \
+				span_italics("You hear welding."))
 			if(I.use_tool(src, user, 20, volume=50) && state == EMITTER_WELDED)
 				state = EMITTER_WRENCHED
-				to_chat(user, "<span class='notice'>You cut \the [src] free from the floor.</span>")
+				to_chat(user, span_notice("You cut \the [src] free from the floor."))
 				disconnect_from_network()
 
 	return TRUE
@@ -299,19 +311,8 @@
 
 /obj/machinery/power/emitter/attackby(obj/item/I, mob/user, params)
 	if(I.GetID())
-		if(obj_flags & EMAGGED)
-			to_chat(user, "<span class='warning'>The lock seems to be broken!</span>")
-			return
-		if(allowed(user))
-			if(active)
-				locked = !locked
-				to_chat(user, "<span class='notice'>You [src.locked ? "lock" : "unlock"] the controls.</span>")
-			else
-				to_chat(user, "<span class='warning'>The controls can only be locked when \the [src] is online!</span>")
-		else
-			to_chat(user, "<span class='danger'>Access denied.</span>")
+		togglelock(user)
 		return
-
 	else if(is_wire_tool(I) && panel_open)
 		wires.interact(user)
 		return
@@ -319,6 +320,22 @@
 		if(integrate(I,user))
 			return
 	return ..()
+
+/obj/machinery/power/emitter/proc/togglelock(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(obj_flags & EMAGGED)
+		to_chat(user, span_warning("The lock seems to be broken!"))
+		return
+	if(allowed(user))
+		if(active)
+			locked = !locked
+			to_chat(user, span_notice("You [src.locked ? "lock" : "unlock"] the controls."))
+		else
+			to_chat(user, span_warning("The controls can only be locked when \the [src] is online!"))
+	else
+		to_chat(user, span_danger("Access denied."))
+	return
 
 /obj/machinery/power/emitter/proc/integrate(obj/item/gun/energy/E,mob/user)
 	if(istype(E, /obj/item/gun/energy))
@@ -357,7 +374,7 @@
 	locked = FALSE
 	obj_flags |= EMAGGED
 	if(user)
-		user.visible_message("[user.name] emags [src].","<span class='notice'>You short out the lock.</span>")
+		user.visible_message("[user.name] emags [src].",span_notice("You short out the lock."))
 
 
 /obj/machinery/power/emitter/prototype
@@ -368,7 +385,7 @@
 	icon_state_underpowered = "protoemitter_+u"
 	can_buckle = TRUE
 	buckle_lying = FALSE
-	var/view_range = 12
+	var/view_range = 4.5
 	var/datum/action/innate/protoemitter/firing/auto
 
 //BUCKLE HOOKS
@@ -383,7 +400,7 @@
 		buckled_mob.pixel_x = 0
 		buckled_mob.pixel_y = 0
 		if(buckled_mob.client)
-			buckled_mob.client.change_view(CONFIG_GET(string/default_view))
+			buckled_mob.client.view_size.resetToDefault()
 	auto.Remove(buckled_mob)
 	. = ..()
 
@@ -399,7 +416,7 @@
 	M.pixel_y = 14
 	layer = 4.1
 	if(M.client)
-		M.client.change_view(view_range)
+		M.client.view_size.setTo(view_range)
 	if(!auto)
 		auto = new()
 	auto.Grant(M, src)

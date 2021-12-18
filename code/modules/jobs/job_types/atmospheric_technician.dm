@@ -8,8 +8,9 @@
 	spawn_positions = 2
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
-	exp_requirements = 60
+	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
+	alt_titles = list("Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer")
 
 	outfit = /datum/outfit/job/atmos
 
@@ -20,11 +21,15 @@
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/atmos/proc/OmegaStationChanges()
 	total_positions = 3
 	supervisors = "the captain and the head of personnel"
+
+/datum/job/atmos/proc/EclipseStationChanges()
+	total_positions = 3
+	spawn_positions = 3
 
 /datum/outfit/job/atmos
 	name = "Atmospheric Technician"
@@ -41,7 +46,7 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
 	pda_slot = SLOT_L_STORE
-	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1)
+	backpack_contents = list(/obj/item/modular_computer/tablet/phone/preset/advanced/atmos=1)
 
 /datum/outfit/job/atmos/rig
 	name = "Atmospheric Technician (Hardsuit)"

@@ -33,12 +33,12 @@
 	addtimer(CALLBACK(src, .proc/controllerscan), 10)
 
 /obj/machinery/am_shielding/proc/overheat()
-	visible_message("<span class='danger'>[src] melts!</span>")
+	visible_message(span_danger("[src] melts!"))
 	new /obj/effect/hotspot(loc)
 	qdel(src)
 
 /obj/machinery/am_shielding/proc/collapse()
-	visible_message("<span class='notice'>[src] collapses back into a container!</span>")
+	visible_message(span_notice("[src] collapses back into a container!"))
 	new /obj/item/am_shielding_container(drop_location())
 	qdel(src)
 
@@ -77,11 +77,6 @@
 		shutdown_core()
 	//Might want to have it leave a mess on the floor but no sprites for now
 	return ..()
-
-
-/obj/machinery/am_shielding/CanPass(atom/movable/mover, turf/target)
-	return 0
-
 
 /obj/machinery/am_shielding/process()
 	if(!processing)
@@ -243,7 +238,7 @@
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 2
-	materials = list(MAT_METAL=100)
+	materials = list(/datum/material/iron=100)
 
 /obj/item/am_shielding_container/multitool_act(mob/living/user, obj/item/I)
 	if(isturf(loc))

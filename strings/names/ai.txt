@@ -46,7 +46,6 @@ ED-209
 Emma-2
 Erasmus
 Ez-27
-Fagor
 Faith
 Fi
 FRIEND COMPUTER
@@ -139,6 +138,7 @@ X-5
 XERXES
 XR
 Yod
+Yogbot
 Z-1
 Z-2
 Z-3

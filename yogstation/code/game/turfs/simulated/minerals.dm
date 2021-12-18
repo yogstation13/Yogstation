@@ -3,7 +3,7 @@
 	mineralAmt = 2
 	spreadChance = 0
 	spread = 0
-	scan_state = "rock_BScrystal" // You thought you were mining Bluespace Crystals but it was ME, DIO!
+	scan_state = "rock_Dilithium" 
 
 /turf/closed/mineral/dilithium/volcanic // The OOP around this shit is dumb as all hell by the way. Every single mineral type has to copy-paste this shit.
 	environment_type = "basalt"

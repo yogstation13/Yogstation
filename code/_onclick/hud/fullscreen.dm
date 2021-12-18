@@ -106,6 +106,11 @@
 	layer = BLIND_LAYER
 
 /obj/screen/fullscreen/blind
+	icon_state = "blindimageoverlay"
+	layer = BLIND_LAYER
+	plane = FULLSCREEN_PLANE
+
+/obj/screen/fullscreen/black
 	icon_state = "blackimageoverlay"
 	layer = BLIND_LAYER
 	plane = FULLSCREEN_PLANE
@@ -158,6 +163,19 @@
 /obj/screen/fullscreen/color_vision/blue
 	color = "#0000ff"
 
+/obj/screen/fullscreen/cinematic_backdrop
+	icon = 'icons/mob/screen_gen.dmi'
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
+	icon_state = "flash"
+	plane = SPLASHSCREEN_PLANE
+	layer = SPLASHSCREEN_LAYER - 1
+	color = "#000000"
+	show_when_dead = TRUE
+
+/obj/screen/fullscreen/cinematic_backdrop/Initialize()
+	. = ..()
+	layer = SPLASHSCREEN_LAYER - 1
+
 /obj/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "flash"
@@ -184,3 +202,9 @@
 	layer = LIGHTING_LAYER
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
+
+//Triggered by übercharge activation
+/obj/screen/fullscreen/uber
+	icon_state = "uberoverlay"
+	plane = FULLSCREEN_PLANE
+	layer = CURSE_LAYER

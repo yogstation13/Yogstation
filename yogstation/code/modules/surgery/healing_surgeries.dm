@@ -1,17 +1,17 @@
 //debride wounds
 /datum/surgery_step/debride
 	name = "clean wound"
-	implements = list(/obj/item/scalpel = 100, /obj/item/kitchen/knife = 65, /obj/item/shard = 45)
+	implements = list(TOOL_SCALPEL = 100, /obj/item/kitchen/knife = 65, /obj/item/shard = 45)
 	time = 40
 
 /datum/surgery_step/debride/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] begins to cut off dead flesh around the wound upon [target]'s [parse_zone(target_zone)].", "<span class='notice'>You begin cutting away the dead and damaged tissue on [target]'s [parse_zone(target_zone)], creating a cleaner wound bed...</span>")
+	user.visible_message("[user] begins to cut off dead flesh around the wound upon [target]'s [parse_zone(target_zone)].", span_notice("You begin cutting away the dead and damaged tissue on [target]'s [parse_zone(target_zone)], creating a cleaner wound bed..."))
 
 /datum/surgery_step/debride/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	target.apply_damage(15, "brute", "[target_zone]")
+	target.apply_damage(15, "brute", "[target_zone]", wound_bonus = CANT_WOUND)
 
 
-	user.visible_message("[user] scrapes [tool] across [target]'s wounds with surgical precision, cleaning the area.", "<span class='notice'>You scrape away the detritus and scarred flesh from [target]'s [parse_zone(target_zone)]. The wound is now fully debrided and ready for dressing.</span>")
+	user.visible_message("[user] scrapes [tool] across [target]'s wounds with surgical precision, cleaning the area.", span_notice("You scrape away the detritus and scarred flesh from [target]'s [parse_zone(target_zone)]. The wound is now fully debrided and ready for dressing."))
 	return TRUE
 
 //add dressing to wounds
@@ -19,10 +19,11 @@
 	name = "apply gauze"
 	implements = list(/obj/item/stack/medical/gauze = 100, /obj/item/medical/bandage/improvised = 65, /obj/item/clothing/torncloth = 35)
 	time = 24
+	fuckup_damage = 0
 	var/dressing_type = "brute"
 
 /datum/surgery_step/apply_dressing/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] starts dressing [target]'s [parse_zone(target_zone)] wounds with [tool]..", "<span class='notice'>You start wrapping and dressing [target]'s [parse_zone(target_zone)] with [tool]..</span>")
+	user.visible_message("[user] starts dressing [target]'s [parse_zone(target_zone)] wounds with [tool]..", span_notice("You start wrapping and dressing [target]'s [parse_zone(target_zone)] with [tool].."))
 
 /datum/surgery_step/apply_dressing/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if (ishuman(target))
@@ -52,7 +53,7 @@
 		else
 			qdel(tool)
 
-	user.visible_message("[user] dresses [target]'s wounds with [tool], securing them tightly.", "<span class='notice'>You bind [target]'s [parse_zone(target_zone)] wound tightly with [tool].</span>")
+	user.visible_message("[user] dresses [target]'s wounds with [tool], securing them tightly.", span_notice("You bind [target]'s [parse_zone(target_zone)] wound tightly with [tool]."))
 	return TRUE
 
 /datum/surgery_step/apply_dressing/burn

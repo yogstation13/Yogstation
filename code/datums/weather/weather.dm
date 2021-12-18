@@ -4,12 +4,12 @@
 	var/name = "space wind"
 	var/desc = "Heavy gusts of wind blanket the area, periodically knocking down anyone caught in the open."
 
-	var/telegraph_message = "<span class='warning'>The wind begins to pick up.</span>" //The message displayed in chat to foreshadow the weather's beginning
+	var/telegraph_message = span_warning("The wind begins to pick up.") //The message displayed in chat to foreshadow the weather's beginning
 	var/telegraph_duration = 300 //In deciseconds, how long from the beginning of the telegraph until the weather begins
 	var/telegraph_sound //The sound file played to everyone on an affected z-level
 	var/telegraph_overlay //The overlay applied to all tiles on the z-level
 
-	var/weather_message = "<span class='userdanger'>The wind begins to blow ferociously!</span>" //Displayed in chat once the weather begins in earnest
+	var/weather_message = span_userdanger("The wind begins to blow ferociously!") //Displayed in chat once the weather begins in earnest
 	var/weather_duration = 1200 //In deciseconds, how long the weather lasts once it begins
 	var/weather_duration_lower = 1200 //See above - this is the lowest possible duration
 	var/weather_duration_upper = 1500 //See above - this is the highest possible duration
@@ -17,12 +17,13 @@
 	var/weather_overlay
 	var/weather_color = null
 
-	var/end_message = "<span class='danger'>The wind relents its assault.</span>" //Displayed once the weather is over
+	var/end_message = span_danger("The wind relents its assault.") //Displayed once the weather is over
 	var/end_duration = 300 //In deciseconds, how long the "wind-down" graphic will appear before vanishing entirely
 	var/end_sound
 	var/end_overlay
 
 	var/area_type = /area/space //Types of area to affect
+	var/protect_indoors = FALSE // set to TRUE to protect indoor areas
 	var/list/impacted_areas = list() //Areas to be affected by the weather, calculated when the weather begins
 	var/list/protected_areas = list()//Areas that are protected and excluded from the affected areas.
 	var/impacted_z_levels // The list of z-levels that this weather is actively affecting
@@ -56,6 +57,8 @@
 		affectareas -= get_areas(V)
 	for(var/V in affectareas)
 		var/area/A = V
+		if(protect_indoors && !A.outdoors)
+			continue
 		if(A.z in impacted_z_levels)
 			impacted_areas |= A
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)

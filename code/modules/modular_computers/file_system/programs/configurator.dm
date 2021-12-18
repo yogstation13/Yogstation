@@ -12,7 +12,8 @@
 	size = 4
 	available_on_ntnet = 0
 	requires_ntnet = 0
-	tgui_id = "ntos_configuration"
+	tgui_id = "NtosConfiguration"
+	program_icon = "cog"
 
 	var/obj/item/modular_computer/movable = null
 

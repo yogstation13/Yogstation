@@ -44,12 +44,12 @@
 	..()
 	if(isopenturf(loc))
 		var/turf/open/T = src.loc
-		if(T.air && T.air.gases[/datum/gas/carbon_dioxide])
-			var/co2 = T.air.gases[/datum/gas/carbon_dioxide][MOLES]
+		if(T.air)
+			var/co2 = T.air.get_moles(/datum/gas/carbon_dioxide)
 			if(co2 > 0)
 				if(prob(25))
 					var/amt = min(co2, 9)
-					T.air.gases[/datum/gas/carbon_dioxide][MOLES] -= amt
+					T.air.adjust_moles(/datum/gas/carbon_dioxide, -amt)
 					T.atmos_spawn_air("o2=[amt]")
 
 /mob/living/simple_animal/hostile/tree/AttackingTarget()
@@ -58,8 +58,8 @@
 		var/mob/living/carbon/C = target
 		if(prob(15))
 			C.Paralyze(60)
-			C.visible_message("<span class='danger'>\The [src] knocks down \the [C]!</span>", \
-					"<span class='userdanger'>\The [src] knocks you down!</span>")
+			C.visible_message(span_danger("\The [src] knocks down \the [C]!"), \
+					span_userdanger("\The [src] knocks you down!"))
 
 /mob/living/simple_animal/hostile/tree/festivus
 	name = "festivus pole"

@@ -17,28 +17,28 @@
 	in_use = TRUE
 	var/obj/machinery/computer/communications/C = locate() in range(1, owner)
 	if(!C)
-		to_chat(owner, "<span class='warning'>There are no communications consoles nearby</span>")
+		to_chat(owner, span_warning("There are no communications consoles nearby"))
 		return
 	if(C.stat)
-		to_chat(owner, "<span class='warning'>[C] is depowered.</span>")
+		to_chat(owner, span_warning("[C] is depowered."))
 		return
-	owner.visible_message("<span class='warning'>[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!</span>", \
+	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), \
 	"<span class='velvet bold'>[pick("Oknnu. Pda ywlpwej swo hkccaz ej.", "Pda aiancajyu eo kran. Oknnu bkn swopejc ukqn peia.", "We swo knzanaz xu Hws Psk. Whh ckkz jks.")]</span><br>\
-	<span class='velvet'>You begin transmitting a recall message to Central Command...</span>")
+	[span_velvet("You begin transmitting a recall message to Central Command...")]")
 	play_recall_sounds(C)
-	if(!do_after(owner, 80, target = C))
+	if(!do_after(owner, 8 SECONDS, target = C))
 		in_use = FALSE
 		return
 	if(!C)
 		in_use = FALSE
 		return
 	if(C.stat)
-		to_chat(owner, "<span class='warning'>[C] has lost power.</span>")
+		to_chat(owner, span_warning("[C] has lost power."))
 		in_use = FALSE
 		return
 	in_use = FALSE
 	SSshuttle.emergency.cancel()
-	to_chat(owner, "<span class='velvet'>The ruse was a success. The shuttle is on its way back.</span>")
+	to_chat(owner, span_velvet("The ruse was a success. The shuttle is on its way back."))
 	return TRUE
 
 /datum/action/innate/darkspawn/silver_tongue/proc/play_recall_sounds(obj/machinery/C) //neato sound effects

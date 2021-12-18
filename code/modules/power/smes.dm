@@ -21,6 +21,7 @@
 	density = TRUE
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/machine/smes
+
 	var/capacity = 5e6 // maximum charge
 	var/charge = 0 // actual charge
 
@@ -41,7 +42,7 @@
 /obj/machinery/power/smes/examine(user)
 	. = ..()
 	if(!terminal)
-		. += "<span class='warning'>This SMES has no power terminal!</span>"
+		. += span_warning("This SMES has no power terminal!")
 
 /obj/machinery/power/smes/Initialize()
 	. = ..()
@@ -54,7 +55,7 @@
 					break dir_loop
 
 	if(!terminal)
-		stat |= BROKEN
+		obj_break()
 		return
 	terminal.master = src
 	update_icon()
@@ -88,10 +89,10 @@
 			if(term && term.dir == turn(dir, 180))
 				terminal = term
 				terminal.master = src
-				to_chat(user, "<span class='notice'>Terminal found.</span>")
+				to_chat(user, span_notice("Terminal found."))
 				break
 		if(!terminal)
-			to_chat(user, "<span class='alert'>No power terminal found.</span>")
+			to_chat(user, span_alert("No power terminal found."))
 			return
 		stat &= ~BROKEN
 		update_icon()
@@ -104,28 +105,28 @@
 			return
 
 		if(terminal) //is there already a terminal ?
-			to_chat(user, "<span class='warning'>This SMES already has a power terminal!</span>")
+			to_chat(user, span_warning("This SMES already has a power terminal!"))
 			return
 
 		if(!panel_open) //is the panel open ?
-			to_chat(user, "<span class='warning'>You must open the maintenance panel first!</span>")
+			to_chat(user, span_warning("You must open the maintenance panel first!"))
 			return
 
 		var/turf/T = get_turf(user)
 		if (T.intact) //is the floor plating removed ?
-			to_chat(user, "<span class='warning'>You must first remove the floor plating!</span>")
+			to_chat(user, span_warning("You must first remove the floor plating!"))
 			return
 
 
 		var/obj/item/stack/cable_coil/C = I
 		if(C.get_amount() < 10)
-			to_chat(user, "<span class='warning'>You need more wires!</span>")
+			to_chat(user, span_warning("You need more wires!"))
 			return
 
-		to_chat(user, "<span class='notice'>You start building the power terminal...</span>")
+		to_chat(user, span_notice("You start building the power terminal..."))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 
-		if(do_after(user, 20, target = src))
+		if(do_after(user, 2 SECONDS, target = src))
 			if(C.get_amount() < 10 || !C)
 				return
 			var/obj/structure/cable/N = T.get_cable_node() //get the connecting node cable, if there's one
@@ -136,7 +137,7 @@
 				C.use(10)
 				user.visible_message(\
 					"[user.name] has built a power terminal.",\
-					"<span class='notice'>You build the power terminal.</span>")
+					span_notice("You build the power terminal."))
 
 				//build the terminal and link it to the network
 				make_terminal(T)
@@ -166,7 +167,7 @@
 
 /obj/machinery/power/smes/default_deconstruction_crowbar(obj/item/crowbar/C)
 	if(istype(C) && terminal)
-		to_chat(usr, "<span class='warning'>You must first remove the power terminal!</span>")
+		to_chat(usr, span_warning("You must first remove the power terminal!"))
 		return FALSE
 
 	return ..()
@@ -198,7 +199,7 @@
 	if(terminal)
 		terminal.master = null
 		terminal = null
-		stat |= BROKEN
+		obj_break()
 
 
 /obj/machinery/power/smes/update_icon()
@@ -226,7 +227,7 @@
 
 
 /obj/machinery/power/smes/proc/chargedisplay()
-	return CLAMP(round(5.5*charge/capacity),0,5)
+	return clamp(round(5.5*charge/capacity),0,5)
 
 /obj/machinery/power/smes/process()
 	if(stat & BROKEN)
@@ -316,32 +317,29 @@
 	return
 
 
-/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/power/smes/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "smes", name, 340, 440, master_ui, state)
+		ui = new(user, src, "Smes", name)
 		ui.open()
 
 /obj/machinery/power/smes/ui_data()
 	var/list/data = list(
-		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"capacity" = capacity,
+		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"charge" = charge,
-
 		"inputAttempt" = input_attempt,
 		"inputting" = inputting,
 		"inputLevel" = input_level,
 		"inputLevel_text" = DisplayPower(input_level),
 		"inputLevelMax" = input_level_max,
-		"inputAvailable" = DisplayPower(input_available),
-
+		"inputAvailable" = input_available,
 		"outputAttempt" = output_attempt,
 		"outputting" = outputting,
 		"outputLevel" = output_level,
 		"outputLevel_text" = DisplayPower(output_level),
 		"outputLevelMax" = output_level_max,
-		"outputUsed" = DisplayPower(output_used)
+		"outputUsed" = output_used,
 	)
 	return data
 
@@ -379,7 +377,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				input_level = CLAMP(target, 0, input_level_max)
+				input_level = clamp(target, 0, input_level_max)
 				log_smes(usr)
 		if("output")
 			var/target = params["target"]
@@ -401,7 +399,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				output_level = CLAMP(target, 0, output_level_max)
+				output_level = clamp(target, 0, output_level_max)
 				log_smes(usr)
 
 /obj/machinery/power/smes/proc/log_smes(mob/user)
@@ -418,9 +416,7 @@
 	outputting = output_attempt
 	output_level = rand(0, output_level_max)
 	input_level = rand(0, input_level_max)
-	charge -= 1e6/severity
-	if (charge < 0)
-		charge = 0
+	charge = max(charge - 1e6/severity, 0)
 	update_icon()
 	log_smes()
 
@@ -429,13 +425,19 @@
 
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
+	desc = "A high-capacity superconducting magical energy storage (SMES) unit. Magically produces power."
 
 /obj/machinery/power/smes/magical/process()
 	capacity = INFINITY
 	charge = INFINITY
 	..()
 
+/obj/machinery/power/smes/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	output_attempt = !output_attempt
+	log_smes(user)
+	update_icon()
 
 #undef SMESRATE
 

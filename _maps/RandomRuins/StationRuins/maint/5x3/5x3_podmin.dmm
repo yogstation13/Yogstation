@@ -1,0 +1,109 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"k" = (
+/obj/effect/decal/cleanable/blood/old{
+	dir = 10;
+	icon_state = "trails_1";
+	name = "dried blood trail"
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"m" = (
+/obj/effect/decal/cleanable/blood/gibs/limb{
+	dir = 1
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"r" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor1"
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"v" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"D" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"H" = (
+/obj/effect/decal/cleanable/blood/gibs/body,
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor1"
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"L" = (
+/obj/effect/decal/cleanable/blood/old{
+	dir = 4;
+	icon_state = "trails_1";
+	name = "dried blood trail"
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"O" = (
+/obj/structure/closet/supplypod,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"S" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"V" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor1"
+	},
+/obj/effect/decal/cleanable/blood/gibs/limb{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"X" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+
+(1,1,1) = {"
+H
+k
+X
+"}
+(2,1,1) = {"
+D
+L
+m
+"}
+(3,1,1) = {"
+v
+O
+v
+"}
+(4,1,1) = {"
+L
+S
+r
+"}
+(5,1,1) = {"
+V
+v
+S
+"}

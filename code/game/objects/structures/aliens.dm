@@ -97,11 +97,6 @@
 /obj/structure/alien/resin/attack_paw(mob/user)
 	return attack_hand(user)
 
-
-/obj/structure/alien/resin/CanPass(atom/movable/mover, turf/target)
-	return !density
-
-
 /*
  * Weeds
  */
@@ -146,6 +141,15 @@
 				icon = 'icons/obj/smooth_structures/alien/weeds2.dmi'
 			if(3)
 				icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
+
+/obj/structure/alien/weeds/Click(var/atom/A)
+	var/turf/T = loc
+	if(T)
+		if(istype(A, /mob/living/carbon))
+			var/mob/living/carbon/C = A
+			if(C.a_intent == INTENT_HELP)
+				T.Click(A)
+	. = ..()
 
 /obj/structure/alien/weeds/proc/expand()
 	var/turf/U = get_turf(src)
@@ -257,19 +261,19 @@
 	if(user.getorgan(/obj/item/organ/alien/plasmavessel))
 		switch(status)
 			if(BURST)
-				to_chat(user, "<span class='notice'>You clear the hatched egg.</span>")
+				to_chat(user, span_notice("You clear the hatched egg."))
 				playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 				qdel(src)
 				return
 			if(GROWING)
-				to_chat(user, "<span class='notice'>The child is not developed yet.</span>")
+				to_chat(user, span_notice("The child is not developed yet."))
 				return
 			if(GROWN)
-				to_chat(user, "<span class='notice'>You retrieve the child.</span>")
+				to_chat(user, span_notice("You retrieve the child."))
 				Burst(kill=FALSE)
 				return
 	else
-		to_chat(user, "<span class='notice'>It feels slimy.</span>")
+		to_chat(user, span_notice("It feels slimy."))
 		user.changeNext_move(CLICK_CD_MELEE)
 
 

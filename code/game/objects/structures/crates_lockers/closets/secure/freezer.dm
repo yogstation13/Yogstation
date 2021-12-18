@@ -1,6 +1,9 @@
 /obj/structure/closet/secure_closet/freezer
 	icon_state = "freezer"
 	var/jones = FALSE
+	door_anim_squish = 0.22
+	door_anim_angle = 123
+	door_anim_time = 4
 
 /obj/structure/closet/secure_closet/freezer/Destroy()
 	recursive_organ_check(src)
@@ -23,6 +26,9 @@
 /obj/structure/closet/secure_closet/freezer/ex_act()
 	if(!jones)
 		jones = TRUE
+		for(var/mob/I in contents)
+			if(I.client && I.stat != DEAD)
+				SSachievements.unlock_achievement(/datum/achievement/jones, I.client)
 	else
 		..()
 
@@ -50,7 +56,7 @@
 	for(var/i = 0, i < 5, i++)
 		new /obj/item/reagent_containers/food/condiment/soymilk(src)
 	for(var/i = 0, i < 2, i++)
-		new /obj/item/storage/fancy/egg_box(src)
+		new /obj/item/storage/box/fancy/egg_box(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	req_access = list()
@@ -81,7 +87,7 @@
 	for(var/i = 0, i < 5, i++)
 		new /obj/item/reagent_containers/food/condiment/soymilk(src)
 	for(var/i = 0, i < 2, i++)
-		new /obj/item/storage/fancy/egg_box(src)
+		new /obj/item/storage/box/fancy/egg_box(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge/open
 	req_access = null

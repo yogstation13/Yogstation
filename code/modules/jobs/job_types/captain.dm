@@ -1,13 +1,13 @@
 /datum/job/captain
 	title = "Captain"
 	flag = CAPTAIN
-	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
+	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("CentCom")
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Nanotrasen officials and Space law"
+	supervisors = "NanoTrasen officers and Space law" //Changed to officer to separate from CentCom officials being their superior.
 	selection_color = "#ccccff"
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
@@ -15,6 +15,7 @@
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
+	alt_titles = list("Station Commander", "Facility Director")
 
 	outfit = /datum/outfit/job/captain
 

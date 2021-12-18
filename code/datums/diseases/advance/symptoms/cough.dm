@@ -29,28 +29,31 @@ BONUS
 	symptom_delay_min = 2
 	symptom_delay_max = 15
 	var/infective = FALSE
-	threshold_desc = "<b>Resistance 3:</b> Host will drop small items when coughing.<br>\
-					  <b>Resistance 10:</b> Occasionally causes coughing fits that stun the host.<br>\
-					  <b>Stage Speed 6:</b> Increases cough frequency.<br>\
-					  <b>If Airborne:</b> Coughing will infect bystanders.<br>\
-					  <b>Stealth 4:</b> The symptom remains hidden until active."
+	threshold_descs = list(
+		"Resistance 3" = "The host will drop small items when coughing.",
+		"Resistance 10" = "Occasionally causes coughing fits that stun the host. The extra coughs do not spread the virus.",
+		"Stage Speed 6" = "Increases cough frequency.",
+		"Stealth 4" = "The symptom remains hidden until active.",
+	)
 
 /datum/symptom/cough/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["stealth"] >= 4)
+	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
 	if(A.spread_flags & DISEASE_SPREAD_AIRBORNE) //infect bystanders
 		infective = TRUE
-	if(A.properties["resistance"] >= 3) //strong enough to drop items
+	if(A.totalResistance() >= 3) //strong enough to drop items
 		power = 1.5
-	if(A.properties["resistance"] >= 10) //strong enough to stun (rarely)
+	if(A.totalResistance() >= 10) //strong enough to stun (rarely)
 		power = 2
-	if(A.properties["stage_rate"] >= 6) //cough more often
+	if(A.totalStageSpeed() >= 6) //cough more often
 		symptom_delay_max = 10
 
 /datum/symptom/cough/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)

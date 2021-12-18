@@ -4,6 +4,7 @@
 	icon = 'yogstation/icons/obj/holotool.dmi'
 	icon_state = "holotool"
 	slot_flags = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/pshoom.ogg'
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
@@ -18,8 +19,8 @@
 
 /obj/item/holotool/examine(mob/user)
 	..()
-	. += "<span class='notice'>It is currently set to [current_tool ? current_tool.name : "'off'"] mode.</span>"
-	. += "<span class='notice'>Ctrl+Click it to open the radial menu!</span>"
+	. += span_notice("It is currently set to [current_tool ? current_tool.name : "'off'"] mode.")
+	. += span_notice("Ctrl+Click it to open the radial menu!")
 
 /obj/item/holotool/ui_action_click(mob/user, datum/action/action)
 	if(istype(action, /datum/action/item_action/change_tool))
@@ -71,7 +72,10 @@
 		holo_item.color = current_color
 		item_state = current_tool.name
 		add_overlay(holo_item)
-		set_light(3, null, current_color)
+		if(current_tool.name == "off")
+			set_light(0)
+		else
+			set_light(3, null, current_color)
 	else
 		item_state = "holotool"
 		icon_state = "holotool"
@@ -100,7 +104,7 @@
 /obj/item/holotool/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, "<span class='danger'>ZZT- ILLEGAL BLUEPRINT UNLOCKED- CONTACT !#$@^%$# NANOTRASEN SUPPORT-@*%$^%!</span>")
+	to_chat(user, span_danger("ZZT- ILLEGAL BLUEPRINT UNLOCKED- CONTACT !#$@^%$# NANOTRASEN SUPPORT-@*%$^%!"))
 	do_sparks(5, 0, src)
 	obj_flags |= EMAGGED
 

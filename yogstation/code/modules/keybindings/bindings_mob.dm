@@ -12,7 +12,7 @@
 			return
 		if(ACTION_STOPPULLING)
 			if(!pulling)
-				to_chat(src, "<span class='notice'>You are not pulling anything.</span>")
+				to_chat(src, span_notice("You are not pulling anything."))
 			else
 				stop_pulling()
 			return
@@ -31,7 +31,7 @@
 		if(ACTION_DROP)
 			var/obj/item/T = get_active_held_item()
 			if(!T)
-				to_chat(src, "<span class='warning'>You have nothing to drop in your hand!</span>")
+				to_chat(src, span_warning("You have nothing to drop in your hand!"))
 			else
 				dropItemToGround(T)
 			return
@@ -60,6 +60,11 @@
 		if(ACTION_TARGETLLEG)
 			user.body_l_leg()
 			return
+		if(ACTION_GIVE)
+			var/mob/living/carbon/O = src
+			if(O)
+				O.give()
+			return
 
 	return ..()
 
@@ -72,16 +77,28 @@
 
 		switch(dir)
 			if(NORTH)
-				northface()
+				if(user.prefs.bindings.isheld_key("Shift"))
+					northshift()
+				else
+					northface()
 				return
 			if(SOUTH)
-				southface()
+				if(user.prefs.bindings.isheld_key("Shift"))
+					southshift()
+				else
+					southface()
 				return
 			if(WEST)
-				westface()
+				if(user.prefs.bindings.isheld_key("Shift"))
+					westshift()
+				else
+					westface()
 				return
 			if(EAST)
-				eastface()
+				if(user.prefs.bindings.isheld_key("Shift"))
+					eastshift()
+				else
+					eastface()
 				return
 
 	return ..()

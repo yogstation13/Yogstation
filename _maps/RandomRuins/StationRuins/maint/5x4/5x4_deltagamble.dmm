@@ -1,0 +1,116 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"c" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/template_noop)
+"d" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"e" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/wood,
+/area/template_noop)
+"f" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"g" = (
+/obj/structure/table/wood,
+/obj/item/clipboard,
+/obj/item/folder/red,
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"h" = (
+/obj/structure/table/wood,
+/obj/item/storage/briefcase,
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"j" = (
+/turf/open/floor/wood,
+/area/template_noop)
+"l" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/template_noop)
+"m" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
+	},
+/area/template_noop)
+"q" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck,
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"t" = (
+/obj/structure/table/wood,
+/obj/item/clothing/glasses/sunglasses/big,
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"G" = (
+/obj/machinery/computer/slot_machine,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
+	},
+/obj/machinery/light/small,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/template_noop)
+"H" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/template_noop)
+"U" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/cockroach,
+/turf/open/floor/wood,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+f
+h
+l
+"}
+(2,1,1) = {"
+t
+g
+q
+m
+"}
+(3,1,1) = {"
+c
+c
+U
+c
+"}
+(4,1,1) = {"
+d
+c
+j
+H
+"}
+(5,1,1) = {"
+e
+c
+m
+G
+"}

@@ -25,7 +25,7 @@
 	..()
 
 /datum/reagent/drug/space_drugs/overdose_start(mob/living/M)
-	to_chat(M, "<span class='userdanger'>You start tripping hard!</span>")
+	to_chat(M, span_userdanger("You start tripping hard!"))
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/overdose, name)
 
 /datum/reagent/drug/space_drugs/overdose_process(mob/living/M)
@@ -47,7 +47,7 @@
 /datum/reagent/drug/nicotine/on_mob_life(mob/living/carbon/M)
 	if(prob(1))
 		var/smoke_message = pick("You feel relaxed.", "You feel calmed.","You feel alert.","You feel rugged.")
-		to_chat(M, "<span class='notice'>[smoke_message]</span>")
+		to_chat(M, span_notice("[smoke_message]"))
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "smoked", /datum/mood_event/smoked, name)
 	M.AdjustStun(-5, FALSE)
 	M.AdjustKnockdown(-5, FALSE)
@@ -60,6 +60,30 @@
 /datum/reagent/drug/nicotine/overdose_process(mob/living/M)
 	M.adjustToxLoss(0.1*REM, 0)
 	M.adjustOxyLoss(1.1*REM, 0)
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 2*REM)
+	..()
+	. = 1
+
+/datum/reagent/drug/nicotine/addiction_act_stage1(mob/living/M)
+	if(prob(5) && iscarbon(M))
+		M.Jitter(10)
+	..()
+
+/datum/reagent/drug/nicotine/addiction_act_stage2(mob/living/M)
+	if(prob(20) && iscarbon(M))
+		M.Jitter(10)
+	..()
+	. = 1
+
+/datum/reagent/drug/nicotine/addiction_act_stage3(mob/living/M)
+	if(prob(20) && iscarbon(M))
+		M.Jitter(10)
+	..()
+	. = 1
+
+/datum/reagent/drug/nicotine/addiction_act_stage4(mob/living/M)
+	if(prob(40) && iscarbon(M))
+		M.Jitter(10)
 	..()
 	. = 1
 
@@ -74,7 +98,7 @@
 /datum/reagent/drug/crank/on_mob_life(mob/living/carbon/M)
 	if(prob(5))
 		var/high_message = pick("You feel jittery.", "You feel like you gotta go fast.", "You feel like you need to step it up.")
-		to_chat(M, "<span class='notice'>[high_message]</span>")
+		to_chat(M, span_notice("[high_message]"))
 	M.AdjustStun(-20, FALSE)
 	M.AdjustKnockdown(-20, FALSE)
 	M.AdjustUnconscious(-20, FALSE)
@@ -123,7 +147,7 @@
 /datum/reagent/drug/krokodil/on_mob_life(mob/living/carbon/M)
 	var/high_message = pick("You feel calm.", "You feel collected.", "You feel like you need to relax.")
 	if(prob(5))
-		to_chat(M, "<span class='notice'>[high_message]</span>")
+		to_chat(M, span_notice("[high_message]"))
 	..()
 
 /datum/reagent/drug/krokodil/overdose_process(mob/living/M)
@@ -140,12 +164,12 @@
 
 /datum/reagent/drug/krokodil/addiction_act_stage2(mob/living/M)
 	if(prob(25))
-		to_chat(M, "<span class='danger'>Your skin feels loose...</span>")
+		to_chat(M, span_danger("Your skin feels loose..."))
 	..()
 
 /datum/reagent/drug/krokodil/addiction_act_stage3(mob/living/M)
 	if(prob(25))
-		to_chat(M, "<span class='danger'>Your skin starts to peel away...</span>")
+		to_chat(M, span_danger("Your skin starts to peel away..."))
 	M.adjustBruteLoss(3*REM, 0)
 	..()
 	. = 1
@@ -153,7 +177,7 @@
 /datum/reagent/drug/krokodil/addiction_act_stage4(mob/living/carbon/human/M)
 	CHECK_DNA_AND_SPECIES(M)
 	if(!istype(M.dna.species, /datum/species/krokodil_addict))
-		to_chat(M, "<span class='userdanger'>Your skin falls off easily!</span>")
+		to_chat(M, span_userdanger("Your skin falls off easily!"))
 		M.adjustBruteLoss(50*REM, 0) // holy shit your skin just FELL THE FUCK OFF
 		M.set_species(/datum/species/krokodil_addict)
 	else
@@ -163,7 +187,7 @@
 
 /datum/reagent/drug/methamphetamine
 	name = "Methamphetamine"
-	description = "Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
+	description = "Neutralizes mannitol. Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
 	overdose_threshold = 20
@@ -172,7 +196,7 @@
 
 /datum/reagent/drug/methamphetamine/on_mob_metabolize(mob/living/L)
 	..()
-	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1.6, blacklisted_movetypes=(FLYING|FLOATING))
 
 /datum/reagent/drug/methamphetamine/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
@@ -181,7 +205,7 @@
 /datum/reagent/drug/methamphetamine/on_mob_life(mob/living/carbon/M)
 	var/high_message = pick("You feel hyper.", "You feel like you need to go faster.", "You feel like you can run the world.")
 	if(prob(5))
-		to_chat(M, "<span class='notice'>[high_message]</span>")
+		to_chat(M, span_notice("[high_message]"))
 	M.AdjustStun(-40, FALSE)
 	M.AdjustKnockdown(-40, FALSE)
 	M.AdjustUnconscious(-40, FALSE)
@@ -196,13 +220,13 @@
 	. = 1
 
 /datum/reagent/drug/methamphetamine/overdose_process(mob/living/M)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i in 1 to 4)
 			step(M, pick(GLOB.cardinals))
 	if(prob(20))
 		M.emote("laugh")
 	if(prob(33))
-		M.visible_message("<span class='danger'>[M]'s hands flip out and flail everywhere!</span>")
+		M.visible_message(span_danger("[M]'s hands flip out and flail everywhere!"))
 		M.drop_all_held_items()
 	..()
 	M.adjustToxLoss(1, 0)
@@ -223,7 +247,7 @@
 	..()
 
 /datum/reagent/drug/methamphetamine/addiction_act_stage3(mob/living/M)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 4, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(15)
@@ -233,7 +257,7 @@
 	..()
 
 /datum/reagent/drug/methamphetamine/addiction_act_stage4(mob/living/carbon/human/M)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(20)
@@ -273,11 +297,11 @@
 /datum/reagent/drug/bath_salts/on_mob_life(mob/living/carbon/M)
 	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
 	if(prob(5))
-		to_chat(M, "<span class='notice'>[high_message]</span>")
+		to_chat(M, span_notice("[high_message]"))
 	M.adjustStaminaLoss(-5, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 4)
 	M.hallucination += 5
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		step(M, pick(GLOB.cardinals))
 		step(M, pick(GLOB.cardinals))
 	..()
@@ -285,7 +309,7 @@
 
 /datum/reagent/drug/bath_salts/overdose_process(mob/living/M)
 	M.hallucination += 5
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i in 1 to 8)
 			step(M, pick(GLOB.cardinals))
 	if(prob(20))
@@ -296,7 +320,7 @@
 
 /datum/reagent/drug/bath_salts/addiction_act_stage1(mob/living/M)
 	M.hallucination += 10
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(5)
@@ -307,7 +331,7 @@
 
 /datum/reagent/drug/bath_salts/addiction_act_stage2(mob/living/M)
 	M.hallucination += 20
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(10)
@@ -319,7 +343,7 @@
 
 /datum/reagent/drug/bath_salts/addiction_act_stage3(mob/living/M)
 	M.hallucination += 30
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 12, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(15)
@@ -331,7 +355,7 @@
 
 /datum/reagent/drug/bath_salts/addiction_act_stage4(mob/living/carbon/human/M)
 	M.hallucination += 30
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 16, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(50)
@@ -352,7 +376,7 @@
 /datum/reagent/drug/aranesp/on_mob_life(mob/living/carbon/M)
 	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
 	if(prob(5))
-		to_chat(M, "<span class='notice'>[high_message]</span>")
+		to_chat(M, span_notice("[high_message]"))
 	M.adjustStaminaLoss(-18, 0)
 	M.adjustToxLoss(0.5, 0)
 	if(prob(50))
@@ -436,3 +460,114 @@
 		M.emote(pick("twitch","laugh","frown"))
 	..()
 	. = 1
+
+/datum/reagent/drug/ketamine
+	name = "Ketamine"
+	description = "A heavy duty tranquilizer found to also invoke feelings of euphoria, and assist with pain. Popular at parties and amongst small frogmen who drive Honda Civics."
+	reagent_state = LIQUID
+	color = "#c9c9c9"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	addiction_threshold = 8
+	overdose_threshold = 16
+
+/datum/reagent/drug/ketamine/on_mob_metabolize(mob/living/L)
+	ADD_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+	. = ..()
+
+/datum/reagent/drug/ketamine/on_mob_delete(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+	. = ..()
+
+/datum/reagent/drug/ketamine/on_mob_life(mob/living/carbon/M)
+	//Friendly Reminder: Ketamine is a tranquilizer and will sleep you.
+	switch(current_cycle)
+		if(10)
+			to_chat(M, span_warning("You start to feel tired...") )
+		if(11 to 25)
+			M.drowsyness ++
+		if(26 to INFINITY)
+			M.Sleeping(60, 0)
+			. = 1
+	//Providing a Mood Boost
+	M.confused -= 3
+	M.jitteriness -= 5
+	M.disgust -= 3
+
+	//Ketamine is also a dissociative anasthetic which means Hallucinations!
+	M.hallucination += 5
+	..()
+
+/datum/reagent/drug/ketamine/overdose_process(mob/living/M)
+	var/obj/item/organ/brain/B = M.getorgan(/obj/item/organ/brain)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM)
+	if(B.can_gain_trauma(/datum/brain_trauma/mild/hallucinations, 1))
+		B.brain_gain_trauma(/datum/brain_trauma/mild/hallucinations, 1)
+
+/datum/reagent/drug/ketamine/addiction_act_stage1(mob/living/M)
+	if(prob(20))
+		M.drop_all_held_items()
+		M.Jitter(2)
+	..()
+
+/datum/reagent/drug/ketamine/addiction_act_stage2(mob/living/M)
+	if(prob(30))
+		M.drop_all_held_items()
+		M.adjustToxLoss(2*REM, 0)
+		. = 1
+		M.Jitter(3)
+		M.Dizzy(3)
+	..()
+
+/datum/reagent/drug/ketamine/addiction_act_stage3(mob/living/M)
+	if(prob(40))
+		M.drop_all_held_items()
+		M.adjustToxLoss(3*REM, 0)
+		. = 1
+		M.Jitter(4)
+		M.Dizzy(4)
+	..()
+
+/datum/reagent/drug/pumpup
+	name = "Pump-Up"
+	description = "Take on the world! A fast acting, hard hitting drug that pushes the limit on what you can handle."
+	reagent_state = LIQUID
+	color = "#e38e44"
+	metabolization_rate = 2 * REAGENTS_METABOLISM
+	overdose_threshold = 30
+
+/datum/reagent/drug/pumpup/on_mob_metabolize(mob/living/L)
+	..()
+	ADD_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+
+/datum/reagent/drug/pumpup/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	..()
+
+/datum/reagent/drug/pumpup/on_mob_life(mob/living/carbon/M)
+	M.Jitter(5)
+
+	if(prob(5))
+		to_chat(M, span_notice("[pick("Go! Go! GO!", "You feel ready...", "You feel invincible...")]"))
+	if(prob(15))
+		M.losebreath++
+		M.adjustToxLoss(2, 0)
+	..()
+	. = 1
+
+/datum/reagent/drug/pumpup/overdose_start(mob/living/M)
+	to_chat(M, span_userdanger("You can't stop shaking, your heart beats faster and faster..."))
+
+/datum/reagent/drug/pumpup/overdose_process(mob/living/M)
+	M.Jitter(5)
+	if(prob(5))
+		M.drop_all_held_items()
+	if(prob(15))
+		M.emote(pick("twitch","drool"))
+	if(prob(20))
+		M.losebreath++
+		M.adjustStaminaLoss(4, 0)
+	if(prob(15))
+		M.adjustToxLoss(2, 0)
+	..()

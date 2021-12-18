@@ -280,6 +280,7 @@
 	icon = 'icons/obj/doors/airlocks/shuttle/shuttle.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
 	normal_integrity = 400
+	anim_parts = "rightu=11,0;left=-12,0;right=11,0"
 
 /obj/machinery/door/airlock/titanium/glass
 	normal_integrity = 350
@@ -325,6 +326,9 @@
 	overlays_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_ext
+	anim_parts = "top=0,16;bottom=0,-16"
+	note_attachment = "bottom"
+	panel_attachment = "bottom"
 
 /obj/machinery/door/airlock/external/glass
 	opacity = 0
@@ -357,6 +361,7 @@
 	name = "vault door"
 	icon = 'icons/obj/doors/airlocks/vault/vault.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/vault/overlays.dmi'
+	anim_parts = "rightpins=15,0;leftpins=-17,0;rightu=13,0;left=-15,0;right=13,0"
 	assemblytype = /obj/structure/door_assembly/door_assembly_vault
 	explosion_block = 2
 	normal_integrity = 400 // reverse engieneerd: 400 * 1.5 (sec lvl 6) = 600 = original
@@ -373,6 +378,10 @@
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_hatch
+	//anim_parts = "ul=-9,9;ur=9,9;dl=-9,-9;dr=9,-9"
+	anim_parts = "ul=-15,0,0,5,-90;ur=0,15,0,5,-90;dl=0,-15,0,5,-90;dr=15,0,0,5,-90"
+	note_attachment = "ul"
+	panel_attachment = "dr"
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "maintenance hatch"
@@ -380,6 +389,10 @@
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_mhatch
+	//anim_parts = "ul=-9,9;ur=9,9;dl=-9,-9;dr=9,-9"
+	anim_parts = "ul=-15,0,0,5,-90;ur=0,15,0,5,-90;dl=0,-15,0,5,-90;dr=15,0,0,5,-90"
+	note_attachment = "ul"
+	panel_attachment = "dr"
 
 //////////////////////////////////
 /*
@@ -390,6 +403,7 @@
 	name = "high tech security airlock"
 	icon = 'icons/obj/doors/airlocks/highsec/highsec.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/highsec/overlays.dmi'
+	anim_parts = "rightu=14,0;left=-14,0;right=14,0"
 	assemblytype = /obj/structure/door_assembly/door_assembly_highsecurity
 	explosion_block = 2
 	normal_integrity = 500
@@ -406,6 +420,7 @@
 	icon = 'icons/obj/doors/airlocks/shuttle/shuttle.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_shuttle
+	anim_parts = "rightu=11,0;left=-12,0;right=11,0"
 
 /obj/machinery/door/airlock/shuttle/glass
 	opacity = 0
@@ -418,10 +433,11 @@
 	overlays_file = 'icons/obj/doors/airlocks/abductor/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_abductor
 	note_overlay_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
+	anim_parts="p1=0,40,0;p2=0,24,2;p3=0,-36,0.5;p4=0,16,3;p5=0,-40,0;p6=0,32,1;p7=0,-24,2" // the door has 7 fucking parts. SEVEN.
 	damage_deflection = 30
 	explosion_block = 3
 	hackProof = TRUE
-	aiControlDisabled = 1
+	aiControlDisabled = AI_WIRE_DISABLED
 	normal_integrity = 700
 	security_level = 1
 
@@ -436,7 +452,7 @@
 	overlays_file = 'icons/obj/doors/airlocks/cult/runed/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_cult
 	hackProof = TRUE
-	aiControlDisabled = 1
+	aiControlDisabled = AI_WIRE_DISABLED
 	req_access = list(ACCESS_BLOODCULT)
 	damage_deflection = 10
 	var/openingoverlaytype = /obj/effect/temp_visual/cult/door
@@ -450,12 +466,9 @@
 /obj/machinery/door/airlock/cult/canAIControl(mob/user)
 	return (iscultist(user) && !isAllPowerCut())
 
-/obj/machinery/door/airlock/cult/obj_break(damage_flag)
-	if(!(flags_1 & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
-		stat |= BROKEN
-		if(!panel_open)
-			panel_open = TRUE
-		update_icon()
+/obj/machinery/door/airlock/cult/on_break()
+	if(!panel_open)
+		panel_open = TRUE
 
 /obj/machinery/door/airlock/cult/isElectrified()
 	return FALSE
@@ -542,8 +555,9 @@
 	desc = "A massive cogwheel set into two heavy slabs of brass."
 	icon = 'icons/obj/doors/airlocks/clockwork/pinion_airlock.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/clockwork/overlays.dmi'
+	anim_parts = "left=-13,0;right=13,0"
 	hackProof = TRUE
-	aiControlDisabled = 1
+	aiControlDisabled = AI_WIRE_DISABLED
 	req_access = list(ACCESS_CLOCKCULT)
 	use_power = FALSE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -566,9 +580,9 @@
 	var/gear_text = "The cogwheel is flickering and twisting wildly. Report this to a coder."
 	switch(construction_state)
 		if(GEAR_SECURE)
-			gear_text = "<span class='brass'>The cogwheel is solidly <b>wrenched</b> to the brass around it.</span>"
+			gear_text = span_brass("The cogwheel is solidly <b>wrenched</b> to the brass around it.")
 		if(GEAR_LOOSE)
-			gear_text = "<span class='alloy'>The cogwheel has been <i>loosened</i>, but remains <b>connected loosely</b> to the door!</span>"
+			gear_text = span_alloy("The cogwheel has been <i>loosened</i>, but remains <b>connected loosely</b> to the door!")
 	. += gear_text
 
 /obj/machinery/door/airlock/clockwork/emp_act(severity)
@@ -620,30 +634,30 @@
 		return 0
 	else if(I.tool_behaviour == TOOL_WRENCH)
 		if(construction_state == GEAR_SECURE)
-			user.visible_message("<span class='notice'>[user] begins loosening [src]'s cogwheel...</span>", "<span class='notice'>You begin loosening [src]'s cogwheel...</span>")
+			user.visible_message(span_notice("[user] begins loosening [src]'s cogwheel..."), span_notice("You begin loosening [src]'s cogwheel..."))
 			if(!I.use_tool(src, user, 75, volume=50) || construction_state != GEAR_SECURE)
 				return 1
-			user.visible_message("<span class='notice'>[user] loosens [src]'s cogwheel!</span>", "<span class='notice'>[src]'s cogwheel pops off and dangles loosely.</span>")
+			user.visible_message(span_notice("[user] loosens [src]'s cogwheel!"), span_notice("[src]'s cogwheel pops off and dangles loosely."))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			construction_state = GEAR_LOOSE
 		else if(construction_state == GEAR_LOOSE)
-			user.visible_message("<span class='notice'>[user] begins tightening [src]'s cogwheel...</span>", "<span class='notice'>You begin tightening [src]'s cogwheel into place...</span>")
+			user.visible_message(span_notice("[user] begins tightening [src]'s cogwheel..."), span_notice("You begin tightening [src]'s cogwheel into place..."))
 			if(!I.use_tool(src, user, 75, volume=50) || construction_state != GEAR_LOOSE)
 				return 1
-			user.visible_message("<span class='notice'>[user] tightens [src]'s cogwheel!</span>", "<span class='notice'>You firmly tighten [src]'s cogwheel into place.</span>")
+			user.visible_message(span_notice("[user] tightens [src]'s cogwheel!"), span_notice("You firmly tighten [src]'s cogwheel into place."))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			construction_state = GEAR_SECURE
 		return 1
 	else if(I.tool_behaviour == TOOL_CROWBAR)
 		if(construction_state == GEAR_SECURE)
-			to_chat(user, "<span class='warning'>[src]'s cogwheel is too tightly secured! Your [I.name] can't reach under it!</span>")
+			to_chat(user, span_warning("[src]'s cogwheel is too tightly secured! Your [I.name] can't reach under it!"))
 			return 1
 		else if(construction_state == GEAR_LOOSE)
-			user.visible_message("<span class='notice'>[user] begins slowly lifting off [src]'s cogwheel...</span>", "<span class='notice'>You slowly begin lifting off [src]'s cogwheel...</span>")
+			user.visible_message(span_notice("[user] begins slowly lifting off [src]'s cogwheel..."), span_notice("You slowly begin lifting off [src]'s cogwheel..."))
 			if(!I.use_tool(src, user, 75, volume=50) || construction_state != GEAR_LOOSE)
 				return 1
-			user.visible_message("<span class='notice'>[user] lifts off [src]'s cogwheel, causing it to fall apart!</span>", \
-			"<span class='notice'>You lift off [src]'s cogwheel, causing it to fall apart!</span>")
+			user.visible_message(span_notice("[user] lifts off [src]'s cogwheel, causing it to fall apart!"), \
+			span_notice("You lift off [src]'s cogwheel, causing it to fall apart!"))
 			deconstruct(TRUE)
 		return 1
 	return 0
@@ -661,6 +675,9 @@
 	name = "large glass airlock"
 	icon = 'icons/obj/doors/airlocks/glass_large/glass_large.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/glass_large/overlays.dmi'
+	mask_file = 'icons/obj/doors/airlocks/mask_64x32_airlocks.dmi'
+	mask_x = 16 // byond is consistent and sane
+	anim_parts = "left=-21,0;right=21,0;top=0,29"
 	opacity = 0
 	assemblytype = null
 	glass = TRUE

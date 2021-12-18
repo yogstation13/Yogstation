@@ -1,0 +1,158 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/red,
+/area/template_noop)
+"f" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"h" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/item/trash/can,
+/turf/open/floor/carpet/red,
+/area/template_noop)
+"j" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"n" = (
+/obj/item/chair,
+/turf/open/floor/carpet/red,
+/area/template_noop)
+"x" = (
+/obj/item/trash/plate,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"z" = (
+/obj/effect/decal/cleanable/vomit,
+/turf/open/floor/ballpit,
+/area/template_noop)
+"E" = (
+/turf/open/floor/carpet/red,
+/area/template_noop)
+"G" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni{
+	pixel_y = -9
+	},
+/obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni{
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/turf/open/floor/carpet/red,
+/area/template_noop)
+"H" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/carpet/red,
+/area/template_noop)
+"K" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"R" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/template_noop)
+"S" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"U" = (
+/turf/open/floor/ballpit,
+/area/template_noop)
+"Z" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_up,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/red,
+/area/template_noop)
+
+(1,1,1) = {"
+f
+j
+S
+S
+S
+"}
+(2,1,1) = {"
+f
+U
+U
+U
+j
+"}
+(3,1,1) = {"
+S
+U
+z
+U
+j
+"}
+(4,1,1) = {"
+S
+U
+U
+U
+S
+"}
+(5,1,1) = {"
+j
+U
+U
+U
+S
+"}
+(6,1,1) = {"
+j
+U
+U
+U
+j
+"}
+(7,1,1) = {"
+x
+E
+E
+j
+j
+"}
+(8,1,1) = {"
+E
+G
+Z
+H
+f
+"}
+(9,1,1) = {"
+E
+n
+h
+R
+E
+"}
+(10,1,1) = {"
+K
+d
+d
+E
+j
+"}

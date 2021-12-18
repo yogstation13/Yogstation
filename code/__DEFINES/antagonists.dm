@@ -1,3 +1,6 @@
+///An unreadied player counts for this much compared to a readied one
+#define UNREADIED_PLAYER_MULTIPLIER 0.5
+
 #define NUKE_RESULT_FLUKE 0
 #define NUKE_RESULT_NUKE_WIN 1
 #define NUKE_RESULT_CREW_WIN 2
@@ -26,10 +29,12 @@
 
 
 //Blob
-#define BLOB_REROLL_TIME 2400 //blob gets a free reroll every X time
+/// blob gets a free reroll every X time
+#define BLOB_REROLL_TIME 2400
 #define BLOB_SPREAD_COST 4
-#define BLOB_ATTACK_REFUND 2 //blob refunds this much if it attacks and doesn't spread
-#define BLOB_REFLECTOR_COST 0 //yogs - reflectors are free
+/// blob refunds this much if it attacks and doesn't spread
+#define BLOB_ATTACK_REFUND 2
+#define BLOB_REFLECTOR_COST 15
 
 
 //ERT Types
@@ -47,12 +52,12 @@
 #define DEATHSQUAD_LEADER "ds_leader"
 
 //Shuttle hijacking
-#define HIJACK_NEUTRAL 0 //Does not stop hijacking but itself won't hijack
-#define HIJACK_HIJACKER 1 //Needs to be present for shuttle to be hijacked
-#define HIJACK_PREVENT 2 //Prevents hijacking same way as non-antags
-
-//Overthrow time to update heads obj
-#define OBJECTIVE_UPDATING_TIME 300
+/// Does not stop hijacking but itself won't hijack
+#define HIJACK_NEUTRAL 0
+/// Needs to be present for shuttle to be hijacked
+#define HIJACK_HIJACKER 1
+/// Prevents hijacking same way as non-antags
+#define HIJACK_PREVENT 2
 
 //Assimilation
 #define TRACKER_DEFAULT_TIME 900
@@ -72,3 +77,27 @@
 #define CONTRACT_PAYOUT_LARGE 1
 #define CONTRACT_PAYOUT_MEDIUM 2
 #define CONTRACT_PAYOUT_SMALL 3
+
+#define CONTRACT_UPLINK_PAGE_CONTRACTS "CONTRACTS"
+#define CONTRACT_UPLINK_PAGE_HUB "HUB"
+
+///Heretics
+///It is faster as a macro than a proc
+#define IS_HERETIC(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic))
+#define IS_HERETIC_MONSTER(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic_monster))
+#define IS_EXCLUSIVE_KNOWLEDGE(knowledge) (knowledge.tier % 2)
+
+#define PATH_SIDE "Side"
+
+#define PATH_ASH "Ash"
+#define PATH_RUST "Rust"
+#define PATH_FLESH "Flesh"
+
+#define TIER_NONE 0
+#define TIER_PATH 1
+#define TIER_1 2
+#define TIER_MARK 3
+#define TIER_2 4
+#define TIER_BLADE 5
+#define TIER_3 6
+#define TIER_ASCEND 7

@@ -1,0 +1,86 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"c" = (
+/obj/structure/closet/crate,
+/obj/item/stack/ore/gold,
+/obj/item/stack/ore/gold,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/template_noop)
+"e" = (
+/obj/structure/closet/crate,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/item/stack/ore/glass,
+/obj/item/stack/ore/glass,
+/turf/open/floor/plating,
+/area/template_noop)
+"h" = (
+/obj/structure/rack,
+/obj/item/flashlight/lantern,
+/obj/item/pickaxe,
+/turf/open/floor/plating,
+/area/template_noop)
+"j" = (
+/obj/structure/ore_box,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/template_noop)
+"k" = (
+/obj/structure/closet/crate,
+/obj/item/stack/ore/uranium,
+/obj/item/stack/ore/uranium,
+/obj/machinery/light/broken{
+	dir = 4;
+	icon_state = "tube-broken"
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
+/obj/structure/closet/crate,
+/obj/item/stack/ore/silver,
+/obj/item/stack/ore/silver,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/template_noop)
+"I" = (
+/obj/structure/closet/crate,
+/obj/item/stack/ore/iron,
+/obj/item/stack/ore/iron,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/template_noop)
+"Q" = (
+/obj/structure/closet/crate,
+/obj/item/stack/ore/titanium,
+/obj/item/stack/ore/titanium,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+c
+F
+b
+e
+I
+"}
+(2,1,1) = {"
+b
+b
+b
+b
+b
+"}
+(3,1,1) = {"
+Q
+k
+b
+h
+j
+"}

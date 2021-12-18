@@ -48,6 +48,9 @@
 /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter
 	splatter_type = "xsplatter"
 
+/obj/effect/temp_visual/dir_setting/bloodsplatter/genericsplatter
+	splatter_type = "genericsplatter"
+
 /obj/effect/temp_visual/dir_setting/speedbike_trail
 	name = "speedbike trails"
 	icon_state = "ion_fade"
@@ -462,3 +465,21 @@
 			animate(src, alpha = 0, transform = skew, time = duration)
 	else
 		return INITIALIZE_HINT_QDEL
+
+/obj/effect/temp_visual/dir_setting/space_wind
+	icon = 'icons/effects/atmospherics.dmi'
+	icon_state = "space_wind"
+	layer = FLY_LAYER
+	duration = 20
+	mouse_opacity = 0
+
+/obj/effect/temp_visual/dir_setting/space_wind/Initialize(mapload, set_dir, set_alpha = 255)
+	. = ..()
+	alpha = set_alpha
+
+/obj/effect/temp_visual/vent_wind
+	icon = 'icons/effects/atmospherics.dmi'
+	icon_state = "vent_wind"
+	layer = FLY_LAYER
+	duration = 0.48 SECONDS
+	mouse_opacity = 0

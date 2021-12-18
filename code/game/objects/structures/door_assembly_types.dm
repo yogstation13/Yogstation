@@ -216,6 +216,9 @@
 	mineral = "bananium"
 	glass_type = /obj/machinery/door/airlock/bananium/glass
 
+/obj/structure/door_assembly/door_assembly_bananium/honk_act()
+	return FALSE
+
 /obj/structure/door_assembly/door_assembly_sandstone
 	name = "sandstone airlock assembly"
 	icon = 'icons/obj/doors/airlocks/station/sandstone.dmi'

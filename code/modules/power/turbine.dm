@@ -86,7 +86,7 @@
 	inturf = get_step(src, dir)
 	locate_machinery()
 	if(!turbine)
-		stat |= BROKEN
+		obj_break()
 
 
 #define COMPFRICTION 5e5
@@ -108,7 +108,7 @@
 /obj/machinery/power/compressor/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Efficiency at <b>[efficiency*100]%</b>.</span>"
+		. += span_notice("The status display reads: Efficiency at <b>[efficiency*100]%</b>.")
 
 /obj/machinery/power/compressor/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, initial(icon_state), initial(icon_state), I))
@@ -119,21 +119,22 @@
 		inturf = get_step(src, dir)
 		locate_machinery()
 		if(turbine)
-			to_chat(user, "<span class='notice'>Turbine connected.</span>")
+			to_chat(user, span_notice("Turbine connected."))
 			stat &= ~BROKEN
 		else
-			to_chat(user, "<span class='alert'>Turbine not connected.</span>")
-			stat |= BROKEN
+			to_chat(user, span_alert("Turbine not connected."))
+			obj_break()
 		return
 
 	default_deconstruction_crowbar(I)
 
 /obj/machinery/power/compressor/process()
-	if(!turbine)
-		stat = BROKEN
-	if(stat & BROKEN || panel_open)
-		return
 	if(!starter)
+		return
+	if(!turbine || (turbine.stat & BROKEN))
+		starter = FALSE
+	if(stat & BROKEN || panel_open)
+		starter = FALSE
 		return
 	cut_overlays()
 
@@ -184,7 +185,7 @@
 	outturf = get_step(src, dir)
 	locate_machinery()
 	if(!compressor)
-		stat |= BROKEN
+		obj_break()
 	connect_to_network()
 
 /obj/machinery/power/turbine/RefreshParts()
@@ -225,7 +226,7 @@
 
 	// Weird function but it works. Should be something else...
 
-	var/newrpm = ((compressor.gas_contained.temperature) * compressor.gas_contained.total_moles())/4
+	var/newrpm = ((compressor.gas_contained.return_temperature()) * compressor.gas_contained.total_moles())/4
 
 	newrpm = max(0, newrpm)
 
@@ -253,11 +254,11 @@
 		outturf = get_step(src, dir)
 		locate_machinery()
 		if(compressor)
-			to_chat(user, "<span class='notice'>Compressor connected.</span>")
+			to_chat(user, span_notice("Compressor connected."))
 			stat &= ~BROKEN
 		else
-			to_chat(user, "<span class='alert'>Compressor not connected.</span>")
-			stat |= BROKEN
+			to_chat(user, span_alert("Compressor not connected."))
+			obj_break()
 		return
 
 	default_deconstruction_crowbar(I)
@@ -326,27 +327,26 @@
 				compressor = C
 				return
 	else
-		compressor = locate(/obj/machinery/power/compressor) in range(5, src)
+		compressor = locate(/obj/machinery/power/compressor) in range(7, src)
 
-/obj/machinery/computer/turbine_computer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/turbine_computer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "turbine_computer", name, 350, 280, master_ui, state)
+		ui = new(user, src, "TurbineComputer", name)
 		ui.open()
 
 /obj/machinery/computer/turbine_computer/ui_data(mob/user)
 	var/list/data = list()
 
-	data["connected"] = (compressor && compressor.turbine) ? TRUE : FALSE
+	data["compressor"] = compressor ? TRUE : FALSE
 	data["compressor_broke"] = (!compressor || (compressor.stat & BROKEN)) ? TRUE : FALSE
+	data["turbine"] = compressor?.turbine ? TRUE : FALSE
 	data["turbine_broke"] = (!compressor || !compressor.turbine || (compressor.turbine.stat & BROKEN)) ? TRUE : FALSE
-	data["broken"] = (data["compressor_broke"] || data["turbine_broke"])
-	data["online"] = compressor.starter
+	data["online"] = compressor?.starter
 
-	data["power"] = DisplayPower(compressor.turbine.lastgen)
-	data["rpm"] = compressor.rpm
-	data["temp"] = compressor.gas_contained.temperature
+	data["power"] = DisplayPower(compressor?.turbine?.lastgen)
+	data["rpm"] = compressor?.rpm
+	data["temp"] = compressor?.gas_contained.return_temperature()
 
 	return data
 
@@ -354,13 +354,9 @@
 	if(..())
 		return
 	switch(action)
-		if("power-on")
+		if("toggle_power")
 			if(compressor && compressor.turbine)
-				compressor.starter = TRUE
-				. = TRUE
-		if("power-off")
-			if(compressor && compressor.turbine)
-				compressor.starter = FALSE
+				compressor.starter = !compressor.starter
 				. = TRUE
 		if("reconnect")
 			locate_machinery()

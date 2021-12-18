@@ -75,14 +75,8 @@
 /obj/item/trash/attack(mob/M, mob/living/user)
 	return
 
-/obj/item/trash/coal
-	name = "lump of coal"
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "slag"
-	desc = "Someone's gotten on the naughty list."
-	grind_results = list(/datum/reagent/carbon = 20)
-
-/obj/item/trash/coal/burn()
-	visible_message("[src] fuses into a diamond! Someone wasn't so naughty after all...")
-	new /obj/item/stack/ore/diamond(loc)
-	qdel(src)
+/obj/item/trash/floursack
+	name = "torn flour sack"
+	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon_state = "floursad"
+	desc = "Perhaps it shouldn't have been filled with water."

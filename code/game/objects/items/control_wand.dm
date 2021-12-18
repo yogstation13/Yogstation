@@ -12,12 +12,13 @@
 	desc = "Remotely controls airlocks."
 	w_class = WEIGHT_CLASS_TINY
 	var/mode = WAND_OPEN
-	var/region_access = 1 //See access.dm
+	var/list/region_access = list(1) //See access.dm
 	var/list/access_list
 
 /obj/item/door_remote/Initialize()
 	. = ..()
-	access_list = get_region_accesses(region_access)
+	for(var/i in region_access)
+		access_list += get_region_accesses(i)
 	AddComponent(/datum/component/ntnet_interface)
 
 /obj/item/door_remote/attack_self(mob/user)
@@ -60,43 +61,43 @@
 	name = "omni door remote"
 	desc = "This control wand can access any door on the station."
 	icon_state = "gangtool-yellow"
-	region_access = 0
+	region_access = list(0)
 
 /obj/item/door_remote/captain
 	name = "command door remote"
 	icon_state = "gangtool-yellow"
-	region_access = 7
+	region_access = list(7)
 
 /obj/item/door_remote/chief_engineer
 	name = "engineering door remote"
 	icon_state = "gangtool-orange"
-	region_access = 5
+	region_access = list(5)
 
 /obj/item/door_remote/research_director
 	name = "research door remote"
 	icon_state = "gangtool-purple"
-	region_access = 4
+	region_access = list(4)
 
 /obj/item/door_remote/head_of_security
 	name = "security door remote"
 	icon_state = "gangtool-red"
-	region_access = 2
+	region_access = list(2)
 
 /obj/item/door_remote/quartermaster
 	name = "supply door remote"
 	desc = "Remotely controls airlocks. This remote has additional Vault access."
 	icon_state = "gangtool-green"
-	region_access = 6
+	region_access = list(6)
 
 /obj/item/door_remote/chief_medical_officer
 	name = "medical door remote"
 	icon_state = "gangtool-blue"
-	region_access = 3
+	region_access = list(3)
 
 /obj/item/door_remote/civillian
 	name = "civilian door remote"
 	icon_state = "gangtool-white"
-	region_access = 1
+	region_access = list(1, 6)
 
 #undef WAND_OPEN
 #undef WAND_BOLT

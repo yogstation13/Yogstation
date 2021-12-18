@@ -4,6 +4,7 @@
 
 	. = ..()
 
+	cut_overlays() //remove portraits
 	var/old_icon = icon_state
 	if("[icon_state]_dead" in icon_states(icon))
 		icon_state = "[icon_state]_dead"
@@ -24,6 +25,8 @@
 	SSshuttle.autoEvac()
 
 	ShutOffDoomsdayDevice()
+
+	GLOB.ai_os.remove_ai(src)
 
 	if(explosive)
 		spawn(10)

@@ -15,6 +15,9 @@
 
 	var/disgust = 0
 
+	/// Timer id of any transformation
+	var/transformation_timer
+
 //inventory slots
 	var/obj/item/back = null
 	var/obj/item/clothing/mask/wear_mask = null
@@ -63,3 +66,10 @@
 	var/drunkenness = 0 //Overall drunkenness - check handle_alcohol() in life.dm for effects
 	var/stam_regen_start_time = 0 //used to halt stamina regen temporarily
 	var/stam_paralyzed = FALSE //knocks you down
+
+	/// All of the wounds a carbon has afflicted throughout their limbs
+	var/list/all_wounds
+	/// All of the scars a carbon has afflicted throughout their limbs
+	var/list/all_scars
+
+	COOLDOWN_DECLARE(bleeding_message_cd)

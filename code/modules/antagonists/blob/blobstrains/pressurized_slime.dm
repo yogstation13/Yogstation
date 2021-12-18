@@ -19,7 +19,7 @@
 
 /datum/blobstrain/reagent/pressurized_slime/death_reaction(obj/structure/blob/B, damage_flag)
 	if(damage_flag == "melee" || damage_flag == "bullet" || damage_flag == "laser")
-		B.visible_message("<span class='boldwarning'>The blob ruptures, spraying the area with liquid!</span>")
+		B.visible_message(span_boldwarning("The blob ruptures, spraying the area with liquid!"))
 		extinguisharea(B, 50)
 
 /datum/blobstrain/reagent/pressurized_slime/proc/extinguisharea(obj/structure/blob/B, probchance)
@@ -44,7 +44,7 @@
 		T.MakeSlippery(TURF_WET_LUBE, min_wet_time = 10 SECONDS, wet_time_to_add = 5 SECONDS)
 		M.adjust_fire_stacks(-(reac_volume / 10))
 		M.ExtinguishMob()
-	M.apply_damage(0.4*reac_volume, BRUTE)
+	M.apply_damage(0.4*reac_volume, BRUTE, wound_bonus=CANT_WOUND)
 	if(M)
 		M.apply_damage(0.4*reac_volume, OXY)
 	if(M)

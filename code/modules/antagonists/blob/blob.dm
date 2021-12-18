@@ -2,6 +2,7 @@
 	name = "Blob"
 	roundend_category = "blobs"
 	antagpanel_category = "Blob"
+	show_to_ghosts = TRUE
 	job_rank = ROLE_BLOB
 
 	var/datum/action/innate/blobpop/pop_action
@@ -16,11 +17,13 @@
 		if(!overmind.victory_in_progress) //if it won this doesn't really matter
 			var/point_report = "<br><b>[owner.name]</b> took over [overmind.max_count] tiles at the height of its growth."
 			return basic_report+point_report
+		else
+			SSachievements.unlock_achievement(/datum/achievement/greentext/blob,overmind.client)
 	return basic_report
 
 /datum/antagonist/blob/greet()
 	if(!isovermind(owner.current))
-		to_chat(owner,"<span class='userdanger'>You feel bloated.</span>")
+		to_chat(owner,span_userdanger("You feel bloated."))
 
 /datum/antagonist/blob/on_gain()
 	create_objectives()

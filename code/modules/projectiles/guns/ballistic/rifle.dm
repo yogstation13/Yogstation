@@ -21,7 +21,7 @@ obj/item/gun/ballistic/rifle/update_icon()
 
 obj/item/gun/ballistic/rifle/rack(mob/user = null)
 	if (bolt_locked == FALSE)
-		to_chat(user, "<span class='notice'>You open the bolt of \the [src]</span>")
+		to_chat(user, span_notice("You open the bolt of \the [src]"))
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 		process_chamber(FALSE, FALSE, FALSE)
 		bolt_locked = TRUE
@@ -36,7 +36,7 @@ obj/item/gun/ballistic/rifle/can_shoot()
 
 obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	if (!bolt_locked)
-		to_chat(user, "<span class='notice'>The bolt is closed!</span>")
+		to_chat(user, span_notice("The bolt is closed!"))
 		return
 	return ..()
 
@@ -61,6 +61,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	knife_x_offset = 27
 	knife_y_offset = 13
 	can_be_sawn_off = TRUE
+	weapon_weight = WEAPON_HEAVY
 
 /obj/item/gun/ballistic/rifle/boltaction/sawoff(mob/user)
 	. = ..()
@@ -85,12 +86,13 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 
 /obj/item/gun/ballistic/rifle/boltaction/sawoff(mob/user)
 	if(bayonet)
-		to_chat(user, "<span class='warning'>You cannot saw-off \the [src] with \the [bayonet] attached!</span>")
+		to_chat(user, span_warning("You cannot saw-off \the [src] with \the [bayonet] attached!"))
 		return
 	. = ..()
 	if(.)
 		spread = 36
 		can_bayonet = FALSE
+		weapon_weight = WEAPON_LIGHT
 
 /obj/item/gun/ballistic/rifle/boltaction/blow_up(mob/user)
 	. = 0
@@ -102,6 +104,13 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	name = "enchanted bolt action rifle"
 	desc = "Careful not to lose your head."
 	var/guns_left = 30
+	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
+	can_be_sawn_off = FALSE
+
+/obj/item/gun/ballistic/rifle/boltaction/enchanted/oneuse
+	name = "enchanted bolt action rifle"
+	desc = "Careful not to lose your head."
+	guns_left = 0
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
 	can_be_sawn_off = FALSE
 

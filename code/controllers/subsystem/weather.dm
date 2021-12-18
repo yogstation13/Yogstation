@@ -56,7 +56,6 @@ SUBSYSTEM_DEF(weather)
 				break
 	if (!ispath(weather_datum_type, /datum/weather))
 		CRASH("run_weather called with invalid weather_datum_type: [weather_datum_type || "null"]")
-		return
 
 	if (isnull(z_levels))
 		z_levels = SSmapping.levels_by_trait(initial(weather_datum_type.target_trait))
@@ -64,7 +63,6 @@ SUBSYSTEM_DEF(weather)
 		z_levels = list(z_levels)
 	else if (!islist(z_levels))
 		CRASH("run_weather called with invalid z_levels: [z_levels || "null"]")
-		return
 
 	var/datum/weather/W = new weather_datum_type(z_levels)
 	W.telegraph()
@@ -77,7 +75,7 @@ SUBSYSTEM_DEF(weather)
     var/datum/weather/A
     for(var/V in processing)
         var/datum/weather/W = V
-        if((z in W.impacted_z_levels) && W.area_type == active_area.type)
+        if((z in W.impacted_z_levels) && istype(active_area, W.area_type))
             A = W
             break
     return A

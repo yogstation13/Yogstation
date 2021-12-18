@@ -29,8 +29,8 @@ All the important duct code:
 		active = FALSE
 		anchored = FALSE
 	else if(!can_anchor())
-		CRASH("Overlapping ducts detected")
 		qdel(src)
+		CRASH("Overlapping ducts detected")
 	if(force_connects)
 		connects = force_connects //skip change_connects() because we're still initializing and we need to set our connects at one point
 	if(!lock_layers)
@@ -197,16 +197,16 @@ All the important duct code:
 	if(anchored)
 		user.visible_message( \
 		"[user] unfastens \the [src].", \
-		"<span class='notice'>You unfasten \the [src].</span>", \
-		"<span class='italics'>You hear ratcheting.</span>")
+		span_notice("You unfasten \the [src]."), \
+		span_italics("You hear ratcheting."))
 		disconnect_duct()
 	else if(can_anchor())
 		anchored = TRUE
 		active = TRUE
 		user.visible_message( \
 		"[user] fastens \the [src].", \
-		"<span class='notice'>You fasten \the [src].</span>", \
-		"<span class='italics'>You hear ratcheting.</span>")
+		span_notice("You fasten \the [src]."), \
+		span_italics("You hear ratcheting."))
 		attempt_connect()
 	return TRUE
 
@@ -236,7 +236,7 @@ All the important duct code:
 	var/obj/machinery/duct/D = A
 	var/obj/item/I = user.get_active_held_item()
 	if(I?.tool_behaviour != TOOL_WRENCH)
-		to_chat(user, "<span class='warning'>You need to be holding a wrench in your active hand to do that!</span>")
+		to_chat(user, span_warning("You need to be holding a wrench in your active hand to do that!"))
 		return
 	if(get_dist(src, D) != 1)
 		return

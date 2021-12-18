@@ -16,35 +16,34 @@
 	var/viewing_category = 1 //typical powergamer starting on the Weapons tab
 	var/viewing_subcategory = 1
 	var/list/categories = list(
-				CAT_WEAPONRY,
-				CAT_ROBOT,
-				CAT_MISC,
-				CAT_PRIMAL,
-				CAT_FOOD,
-				CAT_CLOTHING)
-	var/list/subcategories = list(
-						list(	//Weapon subcategories
-							CAT_WEAPON,
-							CAT_AMMO),
-						CAT_NONE, //Robot subcategories
-						CAT_NONE, //Misc subcategories
-						CAT_NONE, //Tribal subcategories
-						list(	//Food subcategories
-							CAT_BREAD,
-							CAT_BURGER,
-							CAT_CAKE,
-							CAT_EGG,
-							CAT_MEAT,
-							CAT_MISCFOOD,
-							CAT_PASTRY,
-							CAT_PIE,
-							CAT_PIZZA,
-							CAT_SALAD,
-							CAT_SANDWICH,
-							CAT_SOUP,
-							CAT_SPAGHETTI),
-                        CAT_CLOTHING) //Clothing subcategories
+					CAT_WEAPONRY = list(
+					CAT_WEAPON,
+					CAT_AMMO,
+				),
+				CAT_ROBOT = CAT_NONE,
+				CAT_MISC = CAT_NONE,
+				CAT_PRIMAL = CAT_NONE,
+				CAT_FOOD = list(
+					CAT_BREAD,
+					CAT_BURGER,
+					CAT_CAKE,
+					CAT_EGG,
+					CAT_MEAT,
+					CAT_MISCFOOD,
+					CAT_PASTRY,
+					CAT_PIE,
+					CAT_PIZZA,
+					CAT_SALAD,
+					CAT_SANDWICH,
+					CAT_SOUP,
+					CAT_SPAGHETTI,
+				),
+				CAT_DRINK = CAT_NONE,
+				CAT_CLOTHING = CAT_NONE,
+			)
 
+	var/cur_category = CAT_NONE
+	var/cur_subcategory = CAT_NONE
 	var/datum/action/innate/crafting/button
 	var/display_craftable_only = FALSE
 	var/display_compact = TRUE
@@ -158,6 +157,8 @@
 /datum/component/personal_crafting/proc/construct_item(mob/user, datum/crafting_recipe/R)
 	var/list/contents = get_surroundings(user)
 	var/send_feedback = 1
+	if(HAS_TRAIT(user, TRAIT_CRAFTY))
+		R.time *= 0.75
 	if(check_contents(R, contents))
 		if(check_tools(user, R, contents))
 			if(do_after(user, R.time, target = user))
@@ -217,7 +218,7 @@
 				var/datum/reagent/RGNT
 				while(amt > 0)
 					var/obj/item/reagent_containers/RC = locate() in surroundings
-					RG = RC.reagents.get_reagent(A)
+					RG = RC.reagents?.get_reagent(A)
 					if(RG)
 						if(!locate(RG.type) in Deletion)
 							Deletion += new RG.type()
@@ -299,38 +300,36 @@
 		Deletion.Cut(Deletion.len)
 		qdel(DL)
 
+/datum/component/personal_crafting/ui_state(mob/user)
+	return GLOB.not_incapacitated_turf_state
+
 /datum/component/personal_crafting/proc/component_ui_interact(obj/screen/craft/image, location, control, params, user)
 	if(user == parent)
 		ui_interact(user)
 
-/datum/component/personal_crafting/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.not_incapacitated_turf_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/component/personal_crafting/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "personal_crafting", "Crafting Menu", 700, 800, master_ui, state)
+		cur_category = categories[1]
+		if(islist(categories[cur_category]))
+			var/list/subcats = categories[cur_category]
+			cur_subcategory = subcats[1]
+		else
+			cur_subcategory = CAT_NONE
+		ui = new(user, src, "PersonalCrafting")
 		ui.open()
 
 
 /datum/component/personal_crafting/ui_data(mob/user)
 	var/list/data = list()
-	var/list/subs = list()
-	var/cur_subcategory = CAT_NONE
-	var/cur_category = categories[viewing_category]
-	if (islist(subcategories[viewing_category]))
-		subs = subcategories[viewing_category]
-		cur_subcategory = subs[viewing_subcategory]
 	data["busy"] = busy
-	data["prev_cat"] = categories[prev_cat()]
-	data["prev_subcat"] = subs[prev_subcat()]
 	data["category"] = cur_category
 	data["subcategory"] = cur_subcategory
-	data["next_cat"] = categories[next_cat()]
-	data["next_subcat"] = subs[next_subcat()]
 	data["display_craftable_only"] = display_craftable_only
 	data["display_compact"] = display_compact
 
 	var/list/surroundings = get_surroundings(user)
-	var/list/can_craft = list()
-	var/list/cant_craft = list()
+	var/list/craftability = list()
 	for(var/rec in GLOB.crafting_recipes)
 		var/datum/crafting_recipe/R = rec
 
@@ -339,14 +338,37 @@
 
 		if((R.category != cur_category) || (R.subcategory != cur_subcategory))
 			continue
-		if(check_contents(R, surroundings))
-			can_craft += list(build_recipe_data(R))
-		else
-			cant_craft += list(build_recipe_data(R))
-	data["can_craft"] = can_craft
-	data["cant_craft"] = cant_craft
+		craftability["[REF(R)]"] = check_contents(R, surroundings)
+
+	data["craftability"] = craftability
 	return data
 
+/datum/component/personal_crafting/ui_static_data(mob/user)
+	var/list/data = list()
+
+	var/list/crafting_recipes = list()
+	for(var/rec in GLOB.crafting_recipes)
+		var/datum/crafting_recipe/R = rec
+
+		if(R.name == "") //This is one of the invalid parents that sneaks in
+			continue
+
+		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+			continue
+
+		if(isnull(crafting_recipes[R.category]))
+			crafting_recipes[R.category] = list()
+
+		if(R.subcategory == CAT_NONE)
+			crafting_recipes[R.category] += list(build_recipe_data(R))
+		else
+			if(isnull(crafting_recipes[R.category][R.subcategory]))
+				crafting_recipes[R.category][R.subcategory] = list()
+				crafting_recipes[R.category]["has_subcats"] = TRUE
+			crafting_recipes[R.category][R.subcategory] += list(build_recipe_data(R))
+
+	data["crafting_recipes"] = crafting_recipes
+	return data
 
 /datum/component/personal_crafting/ui_act(action, params)
 	if(..())
@@ -358,22 +380,10 @@
 			ui_interact(usr)
 			var/fail_msg = construct_item(usr, TR)
 			if(!fail_msg)
-				to_chat(usr, "<span class='notice'>[TR.name] constructed.</span>")
+				to_chat(usr, span_notice("[TR.name] constructed."))
 			else
-				to_chat(usr, "<span class='warning'>Construction failed[fail_msg]</span>")
+				to_chat(usr, span_warning("Construction failed[fail_msg]"))
 			busy = FALSE
-		if("forwardCat") //Meow
-			viewing_category = next_cat(FALSE)
-			. = TRUE
-		if("backwardCat")
-			viewing_category = prev_cat(FALSE)
-			. = TRUE
-		if("forwardSubCat")
-			viewing_subcategory = next_subcat()
-			. = TRUE
-		if("backwardSubCat")
-			viewing_subcategory = prev_subcat()
-			. = TRUE
 		if("toggle_recipes")
 			display_craftable_only = !display_craftable_only
 			. = TRUE
@@ -381,40 +391,10 @@
 			display_compact = !display_compact
 			. = TRUE
 
-//Next works nicely with modular arithmetic
-/datum/component/personal_crafting/proc/next_cat(readonly = TRUE)
-	if (!readonly)
-		viewing_subcategory = 1
-	. = viewing_category % categories.len + 1
-
-/datum/component/personal_crafting/proc/next_subcat()
-	if(islist(subcategories[viewing_category]))
-		var/list/subs = subcategories[viewing_category]
-		. = viewing_subcategory % subs.len + 1
-
-
-//Previous can go fuck itself
-/datum/component/personal_crafting/proc/prev_cat(readonly = TRUE)
-	if (!readonly)
-		viewing_subcategory = 1
-	if(viewing_category == categories.len)
-		. = viewing_category-1
-	else
-		. = viewing_category % categories.len - 1
-	if(. <= 0)
-		. = categories.len
-
-/datum/component/personal_crafting/proc/prev_subcat()
-	if(islist(subcategories[viewing_category]))
-		var/list/subs = subcategories[viewing_category]
-		if(viewing_subcategory == subs.len)
-			. = viewing_subcategory-1
-		else
-			. = viewing_subcategory % subs.len - 1
-		if(. <= 0)
-			. = subs.len
-	else
-		. = null
+		if("set_category")
+			cur_category = params["category"]
+			cur_subcategory = params["subcategory"] || ""
+			. = TRUE
 
 
 /datum/component/personal_crafting/proc/build_recipe_data(datum/crafting_recipe/R)

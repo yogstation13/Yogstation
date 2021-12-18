@@ -18,7 +18,7 @@
 	melee_damage_upper = 7
 	attacktext = "bites"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 1)
-	pass_flags = PASSTABLE
+	pass_flags = PASSTABLE | PASSCOMPUTER
 	faction = list("hostile", "vampire")
 	attack_sound = 'sound/weapons/bite.ogg'
 	obj_damage = 0
@@ -49,5 +49,5 @@
 		mind.transfer_to(controller)
 		controller.status_flags &= ~GODMODE
 		controller.Knockdown(120)
-		to_chat(controller, "<span class='userdanger'>The force of being exiled from your bat form knocks you down!</span>")
+		to_chat(controller, span_userdanger("The force of being exiled from your bat form knocks you down!"))
 	. = ..()
