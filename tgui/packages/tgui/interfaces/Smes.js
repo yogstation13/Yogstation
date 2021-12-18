@@ -41,12 +41,15 @@ export const Smes = (props, context) => {
         <Section title="Stored Energy">
           <ProgressBar
             value={capacityPercent * 0.01}
-            children={formatJoule(charge) + " / " + formatJoule(capacity)}
             ranges={{
               good: [0.5, Infinity],
               average: [0.15, 0.5],
               bad: [-Infinity, 0.15],
-            }} />
+            }}>
+            <Box>
+              {formatJoule(charge) + " / " + formatJoule(capacity) + " (" + capacityPercent + "%)"}
+            </Box>
+        </ProgressBar>
         </Section>
         <Section title="Input">
           <LabeledList>
