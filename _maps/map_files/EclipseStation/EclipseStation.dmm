@@ -82793,6 +82793,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"hiH" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 9
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "hjk" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/red{
@@ -84383,10 +84389,6 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "kfD" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 8;
-	piping_layer = 5
-	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 5
 	},
@@ -88911,12 +88913,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
-"sRi" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 9
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
 "sSc" = (
 /obj/machinery/atmospherics/pipe/simple/brown/visible{
 	dir = 8
@@ -131192,7 +131188,7 @@ azC
 bOh
 sVd
 cCr
-sRi
+hiH
 bJW
 akU
 akU
