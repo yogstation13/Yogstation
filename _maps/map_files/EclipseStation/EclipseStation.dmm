@@ -21730,6 +21730,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "aVo" = (
@@ -21738,6 +21739,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+=======
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/captain)
+>>>>>>> 6bddcd574a7163e922cc7cedc14921999aa9f5eb
 "aVp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -59487,11 +59492,14 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
+<<<<<<< HEAD
 "cto" = (
 /obj/structure/rack,
 /obj/item/circuitboard/computer/ai_upload_download,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hor)
+=======
+>>>>>>> 6bddcd574a7163e922cc7cedc14921999aa9f5eb
 "ctp" = (
 /obj/structure/rack,
 /obj/item/taperecorder{
@@ -90093,6 +90101,11 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
+"uRy" = (
+/obj/structure/rack,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hor)
 "uSP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/snack/random,
@@ -125577,7 +125590,7 @@ crA
 cvA
 cwh
 csO
-cto
+uRy
 cOk
 aoU
 aaa
@@ -142688,7 +142701,7 @@ azB
 hMY
 aRF
 aUP
-aVo
+aye
 axD
 aWW
 bas
@@ -147827,7 +147840,7 @@ aBj
 aBj
 aJK
 aRX
-aVo
+aye
 ach
 aFk
 aFk
