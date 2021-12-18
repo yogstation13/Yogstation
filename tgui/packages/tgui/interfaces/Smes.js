@@ -49,7 +49,7 @@ export const Smes = (props, context) => {
             <Box>
               {formatJoule(charge) + " / " + formatJoule(capacity) + " (" + capacityPercent + "%)"}
             </Box>
-        </ProgressBar>
+          </ProgressBar>
         </Section>
         <Section title="Input">
           <LabeledList>
