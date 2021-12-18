@@ -70,13 +70,22 @@
 
 	R.revive()
 
-/obj/item/borg/upgrade/freeminer
+/obj/item/borg/upgrade/panel_access_remover
+	name = "cyborg firmware hack"
+	desc = "Used to override the default firmware of a cyborg and disable panel access restrictions."
+	icon_state = "cyborg_upgrade2"
+	one_use = TRUE
+
+/obj/item/borg/upgrade/panel_access_remover/action(mob/living/silicon/robot/R, user = usr)
+	R.req_access = list()
+
+/obj/item/borg/upgrade/panel_access_remover/freeminer
 	name = "free miner cyborg firmware hack"
 	desc = "Used to override the default firmware of a cyborg with the freeminer version."
 	icon_state = "cyborg_upgrade2"
 	one_use = TRUE
 
-/obj/item/borg/upgrade/freeminer/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/panel_access_remover/freeminer/action(mob/living/silicon/robot/R, user = usr)
 	R.req_access = list(ACCESS_FREEMINER_ENGINEER)
 
 /obj/item/borg/upgrade/vtec
