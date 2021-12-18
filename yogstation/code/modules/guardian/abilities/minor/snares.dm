@@ -19,9 +19,9 @@
 		S.spawner = src
 		S.name = "[get_area(snare_loc)] snare ([rand(1, 1000)])"
 		snares |= S
-		to_chat(src, "<span class='danger'><B>Surveillance snare deployed!</span></B>")
+		to_chat(src, span_bolddanger("Surveillance snare deployed!"))
 	else
-		to_chat(src, "<span class='danger'><B>You have too many snares deployed. Remove some first.</span></B>")
+		to_chat(src, span_bolddanger("You have too many snares deployed. Remove some first."))
 
 /mob/living/simple_animal/hostile/guardian/proc/DisarmSnare()
 	set name = "Remove Surveillance Snare"
@@ -31,7 +31,7 @@
 	if(picked_snare)
 		snares -= picked_snare
 		qdel(picked_snare)
-		to_chat(src, "<span class='danger'><B>Snare disarmed.</span></B>")
+		to_chat(src, span_bolddanger("Snare disarmed."))
 
 // the snare
 
@@ -44,10 +44,10 @@
 /obj/effect/snare/Crossed(AM as mob|obj)
 	. = ..()
 	if(isliving(AM) && spawner && spawner?.summoner?.current && AM != spawner && !spawner.hasmatchingsummoner(AM))
-		to_chat(spawner.summoner.current, "<span class='danger'><B>[AM] has crossed surveillance snare, [name].</span></B>")
+		to_chat(spawner.summoner.current, span_bolddanger("[AM] has crossed surveillance snare, [name]."))
 		var/list/guardians = spawner.summoner.current.hasparasites()
 		for(var/para in guardians)
-			to_chat(para, "<span class='danger'><B>[AM] has crossed surveillance snare, [name].</span></B>")
+			to_chat(para, span_bolddanger("[AM] has crossed surveillance snare, [name]."))
 
 /obj/effect/snare/singularity_act()
 	return

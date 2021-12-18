@@ -106,6 +106,7 @@
 	A.AICtrlShiftClick(src)
 /mob/living/silicon/ai/ShiftClickOn(var/atom/A)
 	A.AIShiftClick(src)
+
 /mob/living/silicon/ai/CtrlClickOn(var/atom/A)
 	A.AICtrlClick(src)
 /mob/living/silicon/ai/AltClickOn(var/atom/A)
@@ -127,6 +128,7 @@
 	return
 /atom/proc/AICtrlShiftClick()
 	return
+
 
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick() // Bolts doors
@@ -179,6 +181,14 @@
 /obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
 	hangup_all_calls()
 	add_hiddenprint(usr)
+
+/* Humans (With upgrade) */
+/mob/living/carbon/human/AIShiftClick(mob/living/silicon/ai/user)
+	if(!user.canExamineHumans)
+		return
+	if(user.client && (user.client.eye == user.eyeobj || user.client.eye == user.loc))
+		user.examinate(src)
+	return
 
 //
 // Override TurfAdjacent for AltClicking
