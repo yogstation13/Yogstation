@@ -751,7 +751,7 @@
 		if(target)
 			victim.apply_status_effect(/datum/status_effect/agent_pinpointer/horror)
 			for(var/datum/status_effect/agent_pinpointer/horror/status in victim.status_effects)
-				status.scan_target = target
+				status.scan_target = target.current
 
 /mob/living/carbon/proc/release_control()
 	var/mob/living/simple_animal/horror/B = has_horror_inside()
