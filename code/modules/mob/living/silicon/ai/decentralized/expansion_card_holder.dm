@@ -1,5 +1,7 @@
-#define BASE_POWER_PER_CPU 400
-#define POWER_PER_CARD 250
+#define TEMPERATURE_MULTIPLIER 2 //Thermodynamics? No... No I don't think that's a thing. Balance so we don't use an insane amount of power to produce noticeable heat
+
+#define BASE_POWER_PER_CPU 1000
+#define POWER_PER_CARD 500
 
 GLOBAL_LIST_EMPTY(expansion_card_holders)
 
@@ -15,6 +17,10 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 	var/total_cpu = 0
 	var/total_ram = 0
+	//Idle power usage when no cards inserted. Not free running idle my friend
+	idle_power_usage = 100
+	//We manually calculate how power the cards + CPU give, so this is accounted for by that
+	active_power_usage = 0
 
 	var/max_cards = 2
 
@@ -41,7 +47,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	
 	if(valid_holder())
 
-		var/power_multiple = total_cpu ** (8/9)
+		var/power_multiple = total_cpu ** (0.95) //Very slightly more efficient to centralize CPU.
 
 		var/total_usage = (power_multiple * BASE_POWER_PER_CPU) + POWER_PER_CARD * installed_cards.len
 		use_power(total_usage)
@@ -49,7 +55,8 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env.heat_capacity())
-			env.set_temperature(env.return_temperature() + total_usage / env.heat_capacity()) //assume all input power is dissipated
+			var/temperature_increase = total_usage / env.heat_capacity() //1 CPU = 650W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.16 - 0.2 K per second. 
+			env.set_temperature(env.return_temperature() + temperature_increase * TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 	else if(was_valid_holder)
 		was_valid_holder = FALSE
 		cut_overlays()
@@ -96,6 +103,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		if(istype(W, /obj/item/memory_card))
 			var/obj/item/memory_card/ram_card = W
 			total_ram += ram_card.tier
+		use_power = ACTIVE_POWER_USE
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(installed_cards.len)
@@ -107,6 +115,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			total_ram = 0
 			GLOB.ai_os.update_hardware()
 			to_chat(user, span_notice("You remove all the cards from [src]"))
+			use_power = IDLE_POWER_USE
 			return FALSE
 	return ..()
 
