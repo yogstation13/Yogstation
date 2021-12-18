@@ -191,6 +191,7 @@
 	intellicard.AI.control_disabled = FALSE
 	intellicard.AI.relocate(TRUE)
 	intellicard.AI = null
+	intellicard.update_icon()
 
 /obj/machinery/computer/ai_control_console/ui_act(action, params)
 	if(..())
