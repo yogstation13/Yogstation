@@ -1,6 +1,6 @@
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, ProgressBar, Section, Slider } from '../components';
-import { formatPower } from '../format';
+import { formatPower, formatJoule } from '../format';
 import { Window } from '../layouts';
 
 // Common power multiplier
@@ -41,6 +41,7 @@ export const Smes = (props, context) => {
         <Section title="Stored Energy">
           <ProgressBar
             value={capacityPercent * 0.01}
+            children={formatJoule(charge) + " / " + formatJoule(capacity)}
             ranges={{
               good: [0.5, Infinity],
               average: [0.15, 0.5],
