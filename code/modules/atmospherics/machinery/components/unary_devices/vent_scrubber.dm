@@ -267,31 +267,27 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/layer1
-	piping_layer = 1
-	icon_state = "scrub_map-1"
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2
+	piping_layer = 2
+	icon_state = "scrub_map-2"
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/layer3
-	piping_layer = 3
-	icon_state = "scrub_map-3"
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer4
+	piping_layer = 4
+	icon_state = "scrub_map-4"
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on
 	on = TRUE
-	icon_state = "scrub_map_on-2"
-
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1
-	piping_layer = 1
-	icon_state = "scrub_map_on-1"
-
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3
-	piping_layer = 3
 	icon_state = "scrub_map_on-3"
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/lavaland
-	filter_types = list(GAS_CO2, GAS_PLASMA, GAS_H2O, GAS_BZ)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2
+	piping_layer = 2
+	icon_state = "scrub_map_on-2"
+	showpipe = FALSE
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3/lavaland
-	filter_types = list(GAS_CO2, GAS_PLASMA, GAS_H2O, GAS_BZ)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4
+	piping_layer = 4
+	icon_state = "scrub_map_on-4"
+	showpipe = FALSE
 
 #undef SIPHONING
 #undef SCRUBBING

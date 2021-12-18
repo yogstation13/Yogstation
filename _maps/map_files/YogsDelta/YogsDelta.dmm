@@ -31982,7 +31982,7 @@
 /turf/open/floor/plating{
 	initial_gas_mix = "o2=0.01;n2=0.01";
 	luminosity = 2;
-	temperature = 2.7
+	initial_temperature = 2.7
 	},
 /area/security/prison)
 "aZN" = (
@@ -34057,7 +34057,7 @@
 /turf/open/floor/plating{
 	initial_gas_mix = "o2=0.01;n2=0.01";
 	luminosity = 2;
-	temperature = 2.7
+	initial_temperature = 2.7
 	},
 /area/security/prison)
 "bcX" = (
