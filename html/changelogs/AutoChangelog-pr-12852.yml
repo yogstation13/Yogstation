@@ -1,6 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "AI sat airlock"
-  - tweak: "flip secondary ai core"
-  - tweak: "fix maint having an extra wall"
