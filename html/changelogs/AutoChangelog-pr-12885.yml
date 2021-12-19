@@ -1,0 +1,6 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - tweak: "lexorin now requires chloral hydrate instead of hydrogen"
+  - tweak: "lexorin now metabolizes 1.25x faster"
+  - tweak: "lexorin now cannot be tasted (because you're choking)"
