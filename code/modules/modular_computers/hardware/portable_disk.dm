@@ -27,6 +27,18 @@
 	icon_state = "datadisk3"
 	max_capacity = 256
 
+///////////
+//Presets//
+///////////
+
+/obj/item/computer_hardware/hard_drive/portable/implant_tracker
+	name = "Implant Tracker data disk"
+	desc = "A removable disk containing a copy of the Implant Tracker program."
+
+/obj/item/computer_hardware/hard_drive/portable/implant_tracker/install_default_programs()
+	..()
+	store_file(new/datum/computer_file/program/radar/implant(src))
+
 ///////////////////
 //Syndicate Disks//
 ///////////////////
