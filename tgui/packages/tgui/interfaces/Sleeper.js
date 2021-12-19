@@ -12,7 +12,7 @@ export const Sleeper = (props, context) => {
     occupied,
     active_treatment,
     can_sedate,
-    no_access
+    no_access,
   } = data;
 
   const treatments = data.treatments || [];
