@@ -24,6 +24,10 @@
 /obj/item/stock_parts/cell/get_cell()
 	return src
 
+/obj/item/stock_parts/cell/ComponentInitialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_PRINT, .proc/on_print)
+
 /obj/item/stock_parts/cell/Initialize(mapload, override_maxcharge)
 	. = ..()
 	START_PROCESSING(SSobj, src)
@@ -157,6 +161,27 @@
 		return clamp(20 + round(charge/25000), 20, 195) + rand(-5,5)
 	else
 		return 0
+
+/obj/item/stock_parts/cell/proc/on_print(obj/machinery/printer)
+	var/area/area = get_area(printer)
+	if (!area.powered(EQUIP))
+		return
+	var/obj/machinery/power/apc/apc
+	for (var/obj/machinery/power/apc/A in area)
+		if (!(A.stat & BROKEN))
+			apc = A
+			break
+	if (!apc)
+		return
+	if (apc.cell.charge >= (apc.cell.maxcharge * 0.2) && maxcharge < apc.cell.charge && apc.cell.use(maxcharge))
+		charge = maxcharge
+		update_icon()
+		return
+	if (apc.terminal?.powernet?.avail > maxcharge)
+		apc.terminal.add_load(maxcharge)
+		charge = maxcharge
+		update_icon()
+		return
 
 /obj/item/stock_parts/cell/get_part_rating()
 	return rating * maxcharge

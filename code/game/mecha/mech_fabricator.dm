@@ -347,6 +347,7 @@
   */
 /obj/machinery/mecha_part_fabricator/proc/dispense_built_part(datum/design/D)
 	var/obj/item/I = new D.build_path(src)
+	SEND_SIGNAL(I, COMSIG_ITEM_PRINT, src)
 	//I.set_custom_materials(build_materials)
 	being_built = null
 

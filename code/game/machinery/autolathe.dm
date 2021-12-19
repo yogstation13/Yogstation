@@ -383,6 +383,7 @@
 				var/obj/item/stack/N = new D.build_path(A, multiplier)
 				N.update_icon()
 				N.autolathe_crafted(src)
+				SEND_SIGNAL(N, COMSIG_ITEM_PRINT, src)
 			else
 				for(var/i=1, i<=multiplier, i++)
 					var/obj/item/new_item = new D.build_path(A)
@@ -390,6 +391,7 @@
 					for(var/mat in materials_used)
 						new_item.materials[mat] = materials_used[mat] / multiplier
 					new_item.autolathe_crafted(src)
+					SEND_SIGNAL(new_item, COMSIG_ITEM_PRINT, src)
 					if(picked_materials?.len)
 						new_item.set_custom_materials(picked_materials, 1 / multiplier) //Ensure we get the non multiplied amount
 			item_beingbuilt = null

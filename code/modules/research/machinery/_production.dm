@@ -87,6 +87,7 @@
 		message_admins("[ADMIN_LOOKUPFLW(usr)] has built [amount] of [path] at \a [src]([type]).")
 	for(var/i in 1 to amount)
 		var/obj/item/I = new path(get_turf(src))
+		SEND_SIGNAL(I, COMSIG_ITEM_PRINT, src)
 		if(efficient_with(I.type))
 			I.materials = matlist.Copy()
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
