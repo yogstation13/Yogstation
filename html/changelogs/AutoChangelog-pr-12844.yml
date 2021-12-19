@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "the mining tracking implant kit now stores 4 tracking implant cases, an implanter, and a disk containing the implant tracker program."
