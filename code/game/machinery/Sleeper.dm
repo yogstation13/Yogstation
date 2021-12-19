@@ -226,6 +226,7 @@
 	data["open"] = state_open
 	data["active_treatment"] = active_treatment
 	data["can_sedate"] = can_sedate()
+	data["no_access"] = !allowed(user)
 
 	data["treatments"] = list()
 	for(var/T in available_treatments)
@@ -281,12 +282,12 @@
 			. = TRUE
 		if("set")
 			var/treatment = params["treatment"]
-			if(!is_operational() || !mob_occupant || isnull(treatment))
+			if(!is_operational() || !mob_occupant || isnull(treatment) || !allowed(usr))
 				return
 			active_treatment = treatment
 			. = TRUE
 		if("sedate")
-			if(can_sedate())
+			if(can_sedate() || !allowed(usr))
 				mob_occupant.reagents.add_reagent(/datum/reagent/medicine/morphine, 10)
 				if(usr)
 					log_combat(usr,occupant, "injected morphine into", addition = "via [src]")

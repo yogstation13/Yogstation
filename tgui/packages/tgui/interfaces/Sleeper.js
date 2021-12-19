@@ -12,6 +12,7 @@ export const Sleeper = (props, context) => {
     occupied,
     active_treatment,
     can_sedate,
+    no_access
   } = data;
 
   const treatments = data.treatments || [];
@@ -95,7 +96,7 @@ export const Sleeper = (props, context) => {
               <Button
                 icon={'flask'}
                 content={'Sedate'}
-                disabled={!can_sedate}
+                disabled={!can_sedate || no_access}
                 onClick={() => act('sedate')} />
             )} >
             {occupant.reagents.map(reagent => (
@@ -125,7 +126,7 @@ export const Sleeper = (props, context) => {
               key={treatment}
               icon="first-aid"
               content={treatment}
-              disabled={!occupied}
+              disabled={!occupied || no_access}
               color={active_treatment===treatment ? 'green' : null}
               /* key={chem.name}
               icon="flask"

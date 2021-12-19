@@ -48874,7 +48874,7 @@
 	icon_state = "right";
 	name = "Brig Infirmary";
 	red_alert_access = 1;
-	req_one_access_txt = "5, 3"
+	req_one_access_txt = "5;3"
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -65762,7 +65762,7 @@
 	name = "Brig Infirmary";
 	red_alert_access = 1;
 	req_access_txt = "0";
-	req_one_access_txt = "5, 3"
+	req_one_access_txt = "5;3"
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
