@@ -84475,7 +84475,7 @@
 "kiF" = (
 /obj/structure/statue/petrified,
 /obj/item/clothing/head/rabbitears{
-	color = '#aaaaf2';
+	color = '#aaaaf2'
 	pixel_y = 11
 	},
 /obj/effect/decal/cleanable/blood/drip{
