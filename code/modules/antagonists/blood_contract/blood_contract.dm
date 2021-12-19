@@ -47,7 +47,7 @@
 	if(delay > 0)
 		sleep(delay)
 	if(P) // Ending the hunt for a specific person
-		to_chat(P, span_userdanger("You no longer have an overwhelming desire to kill [owner.currnt]."))
+		to_chat(P, span_userdanger("You no longer have an overwhelming desire to kill [owner.current]."))
 		return
 	
 	// Removing self from target
