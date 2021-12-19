@@ -350,10 +350,9 @@
 
 /obj/item/storage/box/minertracker/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/implantcase/tracking = 3,
+		/obj/item/implantcase/tracking = 4,
 		/obj/item/implanter = 1,
-		/obj/item/implantpad = 1,
-		/obj/item/locator = 1)
+		/obj/item/computer_hardware/hard_drive/portable/implant_tracker = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/chemimp
