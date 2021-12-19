@@ -109,6 +109,8 @@
 
 	if(is_species(H, /datum/species/moth) && prob(50))
 		heirloom_type = /obj/item/flashlight/lantern/heirloom_moth
+	else if(is_species(H, /datum/species/human/felinid) && prob(50))
+		heirloom_type = /obj/item/toy/cattoy
 	else
 		switch(quirk_holder.mind.assigned_role)
 			//Service jobs
