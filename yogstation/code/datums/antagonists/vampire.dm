@@ -29,9 +29,10 @@
 		/obj/effect/proc_holder/spell/pointed/hypno = 0,
 		/datum/vampire_passive/vision = 75,
 		/obj/effect/proc_holder/spell/self/shapeshift = 75,
+		/datum/vampire_passive/nostealth = 100,
 		/obj/effect/proc_holder/spell/self/cloak = 100,
 		/obj/effect/proc_holder/spell/self/revive = 100,
-		/obj/effect/proc_holder/spell/targeted/disease = 200,//why is spell-that-kills-people unlocked so early what the fuck
+		/obj/effect/proc_holder/spell/targeted/disease = 200,
 		/obj/effect/proc_holder/spell/self/batform = 200,
 		/obj/effect/proc_holder/spell/self/screech = 215,
 		/obj/effect/proc_holder/spell/bats = 250,
@@ -250,7 +251,7 @@
 	var/warned = FALSE //has the vampire been warned they're about to alert a target while stealth sucking?
 	var/blood_to_take = BLOOD_SUCK_BASE //how much blood should be removed per succ? changes depending on grab state
 	log_attack("[O] ([O.ckey]) bit [H] ([H.ckey]) in the neck")
-	if(!(O.pulling == H))
+	if(!(O.pulling == H) && !get_ability(/datum/vampire_passive/nostealth))
 		silent = TRUE
 		blood_to_take *= 0.5 //half blood from targets that aren't being pulled, but they also don't get warned until it starts to cause damage
 	else if(O.grab_state >= GRAB_NECK)
@@ -274,7 +275,7 @@
 			to_chat(O, span_warning("You lose your grip on [H], reducing your bloodsucking speed."))
 		if(blood_to_take == BLOOD_SUCK_BASE && (O.pulling == H && O.grab_state >= GRAB_NECK))//smooth movement from normal suck to aggressive suck
 			blood_to_take *= 1.5
-			to_chat(O, span_warning("Your enchanced grip on [H] allows you to extract blood faster."))
+			to_chat(O, span_warning("Your enhanced grip on [H] allows you to extract blood faster."))
 		if(silent && O.pulling == H) //smooth movement from stealth suck to normal suck
 			silent = FALSE
 			blood_to_take = BLOOD_SUCK_BASE
@@ -303,7 +304,10 @@
 		if(!silent)
 			playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1, extrarange = -4)//have to be within 3 tiles to hear the sucking
 		else if(H.get_blood_state() <= BLOOD_OKAY)
-			to_chat(H, span_warning("You feel oddly faint..."))
+			to_chat(H, span_warning("You notice [O] standing oddly close..."))
+		if(get_ability(/datum/vampire_passive/nostealth) && silent)
+			to_chat(O, span_boldwarning("You can no longer suck blood silently!"))
+			break
 
 	draining = null
 	to_chat(owner, span_notice("You stop draining [H.name] of blood."))
