@@ -368,7 +368,7 @@
 	display_name = "Cyborg Upgrade: Medical Advanced Medical Tools"
 	description = "Advanced Surgical Kit and Advanced Health Scanner upgrade design for medical cyborgs."
 	prereq_ids = list("cyborg_upg_med", "exp_tools")
-	design_ids = list("borg_upgrade_surgerykit, borg_upgrade_analyzer")
+	design_ids = list("borg_upgrade_surgerykit", "borg_upgrade_analyzer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	export_price = 2000
 
@@ -377,7 +377,7 @@
 	display_name = "Artificial Intelligence"
 	description = "AI unit research."
 	prereq_ids = list("robotics", "posibrain")
-	design_ids = list("aifixer", "aicore", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module",
+	design_ids = list("expansion_card_holder", "ai_data_core", "ai_control", "ai_server_overview", "ai_resource_distribution", "ai_memory_1", "ai_cpu_1", "aifixer", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module",
 "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000

@@ -705,10 +705,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/comm)
-"bQ" = (
-/obj/structure/AIcore/deactivated,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/ancientstation/deltaai)
 "bR" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -8152,6 +8148,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"AC" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/ancientstation/deltaai)
 "AF" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -12871,7 +12870,7 @@ gK
 ac
 ac
 ac
-bQ
+AC
 ac
 ac
 ac
