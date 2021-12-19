@@ -706,7 +706,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		for(var/mob/living/simple_animal/hostile/guardian/jojo in guardians)
 			jojo.forceMove(current)
 			jojo.RegisterSignal(current, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
-			if (current && current.stat != DEAD)
+			if (jojo.stat == DEAD)
 				jojo.revive()
 				var/mob/gost = jojo.grab_ghost(TRUE)
 				if (gost)
