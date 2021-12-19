@@ -91431,6 +91431,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"jTx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Paramedic Staging Area Maintenance";
+	req_access_txt = "69"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/maintenance/port)
 "jTL" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -91753,6 +91769,22 @@
 /obj/machinery/door/airlock/maintenance,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
+"kdu" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/paramedic,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/medical/paramedic)
 "kdL" = (
 /obj/machinery/computer/cryopod{
 	pixel_y = 25
@@ -96924,16 +96956,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port)
-"pSp" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Paramedic Staging Area Maintenance";
-	req_access_txt = "69"
-	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/port)
 "pSs" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/neutral,
@@ -100822,18 +100844,6 @@
 /obj/item/stack/spacecash/c1000,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port)
-"ulz" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/paramedic,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel/showroomfloor,
-/area/medical/paramedic)
 "ulN" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/closed/wall/rust,
@@ -123175,7 +123185,7 @@ aUv
 aQN
 dMm
 dMm
-pSp
+jTx
 leB
 ouK
 kSm
@@ -123948,7 +123958,7 @@ jrN
 jrN
 qIN
 jrN
-ulz
+kdu
 gzX
 brD
 cIr
