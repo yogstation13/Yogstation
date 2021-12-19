@@ -1,0 +1,5 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - rscadd: "Added syndicate disks and trapped disks"
+  - tweak: "DoS Traffic Generator modular computer item is now an uplink item"

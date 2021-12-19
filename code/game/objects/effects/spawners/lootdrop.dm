@@ -355,8 +355,7 @@
 	name = "secure AI circuit board spawner"
 	loot = list(
 				/obj/item/circuitboard/computer/aiupload,
-				/obj/item/circuitboard/computer/borgupload,
-				/obj/item/circuitboard/aicore
+				/obj/item/circuitboard/computer/borgupload
 				)
 
 /obj/effect/spawner/lootdrop/techstorage/command

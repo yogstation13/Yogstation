@@ -1155,6 +1155,7 @@
 
 	if(!deployed || !mind || !mainframe)
 		return
+	remove_sensors()
 	mainframe.redeploy_action.Grant(mainframe)
 	mainframe.redeploy_action.last_used_shell = src
 	mind.transfer_to(mainframe)
@@ -1180,14 +1181,16 @@
 	shell = TRUE
 
 /mob/living/silicon/robot/MouseDrop_T(mob/living/M, mob/living/user)
-	. = ..()
 	if(!(M in buckled_mobs) && isliving(M) && user && user.can_buckle)
-		buckle_mob(M)
+		buckle_mob(M, TRUE)
+	 . = ..()
 
 /mob/living/silicon/robot/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
 	if(!is_type_in_typecache(M, can_ride_typecache))
 		M.visible_message(span_warning("[M] really can't seem to mount [src]..."))
 		return
+	if(!force)
+		return //buckling is called twice if we don't do this which is a mess
 	var/datum/component/riding/riding_datum = LoadComponent(/datum/component/riding/cyborg)
 	if(has_buckled_mobs())
 		if(buckled_mobs.len >= max_buckled_mobs)
@@ -1203,10 +1206,11 @@
 			M.visible_message(span_boldwarning("Unfortunately, [M] just can't seem to hold onto [src]!"))
 			return
 	M.visible_message(span_warning("[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]..."))
-	if(!do_after(M, 0.75 SECONDS, target = src))
+	var/_target = usr == M ? src : M
+	if(!do_after(usr, 0.75 SECONDS, target = _target))
 		M.visible_message(span_boldwarning("[M] was prevented from buckling to [src]!"))
 		return
-		
+
 	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))
 		if(M.get_num_arms() <= 0)
 			M.visible_message(span_boldwarning("[M] can't climb onto [src] because [M.p_they()] don't have any usable arms!"))
