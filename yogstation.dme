@@ -3399,6 +3399,7 @@
 #include "yogstation\code\modules\antagonists\infiltrator\objectives.dm"
 #include "yogstation\code\modules\antagonists\infiltrator\outfit.dm"
 #include "yogstation\code\modules\antagonists\infiltrator\team.dm"
+#include "yogstation\code\modules\antagonists\infiltrator\items\access_kit.dm"
 #include "yogstation\code\modules\antagonists\infiltrator\items\ai_hijack.dm"
 #include "yogstation\code\modules\antagonists\infiltrator\items\hardsuit.dm"
 #include "yogstation\code\modules\antagonists\infiltrator\items\services.dm"
