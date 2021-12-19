@@ -1,0 +1,4 @@
+author: " Lucy"
+delete-after: true 
+changes: 
+  - bugfix: "Fix a bug which could lead to holoparasites being reset on mindswap"
