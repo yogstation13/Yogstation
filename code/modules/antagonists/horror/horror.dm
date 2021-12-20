@@ -732,6 +732,7 @@
 		qdel(host_brain)
 		host_brain = new(src)
 		host_brain.H = src
+		host_brain.name = "Trapped mind of [victim.real_name]"
 		victim.mind.transfer_to(host_brain)
 		if(victim.key)
 			host_brain.key = victim.key
