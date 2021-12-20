@@ -54,6 +54,11 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		for(var/law in AI.laws.get_law_list(include_zeroth = TRUE))
 			. += law
 
+/obj/machinery/ai/data_core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+	. = ..()
+	for(var/mob/living/silicon/ai/AI in contents)
+		AI.disconnect_shell()
+
 /obj/machinery/ai/data_core/proc/valid_data_core()
 	if(!is_reebe(z) && !is_station_level(z))
 		return FALSE

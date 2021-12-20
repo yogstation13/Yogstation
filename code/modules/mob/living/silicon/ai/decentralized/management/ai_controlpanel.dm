@@ -1,5 +1,7 @@
 #define AI_DOWNLOAD_PER_PROCESS 0.5
 
+GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
+
 /obj/machinery/computer/ai_control_console
 	name = "\improper AI control console"
 	desc = "Used for accessing the central AI repository from which AIs can be downloaded or uploaded."
@@ -103,6 +105,7 @@
 		data["cleared_for_use"] = FALSE
 		return data
 
+	data["cleared_for_use"] = TRUE 
 	data["authenticated"] = authenticated
 
 	if(issilicon(user))
@@ -211,14 +214,25 @@
 	if(!cleared_for_use)
 		if(action == "clear_for_use")
 			var/code = text2num(params["control_code"])
-			if(round(log(10, code) + 1 > 6))
+			
+			var/length_of_number = round(log(10, code) + 1)
+			if(length_of_number < 6)
+				to_chat(usr, span_warning("Incorrect code. Too short"))
 				return
+
+			if(length_of_number > 6)
+				to_chat(usr, span_warning("Incorrect code. Too long"))
+				return
+
 
 			if(!GLOB.ai_control_code)
 				return
 
-			if(code == GLOB.ai_control_code)
+
+			if(code == text2num(GLOB.ai_control_code))
 				cleared_for_use = TRUE
+			else
+				to_chat(usr, span_warning("Incorrect code. Make sure you have the latest one."))
 
 		return
 
@@ -242,19 +256,28 @@
 				authenticated = TRUE
 		if(action == "log_in_control_code")
 			var/code = text2num(params["control_code"])
-			if(round(log(10, code) + 1 > 6))
+			
+			var/length_of_number = round(log(10, code) + 1)
+			if(length_of_number < 6)
+				to_chat(usr, span_warning("Incorrect code. Too short"))
+				return
+
+			if(length_of_number > 6)
+				to_chat(usr, span_warning("Incorrect code. Too long"))
 				return
 
 			if(!GLOB.ai_control_code)
 				return
 
-			if(code == GLOB.ai_control_code)
+			if(code == text2num(GLOB.ai_control_code))
 				cleared_for_use = TRUE
 				authenticated = TRUE
-				var/msg = "<h4>Warning!</h4><br>We have detected usage of the AI Control Code for unlocking a console at coordinates ([src.x], [src.y], [src.z]) by [usr.name]. Please verify that this is correct. Be aware we have renewed the Control Code.<br>\
-				If needed the new code can be printed at a communications console."
+				var/msg = "<h4>Warning!</h4><br>We have detected usage of the AI Control Code for unlocking a console at coordinates ([src.x], [src.y], [src.z]) by [usr.name]. Please verify that this is correct. Be aware we have cancelled the current control code.<br>\
+				If needed a new code can be printed at a communications console."
 				priority_announce(msg, sender_override = "Central Cyber Security Update", has_important_message = TRUE)
 				GLOB.ai_control_code = null
+			else
+				to_chat(usr, span_warning("Incorrect code. Make sure you have the latest one."))
 		return
 
 	switch(action)
@@ -359,3 +382,14 @@
 		
 
 #undef AI_DOWNLOAD_PER_PROCESS
+
+
+/obj/item/paper/ai_control_code/Initialize(mapload)
+	..()
+	print()
+
+/obj/item/paper/ai_control_code/proc/print()
+	name = "paper - 'AI control code'"
+	info = "<center><h2>Daily AI Control Key Reset</h2></center><br>The new authentication key is '[GLOB.ai_control_code]'.<br>Please keep this a secret and away from the clown.<br>This code may be invalidated if a new one is requested."
+	add_overlay("paper_words")
+

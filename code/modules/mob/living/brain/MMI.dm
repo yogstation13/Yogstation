@@ -1,7 +1,6 @@
 /obj/item/mmi
 	name = "\improper Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations.<br>\
-	[span_notice("It has a port for reading AI law modules. Any AI uploaded using this MMI will use these laws.")]"
+	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -80,11 +79,11 @@
 
 		SSblackbox.record_feedback("amount", "mmis_filled", 1)
 
-	else if(brainmob)
-		O.attack(brainmob, user) //Oh noooeeeee
 	else if(istype(O, /obj/item/aiModule))
 		var/obj/item/aiModule/M = O
 		M.install(laws, user)
+	else if(brainmob)
+		O.attack(brainmob, user) //Oh noooeeeee
 	else
 		return ..()
 
@@ -211,6 +210,7 @@
 
 		else
 			. += span_notice("The MMI indicates the brain is active.")
+	. += span_notice("It has a port for reading AI law modules. Any AI uploaded using this MMI will use these uploded laws.")
 	if(laws)
 		. += "<b>The following laws are loaded into [src]: </b>"
 		for(var/law in laws.get_law_list())

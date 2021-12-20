@@ -54,7 +54,7 @@ AI MODULES
 				if(mylaw != "")
 					tot_laws++
 		if(tot_laws > CONFIG_GET(number/silicon_max_law_amount) && !bypass_law_amt_check)//allows certain boards to avoid this check, eg: reset
-			to_chat(user, span_caution("Not enough memory allocated to [law_datum.owner ? law_datum.owner : "the onboard APU"'s law processor to handle this amount of laws."))
+			to_chat(user, span_caution("Not enough memory allocated to [law_datum.owner ? law_datum.owner : "the onboard APU"]'s law processor to handle this amount of laws."))
 			message_admins("[ADMIN_LOOKUPFLW(user)] tried to upload laws to [law_datum.owner ? ADMIN_LOOKUPFLW(law_datum.owner) : "an MMI or similar"] that would exceed the law cap.")
 			overflow = TRUE
 
