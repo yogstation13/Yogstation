@@ -87,7 +87,7 @@
 
 /obj/item/borg/upgrade/panel_access_remover/freeminer/action(mob/living/silicon/robot/R, user = usr)
 	R.req_access = list(ACCESS_FREEMINER_ENGINEER)
-	new /obj/item/borg/upgrade/panel_access_remover/freeminer(get_turf(R))
+	new /obj/item/borg/upgrade/panel_access_remover/freeminer(R.drop_location())
 	//This deletes the upgrade which is why we create a new one. This prevents the message "Upgrade Error" without a adding a once-used variable to every board
 	return TRUE
 
