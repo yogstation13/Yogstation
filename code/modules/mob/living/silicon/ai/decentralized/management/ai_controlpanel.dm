@@ -9,6 +9,8 @@
 	icon_screen = "ai-fixer"
 	light_color = LIGHT_COLOR_PINK
 
+	var/cleared_for_use = FALSE //Have we inserted the RDs code to unlock upload/download?
+
 	authenticated = FALSE
 
 	var/obj/item/aicard/intellicard
@@ -19,6 +21,11 @@
 	var/download_warning = FALSE
 
 	circuit = /obj/item/circuitboard/computer/ai_upload_download
+
+/obj/machinery/computer/ai_control_console/Initialize(mapload)
+	. = ..()
+	if(mapload)
+		cleared_for_use = TRUE
 
 /obj/machinery/computer/ai_control_console/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/aicard))
@@ -91,6 +98,10 @@
 
 /obj/machinery/computer/ai_control_console/ui_data(mob/living/carbon/human/user)
 	var/list/data = list()
+
+	if(!cleared_for_use)
+		data["cleared_for_use"] = FALSE
+		return data
 
 	data["authenticated"] = authenticated
 
@@ -197,6 +208,20 @@
 	if(..())
 		return
 
+	if(!cleared_for_use)
+		if(action == "clear_for_use")
+			var/code = text2num(params["control_code"])
+			if(round(log(10, code) + 1 > 6))
+				return
+
+			if(!GLOB.ai_control_code)
+				return
+
+			if(code == GLOB.ai_control_code)
+				cleared_for_use = TRUE
+
+		return
+
 	if(!authenticated)
 		if(action == "log_in")
 			if(issilicon(usr))
@@ -215,6 +240,21 @@
 
 			if(check_access(H.get_idcard()))
 				authenticated = TRUE
+		if(action == "log_in_control_code")
+			var/code = text2num(params["control_code"])
+			if(round(log(10, code) + 1 > 6))
+				return
+
+			if(!GLOB.ai_control_code)
+				return
+
+			if(code == GLOB.ai_control_code)
+				cleared_for_use = TRUE
+				authenticated = TRUE
+				var/msg = "<h4>Warning!</h4><br>We have detected usage of the AI Control Code for unlocking a console at coordinates ([src.x], [src.y], [src.z]) by [usr.name]. Please verify that this is correct. Be aware we have renewed the Control Code.<br>\
+				If needed the new code can be printed at a communications console."
+				priority_announce(msg, sender_override = "Central Cyber Security Update", has_important_message = TRUE)
+				GLOB.ai_control_code = null
 		return
 
 	switch(action)

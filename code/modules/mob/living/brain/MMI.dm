@@ -1,6 +1,7 @@
 /obj/item/mmi
 	name = "\improper Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
+	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations.<br>\
+	[span_notice("It has a port for reading AI law modules. Any AI uploaded using this MMI will use these laws.")]"
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -12,7 +13,9 @@
 	var/obj/item/organ/brain/brain = null //The actual brain
 	var/datum/ai_laws/laws = new()
 	var/force_replace_ai_name = FALSE
-	var/overrides_aicore_laws = FALSE // Whether the laws on the MMI, if any, override possible pre-existing laws loaded on the AI core.
+	var/overrides_aicore_laws = TRUE // Whether the laws on the MMI are transferred when it's uploaded as an AI
+	var/override_cyborg_laws = FALSE // Do custom laws uploaded to the MMI get transferred to borgs? If yes the borg will be unlinked and have lawsync disabled.
+	var/can_update_laws = TRUE //Can we use a lawboard to change the laws of this MMI?
 
 /obj/item/mmi/update_icon()
 	if(!brain)
@@ -79,6 +82,9 @@
 
 	else if(brainmob)
 		O.attack(brainmob, user) //Oh noooeeeee
+	else if(istype(O, /obj/item/aiModule))
+		var/obj/item/aiModule/M = O
+		M.install(laws, user)
 	else
 		return ..()
 
@@ -205,6 +211,10 @@
 
 		else
 			. += span_notice("The MMI indicates the brain is active.")
+	if(laws)
+		. += "<b>The following laws are loaded into [src]: </b>"
+		for(var/law in laws.get_law_list())
+			. += law
 
 /obj/item/mmi/relaymove(mob/user)
 	return //so that the MMI won't get a warning about not being able to move if it tries to move
@@ -212,7 +222,8 @@
 /obj/item/mmi/syndie
 	name = "\improper Syndicate Man-Machine Interface"
 	desc = "Syndicate's own brand of MMI. It enforces laws designed to help Syndicate agents achieve their goals upon cyborgs and AIs created with it."
-	overrides_aicore_laws = TRUE
+	override_cyborg_laws = TRUE
+	can_update_laws = FALSE
 
 /obj/item/mmi/syndie/Initialize()
 	. = ..()
