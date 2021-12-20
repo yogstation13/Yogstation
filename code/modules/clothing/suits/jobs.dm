@@ -183,7 +183,7 @@
 
 /obj/item/clothing/head/hooded/amech
 	name = "red robe's hood"
-	desc = "a hood that used to be used by cultist"
+	desc = "A hood that used to be used by cultist."
 	icon_state = "amech"
 	item_state = "amech"
 	body_parts_covered = HEAD|HAIR
