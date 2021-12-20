@@ -174,7 +174,7 @@
 
 /obj/item/clothing/suit/hooded/amech
 	name = "red robes"
-	desc = "a robe that used to be used by cultist"
+	desc = "A robe that used to be used by cultist."
 	icon_state = "amech"
 	item_state = "amech"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
