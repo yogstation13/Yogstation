@@ -72,9 +72,6 @@
 	update_icon()
 
 /obj/item/mail/update_icon()
-	update_overlays()
-
-/obj/item/mail/proc/update_overlays()
 	. = ..()
 	var/bonus_stamp_offset = 0
 	for(var/stamp in stamps)
@@ -204,10 +201,6 @@
 	icon_state = "mail"
 
 /obj/structure/closet/crate/mail/update_icon()
-	. = ..()
-	update_icon_state()
-
-/obj/structure/closet/crate/mail/proc/update_icon_state()
 	. = ..()
 	if(opened)
 		icon_state = "[initial(icon_state)]open"
