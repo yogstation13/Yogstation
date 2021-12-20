@@ -249,7 +249,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	buttons_locked		= sanitize_integer(buttons_locked, FALSE, TRUE, initial(buttons_locked))
 	windowflashing		= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
 	default_slot		= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles				= sanitize_integer(toggles, 0, (1 << 23), initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
+	toggles				= sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
 	clientfps			= sanitize_integer(clientfps, 0, 1000, 0)
 	parallax			= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	ambientocclusion	= sanitize_integer(ambientocclusion, FALSE, TRUE, initial(ambientocclusion))
