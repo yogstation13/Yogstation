@@ -164,9 +164,11 @@
 					playsound(summonplace, "sound/effects/glassbr2.ogg", 30, 1)
 					to_chat(user, span_danger("[src] breaks!"))
 					qdel(src)
+					
 /obj/item/horrorsummonhorn/suicide_act(mob/living/user)  //"I am the prettiest unicorn that ever was!" ~Spy 2013
 	user.visible_message(span_suicide("[user] stabs [user.p_their()] forehead with [src]!  It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
+	
 //Tentacle arm
 /obj/item/horrortentacle
 	name = "tentacle"
@@ -181,9 +183,11 @@
 	item_flags = ABSTRACT | DROPDEL
 	reach = 2
 	hitsound = 'sound/weapons/whip.ogg'
+	
 /obj/item/horrortentacle/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	
 /obj/item/horrortentacle/examine(mob/user)
 	. = ..()
 	to_chat(user, span_velvet(span_bold("Functions:")))
@@ -193,6 +197,7 @@
 	to_chat(user, span_velvet("<b>Grab intent:</b> Instant aggressive grab on an opponent. Can also throw them!"))
 	to_chat(user, span_velvet("<b>Harm intent:</b> Whips the tentacle, damaging your opponent."))
 	to_chat(user, span_velvet("Also functions to pry open unbolted airlocks."))
+	
 /obj/item/horrortentacle/attack(atom/target, mob/living/user)
 	if(isliving(target))
 		user.Beam(target,"purpletentacle",time=5)
@@ -223,6 +228,7 @@
 						C.attack_hand(user)
 						return
 	. = ..()
+	
 /obj/item/horrortentacle/afterattack(atom/target, mob/user, proximity)
 	if(isliving(user.pulling) && user.pulling != target)
 		var/mob/living/H = user.pulling
@@ -250,31 +256,38 @@
 		A.open(2)
 		return
 	. = ..()
+	
 /obj/item/horrortentacle/suicide_act(mob/user) //this will never be called, since horror stops suicide, but might as well if they get tentacle through other means
 	user.visible_message(span_suicide("[src] coils itself around [user] tightly gripping [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (OXYLOSS)
+	
 //Pinpointer
 /obj/screen/alert/status_effect/agent_pinpointer/horror
 	name = "Soul locator"
 	desc = "Find your target soul."
+	
 /datum/status_effect/agent_pinpointer/horror
 	id = "horror_pinpointer"
 	minimum_range = 0
 	range_fuzz_factor = 0
 	tick_interval = 20
 	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/horror
+	
 /datum/status_effect/agent_pinpointer/horror/scan_for_target()
 	return
+	
 //TRAPPED MIND - when horror takes control over your body, you become a mute trapped mind
 /mob/living/captive_brain
 	name = "host brain"
 	real_name = "host brain"
 	var/datum/action/innate/resist_control/R
 	var/mob/living/simple_animal/horror/H
+	
 /mob/living/captive_brain/Initialize(mapload, gen=1)
 	..()
 	R = new
 	R.Grant(src)
+	
 /mob/living/captive_brain/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
@@ -286,17 +299,15 @@
 		message = sanitize(message)
 		if(!message)
 			return
-		log_say("[key_name(src)] : [message]")
 		if(stat == 2)
 			return say_dead(message)
 		to_chat(src, span_alien(span_italics("You whisper silently, \"[message]\"")))
-		to_chat(H.victim, span_alien(span_italics("The captive mind of [src] whispers, \"[message]\"")))
-
-		for (var/mob/M in GLOB.player_list)
-			if(isnewplayer(M))
-				continue
-			else if(M.stat == 2 &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
-				to_chat(M, "<i>Thought-speech, <b>[src]</b> -> <b>[H.truename]:</b> [message]</i>")
+		to_chat(H.victim, span_alien(span_italics("[src] whispers, \"[message]\"")))
+		for(var/M in GLOB.dead_mob_list)
+			if(isobserver(M))
+				var/rendered = span_changeling("<i>[src] transfers: \"[message]\"</i>")
+				var/link = FOLLOW_LINK(M, src)
+				to_chat(M, "[link] [rendered]")
 
 /mob/living/captive_brain/emote(act, m_type = null, message = null, intentional = FALSE)
 	return
