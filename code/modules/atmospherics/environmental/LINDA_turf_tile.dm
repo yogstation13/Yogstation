@@ -188,13 +188,13 @@
 /turf/open/proc/consider_firelocks(turf/T2)
 	var/reconsider_adj = FALSE
 	for(var/obj/machinery/door/firedoor/FD in T2)
-		if((FD.flags_1 & ON_BORDER_1) && get_dir(T2, src) != FD.dir)
-			continue
+		/*if((FD.flags_1 & ON_BORDER_1) && get_dir(T2, src) != FD.dir)
+			continue*/
 		FD.emergency_pressure_stop()
 		reconsider_adj = TRUE
 	for(var/obj/machinery/door/firedoor/FD in src)
-		if((FD.flags_1 & ON_BORDER_1) && get_dir(src, T2) != FD.dir)
-			continue
+		/*if((FD.flags_1 & ON_BORDER_1) && get_dir(src, T2) != FD.dir)
+			continue*/
 		FD.emergency_pressure_stop()
 		reconsider_adj = TRUE
 	if(reconsider_adj)
