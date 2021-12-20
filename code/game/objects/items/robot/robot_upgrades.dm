@@ -78,15 +78,18 @@
 
 /obj/item/borg/upgrade/panel_access_remover/action(mob/living/silicon/robot/R, user = usr)
 	R.req_access = list()
+	return TRUE //Makes sure we delete the upgrade since it's one_use
 
 /obj/item/borg/upgrade/panel_access_remover/freeminer
 	name = "free miner cyborg firmware hack"
 	desc = "Used to override the default firmware of a cyborg with the freeminer version."
 	icon_state = "cyborg_upgrade2"
-	one_use = TRUE
 
 /obj/item/borg/upgrade/panel_access_remover/freeminer/action(mob/living/silicon/robot/R, user = usr)
 	R.req_access = list(ACCESS_FREEMINER_ENGINEER)
+	new /obj/item/borg/upgrade/panel_access_remover/freeminer(get_turf(R))
+	//This deletes the upgrade which is why we create a new one. This prevents the message "Upgrade Error" without a adding a once-used variable to every board
+	return TRUE
 
 /obj/item/borg/upgrade/vtec
 	name = "cyborg VTEC module"
