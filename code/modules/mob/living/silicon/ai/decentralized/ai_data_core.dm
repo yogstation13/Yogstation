@@ -91,7 +91,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	
 /obj/machinery/ai/data_core/proc/transfer_AI(mob/living/silicon/ai/AI)
 	AI.forceMove(src)
-	AI.eyeobj.forceMove(get_turf(src))
+	if(AI.eyeobj)
+		AI.eyeobj.forceMove(get_turf(src))
 
 /obj/machinery/ai/data_core/update_icon()
 	cut_overlays()
