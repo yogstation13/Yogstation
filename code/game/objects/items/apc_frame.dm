@@ -88,7 +88,7 @@
 	inverse = 1
 
 
-/obj/item/wallframe/apc/try_build(turf/on_wall, user)
+/obj/item/wallframe/apc/try_build(turf/on_wall, mob/user)
 	if(!..())
 		return
 	var/turf/T = get_turf(user.loc) //get the turf the user is standing on, not where it's being placed.
