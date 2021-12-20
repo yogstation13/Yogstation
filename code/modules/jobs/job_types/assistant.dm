@@ -18,6 +18,15 @@ Assistant
 	paycheck_department = ACCOUNT_CIV
 	display_order = JOB_DISPLAY_ORDER_ASSISTANT
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/snacks/donkpocket = 10,
+		/obj/item/clothing/mask/gas = 10,
+		/obj/item/clothing/gloves/color/fyellow = 7,
+		/obj/item/choice_beacon/music = 5,
+		/obj/item/toy/crayon/spraycan = 3,
+		/obj/item/crowbar/large = 1
+	)
+
 	alt_titles = list("Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate")
 
 /datum/job/assistant/get_access()

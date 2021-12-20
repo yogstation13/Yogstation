@@ -23,6 +23,12 @@
 
 	changed_maps = list("OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/storage/box/flashes = 20,
+		/obj/item/stack/sheet/metal/twenty = 15,
+		/obj/item/modular_computer/tablet/preset/advanced = 5
+	)
+
 /datum/job/roboticist/proc/OmegaStationChanges()
 	supervisors = "the captain and the head of personnel"
 

@@ -21,6 +21,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
 
+	mail_goodies = list(
+		/obj/item/storage/box/monkeycubes = 10
+	)
+
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/geneticist/proc/OmegaStationChanges()

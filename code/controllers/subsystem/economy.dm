@@ -53,9 +53,15 @@ SUBSYSTEM_DEF(economy)
 	var/bounty_modifier = 1
 	///The modifier multiplied to the value of cargo pack prices.
 	var/pack_price_modifier = 1
+		/// Number of mail items generated.
+	var/mail_waiting = 0
+	/// Mail Holiday: AKA does mail arrive today? Always blocked on Sundays.
+	var/mail_blocked = FALSE
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
+	if(time2text(world.timeofday, "DDD") == SUNDAY)
+		mail_blocked = TRUE
 	for(var/A in department_accounts)
 		if(A == ACCOUNT_SEC)
 			new /datum/bank_account/department(A, STARTING_SEC_BUDGET)
@@ -80,6 +86,8 @@ SUBSYSTEM_DEF(economy)
 			if(B.account_holder in dictionary[c])
 				B.payday(c.paymodifier, TRUE)
 		B.payday(1)	
+	var/effective_mailcount = living_player_count()
+	mail_waiting += clamp(effective_mailcount, 1, MAX_MAIL_PER_MINUTE * 5)
 
 /datum/controller/subsystem/economy/proc/get_dep_account(dep_id)
 	for(var/datum/bank_account/department/D in generated_accounts)

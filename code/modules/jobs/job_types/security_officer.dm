@@ -27,6 +27,14 @@
 
 	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
 
+	//mail_goodies = list(
+		///obj/item/food/donut/caramel = 10,
+		///obj/item/food/donut/matcha = 10,
+		///obj/item/food/donut/blumpkin = 5,
+		///obj/item/clothing/mask/whistle = 5,
+		///obj/item/melee/baton/security/boomerang/loaded = 1
+	//)
+
 /datum/job/officer/proc/EclipseStationChanges()
 	total_positions = 14
 	spawn_positions = 10

@@ -1,4 +1,8 @@
 #define STARTING_PAYCHECKS 5
+/// How much mail the Economy SS will create per minute, regardless of firing time.
+#define MAX_MAIL_PER_MINUTE 3
+/// Probability of using letters of envelope sprites on all letters.
+#define FULL_CRATE_LETTER_ODDS 70
 
 #define PAYCHECK_ASSISTANT 5
 #define PAYCHECK_MINIMAL 5

@@ -22,6 +22,12 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	mail_goodies = list(
+		/obj/item/grenade/chem_grenade/cleaner = 30,
+		/obj/item/storage/box/lights/mixed = 20,
+		/obj/item/lightreplacer = 10
+	)
+
 /datum/job/janitor/proc/OmegaStationChanges()
 	access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)

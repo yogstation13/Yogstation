@@ -20,6 +20,13 @@
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
 
+	mail_goodies = list(
+		/obj/item/storage/box/rubbershot = 30,
+		/obj/item/reagent_containers/glass/bottle/clownstears = 10,
+		/obj/item/stack/sheet/mineral/plasma = 10,
+		/obj/item/stack/sheet/mineral/uranium = 10,
+	)
+
 	changed_maps = list("OmegaStation")
 
 /datum/job/bartender/proc/OmegaStationChanges()
