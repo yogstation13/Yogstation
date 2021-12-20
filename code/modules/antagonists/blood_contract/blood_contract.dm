@@ -51,7 +51,7 @@
 		return
 	
 	// Removing self from target
-	H.remove_atom_color("#FF0000", ADMIN_COLOUR_PRIORITY)
+	owner.current.remove_atom_color("#FF0000", ADMIN_COLOUR_PRIORITY)
 	on_removal() // Remove this antag datum
 	return
 
