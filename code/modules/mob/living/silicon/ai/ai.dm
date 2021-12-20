@@ -552,7 +552,10 @@
 
 
 /mob/living/silicon/ai/triggerAlarm(class, area/A, O, obj/alarmsource)
-	if(alarmsource.z != z)
+	var/turf/T = get_turf(src)
+	if(istype(loc, /obj/machinery/ai/data_core))
+		T = get_turf(loc)
+	if(alarmsource.z != T.z)
 		return
 	var/list/L = alarms[class]
 	for (var/I in L)
