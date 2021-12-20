@@ -18,7 +18,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	var/warning_sent = FALSE
 
 /obj/machinery/ai/data_core/Initialize()
-	..()
+	. = ..()
 	GLOB.data_cores += src
 	if(primary && !GLOB.primary_data_core)
 		GLOB.primary_data_core = src
@@ -69,19 +69,15 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core/proc/calculate_validity()
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
 	
-	if(stat & (BROKEN|NOPOWER|EMPED))
-		return FALSE
-	
 	if(valid_holder())
 		valid_ticks++
 		warning_sent = FALSE
 	else
 		valid_ticks--
-		warning_sent = TRUE
-		to_chat(GLOB.ai_list, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Please contact technical support."))
+		if(!warning_sent)
+			warning_sent = TRUE
+			to_chat(GLOB.ai_list, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Please contact technical support."))
 	
-
-
 /obj/machinery/ai/data_core/proc/can_transfer_ai()
 	if(stat & (BROKEN|NOPOWER|EMPED))
 		return FALSE
