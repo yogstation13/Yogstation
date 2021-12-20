@@ -34,7 +34,8 @@
 		S.Paralyze(60)
 	var/turf = get_turf(user)
 	var/mob/living/simple_animal/horror/H = user.has_horror_inside()
-	H?.leave_victim()
+	if(H)
+		H.leave_victim()
 	user.gib()
 	. = TRUE
 	sleep(5) // So it's not killed in explosion
