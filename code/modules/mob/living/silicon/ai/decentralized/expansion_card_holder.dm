@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env.heat_capacity())
-			var/temperature_increase = total_usage / env.heat_capacity() //1 CPU = 650W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.16 - 0.2 K per second. 
+			var/temperature_increase = total_usage / env.heat_capacity() //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
 			env.set_temperature(env.return_temperature() + temperature_increase * TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 	else if(was_valid_holder)
 		was_valid_holder = FALSE
