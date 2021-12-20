@@ -7,7 +7,7 @@
 /obj/item/clothing/neck/bodycam
 	name = "body camera"
 	desc = "A wearable camera, capable of streaming a live feed."
-	icon_state = "sec_bodycam_off"
+	icon_state = "sec_bodycam"
 	item_state = "sec_bodycam"
 	var/prefix = "sec"//used for sprites, miner etc
 	strip_delay = 1 SECONDS //takes one second to strip, so a downed officer can be un-cammed quickly
@@ -138,7 +138,7 @@
 	name = "miner body camera"
 	desc = "A wearable camera, capable of streaming a live feed. This one is preconfigured to be used by miners."
 	prefix = "miner"
-	icon_state = "miner_bodycam_off"
+	icon_state = "miner_bodycam"
 	item_state = "miner_bodycam"
 	setup = TRUE
 	preset = TRUE
