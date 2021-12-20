@@ -24,16 +24,16 @@ export const AiControlPanel = (props, context) => {
             <Box textAlign="center">
               <NoticeBox>Enter AI control code and press enter. (6 numbers)</NoticeBox>
               <Input value={code} placeholder="123456"
-              onChange={(e, value) => {
-                if (e.keyCode === KEY_ENTER) {
-                  setCode(null)
-                  act('clear_for_use', { 'control_code': value });
-                } else {
-                  setCode(value)
-                }
-              }}
+                onChange={(e, value) => {
+                  if (e.keyCode === KEY_ENTER) {
+                    setCode(null);
+                    act('clear_for_use', { 'control_code': value });
+                  } else {
+                    setCode(value);
+                  }
+                }}
               />
-              </Box>
+            </Box>
           </Section>
         </Window.Content>
       </Window>
