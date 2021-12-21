@@ -28,9 +28,9 @@
 	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
 
 	//mail_goodies = list(
-		///obj/item/food/donut/caramel = 10,
-		///obj/item/food/donut/matcha = 10,
-		///obj/item/food/donut/blumpkin = 5,
+		/obj/item/reagent_containers/food/snacks/donut/jelly = 10,
+		/obj/item/reagent_containers/food/snacks/donut/meat = 10,
+		/obj/item/reagent_containers/food/snacks/donut/spaghetti = 5,
 		///obj/item/clothing/mask/whistle = 5,
 		///obj/item/melee/baton/security/boomerang/loaded = 1
 	//)

@@ -32,12 +32,12 @@
 
 	changed_maps = list("OmegaStation")
 
-	/*mail_goodies = list(
-		/obj/effect/spawner/random/medical/organs = 10,
-		/obj/effect/spawner/random/medical/memeorgans = 8,
-		/obj/effect/spawner/random/medical/surgery_tool_advanced = 4,
-		/obj/effect/spawner/random/medical/surgery_tool_alien = 1
-	)*/
+	mail_goodies = list(
+		/obj/effect/spawner/lootdrop/organ_spawner = 10
+		///obj/effect/spawner/random/medical/memeorgans = 8,
+		///obj/effect/spawner/random/medical/surgery_tool_advanced = 4,
+		///obj/effect/spawner/random/medical/surgery_tool_alien = 1
+	)
 
 /datum/job/cmo/proc/OmegaStationChanges()
 	return TRUE

@@ -33,7 +33,7 @@
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 
 	mail_goodies = list(
-		///obj/item/food/cracker = 25, //you know. for poly
+		/obj/item/reagent_containers/food/snacks/cracker = 25, //you know. for poly
 		/obj/item/stack/sheet/mineral/diamond = 15,
 		///obj/item/stack/sheet/mineral/uranium/five = 15,
 		///obj/item/stack/sheet/mineral/plasma/five = 15,
