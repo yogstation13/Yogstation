@@ -84,9 +84,8 @@
 			to_chat(user, span_warning("You fail to remove [O]'s wrapping!"))
 
 /obj/structure/bigDelivery/proc/disposal_handling(disposal_source, obj/structure/disposalholder/disposal_holder, obj/machinery/disposal/disposal_machine, hasmob)
-	SIGNAL_HANDLER
 	if(!hasmob)
-		disposal_holder.destinationTag = sort_tag
+		disposal_holder.destinationTag = sortTag
 
 /obj/item/smallDelivery
 	name = "parcel"
