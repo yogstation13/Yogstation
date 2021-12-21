@@ -306,7 +306,7 @@
 		for(var/M in GLOB.dead_mob_list)
 			if(isobserver(M))
 				var/rendered = span_changeling("<i>[src] transfers: \"[message]\"</i>")
-				var/link = FOLLOW_LINK(M, src)
+				var/link = FOLLOW_LINK(M, H.victim)
 				to_chat(M, "[link] [rendered]")
 
 /mob/living/captive_brain/emote(act, m_type = null, message = null, intentional = FALSE)
