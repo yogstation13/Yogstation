@@ -87,16 +87,6 @@
 	user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (FIRELOSS)
 
-
-/obj/item/weldingtool/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		flamethrower_screwdriver(I, user)
-	else if(istype(I, /obj/item/stack/rods))
-		flamethrower_rods(I, user)
-	else
-		. = ..()
-	update_icon()
-
 /obj/item/weldingtool/proc/explode()
 	var/turf/T = get_turf(loc)
 	var/plasmaAmount = reagents.get_reagent_amount(/datum/reagent/toxin/plasma)
