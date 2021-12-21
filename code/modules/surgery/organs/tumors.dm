@@ -46,7 +46,7 @@
 			insertionAvailable = FALSE
 	if(insertionAvailable)
 		var/obj/item/organ/tumor/T = new type()
-		T.name = T.name + " (" + insertionZone + ")"
+		T.name = T.name + " (" + parse_zone(insertionZone) + ")"
 		T.helpful = helpful
 		T.ownerdisease = ownerdisease
 		T.Insert(owner,FALSE,FALSE,insertionZone)

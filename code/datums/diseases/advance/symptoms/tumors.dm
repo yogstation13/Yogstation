@@ -72,7 +72,7 @@
 				insertionAvailable = FALSE
 		if(insertionAvailable)
 			var/obj/item/organ/tumor/T = new tumortype()
-			T.name = T.name + " (" + insertionZone + ")"
+			T.name = T.name + " (" + parse_zone(insertionZone) + ")"
 			T.helpful = helpful
 			T.ownerdisease = ownerdisease
 			T.Insert(M,FALSE,FALSE,insertionZone)
@@ -83,7 +83,7 @@
 			var/limb_to_regenerate = pick(missing_limbs)
 			M.regenerate_limb(limb_to_regenerate,TRUE);
 			M.emote("scream")
-			M.visible_message(span_warning("Gnarly tumors burst out of [M]'s stump and form into a [limb_to_regenerate]!"), span_notice("You scream as your [limb_to_regenerate] reforms."))
+			M.visible_message(span_warning("Gnarly tumors burst out of [M]'s stump and form into a [parse_zone(limb_to_regenerate)]!"), span_notice("You scream as your [parse_zone(limb_to_regenerate)] reforms."))
 				
 
 
