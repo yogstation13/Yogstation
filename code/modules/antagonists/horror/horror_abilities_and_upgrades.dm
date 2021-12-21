@@ -319,6 +319,39 @@
 	B.go_invisible()
 	button_icon_state = "horror_sneak_[B.invisible ? "true" : "false"]"
 	UpdateButtonIcon()
+	
+/datum/action/innate/horror/lube_spill
+	name = "Lube spill"
+	desc = "Makes you spin around and flail slippery lube around you. Costs 30 chemicals to activate."
+	button_icon_state = "lube_spill"
+	chemical_cost = 30
+	category = list("horror")
+	soul_price = 1
+	var/cooldown = 0
+
+/datum/action/innate/horror/lube_spill/IsAvailable()
+	if(cooldown > world.time || !B.has_chemicals(chemical_cost))
+		return
+	return ..()
+
+/datum/action/innate/horror/lube_spill/Activate()
+	B.use_chemicals(30)
+	cooldown = world.time + 10 SECONDS
+	UpdateButtonIcon()
+	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
+	B.visible_message(span_warning("[src] starts spinning and throwing some sort of substance!"), span_notice("Your start to spin and flail oily substance everywhere!"))
+	var/spins_remaining = 10
+	B.icon_state = "horror_spin"
+	while(spins_remaining > 0)
+		playsound(B, 'sound/effects/blobattack.ogg', rand(20, 30), rand(0.5, 2))
+		for(var/turf/open/t in range(1, B))
+			if(prob(60) && B.Adjacent(t))
+				t.MakeSlippery(TURF_WET_LUBE, 100)
+		sleep(5)
+		spins_remaining--
+	B.icon_state = "horror"
+	return TRUE
+
 
 //UPGRADES
 /datum/horror_upgrade
