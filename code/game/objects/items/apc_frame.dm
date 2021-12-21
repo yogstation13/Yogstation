@@ -92,6 +92,8 @@
 	if(!..())
 		return
 	var/turf/T = get_turf(user.loc) //get the turf the user is standing on, not where it's being placed.
+	if(!user || !user.loc)
+		T = get_turf(on_wall) //default back to the turf if the user or their loc is null
 	var/area/A = get_area(T)
 	if(A.get_apc())
 		to_chat(user, span_warning("This area already has an APC!"))
