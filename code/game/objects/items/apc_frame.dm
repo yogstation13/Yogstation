@@ -91,6 +91,7 @@
 /obj/item/wallframe/apc/try_build(turf/on_wall, mob/user)
 	if(!..())
 		return
+	var/turf/T = get_turf(on_wall) //we still need T for checks later in this proc
 	var/area/A = get_area(user) //get the turf the user is standing on, not where it's being placed.
 	if(!A)
 		A = get_area(on_wall) //default back to the turf if the user or their loc is null
