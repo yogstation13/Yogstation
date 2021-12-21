@@ -588,7 +588,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(announce && initiator)
 		to_chat(initiator,
 			type = MESSAGE_TYPE_ADMINPM,
-			span_notice("[key_name(usr, TRUE, FALSE)] has taken your ticket and will respond shortly."),
+			html = span_notice("[key_name(usr, TRUE, FALSE)] has taken your ticket and will respond shortly."),
 			confidential = TRUE)
 
 //Admin activates the pop-ups
