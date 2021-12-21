@@ -42,6 +42,7 @@
 	var/mob/living/carbon/human/M = A.affected_mob
 	if(!M) return
 
+	//clothes wearing
 	if(A.stage > 2)
 		if(istype(M.wear_mask, /obj/item/clothing/mask))
 			var/obj/item/clothing/mask/wearing_mask = M.wear_mask
@@ -60,7 +61,7 @@
 				M.dropItemToGround(wearing_suit)
 		M.dna.species.no_equip.Add(SLOT_WEAR_SUIT)
 
-
+	//spreading
 	if(prob(tumor_chance)) //2% chance to make a new tumor somewhere
 		var/list/possibleZones = list(BODY_ZONE_HEAD,BODY_ZONE_CHEST,BODY_ZONE_L_ARM,BODY_ZONE_R_ARM,BODY_ZONE_L_LEG,BODY_ZONE_R_LEG,BODY_ZONE_PRECISE_EYES,BODY_ZONE_PRECISE_GROIN)
 		//check if we can put an organ in there
@@ -75,6 +76,16 @@
 			T.helpful = helpful
 			T.ownerdisease = ownerdisease
 			T.Insert(M,FALSE,FALSE,insertionZone)
+	//regerenation
+	if(regeneration && prob(tumor_chance)) //use tumorchance to regenerate limbies
+		var/list/missing_limbs = M.get_missing_limbs() - list(BODY_ZONE_HEAD, BODY_ZONE_CHEST) //don't regenerate the head or chest
+		if(missing_limbs.len > 0)
+			var/limb_to_regenerate = pick(missing_limbs)
+			M.regenerate_limb(limb_to_regenerate,TRUE);
+			M.emote("scream")
+			M.visible_message(span_warning("Gnarly tumors burst out of [M]'s stump and form into a [limb_to_regenerate]!"), span_notice("You scream as your [limb_to_regenerate] reforms."))
+				
+
 
 /datum/symptom/tumor/End(datum/disease/advance/A)
 	..()
