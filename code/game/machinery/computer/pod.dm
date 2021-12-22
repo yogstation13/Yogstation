@@ -125,7 +125,7 @@
 	name = "\improper ProComp Executive IIc"
 	desc = "The Syndicate operate on a tight budget. Operates external airlocks."
 	title = "External Airlock Controls"
-	req_access = list(ACCESS_SYNDICATE)
+	req_access_default = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/pod/old/swf
 	name = "\improper Magix System IV"

@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/bar
 	name = "booze storage"
-	req_access = list(ACCESS_BAR)
+	req_access_default = list(ACCESS_BAR)
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70

@@ -51,7 +51,7 @@
 
 	icon_state = "apc0"
 	use_power = NO_POWER_USE
-	req_access = list(ACCESS_ENGINE_EQUIP) // Yogs -- changed to allow for use of req_one_access
+	req_access_default = list(ACCESS_ENGINE_EQUIP) // Yogs -- changed to allow for use of req_one_access
 	max_integrity = 200
 	integrity_failure = 50
 	resistance_flags = FIRE_PROOF
@@ -114,10 +114,10 @@
 	locked = FALSE
 
 /obj/machinery/power/apc/syndicate //general syndicate access
-	req_access = list(ACCESS_SYNDICATE)
+	req_access_default = list(ACCESS_SYNDICATE)
 
 /obj/machinery/power/apc/away //general away mission access
-	req_access = list(ACCESS_AWAY_GENERAL)
+	req_access_default = list(ACCESS_AWAY_GENERAL)
 
 /obj/machinery/power/apc/highcap/five_k
 	cell_type = /obj/item/stock_parts/cell/upgraded/plus

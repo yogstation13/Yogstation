@@ -4,7 +4,7 @@
 	desc = "An ancient cloning pod. It seems to be an early prototype of the experimental cloners used in Nanotrasen Stations."
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "pod_0"
-	req_access = null
+	req_access_default = null
 	circuit = /obj/item/circuitboard/machine/clonepod/experimental
 	internal_radio = FALSE
 

@@ -16,7 +16,7 @@
 	icon_state = "brace_noshadow"
 	anchored = TRUE
 	density = FALSE
-	req_access = list(ACCESS_SECURITY)
+	req_access_default = list(ACCESS_SECURITY)
 	layer = ABOVE_OBJ_LAYER
 
 	var/obj/item/brace/brace_item

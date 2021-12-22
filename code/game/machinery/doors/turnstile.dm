@@ -18,7 +18,7 @@
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
 	//Seccies and brig phys may always pass, either way.
-	req_one_access = list(ACCESS_SEC_DOORS)
+	req_one_access_default = list(ACCESS_SEC_DOORS)
 	
 /obj/machinery/turnstile/Initialize()
 	. = ..()

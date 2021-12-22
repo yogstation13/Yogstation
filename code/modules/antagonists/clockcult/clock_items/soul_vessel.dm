@@ -6,7 +6,7 @@
 	<span class='brass'>If active, can serve as a positronic brain, placable in cyborg shells or clockwork construct shells.</span>"
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "soul_vessel"
-	req_access = list()
+	req_access_default = list()
 	braintype = "Servant"
 	begin_activation_message = span_brass("You activate the cogwheel. It hitches and stalls as it begins spinning.")
 	success_message = span_brass("The cogwheel's rotation smooths out as the soul vessel activates.")

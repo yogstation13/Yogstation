@@ -6,7 +6,7 @@
 
 	state_open = FALSE
 	density = TRUE
-	req_access = list(ACCESS_KITCHEN)
+	req_access_default = list(ACCESS_KITCHEN)
 	var/processing = FALSE
 	var/start_at = NUTRITION_LEVEL_WELL_FED
 	var/stop_at = NUTRITION_LEVEL_STARVING

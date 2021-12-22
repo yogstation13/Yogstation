@@ -71,7 +71,7 @@
 	autoclose = FALSE
 	frequency = FREQ_AIRLOCK_CONTROL
 	heat_proof = TRUE
-	req_access = list(ACCESS_SYNDICATE)
+	req_access_default = list(ACCESS_SYNDICATE)
 
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_interior
 	name = "Turbine Interior Airlock"
@@ -110,7 +110,7 @@
 	autoclose = FALSE
 	frequency = FREQ_AIRLOCK_CONTROL
 	heat_proof = TRUE
-	req_access = list(ACCESS_TOX)
+	req_access_default = list(ACCESS_TOX)
 
 /obj/machinery/door/airlock/research/glass/incinerator/toxmix_interior
 	name = "Mixing Room Interior Airlock"
@@ -305,7 +305,7 @@
 	autoclose = FALSE
 	frequency = FREQ_AIRLOCK_CONTROL
 	heat_proof = TRUE
-	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
+	req_one_access_default = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
 
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior
 	name = "Turbine Interior Airlock"
@@ -453,7 +453,7 @@
 	assemblytype = /obj/structure/door_assembly/door_assembly_cult
 	hackProof = TRUE
 	aiControlDisabled = AI_WIRE_DISABLED
-	req_access = list(ACCESS_BLOODCULT)
+	req_access_default = list(ACCESS_BLOODCULT)
 	damage_deflection = 10
 	var/openingoverlaytype = /obj/effect/temp_visual/cult/door
 	var/friendly = FALSE
@@ -558,7 +558,7 @@
 	anim_parts = "left=-13,0;right=13,0"
 	hackProof = TRUE
 	aiControlDisabled = AI_WIRE_DISABLED
-	req_access = list(ACCESS_CLOCKCULT)
+	req_access_default = list(ACCESS_CLOCKCULT)
 	use_power = FALSE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	damage_deflection = 30

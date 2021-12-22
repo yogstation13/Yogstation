@@ -94,39 +94,39 @@
 /obj/structure/noticeboard/captain
 	name = "Captain's Notice Board"
 	desc = "Important notices from the Captain."
-	req_access = list(ACCESS_CAPTAIN)
+	req_access_default = list(ACCESS_CAPTAIN)
 
 /obj/structure/noticeboard/hop
 	name = "Head of Personnel's Notice Board"
 	desc = "Important notices from the Head of Personnel."
-	req_access = list(ACCESS_HOP)
+	req_access_default = list(ACCESS_HOP)
 
 /obj/structure/noticeboard/ce
 	name = "Chief Engineer's Notice Board"
 	desc = "Important notices from the Chief Engineer."
-	req_access = list(ACCESS_CE)
+	req_access_default = list(ACCESS_CE)
 
 /obj/structure/noticeboard/hos
 	name = "Head of Security's Notice Board"
 	desc = "Important notices from the Head of Security."
-	req_access = list(ACCESS_HOS)
+	req_access_default = list(ACCESS_HOS)
 
 /obj/structure/noticeboard/cmo
 	name = "Chief Medical Officer's Notice Board"
 	desc = "Important notices from the Chief Medical Officer."
-	req_access = list(ACCESS_CMO)
+	req_access_default = list(ACCESS_CMO)
 
 /obj/structure/noticeboard/rd
 	name = "Research Director's Notice Board"
 	desc = "Important notices from the Research Director."
-	req_access = list(ACCESS_RD)
+	req_access_default = list(ACCESS_RD)
 
 /obj/structure/noticeboard/qm
 	name = "Quartermaster's Notice Board"
 	desc = "Important notices from the Quartermaster."
-	req_access = list(ACCESS_QM)
+	req_access_default = list(ACCESS_QM)
 
 /obj/structure/noticeboard/staff
 	name = "Staff Notice Board"
 	desc = "Important notices from the heads of staff."
-	req_access = list(ACCESS_HEADS)
+	req_access_default = list(ACCESS_HEADS)

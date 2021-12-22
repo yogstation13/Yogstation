@@ -7,7 +7,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	active_power_usage = 5000
-	req_access = list(ACCESS_ROBOTICS)
+	req_access_default = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/machine/mechfab
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 

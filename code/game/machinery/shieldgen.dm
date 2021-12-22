@@ -73,7 +73,7 @@
 	opacity = 0
 	anchored = FALSE
 	pressure_resistance = 2*ONE_ATMOSPHERE
-	req_access = list(ACCESS_ENGINE)
+	req_access_default = list(ACCESS_ENGINE)
 	max_integrity = 100
 	var/active = FALSE
 	var/list/deployed_shields
@@ -218,7 +218,7 @@
 	icon_state = "Shield_Gen"
 	anchored = FALSE
 	density = TRUE
-	req_access = list(ACCESS_TELEPORTER)
+	req_access_default = list(ACCESS_TELEPORTER)
 	flags_1 = CONDUCT_1
 	use_power = NO_POWER_USE
 	max_integrity = 300
@@ -233,7 +233,7 @@
 	name = "xenobiology shield wall generator"
 	desc = "A shield generator meant for use in xenobiology."
 	icon_state = "Shield_Gen"
-	req_access = list(ACCESS_XENOBIOLOGY)
+	req_access_default = list(ACCESS_XENOBIOLOGY)
 
 /obj/machinery/shieldwallgen/Destroy()
 	for(var/d in GLOB.cardinals)

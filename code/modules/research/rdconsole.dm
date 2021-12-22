@@ -28,7 +28,7 @@ Nothing else in the console has ID requirements.
 	var/obj/machinery/rnd/production/protolathe/linked_lathe				//Linked Protolathe
 	var/obj/machinery/rnd/production/circuit_imprinter/linked_imprinter	//Linked Circuit Imprinter
 
-	req_access = list(ACCESS_TOX)	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
+	req_access_default = list(ACCESS_TOX)	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
 
 	//UI VARS
 	var/screen = RDSCREEN_MENU
@@ -1140,8 +1140,7 @@ Nothing else in the console has ID requirements.
 
 /obj/machinery/computer/rdconsole/robotics
 	name = "Robotics R&D Console"
-	req_access = null
-	req_access_txt = "29"
+	req_access_default = list(ACCESS_ROBOTICS)
 
 /obj/machinery/computer/rdconsole/robotics/Initialize()
 	. = ..()

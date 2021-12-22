@@ -57,14 +57,21 @@
 /// Generates access from strings, Call this before using req_access or req_one_access directly
 /obj/proc/gen_access()
 	//These generations have been moved out of /obj/New() because they were slowing down the creation of objects that never even used the access system.
+	var/has_req_txt = (req_access_txt != initial(req_access_txt))
+	var/has_req_one_txt = (req_one_access_txt != initial(req_one_access_txt))
 	if(!req_access)
 		req_access = list()
-		for(var/a in text2access(req_access_txt))
-			req_access += a
+		if(has_req_txt)
+			req_access = text2access(req_access_txt)
+		else if(req_access_default && !has_req_one_txt) // Allow req_access_default to be overridden by req_one_access_txt
+			req_access = req_access_default
+
 	if(!req_one_access)
 		req_one_access = list()
-		for(var/b in text2access(req_one_access_txt))
-			req_one_access += b
+		if(has_req_one_txt)
+			req_one_access = text2access(req_one_access_txt)
+		else if(req_one_access_default && !has_req_txt)
+			req_one_access = req_one_access_default
 
 /// Check if an item has access to this object
 /obj/proc/check_access(obj/item/I)

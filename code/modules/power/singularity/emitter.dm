@@ -11,7 +11,7 @@
 
 	anchored = FALSE
 	density = TRUE
-	req_access = list(ACCESS_ENGINE_EQUIP)
+	req_access_default = list(ACCESS_ENGINE_EQUIP)
 	circuit = /obj/item/circuitboard/machine/emitter
 
 	use_power = NO_POWER_USE
@@ -57,7 +57,7 @@
 	active_power_usage = FALSE
 	idle_power_usage = FALSE
 	locked = TRUE
-	req_access_txt = "100"
+	req_access_default = list(100)
 	state = EMITTER_WELDED
 	use_power = FALSE
 

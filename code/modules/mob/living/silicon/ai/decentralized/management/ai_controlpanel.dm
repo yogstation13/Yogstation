@@ -3,7 +3,7 @@
 /obj/machinery/computer/ai_control_console
 	name = "\improper AI control console"
 	desc = "Used for accessing the central AI repository from which AIs can be downloaded or uploaded."
-	req_access = list(ACCESS_RD)
+	req_access_default = list(ACCESS_RD)
 	circuit = /obj/item/circuitboard/computer/aifixer
 	icon_keyboard = "tech_key"
 	icon_screen = "ai-fixer"

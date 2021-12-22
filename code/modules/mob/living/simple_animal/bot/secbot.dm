@@ -458,4 +458,4 @@ Auto Patrol: []"},
 	..()
 
 /obj/machinery/bot_core/secbot
-	req_access = list(ACCESS_SECURITY)
+	req_access_default = list(ACCESS_SECURITY)

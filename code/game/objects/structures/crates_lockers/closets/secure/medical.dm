@@ -2,7 +2,7 @@
 	name = "medicine closet"
 	desc = "Filled to the brim with medical junk."
 	icon_state = "med"
-	req_access = list(ACCESS_MEDICAL)
+	req_access_default = list(ACCESS_MEDICAL)
 
 /obj/structure/closet/secure_closet/medical1/PopulateContents()
 	..()
@@ -21,7 +21,7 @@
 /obj/structure/closet/secure_closet/medical2
 	name = "anesthetic closet"
 	desc = "Used to knock people out."
-	req_access = list(ACCESS_SURGERY)
+	req_access_default = list(ACCESS_SURGERY)
 
 /obj/structure/closet/secure_closet/medical2/PopulateContents()
 	..()
@@ -32,7 +32,7 @@
 
 /obj/structure/closet/secure_closet/medical3
 	name = "medical doctor's locker"
-	req_access = list(ACCESS_SURGERY)
+	req_access_default = list(ACCESS_SURGERY)
 	icon_state = "med_secure"
 
 /obj/structure/closet/secure_closet/medical3/PopulateContents()
@@ -46,7 +46,7 @@
 
 /obj/structure/closet/secure_closet/CMO
 	name = "\proper chief medical officer's locker"
-	req_access = list(ACCESS_CMO)
+	req_access_default = list(ACCESS_CMO)
 	icon_state = "cmo"
 
 /obj/structure/closet/secure_closet/CMO/PopulateContents()
@@ -79,7 +79,7 @@
 	desc = "It's a secure storage unit for paramedical supplies."
 	icon = 'yogstation/icons/obj/closet.dmi'
 	icon_state = "paramed"
-	req_access = list(ACCESS_PARAMEDIC)
+	req_access_default = list(ACCESS_PARAMEDIC)
 
 /obj/structure/closet/secure_closet/paramedic/PopulateContents()
 	..()
@@ -115,7 +115,7 @@
 
 /obj/structure/closet/secure_closet/mmedical
 	name = "mining medic's locker"
-	req_access = list(ACCESS_MEDICAL)
+	req_access_default = list(ACCESS_MEDICAL)
 	icon = 'yogstation/icons/obj/closet.dmi'
 	icon_state = "medic"
 
@@ -148,7 +148,7 @@
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control"
-	req_access = list(ACCESS_SURGERY)
+	req_access_default = list(ACCESS_SURGERY)
 
 /obj/structure/closet/secure_closet/animal/PopulateContents()
 	..()
@@ -159,7 +159,7 @@
 /obj/structure/closet/secure_closet/chemical
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
-	req_access = list(ACCESS_CHEMISTRY)
+	req_access_default = list(ACCESS_CHEMISTRY)
 	icon_door = "chemical"
 
 /obj/structure/closet/secure_closet/chemical/PopulateContents()

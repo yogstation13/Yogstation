@@ -21,7 +21,7 @@
 	circuit = /obj/item/circuitboard/computer/white_ship/miner
 	shuttleId = "whiteship"
 	possible_destinations = "whiteship_away;whiteship_home;whiteship_z4;whiteship_mining0;whiteship_mining1;whiteship_mining2;whiteship_custom"
-	req_access = list(ACCESS_FREEMINER_CAPTAIN)
+	req_access_default = list(ACCESS_FREEMINER_CAPTAIN)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner
 	name = "Free Miner Navigation Computer"

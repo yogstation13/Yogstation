@@ -747,4 +747,4 @@
 #undef DELIGHT
 
 /obj/machinery/bot_core/mulebot
-	req_access = list(ACCESS_CARGO)
+	req_access_default = list(ACCESS_CARGO)

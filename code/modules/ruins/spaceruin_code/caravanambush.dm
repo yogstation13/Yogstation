@@ -118,7 +118,7 @@
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	light_color = LIGHT_COLOR_RED
-	req_access = list(ACCESS_SYNDICATE)
+	req_access_default = list(ACCESS_SYNDICATE)
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate1
 	shuttleId = "caravansyndicate1"
 	possible_destinations = "caravansyndicate1_custom;caravansyndicate1_ambush;caravansyndicate1_listeningpost"
@@ -141,7 +141,7 @@
 	desc = "Used to control the Syndicate Fighter."
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
-	req_access = list(ACCESS_SYNDICATE)
+	req_access_default = list(ACCESS_SYNDICATE)
 	light_color = LIGHT_COLOR_RED
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate2
 	shuttleId = "caravansyndicate2"
@@ -165,7 +165,7 @@
 	desc = "Used to control the Syndicate Drop Ship."
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
-	req_access = list(ACCESS_SYNDICATE)
+	req_access_default = list(ACCESS_SYNDICATE)
 	light_color = LIGHT_COLOR_RED
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate3
 	shuttleId = "caravansyndicate3"

@@ -6,7 +6,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	req_access = list(ACCESS_ARMORY)
+	req_access_default = list(ACCESS_ARMORY)
 	var/broken = FALSE
 	var/open = FALSE
 	var/icon_locked = "lockbox+l"
@@ -78,7 +78,7 @@
 
 /obj/item/storage/lockbox/loyalty
 	name = "lockbox of mindshield implants"
-	req_access = list(ACCESS_SECURITY)
+	req_access_default = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/loyalty/PopulateContents()
 	for(var/i in 1 to 3)
@@ -88,7 +88,7 @@
 /obj/item/storage/lockbox/clusterbang
 	name = "lockbox of clusterbangs"
 	desc = "You have a bad feeling about opening this."
-	req_access = list(ACCESS_SECURITY)
+	req_access_default = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/clusterbang/PopulateContents()
 	new /obj/item/grenade/clusterbuster(src)
@@ -101,7 +101,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	req_access = list(ACCESS_CAPTAIN)
+	req_access_default = list(ACCESS_CAPTAIN)
 	icon_locked = "medalbox+l"
 	icon_closed = "medalbox"
 	icon_broken = "medalbox+b"
@@ -166,7 +166,7 @@
 /obj/item/storage/lockbox/medal/sec
 	name = "security medal box"
 	desc = "A locked box used to store medals to be given to members of the security department."
-	req_access = list(ACCESS_HOS)
+	req_access_default = list(ACCESS_HOS)
 
 /obj/item/storage/lockbox/medal/sec/PopulateContents()
 	for(var/i in 1 to 3)
@@ -175,7 +175,7 @@
 /obj/item/storage/lockbox/medal/cargo
 	name = "cargo award box"
 	desc = "A locked box used to store awards to be given to members of the cargo department."
-	req_access = list(ACCESS_QM)
+	req_access_default = list(ACCESS_QM)
 
 /obj/item/storage/lockbox/medal/cargo/PopulateContents()
 		new /obj/item/clothing/accessory/medal/ribbon/cargo(src)
@@ -183,7 +183,7 @@
 /obj/item/storage/lockbox/medal/service
 	name = "service award box"
 	desc = "A locked box used to store awards to be given to members of the service department."
-	req_access = list(ACCESS_HOP)
+	req_access_default = list(ACCESS_HOP)
 
 /obj/item/storage/lockbox/medal/service/PopulateContents()
 		new /obj/item/clothing/accessory/medal/silver/excellence(src)
@@ -191,7 +191,7 @@
 /obj/item/storage/lockbox/medal/sci
 	name = "science medal box"
 	desc = "A locked box used to store medals to be given to members of the science department."
-	req_access = list(ACCESS_RD)
+	req_access_default = list(ACCESS_RD)
 
 /obj/item/storage/lockbox/medal/sci/PopulateContents()
 	for(var/i in 1 to 3)
@@ -200,7 +200,7 @@
 /obj/item/storage/lockbox/medal/med
 	name = "medical medal box"
 	desc = "A locked box used to store medals to be given to members of the medical department."
-	req_access = list(ACCESS_CMO)
+	req_access_default = list(ACCESS_CMO)
 
 /obj/item/storage/lockbox/medal/med/PopulateContents()
 	for(var/i in 1 to 3)
@@ -209,7 +209,7 @@
 /obj/item/storage/lockbox/medal/eng
 	name = "engineering medal box"
 	desc = "A locked box used to store medals to be given to members of the engineering department."
-	req_access = list(ACCESS_CE)
+	req_access_default = list(ACCESS_CE)
 
 /obj/item/storage/lockbox/medal/eng/PopulateContents()
 	for(var/i in 1 to 3)
@@ -221,7 +221,7 @@
 	desc = "A small box that can hold up to six vials in a sealed enviroment."
 	icon = 'icons/obj/vial_box.dmi'
 	icon_state = "vialbox"
-	req_access = list(ACCESS_MEDICAL)
+	req_access_default = list(ACCESS_MEDICAL)
 	icon_locked = "vialbox"
 	icon_closed = "vialbox"
 	icon_broken = "vialbox"
@@ -289,7 +289,7 @@
 /obj/item/storage/lockbox/vialbox/virology
 	name = "virology vial box"
 	desc = "A small box that can hold up to six vials in a sealed enviroment. This one requires virology access to open."
-	req_access = list(ACCESS_MEDICAL)
+	req_access_default = list(ACCESS_MEDICAL)
 
 /obj/item/storage/lockbox/vialbox/virology/PopulateContents()
 	new /obj/item/reagent_containers/glass/bottle/vial/cold(src)

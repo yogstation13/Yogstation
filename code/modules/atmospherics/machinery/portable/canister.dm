@@ -32,7 +32,7 @@
 	var/maximum_timer_set = 300
 	var/timing = FALSE
 	var/restricted = FALSE
-	req_access = list()
+	req_access_default = list()
 
 	var/update = 0
 	//list of canister types for relabeling

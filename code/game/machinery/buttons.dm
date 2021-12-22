@@ -225,27 +225,27 @@
 /obj/machinery/button/door/incinerator_vent_toxmix
 	name = "combustion chamber vent control"
 	id = INCINERATOR_TOXMIX_VENT
-	req_access = list(ACCESS_TOX)
+	req_access_default = list(ACCESS_TOX)
 
 /obj/machinery/button/door/incinerator_vent_atmos_main
 	name = "turbine vent control"
 	id = INCINERATOR_ATMOS_MAINVENT
-	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
+	req_one_access_default = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
 
 /obj/machinery/button/door/incinerator_vent_atmos_aux
 	name = "combustion chamber vent control"
 	id = INCINERATOR_ATMOS_AUXVENT
-	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
+	req_one_access_default = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
 
 /obj/machinery/button/door/incinerator_vent_syndicatelava_main
 	name = "turbine vent control"
 	id = INCINERATOR_SYNDICATELAVA_MAINVENT
-	req_access = list(ACCESS_SYNDICATE)
+	req_access_default = list(ACCESS_SYNDICATE)
 
 /obj/machinery/button/door/incinerator_vent_syndicatelava_aux
 	name = "combustion chamber vent control"
 	id = INCINERATOR_SYNDICATELAVA_AUXVENT
-	req_access = list(ACCESS_SYNDICATE)
+	req_access_default = list(ACCESS_SYNDICATE)
 
 /obj/machinery/button/massdriver
 	name = "mass driver button"
@@ -296,7 +296,7 @@
 	icon_state = "launcher"
 	skin = "launcher"
 	device_type = /obj/item/assembly/control/crematorium
-	req_access = list()
+	req_access_default = list()
 	id = 1
 
 /obj/machinery/button/crematorium/indestructible

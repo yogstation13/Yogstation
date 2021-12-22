@@ -17,7 +17,7 @@
 	var/temp_tolerance_low = 0
 	var/temp_tolerance_high = T20C
 	var/temp_penalty_coefficient = 0.5	//1 = -1 points per degree above high tolerance. 0.5 = -0.5 points per degree above high tolerance.
-	req_access = list(ACCESS_RD) //ONLY THE R&D CAN CHANGE SERVER SETTINGS.
+	req_access_default = list(ACCESS_RD) //ONLY THE R&D CAN CHANGE SERVER SETTINGS.
 
 /obj/machinery/rnd/server/Initialize()
 	. = ..()
@@ -148,7 +148,7 @@
 	var/obj/machinery/rnd/server/temp_server
 	var/list/servers = list()
 	var/list/consoles = list()
-	req_access = list(ACCESS_RD)
+	req_access_default = list(ACCESS_RD)
 	var/badmin = 0
 	circuit = /obj/item/circuitboard/computer/rdservercontrol
 

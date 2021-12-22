@@ -18,7 +18,7 @@
 
 /obj/machinery/ministile/hop
 	name = "HOP line turnstile"
-	req_one_access = list(ACCESS_HEADS)
+	req_one_access_default = list(ACCESS_HEADS)
 	
 /obj/machinery/ministile/Initialize()
 	. = ..()

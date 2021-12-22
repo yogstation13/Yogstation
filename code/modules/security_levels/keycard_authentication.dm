@@ -13,7 +13,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON
-	req_access = list(ACCESS_KEYCARD_AUTH)
+	req_access_default = list(ACCESS_KEYCARD_AUTH)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/datum/callback/ev
 	var/event = ""

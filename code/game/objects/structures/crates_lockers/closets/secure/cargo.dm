@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/quartermaster
 	name = "\proper quartermaster's locker"
-	req_access = list(ACCESS_QM)
+	req_access_default = list(ACCESS_QM)
 	icon_state = "qm"
 
 /obj/structure/closet/secure_closet/quartermaster/PopulateContents()

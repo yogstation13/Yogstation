@@ -6,7 +6,7 @@
 	icon_screen = "dna"
 	icon_keyboard = "med_key"
 	circuit = /obj/item/circuitboard/computer/cloning
-	req_access = list(ACCESS_GENETICS) //for modifying records
+	req_access_default = list(ACCESS_GENETICS) //for modifying records
 	var/obj/machinery/dna_scannernew/scanner //Linked scanner. For scanning.
 	var/list/pods //Linked cloning pods
 	var/temp = "Inactive"

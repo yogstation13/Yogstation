@@ -29,10 +29,15 @@
 	var/list/unique_reskin //List of options to reskin.
 
 	// Access levels, used in modules\jobs\access.dm
+	// Base var is the access on the object
+	// _default is the default access for the machine
+	// _txt is a text string used in the map, overrides _default
 	var/list/req_access
-	var/req_access_txt = "0"
+	var/list/req_access_default
+	var/req_access_txt = "-1"
 	var/list/req_one_access
-	var/req_one_access_txt = "0"
+	var/list/req_one_access_default
+	var/req_one_access_txt = "-1"
 
 	var/renamedByPlayer = FALSE //set when a player uses a pen on a renamable object
 

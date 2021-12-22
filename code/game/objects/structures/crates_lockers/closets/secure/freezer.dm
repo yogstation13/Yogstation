@@ -34,7 +34,7 @@
 
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "kitchen cabinet"
-	req_access = list(ACCESS_KITCHEN)
+	req_access_default = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/PopulateContents()
 	..()
@@ -47,7 +47,7 @@
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance
 	name = "maintenance refrigerator"
 	desc = "This refrigerator looks quite dusty, is there anything edible still inside?"
-	req_access = list()
+	req_access_default = list()
 
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance/PopulateContents()
 	..()
@@ -59,11 +59,11 @@
 		new /obj/item/storage/box/fancy/egg_box(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
-	req_access = list()
+	req_access_default = list()
 
 /obj/structure/closet/secure_closet/freezer/meat
 	name = "meat fridge"
-	req_access = list(ACCESS_KITCHEN)
+	req_access_default = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/meat/PopulateContents()
 	..()
@@ -72,13 +72,13 @@
 	new /obj/item/storage/box/mixedcubes(src) // yogs change added mixed cubes to meat freezer
 
 /obj/structure/closet/secure_closet/freezer/meat/open
-	req_access = null
+	req_access_default = null
 	locked = FALSE
 
 
 /obj/structure/closet/secure_closet/freezer/fridge
 	name = "refrigerator"
-	req_access = list(ACCESS_KITCHEN)
+	req_access_default = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/fridge/PopulateContents()
 	..()
@@ -90,13 +90,13 @@
 		new /obj/item/storage/box/fancy/egg_box(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge/open
-	req_access = null
+	req_access_default = null
 	locked = FALSE
 
 /obj/structure/closet/secure_closet/freezer/money
 	name = "freezer"
 	desc = "This contains cold hard cash."
-	req_access = list(ACCESS_VAULT)
+	req_access_default = list(ACCESS_VAULT)
 
 /obj/structure/closet/secure_closet/freezer/money/PopulateContents()
 	..()
@@ -110,7 +110,7 @@
 /obj/structure/closet/secure_closet/freezer/cream_pie
 	name = "cream pie closet"
 	desc = "Contains pies filled with cream and/or custard, you sickos."
-	req_access = list(ACCESS_THEATRE)
+	req_access_default = list(ACCESS_THEATRE)
 
 /obj/structure/closet/secure_closet/freezer/cream_pie/PopulateContents()
 	..()

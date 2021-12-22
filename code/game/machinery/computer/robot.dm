@@ -3,7 +3,7 @@
 	desc = "Used to remotely lockdown or detonate linked Cyborgs and Drones."
 	icon_screen = "robot"
 	icon_keyboard = "rd_key"
-	req_access = list(ACCESS_ROBOTICS)
+	req_access_default = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/computer/robotics
 	light_color = LIGHT_COLOR_PINK
 	var/temp = null

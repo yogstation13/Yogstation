@@ -318,7 +318,7 @@
 	..()
 
 /obj/machinery/bot_core/firebot
-	req_one_access = list(ACCESS_CONSTRUCTION, ACCESS_ROBOTICS)
+	req_one_access_default = list(ACCESS_CONSTRUCTION, ACCESS_ROBOTICS)
 
 #undef SPEECH_INTERVAL
 #undef DETECTED_VOICE_INTERVAL

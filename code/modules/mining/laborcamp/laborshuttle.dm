@@ -4,7 +4,7 @@
 	circuit = /obj/item/circuitboard/computer/labor_shuttle
 	shuttleId = "laborcamp"
 	possible_destinations = "laborcamp_home;laborcamp_away"
-	req_access = list(ACCESS_BRIG)
+	req_access_default = list(ACCESS_BRIG)
 
 
 /obj/machinery/computer/shuttle/labor/one_way
@@ -12,7 +12,7 @@
 	desc = "A one-way shuttle console, used to summon the shuttle to the labor camp."
 	possible_destinations = "laborcamp_away"
 	circuit = /obj/item/circuitboard/computer/labor_shuttle/one_way
-	req_access = list( )
+	req_access_default = list( )
 
 /obj/machinery/computer/shuttle/labor/one_way/launch_check(mob/user)
 	. = ..()

@@ -3,7 +3,7 @@
 	desc = "A vending machine for costumes."
 	icon_state = "theater"
 	icon_deny = "theater-deny"
-	req_access = list(ACCESS_THEATRE)
+	req_access_default = list(ACCESS_THEATRE)
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
 	vend_reply = "Thank you for using AutoDrobe!"
 	products = list(/obj/item/clothing/suit/chickensuit = 1,
@@ -230,7 +230,7 @@
 
 /obj/machinery/vending/autodrobe/all_access
 	desc = "A vending machine for costumes. This model appears to have no access restrictions."
-	req_access = null
+	req_access_default = null
 
 /obj/item/vending_refill/autodrobe
 	machine_name = "AutoDrobe"
@@ -241,7 +241,7 @@
 	desc = "A vending machine for captain outfits."
 	icon_state = "capdrobe"
 	icon_deny = "capdrobe-deny"
-	req_access = list(ACCESS_CAPTAIN)
+	req_access_default = list(ACCESS_CAPTAIN)
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use the Captain's Autodrobe!"
 	vend_reply = "Thank you for using the Captain's Autodrobe!"
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/captain = 1,
