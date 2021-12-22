@@ -64,14 +64,14 @@
 		if(has_req_txt)
 			req_access = text2access(req_access_txt)
 		else if(req_access_default && !has_req_one_txt) // Allow req_access_default to be overridden by req_one_access_txt
-			req_access = req_access_default
+			req_access = req_access_default.Copy()
 
 	if(!req_one_access)
 		req_one_access = list()
 		if(has_req_one_txt)
 			req_one_access = text2access(req_one_access_txt)
 		else if(req_one_access_default && !has_req_txt)
-			req_one_access = req_one_access_default
+			req_one_access = req_one_access_default.Copy()
 
 /// Check if an item has access to this object
 /obj/proc/check_access(obj/item/I)
