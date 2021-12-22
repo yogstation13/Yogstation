@@ -21584,13 +21584,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/captain)
-"aVo" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "aVp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -22366,8 +22359,7 @@
 /area/maintenance/department/engine)
 "aWL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1;
-	icon_state = "vent_map_on-1"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/construction)
@@ -49638,7 +49630,6 @@
 	dir = 8;
 	network = list("ss13","Cargo","Command")
 	},
-/obj/machinery/computer/stockexchange,
 /obj/machinery/status_display/supply{
 	pixel_x = 32
 	},
@@ -57389,8 +57380,7 @@
 "cpq" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -59296,14 +59286,6 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/purple,
-/area/crew_quarters/heads/hor)
-"cto" = (
-/obj/structure/rack,
-/obj/item/circuitboard/aicore{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel,
 /area/crew_quarters/heads/hor)
 "ctp" = (
 /obj/structure/rack,
@@ -76972,8 +76954,7 @@
 /area/teleporter/hub/evac)
 "ddp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
 	dir = 8;
@@ -83145,8 +83126,7 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8;
-	icon_state = "vent_map_on-1"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -89123,6 +89103,11 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
+"uRy" = (
+/obj/structure/rack,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hor)
 "uSP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/snack/random,
@@ -124366,7 +124351,7 @@ crA
 cvA
 cwh
 csO
-cto
+uRy
 cOk
 aoU
 aaa
@@ -141477,7 +141462,7 @@ azB
 hMY
 aRF
 aUP
-aVo
+aye
 axD
 aWW
 bas
@@ -146616,7 +146601,7 @@ aBj
 aBj
 aJK
 aRX
-aVo
+aye
 ach
 aFk
 aFk

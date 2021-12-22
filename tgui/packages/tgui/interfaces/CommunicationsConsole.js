@@ -390,6 +390,7 @@ const PageMain = (props, context) => {
 
           {!!canPrintId && <Button
             icon="id-card"
+            disabled={!importantActionReady}
             content="Print Emergency ID"
             onClick={() => act("printSpare")}
           />}
