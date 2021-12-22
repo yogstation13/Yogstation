@@ -28,7 +28,7 @@
 // ===== TELECOMS CONSOLE =====
 /obj/machinery/modular_computer/console/preset/tcomms
 	console_department = "Engineering"
-	name = "telecomunications console"
+	name = "telecommunications console"
 	desc = "A stationary computer. This one comes preloaded with engineering programs targeted at monitoring telecomunications traffic."
 	starting_files = list(	new /datum/computer_file/program/ntnetmonitor,
 							new /datum/computer_file/program/chatclient)

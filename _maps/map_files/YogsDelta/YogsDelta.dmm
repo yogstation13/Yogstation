@@ -108238,13 +108238,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"doM" = (
-/obj/structure/table/reinforced,
-/obj/item/aicard,
-/obj/item/circuitboard/aicore,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hor)
 "doN" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -126446,6 +126439,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_a)
+"tcJ" = (
+/obj/structure/table/reinforced,
+/obj/item/aicard,
+/obj/effect/turf_decal/bot,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hor)
 "tdY" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue,
@@ -163173,7 +163173,7 @@ cgA
 ceU
 dlE
 dmS
-doM
+tcJ
 dqC
 drX
 dtq

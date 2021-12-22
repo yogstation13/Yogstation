@@ -21584,12 +21584,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/captain)
-"aVo" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "aVp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -59269,14 +59263,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
-"cto" = (
-/obj/structure/rack,
-/obj/item/circuitboard/aicore{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hor)
 "ctp" = (
 /obj/structure/rack,
 /obj/item/taperecorder{
@@ -89097,6 +89083,11 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
+"uRy" = (
+/obj/structure/rack,
+/obj/item/circuitboard/computer/ai_upload_download,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hor)
 "uSP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/snack/random,
@@ -124387,7 +124378,7 @@ crA
 cvA
 cwh
 csO
-cto
+uRy
 cOk
 aoU
 aaa
@@ -141498,7 +141489,7 @@ azB
 hMY
 aRF
 aUP
-aVo
+aye
 axD
 aWW
 bas
@@ -146637,7 +146628,7 @@ aBj
 aBj
 aJK
 aRX
-aVo
+aye
 ach
 aFk
 aFk
