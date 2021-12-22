@@ -28,22 +28,14 @@ nobliumformation = 1001
 
 /proc/init_gas_reactions()
 	. = list()
-	for(var/type in subtypesof(/datum/gas))
-		.[type] = list()
 
 	for(var/r in subtypesof(/datum/gas_reaction))
 		var/datum/gas_reaction/reaction = r
 		if(initial(reaction.exclude))
 			continue
 		reaction = new r
-		var/datum/gas/reaction_key
-		for (var/req in reaction.min_requirements)
-			if (ispath(req))
-				var/datum/gas/req_gas = req
-				if (!reaction_key || initial(reaction_key.rarity) > initial(req_gas.rarity))
-					reaction_key = req_gas
-		.[reaction_key] += list(reaction)
-		sortTim(., /proc/cmp_gas_reactions, TRUE)
+		. += reaction
+	sortTim(., /proc/cmp_gas_reactions)
 
 /proc/cmp_gas_reactions(list/datum/gas_reaction/a, list/datum/gas_reaction/b) // compares lists of reactions by the maximum priority contained within the list
 	if (!length(a) || !length(b))
@@ -105,9 +97,42 @@ nobliumformation = 1001
 		air.adjust_moles(GAS_H2O, -MOLES_GAS_VISIBLE)
 		. = REACTING
 
+/datum/gas_reaction/nitrous_decomp
+	priority = 0
+	name = "Nitrous Oxide Decomposition"
+	id = "nitrous_decomp"
+
+/datum/gas_reaction/nitrous_decomp/init_reqs()
+	min_requirements = list(
+		"TEMP" = N2O_DECOMPOSITION_MIN_ENERGY,
+		GAS_NITROUS = MINIMUM_MOLE_COUNT
+	)
+
+/datum/gas_reaction/nitrous_decomp/react(datum/gas_mixture/air, datum/holder)
+	var/energy_released = 0
+	var/old_heat_capacity = air.heat_capacity() //this speeds things up because accessing datum vars is slow
+	var/temperature = air.return_temperature()
+	var/burned_fuel = 0
+
+
+	burned_fuel = max(0,0.00002*(temperature-(0.00001*(temperature**2))))*air.get_moles(GAS_NITROUS)
+	air.set_moles(GAS_NITROUS, air.get_moles(GAS_NITROUS) - burned_fuel)
+
+	if(burned_fuel)
+		energy_released += (N2O_DECOMPOSITION_ENERGY_RELEASED * burned_fuel)
+
+		air.set_moles(GAS_O2, air.get_moles(GAS_O2) + burned_fuel/2)
+		air.set_moles(GAS_N2, air.get_moles(GAS_N2) + burned_fuel)
+
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.set_temperature((temperature*old_heat_capacity + energy_released)/new_heat_capacity)
+		return REACTING
+	return NO_REACTION
+
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/tritfire
-	priority = -2 //fire should ALWAYS be last, but tritium fires happen before plasma fires
+	priority = -1 //fire should ALWAYS be last, but tritium fires happen before plasma fires
 	name = "Tritium Combustion"
 	id = "tritfire"
 
@@ -117,6 +142,20 @@ nobliumformation = 1001
 		GAS_TRITIUM = MINIMUM_MOLE_COUNT,
 		GAS_O2 = MINIMUM_MOLE_COUNT
 	)
+
+// Called from auxmos internals
+/proc/fire_expose(turf/open/location, datum/gas_mixture/air, temperature)
+	if(istype(location) && temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+		location.hotspot_expose(temperature, CELL_VOLUME)
+		for(var/I in location)
+			var/atom/movable/item = I
+			item.temperature_expose(air, temperature, CELL_VOLUME)
+		location.temperature_expose(air, temperature, CELL_VOLUME)
+
+// Called from auxmos internals
+/proc/radiation_burn(turf/open/location, energy_released)
+	if(istype(location) && prob(10))
+		radiation_pulse(location, energy_released/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 
 /datum/gas_reaction/tritfire/react(datum/gas_mixture/air, datum/holder)
 	var/energy_released = 0
@@ -166,7 +205,7 @@ nobliumformation = 1001
 
 //plasma combustion: combustion of oxygen and plasma (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/plasmafire
-	priority = -4 //fire should ALWAYS be last, but plasma fires happen after tritium fires
+	priority = -2 //fire should ALWAYS be last, but plasma fires happen after tritium fires
 	name = "Plasma Combustion"
 	id = "plasmafire"
 
