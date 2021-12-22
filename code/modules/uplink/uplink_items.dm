@@ -1622,6 +1622,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	restricted = TRUE
 
+/datum/uplink_item/device_tools/potion/traitor
+	name = "Lesser Syndicate Sentience Potion"
+	item = /obj/item/slimepotion/slime/sentience/traitor
+	desc = "With recent advancements in Syndicate technology thanks to stolen slime cores, the Syndicate have created their own sentience potions. \
+			Using it will make any animal sentient, and bound to serve you, but as slime cores are still a hot commodity in the black market, they aint cheap."
+	cost = 12
+	include_modes = list() //clear the list
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
+
 /datum/uplink_item/device_tools/suspiciousphone
 	name = "Protocol CRAB-17 Phone"
 	desc = "The Protocol CRAB-17 Phone, a phone borrowed from an unknown third party, it can be used to crash the space market, funneling the losses of the crew to your bank account.\
