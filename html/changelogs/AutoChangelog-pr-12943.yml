@@ -1,4 +1,0 @@
-author: "  TheGamerdk & Alexkar598"
-delete-after: true 
-changes: 
-  - bugfix: "Your sound preferences should no longer be reverted if you have enabled alternative sounds and VOX"
