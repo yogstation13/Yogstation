@@ -25,7 +25,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
-	unsuitable_atmos_damage = 0.4
+	unsuitable_atmos_damage = 0.5
 
 	var/playstyle_string = span_bold(span_big("You are an eldritch horror,") + " an evermutating parasitic abomination. Seek human souls to consume. \
 							Crawl into people's heads and steal their essence. Use it to mutate yourself, giving you access to more power and abilities. \
@@ -39,6 +39,7 @@
 	var/consumed_souls = 0
 	var/list/horrorabilities = list() //An associative list (associated by ability typepaths) containing the abilities the horror has
 	var/list/horrorupgrades = list()		  //same (associated by their ID), but for permanent upgrades
+	var/list/clothing = list()		//list storing what items we have to un-glue when stopping mind control
 	var/bonding = FALSE
 	var/controlling = FALSE
 	var/chemicals = 10
@@ -227,11 +228,11 @@
 		if(!input)
 			return
 
-		to_chat(B, span_changeling("<i>[real_name] says:</i> [input]"))
+		to_chat(B, span_changeling("<i>[src.name] says:</i> [input]"))
 
 		for(var/M in GLOB.dead_mob_list)
 			if(isobserver(M))
-				var/rendered = span_changeling("<i>Horror Communication from <b>[real_name]</b> : [input]</i>")
+				var/rendered = span_changeling("<i>Horror Communication from <b>[B.truename]</b> : [input]</i>")
 				var/link = FOLLOW_LINK(M, src)
 				to_chat(M, "[link] [rendered]")
 		to_chat(src, span_changeling("<i>[src] says:</i> [input]"))
@@ -343,12 +344,10 @@
 	var/mob/living/carbon/C = choices.len > 1 ? input(src,"Who do you wish to infest?") in null|choices : choices[1]
 	if(!C || !src || !Adjacent(C))
 		return
+
 	if(C.has_horror_inside())
 		to_chat(src, span_warning("[C] is already infested!"))
 		return
-		
-	if(C.stat == DEAD) //hey look something's entered your head, maybe they'll try to revive you
-		victim.grab_ghost(force = TRUE)
 
 	to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at their ear canal..."))
 	if(!do_mob(src, C, 30))
@@ -361,7 +360,7 @@
 	Infect(C)
 
 /mob/living/simple_animal/horror/proc/Infect(mob/living/carbon/C)
-	if(stat == DEAD || !C)
+	if(!C)
 		return
 	var/obj/item/bodypart/head/head = C.get_bodypart(BODY_ZONE_HEAD)
 	if(!head)
@@ -378,8 +377,10 @@
 	if(C.has_horror_inside())
 		to_chat(src, span_warning("[C] is already infested!"))
 		return
+	if(C.stat == DEAD) //hey look something's entered your head, maybe they'll try to revive you
+		victim.grab_ghost(force = TRUE)
 
-	if((!C.key || !C.mind) && C != target.current)
+	if((!C.key || !C.mind) && target && C != target.current)
 		to_chat(src, span_warning("[C]'s mind seems unresponsive. Try someone else!"))
 		return
 
@@ -584,7 +585,7 @@
 	if(!has_chemicals(250))
 		to_chat(src, span_warning("You need 250 chemicals to use this!"))
 		return
-	
+
 	if(HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN))
 		to_chat(src, span_warning("Their DNA is completely destroyed! You can't revive them"))
 		return
@@ -618,7 +619,7 @@
 		to_chat(victim, span_userdanger("You bolt upright, gasping for breath!"))
 		victim.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, 1, FALSE)
 		playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
-		
+
 
 /mob/living/simple_animal/horror/proc/view_memory()
 	if(!victim)
@@ -729,6 +730,10 @@
 		log_game("[src]/([src.ckey]) assumed control of [victim]/([victim.ckey] with eldritch powers.")
 		to_chat(src, span_warning("You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system."))
 		to_chat(victim, span_userdanger("You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours."))
+		
+		clothing = victim.get_equipped_items()
+		for(var/obj/item/I in clothing)
+			ADD_TRAIT(I, TRAIT_NODROP, HORROR_TRAIT)
 
 		qdel(host_brain)
 		host_brain = new(src)
@@ -784,6 +789,10 @@
 	RemoveControlActions()
 	RefreshAbilities()
 	talk_to_horror_action.Grant(victim)
+	
+	for(var/obj/item/I in clothing)
+		REMOVE_TRAIT(I, TRAIT_NODROP, HORROR_TRAIT)
+	clothing = list()
 
 	victim.med_hud_set_status()
 	victim.remove_status_effect(/datum/status_effect/agent_pinpointer/horror)
