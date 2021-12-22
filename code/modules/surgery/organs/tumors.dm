@@ -29,10 +29,12 @@
 		return
 	if(!(src in owner.internal_organs))
 		Remove(owner)
-	owner.adjustToxLoss(strength) //still damages you no matter what, but at least helpful if it's a good virus.
 	if(helpful)
+		owner.adjustToxLoss(strength/2)
 		owner.adjustBruteLoss(-(strength/2))
 		owner.adjustFireLoss(-(strength/2))
+	else
+		owner.adjustToxLoss(strength) //just take toxin damage
 	if(prob(spread_chance))
 		spread()
 
