@@ -144,6 +144,13 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 	visible_message(new_mob_message)
 	check_success()
+
+	GLOB.poi_list -= src
+	var/list/spawners = GLOB.mob_spawners[initial(name)]
+	LAZYREMOVE(spawners, src)
+	if(!LAZYLEN(spawners))
+		GLOB.mob_spawners -= initial(name)
+
 	return TRUE
 
 
