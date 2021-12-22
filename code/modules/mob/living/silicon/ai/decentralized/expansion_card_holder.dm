@@ -112,10 +112,10 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			use_power = IDLE_POWER_USE
 			return FALSE
 		else
-			if(default_deconstruction_crowbar(O))
+			if(default_deconstruction_crowbar(W))
 				return TRUE
 
-	if(default_deconstruction_screwdriver(user, "autolathe_o", "processor", O))
+	if(default_deconstruction_screwdriver(user, "autolathe_o", "processor", W))
 		return TRUE
 
 	return ..()
