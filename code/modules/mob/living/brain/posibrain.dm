@@ -117,11 +117,6 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 	brainmob.mind.remove_all_antag()
 	brainmob.mind.wipe_memory()
-	GLOB.poi_list -= src
-	var/list/spawners = GLOB.mob_spawners[initial(name)]
-	LAZYREMOVE(spawners, src)
-	if(!LAZYLEN(spawners))
-		GLOB.mob_spawners -= initial(name)
 	update_icon()
 	return ..()
 
