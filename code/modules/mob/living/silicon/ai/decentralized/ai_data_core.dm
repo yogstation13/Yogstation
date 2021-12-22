@@ -45,6 +45,14 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	
 	..()
 
+/obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
+	if(default_deconstruction_screwdriver(user, "hub_o", "hub", O))
+		return TRUE
+
+	if(default_deconstruction_crowbar(O))
+		return TRUE
+	return ..()
+
 /obj/machinery/ai/data_core/examine(mob/user)
 	. = ..()
 	if(!isobserver(user))

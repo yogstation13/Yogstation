@@ -111,6 +111,13 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			to_chat(user, span_notice("You remove all the cards from [src]"))
 			use_power = IDLE_POWER_USE
 			return FALSE
+		else
+			if(default_deconstruction_crowbar(O))
+				return TRUE
+
+	if(default_deconstruction_screwdriver(user, "autolathe_o", "processor", O))
+		return TRUE
+
 	return ..()
 
 /obj/machinery/ai/expansion_card_holder/examine()

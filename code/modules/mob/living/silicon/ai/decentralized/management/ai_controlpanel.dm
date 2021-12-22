@@ -62,6 +62,25 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		qdel(W)
 		to_chat(user, span_notice("AI succesfully uploaded."))
 		return FALSE
+	if(istype(W, /obj/item/surveillance_upgrade))
+		if(!authenticated)
+			to_chat(user, span_warning("You need to be logged in to do this!"))
+			return ..()
+		var/mob/living/silicon/ai/AI = input("Select an AI", "Select an AI", null, null) as null|anything in GLOB.ai_list
+		if(!AI)
+			return ..()
+		var/obj/item/surveillance_upgrade/upgrade = W
+		W.afterattack(AI, user)
+
+	if(istype(W, /obj/item/malf_upgrade))
+		if(!authenticated)
+			to_chat(user, span_warning("You need to be logged in to do this!"))
+			return ..()
+		var/mob/living/silicon/ai/AI = input("Select an AI", "Select an AI", null, null) as null|anything in GLOB.ai_list
+		if(!AI)
+			return ..()
+		var/obj/item/malf_upgrade/upgrade = W
+		W.afterattack(AI, user)
 
 	return ..()
 
@@ -226,6 +245,9 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(!GLOB.ai_control_code)
 				return
 
+			if(!is_station_level(z))
+				to_chat(usr, span_warning("Unable to connect to NT Servers. Please verify you are onboard the station."))
+				return
 
 			if(code == text2num(GLOB.ai_control_code))
 				cleared_for_use = TRUE
