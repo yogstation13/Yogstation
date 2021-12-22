@@ -11,6 +11,8 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 	var/cleared_for_use = FALSE //Have we inserted the RDs code to unlock upload/download?
 
+	var/one_time_password_used = FALSE //Did we use the one time password to log in? If so disallow logging out.
+
 	authenticated = FALSE
 
 	var/obj/item/aicard/intellicard
@@ -191,6 +193,8 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	if(isAI(user))
 		data["current_ai_ref"] = REF(user)
 
+	data["can_log_out"] = !one_time_password_used
+
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list)
 		var/being_hijacked = A.hijacking ? TRUE : FALSE
 		data["ais"] += list(list("name" = A.name, "ref" = REF(A), "can_download" = A.can_download, "health" = A.health, "active" = A.mind ? TRUE : FALSE, "being_hijacked" = being_hijacked, "in_core" = istype(A.loc, /obj/machinery/ai/data_core)))
@@ -292,6 +296,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(code == text2num(GLOB.ai_control_code))
 				cleared_for_use = TRUE
 				authenticated = TRUE
+				one_time_password_used = TRUE
 				var/msg = "<h4>Warning!</h4><br>We have detected usage of the AI Control Code for unlocking a console at coordinates ([src.x], [src.y], [src.z]) by [usr.name]. Please verify that this is correct. Be aware we have cancelled the current control code.<br>\
 				If needed a new code can be printed at a communications console."
 				priority_announce(msg, sender_override = "Central Cyber Security Update", has_important_message = TRUE)
@@ -302,6 +307,8 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 	switch(action)
 		if("log_out")
+			if(one_time_password_used)
+				return
 			authenticated = FALSE
 			. = TRUE
 		if("upload_intellicard")

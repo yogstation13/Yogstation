@@ -64,7 +64,7 @@ export const AiControlPanel = (props, context) => {
               <Section title="Upload" buttons={(
                 <Fragment>
                   <Button onClick={() => act("eject_intellicard")} color="bad" icon="eject" tooltip="Ejects IntelliCard, cancelling any current downloads" disabled={!data.intellicard}>Eject IntelliCard</Button>
-                  <Button icon="sign-out-alt" color="bad" onClick={() => act("log_out")}>Log Out</Button>
+                  <Button icon="sign-out-alt" color="bad" tooltip={!data.can_log_out ? "This console has administrator privileges and cannot be logged out of." : null} disabled={!data.can_log_out} onClick={() => act("log_out")}>Log Out</Button>
                 </Fragment>
               )}>
                 <NoticeBox>Upload also possible by inserting an MMI or Positronic Brain</NoticeBox>

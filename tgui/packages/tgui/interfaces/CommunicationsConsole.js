@@ -399,6 +399,7 @@ const PageMain = (props, context) => {
             icon="key"
             disabled={!importantActionReady}
             content="Print AI Control Code"
+            tooltip={"Prints a password for making new AI control consoles. Will cancel all previous passwords."}
             onClick={() => act("printAIControlCode")}
           />}
 
