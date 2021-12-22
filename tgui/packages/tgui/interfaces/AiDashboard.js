@@ -170,14 +170,14 @@ export const AiDashboard = (props, context) => {
               }
               return project.category === selectedCategory;
             }).map((project, index) => (
-              <Section key={index} title={(<Box inline color={project.can_be_run ? project.running ? "lightgreen" : "bad" : "lightgreen"}>
-                {project.name} | {project.can_be_run ? project.running ? "Running" : "Not Running" : "Passive"}</Box>)} buttons={!!project.can_be_run && (
-                    <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
-                      project_name: project.name,
-                    })}
-                  >{project.running ? "Stop" : "Run"}
+              <Section key={index} title={(<Box inline color={project.can_be_run ? project.running ? "lightgreen" : "bad" : "lightgreen"}> {project.name} | {project.can_be_run ? project.running ? "Running" : "Not Running" : "Passive"}</Box>)}
+                buttons={!!project.can_be_run && (
+                  <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
+                    project_name: project.name,
+                  })}>
+                    {project.running ? "Stop" : "Run"}
                   </Button>
-              )}>
+                )}>
                 {!!project.can_be_run && (
                   <Box bold>RAM Requirement: {project.ram_required} TB</Box>
                 )}
@@ -193,17 +193,22 @@ export const AiDashboard = (props, context) => {
             {data.chargeable_abilities.filter(ability => {
               return ability.uses < ability.max_uses;
             }).map((ability, index) => (
-              <Section key={index} title={(<Box inline>
-                {ability.name} | Uses Remaining: {ability.uses}/{ability.max_uses}</Box>)} buttons={(
-                <Fragment>
-                  <Box inline bold>Assigned CPU:&nbsp;</Box>
-                  <NumberInput value={ability.assigned_cpu} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_recharge_cpu', {
-                    project_name: ability.project_name,
-                    amount: value,
-                  })} />
-                  <Box inline bold>&nbsp;THz</Box>
-                </Fragment>
-              )}>
+              <Section key={index}
+                title={(
+                  <Box inline>
+                    {ability.name} | Uses Remaining: {ability.uses}/{ability.max_uses}
+                  </Box>
+                )}
+                buttons={(
+                  <Fragment>
+                    <Box inline bold>Assigned CPU:&nbsp;</Box>
+                    <NumberInput value={ability.assigned_cpu} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_recharge_cpu', {
+                      project_name: ability.project_name,
+                      amount: value,
+                    })} />
+                    <Box inline bold>&nbsp;THz</Box>
+                  </Fragment>
+                )}>
                 <ProgressBar value={ability.progress / ability.cost} />
               </Section>
             ))}

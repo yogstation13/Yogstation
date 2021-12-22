@@ -15,6 +15,7 @@
 	research_requirements_text = "Bluespace Induction Basics"
 	research_requirements = list(/datum/ai_project/induction_basic)
 	category = AI_PROJECT_INDUCTION
+	
 	can_be_run = FALSE
 	ability_path = /datum/action/innate/ai/ranged/charge_borg_or_apc
 	ability_recharge_cost = 1500
@@ -38,6 +39,7 @@
 	research_requirements_text = "Bluespace Induction Basics"
 	research_requirements = list(/datum/ai_project/induction_basic)
 	category = AI_PROJECT_INDUCTION
+	
 	can_be_run = FALSE
 	ability_path = /datum/action/innate/ai/ranged/charge_borg_or_apc
 	ability_recharge_cost = 1500
