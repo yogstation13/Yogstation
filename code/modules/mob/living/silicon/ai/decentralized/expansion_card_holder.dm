@@ -22,6 +22,8 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	var/was_valid_holder = FALSE
 	//Atmos hasn't run at the start so this has to be set to true if you map it in
 	var/roundstart = FALSE
+	///How many ticks we can go without fulfilling the criteria before shutting off
+	var/valid_ticks = MAX_AI_EXPANSION_TICKS
 
 
 /obj/machinery/ai/expansion_card_holder/Initialize(mapload)
@@ -39,7 +41,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	..()
 
 /obj/machinery/ai/expansion_card_holder/process()
-	
+	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
 	if(valid_holder())
 
 		var/power_multiple = total_cpu ** (0.95) //Very slightly more efficient to centralize CPU.
@@ -53,15 +55,21 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			var/temperature_increase = total_usage / env.heat_capacity() //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 			T.air_update_turf()
+		
 	else if(was_valid_holder)
+		if(valid_ticks > 0)
+			return
 		was_valid_holder = FALSE
 		cut_overlays()
 		GLOB.ai_os.update_hardware()
 	
 /obj/machinery/ai/expansion_card_holder/valid_holder()
 	. = ..()
+	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
 	if(!.)
-		return
+		valid_ticks--
+		return .
+	valid_ticks++
 	if(!was_valid_holder)
 		update_icon()
 	was_valid_holder = TRUE

@@ -10,6 +10,8 @@
 ///How much power does the AI date core use while being in a valid state. This is also the base heat output. (Divide by heat capacity to get actual temperature increase)
 #define AI_DATA_CORE_POWER_USAGE 7500
 
+///How many ticks can an expanion bus store. If it reaches 0  the resources will no longer be available.
+#define MAX_AI_EXPANSION_TICKS 15
 ///How much power does a CPU card consume per tick?
 #define AI_BASE_POWER_PER_CPU 1500
 ///Multiplied by number of cards to see power consumption per tick. Added to by powerconsumption of CPUs
