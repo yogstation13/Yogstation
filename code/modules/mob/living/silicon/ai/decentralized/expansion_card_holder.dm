@@ -1,8 +1,3 @@
-#define TEMPERATURE_MULTIPLIER 2 //Thermodynamics? No... No I don't think that's a thing. Balance so we don't use an insane amount of power to produce noticeable heat
-
-#define BASE_POWER_PER_CPU 1000
-#define POWER_PER_CARD 500
-
 GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 /obj/machinery/ai/expansion_card_holder
@@ -49,37 +44,28 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 		var/power_multiple = total_cpu ** (0.95) //Very slightly more efficient to centralize CPU.
 
-		var/total_usage = (power_multiple * BASE_POWER_PER_CPU) + POWER_PER_CARD * installed_cards.len
+		var/total_usage = (power_multiple * AI_BASE_POWER_PER_CPU) + AI_POWER_PER_CARD * installed_cards.len
 		use_power(total_usage)
 
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env.heat_capacity())
 			var/temperature_increase = total_usage / env.heat_capacity() //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
-			env.set_temperature(env.return_temperature() + temperature_increase * TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
+			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
+			T.air_update_turf()
 	else if(was_valid_holder)
 		was_valid_holder = FALSE
 		cut_overlays()
 		GLOB.ai_os.update_hardware()
 	
 /obj/machinery/ai/expansion_card_holder/valid_holder()
-	if(stat & (BROKEN|NOPOWER|EMPED))
-		return FALSE
-	
-	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/env = T.return_air()
-	if(!env)
-		return FALSE
-	var/total_moles = env.total_moles()
-	if(istype(T, /turf/open/space) || total_moles < 10)
-		return FALSE
-	
-	if(env.return_temperature() > TEMP_LIMIT || !env.heat_capacity())
-		return FALSE
+	. = ..()
+	if(!.)
+		return
 	if(!was_valid_holder)
 		update_icon()
 	was_valid_holder = TRUE
-	return TRUE
+
 
 /obj/machinery/ai/expansion_card_holder/update_icon()
 	cut_overlays()
@@ -141,6 +127,3 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	installed_cards += cpu
 	installed_cards += ram
 	GLOB.ai_os.update_hardware()
-
-#undef BASE_POWER_PER_CPU
-#undef POWER_PER_CARD

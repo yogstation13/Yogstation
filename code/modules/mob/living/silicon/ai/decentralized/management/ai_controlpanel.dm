@@ -1,5 +1,3 @@
-#define AI_DOWNLOAD_PER_PROCESS 0.5
-
 GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 /obj/machinery/computer/ai_control_console

@@ -1,7 +1,5 @@
 GLOBAL_LIST_EMPTY(data_cores)
 GLOBAL_VAR_INIT(primary_data_core, null)
-#define MAX_AI_DATA_CORE_TICKS 15
-
 
 /obj/machinery/ai/data_core
 	name = "AI Data Core"
@@ -11,6 +9,10 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 	circuit = /obj/item/circuitboard/machine/ai_data_core
 	
+	active_power_usage = AI_DATA_CORE_POWER_USAGE
+	idle_power_usage = 1000
+	use_power = IDLE_POWER_USE
+
 	var/primary = FALSE
 
 	var/valid_ticks = MAX_AI_DATA_CORE_TICKS //Limited to MAX_AI_DATA_CORE_TICKS. Decrement by 1 every time we have an invalid tick, opposite when valid 
@@ -71,12 +73,23 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	
 	if(valid_holder())
 		valid_ticks++
+		use_power = ACTIVE_POWER_USE
 		warning_sent = FALSE
 	else
 		valid_ticks--
+		if(valid_ticks <= 0)
+			use_power = IDLE_POWER_USE
 		if(!warning_sent)
 			warning_sent = TRUE
 			to_chat(GLOB.ai_list, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Please contact technical support."))
+
+	if(!(stat & (BROKEN|NOPOWER|EMPED)))
+		var/turf/T = get_turf(src)
+		var/datum/gas_mixture/env = T.return_air()
+		if(env.heat_capacity())
+			var/temperature_increase = active_power_usage / env.heat_capacity() //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
+			T.air_update_turf()
 	
 /obj/machinery/ai/data_core/proc/can_transfer_ai()
 	if(stat & (BROKEN|NOPOWER|EMPED))
