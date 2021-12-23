@@ -53,9 +53,9 @@
 /datum/job/hop/get_mail_goodies(mob/recipient)
 	. = ..()
 	// Strange Reagent if the pet is dead.
-	//for(var/mob/living/simple_animal/pet/dog/corgi/ian/staff_pet in GLOB.dead_mob_list)
-	//	. += list(/datum/reagent/medicine/strange_reagent = 20)
-	//	break
+	for(var/mob/living/simple_animal/pet/dog/corgi/Ian/staff_pet in GLOB.dead_mob_list)
+		. += list(/datum/reagent/medicine/strange_reagent = 20)
+		break
 
 /datum/outfit/job/hop
 	name = "Head of Personnel"
