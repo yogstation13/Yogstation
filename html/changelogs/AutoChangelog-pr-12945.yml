@@ -1,0 +1,4 @@
+author: " Lucy"
+delete-after: true 
+changes: 
+  - bugfix: "Hopefully actually fixed scout holoparasites not being able to scout."
