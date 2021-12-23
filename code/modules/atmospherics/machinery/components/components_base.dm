@@ -133,10 +133,11 @@
 	for(var/i in 1 to device_type)
 		var/datum/pipeline/parent = parents[i]
 		if(!parent)
-			WARNING("Component is missing a pipenet! Rebuilding...")
+			//WARNING("Component is missing a pipenet! Rebuilding...")
+			//At pre-SSair_rebuild_pipenets times, not having a parent wasn't supposed to happen
 			SSair.add_to_rebuild_queue(src)
-		else
-			parent.update = 1
+			continue
+		parent.update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
 
 /obj/machinery/atmospherics/components/returnPipenets()
 	. = list()

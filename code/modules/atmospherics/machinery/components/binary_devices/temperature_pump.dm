@@ -32,18 +32,31 @@
 	icon_state = "tpump_[on && is_operational() ? "on" : "off"]-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/process_atmos()
-	..()
+
 	if(!on || !is_operational())
 		return
 
 	var/datum/gas_mixture/air_input = airs[1]
 	var/datum/gas_mixture/air_output = airs[2]
 
-	if((air_output.return_temperature() + heat_transfer_rate) >= air_input.return_temperature() || (air_input.return_temperature() - heat_transfer_rate) <= TCRYO)
+	if(!QUANTIZE(air_input.total_moles()) || !QUANTIZE(air_output.total_moles())) //Don't transfer if there's no gas
 		return
+	var/datum/gas_mixture/remove_input = air_input.remove_ratio(0.9)
+	var/datum/gas_mixture/remove_output = air_output.remove_ratio(0.9)
 
-	air_input.set_temperature(air_input.return_temperature() - heat_transfer_rate)
-	air_output.set_temperature(air_output.return_temperature() + heat_transfer_rate)
+	var/coolant_temperature_delta = remove_input.return_temperature() - remove_output.return_temperature()
+
+	if(coolant_temperature_delta > 0)
+		var/input_capacity = remove_input.heat_capacity()
+		var/output_capacity = air_output.heat_capacity()
+
+		var/cooling_heat_amount = (heat_transfer_rate * 0.01) * coolant_temperature_delta * (input_capacity * output_capacity / (input_capacity + output_capacity))
+		remove_input.set_temperature(max(remove_input.return_temperature() - (cooling_heat_amount / input_capacity), TCMB))
+		remove_output.set_temperature(max(remove_output.return_temperature() + (cooling_heat_amount / output_capacity), TCMB))
+
+	air_input.merge(remove_input)
+	air_output.merge(remove_output)
+
 	update_parents()
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/ui_interact(mob/user, datum/tgui/ui)
