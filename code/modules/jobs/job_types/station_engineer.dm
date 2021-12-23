@@ -28,8 +28,8 @@
 	mail_goodies = list(
 		/obj/item/storage/box/lights/mixed = 20,
 		/obj/item/lightreplacer = 10,
-		/obj/item/holosign_creator/engineering = 8
-		///obj/item/clothing/head/hardhat/red/upgraded = 1
+		/obj/item/holosign_creator/engineering = 8,
+		/obj/item/clothing/head/hardhat/red/upgraded = 1
 	)
 
 /datum/job/engineer/proc/EclipseStationChanges()
