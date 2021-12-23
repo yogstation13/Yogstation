@@ -219,7 +219,8 @@
 		if(human.stat == DEAD || !human.mind)
 			continue
 		// Skip wizards, nuke ops, cyborgs; Centcom does not send them mail
-		if(human.faction.Find("Station", 1, 0) != 0)
+		var/datum/job/this_job = SSjob.GetJob(recipient.assigned_role)
+		if(this_job.faction != "Station")
 			continue
 
 		mail_recipients += human.mind
