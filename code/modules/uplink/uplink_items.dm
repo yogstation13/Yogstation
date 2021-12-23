@@ -1625,8 +1625,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/potion/traitor
 	name = "Lesser Syndicate Sentience Potion"
 	item = /obj/item/slimepotion/slime/sentience/traitor
-	desc = "With recent advancements in Syndicate technology thanks to stolen slime cores, the Syndicate have created their own sentience potions. \
-			Using it will make any animal sentient, and bound to serve you, but as slime cores are still a hot commodity in the black market, they aint cheap."
+	desc = "The Syndicate have recently synthesized artificial sentience potions thanks to stolen slime cores. \
+			Using it will make any animal sentient, and bound to serve you in your dastardly deeds."
 	cost = 7
 	limited_stock = 1 //only buy one, prevents certain mushroom shenanigans
 	include_modes = list() //clear the list
