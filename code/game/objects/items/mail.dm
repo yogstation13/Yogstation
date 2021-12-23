@@ -240,11 +240,13 @@
 
 	update_icon()
 
+	return mail_count
+
 /// Crate for mail that automatically depletes the economy subsystem's pending mail counter.
 /obj/structure/closet/crate/mail/economy/Initialize(mapload)
 	. = ..()
-	populate(SSeconomy.mail_waiting)
-	SSeconomy.mail_waiting = 0
+	var/mail_handled = populate(SSeconomy.mail_waiting)
+	SSeconomy.mail_waiting -= mail_handled
 
 /// Crate for mail that automatically generates a lot of mail. Usually only normal mail, but on lowpop it may end up just being junk.
 /obj/structure/closet/crate/mail/full
