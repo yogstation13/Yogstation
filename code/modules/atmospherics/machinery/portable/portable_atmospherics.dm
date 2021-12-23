@@ -14,14 +14,12 @@
 
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/New()
-	..()
+/obj/machinery/portable_atmospherics/Initialize()
+	. = ..()
 	SSair.atmos_air_machinery += src
 
 	air_contents = new(volume)
 	air_contents.set_temperature(T20C)
-
-	return 1
 
 /obj/machinery/portable_atmospherics/Destroy()
 	SSair.atmos_air_machinery -= src
@@ -71,6 +69,8 @@
 	update_icon()
 	return TRUE
 
+/obj/machinery/portable_atmospherics/portableConnectorReturnAir()
+	return air_contents
 
 /obj/machinery/portable_atmospherics/Move()
 	. = ..()
