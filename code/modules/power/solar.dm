@@ -12,6 +12,7 @@
 	active_power_usage = 0
 	max_integrity = 150
 	integrity_failure = 0.33
+	var/id
 	var/obscured = FALSE
 	var/sunfrac = 0 //[0-1] measure of obscuration -- multipllier against power generation
 	var/azimuth_current = 0 //[0-360) degrees, which direction are we facing?
@@ -324,9 +325,9 @@
 	idle_power_usage = 250
 	max_integrity = 200
 	integrity_failure = 100
-	var/id
 	var/icon_screen = "solar"
 	var/icon_keyboard = "power_key"
+	var/id = 0
 	var/gen = 0
 	var/lastgen = 0
 	var/azimuth_target = 0
