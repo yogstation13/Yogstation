@@ -482,6 +482,18 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/luxury)
+"CQ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 4;
+	pixel_y = 21
+	},
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
+/area/shuttle/escape/luxury)
 "Da" = (
 /obj/item/reagent_containers/food/snacks/burger/baconburger{
 	pixel_y = 2
@@ -1118,7 +1130,7 @@ mt
 "}
 (11,1,1) = {"
 mt
-Ek
+CQ
 zQ
 Xt
 zQ
