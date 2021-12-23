@@ -546,6 +546,14 @@
 	tastes = list("the jungle" = 1, "bananas" = 1, "jimmies" = 1)
 	spawned_mob = /mob/living/simple_animal/hostile/gorilla
 
+/obj/item/reagent_containers/food/snacks/monkeycube/bee
+	name = "bee cube"
+	desc = "We were sure it was a good idea. Just add water."
+	bitesize = 20
+	list_reagents = list(/datum/reagent/consumable/honey = 10, /datum/reagent/toxin = 5, /datum/reagent/medicine/strange_reagent = 1)
+	tastes = list("buzzing" = 1, "honey" = 1, "regret" = 1)
+	spawned_mob = /mob/living/simple_animal/hostile/poison/bees/toxin
+
 /obj/item/reagent_containers/food/snacks/monkeycube/sheep
 	name = "sheep cube"
 	desc = "A Farm Town brand sheep cube. Just add water!"

@@ -30,6 +30,48 @@
 			loot_spawned++
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/spawner/lootdrop/surgery_tool_advanced
+	name = "Advanced surgery tool spawner"
+	loot = list( // Mail loot spawner. Drop pool of advanced medical tools typically from research. Not endgame content.
+		/obj/item/scalpel/advanced,
+		/obj/item/retractor/advanced,
+		/obj/item/cautery/advanced,
+	)
+
+/obj/effect/spawner/lootdrop/surgery_tool_alien
+	name = "Rare surgery tool spawner"
+	loot = list( // Mail loot spawner. Some sort of random and rare surgical tool. Alien tech found here.
+		/obj/item/scalpel/alien,
+		/obj/item/hemostat/alien,
+		/obj/item/retractor/alien,
+		/obj/item/circular_saw/alien,
+		/obj/item/surgicaldrill/alien,
+		/obj/item/cautery/alien,
+	)
+
+/obj/effect/spawner/lootdrop/memeorgans
+	name = "meme organ spawner"
+	lootcount = 5
+	loot = list(
+		/obj/item/organ/ears/penguin,
+		/obj/item/organ/ears/cat,
+		/obj/item/organ/eyes/moth,
+		/obj/item/organ/eyes/snail,
+		/obj/item/organ/tongue/bone,
+		/obj/item/organ/tongue/fly,
+		/obj/item/organ/tongue/snail,
+		/obj/item/organ/tongue/lizard,
+		/obj/item/organ/tongue/alien,
+		///obj/item/organ/tongue/ethereal,
+		/obj/item/organ/tongue/robot,
+		/obj/item/organ/tongue/zombie,
+		/obj/item/organ/appendix,
+		/obj/item/organ/liver/fly,
+		/obj/item/organ/lungs/plasmaman,
+		/obj/item/organ/tail/cat,
+		/obj/item/organ/tail/lizard,
+	)
+
 /obj/effect/spawner/lootdrop/armory_contraband
 	name = "armory contraband gun spawner"
 	lootdoubles = FALSE
@@ -55,6 +97,26 @@
 				/obj/item/storage/box/syndie_kit/throwing_weapons = 1,
 				/obj/item/toy/cards/deck/syndicate = 2
 				)
+
+/obj/effect/spawner/lootdrop/seed_rare
+	name = "rare seed"
+	lootcount = 5
+	loot = list( // /obj/item/seeds/random is not a random seed, but an exotic seed.
+		/obj/item/seeds/random = 30,
+		/obj/item/seeds/liberty = 5,
+		/obj/item/seeds/replicapod = 5,
+		/obj/item/seeds/reishi = 5,
+		/obj/item/seeds/nettle/death = 1,
+		/obj/item/seeds/plump/walkingmushroom = 1,
+		/obj/item/seeds/cannabis/rainbow = 1,
+		/obj/item/seeds/cannabis/death = 1,
+		/obj/item/seeds/cannabis/white = 1,
+		/obj/item/seeds/cannabis/ultimate = 1,
+		/obj/item/seeds/kudzu = 1,
+		/obj/item/seeds/angel = 1,
+		/obj/item/seeds/glowshroom/glowcap = 1,
+		/obj/item/seeds/glowshroom/shadowshroom = 1,
+	)
 
 /obj/effect/spawner/lootdrop/grille_or_trash
 	name = "maint grille or trash spawner"
