@@ -408,8 +408,6 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(user, span_notice("You fail to remove the device."))
 		
 
-#undef AI_DOWNLOAD_PER_PROCESS
-
 
 /obj/item/paper/ai_control_code/Initialize(mapload)
 	..()
