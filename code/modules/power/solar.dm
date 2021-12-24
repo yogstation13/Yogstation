@@ -24,6 +24,7 @@
 	var/mutable_appearance/paneloverlay
 	var/multiplier
 	var/panelcolor
+	var/obj/item/stack/sheet/glass_type
 
 /obj/machinery/power/solar/Initialize(mapload, obj/item/solar_assembly/S)
 	. = ..()
@@ -39,6 +40,10 @@
 	unset_control() //remove from control computer
 	return ..()
 
+/obj/machinery/power/solar/examine(mob/user)
+	. = ..()
+	if(glass_type)
+		. += "It is covered in a sheet of [initial(glass_type.name)]."
 
 //set the control of the panel to a given computer
 /obj/machinery/power/solar/proc/set_control(obj/machinery/power/solar_control/SC)
@@ -67,6 +72,7 @@
 	max_integrity *= S.integmultiplier
 	obj_integrity = max_integrity
 	panelcolor = S.panelcolor
+	glass_type = S.glass_type
 
 /obj/machinery/power/solar/crowbar_act(mob/user, obj/item/I)
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
