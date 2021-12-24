@@ -4,7 +4,7 @@
 	icon_state = "tumor"
 
 	var/strength = 0.125
-	var/spread_chance = 0.25
+	var/spread_chance = 0.5
 
 	var/helpful = FALSE //keeping track if they're helpful or not
 	var/datum/disease/advance/ownerdisease //what disease it comes from
@@ -30,9 +30,10 @@
 	if(!(src in owner.internal_organs))
 		Remove(owner)
 	if(helpful)
-		owner.adjustToxLoss(strength/2)
-		owner.adjustBruteLoss(-(strength/2))
-		owner.adjustFireLoss(-(strength/2))
+		if(owner.bruteloss + owner.fireloss > (strength/2))
+			owner.adjustToxLoss(strength/2)
+			owner.adjustBruteLoss(-(strength/2))
+			owner.adjustFireLoss(-(strength/2))
 	else
 		owner.adjustToxLoss(strength) //just take toxin damage
 	if(prob(spread_chance))
@@ -57,10 +58,10 @@
 	name = "premalignant tumor"
 	desc = "It doesn't look too bad... at least you're not dead, right?"
 	strength = 0.25
-	spread_chance = 0.5
+	spread_chance = 1
 
 /obj/item/organ/tumor/malignant
 	name = "malignant tumor"
 	desc = "Yikes. There's probably more of these in you."
 	strength = 0.5
-	spread_chance = 1
+	spread_chance = 2

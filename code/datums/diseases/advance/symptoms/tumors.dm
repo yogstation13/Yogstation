@@ -18,7 +18,7 @@
 	)
 	var/regeneration = FALSE
 	var/helpful = FALSE
-	var/tumor_chance = 0.25
+	var/tumor_chance = 0.5
 	var/obj/item/organ/tumor/tumortype = /obj/item/organ/tumor
 	var/datum/disease/advance/ownerdisease //what disease it comes from
 
@@ -44,22 +44,15 @@
 
 	//clothes wearing
 	if(A.stage > 2)
-		if(istype(M.wear_mask, /obj/item/clothing/mask))
-			var/obj/item/clothing/mask/wearing_mask = M.wear_mask
-			if(M.canUnEquip(wearing_mask))
-				M.dropItemToGround(wearing_mask)
-		if(istype(M.wear_mask, /obj/item/clothing/head))
-			var/obj/item/clothing/head/wearing_hat = M.head
-			if(M.canUnEquip(wearing_hat))
-				M.dropItemToGround(wearing_hat)
-		M.dna.species.no_equip.Add(SLOT_WEAR_MASK,SLOT_HEAD)
+		var/datum/species/S = M.dna?.species
+		if(S)
+			S.add_no_equip_slot(M, SLOT_WEAR_MASK)
+			S.add_no_equip_slot(M, SLOT_HEAD)
 
 	if(A.stage == 5)
-		if(istype(M.wear_mask, /obj/item/clothing/suit))
-			var/obj/item/clothing/suit/wearing_suit = M.wear_suit
-			if(M.canUnEquip(wearing_suit))
-				M.dropItemToGround(wearing_suit)
-		M.dna.species.no_equip.Add(SLOT_WEAR_SUIT)
+		var/datum/species/S = M.dna?.species
+		if(S)
+			S.add_no_equip_slot(M, SLOT_WEAR_SUIT)
 
 	//spreading
 	if(prob(tumor_chance)) //2% chance to make a new tumor somewhere
@@ -82,6 +75,9 @@
 		if(missing_limbs.len > 0)
 			var/limb_to_regenerate = pick(missing_limbs)
 			M.regenerate_limb(limb_to_regenerate,TRUE);
+			var/obj/item/bodypart/new_limb = M.get_bodypart(limb_to_regenerate);
+			new_limb.set_brute_dam(45);
+			new_limb.set_burn_dam(45);
 			M.emote("scream")
 			M.visible_message(span_warning("Gnarly tumors burst out of [M]'s stump and form into a [parse_zone(limb_to_regenerate)]!"), span_notice("You scream as your [parse_zone(limb_to_regenerate)] reforms."))
 				
@@ -91,16 +87,20 @@
 	..()
 	if(ishuman(A.affected_mob))
 		//unfuck their tumors
-		A.affected_mob.visible_tumors = FALSE
-		A.affected_mob.dna.species.no_equip.Remove(SLOT_WEAR_MASK,SLOT_HEAD)
-		A.affected_mob.dna.species.no_equip.Remove(SLOT_WEAR_SUIT)
+		var/mob/living/carbon/human/M = A.affected_mob
+		M.visible_tumors = FALSE
+		var/datum/species/S = M.dna?.species
+		if(S)
+			S.remove_no_equip_slot(M, SLOT_WEAR_MASK)
+			S.remove_no_equip_slot(M, SLOT_HEAD)
+			S.remove_no_equip_slot(M, SLOT_WEAR_SUIT)
 
 /datum/symptom/tumor/premalignant
 	name = "Premalignant tumors"
 	desc = "The virus causes premalignant growths all over your body."
 	level = 5
 	severity = 4
-	tumor_chance = 0.5
+	tumor_chance = 1
 	tumortype = /obj/item/organ/tumor/premalignant
 
 /datum/symptom/tumor/malignant
@@ -108,5 +108,5 @@
 	desc = "The virus causes malignant growths all over your body."
 	level = 7
 	severity = 6
-	tumor_chance = 1
+	tumor_chance = 2
 	tumortype = /obj/item/organ/tumor/malignant
