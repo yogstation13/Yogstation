@@ -95623,32 +95623,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/port/aft)
-"oDc" = (
-/obj/structure/table,
-/obj/item/clipboard,
-/obj/item/wrench,
-/obj/item/crowbar/red,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/machinery/light_switch{
-	pixel_x = -24
-	},
-/obj/machinery/camera{
-	c_tag = "Server Room";
-	dir = 1;
-	name = "science camera";
-	network = list("ss13","rd")
-	},
-/obj/effect/turf_decal/stripes/corner,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/teleport_anchor,
-/turf/open/floor/plasteel/showroomfloor,
-/area/science/server)
 "oEO" = (
 /obj/structure/barricade/wooden,
 /obj/effect/spawner/structure/window,
@@ -103242,6 +103216,35 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"xcN" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/wrench,
+/obj/item/crowbar/red,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/machinery/light_switch{
+	pixel_x = -24
+	},
+/obj/machinery/camera{
+	c_tag = "Server Room";
+	dir = 1;
+	name = "science camera";
+	network = list("ss13","rd")
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/obj/structure/sign/plaques/ai_password{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/science/server)
 "xgq" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/machinery/power/smes/engineering,
@@ -142763,7 +142766,7 @@ ajz
 aZF
 adX
 avT
-oDc
+xcN
 bdi
 pxJ
 rxn
