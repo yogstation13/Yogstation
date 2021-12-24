@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "fixed signal repeaters being able to trigger themselves"
