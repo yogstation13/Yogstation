@@ -34,8 +34,8 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/draining = 0
 	var/candrain = 0
-	var/mindrain = 200
-	var/maxdrain = 400
+	var/mindrain = 1000
+	var/maxdrain = 2000
 
 
 /obj/item/clothing/gloves/space_ninja/Touch(atom/A,proximity)
