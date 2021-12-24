@@ -43,7 +43,7 @@
 /obj/machinery/power/solar/examine(mob/user)
 	. = ..()
 	if(glass_type)
-		. += "It is covered in a sheet of [initial(glass_type.name)]."
+		. += "It is covered with a sheet of [initial(glass_type.name)]."
 
 //set the control of the panel to a given computer
 /obj/machinery/power/solar/proc/set_control(obj/machinery/power/solar_control/SC)
