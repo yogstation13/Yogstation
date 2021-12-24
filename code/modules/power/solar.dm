@@ -229,27 +229,27 @@
 		var/obj/item/stack/sheet/W = glass_type
 		if(ispath(W, /obj/item/stack/sheet/glass))
 			multiplier = 1
-			panelcolor = "#5293e7"
+			panelcolor = "#599ffa"
 		if(ispath(W, /obj/item/stack/sheet/rglass))
 			multiplier = 1.25
 			integmultiplier = 2
-			panelcolor = "#326ebd"
+			panelcolor = "#2c6dc2"
 		if(ispath(W, /obj/item/stack/sheet/plasmaglass))
 			multiplier = 1.75
 			integmultiplier = 1.5
-			panelcolor = "#e956e9"
+			panelcolor = "#d344d3"
 		if(ispath(W, /obj/item/stack/sheet/plasmarglass))
 			multiplier = 2
 			integmultiplier = 2.5
-			panelcolor = "#ad3cad"
+			panelcolor = "#a124a1"
 		if(ispath(W, /obj/item/stack/sheet/titaniumglass))
 			multiplier = 2.5
 			integmultiplier = 4
-			panelcolor = "#959e9d"
+			panelcolor = "#8a8d8d"
 		if(ispath(W, /obj/item/stack/sheet/plastitaniumglass))
 			multiplier = 3
 			integmultiplier = 5
-			panelcolor = "#8d8c8c"
+			panelcolor = "#494949"
 		return TRUE
 	return FALSE
 
