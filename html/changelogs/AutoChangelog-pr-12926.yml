@@ -1,4 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - tweak: "SMES reports its charge/capacity instead of a percentage"
