@@ -1,0 +1,5 @@
+author: " Lucy"
+delete-after: true 
+changes: 
+  - tweak: "Reworked the Time Erasure holopara ability. It is now a limited jaunt - you will still move at regular speed, and moving through walls, windows, or closed doors is extra slow."
+  - bugfix: "Timeskip users will no longer appear on HUDs when erasing time."
