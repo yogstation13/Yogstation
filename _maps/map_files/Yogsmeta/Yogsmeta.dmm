@@ -58985,12 +58985,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
-"ctV" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "ctW" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/airalarm{
@@ -73449,6 +73443,15 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"jlP" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/sign/plaques/ai_password{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "jlR" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -116876,7 +116879,7 @@ bTV
 bET
 crQ
 cte
-ctV
+jlP
 nTE
 dZO
 cwU

@@ -188,6 +188,9 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	return ..()
 
 /obj/item/mmi/posibrain/attackby(obj/item/O, mob/user)
+	if(istype(O, /obj/item/aiModule))
+		var/obj/item/aiModule/M = O
+		M.install(laws, user)
 	return
 
 
