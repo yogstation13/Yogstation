@@ -32,7 +32,7 @@
 	/// Sound made when you unwield it
 	var/unwieldsound = null
 	/// stat list for wielded/unwielded, switches with weapon_stats when wielding or unwielding
-	var/list/wielded_stats = list(SWING_SPEED = 1, ENCUMBERANCE = 0, ENCUMBERANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	var/list/wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 
 /obj/item/twohanded/proc/unwield(mob/living/carbon/user, show_message = TRUE)
 	if(!wielded || !user)
@@ -488,8 +488,8 @@
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
 	force = 10
 	max_integrity = 100
-	weapon_stats = list(SWING_SPEED = 1, ENCUMBERANCE = 0, ENCUMBERANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
-	wielded_stats = list(SWING_SPEED = 1, ENCUMBERANCE = 0.4, ENCUMBERANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
+	wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	force_wielded = 8
@@ -682,8 +682,8 @@
 	desc = "Recovered from the aftermath of a revolt aboard Defense Outpost Theta Aegis, in which a seemingly endless tide of Assistants caused heavy casualities among Nanotrasen military forces."
 	force = 15
 	force_wielded = 10
-	weapon_stats = list(SWING_SPEED = 1, ENCUMBERANCE = 0, ENCUMBERANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
-	wielded_stats = list(SWING_SPEED = 1, ENCUMBERANCE = 0, ENCUMBERANCE_TIME = 0, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	throwforce = 20
 	throw_speed = 4
 	attack_verb = list("gored")
@@ -850,8 +850,8 @@
 	desc = "A haphazardly-constructed yet still deadly weapon. The pinnacle of modern technology."
 	force = 11
 	max_integrity = 100
-	weapon_stats = list(SWING_SPEED = 1, ENCUMBERANCE = 0, ENCUMBERANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
-	wielded_stats = list(SWING_SPEED = 1, ENCUMBERANCE = 0.4, ENCUMBERANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	force_wielded = 9					//I have no idea how to balance

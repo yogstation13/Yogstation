@@ -13,8 +13,8 @@
 
 //Weapon stat defines
 #define SWING_SPEED 		"swing_speed"
-#define ENCUMBERANCE 		"encumberance"
-#define ENCUMBERANCE_TIME 	"encumberance_time"
+#define ENCUMBRANCE 		"encumbrance"
+#define ENCUMBRANCE_TIME 	"encumbrance_time"
 #define REACH				"reach"
 #define DAMAGE_LOW			"damage_low"
 #define DAMAGE_HIGH			"damage_high"

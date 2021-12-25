@@ -80,8 +80,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/flags_cover = 0 //for flags such as GLASSESCOVERSEYES
 	var/heat = 0
-	/// A list of statistics used when a weapon hits someone, swing speed = multiplier for melee attack cd, encumberance = slowdown, encumberance_time = slowdown length, reach = reach, embed chance = chance for applicable weapons to embed on hit, damage_low/high = range of damage the weapon takes on hitting a mob
-	var/list/weapon_stats = list(SWING_SPEED = 1, ENCUMBERANCE = 0, ENCUMBERANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	/// A list of statistics used when a weapon hits someone, swing speed = multiplier for melee attack cd, encumbrance = slowdown, encumbrance_time = slowdown length, reach = reach, embed chance = chance for applicable weapons to embed on hit, damage_low/high = range of damage the weapon takes on hitting a mob
+	var/list/weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	var/break_message = "%SRC crumbles into scraps under hard use"
 	///All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.
 	var/sharpness = SHARP_NONE

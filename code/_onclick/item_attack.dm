@@ -139,8 +139,8 @@
 		return ..()
 
 /mob/living/proc/weapon_slow(obj/item/I)
-	add_movespeed_modifier(I.name, priority = 101, multiplicative_slowdown = I.weapon_stats[ENCUMBERANCE])
-	addtimer(CALLBACK(src, .proc/remove_movespeed_modifier, I.name), I.weapon_stats[ENCUMBERANCE_TIME], TIMER_UNIQUE|TIMER_OVERRIDE)
+	add_movespeed_modifier(I.name, priority = 101, multiplicative_slowdown = I.weapon_stats[ENCUMBRANCE])
+	addtimer(CALLBACK(src, .proc/remove_movespeed_modifier, I.name), I.weapon_stats[ENCUMBRANCE_TIME], TIMER_UNIQUE|TIMER_OVERRIDE)
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.

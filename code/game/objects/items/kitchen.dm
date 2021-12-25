@@ -212,7 +212,7 @@
 	force = 8
 	throwforce = 12//fuck git
 	max_integrity = 100
-	weapon_stats = list(SWING_SPEED = 0.8, ENCUMBERANCE = 0, ENCUMBERANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 5, DAMAGE_HIGH = 7)
+	weapon_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 5, DAMAGE_HIGH = 7)
 	break_message = "%SRC snaps into unusable carrot-bits"
 	materials = list()
 	attack_verb = list("shanked", "shivved")
