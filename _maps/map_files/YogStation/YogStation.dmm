@@ -34692,12 +34692,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"esR" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "esT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -44219,6 +44213,15 @@
 "kzu" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
+"kzW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/sign/plaques/ai_password{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "kAv" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -115935,7 +115938,7 @@ bmY
 bvK
 bxm
 byu
-esR
+kzW
 bCf
 aGs
 bvK
