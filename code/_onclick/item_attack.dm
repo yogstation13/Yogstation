@@ -108,6 +108,8 @@
 	user.changeNext_move(CLICK_CD_MELEE * weapon_stats[SWING_SPEED])
 	user.do_attack_animation(O)
 	O.attacked_by(src, user)
+	user.weapon_slow(src)
+	take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
 
 /atom/movable/proc/attacked_by()
 	return
