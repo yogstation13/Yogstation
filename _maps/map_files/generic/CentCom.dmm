@@ -20727,7 +20727,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "RE" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/chitinspear,
+/obj/item/twohanded/bonespear/chitinspear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "RF" = (
@@ -23066,7 +23066,7 @@
 "WV" = (
 /obj/structure/table/wood,
 /obj/item/tailclub,
-/obj/item/twohanded/chitinspear,
+/obj/item/twohanded/bonespear/chitinspear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "WW" = (

@@ -80,6 +80,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/flags_cover = 0 //for flags such as GLASSESCOVERSEYES
 	var/heat = 0
+	/// A list of statistics used when a weapon hits someone, swing speed = multiplier for melee attack cd, encumberance = slowdown, encumberance_time = slowdown length, reach = reach, embed chance = chance for applicable weapons to embed on hit, damage_low/high = range of damage the weapon takes on hitting a mob
+	var/list/weapon_stats = list(SWING_SPEED = 1, ENCUMBERANCE = 0, ENCUMBERANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	var/break_message = "%SRC crumbles into scraps under hard use"
 	///All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.
 	var/sharpness = SHARP_NONE
 
@@ -88,7 +91,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/block_chance = 0
 	var/hit_reaction_chance = 0 //If you want to have something unrelated to blocking/armour piercing etc. Maybe not needed, but trying to think ahead/allow more freedom
-	var/reach = 1 //In tiles, how far this weapon can reach; 1 for adjacent, which is default
 
 	//The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 	var/list/slot_equipment_priority = null // for default list, see /mob/proc/equip_to_appropriate_slot()
@@ -649,6 +651,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/mech_melee_attack(obj/mecha/M)
 	return 0
+
+/obj/item/deconstruct(disassembled = TRUE)
+	var/turf/T = get_turf(src)
+	var/msg = replacetext(break_message, "%SRC", "[src]")
+	T.visible_message(span_danger(msg))
+	..()
 
 /obj/item/burn()
 	if(!QDELETED(src))
