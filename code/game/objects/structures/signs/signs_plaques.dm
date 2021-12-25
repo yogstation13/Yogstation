@@ -33,8 +33,7 @@
 
 /obj/structure/sign/plaques/ai_password/Initialize(mapload)
 	. = ..()
-	if(mapload)
-		control_code = GLOB.ai_control_code
+	control_code = GLOB.ai_control_code
 
 /obj/structure/sign/plaques/ai_password/examine(mob/living/user)
 	. = ..()
