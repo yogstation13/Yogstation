@@ -21,11 +21,13 @@
 //AI Project Categories.
 #define AI_PROJECT_HUDS "Sensor HUDs"
 #define AI_PROJECT_CAMERAS "Visiblity Upgrades"
+#define AI_PROJECT_INDUCTION "Induction"
 #define AI_PROJECT_MISC "Misc."
 //Update this list if you add any new ones, else the category won't show up in the UIs
 GLOBAL_LIST_INIT(ai_project_categories, list(
 	AI_PROJECT_HUDS,
 	AI_PROJECT_CAMERAS,
+	AI_PROJECT_INDUCTION,
 	AI_PROJECT_MISC
 ))
 
