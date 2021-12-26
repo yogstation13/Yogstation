@@ -53,6 +53,7 @@
 		T.helpful = helpful
 		T.ownerdisease = ownerdisease
 		T.Insert(owner,FALSE,FALSE,insertionZone)
+		to_chat(owner, span_warning("Your [parse_zone(insertionZone)] hurts."))
 
 /obj/item/organ/tumor/premalignant
 	name = "premalignant tumor"

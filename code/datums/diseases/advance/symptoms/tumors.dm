@@ -12,7 +12,7 @@
 	symptom_delay_min = 5
 	symptom_delay_max = 35
 	threshold_descs = list(
-		"Transmission 7" = "Gives visible growths on the host's body.",
+		"Transmission 7" = "Gives visible growths on the host's body, eventually preventing some clothes from being worn.",
 		"Stealth 4" = "Regenerates limbs that are incredibly fragile.",
 		"Resistance 8" = "Heals brute and burn damage in exchange for toxin damage."
 	)
@@ -72,6 +72,7 @@
 			T.helpful = helpful
 			T.ownerdisease = ownerdisease
 			T.Insert(M,FALSE,FALSE,insertionZone)
+			to_chat(M, span_warning("[pick("Your insides writhe.", "You feel your insides squirm.")]"))
 	//regerenation
 	if(regeneration && prob(tumor_chance)) //use tumorchance to regenerate limbies
 		var/list/missing_limbs = M.get_missing_limbs() - list(BODY_ZONE_HEAD, BODY_ZONE_CHEST) //don't regenerate the head or chest
