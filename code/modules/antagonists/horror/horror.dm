@@ -719,7 +719,7 @@
 		assume_control()
 
 /mob/living/simple_animal/horror/proc/assume_control()
-	if(!victim || !src || controlling || victim.stat == DEAD)
+	if(!victim || !src || controlling || victim.stat == DEAD || victim.has_trauma_type(/datum/brain_trauma/severe/split_personality))
 		return
 	if(is_servant_of_ratvar(victim) || iscultist(victim))
 		to_chat(src, span_warning("[victim]'s mind seems to be blocked by some unknown force!"))
