@@ -1124,8 +1124,7 @@
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/smes{
-	charge = 5e+006;
+/obj/machinery/power/smes/fullycharged{
 	name = "ai power storage unit"
 	},
 /turf/open/floor/plasteel/dark,
@@ -9586,9 +9585,7 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "asc" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -67251,9 +67248,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "ckc" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -24
@@ -93941,8 +93936,7 @@
 	},
 /area/ai_monitored/turret_protected/ai)
 "mTX" = (
-/obj/machinery/power/smes{
-	charge = 5e+006;
+/obj/machinery/power/smes/fullycharged{
 	name = "ai power storage unit"
 	},
 /obj/structure/cable/yellow{
@@ -100275,10 +100269,7 @@
 	},
 /area/space/nearstation)
 "tJx" = (
-/obj/machinery/power/smes{
-	capacity = 9e+006;
-	charge = 10000
-	},
+/obj/machinery/power/smes/engineering,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},

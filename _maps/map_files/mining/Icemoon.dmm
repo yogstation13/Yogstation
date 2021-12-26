@@ -598,9 +598,7 @@
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "fc" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -2740,9 +2738,7 @@
 /turf/closed/mineral/random/high_chance/snow,
 /area/icemoon/underground/explored)
 "KU" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
