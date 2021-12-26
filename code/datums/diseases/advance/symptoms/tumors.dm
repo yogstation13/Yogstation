@@ -42,17 +42,20 @@
 	var/mob/living/carbon/human/M = A.affected_mob
 	if(!M) return
 
-	//clothes wearing
-	if(A.stage > 2)
-		var/datum/species/S = M.dna?.species
-		if(S)
-			S.add_no_equip_slot(M, SLOT_WEAR_MASK)
-			S.add_no_equip_slot(M, SLOT_HEAD)
+	if(M.visible_tumors) {
+		//clothes wearing
+		if(A.stage > 2)
+			var/datum/species/S = M.dna?.species
+			if(S)
+				S.add_no_equip_slot(M, SLOT_WEAR_MASK)
+				S.add_no_equip_slot(M, SLOT_HEAD)
 
-	if(A.stage == 5)
-		var/datum/species/S = M.dna?.species
-		if(S)
-			S.add_no_equip_slot(M, SLOT_WEAR_SUIT)
+		if(A.stage == 5)
+			var/datum/species/S = M.dna?.species
+			if(S)
+				S.add_no_equip_slot(M, SLOT_WEAR_SUIT)
+	}
+ 	
 
 	//spreading
 	if(prob(tumor_chance)) //2% chance to make a new tumor somewhere
