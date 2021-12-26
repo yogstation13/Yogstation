@@ -2,10 +2,10 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 /obj/machinery/ai/expansion_card_holder
 	name = "Expansion Card Bus"
-	desc = "A simple rack of bPCIe slots for installing expansion cards."
+	desc = "An AI data node. The bPCIe slots allow easy installation of expansion cards."
 	icon = 'icons/obj/machines/telecomms.dmi'
-	icon_state = "processor"
-	
+	icon_state = "AI_expansion"
+
 	circuit = /obj/item/circuitboard/machine/expansion_card_holder
 
 	var/list/installed_cards
@@ -52,17 +52,17 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env.heat_capacity())
-			var/temperature_increase = total_usage / env.heat_capacity() //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+			var/temperature_increase = total_usage / env.heat_capacity() //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU.
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 			T.air_update_turf()
-		
+
 	else if(was_valid_holder)
 		if(valid_ticks > 0)
 			return
 		was_valid_holder = FALSE
 		cut_overlays()
 		GLOB.ai_os.update_hardware()
-	
+
 /obj/machinery/ai/expansion_card_holder/valid_holder()
 	. = ..()
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
@@ -77,10 +77,14 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 /obj/machinery/ai/expansion_card_holder/update_icon()
 	cut_overlays()
-	
+
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
 		add_overlay(on_overlay)
+		if(installed_cards.len)
+			var/mutable_appearance/cards = mutable_appearance(icon, "[initial(icon_state)]_[installed_cards.len]")
+			add_overlay(cards)
+
 
 /obj/machinery/ai/expansion_card_holder/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/processing_card) || istype(W, /obj/item/memory_card))
@@ -98,6 +102,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			var/obj/item/memory_card/ram_card = W
 			total_ram += ram_card.tier
 		use_power = ACTIVE_POWER_USE
+		update_icon()
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(installed_cards.len)
@@ -110,12 +115,13 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			GLOB.ai_os.update_hardware()
 			to_chat(user, span_notice("You remove all the cards from [src]"))
 			use_power = IDLE_POWER_USE
+			update_icon()
 			return FALSE
 		else
 			if(default_deconstruction_crowbar(W))
 				return TRUE
 
-	if(default_deconstruction_screwdriver(user, "autolathe_o", "processor", W))
+	if(default_deconstruction_screwdriver(user, "AI_expansion_o", "AI_expansion", W))
 		return TRUE
 
 	return ..()
