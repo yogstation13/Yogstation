@@ -69264,27 +69264,6 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"dNs" = (
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 4;
-	icon_state = "right";
-	name = "Infirmary";
-	red_alert_access = 1;
-	req_access_txt = "5"
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "dPt" = (
 /obj/machinery/atmospherics/pipe/simple/dark/visible,
 /obj/effect/mapping_helpers/teleport_anchor,
@@ -78181,6 +78160,27 @@
 /obj/machinery/modular_computer/console/preset/mining,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"qkK" = (
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	name = "Infirmary";
+	red_alert_access = 1;
+	req_one_access_txt = "5;3"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "qle" = (
 /obj/machinery/bookbinder,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -82434,25 +82434,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"vMZ" = (
-/obj/machinery/door/window/westleft{
-	dir = 4;
-	name = "Infirmary";
-	red_alert_access = 1;
-	req_access_txt = "5"
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "vNW" = (
 /turf/closed/wall,
 /area/science/misc_lab/range)
@@ -83505,6 +83486,25 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"xjV" = (
+/obj/machinery/door/window/westleft{
+	dir = 4;
+	name = "Infirmary";
+	red_alert_access = 1;
+	req_one_access_txt = "5;3"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "xmr" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/tinted/fulltile,
@@ -108574,8 +108574,8 @@ ahx
 ait
 ahx
 woV
-vMZ
-dNs
+xjV
+qkK
 hnY
 ahx
 aqZ

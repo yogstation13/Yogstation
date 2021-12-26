@@ -85055,6 +85055,14 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
+"dJT" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Infirmary";
+	red_alert_access = 1;
+	req_one_access_txt = "5;3"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/main)
 "dKP" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -87941,6 +87949,20 @@
 	dir = 8
 	},
 /area/hallway/primary/port)
+"gNv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/medical/glass{
+	name = "Infirmary";
+	red_alert_access = 1;
+	req_one_access_txt = "5;3"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
 "gNy" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -89693,14 +89715,6 @@
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
 /area/ai_monitored/turret_protected/ai)
-"iFa" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Infirmary";
-	red_alert_access = 1;
-	req_access_txt = "5"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/main)
 "iFr" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
@@ -97246,20 +97260,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/genetics)
-"qrw" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/airlock/medical/glass{
-	name = "Infirmary";
-	red_alert_access = 1;
-	req_access_txt = "5"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/security/warden)
 "qsW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -123536,12 +123536,12 @@ aef
 aef
 bXp
 adz
-qrw
+gNv
 cdp
 xOK
 cnB
 crz
-iFa
+dJT
 aLi
 bxS
 bPI
