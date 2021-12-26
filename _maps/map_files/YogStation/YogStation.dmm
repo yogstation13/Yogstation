@@ -4515,18 +4515,6 @@
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"all" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/science/misc_lab";
-	dir = 8;
-	name = "Testing Lab APC";
-	pixel_x = -25
-	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
 "aln" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -34692,12 +34680,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"esR" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "esT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -40795,9 +40777,7 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "iqw" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
@@ -43903,18 +43883,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"klu" = (
-/obj/machinery/power/smes/engineering{
-	charge = 5e+006
-	},
-/obj/structure/cable/white{
-	icon_state = "0-2"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "kmp" = (
 /obj/machinery/computer/telecomms/traffic{
 	dir = 8;
@@ -44219,6 +44187,15 @@
 "kzu" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
+"kzW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/sign/plaques/ai_password{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "kAv" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -49975,6 +49952,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
+"oel" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/highcap{
+	areastring = "/area/science/misc_lab";
+	dir = 8;
+	name = "Testing Lab";
+	pixel_x = -25
+	},
+/turf/open/floor/plasteel,
+/area/science/misc_lab)
 "ofJ" = (
 /obj/structure/sign/plaques/atmos{
 	pixel_y = 32
@@ -51340,9 +51329,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -57098,6 +57085,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"szj" = (
+/obj/machinery/power/smes/engineering{
+	charge = 5e+006;
+	input_level = 25000;
+	output_level = 25000
+	},
+/obj/structure/cable/white{
+	icon_state = "0-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "szB" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = -32
@@ -110339,7 +110340,7 @@ cva
 cva
 cva
 bAp
-klu
+szj
 ibT
 cva
 cva
@@ -113641,7 +113642,7 @@ bSb
 bOu
 aku
 akF
-all
+oel
 amd
 aoe
 arR
@@ -115935,7 +115936,7 @@ bmY
 bvK
 bxm
 byu
-esR
+kzW
 bCf
 aGs
 bvK

@@ -33,6 +33,9 @@
 	if(href_list["create_area"])
 		if(in_use)
 			return
+		var/turf/T = get_turf(usr)
+		if(is_reebe(T.z))
+			to_chat(usr, span_danger("[src] will not function on Reebe!"))
 		in_use = TRUE
 		create_area(usr)
 		in_use = FALSE

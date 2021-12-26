@@ -415,9 +415,7 @@
 	},
 /area/shuttle/caravan/freighter1)
 "lC" = (
-/obj/machinery/power/smes{
-	charge = 0
-	},
+/obj/machinery/power/smes/empty,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},

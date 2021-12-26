@@ -41,6 +41,7 @@
 	l_pocket = /obj/item/pda/heads/ce
 	ears = /obj/item/radio/headset/heads/ce
 	uniform = /obj/item/clothing/under/rank/chief_engineer
+	uniform_skirt = /obj/item/clothing/under/rank/chief_engineer/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	alt_shoes = /obj/item/clothing/shoes/xeno_wraps/command // Provides Command shoes to digitigrade species
 	head = /obj/item/clothing/head/hardhat/white

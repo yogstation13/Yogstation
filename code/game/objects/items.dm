@@ -29,10 +29,18 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	obj_flags = NONE
 	var/item_flags = NONE
-
-	var/hitsound = null
-	var/usesound = null
-	var/throwhitsound = null
+	
+	var/hitsound
+	var/usesound
+	///Used when yate into a mob
+	var/mob_throw_hit_sound
+	///Sound used when equipping the item into a valid slot
+	var/equip_sound
+	///Sound uses when picking the item up (into your hands)
+	var/pickup_sound
+	///Sound uses when dropping the item, or when its thrown.
+	var/drop_sound
+	
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	pass_flags = PASSTABLE
@@ -387,7 +395,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language, list/message_mods)
 	return ITALICS | REDUCE_RANGE
 
-/obj/item/proc/dropped(mob/user)
+/obj/item/proc/dropped(mob/user, silent = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -396,6 +404,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		qdel(src)
 	item_flags &= ~IN_INVENTORY
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED,user)
+	if(!silent)
+		playsound(src, drop_sound, DROP_SOUND_VOLUME, ignore_walls = FALSE)
+
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -420,6 +431,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(item_action_slot_check(slot, user)) //some items only give their actions buttons when in a specific slot.
 			A.Grant(user)
 	item_flags |= IN_INVENTORY
+	if(!initial)
+		if(equip_sound && !initial &&(slot_flags & slotdefine2slotbit(slot)))
+			playsound(src, equip_sound, EQUIP_SOUND_VOLUME, TRUE, ignore_walls = FALSE)
+		else if(slot == SLOT_HANDS)
+			playsound(src, pickup_sound, PICKUP_SOUND_VOLUME, ignore_walls = FALSE)
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(slot, mob/user)
@@ -551,6 +567,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/itempush = 1
 		if(w_class < 4)
 			itempush = 0 //too light to push anything
+		if(istype(hit_atom, /mob/living)) //Living mobs handle hit sounds differently.
+			var/volume = get_volume_by_throwforce_and_or_w_class()
+			if (throwforce > 0)
+				if (mob_throw_hit_sound)
+					playsound(hit_atom, mob_throw_hit_sound, volume, TRUE, -1)
+				else if(hitsound)
+					playsound(hit_atom, hitsound, volume, TRUE, -1)
+				else
+					playsound(hit_atom, 'sound/weapons/genhit.ogg',volume, TRUE, -1)
+			else
+				playsound(hit_atom, 'sound/weapons/throwtap.ogg', 1, volume, -1)
+
+		else
+			playsound(src, drop_sound, YEET_SOUND_VOLUME, ignore_walls = FALSE)
 		return hit_atom.hitby(src, 0, itempush, throwingdatum=throwingdatum)
 
 /obj/item/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
@@ -814,7 +844,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			layer = initial(layer)
 			plane = initial(plane)
 			appearance_flags &= ~NO_CLIENT_COLOR
-			dropped(M)
+			dropped(M, FALSE)
 	return ..()
 
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
