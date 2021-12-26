@@ -21,7 +21,7 @@
 	circuit = /obj/item/circuitboard/machine/smes
 
 	/// Maximum charge of the SMES
-	var/capacity = 5e6
+	var/capacity = 5e8
 	/// Current charge of the SMES
 	var/charge = 0
 	/// TRUE = attempting to charge, FALSE = not attempting to charge
@@ -429,7 +429,13 @@
 	log_smes()
 
 /obj/machinery/power/smes/engineering
-	charge = 1.5e6 // Engineering starts with some charge for singulo
+	charge = 3e7 // Engineering starts with some charge for singulo
+
+/obj/machinery/power/smes/fullycharged
+	charge = 5e8 // A fully charged SMES
+
+/obj/machinery/power/smes/empty
+	charge = 0
 
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"

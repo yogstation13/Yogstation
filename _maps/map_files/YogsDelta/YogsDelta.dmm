@@ -19585,9 +19585,7 @@
 /turf/open/floor/plasteel/dark,
 /area/maintenance/disposal/incinerator)
 "aGW" = (
-/obj/machinery/power/smes{
-	charge = 1e+006
-	},
+/obj/machinery/power/smes/engineering,
 /obj/structure/sign/warning/electricshock{
 	pixel_y = 32
 	},
@@ -22513,9 +22511,7 @@
 /obj/structure/cable/white{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes{
-	charge = 2e+006
-	},
+/obj/machinery/power/smes/engineering,
 /obj/machinery/light/small,
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -22526,9 +22522,7 @@
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = 32
 	},
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable/white{
 	icon_state = "0-8"
 	},
@@ -47121,9 +47115,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "bwp" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable/white{
 	icon_state = "0-4"
 	},
@@ -50304,9 +50296,7 @@
 "bAN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/sign/nanotrasen{
 	pixel_y = 32
 	},
@@ -61782,9 +61772,7 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "bRA" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable/white{
 	icon_state = "0-8"
 	},
@@ -70586,9 +70574,7 @@
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "ceD" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable/white,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
