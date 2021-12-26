@@ -330,6 +330,8 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cloth
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 
 /obj/item/stack/sheet/cloth/durathread
 	name = "durathread"
@@ -337,6 +339,8 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	singular_name = "durathread roll"
 	icon_state = "sheet-durathread"
 	merge_type = /obj/item/stack/sheet/cloth/durathread
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 
 /obj/item/stack/sheet/cloth/durathread/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
