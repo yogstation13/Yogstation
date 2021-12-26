@@ -112,7 +112,7 @@
 			to_chat(user, span_warning("There is already a catwalk here!"))
 			return
 		if(L)
-			if(R.use(1))
+			if(R.use(2))
 				to_chat(user, span_notice("You construct a catwalk."))
 				playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 				new/obj/structure/lattice/catwalk(src)
