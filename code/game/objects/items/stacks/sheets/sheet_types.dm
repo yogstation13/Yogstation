@@ -811,8 +811,8 @@ GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
 	merge_type = /obj/item/stack/sheet/ashresin
 	
 GLOBAL_LIST_INIT(ashresin_recipes, list (
-	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40)
-	))
+	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40), \
+	new/datum/stack_recipe("resin candle", /obj/item/candle/resin )))
 
 /obj/item/stack/sheet/ashresin/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.ashresin_recipes

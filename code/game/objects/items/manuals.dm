@@ -253,7 +253,7 @@
 				Especially since you can use it, or cloth, to create a medicinal pouch useful for holding plants and medicines.
 				To create it, acquire some hide, the most available of which will be goliath hide.
 				Next, skin it well with a sharp tool.
-				Afterwards, wash with water thoroughly, and allow it to sit out to dry.
+				Afterwards, wash with water thoroughly, and then dry by placing it over a grill atop a lit bonfire.
 				</body>
 				</html>
 			"}

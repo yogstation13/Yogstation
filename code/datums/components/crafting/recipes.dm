@@ -580,7 +580,7 @@
 
 /datum/crafting_recipe/tribalcoat
 	name = "Tribal Coat"
-	result = /obj/item/clothing/suit/armor/bone
+	result = /obj/item/clothing/suit/armor/tribalcoat
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 2,
 			/obj/item/stack/sheet/bone = 2)
