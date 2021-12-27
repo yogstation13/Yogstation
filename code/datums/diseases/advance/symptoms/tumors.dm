@@ -59,7 +59,7 @@
 
 	//spreading
 	if(prob(tumor_chance)) //2% chance to make a new tumor somewhere
-		var/list/possibleZones = list(BODY_ZONE_HEAD,BODY_ZONE_CHEST,BODY_ZONE_L_ARM,BODY_ZONE_R_ARM,BODY_ZONE_L_LEG,BODY_ZONE_R_LEG,BODY_ZONE_PRECISE_EYES,BODY_ZONE_PRECISE_GROIN)
+		var/list/possibleZones = list(BODY_ZONE_HEAD,BODY_ZONE_CHEST,BODY_ZONE_L_ARM,BODY_ZONE_R_ARM,BODY_ZONE_L_LEG,BODY_ZONE_R_LEG,BODY_ZONE_PRECISE_EYES,BODY_ZONE_PRECISE_GROIN) - M.get_missing_limbs() //no inserting into magic limbs you dont have
 		//check if we can put an organ in there
 		var/insertionZone = pick(possibleZones)
 		var/insertionAvailable = TRUE
