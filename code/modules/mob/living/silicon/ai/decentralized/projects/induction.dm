@@ -25,10 +25,14 @@
 	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect = ability.linked_ability
 	if(ability)
 		effect.works_on_borgs = TRUE
+		effect.attached_action.button.name = "Charge cyborg"
+		effect.attached_action.button.desc = "Click a cyborg to charge it by 33%"
 	else
 		ability = locate(/datum/action/innate/ai/ranged/charge_borg_or_apc) in ai.actions
 		effect = ability.linked_ability
 		effect.works_on_borgs = TRUE
+		effect.attached_action.button.name = "Charge cyborg/APC"
+		effect.attached_action.button.desc = "Click a cyborg or APC to charge it by 33%"
 
 
 /datum/ai_project/induction_apc
@@ -44,20 +48,24 @@
 	ability_path = /datum/action/innate/ai/ranged/charge_borg_or_apc
 	ability_recharge_cost = 1500
 
-/datum/ai_project/induction_cyborg/finish()
+/datum/ai_project/induction_apc/finish()
 	var/datum/action/innate/ai/ranged/charge_borg_or_apc/ability = add_ability(/datum/action/innate/ai/ranged/charge_borg_or_apc)
 	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect = ability.linked_ability
 	if(ability)
 		effect.works_on_apcs = TRUE
+		effect.attached_action.button.name = "Charge APC"
+		effect.attached_action.button.desc = "Click an APC to charge it by 33%"
 	else
 		ability = locate(/datum/action/innate/ai/ranged/charge_borg_or_apc) in ai.actions
 		effect = ability.linked_ability
 		effect.works_on_apcs = TRUE
+		effect.attached_action.button.name = "Charge cyborg/APC"
+		effect.attached_action.button.desc = "Click a cyborg or APC to charge it by 33%"
 
 
 /datum/action/innate/ai/ranged/charge_borg_or_apc
 	name = "Charge cyborg/APC"
-	desc = "Depending on upgrades you can charge either cyborgs, APCs or both by 33%"
+	desc = "Depending on upgrades you can charge either a single cyborg or APC in view by 33%"
 	button_icon_state = "electrified"
 	uses = 1
 	delete_on_empty = FALSE
@@ -113,12 +121,12 @@
 		return
 
 	ranged_ability_user.playsound_local(ranged_ability_user, "sparks", 50, 0)
-	
-	to_chat(caller, span_notice("You charge [target]."))
-	do_sparks(3, FALSE, target)
-	target.audible_message(span_userdanger("You hear a soothing electrical buzzing sound coming from [target]!"))
+
 	var/datum/action/innate/ai/ranged/charge_borg_or_apc/action = attached_action
 	if(action.charge_borg_or_apc(target))
 		attached_action.adjust_uses(-1)
+		do_sparks(3, FALSE, target)
+		to_chat(caller, span_notice("You charge [target]."))
+		target.audible_message(span_userdanger("You hear a soothing electrical buzzing sound coming from [target]!"))
 	remove_ranged_ability()
 	return TRUE
