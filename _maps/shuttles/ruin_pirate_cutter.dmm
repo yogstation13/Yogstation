@@ -1051,9 +1051,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
 "RK" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
