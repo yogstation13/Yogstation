@@ -53,7 +53,10 @@ GLOBAL_LIST_INIT(original_security_positions, list(
 	"Head of Security",
 	"Warden",
 	"Detective",
-	"Security Officer"))
+	"Security Officer",
+	//Yogs Start: Yog jobs
+	"Brig Physician"))
+	//Yogs End
 
 GLOBAL_LIST_INIT(original_nonhuman_positions, list(
 	"AI",
