@@ -389,7 +389,7 @@
 
 /obj/item/projectile/magic/spellblade/weak
 	damage = 15
-	dismemberment = 35
+	dismemberment = 20
 
 /obj/item/projectile/magic/arcane_barrage
 	name = "arcane bolt"
