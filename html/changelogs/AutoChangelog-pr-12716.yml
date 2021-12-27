@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "medical webbing is now a reskinned medical belt"
-  - rscdel: "removes the spare medical belt from the mining medic's locker because they'll start with what is effectively one anyways"

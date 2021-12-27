@@ -300,14 +300,6 @@
 	results = list(/datum/reagent/medicine/burnmix = 3) // fuel and most ethenol burns away to form BurnMix from remaining ethenol and ash
 	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/consumable/ethanol/beer = 3, /datum/reagent/ash = 2) // Take a booze bottle, drink some , add welding fuel and ash. Heat up with lighter
 
-/datum/chemical_reaction/tribalordrazine // Mushroom stem + ash from an ash pile + cactus fruit + heat the bowl with a welder
-	name = "Tribalordrazine"
-	id = /datum/reagent/medicine/tribalordrazine
-	required_temp = 420
-	mix_message = "The mixture binds together from the heat, releasing a pleasant smelling smoke."
-	results = list(/datum/reagent/medicine/tribalordrazine = 10) // Pretty intensive to get this, so this amount is fair. That and this chem isn't very good.
-	required_reagents = list(/datum/reagent/ash = 5, /datum/reagent/consumable/vitfro = 2, /datum/reagent/consumable/tinlux = 1)
-
 /datum/chemical_reaction/tribaldetox // Mushroom cap + ash from an ash pile + heat the bowl with a welder
 	name = "Cap Mix"
 	id = /datum/reagent/medicine/tribaldetox
@@ -359,7 +351,8 @@
 /datum/chemical_reaction/poultice/alt
 	name = "tribal poultice"
 	id = "poultice_alt"
-	required_reagents = list(/datum/reagent/consumable/entpoly = 15, /datum/reagent/cellulose = 20, /datum/reagent/consumable/tinlux = 12)
+	required_temp = 420
+	required_reagents = list(/datum/reagent/consumable/vitfro = 15, /datum/reagent/ash = 15, /datum/reagent/consumable/tinlux = 8)
 
 /datum/chemical_reaction/poultice/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -372,6 +365,10 @@
 	required_temp = 630
 	mob_react = FALSE
 	mix_message = "The solution congeals into a blue gel."
+
+/datum/chemical_reaction/bone_gel/alt
+	id = "bone_gel_alt"
+	required_reagents = list(/datum/reagent/consumable/cream/bug = 15, /datum/reagent/consumable/ashresin = 5)
 
 /datum/chemical_reaction/bone_gel/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
