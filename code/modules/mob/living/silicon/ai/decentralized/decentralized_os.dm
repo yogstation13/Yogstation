@@ -44,12 +44,11 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 		if(!C.valid_holder() && !C.roundstart)
 			continue
 		for(var/CARD in C.installed_cards)
-			if(istype(CARD, /obj/item/processing_card))
-				var/obj/item/processing_card/PC = CARD
-				total_cpu += PC.tier
-			if(istype(CARD, /obj/item/memory_card))
-				var/obj/item/memory_card/MC = CARD
-				total_ram += MC.tier
+			/obj/item/ai_hardware/memory_card
+			if(istype(CARD, /obj/item/ai_hardware))
+				var/obj/item/ai_hardware/PC = CARD
+				total_cpu += PC.cpu_power
+				total_ram += PC.memory_capacity
 	
 	update_allocations()
 

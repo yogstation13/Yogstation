@@ -17,6 +17,8 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	//We manually calculate how power the cards + CPU give, so this is accounted for by that
 	active_power_usage = 0
 
+	var/card_power_consumption = 0
+
 	var/max_cards = 2
 
 	var/was_valid_holder = FALSE
@@ -91,12 +93,11 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		W.forceMove(src)
 		installed_cards += W
 		GLOB.ai_os.update_hardware()
-		if(istype(W, /obj/item/processing_card))
-			var/obj/item/processing_card/cpu_card = W
-			total_cpu += cpu_card.tier
-		if(istype(W, /obj/item/memory_card))
-			var/obj/item/memory_card/ram_card = W
-			total_ram += ram_card.tier
+		if(istype(W, /obj/item/ai_hardware))
+			var/obj/item/ai_hardware/card = W
+			total_cpu += card.cpu_power
+			total_ram += card.memory_capacity
+			card_power_consumption += card.power_consumption
 		use_power = ACTIVE_POWER_USE
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
@@ -107,6 +108,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			installed_cards.len = 0
 			total_cpu = 0
 			total_ram = 0
+			card_power_consumption = 0
 			GLOB.ai_os.update_hardware()
 			to_chat(user, span_notice("You remove all the cards from [src]"))
 			use_power = IDLE_POWER_USE
@@ -132,13 +134,12 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 /obj/machinery/ai/expansion_card_holder/prefilled/Initialize()
 	..()
-	var/obj/item/processing_card/cpu = new /obj/item/processing_card()
-	var/obj/item/memory_card/ram = new /obj/item/memory_card()
+	var/obj/item/ai_hardware/processing_card/cpu = new (src)
+	var/obj/item/ai_hardware/memory_card/ram = new (src)
 
-	cpu.forceMove(src)
-	total_cpu++
-	ram.forceMove(src)
-	total_ram++
+	total_cpu += cpu.cpu_power + ram.cpu_power
+	total_ram += cpu.memory_capacity + ram.memory_capacity
 	installed_cards += cpu
 	installed_cards += ram
+	card_power_consumption = cpu.power_consumption + ram.power_consumption
 	GLOB.ai_os.update_hardware()
