@@ -1,0 +1,4 @@
+author: "DukeBobRoss"
+delete-after: true 
+changes: 
+  - bugfix: "Lings can no longer turn people into glass golems and three shot them out of the round"
