@@ -1,6 +1,0 @@
-author: "  atlantiscze & nmajask"
-delete-after: true 
-changes: 
-  - rscadd: "Added modular PDAs"
-  - rscadd: "Added modular Telescreen"
-  - tweak: "Some consoles now start with programs active"
