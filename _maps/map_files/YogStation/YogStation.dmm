@@ -9227,11 +9227,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/security/processing)
-"aAE" = (
-/obj/structure/closet/emcloset,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "aAF" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/stripes/line{
@@ -13766,13 +13761,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"aOg" = (
-/obj/structure/closet/emcloset,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "aOh" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/stripes/line{
@@ -16471,6 +16459,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
+"aYQ" = (
+/obj/machinery/camera{
+	c_tag = "Fore Primary Hallway East";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/structure/closet/firecloset,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "aYS" = (
 /obj/structure/closet,
 /obj/item/clothing/under/suit_jacket/female{
@@ -18814,16 +18814,6 @@
 "bfV" = (
 /turf/closed/wall/r_wall,
 /area/science/robotics/lab)
-"bfW" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "bfX" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -32997,10 +32987,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"dhY" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "diw" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -35523,6 +35509,11 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness)
+"eUi" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "eUm" = (
 /obj/machinery/libraryscanner,
 /obj/machinery/light/small{
@@ -35819,22 +35810,6 @@
 /obj/item/instrument/harmonica,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"fcV" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "fdv" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -36397,6 +36372,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"fwo" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/closet/firecloset/full,
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "fxr" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -39779,6 +39762,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"hMX" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 2
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "hNq" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -40087,6 +40080,17 @@
 /obj/item/toy/figure/atmos,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"hXt" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "hXz" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -40491,17 +40495,6 @@
 /obj/item/shovel/spade,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"iiN" = (
-/obj/machinery/camera{
-	c_tag = "Fore Primary Hallway East";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "ijd" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -44407,16 +44400,6 @@
 /obj/effect/landmark/start/detective,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
-"kFN" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "kGc" = (
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/firedoor/border_only{
@@ -45565,6 +45548,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"lrO" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "lsn" = (
 /obj/machinery/light,
 /turf/open/floor/engine,
@@ -45764,6 +45755,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"lyq" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "lyB" = (
 /obj/machinery/light_switch{
 	pixel_x = 27
@@ -46377,6 +46376,17 @@
 	},
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
+"lXT" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/closet/firecloset,
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "lYh" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -53365,6 +53375,21 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/fore)
+"qhj" = (
+/obj/machinery/button/door{
+	desc = "A remote control-switch for shuttle construction storage.";
+	id = "Shuttle Construction Storage";
+	name = "Shuttle Construction Storage";
+	pixel_x = 24;
+	req_access_txt = "11"
+	},
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "qhA" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -54217,13 +54242,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"qJU" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/construction/mining/aux_base)
 "qKd" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -56268,6 +56286,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"rWO" = (
+/obj/effect/turf_decal/tile/red,
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "rXm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -60303,20 +60326,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"uBb" = (
-/obj/machinery/button/door{
-	desc = "A remote control-switch for shuttle construction storage.";
-	id = "Shuttle Construction Storage";
-	name = "Shuttle Construction Storage";
-	pixel_x = 24;
-	req_access_txt = "11"
-	},
-/obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/construction/mining/aux_base)
 "uBg" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -63767,6 +63776,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
+"wLF" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "wMq" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
 /turf/open/floor/plasteel/white,
@@ -78172,7 +78197,7 @@ apJ
 bXA
 csQ
 bAX
-aAE
+eUi
 aSm
 aaa
 aaa
@@ -78196,7 +78221,7 @@ aSm
 vDC
 ayl
 ayl
-aAE
+eUi
 aSm
 aaa
 aaa
@@ -78696,7 +78721,7 @@ aaa
 aaa
 aaa
 aSm
-aOg
+fwo
 tqk
 nlx
 aRY
@@ -81241,7 +81266,7 @@ rAb
 arp
 lTO
 tWf
-qJU
+lrO
 apJ
 lFj
 lFj
@@ -81498,7 +81523,7 @@ orC
 arp
 luG
 fdK
-uBb
+qhj
 apJ
 lFj
 lFj
@@ -98206,7 +98231,7 @@ amo
 gTB
 anz
 anv
-aoz
+rWO
 bNR
 gDj
 arf
@@ -98463,7 +98488,7 @@ agj
 aiX
 anB
 anD
-iiN
+aYQ
 bNR
 gDj
 arf
@@ -100530,7 +100555,7 @@ auW
 eAz
 lZb
 azT
-kFN
+lXT
 ayG
 iFI
 odO
@@ -112633,7 +112658,7 @@ bbD
 aYV
 aXq
 aYV
-bfW
+hXt
 bfV
 vBO
 mnK
@@ -112890,7 +112915,7 @@ aFu
 aYV
 aXq
 aYV
-bfX
+lyq
 bfV
 qqo
 bou
@@ -116733,8 +116758,8 @@ yaD
 aMZ
 aOb
 aPq
-dhY
-dhY
+aPq
+aPq
 rEn
 aPq
 xJy
@@ -118030,7 +118055,7 @@ eDG
 edR
 xvY
 aPq
-wex
+hMX
 hoc
 oUG
 dVX
@@ -118287,7 +118312,7 @@ hKY
 evF
 wSe
 aPs
-fcV
+wLF
 hoc
 nzY
 qsO
