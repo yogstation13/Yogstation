@@ -154,8 +154,8 @@
 	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
 	if(!project.canResearch())
 		return FALSE
-  
-  if(amount < 0)
+	
+	if(amount < 0)
 		return FALSE
   
 	if(has_completed_project(project.type) && !project.ability_recharge_cost)
