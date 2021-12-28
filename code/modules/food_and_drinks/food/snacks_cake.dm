@@ -24,6 +24,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("vanilla" = 1, "sweetness" = 2,"cake" = 5)
 	foodtype = GRAIN | DAIRY | SUGAR
+	burns_in_oven = TRUE
 
 /obj/item/reagent_containers/food/snacks/cakeslice/plain
 	name = "vanilla cake slice"

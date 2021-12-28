@@ -8,6 +8,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pie" = 1)
 	foodtype = GRAIN
+	burns_in_oven = TRUE
 
 /obj/item/reagent_containers/food/snacks/pie/plain
 	name = "plain pie"

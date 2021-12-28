@@ -16,7 +16,7 @@
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
-	layer = BELOW_OBJ_LAYER
+	//layer = BELOW_OBJ_LAYER
 	circuit = /obj/item/circuitboard/machine/oven
 	resistance_flags = FIRE_PROOF
 
@@ -28,6 +28,8 @@
 	var/datum/looping_sound/oven/oven_loop
 	///Current state of smoke coming from the oven
 	var/smoke_state = OVEN_SMOKE_STATE_NONE
+
+	var/current_overlay
 
 /obj/machinery/oven/Initialize()
 	. = ..()
@@ -44,17 +46,25 @@
 		icon_state = "oven_on"
 	else
 		icon_state = "oven_off"
+	update_overlays()
 	return ..()
 
 /obj/machinery/oven/proc/update_overlays()
+	var/mutable_appearance/door_overlay
 	if(open)
-		var/mutable_appearance/door_overlay = mutable_appearance(icon, "oven_lid_open")
+		door_overlay = mutable_appearance(icon, "oven_lid_open")
 		door_overlay.pixel_y = OVEN_LID_Y_OFFSET
-		. += door_overlay
 	else
-		. += mutable_appearance(icon, "oven_lid_closed")
+		door_overlay = mutable_appearance(icon, "oven_lid_closed")
+		/*
 		if(used_tray?.contents.len)
 			. += mutable_appearance(icon, "oven_light_mask")
+			*/
+	if(current_overlay) {
+		cut_overlay(current_overlay)
+	}
+	current_overlay = door_overlay;
+	add_overlay(door_overlay);
 
 /obj/machinery/oven/process(delta_time)
 	..()
@@ -84,7 +94,10 @@
 
 
 /obj/machinery/oven/attackby(obj/item/I, mob/user, params)
+	to_chat(user, "1")
+	world.log << "sheeiet"
 	if(open && !used_tray && istype(I, /obj/item/plate/oven_tray))
+		to_chat(user, "2")
 		if(user.transferItemToLoc(I, src))
 			to_chat(user, span_notice("You put [I] in [src]."))
 			add_tray_to_oven(I)

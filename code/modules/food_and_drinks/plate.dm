@@ -35,14 +35,18 @@
 	else
 		return ..()
 
+/*
 /obj/item/plate/pre_attack(atom/A, mob/living/user, params)
+	to_chat(user,"hm1")
 	if(!iscarbon(A))
 		return
 	if(!contents.len)
 		return
 	var/obj/item/reagent_containers/food/object_to_eat = contents[1]
 	A.attackby(object_to_eat, user)
-	return TRUE //No normal attack
+	to_chat(user,"hm2")
+	return FALSE //No normal attack
+*/
 
 ///This proc adds the food to viscontents and makes sure it can deregister if this changes.
 /obj/item/plate/proc/AddToPlate(obj/item/item_to_plate)
