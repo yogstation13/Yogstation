@@ -168,8 +168,8 @@
 /datum/crafting_recipe/food/sausage
 	name = "Raw Sausage"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meatball = 1,
-		/obj/item/reagent_containers/food/snacks/meat/cutlet = 2
+		/obj/item/reagent_containers/food/snacks/raw_meatball = 1,
+		/obj/item/reagent_containers/food/snacks/meat/raw_cutlet = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/raw_sausage
 	subcategory = CAT_MEAT

@@ -57,14 +57,14 @@
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
 
 /datum/nanite_program/purging/check_conditions()
-	var/foreign_reagent = LAZYLEN(host_mob.reagents.reagent_list)
+	var/foreign_reagent = LAZYLEN(host_mob.reagents?.reagent_list)
 	if(!host_mob.getToxLoss() && !foreign_reagent)
 		return FALSE
 	return ..()
 
 /datum/nanite_program/purging/active_effect()
 	host_mob.adjustToxLoss(-1)
-	for(var/datum/reagent/R in host_mob.reagents.reagent_list)
+	for(var/datum/reagent/R in host_mob.reagents?.reagent_list)
 		host_mob.reagents.remove_reagent(R.type,1)
 
 /datum/nanite_program/brain_heal

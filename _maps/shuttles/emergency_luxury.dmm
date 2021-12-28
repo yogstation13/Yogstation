@@ -492,6 +492,13 @@
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
+"DC" = (
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 5;
+	pixel_y = -26
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape/luxury)
 "DX" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -877,7 +884,7 @@ Tg
 mt
 TJ
 Tb
-Tb
+DC
 mt
 zQ
 zQ

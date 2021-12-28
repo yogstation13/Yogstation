@@ -281,6 +281,7 @@
 	time = 1 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+	always_availible = FALSE
 
 /datum/crafting_recipe/pulseslug
 	name = "Pulse Slug Shell"
@@ -593,6 +594,13 @@
 				 /obj/item/stack/sheet/animalhide/goliath_hide = 1)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/resinband
+	name = "Resin armband"
+	result = /obj/item/clothing/accessory/resinband
+	time = 2 SECONDS
+	reqs = list(/obj/item/stack/sheet/ashresin = 3)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/bracers
 	name = "Bone Bracers"
 	result = /obj/item/clothing/gloves/bracer
@@ -613,6 +621,14 @@
 	result = /obj/item/clothing/head/helmet/shaman
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 4)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/resincrown
+	name = "Resin Crown"
+	result = /obj/item/clothing/head/crown/resin 
+	time = 4 SECONDS
+	reqs = list(/obj/item/stack/sheet/ashresin = 2,
+		/obj/item/stack/sheet/mineral/mythril = 1)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/goliathcloak
@@ -732,10 +748,11 @@
 
 /datum/crafting_recipe/chitinspear
 	name = "Chitin Spear"
-	result = /obj/item/twohanded/chitinspear //take a bonespear, reinforce it with some chitin, profit?
+	result = /obj/item/twohanded/chitinspear //take a bonespear, reinforce it with some chitin and resin, profit?
 	time = 7.5 SECONDS
 	reqs = list(/obj/item/twohanded/bonespear = 1,
-				/obj/item/stack/sheet/sinew = 4,
+				/obj/item/stack/sheet/sinew = 3,
+				/obj/item/stack/sheet/ashresin = 1,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 6)
 	category = CAT_PRIMAL
 

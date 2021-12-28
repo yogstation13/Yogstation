@@ -432,13 +432,25 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	icon_state = "generic_event"
 	layer = HIGH_LANDMARK_LAYER
 
-
 /obj/effect/landmark/event_spawn/New()
 	..()
 	GLOB.generic_event_spawns += src
 
 /obj/effect/landmark/event_spawn/Destroy()
 	GLOB.generic_event_spawns -= src
+	return ..()
+
+/obj/effect/landmark/brazil
+	name = "brazilian reception marker"
+	icon_state = "x"
+	layer = HIGH_LANDMARK_LAYER
+
+/obj/effect/landmark/brazil/New()
+	..()
+	GLOB.brazil_reception += src
+
+/obj/effect/landmark/brazil/Destroy()
+	GLOB.brazil_reception -= src
 	return ..()
 
 /obj/effect/landmark/ruin

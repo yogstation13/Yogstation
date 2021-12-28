@@ -69,6 +69,7 @@
 	user.visible_message(span_notice("[user] begins to reactivate [src]."), span_notice("You begin to reactivate [src]..."))
 	if(do_after(user, 3 SECONDS, 1, target = src))
 		revive(full_heal = 1)
+		grab_ghost()
 		user.visible_message(span_notice("[user] reactivates [src]!"), span_notice("You reactivate [src]."))
 		var/turf/A = get_area(src)
 		alert_drones(DRONE_NET_CONNECT)

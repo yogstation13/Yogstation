@@ -11,7 +11,7 @@
 
 	outfit = /datum/outfit/job/janitor
 
-	alt_titles = list("Custodian", "Sanitation Worker", "Cleaner", "Caretaker")
+	alt_titles = list("Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid")
 
 	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
@@ -38,3 +38,4 @@
 	belt = /obj/item/pda/janitor
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/janitor
+	uniform_skirt = /obj/item/clothing/under/rank/janitor/skirt

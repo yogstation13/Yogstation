@@ -289,6 +289,26 @@
 			playsound(L, 'sound/magic/exit_blood.ogg', 50, TRUE)
 			flash_color(L, flash_color = "#C80000", flash_time = 10)
 
+/turf/open/indestructible/brazil
+	name = ".."
+	desc = "it hurts to look at it hurts to see it hurts to think it hurts it hurts it hurts."
+	icon = 'icons/turf/space.dmi'
+
+/turf/open/indestructible/brazil/Initialize(mapload)
+	. = ..()
+	icon_state = "[rand(1,25)]"
+	add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), FIXED_COLOUR_PRIORITY)
+
+/turf/open/indestructible/brazil/Enter(atom/movable/AM, atom/old_loc)
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(!L.has_status_effect(STATUS_EFFECT_HERETIC_SACRIFICE))
+			var/turf/open/floor/safe_turf = find_safe_turf(zlevels = 2)
+			if(safe_turf)
+				to_chat(L, span_warning("You're not supposed to be here..."))
+				do_teleport(AM, safe_turf , 0, channel = TELEPORT_CHANNEL_FREE)
+	return FALSE //don't forget, you're here forever
+
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)
 	update_visuals()

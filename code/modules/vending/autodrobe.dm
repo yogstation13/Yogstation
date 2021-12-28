@@ -92,6 +92,10 @@
 					/obj/item/clothing/suit/poncho = 1,
 					/obj/item/clothing/suit/poncho/green = 1,
 					/obj/item/clothing/suit/poncho/red = 1,
+					/obj/item/clothing/head/pharaoh = 1,
+					/obj/item/clothing/head/nemes = 1,
+					/obj/item/clothing/mask/mummy = 2,
+ 					/obj/item/clothing/under/mummy = 2,
 					/obj/item/clothing/under/maid = 1,
 					/obj/item/clothing/under/janimaid = 1,
 					/obj/item/clothing/glasses/cold=1,
@@ -244,7 +248,6 @@
 					/obj/item/storage/backpack/captain = 1,
 					/obj/item/storage/backpack/satchel/cap = 1,
 					/obj/item/storage/backpack/duffelbag/captain = 1,
-					/obj/item/clothing/neck/yogs/shawl/cap = 1, //Yogs
 					/obj/item/clothing/shoes/sneakers/brown = 1,
 					/obj/item/clothing/under/rank/captain = 1,
 					/obj/item/clothing/under/rank/captain/skirt = 1,

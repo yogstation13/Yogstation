@@ -15,10 +15,14 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 	.["resolved_tickets"] = list()
 	.["user_key"] = user.key
 
-	for(var/datum/admin_help/ahelp as anything in GLOB.ahelp_tickets.tickets_list)
+	for(var/i in 1 to tickets_list.len)
+		var/datum/admin_help/ahelp = tickets_list[i]
+		if(!istype(ahelp)) return
+
 		var/ticket_data = list()
 		ticket_data["name"] = ahelp.name
 		ticket_data["id"] = ahelp.id
+		ticket_data["index"] = i
 		ticket_data["initiator_key_name"] = ahelp.initiator_key_name
 		ticket_data["initiator_ckey"] = ahelp.initiator_ckey
 		ticket_data["admin_key"] = ahelp.handling_admin && ahelp.handling_admin.key
@@ -36,7 +40,7 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 	. = ..()
 	if(.)
 		return
-	var/datum/admin_help/ticket = tickets_list[params["id"]]
+	var/datum/admin_help/ticket = tickets_list[params["index"]]
 	if(!ticket)
 		return FALSE
 
@@ -180,7 +184,7 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 			ticket.PopUps()
 			return
 		if("Administer")
-			ticket.Administer()
+			ticket.Administer(TRUE)
 			return
 		if("Wiki")
 			ticket.WikiIssue()

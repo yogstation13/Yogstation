@@ -73,15 +73,15 @@
 	set category = "Robot Commands"
 	set name = "Self Destruct"
 
-	if(usr.stat == DEAD)
-		return //won't work if dead
+	if(usr.stat == DEAD || usr.incapacitated())
+		return //won't work if dead or incapacitated
 
 	if(alert("WARNING: Are you sure you wish to self-destruct? This action cannot be undone!",,"Yes","No") != "Yes")
 		return
 
-	if(usr.stat == DEAD)
-		to_chat(usr, span_danger("You are already dead."))
-		return //won't work if dead
+	if(usr.stat == DEAD || usr.incapacitated())
+		to_chat(usr, span_danger("You can't do that right now!"))
+		return //won't work if dead or incapacitated
 
 	var/turf/T = get_turf(usr)
 	message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] detonated themselves at [ADMIN_VERBOSEJMP(T)]!"))

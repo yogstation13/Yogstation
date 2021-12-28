@@ -323,6 +323,13 @@
 	desc = "A crown worn by only the highest emperors of the <s>land</s> space."
 	icon_state = "fancycrown"
 
+/obj/item/clothing/head/crown/resin
+	name = "resin crown"
+	desc = "Despite being formed with incredibly tough resin and given a mythril insert, it's still more of a fashion statement than a helmet."
+	icon_state = "resincrown"
+	armor = list("melee" = 25,"energy" = 10,"fire" = 0, "acid" = 10)
+	resistance_flags = NONE
+
 /obj/item/clothing/head/scarecrow_hat
 	name = "scarecrow hat"
 	desc = "A simple straw hat."

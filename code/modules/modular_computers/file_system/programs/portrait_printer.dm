@@ -14,10 +14,11 @@
 	program_icon_state = "paint-brush"
 	extended_desc = "This program connects to a Spinward Sector community art site for viewing and printing art."
 	transfer_access = ACCESS_LIBRARY
-	usage_flags = PROGRAM_CONSOLE
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_TELESCREEN
 	requires_ntnet = TRUE
 	size = 9
 	tgui_id = "NtosPortraitPrinter"
+	program_icon = "palette"
 
 /datum/computer_file/program/portrait_printer/ui_data(mob/user)
 	var/list/data = list()

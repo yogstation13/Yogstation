@@ -9,7 +9,7 @@
 	dried_type = /obj/item/reagent_containers/food/snacks/sosjerky/healthy
 	bitesize = 3
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/cooking_oil = 2) //Meat has fats that a food processor can process into cooking oil
-	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain
 	slices_num = 3
 	filling_color = "#FF0000"
 	tastes = list("meat" = 1)
@@ -18,9 +18,9 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/plain, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
 
-/obj/item/reagent_containers/food/snacks/meat/slab/initialize_slice(obj/item/reagent_containers/food/snacks/meat/rawcutlet/slice, reagents_per_slice)
+/obj/item/reagent_containers/food/snacks/meat/slab/initialize_slice(obj/item/reagent_containers/food/snacks/meat/raw_cutlet/slice, reagents_per_slice)
 	..()
-	var/mutable_appearance/filling = mutable_appearance(icon, "rawcutlet_coloration")
+	var/mutable_appearance/filling = mutable_appearance(icon, "raw_cutlet_coloration")
 	filling.color = filling_color
 	slice.add_overlay(filling)
 	slice.filling_color = filling_color
@@ -36,14 +36,14 @@
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human
 	name = "meat"
-	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain/human
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain/human
 	tastes = list("tender meat" = 1)
 	foodtype = MEAT | RAW | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/human/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/plain/human, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later mayb
 
-/obj/item/reagent_containers/food/snacks/meat/slab/human/initialize_slice(obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain/human/slice, reagents_per_slice)
+/obj/item/reagent_containers/food/snacks/meat/slab/human/initialize_slice(obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain/human/slice, reagents_per_slice)
 	..()
 	slice.subjectname = subjectname
 	slice.subjectjob = subjectjob
@@ -196,7 +196,7 @@
 	icon_state = "tomatomeat"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	filling_color = "#FF0000"
-	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/killertomato
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/killertomato
 	tastes = list("tomato" = 1)
 	foodtype = FRUIT
 
@@ -209,7 +209,7 @@
 	icon_state = "bearmeat"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/medicine/morphine = 5, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/cooking_oil = 6)
 	filling_color = "#FFB6C1"
-	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/bear
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/bear
 	tastes = list("meat" = 1, "salmon" = 1)
 	foodtype = RAW | MEAT
 
@@ -225,7 +225,7 @@
 	bitesize = 4
 	filling_color = "#32CD32"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/xeno
-	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/xeno
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/xeno
 	tastes = list("meat" = 1, "acid" = 1)
 	foodtype = RAW | MEAT
 
@@ -239,7 +239,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/toxin = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#7CFC00"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/spider
-	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/spider
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/spider
 	tastes = list("cobwebs" = 1)
 	foodtype = RAW | MEAT | TOXIC
 
@@ -296,6 +296,7 @@
 	filling_color = "#854817"
 	tastes = list("bacon" = 1)
 	foodtype = MEAT | BREAKFAST
+	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/meat/slab/gondola
 	name = "gondola meat"
@@ -303,7 +304,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/tranquility = 5, /datum/reagent/consumable/cooking_oil = 3)
 	tastes = list("meat" = 4, "tranquility" = 1)
 	filling_color = "#9A6750"
-	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/gondola
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/gondola
 	foodtype = RAW | MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/slab/gondola/MakeGrillable()
@@ -315,7 +316,7 @@
 	desc = "A slab of penguin meat."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/cooking_oil = 3)
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/penguin
-	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/penguin
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin
 	filling_color = "#B22222"
 	tastes = list("beef" = 1, "cod fish" = 1)
 
@@ -353,6 +354,7 @@
 	foodtype = MEAT
 	tastes = list("meat" = 1)
 	juice_results = list(/datum/reagent/consumable/drippings = 15)
+	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain
     foodtype = MEAT
@@ -417,7 +419,7 @@
 
 //Raw cutlets
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet
 	name = "raw cutlet"
 	desc = "A raw meat cutlet."
 	icon_state = "rawcutlet"
@@ -428,73 +430,73 @@
 	var/meat_type = "meat"
 	foodtype = MEAT | RAW
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/plain, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/initialize_cooked_food(obj/item/reagent_containers/food/snacks/S, cooking_efficiency)
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/initialize_cooked_food(obj/item/reagent_containers/food/snacks/S, cooking_efficiency)
 	..()
 	S.name = "[meat_type] cutlet"
 	
 
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain
     foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain/human
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain/human
 	tastes = list("tender meat" = 1)
 	foodtype = MEAT | RAW | GROSS
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain/human/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain/human/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/plain/human, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain/human/initialize_cooked_food(obj/item/reagent_containers/food/snacks/S, cooking_efficiency)
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain/human/initialize_cooked_food(obj/item/reagent_containers/food/snacks/S, cooking_efficiency)
 	..()
 	if(subjectname)
 		S.name = "[subjectname] [initial(S.name)]"
 	else if(subjectjob)
 		S.name = "[subjectjob] [initial(S.name)]"
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/killertomato
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/killertomato
 	name = "raw killer tomato cutlet"
 	tastes = list("tomato" = 1)
 	foodtype = FRUIT
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/killertomato/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/killertomato/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/killertomato, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/bear
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/bear
 	name = "raw bear cutlet"
 	tastes = list("meat" = 1, "salmon" = 1)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/bear/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/bear/MakeGrillable()
 	AddComponent(/datum/component/grillable,/obj/item/reagent_containers/food/snacks/meat/cutlet/bear, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/xeno
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/xeno
 	name = "raw xeno cutlet"
 	tastes = list("meat" = 1, "acid" = 1)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/xeno/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/xeno/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/spider
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/spider
 	name = "raw spider cutlet"
 	tastes = list("cobwebs" = 1)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/spider/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/spider/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/spider, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/gondola
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/gondola
 	name = "raw gondola cutlet"
 	tastes = list("meat" = 1, "tranquility" = 1)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/gondola/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/gondola/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/gondola, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/penguin
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin
 	name = "raw penguin cutlet"
 	tastes = list("beef" = 1, "cod fish" = 1)
 
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/penguin/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
 //Cooked cutlets
@@ -510,6 +512,7 @@
 	tastes = list("meat" = 1)
 	foodtype = MEAT
 	juice_results = list(/datum/reagent/consumable/drippings = 5)
+	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/plain
 
