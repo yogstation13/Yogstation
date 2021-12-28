@@ -30,7 +30,7 @@
 	if(!(src in owner.internal_organs))
 		Remove(owner)
 	if(helpful)
-		if(owner.bruteloss + owner.fireloss > (strength/2))
+		if(owner.getBruteLoss() + owner.getFireLoss() > (strength/2))
 			owner.adjustToxLoss(strength/2)
 			owner.adjustBruteLoss(-(strength/2))
 			owner.adjustFireLoss(-(strength/2))
