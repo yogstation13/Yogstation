@@ -47,7 +47,7 @@
 	var/obj/item/computer_hardware/card_slot/card_slot2 = get_modular_computer_part(MC_CARD2)
 	var/multiple_slots = istype(card_slot) && istype(card_slot2)
 	if(card_slot)
-		if(card_slot.stored_card || card_slot2.stored_card)
+		if(card_slot.stored_card || (istype(card_slot2) && card_slot2.stored_card))
 			var/obj/item/card/id/first_ID = card_slot.stored_card
 			var/obj/item/card/id/second_ID = card_slot2.stored_card
 			var/multiple_cards = istype(first_ID) && istype(second_ID)

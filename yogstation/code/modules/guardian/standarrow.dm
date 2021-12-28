@@ -48,7 +48,7 @@
 		user.dropItemToGround(src, TRUE)
 		forceMove(H)
 		if(iscarbon(M))
-			addtimer(CALLBACK(src, .proc/judge), 15 SECONDS)
+			addtimer(CALLBACK(src, .proc/judge, H), 15 SECONDS)
 		else if(isguardian(M))
 			INVOKE_ASYNC(src, .proc/requiem, M)
 

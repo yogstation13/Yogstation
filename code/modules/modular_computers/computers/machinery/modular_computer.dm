@@ -25,6 +25,11 @@
 	var/light_strength = 0								// Light luminosity when turned on
 	var/base_active_power_usage = 100					// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_idle_power_usage = 10						// Power usage when the computer is idle and screen is off (currently only applies to laptops)
+	
+	// Stuff for presets
+	var/list/starting_components = list()
+	var/list/starting_files = list()
+	var/datum/computer_file/program/initial_program
 
 	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 

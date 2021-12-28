@@ -80,3 +80,13 @@
 	icon = 'yogstation/icons/obj/food/containers.dmi'
 	icon_state = "floursad"
 	desc = "Perhaps it shouldn't have been filled with water."
+
+/obj/item/trash/toritose
+	name = "toritose"
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "toritoseded"
+
+/obj/item/trash/topkakes
+	name = "top kakes"
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "topkakesded"

@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - bugfix: "AIs can once again control mechs provided there's an AI control beacon inserted"
