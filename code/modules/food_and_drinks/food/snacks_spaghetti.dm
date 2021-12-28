@@ -1,13 +1,9 @@
 
+//spaghetti prototype used by all subtypes
 /obj/item/reagent_containers/food/snacks/spaghetti
-	name = "spaghetti"
-	desc = "Now that's a nic'e pasta!"
 	icon = 'icons/obj/food/pizzaspaghetti.dmi'
-	icon_state = "spaghetti"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	cooked_type = /obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti
 	filling_color = "#F0E68C"
-	tastes = list("pasta" = 1)
 	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/spaghetti/Initialize()
@@ -17,6 +13,13 @@
 			span_notice("Something wet falls out of their pocket and hits the ground. Is that... [name]?"),
 			span_warning("Oh shit! All your pocket [name] fell out!"))
 		AddComponent(/datum/component/spill, display_message, 'sound/effects/splat.ogg')
+	
+/obj/item/reagent_containers/food/snacks/spaghetti/raw
+	name = "spaghetti"
+	desc = "Now that's a nic'e pasta!"
+	icon_state = "spaghetti"
+	cooked_type = /obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti
+	tastes = list("pasta" = 1)
 
 /obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti
 	name = "boiled spaghetti"
@@ -25,7 +28,6 @@
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
-	cooked_type = null
 	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/pasta
 
 /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato
@@ -36,7 +38,6 @@
 	bitesize = 4
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
-	cooked_type = null
 	filling_color = "#DC143C"
 	tastes = list("pasta" = 1, "tomato" = 1)
 	foodtype = GRAIN | VEGETABLES
@@ -49,7 +50,6 @@
 	bitesize = 4
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/tomatojuice = 20, /datum/reagent/consumable/nutriment/vitamin = 8)
-	cooked_type = null
 	filling_color = "#DC143C"
 	tastes = list("pasta" = 1, "tomato" = 1)
 	foodtype = GRAIN | VEGETABLES
@@ -61,7 +61,6 @@
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
-	cooked_type = null
 	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
 	foodtype = GRAIN | MEAT
 
@@ -72,7 +71,6 @@
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 6)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 6)
-	cooked_type = null
 	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/spaghetti/chowmein
@@ -82,7 +80,6 @@
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 6)
-	cooked_type = null
 	tastes = list("noodle" = 1, "tomato" = 1)
 
 /obj/item/reagent_containers/food/snacks/spaghetti/beefnoodle
@@ -91,7 +88,6 @@
 	icon_state = "beefnoodle"
 	trash = /obj/item/reagent_containers/glass/bowl
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/liquidgibs = 3)
-	cooked_type = null
 	tastes = list("noodle" = 1, "meat" = 1)
 	foodtype = GRAIN | MEAT
 
@@ -101,7 +97,6 @@
 	icon_state = "butternoodles"
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 1)
-	cooked_type = null
 	tastes = list("noodle" = 1, "butter" = 1)
 	foodtype = GRAIN | DAIRY
 
@@ -112,7 +107,6 @@
 	bitesize = 8
 	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/parmesan_delight = 4)
-	cooked_type = null
 	filling_color = "#DC143C"
 	tastes = list("fettuccine" = 1, "alfredo" = 1, "italy" = 1, "creamy goodness" = 1)
 	foodtype = GRAIN | DAIRY | VEGETABLES

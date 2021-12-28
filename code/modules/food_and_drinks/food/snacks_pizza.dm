@@ -12,7 +12,7 @@
 	burns_in_oven = TRUE
 
 /obj/item/reagent_containers/food/snacks/pizza/raw
-	foodtypes =  GRAIN | DAIRY | VEGETABLES | RAW
+	foodtype =  GRAIN | DAIRY | VEGETABLES | RAW
 	burns_in_oven = FALSE
 	slice_path = null
 
@@ -36,7 +36,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/margherita/raw
 	name = "raw pizza margherita"
 	icon_state = "pizzamargherita_raw"
-	foodtypes =  GRAIN | VEGETABLES | DAIRY | RAW
+	foodtype =  GRAIN | VEGETABLES | DAIRY | RAW
 	burns_in_oven = FALSE
 	slice_path = null
 
@@ -68,7 +68,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/meat/raw
 	name = "raw meatpizza"
 	icon_state = "meatpizza_raw"
-	foodtypes =  GRAIN | VEGETABLES| DAIRY | MEAT | RAW
+	foodtype =  GRAIN | VEGETABLES| DAIRY | MEAT | RAW
 	burns_in_oven = FALSE
 	slice_path = null
 
@@ -96,7 +96,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/mushroom/raw
 	name = "raw mushroom pizza"
 	icon_state = "mushroompizza_raw"
-	foodtypes =  GRAIN | VEGETABLES | DAIRY | RAW
+	foodtype =  GRAIN | VEGETABLES | DAIRY | RAW
 	burns_in_oven = FALSE
 	slice_path = null
 
@@ -124,7 +124,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/vegetable/raw
 	name = "raw vegetable pizza"
 	icon_state = "vegetablepizza_raw"
-	foodtypes =  GRAIN | VEGETABLES | DAIRY | RAW
+	foodtype =  GRAIN | VEGETABLES | DAIRY | RAW
 	burns_in_oven = FALSE
 	slice_path = null
 
@@ -152,7 +152,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/donkpocket/raw
 	name = "raw donkpocket pizza"
 	icon_state = "donkpocketpizza_raw"
-	foodtypes =  GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD | RAW
+	foodtype =  GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD | RAW
 	burns_in_oven = FALSE
 	slice_path = null
 
@@ -180,7 +180,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/dank/raw
 	name = "raw dank pizza"
 	icon_state = "dankpizza_raw"
-	foodtypes =  GRAIN | VEGETABLES | DAIRY | RAW
+	foodtype =  GRAIN | VEGETABLES | DAIRY | RAW
 	burns_in_oven = FALSE
 	slice_path = null
 
@@ -207,7 +207,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/sassysage/raw
 	name = "raw sassysage pizza"
 	icon_state = "sassysagepizza_raw"
-	foodtypes =  GRAIN | VEGETABLES | DAIRY | MEAT | RAW
+	foodtype =  GRAIN | VEGETABLES | DAIRY | MEAT | RAW
 	burns_in_oven = FALSE
 	slice_path = null
 
@@ -234,7 +234,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/pineapple/raw
 	name = "raw Hawaiian pizza"
 	icon_state = "pineapplepizza_raw"
-	foodtypes =  GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE | RAW
+	foodtype =  GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE | RAW
 	burns_in_oven = FALSE
 	slice_path = null
 
@@ -260,7 +260,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/arnold/raw
 	name = "raw Arnold pizza"
 	icon_state = "arnoldpizza_raw"
-	foodtypes =  GRAIN | DAIRY | VEGETABLES | RAW
+	foodtype =  GRAIN | DAIRY | VEGETABLES | RAW
 	burns_in_oven = FALSE
 	slice_path = null
 
