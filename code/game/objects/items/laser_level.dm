@@ -1,6 +1,6 @@
 /obj/item/laserlevel
 	name = "laser level"
-	desc = "Emits a light grid for easy construction"
+	desc = "Emits a light grid for easy construction."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "laser-level"
 	item_state = "laserlevel"
