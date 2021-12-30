@@ -228,14 +228,14 @@
 		if(!input)
 			return
 
-		to_chat(B, span_changeling("<i>[src.name] says:</i> [input]"))
+		to_chat(B, span_changeling("<i>[real_name] says:</i> [input]"))
 
 		for(var/M in GLOB.dead_mob_list)
 			if(isobserver(M))
-				var/rendered = span_changeling("<i>Horror Communication from <b>[B.truename]</b> : [input]</i>")
+				var/rendered = span_changeling("<i>Horror Communication from <b>[real_name]</b> : [input]</i>")
 				var/link = FOLLOW_LINK(M, src)
 				to_chat(M, "[link] [rendered]")
-		to_chat(src, span_changeling("<i>[src] says:</i> [input]"))
+		to_chat(src, span_changeling("<i>[real_name] says:</i> [input]"))
 
 /mob/living/proc/trapped_mind_comm()
 	var/mob/living/simple_animal/horror/B = has_horror_inside()
