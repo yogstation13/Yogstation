@@ -59,10 +59,9 @@
 	if(traitor_kind == TRAITOR_AI && owner.current && isAI(owner.current))
 		var/mob/living/silicon/ai/A = owner.current
 		A.set_zeroth_law("")
-		if(malf)
-			remove_verb(A, /mob/living/silicon/ai/proc/choose_modules)
-			A.malf_picker.remove_malf_verbs(A)
-			qdel(A.malf_picker)
+		remove_verb(A, /mob/living/silicon/ai/proc/choose_modules)
+		A.malf_picker.remove_malf_verbs(A)
+		qdel(A.malf_picker)
 	owner.remove_employee(company)
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR)
 	SSticker.mode.traitors -= owner
