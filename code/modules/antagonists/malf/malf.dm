@@ -1,5 +1,4 @@
 /datum/antagonist/traitor/malf //inheriting traitor antag datum since traitor AIs use it.
-	malf = TRUE
 	roundend_category = "malfunctioning AIs"
 	name = "Malf"
 

@@ -13,7 +13,6 @@
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
 	var/traitor_kind = TRAITOR_HUMAN //Set on initial assignment
-	var/malf = FALSE //whether or not the AI is malf (in case it's a traitor)
 	var/datum/contractor_hub/contractor_hub
 	can_hijack = HIJACK_HIJACKER
 
@@ -302,8 +301,7 @@
 	killer.set_zeroth_law(law, law_borg)
 	killer.set_syndie_radio()
 	to_chat(killer, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
-	if(malf)
-		killer.add_malf_picker()
+	killer.add_malf_picker()
 
 /datum/antagonist/traitor/proc/equip(var/silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
