@@ -1873,7 +1873,6 @@
 #include "code\modules\events\wizard\curseditems.dm"
 #include "code\modules\events\wizard\departmentrevolt.dm"
 #include "code\modules\events\wizard\fakeexplosion.dm"
-#include "code\modules\events\wizard\ghost.dm"
 #include "code\modules\events\wizard\greentext.dm"
 #include "code\modules\events\wizard\imposter.dm"
 #include "code\modules\events\wizard\invincible.dm"
