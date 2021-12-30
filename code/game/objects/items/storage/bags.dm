@@ -421,7 +421,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/chemistry/ComponentInitialize()
+/obj/item/storage/bag/medpouch/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 50
