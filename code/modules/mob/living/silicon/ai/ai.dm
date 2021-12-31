@@ -178,7 +178,7 @@
 
 	dashboard = new(src)
 
-	if(isturf(loc))
+	if(isvalidAIloc(loc))
 		add_verb(src, list(/mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
 		/mob/living/silicon/ai/proc/botcall, /mob/living/silicon/ai/proc/control_integrated_radio, \
@@ -414,29 +414,6 @@
 
 	QDEL_NULL(src)
 
-/mob/living/silicon/ai/verb/toggle_anchor()
-	set category = "AI Commands"
-	set name = "Toggle Floor Bolts"
-	if(!isturf(loc)) // if their location isn't a turf
-		return // stop
-	if(stat == DEAD)
-		return
-	if(incapacitated())
-		if(battery < 50)
-			to_chat(src, span_warning("Insufficient backup power!"))
-			return
-		battery = battery - 50
-		to_chat(src, span_notice("You route power from your backup battery to move the bolts."))
-	var/is_anchored = FALSE
-	if(move_resist == MOVE_FORCE_VERY_STRONG)
-		move_resist = MOVE_FORCE_NORMAL
-	else
-		is_anchored = TRUE
-		move_resist = MOVE_FORCE_VERY_STRONG
-
-	to_chat(src, "<b>You are now [is_anchored ? "" : "un"]anchored.</b>")
-	// the message in the [] will change depending whether or not the AI is anchored
-
 /mob/living/silicon/ai/update_mobility() //If the AI dies, mobs won't go through it anymore
 	if(stat != CONSCIOUS)
 		mobility_flags = NONE
@@ -520,7 +497,7 @@
 		if(!GLOB.cameranet.checkCameraVis(M))
 			to_chat(src, span_warning("Exosuit is no longer near active cameras."))
 			return
-		if(!isturf(loc))
+		if(!isvalidAIloc(loc))
 			to_chat(src, span_warning("You aren't in your core!"))
 			return
 		if(M)
@@ -575,7 +552,10 @@
 
 
 /mob/living/silicon/ai/triggerAlarm(class, area/A, O, obj/alarmsource)
-	if(alarmsource.z != z)
+	var/turf/T = get_turf(src)
+	if(istype(loc, /obj/machinery/ai/data_core))
+		T = get_turf(loc)
+	if(alarmsource.z != T.z)
 		return
 	var/list/L = alarms[class]
 	for (var/I in L)

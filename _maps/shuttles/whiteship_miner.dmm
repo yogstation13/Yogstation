@@ -323,33 +323,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
-"aP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
-/obj/item/mecha_parts/mecha_equipment/mining_scanner,
-/obj/item/mecha_parts/mecha_equipment/drill,
-/obj/structure/closet/crate{
-	moving_diagonally = 0;
-	name = "mech equipment crate"
-	},
-/obj/item/stack/sheet/metal{
-	alternate_worn_layer = null;
-	amount = 5
-	},
-/obj/item/stack/cable_coil,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/stock_parts/cell/hyper/empty,
-/obj/item/stock_parts/capacitor/adv,
-/obj/item/stock_parts/scanning_module/adv,
-/obj/item/stack/rods{
-	amount = 10
-	},
-/obj/item/mecha_parts/mecha_equipment/ripleyupgrade,
-/obj/item/borg/upgrade/freeminer,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "bd" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "bathroom"
@@ -754,6 +727,33 @@
 /area/shuttle/abandoned)
 "id" = (
 /obj/machinery/computer/mech_bay_power_console,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"jc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/obj/item/mecha_parts/mecha_equipment/mining_scanner,
+/obj/item/mecha_parts/mecha_equipment/drill,
+/obj/structure/closet/crate{
+	moving_diagonally = 0;
+	name = "mech equipment crate"
+	},
+/obj/item/stack/sheet/metal{
+	alternate_worn_layer = null;
+	amount = 5
+	},
+/obj/item/stack/cable_coil,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/stock_parts/cell/hyper/empty,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/scanning_module/adv,
+/obj/item/stack/rods{
+	amount = 10
+	},
+/obj/item/mecha_parts/mecha_equipment/ripleyupgrade,
+/obj/item/borg/upgrade/panel_access_remover/freeminer,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "kL" = (
@@ -1466,7 +1466,7 @@ bx
 aE
 bk
 hs
-aP
+jc
 lo
 bk
 "}

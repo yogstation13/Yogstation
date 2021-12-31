@@ -5,8 +5,8 @@
 	name = "modular microcomputer"
 	desc = "A small portable microcomputer."
 
-	var/enabled = 0											// Whether the computer is turned on.
-	var/screen_on = 1										// Whether the computer is active/opened/it's screen is on.
+	var/enabled = FALSE										// Whether the computer is turned on.
+	var/screen_on = TRUE									// Whether the computer is active/opened/it's screen is on.
 	var/device_theme = "ntos"								// Sets the theme for the main menu, hardware config, and file browser apps. Overridden by certain non-NT devices.
 	var/datum/computer_file/program/active_program = null	// A currently active program running on the computer.
 	var/hardware_flag = 0									// A flag that describes this device type
@@ -50,6 +50,11 @@
 	var/comp_light_luminosity = 3				//The brightness of that light
 	var/comp_light_color			//The color of that light
 
+	// Preset Stuff
+	var/list/starting_components = list()
+	var/list/starting_files = list()
+	var/datum/computer_file/program/initial_program
+
 
 /obj/item/modular_computer/Initialize()
 	. = ..()
@@ -58,6 +63,8 @@
 		physical = src
 	comp_light_color = "#FFFFFF"
 	idle_threads = list()
+	install_starting_components()
+	install_starting_files()
 	update_icon()
 
 /obj/item/modular_computer/Destroy()
@@ -251,14 +258,14 @@
 	// If we have a recharger, enable it automatically. Lets computer without a battery work.
 	var/obj/item/computer_hardware/recharger/recharger = all_components[MC_CHARGE]
 	if(recharger)
-		recharger.enabled = 1
+		recharger.enabled = TRUE
 
 	if(all_components[MC_CPU] && use_power()) // use_power() checks if the PC is powered
 		if(issynth)
 			to_chat(user, span_notice("You send an activation signal to \the [src], turning it on."))
 		else
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
-		enabled = 1
+		enabled = TRUE
 		update_icon()
 		ui_interact(user)
 	else // Unpowered
@@ -271,11 +278,11 @@
 /obj/item/modular_computer/process()
 	if(!enabled) // The computer is turned off
 		last_power_usage = 0
-		return 0
+		return FALSE
 
 	if(obj_integrity <= integrity_failure)
 		shutdown_computer()
-		return 0
+		return FALSE
 
 	if(active_program && active_program.requires_ntnet && !get_ntnet_status(active_program.requires_ntnet_feature))
 		active_program.event_networkfailure(0) // Active program requires NTNet to run but we've just lost connection. Crash.
@@ -416,7 +423,7 @@
 		idle_threads.Remove(P)
 	if(loud)
 		physical.visible_message(span_notice("\The [src] shuts down."))
-	enabled = 0
+	enabled = FALSE
 	update_icon()
 
 
@@ -492,3 +499,40 @@
 	if(physical && physical != src)
 		return physical.Adjacent(neighbor)
 	return ..()
+
+// Starting Comps/Programs, mainly used for presets. Edit starting_components, starting_files, and initial_program.
+/obj/item/modular_computer/proc/install_starting_components()
+	if(starting_components.len < 1)
+		return
+	for(var/part in starting_components)
+		var/new_part = new part
+		if(istype(new_part, /obj/item/computer_hardware))
+			var/result = install_component(new_part)
+			if(result == FALSE)
+				CRASH("[src] failed to install starting component for an unknown reason")
+		else if(istype(new_part, /obj/item/stock_parts/cell/computer))
+			var/new_cell = new /obj/item/computer_hardware/battery(src, part)
+			qdel(new_part)
+			var/result = install_component(new_cell)
+			if(result == FALSE)
+				CRASH("[src] failed to install starting cell for an unknown reason")
+
+/obj/item/modular_computer/proc/install_starting_files()
+	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
+	if(!istype(hard_drive) || starting_files.len < 1)
+		if(!starting_files.len < 1)
+			CRASH("[src] failed to install files due to not having a hard drive even though it has starting files")
+		return
+	for(var/datum/computer_file/file in starting_files)
+		var/result = hard_drive.store_file(file)
+		if(result == FALSE)
+			CRASH("[src] failed to install starting files for an unknown reason")
+		if(istype(result, initial_program) && istype(result, /datum/computer_file/program))
+			var/datum/computer_file/program/program = result
+			if(program.requires_ntnet && program.network_destination)
+				program.generate_network_log("Connection opened to [program.network_destination].")
+			program.program_state = PROGRAM_STATE_ACTIVE
+			active_program = program
+			program.alert_pending = FALSE
+			enabled = TRUE
+			update_icon()
