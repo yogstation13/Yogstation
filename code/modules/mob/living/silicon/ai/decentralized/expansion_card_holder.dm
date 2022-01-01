@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
 		add_overlay(on_overlay)
 		if(installed_cards.len)
-			var/A = clamp(installed_cards.len, 0, max_cards)
+			var/A = clamp(installed_cards.len, 0, 2)
 			var/mutable_appearance/cards = mutable_appearance(icon, "[initial(icon_state)]_[A]")
 			add_overlay(cards)
 
