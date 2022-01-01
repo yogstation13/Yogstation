@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Adds laser level."
+  - rscadd: "Engi-Vend and Vendomat carry the laser level."
