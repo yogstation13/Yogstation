@@ -36068,6 +36068,9 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "bxn" = (
@@ -51564,6 +51567,9 @@
 	freerange = 1;
 	name = "Common Channel";
 	pixel_x = 30
+	},
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
 /area/medical/paramedic/a)
@@ -80819,13 +80825,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig/infirmary)
@@ -84402,10 +84407,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 6;
-	piping_layer = 5
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "kgf" = (
@@ -85709,10 +85710,6 @@
 	tag = ""
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 1;
-	piping_layer = 5
-	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "myc" = (
@@ -87548,12 +87545,6 @@
 	dir = 4
 	},
 /obj/machinery/ai/data_core/primary,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 1;
-	external_pressure_bound = 120;
-	name = "server vent";
-	piping_layer = 5
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "qxS" = (
@@ -87643,6 +87634,10 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig/infirmary)
@@ -88151,8 +88146,8 @@
 /turf/open/floor/plating,
 /area/teleporter)
 "rxt" = (
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 8
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
@@ -88625,9 +88620,6 @@
 	dir = 4
 	},
 /obj/machinery/ai/expansion_card_holder/prefilled,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	piping_layer = 5
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "sql" = (
@@ -88850,10 +88842,6 @@
 "sJx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 5;
-	piping_layer = 5
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
@@ -89533,6 +89521,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"tVp" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/machinery/modular_computer/telescreen/preset/engineering{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "tVt" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/beer,
@@ -90924,10 +90921,6 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 1;
-	piping_layer = 5
-	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "wmw" = (
@@ -91471,6 +91464,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"xlg" = (
+/obj/machinery/modular_computer/telescreen/preset/engineering{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "xlq" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/red{
@@ -144588,7 +144587,7 @@ bSK
 bTv
 bTv
 bLy
-bWm
+tVp
 caQ
 cdL
 cfs
@@ -146621,7 +146620,7 @@ bqu
 bsg
 bsY
 aYe
-bsO
+xlg
 bxd
 bzk
 bAq
