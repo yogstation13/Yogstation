@@ -28,7 +28,7 @@
 				for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 					if(H.dna && blood[H.dna.unique_enzymes])
 						if(!(H in can_track))
-							to_chat(guardian, span_italics(span_notice("<span class='notice italics'>We learn the identity of [H.real_name].")))
+							to_chat(guardian, span_italics(span_notice("We learn the identity of [H.real_name].")))
 							can_track += H
 			return TRUE
 		if(isobj(target))

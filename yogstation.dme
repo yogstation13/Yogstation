@@ -3500,6 +3500,7 @@
 #include "yogstation\code\modules\guardian\abilities\major\healing.dm"
 #include "yogstation\code\modules\guardian\abilities\major\predator.dm"
 #include "yogstation\code\modules\guardian\abilities\major\scout.dm"
+#include "yogstation\code\modules\guardian\abilities\major\shield.dm"
 #include "yogstation\code\modules\guardian\abilities\major\time.dm"
 #include "yogstation\code\modules\guardian\abilities\minor\snares.dm"
 #include "yogstation\code\modules\guardian\abilities\minor\teleport.dm"
