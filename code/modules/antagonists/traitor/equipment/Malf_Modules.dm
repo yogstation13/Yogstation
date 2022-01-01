@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		return
 
 /datum/action/innate/ai/Trigger()
-	if(uses <= 0)
+	if(uses <= 0 && !isnull(uses))
 		to_chat(owner, span_warning("[name] has no more uses! Charge it using CPU cycles in your dashboard."))
 		return FALSE
 	. = ..()
