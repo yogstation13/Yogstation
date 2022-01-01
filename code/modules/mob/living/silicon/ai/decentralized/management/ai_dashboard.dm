@@ -92,6 +92,8 @@
 	for(var/datum/ai_project/P as anything in completed_projects)
 		data["completed_projects"] += list(list("name" = P.name, "description" = P.description, "ram_required" = P.ram_required, "running" = P.running, "category" = P.category, "can_be_run" = P.can_be_run))
 		if(P.ability_path && !(P.ability_path in ability_paths)) //Check that we've not already added a thing to recharge this type of ability
+			if(P.ability_recharge_cost <= 0)
+				continue
 			ability_paths += P.ability_path
 			var/datum/action/innate/ai/the_ability = locate(P.ability_path) in owner.actions
 			if(the_ability)

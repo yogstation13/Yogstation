@@ -7,7 +7,7 @@
 	ram_required = 3
 	research_requirements_text = "Advanced Security HUD & Advanced Medical & Diagnostic HUD"
 	research_requirements = list(/datum/ai_project/security_hud, /datum/ai_project/diag_med_hud)
-	category = AI_PROJECT_CAMERAS
+	category = AI_PROJECT_SURVEILLANCE
 
 /datum/ai_project/examine_humans/run_project(force_run = FALSE)
 	. = ..(force_run)

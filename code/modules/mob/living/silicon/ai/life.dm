@@ -25,7 +25,7 @@
 			// messenging the client
 			malfhacked(malfhack)
 
-		if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
+		if(isvalidAIloc(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
 			view_core()
 
 		if(machine)
@@ -55,6 +55,25 @@
 
 		else if(!aiRestorePowerRoutine)
 			ai_lose_power()
+		
+		if(cameraMemoryTarget)
+			if(cameraMemoryTickCount >= AI_CAMERA_MEMORY_TICKS)
+				cameraMemoryTickCount = 0
+				trackable_mobs()
+				var/list/trackeable = track.humans
+				var/list/target = list()
+				for(var/I in trackeable)
+					var/mob/M = trackeable[I]
+					if(M.name == cameraMemoryTarget)
+						target += M
+				if(name == cameraMemoryTarget)
+					target += src
+				if(target.len)
+					to_chat(src, span_notice("Tracked target [cameraMemoryTarget] found visible on cameras. Tracking disabled."))
+					cameraMemoryTarget = 0
+				
+			cameraMemoryTickCount++
+
 
 /mob/living/silicon/ai/proc/lacks_power()
 	var/turf/T = get_turf(src)
