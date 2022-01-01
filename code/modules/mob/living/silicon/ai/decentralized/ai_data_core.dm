@@ -19,8 +19,11 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 	var/warning_sent = FALSE
 
+	var/ai_connection = TRUE
+
 /obj/machinery/ai/data_core/Initialize()
 	. = ..()
+	wires = new /datum/wires/ai_data_core(src)
 	GLOB.data_cores += src
 	if(primary && !GLOB.primary_data_core)
 		GLOB.primary_data_core = src
@@ -31,6 +34,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 
 /obj/machinery/ai/data_core/Destroy()
+	QDEL_NULL(wires)
 	GLOB.data_cores -= src
 	if(GLOB.primary_data_core == src)
 		GLOB.primary_data_core = null
@@ -43,13 +47,17 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 	to_chat(all_ais, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 	
-	..()
+	return ..()
 
 /obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "hub_o", "hub", O))
 		return TRUE
 
 	if(default_deconstruction_crowbar(O))
+		return TRUE
+
+	if(panel_open && is_wire_tool(O))
+		wires.interact(user)
 		return TRUE
 	return ..()
 
@@ -69,8 +77,30 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	for(var/mob/living/silicon/ai/AI in contents)
 		AI.disconnect_shell()
 
+/obj/machinery/ai/data_core/proc/reset_wire(wire)
+	switch(wire)
+		if(WIRE_AI)
+			if(!wires.is_cut(wire))
+				ai_connection = TRUE
+				update_icon()
+
+/obj/machinery/ai/data_core/proc/shock(mob/user, prb)
+	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
+		return FALSE
+	if(!prob(prb))
+		return FALSE
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(5, 1, src)
+	s.start()
+	if (electrocute_mob(user, get_area(src), src, 0.7, TRUE))
+		return TRUE
+	else
+		return FALSE
+
 /obj/machinery/ai/data_core/proc/valid_data_core()
 	if(!is_reebe(z) && !is_station_level(z))
+		return FALSE
+	if(!ai_connection)
 		return FALSE
 	if(valid_ticks > 0)
 		return TRUE

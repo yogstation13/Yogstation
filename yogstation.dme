@@ -606,6 +606,7 @@
 #include "code\datums\weather\weather_types\radiation_storm.dm"
 #include "code\datums\weather\weather_types\snow_storm.dm"
 #include "code\datums\wires\_wires.dm"
+#include "code\datums\wires\ai_data_core.dm"
 #include "code\datums\wires\airalarm.dm"
 #include "code\datums\wires\airlock.dm"
 #include "code\datums\wires\airlock_cycle.dm"
