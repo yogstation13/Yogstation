@@ -1,8 +1,8 @@
-#define RARE_VERB_CHANCE 10
-
 /mob/living/carbon/human/say_mod(input, message_mode)
-	if(prob(RARE_VERB_CHANCE) && dna.species.rare_say_mod.len)
-		verb_say = pick(dna.species.rare_say_mod)
+	var/rare_verb = pick(dna.species.rare_say_mod)
+	
+	if(rare_verb && prob(dna.species.rare_say_mod[rare_verb]))
+		verb_say = rare_verb
 	else
 		verb_say = dna.species.say_mod
 	
