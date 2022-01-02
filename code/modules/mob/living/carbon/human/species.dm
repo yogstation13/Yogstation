@@ -52,6 +52,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/nojumpsuit = FALSE
 	/// affects the speech message
 	var/say_mod = "says"
+	/// 1/10 chance when speaking to pick an easter egg speaking verb, like for felinids "meows" instead of "says"
+	var/list/rare_say_mod = list()
 	///Used if you want to give your species thier own language
 	var/species_language_holder = /datum/language_holder
 	/// Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.

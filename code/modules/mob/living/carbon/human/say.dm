@@ -1,5 +1,9 @@
 /mob/living/carbon/human/say_mod(input, message_mode)
-	verb_say = dna.species.say_mod
+	if(prob(10) && dna.species.rare_say_mod.len)
+		verb_say = pick(dna.species.rare_say_mod)
+	else
+		verb_say = dna.species.say_mod
+	
 	if(slurring)
 		return "slurs"
 	else
