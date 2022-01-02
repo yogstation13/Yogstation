@@ -339,7 +339,7 @@
 	cooldown = world.time + 10 SECONDS
 	UpdateButtonIcon()
 	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
-	B.visible_message(span_warning("[src] starts spinning and throwing some sort of substance!"), span_notice("Your start to spin and flail oily substance everywhere!"))
+	B.visible_message(span_warning("[B] starts spinning and throwing some sort of substance!"), span_notice("Your start to spin and flail oily substance everywhere!"))
 	var/spins_remaining = 10
 	B.icon_state = "horror_spin"
 	while(spins_remaining > 0)
