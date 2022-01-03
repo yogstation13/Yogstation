@@ -712,7 +712,7 @@
 
 	bonding = TRUE
 
-	var/delay = 200
+	var/delay = 20 SECONDS
 	if(horrorupgrades["fast_control"])
 		delay -= 120
 	if(do_after(src, delay, target = victim, extra_checks = CALLBACK(src, .proc/is_bonding), stayStill = FALSE))
