@@ -14,4 +14,5 @@
 
 /datum/hud/chemical_counter/Destroy()
 	. = ..()
-	chemical_counter = null
+	QDEL_NULL(chemical_counter)
+
