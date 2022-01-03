@@ -87,6 +87,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		valid_ticks--
 		if(valid_ticks <= 0)
 			use_power = IDLE_POWER_USE
+			update_icon()
+			for(var/mob/living/silicon/ai/AI in contents)
+				AI.relocate()
 		if(!warning_sent)
 			warning_sent = TRUE
 			to_chat(GLOB.ai_list, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Please contact technical support."))
@@ -115,6 +118,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	cut_overlays()
 	
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
+		if(!valid_data_core())
+			return
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
 		add_overlay(on_overlay)
 

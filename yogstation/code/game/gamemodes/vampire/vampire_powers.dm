@@ -176,7 +176,7 @@
 
 
 /obj/effect/proc_holder/spell/pointed/hypno
-	name = "Hypnotize"
+	name = "Hypnotize (20)"
 	desc = "Knock out your target."
 	charge_max = 300
 	blood_used = 20
