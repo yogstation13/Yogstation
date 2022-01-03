@@ -26,7 +26,7 @@
 	switch(wire)
 		if(WIRE_AI)
 			C.ai_connection = FALSE
-			addtimer(CALLBACK(A, /obj/machinery/ai/data_core.proc/reset_wire, wire), 60)
+			addtimer(CALLBACK(C, /obj/machinery/ai/data_core.proc/reset_wire, wire), 10 SECONDS)
 
 /datum/wires/ai_data_core/on_cut(wire, mend)
 	var/obj/machinery/ai/data_core/C = holder
