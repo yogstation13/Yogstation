@@ -202,7 +202,7 @@ GENE SCANNER
 		to_chat(user, "\t[span_info("Brain Activity Level: [(200 - M.getOrganLoss(ORGAN_SLOT_BRAIN))/2]%.")]")
 		if(M.has_horror_inside())
 			to_chat(user, "\t[span_alert("Detected parasitic organism residing in the cranial area.")]")
-			to_chat(user, "\t[span_alert("Recommended course of action: <b>head organ manipulation surgery</b>.")]")
+			to_chat(user, "\t[span_alert("Recommended course of action: <b>organ manipulation surgery performed on head.</b>.")]")
 
 	if (M.radiation)
 		to_chat(user, "\t[span_alert("Subject is irradiated.")]")
