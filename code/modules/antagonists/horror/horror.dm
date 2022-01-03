@@ -125,7 +125,7 @@
 	for(var/datum/mind/M in SSticker.minds)
 		if(M.current && M.current.stat != DEAD)
 			if(ishuman(M.current))
-				if(mind.enslaved_to != M.current && M.hasSoul)
+				if(M.hasSoul && (mind.enslaved_to != M.current))
 					possible_targets[M] = M
 
 	var/list/selected_targets = list()
