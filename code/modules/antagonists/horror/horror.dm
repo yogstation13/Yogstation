@@ -714,7 +714,7 @@
 
 	var/delay = 20 SECONDS
 	if(horrorupgrades["fast_control"])
-		delay -= 120
+		delay -= 12 SECONDS
 	if(do_after(src, delay, target = victim, extra_checks = CALLBACK(src, .proc/is_bonding), stayStill = FALSE))
 		assume_control()
 
