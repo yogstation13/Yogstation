@@ -775,7 +775,7 @@
 	for(var/I in contents)
 		if(ishorror(I))
 			return I
-	return FALSE
+	
 
 /mob/living/simple_animal/horror/proc/hit_detatch()
 	if(victim.health <= 75)
