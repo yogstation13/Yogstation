@@ -486,5 +486,5 @@
 
 /obj/effect/temp_visual/summon
 	randomdir = 0
-	duration = 20
+	duration = 2 SECONDS
 	icon_state = "summon"
