@@ -568,7 +568,7 @@
 	victim = null
 
 	RefreshAbilities()
-	return
+	
 
 /mob/living/simple_animal/horror/proc/jumpstart()
 	if(!victim)
