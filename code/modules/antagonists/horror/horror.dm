@@ -138,7 +138,7 @@
 		possible_targets -= M
 
 		var/mob/living/carbon/human/H = M.current
-		icons [M] = H
+		icons[M] = H
 
 	used_target = world.time
 
