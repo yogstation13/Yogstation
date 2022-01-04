@@ -83,8 +83,10 @@
 	else //Distant glare
 		var/loss = 100 - (distance * 10)
 		target.adjustStaminaLoss(loss)
-		if(!issilicon(target))
+		if(iscarbon(target))
 			target.stuttering = loss
+		else if(issilicon(target))
+			target.stuttering = distance
 		to_chat(target, span_userdanger("A purple light flashes across your vision, and exhaustion floods your body..."))
 		target.visible_message(span_danger("[target] looks very tired..."))
 	charge_counter = 0
