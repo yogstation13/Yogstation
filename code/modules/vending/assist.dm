@@ -4,6 +4,7 @@
 					/obj/item/assembly/signaler = 4,
 					/obj/item/wirecutters = 1,
 					/obj/item/cartridge/signal = 4)
+	premium = list(/obj/item/laserlevel = 1)
 	contraband = list(/obj/item/assembly/timer = 2,
 					  /obj/item/assembly/voice = 2,
 					  /obj/item/assembly/health = 2)

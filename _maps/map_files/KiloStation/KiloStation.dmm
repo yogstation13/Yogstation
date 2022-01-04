@@ -86590,32 +86590,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port)
-"fZr" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/crate/freezer/blood,
-/obj/machinery/power/apc{
-	areastring = "/area/medical/surgery";
-	dir = 4;
-	name = "Surgery APC";
-	pixel_x = 24
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/structure/sign/departments/minsky/medical/medical1{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/surgery)
 "gbX" = (
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -96884,10 +96858,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
-"qfk" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/medical/surgery)
 "qfY" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/neutral,
@@ -102771,6 +102741,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"wsS" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate/freezer/blood,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/surgery";
+	dir = 4;
+	name = "Surgery APC";
+	pixel_x = 24
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/sign/departments/minsky/medical/medical1{
+	pixel_y = -32
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/medical/surgery)
 "wtx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -123706,7 +123703,7 @@ aQL
 wIV
 eeQ
 rLS
-fZr
+wsS
 dMm
 fPd
 kkG

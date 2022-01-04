@@ -66,6 +66,11 @@
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle4"
 
+/obj/item/trash/candle/resin
+	name = "resin candle"
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "resincandle4"
+
 /obj/item/trash/can
 	name = "crushed can"
 	icon_state = "cola"

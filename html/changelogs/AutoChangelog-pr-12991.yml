@@ -1,0 +1,5 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - rscadd: "Adds tribal coat, medicinal pouch, and resin candles. Tribal coat and medicinal pouch sprites from fallout13 codebase."
+  - tweak: "Allows you to clean leather via the crafting menu with water. Adds hunter's belt to the crafting menu, made with 4 sinew. Goliath cloak armor values buffed to bone armor values. New knowledge added to TOME OF HERBAL KNOWLEDGE."

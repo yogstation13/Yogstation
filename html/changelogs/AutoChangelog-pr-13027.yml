@@ -1,0 +1,5 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Adds support for rare speech verbs to species"
+  - rscadd: "Felinids and Phytosians sometimes use easter egg speech verbs instead of \"Says\""
