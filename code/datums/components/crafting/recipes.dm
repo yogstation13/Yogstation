@@ -578,6 +578,14 @@
 	reqs = list(/obj/item/stack/sheet/bone = 6)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/tribalcoat
+	name = "Tribal Coat"
+	result = /obj/item/clothing/suit/armor/tribalcoat
+	time = 3 SECONDS
+	reqs = list(/obj/item/stack/sheet/leather = 2,
+			/obj/item/stack/sheet/bone = 2)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/bonetalisman
 	name = "Bone Talisman"
 	result = /obj/item/clothing/accessory/talisman
@@ -636,7 +644,7 @@
 	result = /obj/item/clothing/suit/hooded/cloak/goliath
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 2,
-				/obj/item/stack/sheet/sinew = 2,
+				/obj/item/stack/sheet/sinew = 1,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 2) //it takes 4 goliaths to make 1 cloak if the plates are skinned
 	category = CAT_PRIMAL
 
@@ -708,6 +716,27 @@
 				/obj/item/stack/sheet/animalhide/carpdragon = 5)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/sinewbelt
+	name = "Sinew Belt"
+	result = /obj/item/storage/belt/mining/primitive
+	time = 5 SECONDS
+	reqs = list(/obj/item/stack/sheet/sinew = 4)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/medpouchcloth
+	name = "Cloth Medicinal Pouch"
+	result = /obj/item/storage/bag/medpouch
+	time = 5 SECONDS
+	reqs = list(/obj/item/stack/sheet/cloth = 3)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/medpouchleather //whatever material tickles your fancy.
+	name = "Leather Medicinal Pouch"
+	result = /obj/item/storage/bag/medpouch
+	time = 5 SECONDS
+	reqs = list(/obj/item/stack/sheet/leather = 1)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/firebrand
 	name = "Firebrand"
 	result = /obj/item/match/firebrand
@@ -776,6 +805,13 @@
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 3)
 	result = /obj/item/reagent_containers/glass/bucket/wooden
 	category = CAT_PRIMAL
+
+/datum/crafting_recipe/cleanleather 
+	name = "Clean Leather"
+	result = /obj/item/stack/sheet/wetleather
+	reqs = list(/obj/item/stack/sheet/hairlesshide = 1, /datum/reagent/water = 20)
+	time = 10 SECONDS //its pretty hard without the help of a washing machine.
+	category = CAT_MISC
 
 /datum/crafting_recipe/headpike
 	name = "Spike Head (Glass Spear)"
