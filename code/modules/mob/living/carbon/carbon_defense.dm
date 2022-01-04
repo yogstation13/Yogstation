@@ -65,7 +65,7 @@
 						I.pixel_y = initial(I.pixel_y)
 						I.transform = initial(I.transform)
 						throw_mode_off()
-							return TRUE
+						return TRUE
 	..()
 
 /mob/living/carbon/proc/get_interaction_efficiency(zone)
