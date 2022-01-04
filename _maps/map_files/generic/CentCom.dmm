@@ -21938,7 +21938,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "aRE" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/chitinspear,
+/obj/item/twohanded/bonespear/chitinspear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "aRF" = (
@@ -24585,7 +24585,7 @@
 "aWV" = (
 /obj/structure/table/wood,
 /obj/item/tailclub,
-/obj/item/twohanded/chitinspear,
+/obj/item/twohanded/bonespear/chitinspear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "aWW" = (
