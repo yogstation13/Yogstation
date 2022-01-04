@@ -61,7 +61,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
 		var/active_status = ""
 		if(!AI.mind && AI.deployed_shell)
-			active_status = "(Controlling [AI.deployed_shell.name])"
+			active_status = "(Controlling [FOLLOW_LINK(AI.deployed_shell, user)][AI.deployed_shell.name])"
 		else if(!AI.mind)
 			active_status = "([span_warning("OFFLINE")])"
 			
