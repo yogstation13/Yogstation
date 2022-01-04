@@ -60,8 +60,12 @@
 					I.attack_hand(src)
 					if(get_active_held_item() == I) //if our attack_hand() picks up the item...
 						visible_message(span_warning("[src] catches [I]!")) //catch that sucker!
-						throw_mode_off()
-						return TRUE
+						update_inv_hands()
+							I.pixel_x = initial(I.pixel_x)
+							I.pixel_y = initial(I.pixel_y)
+							I.transform = initial(I.transform)
+								throw_mode_off()
+								return TRUE
 	..()
 
 /mob/living/carbon/proc/get_interaction_efficiency(zone)
