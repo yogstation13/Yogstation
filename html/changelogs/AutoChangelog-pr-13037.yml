@@ -1,0 +1,4 @@
+author: "Ethan4303"
+delete-after: true 
+changes: 
+  - rscdel: "removed a duplicate fire cabinet from arrivals(50,150) under the emergency shuttle"
