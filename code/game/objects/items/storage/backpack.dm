@@ -369,6 +369,7 @@
 	new /obj/item/circular_saw(src)
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
+	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/bonesetter(src)
 	new /obj/item/surgical_drapes(src)
 	new /obj/item/clothing/mask/surgical(src)
@@ -393,6 +394,7 @@
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
 	new /obj/item/surgical_drapes(src)
+	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/clothing/mask/surgical(src)
 
 /obj/item/storage/backpack/duffelbag/engineering
@@ -642,7 +644,6 @@
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
 	new /obj/item/clothing/head/hopcap(src)
-	new /obj/item/clothing/neck/yogs/shawl/hop(src) //Yogs
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
@@ -653,7 +654,6 @@
 	desc = "A large duffel bag filled with clothing."
 
 /obj/item/storage/backpack/duffelbag/clothing/rd/PopulateContents()
-	new /obj/item/clothing/neck/yogs/shawl/rd(src) //Yogs
 	new /obj/item/clothing/suit/bio_suit/scientist(src)
 	new /obj/item/clothing/head/bio_hood/scientist(src)
 	new /obj/item/clothing/suit/toggle/labcoat(src)
@@ -672,8 +672,8 @@
 	item_state = "duffel-eng"
 	icon_state = "duffel-eng"
 
+
 /obj/item/storage/backpack/duffelbag/clothing/ce/PopulateContents()
-	new /obj/item/clothing/neck/yogs/shawl/ce(src) //Yogs
 	new /obj/item/clothing/under/rank/chief_engineer(src)
 	new /obj/item/clothing/under/rank/chief_engineer/skirt(src)
 	new /obj/item/clothing/head/hardhat/white(src)
@@ -750,7 +750,6 @@
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars(src)
 	new /obj/item/clothing/under/rank/head_of_security/grey(src)
-	new /obj/item/clothing/neck/yogs/shawl/hos(src) //Yogs
 	new /obj/item/clothing/under/yogs/lieutgeneral(src)
 	new /obj/item/clothing/under/yogs/dictatorhos(src)
 	new /obj/item/clothing/suit/armor/hos/germancoat(src)
@@ -771,5 +770,4 @@
 	new /obj/item/clothing/under/rank/chief_medical_officer(src)
 	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
-	new /obj/item/clothing/neck/yogs/shawl/cmo(src) //Yogs
 	new /obj/item/clothing/head/beret/cmo(src)

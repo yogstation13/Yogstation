@@ -153,9 +153,12 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 	GLOB.announcing_vox = world.time + VOX_DELAY
 
 	log_game("[key_name(src)] made a vocal announcement with the following message: [message].")
+	var/z_coord = z
+	if(istype(loc, /obj/machinery/ai/data_core))
+		z_coord = loc.z
 
 	for(var/word in words)
-		play_vox_word(word, src.z, null, voxType) //yogs - male vox
+		play_vox_word(word, z_coord, null, voxType) //yogs - male vox
 
 
 /proc/play_vox_word(word, z_level, mob/only_listener, voxType = "Verity (female)", pitch = 0) // Yogs -- Pitch variation
@@ -177,11 +180,11 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 		voice.status = SOUND_STREAM
 		voice.frequency = pitch //Yogs -- Pitch variation
 
- 		// If there is no single listener, broadcast to everyone in the same z level
+ 		// If there is no single listener, broadcast to everyone in the same z level 
 		if(!only_listener)
 			// Play voice for all mobs in the z level
 			for(var/mob/M in GLOB.player_list)
-				if(M.client && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS))
+				if(M.client && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS) && (M.client.prefs.toggles & SOUND_VOX))
 					var/turf/T = get_turf(M)
 					if(T.z == z_level)
 						SEND_SOUND(M, voice)

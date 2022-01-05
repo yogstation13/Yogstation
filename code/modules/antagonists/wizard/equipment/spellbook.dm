@@ -426,6 +426,7 @@
 	name = "Mjolnir"
 	desc = "A mighty hammer on loan from Thor, God of Thunder. It crackles with barely contained power."
 	item_path = /obj/item/twohanded/mjollnir
+	cost = 3
 
 /datum/spellbook_entry/item/singularity_hammer
 	name = "Singularity Hammer"

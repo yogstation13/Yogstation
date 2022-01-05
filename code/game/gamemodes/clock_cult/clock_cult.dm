@@ -294,6 +294,7 @@ Credit where due:
 	var/obj/item/card/id/W = new(H)
 	var/obj/item/pda/PDA = H.wear_id
 	W.assignment = "Assistant"
+	W.originalassignment = "Assistant"
 	W.access += ACCESS_MAINT_TUNNELS
 	W.registered_name = H.real_name
 	W.update_label()

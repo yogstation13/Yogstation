@@ -170,6 +170,7 @@
 		if(fabricate)
 			fabricated_phone = new(src)
 			fabricated_phone.install_component(new /obj/item/computer_hardware/battery)
+			fabricated_phone.install_component(new /obj/item/computer_hardware/card_slot)
 			fabricated_phone.install_component(new /obj/item/computer_hardware/processor_unit/small)
 			battery_module = fabricated_phone.all_components[MC_CELL]
 		total_price = 149

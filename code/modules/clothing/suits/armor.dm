@@ -140,6 +140,16 @@
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 
+/obj/item/clothing/suit/armor/tribalcoat
+	name = "tribal coat"
+	desc = "A light yet tough leather coat reinforced with bone pauldrons."
+	icon_state = "tribalcoat"
+	item_state = "tribalcoat"
+	blood_overlay_type = "armor"
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10)
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	resistance_flags = FLAMMABLE
+
 /obj/item/clothing/suit/armor/pathfinder
 	name = "pathfinder cloak"
 	desc = "A thick cloak woven from sinew and hides meant to protect its wearer from hazardous weather."

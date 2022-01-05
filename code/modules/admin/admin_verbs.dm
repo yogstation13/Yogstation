@@ -393,7 +393,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(check_rights(R_ADMIN))
 	// yogs start
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
-		if((!isobserver(usr) && SSticker.HasRoundStarted()) || !check_rights(R_VAREDIT))
+		if((!isobserver(usr) && SSticker.HasRoundStarted()) || !check_rights(R_VAREDIT, FALSE))
 			message_admins("[key_name_admin(usr)] checked antagonists.")
 		holder.check_antagonists()
 

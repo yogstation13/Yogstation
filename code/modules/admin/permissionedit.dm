@@ -138,6 +138,8 @@
 	if(IsAdminAdvancedProcCall())
 		to_chat(usr, "<span class='admin prefix'>Admin Edit blocked: Advanced ProcCall detected.</span>", confidential=TRUE)
 		return
+	if(!owner.mfa_query())
+		return
 	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
 	permissions_assets.send(src)
 	var/admin_key = href_list["key"]
@@ -208,8 +210,8 @@
 				return
 			if(alert("If you have been requested to reset the MFA credentials for someone, please confirm that you have verified their identity. Resetting MFA for an unverified person can result in a break of server security.", "Confirmation", "I Understand", "Cancel") != "I Understand")
 				return
-			message_admins("MFA for [src] has been reset by [usr]!")
-			log_admin("MFA Reset for [src] by [usr]!")
+			message_admins("MFA for [admin_ckey] has been reset by [usr]!")
+			log_admin("MFA Reset for [admin_ckey] by [usr]!")
 			mfa_reset(admin_ckey)
 	edit_admin_permissions()
 
@@ -324,6 +326,8 @@
 	if(new_rank == "*New Rank*")
 		new_rank = trim(input("Please input a new rank", "New custom rank") as text|null)
 	if(!new_rank)
+		if(!D)
+			remove_admin(admin_ckey, admin_key, use_db, null)
 		return
 	R = rank_names[new_rank]
 	if(!R) //rank with that name doesn't exist yet - make it

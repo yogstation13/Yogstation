@@ -30,6 +30,7 @@
 	default_hatmask = /obj/item/clothing/head/helmet/space/hardsuit/syndi
 	hacked = TRUE
 	flavortext = null
+	pacifism = FALSE
 
 /mob/living/simple_animal/drone/syndrone/Initialize()
 	. = ..()
@@ -79,6 +80,7 @@
 	default_hatmask = null
 	picked = TRUE
 	flavortext = null
+	pacifism = FALSE
 
 /mob/living/simple_animal/drone/polymorphed/Initialize()
 	. = ..()
@@ -133,6 +135,7 @@
 	flavortext = "<b><span class='nezbere'>You are a cogscarab,</span> a tiny building construct of Ratvar. While you're weak and can't recite scripture, \
 	you have a set of quick tools, as well as a replica fabricator that can create brass and convert objects.<br><br>Work with the servants of Ratvar \
 	to construct and maintain defenses at the City of Cogs. If there are no servants, use this time to experiment with base designs!"
+	pacifism = FALSE
 
 /mob/living/simple_animal/drone/cogscarab/ratvar //a subtype for spawning when ratvar is alive, has a slab that it can use and a normal fabricator
 	default_storage = /obj/item/storage/toolbox/brass/prefilled/ratvar

@@ -517,6 +517,7 @@
 		update_sight()
 		clear_alert("not_enough_oxy")
 		reload_fullscreen()
+		revive_guardian()
 		. = 1
 		if(mind)
 			for(var/S in mind.spell_list)

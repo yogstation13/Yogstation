@@ -63,6 +63,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/undershirt = "Nude"				//undershirt type
 	var/socks = "Nude"					//socks type
 	var/backbag = DBACKPACK				//backpack type
+	var/jumpsuit_style = PREF_SUIT      //suit/skirt
 	var/hair_style = "Bald"				//Hair type
 	var/hair_color = "000"				//Hair color
 	var/facial_hair_style = "Shaved"	//Face hair type
@@ -288,6 +289,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<a href ='?_src_=prefs;preference=socks;task=lock'>[random_locks["socks"] ? "Unlock" : "Lock"]</a><BR>"
 
 			dat += "<b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a>"
+			dat += "<b>Jumpsuit:</b><BR><a href ='?_src_=prefs;preference=suit;task=input'>[jumpsuit_style]</a><BR>"
 			dat += "<a href ='?_src_=prefs;preference=bag;task=lock'>[random_locks["bag"] ? "Unlock" : "Lock"]</a><BR>"
 			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
 				dat += "<BR><b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
@@ -366,15 +368,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
 				dat += "<a href ='?_src_=prefs;preference=facial_hair_style_color;task=lock'>[random_locks["facial"] ? "Unlock" : "Lock"]</a><BR>"
 
-				dat += "<h3>Hair Gradient</h3>"
+				if(pref_species.id != "ethereal")
+					dat += "<h3>Hair Gradient</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=hair_gradient_style;task=input'>[features["gradientstyle"]]</a>"
-				dat += "<a href ='?_src_=prefs;preference=hair_gradient_style;task=lock'>[random_locks["gradientstyle"] ? "Unlock" : "Lock"]</a><BR>"
+					dat += "<a href='?_src_=prefs;preference=hair_gradient_style;task=input'>[features["gradientstyle"]]</a>"
+					dat += "<a href ='?_src_=prefs;preference=hair_gradient_style;task=lock'>[random_locks["gradientstyle"] ? "Unlock" : "Lock"]</a><BR>"
 
-				dat += "<a href='?_src_=prefs;preference=previous_hair_gradient_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_gradient_style;task=input'>&gt;</a><BR>"
+					dat += "<a href='?_src_=prefs;preference=previous_hair_gradient_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_gradient_style;task=input'>&gt;</a><BR>"
 
-				dat += "<span style='border:1px solid #161616; background-color: #[features["gradientcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_gradient;task=input'>Change</a>"
-				dat += "<a href ='?_src_=prefs;preference=hair_gradient_color;task=lock'>[random_locks["gradientcolor"] ? "Unlock" : "Lock"]</a><BR>"
+					dat += "<span style='border:1px solid #161616; background-color: #[features["gradientcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_gradient;task=input'>Change</a>"
+					dat += "<a href ='?_src_=prefs;preference=hair_gradient_color;task=lock'>[random_locks["gradientcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "</td>"
 
@@ -1691,6 +1694,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_backbag)
 						backbag = new_backbag
 
+				if("suit")
+					jumpsuit_style = jumpsuit_style == PREF_SUIT ? PREF_SKIRT : PREF_SUIT
+
 				if("uplink_loc")
 					var/new_loc = input(user, "Choose your character's traitor uplink spawn location:", "Character Preference") as null|anything in GLOB.uplink_spawn_loc_list
 					if(new_loc)
@@ -2039,6 +2045,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.socks = socks
 
 	character.backbag = backbag
+
+	character.jumpsuit_style = jumpsuit_style
 
 	var/datum/species/chosen_species
 	chosen_species = pref_species.type

@@ -30,10 +30,10 @@
 	if(!M.client)
 		return
 	if(!iscarbon(M) && !isguardian(M))
-		to_chat("<span class='italics warning'>You can't stab [M], it won't work!</span>")
+		to_chat(span_italics(span_warning("You can't stab [M], it won't work!")))
 		return
 	if(M.stat == DEAD)
-		to_chat("<span class='italics warning'>You can't stab [M], they're already dead!</span>")
+		to_chat(span_italics(span_warning("You can't stab [M], they're already dead!")))
 		return
 	var/mob/living/carbon/H = M
 	var/mob/living/simple_animal/hostile/guardian/G = M
@@ -43,26 +43,29 @@
 			H.visible_message(span_holoparasite("\The [src] rejects [H]!"))
 			return
 		in_use = TRUE
+		log_combat(user, H, "stabbed with stand arrow")
 		H.visible_message(span_holoparasite("\The [src] embeds itself into [H], and begins to glow!"))
 		user.dropItemToGround(src, TRUE)
 		forceMove(H)
 		if(iscarbon(M))
-			sleep(15 SECONDS)
-			if(prob(kill_chance))
-				H.visible_message("<span class='danger bold'>[H] stares ahead, eyes full of fear, before collapsing lifelessly into ash, \the [src] falling out...</span>")
-				log_game("[key_name(H)] was killed by a stand arrow.")
-				forceMove(H.drop_location())
-				H.adjustCloneLoss(500)
-				H.dust(TRUE)
-				in_use = FALSE
-			else
-				INVOKE_ASYNC(src, .proc/generate_stand, H)
+			addtimer(CALLBACK(src, .proc/judge, H), 15 SECONDS)
 		else if(isguardian(M))
 			INVOKE_ASYNC(src, .proc/requiem, M)
 
 	if(!uses)
 		visible_message(span_warning("[src] falls apart!"))
 		qdel(src)
+
+/obj/item/stand_arrow/proc/judge(mob/living/carbon/victim)
+	if(prob(kill_chance))
+		victim.visible_message(span_bolddanger("[victim] stares ahead, eyes full of fear, before collapsing lifelessly into ash, \the [src] falling out..."))
+		log_game("[key_name(victim)] was killed by a stand arrow.")
+		forceMove(victim.drop_location())
+		victim.adjustCloneLoss(500)
+		victim.dust(TRUE)
+		in_use = FALSE
+	else
+		INVOKE_ASYNC(src, .proc/generate_stand, victim)
 
 /obj/item/stand_arrow/proc/requiem(mob/living/simple_animal/hostile/guardian/G)
 	G.range = 255
@@ -97,7 +100,9 @@
 	G.stats.Apply(G)
 	if(G.berserk)
 		G.stats.ability.Berserk()
+		log_game("[key_name(G)] went berserk (Damage [level_to_grade(G.stats.damage)], Defense [level_to_grade(G.stats.defense)], Speed [level_to_grade(G.stats.speed)], Potential [level_to_grade(G.stats.potential)], Range [level_to_grade(G.stats.range)], [G.stats.ability.name])")
 	else
+		log_game("[key_name(G)] became requiem (Damage [level_to_grade(G.stats.damage)], Defense [level_to_grade(G.stats.defense)], Speed [level_to_grade(G.stats.speed)], Potential [level_to_grade(G.stats.potential)], Range [level_to_grade(G.stats.range)], [G.stats.ability.name])")
 		var/datum/antagonist/guardian/S = G.mind.has_antag_datum(/datum/antagonist/guardian)
 		if(S)
 			S.name = "Requiem Guardian"

@@ -323,33 +323,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
-"aP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
-/obj/item/mecha_parts/mecha_equipment/mining_scanner,
-/obj/item/mecha_parts/mecha_equipment/drill,
-/obj/structure/closet/crate{
-	moving_diagonally = 0;
-	name = "mech equipment crate"
-	},
-/obj/item/stack/sheet/metal{
-	alternate_worn_layer = null;
-	amount = 5
-	},
-/obj/item/stack/cable_coil,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/stock_parts/cell/hyper/empty,
-/obj/item/stock_parts/capacitor/adv,
-/obj/item/stock_parts/scanning_module/adv,
-/obj/item/stack/rods{
-	amount = 10
-	},
-/obj/item/mecha_parts/mecha_equipment/ripleyupgrade,
-/obj/item/borg/upgrade/freeminer,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "bd" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "bathroom"
@@ -756,6 +729,33 @@
 /obj/machinery/computer/mech_bay_power_console,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"jc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/obj/item/mecha_parts/mecha_equipment/mining_scanner,
+/obj/item/mecha_parts/mecha_equipment/drill,
+/obj/structure/closet/crate{
+	moving_diagonally = 0;
+	name = "mech equipment crate"
+	},
+/obj/item/stack/sheet/metal{
+	alternate_worn_layer = null;
+	amount = 5
+	},
+/obj/item/stack/cable_coil,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/stock_parts/cell/hyper/empty,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/scanning_module/adv,
+/obj/item/stack/rods{
+	amount = 10
+	},
+/obj/item/mecha_parts/mecha_equipment/ripleyupgrade,
+/obj/item/borg/upgrade/panel_access_remover/freeminer,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "kL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/suit_storage_unit/mining/eva,
@@ -785,6 +785,22 @@
 /area/shuttle/abandoned)
 "lo" = (
 /obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"lq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/storage/box/monkeycubes{
+	pixel_y = 4
+	},
+/obj/item/kitchen/knife,
+/obj/item/storage/box/fancy/egg_box{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 4
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "lL" = (
@@ -1158,22 +1174,6 @@
 /obj/item/wrench,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"VW" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/fancy/egg_box{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/obj/item/storage/box/monkeycubes{
-	pixel_y = 4
-	},
-/obj/item/kitchen/knife,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "Xq" = (
 /obj/item/mecha_parts/chassis/ripley,
 /turf/open/floor/mineral/titanium/white,
@@ -1399,7 +1399,7 @@ aL
 bk
 aI
 mu
-VW
+Nw
 ae
 "}
 (12,1,1) = {"
@@ -1414,7 +1414,7 @@ bI
 bk
 bk
 bk
-Nw
+lq
 cz
 CQ
 ae
@@ -1466,7 +1466,7 @@ bx
 aE
 bk
 hs
-aP
+jc
 lo
 bk
 "}
