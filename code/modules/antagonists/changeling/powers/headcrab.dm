@@ -35,7 +35,7 @@
 	var/turf = get_turf(user)
 	var/mob/living/simple_animal/horror/H = user.has_horror_inside()
 	if(H)
-		H.leave_victim()
+	H?.leave_victim()
 	user.gib()
 	. = TRUE
 	sleep(5) // So it's not killed in explosion
