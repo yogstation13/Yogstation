@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: true 
-changes: 
-  - rscadd: "Ported \"Adds pipe layers to freezers/heaters\" from tg. You can now use a multitool on a freezer/heater circuit board to change it's layer. Examine the board to see what layer it's currently set to."
