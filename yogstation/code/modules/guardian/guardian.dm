@@ -51,7 +51,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/battlecry = "AT"
 	var/do_temp_anchor = TRUE
 	var/temp_anchored_to_owner = FALSE
-	var/erased_time = FALSE
 	var/berserk = FALSE
 	var/requiem = FALSE
 	// ability stuff below
@@ -353,8 +352,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if (transforming)
 		to_chat(src, span_italics(span_holoparasite("No... no... you can't!")))
 		return
-	if (erased_time)
-		to_chat(src, span_danger("There is no time, and you cannot intefere!"))
+	if (HAS_TRAIT(src, TRAIT_NOINTERACT))
+		to_chat(src, span_danger("You can't interact with anything right now!"))
 		return
 	if (stats.ability && stats.ability.RangedAttack(A))
 		return
@@ -364,9 +363,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if (transforming)
 		to_chat(src, span_italics(span_holoparasite("No... no... you can't!")))
 		return FALSE
-	if (erased_time)
-		to_chat(src, span_danger("There is no time, and you cannot intefere!"))
-		return FALSE
+	if (HAS_TRAIT(src, TRAIT_NOINTERACT))
+		to_chat(src, span_danger("You can't interact with anything right now!"))
+		return
 	if (stats.ability && stats.ability.Attack(target))
 		return FALSE
 	if (!is_deployed())
