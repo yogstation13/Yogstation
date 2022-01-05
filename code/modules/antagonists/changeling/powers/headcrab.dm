@@ -34,7 +34,6 @@
 		S.Paralyze(60)
 	var/turf = get_turf(user)
 	var/mob/living/simple_animal/horror/H = user.has_horror_inside()
-	if(H)
 	H?.leave_victim()
 	user.gib()
 	. = TRUE
