@@ -80,8 +80,7 @@
 			var/limb_to_regenerate = pick(missing_limbs)
 			M.regenerate_limb(limb_to_regenerate,TRUE);
 			var/obj/item/bodypart/new_limb = M.get_bodypart(limb_to_regenerate);
-			new_limb.set_brute_dam(45);
-			new_limb.set_burn_dam(45);
+			new_limb.receive_damage(45); //45 brute damage should be fine I think??????
 			M.emote("scream")
 			M.visible_message(span_warning("Gnarly tumors burst out of [M]'s stump and form into a [parse_zone(limb_to_regenerate)]!"), span_notice("You scream as your [parse_zone(limb_to_regenerate)] reforms."))
 				
