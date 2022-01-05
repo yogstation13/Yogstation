@@ -92,13 +92,13 @@
 		H.key = C.key
 		H.mind.enslave_mind_to_creator(user)
 		H.mind.add_antag_datum(C)
-		H.mind.memory += "You are " + span_purple(span_bold("[H.truename]")) + ", an eldritch horror. Consume souls to evolve.<br>"
+		H.mind.memory += "You are " + span_purple(span_bold("[H.real_name]")) + ", an eldritch horror. Consume souls to evolve.<br>"
 		var/datum/antagonist/horror/S = new
 		S.summoner = user.mind
 		S.antag_memory += "<b>[user.mind]</b> woke you from your eternal slumber. Aid them in their objectives as a token of gratitude.<br>"
 		H.mind.add_antag_datum(S)
 		log_game("[key_name(user)] has summoned [key_name(H)], an eldritch horror.")
-		to_chat(user, span_bold("[H.truename]</b> has awoken into your service!"))
+		to_chat(user, span_bold("[H.real_name]</b> has awoken into your service!"))
 		used = TRUE
 		icon_state = "pet_carrier_open"
 		sleep(5)

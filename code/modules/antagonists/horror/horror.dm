@@ -1,6 +1,5 @@
 /mob/living/simple_animal/horror
 	name = "eldritch horror"
-	real_name = "eldritch horror"
 	desc = "Your eyes can barely comprehend what they're looking at."
 	icon_state = "horror"
 	icon_living = "horror"
@@ -17,7 +16,7 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	faction = list("neutral","silicon","hostile","creature","heretics")
+	faction = list("neutral","silicon","creature","heretics")
 	ventcrawler = VENTCRAWLER_ALWAYS
 	initial_language_holder = /datum/language_holder/universal
 	hud_type = /datum/hud/chemical_counter
@@ -29,17 +28,22 @@
 
 	var/playstyle_string = span_bold(span_big("You are an eldritch horror,") + " an evermutating parasitic abomination. Seek human souls to consume. \
 							Crawl into people's heads and steal their essence. Use it to mutate yourself, giving you access to more power and abilities. \
-							You operate on chemicals that get built up while you spend time in someone's head. You are weak when outside, play carefully.")
+							You operate on chemicals that get built up while you spend time in someone's head. You are weak when outside, play carefully. \
+							You can attack airlocks to squeeze yourself through them.")
 
 	var/mob/living/carbon/victim
 	var/datum/mind/target
 	var/mob/living/captive_brain/host_brain
-	var/truename = null
 	var/available_points = 4
 	var/consumed_souls = 0
-	var/list/horrorabilities = list()	//An associative list (associated by ability typepaths) containing the abilities the horror has
-	var/list/horrorupgrades = list()	//same (associated by their ID), but for permanent upgrades
-	var/list/clothing = list()			//list storing what items we have to un-glue when stopping mind control
+
+	//An associative list (associated by ability typepaths) containing the abilities the horror has
+	var/list/horrorabilities = list()
+	//same (associated by their ID), but for permanent upgrades
+	var/list/horrorupgrades = list()
+	//list storing what items we have to un-glue when stopping mind control
+	var/list/clothing = list()
+
 	var/bonding = FALSE
 	var/controlling = FALSE
 	var/chemicals = 10
@@ -51,13 +55,11 @@
 	var/leaving = FALSE
 	var/hiding = FALSE
 	var/invisible = FALSE
-	var/waketimerid = null
 	var/datum/action/innate/horror/talk_to_horror/talk_to_horror_action = new
 
 /mob/living/simple_animal/horror/Initialize(mapload, gen=1)
 	..()
-	real_name = "Eldritch horror"
-	truename = "[pick(GLOB.horror_names)]"
+	real_name = "[pick(GLOB.horror_names)]"
 
 	//default abilities
 	add_ability(/datum/action/innate/horror/mutate)
@@ -185,7 +187,7 @@
 	consumed_souls++
 	available_points++
 	to_chat(src, span_userdanger("You succeed in consuming [victim.name]'s soul!"))
-	to_chat(src.victim, span_userdanger("You suddenly feel weak and hollow inside..."))
+	to_chat(victim, span_userdanger("You suddenly feel weak and hollow inside..."))
 	victim.health -= 20
 	victim.maxHealth -= 20
 	victim.mind.hasSoul = FALSE
@@ -197,7 +199,7 @@
 /mob/living/simple_animal/horror/proc/Communicate()
 	if(!can_use_ability())
 		return
-	if(!src.victim)
+	if(!victim)
 		to_chat(src, "You do not have a host to communicate with!")
 		return
 
@@ -205,15 +207,15 @@
 	if(!input)
 		return
 
-	if(src && !QDELETED(src) && !QDELETED(src.victim))
-		if(src.victim)
-			to_chat(victim, span_changeling("<i>[truename] slurs:</i> [input]"))
+	if(src && !QDELETED(src) && !QDELETED(victim))
+		if(victim)
+			to_chat(victim, span_changeling("<i>[real_name] slurs:</i> [input]"))
 			for(var/M in GLOB.dead_mob_list)
 				if(isobserver(M))
-					var/rendered = span_changeling("<i>Horror Communication from <b>[truename]</b> : [input]</i>")
+					var/rendered = span_changeling("<i>Horror Communication from <b>[real_name]</b> : [input]</i>")
 					var/link = FOLLOW_LINK(M, src)
 					to_chat(M, "[link] [rendered]")
-		to_chat(src, span_changeling("<i>[truename] slurs:</i> [input]"))
+		to_chat(src, span_changeling("<i>[real_name] slurs:</i> [input]"))
 		add_verb(victim, /mob/living/proc/horror_comm)
 		talk_to_horror_action.Grant(victim)
 
@@ -246,30 +248,29 @@
 	if(!input)
 		return
 
-	to_chat(CB, span_changeling("<i>[B.truename] says:</i> [input]"))
+	to_chat(CB, span_changeling("<i>[B.real_name] says:</i> [input]"))
 
 	for(var/M in GLOB.dead_mob_list)
 		if(isobserver(M))
-			var/rendered = span_changeling("<i>Horror Communication from <b>[B.truename]</b> : [input]</i>")
+			var/rendered = span_changeling("<i>Horror Communication from <b>[B.real_name]</b> : [input]</i>")
 			var/link = FOLLOW_LINK(M, src)
 			to_chat(M, "[link] [rendered]")
-	to_chat(src, span_changeling("<i>[B.truename] says:</i> [input]"))
+	to_chat(src, span_changeling("<i>[B.real_name] says:</i> [input]"))
 
 /mob/living/simple_animal/horror/Life()
 	..()
-	if(horrorupgrades["regen"])
+	if(has_upgrade("regen"))
 		heal_overall_damage(5)
 
 	if(invisible) //don't regenerate chemicals when invisible
-		if(has_chemicals(5))
-			use_chemicals(5)
+		if(use_chemicals(5))
 			alpha = max(alpha - 100, 1)
 		else
 			to_chat(src, span_warning("You ran out of chemicals to support your invisibility."))
 			invisible = FALSE
 			Update_Invisibility_Button()
 	else
-		if(horrorupgrades["nohost_regen"])
+		if(has_upgrade("nohost_regen"))
 			regenerate_chemicals(chem_regen_rate)
 		else if(victim)
 			if(victim.stat == DEAD)
@@ -331,18 +332,15 @@
 	if(victim)
 		to_chat(src, span_warning("You are already within a host."))
 
-	if(stat == DEAD)
-		return
-
 	var/list/choices = list()
 	for(var/mob/living/carbon/C in view(1,src))
-		if(C!=src && Adjacent(C))
+		if(Adjacent(C))
 			choices += C
 
 	if(!choices.len)
 		return
 	var/mob/living/carbon/C = choices.len > 1 ? input(src,"Who do you wish to infest?") in null|choices : choices[1]
-	if(!C || !src || !Adjacent(C))
+	if(!C || QDELETED(src) || !Adjacent(C) || !can_use_ability())
 		return
 
 	if(C.has_horror_inside())
@@ -350,11 +348,11 @@
 		return
 
 	to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at their ear canal..."))
-	if(!do_mob(src, C, 30))
+	if(!do_mob(src, C, 3 SECONDS))
 		to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
 		return
 
-	if(!C || !src)
+	if(!C || QDELETED(src) || !can_use_ability())
 		return
 
 	Infect(C)
@@ -366,10 +364,8 @@
 	if(!head)
 		to_chat(src, span_warning("[C] doesn't have a head!"))
 		return
-	var/hasbrain = FALSE
-	for(var/obj/item/organ/brain/X in C.internal_organs)
-		hasbrain = TRUE
-		break
+	var/hasbrain = locate(/obj/item/organ/brain) in C.internal_organs
+
 	if(!hasbrain)
 		to_chat(src, span_warning("[C] doesn't have a brain!"))
 		return
@@ -392,27 +388,24 @@
 	log_game("[src]/([src.ckey]) has infested [victim]/([victim.ckey]")
 
 /mob/living/simple_animal/horror/proc/secrete_chemicals()
+	if(!can_use_ability())
+		return
 	if(!victim)
 		to_chat(src, span_warning("You are not inside a host body."))
 		return
 
-	if(!can_use_ability())
-		return
-
-	var content = ""
-	content += "<p>Chemicals: <span id='chemicals'>[chemicals]</span></p>"
+	var/content = "<p>Chemicals: <span id='chemicals'>[chemicals]</span></p>"
 	content += "<table>"
 
-	for(var/datum in horror_chems)
-		var/datum/horror_chem/C = new datum()
-		if(C.chemname)
-			content += "<tr><td><a class='chem-select' href='?_src_=\ref[src];src=\ref[src];horror_use_chem=[C.chemname]'>[C.chemname] ([C.chemuse])</a><p>[C.chem_desc]</p></td></tr>"
+	for(var/path in subtypesof(/datum/horror_chem))
+		var/datum/horror_chem/chem = path
+		if(path in horror_chems)
+			content += "<tr><td><a class='chem-select' href='?_src_=\ref[src];src=\ref[src];horror_use_chem=[initial(chem.chemname)]'>[initial(chem.chemname)] ([initial(chem.chemuse)])</a><p>[initial(chem.chem_desc)]</p></td></tr>"
 
 	content += "</table>"
 
 	var/html = get_html_template(content)
 
-	usr << browse(null, "window=ViewHorror\ref[src]Chems;size=600x800")
 	usr << browse(html, "window=ViewHorror\ref[src]Chems;size=600x800")
 
 /mob/living/simple_animal/horror/proc/hide()
@@ -473,7 +466,7 @@
 	if(!choices.len)
 		return
 
-	if(!src || stat != CONSCIOUS || victim || (world.time - used_freeze < 150))
+	if(QDELETED(src) || stat != CONSCIOUS || victim || (world.time - used_freeze < 150))
 		return
 
 	layer = MOB_LAYER
@@ -481,7 +474,7 @@
 		if(!M || !Adjacent(M))
 			return
 
-		if(horrorupgrades["paralysis"])
+		if(has_upgrade("paralysis"))
 			playsound(loc, "sound/effects/sparks4.ogg", 30, 1, -1)
 			M.Stun(50)
 			M.SetSleeping(70)  //knocked out cold
@@ -511,7 +504,7 @@
 
 	to_chat(src, span_danger("You begin disconnecting from [victim]'s synapses and prodding at their internal ear canal."))
 
-	if(victim.stat != DEAD && !horrorupgrades["invisible_exit"])
+	if(victim.stat != DEAD && !has_upgrade("invisible_exit"))
 		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	leaving = TRUE
@@ -519,14 +512,13 @@
 		release_host()
 
 /mob/living/simple_animal/horror/proc/release_host()
-	if(!victim || !src || QDELETED(victim) || QDELETED(src) || controlling)
+	if(!victim || QDELETED(victim) || QDELETED(src) || controlling)
 		return
 
-	if(stat != CONSCIOUS)
-		to_chat(src, span_userdanger("You cannot release your host in your current state."))
+	if(!can_use_ability())
 		return
 
-	if(horrorupgrades["invisible_exit"])
+	if(has_upgrade("invisible_exit"))
 		alpha = 60
 		if(has_ability(/datum/action/innate/horror/chameleon))
 			invisible = TRUE
@@ -535,7 +527,7 @@
 	else
 		to_chat(src, span_danger("You wiggle out of [victim]'s ear and plop to the ground."))
 	if(victim.mind)
-		if(!horrorupgrades["invisible_exit"])
+		if(!has_upgrade("invisible_exit"))
 			to_chat(victim, span_danger("Something slimy wiggles out of your ear and plops to the ground!"))
 
 	leaving = FALSE
@@ -551,11 +543,11 @@
 
 	forceMove(get_turf(victim))
 
-	reset_perspective(null)
-	machine = null
+	reset_perspective()
+	unset_machine()
 
-	victim.reset_perspective(null)
-	victim.machine = null
+	victim.reset_perspective()
+	victim.unset_machine()
 
 	var/mob/living/V = victim
 	remove_verb(V, /mob/living/proc/horror_comm)
@@ -568,7 +560,7 @@
 	victim = null
 
 	RefreshAbilities()
-	
+
 
 /mob/living/simple_animal/horror/proc/jumpstart()
 	if(!victim)
@@ -713,7 +705,7 @@
 	bonding = TRUE
 
 	var/delay = 20 SECONDS
-	if(horrorupgrades["fast_control"])
+	if(has_upgrade("fast_control"))
 		delay -= 12 SECONDS
 	if(do_after(src, delay, target = victim, extra_checks = CALLBACK(src, .proc/is_bonding), stayStill = FALSE))
 		assume_control()
@@ -775,7 +767,7 @@
 	for(var/I in contents)
 		if(ishorror(I))
 			return I
-	
+
 
 /mob/living/simple_animal/horror/proc/hit_detatch()
 	if(victim.health <= 75)
