@@ -15,8 +15,8 @@
 	..()
 	var/datum/mind/M = user.mind
 	var/list/organs = user.getorganszone(BODY_ZONE_HEAD, 1)
-	var/mob/living/simple_animal/horror/H = user.has_horror_inside()
-	if(H && H.controlling)
+	var/mob/living/simple_animal/horror/HR = user.has_horror_inside()
+	if(HR && HR.controlling)
 		to_chat(user, span_notice("You cannot force your host to kill themselves!"))
 
 	for(var/obj/item/organ/I in organs)
@@ -39,7 +39,7 @@
 	. = TRUE
 	sleep(5) // So it's not killed in explosion
 	var/mob/living/simple_animal/hostile/headcrab/crab = new(turf)
-	H?.leave_victim()
+	HR?.leave_victim()
 	for(var/obj/item/organ/I in organs)
 		I.forceMove(crab)
 	crab.origin = M
@@ -47,3 +47,4 @@
 		crab.origin.active = 1
 		crab.origin.transfer_to(crab)
 		to_chat(crab, span_warning("You burst out of the remains of your former body in a shower of gore!"))
+		
