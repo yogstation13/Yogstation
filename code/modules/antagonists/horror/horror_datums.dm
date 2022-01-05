@@ -179,7 +179,7 @@
 	resistance_flags = ACID_PROOF
 	force = 17
 	item_flags = ABSTRACT | DROPDEL
-	reach = 2
+	weapon_stats = list(SWING_SPEED = 0.9, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	hitsound = 'sound/weapons/whip.ogg'
 /obj/item/horrortentacle/Initialize(mapload)
 	. = ..()
