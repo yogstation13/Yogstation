@@ -115,7 +115,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			if(default_deconstruction_crowbar(W))
 				return TRUE
 
-	if(default_deconstruction_screwdriver(user, "autolathe_o", "processor", W))
+	if(default_deconstruction_screwdriver(user, "processor_o", "processor", W))
 		return TRUE
 
 	return ..()
