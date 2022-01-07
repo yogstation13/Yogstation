@@ -227,6 +227,7 @@
 	if(!ability)
 		return
 	ability.uses++
+	ability.ability_recharge_invested = 0
 
 	if(notify_user)
 		to_chat(owner, span_notice("'[ability.name]' has been recharged."))
