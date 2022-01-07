@@ -7944,6 +7944,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
+"uk" = (
+/obj/structure/rack,
+/obj/item/borg/upgrade/panel_access_remover,
+/obj/item/borg/upgrade/panel_access_remover,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/ancientstation/deltaai)
 "up" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -8118,9 +8124,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/atmo)
-"AC" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/ancientstation/deltaai)
 "AF" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -12881,7 +12884,7 @@ gK
 ac
 ac
 ac
-AC
+uk
 ac
 ac
 ac
