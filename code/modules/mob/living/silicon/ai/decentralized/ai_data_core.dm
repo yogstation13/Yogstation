@@ -39,7 +39,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 	for(var/mob/living/silicon/ai/AI in contents)
 		all_ais -= AI
-		AI.relocate()
+		if(!AI.is_dying)
+			AI.relocate()
 
 	to_chat(all_ais, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 	
@@ -89,10 +90,13 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			use_power = IDLE_POWER_USE
 			update_icon()
 			for(var/mob/living/silicon/ai/AI in contents)
-				AI.relocate()
+				if(!AI.is_dying)
+					AI.relocate()
 		if(!warning_sent)
 			warning_sent = TRUE
-			to_chat(GLOB.ai_list, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Please contact technical support."))
+			to_chat(GLOB.ai_list, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+			for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
+				AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
 
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/turf/T = get_turf(src)

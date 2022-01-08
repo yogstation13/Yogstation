@@ -112,6 +112,8 @@
 	var/downloadSpeedModifier = 1
 
 	var/login_warned_temp = FALSE
+	//Did we get the death prompt?
+	var/is_dying = FALSE 
 
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
