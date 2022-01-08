@@ -1,10 +1,10 @@
 /mob/living/carbon/human/say_mod(input, message_mode)
-	var/rare_verb = pick(dna.species.rare_say_mod)
-	
-	if(rare_verb && prob(dna.species.rare_say_mod[rare_verb]))
-		verb_say = rare_verb
-	else
-		verb_say = dna.species.say_mod
+	if (LAZYLEN(dna.species.rare_say_mod))
+		var/rare_verb = pick(dna.species.rare_say_mod)
+		if (rare_verb && prob(dna.species.rare_say_mod[rare_verb]))
+			verb_say = rare_verb
+		else
+			verb_say = dna.species.say_mod
 	
 	if(slurring)
 		return "slurs"
