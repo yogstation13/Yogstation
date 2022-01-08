@@ -501,6 +501,25 @@
 	playsound(get_turf(user), 'sound/effects/ghost2.ogg', 50, 1)
 	return TRUE
 
+/datum/spellbook_entry/summon/portals
+	name "Summon Portal Storm"
+	desc = "Terrorize the crew with a portal storm! Whatever crawls out of these portals will be a threat not just to the crew, but perhaps you as well!"
+	cost = 3
+	
+/datum/spellbook_entry/summon/portals/IsAvailible()
+	is(!SSticker.mode)
+		return FALSE
+	else
+		return TRUE
+
+/datum/spellbook_entry/summon/portals/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
+	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
+	new /datum/round_event/portal_storm()
+	active = TRUE
+	to_chat(user, span_notice("You have summoned a portal storm!"))
+	playsound(get_turf(user), 'sound/magic/lightningbolt.ogg, 50, 1)
+	return TRUE
+
 /datum/spellbook_entry/summon/curse_of_madness
 	name = "Curse of Madness"
 	desc = "Curses the station, warping the minds of everyone inside, causing lasting traumas. Warning: this spell can affect you if not cast from a safe distance."
