@@ -2,7 +2,7 @@
 	if(LAZYLEN(dna.species.rare_say_mod))
 		for(var/rare in dna.species.rare_say_mod)
 			if(prob(dna.species.rare_say_mod[rare]))
-				verb_say = rare_verb	
+				verb_say = rare
 	if(slurring)
 		return "slurs"
 	else
