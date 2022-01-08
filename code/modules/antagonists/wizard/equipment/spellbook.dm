@@ -502,7 +502,7 @@
 	return TRUE
 
 /datum/spellbook_entry/summon/portals
-	name "Summon Portal Storm"
+	name = "Summon Portal Storm"
 	desc = "Terrorize the crew with a portal storm! Whatever crawls out of these portals will be a threat not just to the crew, but perhaps you as well!"
 	cost = 3
 	
@@ -517,7 +517,7 @@
 	new /datum/round_event/portal_storm()
 	active = TRUE
 	to_chat(user, span_notice("You have summoned a portal storm!"))
-	playsound(get_turf(user), 'sound/magic/lightningbolt.ogg, 50, 1)
+	playsound(get_turf(user), 'sound/magic/lightningbolt.ogg', 50, 1)
 	return TRUE
 
 /datum/spellbook_entry/summon/curse_of_madness
