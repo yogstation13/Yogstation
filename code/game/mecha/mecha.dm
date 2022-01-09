@@ -1076,7 +1076,12 @@
 			AI.remote_control = null
 			RemoveActions(occupant, 1)
 			mob_container = AI
-			newloc = GLOB.primary_data_core ? GLOB.primary_data_core : GLOB.data_cores[1]
+			newloc = null
+			if(GLOB.primary_data_core)
+				newloc = GLOB.primary_data_core
+			else if(LAZYLEN(GLOB.data_cores))
+				newloc = GLOB.data_cores[1]
+				
 			if(!newloc)
 				to_chat(AI, span_userdanger("No cores available. Core code corrupted. Goodbye."))
 				qdel(AI)
