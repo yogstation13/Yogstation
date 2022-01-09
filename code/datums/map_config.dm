@@ -14,9 +14,9 @@
 	var/votable = FALSE
 
 	// Config actually from the JSON - should default to Box
-	var/map_name = "YogStation"
-	var/map_path = "map_files/YogStation"
-	var/map_file = "YogStation.dmm"
+	var/map_name = "ShipStation"
+	var/map_path = "map_files/ShipStation"
+	var/map_file = "ShipStation.dmm"
 
 	var/traits = null
 	var/space_ruin_levels = 7

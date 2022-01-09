@@ -35,7 +35,7 @@
 		flick("operate", src)
 		playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE
-	else if (!isliving(mover))
+	else if (!isliving(mover) && !istype(mover, /obj/vehicle/ridden/wheelchair))
 		flick("deny", src)
 		playsound(src,'sound/machines/deniedbeep.ogg',50,0,3)
 		return FALSE
@@ -43,6 +43,11 @@
 	//Sec can drag you out unceremoniously.
 	if(!allowed && mover.pulledby)
 		allowed = allowed(mover.pulledby)
+
+	if(istype(mover, /obj/vehicle/ridden/wheelchair))
+		for(var/mob/living/rider in mover.buckled_mobs)
+			if(allowed(rider) && !mover.pulledby) //defer to the above dragging code if we are being dragged
+				allowed = TRUE
 
 	if(get_dir(loc, mover.loc) == dir || allowed || mover==machineclimber) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
 		flick("ministile_operate", src)

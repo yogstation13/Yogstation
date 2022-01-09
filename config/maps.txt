@@ -15,6 +15,7 @@ Format:
 map yogstation
 	voteweight 0.7
 	votable
+	disabled
 endmap
 
 map omegastation
@@ -25,6 +26,7 @@ endmap
 map yogsmeta
 	minplayers 25
 	votable
+	disabled
 endmap
 
 map yogsdelta
@@ -33,6 +35,12 @@ map yogsdelta
 endmap
 
 map kilostation
+	maxplayers 40
+	votable
+	disabled
+endmap
+
+map shipstation
 	maxplayers 40
 	votable
 endmap
