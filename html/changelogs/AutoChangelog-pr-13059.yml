@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: true 
+changes: 
+  - bugfix: "Roundstart rods that spawn should now stack with other normal rods"
