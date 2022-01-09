@@ -507,6 +507,8 @@
 		if(!href_list["console"])
 			return
 		var/obj/machinery/computer/ai_control_console/C = locate(href_list["console"])
+		if(!C)
+			return
 		if(C.downloading == src)
 			C.finish_download()
 
