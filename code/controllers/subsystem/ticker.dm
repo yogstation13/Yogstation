@@ -316,6 +316,9 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 
+	to_chat(world, "<h2>The way the AI works has changed. These changes are relevant if you have an objective to steal/destroy the AI, are a borg, is the RD, or is the network admin. \
+	Please read the following: https://github.com/yogstation13/Yogstation/pull/12815 </h2>")
+
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
