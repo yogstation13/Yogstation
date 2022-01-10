@@ -514,7 +514,6 @@
 
 /datum/spellbook_entry/summon/portals/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
     SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
-
     var/portaltype = pick(
         50
             "port_shocktroop",
@@ -530,7 +529,6 @@
             var/datum/round_event_control/portal_storm_narsie/newNarsieControl = new /datum/round_event_control/portal_storm_narsie()
             var/datum/round_event/portal_storm/portal_storm_narsie/newNarsieStorm = newNarsieControl.runEvent()
             newNarsieStorm.setup()
-
     active = TRUE
     to_chat(user, span_notice("You have summoned a portal storm!"))
     playsound(get_turf(user), 'sound/magic/lightningbolt.ogg', 50, 1)
