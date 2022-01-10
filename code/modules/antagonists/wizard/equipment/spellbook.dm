@@ -514,7 +514,7 @@
 
 /datum/spellbook_entry/summon/portals/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
     SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
-    var/portaltype = pickweight("port_shocktroop"=50,"port_narsiespawn"=50)
+    var/portaltype = pick("port_shocktroop","port_narsiespawn")
     switch(portaltype)
         if("port_shocktroop")
             var/datum/round_event_control/portal_storm_syndicate/newShocktroopControl = new /datum/round_event_control/portal_storm_syndicate()
