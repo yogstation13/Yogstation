@@ -235,6 +235,7 @@
 				The resulting creation is a ball of healthy bug cheese, ready to eat.
 
 				<h2>Flora:</h2>
+
 				Every plant we are blessed with can be used in some way. 
 				All are not dangerous when consumed in moderation, save for mushroom caps.
 				All may be fermented and brewed into substances that induce a woozy and feel-good high.
@@ -243,6 +244,16 @@
 				Porcini leaves contain a similar content to cacti fruit along with a substance that increases brain focus.
 				Inocybe caps contain deadly toxins in their raw state, but with ash and heat can be neutralized to instead detox the body.
 				Embershroom stems contain a bioluminescient substance that manages to even light up the body when consumed.
+
+				<h2>Leather:</h2>
+
+				Leather does not need to be interacted with much as a shaman,
+				especially if you are prioritizing medicine.
+				However, it can still be useful to know how to make it,
+				Especially since you can use it, or cloth, to create a medicinal pouch useful for holding plants and medicines.
+				To create it, acquire some hide, the most available of which will be goliath hide.
+				Next, skin it well with a sharp tool.
+				Afterwards, wash with water thoroughly, and then dry by placing it over a grill atop a lit bonfire.
 				</body>
 				</html>
 			"}
