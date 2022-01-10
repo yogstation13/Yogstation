@@ -1,6 +1,0 @@
-/datum/round_event_control/wizard/portal //Let em' loose!
-	name = "Portal Storm"
-	weight = 1
-	typepath = /datum/round_event/portal_storm
-	max_occurrences = 3
-	earliest_start = 0 MINUTES
