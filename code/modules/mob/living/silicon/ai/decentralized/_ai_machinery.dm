@@ -18,6 +18,6 @@
 	if(istype(T, /turf/open/space) || total_moles < 10)
 		return FALSE
 	
-	if(env.return_temperature() > AI_TEMP_LIMIT || !env.heat_capacity())
+	if(env.return_temperature() > AI_TEMP_LIMIT || env.return_temperature() < AI_TEMP_MINIMUM|| !env.heat_capacity())
 		return FALSE
 	return TRUE
