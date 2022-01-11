@@ -63350,11 +63350,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
-"cIc" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel/dark,
-/area/science/server)
 "cId" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/securearea{
@@ -71363,6 +71358,13 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"gwa" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	target_temperature = 283.15
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "gwg" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -77076,6 +77078,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"oKb" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	target_temperature = 283.15
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/storage/satellite)
 "oKk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
@@ -77595,23 +77603,6 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
-"pAc" = (
-/obj/machinery/camera{
-	c_tag = "AI Chamber - Core";
-	network = list("aicore")
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "pyy" = (
 /obj/structure/closet/wardrobe/pjs,
 /obj/effect/turf_decal/tile/neutral{
@@ -77629,6 +77620,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/sleeper)
+"pAc" = (
+/obj/machinery/camera{
+	c_tag = "AI Chamber - Core";
+	network = list("aicore")
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "pAV" = (
 /obj/machinery/button/door{
 	id = "AI Core shutters";
@@ -78909,12 +78917,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"rlK" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
-	target_temperature = 80
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/storage/satellite)
 "rlU" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -116132,7 +116134,7 @@ cEs
 cFn
 cFn
 cIg
-cIc
+gwa
 cIW
 cJT
 cIg
@@ -141262,7 +141264,7 @@ bey
 bgn
 aaa
 aRy
-rlK
+oKb
 pSG
 ndM
 dsN

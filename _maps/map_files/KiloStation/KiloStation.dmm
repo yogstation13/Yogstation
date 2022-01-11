@@ -1801,21 +1801,6 @@
 /obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
-"adX" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
-/obj/effect/turf_decal/delivery,
-/obj/effect/decal/cleanable/cobweb,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/item/radio/intercom{
-	pixel_y = 22
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/server)
 "adY" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red{
@@ -85209,6 +85194,23 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
+"eAP" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	target_temperature = 283.15
+	},
+/obj/effect/turf_decal/delivery,
+/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	pixel_y = 22
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "eBH" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -88062,27 +88064,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port)
-"hBS" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/power/apc{
-	areastring = "/area/ai_monitored/storage/satellite";
-	dir = 2;
-	name = "MiniSat Maint APC";
-	pixel_y = -23
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/satellite)
 "hBZ" = (
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
@@ -90647,6 +90628,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"jSX" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/storage/satellite";
+	dir = 2;
+	name = "MiniSat Maint APC";
+	pixel_y = -23
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	dir = 1;
+	target_temperature = 283.15
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/satellite)
 "jTx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -134448,7 +134451,7 @@ wgC
 cLR
 dmP
 rYG
-hBS
+jSX
 cga
 acm
 aeo
@@ -142954,7 +142957,7 @@ cFF
 aKS
 ajz
 aZF
-adX
+eAP
 avT
 lyU
 bdi
