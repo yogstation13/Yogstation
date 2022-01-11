@@ -275,7 +275,7 @@ BROTHER_OBJECTIVES_AMOUNT 2
 #PROTECT_AI_FROM_TRAITOR
 
 ## If non-human species are barred from joining as a head of staff
-ENFORCE_HUMAN_AUTHORITY
+#ENFORCE_HUMAN_AUTHORITY
 
 ## If late-joining players have a chance to become a traitor/changeling
 ALLOW_LATEJOIN_ANTAGONISTS

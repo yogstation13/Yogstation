@@ -1,7 +1,20 @@
 {
 	"map_name": "ShipStation",
 	"map_path": "map_files/ShipStation",
-	"map_file": "ShipStation.dmm",
+	"map_file": [
+		"ShipStation.dmm",
+		"ShipStationAbove.dmm"
+	],
+	"traits": [
+		{
+			"Up": 1,
+			"Linkage": "Self"
+		},
+		{
+			"Down": -1,
+			"Linkage": "Self"
+		}
+	],
 	"shuttles": {
 		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",
