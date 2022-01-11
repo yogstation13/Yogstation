@@ -42,7 +42,7 @@
 	var/mob/living/carbon/human/M = A.affected_mob
 	if(!M) return
 
-	if(M.visible_tumors) {
+	if(M.visible_tumors)
 		//clothes wearing
 		if(A.stage > 2)
 			var/datum/species/S = M.dna?.species
@@ -54,8 +54,6 @@
 			var/datum/species/S = M.dna?.species
 			if(S)
 				S.add_no_equip_slot(M, SLOT_WEAR_SUIT)
-	}
- 	
 
 	//spreading
 	if(prob(tumor_chance)) //2% chance to make a new tumor somewhere
@@ -70,22 +68,11 @@
 			var/obj/item/organ/tumor/T = new tumortype()
 			T.name = T.name + " (" + parse_zone(insertionZone) + ")"
 			T.helpful = helpful
+			T.regeneration = regeneration
 			T.ownerdisease = ownerdisease
 			T.Insert(M,FALSE,FALSE,insertionZone)
 			to_chat(M, span_warning("[pick("Your insides writhe.", "You feel your insides squirm.")]"))
-	//regerenation
-	if(regeneration && prob(tumor_chance)) //use tumorchance to regenerate limbies
-		var/list/missing_limbs = M.get_missing_limbs() - list(BODY_ZONE_HEAD, BODY_ZONE_CHEST) //don't regenerate the head or chest
-		if(missing_limbs.len > 0)
-			var/limb_to_regenerate = pick(missing_limbs)
-			M.regenerate_limb(limb_to_regenerate,TRUE);
-			var/obj/item/bodypart/new_limb = M.get_bodypart(limb_to_regenerate);
-			new_limb.receive_damage(45); //45 brute damage should be fine I think??????
-			M.emote("scream")
-			M.visible_message(span_warning("Gnarly tumors burst out of [M]'s stump and form into a [parse_zone(limb_to_regenerate)]!"), span_notice("You scream as your [parse_zone(limb_to_regenerate)] reforms."))
 				
-
-
 /datum/symptom/tumor/End(datum/disease/advance/A)
 	..()
 	if(ishuman(A.affected_mob))
