@@ -96,6 +96,14 @@
 	var/giftwrapped = 0
 	var/sortTag = 0
 
+/obj/item/smallDelivery/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, .proc/disposal_handling)
+
+/obj/item/smallDelivery/proc/disposal_handling(disposal_source, obj/structure/disposalholder/disposal_holder, obj/machinery/disposal/disposal_machine, hasmob)
+	if(!hasmob)
+		disposal_holder.destinationTag = sortTag
+
 /obj/item/smallDelivery/contents_explosion(severity, target)
 	for(var/thing in contents)
 		switch(severity)

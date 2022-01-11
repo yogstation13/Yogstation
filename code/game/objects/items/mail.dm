@@ -11,7 +11,7 @@
 	//pickup_sound = 'sound/items/handling/paper_pickup.ogg'
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	/// Destination tagging for the mail sorter.
-	var/sort_tag = 0
+	var/sort_tag = NONE
 	/// Weak reference to who this mail is for and who can open it.
 	var/datum/weakref/recipient_ref
 	/// How many goodies this mail contains.
@@ -164,6 +164,7 @@
 
 /// Alternate setup, just complete garbage inside and anyone can open
 /obj/item/mail/proc/junk_mail()
+	sort_tag = 1 // Default sort for junk mail is the trash
 
 	var/obj/junk = /obj/item/paper/fluff/junkmail_generic
 	var/special_name = FALSE
