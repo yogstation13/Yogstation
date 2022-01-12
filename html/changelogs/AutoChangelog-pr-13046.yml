@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Stuffs 50% more bullets in each scattershot shell!"
+  - tweak: "Makes scattershot projectiles 33% smaller (and weaker) to make space for the extra dakka"
