@@ -1,0 +1,4 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - tweak: "spellblade's projectile has damage increased to 20 instead of 15. Lavaland/bubblegum spellblade keeps the normal 15 damage projectiles and has it's dismemberment ability lowered from 50(%?) to 20."

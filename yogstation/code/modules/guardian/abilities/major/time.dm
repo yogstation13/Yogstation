@@ -13,7 +13,7 @@
 	S.length = master_stats.potential * 2 * 10
 
 /datum/guardian_ability/major/time/Manifest()
-	if (guardian.erased_time && istype(guardian.loc, /obj/effect/dummy/phased_mob/king_crimson))
+	if (HAS_TRAIT(guardian, TRAIT_NOINTERACT) && istype(guardian.loc, /obj/effect/dummy/phased_mob/king_crimson))
 		var/obj/effect/dummy/phased_mob/king_crimson/jaunt = guardian.loc
 		jaunt.forceMove(guardian.summoner.current.loc)
 		return TRUE
@@ -59,9 +59,6 @@
 		fake.target = null
 		if (old_pulledby)
 			old_pulledby.start_pulling(fake, supress_message = TRUE)
-	if (isguardian(target))
-		var/mob/living/simple_animal/hostile/guardian/G = target
-		G.erased_time = TRUE
 	ADD_TRAIT(target, TRAIT_PACIFISM, GUARDIAN_TRAIT)
 	ADD_TRAIT(target, TRAIT_NO_STUN_WEAPONS, GUARDIAN_TRAIT)
 	ADD_TRAIT(target, TRAIT_NOINTERACT, GUARDIAN_TRAIT) // no touching anything ever
