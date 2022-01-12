@@ -6,15 +6,16 @@ import { Window } from '../layouts';
 export const DestinationTagger = (props, context) => {
   const { act, data } = useBackend(context);
   const {
-    //data go here
+    // data go here
     currentTag,
-    destinations
+    destinations,
   } = data;
 
   const mapped_destinations = destinations.map(destination => {
-    return (<Button width="144px"
-      lineHeight={1.85} selected={destinations[currentTag - 1] === destination} onClick={() => act('ChangeSelectedTag', { 'tag': destination })}>{destination}</Button>)
-  })
+    return (
+      <Button width="144px" lineHeight={1.85} selected={destinations[currentTag - 1] === destination} key={destination} onClick={() => act('ChangeSelectedTag', { 'tag': destination })}>{destination}</Button>
+    );
+  });
 
   return (
     <Window title="TagMaster 3.0" width={450} height={350}>
@@ -22,7 +23,7 @@ export const DestinationTagger = (props, context) => {
         <Section title="TagMaster 3.0 - The future, 20 years ago!">
           <LabeledList>
             <LabeledList.Item label="Current Destination">
-              {(currentTag) != "" ? destinations[currentTag - 1] : "NONE"}
+              {(currentTag) !== "" ? destinations[currentTag - 1] : "NONE"}
             </LabeledList.Item>
           </LabeledList>
         </Section>
