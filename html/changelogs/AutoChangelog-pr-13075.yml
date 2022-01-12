@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: true 
+changes: 
+  - bugfix: "The laptop vendor should now properly install nanoprinters and the auxiliary ID slot for phones."
