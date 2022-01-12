@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: true 
+changes: 
+  - tweak: "The mirror shield will attempt to unbuckle the victim it's thrown at, then launch itself. This stops the mirrorshield from insta-killing two people buckled together, however if they're bucklecuffed it's still instadeath."
