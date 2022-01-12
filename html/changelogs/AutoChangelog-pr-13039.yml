@@ -1,0 +1,5 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - bugfix: "Borgs should no longer infinitely stutter when glared at by slings"
+  - tweak: "Glare's description hints that it should be used within two tiles of the target"
