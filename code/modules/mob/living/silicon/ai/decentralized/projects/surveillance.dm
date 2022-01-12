@@ -12,8 +12,10 @@
 	if(!.)
 		return .
 	ai.canCameraMemoryTrack = TRUE
+	add_verb_ai(/mob/living/silicon/ai/proc/choose_camera_target)
 
 /datum/ai_project/camera_tracker/stop()
 	ai.canCameraMemoryTrack = FALSE
+	remove_verb(/mob/living/silicon/ai/proc/choose_camera_target)
 	..()
 
