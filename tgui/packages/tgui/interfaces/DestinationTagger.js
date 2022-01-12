@@ -33,4 +33,4 @@ export const DestinationTagger = (props, context) => {
       </Window.Content>
     </Window>
   );
-}
+};
