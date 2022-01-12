@@ -543,9 +543,7 @@
 
 /datum/quirk/junkie/on_clone(data)
 	var/mob/living/carbon/human/H = quirk_holder
-	reagent_id = data
-	var/datum/reagent/prot_holder = GLOB.chemical_reagents_list[reagent_id]
-	reagent_type = prot_holder.type
+	reagent_type = data
 	reagent_instance = new reagent_type()
 	H.reagents.addiction_list.Add(reagent_instance)
 
