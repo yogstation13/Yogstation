@@ -21,7 +21,7 @@ If at half health it will start to charge from all sides with clones.
 When Bubblegum dies, it leaves behind a H.E.C.K. mining suit as well as a chest that can contain three things:
  1. A bottle that, when activated, drives everyone nearby into a frenzy
  2. A contract that marks for death the chosen target
- 3. A spellblade that can slice off limbs at range
+ 3. A stomach that once used allows you to jaunt using vomit.
 
 Difficulty: Hard
 
