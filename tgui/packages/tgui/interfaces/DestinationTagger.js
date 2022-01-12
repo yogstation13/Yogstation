@@ -19,7 +19,7 @@ export const DestinationTagger = (props, context) => {
   return (
     <Window title="TagMaster 3.0" width={450} height={350}>
       <Window.Content>
-        <Section title="TagMaster 3.0">
+        <Section title="TagMaster 3.0 - The future, 20 years ago!">
           <LabeledList>
             <LabeledList.Item label="Current Destination">
               {(currentTag) != "" ? destinations[currentTag - 1] : "NONE"}
