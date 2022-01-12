@@ -539,7 +539,7 @@
 		++tick_counter
 
 /datum/quirk/junkie/clone_data()
-	return reagent_id
+	return reagent_type
 
 /datum/quirk/junkie/on_clone(data)
 	var/mob/living/carbon/human/H = quirk_holder
