@@ -504,6 +504,15 @@
 			return
 		if(M)
 			M.transfer_ai(AI_MECH_HACK, src, usr) //Called om the mech itself.
+	
+	if(href_list["instant_download"])
+		if(!href_list["console"])
+			return
+		var/obj/machinery/computer/ai_control_console/C = locate(href_list["console"])
+		if(!C)
+			return
+		if(C.downloading == src)
+			C.finish_download()
 
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
