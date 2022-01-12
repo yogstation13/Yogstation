@@ -59,7 +59,12 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		return
 	. += "<b>Networked AI Laws:</b>"
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
-		var/active_status = !AI.mind ? "([span_warning("OFFLINE")])" : ""
+		var/active_status = ""
+		if(!AI.mind && AI.deployed_shell)
+			active_status = "(Controlling [FOLLOW_LINK(AI.deployed_shell, user)][AI.deployed_shell.name])"
+		else if(!AI.mind)
+			active_status = "([span_warning("OFFLINE")])"
+			
 		. += "<b>[AI] [active_status] has the following laws: </b>"
 		for(var/law in AI.laws.get_law_list(include_zeroth = TRUE))
 			. += law
