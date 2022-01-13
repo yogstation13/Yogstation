@@ -504,7 +504,7 @@
 /datum/spellbook_entry/summon/portals
 	name = "Summon Portal Storm"
 	desc = "Terrorize the crew with a portal storm! Whatever crawls out of these portals will be a threat not just to the crew, but you as well!"
-	cost = 3
+	cost = 1
 
 /datum/spellbook_entry/summon/portals/IsAvailible()
 	if(!SSticker.mode)
