@@ -202,7 +202,7 @@
 
 /obj/item/organ/heart/cybernetic/upgraded
 	name = "upgraded cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Fitted with a blood synthesizer, it also holds an emergency epinepherine synthesizer that supplies a dosage if the body is critically damaged."
+	desc = "An electronic device designed to mimic the functions of an organic human heart. Fitted with a blood synthesizer, it also holds an emergency epinephrine synthesizer that supplies a dosage if the body is critically damaged."
 	icon_state = "heart-c-u"
 	organ_efficiency = 1.5
 	var/dose_available = TRUE
