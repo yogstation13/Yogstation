@@ -63092,19 +63092,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/science/test_area)
-"cGB" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/structure/disposalpipe/junction/flip,
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard)
 "cGI" = (
 /obj/machinery/doorButtons/access_button{
 	idDoor = "virology_airlock_exterior";
@@ -63510,6 +63497,19 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/space/nearstation)
+"cJl" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/disposalpipe/junction/flip,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
 "cJm" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/maintenance{
@@ -79075,21 +79075,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard/aft)
-"ryD" = (
-/obj/machinery/light/small,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/item/restraints/legcuffs/beartrap,
-/obj/item/mop,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/restraints/legcuffs/beartrap,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/janitor)
 "ryM" = (
 /obj/item/cigbutt,
 /turf/open/floor/plating,
@@ -79369,6 +79354,16 @@
 	},
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/aisat_interior)
+"rZb" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plasteel,
+/area/janitor)
 "rZq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -82733,6 +82728,20 @@
 	},
 /turf/open/floor/plating,
 /area/medical/paramedic)
+"weo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/janitor)
 "wfl" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -83289,15 +83298,6 @@
 	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/ai_monitored/turret_protected/ai)
-"wXd" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plasteel,
-/area/janitor)
 "wXB" = (
 /obj/machinery/camera{
 	c_tag = "Departure Lounge - Port Aft";
@@ -116107,8 +116107,8 @@ dnX
 gIw
 qyX
 mkn
-ryD
-wXd
+weo
+rZb
 bcd
 atP
 lvi
@@ -122529,7 +122529,7 @@ fbH
 vMY
 xTK
 xTK
-cGB
+cJl
 vfw
 ukn
 ukl
