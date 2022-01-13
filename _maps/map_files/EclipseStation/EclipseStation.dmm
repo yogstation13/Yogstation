@@ -39093,16 +39093,12 @@
 /turf/open/floor/plasteel,
 /area/medical/genetics)
 "bDr" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
+	icon_state = "0-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/ai_upload)
 "bDs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -41698,8 +41694,10 @@
 	dir = 1;
 	network = list("ss13; AI")
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1;
+	external_pressure_bound = 120;
+	name = "server vent"
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
@@ -42413,11 +42411,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "bJX" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/camera/motion{
 	c_tag = "AI Chamber South";
 	network = list("ss13; AI")
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "bJY" = (
@@ -43024,7 +43022,9 @@
 /obj/machinery/ai_slipper{
 	uses = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 5
+	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "bLc" = (
@@ -43554,15 +43554,9 @@
 	icon_state = "2-4";
 	tag = ""
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "bMf" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
 /obj/structure/window/reinforced,
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -44073,23 +44067,6 @@
 /area/ai_monitored/turret_protected/ai_upload)
 "bNb" = (
 /obj/structure/table,
-/obj/item/aiModule/core/full/custom,
-/obj/item/aiModule/reset,
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 2
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/ai_upload)
-"bNc" = (
-/obj/structure/table,
 /obj/machinery/computer/upload/ai,
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -44097,11 +44074,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
+"bNc" = (
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 2
+	},
+/obj/machinery/computer/ai_server_console,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai_upload)
 "bNd" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -44535,6 +44519,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/ai_slipper{
+	uses = 10
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "bNZ" = (
@@ -44558,25 +44548,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "bOa" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching cameras around the AI Core.";
-	dir = 4;
-	name = "AI Monitor";
-	network = list("AI");
-	pixel_x = -30
-	},
 /obj/structure/cable{
 	icon_state = "4-8";
 	tag = ""
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -44586,11 +44560,11 @@
 	icon_state = "4-8";
 	tag = ""
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -44604,12 +44578,6 @@
 	icon_state = "4-8";
 	tag = ""
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "bOd" = (
@@ -44620,65 +44588,38 @@
 	icon_state = "4-8";
 	tag = ""
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "bOe" = (
 /obj/structure/cable{
-	icon_state = "2-8";
-	tag = ""
-	},
-/obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/machinery/door/window{
-	dir = 4;
-	name = "AI Core Door";
-	req_access_txt = "16"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "bOf" = (
 /obj/structure/cable{
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
-/obj/machinery/holopad,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/ai)
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai_upload)
 "bOg" = (
-/obj/structure/table,
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 2.9
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching cameras around the AI Core.";
+	dir = 4;
+	name = "AI Monitor";
+	network = list("AI");
+	pixel_x = -32;
+	pixel_y = 2
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
 	tag = ""
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1447;
-	listening = 0;
-	name = "Station Intercom (AI Private)";
-	pixel_y = -29
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -44691,13 +44632,17 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/turf/open/floor/circuit,
+/obj/machinery/camera/motion{
+	c_tag = "AI External Motion Sensor";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "bOi" = (
 /obj/machinery/power/smes/engineering{
 	input_level = 0
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
 /turf/open/floor/plasteel/dark,
@@ -45035,18 +44980,8 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bOP" = (
-/obj/machinery/power/apc/highcap/five_k{
-	areastring = "/area/ai_monitored/turret_protected/ai";
-	dir = 4;
-	name = "AI Chamber APC";
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/flasher{
-	pixel_x = 24;
-	pixel_y = -8
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
@@ -45059,6 +44994,21 @@
 /turf/closed/wall/r_wall,
 /area/teleporter)
 "bOS" = (
+/obj/structure/window/reinforced{
+	layer = 4.1
+	},
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai_upload)
+"bOT" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
+"bOU" = (
 /obj/machinery/computer/upload/borg{
 	dir = 1
 	},
@@ -45067,35 +45017,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
-"bOT" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
-"bOU" = (
-/obj/structure/table,
-/obj/structure/window/reinforced{
-	layer = 4.1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/item/aiModule/core/freeformcore,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/ai_upload)
 "bOV" = (
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
+/obj/structure/table/reinforced,
+/obj/item/circuitboard/machine/ai_data_core,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "bOW" = (
@@ -45597,44 +45524,42 @@
 /turf/open/floor/grass,
 /area/hallway/secondary/command)
 "bPN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
 "bPO" = (
-/obj/structure/cable{
-	icon_state = "1-4";
-	tag = ""
+/obj/item/aiModule/core/full/custom{
+	pixel_x = 1;
+	pixel_y = -3
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
+	dir = 1
 	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
+/obj/structure/rack,
+/obj/item/aiModule/core/freeformcore{
+	pixel_y = 2
+	},
+/obj/item/aiModule/reset{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai_upload)
 "bPP" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "bPQ" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
@@ -45980,7 +45905,9 @@
 /obj/machinery/ai_slipper{
 	uses = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 6
+	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "bQG" = (
@@ -58635,6 +58562,13 @@
 	dir = 8;
 	network = list("ss13","AI")
 	},
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	frequency = 1447;
+	listening = 0;
+	name = "Station Intercom (AI Private)";
+	pixel_x = 28
+	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
 "crv" = (
@@ -63903,7 +63837,7 @@
 	dir = 4;
 	light_color = "#e8eaff"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
@@ -63911,7 +63845,8 @@
 /area/ai_monitored/turret_protected/ai)
 "cCs" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
-	dir = 8
+	dir = 8;
+	target_temperature = 283.15
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
@@ -81189,6 +81124,12 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmospherics_engine)
+"efK" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "ejD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -82362,6 +82303,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"guT" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "gvm" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -83902,6 +83849,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"jer" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/ai_upload)
 "jeY" = (
 /obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
@@ -84194,7 +84146,6 @@
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
 "jOt" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/machinery/requests_console{
 	department = "AI";
 	departmentType = 5;
@@ -84403,12 +84354,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"kfD" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/ai)
 "kgf" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -87267,20 +87212,8 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "pHX" = (
-/obj/structure/table,
-/obj/item/radio/intercom{
-	freerange = 1;
-	listening = 0;
-	name = "Custom Channel";
-	pixel_y = 3
-	},
-/obj/item/radio/intercom{
-	freerange = 1;
-	frequency = 1447;
-	name = "Private Channel";
-	pixel_y = -5
-	},
-/turf/open/floor/circuit,
+/obj/machinery/holopad,
+/turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "pLZ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -87541,10 +87474,21 @@
 /turf/open/floor/grass,
 /area/hallway/primary/fore)
 "qxO" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/machinery/ai/data_core/primary,
+/obj/item/radio/intercom{
+	freerange = 1;
+	listening = 0;
+	name = "Custom Channel";
+	pixel_x = 29;
+	pixel_y = 3
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 29;
+	pixel_y = -5
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "qxS" = (
@@ -88616,12 +88560,19 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "sqg" = (
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/cable{
+	icon_state = "4-8";
+	tag = ""
 	},
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
 /turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/ai)
+/area/ai_monitored/turret_protected/ai_upload)
 "sql" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -88841,7 +88792,7 @@
 /area/hallway/primary/aft)
 "sJx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 6
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
@@ -88918,7 +88869,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "sVd" = (
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
@@ -89004,6 +88955,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"tdj" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai_upload)
 "tfY" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -89256,9 +89213,20 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms/a)
 "tys" = (
-/obj/structure/table,
-/obj/item/circuitboard/machine/ai_data_core,
-/turf/open/floor/circuit,
+/obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/ai_monitored/turret_protected/ai";
+	dir = 4;
+	name = "AI Chamber APC";
+	pixel_x = 24
+	},
+/obj/machinery/flasher{
+	pixel_x = 24;
+	pixel_y = -11
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "tyQ" = (
 /obj/effect/turf_decal/tile/purple{
@@ -90136,13 +90104,17 @@
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "vas" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 1;
-	external_pressure_bound = 120;
-	name = "server vent"
+/obj/structure/window/reinforced{
+	layer = 4.1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/computer/ai_control_console{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/ai)
+/area/ai_monitored/turret_protected/ai_upload)
 "vat" = (
 /obj/effect/turf_decal/tile/white,
 /obj/effect/turf_decal/tile/red{
@@ -90914,9 +90886,8 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "wkU" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -127848,9 +127819,9 @@ bIU
 bJT
 bKY
 bKZ
-bKZ
+bPN
 bNY
-bKZ
+bPN
 bKZ
 bKY
 bRe
@@ -128104,11 +128075,11 @@ akS
 bAM
 bJU
 bKZ
-bKZ
-bKY
-bNY
-bKY
-bKZ
+bMc
+bPO
+sqg
+vas
+tdj
 bKZ
 bRf
 cCt
@@ -128361,11 +128332,11 @@ akS
 bIW
 bJT
 bKY
-bMc
+bKZ
 bNb
 bOg
 bOU
-bPN
+bKZ
 bKY
 bRe
 bRH
@@ -128873,15 +128844,15 @@ aaa
 aaa
 aaa
 aaa
-cbX
-bKY
-bKZ
-bKZ
+bDr
+bNa
+bOf
+bOf
 bOb
-bKZ
-bKZ
-bKY
-cbX
+bOf
+bOf
+bNa
+jer
 aaa
 awy
 aaa
@@ -129134,7 +129105,7 @@ akS
 cRz
 bLc
 bNS
-bNY
+bOa
 cru
 cCp
 cRz
@@ -129907,7 +129878,7 @@ bMe
 bNd
 bOe
 bOT
-bPO
+bLa
 bLa
 bJW
 akU
@@ -130162,7 +130133,7 @@ alb
 alb
 bMf
 bNe
-bOf
+alb
 bPR
 bPP
 alb
@@ -130417,10 +130388,10 @@ akU
 akU
 bJX
 bLb
-bDr
-alb
+bMh
+pHX
 bOP
-alb
+guT
 bPQ
 bQF
 bIu
@@ -130673,14 +130644,14 @@ acO
 akU
 akU
 jOt
-kfD
+sJx
 mxD
 qxO
-akU
-sqg
+tys
+bPR
 wkU
 sJx
-vas
+alb
 akU
 akU
 aaa
@@ -130932,10 +130903,10 @@ akU
 vuo
 rxt
 bMh
-pHX
-tys
-bLa
-bMh
+aln
+aln
+aln
+efK
 rxt
 alb
 akU
