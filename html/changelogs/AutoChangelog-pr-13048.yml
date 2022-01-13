@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: true 
-changes: 
-  - rscadd: "Ports split personality commune from tg. Split personalities in the 'backseat' (i.e. not in control) can now send messages to those in the front seat. Those in the 'front seat' (i.e. in control) will still need to talk out loud to those in the backseat."
