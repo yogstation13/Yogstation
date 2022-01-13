@@ -121,7 +121,7 @@
 
 /client/proc/export_dynamic_json()
 	set name = "Export dynamic.json"
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 
 	var/datum/game_mode/dynamic/dynamic = SSticker.mode
 
