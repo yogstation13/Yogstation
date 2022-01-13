@@ -25,7 +25,7 @@ GLOBAL_LIST_INIT(guardian_shield_length, list(
 
 /obj/effect/proc_holder/spell/self/guardian_shield
 	name = "Activate Shield"
-	desc = "Create an inpenetrable shield around you and your master."
+	desc = "Create an impenetrable shield around you and your master."
 	clothes_req = FALSE
 	human_req = FALSE
 	charge_max = 90 SECONDS

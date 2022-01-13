@@ -11,7 +11,7 @@
 
 /datum/action/guardian/arm_snare
 	name = "Arm Snare"
-	desc = "Set an invisible snare that will alert you when living creatures walk over it. Max of 5"
+	desc = "Set an invisible snare that will alert you when living creatures walk over it. Max of 5."
 	button_icon_state = "arm_snare"
 
 /datum/action/guardian/arm_snare/on_use(mob/living/simple_animal/hostile/guardian/user)
