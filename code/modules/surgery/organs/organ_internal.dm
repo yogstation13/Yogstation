@@ -102,7 +102,8 @@
 		///Damage decrements by a percent of its maxhealth
 		damage = max(0, damage - (maxHealth * healing_factor))
 		if(C.satiety > 0)
-			damage = max(0, damage - ((maxHealth * healing_factor) * C.satiety / MAX_SATIETY * 4))
+			///Damage decrements again by a percent of its maxhealth, up to a total of 4 extra times depending on the owner's health
+			damage = max(0, damage - ((maxHealth * healing_factor) * (C.satiety / MAX_SATIETY) * 4))
 		check_damage_thresholds(C)
 		prev_damage = damage
 
