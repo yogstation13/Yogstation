@@ -40,7 +40,7 @@
 		if(inverse)
 			ndir = turn(ndir, 180)
 
-		var/obj/O = new result_path(get_turf(user), ndir, TRUE)
+		var/obj/O = new result_path(get_turf(user), ndir, TRUE, user)
 		if(pixel_shift)
 			switch(ndir)
 				if(NORTH)
