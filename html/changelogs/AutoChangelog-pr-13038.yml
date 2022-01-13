@@ -1,4 +1,0 @@
-author: " Lucy"
-delete-after: true 
-changes: 
-  - rscadd: "Spells will now have a visual cooldown thingy in the HUD!"

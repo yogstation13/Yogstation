@@ -1,5 +1,0 @@
-author: "TheGamerdk"
-delete-after: true 
-changes: 
-  - bugfix: "AI no longer gets told it's trying to relocate rapidly when dying."
-  - tweak: "An alert sound is now played for all AIs when a data core goes offline"
