@@ -1579,3 +1579,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	return call(source, proctype)(arglist(arguments))
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
+
+///Convert a location into a list with the format list(x, y)
+/proc/to_coord_list(atom/loc)
+	. = list(loc.x, loc.y)
+	.[1] = loc.x
+	.[2] = loc.y
