@@ -20350,18 +20350,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"blr" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "blt" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -22774,12 +22762,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
-"bty" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "btD" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -23201,16 +23183,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"buJ" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/machinery/light,
-/obj/structure/sign/departments/minsky/security/security{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "buK" = (
 /obj/machinery/light{
 	dir = 4
@@ -31508,10 +31480,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"cBq" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "cBr" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/bot,
@@ -31995,6 +31963,14 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/aft)
+"cJz" = (
+/obj/machinery/bounty_packager,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "cJW" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -33567,6 +33543,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"dEi" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "dET" = (
 /obj/structure/grille,
 /obj/structure/window{
@@ -34140,6 +34123,25 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"dVu" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_x = -30
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "dVR" = (
 /obj/machinery/computer/cloning{
 	dir = 8
@@ -37083,13 +37085,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"gbh" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "CUBES"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "gbo" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -37174,16 +37169,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"gdR" = (
-/obj/machinery/holopad,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "gdZ" = (
 /obj/structure/window/reinforced{
 	pixel_y = 2
@@ -38123,6 +38108,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/morgue)
+"gHy" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "gHO" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -38984,6 +38976,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/service)
+"hpX" = (
+/obj/machinery/holopad,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "hqu" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -39268,12 +39270,6 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
-"hxY" = (
-/obj/machinery/computer/bounty{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "hyi" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/med_data/laptop,
@@ -39731,6 +39727,16 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"hMc" = (
+/obj/machinery/light,
+/obj/structure/sign/departments/minsky/security/security{
+	pixel_y = -32
+	},
+/obj/machinery/computer/bounty{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "hMp" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 9
@@ -41332,25 +41338,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
-"iIi" = (
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Quartermaster's Desk";
-	departmentType = 2;
-	pixel_x = -30
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "iIo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -50508,15 +50495,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"osQ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/machinery/conveyor_switch/oneway{
-	id = "CUBES"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "ota" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker/jar{
@@ -51505,6 +51483,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"oWE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "oXp" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -54478,6 +54471,23 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/maintenance/department/tcoms)
+"qQT" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/folder/yellow,
+/obj/item/pen/red,
+/obj/item/pen{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "qQV" = (
 /turf/template_noop,
 /area/template_noop)
@@ -64020,23 +64030,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"xbF" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/folder/yellow,
-/obj/item/pen/red,
-/obj/item/pen{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "xbL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/white,
@@ -64298,14 +64291,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"xkX" = (
-/obj/machinery/bounty_packager,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "CUBES"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "xkZ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 0
@@ -65961,6 +65946,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"yld" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "yly" = (
 /obj/effect/turf_decal/bot{
 	dir = 1
@@ -87982,7 +87976,7 @@ tJW
 bjr
 bub
 bxu
-iIi
+dVu
 bzP
 bAS
 bxu
@@ -88241,7 +88235,7 @@ bvX
 bxu
 bCa
 boy
-xbF
+qQT
 aJn
 aaa
 aaa
@@ -88753,7 +88747,7 @@ brN
 brN
 brN
 bxx
-gdR
+hpX
 boF
 tVU
 aJn
@@ -89522,7 +89516,7 @@ bqo
 brO
 cOW
 nrf
-hxY
+bbR
 bxu
 bxx
 boV
@@ -91063,7 +91057,7 @@ boR
 bqs
 blp
 bbR
-gbh
+dEi
 bwd
 bxB
 bvL
@@ -91318,9 +91312,9 @@ bmk
 kHL
 kHL
 buF
-blr
-osQ
-xkX
+oWE
+yld
+cJz
 bwd
 bxD
 byL
@@ -91575,9 +91569,9 @@ aZK
 gIa
 bbR
 bqt
-cBq
+gHy
 bbR
-gbh
+dEi
 bwd
 mTv
 byK
@@ -91833,8 +91827,8 @@ bnj
 bbR
 bbR
 bbR
-bty
-buJ
+bbR
+hMc
 bwe
 bxE
 tDe
