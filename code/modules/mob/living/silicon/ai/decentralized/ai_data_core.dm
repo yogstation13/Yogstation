@@ -39,7 +39,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 	for(var/mob/living/silicon/ai/AI in contents)
 		all_ais -= AI
-		AI.relocate()
+		if(!AI.is_dying)
+			AI.relocate()
 
 	to_chat(all_ais, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 	
@@ -59,7 +60,12 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		return
 	. += "<b>Networked AI Laws:</b>"
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
-		var/active_status = !AI.mind ? "([span_warning("OFFLINE")])" : ""
+		var/active_status = ""
+		if(!AI.mind && AI.deployed_shell)
+			active_status = "(Controlling [FOLLOW_LINK(AI.deployed_shell, user)][AI.deployed_shell.name])"
+		else if(!AI.mind)
+			active_status = "([span_warning("OFFLINE")])"
+			
 		. += "<b>[AI] [active_status] has the following laws: </b>"
 		for(var/law in AI.laws.get_law_list(include_zeroth = TRUE))
 			. += law
@@ -87,9 +93,15 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		valid_ticks--
 		if(valid_ticks <= 0)
 			use_power = IDLE_POWER_USE
+			update_icon()
+			for(var/mob/living/silicon/ai/AI in contents)
+				if(!AI.is_dying)
+					AI.relocate()
 		if(!warning_sent)
 			warning_sent = TRUE
-			to_chat(GLOB.ai_list, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Please contact technical support."))
+			to_chat(GLOB.ai_list, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+			for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
+				AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
 
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/turf/T = get_turf(src)
@@ -115,6 +127,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	cut_overlays()
 	
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
+		if(!valid_data_core())
+			return
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
 		add_overlay(on_overlay)
 

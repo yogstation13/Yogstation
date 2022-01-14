@@ -1767,7 +1767,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Crew Manifest Spoof"
 	desc = "A button capable of adding a single person to the crew manifest."
 	item = /obj/item/service/manifest
-	cost = 15 //Maybe this is too cheap??
+	cost = 4
+	limited_stock = 1
 
 /datum/uplink_item/services/fake_ion
 	name = "Fake Ion Storm"
