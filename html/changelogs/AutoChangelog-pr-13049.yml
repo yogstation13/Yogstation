@@ -1,0 +1,6 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "add an extra air pump to toxins"
+  - tweak: "moves paper bin one tile to the right"
+  - tweak: "moved sci wardrobe vending machine to experimentor room"
