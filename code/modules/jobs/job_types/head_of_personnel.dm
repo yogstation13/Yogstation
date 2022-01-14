@@ -36,6 +36,8 @@
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SRV
 
+	bounty_types = CIV_JOB_RANDOM
+
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL
 
 	changed_maps = list("OmegaStation")

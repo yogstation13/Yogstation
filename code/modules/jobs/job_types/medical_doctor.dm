@@ -21,6 +21,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
 
+	bounty_types = CIV_JOB_MED
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 /datum/job/doctor/proc/EclipseStationChanges()

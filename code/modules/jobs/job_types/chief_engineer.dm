@@ -30,6 +30,8 @@
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_ENG
 
+	bounty_types = CIV_JOB_ATMO
+
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 
 /datum/outfit/job/ce

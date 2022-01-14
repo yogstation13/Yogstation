@@ -20,6 +20,8 @@
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
+	
+	bounty_types = CIV_JOB_MED
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 

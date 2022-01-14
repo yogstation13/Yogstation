@@ -25,6 +25,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 
+	bounty_types = CIV_JOB_SEC
+
 	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
 
 /datum/job/officer/proc/EclipseStationChanges()

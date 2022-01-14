@@ -23,6 +23,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHEMIST
 
+	bounty_types = CIV_JOB_CHEM
+
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/chemist/proc/OmegaStationChanges()

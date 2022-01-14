@@ -30,6 +30,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 
+	bounty_types = CIV_JOB_MED
+
 	changed_maps = list("OmegaStation")
 
 /datum/job/cmo/proc/OmegaStationChanges()

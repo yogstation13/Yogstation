@@ -21,6 +21,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
 
+	bounty_types = list(CIV_JOB_ROBO, CIV_JOB_SCI)
+
 	changed_maps = list("OmegaStation")
 
 /datum/job/roboticist/proc/OmegaStationChanges()

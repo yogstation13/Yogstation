@@ -21,6 +21,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 
+	bounty_types = list(CIV_JOB_SCI, CIV_JOB_XENO)
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 /datum/job/scientist/proc/EclipseStationChanges()

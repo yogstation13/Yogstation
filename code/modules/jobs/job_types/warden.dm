@@ -26,6 +26,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 
+	bounty_types = CIV_JOB_SEC
+
 	changed_maps = list("YogsPubby", "OmegaStation")
 
 /datum/job/warden/proc/YogsPubbyChanges()

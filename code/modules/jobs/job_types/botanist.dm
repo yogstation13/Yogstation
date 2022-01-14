@@ -19,6 +19,8 @@
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BOTANIST
 
+	bounty_types = CIV_JOB_GROW
+
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/hydro/proc/OmegaStationChanges()

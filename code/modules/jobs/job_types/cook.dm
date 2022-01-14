@@ -21,6 +21,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_COOK
 
+	bounty_types = CIV_JOB_CHEF
+
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/cook/proc/OmegaStationChanges()

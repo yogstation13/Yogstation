@@ -20,6 +20,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER
 
+	bounty_types = CIV_JOB_RANDOM
+
 	changed_maps = list("OmegaStation")
 
 /datum/job/qm/proc/OmegaStationChanges()

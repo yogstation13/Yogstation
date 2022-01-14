@@ -23,6 +23,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_VIROLOGIST
 
+	bounty_types = list(CIV_JOB_VIRO, CIV_JOB_VIRO, CIV_JOB_MED)
+
 	changed_maps = list("OmegaStation")
 
 /datum/job/virologist/proc/OmegaStationChanges()
