@@ -1,0 +1,7 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "add camera to incinerator and incinerator access"
+  - bugfix: "fix rogue disposal pipe in theatre"
+  - bugfix: "fix rogue power cables on the floor of botany backroom (power comes from the other way)"
+  - tweak: "extend botany backroom so you can access the wardrobe without opening the locker"
