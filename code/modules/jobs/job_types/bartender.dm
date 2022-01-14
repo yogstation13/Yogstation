@@ -20,9 +20,9 @@
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
 
-	bounty_types = CIV_JOB_DRINK
-
 	changed_maps = list("OmegaStation")
+
+	bounty_types = CIV_JOB_DRINK
 
 /datum/job/bartender/proc/OmegaStationChanges()
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS)

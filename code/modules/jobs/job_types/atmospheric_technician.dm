@@ -21,9 +21,9 @@
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 
-	bounty_types = CIV_JOB_ATMO
-
 	changed_maps = list("OmegaStation", "EclipseStation")
+
+	bounty_types = CIV_JOB_ATMO
 
 /datum/job/atmos/proc/OmegaStationChanges()
 	total_positions = 3

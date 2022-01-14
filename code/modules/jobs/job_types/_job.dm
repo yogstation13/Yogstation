@@ -68,9 +68,9 @@
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
-	var/bounty_types = CIV_JOB_BASIC
-
 	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
+
+	var/bounty_types = CIV_JOB_BASIC
 
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum

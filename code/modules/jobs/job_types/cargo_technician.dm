@@ -20,9 +20,9 @@
 
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
 
-	bounty_types = CIV_JOB_RANDOM
-
 	changed_maps = list("EclipseStation", "OmegaStation")
+
+	bounty_types = CIV_JOB_RANDOM
 
 /datum/job/cargo_tech/proc/EclipseStationChanges()
 	total_positions = 5
