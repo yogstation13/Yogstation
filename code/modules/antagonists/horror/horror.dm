@@ -373,15 +373,17 @@
 	if(C.has_horror_inside())
 		to_chat(src, span_warning("[C] is already infested!"))
 		return
-	if(C.stat == DEAD) //hey look something's entered your head, maybe they'll try to revive you
-		victim.grab_ghost(force = TRUE)
 
-	if((!C.key || !C.mind) && target && C != target.current)
+	if(!C.get_ghost() && target && C != target.current)
 		to_chat(src, span_warning("[C]'s mind seems unresponsive. Try someone else!"))
 		return
 
+	if(hiding)
+		var/datum/action/innate/horror/H = has_ability(/datum/action/innate/horror/toggle_hide)
+		H.Activate()
 	invisible = FALSE
 	Update_Invisibility_Button()
+		
 	victim = C
 	forceMove(victim)
 	RefreshAbilities()
