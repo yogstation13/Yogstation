@@ -1627,8 +1627,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/slimepotion/slime/sentience/traitor
 	desc = "The Syndicate have recently synthesized artificial sentience potions thanks to stolen slime cores. \
 			Using it will make any animal sentient, and bound to serve you in your dastardly deeds."
-	cost = 7
-	limited_stock = 1 //only buy one, prevents certain mushroom shenanigans
+	cost = 2
+	limited_stock = 2 //only buy two, prevents certain mushroom shenanigans
 	include_modes = list() //clear the list
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
