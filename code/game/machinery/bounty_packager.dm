@@ -145,3 +145,25 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 	START_PROCESSING(SSobj, src)
 	COOLDOWN_START(src, next_nag_time, nag_cooldown)
 	radio.talk_into(src,"Created in [get_area(src)] by [bounty_holder] ([bounty_holder_job]). Speedy delivery bonus lost in [time2text(next_nag_time - world.time,"mm:ss")].", RADIO_CHANNEL_SUPPLY)
+
+/obj/item/bounty_cube/debug_cube
+	name = "debug bounty cube"
+	desc = "Use in-hand to set it up with a random bounty. Requires an ID it can detect with a bank account attached. \
+	This will alert Supply over the radio with your name and location, and cargo techs will be dispatched with kill on sight clearance."
+	var/set_up = FALSE
+
+/obj/item/bounty_cube/debug_cube/attack_self(mob/user)
+	if(!isliving(user))
+		to_chat(user, span_warning("You aren't eligible to use this!"))
+		return ..()
+
+	if(!set_up)
+		var/mob/living/squeezer = user
+		var/obj/item/card/id/id = squeezer.get_idcard()
+		if(id?.registered_account)
+			set_up(random_bounty(), id)
+			set_up = TRUE
+			return ..()
+		to_chat(user, span_notice("It can't detect your bank account."))
+
+	return ..()
