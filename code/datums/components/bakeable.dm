@@ -11,8 +11,10 @@
 	///Time spent baking so far
 	var/current_bake_time = 0
 
+	var/customized = FALSE
 
-/datum/component/bakeable/Initialize(bake_result, required_bake_time, positive_result, use_large_steam_sprite)
+
+/datum/component/bakeable/Initialize(bake_result, required_bake_time, positive_result, use_large_steam_sprite, custom = FALSE)
 	. = ..()
 	if(!isitem(parent)) //Only items support baking at the moment
 		return COMPONENT_INCOMPATIBLE
@@ -20,6 +22,7 @@
 	src.bake_result = bake_result
 	src.required_bake_time = required_bake_time
 	src.positive_result = positive_result
+	src.customized = custom
 
 // Inherit the new values passed to the component
 /datum/component/bakeable/InheritComponent(datum/component/bakeable/new_comp, original, bake_result, required_bake_time, positive_result, use_large_steam_sprite)
@@ -56,6 +59,16 @@
 	var/atom/original_object = parent
 	var/obj/item/plate/oven_tray/used_tray = original_object.loc
 	var/atom/baked_result = new bake_result(used_tray)
+
+	if(customized)
+		var/obj/item/reagent_containers/food/snacks/customizable/original = original_object
+		var/obj/item/reagent_containers/food/snacks/customizable/BR = baked_result
+		original.reagents.copy_to(BR,original.reagents.total_volume)
+		for(var/obj/O in original.ingredients)
+			BR.ingredients += O
+			BR.mix_filling_color(O)
+			BR.update_name(O)
+			BR.update_overlays(O)
 
 
 	if(original_object.custom_materials)

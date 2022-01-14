@@ -33,7 +33,7 @@
 
 /obj/machinery/oven/Initialize()
 	. = ..()
-	oven_loop = new(src)
+	oven_loop = new(list(src), FALSE)
 	add_tray_to_oven(new /obj/item/plate/oven_tray(src)) //Start with a tray
 
 /obj/machinery/oven/Destroy()
