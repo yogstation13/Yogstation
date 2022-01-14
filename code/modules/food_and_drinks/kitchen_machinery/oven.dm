@@ -31,10 +31,11 @@
 
 	var/current_overlay
 
-/obj/machinery/oven/Initialize()
+/obj/machinery/oven/Initialize(mapload)
 	. = ..()
 	oven_loop = new(list(src), FALSE)
-	add_tray_to_oven(new /obj/item/plate/oven_tray(src)) //Start with a tray
+	if(mapload) 
+		add_tray_to_oven(new /obj/item/plate/oven_tray(src)) //Start with a tray if it's a default one
 
 /obj/machinery/oven/Destroy()
 	QDEL_NULL(oven_loop)
@@ -42,28 +43,24 @@
 	. = ..()
 
 /obj/machinery/oven/update_icon()
+	update_overlays()
+	if(panel_open) 
+		icon_state = "oven_o"
+		return ..()
 	if(!open && used_tray?.contents.len)
 		icon_state = "oven_on"
 	else
 		icon_state = "oven_off"
-	update_overlays()
 	return ..()
 
 /obj/machinery/oven/proc/update_overlays()
+	cut_overlays()
 	var/mutable_appearance/door_overlay
 	if(open)
 		door_overlay = mutable_appearance(icon, "oven_lid_open")
 		door_overlay.pixel_y = OVEN_LID_Y_OFFSET
 	else
 		door_overlay = mutable_appearance(icon, "oven_lid_closed")
-		/*
-		if(used_tray?.contents.len)
-			. += mutable_appearance(icon, "oven_light_mask")
-			*/
-	if(current_overlay) {
-		cut_overlay(current_overlay)
-	}
-	current_overlay = door_overlay;
 	add_overlay(door_overlay);
 
 /obj/machinery/oven/process(delta_time)
@@ -94,10 +91,7 @@
 
 
 /obj/machinery/oven/attackby(obj/item/I, mob/user, params)
-	to_chat(user, "1")
-	world.log << "sheeiet"
 	if(open && !used_tray && istype(I, /obj/item/plate/oven_tray))
-		to_chat(user, "2")
 		if(user.transferItemToLoc(I, src))
 			to_chat(user, span_notice("You put [I] in [src]."))
 			add_tray_to_oven(I)
@@ -130,6 +124,12 @@
 
 /obj/machinery/oven/attack_hand(mob/user, modifiers)
 	. = ..()
+	if(panel_open)
+		to_chat(user, span_notice("The door won't budge with the access panel open!"))
+		return TRUE
+	if(!anchored)
+		to_chat(user, span_notice("The door won't budge with the [src] unsecured!"))
+		return TRUE
 	open = !open
 	if(open)
 		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
@@ -169,15 +169,30 @@
 		if(OVEN_SMOKE_STATE_GOOD)
 			particles = new /particles/smoke/steam/mild
 
+/obj/machinery/oven/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(open)
+		to_chat(user,span_notice("The access panel won't budge with the oven open!"))
+		return TRUE
+	if(used_tray)
+		to_chat(user,span_notice("The access panel won't budge with a tray inside!"))
+		return TRUE
+	panel_open = !panel_open
+	update_icon()
+	return TRUE
+	
+
 /obj/machinery/oven/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(flags_1 & NODECONSTRUCT_1)
 		return
-	if(default_deconstruction_crowbar(I, ignore_panel = TRUE))
+	if(default_deconstruction_crowbar(I))
 		return
 
 /obj/machinery/oven/wrench_act(mob/living/user, obj/item/I)
 	..()
+	if(!panel_open)
+		return
 	default_unfasten_wrench(user, I, 2 SECONDS)
 	return TRUE
 
