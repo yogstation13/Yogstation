@@ -70,9 +70,8 @@
 
 
 /obj/machinery/computer/bounty/attackby(obj/item/I, mob/living/user, params)
-	. = ..()
 	if(!isidcard(I))
-		return
+		return ..()
 	
 	I.forceMove(src)
 	ID = I
@@ -82,14 +81,14 @@
 	return TRUE
 
 /obj/machinery/computer/bounty/multitool_act(mob/living/user, obj/item/I)
-	. = ..()
 	var/obj/item/multitool/multitool = I
-	if(!istype(multitool)) return
+	if(!istype(multitool)) return FALSE
 	if(!istype(multitool.buffer, /obj/machinery/bounty_packager))
 		multitool.buffer = src
 		to_chat(user, span_notice("[src] stored in [I]"))
-		return
+		return TRUE
 
 	linked_packager = multitool.buffer
 	linked_packager.linked_console = src
 	to_chat(user, span_notice("[src] has been linked to [linked_packager]"))
+	return TRUE

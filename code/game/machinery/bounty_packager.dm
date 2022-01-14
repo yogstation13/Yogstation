@@ -38,17 +38,17 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 		selected_bounty = null
 
 /obj/machinery/bounty_packager/multitool_act(mob/living/user, obj/item/I)
-	. = ..()
 	var/obj/item/multitool/multitool = I
-	if(!istype(multitool)) return
+	if(!istype(multitool)) return FALSE
 	if(!istype(multitool.buffer, /obj/machinery/computer/bounty))
 		multitool.buffer = src
 		to_chat(user, span_notice("[src] stored in [I]"))
-		return
+		return TRUE
 
 	linked_console = multitool.buffer
 	linked_console.linked_packager = src
 	to_chat(user, span_notice("[src] has been linked to [linked_console]"))
+	return TRUE
 
 
 /obj/item/bounty_cube
