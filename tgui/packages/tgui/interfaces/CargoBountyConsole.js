@@ -11,7 +11,7 @@ export const CargoBountyConsole = (props, context) => {
     has_id,
     name,
     job,
-    orig_job
+    orig_job,
   } = data;
   return (
     <Window
