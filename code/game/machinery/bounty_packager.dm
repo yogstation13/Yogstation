@@ -29,6 +29,9 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 	if(selected_bounty.applies_to(AM))
 		AM.forceMove(drop_location())
 		selected_bounty.ship(AM)
+		if(istype(AM, /obj/mecha))
+			for(var/mob/thing as anything in AM.client_mobs_in_contents) // Get pilot out of mech
+				thing.forceMove(drop_location())
 		qdel(AM)
 		if(!selected_bounty.can_claim())
 			return
