@@ -113,38 +113,35 @@
 					new /obj/item/ammo_casing/a40mm(src)
 					return
 		else //Legendary
-			var/num = rand(1-10)
+			var/num = rand(1-9)
 			switch(num)
 				if(1)
-					new /obj/item/gun/energy/beam_rifle(src)
-					return
-				if(2)
 					new /obj/item/gun/ballistic/automatic/c20r/unrestricted(src)
 					return
-				if(3)
+				if(2)
 					new /obj/item/gun/ballistic/automatic/mini_uzi(src)
 					return
-				if(4)
+				if(3)
 					new /obj/item/gun/ballistic/shotgun/bulldog/unrestricted(src)
 					return
-				if(5)
+				if(4)
 					new /obj/item/gun/ballistic/automatic/tommygun(src)
 					return
-				if(6)
+				if(5)
 					new /obj/item/gun/ballistic/shotgun/automatic/dual_tube(src)
 					return
-				if(7)
+				if(6)
 					new /obj/item/gun/ballistic/rocketlauncher/unrestricted(src)
 					new /obj/item/ammo_casing/caseless/rocket(src)
 					new /obj/item/ammo_casing/caseless/rocket(src)
 					return
-				if(8)
+				if(7)
 					new /obj/item/gun/ballistic/automatic/sniper_rifle(src)
 					return
-				if(9)
+				if(8)
 					new /obj/item/gun/ballistic/automatic/ar(src)
 					return
-				if(10)
+				if(9)
 					new /obj/item/gun/ballistic/automatic/m90/unrestricted(src)
 					return
 	else //Item crate, but you still get a gun anyway
