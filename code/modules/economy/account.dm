@@ -12,6 +12,8 @@
 	var/withdrawDelay = 0
 	var/is_bourgeois = FALSE // Marks whether we've tried giving them the achievement already, this round.
 	var/bounties_claimed = 0 // Marks how many bounties this person has successfully claimed
+	var/list/datum/bounty/bounties
+	COOLDOWN_DECLARE(bounty_timer)
 
 /datum/bank_account/New(newname, job, modifier = 1)
 	if(add_to_accounts)
@@ -100,6 +102,22 @@
 				M.playsound_local(get_turf(M), 'sound/machines/twobeep_high.ogg', 50, TRUE)
 				if(M.can_hear())
 					to_chat(M, "[icon2html(A, M)] *[message]*")
+
+/// Generates bounties for account, returns error string if failed
+/datum/bank_account/proc/generate_bounties()
+	if(bounties && !COOLDOWN_FINISHED(src, bounty_timer))
+		var/curr_time = round((COOLDOWN_TIMELEFT(src, bounty_timer)) / (1 MINUTES), 0.01)
+		return "Unable to issue new bounties, try again in [curr_time] minutes"
+	if(!account_job)
+		return "Account has no associated job"
+	if(!account_job.bounty_types)
+		return "Job not eligible for bounties"
+
+	bounties = list(random_bounty(account_job.bounty_types), // Two from your job
+					random_bounty(account_job.bounty_types),
+					random_bounty(CIV_JOB_BASIC))            // One from assistant
+	COOLDOWN_START(src, bounty_timer, 5 MINUTES)
+	return TRUE
 
 /datum/bank_account/department
 	account_holder = "Guild Credit Agency"

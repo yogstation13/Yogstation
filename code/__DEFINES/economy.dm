@@ -32,3 +32,29 @@
 #define MEGAFAUNA_CASH_SCALE 5
 
 #define NO_FREEBIES "commies go home"
+
+//Defines that set what kind of civilian bounties should be applied mid-round.
+#define CIV_JOB_BASIC 1
+#define CIV_JOB_ROBO 2
+#define CIV_JOB_CHEF 3
+#define CIV_JOB_SEC 4
+#define CIV_JOB_DRINK 5
+#define CIV_JOB_CHEM 6
+#define CIV_JOB_VIRO 7
+#define CIV_JOB_SCI 8
+#define CIV_JOB_XENO 9
+#define CIV_JOB_MINE 10
+#define CIV_JOB_MED 11
+#define CIV_JOB_GROW 12
+#define CIV_JOB_ATMO 13
+#define CIV_JOB_RANDOM 14
+
+// /obj/item signals for economy
+///called before an item is sold by the exports system.
+#define COMSIG_ITEM_PRE_EXPORT "item_pre_sold"
+	/// Stops the export from calling sell_object() on the item, so you can handle it manually.
+	#define COMPONENT_STOP_EXPORT (1<<0)
+///called when an item is sold by the exports subsystem
+#define COMSIG_ITEM_EXPORTED "item_sold"
+	/// Stops the export from adding the export information to the report, so you can handle it manually.
+	#define COMPONENT_STOP_EXPORT_REPORT (1<<0)

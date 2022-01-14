@@ -2,6 +2,10 @@
 
 #define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( SEND_SIGNAL(SSdcs, sigtype, ##arguments) )
 
+/// Signifies that this proc is used to handle signals.
+/// Every proc you pass to RegisterSignal must have this.
+#define SIGNAL_HANDLER SHOULD_NOT_SLEEP(TRUE)
+
 #define COMPONENT_INCOMPATIBLE 1
 #define COMPONENT_NOTRANSFER 2
 
