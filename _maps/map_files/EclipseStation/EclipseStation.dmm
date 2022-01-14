@@ -44411,7 +44411,7 @@
 	pixel_y = 7
 	},
 /obj/machinery/doorButtons/access_button{
-	idDoor = "ai_core_airlock_interior";
+	idDoor = "ai_core_airlock_exterior";
 	idSelf = "ai_core_airlock_control";
 	pixel_x = 23;
 	pixel_y = -7
@@ -44559,10 +44559,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "bOc" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "AI Core";
-	req_access_txt = "16"
-	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -44578,6 +44574,11 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/airlock/highsecurity{
+	id_tag = "ai_core_airlock_exterior";
+	name = "AI Core";
+	req_access_txt = "16"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
@@ -63864,6 +63865,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/circuitboard/machine/ai_data_core,
+/obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "cCr" = (
@@ -74101,9 +74103,6 @@
 	pixel_x = 25;
 	pixel_y = 6
 	},
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
 	},
@@ -81531,6 +81530,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter/hub/science)
+"eUf" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1;
+	piping_layer = 2
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "eUk" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -82623,12 +82629,6 @@
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"gUG" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
-	piping_layer = 2
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "gUK" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
@@ -82867,6 +82867,16 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/hallway/primary/fore)
+"hkW" = (
+/obj/machinery/porta_turret/ai{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 8;
+	piping_layer = 2
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "hln" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -84113,6 +84123,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"jwZ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 4;
+	external_pressure_bound = 120;
+	name = "server vent";
+	piping_layer = 2
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "jBN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/brown,
@@ -85418,15 +85437,6 @@
 	},
 /turf/open/floor/plating,
 /area/teleporter/hub/medical)
-"lXS" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 1;
-	external_pressure_bound = 120;
-	name = "server vent";
-	piping_layer = 2
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "lYh" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/light{
@@ -85606,7 +85616,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 8;
 	piping_layer = 2;
-	target_temperature = 270
+	target_temperature = 170
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
@@ -86393,6 +86403,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
+"nLc" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	tag = ""
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1;
+	external_pressure_bound = 120;
+	name = "server vent";
+	piping_layer = 2
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "nME" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -87382,7 +87405,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 8;
 	piping_layer = 2;
-	target_temperature = 270
+	target_temperature = 170
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
@@ -88128,17 +88151,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/maintenance/department/bridge)
-"rls" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	piping_layer = 2
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "rms" = (
 /obj/structure/closet/crate,
 /obj/item/lightreplacer,
@@ -88296,8 +88308,8 @@
 /obj/machinery/ai_slipper{
 	uses = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 6;
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
+	dir = 1;
 	piping_layer = 2
 	},
 /turf/open/floor/circuit/telecomms/server,
@@ -88829,8 +88841,7 @@
 /obj/machinery/ai_slipper{
 	uses = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 5;
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	piping_layer = 2
 	},
 /turf/open/floor/circuit/telecomms/server,
@@ -91119,6 +91130,12 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"wpc" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
+	piping_layer = 2
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "wph" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/light{
@@ -91560,6 +91577,13 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/maintenance/department/bridge)
+"xgJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4;
+	piping_layer = 2
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "xhu" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
@@ -130333,13 +130357,13 @@ acK
 afx
 akU
 sJx
-sJx
+xgJ
 bMf
 sJx
 oDQ
 bPR
 bPP
-sJx
+jwZ
 sJx
 akU
 akU
@@ -130590,13 +130614,13 @@ nlC
 afx
 akU
 sJx
-bQF
+hkW
 bMh
 pHX
 bOP
 guT
 tys
-bQF
+hkW
 sJx
 akU
 akU
@@ -130847,13 +130871,13 @@ acO
 afx
 akU
 sJx
-sJx
+vkI
 mxD
 qxO
 tys
 sVd
 wkU
-sJx
+vkI
 sJx
 akU
 akU
@@ -131105,7 +131129,7 @@ akU
 akU
 vuo
 rxt
-rls
+nLc
 tys
 jUn
 sbx
@@ -131618,14 +131642,14 @@ aaa
 akU
 akU
 bMe
-gUG
+wpc
 bOV
 aln
 aln
 aln
 gJz
 bOi
-lXS
+eUf
 akU
 akU
 awy
