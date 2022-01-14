@@ -6,8 +6,6 @@
  */
 /datum/component/pricetag
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
-	/// Whether we qdel ourself when our parent is unwrapped or not.
-	var/delete_on_unwrap = TRUE
 	/// List of bank accounts this pricetag pays out to. Format is payees[bank_account] = profit_ratio.
 	var/list/payees = list()
 
@@ -34,17 +32,10 @@
  * only override it if the ratio is better for the payee
  *
  * If the account passed in the incoming version is not in our list, add it like normal.
- *
- * If the incoming version shouldn't delete when unwrapped,
- * our version shouldn't either.
- * We don't care about the other way around
- * (Don't go from non-deleting to deleting)
  */
-/datum/component/pricetag/InheritComponent(datum/component/pricetag/new_comp, i_am_original, pay_to_account, profit_ratio = 1, delete_on_unwrap = TRUE)
-	message_admins("Inheriting [pay_to_account]")
-	if(islist(pay_to_account))
-		for(var/A in pay_to_account)
-			message_admins("List item: [A]")
+/datum/component/pricetag/InheritComponent(datum/component/pricetag/new_comp, i_am_original, argslist)
+	var/pay_to_account = argslist[1]
+	var/profit_ratio = argslist[2]
 	if(!isnull(payees[pay_to_account]) && payees[pay_to_account] >= profit_ratio) // They're already getting a better ratio, don't scam them
 		return
 
@@ -68,8 +59,6 @@
 		var/payee_cut = round(item_value * payees[payee])
 		// And of course, the cut is removed from what cargo gets. (But not below zero, just in case)
 		overall_item_price = max(0, overall_item_price - payee_cut)
-
-		message_admins("Paying [payee]")
 
 		payee.adjust_money(payee_cut)
 		payee.bank_card_talk("Sale of [source] recorded. [payee_cut] credits added to account.")

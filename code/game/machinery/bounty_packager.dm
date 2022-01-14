@@ -123,9 +123,6 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 		radio.talk_into(src, "[nag_message][speed_bonus_lost]", RADIO_CHANNEL_SUPPLY)
 		speed_bonus = 0
 
-		message_admins(nag_message)
-		message_admins("[nag_message]")
-
 		//alert the holder
 		bounty_holder_account.bank_card_talk("[nag_message]") 
 
@@ -144,7 +141,7 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 	bounty_holder_account = holder_id.registered_account
 	name = "\improper [bounty_value] cr [name]"
 	desc += " The sales tag indicates it contains <i>[bounty_holder] ([bounty_holder_job])</i>'s <i>[bounty_name]</i> bounty."
-	AddComponent(/datum/component/pricetag, holder_id.registered_account, holder_cut, FALSE)
+	AddComponent(/datum/component/pricetag, holder_id.registered_account, holder_cut)
 	START_PROCESSING(SSobj, src)
 	COOLDOWN_START(src, next_nag_time, nag_cooldown)
 	radio.talk_into(src,"Created in [get_area(src)] by [bounty_holder] ([bounty_holder_job]). Speedy delivery bonus lost in [time2text(next_nag_time - world.time,"mm:ss")].", RADIO_CHANNEL_SUPPLY)
