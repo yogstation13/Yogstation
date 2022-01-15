@@ -46,7 +46,7 @@
 /mob/living/attackby(obj/item/I, mob/living/user, params)
 	if(..())
 		return TRUE
-	user.changeNext_move(CLICK_CD_MELEE * I.weapon_stats[SWING_SPEED] * max(get_dist(src,user) * range_cooldown_mod, 1) ) //distance increases attack cooldown by swing speed
+	user.changeNext_move(CLICK_CD_MELEE * I.weapon_stats[SWING_SPEED] * max(get_dist(src,user) * range_cooldown_mod, 1)) //distance increases attack cooldown by swing speed
 	user.weapon_slow(I)
 	if(user.a_intent == INTENT_HARM && stat == DEAD && (butcher_results || guaranteed_butcher_results)) //can we butcher it?
 		var/datum/component/butchering/butchering = I.GetComponent(/datum/component/butchering)
