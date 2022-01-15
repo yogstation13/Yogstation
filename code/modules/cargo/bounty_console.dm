@@ -70,7 +70,7 @@
 
 
 /obj/machinery/computer/bounty/attackby(obj/item/I, mob/living/user, params)
-	if(!isidcard(I))
+	if(ID || !isidcard(I))
 		return ..()
 	
 	I.forceMove(src)
