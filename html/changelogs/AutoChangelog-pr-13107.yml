@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed trash bag of holding bounty requiring normal bags of holding"
