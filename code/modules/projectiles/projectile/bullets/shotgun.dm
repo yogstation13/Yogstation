@@ -104,7 +104,7 @@
 // Mech Scattershot
 
 /obj/item/projectile/bullet/scattershot
-	damage = 24
+	damage = 16
 
 //Breaching Ammo
 

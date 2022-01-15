@@ -22176,24 +22176,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/science/lab)
-"brz" = (
-/obj/structure/table,
-/obj/item/pen,
-/obj/machinery/camera{
-	c_tag = "Experimentor Lab";
-	network = list("ss13","rd")
-	},
-/obj/item/hand_labeler,
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/white/side,
-/area/science/explab)
-"brA" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/white/corner,
-/area/science/explab)
 "brB" = (
 /obj/structure/closet/l3closet/scientist,
 /turf/open/floor/plasteel/white/side,
@@ -25764,14 +25746,6 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"bEy" = (
-/obj/machinery/portable_atmospherics/pump,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "bEC" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing)
@@ -26690,10 +26664,6 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"bJU" = (
-/obj/machinery/vending/wardrobe/science_wardrobe,
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "bJW" = (
 /obj/item/transfer_valve{
 	pixel_x = -5
@@ -52716,6 +52686,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
+"pQf" = (
+/obj/machinery/vending/wardrobe/science_wardrobe,
+/turf/open/floor/plasteel/white/corner,
+/area/science/explab)
 "pQy" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Escape Podbay"
@@ -56472,6 +56446,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"sbK" = (
+/obj/structure/table,
+/obj/machinery/camera{
+	c_tag = "Experimentor Lab";
+	network = list("ss13","rd")
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/obj/item/hand_labeler,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/white/side,
+/area/science/explab)
 "scv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -56968,6 +56957,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"ssa" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "sti" = (
 /obj/structure/chair/office/light{
 	dir = 4
@@ -59478,6 +59475,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"tYF" = (
+/obj/machinery/portable_atmospherics/pump,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "tYQ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -116250,7 +116252,7 @@ byt
 byt
 byt
 byt
-bEy
+tYF
 bFU
 bsA
 bsU
@@ -116507,7 +116509,7 @@ bzO
 bzO
 bzO
 bqe
-bJU
+ssa
 bFU
 bFU
 wOx
@@ -117011,7 +117013,7 @@ hoc
 ncq
 bjS
 bqe
-brA
+pQf
 blD
 buw
 bvO
@@ -117268,7 +117270,7 @@ hoc
 hoc
 bjT
 bqe
-brz
+sbK
 blN
 cBt
 bvN
