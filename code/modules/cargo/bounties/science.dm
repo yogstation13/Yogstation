@@ -14,7 +14,7 @@
 	name = "Bluespace Syringe"
 	description = "Nanotrasen would make good use of high-capacity syringes. If you have any, please ship them."
 	reward = 10000
-	wanted_types = list(/obj/item/reagent_containers/syringe/bluespace)
+	wanted_types = list(/obj/item/storage/bag/trash/bluespace)
 
 /datum/bounty/item/science/bluespace_body_bag
 	name = "Bluespace Body Bag"
