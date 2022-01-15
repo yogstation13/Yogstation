@@ -293,14 +293,13 @@
 /obj/vehicle/ridden/scooter/airshoes
 	name = "Air Shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
-	icon = 'icons/obj/vehicles.dmi'
+	icon = null
 	density = FALSE
 	var/next_crash
 	var/instability = 3
 	var/grinding = FALSE
-	var/board_icon = "airshoes"
 	var/datum/effect_system/spark_spread/sparks
-	icon_state = "airshoes"
+	var/board_icon = "shoes"
 		
 /obj/vehicle/ridden/scooter/airshoes/Initialize()
 	. = ..()
@@ -318,14 +317,14 @@
 	if(sparks)
 		QDEL_NULL(sparks)
 	. = ..()
-/obj/vehicle/ridden/scooter/airshoes/relaymove()
+/obj/vehicle/ridden/scooter/skateboard/relaymove()
 	if (grinding || world.time < next_crash)
 		return FALSE
 	return ..()
 
-/obj/vehicle/ridden/scooter/airshoes/generate_actions()
+/obj/vehicle/ridden/scooter/skateboard/generate_actions()
 	. = ..()
-	initialize_controller_action_type(/datum/action/vehicle/ridden/scooter/airshoes/ollie, VEHICLE_CONTROL_DRIVE)
+	initialize_controller_action_type(/datum/action/vehicle/ridden/scooter/skateboard/ollie, VEHICLE_CONTROL_DRIVE)
 
 /obj/vehicle/ridden/scooter/airshoes/post_unbuckle_mob(mob/living/M)
 	if(!has_buckled_mobs())
@@ -335,7 +334,7 @@
 
 /obj/vehicle/ridden/scooter/airshoes/post_buckle_mob(mob/living/M)
 	to_chat(M, span_notice("You activate the hover functions of the shoes."))
-	sparks.start() //Jet shoes are a fire hazard
+	
 	return ..()
 
 /obj/vehicle/ridden/scooter/airshoes/Bump(atom/A)
@@ -381,7 +380,7 @@
 				var/turf/location = get_turf(loc)
 				if(location)
 					location.hotspot_expose(1000,1000)
-				sparks.start() 
+				sparks.start() //the most radical way to start plasma fires
 			addtimer(CALLBACK(src, .proc/grind), 2)
 			return
 	else

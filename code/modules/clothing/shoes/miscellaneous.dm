@@ -489,86 +489,33 @@
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
 	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
-/obj/item/clothing/shoes/xeno_wraps/engineering
-	name = "engineering footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, specially made for the frequent glass treader."
-	icon_state = "footwraps_e"
-	item_state = "footwraps_e"
-	xenoshoe = YES_DIGIT 
-	mutantrace_variation = MUTANTRACE_VARIATION
-
-/obj/item/clothing/shoes/xeno_wraps/science
-	name = "science footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, to reduce fatigue when standing at a console all day."
-	icon_state = "footwraps_sc"
-	item_state = "footwraps_sc"
-	xenoshoe = YES_DIGIT 
-	mutantrace_variation = MUTANTRACE_VARIATION
-
-/obj/item/clothing/shoes/xeno_wraps/medical
-	name = "medical footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, for when you dont want other people's blood all over your feet."
-	icon_state = "footwraps_m"
-	item_state = "footwraps_m"
-	xenoshoe = YES_DIGIT
-	mutantrace_variation = MUTANTRACE_VARIATION
-
-/obj/item/clothing/shoes/xeno_wraps/cargo
-	name = "cargo footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, with reinforcment to protect against falling crates."
-	icon_state = "footwraps_ca"
-	item_state = "footwraps_ca"
-	xenoshoe = YES_DIGIT 
-	mutantrace_variation = MUTANTRACE_VARIATION
-
-
 /obj/item/clothing/shoes/airshoes
-	name = "air shoes"
-	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
-	icon_state = "airshoes"
-	obj_flags = UNIQUE_RENAME //im not fucking naming them 'sonic 11's you can do that yourself ffm
-	actions_types = list(/datum/action/item_action/airshoes, /datum/action/item_action/dash)
-	var/airToggle = FALSE
-	var/obj/vehicle/ridden/scooter/airshoes/A
-	permeability_coefficient = 0.05
-	var/recharging_time = 0 
-	var/jumpdistance = 7 //Increased distance so it might see some offensive use
-	var/jumpspeed = 5 //fast
-	var/recharging_rate = 60 
-	syndicate = TRUE
+    name = "Air Shoes"
+    desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
+    clothing_flags = NOSLIP
+    actions_types = list(/datum/action/item_action/airshoes)
+    var/airToggle = FALSE
+    var/obj/vehicle/ridden/scooter/airshoes/A
 
-/obj/item/clothing/shoes/airshoes/Initialize()
-	. = ..()
-	A = new/obj/vehicle/ridden/scooter/airshoes(null)
-	
+obj/item/clothing/shoes/airshoes/Initialize()
+    . = ..()
+    A = new/obj/vehicle/ridden/scooter/airshoes(null)
+
 /obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
 	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/airshoes))
 		to_chat(user, span_warning("You must be wearing the air shoes to use them!"))
 		return
-	if(istype(action,/datum/action/item_action/airshoes))
-		if(!(A.is_occupant(user)))
-			airToggle = FALSE
-		if(airToggle)
-			A.unbuckle_mob(user)
-			airToggle = FALSE
-			return
-		A.forceMove(get_turf(user))
-		A.buckle_mob(user)
-		airToggle = TRUE
-	else if(istype(action,/datum/action/item_action/dash))
-		if(recharging_time > world.time)
-			to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
-			return
-		
-		var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
-		if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
-			playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
-			user.visible_message(span_warning("[usr] dashes forward into the air!"))
-			recharging_time = world.time + recharging_rate
-		else
-			to_chat(user, span_warning("Something prevents you from dashing forward!"))
+	if(!(A.is_occupant(user)))
+		airToggle = FALSE
+	if(airToggle)
+		A.unbuckle_mob(user)
+		airToggle = FALSE
+		return
+	A.forceMove(get_turf(user))
+	A.buckle_mob(user)
+	airToggle = TRUE
 
 /obj/item/clothing/shoes/airshoes/dropped(mob/user)
 	if(airToggle)

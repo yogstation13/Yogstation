@@ -706,10 +706,10 @@
 	button_icon_state = "wheelys"
 
 /datum/action/item_action/airshoes
-	name = "Toggle thrust on air shoes."
+	name = "Toggle thrust on Air Shoes."
 	desc = "Switch between walking and hovering."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "airshoes_a"
+	button_icon_state = "wheelys"
 
 	
 /datum/action/item_action/kindleKicks
