@@ -372,6 +372,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	. = changemap(VM)
 	if (. && VM.map_name != config.map_name)
 		to_chat(world, span_boldannounce("Map rotation has chosen [VM.map_name] for next round!"))
+		CONFIG_SET(flag/allow_vote_map, FALSE)
 
 /datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
 	if(!VM.MakeNextMap())
