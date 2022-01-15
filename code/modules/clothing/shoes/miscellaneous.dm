@@ -488,3 +488,40 @@
 	item_state = "footwraps_c"
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
 	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+
+/obj/item/clothing/shoes/airshoes
+    name = "Air Shoes"
+    desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
+    clothing_flags = NOSLIP
+    actions_types = list(/datum/action/item_action/airshoes)
+    var/airToggle = FALSE
+    var/obj/vehicle/ridden/scooter/airshoes/A
+
+obj/item/clothing/shoes/airshoes/Initialize()
+    . = ..()
+    A = new/obj/vehicle/ridden/scooter/airshoes(null)
+
+/obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
+	if(!isliving(user))
+		return
+	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/airshoes))
+		to_chat(user, span_warning("You must be wearing the air shoes to use them!"))
+		return
+	if(!(A.is_occupant(user)))
+		airToggle = FALSE
+	if(airToggle)
+		A.unbuckle_mob(user)
+		airToggle = FALSE
+		return
+	A.forceMove(get_turf(user))
+	A.buckle_mob(user)
+	airToggle = TRUE
+
+/obj/item/clothing/shoes/airshoes/dropped(mob/user)
+	if(airToggle)
+		A.unbuckle_mob(user)
+		airToggle = FALSE
+	..()
+/obj/item/clothing/shoes/airshoes/Destroy()
+	QDEL_NULL(A)
+	. = ..()
