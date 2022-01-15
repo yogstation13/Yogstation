@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes the smoker trait's nicotine addiction being changed to another addiction after being cloned."
