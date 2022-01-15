@@ -35,18 +35,27 @@
 	else
 		return ..()
 
-/*
+
 /obj/item/plate/pre_attack(atom/A, mob/living/user, params)
 	to_chat(user,"hm1")
 	if(!iscarbon(A))
 		return
 	if(!contents.len)
+		user.put_in_hands(src)
 		return
 	var/obj/item/reagent_containers/food/object_to_eat = contents[1]
-	A.attackby(object_to_eat, user)
+	object_to_eat.attack(user,user) //eat eat eat
 	to_chat(user,"hm2")
 	return FALSE //No normal attack
-*/
+
+
+//click and drag it to you to pick it up nom nom nom
+/obj/item/plate/MouseDrop(over_object, src_location, over_location)
+	. = ..()
+	if(over_object == usr && Adjacent(usr))
+		if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
+			return 0
+		usr.put_in_hands(src)
 
 ///This proc adds the food to viscontents and makes sure it can deregister if this changes.
 /obj/item/plate/proc/AddToPlate(obj/item/item_to_plate)
