@@ -11703,7 +11703,7 @@
 	pixel_x = 29;
 	pixel_y = -5
 	},
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
 "azD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -43009,6 +43009,9 @@
 	light_color = "#e8eaff"
 	},
 /obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/status_display/ai{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "bLd" = (
@@ -44648,20 +44651,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "bOh" = (
-/obj/machinery/power/apc/highcap/five_k{
-	areastring = "/area/ai_monitored/turret_protected/ai";
-	dir = 4;
-	name = "AI Chamber APC";
-	pixel_x = 24
-	},
 /obj/machinery/flasher{
 	pixel_x = 24;
 	pixel_y = -11
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
 "bOi" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
@@ -45029,16 +45023,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "bOT" = (
-/obj/structure/showcase/cyborg/old{
-	dir = 8;
-	pixel_x = 9;
-	pixel_y = 2
-	},
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8;
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 10;
 	piping_layer = 2
 	},
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
 "bOU" = (
 /obj/machinery/computer/upload/borg{
@@ -63856,6 +63845,9 @@
 /area/medical/morgue)
 "cCp" = (
 /obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/status_display/ai{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "cCq" = (
@@ -63869,13 +63861,12 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "cCr" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+/obj/structure/chair/stool/bar,
+/obj/item/aiModule/toyAI{
+	pixel_x = -1;
+	pixel_y = 9
 	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai)
 "cCs" = (
 /obj/structure/cable{
@@ -71906,7 +71897,6 @@
 /turf/closed/wall,
 /area/quartermaster/office)
 "cRz" = (
-/obj/machinery/status_display/ai,
 /turf/closed/wall,
 /area/ai_monitored/turret_protected/ai_upload)
 "cRA" = (
@@ -74112,6 +74102,9 @@
 	idSelf = "ai_core_airlock_control";
 	pixel_x = 23;
 	pixel_y = -7
+	},
+/obj/machinery/status_display/ai{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
@@ -81180,9 +81173,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/atmospherics_engine)
 "efK" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	external_pressure_bound = 120;
 	name = "server vent";
@@ -82543,8 +82533,14 @@
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "gJz" = (
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/turret_protected/ai";
+	dir = 1;
+	name = "AI Chamber APC";
+	pixel_y = 23
+	},
 /obj/structure/cable/yellow{
-	icon_state = "4-8"
+	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
@@ -82867,16 +82863,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/hallway/primary/fore)
-"hkW" = (
-/obj/machinery/porta_turret/ai{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 8;
-	piping_layer = 2
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "hln" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -84323,9 +84309,6 @@
 /turf/open/floor/plating,
 /area/teleporter)
 "jUn" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
@@ -86852,6 +86835,9 @@
 	c_tag = "AI External Motion Sensor";
 	dir = 4
 	},
+/obj/machinery/status_display/ai{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "oGo" = (
@@ -86896,15 +86882,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	piping_layer = 2
 	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ai_monitored/turret_protected/ai)
-"oOr" = (
-/obj/structure/showcase/cyborg/old{
-	dir = 8;
-	pixel_x = 9;
-	pixel_y = 2
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "oPl" = (
@@ -87695,7 +87672,7 @@
 /area/hallway/primary/fore)
 "qxO" = (
 /obj/machinery/status_display/ai_core,
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
 "qxS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -88613,12 +88590,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"sbx" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "scF" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
@@ -89099,7 +89070,7 @@
 /area/quartermaster/sorting)
 "sVd" = (
 /obj/machinery/ai/expansion_card_holder/prefilled,
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
 "sVG" = (
 /obj/structure/mopbucket,
@@ -129850,7 +129821,7 @@ bOd
 qpu
 cCq
 aln
-bNd
+cCr
 akU
 awy
 aaa
@@ -130356,7 +130327,7 @@ cVx
 acK
 afx
 akU
-sJx
+bQF
 xgJ
 bMf
 sJx
@@ -130364,7 +130335,7 @@ oDQ
 bPR
 bPP
 jwZ
-sJx
+bQF
 akU
 akU
 aaa
@@ -130614,13 +130585,13 @@ nlC
 afx
 akU
 sJx
-hkW
+vkI
 bMh
 pHX
 bOP
 guT
 tys
-hkW
+vkI
 sJx
 akU
 akU
@@ -130874,7 +130845,7 @@ sJx
 vkI
 mxD
 qxO
-tys
+sJx
 sVd
 wkU
 vkI
@@ -131132,7 +131103,7 @@ rxt
 nLc
 tys
 jUn
-sbx
+tys
 efK
 ssO
 iLC
@@ -131390,7 +131361,7 @@ bMi
 azC
 bOh
 sVd
-cCr
+wkU
 vkI
 sJx
 akU
@@ -131899,7 +131870,7 @@ aaa
 akU
 akU
 bQF
-bOi
+bOT
 cCs
 lss
 oEs
@@ -132156,13 +132127,13 @@ awy
 akU
 akU
 akU
-bOT
+akU
 akU
 mkW
 qUW
 pLR
 akU
-oOr
+akU
 akU
 akU
 akU
@@ -132669,15 +132640,15 @@ aaa
 aaa
 awy
 awy
+aGm
+aGm
 akU
 akU
 akU
 akU
 akU
-akU
-akU
-akU
-akU
+aGm
+aGm
 awy
 aaa
 aaa
@@ -132926,7 +132897,7 @@ aaa
 aaa
 aaa
 aaa
-aGm
+aaa
 aGm
 aGm
 aGm
@@ -132934,7 +132905,7 @@ wGS
 aGm
 aGm
 aGm
-aGm
+aaa
 aaa
 aaa
 aaa
