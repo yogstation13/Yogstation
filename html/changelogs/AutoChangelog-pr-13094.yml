@@ -1,5 +1,0 @@
-author: " Xoxeyos"
-delete-after: true 
-changes: 
-  - rscadd: "New coolant loop for the AI and updated consoles for AI interaction."
-  - tweak: "Eclipse AI core atmospherics should work better."
