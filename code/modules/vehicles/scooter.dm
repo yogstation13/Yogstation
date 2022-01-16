@@ -317,12 +317,12 @@
 	if(sparks)
 		QDEL_NULL(sparks)
 	. = ..()
-/obj/vehicle/ridden/scooter/skateboard/relaymove()
+/obj/vehicle/ridden/scooter/airshoes/relaymove()
 	if (grinding || world.time < next_crash)
 		return FALSE
 	return ..()
 
-/obj/vehicle/ridden/scooter/skateboard/generate_actions()
+/obj/vehicle/ridden/scooter/airshoes/generate_actions()
 	. = ..()
 	initialize_controller_action_type(/datum/action/vehicle/ridden/scooter/skateboard/ollie, VEHICLE_CONTROL_DRIVE)
 
