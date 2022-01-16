@@ -334,7 +334,7 @@
 
 /obj/vehicle/ridden/scooter/airshoes/post_buckle_mob(mob/living/M)
 	to_chat(M, span_notice("You activate the hover functions of the shoes."))
-	
+	sparks.start() //Jet shoes are a fire hazard
 	return ..()
 
 /obj/vehicle/ridden/scooter/airshoes/Bump(atom/A)
@@ -380,7 +380,7 @@
 				var/turf/location = get_turf(loc)
 				if(location)
 					location.hotspot_expose(1000,1000)
-				sparks.start() //the most radical way to start plasma fires
+				sparks.start() 
 			addtimer(CALLBACK(src, .proc/grind), 2)
 			return
 	else
