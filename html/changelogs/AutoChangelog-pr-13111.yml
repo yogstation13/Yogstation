@@ -1,0 +1,5 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscadd: "Added proc to spawn an emergency bar"
+  - bugfix: "fixed a runtime that prevents the bar from spawning"

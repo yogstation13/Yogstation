@@ -30,6 +30,7 @@
 	
 	if(!GLOB.data_cores.len)
 		INVOKE_ASYNC(src, /mob/living/silicon/ai.proc/death_prompt)
+		is_dying = TRUE
 		return
 
 
@@ -57,6 +58,7 @@
 	if(available_ai_cores())
 		to_chat(src, span_usernotice("Yes! I am alive!"))
 		relocate(TRUE)
+		is_dying = FALSE
 		return
 	to_chat(src, span_notice("They need me. No.. I need THEM."))
 	sleep(0.5 SECONDS)

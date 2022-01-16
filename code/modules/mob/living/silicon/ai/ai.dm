@@ -112,12 +112,17 @@
 	var/downloadSpeedModifier = 1
 
 	var/login_warned_temp = FALSE
+
 	//Do we have access to camera tracking?
 	var/canCameraMemoryTrack = FALSE
 	//The person we are tracking
 	var/cameraMemoryTarget = null
 	//We only check every X ticks
 	var/cameraMemoryTickCount = 0
+
+	//Did we get the death prompt?
+	var/is_dying = FALSE 
+
 
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
@@ -515,6 +520,7 @@
 			return
 		if(M)
 			M.transfer_ai(AI_MECH_HACK, src, usr) //Called om the mech itself.
+
 	if(href_list["stopTrackHuman"])
 		if(!cameraMemoryTarget)
 			return
@@ -533,6 +539,15 @@
 		
 		cameraMemoryTarget = track_name
 		cameraMemoryTickCount = 0
+	
+	if(href_list["instant_download"])
+		if(!href_list["console"])
+			return
+		var/obj/machinery/computer/ai_control_console/C = locate(href_list["console"])
+		if(!C)
+			return
+		if(C.downloading == src)
+			C.finish_download()
 
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
