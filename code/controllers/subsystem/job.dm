@@ -607,7 +607,7 @@ SUBSYSTEM_DEF(job)
 		if(!isnull(template))
 			break
 	if(isnull(template))
-		message_admins("UNABLE TO SPANW BAR")
+		message_admins("UNABLE TO SPAWN BAR")
 	
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
