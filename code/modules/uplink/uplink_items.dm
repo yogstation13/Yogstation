@@ -2121,7 +2121,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Makeshift Weapons"
 	desc = "A one use book that grants access to a number of secret crafting recipes once it has been read."
 	item = /obj/item/book/granter/crafting_recipe/weapons
-	cost = 4
+	cost = 2
 	cant_discount = TRUE
 	illegal_tech = FALSE
 
