@@ -497,6 +497,11 @@
     var/airToggle = FALSE
     var/obj/vehicle/ridden/scooter/airshoes/A
 
+/obj/item/clothing/shoes/airshoes/negates_gravity()
+	var/datum/gas_mixture/current = A.loc.return_air()
+	if(current && (current.return_pressure() >= ONE_ATMOSPHERE*0.85))
+		return TRUE
+
 obj/item/clothing/shoes/airshoes/Initialize()
     . = ..()
     A = new/obj/vehicle/ridden/scooter/airshoes(null)
