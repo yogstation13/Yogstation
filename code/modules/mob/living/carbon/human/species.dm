@@ -156,6 +156,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	///Bitflag that controls what in game ways can select this species as a spawnable source. Think magic mirror and pride mirror, slime extract, ERT etc, see defines in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
 	var/changesource_flags = NONE
+
+	//The component to add when swimming
+	var/swimming_component = /datum/component/swimming
+
 ///////////
 // PROCS //
 ///////////
@@ -1479,6 +1483,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		var/shove_dir = get_dir(user.loc, target.loc)
 		var/turf/target_shove_turf = get_step(target.loc, shove_dir)
 		var/mob/living/carbon/human/target_collateral_human
+		var/turf/open/indestructible/sound/pool/target_pool
 		var/shove_blocked = FALSE //Used to check if a shove is blocked so that if it is knockdown logic can be applied
 
 		//Thank you based whoneedsspace
@@ -1489,6 +1494,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		else
 			target.Move(target_shove_turf, shove_dir)
 			if(get_turf(target) != target_shove_turf)
+				target_pool = istype(target_shove_turf, /turf/open/indestructible/sound/pool) ? target_shove_turf : null
 				shove_blocked = TRUE
 
 		if(target.IsKnockdown() && !target.IsParalyzed())
@@ -1513,7 +1519,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 						if(O.flags_1 & ON_BORDER_1 && O.dir == turn(shove_dir, 180) && O.density)
 							directional_blocked = TRUE
 							break
-			if(!bothstanding || directional_blocked)
+			if(!bothstanding || directional_blocked && !target_pool)
 				var/obj/item/I = target.get_active_held_item()
 				if(target.dropItemToGround(I))
 					user.visible_message(span_danger("[user.name] shoves [target.name], disarming them!"),
@@ -1526,6 +1532,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				user.visible_message(span_danger("[user.name] shoves [target.name] into [target_collateral_human.name]!"),
 					span_danger("You shove [target.name] into [target_collateral_human.name]!"), null, COMBAT_MESSAGE_RANGE)
 				log_combat(user, target, "shoved", "into [target_collateral_human.name]")
+			else if (target_pool)
+				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
+				target.forceMove(target_pool)
+				user.visible_message("<span class='danger'>[user.name] shoves [target.name] into \the [target_pool]!</span>",
+					"<span class='danger'>You shove [target.name] into \the [target_pool]!</span>", null, COMBAT_MESSAGE_RANGE)
+				log_combat(user, target, "shoved", "into [target_pool] (swimming pool)")
 		else
 			user.visible_message(span_danger("[user.name] shoves [target.name]!"),
 				span_danger("You shove [target.name]!"), null, COMBAT_MESSAGE_RANGE)
