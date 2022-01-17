@@ -1,5 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - tweak: "reworks stun batons to focus more on stamina damage over the paralysis"
-  - tweak: "stun batons are now effected by energy armor"
