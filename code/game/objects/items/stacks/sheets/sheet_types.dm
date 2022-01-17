@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("computer frame", /obj/structure/frame/computer, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("machine frame", /obj/structure/frame/machine, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("modular console", /obj/machinery/modular_computer/console/buildable/, 10, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("modular console", /obj/machinery/modular_computer/console/, 10, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new /datum/stack_recipe_list("airlock assemblies", list( \
 		new /datum/stack_recipe("airtight hatch assembly", /obj/structure/door_assembly/door_assembly_hatch, 4, time = 50, one_per_turf = 1, on_floor = 1), \
@@ -98,6 +98,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("button frame", /obj/item/wallframe/button, 1), \
 	new/datum/stack_recipe("extinguisher cabinet frame", /obj/item/wallframe/extinguisher_cabinet, 2), \
 	new/datum/stack_recipe("fire alarm frame", /obj/item/wallframe/firealarm, 2), \
+	new/datum/stack_recipe("telescreen frame", /obj/item/wallframe/telescreen, 3), \
 	null, \
 	new/datum/stack_recipe("floodlight frame", /obj/structure/floodlight_frame, 5, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("iron door", /obj/structure/mineral_door/iron, 20, one_per_turf = TRUE, on_floor = TRUE), \
@@ -156,7 +157,6 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
  * Plasteel
  */
 GLOBAL_LIST_INIT(plasteel_recipes, list ( \
-	new/datum/stack_recipe("AI core", /obj/structure/AIcore, 4, time = 50, one_per_turf = TRUE), \
 	new/datum/stack_recipe("bomb assembly", /obj/machinery/syndicatebomb/empty, 10, time = 50), \
 	null, \
 	new /datum/stack_recipe_list("airlock assemblies", list( \
@@ -331,6 +331,8 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cloth
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 
 /obj/item/stack/sheet/cloth/durathread
 	name = "durathread"
@@ -338,6 +340,8 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	singular_name = "durathread roll"
 	icon_state = "sheet-durathread"
 	merge_type = /obj/item/stack/sheet/cloth/durathread
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 
 /obj/item/stack/sheet/cloth/durathread/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
@@ -812,8 +816,8 @@ GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
 	merge_type = /obj/item/stack/sheet/ashresin
 	
 GLOBAL_LIST_INIT(ashresin_recipes, list (
-	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40)
-	))
+	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40), \
+	new/datum/stack_recipe("resin candle", /obj/item/candle/resin )))
 
 /obj/item/stack/sheet/ashresin/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.ashresin_recipes
