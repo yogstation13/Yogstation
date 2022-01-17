@@ -166,8 +166,10 @@
 
 /obj/item/modular_computer/CtrlClick()
 	var/mob/M = usr
-	if(usr.CanReach(src) && usr.canUseTopic(src))
+	if(ishuman(usr) && usr.CanReach(src) && usr.canUseTopic(src))
 		return attack_self(M)
+	else
+		..()
 
 /obj/item/modular_computer/attack_ai(mob/user)
 	return attack_self(user)
