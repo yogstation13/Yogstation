@@ -375,7 +375,7 @@
 		return
 		
 	//little spaghetti, but should make it so you can infect both dead and alive
-	if(((target.stat != DEAD && (!C.key || !C.mind)) || (target.stat == DEAD && !C.get_ghost()) ) && target && C != target.current)
+	if(((C.stat != DEAD && (!C.key || !C.mind)) || (C.stat == DEAD && !C.get_ghost()) ) && target && C != target.current)
 		to_chat(src, span_warning("[C]'s mind seems unresponsive. Try someone else!"))
 		return
 
