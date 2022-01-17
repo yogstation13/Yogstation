@@ -373,8 +373,9 @@
 	if(C.has_horror_inside())
 		to_chat(src, span_warning("[C] is already infested!"))
 		return
-
-	if(!C.get_ghost() && target && C != target.current)
+		
+	//little spaghetti, but should make it so you can infect both dead and alive
+	if(((!C.key || !C.mind) && target.stat != DEAD) || (target.stat == DEAD && !C.get_ghost())) && target && C != target.current)
 		to_chat(src, span_warning("[C]'s mind seems unresponsive. Try someone else!"))
 		return
 
