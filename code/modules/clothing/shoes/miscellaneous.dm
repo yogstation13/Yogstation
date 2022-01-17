@@ -500,6 +500,7 @@
 /obj/item/clothing/shoes/airshoes/negates_gravity()
 	var/datum/gas_mixture/current = A.loc.return_air()
 	if(current && (current.return_pressure() >= ONE_ATMOSPHERE*0.85))
+		user.update_gravity(user.has_gravity())
 		return clothing_flags & NOSLIP
 
 obj/item/clothing/shoes/airshoes/Initialize()
