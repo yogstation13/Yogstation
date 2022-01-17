@@ -37502,20 +37502,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"bxl" = (
-/obj/structure/rack,
-/obj/item/circuitboard/aicore{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/sign/plaques/cave{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "bxm" = (
 /obj/effect/spawner/xmastree/rdrod,
 /obj/effect/turf_decal/stripes/line{
@@ -57186,9 +57172,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /turf/open/floor/plating,
 /area/maintenance/department/tcoms)
 "fba" = (
@@ -63037,6 +63021,16 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"uRu" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/sign/plaques/cave{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "uUM" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer2{
@@ -113694,7 +113688,7 @@ bqk
 brp
 bmW
 bvK
-bxl
+uRu
 bys
 bzM
 bya

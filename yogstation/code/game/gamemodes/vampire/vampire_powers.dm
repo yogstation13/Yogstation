@@ -63,8 +63,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/datum/vampire_passive/nostealth
+	gain_desc = "You are no longer able to conceal yourself while sucking blood."
+
 /datum/vampire_passive/regen
-	gain_desc = "Your rejuvination abilities have improved and will now heal you over time when used."
+	gain_desc = "Your rejuvenation abilities have improved and will now heal you over time when used."
 
 /datum/vampire_passive/vision
 	gain_desc = "Your vampiric vision has improved."
@@ -173,7 +176,7 @@
 
 
 /obj/effect/proc_holder/spell/pointed/hypno
-	name = "Hypnotize"
+	name = "Hypnotize (20)"
 	desc = "Knock out your target."
 	charge_max = 300
 	blood_used = 20
