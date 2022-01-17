@@ -374,8 +374,8 @@
 		to_chat(src, span_warning("[C] is already infested!"))
 		return
 		
-	//little spaghetti, but should make it so you can infect both dead and alive
-	if(((C.stat != DEAD && (!C.key || !C.mind)) || (C.stat == DEAD && !C.get_ghost()) ) && target && C != target.current)
+	//can only infect non-ssd alive people / corpses with ghosts attached / current target
+	if((C.stat == DEAD || !C.key) && (C.stat != DEAD || !C.get_ghost()) && (!target || C != target.current))
 		to_chat(src, span_warning("[C]'s mind seems unresponsive. Try someone else!"))
 		return
 
