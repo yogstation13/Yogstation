@@ -2509,6 +2509,8 @@
 #include "code\modules\modular_computers\computers\item\computer_damage.dm"
 #include "code\modules\modular_computers\computers\item\computer_power.dm"
 #include "code\modules\modular_computers\computers\item\computer_ui.dm"
+#include "code\modules\modular_computers\computers\item\integrated_tablet.dm"
+#include "code\modules\modular_computers\computers\item\integrated_tablet_presets.dm"
 #include "code\modules\modular_computers\computers\item\laptop.dm"
 #include "code\modules\modular_computers\computers\item\laptop_presets.dm"
 #include "code\modules\modular_computers\computers\item\pda.dm"
