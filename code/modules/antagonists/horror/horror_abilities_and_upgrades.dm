@@ -330,7 +330,7 @@
 	var/cooldown = 0
 
 /datum/action/innate/horror/lube_spill/IsAvailable()
-	if(cooldown > world.time || !B.has_chemicals(chemical_cost) || !can_use_ability())
+	if(cooldown > world.time || !B.has_chemicals(chemical_cost) || !B.can_use_ability())
 		return
 	return ..()
 
