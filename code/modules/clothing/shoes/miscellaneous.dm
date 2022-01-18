@@ -497,11 +497,11 @@
     var/airToggle = FALSE
     var/obj/vehicle/ridden/scooter/airshoes/A
 
-/obj/item/clothing/shoes/airshoes/negates_gravity()
-	var/datum/gas_mixture/current = A.loc.return_air()
-	if(current && (current.return_pressure() >= ONE_ATMOSPHERE*0.85))
-		user.update_gravity(user.has_gravity())
-		return clothing_flags & NOSLIP
+			if(A.loc && !isspaceturf(A.loc))
+		var/datum/gas_mixture/current = H.loc.return_air()
+		if(current && (current.return_pressure() >= ONE_ATMOSPHERE*0.85)) //as long as there's reasonable pressure and no gravity, flight is possible
+				return TRUE
+
 
 obj/item/clothing/shoes/airshoes/Initialize()
     . = ..()
