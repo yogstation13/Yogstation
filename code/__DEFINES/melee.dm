@@ -10,3 +10,11 @@
 #define MARTIALART_CQC_COOK "CQC cook"
 #define MARTIALART_PLASMAFIST "plasma fist"
 #define MARTIALART_FLYINGFANG "flying fang"
+
+//Weapon stat defines
+#define SWING_SPEED 		"swing_speed"
+#define ENCUMBRANCE 		"encumbrance"
+#define ENCUMBRANCE_TIME 	"encumbrance_time"
+#define REACH				"reach"
+#define DAMAGE_LOW			"damage_low"
+#define DAMAGE_HIGH			"damage_high"

@@ -234,22 +234,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/spacebar)
-"iP" = (
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/spacebar)
-"iZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/spacebar)
 "jd" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -300,6 +284,19 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/machinery/vending/coffee,
 /obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
+"ke" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"ld" = (
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -548,6 +545,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"uJ" = (
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	dir = 1
+	},
+/obj/machinery/computer/arcade{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "vh" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -578,6 +585,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
+"wo" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
 "wz" = (
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -596,6 +609,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"xY" = (
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/book/random{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "yg" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -607,10 +631,6 @@
 "yK" = (
 /obj/machinery/vending/boozeomat,
 /turf/closed/wall,
-/area/ruin/space/has_grav/powered/spacebar)
-"yN" = (
-/obj/machinery/light,
-/turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
 "zE" = (
 /turf/open/floor/carpet,
@@ -632,6 +652,10 @@
 	dir = 8
 	},
 /obj/machinery/teleport/station,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"AV" = (
+/obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
 "AZ" = (
@@ -820,6 +844,28 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/spacebar)
+"Id" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 11;
+	height = 22;
+	id = "spacebar";
+	name = "Space Bar";
+	width = 35
+	},
+/turf/template_noop,
+/area/template_noop)
+"Ik" = (
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	dir = 1
+	},
+/obj/structure/chair,
+/obj/structure/sign/poster/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "IA" = (
 /obj/structure/closet/secure_closet/freezer/meat{
 	req_access = null;
@@ -916,6 +962,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"MF" = (
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
 "Na" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -989,6 +1043,21 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
+"OT" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "OV" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -1045,6 +1114,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"RT" = (
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	dir = 1
+	},
+/obj/structure/chair,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "RY" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -1090,6 +1167,16 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"UV" = (
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	dir = 1
+	},
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "Vj" = (
 /obj/machinery/light/small,
@@ -1161,6 +1248,16 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"XW" = (
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	dir = 1
+	},
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "YH" = (
 /turf/template_noop,
 /area/template_noop)
@@ -1210,7 +1307,7 @@ YH
 YH
 YH
 YH
-YH
+Id
 YH
 YH
 YH
@@ -1234,17 +1331,17 @@ YH
 YH
 YH
 YH
+sM
+sM
+sM
+sM
+ZN
+ZN
+ZN
 YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
+FB
+PR
+FB
 YH
 YH
 YH
@@ -1266,18 +1363,18 @@ YH
 YH
 YH
 YH
-YH
-YH
-YH
-YH
-YH
+sM
+sM
+sM
+sM
+sM
+sM
+sM
 ZN
-xi
-xi
-YH
-YH
-YH
-YH
+ZN
+FB
+sX
+FB
 YH
 YH
 YH
@@ -1299,19 +1396,19 @@ YH
 YH
 YH
 YH
-YH
-YH
-YH
-YH
-ZN
-ZN
+sM
 FB
-iP
-iP
-iP
-iP
-iP
-iP
+FB
+FB
+FB
+FB
+FB
+KO
+KO
+FB
+as
+FB
+KO
 FB
 xi
 xi
@@ -1332,19 +1429,19 @@ YH
 YH
 YH
 YH
-YH
-YH
-YH
-YH
-sM
-sM
+ZN
+MF
+wz
+wz
+wo
+wz
 FB
-wz
-wz
-wz
-wz
-wz
-wz
+RT
+ld
+ld
+ld
+uJ
+uJ
 FB
 FB
 FB
@@ -1364,20 +1461,20 @@ YH
 (6,1,1) = {"
 YH
 YH
-YH
-YH
-YH
-YH
-sM
-sM
-sM
+ZN
+ZN
+MF
+wz
+wz
+ZJ
+CP
 FB
-wz
-wz
-wz
-wz
-wz
-wz
+Ik
+ld
+ld
+ld
+ld
+ld
 Jq
 jy
 OV
@@ -1397,20 +1494,20 @@ YH
 (7,1,1) = {"
 YH
 YH
-YH
-YH
-YH
-YH
-sM
-sM
-sM
+ZN
+ZN
+MF
+wz
+wz
+mL
+og
 FB
-iZ
-ZJ
-CP
-ZJ
-CP
-yN
+xY
+ld
+ld
+ld
+ld
+XW
 FB
 FB
 FB
@@ -1430,20 +1527,20 @@ YH
 (8,1,1) = {"
 YH
 YH
-YH
-YH
-YH
-sM
-sM
-sM
-sM
-FB
+ZN
+ZN
+MF
 wz
-mL
-og
-mL
-og
 wz
+wz
+wz
+AV
+ld
+ld
+ld
+ld
+ld
+UV
 FB
 Hf
 FB
@@ -1463,20 +1560,20 @@ YH
 (9,1,1) = {"
 YH
 YH
-YH
-YH
-YH
-sM
-sM
-sM
-sM
+ZN
+ZN
+MF
+wz
+wz
+ZJ
+CP
+FB
 FB
 KO
 KO
+OT
 KO
-KO
-KO
-KO
+FB
 FB
 TU
 FB
@@ -1495,14 +1592,14 @@ YH
 "}
 (10,1,1) = {"
 YH
-YH
-YH
-YH
-sM
-sM
-sM
-sM
-sM
+ZN
+ZN
+ZN
+MF
+wz
+wz
+mL
+og
 FB
 nK
 yg
@@ -1528,14 +1625,14 @@ YH
 "}
 (11,1,1) = {"
 YH
-YH
-YH
-YH
-sM
-sM
-sM
-sM
-sM
+ZN
+ZN
+ZN
+MF
+wz
+wz
+ke
+wz
 FB
 jY
 yg
@@ -1561,12 +1658,12 @@ YH
 "}
 (12,1,1) = {"
 YH
-YH
-YH
+ZN
 sM
 sM
-sM
-sM
+FB
+FB
+FB
 FB
 FB
 FB
@@ -1594,11 +1691,11 @@ YH
 "}
 (13,1,1) = {"
 YH
-YH
-YH
 ZN
 ZN
-ZN
+sM
+sM
+sM
 sM
 FB
 aH
@@ -1628,7 +1725,7 @@ YH
 (14,1,1) = {"
 YH
 YH
-YH
+ZN
 ZN
 ZN
 ZN
@@ -1661,7 +1758,7 @@ YH
 (15,1,1) = {"
 YH
 YH
-YH
+ZN
 ZN
 ZN
 ZN
@@ -1694,7 +1791,7 @@ YH
 (16,1,1) = {"
 YH
 YH
-YH
+ZN
 ZN
 ZN
 ZN
