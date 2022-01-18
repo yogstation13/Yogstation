@@ -58,9 +58,11 @@
 			var/ID = checkID()
 			if(!ID)
 				return
+			computer.play_interact_sound()
 			var/message = stripped_input(usr, message = "Enter message to be sent to remote cyborg.", title = "Send Message")
 			if(!message)
 				return
+			computer.play_interact_sound()
 			to_chat(R, "<br><br>[span_notice("Message from [ID] -- \"[message]\"")]<br>")
 			SEND_SOUND(R, 'sound/machines/twobeep_high.ogg')
 			if(R.connected_ai)

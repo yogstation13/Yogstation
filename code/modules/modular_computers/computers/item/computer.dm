@@ -54,6 +54,9 @@
 	var/list/starting_components = list()
 	var/list/starting_files = list()
 	var/datum/computer_file/program/initial_program
+	var/sound/startup_sound = 'sound/machines/modPC/computer_start.ogg'
+	var/sound/shutdown_sound = 'sound/machines/modPC/computer_end.ogg'
+	var/list/interact_sounds = list('sound/machines/modPC/keypress1.ogg', 'sound/machines/modPC/keypress2.ogg', 'sound/machines/modPC/keypress3.ogg', 'sound/machines/modPC/keypress4.ogg', 'sound/machines/modPC/keystroke1.ogg', 'sound/machines/modPC/keystroke2.ogg', 'sound/machines/modPC/keystroke3.ogg', 'sound/machines/modPC/keystroke4.ogg')
 
 
 /obj/item/modular_computer/Initialize()
@@ -96,6 +99,11 @@
  */
 /obj/item/modular_computer/proc/play_ping()
 	playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), FALSE, -1)
+
+// Plays a random interaction sound, which is by default a bunch of keboard clacking
+/obj/item/modular_computer/proc/play_interact_sound()
+	playsound(loc, pick(interact_sounds), get_clamped_volume(), FALSE, -1)
+
 
 /obj/item/modular_computer/AltClick(mob/user)
 	..()
@@ -267,6 +275,7 @@
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
 		enabled = TRUE
 		update_icon()
+		playsound(loc, startup_sound, get_clamped_volume(), FALSE, -1)
 		ui_interact(user)
 	else // Unpowered
 		if(issynth)
@@ -425,6 +434,7 @@
 		physical.visible_message(span_notice("\The [src] shuts down."))
 	enabled = FALSE
 	update_icon()
+	playsound(loc, shutdown_sound, get_clamped_volume(), FALSE, -1)
 
 
 /obj/item/modular_computer/attackby(obj/item/W as obj, mob/user as mob)

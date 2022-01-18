@@ -72,6 +72,7 @@
 /datum/computer_file/program/radar/ui_act(action, params)
 	if(..())
 		return
+	computer.play_interact_sound()
 
 	switch(action)
 		if("selecttarget")

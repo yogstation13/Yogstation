@@ -103,6 +103,7 @@
 				attackamt = rand(2,6)
 			pause_state = TRUE
 			heads_up = "You attack for [attackamt] damage."
+			computer.play_interact_sound()
 			playsound(computer.loc, 'sound/arcade/hit.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 			boss_hp -= attackamt
 			sleep(10)
@@ -117,6 +118,7 @@
 				healcost = rand(1,3)
 			pause_state = TRUE
 			heads_up = "You heal for [healamt] damage."
+			computer.play_interact_sound()
 			playsound(computer.loc, 'sound/arcade/heal.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 			player_hp += healamt
 			player_mp -= healcost
@@ -130,6 +132,7 @@
 				rechargeamt = rand(4,7)
 			pause_state = TRUE
 			heads_up = "You regain [rechargeamt] magic power."
+			computer.play_interact_sound()
 			playsound(computer.loc, 'sound/arcade/mana.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 			player_mp += rechargeamt
 			sleep(10)
@@ -137,6 +140,7 @@
 			enemy_check()
 			return TRUE
 		if("Dispense_Tickets")
+			computer.play_interact_sound()
 			if(!printer)
 				to_chat(usr, span_notice("Hardware error: A printer is required to redeem tickets."))
 				return
@@ -154,6 +158,7 @@
 					to_chat(user, span_notice("You don't have any stored tickets!"))
 				return TRUE
 		if("Start_Game")
+			computer.play_interact_sound()
 			game_active = TRUE
 			boss_hp = 45
 			player_hp = 30

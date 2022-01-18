@@ -44,6 +44,7 @@
 	switch(action)
 		if("PRG_beginReconstruction")
 			if(A && A.health < 100)
+				computer.play_interact_sound()
 				restoring = TRUE
 				A.notify_ghost_cloning("Your core files are being restored!", source = computer)
 			return TRUE
@@ -52,6 +53,7 @@
 				var/obj/item/computer_hardware/ai_slot/ai_slot = computer.all_components[MC_AI]
 				if(ai_slot && ai_slot.stored_card)
 					ai_slot.try_eject(usr)
+					playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50)
 					return TRUE
 
 /datum/computer_file/program/aidiag/process_tick()

@@ -190,6 +190,7 @@
 /datum/computer_file/program/supermatter_monitor/ui_act(action, params)
 	if(..())
 		return TRUE
+	computer.play_interact_sound()
 
 	switch(action)
 		if("PRG_clear")
