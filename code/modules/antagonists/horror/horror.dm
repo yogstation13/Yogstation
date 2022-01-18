@@ -16,7 +16,7 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	faction = list("neutral","silicon","creature","heretics")
+	faction = list("neutral","silicon","creature","abomination,"heretics")
 	ventcrawler = VENTCRAWLER_ALWAYS
 	initial_language_holder = /datum/language_holder/universal
 	hud_type = /datum/hud/chemical_counter
