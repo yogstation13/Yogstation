@@ -408,3 +408,23 @@
 		new /obj/item/stock_parts/micro_laser/quadultra(src)
 		new /obj/item/stock_parts/matter_bin/bluespace(src)
 		new /obj/item/stock_parts/cell/infinite(src)
+
+/*
+ *	Medicinal Pouch, mostly for ashwalkers
+ */
+
+/obj/item/storage/bag/medpouch
+	name = "medicinal pouch"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "pouch"
+	desc = "A small pouch for holding plants, poultices, resin, and pestles."
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = FLAMMABLE
+
+/obj/item/storage/bag/medpouch/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 50
+	STR.max_items = 40
+	STR.insert_preposition = "in"
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/grown, /obj/item/stack/medical/poultice, /obj/item/stack/sheet/ashresin, /obj/item/pestle))

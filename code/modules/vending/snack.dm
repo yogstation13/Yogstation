@@ -11,6 +11,9 @@
 		            /obj/item/reagent_containers/food/snacks/sosjerky = 6,
 					/obj/item/reagent_containers/food/snacks/no_raisin = 6,
 					/obj/item/reagent_containers/food/drinks/dry_ramen = 3,
+					/obj/item/storage/byummie = 6,
+					/obj/item/reagent_containers/food/snacks/toritose = 6,
+					/obj/item/reagent_containers/food/snacks/kakes = 6,
 					/obj/item/reagent_containers/food/snacks/energybar = 6)
 	contraband = list(/obj/item/reagent_containers/food/snacks/syndicake = 6)
 	refill_canister = /obj/item/vending_refill/snack

@@ -1,5 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - rscdel: "Removed the viro database on the med records console"
-  - bugfix: "fixed massive security exploit with the viro database on the med records console"

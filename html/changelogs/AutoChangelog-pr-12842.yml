@@ -1,8 +1,0 @@
-author: "Absolucy"
-delete-after: true 
-changes: 
-  - tweak: "All infiltrator chameleon items are now syndicate chameleon items, meaning only they will get the action buttons for them."
-  - tweak: "All chameleon hardsuits now default to being called \"engineering hardsuit\", and their chameleon functionality is also syndicate-only"
-  - tweak: "Infiltrators now have an engineer box and not a syndicate box in their backpack, because why do they need a very un-stealthy syndicate mask?"
-  - bugfix: "Chameleon IDs and PDAs will no longer go back to a \"generic\" name when their appearance is changed"
-  - bugfix: "The \"steal 28 moles of plasma\" objective will now be complete for infiltrators if it's in the base"

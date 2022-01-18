@@ -1039,7 +1039,7 @@
 		if(2)
 			new /obj/item/blood_contract(src)
 		if(3)
-			new /obj/item/gun/magic/staff/spellblade(src)
+			new /obj/item/gun/magic/staff/spellblade/weak(src)
 		if(4)
 			new /obj/item/organ/stomach/cursed(src)
 
