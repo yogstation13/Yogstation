@@ -145,6 +145,7 @@
 	req_human = 1
 	weapon_type = /obj/item/melee/arm_blade
 	weapon_name_simple = "blade"
+	xenoling_available = FALSE
 
 /obj/item/melee/arm_blade
 	name = "arm blade"
@@ -225,7 +226,7 @@
 	desc = "We ready a tentacle to grab items or victims with. Costs 10 chemicals."
 	helptext = "We can use it once to retrieve a distant item. If used on living creatures, the effect depends on the intent: \
 	Help will simply drag them closer, Disarm will grab whatever they're holding instead of them, Grab will put the victim in our hold after catching it, \
-	and Harm will stun it, and stab it if we're also holding a sharp weapon. Cannot be used while in lesser form."
+	and Harm will stab it if we're also holding a sharp weapon. Cannot be used while in lesser form."
 	button_icon_state = "tentacle"
 	chemical_cost = 10
 	dna_cost = 2
@@ -233,6 +234,7 @@
 	weapon_type = /obj/item/gun/magic/tentacle
 	weapon_name_simple = "tentacle"
 	silent = TRUE
+	xenoling_available = FALSE
 
 /obj/item/gun/magic/tentacle
 	name = "tentacle"
@@ -412,6 +414,7 @@
 	chemical_cost = 20
 	dna_cost = 1
 	req_human = 1
+	xenoling_available = FALSE
 
 	weapon_type = /obj/item/shield/changeling
 	weapon_name_simple = "shield"
@@ -519,6 +522,7 @@
 	dna_cost = 1
 	req_human = 1
 	recharge_slowdown = 0.25
+	xenoling_available = FALSE
 
 	suit_type = /obj/item/clothing/suit/armor/changeling
 	helmet_type = /obj/item/clothing/head/helmet/changeling

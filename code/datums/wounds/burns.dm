@@ -111,13 +111,13 @@
 				strikes_to_lose_limb--
 				switch(strikes_to_lose_limb)
 					if(3 to INFINITY)
-						to_chat(victim, span_deadsay("The skin on your [limb.name] is literally dripping off, you feel awful!"))
+						to_chat(victim, span_warning("The skin on your [limb.name] is literally dripping off, you feel awful!"))
 					if(2)
-						to_chat(victim, span_deadsay("<b>The infection in your [limb.name] is literally dripping off, you feel horrible!</b>"))
+						to_chat(victim, span_warning("<b>The infection in your [limb.name] is literally dripping off, you feel horrible!</b>"))
 					if(1)
-						to_chat(victim, span_deadsay("<b>Infection has just about completely claimed your [limb.name]!</b>"))
+						to_chat(victim, span_warning("<b>Infection has just about completely claimed your [limb.name]!</b>"))
 					if(0)
-						to_chat(victim, span_deadsay("<b>The last of the nerve endings in your [limb.name] wither away, as the infection completely paralyzes your joint connector.</b>"))
+						to_chat(victim, span_warning("<b>The last of the nerve endings in your [limb.name] wither away, as the infection completely paralyzes your joint connector.</b>"))
 						threshold_penalty = 120 // piss easy to destroy
 						var/datum/brain_trauma/severe/paralysis/sepsis = new (limb.body_zone)
 						victim.gain_trauma(sepsis)
