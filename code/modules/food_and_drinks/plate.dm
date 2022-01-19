@@ -36,36 +36,43 @@
 		return ..()
 
 
-/obj/item/plate/pre_attack(atom/A, mob/living/user, params)
-	to_chat(user,"hm1")
-	if(!iscarbon(A))
-		return
-	if(!contents.len)
+/*/obj/item/plate/attack_hand(mob/user)
+	if(!contents.len || !isturf(loc))
 		user.put_in_hands(src)
+		return TRUE
+	to_chat(user,"hm1")
+	if(!iscarbon(user))
 		return
 	var/obj/item/reagent_containers/food/object_to_eat = contents[1]
 	object_to_eat.attack(user,user) //eat eat eat
 	to_chat(user,"hm2")
+	return TRUE //No normal attack
+	*/
+
+/obj/item/plate/pre_attack(atom/A, mob/living/user, params)
+	if(!iscarbon(A))
+		return TRUE
+	if(!contents.len)
+		return TRUE
+	var/obj/item/object_to_eat = pick(contents)
+	A.attackby(object_to_eat, user)
 	return FALSE //No normal attack
-
-
-//click and drag it to you to pick it up nom nom nom
-/obj/item/plate/MouseDrop(over_object, src_location, over_location)
-	. = ..()
-	if(over_object == usr && Adjacent(usr))
-		if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
-			return 0
-		usr.put_in_hands(src)
 
 ///This proc adds the food to viscontents and makes sure it can deregister if this changes.
 /obj/item/plate/proc/AddToPlate(obj/item/item_to_plate)
 	vis_contents += item_to_plate
+	item_to_plate.vis_flags |= VIS_INHERIT_PLANE
+	item_to_plate.layer = ABOVE_HUD_LAYER
 	RegisterSignal(item_to_plate, COMSIG_MOVABLE_MOVED, .proc/ItemMoved)
 	RegisterSignal(item_to_plate, COMSIG_PARENT_QDELETING, .proc/ItemMoved)
 
 ///This proc cleans up any signals on the item when it is removed from a plate, and ensures it has the correct state again.
 /obj/item/plate/proc/ItemRemovedFromPlate(obj/item/removed_item)
+
 	vis_contents -= removed_item
+	removed_item.vis_flags &= ~VIS_INHERIT_PLANE
+	removed_item.layer = OBJ_LAYER
+
 	UnregisterSignal(removed_item, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
 
 ///This proc is called by signals that remove the food from the plate.
