@@ -343,14 +343,14 @@
 	var/spins_remaining = 10
 	B.icon_state = "horror_spin"
 	while(spins_remaining > 0)
-		if(!B.can_use_ability())
-			return TRUE
 		playsound(B, 'sound/effects/blobattack.ogg', rand(20, 30), rand(0.5, 2))
 		for(var/turf/open/t in range(1, B))
 			if(prob(60) && B.Adjacent(t))
 				t.MakeSlippery(TURF_WET_LUBE, 100)
 		sleep(5)
 		spins_remaining--
+		if(!B.can_use_ability())
+			return TRUE
 	B.icon_state = "horror"
 	return TRUE
 
