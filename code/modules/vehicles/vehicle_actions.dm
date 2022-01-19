@@ -231,7 +231,7 @@
 /datum/action/vehicle/ridden/scooter/airshoes/ollie
 	name = "Ollie"
 	desc = "Get some air! Land on a table to do a gnarly grind."
-	button_icon_state = "skateboard_ollie"
+	button_icon_state = "airshoes_leap"
 	///Cooldown to next jump
 	var/next_ollie
 
