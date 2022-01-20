@@ -195,7 +195,6 @@
 			var/selectedTag = GLOB.TAGGERLOCATIONS.Find(params["tag"])
 			if(selectedTag != 0)
 				currTag = selectedTag
-			world.log << params["tag"]
 
 /obj/item/destTagger/ui_data(mob/user)
 	var/list/data = list()
