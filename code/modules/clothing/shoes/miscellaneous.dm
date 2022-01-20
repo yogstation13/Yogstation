@@ -497,17 +497,10 @@
     actions_types = list(/datum/action/item_action/airshoes)
     var/airToggle = FALSE
     var/obj/vehicle/ridden/scooter/airshoes/A
-    var/obj/clothing/shoes/airshoes/B
+
 /obj/item/clothing/shoes/airshoes/Initialize()
     . = ..()
     A = new/obj/vehicle/ridden/scooter/airshoes(null)
-
-/obj/item/clothing/shoes/airshoes/negates_gravity()
-	. = ..()
-	if(B.loc && !isspaceturf(B.loc))
-		var/datum/gas_mixture/current = B.loc.return_air()
-		if(current && (current.return_pressure() >= ONE_ATMOSPHERE*0.85))
-			return clothing_flags
 
 /obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
 	if(!isliving(user))
