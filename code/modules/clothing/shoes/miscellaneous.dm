@@ -502,6 +502,13 @@ obj/item/clothing/shoes/airshoes/Initialize()
     . = ..()
     A = new/obj/vehicle/ridden/scooter/airshoes(null)
 
+/obj/item/clothing/shoes/airshoes/equipped(mob/user, slot)
+	. = ..()
+	if(A.loc && !isspaceturf(A.loc))
+		var/datum/gas_mixture/current = A.loc.return_air()
+		if(current && (current.return_pressure() >= ONE_ATMOSPHERE*0.85)) //as long as there's reasonable pressure and no gravity, flight is possible
+		return user.update_gravity(user.has_gravity())
+
 /obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
