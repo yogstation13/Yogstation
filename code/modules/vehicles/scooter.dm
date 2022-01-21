@@ -293,13 +293,14 @@
 /obj/vehicle/ridden/scooter/airshoes
 	name = "Air Shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
-	icon = null
+	icon = 'icons/obj/vehicles.dmi'
 	density = FALSE
 	var/next_crash
 	var/instability = 3
 	var/grinding = FALSE
+	var/board_icon = "airshoes"
 	var/datum/effect_system/spark_spread/sparks
-	var/board_icon = "shoes"
+	icon_state = "airshoes"
 		
 /obj/vehicle/ridden/scooter/airshoes/Initialize()
 	. = ..()
