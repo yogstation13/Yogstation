@@ -54237,6 +54237,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"cli" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "clj" = (
 /obj/structure/sink{
 	dir = 8;
@@ -77595,23 +77604,6 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
-"pAc" = (
-/obj/machinery/camera{
-	c_tag = "AI Chamber - Core";
-	network = list("aicore")
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "pyy" = (
 /obj/structure/closet/wardrobe/pjs,
 /obj/effect/turf_decal/tile/neutral{
@@ -77629,6 +77621,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/sleeper)
+"pAc" = (
+/obj/machinery/camera{
+	c_tag = "AI Chamber - Core";
+	network = list("aicore")
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "pAV" = (
 /obj/machinery/button/door{
 	id = "AI Core shutters";
@@ -117893,7 +117902,7 @@ bna
 bLK
 dDe
 ofR
-iKo
+cli
 new
 bKe
 bUd

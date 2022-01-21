@@ -49862,35 +49862,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
-"bZz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cafeteria)
-"bZA" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cafeteria)
 "bZB" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -83205,6 +83176,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/teleporter/hub/science)
+"iGh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/oven,
+/turf/open/floor/plasteel,
+/area/crew_quarters/cafeteria)
 "iJc" = (
 /obj/machinery/camera{
 	c_tag = "Robotics Office";
@@ -85716,6 +85694,24 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/department/chapel)
+"nIk" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/cafeteria)
 "nLb" = (
 /obj/machinery/button/door{
 	id = "robotics2";
@@ -110979,7 +110975,7 @@ bVO
 amq
 bXb
 cTb
-bZz
+iGh
 amJ
 cbf
 aeF
@@ -111236,7 +111232,7 @@ bVP
 bWu
 bXh
 bXh
-bZA
+nIk
 amJ
 cbh
 aeF
