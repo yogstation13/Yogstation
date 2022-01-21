@@ -490,43 +490,44 @@
 	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
 /obj/item/clothing/shoes/airshoes
-    name = "air shoes"
-    desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
-    icon_state = "airshoes"
-    actions_types = list(/datum/action/item_action/airshoes, /datum/action/item_action/dash)
-    var/airToggle = FALSE
-    var/obj/vehicle/ridden/scooter/airshoes/A
-    actions_types = list(/datum/action/item_action/dash)
-    permeability_coefficient = 0.05
+	name = "air shoes"
+	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
+	icon_state = "airshoes"
+	actions_types = list(/datum/action/item_action/airshoes, /datum/action/item_action/dash)
+	var/airToggle = FALSE
+	var/obj/vehicle/ridden/scooter/airshoes/A
+	actions_types = list(/datum/action/item_action/dash)
+	permeability_coefficient = 0.05
 
 /obj/item/clothing/shoes/airshoes/Initialize()
-    . = ..()
-    A = new/obj/vehicle/ridden/scooter/airshoes(null)
+	. = ..()
+	A = new/obj/vehicle/ridden/scooter/airshoes(null)
 	
 /obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
-    if(!isliving(user))
-        return
-    if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/airshoes))
-        to_chat(user, span_warning("You must be wearing the air shoes to use them!"))
-        return
-    if(istype(action,/datum/action/item_action/airshoes))
-        if(!(A.is_occupant(user)))
-            airToggle = FALSE
-        if(airToggle)
-            A.unbuckle_mob(user)
-            airToggle = FALSE
-            return
-        A.forceMove(get_turf(user))
-        A.buckle_mob(user)
-        airToggle = TRUE
+	if(!isliving(user))
+		return
+	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/airshoes))
+		to_chat(user, span_warning("You must be wearing the air shoes to use them!"))
+		return
+	if(istype(action,/datum/action/item_action/airshoes))
+		if(!(A.is_occupant(user)))
+			airToggle = FALSE
+		if(airToggle)
+			A.unbuckle_mob(user)
+			airToggle = FALSE
+			return
+		A.forceMove(get_turf(user))
+		A.buckle_mob(user)
+		airToggle = TRUE
 	if(istype(action,/datum/action/item_action/dash))
+		var/recharging_time = 0 //time until next dash
 		if(recharging_time > world.time)
 			to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
 			return
 		var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 		var/jumpspeed = 3
 		var/recharging_rate = 60 //default 6 seconds between each dash
-		var/recharging_time = 0 //time until next dash
+		
 		var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 		if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
 			playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
