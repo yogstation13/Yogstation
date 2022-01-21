@@ -24,3 +24,5 @@
 /obj/item/vending_refill/wallmed
 	machine_name = "NanoMed"
 	icon_state = "refill_medical"
+	tiltable = FALSE
+	
