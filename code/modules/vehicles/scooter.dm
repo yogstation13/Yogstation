@@ -325,7 +325,7 @@
 
 /obj/vehicle/ridden/scooter/airshoes/generate_actions()
 	. = ..()
-	initialize_controller_action_type(/datum/action/vehicle/ridden/scooter/skateboard/ollie, VEHICLE_CONTROL_DRIVE)
+	initialize_controller_action_type(/datum/action/vehicle/ridden/scooter/airshoes/ollie, VEHICLE_CONTROL_DRIVE)
 
 /obj/vehicle/ridden/scooter/airshoes/post_unbuckle_mob(mob/living/M)
 	if(!has_buckled_mobs())
