@@ -907,6 +907,10 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"jY" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "lI" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/bar,
@@ -1449,7 +1453,7 @@ aU
 aV
 aZ
 Ky
-ZD
+jY
 bX
 bC
 et
