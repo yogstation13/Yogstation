@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 #define STAGE_TORMENT 3
 #define STAGE_ATTACK 4
 #define MANIFEST_DELAY 9
-
+ 
 /mob/living/simple_animal/hostile/floor_cluwne
 	name = "???"
 	desc = "...."
