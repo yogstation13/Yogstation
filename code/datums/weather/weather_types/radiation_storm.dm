@@ -21,7 +21,7 @@
 	/area/ai_monitored/turret_protected/ai, /area/storage/emergency/starboard, /area/storage/emergency/port, /area/shuttle, /area/ai_monitored/storage/satellite)
 	target_trait = ZTRAIT_STATION
 
-	immunity_type = "rad"
+	immunity_type = WEATHER_RAD
 
 /datum/weather/rad_storm/telegraph()
 	..()

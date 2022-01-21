@@ -48,6 +48,11 @@
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 
+	/// The degree of thermal insulation that mobs in list/contents have from the external environment, between 0 and 1
+	var/contents_thermal_insulation = 0
+	/// The degree of pressure protection that mobs in list/contents have from the external environment, between 0 and 1
+	var/contents_pressure_protection = 0
+
 
 /atom/movable/Initialize(mapload)
 	. = ..()
