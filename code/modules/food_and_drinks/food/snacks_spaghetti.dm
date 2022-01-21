@@ -25,7 +25,6 @@
 	name = "boiled spaghetti"
 	desc = "A plain dish of noodles, this needs more ingredients."
 	icon_state = "spaghettiboiled"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/pasta
@@ -34,7 +33,6 @@
 	name = "spaghetti"
 	desc = "Spaghetti and crushed tomatoes. Just like your abusive father used to make!"
 	icon_state = "pastatomato"
-	trash = /obj/item/trash/plate
 	bitesize = 4
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
@@ -46,7 +44,6 @@
 	name = "copypasta"
 	desc = "You probably shouldn't try this, you always hear people talking about how bad it is..."
 	icon_state = "copypasta"
-	trash = /obj/item/trash/plate
 	bitesize = 4
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/tomatojuice = 20, /datum/reagent/consumable/nutriment/vitamin = 8)
@@ -58,7 +55,6 @@
 	name = "spaghetti and meatballs"
 	desc = "Now that's a nice meatball!"
 	icon_state = "meatballspaghetti"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
@@ -68,7 +64,6 @@
 	name = "spesslaw"
 	desc = "A lawyer's favorite."
 	icon_state = "spesslaw"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 6)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
@@ -77,7 +72,6 @@
 	name = "chow mein"
 	desc = "A nice mix of noodles and fried vegetables."
 	icon_state = "chowmein"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("noodle" = 1, "tomato" = 1)
@@ -95,7 +89,6 @@
 	name = "butter noodles"
 	desc = "Noodles covered in savory butter. Simple and slippery, but delicious."
 	icon_state = "butternoodles"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("noodle" = 1, "butter" = 1)
 	foodtype = GRAIN | DAIRY
@@ -105,7 +98,6 @@
 	desc = "A dish of fresh fettuccine tossed with creamy butter and parmesan cheese. The proportions are huge."
 	icon_state = "falfredo"
 	bitesize = 8
-	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/parmesan_delight = 4)
 	filling_color = "#DC143C"
 	tastes = list("fettuccine" = 1, "alfredo" = 1, "italy" = 1, "creamy goodness" = 1)
@@ -116,7 +108,6 @@
 	desc = "I hate Mondays."
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "lasagna"
-	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
 	tastes = list("pasta" = 2, "meat" = 1, "cheese" = 1)
 	foodtype = MEAT | DAIRY | GRAIN
@@ -126,7 +117,6 @@
 	desc = "A frightening combination of two classic Italian dishes, pasta and pizza. You start to sweat just looking at it."
 	icon = 'icons/obj/food/pizzaspaghetti.dmi'
 	icon_state = "pizzaghetti"
-	trash = /obj/item/trash/plate
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 6
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
