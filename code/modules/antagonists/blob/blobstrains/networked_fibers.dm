@@ -1,4 +1,5 @@
 //does massive brute and burn damage, but can only expand manually
+/*
 /datum/blobstrain/reagent/networked_fibers
 	name = "Networked Fibers"
 	description = "will do high brute and burn damage and will generate resources quicker, but can only expand manually."
@@ -36,3 +37,4 @@
 	M.apply_damage(0.6*reac_volume, BRUTE, wound_bonus=CANT_WOUND)
 	if(M)
 		M.apply_damage(0.6*reac_volume, BURN, wound_bonus=CANT_WOUND)
+*/
