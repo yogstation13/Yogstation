@@ -493,7 +493,6 @@
     name = "air shoes"
     desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
     icon_state = "airshoes"
-    clothing_flags = NOSLIP
     actions_types = list(/datum/action/item_action/airshoes)
     var/airToggle = FALSE
     var/obj/vehicle/ridden/scooter/airshoes/A
