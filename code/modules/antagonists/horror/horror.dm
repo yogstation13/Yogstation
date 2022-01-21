@@ -297,14 +297,21 @@
 
 /mob/living/simple_animal/horror/UnarmedAttack(atom/A)
 	if(istype(A, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/door = A
+		if(door.welded)
+			to_chat(src, span_danger("The door is welded shut!"))
+			return
 		visible_message(span_warning("[src] slips their tentacles into the airlock and starts prying it open!"), span_warning("You start moving onto the airlock."))
 		playsound(A, 'sound/misc/splort.ogg', 50, 1)
-		if(!do_after(src, 5 SECONDS, target = A))
+		if(do_after(src, 5 SECONDS, target = A))
+			if(door.welded)
+				to_chat(src, span_danger("The door is welded shut!"))
+				return
+			visible_message(span_warning("[src] forces themselves through the airlock!"), span_warning("You force yourself through the airlock"))
+			forceMove(get_turf(A))
+			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 50, 1)
 			return
-		visible_message(span_warning("[src] forces themselves through the airlock!"), span_warning("You force yourself through the airlock"))
-		forceMove(get_turf(A))
-		playsound(A, 'sound/machines/airlock_alien_prying.ogg', 50, 1)
-		return
+	
 	if(isliving(A))
 		if(victim || A == src.mind.enslaved_to)
 			healthscan(usr, A)
