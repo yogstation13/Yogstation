@@ -71313,18 +71313,6 @@
 /obj/item/pen/red,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"gGh" = (
-/obj/machinery/meter{
-	target_layer = 2
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/sign/departments/minsky/engineering/atmospherics{
-	pixel_x = -32
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "gGR" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -71565,15 +71553,6 @@
 "gRj" = (
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/ai_monitored/turret_protected/ai)
-"gRy" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "gRG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -73663,21 +73642,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"jNo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/effect/mapping_helpers/teleport_anchor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "jNW" = (
 /obj/structure/closet,
 /obj/item/flashlight,
@@ -73736,6 +73700,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"jWm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/plasticflaps/opaque,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "jWo" = (
 /obj/machinery/door/airlock/maintenance{
 	req_one_access_txt = "12;47"
@@ -74875,12 +74846,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"lzd" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/maintenance/port/fore)
 "lzJ" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -75237,6 +75202,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"mcH" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/lusty_xenomorph{
+	pixel_x = -32
+	},
+/obj/machinery/atmospherics/pipe/manifold/general/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "meu" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -76202,6 +76179,15 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
+"nAe" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/general/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "nAo" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -76324,15 +76310,6 @@
 /obj/machinery/modular_computer/console/preset/research,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"nHX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "nHZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -80579,6 +80556,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"twY" = (
+/obj/machinery/meter{
+	target_layer = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "tys" = (
 /obj/machinery/computer/cryopod{
 	dir = 4;
@@ -81367,6 +81353,24 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/starboard)
+"uCr" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/sign/departments/minsky/engineering/atmospherics{
+	pixel_x = -32
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "uCE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -105318,8 +105322,8 @@ aaa
 aaa
 dne
 qQb
-gRy
-nHX
+mcH
+nAe
 dne
 ucV
 azC
@@ -106088,7 +106092,7 @@ afW
 aaf
 aaa
 dne
-lzd
+jWm
 udu
 dne
 dne
@@ -106345,9 +106349,9 @@ aax
 aaa
 aaa
 dne
-gGh
+twY
 fPU
-jNo
+uCr
 wHp
 uUX
 dne
