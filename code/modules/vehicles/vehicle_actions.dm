@@ -229,7 +229,7 @@
 		next_ollie = world.time + 5
 
 /datum/action/vehicle/ridden/scooter/airshoes/ollie
-	name = "Ollie"
+	name = "Leap"
 	desc = "Get some air! Land on a table to do a gnarly grind."
 	button_icon_state = "airshoes_leap"
 	///Cooldown to next jump
