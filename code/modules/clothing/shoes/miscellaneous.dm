@@ -500,7 +500,7 @@
 	permeability_coefficient = 0.05
 	var/recharging_time = 0 
 	var/jumpdistance = 7 //Increased distance so it might see some offensive use
-	var/jumpspeed = 4 //fast
+	var/jumpspeed = 5 //fast
 	var/recharging_rate = 60 
 	syndicate = TRUE
 
