@@ -68,7 +68,7 @@
 		to_chat(user, span_warning("There are no cards in \the [src]."))
 		return FALSE
 
-	if(user)
+	if(user && user.CanReach(src))
 		user.put_in_hands(stored_card)
 	else
 		stored_card.forceMove(drop_location())
