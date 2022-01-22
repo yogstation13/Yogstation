@@ -666,7 +666,7 @@
 	name = "Activate air shoes"
 	desc = "Momentarily maximizes the jets of the shoes, allowing the user to dash a short distance."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "jetboot"
+	button_icon_state = "thrust"
 
 /datum/action/language_menu
 	name = "Language Menu"

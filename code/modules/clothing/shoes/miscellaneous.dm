@@ -498,6 +498,10 @@
 	var/obj/vehicle/ridden/scooter/airshoes/A
 	actions_types = list(/datum/action/item_action/dash)
 	permeability_coefficient = 0.05
+	var/recharging_time = 0 //time until next dash
+	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
+	var/jumpspeed = 3
+	var/recharging_rate = 60 //default 6 seconds between each dash
 
 /obj/item/clothing/shoes/airshoes/Initialize()
 	. = ..()
@@ -519,14 +523,10 @@
 		A.forceMove(get_turf(user))
 		A.buckle_mob(user)
 		airToggle = TRUE
-	if(istype(action,/datum/action/item_action/dash))
-		var/recharging_time = 0 //time until next dash
+	else if(istype(action,/datum/action/item_action/dash))
 		if(recharging_time > world.time)
 			to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
 			return
-		var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
-		var/jumpspeed = 3
-		var/recharging_rate = 60 //default 6 seconds between each dash
 		
 		var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 		if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
