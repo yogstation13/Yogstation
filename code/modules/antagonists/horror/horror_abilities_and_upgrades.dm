@@ -58,16 +58,6 @@
 /datum/action/innate/horror/talk_to_host/Activate()
 	B.Communicate()
 
-/datum/action/innate/horror/infest_host
-	name = "Infest"
-	desc = "Infest a suitable humanoid host."
-	button_icon_state = "infest"
-	blacklisted = TRUE
-	category = list("horror")
-
-/datum/action/innate/horror/infest_host/Activate()
-	B.infect_victim()
-
 /datum/action/innate/horror/toggle_hide
 	name = "Toggle Hide"
 	desc = "Become invisible to the common eye. Toggled on or off."
@@ -469,4 +459,3 @@
 	id = "deep_control"
 	desc = "Your probosci become insulated, protecting them from neural shocks. This makes it harder for the host to regain control over their body."
 	soul_price = 2
-	

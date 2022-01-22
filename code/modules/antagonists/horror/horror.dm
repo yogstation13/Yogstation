@@ -5,8 +5,8 @@
 	icon_living = "horror"
 	icon_dead = "horror_dead"
 	icon_gib = "horror_gib"
-	health = 65
-	maxHealth = 65
+	health = 50
+	maxHealth = 50
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	see_in_dark = 5
@@ -16,7 +16,7 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	faction = list("neutral","silicon","creature","abomination","heretics")
+	faction = list("neutral","silicon","creature","heretics","abomination")
 	ventcrawler = VENTCRAWLER_ALWAYS
 	initial_language_holder = /datum/language_holder/universal
 	hud_type = /datum/hud/chemical_counter
@@ -29,7 +29,7 @@
 	var/playstyle_string = span_bold(span_big("You are an eldritch horror,") + " an evermutating parasitic abomination. Seek human souls to consume. \
 							Crawl into people's heads and steal their essence. Use it to mutate yourself, giving you access to more power and abilities. \
 							You operate on chemicals that get built up while you spend time in someone's head. You are weak when outside, play carefully. \
-							You can attack airlocks to squeeze yourself through them.")
+							You can attack airlocks to squeeze yourself through them. " + span_danger("Alt+Click on people to infest them."))
 
 	var/mob/living/carbon/victim
 	var/datum/mind/target
@@ -67,7 +67,6 @@
 	add_ability(/datum/action/innate/horror/consume_soul)
 	add_ability(/datum/action/innate/horror/talk_to_host)
 	add_ability(/datum/action/innate/horror/freeze_victim)
-	add_ability(/datum/action/innate/horror/infest_host)
 	add_ability(/datum/action/innate/horror/toggle_hide)
 	add_ability(/datum/action/innate/horror/talk_to_brain)
 	add_ability(/datum/action/innate/horror/take_control)
@@ -86,6 +85,29 @@
 	victim = null
 	return ..()
 
+/mob/living/simple_animal/horror/AltClickOn(atom/A)
+	if(iscarbon(A))
+		var/mob/living/carbon/C = A
+		if(!C || QDELETED(src) || !Adjacent(C) || victim || !can_use_ability())
+			return
+		if(victim)
+			to_chat(src, span_warning("You are already within a host."))
+			return
+
+		to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at their ear canal..."))
+
+		if(!do_mob(src, C, 3 SECONDS))
+			to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
+			return
+
+		if(!C || QDELETED(src))
+			return
+		if(C.has_horror_inside())
+			to_chat(src, span_warning("[C] is already infested!"))
+			return
+		Infect(C)
+		return
+	..()
 
 /mob/living/simple_animal/horror/proc/has_chemicals(amt)
 	return chemicals >= amt
@@ -311,7 +333,7 @@
 			forceMove(get_turf(A))
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 50, 1)
 			return
-	
+
 	if(isliving(A))
 		if(victim || A == src.mind.enslaved_to)
 			healthscan(usr, A)
@@ -333,37 +355,6 @@
 
 	..()
 
-/mob/living/simple_animal/horror/proc/infect_victim()
-	if(!can_use_ability())
-		return
-	if(victim)
-		to_chat(src, span_warning("You are already within a host."))
-
-	var/list/choices = list()
-	for(var/mob/living/carbon/C in view(1,src))
-		if(Adjacent(C))
-			choices += C
-
-	if(!choices.len)
-		return
-	var/mob/living/carbon/C = choices.len > 1 ? input(src,"Who do you wish to infest?") in null|choices : choices[1]
-	if(!C || QDELETED(src) || !Adjacent(C) || !can_use_ability())
-		return
-
-	if(C.has_horror_inside())
-		to_chat(src, span_warning("[C] is already infested!"))
-		return
-
-	to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at their ear canal..."))
-	if(!do_mob(src, C, 3 SECONDS))
-		to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
-		return
-
-	if(!C || QDELETED(src) || !can_use_ability())
-		return
-
-	Infect(C)
-
 /mob/living/simple_animal/horror/proc/Infect(mob/living/carbon/C)
 	if(!C)
 		return
@@ -380,7 +371,7 @@
 	if(C.has_horror_inside())
 		to_chat(src, span_warning("[C] is already infested!"))
 		return
-		
+
 	//can only infect non-ssd alive people / corpses with ghosts attached / current target
 	if((C.stat == DEAD || !C.key) && (C.stat != DEAD || !C.get_ghost()) && (!target || C != target.current))
 		to_chat(src, span_warning("[C]'s mind seems unresponsive. Try someone else!"))
@@ -391,7 +382,7 @@
 		H.Activate()
 	invisible = FALSE
 	Update_Invisibility_Button()
-		
+
 	victim = C
 	forceMove(victim)
 	RefreshAbilities()
