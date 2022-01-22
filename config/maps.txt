@@ -42,13 +42,12 @@ endmap
 
 map shipstation
 	maxplayers 40
-	default
 	votable
 endmap
 
 map icebox
 	minplayers 25
-	voteable
+	disabled 
 endmap
 
 map eclipsestation
@@ -60,8 +59,8 @@ map runtimestation
 	disabled 
 endmap
 
-map multiz_debug 
-	voteable
+map multiz_debug
+	disabled 
 endmap
 
 

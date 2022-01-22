@@ -66,10 +66,9 @@
 		if("Scan")
 			if(cached_server_list.len > 0)
 				cached_server_list = list()
-			for(var/sel_z in get_multiz_accessible_levels(z))
-				for(var/obj/machinery/telecomms/server/T in urange(TELECOMMS_SCAN_RANGE, locate(x, y, sel_z)))
-					if(T.network == network)
-						cached_server_list.Add(T)
+			for(var/obj/machinery/telecomms/server/T in range(TELECOMMS_SCAN_RANGE, src))
+				if(T.network == network)
+					cached_server_list.Add(T)
 			return TRUE
 		if("Refresh")
 			return TRUE // Welp, you asked for it

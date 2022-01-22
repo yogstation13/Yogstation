@@ -93,10 +93,9 @@
 					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 
 				else
-					for(var/sel_z in get_multiz_accessible_levels(z))
-						for(var/obj/machinery/telecomms/server/T in urange(TELECOMMS_SCAN_RANGE, locate(x, y, sel_z)))
-							if(T.network == network)
-								machinelist.Add(T)
+					for(var/obj/machinery/telecomms/T in urange(25, src))
+						if(T.network == network)
+							machinelist.Add(T)
 
 					if(!machinelist.len)
 						temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE NETWORK ENTITIES IN \[[network]\] -</font color>"

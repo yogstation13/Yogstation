@@ -322,6 +322,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"aX" = (
+/obj/machinery/gravity_generator/main/station,
+/turf/open/openspace,
+/area/security)
 "aY" = (
 /obj/machinery/light{
 	dir = 4
@@ -6478,7 +6482,7 @@ ak
 dV
 aK
 dV
-aK
+bi
 dV
 by
 ef
@@ -9711,7 +9715,7 @@ aa
 au
 au
 au
-au
+aX
 au
 au
 au
