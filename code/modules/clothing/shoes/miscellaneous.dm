@@ -497,7 +497,7 @@
 	actions_types = list(/datum/action/item_action/airshoes, /datum/action/item_action/dash)
 	var/airToggle = FALSE
 	var/obj/vehicle/ridden/scooter/airshoes/A
-	actions_types = list(/datum/action/item_action/dash)
+	actions_types = list(/datum/action/item_action/airshoes, /datum/action/item_action/dash)
 	permeability_coefficient = 0.05
 	var/recharging_time = 0 //time until next dash
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
