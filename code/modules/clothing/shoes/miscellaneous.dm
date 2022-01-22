@@ -498,10 +498,11 @@
 	var/airToggle = FALSE
 	var/obj/vehicle/ridden/scooter/airshoes/A
 	permeability_coefficient = 0.05
-	var/recharging_time = 0 //time until next dash
-	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
-	var/jumpspeed = 3
-	var/recharging_rate = 60 //default 6 seconds between each dash
+	var/recharging_time = 0 
+	var/jumpdistance = 7 //Increased distance so it might see some offensive use
+	var/jumpspeed = 4 //fast
+	var/recharging_rate = 60 
+	syndicate = TRUE
 
 /obj/item/clothing/shoes/airshoes/Initialize()
 	. = ..()
