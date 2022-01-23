@@ -140,7 +140,7 @@
 	new /obj/item/clothing/ears/earmuffs(src)
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/sensor_device(src)
-	new /obj/item/storage/box/bodybags(src)
+	new /obj/item/bodybag/environmental(src)
 	new /obj/item/extinguisher/mini(src)
 	var/obj/item/key/K = new(src)
 	K.name = "ATV key"
