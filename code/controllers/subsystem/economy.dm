@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(economy)
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	civ_payout() // Payout based on ??? Profit
 	car_payout() // Cargo's natural gain in the cash moneys.
-	var/delta_time = wait * 0.2
+	var/delta_time = WAIT / (5 MINUTES)
 	var/list/dictionary = list()
 	for(var/datum/corporation/c in GLOB.corporations)
 		dictionary[c] = list()
