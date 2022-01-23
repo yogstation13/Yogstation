@@ -1,0 +1,4 @@
+author: "bruhlookatthisdood"
+delete-after: true 
+changes: 
+  - rscadd: "Adds an atmos room in yogsmeta brig maintenance so its not directly connected to distro."
