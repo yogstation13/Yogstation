@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(economy)
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	civ_payout() // Payout based on ??? Profit
 	car_payout() // Cargo's natural gain in the cash moneys.
-	var/delta_time = WAIT / (5 MINUTES)
+	var/delta_time = wait / (5 MINUTES)
 	var/list/dictionary = list()
 	for(var/datum/corporation/c in GLOB.corporations)
 		dictionary[c] = list()
@@ -88,7 +88,7 @@ SUBSYSTEM_DEF(economy)
 				B.payday(c.paymodifier, TRUE)
 		B.payday(1)	
 	var/effective_mailcount = living_player_count()
-	mail_waiting += clamp(effective_mailcount, 1, MAX_MAIL_PER_MINUTE * delta_time)
+	mail_waiting += clamp(effective_mailcount, 1, MAX_MAIL_PER_MINUTE * 5 * delta_time)
 
 /datum/controller/subsystem/economy/proc/get_dep_account(dep_id)
 	for(var/datum/bank_account/department/D in generated_accounts)
