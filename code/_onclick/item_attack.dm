@@ -47,7 +47,7 @@
 	if(..())
 		return TRUE
 	var/dist = get_dist(src,user)
-	user.changeNext_move(CLICK_CD_MELEE * I.weapon_stats[SWING_SPEED] * (dist ? dist * I.range_cooldown_mod : I.range_cooldown_mod)) //range increases attack cooldown by swing speed
+	user.changeNext_move(CLICK_CD_MELEE * I.weapon_stats[SWING_SPEED] * (range_cooldown_mod ? (dist ? dist * range_cooldown_mod : range_cooldown_mod) : 1)) //range increases attack cooldown by swing speed
 	user.weapon_slow(I)
 	if(user.a_intent == INTENT_HARM && stat == DEAD && (butcher_results || guaranteed_butcher_results)) //can we butcher it?
 		var/datum/component/butchering/butchering = I.GetComponent(/datum/component/butchering)
