@@ -35,6 +35,8 @@
 	//Sellection screen color
 	var/selection_color = "#ffffff"
 
+	//List of alternate titles, if any
+	var/list/alt_titles
 
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
@@ -128,14 +130,15 @@
 /datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	if(!H)
 		return FALSE
-	
-	if(CONFIG_GET(flag/enforce_human_authority) && (title in GLOB.command_positions))
+
+//This reads Command placement exceptions in code/controllers/configuration/entries/game_options to allow non-Humans in specified Command roles. If the combination of species and command role is invalid, default to Human.
+	if(CONFIG_GET(keyed_list/job_species_whitelist)[type] && !splittext(CONFIG_GET(keyed_list/job_species_whitelist)[type], ",").Find(H.dna.species.id))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
 			H.apply_pref_name("human", preference_source)
-	
+
 	if(!visualsOnly)
-		var/datum/bank_account/bank_account = new(H.real_name, src)
+		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
 		bank_account.payday(STARTING_PAYCHECKS, TRUE)
 		H.account_id = bank_account.account_id
 
@@ -214,7 +217,12 @@
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 
+	var/uniform_skirt = null
+
 	var/pda_slot = SLOT_BELT
+	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
+	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
+	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
@@ -233,8 +241,18 @@
 		else
 			back = backpack //Department backpack
 
+	if (H.jumpsuit_style == PREF_SKIRT && uniform_skirt)
+		uniform = uniform_skirt
+
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
+	if(DIGITIGRADE in H.dna.species.species_traits)
+		if(IS_COMMAND(H)) // command gets snowflake shoes too.
+			shoes = alt_shoes_c
+		else if(IS_SECURITY(H) || find_job(H) == "Brig Physician") // Special shoes for sec and brig phys, roll first to avoid defaulting
+			shoes = alt_shoes_s
+		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" || IS_ENGINEERING(H)) // Check to assign default digitigrade shoes to special cases
+			shoes = alt_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -249,7 +267,14 @@
 		C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
-		C.assignment = J.title
+		if(H.mind?.role_alt_title)
+			C.assignment = H.mind.role_alt_title
+		else
+			C.assignment = J.title
+		if(H.mind?.assigned_role)
+			C.originalassignment = H.mind.assigned_role
+		else
+			C.originalassignment = J.title
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()
@@ -264,7 +289,10 @@
 	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
 	if(istype(PDA))
 		PDA.owner = H.real_name
-		PDA.ownjob = J.title
+		if(H.mind?.role_alt_title)
+			PDA.ownjob = H.mind.role_alt_title
+		else
+			PDA.ownjob = J.title
 		PDA.update_label()
 
 /datum/outfit/job/get_chameleon_disguise_info()

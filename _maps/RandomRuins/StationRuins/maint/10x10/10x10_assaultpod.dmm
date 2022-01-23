@@ -12,6 +12,12 @@
 	icon_state = "platingdmg1"
 	},
 /area/template_noop)
+"c" = (
+/obj/item/stamp/syndiround,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
 "d" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
@@ -234,7 +240,7 @@ y
 y
 r
 w
-p
+c
 O
 p
 p

@@ -100,7 +100,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	mask = /obj/item/clothing/mask/gas
 	r_hand = /obj/item/gun/ballistic/rifle/boltaction
-	r_pocket = /obj/item/ammo_box/magazine/internal/boltaction
+	r_pocket = /obj/item/ammo_box/a762 
 	mask = /obj/item/clothing/mask/gas
 	back = /obj/item/storage/backpack
 	box = /obj/item/storage/box/survival
@@ -110,5 +110,6 @@
 		return
 	var/obj/item/card/id/W = H.wear_id
 	W.assignment = "Police Officer"
+	W.originalassignment = "Police Officer"
 	W.registered_name = H.real_name
 	W.update_label()

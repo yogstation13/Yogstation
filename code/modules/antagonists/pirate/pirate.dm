@@ -7,8 +7,8 @@
 	var/datum/team/pirate/crew
 
 /datum/antagonist/pirate/greet()
-	to_chat(owner, "<span class='boldannounce'>You are a Space Pirate!</span>")
-	to_chat(owner, "<B>The station refused to pay for your protection, protect the ship, siphon the credits from the station and raid it for even more loot.</B><span class='notice'> As a pirate, you are NOT authorized to murder the station's inhabitants without good reason.</span>")
+	to_chat(owner, span_boldannounce("You are a Space Pirate!"))
+	to_chat(owner, "<B>The station refused to pay for your protection, protect the ship, siphon the credits from the station and raid it for even more loot.</B>[span_notice(" As a pirate, you are NOT authorized to murder the station's inhabitants without good reason.")]")
 	owner.announce_objectives()
 
 /datum/antagonist/pirate/get_team()
@@ -87,7 +87,7 @@
 /datum/team/pirate/roundend_report()
 	var/list/parts = list()
 
-	parts += "<span class='header'>Space Pirates were:</span>"
+	parts += span_header("Space Pirates were:")
 
 	var/all_dead = TRUE
 	for(var/datum/mind/M in members)

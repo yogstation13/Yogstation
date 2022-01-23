@@ -23,17 +23,20 @@
 /turf/open/floor/plasteel/stairs/goon
 	icon = 'goon/icons/turfs/floors.dmi'
 
+
 /turf/open/floor/plasteel/stairs/goon/stairs_alone
 	icon_state = "stairs_alone"
 
 /turf/open/floor/plasteel/stairs/goon/stairs_wide
 	icon_state ="stairs_wide"
 
-/turf/open/floor/plasteel/stairs/goon/stairs_wide2
+/turf/open/floor/plasteel/stairs/goon/stairs2_wide
 	icon_state ="stairs2_wide"
 
 /turf/open/floor/plasteel/stairs/goon/stairs_middle
 	icon_state ="stairs_middle"
+
+
 
 /turf/open/floor/plasteel/stairs/goon/white_stairs_alone
 	icon_state ="medstairs_alone"
@@ -47,14 +50,23 @@
 /turf/open/floor/plasteel/stairs/goon/white_stairs_middle
 	icon_state ="medstairs_middle"
 
-/turf/open/floor/plasteel/stairs/goon/wood_stairs
-	icon_state ="wood_stairs"
 
-/turf/open/floor/plasteel/stairs/goon/wood_stairs2
-	icon_state ="wood_stairs2"
 
-/turf/open/floor/plasteel/stairs/goon/dark_stairs
-	icon_state ="dark_stairs"
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_alone
+	icon_state ="woodstairs_alone"
 
-/turf/open/floor/plasteel/stairs/goon/dark_stairs2
-	icon_state ="dark_stairs2"
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide
+	icon_state ="woodstairs_wide"
+
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2
+	icon_state ="woodstairs2_wide"
+
+
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_alone
+	icon_state ="darkstairs_alone"
+
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide
+	icon_state ="darkstairs_wide"
+
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2
+	icon_state ="darkstairs2_wide"

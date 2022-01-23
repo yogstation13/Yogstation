@@ -286,9 +286,9 @@ export const SecurityConsole = (props, context) => {
                     ))}
                   </Table>
                 </Section>
-                <Section title="Major Crimes" buttons={(
+                <Section title="Crimes" buttons={(
                   <Button color="good" icon="plus" onClick={() => act("edit_field", {
-                    field: "major_crime_add",
+                    field: "crime_add",
                   })}>
                     Add Crime
                   </Button>
@@ -311,8 +311,8 @@ export const SecurityConsole = (props, context) => {
                         Delete
                       </TableCell>
                     </TableRow>
-                    {data.active_record.major_crimes
-                    && data.active_record.major_crimes.map(crime => (
+                    {data.active_record.crimes
+                    && data.active_record.crimes.map(crime => (
                       <TableRow key={crime.id}>
                         <TableCell>
                           {crime.name}
@@ -328,7 +328,7 @@ export const SecurityConsole = (props, context) => {
                         </TableCell>
                         <TableCell collapsing>
                           <Button color="bad" onClick={() => act("edit_field", {
-                            field: "major_crime_delete",
+                            field: "crime_delete",
                             id: crime.id,
                           })}>Delete
                           </Button>
@@ -337,20 +337,17 @@ export const SecurityConsole = (props, context) => {
                     ))}
                   </Table>
                 </Section>
-                <Section title="Minor Crimes" buttons={(
+                <Section title="Comments" buttons={(
                   <Button color="good" icon="plus" onClick={() => act("edit_field", {
-                    field: "minor_crime_add",
+                    field: "comment_add",
                   })}>
-                    Add Crime
+                    Add Comment
                   </Button>
                 )}>
                   <Table>
                     <TableRow color="label">
                       <TableCell>
-                        Crime
-                      </TableCell>
-                      <TableCell>
-                        Details
+                        Comment
                       </TableCell>
                       <TableCell>
                         Author
@@ -362,25 +359,22 @@ export const SecurityConsole = (props, context) => {
                         Delete
                       </TableCell>
                     </TableRow>
-                    {data.active_record.minor_crimes
-                    && data.active_record.minor_crimes.map(crime => (
-                      <TableRow key={crime.id}>
+                    {data.active_record.comments
+                    && data.active_record.comments.map(comment => (
+                      <TableRow key={comment.id}>
                         <TableCell>
-                          {crime.name}
+                          {comment.content}
                         </TableCell>
                         <TableCell>
-                          {crime.details}
+                          {comment.author}
                         </TableCell>
                         <TableCell>
-                          {crime.author}
-                        </TableCell>
-                        <TableCell>
-                          {crime.time}
+                          {comment.time}
                         </TableCell>
                         <TableCell collapsing>
                           <Button color="bad" onClick={() => act("edit_field", {
-                            field: "minor_crime_delete",
-                            id: crime.id,
+                            field: "comment_delete",
+                            id: comment.id,
                           })}>Delete
                           </Button>
                         </TableCell>
@@ -388,6 +382,7 @@ export const SecurityConsole = (props, context) => {
                     ))}
                   </Table>
                 </Section>
+
 
                 <LabeledList>
                   <LabeledList.Item label="Important Notes">

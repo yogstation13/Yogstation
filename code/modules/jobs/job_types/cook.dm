@@ -12,6 +12,8 @@
 
 	outfit = /datum/outfit/job/cook
 
+	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist")
+
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY
@@ -36,6 +38,7 @@
 	belt = /obj/item/pda/cook
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/chef
+	uniform_skirt = /obj/item/clothing/under/rank/chef/skirt
 	suit = /obj/item/clothing/suit/toggle/chef
 	head = /obj/item/clothing/head/chefhat
 	mask = /obj/item/clothing/mask/fakemoustache/italian

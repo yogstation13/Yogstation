@@ -32,7 +32,7 @@
 
 	fill(C)
 	return C
-	
+
 /datum/supply_pack/proc/get_cost()
 	. = cost
 	. *= SSeconomy.pack_price_modifier
@@ -441,6 +441,15 @@
 					/obj/item/clothing/suit/armor/bulletproof)
 	crate_name = "bulletproof armor crate"
 
+/datum/supply_pack/security/armory/bullethelmets
+	name = "Bulletproof Helmet Crate"
+	desc = "Contains three bulletproof helmets, perfect for protecting the void inside your skull. Requires Armory access to open."
+	cost = 1500
+	contains = list(/obj/item/clothing/head/helmet/alt,
+					/obj/item/clothing/head/helmet/alt,
+					/obj/item/clothing/head/helmet/alt)
+	crate_name = "bulletproof helmet crate"
+
 /datum/supply_pack/security/armory/chemimp
 	name = "Chemical Implants Crate"
 	desc = "Contains five Remote Chemical implants. Requires Armory access to open."
@@ -451,18 +460,9 @@
 /datum/supply_pack/security/armory/combatknives_single
 	name = "Combat Knife Single-Pack"
 	desc = "Contains one sharpened combat knive. Guaranteed to fit snugly inside any Nanotrasen-standard boot. Requires Armory access to open."
-	cost = 1200
+	cost = 500
 	small_item = TRUE
 	contains = list(/obj/item/kitchen/knife/combat)
-
-/datum/supply_pack/security/armory/combatknives
-	name = "Combat Knives Crate"
-	desc = "Contains three sharpened combat knives. Each knife guaranteed to fit snugly inside any Nanotrasen-standard boot. Requires Armory access to open."
-	cost = 3000
-	contains = list(/obj/item/kitchen/knife/combat,
-					/obj/item/kitchen/knife/combat,
-					/obj/item/kitchen/knife/combat)
-	crate_name = "combat knife crate"
 
 /datum/supply_pack/security/armory/ballistic_single
 	name = "Combat Shotgun Single-Pack"
@@ -510,11 +510,17 @@
 	crate_name = "\improper DRAGnet crate"
 
 /datum/supply_pack/security/armory/energy_single
-	name = "Energy Guns Single-Pack"
+	name = "Energy Gun Single-Pack"
 	desc = "Contains one energy gun, capable of firing both non-lethal and lethal blasts of light. Requires Armory access to open."
 	cost = 1500
 	small_item = TRUE
 	contains = list(/obj/item/gun/energy/e_gun)
+
+/datum/supply_pack/security/armory/hell_single
+	name = "Hellgun Single-Pack"
+	desc = "Contains one hellgun, an old pattern of laser gun infamous for its ability to horribly disfigure targets with burns. Technically violates the Space Geneva Convention when used on humanoids."
+	cost = 1500
+	contains = list(/obj/item/gun/energy/laser/hellgun)
 
 /datum/supply_pack/security/armory/energy
 	name = "Energy Guns Crate"
@@ -658,17 +664,17 @@
 
 /datum/supply_pack/security/armory/wt550_single
 	name = "Surplus Security Autorifle Single-Pack"
-	desc = "Contains one high-powered, semiautomatic rifles chambered in 4.6x30mm rubber rounds. Requires Armory access to open."
+	desc = "Contains one high-powered, semiautomatic rifle chambered in 4.6x30mm rounds. Requires Armory access to open."
 	cost = 2000
-	contains = list(/obj/item/gun/ballistic/automatic/wt550/occupying)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550)
 	small_item = TRUE
 
 /datum/supply_pack/security/armory/wt550
 	name = "Surplus Security Autorifle Crate"
-	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm rubber rounds. Requires Armory access to open."
+	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm rounds. Requires Armory access to open."
 	cost = 3500
-	contains = list(/obj/item/gun/ballistic/automatic/wt550/occupying,
-					/obj/item/gun/ballistic/automatic/wt550/occupying)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550,
+					/obj/item/gun/ballistic/automatic/wt550)
 	crate_name = "auto rifle crate"
 
 /datum/supply_pack/security/armory/wt550ammo
@@ -1176,19 +1182,67 @@
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
 
+/datum/supply_pack/medical/medipen_variety
+	name = "Medipen Variety-Pak"
+	desc = "Contains eight different medipens in three different varieties, to assist in quickly treating seriously injured patients."
+	cost = 2000
+	contains = list(/obj/item/reagent_containers/hypospray/medipen/,
+					/obj/item/reagent_containers/hypospray/medipen/,
+					/obj/item/reagent_containers/hypospray/medipen/ekit,
+					/obj/item/reagent_containers/hypospray/medipen/ekit,
+					/obj/item/reagent_containers/hypospray/medipen/ekit,
+					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
+					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
+					/obj/item/reagent_containers/hypospray/medipen/blood_loss
+)
+	crate_name = "medipen crate"
+
+/datum/supply_pack/medical/firstaid_single
+	name = "First Aid Kit Single-Pack"
+	desc = "Contains one first aid kit for healing most types of wounds."
+	cost = 150
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/regular)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
 /datum/supply_pack/medical/firstaidbruises_single
 	name = "Bruise Treatment Kit Single-Pack"
 	desc = "Contains one first aid kit focused on healing bruises and broken bones."
-	cost = 700
+	cost = 100
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/brute)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/firstaidburns_single
 	name = "Burn Treatment Kit Single-Pack"
 	desc = "Contains one first aid kit focused on healing severe burns."
-	cost = 700
+	cost = 100
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/fire)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/firstaidtoxins_single
+	name = "Toxin Treatment Kit Single-Pack"
+	desc = "Contains one first aid kit focused on healing damage dealt by heavy toxins."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/toxin)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/firstaidoxygen_single
+	name = "Oxygen Deprivation Kit Single-Pack"
+	desc = "Contains three first aid kits focused on helping oxygen deprivation victims."
+	cost = 70 //oxygen damage tends to be far rarer and these kits use perf which is objectively bad without any toxin healing
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/o2)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/medipen_twopak
+	name = "Medipen Two-Pak"
+	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
+	cost = 500
+	contains = list(/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/hypospray/medipen/ekit)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/chemical
 	name = "Chemical Starter Kit Crate"
@@ -1212,6 +1266,13 @@
 					/obj/item/storage/box/beakers)
 	crate_name = "chemical crate"
 
+/datum/supply_pack/medical/lemoline
+	name = "Lemoline Import Crate"
+	desc = "Contains a beaker of lemoline, used in the production of several powerful medicines."
+	cost = 700
+	contains = list(/obj/item/reagent_containers/glass/beaker/large/lemoline)
+	crate_name = "imported chemical crate"
+
 /datum/supply_pack/medical/defibs
 	name = "Defibrillator Crate"
 	desc = "Contains two defibrillators for bringing the recently deceased back to life."
@@ -1219,14 +1280,6 @@
 	contains = list(/obj/item/defibrillator/loaded,
 					/obj/item/defibrillator/loaded)
 	crate_name = "defibrillator crate"
-
-
-/datum/supply_pack/medical/firstaid_single
-	name = "First Aid Kit Single-Pack"
-	desc = "Contains one first aid kit for healing most types of wounds."
-	cost = 700
-	small_item = TRUE
-	contains = list(/obj/item/storage/firstaid/regular)
 
 /datum/supply_pack/medical/iv_drip
 	name = "IV Drip Crate"
@@ -1259,6 +1312,8 @@
 					/obj/item/reagent_containers/blood/OMinus,
 					/obj/item/storage/pill_bottle/mining,
 					/obj/item/reagent_containers/pill/neurine,
+					/obj/item/stack/medical/bone_gel,
+					/obj/item/stack/medical/bone_gel,
 					/obj/item/vending_refill/medical)
 	crate_name = "medical supplies crate"
 
@@ -1266,13 +1321,6 @@
 	for(var/i in 1 to 10)
 		var/item = pick(contains)
 		new item(C)
-
-/datum/supply_pack/medical/firstaidoxygen_single
-	name = "Oxygen Deprivation Kit Single-Pack"
-	desc = "Contains three first aid kits focused on helping oxygen deprivation victims."
-	cost = 700
-	small_item = TRUE
-	contains = list(/obj/item/storage/firstaid/o2)
 
 /datum/supply_pack/medical/surgery
 	name = "Surgical Supplies Crate"
@@ -1282,13 +1330,6 @@
 					/obj/item/reagent_containers/medspray/sterilizine,
 					/obj/item/roller)
 	crate_name = "surgical supplies crate"
-
-/datum/supply_pack/medical/firstaidtoxins_single
-	name = "Toxin Treatment Kit Single-Pack"
-	desc = "Contains one first aid kit focused on healing damage dealt by heavy toxins."
-	cost = 700
-	small_item = TRUE
-	contains = list(/obj/item/storage/firstaid/toxin)
 
 /datum/supply_pack/medical/salglucanister
 	name = "Heavy-Duty Saline Canister"
@@ -1657,23 +1698,24 @@
 	group = "Unlocked Clearance"
 	special = TRUE
 	small_item = TRUE
+	crate_type = /obj/structure/closet/crate/secure/cheap //:^
 
 /datum/supply_pack/clearance/ka_damage
 	name = "KA Damage Mods"
 	desc = "Modifiers for a kinetic accelerator that increase the force of its projectiles."
-	cost = 700
+	cost = 350
 	contains = list(/obj/item/borg/upgrade/modkit/damage,/obj/item/borg/upgrade/modkit/damage,/obj/item/borg/upgrade/modkit/damage)
 
 /datum/supply_pack/clearance/ka_cooldown
 	name = "KA Cooldown Mods"
 	desc = "Modifiers for a kinetic accelerator that decrease the time needed for the accelerator to cool between shots."
-	cost = 700
+	cost = 350
 	contains = list(/obj/item/borg/upgrade/modkit/cooldown,/obj/item/borg/upgrade/modkit/cooldown,/obj/item/borg/upgrade/modkit/cooldown)
 
 /datum/supply_pack/clearance/ka_range
 	name = "KA Range Mods"
 	desc = "Modifiers for a kinetic accelerator that increase the range of its projectiles."
-	cost = 700
+	cost = 350
 	contains = list(/obj/item/borg/upgrade/modkit/range,/obj/item/borg/upgrade/modkit/range,/obj/item/borg/upgrade/modkit/range)
 
 /datum/supply_pack/clearance/plasmacutter
@@ -1725,7 +1767,8 @@
 /datum/supply_pack/organic/randomized/chef
 	name = "Excellent Meat Crate"
 	desc = "The best cuts in the whole galaxy."
-	cost = 2000
+	cost = 1000
+	small_item = TRUE
 	contains = list(/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime,
 					/obj/item/reagent_containers/food/snacks/meat/slab/killertomato,
 					/obj/item/reagent_containers/food/snacks/meat/slab/bear,
@@ -1996,7 +2039,7 @@
 /datum/supply_pack/critter/chick
 	name = "Chicken Crate"
 	desc = "The chicken goes bwaak!"
-	cost = 2000
+	cost = 1000
 	contains = list(/mob/living/simple_animal/chick)
 	crate_name = "chicken crate"
 
@@ -2027,7 +2070,7 @@
 /datum/supply_pack/critter/cow
 	name = "Cow Crate"
 	desc = "The cow goes moo!"
-	cost = 3000
+	cost = 1500
 	contains = list(/mob/living/simple_animal/cow)
 	crate_name = "cow crate"
 
@@ -2328,6 +2371,8 @@
 			the_toy = pickweight(GLOB.arcade_prize_pool)
 		else
 			the_toy = pick(subtypesof(/obj/item/toy/plush))
+			if(istype(the_toy, /obj/item/toy/plush/lizard/azeel/snowflake))
+				the_toy = /obj/item/toy/plush/lizard/azeel
 		new the_toy(.)
 
 /datum/supply_pack/costumes_toys/wizard
@@ -2424,7 +2469,7 @@
 /datum/supply_pack/misc/artsupply
 	name = "Art Supplies"
 	desc = "Make some happy little accidents with six canvasses, two easels, and two rainbow crayons!"
-	cost = 800
+	cost = 400
 	contains = list(/obj/structure/easel,
 					/obj/structure/easel,
 					/obj/item/canvas/nineteenXnineteen,
@@ -2449,7 +2494,7 @@
 /datum/supply_pack/misc/bigband
 	name = "Big Band Instrument Collection"
 	desc = "Get your sad station movin' and groovin' with this fine collection! Contains ten different instruments!"
-	cost = 5000
+	cost = 600
 	crate_name = "Big band musical instruments collection"
 	contains = list(/obj/item/instrument/violin,
 					/obj/item/instrument/guitar,
@@ -2550,3 +2595,11 @@
 					/obj/item/toner,
 					/obj/item/toner)
 	crate_name = "toner crate"
+
+/datum/supply_pack/misc/jukebox
+	name = "Jukebox Crate"
+	desc = "Did the bartender not bring his jukebox? Your problem is solved with this ancient jukebox found in a junk pile."
+	cost = 5000
+	contains = list(/obj/machinery/jukebox)
+	crate_name = "jukebox crate"
+	crate_type = /obj/structure/closet/crate/large

@@ -15,7 +15,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 
 /client/proc/custom_donator_item()
 	if(!is_donator(src))
-		to_chat(src, "<span class='warning'>You're not a donator! To access this feature, considering donating today!</span>")
+		to_chat(src, span_warning("You're not a donator! To access this feature, considering donating today!"))
 		return
 	GLOB.donator_gear.ui_interact(usr)//datum has a tgui component, here we open the window
 
@@ -119,6 +119,17 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	icon_state = "sheetcosmos_green"
 	item_state = "sheetcosmos_green"
 	item_color = "cosmos_green"
+
+/datum/donator_gear/azeelium
+	name = "Utatul-Azeel plushie"
+	ckey = "Anvilman6"
+	unlock_path = /obj/item/toy/plush/lizard/azeel/snowflake
+
+/datum/donator_gear/mqiib
+	name = "Singularity Necklace"
+	ckey = "Mqiib"
+	unlock_path = /obj/item/clothing/accessory/sing_necklace
+
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
@@ -367,7 +378,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/clothing/head/crown
 	slot = SLOT_HEAD
 
-/datum/donator_gear/wizard
+/datum/donator_gear/wizard/red
 	name = "Wizard's Hat (Red, Collectable)"
 	unlock_path = /obj/item/clothing/head/wizard/fake/red
 	slot = SLOT_HEAD
@@ -392,11 +403,14 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 //Generic donator items
 /datum/donator_gear/snail
 	name = "Snail Backpack"
-	unlock_path = /obj/item/storage/backpack/snail/green
+	unlock_path = /obj/item/storage/backpack/fakesnail
 
 /datum/donator_gear/toyhammer
 	name = "banhammer"
 	unlock_path = /obj/item/banhammer
+/datum/donator_gear/gondolamask
+	name = "gondola mask"
+	unlock_path = /obj/item/clothing/mask/gondola
 /datum/donator_gear/sheetcosmos
 	name = "cosmic space bedsheet"
 	unlock_path = /obj/item/bedsheet/cosmos
@@ -457,7 +471,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/moonrock
 	name = "Rare brown sneakers"
 	unlock_path = /obj/item/clothing/shoes/yogs/trainers/darkbrown
-/datum/donator_gear/pirate
+/datum/donator_gear/blackvox
 	name = "Rare vox black sneakers"
 	unlock_path = /obj/item/clothing/shoes/yogs/trainers/black
 /datum/donator_gear/zebrasweat
@@ -538,6 +552,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/narplush
 	name = "Nar'Sie plushie"
 	unlock_path = /obj/item/toy/plush/narplush
+/datum/donator_gear/blahajplush
+	name = "Shark plushie"
+	unlock_path = /obj/item/toy/plush/blahaj
 /datum/donator_gear/sword0
 	name = "toy sword"
 	unlock_path = /obj/item/toy/sword

@@ -72,7 +72,7 @@
 		new /datum/data/mining_equipment("Space Cash",					/obj/item/stack/spacecash/c1000,									2000, VENDING_MISC),
 		new /datum/data/mining_equipment("Giga Drill",					/obj/vehicle/ridden/gigadrill,										50000, VENDING_MISC)
 	)
-	
+
 
 /datum/data/mining_equipment
 	var/equipment_name = "generic"
@@ -152,20 +152,20 @@
 			var/mob/M = usr
 			var/obj/item/card/id/I = M.get_idcard(TRUE)
 			if(!istype(I))
-				to_chat(usr, "<span class='alert'>Error: An ID is required!</span>")
+				to_chat(usr, span_alert("Error: An ID is required!"))
 				flick(icon_deny, src)
 				return
 			var/datum/data/mining_equipment/prize = locate(params["ref"]) in prize_list
 			if(!prize || !(prize in prize_list))
-				to_chat(usr, "<span class='alert'>Error: Invalid choice!</span>")
+				to_chat(usr, span_alert("Error: Invalid choice!"))
 				flick(icon_deny, src)
 				return
 			if(prize.cost > I.mining_points)
-				to_chat(usr, "<span class='alert'>Error: Insufficient points for [prize.equipment_name] on [I]!</span>")
+				to_chat(usr, span_alert("Error: Insufficient points for [prize.equipment_name] on [I]!"))
 				flick(icon_deny, src)
 				return
 			I.mining_points -= prize.cost
-			to_chat(usr, "<span class='notice'>[src] clanks to life briefly before vending [prize.equipment_name]!</span>")
+			to_chat(usr, span_notice("[src] clanks to life briefly before vending [prize.equipment_name]!"))
 			new prize.equipment_path(loc)
 			SSblackbox.record_feedback("nested tally", "mining_equipment_bought", 1, list("[type]", "[prize.equipment_path]"))
 			. = TRUE
@@ -250,10 +250,10 @@
 /obj/machinery/mineral/equipment_vendor/golem/Initialize()
 	desc += "\nIt seems a few selections have been added."
 	prize_list += list(
-		new /datum/data/mining_equipment("Brute Pill Bottle",			/obj/item/storage/pill_bottle/bica,									600, VENDING_MEDS),
-		new /datum/data/mining_equipment("Burn Pill Bottle",			/obj/item/storage/pill_bottle/kelo,									600, VENDING_MEDS),
+		new /datum/data/mining_equipment("Brute Pill Bottle",			/obj/item/storage/pill_bottle/libi,									600, VENDING_MEDS),
+		new /datum/data/mining_equipment("Burn Pill Bottle",			/obj/item/storage/pill_bottle/aiur,									600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Toxin Pill Bottle",			/obj/item/storage/pill_bottle/charcoal,								600, VENDING_MEDS),
-		new /datum/data/mining_equipment("KA Trigger Guard Kit",    		/obj/item/borg/upgrade/modkit/trigger_guard,					1700, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("KA Trigger Guard Kit",    	/obj/item/borg/upgrade/modkit/trigger_guard,					1700, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("Extra ID",       				/obj/item/card/id/mining, 				                   		250, VENDING_MISC),
 		new /datum/data/mining_equipment("Monkey Cube",					/obj/item/reagent_containers/food/snacks/monkeycube,        	300, VENDING_MISC),
 		new /datum/data/mining_equipment("Grey Slime Extract",			/obj/item/slime_extract/grey,									1000, VENDING_MISC),
@@ -382,10 +382,10 @@
 		if(points)
 			var/obj/item/card/id/C = I
 			C.mining_points += points
-			to_chat(user, "<span class='info'>You transfer [points] points to [C].</span>")
+			to_chat(user, span_info("You transfer [points] points to [C]."))
 			points = 0
 		else
-			to_chat(user, "<span class='info'>There's no points left on [src].</span>")
+			to_chat(user, span_info("There's no points left on [src]."))
 	..()
 
 /obj/item/card/mining_point_card/examine(mob/user)

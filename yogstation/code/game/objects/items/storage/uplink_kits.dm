@@ -22,3 +22,11 @@
 
 /obj/item/storage/box/syndie_kit/imp_greytide/PopulateContents()
 	new /obj/item/implanter/greytide(src)
+
+/obj/item/storage/box/syndie_kit/xeno_organ_kit
+	name = "Xenomorph Organ Kit"
+
+/obj/item/storage/box/syndie_kit/xeno_organ_kit/PopulateContents()
+	new /obj/item/autosurgeon/plasmavessel(src)
+	new /obj/item/organ/alien/resinspinner(src)
+	new /obj/item/organ/alien/acid(src)

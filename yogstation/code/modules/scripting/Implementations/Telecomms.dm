@@ -10,6 +10,13 @@
 #define POLYSMORPH 8
 #define DRACONIC 16
 #define BEACHTONGUE 32
+#define SYLVAN 64
+#define ETHEREAN 128
+#define BONE 256
+#define MOTH 512
+#define CAT 1024
+#define ENGLISH 2048
+
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
 //this is fucking broken
 GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/language/machine,/datum/language/draconic))// language datums that players are allowed to translate to in a radio transmission.
@@ -115,7 +122,11 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		"robot" = ROBOT,
 		"polysmorph" = POLYSMORPH,
 		"draconic" = DRACONIC,
-		"beachtounge" = BEACHTONGUE
+		"beachtounge" = BEACHTONGUE,
+		"sylvan" = SYLVAN,
+		"etherean" = ETHEREAN,
+		"bonespeak" = BONE,
+		"mothian" = MOTH
 	)))
 
 	interpreter.Run() // run the thing
@@ -153,7 +164,18 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		oldlang = DRACONIC
 	else if(oldlang == /datum/language/beachbum)
 		oldlang = BEACHTONGUE
-
+	else if(oldlang == /datum/language/sylvan)
+		oldlang = SYLVAN
+	else if(oldlang == /datum/language/etherean)
+		oldlang = ETHEREAN
+	else if(oldlang == /datum/language/bonespeak)
+		oldlang = BONE
+	else if(oldlang == /datum/language/mothian)
+		oldlang = MOTH
+	else if(oldlang == /datum/language/felinid) 
+		oldlang  = CAT
+	else if(oldlang == /datum/language/english) 
+		oldlang  = ENGLISH
 	// Signal data
 
 	var/datum/n_struct/signal/script_signal = new(list(
@@ -210,6 +232,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		if(!LAZYFIND(GLOB.allowed_translations, oldlang)) // cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
 			newlang = oldlang
 	signal.language = newlang || oldlang
+	signal.data["language"] = newlang || oldlang
 	var/list/setspans 			= script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
@@ -266,6 +289,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 /datum/signal
 
 /proc/LangBit2Datum(langbits) // Takes in the set language bits, returns the datum to use
+	if(istype(langbits, /datum/language))
+		return langbits
 	switch(langbits)
 		if(HUMAN)
 			return /datum/language/common
@@ -279,6 +304,18 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 			return /datum/language/draconic
 		if(BEACHTONGUE)
 			return /datum/language/beachbum
+		if(SYLVAN)
+			return /datum/language/sylvan
+		if(ETHEREAN)
+			return /datum/language/etherean
+		if(BONE)
+			return /datum/language/bonespeak
+		if(MOTH)
+			return /datum/language/mothian
+		if(CAT)
+			return /datum/language/felinid
+		if(ENGLISH)
+			return /datum/language/english
 
 /datum/n_function/default/mem
 	name = "mem"
@@ -448,3 +485,9 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #undef POLYSMORPH
 #undef DRACONIC
 #undef BEACHTONGUE
+#undef SYLVAN
+#undef ETHEREAN
+#undef BONE
+#undef MOTH
+#undef CAT
+#undef ENGLISH

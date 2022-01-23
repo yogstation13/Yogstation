@@ -48,7 +48,9 @@
 		"smmon_4.gif" = 'icons/program_icons/smmon_4.gif',
 		"smmon_5.gif" = 'icons/program_icons/smmon_5.gif',
 		"smmon_6.gif" = 'icons/program_icons/smmon_6.gif',
-		"borg_mon.gif" = 'icons/program_icons/borg_mon.gif'
+		"borg_mon.gif" = 'icons/program_icons/borg_mon.gif',
+		"health_green.gif" = 'icons/program_icons/crew_green.gif',
+		"health_red.gif" = 'icons/program_icons/crew_red.gif'
 	)
 
 /datum/asset/simple/radar_assets
@@ -104,6 +106,10 @@
 		"stamp-cap" = 'icons/stamp_icons/large_stamp-cap.png',
 		"stamp-qm" = 'icons/stamp_icons/large_stamp-qm.png',
 		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png',
+		"stamp-mime" = 'icons/stamp_icons/large_stamp-mime.png',
+		"stamp-cent" = 'icons/stamp_icons/large_stamp-cent.png',
+		"stamp-syndi" = 'icons/stamp_icons/large_stamp-syndi.png',
+		"stamp-syndiround" = 'icons/stamp_icons/large_stamp-syndiround.png'
 	)
 
 
@@ -147,7 +153,7 @@
 	assets = list(
 		"scanlines.png" = 'html/scanlines.png'
 	)
-	
+
 /datum/asset/simple/jquery
 	legacy = TRUE
 	assets = list(
@@ -380,4 +386,55 @@
 
 	// Special case to handle Bluespace Crystals
 	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
+
+	Insert("dilithium_polycrystal", 'yogstation/icons/obj/telescience.dmi', "dilithium_polycrystal") //yogs: same as above but for dilithium
 	..()
+
+
+/datum/asset/simple/portraits
+	var/tab = "use subtypes of this please"
+	assets = list()
+
+/datum/asset/simple/portraits/New()
+	if(!SSpersistence.paintings || !SSpersistence.paintings[tab] || !length(SSpersistence.paintings[tab]))
+		return
+	for(var/p in SSpersistence.paintings[tab])
+		var/list/portrait = p
+		var/png = "data/paintings/[tab]/[portrait["md5"]].png"
+		if(fexists(png))
+			var/asset_name = "[tab]_[portrait["md5"]]"
+			assets[asset_name] = png
+	..() //this is where it registers all these assets we added to the list
+
+/datum/asset/simple/portraits/public
+	tab = "public"
+
+/datum/asset/spritesheet/supplypods
+	name = "supplypods"
+
+/datum/asset/spritesheet/supplypods/register()
+	for (var/style in 1 to length(GLOB.podstyles))
+		var/icon_file = 'icons/obj/supplypods.dmi'
+		if (style == STYLE_SEETHROUGH)
+			Insert("pod_asset[style]", icon(icon_file, "seethrough-icon"))
+			continue
+		var/base = GLOB.podstyles[style][POD_BASE]
+		if (!base)
+			Insert("pod_asset[style]", icon(icon_file, "invisible-icon"))
+			continue
+		var/icon/podIcon = icon(icon_file, base)
+		var/door = GLOB.podstyles[style][POD_DOOR]
+		if (door)
+			door = "[base]_door"
+			podIcon.Blend(icon(icon_file, door), ICON_OVERLAY)
+		var/shape = GLOB.podstyles[style][POD_SHAPE]
+		if (shape == POD_SHAPE_NORML)
+			var/decal = GLOB.podstyles[style][POD_DECAL]
+			if (decal)
+				podIcon.Blend(icon(icon_file, decal), ICON_OVERLAY)
+			var/glow = GLOB.podstyles[style][POD_GLOW]
+			if (glow)
+				glow = "pod_glow_[glow]"
+				podIcon.Blend(icon(icon_file, glow), ICON_OVERLAY)
+		Insert("pod_asset[style]", podIcon)
+	return ..()

@@ -2,11 +2,6 @@
 
 GLOBAL_VAR(restart_counter)
 
-/world/proc/enable_debugger()
-    var/dll = (fexists(EXTOOLS) && EXTOOLS)
-    if (dll)
-        call(dll, "debug_initialize")()
-
 /**
   * World creation
   *
@@ -24,8 +19,6 @@ GLOBAL_VAR(restart_counter)
   *
   */
 /world/New()
-	enable_debugger() //This does nothing if you aren't trying to debug
-
 	//Early profile for auto-profiler - will be stopped on profiler init if necessary.
 #if DM_VERSION >= 513 && DM_BUILD >= 1506
 	world.Profile(PROFILE_START)
@@ -198,7 +191,7 @@ GLOBAL_VAR(restart_counter)
 		if(PRcounts[id] > PR_ANNOUNCEMENTS_PER_ROUND)
 			return
 
-	var/final_composed = "<span class='announce'>PR: [announcement]</span>"
+	var/final_composed = span_announce("PR: [announcement]")
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
 
@@ -228,14 +221,14 @@ GLOBAL_VAR(restart_counter)
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
-		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request</span>")
+		to_chat(world, span_boldannounce("Rebooting World immediately due to host request"))
 	else
-		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
+		to_chat(world, span_boldannounce("Rebooting world..."))
 		Master.Shutdown()	//run SS shutdowns
 
 	for(var/boi in GLOB.clients)
 		var/client/C = boi
-		if(!istype(C)) continue //yes so this is useful to prevent nulls from preventing the server from rebooting...
+		if(isnull(C)) continue //yes so this is useful to prevent nulls from preventing the server from rebooting...
 		sync_logout_with_db(C.connection_number)
 		C?.tgui_panel?.send_roundrestart()
 

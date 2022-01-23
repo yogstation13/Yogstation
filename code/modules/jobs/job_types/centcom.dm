@@ -19,7 +19,10 @@
 	r_pocket = /obj/item/pda/heads
 	l_hand = /obj/item/clipboard
 	id = /obj/item/card/id/centcom
-	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1)
+	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1, /obj/item/stamp/cent = 1,)
+
+
+	chameleon_extras = /obj/item/stamp/cent
 
 /datum/outfit/centcom/official/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -36,6 +39,7 @@
 	W.access = get_centcom_access("CentCom Official")
 	W.access += ACCESS_WEAPONS
 	W.assignment = "CentCom Official"
+	W.originalassignment = "CentCom Official"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -70,6 +74,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Official")
 	W.assignment = "CentCom Captain"
+	W.originalassignment = "CentCom Captain"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -103,6 +108,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Official")
 	W.assignment = "CentCom Major"
+	W.originalassignment = "CentCom Major"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -137,6 +143,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
 	W.assignment = "CentCom Commodore"
+	W.originalassignment = "CentCom Commodore"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -171,6 +178,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
 	W.assignment = "CentCom Colonel"
+	W.originalassignment = "CentCom Colonel"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -205,6 +213,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
 	W.assignment = "CentCom Rear-Admiral"
+	W.originalassignment = "CentCom Rear-Admiral"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -239,6 +248,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
 	W.assignment = "CentCom Admiral"
+	W.originalassignment = "CentCom Admiral"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -273,6 +283,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
 	W.assignment = "CentCom Grand Admiral"
+	W.originalassignment = "CentCom Grand Admiral"
 	W.registered_name = H.real_name
 	W.update_label()
 

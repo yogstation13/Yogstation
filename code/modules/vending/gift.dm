@@ -15,6 +15,7 @@
 					/obj/item/toy/plush/teddybear = 5,
 					/obj/item/toy/plush/stuffedmonkey = 5,
 					/obj/item/toy/plush/flowerbunch = 5,
+					/obj/item/toy/plush/lizard/azeel = 5,
 					/obj/item/camera_film = 30,
 					/obj/item/storage/photo_album = 5,
 					/obj/item/storage/photobook = 5,

@@ -12,10 +12,11 @@
 	heatmod = 1.5
 	acidmod = 0.2 //Their blood is literally acid
 	burnmod = 1.25
+	payday_modifier = 0.6 //Negatively viewed by NT
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
-	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE)
+	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mutanteyes = /obj/item/organ/eyes/polysmorph
@@ -28,6 +29,7 @@
 	default_features = list("tail_polysmorph" = "Polys", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None", "legs" = "Normal Legs")
 	mutanttongue = /obj/item/organ/tongue/polysmorph
 	mutanttail = /obj/item/organ/tail/polysmorph
+	mutantlungs = /obj/item/organ/lungs/xeno
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 
 /datum/species/polysmorph/random_name(gender,unique,lastname)

@@ -42,6 +42,7 @@
 	var/datum/action/innate/cellular_emporium/emporium_action
 
 	var/static/list/all_powers = typecacheof(/datum/action/changeling,TRUE)
+	var/list/stored_snapshots = list() //list of stored snapshots
 
 /datum/antagonist/changeling/New()
 	. = ..()
@@ -121,10 +122,20 @@
 
 /datum/antagonist/changeling/proc/remove_changeling_powers()
 	if(ishuman(owner.current) || ismonkey(owner.current))
-		reset_properties()
+		var/additionalpoints = geneticpoints
+
+		changeling_speak = 0
+		chosen_sting = null
+		mimicing = ""
+
 		for(var/datum/action/changeling/p in purchasedpowers)
+			if(p.dna_cost > 0)
+				additionalpoints += p.dna_cost
+			
 			purchasedpowers -= p
 			p.Remove(owner.current)
+			
+		geneticpoints = additionalpoints
 
 	//MOVE THIS
 	if(owner.current.hud_used && owner.current.hud_used.lingstingdisplay)
@@ -196,16 +207,16 @@
 
 /datum/antagonist/changeling/proc/readapt()
 	if(!ishuman(owner.current))
-		to_chat(owner.current, "<span class='danger'>We can't remove our evolutions in this form!</span>")
+		to_chat(owner.current, span_danger("We can't remove our evolutions in this form!"))
 		return
 	if(canrespec)
-		to_chat(owner.current, "<span class='notice'>We have removed our evolutions from this form, and are now ready to readapt.</span>")
+		to_chat(owner.current, span_notice("We have removed our evolutions from this form, and are now ready to readapt."))
 		reset_powers()
 		canrespec = 0
 		SSblackbox.record_feedback("tally", "changeling_power_purchase", 1, "Readapt")
 		return 1
 	else
-		to_chat(owner.current, "<span class='danger'>You lack the power to readapt your evolutions!</span>")
+		to_chat(owner.current, span_danger("You lack the power to readapt your evolutions!"))
 		return 0
 
 //Called in life()
@@ -239,33 +250,33 @@
 		var/datum/changelingprofile/prof = stored_profiles[1]
 		if(prof.dna == user.dna && stored_profiles.len >= dna_max)//If our current DNA is the stalest, we gotta ditch it.
 			if(verbose)
-				to_chat(user, "<span class='warning'>We have reached our capacity to store genetic information! We must transform before absorbing more.</span>")
+				to_chat(user, span_warning("We have reached our capacity to store genetic information! We must transform before absorbing more."))
 			return
 	if(!target)
 		return
 	if(NO_DNA_COPY in target.dna.species.species_traits)
 		if(verbose)
-			to_chat(user, "<span class='warning'>[target] is not compatible with our biology.</span>")
+			to_chat(user, span_warning("[target] is not compatible with our biology."))
 		return
 	if(HAS_TRAIT(target, TRAIT_BADDNA))
 		if(verbose)
-			to_chat(user, "<span class='warning'>DNA of [target] is ruined beyond usability!</span>")
+			to_chat(user, span_warning("DNA of [target] is ruined beyond usability!"))
 		return
 	if(HAS_TRAIT(target, TRAIT_HUSK))
 		if(verbose)
-			to_chat(user, "<span class='warning'>[target]'s body is ruined beyond usability!</span>")
+			to_chat(user, span_warning("[target]'s body is ruined beyond usability!"))
 		return
 	if(!ishuman(target))//Absorbing monkeys is entirely possible, but it can cause issues with transforming. That's what lesser form is for anyway!
 		if(verbose)
-			to_chat(user, "<span class='warning'>We could gain no benefit from absorbing a lesser creature.</span>")
+			to_chat(user, span_warning("We could gain no benefit from absorbing a lesser creature."))
 		return
 	if(has_dna(target.dna))
 		if(verbose)
-			to_chat(user, "<span class='warning'>We already have this DNA in storage!</span>")
+			to_chat(user, span_warning("We already have this DNA in storage!"))
 		return
 	if(!target.has_dna())
 		if(verbose)
-			to_chat(user, "<span class='warning'>[target] is not compatible with our biology.</span>")
+			to_chat(user, span_warning("[target] is not compatible with our biology."))
 		return
 	return 1
 
@@ -285,6 +296,10 @@
 	prof.socks = H.socks
 	if(H.mind)//yes we need to check this
 		prof.accent = H.mind.accent_name
+
+	for(var/i in H.all_scars)
+		var/datum/scar/iter_scar = i
+		LAZYADD(prof.stored_scars, iter_scar.format())
 
 	var/list/slots = list("head", "wear_mask", "back", "wear_suit", "w_uniform", "shoes", "belt", "gloves", "glasses", "ears", "wear_id", "s_store")
 	for(var/slot in slots)
@@ -316,6 +331,12 @@
 
 /datum/antagonist/changeling/proc/add_new_profile(mob/living/carbon/human/H, protect = 0)
 	var/datum/changelingprofile/prof = create_profile(H, protect)
+	var/datum/icon_snapshot/entry = new
+	entry.name = H.real_name
+	entry.icon = H.icon
+	entry.icon_state = H.icon_state
+	entry.overlays = H.get_overlays_copy(list(HANDS_LAYER))	//ugh
+	stored_snapshots[entry.name] = entry
 	add_profile(prof)
 	return prof
 
@@ -363,15 +384,15 @@
 
 /datum/antagonist/changeling/greet()
 	if (you_are_greet)
-		to_chat(owner.current, "<span class='boldannounce'>You are [changelingID], a changeling! You have absorbed and taken the form of a human.</span>")
-	to_chat(owner.current, "<span class='boldannounce'>Use say \"[MODE_TOKEN_CHANGELING] message\" to communicate with your fellow changelings.</span>")
+		to_chat(owner.current, span_boldannounce("You are [changelingID], a changeling! You have absorbed and taken the form of a human."))
+	to_chat(owner.current, span_boldannounce("Use say \"[MODE_TOKEN_CHANGELING] message\" to communicate with your fellow changelings."))
 	to_chat(owner.current, "<b>You must complete the following tasks:</b>")
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ling_aler.ogg', 100, FALSE, pressure_affected = FALSE)
 
 	owner.announce_objectives()
 
 /datum/antagonist/changeling/farewell()
-	to_chat(owner.current, "<span class='userdanger'>You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!</span>")
+	to_chat(owner.current, span_userdanger("You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!"))
 
 /datum/antagonist/changeling/proc/forge_team_objectives()
 	if(GLOB.changeling_team_objective_type)
@@ -437,7 +458,8 @@
 		objectives += destroy_objective
 	else
 		if(prob(70))
-			var/datum/objective/assassinate/kill_objective = new
+			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+			var/datum/objective/assassinate/kill_objective = new N
 			kill_objective.owner = owner
 			if(team_mode) //No backstabbing while in a team
 				kill_objective.find_target_by_role(role = ROLE_CHANGELING, role_type = TRUE, invert = TRUE)
@@ -488,7 +510,7 @@
 
 /datum/antagonist/changeling/admin_add(datum/mind/new_owner,mob/admin)
 	. = ..()
-	to_chat(new_owner.current, "<span class='boldannounce'>Our powers have awoken. A flash of memory returns to us...we are [changelingID], a changeling!</span>")
+	to_chat(new_owner.current, span_boldannounce("Our powers have awoken. A flash of memory returns to us...we are [changelingID], a changeling!"))
 
 /datum/antagonist/changeling/get_admin_commands()
 	. = ..()
@@ -497,7 +519,7 @@
 
 /datum/antagonist/changeling/proc/admin_restore_appearance(mob/admin)
 	if(!stored_profiles.len || !iscarbon(owner.current))
-		to_chat(admin, "<span class='danger'>Resetting DNA failed!</span>")
+		to_chat(admin, span_danger("Resetting DNA failed!"))
 	else
 		var/mob/living/carbon/C = owner.current
 		first_prof.dna.transfer_identity(C, transfer_SE=1)
@@ -524,9 +546,12 @@
 	var/undershirt
 	var/socks
 	var/accent = null
+	/// What scars the target had when we copied them, in string form (like persistent scars)
+	var/list/stored_scars
 
 /datum/changelingprofile/Destroy()
 	qdel(dna)
+	LAZYCLEARLIST(stored_scars)
 	. = ..()
 
 /datum/changelingprofile/proc/copy_profile(datum/changelingprofile/newprofile)
@@ -544,6 +569,7 @@
 	newprofile.undershirt = undershirt
 	newprofile.socks = socks
 	newprofile.accent = accent
+	newprofile.stored_scars = stored_scars.Copy()
 
 
 /datum/antagonist/changeling/xenobio
@@ -571,15 +597,15 @@
 			if(objective.check_completion())
 				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</b></span>"
 			else
-				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+				parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
 				changelingwin = 0
 			count++
 
 	if(changelingwin)
-		parts += "<span class='greentext'>The changeling was successful!</span>"
+		parts += span_greentext("The changeling was successful!")
 		SSachievements.unlock_achievement(/datum/achievement/greentext/changelingwin, owner.current.client) //changeling wins, give achivement
 	else
-		parts += "<span class='redtext'>The changeling has failed.</span>"
+		parts += span_redtext("The changeling has failed.")
 
 	return parts.Join("<br>")
 

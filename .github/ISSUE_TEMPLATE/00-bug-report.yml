@@ -1,0 +1,56 @@
+name: Bug Report
+description: Use this template to report bugs
+body:
+- type: dropdown
+  attributes:
+    label: Severity
+    options:
+      - Exploit
+      - Round Breaking
+      - Inconvenience
+      - Development Issue Only
+      - Quality of Life
+      - Low
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Short Description
+    description: Enter a short description that summerizes the bug you encountered.
+    placeholder: "Ass randomly deleted after shoving pie up it"
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Reproduction
+    description: List here the steps you took to encounter this issue
+    placeholder: "1. Join the round as a Cook\n2. Make a pie\n3. Shove it up your ass\n4. Ass was deleted."
+    render: ""
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Round ID
+    description: This is always required if you have encountered the issue on the live server, having this information helps us find logs associated with the error you encountered such as runtime error logs
+    placeholder: "Round #12345"
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Test Merges
+    description: You can list all current test merges by using the MOTD button in the OOC tab. This helps to make sure the issue isnt caused by a feature being tested on the server
+    placeholder: "#1234 #1235 #1245 etc"
+
+- type: input
+  attributes:
+    label: BYOND Username
+    description: Also known as ckey, its the username you use to login on BYOND.
+    placeholder: "Player1702"
+  
+- type: textarea
+  attributes:
+    label: Additional information

@@ -1,6 +1,6 @@
 /datum/eldritch_transmutation/ash_knife
 	name = "Ashen Blade"
-	required_atoms = list(/obj/item/kitchen/knife,/obj/item/match)
+	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/ash)
 	result_atoms = list(/obj/item/melee/sickly_blade/ash)
 	required_shit_list = "A pile of ash and a knife."
 
@@ -64,6 +64,7 @@
 
 /datum/eldritch_transmutation/final/ash_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear The Blaze, for Ashbringer [user.real_name] has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+	set_security_level(SEC_LEVEL_GAMMA)
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/fire_cascade/big)
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/fire_sworn)
 	var/mob/living/carbon/human/H = user

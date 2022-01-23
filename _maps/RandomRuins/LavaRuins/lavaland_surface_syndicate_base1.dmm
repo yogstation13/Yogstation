@@ -145,6 +145,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
+"cg" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/item/stamp/syndiround,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/syndicate_lava_base/cargo)
 "cF" = (
 /obj/machinery/door/poddoor{
 	id = "lavalandsyndi_arrivals"
@@ -809,6 +820,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
+"eE" = (
+/obj/structure/table/wood,
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/kitchen/knife{
+	pixel_x = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/syndicate_lava_base/bar)
 "eG" = (
 /obj/structure/closet/secure_closet/personal/patient,
 /obj/effect/decal/cleanable/dirt,
@@ -1117,26 +1140,6 @@
 	dir = 10
 	},
 /area/ruin/unpowered/syndicate_lava_base/virology)
-"fi" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/storage/box/syringes,
-/obj/machinery/power/apc/syndicate{
-	dir = 1;
-	name = "Virology APC";
-	pixel_y = 23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white/side{
-	dir = 9
-	},
-/area/ruin/unpowered/syndicate_lava_base/virology)
 "fj" = (
 /obj/structure/table/glass,
 /obj/structure/reagent_dispensers/virusfood{
@@ -1408,16 +1411,6 @@
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/unpowered/syndicate_lava_base/cargo)
-"gb" = (
-/obj/structure/table,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
@@ -3848,19 +3841,6 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/bar)
-"lz" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/glass/rag{
-	pixel_x = -4;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/syndicate_lava_base/bar)
 "lA" = (
 /turf/open/floor/wood,
 /area/ruin/unpowered/syndicate_lava_base/bar)
@@ -4248,21 +4228,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/medbay)
-"mE" = (
-/obj/structure/table/reinforced,
-/obj/item/scalpel,
-/obj/item/circular_saw{
-	pixel_y = 9
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white/side{
-	dir = 4
-	},
-/area/ruin/unpowered/syndicate_lava_base/medbay)
 "mF" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27;
@@ -4379,14 +4344,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/ruin/unpowered/syndicate_lava_base/medbay)
-"nb" = (
-/obj/structure/table/optable,
-/obj/item/surgical_drapes,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white/side{
-	dir = 4
-	},
 /area/ruin/unpowered/syndicate_lava_base/medbay)
 "nd" = (
 /obj/structure/cable{
@@ -4662,22 +4619,6 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/white/corner,
-/area/ruin/unpowered/syndicate_lava_base/medbay)
-"nB" = (
-/obj/structure/table/reinforced,
-/obj/item/surgicaldrill,
-/obj/item/cautery,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white/side,
-/area/ruin/unpowered/syndicate_lava_base/medbay)
-"nC" = (
-/obj/structure/table/reinforced,
-/obj/item/retractor,
-/obj/item/hemostat,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white/side{
-	dir = 6
-	},
 /area/ruin/unpowered/syndicate_lava_base/medbay)
 "nE" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
@@ -5317,6 +5258,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
+"ts" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 6;
+	height = 6;
+	id = "syndicatelavalandbase_arivals";
+	name = "Syndicate Lavaland Base: Arivals Dock";
+	width = 13
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "tU" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -5413,6 +5365,34 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
+"vR" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/beakers{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = -8;
+	pixel_y = 10
+	},
+/obj/machinery/power/apc/syndicate{
+	dir = 1;
+	name = "Virology APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/lockbox/vialbox/virology{
+	pixel_x = -7;
+	pixel_y = 2;
+	req_access = list(150)
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 9
+	},
+/area/ruin/unpowered/syndicate_lava_base/virology)
 "vT" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -5420,6 +5400,21 @@
 /obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
+"wu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/defibrillator/compact/combat/loaded{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/healthanalyzer{
+	pixel_x = -4;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/ruin/unpowered/syndicate_lava_base/medbay)
 "xd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -5618,6 +5613,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
+"CN" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck/syndicate{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/storage/pill_bottle/dice{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/machinery/reagentgrinder/kitchen,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered/syndicate_lava_base/bar)
 "CV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -5633,6 +5643,12 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/main)
+"DC" = (
+/obj/machinery/porta_turret/syndicate,
+/obj/machinery/porta_turret/syndicate,
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/syndicate_lava_base/main)
 "Ec" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -5640,6 +5656,10 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
+/area/ruin/unpowered/syndicate_lava_base/bar)
+"Er" = (
+/obj/machinery/griddle,
+/turf/open/floor/wood,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "Ev" = (
 /obj/structure/filingcabinet/medical,
@@ -5660,20 +5680,6 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
-/area/ruin/unpowered/syndicate_lava_base/bar)
-"EG" = (
-/obj/structure/table/wood,
-/obj/item/toy/cards/deck/syndicate{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/item/storage/pill_bottle/dice{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "EY" = (
 /obj/machinery/telecomms/relay/preset/ruskie{
@@ -5761,6 +5767,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/syndicate_lava_base/medbay)
+"FD" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/wood,
+/area/ruin/unpowered/syndicate_lava_base/bar)
 "Gv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -5879,6 +5899,13 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
+"Je" = (
+/obj/structure/table/optable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/ruin/unpowered/syndicate_lava_base/medbay)
 "Jj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -6160,7 +6187,16 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/bar)
-"Nu" = (
+"NK" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/backpack/duffelbag/syndie/surgery{
+	pixel_x = 11;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/white/side,
+/area/ruin/unpowered/syndicate_lava_base/medbay)
+"NL" = (
 /obj/effect/turf_decal/box/white/corners{
 	dir = 8
 	},
@@ -6174,6 +6210,7 @@
 /obj/item/circuitboard/machine/deep_fryer,
 /obj/item/circuitboard/machine/cell_charger,
 /obj/item/circuitboard/machine/smoke_machine,
+/obj/item/circuitboard/machine/stasis,
 /obj/item/storage/part_replacer/bluespace,
 /obj/item/stock_parts/cell/bluespace,
 /obj/item/stock_parts/cell/bluespace,
@@ -6181,15 +6218,25 @@
 /obj/item/stock_parts/cell/bluespace,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
-"Ob" = (
-/obj/structure/table/wood,
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
+"NT" = (
+/obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/drinkingglasses,
-/turf/open/floor/wood,
-/area/ruin/unpowered/syndicate_lava_base/bar)
+/obj/item/disk/surgery/brainwashing{
+	pixel_x = -11;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/glass/bottle/morphine{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 6
+	},
+/area/ruin/unpowered/syndicate_lava_base/medbay)
 "Oh" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi_telecomms"
@@ -6313,15 +6360,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/syndicate_lava_base/bar)
-"Qv" = (
-/obj/structure/table/wood,
-/obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife{
-	pixel_x = 6
-	},
-/obj/machinery/reagentgrinder/kitchen,
-/turf/open/floor/wood,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "QJ" = (
 /obj/machinery/door/airlock/hatch{
@@ -6459,13 +6497,15 @@
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
-"SI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/defibrillator{
-	pixel_x = 1;
-	pixel_y = 2
+"Tc" = (
+/obj/machinery/light/small{
+	dir = 1
 	},
-/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/operating{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -6617,7 +6657,7 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/chemistry)
-"XT" = (
+"WQ" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6630,6 +6670,7 @@
 	dir = 8
 	},
 /obj/item/folder/red,
+/obj/item/stamp/syndiround,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "XW" = (
@@ -6722,6 +6763,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
+"Zr" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 5;
+	height = 5;
+	id = "syndicatelavalandbase_cargo";
+	name = "Syndicate Lavaland Base: Cargo Bay Dock";
+	width = 11
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "ZV" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi_bar"
@@ -6923,7 +6975,7 @@ mn
 mn
 mn
 mn
-mn
+LH
 ab
 ab
 ab
@@ -7047,12 +7099,12 @@ ab
 ab
 ab
 ab
+DC
 eh
 eh
 eh
 eh
 eh
-LH
 ab
 ab
 ab
@@ -7182,7 +7234,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 "}
 (10,1,1) = {"
 aa
@@ -7223,7 +7275,7 @@ Oh
 IO
 nl
 Zi
-XT
+WQ
 ov
 mn
 ab
@@ -7232,7 +7284,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 "}
 (11,1,1) = {"
 aa
@@ -7399,7 +7451,7 @@ ab
 ab
 ac
 eh
-fi
+vR
 fA
 gu
 gV
@@ -7496,7 +7548,7 @@ ac
 ab
 ac
 ac
-LH
+ae
 ae
 ae
 ae
@@ -7577,19 +7629,19 @@ EZ
 oI
 oD
 St
+ts
 ab
 ab
 ab
 ab
 ab
-aa
 "}
 (18,1,1) = {"
 ab
 ab
 ab
 ab
-ae
+LH
 ae
 aq
 aq
@@ -7632,7 +7684,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
 (19,1,1) = {"
 ab
@@ -7681,8 +7733,8 @@ ab
 ab
 ab
 ab
-aa
-aa
+ab
+ab
 "}
 (20,1,1) = {"
 aa
@@ -7717,8 +7769,8 @@ jN
 jZ
 kJ
 yP
-lz
-Ob
+FD
+eE
 YQ
 jy
 jy
@@ -7732,7 +7784,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
 (21,1,1) = {"
 aa
@@ -7766,7 +7818,7 @@ jN
 jZ
 ko
 kK
-EG
+CN
 lA
 lX
 mw
@@ -7867,7 +7919,7 @@ nJ
 kq
 oK
 lk
-Qv
+Er
 lZ
 mx
 jy
@@ -8349,7 +8401,7 @@ dL
 eb
 ey
 eX
-Nu
+NL
 Ou
 gM
 hi
@@ -8371,7 +8423,7 @@ lJ
 mf
 mD
 lI
-nB
+NK
 kQ
 kQ
 ac
@@ -8417,11 +8469,11 @@ kj
 kw
 kT
 tU
-SI
+wu
 kQ
-mE
-nb
-nC
+Tc
+Je
+NT
 kQ
 ac
 ab
@@ -8550,7 +8602,7 @@ ee
 eB
 fb
 fu
-gb
+cg
 gQ
 hl
 gQ
@@ -8900,7 +8952,7 @@ ab
 ab
 ab
 ab
-ab
+Zr
 ab
 ab
 ab
@@ -8992,7 +9044,7 @@ aa
 aa
 ab
 ab
-aa
+ab
 ab
 ab
 ab
@@ -9043,8 +9095,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+ab
+ab
 ab
 ab
 ab
@@ -9095,22 +9147,22 @@ aa
 aa
 aa
 aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 aa
 aa
-aa
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
 ab
 ab
 ab

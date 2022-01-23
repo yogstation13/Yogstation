@@ -27,6 +27,10 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	name = "Tourist"
 	icon_state = "Tourist"
 
+/obj/effect/landmark/start/yogs/brigphsyician
+	name = "Brig Physician"
+	icon_state = "Brig Physician"
+
 /obj/effect/landmark/stationroom
 	var/list/template_names = list()
 	/// Whether or not we can choose templates that have already been chosen
@@ -85,10 +89,9 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon = 'yogstation/icons/rooms/box/bar.dmi'
 	icon_state = "bar_box"
 
-/obj/effect/landmark/stationroom/box/bar/choose()
-	. = ..()
-	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
-		return "Bar Irish"
+/obj/effect/landmark/stationroom/box/bar/load(template_name)
+	GLOB.stationroom_landmarks -= src
+	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
 	template_names = list("Engine SM", "Engine Singulo And Tesla", "Engine TEG")
@@ -112,8 +115,6 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(4)
 			return "Engine TEG"
 
-/obj/effect/landmark/stationroom/box/xenobridge
-	template_names = list("Xenobiology Bridge", "Xenobiology Lattice")
 
 /obj/effect/landmark/stationroom/box/testingsite
 	template_names = list("Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range", "Clerk Bomb Range")
@@ -161,3 +162,23 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 /obj/effect/landmark/stationroom/maint/tenxten
 	template_names = list("Maint aquarium", "Maint bigconstruction", "Maint bigtheatre", "Maint deltalibrary", "Maint graffitiroom", "Maint junction", "Maint podrepairbay", "Maint pubbybar", "Maint roosterdome", "Maint sanitarium", "Maint snakefighter", "Maint vault", "Maint ward", "Maint assaultpod", "Maint maze", "Maint maze2", "Maint boxfactory",
 	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops")
+
+/obj/effect/landmark/start/infiltrator
+	name = "infiltrator"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "snukeop_spawn"
+
+/obj/effect/landmark/start/infiltrator/Initialize()
+	..()
+	GLOB.infiltrator_start += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/start/infiltrator_objective
+	name = "infiltrator objective items"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "random_loot"
+
+/obj/effect/landmark/start/infiltrator_objective/Initialize()
+	..()
+	GLOB.infiltrator_objective_items += loc
+	return INITIALIZE_HINT_QDEL 

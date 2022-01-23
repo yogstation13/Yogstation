@@ -7,7 +7,7 @@
 		return
 	
 	listclearnulls(SSticker.queued_players)
-	to_chat(usr,"<span class='notice'><b>List of queued players:</b></span>", confidential=TRUE)
+	to_chat(usr,span_notice("<b>List of queued players:</b>"), confidential=TRUE)
 	for(var/mob/dead/new_player/guy in SSticker.queued_players)
 		to_chat(usr,"\t[guy]", confidential=TRUE)
 
@@ -23,7 +23,7 @@
 	var/list/queue = SSticker.queued_players
 	
 	if(!queue.len)
-		to_chat(usr,"<span class='warning'>There is nobody in the server queue!</span>", confidential=TRUE)
+		to_chat(usr,span_warning("There is nobody in the server queue!"), confidential=TRUE)
 		return
 	
 	if(alert("Are you sure you want to allow [queue.len] people to skip the queue and join the game?",,"Yes","No") != "Yes")
@@ -31,7 +31,7 @@
 	
 	//Below is basically a clone of whatever's in that one part of check_queue()
 	for (var/mob/dead/new_player/NP in queue)
-		to_chat(NP, "<span class='userdanger'>The alive players limit has been released!<br><a href='?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a></span>")
+		to_chat(NP, span_userdanger("The alive players limit has been released!<br><a href='?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a>"))
 		SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
 		NP.LateChoices()
 	queue.len = 0

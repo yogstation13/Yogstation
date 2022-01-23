@@ -11,6 +11,10 @@
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_NUM
 
+/datum/config_entry/keyed_list/job_species_whitelist	// Assigns species-based exceptions to Command roles
+	key_mode = KEY_MODE_TYPE
+	value_mode = VALUE_MODE_TEXT
+
 /datum/config_entry/keyed_list/max_pop/ValidateListEntry(key_name)
 	return key_name in config.modes
 
@@ -92,6 +96,8 @@
 	config_entry_value = 8
 	integer = FALSE
 	min_val = 1
+
+/datum/config_entry/number/min_security_scaling_coeff	//how much does the amount of players get divided by to determine forced security positions
 
 /datum/config_entry/number/abductor_scaling_coeff	//how many players per abductor team
 	config_entry_value = 15
@@ -395,3 +401,10 @@
 
 /datum/config_entry/number/engine_type
 	config_entry_value = 3
+
+//Shuttle size limiter
+/datum/config_entry/number/max_shuttle_count
+	config_entry_value = 6
+
+/datum/config_entry/number/max_shuttle_size
+	config_entry_value = 250

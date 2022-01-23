@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			return FALSE
 	if(zFall(A, ++levels))
 		return FALSE
-	A.visible_message("<span class='danger'>[A] crashes into [src]!</span>")
+	A.visible_message(span_danger("[A] crashes into [src]!"))
 	A.onZImpact(src, levels)
 	return TRUE
 
@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		return FALSE
 	if(!force && (!can_zFall(A, levels, target) || !A.can_zFall(src, levels, target, DOWN)))
 		return FALSE
-	A.visible_message("<span class='danger'>[A] falls through [src]!</span>")
+	A.visible_message(span_danger("[A] falls through [src]!"))
 	A.zfalling = TRUE
 	A.forceMove(target)
 	A.zfalling = FALSE
@@ -354,13 +354,13 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(.)
 		return
 	if(length(src_object.contents()))
-		to_chat(usr, "<span class='notice'>You start dumping out the contents...</span>")
-		if(!do_after(usr,20,target=src_object.parent))
+		to_chat(usr, span_notice("You start dumping out the contents..."))
+		if(!do_after(usr, 2 SECONDS, target=src_object.parent))
 			return FALSE
 
 	var/list/things = src_object.contents()
 	var/datum/progressbar/progress = new(user, things.len, src)
-	while (do_after(usr, 10, TRUE, src, FALSE, CALLBACK(src_object, /datum/component/storage.proc/mass_remove_from_storage, src, things, progress)))
+	while (do_after(usr, 1 SECONDS, TRUE, src, FALSE, CALLBACK(src_object, /datum/component/storage.proc/mass_remove_from_storage, src, things, progress)))
 		stoplag(1)
 	qdel(progress)
 

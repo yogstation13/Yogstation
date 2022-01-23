@@ -248,6 +248,16 @@
 	time = 4 SECONDS
 	category = CAT_ROBOT
 
+/datum/crafting_recipe/Atmosbot
+	name = "Automatic Station Stabilizer Bot"
+	result = /mob/living/simple_animal/bot/atmosbot
+	reqs = list(/obj/item/analyzer = 1,
+				/obj/item/bodypart/r_arm/robot = 1,
+				/obj/item/assembly/prox_sensor = 1,
+				/obj/item/grenade/chem_grenade/smart_metal_foam = 1)
+	time = 6 SECONDS
+	category = CAT_ROBOT
+
 /datum/crafting_recipe/improvised_pneumatic_cannon //Pretty easy to obtain but
 	name = "Pneumatic Cannon"
 	result = /obj/item/pneumatic_cannon/ghetto
@@ -271,6 +281,7 @@
 	time = 1 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+	always_availible = FALSE
 
 /datum/crafting_recipe/pulseslug
 	name = "Pulse Slug Shell"
@@ -445,7 +456,7 @@
 	name = "Paper Frames"
 	result = /obj/item/stack/sheet/paperframes/five
 	time = 1 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 5, /obj/item/paper = 20)
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 5, /obj/item/paper = 5)
 	category = CAT_MISC
 
 /datum/crafting_recipe/naturalpaper
@@ -485,6 +496,7 @@
 	reqs = 	list(/obj/item/stack/rods = 4, /obj/item/stack/sheet/metal = 1)
 	result = /obj/machinery/shower
 	category = CAT_MISC
+	time = 15 SECONDS
 
 /datum/crafting_recipe/sink
 	name = "Sink"
@@ -566,6 +578,14 @@
 	reqs = list(/obj/item/stack/sheet/bone = 6)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/tribalcoat
+	name = "Tribal Coat"
+	result = /obj/item/clothing/suit/armor/tribalcoat
+	time = 3 SECONDS
+	reqs = list(/obj/item/stack/sheet/leather = 2,
+			/obj/item/stack/sheet/bone = 2)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/bonetalisman
 	name = "Bone Talisman"
 	result = /obj/item/clothing/accessory/talisman
@@ -580,6 +600,13 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2,
 				 /obj/item/stack/sheet/animalhide/goliath_hide = 1)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/resinband
+	name = "Resin armband"
+	result = /obj/item/clothing/accessory/resinband
+	time = 2 SECONDS
+	reqs = list(/obj/item/stack/sheet/ashresin = 3)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bracers
@@ -604,12 +631,20 @@
 	reqs = list(/obj/item/stack/sheet/bone = 4)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/resincrown
+	name = "Resin Crown"
+	result = /obj/item/clothing/head/crown/resin
+	time = 4 SECONDS
+	reqs = list(/obj/item/stack/sheet/ashresin = 2,
+		/obj/item/stack/sheet/mineral/mythril = 1)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/goliathcloak
 	name = "Goliath Cloak"
 	result = /obj/item/clothing/suit/hooded/cloak/goliath
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 2,
-				/obj/item/stack/sheet/sinew = 2,
+				/obj/item/stack/sheet/sinew = 1,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 2) //it takes 4 goliaths to make 1 cloak if the plates are skinned
 	category = CAT_PRIMAL
 
@@ -672,6 +707,36 @@
 				/obj/item/stack/sheet/animalhide/ashdrake = 5)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/carpsuit
+	name = "Space Dragon Armour"
+	result = /obj/item/clothing/suit/space/hardsuit/carp/dragon
+	time = 6 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 10,
+				/obj/item/stack/sheet/sinew = 2,
+				/obj/item/stack/sheet/animalhide/carpdragon = 5)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/sinewbelt
+	name = "Sinew Belt"
+	result = /obj/item/storage/belt/mining/primitive
+	time = 5 SECONDS
+	reqs = list(/obj/item/stack/sheet/sinew = 4)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/medpouchcloth
+	name = "Cloth Medicinal Pouch"
+	result = /obj/item/storage/bag/medpouch
+	time = 5 SECONDS
+	reqs = list(/obj/item/stack/sheet/cloth = 3)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/medpouchleather //whatever material tickles your fancy.
+	name = "Leather Medicinal Pouch"
+	result = /obj/item/storage/bag/medpouch
+	time = 5 SECONDS
+	reqs = list(/obj/item/stack/sheet/leather = 1)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/firebrand
 	name = "Firebrand"
 	result = /obj/item/match/firebrand
@@ -712,10 +777,11 @@
 
 /datum/crafting_recipe/chitinspear
 	name = "Chitin Spear"
-	result = /obj/item/twohanded/chitinspear //take a bonespear, reinforce it with some chitin, profit?
+	result = /obj/item/twohanded/bonespear/chitinspear //take a bonespear, reinforce it with some chitin and resin, profit?
 	time = 7.5 SECONDS
 	reqs = list(/obj/item/twohanded/bonespear = 1,
-				/obj/item/stack/sheet/sinew = 4,
+				/obj/item/stack/sheet/sinew = 3,
+				/obj/item/stack/sheet/ashresin = 1,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 6)
 	category = CAT_PRIMAL
 
@@ -739,6 +805,13 @@
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 3)
 	result = /obj/item/reagent_containers/glass/bucket/wooden
 	category = CAT_PRIMAL
+
+/datum/crafting_recipe/cleanleather 
+	name = "Clean Leather"
+	result = /obj/item/stack/sheet/wetleather
+	reqs = list(/obj/item/stack/sheet/hairlesshide = 1, /datum/reagent/water = 20)
+	time = 10 SECONDS //its pretty hard without the help of a washing machine.
+	category = CAT_MISC
 
 /datum/crafting_recipe/headpike
 	name = "Spike Head (Glass Spear)"
@@ -884,3 +957,13 @@
 				)
 	category = CAT_MISC
 
+// Shank - Makeshift weapon that can embed on throw
+/datum/crafting_recipe/shank
+	name = "Shank"
+	reqs = list(/obj/item/shard = 1,
+				/obj/item/stack/rods = 1,
+				/obj/item/stack/cable_coil = 10)
+	result = /obj/item/kitchen/knife/shank
+	time = 10
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON

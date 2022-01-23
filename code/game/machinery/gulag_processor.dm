@@ -50,9 +50,9 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 /obj/machinery/gulag_processor/examine(mob/user)
 	. = ..()
 	if(id)
-		. += "<span class='notice'>\The [id] ID has been inserted.</span>"
+		. += span_notice("\The [id] ID has been inserted.")
 	else
-		. += "<span class='warning'>There is no ID inserted.</span>"
+		. += span_warning("There is no ID inserted.")
 
 /obj/machinery/gulag_processor/AltClick(mob/living/user)
 	if(id)
@@ -86,10 +86,10 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 		if(!id)
 			I.moveToNullspace()
 			id = I
-			to_chat(user, "<span class='notice'>You insert [I].</span>")
+			to_chat(user, span_notice("You insert [I]."))
 			return
 		else
-			to_chat(user, "<span class='notice'>There's an ID inserted already.</span>")
+			to_chat(user, span_notice("There's an ID inserted already."))
 
 
 	return ..()
@@ -120,7 +120,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 
 /obj/machinery/gulag_processor/proc/toggle_open()
 	if(panel_open)
-		to_chat(usr, "<span class='notice'>Close the maintenance panel first.</span>")
+		to_chat(usr, span_notice("Close the maintenance panel first."))
 		return
 
 	if(state_open)
@@ -137,10 +137,10 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 			handle_prisoner(id)
 			id = null
 		else
-			visible_message("<span class='warning'>No ID inserted. Processing aborted..</span>")
+			visible_message(span_warning("No ID inserted. Processing aborted.."))
 	else
 		open_machine()
-		visible_message("<span class='warning'>No occupant detected. Processing aborted.</span>")
+		visible_message(span_warning("No occupant detected. Processing aborted."))
 		return
 
 // strips and stores all occupant's items
@@ -185,7 +185,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 	if(!prisoner.handcuffed)
 		prisoner.handcuffed = new /obj/item/restraints/handcuffs/cable/zipties/used(prisoner)
 		prisoner.update_handcuffed()
-	visible_message("<span class='warning'>Prisoner Processed.</span>")
+	visible_message(span_warning("Prisoner Processed."))
 
 /obj/item/circuitboard/machine/gulag_processor
 	name = "labor camp processor (Machine Board)"

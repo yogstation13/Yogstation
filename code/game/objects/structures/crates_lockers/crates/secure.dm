@@ -31,7 +31,7 @@
 
 /obj/structure/closet/crate/secure/proc/boom(mob/user)
 	if(user)
-		to_chat(user, "<span class='danger'>The crate's anti-tamper system activates!</span>")
+		to_chat(user, span_danger("The crate's anti-tamper system activates!"))
 		log_bomber(user, "has detonated a", src)
 	for(var/atom/movable/AM in src)
 		qdel(AM)
@@ -84,7 +84,7 @@
 
 /obj/structure/closet/crate/secure/owned/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It's locked with a privacy lock, and can only be unlocked by the buyer's ID.</span>"
+	. += span_notice("It's locked with a privacy lock, and can only be unlocked by the buyer's ID.")
 
 /obj/structure/closet/crate/secure/owned/Initialize(mapload, datum/bank_account/_buyer_account)
 	. = ..()
@@ -96,15 +96,15 @@
 			if(privacy_lock)
 				var/obj/item/card/id/id_card = user.get_idcard(TRUE)
 				if(!id_card || !id_card.registered_account || (id_card.registered_account != buyer_account))
-					to_chat(user, "<span class='notice'>Bank account does not match with buyer!</span>")
+					to_chat(user, span_notice("Bank account does not match with buyer!"))
 					return
 			if(iscarbon(user))
 				add_fingerprint(user)
 			locked = !locked
-			user.visible_message("<span class='notice'>[user] [locked ? null : "un"]locks [src].</span>",
-							"<span class='notice'>You [locked ? null : "un"]lock [src].</span>")
+			user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
+							span_notice("You [locked ? null : "un"]lock [src]."))
 			update_icon()
 		else if(!silent)
-			to_chat(user, "<span class='notice'>Access Denied</span>")
+			to_chat(user, span_notice("Access Denied"))
 	else if(secure && broken)
-		to_chat(user, "<span class='warning'>\The [src] is broken!</span>")
+		to_chat(user, span_warning("\The [src] is broken!"))

@@ -29,7 +29,7 @@
 	mob_size = MOB_SIZE_LARGE
 	layer = LARGE_MOB_LAYER
 	movement_type = FLYING
-	var/time_since_last_roar = 0
+	var/time_to_next_roar = 0
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize()
 	. = ..()
@@ -52,18 +52,17 @@
 	I.pixel_x -= pixel_x
 	I.pixel_y -= pixel_y
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smolgenitor", I)
-	time_since_last_roar = world.time + 300
+	time_to_next_roar = world.time + 30 SECONDS
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Life()
 	..()
-	if(time_since_last_roar <= world.time)
+	if(time_to_next_roar + 10 SECONDS <= world.time) //gives time to roar manually if you like want to do that
 		roar()
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	..()
-	if(time_since_last_roar > world.time + 350) //at least give it SOME time
-		return
-	roar()
+	if(time_to_next_roar <= world.time)
+		roar()
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Process_Spacemove()
 	return TRUE
@@ -76,9 +75,9 @@
 		else if(isliving(M))
 			var/mob/living/L = M
 			if(L != src) //OH GOD OH FUCK I'M SCARING MYSELF
-				to_chat(M, "<span class='boldannounce'>You stand paralyzed in the shadow of the cold as it descends from on high.</span>")
+				to_chat(M, span_boldannounce("You stand paralyzed in the shadow of the cold as it descends from on high."))
 				L.Stun(20)
-	time_since_last_roar = world.time + 400
+	time_to_next_roar = world.time + 30 SECONDS
 
 /obj/effect/proc_holder/spell/targeted/progenitor_curse
 	name = "Viscerate Mind"
@@ -89,18 +88,15 @@
 	action_icon_state = "veil_mind"
 	action_background_icon_state = "bg_alien"
 
-/obj/effect/proc_holder/spell/aimed/update_icon()
-	return
-
 /obj/effect/proc_holder/spell/targeted/progenitor_curse/cast(list/targets, mob/user = usr)
 	if(!targets.len)
-		to_chat(user, "<span class='notice'>You can't reach anyone's minds.</span>")
+		to_chat(user, span_notice("You can't reach anyone's minds."))
 		return
 	var/mob/living/target = targets[1]
 	var/mob/living/M = target
 	var/zoinks = pick(0.1, 0.5, 1)//like, this isn't even my final form!
-	usr.visible_message("<span class='warning'>[usr]'s sigils flare as it glances at [M]!</span>", \
-						"<span class='velvet'>You direct [zoinks]% of your psionic power into [M]'s mind!.</span>")
+	usr.visible_message(span_warning("[usr]'s sigils flare as it glances at [M]!"), \
+						span_velvet("You direct [zoinks]% of your psionic power into [M]'s mind!."))
 	M.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/narsie_act()

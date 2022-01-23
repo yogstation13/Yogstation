@@ -1,7 +1,7 @@
 /obj/machinery/recharger
 	name = "recharger"
 	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "recharger0"
+	icon_state = "recharger"
 	desc = "A charging dock for energy based weaponry."
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 4
@@ -10,6 +10,10 @@
 	pass_flags = PASSTABLE
 	var/obj/item/charging = null
 	var/recharge_coeff = 1
+
+	/// Has a special 
+	var/icon_state_filled = null
+	var/icon_state_open = "rechargeropen"
 
 	var/static/list/allowed_devices = typecacheof(list(
 		/obj/item/gun/energy,
@@ -24,12 +28,12 @@
 /obj/machinery/recharger/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		. += "<span class='warning'>You're too far away to examine [src]'s contents and display!</span>"
+		. += span_warning("You're too far away to examine [src]'s contents and display!")
 		return
 
 	if(charging)
-		. += {"<span class='notice'>\The [src] contains:</span>
-		<span class='notice'>- \A [charging].</span>"}
+		. += {"[span_notice("\The [src] contains:")]
+		[span_notice("- \A [charging].")]"}
 
 	if(!(stat & (NOPOWER|BROKEN)))
 		. += "<span class='notice'>The status display reads:<span>"
@@ -44,19 +48,21 @@
 	if (new_charging)
 		START_PROCESSING(SSmachines, src)
 		use_power = ACTIVE_POWER_USE
-		update_icon(scan = TRUE)
+		if(icon_state_filled)
+			icon_state = icon_state_filled
 	else
 		use_power = IDLE_POWER_USE
-		update_icon()
+		icon_state = initial(icon_state)
+	update_icon()
 
 /obj/machinery/recharger/attackby(obj/item/G, mob/user, params)
 	if(G.tool_behaviour == TOOL_WRENCH)
 		if(charging)
-			to_chat(user, "<span class='notice'>Remove the charging item first!</span>")
+			to_chat(user, span_notice("Remove the charging item first!"))
 			return
 		setAnchored(!anchored)
 		power_change()
-		to_chat(user, "<span class='notice'>You [anchored ? "attached" : "detached"] [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "attached" : "detached"] [src]."))
 		G.play_tool_sound(src)
 		return
 
@@ -70,13 +76,13 @@
 			//Checks to make sure he's not in space doing it, and that the area got proper power.
 			var/area/a = get_area(src)
 			if(!isarea(a) || a.power_equip == 0)
-				to_chat(user, "<span class='notice'>[src] blinks red as you try to insert [G].</span>")
+				to_chat(user, span_notice("[src] blinks red as you try to insert [G]."))
 				return 1
 
 			if (istype(G, /obj/item/gun/energy))
 				var/obj/item/gun/energy/E = G
 				if(!E.can_charge)
-					to_chat(user, "<span class='notice'>Your gun has no external power connector.</span>")
+					to_chat(user, span_notice("Your gun has no external power connector."))
 					return 1
 
 			if(!user.transferItemToLoc(G, src))
@@ -84,11 +90,11 @@
 			setCharging(G)
 
 		else
-			to_chat(user, "<span class='notice'>[src] isn't connected to anything!</span>")
+			to_chat(user, span_notice("[src] isn't connected to anything!"))
 		return 1
 
 	if(anchored && !charging)
-		if(default_deconstruction_screwdriver(user, "rechargeropen", "recharger0", G))
+		if(default_deconstruction_screwdriver(user, "rechargeropen", "recharger", G))
 			return
 
 		if(panel_open && G.tool_behaviour == TOOL_CROWBAR)
@@ -119,23 +125,20 @@
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		return PROCESS_KILL
 
-	var/using_power = 0
 	if(charging)
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
 		if(C)
 			if(C.charge < C.maxcharge)
 				C.give(C.chargerate * recharge_coeff)
 				use_power(250 * recharge_coeff)
-				using_power = 1
-			update_icon(using_power)
+			update_icon()
 
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 			var/obj/item/ammo_box/magazine/recharge/R = charging
 			if(R.stored_ammo.len < R.max_ammo)
 				R.stored_ammo += new R.ammo_type(R)
 				use_power(200 * recharge_coeff)
-				using_power = 1
-			update_icon(using_power)
+			update_icon()
 			return
 	else
 		return PROCESS_KILL
@@ -156,20 +159,26 @@
 				B.cell.charge = 0
 
 
-/obj/machinery/recharger/update_icon(using_power = 0, scan)	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
-	if(stat & (NOPOWER|BROKEN) || !anchored)
-		icon_state = "rechargeroff"
-		return
-	if(scan)
-		icon_state = "rechargeroff"
-		return
-	if(panel_open)
-		icon_state = "rechargeropen"
-		return
+/obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
+	cut_overlays()
 	if(charging)
-		if(using_power)
-			icon_state = "recharger1"
-		else
-			icon_state = "recharger2"
-		return
-	icon_state = "recharger0"
+		var/mutable_appearance/scan = mutable_appearance(icon, "[initial(icon_state)]filled")
+		var/obj/item/stock_parts/cell/C = charging.get_cell()
+		if(C)
+			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(C.charge/C.maxcharge, 0.01))
+		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
+			var/obj/item/ammo_box/magazine/recharge/R = charging
+			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(R.stored_ammo.len/R.max_ammo, 0.01))
+		add_overlay(scan)
+
+/obj/machinery/recharger/wallrecharger
+	name = "wall recharger"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "wrecharger"
+	desc = "A wall mounted charging dock for energy based weaponry."
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 5
+	active_power_usage = 400
+
+	icon_state_filled = "wrechargerweapon"
+	icon_state_open = "wrechargeropen"

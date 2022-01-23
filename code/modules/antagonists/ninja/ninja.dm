@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	var/mob/living/M = mob_override || owner.current
 	for(var/obj/item/implant/explosive/E in M.implants)
 		if(E)
-			UnregisterSignal(M, COMSIG_IMPLANT_ACTIVATED, .proc/on_death)
+			UnregisterSignal(M, COMSIG_IMPLANT_ACTIVATED)
 	update_ninja_icons_removed(M)
 
 /datum/antagonist/ninja/proc/equip_space_ninja(mob/living/carbon/human/H = owner.current)
@@ -62,6 +62,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 			if(2)	//steal
 				var/datum/objective/steal/special/O = new /datum/objective/steal/special()
 				O.owner = owner
+				O.find_target()
 				objectives += O
 
 			if(3)	//protect/kill
@@ -97,7 +98,12 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 					O.explanation_text = "Steal the brain of [M.current.real_name]."
 					objectives += O
 				else										//capture
-					var/datum/objective/capture/O = new /datum/objective/capture()
+					var/datum/objective/capture/O
+					if(helping_station) {
+						O = new /datum/objective/capture()
+					} else {
+						O = new /datum/objective/capture/living()
+					}
 					O.owner = owner
 					O.gen_amount_goal()
 					objectives += O
@@ -123,6 +129,10 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	to_chat(owner.current, "I am an elite mercenary assassin of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!")
 	to_chat(owner.current, "Surprise is my weapon. Shadows are my armor. Without them, I am nothing. (//initialize your suit by right clicking on it, to use abilities like stealth)!")
 	to_chat(owner.current, "Officially, [helping_station?"Nanotrasen":"The Syndicate"] are my employer.")
+	to_chat(owner.current, "<b>If you are new to playing the Space Ninja, please review the <a href='https://wiki.yogstation.net/wiki/Space_Ninja'>Space Ninja</a> wiki entry for explanations and abilities.</b>") //Yogs
+	if(helping_station) {
+		to_chat(owner.current, "<b>As a Nanotrasen ninja, you are beholden to <a href='https://forums.yogstation.net/help/rules/#rule-3_1_1'>rule 3.1.1</a>: Do not murderbone.</b>")
+	}
 	owner.announce_objectives()
 	return
 
@@ -147,7 +157,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 				var/mob/living/LI = L
 				LI.Knockdown(120)
 				LI.blind_eyes(10)
-				to_chat(L, "<span class='danger'>You lose your footing as the dojo suddenly disappears. You're free!</span>")
+				to_chat(L, span_danger("You lose your footing as the dojo suddenly disappears. You're free!"))
 				playsound(L, 'sound/effects/phasein.ogg', 25, 1)
 				playsound(L, 'sound/effects/sparks2.ogg', 50, 1)
 		GLOB.ninja_capture -= L

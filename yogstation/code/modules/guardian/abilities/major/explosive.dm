@@ -24,7 +24,7 @@
 		var/mob/living/M = target
 		if(!M.anchored && M != guardian.summoner?.current && !guardian.hasmatchingsummoner(M))
 			new /obj/effect/temp_visual/guardian/phase/out(get_turf(M))
-			do_teleport(M, M, 10, channel = TELEPORT_CHANNEL_BLUESPACE)
+			do_teleport(M, M, 10, channel = TELEPORT_CHANNEL_WORMHOLE)
 			for(var/mob/living/L in range(1, M))
 				if(guardian.hasmatchingsummoner(L)) //if the summoner matches don't hurt them
 					continue
@@ -36,26 +36,26 @@
 	if(!istype(A))
 		return
 	if(!guardian.is_deployed())
-		to_chat(guardian, "<span class='danger'><B>You must be manifested to create bombs!</B></span>")
+		to_chat(guardian, span_bolddanger("You must be manifested to create bombs!"))
 		return
 	if(isobj(A) && guardian.Adjacent(A))
 		if(bomb_cooldown <= world.time && !guardian.stat)
-			to_chat(guardian, "<span class='danger'><B>Success! Bomb armed!</B></span>")
+			to_chat(guardian, span_bolddanger("Success! Bomb armed!"))
 			bomb_cooldown = world.time + 200
 			RegisterSignal(A, COMSIG_PARENT_EXAMINE, .proc/display_examine)
 			RegisterSignal(A, boom_signals, .proc/kaboom)
 			addtimer(CALLBACK(src, .proc/disable, A), master_stats.potential * 18 * 10, TIMER_UNIQUE|TIMER_OVERRIDE)
 			guardian.bombs += A
 		else
-			to_chat(guardian, "<span class='danger'><B>Your powers are on cooldown! You must wait 20 seconds between bombs.</B></span>")
+			to_chat(guardian, span_bolddanger("Your powers are on cooldown! You must wait 20 seconds between bombs."))
 
 /datum/guardian_ability/major/explosive/proc/kaboom(atom/source, mob/living/explodee)
 	if(!istype(explodee))
 		return
 	if(explodee == guardian || explodee == guardian.summoner?.current || guardian.hasmatchingsummoner(explodee))
 		return
-	to_chat(explodee, "<span class='danger'><B>[source] was boobytrapped!</B></span>")
-	to_chat(guardian, "<span class='danger'><B>Success! Your trap caught [explodee]</B></span>")
+	to_chat(explodee, span_bolddanger("[source] was boobytrapped!"))
+	to_chat(guardian, span_bolddanger("Success! Your trap caught [explodee]"))
 	var/turf/T = get_turf(source)
 	playsound(T,'sound/effects/explosion2.ogg', 200, 1)
 	new /obj/effect/temp_visual/explosion(T)
@@ -64,12 +64,12 @@
 	UNREGISTER_BOMB_SIGNALS(source)
 
 /datum/guardian_ability/major/explosive/proc/disable(atom/A)
-	to_chat(src, "<span class='danger'><B>Failure! Your trap didn't catch anyone this time.</B></span>")
+	to_chat(src, span_bolddanger("Failure! Your trap didn't catch anyone this time."))
 	guardian.bombs -= A
 	UNREGISTER_BOMB_SIGNALS(A)
 
 /datum/guardian_ability/major/explosive/proc/display_examine(datum/source, mob/user, text)
-	text += "<span class='holoparasite'>It glows with a strange <font color=\"[guardian.namedatum.colour]\">light</font>!</span>"
+	text += span_holoparasite("It glows with a strange <font color=\"[guardian.namedatum.colour]\">light</font>!")
 
 
 /mob/living/simple_animal/hostile/guardian/proc/DetonateBomb()
@@ -82,6 +82,6 @@
 		UnregisterSignal(picked_bomb, list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND));
 		UnregisterSignal(picked_bomb, COMSIG_PARENT_EXAMINE);
 		explosion(picked_bomb, -1, 1, 1, 1)
-		to_chat(src, "<span class='danger'><B>Bomb detonated.</span></B>")
+		to_chat(src, span_bolddanger("Bomb detonated."))
 
 #undef UNREGISTER_BOMB_SIGNALS

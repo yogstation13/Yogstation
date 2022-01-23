@@ -1,26 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"i" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
-"j" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
-"x" = (
+"l" = (
 /obj/structure/bed,
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -31,11 +10,29 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
-"E" = (
-/turf/closed/wall,
-/area/crew_quarters/dorms)
-"H" = (
+/area/template_noop)
+"u" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"z" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"I" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -45,8 +42,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
-"L" = (
+/area/template_noop)
+"Q" = (
 /obj/structure/table,
 /obj/machinery/light/small{
 	dir = 8
@@ -58,42 +55,24 @@
 /obj/item/paper,
 /obj/item/pen,
 /turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
-"M" = (
+/area/template_noop)
+"R" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
+/area/template_noop)
 
 (1,1,1) = {"
-E
-E
-E
-E
+Q
+R
 "}
 (2,1,1) = {"
-E
-L
-M
-E
+u
+I
 "}
 (3,1,1) = {"
-E
-j
-H
-E
-"}
-(4,1,1) = {"
-E
-x
-i
-E
-"}
-(5,1,1) = {"
-E
-E
-i
-E
+l
+z
 "}

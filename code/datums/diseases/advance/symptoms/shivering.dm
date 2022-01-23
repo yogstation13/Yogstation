@@ -20,8 +20,8 @@ Bonus
 	desc = "The virus inhibits the body's thermoregulation, cooling the body down."
 	stealth = 0
 	resistance = 2
-	stage_speed = 2
-	transmittable = 2
+	stage_speed = 3
+	transmittable = 3
 	level = 2
 	severity = 2
 	symptom_delay_min = 10
@@ -48,9 +48,9 @@ Bonus
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	if(!unsafe || A.stage < 4)
-		to_chat(M, "<span class='warning'>[pick("You feel cold.", "You shiver.")]</span>")
+		to_chat(M, span_warning("[pick("You feel cold.", "You shiver.")]"))
 	else
-		to_chat(M, "<span class='userdanger'>[pick("You feel your blood run cold.", "You feel ice in your veins.", "You feel like you can't heat up.", "You shiver violently." )]</span>")
+		to_chat(M, span_userdanger("[pick("You feel your blood run cold.", "You feel ice in your veins.", "You feel like you can't heat up.", "You shiver violently." )]"))
 	if(M.bodytemperature > BODYTEMP_COLD_DAMAGE_LIMIT || unsafe)
 		Chill(M, A)
 

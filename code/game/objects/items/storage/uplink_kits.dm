@@ -222,22 +222,21 @@
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
 /obj/item/stand_arrow/boss
-	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites."
+	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
 	kill_chance = 0
 	arrowtype = "tech"
 	var/datum/mind/owner
 	can_requiem = FALSE
 
-
-/obj/item/stand_arrow/boss/Initialize()
-	. = ..()
-	for(var/mob/living/M in range(0,src)) //this is probably a bad way of doing this help
-		if(M?.mind?.has_antag_datum(/datum/antagonist/traitor)) //don't think I have a better way of checking
-			owner = M.mind
+/obj/item/stand_arrow/boss/attack_self(mob/user)
+	if(owner || !user.mind)
+		return
+	to_chat(user, span_notice("You prick your finger on the arrow, linking the mindslave nanites to you!"))
+	owner = user.mind
 
 /obj/item/stand_arrow/boss/attack(mob/living/M, mob/living/user)
-	if(owner?.current && owner.current == user && owner.current == M) //you have a holoparasite injector for this exact purpose
-		to_chat(M, "<span class='warning'>Implanting yourself with mindslave nanites is probably a bad idea...</span>")
+	if(owner && owner.current == M && user == M) //you have a holoparasite injector for this exact purpose
+		to_chat(M, span_warning("Implanting yourself with mindslave nanites is probably a bad idea..."))
 		return
 	. = ..()
 

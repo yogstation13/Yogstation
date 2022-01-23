@@ -1,5 +1,10 @@
 /mob/living/carbon/human/say_mod(input, message_mode)
-	verb_say = dna.species.say_mod
+	var/rare_verb = LAZYLEN(dna.species.rare_say_mod) ? pick(dna.species.rare_say_mod) : null
+	if (rare_verb && prob(dna.species.rare_say_mod[rare_verb]))
+		verb_say = rare_verb
+	else
+		verb_say = dna.species.say_mod
+	
 	if(slurring)
 		return "slurs"
 	else
@@ -17,7 +22,7 @@
 		else
 			return real_name
 	if(istype(wear_mask, /obj/item/clothing/mask/gas/sechailer/swat/encrypted))
-		return "Unknown"
+		return splittext(src.tag, "_")[2] // Voice name will show up as their tag numbers to match ID
 	if(mind)
 		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
 		if(changeling && changeling.mimicing )

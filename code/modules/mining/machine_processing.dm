@@ -7,7 +7,7 @@
 	var/output_dir = SOUTH
 
 /obj/machinery/mineral/proc/unload_mineral(atom/movable/S)
-	if(!istype(S, /obj/item/stack/ore) && !istype(S, /obj/item/stack/sheet)) // Realistically who is gonna shove a sheet into the loading machine --Redmoogle
+	if(!istype(S, /obj/item/stack/ore) && !istype(S, /obj/item/stack/sheet) && !istype(S, /obj/item/storage/bag/money)) // Realistically who is gonna shove a sheet into the loading machine --Redmoogle
 		return
 	S.forceMove(drop_location())
 	var/turf/T = get_step(src,output_dir)
@@ -86,7 +86,7 @@
 /obj/machinery/mineral/processing_unit/Initialize()
 	. = ..()
 	proximity_monitor = new(src, 1)
-	AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/silver, /datum/material/gold, /datum/material/diamond, /datum/material/plasma, /datum/material/uranium, /datum/material/bananium, /datum/material/titanium, /datum/material/bluespace), INFINITY, TRUE, /obj/item/stack)
+	AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/silver, /datum/material/gold, /datum/material/diamond, /datum/material/plasma, /datum/material/uranium, /datum/material/bananium, /datum/material/titanium, /datum/material/bluespace, /datum/material/dilithium),INFINITY, TRUE, /obj/item/stack) //Yogs: added dilithium
 	stored_research = new /datum/techweb/specialized/autounlocking/smelter
 
 /obj/machinery/mineral/processing_unit/Destroy()

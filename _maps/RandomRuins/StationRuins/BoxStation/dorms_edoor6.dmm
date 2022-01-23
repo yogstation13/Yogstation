@@ -1,62 +1,20 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/structure/closet/secure_closet/personal,
+"m" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
+	dir = 8
 	},
 /turf/open/floor/carpet/exoticblue,
-/area/crew_quarters/dorms)
-"g" = (
-/obj/effect/landmark/xeno_spawn,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/carpet/exoticblue,
-/area/crew_quarters/dorms)
-"n" = (
+/area/template_noop)
+"o" = (
 /obj/structure/chair/office/dark{
 	dir = 1
 	},
 /turf/open/floor/carpet/exoticblue,
-/area/crew_quarters/dorms)
-"v" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
-"E" = (
-/turf/closed/wall,
-/area/crew_quarters/dorms)
-"I" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/obj/structure/table,
-/turf/open/floor/carpet/exoticblue,
-/area/crew_quarters/dorms)
-"S" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/carpet/exoticblue,
-/area/crew_quarters/dorms)
-"X" = (
+/area/template_noop)
+"x" = (
 /obj/structure/bed,
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -66,35 +24,47 @@
 	},
 /obj/item/bedsheet/nanotrasen,
 /turf/open/floor/carpet/exoticblue,
-/area/crew_quarters/dorms)
+/area/template_noop)
+"y" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/structure/table,
+/turf/open/floor/carpet/exoticblue,
+/area/template_noop)
+"D" = (
+/obj/effect/landmark/xeno_spawn,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/carpet/exoticblue,
+/area/template_noop)
+"H" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/carpet/exoticblue,
+/area/template_noop)
 
 (1,1,1) = {"
-E
-E
-E
-E
+y
+o
 "}
 (2,1,1) = {"
-E
-I
-n
-E
+H
+D
 "}
 (3,1,1) = {"
-E
-d
-g
-E
-"}
-(4,1,1) = {"
-E
-X
-S
-E
-"}
-(5,1,1) = {"
-E
-E
-v
-E
+x
+m
 "}

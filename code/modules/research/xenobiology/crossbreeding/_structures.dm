@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 /obj/structure/slime_crystal/examine(mob/user)
 	. = ..()
 	if(effect_desc)
-		. += "<span class='notice'>[effect_desc]</span>"
+		. += span_notice("[effect_desc]")
 
 /obj/structure/slime_crystal/New(loc, obj/structure/slime_crystal/master_crystal, ...)
 	. = ..()
@@ -422,7 +422,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	if(blood_amt < 50)
 		return ..()
 	blood_amt -= 50
-	to_chat(user, "<span class='notice'>You touch the crystal, and see blood transforming into an organ!</span>")
+	to_chat(user, span_notice("You touch the crystal, and see blood transforming into an organ!"))
 	playsound(src, 'sound/magic/demon_consume.ogg', 50, 1)
 	var/type = pick(/obj/item/reagent_containers/food/snacks/meat/slab,/obj/item/organ/heart,/obj/item/organ/heart/freedom,/obj/item/organ/lungs,/obj/item/organ/lungs/plasmaman,/obj/item/organ/lungs/slime,/obj/item/organ/liver,/obj/item/organ/liver/plasmaman,/obj/item/organ/liver/alien,/obj/item/organ/eyes,/obj/item/organ/eyes/night_vision/alien,/obj/item/organ/eyes/night_vision,/obj/item/organ/eyes/night_vision/mushroom,/obj/item/organ/tongue,/obj/item/organ/stomach,/obj/item/organ/stomach/plasmaman,/obj/item/organ/stomach/ethereal,/obj/item/organ/ears,/obj/item/organ/ears/cat,/obj/item/organ/ears/penguin)
 	new type(get_turf(src))
@@ -437,7 +437,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		return ..()
 	blood_amt -= 10
 	item_beaker.reagents.add_reagent(/datum/reagent/blood,10)
-	to_chat(user, "<span class='notice'>You transfer some of strored blood into [I]!</span>")
+	to_chat(user, span_notice("You transfer some of strored blood into [I]!"))
 
 /obj/structure/slime_crystal/green
 	colour = "green"
@@ -496,16 +496,17 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 /obj/structure/slime_crystal/gold
 	colour = "gold"
 	effect_desc = "Touching it will transform you into a random pet. Effects are undone when leaving the area."
+	var/list/gold_pet_options = list(/mob/living/simple_animal/pet/dog/corgi , /mob/living/simple_animal/pet/dog/pug , /mob/living/simple_animal/pet/dog/bullterrier , /mob/living/simple_animal/crab , /mob/living/simple_animal/pet/fox , /mob/living/simple_animal/pet/cat/kitten , /mob/living/simple_animal/pet/cat/space , /mob/living/simple_animal/pet/penguin/emperor , /mob/living/simple_animal/pet/penguin/baby)
 
 /obj/structure/slime_crystal/gold/attack_hand(mob/user)
 	. = ..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_mob = user
-	var/mob/living/simple_animal/pet/chosen_pet = pick(/mob/living/simple_animal/pet/dog/corgi,/mob/living/simple_animal/pet/dog/pug,/mob/living/simple_animal/pet/dog/bullterrier,/mob/living/simple_animal/crab,/mob/living/simple_animal/pet/fox,/mob/living/simple_animal/pet/cat/kitten,/mob/living/simple_animal/pet/cat/space,/mob/living/simple_animal/pet/penguin/emperor,/mob/living/simple_animal/pet/penguin/baby)
+	var/mob/living/simple_animal/chosen_pet = pick(gold_pet_options)
 	chosen_pet = new chosen_pet(get_turf(human_mob))
 	if(chosen_pet)
-		to_chat(user, "<span class='notice'>You touch the crystal, and become a small animal!</span>")
+		to_chat(user, span_notice("You touch the crystal, and become a small animal!"))
 		playsound(src, 'sound/magic/fireball.ogg', 50, 1)
 		human_mob.forceMove(chosen_pet)
 		human_mob.notransform = 1
@@ -514,7 +515,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		human_mob.mind.transfer_to(chosen_pet)
 
 /obj/structure/slime_crystal/gold/on_mob_leave(mob/living/affected_mob)
-	if(!istype(affected_mob,/mob/living/simple_animal/pet))
+	if(!is_type_in_list(affected_mob, gold_pet_options))
 		return
 	var/mob/living/carbon/human/human_mob = locate() in affected_mob
 	if(!human_mob)
@@ -559,14 +560,13 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/lightpink/attack_ghost(mob/user)
 	. = ..()
-	var/mob/living/simple_animal/hostile/lightgeist/slime/L = new(get_turf(src))
-	L.ckey = user.ckey
-	affected_mobs[L] = 0
-	ADD_TRAIT(L,TRAIT_MUTE,type)
-	ADD_TRAIT(L,TRAIT_EMOTEMUTE,type)
+	var/be_helper = alert("Become a Lightgeist? (Warning, You can no longer be cloned!)",,"Yes","No")
+	if(be_helper == "Yes" && !QDELETED(src) && isobserver(user))
+		var/mob/living/simple_animal/hostile/lightgeist/healing/W = new /mob/living/simple_animal/hostile/lightgeist/healing/slime(get_turf(loc))
+		W.key = user.key
 
 /obj/structure/slime_crystal/lightpink/on_mob_leave(mob/living/affected_mob)
-	if(istype(affected_mob,/mob/living/simple_animal/hostile/lightgeist/slime))
+	if(istype(affected_mob,/mob/living/simple_animal/hostile/lightgeist/healing/slime))
 		affected_mob.ghostize(TRUE)
 		qdel(affected_mob)
 

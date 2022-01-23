@@ -15,7 +15,7 @@
 	report_type = "revolution"
 	antag_flag = ROLE_REV
 	false_report_weight = 10
-	restricted_jobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer", "Shaft Miner", "Mining Medic")
+	restricted_jobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer", "Shaft Miner", "Mining Medic", "Brig Physician") //Yogs: Added Brig Physician
 	required_jobs = list(list("Captain"=1),list("Head of Personnel"=1),list("Head of Security"=1),list("Chief Engineer"=1),list("Research Director"=1),list("Chief Medical Officer"=1)) //Any head present
 	required_players = 30
 	required_enemies = 2
@@ -89,6 +89,17 @@
 					headrev_candidates += lenin
 					break
 
+	var/list/temp_candidates = headrev_candidates.Copy()
+
+	// Remove excess headrevs, skip those who have used an antag token
+	while(weighted_score < headrev_candidates.len && temp_candidates.len) //das vi danya
+		var/datum/mind/trotsky = pick_n_take(temp_candidates)
+		if(trotsky.token_picked)
+			continue
+		antag_candidates += trotsky
+		headrev_candidates -= trotsky
+
+	// If there are still too many head revs, start removing the ones that have used tokens (Token will not be consumed)
 	while(weighted_score < headrev_candidates.len) //das vi danya
 		var/datum/mind/trotsky = pick(headrev_candidates)
 		antag_candidates += trotsky

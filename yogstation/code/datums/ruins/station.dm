@@ -85,16 +85,6 @@
 	suffix = "engine_teg.dmm"
 	name = "Engine TEG"
 
-/datum/map_template/ruin/station/box/maint/xenobridge
-	id = "maint_xenobridge_default"
-	suffix = "xenobridge_default.dmm"
-	name = "Xenobiology Bridge"
-
-/datum/map_template/ruin/station/box/maint/xenobridge/lattice
-	id = "maint_xenobridge_lattice"
-	suffix = "xenobridge_space.dmm"
-	name = "Xenobiology Lattice"
-
 /datum/map_template/ruin/station/box/testingsite/bunker
 	id = "testing_site_1"
 	suffix = "testingsite_range1.dmm"

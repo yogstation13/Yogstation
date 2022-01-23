@@ -35,7 +35,7 @@
 	var/draining = 0
 	var/candrain = 0
 	var/mindrain = 200
-	var/maxdrain = 400
+	var/maxdrain = 3200
 
 
 /obj/item/clothing/gloves/space_ninja/Touch(atom/A,proximity)
@@ -63,9 +63,9 @@
 
 	if(isnum(.)) //Numerical values of drained handle their feedback here, Alpha values handle it themselves (Research hacking)
 		if(.)
-			to_chat(H, "<span class='notice'>Gained <B>[DisplayEnergy(.)]</B> of energy from [A].</span>")
+			to_chat(H, span_notice("Gained <B>[DisplayEnergy(.)]</B> of energy from [A]."))
 		else
-			to_chat(H, "<span class='danger'>\The [A] has run dry of energy, you must find another source!</span>")
+			to_chat(H, span_danger("\The [A] has run dry of energy, you must find another source!"))
 	else
 		. = FALSE	//as to not cancel attack_hand()
 

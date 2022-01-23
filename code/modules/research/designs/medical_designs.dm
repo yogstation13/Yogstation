@@ -201,6 +201,16 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/rollerbed
+	name = "Roller Bed"
+	desc = "A foldable rolling bed that can be carried around."
+	id = "rollerbed"
+	build_path = /obj/item/roller
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 8000, /datum/material/plastic = 2000) // balancing is a bitch, what does this even mean? i don't really know.
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/laserscalpel
 	name = "Laser Scalpel"
 	desc = "A laser scalpel used for precise cutting."
@@ -645,10 +655,17 @@
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/dna_recovery
-	name= "DNA Recovery"
-	desc= "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
+	name = "DNA Recovery"
+	desc = "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
 	id = "surgery_dna_recovery"
 	surgery = /datum/surgery/advanced/dna_recovery
+	research_icon_state = "surgery_head"
+
+/datum/design/surgery/xeno_dna_recovery
+	name = "Alien DNA Recovery"
+	desc = "An experimental surgical procedure which involves the use of rezadone to fix severe burning on certain alien lifeforms."
+	id = "surgery_xeno_dna_recovery"
+	surgery = /datum/surgery/advanced/dna_recovery/alien
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing

@@ -60,6 +60,7 @@
 		message_admins("[key_name(client)] was kicked for sending a huge telemetry payload")
 		qdel(client)
 		return
+	log_admin_private("Telemetry data for [key_name(client)]: [json_encode(payload)]")
 	var/list/found
 	for(var/i in 1 to len)
 		if(QDELETED(client))
@@ -78,3 +79,4 @@
 		var/msg = "[key_name(client)] has a banned account in connection history! (Matched: [found["ckey"]], [found["address"]], [found["computer_id"]])"
 		message_admins(msg)
 		log_admin_private(msg)
+		client.add_system_note("Cookie Detection", "Has a cookie from a banned account! (Matched: [found["ckey"]], [found["address"]], [found["computer_id"]])", TRUE)

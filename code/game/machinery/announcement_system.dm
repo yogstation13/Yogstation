@@ -59,12 +59,12 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(P.tool_behaviour == TOOL_SCREWDRIVER)
 		P.play_tool_sound(src)
 		panel_open = !panel_open
-		to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
+		to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
 		update_icon()
 	else if(default_deconstruction_crowbar(P))
 		return
 	else if(P.tool_behaviour == TOOL_MULTITOOL && panel_open && (stat & BROKEN))
-		to_chat(user, "<span class='notice'>You reset [src]'s firmware.</span>")
+		to_chat(user, span_notice("You reset [src]'s firmware."))
 		stat &= ~BROKEN
 		update_icon()
 	else
@@ -87,6 +87,10 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		message = CompileText(newhead, user, rank)
 	else if(message_type == "ARRIVALS_BROKEN")
 		message = "The arrivals shuttle has been damaged. Docking for repairs..."
+	else if(message_type == "AICRYO" && newheadToggle)
+		message = CompileText("%PERSON has been moved to intelligence storage.", user, rank)
+	else if(message_type == "CRYOSTORAGE")
+		message = CompileText("%PERSON, %RANK has been moved to cryogenic storage.", user, rank)
 
 	if(channels.len == 0)
 		radio.talk_into(src, message, null)
@@ -117,7 +121,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(!usr.canUseTopic(src, !issilicon(usr)))
 		return
 	if(stat & BROKEN)
-		visible_message("<span class='warning'>[src] buzzes.</span>", "<span class='italics'>You hear a faint buzz.</span>")
+		visible_message(span_warning("[src] buzzes."), span_italics("You hear a faint buzz."))
 		playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1)
 		return
 	switch(action)
@@ -150,7 +154,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if(stat & BROKEN)
-		to_chat(user, "<span class='warning'>[src]'s firmware appears to be malfunctioning!</span>")
+		to_chat(user, span_warning("[src]'s firmware appears to be malfunctioning!"))
 		return
 	interact(user)
 

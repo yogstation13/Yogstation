@@ -18,8 +18,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/ai_monitored	//stub defined ai_monitored.dm
 
-/area/ai_monitored/turret_protected
-
 /area/space
 	icon_state = "space"
 	requires_power = TRUE
@@ -180,6 +178,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/central/secondary
 	name = "Central Maintenance"
 	icon_state = "maintcentral"
+	clockwork_warp_allowed = FALSE
 
 /area/maintenance/fore
 	name = "Fore Maintenance"
@@ -310,6 +309,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/crew_quarters/heads
 	airlock_wires = /datum/wires/airlock/command
+	clockwork_warp_allowed = FALSE
 
 /area/crew_quarters/heads/captain
 	name = "Captain's Office"
@@ -444,7 +444,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "bar"
 	minimap_color = "#5ac866"
 	mood_bonus = 5
-	mood_message = "<span class='nicegreen'>I love being in the bar!\n</span>"
+	mood_message = span_nicegreen("I love being in the bar!\n")
 	airlock_wires = /datum/wires/airlock/service
 
 /area/crew_quarters/bar/Initialize(mapload)
@@ -772,6 +772,14 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Medbay Storage"
 	icon_state = "medbay2"
 
+/area/medical/storage/locker
+	name = "Medbay Locker Room"
+	icon_state = "medbay2"
+
+/area/medical/storage/backroom
+	name = "Medbay Backroom"
+	icon_state = "medbay2"
+
 /area/medical/patients_rooms
 	name = "Patients' Rooms"
 	icon_state = "patients"
@@ -782,6 +790,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/medical/patients_rooms/room_b
 	name = "Patient Room B"
+	icon_state = "patients"
+
+/area/medical/patients_rooms/room_c
+	name = "Patient Room C"
 	icon_state = "patients"
 
 /area/medical/virology

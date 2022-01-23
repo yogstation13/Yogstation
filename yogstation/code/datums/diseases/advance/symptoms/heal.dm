@@ -6,7 +6,7 @@
 	stage_speed = 2
 	transmittable = -2
 	level = 6
-	passive_message = "<span class='notice'>You feel tough.</span>"
+	passive_message = span_notice("You feel tough.")
 	var/toxin_damage = FALSE
 	var/hunger_reduction = 8
 	threshold_descs = list(
@@ -53,15 +53,15 @@
 	if(M.nutrition <= NUTRITION_LEVEL_STARVING && !toxin_damage)
 		M.blood_volume -= 10
 		if(prob(45))
-			to_chat(M, "<span class='warning'>You feel like you are wasting away!</span>")
+			to_chat(M, span_warning("You feel like you are wasting away!"))
 	
 	else if(M.nutrition <= NUTRITION_LEVEL_STARVING && toxin_damage)
 		M.adjustToxLoss(2)
 		if(prob(45))
-			to_chat(M, "<span class='warning'>You dont feel so well.</span>")
+			to_chat(M, span_warning("You dont feel so well."))
 	
 	if(prob(25))
-		to_chat(M, "<span class='notice'>You feel your wounds getting warm.</span>")
+		to_chat(M, span_notice("You feel your wounds getting warm."))
 
 	for(var/obj/item/bodypart/L in parts)
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len))

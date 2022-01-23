@@ -90,7 +90,7 @@
 
 	//we stack the orbits up client side, so we can assign this back to normal server side without it breaking the orbit
 	orbiter.forceMove(get_turf(parent))
-	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
+	to_chat(orbiter, span_notice("Now orbiting [parent]."))
 
 /datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
 	if(!orbiters[orbiter])

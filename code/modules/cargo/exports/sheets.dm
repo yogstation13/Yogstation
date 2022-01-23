@@ -10,36 +10,41 @@
 // Hides
 
 /datum/export/stack/skin/monkey
-	cost = 50
+	cost = 150
 	unit_name = "monkey hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/monkey)
 
 /datum/export/stack/skin/human
-	cost = 100
+	cost = 500	//surprisingly easy to get human skin who would have thought
+	export_limit = 50
 	export_category = EXPORT_CONTRABAND
 	unit_name = "piece"
 	message = "of human skin"
 	export_types = list(/obj/item/stack/sheet/animalhide/human)
 
 /datum/export/stack/skin/goliath_hide
-	cost = 200
+	cost = 2500
+	export_limit = 50
 	unit_name = "goliath hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/goliath_hide)
 
 /datum/export/stack/skin/cat
-	cost = 150
+	cost = 500
+	export_limit = 100
 	export_category = EXPORT_CONTRABAND
 	unit_name = "cat hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/cat)
 
 /datum/export/stack/skin/corgi
-	cost = 200
+	cost = 500
+	export_limit = 100
 	export_category = EXPORT_CONTRABAND
 	unit_name = "corgi hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/corgi)
 
 /datum/export/stack/skin/lizard
-	cost = 150
+	cost = 2500
+	export_limit = 200
 	unit_name = "lizard hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/lizard)
 
@@ -49,7 +54,7 @@
 	export_types = list(/obj/item/stack/sheet/animalhide/gondola)
 
 /datum/export/stack/skin/xeno
-	cost = 500
+	cost = 3000
 	unit_name = "alien hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/xeno)
 
@@ -57,7 +62,7 @@
 // For base materials, see materials.dm
 
 /datum/export/stack/plasteel
-	cost = 155 // 2000u of plasma + 2000u of metal.
+	cost = 205 // 2000u of plasma + 2000u of metal.
 	message = "of plasteel"
 	export_types = list(/obj/item/stack/sheet/plasteel)
 
@@ -68,7 +73,8 @@
 	export_types = list(/obj/item/stack/sheet/rglass)
 
 /datum/export/stack/bscrystal
-	cost = 300
+	cost = 750
+	export_limit = 200
 	message = "of bluespace crystals"
 	export_types = list(/obj/item/stack/sheet/bluespace_crystal)
 
@@ -102,12 +108,21 @@
 
 /datum/export/stack/abductor
 	cost = 1000
+	export_limit = 100
 	message = "of alien alloy"
 	export_types = list(/obj/item/stack/sheet/mineral/abductor)
 
 /datum/export/stack/adamantine
 	unit_name = "bar"
 	cost = 500
+	export_limit = 200
 	message = "of adamantine"
 	export_types = list(/obj/item/stack/sheet/mineral/adamantine)
+
+// Mythril. Does not occur naurally.
+/datum/export/stack/mythril
+	cost = 5000
+	export_limit = 50
+	message = "of mythril"
+	export_types = list(/obj/item/stack/sheet/mineral/mythril)
 

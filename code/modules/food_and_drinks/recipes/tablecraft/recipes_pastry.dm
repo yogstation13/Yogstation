@@ -86,7 +86,25 @@ datum/crafting_recipe/food/donut/meat
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh
 	subcategory = CAT_PASTRY
-	
+
+/datum/crafting_recipe/food/donut/spaghetti
+	name = "Spagh-O-Nut"	
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/donut/spaghetti
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/donut/spaghetti/jelly
+	name = "'Jelly' Spagh-O-Nut"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1,
+		/datum/reagent/consumable/ketchup = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/donut/spaghetti/jelly
+	subcategory = CAT_PASTRY
 ////////////////////////////////////////////////WAFFLES AND PANCAKES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/bbpancakes
@@ -306,16 +324,6 @@ datum/crafting_recipe/food/donut/meat
 		/obj/item/paper = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fortunecookie
-	subcategory = CAT_PASTRY
-
-/datum/crafting_recipe/food/hotdog
-	name = "Hot Dog"
-	reqs = list(
-		/datum/reagent/consumable/ketchup = 5,
-		/obj/item/reagent_containers/food/snacks/bun = 1,
-		/obj/item/reagent_containers/food/snacks/sausage = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/hotdog
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/khachapuri

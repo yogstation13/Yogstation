@@ -7,7 +7,7 @@
 	var/contraband = FALSE
 	var/safety_warning = "For safety reasons, the automated supply shuttle \
 		cannot transport live organisms, human remains, classified nuclear weaponry \
-		or homing beacons."
+		or homing beacons. Additionally, remove any privately ordered crates from the shuttle."
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
 
 	light_color = "#E2853D"//orange
@@ -29,17 +29,17 @@
 		obj_flags &= ~EMAGGED
 
 /obj/machinery/computer/cargo/proc/get_export_categories()
-	var/cat = EXPORT_CARGO
+	. = EXPORT_CARGO
 	if(contraband)
-		cat |= EXPORT_CONTRABAND
+		. |= EXPORT_CONTRABAND
 	if(obj_flags & EMAGGED)
-		cat |= EXPORT_EMAG
+		. |= EXPORT_EMAG
 
 /obj/machinery/computer/cargo/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	user.visible_message("<span class='warning'>[user] swipes a suspicious card through [src]!</span>",
-	"<span class='notice'>You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband.</span>")
+	user.visible_message(span_warning("[user] swipes a suspicious card through [src]!"),
+	span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
 
 	obj_flags |= EMAGGED
 	contraband = TRUE

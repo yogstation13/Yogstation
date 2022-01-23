@@ -9,7 +9,10 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
-	exp_requirements = 60
+	exp_requirements = 120
+	exp_type_department = EXP_TYPE_MEDICAL
+
+	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist")
 
 	outfit = /datum/outfit/job/chemist
 
@@ -37,6 +40,7 @@
 	belt = /obj/item/pda/chemist
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/chemist
+	uniform_skirt = /obj/item/clothing/under/rank/chemist/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/chemist
 	backpack = /obj/item/storage/backpack/chemistry

@@ -96,10 +96,6 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
-"aC" = (
-/obj/structure/closet/secure_closet/freezer/meat,
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
 "aF" = (
 /obj/machinery/door/window/southleft{
 	base_state = "left";
@@ -196,6 +192,15 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
+"dv" = (
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/structure/table/bronze,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "dw" = (
 /obj/structure/chair/bronze,
 /turf/open/floor/bronze,
@@ -231,6 +236,18 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
+"eX" = (
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c100,
+/obj/item/clothing/head/bronze,
+/obj/item/clothing/shoes/bronze,
+/obj/item/clothing/suit/bronze,
+/obj/item/toy/clockwork_watch,
+/obj/structure/table/bronze,
+/obj/item/toy/figure/bartender,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "fa" = (
 /obj/structure/table/bronze,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -280,11 +297,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"gL" = (
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/structure/table/bronze,
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
 "gP" = (
 /obj/effect/landmark/blobstart,
 /obj/item/toy/plush/narplush,
@@ -386,6 +398,16 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"np" = (
+/obj/structure/table/bronze,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "nC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -404,10 +426,29 @@
 "nF" = (
 /turf/closed/wall,
 /area/crew_quarters/theatre)
+"nG" = (
+/obj/item/book/manual/chef_recipes,
+/obj/structure/table/bronze,
+/obj/item/stack/packageWrap,
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "nZ" = (
 /obj/item/clockwork/alloy_shards/clockgolem_remains,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"oO" = (
+/obj/item/storage/box/fancy/donut_box,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/structure/table/bronze,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/kitchen)
 "pv" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -530,18 +571,23 @@
 /obj/structure/chair/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"vK" = (
-/obj/structure/table/bronze,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_y = 2
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
 "wa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/bronze,
 /area/crew_quarters/theatre)
+"wp" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/structure/table/bronze,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/kitchen)
 "wz" = (
 /mob/living/carbon/monkey/punpun,
 /turf/open/floor/bronze/reebe,
@@ -559,6 +605,11 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
+"xO" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/obj/item/toy/figure/chef,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "xV" = (
 /obj/machinery/airalarm{
 	dir = 2;
@@ -586,16 +637,6 @@
 	req_access_txt = "28"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
-"yv" = (
-/obj/item/storage/box/fancy/donut_box,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
 "yE" = (
 /obj/item/radio/intercom{
@@ -704,15 +745,6 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"CJ" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/kitchen)
 "CO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -803,13 +835,8 @@
 /obj/structure/window/reinforced/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
-"HF" = (
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/structure/table/bronze,
+"Ip" = (
+/obj/machinery/griddle,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
 "IF" = (
@@ -859,17 +886,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"Lp" = (
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/stack/spacecash/c10,
-/obj/item/stack/spacecash/c100,
-/obj/item/clothing/head/bronze,
-/obj/item/clothing/shoes/bronze,
-/obj/item/clothing/suit/bronze,
-/obj/item/toy/clockwork_watch,
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "LL" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -925,14 +941,6 @@
 /obj/item/clockwork/component/geis_capacitor/fallen_armor,
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
-"Nx" = (
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/structure/table/bronze,
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
 "Oy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4;
@@ -1056,14 +1064,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
-"SM" = (
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/obj/structure/table/bronze,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
 "TA" = (
@@ -1397,7 +1397,7 @@ Re
 Ws
 "}
 (13,1,1) = {"
-Lp
+eX
 QK
 Xj
 jf
@@ -1494,18 +1494,18 @@ aa
 "}
 (19,1,1) = {"
 al
-aC
+xO
 aS
 bg
 bq
 al
 wO
 Uv
-gL
-SM
+dv
+Ip
 eu
 CT
-yv
+oO
 aa
 "}
 (20,1,1) = {"
@@ -1517,11 +1517,11 @@ aZ
 yl
 Bl
 SD
-vK
-Nx
+np
+Ip
 Mg
 CT
-CJ
+wp
 aa
 "}
 (21,1,1) = {"
@@ -1537,7 +1537,7 @@ Cz
 eP
 eu
 rZ
-CJ
+wp
 aa
 "}
 (22,1,1) = {"
@@ -1549,11 +1549,11 @@ bt
 al
 TA
 tF
-HF
+nG
 eP
 eu
 CT
-CJ
+wp
 aa
 "}
 (23,1,1) = {"

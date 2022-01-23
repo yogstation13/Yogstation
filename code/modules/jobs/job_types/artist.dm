@@ -10,7 +10,7 @@
 	selection_color = "#dddddd"
 
 	outfit = /datum/outfit/job/artist
-
+	alt_titles = list("Painter", "Composer", "Artisan")
 	access = list()
 	minimal_access = list()
 	paycheck = PAYCHECK_ASSISTANT
@@ -26,6 +26,7 @@
 	belt = /obj/item/pda/artist
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/artist
+	uniform_skirt = /obj/item/clothing/under/rank/artist/skirt
 	gloves = /obj/item/clothing/gloves/fingerless
 	neck = /obj/item/clothing/neck/artist
 	l_pocket = /obj/item/laser_pointer

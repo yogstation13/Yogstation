@@ -153,7 +153,7 @@
 
 /mob/living/silicon/can_inject(mob/user, error_msg)
 	if(error_msg)
-		to_chat(user, "<span class='alert'>[p_their(TRUE)] outer shell is too tough.</span>")
+		to_chat(user, span_alert("[p_their(TRUE)] outer shell is too tough."))
 	return FALSE
 
 /mob/living/silicon/IsAdvancedToolUser()
@@ -355,7 +355,7 @@
 				radiomod = ":" + key
 				break
 
-	to_chat(src, "<span class='notice'>Automatic announcements [Autochan == "None" ? "will not use the radio." : "set to [Autochan]."]</span>")
+	to_chat(src, span_notice("Automatic announcements [Autochan == "None" ? "will not use the radio." : "set to [Autochan]."]"))
 
 /mob/living/silicon/put_in_hand_check() // This check is for borgs being able to receive items, not put them in others' hands.
 	return 0
@@ -385,16 +385,18 @@
 	medsensor.add_hud_to(src)
 	diagsensor.add_hud_to(src)
 
-/mob/living/silicon/proc/toggle_sensors()
+/mob/living/silicon/proc/toggle_sensors(silent = FALSE)
 	if(incapacitated())
 		return
 	sensors_on = !sensors_on
 	if (!sensors_on)
-		to_chat(src, "Sensor overlay deactivated.")
+		if(!silent)
+			to_chat(src, "Sensor overlay deactivated.")
 		remove_sensors()
 		return
 	add_sensors()
-	to_chat(src, "Sensor overlay activated.")
+	if(!silent)
+		to_chat(src, "Sensor overlay activated.")
 
 /mob/living/silicon/proc/GetPhoto(mob/user)
 	if (aicamera)

@@ -258,6 +258,18 @@
 	owner = "reddsnotdead"
 	module_locked = "Engineering"
 
+/datum/borg_skin/argus
+	name = "Argus"
+	icon_state = "argus"
+	owner = "slicerv"
+	module_locked = "Engineering"
+
+/datum/borg_skin/butterfly
+	name = "Butterfly"
+	icon_state = "butterfly"
+	owner = "baiomu"
+	module_locked = "Engineering"
+
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 

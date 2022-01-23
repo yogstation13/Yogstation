@@ -93,6 +93,13 @@
 
 	var/do_footstep = FALSE
 
+	///How much wounding power it has
+	var/wound_bonus = CANT_WOUND
+	///How much bare wounding power it has
+	var/bare_wound_bonus = 0
+	///If the attacks from this are sharp
+	var/sharpness = SHARP_NONE
+
 	var/music_component = null
 	var/music_path = null
 
@@ -129,7 +136,7 @@
 /mob/living/simple_animal/examine(mob/user)
 	. = ..()
 	if(stat == DEAD)
-		. += "<span class='deadsay'>Upon closer examination, [p_they()] appear[p_s()] to be dead.</span>"
+		. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
 
 /mob/living/simple_animal/initialize_footstep()
 	if(do_footstep)
@@ -270,10 +277,14 @@
 		adjustHealth(unsuitable_atmos_damage)
 
 /mob/living/simple_animal/gib()
+	var/atom/Tsec = drop_location()
 	if(butcher_results)
-		var/atom/Tsec = drop_location()
 		for(var/path in butcher_results)
 			for(var/i in 1 to butcher_results[path])
+				new path(Tsec)
+	if(guaranteed_butcher_results)
+		for(var/path in guaranteed_butcher_results)
+			for(var/i in 1 to guaranteed_butcher_results[path])
 				new path(Tsec)
 	..()
 
@@ -406,13 +417,13 @@
 
 /mob/living/simple_animal/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	if(incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
 	if(be_close && !in_range(M, src))
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		to_chat(src, span_warning("You are too far away!"))
 		return FALSE
 	if(!(no_dextery || dextrous))
-		to_chat(src, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(src, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
 	return TRUE
 
@@ -515,7 +526,7 @@
 		if(istype(held_item, /obj/item/twohanded))
 			var/obj/item/twohanded/T = held_item
 			if(T.wielded == 1)
-				to_chat(usr, "<span class='warning'>Your other hand is too busy holding [T].</span>")
+				to_chat(usr, span_warning("Your other hand is too busy holding [T]."))
 				return
 	var/oindex = active_hand_index
 	active_hand_index = hand_index

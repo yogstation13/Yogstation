@@ -105,17 +105,6 @@
 	icon_state = "bus"
 	},
 /area/ruin/unpowered/no_grav)
-"as" = (
-/obj/structure/fluff/bus/passable/seat/driver{
-	icon_state = "driverseat";
-	pixel_y = 17
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/snacks/grown/citrus/orange,
-/turf/open/floor/plasteel/airless/dark{
-	icon_state = "bus"
-	},
-/area/ruin/unpowered/no_grav)
 "at" = (
 /obj/structure/fluff/bus/dense{
 	icon_state = "hoodtop"
@@ -333,6 +322,20 @@
 "bb" = (
 /obj/item/stack/sheet/metal/fifty,
 /turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered/no_grav)
+"Pm" = (
+/obj/structure/fluff/bus/passable/seat/driver{
+	icon_state = "driverseat";
+	pixel_y = 17
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/drinks/britcup{
+	pixel_x = -1;
+	pixel_y = 15
+	},
+/turf/open/floor/plasteel/airless/dark{
+	icon_state = "bus"
+	},
 /area/ruin/unpowered/no_grav)
 "XA" = (
 /obj/structure/fluff/bus/passable/seat{
@@ -614,7 +617,7 @@ ab
 ah
 ad
 aj
-as
+Pm
 aE
 aM
 ad

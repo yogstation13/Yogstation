@@ -11,6 +11,8 @@
 
 	outfit = /datum/outfit/job/clown
 
+	alt_titles = list("Entertainer", "Comedian", "Jester")
+
 	access = list(ACCESS_THEATRE)
 	minimal_access = list(ACCESS_THEATRE)
 	paycheck = PAYCHECK_MINIMAL

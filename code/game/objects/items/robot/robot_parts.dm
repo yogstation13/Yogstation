@@ -105,9 +105,9 @@
 				head.flash2.forceMove(T)
 				head.flash2 = null
 				head = null
-			to_chat(user, "<span class='notice'>You disassemble the cyborg shell.</span>")
+			to_chat(user, span_notice("You disassemble the cyborg shell."))
 	else
-		to_chat(user, "<span class='notice'>There is nothing to remove from the endoskeleton.</span>")
+		to_chat(user, span_notice("There is nothing to remove from the endoskeleton."))
 	update_icon()
 
 /obj/item/robot_suit/proc/put_in_hand_or_drop(mob/living/user, obj/item/I) //normal put_in_hands() drops the item ontop of the player, this drops it at the suit's loc
@@ -122,7 +122,7 @@
 		return TRUE
 
 	if(!chest) //can't remove a cell if there's no chest to remove it from.
-		to_chat(user, "<span class='notice'>[src] has no attached torso.</span>")
+		to_chat(user, span_notice("[src] has no attached torso."))
 		return
 
 	var/obj/item/stock_parts/cell/temp_cell = user.is_holding_item_of_type(/obj/item/stock_parts/cell)
@@ -131,20 +131,20 @@
 		swap_failed = TRUE
 	else if(!user.transferItemToLoc(temp_cell, chest))
 		swap_failed = TRUE
-		to_chat(user, "<span class='warning'>[temp_cell] is stuck to your hand, you can't put it in [src]!</span>")
+		to_chat(user, span_warning("[temp_cell] is stuck to your hand, you can't put it in [src]!"))
 
 	if(chest.cell) //drop the chest's current cell no matter what.
 		put_in_hand_or_drop(user, chest.cell)
 
 	if(swap_failed) //we didn't transfer any new items.
 		if(chest.cell) //old cell ejected, nothing inserted.
-			to_chat(user, "<span class='notice'>You remove [chest.cell] from [src].</span>")
+			to_chat(user, span_notice("You remove [chest.cell] from [src]."))
 			chest.cell = null
 		else
-			to_chat(user, "<span class='notice'>The power cell slot in [src]'s torso is empty.</span>")
+			to_chat(user, span_notice("The power cell slot in [src]'s torso is empty."))
 		return
 
-	to_chat(user, "<span class='notice'>You [chest.cell ? "replace [src]'s [chest.cell.name] with [temp_cell]" : "insert [temp_cell] into [src]"].</span>")
+	to_chat(user, span_notice("You [chest.cell ? "replace [src]'s [chest.cell.name] with [temp_cell]" : "insert [temp_cell] into [src]"]."))
 	chest.cell = temp_cell
 	return TRUE
 
@@ -156,13 +156,13 @@
 			if (M.use(1))
 				var/obj/item/bot_assembly/ed209/B = new
 				B.forceMove(drop_location())
-				to_chat(user, "<span class='notice'>You arm the robot frame.</span>")
+				to_chat(user, span_notice("You arm the robot frame."))
 				var/holding_this = user.get_inactive_held_item()==src
 				qdel(src)
 				if (holding_this)
 					user.put_in_inactive_hand(B)
 			else
-				to_chat(user, "<span class='warning'>You need one sheet of metal to start building ED-209!</span>")
+				to_chat(user, span_warning("You need one sheet of metal to start building ED-209!"))
 				return
 	else if(istype(W, /obj/item/bodypart/l_leg/robot))
 		if(l_leg)
@@ -216,15 +216,15 @@
 			chest = CH
 			update_icon()
 		else if(!CH.wired)
-			to_chat(user, "<span class='warning'>You need to attach wires to it first!</span>")
+			to_chat(user, span_warning("You need to attach wires to it first!"))
 		else
-			to_chat(user, "<span class='warning'>You need to attach a cell to it first!</span>")
+			to_chat(user, span_warning("You need to attach a cell to it first!"))
 
 	else if(istype(W, /obj/item/bodypart/head/robot))
 		var/obj/item/bodypart/head/robot/HD = W
 		for(var/X in HD.contents)
 			if(istype(X, /obj/item/organ))
-				to_chat(user, "<span class='warning'>There are organs inside [HD]!</span>")
+				to_chat(user, span_warning("There are organs inside [HD]!"))
 				return
 		if(head)
 			return
@@ -236,47 +236,47 @@
 			head = HD
 			update_icon()
 		else
-			to_chat(user, "<span class='warning'>You need to attach a flash to it first!</span>")
+			to_chat(user, span_warning("You need to attach a flash to it first!"))
 
 	else if (W.tool_behaviour == TOOL_MULTITOOL)
 		if(check_completion())
 			ui_interact(user)
 		else
-			to_chat(user, "<span class='warning'>The endoskeleton must be assembled before debugging can begin!</span>")
+			to_chat(user, span_warning("The endoskeleton must be assembled before debugging can begin!"))
 
 	else if(istype(W, /obj/item/mmi))
 		var/obj/item/mmi/M = W
 		if(check_completion())
 			if(!chest.cell)
-				to_chat(user, "<span class='warning'>The endoskeleton still needs a power cell!</span>")
+				to_chat(user, span_warning("The endoskeleton still needs a power cell!"))
 				return
 			if(!isturf(loc))
-				to_chat(user, "<span class='warning'>You can't put [M] in, the frame has to be standing on the ground to be perfectly precise!</span>")
+				to_chat(user, span_warning("You can't put [M] in, the frame has to be standing on the ground to be perfectly precise!"))
 				return
 			if(!M.brainmob)
-				to_chat(user, "<span class='warning'>Sticking an empty [M.name] into the frame would sort of defeat the purpose!</span>")
+				to_chat(user, span_warning("Sticking an empty [M.name] into the frame would sort of defeat the purpose!"))
 				return
 
 			var/mob/living/brain/BM = M.brainmob
 			if(!BM.key || !BM.mind)
-				to_chat(user, "<span class='warning'>The MMI indicates that their mind is completely unresponsive; there's no point!</span>")
+				to_chat(user, span_warning("The MMI indicates that their mind is completely unresponsive; there's no point!"))
 				return
 
 			if(!BM.client) //braindead
-				to_chat(user, "<span class='warning'>The MMI indicates that their mind is currently inactive; it might change!</span>")
+				to_chat(user, span_warning("The MMI indicates that their mind is currently inactive; it might change!"))
 				return
 
 			if(BM.stat == DEAD || BM.suiciding || (M.brain && (M.brain.brain_death || M.brain.suicided)))
-				to_chat(user, "<span class='warning'>Sticking a dead brain into the frame would sort of defeat the purpose!</span>")
+				to_chat(user, span_warning("Sticking a dead brain into the frame would sort of defeat the purpose!"))
 				return
 
 			if(M.brain?.organ_flags & ORGAN_FAILING)
-				to_chat(user, "<span class='warning'>The MMI indicates that the brain is damaged!</span>")
+				to_chat(user, span_warning("The MMI indicates that the brain is damaged!"))
 				return
 
 			if(is_banned_from(BM.ckey, "Cyborg") || QDELETED(src) || QDELETED(BM) || QDELETED(user) || QDELETED(M) || !Adjacent(user))
 				if(!QDELETED(M))
-					to_chat(user, "<span class='warning'>This [M.name] does not seem to fit!</span>")
+					to_chat(user, span_warning("This [M.name] does not seem to fit!"))
 				return
 
 			if(!user.temporarilyRemoveItemFromInventory(W))
@@ -288,9 +288,9 @@
 			if(user.mind.assigned_role == "Roboticist") // RD gets nothing
 				SSachievements.unlock_achievement(/datum/achievement/roboborg, user.client)
 
-			if(M.laws && M.laws.id != DEFAULT_AI_LAWID)
-				aisync = 0
-				lawsync = 0
+			if(M.laws && M.laws.id != DEFAULT_AI_LAWID && M.override_cyborg_laws)
+				aisync = FALSE
+				lawsync = FALSE
 				O.laws = M.laws
 				M.laws.associate(O)
 
@@ -330,8 +330,8 @@
 
 			if(O.mind && O.mind.special_role)
 				O.mind.store_memory("As a cyborg, you must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead.")
-				to_chat(O, "<span class='userdanger'>You have been robotized!</span>")
-				to_chat(O, "<span class='danger'>You must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead.</span>")
+				to_chat(O, span_userdanger("You have been robotized!"))
+				to_chat(O, span_danger("You must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead."))
 
 			SSblackbox.record_feedback("amount", "cyborg_birth", 1)
 			forceMove(O)
@@ -340,19 +340,19 @@
 			if(!locomotion)
 				O.lockcharge = TRUE
 				O.update_mobility()
-				to_chat(O, "<span class='warning'>Error: Servo motors unresponsive.</span>")
+				to_chat(O, span_warning("Error: Servo motors unresponsive."))
 
 		else
-			to_chat(user, "<span class='warning'>The MMI must go in after everything else!</span>")
+			to_chat(user, span_warning("The MMI must go in after everything else!"))
 
 	else if(istype(W, /obj/item/borg/upgrade/ai))
 		var/obj/item/borg/upgrade/ai/M = W
 		if(check_completion())
 			if(!isturf(loc))
-				to_chat(user, "<span class='warning'>You cannot install[M], the frame has to be standing on the ground to be perfectly precise!</span>")
+				to_chat(user, span_warning("You cannot install[M], the frame has to be standing on the ground to be perfectly precise!"))
 				return
 			if(!user.temporarilyRemoveItemFromInventory(M))
-				to_chat(user, "<span class='warning'>[M] is stuck to your hand!</span>")
+				to_chat(user, span_warning("[M] is stuck to your hand!"))
 				return
 			qdel(M)
 			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot/shell(get_turf(src))
@@ -381,7 +381,7 @@
 				O.update_mobility()
 
 	else if(istype(W, /obj/item/pen))
-		to_chat(user, "<span class='warning'>You need to use a multitool to name [src]!</span>")
+		to_chat(user, span_warning("You need to use a multitool to name [src]!"))
 	else
 		return ..()
 
@@ -391,7 +391,7 @@
 	var/obj/item/held_item = user.get_active_held_item()
 	if(held_item?.tool_behaviour == TOOL_MULTITOOL)
 		return ..()
-	to_chat(user, "<span class='warning'>You need a multitool to access debug settings!</span>")
+	to_chat(user, span_warning("You need a multitool to access debug settings!"))
 	return UI_CLOSE
 
 /obj/item/robot_suit/ui_state(mob/user)
@@ -443,7 +443,7 @@
 			if(!in_range(src, user) && loc != user)
 				return
 			if(!selected_ai)
-				to_chat(user, "<span class='alert'>No active AIs detected.</span>")
+				to_chat(user, span_alert("No active AIs detected."))
 				return
 			forced_ai = selected_ai
 			return TRUE

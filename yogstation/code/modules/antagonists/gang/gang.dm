@@ -30,8 +30,8 @@
 
 /datum/antagonist/gang/farewell()
 	if(ishuman(owner.current))
-		owner.current.visible_message("<span class='deconversion_message'>[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!</span>", null, null, null, owner.current)
-		to_chat(owner, "<span class='userdanger'>You are no longer a gangster!</span>")
+		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!")]", null, null, null, owner.current)
+		to_chat(owner, span_userdanger("You are no longer a gangster! Your memory is hazy from the time you were a gangster...the only thing you remember is the name of the one who brainwashed you..."))
 
 /datum/antagonist/gang/on_gain()
 	if(!gang)
@@ -119,7 +119,7 @@
 			gang = new newgang
 	else
 		if(!GLOB.gangs.len) // no gangs exist
-			to_chat(admin, "<span class='danger'>No gangs exist, please create a new one instead.</span>")
+			to_chat(admin, span_danger("No gangs exist, please create a new one instead."))
 			return
 		var/existinggang = input(admin, "Select a gang, or select random to pick a random one.", "Existing gang") as null|anything in GLOB.gangs + "Random"
 		if(isnull(existinggang))
@@ -240,12 +240,12 @@
 /datum/antagonist/gang/boss/admin_add(datum/mind/new_owner,mob/admin)
 	if(!new_owner.has_antag_datum(parent_type))
 		..()
-		to_chat(new_owner.current, "<span class='userdanger'>You are a member of the [gang.name] Gang leadership now!</span>")
+		to_chat(new_owner.current, span_userdanger("You are a member of the [gang.name] Gang leadership now!"))
 		return
 	promote()
 	message_admins("[key_name_admin(admin)] has made [new_owner.current] a boss of the [gang.name] gang.")
 	log_admin("[key_name(admin)] has made [new_owner.current] a boss of the [gang.name] gang.")
-	to_chat(new_owner.current, "<span class='userdanger'>You are a member of the [gang.name] Gang leadership now!</span>")
+	to_chat(new_owner.current, span_userdanger("You are a member of the [gang.name] Gang leadership now!"))
 
 /datum/antagonist/gang/boss/get_admin_commands()
 	. = ..()
@@ -264,13 +264,13 @@
 	old_owner.add_antag_datum(new_gangster,old_gang)
 	new_gangster.silent = FALSE
 	log_game("[key_name(old_owner)] has been demoted to Gangster in the [gang.name] Gang")
-	to_chat(old_owner, "<span class='userdanger'>The gang has been disappointed by your ability to lead! You are a regular gangster now!</span>")
+	to_chat(old_owner, span_userdanger("The gang has been disappointed by your ability to lead! You are a regular gangster now!"))
 
 /datum/antagonist/gang/boss/proc/admin_take_gangtool(mob/admin)
 	var/list/L = owner.current.get_contents()
 	var/obj/item/gangtool/gangtool = locate() in L
 	if (!gangtool)
-		to_chat(admin, "<span class='danger'>Deleting gangtool failed!</span>")
+		to_chat(admin, span_danger("Deleting gangtool failed!"))
 		return
 	qdel(gangtool)
 
@@ -340,15 +340,15 @@
 
 /datum/team/gang/roundend_report()
 	var/list/report = list()
-	report += "<span class='header'>[name]:</span>"
+	report += span_header("[name]:")
 	if(winner)
-		report += "<span class='greentext'>The [name] gang was successful!</span>"
+		report += span_greentext("The [name] gang was successful!")
 		for(var/datum/mind/M in leaders)
 			SSachievements.unlock_achievement(/datum/achievement/greentext/gangleader,M.current)
 		for(var/datum/mind/M in members) // Leaders are included in this too
 			SSachievements.unlock_achievement(/datum/achievement/greentext/gang,M.current) // and so get the lower achievement, too
 	else
-		report += "<span class='redtext'>The [name] gang has failed!</span>"
+		report += span_redtext("The [name] gang has failed!")
 
 	report += "The [name] gang bosses were:"
 	report += printplayerlist(leaders)
@@ -464,7 +464,7 @@
 					gang_outfit = outfit
 
 			if(gang_outfit)
-				gangster << "<span class='notice'>The [src] Gang's influence grows as you wear [gang_outfit].</span>"
+				gangster << span_notice("The [src] Gang's influence grows as you wear [gang_outfit].")
 				uniformed++
 	return uniformed
 
@@ -498,7 +498,7 @@
 		if(mob && mob.mind && mob.stat == CONSCIOUS)
 			var/datum/antagonist/gang/gangster = mob.mind.has_antag_datum(/datum/antagonist/gang)
 			if(gangster.gang == src)
-				to_chat(mob, "<span class='warning'>[icon2html(tool, mob)] [message]</span>")
+				to_chat(mob, span_warning("[icon2html(tool, mob)] [message]"))
 				playsound(mob.loc, 'sound/machines/twobeep.ogg', 50, 1)
 			return
 

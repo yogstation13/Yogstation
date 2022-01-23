@@ -3,7 +3,7 @@
 #define POWER_RESTORATION_SEARCH_APC 2
 #define POWER_RESTORATION_APC_FOUND 3
 
-/mob/living/silicon/ai/Life()
+/mob/living/silicon/ai/Life(seconds)
 	if (stat == DEAD)
 		return
 	else //I'm not removing that shitton of tabs, unneeded as they are. -- Urist
@@ -12,6 +12,12 @@
 		update_gravity(mob_has_gravity())
 
 		handle_status_effects()
+
+		if(dashboard)
+			dashboard.tick(seconds)
+
+		process_hijack() // yogs
+
 
 		if(malfhack && malfhack.aidisabled)
 			deltimer(malfhacking)
@@ -29,7 +35,7 @@
 		if(aiRestorePowerRoutine)
 			// Lost power
 			if (!battery)
-				to_chat(src, "<span class='warning'>Your backup battery's output drops below usable levels. It takes only a moment longer for your systems to fail, corrupted and unusable.</span>")
+				to_chat(src, span_warning("Your backup battery's output drops below usable levels. It takes only a moment longer for your systems to fail, corrupted and unusable."))
 				adjustOxyLoss(200)
 			else
 				battery --

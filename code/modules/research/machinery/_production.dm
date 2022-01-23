@@ -260,7 +260,7 @@
 		t = check_mat(D, M)
 		temp_material += " | "
 		if (t < 1)
-			temp_material += "<span class='bad'>[all_materials[M]/coeff] [CallMaterialName(M)]</span>"
+			temp_material += span_bad("[all_materials[M]/coeff] [CallMaterialName(M)]")
 		else
 			temp_material += " [all_materials[M]/coeff] [CallMaterialName(M)]"
 		c = min(c,t)
@@ -273,7 +273,7 @@
 			l += "<A href='?src=[REF(src)];build=[D.id];amount=10'>x10</A>[RDSCREEN_NOBREAK]"
 		l += "[temp_material][RDSCREEN_NOBREAK]"
 	else
-		l += "<span class='linkOff'>[D.name]</span>[temp_material][RDSCREEN_NOBREAK]"
+		l += "[span_linkOff("[D.name]")][temp_material][RDSCREEN_NOBREAK]"
 	l += ""
 	return l
 

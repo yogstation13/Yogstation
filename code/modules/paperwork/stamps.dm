@@ -14,7 +14,7 @@
 	attack_verb = list("stamped")
 
 /obj/item/stamp/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] stamps 'VOID' on [user.p_their()] forehead, then promptly falls over, dead.</span>")
+	user.visible_message(span_suicide("[user] stamps 'VOID' on [user.p_their()] forehead, then promptly falls over, dead."))
 	return (OXYLOSS)
 
 /obj/item/stamp/qm
@@ -66,6 +66,28 @@
 	name = "clown's rubber stamp"
 	icon_state = "stamp-clown"
 	item_color = "clown"
+
+/obj/item/stamp/mime
+	name = "mime's rubber stamp"
+	icon_state = "stamp-mime"
+	item_color = "mime"
+
+/obj/item/stamp/cent
+	name = "centcom rubber stamp"
+	icon_state = "stamp-cent"
+	item_color = "redcoat"
+
+/obj/item/stamp/syndi
+	name = "knock-off syndicate rubber stamp"
+	desc = "Not a syndicate ripoff!"
+	icon_state = "stamp-syndi"
+	item_color =  "hosred"
+
+	
+/obj/item/stamp/syndiround
+	name = "syndicate rubber stamp"
+	icon_state = "stamp-syndiround"
+	item_color =  "hosred"
 
 /obj/item/stamp/attack_paw(mob/user)
 	return attack_hand(user)

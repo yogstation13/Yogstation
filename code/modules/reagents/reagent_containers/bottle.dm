@@ -432,3 +432,28 @@
 	icon_state = "woodenmug"
 	icon = 'icons/obj/drinks.dmi'
 	volume = 30
+
+//Yogs: Vials
+/obj/item/reagent_containers/glass/bottle/vial
+	name = "vial"
+	desc = "A small vial for holding small amounts of reagents."
+	icon_state = "vial"
+	item_state = "atoxinbottle"
+	possible_transfer_amounts = list(5,10,15)
+	volume = 15
+	disease_amount = 15
+
+/obj/item/reagent_containers/glass/bottle/vial/random_virus
+	name = "Experimental disease culture vial"
+	desc = "A small vial for holding small amounts of reagents. Contains an untested viral culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/random
+
+/obj/item/reagent_containers/glass/bottle/vial/cold
+	name = "Rhinovirus culture vial"
+	desc = "A small vial for holding small amounts of reagents. Contains XY-rhinovirus culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/cold
+
+/obj/item/reagent_containers/glass/bottle/vial/flu_virion
+	name = "Flu virion culture vial"
+	desc = "A small vial for holding small amounts of reagents. Contains H13N1 flu virion culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/flu

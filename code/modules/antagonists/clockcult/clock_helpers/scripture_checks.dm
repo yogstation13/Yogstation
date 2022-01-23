@@ -50,4 +50,4 @@
 	GLOB.clockwork_construction_value = max(0, GLOB.clockwork_construction_value + amount)
 
 /proc/can_recite_scripture(mob/living/L, can_potentially)
-	return (is_servant_of_ratvar(L) && (can_potentially || (L.stat == CONSCIOUS && L.can_speak_vocal())) && (GLOB.ratvar_awakens || (ishuman(L) || issilicon(L))))
+	return (is_servant_of_ratvar(L) && (can_potentially || (L.stat == CONSCIOUS && (L.can_speak_vocal() || L?.mind?.miming))) && (GLOB.ratvar_awakens || (ishuman(L) || issilicon(L))))

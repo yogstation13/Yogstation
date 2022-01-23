@@ -154,3 +154,37 @@
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 45)
 	cold_protection = CHEST|ARMS
 	heat_protection = CHEST|ARMS
+
+//Roboticist
+/obj/item/clothing/suit/hooded/techpriest
+	name = "techpriest robes"
+	desc = "For those who REALLY love their toasters."
+	icon_state = "techpriest"
+	item_state = "techpriest"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	hoodtype = /obj/item/clothing/head/hooded/techpriest
+
+/obj/item/clothing/head/hooded/techpriest
+	name = "techpriest's hood"
+	desc = "A hood for those who REALLY love their toasters."
+	icon_state = "techpriesthood"
+	item_state = "techpriesthood"
+	body_parts_covered = HEAD
+	flags_inv = HIDEHAIR|HIDEEARS 
+
+/obj/item/clothing/suit/hooded/amech
+	name = "red robes"
+	desc = "A robe that used to be used by cultist."
+	icon_state = "amech"
+	item_state = "amech"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	hoodtype = /obj/item/clothing/head/hooded/amech
+
+
+/obj/item/clothing/head/hooded/amech
+	name = "red robe's hood"
+	desc = "A hood that used to be used by cultist."
+	icon_state = "amech"
+	item_state = "amech"
+	body_parts_covered = HEAD|HAIR
+	flags_inv = HIDEHAIR|HIDEEARS 

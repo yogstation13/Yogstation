@@ -45,7 +45,7 @@
 			return //So there's no point messaging admins
 		message_admins("[ADMIN_LOOKUPFLW(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
 		log_admin("[key_name(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)])")
-		to_chat(src, "<span class='reallybig'>You have been automatically kicked because you clicked a turf you shouldn't have been able to see as an AI. You should reconnect automatically. If you do not, you can reconnect using the File --> Reconnect button.</span>")
+		to_chat(src, span_reallybig("You have been automatically kicked because you clicked a turf you shouldn't have been able to see as an AI. You should reconnect automatically. If you do not, you can reconnect using the File --> Reconnect button."))
 		winset(usr, null, "command=.reconnect")
 		QDEL_IN(client, 3 SECONDS) //fallback if the reconnection doesnt work
 		return
@@ -106,6 +106,7 @@
 	A.AICtrlShiftClick(src)
 /mob/living/silicon/ai/ShiftClickOn(var/atom/A)
 	A.AIShiftClick(src)
+
 /mob/living/silicon/ai/CtrlClickOn(var/atom/A)
 	A.AICtrlClick(src)
 /mob/living/silicon/ai/AltClickOn(var/atom/A)
@@ -127,6 +128,7 @@
 	return
 /atom/proc/AICtrlShiftClick()
 	return
+
 
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick() // Bolts doors
@@ -179,6 +181,13 @@
 /obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
 	hangup_all_calls()
 	add_hiddenprint(usr)
+
+/* Humans (With upgrade) */
+/mob/living/carbon/human/AIShiftClick(mob/living/silicon/ai/user)
+	if(!user.canExamineHumans)
+		return
+	if(user.client && (user.client.eye == user.eyeobj || user.client.eye == user.loc))
+		user.examinate(src)
 
 //
 // Override TurfAdjacent for AltClicking

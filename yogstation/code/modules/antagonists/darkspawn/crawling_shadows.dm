@@ -44,7 +44,7 @@
 
 /mob/living/simple_animal/hostile/crawling_shadows/Destroy()
 	if(darkspawn_mob && mind)
-		visible_message("<span class='warning'>[src] transforms into a humanoid figure!</span>", "<span class='warning'>You return to your normal form.</span>")
+		visible_message(span_warning("[src] transforms into a humanoid figure!"), span_warning("You return to your normal form."))
 		playsound(src, 'yogstation/sound/magic/devour_will_end.ogg', 50, 1)
 		if(mind)
 			mind.transfer_to(darkspawn_mob)
@@ -84,7 +84,7 @@
 	darkspawn_mob.forceMove(src)
 	darkspawn_mob.status_flags |= GODMODE
 	darkspawn_mob.mind.transfer_to(src)
-	to_chat(src, "<span class='warning'>This will last for around a minute.</span>")
+	to_chat(src, span_warning("This will last for around a minute."))
 	var/datum/action/innate/darkspawn/end_shadows/E = new
 	E.Grant(src)
 	QDEL_IN(src, 600)
@@ -95,23 +95,23 @@
 		if(H.stat)
 			return ..()
 		knocking_out = TRUE
-		visible_message("<span class='warning'>[src] pick up [H] and dangle \him in the air!</span>", "<span class='notice'>You pluck [H] from the ground...</span>")
-		to_chat(H, "<span class='userdanger'>[src] grab you and dangle you in the air!</span>")
+		visible_message(span_warning("[src] pick up [H] and dangle \him in the air!"), span_notice("You pluck [H] from the ground..."))
+		to_chat(H, span_userdanger("[src] grab you and dangle you in the air!"))
 		H.Stun(30)
 		H.pixel_y += 4
-		if(!do_after(src, 10, target = target))
+		if(!do_after(src, 1 SECONDS, target = target))
 			H.pixel_y -= 4
 			knocking_out = FALSE
 			return
-		visible_message("<span class='warning'>[src] gently press a hand against [H]'s face, and \he falls limp...</span>", "<span class='notice'>You quietly incapacitate [H].</span>")
+		visible_message(span_warning("[src] gently press a hand against [H]'s face, and \he falls limp..."), span_notice("You quietly incapacitate [H]."))
 		H.pixel_y -= 4
-		to_chat(H, "<span class='userdanger'>[src] press a hand to your face, and docility comes over you...</span>")
+		to_chat(H, span_userdanger("[src] press a hand to your face, and docility comes over you..."))
 		H.Paralyze(60)
 		knocking_out = FALSE
 		return TRUE
 	else if(istype(target, /obj/machinery/door))
 		forceMove(get_turf(target))
-		visible_message("<span class='warning'>Shadows creep through [target]...</span>", "<span class='notice'>You slip through [target].</span>")
+		visible_message(span_warning("Shadows creep through [target]..."), span_notice("You slip through [target]."))
 		return
 	..()
 
