@@ -625,6 +625,7 @@
 	icon_state = "altsecurity"
 	item_state = "altsecurity"
 	item_color = "altsecurity"
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "wound" = 10)
 
 /obj/item/clothing/under/yogs/victoriouscaptainuniform
 	name = "very fancy captain uniform"
