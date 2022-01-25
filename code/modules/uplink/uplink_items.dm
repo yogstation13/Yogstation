@@ -1475,6 +1475,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/aiModule/syndicate
 	cost = 4
 	manufacturer = /datum/corporation/traitor/cybersun
+	exclude_modes = list(/datum/game_mode/infiltration)
+
+/datum/uplink_item/device_tools/brainwash_disk
+	name = "Brainwashing Surgery Program"
+	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
+	Insert into an Operating Console to enable the procedure."
+	item = /obj/item/disk/surgery/brainwashing
+	cost = 5
+	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/device_tools/hypnotic_flash
 	name = "Hypnotic Flash"
@@ -1747,6 +1756,57 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
+// Events
+/datum/uplink_item/services
+	category = "Services"
+	include_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear)
+	surplus = 0
+	restricted = TRUE
+
+/datum/uplink_item/services/manifest_spoof
+	name = "Crew Manifest Spoof"
+	desc = "A button capable of adding a single person to the crew manifest."
+	item = /obj/item/service/manifest
+	cost = 4
+	limited_stock = 1
+
+/datum/uplink_item/services/fake_ion
+	name = "Fake Ion Storm"
+	desc = "Fakes an ion storm announcment. A good distraction, especially if the AI is weird anyway."
+	item = /obj/item/service/ion
+	cost = 7
+
+/datum/uplink_item/services/fake_meteor
+	name = "Fake Meteor Announcement"
+	desc = "Fakes an meteor announcment. A good way to get any C4 on the station exterior, or really any small explosion, brushed off as a meteor hit."
+	item = /obj/item/service/meteor
+	cost = 7
+
+/datum/uplink_item/services/fake_rod
+	name = "Fake Immovable Rod"
+	desc = "Fakes an immovable rod announcement. Good for a short-lasting distraction."
+	item = /obj/item/service/rodgod
+	cost = 6 //less likely to be believed
+
+//Infiltrator shit
+/datum/uplink_item/infiltration
+	category = "Infiltration Gear"
+	include_modes = list(/datum/game_mode/infiltration)
+	surplus = 0
+
+/datum/uplink_item/infiltration/extra_stealthsuit
+	name = "Extra Chameleon Hardsuit"
+	desc = "An infiltration hardsuit, capable of changing it's appearance instantly."
+	item = /obj/item/clothing/suit/space/hardsuit/infiltration
+	cost = 10
+
+/datum/uplink_item/infiltration/access_kit
+	name = "Access Kit"
+	desc = "A secret device, reverse engineered by gear retrieved from previous Nanotrasen infiltration missions. Allows you to spoof an ID card to have the assignment and access of a single low-level job."
+	item = /obj/item/access_kit/syndicate
+	limited_stock = 1
+	cost = 5
+
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
@@ -1873,15 +1933,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
-
-/datum/uplink_item/role_restricted/brainwash_disk
-	name = "Brainwashing Surgery Program"
-	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
-	Insert into an Operating Console to enable the procedure."
-	item = /obj/item/disk/surgery/brainwashing
-	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist", "Mining Medic") //yogs
-	cost = 5
-	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/role_restricted/clown_bomb
 	name = "Clown Bomb"
@@ -2070,7 +2121,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Makeshift Weapons"
 	desc = "A one use book that grants access to a number of secret crafting recipes once it has been read."
 	item = /obj/item/book/granter/crafting_recipe/weapons
-	cost = 4
+	cost = 2
 	cant_discount = TRUE
 	illegal_tech = FALSE
 

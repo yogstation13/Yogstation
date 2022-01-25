@@ -25,7 +25,7 @@
 	var/requires_ntnet_feature = 0
 	/// NTNet status, updated every tick by computer running this program. Don't use this for checks if NTNet works, computers do that. Use this for calculations, etc.
 	var/ntnet_status = 1
-	/// Bitflags (PROGRAM_CONSOLE, PROGRAM_LAPTOP, PROGRAM_TABLET, PROGRAM_PHONE combination) or PROGRAM_ALL
+	/// Bitflags (PROGRAM_CONSOLE, PROGRAM_LAPTOP, PROGRAM_TABLET, PROGRAM_PHONE, PROGRAM_PDA, PROGRAM_TELESCREEN combination) or PROGRAM_ALL
 	var/usage_flags = PROGRAM_ALL
 	/// Optional string that describes what NTNet server/system this program connects to. Used in default logging.
 	var/network_destination = null

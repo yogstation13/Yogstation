@@ -117,11 +117,6 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 	brainmob.mind.remove_all_antag()
 	brainmob.mind.wipe_memory()
-	GLOB.poi_list -= src
-	var/list/spawners = GLOB.mob_spawners[initial(name)]
-	LAZYREMOVE(spawners, src)
-	if(!LAZYLEN(spawners))
-		GLOB.mob_spawners -= initial(name)
 	update_icon()
 	return ..()
 
@@ -144,6 +139,13 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 	visible_message(new_mob_message)
 	check_success()
+
+	GLOB.poi_list -= src
+	var/list/spawners = GLOB.mob_spawners[initial(name)]
+	LAZYREMOVE(spawners, src)
+	if(!LAZYLEN(spawners))
+		GLOB.mob_spawners -= initial(name)
+
 	return TRUE
 
 
@@ -186,6 +188,9 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	return ..()
 
 /obj/item/mmi/posibrain/attackby(obj/item/O, mob/user)
+	if(istype(O, /obj/item/aiModule))
+		var/obj/item/aiModule/M = O
+		M.install(laws, user)
 	return
 
 
