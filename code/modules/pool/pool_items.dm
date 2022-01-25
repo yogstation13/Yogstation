@@ -8,7 +8,7 @@
 	wieldsound = 'sound/weapons/tap.ogg'
 	unwieldsound = 'sound/weapons/tap.ogg'
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb = "wacked"
+	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
 /obj/item/twohanded/required/pool/Initialize()
 	. = ..()
