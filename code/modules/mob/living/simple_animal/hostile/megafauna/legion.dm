@@ -42,6 +42,7 @@ Difficulty: Medium
 	pixel_y = -90
 	pixel_x = -75
 	loot = list(/obj/item/stack/sheet/bone = 3)
+	crusher_loot = /obj/item/crusher_trophy/malformed_bone //leaving this here since if you dont start with the crusher you're probably not gonna finish with it
 	vision_range = 13
 	wander = FALSE
 	elimination = TRUE
