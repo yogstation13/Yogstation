@@ -47,6 +47,8 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	. = ..()
 
 /turf/open/indestructible/sound/pool/CanPass(atom/movable/mover, turf/target)
+	if(mover.throwing)
+		return TRUE
 	var/datum/component/swimming/S = mover.GetComponent(/datum/component/swimming) //You can't get in the pool unless you're swimming.
 	return (isliving(mover)) ? S : ..() //So you can do stuff like throw beach balls around the pool!
 
