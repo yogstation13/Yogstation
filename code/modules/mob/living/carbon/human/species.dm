@@ -1530,12 +1530,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				user.visible_message(span_danger("[user.name] shoves [target.name] into [target_collateral_human.name]!"),
 					span_danger("You shove [target.name] into [target_collateral_human.name]!"), null, COMBAT_MESSAGE_RANGE)
 				log_combat(user, target, "shoved", "into [target_collateral_human.name]")
-			else if(target_shove_turf == /turf/open/indestructible/sound/pool)
-				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
-				target.forceMove(target_shove_turf, shove_dir)
-				user.visible_message(span_danger("[user.name] shoves [target.name] into the water!"),
-					span_danger("You shove [target.name] into the water!"), null, COMBAT_MESSAGE_RANGE)
-				log_combat(user, target, "shoved", "into [target_shove_turf] (Pool)")
 		else
 			user.visible_message(span_danger("[user.name] shoves [target.name]!"),
 				span_danger("You shove [target.name]!"), null, COMBAT_MESSAGE_RANGE)
