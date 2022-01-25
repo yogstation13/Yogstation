@@ -382,7 +382,7 @@
 			landmark_loc += sloc.loc
 
 	if(!landmark_loc.len)
-		message_admins("Could not find ai landmark for [src]. Yell at a mapper! We are spawning them at their current location.")
+		message_admins("Could not find ai landmark for [src]. Yell at Bibby! We are spawning them at their current location.")
 		landmark_loc += loc
 
 	if(client)
