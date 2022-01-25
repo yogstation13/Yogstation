@@ -416,27 +416,22 @@
 //Legion (Megafauna)
 /obj/item/crusher_trophy/malformed_bone
 	name = "malformed bone"
-	desc = "A glowing trinket that was originally the Hierophant's beacon. Suitable as a trophy for a kinetic crusher."
+	desc = "A piece of bone caught in the act of division. Suitable as a trophy for a kinetic crusher."
 	icon_state = "vortex_talisman"
 	denied_type = /obj/item/crusher_trophy/malformed_bone
+	bonus_value = 30
 
 /obj/item/crusher_trophy/malformed_bone/effect_desc()
 	return "mark detonation has a chance to trigger a second detonation"
 
 /obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user)
-	var/turf/current_location = get_turf(user)//yogs added a current location check that was totally ripped from the hand tele code honk
-	var/area/current_area = current_location.loc //yogs more location check stuff
-	if(current_area.noteleport) //yogs added noteleport
-		to_chat(user, "[src] fizzles uselessly.")
-		return
-	var/turf/T = get_turf(user)
-	new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
-	var/turf/otherT = get_step(T, turn(user.dir, 90))
-	if(otherT)
-		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-	otherT = get_step(T, turn(user.dir, -90))
-	if(otherT)
-		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-
-/obj/effect/temp_visual/hierophant/wall/crusher
-	duration = 75
+	var/datum/status_effect/crusher_damage/C
+	if(rand(1, 100) <= bonus_value && target.stat != DEAD)
+		if((user.dir & backstab_dir) && (L.dir & backstab_dir))
+		C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
+			L.apply_damage(detonation_damage + backstab_bonus, BRUTE, blocked = def_check)
+			playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
+		else
+			if(!QDELETED(C))
+				C.total_damage += detonation_damage
+				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
