@@ -552,6 +552,20 @@
 	race = /datum/species/pod
 	mutationtext = span_danger("The pain subsides. You feel... plantlike.")
 
+/datum/reagent/mutationtoxin/ethereal
+	name = "Ethereal Mutation Toxin"
+	description = "An electrifying toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/ethereal
+	mutationtext = span_danger("The pain subsides. You feel... ecstatic.")
+
+/datum/reagent/mutationtoxin/polysmorph
+	name = "Polysmorph Mutation Toxin"
+	description = "An acidic toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/polysmorph
+	mutationtext = span_danger("The pain subsides. You feel... Alien.")
+
 /datum/reagent/mutationtoxin/jelly
 	name = "Imperfect Mutation Toxin"
 	description = "An jellyfying toxin."
