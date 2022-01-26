@@ -564,7 +564,7 @@
 	description = "An acidic toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/polysmorph
-	mutationtext = span_danger("The pain subsides. You feel... alien.")
+	mutationtext = span_danger("The pain subsides. You feel... Alien.")
 
 /datum/reagent/mutationtoxin/jelly
 	name = "Imperfect Mutation Toxin"
