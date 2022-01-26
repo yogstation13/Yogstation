@@ -1361,6 +1361,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 20
 
+/datum/uplink_item/device_tools/airshoes
+	name = "Air Shoes"
+	desc = "Popular in underground racing rings, these shoes come with built-in jets, allowing the users to reach high speeds for prolonged durations and short bursts. \
+	Users should keep in mind that despite being easier to control than their Wheely cousins, this footwear will not protect you from high-speed impacts."
+	item = /obj/item/clothing/shoes/airshoes
+	cost = 4
+	manufacturer = /datum/corporation/traitor/cybersun
+	surplus = -1
+	restricted = TRUE
+
 /datum/uplink_item/device_tools/assault_pod
 	name = "Assault Pod Targeting Device"
 	desc = "Use this to select the landing zone of your assault pod."
