@@ -179,7 +179,8 @@
 	resistance_flags = ACID_PROOF
 	force = 17
 	item_flags = ABSTRACT | DROPDEL
-	weapon_stats = list(SWING_SPEED = 0.9, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	range_cooldown_mod = 0 //tentacle is designed to hit from range
 	hitsound = 'sound/weapons/whip.ogg'
 /obj/item/horrortentacle/Initialize(mapload)
 	. = ..()
