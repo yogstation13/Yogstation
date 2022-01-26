@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "items can now have individual modifiers for attack cooldown based on distance rather than it being simply doubled per tile"
