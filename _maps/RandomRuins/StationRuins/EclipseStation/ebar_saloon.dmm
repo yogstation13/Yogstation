@@ -530,6 +530,10 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"th" = (
+/obj/machinery/oven,
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "tt" = (
 /obj/structure/table/wood,
 /obj/machinery/door/firedoor/border_only{
@@ -1811,7 +1815,7 @@ Ta
 hH
 dC
 lc
-ZE
+th
 lZ
 Eo
 IL

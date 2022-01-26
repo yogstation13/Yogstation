@@ -35,6 +35,14 @@
 	end_sound = 'sound/machines/fryer/deep_fryer_emerge.ogg'
 	volume = 10
 
+/datum/looping_sound/oven
+	start_sound = 'sound/machines/oven/oven_loop_start.ogg' //my immersions
+	start_length = 12
+	mid_sounds = list('sound/machines/oven/oven_loop_mid.ogg' = 1)
+	mid_length = 13
+	end_sound = 'sound/machines/oven/oven_loop_end.ogg'
+	volume = 100
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/looping_sound/grill
