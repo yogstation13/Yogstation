@@ -39,7 +39,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 	for(var/mob/living/silicon/ai/AI in contents)
 		all_ais -= AI
-    	if(!AI.is_dying)
+		if(!AI.is_dying)
 			AI.relocate()
     
 	for(var/mob/living/silicon/ai/AI in all_ais)
