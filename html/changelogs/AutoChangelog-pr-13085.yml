@@ -1,0 +1,6 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscadd: "Added subtype of APN that will zombify people"
+  - bugfix: "Fixed APN zombie mode not making zombies"
+  - tweak: "Romerol now tries to make tumor on mob life, then metabolizes fully"
