@@ -166,6 +166,10 @@
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"hj" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "hk" = (
 /obj/structure/chair/americandiner/booth/end_left,
 /turf/open/floor/plasteel/dark,
@@ -1639,7 +1643,7 @@ Wv
 jJ
 QG
 qc
-Qc
+hj
 hw
 Ul
 Un

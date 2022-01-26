@@ -1212,6 +1212,10 @@
 "Vq" = (
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
+"VA" = (
+/obj/machinery/oven,
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "VM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4;
@@ -1764,7 +1768,7 @@ UT
 hH
 dC
 rv
-Kc
+VA
 kP
 XN
 IL
