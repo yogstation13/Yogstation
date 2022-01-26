@@ -1769,6 +1769,13 @@
 		ZI.Insert(H)
 	..()
 
+/datum/reagent/romerol/on_mob_life(mob/living/carbon/human/H)
+	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
+		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
+		ZI.Insert(H)
+	if(holder)
+		holder.remove_reagent(type, INFINITY) //By default it slowly disappears.
+
 /datum/reagent/magillitis
 	name = "Magillitis"
 	description = "An experimental serum which causes rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas."
