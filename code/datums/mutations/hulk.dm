@@ -48,7 +48,7 @@
 	wrapped_message[1] = message
 	return COMPONENT_UPPERCASE_SPEECH
 
-/datum/mutation/human/genetics_hulk
+/datum/mutation/human/hulk/genetics_hulk
 
 	name = "Hulk"
 	quality = POSITIVE
@@ -57,8 +57,9 @@
 	text_gain_indication = span_notice("You suddenly feel very angry.")
 	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 25
+	locked = FALSE
 
-/datum/mutation/human/active_hulk
+/datum/mutation/human/hulk/genetics_hulk/active_hulk
 	name = "Hulk State"
 	quality = POSITIVE
 	class = MUT_OTHER
@@ -70,7 +71,7 @@
 	power = /obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
 
 
-/datum/mutation/human/active_hulk/on_acquiring(mob/living/carbon/human/owner)
+/datum/mutation/human/hulk/genetics_hulk/active_hulk/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
 	owner.SetParalyzed(0)
@@ -93,16 +94,16 @@
 	owner.physiology.stamina_mod = 0.3
 	owner.update_body()
 
-/datum/mutation/human/active_hulk/on_attack_hand(mob/living/carbon/human/owner, atom/target)
+/datum/mutation/human/hulk/genetics_hulk/active_hulk/on_attack_hand(mob/living/carbon/human/owner, atom/target)
 	if(prob(3))
 		owner.Jitter(10)
 	owner.adjustStaminaLoss(-0.5)
 	return target.attack_hulk(owner)
 
-/datum/mutation/human/active_hulk/on_life()
+/datum/mutation/human/hulk/genetics_hulk/active_hulk/on_life()
 	owner.adjustStaminaLoss(0.9)
 
-/datum/mutation/human/active_hulk/on_losing(mob/living/carbon/human/owner)
+/datum/mutation/human/hulk/genetics_hulk/active_hulk/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, TRAIT_HULK)
@@ -113,9 +114,9 @@
 	owner.physiology.stamina_mod = initial(owner.physiology.stamina_mod)
 	owner.update_body_parts()
 
-/datum/mutation/human/active_hulk/proc/handle_speech(original_message, wrapped_message)
-	var/message = wrapped_message[1]
-	if(message)
-		message = "[replacetext(message, ".", "!")]!!"
-	wrapped_message[1] = message
-	return COMPONENT_UPPERCASE_SPEECH
+// /datum/mutation/human/hulk/genetics_hulk/active_hulk/proc/handle_speech(original_message, wrapped_message)
+// 	var/message = wrapped_message[1]
+// 	if(message)
+// 		message = "[replacetext(message, ".", "!")]!!"
+// 	wrapped_message[1] = message
+// 	return COMPONENT_UPPERCASE_SPEECH
