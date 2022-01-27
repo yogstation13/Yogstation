@@ -80,14 +80,6 @@
 	required_reagents = list(/datum/reagent/consumable/cilk = 1) //full of cilk
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/green
-	
-/datum/chemical_reaction/slime/slimeplasmaman
-	name = "Plasmaman Mutation Toxin"
-	id = "plasmammuttoxin"
-	results = list(/datum/reagent/mutationtoxin/plasma = 1)
-	required_reagents = list(/datum/reagent/stable_plasma = 1) //stable plasma makes the stable race
-	required_other = TRUE
-	required_container = /obj/item/slime_extract/green
 
 /datum/chemical_reaction/slime/slimeethereal
 	name = "Ethereal Mutation Toxin"
