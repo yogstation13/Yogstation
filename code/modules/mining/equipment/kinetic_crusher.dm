@@ -417,7 +417,7 @@
 /obj/item/crusher_trophy/malformed_bone
 	name = "malformed bone"
 	desc = "A piece of bone caught in the act of division. Suitable as a trophy for a kinetic crusher."
-	icon_state = "vortex_talisman"
+	icon_state = "malf_bone"
 	denied_type = /obj/item/crusher_trophy/malformed_bone
 	bonus_value = 30
 
@@ -428,7 +428,7 @@
 	var/datum/status_effect/crusher_damage/C
 	if(rand(1, 100) <= bonus_value && target.stat != DEAD)
 		if((user.dir & backstab_dir) && (L.dir & backstab_dir))
-		C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
+			C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
 			L.apply_damage(detonation_damage + backstab_bonus, BRUTE, blocked = def_check)
 			playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
 		else
