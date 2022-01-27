@@ -1,0 +1,5 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "modular tablets/phones now show the name and assignment of the inserted ID"
+  - tweak: "modular computers can now be opened by ctrl clicking them"

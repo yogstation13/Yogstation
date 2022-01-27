@@ -662,6 +662,12 @@
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
 
+/datum/action/item_action/dash
+	name = "Dash"
+	desc = "Momentarily maximizes the jets of the shoes, allowing the user to dash a short distance."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "thrust"
+
 /datum/action/language_menu
 	name = "Language Menu"
 	desc = "Open the language menu to review your languages, their keys, and select your default language."
@@ -682,6 +688,13 @@
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
 
+/datum/action/item_action/airshoes
+	name = "Toggle thrust on air shoes."
+	desc = "Switch between walking and hovering."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "airshoes_a"
+
+	
 /datum/action/item_action/kindleKicks
 	name = "Activate Kindle Kicks"
 	desc = "Kick you feet together, activating the lights in your Kindle Kicks."

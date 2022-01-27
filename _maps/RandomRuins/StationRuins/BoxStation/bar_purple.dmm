@@ -1050,6 +1050,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"cM" = (
+/obj/machinery/oven,
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "cN" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -1903,7 +1907,7 @@ bG
 bS
 bc
 UR
-ND
+cM
 cP
 do
 Be

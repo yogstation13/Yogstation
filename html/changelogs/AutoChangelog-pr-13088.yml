@@ -1,0 +1,4 @@
+author: "  Xoxeyos"
+delete-after: true 
+changes: 
+  - tweak: "Quiet mode should now work with dynamic. Dynamic Simulations should now run properly. Lings shouldn't be picked for a head of staff role anymore."

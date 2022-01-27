@@ -1008,6 +1008,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
+"MG" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Oi" = (
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
@@ -1714,7 +1718,7 @@ bM
 jJ
 QG
 oI
-WI
+MG
 hw
 JP
 Un
