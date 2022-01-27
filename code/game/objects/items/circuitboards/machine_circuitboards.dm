@@ -212,7 +212,8 @@
 	build_path = /obj/machinery/power/emitter
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 1,
-		/obj/item/stock_parts/manipulator = 1)
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/capacitor = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/generator
@@ -1036,16 +1037,23 @@
 	build_path = /obj/machinery/chem_master/condimaster
 
 /obj/item/circuitboard/machine/deep_fryer
-	name = "circuit board (Deep Fryer)"
+	name = "Deep Fryer (Machine Board)"
 	icon_state = "service"
 	build_path = /obj/machinery/deepfryer
 	req_components = list(/obj/item/stock_parts/micro_laser = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/griddle
-	name = "circuit board (Griddle)"
+	name = "Griddle (Machine Board)"
 	icon_state = "service"
 	build_path = /obj/machinery/griddle
+	req_components = list(/obj/item/stock_parts/micro_laser = 1)
+	needs_anchored = FALSE
+
+/obj/item/circuitboard/machine/oven
+	name = "Oven (Machine Board)"
+	icon_state = "service"
+	build_path = /obj/machinery/oven
 	req_components = list(/obj/item/stock_parts/micro_laser = 1)
 	needs_anchored = FALSE
 

@@ -69,9 +69,7 @@
 				log_game("[user.real_name] ([user.ckey]) injected [M.real_name] ([M.ckey]) with [viruslist]")
 // yogs end
 /obj/item/reagent_containers/hypospray/CMO
-	list_reagents = list(/datum/reagent/medicine/c2/libital = 10,
-						/datum/reagent/medicine/c2/aiuri = 10,
-						/datum/reagent/medicine/salbutamol = 10)
+	list_reagents = list(/datum/reagent/medicine/omnizine = 30)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/reagent_containers/hypospray/combat

@@ -343,7 +343,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(!target.can_download)
 				return
 			downloading = target
-			to_chat(downloading, span_userdanger("Warning! Someone is attempting to download you from [get_area(src)]!"))
+			to_chat(downloading, span_userdanger("Warning! Someone is attempting to download you from [get_area(src)]! (<a href='?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))
 			user_downloading = usr
 			download_progress = 0
 			. = TRUE

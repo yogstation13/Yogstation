@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "replaces spans so people with deadchat not in their main window will actually see that their leg is about to die"

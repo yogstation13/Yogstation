@@ -1,4 +1,0 @@
-author: " Lucy"
-delete-after: true 
-changes: 
-  - bugfix: "Timeskipping as a holoparasite no longer permanently breaks your ability to do anything."

@@ -1,6 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "weapons can now have a slowdown applied to their user on hit, and have differing attack cooldowns/take damage on attack"
-  - tweak: "spears now have 2 range when wielded, but slightly slow the user when attacking while wielded. Spears crafted from glass shards can break from heavy use"
-  - tweak: "carrot shivs and shanks can attack slightly faster, but can break after repeated use"
