@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(404 modules,
-    621/6969 macros, 8.9%)</aside></h3>
+<aside>(405 modules,
+    622/6984 macros, 8.9%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -123,6 +123,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li><a href="code/datums/callback.html" title="code&#x2F;datums&#x2F;callback">callback</a></li>
     <li><a href="code/datums/chatmessage.html" title="code&#x2F;datums&#x2F;chatmessage">chatmessage</a></li>
     <li class="has-children"><a href="code/datums/components.html" title="code&#x2F;datums&#x2F;components">Datum Component System (DCS)</a><ul class="index-tree">
+    <li><a href="code/datums/components/bakeable.html" title="code&#x2F;datums&#x2F;components&#x2F;bakeable">bakeable</a></li>
     <li><a href="code/datums/components/explodable.html" title="code&#x2F;datums&#x2F;components&#x2F;explodable">explodable</a></li>
     <li><span class="no-substance">fantasy&#x2F;</span><a href="code/datums/components/fantasy/suffixes.html" title="code&#x2F;datums&#x2F;components&#x2F;fantasy&#x2F;suffixes">suffixes</a></li>
     <li><a href="code/datums/components/gunpoint.html" title="code&#x2F;datums&#x2F;components&#x2F;gunpoint">gunpoint</a></li>
@@ -630,7 +631,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(383 detailed/941 documented/23765 total, 4%)</aside></h3>
+<aside>(388 detailed/946 documented/23821 total, 4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -715,7 +716,10 @@ See: <a href="datum/controller/subsystem/achievements.html" title="/datum/contro
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;seek_master">Seek your Master</span> - Master-Tracker</li>
     </ul></li>
     <li><span class="no-substance">item_action&#x2F;</span><a href="datum/action/item_action/activate_uber.html" title="&#x2F;datum&#x2F;action&#x2F;item_action&#x2F;activate_uber">Activate Übercharge</a> - this could remove an admin-given godmode but theres like 0.001% chance that will ever be an issue</li>
-    <li><span class="no-substance">vehicle&#x2F;ridden&#x2F;scooter&#x2F;skateboard&#x2F;</span><a href="datum/action/vehicle/ridden/scooter/skateboard/ollie.html" title="&#x2F;datum&#x2F;action&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;skateboard&#x2F;ollie">Ollie</a></li>
+    <li class="has-children"><span class="no-substance">vehicle&#x2F;ridden&#x2F;</span><span title="&#x2F;datum&#x2F;action&#x2F;vehicle&#x2F;ridden&#x2F;scooter">scooter</span><ul class="index-tree">
+    <li><span class="no-substance">airshoes&#x2F;</span><a href="datum/action/vehicle/ridden/scooter/airshoes/ollie.html" title="&#x2F;datum&#x2F;action&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;airshoes&#x2F;ollie">Leap</a></li>
+    <li><span class="no-substance">skateboard&#x2F;</span><a href="datum/action/vehicle/ridden/scooter/skateboard/ollie.html" title="&#x2F;datum&#x2F;action&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;skateboard&#x2F;ollie">Ollie</a></li>
+    </ul></li>
     </ul></li>
     <li><a href="datum/admins.html" title="&#x2F;datum&#x2F;admins">nobody&#x27;s admin datum (no rank)</a></li>
     <li><a href="datum/ai_project.html" title="&#x2F;datum&#x2F;ai_project">DEBUG</a></li>
@@ -765,6 +769,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
     </ul></li>
     <li><a href="datum/client_interface.html" title="&#x2F;datum&#x2F;client_interface">client_interface</a> - This should match the interface of /client wherever necessary.</li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;component">component</span><ul class="index-tree">
+    <li><a href="datum/component/bakeable.html" title="&#x2F;datum&#x2F;component&#x2F;bakeable">bakeable</a> - This component indicates this object can be baked in an oven.</li>
     <li><span class="no-substance">construction&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;construction&#x2F;mecha">mecha</span> - Construction datums</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;crawl">crawl</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;crawl&#x2F;blood">blood</span> - BLOODCRAWL</li>
@@ -1636,6 +1641,7 @@ Given to Nuke Ops members.</li>
     </ul></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;pickaxe">pickaxe</span> - Pickaxes &amp; Drills &amp; Shovels</li>
+    <li><a href="obj/item/plate.html" title="&#x2F;obj&#x2F;item&#x2F;plate">plate</a></li>
     <li><a href="obj/item/projectile.html" title="&#x2F;obj&#x2F;item&#x2F;projectile">projectile</a></li>
     <li><span class="no-substance">radio&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;radio&#x2F;borg">cyborg radio</span> - Borg Radios</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;reagent_containers">reagent_containers</span><ul class="index-tree">
@@ -1658,6 +1664,7 @@ Given to Nuke Ops members.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cookie">cookie</span> - OTHER</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cubancarp">Cuban carp</span> - FISH</li>
     <li><span class="no-substance">customizable&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;customizable&#x2F;burger">burger</span> - Customizable Food Types</li>
+    <li><span class="no-substance">donkpocket&#x2F;</span><a href="obj/item/reagent_containers/food/snacks/donkpocket/warm.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;donkpocket&#x2F;warm">warm donkpocket</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;donut">donut</span> - DONUTS</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;dough">dough</span> - Dough Ingredients</li>
     <li><a href="obj/item/reagent_containers/food/snacks/grown.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;grown">grown</a></li>
@@ -1799,6 +1806,7 @@ Enables crew to create requests, crew can sign up to perform the request, and th
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;stacking_unit_console">stacking machine console</span> - Mineral stacking unit console</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;unloading_machine">unloading machine</span> - Unloading unit</li>
     </ul></li>
+    <li><a href="obj/machinery/oven.html" title="&#x2F;obj&#x2F;machinery&#x2F;oven">oven</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;porta_turret_cover">turret</span> - PORTABLE TURRET COVER</li>
     <li class="has-children"><span class="no-substance">portable_atmospherics&#x2F;</span><span title="&#x2F;obj&#x2F;machinery&#x2F;portable_atmospherics&#x2F;canister">canister</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;portable_atmospherics&#x2F;canister&#x2F;fusion_test">Fusion Test Canister</span> - Canister 1 Kelvin below the fusion point. Is highly unoptimal, do not spawn to start fusion, only good for testing low instability mixes.</li>
@@ -1931,7 +1939,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/324ac4cbc72bdc03ea0b4af414ccfa7b5ee22718">324ac4c</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/fef83a92ab0471511c4b69b6e53126e384cf58b3">fef83a9</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
