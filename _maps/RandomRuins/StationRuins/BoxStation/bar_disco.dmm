@@ -1031,6 +1031,10 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"Ro" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "Sy" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
@@ -1391,7 +1395,7 @@ bv
 bH
 aX
 Sy
-qv
+Ro
 cA
 cy
 pp

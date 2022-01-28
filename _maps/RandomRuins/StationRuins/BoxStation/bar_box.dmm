@@ -1317,6 +1317,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"Bx" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "CJ" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar,
@@ -1767,7 +1771,7 @@ bc
 be
 br
 MY
-pe
+Bx
 cI
 ce
 ge

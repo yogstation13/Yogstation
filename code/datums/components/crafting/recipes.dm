@@ -426,6 +426,26 @@
 	time = 10 SECONDS
 	category = CAT_MISC
 
+/datum/crafting_recipe/ghetto_heart
+	name = "Makeshift Heart"
+	result = /obj/item/organ/heart/ghetto
+	reqs = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1,
+				/obj/item/stack/cable_coil = 3,
+				/obj/item/weaponcrafting/receiver = 1, //it recieves the blood
+				/obj/item/reagent_containers/hypospray/medipen/pumpup = 1)
+	tools = list(TOOL_WIRECUTTER, TOOL_WELDER)
+	time = 15 SECONDS
+	category = CAT_MISC
+
+/datum/crafting_recipe/ghetto_lungs
+	name = "Makeshift Lungs"
+	result = /obj/item/organ/lungs/ghetto
+	reqs = list(/obj/item/tank/internals/emergency_oxygen = 2,
+				/obj/item/weaponcrafting/receiver = 1) //it recieves the oxygen
+	tools = list(TOOL_WELDER)
+	time = 15 SECONDS
+	category = CAT_MISC
+
 /datum/crafting_recipe/mousetrap
 	name = "Mouse Trap"
 	result = /obj/item/assembly/mousetrap
@@ -806,7 +826,7 @@
 	result = /obj/item/reagent_containers/glass/bucket/wooden
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/cleanleather 
+/datum/crafting_recipe/cleanleather
 	name = "Clean Leather"
 	result = /obj/item/stack/sheet/wetleather
 	reqs = list(/obj/item/stack/sheet/hairlesshide = 1, /datum/reagent/water = 20)
