@@ -32,6 +32,8 @@
 
 		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL(src) && !HAS_TRAIT(src, TRAIT_NOHUNGER))
+			var/obj/item/organ/heart = getorganslot(ORGAN_SLOT_HEART)
+			var/heart_ratio = heart ? heart.get_organ_efficiency() : 0.5 //slower blood regeneration without a heart, or with a broken one </3
 			var/nutrition_ratio = 0
 			switch(nutrition)
 				if(0 to NUTRITION_LEVEL_STARVING)
@@ -46,8 +48,9 @@
 					nutrition_ratio = 1
 			if(satiety > 80)
 				nutrition_ratio *= 1.25
+			nutrition_ratio *= heart_ratio
 			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
-			blood_volume = min(BLOOD_VOLUME_NORMAL(src), blood_volume + 0.5 * nutrition_ratio)
+			blood_volume = min(BLOOD_VOLUME_NORMAL(src), blood_volume + 0.5 * nutrition_ratio * heart_ratio)
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")

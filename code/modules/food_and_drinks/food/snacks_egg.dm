@@ -130,7 +130,6 @@
 	name = "omelette du fromage"
 	desc = "That's all you can say!"
 	icon_state = "omelette"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 1)
 	bitesize = 1
@@ -162,7 +161,6 @@
 	desc = "There is only one egg on this, how rude."
 	icon_state = "benedict"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4)
-	trash = /obj/item/trash/plate
 	w_class = WEIGHT_CLASS_NORMAL
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("egg" = 1, "bacon" = 1, "bun" = 1)
@@ -173,7 +171,6 @@
 	name = "green eggs and ham"
 	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate deathtrap floating through space?"
 	icon_state = "spidereggsham"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	bitesize = 4
