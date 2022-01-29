@@ -123,11 +123,11 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	if(ishuman(user))
 		var/mob/living/carbon/human/F = user
 		var/datum/species/SS = F.dna.species
-		if(MOB_ROBOTIC in SS.inherent_biotypes)  //ZAP goes the IPC!
+		if(MOB_ROBOTIC in SS.inherent_biotypes || var/datum/species/preternis/preternis in F.dna.species)  //ZAP goes preternis
 			zap = 2 //You can protect yourself from water damage with thick clothing.
 		if(F.head && istype(F.head, /obj/item/clothing))
 			var/obj/item/clothing/CH = F.head
-			if (CH.clothing_flags & THICKMATERIAL) //Skinsuit should suffice! But IPCs are robots and probably not water-sealed.
+			if (CH.clothing_flags & THICKMATERIAL) //thick suits should suffice! But preternis are robots and probably not water-sealed.
 				zap --
 		if(F.wear_suit && istype(F.wear_suit, /obj/item/clothing))
 			var/obj/item/clothing/CS = F.wear_suit
