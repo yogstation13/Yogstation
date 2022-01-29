@@ -1,6 +1,3 @@
-#define TESLA_DEFAULT_POWER 1738260
-#define TESLA_MINI_POWER 869130
-
 /obj/singularity/energy_ball
 	name = "energy ball"
 	desc = "An energy ball."
@@ -23,6 +20,7 @@
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
 	var/max_balls = 10
+	var/zap_range = 7
 
 /obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
 	miniball = is_miniball
@@ -61,13 +59,20 @@
 		pixel_x = 0
 		pixel_y = 0
 
-		tesla_zap(src, 7, TESLA_DEFAULT_POWER, TRUE)
+		tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
 
 		pixel_x = -32
 		pixel_y = -32
+
+		var/list/RG = range(1, src)
+		for(var/obj/singularity/energy_ball/E in RG)
+			if(!E.miniball && E != src)
+				collide(E)
+
 		for (var/ball in orbiting_balls)
-			var/range = rand(1, clamp(orbiting_balls.len, 3, 7))
-			tesla_zap(ball, range, TESLA_MINI_POWER/7*range)
+			if(prob(80))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
+				continue
+			tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
 	else
 		energy = 0 // ensure we dont have miniballs of miniballs
 
@@ -75,6 +80,17 @@
 	. = ..()
 	if(orbiting_balls.len)
 		. += "There are [orbiting_balls.len] mini-balls orbiting it."
+
+/obj/singularity/energy_ball/proc/collide(var/obj/singularity/energy_ball/target)
+	if(max_balls < target.max_balls) //we bow down against a stronger tesla
+		return
+	
+	name = "[pick("hypercharged", "super", "powered", "glowing", "unstable", "anomalous", "massive")] [name]"
+	max_balls += target.max_balls - 8 //default 2 more max balls per another tesla, respecting another consumed tesla
+	zap_range += target.zap_range - 6 //also 1 more range for zapping, making it harder to contain
+	add_atom_colour(rgb(255 - max_balls * 10, 255 - max_balls * 10, 255), ADMIN_COLOUR_PRIORITY) //gets more blue with more power
+	playsound(src.loc, 'sound/magic/lightning_chargeup.ogg', 100, 1, extrarange = 30)
+	qdel(target)
 
 
 /obj/singularity/energy_ball/proc/move_the_basket_ball(var/move_amount)
@@ -113,6 +129,11 @@
 /obj/singularity/energy_ball/proc/new_mini_ball()
 	if(!loc)
 		return
+	// Timers can be added fast enough that the max_balls check in handle_energy will "fail".
+	// Timers aren't accounted for in that check so it will add more timers to make more miniballs.
+	if(orbiting_balls.len >= max_balls)
+		return
+
 	var/obj/singularity/energy_ball/EB = new(loc, 0, TRUE)
 
 	EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
@@ -133,7 +154,7 @@
 /obj/singularity/energy_ball/attack_tk(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		to_chat(C, "<span class='userdanger'>That was a shockingly dumb idea.</span>")
+		to_chat(C, span_userdanger("That was a shockingly dumb idea."))
 		var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in C.internal_organs
 		C.ghostize(0)
 		qdel(rip_u)
@@ -206,12 +227,14 @@
 										/obj/machinery/the_singularitygen/tesla,
 										/obj/structure/frame/machine))
 
-	for(var/A in typecache_filter_multi_list_exclusion(oview(source, zap_range+2), things_to_shock, blacklisted_tesla_types))
+	// +3 to range specifically to include grounding rods that are zap_range+3 away
+	for(var/A in typecache_filter_multi_list_exclusion(oview(source, zap_range+3), things_to_shock, blacklisted_tesla_types))
 		if(!(tesla_flags & TESLA_ALLOW_DUPLICATES) && LAZYACCESS(shocked_targets, A))
 			continue
 
+		var/dist = get_dist(source, A)
+
 		if(istype(A, /obj/machinery/power/tesla_coil))
-			var/dist = get_dist(source, A)
 			var/obj/machinery/power/tesla_coil/C = A
 			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(C.obj_flags & BEING_SHOCKED))
 				closest_dist = dist
@@ -221,13 +244,11 @@
 				closest_tesla_coil = C
 				closest_atom = C
 
-
 		else if(closest_tesla_coil)
 			continue //no need checking these other things
 
 		else if(istype(A, /obj/machinery/power/grounding_rod))
-			var/dist = get_dist(source, A)-2
-			if(dist <= zap_range && (dist < closest_dist || !closest_grounding_rod))
+			if(dist < closest_dist || !closest_grounding_rod)
 				closest_grounding_rod = A
 				closest_atom = A
 				closest_dist = dist
@@ -236,7 +257,6 @@
 			continue
 
 		else if(isliving(A))
-			var/dist = get_dist(source, A)
 			var/mob/living/L = A
 			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.flags_1 & TESLA_IGNORE_1))
 				closest_mob = L
@@ -248,7 +268,6 @@
 
 		else if(ismachinery(A))
 			var/obj/machinery/M = A
-			var/dist = get_dist(source, A)
 			if(dist <= zap_range && (dist < closest_dist || !closest_machine) && !(M.obj_flags & BEING_SHOCKED))
 				closest_machine = M
 				closest_atom = A
@@ -259,7 +278,6 @@
 
 		else if(istype(A, /obj/structure/blob))
 			var/obj/structure/blob/B = A
-			var/dist = get_dist(source, A)
 			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(B.obj_flags & BEING_SHOCKED))
 				closest_blob = B
 				closest_atom = A
@@ -270,7 +288,6 @@
 
 		else if(isstructure(A))
 			var/obj/structure/S = A
-			var/dist = get_dist(source, A)
 			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(S.obj_flags & BEING_SHOCKED))
 				closest_structure = S
 				closest_atom = A

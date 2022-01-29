@@ -778,13 +778,14 @@
 /obj/item/kitchen/fork,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"bO" = (
+"cG" = (
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
-/obj/item/gun/ballistic/automatic/pistol,
 /obj/effect/mob_spawn/human/clown/corpse,
 /obj/effect/decal/cleanable/blood/old,
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised,
+/obj/item/ammo_casing/shotgun/improvised,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "pE" = (
@@ -1122,7 +1123,7 @@ aS
 yW
 aa
 bJ
-bO
+cG
 aa
 "}
 (16,1,1) = {"

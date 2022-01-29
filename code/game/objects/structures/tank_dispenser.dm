@@ -54,24 +54,26 @@
 		default_unfasten_wrench(user, I, time = 20)
 		return
 	else if(user.a_intent != INTENT_HARM)
-		to_chat(user, "<span class='notice'>[I] does not fit into [src].</span>")
+		to_chat(user, span_notice("[I] does not fit into [src]."))
 		return
 	else
 		return ..()
 	if(full)
-		to_chat(user, "<span class='notice'>[src] can't hold any more of [I].</span>")
+		to_chat(user, span_notice("[src] can't hold any more of [I]."))
 		return
 
 	if(!user.transferItemToLoc(I, src))
 		return
-	to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+	to_chat(user, span_notice("You put [I] in [src]."))
 	update_icon()
 
-/obj/structure/tank_dispenser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/structure/tank_dispenser/ui_state(mob/user)
+	return GLOB.physical_state
+
+/obj/structure/tank_dispenser/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "TankDispenser", name, 275, 103, master_ui, state)
+		ui = new(user, src, "TankDispenser", name)
 		ui.open()
 
 /obj/structure/tank_dispenser/ui_data(mob/user)

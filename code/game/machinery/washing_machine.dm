@@ -10,13 +10,9 @@
 	var/obj/item/color_source
 	var/max_wash_capacity = 5
 
-/obj/machinery/washing_machine/ComponentInitialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_blood)
-
 /obj/machinery/washing_machine/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click it to start a wash cycle.</span>"
+	. += span_notice("Alt-click it to start a wash cycle.")
 
 /obj/machinery/washing_machine/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
@@ -26,11 +22,11 @@
 		return
 
 	if(state_open)
-		to_chat(user, "<span class='notice'>Close the door first</span>")
+		to_chat(user, span_notice("Close the door first"))
 		return
 
 	if(bloody_mess)
-		to_chat(user, "<span class='warning'>[src] must be cleaned up first.</span>")
+		to_chat(user, span_warning("[src] must be cleaned up first."))
 		return
 
 	busy = TRUE
@@ -56,15 +52,17 @@
 		M.Translate(rand(-3, 3), rand(-1, 3))
 		animate(src, transform=M, time=2)
 
-/obj/machinery/washing_machine/proc/clean_blood()
-	if(!busy)
+/obj/machinery/washing_machine/wash(clean_types)
+	. = ..()
+	if(!busy && bloody_mess && (clean_types & CLEAN_TYPE_BLOOD))
 		bloody_mess = FALSE
 		update_icon()
+		. = TRUE
 
 /obj/machinery/washing_machine/proc/wash_cycle()
 	for(var/X in contents)
 		var/atom/movable/AM = X
-		SEND_SIGNAL(AM, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+		AM.wash(CLEAN_WASH)
 		AM.machine_wash(src)
 
 	busy = FALSE
@@ -161,9 +159,8 @@
 				item_state = initial(G.item_state)
 				icon_state = initial(G.icon_state)
 				item_color = wash_color
-				name = "washed gloves"
-				desc = "The colors are a bit dodgy."
-				break
+				name = initial(G.name)
+				desc = "The colors are a bit dodgy." 
 
 /obj/item/clothing/shoes/sneakers/machine_wash(obj/machinery/washing_machine/WM)
 	if(chained)
@@ -251,19 +248,19 @@
 	else if(user.a_intent != INTENT_HARM)
 
 		if (!state_open)
-			to_chat(user, "<span class='warning'>Open the door first!</span>")
+			to_chat(user, span_warning("Open the door first!"))
 			return 1
 
 		if(bloody_mess)
-			to_chat(user, "<span class='warning'>[src] must be cleaned up first.</span>")
+			to_chat(user, span_warning("[src] must be cleaned up first."))
 			return 1
 
 		if(contents.len >= max_wash_capacity)
-			to_chat(user, "<span class='warning'>The washing machine is full!</span>")
+			to_chat(user, span_warning("The washing machine is full!"))
 			return 1
 
 		if(!user.transferItemToLoc(W, src))
-			to_chat(user, "<span class='warning'>\The [W] is stuck to your hand, you cannot put it in the washing machine!</span>")
+			to_chat(user, span_warning("\The [W] is stuck to your hand, you cannot put it in the washing machine!"))
 			return 1
 
 		if(istype(W, /obj/item/toy/crayon) || istype(W, /obj/item/stamp) || istype(W, /obj/item/reagent_containers/food/snacks/grown/rainbow_flower) || istype(W, /obj/item/stack/ore/bluespace_crystal))
@@ -278,7 +275,7 @@
 	if(.)
 		return
 	if(busy)
-		to_chat(user, "<span class='warning'>[src] is busy.</span>")
+		to_chat(user, span_warning("[src] is busy."))
 		return
 
 	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))

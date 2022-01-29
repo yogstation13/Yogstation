@@ -8,17 +8,17 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	flags_1 = CONDUCT_1
 
-	var/list/basic_modules = list() //a list of paths, converted to a list of instances on New()
-	var/list/emag_modules = list() //ditto
-	var/list/ratvar_modules = list() //ditto ditto
-	var/list/modules = list() //holds all the usable modules
-	var/list/added_modules = list() //modules not inherient to the robot module, are kept when the module changes
+	var/list/basic_modules = list() ///a list of paths, converted to a list of instances on New()
+	var/list/emag_modules = list() ///ditto
+	var/list/ratvar_modules = list() ///ditto ditto
+	var/list/modules = list() ///holds all the usable modules
+	var/list/added_modules = list() ///modules not inherient to the robot module, are kept when the module changes
 	var/list/storages = list()
 
 	var/list/radio_channels = list()
 
-	var/cyborg_base_icon = "robot" //produces the icon for the borg and, if no special_light_key is set, the lights
-	var/special_light_key //if we want specific lights, use this instead of copying lights in the dmi
+	var/cyborg_base_icon = "robot" ///produces the icon for the borg and, if no special_light_key is set, the lights
+	var/special_light_key ///if we want specific lights, use this instead of copying lights in the dmi
 
 	var/moduleselect_icon = "nomod"
 
@@ -34,7 +34,9 @@
 	var/list/ride_offset_y = list("north" = 4, "south" = 4, "east" = 3, "west" = 3)
 	var/ride_allow_incapacitated = TRUE
 	var/allow_riding = TRUE
-	var/canDispose = FALSE // Whether the borg can stuff itself into disposal
+	var/canDispose = FALSE /// Whether the borg can stuff itself into disposal
+
+	var/syndicate_module = FALSE /// If the borg should blow emag size regardless of emag state
 
 /obj/item/robot_module/Initialize()
 	. = ..()
@@ -90,8 +92,8 @@
 		var/obj/item/stack/S = I
 
 		if(is_type_in_list(S, list(/obj/item/stack/sheet/metal, /obj/item/stack/rods, /obj/item/stack/tile/plasteel)))
-			if(S.materials[MAT_METAL])
-				S.cost = S.materials[MAT_METAL] * 0.25
+			if(S.materials[/datum/material/iron])
+				S.cost = S.materials[/datum/material/iron] * 0.25
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/metal)
 
 		else if(istype(S, /obj/item/stack/sheet/glass))
@@ -161,9 +163,10 @@
 
 	R.toner = R.tonermax
 
-/obj/item/robot_module/proc/rebuild_modules() //builds the usable module list from the modules we have
+/obj/item/robot_module/proc/rebuild_modules() ///builds the usable module list from the modules we have
 	var/mob/living/silicon/robot/R = loc
-	var/held_modules = R.held_items.Copy()
+	var/list/held_modules = R.held_items.Copy()
+	var/active_module = R.module_active
 	R.uneq_all()
 	modules = list()
 	for(var/obj/item/I in basic_modules)
@@ -178,7 +181,9 @@
 		add_module(I, FALSE, FALSE)
 	for(var/i in held_modules)
 		if(i)
-			R.activate_module(i)
+			R.equip_module_to_slot(i, held_modules.Find(i))
+	if(active_module)
+		R.select_module(held_modules.Find(active_module))
 	if(R.hud_used)
 		R.hud_used.update_robot_modules_display()
 
@@ -188,6 +193,7 @@
 	if(!RM.be_transformed_to(src))
 		qdel(RM)
 		return
+	R.special_skin = FALSE
 	R.module = RM
 	R.update_module_innate()
 	RM.rebuild_modules()
@@ -230,7 +236,8 @@
 	R.setDir(SOUTH)
 	R.anchored = FALSE
 	R.notransform = FALSE
-	R.update_headlamp()
+	R.updatehealth()
+	R.update_headlamp(FALSE, BORG_LAMP_CD_RESET)
 	R.notify_ai(NEW_MODULE)
 	if(R.hud_used)
 		R.hud_used.update_robot_modules_display()
@@ -238,7 +245,7 @@
 
    /*
    check_menu: Checks if we are allowed to interact with a radial menu
-  
+
    Arguments:
    user The mob interacting with a menu
   */
@@ -291,10 +298,12 @@
 		/obj/item/surgicaldrill,
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
+		/obj/item/bonesetter,
 		/obj/item/extinguisher/mini,
 		/obj/item/roller/robo,
 		/obj/item/borg/cyborghug/medical,
 		/obj/item/stack/medical/gauze/cyborg,
+		/obj/item/stack/medical/bone_gel/cyborg,
 		/obj/item/organ_storage,
 		/obj/item/borg/lollipop)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
@@ -604,6 +613,7 @@
 	moduleselect_icon = "malf"
 	can_be_pushed = FALSE
 	hat_offset = 3
+	syndicate_module = TRUE
 
 /obj/item/robot_module/syndicate/rebuild_modules()
 	..()
@@ -628,6 +638,7 @@
 		/obj/item/cautery,
 		/obj/item/surgicaldrill,
 		/obj/item/scalpel,
+		/obj/item/bonesetter,
 		/obj/item/melee/transforming/energy/sword/cyborg/saw,
 		/obj/item/roller/robo,
 		/obj/item/card/emag,
@@ -644,6 +655,7 @@
 	moduleselect_icon = "malf"
 	can_be_pushed = FALSE
 	hat_offset = 3
+	syndicate_module = TRUE
 
 /obj/item/robot_module/saboteur
 	name = "Syndicate Saboteur"
@@ -678,6 +690,7 @@
 	magpulsing = TRUE
 	hat_offset = -4
 	canDispose = TRUE
+	syndicate_module = TRUE
 
 /datum/robot_energy_storage
 	var/name = "Generic energy storage"

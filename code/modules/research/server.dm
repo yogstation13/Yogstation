@@ -162,7 +162,7 @@
 			var/obj/machinery/rnd/server/S = locate(href_list["toggle"]) in SSresearch.servers
 			S.toggle_disable()
 		else
-			to_chat(usr, "<span class='danger'>Access Denied.</span>")
+			to_chat(usr, span_danger("Access Denied."))
 
 	updateUsrDialog()
 	return
@@ -195,7 +195,6 @@
 
 	var/datum/browser/popup = new(user, "server_com", src.name, 900, 620)
 	popup.set_content(dat.Join())
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/rdservercontrol/attackby(obj/item/D, mob/user, params)
@@ -207,4 +206,4 @@
 		return
 	playsound(src, "sparks", 75, 1)
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='notice'>You disable the security protocols.</span>")
+	to_chat(user, span_notice("You disable the security protocols."))

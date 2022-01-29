@@ -61,7 +61,7 @@
 		return ..()
 
 	if(!istype(H.wear_mask, /obj/item/clothing/mask/gas/space_ninja))
-		to_chat(H, "<span class='userdanger'>ERROR</span>: 10453 UNABLE TO LOCATE FACE MASK\nABORTING...")
+		to_chat(H, "[span_userdanger("ERROR")]: 10453 UNABLE TO LOCATE FACE MASK\nABORTING...")
 		return FALSE
 
 	.=..()
@@ -102,7 +102,7 @@
 		return .
 
 	if(!s_initialized)
-		to_chat(user, "<span class='warning'><b>ERROR</b>: suit offline.  Please activate suit.</span>")
+		to_chat(user, span_warning("<b>ERROR</b>: suit offline.  Please activate suit."))
 		return FALSE
 
 	if(istype(action, /datum/action/item_action/ninjacolour))

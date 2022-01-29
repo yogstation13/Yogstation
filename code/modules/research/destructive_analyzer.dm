@@ -37,11 +37,11 @@ Note: Must be placed within 3 tiles of the R&D Console
 		if(!is_insertion_ready(user))
 			return
 		if(!user.transferItemToLoc(O, src))
-			to_chat(user, "<span class='warning'>\The [O] is stuck to your hand, you cannot put it in the [src.name]!</span>")
+			to_chat(user, span_warning("\The [O] is stuck to your hand, you cannot put it in the [src.name]!"))
 			return
 		busy = TRUE
 		loaded_item = O
-		to_chat(user, "<span class='notice'>You add the [O.name] to the [src.name]!</span>")
+		to_chat(user, span_notice("You add the [O.name] to the [src.name]!"))
 		flick("d_analyzer_la", src)
 		addtimer(CALLBACK(src, .proc/finish_loading), 10)
 		if (linked_console)
@@ -63,7 +63,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(storage) //Also sends salvaged materials to a linked protolathe, if any.
 		for(var/material in thing.materials)
 			var/can_insert = min((storage.max_amount - storage.total_amount), (max(thing.materials[material]*(decon_mod/10), thing.materials[material])))
-			storage.insert_amount(can_insert, material)
+			storage.insert_amount_mat(can_insert, material)
 			. += can_insert
 		if (.)
 			linked_console.linked_lathe.materials.silo_log(src, "reclaimed", 1, "[thing.name]", thing.materials)

@@ -12,7 +12,8 @@
 	if(absorb_stun(0)) //continuous effect, so we don't want it to increment the stuns absorbed.
 		return
 	if(!IsParalyzed())
-		to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
+		to_chat(src, span_notice("You're too exhausted to keep going..."))
+	SEND_SIGNAL(src, COMSIG_CARBON_STATUS_STAMCRIT)
 	stam_paralyzed = TRUE
 
 /mob/living/carbon/adjust_drugginess(amount)

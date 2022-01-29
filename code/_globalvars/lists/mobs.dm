@@ -27,6 +27,7 @@ GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for e
 GLOBAL_LIST_EMPTY(spidermobs)				//all sentient spider mobs
 GLOBAL_LIST_EMPTY(bots_list)
 GLOBAL_LIST_EMPTY(aiEyes)
+GLOBAL_LIST_EMPTY(new_player_list)			//all /mob/dead/new_player, in theory all should have clients and those that don't are in the process of spawning and get deleted when done.
 ///underages who have been reported to security for trying to buy things they shouldn't, so they can't spam
 GLOBAL_LIST_EMPTY(narcd_underages)
 
@@ -43,6 +44,8 @@ GLOBAL_LIST_EMPTY(emote_list)
 
 GLOBAL_LIST_INIT(accents_name2file,strings("accents.json", "accent_file_names", directory = "strings/accents")) // Keys are the names of the accents, values are the name of their .json file.
 GLOBAL_LIST_EMPTY(accents_name2regexes) // Holds some complex data regarding accents
+
+GLOBAL_LIST_EMPTY(walkingmushroom)
 
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
 	var/list/mob_types = list()
@@ -70,7 +73,7 @@ GLOBAL_LIST_EMPTY(accents_name2regexes) // Holds some complex data regarding acc
 			.[E.key] = list(E)
 		else
 			.[E.key] += E
-		
+
 		if(!.[E.key_third_person])
 			.[E.key_third_person] = list(E)
 		else

@@ -4,11 +4,11 @@
 	desc = "A shell formed out of brass, presumably for housing machinery."
 	clockwork_desc = "A construct chassis. It can be activated at any time by a willing ghost."
 	var/construct_name = "basic construct"
-	var/construct_desc = "<span class='alloy'>There is no construct for this chassis. Report this to a coder.</span>"
+	var/construct_desc = span_alloy("There is no construct for this chassis. Report this to a coder.")
 	icon_state = "anime_fragment"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	w_class = WEIGHT_CLASS_HUGE
-	var/creation_message = "<span class='brass'>The chassis shudders and hums to life!</span>"
+	var/creation_message = span_brass("The chassis shudders and hums to life!")
 	var/construct_type //The construct this shell will create
 
 /obj/item/clockwork/construct_chassis/Initialize()
@@ -23,7 +23,9 @@
 	GLOB.poi_list -= src
 	var/list/spawners = GLOB.mob_spawners[name]
 	LAZYREMOVE(spawners, src)
-	. = ..()
+	if(!LAZYLEN(spawners))
+		GLOB.mob_spawners -= name
+	return ..()
 
 /obj/item/clockwork/construct_chassis/examine(mob/user)
 	clockwork_desc = "[clockwork_desc]<br>[construct_desc]"
@@ -33,23 +35,23 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clockwork/construct_chassis/attack_hand(mob/living/user)
 	if(w_class >= WEIGHT_CLASS_HUGE)
-		to_chat(user, "<span class='warning'>[src] is too cumbersome to carry! Drag it around instead!</span>")
+		to_chat(user, span_warning("[src] is too cumbersome to carry! Drag it around instead!"))
 		return
 	. = ..()
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/item/clockwork/construct_chassis/attack_ghost(mob/user)
 	if(!SSticker.mode)
-		to_chat(user, "<span class='danger'>You cannot use that before the game has started.</span>")
+		to_chat(user, span_danger("You cannot use that before the game has started."))
 		return
 	if(QDELETED(src))
-		to_chat(user, "<span class='danger'>You were too late! Better luck next time.</span>")
+		to_chat(user, span_danger("You were too late! Better luck next time."))
 		return
 	user.forceMove(get_turf(src)) //If we attack through the alert, jump to the chassis so we know what we're getting into
 	if(alert(user, "Become a [construct_name]? You can no longer be cloned!", construct_name, "Yes", "Cancel") == "Cancel")
 		return
 	if(QDELETED(src))
-		to_chat(user, "<span class='danger'>You were too late! Better luck next time.</span>")
+		to_chat(user, span_danger("You were too late! Better luck next time."))
 		return
 	pre_spawn()
 	visible_message(creation_message)
@@ -72,7 +74,7 @@
 	desc = "A pile of sleek and well-polished brass armor. A small red gemstone sits in its faceplate."
 	icon_state = "marauder_armor"
 	construct_name = "clockwork marauder"
-	construct_desc = "<span class='neovgre_small'>It will become a <b>clockwork marauder,</b> a well-rounded frontline combatant.</span>"
+	construct_desc = span_neovgre_small("It will become a <b>clockwork marauder,</b> a well-rounded frontline combatant.")
 	creation_message = "<span class='neovgre_small bold'>Crimson fire begins to rage in the armor as it rises into the air with its armaments!</span>"
 	construct_type = /mob/living/simple_animal/hostile/clockwork/marauder
 
@@ -83,22 +85,13 @@
 	desc = "A small, complex shell that resembles a repair drone, but much larger and made out of brass."
 	icon_state = "cogscarab_shell"
 	construct_name = "cogscarab"
-	construct_desc = "<span class='alloy'>It will become a <b>cogscarab,</b> a small and fragile drone that builds, repairs, and maintains.</span>"
+	construct_desc = span_alloy("It will become a <b>cogscarab,</b> a small and fragile drone that builds, repairs, and maintains.")
 	creation_message = "<span class='alloy bold'>The cogscarab clicks and whirrs as it hops up and springs to life!</span>"
 	construct_type = /mob/living/simple_animal/drone/cogscarab
 	w_class = WEIGHT_CLASS_SMALL
-	var/infinite_resources = TRUE
 	var/static/obj/item/seasonal_hat //Share it with all other scarabs, since we're from the same cult!
 
-/obj/item/clockwork/construct_chassis/cogscarab/Initialize()
-	. = ..()
-	if(GLOB.servants_active)
-		infinite_resources = FALSE //For any that are somehow spawned in late
-
 /obj/item/clockwork/construct_chassis/cogscarab/pre_spawn()
-	if(infinite_resources)
-		//During rounds where they can't interact with the station, let them experiment with builds
-		construct_type = /mob/living/simple_animal/drone/cogscarab/ratvar
 	if(!seasonal_hat)
 		var/obj/item/drone_shell/D = locate() in GLOB.poi_list
 		if(D && D.possible_seasonal_hats.len)
@@ -107,12 +100,6 @@
 			seasonal_hat = "none"
 
 /obj/item/clockwork/construct_chassis/cogscarab/post_spawn(mob/living/construct)
-	if(infinite_resources) //Allow them to build stuff and recite scripture
-		var/list/cached_stuff = construct.GetAllContents()
-		for(var/obj/item/clockwork/replica_fabricator/F in cached_stuff)
-			F.uses_power = FALSE
-		for(var/obj/item/clockwork/slab/S in cached_stuff)
-			S.no_cost = TRUE
-		if(seasonal_hat && seasonal_hat != "none")
-			var/obj/item/hat = new seasonal_hat(construct)
-			construct.equip_to_slot_or_del(hat, SLOT_HEAD)
+	if(seasonal_hat && seasonal_hat != "none")
+		var/obj/item/hat = new seasonal_hat(construct)
+		construct.equip_to_slot_or_del(hat, SLOT_HEAD)

@@ -4,6 +4,8 @@
 	return target_amount
 
 /datum/objective/blood/check_completion()
+	if(..())
+		return TRUE
 	if(!owner)
 		return FALSE
 	var/datum/antagonist/vampire/vamp = owner.has_antag_datum(/datum/antagonist/vampire)
@@ -21,6 +23,8 @@
 	return target_amount
 
 /datum/objective/convert/check_completion()
+	if(..())
+		return TRUE
 	if(!owner)
 		return FALSE
 	var/datum/antagonist/vampire/vamp = owner.has_antag_datum(/datum/antagonist/vampire)

@@ -18,7 +18,7 @@
 /obj/item/nanite_hijacker/examine(mob/user)
 	. = ..()
 	if(disk)
-		. += "<span class='notice'>Alt-click [src] to eject the disk.</span>"
+		. += span_notice("Alt-click [src] to eject the disk.")
 
 /obj/item/nanite_hijacker/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/disk/nanite_program))
@@ -26,7 +26,7 @@
 		if(disk)
 			eject()
 		if(user.transferItemToLoc(N, src))
-			to_chat(user, "<span class='notice'>You insert [N] into [src]</span>")
+			to_chat(user, span_notice("You insert [N] into [src]"))
 			disk = N
 			program = N.program
 	else
@@ -47,17 +47,16 @@
 		var/success = SEND_SIGNAL(target, COMSIG_NANITE_ADD_PROGRAM, program.copy())
 		switch(success)
 			if(NONE)
-				to_chat(user, "<span class='notice'>You don't detect any nanites in [target].</span>")
+				to_chat(user, span_notice("You don't detect any nanites in [target]."))
 			if(COMPONENT_PROGRAM_INSTALLED)
-				to_chat(user, "<span class='notice'>You insert the currently loaded program into [target]'s nanites.</span>")
+				to_chat(user, span_notice("You insert the currently loaded program into [target]'s nanites."))
 			if(COMPONENT_PROGRAM_NOT_INSTALLED)
-				to_chat(user, "<span class='warning'>You try to insert the currently loaded program into [target]'s nanites, but the installation fails.</span>")
+				to_chat(user, span_warning("You try to insert the currently loaded program into [target]'s nanites, but the installation fails."))
 
 //Same UI as the nanite programmer, as it pretty much does the same
-/obj/item/nanite_hijacker/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/nanite_hijacker/ui_interact(mob/user, datum/tgui/ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "nanite_programmer", "Internal Nanite Programmer", 420, 800, master_ui, state)
+		ui = new(user, src, "nanite_programmer", "Internal Nanite Programmer")
 		ui.open()
 
 /obj/item/nanite_hijacker/ui_data()

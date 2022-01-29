@@ -78,10 +78,10 @@
 	. = ..()
 	toggle_power(!stat)
 
-/obj/machinery/computer/holodeck/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/holodeck/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Holodeck", name, 400, 500, master_ui, state)
+		ui = new(user, src, "Holodeck", name)
 		ui.open()
 
 /obj/machinery/computer/holodeck/ui_data(mob/user)
@@ -150,7 +150,7 @@
 		for(var/turf/T in linked)
 			if(prob(30))
 				do_sparks(2, 1, T)
-			T.ex_act(EXPLODE_LIGHT)
+			SSexplosions.lowturf += T
 			T.hotspot_expose(1000,500,1)
 
 	if(!(obj_flags & EMAGGED))
@@ -171,7 +171,7 @@
 		return
 	playsound(src, "sparks", 75, 1)
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='warning'>You vastly increase projector power and override the safety and security protocols.</span>")
+	to_chat(user, span_warning("You vastly increase projector power and override the safety and security protocols."))
 	say("Warning. Automatic shutoff and derezzing protocols have been corrupted. Please call Nanotrasen maintenance and do not use the simulator.")
 	log_game("[key_name(user)] emagged the Holodeck Control Console")
 	nerf(!(obj_flags & EMAGGED))

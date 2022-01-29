@@ -80,23 +80,23 @@
 
 	if(istype(I, /obj/item/seeds))
 		if(seed)
-			to_chat(user, "<span class='warning'>A sample is already loaded into the machine!</span>")
+			to_chat(user, span_warning("A sample is already loaded into the machine!"))
 		else
 			if(!user.temporarilyRemoveItemFromInventory(I))
 				return
 			insert_seed(I)
-			to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
+			to_chat(user, span_notice("You add [I] to the machine."))
 			interact(user)
 		return
 	else if(istype(I, /obj/item/disk/plantgene))
 		if (operation)
-			to_chat(user, "<span class='notice'>Please complete current operation.</span>")
+			to_chat(user, span_notice("Please complete current operation."))
 			return
 		eject_disk()
 		if(!user.transferItemToLoc(I, src))
 			return
 		disk = I
-		to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
+		to_chat(user, span_notice("You add [I] to the machine."))
 		interact(user)
 	else
 		..()
@@ -129,45 +129,45 @@
 		dat += "<div class='statusDisplay'>Are you sure you want to [operation] "
 		switch(operation)
 			if("remove")
-				dat += "<span class='highlight'>[target.get_name()]</span> gene from \the <span class='highlight'>[seed]</span>?<br>"
+				dat += "[span_highlight("[target.get_name()]")] gene from \the [span_highlight("[seed]")]?<br>"
 			if("extract")
-				dat += "<span class='highlight'>[target.get_name()]</span> gene from \the <span class='highlight'>[seed]</span>?<br>"
-				dat += "<span class='bad'>The sample will be destroyed in process!</span>"
+				dat += "[span_highlight("[target.get_name()]")] gene from \the [span_highlight("[seed]")]?<br>"
+				dat += span_bad("The sample will be destroyed in process!")
 				if(istype(target, /datum/plant_gene/core))
 					var/datum/plant_gene/core/gene = target
 					if(istype(target, /datum/plant_gene/core/potency))
 						if(gene.value > max_potency)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[max_potency]</span> potency. "
-							dat += "Target gene will be degraded to <span class='highlight'>[max_potency]</span> potency on extraction."
+							dat += "<br><br>This device's extraction capabilities are currently limited to [span_highlight("[max_potency]")] potency. "
+							dat += "Target gene will be degraded to [span_highlight("[max_potency]")] potency on extraction."
 					else if(istype(target, /datum/plant_gene/core/lifespan))
 						if(gene.value > max_endurance)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[max_endurance]</span> lifespan. "
-							dat += "Target gene will be degraded to <span class='highlight'>[max_endurance]</span> Lifespan on extraction."
+							dat += "<br><br>This device's extraction capabilities are currently limited to [span_highlight("[max_endurance]")] lifespan. "
+							dat += "Target gene will be degraded to [span_highlight("[max_endurance]")] Lifespan on extraction."
 					else if(istype(target, /datum/plant_gene/core/endurance))
 						if(gene.value > max_endurance)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[max_endurance]</span> endurance. "
-							dat += "Target gene will be degraded to <span class='highlight'>[max_endurance]</span> endurance on extraction."
+							dat += "<br><br>This device's extraction capabilities are currently limited to [span_highlight("[max_endurance]")] endurance. "
+							dat += "Target gene will be degraded to [span_highlight("[max_endurance]")] endurance on extraction."
 					else if(istype(target, /datum/plant_gene/core/yield))
 						if(gene.value > max_yield)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[max_yield]</span> yield. "
-							dat += "Target gene will be degraded to <span class='highlight'>[max_yield]</span> yield on extraction."
+							dat += "<br><br>This device's extraction capabilities are currently limited to [span_highlight("[max_yield]")] yield. "
+							dat += "Target gene will be degraded to [span_highlight("[max_yield]")] yield on extraction."
 					else if(istype(target, /datum/plant_gene/core/production))
 						if(gene.value < min_production)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[min_production]</span> production. "
-							dat += "Target gene will be degraded to <span class='highlight'>[min_production]</span> production on extraction."
+							dat += "<br><br>This device's extraction capabilities are currently limited to [span_highlight("[min_production]")] production. "
+							dat += "Target gene will be degraded to [span_highlight("[min_production]")] production on extraction."
 					else if(istype(target, /datum/plant_gene/core/weed_rate))
 						if(gene.value < min_wrate)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[min_wrate]</span> weed rate. "
-							dat += "Target gene will be degraded to <span class='highlight'>[min_wrate]</span> weed rate on extraction."
+							dat += "<br><br>This device's extraction capabilities are currently limited to [span_highlight("[min_wrate]")] weed rate. "
+							dat += "Target gene will be degraded to [span_highlight("[min_wrate]")] weed rate on extraction."
 					else if(istype(target, /datum/plant_gene/core/weed_chance))
 						if(gene.value < min_wchance)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[min_wchance]</span> weed chance. "
-							dat += "Target gene will be degraded to <span class='highlight'>[min_wchance]</span> weed chance on extraction."
+							dat += "<br><br>This device's extraction capabilities are currently limited to [span_highlight("[min_wchance]")] weed chance. "
+							dat += "Target gene will be degraded to [span_highlight("[min_wchance]")] weed chance on extraction."
 
 			if("replace")
-				dat += "<span class='highlight'>[target.get_name()]</span> gene with <span class='highlight'>[disk.gene.get_name()]</span>?<br>"
+				dat += "[span_highlight("[target.get_name()]")] gene with [span_highlight("[disk.gene.get_name()]")]?<br>"
 			if("insert")
-				dat += "<span class='highlight'>[disk.gene.get_name()]</span> gene into \the <span class='highlight'>[seed]</span>?<br>"
+				dat += "[span_highlight("[disk.gene.get_name()]")] gene into \the [span_highlight("[seed]")]?<br>"
 		dat += "</div><div class='line'><a href='?src=[REF(src)];gene=[REF(target)];op=[operation]'>Confirm</a> "
 		dat += "<a href='?src=[REF(src)];abort=1'>Abort</a></div>"
 		popup.set_content(dat)
@@ -245,7 +245,7 @@
 				dat += "<a href='?src=[REF(src)];op=insert'>Insert: [disk.gene.get_name()]</a>"
 			dat += "</div>"
 	else
-		dat += "<br>No sample found.<br><span class='highlight'>Please, insert a plant sample to use this device.</span>"
+		dat += "<br>No sample found.<br>[span_highlight("Please, insert a plant sample to use this device.")]"
 	popup.set_content(dat)
 	popup.open()
 
@@ -268,7 +268,7 @@
 				if(!usr.temporarilyRemoveItemFromInventory(I))
 					return
 				insert_seed(I)
-				to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
+				to_chat(usr, span_notice("You add [I] to the machine."))
 		update_icon()
 	else if(href_list["eject_disk"] && !operation)
 		var/obj/item/I = usr.get_active_held_item()
@@ -277,7 +277,7 @@
 			if(!usr.transferItemToLoc(I, src))
 				return
 			disk = I
-			to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
+			to_chat(usr, span_notice("You add [I] to the machine."))
 			update_icon()
 	else if(href_list["op"] == "insert" && disk && disk.gene && seed)
 		if(!operation) // Wait for confirmation
@@ -286,6 +286,13 @@
 			if(!istype(disk.gene, /datum/plant_gene/core) && disk.gene.can_add(seed))
 				seed.genes += disk.gene.Copy()
 				if(istype(disk.gene, /datum/plant_gene/reagent))
+					var/datum/plant_gene/reagent/G = disk.gene
+					if(istype(G.reagent_id,/datum/reagent/water) || istype(G.reagent_id,/datum/reagent/potassium))
+						var/opposing_reagent = istype(G.reagent_id,/datum/reagent/water) ? /datum/reagent/potassium : /datum/reagent/water
+						for(var/datum/plant_gene/reagent/reagentgene in seed.genes)
+							if(istype(reagentgene,opposing_reagent))
+								message_admins("[key_name(usr)] has added [G.reagent_id] to a seed that contains [reagentgene.reagent_id].")
+								log_admin("[key_name(usr)] has added [G.reagent_id] to a seed that contains [reagentgene.reagent_id].")
 					seed.reagents_from_genes()
 			update_genes()
 			repaint_seed()
@@ -422,7 +429,7 @@
 	name = "plant data disk"
 	desc = "A disk for storing plant genetic data."
 	icon_state = "datadisk_hydro"
-	materials = list(MAT_METAL=30, MAT_GLASS=10)
+	materials = list(/datum/material/iron=30, /datum/material/glass=10)
 	var/datum/plant_gene/gene
 	var/read_only = 0 //Well, it's still a floppy disk
 	obj_flags = UNIQUE_RENAME
@@ -446,12 +453,12 @@
 
 /obj/item/disk/plantgene/attack_self(mob/user)
 	read_only = !read_only
-	to_chat(user, "<span class='notice'>You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"].</span>")
+	to_chat(user, span_notice("You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"]."))
 
 /obj/item/disk/plantgene/examine(mob/user)
 	. = ..()
 	if(gene && (istype(gene, /datum/plant_gene/core/potency)))
-		. += "<span class='notice'>Percent is relative to potency, not maximum volume of the plant.</span>"
+		. += span_notice("Percent is relative to potency, not maximum volume of the plant.")
 	. += "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"]."
 
 /obj/machinery/plantgenes/AltClick(mob/user)

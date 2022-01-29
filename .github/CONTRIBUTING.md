@@ -12,7 +12,7 @@ First things first, we want to make it clear how you can contribute (if you've n
 
 ## Getting Started
 
-yogstation doesn't have a list of goals and features to add; we instead allow freedom for contributors to suggest and create their ideas for the game. That doesn't mean we aren't determined to squash bugs, which unfortunately pop up a lot due to the deep complexity of the game. Here are some useful starting guides, if you want to contribute or if you want to know what challenges you can tackle with zero knowledge about the game's code structure.
+Yogstation doesn't have a list of goals and features to add; we instead allow freedom for contributors to suggest and create their ideas for the game. That doesn't mean we aren't determined to squash bugs, which unfortunately pop up a lot due to the deep complexity of the game. Here are some useful starting guides, if you want to contribute or if you want to know what challenges you can tackle with zero knowledge about the game's code structure.
 
 If you want to contribute the first thing you'll need to do is [set up Git](https://wiki.yogstation.net/wiki/Setting_up_git) so you can download the source code.
 
@@ -114,6 +114,15 @@ var/path_type = "/obj/item/baseball_bat"
 ### Use var/name format when declaring variables
 While DM allows other ways of declaring variables, this one should be used for consistency.
 
+### Variable names must not be the same as a proc name
+```DM
+//Don't do this
+/obj
+    var/block_attack = TRUE
+
+/obj/proc/block_attack()
+    return density
+```
 ### Tabs, not spaces
 You must use tabs to indent your code, NOT SPACES.
 
@@ -369,7 +378,7 @@ There is no strict process when it comes to merging pull requests. Pull requests
 
 * You are going to be expected to document all your changes in the pull request. Failing to do so will mean delaying it as we will have to question why you made the change. On the other hand, you can speed up the process by making the pull request readable and easy to understand, with diagrams or before/after data.
 
-* We ask that you use the changelog system to document your change, which prevents our players from being caught unaware by changes - you can find more information about this [on this wiki page](http://tgstation13.org/wiki/Guide_to_Changelogs).
+* We ask that you use the changelog system to document your player facing changes, which prevents our players from being caught unaware by said changes - you can find more information about this [on this wiki page](http://tgstation13.org/wiki/Guide_to_Changelogs).
 
 * If you are proposing multiple changes, which change many different aspects of the code, you are expected to section them off into different pull requests in order to make it easier to review them and to deny/accept the changes that are deemed acceptable.
 

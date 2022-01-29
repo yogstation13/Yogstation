@@ -22,13 +22,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"e" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "f" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/fifty{
@@ -90,12 +83,16 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"j" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
+"k" = (
+/obj/structure/window/reinforced{
+	dir = 1
 	},
-/turf/open/floor/plating,
+/obj/structure/shuttle/engine/heater,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "l" = (
 /obj/machinery/door/airlock/titanium{
@@ -129,7 +126,16 @@
 "t" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
+"u" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "w" = (
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"z" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "B" = (
@@ -157,23 +163,8 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"F" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "M" = (
 /turf/closed/wall/mineral/titanium/interior,
-/area/shuttle/escape)
-"P" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/shuttle/engine/heater,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "Q" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
@@ -216,7 +207,7 @@ t
 d
 t
 t
-F
+z
 t
 t
 l
@@ -272,11 +263,11 @@ w
 w
 w
 w
-P
+k
 s
 "}
 (4,1,1) = {"
-e
+z
 w
 w
 w
@@ -286,6 +277,8 @@ w
 w
 w
 w
+u
+u
 w
 w
 w
@@ -294,13 +287,11 @@ w
 w
 w
 w
-w
-w
-P
+k
 s
 "}
 (5,1,1) = {"
-e
+z
 w
 w
 w
@@ -320,11 +311,11 @@ w
 w
 w
 w
-P
+k
 s
 "}
 (6,1,1) = {"
-e
+z
 Z
 w
 w
@@ -344,11 +335,11 @@ w
 w
 w
 w
-P
+k
 s
 "}
 (7,1,1) = {"
-e
+z
 w
 w
 w
@@ -368,11 +359,11 @@ w
 w
 w
 w
-P
+k
 s
 "}
 (8,1,1) = {"
-e
+z
 w
 w
 w
@@ -392,7 +383,7 @@ w
 w
 w
 w
-P
+k
 s
 "}
 (9,1,1) = {"
@@ -416,7 +407,7 @@ w
 w
 w
 w
-P
+k
 s
 "}
 (10,1,1) = {"
@@ -452,15 +443,15 @@ t
 t
 t
 t
-j
+z
 t
 t
 t
-j
+z
 t
 t
 t
-j
+z
 t
 t
 t

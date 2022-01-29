@@ -45,7 +45,7 @@
 	nutriment_factor = 15 * REAGENTS_METABOLISM
 	color = "#664330" // rgb: 102, 67, 48
 
-	var/brute_heal = 1
+	var/brute_heal = 0.5
 	var/burn_heal = 0
 
 /datum/reagent/consumable/nutriment/on_mob_life(mob/living/carbon/M)
@@ -92,13 +92,19 @@
 	name = "Vitamin"
 	description = "All the best vitamins, minerals, and carbohydrates the body needs in pure form."
 
-	brute_heal = 1
-	burn_heal = 1
+	brute_heal = 1.5
+	burn_heal = 1.5
 
 /datum/reagent/consumable/nutriment/vitamin/on_mob_life(mob/living/carbon/M)
 	if(M.satiety < 600)
 		M.satiety += 30
 	. = ..()
+
+/datum/reagent/consumable/nutriment/protein
+	name = "Protein"
+	description = "A natural polyamide made up of amino acids. An essential constituent of mosts known forms of life."
+	brute_heal = 0.8 //Rewards the player for eating a balanced diet.
+	nutriment_factor = 9 * REAGENTS_METABOLISM //45% as calorie dense as corn oil.
 
 /datum/reagent/consumable/cooking_oil
 	name = "Cooking Oil"
@@ -106,14 +112,14 @@
 	color = "#EADD6B" //RGB: 234, 221, 107 (based off of canola oil)
 	taste_mult = 0.8
 	taste_description = "oil"
-	nutriment_factor = 7 * REAGENTS_METABOLISM //Not very healthy on its own
+	nutriment_factor = 1 * REAGENTS_METABOLISM //Not very healthy on its own
 	metabolization_rate = 10 * REAGENTS_METABOLISM
 	var/fry_temperature = 450 //Around ~350 F (117 C) which deep fryers operate around in the real world
 
 /datum/reagent/consumable/cooking_oil/reaction_obj(obj/O, reac_volume)
 	if(holder && holder.chem_temp >= fry_temperature)
 		if(isitem(O) && !istype(O, /obj/item/reagent_containers/food/snacks/deepfryholder))
-			O.loc.visible_message("<span class='warning'>[O] rapidly fries as it's splashed with hot oil! Somehow.</span>")
+			O.loc.visible_message(span_warning("[O] rapidly fries as it's splashed with hot oil! Somehow."))
 			var/obj/item/reagent_containers/food/snacks/deepfryholder/F = new(O.drop_location(), O)
 			F.fry(volume)
 			F.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, reac_volume)
@@ -133,8 +139,8 @@
 		oil_damage *= 1 - M.get_permeability_protection()
 	var/FryLoss = round(min(38, oil_damage * reac_volume))
 	if(!HAS_TRAIT(M, TRAIT_OIL_FRIED))
-		M.visible_message("<span class='warning'>The boiling oil sizzles as it covers [M]!</span>", \
-		"<span class='userdanger'>You're covered in boiling oil!</span>")
+		M.visible_message(span_warning("The boiling oil sizzles as it covers [M]!"), \
+		span_userdanger("You're covered in boiling oil!"))
 		if(FryLoss)
 			M.emote("scream")
 		playsound(M, 'sound/machines/fryer/deep_fryer_emerge.ogg', 25, TRUE)
@@ -158,13 +164,13 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	taste_mult = 1.5 // stop sugar drowning out other flavours
-	nutriment_factor = 10 * REAGENTS_METABOLISM
+	nutriment_factor = 2 * REAGENTS_METABOLISM
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	overdose_threshold = 200 // Hyperglycaemic shock
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
-	to_chat(M, "<span class='userdanger'>You go into hyperglycaemic shock! Lay off the twinkies!</span>")
+	to_chat(M, span_userdanger("You go into hyperglycaemic shock! Lay off the twinkies!"))
 	M.AdjustSleeping(600, FALSE)
 	. = 1
 
@@ -247,13 +253,13 @@
 				cooling = -rand(10,20)
 		if(25 to 35)
 			cooling = -30 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(prob(1))
+			if(prob(1) && !HAS_TRAIT(M, TRAIT_RESISTCOLD))
 				M.emote("shiver")
 			if(isslime(M))
 				cooling = -rand(15,20)
 		if(35 to INFINITY)
 			cooling = -40 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(prob(5))
+			if(prob(5) && !HAS_TRAIT(M, TRAIT_RESISTCOLD))
 				M.emote("shiver")
 			if(isslime(M))
 				cooling = -rand(20,25)
@@ -275,7 +281,7 @@
 	description = "A chemical agent used for self-defense and in police work."
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "scorching agony"
-	metabolization_rate = 4 * REAGENTS_METABOLISM
+	metabolization_rate = 6 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(!ishuman(M) && !ismonkey(M))
@@ -291,32 +297,38 @@
 		if ( eyes_covered && mouth_covered )
 			return
 		else if ( mouth_covered )	// Reduced effects if partially protected
-			if(prob(5))
+			if(prob(50))
 				victim.emote("scream")
-			victim.blur_eyes(3)
-			victim.blind_eyes(2)
-			victim.confused = max(M.confused, 3)
-			victim.damageoverlaytemp = 60
-			victim.Paralyze(60)
-			return
-		else if ( eyes_covered ) // Eye cover is better than mouth cover
-			victim.blur_eyes(3)
-			victim.damageoverlaytemp = 30
-			return
-		else // Oh dear :D
-			if(prob(5))
-				victim.emote("scream")
-			victim.blur_eyes(5)
-			victim.blind_eyes(3)
-			victim.confused = max(M.confused, 6)
+			victim.blur_eyes(14)
+			victim.blind_eyes(10)
+			victim.confused = max(M.confused, 10)
 			victim.damageoverlaytemp = 75
 			victim.Paralyze(100)
+			M.adjustStaminaLoss(3)
+			return
+		else if ( eyes_covered ) // Eye cover is better than mouth cover
+			if(prob(20))
+				victim.emote("cough")
+			victim.blur_eyes(4)
+			victim.confused = max(M.confused, 6)
+			victim.damageoverlaytemp = 50
+			M.adjustStaminaLoss(3)
+			return
+		else // Oh dear :D
+			if(prob(60))
+				victim.emote("scream")
+			victim.blur_eyes(14)
+			victim.blind_eyes(10)
+			victim.confused = max(M.confused, 12)
+			victim.damageoverlaytemp = 100
+			victim.Paralyze(140)
+			M.adjustStaminaLoss(5)
 		victim.update_damage_hud()
 
 /datum/reagent/consumable/condensedcapsaicin/on_mob_life(mob/living/carbon/M)
-	if(prob(10))
-		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","splutters!")]</span>")
 	if(prob(15))
+		M.visible_message(span_warning("[M] [pick("dry heaves!","splutters!")]"))
+	if(prob(20))
 		M.emote("cough")
 
 	M.adjustStaminaLoss(3)
@@ -411,7 +423,7 @@
 /datum/reagent/consumable/garlic/on_mob_life(mob/living/carbon/M)
 	if(isvampire(M)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit.
 		if(prob(min(25,current_cycle)))
-			to_chat(M, "<span class='danger'>You can't get the scent of garlic out of your nose! You can barely think...</span>")
+			to_chat(M, span_danger("You can't get the scent of garlic out of your nose! You can barely think..."))
 			M.Paralyze(10)
 			M.Jitter(10)
 	else if(ishuman(M))
@@ -437,7 +449,7 @@
 /datum/reagent/consumable/cornoil
 	name = "Corn Oil"
 	description = "An oil derived from various types of corn."
-	nutriment_factor = 20 * REAGENTS_METABOLISM
+	nutriment_factor = 15 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "slime"
 
@@ -672,14 +684,26 @@
 	name = "Vitrium Froth"
 	description = "A bubbly paste that heals wounds of the skin."
 	color = "#d3a308"
-	nutriment_factor = 3 * REAGENTS_METABOLISM
 	taste_description = "fruity mushroom"
 
 /datum/reagent/consumable/vitfro/on_mob_life(mob/living/carbon/M)
-	if(prob(80))
+	if(prob(60))
 		M.adjustBruteLoss(-1*REM, 0)
 		M.adjustFireLoss(-1*REM, 0)
 		. = TRUE
+	..()
+
+/datum/reagent/consumable/ashresin
+	name = "Ash Resin"
+	description = "A sticky and in large quantities toxic substance found in lavaland flora that helps retain water and keep out pests."
+	color = "#ad8604"
+	taste_description = "sticky ash"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+
+/datum/reagent/consumable/ashresin/on_mob_life(mob/living/carbon/M) //nothing to worry about when eaten sparsely
+	if(prob(90))
+		M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 1)
+		. = 1
 	..()
 
 /datum/reagent/consumable/clownstears
@@ -737,6 +761,15 @@
 	taste_mult = 100
 	can_synth = FALSE
 
+/datum/reagent/consumable/nutriment/peptides
+	name = "Peptides"
+	color = "#BBD4D9"
+	taste_description = "mint frosting"
+	description = "These restorative peptides not only speed up wound healing, but are nutritious as well!"
+	nutriment_factor = 10 * REAGENTS_METABOLISM // 33% less than nutriment to reduce weight gain
+	brute_heal = 3
+	burn_heal = 1
+
 /datum/reagent/consumable/caramel
 	name = "Caramel"
 	description = "Who would have guessed that heating sugar is so delicious?"
@@ -745,7 +778,7 @@
 	taste_mult = 2
 	taste_description = "bitter sweetness"
 	reagent_state = SOLID
-	
+
 /datum/reagent/consumable/mesophilicculture
 	name = "mesophilic culture"
 	description = "A mixture of mesophilic bacteria used to make most cheese."
@@ -769,7 +802,7 @@
 	description = "A special bacterium used to make blue cheese."
 	color = "#365E30" // rgb: 54, 94, 48
 	taste_description = "bitterness"
-	
+
 /datum/reagent/consumable/parmesan_delight
 	name = "Parmesan Delight"
 	description = "The time spent cultivating parmesan has produced this magical liquid."
@@ -800,4 +833,26 @@
 	color = "#75553a"
 	taste_mult = 1.5
 	taste_description = "gravy"
-	
+
+/datum/reagent/consumable/char
+	name = "Char"
+	description = "Essence of the grill. Has strange properties when overdosed."
+	reagent_state = LIQUID
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#C8C8C8"
+	taste_mult = 1 //has to be a bit low so it doesn't overtake literally everything when INTENSE GRILLING takes place
+	taste_description = "smoke"
+	overdose_threshold = 25
+
+/datum/reagent/consumable/char/overdose_process(mob/living/carbon/M)
+	if(prob(10))
+		M.say(pick("I hate my wife.", "I just want to grill for God's sake.", "I wish I could just go on my lawnmower and cut the grass.", "Yep, Quake. That was a good game...", "Yeah, my PDA has wi-fi. A wife I hate."), forced = /datum/reagent/consumable/char)
+	..()
+
+/datum/reagent/consumable/laughsyrup
+	name = "Laughin' Syrup"
+	description = "The product of juicing Laughin' Peas. Fizzy, and seems to change flavour based on what it's used with!"
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#803280"
+	taste_mult = 2
+	taste_description = "fizzy sweetness"

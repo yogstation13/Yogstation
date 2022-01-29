@@ -2,12 +2,8 @@
 	name = "timer"
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
-	materials = list(MAT_METAL=500, MAT_GLASS=50)
+	materials = list(/datum/material/iron=500, /datum/material/glass=50)
 	attachable = TRUE
-
-	var/ui_x = 275
-	var/ui_y = 115
-	
 	var/timing = FALSE
 	var/time = 5
 	var/saved_time = 5
@@ -15,13 +11,13 @@
 	var/hearing_range = 3
 
 /obj/item/assembly/timer/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] looks at the timer and decides [user.p_their()] fate! It looks like [user.p_theyre()] going to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] looks at the timer and decides [user.p_their()] fate! It looks like [user.p_theyre()] going to commit suicide!"))
 	activate()//doesnt rely on timer_end to prevent weird metas where one person can control the timer and therefore someone's life. (maybe that should be how it works...)
 	addtimer(CALLBACK(src, .proc/manual_suicide, user), time*10)//kill yourself once the time runs out
 	return MANUAL_SUICIDE
 
 /obj/item/assembly/timer/proc/manual_suicide(mob/living/user)
-	user.visible_message("<span class='suicide'>[user]'s time is up!</span>")
+	user.visible_message(span_suicide("[user]'s time is up!"))
 	user.adjustOxyLoss(200)
 	user.death(0)
 
@@ -35,7 +31,7 @@
 
 /obj/item/assembly/timer/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>The timer is [timing ? "counting down from [time]":"set for [time] seconds"].</span>"
+	. += span_notice("The timer is [timing ? "counting down from [time]":"set for [time] seconds"].")
 
 /obj/item/assembly/timer/activate()
 	if(!..())
@@ -94,11 +90,10 @@
 		return ..()
 	return UI_CLOSE
 
-/obj/item/assembly/timer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/assembly/timer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Timer", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Timer", name)
 		ui.open()
 
 

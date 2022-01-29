@@ -10,8 +10,7 @@
 	name = "seed vault seeds"
 	lootcount = 1
 
-	loot = list(/obj/item/seeds/gatfruit = 10,
-				/obj/item/seeds/cherry/bomb = 10,
+	loot = list(/obj/item/seeds/cherry/bomb = 10,
 				/obj/item/seeds/berry/glow = 10,
 				/obj/item/seeds/sunflower/moonflower = 8
 				)
@@ -34,7 +33,7 @@
 	desc = "Allows for the construction of a Golem Shell."
 	id = "golem"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 40000)
+	materials = list(/datum/material/iron = 40000)
 	build_path = /obj/item/golem_shell
 	category = list("Imported")
 
@@ -62,6 +61,7 @@
 		/obj/item/stack/sheet/mineral/bananium	    = /datum/species/golem/bananium,
 		/obj/item/stack/sheet/mineral/titanium	    = /datum/species/golem/titanium,
 		/obj/item/stack/sheet/mineral/plastitanium	= /datum/species/golem/plastitanium,
+		/obj/item/stack/sheet/mineral/metal_hydrogen= /datum/species/golem/mhydrogen,
 		/obj/item/stack/sheet/mineral/abductor	    = /datum/species/golem/alloy,
 		/obj/item/stack/sheet/mineral/wood	        = /datum/species/golem/wood,
 		/obj/item/stack/sheet/bluespace_crystal	    = /datum/species/golem/bluespace,
@@ -80,7 +80,11 @@
 		/obj/item/stack/sheet/mineral/snow			= /datum/species/golem/snow,
 		/obj/item/stack/sheet/capitalisium			= /datum/species/golem/capitalist,
 		/obj/item/stack/sheet/stalinium				= /datum/species/golem/soviet,
-		/obj/item/stack/sheet/cheese				= /datum/species/golem/cheese)
+		/obj/item/stack/sheet/cheese				= /datum/species/golem/cheese,
+		/obj/item/stack/telecrystal					= /datum/species/golem/telecrystal,
+		/obj/item/stack/telecrystal/five			= /datum/species/golem/telecrystal,
+		/obj/item/stack/telecrystal/twenty			= /datum/species/golem/telecrystal,
+		/obj/item/stack/sheet/ruinous_metal			= /datum/species/golem/ruinous)
 
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/O = I
@@ -119,7 +123,7 @@
 
 /datum/outfit/lavaland_syndicate
 	name = "Lavaland Syndicate Agent"
-	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle
+	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/combat
@@ -156,6 +160,7 @@
 	r_hand = /obj/item/melee/transforming/energy/sword/saber
 	mask = /obj/item/clothing/mask/chameleon/gps
 	suit = /obj/item/clothing/suit/armor/vest
+	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1)
 
 /obj/item/clothing/mask/chameleon/gps/Initialize()
 	. = ..()

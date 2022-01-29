@@ -4,7 +4,6 @@
 	icon_screen = "alert:0"
 	icon_keyboard = "atmos_key"
 	circuit = /obj/item/circuitboard/computer/stationalert
-	var/alarms = list("Fire" = list(), "Atmosphere" = list(), "Power" = list())
 
 	light_color = LIGHT_COLOR_CYAN
 
@@ -16,22 +15,21 @@
 	GLOB.alert_consoles -= src
 	return ..()
 
-/obj/machinery/computer/station_alert/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/station_alert/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "StationAlertConsole", name, 325, 500, master_ui, state)
+		ui = new(user, src, "StationAlertConsole", name)
 		ui.open()
 
 /obj/machinery/computer/station_alert/ui_data(mob/user)
 	var/list/data = list()
 
 	data["alarms"] = list()
-	for(var/class in alarms)
+	for(var/class in GLOB.alarms)
 		data["alarms"][class] = list()
-		for(var/area in alarms[class])
+		for(var/area in GLOB.alarms[class])
 			data["alarms"][class] += area
-	
+
 	return data
 
 /obj/machinery/computer/station_alert/proc/triggerAlarm(class, area/A, O, obj/source)
@@ -40,7 +38,7 @@
 	if(stat & (BROKEN))
 		return
 
-	var/list/L = alarms[class]
+	var/list/L = GLOB.alarms[class]
 	for(var/I in L)
 		if (I == A.name)
 			var/list/alarm = L[I]
@@ -63,7 +61,7 @@
 /obj/machinery/computer/station_alert/proc/cancelAlarm(class, area/A, obj/origin)
 	if(stat & (BROKEN))
 		return
-	var/list/L = alarms[class]
+	var/list/L = GLOB.alarms[class]
 	var/cleared = 0
 	for (var/I in L)
 		if (I == A.name)
@@ -81,8 +79,8 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	var/active_alarms = FALSE
-	for(var/cat in alarms)
-		var/list/L = alarms[cat]
+	for(var/cat in GLOB.alarms)
+		var/list/L = GLOB.alarms[cat]
 		if(L.len)
 			active_alarms = TRUE
 	if(active_alarms)

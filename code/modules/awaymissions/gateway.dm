@@ -73,7 +73,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 /obj/machinery/gateway/proc/toggleon(mob/user)
 	return FALSE
 
-/obj/machinery/gateway/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force = MOVE_FORCE_STRONG)
+/obj/machinery/gateway/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force = MOVE_FORCE_STRONG, quickstart = TRUE)
 	return
 
 /obj/machinery/gateway/centerstation/Initialize()
@@ -121,10 +121,10 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	if(!powered())
 		return
 	if(!awaygate)
-		to_chat(user, "<span class='notice'>Error: No destination found.</span>")
+		to_chat(user, span_notice("Error: No destination found."))
 		return
 	if(world.time < wait)
-		to_chat(user, "<span class='notice'>Error: Warpspace triangulation in progress. Estimated time to completion: [DisplayTimeText(wait - world.time)].</span>")
+		to_chat(user, span_notice("Error: Warpspace triangulation in progress. Estimated time to completion: [DisplayTimeText(wait - world.time)]."))
 		return
 
 	for(var/obj/machinery/gateway/G in linked)
@@ -162,7 +162,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	if(calibrated)
 		to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
 	else
-		to_chat(user, "<span class='boldnotice'>Recalibration successful!</span>: \black This gate's systems have been fine tuned.  Travel to this gate will now be on target.")
+		to_chat(user, "[span_boldnotice("Recalibration successful!")]: \black This gate's systems have been fine tuned.  Travel to this gate will now be on target.")
 		calibrated = TRUE
 	return TRUE
 
@@ -193,7 +193,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	if(!detect())
 		return
 	if(!stationgate)
-		to_chat(user, "<span class='notice'>Error: No destination found.</span>")
+		to_chat(user, span_notice("Error: No destination found."))
 		return
 
 	for(var/obj/machinery/gateway/G in linked)

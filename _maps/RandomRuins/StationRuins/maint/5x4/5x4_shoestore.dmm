@@ -1,0 +1,88 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"g" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"w" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/winterboots{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"y" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/cowboy/white,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"B" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/yogs/fuzzy_slippers{
+	pixel_x = 1;
+	pixel_y = 6
+	},
+/obj/item/shoe_protector/ultra{
+	pixel_x = 15;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"C" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/sneakers/rainbow,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"G" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/sneakers/white,
+/obj/item/clothing/shoes/yogs/trainers/zebra{
+	pixel_x = 12;
+	pixel_y = 7
+	},
+/obj/item/clothing/shoes/yogs/fire_crocs{
+	pixel_x = 30;
+	pixel_y = 13
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"R" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/sneakers/yellow{
+	pixel_x = -9;
+	pixel_y = -1
+	},
+/obj/item/clothing/shoes/yogs/trainers{
+	pixel_x = 13
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+
+(1,1,1) = {"
+g
+g
+g
+g
+"}
+(2,1,1) = {"
+g
+y
+G
+g
+"}
+(3,1,1) = {"
+g
+R
+B
+g
+"}
+(4,1,1) = {"
+g
+C
+w
+g
+"}
+(5,1,1) = {"
+g
+g
+g
+g
+"}

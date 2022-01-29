@@ -54,5 +54,5 @@
 	var/new_angle_s = SIMPLIFY_DEGREES(face_angle + incidence_s)
 	P.setAngle(new_angle_s)
 	if(!(P.reflectable & REFLECT_FAKEPROJECTILE))
-		visible_message("<span class='warning'>[P] reflects off [src]!</span>")
+		visible_message(span_warning("[P] reflects off [src]!"))
 	return TRUE

@@ -12,6 +12,8 @@ export const Uplink = (props, context) => {
   const { telecrystals } = data;
   return (
     <Window
+      width={620}
+      height={580}
       theme="syndicate"
       resizable>
       <Window.Content scrollable>
@@ -187,6 +189,8 @@ const ItemList = (props, context) => {
           })} />
       )}>
       {decodeHtmlEntities(item.desc)}
+      <br />
+      {item.manufacturer ? "Brought to you by: " + decodeHtmlEntities(item.manufacturer): ""}
     </Section>
   ));
 };

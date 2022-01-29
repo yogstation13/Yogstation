@@ -115,9 +115,9 @@
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>The generator has [sheets] units of [sheet_name] fuel left, producing [DisplayPower(power_gen)] per cycle.</span>"
+	. += span_notice("The generator has [sheets] units of [sheet_name] fuel left, producing [DisplayPower(power_gen)] per cycle.")
 	if(anchored)
-		. += "<span class='notice'>It is anchored to the ground.</span>"
+		. += span_notice("It is anchored to the ground.")
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Fuel efficiency increased by <b>[(consumption*100)-100]%</b>.<span>"
 
@@ -174,9 +174,9 @@
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.amount)
 		if(amount < 1)
-			to_chat(user, "<span class='notice'>The [src.name] is full!</span>")
+			to_chat(user, span_notice("The [src.name] is full!"))
 			return
-		to_chat(user, "<span class='notice'>You add [amount] sheets to the [src.name].</span>")
+		to_chat(user, span_notice("You add [amount] sheets to the [src.name]."))
 		sheets += amount
 		addstack.use(amount)
 		return
@@ -185,11 +185,11 @@
 			if(!anchored && !isinspace())
 				anchored = TRUE
 				connect_to_network()
-				to_chat(user, "<span class='notice'>You secure the generator to the floor.</span>")
+				to_chat(user, span_notice("You secure the generator to the floor."))
 			else if(anchored)
 				anchored = FALSE
 				disconnect_from_network()
-				to_chat(user, "<span class='notice'>You unsecure the generator from the floor.</span>")
+				to_chat(user, span_notice("You unsecure the generator from the floor."))
 
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			return
@@ -197,9 +197,9 @@
 			panel_open = !panel_open
 			O.play_tool_sound(src)
 			if(panel_open)
-				to_chat(user, "<span class='notice'>You open the access panel.</span>")
+				to_chat(user, span_notice("You open the access panel."))
 			else
-				to_chat(user, "<span class='notice'>You close the access panel.</span>")
+				to_chat(user, span_notice("You close the access panel."))
 			return
 		else if(default_deconstruction_crowbar(O))
 			return
@@ -223,11 +223,10 @@
 	if(anchored)
 		TogglePower()
 
-/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-												datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "PortableGenerator", name, 450, 340, master_ui, state)
+		ui = new(user, src, "PortableGenerator", name)
 		ui.open()
 
 /obj/machinery/power/port_gen/pacman/ui_data()

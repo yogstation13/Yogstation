@@ -20,7 +20,7 @@
 	. = ..()
 
 	if(!machine)
-		to_chat(user, "<span class='notice'>[src] is not linked to a machine!</span>")
+		to_chat(user, span_notice("[src] is not linked to a machine!"))
 		return
 
 	var/obj/item/stack/sheet/s
@@ -44,7 +44,7 @@
 		return
 	var/obj/item/multitool/M = I
 	M.buffer = src
-	to_chat(user, "<span class='notice'>You store linkage information in [I]'s buffer.</span>")
+	to_chat(user, span_notice("You store linkage information in [I]'s buffer."))
 	return TRUE
 
 /obj/machinery/mineral/stacking_unit_console/Topic(href, href_list)
@@ -164,13 +164,13 @@
 		input_dir = turn(input_dir, -90)
 		if(input_dir == output_dir) //Input and output can't be the same or you create the immovable sheet.
 			input_dir = turn(input_dir, -90)
-		to_chat(user, "<span class='notice'>You set [src]'s input to take from the [dir2text(input_dir)].</span>")
+		to_chat(user, span_notice("You set [src]'s input to take from the [dir2text(input_dir)]."))
 		return
 	else if (io == OUTPUT)
 		output_dir = turn(output_dir, -90)
 		if(input_dir == output_dir)
 			output_dir = turn(output_dir, -90)
-		to_chat(user, "<span class='notice'>You set [src]'s output to drop stacks [dir2text(output_dir)].</span>")
+		to_chat(user, span_notice("You set [src]'s output to drop stacks [dir2text(output_dir)]."))
 		return
 	return ..()
 
@@ -179,9 +179,9 @@
 		if(istype(M.buffer, /obj/machinery/mineral/stacking_unit_console) && !panel_open)
 			CONSOLE = M.buffer
 			CONSOLE.machine = src
-			to_chat(user, "<span class='notice'>You link [src] to the console in [M]'s buffer.</span>")
+			to_chat(user, span_notice("You link [src] to the console in [M]'s buffer."))
 			return TRUE
 	if(panel_open)
 		io = !io
-		to_chat(user, "<span class='notice'>You set the I/O to change [io ? "output" : "input"].</span>")
+		to_chat(user, span_notice("You set the I/O to change [io ? "output" : "input"]."))
 		return TRUE

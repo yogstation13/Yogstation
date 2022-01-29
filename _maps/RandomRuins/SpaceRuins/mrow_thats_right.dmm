@@ -837,10 +837,10 @@
 /obj/item/stack/sheet/animalhide/human,
 /obj/item/stack/sheet/animalhide/human,
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
-	name = "freezer vent";
-	icon_state = "vent_map_siphon_on-2";
 	dir = 4;
-	id_tag = "o2_out_cat"
+	icon_state = "vent_map_siphon_on-2";
+	id_tag = "o2_out_cat";
+	name = "freezer vent"
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/cat_man)
@@ -955,11 +955,15 @@
 /obj/item/organ/tail/cat,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/cat_man)
-"Bl" = (
+"CL" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/powered/cat_man)
+"JP" = (
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
 "RT" = (
@@ -1252,8 +1256,8 @@ bK
 aI
 aG
 RT
-ah
-Bl
+JP
+CL
 ac
 ac
 ac

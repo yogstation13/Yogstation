@@ -2,8 +2,8 @@
 	name = "Telepathy"
 	desc = "A rare mutation that allows the user to telepathically communicate to others."
 	quality = POSITIVE
-	text_gain_indication = "<span class='notice'>You can hear your own voice echoing in your mind!</span>"
-	text_lose_indication = "<span class='notice'>You don't hear your mind echo anymore.</span>"
+	text_gain_indication = span_notice("You can hear your own voice echoing in your mind!")
+	text_lose_indication = span_notice("You don't hear your mind echo anymore.")
 	difficulty = 12
 	power = /obj/effect/proc_holder/spell/targeted/telepathy
 	instability = 10
@@ -15,8 +15,8 @@
 	desc = "Your sense of smell is comparable to that of a canine."
 	quality = POSITIVE
 	difficulty = 12
-	text_gain_indication = "<span class='notice'>Smells begin to make more sense...</span>"
-	text_lose_indication = "<span class='notice'>Your sense of smell goes back to normal.</span>"
+	text_gain_indication = span_notice("Smells begin to make more sense...")
+	text_lose_indication = span_notice("Your sense of smell goes back to normal.")
 	power = /obj/effect/proc_holder/spell/targeted/olfaction
 	instability = 30
 	synchronizer_coeff = 1
@@ -32,6 +32,7 @@
 	desc = "Get a scent off of the item you're currently holding to track it. With an empty hand, you'll track the scent you've remembered."
 	charge_max = 100
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	range = -1
 	include_user = TRUE
 	action_icon_state = "nose"
@@ -44,7 +45,7 @@
 	var/datum/gas_mixture/air = user.loc.return_air()
 	if(air.get_moles(/datum/gas/miasma) >= 0.1)
 		user.adjust_disgust(sensitivity * 45)
-		to_chat(user, "<span class='warning'>With your overly sensitive nose, you get a whiff of stench and feel sick! Try moving to a cleaner area!</span>")
+		to_chat(user, span_warning("With your overly sensitive nose, you get a whiff of stench and feel sick! Try moving to a cleaner area!"))
 		return
 
 	var/atom/sniffed = user.get_active_held_item()
@@ -56,43 +57,43 @@
 			if(prints[md5(C.dna.uni_identity)])
 				possible |= C
 		if(!length(possible))
-			to_chat(user,"<span class='warning'>Despite your best efforts, there are no scents to be found on [sniffed]...</span>")
+			to_chat(user,span_warning("Despite your best efforts, there are no scents to be found on [sniffed]..."))
 			return
 		tracking_target = input(user, "Choose a scent to remember.", "Scent Tracking") as null|anything in possible
 		if(!tracking_target)
 			if(!old_target)
-				to_chat(user,"<span class='warning'>You decide against remembering any scents. Instead, you notice your own nose in your peripheral vision. This goes on to remind you of that one time you started breathing manually and couldn't stop. What an awful day that was.</span>")
+				to_chat(user,span_warning("You decide against remembering any scents. Instead, you notice your own nose in your peripheral vision. This goes on to remind you of that one time you started breathing manually and couldn't stop. What an awful day that was."))
 				return
 			tracking_target = old_target
 			on_the_trail(user)
 			return
-		to_chat(user,"<span class='notice'>You pick up the scent of [tracking_target]. The hunt begins.</span>")
+		to_chat(user,span_notice("You pick up the scent of [tracking_target]. The hunt begins."))
 		on_the_trail(user)
 		return
 
 	if(!tracking_target)
-		to_chat(user,"<span class='warning'>You're not holding anything to smell, and you haven't smelled anything you can track. You smell your skin instead; it's kinda salty.</span>")
+		to_chat(user,span_warning("You're not holding anything to smell, and you haven't smelled anything you can track. You smell your skin instead; it's kinda salty."))
 		return
 
 	on_the_trail(user)
 
 /obj/effect/proc_holder/spell/targeted/olfaction/proc/on_the_trail(mob/living/user)
 	if(!tracking_target)
-		to_chat(user,"<span class='warning'>You're not tracking a scent, but the game thought you were. Something's gone wrong! Report this as a bug.</span>")
+		to_chat(user,span_warning("You're not tracking a scent, but the game thought you were. Something's gone wrong! Report this as a bug."))
 		return
 	if(tracking_target == user)
-		to_chat(user,"<span class='warning'>You smell out the trail to yourself. Yep, it's you.</span>")
+		to_chat(user,span_warning("You smell out the trail to yourself. Yep, it's you."))
 		return
 	var/turf/pos = get_turf(tracking_target)
 	if(usr.z < pos.z)
-		to_chat(user,"<span class='warning'>The trail leads... way up above you? Huh. They must be really, really far away.</span>")
+		to_chat(user,span_warning("The trail leads... way up above you? Huh. They must be really, really far away."))
 		return
 	else if(usr.z > pos.z)
-		to_chat(user,"<span class='warning'>The trail leads... way down below you? Huh. They must be really, really far away.</span>")
+		to_chat(user,span_warning("The trail leads... way down below you? Huh. They must be really, really far away."))
 		return
 	var/direction_text = "[dir2text(get_dir(usr, pos))]"
 	if(direction_text)
-		to_chat(user,"<span class='notice'>You consider [tracking_target]'s scent. The trail leads <b>[direction_text].</b></span>")
+		to_chat(user,span_notice("You consider [tracking_target]'s scent. The trail leads <b>[direction_text].</b>"))
 
 /datum/mutation/human/firebreath
 	name = "Fire Breath"
@@ -100,8 +101,8 @@
 	quality = POSITIVE
 	difficulty = 12
 	locked = TRUE
-	text_gain_indication = "<span class='notice'>Your throat is burning!</span>"
-	text_lose_indication = "<span class='notice'>Your throat is cooling down.</span>"
+	text_gain_indication = span_notice("Your throat is burning!")
+	text_lose_indication = span_notice("Your throat is cooling down.")
 	power = /obj/effect/proc_holder/spell/aimed/firebreath
 	instability = 30
 	energy_coeff = 1
@@ -118,6 +119,7 @@
 	school = "evocation"
 	charge_max = 600
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	range = 20
 	projectile_type = /obj/item/projectile/magic/aoe/fireball/firebreath
 	base_icon_state = "fireball"
@@ -135,7 +137,7 @@
 		if(C.is_mouth_covered())
 			C.adjust_fire_stacks(2)
 			C.IgniteMob()
-			to_chat(C,"<span class='warning'>Something in front of your mouth caught fire!</span>")
+			to_chat(C,span_warning("Something in front of your mouth caught fire!"))
 			return FALSE
 
 /obj/effect/proc_holder/spell/aimed/firebreath/ready_projectile(obj/item/projectile/P, atom/target, mob/user, iteration)
@@ -160,7 +162,7 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	name = "Void Magnet"
 	desc = "A rare genome that attracts odd forces not usually observed."
 	quality = MINOR_NEGATIVE //upsides and downsides
-	text_gain_indication = "<span class='notice'>You feel a heavy, dull force just beyond the walls watching you.</span>"
+	text_gain_indication = span_notice("You feel a heavy, dull force just beyond the walls watching you.")
 	instability = 30
 	power = /obj/effect/proc_holder/spell/self/void
 	energy_coeff = 1
@@ -177,6 +179,7 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	desc = "A rare genome that attracts odd forces not usually observed. May sometimes pull you in randomly."
 	school = "evocation"
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	charge_max = 600
 	invocation = "DOOOOOOOOOOOOOOOOOOOOM!!!"
 	invocation_type = "shout"

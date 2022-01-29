@@ -17,7 +17,7 @@
 
 /datum/antagonist/blood_contract/greet()
 	. = ..()
-	to_chat(owner, "<span class='userdanger'>You've been marked for death! Don't let the demons get you! KILL THEM ALL!</span>")
+	to_chat(owner, span_userdanger("You've been marked for death! Don't let the demons get you! KILL THEM ALL!"))
 
 /datum/antagonist/blood_contract/proc/start_the_hunt()
 	var/mob/living/carbon/human/H = owner.current
@@ -34,8 +34,24 @@
 	for(var/mob/living/carbon/human/P in GLOB.player_list)
 		if(P == H)
 			continue
-		to_chat(P, "<span class='userdanger'>You have an overwhelming desire to kill [H]. [H.p_theyve(TRUE)] been marked red! Whoever [H.p_they()] [H.p_were()], friend or foe, go kill [H.p_them()]!</span>")
+		to_chat(P, span_userdanger("You have an overwhelming desire to kill [H]. [H.p_theyve(TRUE)] been marked red! Whoever [H.p_they()] [H.p_were()], friend or foe, go kill [H.p_them()]!"))
 
 		var/obj/item/I = new /obj/item/kitchen/knife/butcher(get_turf(P))
 		P.put_in_hands(I, del_on_fail=TRUE)
 		QDEL_IN(I, duration)
+		INVOKE_ASYNC(src, .proc/end_the_hunt, duration, P)
+	INVOKE_ASYNC(src, .proc/end_the_hunt, duration + (0.5 SECONDS), null)
+		
+
+/datum/antagonist/blood_contract/proc/end_the_hunt(delay, mob/living/carbon/human/P)
+	if(delay > 0)
+		sleep(delay)
+	if(P) // Ending the hunt for a specific person
+		to_chat(P, span_userdanger("You no longer have an overwhelming desire to kill [owner.current]."))
+		return
+	
+	// Removing self from target
+	owner.current.remove_atom_colour("#FF0000", ADMIN_COLOUR_PRIORITY)
+	on_removal() // Remove this antag datum
+	return
+

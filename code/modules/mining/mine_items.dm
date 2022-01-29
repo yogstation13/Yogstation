@@ -73,12 +73,12 @@ GLOBAL_LIST_EMPTY(dumb_rev_heads)
 	circuit = /obj/item/circuitboard/computer/mining_shuttle
 	shuttleId = "mining"
 	possible_destinations = "mining_home;mining_away;landing_zone_dock;mining_public"
-	no_destination_swap = 1
+	no_destination_swap = TRUE
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/machinery/computer/shuttle/mining/attack_hand(mob/user)
 	if(is_station_level(user.z) && user.mind && is_head_revolutionary(user) && !(user.mind in GLOB.dumb_rev_heads))
-		to_chat(user, "<span class='warning'>You get a feeling that leaving the station might be a REALLY dumb idea...</span>")
+		to_chat(user, span_warning("You get a feeling that leaving the station might be a REALLY dumb idea..."))
 		GLOB.dumb_rev_heads += user.mind
 		return
 	. = ..()

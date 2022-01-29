@@ -206,42 +206,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
-"ar" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/storage/box/fancy/cigarettes{
-	pixel_x = 2;
-	pixel_y = 6
-	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_carp{
-	pixel_x = 10;
-	pixel_y = 6
-	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_robust{
-	pixel_x = 2
-	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_midori{
-	pixel_x = 10
-	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims{
-	pixel_x = 2;
-	pixel_y = -6
-	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_uplift{
-	pixel_x = 10;
-	pixel_y = -6
-	},
-/obj/item/lighter{
-	pixel_x = -10;
-	pixel_y = -2
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/pirate)
 "as" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "piratebridge"
@@ -872,7 +836,7 @@
 	aidisabled = 1;
 	dir = 1;
 	name = "Pirate Corvette APC";
-	pixel_y = 24;
+	pixel_y = 23;
 	req_access = null
 	},
 /obj/structure/reagent_dispensers/watertank,
@@ -1290,6 +1254,48 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
+"Yj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/storage/box/fancy/cigarettes{
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/obj/item/storage/box/fancy/cigarettes/cigpack_carp{
+	pixel_x = 10;
+	pixel_y = 6
+	},
+/obj/item/storage/box/fancy/cigarettes/cigpack_robust{
+	pixel_x = 2
+	},
+/obj/item/storage/box/fancy/cigarettes/cigpack_midori{
+	pixel_x = 10
+	},
+/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims{
+	pixel_x = 2;
+	pixel_y = -6
+	},
+/obj/item/storage/box/fancy/cigarettes/cigpack_uplift{
+	pixel_x = 10;
+	pixel_y = -6
+	},
+/obj/item/lighter{
+	pixel_x = -10;
+	pixel_y = -2
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/mob/living/simple_animal/parrot{
+	faction = list("pirate");
+	name = "Cracker";
+	speak_emote = list("squawks","says","yells","yarrs");
+	unique_name = 1
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/pirate)
 
 (1,1,1) = {"
 af
@@ -1337,7 +1343,7 @@ aj
 aj
 ax
 aq
-ar
+Yj
 aj
 RY
 aM

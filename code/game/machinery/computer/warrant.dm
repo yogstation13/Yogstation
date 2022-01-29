@@ -5,7 +5,6 @@
 	icon_keyboard = "security_key"
 	circuit = /obj/item/circuitboard/computer/warrant
 	light_color = LIGHT_COLOR_RED
-	var/authenticated = null
 	var/screen = null
 	var/datum/data/record/current = null
 
@@ -69,7 +68,7 @@
 				dat += "</tr>"
 			dat += "</table>"
 
-			dat += "<br>Minor Crimes:"
+			dat += "<br>Crimes:"
 			dat +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 			<tr>
 			<th>Crime</th>
@@ -77,23 +76,7 @@
 			<th>Author</th>
 			<th>Time Added</th>
 			</tr>"}
-			for(var/datum/data/crime/c in current.fields["mi_crim"])
-				dat += {"<tr><td>[c.crimeName]</td>
-				<td>[c.crimeDetails]</td>
-				<td>[c.author]</td>
-				<td>[c.time]</td>
-				</tr>"}
-			dat += "</table>"
-
-			dat += "<br>Major Crimes:"
-			dat +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
-			<tr>
-			<th>Crime</th>
-			<th>Details</th>
-			<th>Author</th>
-			<th>Time Added</th>
-			</tr>"}
-			for(var/datum/data/crime/c in current.fields["ma_crim"])
+			for(var/datum/data/crime/c in current.fields["crimes"])
 				dat += {"<tr><td>[c.crimeName]</td>
 				<td>[c.crimeDetails]</td>
 				<td>[c.author]</td>
@@ -107,7 +90,6 @@
 
 	var/datum/browser/popup = new(user, "warrant", "Security Warrant Console", 600, 400)
 	popup.set_content(dat.Join())
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/warrant/Topic(href, href_list)
@@ -135,17 +117,17 @@
 					if(C && istype(C))
 						var/pay = C.get_item_credit_value()
 						if(!pay)
-							to_chat(M, "<span class='warning'>[C] doesn't seem to be worth anything!</span>")
+							to_chat(M, span_warning("[C] doesn't seem to be worth anything!"))
 						else
 							var/diff = p.fine - p.paid
 							GLOB.data_core.payCitation(current.fields["id"], text2num(href_list["cdataid"]), pay)
-							to_chat(M, "<span class='notice'>You have paid [pay] credit\s towards your fine</span>")
+							to_chat(M, span_notice("You have paid [pay] credit\s towards your fine"))
 							if (pay == diff || pay > diff || pay >= diff)
 								investigate_log("Citation Paid off: <strong>[p.crimeName]</strong> Fine: [p.fine] | Paid off by [key_name(usr)]", INVESTIGATE_RECORDS)
-								to_chat(M, "<span class='notice'>The fine has been paid in full</span>")
+								to_chat(M, span_notice("The fine has been paid in full"))
 							qdel(C)
 							playsound(src, "terminal_type", 25, 0)
 					else
-						to_chat(M, "<span class='warning'>Fines can only be paid with holochips</span>")
+						to_chat(M, span_warning("Fines can only be paid with holochips"))
 	updateUsrDialog()
 	add_fingerprint(M)

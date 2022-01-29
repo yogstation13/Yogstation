@@ -39,7 +39,7 @@
 	. = ..()
 	. += "It is [area.lightswitch ? "on" : "off"]."
 	if((obj_flags & EMAGGED) && user.can_hear())
-		. += "<span class='danger'>You hear a faint hum coming from the switch.</span>"
+		. += span_danger("You hear a faint hum coming from the switch.")
 
 /obj/machinery/light_switch/interact(mob/user)
 	if(obj_flags & EMAGGED)
@@ -76,9 +76,9 @@
 
 /obj/machinery/light_switch/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
-		to_chat(user, "<span class='warning'>Nothing new seems to happen when you swipe the emag.</span>")
+		to_chat(user, span_warning("Nothing new seems to happen when you swipe the emag."))
 		return
-	to_chat(user, "<span class='notice'>You swipe the emag on the light switch. </span>")
+	to_chat(user, span_notice("You swipe the emag on the light switch. "))
 	if(user.can_hear())
-		to_chat(user, "<span class='notice'>The light switch gives off a soft hum.</span>")
+		to_chat(user, span_notice("The light switch gives off a soft hum."))
 	obj_flags |= EMAGGED

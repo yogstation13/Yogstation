@@ -30,10 +30,10 @@
 				return FALSE
 
 			user.visible_message("[user] is slicing apart the [name].", \
-								"<span class='notice'>You are slicing apart the [name]...</span>")
+								span_notice("You are slicing apart the [name]..."))
 			if(W.use_tool(src, user, 40, volume=50))
 				user.visible_message("[user] slices apart the [name].", \
-									"<span class='notice'>You slice apart the [name]!</span>")
+									span_notice("You slice apart the [name]!"))
 				deconstruct(TRUE)
 			return
 	return ..()
@@ -324,3 +324,27 @@
 		icon_state = "cheesus2"
 		return ..()
 	return ..()
+
+////////////////////////ash resin//////////////
+/obj/structure/statue/resin
+	max_integrity = 50
+	material_drop_type = /obj/item/stack/sheet/ashresin
+	impressiveness = 20
+	desc = "A decently well done statue made of solid resin."
+
+/obj/structure/statue/resin/ashwalker
+	name = "statue of an ashwalker"
+	icon_state = "ashwalker"
+
+
+
+///////////////////other//////////////////////////
+
+/obj/structure/statue/elder_atmosian
+	name = "Elder Atmosian"
+	desc = "A statue of an Elder Atmosian, capable of bending the laws of thermodynamics to their will."
+	icon_state = "atmos"
+	custom_materials = list(/datum/material/metalhydrogen = MINERAL_MATERIAL_AMOUNT*10, /datum/material/zaukerite = MINERAL_MATERIAL_AMOUNT*15)
+	max_integrity = 1000
+	obj_integrity = 1000
+	impressiveness = 100

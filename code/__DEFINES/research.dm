@@ -57,8 +57,9 @@
 #define DEPARTMENTAL_FLAG_SCIENCE		(1<<3)
 #define DEPARTMENTAL_FLAG_ENGINEERING	(1<<4)
 #define DEPARTMENTAL_FLAG_SERVICE		(1<<5)
-#define DEPARTMENTAL_FLAG_ALL			(1<<6)			//NO THIS DOESN'T ALLOW YOU TO PRINT EVERYTHING, IT'S FOR ALL DEPARTMENTS!
-//#define DEPARTMENTAL_FLAG_MINING		(1<<7)			//I swear I'm actually going to use this eventually leave it here
+#define DEPARTMENTAL_FLAG_ARMORY		(1<<6)
+#define DEPARTMENTAL_FLAG_ALL			(1<<7)			//NO THIS DOESN'T ALLOW YOU TO PRINT EVERYTHING, IT'S FOR ALL DEPARTMENTS!
+//#define DEPARTMENTAL_FLAG_MINING		(1<<8)			//I swear I'm actually going to use this eventually leave it here
 
 #define DESIGN_ID_IGNORE "IGNORE_THIS_DESIGN"			///For instances where we don't want a design showing up due to it being for debug/sanity purposes
 
@@ -66,14 +67,17 @@
 
 ///Techweb names for new point types. Can be used to define specific point values for specific types of research (science, security, engineering, etc.)
 #define TECHWEB_POINT_TYPE_GENERIC "General Research"
+#define TECHWEB_POINT_TYPE_NANITES "Nanite Research"
 
 #define TECHWEB_POINT_TYPE_DEFAULT TECHWEB_POINT_TYPE_GENERIC
 
 ///Associative names for techweb point values, see: [/modules/research/techweb/all_nodes][all_nodes]
 #define TECHWEB_POINT_TYPE_LIST_ASSOCIATIVE_NAMES list(\
-	TECHWEB_POINT_TYPE_GENERIC = "General Research"\
+	TECHWEB_POINT_TYPE_GENERIC = "General Research",\
+	TECHWEB_POINT_TYPE_NANITES = "Nanite Research"\
 	)
 
+#define TECHWEB_BOMB_POINTCAP		50000 //Adjust as needed; Stops toxins from nullifying RND progression mechanics. Current Value Cap Radius: 100
 
 ///This is the maximum amount of research points a toxins bomb can get.
 #define TOXINS_RESEARCH_MAX 70000

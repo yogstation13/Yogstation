@@ -84,7 +84,7 @@
 		var/obj/item/reagent_containers/RC = I
 		var/units = RC.reagents.trans_to(src, RC.amount_per_transfer_from_this, transfered_by = user)
 		if(units)
-			to_chat(user, "<span class='notice'>You transfer [units] units of the solution to [src].</span>")
+			to_chat(user, span_notice("You transfer [units] units of the solution to [src]."))
 			return
 	if(default_unfasten_wrench(user, I, 40))
 		on = FALSE
@@ -100,11 +100,10 @@
 	reagents.clear_reagents()
 	return ..()
 
-/obj/machinery/smoke_machine/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/smoke_machine/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "SmokeMachine", name, 350, 350, master_ui, state)
+		ui = new(user, src, "SmokeMachine", name)
 		ui.open()
 
 /obj/machinery/smoke_machine/ui_data(mob/user)

@@ -12,7 +12,7 @@
 	guardian.range = range * 2
 	if(ranged)
 		guardian.ranged = TRUE
-		guardian.ranged_cooldown_time = 5 / speed
+		guardian.ranged_cooldown_time = 20 / speed
 	else
 		guardian.melee_damage_lower = damage * 5
 		guardian.melee_damage_upper = damage * 5
@@ -60,3 +60,17 @@
 		if(istype(minor, typepath))
 			minor_abilities -= minor
 			qdel(minor)
+
+/datum/guardian_stats/proc/short_info()
+	var/list/stats_info = list()
+	stats_info += "Damage [level_to_grade(damage)]"
+	stats_info += "Defense [level_to_grade(defense)]"
+	stats_info += "Speed [level_to_grade(speed)]"
+	stats_info += "Potential [level_to_grade(potential)]"
+	stats_info += "Range [level_to_grade(range)]"
+	if (ability)
+		stats_info += ability.name
+	for (var/A in minor_abilities)
+		var/datum/guardian_ability/minor/minor_ability = A
+		stats_info += minor_ability.name
+	return stats_info.Join(", ")

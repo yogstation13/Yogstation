@@ -1,32 +1,24 @@
 {
-
 	"accent_file_names": {
-	
-	"Brooklyn": "accent_brooklyn.json",
-	"Connery": "accent_connery.json",
-	"Cowboy": "accent_cowboy.json",
-	"Light Cowboy": "accent_cowboylight.json",
-	"Heavy French": "accent_french.json",
-	"Kraut": "accent_kraut.json",
-	"German": "accent_germanlight.json",
-	"Jive": "accent_jive.json",
-	"Old English": "accent_oldenglish.json",
-	"Ork": "accent_ork.json",
-	"Pirate": "accent_pirate.json",
-	"Light Pirate": "accent_piratelight.json", 
-	"Psuedo-Latin":"accent_pseudolatin.json",
-	"Scottish": "accent_scottish.json", 
-	"Light Scottish": "accent_scottishlight.json",
-	"Light Shakespearean": "accent_shakespeareanlight.json",
-	"Heavy Shakespearean": "accent_shakespearean.json",
-	"Muppet": "accent_chef_muppet.json",
-	"Valley": "accent_valspeak.json",
-	"Skaven": "accent_skaven.json"
-
-		}
-
-		
-		
+		"Brooklyn": "accent_brooklyn.json",
+		"Connery": "accent_connery.json",
+		"Cowboy": "accent_cowboy.json",
+		"Light Cowboy": "accent_cowboylight.json",
+		"Heavy French": "accent_french.json",
+		"Kraut": "accent_kraut.json",
+		"German": "accent_germanlight.json",
+		"Jive": "accent_jive.json",
+		"Old English": "accent_oldenglish.json",
+		"Ork": "accent_ork.json",
+		"Pirate": "accent_pirate.json",
+		"Light Pirate": "accent_piratelight.json",
+		"Psuedo-Latin": "accent_pseudolatin.json",
+		"Scottish": "accent_scottish.json",
+		"Light Scottish": "accent_scottishlight.json",
+		"Light Shakespearean": "accent_shakespeareanlight.json",
+		"Heavy Shakespearean": "accent_shakespearean.json",
+		"Muppet": "accent_chef_muppet.json",
+		"Valley": "accent_valspeak.json",
+		"Skaven": "accent_skaven.json"
+	}
 }
-
-

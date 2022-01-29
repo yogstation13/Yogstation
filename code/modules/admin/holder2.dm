@@ -13,6 +13,7 @@ GLOBAL_PROTECT(href_token)
 	var/name = "nobody's admin datum (no rank)" //Makes for better runtimes
 	var/client/owner	= null
 	var/fakekey			= null
+	var/fakename		= null
 
 	var/datum/marked_datum
 
@@ -28,7 +29,9 @@ GLOBAL_PROTECT(href_token)
 
 	var/deadmined
 
-	var/legacy_mc = FALSE
+	var/ip_cache
+	var/cid_cache
+
 
 /datum/admins/New(datum/admin_rank/R, ckey, force_active = FALSE, protected)
 	if(IsAdminAdvancedProcCall())
@@ -93,28 +96,38 @@ GLOBAL_PROTECT(href_token)
 	var/client/C
 	if ((C = owner) || (C = GLOB.directory[target]))
 		disassociate()
-		C.verbs += /client/proc/readmin
+		add_verb(C, /client/proc/readmin)
 
-/datum/admins/proc/associate(client/C)
+/datum/admins/proc/associate(client/C, allow_mfa_query = TRUE)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
 		log_admin("[key_name(usr)][msg]")
-		return
+		return FALSE
 
 	if(istype(C))
 		if(C.ckey != target)
 			var/msg = " has attempted to associate with [target]'s admin datum"
 			message_admins("[key_name_admin(C)][msg]")
 			log_admin("[key_name(C)][msg]")
-			return
+			return FALSE
+
+		if(!C.mfa_check(allow_mfa_query))
+			if(!deadmined)
+				deactivate()
+			return FALSE
+
 		if (deadmined)
 			activate()
 		owner = C
+		ip_cache = C.address
+		cid_cache = C.computer_id
 		owner.holder = src
 		owner.add_admin_verbs()	//TODO <--- todo what? the proc clearly exists and works since its the backbone to our entire admin system
-		owner.verbs -= /client/proc/readmin
+		remove_verb(owner, /client/proc/readmin)
+		owner.init_verbs() //re-initialize the verb list
 		GLOB.admins |= C
+		return TRUE
 
 /datum/admins/proc/disassociate()
 	if(IsAdminAdvancedProcCall())
@@ -125,6 +138,7 @@ GLOBAL_PROTECT(href_token)
 	if(owner)
 		GLOB.admins -= owner
 		owner.remove_admin_verbs()
+		owner.init_verbs()
 		owner.holder = null
 		owner = null
 

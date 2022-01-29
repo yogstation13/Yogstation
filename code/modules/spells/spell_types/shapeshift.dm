@@ -54,7 +54,7 @@
 /obj/effect/proc_holder/spell/targeted/shapeshift/proc/Shapeshift(mob/living/caster)
 	var/obj/shapeshift_holder/H = locate() in caster
 	if(H)
-		to_chat(caster, "<span class='warning'>You're already shapeshifted!</span>")
+		to_chat(caster, span_warning("You're already shapeshifted!"))
 		return
 
 	var/mob/living/shape = new shapeshift_type(caster.loc)
@@ -78,7 +78,7 @@
 	desc = "Take on the shape a lesser ash drake."
 	invocation = "RAAAAAAAAWR!"
 	convert_damage = FALSE
-	
+
 
 	shapeshift_type = /mob/living/simple_animal/hostile/megafauna/dragon/lesser
 
@@ -105,7 +105,7 @@
 	stored.notransform = TRUE
 	if(source.convert_damage)
 		var/damapply = (stored.maxHealth - (stored.health + stored.maxHealth)/2) //Carbons go from -100 to 100 naturally, while simplemobs only go from 0 to 100. Can't do a direct conversion.
-		shape.apply_damage(damapply, source.convert_damage_type)
+		shape.apply_damage(damapply, source.convert_damage_type, wound_bonus=CANT_WOUND)
 	slink = soullink(/datum/soullink/shapeshift, stored , shape)
 	slink.source = src
 
@@ -156,7 +156,7 @@
 	else if(source.convert_damage)
 		stored.revive(full_heal = TRUE)
 		var/damapply = (shape.maxHealth - 2*shape.health) //Since we halved incoming damage, double outgoing.
-		stored.apply_damage(damapply, source.convert_damage_type)
+		stored.apply_damage(damapply, source.convert_damage_type, wound_bonus=CANT_WOUND)
 	qdel(shape)
 	qdel(src)
 

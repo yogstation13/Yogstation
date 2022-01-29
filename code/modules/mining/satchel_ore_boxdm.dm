@@ -9,23 +9,20 @@
 	density = TRUE
 	pressure_resistance = 5*ONE_ATMOSPHERE
 
-	var/ui_x = 335
-	var/ui_y = 415
-
 /obj/structure/ore_box/attackby(obj/item/W, mob/user, params)
 	if (istype(W, /obj/item/stack/ore))
 		user.transferItemToLoc(W, src)
 	else if(SEND_SIGNAL(W, COMSIG_CONTAINS_STORAGE))
 		SEND_SIGNAL(W, COMSIG_TRY_STORAGE_TAKE_TYPE, /obj/item/stack/ore, src)
-		to_chat(user, "<span class='notice'>You empty the ore in [W] into \the [src].</span>")
+		to_chat(user, span_notice("You empty the ore in [W] into \the [src]."))
 	else
 		return ..()
 
 /obj/structure/ore_box/crowbar_act(mob/living/user, obj/item/I)
 	if(I.use_tool(src, user, 50, volume=50))
 		user.visible_message("[user] pries \the [src] apart.",
-			"<span class='notice'>You pry apart \the [src].</span>",
-			"<span class='italics'>You hear splitting wood.</span>")
+			span_notice("You pry apart \the [src]."),
+			span_italics("You hear splitting wood."))
 		deconstruct(TRUE, user)
 	return TRUE
 
@@ -57,11 +54,10 @@
 			stoplag()
 			drop = drop_location()
 
-/obj/structure/ore_box/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/structure/ore_box/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "OreBox", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "OreBox", name)
 		ui.open()
 
 /obj/structure/ore_box/ui_data()
@@ -88,7 +84,7 @@
 	usr.set_machine(src)
 	if(action == "removeall") // TG made this a switch with only one case :thinking:
 		dump_box_contents()
-		to_chat(usr, "<span class='notice'>You open the release hatch on the box..</span>")
+		to_chat(usr, span_notice("You open the release hatch on the box.."))
 
 /obj/structure/ore_box/deconstruct(disassembled = TRUE, mob/user)
 	var/obj/item/stack/sheet/mineral/wood/WD = new (loc, 4)

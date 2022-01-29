@@ -7,11 +7,13 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
+	circuit = /obj/item/circuitboard/machine/igniter
 	max_integrity = 300
 	armor = list("melee" = 50, "bullet" = 30, "laser" = 70, "energy" = 50, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 70)
 	resistance_flags = FIRE_PROOF
 	var/id = null
 	var/on = FALSE
+	var/safety = FALSE // If is true igniter wont turn on
 
 /obj/machinery/igniter/incinerator_toxmix
 	id = INCINERATOR_TOXMIX_IGNITER
@@ -33,18 +35,38 @@
 	add_fingerprint(user)
 
 	use_power(50)
-	on = !( on )
+	if(!safety)
+		on = !(on)
+	else
+		on = FALSE
 	update_icon()
 
+/obj/machinery/igniter/attackby(obj/item/O, mob/user, params)
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, O))
+		to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
+		return TRUE
+	if(default_deconstruction_crowbar(O))
+		return TRUE
+
+/obj/machinery/igniter/examine(mob/user)
+	. = ..()
+	if(panel_open)
+		. += "<span class='[span_notice("The maintenance panel is [panel_open ? "opened" : "closed"].")]"
+
 /obj/machinery/igniter/process()	//ugh why is this even in process()?
-	if (src.on && !(stat & NOPOWER) )
+	if(safety || panel_open)
+		on = FALSE
+		update_icon()
+		return
+	if (src.on && !(stat & NOPOWER))
 		var/turf/location = src.loc
 		if (isturf(location))
 			location.hotspot_expose(1000,500,1)
-	return 1
+	return TRUE
 
 /obj/machinery/igniter/Initialize()
 	. = ..()
+	wires = new /datum/wires/igniter(src)
 	icon_state = "igniter[on]"
 
 /obj/machinery/igniter/update_icon()
@@ -97,9 +119,9 @@
 		add_fingerprint(user)
 		src.disable = !src.disable
 		if (src.disable)
-			user.visible_message("<span class='notice'>[user] has disabled \the [src]!</span>", "<span class='notice'>You disable the connection to \the [src].</span>")
+			user.visible_message(span_notice("[user] has disabled \the [src]!"), span_notice("You disable the connection to \the [src]."))
 		if (!src.disable)
-			user.visible_message("<span class='notice'>[user] has reconnected \the [src]!</span>", "<span class='notice'>You fix the connection to \the [src].</span>")
+			user.visible_message(span_notice("[user] has reconnected \the [src]!"), span_notice("You fix the connection to \the [src]."))
 		update_icon()
 	else
 		return ..()
@@ -125,7 +147,7 @@
 	var/turf/location = src.loc
 	if (isturf(location))
 		location.hotspot_expose(1000,2500,1)
-	return 1
+	return TRUE
 
 /obj/machinery/sparker/emp_act(severity)
 	. = ..()

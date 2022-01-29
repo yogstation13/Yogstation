@@ -14,8 +14,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/forwards		// this is the default (forward) direction, set by the map dir
 	var/backwards		// hopefully self-explanatory
 	var/movedir			// the actual direction to move stuff in
-
-	var/list/affecting	// the list of all items that will be moved this ptick
 	var/id = ""			// the control ID	- must match controller ID
 	var/verted = 1		// Inverts the direction the conveyor belt moves.
 	speed_process = TRUE
@@ -57,7 +55,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor/Destroy()
 	LAZYREMOVE(GLOB.conveyors_by_id[id], src)
-	. = ..()
+	return ..()
 
 /obj/machinery/conveyor/vv_edit_var(var_name, var_value)
 	if (var_name == "id")
@@ -131,36 +129,48 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return
 	use_power(6)
 	//get the first 30 items in contents
-	affecting = list()
-	var/i = 0
-	for(var/item in loc.contents)
-		if(item == src)
-			continue
-		i++ // we're sure it's a real target to move at this point
-		if(i >= MAX_CONVEYOR_ITEMS_MOVE)
-			break
-		affecting.Add(item)
+	var/turf/locturf = loc
+	var/list/items = locturf.contents - src - locturf.lighting_object
+	if(!LAZYLEN(items))//Dont do anything at all if theres nothing there but the conveyor
+		return
+	var/list/affecting
+	if(length(items) > MAX_CONVEYOR_ITEMS_MOVE)
+		affecting = items.Copy(1, MAX_CONVEYOR_ITEMS_MOVE + 1)//Lists start at 1 lol
+	else
+		affecting = items
 	conveying = TRUE
-	addtimer(CALLBACK(src, .proc/convey, affecting), 1)
+
+	addtimer(CALLBACK(src, .proc/convey, affecting), 1)//Movement effect
 
 /obj/machinery/conveyor/proc/convey(list/affecting)
-	for(var/atom/movable/A in affecting)
-		if(!QDELETED(A) && (A.loc == loc))
-			A.ConveyorMove(movedir)
-			//Give this a chance to yield if the server is busy
-			stoplag()
+	for(var/am in affecting)
+		if(!ismovable(am))	//This is like a third faster than for(var/atom/movable in affecting)
+			continue
+		var/atom/movable/movable_thing = am
+		//Give this a chance to yield if the server is busy
+		stoplag()
+		if(QDELETED(movable_thing) || (movable_thing.loc != loc))
+			continue
+		if(iseffect(movable_thing) || isdead(movable_thing))
+			continue
+		if(isliving(movable_thing))
+			var/mob/living/zoommob = movable_thing
+			if((zoommob.movement_type & FLYING) && !zoommob.stat)
+				continue
+		if(!movable_thing.anchored && movable_thing.has_gravity())
+			step(movable_thing, movedir)
 	conveying = FALSE
 
 // attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_CROWBAR)
-		user.visible_message("<span class='notice'>[user] struggles to pry up \the [src] with \the [I].</span>", \
-		"<span class='notice'>You struggle to pry up \the [src] with \the [I].</span>")
+		user.visible_message(span_notice("[user] struggles to pry up \the [src] with \the [I]."), \
+		span_notice("You struggle to pry up \the [src] with \the [I]."))
 		if(I.use_tool(src, user, 40, volume=40))
 			if(!(stat & BROKEN))
 				var/obj/item/stack/conveyor/C = new /obj/item/stack/conveyor(loc, 1, TRUE, id)
 				transfer_fingerprints_to(C)
-			to_chat(user, "<span class='notice'>You remove the conveyor belt.</span>")
+			to_chat(user, span_notice("You remove the conveyor belt."))
 			qdel(src)
 
 	else if(I.tool_behaviour == TOOL_WRENCH)
@@ -168,13 +178,13 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			I.play_tool_sound(src)
 			setDir(turn(dir,-45))
 			update_move_direction()
-			to_chat(user, "<span class='notice'>You rotate [src].</span>")
+			to_chat(user, span_notice("You rotate [src]."))
 
 	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(!(stat & BROKEN))
 			verted = verted * -1
 			update_move_direction()
-			to_chat(user, "<span class='notice'>You reverse [src]'s direction.</span>")
+			to_chat(user, span_notice("You reverse [src]'s direction."))
 
 	else if(user.a_intent != INTENT_HARM)
 		user.transferItemToLoc(I, drop_location())
@@ -322,18 +332,18 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
 		C.id = id
 		transfer_fingerprints_to(C)
-		to_chat(user, "<span class='notice'>You detach the conveyor switch.</span>")
+		to_chat(user, span_notice("You detach the conveyor switch."))
 		qdel(src)
 
 /obj/machinery/conveyor_switch/wrench_act(mob/living/user, obj/item/I)
 	if(position)
-		to_chat(user, "<span class='warning'>\The [src] must be off before attempting to change it's direction!</span>")
+		to_chat(user, span_warning("\The [src] must be off before attempting to change it's direction!"))
 		return FALSE
 	oneway = !oneway
 	I.play_tool_sound(src, 75)
-	user.visible_message("<span class='notice'>[user] sets \the [src] to [oneway ? "one-way" : "two-way"].</span>", \
-				"<span class='notice'>You set \the [src] to [oneway ? "one-way" : "two-way"].</span>", \
-				"<span class='italics'>You hear a ratchet.</span>")
+	user.visible_message(span_notice("[user] sets \the [src] to [oneway ? "one-way" : "two-way"]."), \
+				span_notice("You set \the [src] to [oneway ? "one-way" : "two-way"]."), \
+				span_italics("You hear a ratchet."))
 	return TRUE
 
 /obj/machinery/conveyor_switch/oneway
@@ -377,7 +387,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/conveyor_switch_construct/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_MULTITOOL)
 		id = "[rand()]"
-		to_chat(user, "<span class='notice'>You pulse \the [src]'s connection, randomly generating a new network ID.</span>")
+		to_chat(user, span_notice("You pulse \the [src]'s connection, randomly generating a new network ID."))
 
 /obj/item/stack/conveyor
 	name = "conveyor belt assembly"
@@ -387,7 +397,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	max_amount = 30
 	singular_name = "conveyor belt"
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(MAT_METAL = 3000)
+	materials = list(/datum/material/iron = 3000)
 	///id for linking
 	var/id = ""
 
@@ -401,7 +411,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return
 	var/cdir = get_dir(A, user)
 	if(A == user.loc)
-		to_chat(user, "<span class='warning'>You cannot place a conveyor belt under yourself!</span>")
+		to_chat(user, span_warning("You cannot place a conveyor belt under yourself!"))
 		return
 	var/obj/machinery/conveyor/C = new/obj/machinery/conveyor(A, cdir, id)
 	transfer_fingerprints_to(C)
@@ -410,12 +420,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/stack/conveyor/attackby(obj/item/I, mob/user, params)
 	..()
 	if(istype(I, /obj/item/conveyor_switch_construct))
-		to_chat(user, "<span class='notice'>You link the switch to the conveyor belt assembly.</span>")
+		to_chat(user, span_notice("You link the switch to the conveyor belt assembly."))
 		var/obj/item/conveyor_switch_construct/C = I
 		id = C.id
 	if(I.tool_behaviour == TOOL_MULTITOOL)
 		id = ""
-		to_chat(user, "<span class='notice'>You unlink the conveyor belt assembly from any switches it's connected to.</span>")
+		to_chat(user, span_notice("You unlink the conveyor belt assembly from any switches it's connected to."))
 
 /obj/item/stack/conveyor/update_weight()
 	return FALSE
@@ -427,4 +437,4 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/paper/guides/conveyor
 	name = "paper- 'Nano-it-up U-build series, #9: Build your very own conveyor belt, in SPACE'"
 	info = "<h1>Congratulations!</h1><p>You are now the proud owner of the best conveyor set available for space mail order! We at Nano-it-up know you love to prepare your own structures without wasting time, so we have devised a special streamlined assembly procedure that puts all other mail-order products to shame!</p><p>Firstly, you need to link the conveyor switch assembly to each of the conveyor belt assemblies. After doing so, you simply need to install the belt assemblies onto the floor, et voila, belt built. Our special Nano-it-up smart switch will detected any linked assemblies as far as the eye can see! This convenience, you can only have it when you Nano-it-up. Stay nano!</p>"
-#undef MAX_CONVEYOR_ITEMS_MOVE 
+#undef MAX_CONVEYOR_ITEMS_MOVE

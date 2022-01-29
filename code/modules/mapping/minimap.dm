@@ -12,9 +12,9 @@
 
 /datum/minimap/proc/send(mob/user)
 	if(!SSassets.cache["minimap-[id].png"])
-		register_asset("minimap-[id].png", map_icon)
-		register_asset("minimap-[id]-meta.png", meta_icon)
-	send_asset_list(user, list("minimap-[id].png" = map_icon, "minimap-[id]-meta.png" = meta_icon))
+		SSassets.transport.register_asset("minimap-[id].png", map_icon)
+		SSassets.transport.register_asset("minimap-[id]-meta.png", meta_icon)
+	SSassets.transport.send_assets(user, list("minimap-[id].png" = map_icon, "minimap-[id]-meta.png" = meta_icon))
 
 /datum/minimap/New(z, x1 = 1, y1 = 1, x2 = world.maxx, y2 = world.maxy)
 	var/static/id_counter = 1
@@ -79,6 +79,25 @@
 	max_integrity = 50
 	var/list/minimaps = list()
 
+/obj/item/map/attackby(obj/item/P, mob/living/carbon/human/user, params)
+	if(P.is_hot())
+		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
+			user.visible_message(span_warning("[user] accidentally ignites [user.p_them()]self!"), \
+								span_userdanger("You miss the map and accidentally light yourself on fire!"))
+			user.dropItemToGround(P)
+			user.adjust_fire_stacks(1)
+			user.IgniteMob()
+			return
+
+		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
+			return
+
+		user.dropItemToGround(src)
+		user.visible_message(span_danger("[user] lights [src] ablaze with [P]!"), span_danger("You light [src] on fire!"))
+		fire_act()
+		return
+	return ..()
+
 /obj/item/map/station
 	name = "station map"
 	desc = "A handy map showing the locations of all the departments on the station so you don't get lost"
@@ -99,10 +118,10 @@
 
 /obj/item/map/interact(mob/user)
 	if(!in_range(user, src) && !isobserver(user))
-		to_chat(user, "<span class='warning'>You're too far away to read it!</span>")
+		to_chat(user, span_warning("You're too far away to read it!"))
 		return
 	if(!minimaps || !minimaps.len)
-		to_chat(user, "<span class='warning'>This map is blank!</span>")
+		to_chat(user, span_warning("This map is blank!"))
 		return
 	var/datum/minimap/first_map = minimaps[1]
 	var/info = ""
@@ -110,7 +129,9 @@
 	for(var/I in 1 to minimaps.len)
 		var/datum/minimap/map = minimaps[I]
 		map.send(user)
-		info += "<img src='minimap-[map.id].png' id='map-[I]'><img src='minimap-[map.id]-meta.png' style='display: none' id='map-[I]-meta'><div id='label-[I]'></div>"
+		var/map_filename = SSassets.transport.get_asset_url("minimap-[map.id].png")
+		var/map_meta_filename = SSassets.transport.get_asset_url("minimap-[map.id]-meta.png")
+		info += "<img src='[map_filename]' id='map-[I]'><img src='[map_meta_filename]' style='display: none' id='map-[I]-meta'><div id='label-[I]'></div>"
 		datas += json_encode(map.color_area_names);
 	user << browse({"
 <!DOCTYPE html>

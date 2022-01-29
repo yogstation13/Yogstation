@@ -19,6 +19,10 @@
 
 ////////////////////////////////////////////////
 
+/datum/holotool_mode/off
+	name = "off"
+	sound = 'yogstation/sound/items/holotool.ogg'
+
 /datum/holotool_mode/screwdriver
 	name = "holo-screwdriver"
 	sound = 'yogstation/sound/items/holotool.ogg'
@@ -60,7 +64,7 @@
 
 /datum/holotool_mode/knife/on_set(var/obj/item/holotool/H)
 	..()
-	H.sharpness = IS_SHARP
+	H.sharpness = SHARP_EDGED
 	H.force = 17
 	H.attack_verb = list("sliced", "torn", "cut")
 	H.armour_penetration = 45

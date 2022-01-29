@@ -8,5 +8,5 @@
 	space_chance = 100
 	syllables = list("oop", "aak", "chee", "eek")
 	default_priority = 80
-
+	sing_verb = "chimpers tunefully"
 	icon_state = "animal"

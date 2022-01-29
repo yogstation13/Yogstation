@@ -7,8 +7,7 @@
 	network_destination = "arcade network"
 	size = 6
 	tgui_id = "NtosArcade"
-	ui_x = 450
-	ui_y = 350
+	program_icon = "gamepad"
 
 	var/game_active = TRUE //Checks to see if a game is in progress.
 	var/pause_state = FALSE //This disables buttons in order to prevent multiple actions before the opponent's actions.
@@ -72,10 +71,10 @@
 	pause_state = FALSE
 	game_check()
 
-/datum/computer_file/program/arcade/ui_interact(mob/user, ui_key, datum/tgui/ui, force_open, datum/tgui/master_ui, datum/ui_state/state)
-	. = ..()
-	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/arcade)
-	assets.send(user)
+/datum/computer_file/program/arcade/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/arcade),
+	)
 
 /datum/computer_file/program/arcade/ui_data(mob/user)
 	var/list/data = get_header_data()
@@ -139,20 +138,20 @@
 			return TRUE
 		if("Dispense_Tickets")
 			if(!printer)
-				to_chat(usr, "<span class='notice'>Hardware error: A printer is required to redeem tickets.</span>")
+				to_chat(usr, span_notice("Hardware error: A printer is required to redeem tickets."))
 				return
 			if(printer.stored_paper <= 0)
-				to_chat(usr, "<span class='notice'>Hardware error: Printer is out of paper.</span>")
+				to_chat(usr, span_notice("Hardware error: Printer is out of paper."))
 				return
 			else
-				computer.visible_message("<span class='notice'>\The [computer] prints out paper.</span>")
+				computer.visible_message(span_notice("\The [computer] prints out paper."))
 				if(ticket_count >= 1)
 					new /obj/item/stack/arcadeticket((get_turf(computer)), 1)
-					to_chat(user, "<span class='notice'>[src] dispenses a ticket!</span>")
+					to_chat(user, span_notice("[src] dispenses a ticket!"))
 					ticket_count -= 1
 					printer.stored_paper -= 1
 				else
-					to_chat(user, "<span class='notice'>You don't have any stored tickets!</span>")
+					to_chat(user, span_notice("You don't have any stored tickets!"))
 				return TRUE
 		if("Start_Game")
 			game_active = TRUE

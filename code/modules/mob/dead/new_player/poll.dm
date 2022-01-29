@@ -4,7 +4,7 @@
 
 /mob/dead/new_player/proc/handle_player_polling()
 	if(!SSdbcore.IsConnected())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 
 	var/datum/DBQuery/query_poll_get = SSdbcore.NewQuery("SELECT id, question FROM [format_table_name("poll_question")] WHERE Now() BETWEEN starttime AND endtime AND (:holder = '' OR adminonly = false)",
@@ -30,7 +30,7 @@
 	if(!pollid)
 		return
 	if (!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 	var/datum/DBQuery/query_poll_get_details = SSdbcore.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM [format_table_name("poll_question")] WHERE id = :pollid", list("pollid" = pollid))
 	if(!query_poll_get_details.warn_execute())
@@ -232,9 +232,8 @@
 			src << browse(null ,"window=playerpolllist")
 			src << browse(output,"window=playerpoll;size=500x250")
 		if(POLLTYPE_IRV)
-			var/datum/asset/irv_assets = get_asset_datum(/datum/asset/group/IRV)
+			var/datum/asset/irv_assets = get_asset_datum(/datum/asset/group/irv)
 			irv_assets.send(src)
-
 			var/datum/DBQuery/query_irv_get_votes = SSdbcore.NewQuery("SELECT optionid FROM [format_table_name("poll_vote")] WHERE pollid = :pollid AND ckey = :ckey", list("pollid" = pollid, "ckey" = ckey))
 			if(!query_irv_get_votes.warn_execute())
 				qdel(query_irv_get_votes)
@@ -293,8 +292,8 @@
 				<head>
 				<meta charset='UTF-8'>
 				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-				<script src="jquery.min.js"></script>
-				<script src="jquery-ui.custom-core-widgit-mouse-sortable-min.js"></script>
+				<script src="[SSassets.transport.get_asset_url("jquery.min.js")]"></script>
+				<script src="[SSassets.transport.get_asset_url("jquery-ui.custom-core-widgit-mouse-sortable-min.js")]"></script>
 				<style>
 					#sortable { list-style-type: none; margin: 0; padding: 2em; }
 					#sortable li { min-height: 1em; margin: 0px 1px 1px 1px; padding: 1px; border: 1px solid black; border-radius: 5px; background-color: white; cursor:move;}
@@ -356,7 +355,7 @@
 	if (text)
 		table = "poll_textreply"
 	if (!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 	var/datum/DBQuery/query_hasvoted = SSdbcore.NewQuery("SELECT id FROM `[format_table_name(table)]` WHERE pollid = :pollid AND ckey = :ckey", list("pollid" = pollid, "ckey" = ckey))
 	if(!query_hasvoted.warn_execute())
@@ -365,7 +364,7 @@
 	if(query_hasvoted.NextRow())
 		qdel(query_hasvoted)
 		if(!silent)
-			to_chat(usr, "<span class='danger'>You've already replied to this poll.</span>")
+			to_chat(usr, span_danger("You've already replied to this poll."))
 		return TRUE
 	qdel(query_hasvoted)
 	return FALSE
@@ -384,14 +383,14 @@
 		//we gots ourselfs a dirty cheater on our hands!
 		log_game("[key_name(usr)] attempted to rig the vote by voting as [key]")
 		message_admins("[key_name_admin(usr)] attempted to rig the vote by voting as [key]")
-		to_chat(usr, "<span class='danger'>You don't seem to be [key].</span>")
-		to_chat(src, "<span class='danger'>Something went horribly wrong processing your vote. Please contact an administrator, they should have gotten a message about this</span>")
+		to_chat(usr, span_danger("You don't seem to be [key]."))
+		to_chat(src, span_danger("Something went horribly wrong processing your vote. Please contact an administrator, they should have gotten a message about this"))
 		return 0
 	return 1
 
 /mob/dead/new_player/proc/vote_valid_check(pollid, holder, type)
 	if (!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, span_danger("Failed to establish database connection."))
 		return 0
 	pollid = text2num(pollid)
 	if (!pollid || pollid < 0)
@@ -409,7 +408,7 @@
 
 /mob/dead/new_player/proc/vote_on_irv_poll(pollid, list/votelist)
 	if (!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, span_danger("Failed to establish database connection."))
 		return 0
 	if (!vote_rig_check())
 		return 0
@@ -448,13 +447,13 @@
 		vote = text2num(vote)
 		numberedvotelist += vote
 		if (!vote) //this is fine because voteid starts at 1, so it will never be 0
-			to_chat(src, "<span class='danger'>Error: Invalid (non-numeric) votes in the vote data.</span>")
+			to_chat(src, span_danger("Error: Invalid (non-numeric) votes in the vote data."))
 			return 0
 		if (!(vote in optionlist))
-			to_chat(src, "<span class='danger'>Votes for choices that do not appear to be in the poll detected.</span>")
+			to_chat(src, span_danger("Votes for choices that do not appear to be in the poll detected."))
 			return 0
 	if (!numberedvotelist.len)
-		to_chat(src, "<span class='danger'>Invalid vote data</span>")
+		to_chat(src, span_danger("Invalid vote data"))
 		return 0
 
 	//lets add the vote, first we generate an insert statement.
@@ -485,7 +484,7 @@
 
 /mob/dead/new_player/proc/vote_on_poll(pollid, optionid)
 	if (!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, span_danger("Failed to establish database connection."))
 		return 0
 	if (!vote_rig_check())
 		return 0
@@ -511,7 +510,7 @@
 
 /mob/dead/new_player/proc/log_text_poll_reply(pollid, replytext)
 	if (!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, span_danger("Failed to establish database connection."))
 		return 0
 	if (!vote_rig_check())
 		return 0
@@ -547,7 +546,7 @@
 
 /mob/dead/new_player/proc/vote_on_numval_poll(pollid, optionid, rating)
 	if (!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, span_danger("Failed to establish database connection."))
 		return 0
 	if (!vote_rig_check())
 		return 0
@@ -562,7 +561,7 @@
 		return
 	if(query_numval_hasvoted.NextRow())
 		qdel(query_numval_hasvoted)
-		to_chat(usr, "<span class='danger'>You've already replied to this poll.</span>")
+		to_chat(usr, span_danger("You've already replied to this poll."))
 		return
 	qdel(query_numval_hasvoted)
 	var/adminrank = "Player"
@@ -581,7 +580,7 @@
 
 /mob/dead/new_player/proc/vote_on_multi_poll(pollid, optionid)
 	if (!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, span_danger("Failed to establish database connection."))
 		return 0
 	if (!vote_rig_check())
 		return 0

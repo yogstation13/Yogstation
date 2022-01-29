@@ -34,31 +34,33 @@ Bonus
 	)
 
 /datum/symptom/choking/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["stage_rate"] >= 8)
+	if(A.totalStageSpeed() >= 8)
 		symptom_delay_min = 7
 		symptom_delay_max = 24
-	if(A.properties["stealth"] >= 4)
+	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
 
 /datum/symptom/choking/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)
 		if(1, 2)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(M, "<span class='warning'>[pick("You're having difficulty breathing.", "Your breathing becomes heavy.")]</span>")
+				to_chat(M, span_warning("[pick("You're having difficulty breathing.", "Your breathing becomes heavy.")]"))
 		if(3, 4)
 			if(!suppress_warning)
-				to_chat(M, "<span class='warning'>[pick("Your windpipe feels like a straw.", "Your breathing becomes tremendously difficult.")]</span>")
+				to_chat(M, span_warning("[pick("Your windpipe feels like a straw.", "Your breathing becomes tremendously difficult.")]"))
 			else
-				to_chat(M, "<span class='warning'>You feel very [pick("dizzy","woozy","faint")].</span>") //fake bloodloss messages
+				to_chat(M, span_warning("You feel very [pick("dizzy","woozy","faint")].")) //fake bloodloss messages
 			Choke_stage_3_4(M, A)
 			M.emote("gasp")
 		else
-			to_chat(M, "<span class='userdanger'>[pick("You're choking!", "You can't breathe!")]</span>")
+			to_chat(M, span_userdanger("[pick("You're choking!", "You can't breathe!")]"))
 			Choke(M, A)
 			M.emote("gasp")
 
@@ -108,45 +110,47 @@ Bonus
 
 
 /datum/symptom/asphyxiation/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["stage_rate"] >= 8)
+	if(A.totalStageSpeed() >= 8)
 		paralysis = TRUE
-	if(A.properties["transmittable"] >= 8)
+	if(A.totalTransmittable() >= 8)
 		power = 2
 
 /datum/symptom/asphyxiation/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)
 		if(3, 4)
-			to_chat(M, "<span class='warning'><b>[pick("Your windpipe feels thin.", "Your lungs feel small.")]</span>")
+			to_chat(M, span_warning("<b>[pick("Your windpipe feels thin.", "Your lungs feel small.")]"))
 			Asphyxiate_stage_3_4(M, A)
 			M.emote("gasp")
 		if(5)
-			to_chat(M, "<span class='userdanger'>[pick("Your lungs hurt!", "It hurts to breathe!")]</span>")
+			to_chat(M, span_userdanger("[pick("Your lungs hurt!", "It hurts to breathe!")]"))
 			Asphyxiate(M, A)
 			M.emote("gasp")
 			if(M.getOxyLoss() >= 120)
-				M.visible_message("<span class='warning'>[M] stops breathing, as if their lungs have totally collapsed!</span>")
+				M.visible_message(span_warning("[M] stops breathing, as if their lungs have totally collapsed!"))
 				Asphyxiate_death(M, A)
 	return
 
 /datum/symptom/asphyxiation/proc/Asphyxiate_stage_3_4(mob/living/M, datum/disease/advance/A)
-	var/get_damage = rand(10,15) * power
+	var/get_damage = rand(5,8) * power
 	M.adjustOxyLoss(get_damage)
 	return 1
 
 /datum/symptom/asphyxiation/proc/Asphyxiate(mob/living/M, datum/disease/advance/A)
-	var/get_damage = rand(15,21) * power
+	var/get_damage = rand(8,11) * power
 	M.adjustOxyLoss(get_damage)
 	if(paralysis)
 		M.reagents.add_reagent_list(list(/datum/reagent/toxin/pancuronium = 3, /datum/reagent/toxin/sodium_thiopental = 3))
 	return 1
 
 /datum/symptom/asphyxiation/proc/Asphyxiate_death(mob/living/M, datum/disease/advance/A)
-	var/get_damage = rand(25,35) * power
+	var/get_damage = rand(11,18) * power
 	M.adjustOxyLoss(get_damage)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, get_damage/2)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, get_damage/3)
 	return 1

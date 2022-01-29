@@ -20,7 +20,7 @@
 	var/list/files = list()
 
 /obj/item/card/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins to swipe [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins to swipe [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /obj/item/card/data
@@ -47,11 +47,6 @@
 	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/card.dmi', "[icon_state]-color")
 	detail_overlay.color = detail_color
 	add_overlay(detail_overlay)
-
-/obj/item/proc/GetCard()
-
-/obj/item/card/data/GetCard()
-	return src
 
 /obj/item/card/data/full_color
 	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one has the entire card colored."
@@ -117,10 +112,11 @@
 	var/list/access = list()
 	var/registered_name = null // The name registered_name on the card
 	var/assignment = null
+	var/originalassignment = null
 	var/access_txt // mapping aid
 	var/datum/bank_account/registered_account
 	var/obj/machinery/paystand/my_store
-	var/registered_age = 13 // default age for ss13 players
+	var/registered_age = 21 // default age for ss13 players
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
@@ -139,7 +135,7 @@
 		var/minor
 		if(registered_name && registered_age && registered_age < AGE_MINOR)
 			minor = " <b>(MINOR)</b>"
-		user.visible_message("<span class='notice'>[user] shows you: [icon2html(src, viewers(user))] [src.name][minor].</span>", "<span class='notice'>You show \the [src.name][minor].</span>")
+		user.visible_message(span_notice("[user] shows you: [icon2html(src, viewers(user))] [src.name][minor]."), span_notice("You show \the [src.name][minor]."))
 
 /obj/item/card/id/vv_edit_var(var_name, var_value)
 	. = ..()
@@ -164,20 +160,20 @@
 /obj/item/card/id/proc/insert_money(obj/item/I, mob/user, physical_currency)
 	var/cash_money = I.get_item_credit_value()
 	if(!cash_money)
-		to_chat(user, "<span class='warning'>[I] doesn't seem to be worth anything!</span>")
+		to_chat(user, span_warning("[I] doesn't seem to be worth anything!"))
 		return
 
 	if(!registered_account)
-		to_chat(user, "<span class='warning'>[src] doesn't have a linked account to deposit [I] into!</span>")
+		to_chat(user, span_warning("[src] doesn't have a linked account to deposit [I] into!"))
 		return
 
 	registered_account.adjust_money(cash_money)
 	if(physical_currency)
-		to_chat(user, "<span class='notice'>You stuff [I] into [src]. It disappears in a small puff of bluespace smoke, adding [cash_money] credits to the linked account.</span>")
+		to_chat(user, span_notice("You stuff [I] into [src]. It disappears in a small puff of bluespace smoke, adding [cash_money] credits to the linked account."))
 	else
-		to_chat(user, "<span class='notice'>You insert [I] into [src], adding [cash_money] credits to the linked account.</span>")
+		to_chat(user, span_notice("You insert [I] into [src], adding [cash_money] credits to the linked account."))
 
-	to_chat(user, "<span class='notice'>The linked account now reports a balance of $[registered_account.account_balance].</span>")
+	to_chat(user, span_notice("The linked account now reports a balance of $[registered_account.account_balance]."))
 	qdel(I)
 
 
@@ -197,42 +193,42 @@
 		if(!alt_click_can_use_id(user))
 			return
 		if(!new_bank_id || new_bank_id < 111111 || new_bank_id > 999999)
-			to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span>")
+			to_chat(user, span_warning("The account ID number needs to be between 111111 and 999999."))
 			return
 		for(var/A in SSeconomy.bank_accounts)
 			var/datum/bank_account/B = A
 			if(B.account_id == new_bank_id)
 				B.bank_cards += src
 				registered_account = B
-				to_chat(user, "<span class='notice'>The provided account has been linked to this ID card.</span>")
+				to_chat(user, span_notice("The provided account has been linked to this ID card."))
 				return
-		to_chat(user, "<span class='warning'>The account ID number provided is invalid.</span>")
+		to_chat(user, span_warning("The account ID number provided is invalid."))
 		return
 
 	if (world.time < registered_account.withdrawDelay)
-		registered_account.bank_card_talk("<span class='warning'>ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS.</span>", TRUE)
+		registered_account.bank_card_talk(span_warning("ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS."), TRUE)
 		return
 
 	var/amount_to_remove =  FLOOR(input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num, 1)
 
 	if(!amount_to_remove || amount_to_remove < 0)
-		to_chat(user, "<span class='warning'>You're pretty sure that's not how money works.</span>")
+		to_chat(user, span_warning("You're pretty sure that's not how money works."))
 		return
 	if(!alt_click_can_use_id(user))
 		return
 	if(registered_account.adjust_money(-amount_to_remove))
 		var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
 		user.put_in_hands(holochip)
-		to_chat(user, "<span class='notice'>You withdraw [amount_to_remove] credits into a holochip.</span>")
+		to_chat(user, span_notice("You withdraw [amount_to_remove] credits into a holochip."))
 		return
 	else
 		var/difference = amount_to_remove - registered_account.account_balance
-		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more credit\s to perform that withdrawal.</span>", TRUE)
+		registered_account.bank_card_talk(span_warning("ERROR: The linked account requires [difference] more credit\s to perform that withdrawal."), TRUE)
 
 /obj/item/card/id/examine(mob/user)
 	.=..()
 	if(registered_age)
-		. += "The card indicates that the holder is [registered_age] years old. [(registered_age < AGE_MINOR) ? "There's a holographic stripe that reads <b><span class='danger'>'MINOR: DO NOT SERVE ALCOHOL OR TOBACCO'</span></b> along the bottom of the card." : ""]"
+		. += "The card indicates that the holder is [registered_age] years old. [(registered_age < AGE_MINOR) ? "There's a holographic stripe that reads <b>[span_danger("'MINOR: DO NOT SERVE ALCOHOL OR TOBACCO'")]</b> along the bottom of the card." : ""]"
 	if(mining_points)
 		. += "There's [mining_points] mining equipment redemption point\s loaded onto this card."
 
@@ -242,17 +238,20 @@
 			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 			if(D)
 				. += "The [D.account_holder] reports a balance of $[D.account_balance]."
-		. += "<span class='info'>Alt-Click the ID to pull money from the linked account in the form of holochips.</span>"
-		. += "<span class='info'>You can insert credits into the linked account by pressing holochips, cash, or coins against the ID.</span>"
+		. += span_info("Alt-Click the ID to pull money from the linked account in the form of holochips.")
+		. += span_info("You can insert credits into the linked account by pressing holochips, cash, or coins against the ID.")
 		if(registered_account.account_holder == user.real_name)
-			. += "<span class='boldnotice'>If you lose this ID card, you can reclaim your account by Alt-Clicking a blank ID card while holding it and entering your account ID number.</span>"
+			. += span_boldnotice("If you lose this ID card, you can reclaim your account by Alt-Clicking a blank ID card while holding it and entering your account ID number.")
 	else
-		. += "<span class='info'>There is no registered account linked to this card. Alt-Click to add one.</span>"
+		. += span_info("There is no registered account linked to this card. Alt-Click to add one.")
 
 /obj/item/card/id/GetAccess()
 	return access
 
 /obj/item/card/id/GetID()
+	return src
+
+/obj/item/card/id/RemoveID()
 	return src
 
 /*
@@ -281,6 +280,7 @@ update_label("John Doe", "Clowny")
 	name = "Thirteen's ID Card (Reaper)"
 	access = list(ACCESS_MAINT_TUNNELS)
 	assignment = "Reaper"
+	originalassignment = "Reaper"
 	registered_name = "Thirteen"
 
 /obj/item/card/id/gold
@@ -300,6 +300,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/syndicate/Initialize()
 	. = ..()
 	var/datum/action/item_action/chameleon/change/chameleon_action = new(src)
+	chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/card/id
 	chameleon_action.chameleon_name = "ID Card"
 	chameleon_action.initialize_disguises()
@@ -312,7 +313,7 @@ update_label("John Doe", "Clowny")
 		src.access |= I.access
 		if(isliving(user) && user.mind)
 			if(user.mind.special_role || anyone)
-				to_chat(usr, "<span class='notice'>The card's microscanners activate as you pass it over the ID, copying its access.</span>")
+				to_chat(usr, span_notice("The card's microscanners activate as you pass it over the ID, copying its access."))
 
 /obj/item/card/id/syndicate/attack_self(mob/user)
 	if(isliving(user) && user.mind)
@@ -346,9 +347,10 @@ update_label("John Doe", "Clowny")
 
 			registered_name = input_name
 			assignment = target_occupation
+			originalassignment = target_occupation
 			update_label()
 			forged = TRUE
-			to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
+			to_chat(user, span_notice("You successfully forge the ID card."))
 			log_game("[key_name(user)] has forged \the [initial(name)] with name \"[registered_name]\" and occupation \"[assignment]\".")
 
 			// First time use automatically sets the account id to the user.
@@ -361,20 +363,25 @@ update_label("John Doe", "Clowny")
 						if(account.account_id == accountowner.account_id)
 							account.bank_cards += src
 							registered_account = account
-							to_chat(user, "<span class='notice'>Your account number has been automatically assigned.</span>")
+							to_chat(user, span_notice("Your account number has been automatically assigned."))
 			return
 		else if (popup_input == "Forge/Reset" && forged)
 			registered_name = initial(registered_name)
 			assignment = initial(assignment)
+			originalassignment = initial(originalassignment)
 			log_game("[key_name(user)] has reset \the [initial(name)] named \"[src]\" to default.")
 			update_label()
 			forged = FALSE
-			to_chat(user, "<span class='notice'>You successfully reset the ID card.</span>")
+			to_chat(user, span_notice("You successfully reset the ID card."))
 			return
 		else if (popup_input == "Change Account ID")
 			set_new_account(user)
 			return
 	return ..()
+
+/obj/item/card/id/syndicate/on_chameleon_change()
+	. = ..()
+	update_label()
 
 // Returns true if new account was set.
 /obj/item/card/id/proc/set_new_account(mob/living/user)
@@ -389,10 +396,10 @@ update_label("John Doe", "Clowny")
 	if(!alt_click_can_use_id(user))
 		return
 	if(!new_bank_id || new_bank_id < 111111 || new_bank_id > 999999)
-		to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span>")
+		to_chat(user, span_warning("The account ID number needs to be between 111111 and 999999."))
 		return
 	if (registered_account && registered_account.account_id == new_bank_id)
-		to_chat(user, "<span class='warning'>The account ID was already assigned to this card.</span>")
+		to_chat(user, span_warning("The account ID was already assigned to this card."))
 		return
 
 	for(var/A in SSeconomy.bank_accounts)
@@ -403,11 +410,11 @@ update_label("John Doe", "Clowny")
 
 			B.bank_cards += src
 			registered_account = B
-			to_chat(user, "<span class='notice'>The provided account has been linked to this ID card.</span>")
+			to_chat(user, span_notice("The provided account has been linked to this ID card."))
 
 			return TRUE
 
-	to_chat(user, "<span class='warning'>The account ID number provided is invalid.</span>")
+	to_chat(user, span_warning("The account ID number provided is invalid."))
 	return
 
 /obj/item/card/id/syndicate/anyone
@@ -423,6 +430,7 @@ update_label("John Doe", "Clowny")
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
+	originalassignment = "Syndicate Overlord"
 	access = list(ACCESS_SYNDICATE)
 
 /obj/item/card/id/captains_spare
@@ -434,6 +442,7 @@ update_label("John Doe", "Clowny")
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	registered_name = "Captain"
 	assignment = "Captain"
+	originalassignment = "Captain"
 	registered_age = null
 
 /obj/item/card/id/captains_spare/Initialize()
@@ -441,12 +450,49 @@ update_label("John Doe", "Clowny")
 	access = J.get_access()
 	. = ..()
 
+/obj/item/card/id/captains_spare/temporary
+	name = "emergency id card"
+	desc = "A temporary ID for access to secure areas in the event of an emergency"
+	resistance_flags = FLAMMABLE
+
+/obj/item/card/id/captains_spare/temporary/Initialize()
+	. = ..()
+	access -= ACCESS_CHANGE_IDS
+	access -= ACCESS_HEADS
+	addtimer(CALLBACK(src, .proc/wipe_id), 50 SECONDS)
+
+/obj/item/card/id/captains_spare/temporary/proc/wipe_id()
+	visible_message(span_danger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"))
+	sleep(10 SECONDS)
+	if(isliving(loc))
+		var/mob/living/M = loc
+		M.adjust_fire_stacks(1)
+		M.IgniteMob()
+	if(istype(loc,/obj/structure/fireaxecabinet/bridge/spare)) //if somebody is being naughty and putting the temporary spare in the cabinet
+		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
+		forceMove(holder.loc)
+		holder.spareid = null
+		if(holder.obj_integrity > holder.integrity_failure) //we dont want to heal it by accident
+			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN) //we do a bit of trolling for being naughty
+		else
+			holder.update_icon() //update the icon anyway so it pops out
+		visible_message(span_danger("The heat of the temporary spare shatters the glass!"));
+	fire_act()
+	sleep(2 SECONDS)
+	if(istype(loc,/obj/structure/fireaxecabinet/bridge/spare)) //dude you put it back?
+		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
+		forceMove(holder.loc)
+		holder.spareid = null
+		holder.update_icon()
+	burn()
+
 /obj/item/card/id/centcom
 	name = "\improper CentCom ID"
 	desc = "An ID straight from Central Command."
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "CentCom Official"
+	originalassignment = "CentCom Official"
 	registered_age = null
 
 /obj/item/card/id/centcom/silver
@@ -471,13 +517,29 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
+	originalassignment = "Emergency Response Team Commander"
 	registered_age = null
+
+/obj/item/card/id/ert/debug/Initialize()
+	. = ..()
+	access = get_debug_access()
 
 /obj/item/card/id/ert/amber
 	name = "\improper Amber Task Force ID"
 	desc = "An Amber Task Force ID card."
 	assignment = "Amber Task Force"
+	originalassignment = "Amber Task Force"
 
+/obj/item/card/id/ert/occupying
+	name = "\improper Occupying Force ID"
+	desc = "An Occupying Force ID card."
+	assignment = "Occupying Officer"
+	originalassignment = "Occupying Officer"
+
+/obj/item/card/id/ert/occupying/Initialize()
+    access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
+    . = ..()
+    
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
 	. = ..()
@@ -485,6 +547,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/Security
 	registered_name = "Security Response Officer"
 	assignment = "Security Response Officer"
+	originalassignment = "Security Response Officer"
 
 /obj/item/card/id/ert/Security/Initialize()
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
@@ -493,6 +556,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/Engineer
 	registered_name = "Engineer Response Officer"
 	assignment = "Engineer Response Officer"
+	originalassignment = "Engineer Response Officer"
 
 /obj/item/card/id/ert/Engineer/Initialize()
 	access = get_all_accesses()+get_ert_access("eng")-ACCESS_CHANGE_IDS
@@ -501,6 +565,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/Medical
 	registered_name = "Medical Response Officer"
 	assignment = "Medical Response Officer"
+	originalassignment = "Medical Response Officer"
 
 /obj/item/card/id/ert/Medical/Initialize()
 	access = get_all_accesses()+get_ert_access("med")-ACCESS_CHANGE_IDS
@@ -509,6 +574,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/chaplain
 	registered_name = "Religious Response Officer"
 	assignment = "Religious Response Officer"
+	originalassignment = "Religious Response Officer"
 
 /obj/item/card/id/ert/chaplain/Initialize()
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
@@ -517,6 +583,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/Janitor
 	registered_name = "Janitorial Response Officer"
 	assignment = "Janitorial Response Officer"
+	originalassignment = "Janitorial Response Officer"
 
 /obj/item/card/id/ert/Janitor/Initialize()
 	access = get_all_accesses()
@@ -525,6 +592,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/clown
 	registered_name = "Clown"
 	assignment = "Clown ERT"
+	originalassignment = "Clown ERT"
 
 /obj/item/card/id/ert/clown/Initialize()
 	access = get_all_accesses()
@@ -538,13 +606,14 @@ update_label("John Doe", "Clowny")
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	assignment = "Prisoner"
+	originalassignment = "Prisoner"
 	registered_name = "Scum"
 	var/goal = 0 //How far from freedom?
 	var/points = 0
 	registered_age = null
 
 /obj/item/card/id/prisoner/attack_self(mob/user)
-	to_chat(usr, "<span class='notice'>You have accumulated [points] out of the [goal] points you need for freedom.</span>")
+	to_chat(usr, span_notice("You have accumulated [points] out of the [goal] points you need for freedom."))
 
 /obj/item/card/id/prisoner/one
 	name = "Prisoner #13-001"
@@ -602,18 +671,21 @@ update_label("John Doe", "Clowny")
 	name = "Charlie Station Security Officer's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Security Officer\"."
 	assignment = "Charlie Station Security Officer"
+	originalassignment = "Security Officer"
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_SEC)
 
 /obj/item/card/id/away/old/sci
 	name = "Charlie Station Scientist's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Scientist\"."
 	assignment = "Charlie Station Scientist"
+	originalassignment = "Scientist"
 	access = list(ACCESS_AWAY_GENERAL)
 
 /obj/item/card/id/away/old/eng
 	name = "Charlie Station Engineer's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Station Engineer\"."
 	assignment = "Charlie Station Engineer"
+	originalassignment = "Engineer"
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_ENGINE)
 
 /obj/item/card/id/away/old/apc

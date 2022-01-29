@@ -8,7 +8,7 @@
 /datum/bounty/item/mining/goliath_boat
 	name = "Goliath Hide Boat"
 	description = "Commander Menkov wants to participate in the annual Lavaland Regatta. He is asking your shipwrights to build the swiftest boat known to man."
-	reward = 10000
+	reward = 9000
 	wanted_types = list(/obj/vehicle/ridden/lavaboat)
 
 /datum/bounty/item/mining/bone_oar
@@ -53,19 +53,38 @@
 /datum/bounty/item/mining/polypore_mushroom
 	name = "Mushroom Bowl"
 	description = "Lieutenant Jeb dropped his favorite mushroom bowl. Cheer him up by shipping a new one, will you?"
-	reward = 7500 //5x mushroom shavings
+	reward = 7250 //5x mushroom shavings
 	wanted_types = list(/obj/item/reagent_containers/glass/bowl/mushroom_bowl)
 
 /datum/bounty/item/mining/inocybe_mushroom
 	name = "Mushroom Caps"
 	description = "Our botanist claims that he can distill tasty liquor from absolutely any plant. Let's see what he'll do with Inocybe mushroom caps."
-	reward = 4500
+	reward = 4200
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap)
 
 /datum/bounty/item/mining/porcini_mushroom
 	name = "Mushroom Leaves"
 	description = "Porcini mushroom leaves are rumored to have healing properties. Our researchers want to put that claim to the test."
-	reward = 4500
+	reward = 4200
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_leaf)
+
+/datum/bounty/item/mining/goldgrubguts
+	name = "Gold Grub Guts"
+	description = "Guts from the elusive species known as 'Gold Grubs' are rumored to have very potent healing effects. Ship a pile of them over for study."
+	reward = 7500
+	wanted_types = list(/obj/item/goldgrubguts)
+
+/datum/bounty/item/mining/bone_sword
+	name = "Bone Sword"
+	description = "A captain from one of our other stations has lost his sword and requests a bone sword as replacement."
+	reward = 4300
+	wanted_types = list(/obj/item/claymore/bone)
+
+/datum/bounty/item/mining/survivalmedipen
+	name = "Survival Medipens"
+	description = "We are hosting a tournament in our thunderdome and need some quick acting medicine. Ship some survival medipens over for us."
+	reward = 5200
+	required_count = 3
+	wanted_types = list(/obj/item/reagent_containers/hypospray/medipen/survival)

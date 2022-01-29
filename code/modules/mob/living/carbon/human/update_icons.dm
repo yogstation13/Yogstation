@@ -123,6 +123,8 @@ There are several things that need to be remembered:
 			t_color = "[t_color]_d"
 		else if(U.adjusted == DIGITIGRADE_STYLE)
 			t_color = "[t_color]_l"
+		else if(U.adjusted == DIGIALT_STYLE) //Yogs Start: Handles when you are using an alternate style while having digi legs
+			t_color = "[t_color]_d_l" //Yogs End
 
 		var/mutable_appearance/uniform_overlay
 
@@ -176,7 +178,7 @@ There are several things that need to be remembered:
 		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_GLOVES]
 		inv.update_icon()
 
-	if(!gloves && bloody_hands)
+	if(!gloves && blood_in_hands)
 		var/mutable_appearance/bloody_overlay = mutable_appearance('icons/effects/blood.dmi', "bloodyhands", -GLOVES_LAYER)
 		if(get_num_arms(FALSE) < 2)
 			if(has_left_hand(FALSE))
@@ -270,12 +272,17 @@ There are several things that need to be remembered:
 		inv.update_icon()
 
 	if(shoes)
-		shoes.screen_loc = ui_shoes					//move the item to the appropriate screen loc
+		shoes.screen_loc = ui_shoes                    //move the item to the appropriate screen loc
+		var/obj/item/clothing/shoes/S = shoes
+		var/worn_shoes_icon = S.icon_state
+		if(S.adjusted == DIGITIGRADE_STYLE)
+			worn_shoes_icon = "[S.icon_state]_l" // Sets digitgrade version of a shoe if it has it
+
 		if(client && hud_used && hud_used.hud_shown)
-			if(hud_used.inventory_shown)			//if the inventory is open
-				client.screen += shoes					//add it to client's screen
+			if(hud_used.inventory_shown)            //if the inventory is open
+				client.screen += shoes                    //add it to client's screen
 		update_observer_view(shoes,1)
-		overlays_standing[SHOES_LAYER] = shoes.build_worn_icon(state = shoes.icon_state, default_layer = SHOES_LAYER, default_icon_file = 'icons/mob/feet.dmi')
+		overlays_standing[SHOES_LAYER] = shoes.build_worn_icon(state = worn_shoes_icon, default_layer = SHOES_LAYER, default_icon_file = 'icons/mob/feet.dmi')
 		var/mutable_appearance/shoes_overlay = overlays_standing[SHOES_LAYER]
 		if(OFFSET_SHOES in dna.species.offset_features)
 			shoes_overlay.pixel_x += dna.species.offset_features[OFFSET_SHOES][1]
@@ -358,12 +365,16 @@ There are several things that need to be remembered:
 
 	if(istype(wear_suit, /obj/item/clothing/suit))
 		wear_suit.screen_loc = ui_oclothing
+		var/obj/item/clothing/suit/S = wear_suit
+		var/worn_suit_icon = S.icon_state
+		if(S.adjusted == DIGITIGRADE_STYLE)
+			worn_suit_icon = "[wear_suit.icon_state]_l" // Checks for digitgrade version of a suit if it has it
 		if(client && hud_used && hud_used.hud_shown)
 			if(hud_used.inventory_shown)
 				client.screen += wear_suit
 		update_observer_view(wear_suit,1)
 
-		overlays_standing[SUIT_LAYER] = wear_suit.build_worn_icon(state = wear_suit.icon_state, default_layer = SUIT_LAYER, default_icon_file = 'icons/mob/suit.dmi')
+		overlays_standing[SUIT_LAYER] = wear_suit.build_worn_icon(state = worn_suit_icon, default_layer = SUIT_LAYER, default_icon_file = 'icons/mob/suit.dmi')
 		var/mutable_appearance/suit_overlay = overlays_standing[SUIT_LAYER]
 		if(OFFSET_SUIT in dna.species.offset_features)
 			suit_overlay.pixel_x += dna.species.offset_features[OFFSET_SUIT][1]
@@ -434,7 +445,14 @@ There are several things that need to be remembered:
 	var/icon/female_clothing_icon = GLOB.female_clothing_icons[index]
 	if(!female_clothing_icon) 	//Create standing/laying icons if they don't exist
 		generate_female_clothing(index,t_color,icon,type)
-	return mutable_appearance(GLOB.female_clothing_icons[t_color], layer = -layer)
+	return mutable_appearance(GLOB.female_clothing_icons[t_color], layer = -layer) //Grab the standing/laying icons once/if they do exist
+
+/proc/wear_skinny_version(t_color, icon, layer, type)
+	var/index = t_color
+	var/icon/skinny_clothing_icon = GLOB.skinny_clothing_icons[index]
+	if(!skinny_clothing_icon)
+		generate_skinny_clothing(index,t_color,icon,type)
+	return mutable_appearance(GLOB.skinny_clothing_icons[t_color], layer = -layer)
 
 /mob/living/carbon/human/proc/get_overlays_copy(list/unwantedLayers)
 	var/list/out = new
@@ -520,9 +538,13 @@ generate/load female uniform sprites matching all previously decided variables
 	if(!layer2use)
 		layer2use = default_layer
 
+	var/mob/living/carbon/human/H = loc
 	var/mutable_appearance/standing
 	if(femaleuniform)
-		standing = wear_female_version(state,file2use,layer2use,femaleuniform)
+		if(HAS_TRAIT(H, TRAIT_SKINNY) && (H.underwear == "Nude"))
+			standing = wear_skinny_version(state,file2use,layer2use,femaleuniform)
+		else
+			standing = wear_female_version(state,file2use,layer2use,femaleuniform)
 	if(!standing)
 		standing = mutable_appearance(file2use, state, -layer2use)
 
@@ -535,8 +557,7 @@ generate/load female uniform sprites matching all previously decided variables
 	standing = center_image(standing, isinhands ? inhand_x_dimension : worn_x_dimension, isinhands ? inhand_y_dimension : worn_y_dimension)
 
 	//Handle held offsets
-	var/mob/M = loc
-	if(istype(M))
+	if(istype(H))
 		var/list/L = get_held_offsets()
 		if(L)
 			standing.pixel_x += L["x"] //+= because of center()ing
@@ -570,7 +591,7 @@ generate/load female uniform sprites matching all previously decided variables
 /mob/living/carbon/human/generate_icon_render_key()
 	. = "[dna.species.limbs_id]"
 
-	if(dna.check_mutation(HULK))
+	if(dna.check_mutation(HULK) || dna.check_mutation(ACTIVE_HULK))
 		. += "-coloured-hulk"
 	else if(dna.species.use_skintones)
 		. += "-coloured-[skin_tone]"

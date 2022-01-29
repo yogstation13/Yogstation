@@ -33,11 +33,11 @@
 		AltClick(user)
 		return
 	if(bodcam.status)
-		to_chat(user, "<span class='notice'>You shut off the body camera.</span>")
+		to_chat(user, span_notice("You shut off the body camera."))
 		Disconnect()
 	else
 		bodcam.status = TRUE
-		to_chat(user, "<span class='notice'>You turn on the body camera.</span>")
+		to_chat(user, span_notice("You turn on the body camera."))
 		getMobhook(user)
 	update_icon()
 
@@ -57,7 +57,7 @@
 /obj/item/clothing/neck/bodycam/update_icon()
 	..()
 	var/suffix = "off"
-	if (bodcam.status)
+	if(bodcam.status)
 		suffix = "on"
 	icon_state = "[prefix]_bodycam_[suffix]"
 	item_state = "[prefix]_bodycam_[suffix]"
@@ -67,16 +67,16 @@
 
 /obj/item/clothing/neck/bodycam/examine(mob/user)
 	.=..()
-	. += "<span class='notice'>The camera is currently [bodcam.status ? "on" : "off"].</span>"
+	. += span_notice("The camera is currently [bodcam.status ? "on" : "off"].")
 	if(setup)
-		. += "<span class='notice'>It is registered under the name \"[bodcam.c_tag]\".</span>"
-		. += "<span class='notice'>It is streaming to the network \"[bodcam.network[1]]\".</span>"
+		. += span_notice("It is registered under the name \"[bodcam.c_tag]\".")
+		. += span_notice("It is streaming to the network \"[bodcam.network[1]]\".")
 		if(!preset)
-			. += "<span class='notice'>Alt-click to configure the camera.</span>"
+			. += span_notice("Alt-click to configure the camera.")
 		else
-			. += "<span class='notice'>This camera is locked and cannot be reconfigured.</span>"
+			. += span_notice("This camera is locked and cannot be reconfigured.")
 	else
-		. += "<span class='warning'>It hasn't been set up yet!</span>"
+		. += span_warning("It hasn't been set up yet!")
 
 /obj/item/clothing/neck/bodycam/verb/toggle_bodycam()
 	set name = "Toggle Bodycam"
@@ -102,7 +102,7 @@
 /obj/item/clothing/neck/bodycam/proc/Disconnect()//this handles what happens when your camera disconnects
 	bodcam.status = FALSE
 	bodcam.built_in = null
-	if (listeningTo)
+	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 		listeningTo = null
 
@@ -111,11 +111,12 @@
 	getMobhook(user)
 
 /obj/item/clothing/neck/bodycam/dropped(mob/wearer)
+	if(bodcam)
+		if(bodcam.status)//if it's on
+			attack_self(wearer) //turn it off
+		GLOB.cameranet.updatePortableCamera(bodcam)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 	..()
-	if (bodcam.status)//if it's on
-		attack_self(wearer) //turn it off
-	GLOB.cameranet.updatePortableCamera(bodcam)
-	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 
 /obj/item/clothing/neck/bodycam/proc/getMobhook(mob/to_hook) //This stuff is basically copypasta from RCL.dm, look there if you are confused
 	bodcam.built_in = to_hook
@@ -127,7 +128,7 @@
 	RegisterSignal(listeningTo, COMSIG_MOVABLE_MOVED, .proc/trigger)
 
 /obj/item/clothing/neck/bodycam/proc/trigger(mob/user)
-	if (!bodcam.status)//this is a safety in case of some fucky wucky shit. This SHOULD not ever be true but sometimes it is anyway :(
+	if(!bodcam.status)//this is a safety in case of some fucky wucky shit. This SHOULD not ever be true but sometimes it is anyway :(
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 		listeningTo = null
 	GLOB.cameranet.updatePortableCamera(bodcam)

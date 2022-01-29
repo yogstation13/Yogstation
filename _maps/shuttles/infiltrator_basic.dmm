@@ -355,14 +355,6 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
-"aO" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4;
-	name = "tactical chair"
-	},
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/airlock)
 "aP" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1266,6 +1258,17 @@
 	},
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/bridge)
+"pO" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen/red,
+/obj/item/stamp/syndiround,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/bridge)
 "rB" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/syndicate,
@@ -1316,16 +1319,6 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
-"CN" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen/red,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/bridge)
 "Eh" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/poddoor{
@@ -1381,6 +1374,15 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
+"UF" = (
+/obj/effect/turf_decal/bot_white,
+/obj/structure/closet/syndicate,
+/obj/item/pickaxe/drill/jackhammer,
+/obj/item/pickaxe/drill/jackhammer,
+/obj/item/pickaxe/drill/jackhammer,
+/obj/item/pickaxe/drill/jackhammer,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
 
 (1,1,1) = {"
 aa
@@ -1511,7 +1513,7 @@ MJ
 ac
 ag
 an
-CN
+pO
 ac
 ad
 aa
@@ -1670,7 +1672,7 @@ aB
 tZ
 aX
 bc
-aO
+UF
 bm
 bx
 bG

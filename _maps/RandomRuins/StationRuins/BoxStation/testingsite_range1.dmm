@@ -1,0 +1,268 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/target/alien,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"d" = (
+/obj/item/target,
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"f" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"h" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/camera{
+	active_power_usage = 0;
+	c_tag = "Bomb Test Site";
+	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
+	dir = 8;
+	invuln = 1;
+	name = "Hardened Bomb-Test Camera";
+	network = list("toxins");
+	use_power = 0
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"i" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"l" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"m" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"n" = (
+/obj/item/beacon,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"p" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"r" = (
+/turf/template_noop,
+/area/template_noop)
+"u" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"v" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"z" = (
+/obj/item/target,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"C" = (
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"D" = (
+/obj/structure/sign/warning/securearea{
+	desc = "A warning sign which reads 'BOMB RANGE";
+	name = "BOMB RANGE"
+	},
+/turf/closed/wall,
+/area/template_noop)
+"E" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"G" = (
+/turf/closed/wall,
+/area/template_noop)
+"J" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"M" = (
+/turf/closed/indestructible{
+	desc = "A wall impregnated with Fixium, able to withstand massive explosions with ease";
+	icon_state = "riveted";
+	name = "hyper-reinforced wall"
+	},
+/area/template_noop)
+"O" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"P" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"S" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"T" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"V" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"Y" = (
+/obj/structure/table,
+/obj/item/storage/box/mre,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/template_noop)
+
+(1,1,1) = {"
+r
+r
+r
+G
+J
+G
+r
+r
+r
+"}
+(2,1,1) = {"
+r
+r
+D
+G
+T
+G
+D
+r
+r
+"}
+(3,1,1) = {"
+r
+G
+G
+v
+J
+V
+G
+G
+r
+"}
+(4,1,1) = {"
+G
+G
+v
+i
+C
+m
+V
+G
+G
+"}
+(5,1,1) = {"
+f
+d
+l
+S
+n
+S
+O
+z
+f
+"}
+(6,1,1) = {"
+G
+G
+u
+Y
+C
+P
+p
+G
+G
+"}
+(7,1,1) = {"
+r
+G
+G
+E
+T
+h
+G
+G
+r
+"}
+(8,1,1) = {"
+r
+r
+D
+G
+c
+G
+D
+r
+r
+"}
+(9,1,1) = {"
+r
+r
+r
+G
+M
+G
+r
+r
+r
+"}

@@ -1,5 +1,5 @@
 /datum/admins/proc/open_borgopanel(borgo in GLOB.silicon_mobs)
-	set category = "Admin"
+	set category = "Admin.Player Interaction"
 	set name = "Show Borg Panel"
 	set desc = "Show borg panel"
 
@@ -9,7 +9,7 @@
 	if (!istype(borgo, /mob/living/silicon/robot))
 		borgo = input("Select a borg", "Select a borg", null, null) as null|anything in GLOB.silicon_mobs
 	if (!istype(borgo, /mob/living/silicon/robot))
-		to_chat(usr, "<span class='warning'>Borg is required for borgpanel</span>", confidential=TRUE)
+		to_chat(usr, span_warning("Borg is required for borgpanel"), confidential=TRUE)
 
 	var/datum/borgpanel/borgpanel = new(usr, borgo)
 
@@ -33,10 +33,13 @@
 
 	borg = to_borg
 
-/datum/borgpanel/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/borgpanel/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/borgpanel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "BorgPanel", "Borg Panel", 700, 700, master_ui, state)
+		ui = new(user, src, "BorgPanel")
 		ui.open()
 
 /datum/borgpanel/ui_data(mob/user)
@@ -199,7 +202,7 @@
 				borg.notify_ai(DISCONNECT)
 				if(borg.shell)
 					borg.undeploy()
-				borg.connected_ai = newai
+				borg.set_connected_ai(newai)
 				borg.notify_ai(TRUE)
 				message_admins("[key_name_admin(user)] slaved [ADMIN_LOOKUPFLW(borg)] to the AI [ADMIN_LOOKUPFLW(newai)].")
 				log_admin("[key_name(user)] slaved [key_name(borg)] to the AI [key_name(newai)].")
@@ -207,10 +210,32 @@
 				borg.notify_ai(DISCONNECT)
 				if(borg.shell)
 					borg.undeploy()
-				borg.connected_ai = null
+				borg.set_connected_ai(null)
 				message_admins("[key_name_admin(user)] freed [ADMIN_LOOKUPFLW(borg)] from being slaved to an AI.")
 				log_admin("[key_name(user)] freed [key_name(borg)] from being slaved to an AI.")
 			if (borg.lawupdate)
 				borg.lawsync()
 
 	. = TRUE
+
+/datum/admins/proc/change_laws()
+	set category = "Admin.Player Interaction"
+	set name = "Change Silicon Laws"
+	set desc = "Change Silicon Laws"
+
+	if(!check_rights(R_ADMIN))
+		return
+	var/chosensilicon = input("Select a Silicon", "Select a Silicon", null, null) as null|anything in GLOB.silicon_mobs
+	if (!istype(chosensilicon, /mob/living/silicon))
+		to_chat(usr, span_warning("Silicon is required for law changes"), confidential=TRUE)
+		return
+	var/chosen = pick_closest_path(null, make_types_fancy(typesof(/obj/item/aiModule)))
+	if (!chosen)
+		return
+	var/new_board = new chosen(src)
+	var/obj/item/aiModule/chosenboard = new_board
+	var/mob/living/silicon/beepboop = chosensilicon
+	chosenboard.install(beepboop.laws, usr)
+	message_admins("[key_name_admin(usr)] added [chosenboard] to [ADMIN_LOOKUPFLW(beepboop)].")
+	log_admin("[key_name(usr)] added [chosenboard] to [key_name(beepboop)].")
+	qdel(new_board)

@@ -10,8 +10,8 @@
 	network_destination = "energy harvester controller"
 	size = 1
 	tgui_id = "NtosEnergyHarvesterController"
-	ui_x = 300
-	ui_y = 420
+	program_icon = "charging-station"
+
 	var/status
 	var/obj/item/energy_harvester/moneysink
 
@@ -23,7 +23,7 @@
 		new_status = "null"
 	else if(moneysink.input_energy==0)
 		new_status = "off"
-	else 
+	else
 		new_status = "on"
 
 	if(new_status != status)
@@ -103,6 +103,6 @@
 			if(.)
 				moneysink.manual_power_setting = clamp(target, 0, MAXIMUM_POWER_LIMIT)
 
-	
-	
+
+
 #undef MAXIMUM_POWER_LIMIT

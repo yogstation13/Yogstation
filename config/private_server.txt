@@ -1,15 +1,17 @@
 #This file contains configuration options specific to yogstation that should not be used on downstreams or testing servers. You may edit this file and submit a PR if you wish to suggest changes to the server configuration of the yogstation server
 
+$include resources_private.txt
+
 ## World address and port for server receiving cross server messages
 ## Use '+' to denote spaces in ServerName
 ## Repeat this entry to add more servers
-CROSS_SERVER Atlas byond://149.56.18.231:5133
+#CROSS_SERVER Atlas byond://149.56.18.231:5133
 
 ## Name that the server calls itself in communications
 CROSS_COMMS_NAME Main
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Replace 'Space station 13' with the name of your choice.
-SERVERNAME Yogstation 13 (Main)
+SERVERNAME Yogstation 13
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
 SERVERSQLNAME yogstation
@@ -33,19 +35,26 @@ HOSTEDBY Yogstation13-Bot
 
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
 ## Don't set this to the same server, BYOND will automatically restart players to the server when it has restarted.
-# SERVER game.yogstation.net:4133
+
+#SERVER game.yogstation.net:4133
 
 ## forum address
 FORUMURL http://yogstation.net
 
 ## Wiki address
-WIKIURL https://wiki.yogstation.net/wiki
+WIKIURL https://wiki.yogstation.net
 
 ##Rules address
-RULESURL http://forums.yogstation.net/index.php?pages/rules/
+RULESURL http://forums.yogstation.net/help/rules/
 
 ##Github address
 GITHUBURL https://www.github.com/yogstation13/yogstation
+
+## API address
+APIURL https://forums.yogstation.net/api
+
+## Demo address with args
+DEMOURL https://yogstation13.github.io/demo-viewer/?roundid=
 
 ## Github repo id
 ##This can be found by going to https://api.github.com/users/<user name here>/repos
@@ -53,7 +62,7 @@ GITHUBURL https://www.github.com/yogstation13/yogstation
 GITHUBREPOID 120966336
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS https://forums.yogstation.net/index.php?form/2/select
+BANAPPEALS https://forums.yogstation.net/form/2/select
 
 ## System command that invokes youtube-dl, used by Play Internet Sound.
 ## You can install youtube-dl with
@@ -70,6 +79,9 @@ TICK_LIMIT_MC_INIT 98
 ## Should SQL be enabled? Uncomment to enable
 SQL_ENABLED
 
+## Should discord based MFA be enabled for admins? Uncomment to enable
+MFA_ENABLED
+
 ## Prefix to be added to the name of every table, older databases will require this be set to erro_
 ## Note, this does not change the table names in the database, you will have to do that yourself.
 ##IE:
@@ -77,3 +89,6 @@ SQL_ENABLED
 ##	FEEDBACK_TABLEPREFIX SS13_
 ## Remove "SS13_" if you are using the standard schema file.
 FEEDBACK_TABLEPREFIX erro_
+
+VOICE_ANNOUNCE_URL_BASE https://www.yogstation.net/voice_announce/
+VOICE_ANNOUNCE_DIR data/voice_announcements

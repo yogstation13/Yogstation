@@ -258,6 +258,18 @@
 	owner = "reddsnotdead"
 	module_locked = "Engineering"
 
+/datum/borg_skin/argus
+	name = "Argus"
+	icon_state = "argus"
+	owner = "slicerv"
+	module_locked = "Engineering"
+
+/datum/borg_skin/butterfly
+	name = "Butterfly"
+	icon_state = "butterfly"
+	owner = "baiomu"
+	module_locked = "Engineering"
+
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 
@@ -318,7 +330,12 @@
 	icon_state = "wardoge"
 	owner = "fluffe9911"
 
-datum/ai_skin/carrion
+/datum/ai_skin/carrion
 	name = "Carrion"
 	icon_state = "carrion"
 	owner = "xoxeyos"
+
+/datum/ai_skin/flukie
+	name = "Flukie"
+	icon_state = "flukie"
+	owner = "uselesstheremin"

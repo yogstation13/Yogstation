@@ -1,6 +1,6 @@
 /client/proc/rejuv_all()
 	set name = "Revive All"
-	set category = "Fun"
+	set category = "Misc"
 	set desc = "Rejuvinate every mob/living."
 
 	if(!check_rights(R_ADMIN))
@@ -28,7 +28,7 @@
 	log_admin("[src] revived [revive_count] mobs.")
 
 /client/proc/admin_pick_random_player()
-	set category = "Admin"
+	set category = "Admin.Round Interaction"
 	set name = "Pick Random Player"
 	set desc = "Picks a random logged-in player and brings up their player panel."
 
@@ -40,6 +40,10 @@
 
 	var/choose_from_dead = input(src, "What group would you like to pick from?", "Selection", "Everyone") as null|anything in list("Everyone", "Living Only", "Dead Only")
 	if(!choose_from_dead)
+		return
+
+	var/special_role_req = input(src, "Special role enabled?", "Selection", "Everyone") as null|anything in list("Everyone")|GLOB.special_roles
+	if(!special_role_req)
 		return
 
 	if(choose_from_dead != "Dead Only")
@@ -60,8 +64,14 @@
 			if(M.mind.special_role)
 				mobs -= M
 
+	if(special_role_req != "Everyone")
+		to_chat(src, span_warning("Selecting for players with [special_role_req] enabled"))
+		for(var/mob/M in mobs)
+			if(!M.client || !(special_role_req in M.client.prefs.be_special))
+				mobs -= M
+
 	if(!mobs.len)
-		to_chat(src, "<span class='warning'>Error: no valid mobs found via selected options.</span>", confidential=TRUE)
+		to_chat(src, span_warning("Error: no valid mobs found via selected options."), confidential=TRUE)
 		return
 
 	var/mob/chosen_player = pick(mobs)

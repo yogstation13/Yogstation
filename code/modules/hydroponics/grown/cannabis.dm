@@ -72,7 +72,7 @@
 						/datum/reagent/consumable/capsaicin = 0.15,
 						/datum/reagent/barbers_aid = 0.15,
 						/datum/reagent/drug/bath_salts = 0.15,
-						/datum/reagent/toxin/itching_powder = 0.15,
+						/datum/reagent/itching_powder = 0.15,
 						/datum/reagent/drug/crank = 0.15,
 						/datum/reagent/drug/krokodil = 0.15,
 						/datum/reagent/toxin/histamine = 0.15,

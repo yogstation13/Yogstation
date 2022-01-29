@@ -69,8 +69,6 @@
 	var/const/staring_seed_multiplier = 1
 	var/max_seeds = staring_max_seeds
 	var/seed_multiplier = staring_seed_multiplier
-	ui_x = 1000
-	ui_y = 400
 
 /obj/machinery/seed_extractor/RefreshParts()
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
@@ -81,7 +79,7 @@
 /obj/machinery/seed_extractor/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Extracting <b>[seed_multiplier]</b> seed(s) per piece of produce.<br>Machine can store up to <b>[max_seeds]%</b> seeds.</span>"
+		. += span_notice("The status display reads: Extracting <b>[seed_multiplier]</b> seed(s) per piece of produce.<br>Machine can store up to <b>[max_seeds]</b> seeds.")
 
 /obj/machinery/seed_extractor/attackby(obj/item/O, mob/user, params)
 
@@ -106,21 +104,20 @@
 			++loaded
 			add_seed(G)
 		if (loaded)
-			to_chat(user, "<span class='notice'>You put as many seeds from \the [O.name] into [src] as you can.</span>")
+			to_chat(user, span_notice("You put as many seeds from \the [O.name] into [src] as you can."))
 		else
-			to_chat(user, "<span class='notice'>There are no seeds in \the [O.name].</span>")
+			to_chat(user, span_notice("There are no seeds in \the [O.name]."))
 		return
 
 	else if(seedify(O,-1, src, user))
-		to_chat(user, "<span class='notice'>You extract some seeds.</span>")
+		to_chat(user, span_notice("You extract some seeds."))
 		return
 	else if (istype(O, /obj/item/seeds))
 		if(add_seed(O))
-			to_chat(user, "<span class='notice'>You add [O] to [src.name].</span>")
-			updateUsrDialog()
+			to_chat(user, span_notice("You add [O] to [src.name]."))
 		return
 	else if(user.a_intent != INTENT_HARM)
-		to_chat(user, "<span class='warning'>You can't extract any seeds from \the [O.name]!</span>")
+		to_chat(user, span_warning("You can't extract any seeds from \the [O.name]!"))
 	else
 		return ..()
 
@@ -146,7 +143,7 @@
  **/
 /obj/machinery/seed_extractor/proc/add_seed(obj/item/seeds/O)
 	if(contents.len >= 999)
-		to_chat(usr, "<span class='notice'>\The [src] is full.</span>")
+		to_chat(usr, span_notice("\The [src] is full."))
 		return FALSE
 
 	var/datum/component/storage/STR = O.loc.GetComponent(/datum/component/storage)
@@ -166,11 +163,13 @@
 
 	. = TRUE
 
-/obj/machinery/seed_extractor/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/seed_extractor/ui_state(mob/user)
+	return GLOB.notcontained_state
+
+/obj/machinery/seed_extractor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "SeedExtractor", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "SeedExtractor", name)
 		ui.open()
 
 /obj/machinery/seed_extractor/ui_data()
@@ -198,4 +197,4 @@
 					piles[item] -= WO
 					O.forceMove(drop_location())
 					. = TRUE
-					//to_chat(usr, "<span class='notice'>[src] clanks to life briefly before vending [prize.equipment_name]!</span>")
+					//to_chat(usr, span_notice("[src] clanks to life briefly before vending [prize.equipment_name]!"))

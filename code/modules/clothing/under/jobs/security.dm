@@ -15,11 +15,12 @@
 	icon_state = "rsecurity"
 	item_state = "r_suit"
 	item_color = "rsecurity"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "wound" = 10)
 	strip_delay = 50
 	alt_covers_chest = TRUE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/security/grey
 	name = "grey security jumpsuit"
@@ -37,6 +38,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE //you know now that i think of it if you adjust the skirt and the sprite disappears isn't that just like flashing everyone
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 
 /obj/item/clothing/under/rank/warden
@@ -45,11 +47,12 @@
 	icon_state = "rwarden"
 	item_state = "r_suit"
 	item_color = "rwarden"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "wound" = 10)
 	strip_delay = 50
 	alt_covers_chest = TRUE
 	sensor_mode = 3
 	random_sensor = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/warden/grey
 	name = "grey security suit"
@@ -67,6 +70,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /*
  * Detective
@@ -77,11 +81,12 @@
 	icon_state = "detective"
 	item_state = "det"
 	item_color = "detective"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "wound" = 10)
 	strip_delay = 50
 	alt_covers_chest = TRUE
 	sensor_mode = 3
 	random_sensor = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/det/skirt
 	name = "detective's suitskirt"
@@ -92,6 +97,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/det/grey
 	name = "noir suit"
@@ -110,6 +116,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /*
  * Head of Security
@@ -120,11 +127,12 @@
 	icon_state = "rhos"
 	item_state = "r_suit"
 	item_color = "rhos"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10)
 	strip_delay = 60
 	alt_covers_chest = TRUE
 	sensor_mode = 3
 	random_sensor = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/head_of_security/skirt
 	name = "head of security's jumpskirt"
@@ -135,6 +143,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/head_of_security/grey
 	name = "head of security's grey jumpsuit"
@@ -159,6 +168,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /*
  * Navy uniforms

@@ -1,9 +1,8 @@
 /datum/export/large/crate
 	cost = 500
-	k_elasticity = 0
 	unit_name = "crate"
 	export_types = list(/obj/structure/closet/crate)
-	exclude_types = list(/obj/structure/closet/crate/large, /obj/structure/closet/crate/wooden)
+	exclude_types = list(/obj/structure/closet/crate/large, /obj/structure/closet/crate/wooden, /obj/structure/closet/crate/secure/cheap, /obj/structure/closet/crate/secure/owned)
 
 /datum/export/large/crate/total_printout(datum/export_report/ex, notes = TRUE) // That's why a goddamn metal crate costs that much.
 	. = ..()
@@ -122,18 +121,41 @@
 	unit_name = "security barrier"
 	export_types = list(/obj/item/grenade/barrier, /obj/structure/barricade/security)
 
-/datum/export/large/gas_canister
-	cost = 10 //Base cost of canister. You get more for nice gases inside.
-	unit_name = "Gas Canister"
-	export_types = list(/obj/machinery/portable_atmospherics/canister)
-/datum/export/large/gas_canister/get_cost(obj/O)
-	var/obj/machinery/portable_atmospherics/canister/C = O
-	var/worth = 10
+//Mecha
+/datum/export/large/mech
+	export_types = list(/obj/mecha)
+	var/sellable
 
-	worth += C.air_contents.get_moles(/datum/gas/bz)*4
-	worth += C.air_contents.get_moles(/datum/gas/stimulum)*100
-	worth += C.air_contents.get_moles(/datum/gas/hypernoblium)*1000
-	worth += C.air_contents.get_moles(/datum/gas/miasma)*10
-	worth += C.air_contents.get_moles(/datum/gas/tritium)*5
-	worth += C.air_contents.get_moles(/datum/gas/pluoxium)*5
-	return worth
+/datum/export/large/mech/applies_to(obj/O)
+	if(!..())
+		return FALSE
+
+	var/obj/mecha/ME = O
+	ME.wreckage = null // So the mech doesn't blow up in the cargo shuttle
+	if(sellable)
+		return TRUE
+
+/datum/export/large/mech/sellable
+	export_types = list()
+	sellable = TRUE
+
+/datum/export/large/mech/sellable/firefighter
+	cost = 9000
+	unit_name = "APLU \"Firefighter\""
+	export_types = list(/obj/mecha/working/ripley/firefighter)
+
+/datum/export/large/mech/sellable/phazon
+	cost = 50000 // 15767 material + anomaly core. Fuck it, if you're willing to try selling one of these you should get BIG FUCKING MONEY
+	unit_name = "phazon"
+	export_types = list(/obj/mecha/combat/phazon)
+	export_limit = 10 //you get half of a bike if you for some reason mass produce these, diversify your holdings
+
+/datum/export/large/mech/sellable/syndiegygax
+	cost = 50000 // You somehow stole a nuke op's gygax and sold it to nanotrasen. Go you.
+	unit_name = "captured syndicate gygax"
+	export_types = list(/obj/mecha/combat/gygax/dark)
+
+/datum/export/large/mech/sellable/mauler
+	cost = 87500 // Whoa, momma.
+	unit_name = "captured mauler"
+	export_types = list(/obj/mecha/combat/marauder/mauler)

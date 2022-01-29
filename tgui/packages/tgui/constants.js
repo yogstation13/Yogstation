@@ -19,7 +19,8 @@ export const COLORS = {
     medbay: '#3498db',
     science: '#9b59b6',
     engineering: '#f1c40f',
-    cargo: '#f39c12',
+    cargo: '#d4680d', // Yogs: Added new cargo color
+    civilian: '#b4b4b4', // Yogs: Added new civilian color
     centcom: '#00c100',
     other: '#c38312',
   },
@@ -200,6 +201,12 @@ const GASES = [
     'name': 'Miasma',
     'label': 'Miasma',
     'color': 'olive',
+  },
+  {
+    'id': 'hydrogen',
+    'name': 'Hydrogen',
+    'label': 'H₂',
+    'color': 'white',
   },
 ];
 

@@ -1,7 +1,7 @@
 /obj/item/banner
 	name = "banner"
 	desc = "A banner with Nanotrasen's logo on it."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/banners.dmi'
 	icon_state = "banner"
 	item_state = "banner"
 	force = 8
@@ -18,16 +18,16 @@
 /obj/item/banner/examine(mob/user)
 	. = ..()
 	if(inspiration_available)
-		. += "<span class='notice'>Activate it in your hand to inspire nearby allies of this banner's allegiance!</span>"
+		. += span_notice("Activate it in your hand to inspire nearby allies of this banner's allegiance!")
 
 /obj/item/banner/attack_self(mob/living/carbon/human/user)
 	if(!inspiration_available)
 		return
 	if(morale_time > world.time)
-		to_chat(user, "<span class='warning'>You aren't feeling inspired enough to flourish [src] again yet.</span>")
+		to_chat(user, span_warning("You aren't feeling inspired enough to flourish [src] again yet."))
 		return
 	user.visible_message("<span class='big notice'>[user] flourishes [src]!</span>", \
-	"<span class='notice'>You raise [src] skywards, inspiring your allies!</span>")
+	span_notice("You raise [src] skywards, inspiring your allies!"))
 	playsound(src, "rustle", 100, FALSE)
 	if(warcry)
 		user.say("[warcry]", forced="banner")
@@ -54,7 +54,7 @@
 	for(var/V in inspired)
 		var/mob/living/carbon/human/H = V
 		if(H != user)
-			to_chat(H, "<span class='notice'>Your confidence surges as [user] flourishes [user.p_their()] [name]!</span>")
+			to_chat(H, span_notice("Your confidence surges as [user] flourishes [user.p_their()] [name]!"))
 		inspiration(H)
 		special_inspiration(H)
 
@@ -90,7 +90,7 @@
 /datum/crafting_recipe/security_banner
 	name = "Securistan Banner"
 	result = /obj/item/banner/security/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/security = 1)
 	category = CAT_MISC
@@ -114,7 +114,7 @@
 /datum/crafting_recipe/medical_banner
 	name = "Meditopia Banner"
 	result = /obj/item/banner/medical/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/medical = 1)
 	category = CAT_MISC
@@ -143,7 +143,7 @@
 /datum/crafting_recipe/science_banner
 	name = "Sciencia Banner"
 	result = /obj/item/banner/science/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/scientist = 1)
 	category = CAT_MISC
@@ -164,7 +164,7 @@
 /datum/crafting_recipe/cargo_banner
 	name = "Cargonia Banner"
 	result = /obj/item/banner/cargo/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/cargotech = 1)
 	category = CAT_MISC
@@ -188,7 +188,7 @@
 /datum/crafting_recipe/engineering_banner
 	name = "Engitopia Banner"
 	result = /obj/item/banner/engineering/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/engineer = 1)
 	category = CAT_MISC
@@ -209,7 +209,7 @@
 /datum/crafting_recipe/command_banner
 	name = "Command Banner"
 	result = /obj/item/banner/command/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/captainparade = 1)
 	category = CAT_MISC
@@ -309,7 +309,7 @@
 	if(staffcooldown + staffwait > world.time)
 		return
 	user.visible_message("[user] chants deeply and waves [user.p_their()] staff!")
-	if(do_after(user, 20,1,src))
+	if(do_after(user, 2 SECONDS,1,src))
 		target.add_atom_colour(conversion_color, WASHABLE_COLOUR_PRIORITY) //wololo
 	staffcooldown = world.time
 
@@ -379,10 +379,9 @@
 /obj/item/claymore/weak
 	desc = "This one is rusted."
 	force = 30
-	armour_penetration = 15
+	block_chance = 30
+	armour_penetration = 5
 
 /obj/item/claymore/weak/ceremonial
 	desc = "A rusted claymore, once at the heart of a powerful scottish clan struck down and oppressed by tyrants, it has been passed down the ages as a symbol of defiance."
 	force = 15
-	block_chance = 30
-	armour_penetration = 5

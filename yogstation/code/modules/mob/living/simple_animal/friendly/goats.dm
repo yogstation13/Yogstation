@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/goat/clown
-	name = "Clown Goat"
+	name = "Gary the Goat"
 	desc = "Rather kick your butt than tell jokes."
 	icon = 'yogstation/icons/mob/goats/clown_goat.dmi'
 	icon_state = "clowngoat"
@@ -433,3 +433,13 @@
 	icon_dead = "spiffles_dead"
 	faction = list("goat")
 	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/suspicious
+	name = "suspicious goat"
+	desc = "A suspicious looking goat."
+	icon = 'yogstation/icons/mob/goats/suspicious_goat.dmi'
+	icon_state = "suspiciousgoat"
+	icon_living = "suspiciousgoat"
+	icon_dead = "suspiciousgoat_dead"
+	gold_core_spawnable = NO_SPAWN
+	ventcrawler = VENTCRAWLER_ALWAYS

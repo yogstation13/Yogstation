@@ -19,8 +19,14 @@
 	return ..()
 
 /obj/structure/bigDelivery/contents_explosion(severity, target)
-	for(var/atom/movable/AM in contents)
-		AM.ex_act()
+	for(var/thing in contents)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += thing
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += thing
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += thing
 
 /obj/structure/bigDelivery/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/destTagger))
@@ -28,19 +34,19 @@
 
 		if(sortTag != O.currTag)
 			var/tag = uppertext(GLOB.TAGGERLOCATIONS[O.currTag])
-			to_chat(user, "<span class='notice'>*[tag]*</span>")
+			to_chat(user, span_notice("SELECTED DESTINATION: [tag]"))
 			sortTag = O.currTag
 			playsound(loc, 'sound/machines/twobeep_high.ogg', 100, 1)
 
 	else if(istype(W, /obj/item/pen))
 		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on the side of [src]!</span>")
+			to_chat(user, span_notice("You scribble illegibly on the side of [src]!"))
 			return
 		var/str = stripped_input(user, "Label text?", "Set label", "", MAX_NAME_LEN)
 		if(!user.canUseTopic(src, BE_CLOSE))
 			return
 		if(!str || !length(str))
-			to_chat(user, "<span class='warning'>Invalid text!</span>")
+			to_chat(user, span_warning("Invalid text!"))
 			return
 		user.visible_message("[user] labels [src] as [str].")
 		name = "[name] ([str])"
@@ -52,7 +58,7 @@
 			giftwrapped = TRUE
 			icon_state = "gift[icon_state]"
 		else
-			to_chat(user, "<span class='warning'>You need more paper!</span>")
+			to_chat(user, span_warning("You need more paper!"))
 	else
 		return ..()
 
@@ -61,17 +67,17 @@
 		var/atom/movable/AM = loc //can't unwrap the wrapped container if it's inside something.
 		AM.relay_container_resist(user, O)
 		return
-	to_chat(user, "<span class='notice'>You lean on the back of [O] and start pushing to rip the wrapping around it.</span>")
-	if(do_after(user, 50, target = O))
+	to_chat(user, span_notice("You lean on the back of [O] and start pushing to rip the wrapping around it."))
+	if(do_after(user, 5 SECONDS, target = O))
 		if(!user || user.stat != CONSCIOUS || user.loc != O || O.loc != src )
 			return
-		to_chat(user, "<span class='notice'>You successfully removed [O]'s wrapping !</span>")
+		to_chat(user, span_notice("You successfully removed [O]'s wrapping !"))
 		O.forceMove(loc)
 		playsound(src.loc, 'sound/items/poster_ripped.ogg', 50, 1)
 		qdel(src)
 	else
 		if(user.loc == src) //so we don't get the message if we resisted multiple times and succeeded.
-			to_chat(user, "<span class='warning'>You fail to remove [O]'s wrapping!</span>")
+			to_chat(user, span_warning("You fail to remove [O]'s wrapping!"))
 
 
 /obj/item/smallDelivery
@@ -84,8 +90,14 @@
 	var/sortTag = 0
 
 /obj/item/smallDelivery/contents_explosion(severity, target)
-	for(var/atom/movable/AM in contents)
-		AM.ex_act()
+	for(var/thing in contents)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += thing
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += thing
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += thing
 
 /obj/item/smallDelivery/attack_self(mob/user)
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -115,19 +127,19 @@
 
 		if(sortTag != O.currTag)
 			var/tag = uppertext(GLOB.TAGGERLOCATIONS[O.currTag])
-			to_chat(user, "<span class='notice'>*[tag]*</span>")
+			to_chat(user, span_notice("SELECTED DESTINATION: [tag]"))
 			sortTag = O.currTag
 			playsound(loc, 'sound/machines/twobeep_high.ogg', 100, 1)
 
 	else if(istype(W, /obj/item/pen))
 		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on the side of [src]!</span>")
+			to_chat(user, span_notice("You scribble illegibly on the side of [src]!"))
 			return
 		var/str = stripped_input(user, "Label text?", "Set label", "", MAX_NAME_LEN)
 		if(!user.canUseTopic(src, BE_CLOSE))
 			return
 		if(!str || !length(str))
-			to_chat(user, "<span class='warning'>Invalid text!</span>")
+			to_chat(user, span_warning("Invalid text!"))
 			return
 		user.visible_message("[user] labels [src] as [str].")
 		name = "[name] ([str])"
@@ -139,7 +151,7 @@
 			giftwrapped = 1
 			user.visible_message("[user] wraps the package in festive paper!")
 		else
-			to_chat(user, "<span class='warning'>You need more paper!</span>")
+			to_chat(user, span_warning("You need more paper!"))
 
 
 /obj/item/destTagger
@@ -161,37 +173,32 @@
 	desc = "Used to fool the disposal mail network into thinking that you're a harmless parcel. Does actually work as a regular destination tagger as well."
 
 /obj/item/destTagger/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] begins tagging [user.p_their()] final destination!  It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins tagging [user.p_their()] final destination!  It looks like [user.p_theyre()] trying to commit suicide!"))
 	if (islizard(user))
-		to_chat(user, "<span class='notice'>*HELL*</span>")//lizard nerf
+		to_chat(user, span_notice("SELECTED DESTINATION: HELL"))//lizard nerf
 	else
-		to_chat(user, "<span class='notice'>*HEAVEN*</span>")
+		to_chat(user, span_notice("SELECTED DESTINATION: HEAVEN"))
 	playsound(src, 'sound/machines/twobeep_high.ogg', 100, 1)
 	return BRUTELOSS
 
-/obj/item/destTagger/proc/openwindow(mob/user)
-	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><tt><center><h1><b>TagMaster 2.2</b></h1></center>"
+/obj/item/destTagger/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user,src,ui)
+	if(!ui)
+		ui = new(user,src,"DestinationTagger")
+		ui.open()
 
-	dat += "<table style='width:100%; padding:4px;'><tr>"
-	for (var/i = 1, i <= GLOB.TAGGERLOCATIONS.len, i++)
-		dat += "<td><a href='?src=[REF(src)];nextTag=[i]'>[GLOB.TAGGERLOCATIONS[i]]</a></td>"
-
-		if(i%4==0)
-			dat += "</tr><tr>"
-
-	dat += "</tr></table><br>Current Selection: [currTag ? GLOB.TAGGERLOCATIONS[currTag] : "None"]</tt>"
-	dat += "</BODY></HTML>"
-	user << browse(dat, "window=destTagScreen;size=450x350")
-	onclose(user, "destTagScreen")
-
-/obj/item/destTagger/attack_self(mob/user)
-	if(!locked_destination)
-		openwindow(user)
+/obj/item/destTagger/ui_act(action,list/params)
+	if(..())
 		return
+	switch(action)
+		if("ChangeSelectedTag")
+			var/selectedTag = GLOB.TAGGERLOCATIONS.Find(params["tag"])
+			if(selectedTag != 0)
+				currTag = selectedTag
 
-/obj/item/destTagger/Topic(href, href_list)
-	add_fingerprint(usr)
-	if(href_list["nextTag"])
-		var/n = text2num(href_list["nextTag"])
-		currTag = n
-	openwindow(usr)
+/obj/item/destTagger/ui_data(mob/user)
+	var/list/data = list()
+	data["destinations"] = GLOB.TAGGERLOCATIONS
+	data["currentTag"] = currTag
+
+	return data

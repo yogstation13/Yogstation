@@ -14,18 +14,14 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 
 /obj/machinery/doppler_array/Initialize()
 	. = ..()
-	GLOB.doppler_arrays += src
+	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, .proc/sense_explosion)
 
 /obj/machinery/doppler_array/ComponentInitialize()
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE,null,null,CALLBACK(src,.proc/rot_message))
 
-/obj/machinery/doppler_array/Destroy()
-	GLOB.doppler_arrays -= src
-	return ..()
-
 /obj/machinery/doppler_array/examine(mob/user)
 	..()
-	to_chat(user, "<span class='notice'>Its dish is facing to the [dir2text(dir)].</span>")
+	to_chat(user, span_notice("Its dish is facing to the [dir2text(dir)]."))
 
 /obj/machinery/doppler_array/process()
 	return PROCESS_KILL
@@ -35,21 +31,21 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		if(!anchored && !isinspace())
 			anchored = TRUE
 			power_change()
-			to_chat(user, "<span class='notice'>You fasten [src].</span>")
+			to_chat(user, span_notice("You fasten [src]."))
 		else if(anchored)
 			anchored = FALSE
 			power_change()
-			to_chat(user, "<span class='notice'>You unfasten [src].</span>")
+			to_chat(user, span_notice("You unfasten [src]."))
 		I.play_tool_sound(src)
 	else
 		return ..()
 
 /obj/machinery/doppler_array/proc/rot_message(mob/user)
-	to_chat(user, "<span class='notice'>You adjust [src]'s dish to face to the [dir2text(dir)].</span>")
+	to_chat(user, span_notice("You adjust [src]'s dish to face to the [dir2text(dir)]."))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, 1)
 
-/obj/machinery/doppler_array/proc/sense_explosion(turf/epicenter,devastation_range,heavy_impact_range,light_impact_range,
-												  took,orig_dev_range,orig_heavy_range,orig_light_range)
+/obj/machinery/doppler_array/proc/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range,
+												  took, orig_dev_range, orig_heavy_range, orig_light_range)
 	if(stat & NOPOWER)
 		return FALSE
 	var/turf/zone = get_turf(src)
@@ -57,7 +53,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		return FALSE
 
 	if(next_announce > world.time)
-		return
+		return FALSE
 	next_announce = world.time + cooldown
 
 	var/distance = get_dist(epicenter, zone)
@@ -65,11 +61,11 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 
 	if(distance > max_dist)
 		return FALSE
-	if(!(direct & dir) && !integrated)
+	if(!(direct & dir))
 		return FALSE
 
 
-	var/list/messages = list("Explosive disturbance detected.", \
+	var/list/messages = list("Explosive disturbance detected.",
 							 "Epicenter at: grid ([epicenter.x],[epicenter.y]). Temporal displacement of tachyons: [took] seconds.", \
 							 "Factual: Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range].")
 
@@ -77,14 +73,8 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	if(devastation_range < orig_dev_range || heavy_impact_range < orig_heavy_range || light_impact_range < orig_light_range)
 		messages += "Theoretical: Epicenter radius: [orig_dev_range]. Outer radius: [orig_heavy_range]. Shockwave radius: [orig_light_range]."
 
-	if(integrated)
-		var/obj/item/clothing/head/helmet/space/hardsuit/helm = loc
-		if(!helm || !istype(helm, /obj/item/clothing/head/helmet/space/hardsuit))
-			return FALSE
-		helm.display_visor_message("Explosion detected! Epicenter: [devastation_range], Outer: [heavy_impact_range], Shock: [light_impact_range]")
-	else
-		for(var/message in messages)
-			say(message)
+	for(var/message in messages)
+		say(message)
 	return TRUE
 
 /obj/machinery/doppler_array/powered()
@@ -100,22 +90,16 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	else
 		icon_state = "[initial(icon_state)]-off"
 
-//Portable version, built into EOD equipment. It simply provides an explosion's three damage levels.
-/obj/machinery/doppler_array/integrated
-	name = "integrated tachyon-doppler module"
-	integrated = TRUE
-	max_dist = 21 //Should detect most explosions in hearing range.
-	use_power = NO_POWER_USE
-
 /obj/machinery/doppler_array/research
 	name = "tachyon-doppler research array"
 	desc = "A specialized tachyon-doppler bomb detection array that uses the results of the highest yield of explosions for research."
 	var/datum/techweb/linked_techweb
 
-/obj/machinery/doppler_array/research/sense_explosion(turf/epicenter, dev, heavy, light, time, orig_dev, orig_heavy, orig_light)	//probably needs a way to ignore admin explosives later on
+/obj/machinery/doppler_array/research/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range,
+		took, orig_dev_range, orig_heavy_range, orig_light_range) //probably needs a way to ignore admin explosives later on
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!istype(linked_techweb))
 		say("Warning: No linked research system!")
 		return
@@ -124,14 +108,14 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 
 	/*****The Point Calculator*****/
 
-	if(orig_light < 10)
+	if(orig_light_range < 10)
 		say("Explosion not large enough for research calculations.")
 		return
-	else if(orig_light >= INFINITY) // Colton-proofs the doppler array
+	else if(orig_light_range >= INFINITY) // Colton-proofs the doppler array
 		say("WARNING: INFINITE DENSITY OF TACHYONS DETECTED.")
 		point_gain = TOXINS_RESEARCH_MAX
 	else
-		point_gain = (TOXINS_RESEARCH_MAX * orig_light) / (orig_light + TOXINS_RESEARCH_LAMBDA)//New yogs function has the limit built into it because l'Hopital's rule
+		point_gain = (TOXINS_RESEARCH_MAX * orig_light_range) / (orig_light_range + TOXINS_RESEARCH_LAMBDA)//New yogs function has the limit built into it because l'Hopital's rule
 
 
 	/*****The Point Capper*****/

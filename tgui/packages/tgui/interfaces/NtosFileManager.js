@@ -6,12 +6,13 @@ import { NtosWindow } from '../layouts';
 export const NtosFileManager = (props, context) => {
   const { act, data } = useBackend(context);
   const {
+    PC_device_theme,
     usbconnected,
     files = [],
     usbfiles = [],
   } = data;
   return (
-    <NtosWindow resizable>
+    <NtosWindow resizable theme={PC_device_theme}>
       <NtosWindow.Content scrollable>
         <Section>
           <FileTable
@@ -23,7 +24,8 @@ export const NtosFileManager = (props, context) => {
               name: file,
               new_name: newName,
             })}
-            onDuplicate={file => act('PRG_clone', { file: file })} />
+            onDuplicate={file => act('PRG_clone', { file: file })}
+            onToggleSilence={file => act('PRG_togglesilence', { name: file })} />
         </Section>
         {usbconnected && (
           <Section title="Data Disk">
@@ -53,6 +55,7 @@ const FileTable = props => {
     onUpload,
     onDelete,
     onRename,
+    onToggleSilence,
   } = props;
   return (
     <Table>
@@ -88,6 +91,13 @@ const FileTable = props => {
             {file.size}
           </Table.Cell>
           <Table.Cell collapsing>
+            {!!file.alert_able && (
+              <Button
+                icon={file.alert_silenced ? 'bell-slash' : 'bell'}
+                color={file.alert_silenced ? 'red' : 'default'}
+                tooltip={file.alert_silenced ? 'Unmute Alerts' : 'Mute Alerts'}
+                onClick={() => onToggleSilence(file.name)} />
+            )}
             {!file.undeletable && (
               <Fragment>
                 <Button.Confirm

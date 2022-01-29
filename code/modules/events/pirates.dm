@@ -5,6 +5,7 @@
 	max_occurrences = 1
 	min_players = 10
 	earliest_start = 30 MINUTES
+	dynamic_should_hijack = TRUE
 	gamemode_blacklist = list("nuclear")
 
 /datum/round_event_control/pirates/preRunEvent()
@@ -29,7 +30,7 @@
 	beacon = new(ship_name)
 
 /datum/round_event/pirates/announce(fake)
-	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", 'sound/ai/commandreport.ogg')
+	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", SSstation.announcer.get_rand_report_sound())
 	play_intro_music()
 	if(fake)
 		return
@@ -72,7 +73,7 @@
 	priority_announce("Unidentified ship with trajectory towards the station has exploded, expect debris.")
 	// small amount of meteors instead of a pirate boarding seems like a good deal
 	spawn_meteors(2, GLOB.meteors_normal)
-	
+
 
 /datum/round_event/pirates/start()
 	if(!paid_off && !shuttle_spawned)
@@ -114,8 +115,8 @@
 	for(var/m in GLOB.player_list)
 		var/mob/M = m
 		var/client/C = M.client
-		if((C.prefs.toggles & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-			C.chatOutput.sendMusic("sound/largefiles/pirate_intro.ogg")
+		if(C.prefs.toggles & SOUND_MIDI)
+			C.tgui_panel?.play_music("https://www.youtube.com/watch?v=MU__2jFQ5EY")
 
 //Shuttle equipment
 /obj/machinery/shuttle_scrambler
@@ -153,8 +154,8 @@
 	SSshuttle.registerTradeBlockade(src)
 	gps.tracking = TRUE
 	active = TRUE
-	to_chat(user,"<span class='notice'>You toggle [src] [active ? "on":"off"].</span>")
-	to_chat(user,"<span class='warning'>The scrambling signal can be now tracked by GPS.</span>")
+	to_chat(user,span_notice("You toggle [src] [active ? "on":"off"]."))
+	to_chat(user,span_warning("The scrambling signal can be now tracked by GPS."))
 	START_PROCESSING(SSobj,src)
 
 /obj/machinery/shuttle_scrambler/interact(mob/user)
@@ -179,7 +180,7 @@
 
 /obj/machinery/shuttle_scrambler/proc/dump_loot(mob/user)
 	new /obj/item/holochip(drop_location(), credits_stored)
-	to_chat(user,"<span class='notice'>You retrieve the siphoned credits!</span>")
+	to_chat(user,span_notice("You retrieve the siphoned credits!"))
 	credits_stored = 0
 
 /obj/machinery/shuttle_scrambler/proc/send_notification()
@@ -246,7 +247,7 @@
 
 /obj/machinery/loot_locator/interact(mob/user)
 	if(world.time <= next_use)
-		to_chat(user,"<span class='warning'>[src] is recharging.</span>")
+		to_chat(user,span_warning("[src] is recharging."))
 		return
 	next_use = world.time + cooldown
 	var/atom/movable/AM = find_random_loot()
@@ -280,14 +281,12 @@
 
 /obj/machinery/piratepad/multitool_act(mob/living/user, obj/item/multitool/I)
 	if (istype(I))
-		to_chat(user, "<span class='notice'>You register [src] in [I]s buffer.</span>")
+		to_chat(user, span_notice("You register [src] in [I]s buffer."))
 		I.buffer = src
 		return TRUE
 
 /obj/machinery/computer/piratepad_control
 	name = "cargo hold control terminal"
-	ui_x = 600
-	ui_y = 230
 	var/status_report = "Ready for delivery."
 	var/obj/machinery/piratepad/pad
 	var/warmup_time = 100
@@ -303,7 +302,7 @@
 
 /obj/machinery/computer/piratepad_control/multitool_act(mob/living/user, obj/item/multitool/I)
 	if (istype(I) && istype(I.buffer,/obj/machinery/piratepad))
-		to_chat(user, "<span class='notice'>You link [src] with [I.buffer] in [I] buffer.</span>")
+		to_chat(user, span_notice("You link [src] with [I.buffer] in [I] buffer."))
 		pad = I.buffer
 		return TRUE
 
@@ -317,11 +316,10 @@
 	else
 		pad = locate() in range(4,src)
 
-/obj/machinery/computer/piratepad_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/piratepad_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "CargoHoldTerminal", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "CargoHoldTerminal", name)
 		ui.open()
 
 /obj/machinery/computer/piratepad_control/ui_data(mob/user)
@@ -359,7 +357,7 @@
 	for(var/atom/movable/AM in get_turf(pad))
 		if(AM == pad)
 			continue
-		export_item_and_contents(AM, EXPORT_PIRATE | EXPORT_CARGO | EXPORT_CONTRABAND | EXPORT_EMAG, apply_elastic = FALSE, dry_run = TRUE, external_report = ex)
+		export_item_and_contents(AM, EXPORT_PIRATE | EXPORT_CARGO | EXPORT_CONTRABAND | EXPORT_EMAG, apply_limit = FALSE, dry_run = TRUE, external_report = ex)
 
 	for(var/datum/export/E in ex.total_amount)
 		status_report += E.total_printout(ex,notes = FALSE)
@@ -378,7 +376,7 @@
 	for(var/atom/movable/AM in get_turf(pad))
 		if(AM == pad)
 			continue
-		export_item_and_contents(AM, EXPORT_PIRATE | EXPORT_CARGO | EXPORT_CONTRABAND | EXPORT_EMAG, apply_elastic = FALSE, delete_unsold = FALSE, external_report = ex)
+		export_item_and_contents(AM, EXPORT_PIRATE | EXPORT_CARGO | EXPORT_CONTRABAND | EXPORT_EMAG, apply_limit = FALSE, delete_unsold = FALSE, external_report = ex)
 
 	status_report = "Sold: "
 	var/value = 0
@@ -404,7 +402,7 @@
 	if(!value)
 		status_report += "Nothing"
 
-	pad.visible_message("<span class='notice'>[pad] activates!</span>")
+	pad.visible_message(span_notice("[pad] activates!"))
 	flick(pad.sending_state,pad)
 	pad.icon_state = pad.idle_state
 	sending = FALSE
@@ -414,7 +412,7 @@
 		return
 	sending = TRUE
 	status_report = "Sending..."
-	pad.visible_message("<span class='notice'>[pad] starts charging up.</span>")
+	pad.visible_message(span_notice("[pad] starts charging up."))
 	pad.icon_state = pad.warmup_state
 	sending_timer = addtimer(CALLBACK(src,.proc/send),warmup_time, TIMER_STOPPABLE)
 

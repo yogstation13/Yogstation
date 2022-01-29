@@ -1,12 +1,15 @@
 {
+	"eslint.nodePath": "tgui/.yarn/sdks",
 	"eslint.workingDirectories": [
 		"./tgui"
 	],
-
-	"workbench.editorAssociations": [
-		{
-			"filenamePattern": "*.dmi",
-			"viewType": "imagePreview.previewEditor"
-		}
-	]
+	"search.exclude": {
+		"tgui/.yarn": true,
+		"tgui/.pnp.*": true
+	},
+	"workbench.editorAssociations": {
+		"*.dmi": "imagePreview.previewEditor"
+	},
+	"files.eol": "\n",
+	"gitlens.advanced.blame.customArguments": ["-w"]
 }

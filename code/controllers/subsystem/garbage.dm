@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(garbage)
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 	init_order = INIT_ORDER_GARBAGE
 
-	var/list/collection_timeout = list(0, 2 MINUTES, 10 SECONDS)	// deciseconds to wait before moving something up in the queue to the next level
+	var/list/collection_timeout = list(2 MINUTES, 10 SECONDS)	// deciseconds to wait before moving something up in the queue to the next level
 
 	//Stat tracking
 	var/delslasttick = 0			// number of del()'s we've done this tick
@@ -57,7 +57,8 @@ SUBSYSTEM_DEF(garbage)
 		msg += "TGR:[round((totalgcs/(totaldels+totalgcs))*100, 0.01)]%"
 	msg += " P:[pass_counts.Join(",")]"
 	msg += "|F:[fail_counts.Join(",")]"
-	return ..(msg)
+
+	return ..()
 
 /datum/controller/subsystem/garbage/Shutdown()
 	//Adds the del() log to the qdel log file
@@ -161,7 +162,8 @@ SUBSYSTEM_DEF(garbage)
 				testing("GC: -- \ref[src] | [type] was unable to be GC'd --")
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
-				HardDelete(D)
+				if (!CONFIG_GET(flag/disable_gc_failure_hard_deletes))
+					HardDelete(D)
 				if (MC_TICK_CHECK)
 					return
 				continue
@@ -199,8 +201,8 @@ SUBSYSTEM_DEF(garbage)
 	++totaldels
 	var/type = D.type
 	var/refID = "\ref[D]"
-
-	del(D)
+	if (!CONFIG_GET(flag/disable_all_hard_deletes))
+		del(D)
 
 	tick = (TICK_USAGE-tick+((world.time-ticktime)/world.tick_lag*100))
 
@@ -329,7 +331,7 @@ SUBSYSTEM_DEF(garbage)
 #ifdef TESTING
 
 /datum/verb/find_refs()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Find References"
 	set src in world
 
@@ -381,7 +383,7 @@ SUBSYSTEM_DEF(garbage)
 	SSgarbage.next_fire = world.time + world.tick_lag
 
 /datum/verb/qdel_then_find_references()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "qdel() then Find References"
 	set src in world
 
@@ -390,7 +392,7 @@ SUBSYSTEM_DEF(garbage)
 		find_references(TRUE)
 
 /datum/verb/qdel_then_if_fail_find_references()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "qdel() then Find References if GC failure"
 	set src in world
 

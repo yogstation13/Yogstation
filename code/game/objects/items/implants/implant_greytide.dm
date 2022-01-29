@@ -17,26 +17,26 @@
 /obj/item/implant/greytide/implant(mob/source, mob/user)
 
 	if(!source.mind)
-		to_chat(user.mind, "<span class='notice'>[source] doesn't posses the mental capabilities to be a greytider.</span>")	//"doesn't posses the mental capabilities to be a greytider"
+		to_chat(user.mind, span_notice("[source] doesn't posses the mental capabilities to be a greytider."))	//"doesn't posses the mental capabilities to be a greytider"
 		return FALSE
 
 	var/mob/living/carbon/target = source
 	var/mob/living/carbon/holder = user
 
 	if(target == holder)
-		to_chat(holder, "<span class='notice'>You can't implant yourself!</span>")
+		to_chat(holder, span_notice("You can't implant yourself!"))
 		return FALSE
 
 	var/obj/item/implant/greytide/imp = locate(src.type) in source
 	if(imp)
-		to_chat(holder, "<span class='warning'>[target] is already a slave!</span>")
+		to_chat(holder, span_warning("[target] is already a slave!"))
 		return FALSE
 
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-		to_chat(holder, "<span class='warning'>[target] seems to resist the implant!</span>")
+		to_chat(holder, span_warning("[target] seems to resist the implant!"))
 		return FALSE
 
-	to_chat(target, "<span class='userdanger'><FONT size = 3>You feel a strong urge to break everything.  You feel a strong loyalty to [holder.real_name] and your assistant brothers. You want to break into everything, but harming others isnt something you will do.</FONT></span>")
+	to_chat(target, span_userdanger("<FONT size = 3>You feel a strong urge to break everything.  You feel a strong loyalty to [holder.real_name] and your assistant brothers. You want to break into everything, but harming others isnt something you will do.</FONT>"))
 
 	var/datum/antagonist/greytide/GT = new
 	target.mind.add_antag_datum(GT)
@@ -57,9 +57,9 @@
 		return
 	if(source.mind && source.mind.has_antag_datum(/datum/antagonist/greytide))
 		source.mind.remove_antag_datum(/datum/antagonist/greytide)
-		to_chat(source,"<span class='userdanger'>You feel your free will come back to you! You no longer wish to break everything!</span>")
+		to_chat(source,span_userdanger("You feel your free will come back to you! You no longer wish to break everything!"))
 		if(!source.mind.has_antag_datum(/datum/antagonist))
-			to_chat(source,"<span class='notice'>You are no longer an antagonist.</span>")
+			to_chat(source,span_notice("You are no longer an antagonist."))
 	REMOVE_TRAIT(source, TRAIT_PACIFISM, "Greytide Implant")
 
 /obj/item/implanter/greytide

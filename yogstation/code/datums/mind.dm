@@ -30,7 +30,7 @@
 				log_admin("[key_name(usr)] has vampired [current].")
 				add_vampire(current)
 			else
-				to_chat(usr, "<span class='warning'>[current] is already a vampire!</span>")
+				to_chat(usr, span_warning("[current] is already a vampire!"))
 		if("full")
 			message_admins("[key_name_admin(usr)] has full-vampired [current].")
 			log_admin("[key_name(usr)] has full-vampired [current].")

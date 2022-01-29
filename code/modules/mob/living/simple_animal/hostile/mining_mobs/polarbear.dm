@@ -35,7 +35,7 @@
 	. = ..()
 	if(health <= maxHealth*0.5)
 		if(!aggressive_message_said && target)
-			visible_message("<span class='danger'>The [name] gets an enraged look at [target]!</span>")
+			visible_message(span_danger("The [name] gets an enraged look at [target]!"))
 			aggressive_message_said = TRUE
 		rapid_melee = 2
 	else

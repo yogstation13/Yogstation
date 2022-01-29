@@ -20,12 +20,12 @@
 
 /datum/action/innate/darkspawn/creep/Activate()
 	var/mob/living/L = owner
-	owner.visible_message("<span class='warning'>Velvety shadows coalesce around [owner]!</span>", "<span class='velvet'><b>odeahz</b><br>You begin using Psi to shield yourself from lightburn.</span>")
+	owner.visible_message(span_warning("Velvety shadows coalesce around [owner]!"), span_velvet("<b>odeahz</b><br>You begin using Psi to shield yourself from lightburn."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_victim.ogg', 50, TRUE)
 	L.apply_status_effect(STATUS_EFFECT_CREEP, darkspawn)
 
 /datum/action/innate/darkspawn/creep/Deactivate()
 	var/mob/living/L = owner
-	to_chat(owner, "<span class='velvet'>You release your grip on the shadows.</span>")
+	to_chat(owner, span_velvet("You release your grip on the shadows."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	L.remove_status_effect(STATUS_EFFECT_CREEP)

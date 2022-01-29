@@ -57,7 +57,7 @@
 	throw_at(thrownby, throw_range+3, throw_speed, null)
 	..()
 
-/obj/item/toy/boomerang/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
+/obj/item/toy/boomerang/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
 	if(iscarbon(thrower))
 		var/mob/living/carbon/C = thrower
 		C.throw_mode_on()
@@ -91,7 +91,7 @@
 	icon_state = "toyglock"
 	item_state = "toyglock"
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=10, MAT_GLASS=10)
+	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 
 /obj/item/toy/gun/toyflaregun
@@ -101,5 +101,5 @@
 	icon_state = "toyflaregun"
 	item_state = "toyflaregun"
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=10, MAT_GLASS=10)
+	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")

@@ -48,11 +48,11 @@
 /client/proc/subtlemessage_faction() // Thanks GenericDM very cool
 	set name = "SM to Faction"
 	set desc = "Allows you to send a mass SM to every member of a particular faction or antagonist type."
-	set category = "Special Verbs"
-	
+	set category = "Admin.Player Interaction"
+
 	var/list/choices = list() //This list includes both factions in the "mob.factions" sense
 	// and also factions as in, types of /datum/antagonist/
-	
+
 	//First, lets generate a list of possible factions for this admin to choose from
 	for(var/mob/living/player in GLOB.player_list)
 		if(player.faction)
@@ -76,14 +76,14 @@
 	message_admins("SubtleMessage Faction: [key_name_admin(src)] -> Faction [chosen] : [msg]")
 	var/text // The real HTML-and-text we will send to the SM'd.
 	if(chosen == "Clock Cultist")
-		text = "<span class='large_brass'>You hear a booming voice in your head... </span><span class='heavy_brass'>[msg]</span>"
+		text = "[span_large_brass("You hear a booming voice in your head... ")][span_heavy_brass("[msg]")]"
 	else if(chosen == "Cultist")
-		text = "<span class='cultlarge'>You hear a booming voice in your head... </span><span class='cult'>[msg]</span>"
+		text = "[span_cultlarge("You hear a booming voice in your head... ")][span_cult("[msg]")]"
 	else if(chosen == "swarmer")
 		text = "<i>You are receiving a message from the masters... <b>[msg]</i></b>"
 	else
 		text = "<i>You hear a booming voice in your head... <b>[msg]</b></i>"
-	
+
 	for(var/mob/living/player in GLOB.player_list)
 		var/done = FALSE
 		if(player.faction)
@@ -100,3 +100,38 @@
 				if("[antagdatum]" == chosen)
 					to_chat(player,text)
 					break
+
+/datum/admins/proc/makeInfiltratorTeam()
+	var/datum/game_mode/infiltration/temp = new
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for a infiltration team being sent in?", ROLE_INFILTRATOR, temp)
+	var/list/mob/dead/observer/chosen = list()
+	var/mob/dead/observer/theghost = null
+
+	if(LAZYLEN(candidates))
+		var/numagents = 5
+		var/agentcount = 0
+
+		for(var/i = 0, i<numagents,i++)
+			shuffle_inplace(candidates) //More shuffles means more randoms
+			for(var/mob/j in candidates)
+				if(!j || !j.client)
+					candidates.Remove(j)
+					continue
+
+				theghost = j
+				candidates.Remove(theghost)
+				chosen += theghost
+				agentcount++
+				break
+		//Making sure we have atleast 3 Nuke agents, because less than that is kinda bad
+		if(agentcount < 3)
+			return FALSE
+
+		//Let's find the spawn locations
+		var/datum/team/infiltrator/TI = new/datum/team/infiltrator/
+		for(var/mob/c in chosen)
+			var/mob/living/carbon/human/new_character=makeBody(c)
+			new_character.mind.add_antag_datum(/datum/antagonist/infiltrator, TI)
+		TI.update_objectives()
+		return TRUE
+	return FALSE

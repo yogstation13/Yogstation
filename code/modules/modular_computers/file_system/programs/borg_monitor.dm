@@ -1,16 +1,17 @@
 /datum/computer_file/program/borg_monitor
 	filename = "cyborgmonitor"
 	filedesc = "Cyborg Remote Monitoring"
+	category = PROGRAM_CATEGORY_ROBO
 	ui_header = "borg_mon.gif"
 	program_icon_state = "generic"
 	extended_desc = "This program allows for remote monitoring of station cyborgs."
 	requires_ntnet = TRUE
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN
 	transfer_access = ACCESS_ROBOTICS
 	network_destination = "cyborg remote monitoring"
 	size = 5
 	tgui_id = "NtosCyborgRemoteMonitor"
-	ui_x = 600
-	ui_y = 800
+	program_icon = "project-diagram"
 
 /datum/computer_file/program/borg_monitor/ui_data(mob/user)
 	var/list/data = get_header_data()
@@ -60,10 +61,10 @@
 			var/message = stripped_input(usr, message = "Enter message to be sent to remote cyborg.", title = "Send Message")
 			if(!message)
 				return
-			to_chat(R, "<br><br><span class='notice'>Message from [ID] -- \"[message]\"</span><br>")
+			to_chat(R, "<br><br>[span_notice("Message from [ID] -- \"[message]\"")]<br>")
 			SEND_SOUND(R, 'sound/machines/twobeep_high.ogg')
 			if(R.connected_ai)
-				to_chat(R.connected_ai, "<br><br><span class='notice'>Message from [ID] to [R] -- \"[message]\"</span><br>")
+				to_chat(R.connected_ai, "<br><br>[span_notice("Message from [ID] to [R] -- \"[message]\"")]<br>")
 				SEND_SOUND(R.connected_ai, 'sound/machines/twobeep_high.ogg')
 			usr.log_talk(message, LOG_PDA, tag="Cyborg Monitor Program: ID name \"[ID]\" to [R]")
 
@@ -85,6 +86,7 @@
 /datum/computer_file/program/borg_monitor/syndicate
 	filename = "scyborgmonitor"
 	filedesc = "Mission-Specific Cyborg Remote Monitoring"
+	category = PROGRAM_CATEGORY_ROBO
 	ui_header = "borg_mon.gif"
 	program_icon_state = "generic"
 	extended_desc = "This program allows for remote monitoring of mission-assigned cyborgs."

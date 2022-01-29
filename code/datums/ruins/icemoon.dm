@@ -7,6 +7,12 @@
 
 // above ground only
 
+/datum/map_template/ruin/icemoon/transitshuttle
+	name = "Transit Shuttle"
+	id = "transitshuttle"
+	description = "How did that get here?"
+	suffix = "icemoon_surface_shuttle_transit.dmm"
+
 /datum/map_template/ruin/icemoon/lust
 	name = "Ruin of Lust"
 	id = "lust"
@@ -24,6 +30,12 @@
 	id = "hotsprings"
 	description = "Just relax and take a dip, nothing will go wrong, I swear!"
 	suffix = "icemoon_surface_hotsprings.dmm"
+
+/datum/map_template/ruin/icemoon/icemoon_underground_abandoned_village
+	name = "Inn"
+	id = "inn"
+	description = "A small wooden inn with food, drinks, and a place to rest, all maintained by the innkeeper."
+	suffix = "icemoon_surface_inn.dmm"
 
 // above and below ground together
 
@@ -82,3 +94,9 @@
 	id = "bathhouse"
 	description = "A taste of paradise, locked in the hell of the Ice Moon."
 	suffix = "icemoon_underground_bathhouse.dmm"
+
+/datum/map_template/ruin/icemoon/underground/wampacave
+	name = "Wampa Cave"
+	id = "wampacave"
+	description = "A cave inhabited by a strange monster, with an unfortunate hero..."
+	suffix = "icemoon_underground_wampacave.dmm"

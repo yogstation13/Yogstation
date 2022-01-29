@@ -30,7 +30,7 @@
 		if(!moving)
 			I.play_tool_sound(src)
 			if(contents.len)
-				user.visible_message("[user] empties \the [src].", "<span class='notice'>You empty \the [src].</span>")
+				user.visible_message("[user] empties \the [src].", span_notice("You empty \the [src]."))
 				empty_pod()
 			else
 				deconstruct(TRUE, user)
@@ -43,7 +43,7 @@
 		if(user)
 			location = user.loc
 			add_fingerprint(user)
-			user.visible_message("[user] removes [src].", "<span class='notice'>You remove [src].</span>")
+			user.visible_message("[user] removes [src].", span_notice("You remove [src]."))
 		var/obj/structure/c_transit_tube_pod/R = new/obj/structure/c_transit_tube_pod(location)
 		transfer_fingerprints_to(R)
 		R.setDir(dir)
@@ -54,10 +54,17 @@
 	..()
 	if(!QDELETED(src))
 		empty_pod()
+		contents_explosion(severity, target)
 
 /obj/structure/transit_tube_pod/contents_explosion(severity, target)
-	for(var/atom/movable/AM in contents)
-		AM.ex_act(severity, target)
+	for(var/thing in contents)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += thing
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += thing
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += thing
 
 /obj/structure/transit_tube_pod/singularity_pull(S, current_size)
 	..()
@@ -71,9 +78,9 @@
 	if(!moving)
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
-		to_chat(user, "<span class='notice'>You start trying to escape from the pod...</span>")
-		if(do_after(user, 600, target = src))
-			to_chat(user, "<span class='notice'>You manage to open the pod.</span>")
+		to_chat(user, span_notice("You start trying to escape from the pod..."))
+		if(do_after(user, 1 MINUTES, target = src))
+			to_chat(user, span_notice("You manage to open the pod."))
 			empty_pod()
 
 /obj/structure/transit_tube_pod/proc/empty_pod(atom/location)

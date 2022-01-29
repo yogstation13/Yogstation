@@ -13,7 +13,7 @@
 	if(!SSdbcore.Connect())
 		return
 
-	var/serverip = "[world.internet_address]"
+	var/serverip = "[world.internet_address]" || "0"
 
 	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery({"INSERT INTO `[format_table_name("connection_log")]` (`id`, `datetime`, `server_ip`, `server_port`, `round_id`, `ckey`, `ip`, `computerid`)
 	VALUES(null, Now(), INET_ATON(:serverip), :port, :round_id, :ckey, INET_ATON(:address), :computer_id)"},

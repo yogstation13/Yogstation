@@ -42,7 +42,9 @@
 
 #define STATUS_EFFECT_CREEP /datum/status_effect/creep //Provides immunity to lightburn for darkspawn, does nothing to anyone else //Yogs
 
- #define STATUS_EFFECT_TIME_DILATION /datum/status_effect/time_dilation //Provides immunity to slowdown and halves click-delay/action times //Yogs
+#define STATUS_EFFECT_TIME_DILATION /datum/status_effect/time_dilation //Provides immunity to slowdown and halves click-delay/action times //Yogs
+
+#define STATUS_EFFECT_DETERMINED /datum/status_effect/determined //currently in a combat high from being seriously wounded
 
 /////////////
 // DEBUFFS //
@@ -82,6 +84,8 @@
 
 #define STATUS_EFFECT_BLOODLETTING /datum/status_effect/saw_bleed/bloodletting //same but smaller
 
+#define STATUS_EFFECT_EXPOSED /datum/status_effect/exposed //increases incoming damage
+
 #define STATUS_EFFECT_NECROPOLIS_CURSE /datum/status_effect/necropolis_curse
 #define STATUS_EFFECT_HIVEMIND_CURSE /datum/status_effect/necropolis_curse/hivemind
 #define CURSE_BLINDING	1 //makes the edges of the target's screen obscured
@@ -108,6 +112,16 @@
 #define STATUS_EFFECT_AMOK /datum/status_effect/amok //Makes the target automatically strike out at adjecent non-heretics.
 
 #define STATUS_EFFECT_CLOUDSTRUCK /datum/status_effect/cloudstruck //blinds and applies an overlay.
+
+#define STATUS_EFFECT_LIMP /datum/status_effect/limp //For when you have a busted leg (or two!) and want additional slowdown when walking on that leg
+
+#define STATUS_EFFECT_HERETIC_SACRIFICE /datum/status_effect/heretic_sacrifice //controls heretic sacrifice events
+
+#define STATUS_EFFECT_HERETIC_SACRIFICE_ASH /datum/status_effect/heretic_sacrifice/ash
+
+#define STATUS_EFFECT_HERETIC_SACRIFICE_FLESH /datum/status_effect/heretic_sacrifice/flesh
+
+#define STATUS_EFFECT_HERETIC_SACRIFICE_RUST /datum/status_effect/heretic_sacrifice/rust
 
 /////////////
 // NEUTRAL //

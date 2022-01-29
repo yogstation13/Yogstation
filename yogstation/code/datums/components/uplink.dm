@@ -18,4 +18,4 @@
     if(canBuy)
         return ..()
 
-    to_chat(user, "<span class='warning'>The Syndicate lacks resources to provide you with this item.</span>")
+    to_chat(user, span_warning("The Syndicate lacks resources to provide you with this item."))

@@ -20,7 +20,7 @@ In all, this is a lot like the monkey code. /N
 
 	switch(M.a_intent)
 
-		if ("help")
+		if(INTENT_HELP)
 			set_resting(FALSE)
 			AdjustStun(-60)
 			AdjustKnockdown(-60)
@@ -28,22 +28,22 @@ In all, this is a lot like the monkey code. /N
 			AdjustParalyzed(-60)
 			AdjustUnconscious(-60)
 			AdjustSleeping(-100)
-			visible_message("<span class='notice'>[M.name] nuzzles [src] trying to wake [p_them()] up!</span>")
+			visible_message(span_notice("[M.name] nuzzles [src] trying to wake [p_them()] up!"))
 
-		if ("grab")
+		if(INTENT_GRAB)
 			grabbedby(M)
 
 		else
 			if(health > 0)
 				M.do_attack_animation(src, ATTACK_EFFECT_BITE)
 				playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
-				visible_message("<span class='danger'>[M.name] bites [src]!</span>", \
-						"<span class='userdanger'>[M.name] bites [src]!</span>", null, COMBAT_MESSAGE_RANGE)
+				visible_message(span_danger("[M.name] bites [src]!"), \
+						span_userdanger("[M.name] bites [src]!"), null, COMBAT_MESSAGE_RANGE)
 				adjustBruteLoss(1)
 				log_combat(M, src, "attacked")
 				updatehealth()
 			else
-				to_chat(M, "<span class='warning'>[name] is too injured for that.</span>")
+				to_chat(M, span_warning("[name] is too injured for that."))
 
 
 /mob/living/carbon/alien/attack_larva(mob/living/carbon/alien/larva/L)
@@ -55,14 +55,14 @@ In all, this is a lot like the monkey code. /N
 		return 0
 
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			help_shake_act(M)
-		if("grab")
+		if(INTENT_GRAB)
 			grabbedby(M)
-		if ("harm")
+		if (INTENT_HARM)
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			return 1
-		if("disarm")
+		if(INTENT_DISARM)
 			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 			return 1
 	return 0

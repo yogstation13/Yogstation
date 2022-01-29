@@ -10,7 +10,7 @@
 	space_chance = 100
 	sentence_chance = 0
 	default_priority = 60
-
+	sing_verb = "tones"
 	icon_state = "swarmer"
 
 	// since various flats and sharps are the same,

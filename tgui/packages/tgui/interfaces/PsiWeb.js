@@ -5,7 +5,7 @@ import { Window } from '../layouts';
 export const PsiWeb = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window>
+    <Window width={900} height={480}>
       <Window.Content>
         <Section title="Psi Web">
           <LabeledList>

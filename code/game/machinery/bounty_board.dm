@@ -9,8 +9,6 @@ GLOBAL_LIST_EMPTY(request_list)
 	desc = "Alows you to place requests for goods and services across the station, as well as pay those who actually did it."
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "request_kiosk"
-	ui_x = 550
-	ui_y = 600
 	light_color = LIGHT_COLOR_GREEN
 	///Reference to the currently logged in user.
 	var/datum/bank_account/current_user
@@ -50,23 +48,23 @@ GLOBAL_LIST_EMPTY(request_list)
 		to_chat(user, "There's no account assigned with this ID.")
 		return TRUE
 	if(I.tool_behaviour == TOOL_WRENCH)
-		to_chat(user, "<span class='notice'>You start [anchored ? "un" : ""]securing [name]...</span>")
+		to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [name]..."))
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 30))
 			playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 			if(stat & BROKEN)
-				to_chat(user, "<span class='warning'>The broken remains of [src] fall on the ground.</span>")
+				to_chat(user, span_warning("The broken remains of [src] fall on the ground."))
 				new /obj/item/stack/sheet/metal(loc, 3)
 				new /obj/item/shard(loc)
 			else
-				to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]secure [name].</span>")
+				to_chat(user, span_notice("You [anchored ? "un" : ""]secure [name]."))
 				new /obj/item/wallframe/bounty_board(loc)
 			qdel(src)
 
-/obj/machinery/bounty_board/ui_interact(mob/user, ui_key, datum/tgui/ui, force_open, datum/tgui/master_ui, datum/ui_state/state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/bounty_board/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "RequestKiosk", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "RequestKiosk", name)
 		ui.open()
 
 /obj/machinery/bounty_board/ui_data(mob/user)
@@ -166,7 +164,7 @@ GLOBAL_LIST_EMPTY(request_list)
 	name = "disassembled bounty board"
 	desc = "Used to build a new bounty board, just secure to the wall."
 	icon_state = "request_kiosk"
-	materials = list(MAT_METAL = 14000, MAT_GLASS = 8000)
+	materials = list(/datum/material/iron = 14000, /datum/material/glass = 8000)
 	result_path = /obj/machinery/bounty_board
 
 /**
