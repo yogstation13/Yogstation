@@ -1,5 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Emitters require capacitors now, they increase shots before recharging"
-  - tweak: "made variables in emitter more descriptive"
