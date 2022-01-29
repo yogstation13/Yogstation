@@ -122,7 +122,7 @@
 /**
   * Automatically fixes the target and smash network
   *
-  * Fixes any issues caused y late Generate() calls or exchanging clients
+  * Fixes any issues caused by late Generate() calls or exchanging clients
   */
 /datum/reality_smash_tracker/proc/ReworkNetwork()
 	listclearnulls(smashes)

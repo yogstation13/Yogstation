@@ -2,8 +2,6 @@
 	name = "Ashen passage"
 	desc = "Grants a short period of incorporeality, allowing passage through walls and other obstacles."
 	school = "transmutation"
-	invocation = "PASSAGE OF ASH"
-	invocation_type = "whisper"
 	charge_max = 150
 	range = -1
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -55,7 +53,6 @@
 
 	if(!proximity_flag || target == user)
 		return
-	playsound(user, 'sound/items/welder.ogg', 75, TRUE)
 	if(ishuman(target))
 		var/mob/living/carbon/human/tar = target
 		if(tar.anti_magic_check())
@@ -79,6 +76,7 @@
 		if(EK.on_mansus_grasp(target, user, proximity_flag, click_parameters))
 			use_charge = TRUE
 	if(use_charge)
+		playsound(user, 'sound/items/welder.ogg', 75, TRUE)
 		return ..()
 
 /obj/effect/proc_holder/spell/aoe_turf/rust_conversion
@@ -123,7 +121,7 @@
 
 /obj/item/melee/touch_attack/blood_siphon
 	name = "Blood Siphon"
-	desc = "A sinister looking aura that distorts the flow of reality around it. It looks... <i>hungry</i>..."
+	desc = "A sinister looking aura that distorts the flow of reality around it. It looks <i>hungry</i>..."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	catchphrase = "REGENERATE ME"
