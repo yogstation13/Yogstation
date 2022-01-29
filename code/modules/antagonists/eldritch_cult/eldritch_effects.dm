@@ -151,7 +151,8 @@
 		//we also dont want them close to each other, at least 1 tile of seperation
 		var/obj/effect/reality_smash/current_fracture = locate() in range(1, chosen_location)
 		var/obj/effect/broken_illusion/current_burnt_fracture = locate() in range(1, chosen_location)
-		if(current_fracture || current_burnt_fracture) //we dont want to spawn
+		var/obj/structure/window/windowsxp = locate() in range(1, chosen_location)
+		if(current_fracture || current_burnt_fracture || windowsxp.fulltile) //we dont want to spawn
 			continue
 		new /obj/effect/reality_smash(chosen_location)
 	ReworkNetwork()
