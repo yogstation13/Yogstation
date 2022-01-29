@@ -3,12 +3,10 @@
 	name = "Mutation"
 	desc = "A poorly understood genome that causes the holder's muscles to expand, inhibit speech and gives the person a bad skin condition."
 	quality = POSITIVE
-	locked = TRUE
 	difficulty = 16
 	text_gain_indication = span_notice("Your muscles hurt!")
-	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 25
-	instability = 65
+	instability = 50
 	class = MUT_OTHER
 	locked = TRUE
 
@@ -55,17 +53,20 @@
 	get_chance = 10
 	lowest_value = 256 * 14
 	text_gain_indication = span_notice("You suddenly feel very angry.")
-	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 25
-	locked = FALSE
+
+/datum/mutation/human/hulk/genetics_hulk/on_losing(mob/living/carbon/human/owner)
+	. = ..()
+	dna.remove_mutation(ACTIVE_HULK)
+	return
 
 /datum/mutation/human/hulk/genetics_hulk/active_hulk
 	name = "Hulk State"
+	desc = "The single most angry genome ever seen. Mutating this will incite a one-time immediate Hulkformation in the mutatee."
 	quality = POSITIVE
+	instability = 30
 	class = MUT_OTHER
-	locked = TRUE
 	text_gain_indication = span_notice("Your muscles hurt!")
-	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 1
 	var/health_based = 0
 	power = /obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
@@ -94,11 +95,12 @@
 	owner.physiology.stamina_mod = 0.3
 	owner.update_body()
 
-/datum/mutation/human/hulk/genetics_hulk/active_hulk/on_attack_hand(mob/living/carbon/human/owner, atom/target)
-	if(prob(3))
-		owner.Jitter(10)
-	owner.adjustStaminaLoss(-0.5)
-	return target.attack_hulk(owner)
+/datum/mutation/human/hulk/genetics_hulk/active_hulk/on_attack_hand(atom/target, proximity)
+	if(..())
+		if(prob(3))
+			owner.Jitter(10)
+		owner.adjustStaminaLoss(-0.5)
+		return
 
 /datum/mutation/human/hulk/genetics_hulk/active_hulk/on_life()
 	owner.adjustStaminaLoss(0.9)
@@ -113,10 +115,3 @@
 	owner.dna.species.no_equip.Remove(SLOT_WEAR_SUIT, SLOT_W_UNIFORM)
 	owner.physiology.stamina_mod = initial(owner.physiology.stamina_mod)
 	owner.update_body_parts()
-
-// /datum/mutation/human/hulk/genetics_hulk/active_hulk/proc/handle_speech(original_message, wrapped_message)
-// 	var/message = wrapped_message[1]
-// 	if(message)
-// 		message = "[replacetext(message, ".", "!")]!!"
-// 	wrapped_message[1] = message
-// 	return COMPONENT_UPPERCASE_SPEECH
