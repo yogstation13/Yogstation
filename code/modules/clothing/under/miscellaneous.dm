@@ -614,8 +614,8 @@
 	icon_state = "janimaid"
 	item_state = "janimaid"
 	item_color = "janimaid"
-	body_parts_covered = CHEST|GROIN|FEET
-	fitted = FEMALE_UNIFORM_TOP
+	body_parts_covered = CHEST|GROIN|LEGS
+	fitted = FEMALE_UNIFORM_TOP 
 	can_adjust = FALSE
 
 /obj/item/clothing/under/plaid_skirt
