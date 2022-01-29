@@ -21,6 +21,7 @@
 	var/spreadChance = 0 //the percentual chance of an ore spreading to the neighbouring tiles
 	var/scan_state = "" //Holder for the image we display when we're pinged by a mining scanner
 	var/defer_change = FALSE
+	var/hardness = 0 //how hard the material is, we'll have to have more powerful stuff if we want to blast harder materials.
 
 /turf/closed/mineral/Initialize()
 	if (!canSmoothWith)
@@ -67,7 +68,9 @@
 	else
 		return attack_hand(user)
 
-/turf/closed/mineral/proc/gets_drilled()
+/turf/closed/mineral/proc/gets_drilled(mob/user, triggered_by_explosion = 0, power = 0)
+	if(power < hardness)
+		return FALSE
 	if (mineralType && (mineralAmt > 0))
 		new mineralType(src, mineralAmt)
 		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
@@ -79,6 +82,7 @@
 	ScrapeAway(null, flags)
 	addtimer(CALLBACK(src, .proc/AfterChange), 1, TIMER_UNIQUE)
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1) //beautiful destruction
+	return TRUE
 
 /turf/closed/mineral/attack_animal(mob/living/simple_animal/user)
 	if((user.environment_smash & ENVIRONMENT_SMASH_WALLS) || (user.environment_smash & ENVIRONMENT_SMASH_RWALLS))
@@ -116,12 +120,12 @@
 	switch(severity)
 		if(3)
 			if (prob(75))
-				gets_drilled(null, 1)
+				gets_drilled(null, 1,1)
 		if(2)
 			if (prob(90))
-				gets_drilled(null, 1)
+				gets_drilled(null, 1,1)
 		if(1)
-			gets_drilled(null, 1)
+			gets_drilled(null, 1,1)
 	return
 
 /turf/closed/mineral/Spread(turf/T)
@@ -153,7 +157,7 @@
 
 		if(T && ismineralturf(T))
 			var/turf/closed/mineral/M = T
-			M.mineralAmt = rand(1, 5)
+			M.mineralAmt = rand(1, 5) + (2 * hardness)
 			M.environment_type = src.environment_type
 			M.turf_type = src.turf_type
 			M.baseturfs = src.baseturfs
@@ -243,6 +247,16 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
+/turf/closed/mineral/random/volcanic/hard
+	name = "hardened basalt"
+	icon_state = "rock_hard"
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 1
+
+	mineralSpawnChanceList = list(
+		/turf/closed/mineral/uranium/volcanic/hard = 5, /turf/closed/mineral/diamond/volcanic/hard = 1, /turf/closed/mineral/gold/volcanic/hard = 10, /turf/closed/mineral/titanium/volcanic/hard = 11,
+		/turf/closed/mineral/silver/volcanic/hard = 12, /turf/closed/mineral/plasma/volcanic/hard = 20, /turf/closed/mineral/iron/volcanic/hard = 20, /turf/closed/mineral/dilithium/volcanic/hard = 2, /turf/closed/mineral/gibtonite/volcanic/hard = 4, /turf/closed/mineral/bscrystal/volcanic/hard = 2, /turf/open/floor/plating/asteroid/airless/cave/volcanic = 1)
+
 /turf/closed/mineral/random/snow
 	name = "snowy mountainside"
 	icon = 'icons/turf/mining.dmi'
@@ -308,6 +322,10 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
+/turf/closed/mineral/iron/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 1
+
 /turf/closed/mineral/iron/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_iron"
@@ -335,6 +353,10 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
+
+/turf/closed/mineral/uranium/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 1
 
 /turf/closed/mineral/uranium/ice
 	environment_type = "snow_cavern"
@@ -364,6 +386,10 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
+/turf/closed/mineral/diamond/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 1
+
 /turf/closed/mineral/diamond/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_diamond"
@@ -391,6 +417,10 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
+
+/turf/closed/mineral/gold/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 1
 
 /turf/closed/mineral/gold/ice
 	environment_type = "snow_cavern"
@@ -420,6 +450,10 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
+/turf/closed/mineral/silver/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 1
+
 /turf/closed/mineral/silver/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_silver"
@@ -448,6 +482,10 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
+/turf/closed/mineral/titanium/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 1
+
 /turf/closed/mineral/titanium/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_titanium"
@@ -475,6 +513,10 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
+
+/turf/closed/mineral/plasma/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 1
 
 /turf/closed/mineral/plasma/ice
 	environment_type = "snow_cavern"
@@ -528,6 +570,10 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
+/turf/closed/mineral/bscrystal/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 1
+
 /turf/closed/mineral/bscrystal/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_BScrystal"
@@ -554,6 +600,9 @@
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	defer_change = TRUE
+
+/turf/closed/mineral/volcanic/lava_land_surface/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
 
 /turf/closed/mineral/ash_rock //wall piece
 	name = "rock"
@@ -706,6 +755,10 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
+
+/turf/closed/mineral/gibtonite/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 1
 
 /turf/closed/mineral/gibtonite/ice
 	environment_type = "snow_cavern"

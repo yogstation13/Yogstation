@@ -173,6 +173,7 @@
 	flag = "bomb"
 	range = 3
 	log_override = TRUE
+	var/power = 0
 
 	var/pressure_decrease_active = FALSE
 	var/pressure_decrease = 0.25
@@ -214,7 +215,7 @@
 			M.projectile_strike(src, target_turf, target, kinetic_gun)
 	if(ismineralturf(target_turf))
 		var/turf/closed/mineral/M = target_turf
-		M.gets_drilled(firer)
+		M.gets_drilled(firer, 0, power)
 	var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
 	K.color = color
 
@@ -352,6 +353,14 @@
 	minebot_upgrade = TRUE
 	minebot_exclusive = TRUE
 
+//Hardness
+/obj/item/borg/upgrade/modkit/hardness
+	name = "hardness increase"
+	desc = "Increases the maximum piercing power of a kinetic accelerator when installed."
+	cost = 10
+
+/obj/item/borg/upgrade/modkit/hardness/modify_projectile(obj/item/projectile/kinetic/K)
+	K.power += modifier
 
 //AoE blasts
 /obj/item/borg/upgrade/modkit/aoe

@@ -34,6 +34,7 @@
 		new /datum/data/mining_equipment("KA Range Increase",			/obj/item/borg/upgrade/modkit/range,								1000, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA Damage Increase",			/obj/item/borg/upgrade/modkit/damage,								1000, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA Cooldown Decrease",		/obj/item/borg/upgrade/modkit/cooldown,								1000, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("KA Hardness Increase",		/obj/item/borg/upgrade/modkit/hardness,								1200, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("Shelter Capsule",				/obj/item/survivalcapsule,											400, VENDING_TOOL),
 		new /datum/data/mining_equipment("Luxury Shelter Capsule",		/obj/item/survivalcapsule/luxury,									3000, VENDING_TOOL),
