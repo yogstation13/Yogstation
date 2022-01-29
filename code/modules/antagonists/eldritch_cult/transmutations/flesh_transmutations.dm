@@ -1,4 +1,5 @@
 /datum/eldritch_transmutation/flesh_blade
+	name = "Flesh Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/blood)
 	result_atoms = list(/obj/item/melee/sickly_blade/flesh)
 	required_shit_list = "A pool of blood and a knife."
