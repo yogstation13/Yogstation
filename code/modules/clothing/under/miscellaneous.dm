@@ -616,7 +616,6 @@
 	item_color = "janimaid"
 	body_parts_covered = CHEST|GROIN 
 	fitted = FEMALE_UNIFORM_TOP
-	alternate_worn_layer = ABOVE_SHOES_LAYER
 	can_adjust = FALSE
 
 /obj/item/clothing/under/plaid_skirt
