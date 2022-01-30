@@ -614,7 +614,7 @@
 	icon_state = "janimaid"
 	item_state = "janimaid"
 	item_color = "janimaid"
-	body_parts_covered = CHEST|GROIN|LEGS
+	body_parts_covered = CHEST|GROIN 
 	fitted = FEMALE_UNIFORM_TOP
 	alternate_worn_layer = ABOVE_SHOES_LAYER
 	can_adjust = FALSE
