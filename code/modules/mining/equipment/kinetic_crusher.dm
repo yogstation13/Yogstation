@@ -425,7 +425,7 @@
 	return "mark detonation has a chance to trigger a second detonation"
 
 /obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user)
-	var/datum/status_effect/crusher_damage/C
+	. = ..()
 	if(rand(1, 100) <= bonus_value && target.stat != DEAD)
 		if((user.dir & backstab_dir) && (L.dir & backstab_dir))
 			C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
