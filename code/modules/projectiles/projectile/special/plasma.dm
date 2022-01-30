@@ -18,8 +18,8 @@
 		var/hardness = M.hardness //cache hardness because when we use it the turf will already be scraped
 		if(M.gets_drilled(firer,0,1))
 			if(mine_range)
-				mine_range -= 1 + hardness
-				range++
+				mine_range--
+				range += 1 - hardness
 			if(range > 0)
 				return BULLET_ACT_FORCE_PIERCE
 

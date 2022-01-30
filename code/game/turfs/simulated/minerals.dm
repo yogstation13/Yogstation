@@ -68,7 +68,7 @@
 	else
 		return attack_hand(user)
 
-/turf/closed/mineral/proc/gets_drilled(mob/user, triggered_by_explosion = 0, power = 0)
+/turf/closed/mineral/proc/gets_drilled(mob/user, triggered_by_explosion = 0, power = 1)
 	if(power < hardness)
 		return FALSE
 	if (mineralType && (mineralAmt > 0))
@@ -120,12 +120,12 @@
 	switch(severity)
 		if(3)
 			if (prob(75))
-				gets_drilled(null, 1,1)
+				gets_drilled(null)
 		if(2)
 			if (prob(90))
-				gets_drilled(null, 1,1)
+				gets_drilled(null)
 		if(1)
-			gets_drilled(null, 1,1)
+			gets_drilled(null)
 	return
 
 /turf/closed/mineral/Spread(turf/T)
