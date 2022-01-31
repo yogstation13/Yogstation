@@ -165,6 +165,15 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/clown_module
+	name = "Core Module Design (Clown)"
+	desc = "Allows for the construction of a Clown AI Core Module."
+	id = "clown_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/aiModule/core/full/clown
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 
 //AI CPU + RAM
 
