@@ -65847,14 +65847,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"eHo" = (
-/obj/machinery/light,
-/obj/machinery/camera{
-	c_tag = "Starboard Primary Hallway - Engineering";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "eJo" = (
 /obj/structure/table,
 /obj/item/crowbar/red,
@@ -66834,6 +66826,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
+"fMi" = (
+/obj/machinery/light,
+/obj/machinery/camera{
+	c_tag = "Starboard Primary Hallway - Engineering";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "fNa" = (
 /obj/structure/chair{
 	dir = 4
@@ -69951,12 +69954,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"jcM" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/closed/wall/r_wall,
-/area/storage/tcom)
 "jdd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -70153,12 +70150,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"jop" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/storage/tcom)
 "jou" = (
 /obj/structure/sign/warning/nosmoking,
 /turf/closed/wall,
@@ -123024,13 +123015,13 @@ aWw
 aSE
 bir
 aVK
-jcM
+bKr
 oIk
 xIg
 kUk
 ncC
 vJz
-jcM
+bKr
 apc
 urL
 urL
@@ -123537,14 +123528,14 @@ beh
 aWw
 aTo
 oRQ
-eHo
+fMi
 gsA
 bKr
 bKr
 pDQ
 bKr
-jop
-jop
+bKr
+bKr
 bxc
 bxc
 bxc
