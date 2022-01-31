@@ -239,7 +239,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 					//Player is a jackass that noone wants the body of, restart the timer
 					despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1), TIMER_STOPPABLE)
 		else
-			if(mob.mind.afk_verb_used) // If they used the afk verb, don't start the timer yet
+			if(mob_occupant.mind.afk_verb_used) // If they used the afk verb, don't start the timer yet
 				afk_hold = TRUE
 				return
 			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn, TIMER_STOPPABLE)
