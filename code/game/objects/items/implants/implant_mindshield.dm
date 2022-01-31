@@ -25,6 +25,9 @@
 
 		if(target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 			target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
+			
+		if(target.mind.has_antag_datum(/datum/antagonist/vassal)) // Fulpstation Bloodsuckers
+			target.mind.remove_antag_datum(/datum/antagonist/vassal)
 
 		var/datum/antagonist/hivemind/host = target.mind.has_antag_datum(/datum/antagonist/hivemind) //Releases the target from mind control beforehand
 		if(host)
@@ -41,6 +44,13 @@
 			return FALSE
 		if(target.mind.has_antag_datum(/datum/antagonist/gang/boss) || is_shadow_or_thrall(target) || target.mind.has_antag_datum(/datum/antagonist/mindslave))
 			if(!silent)
+				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
+			removed(target, TRUE)
+			return FALSE
+
+		var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(target)
+		if(target.mind.has_antag_datum(/datum/antagonist/vassal))
+			if(!silent && vassaldatum.favorite_vassal)
 				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
 			removed(target, TRUE)
 			return FALSE
