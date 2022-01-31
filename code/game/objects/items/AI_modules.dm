@@ -447,6 +447,13 @@ AI MODULES
 	law_id = "cowboy"
 
 
+/******************** Mother *********************/
+
+/obj/item/aiModule/core/full/mother
+	name = "'Mother M(A.I.)' Core AI Module"
+	law_id = "mother"
+
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
