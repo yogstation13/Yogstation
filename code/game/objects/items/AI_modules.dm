@@ -447,6 +447,13 @@ AI MODULES
 	law_id = "cowboy"
 
 
+/******************** Researcher *********************/
+
+/obj/item/aiModule/core/full/researcher
+	name = "'Ethical Researcher' Core AI Module"
+	law_id = "researcher"
+
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
