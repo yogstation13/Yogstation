@@ -339,7 +339,7 @@
 			message = replacetextEx(message,regex(key,"g"), "[value]")
 	speech_args[SPEECH_MESSAGE] = trim(message)
 
-	/obj/item/clothing/mask/rmask
+/obj/item/clothing/mask/rmask
 	name = "dusty mask"
 	desc = "A face is nothing, it’s what’s inside that matters."
 	icon_state = "rmask"
