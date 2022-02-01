@@ -64011,6 +64011,12 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
+"dmY" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/turf/open/space/basic,
+/area/engine/atmos_distro)
 "dnd" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -66222,6 +66228,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"fcM" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/turf/open/space/basic,
+/area/engine/atmos_distro)
 "fdr" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -77772,9 +77786,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"rpl" = (
-/turf/closed/wall/r_wall,
-/area/space)
 "rpR" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/item/storage/box/lights/mixed,
@@ -78371,14 +78382,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
-"seI" = (
-/obj/structure/lattice,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/space/basic,
-/area/engine/atmos_distro)
 "sfi" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/firedoor/border_only{
@@ -79097,12 +79100,6 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"sSb" = (
-/obj/structure/lattice,
-/obj/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/space/basic,
-/area/engine/atmos_distro)
 "sTu" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/stripes/corner{
@@ -129489,7 +129486,7 @@ pHk
 lMJ
 krP
 lMJ
-rpl
+krP
 aaa
 aaa
 aaa
@@ -130508,7 +130505,7 @@ qpv
 uUY
 cEA
 kpD
-seI
+fcM
 oqX
 lou
 tQz
@@ -131526,7 +131523,7 @@ dSh
 dSh
 pqx
 uck
-sSb
+dmY
 xaU
 mrN
 lpw
@@ -131536,7 +131533,7 @@ qpv
 uUY
 dOs
 iFK
-seI
+fcM
 oqX
 eNS
 izR
@@ -132554,7 +132551,7 @@ wSR
 wSR
 uyh
 uck
-sSb
+dmY
 pIW
 xfO
 cbi
@@ -132564,7 +132561,7 @@ xKj
 mTM
 cEA
 fLu
-seI
+fcM
 oqX
 kLT
 smB
