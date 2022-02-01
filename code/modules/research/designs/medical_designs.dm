@@ -566,7 +566,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_stomach_u
-	name = "Cybernetic Ears"
+	name = "Upgraded Cybernetic Stomach"
 	desc = "An upgraded cybernetic stomach"
 	id = "cybernetic_stomach_u"
 	build_type = PROTOLATHE | MECHFAB

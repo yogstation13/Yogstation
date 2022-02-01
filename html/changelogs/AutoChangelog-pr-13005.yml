@@ -1,9 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Add oven"
-  - rscadd: "Add oven construction yippeee"
-  - tweak: "pizza now requires flat dough"
-  - tweak: "all pizzas are raw now, bake them"
-  - tweak: "spaghetti is now raw?? why is this in the PR but ok"
-  - tweak: "bake bread with dough to get bread"
