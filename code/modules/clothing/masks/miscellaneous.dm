@@ -338,3 +338,10 @@
 			message = replacetextEx(message,regex(capitalize(key),"g"), "[capitalize(value)]")
 			message = replacetextEx(message,regex(key,"g"), "[value]")
 	speech_args[SPEECH_MESSAGE] = trim(message)
+
+	/obj/item/clothing/mask/rmask
+	name = "dusty mask"
+	desc = "a black and red mask from a long lost leader of a gang."
+	icon_state = "rmask"
+	item_state = "rmaks"
+	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
