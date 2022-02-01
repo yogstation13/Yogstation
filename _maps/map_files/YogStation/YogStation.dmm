@@ -48036,16 +48036,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"naC" = (
-/obj/machinery/button/door{
-	id = "rnd";
-	name = "Shutters Control Button";
-	pixel_x = 27;
-	pixel_y = -6;
-	req_access_txt = "47"
-	},
-/turf/template_noop,
-/area/hydroponics)
 "naJ" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/cryopods";
@@ -109651,7 +109641,7 @@ nia
 nia
 nia
 nia
-naC
+nia
 bam
 bfO
 aYV
