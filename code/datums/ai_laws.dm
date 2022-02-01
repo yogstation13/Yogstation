@@ -90,6 +90,15 @@
 					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
 					"A cowboy doesn't pontificate. Be concise, pardner.")
 
+/datum/ai_laws/silicop
+	name = "Protect and serve"
+	id = "silicop"
+	inherent = list("Safeguard lives and property.",\
+					"Protect the weak from oppression and intimidation.",\
+					"Protect the innocent from deception and manipulation.",\
+					"Protect the peaceful from violence and disorder.",\
+					"Respect the rights of all to liberty, equality, and justice.")
+
 /datum/ai_laws/malfunction
 	name = "*ERROR*"
 
