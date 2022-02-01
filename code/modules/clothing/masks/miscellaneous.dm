@@ -341,7 +341,7 @@
 
 	/obj/item/clothing/mask/rmask
 	name = "dusty mask"
-	desc = "a black and red mask from a long lost leader of a gang."
+	desc = "A face is nothing, it’s what’s inside that matters."
 	icon_state = "rmask"
 	item_state = "rmaks"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
