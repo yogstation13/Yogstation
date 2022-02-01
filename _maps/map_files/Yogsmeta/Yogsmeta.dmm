@@ -78371,6 +78371,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
+"seI" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/turf/open/space/basic,
+/area/engine/atmos_distro)
 "sfi" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/firedoor/border_only{
@@ -79089,6 +79097,12 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"sSb" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/turf/open/space/basic,
+/area/engine/atmos_distro)
 "sTu" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/stripes/corner{
@@ -130494,7 +130508,7 @@ qpv
 uUY
 cEA
 kpD
-seq
+seI
 oqX
 lou
 tQz
@@ -131512,7 +131526,7 @@ dSh
 dSh
 pqx
 uck
-fTh
+sSb
 xaU
 mrN
 lpw
@@ -131522,7 +131536,7 @@ qpv
 uUY
 dOs
 iFK
-seq
+seI
 oqX
 eNS
 izR
@@ -132540,7 +132554,7 @@ wSR
 wSR
 uyh
 uck
-fTh
+sSb
 pIW
 xfO
 cbi
@@ -132550,7 +132564,7 @@ xKj
 mTM
 cEA
 fLu
-seq
+seI
 oqX
 kLT
 smB
