@@ -7,7 +7,7 @@
 	requires_ntnet = TRUE
 	transfer_access = null
 	available_on_ntnet = FALSE
-	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE
+	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_INTEGRATED
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosRadar"

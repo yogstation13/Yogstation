@@ -157,7 +157,7 @@
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
 		else
 			var/mob/living/silicon/robot/R = target
-			R.update_headlamp(TRUE) //disable headlamps
+			R.toggle_headlamp(TRUE) //disable headlamps
 			target.visible_message(span_warning("[firer]'s [name] smashes into [target]'s chassis!"), \
 			span_userdanger("Heavy percussive impact detected. Recalibrating motor input."))
 			R.playsound_local(target, 'sound/misc/interference.ogg', 25, FALSE)
