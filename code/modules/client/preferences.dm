@@ -1691,7 +1691,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("ethereal_mark")
 					var/new_ethereal_mark
-					new_dorsal_tubes = input(user, "Choose if your character has a facial mark", "Character Preference") as null|anything in GLOB.marks_list
+					new_ethereal_mark = input(user, "Choose if your character has a facial mark", "Character Preference") as null|anything in GLOB.marks_list
 					if(new_ethereal_mark)
 						features["ethereal_mark"] = new_ethereal_mark
 
