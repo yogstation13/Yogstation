@@ -117,6 +117,12 @@
 	using.hud = src
 	static_inventory += using
 
+//Thrusters
+	using = new /obj/screen/robot/thrusters()
+	using.screen_loc = ui_borg_thrusters
+	static_inventory += using
+	mymobR.thruster_button = using
+
 //Borg Integrated Tablet
 	using = new /obj/screen/robot/modPC()
 	using.screen_loc = ui_borg_tablet

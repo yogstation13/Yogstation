@@ -30,6 +30,7 @@
 	var/obj/screen/inv1 = null
 	var/obj/screen/inv2 = null
 	var/obj/screen/inv3 = null
+	var/obj/screen/thruster_button = null
 	var/obj/screen/hands = null
 
 	var/shown_robot_modules = 0	///Used to determine whether they have the module menu shown or not
@@ -275,6 +276,14 @@
 /mob/living/silicon/robot/proc/get_standard_name()
 	return "[(designation ? "[designation] " : "")][mmi.braintype]-[ident]"
 
+/mob/living/silicon/robot/verb/cmd_robot_alerts()
+	set category = "Robot Commands"
+	set name = "Show Alerts"
+	if(usr.stat == DEAD)
+		to_chat(src, span_userdanger("Alert: You are dead."))
+		return //won't work if dead
+	robot_alerts()
+
 /mob/living/silicon/robot/proc/robot_alerts()
 	var/dat = ""
 	for (var/cat in alarms)
@@ -334,6 +343,8 @@
 		ion_trail.start()
 	else
 		ion_trail.stop()
+	if(thruster_button)
+		thruster_button.icon_state = "ionpulse[ionpulse_on]"
 
 /mob/living/silicon/robot/get_status_tab_items()
 	. = ..()
@@ -595,6 +606,19 @@
 	else
 		return ..()
 
+/mob/living/silicon/robot/verb/unlock_own_cover()
+	set category = "Robot Commands"
+	set name = "Unlock Cover"
+	set desc = "Unlocks your own cover if it is locked. You can not lock it again. A human will have to lock it for you."
+	if(stat == DEAD)
+		return //won't work if dead
+	if(locked)
+		switch(alert("You cannot lock your cover again, are you sure?\n      (You can still ask for a human to lock it)", "Unlock Own Cover", "Yes", "No"))
+			if("Yes")
+				locked = FALSE
+				update_icons()
+				to_chat(usr, span_notice("You unlock your cover."))
+
 /mob/living/silicon/robot/proc/allowed(mob/M)
 	//check if it doesn't require any access at all
 	if(check_access(null))
@@ -717,6 +741,23 @@
 		throw_alert("hacked", /obj/screen/alert/hacked)
 	else
 		clear_alert("hacked")
+
+/mob/living/silicon/robot/verb/outputlaws()
+	set category = "Robot Commands"
+	set name = "State Laws"
+
+	if(usr.stat == DEAD)
+		return //won't work if dead
+	checklaws()
+
+/mob/living/silicon/robot/verb/set_automatic_say_channel() //Borg version of setting the radio for autosay messages.
+	set name = "Set Auto Announce Mode"
+	set desc = "Modify the default radio setting for stating your laws."
+	set category = "Robot Commands"
+
+	if(usr.stat == DEAD)
+		return //won't work if dead
+	set_autosay()
 
 /**
   * Handles headlamp smashing
