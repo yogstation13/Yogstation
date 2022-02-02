@@ -27,6 +27,7 @@
 	var/icon_state_unpowered = null							// Icon state when the computer is turned off.
 	var/icon_state_powered = null							// Icon state when the computer is turned on.
 	var/icon_state_menu = "menu"							// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
+	var/id_rename = FALSE										// If we should update the name of the computer with the name and job of the stored ID.
 	var/icon_state_screensaver = "standby"					// Icon state overlay when the computer is turned off, but not out of power.
 	var/max_hardware_size = 0								// Maximal hardware w_class. Tablets/PDAs have 1, laptops 2, consoles 4.
 	var/steel_sheet_cost = 5								// Amount of steel sheets refunded when disassembling an empty frame of this computer.
@@ -163,6 +164,13 @@
 		return attack_self(M)
 	return ..()
 
+/obj/item/modular_computer/CtrlClick()
+	var/mob/M = usr
+	if(ishuman(usr) && usr.CanReach(src) && usr.canUseTopic(src))
+		return attack_self(M)
+	else
+		..()
+
 /obj/item/modular_computer/attack_ai(mob/user)
 	return attack_self(user)
 
@@ -227,7 +235,6 @@
 
 	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, physical.plane, physical.dir)
 	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, EMISSIVE_PLANE, physical.dir)
-
 	if(is_broken)
 		SSvis_overlays.add_vis_overlay(physical, physical.icon, "broken", physical.layer, physical.plane, physical.dir)
 
@@ -238,6 +245,14 @@
 /obj/item/modular_computer/dropped()
 	. = ..()
 	update_icon()
+
+
+/obj/item/modular_computer/proc/update_label()
+	var/obj/item/card/id/stored_id = GetID()
+	if(id_rename && stored_id)
+		name = "[stored_id.registered_name]'s [initial(name)] ([stored_id.assignment])"
+	else
+		name = initial(name)
 
 // On-click handling. Turns on the computer if it's off and opens the GUI.
 /obj/item/modular_computer/interact(mob/user)
