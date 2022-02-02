@@ -240,7 +240,8 @@
 				/obj/item/aiModule/core/full/crewsimov,
 				/obj/item/aiModule/core/full/hippocratic,
 				/obj/item/aiModule/core/full/paladin_devotion,
-				/obj/item/aiModule/core/full/paladin
+				/obj/item/aiModule/core/full/paladin,
+				/obj/item/aiModule/core/full/mother
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_neutral // These shouldn't allow the AI to start butchering people without reason
