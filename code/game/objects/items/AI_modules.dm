@@ -447,6 +447,13 @@ AI MODULES
 	law_id = "cowboy"
 
 
+/******************** ChapAI *********************/
+
+/obj/item/aiModule/core/full/chapai
+	name = "'ChapAI' Core AI Module"
+	law_id = "chapai"
+
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
