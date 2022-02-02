@@ -84,6 +84,11 @@
 	/// Is set to true if an antag was used to get this person picked as an antag
 	var/token_picked = FALSE
 
+	/// If they have used the afk verb recently
+	var/afk_verb_used = FALSE
+	/// The timer for the afk verb
+	var/afk_verb_timer
+
 /datum/mind/New(key)
 	src.key = key
 	soulOwner = src
