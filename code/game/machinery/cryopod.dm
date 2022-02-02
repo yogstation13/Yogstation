@@ -178,6 +178,11 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	var/obj/machinery/computer/cryopod/control_computer
 	var/cooldown = FALSE
 
+	/// If the timer is on hold due to the occupant using the afk verb
+	var/afk_hold = FALSE
+
+	var/despawn_timer
+
 /obj/machinery/cryopod/Initialize()
 	..()
 	GLOB.cryopods += src
@@ -227,20 +232,28 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		if(!occupant) //Check they still exist
 			return
 		if(mob_occupant.client)//if they're logged in
-			var/offertimer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
+			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
 			if(alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No") == "Yes")
-				deltimer(offertimer) //Player wants to offer, cancel the timer
+				deltimer(despawn_timer) //Player wants to offer, cancel the timer
 				if(!offer_control(occupant))
 					//Player is a jackass that noone wants the body of, restart the timer
-					addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1))
+					despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1), TIMER_STOPPABLE)
 		else
-			addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn)
+			if(mob_occupant.mind.afk_verb_used) // If they used the afk verb, don't start the timer yet
+				afk_hold = TRUE
+				return
+			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn, TIMER_STOPPABLE)
 
 /obj/machinery/cryopod/open_machine()
 	..()
 	icon_state = GLOB.cryopods_enabled ? "cryopod-open" : "cryopod-off"
 	density = TRUE
 	name = initial(name)
+
+	// Clear the afk hold and ready flag/timer
+	afk_hold = FALSE
+	deltimer(despawn_timer)
+	ready = FALSE
 
 /obj/machinery/cryopod/container_resist(mob/living/user)
 	visible_message(span_notice("[occupant] emerges from [src]!"),
@@ -256,6 +269,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant)
+		if(afk_hold && !mob_occupant.mind.afk_verb_used) // AFK hold ended
+			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn, TIMER_STOPPABLE)
+			afk_hold = FALSE
+			
 		// Eject dead people
 		if(mob_occupant.stat == DEAD)
 			open_machine()
