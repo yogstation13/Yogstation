@@ -98,7 +98,6 @@
 		return
 	var/datum/action/bloodsucker/power = choice
 	to_chat(usr, span_warning("[power.power_explanation]"))
-
 /// These handles the application of antag huds/special abilities
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
 	. = ..()
@@ -106,10 +105,11 @@
 	var/mob/living/carbon/H = owner
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
 	RegisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/LifeTick)
-	to_chat(owner, "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
-	H.dna.remove_mutation(CLOWNMUT)
 	hud.join_hud(current_mob)
 	set_antag_hud(current_mob, "Bloodsucker")
+	if((H.mind.assigned_role == "Clown"))
+		to_chat(owner, "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
+		H.dna.remove_mutation(CLOWNMUT)
 
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
@@ -442,7 +442,7 @@
 		to_chat(owner.current, span_notice("You grow more ancient by the night!"))
 	else
 		// Give them the UI to purchase a power.
-		var/choice = alert(owner.current, upgrade_message, "Your Blood Thickens...", options)
+		var/choice = input(upgrade_message, "Your Blood Thickens...") in options
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
 		if(spend_rank && bloodsucker_level_unspent <= 0)
 			return

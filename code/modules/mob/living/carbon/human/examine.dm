@@ -232,10 +232,16 @@
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
-	if(ShowAsPaleExamine()) // Fulpstation Bloodsuckers edit: More leeway for giving away blood loss.
-		msg += "[t_He] [t_has] pale skin.\n" // Used to be BLOOD_VOLUME_SAFE (475), BLOOD_VOLUME_OKAY is (336)
-        
-	switch(get_blood_state())
+
+var/apparent_blood_volume = blood_volume
+	if(skin_tone == "albino")
+		apparent_blood_volume -= 150 // enough to knock you down one tier
+	// Fulp edit START - Bloodsuckers
+	var/bloodDesc = ShowAsPaleExamine(user, apparent_blood_volume)
+	if(bloodDesc != BLOODSUCKER_HIDE_BLOOD)
+		msg += bloodDesc
+	else switch(apparent_blood_volume)
+	// Fulp edit END
 		if(BLOOD_OKAY)
 			msg += "[t_He] [t_has] pale skin.\n"
 		if(BLOOD_BAD)

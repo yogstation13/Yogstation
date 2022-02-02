@@ -204,7 +204,7 @@
 		if(!bloodsuckerdatum)
 			return FALSE
 		if(!bloodsuckerdatum.coffin && !resident)
-			switch(alert(user,"Do you wish to claim this as your coffin? [get_area(src)] will be your lair.","Claim Lair", list("Yes", "No")))
+			switch(input("Do you wish to claim this as your coffin? [get_area(src)] will be your lair.","Claim Lair") in list("Yes", "No"))
 				if("Yes")
 					ClaimCoffin(user)
 			LockMe(user)
@@ -248,7 +248,7 @@
 		return
 
 	if(user == resident && user.Adjacent(src))
-		switch(alert(user,"Do you wish to unclaim your coffin?","Unclaim Lair", list("Yes", "No")))
+		switch(input("Do you wish to unclaim your coffin?","Unclaim Lair") in list("Yes", "No"))
 			if("Yes")
 				UnclaimCoffin(TRUE)
 				LockMe(user)

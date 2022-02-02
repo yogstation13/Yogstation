@@ -59,7 +59,7 @@
 			return FALSE
 
 		/// Radial menu for securing your Persuasion rack in place.
-		switch(alert(user, "Do you wish to secure [src] here?", list("Yes","No")))
+		switch(input("Do you wish to secure [src] here?") in list("Yes", "No"))
 			if("Yes")
 				user.playsound_local(null, 'sound/items/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
 				bolt(user)
@@ -70,7 +70,7 @@
 /obj/structure/bloodsucker/AltClick(mob/user)
 	. = ..()
 	if(user == owner && user.Adjacent(src))
-		switch(alert(user,"Unbolt [src]?", list("Yes", "No")))
+		switch(input("Unbolt [src]?") in list("Yes", "No"))
 			if("Yes")
 				unbolt(user)
 /*
@@ -431,7 +431,7 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
 
-	switch(alert(user, "Would you like to turn this Vassal into your completely loyal Servant? This costs 150 Blood to do. You cannot undo this.", list("Yes", "No")))
+	switch(input("Would you like to turn this Vassal into your completely loyal Servant? This costs 150 Blood to do. You cannot undo this.", list("Yes", "No")))
 		if("Yes")
 			user.blood_volume -= 150
 			bloodsuckerdatum.has_favorite_vassal = TRUE
@@ -548,7 +548,7 @@
 			bloodsuckerdatum.SpendRank(target)
 		else if(user.blood_volume >= 550)
 			// We don't have any ranks to spare? Let them upgrade... with enough Blood.
-			switch(alert(user, "Do you wish to spend 550 Blood to Rank [target] up?", list("Yes","No")))
+			switch(input("Do you wish to spend 550 Blood to Rank [target] up?") in list("Yes", "No"))
 				if("Yes")
 					user.blood_volume -= 550
 					bloodsuckerdatum.SpendRank(target, spend_rank = FALSE)

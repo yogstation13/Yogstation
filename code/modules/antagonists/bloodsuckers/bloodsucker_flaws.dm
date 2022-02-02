@@ -21,7 +21,7 @@
 		Malkavian - Complete insanity."))
 	to_chat(owner, span_announce("* Read more about Clans here: https://wiki.fulp.gg/en/Bloodsucker."))
 
-	var/answer = alert(owner.current, "You have Ranked up far enough to remember your clan. Which clan are you part of?", "Our mind feels luxurious...", options)
+	var/answer = input("You have Ranked up far enough to remember your clan. Which clan are you part of?", "Our mind feels luxurious...") in options
 	if(!answer)
 		to_chat(owner, span_warning("You have wilingfully decided to stay ignorant."))
 		return
