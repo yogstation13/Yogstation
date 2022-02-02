@@ -68,6 +68,12 @@
 	var/mob/living/silicon/robot/R = usr
 	R.uneq_active()
 
+/obj/screen/robot/thrusters/Click()
+	if(..())
+		return
+	var/mob/living/silicon/robot/R = usr
+	R.toggle_ionpulse()
+
 /datum/hud/robot
 	ui_style = 'icons/mob/screen_cyborg.dmi'
 
