@@ -44,6 +44,7 @@
 #define ROLE_GANG				"gangster" // Yogs
 #define ROLE_DARKSPAWN			"darkspawn" // Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
+#define ROLE_HORROR				"Eldritch Horror" // Yogs
 #define ROLE_INFILTRATOR		"Infiltrator" // Yogs
 #define ROLE_ZOMBIE				"Zombie"
 
@@ -63,6 +64,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_MALF,
 	ROLE_REV = /datum/game_mode/revolution,
 	ROLE_ALIEN,
+	ROLE_HORROR,
 	ROLE_PAI,
 	ROLE_CULTIST = /datum/game_mode/cult,
 	ROLE_BLOB,

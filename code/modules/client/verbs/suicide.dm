@@ -274,4 +274,7 @@
 	if(!(mobility_flags & MOBILITY_USE))	//just while I finish up the new 'fun' suiciding verb. This is to prevent metagaming via suicide
 		to_chat(src, "You can't commit suicide whilst immobile! ((You can type Ghost instead however.))")
 		return
+	if(has_horror_inside())
+		to_chat(src, "Something inside your head stops your action!")
+		return
 	return TRUE
