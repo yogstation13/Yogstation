@@ -214,24 +214,3 @@
 	required_atoms = list(/obj/item/organ/eyes,/obj/item/stack/sheet/animalhide/human,/obj/item/storage/book/bible,/obj/item/pen)
 	result_atoms = list(/obj/item/forbidden_book)
 	required_shit_list = "A bible, a sheet of human skin, a pen, and a pair of eyes."
-
-/datum/eldritch_transmutation/recall
-	name = "Recall Ritual"
-	required_atoms = list(/obj/item/forbidden_book)
-
-/datum/eldritch_transmutation/recall/on_finished_recipe(mob/living/user,list/atoms,loc)
-	var/list/datum/eldritch_knowledge/recall_list = list()
-	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
-	var/list/transmutations = cultie.get_all_transmutations()
-	for(var/X in transmutations)
-		var/datum/eldritch_transmutation/ET = X
-		if(!ET.required_shit_list)
-			continue
-		recall_list[ET.name] = ET.required_shit_list
-	var/ctrlf = input(user, "Select a ritual to recall its reagents.", "Recall Knowledge") as null | anything in recall_list
-	if(ctrlf)
-		to_chat(user, span_cult("Transmutation requirements for [ctrlf]: [recall_list[ctrlf]]"))
-	return TRUE
-
-/datum/eldritch_transmutation/recall/cleanup_atoms(list/atoms)
-	return
