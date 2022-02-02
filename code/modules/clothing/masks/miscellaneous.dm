@@ -345,3 +345,5 @@
 	icon_state = "rmask"
 	item_state = "rmaks"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	clothing_flags = MASKINTERNALS
+	flags_cover = MASKCOVERSEYES
