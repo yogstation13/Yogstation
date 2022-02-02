@@ -752,6 +752,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if("dome" in mutant_bodyparts)
 		if(!H.dna.features["dome"] || H.dna.features["dome"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "dome"
+	
+	if("ethereal_mark" in mutant_bodyparts)
+		if(!H.dna.features["ethereal_mark"] || H.dna.features["ethereal_mark"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "ethereal_mark"
 
 	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
 	var/update_needed = FALSE
@@ -845,6 +849,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					S = GLOB.dome_list[H.dna.features["dome"]]
 				if("dorsal_tubes")
 					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
+				if("ethereal_mark")
+					S = GLOB.marks_list[H.dna.features["ethereal_mark"]]
 			if(!S || S.icon_state == "none")
 				continue
 

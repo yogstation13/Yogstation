@@ -2154,3 +2154,19 @@
 /datum/sprite_accessory/dorsal_tubes/dtdouble
 	name = "Double"
 	icon_state = "dtdouble"
+
+/datum/sprite_accessory/marks
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = MUTCOLORS
+
+/datum/sprite_accessory/marks/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/marks/omega
+	name = "Omega"
+	icon_state = "omega"
+
+/datum/sprite_accessory/marks/plus
+	name = "Plus"
+	icon_state = "plus"
