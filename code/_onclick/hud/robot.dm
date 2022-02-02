@@ -134,12 +134,6 @@
 	var/obj/screen/robot/modPC/tabletbutton = using
 	tabletbutton.robot = mymobR
 
-//Alerts
-	using = new /obj/screen/robot/alerts()
-	using.screen_loc = ui_borg_alerts
-	using.hud = src
-	static_inventory += using
-
 //Intent
 	action_intent = new /obj/screen/act_intent/robot()
 	action_intent.icon_state = mymob.a_intent
@@ -290,15 +284,3 @@
 	if(.)
 		return
 	robot.modularInterface?.interact(robot)
-
-/obj/screen/robot/alerts
-	name = "Alert Panel"
-	icon = 'icons/mob/screen_ai.dmi'
-	icon_state = "alerts"
-
-/obj/screen/robot/alerts/Click()
-	. = ..()
-	if(.)
-		return
-	var/mob/living/silicon/robot/borgo = usr
-	borgo.robot_alerts()
