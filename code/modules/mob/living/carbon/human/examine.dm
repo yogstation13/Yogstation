@@ -233,15 +233,14 @@
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
 
-var/apparent_blood_volume = blood_volume
+	var/apparent_blood_volume = blood_volume
 	if(skin_tone == "albino")
 		apparent_blood_volume -= 150 // enough to knock you down one tier
 	// Fulp edit START - Bloodsuckers
 	var/bloodDesc = ShowAsPaleExamine(user, apparent_blood_volume)
 	if(bloodDesc != BLOODSUCKER_HIDE_BLOOD)
 		msg += bloodDesc
-	else switch(apparent_blood_volume)
-	// Fulp edit END
+	else switch(get_blood_state())
 		if(BLOOD_OKAY)
 			msg += "[t_He] [t_has] pale skin.\n"
 		if(BLOOD_BAD)

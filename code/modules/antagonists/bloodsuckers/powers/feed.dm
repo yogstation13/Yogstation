@@ -226,11 +226,11 @@
 			break
 	if(was_noticed && !target_grappled)
 		feeds_noticed++
-		to_chat(owner, "someone may have noticed...")
+		to_chat(owner, "Someone may have noticed...")
 		if(!bloodsuckerdatum_power.broke_masquerade)
 			to_chat(user, span_cultbold("You broke the Masquerade [feeds_noticed] time(s), if you break it 3 times, you become a criminal to the Bloodsucker's Cause!"))
 	else
-		to_chat(owner, "you think no one saw you...")
+		to_chat(owner, "You think no one saw you...")
 
 	// FEEEEEEEEED!! //
 	ADD_TRAIT(user, TRAIT_MUTE, BLOODSUCKER_TRAIT) // My mouth is full!
