@@ -554,6 +554,10 @@
 
 	semicd = FALSE
 
+	if(user == target && user.has_horror_inside())
+		user.visible_message(span_warning("[user] decided not to shoot."), span_notice("Something inside your head stops your action!"))
+		return
+
 	target.visible_message(span_warning("[user] pulls the trigger!"), span_userdanger("[(user == target) ? "You pull" : "[user] pulls"] the trigger!"))
 
 	if(chambered && chambered.BB)
