@@ -466,7 +466,7 @@
 	singular_name = "mourning poultice"
 	desc = "A type of primitive herbal poultice.\nWhile traditionally used to prepare corpses for the mourning feast, it can also treat scrapes and burns on the living, however, it is liable to cause shortness of breath when employed in this manner.\nIt is imbued with ancient wisdom."
 	icon_state = "poultice"
-	apply_sounds = list('sound/effects/ointment.ogg')
+	apply_sounds = list('sound/misc/soggy.ogg')
 	amount = 15
 	max_amount = 15
 	heal_brute = 10
@@ -474,7 +474,7 @@
 	self_delay = 40
 	other_delay = 10
 	repeating = TRUE
-	hitsound = 'sound/misc/soggy.ogg'
+	hitsound = 'sound/misc/moist_impact.ogg'
 	merge_type = /obj/item/stack/medical/poultice
 
 /obj/item/stack/medical/poultice/heal(mob/living/M, mob/user)
