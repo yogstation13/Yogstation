@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "APC frames now check where the user is standing instead of the wall at which you're placing it, giving more consistent placement in hallways."

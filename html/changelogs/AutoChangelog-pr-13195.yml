@@ -1,5 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - tweak: "tweaked the afk verb to add a delay before the cryo pod despawn timer"
-  - bugfix: "Fixed bug where cryo despawn timer wasn't properly resetting"
