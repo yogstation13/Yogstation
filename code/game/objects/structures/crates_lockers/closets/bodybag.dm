@@ -290,7 +290,14 @@
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize()
 	. = ..()
-	refresh_air()
+	update_airtightness()
+
+
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_airtightness()
+	if(sinched && !air_contents)
+		refresh_air()
+	else if(!sinched && air_contents)
+		air_contents = null
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/proc/refresh_air()
 	air_contents = null
@@ -307,19 +314,19 @@
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/return_air()
 	if(sinched)
-		refresh_air()
+		update_airtightness()
 		return air_contents
 	return ..()
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/remove_air(amount)
 	if(sinched)
-		refresh_air()
+		update_airtightness()
 		return air_contents // The internals for this bag are bottomless. Syndicate bluespace trickery.
 	return ..(amount)
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/analyzer_act(mob/living/user, obj/item/I)
 	if(sinched)
-		refresh_air()
+		update_airtightness()
 		atmosanalyzer_scan(air_contents, user, src)
 	return ..()
 
