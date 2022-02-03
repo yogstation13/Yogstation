@@ -7,7 +7,7 @@
 	hardware_flag = PROGRAM_INTEGRATED
 	has_light = FALSE //tablet light button actually enables/disables the borg lamp
 	comp_light_luminosity = 0
-	finish_color = FALSE
+	variants = null
 	///Ref to the borg we're installed in. Set by the borg during our creation.
 	var/mob/living/silicon/robot/borgo
 	///Ref to the RoboTact app. Important enough to borgs to deserve a ref.
