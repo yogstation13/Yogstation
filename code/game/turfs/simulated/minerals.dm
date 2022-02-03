@@ -21,7 +21,7 @@
 	var/spreadChance = 0 //the percentual chance of an ore spreading to the neighbouring tiles
 	var/scan_state = "" //Holder for the image we display when we're pinged by a mining scanner
 	var/defer_change = FALSE
-	var/hardness = 0 //how hard the material is, we'll have to have more powerful stuff if we want to blast harder materials.
+	var/hardness = 1 //how hard the material is, we'll have to have more powerful stuff if we want to blast harder materials.
 
 /turf/closed/mineral/Initialize()
 	if (!canSmoothWith)
@@ -63,15 +63,15 @@
 		if(I.use_tool(src, user, 40, volume=50))
 			if(ismineralturf(src))
 				to_chat(user, span_notice("You finish cutting into the rock."))
-				gets_drilled(user)
+				attempt_drill(user)
 				SSblackbox.record_feedback("tally", "pick_used_mining", 1, I.type)
 	else
 		return attack_hand(user)
 
-/turf/closed/mineral/proc/gets_drilled(mob/user, triggered_by_explosion = 0, power = 1)
-	if(power < hardness)
-		return FALSE
+/turf/closed/mineral/proc/gets_drilled(mob/user, triggered_by_explosion = 0)
 	if (mineralType && (mineralAmt > 0))
+		if(triggered_by_explosion)
+			mineralAmt += 2 //bonus if it was exploded, USE EXPLOSIVES WOOO
 		new mineralType(src, mineralAmt)
 		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
 	for(var/obj/effect/temp_visual/mining_overlay/M in src)
@@ -82,11 +82,26 @@
 	ScrapeAway(null, flags)
 	addtimer(CALLBACK(src, .proc/AfterChange), 1, TIMER_UNIQUE)
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1) //beautiful destruction
-	return TRUE
+
+/turf/closed/mineral/proc/attempt_drill(mob/user,triggered_by_explosion = 0, power = 1)
+	hardness -= power
+	if(hardness <= 0)
+		gets_drilled(user,triggered_by_explosion)
+	else
+		update_icon()
+
+/turf/closed/mineral/proc/update_icon()
+	if(hardness != initial(hardness))
+		var/mutable_appearance/cracks = mutable_appearance('icons/turf/mining.dmi',"rock_cracks",ON_EDGED_TURF_LAYER)
+		var/matrix/M = new
+		M.Translate(4,4)
+		cracks.transform = M
+		add_overlay(cracks)
+
 
 /turf/closed/mineral/attack_animal(mob/living/simple_animal/user)
 	if((user.environment_smash & ENVIRONMENT_SMASH_WALLS) || (user.environment_smash & ENVIRONMENT_SMASH_RWALLS))
-		gets_drilled()
+		attempt_drill()
 	..()
 
 /turf/closed/mineral/attack_alien(mob/living/carbon/alien/M)
@@ -94,7 +109,7 @@
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1)
 	if(do_after(M, 4 SECONDS, target = src))
 		to_chat(M, span_notice("You tunnel into the rock."))
-		gets_drilled(M)
+		attempt_drill(M)
 
 /turf/closed/mineral/Bumped(atom/movable/AM)
 	..()
@@ -120,12 +135,12 @@
 	switch(severity)
 		if(3)
 			if (prob(75))
-				gets_drilled(null)
+				attempt_drill(null,TRUE,1)
 		if(2)
 			if (prob(90))
-				gets_drilled(null)
+				attempt_drill(null,TRUE,2)
 		if(1)
-			gets_drilled(null)
+			attempt_drill(null,TRUE,3)
 	return
 
 /turf/closed/mineral/Spread(turf/T)
@@ -157,7 +172,7 @@
 
 		if(T && ismineralturf(T))
 			var/turf/closed/mineral/M = T
-			M.mineralAmt = rand(1, 5) + (2 * hardness)
+			M.mineralAmt = rand(1, 5) + ((1 - hardness) * 2) //2 bonus ore for every hardness above 1
 			M.environment_type = src.environment_type
 			M.turf_type = src.turf_type
 			M.baseturfs = src.baseturfs
@@ -251,7 +266,7 @@
 	name = "hardened basalt"
 	icon_state = "rock_hard"
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
 
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/uranium/volcanic/hard = 5, /turf/closed/mineral/diamond/volcanic/hard = 1, /turf/closed/mineral/gold/volcanic/hard = 10, /turf/closed/mineral/titanium/volcanic/hard = 11,
@@ -324,7 +339,7 @@
 
 /turf/closed/mineral/iron/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
 
 /turf/closed/mineral/iron/ice
 	environment_type = "snow_cavern"
@@ -356,7 +371,7 @@
 
 /turf/closed/mineral/uranium/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
 
 /turf/closed/mineral/uranium/ice
 	environment_type = "snow_cavern"
@@ -388,7 +403,7 @@
 
 /turf/closed/mineral/diamond/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
 
 /turf/closed/mineral/diamond/ice
 	environment_type = "snow_cavern"
@@ -420,7 +435,7 @@
 
 /turf/closed/mineral/gold/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
 
 /turf/closed/mineral/gold/ice
 	environment_type = "snow_cavern"
@@ -452,7 +467,7 @@
 
 /turf/closed/mineral/silver/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
 
 /turf/closed/mineral/silver/ice
 	environment_type = "snow_cavern"
@@ -484,7 +499,7 @@
 
 /turf/closed/mineral/titanium/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
 
 /turf/closed/mineral/titanium/ice
 	environment_type = "snow_cavern"
@@ -516,7 +531,7 @@
 
 /turf/closed/mineral/plasma/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
 
 /turf/closed/mineral/plasma/ice
 	environment_type = "snow_cavern"
@@ -572,7 +587,7 @@
 
 /turf/closed/mineral/bscrystal/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
 
 /turf/closed/mineral/bscrystal/ice
 	environment_type = "snow_cavern"
@@ -723,7 +738,7 @@
 			det_time = 0
 		visible_message(span_notice("The chain reaction was stopped! The gibtonite had [det_time] reactions left till the explosion!"))
 
-/turf/closed/mineral/gibtonite/gets_drilled(mob/user, triggered_by_explosion = 0)
+/turf/closed/mineral/gibtonite/attempt_drill(mob/user, triggered_by_explosion = 0)
 	if(stage == GIBTONITE_UNSTRUCK && mineralAmt >= 1) //Gibtonite deposit is activated
 		playsound(src,'sound/effects/hit_on_shattered_glass.ogg',50,1)
 		explosive_reaction(user, triggered_by_explosion)
@@ -758,7 +773,7 @@
 
 /turf/closed/mineral/gibtonite/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
 
 /turf/closed/mineral/gibtonite/ice
 	environment_type = "snow_cavern"

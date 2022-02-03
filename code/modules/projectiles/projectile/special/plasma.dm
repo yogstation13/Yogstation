@@ -15,13 +15,12 @@
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		var/hardness = M.hardness //cache hardness because when we use it the turf will already be scraped
-		if(M.gets_drilled(firer,0,1))
-			if(mine_range)
-				mine_range--
-				range += 1 - hardness
-			if(range > 0)
-				return BULLET_ACT_FORCE_PIERCE
+		M.attempt_drill(firer)
+		if(mine_range)
+			mine_range--
+			range++
+		if(range > 0)
+			return BULLET_ACT_FORCE_PIERCE
 
 /obj/item/projectile/plasma/scatter/adv/on_hit(atom/target)
 	if(istype(target, /turf/closed/mineral/gibtonite))
