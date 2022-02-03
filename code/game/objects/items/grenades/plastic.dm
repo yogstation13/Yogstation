@@ -19,6 +19,7 @@
 	var/boom_sizes = list(0, 0, 3)
 	var/can_attach_mob = FALSE
 	var/full_damage_on_mobs = FALSE
+	var/alert_admins = TRUE
 
 /obj/item/grenade/plastic/Initialize()
 	. = ..()
@@ -120,7 +121,8 @@
 			return
 		target = AM
 
-		message_admins("[ADMIN_LOOKUPFLW(user)] planted [name] on [target.name] at [ADMIN_VERBOSEJMP(target)] with [det_time] second fuse")
+		if(alert_admins)
+			message_admins("[ADMIN_LOOKUPFLW(user)] planted [name] on [target.name] at [ADMIN_VERBOSEJMP(target)] with [det_time] second fuse")
 		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)] with a [det_time] second fuse")
 
 		notify_ghosts("[user] has planted \a [src] on [target] with a [det_time] second fuse!", source = target, action = NOTIFY_ORBIT, header = "Bomb Planted" )
