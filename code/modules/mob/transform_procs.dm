@@ -3,6 +3,9 @@
 /mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
 	if (notransform || transformation_timer)
 		return
+	if(has_horror_inside())
+		to_chat(src, "<span class='warning'>You feel something strongly clinging to your humanity!</span>")
+		return
 	//Handle items on mob
 
 	if(tr_flags & TR_KEEPITEMS)
