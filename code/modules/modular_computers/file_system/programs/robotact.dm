@@ -9,7 +9,7 @@
 	available_on_ntnet = FALSE
 	unsendable = TRUE
 	undeletable = TRUE
-	usage_flags = PROGRAM_TABLET
+	usage_flags = PROGRAM_INTEGRATED
 	size = 5
 	tgui_id = "NtosRobotact"
 	///A typed reference to the computer, specifying the borg tablet type
