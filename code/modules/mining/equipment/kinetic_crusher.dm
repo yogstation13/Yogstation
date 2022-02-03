@@ -427,4 +427,4 @@
 /obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target/L, mob/living/user)
 	.=..()
 	var/backstab_dir = get_dir(user, L)
-	CALLBACK(src, .proc/on_mark_detonation, L, user)
+	addtimer(CALLBACK(src, .proc/on_mark_detonation, L, user), 1)
