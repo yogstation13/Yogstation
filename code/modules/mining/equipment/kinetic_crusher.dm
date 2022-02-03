@@ -424,14 +424,7 @@
 /obj/item/crusher_trophy/malformed_bone/effect_desc()
 	return "mark detonation has a chance to trigger a second detonation"
 
-/obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user)
-	. = ..()
-	if(rand(1, 100) <= bonus_value && target.stat != DEAD)
-		if((user.dir & backstab_dir) && (L.dir & backstab_dir))
-			C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
-			L.apply_damage(detonation_damage + backstab_bonus, BRUTE, blocked = def_check)
-			playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
-		else
-			if(!QDELETED(C))
-				C.total_damage += detonation_damage
-				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
+/obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target/L, mob/living/user)
+	.=..()
+	var/backstab_dir = get_dir(user, L)
+	CALLBACK(src, .proc/on_mark_detonation, L, user)
