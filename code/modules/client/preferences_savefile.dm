@@ -538,7 +538,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["teeth"]	= sanitize_inlist(features["teeth"], GLOB.teeth_list)
 	features["dome"]	= sanitize_inlist(features["dome"], GLOB.dome_list)
 	features["dorsal_tubes"]	= sanitize_inlist(features["dorsal_tubes"], GLOB.dorsal_tubes_list)
-	features["ethereal_mark"]	= sanitize_inlist(features["ethereal_mark"], GLOB.marks_list)
+	features["ethereal_mark"]	= sanitize_inlist(features["ethereal_mark"], GLOB.ethereal_mark_list)
 
 	persistent_scars = sanitize_integer(persistent_scars)
 

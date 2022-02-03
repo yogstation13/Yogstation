@@ -18,7 +18,7 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER)
 	mutant_bodyparts = list("ethereal_mark")
-	default_features = list("ethereal_mark" = "None")
+	default_features = list("ethereal_mark" = "Eyes")
 	species_language_holder = /datum/language_holder/ethereal
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE

@@ -850,7 +850,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if("dorsal_tubes")
 					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
 				if("ethereal_mark")
-					S = GLOB.marks_list[H.dna.features["ethereal_mark"]]
+					S = GLOB.ethereal_mark_list[H.dna.features["ethereal_mark"]]
 			if(!S || S.icon_state == "none")
 				continue
 
