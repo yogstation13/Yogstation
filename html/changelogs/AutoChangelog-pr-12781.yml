@@ -1,7 +1,0 @@
-author: "  zxaber & SandPoot"
-delete-after: true 
-changes: 
-  - rscadd: "Added tablets to borgs."
-  - rscadd: "Added RoboTact, a borg self-management app to said tablet. This replaces most borg verbs."
-  - rscdel: "Removed many borg verbs in favor of the app."
-  - tweak: "Some lesser-used elements on the borg hud are now in the management app."
