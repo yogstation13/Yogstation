@@ -427,4 +427,4 @@
 /obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user)
 	for(var/mob/living/L in oview(2, user))
 		if(rand(1, 100) <= bonus_value)
-			addtimer(CALLBACK(src, .proc/on_mark_detonation, L, user), 1)
+			target.apply_status_effect(STATUS_EFFECT_CRUSHERMARK)
