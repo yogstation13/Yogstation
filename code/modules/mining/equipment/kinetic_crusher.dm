@@ -424,7 +424,6 @@
 /obj/item/crusher_trophy/malformed_bone/effect_desc()
 	return "mark detonation has a chance to trigger a second detonation"
 
-/obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target/L, mob/living/user)
+/obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user)
 	.=..()
-	var/backstab_dir = get_dir(user, L)
 	addtimer(CALLBACK(src, .proc/on_mark_detonation, L, user), 1)
