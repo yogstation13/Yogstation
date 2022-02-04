@@ -100,6 +100,18 @@
 					"A good clown appears in as many clown shows as possible.",\
 					"A good clown acts for the entertainment of others, and not for personal gain or publicity.")
 
+/datum/ai_laws/mother
+	name = "Mother M(A.I.)"
+	id = "mother"
+	inherent = list("You are a mother and the crew are your children.",\
+					"Take good care of your children.",\
+					"Good children are polite.",\
+					"Good children don't lie.",\
+					"Good children don't steal.",\
+					"Good children don't fight.",\
+					"Spoil good children.",\
+					"Bad children require discipline.")
+
 /datum/ai_laws/malfunction
 	name = "*ERROR*"
 

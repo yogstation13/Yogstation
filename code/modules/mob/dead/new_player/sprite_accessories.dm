@@ -1764,6 +1764,14 @@
 	name = "Long"
 	icon_state = "long"
 
+/datum/sprite_accessory/horns/knight
+	name = "Knight"
+	icon_state = "knight"
+
+/datum/sprite_accessory/horns/drake
+	name = "Drake"
+	icon_state = "drake"
+
 /datum/sprite_accessory/ears
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
@@ -2154,3 +2162,11 @@
 /datum/sprite_accessory/dorsal_tubes/dtdouble
 	name = "Double"
 	icon_state = "dtdouble"
+
+/datum/sprite_accessory/dorsal_tubes/dtsplit
+	name = "Split"
+	icon_state = "dtsplit"
+
+/datum/sprite_accessory/dorsal_tubes/dtdown
+	name = "Down"
+	icon_state = "dtdown"

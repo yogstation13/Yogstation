@@ -453,6 +453,13 @@ AI MODULES
 	name = "'Clown' Core AI Module"
 	law_id = "clown"
 
+	
+/******************** Mother *********************/
+
+/obj/item/aiModule/core/full/mother
+	name = "'Mother M(A.I.)' Core AI Module"
+	law_id = "mother"
+
 
 /******************** Freeform Core ******************/
 
