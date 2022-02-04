@@ -172,7 +172,7 @@
 
 		if(T && ismineralturf(T))
 			var/turf/closed/mineral/M = T
-			M.mineralAmt = rand(1, 5) + ((hardness - 1) * 2) //2 bonus ore for every hardness above 1
+			M.mineralAmt = rand(1, 5) + max(0,((hardness - 1) * 2)) //2 bonus ore for every hardness above 1
 			M.environment_type = src.environment_type
 			M.turf_type = src.turf_type
 			M.baseturfs = src.baseturfs
@@ -266,6 +266,7 @@
 	name = "hardened basalt"
 	icon_state = "rock_hard"
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	mineralChance = 15
 	hardness = 2
 
 	mineralSpawnChanceList = list(
