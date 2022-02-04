@@ -136,7 +136,7 @@
 		if(3)
 			if (prob(75))
 				attempt_drill(null,TRUE,2)
-			else
+			else if(prob(90))
 				attempt_drill(null,TRUE,1)
 		if(2)
 			if (prob(90))
