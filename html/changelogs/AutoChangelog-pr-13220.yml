@@ -1,4 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "fixed a bunch of borg tablet issues, mainly the UI buttons not showing up, the tablet being invisible, and robotact not being able to run on integrated tablets"
