@@ -26,6 +26,7 @@
 	/// Give Monster Hunter powers
 	trackvamp.Grant(owner.current)
 	fortitude.Grant(owner.current)
+	set_antag_hud(owner.current, "obssesed")
 	if(give_objectives)
 		/// Give Hunter Objective
 		var/datum/objective/bloodsucker/monsterhunter/monsterhunter_objective = new

@@ -5,8 +5,7 @@
 		INVOKE_ASYNC(src, .proc/HandleDeath)
 		return
 	// Deduct Blood
-	var/mob/living/O = owner
-	if(owner.current.stat == CONSCIOUS && !O.IsImmobilized() && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
+	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		INVOKE_ASYNC(src, .proc/AddBloodVolume, passive_blood_drain) // -.1 currently
 	if(HandleHealing(1))
 		if((COOLDOWN_FINISHED(src, bloodsucker_spam_healing)) && owner.current.blood_volume > 0)
@@ -28,7 +27,7 @@
 	if(my_clan == CLAN_MALKAVIAN)
 		if(prob(85) || owner.current.stat != CONSCIOUS || HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 			return
-		var/message = pick(strings("malkavian_revelations.json", "revelations", "fulp_modules/strings/bloodsuckers"))
+		var/message = pick(strings("malkavian_revelations.json", "revelations", "strings"))
 		INVOKE_ASYNC(owner.current, /atom/movable/proc/say, message, , , , , , CLAN_MALKAVIAN)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -183,14 +183,14 @@
 
 	// Send pre-pull message
 	if(amSilent)
-		to_chat(owner, "you quietly lean towards [feed_target]")
+		to_chat(owner, span_notice("You quietly lean towards [feed_target]"))
 	else
-		to_chat(owner, "you pull [feed_target] close to you!")
+		to_chat(owner, span_notice("You pull [feed_target] close to you!"))
 
 	// Start the countdown
 	if(!do_mob(user, feed_target, feed_time, NONE, TRUE))
-		to_chat(owner, "your feeding was interrupted!")
 		DeactivatePower()
+		to_chat(owner, span_danger("Your feeding was interrupted!"))
 		return
 
 	// Give them the effects (Depending on if we are silent or not)
@@ -226,11 +226,11 @@
 			break
 	if(was_noticed && !target_grappled)
 		feeds_noticed++
-		to_chat(owner, "Someone may have noticed...")
+		to_chat(owner, span_danger("Someone may have noticed..."))
 		if(!bloodsuckerdatum_power.broke_masquerade)
 			to_chat(user, span_cultbold("You broke the Masquerade [feeds_noticed] time(s), if you break it 3 times, you become a criminal to the Bloodsucker's Cause!"))
 	else
-		to_chat(owner, "You think no one saw you...")
+		to_chat(owner, span_notice("You think no one saw you..."))
 
 	// FEEEEEEEEED!! //
 	ADD_TRAIT(user, TRAIT_MUTE, BLOODSUCKER_TRAIT) // My mouth is full!
@@ -291,20 +291,20 @@
 	// Blood Remaining? (Carbons/Humans only)
 	else if(!IS_BLOODSUCKER(feed_target))
 		if(feed_target.blood_volume <= BLOOD_VOLUME_BAD(feed_target) && warning_target_bloodvol > BLOOD_VOLUME_BAD(feed_target))
-			to_chat(owner, "your victim's blood is fatally low!")
+			to_chat(owner, span_danger("Your victim's blood is fatally low!"))
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_OKAY(feed_target) && warning_target_bloodvol > BLOOD_VOLUME_OKAY(feed_target))
-			to_chat(owner, "your victim's blood is dangerously low.")
+			to_chat(owner, span_danger("Your victim's blood is dangerously low."))
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE(feed_target) && warning_target_bloodvol > BLOOD_VOLUME_SAFE(feed_target))
-			to_chat(owner, "your victim's blood is at an unsafe level.")
+			to_chat(owner, span_danger("Your victim's blood is at an unsafe level."))
 		warning_target_bloodvol = feed_target.blood_volume // If we had a warning to give, it's been given by now.
 	// Full?
 	if(user.blood_volume >= bloodsuckerdatum_power.max_blood_volume && !warning_full)
-		to_chat(owner, "you are full, further blood will be wasted.")
+		to_chat(owner, span_notice("You are full, further blood will be wasted."))
 		warning_full = TRUE
 	// Done?
 	if(feed_target.blood_volume <= 0)
-		to_chat(owner, "you have bled your victim dry...")
 		DeactivatePower()
+		to_chat(owner, span_notice("You have bled your victim dry..."))
 		return
 
 	// Blood Gulp Sound

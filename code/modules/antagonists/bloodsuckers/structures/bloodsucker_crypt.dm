@@ -431,7 +431,7 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
 
-	switch(input("Would you like to turn this Vassal into your completely loyal Servant? This costs 150 Blood to do. You cannot undo this.", list("Yes", "No")))
+	switch(input("Would you like to turn this Vassal into your completely loyal Servant? This costs 150 Blood to do. You cannot undo this.") in list("Yes", "No"))
 		if("Yes")
 			user.blood_volume -= 150
 			bloodsuckerdatum.has_favorite_vassal = TRUE

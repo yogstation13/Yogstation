@@ -45,7 +45,7 @@
 
 	var/bloodsucker_level
 	var/bloodsucker_level_unspent = 1
-	var/passive_blood_drain = -0.2
+	var/passive_blood_drain = -0.1
 	var/additional_regen
 	var/bloodsucker_regen_rate = 0.3
 	var/max_blood_volume = 600
@@ -106,7 +106,7 @@
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
 	RegisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/LifeTick)
 	hud.join_hud(current_mob)
-	set_antag_hud(current_mob, "Bloodsucker")
+	set_antag_hud(current_mob, "bloodsucker")
 	if((H.mind.assigned_role == "Clown"))
 		to_chat(owner, "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 		H.dna.remove_mutation(CLOWNMUT)

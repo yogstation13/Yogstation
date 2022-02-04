@@ -78,15 +78,6 @@
 	if(current_target.eye_blind > 0)
 		to_chat(owner, "[current_target] is blind.")
 		return FALSE
-	// Facing target?
-	if(!is_source_facing_target(owner, current_target)) // in unsorted.dm
-		to_chat(owner, "You must be facing [current_target].")
-		return FALSE
-	// Target facing me? (On the floor, they're facing everyone)
-	if(((current_target.mobility_flags & MOBILITY_STAND) && !is_source_facing_target(current_target, owner) && level_current <= 4))
-		to_chat(owner, "[current_target] must be facing you.")
-		return FALSE
-
 	// Gone through our checks, let's mark our guy.
 	mesmerized_target = current_target
 	return TRUE

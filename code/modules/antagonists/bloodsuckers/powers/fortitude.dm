@@ -48,7 +48,7 @@
 	/// Prevents running while on Fortitude
 	if(user.m_intent != MOVE_INTENT_WALK)
 		user.toggle_move_intent()
-		to_chat(user, "you attempt to run, crushing yourself.")
+		to_chat(user, span_warning("You attempt to run, crushing yourself."))
 		user.adjustBruteLoss(rand(5,15))
 	/// We don't want people using fortitude being able to use vehicles
 	if(user.buckled && istype(user.buckled, /obj/vehicle))

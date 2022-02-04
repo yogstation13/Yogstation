@@ -11,7 +11,8 @@
 /datum/martial_art/frenzygrab/grab_act(mob/living/user, mob/living/target)
 	if(user != target)
 		target.grabbedby(user)
-		target.grippedby(user, instant = TRUE)
+		user.grab_state = GRAB_AGGRESSIVE
+		restraining = TRUE
 		return TRUE
 	..()
 
@@ -54,7 +55,7 @@
 		to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy!"))
 		to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you instantly Aggresively grab, have stun resistance, cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
 
-	to_chat(owner, "you enter a frenzy!")
+	to_chat(owner, span_boldwarning("You enter a frenzy!"))
 
 	// Stamina resistances
 	if(bloodsuckerdatum.my_clan == CLAN_MALKAVIAN)
@@ -68,7 +69,7 @@
 	if(user.IsAdvancedToolUser())
 		was_tooluser = TRUE
 		ADD_TRAIT(owner, TRAIT_MONKEYLIKE, SPECIES_TRAIT)
-	owner.add_movespeed_modifier(MOVESPEED_ID_DNA_VAULT, update=TRUE, priority=100, multiplicative_slowdown=-0.74, blacklisted_movetypes=(FLYING|FLOATING))
+	owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.4, blacklisted_movetypes=(FLYING|FLOATING))
 	bloodsuckerdatum.frenzygrab.teach(user, TRUE)
 	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)
 	var/obj/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
@@ -83,13 +84,13 @@
 
 /datum/status_effect/frenzy/on_remove()
 	var/mob/living/carbon/human/user = owner
-	to_chat(owner, "you come back to your senses.")
+	to_chat(owner, span_warning("You come back to your senses."))
 	REMOVE_TRAIT(owner, TRAIT_MUTE, FRENZY_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_DEAF, FRENZY_TRAIT)
 	if(was_tooluser)
 		REMOVE_TRAIT(owner, TRAIT_MONKEYLIKE, SPECIES_TRAIT)
 		was_tooluser = FALSE
-	owner.remove_movespeed_modifier(MOVESPEED_ID_DNA_VAULT, update=FALSE, priority=100, multiplicative_slowdown=-0.74, blacklisted_movetypes=(FLYING|FLOATING))
+	owner.remove_movespeed_modifier(type)
 	bloodsuckerdatum.frenzygrab.remove(user)
 	owner.remove_client_colour(/datum/client_colour/cursed_heart_blood)
 

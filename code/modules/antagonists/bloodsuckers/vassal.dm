@@ -27,8 +27,7 @@
 /datum/antagonist/vassal/apply_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
-	set_antag_hud(current_mob)
-	set_antag_hud(current_mob, /datum/antagonist/bloodsucker)
+	set_antag_hud(current_mob, "vassal")
 
 /datum/antagonist/vassal/on_gain()
 	/// Enslave them to their Master
@@ -103,7 +102,7 @@
 	// Default stuff for all
 	favorite_vassal = TRUE
 	hud_type = "vassal6"
-	set_antag_hud(owner.current, /datum/antagonist/bloodsucker)
+	set_antag_hud(owner.current, "vassal6")
 	to_chat(master, span_danger("You have turned [owner.current] into your Favorite Vassal! They will no longer be deconverted upon Mindshielding!"))
 	to_chat(owner, span_notice("As Blood drips over your body, you feel closer to your Master... You are now the Favorite Vassal!"))
 

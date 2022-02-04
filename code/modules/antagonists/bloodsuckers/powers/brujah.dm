@@ -14,7 +14,7 @@
 
 /datum/action/bloodsucker/brujah/ActivatePower()
 	if(active && bloodsuckerdatum_power && bloodsuckerdatum_power.frenzied)
-		to_chat(owner, "already in a frenzy!")
+		to_chat(owner, span_notice("You are already in a frenzy!"))
 		return FALSE
 	var/mob/living/user = owner
 	user.apply_status_effect(STATUS_EFFECT_FRENZY)
@@ -28,6 +28,6 @@
 /datum/action/bloodsucker/brujah/CheckCanDeactivate()
 	var/mob/living/user = owner
 	if(user.blood_volume < FRENZY_THRESHOLD_EXIT)
-		to_chat(owner, "not enough blood!")
+		to_chat(owner, span_notice("Not enough blood!"))
 		return FALSE
 	. = ..()

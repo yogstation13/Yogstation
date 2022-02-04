@@ -50,7 +50,7 @@
 		return FALSE
 	// Check: can the Bloodsucker even move?
 	var/mob/living/user = owner
-	if(user.mobility_flags & ~ MOBILITY_STAND || user.IsImmobilized())
+	if(user.mobility_flags & ~MOBILITY_STAND || user.IsImmobilized())
 		return FALSE
 	return TRUE
 
@@ -101,11 +101,11 @@
 			return
 		// Is my target a Monster hunter?
 		if(IS_MONSTERHUNTER(target))
-			to_chat(owner, "You get pushed away!")
+			to_chat(owner, span_danger("You get pushed away!"))
 			target.grabbedby(owner)
 			return
 
-		to_chat(owner, "You lunge at [target]!")
+		to_chat(owner, span_danger("You lunge at [target]!"))
 		/// Good to go!
 		target.Stun(10 + level_current * 5)
 		// Instantly aggro grab them if they don't have riot gear.

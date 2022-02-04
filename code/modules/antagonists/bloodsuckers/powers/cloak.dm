@@ -21,7 +21,7 @@
 	if(!.)
 		return FALSE
 	for(var/mob/living/watchers in viewers(9, owner) - owner)
-		to_chat(owner, "you can only vanish unseen.")
+		to_chat(owner, span_warning("You can only vanish unseen."))
 		return FALSE
 	return TRUE
 
@@ -33,7 +33,7 @@
 		user.toggle_move_intent()
 	user.digitalinvis = 1
 	user.digitalcamo = 1
-	to_chat(user, "cloak turned on.")
+	to_chat(user, span_notice("You put your Cloak of Darkness on."))
 
 /datum/action/bloodsucker/cloak/UsePower(mob/living/user)
 	// Checks that we can keep using this.
@@ -43,7 +43,7 @@
 	animate(user, alpha = max(25, owner.alpha - min(75, 10 + 5 * level_current)), time = 1.5 SECONDS)
 	// Prevents running while on Cloak of Darkness
 	if(user.m_intent != MOVE_INTENT_WALK)
-		to_chat(owner, "you attempt to run, crushing yourself.")
+		to_chat(owner, span_warning("You attempt to run, crushing yourself."))
 		user.toggle_move_intent()
 		user.adjustBruteLoss(rand(5,15))
 
@@ -53,7 +53,7 @@
 		return FALSE
 	/// Must be CONSCIOUS
 	if(user.stat != CONSCIOUS)
-		to_chat(owner, span_warning("Your cloak failed due to you falling unconcious!"))
+		to_chat(owner, span_warning("Your Cloak of Darkness fell off due to you falling unconcious!"))
 		return FALSE
 	return TRUE
 
@@ -65,4 +65,4 @@
 	user.digitalcamo = 0
 	if(was_running && user.m_intent == MOVE_INTENT_WALK)
 		user.toggle_move_intent()
-	to_chat(user, "cloak turned off.")
+	to_chat(user, span_notice("You take your Cloak of Darkness off."))
