@@ -3,7 +3,7 @@
 	desc = "Used to make big holes in rocks. Only works on rocks!"
 	icon_state = "mining-charge"
 	det_time = 5 //uses real world seconds cause screw you i guess
-	boom_sizes = list(1,2,3)
+	boom_sizes = list(1,2,4)
 	alert_admins = FALSE
 
 /obj/item/grenade/plastic/miningcharge/Initialize()
