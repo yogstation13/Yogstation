@@ -135,10 +135,14 @@
 	switch(severity)
 		if(3)
 			if (prob(75))
+				attempt_drill(null,TRUE,2)
+			else
 				attempt_drill(null,TRUE,1)
 		if(2)
 			if (prob(90))
 				attempt_drill(null,TRUE,2)
+			else
+				attempt_drill(null,TRUE,1)
 		if(1)
 			attempt_drill(null,TRUE,3)
 	return
