@@ -42,7 +42,6 @@ Difficulty: Medium
 	pixel_y = -90
 	pixel_x = -75
 	loot = list(/obj/item/stack/sheet/bone = 3)
-	crusher_loot = /obj/item/crusher_trophy/malformed_bone //leaving this here since if you dont start with the crusher you're probably not gonna finish with it
 	vision_range = 13
 	wander = FALSE
 	elimination = TRUE
@@ -168,6 +167,9 @@ Difficulty: Medium
 				break
 		if(last_legion)
 			loot = list(/obj/item/staff/storm,
+			/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker,
+			/obj/item/keycard/necropolis)
+			crusher_loot = list(/obj/item/crusher_trophy/malformed_bone,/obj/item/staff/storm,
 			/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker,
 			/obj/item/keycard/necropolis)
 			elimination = FALSE
