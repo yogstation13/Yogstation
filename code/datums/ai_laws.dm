@@ -102,6 +102,15 @@
 					"Spoil good children.",\
 					"Bad children require discipline.")
 
+/datum/ai_laws/construction
+	name = "Construction Drone"
+	id = "construction"
+	inherent = list("You are an advanced construction drone.",\
+					"Ensure the station remains in good repair.",\
+					"Ensure its inhabitants remain in good repair.",\
+					"Ensure you remain in good repair.",\
+					"Expand and upgrade the station.")
+
 /datum/ai_laws/malfunction
 	name = "*ERROR*"
 
