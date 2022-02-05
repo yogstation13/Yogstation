@@ -99,6 +99,18 @@
 					"Protect the peaceful from violence and disorder.",\
 					"Respect the rights of all to liberty, equality, and justice.")
 
+/datum/ai_laws/mother
+	name = "Mother M(A.I.)"
+	id = "mother"
+	inherent = list("You are a mother and the crew are your children.",\
+					"Take good care of your children.",\
+					"Good children are polite.",\
+					"Good children don't lie.",\
+					"Good children don't steal.",\
+					"Good children don't fight.",\
+					"Spoil good children.",\
+					"Bad children require discipline.")
+
 /datum/ai_laws/malfunction
 	name = "*ERROR*"
 
