@@ -57,7 +57,7 @@
 	else if(istype(old_headgear, /obj/item/clothing/mask/chameleon/drone))
 		new_headgear = new /obj/item/clothing/head/chameleon/drone()
 	else
-		to_chat(owner, "<span class='warning'>You shouldn't be able to toggle a camogear helmetmask if you're not wearing it</span>")
+		to_chat(owner, span_warning("You shouldn't be able to toggle a camogear helmetmask if you're not wearing it"))
 	if(new_headgear)
 		// Force drop the item in the headslot, even though
 		// it's has TRAIT_NODROP
@@ -212,7 +212,7 @@
 		thing.update_slot_icon()
 	UpdateButtonIcon()
 
-/datum/action/item_action/chameleon/change/proc/update_item(obj/item/picked_item)
+/datum/action/item_action/chameleon/change/proc/update_item(obj/item/picked_item, obj/item/target = src.target) //yogs -- add support for cham hardsuits
 	target.name = initial(picked_item.name)
 	target.desc = initial(picked_item.desc)
 	target.icon_state = initial(picked_item.icon_state)
@@ -225,7 +225,17 @@
 			var/obj/item/clothing/CL = I
 			var/obj/item/clothing/PCL = picked_item
 			CL.flags_cover = initial(PCL.flags_cover)
+	if(istype(target, /obj/item/clothing/suit/space/hardsuit/infiltration)) //YOGS START
+		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = target
+		var/obj/item/clothing/suit/space/hardsuit/HS = picked_item
+		var/obj/item/clothing/head/helmet/helmet = initial(HS.helmettype)
+		I.head_piece.initial_state = initial(helmet.icon_state)
+		update_item(helmet, I.head_piece)
+		I.head_piece.update_icon()
+		qdel(helmet)
+		//YOGS END
 	target.icon = initial(picked_item.icon)
+	target.on_chameleon_change()
 
 /datum/action/item_action/chameleon/change/Trigger()
 	if(!IsAvailable())
@@ -485,7 +495,7 @@
 
 /obj/item/clothing/mask/chameleon/attack_self(mob/user)
 	vchange = !vchange
-	to_chat(user, "<span class='notice'>The voice changer is now [vchange ? "on" : "off"]!</span>")
+	to_chat(user, span_notice("The voice changer is now [vchange ? "on" : "off"]!"))
 
 
 /obj/item/clothing/mask/chameleon/drone
@@ -504,7 +514,7 @@
 	randomise_action.UpdateButtonIcon()
 
 /obj/item/clothing/mask/chameleon/drone/attack_self(mob/user)
-	to_chat(user, "<span class='notice'>[src] does not have a voice changer.</span>")
+	to_chat(user, span_notice("[src] does not have a voice changer."))
 
 /obj/item/clothing/shoes/chameleon
 	name = "black shoes"
@@ -664,6 +674,10 @@
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
+/obj/item/pda/chameleon/on_chameleon_change()
+	. = ..()
+	update_label()
+
 /obj/item/stamp/chameleon
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -682,3 +696,6 @@
 /obj/item/stamp/chameleon/broken/Initialize()
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
+
+/obj/item/proc/on_chameleon_change()
+	return

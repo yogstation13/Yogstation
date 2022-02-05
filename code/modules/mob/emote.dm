@@ -12,7 +12,7 @@
 
 	if(!length(key_emotes))
 		if(intentional)
-			to_chat(src, "<span class='notice'>'[act]' emote does not exist. Say *help for a list.</span>")
+			to_chat(src, span_notice("'[act]' emote does not exist. Say *help for a list."))
 		return FALSE
 	var/silenced = FALSE
 	for(var/datum/emote/P in key_emotes)
@@ -22,7 +22,7 @@
 		if(P.run_emote(src, param, m_type, intentional))
 			return TRUE
 	if(intentional && !silenced)
-		to_chat(src, "<span class='notice'>Unusable emote '[act]'. Say *help for a list.</span>")
+		to_chat(src, span_notice("Unusable emote '[act]'. Say *help for a list."))
 	return FALSE
 
 
@@ -50,8 +50,6 @@
 /datum/emote/spin/run_emote(mob/user, params ,  type_override, intentional)
 	. = ..()
 	if(.)
-		user.spin(20, 1)
-
 		if(iscyborg(user) && user.has_buckled_mobs())
 			var/mob/living/silicon/robot/R = user
 			var/datum/component/riding/riding_datum = R.GetComponent(/datum/component/riding)
@@ -60,3 +58,6 @@
 					riding_datum.force_dismount(M)
 			else
 				R.unbuckle_all_mobs()
+		else
+			//we want to hold off on doing the spin if they are a cyborg and have someone buckled to them
+			user.spin(20,1)

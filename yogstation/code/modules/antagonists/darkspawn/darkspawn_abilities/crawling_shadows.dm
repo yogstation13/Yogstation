@@ -15,8 +15,8 @@
 	return ..()
 
 /datum/action/innate/darkspawn/crawling_shadows/Activate()
-	owner.visible_message("<span class='warning'>[owner] falls to the ground and transforms into a shadowy creature!</span>", "<span class='velvet bold'>sa iahz sepd zwng</span>\n\
-	<span class='notice'>You assume a stealthier form.</span>")
+	owner.visible_message(span_warning("[owner] falls to the ground and transforms into a shadowy creature!"), "<span class='velvet bold'>sa iahz sepd zwng</span>\n\
+	[span_notice("You assume a stealthier form.")]")
 	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, 1)
 	var/mob/living/simple_animal/hostile/crawling_shadows/CS = new /mob/living/simple_animal/hostile/crawling_shadows(get_turf(owner))
 	CS.darkspawn_mob = owner

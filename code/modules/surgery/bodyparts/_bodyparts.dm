@@ -104,18 +104,18 @@
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
 	if(brute_dam > DAMAGE_PRECISION)
-		. += "<span class='warning'>This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.</span>"
+		. += span_warning("This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.")
 	if(burn_dam > DAMAGE_PRECISION)
-		. += "<span class='warning'>This limb has [burn_dam > 30 ? "severe" : "minor"] burns.</span>"
+		. += span_warning("This limb has [burn_dam > 30 ? "severe" : "minor"] burns.")
 
 	if(locate(/datum/wound/blunt) in wounds)
-		. += "<span class='warning'>The bones in this limb appear badly cracked.</span>"
+		. += span_warning("The bones in this limb appear badly cracked.")
 	if(locate(/datum/wound/slash) in wounds)
-		. += "<span class='warning'>The flesh on this limb appears badly lacerated.</span>"
+		. += span_warning("The flesh on this limb appears badly lacerated.")
 	if(locate(/datum/wound/pierce) in wounds)
-		. += "<span class='warning'>The flesh on this limb appears badly perforated.</span>"
+		. += span_warning("The flesh on this limb appears badly perforated.")
 	if(locate(/datum/wound/burn) in wounds)
-		. += "<span class='warning'>The flesh on this limb appears badly cooked.</span>"
+		. += span_warning("The flesh on this limb appears badly cooked.")
 
 /obj/item/bodypart/blob_act()
 	take_damage(max_damage)
@@ -133,14 +133,14 @@
 			if(!H.get_bodypart(body_zone) && !animal_origin)
 				user.temporarilyRemoveItemFromInventory(src, TRUE)
 				if(!attach_limb(C))
-					to_chat(user, "<span class='warning'>[H]'s body rejects [src]!</span>")
+					to_chat(user, span_warning("[H]'s body rejects [src]!"))
 					forceMove(H.loc)
 				if(H == user)
-					H.visible_message("<span class='warning'>[H] jams [src] into [H.p_their()] empty socket!</span>",\
-					"<span class='notice'>You force [src] into your empty socket, and it locks into place!</span>")
+					H.visible_message(span_warning("[H] jams [src] into [H.p_their()] empty socket!"),\
+					span_notice("You force [src] into your empty socket, and it locks into place!"))
 				else
-					H.visible_message("<span class='warning'>[user] jams [src] into [H]'s empty socket!</span>",\
-					"<span class='notice'>[user] forces [src] into your empty socket, and it locks into place!</span>")
+					H.visible_message(span_warning("[user] jams [src] into [H]'s empty socket!"),\
+					span_notice("[user] forces [src] into your empty socket, and it locks into place!"))
 				return
 	..()
 
@@ -148,12 +148,12 @@
 	if(W.get_sharpness())
 		add_fingerprint(user)
 		if(!contents.len)
-			to_chat(user, "<span class='warning'>There is nothing left inside [src]!</span>")
+			to_chat(user, span_warning("There is nothing left inside [src]!"))
 			return
 		playsound(loc, 'sound/weapons/slice.ogg', 50, TRUE, -1)
-		user.visible_message("<span class='warning'>[user] begins to cut open [src].</span>",\
-			"<span class='notice'>You begin to cut open [src]...</span>")
-		if(do_after(user, 54, target = src))
+		user.visible_message(span_warning("[user] begins to cut open [src]."),\
+			span_notice("You begin to cut open [src]..."))
+		if(do_after(user, 5.4 SECONDS, target = src))
 			drop_organs(user, TRUE)
 	else
 		return ..()
@@ -891,7 +891,7 @@
 		dam_mul *= iter_wound.damage_mulitplier_penalty
 
 	if(!LAZYLEN(wounds) && current_gauze && !replaced) // no more wounds = no need for the gauze anymore
-		owner.visible_message("<span class='notice'>\The [current_gauze] on [owner]'s [name] fall away.</span>", "<span class='notice'>The [current_gauze] on your [name] fall away.</span>")
+		owner.visible_message(span_notice("\The [current_gauze] on [owner]'s [name] fall away."), span_notice("The [current_gauze] on your [name] fall away."))
 		QDEL_NULL(current_gauze)
 
 	wound_damage_multiplier = dam_mul
@@ -902,7 +902,7 @@
 
 	var/bleed_rate = 0
 	if(generic_bleedstacks > 0)
-		bleed_rate++
+		bleed_rate += generic_bleedstacks
 
 	//We want an accurate reading of .len
 	listclearnulls(embedded_objects)
@@ -959,6 +959,6 @@
 		return
 	current_gauze.absorption_capacity -= seep_amt
 	if(current_gauze.absorption_capacity <= 0)
-		owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [name] fall away in rags.</span>", "<span class='warning'>\The [current_gauze] on your [name] fall away in rags.</span>", vision_distance=COMBAT_MESSAGE_RANGE)
+		owner.visible_message(span_danger("\The [current_gauze] on [owner]'s [name] fall away in rags."), span_warning("\The [current_gauze] on your [name] fall away in rags."), vision_distance=COMBAT_MESSAGE_RANGE)
 		QDEL_NULL(current_gauze)
 		SEND_SIGNAL(src, COMSIG_BODYPART_GAUZE_DESTROYED)

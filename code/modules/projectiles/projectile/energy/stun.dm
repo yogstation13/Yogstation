@@ -30,7 +30,7 @@
 			var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 			if(istype(stomach))
 				stomach.adjust_charge(20)
-				to_chat(C,"<span class='notice'>You get charged by [src].</span>")
+				to_chat(C,span_notice("You get charged by [src]."))
 		//yogstation edit end ---------------------------------------------
 
 /obj/item/projectile/energy/electrode/on_range() //to ensure the bolt sparks when it reaches the end of its range if it didn't hit a target yet

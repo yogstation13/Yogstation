@@ -26,7 +26,7 @@
 /datum/crafting_recipe/food/bearger
 	name = "Bearger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/bear = 1,
+		/obj/item/reagent_containers/food/snacks/patty/bear = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/bearger
@@ -35,7 +35,7 @@
 /datum/crafting_recipe/food/bigbiteburger
 	name = "Big Bite Burger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain = 3,
+		/obj/item/reagent_containers/food/snacks/patty/plain = 3,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/bigbite
@@ -44,7 +44,7 @@
 /datum/crafting_recipe/food/blackburger
 	name = "Black Burger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain = 1,
+		/obj/item/reagent_containers/food/snacks/patty/plain = 1,
 		/obj/item/toy/crayon/black = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)
@@ -73,7 +73,7 @@
 /datum/crafting_recipe/food/burger
 	name = "Burger"
 	reqs = list(
-			/obj/item/reagent_containers/food/snacks/meat/steak/plain = 1,
+			/obj/item/reagent_containers/food/snacks/patty = 1,
 			/obj/item/reagent_containers/food/snacks/bun = 1
 	)
 
@@ -92,7 +92,7 @@
 /datum/crafting_recipe/food/corgiburger
 	name = "Corgi Burger"
 	reqs = list(
-			/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 1,
+			/obj/item/reagent_containers/food/snacks/patty/corgi = 1,
 			/obj/item/reagent_containers/food/snacks/bun = 1
 	)
 
@@ -139,7 +139,7 @@
 /datum/crafting_recipe/food/greenburger
 	name = "Green Burger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain = 1,
+		/obj/item/reagent_containers/food/snacks/patty/plain = 1,
 		/obj/item/toy/crayon/green = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)
@@ -159,10 +159,10 @@
 	name = "Human Burger"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/bun = 1,
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain/human = 1
+		/obj/item/reagent_containers/food/snacks/patty/human = 1
 	)
 	parts = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain/human = 1
+		/obj/item/reagent_containers/food/snacks/patty = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/human
 	subcategory = CAT_BURGER
@@ -197,7 +197,7 @@
 /datum/crafting_recipe/food/orangeburger
 	name = "Orange Burger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain = 1,
+		/obj/item/reagent_containers/food/snacks/patty/plain = 1,
 		/obj/item/toy/crayon/orange = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)
@@ -207,7 +207,7 @@
 /datum/crafting_recipe/food/purpleburger
 	name = "Purple Burger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain = 1,
+		/obj/item/reagent_containers/food/snacks/patty/plain = 1,
 		/obj/item/toy/crayon/purple = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)
@@ -226,7 +226,7 @@
 /datum/crafting_recipe/food/redburger
 	name = "Red Burger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain = 1,
+		/obj/item/reagent_containers/food/snacks/patty/plain = 1,
 		/obj/item/toy/crayon/red = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)
@@ -256,7 +256,7 @@
 	reqs = list(
 		/datum/reagent/consumable/sodiumchloride = 5,
 		/datum/reagent/consumable/blackpepper = 5,
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain = 5,
+		/obj/item/reagent_containers/food/snacks/patty/plain = 5,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 4,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 3,
 		/obj/item/reagent_containers/food/snacks/boiledegg = 2,
@@ -278,7 +278,7 @@
 /datum/crafting_recipe/food/whiteburger
 	name = "White Burger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain = 1,
+		/obj/item/reagent_containers/food/snacks/patty/plain = 1,
 		/obj/item/toy/crayon/white = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)
@@ -288,7 +288,7 @@
 /datum/crafting_recipe/food/xenoburger
 	name = "Xeno Burger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/xeno = 1,
+		/obj/item/reagent_containers/food/snacks/patty/xeno = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/xeno
@@ -297,7 +297,7 @@
 /datum/crafting_recipe/food/yellowburger
 	name = "Yellow Burger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain = 1,
+		/obj/item/reagent_containers/food/snacks/patty/plain = 1,
 		/obj/item/toy/crayon/yellow = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)

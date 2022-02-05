@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		PD.eye.eye_user = null
 		guardian.remote_control = null
 	if(LAZYLEN(PD.manifestations))
-		guardian.visible_message("<span class='warning'>The distorted space surronding [guardian] is sucked in!</span>")
+		guardian.visible_message(span_warning("The distorted space surronding [guardian] is sucked in!"))
 		var/list/people_to_suck_in = list(guardian)
 		if(summoner)
 			people_to_suck_in += summoner
@@ -222,7 +222,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 					pull.forceMove(locate(manifest_at_x, manifest_at_y, pocket_z))
 					if(isliving(pull))
 						var/mob/living/LL = L
-						to_chat(LL, "<span class='danger'>All of existence fades out for a moment...</span>")
+						to_chat(LL, span_danger("All of existence fades out for a moment..."))
 						LL.Paralyze(5 SECONDS)
 				L.forceMove(locate(manifest_at_x, manifest_at_y, pocket_z))
 				PD.add_effects(L)
@@ -251,7 +251,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 						animate(pull, alpha = 255, time = 3 SECONDS, easing = LINEAR_EASING)
 					if(isliving(pull))
 						var/mob/living/LL = L
-						to_chat(LL, "<span class='danger'>All of existence fades out for a moment...</span>")
+						to_chat(LL, span_danger("All of existence fades out for a moment..."))
 						LL.Paralyze(5 SECONDS)
 				if(L.alpha == 255)
 					L.alpha = 0
@@ -261,7 +261,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 				if(pull)
 					L.start_pulling(pull)
 		else
-			guardian.visible_message("<span class='warning'>[guardian] emits a burst of energy, distorting the space around it!</span>")
+			guardian.visible_message(span_warning("[guardian] emits a burst of energy, distorting the space around it!"))
 			PD.manifest_dimension()
 		charge_counter = max(0, charge_max - 3 SECONDS)
 		start_recharge()

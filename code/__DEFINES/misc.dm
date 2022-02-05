@@ -28,8 +28,8 @@
 #define GLASSES_LAYER			14
 #define BELT_LAYER				13		//Possible make this an overlay of somethign required to wear a belt?
 #define SUIT_STORE_LAYER		12
-#define NECK_LAYER				11
-#define BACK_LAYER				10
+#define BACK_LAYER				11
+#define NECK_LAYER				10
 #define HAIR_LAYER				9		//TODO: make part of head layer?
 #define FACEMASK_LAYER			8
 #define HEAD_LAYER				7

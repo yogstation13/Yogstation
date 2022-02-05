@@ -563,17 +563,6 @@
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"bB" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "bD" = (
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -662,16 +651,6 @@
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"bO" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "bP" = (
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -892,6 +871,14 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"dH" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "fR" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westright,
@@ -935,16 +922,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"if" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/reagent_containers/food/snacks/burger/baseball{
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "io" = (
 /obj/structure/table/american/end,
 /obj/structure/window/reinforced,
@@ -969,6 +946,19 @@
 	},
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"js" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "kJ" = (
 /obj/structure/table/american,
 /obj/item/clothing/head/that,
@@ -1013,6 +1003,20 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
+"nm" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/reagent_containers/food/snacks/burger/baseball{
+	pixel_y = 6
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "pL" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1139,6 +1143,12 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
+"Ga" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "HO" = (
 /obj/structure/table,
 /obj/item/clothing/head/hardhat/cakehat,
@@ -1256,26 +1266,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"Up" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
-"Vc" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "WE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1304,6 +1294,12 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
+"Zr" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1602,8 +1598,8 @@ bi
 aj
 bn
 bE
-if
-Up
+nm
+Ga
 bD
 bD
 JW
@@ -1618,8 +1614,8 @@ bj
 bs
 bp
 bF
-bO
-Vc
+js
+Zr
 bU
 bD
 pL
@@ -1650,7 +1646,7 @@ aZ
 aj
 bt
 bH
-bB
+dH
 bM
 bD
 bD

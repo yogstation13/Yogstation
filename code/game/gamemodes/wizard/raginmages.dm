@@ -75,7 +75,7 @@
 	spawn(rand(spawn_delay_min, spawn_delay_max))
 		message_admins("SWF is still pissed, sending another wizard - [max_mages - mages_made] left.")
 		var/banlist = list(ROLE_WIZARD, ROLE_SYNDICATE, ROLE_RAGINMAGES, ROLE_BULLSHITMAGES)
-		candidates = pollGhostCandidates("Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?", banlist, src, bullshit_mode ? ROLE_BULLSHITMAGES : ROLE_RAGINMAGES, ignore_category = POLL_IGNORE_RAGINMAGES)
+		candidates = pollGhostCandidates("Do you wish to be considered for the position of Space Wizard Federation 'diplomat'?", banlist, src, bullshit_mode ? ROLE_BULLSHITMAGES : ROLE_RAGINMAGES, ignore_category = POLL_IGNORE_RAGINMAGES)
 		if(!candidates.len)
 			message_admins("This is awkward, sleeping until another mage check...")
 			notify_ghosts("There was an attempt to spawn in another ragin' mage, but none of you qualified!")

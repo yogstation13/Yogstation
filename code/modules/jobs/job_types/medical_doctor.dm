@@ -42,6 +42,7 @@
 	belt = /obj/item/pda/medical
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical
+	uniform_skirt = /obj/item/clothing/under/rank/medical/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/md
 	l_hand = /obj/item/storage/firstaid/medical

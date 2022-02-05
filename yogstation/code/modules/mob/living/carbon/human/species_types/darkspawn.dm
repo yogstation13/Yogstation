@@ -52,11 +52,11 @@
 			if(upgrades["spacewalking"] && isspaceturf(T))
 				return
 			else if(!upgrades["light_resistance"])
-				to_chat(H, "<span class='userdanger'>The light burns you!</span>")
+				to_chat(H, span_userdanger("The light burns you!"))
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(40, 65 * light_amount), TRUE)
 				H.adjustFireLoss(DARKSPAWN_LIGHT_BURN)
 			else
-				to_chat(H, "<span class='userdanger'>The light singes you!</span>")
+				to_chat(H, span_userdanger("The light singes you!"))
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 50 * light_amount), TRUE)
 				H.adjustFireLoss(DARKSPAWN_LIGHT_BURN * 0.5)
 

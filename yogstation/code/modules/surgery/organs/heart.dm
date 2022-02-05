@@ -1,7 +1,7 @@
 /obj/item/organ/heart/nanite
 	name = "Nanite heart"
 	desc = "A specialized heart constructed from nanites that helps coordinate nanites allowing them to regenerate quicker inside the body without any ill effects. Caution this organ will fall apart without nanites to sustain itself!"
-	icon_state = "heart-x"
+	icon_state = "heart-nanites"
 	organ_flags = ORGAN_SYNTHETIC
 	var/nanite_boost = 1
 

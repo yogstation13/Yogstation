@@ -28,3 +28,8 @@
 
 /code/modules/atmospherics/ @monster860
 /yogstation/code/modules/atmospherics/ @monster860
+
+#thegamerdk
+
+/code/modules/mob/living/silicon/ai/decentralized @TheGamerdk
+/code/modules/mob/living/silicon/ai/decentralized_ai.dm @TheGamerdk

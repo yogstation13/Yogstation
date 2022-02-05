@@ -40,17 +40,17 @@
 		if(src.reagents && W.reagents)
 			. = 1 //so the containers don't splash their content on the src while scooping.
 			if(!src.reagents.total_volume)
-				to_chat(user, "<span class='notice'>[src] isn't thick enough to scoop up!</span>")
+				to_chat(user, span_notice("[src] isn't thick enough to scoop up!"))
 				return
 			if(W.reagents.total_volume >= W.reagents.maximum_volume)
-				to_chat(user, "<span class='notice'>[W] is full!</span>")
+				to_chat(user, span_notice("[W] is full!"))
 				return
-			user.visible_message("<span class='notice'>[user] shamefully begins gathering up all [src]...</span>", "<span class='notice'>You shamefully begin gathering up all [src] into [W]...</span>")
+			user.visible_message(span_notice("[user] shamefully begins gathering up all [src]..."), span_notice("You shamefully begin gathering up all [src] into [W]..."))
 			var/scoop_time
 			scoop_time = min((W.reagents.maximum_volume - W.reagents.total_volume), src.reagents.total_volume) * 2 //don't spill your flour
 			if(do_mob(user, user, scoop_time))
 				if(src)
-					to_chat(user, "<span class='notice'>You scoop up [src] into [W].</span>")
+					to_chat(user, span_notice("You scoop up [src] into [W]."))
 					reagents.trans_to(W, reagents.total_volume, transfered_by = user)
 					if(!reagents.total_volume) //scooped up all of it
 						qdel(src)

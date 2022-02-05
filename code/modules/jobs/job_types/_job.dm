@@ -247,6 +247,8 @@
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 
+	var/uniform_skirt = null
+
 	var/pda_slot = SLOT_BELT
 	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
 	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
@@ -268,6 +270,9 @@
 			back = duffelbag //Department duffel bag
 		else
 			back = backpack //Department backpack
+
+	if (H.jumpsuit_style == PREF_SKIRT && uniform_skirt)
+		uniform = uniform_skirt
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
@@ -298,6 +303,8 @@
 			C.assignment = J.title
 		if(H.mind?.assigned_role)
 			C.originalassignment = H.mind.assigned_role
+		else
+			C.originalassignment = J.title
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()

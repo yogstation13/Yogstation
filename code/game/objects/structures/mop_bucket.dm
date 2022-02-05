@@ -20,10 +20,10 @@
 				return
 			ourmop = M
 			update_icon()
-			to_chat(user, "<span class='notice'>You put [M] into [src].</span>")
+			to_chat(user, span_notice("You put [M] into [src]."))
 		else
 			reagents.trans_to(M, 5, transfered_by = user)
-			to_chat(user, "<span class='notice'>You wet [M] in [src].</span>")
+			to_chat(user, span_notice("You wet [M] in [src]."))
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 			update_icon()
 	else
@@ -33,7 +33,7 @@
 /obj/structure/mopbucket/attack_hand(mob/user)
 	if(ourmop)
 		user.put_in_hands(ourmop)
-		to_chat(user, "<span class='notice'>You take [ourmop] from [src].</span>")
+		to_chat(user, span_notice("You take [ourmop] from [src]."))
 		ourmop = null
 		update_icon()
 		return

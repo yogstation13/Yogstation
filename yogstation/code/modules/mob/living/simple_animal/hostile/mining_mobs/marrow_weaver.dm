@@ -37,7 +37,7 @@
 	if(buttmad == 0)
 		if(health < maxHealth/3)
 			buttmad = 1
-			visible_message("<span class='danger'>[src] chitters in rage, baring its fangs!</span>")
+			visible_message(span_danger("[src] chitters in rage, baring its fangs!"))
 			melee_damage_lower = melee_damage_lower_angery1
 			melee_damage_upper = melee_damage_upper_angery1
 			move_to_delay = 8
@@ -47,7 +47,7 @@
 	else if(buttmad == 1)
 		if(health > maxHealth/2)
 			buttmad = 0
-			visible_message("<span class='notice'>[src] seems to have calmed down, but not by much.</span>")
+			visible_message(span_notice("[src] seems to have calmed down, but not by much."))
 			melee_damage_lower = melee_damage_lower_angery0
 			melee_damage_upper = melee_damage_upper_angery0
 			poison_type = initial(poison_type)
@@ -69,15 +69,15 @@
 					qdel(O)
 			if(foundorgans)
 				src.visible_message(
-					"<span class='danger'>[src] drools some toxic goo into [L]'s innards...</span>",
-					"<span class='danger'>Before sucking out the slurry of bone marrow and flesh, healing itself!</span>",
+					span_danger("[src] drools some toxic goo into [L]'s innards..."),
+					span_danger("Before sucking out the slurry of bone marrow and flesh, healing itself!"),
 					"<span class-'userdanger>You liquefy [L]'s innards with your venom and suck out the resulting slurry, revitalizing yourself.</span>")
 				adjustBruteLoss(round(-H.maxHealth/2))
 				for(var/obj/item/bodypart/B in H.bodyparts)
 					if(B.body_zone == "chest")
 						B.dismember()
 			else
-				to_chat(src, "<span class='warning'>There are no organs left in this corpse.</span>")
+				to_chat(src, span_warning("There are no organs left in this corpse."))
 
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/CanAttack(atom/A)
 	if(..())

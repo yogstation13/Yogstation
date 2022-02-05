@@ -14,7 +14,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
 	liked_food = VEGETABLES | DAIRY | CLOTH
 	disliked_food = FRUIT | GROSS
-	toxic_food = MEAT | RAW
+	toxic_food = MEAT | RAW | SEAFOOD
 	mutanteyes = /obj/item/organ/eyes/moth
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/mothmen
@@ -41,7 +41,7 @@
 	if(.) //if the mob is immune to fire, don't burn wings off.
 		return
 	if(H.dna.features["moth_wings"] != "Burnt Off" && H.bodytemperature >= 800 && H.fire_stacks > 0) //do not go into the extremely hot light. you will not survive
-		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
+		to_chat(H, span_danger("Your precious wings burn to a crisp!"))
 		H.dna.features["moth_wings"] = "Burnt Off"
 		handle_mutant_bodyparts(H)
 

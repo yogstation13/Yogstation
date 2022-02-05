@@ -1,12 +1,14 @@
 /datum/computer_file/program/bounty_board
 	filename = "bountyboard"
 	filedesc = "Bounty Board Request Network"
+	category = PROGRAM_CATEGORY_SUPL
 	program_icon_state = "bountyboard"
 	extended_desc = "A multi-platform network for placing requests across the station, with payment across the network being possible.."
 	requires_ntnet = TRUE
 	network_destination = "bounty board interface"
 	size = 10
 	tgui_id = "NtosRequestKiosk"
+	program_icon = "comments-dollar"
 	///Reference to the currently logged in user.
 	var/datum/bank_account/current_user
 	///The station request datum being affected by UI actions.

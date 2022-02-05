@@ -9,11 +9,11 @@
 /datum/action/changeling/digitalcamo/sting_action(mob/user)
 	..()
 	if(user.digitalcamo)
-		to_chat(user, "<span class='notice'>We return to normal.</span>")
+		to_chat(user, span_notice("We return to normal."))
 		user.digitalinvis = 0
 		user.digitalcamo = 0
 	else
-		to_chat(user, "<span class='notice'>We distort our form to hide from the AI.</span>")
+		to_chat(user, span_notice("We distort our form to hide from the AI."))
 		user.digitalcamo = 1
 		user.digitalinvis = 1
 	return TRUE

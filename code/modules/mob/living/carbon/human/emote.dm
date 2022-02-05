@@ -36,16 +36,24 @@
 	key_third_person = "hisses"
 	message = "hisses."
 	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/voice/lizard/hiss.ogg'
+	var/list/viable_tongues = list(/obj/item/organ/tongue/lizard, /obj/item/organ/tongue/polysmorph)
+
+/datum/emote/living/carbon/hiss/get_sound(mob/living/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+	if(istype(T, /obj/item/organ/tongue/lizard))
+		return 'sound/voice/lizard/hiss.ogg'
+	if(istype(T, /obj/item/organ/tongue/polysmorph))
+		return pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
 
 /datum/emote/living/carbon/hiss/can_run_emote(mob/living/user, status_check = TRUE, intentional)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(/obj/item/organ/tongue/lizard == H.dna.species.mutanttongue)
-		return TRUE
-	else
-		return FALSE
+	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+	return is_type_in_list(T, viable_tongues)
 
 /datum/emote/living/carbon/human/hug
 	key = "hug"

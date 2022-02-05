@@ -14,7 +14,7 @@
 
 /atom/proc/attack_tk(mob/user)
 	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
-		to_chat(user, "<span class='notice'>You can't touch things, even with your mind!</span>")
+		to_chat(user, span_notice("You can't touch things, even with your mind!"))
 		return
 	if(user.stat || !tkMaxRangeCheck(user, src))
 		return
@@ -195,7 +195,7 @@
 		focus.plane = old_plane
 
 /obj/item/tk_grab/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is using [user.p_their()] telekinesis to choke [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is using [user.p_their()] telekinesis to choke [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (OXYLOSS)
 
 

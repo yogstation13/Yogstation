@@ -28,7 +28,7 @@
 		L.remove_status_effect(STATUS_EFFECT_INLOVE)
 
 /datum/antagonist/valentine/greet()
-	to_chat(owner, "<span class='warning'><B>You're on a date with [date.name]! Protect [date.p_them()] at all costs. This takes priority over all other loyalties.</B></span>")
+	to_chat(owner, span_warning("<B>You're on a date with [date.name]! Protect [date.p_them()] at all costs. This takes priority over all other loyalties.</B>"))
 
 //Squashed up a bit
 /datum/antagonist/valentine/roundend_report()
@@ -40,6 +40,6 @@
 				break
 
 	if(objectives_complete)
-		return "<span class='greentext'>[owner.name] protected their date!</span>"
+		return span_greentext("[owner.name] protected their date!")
 	else
-		return "<span class='redtext'>[owner.name] failed their date!</span>"
+		return span_redtext("[owner.name] failed their date!")

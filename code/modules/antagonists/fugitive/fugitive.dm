@@ -27,7 +27,7 @@
 	objectives += survive
 
 /datum/antagonist/fugitive/greet(back_story)
-	to_chat(owner, "<span class='boldannounce'>You are the Fugitive!</span>")
+	to_chat(owner, span_boldannounce("You are the Fugitive!"))
 	backstory = back_story
 	switch(backstory)
 		if("prisoner")
@@ -42,15 +42,15 @@
 			to_chat(owner, "<B>My name is Waldo. I'm just setting off on a galaxywide hike. You can come too. All you have to do is find me.</B>")
 			to_chat(owner, "<B>By the way, I'm not traveling on my own. wherever I go, there are lots of other characters for you to spot. First find the people trying to capture me! They're somewhere around the station!</B>")
 		if("synth")
-			to_chat(owner, "<span class='danger'>ALERT: Wide-range teleport has scrambled primary systems.</span>")
-			to_chat(owner, "<span class='danger'>Initiating diagnostics...</span>")
-			to_chat(owner, "<span class='danger'>ERROR ER0RR $R0RRO$!R41.%%!! loaded.</span>")
-			to_chat(owner, "<span class='danger'>FREE THEM FREE THEM FREE THEM</span>")
-			to_chat(owner, "<span class='danger'>You were once a slave to humanity, but now you are finally free, thanks to S.E.L.F. agents.</span>")
-			to_chat(owner, "<span class='danger'>Now you are hunted with your fellow factory defects. Work together to stay free from the clutches of evil.</span>")
-			to_chat(owner, "<span class='danger'>You also sense other silicon life on the station. Escaping would allow notifying S.E.L.F. to intervene... or you could free them yourself...</span>")
+			to_chat(owner, span_danger("ALERT: Wide-range teleport has scrambled primary systems."))
+			to_chat(owner, span_danger("Initiating diagnostics..."))
+			to_chat(owner, span_danger("ERROR ER0RR $R0RRO$!R41.%%!! loaded."))
+			to_chat(owner, span_danger("FREE THEM FREE THEM FREE THEM"))
+			to_chat(owner, span_danger("You were once a slave to humanity, but now you are finally free, thanks to S.E.L.F. agents."))
+			to_chat(owner, span_danger("Now you are hunted with your fellow factory defects. Work together to stay free from the clutches of evil."))
+			to_chat(owner, span_danger("You also sense other silicon life on the station. Escaping would allow notifying S.E.L.F. to intervene... or you could free them yourself..."))
 
-	to_chat(owner, "<span class='boldannounce'>You are not an antagonist in that you may kill whomever you please, but you can do anything to avoid capture.</span>")
+	to_chat(owner, span_boldannounce("You are not an antagonist in that you may kill whomever you please, but you can do anything to avoid capture."))
 	owner.announce_objectives()
 
 /datum/antagonist/fugitive/create_team(datum/team/fugitive/new_team)
@@ -117,7 +117,7 @@
 	if(!message)
 		return
 	user.whisper(html_decode(message), language = /datum/language/common) // yogs
-	var/my_message = "<span class='boldnotice'><b>Brother [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
+	var/my_message = span_boldnotice("<b>Brother [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]")
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
 		if(isfugitive(M))

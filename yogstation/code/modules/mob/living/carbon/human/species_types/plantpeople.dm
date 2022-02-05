@@ -6,6 +6,7 @@
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH,HAS_BONE)
+	rare_say_mod = list("rustles" = 10)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -28,11 +29,11 @@
 	var/last_plantbgone_message = -STATUS_MESSAGE_COOLDOWN
 
 /datum/species/pod/before_equip_job(datum/job/J, mob/living/carbon/human/H)
-	to_chat(H, "<span class='info'><b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'.</span>")
-	to_chat(H, "<span class='info'>Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race.</span>")
-	to_chat(H, "<span class='info'>Darkness is your greatest foe. Even the cold expanses of space are lit by neighbouring stars, but the darkest recesses of the station's interior may prove to be your greatest foe.</span>")
-	to_chat(H, "<span class='info'>Heat and cold will damage your epidermis far faster than your natural regeneration can match.</span>")
-	to_chat(H, "<span class='info'>For more information on your race, see https://wiki.yogstation.net/wiki/Phytosian</span>")
+	to_chat(H, span_info("<b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'."))
+	to_chat(H, span_info("Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race."))
+	to_chat(H, span_info("Darkness is your greatest foe. Even the cold expanses of space are lit by neighbouring stars, but the darkest recesses of the station's interior may prove to be your greatest foe."))
+	to_chat(H, span_info("Heat and cold will damage your epidermis far faster than your natural regeneration can match."))
+	to_chat(H, span_info("For more information on your race, see https://wiki.yogstation.net/wiki/Phytosian"))
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -66,7 +67,7 @@
 			if (0.01 to 0.15)
 				//very low light
 				light_level = 1
-				light_msg = "<span class='warning'>There isn't enough light here, and you can feel your body protesting the fact violently.</span>"
+				light_msg = span_warning("There isn't enough light here, and you can feel your body protesting the fact violently.")
 				H.nutrition -= light_amount * 10
 				//enough to make you faint but get back up consistently
 				if(H.getOxyLoss() < 55)
@@ -76,7 +77,7 @@
 			if (0.16 to 0.3)
 				//low light
 				light_level = 2
-				light_msg = "<span class='warning'>The ambient light levels are too low. Your breath is coming more slowly as your insides struggle to keep up on their own.</span>"
+				light_msg = span_warning("The ambient light levels are too low. Your breath is coming more slowly as your insides struggle to keep up on their own.")
 				H.nutrition -= light_amount * 3
 				//not enough to faint but enough to slow you down
 				if(H.getOxyLoss() < 50)
@@ -90,21 +91,24 @@
 				light_level = 4
 				H.nutrition += light_amount * 1.75
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
-					H.adjustToxLoss(-0.5 * light_heal_multiplier, 1)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
+					//podpeople shouldn't be able to outheal radiation damage, making them functionally immune
+					if(H.radiation < 500)
+						H.adjustToxLoss(-0.5 * light_heal_multiplier, 1)
 			if (0.76 to 1)
 				//super high light
 				light_level = 5
 				H.nutrition += light_amount * 1.5
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
-					H.adjustToxLoss(-1 * light_heal_multiplier, 1)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1.5 * light_heal_multiplier, 1.5 * light_heal_multiplier)
+					if(H.radiation < 500)
+						H.adjustToxLoss(-1 * light_heal_multiplier, 1)
 	else
 		//no light, this is baaaaaad
 		light_level = 0
-		light_msg = "<span class='userdanger'>Darkness! Your insides churn and your skin screams in pain!</span>"
+		light_msg = span_userdanger("Darkness! Your insides churn and your skin screams in pain!")
 		H.nutrition -= 3
 		//enough to make you faint for good, and eventually die
 		if(H.getOxyLoss() < 60)
@@ -130,7 +134,7 @@
 			if(light_level != last_light_level)
 				last_light_level = light_level
 				last_light_message = -STATUS_MESSAGE_COOLDOWN
-				to_chat(H, "<span class='userdanger'>Your internal stores of light are depleted. Find a source to replenish your nourishment at once!</span>")
+				to_chat(H, span_userdanger("Your internal stores of light are depleted. Find a source to replenish your nourishment at once!"))
 			H.take_overall_damage(2, 0)
 
 
@@ -248,7 +252,7 @@
 		if(/obj/item/projectile/energy/floramut)
 			H.rad_act(rand(20, 30))
 			H.adjustFireLoss(5)
-			H.visible_message("<span class='warning'>[H] writhes in pain as [H.p_their()] vacuoles boil.</span>", "<span class='userdanger'>You writhe in pain as your vacuoles boil!</span>", "<span class='italics'>You hear the crunching of leaves.</span>")
+			H.visible_message(span_warning("[H] writhes in pain as [H.p_their()] vacuoles boil."), span_userdanger("You writhe in pain as your vacuoles boil!"), span_italics("You hear the crunching of leaves."))
 			if(prob(80))
 				H.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
 			else

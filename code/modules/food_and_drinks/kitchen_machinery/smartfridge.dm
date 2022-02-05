@@ -67,12 +67,12 @@
 	if(in_range(user, src) || isobserver(user))
 		if(!stat)//machine must be operable
 			if (contents.len >= max_n_of_items)
-				. += "<span class='notice'>The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.</span>"
+				. += span_notice("The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.")
 			else
-				. += "<span class='notice'>The status display reads: Inventory quantity is currently <b>[contents.len] out of [max_n_of_items]</b> items.</span>"
+				. += span_notice("The status display reads: Inventory quantity is currently <b>[contents.len] out of [max_n_of_items]</b> items.")
 		else
 			if(!(stat & BROKEN))
-				. += "<span class='notice'>The status display is off.</span>"
+				. += span_notice("The status display is off.")
 
 /obj/machinery/smartfridge/power_change()
 	..()
@@ -186,7 +186,7 @@
 	//turn on the blinking red full to capacity indicator
 	if (supports_full_indicator_state && !(stat & (NOPOWER|BROKEN)))
 		add_overlay(full_indicator_state)
-		src.visible_message("<span class='warning'>\The [src]'s \"Full Inventory\" indicator light blinks on.</span>", "<span class='warning'>Your \"Full Inventory\" indicator light blinks on, you are now at capacity.</span>", "<span class='notice'>You hear a clunk, then a quiet beep.</span>")
+		src.visible_message(span_warning("\The [src]'s \"Full Inventory\" indicator light blinks on."), span_warning("Your \"Full Inventory\" indicator light blinks on, you are now at capacity."), span_notice("You hear a clunk, then a quiet beep."))
 
 /*******************
 *   Item Adding
@@ -213,7 +213,7 @@
 				power_change()
 				return
 		else
-			to_chat(user, "<span class='warning'>[src] needs to have it's maintenance panel open before you can reach the anchoring bolts!</span>")
+			to_chat(user, span_warning("[src] needs to have it's maintenance panel open before you can reach the anchoring bolts!"))
 
 	if(default_deconstruction_crowbar(O))
 		updateUsrDialog()
@@ -223,13 +223,13 @@
 
 		//Unable to add an item, it's already full.
 		if(contents.len >= max_n_of_items)
-			to_chat(user, "<span class='warning'>\The [src] is full!</span>")
+			to_chat(user, span_warning("\The [src] is full!"))
 			return FALSE
 
 		//Adding a single item
 		if(accept_check(O))
 			load(O)
-			user.visible_message("[user] has added \the [O] to \the [src].", "<span class='notice'>You add \the [O] to \the [src].</span>")
+			user.visible_message("[user] has added \the [O] to \the [src].", span_notice("You add \the [O] to \the [src]."))
 			update_icon()
 			updateUsrDialog()
 			if(contents.len >= max_n_of_items)
@@ -252,15 +252,15 @@
 				if(contents.len >= max_n_of_items)
 					indicate_full()
 					user.visible_message("[user] loads \the [src] with \the [O].", \
-									 "<span class='notice'>You fill \the [src] with \the [O].</span>")
+									 span_notice("You fill \the [src] with \the [O]."))
 				else
 					user.visible_message("[user] loads \the [src] with \the [O].", \
-										 "<span class='notice'>You load \the [src] with \the [O].</span>")
+										 span_notice("You load \the [src] with \the [O]."))
 				if(O.contents.len > 0)
-					to_chat(user, "<span class='warning'>Some items are refused.</span>")
+					to_chat(user, span_warning("Some items are refused."))
 				return TRUE
 			else
-				to_chat(user, "<span class='warning'>There is nothing in [O] to put in [src]!</span>")
+				to_chat(user, span_warning("There is nothing in [O] to put in [src]!"))
 				return FALSE
 
 		//Adding items from a borg's organ storage
@@ -271,7 +271,7 @@
 			if(accept_check(organ))
 				load(organ)
 				OS.clear_organ()
-				user.visible_message("[user] has added \the [organ] to \the [src].", "<span class='notice'>You add \the [organ] to \the [src].</span>")
+				user.visible_message("[user] has added \the [organ] to \the [src].", span_notice("You add \the [organ] to \the [src]."))
 				update_icon()
 				updateUsrDialog()
 				if(contents.len >= max_n_of_items)
@@ -279,7 +279,7 @@
 				return TRUE
 
 		if(user.a_intent != INTENT_HARM)
-			to_chat(user, "<span class='warning'>\The [src] smartly refuses [O].</span>")
+			to_chat(user, span_warning("\The [src] smartly refuses [O]."))
 			updateUsrDialog()
 			return FALSE
 		else
@@ -298,7 +298,7 @@
 	if(ismob(O.loc))
 		var/mob/M = O.loc
 		if(!M.transferItemToLoc(O, src))
-			to_chat(usr, "<span class='warning'>\The [O] is stuck to your hand, you cannot put it in \the [src]!</span>")
+			to_chat(usr, span_warning("\The [O] is stuck to your hand, you cannot put it in \the [src]!"))
 			return FALSE
 		else
 			return TRUE
@@ -353,11 +353,11 @@
 			var/desired = 0
 
 			if(!allow_ai_retrieve && isAI(usr))
-				to_chat(usr, "<span class='warning'>[src] does not seem to be configured to respect your authority!</span>")
+				to_chat(usr, span_warning("[src] does not seem to be configured to respect your authority!"))
 				return
 
 			if(!dispenser_arm)
-				audible_message("<span class='warning'>\The [src] makes a loud clunk and the dispenser arm twitches slightly.</span>", "<span class='warning'>The dispenser arm on the [src] twitches slightly.</span>")
+				audible_message(span_warning("\The [src] makes a loud clunk and the dispenser arm twitches slightly."), span_warning("The dispenser arm on the [src] twitches slightly."))
 				return
 
 			if (params["amount"])
@@ -436,10 +436,10 @@
 //so we have to override the wiring/deconstruction of the default smartfridge here
 /obj/machinery/smartfridge/drying_rack/attackby(obj/item/O, mob/user, params)
 	if(!(flags_1 & NODECONSTRUCT_1) && O.tool_behaviour == TOOL_SCREWDRIVER)
-		to_chat(user, "<span class='warning'>[src] has nothing to unscrew! You think you can probably pry out the shelves, though.</span>")
+		to_chat(user, span_warning("[src] has nothing to unscrew! You think you can probably pry out the shelves, though."))
 		return
 	else if(!(flags_1 & NODECONSTRUCT_1) && O.tool_behaviour == TOOL_WRENCH)
-		to_chat(user, "<span class='warning'>[src] has no bolts to wrench! You think you can probably pry out the shelves, though.</span>")
+		to_chat(user, span_warning("[src] has no bolts to wrench! You think you can probably pry out the shelves, though."))
 		return
 	else
 		return ..()

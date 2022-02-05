@@ -11,21 +11,21 @@
 /datum/action/innate/darkspawn/veil_mind/Activate()
 	var/mob/living/carbon/human/H = owner
 	if(!H.can_speak_vocal())
-		to_chat(H, "<span class='warning'>You can't speak!</span>")
+		to_chat(H, span_warning("You can't speak!"))
 		return
-	owner.visible_message("<span class='warning'>[owner]'s sigils flare as they inhale...</span>", "<span class='velvet bold'>dawn kqn okjc...</span><br>\
-	<span class='notice'>You take a deep breath...</span>")
+	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>\
+	[span_notice("You take a deep breath...")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
-	if(!do_after(owner, 10, target = owner))
+	if(!do_after(owner, 1 SECONDS, target = owner))
 		return
-	owner.visible_message("<span class='boldwarning'>[owner] lets out a chilling cry!</span>", "<span class='velvet bold'>...wjz oanra</span><br>\
-	<span class='notice'>You veil the minds of everyone nearby.</span>")
+	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>\
+	[span_notice("You veil the minds of everyone nearby.")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	for(var/mob/living/L in view(3, owner))
 		if(L == owner)
 			continue
 		if(issilicon(L))
-			to_chat(L, "<span class='ownerdanger'>$@!) ERR: RECEPTOR OVERLOAD ^!</</span>")
+			to_chat(L, span_ownerdanger("$@!) ERR: RECEPTOR OVERLOAD ^!</"))
 			SEND_SOUND(L, sound('sound/misc/interference.ogg', volume = 50))
 			L.emote("alarm")
 			L.Stun(20)
@@ -33,13 +33,13 @@
 			L.clear_fullscreen("flash", 10)
 		else
 			if(HAS_TRAIT(L, TRAIT_DEAF))
-				to_chat(L, "<span class='warning'>...but you can't hear it!</span>")
+				to_chat(L, span_warning("...but you can't hear it!"))
 			else
 				if(L.has_status_effect(STATUS_EFFECT_BROKEN_WILL))
 					if(L.add_veil())
-						to_chat(owner, "<span class='velvet'><b>[L.real_name]</b> has become a veil!</span>")
+						to_chat(owner, span_velvet("<b>[L.real_name]</b> has become a veil!"))
 				else
-					to_chat(L, "<span class='boldwarning'>...and it scrambles your thoughts!</span>")
+					to_chat(L, span_boldwarning("...and it scrambles your thoughts!"))
 					L.dir = pick(GLOB.cardinals)
 					L.confused += 2
 	return TRUE

@@ -25,14 +25,14 @@
 				if (healing_limb.brute_dam)
 					success = healing_limb.heal_damage(healamount/src.duration, 0, 0)
 				else
-					to_chat(H, "<span class='notice'>The wounds on your [src.healing_limb.name] have stopped bleeding and appear to be healed.</span>")
+					to_chat(H, span_notice("The wounds on your [src.healing_limb.name] have stopped bleeding and appear to be healed."))
 					used = TRUE
 			if (BURN)
 				if (healing_limb.burn_dam)
 					success = healing_limb.heal_damage(0, healamount/src.duration, 0)
 				else
 					used = TRUE
-					to_chat(H, "<span class='notice'>The burns on your [src.healing_limb.name] feel much better, and seem to be completely healed.</span>")
+					to_chat(H, span_notice("The burns on your [src.healing_limb.name] feel much better, and seem to be completely healed."))
 		if (success)
 			H.update_damage_overlays()
 		if (activefor <= src.duration)
@@ -43,7 +43,7 @@
 /obj/item/medical/bandage/proc/unwrap(mob/living/M, mob/living/carbon/human/T)
 	//DUPLICATE CODE BUT I'M FUCKING LAZY <- this was not Morrow
 	if (healing_limb.bandaged)
-		M.visible_message("<span class='warning'>[M] grabs and pulls at the [src] on [T]'s [src.healing_limb.name], unwrapping it instantly!</span>", "<span class='notice'>You deftly yank [src] off [T]'s [src.healing_limb.name].</span>")
+		M.visible_message(span_warning("[M] grabs and pulls at the [src] on [T]'s [src.healing_limb.name], unwrapping it instantly!"), span_notice("You deftly yank [src] off [T]'s [src.healing_limb.name]."))
 		name = "used [src.name]"
 		desc = "Piled into a tangled, crusty mess, these bandages have obviously been used and then disposed of in great haste."
 		color = "red"
@@ -64,17 +64,17 @@
 
 /obj/item/medical/bandage/proc/apply(mob/living/user, mob/tar, obj/item/bodypart/lt)
 	if (!ishuman(user))
-		to_chat(user, "<span class='warning'>You don't have the dexterity to use this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to use this!"))
 		return FALSE
 
 	if (ishuman(tar))
 		if (!lt.bandaged)
 			if (user == tar)
-				user.visible_message("<span class='notice'>[user] begins winding [src] about their [lt.name]..</span>", "<span class='notice'>You begin winding [src] around your [lt.name]..</span>")
+				user.visible_message(span_notice("[user] begins winding [src] about their [lt.name].."), span_notice("You begin winding [src] around your [lt.name].."))
 			else
-				user.visible_message("<span class='notice'>[user] begins winding [src] about [tar]'s [lt.name]..</span>", "<span class='notice'>You begin winding [src] around [tar]'s [lt.name]..</span>")
+				user.visible_message(span_notice("[user] begins winding [src] about [tar]'s [lt.name].."), span_notice("You begin winding [src] around [tar]'s [lt.name].."))
 
-			if (do_after(user, 50, target = tar))
+			if (do_after(user, 5 SECONDS, target = tar))
 				if(!user.canUnEquip(src))
 					return FALSE
 				healing_limb = lt
@@ -83,7 +83,7 @@
 				user.visible_message("[user] has applied [src] successfully.", "You have applied [src] successfully.")
 				return TRUE
 			else
-				user.visible_message("<span class='warning'>[user] stops applying [src] to [tar].</span>", "<span class='warning'>You stop applying [src] to [tar].</span>")
+				user.visible_message(span_warning("[user] stops applying [src] to [tar]."), span_warning("You stop applying [src] to [tar]."))
 				return FALSE
 		else
 			to_chat(user, "[tar] is already bandaged for the moment.")

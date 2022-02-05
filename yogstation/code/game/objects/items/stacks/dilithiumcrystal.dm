@@ -21,7 +21,7 @@
 	pixel_y = rand(-5, 5)
 
 /obj/item/stack/ore/dilithium_crystal/attack_self(mob/user) // Currently has no effect, besides crushing one of the crystals into dust.
-	user.visible_message("<span class='warning'>[user] crushes [src]!</span>", "<span class='danger'>You crush [src]!</span>")
+	user.visible_message(span_warning("[user] crushes [src]!"), span_danger("You crush [src]!"))
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
 	use(1)
@@ -40,7 +40,7 @@
 	var/crystal_type = /obj/item/stack/ore/dilithium_crystal/refined
 
 /obj/item/stack/sheet/dilithium_crystal/attack_self(mob/user)// to prevent the construction menu from ever happening
-	to_chat(user, "<span class='warning'>You cannot crush the polycrystal in-hand, try breaking one off.</span>")
+	to_chat(user, span_warning("You cannot crush the polycrystal in-hand, try breaking one off."))
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/stack/sheet/dilithium_crystal/attack_hand(mob/user)
@@ -51,8 +51,8 @@
 		user.put_in_hands(BC)
 		use(1)
 		if(!amount)
-			to_chat(user, "<span class='notice'>You break the final crystal off.</span>")
+			to_chat(user, span_notice("You break the final crystal off."))
 		else
-			to_chat(user, "<span class='notice'>You break off a crystal.</span>")
+			to_chat(user, span_notice("You break off a crystal."))
 	else
 		..()

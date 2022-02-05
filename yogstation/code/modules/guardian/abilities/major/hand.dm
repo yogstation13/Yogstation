@@ -1,7 +1,7 @@
 /datum/guardian_ability/major/hand
 	name = "The Hand"
 	desc = "The guardian can use it's hand(s) to erase the space in front of it, bring any desired target closer."
-	cost = 5
+	cost = 4
 	var/next_hand = 0
 
 /datum/guardian_ability/major/hand/RangedAttack(atom/target)

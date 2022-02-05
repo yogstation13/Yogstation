@@ -9,7 +9,7 @@
 	unanchored_icon = "obelisk_unwrenched"
 	construction_value = 20
 	max_integrity = 150
-	break_message = "<span class='warning'>The obelisk falls to the ground, undamaged!</span>"
+	break_message = span_warning("The obelisk falls to the ground, undamaged!")
 	debris = list(/obj/item/clockwork/alloy_shards/small = 4, \
 	/obj/item/clockwork/alloy_shards/medium = 2, \
 	/obj/item/clockwork/component/hierophant_ansible/obelisk = 1)
@@ -23,12 +23,12 @@
 /obj/structure/destructible/clockwork/powered/clockwork_obelisk/examine(mob/user)
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		. += "<span class='nzcrentr_small'>It requires <b>[DisplayEnergy(hierophant_cost)]</b> to broadcast over the Hierophant Network, and <b>[DisplayEnergy(gateway_cost)]</b> to open a Spatial Gateway.</span>"
+		. += span_nzcrentr_small("It requires <b>[DisplayEnergy(hierophant_cost)]</b> to broadcast over the Hierophant Network, and <b>[DisplayEnergy(gateway_cost)]</b> to open a Spatial Gateway.")
 
 /obj/structure/destructible/clockwork/powered/clockwork_obelisk/can_be_unfasten_wrench(mob/user, silent)
 	if(active)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] is currently sustaining a gateway!</span>")
+			to_chat(user, span_warning("[src] is currently sustaining a gateway!"))
 		return FAILED_UNFASTEN
 	return ..()
 
@@ -46,43 +46,43 @@
 	if(.)
 		return
 	if(!is_servant_of_ratvar(user) || !can_access_clockwork_power(src, hierophant_cost) || !anchored)
-		to_chat(user, "<span class='warning'>You place your hand on [src], but it doesn't react.</span>")
+		to_chat(user, span_warning("You place your hand on [src], but it doesn't react."))
 		return
 	var/choice = alert(user,"You place your hand on [src]...",,"Hierophant Broadcast","Spatial Gateway","Cancel")
 	switch(choice)
 		if("Hierophant Broadcast")
 			if(active)
-				to_chat(user, "<span class='warning'>[src] is sustaining a gateway and cannot broadcast!</span>")
+				to_chat(user, span_warning("[src] is sustaining a gateway and cannot broadcast!"))
 				return
 			if(!user.can_speak_vocal())
-				to_chat(user, "<span class='warning'>You cannot speak through [src]!</span>")
+				to_chat(user, span_warning("You cannot speak through [src]!"))
 				return
 			var/input = stripped_input(usr, "Please choose a message to send over the Hierophant Network.", "Hierophant Broadcast", "")
 			if(!is_servant_of_ratvar(user) || !input || !user.canUseTopic(src, !issilicon(user)))
 				return
 			if(!anchored)
-				to_chat(user, "<span class='warning'>[src] is no longer secured!</span>")
+				to_chat(user, span_warning("[src] is no longer secured!"))
 				return FALSE
 			if(active)
-				to_chat(user, "<span class='warning'>[src] is sustaining a gateway and cannot broadcast!</span>")
+				to_chat(user, span_warning("[src] is sustaining a gateway and cannot broadcast!"))
 				return
 			if(!user.can_speak_vocal())
-				to_chat(user, "<span class='warning'>You cannot speak through [src]!</span>")
+				to_chat(user, span_warning("You cannot speak through [src]!"))
 				return
 			if(!try_use_power(hierophant_cost))
-				to_chat(user, "<span class='warning'>[src] lacks the power to broadcast!</span>")
+				to_chat(user, span_warning("[src] lacks the power to broadcast!"))
 				return
 			clockwork_say(user, text2ratvar("Hierophant Broadcast, activate! [html_decode(input)]"))
 			titled_hierophant_message(user, input, "big_brass", "large_brass")
 		if("Spatial Gateway")
 			if(active)
-				to_chat(user, "<span class='warning'>[src] is already sustaining a gateway!</span>")
+				to_chat(user, span_warning("[src] is already sustaining a gateway!"))
 				return
 			if(!user.can_speak_vocal())
-				to_chat(user, "<span class='warning'>You need to be able to speak to open a gateway!</span>")
+				to_chat(user, span_warning("You need to be able to speak to open a gateway!"))
 				return
 			if(!try_use_power(gateway_cost))
-				to_chat(user, "<span class='warning'>[src] lacks the power to open a gateway!</span>")
+				to_chat(user, span_warning("[src] lacks the power to open a gateway!"))
 				return
 			if(procure_gateway(user, round(100 * get_efficiency_mod(), 1), round(5 * get_efficiency_mod(), 1), 1))
 				process()

@@ -10,8 +10,8 @@
 
 /datum/action/innate/darkspawn/demented_outburst/Activate()
 	in_use = TRUE
-	owner.visible_message("<span class='boldwarning'>[owner] begins to growl as their chitin hardens...</span>", "<span class='velvet bold'>cap...</span><br>\
-	<span class='danger'>You begin harnessing your power...</span>")
+	owner.visible_message(span_boldwarning("[owner] begins to growl as their chitin hardens..."), "<span class='velvet bold'>cap...</span><br>\
+	[span_danger("You begin harnessing your power...")]")
 	playsound(owner, 'yogstation/sound/magic/demented_outburst_charge.ogg', 50, 0)
 	addtimer(CALLBACK(src, .proc/outburst, owner), 50)
 	addtimer(CALLBACK(src, .proc/reset), 50)
@@ -26,8 +26,8 @@
 	in_use = FALSE
 	if(!owner || owner.stat)
 		return
-	owner.visible_message("<span class='userdanger'>[owner] lets out a deafening scream!</span>", "<span class='velvet bold italics'>WSWU!</span><br>\
-	<span class='danger'>You let out a deafening outburst!</span>")
+	owner.visible_message(span_userdanger("[owner] lets out a deafening scream!"), "<span class='velvet bold italics'>WSWU!</span><br>\
+	[span_danger("You let out a deafening outburst!")]")
 	playsound(owner, 'yogstation/sound/magic/demented_outburst_scream.ogg', 75, 0)
 	var/list/thrown_atoms = list()
 	for(var/turf/T in view(5, owner))
@@ -43,19 +43,19 @@
 		if(iscarbon(AM))
 			var/mob/living/carbon/C = AM
 			if(distance <= 1) //you done fucked up now
-				C.visible_message("<span class='warning'>The blast sends [C] flying!</span>", "<span class='userdanger'>The force sends you flying!</span>")
+				C.visible_message(span_warning("The blast sends [C] flying!"), span_userdanger("The force sends you flying!"))
 				C.Paralyze(50)
 				C.Knockdown(50)
 				C.adjustBruteLoss(10)
 				C.soundbang_act(1, 5, 15, 5)
 			else if(distance <= 3)
-				C.visible_message("<span class='warning'>The blast knocks [C] off their feet!</span>", "<span class='userdanger'>The force bowls you over!</span>")
+				C.visible_message(span_warning("The blast knocks [C] off their feet!"), span_userdanger("The force bowls you over!"))
 				C.Paralyze(25)
 				C.Knockdown(30)
 				C.soundbang_act(1, 3, 5, 0)
 		if(iscyborg(AM))
 			var/mob/living/silicon/robot/R = AM
-			R.visible_message("<span class='warning'>The blast sends [R] flying!</span>", "<span class='userdanger'>The force sends you flying!</span>")
+			R.visible_message(span_warning("The blast sends [R] flying!"), span_userdanger("The force sends you flying!"))
 			R.Paralyze(100) //fuck borgs
 			R.soundbang_act(1, 5, 15, 5)
 	return TRUE

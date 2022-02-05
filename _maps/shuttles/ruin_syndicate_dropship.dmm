@@ -108,9 +108,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
 "bN" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},

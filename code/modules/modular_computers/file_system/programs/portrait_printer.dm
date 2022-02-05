@@ -14,10 +14,11 @@
 	program_icon_state = "paint-brush"
 	extended_desc = "This program connects to a Spinward Sector community art site for viewing and printing art."
 	transfer_access = ACCESS_LIBRARY
-	usage_flags = PROGRAM_CONSOLE
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_TELESCREEN
 	requires_ntnet = TRUE
 	size = 9
 	tgui_id = "NtosPortraitPrinter"
+	program_icon = "palette"
 
 /datum/computer_file/program/portrait_printer/ui_data(mob/user)
 	var/list/data = list()
@@ -39,10 +40,10 @@
 	if(computer)
 		printer = computer.all_components[MC_PRINT]
 	if(!printer)
-		to_chat(usr, "<span class='notice'>Hardware error: A printer is required to print a canvas.</span>")
+		to_chat(usr, span_notice("Hardware error: A printer is required to print a canvas."))
 		return
 	if(printer.stored_paper < CANVAS_PAPER_COST)
-		to_chat(usr, "<span class='notice'>Printing error: Your printer needs at least [CANVAS_PAPER_COST] paper to print a canvas.</span>")
+		to_chat(usr, span_notice("Printing error: Your printer needs at least [CANVAS_PAPER_COST] paper to print a canvas."))
 		return
 	printer.stored_paper -= CANVAS_PAPER_COST
 
@@ -73,5 +74,5 @@
 	///this is a copy of something that is already in the database- it should not be able to be saved.
 	printed_canvas.no_save = TRUE
 	printed_canvas.update_icon()
-	to_chat(usr, "<span class='notice'>You have printed [title] onto a new canvas.</span>")
+	to_chat(usr, span_notice("You have printed [title] onto a new canvas."))
 	playsound(computer.physical, 'sound/items/poster_being_created.ogg', 100, TRUE)

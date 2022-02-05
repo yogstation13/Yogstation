@@ -12,7 +12,7 @@
 			return
 		if(ACTION_STOPPULLING)
 			if(!pulling)
-				to_chat(src, "<span class='notice'>You are not pulling anything.</span>")
+				to_chat(src, span_notice("You are not pulling anything."))
 			else
 				stop_pulling()
 			return
@@ -31,7 +31,7 @@
 		if(ACTION_DROP)
 			var/obj/item/T = get_active_held_item()
 			if(!T)
-				to_chat(src, "<span class='warning'>You have nothing to drop in your hand!</span>")
+				to_chat(src, span_warning("You have nothing to drop in your hand!"))
 			else
 				dropItemToGround(T)
 			return

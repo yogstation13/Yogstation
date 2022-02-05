@@ -24,7 +24,7 @@
 	return FALSE
 
 /datum/nanite_program/sensor/proc/send_code()
-	if(activated)
+	if(activated && sent_code != trigger_code)
 		SEND_SIGNAL(host_mob, COMSIG_NANITE_SIGNAL, sent_code, "a [name] program")
 
 /datum/nanite_program/sensor/active_effect()
@@ -45,6 +45,8 @@
 	if(setting == "Sent Code")
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
 		if(isnull(new_code))
+			return
+		if(round(new_code, 1) == trigger_code)
 			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Delay")
@@ -84,6 +86,8 @@
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
 		if(isnull(new_code))
 			return
+		if(round(new_code, 1) == trigger_code)
+			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Relay Channel")
 		var/new_channel = input(user, "Set the relay channel (1-9999):", name, null) as null|num
@@ -115,7 +119,7 @@
 	addtimer(CALLBACK(src, .proc/send_code), delay)
 
 /datum/nanite_program/sensor/relay_repeat/send_code()
-	if(activated && relay_channel)
+	if(activated && relay_channel && sent_code != trigger_code)
 		for(var/X in SSnanites.nanite_relays)
 			var/datum/nanite_program/relay/N = X
 			N.relay_signal(sent_code, relay_channel, "a [name] program")

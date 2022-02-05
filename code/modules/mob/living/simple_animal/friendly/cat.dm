@@ -80,6 +80,15 @@
 	pass_flags = PASSMOB
 	mob_size = MOB_SIZE_SMALL
 	collar_type = "kitten"
+	var/list/pet_kitten_names = list("Fajita", "Pumpkin", "Meowchael", "Catrick", "Genghis Kat", "Sir Isaac Mewton", "Nugget", "Meowchelangelo", "Meowgaret", "Lemon", "Meowria", "Todd Meoward", "Dolly Purrton", "Pickle", "Runt", "Claws", "Patches", "Skippy", "Teddy", "Frank", "Quilt", "Lenny", "Benny", "Hubert", "Scrungemuffin", "Pizza", "Pawl Meowcartney")
+	var/list/rare_pet_kitten_names = list("Fuckface", "Chief Meowdical Officer", "Mewcular Opurrative", "Dumbass Cat", "Backup Ian")
+
+/mob/living/simple_animal/pet/cat/kitten/Initialize()
+	. = ..()
+	if(prob(5))
+		name = pick(rare_pet_kitten_names)
+	else
+		name = pick(pet_kitten_names)
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~
 /mob/living/simple_animal/pet/cat/Runtime
@@ -274,7 +283,7 @@
 	free cake to the station!</b>")
 	var/new_name = stripped_input(src, "Enter your name, or press \"Cancel\" to stick with Keeki.", "Name Change")
 	if(new_name)
-		to_chat(src, "<span class='notice'>Your name is now <b>\"new_name\"</b>!</span>")
+		to_chat(src, span_notice("Your name is now <b>\"new_name\"</b>!"))
 		name = new_name
 
 /mob/living/simple_animal/pet/cat/cak/Life()

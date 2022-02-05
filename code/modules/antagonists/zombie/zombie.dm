@@ -117,7 +117,7 @@
 
 /datum/antagonist/zombie/proc/add_button_timed()
 	zombify.Grant(owner.current)
-	to_chat(owner.current, "<span class='userdanger'><b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie. IN 5 MINUTES YOU WILL FORCIBLY BE ZOMBIFIED IF YOU HAVEN'T.<b></span>")
+	to_chat(owner.current, span_userdanger("<b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie. IN 5 MINUTES YOU WILL FORCIBLY BE ZOMBIFIED IF YOU HAVEN'T.<b>"))
 	addtimer(CALLBACK(src, .proc/force_zombify), 5 MINUTES)
 
 /datum/antagonist/zombie/proc/force_zombify()
@@ -148,7 +148,7 @@
 /datum/antagonist/zombie/proc/finish_evolution_2()
 	evolution_ready = TRUE
 	evolution2.Grant(owner.current)
-	to_chat(owner.current, "<span class='userdanger'><b>You can now evolve into a Tier 2 zombie! There can only be tier 2 zombies equal to the amount of starting zombies!<b></span>")
+	to_chat(owner.current, span_userdanger("<b>You can now evolve into a Tier 2 zombie! There can only be tier 2 zombies equal to the amount of starting zombies!<b>"))
 
 /datum/team/zombie
 	name = "Zombies"
@@ -177,7 +177,7 @@
 
 
 	if(members.len)
-		parts += "<span class='header'>The zombies were:</span>"
+		parts += span_header("The zombies were:")
 		parts += printplayerlist(members)
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
@@ -284,21 +284,21 @@
 			H.set_species(/datum/species/zombie/infectious/gamemode/runner)
 			Z.adren = new()
 			H.AddAbility(Z.adren)
-			to_chat(owner, "<span class='warning'>You can now run, and your movement speed is considerably faster. You do less damage and can take less damage though.</span>")
+			to_chat(owner, span_warning("You can now run, and your movement speed is considerably faster. You do less damage and can take less damage though."))
 		if("Juggernaut")
 			H.set_species(/datum/species/zombie/infectious/gamemode/juggernaut)
 			Z.tank = new()
 			H.AddAbility(Z.tank)
-			to_chat(owner, "<span class='warning'>You can now take quite a beating, and heal a bit slower.</span>")
+			to_chat(owner, span_warning("You can now take quite a beating, and heal a bit slower."))
 		if("Spitter")
 			H.set_species(/datum/species/zombie/infectious/gamemode/spitter)
 			Z.spit = new()
 			Z.acid = new()
 			H.AddAbility(Z.spit)
 			H.AddAbility(Z.acid)
-			to_chat(owner, "<span class='warning'>You can now right click on walls and doors, and cover them in acid! You are weaker in combat though.</span>")
+			to_chat(owner, span_warning("You can now right click on walls and doors, and cover them in acid! You are weaker in combat though."))
 
-	owner.visible_message("<span class='danger'>[owner] suddenly convulses, as [owner.p_they()] evolve into a [class]!</span>", "<span class='alien'>You have evolved into a [class]</span>")
+	owner.visible_message(span_danger("[owner] suddenly convulses, as [owner.p_they()] evolve into a [class]!"), span_alien("You have evolved into a [class]"))
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	H.do_jitter_animation(15)
 	Z.evolution.Remove(H)
@@ -331,7 +331,7 @@
 
 	var/datum/game_mode/zombie/mode = SSticker.mode
 	if(!mode.can_evolve_tier_2())
-		to_chat(usr, "<span class='userdanger'>There are currently too many tier 2 zombies. Please wait.</span>")
+		to_chat(usr, span_userdanger("There are currently too many tier 2 zombies. Please wait."))
 		return
 	evolve(selected)
 
@@ -345,10 +345,10 @@
 			H.set_species(/datum/species/zombie/infectious/gamemode/necromancer)
 			Z.necro = new()
 			H.AddAbility(Z.necro)
-			to_chat(owner, "<span class='warning'>You can now run, and your movement speed is considerably faster. You do less damage and can take less damage though.</span>")
+			to_chat(owner, span_warning("You can now run, and your movement speed is considerably faster. You do less damage and can take less damage though."))
 		if("Coordinator")
 			H.set_species(/datum/species/zombie/infectious/gamemode/coordinator)
-			to_chat(owner, "<span class='warning'>You can now communicate with the horde!</span>")
+			to_chat(owner, span_warning("You can now communicate with the horde!"))
 
 
 	if(Z.spit)
@@ -361,7 +361,7 @@
 		H.RemoveAbility(Z.tank)
 
 
-	owner.visible_message("<span class='danger'>[owner] suddenly convulses, as [owner.p_they()] evolve into a [class]!</span>", "<span class='alien'>You have evolved into a [class]</span>")
+	owner.visible_message(span_danger("[owner] suddenly convulses, as [owner.p_they()] evolve into a [class]!"), span_alien("You have evolved into a [class]"))
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	H.do_jitter_animation(15)
 	Z.evolution2.Remove(H)
@@ -414,10 +414,10 @@
 
 	if(user.stat)
 		if(!silent)
-			to_chat(user, "<span class='userdanger'>You must be conscious to do this.</span>")
+			to_chat(user, span_userdanger("You must be conscious to do this."))
 		return FALSE
 	if(!ready)
-		to_chat(user, "<span class='userdanger'>You can use this ability in [(cooldown_ends - world.time) / 10] seconds.</span>")
+		to_chat(user, span_userdanger("You can use this ability in [(cooldown_ends - world.time) / 10] seconds."))
 
 	return ready
 

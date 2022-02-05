@@ -13,7 +13,7 @@
 	power_cost = 200
 	whispered = TRUE
 	object_path = /obj/effect/clockwork/sigil/transmission
-	creator_message = "<span class='brass'>A sigil silently appears below you. It will automatically power clockwork structures near it and will drain power when activated.</span>"
+	creator_message = span_brass("A sigil silently appears below you. It will automatically power clockwork structures near it and will drain power when activated.")
 	usage_tip = "Cyborgs can charge from this sigil by remaining over it for 5 seconds."
 	tier = SCRIPTURE_APPLICATION
 	one_per_tile = TRUE
@@ -33,8 +33,8 @@
 	channel_time = 80
 	power_cost = 750
 	object_path = /obj/structure/destructible/clockwork/powered/mania_motor
-	creator_message = "<span class='brass'>You form a mania motor, which causes minor damage and negative mental effects in non-Servants.</span>"
-	observer_message = "<span class='warning'>A two-pronged machine rises from the ground!</span>"
+	creator_message = span_brass("You form a mania motor, which causes minor damage and negative mental effects in non-Servants.")
+	observer_message = span_warning("A two-pronged machine rises from the ground!")
 	invokers_required = 2
 	multiple_invokers_used = TRUE
 	usage_tip = "It will also cure hallucinations and brain damage in nearby Servants."
@@ -55,8 +55,8 @@
 	channel_time = 80
 	power_cost = 300
 	object_path = /obj/structure/destructible/clockwork/powered/clockwork_obelisk
-	creator_message = "<span class='brass'>You form a clockwork obelisk which can broadcast messages or produce Spatial Gateways.</span>"
-	observer_message = "<span class='warning'>A brass obelisk appears hanging in midair!</span>"
+	creator_message = span_brass("You form a clockwork obelisk which can broadcast messages or produce Spatial Gateways.")
+	observer_message = span_warning("A brass obelisk appears hanging in midair!")
 	invokers_required = 2
 	multiple_invokers_used = TRUE
 	usage_tip = "Producing a gateway has a high power cost. Gateways to or between clockwork obelisks receive double duration and uses."
@@ -76,7 +76,7 @@
 	invocations = list("Arise, avatar of Arbiter!", "Defend the Ark with vengeful zeal.")
 	channel_time = 80
 	power_cost = 8000
-	creator_message = "<span class='brass'>Your slab disgorges several chunks of replicant alloy that form into a suit of thrumming armor.</span>"
+	creator_message = span_brass("Your slab disgorges several chunks of replicant alloy that form into a suit of thrumming armor.")
 	usage_tip = "Reciting this scripture multiple times in a short period will cause it to take longer!"
 	tier = SCRIPTURE_APPLICATION
 	one_per_tile = TRUE
@@ -100,13 +100,13 @@
 			human_servants++
 	construct_limit = round(clamp((human_servants / 4), 1, 3)) - recent_marauders //1 per 4 human servants, maximum of 3, reduced by recent marauder creation
 	if(recent_marauders)
-		to_chat(invoker, "<span class='warning'>The Hierophant Network is depleted by a summoning in the last [DisplayTimeText(MARAUDER_SCRIPTURE_SCALING_THRESHOLD, TRUE)] - limiting the number of available marauders by [recent_marauders]!</span>")
+		to_chat(invoker, span_warning("The Hierophant Network is depleted by a summoning in the last [DisplayTimeText(MARAUDER_SCRIPTURE_SCALING_THRESHOLD, TRUE)] - limiting the number of available marauders by [recent_marauders]!"))
 
 /datum/clockwork_scripture/create_object/construct/clockwork_marauder/pre_recital()
 	channel_time = initial(channel_time)
 	if(recent_marauders)
 		scaled_recital_time = min(recent_marauders * MARAUDER_SCRIPTURE_SCALING_TIME, MARAUDER_SCRIPTURE_SCALING_MAX)
-		to_chat(invoker, "<span class='warning'>The Hierophant Network is under strain from repeated summoning, making this scripture [DisplayTimeText(scaled_recital_time)] slower!</span>")
+		to_chat(invoker, span_warning("The Hierophant Network is under strain from repeated summoning, making this scripture [DisplayTimeText(scaled_recital_time)] slower!"))
 		channel_time += scaled_recital_time
 	return TRUE
 

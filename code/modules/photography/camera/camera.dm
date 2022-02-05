@@ -2,7 +2,7 @@
 
 /obj/item/camera
 	name = "camera"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/artstuff.dmi'
 	desc = "A polaroid camera."
 	icon_state = "camera"
 	item_state = "camera"
@@ -46,13 +46,13 @@
 /obj/item/camera/attack_self(mob/user)
 	if(!disk)
 		return
-	to_chat(user, "<span class='notice'>You eject [disk] out the back of [src].</span>")
+	to_chat(user, span_notice("You eject [disk] out the back of [src]."))
 	user.put_in_hands(disk)
 	disk = null
 
 /obj/item/camera/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click to change its focusing, allowing you to set how big of an area it will capture.</span>"
+	. += span_notice("Alt-click to change its focusing, allowing you to set how big of an area it will capture.")
 
 /obj/item/camera/proc/adjust_zoom(mob/user)
 	var/desired_x = input(user, "How high do you want the camera to shoot, between [picture_size_x_min] and [picture_size_x_max]?", "Zoom", picture_size_x) as num
@@ -71,10 +71,10 @@
 			camera_mode = CAMERA_DESCRIPTION
 		else if(camera_mode == CAMERA_DESCRIPTION)
 			camera_mode = CAMERA_STANDARD
-		to_chat(user, "<span class='notice'>You set the [src] to [camera_mode] mode.</span>")
+		to_chat(user, span_notice("You set the [src] to [camera_mode] mode."))
 		return
 
-	to_chat(user, "<span class='notice'>This [src] can only be used in the [camera_mode] mode.</span>") // just in-case somone makes a camera that can only be descriptive
+	to_chat(user, span_notice("This [src] can only be used in the [camera_mode] mode.")) // just in-case somone makes a camera that can only be descriptive
 
 /obj/item/camera/attack(mob/living/carbon/human/M, mob/user)
 	return
@@ -82,23 +82,23 @@
 /obj/item/camera/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)
-			to_chat(user, "<span class='notice'>[src] still has some film in it!</span>")
+			to_chat(user, span_notice("[src] still has some film in it!"))
 			return
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return
-		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+		to_chat(user, span_notice("You insert [I] into [src]."))
 		qdel(I)
 		pictures_left = pictures_max
 		return
 	if(istype(I, /obj/item/disk/holodisk))
 		if (!disk)
 			if(!user.transferItemToLoc(I, src))
-				to_chat(user, "<span class='warning'>[I] is stuck to your hand!</span>")
+				to_chat(user, span_warning("[I] is stuck to your hand!"))
 				return TRUE
-			to_chat(user, "<span class='notice'>You slide [I] into the back of [src].</span>")
+			to_chat(user, span_notice("You slide [I] into the back of [src]."))
 			disk = I
 		else
-			to_chat(user, "<span class='warning'>There's already a disk inside [src].</span>")
+			to_chat(user, span_warning("There's already a disk inside [src]."))
 		return TRUE //no afterattack
 	..()
 
@@ -168,7 +168,7 @@
 			disk.record.caller_name = M.name
 			disk.record.set_caller_image(M)
 		else
-			to_chat(user, "<span class='warning'>Invalid holodisk target.</span>")
+			to_chat(user, span_warning("Invalid holodisk target."))
 			return
 
 	if(!can_target(target, user, flag))
@@ -256,7 +256,7 @@
 	if(in_range(src, user)) //needed because of TK
 		user.put_in_hands(p)
 		pictures_left--
-		to_chat(user, "<span class='notice'>[pictures_left] photos left.</span>")
+		to_chat(user, span_notice("[pictures_left] photos left."))
 		if(can_customise && camera_mode == CAMERA_DESCRIPTION)
 			var/customise = "No"
 			customise = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")

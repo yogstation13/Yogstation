@@ -68,16 +68,6 @@
 	var/mob/living/silicon/robot/R = usr
 	R.uneq_active()
 
-/obj/screen/robot/lamp
-	name = "headlamp"
-	icon_state = "lamp0"
-
-/obj/screen/robot/lamp/Click()
-	if(..())
-		return
-	var/mob/living/silicon/robot/R = usr
-	R.control_headlamp()
-
 /obj/screen/robot/thrusters
 	name = "ion thrusters"
 	icon_state = "ionpulse0"
@@ -123,13 +113,18 @@
 
 //End of module select
 
+	using = new /obj/screen/robot/lamp()
+	using.screen_loc = ui_borg_lamp
+	using.hud = src
+	static_inventory += using
+	mymobR.lampButton = using
+	var/obj/screen/robot/lamp/lampscreen = using
+	lampscreen.robot = mymobR
+
 //Photography stuff
 	using = new /obj/screen/ai/image_take()
 	using.screen_loc = ui_borg_camera
-	static_inventory += using
-
-	using = new /obj/screen/ai/image_view()
-	using.screen_loc = ui_borg_album
+	using.hud = src
 	static_inventory += using
 
 //Sec/Med HUDs
@@ -137,17 +132,22 @@
 	using.screen_loc = ui_borg_sensor
 	static_inventory += using
 
-//Headlamp control
-	using = new /obj/screen/robot/lamp()
-	using.screen_loc = ui_borg_lamp
-	static_inventory += using
-	mymobR.lamp_button = using
-
 //Thrusters
 	using = new /obj/screen/robot/thrusters()
 	using.screen_loc = ui_borg_thrusters
 	static_inventory += using
 	mymobR.thruster_button = using
+
+//Borg Integrated Tablet
+	using = new /obj/screen/robot/modPC()
+	using.screen_loc = ui_borg_tablet
+	using.hud = src
+	static_inventory += using
+	mymobR.interfaceButton = using
+	if(mymobR.modularInterface)
+		using.vis_contents += mymobR.modularInterface
+	var/obj/screen/robot/modPC/tabletbutton = using
+	tabletbutton.robot = mymobR
 
 //Intent
 	action_intent = new /obj/screen/act_intent/robot()
@@ -207,7 +207,7 @@
 		screenmob.client.screen += module_store_icon	//"store" icon
 
 		if(!R.module.modules)
-			to_chat(usr, "<span class='danger'>Selected module has no modules to select</span>")
+			to_chat(usr, span_danger("Selected module has no modules to select"))
 			return
 
 		if(!R.robot_modules_background)
@@ -270,3 +270,32 @@
 		else
 			for(var/obj/item/I in R.held_items)
 				screenmob.client.screen -= I
+
+/obj/screen/robot/lamp
+	name = "headlamp"
+	icon_state = "lamp_off"
+	var/mob/living/silicon/robot/robot
+
+/obj/screen/robot/lamp/Click()
+	. = ..()
+	if(.)
+		return
+	robot?.toggle_headlamp()
+	update_icon()
+
+/obj/screen/robot/lamp/update_icon()
+	if(robot?.lamp_enabled)
+		icon_state = "lamp_on"
+	else
+		icon_state = "lamp_off"
+
+/obj/screen/robot/modPC
+	name = "Modular Interface"
+	icon_state = "template"
+	var/mob/living/silicon/robot/robot
+
+/obj/screen/robot/modPC/Click()
+	. = ..()
+	if(.)
+		return
+	robot.modularInterface?.interact(robot)

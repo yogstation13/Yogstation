@@ -225,6 +225,27 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggle_announcement_sound)()
 /datum/verbs/menu/Settings/Sound/toggle_announcement_sound/Get_checked(client/C)
 	return C.prefs.toggles & SOUND_ANNOUNCEMENTS
 
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggle_vox)()
+	set name = "Hear/Silence VOX"
+	set category = "Preferences"
+	set desc = "Hear VOX Announcements"
+	usr.client.prefs.toggles ^= SOUND_VOX
+	to_chat(usr, "You will now [(usr.client.prefs.toggles & SOUND_VOX) ? "hear VOX announcements" : "no longer hear VOX announcements"].")
+	usr.client.prefs.save_preferences()
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle VOX", "[usr.client.prefs.toggles & SOUND_VOX ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/datum/verbs/menu/Settings/Sound/toggle_vox/Get_checked(client/C)
+	return C.prefs.toggles & SOUND_VOX
+
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggle_alt)()
+	set name = "Hear/Silence Alternative Sounds"
+	set category = "Preferences"
+	set desc = "Hear potentially annoying \"alternative\" sounds"
+	usr.client.prefs.toggles ^= SOUND_ALT
+	to_chat(usr, "You will now [(usr.client.prefs.toggles & SOUND_ALT) ? "hear alternative sounds" : "no longer hear alternative sounds"].")
+	usr.client.prefs.save_preferences()
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Alternative Sounds", "[usr.client.prefs.toggles & SOUND_ALT ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/datum/verbs/menu/Settings/Sound/toggle_alt/Get_checked(client/C)
+	return C.prefs.toggles & SOUND_ALT
 
 /datum/verbs/menu/Settings/Sound/verb/stop_client_sounds()
 	set name = "Stop Sounds"
@@ -377,9 +398,9 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	prefs.inquisitive_ghost = !prefs.inquisitive_ghost
 	prefs.save_preferences()
 	if(prefs.inquisitive_ghost)
-		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
+		to_chat(src, span_notice("You will now examine everything you click on."))
 	else
-		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")
+		to_chat(src, span_notice("You will no longer examine things you click on."))
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Ghost Inquisitiveness", "[prefs.inquisitive_ghost ? "Enabled" : "Disabled"]"))
 
 //Admin Preferences

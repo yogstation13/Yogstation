@@ -114,10 +114,10 @@
 		to_chat(user, "You must hold the [src] in your hand to do this.")
 		return
 	if (!enabled_waddle)
-		to_chat(user, "<span class='notice'>You switch off the waddle dampeners!</span>")
+		to_chat(user, span_notice("You switch off the waddle dampeners!"))
 		enabled_waddle = TRUE
 	else
-		to_chat(user, "<span class='notice'>You switch on the waddle dampeners!</span>")
+		to_chat(user, span_notice("You switch on the waddle dampeners!"))
 		enabled_waddle = FALSE
 
 /obj/item/clothing/shoes/clown_shoes/jester
@@ -138,6 +138,7 @@
 	resistance_flags = NONE
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+	force = 1
 
 /obj/item/clothing/shoes/jackboots/fast
 	slowdown = -1
@@ -258,17 +259,17 @@
 		return
 
 	if(recharging_time > world.time)
-		to_chat(user, "<span class='warning'>The boot's internal propulsion needs to recharge still!</span>")
+		to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
 		return
 
 	var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 
 	if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
 		playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
-		user.visible_message("<span class='warning'>[usr] dashes forward into the air!</span>")
+		user.visible_message(span_warning("[usr] dashes forward into the air!"))
 		recharging_time = world.time + recharging_rate
 	else
-		to_chat(user, "<span class='warning'>Something prevents you from dashing forward!</span>")
+		to_chat(user, span_warning("Something prevents you from dashing forward!"))
 
 /obj/item/clothing/shoes/singery
 	name = "yellow performer's boots"
@@ -309,7 +310,7 @@
 	if(!isliving(user))
 		return
 	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/wheelys))
-		to_chat(user, "<span class='warning'>You must be wearing the wheely-heels to use them!</span>")
+		to_chat(user, span_warning("You must be wearing the wheely-heels to use them!"))
 		return
 	if(!(W.is_occupant(user)))
 		wheelToggle = FALSE
@@ -386,7 +387,7 @@
 	if(slot == SLOT_SHOES)
 		for(var/mob/living/occupant in occupants)
 			occupant.forceMove(user.drop_location())
-			user.visible_message("<span class='warning'>[user] recoils as something slithers out of [src].</span>", "<span class='userdanger'> You feel a sudden stabbing pain in your [pick("foot", "toe", "ankle")]!</span>")
+			user.visible_message(span_warning("[user] recoils as something slithers out of [src]."), span_userdanger(" You feel a sudden stabbing pain in your [pick("foot", "toe", "ankle")]!"))
 			user.Knockdown(20) //Is one second paralyze better here? I feel you would fall on your ass in some fashion.
 			user.apply_damage(5, BRUTE, pick(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
 			if(istype(occupant, /mob/living/simple_animal/hostile/retaliate/poison))
@@ -398,15 +399,15 @@
 	if(user.stat || !(user.mobility_flags & MOBILITY_USE) || user.restrained() || !Adjacent(user) || !user.Adjacent(target) || target.stat == DEAD)
 		return
 	if(occupants.len >= max_occupants)
-		to_chat(user, "<span class='notice'>[src] are full!</span>")
+		to_chat(user, span_notice("[src] are full!"))
 		return
 	if(istype(target, /mob/living/simple_animal/hostile/retaliate/poison/snake) || istype(target, /mob/living/simple_animal/hostile/headcrab) || istype(target, /mob/living/carbon/alien/larva))
 		occupants += target
 		target.forceMove(src)
-		to_chat(user, "<span class='notice'>[target] slithers into [src]</span>")
+		to_chat(user, span_notice("[target] slithers into [src]"))
 
 /obj/item/clothing/shoes/cowboy/container_resist(mob/living/user)
-	if(!do_after(user, 10, target = user))
+	if(!do_after(user, 1 SECONDS, target = user))
 		return
 	user.forceMove(user.drop_location())
 	occupants -= user
@@ -487,3 +488,60 @@
 	item_state = "footwraps_c"
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
 	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+
+/obj/item/clothing/shoes/airshoes
+	name = "air shoes"
+	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
+	icon_state = "airshoes"
+	obj_flags = UNIQUE_RENAME //im not fucking naming them 'sonic 11's you can do that yourself ffm
+	actions_types = list(/datum/action/item_action/airshoes, /datum/action/item_action/dash)
+	var/airToggle = FALSE
+	var/obj/vehicle/ridden/scooter/airshoes/A
+	permeability_coefficient = 0.05
+	var/recharging_time = 0 
+	var/jumpdistance = 7 //Increased distance so it might see some offensive use
+	var/jumpspeed = 5 //fast
+	var/recharging_rate = 60 
+	syndicate = TRUE
+
+/obj/item/clothing/shoes/airshoes/Initialize()
+	. = ..()
+	A = new/obj/vehicle/ridden/scooter/airshoes(null)
+	
+/obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
+	if(!isliving(user))
+		return
+	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/airshoes))
+		to_chat(user, span_warning("You must be wearing the air shoes to use them!"))
+		return
+	if(istype(action,/datum/action/item_action/airshoes))
+		if(!(A.is_occupant(user)))
+			airToggle = FALSE
+		if(airToggle)
+			A.unbuckle_mob(user)
+			airToggle = FALSE
+			return
+		A.forceMove(get_turf(user))
+		A.buckle_mob(user)
+		airToggle = TRUE
+	else if(istype(action,/datum/action/item_action/dash))
+		if(recharging_time > world.time)
+			to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
+			return
+		
+		var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
+		if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
+			playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
+			user.visible_message(span_warning("[usr] dashes forward into the air!"))
+			recharging_time = world.time + recharging_rate
+		else
+			to_chat(user, span_warning("Something prevents you from dashing forward!"))
+
+/obj/item/clothing/shoes/airshoes/dropped(mob/user)
+	if(airToggle)
+		A.unbuckle_mob(user)
+		airToggle = FALSE
+	..()
+/obj/item/clothing/shoes/airshoes/Destroy()
+	QDEL_NULL(A)
+	. = ..()

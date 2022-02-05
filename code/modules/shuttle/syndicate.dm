@@ -9,7 +9,7 @@
 	light_color = LIGHT_COLOR_RED
 	req_access = list(ACCESS_SYNDICATE)
 	shuttleId = "syndicate"
-	possible_destinations = "syndicate_away;syndicate_z5;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s;syndicate_custom"
+	possible_destinations = "syndicate_away;syndicate_z5;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s;spacebar;syndicate_custom"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	flags_1 = NODECONSTRUCT_1
 
@@ -24,7 +24,7 @@
 		return FALSE
 	var/obj/item/circuitboard/computer/syndicate_shuttle/board = circuit
 	if(board?.challenge && world.time < SYNDICATE_CHALLENGE_TIMER)
-		to_chat(user, "<span class='warning'>You've issued a combat challenge to the station! You've got to give them at least [DisplayTimeText(SYNDICATE_CHALLENGE_TIMER - world.time)] more to allow them to prepare.</span>")
+		to_chat(user, span_warning("You've issued a combat challenge to the station! You've got to give them at least [DisplayTimeText(SYNDICATE_CHALLENGE_TIMER - world.time)] more to allow them to prepare."))
 		return FALSE
 	board.moved = TRUE
 	return TRUE
@@ -50,7 +50,7 @@
 	if(!.)
 		return FALSE
 	if(!is_centcom_level(z))
-		to_chat(user, "<span class='warning'>Pods are one way!</span>")
+		to_chat(user, span_warning("Pods are one way!"))
 		return FALSE
 	return TRUE
 

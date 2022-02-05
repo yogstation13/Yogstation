@@ -39,12 +39,12 @@
 	require_all_chems = FALSE
 
 /datum/surgery_step/dna_recovery/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You begin to mend what's left of [target]'s DNA...</span>",
+	display_results(user, target, span_notice("You begin to mend what's left of [target]'s DNA..."),
 		"[user] begins to tinker with [target]'s brain...",
 		"[user] begins to perform surgery on [target]'s brain.")
 
 /datum/surgery_step/dna_recovery/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You succeed in fixing some of [target]'s DNA!</span>",
+	display_results(user, target, span_notice("You succeed in fixing some of [target]'s DNA!"),
 		"[user] successfully repairs some of [target]'s DNA",
 		"[user] completes the surgery on [target]'s brain.")
 	REMOVE_TRAIT(target, TRAIT_BADDNA, CHANGELING_DRAIN)

@@ -41,12 +41,13 @@
 		"https://www.youtube.com/watch?v=YGulLVWu-s0",						// God Hand "Rock a Bay"
 		"https://www.youtube.com/watch?v=IhEqUKBTffU",						// Streets Of Rogue - 5-1
 		"https://www.youtube.com/watch?v=fXvxnDmwB_I",						// Rain World THS - Action Scene
-		"https://www.youtube.com/watch?v=cklpO4kYZKs",						//The Kinks - Apeman
-		"https://www.youtube.com/watch?v=MPPCNM85eRY",						//The Kinks - Super Sonic Ship
-		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						//David Bowie - Starman
-		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						//Lou Reed - Satellite of Love
-		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						//Dungeons of Dredmor - Diggle Hell
+		"https://www.youtube.com/watch?v=cklpO4kYZKs",						// The Kinks - Apeman
+		"https://www.youtube.com/watch?v=MPPCNM85eRY",						// The Kinks - Super Sonic Ship
+		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						// David Bowie - Starman
+		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						// Lou Reed - Satellite of Love
+		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						// Dungeons of Dredmor - Diggle Hell
 		"https://www.youtube.com/watch?v=cYUGOSjRs3Q",  					// Blake Robinson - Traitor's Motif
+		"https://www.youtube.com/watch?v=uiPJQgw6M_g",						// Ribbiks - Chasing Suns
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U")						// Ataraxia - Deja Vuzz
 
 	selected_lobby_music = pick(songs)
@@ -60,7 +61,7 @@
 
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		to_chat(world, "<span class='boldwarning'>Youtube-dl was not configured.</span>")
+		to_chat(world, span_boldwarning("Youtube-dl was not configured."))
 		log_world("Could not play lobby song because youtube-dl is not configured properly, check the config.")
 		return
 
@@ -74,15 +75,15 @@
 		try
 			data = json_decode(stdout)
 		catch(var/exception/e)
-			to_chat(src, "<span class='boldwarning'>Youtube-dl JSON parsing FAILED:</span>", confidential=TRUE)
-			to_chat(src, "<span class='warning'>[e]: [stdout]</span>", confidential=TRUE)
+			to_chat(src, span_boldwarning("Youtube-dl JSON parsing FAILED:"), confidential=TRUE)
+			to_chat(src, span_warning("[e]: [stdout]"), confidential=TRUE)
 			return
 		if(data["title"])
 			login_music_data["title"] = data["title"]
 			login_music_data["url"] = data["url"]
 
 	if(errorlevel)
-		to_chat(world, "<span class='boldwarning'>Youtube-dl failed.</span>")
+		to_chat(world, span_boldwarning("Youtube-dl failed."))
 		log_world("Could not play lobby song [selected_lobby_music]: [stderr]")
 		return
 	return stdout
