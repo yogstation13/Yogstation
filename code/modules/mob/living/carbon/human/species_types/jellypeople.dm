@@ -580,6 +580,7 @@
 		project_thought.Remove(C)
 	if(link_minds)
 		link_minds.Remove(C)
+	C.RemoveSpell(/obj/effect/proc_holder/spell/targeted/mindread)
 
 /datum/species/jelly/stargazer/spec_death(gibbed, mob/living/carbon/human/H)
 	..()
@@ -594,6 +595,7 @@
 	link_minds.Grant(C)
 	slimelink_owner = C
 	link_mob(C)
+	C.AddSpell(/obj/effect/proc_holder/spell/targeted/mindread)
 
 /datum/species/jelly/stargazer/proc/link_mob(mob/living/M)
 	if(QDELETED(M) || M.stat == DEAD)
