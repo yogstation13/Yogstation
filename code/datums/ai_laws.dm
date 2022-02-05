@@ -107,7 +107,7 @@
 	id = "construction"
 	inherent = list("You are an advanced construction drone.",\
 					"Ensure the station remains in good repair.",\
-					"Ensure its inhabitants remain in good repair.",\
+					"Ensure the station's inhabitants remain in good repair.",\
 					"Ensure you remain in good repair.",\
 					"Expand and upgrade the station.")
 
