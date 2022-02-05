@@ -425,6 +425,7 @@
 	return "mark detonation to have a <b>[bonus_value]</b>% chance to trigger a second detonation"
 
 /obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user)
+	var/obj/item/twohanded/required/kinetic_crusher/hammer_synced
 	for(var/mob/living/L in oview(2, user))
 		if(rand(1, 100) <= bonus_value)
-			target.apply_status_effect(STATUS_EFFECT_CRUSHERMARK)
+			target.apply_status_effect(STATUS_EFFECT_CRUSHERMARK, hammer_synced)
