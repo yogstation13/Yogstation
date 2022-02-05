@@ -571,6 +571,7 @@
 	var/list/datum/action/innate/linked_speech/linked_actions = list()
 	var/mob/living/carbon/human/slimelink_owner
 	var/current_link_id = 0
+	var/obj/effect/proc_holder/spell/targeted/mindread/mindread
 
 /datum/species/jelly/stargazer/on_species_loss(mob/living/carbon/C)
 	..()
@@ -580,7 +581,8 @@
 		project_thought.Remove(C)
 	if(link_minds)
 		link_minds.Remove(C)
-	C.RemoveSpell(mindread)
+	if(mindread)
+		C.RemoveSpell(mindread)
 
 /datum/species/jelly/stargazer/spec_death(gibbed, mob/living/carbon/human/H)
 	..()
@@ -595,6 +597,8 @@
 	link_minds.Grant(C)
 	slimelink_owner = C
 	link_mob(C)
+	mindread = new
+	mindread.charge_counter = 0
 	C.AddSpell(mindread)
 
 /datum/species/jelly/stargazer/proc/link_mob(mob/living/M)
