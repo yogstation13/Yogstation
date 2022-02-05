@@ -165,12 +165,22 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+
 /datum/design/board/chapai_module
 	name = "Core Module Design (ChapAI)"
 	desc = "Allows for the construction of a ChapAI AI Core Module."
 	id = "chapai_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
 	build_path = /obj/item/aiModule/core/full/chapai
+  category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/mother
+	name = "Core Module Design (Mother M(A.I.))"
+	desc = "Allows for the construction of a Mother M(A.I.) AI Core Module."
+	id = "mother_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/mother
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
