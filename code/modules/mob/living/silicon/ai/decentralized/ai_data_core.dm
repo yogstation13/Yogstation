@@ -41,6 +41,11 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		all_ais -= AI
 		if(!AI.is_dying)
 			AI.relocate()
+    
+	for(var/mob/living/silicon/ai/AI in all_ais)
+		if(!AI.mind && AI.deployed_shell.mind)
+			all_ais += AI.deployed_shell
+		
 
 	to_chat(all_ais, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 	
@@ -101,8 +106,12 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 					AI.relocate()
 		if(!warning_sent)
 			warning_sent = TRUE
-			to_chat(GLOB.ai_list, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
-			for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
+			var/list/send_to = GLOB.ai_list.Copy()
+			for(var/mob/living/silicon/ai/AI in send_to)
+				if(!AI.mind && AI.deployed_shell.mind)
+					send_to += AI.deployed_shell
+			to_chat(send_to, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+			for(var/mob/living/silicon/ai/AI in send_to)
 				AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
 
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
