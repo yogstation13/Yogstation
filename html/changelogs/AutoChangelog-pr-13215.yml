@@ -1,0 +1,5 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Ethereals can choose face shapes"
+  - rscadd: "Ethereals can use hair gradients"
