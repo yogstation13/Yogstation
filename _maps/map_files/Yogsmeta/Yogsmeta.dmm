@@ -54098,6 +54098,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"cli" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "clj" = (
 /obj/structure/sink{
 	dir = 8;
@@ -117969,7 +117978,7 @@ bna
 bLK
 dDe
 ofR
-iKo
+cli
 new
 bKe
 bUd

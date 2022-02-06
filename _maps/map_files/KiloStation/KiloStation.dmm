@@ -84672,6 +84672,14 @@
 	dir = 1
 	},
 /area/hallway/primary/fore)
+"dWN" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/oven,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "dXf" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -85796,14 +85804,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"fkV" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "flF" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/neutral{
@@ -139123,7 +139123,7 @@ brM
 bmA
 aDh
 bmR
-fkV
+dWN
 aGJ
 bmL
 bmF
