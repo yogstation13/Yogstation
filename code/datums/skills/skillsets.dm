@@ -65,7 +65,12 @@
 
 /datum/skillset/proc/set_skill_levels(var/list/skill_list, var/silent = FALSE)
 	for(var/skill_id in GLOB.all_skill_ids)
-		set_skill_level(skill_id, skill_list[skill_id], silent)
+		var/new_skill_value = null
+		new_skill_value = skill_list?[skill_id]
+		if(isnull(new_skill_value))
+			new_skill_value = SKILLLEVEL_UNSKILLED
+		message_admins(isnull(new_skill_value))
+		set_skill_level(skill_id, new_skill_value, silent)
 
 /datum/skillset/proc/get_skill_levels()
 	var/list/skill_list = list()

@@ -75,7 +75,6 @@
 	if(..())
 		return
 	var/mob/user = usr
-	var/atom/movable/AM = skillset.get_atom()
 
 	var/datum/skill/skill = skillset.get_skill(current_skill)
 	
@@ -92,7 +91,6 @@
 				. = TRUE
 		if("change_current_skill")
 			current_skill = params["id"]
-			message_admins(params["id"])
 			. = TRUE
 		if("toggle_use_skills")
 			if(is_admin)
@@ -103,8 +101,18 @@
 				var/client/C = user.client
 				C.debug_variables(skillset)
 				. = TRUE
+		if("reset_skillset")
+			if(is_admin)
+				var/client/C = user.client
+				C.debug_variables(skillset)
+				. = TRUE
 		if("debug_variables_skill")
 			if(is_admin)
 				var/client/C = user.client
 				C.debug_variables(skill)
+				. = TRUE
+		if("reset_skillset")
+			if(is_admin)
+				var/client/C = user.client
+				C.debug_variables(skillset)
 				. = TRUE

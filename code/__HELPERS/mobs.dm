@@ -270,42 +270,18 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(!user)
 		return 0
 	var/atom/Tloc = null
-	if(required_skill != null)
-		var/user_skill = find_skill_level(user, required_skill)
+	if(!isnull(required_skill))
+		var/datum/skill/user_skill = find_skill(user, required_skill)
 		if(SKILL_CHECK(user, required_skill, required_skill_level))
 			if(skill_delay_scaling.len > 0)
-				var/skill_delay = skill_delay_scaling[user_skill]
+				var/skill_delay = skill_delay_scaling[user_skill.current_level]
 				if(skill_delay > 0)
-					switch(required_skill)
-						if(SKILL_STRENGHT)
-							to_chat(user,"<span class='notice'> You struggle as you are not strong enough.")
-						if(SKILL_DEXTERITY)
-							to_chat(user,"<span class='notice'> You struggle as you are not dexterous enough.")
-						if(SKILL_ENDURANCE)
-							to_chat(user,"<span class='notice'> You struggle as you are not resilient enough.")
-						else
-							to_chat(user,"<span class='notice'> You struggle as you lack the knowledge in [required_skill].")
+					user_skill.struggle_text()
 				else if(skill_delay < 0)
-					switch(required_skill)
-						if(SKILL_STRENGHT)
-							to_chat(user,"<span class='notice'> You quickly preform the task due to your strength.")
-						if(SKILL_DEXTERITY)
-							to_chat(user,"<span class='notice'> You quickly preform the task due to your strength.")
-						if(SKILL_ENDURANCE)
-							to_chat(user,"<span class='notice'> You quickly preform the task due to your strength.")
-						else
-							to_chat(user,"<span class='notice'> You quickly preform the task due to your knowledge in [required_skill].")
+					user_skill.proficient_text()
 				delay += skill_delay
 		else
-			switch(required_skill)
-				if(SKILL_STRENGHT)
-					to_chat(user,"<span class='notice'> You are incapable of doing this as you are not strong enough.")
-				if(SKILL_DEXTERITY)
-					to_chat(user,"<span class='notice'> You are incapable of doing this as you are not dexterous enough.")
-				if(SKILL_ENDURANCE)
-					to_chat(user,"<span class='notice'> You are incapable of doing this as you are not resilient enough.")
-				else
-					to_chat(user,"<span class='notice'> You dont know how to do this as you lack the knowledge in [required_skill].")
+			user_skill.incapable_text()
 			return 0
 
 	if(target && !isturf(target))

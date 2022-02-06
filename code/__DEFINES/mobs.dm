@@ -351,6 +351,11 @@
 #define SKILLLEVEL_EXPERIENCED	4
 #define SKILLLEVEL_MASTER		5
 
+//Skill Difficulty Defines
+#define SKILLDIF_EASY			1
+#define SKILLDIF_MEDIUM			2
+#define SKILLDIF_HARD			3
+
 //Physical Skills
 #define SKILL_STRENGHT			"Strength"
 #define SKILL_DEXTERITY			"Dexterity"
@@ -512,6 +517,30 @@ GLOBAL_LIST_INIT(skill_list_master, list(
 	SKILL_IT = SKILLLEVEL_MASTER,
 	SKILL_ATMOSPHERICS = SKILLLEVEL_MASTER))
 
+GLOBAL_LIST_INIT(difficulty_to_text, list(
+	SKILLDIF_EASY = "Easy",
+	SKILLDIF_MEDIUM = "Medium",
+	SKILLDIF_HARD = "Hard"))
+
+GLOBAL_LIST_INIT(difficulty_to_text, list(
+	SKILLDIF_EASY = "Easy",
+	SKILLDIF_MEDIUM = "Medium",
+	SKILLDIF_HARD = "Hard"))
+
+GLOBAL_LIST_INIT(skill_level_to_color, list(
+	SKILLLEVEL_UNSKILLED = "Unskilled",
+	SKILLLEVEL_BASIC = "Basic",
+	SKILLLEVEL_TRAINED = "Trained",
+	SKILLLEVEL_EXPERIENCED = "Experienced",
+	SKILLLEVEL_MASTER = "Master"))
+
+GLOBAL_LIST_INIT(skill_level_to_color, list(
+	SKILLLEVEL_UNSKILLED = "red",
+	SKILLLEVEL_BASIC = "orange",
+	SKILLLEVEL_TRAINED = "yellow",
+	SKILLLEVEL_EXPERIENCED = "green",
+	SKILLLEVEL_MASTER = "slateblue"))
+
 //Skill Procs, kinda self explainitory
 /proc/find_skillset(target)
 	//Get the job from the mind
@@ -540,6 +569,15 @@ GLOBAL_LIST_INIT(skill_list_master, list(
 		var/datum/skillset/target_skillset = results
 		return target_skillset.get_skill_level(skill)
 	return null
+
+/proc/difficulty_to_text(difficulty)
+	switch(difficulty)
+		if(1)
+			return "Easy"
+		if(2)
+			return "Medium"
+		if(3)
+			return "Hard"
 
 #define GET_SKILLS(target) (find_skill(target))
 #define SKILL_CHECK(target, skill, required) (find_skill(target, skill) >= required)

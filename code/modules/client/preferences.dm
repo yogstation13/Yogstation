@@ -90,7 +90,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		// Want randomjob if preferences already filled - Donkie
 	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assistants
 
-	var/job_skills = list()
+	var/list/job_skills = list()
+	var/current_job = "Assistant"
+
+	var/debugvar = null
 
 	// 0 = character settings, 1 = game preferences
 	var/current_tab = 0
@@ -1063,81 +1066,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.set_content(HTML)
 	popup.open(FALSE)
 
-/datum/preferences/proc/SetSkills(mob/user)
-	if(!SSjob)
-		return
-
-	//limit - The amount of jobs allowed per column. Defaults to 17 to make it look nice.
-	//splitJobs - Allows you split the table by job. You can make different tables for each department by including their heads. Defaults to CE to make it look nice.
-	//widthPerColumn - Screen's width for every column.
-	//height - Screen's height.
-	var/current_job = "Assistant"
-
-	var/list/dat = list()
-	if(SSjob.occupations.len <= 0)
-		dat += "The job SSticker is not yet finished creating jobs, please try again later"
-		dat += "<center><a href='?_src_=prefs;preference=skills;task=close'>Done</a></center><br>" // Easier to press up here.
-	else
-		dat += "<center><b>Choose a skill setup</b></center><br>"
-		dat += "<div align='center'>select the job you would like to edit, then left click to select which level you want, making sure to keep within the allowed number of points.</div>"
-		dat += "<center><a href='?_src_=prefs;preference=skills;task=switch_job'>[current_job]</a>"
-		dat += "<a href='?_src_=prefs;preference=skills;task=close'>Done</a></center>"
-		dat += "<hr>"
-		
-		var/list/skilllist_data = GetPlayerTempSkilllist(current_job)
-
-//		dat += "<b>Skill points remaining:</b> [GetSkillBallance(current_job, skilllist_data)]</center><br>"
-
-		for(var/skill_id in GLOB.all_skill_ids)
-			var/list/skill_data = skilllist_data[skill_id]
-			dat += "<center><b>[skill_data["skill_name"]]</b><br>\
-			[skill_data["skill_desc"]]</center>"
-			dat += "<center> Skill Levels: "
-			dat += "<a href='?_src_=prefs;preference=skills;task=change_skill'>Unskilled</a>"
-			dat += "<a href='?_src_=prefs;preference=skills;task=change_skill'>Basic</a>"
-			dat += "<a href='?_src_=prefs;preference=skills;task=change_skill'>Trained</a>"
-			dat += "<a href='?_src_=prefs;preference=skills;task=change_skill'>Experienced</a>"
-			dat += "<a href='?_src_=prefs;preference=skills;task=change_skill'>Master</a></center><br>"
-
-		dat += "<br><center><a href='?_src_=prefs;preference=skills;task=reset'>Reset Skills</a></center>"
-
-	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Skill Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
-	popup.set_window_options("can_close=0")
-	popup.set_content(dat.Join())
-	popup.open(FALSE)
-
-/datum/preferences/proc/GetPlayerTempSkilllist(job)
-	var/list/skill_data = list()
-	for(var/V in GLOB.all_skill_paths)
-		var/datum/skill/S = new V
-		var/list/current_data = list()
-		message_admins(S.name)
-		message_admins(S.desc)
-		current_data["skill_name"] = S.name
-		current_data["skill_desc"] = S.desc
-		/*
-		var/list/skill_cost = list()
-		for(var/skill_level in GLOB.all_skill_levels)
-			skill_cost[skill_level] = S.get_cost(skill_level, job)
-		*/
-		current_data["skill_cost"] = list(	SKILLLEVEL_UNSKILLED = S.get_cost(SKILLLEVEL_UNSKILLED, job),
-											SKILLLEVEL_BASIC = S.get_cost(SKILLLEVEL_BASIC, job),
-											SKILLLEVEL_TRAINED = S.get_cost(SKILLLEVEL_TRAINED, job),
-											SKILLLEVEL_EXPERIENCED = S.get_cost(SKILLLEVEL_EXPERIENCED, job),
-											SKILLLEVEL_MASTER = S.get_cost(SKILLLEVEL_MASTER, job),
-										)
-		
-		skill_data[S.id] = current_data
-		qdel(S)
-	
-	message_admins(skill_data)
-	return skill_data
-/*
-/datum/preferences/proc/GetSkillBallance(job, var/list/skilllist_data)
-	for(var/V in GLOB.all_skill_ids)
-		skilllist_data[V]
-	*/
-
 /datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
 	return player_alt_titles.Find(job.title) > 0 \
 		? player_alt_titles[job.title] \
@@ -1203,6 +1131,173 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/ResetJobs()
 	job_preferences = list()
+
+
+/datum/preferences/proc/SetSkills(mob/user)
+	if(!SSjob)
+		return
+	//limit - The amount of jobs allowed per column. Defaults to 17 to make it look nice.
+	//splitJobs - Allows you split the table by job. You can make different tables for each department by including their heads. Defaults to CE to make it look nice.
+	//widthPerColumn - Screen's width for every column.
+	//height - Screen's height.
+
+	var/list/dat = list()
+	if(SSjob.occupations.len <= 0)
+		dat += "The job SSticker is not yet finished creating jobs, please try again later"
+		dat += "<center><a href='?_src_=prefs;preference=skills;task=close'>Done</a></center><br>" // Easier to press up here.
+	else
+		dat += "<center><b>Choose a skill setup</b></center><br>"
+		dat += "<div align='center'>select the job you would like to edit, then left click to select which level you want, making sure to keep within the allowed number of points.</div>"
+		dat += "<center><a href='?_src_=prefs;preference=skills;task=change_job'>[current_job]</a>"
+		dat += "<a href='?_src_=prefs;preference=skills;task=close'>Done</a></center>"
+		dat += "<hr>"
+		
+		var/datum/job/job = SSjob.name_occupations[current_job]
+		var/list/skilllist_data = GetPlayerTempSkilllist(current_job)
+		var/list/allowed_skills = GetSelectableSkills(job, skilllist_data)
+		var/remaining_skillpoints = GetSkillBallance(job, skilllist_data)
+		debugvar = allowed_skills
+
+		dat += "<center><b>Skill points remaining:</b> [remaining_skillpoints]</center>"
+
+		for(var/skill_id in GLOB.all_skill_ids)
+			var/list/skill_data = skilllist_data[skill_id]
+			dat += "<br><center><b>[skill_data["skill_name"]] (Difficulty: [skill_data["skill_difficulty"]]):</b> [skill_data["skill_desc"]]</center>"
+			dat += "<center><b>Skill Levels ([skill_data["current_alocated_points"]] Points Allocated):</b> "
+//			rank_display = "<a class='white' href='?_src_=prefs;preference=job;task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
+//			if()
+//			dat +="<center>"
+			message_admins(allowed_skills[skill_id][SKILLLEVEL_UNSKILLED])
+			switch(allowed_skills[skill_id][SKILLLEVEL_UNSKILLED])
+				if("selectable")
+					dat += "<a href='?_src_=prefs;preference=skills;task=change_skill;skill=[skill_id];level=[SKILLLEVEL_UNSKILLED]'>Unskilled ([skill_data["reletive_skill_cost"][SKILLLEVEL_UNSKILLED]])</a>"
+				if("selected")
+					dat += "<a class='white' href='?_src_=prefs;preference=skills;task=change_skill;skill=[skill_id];level=[SKILLLEVEL_UNSKILLED]'>Unskilled ([skill_data["reletive_skill_cost"][SKILLLEVEL_UNSKILLED]])</a>"
+				if("too_expensive")
+					dat += " Unskilled ([skill_data["reletive_skill_cost"][SKILLLEVEL_UNSKILLED]]) "
+			switch(allowed_skills[skill_id][SKILLLEVEL_BASIC])
+				if("selectable")
+					dat += "<a href='?_src_=prefs;preference=skills;task=change_skill;skill=[skill_id];level=[SKILLLEVEL_BASIC]'>Basic ([skill_data["reletive_skill_cost"][SKILLLEVEL_BASIC]])</a>"
+				if("selected")
+					dat += "<a class='white' href='?_src_=prefs;preference=skills;task=change_skill;skill=[skill_id];level=[SKILLLEVEL_BASIC]'>Basic ([skill_data["reletive_skill_cost"][SKILLLEVEL_BASIC]])</a>"
+				if("too_expensive")
+					dat += " Basic ([skill_data["reletive_skill_cost"][SKILLLEVEL_BASIC]]) "
+			switch(allowed_skills[skill_id][SKILLLEVEL_TRAINED])
+				if("selectable")
+					dat += "<a href='?_src_=prefs;preference=skills;task=change_skill;skill=[skill_id];level=[SKILLLEVEL_TRAINED]'>Trained ([skill_data["reletive_skill_cost"][SKILLLEVEL_TRAINED]])</a>"
+				if("selected")
+					dat += "<a class='white' href='?_src_=prefs;preference=skills;task=change_skill;skill=[skill_id];level=[SKILLLEVEL_TRAINED]'>Trained ([skill_data["reletive_skill_cost"][SKILLLEVEL_TRAINED]])</a>"
+				if("too_expensive")
+					dat += " Trained ([skill_data["reletive_skill_cost"][SKILLLEVEL_TRAINED]]) "
+			switch(allowed_skills[skill_id][SKILLLEVEL_EXPERIENCED])
+				if("selectable")
+					dat += "<a href='?_src_=prefs;preference=skills;task=change_skill;skill=[skill_id];level=[SKILLLEVEL_EXPERIENCED]'>Experienced ([skill_data["reletive_skill_cost"][SKILLLEVEL_EXPERIENCED]])</a>"
+				if("selected")
+					dat += "<a class='white' href='?_src_=prefs;preference=skills;task=change_skill;skill=[skill_id];level=[SKILLLEVEL_EXPERIENCED]'>Experienced ([skill_data["reletive_skill_cost"][SKILLLEVEL_EXPERIENCED]])</a>"
+				if("too_expensive")
+					dat += " Experienced ([skill_data["reletive_skill_cost"][SKILLLEVEL_EXPERIENCED]]) "
+			switch(allowed_skills[skill_id][SKILLLEVEL_MASTER])
+				if("selectable")
+					dat += "<a href='?_src_=prefs;preference=skills;task=change_skill;skill=[skill_id];level=[SKILLLEVEL_MASTER]'>Master ([skill_data["reletive_skill_cost"][SKILLLEVEL_MASTER]])</a>"
+				if("selected")
+					dat += "<a class='white' href='?_src_=prefs;preference=skills;task=change_skill;skill=[skill_id];level=[SKILLLEVEL_MASTER]'>Master ([skill_data["reletive_skill_cost"][SKILLLEVEL_MASTER]])</a>"
+				if("too_expensive")
+					dat += " Master ([skill_data["reletive_skill_cost"][SKILLLEVEL_MASTER]]) "
+
+		dat += "</center>"
+
+		dat += "<br><center><a href='?_src_=prefs;preference=skills;task=reset'>Reset Skills</a></center>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Skill Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+
+/datum/preferences/proc/GetPlayerTempSkilllist(job)
+	var/list/skill_data = list()
+	for(var/V in GLOB.all_skill_paths)
+		var/datum/skill/S = new V
+		var/list/current_data = list()
+		var/list/skilllevel = SKILLLEVEL_UNSKILLED
+		skilllevel = job_skills?[job]?[S.name]
+		message_admins("skilllevel: [skilllevel]")
+		current_data["skill_name"] = S.name
+		current_data["skill_desc"] = S.desc
+		current_data["skill_difficulty"] = difficulty_to_text(S.find_active_difficulty(job = job))
+		current_data["skill_cost"] = list(	SKILLLEVEL_UNSKILLED = S.get_full_cost(SKILLLEVEL_UNSKILLED, job),
+											SKILLLEVEL_BASIC = S.get_full_cost(SKILLLEVEL_BASIC, job),
+											SKILLLEVEL_TRAINED = S.get_full_cost(SKILLLEVEL_TRAINED, job),
+											SKILLLEVEL_EXPERIENCED = S.get_full_cost(SKILLLEVEL_EXPERIENCED, job),
+											SKILLLEVEL_MASTER = S.get_full_cost(SKILLLEVEL_MASTER, job),
+										)
+
+		current_data["current_alocated_points"] = current_data["skill_cost"][skilllevel]
+
+		current_data["reletive_skill_cost"] = list(	SKILLLEVEL_UNSKILLED = current_data["skill_cost"][SKILLLEVEL_UNSKILLED] - current_data["current_alocated_points"],
+													SKILLLEVEL_BASIC = current_data["skill_cost"][SKILLLEVEL_BASIC] - current_data["current_alocated_points"],
+													SKILLLEVEL_TRAINED = current_data["skill_cost"][SKILLLEVEL_TRAINED] - current_data["current_alocated_points"],
+													SKILLLEVEL_EXPERIENCED = current_data["skill_cost"][SKILLLEVEL_EXPERIENCED] - current_data["current_alocated_points"],
+													SKILLLEVEL_MASTER = current_data["skill_cost"][SKILLLEVEL_MASTER] - current_data["current_alocated_points"],
+										)
+		
+		skill_data[S.id] = current_data
+		qdel(S)
+	return skill_data
+
+/datum/preferences/proc/GetSelectableSkills(var/datum/job/job, var/list/skilllist_data)
+	var/balance = GetSkillBallance(job, skilllist_data)
+	var/list/selectable_skills = list()
+	for(var/V in GLOB.all_skill_ids)
+		var/list/skill_data = skilllist_data[V]
+		var/selected_skilllevel = job_skills?[job.title]?[V]
+		var/list/selectable_skill_levels = list()
+		for(var/skill_level in GLOB.all_skill_levels)
+			if(skill_level == selected_skilllevel)
+				selectable_skill_levels.Insert(skill_level, "selected")
+			else if((balance - skill_data["reletive_skill_cost"][skill_level] < 0) && (skill_data["reletive_skill_cost"][skill_level] > 0))
+				selectable_skill_levels.Insert(skill_level, "too_expensive")
+			else
+				selectable_skill_levels.Insert(skill_level, "selectable")
+		selectable_skills |= list("[V]" = selectable_skill_levels)
+	return selectable_skills
+
+/datum/preferences/proc/GetSkillBallance(var/datum/job/job, var/list/skilllist_data, var/excluded_skill = null)
+	var/used_points = 0
+	for(var/V in GLOB.all_skill_ids)
+		if(!(V == excluded_skill))
+			var/list/skill_data = skilllist_data[V]
+			used_points += skill_data["current_alocated_points"]
+	var/skillpoints = 0
+	if(job.skillpoints)
+		skillpoints = job.skillpoints
+	skillpoints -= used_points
+	return skillpoints
+/*
+/datum/preferences/proc/GetSkillButtons(var/list/skill_data)
+	for(var/skill_level in GLOB.all_skill_levels)
+		var/list/current_data = list()
+		message_admins(S.name)
+		message_admins(S.desc)
+		current_data["skill_name"] = S.name
+		current_data["skill_desc"] = S.desc
+		/*
+		var/list/skill_cost = list()
+		for(var/skill_level in GLOB.all_skill_levels)
+			skill_cost[skill_level] = S.get_cost(skill_level, job)
+		*/
+		current_data["skill_cost"] = list(	SKILLLEVEL_UNSKILLED = S.get_cost(SKILLLEVEL_UNSKILLED, job),
+											SKILLLEVEL_BASIC = S.get_cost(SKILLLEVEL_BASIC, job),
+											SKILLLEVEL_TRAINED = S.get_cost(SKILLLEVEL_TRAINED, job),
+											SKILLLEVEL_EXPERIENCED = S.get_cost(SKILLLEVEL_EXPERIENCED, job),
+											SKILLLEVEL_MASTER = S.get_cost(SKILLLEVEL_MASTER, job),
+										)
+		
+		skill_data[S.id] = current_data
+		qdel(S)
+	
+	message_admins(skill_data)
+	return skill_data
+*/
 
 /datum/preferences/proc/SetQuirks(mob/user)
 	if(!SSquirks)
@@ -1357,6 +1452,32 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		switch(href_list["task"])
 			if("close")
 				user << browse(null, "window=mob_occupation")
+			if("change_job")
+				var/list/choices = list()
+				choices |= GLOB.original_command_positions
+				choices |= GLOB.original_engineering_positions
+				choices |= GLOB.original_medical_positions
+				choices |= GLOB.original_science_positions
+				choices |= GLOB.original_supply_positions
+				choices |= GLOB.original_civilian_positions
+				choices |= GLOB.original_security_positions
+				current_job = input(user, "Select job", "Change selected job") as null|anything in (GLOB.original_command_positions + GLOB.original_engineering_positions + GLOB.original_medical_positions + GLOB.original_science_positions + GLOB.original_supply_positions + GLOB.original_civilian_positions + GLOB.original_security_positions)
+				SetSkills(user)
+			if("change_skill")
+				var/skill = href_list["skill"]
+				var/level = text2num(href_list["level"])
+				if(isnull(job_skills))
+					job_skills = list()
+				var/list/current_job_test = null
+				var/list/skill_test = null
+				current_job_test = job_skills?[current_job]
+				if(isnull(current_job_test))
+					job_skills |= list("[current_job]" = GLOB.skill_list_unskilled)
+				skill_test = job_skills[current_job]?[skill]
+				if(isnull(skill_test))
+					job_skills[current_job] |= list("[skill]" = list())
+				job_skills[current_job][skill] = level
+				SetSkills(user)
 			else
 				SetSkills(user)
 
@@ -1393,6 +1514,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				SetQuirks(user)
 			if("reset")
 				all_quirks = list()
+
+				parent.debug_variables(src)
+
 				SetQuirks(user)
 			else
 				SetQuirks(user)

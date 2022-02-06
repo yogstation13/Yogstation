@@ -20,6 +20,17 @@
 	bolt_wording = "pump"
 	cartridge_wording = "shell"
 	tac_reloads = FALSE
+	required_skilllevel = SKILLLEVEL_BASIC	//What skill level is the minimum needed to fire this gun? Leave as it is to allow everyone to use it
+	skill_accuracy_curve = list(SKILLLEVEL_UNSKILLED = 20,	//List of additional spread for each skill level. This is filled out so admins can easly bus changes.
+								SKILLLEVEL_BASIC = 10,
+								SKILLLEVEL_TRAINED = 5,
+								SKILLLEVEL_EXPERIENCED = 3,
+								SKILLLEVEL_MASTER = 0)
+	skill_reload_delay = list(SKILLLEVEL_UNSKILLED = 20,	//List of additional time it takes to reload a cartridge for each skill level. This is filled out so admins can easly bus changes.
+						SKILLLEVEL_BASIC = 10,
+						SKILLLEVEL_TRAINED = 5,
+						SKILLLEVEL_EXPERIENCED = 3,
+						SKILLLEVEL_MASTER = 0)
 
 /obj/item/gun/ballistic/shotgun/blow_up(mob/user)
 	. = 0

@@ -138,12 +138,28 @@ GLOBAL_LIST_INIT(all_skill_levels, list(
 		else
 			return 0
 
+/datum/skill/proc/get_full_cost(level, var/job = null)
+	var/total = 0
+	for(var/skilllevel in GLOB.all_skill_levels)
+		if(skilllevel <= level)
+			total += get_cost(skilllevel, job = job)
+	return total
+
 //Text Procs
 /datum/skill/proc/skill_increase()
-	to_chat(parent.owner,"<span class='notice'> You fell more capable than before.")
+	to_chat(parent.owner,"<span class='notice'> You feel more capable at [name] than before.")
 
 /datum/skill/proc/skill_decrease()
-	to_chat(parent.owner,"<span class='notice'> You fell less capable than before.")
+	to_chat(parent.owner,"<span class='notice'> You feel less capable at [name] than before.")
+
+/datum/skill/proc/incapable_text()
+	to_chat(parent.owner,"<span class='notice'> You dont know how to do this as you lack the knowledge in [name].")
+
+/datum/skill/proc/proficient_text()
+	to_chat(parent.owner,"<span class='notice'> You quickly preform the task due to your knowledge in [name].")
+
+/datum/skill/proc/struggle_text()
+	to_chat(parent.owner,"<span class='notice'> You struggle as you lack the knowledge in [name].")
 
 /datum/skill/strength
 	id = SKILL_STRENGHT
@@ -157,6 +173,15 @@ GLOBAL_LIST_INIT(all_skill_levels, list(
 							SKILLLEVEL_TRAINED		= "Your body, through continuous work, is able to handle heavier loads better than the average person.",
 							SKILLLEVEL_EXPERIENCED	= "Exercise finds its way into your schedule with ease; you are an intimidating figure with immense muscles that forcefully manipulate objects with ease.",
 							SKILLLEVEL_MASTER		= "Your body has reached its limits— veins and sheer prowess bulging from your figure with every motion. Woe to whatever finds itself at the mercy of your legendary power.")
+
+/datum/skill/strength/incapable_text()
+	to_chat(parent.owner,"<span class='notice'> You dont know how to do this as you lack the knowledge in [name].")
+
+/datum/skill/strength/proficient_text()
+	to_chat(parent.owner,"<span class='notice'> You quickly preform the task due to your knowledge in [name].")
+
+/datum/skill/strength/struggle_text()
+	to_chat(parent.owner,"<span class='notice'> You struggle as you are not strong enough.")
 
 /datum/skill/dexterity
 	id = SKILL_DEXTERITY

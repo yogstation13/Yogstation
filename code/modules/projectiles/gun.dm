@@ -71,6 +71,15 @@
 	var/datum/action/toggle_scope_zoom/azoom
 	var/recent_shoot = null //time of the last shot with the gun. Used to track if firing happened for feedback out of all things
 
+	//Yogs: Skill stuff
+	var/use_skill = SKILL_RANGED_WEAPONS	//What skill is used for the calculations
+	var/required_skilllevel = SKILLLEVEL_UNSKILLED	//What skill level is the minimum needed to fire this gun? Leave as it is to allow everyone to use it
+	var/list/skill_accuracy_curve = list(SKILLLEVEL_UNSKILLED = 0,	//List of additional spread for each skill level. This is filled out so admins can easly bus changes.
+										SKILLLEVEL_BASIC = 0,
+										SKILLLEVEL_TRAINED = 0,
+										SKILLLEVEL_EXPERIENCED = 0,
+										SKILLLEVEL_MASTER = 0)
+
 /obj/item/gun/Initialize()
 	. = ..()
 	if(pin)
@@ -242,6 +251,17 @@
 				bonus_spread += 24 * G.weapon_weight
 				loop_counter++
 				addtimer(CALLBACK(G, /obj/item/gun.proc/process_fire, target, user, TRUE, params, null, bonus_spread), loop_counter)
+
+	//Yogs: Skill requirements and spread
+	if(!isnull(use_skill))
+		var/skill_level = find_skill_level(user, use_skill)
+		if(skill_level < required_skilllevel)
+			to_chat(user, "<span class='userdanger'>You don't know how to to use \the [src]!</span>")
+			return
+		var/skill_spread = 0
+		skill_spread = skill_accuracy_curve?[skill_level]
+		bonus_spread += skill_spread
+		message_admins(skill_spread)
 
 	process_fire(target, user, TRUE, params, null, bonus_spread)
 
