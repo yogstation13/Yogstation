@@ -90,18 +90,18 @@ obj/item/energy_harvester/Initialize()
 				density = 1
 				user.visible_message( \
 					"[user] attaches \the [src] to the cable.", \
-					"<span class='notice'>You attach \the [src] to the cable.</span>",
-					"<span class='italics'>You hear some wires being connected to something.</span>")
+					span_notice("You attach \the [src] to the cable."),
+					span_italics("You hear some wires being connected to something."))
 			else
-				to_chat(user, "<span class='warning'>This device must be placed over an exposed, powered cable node!</span>")
+				to_chat(user, span_warning("This device must be placed over an exposed, powered cable node!"))
 		else
 			anchored = 0
 			density = 0
 			disconnect_from_network()
 			user.visible_message( \
 				"[user] detaches \the [src] from the cable.", \
-				"<span class='notice'>You detach \the [src] from the cable.</span>",
-				"<span class='italics'>You hear some wires being disconnected from something.</span>")
+				span_notice("You detach \the [src] from the cable."),
+				span_italics("You hear some wires being disconnected from something."))
 
 /** Checks if machine works or is still attached to a power node, shuts itself down if nonfunctional and takes itself out of processing queue
   * If functional, sucks up all the excess power from the powernet and adds it to the accumulated_power var

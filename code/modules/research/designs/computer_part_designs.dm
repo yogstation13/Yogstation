@@ -122,6 +122,15 @@
 	category = list("Computer Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/cardslot/secondary
+	name = "Auxilary ID Card Slot"
+	id = "secondcardslot"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 600)
+	build_path = /obj/item/computer_hardware/card_slot/secondary
+	category = list("Computer Parts")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
 // Intellicard slot
 /datum/design/aislot
 	name = "Intellicard Slot"
@@ -241,5 +250,14 @@
 	build_type = IMPRINTER
 	materials = list(/datum/material/glass = 3200, /datum/material/gold = 1000)
 	build_path = /obj/item/computer_hardware/processor_unit/photonic/small
+	category = list("Computer Parts")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/sensorpackage
+	name = "Sensor Package"
+	id = "sensorpackage"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 200, /datum/material/glass = 100, /datum/material/gold = 50, /datum/material/silver = 50)
+	build_path = /obj/item/computer_hardware/sensorpackage
 	category = list("Computer Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING

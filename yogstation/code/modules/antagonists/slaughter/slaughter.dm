@@ -68,17 +68,17 @@
 	if(!isliving(A))
 		return ..()
 	if(!Adjacent(A))
-		to_chat(src, "<span class='warning'>You are too far away to use your slam attack on [A]!</span>")
+		to_chat(src, span_warning("You are too far away to use your slam attack on [A]!"))
 		return
 	if(slam_cooldown + slam_cooldown_time > world.time)
-		to_chat(src, "<span class='warning'>Your slam ability is still on cooldown!</span>")
+		to_chat(src, span_warning("Your slam ability is still on cooldown!"))
 		return
 
 	face_atom(A)
 	var/mob/living/victim = A
 	victim.take_bodypart_damage(brute=20, wound_bonus=wound_bonus) // don't worry, there's more punishment when they hit something
-	visible_message("<span class='danger'>[src] slams into [victim] with monstrous strength!</span>", "<span class='danger'>You slam into [victim] with monstrous strength!</span>", ignored_mobs=victim)
-	to_chat(victim, "<span class='userdanger'>[src] slams into you with monstrous strength, sending you flying like a ragdoll!</span>")
+	visible_message(span_danger("[src] slams into [victim] with monstrous strength!"), span_danger("You slam into [victim] with monstrous strength!"), ignored_mobs=victim)
+	to_chat(victim, span_userdanger("[src] slams into you with monstrous strength, sending you flying like a ragdoll!"))
 	var/turf/yeet_target = get_edge_target_turf(victim, dir)
 	victim.throw_at(yeet_target, 10, 5, src)
 	slam_cooldown = world.time
@@ -116,15 +116,15 @@
 /obj/item/organ/heart/demon/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)
 		return ..()
-	user.visible_message("<span class='warning'>[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!</span>", \
-						 "<span class='danger'>An unnatural hunger consumes you. You raise [src] your mouth and devour it!</span>")
+	user.visible_message(span_warning("[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!"), \
+						 span_danger("An unnatural hunger consumes you. You raise [src] your mouth and devour it!"))
 	playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 	if(user.GetComponent(/datum/component/crawl/blood))
-		to_chat(user, "<span class='warning'>...and you don't feel any different.</span>")
+		to_chat(user, span_warning("...and you don't feel any different."))
 		qdel(src)
 		return
-	user.visible_message("<span class='warning'>[user]'s eyes flare a deep crimson!</span>", \
-						 "<span class='userdanger'>You feel a strange power seep into your body... you have absorbed the demon's blood-travelling powers!</span>")
+	user.visible_message(span_warning("[user]'s eyes flare a deep crimson!"), \
+						 span_userdanger("You feel a strange power seep into your body... you have absorbed the demon's blood-travelling powers!"))
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	src.Insert(user) //Consuming the heart literally replaces your heart with a demon heart. H A R D C O R E
 
@@ -212,7 +212,7 @@
 		if(M.revive(full_heal = TRUE, admin_revive = TRUE))
 			M.grab_ghost(force = TRUE)
 			playsound(T, feast_sound, 50, 1, -1)
-			to_chat(M, "<span class='clown'>You leave [src]'s warm embrace, and feel ready to take on the world.</span>") //Why the fuck was there a random tab in this message?
+			to_chat(M, span_clown("You leave [src]'s warm embrace, and feel ready to take on the world.")) //Why the fuck was there a random tab in this message?
 
 /mob/living/simple_animal/slaughter/laughter/bloodcrawl_swallow(var/mob/living/victim)
 	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = GetComponent(/datum/component/crawl/blood/demonic/hilarious)

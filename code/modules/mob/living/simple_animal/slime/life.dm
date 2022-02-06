@@ -138,14 +138,14 @@
 		var/stasis = (bz_percentage >= 0.05 && bodytemperature < (T0C + 100)) || force_stasis
 
 		if(stat == CONSCIOUS && stasis)
-			to_chat(src, "<span class='danger'>Nerve gas in the air has put you in stasis!</span>")
+			to_chat(src, span_danger("Nerve gas in the air has put you in stasis!"))
 			stat = UNCONSCIOUS
 			powerlevel = 0
 			rabid = 0
 			update_mobility()
 			regenerate_icons()
 		else if(stat == UNCONSCIOUS && !stasis)
-			to_chat(src, "<span class='notice'>You wake up from the stasis.</span>")
+			to_chat(src, span_notice("You wake up from the stasis."))
 			stat = CONSCIOUS
 			update_mobility()
 			regenerate_icons()

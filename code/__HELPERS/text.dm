@@ -67,7 +67,9 @@
 
 
 //Returns null if there is any bad text in the string
-/proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE)
+/proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE, require_pretty=TRUE)
+	if(require_pretty && isnotpretty(text))
+		return
 	var/char_count = 0
 	var/non_whitespace = FALSE
 	var/lenbytes = length(text)

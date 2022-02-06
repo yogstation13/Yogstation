@@ -702,15 +702,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"bP" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "bQ" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -968,11 +959,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"cr" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "cu" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -999,14 +985,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"cz" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "cB" = (
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
@@ -1263,6 +1241,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"pe" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "rY" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar,
@@ -1276,14 +1258,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"sb" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "sY" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/pie/cream,
@@ -1323,11 +1297,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"xI" = (
+"Bg" = (
 /obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_y = 5
-	},
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "Bo" = (
@@ -1344,6 +1317,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"Bx" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "CJ" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar,
@@ -1401,6 +1378,16 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"MY" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Ol" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -1460,6 +1447,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"Up" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1758,8 +1754,8 @@ bq
 al
 bN
 bn
-cr
-cz
+Up
+pe
 ce
 ce
 bT
@@ -1774,8 +1770,8 @@ aZ
 bc
 be
 br
-xI
-sb
+MY
+Bx
 cI
 ce
 ge
@@ -1806,7 +1802,7 @@ bt
 al
 bQ
 by
-bP
+Bg
 cB
 ce
 ce

@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 /obj/item/gps/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click to switch it [tracking ? "off":"on"].</span>"
+	. += span_notice("Alt-click to switch it [tracking ? "off":"on"].")
 
 /obj/item/gps/Initialize()
 	. = ..()

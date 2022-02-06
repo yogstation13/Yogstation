@@ -192,6 +192,15 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
+"dv" = (
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/structure/table/bronze,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "dw" = (
 /obj/structure/chair/bronze,
 /turf/open/floor/bronze,
@@ -288,11 +297,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"gL" = (
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/structure/table/bronze,
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
 "gP" = (
 /obj/effect/landmark/blobstart,
 /obj/item/toy/plush/narplush,
@@ -308,6 +312,10 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
+"hn" = (
+/obj/machinery/oven,
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "ia" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -394,6 +402,16 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"np" = (
+/obj/structure/table/bronze,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "nC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -412,6 +430,12 @@
 "nF" = (
 /turf/closed/wall,
 /area/crew_quarters/theatre)
+"nG" = (
+/obj/item/book/manual/chef_recipes,
+/obj/structure/table/bronze,
+/obj/item/stack/packageWrap,
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "nZ" = (
 /obj/item/clockwork/alloy_shards/clockgolem_remains,
 /turf/open/floor/bronze/reebe,
@@ -551,13 +575,6 @@
 /obj/structure/chair/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"vK" = (
-/obj/structure/table/bronze,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_y = 2
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
 "wa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -822,13 +839,8 @@
 /obj/structure/window/reinforced/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
-"HF" = (
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/structure/table/bronze,
+"Ip" = (
+/obj/machinery/griddle,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
 "IF" = (
@@ -933,14 +945,6 @@
 /obj/item/clockwork/component/geis_capacitor/fallen_armor,
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
-"Nx" = (
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/structure/table/bronze,
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
 "Oy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4;
@@ -1064,14 +1068,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
-"SM" = (
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/obj/structure/table/bronze,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
 "TA" = (
@@ -1509,8 +1505,8 @@ bq
 al
 wO
 Uv
-gL
-SM
+dv
+Ip
 eu
 CT
 oO
@@ -1525,8 +1521,8 @@ aZ
 yl
 Bl
 SD
-vK
-Nx
+np
+hn
 Mg
 CT
 wp
@@ -1557,7 +1553,7 @@ bt
 al
 TA
 tF
-HF
+nG
 eP
 eu
 CT

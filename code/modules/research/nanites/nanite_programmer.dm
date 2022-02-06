@@ -16,7 +16,7 @@
 		if(disk)
 			eject(user)
 		if(user.transferItemToLoc(N, src))
-			to_chat(user, "<span class='notice'>You insert [N] into [src]</span>")
+			to_chat(user, span_notice("You insert [N] into [src]"))
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 			disk = N
 			program = N.program
@@ -33,7 +33,7 @@
 
 /obj/machinery/nanite_programmer/AltClick(mob/user)
 	if(disk && user.canUseTopic(src, !issilicon(user)))
-		to_chat(user, "<span class='notice'>You take out [disk] from [src].</span>")
+		to_chat(user, span_notice("You take out [disk] from [src]."))
 		eject(user)
 	return
 
@@ -129,7 +129,7 @@
 			if(!isnull(timer))
 				playsound(src, "terminal_type", 25, 0)
 				if(!timer == 0)
-					timer = clamp(round(timer, 1),10,3600)
+					timer = clamp(round(timer, 1),5,3600)
 				program.timer = timer
 			. = TRUE
 		if("set_timer_type")

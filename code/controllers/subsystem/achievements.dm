@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(achievements)
 		qdel(medalQuery)
 		cached_achievements[C.ckey] += achievement
 		achievementsEarned[C.ckey] += list(achievement) // Apparently adding a list to a nullvar just makes the var the list. Neat!
-		to_chat(C, "<span class='greentext'>You have unlocked the \"[achievement.name]\" achievement!</span>")
+		to_chat(C, span_greentext("You have unlocked the \"[achievement.name]\" achievement!"))
 		return TRUE
 
 /**

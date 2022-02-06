@@ -32,6 +32,8 @@
 
 		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL(src) && !HAS_TRAIT(src, TRAIT_NOHUNGER))
+			var/obj/item/organ/heart = getorganslot(ORGAN_SLOT_HEART)
+			var/heart_ratio = heart ? heart.get_organ_efficiency() : 0.5 //slower blood regeneration without a heart, or with a broken one </3
 			var/nutrition_ratio = 0
 			switch(nutrition)
 				if(0 to NUTRITION_LEVEL_STARVING)
@@ -46,26 +48,27 @@
 					nutrition_ratio = 1
 			if(satiety > 80)
 				nutrition_ratio *= 1.25
+			nutrition_ratio *= heart_ratio
 			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
-			blood_volume = min(BLOOD_VOLUME_NORMAL(src), blood_volume + 0.5 * nutrition_ratio)
+			blood_volume = min(BLOOD_VOLUME_NORMAL(src), blood_volume + 0.5 * nutrition_ratio * heart_ratio)
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")
 		switch(get_blood_state())
 			if(BLOOD_OKAY)
 				if(prob(5))
-					to_chat(src, "<span class='warning'>You feel [word].</span>")
+					to_chat(src, span_warning("You feel [word]."))
 				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.01, 1))
 			if(BLOOD_BAD)
 				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.02, 1))
 				if(prob(5))
 					blur_eyes(6)
-					to_chat(src, "<span class='warning'>You feel very [word].</span>")
+					to_chat(src, span_warning("You feel very [word]."))
 			if(BLOOD_SURVIVE)
 				adjustOxyLoss(5)
 				if(prob(15))
 					Unconscious(rand(20,60))
-					to_chat(src, "<span class='warning'>You feel extremely [word].</span>")
+					to_chat(src, span_warning("You feel extremely [word]."))
 			if(BLOOD_DEAD) // This little bit of code here is pretty much the only reason why BLOOD_DEAD exists at all
 				if(!HAS_TRAIT(src, TRAIT_NODEATH))
 					death()
@@ -170,7 +173,7 @@
 				if(BLOOD_FLOW_DECREASING) // this only matters if none of the wounds fit the above two cases, included here for completeness
 					continue
 
-	to_chat(src, "<span class='warning'>[bleeding_severity][rate_of_change]</span>")
+	to_chat(src, span_warning("[bleeding_severity][rate_of_change]"))
 	COOLDOWN_START(src, bleeding_message_cd, next_cooldown)
 
 /mob/living/carbon/human/bleed_warn(bleed_amt = 0, forced = FALSE)

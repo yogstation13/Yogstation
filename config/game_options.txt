@@ -106,6 +106,7 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 # New
 PROBABILITY DARKSPAWN 6
 PROBABILITY HERESY 4
+PROBABILITY INFILTRATION 4
 
 # Lowpop
 PROBABILITY TRAITOR 5
@@ -138,6 +139,7 @@ PROBABILITY SECRET_EXTENDED 0
 PROBABILITY DEVIL 0
 PROBABILITY DEVIL_AGENTS 0
 PROBABILITY ZOMBIE 1
+PROBABILITY DYNAMIC 8
 
 ## Percent weight reductions for three of the most recent modes
 
@@ -252,6 +254,11 @@ CHANGELING_SCALING_COEFF 8
 ## Set to 0 to disable scaling and use default numbers instead.
 SECURITY_SCALING_COEFF 7
 
+## Scales the number of forced security posistions based on population, this should probably be higher than the one above
+## Used as (Forced Security = Population / Coeff)
+## Set to 0 to disable forced security rolling
+MIN_SECURITY_SCALING_COEFF 10
+
 ## The number of objectives traitors get.
 ## Not including escaping/hijacking.
 TRAITOR_OBJECTIVES_AMOUNT 2
@@ -266,6 +273,9 @@ PROTECT_ROLES_FROM_ANTAGONIST
 
 ## Uncomment to prohibit AI from becoming traitor (not malf!).
 #PROTECT_AI_FROM_TRAITOR
+
+## Uncomment to prohibit head roles from becoming most antagonists.
+PROTECT_HEADS_FROM_ANTAGONIST
 
 ## If non-human species are barred from joining as a head of staff
 ENFORCE_HUMAN_AUTHORITY

@@ -115,7 +115,7 @@
 	if(!.)
 		if(bodypart_disabled)
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
+				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 
@@ -209,7 +209,7 @@
 	if(!.)
 		if(bodypart_disabled)
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
+				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	if(owner.hud_used)
@@ -299,7 +299,7 @@
 	if(!.)
 		if(bodypart_disabled)
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
+				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 
 /obj/item/bodypart/l_leg/digitigrade
 	name = "left digitigrade leg"
@@ -388,7 +388,7 @@
 	if(!.)
 		if(bodypart_disabled)
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
+				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 
 /obj/item/bodypart/r_leg/digitigrade
 	name = "right digitigrade leg"

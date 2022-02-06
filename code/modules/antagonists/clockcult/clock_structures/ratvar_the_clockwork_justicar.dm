@@ -26,9 +26,9 @@
 		M.ratvar_act()
 	START_PROCESSING(SSobj, src)
 	if(prob(25))
-		send_to_playing_players("<span class='ratvar'>[text2ratvar("COGGERS")]!</span>")
+		send_to_playing_players(span_ratvar("[text2ratvar("COGGERS")]!"))
 	else
-		send_to_playing_players("<span class='ratvar'>[text2ratvar("ONCE AGAIN MY LIGHT SHINES AMONG THESE PATHETIC STARS")]</span>")
+		send_to_playing_players(span_ratvar("[text2ratvar("ONCE AGAIN MY LIGHT SHINES AMONG THESE PATHETIC STARS")]"))
 
 	sound_to_playing_players('sound/effects/ratvar_reveal.ogg')
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/clockwork_effects.dmi', "ratvar_alert")
@@ -48,7 +48,7 @@
 	if(alertresult == "No" || QDELETED(O) || !istype(O) || !O.key)
 		return FALSE
 	var/mob/living/simple_animal/drone/cogscarab/ratvar/R = new/mob/living/simple_animal/drone/cogscarab/ratvar(get_turf(src))
-	R.visible_message("<span class='heavy_brass'>[R] forms, and its eyes blink open, glowing bright red!</span>")
+	R.visible_message("[span_heavy_brass("[R] forms, and its eyes blink open, glowing bright red!")]")
 	R.key = O.key
 
 /obj/structure/destructible/clockwork/massive/ratvar/Bump(atom/A)
@@ -85,16 +85,16 @@
 			var/mob/living/L = prey
 			prey = pick(meals)
 			to_chat(prey, "<span class='heavy_brass'><font size=5>\"You will do, heretic.\"</font></span>\n\
-			<span class='userdanger'>You feel something massive turn its crushing focus to you...</span>")
+			[span_userdanger("You feel something massive turn its crushing focus to you...")]")
 			L.playsound_local(prey, 'sound/effects/ratvar_reveal.ogg', 100, FALSE, pressure_affected = FALSE)
 	else
 		if((!istype(prey, /obj/singularity/narsie) && prob(10) && LAZYLEN(meals) > 1) || prey.z != z || !(prey in meals))
 			if(is_servant_of_ratvar(prey))
 				to_chat(prey, "<span class='heavy_brass'><font size=5>\"Serve me well.\"</font></span>\n\
-				<span class='big_brass'>You feel great joy as your god turns His eye to another heretic...</span>")
+				[span_big_brass("You feel great joy as your god turns His eye to another heretic...")]")
 			else
 				to_chat(prey, "<span class='heavy_brass'><font size=5>\"No matter. I will find you later, heretic.\"</font></span>\n\
-				<span class='userdanger'>You feel tremendous relief as the crushing focus relents...</span>")
+				[span_userdanger("You feel tremendous relief as the crushing focus relents...")]")
 			prey = null
 		else
 			dir_to_step_in = get_dir(src, prey) //Unlike Nar-Sie, Ratvar ruthlessly chases down his target
@@ -148,7 +148,7 @@
 			clashing = FALSE
 			qdel(narsie)
 		if("Nar-Sie")
-			send_to_playing_players("<span class='cult'><font size=5>\"<b>[pick("Ha.", "Ra'sha fonn dest.", "You fool. To come here.")]</b>\"</font></span>") //Broken English
+			send_to_playing_players(span_cult("<font size=5>\"<b>[pick("Ha.", "Ra'sha fonn dest.", "You fool. To come here.")]</b>\"</font>")) //Broken English
 			sound_to_playing_players('sound/magic/demon_attack1.ogg')
 			sound_to_playing_players('sound/magic/clockwork/anima_fragment_death.ogg', 62)
 			narsie.clashing = FALSE

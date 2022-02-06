@@ -97,7 +97,7 @@
 	bare_wound_bonus = 10
 
 /obj/item/surgicaldrill/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] rams [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] rams [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
 	addtimer(CALLBACK(user, /mob/living/carbon.proc/gib, null, null, TRUE, TRUE), 25)
 	user.SpinAnimation(3, 10)
 	playsound(user, 'sound/machines/juicer.ogg', 20, TRUE)
@@ -163,7 +163,7 @@
 	sharpness = SHARP_EDGED
 
 /obj/item/scalpel/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is slitting [user.p_their()] [pick("wrists", "throat", "stomach")] with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is slitting [user.p_their()] [pick("wrists", "throat", "stomach")] with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
 
 
@@ -175,7 +175,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	throwhitsound =  'sound/weapons/pierce.ogg'
+	mob_throw_hit_sound =  'sound/weapons/pierce.ogg'
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_SAW
@@ -199,8 +199,6 @@
 	desc = "A small but very fast spinning saw. Edges dulled to prevent accidental cutting inside of the surgeon."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "saw"
-	hitsound = 'sound/weapons/circsawhit.ogg'
-	throwhitsound =  'sound/weapons/pierce.ogg'
 	force = 10
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 9
@@ -254,13 +252,13 @@
 	if(istype(I, /obj/machinery/smartfridge))
 		return
 	if(contents.len)
-		to_chat(user, "<span class='notice'>[src] already has something inside it.</span>")
+		to_chat(user, span_notice("[src] already has something inside it."))
 		return
 	if(!isorgan(I) && !isbodypart(I))
-		to_chat(user, "<span class='notice'>[src] can only hold body parts!</span>")
+		to_chat(user, span_notice("[src] can only hold body parts!"))
 		return
 
-	user.visible_message("[user] puts [I] into [src].", "<span class='notice'>You put [I] inside [src].</span>")
+	user.visible_message("[user] puts [I] into [src].", span_notice("You put [I] inside [src]."))
 	icon_state = "evidence"
 	var/xx = I.pixel_x
 	var/yy = I.pixel_y
@@ -280,7 +278,7 @@
 	if(contents.len)
 		var/obj/item/I = contents[1]
 		clear_organ()
-		user.visible_message("[user] dumps [I] from [src].", "<span class='notice'>You dump [I] from [src].</span>")
+		user.visible_message("[user] dumps [I] from [src].", span_notice("You dump [I] from [src]."))
 		I.forceMove(get_turf(src))
 	else
 		to_chat(user, "[src] is empty.")
@@ -304,15 +302,15 @@
 	if(!proximity)
 		return
 	if(istype(O, /obj/item/disk/surgery))
-		to_chat(user, "<span class='notice'>You load the surgery protocol from [O] into [src].</span>")
+		to_chat(user, span_notice("You load the surgery protocol from [O] into [src]."))
 		var/obj/item/disk/surgery/D = O
-		if(do_after(user, 10, target = O))
+		if(do_after(user, 1 SECONDS, target = O))
 			advanced_surgeries |= D.surgeries
 		return TRUE
 	if(istype(O, /obj/machinery/computer/operating))
-		to_chat(user, "<span class='notice'>You copy surgery protocols from [O] into [src].</span>")
+		to_chat(user, span_notice("You copy surgery protocols from [O] into [src]."))
 		var/obj/machinery/computer/operating/OC = O
-		if(do_after(user, 10, target = O))
+		if(do_after(user, 1 SECONDS, target = O))
 			advanced_surgeries |= OC.advanced_surgeries
 		return TRUE
 	return
@@ -333,13 +331,13 @@
 	playsound(get_turf(user), 'sound/machines/click.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_SCALPEL)
 		tool_behaviour = TOOL_SAW
-		to_chat(user, "<span class='notice'>You increase the power, now it can cut bones.</span>")
+		to_chat(user, span_notice("You increase the power, now it can cut bones."))
 		set_light(2)
 		force += 1 //we don't want to ruin sharpened stuff
 		icon_state = "saw_a"
 	else
 		tool_behaviour = TOOL_SCALPEL
-		to_chat(user, "<span class='notice'>You lower the power, it can now make precise incisions.</span>")
+		to_chat(user, span_notice("You lower the power, it can now make precise incisions."))
 		set_light(1)
 		force -= 1
 		icon_state = "scalpel_a"
@@ -359,11 +357,11 @@
 	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_RETRACTOR)
 		tool_behaviour = TOOL_HEMOSTAT
-		to_chat(user, "<span class='notice'>You set the [src] to hemostat mode.</span>")
+		to_chat(user, span_notice("You set the [src] to hemostat mode."))
 		icon_state = "hemostat_a"
 	else
 		tool_behaviour = TOOL_RETRACTOR
-		to_chat(user, "<span class='notice'>You set the [src] to retractor mode.</span>")
+		to_chat(user, span_notice("You set the [src] to retractor mode."))
 		icon_state = "retractor_a"
 
 /obj/item/retractor/advanced/examine()
@@ -387,12 +385,12 @@
 
 	if(tool_behaviour == TOOL_CAUTERY)
 		playsound(get_turf(user),'sound/items/welderdeactivate.ogg',50,1)
-		to_chat(user, "<span class='notice'>You focus the lensess, it is now set to drilling mode.</span>")
+		to_chat(user, span_notice("You focus the lensess, it is now set to drilling mode."))
 		tool_behaviour = TOOL_DRILL
 		icon_state = "surgicaldrill_a"
 	else
 		playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
-		to_chat(user, "<span class='notice'>You dilate the lenses, setting it to mending mode.</span>")
+		to_chat(user, span_notice("You dilate the lenses, setting it to mending mode."))
 		tool_behaviour = TOOL_CAUTERY
 		icon_state = "cautery_a"
 

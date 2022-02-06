@@ -30,6 +30,19 @@
 	damage = 40
 	armour_penetration = -50
 
+/obj/item/projectile/bullet/c10mm_sp
+	name = "10mm soporific bullet"
+	damage = 30
+	damage_type = STAMINA
+	eyeblur = 20
+
+/obj/item/projectile/bullet/c10mm_sp/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(L.getStaminaLoss() >= 100)
+			L.Sleeping(400)
+
 /obj/item/projectile/bullet/incendiary/c10mm
 	name = "10mm incendiary bullet"
 	damage = 15

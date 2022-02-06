@@ -90,7 +90,7 @@
 
 		return
 	is_in_use = FALSE
-	to_chat(user,"<span class='warning'>Your ritual failed! You used either wrong components or are missing something important!</span>")
+	to_chat(user,span_warning("Your ritual failed! You used either wrong components or are missing something important!"))
 
 /obj/effect/eldritch/big
 	name = "Transmutation rune"
@@ -114,7 +114,7 @@
 
 /datum/reality_smash_tracker/Destroy(force, ...)
 	if(GLOB.reality_smash_track == src)
-		stack_trace("/datum/reality_smash_tracker was deleted. Heretics may no longer access any influences. Fix it or call coder support")
+		stack_trace("/datum/reality_smash_tracker was deleted. Heretics will no longer be able to access any influences. Fix it or call coder support (whatever that means)")
 	QDEL_LIST(smashes)
 	targets.Cut()
 	return ..()
@@ -122,13 +122,13 @@
 /**
   * Automatically fixes the target and smash network
   *
-  * Fixes any bugs that are caused by late Generate() or exchanging clients
+  * Fixes any issues caused by late Generate() calls or exchanging clients
   */
 /datum/reality_smash_tracker/proc/ReworkNetwork()
 	listclearnulls(smashes)
 	for(var/mind in targets)
 		if(isnull(mind))
-			stack_trace("A null somehow landed in a list of minds")
+			stack_trace("A null somehow landed in the reality smash tracker's list of minds")
 			continue
 		for(var/X in smashes)
 			var/obj/effect/reality_smash/reality_smash = X
@@ -139,48 +139,47 @@
   *
   * Automatically creates more reality smashes
   */
-/datum/reality_smash_tracker/proc/_Generate()
+/datum/reality_smash_tracker/proc/Generate(mob/caller)
+	if(istype(caller))
+		targets += caller
 	var/targ_len = length(targets)
 	var/smash_len = length(smashes)
-	var/number = max(targ_len * (5-(targ_len-1)) - smash_len,2)
+	var/number = max(targ_len * (4-(targ_len-1)) - smash_len,1)
 
 	for(var/i in 0 to number)
-
 		var/turf/chosen_location = find_safe_turf(extended_safety_checks = TRUE)
 		//we also dont want them close to each other, at least 1 tile of seperation
-		var/obj/effect/reality_smash/what_if_i_have_one = locate() in range(1, chosen_location)
-		var/obj/effect/broken_illusion/what_if_i_had_one_but_got_used = locate() in range(1, chosen_location)
-		if(what_if_i_have_one || what_if_i_had_one_but_got_used) //we dont want to spawn
+		var/obj/effect/reality_smash/current_fracture = locate() in range(1, chosen_location)
+		var/obj/effect/broken_illusion/current_burnt_fracture = locate() in range(1, chosen_location)
+		var/obj/structure/window/windowsxp = locate() in range(1, chosen_location)
+		if(current_fracture || current_burnt_fracture || windowsxp?.fulltile) //we dont want to spawn
 			continue
-		var/obj/effect/reality_smash/RS = new/obj/effect/reality_smash(chosen_location)
-		smashes += RS
+		new /obj/effect/reality_smash(chosen_location)
 	ReworkNetwork()
 
-
 /**
-  * Adds a mind to the list of people that can see the reality smashes
+  * Adds a mind to the list of people that can see reality smashes
   *
   * Use this whenever you want to add someone to the list
   */
-/datum/reality_smash_tracker/proc/AddMind(datum/mind/M)
-	RegisterSignal(M.current,COMSIG_MOB_LOGIN,.proc/ReworkNetwork)
-	targets |= M
-	_Generate()
-	for(var/X in smashes)
-		var/obj/effect/reality_smash/reality_smash = X
-		reality_smash.AddMind(M)
+/datum/reality_smash_tracker/proc/AddMind(datum/mind/ecultist)
+	RegisterSignal(ecultist.current, COMSIG_MOB_LOGIN, .proc/ReworkNetwork)
+	targets |= ecultist
+	Generate()
+	for(var/obj/effect/reality_smash/R in smashes)
+		R.AddMind(ecultist)
 
 
 /**
-  * Removes a mind from the list of people that can see the reality smashes
+  * Removes a mind from the list of people that can see reality smashes
   *
-  * Use this whenever you want to remove someone from the list
+  * Use this whenever you want to remove someone from that list
   */
-/datum/reality_smash_tracker/proc/RemoveMind(datum/mind/M)
-	UnregisterSignal(M.current,COMSIG_MOB_LOGIN)
-	targets -= M
-	for(var/obj/effect/reality_smash/RS in smashes)
-		RS.RemoveMind(M)
+/datum/reality_smash_tracker/proc/RemoveMind(datum/mind/ecultist)
+	UnregisterSignal(ecultist.current, COMSIG_MOB_LOGIN)
+	targets -= ecultist
+	for(var/obj/effect/reality_smash/R in smashes)
+		R.RemoveMind(ecultist)
 
 /obj/effect/broken_illusion
 	name = "pierced reality"
@@ -189,35 +188,27 @@
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-/obj/effect/broken_illusion/Initialize()
-	. = ..()
-	addtimer(CALLBACK(.proc/kill_the_self), 1 MINUTES)
-
-/obj/effect/broken_illusion/proc/kill_the_self()
-	visible_message("<span class='boldwarning'>[src] fades away...</span>")
-	qdel(src)
-
 /obj/effect/broken_illusion/attack_hand(mob/living/user)
 	if(!ishuman(user))
 		return ..()
 	var/mob/living/carbon/human/human_user = user
 	if(IS_HERETIC(human_user))
-		to_chat(human_user,"<span class='boldwarning'>You know better than to tempt forces out of your control!</span>")
+		to_chat(human_user,span_boldwarning("You know better than to tempt forces out of your control!"))
 	else
 		var/obj/item/bodypart/arm = human_user.get_active_hand()
 		if(prob(25))
-			to_chat(human_user,"<span class='userdanger'>As you reach into [src], you feel something latch onto it and tear it off of you!</span>")
+			to_chat(human_user,span_userdanger("As you reach into [src], you feel something latch onto it and tear it off of you!"))
 			arm.dismember()
 			qdel(arm)
 		else
-			to_chat(human_user,"<span class='danger'>You pull your hand away from the hole as the eldritch energy flails trying to catch onto the existance itself!</span>")
+			to_chat(human_user,span_danger("You pull your hand away from the hole as the eldritch energy flails trying to catch onto the existance itself!"))
 
 /obj/effect/broken_illusion/attack_tk(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_user = user
 	if(IS_HERETIC(human_user))
-		to_chat(human_user,"<span class='boldwarning'>You know better than to tempt forces out of your control!</span>")
+		to_chat(human_user,span_boldwarning("You know better than to tempt forces out of your control!"))
 	else
 		//a very elaborate way to suicide
 		var/throwtarget
@@ -226,9 +217,9 @@
 			throwtarget = get_edge_target_turf(src, pick(GLOB.alldirs))
 			human_user.safe_throw_at(throwtarget, rand(1,20), 1, src, force = MOVE_FORCE_OVERPOWERING , quickstart = TRUE)
 			human_user.Shake(rand(-100,100), rand(-100,100), 110) //oh we are TOTALLY stacking these //turns out we are not in fact stacking these
-			to_chat(user, "<span class='userdanger'>[pick("I- I- I-", "NO-", "IT HURTS-", "GETOUTOFMYHEADGETOUTOFMY-", "<i>POD-</i>","<i>COVE-</i>", "AAAAAAAAA-")]</span>")
+			to_chat(user, span_userdanger("[pick("I- I- I-", "NO-", "IT HURTS-", "GETOUTOFMYHEADGETOUTOFMY-", "<i>POD-</i>","<i>COVE-</i>", "AAAAAAAAA-")]"))
 			sleep(1.1) //Spooky flavor message spam
-		to_chat(user, "<span class='cultbold'>That was a really bad idea...</span>")
+		to_chat(user, span_cultbold("That was a really bad idea..."))
 		human_user.ghostize()
 		var/obj/item/bodypart/head/head = locate() in human_user.bodyparts
 		if(head)
@@ -244,7 +235,7 @@
 /obj/effect/broken_illusion/examine(mob/user)
 	if(!IS_HERETIC(user) && ishuman(user))
 		var/mob/living/carbon/human/human_user = user
-		to_chat(human_user,"<span class='warning'>You get a headache even trying to look at this!</span>")
+		to_chat(human_user,span_warning("You get a headache even trying to look at this!"))
 		human_user.adjustOrganLoss(ORGAN_SLOT_BRAIN,10)
 	. = ..()
 
@@ -253,49 +244,47 @@
 	icon = 'icons/effects/eldritch.dmi'
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	///We cannot use icon_state since this is invisible, functions the same way but with custom behaviour.
+	///we cannot use icon_state bc we are invisible, this is the same thing but can be not v isible
 	var/image_state = "reality_smash"
-	///Who can see us?
+	///who can see this
 	var/list/minds = list()
-	///Tracked image
+	///tracker image
 	var/image/img
+	///who has already used this influence
+	var/list/siphoners = list()
 
 /obj/effect/reality_smash/Initialize()
 	. = ..()
-	img = image(icon, src, image_state, OBJ_LAYER)
+	GLOB.reality_smash_track.smashes += src
+	img = image(icon, src, "reality_smash", OBJ_LAYER)
 	generate_name()
 
 /obj/effect/reality_smash/Destroy()
+	GLOB.reality_smash_track.smashes -= src
 	on_destroy()
 	return ..()
 
-///Custom effect that happens on destruction
 /obj/effect/reality_smash/proc/on_destroy()
-	for(var/cm in minds)
-		var/datum/mind/cultie = cm
-		if(cultie.current?.client)
-			cultie.current.client.images -= img
+	for(var/ecultist in minds)
+		var/datum/mind/cultist = ecultist
+		if(cultist.current?.client)
+			cultist.current.client.images -= img
 		//clear the list
-		minds -= cultie
-	GLOB.reality_smash_track.smashes -= src
+		minds -= cultist
 	img = null
 	new /obj/effect/broken_illusion(drop_location())
 
-///Makes the mind able to see this effect
-/obj/effect/reality_smash/proc/AddMind(datum/mind/cultie)
-	minds |= cultie
-	if(cultie.current.client)
-		cultie.current.client.images |= img
+///makes someone able to see this
+/obj/effect/reality_smash/proc/AddMind(datum/mind/ecultist)
+	minds |= ecultist
+	if(ecultist.current.client)
+		ecultist.current.client.images |= img
 
-
-
-///Makes the mind not able to see this effect
-/obj/effect/reality_smash/proc/RemoveMind(datum/mind/cultie)
-	minds -= cultie
-	if(cultie.current.client)
-		cultie.current.client.images -= img
-
-
+///makes someone not able to see this
+/obj/effect/reality_smash/proc/RemoveMind(datum/mind/ecultist)
+	minds -= ecultist
+	if(ecultist.current.client)
+		ecultist.current.client.images -= img
 
 ///Generates random name
 /obj/effect/reality_smash/proc/generate_name()

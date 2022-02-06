@@ -27,7 +27,7 @@
 		suppress_warning = TRUE
 	if(A.totalResistance() >= 8)
 		stun_reduce = -25
-	if(A.totalTransmittable() >= 7)
+	if(A.totalTransmittable() >= 6)
 		stamina_regen = TRUE
 		
 /datum/symptom/numb/Activate(datum/disease/advance/A)
@@ -37,7 +37,7 @@
 	var/mob/living/carbon/M = A.affected_mob
 	if(A.stage < 5)
 		if(prob(base_message_chance) && !suppress_warning)
-			to_chat(M, "<span class='notice'>[pick("You feel better.")]</span>")
+			to_chat(M, span_notice("[pick("You feel better.")]"))
 	else
 		ADD_TRAIT(M, TRAIT_SURGERY_PREPARED, DISEASE_TRAIT)
 		M.AdjustStun(stun_reduce, 0)

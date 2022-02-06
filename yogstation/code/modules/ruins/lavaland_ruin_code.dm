@@ -12,7 +12,8 @@
 	mask = /obj/item/clothing/mask/bandana/green
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
 	r_hand = /obj/item/instrument/guitar
-	flavour_text = "You are a travelling Bard! Your only purpose in life is to travel the galaxy, playing songs and telling epic tales of adventure, you have seen many things and you only wish to share your knowledge with all those who you pass. You are a very passive person and dislike the idea of killing another sentient person, if you cannot stop conflict through peace then you would rather remain neutral. Despite your peaceful demeanor, you are not immune to brainwashing or conversion techniques, if converted or brainwashed you are to follow the will of your masters."
+	flavour_text = "You are a travelling Bard! Your only purpose in life is to travel the galaxy, playing songs and telling epic tales of adventure, you have seen many things and you only wish to share your knowledge with all those who you pass. You are a very passive person and dislike the idea of killing another sentient person, if you cannot stop conflict through peace then you would rather remain neutral."
+	important_info = "Despite your peaceful demeanor, you are not immune to brainwashing or conversion techniques, if converted or brainwashed you are to follow the will of your masters."
 	short_desc = "You are a travelling Bard!"
 	id_job = "Travelling Bard"
 	id = /obj/item/card/id
@@ -31,8 +32,9 @@
 	back = /obj/item/storage/backpack/medic
 	belt = /obj/item/storage/belt/medical
 	glasses = /obj/item/clothing/glasses/hud/health
-	flavour_text = "<font size=3><b>Y</b></font><b>ou were working on a medical outpost on Orion when a bluespace translocation was reported in the vicinity, it seems to have moved the outpost to some strange ashen wasteland, regardless of the situation the medical supplies are low and medical scanners report you aren't the first here, time to put your expertise to use and see if there's anyone out there who needs help</b>"
 	short_desc = "You are an Orion medical doctor."
+	flavour_text = "You were working on a medical outpost on Orion when a bluespace translocation was reported in the vicinity, it seems to have moved the outpost to some strange ashen wasteland, regardless of the situation the medical supplies are low and medical scanners report you aren't the first here."
+	important_info = "Time to put your expertise to use and see if there's anyone out there who needs help."
 	id_job = "Medical Doctor"
 	id = /obj/item/card/id
 	roundstart = FALSE
@@ -67,7 +69,7 @@
 /obj/effect/mob_spawn/human/gasstation_clerk
 	name = "Gas Station Clerk"
 	short_desc = "You are a gas station clerk."
-	flavour_text = "<span class='big bold'>You are a Gas Station Clerk.</span> The gas station you worked most of your life in was moved to some hellhole in the middle of nowhere for some reason, you are to try to make the best of the situation and make as much money as possible from any locals or passerbys you may encounter. Feel free to explore around the planet and find things to sell to potential customers but do not leave the planet unless the gas station is somehow completely destroyed, If someone is trying to break in or is trying to steal your products you have the right to use any means necessary to stop them including murder."
+	flavour_text = "The gas station you worked most of your life in was moved to some hellhole in the middle of nowhere for some reason, you are to try to make the best of the situation and make as much money as possible from any locals or passerbys you may encounter. Feel free to explore around the planet and find things to sell to potential customers but do not leave the planet unless the gas station is somehow completely destroyed, If someone is trying to break in or is trying to steal your products you have the right to use any means necessary to stop them including murder."
 	roundstart = FALSE
 	death = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'

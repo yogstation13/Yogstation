@@ -16,6 +16,8 @@
 	if(!istype(dismembered_part) || !dismembered_part.owner || !(dismembered_part.body_zone in viable_zones) || isalien(dismembered_part.owner) || !dismembered_part.can_dismember())
 		qdel(src)
 		return
+		
+	victim = dismembered_part.owner
 
 	if(dismembered_part.body_zone == BODY_ZONE_CHEST)
 		occur_text = "is split open, causing [victim.p_their()] internals organs to spill out!"
@@ -39,11 +41,10 @@
 				occur_text = "is pierced through the last tissue holding it together, severing it completely!"
 			if(WOUND_BURN)
 				occur_text = "is completely incinerated, falling to dust!"
-	victim = dismembered_part.owner
 
-	var/msg = "<span class='bolddanger'>[victim]'s [dismembered_part.name] [occur_text]!</span>"
+	var/msg = span_bolddanger("[victim]'s [dismembered_part.name] [occur_text]!")
 
-	victim.visible_message(msg, "<span class='userdanger'>Your [dismembered_part.name] [occur_text]!</span>")
+	victim.visible_message(msg, span_userdanger("Your [dismembered_part.name] [occur_text]!"))
 
 	set_limb(dismembered_part)
 	second_wind()

@@ -421,15 +421,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bf" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "bg" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -600,11 +591,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"bL" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "bP" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
@@ -613,14 +599,6 @@
 /mob/living/carbon/monkey/punpun,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
-"bS" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "bU" = (
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
@@ -929,6 +907,10 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"jY" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "lI" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/bar,
@@ -955,18 +937,6 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = -2;
 	pixel_y = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"pB" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 23;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -1040,14 +1010,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"Fq" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "Ft" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/hardhat/cakehat,
@@ -1079,6 +1041,21 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
+"Ky" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 23;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Lp" = (
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -1122,6 +1099,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"RM" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Sp" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1141,6 +1124,19 @@
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/toy/figure/chef,
 /turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"Zs" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"ZD" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 
 (1,1,1) = {"
@@ -1440,8 +1436,8 @@ bd
 aj
 bq
 aY
-bL
-bS
+Zs
+ZD
 bC
 bC
 FR
@@ -1456,8 +1452,8 @@ aR
 aU
 aV
 aZ
-pB
-Fq
+Ky
+jY
 bX
 bC
 et
@@ -1488,7 +1484,7 @@ bg
 aj
 bt
 bc
-bf
+RM
 bU
 bC
 bC

@@ -44,7 +44,7 @@
 				success = FALSE
 			
 			if(!success)
-				target.visible_message("<span class='warning'>[target] seems to resist the implant!</span>", "<span class='warning'>You feel the influence of your enemies try to invade your mind!</span>")
+				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel the influence of your enemies try to invade your mind!"))
 				return FALSE
 			else
 				target.mind.add_antag_datum(/datum/antagonist/gang, gang)

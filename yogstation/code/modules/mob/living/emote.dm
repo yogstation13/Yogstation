@@ -7,10 +7,10 @@
 	. = ..()
 	var/obj/item/highfive/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, "<span class='notice'>You raise your hand for a high-five.</span>")
+		to_chat(user, span_notice("You raise your hand for a high-five."))
 	else
 		qdel(N)
-		to_chat(user, "<span class='warning'>You don't have any free hands to high-five with.</span>")
+		to_chat(user, span_warning("You don't have any free hands to high-five with."))
 
 /datum/emote/living/pose
 	key = "pose"

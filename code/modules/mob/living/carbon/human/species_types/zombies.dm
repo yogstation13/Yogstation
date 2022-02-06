@@ -160,11 +160,11 @@
 	if(prob(50) && !H.stat)
 		if(get_dist(get_turf(master), get_turf(H)) > max_distance)
 			if(prob(20))
-				to_chat(H, "<span class='userdanger'>You are too far away from your master! You are taking damage!</span>")
+				to_chat(H, span_userdanger("You are too far away from your master! You are taking damage!"))
 			apply_damage(7.5, BRUTE, null, FALSE, H)
 
 		if(master.stat == DEAD || QDELETED(master))
-			to_chat(H, "<span class='userdanger'>Your master is dead. And with his death, comes yours!</span>")
+			to_chat(H, span_userdanger("Your master is dead. And with his death, comes yours!"))
 			H.dust()
 
 #undef REGENERATION_DELAY

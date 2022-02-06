@@ -18,7 +18,7 @@
 		if(EQ.slot == slot)
 			room -= EQ.slot_space
 	if(room < slot_space)
-		to_chat(user, "<span class='warning'>There's no room for another [slot] system!</span>")
+		to_chat(user, span_warning("There's no room for another [slot] system!"))
 		return FALSE
 	return TRUE
 
@@ -47,11 +47,11 @@
 
 /obj/item/spacepod_equipment/weaponry/proc/fire_weapons(target)
 	if(spacepod.next_firetime > world.time)
-		to_chat(usr, "<span class='warning'>Your weapons are recharging.</span>")
+		to_chat(usr, span_warning("Your weapons are recharging."))
 		playsound(src, 'sound/weapons/gun_dry_fire.ogg', 30, TRUE)
 		return
 	if(!spacepod.cell || !spacepod.cell.use(shot_cost))
-		to_chat(usr, "<span class='warning'>Insufficient charge to fire the weapons</span>")
+		to_chat(usr, span_warning("Insufficient charge to fire the weapons"))
 		playsound(src, 'sound/weapons/gun_dry_fire.ogg', 30, TRUE)
 		return
 	spacepod.next_firetime = world.time + fire_delay
@@ -97,7 +97,7 @@
 
 /obj/item/spacepod_equipment/cargo/large/can_uninstall(mob/user)
 	if(storage)
-		to_chat(user, "<span class='warning'>Unload the cargo first!</span>")
+		to_chat(user, span_warning("Unload the cargo first!"))
 		return FALSE
 	return ..()
 
@@ -127,15 +127,15 @@
 		return FALSE
 	if(istype(A, storage_type) && SP.Adjacent(A)) // For loading ore boxes
 		if(!storage)
-			to_chat(user, "<span class='notice'>You begin loading [A] into [SP]'s [src]</span>")
+			to_chat(user, span_notice("You begin loading [A] into [SP]'s [src]"))
 			if(do_after_mob(user, list(A, SP), 40))
 				storage = A
 				A.forceMove(src)
-				to_chat(user, "<span class='notice'>You load [A] into [SP]'s [src]!</span>")
+				to_chat(user, span_notice("You load [A] into [SP]'s [src]!"))
 			else
-				to_chat(user, "<span class='warning'>You fail to load [A] into [SP]'s [src]</span>")
+				to_chat(user, span_warning("You fail to load [A] into [SP]'s [src]"))
 		else
-			to_chat(user, "<span class='warning'>[SP] already has \an [storage]</span>")
+			to_chat(user, span_warning("[SP] already has \an [storage]"))
 		return TRUE
 	return FALSE
 
@@ -175,7 +175,7 @@
 
 /obj/item/spacepod_equipment/cargo/chair/can_uninstall(mob/user)
 	if(spacepod.passengers.len > (spacepod.max_passengers - occupant_mod))
-		to_chat(user, "<span class='warning'>You can't remove an occupied seat! Remove the occupant first.</span>")
+		to_chat(user, span_warning("You can't remove an occupied seat! Remove the occupant first."))
 		return FALSE
 	return ..()
 
@@ -325,7 +325,7 @@
 			SP.lock_pod()
 			return
 		else
-			to_chat(user, "<span class='warning'>This is the wrong key!</span>")
+			to_chat(user, span_warning("This is the wrong key!"))
 		return TRUE
 	return FALSE
 
@@ -334,9 +334,9 @@
 		var/obj/item/spacepod_key/key = I
 		if(key.id == null)
 			key.id = id
-			to_chat(user, "<span class='notice'>You grind the blank key to fit the lock.</span>")
+			to_chat(user, span_notice("You grind the blank key to fit the lock."))
 		else
-			to_chat(user, "<span class='warning'>This key is already ground!</span>")
+			to_chat(user, span_warning("This key is already ground!"))
 	else
 		..()
 
@@ -370,4 +370,4 @@
 		icon_state = "lock_buster_on"
 	else
 		icon_state = "lock_buster_off"
-	to_chat(user, "<span class='notice'>You turn the [src] [on ? "on" : "off"].</span>")
+	to_chat(user, span_notice("You turn the [src] [on ? "on" : "off"]."))

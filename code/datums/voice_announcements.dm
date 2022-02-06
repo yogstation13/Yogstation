@@ -59,13 +59,13 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 	started_playing = TRUE
 	// Play for admins
 	for(var/mob/M in GLOB.player_list)
-		if(M.client && M.client.holder && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS))
+		if(M.client && M.client.holder && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS) && (M.client.prefs.toggles & SOUND_VOX))
 			var/turf/T = get_turf(M)
 			if(T.z == z_level)
 				SEND_SOUND(M, sound1)
 	sleep(sounds_delay)
 	for(var/mob/M in GLOB.player_list)
-		if(M.client && M.client.holder && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS))
+		if(M.client && M.client.holder && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS) && (M.client.prefs.toggles & SOUND_VOX))
 			var/turf/T = get_turf(M)
 			if(T.z == z_level)
 				SEND_SOUND(M, sound2)
@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 		return
 	// Play for everyone else
 	for(var/mob/M in GLOB.player_list)
-		if(M.client && !M.client.holder && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS))
+		if(M.client && !M.client.holder && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS) && (M.client.prefs.toggles & SOUND_VOX))
 			var/turf/T = get_turf(M)
 			if(T.z == z_level)
 				SEND_SOUND(M, sound1)
@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 	if(canceled)
 		return
 	for(var/mob/M in GLOB.player_list)
-		if(M.client && !M.client.holder && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS))
+		if(M.client && !M.client.holder && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS) && (M.client.prefs.toggles & SOUND_VOX))
 			var/turf/T = get_turf(M)
 			if(T.z == z_level)
 				SEND_SOUND(M, sound2)
@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 	var/z_level = console_turf.z
 	SScommunications.nonsilicon_message_cooldown = world.time + 300
 	var/mob/living/user = client.mob
-	deadchat_broadcast(" made a priority announcement from <span class='name'>[get_area_name(user, TRUE)]</span>.", "<span class='name'>[user.real_name]</span>", user)
+	deadchat_broadcast(" made a priority announcement from [span_name("[get_area_name(user, TRUE)]")].", span_name("[user.real_name]"), user)
 	var/sound/sound1 = sound('sound/misc/announce.ogg')
 	var/sound/sound2 = sound(snd, channel = CHANNEL_VOICE_ANNOUNCE, volume = 70)
 	do_announce_sound(sound1, sound2, 15, z_level)

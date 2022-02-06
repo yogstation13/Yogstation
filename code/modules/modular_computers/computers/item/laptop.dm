@@ -9,8 +9,9 @@
 	icon_state_menu = "menu"
 
 	hardware_flag = PROGRAM_LAPTOP
-	max_hardware_size = 2
+	max_hardware_size = WEIGHT_CLASS_NORMAL
 	w_class = WEIGHT_CLASS_NORMAL
+	max_bays = 4
 
 	// No running around with open laptops in hands.
 	item_flags = SLOWS_WHILE_IN_HAND
@@ -24,7 +25,7 @@
 /obj/item/modular_computer/laptop/examine(mob/user)
 	. = ..()
 	if(screen_on)
-		. += "<span class='notice'>Alt-click to close it.</span>"
+		. += span_notice("Alt-click to close it.")
 
 /obj/item/modular_computer/laptop/Initialize()
 	. = ..()
@@ -36,7 +37,7 @@
 	if(screen_on)
 		..()
 	else
-		cut_overlays()
+		SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
 		icon_state = icon_state_closed
 
 /obj/item/modular_computer/laptop/attack_self(mob/user)
@@ -91,11 +92,11 @@
 
 /obj/item/modular_computer/laptop/proc/toggle_open(mob/living/user=null)
 	if(screen_on)
-		to_chat(user, "<span class='notice'>You close \the [src].</span>")
+		to_chat(user, span_notice("You close \the [src]."))
 		slowdown = initial(slowdown)
 		w_class = initial(w_class)
 	else
-		to_chat(user, "<span class='notice'>You open \the [src].</span>")
+		to_chat(user, span_notice("You open \the [src]."))
 		slowdown = slowdown_open
 		w_class = w_class_open
 

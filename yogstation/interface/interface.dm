@@ -15,6 +15,5 @@
 		if(current_ticket && current_ticket.state == AHELP_ACTIVE)
 			current_ticket.TicketPanel()
 			return
-
-		to_chat(src, "<span class='danger'>You have no open tickets!</span>")
+		to_chat(src, span_danger("You have no open tickets!"))
 	return

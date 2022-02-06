@@ -37,11 +37,11 @@
 	switch(adjusted)
 		if(NORMAL_STYLE)
 			adjusted = ALT_STYLE
-			to_chat(usr, "<span class='notice'>You adjust the hood to wear it more casually.</span>")
+			to_chat(usr, span_notice("You adjust the hood to wear it more casually."))
 			flags_inv &= ~(HIDEHAIR|HIDEFACE)
 		if(ALT_STYLE)
 			adjusted = NORMAL_STYLE
-			to_chat(usr, "<span class='notice'>You adjust the hood back to normal.</span>")
+			to_chat(usr, span_notice("You adjust the hood back to normal."))
 			flags_inv |= (HIDEHAIR|HIDEFACE)
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
@@ -104,9 +104,9 @@
 	if(istype(C) && prob(2)) //cursed by bubblegum
 		if(prob(15))
 			new /datum/hallucination/oh_yeah(C)
-			to_chat(C, "<span class='colossus'><b>[pick("I AM IMMORTAL.","I SHALL TAKE BACK WHAT'S MINE.","I SEE YOU.","YOU CANNOT ESCAPE ME FOREVER.","DEATH CANNOT HOLD ME.")]</b></span>")
+			to_chat(C, span_colossus("<b>[pick("I AM IMMORTAL.","I SHALL TAKE BACK WHAT'S MINE.","I SEE YOU.","YOU CANNOT ESCAPE ME FOREVER.","DEATH CANNOT HOLD ME.")]</b>"))
 		else
-			to_chat(C, "<span class='warning'>[pick("You hear faint whispers.","You smell ash.","You feel hot.","You hear a roar in the distance.")]</span>")
+			to_chat(C, span_warning("[pick("You hear faint whispers.","You smell ash.","You feel hot.","You hear a roar in the distance.")]"))
 
 /obj/item/clothing/head/helmet/space/hostile_environment
 	name = "H.E.C.K. helmet"

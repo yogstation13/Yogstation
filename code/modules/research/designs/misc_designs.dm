@@ -3,6 +3,36 @@
 /////////////////HUDs////////////////////
 /////////////////////////////////////////
 
+/datum/design/shuttle_speed_upgrade
+	name = "Shuttle Route Optimisation Upgrade"
+	desc = "A disk that allows for calculating shorter routes when inserted into a flight control console."
+	id = "disk_shuttle_route"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000)
+	build_path = /obj/item/shuttle_route_optimisation
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/shuttle_speed_upgrade_hyper
+	name = "Shuttle Bluespace Hyperlane Optimisation Upgrade"
+	desc = "A disk that allows for calculating shorter routes when inserted into a flight control console. This one abuses bluespace hyperlanes for increased efficiency."
+	id = "disk_shuttle_route_hyper"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000)
+	build_path = /obj/item/shuttle_route_optimisation/hyperlane
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/shuttle_speed_upgrade_void
+	name = "Shuttle Voidspace Optimisation Upgrade"
+	desc = "A disk that allows for calculating shorter routes when inserted into a flight control console. This one access voidspace for increased efficiency."
+	id = "disk_shuttle_route_void"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000)
+	build_path = /obj/item/shuttle_route_optimisation/void
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/health_hud
 	name = "Health Scanner HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
@@ -501,4 +531,12 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-
+/datum/design/oven_tray
+	name = "Oven Tray"
+	desc = "Gotta shove something in!"
+	id = "oven_tray"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 500)
+	build_path = /obj/item/plate/oven_tray
+	category = list("initial","Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE

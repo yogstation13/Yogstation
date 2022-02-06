@@ -42,7 +42,7 @@
 			C.reagents.metabolize(C, can_overdose=TRUE)
 
 			if(provide_pain_message && damage > 10 && prob(damage/3))//the higher the damage the higher the probability
-				to_chat(C, "<span class='warning'>You feel a dull pain in your abdomen.</span>")
+				to_chat(C, span_warning("You feel a dull pain in your abdomen."))
 		else	//for when our liver's failing
 			reagents.end_metabolization(C, keep_liverless = TRUE) //Stops trait-based effects on reagents, to prevent permanent buffs
 			reagents.metabolize(C, can_overdose=FALSE, liverless = TRUE)
@@ -50,7 +50,7 @@
 				return
 			C.adjustToxLoss(4, TRUE,  TRUE)
 			if(prob(30))
-				to_chat(C, "<span class='warning'>You feel a stabbing pain in your abdomen!</span>")
+				to_chat(C, span_warning("You feel a stabbing pain in your abdomen!"))
 
 	if(damage > maxHealth)//cap liver damage
 		damage = maxHealth

@@ -33,10 +33,10 @@
 	switch(A.stage)
 		if(1)
 			if(prob(10))
-				to_chat(M, "<span class='notice'>You feel off...</span>")
+				to_chat(M, span_notice("You feel off..."))
 		if(2, 3)
 			if(prob(10))
-				to_chat(M, "<span class='danger'>You feel like the atoms inside you are beginning to split...</span>")
+				to_chat(M, span_danger("You feel like the atoms inside you are beginning to split..."))
 		if(4, 5)
 			if(fastrads)
 				radiate(M, 3)
@@ -44,12 +44,12 @@
 				radiate(M, 10)
 			if(radothers && A.stage == 5)
 				if(prob(5))
-					M.visible_message("<span class='danger'>[M] glows green for a moment!</span>", \
-								 	  "<span class='userdanger'>You feel a massive wave of pain flow through you!</span>")
+					M.visible_message(span_danger("[M] glows green for a moment!"), \
+								 	  span_userdanger("You feel a massive wave of pain flow through you!"))
 					radiation_pulse(M, 20)
 			
 
 /datum/symptom/radiation/proc/radiate(mob/living/carbon/M, chance)
 	if(prob(chance))
-		to_chat(M, "<span class='danger'>You feel a wave of pain throughout your body!</span>")
+		to_chat(M, span_danger("You feel a wave of pain throughout your body!"))
 		M.radiation += 4

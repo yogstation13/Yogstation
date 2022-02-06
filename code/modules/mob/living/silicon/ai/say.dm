@@ -21,7 +21,7 @@
 	if(incapacitated())
 		return FALSE
 	if(!radio_enabled) //AI cannot speak if radio is disabled (via intellicard) or depowered.
-		to_chat(src, "<span class='danger'>Your radio transmitter is offline!</span>")
+		to_chat(src, span_danger("Your radio transmitter is offline!"))
 		return FALSE
 	..()
 
@@ -46,7 +46,7 @@
 		src.log_talk(message, LOG_SAY, tag="HOLOPAD in [padloc]")
 		hologram.say("[message]")
 		send_speech(message, 7, T, MODE_ROBOT, message_language = language)
-		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> <span class='message robot'>\"[message]\"</span></span></i>")
+		to_chat(src, "<i><span class='game say'>Holopad transmitted, [span_name("[real_name]")] <span class='message robot'>\"[message]\"</span></span></i>")
 	else
 		to_chat(src, "No holopad connected.")
 
@@ -87,12 +87,12 @@
 
 /mob/living/silicon/ai/proc/voice_announce()
 	if(GLOB.announcing_vox > world.time)
-		to_chat(src, "<span class='notice'>Please wait [DisplayTimeText(GLOB.announcing_vox - world.time)].</span>")
+		to_chat(src, span_notice("Please wait [DisplayTimeText(GLOB.announcing_vox - world.time)]."))
 		return
 	if(incapacitated())
 		return
 	if(control_disabled)
-		to_chat(src, "<span class='warning'>Wireless interface disabled, unable to interact with announcement PA.</span>")
+		to_chat(src, span_warning("Wireless interface disabled, unable to interact with announcement PA."))
 		return
 
 	var/datum/voice_announce/ai/announce_datum = new(client)
@@ -102,7 +102,7 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 
 /mob/living/silicon/ai/proc/announcement()
 	if(GLOB.announcing_vox > world.time)
-		to_chat(src, "<span class='notice'>Please wait [DisplayTimeText(GLOB.announcing_vox - world.time)].</span>")
+		to_chat(src, span_notice("Please wait [DisplayTimeText(GLOB.announcing_vox - world.time)]."))
 		return
 
 	var/list/types_list = list("Victor (male)", "Verity (female)", "Oscar (military)") //Victor is vox_sounds_male, Verity is vox_sounds, Oscar is vox_sounds_military
@@ -125,7 +125,7 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 		return
 
 	if(control_disabled)
-		to_chat(src, "<span class='warning'>Wireless interface disabled, unable to interact with announcement PA.</span>")
+		to_chat(src, span_warning("Wireless interface disabled, unable to interact with announcement PA."))
 		return
 
 	var/list/words = splittext(trim(message), " ")
@@ -147,15 +147,18 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 			incorrect_words += word
 
 	if(incorrect_words.len)
-		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>")
+		to_chat(src, span_notice("These words are not available on the announcement system: [english_list(incorrect_words)]."))
 		return
 
 	GLOB.announcing_vox = world.time + VOX_DELAY
 
 	log_game("[key_name(src)] made a vocal announcement with the following message: [message].")
+	var/z_coord = z
+	if(istype(loc, /obj/machinery/ai/data_core))
+		z_coord = loc.z
 
 	for(var/word in words)
-		play_vox_word(word, src.z, null, voxType) //yogs - male vox
+		play_vox_word(word, z_coord, null, voxType) //yogs - male vox
 
 
 /proc/play_vox_word(word, z_level, mob/only_listener, voxType = "Verity (female)", pitch = 0) // Yogs -- Pitch variation
@@ -177,11 +180,11 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 		voice.status = SOUND_STREAM
 		voice.frequency = pitch //Yogs -- Pitch variation
 
- 		// If there is no single listener, broadcast to everyone in the same z level
+ 		// If there is no single listener, broadcast to everyone in the same z level 
 		if(!only_listener)
 			// Play voice for all mobs in the z level
 			for(var/mob/M in GLOB.player_list)
-				if(M.client && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS))
+				if(M.client && M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS) && (M.client.prefs.toggles & SOUND_VOX))
 					var/turf/T = get_turf(M)
 					if(T.z == z_level)
 						SEND_SOUND(M, voice)

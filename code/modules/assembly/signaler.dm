@@ -16,14 +16,14 @@
 	var/hearing_range = 1
 
 /obj/item/assembly/signaler/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] eats \the [src]! If it is signaled, [user.p_they()] will die!</span>")
+	user.visible_message(span_suicide("[user] eats \the [src]! If it is signaled, [user.p_they()] will die!"))
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	user.transferItemToLoc(src, user, TRUE)
 	suicider = user
 	return MANUAL_SUICIDE_NONLETHAL
 
 /obj/item/assembly/signaler/proc/manual_suicide(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user]'s [src] receives a signal, killing [user.p_them()] instantly!</span>")
+	user.visible_message(span_suicide("[user]'s [src] receives a signal, killing [user.p_them()] instantly!"))
 	user.adjustOxyLoss(200)//it sends an electrical pulse to their heart, killing them. or something.
 	user.death(0)
 	user.set_suicide(TRUE)
@@ -77,7 +77,7 @@
 	switch(action)
 		if("signal")
 			if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_SIGNALLER_SEND))
-				to_chat(usr, "<span class='warning'>[src] is still recharging...</span>")
+				to_chat(usr, span_warning("[src] is still recharging..."))
 				return
 			TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
 			INVOKE_ASYNC(src, .proc/signal)
@@ -173,7 +173,7 @@
 
 /obj/item/assembly/signaler/receiver/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>The radio receiver is [on?"on":"off"].</span>"
+	. += span_notice("The radio receiver is [on?"on":"off"].")
 
 /obj/item/assembly/signaler/receiver/receive_signal(datum/signal/signal)
 	if(!on)
@@ -204,14 +204,14 @@
 	return TRUE
 
 /obj/item/assembly/signaler/anomaly/manual_suicide(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user]'s [src] is reacting to the radio signal, warping [user.p_their()] body!</span>")
+	user.visible_message(span_suicide("[user]'s [src] is reacting to the radio signal, warping [user.p_their()] body!"))
 	user.set_suicide(TRUE)
 	user.suicide_log()
 	user.gib()
 
 /obj/item/assembly/signaler/anomaly/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_ANALYZER)
-		to_chat(user, "<span class='notice'>Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code].</span>")
+		to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code]."))
 	..()
 
 /obj/item/assembly/signaler/anomaly/attack_self()

@@ -35,7 +35,7 @@
 	var/loaded_food = "nothing" /// The name of the thing on the fork
 
 /obj/item/kitchen/fork/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] stabs \the [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to take a bite out of [user.p_them()]self!</span>")
+	user.visible_message(span_suicide("[user] stabs \the [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to take a bite out of [user.p_them()]self!"))
 	playsound(src, 'sound/items/eatfood.ogg', 50, 1)
 	return BRUTELOSS
 
@@ -47,14 +47,14 @@
 
 	if(forkload)
 		if(M == user)
-			M.visible_message("<span class='notice'>[user] eats a delicious forkful of [loaded_food]!</span>")
+			M.visible_message(span_notice("[user] eats a delicious forkful of [loaded_food]!"))
 			M.reagents.add_reagent(forkload.type, 1)
 		else
-			M.visible_message("<span class='notice'>[user] is trying to feed [M] a delicious forkful of [loaded_food]!</span>") //yogs start
+			M.visible_message(span_notice("[user] is trying to feed [M] a delicious forkful of [loaded_food]!")) //yogs start
 			if(!do_mob(user, M))
 				return
 			log_combat(user, M, "fed [loaded_food]", forkload.type) //yogs end
-			M.visible_message("<span class='notice'>[user] feeds [M] a delicious forkful of [loaded_food]!</span>")
+			M.visible_message(span_notice("[user] feeds [M] a delicious forkful of [loaded_food]!"))
 			M.reagents.add_reagent(forkload.type, 1)
 		icon_state = "fork"
 		forkload = null
@@ -64,7 +64,7 @@
 			return eyestab(M,user)
 		icon_state = "forkloaded_pie"
 		user.visible_message("[user] scoops up the pie with [user.p_their()] fork!", \
-			"<span class='notice'>You scoop up the pie with your fork.</span>")
+			span_notice("You scoop up the pie with your fork."))
 
 		var/datum/reagent/R = new /datum/reagent/consumable/banana
 		forkload = R
@@ -113,9 +113,9 @@
 		return ..()
 
 /obj/item/kitchen/knife/suicide_act(mob/user)
-	user.visible_message(pick("<span class='suicide'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
-						"<span class='suicide'>[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
-						"<span class='suicide'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
+	user.visible_message(pick(span_suicide("[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
+						span_suicide("[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
+						span_suicide("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return BRUTELOSS
 
 /obj/item/kitchen/knife/ritual
@@ -211,12 +211,15 @@
 	desc = "Unlike other carrots, you should probably keep this far away from your eyes."
 	force = 8
 	throwforce = 12//fuck git
+	max_integrity = 100
+	weapon_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 5, DAMAGE_HIGH = 7)
+	break_message = "%SRC snaps into unusable carrot-bits"
 	materials = list()
 	attack_verb = list("shanked", "shivved")
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/kitchen/knife/carrotshiv/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 // Shank - Makeshift weapon that can embed on throw
@@ -233,6 +236,8 @@
 	throwforce = 8
 	throw_speed = 5 //yeets
 	armour_penetration = 5
+	max_integrity = 100
+	weapon_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 5, DAMAGE_HIGH = 7)
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 20, "embedded_fall_chance" = 10) // Incentive to disengage/stop chasing when stuck
 	attack_verb = list("stuck", "shanked", "stabbed", "shivved")
 
@@ -249,6 +254,6 @@
 	custom_price = 20
 
 /obj/item/kitchen/rollingpin/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 /* Trays  moved to /obj/item/storage/bag */

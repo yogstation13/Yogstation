@@ -36,6 +36,7 @@
 	belt = /obj/item/pda/botanist
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/hydroponics
+	uniform_skirt = /obj/item/clothing/under/rank/hydroponics/skirt
 	suit = /obj/item/clothing/suit/apron
 	gloves  =/obj/item/clothing/gloves/botanic_leather
 	suit_store = /obj/item/plant_analyzer

@@ -13,15 +13,15 @@
 /obj/effect/proc_holder/zombie/acid/proc/corrode(atom/target,mob/living/carbon/user = usr)
 	if(target in oview(1, user))
 		if(target.acid_act(200, 100))
-			user.visible_message("<span class='alertalien'>[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
+			user.visible_message(span_alertalien("[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!"))
 			return TRUE
 		else
-			to_chat(user, "<span class='noticealien'>You cannot dissolve this object.</span>")
+			to_chat(user, span_noticealien("You cannot dissolve this object."))
 
 
 			return FALSE
 	else
-		to_chat(src, "<span class='noticealien'>[target] is too far away.</span>")
+		to_chat(src, span_noticealien("[target] is too far away."))
 		return FALSE
 
 
@@ -44,7 +44,7 @@
 		return
 
 	if(!A.ready)
-		to_chat(user, "<span class='userdanger'>Please wait. You will be able to use this ability in [(A.cooldown_ends - world.time) / 10] seconds</span>")
+		to_chat(user, span_userdanger("Please wait. You will be able to use this ability in [(A.cooldown_ends - world.time) / 10] seconds"))
 		return
 
 	if(A.corrode(O, user))
