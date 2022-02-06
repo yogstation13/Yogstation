@@ -102,7 +102,7 @@
 		var/target_health = L.health
 		for(var/t in trophies)
 			var/obj/item/crusher_trophy/T = t
-			T.on_mark_detonation(target, user)
+			T.on_mark_detonation(target, user, src) //we pass in the kinetic crusher so that on_mark_detonation can use the properties of the crusher to reapply marks: see malformed_bone
 		if(!QDELETED(L))
 			if(!QDELETED(C))
 				C.total_damage += target_health - L.health //we did some damage, but let's not assume how much we did
@@ -419,13 +419,13 @@
 	desc = "A piece of bone caught in the act of division. Suitable as a trophy for a kinetic crusher."
 	icon_state = "malf_bone"
 	denied_type = /obj/item/crusher_trophy/malformed_bone
-	bonus_value = 30
+	bonus_value = 40
 
 /obj/item/crusher_trophy/malformed_bone/effect_desc()
 	return "mark detonation to have a <b>[bonus_value]</b>% chance to trigger a second detonation"
 
-/obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user)
-	var/obj/item/twohanded/required/kinetic_crusher/hammer_synced
-	for(var/mob/living/L in oview(2, user))
-		if(rand(1, 100) <= bonus_value)
-			target.apply_status_effect(STATUS_EFFECT_CRUSHERMARK, hammer_synced)
+/obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/required/kinetic_crusher/hammer_synced)
+    if(hammer_synced)
+        for(var/mob/living/L in oview(2,user))//fuck you and everything around you with a mark
+            if(prob(bonus_value) && !L.has_status_effect(STATUS_EFFECT_CRUSHERMARK))
+                L.apply_status_effect(STATUS_EFFECT_CRUSHERMARK,hammer_synced)
