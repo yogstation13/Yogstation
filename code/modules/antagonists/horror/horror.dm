@@ -200,7 +200,7 @@
 		return
 
 	to_chat(src, "You begin consuming [victim.name]'s soul!")
-	if(do_after(src, 45 SECONDS, target = victim, stayStill = FALSE))
+	if(do_after(src, 60 SECONDS, target = victim, stayStill = FALSE))
 		consume()
 
 /mob/living/simple_animal/horror/proc/consume()
