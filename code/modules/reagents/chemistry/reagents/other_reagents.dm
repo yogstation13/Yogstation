@@ -1322,17 +1322,17 @@
 
 /datum/reagent/healium/on_mob_metabolize(mob/living/L)
 	. = ..()
-	L.SetSleeping(1000)
-	L.SetUnconscious(1000)
+	L.SetSleeping(1000, ignore_canstun = TRUE)
+	L.SetUnconscious(1000, ignore_canstun = TRUE)
 
 /datum/reagent/healium/on_mob_life(mob/living/carbon/M)
-	M.SetSleeping(1000)
-	M.SetUnconscious(1000) //in case you have sleep immunity :^)
+	M.SetSleeping(1000, ignore_canstun = TRUE)
+	M.SetUnconscious(1000, ignore_canstun = TRUE) //in case you have sleep immunity :^)
 	..()
 
 /datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
-	L.SetSleeping(10)
-	L.SetUnconscious(10)
+	L.SetSleeping(10, ignore_canstun = TRUE)
+	L.SetUnconscious(10, ignore_canstun = TRUE)
 	return ..()
 
 /datum/reagent/halon

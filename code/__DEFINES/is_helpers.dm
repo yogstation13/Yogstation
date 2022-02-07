@@ -6,7 +6,7 @@
 
 #define isweakref(D) (istype(D, /datum/weakref))
 
-#define isappearance(A) (copytext("\ref[A]", 4, 6) == "3a")
+#define isappearance(A) (!isnum(A) && copytext("\ref[A]", 4, 6) == "3a")
 
 #define isnan(x) ( isnum((x)) && ((x) != (x)) )
 
@@ -116,6 +116,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
 
 #define isrevenant(A) (istype(A, /mob/living/simple_animal/revenant))
+
+#define ishorror(A) (istype(A, /mob/living/simple_animal/horror))
 
 #define isbot(A) (istype(A, /mob/living/simple_animal/bot))
 
