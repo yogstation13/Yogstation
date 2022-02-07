@@ -96,7 +96,7 @@
 
 		to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at their ear canal..."))
 
-		if(!do_mob(src, C, 3 SECONDS))
+		if(!do_mob(src, C, 4 SECONDS))
 			to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
 			return
 
@@ -121,7 +121,7 @@
 
 /mob/living/simple_animal/horror/proc/regenerate_chemicals(amt)
 	chemicals += amt
-	chemicals = min(250, chemicals)
+	chemicals = min(200, chemicals)
 	update_horror_hud()
 
 /mob/living/simple_animal/horror/proc/update_horror_hud()
@@ -200,7 +200,7 @@
 		return
 
 	to_chat(src, "You begin consuming [victim.name]'s soul!")
-	if(do_after(src, 20 SECONDS, target = victim, stayStill = FALSE))
+	if(do_after(src, 45 SECONDS, target = victim, stayStill = FALSE))
 		consume()
 
 /mob/living/simple_animal/horror/proc/consume()
@@ -474,12 +474,6 @@
 	for (var/mob/living/carbon/M in range(1, src))
 		if(!M || !Adjacent(M))
 			return
-
-		if(has_upgrade("paralysis"))
-			playsound(loc, "sound/effects/sparks4.ogg", 30, 1, -1)
-			M.Stun(50)
-			M.SetSleeping(70)  //knocked out cold
-			M.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, 1, FALSE)
 		else
 			to_chat(M, span_userdanger("You feel something wrapping around your leg, pulling you down!"))
 			playsound(loc, "sound/weapons/whipgrab.ogg", 30, 1, -1)
@@ -509,7 +503,7 @@
 		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	leaving = TRUE
-	if(do_after(src, 100, target = victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE))
+	if(do_after(src, 600, target = victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE)) //Enough time to do quick surgery
 		release_host()
 
 /mob/living/simple_animal/horror/proc/release_host()
@@ -518,13 +512,6 @@
 
 	if(!can_use_ability())
 		return
-
-	if(has_upgrade("invisible_exit"))
-		alpha = 60
-		if(has_ability(/datum/action/innate/horror/chameleon))
-			invisible = TRUE
-			Update_Invisibility_Button()
-		to_chat(src, span_danger("You silently wiggle out of [victim]'s ear and plop to the ground before vanishing via reflective solution that covers you."))
 	else
 		to_chat(src, span_danger("You wiggle out of [victim]'s ear and plop to the ground."))
 	if(victim.mind)
