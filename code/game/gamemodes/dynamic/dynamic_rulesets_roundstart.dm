@@ -967,6 +967,7 @@
 	scaling_cost = 9
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
 	antag_cap = list("denominator" = 24)
+	var/datum/team/bloodsucker/bloodsucker_team
 
 /datum/dynamic_ruleset/roundstart/bloodsucker/pre_execute(population)
 	. = ..()

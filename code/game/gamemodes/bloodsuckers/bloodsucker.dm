@@ -39,7 +39,6 @@
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
-
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
@@ -257,3 +256,28 @@
 	message_admins("[target] has become a Vassal, and is enslaved to [creator].")
 	log_admin("[target] has become a Vassal, and is enslaved to [creator].")
 	return TRUE
+
+/datum/game_mode/proc/update_bloodsucker_icons_added(datum/mind/bloodsucker)
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
+	hud.join_hud(bloodsucker.current)
+	set_antag_hud(bloodsucker.current,((IS_BLOODSUCKER(bloodsucker.current)) ? "bloodsucker" : "vassal"))
+
+/datum/game_mode/proc/update_bloodsucker_icons_removed(datum/mind/bloodsucker)
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
+	hud.leave_hud(bloodsucker.current)
+	set_antag_hud(bloodsucker.current, null)
+
+/datum/game_mode/bloodsucker/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Bloodsuckers:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/bloodsucker in bloodsuckers)
+		round_credits += "<center><h2>[bloodsucker.name] as a Bloodsucker</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The Bloodsuckers have vanished into the night!</h2>", "<center><h2>We couldn't locate them!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

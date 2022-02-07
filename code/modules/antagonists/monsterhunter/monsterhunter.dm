@@ -24,8 +24,10 @@
 	ADD_TRAIT(owner.current, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
 	ADD_TRAIT(owner.current, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
 	/// Give Monster Hunter powers
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_OBSESSED]
 	trackvamp.Grant(owner.current)
 	fortitude.Grant(owner.current)
+	hud.join_hud(owner.current)
 	set_antag_hud(owner.current, "obssesed")
 	if(give_objectives)
 		/// Give Hunter Objective
@@ -52,24 +54,17 @@
 	for(var/all_status_traits in owner.current.status_traits)
 		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
 	/// Remove Monster Hunter powers
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_OBSESSED]
 	trackvamp.Remove(owner.current)
 	fortitude.Remove(owner.current)
+	hud.leave_hud(owner.current)
+	set_antag_hud(owner.current, null)
 	/// Remove Martial Arts
 	if(my_kungfu)
 		my_kungfu.remove(owner.current)
 	to_chat(owner.current, span_userdanger("Your hunt has ended: You enter retirement once again, and are no longer a Monster Hunter."))
 	return ..()
-
-/datum/outfit/monsterhunter
-	name = "Monster Hunter (Preview Only)"
-
-	l_hand = /obj/item/stake
-	r_hand = /obj/item/stake/hardened/silver
-	uniform = /obj/item/clothing/under/rank/medical/purple
-	head = /obj/item/clothing/head/soft/emt
-	suit =  /obj/item/clothing/suit/toggle/labcoat/emt
-	gloves = /obj/item/clothing/gloves/color/latex/nitrile
-
+	
 /// Mind version
 /datum/mind/proc/make_monsterhunter()
 	var/datum/antagonist/monsterhunter/monsterhunterdatum = has_antag_datum(/datum/antagonist/monsterhunter)

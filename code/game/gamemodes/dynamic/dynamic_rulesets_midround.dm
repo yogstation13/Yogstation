@@ -621,6 +621,7 @@
 	cost = 10
 	requirements = list(40,30,20,10,10,10,10,10,10,10)
 	repeatable = FALSE
+	var/datum/team/bloodsucker/bloodsucker_team
 
 /datum/dynamic_ruleset/midround/bloodsucker/trim_candidates()
 	. = ..()

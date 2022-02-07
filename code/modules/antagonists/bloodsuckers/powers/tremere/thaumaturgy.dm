@@ -22,7 +22,7 @@
 	cooldown = 6 SECONDS
 	prefire_message = "Click where you wish to fire."
 	///The shield this Power gives
-	var/datum/weakref/blood_shield
+	var/datum/blood_shield
 
 /datum/action/bloodsucker/targeted/tremere/thaumaturgy/two
 	name = "Level 2: Thaumaturgy"
@@ -88,7 +88,7 @@
 	to_chat(owner, "You start thaumaturgy")
 	if(level_current >= 2) // Only if we're at least level 2.
 		var/obj/item/shield/bloodsucker/new_shield = new
-		blood_shield = WEAKREF(new_shield)
+		blood_shield = new_shield
 		if(!owner.put_in_inactive_hand(new_shield))
 			to_chat(owner, span_notice("Blood shield couldn't be activated as your off hand is full."))
 			return FALSE
@@ -172,6 +172,7 @@
 	item_flags = ABSTRACT | DROPDEL
 	icon = 'icons/obj/vamp_obj.dmi'
 	icon_state = "blood_shield"
+	item_state = "blood_shield"
 	lefthand_file = 'icons/mob/inhands/antag/bs_leftinhand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/bs_rightinhand.dmi'
 	block_chance = 75

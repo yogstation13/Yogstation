@@ -54,8 +54,8 @@
 					power.Remove(owner.current)
 			if(!bloodsucker.has_quirk(/datum/quirk/badback))
 				bloodsucker.add_quirk(/datum/quirk/badback)
-			if(!HAS_TRAIT(bloodsucker, VENTCRAWLER_ALWAYS))
-				ADD_TRAIT(bloodsucker, VENTCRAWLER_ALWAYS, BLOODSUCKER_TRAIT)
+			if(bloodsucker.ventcrawler == !VENTCRAWLER_ALWAYS)
+				bloodsucker.ventcrawler = VENTCRAWLER_ALWAYS
 			if(!HAS_TRAIT(bloodsucker, TRAIT_DISFIGURED))
 				ADD_TRAIT(bloodsucker, TRAIT_DISFIGURED, BLOODSUCKER_TRAIT)
 			var/datum/objective/bloodsucker/kindred/kindred_objective = new

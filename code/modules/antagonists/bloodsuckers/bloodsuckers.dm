@@ -98,22 +98,24 @@
 		return
 	var/datum/action/bloodsucker/power = choice
 	to_chat(usr, span_warning("[power.power_explanation]"))
+
 /// These handles the application of antag huds/special abilities
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
 	. = ..()
-	var/mob/living/current_mob = mob_override || owner.current
-	var/mob/living/carbon/H = owner
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
 	RegisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/LifeTick)
-	hud.join_hud(current_mob)
-	set_antag_hud(current_mob, "bloodsucker")
-	if((H.mind.assigned_role == "Clown"))
-		to_chat(owner, "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
-		H.dna.remove_mutation(CLOWNMUT)
-
+	if((owner.assigned_role == "Clown"))
+		var/mob/living/carbon/H = owner.current
+		if(H && istype(H))
+			if(!silent)
+				H.dna.remove_mutation(CLOWNMUT)
+				to_chat(owner, "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	UnregisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE)
+	if(owner.assigned_role == "Clown")
+		var/mob/living/carbon/human/H = owner.current
+		if(H && istype(H))
+			H.dna.add_mutation(CLOWNMUT)
 
 /datum/antagonist/bloodsucker/get_admin_commands()
 	. = ..()
@@ -141,6 +143,8 @@
 		forge_bloodsucker_objectives()
 
 	. = ..()
+	SSticker.mode.update_bloodsucker_icons_added(owner)
+	SSticker.mode.bloodsuckers += owner
 	// Assign Powers
 	AssignStarterPowersAndStats()
 
@@ -148,6 +152,8 @@
 /datum/antagonist/bloodsucker/on_removal()
 	/// End Sunlight? (if last Vamp)
 	clan.check_cancel_sunlight()
+	SSticker.mode.update_bloodsucker_icons_removed(owner)
+	SSticker.mode.bloodsuckers -= owner
 	ClearAllPowersAndStats()
 	return ..()
 
@@ -716,6 +722,7 @@
 		return
 	to_chat(owner.current, span_cultboldtalic("You have re-entered the Masquerade."))
 	broke_masquerade = FALSE
+	set_antag_hud(owner.current, "bloodsucker")
 
 
 /////////////////////////////////////

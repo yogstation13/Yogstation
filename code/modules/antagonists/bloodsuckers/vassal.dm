@@ -4,16 +4,15 @@
 #define VASSAL_SCAN_PING_TIME 20
 
 /datum/antagonist/vassal
-	var/hud_type = "bloodsucker"
 	name = "\improper Vassal"
 	roundend_category = "vassals"
 	antagpanel_category = "Bloodsucker"
 	job_rank = ROLE_BLOODSUCKER
-	hud_type = "vassal"
 	show_in_roundend = FALSE
 
 	/// The Master Bloodsucker's antag datum.
 	var/datum/antagonist/bloodsucker/master
+	var/datum/game_mode/blooodsucker
 	/// List of all Purchased Powers, like Bloodsuckers.
 	var/list/datum/action/powers = list()
 	/// The favorite vassal gets unique features, and Ventrue can upgrade theirs
@@ -26,8 +25,6 @@
 
 /datum/antagonist/vassal/apply_innate_effects(mob/living/mob_override)
 	. = ..()
-	var/mob/living/current_mob = mob_override || owner.current
-	set_antag_hud(current_mob, "vassal")
 
 /datum/antagonist/vassal/on_gain()
 	/// Enslave them to their Master
@@ -48,6 +45,8 @@
 	/// Give Vampire Language & Hud
 	owner.current.grant_all_languages(FALSE, FALSE, TRUE)
 	owner.current.grant_language(/datum/language/vampiric)
+	SSticker.mode.update_bloodsucker_icons_added(owner)
+	SSticker.mode.vassals += owner
 	. = ..()
 
 /datum/antagonist/vassal/on_removal()
@@ -67,6 +66,8 @@
 		power.Remove(owner.current)
 	/// Remove Language & Hud
 	owner.current.remove_language(/datum/language/vampiric)
+	SSticker.mode.update_bloodsucker_icons_removed(owner)
+	SSticker.mode.vassals -= owner
 	return ..()
 
 /datum/antagonist/vassal/proc/add_objective(datum/objective/added_objective)
@@ -101,7 +102,6 @@
 /datum/antagonist/vassal/proc/make_favorite(mob/living/master)
 	// Default stuff for all
 	favorite_vassal = TRUE
-	hud_type = "vassal6"
 	set_antag_hud(owner.current, "vassal6")
 	to_chat(master, span_danger("You have turned [owner.current] into your Favorite Vassal! They will no longer be deconverted upon Mindshielding!"))
 	to_chat(owner, span_notice("As Blood drips over your body, you feel closer to your Master... You are now the Favorite Vassal!"))
@@ -111,7 +111,7 @@
 	if(bloodsuckerdatum.my_clan == CLAN_BRUJAH)
 		BuyPower(new /datum/action/bloodsucker/targeted/brawn)
 	if(bloodsuckerdatum.my_clan == CLAN_NOSFERATU)
-		ADD_TRAIT(owner.current, VENTCRAWLER_NUDE, BLOODSUCKER_TRAIT)
+		owner.current.ventcrawler = VENTCRAWLER_NUDE
 		ADD_TRAIT(owner.current, TRAIT_DISFIGURED, BLOODSUCKER_TRAIT)
 		to_chat(owner, span_notice("Additionally, you can now ventcrawl while naked, and are permanently disfigured."))
 	if(bloodsuckerdatum.my_clan == CLAN_TREMERE)
