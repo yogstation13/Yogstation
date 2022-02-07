@@ -2120,3 +2120,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		. |= BIO_JUST_FLESH
 	if(HAS_BONE in species_traits)
 		. |= BIO_JUST_BONE
+
+/datum/species/proc/get_scream_sound(mob/living/carbon/human/H)
+	if(islist(screamsound))
+		return pick(screamsound)
+	return screamsound
