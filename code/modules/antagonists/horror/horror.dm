@@ -121,7 +121,7 @@
 
 /mob/living/simple_animal/horror/proc/regenerate_chemicals(amt)
 	chemicals += amt
-	chemicals = min(200, chemicals)
+	chemicals = min(250, chemicals)
 	update_horror_hud()
 
 /mob/living/simple_animal/horror/proc/update_horror_hud()

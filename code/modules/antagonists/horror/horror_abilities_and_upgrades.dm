@@ -398,8 +398,8 @@
 	soul_price = 2
 
 /datum/horror_upgrade/hp_up/apply_effects()
-	B.health = round(min(B.maxHealth,B.health * 1.5))
-	B.maxHealth = round(B.maxHealth * 1.5)
+	B.health = round(min(B.maxHealth,B.health * 1.75))
+	B.maxHealth = round(B.maxHealth * 1.75)
 
 //Increases melee damage to 20
 /datum/horror_upgrade/dmg_up
