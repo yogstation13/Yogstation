@@ -83,7 +83,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.mind?.miming)
 		return
-	else if(H.dna?.species?.screamsound) //yogs start: grabs scream from screamsound located in the appropriate species file.
+	if(H.dna?.species) //yogs start: grabs scream from screamsound located in the appropriate species file.
 		return H.dna.species.get_scream_sound(H) //yogs end - current added screams: basic human, moth, lizard, preternis, felinid.
 
 /datum/emote/living/carbon/meow
