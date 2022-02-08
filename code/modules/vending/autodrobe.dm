@@ -199,9 +199,7 @@
 					/obj/item/clothing/neck/skillcape/mentor = 1,
 					/obj/item/clothing/neck/skillcape = 1,
 					/obj/item/clothing/under/sausage = 1,
-					/obj/item/clothing/suit/bun = 1,
-					/obj/item/clothing/neck/skillcape = 1,
-					/obj/item/clothing/neck/skillcape = 1,) //yogs clothes for autodrobe end here
+					/obj/item/clothing/suit/bun = 1) //yogs clothes for autodrobe end here
 	contraband = list(/obj/item/clothing/suit/judgerobe = 1,
 					  /obj/item/clothing/head/powdered_wig = 1,
 					  /obj/item/gun/magic/wand = 2,
