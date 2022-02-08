@@ -427,3 +427,15 @@
 	desc = "An extra-mustahabb way of showing your devotion to Allah."
 	icon_state = "taqiyahred"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
+	
+/obj/item/clothing/head/hatsky
+	name = "securitron hat"
+	desc = "The baton part is one big fluffy pompon!"
+	icon_state = "hatsky"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	
+/obj/item/clothing/head/banana
+	name = "banana head"
+	desc = "Has a fine print: <i>'Potassium not included'</i>."
+	icon_state = "banana_hat"
+	flags_inv = HIDEHAIR|HIDEEARS
