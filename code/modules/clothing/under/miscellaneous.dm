@@ -915,3 +915,13 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	
+/obj/item/clothing/under/sausage
+	name = "sausage outfit"
+	desc = "A hotdog is nothing without a bun."
+	icon_state = "weiner"
+	item_state = "weiner"
+	item_color = "weiner"
+	can_adjust = FALSE
+	fitted = NO_FEMALE_UNIFORM
+	flags_inv = HIDEEARS|HIDEHAIR
