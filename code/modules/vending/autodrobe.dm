@@ -17,6 +17,7 @@
 					/obj/item/clothing/head/helmet/gladiator = 1,
 					/obj/item/clothing/under/gimmick/rank/captain/suit = 1,
 					/obj/item/clothing/under/gimmick/rank/captain/suit/skirt = 1,
+					/obj/item/clothing/mask/rmask = 1,
 					/obj/item/clothing/head/flatcap = 1,
 					/obj/item/clothing/suit/toggle/labcoat/mad = 1,
 					/obj/item/clothing/shoes/jackboots = 10, //yogs added more jack boots
