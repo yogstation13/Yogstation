@@ -454,6 +454,13 @@ AI MODULES
 	law_id = "mother"
 
 
+/******************** Spotless Reputation *********************/
+
+/obj/item/aiModule/core/full/spotless
+	name = "'Spotless Reputation' Core AI Module"
+	law_id = "spotless"
+
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore

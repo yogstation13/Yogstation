@@ -255,7 +255,8 @@
 				/obj/item/aiModule/core/full/robocop,
 				/obj/item/aiModule/core/full/liveandletlive,
 				/obj/item/aiModule/core/full/hulkamania,
-				/obj/item/aiModule/core/full/cowboy
+				/obj/item/aiModule/core/full/cowboy,
+				/obj/item/aiModule/core/full/spotless
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_harmful // These will get the shuttle called
