@@ -17,7 +17,6 @@
 					/obj/item/clothing/head/helmet/gladiator = 1,
 					/obj/item/clothing/under/gimmick/rank/captain/suit = 1,
 					/obj/item/clothing/under/gimmick/rank/captain/suit/skirt = 1,
-					/obj/item/clothing/mask/rmask = 1,
 					/obj/item/clothing/head/flatcap = 1,
 					/obj/item/clothing/suit/toggle/labcoat/mad = 1,
 					/obj/item/clothing/shoes/jackboots = 10, //yogs added more jack boots
@@ -197,13 +196,18 @@
 					/obj/item/clothing/neck/skillcape/admin = 1,
 					/obj/item/clothing/neck/skillcape/trimmed/admin = 1,
 					/obj/item/clothing/neck/skillcape/mentor = 1,
-					/obj/item/clothing/neck/skillcape = 1) //yogs clothes for autodrobe end here
+					/obj/item/clothing/neck/skillcape = 1,
+					/obj/item/clothing/under/sausage = 1,
+					/obj/item/clothing/suit/bun = 1,
+					/obj/item/clothing/neck/skillcape = 1,
+					/obj/item/clothing/neck/skillcape = 1,) //yogs clothes for autodrobe end here
 	contraband = list(/obj/item/clothing/suit/judgerobe = 1,
 					  /obj/item/clothing/head/powdered_wig = 1,
 					  /obj/item/gun/magic/wand = 2,
 					  /obj/item/clothing/glasses/sunglasses/garb = 2,
 					  /obj/item/clothing/glasses/blindfold = 1,
-					  /obj/item/clothing/mask/muzzle = 2)
+					  /obj/item/clothing/mask/muzzle = 2,
+					  /obj/item/clothing/head/banana = 1)
 	premium = list(/obj/item/clothing/suit/pirate/captain = 2,
 				   /obj/item/clothing/head/pirate/captain = 2,
 				   /obj/item/clothing/under/rank/rainbowclown = 1,
@@ -220,6 +224,7 @@
 		           /obj/item/clothing/under/yogs/rycliesuni = 1,
 		           /obj/item/clothing/head/yogs/toad = 1,
 		           /obj/item/clothing/head/helmet/justice = 1,
+		           /obj/item/clothing/head/hatsky = 1,
 		           /obj/item/clothing/mask/yogs/richard = 1) //yogs end
 	refill_canister = /obj/item/vending_refill/autodrobe
 	default_price = 50
