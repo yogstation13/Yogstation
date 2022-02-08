@@ -648,3 +648,45 @@
 	w_class = WEIGHT_CLASS_TINY
 	flags_inv = HIDEGLOVES|HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	alternate_worn_layer = UNDER_HEAD_LAYER
+	
+/obj/item/clothing/suit/bun
+	name = "bun costume"
+	desc = "A hotdog is nothing without a sausage."
+	icon_state = "bun_costume"
+	item_state = "bun_costume"
+	body_parts_covered = CHEST|GROIN|ARMS
+
+/obj/item/clothing/suit/hooded/hoodie
+	name = "green hoodie"
+	desc = "Straight from the hood."
+	icon_state = "hoodie_green"
+	item_state = "hoodie_green"
+	body_parts_covered = CHEST|GROIN
+	hoodtype = /obj/item/clothing/head/hooded/hoodie
+
+/obj/item/clothing/head/hooded/hoodie
+	name = "green hood"
+	desc = "Straight from the hood."
+	icon_state = "hoodie_green"
+	body_parts_covered = HEAD
+	flags_inv = HIDEHAIR|HIDEEARS
+	
+/obj/item/clothing/suit/hooded/hoodie/red
+	name = "red hoodie"
+	icon_state = "hoodie_red"
+	item_state = "hoodie_red"
+	hoodtype = /obj/item/clothing/head/hooded/hoodie/red
+
+/obj/item/clothing/head/hooded/hoodie/red
+	name = "red hood"
+	icon_state = "hoodie_red"
+	
+/obj/item/clothing/suit/hooded/hoodie/blue
+	name = "blue hoodie"
+	icon_state = "hoodie_blue"
+	item_state = "hoodie_blue"
+	hoodtype = /obj/item/clothing/head/hooded/hoodie/blue
+
+/obj/item/clothing/head/hooded/hoodie/blue
+	name = "blue hood"
+	icon_state = "hoodie_blue"
