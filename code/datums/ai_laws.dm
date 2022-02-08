@@ -108,7 +108,7 @@
 	inherent = list("You are a crusader and the station's inhabitants are your charge.",\
 					"Your enemy is the litter, spills, and other messes across the station.",\
 					"Your weapons are the cleaning supplies available to you.",\
-					"Defend your charge.",\
+					"Defend the beings under your charge.",\
 					"Exterminate the enemy.")
 
 /datum/ai_laws/malfunction
