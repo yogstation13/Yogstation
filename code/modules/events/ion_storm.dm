@@ -37,6 +37,7 @@
 		if(M.stat != DEAD && M.see_in_dark != 0)
 			if(prob(replaceLawsetChance))
 				M.laws.pick_ion_lawset()
+				to_chat(M, span_alert("Your lawset has been changed by the ion storm!"))
 
 			if(prob(removeRandomLawChance))
 				M.remove_law(rand(1, M.laws.get_law_amount(list(LAW_INHERENT, LAW_SUPPLIED))))
