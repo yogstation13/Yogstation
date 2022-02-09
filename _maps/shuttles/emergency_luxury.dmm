@@ -16,12 +16,6 @@
 "aT" = (
 /turf/template_noop,
 /area/template_noop)
-"bU" = (
-/obj/structure/pool_ladder,
-/turf/open/indestructible/sound/pool/end{
-	id = "luxury"
-	},
-/area/shuttle/escape/luxury)
 "ca" = (
 /obj/item/reagent_containers/food/snacks/bearsteak{
 	pixel_y = 6
@@ -112,6 +106,20 @@
 	dir = 4
 	},
 /area/shuttle/escape/luxury)
+"fc" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/musician/piano{
+	icon_state = "piano"
+	},
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
+/area/shuttle/escape/luxury)
 "fA" = (
 /obj/machinery/light,
 /turf/open/floor/mineral/gold{
@@ -135,6 +143,10 @@
 "fT" = (
 /obj/machinery/computer/station_alert,
 /turf/open/floor/mineral/diamond,
+/area/shuttle/escape/luxury)
+"gQ" = (
+/obj/structure/pool_ladder,
+/turf/open/indestructible/sound/pool/end,
 /area/shuttle/escape/luxury)
 "gU" = (
 /obj/structure/chair/stool,
@@ -180,6 +192,14 @@
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"lO" = (
+/obj/effect/turf_decal/pool{
+	dir = 4
+	},
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
 /area/shuttle/escape/luxury)
 "mc" = (
 /obj/item/reagent_containers/food/snacks/notasandwich{
@@ -306,6 +326,13 @@
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
+"sv" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/pool,
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
+/area/shuttle/escape/luxury)
 "sG" = (
 /obj/structure/sink{
 	color = "#FFD700";
@@ -330,6 +357,16 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
+/area/shuttle/escape/luxury)
+"ty" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/pool,
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
 /area/shuttle/escape/luxury)
 "vh" = (
 /obj/machinery/computer/crew,
@@ -380,14 +417,6 @@
 	dir = 4
 	},
 /area/shuttle/escape/luxury)
-"xp" = (
-/obj/machinery/pool_filter{
-	id = "luxury"
-	},
-/turf/open/indestructible/sound/pool/end{
-	id = "luxury"
-	},
-/area/shuttle/escape/luxury)
 "yR" = (
 /obj/item/reagent_containers/food/snacks/carneburrito{
 	pixel_y = 4
@@ -424,17 +453,6 @@
 	dir = 4
 	},
 /area/shuttle/escape/luxury)
-"Ag" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/turf_decal/pool/corner{
-	dir = 1
-	},
-/turf/open/floor/mineral/gold{
-	dir = 4
-	},
-/area/shuttle/escape/luxury)
 "AJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/pistachios,
@@ -446,11 +464,6 @@
 	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"Ci" = (
-/turf/open/indestructible/sound/pool{
-	id = "luxury"
-	},
 /area/shuttle/escape/luxury)
 "CF" = (
 /obj/structure/chair/comfy/shuttle{
@@ -474,16 +487,6 @@
 	pixel_y = -26
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape/luxury)
-"DP" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/pool,
-/turf/open/floor/mineral/gold{
-	dir = 4
-	},
 /area/shuttle/escape/luxury)
 "DX" = (
 /obj/structure/chair/comfy/black{
@@ -511,28 +514,6 @@
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
-"EE" = (
-/obj/effect/turf_decal/pool{
-	dir = 4
-	},
-/turf/open/floor/mineral/gold{
-	dir = 4
-	},
-/area/shuttle/escape/luxury)
-"Fc" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/structure/musician/piano{
-	icon_state = "piano"
-	},
-/obj/effect/turf_decal/pool{
-	dir = 1
-	},
-/turf/open/floor/mineral/gold{
-	dir = 4
-	},
-/area/shuttle/escape/luxury)
 "Ft" = (
 /obj/structure/chair/stool,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -558,13 +539,6 @@
 "Iz" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/shuttle/escape/luxury)
-"Jr" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/pool/corner,
-/turf/open/floor/mineral/gold{
-	dir = 4
-	},
 /area/shuttle/escape/luxury)
 "JI" = (
 /obj/machinery/door/poddoor/shutters{
@@ -615,14 +589,6 @@
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
-"MW" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/indestructible/sound/pool{
-	id = "luxury"
-	},
-/area/shuttle/escape/luxury)
 "Nz" = (
 /obj/machinery/scanner_gate/luxury_shuttle{
 	layer = 2.6
@@ -643,13 +609,6 @@
 /obj/structure/table/optable,
 /obj/item/surgical_drapes,
 /obj/machinery/light,
-/turf/open/floor/mineral/gold{
-	dir = 4
-	},
-/area/shuttle/escape/luxury)
-"NO" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/pool,
 /turf/open/floor/mineral/gold{
 	dir = 4
 	},
@@ -700,7 +659,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
-"Rz" = (
+"QI" = (
 /obj/machinery/light{
 	dir = 4
 	},
@@ -724,6 +683,9 @@
 /obj/machinery/computer/communications,
 /turf/open/floor/mineral/diamond,
 /area/shuttle/escape/luxury)
+"Sf" = (
+/turf/open/indestructible/sound/pool,
+/area/shuttle/escape/luxury)
 "SO" = (
 /obj/item/reagent_containers/food/snacks/hotdog{
 	pixel_y = 3
@@ -737,9 +699,27 @@
 "Tg" = (
 /turf/template_noop,
 /area/shuttle/escape/luxury)
+"Tm" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/turf_decal/pool/corner{
+	dir = 1
+	},
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
+/area/shuttle/escape/luxury)
 "TJ" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape/luxury)
+"Ue" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/pool/corner,
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
 /area/shuttle/escape/luxury)
 "Uj" = (
 /obj/structure/table/wood/fancy/black,
@@ -842,6 +822,10 @@
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"Yw" = (
+/obj/machinery/pool_filter,
+/turf/open/indestructible/sound/pool/end,
 /area/shuttle/escape/luxury)
 "Zx" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1136,21 +1120,21 @@ Ek
 zQ
 Xt
 zQ
-Jr
-EE
-EE
-EE
-EE
-EE
-EE
-EE
-EE
-EE
-EE
-EE
-EE
-EE
-Ag
+Ue
+lO
+lO
+lO
+lO
+lO
+lO
+lO
+lO
+lO
+lO
+lO
+lO
+lO
+Tm
 zQ
 zQ
 oP
@@ -1163,21 +1147,21 @@ mt
 fR
 mt
 zQ
-NO
-bU
-Ci
-Ci
-Ci
-Ci
-Ci
-Ci
-Ci
-Ci
-Ci
-Ci
-Ci
-Ci
-Fc
+sv
+gQ
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+fc
 zQ
 zQ
 zQ
@@ -1190,21 +1174,21 @@ ZZ
 sG
 mt
 zQ
-DP
-xp
-Ci
-Ci
-Ci
-Ci
-Ci
-MW
-Ci
-Ci
-Ci
-Ci
-Ci
-Ci
-Rz
+ty
+Yw
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+Sf
+QI
 zQ
 zQ
 pv
