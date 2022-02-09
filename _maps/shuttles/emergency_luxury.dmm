@@ -16,6 +16,12 @@
 "aT" = (
 /turf/template_noop,
 /area/template_noop)
+"bU" = (
+/obj/structure/pool_ladder,
+/turf/open/indestructible/sound/pool/end{
+	id = "luxury"
+	},
+/area/shuttle/escape/luxury)
 "ca" = (
 /obj/item/reagent_containers/food/snacks/bearsteak{
 	pixel_y = 6
@@ -25,14 +31,6 @@
 	dir = 1
 	},
 /turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"cf" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/holofloor/beach/coast_b{
-	dir = 4
-	},
 /area/shuttle/escape/luxury)
 "cv" = (
 /obj/docking_port/mobile/emergency{
@@ -146,17 +144,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
-"hv" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/structure/musician/piano{
-	icon_state = "piano"
-	},
-/turf/open/floor/mineral/gold{
-	dir = 4
-	},
-/area/shuttle/escape/luxury)
 "kk" = (
 /obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti{
 	pixel_y = 5
@@ -193,12 +180,6 @@
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"lG" = (
-/turf/open/floor/holofloor/beach/coast_t{
-	dir = 1;
-	icon_state = "sandwater_inner"
-	},
 /area/shuttle/escape/luxury)
 "mc" = (
 /obj/item/reagent_containers/food/snacks/notasandwich{
@@ -303,22 +284,12 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/luxury)
-"qw" = (
-/turf/open/floor/holofloor/beach/coast_b{
-	dir = 4
-	},
-/area/shuttle/escape/luxury)
 "rj" = (
 /obj/item/reagent_containers/food/snacks/cakeslice/slimecake{
 	pixel_y = 2
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"rl" = (
-/turf/open/floor/holofloor/beach/coast_t{
-	icon_state = "sandwater_inner"
-	},
 /area/shuttle/escape/luxury)
 "rw" = (
 /obj/structure/sign/poster/official/fruit_bowl{
@@ -360,11 +331,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
-"vg" = (
-/turf/open/floor/holofloor/beach/coast_t{
-	icon_state = "sandwater_t"
-	},
-/area/shuttle/escape/luxury)
 "vh" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/mineral/diamond,
@@ -383,12 +349,6 @@
 	},
 /obj/item/broken_bottle,
 /turf/open/floor/plating,
-/area/shuttle/escape/luxury)
-"vS" = (
-/turf/open/floor/holofloor/beach/coast_b{
-	dir = 9;
-	icon_state = "sandwater_b"
-	},
 /area/shuttle/escape/luxury)
 "wa" = (
 /obj/structure/chair/comfy/teal{
@@ -418,6 +378,14 @@
 	},
 /turf/open/floor/mineral/gold{
 	dir = 4
+	},
+/area/shuttle/escape/luxury)
+"xp" = (
+/obj/machinery/pool_filter{
+	id = "luxury"
+	},
+/turf/open/indestructible/sound/pool/end{
+	id = "luxury"
 	},
 /area/shuttle/escape/luxury)
 "yR" = (
@@ -456,8 +424,11 @@
 	dir = 4
 	},
 /area/shuttle/escape/luxury)
-"Av" = (
+"Ag" = (
 /obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/turf_decal/pool/corner{
 	dir = 1
 	},
 /turf/open/floor/mineral/gold{
@@ -475,6 +446,11 @@
 	dir = 8
 	},
 /turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"Ci" = (
+/turf/open/indestructible/sound/pool{
+	id = "luxury"
+	},
 /area/shuttle/escape/luxury)
 "CF" = (
 /obj/structure/chair/comfy/shuttle{
@@ -498,6 +474,16 @@
 	pixel_y = -26
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape/luxury)
+"DP" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/pool,
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
 /area/shuttle/escape/luxury)
 "DX" = (
 /obj/structure/chair/comfy/black{
@@ -525,6 +511,28 @@
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
+"EE" = (
+/obj/effect/turf_decal/pool{
+	dir = 4
+	},
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
+/area/shuttle/escape/luxury)
+"Fc" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/musician/piano{
+	icon_state = "piano"
+	},
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
+/area/shuttle/escape/luxury)
 "Ft" = (
 /obj/structure/chair/stool,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -540,21 +548,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
-"Gz" = (
-/turf/open/floor/holofloor/beach/coast_b{
-	dir = 10;
-	icon_state = "sandwater_b"
-	},
-/area/shuttle/escape/luxury)
-"Hx" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/gold{
-	dir = 4
-	},
-/area/shuttle/escape/luxury)
 "HK" = (
 /obj/item/reagent_containers/food/snacks/honkdae{
 	pixel_y = 8
@@ -565,6 +558,13 @@
 "Iz" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
+/area/shuttle/escape/luxury)
+"Jr" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/pool/corner,
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
 /area/shuttle/escape/luxury)
 "JI" = (
 /obj/machinery/door/poddoor/shutters{
@@ -615,6 +615,14 @@
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
+"MW" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/indestructible/sound/pool{
+	id = "luxury"
+	},
+/area/shuttle/escape/luxury)
 "Nz" = (
 /obj/machinery/scanner_gate/luxury_shuttle{
 	layer = 2.6
@@ -639,6 +647,13 @@
 	dir = 4
 	},
 /area/shuttle/escape/luxury)
+"NO" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/pool,
+/turf/open/floor/mineral/gold{
+	dir = 4
+	},
+/area/shuttle/escape/luxury)
 "Or" = (
 /obj/machinery/door/airlock/external{
 	name = "Steerage"
@@ -657,12 +672,6 @@
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"Pc" = (
-/turf/open/floor/holofloor/beach/coast_t{
-	dir = 1;
-	icon_state = "sandwater_t"
-	},
 /area/shuttle/escape/luxury)
 "Pk" = (
 /obj/structure/chair/comfy/shuttle,
@@ -691,7 +700,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
-"RK" = (
+"Rz" = (
 /obj/machinery/light{
 	dir = 4
 	},
@@ -700,6 +709,9 @@
 	},
 /obj/structure/chair/comfy/black{
 	dir = 8
+	},
+/obj/effect/turf_decal/pool{
+	dir = 1
 	},
 /turf/open/floor/mineral/gold{
 	dir = 4
@@ -830,11 +842,6 @@
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"Zo" = (
-/turf/open/floor/holofloor/beach/coast_t{
-	dir = 4
-	},
 /area/shuttle/escape/luxury)
 "Zx" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1129,21 +1136,21 @@ Ek
 zQ
 Xt
 zQ
-Xt
-zQ
-zQ
-zQ
-zQ
-zQ
-zQ
-zQ
-zQ
-zQ
-zQ
-zQ
-zQ
-zQ
-Av
+Jr
+EE
+EE
+EE
+EE
+EE
+EE
+EE
+EE
+EE
+EE
+EE
+EE
+EE
+Ag
 zQ
 zQ
 oP
@@ -1156,21 +1163,21 @@ mt
 fR
 mt
 zQ
-Xt
-rl
-Zo
-Zo
-Zo
-Zo
-Zo
-Zo
-Zo
-Zo
-Zo
-Zo
-Zo
-lG
-hv
+NO
+bU
+Ci
+Ci
+Ci
+Ci
+Ci
+Ci
+Ci
+Ci
+Ci
+Ci
+Ci
+Ci
+Fc
 zQ
 zQ
 zQ
@@ -1183,21 +1190,21 @@ ZZ
 sG
 mt
 zQ
-Hx
-vg
-vS
-qw
-qw
-qw
-qw
-cf
-qw
-qw
-qw
-qw
-Gz
-Pc
-RK
+DP
+xp
+Ci
+Ci
+Ci
+Ci
+Ci
+MW
+Ci
+Ci
+Ci
+Ci
+Ci
+Ci
+Rz
 zQ
 zQ
 pv
