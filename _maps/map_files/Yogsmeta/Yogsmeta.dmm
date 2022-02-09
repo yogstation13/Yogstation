@@ -66214,6 +66214,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"ffs" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/atmospherics/miner/carbon_dioxide,
+/turf/open/floor/engine/co2,
+/area/engine/atmos_distro)
 "ffD" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -69485,10 +69490,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
-"iCR" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/open/floor/engine/n2,
-/area/engine/atmos_distro)
 "iDk" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -70540,6 +70541,11 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
+"jLF" = (
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/machinery/atmospherics/miner/n2o,
+/turf/open/floor/engine/n2o,
+/area/engine/atmos_distro)
 "jLQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -74022,10 +74028,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"nzy" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/turf/open/floor/engine/plasma,
-/area/engine/atmos_distro)
 "nzY" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -76619,6 +76621,11 @@
 /obj/machinery/modular_computer/console/preset/mining,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"qkV" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/atmospherics/miner/toxins,
+/turf/open/floor/engine/plasma,
+/area/engine/atmos_distro)
 "qle" = (
 /obj/machinery/bookbinder,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -78083,10 +78090,6 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"rIC" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/turf/open/floor/engine/n2o,
-/area/engine/atmos_distro)
 "rLy" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -78211,10 +78214,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"rYw" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/engine/o2,
-/area/engine/atmos_distro)
 "rYE" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
@@ -80149,6 +80148,11 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"uaz" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/atmospherics/miner/nitrogen,
+/turf/open/floor/engine/n2,
+/area/engine/atmos_distro)
 "uaC" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -80398,10 +80402,6 @@
 /area/engine/atmos_distro)
 "ulM" = (
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos_distro)
-"umD" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/turf/open/floor/engine/co2,
 /area/engine/atmos_distro)
 "unb" = (
 /obj/machinery/atmospherics/components/binary/pump{
@@ -83727,6 +83727,11 @@
 	pump_direction = 0
 	},
 /turf/open/floor/engine/plasma,
+/area/engine/atmos_distro)
+"xBs" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/atmospherics/miner/oxygen,
+/turf/open/floor/engine/o2,
 /area/engine/atmos_distro)
 "xDl" = (
 /obj/structure/chair{
@@ -130368,7 +130373,7 @@ kRO
 seq
 lBi
 hqo
-umD
+ffs
 tQz
 pHk
 lMJ
@@ -131380,7 +131385,7 @@ aaa
 lMJ
 pHk
 dSh
-iCR
+uaz
 dJs
 lBi
 fTh
@@ -131396,7 +131401,7 @@ xmy
 seq
 lBi
 rQf
-rIC
+jLF
 izR
 pHk
 lMJ
@@ -132408,7 +132413,7 @@ aaa
 lMJ
 pHk
 hMB
-rYw
+xBs
 fzM
 lBi
 fTh
@@ -132424,7 +132429,7 @@ luw
 seq
 lBi
 mac
-nzy
+qkV
 smB
 pHk
 lMJ
