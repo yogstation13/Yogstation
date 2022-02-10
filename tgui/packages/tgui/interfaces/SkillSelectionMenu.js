@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Dropdown, Flex, LabeledList, ProgressBar,  Icon, Input, Section, Tabs } from '../components';
+import { Box, Button, Dropdown, Flex, LabeledList, ProgressBar, Icon, Input, Section, Tabs } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
 
@@ -70,7 +70,7 @@ export const SkillSelectionMenu = (props, context) => {
     currentJob,
     jobs,
     skillBalance,
-    maxSkillPoints
+    maxSkillPoints,
   } = data;
   const skills = data.skills || [];
   return (
@@ -89,106 +89,99 @@ export const SkillSelectionMenu = (props, context) => {
                 <Button
                   content="Reset"
                   icon="undo"
-                  onClick={() => act(act('resetToJobDefault'))}/>
-                  }>
-                <Tabs vertical>
+                  onClick={() => act(act('resetToJobDefault'))} />
+              }>
+              <Tabs vertical>
                 {jobs.map(job => (
                   <Tabs.Tab
                     key={job}
                     selected={currentJob==job}
                     onClick={() => act('changeCurrentJob', {
-                      job: job})}
-                      >
-                      {job}
+                      job: job })}>
+                    {job}
                   </Tabs.Tab>
                 ))}
-                </Tabs>
-              </Section>
-            </Flex.Item>
-            <Flex.Item width="700px">
-              <Section
-                title= {(
-                  <Fragment color={skillLevelToColor(skill.level)}>
-                    <ProgressBar
-                      value={skillBalance}
-                      minValue={0}
-                      maxValue={maxSkillPoints}
-                      ranges={{
-                        good: [maxSkillPoints, 10],
-                        bad: [10, 0],
-                      }}>
-                      {skillBalance}/{maxSkillPoints}
-                    </ProgressBar>
-                  </Fragment>
-                )}
-                buttons={(
-                  <Fragment >
-                  </Fragment>
-                )}>
-                <Flex grow={1} basis={0}>
-                  <Tabs vertical>
-                      {skills.map(skill => (
-                        <Tabs.Tab
-                          key={skill.name}>
-                          <Section
-                            title= {(
-                              <Fragment color={skillLevelToColor(skill.level)}>
-                                <Icon name={skill.icon} color={skillLevelToColor(skill.level)} mr={1}/>
-                                {skill.name}: {skillLevelToText(skill.level)} ({skill.level})
-                              </Fragment>
+              </Tabs>
+            </Section>
+          </Flex.Item>
+          <Flex.Item width="700px">
+            <Section
+              title={(
+                <ProgressBar
+                  value={skillBalance}
+                  minValue={0}
+                  maxValue={maxSkillPoints}
+                  ranges={{
+                    good: [maxSkillPoints, 10],
+                    bad: [10, 0],
+                  }}>
+                  {skillBalance}/{maxSkillPoints}
+                </ProgressBar>
+              )}
+              buttons={(
+                <Fragment />
+              )}>
+              <Flex grow={1} basis={0}>
+                <Tabs vertical>
+                  {skills.map(skill => (
+                    <Tabs.Tab
+                      key={skill.name}>
+                      <Section
+                        title={(
+                          <Fragment color={skillLevelToColor(skill.level)}>
+                            <Icon name={skill.icon} color={skillLevelToColor(skill.level)} mr={1} />
+                            {skill.name}: {skillLevelToText(skill.level)} ({skill.level})
+                          </Fragment>
+                        )}
+                        overflowY="auto"
+                        buttons={(
+                          <Fragment >
+                            {!!skill.canIncrease && (
+                              <Button
+                                icon="level-up-alt"
+                                color={skillLevelToColor(skill.level+1)}
+                                content={skill.costIncrease}
+                                onClick={() => act('increaseLevel', {
+                                  id: skill.id,
+                                })} />
                             )}
-                            overflowY="auto"
-                            buttons={(
-                              <Fragment >
-                                {!!skill.canIncrease && (
-                                  <Button
-                                    icon="level-up-alt"
-                                    color={skillLevelToColor(skill.level+1)}
-                                    content={skill.costIncrease}
-                                    onClick={() => act('increaseLevel', {
-                                      id: skill.id,
-                                    })}/>
-                                )}
-                                <Button
-                                  content={skill.cost}
-                                  color={skillLevelToColor(skill.level)}/>
-                                {!!skill.canDecrease && (
-                                  <Button
-                                    icon="level-down-alt"
-                                    color={skillLevelToColor(skill.level-1)}
-                                    content={skill.costDecrease}
-                                    onClick={() => act('decreaseLevel', {
-                                      id: skill.id,
-                                    })}/>
-                                )}
-                              </Fragment>)}>
-                            <LabeledList >
-                              <LabeledList.Item
-                                label="Description"
-                              >
-                                {skill.desc}
-                              </LabeledList.Item>
-                              <LabeledList.Item
-                                label=" Difficulty"
-                                color={difficultyLevelToColor(skill.difficulty)}
-                              >
-                                {difficultyLevelToText(skill.difficulty)} ({skill.difficulty})
-                              </LabeledList.Item>
-                              <LabeledList.Item
-                                label=" Skill Level Description"
-                                color={skillLevelToColor(skill.level)}
-                              >
-                                {skill.level_desc}
-                              </LabeledList.Item>
-                            </LabeledList>
-                          </Section>
-                        </Tabs.Tab>
-                      ))}
-                    </Tabs>
-                </Flex>
-              </Section>
-            </Flex.Item>
-          </Flex>
+                            <Button
+                              content={skill.cost}
+                              color={skillLevelToColor(skill.level)} />
+                            {!!skill.canDecrease && (
+                              <Button
+                                icon="level-down-alt"
+                                color={skillLevelToColor(skill.level-1)}
+                                content={skill.costDecrease}
+                                onClick={() => act('decreaseLevel', {
+                                  id: skill.id,
+                                })} />
+                            )}
+                          </Fragment>)}>
+                        <LabeledList >
+                          <LabeledList.Item
+                            label="Description">
+                            {skill.desc}
+                          </LabeledList.Item>
+                          <LabeledList.Item
+                            label=" Difficulty"
+                            color={difficultyLevelToColor(skill.difficulty)}>
+                            {difficultyLevelToText(skill.difficulty)} ({skill.difficulty})
+                          </LabeledList.Item>
+                          <LabeledList.Item
+                            label=" Skill Level Description"
+                            color={skillLevelToColor(skill.level)}>
+                            {skill.level_desc}
+                          </LabeledList.Item>
+                        </LabeledList>
+                      </Section>
+                    </Tabs.Tab>
+                  ))}
+                </Tabs>
+              </Flex>
+            </Section>
+          </Flex.Item>
+        </Flex>
       </Window.Content>
     </Window>
   );

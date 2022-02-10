@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Flex, LabeledList, ProgressBar,  Icon, Input, Section, Tabs } from '../components';
+import { Box, Button, Flex, LabeledList, ProgressBar, Icon, Input, Section, Tabs } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
 
@@ -102,17 +102,17 @@ export const SkillMenu = (props, context) => {
               <Button.Checkbox
                 content="Dont Use Skills"
                 checked={disable_skills}
-                onClick={() => act('toggle_use_skills')}/>
+                onClick={() => act('toggle_use_skills')} />
               <Button.Checkbox
                 content="Max Skills"
-                checked={disable_skills}/>
+                checked={disable_skills} />
               <Button
                 icon="list-ul"
-                onClick={() => act('debug_variables_skillset')}/>
+                onClick={() => act('debug_variables_skillset')} />
               <Button
-                icon="clone"/>
+                icon="clone" />
               <Button
-                icon="save"/>
+                icon="save" />
             </Fragment>
           )}>
           <Flex>
@@ -120,8 +120,7 @@ export const SkillMenu = (props, context) => {
               <Section
                 height="310px"
                 width="180px"
-                overflowY="auto"
-                >
+                overflowY="auto">
                 <Tabs vertical>
                   {skills.map(skill => (
                     <Tabs.Tab
@@ -130,9 +129,8 @@ export const SkillMenu = (props, context) => {
                       color="security"
                       selected={skill.selected}
                       onClick={() => act('change_current_skill', {
-                        id: skill.id})}
-                        >
-                        {skill.name}
+                        id: skill.id })}>
+                      {skill.name}
                     </Tabs.Tab>
                   ))}
                 </Tabs>
@@ -146,32 +144,32 @@ export const SkillMenu = (props, context) => {
                   <Flex.Item>
                     <Fragment>
                       <Icon name="user-circle"
-                        verticalAlign="middle" size="4.5" mr="1rem" mt=".5rem" ml={1}/>
+                        verticalAlign="middle" size="4.5" mr="1rem" mt=".5rem" ml={1} />
                     </Fragment>
                   </Flex.Item>
                   <Flex.Item>
                     <LabeledList>
                       <LabeledList.Item
                         label="Name">
-                          {name}
+                        {name}
                       </LabeledList.Item>
                       {(job_title === job ? (
                         (<LabeledList.Item
                           label="Job">
 
-                            {job_title}
+                          {job_title}
 
                         </LabeledList.Item>)
                       ):(
                         <LabeledList.Item
                           label="Job">
 
-                            {job_title} ({job})
+                          {job_title} ({job})
 
                         </LabeledList.Item>))}
                       <LabeledList.Item
                         label="Gender">
-                          {gender[0].toUpperCase() + gender.substring(1)}
+                        {gender[0].toUpperCase() + gender.substring(1)}
                       </LabeledList.Item>
                     </LabeledList>
                   </Flex.Item>
@@ -179,11 +177,11 @@ export const SkillMenu = (props, context) => {
                     <LabeledList>
                       <LabeledList.Item
                         label="Race">
-                          {species}
+                        {species}
                       </LabeledList.Item>
                       <LabeledList.Item
                         label="Age">
-                          {age}
+                        {age}
                       </LabeledList.Item>
                     </LabeledList>
                   </Flex.Item>
@@ -194,47 +192,43 @@ export const SkillMenu = (props, context) => {
                 height="230px"
                 width="500px"
                 overflowY="auto"
-                buttons= {!!admin_mode && (
+                buttons={!!admin_mode && (
                   <Fragment>
                     <Button
                       icon="level-up-alt"
-                      onClick={() => act('increase_level')}/>
+                      onClick={() => act('increase_level')} />
                     <Button
                       icon="level-down-alt"
-                      onClick={() => act('decrease_level')}/>
+                      onClick={() => act('decrease_level')} />
                     <Button
                       icon="undo-alt"
-                      onClick={() => act('decrease_level')}/>
+                      onClick={() => act('decrease_level')} />
                     <Button
                       icon="list-ul"
-                      onClick={() => act('debug_variables_skill')}/>
+                      onClick={() => act('debug_variables_skill')} />
                     <Button
                       icon="clone"
-                      onClick={() => act('decrease_level')}/>
+                      onClick={() => act('decrease_level')} />
                   </Fragment>)}>
                 <LabeledList ml={5}>
                   <LabeledList.Item
                     label="Description"
-                    ml={5}
-                  >
+                    ml={5}>
                     {current_desc}
                   </LabeledList.Item>
                   <LabeledList.Item
                     label=" Difficulty"
-                    color={difficultyLevelToColor(current_difficulty)}
-                  >
+                    color={difficultyLevelToColor(current_difficulty)}>
                     {difficultyLevelToText(current_difficulty)} ({current_difficulty})
                   </LabeledList.Item>
                   <LabeledList.Item
                     label=" Skill Level"
-                    color={skillLevelToColor(current_level)}
-                  >
+                    color={skillLevelToColor(current_level)}>
                     {skillLevelToText(current_level)} ({current_level})
                   </LabeledList.Item>
                   <LabeledList.Item
                     label=" Skill Level Description"
-                    color={skillLevelToColor(current_level)}
-                  >
+                    color={skillLevelToColor(current_level)}>
                     {current_level_desc}
                   </LabeledList.Item>
                 </LabeledList>
