@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
 
 /proc/usesSkills(target)
 	var/datum/skillset/target_skillset = find_skillset(target)
-	target_skillset.use_skills == TRUE
+	return target_skillset.use_skills == TRUE
 
 #define GET_SKILLS(target) (find_skill(target))
 #define SKILL_CHECK(target, skill, required) (find_skill_level(target, skill) >= required)

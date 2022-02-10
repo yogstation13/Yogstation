@@ -26,7 +26,6 @@
 	if(!isnull(new_skill))
 		new_skill.parent = new_parent
 	new_skill.set_level(current_level, TRUE)
-	new_skill.experience = experience
 	return new_skill
 
 //Skill Adjustment Procs

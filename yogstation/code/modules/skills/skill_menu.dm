@@ -46,7 +46,6 @@
 		S["icon"] = skill.icon
 		S["desc"] = skill.desc
 		S["level"] = skill.current_level
-		S["experience"] = skill.experience
 		S["difficulty"] = skill.find_active_difficulty()
 		S["level_desc"] = skill.level_descriptions[skill.current_level]
 		S["selected"] = skill.id == current_skill
@@ -59,7 +58,6 @@
 			data["current_icon"] = skill.icon
 			data["current_desc"] = skill.desc
 			data["current_level"] = skill.current_level
-			data["current_experience"] = skill.experience
 			data["current_difficulty"] = skill.find_active_difficulty()
 			data["current_level_desc"] = skill.level_descriptions[skill.current_level]
 
@@ -165,7 +163,6 @@
 		skill_data["icon"] = skill.icon
 		skill_data["desc"] = skill.desc
 		skill_data["level"] = skill.current_level
-		skill_data["experience"] = skill.experience
 		skill_data["difficulty"] = skill.find_active_difficulty(current_job)
 		skill_data["level_desc"] = skill.level_descriptions[skill.current_level]
 		skill_data["cost"] = skill.get_full_cost(job = current_job)
