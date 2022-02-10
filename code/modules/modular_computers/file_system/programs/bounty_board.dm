@@ -64,6 +64,7 @@
 				break
 	switch(action)
 		if("createBounty")
+			computer.play_interact_sound()
 			if(!current_user || !bounty_text)
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
 				return TRUE
@@ -78,6 +79,7 @@
 				playsound(i.loc, 'sound/machines/ping.ogg', 30, TRUE)
 			return TRUE
 		if("apply")
+			computer.play_interact_sound()
 			if(!current_user)
 				computer.say("Please swipe a valid ID first.")
 				return TRUE
@@ -88,6 +90,7 @@
 		if("payApplicant")
 			if(!current_user)
 				return
+			computer.play_interact_sound()
 			if(!current_user.has_money(active_request.value) || (current_user.account_holder != active_request.owner))
 				playsound(computer, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 				return
@@ -96,10 +99,12 @@
 			return TRUE
 		if("clear")
 			if(current_user)
+				computer.play_interact_sound()
 				current_user = null
 				computer.say("Account Reset.")
 				return TRUE
 		if("deleteRequest")
+			computer.play_interact_sound()
 			if(!current_user)
 				playsound(computer, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
 				return TRUE
@@ -110,10 +115,12 @@
 			GLOB.request_list.Remove(active_request)
 			return TRUE
 		if("bountyVal")
+			computer.play_interact_sound()
 			bounty_value = text2num(params["bountyval"])
 			if(!bounty_value)
 				bounty_value = 1
 		if("bountyText")
+			computer.play_interact_sound()
 			bounty_text = (params["bountytext"])
 	. = TRUE
 

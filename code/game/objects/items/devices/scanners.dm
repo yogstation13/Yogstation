@@ -111,8 +111,12 @@ GENE SCANNER
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
 	flick("[icon_state]-scan", src)	//makes it so that it plays the scan animation upon scanning, including clumsy scanning
+  
 	if(!do_after(user, target = M, required_skill = SKILL_MEDICINE, required_skill_level = SKILLLEVEL_BASIC, skill_delay_scaling = list(SKILLLEVEL_UNSKILLED = 10, SKILLLEVEL_BASIC = 10, SKILLLEVEL_TRAINED = 5, SKILLLEVEL_EXPERIENCED = 0, SKILLLEVEL_MASTER = 0)))
 		return
+    
+	playsound(src, 'sound/effects/fastbeep.ogg', 20)
+  
 	// Clumsiness/brain damage check
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
 		to_chat(user, span_notice("You stupidly try to analyze the floor's vitals!"))
@@ -763,6 +767,7 @@ GENE SCANNER
 		to_chat(user, span_warning("This device can only scan slimes!"))
 		return
 	var/mob/living/simple_animal/slime/T = M
+	playsound(src, 'sound/effects/scanbeep.ogg', 30)
 	slime_scan(T, user)
 
 /proc/slime_scan(mob/living/simple_animal/slime/T, mob/living/user)

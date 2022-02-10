@@ -1202,7 +1202,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambientsounds = HIGHSEC
 	minimap_color = "#4f4e3a"
 	airlock_wires = /datum/wires/airlock/ai
-
+/area/ai_monitored/secondarydatacore
+	name= "AI Secondary Datacore"
+	icon_state =  "ai"
+	minimap_color = "#00fff6"
 	//Turret_protected
 
 /area/ai_monitored/turret_protected
