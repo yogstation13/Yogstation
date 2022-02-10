@@ -146,9 +146,8 @@
 			borgo.toggle_ionpulse()
 
 		if("lampIntensity")
-			borgo.lamp_intensi
+			borgo.lamp_intensity = params["ref"]
 			computer.play_interact_sound()
-			ty = params["ref"]
 			borgo.toggle_headlamp(FALSE, TRUE)
 		if("selfDestruct")
 			computer.play_interact_sound()
