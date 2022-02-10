@@ -48,15 +48,18 @@
 
 // Simple proc that allows you to set the level for a skill without needing to dig for the datum
 /datum/skillset/proc/set_skill_level(skill_id, new_level, var/silent = FALSE)
-	return id_skill_list[skill_id].set_level(new_level, silent)
+	var/datum/skill/selected_skill = id_skill_list[skill_id]
+	return selected_skill.set_level(new_level, silent)
 
 // Same as above but allows you to adjust it instead
 /datum/skillset/proc/adjust_skill_level(skill_id, change, var/silent = FALSE)
-	return id_skill_list[skill_id].adjust_level(change, silent)
+	var/datum/skill/selected_skill = id_skill_list[skill_id]
+	return selected_skill.adjust_level(change, silent)
 
 // Gets the skill level of the given ID
 /datum/skillset/proc/get_skill_level(skill_id)
-	return id_skill_list[skill_id].current_level
+	var/datum/skill/selected_skill = id_skill_list[skill_id]
+	return selected_skill.current_level
 
 // Takes a representive list and applies the levels to all the skills, useful for presets or save data
 /datum/skillset/proc/set_skill_levels(var/list/new_skill_list, var/silent = FALSE)
@@ -71,7 +74,8 @@
 /datum/skillset/proc/get_skill_levels()
 	var/list/temp_skill_list = list()
 	for(var/skill_id in GLOB.all_skill_ids)
-		temp_skill_list[skill_id] = get_skill(skill_id).current_level
+		var/datum/skill/current_skill = get_skill(skill_id)
+		temp_skill_list[skill_id] = current_skill.current_level
 	return temp_skill_list
 
 // Gets the number of remaining skill points
@@ -121,4 +125,5 @@
 	set category = "IC"
 	set name = "Show Own Skills"
 
-	find_skillset(src)?.open_skill_menu(usr)
+	var/datum/skillset = find_skillset(src)
+	skillset.open_skill_menu(usr)

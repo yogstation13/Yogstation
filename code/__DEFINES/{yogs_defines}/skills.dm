@@ -141,3 +141,4 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
 
 #define GET_SKILLS(target) (find_skill(target))
 #define SKILL_CHECK(target, skill, required) (find_skill_level(target, skill) >= required)
+#define USES_SKILLS(target) (find_skillset(target)?.use_skills == TRUE)
