@@ -1770,7 +1770,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
 	if(!environment)
 		return
-	if(istype(H.loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
+
+	var/human_loc = H.loc
+
+	if(istype(human_loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 		return
 
 	var/loc_temp = H.get_temperature(environment)
@@ -1786,6 +1789,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(loc_temp < H.bodytemperature) //Place is colder than we are
 			thermal_protection -= H.get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			thermal_protection *= heat_capacity_factor
+			if(ismovable(human_loc))
+				var/atom/movable/occupied_space = human_loc
+				thermal_protection *= (1 - occupied_space.contents_thermal_insulation)
 			if(!HAS_TRAIT(H, TRAIT_NO_PASSIVE_COOLING))
 				if(H.bodytemperature < BODYTEMP_NORMAL) //we're cold, insulation helps us retain body heat and will reduce the heat we lose to the environment
 					H.adjust_bodytemperature((thermal_protection+1)*natural + max(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
@@ -1798,6 +1804,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		var/thermal_protection = 1
 		thermal_protection -= H.get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 		thermal_protection *= heat_capacity_factor
+		if(ismovable(human_loc))
+			var/atom/movable/occupied_space = human_loc
+			thermal_protection *= (1 - occupied_space.contents_thermal_insulation)
 		if(!HAS_TRAIT(H, TRAIT_NO_PASSIVE_HEATING))
 			if(H.bodytemperature < BODYTEMP_NORMAL) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
 				H.adjust_bodytemperature((thermal_protection+1)*natural + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
