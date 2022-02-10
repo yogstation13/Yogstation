@@ -29,6 +29,7 @@
 
 	var/datum/ntnet_conversation/channel = SSnetworks.station_network.get_chat_channel_by_id(active_channel)
 	var/authed = FALSE
+	computer.play_interact_sound()
 	if(channel && ((channel.operator == src) || netadmin_mode))
 		authed = TRUE
 	switch(action)
