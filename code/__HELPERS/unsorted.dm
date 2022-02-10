@@ -1486,7 +1486,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/obj/item/reagent_containers/food/snacks/store/bread,
 		/obj/item/reagent_containers/food/snacks/grown/nettle
 		)
-	blocked |= typesof(/obj/item/reagent_containers/food/snacks/customizable)
+	blocked |= typesof(/obj/item/reagent_containers/food/snacks/customizable,
+	/obj/item/reagent_containers/food/snacks/grown/banana/bombanana)
 
 	return pick(subtypesof(/obj/item/reagent_containers/food/snacks) - blocked)
 
