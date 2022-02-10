@@ -81450,6 +81450,8 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
 /area/ai_monitored/secondarydatacore)
 "eJX" = (
@@ -82903,7 +82905,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/research{
+/obj/machinery/door/airlock/vault{
 	name = "Secondary AI Core";
 	normalspeed = 0;
 	req_access_txt = "55"
@@ -87687,6 +87689,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
 /area/ai_monitored/secondarydatacore)
 "qht" = (
