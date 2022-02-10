@@ -7639,21 +7639,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"avw" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "avx" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -32262,6 +32247,25 @@
 /obj/structure/chair/office/dark,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"cUT" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
 "cVb" = (
 /turf/closed/wall,
 /area/hallway/secondary/service)
@@ -39696,6 +39700,23 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/janitor)
+"hUH" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
 "hVc" = (
 /obj/structure/table,
 /obj/item/multitool,
@@ -41458,6 +41479,21 @@
 	dir = 4
 	},
 /area/crew_quarters/theatre)
+"iSt" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
 "iSP" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -46551,24 +46587,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/service)
-"mkt" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "mkx" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -48456,13 +48474,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"nmf" = (
-/obj/effect/landmark/start/assistant,
-/obj/effect/turf_decal/pool{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "nnm" = (
 /obj/machinery/camera{
 	c_tag = "Secondary AI Core";
@@ -57565,25 +57576,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"sTk" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "sTv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -58047,28 +58039,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"tiA" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "tiN" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -61608,6 +61578,29 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"vsE" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
 "vsP" = (
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/plating,
@@ -101960,9 +101953,9 @@ xVA
 aqc
 apv
 arl
-mkt
-sTk
-avw
+hUH
+cUT
+iSt
 rea
 rVP
 azj
@@ -102219,7 +102212,7 @@ arj
 asb
 kXy
 aQG
-nmf
+aQG
 wiV
 aQG
 gSB
@@ -102480,7 +102473,7 @@ cQr
 cQr
 cQr
 khY
-tiA
+vsE
 aCr
 cIO
 aAN
