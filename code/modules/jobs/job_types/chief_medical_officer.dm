@@ -32,6 +32,8 @@
 
 	changed_maps = list("OmegaStation")
 
+	skillpoints = 40
+
 /datum/job/cmo/proc/OmegaStationChanges()
 	return TRUE
 

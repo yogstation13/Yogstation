@@ -135,15 +135,17 @@
 	if(mind_traits)
 		for(var/t in mind_traits)
 			ADD_TRAIT(H.mind, t, JOB_TRAIT)
+
 	if(uses_skills)
 		var/datum/skillset/skillset = find_skillset(H.mind)
+		skillset.use_skills = TRUE
 		var/list/new_skilllist = null
 		if(M.client.prefs.job_skills)
 			new_skilllist = M.client.prefs.job_skills?[title]
 		if(isnull(new_skilllist))	
 			new_skilllist = default_skill_list
-		message_admins(isnull(new_skilllist))
-		skillset.set_skill_levels(new_skilllist)
+		skillset.set_skill_levels(new_skilllist, TRUE)
+
 	H.mind.add_employee(/datum/corporation/nanotrasen)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)

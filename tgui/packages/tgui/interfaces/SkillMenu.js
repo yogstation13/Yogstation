@@ -6,13 +6,19 @@ import { Window } from '../layouts';
 
 const skillLevelToColor = skillLevel => {
   if (skillLevel <= 1) {
-    return "bad";
+    return COLORS.skills.unskilled;
+  }
+  if (skillLevel <= 2) {
+    return COLORS.skills.basic;
   }
   if (skillLevel <= 3) {
-    return "average";
+    return COLORS.skills.trained;
+  }
+  if (skillLevel <= 4) {
+    return COLORS.skills.experienced;
   }
   if (skillLevel <= 5) {
-    return "good";
+    return COLORS.skills.master;
   }
 };
 
@@ -240,3 +246,4 @@ export const SkillMenu = (props, context) => {
     </Window>
   );
 };
+

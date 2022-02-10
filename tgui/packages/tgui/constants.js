@@ -31,6 +31,14 @@ export const COLORS = {
     burn: '#e67e22',
     brute: '#e74c3c',
   },
+  // Skill level colors
+  skills: {
+    unskilled: 'bad',
+    basic: 'average',
+    trained: '#f1c40f',
+    experienced: 'good',
+    master: '#3498db',
+  },
 };
 
 // Colors defined in CSS

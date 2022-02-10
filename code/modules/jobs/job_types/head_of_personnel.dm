@@ -40,6 +40,8 @@
 
 	changed_maps = list("OmegaStation")
 
+	skillpoints = 40
+
 /datum/job/hop/proc/OmegaStationChanges()
 	access = get_all_accesses()
 	minimal_access = get_all_accesses()

@@ -32,6 +32,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 
+	skillpoints = 40
+
 /datum/outfit/job/ce
 	name = "Chief Engineer"
 	jobtype = /datum/job/chief_engineer
