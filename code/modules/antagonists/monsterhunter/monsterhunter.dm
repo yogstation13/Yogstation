@@ -6,12 +6,10 @@
 #define STATUS_EFFECT_HUNTERPINPOINTER /datum/status_effect/agent_pinpointer/hunter_edition
 
 /datum/antagonist/monsterhunter
-	var/hud_type = "bloodsucker"
 	name = "\improper Monster Hunter"
 	roundend_category = "Monster Hunters"
 	antagpanel_category = "Monster Hunter"
 	job_rank = ROLE_MONSTERHUNTER
-	hud_type = "obssesed"
 	var/list/datum/action/powers = list()
 	var/datum/martial_art/hunterfu/my_kungfu = new
 	var/give_objectives = TRUE
@@ -24,11 +22,11 @@
 	ADD_TRAIT(owner.current, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
 	ADD_TRAIT(owner.current, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
 	/// Give Monster Hunter powers
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_OBSESSED]
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_MHUNTER]
 	trackvamp.Grant(owner.current)
 	fortitude.Grant(owner.current)
 	hud.join_hud(owner.current)
-	set_antag_hud(owner.current, "obssesed")
+	set_antag_hud(owner.current, "monsterhunter")
 	if(give_objectives)
 		/// Give Hunter Objective
 		var/datum/objective/bloodsucker/monsterhunter/monsterhunter_objective = new
@@ -54,7 +52,7 @@
 	for(var/all_status_traits in owner.current.status_traits)
 		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
 	/// Remove Monster Hunter powers
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_OBSESSED]
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_MHUNTER]
 	trackvamp.Remove(owner.current)
 	fortitude.Remove(owner.current)
 	hud.leave_hud(owner.current)

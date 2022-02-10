@@ -240,7 +240,6 @@
 	cost = 10
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
 	repeatable = FALSE
-	var/datum/team/bloodsucker/bloodsucker_team
 
 /datum/dynamic_ruleset/latejoin/bloodsucker/execute()
 	var/mob/latejoiner = pick(candidates) // This should contain a single player, but in case.

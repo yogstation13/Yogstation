@@ -78,6 +78,14 @@
 	if(current_target.eye_blind > 0)
 		to_chat(owner, "[current_target] is blind.")
 		return FALSE
+	//Facing target?
+	if(!is_A_facing_B(owner, current_target)) // in unsorted.dm
+		to_chat(owner, span_warning("You must be facing [current_target]."))
+		return FALSE
+	// Target facing me? (On the floor, they're facing everyone)
+	if(((current_target.mobility_flags & MOBILITY_STAND) && !is_A_facing_B(current_target, owner) && level_current <= 4))
+		to_chat(owner, span_warning("[current_target] must be facing you."))
+		return FALSE
 	// Gone through our checks, let's mark our guy.
 	mesmerized_target = current_target
 	return TRUE
@@ -89,7 +97,7 @@
 
 	if(istype(mesmerized_target))
 		to_chat(owner, "Attempting to hypnotically gaze [mesmerized_target]...")
-
+		
 	if(!do_mob(user, mesmerized_target, 4 SECONDS, NONE, TRUE, extra_checks = CALLBACK(src, .proc/ContinueActive, user, mesmerized_target)))
 		return
 

@@ -1290,18 +1290,3 @@
 		var/mouseparams = list2params(paramslist)
 		usr_client.Click(src, loc, null, mouseparams)
 		return TRUE
-
-/proc/is_source_facing_target(atom/source,atom/target)
-	if(!istype(source) || !istype(target))
-		return FALSE
-	if(isliving(source))
-		var/mob/living/source_mob = source
-		if(source_mob.mobility_flags & ~MOBILITY_STAND)
-			return FALSE
-	var/goal_dir = get_dir(source, target)
-	var/clockwise_source_dir = turn(source.dir, -45)
-	var/anticlockwise_source_dir = turn(source.dir, 45)
-
-	if(source.dir == goal_dir || clockwise_source_dir == goal_dir || anticlockwise_source_dir == goal_dir)
-		return TRUE
-	return FALSE

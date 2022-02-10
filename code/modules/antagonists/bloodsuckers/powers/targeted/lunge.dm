@@ -91,7 +91,7 @@
 	var/mob/living/carbon/target = hit_atom
 	var/turf/target_turf = get_turf(target)
 	// Check: Will our lunge knock them down? This is done if the target is looking away, the user is in Cloak of Darkness, or in a closet.
-	var/do_knockdown = !is_source_facing_target(target, owner) || owner.alpha <= 40 || istype(owner.loc, /obj/structure/closet)
+	var/do_knockdown = !is_A_facing_B(target, owner) || owner.alpha <= 40 || istype(owner.loc, /obj/structure/closet)
 
 	/// We got a target?
 	/// Am I next to my target to start giving the effects?
