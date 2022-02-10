@@ -97,8 +97,8 @@
 
 	if(istype(mesmerized_target))
 		to_chat(owner, "Attempting to hypnotically gaze [mesmerized_target]...")
-		
-	if(!do_mob(user, mesmerized_target, 4 SECONDS, NONE, TRUE, extra_checks = CALLBACK(src, .proc/ContinueActive, user, mesmerized_target)))
+
+	if(!do_mob(user, mesmerized_target, 4 SECONDS, NONE, TRUE))
 		return
 
 	PowerActivatedSuccessfully() // PAY COST! BEGIN COOLDOWN!

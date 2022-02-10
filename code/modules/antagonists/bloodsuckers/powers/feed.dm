@@ -365,3 +365,4 @@
 	var/mob/living/O = owner
 	O.SetImmobilized(0)
 	REMOVE_TRAIT(owner, TRAIT_MUTE, BLOODSUCKER_TRAIT)
+	DeactivatePower()
