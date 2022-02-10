@@ -24838,6 +24838,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/detectives_office)
+"cZr" = (
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "cZv" = (
 /obj/structure/closet/l3closet/scientist,
 /obj/effect/turf_decal/tile/purple,
@@ -27939,6 +27946,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"gxc" = (
+/obj/structure/table,
+/obj/item/kitchen/rollingpin,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "gxA" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -28877,16 +28894,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"hqI" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "hqX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -37327,13 +37334,6 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
-"qbN" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "qcg" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -90445,8 +90445,8 @@ aCe
 hhR
 jTO
 ylL
-qbN
-hqI
+gxc
+cZr
 jTO
 mYt
 ihJ

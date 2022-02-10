@@ -122758,6 +122758,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/storage/backroom)
+"lDq" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/oven,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "lEz" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -166690,7 +166695,7 @@ aYC
 bdK
 bff
 lvG
-xAi
+lDq
 bjG
 aJs
 bnq

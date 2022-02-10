@@ -1361,6 +1361,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 20
 
+/datum/uplink_item/device_tools/airshoes
+	name = "Air Shoes"
+	desc = "Popular in underground racing rings, these shoes come with built-in jets, allowing the users to reach high speeds for prolonged durations and short bursts. \
+	Users should keep in mind that despite being easier to control than their Wheely cousins, this footwear will not protect you from high-speed impacts."
+	item = /obj/item/clothing/shoes/airshoes
+	cost = 4
+	manufacturer = /datum/corporation/traitor/cybersun
+	surplus = -1
+	restricted = TRUE
+
 /datum/uplink_item/device_tools/assault_pod
 	name = "Assault Pod Targeting Device"
 	desc = "Use this to select the landing zone of your assault pod."
@@ -1621,6 +1631,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	restricted = TRUE
+
+/datum/uplink_item/device_tools/potion/traitor
+	name = "Lesser Syndicate Sentience Potion"
+	item = /obj/item/slimepotion/slime/sentience/traitor
+	desc = "The Syndicate have recently synthesized artificial sentience potions thanks to stolen slime cores. \
+			Using it will make any animal sentient, and bound to serve you in your dastardly deeds."
+	cost = 2
+	limited_stock = 2 //only buy two, prevents certain mushroom shenanigans
+	include_modes = list() //clear the list
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/suspiciousphone
 	name = "Protocol CRAB-17 Phone"
@@ -2000,6 +2020,17 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	restricted_roles = list("Chaplain")
 	surplus = 5 //Very low chance to get it in a surplus crate even without being the chaplain
+	
+/datum/uplink_item/role_restricted/horror
+	name = "Horror-in-a-box"
+	desc = "When dissecting the head of a dead Nanotrasen scientist, our surgeons noticed an incredibly peculiar creature inside and managed to extract it into safe containment. \
+	Either a failed experiment or otherworldly monster, this creature has been trained to aid whoever wakes it up. If you aren't afraid of it entering your head, it can prove a useful ally. \
+	We take no responsibility for your newfound madness and accept no refunds."
+	item = /obj/item/horrorspawner
+	cost = 16
+	surplus = 0
+	restricted_roles = list("Curator")
+	player_minimum = 20
 
 /datum/uplink_item/role_restricted/explosive_hot_potato
 	name = "Exploding Hot Potato"
