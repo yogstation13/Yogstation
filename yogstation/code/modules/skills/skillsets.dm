@@ -126,4 +126,4 @@
 	set name = "Show Own Skills"
 
 	var/datum/skillset/target_skillset = find_skillset(src)
-	skillset.open_skill_menu(usr)
+	target_skillset.open_skill_menu(usr)

@@ -11,7 +11,7 @@
 #define SKILLDIF_HARD			3
 
 //Physical Skills
-#define SKILL_STRENGHT			"Strength"
+#define SKILL_STRENGTH			"Strength"
 #define SKILL_DEXTERITY			"Dexterity"
 #define SKILL_ENDURANCE			"Endurance"
 
@@ -46,7 +46,7 @@
 #define SKILL_ATMOSPHERICS		"Atmospherics"
 
 GLOBAL_LIST_INIT(all_skill_ids, list(
-	SKILL_STRENGHT,
+	SKILL_STRENGTH,
 	SKILL_DEXTERITY,
 	SKILL_ENDURANCE,
 	SKILL_BOTANY,
@@ -139,6 +139,9 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
 		if(3)
 			return "Hard"
 
+/proc/usesSkills(target)
+	var/datum/skillset/target_skillset = find_skillset(target)
+	target_skillset.use_skills == TRUE
+
 #define GET_SKILLS(target) (find_skill(target))
 #define SKILL_CHECK(target, skill, required) (find_skill_level(target, skill) >= required)
-#define USES_SKILLS(target) (find_skillset(target)?.use_skills == TRUE)

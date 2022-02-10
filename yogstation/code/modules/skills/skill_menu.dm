@@ -1,6 +1,6 @@
 /datum/skill_menu
 	var/datum/skillset/skillset
-	var/current_skill = SKILL_STRENGHT
+	var/current_skill = SKILL_STRENGTH
 
 /datum/skill_menu/New(_skillset)
 	skillset = _skillset

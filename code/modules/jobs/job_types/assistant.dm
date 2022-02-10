@@ -20,7 +20,7 @@ Assistant
 
 	alt_titles = list("Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate")
 	default_skill_list = list(
-		SKILL_STRENGHT = SKILLLEVEL_BASIC,
+		SKILL_STRENGTH = SKILLLEVEL_BASIC,
 		SKILL_DEXTERITY = SKILLLEVEL_BASIC,
 		SKILL_ENDURANCE = SKILLLEVEL_BASIC,
 		SKILL_BOTANY = SKILLLEVEL_BASIC,

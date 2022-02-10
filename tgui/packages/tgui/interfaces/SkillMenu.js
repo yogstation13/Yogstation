@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Flex, LabeledList, ProgressBar, Icon, Input, Section, Tabs } from '../components';
+import { useBackend } from '../backend';
+import { Button, Flex, LabeledList, Icon, Section, Tabs } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
 

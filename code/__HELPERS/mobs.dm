@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(!user)
 		return 0
 	var/atom/Tloc = null
-	if(!isnull(required_skill) && USES_SKILLS(user))
+	if(!isnull(required_skill) && usesSkills(user))
 		var/datum/skill/user_skill = find_skill(user, required_skill)
 		if(SKILL_CHECK(user, required_skill, required_skill_level))
 			if(skill_delay_scaling.len > 0)

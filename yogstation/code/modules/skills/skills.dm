@@ -12,7 +12,6 @@
 							SKILLLEVEL_TRAINED		= "Trained Description",
 							SKILLLEVEL_EXPERIENCED	= "Experienced Description",
 							SKILLLEVEL_MASTER		= "Master Description")
-	var/experience = 0
 	var/difficulty = 1
 	var/max_starting
 	var/list/proficient_jobs
@@ -48,19 +47,6 @@
 	if(new_level > SKILLLEVEL_MASTER || new_level < SKILLLEVEL_UNSKILLED)
 		return
 	return set_level(new_level, silent)
-
-/datum/skill/proc/update_experience_level()
-	switch(experience)
-		if(8 * difficulty * 100 to INFINITY)
-			current_level = SKILLLEVEL_MASTER
-		if(4 * difficulty * 100 to 8 * difficulty * 100 )
-			current_level = SKILLLEVEL_EXPERIENCED
-		if(2 * difficulty * 100 to 4 * difficulty * 100)
-			current_level = SKILLLEVEL_TRAINED
-		if(difficulty * 100 to 2 * difficulty * 100)
-			current_level = SKILLLEVEL_BASIC
-		else
-			current_level = SKILLLEVEL_UNSKILLED
 
 //Caulculation Procs
 /datum/skill/proc/find_active_difficulty(job)
@@ -117,7 +103,7 @@
 	to_chat(parent.owner, span_warning("You struggle as you lack the knowledge in [name]."))
 
 /datum/skill/strength
-	id = SKILL_STRENGHT
+	id = SKILL_STRENGTH
 	name = "Strength"
 	catagory = ""
 	icon = "box"
