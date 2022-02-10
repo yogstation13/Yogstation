@@ -95,7 +95,7 @@ export const SkillSelectionMenu = (props, context) => {
                 {jobs.map(job => (
                   <Tabs.Tab
                     key={job}
-                    selected={currentJob==job}
+                    selected={currentJob===job}
                     onClick={() => act('changeCurrentJob', {
                       job: job })}>
                     {job}
@@ -117,9 +117,6 @@ export const SkillSelectionMenu = (props, context) => {
                   }}>
                   {skillBalance}/{maxSkillPoints}
                 </ProgressBar>
-              )}
-              buttons={(
-                <Fragment />
               )}>
               <Flex grow={1} basis={0}>
                 <Tabs vertical>

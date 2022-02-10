@@ -142,10 +142,8 @@ export const SkillMenu = (props, context) => {
                 width="500px">
                 <Flex>
                   <Flex.Item>
-                    <Fragment>
-                      <Icon name="user-circle"
-                        verticalAlign="middle" size="4.5" mr="1rem" mt=".5rem" ml={1} />
-                    </Fragment>
+                    <Icon name="user-circle"
+                      verticalAlign="middle" size="4.5" mr="1rem" mt=".5rem" ml={1} />
                   </Flex.Item>
                   <Flex.Item>
                     <LabeledList>
@@ -154,12 +152,12 @@ export const SkillMenu = (props, context) => {
                         {name}
                       </LabeledList.Item>
                       {(job_title === job ? (
-                        (<LabeledList.Item
+                        <LabeledList.Item
                           label="Job">
 
                           {job_title}
 
-                        </LabeledList.Item>)
+                        </LabeledList.Item>
                       ):(
                         <LabeledList.Item
                           label="Job">
