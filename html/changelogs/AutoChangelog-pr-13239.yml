@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed rough metal walls and false rough metal walls dropping the wrong amount of rods when deconstructed"
