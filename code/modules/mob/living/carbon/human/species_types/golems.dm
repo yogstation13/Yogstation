@@ -222,11 +222,11 @@
 
 /datum/species/golem/titanium/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "ash"
+	C.weather_immunities |= WEATHER_ASH
 
 /datum/species/golem/titanium/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= "ash"
+	C.weather_immunities -= WEATHER_ASH
 
 //Immune to ash storms and lava
 /datum/species/golem/plastitanium
@@ -241,13 +241,13 @@
 
 /datum/species/golem/plastitanium/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "lava"
-	C.weather_immunities |= "ash"
+	C.weather_immunities |= WEATHER_LAVA
+	C.weather_immunities |= WEATHER_ASH
 
 /datum/species/golem/plastitanium/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= "ash"
-	C.weather_immunities -= "lava"
+	C.weather_immunities -= WEATHER_ASH
+	C.weather_immunities -= WEATHER_LAVA
 
 //Fast and regenerates... but can only speak like an abductor
 /datum/species/golem/alloy
