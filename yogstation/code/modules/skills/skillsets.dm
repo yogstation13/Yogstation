@@ -125,5 +125,5 @@
 	set category = "IC"
 	set name = "Show Own Skills"
 
-	var/datum/skillset = find_skillset(src)
+	var/datum/skillset/target_skillset = find_skillset(src)
 	skillset.open_skill_menu(usr)
