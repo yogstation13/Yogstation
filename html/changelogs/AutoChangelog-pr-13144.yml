@@ -1,5 +1,0 @@
-author: "  Greniza, ExcessiveUseOfCobblestone, RatFromTheJungle"
-delete-after: true 
-changes: 
-  - tweak: "bluespace bodybags now inherit the weight of its heaviest item and It is much easier for a conscious individual to escape from them."
-  - rscadd: "Environment protection bags, which protect their occupants from weather, and give protection from temperature and pressure. The rare variants even have the same protection effects as a space suit."
