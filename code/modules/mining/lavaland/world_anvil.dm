@@ -13,11 +13,15 @@
 	var/list/placed_objects = list()
 
 /obj/structure/world_anvil/update_icon()
-	icon_state = forge_charges > 0 ? "anvil" : "anvil_a"
+	icon_state = forge_charges > 0 ? "anvil_a" : "anvil"
+	if(forge_charges > 0)
+		set_light(4,1,LIGHT_COLOR_ORANGE)
+	else
+		set_light(0)
 
 /obj/structure/world_anvil/examine(mob/user)
 	. = ..()
-	. += "It currently has [forge_charges] forge[forge_charges > 1 ? "s" : ""] remaining."
+	. += "It currently has [forge_charges] forge[forge_charges != 1 ? "s" : ""] remaining."
 
 /obj/structure/world_anvil/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I,/obj/item/twohanded/required/gibtonite))
@@ -38,20 +42,39 @@
 	UnregisterSignal(I, COMSIG_MOVABLE_MOVED)
 
 /obj/structure/world_anvil/attack_hand(mob/user)
+	if(LAZYLEN(placed_objects) == 0)
+		to_chat(user,"You must place a piece of plasma magmite and either a kinetic accelerator or advanced plasma cutter on the anvil!")
+		return ..()
 	if(forge_charges <= 0)
-		to_chat(user,"The forge is not heated enough to be usable!")
+		to_chat(user,"The anvil is not heated enough to be usable!")
+		return ..()
+	var/magmite_amount = 0
+	var/used_magmite = 0
+	for(var/obj/item/magmite in placed_objects)
+		magmite_amount++
+	if(magmite_amount == 0)
+		to_chat(user,"The anvil does not have any plasma magmite on it!")
 		return ..()
 	for(var/obj/item/I in placed_objects)
-		if(istype(I,/obj/item/gun/energy/kinetic_accelerator) && forge_charges > 0)
+		if(istype(I,/obj/item/gun/energy/kinetic_accelerator) && !istype(I,/obj/item/gun/energy/kinetic_accelerator/crossbow) && forge_charges > 0 && used_magmite < magmite_amount)
 			var/obj/item/gun/energy/kinetic_accelerator/gun = I
 			gun.max_mod_capacity = 120 //should make a new gun and replace it, just for testing
 			forge_charges--
+			used_magmite++
 			to_chat(user,"You forge an upgrade to your kinetic accelerator. It now can hold 120% mod capacity.")
-		if(istype(I,/obj/item/gun/energy/plasmacutter/adv) && forge_charges > 0)
+		if(istype(I,/obj/item/gun/energy/plasmacutter/adv) && forge_charges > 0 && used_magmite < magmite_amount)
 			var/obj/item/gun/energy/plasmacutter/adv/cutter = I
-			cutter.ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/super) //should make a new gun and replace it, just for testing
+			cutter.ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/forge) //should make a new gun and replace it, just for testing
 			forge_charges--
+			used_magmite++
 			to_chat(user,"You forge an upgrade to your advanced plasma cutter. It now goes extra distance.")
+	//time to clean up all the magmite we used
+	for(var/obj/item/magmite in placed_objects)
+		if(used_magmite != 0)
+			used_magmite--
+			qdel(magmite)
 	update_icon()
+	if(forge_charges == 0)
+		to_chat(user,"The world anvil cools down.")
 	
 	
