@@ -60,11 +60,11 @@
 	var/mob/living/current_target = target_atom // We already know it's carbon due to CheckValidTarget()
 	// No mind
 	if(!current_target.mind)
-		to_chat(owner, "[current_target] is mindless.")
+		to_chat(owner, span_warning("[current_target] is mindless."))
 		return FALSE
 	// Bloodsucker
 	if(IS_BLOODSUCKER(current_target))
-		to_chat(owner, "Bloodsuckers are immune to [src].")
+		to_chat(owner, span_notice("Bloodsuckers are immune to [src]."))
 		return FALSE
 	// Dead/Unconscious
 	if(current_target.stat > CONSCIOUS)
@@ -72,11 +72,11 @@
 		return FALSE
 	// Target has eyes?
 	if(!current_target.getorganslot(ORGAN_SLOT_EYES))
-		to_chat(owner, "[current_target] has no eyes.")
+		to_chat(owner, span_warning("[current_target] has no eyes."))
 		return FALSE
 	// Target blind?
 	if(current_target.eye_blind > 0)
-		to_chat(owner, "[current_target] is blind.")
+		to_chat(owner, span_warning("[current_target] is blind."))
 		return FALSE
 	//Facing target?
 	if(!is_A_facing_B(owner, current_target)) // in unsorted.dm
@@ -96,22 +96,22 @@
 	var/mob/living/user = owner
 
 	if(istype(mesmerized_target))
-		to_chat(owner, "Attempting to hypnotically gaze [mesmerized_target]...")
+		to_chat(owner, span_notice("Attempting to hypnotically gaze [mesmerized_target]..."))
 
-	if(!do_mob(user, mesmerized_target, 4 SECONDS, NONE, TRUE))
+	if(!do_mob(user, mesmerized_target, 4 SECONDS, NONE, TRUE, CALLBACK(src, .proc/ContinueActive, user, mesmerized_target)))
 		return
 
 	PowerActivatedSuccessfully() // PAY COST! BEGIN COOLDOWN!
 	var/power_time = 90 + level_current * 15
 	if(IS_MONSTERHUNTER(mesmerized_target))
-		to_chat(mesmerized_target, span_notice("You feel your eyes burn for a while, but it passes."))
+		to_chat(mesmerized_target, span_warning("You feel your eyes burn for a while, but it passes."))
 		return
 	if(HAS_TRAIT_FROM(mesmerized_target, TRAIT_MUTE, BLOODSUCKER_TRAIT))
-		to_chat(owner, "[mesmerized_target] is already in a hypnotic gaze.")
+		to_chat(owner, span_notice("[mesmerized_target] is already in a hypnotic gaze."))
 		return
 	if(iscarbon(mesmerized_target))
 		var/mob/living/carbon/mesmerized = mesmerized_target
-		to_chat(owner, "Successfully mesmerized [mesmerized].")
+		to_chat(owner, span_notice("Successfully mesmerized [mesmerized]."))
 		if(level_current >= 6)
 			mesmerized.SetUnconscious(world.time + power_time )
 		else if(level_current >= 2)

@@ -49,7 +49,7 @@
 
 	// Wearing mask
 	if(user.is_mouth_covered())
-		to_chat(owner, "your mouth is covered!")
+		to_chat(owner, span_warning("Your mouth is covered!"))
 		return FALSE
 	// Find my Target!
 	if(!find_target())
@@ -365,4 +365,3 @@
 	var/mob/living/O = owner
 	O.SetImmobilized(0)
 	REMOVE_TRAIT(owner, TRAIT_MUTE, BLOODSUCKER_TRAIT)
-	DeactivatePower()
