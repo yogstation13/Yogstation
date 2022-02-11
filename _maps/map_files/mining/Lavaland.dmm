@@ -277,6 +277,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
+"ev" = (
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "ez" = (
 /obj/effect/decal/cleanable/shreds,
 /turf/open/indestructible/necropolis,
@@ -323,6 +333,19 @@
 /obj/structure/bookcase/random,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"fz" = (
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "fQ" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/unexplored/danger)
@@ -398,6 +421,16 @@
 /obj/structure/stone_tile/block,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"gp" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "gr" = (
 /obj/structure/stone_tile{
 	dir = 1
@@ -422,19 +455,6 @@
 	dir = 4
 	},
 /obj/structure/stone_tile,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"gy" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "gB" = (
@@ -1104,13 +1124,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"lr" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/block{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "ls" = (
 /obj/structure/stone_tile/cracked{
 	dir = 8
@@ -1146,15 +1159,6 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"lz" = (
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/block{
-	dir = 4
-	},
-/turf/open/lava/smooth/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "lD" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 4
@@ -1184,13 +1188,6 @@
 	dir = 8
 	},
 /turf/open/lava/smooth/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"lG" = (
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/block,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "lI" = (
 /obj/structure/stone_tile/cracked{
@@ -1757,6 +1754,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"pH" = (
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "pJ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -1940,6 +1947,16 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered/dragonslair)
+"sR" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "sY" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 4
@@ -2038,6 +2055,29 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered/dragonslair)
+"ue" = (
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ut" = (
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "uu" = (
 /obj/machinery/door/airlock{
 	name = "Labor Camp Library"
@@ -2286,6 +2326,16 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered/dragonslair)
+"Af" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Al" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -2554,6 +2604,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Ey" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile/block/cracked,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Ez" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/seeds/onion,
@@ -2630,6 +2688,21 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
+"Gn" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/structure/world_anvil,
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Gr" = (
 /obj/structure/sign/poster/official/do_not_question{
 	pixel_y = 32
@@ -3167,6 +3240,19 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/laborcamp)
+"TP" = (
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Ub" = (
 /turf/closed/wall/r_wall,
 /area/lavaland/surface/outdoors/explored)
@@ -3297,6 +3383,13 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/laborcamp)
+"WA" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/block,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "WF" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/item/coin/adamantine,
@@ -34568,8 +34661,8 @@ gs
 gr
 gr
 kR
-ab
-ab
+js
+ja
 ab
 ab
 aj
@@ -34825,11 +34918,11 @@ jF
 gM
 kB
 jm
-ix
-ab
-jS
-aj
-aj
+pH
+hH
+fz
+js
+ja
 aj
 aj
 lI
@@ -35083,10 +35176,10 @@ kg
 hs
 gr
 hH
-ab
-ab
-aj
-ly
+TP
+Af
+Af
+sR
 aj
 aj
 aj
@@ -35340,11 +35433,11 @@ gO
 kD
 ag
 le
+Af
+Ey
 aa
 aa
 ls
-aj
-aj
 aj
 aj
 aj
@@ -35596,11 +35689,11 @@ gr
 gr
 gr
 gr
-gs
+kR
+gP
+gP
 aa
 lp
-lp
-lz
 lp
 lF
 lp
@@ -35853,14 +35946,14 @@ fT
 kj
 fT
 fT
-lg
 gP
+Gn
+kR
+ma
 lq
 lu
-lq
+WA
 lD
-lG
-lu
 lQ
 lu
 lW
@@ -36110,13 +36203,13 @@ gr
 ah
 gG
 gs
-gy
+gP
+kR
+gP
 aa
-lr
+ev
 lv
-lv
-lE
-lv
+lR
 lE
 lR
 lv
@@ -36368,11 +36461,11 @@ gM
 kH
 gr
 hH
+hH
+ue
 aa
 aa
 lw
-aj
-aj
 aj
 lI
 aj
@@ -36625,10 +36718,10 @@ kl
 hs
 gG
 lj
-ab
-ab
-aj
-aj
+ut
+Af
+Ey
+gp
 mv
 my
 lw
@@ -36881,11 +36974,11 @@ jN
 gO
 kJ
 gr
-it
-ab
-ab
-aj
-aj
+Af
+Ey
+kR
+iu
+jq
 aj
 ab
 jQ
@@ -37138,10 +37231,10 @@ gr
 gr
 jm
 gP
+iu
+iy
 ab
 ab
-ab
-aj
 aj
 aj
 aj

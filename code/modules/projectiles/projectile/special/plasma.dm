@@ -33,6 +33,10 @@
 	range = 5
 	mine_range = 5
 
+/obj/item/projectile/plasma/adv/super
+	range = 7
+	mine_range = 7
+
 /obj/item/projectile/plasma/scatter
 	damage = 2
 	range = 5

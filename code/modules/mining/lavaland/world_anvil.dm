@@ -1,0 +1,57 @@
+/obj/structure/world_anvil
+	name = "World Anvil"
+	desc = "An anvil that is connected through lava reservoirs to the core of lavaland. Whoever was using this last was creating something powerful."
+	icon = 'icons/obj/lavaland/anvil.dmi'
+	icon_state = "anvil"
+	density = TRUE
+	anchored = TRUE
+	layer = TABLE_LAYER
+	climbable = TRUE
+	pass_flags = LETPASSTHROW
+
+	var/forge_charges = 0
+	var/list/placed_objects = list()
+
+/obj/structure/world_anvil/update_icon()
+	icon_state = forge_charges > 0 ? "anvil" : "anvil_a"
+
+/obj/structure/world_anvil/examine(mob/user)
+	. = ..()
+	. += "It currently has [forge_charges] forge[forge_charges > 1 ? "s" : ""] remaining."
+
+/obj/structure/world_anvil/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I,/obj/item/twohanded/required/gibtonite))
+		var/obj/item/twohanded/required/gibtonite/placed_ore = I
+		forge_charges = forge_charges + placed_ore.quality
+		to_chat(user,"You place down the gibtonite on the world anvil, and watch as the gibtonite melts into it. The world anvil is now heated enough for [forge_charges] forge[forge_charges > 1 ? "s" : ""].")
+		qdel(placed_ore)
+		update_icon()
+	else //put everything else except gibtonite on the forge
+		if(user.transferItemToLoc(I, src))
+			vis_contents += I
+			placed_objects += I
+			RegisterSignal(I, COMSIG_MOVABLE_MOVED, .proc/ItemMoved,TRUE)
+
+/obj/structure/world_anvil/proc/ItemMoved(obj/item/I, atom/OldLoc, Dir, Forced)
+	vis_contents -= I
+	placed_objects -= I
+	UnregisterSignal(I, COMSIG_MOVABLE_MOVED)
+
+/obj/structure/world_anvil/attack_hand(mob/user)
+	if(forge_charges <= 0)
+		to_chat(user,"The forge is not heated enough to be usable!")
+		return ..()
+	for(var/obj/item/I in placed_objects)
+		if(istype(I,/obj/item/gun/energy/kinetic_accelerator) && forge_charges > 0)
+			var/obj/item/gun/energy/kinetic_accelerator/gun = I
+			gun.max_mod_capacity = 120 //should make a new gun and replace it, just for testing
+			forge_charges--
+			to_chat(user,"You forge an upgrade to your kinetic accelerator. It now can hold 120% mod capacity.")
+		if(istype(I,/obj/item/gun/energy/plasmacutter/adv) && forge_charges > 0)
+			var/obj/item/gun/energy/plasmacutter/adv/cutter = I
+			cutter.ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/super) //should make a new gun and replace it, just for testing
+			forge_charges--
+			to_chat(user,"You forge an upgrade to your advanced plasma cutter. It now goes extra distance.")
+	update_icon()
+	
+	

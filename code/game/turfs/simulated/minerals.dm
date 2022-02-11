@@ -68,9 +68,9 @@
 	else
 		return attack_hand(user)
 
-/turf/closed/mineral/proc/gets_drilled(mob/user, triggered_by_explosion = 0)
+/turf/closed/mineral/proc/gets_drilled(mob/user, triggered_by_explosion = 0, override_bonus = FALSE)
 	if (mineralType && (mineralAmt > 0))
-		if(triggered_by_explosion)
+		if(triggered_by_explosion && !override_bonus)
 			mineralAmt += 2 //bonus if it was exploded, USE EXPLOSIVES WOOO
 		new mineralType(src, mineralAmt)
 		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
@@ -274,7 +274,7 @@
 	hardness = 2
 
 	mineralSpawnChanceList = list(
-		/turf/closed/mineral/uranium/volcanic/hard = 5, /turf/closed/mineral/diamond/volcanic/hard = 1, /turf/closed/mineral/gold/volcanic/hard = 10, /turf/closed/mineral/titanium/volcanic/hard = 11,
+		/turf/closed/mineral/uranium/volcanic/hard = 5, /turf/closed/mineral/diamond/volcanic/hard = 1, /turf/closed/mineral/gold/volcanic/hard = 10, /turf/closed/mineral/titanium/volcanic/hard = 11, /turf/closed/mineral/magmite/volcanic/hard = 0.25,
 		/turf/closed/mineral/silver/volcanic/hard = 12, /turf/closed/mineral/plasma/volcanic/hard = 20, /turf/closed/mineral/iron/volcanic/hard = 20, /turf/closed/mineral/dilithium/volcanic/hard = 2, /turf/closed/mineral/gibtonite/volcanic/hard = 4, /turf/closed/mineral/bscrystal/volcanic/hard = 2, /turf/open/floor/plating/asteroid/airless/cave/volcanic = 1)
 
 /turf/closed/mineral/random/snow
@@ -793,3 +793,25 @@
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice/icemoon
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/closed/mineral/magmite
+	mineralType = /obj/item/magmite
+	spread = 0
+	scan_state = "rock_Magmite"
+
+/turf/closed/mineral/magmite/gets_drilled(mob/user, triggered_by_explosion = 0)
+	if(!triggered_by_explosion)
+		mineralAmt = 0
+	..(user,triggered_by_explosion,TRUE)
+
+/turf/closed/mineral/magmite/volcanic
+	environment_type = "basalt"
+	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+	defer_change = TRUE
+
+/turf/closed/mineral/magmite/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 2
+
