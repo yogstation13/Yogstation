@@ -85,6 +85,9 @@
 	throwforce = 30
 	throw_range = 7
 	w_class = WEIGHT_CLASS_HUGE
+	var/tesla_power = 20000
+	var/tesla_range = 20
+	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
 
 /obj/item/twohanded/mjollnir/proc/shock(mob/living/target)
 	target.Stun(60)
@@ -107,7 +110,20 @@
 /obj/item/twohanded/mjollnir/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(isliving(hit_atom))
-		shock(hit_atom)
+		var/mob/M = hit_atom
+		var/atom/A = M.anti_magic_check()
+		if(A)
+			if(isitem(A))
+				M.visible_message(span_warning("[M]'s [A] glows brightly as it reflects the power back into the hammer!"))
+			visible_message(span_boldwarning("<span class='big bold'>The power swelling inside Mjolnir becomes too much and its form fractures!</span><br>"))
+			explosion(src, 0, 1, 5, 5, TRUE, FALSE, 2)
+			playsound(src, 'sound/magic/lightningbolt.ogg', 100, 1, extrarange = 30)
+			tesla_zap(src, tesla_range, tesla_power, tesla_flags)
+			tesla_zap(src, tesla_range, tesla_power, tesla_flags)
+			tesla_zap(src, tesla_range, tesla_power, tesla_flags)		
+			qdel(src)
+		else
+			shock(hit_atom)
 
 /obj/item/twohanded/mjollnir/update_icon()  //Currently only here to fuck with the on-mob icons.
 	icon_state = "mjollnir[wielded]"
