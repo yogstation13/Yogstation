@@ -113,6 +113,15 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
 		var/mob/living/L = target
 		return L.mind?.get_skillset()
 
+	//If its a skill, get it from the parent
+	if(istype(target, /datum/skill))
+		var/datum/skill/S = target
+		return S.parent
+
+	//Maybe you just want to confirm its a skillset?
+	if(istype(target, /datum/skillset))
+		return target
+
 	//No match
 	return null
 

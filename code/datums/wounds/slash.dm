@@ -51,8 +51,14 @@
 /datum/wound/slash/get_examine_description(mob/user)
 	if(!limb.current_gauze)
 		return ..()
-
-	var/list/msg = list("The cuts on [victim.p_their()] [limb.name] are wrapped with ")
+	
+	var/list/msg = list()
+	if(!usesSkills(user) || SKILL_CHECK(user, identifing_skill, descriptive_skilllevel))
+		msg += "The cuts on [victim.p_their()] [limb.name] are wrapped with "
+	else if(SKILL_CHECK(user, identifing_skill, identifing_skilllevel))
+		msg += "[victim.p_their(TRUE)] [limb.name] Looks messed up under a wrapping of "
+	else
+		msg += "[victim.p_their(TRUE)] [limb.name] is wrapped with "
 	// how much life we have left in these bandages
 	switch(limb.current_gauze.absorption_capacity)
 		if(0 to 1.25)

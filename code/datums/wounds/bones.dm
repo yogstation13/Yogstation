@@ -12,6 +12,9 @@
 	sound_effect = 'sound/effects/wounds/crack1.ogg'
 	wound_type = WOUND_BLUNT
 	wound_flags = (BONE_WOUND | ACCEPTS_GAUZE)
+	identifing_skill = SKILL_ANATOMY
+	descriptive_skilllevel = SKILLLEVEL_TRAINED
+	identifing_skilllevel = SKILLLEVEL_BASIC
 
 	/// Have we been taped?
 	var/taped
@@ -142,26 +145,30 @@
 
 
 /datum/wound/blunt/get_examine_description(mob/user)
-	if(!limb.current_gauze && !gelled && !taped)
+	if(!limb.current_gauze && !gelled && !taped || usesSkills(user) && !SKILL_CHECK(user, identifing_skill, identifing_skilllevel))
 		return ..()
 
 	var/list/msg = list()
 	if(!limb.current_gauze)
-		msg += "[victim.p_their(TRUE)] [limb.name] [examine_desc]"
+		if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+			msg += "[victim.p_their(TRUE)] [limb.name] [examine_desc]"
+		else if(SKILL_CHECK(user, identifing_skill, identifing_skilllevel))
+			. = "[victim.p_their(TRUE)] [limb.name] Looks messed up"
 	else
 		var/sling_condition = ""
 		// how much life we have left in these bandages
-		switch(limb.current_gauze.absorption_capacity)
-			if(0 to 1.25)
-				sling_condition = "just barely"
-			if(1.25 to 2.75)
-				sling_condition = "loosely"
-			if(2.75 to 4)
-				sling_condition = "mostly"
-			if(4 to INFINITY)
-				sling_condition = "tightly"
+		if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+			switch(limb.current_gauze.absorption_capacity)
+				if(0 to 1.25)
+					sling_condition = "just barely "
+				if(1.25 to 2.75)
+					sling_condition = "loosely "
+				if(2.75 to 4)
+					sling_condition = "mostly "
+				if(4 to INFINITY)
+					sling_condition = "tightly "
 
-		msg += "[victim.p_their(TRUE)] [limb.name] is [sling_condition] fastened in a sling of [limb.current_gauze.name]"
+		msg += "[victim.p_their(TRUE)] [limb.name] is [sling_condition]fastened in a sling of [limb.current_gauze.name]"
 
 	if(taped)
 		msg += ", <span class='notice'>and appears to be reforming itself under some surgical tape!</span>"

@@ -51,6 +51,12 @@
 	var/treatable_tool
 	/// How long it will take to treat this wound with a standard effective tool, assuming it doesn't need surgery
 	var/base_treat_time = 5 SECONDS
+	/// What skill do we use to determine if you can identify the wound?
+	var/identifing_skill = SKILL_MEDICINE
+	/// What skill level do we need to get detailed information on the wound?
+	var/descriptive_skilllevel = SKILLLEVEL_TRAINED
+	/// What skill level do we need to notice the wound?
+	var/identifing_skilllevel = SKILLLEVEL_UNSKILLED
 
 	/// Using this limb in a do_after interaction will multiply the length by this duration (arms)
 	var/interaction_efficiency_penalty = 1
@@ -358,8 +364,11 @@
   * * mob/user: The user examining the wound's owner, if that matters
   */
 /datum/wound/proc/get_examine_description(mob/user)
-	. = "[victim.p_their(TRUE)] [limb.name] [examine_desc]"
-	. = severity <= WOUND_SEVERITY_MODERATE ? "[.]." : "<B>[.]!</B>"
+	if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+		. = "[victim.p_their(TRUE)] [limb.name] [examine_desc]"
+		. = severity <= WOUND_SEVERITY_MODERATE ? "[.]." : "<B>[.]!</B>"
+	else if(SKILL_CHECK(user, identifing_skill, identifing_skilllevel))
+		. = "[victim.p_their(TRUE)] [limb.name] looks messed up"
 
 /datum/wound/proc/get_scanner_description(mob/user)
 	return "Type: [name]\nSeverity: [severity_text()]\nDescription: [desc]\nRecommended Treatment: [treat_text]"

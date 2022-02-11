@@ -126,32 +126,40 @@
 	if(strikes_to_lose_limb <= 0)
 		return span_deadsay("<B>[victim.p_their(TRUE)] [limb.name] has locked up completely and is non-functional.</B>")
 
-	var/list/condition = list("[victim.p_their(TRUE)] [limb.name] [examine_desc]")
+	var/list/condition = list("[victim.p_their(TRUE)] [limb.name]" )
+	if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+		condition += " [examine_desc]"
+	else if(SKILL_CHECK(user, identifing_skill, identifing_skilllevel))
+		condition += " looks messed up"
+	else
+		condition += " is hidden"
 	if(limb.current_gauze)
 		var/bandage_condition
-		switch(limb.current_gauze.absorption_capacity)
-			if(0 to 1.25)
-				bandage_condition = "nearly ruined"
-			if(1.25 to 2.75)
-				bandage_condition = "badly worn"
-			if(2.75 to 4)
-				bandage_condition = "slightly pus-stained"
-			if(4 to INFINITY)
-				bandage_condition = "clean"
+		if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+			switch(limb.current_gauze.absorption_capacity)
+				if(0 to 1.25)
+					bandage_condition = "nearly ruined "
+				if(1.25 to 2.75)
+					bandage_condition = "badly worn "
+				if(2.75 to 4)
+					bandage_condition = "slightly pus-stained "
+				if(4 to INFINITY)
+					bandage_condition = "clean "
 
-		condition += " underneath a dressing of [bandage_condition] [limb.current_gauze.name]"
+		condition += " underneath a dressing of [bandage_condition][limb.current_gauze.name]"
 	else
-		switch(infestation)
-			if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
-				condition += ", <span class='deadsay'>with early signs of infection.</span>"
-			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
-				condition += ", <span class='deadsay'>with growing clouds of infection.</span>"
-			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-				condition += ", <span class='deadsay'>with streaks of rotten, pulsating infection!</span>"
-			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				return span_deadsay("<B>[victim.p_their(TRUE)] [limb.name] is a mess of charred skin and infected rot!</B>")
-			else
-				condition += "!"
+		if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+			switch(infestation)
+				if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
+					condition += ", <span class='deadsay'>with early signs of infection.</span>"
+				if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
+					condition += ", <span class='deadsay'>with growing clouds of infection.</span>"
+				if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
+					condition += ", <span class='deadsay'>with streaks of rotten, pulsating infection!</span>"
+				if(WOUND_INFECTION_SEPTIC to INFINITY)
+					return span_deadsay("<B>[victim.p_their(TRUE)] [limb.name] is a mess of charred skin and infected rot!</B>")
+				else
+					condition += "!"
 
 	return "<B>[condition.Join()]</B>"
 

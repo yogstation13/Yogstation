@@ -21,6 +21,8 @@
 	var/self_operable = FALSE								//Can the surgery be performed on yourself.
 	var/requires_tech = FALSE								//handles techweb-oriented surgeries, previously restricted to the /advanced subtype (You still need to add designs)
 	var/replaced_by											//type; doesn't show up if this type exists. Set to /datum/surgery if you want to hide a "base" surgery (useful for typing parents IE healing.dm just make sure to null it out again)
+	var/required_skill = SKILL_ANATOMY						// Required skill to start the surgery
+	var/required_skill_level = SKILLLEVEL_UNSKILLED			// Required skill level to start the surgery
 
 /datum/surgery/New(surgery_target, surgery_location, surgery_bodypart)
 	..()
@@ -55,6 +57,10 @@
 			return FALSE
 		else
 			return TRUE
+	
+	if(!usesSkills(user) || SKILL_CHECK(user, required_skill, required_skill_level))
+		to_chat(user, span_warning("You don't know where to begin with this surgery!"))
+		return FALSE
 
 	if(!requires_tech && !replaced_by)
 		return TRUE
