@@ -25,6 +25,7 @@
 	inert_mutation = SHOCKTOUCH
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
+	swimming_component = /datum/component/swimming/ethereal
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
