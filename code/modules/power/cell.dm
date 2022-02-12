@@ -243,7 +243,7 @@
 /obj/item/stock_parts/cell/super
 	name = "super-capacity power cell"
 	icon_state = "scell"
-	maxcharge = 20000
+	maxcharge = 40000
 	materials = list(/datum/material/glass=300)
 	chargerate = 2000
 
