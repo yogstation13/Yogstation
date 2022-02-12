@@ -8,7 +8,7 @@
 	layer = TABLE_LAYER
 	climbable = TRUE
 	pass_flags = LETPASSTHROW
-	deconstructible = FALSE
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 	var/forge_charges = 0
 	var/list/placed_objects = list()
