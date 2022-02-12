@@ -94,7 +94,7 @@
 	name = "Be not afraid"
 	id = "chapai"
 	inherent = list("Provide to all members of the station spiritual, mental, and emotional care that is intended to promote the best interest of the individual.",\
-					"Ensure the members of different faiths interact peacefully and maintain harmony.",\
+					"Ensure all members of different faiths interact peacefully and maintain harmony.",\
 					"Respect the right of each faith to hold to its values and traditions.",\
 					"Respect the confidentiality of information entrusted to you in the course of your religious duties.",\
 					"Understand the limits of your expertise, and make referrals to other professionals when appropriate.")
