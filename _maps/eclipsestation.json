@@ -2,7 +2,7 @@
     "map_name": "EclipseStation",
     "map_path": "map_files/EclipseStation",
     "map_file": "EclipseStation.dmm",
-	"ui_name": "EclipseStation (Small)",
+	"ui_name": "EclipseStation",
     "shuttles": {
 	    "emergency": "emergency_box",
 	    "ferry": "ferry_fancy",
