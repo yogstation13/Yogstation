@@ -243,7 +243,7 @@
 /obj/item/stock_parts/cell/super
 	name = "super-capacity power cell"
 	icon_state = "scell"
-	maxcharge = 40000
+	maxcharge = 20000
 	materials = list(/datum/material/glass=300)
 	chargerate = 2000
 
@@ -340,7 +340,7 @@
 /obj/item/stock_parts/cell/beam_rifle
 	name = "beam rifle capacitor"
 	desc = "A high powered capacitor that can provide huge amounts of energy in an instant."
-	maxcharge = 20000
+	maxcharge = 40000
 	chargerate = 5000	//Extremely energy intensive
 
 /obj/item/stock_parts/cell/beam_rifle/corrupt()
