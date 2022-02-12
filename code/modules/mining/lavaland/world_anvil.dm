@@ -8,6 +8,7 @@
 	layer = TABLE_LAYER
 	climbable = TRUE
 	pass_flags = LETPASSTHROW
+	deconstructible = FALSE
 
 	var/forge_charges = 0
 	var/list/placed_objects = list()
