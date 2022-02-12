@@ -2,6 +2,7 @@
 	"map_name": "Yogsmeta",
 	"map_path": "map_files/Yogsmeta",
 	"map_file": "Yogsmeta.dmm",
+	"ui_name": "Yogsmeta",
 	"shuttles": {
 		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",
