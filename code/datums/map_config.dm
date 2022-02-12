@@ -17,6 +17,7 @@
 	var/map_name = "YogStation"
 	var/map_path = "map_files/YogStation"
 	var/map_file = "YogStation.dmm"
+	var/ui_name = "YogStation (Box)"
 
 	var/traits = null
 	var/space_ruin_levels = 7
