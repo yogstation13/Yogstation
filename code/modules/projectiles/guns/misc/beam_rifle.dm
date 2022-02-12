@@ -413,7 +413,7 @@
 /obj/item/ammo_casing/energy/beam_rifle/hitscan
 	projectile_type = /obj/item/projectile/beam/beam_rifle/hitscan
 	select_name = "beam"
-	e_cost = 20000
+	e_cost = 10000
 	fire_sound = 'sound/weapons/beam_sniper.ogg'
 
 /obj/item/projectile/beam/beam_rifle
