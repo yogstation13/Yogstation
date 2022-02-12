@@ -11,8 +11,8 @@ SUBSYSTEM_DEF(statpanels)
 	if (!resumed)
 		var/datum/map_config/cached = SSmapping.next_map_config
 		var/list/global_data = list(
-			"Map: [html_encode(SSmapping.config?.map_name || "Loading...")]",
-			cached ? "Next Map: [html_encode(cached.map_name)]" : null,
+			"Map: [html_encode(SSmapping.config?.ui_name || "Loading...")]",
+			cached ? "Next Map: [html_encode(cached.ui_name)]" : null,
 			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
 			"Round Time: [worldtime2text()]",

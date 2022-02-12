@@ -1753,10 +1753,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/datum/map_config/VM = config.maplist[M]
 						if(!VM.votable)
 							continue
-						var/friendlyname = "[VM.map_name] "
+						var/friendlyname = "[VM.ui_name] "
 						if (VM.voteweight <= 0)
 							friendlyname += " (disabled)"
-						maplist[friendlyname] = VM.map_name
+						maplist[friendlyname] = VM.ui_name
 					maplist[default] = null
 					var/pickedmap = input(user, "Choose your preferred map. This will be used to help weight random map selection.", "Character Preference")  as null|anything in maplist
 					if (pickedmap)

@@ -73,8 +73,8 @@ SUBSYSTEM_DEF(vote)
 					if(isnull(global.config.defaultmap))
 						continue
 					if(!preferred_map)
-						if(global.config.defaultmap.map_name)
-							preferred_map = global.config.defaultmap.map_name
+						if(global.config.defaultmap.ui_name)
+							preferred_map = global.config.defaultmap.ui_name
 					if(preferred_map)
 						choices[preferred_map] += 1
 					greatest_votes = max(greatest_votes, choices[preferred_map])
@@ -203,7 +203,7 @@ SUBSYSTEM_DEF(vote)
 						continue
 					if(VM.config_max_users > 0 && GLOB.clients.len > VM.config_max_users)
 						continue
-					maps += VM.map_name
+					maps += VM.ui_name
 					shuffle_inplace(maps)
 				for(var/valid_map in maps)
 					choices.Add(valid_map)
