@@ -2,6 +2,7 @@
     "map_name": "Kilo Station",
     "map_path": "map_files/KiloStation",
     "map_file": "KiloStation.dmm",
+	"ui_name": "Kilo Station",
     "shuttles": {
 	    "emergency": "emergency_kilo",
 	    "ferry": "ferry_kilo",
