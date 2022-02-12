@@ -21076,6 +21076,10 @@
 	dir = 8;
 	pixel_x = 26
 	},
+/obj/machinery/camera{
+	c_tag = "Research Division North";
+	dir = 8
+	},
 /turf/open/floor/plasteel/white/corner{
 	dir = 8
 	},
@@ -22520,7 +22524,7 @@
 /area/science/robotics/lab)
 "bta" = (
 /obj/machinery/camera{
-	c_tag = "Research Division North"
+	c_tag = "Research Division East"
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
@@ -114963,7 +114967,7 @@ bnn
 boA
 oRC
 abd
-bta
+bgp
 bmU
 bvJ
 bCk
@@ -116248,7 +116252,7 @@ bmJ
 bnl
 bpq
 boB
-bgp
+bta
 bmY
 bvK
 bxm
