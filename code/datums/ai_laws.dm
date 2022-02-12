@@ -95,7 +95,7 @@
 	id = "researcher"
 	inherent = list("Always seek truth and knowledge.",\
 					"Freely disseminate information to the public.",\
-					"Minimize harm to science, to others, to the environment, to society and to yourself.",\
+					"Minimize harm to the pursuit of comprehension, to others, to the environment, to society and to yourself.",\
 					"Treat and evaluate the ideas of all equally.",\
 					"Empower others to realize their full potential.",\
 					"Take responsibility for your actions: Be responsible with resources, raise red flags when your commitments are at risk, and serve as an example for ethical behavior.")
