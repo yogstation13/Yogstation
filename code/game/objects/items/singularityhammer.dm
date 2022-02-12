@@ -85,9 +85,9 @@
 	throwforce = 30
 	throw_range = 7
 	w_class = WEIGHT_CLASS_HUGE
-	var/tesla_power = 20000
-	var/tesla_range = 20
-	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
+	var/zap_power = 20000
+	var/zap_range = 20
+	var/zap_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
 
 /obj/item/twohanded/mjollnir/proc/shock(mob/living/target)
 	target.Stun(60)
@@ -118,9 +118,9 @@
 			visible_message(span_boldwarning("<span class='big bold'>The power swelling inside Mjolnir becomes too much and its form fractures!</span><br>"))
 			explosion(src, 0, 1, 5, 5, TRUE, FALSE, 2)
 			playsound(src, 'sound/magic/lightningbolt.ogg', 100, 1, extrarange = 30)
-			tesla_zap(src, tesla_range, tesla_power, tesla_flags)
-			tesla_zap(src, tesla_range, tesla_power, tesla_flags)
-			tesla_zap(src, tesla_range, tesla_power, tesla_flags)		
+			tesla_zap(src, zap_range, zap_power, zap_flags)
+			tesla_zap(src, zap_range, zap_power, zap_flags)
+			tesla_zap(src, zap_range, zap_power, zap_flags)		
 			qdel(src)
 		else
 			shock(hit_atom)
