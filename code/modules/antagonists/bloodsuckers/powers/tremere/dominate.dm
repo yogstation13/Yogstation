@@ -119,7 +119,7 @@
 	attempt_mesmerize(target, user)
 
 /datum/action/bloodsucker/targeted/tremere/dominate/proc/attempt_mesmerize(mob/living/target, mob/living/user)
-	to_chat(owner, "Attempting to mesmerize.")
+	to_chat(owner, span_notice("Attempting to mesmerize [target]..."))
 	if(!do_mob(user, target, 3 SECONDS, NONE, TRUE))
 		return
 
@@ -129,11 +129,11 @@
 		to_chat(target, span_notice("You feel you something crawling under your skin, but it passes."))
 		return
 	if(HAS_TRAIT_FROM(target, TRAIT_MUTE, BLOODSUCKER_TRAIT))
-		to_chat(owner, "[target] is already in some form of hypnotic gaze.")
+		to_chat(owner, span_notice("[target] is already in some form of hypnotic gaze."))
 		return
 	if(iscarbon(target))
 		var/mob/living/carbon/mesmerized = target
-		to_chat(owner, "Successfully mesmerized [mesmerized].")
+		to_chat(owner, span_notice("Successfully mesmerized [mesmerized]!"))
 		if(level_current >= 2)
 			ADD_TRAIT(target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 		if(level_current >= 3)
@@ -151,7 +151,7 @@
 	REMOVE_TRAIT(target, TRAIT_BLIND, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 	if(istype(user) && target.stat == CONSCIOUS && (target in view(6, get_turf(user))))
-		to_chat(owner, "[target] snapped out of their trance.")
+		to_chat(owner, span_warning("[target] snapped out of their trance."))
 
 /datum/action/bloodsucker/targeted/tremere/dominate/proc/attempt_vassalize(mob/living/target, mob/living/user)
 	to_chat(owner, "Attempting to vassalize.")

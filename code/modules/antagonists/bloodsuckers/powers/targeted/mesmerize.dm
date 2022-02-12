@@ -91,14 +91,11 @@
 	return TRUE
 
 /datum/action/bloodsucker/targeted/mesmerize/FireTargetedPower(atom/target_atom)
-	. = ..()
-
 	var/mob/living/user = owner
-
 	if(istype(mesmerized_target))
 		to_chat(owner, span_notice("Attempting to hypnotically gaze [mesmerized_target]..."))
 
-	if(!do_mob(user, mesmerized_target, 4 SECONDS, NONE, TRUE, CALLBACK(src, .proc/ContinueActive, user, mesmerized_target)))
+	if(!do_mob(user, mesmerized_target, 4 SECONDS, NONE, TRUE, extra_checks = CALLBACK(src, .proc/ContinueActive, user, mesmerized_target)))
 		return
 
 	PowerActivatedSuccessfully() // PAY COST! BEGIN COOLDOWN!
@@ -136,7 +133,7 @@
 	REMOVE_TRAIT(target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 	// They Woke Up! (Notice if within view)
 	if(istype(user) && target.stat == CONSCIOUS && (target in view(6, get_turf(user))))
-		to_chat(owner, "[target] snapped out of their trance.")
+		to_chat(owner, span_warning("[target] snapped out of their trance."))
 
 /datum/action/bloodsucker/targeted/mesmerize/ContinueActive(mob/living/user, mob/living/target)
 	return ..() && CheckCanUse(user) && CheckCanTarget(mesmerized_target)

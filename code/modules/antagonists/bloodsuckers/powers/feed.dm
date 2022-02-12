@@ -240,6 +240,7 @@
 	if(!ContinueActive(user, feed_target))
 		if(amSilent)
 			to_chat(user, span_warning("Your feeding has been interrupted... but [feed_target.p_they()] didn't seem to notice you."))
+			DeactivatePower()
 		else
 			to_chat(user, span_warning("Your feeding has been interrupted!"))
 			user.visible_message(
@@ -260,6 +261,7 @@
 			feed_target.add_mob_blood(feed_target)
 			feed_target.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)
 			INVOKE_ASYNC(feed_target, /mob.proc/emote, "scream")
+			DeactivatePower()
 		return
 
 	///////////////////////////////////////////////////////////
