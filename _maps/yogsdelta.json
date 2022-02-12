@@ -2,6 +2,7 @@
     "map_name": "Yogsdelta",
     "map_path": "map_files/YogsDelta",
     "map_file": "YogsDelta.dmm",
+	"ui_name": "Yogsdelta",
     "shuttles": {
 	    "emergency": "emergency_delta",
 	    "ferry": "ferry_fancy",
