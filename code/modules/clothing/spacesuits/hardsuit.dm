@@ -799,6 +799,7 @@
 	icon_state = "hardsuit-beserker"
 	item_state = "hardsuit-beserker"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/beserker
+	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/beserker
 	name = "champion's helmet"
