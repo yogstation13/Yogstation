@@ -111,6 +111,7 @@ GENE SCANNER
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
 	flick("[icon_state]-scan", src)	//makes it so that it plays the scan animation upon scanning, including clumsy scanning
+	playsound(src, 'sound/effects/fastbeep.ogg', 20)
 
 	// Clumsiness/brain damage check
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
@@ -200,6 +201,9 @@ GENE SCANNER
 			to_chat(user, "\t[span_info("Subject is allergic to the chemical [C.allergies].")]")
 	if(advanced)
 		to_chat(user, "\t[span_info("Brain Activity Level: [(200 - M.getOrganLoss(ORGAN_SLOT_BRAIN))/2]%.")]")
+		if(M.has_horror_inside())
+			to_chat(user, "\t[span_alert("Detected parasitic organism residing in the cranial area.")]")
+			to_chat(user, "\t[span_alert("Recommended course of action: <b>organ manipulation surgery performed on head.</b>.")]")
 
 	if (M.radiation)
 		to_chat(user, "\t[span_alert("Subject is irradiated.")]")
@@ -761,6 +765,7 @@ GENE SCANNER
 		to_chat(user, span_warning("This device can only scan slimes!"))
 		return
 	var/mob/living/simple_animal/slime/T = M
+	playsound(src, 'sound/effects/scanbeep.ogg', 30)
 	slime_scan(T, user)
 
 /proc/slime_scan(mob/living/simple_animal/slime/T, mob/living/user)

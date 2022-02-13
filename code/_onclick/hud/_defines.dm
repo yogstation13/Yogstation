@@ -58,7 +58,7 @@
 #define ui_borg_module "CENTER+1:16,SOUTH:5"		//borgs
 #define ui_borg_store "CENTER+2:16,SOUTH:5"			//borgs
 #define ui_borg_camera "CENTER+3:21,SOUTH:5"		//borgs
-#define ui_borg_album "CENTER+4:21,SOUTH:5"			//borgs
+#define ui_borg_tablet "CENTER+4:21,SOUTH:5"		//borgs
 #define ui_borg_language_menu "CENTER+4:21,SOUTH+1:5"	//borgs
 
 #define ui_monkey_head "CENTER-5:13,SOUTH:5"	//monkey

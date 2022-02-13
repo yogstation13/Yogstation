@@ -15,6 +15,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	has_light = TRUE //LED flashlight!
 	comp_light_luminosity = 2.3 //Same as the PDA
+	interact_sounds = list('sound/machines/computers/pda_click.ogg')
 
 	var/list/variants = list("red","blue","brown","green","black")
 	var/finish_color = null
@@ -46,6 +47,7 @@
 	comp_light_luminosity = 6.3
 	finish_color = "red"
 	device_theme = "syndicate"
+	light_color = COLOR_RED
 
 /obj/item/modular_computer/tablet/nukeops/emag_act(mob/user)
 	if(!enabled)

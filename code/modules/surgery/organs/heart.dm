@@ -1,7 +1,7 @@
 /obj/item/organ/heart
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
-	icon_state = "heart-on"
+	icon_state = "heart"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_HEART
 	healing_factor = STANDARD_ORGAN_HEALING

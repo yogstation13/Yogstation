@@ -55,6 +55,9 @@
 	var/list/starting_components = list()
 	var/list/starting_files = list()
 	var/datum/computer_file/program/initial_program
+	var/sound/startup_sound = 'sound/machines/computers/computer_start.ogg'
+	var/sound/shutdown_sound = 'sound/machines/computers/computer_end.ogg'
+	var/list/interact_sounds = list('sound/machines/computers/keypress1.ogg', 'sound/machines/computers/keypress2.ogg', 'sound/machines/computers/keypress3.ogg', 'sound/machines/computers/keypress4.ogg', 'sound/machines/computers/keystroke1.ogg', 'sound/machines/computers/keystroke2.ogg', 'sound/machines/computers/keystroke3.ogg', 'sound/machines/computers/keystroke4.ogg')
 
 
 /obj/item/modular_computer/Initialize()
@@ -97,6 +100,11 @@
  */
 /obj/item/modular_computer/proc/play_ping()
 	playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), FALSE, -1)
+
+// Plays a random interaction sound, which is by default a bunch of keboard clacking
+/obj/item/modular_computer/proc/play_interact_sound()
+	playsound(loc, pick(interact_sounds), get_clamped_volume(), FALSE, -1)
+
 
 /obj/item/modular_computer/AltClick(mob/user)
 	..()
@@ -282,6 +290,7 @@
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
 		enabled = TRUE
 		update_icon()
+		playsound(loc, startup_sound, get_clamped_volume(), FALSE, -1)
 		ui_interact(user)
 	else // Unpowered
 		if(issynth)
@@ -440,6 +449,32 @@
 		physical.visible_message(span_notice("\The [src] shuts down."))
 	enabled = FALSE
 	update_icon()
+	playsound(loc, shutdown_sound, get_clamped_volume(), FALSE, -1)
+
+/obj/item/modular_computer/screwdriver_act(mob/user, obj/item/tool)
+	if(!all_components.len)
+		to_chat(user, "<span class='warning'>This device doesn't have any components installed.</span>")
+		return
+	var/list/component_names = list()
+	for(var/h in all_components)
+		var/obj/item/computer_hardware/H = all_components[h]
+		component_names.Add(H.name)
+
+	var/choice = input(user, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in sortList(component_names)
+
+	if(!choice)
+		return
+
+	if(!Adjacent(user))
+		return
+
+	var/obj/item/computer_hardware/H = find_hardware_by_name(choice)
+
+	if(!H)
+		return
+
+	uninstall_component(H, user)
+	return
 
 
 /obj/item/modular_computer/attackby(obj/item/W as obj, mob/user as mob)
@@ -476,31 +511,6 @@
 		if(W.use_tool(src, user, 20, volume=50, amount=1))
 			obj_integrity = max_integrity
 			to_chat(user, span_notice("You repair \the [src]."))
-		return
-
-	if(W.tool_behaviour == TOOL_SCREWDRIVER)
-		if(!all_components.len)
-			to_chat(user, span_warning("This device doesn't have any components installed."))
-			return
-		var/list/component_names = list()
-		for(var/h in all_components)
-			var/obj/item/computer_hardware/H = all_components[h]
-			component_names.Add(H.name)
-
-		var/choice = input(user, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in component_names
-
-		if(!choice)
-			return
-
-		if(!Adjacent(user))
-			return
-
-		var/obj/item/computer_hardware/H = find_hardware_by_name(choice)
-
-		if(!H)
-			return
-
-		uninstall_component(H, user)
 		return
 
 	..()

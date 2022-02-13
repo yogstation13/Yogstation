@@ -114,6 +114,7 @@
 /datum/computer_file/program/ntnetdownload/ui_act(action, params)
 	if(..())
 		return TRUE
+	computer.play_interact_sound()
 	switch(action)
 		if("PRG_downloadfile")
 			if(!downloaded_file)
