@@ -10,7 +10,7 @@
 /obj/structure/mjollnir/attack_hand(mob/living/user)
 	. = ..()
 	to_chat(user, span_notice("You place your hands firmly around the handle of the hammer and begin to pull with all your might!"))
-	if(do_after(user, 5 SECONDS, target = src))
+	if(do_after(user, 30 SECONDS, target = src))
 		to_chat(user, span_userdanger("You successfully free Mjolnir from the ground and can feel its power returning once more!"))
 		var/obj/item/twohanded/mjollnir/M = new /obj/item/twohanded/mjollnir
 		playsound(user, 'sound/magic/lightningbolt.ogg', 50, 1)
