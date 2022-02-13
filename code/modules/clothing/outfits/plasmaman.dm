@@ -11,7 +11,7 @@
 	ears = /obj/item/radio/headset/headset_srv
 	shoes = /obj/item/clothing/shoes/laceup
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
-	belt = /obj/item/pda/bar
+	id = /obj/item/pda/bar
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/cook
@@ -25,7 +25,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/chef
 	suit = /obj/item/clothing/suit/toggle/chef
 	ears = /obj/item/radio/headset/headset_srv
-	belt = /obj/item/pda/cook
+	id = /obj/item/pda/cook
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/botanist
@@ -43,7 +43,7 @@
 	suit_store = /obj/item/plant_analyzer
 	backpack = /obj/item/storage/backpack/botany
 	satchel = /obj/item/storage/backpack/satchel/hyd
-	belt = /obj/item/pda/botanist
+	id = /obj/item/pda/botanist
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/curator
@@ -60,7 +60,7 @@
 	r_pocket = /obj/item/key/displaycase
 	l_pocket = /obj/item/laser_pointer
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
-	belt = /obj/item/pda/curator
+	id = /obj/item/pda/curator
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/chaplain
@@ -75,7 +75,7 @@
 	ears = /obj/item/radio/headset/headset_srv
 	backpack = /obj/item/storage/backpack/cultpack
 	satchel = /obj/item/storage/backpack/cultpack
-	belt = /obj/item/pda/chaplain
+	id = /obj/item/pda/chaplain
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/janitor
@@ -88,7 +88,7 @@
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/janitor
 	ears = /obj/item/radio/headset/headset_srv
-	belt = /obj/item/pda/janitor
+	id = /obj/item/pda/janitor
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 
@@ -111,7 +111,7 @@
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
-	belt = /obj/item/pda/security
+	id = /obj/item/pda/security
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/detective
@@ -129,7 +129,7 @@
 	suit = /obj/item/clothing/suit/det_suit
 	gloves = /obj/item/clothing/gloves/color/black
 	l_pocket = /obj/item/toy/crayon/white
-	belt = /obj/item/pda/detective
+	id = /obj/item/pda/detective
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/warden
@@ -152,7 +152,7 @@
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
-	belt = /obj/item/pda/warden
+	id = /obj/item/pda/warden
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 
@@ -167,7 +167,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/cargo
 	ears = /obj/item/radio/headset/headset_cargo
 	l_hand = /obj/item/export_scanner
-	belt = /obj/item/pda/cargo
+	id = /obj/item/pda/cargo
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/quartermaster
@@ -183,7 +183,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard
-	belt = /obj/item/pda/quartermaster
+	id = /obj/item/pda/quartermaster
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/miner
@@ -203,7 +203,7 @@
 	backpack = /obj/item/storage/backpack/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	duffelbag = /obj/item/storage/backpack/duffelbag
-	belt = /obj/item/pda/shaftminer
+	id = /obj/item/pda/shaftminer
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 
@@ -224,7 +224,7 @@
 	l_hand = /obj/item/storage/briefcase/lawyer
 	l_pocket = /obj/item/laser_pointer
 	r_pocket = /obj/item/clothing/accessory/lawyers_badge
-	belt = /obj/item/pda/lawyer
+	id = /obj/item/pda/lawyer
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 
@@ -244,7 +244,7 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-	belt = /obj/item/pda/medical
+	id = /obj/item/pda/medical
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/virologist
@@ -263,7 +263,7 @@
 	backpack = /obj/item/storage/backpack/virology
 	satchel = /obj/item/storage/backpack/satchel/vir
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-	belt = /obj/item/pda/viro
+	id = /obj/item/pda/viro
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/chemist
@@ -282,7 +282,7 @@
 	backpack = /obj/item/storage/backpack/chemistry
 	satchel = /obj/item/storage/backpack/satchel/chem
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-	belt = /obj/item/pda/chemist
+	id = /obj/item/pda/chemist
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/geneticist
@@ -302,7 +302,7 @@
 	backpack = /obj/item/storage/backpack/genetics
 	satchel = /obj/item/storage/backpack/satchel/gen
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-	belt = /obj/item/pda/geneticist
+	id = /obj/item/pda/geneticist
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 
@@ -320,7 +320,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
-	belt = /obj/item/pda/toxins
+	id = /obj/item/pda/toxins
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/roboticist
@@ -392,7 +392,7 @@
 	suit = /obj/item/clothing/suit/suspenders
 	backpack = /obj/item/storage/backpack/mime
 	satchel = /obj/item/storage/backpack/mime
-	belt = /obj/item/pda/mime
+	id = /obj/item/pda/mime
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/clown
@@ -407,7 +407,7 @@
 	ears = /obj/item/radio/headset/headset_srv
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	l_pocket = /obj/item/bikehorn
-	belt = /obj/item/pda/clown
+	id = /obj/item/pda/clown
 	backpack = /obj/item/storage/backpack/clown
 	satchel = /obj/item/storage/backpack/clown
 	duffelbag = /obj/item/storage/backpack/duffelbag/clown
@@ -467,7 +467,7 @@
 	mask = /obj/item/clothing/mask/breath
 	backpack_contents = list(/obj/item/storage/firstaid/regular = 1,\
 		/obj/item/storage/box/plasmaman = 1)
-	belt = /obj/item/pda/para
+	id = /obj/item/pda/para
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/plasmaman/medical
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt
@@ -492,7 +492,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
 	l_hand = /obj/item/storage/briefcase
 	glasses = /obj/item/clothing/glasses/regular
-	belt = /obj/item/pda
+	id = /obj/item/pda
 	ears = /obj/item/radio/headset/headset_med
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
@@ -506,7 +506,7 @@
 	mask = /obj/item/clothing/mask/breath
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/storage/box/plasmaman = 1)
-	belt = /obj/item/pda/physician
+	id = /obj/item/pda/physician
 	ears = /obj/item/radio/headset/headset_medsec
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -526,7 +526,7 @@
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
-	belt = /obj/item/pda
+	id = /obj/item/pda
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
 	shoes = /obj/item/clothing/shoes/sneakers/black
@@ -544,7 +544,7 @@
 	uniform = /obj/item/clothing/under/plasmaman
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	ears = /obj/item/radio/headset
-	belt = /obj/item/pda
+	id = /obj/item/pda
 	backpack_contents = list(/obj/item/camera_film, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20, /obj/item/storage/box/plasmaman = 1)
 	l_hand =  /obj/item/camera
 	l_pocket = /obj/item/camera_film
@@ -562,7 +562,7 @@
 	uniform = /obj/item/clothing/under/plasmaman
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	ears = /obj/item/radio/headset
-	belt = /obj/item/pda
+	id = /obj/item/pda
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/artist
@@ -570,12 +570,14 @@
 	
 	jobtype = /datum/job/artist
 
+	id_type = /obj/item/card/id/silver
+
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman
 	shoes = /obj/item/clothing/shoes/sneakers/black
-	belt = /obj/item/pda/artist
+	id = /obj/item/pda/artist
 	ears = /obj/item/radio/headset/headset_srv
 	gloves = /obj/item/clothing/gloves/fingerless
 	neck = /obj/item/clothing/neck/artist
@@ -587,7 +589,7 @@
 	
 	jobtype = /datum/job/chief_engineer
 
-	id = /obj/item/card/id/silver
+	id_type = /obj/item/card/id/silver
 	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
@@ -595,7 +597,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	ears = /obj/item/radio/headset/heads/ce
 	gloves = /obj/item/clothing/gloves/color/black/ce
-	belt = /obj/item/storage/belt/utility/chief/full
+	id = /obj/item/storage/belt/utility/chief/full
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
@@ -607,7 +609,7 @@
 	
 	jobtype = /datum/job/rd
 
-	id = /obj/item/card/id/silver
+	id_type = /obj/item/card/id/silver
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
@@ -615,7 +617,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	ears = /obj/item/radio/headset/heads/rd
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
-	belt = /obj/item/pda/heads/rd
+	id = /obj/item/pda/heads/rd
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox

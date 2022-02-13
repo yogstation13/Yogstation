@@ -23,7 +23,7 @@
 	jobtype = /datum/job/artist
 	
 	head = /obj/item/clothing/head/frenchberet
-	belt = /obj/item/pda/artist
+	id = /obj/item/pda/artist
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/artist
 	uniform_skirt = /obj/item/clothing/under/rank/artist/skirt

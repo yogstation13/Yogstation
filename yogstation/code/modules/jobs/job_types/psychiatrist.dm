@@ -33,5 +33,5 @@
 	uniform = /obj/item/clothing/under/suit_jacket/burgundy
 	l_hand = /obj/item/storage/briefcase
 	glasses = /obj/item/clothing/glasses/regular
-	belt = /obj/item/pda
+	id = /obj/item/pda
 	ears = /obj/item/radio/headset/headset_med

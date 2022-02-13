@@ -206,12 +206,13 @@
 	var/jobtype = null
 
 	uniform = /obj/item/clothing/under/color/grey
-	id = /obj/item/card/id
+	id = /obj/item/pda
 	ears = /obj/item/radio/headset
-	belt = /obj/item/pda
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = /obj/item/storage/box/survival
+
+	var/obj/item/id_type = /obj/item/card/id
 
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
@@ -219,7 +220,7 @@
 
 	var/uniform_skirt = null
 
-	var/pda_slot = SLOT_BELT
+	var/pda_slot = SLOT_WEAR_ID
 	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
 	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
 	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
@@ -262,7 +263,7 @@
 	if(!J)
 		J = SSjob.GetJob(H.job)
 
-	var/obj/item/card/id/C = H.wear_id
+	var/obj/item/card/id/C = new id_type()
 	if(istype(C))
 		C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
@@ -293,7 +294,11 @@
 			PDA.ownjob = H.mind.role_alt_title
 		else
 			PDA.ownjob = J.title
+		PDA.InsertID(C)
 		PDA.update_label()
+		PDA.update_icon()
+	else
+		H.wear_id = C
 
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()

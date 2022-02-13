@@ -30,7 +30,7 @@
 	name = "Lawyer"
 	jobtype = /datum/job/lawyer
 
-	belt = /obj/item/pda/lawyer
+	id = /obj/item/pda/lawyer
 	ears = /obj/item/radio/headset/headset_srvsec
 	uniform = /obj/item/clothing/under/lawyer/bluesuit
 	uniform_skirt = /obj/item/clothing/under/lawyer/bluesuit/skirt
