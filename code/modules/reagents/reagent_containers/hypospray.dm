@@ -175,11 +175,19 @@
 
 /obj/item/reagent_containers/hypospray/medipen/survival
 	name = "survival medipen"
-	desc = "A medipen for surviving in the harshest of environments, heals and protects from environmental hazards. WARNING: Do not inject more than one pen in quick succession."
+	desc = "A medipen for patching yourself up during a fight, heals physical damage. WARNING: Overuse may cause organs to liquify."
 	icon_state = "stimpen"
+	volume = 12
+	amount_per_transfer_from_this = 12
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 5, /datum/reagent/medicine/c2/aiuri = 5, /datum/reagent/medicine/coagulant = 2)
+
+/obj/item/reagent_containers/hypospray/medipen/survival/premium
+	name = "premium survival medipen"
+	desc = "A medipen for surviving in the harshest of environments, heals most damage. WARNING: Do not inject multiple pens in quick succession."
+	icon_state = "premiumpen"
 	volume = 57
 	amount_per_transfer_from_this = 57
-	list_reagents = list(/datum/reagent/medicine/salbutamol = 10, /datum/reagent/medicine/leporazine = 15, /datum/reagent/medicine/tricordrazine = 15, /datum/reagent/medicine/epinephrine = 10, /datum/reagent/medicine/lavaland_extract = 2, /datum/reagent/medicine/omnizine = 5)
+	list_reagents = list(/datum/reagent/medicine/bicaridine = 15, /datum/reagent/medicine/kelotane = 15, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/medicine/epinephrine = 10, /datum/reagent/medicine/omnizine = 5, /datum/reagent/medicine/coagulant = 2)
 
 /obj/item/reagent_containers/hypospray/medipen/species_mutator
 	name = "species mutator medipen"
