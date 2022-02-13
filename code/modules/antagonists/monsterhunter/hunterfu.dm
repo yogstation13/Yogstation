@@ -113,7 +113,7 @@
 			target.SetSleeping(45)
 	return TRUE
 
-/datum/martial_art/hunterfu/proc/holy_kick(mob/living/user, mob/living/target)
+/datum/martial_art/hunterfu/proc/holy_kick(mob/living/user, mob/living/carbon/human/target)
 	target.visible_message(
 		span_warning("[user] kicks [target], splashing holy water in every direction!"),
 		span_userdanger("You're kicked by [user], with holy water dripping down on you!"),
