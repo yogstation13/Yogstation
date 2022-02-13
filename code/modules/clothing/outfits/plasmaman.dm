@@ -337,7 +337,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
-	l_pocket = /obj/item/pda/roboticist
+	id = /obj/item/pda/roboticist
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 
@@ -357,7 +357,7 @@
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
-	l_pocket = /obj/item/pda/engineering
+	id = /obj/item/pda/engineering
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/atmos
@@ -375,7 +375,7 @@
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
-	l_pocket = /obj/item/pda/atmos
+	id = /obj/item/pda/atmos
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/mime
@@ -422,7 +422,7 @@
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
 	belt = /obj/item/storage/belt/utility/full
-	l_pocket = /obj/item/pda/signaltech
+	id = /obj/item/pda/signaltech
 	ears = /obj/item/radio/headset/headset_eng
 	uniform = /obj/item/clothing/under/plasmaman/engineering
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
@@ -601,7 +601,7 @@
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
-	l_pocket = /obj/item/pda/heads/ce
+	id = /obj/item/pda/heads/ce
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/rd

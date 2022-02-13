@@ -38,7 +38,7 @@
 
 	id_type = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/chief/full
-	l_pocket = /obj/item/pda/heads/ce
+	id = /obj/item/pda/heads/ce
 	ears = /obj/item/radio/headset/heads/ce
 	uniform = /obj/item/clothing/under/rank/chief_engineer
 	uniform_skirt = /obj/item/clothing/under/rank/chief_engineer/skirt
@@ -53,7 +53,6 @@
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
-	pda_slot = SLOT_L_STORE
 	chameleon_extras = /obj/item/stamp/ce
 
 /datum/outfit/job/ce/rig
