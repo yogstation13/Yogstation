@@ -423,9 +423,9 @@
 /obj/structure/bloodsucker/vassalrack/proc/remove_loyalties(mob/living/target)
 	// Find Mind Implant & Destroy
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-		for(var/obj/item/implant/all_implants in target.implants)
-			if(all_implants.type == /obj/item/implant/mindshield)
-				all_implants.removed(target, silent = TRUE)
+		for(var/obj/item/implant/mindshield/L in target)
+			if(L)
+				qdel(L)
 
 /obj/structure/bloodsucker/vassalrack/proc/offer_favorite_vassal(mob/living/carbon/human/user, mob/living/target)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
