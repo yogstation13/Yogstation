@@ -1,4 +1,0 @@
-author: "LazennG"
-delete-after: true 
-changes: 
-  - bugfix: "removes a .dmi file that was in the wrong place"
