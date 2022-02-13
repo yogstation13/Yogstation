@@ -178,8 +178,8 @@
 	desc = "A medipen for patching yourself up during a fight, heals physical damage. WARNING: Overuse may cause organs to liquify."
 	icon_state = "stimpen"
 	volume = 12
-	amount_per_transfer_from_this = 12
-	list_reagents = list(/datum/reagent/medicine/c2/libital = 5, /datum/reagent/medicine/c2/aiuri = 5, /datum/reagent/medicine/coagulant = 2)
+	amount_per_transfer_from_this = 10
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 4, /datum/reagent/medicine/c2/aiuri = 4, /datum/reagent/medicine/coagulant = 2)
 
 /obj/item/reagent_containers/hypospray/medipen/survival/premium
 	name = "premium survival medipen"
