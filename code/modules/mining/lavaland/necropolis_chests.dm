@@ -1457,3 +1457,20 @@
 			new /obj/item/wisp_lantern(src)
 		if(3)
 			new /obj/item/prisoncube(src)
+//Legion
+/obj/item/organ/grandcore
+	name = "grand core"
+	desc = "The source of the Legion's powers. Though mostly used up, you might be able to get some use out of it."
+	slot = "hivecore"
+	decay_factor = 0
+/obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
+	if(H == user && istype(H))
+		playsound(user,'sound/effects/singlebeat.ogg',40,1)
+		user.temporarilyRemoveItemFromInventory(src, TRUE)
+		Insert(user)
+	else
+		return ..()
+/obj/item/organ/grandcore/Insert(mob/living/carbon/M, special = 0)
+	..()
+	if(owner)
+		to_chat(owner, "<span class ='userdanger'>Your body has taken in the grand core, enabling you to send out minions at the cost of your blood!</span>")
