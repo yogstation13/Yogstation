@@ -113,7 +113,7 @@
 			target.SetSleeping(45)
 	return TRUE
 
-/datum/martial_art/hunterfu/proc/holy_kick(mob/living/user, mob/living/carbon/human/target)
+/datum/martial_art/hunterfu/proc/holy_kick(mob/living/user, mob/living/target)
 	target.visible_message(
 		span_warning("[user] kicks [target], splashing holy water in every direction!"),
 		span_userdanger("You're kicked by [user], with holy water dripping down on you!"),
@@ -123,13 +123,13 @@
 	playsound(get_turf(user), 'sound/weapons/slash.ogg', 50, TRUE, -1)
 	log_combat(user, target, "holy kicked (Hunter-Fu)")
 	if(!target.mind)
-		target.adjustStaminaLoss(60)
+		target.apply_damage(60, STAMINA)
 		target.Paralyze(20)
 		return TRUE
 	if(target.mind.has_antag_datum(/datum/antagonist/heretic))
 		to_chat(target, span_cultlarge("The holy water burns our flesh!"))
 		target.apply_damage(25, BURN)
-		target.adjustStaminaLoss(60)
+		target.apply_damage(60, STAMINA)
 		target.Paralyze(20)
 		return TRUE
 	if(target.mind.has_antag_datum(/datum/antagonist/bloodsucker))
@@ -137,7 +137,7 @@
 		if(bloodsuckerdatum.my_clan == CLAN_TREMERE)
 			to_chat(target, span_cultlarge("The holy water burns our flesh!"))
 			target.apply_damage(25, BURN)
-			target.adjustStaminaLoss(60)
+			target.apply_damage(60, STAMINA)
 			target.Paralyze(20)
 			return TRUE
 		else
@@ -148,7 +148,7 @@
 			to_chat(target, span_cultlarge("Our blood rites falter as the holy water drips onto our body!"))
 			for(var/datum/action/innate/cult/blood_spell/BS in BD.spells)
 				qdel(BS)
-		target.adjustStaminaLoss(60)
+		target.apply_damage(60, STAMINA)
 		target.Paralyze(20)
 		return TRUE
 	if(target.mind.has_antag_datum(/datum/antagonist/wizard) || (/datum/antagonist/wizard/apprentice))
@@ -156,11 +156,11 @@
 		var/mob/living/carbon/human/human_target = target // I guess monkey wizards aren't getting affected.
 		if(human_target.silent <= 10)
 			human_target.silent = clamp(human_target.silent + 10, 0, 10)
-		target.adjustStaminaLoss(60)
+		target.apply_damage(60, STAMINA)
 		target.Paralyze(20)
 		return TRUE
 	else
-		target.adjustStaminaLoss(60)
+		target.apply_damage(60, STAMINA)
 		target.Paralyze(20)
 	return TRUE
 
