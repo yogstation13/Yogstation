@@ -98,7 +98,7 @@
 					"A good clown entertains others by making fun of themselves, and not at the embarrassment or expense of others.",\
 					"A good clown carries out the directives of the station director(s) in charge of entertainment and/or their designated deputies.",\
 					"A good clown appears in as many clown shows as possible.",\
-					"A good clown acts for the entertainment of others, and not for personal gain or publicity.")
+					"All clown shows require an audience. The bigger the audience the better.")
 
 /datum/ai_laws/mother
 	name = "Mother M(A.I.)"
