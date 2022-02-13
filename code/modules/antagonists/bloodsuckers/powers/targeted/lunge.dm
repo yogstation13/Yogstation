@@ -50,7 +50,8 @@
 		return FALSE
 	// Check: can the Bloodsucker even move?
 	var/mob/living/user = owner
-	if(user.mobility_flags & ~MOBILITY_STAND || user.IsImmobilized())
+	if(!(user.mobility_flags & MOBILITY_STAND) || user.IsImmobilized())
+		to_chat(user, span_warning("You need to be standing and aware to lunge!"))
 		return FALSE
 	return TRUE
 

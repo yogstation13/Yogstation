@@ -114,7 +114,7 @@
 		attempt_vassalize(target, user)
 		return
 	else if(IS_VASSAL(target))
-		to_chat(owner, "Vassal cant be revived")
+		to_chat(owner, span_warning("Vassal can't be revived"))
 		return
 	attempt_mesmerize(target, user)
 

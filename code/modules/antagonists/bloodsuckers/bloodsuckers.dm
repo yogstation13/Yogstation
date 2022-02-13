@@ -731,17 +731,17 @@
 
 /datum/hud/human/New(mob/living/carbon/human/owner)
 	. = ..()
-	blood_display = new /atom/movable/screen/bloodsucker/blood_counter
+	blood_display = new /obj/screen/bloodsucker/blood_counter
 	infodisplay += blood_display
-	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter
+	vamprank_display = new /obj/screen/bloodsucker/rank_counter
 	infodisplay += vamprank_display
-	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter
+	sunlight_display = new /obj/screen/bloodsucker/sunlight_counter
 	infodisplay += sunlight_display
 
 /datum/hud
-	var/atom/movable/screen/bloodsucker/blood_counter/blood_display
-	var/atom/movable/screen/bloodsucker/rank_counter/vamprank_display
-	var/atom/movable/screen/bloodsucker/sunlight_counter/sunlight_display
+	var/obj/screen/bloodsucker/blood_counter/blood_display
+	var/obj/screen/bloodsucker/rank_counter/vamprank_display
+	var/obj/screen/bloodsucker/sunlight_counter/sunlight_display
 
 /datum/antagonist/bloodsucker/proc/add_hud()
 	return
@@ -751,27 +751,27 @@
 	owner.current.hud_used.vamprank_display.invisibility = INVISIBILITY_ABSTRACT
 	owner.current.hud_used.sunlight_display.invisibility = INVISIBILITY_ABSTRACT
 
-/atom/movable/screen/bloodsucker
+/obj/screen/bloodsucker
 	icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	invisibility = INVISIBILITY_ABSTRACT
 
-/atom/movable/screen/bloodsucker/proc/clear()
+/obj/screen/bloodsucker/proc/clear()
 	invisibility = INVISIBILITY_ABSTRACT
 
-/atom/movable/screen/bloodsucker/proc/update_counter()
+/obj/screen/bloodsucker/proc/update_counter()
 	invisibility = 0
 
-/atom/movable/screen/bloodsucker/blood_counter
+/obj/screen/bloodsucker/blood_counter
 	name = "Blood Consumed"
 	icon_state = "blood_display"
 	screen_loc = ui_blood_display
 
-/atom/movable/screen/bloodsucker/rank_counter
+/obj/screen/bloodsucker/rank_counter
 	name = "Bloodsucker Rank"
 	icon_state = "rank"
 	screen_loc = ui_vamprank_display
 
-/atom/movable/screen/bloodsucker/sunlight_counter
+/obj/screen/bloodsucker/sunlight_counter
 	name = "Solar Flare Timer"
 	icon_state = "sunlight_night"
 	screen_loc = ui_sunlight_display
@@ -822,14 +822,14 @@
 		owner.current.hud_used.sunlight_display.update_counter(value_string, valuecolor)
 		owner.current.hud_used.sunlight_display.icon_state = sunlight_display_icon
 
-/atom/movable/screen/bloodsucker/blood_counter/update_counter(value, valuecolor)
+/obj/screen/bloodsucker/blood_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[round(value,1)]</font></div>"
 
-/atom/movable/screen/bloodsucker/rank_counter/update_counter(value, valuecolor)
+/obj/screen/bloodsucker/rank_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[round(value,1)]</font></div>"
 
-/atom/movable/screen/bloodsucker/sunlight_counter/update_counter(value, valuecolor)
+/obj/screen/bloodsucker/sunlight_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='bottom' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[value]</font></div>"

@@ -145,7 +145,7 @@
 	// Target Type: Locker
 	else if(istype(target_atom, /obj/structure/closet) && level_current >= 3)
 		var/obj/structure/closet/target_closet = target_atom
-		to_chat(user, "You prepare to bash [target_closet] open...")
+		to_chat(user, span_warning("You prepare to bash [target_closet] open..."))
 		if(!do_mob(user, target_closet, 2.5 SECONDS))
 			return FALSE
 		target_closet.visible_message(span_danger("[target_closet] breaks open as [user] bashes it!"))
@@ -155,7 +155,7 @@
 	else if(istype(target_atom, /obj/machinery/door) && level_current >= 4)
 		var/obj/machinery/door/target_airlock = target_atom
 		playsound(get_turf(user), 'sound/machines/airlock_alien_prying.ogg', 40, 1, -1)
-		to_chat(owner, "You prepare to tear open [target_airlock]...")
+		to_chat(owner, span_warning("You prepare to tear open [target_airlock]..."))
 		if(!do_mob(user, target_airlock, 2.5 SECONDS))
 			return FALSE
 		if(target_airlock.Adjacent(user))

@@ -29,13 +29,13 @@
 		return FALSE
 	// Being Grabbed
 	if(user.pulledby && user.pulledby.grab_state >= GRAB_AGGRESSIVE)
-		to_chat(user, "You're being grabbed!")
+		to_chat(user, span_warning("You're being grabbed!"))
 		return FALSE
 	if(!user.has_gravity(user.loc)) //We dont want people to be able to use this to fly around in space
-		to_chat(user, "You cannot dash while floating!")
+		to_chat(user, span_warning("You cannot dash while floating!"))
 		return FALSE
-	if(user.mobility_flags & ~MOBILITY_STAND)
-		to_chat(user, "You must be standing to tackle!")
+	if(!(user.mobility_flags & MOBILITY_STAND))
+		to_chat(user, span_warning("You must be standing to tackle!"))
 		return FALSE
 	return TRUE
 
