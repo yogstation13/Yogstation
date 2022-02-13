@@ -98,7 +98,7 @@
 	/// Am I next to my target to start giving the effects?
 	if(user.Adjacent(target))
 		// Did I slip?
-		if(!user.mobility_flags & MOBILITY_STAND)
+		if(!(user.mobility_flags & MOBILITY_STAND))
 			return
 		// Is my target a Monster hunter?
 		if(IS_MONSTERHUNTER(target))

@@ -87,7 +87,7 @@
 			objectives += embrace_objective
 		if(CLAN_MALKAVIAN)
 			my_clan = CLAN_MALKAVIAN
-			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/creepalert.ogg', 80, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
+			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/creepalert.ogg', 80, FALSE, pressure_affected = FALSE)
 			to_chat(owner, span_hypnophrase("Welcome to the Malkavian..."))
 			to_chat(owner, span_userdanger("* Bloodsucker Malkavian: The voices will not go away. It is endless. You are trapped.\n\
 			* If you get a Favorite Vassal, they will suffer a near fate as you, pick wisely."))

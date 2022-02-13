@@ -468,7 +468,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/structure/bloodsucker/candelabrum/proc/update_icon_state()
+/obj/structure/bloodsucker/candelabrum/update_icon()
 	icon_state = "candelabrum[lit ? "_lit" : ""]"
 	return ..()
 
