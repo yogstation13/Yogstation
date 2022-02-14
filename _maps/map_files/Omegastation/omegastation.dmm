@@ -27931,6 +27931,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical)
+"gsk" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/camera/all{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "gsA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46652,13 +46662,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"xNJ" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/server)
 "xOb" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4
@@ -95952,7 +95955,7 @@ hbL
 tOP
 hbL
 pzi
-xNJ
+gsk
 jPT
 hbL
 sOM
