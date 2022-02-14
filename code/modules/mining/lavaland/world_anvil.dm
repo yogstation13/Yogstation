@@ -63,7 +63,7 @@
 			forge_charges--
 			used_magmite++
 			to_chat(user,"You forge an upgrade to your kinetic accelerator. It now can hold 120% mod capacity.")
-		if(istype(I,/obj/item/gun/energy/plasmacutter/adv) && forge_charges > 0 && used_magmite < magmite_amount)
+		if(istype(I,/obj/item/gun/energy/plasmacutter/adv) && forge_charges && used_magmite < magmite_amount)
 			var/obj/item/gun/energy/plasmacutter/adv/cutter = I
 			cutter.ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/forge) //should make a new gun and replace it, just for testing
 			forge_charges--
