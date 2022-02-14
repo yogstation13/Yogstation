@@ -13,7 +13,6 @@
 /obj/item/grenade/plastic/miningcharge/attack_self(mob/user)
 	if(nadeassembly)
 		nadeassembly.attack_self(user)
-		return
 
 /obj/item/grenade/plastic/miningcharge/afterattack(atom/movable/AM, mob/user, flag)
 	if(ismineralturf(AM))
