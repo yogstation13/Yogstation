@@ -75,7 +75,7 @@
 			used_magmite--
 			qdel(magmite)
 	update_icon()
-	if(forge_charges == 0)
+	if(!forge_charges)
 		to_chat(user,"The world anvil cools down.")
 	
 	
