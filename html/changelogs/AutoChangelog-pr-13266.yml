@@ -1,0 +1,4 @@
+author: "bruhlookatthisdood"
+delete-after: true 
+changes: 
+  - rscadd: "Camera Rearanged in box station's sci to fix blindspot for AI infront of door."
