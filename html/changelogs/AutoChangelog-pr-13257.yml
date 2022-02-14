@@ -1,0 +1,8 @@
+author: "  Xoxeyos"
+delete-after: true 
+changes: 
+  - rscadd: "Eclipse now has a secondary AI datacore south of the RD's office."
+  - rscadd: "New tutorial holodisk for creation of AI cores, you will find these within your local RD's office, or within the AI data core storage, depending on the station."
+  - rscadd: "OmegaStation now has a proper AI core."
+  - bugfix: "Fixed a fucked up door in front of a table."
+  - bugfix: "Removed a stray wire on Omega."
