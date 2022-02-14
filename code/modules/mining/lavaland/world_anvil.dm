@@ -57,7 +57,7 @@
 		to_chat(user,"The anvil does not have any plasma magmite on it!")
 		return ..()
 	for(var/obj/item/I in placed_objects)
-		if(istype(I,/obj/item/gun/energy/kinetic_accelerator) && !istype(I,/obj/item/gun/energy/kinetic_accelerator/crossbow) && forge_charges > 0 && used_magmite < magmite_amount)
+		if(istype(I,/obj/item/gun/energy/kinetic_accelerator) && !istype(I,/obj/item/gun/energy/kinetic_accelerator/crossbow) && forge_charges && used_magmite < magmite_amount)
 			var/obj/item/gun/energy/kinetic_accelerator/gun = I
 			gun.max_mod_capacity = 120 //should make a new gun and replace it, just for testing
 			forge_charges--
