@@ -287,7 +287,7 @@
 				break
 		H.sec_hud_set_ID()
 
-	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
+	var/obj/item/pda/PDA = H.get_item_by_slot(SLOT_WEAR_ID)
 	if(istype(PDA))
 		PDA.owner = H.real_name
 		if(H.mind?.role_alt_title)
@@ -297,8 +297,9 @@
 		PDA.InsertID(C)
 		PDA.update_label()
 		PDA.update_icon()
+		PDA.update_filters()
 	else
-		H.wear_id = C
+		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
 
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()
