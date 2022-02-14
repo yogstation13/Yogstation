@@ -1,0 +1,4 @@
+author: "UselessTheremin"
+delete-after: true 
+changes: 
+  - bugfix: "wheelchairs can now use turnstiles"
