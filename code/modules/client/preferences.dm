@@ -755,6 +755,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;preference=be_special;be_special_type=[i]'>[(i in be_special) ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Midround Antagonist:</b> <a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Toggle Valentines Events:</b> <a href='?_src_=prefs;preference=donor;task=valentines'>[valentines ? "Yes" : "No"]</a><BR>"
 
 			// yogs start - Donor features
 			if(is_donator(user.client))
@@ -858,8 +859,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[GLOB.donor_pdas[donor_pda]]</a><BR>"
 				dat += "<b>Purrbation (Humans only)</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
-				dat += "<b>Toggle Valentines Events</b> "
-				dat += "<a href='?_src_=prefs;preference=donor;task=valentines'>[valentines ? "Yes" : "No"]</a><BR>"
 			else
 				dat += "<b><a href='http://www.yogstation.net/donate'>Donate here</b>"
 			dat += "</tr></table>"

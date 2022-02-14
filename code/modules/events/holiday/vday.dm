@@ -24,7 +24,7 @@
 	var/list/valentines = list()
 	for(var/mob/living/M in GLOB.player_list)
 		if(!M.stat && M.client && M.mind)
-			if((is_donator(M) || (M.ckey in get_donators())) && M.client.prefs.valentines == TRUE)
+			if(M.client.prefs.valentines == TRUE)
 				continue
 			valentines |= M
 
