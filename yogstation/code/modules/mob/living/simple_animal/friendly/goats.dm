@@ -443,3 +443,16 @@
 	icon_dead = "suspiciousgoat_dead"
 	gold_core_spawnable = NO_SPAWN
 	ventcrawler = VENTCRAWLER_ALWAYS
+
+/mob/living/simple_animal/hostile/retaliate/goat/thrumbo
+	name = "Thrumboat"
+	desc = "A very fancy looking goat from those outer-rim worlds."
+	icon = 'yogstation/icons/mob/goats/thrumbo.dmi'
+	icon_state = "thrumbo"
+	icon_living = "thrumbo"
+	icon_dead = "thrumbo_dead"
+	emote_see = list("shakes its head.", "stamps a hoof.", "peers around.")
+	attacktext = "slashes"
+	attack_sound = 'sound/weapons/slash.ogg'
+	melee_damage_lower = 10
+	melee_damage_upper = 15

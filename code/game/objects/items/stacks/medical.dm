@@ -14,6 +14,8 @@
 	item_flags = NOBLUDGEON
 	var/self_delay = 50
 	var/other_delay = 0
+	/// Sound/Sounds to play when this is applied
+	var/apply_sounds
 	var/repeating = FALSE
 	/// How much brute we heal per application
 	var/heal_brute
@@ -41,11 +43,13 @@
 	if(!M.can_inject(user, TRUE))
 		return
 	if(M == user)
+		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply \the [src] on [user.p_them()]self..."), span_notice("You begin applying \the [src] on yourself..."))
 		if(!do_mob(user, M, self_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
 			return
 	else if(other_delay)
+		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply \the [src] on [M]."), span_notice("You begin applying \the [src] on [M]..."))
 		if(!do_mob(user, M, other_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
@@ -90,6 +94,7 @@
 	icon_state = "brutepack"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	heal_brute = 40
 	self_delay = 40
 	other_delay = 20
@@ -124,6 +129,7 @@
 	gender = PLURAL
 	singular_name = "medical gauze"
 	icon_state = "gauze"
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	self_delay = 50
 	other_delay = 20
 	max_amount = 12
@@ -259,6 +265,7 @@
 	icon_state = "ointment"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	apply_sounds = list('sound/effects/ointment.ogg')
 	amount = 8
 	max_amount = 8
 	self_delay = 40
@@ -369,6 +376,7 @@
 	desc = "A healing paste you can apply on wounds."
 
 	icon_state = "aloe_paste"
+	apply_sounds = list('sound/effects/ointment.ogg')
 	self_delay = 20
 	other_delay = 10
 	novariants = TRUE
@@ -415,6 +423,7 @@
 	icon_state = "bone-gel"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	apply_sounds = list('sound/effects/ointment.ogg')
 
 	amount = 4
 	self_delay = 20
@@ -457,6 +466,7 @@
 	singular_name = "mourning poultice"
 	desc = "A type of primitive herbal poultice.\nWhile traditionally used to prepare corpses for the mourning feast, it can also treat scrapes and burns on the living, however, it is liable to cause shortness of breath when employed in this manner.\nIt is imbued with ancient wisdom."
 	icon_state = "poultice"
+	apply_sounds = list('sound/misc/soggy.ogg')
 	amount = 15
 	max_amount = 15
 	heal_brute = 10
@@ -469,7 +479,6 @@
 
 /obj/item/stack/medical/poultice/heal(mob/living/M, mob/user)
 	if(iscarbon(M))
-		playsound(src, 'sound/misc/soggy.ogg', 30, TRUE)
 		return heal_carbon(M, user, heal_brute, heal_burn)
 	return ..()
 

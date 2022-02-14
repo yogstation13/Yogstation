@@ -1,5 +1,5 @@
 import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from '../backend';
+import { useBackend, useLocalState, useSharedState } from '../backend';
 import { Box, Button, Tabs, ProgressBar, Section, Divider, LabeledControls, NumberInput } from '../components';
 import { Window } from '../layouts';
 
@@ -7,8 +7,9 @@ export const AiDashboard = (props, context) => {
   const { act, data } = useBackend(context);
 
 
-  const [tab, setTab] = useLocalState(context, 'tab', 1);
-  const [selectedCategory, setCategory] = useLocalState(context, 'selectedCategory', data.categories[0]);
+  const [tab, setTab] = useSharedState(context, 'tab', 1);
+  const [selectedCategory, setCategory] = useSharedState(context, 'selectedCategory', data.categories[0]);
+  const [activeProjectsOnly, setActiveProjectsOnly] = useSharedState(context, 'activeProjectsOnly', false);
 
   return (
     <Window
@@ -104,6 +105,11 @@ export const AiDashboard = (props, context) => {
           <Tabs.Tab
             selected={tab === 3}
             onClick={(() => setTab(3))}>
+            Ability Charging
+          </Tabs.Tab>
+          <Tabs.Tab
+            selected={tab === 4}
+            onClick={(() => setTab(4))}>
             Cloud Resources
           </Tabs.Tab>
         </Tabs>
@@ -131,11 +137,14 @@ export const AiDashboard = (props, context) => {
                   <Box inline bold>&nbsp;THz</Box>
                 </Fragment>
               )}>
-                <Box bold>Research Cost: {project.research_cost} THz</Box>
-                <Box bold>RAM Requirement: {project.ram_required} TB</Box>
-                <Box bold>Research Requirements: &nbsp
-                  <Box inline>{project.research_requirements}</Box>
-                </Box>
+                <Box inline bold>Research Cost:&nbsp;</Box>
+                <Box inline>{project.research_cost} THz</Box>
+                <br />
+                <Box inline bold>RAM Requirement:&nbsp;</Box>
+                <Box inline>{project.ram_required} TB</Box>
+                <br />
+                <Box inline bold>Research Requirements:&nbsp;</Box>
+                <Box inline>{project.research_requirements}</Box>
                 <Box mb={1}>
                   {project.description}
                 </Box>
@@ -145,7 +154,7 @@ export const AiDashboard = (props, context) => {
           </Section>
         )}
         {tab === 2 && (
-          <Section title="Completed Projects">
+          <Section title="Completed Projects" buttons={(<Button.Checkbox checked={activeProjectsOnly} onClick={() => setActiveProjectsOnly(!activeProjectsOnly)}>See Runnable Projects Only</Button.Checkbox>)}>
             <Tabs>
               {data.categories.map((category, index) => (
                 <Tabs.Tab key={index}
@@ -156,15 +165,22 @@ export const AiDashboard = (props, context) => {
               ))}
             </Tabs>
             {data.completed_projects.filter(project => {
+              if (activeProjectsOnly && !project.can_be_run) {
+                return false;
+              }
               return project.category === selectedCategory;
             }).map((project, index) => (
-              <Section key={index} title={(<Box inline color={project.running ? "lightgreen" : "bad"}>{project.name} | {project.running ? "Running" : "Not Running"}</Box>)} buttons={(
-                <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
-                  project_name: project.name,
-                })}>{project.running ? "Stop" : "Run"}
-                </Button>
-              )}>
-                <Box bold>RAM Requirement: {project.ram_required} TB</Box>
+              <Section key={index} title={(<Box inline color={project.can_be_run ? project.running ? "lightgreen" : "bad" : "lightgreen"}> {project.name} | {project.can_be_run ? project.running ? "Running" : "Not Running" : "Passive"}</Box>)}
+                buttons={!!project.can_be_run && (
+                  <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
+                    project_name: project.name,
+                  })}>
+                    {project.running ? "Stop" : "Run"}
+                  </Button>
+                )}>
+                {!!project.can_be_run && (
+                  <Box bold>RAM Requirement: {project.ram_required} TB</Box>
+                )}
                 <Box mb={1}>
                   {project.description}
                 </Box>
@@ -173,6 +189,32 @@ export const AiDashboard = (props, context) => {
           </Section>
         )}
         {tab === 3 && (
+          <Section title="Ability Charging">
+            {data.chargeable_abilities.filter(ability => {
+              return ability.uses < ability.max_uses;
+            }).map((ability, index) => (
+              <Section key={index}
+                title={(
+                  <Box inline>
+                    {ability.name} | Uses Remaining: {ability.uses}/{ability.max_uses}
+                  </Box>
+                )}
+                buttons={(
+                  <Fragment>
+                    <Box inline bold>Assigned CPU:&nbsp;</Box>
+                    <NumberInput value={ability.assigned_cpu} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_recharge_cpu', {
+                      project_name: ability.project_name,
+                      amount: value,
+                    })} />
+                    <Box inline bold>&nbsp;THz</Box>
+                  </Fragment>
+                )}>
+                <ProgressBar value={ability.progress / ability.cost} />
+              </Section>
+            ))}
+          </Section>
+        )}
+        {tab === 4 && (
           <Section title="Computing Resources">
             <Section title="CPU Resources">
               <ProgressBar
@@ -188,8 +230,6 @@ export const AiDashboard = (props, context) => {
             </Section>
           </Section>
         )}
-
-
       </Window.Content>
     </Window>
   );

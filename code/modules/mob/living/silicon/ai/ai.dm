@@ -112,8 +112,17 @@
 	var/downloadSpeedModifier = 1
 
 	var/login_warned_temp = FALSE
+
+	//Do we have access to camera tracking?
+	var/canCameraMemoryTrack = FALSE
+	//The person we are tracking
+	var/cameraMemoryTarget = null
+	//We only check every X ticks
+	var/cameraMemoryTickCount = 0
+
 	//Did we get the death prompt?
 	var/is_dying = FALSE 
+
 
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
@@ -248,7 +257,14 @@
 			M.update()
 
 
-	
+/mob/living/silicon/ai/proc/add_verb_ai(addedVerb)
+	add_verb(src, addedVerb)
+	if(istype(loc, /obj/machinery/ai/data_core)) //A BYOND bug requires you to be viewing your core before your verbs update
+		var/obj/machinery/ai/data_core/core = loc
+		forceMove(get_turf(loc))
+		view_core()
+		sleep(1)
+		forceMove(core)
 
 /mob/living/silicon/ai/verb/pick_icon()
 	set category = "AI Commands"
@@ -504,6 +520,25 @@
 			return
 		if(M)
 			M.transfer_ai(AI_MECH_HACK, src, usr) //Called om the mech itself.
+
+	if(href_list["stopTrackHuman"])
+		if(!cameraMemoryTarget)
+			return
+		to_chat(src, span_notice("Target no longer being tracked."))
+		cameraMemoryTarget = null
+
+	if(href_list["trackHuman"])
+		var/track_name = href_list["trackHuman"]
+		if(!track_name)
+			to_chat(src, span_warning("Unable to track target."))
+			return
+		if(cameraMemoryTarget)
+			to_chat(src, span_warning("Old target discarded. Exclusively tracking new target."))
+		else
+			to_chat(src, span_notice("Now tracking new target, [track_name]."))
+		
+		cameraMemoryTarget = track_name
+		cameraMemoryTickCount = 0
 	
 	if(href_list["instant_download"])
 		if(!href_list["console"])
@@ -931,15 +966,8 @@
 	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 30 seconds.")
 	
 	view_core() //A BYOND bug requires you to be viewing your core before your verbs update
-	add_verb(src, /mob/living/silicon/ai/proc/choose_modules)
-	add_verb(src, /mob/living/silicon/ai/proc/toggle_download)
+	add_verb_ai(list(/mob/living/silicon/ai/proc/choose_modules, /mob/living/silicon/ai/proc/toggle_download))
 	malf_picker = new /datum/module_picker
-	if(istype(loc, /obj/machinery/ai/data_core)) //A BYOND bug requires you to be viewing your core before your verbs update
-		var/obj/machinery/ai/data_core/core = loc
-		forceMove(get_turf(loc))
-		view_core()
-		sleep(1)
-		forceMove(core)
 
 
 /mob/living/silicon/ai/reset_perspective(atom/A)
