@@ -6,7 +6,7 @@
 	resistance_flags = INDESTRUCTIBLE
 	anchored = TRUE
 	density = FALSE
-	var/pull_time = 150
+	var/pull_time = 15 SECONDS
 
 /obj/structure/mjollnir/attack_hand(mob/living/user)
 	. = ..()
