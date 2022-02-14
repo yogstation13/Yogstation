@@ -15,6 +15,7 @@
 
 /datum/round_event/valentines/start()
 	..()
+	var/list/mob/living/carbon/human/removed = list()
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		H.put_in_hands(new /obj/item/valentine)
 		var/obj/item/storage/backpack/b = locate() in H.contents
@@ -25,6 +26,7 @@
 	for(var/mob/living/M in GLOB.player_list)
 		if(!M.stat && M.client && M.mind)
 			if(M.client.prefs.valentines == TRUE)
+				removed.Add(M)
 				continue
 			valentines |= M
 
@@ -40,6 +42,37 @@
 			if(valentines.len && prob(4))
 				var/mob/living/notgoodenough = pick_n_take(valentines)
 				forge_valentines_objective(notgoodenough, date)
+	
+
+	priority_announce("Opting out [removed.len] employees from the Nanotrasen valentines program. Opt out laser charging...", "Opt out")
+
+	sound_to_playing_players('sound/magic/lightning_chargeup.ogg')
+	sleep(10 SECONDS)
+	sound_to_playing_players('sound/magic/lightningbolt.ogg')
+
+	for(var/mob/living/grinch in removed)
+		spawn(0)
+			for(var/i = 1 to 6)
+				var/obj/effect/temp_visual/solarbeam_killsat/K = new (get_turf(grinch))
+				var/matrix/final = matrix()
+				final.Scale(1,32)
+				final.Translate(0,512)
+				K.transform = final
+				grinch.notransform = TRUE
+				grinch.adjustBruteLoss(10, TRUE, TRUE)
+				grinch.adjustFireLoss(10, TRUE, TRUE)
+				grinch.adjustOxyLoss(10, TRUE, TRUE)
+				grinch.adjustToxLoss(10, TRUE, TRUE)
+				grinch.adjust_drugginess(10)
+				grinch.adjust_blurriness(10)
+				grinch.adjust_disgust(10)
+				grinch.adjust_fire_stacks(10)
+				grinch.AdjustParalyzed(10, TRUE, TRUE)
+				grinch.regenerate_icons()
+				sleep(1 SECONDS)
+			grinch.gib(TRUE, FALSE, FALSE)
+			sleep(3 SECONDS)
+			qdel(grinch)
 
 /proc/forge_valentines_objective(mob/living/lover,mob/living/date)
 	lover.mind.special_role = "valentine"
