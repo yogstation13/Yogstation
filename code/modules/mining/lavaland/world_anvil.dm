@@ -43,7 +43,7 @@
 	UnregisterSignal(I, COMSIG_MOVABLE_MOVED)
 
 /obj/structure/world_anvil/attack_hand(mob/user)
-	if(LAZYLEN(placed_objects) == 0)
+	if(!LAZYLEN(placed_objects))
 		to_chat(user,"You must place a piece of plasma magmite and either a kinetic accelerator or advanced plasma cutter on the anvil!")
 		return ..()
 	if(forge_charges <= 0)
