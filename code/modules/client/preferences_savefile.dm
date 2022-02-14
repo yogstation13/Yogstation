@@ -225,6 +225,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["donor_hat"], donor_hat)
 	READ_FILE(S["donor_item"], donor_item)
 	READ_FILE(S["purrbation"], purrbation)
+	READ_FILE(S["valentines"], valentines)
 	READ_FILE(S["yogtoggles"], yogtoggles)
 
 	READ_FILE(S["accent"], accent) // Accents, too!
@@ -289,6 +290,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	yogtoggles		= sanitize_integer(yogtoggles, 0, (1 << 23), initial(yogtoggles))
 	donor_pda		= sanitize_integer(donor_pda, 1, GLOB.donor_pdas.len, 1)
 	purrbation      = sanitize_integer(purrbation, FALSE, TRUE, initial(purrbation))
+	valentines      = sanitize_integer(valentines, FALSE, TRUE, initial(valentines))
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
 	// yogs end
@@ -360,6 +362,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["donor_hat"], donor_hat)
 	WRITE_FILE(S["donor_item"], donor_item)
 	WRITE_FILE(S["purrbation"], purrbation)
+	WRITE_FILE(S["valentines"], valentines)
 
 	WRITE_FILE(S["accent"], accent) // Accents, too!
 	// yogs end
