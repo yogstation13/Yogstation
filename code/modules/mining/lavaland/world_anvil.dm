@@ -57,18 +57,25 @@
 		to_chat(user,"The anvil does not have any plasma magmite on it!")
 		return ..()
 	for(var/obj/item/I in placed_objects)
-		if(istype(I,/obj/item/gun/energy/kinetic_accelerator) && !istype(I,/obj/item/gun/energy/kinetic_accelerator/crossbow) && forge_charges && used_magmite < magmite_amount)
+		if(I == /obj/item/gun/energy/kinetic_accelerator && forge_charges && used_magmite < magmite_amount)
 			var/obj/item/gun/energy/kinetic_accelerator/gun = I
-			gun.max_mod_capacity = 120 //should make a new gun and replace it, just for testing
+			if(gun.bayonet)
+				gun.remove_gun_attachment(item_to_remove = gun.bayonet)
+			if(gun.gun_light)
+				gun.remove_gun_attachment(item_to_remove = gun.gun_light)
+			for(var/obj/item/borg/upgrade/modkit/kit in gun.modkits)
+				kit.uninstall(gun)
+			new /obj/item/gun/energy/kinetic_accelerator/mega(src) 
+			qdel(gun)
 			forge_charges--
 			used_magmite++
-			to_chat(user,"You forge an upgrade to your kinetic accelerator. It now can hold 120% mod capacity.")
-		if(istype(I,/obj/item/gun/energy/plasmacutter/adv) && forge_charges && used_magmite < magmite_amount)
-			var/obj/item/gun/energy/plasmacutter/adv/cutter = I
-			cutter.ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/forge) //should make a new gun and replace it, just for testing
+			to_chat(user,"You forge the kinetic accelerator together with the plasma magmite to form a mega kinetic accelerator.")
+		if(I == /obj/item/gun/energy/plasmacutter/adv && forge_charges && used_magmite < magmite_amount)
+			new /obj/item/gun/energy/plasmacutter/adv/mega(src)
+			qdel(I)
 			forge_charges--
 			used_magmite++
-			to_chat(user,"You forge an upgrade to your advanced plasma cutter. It now goes extra distance.")
+			to_chat(user,"You forge the advanced plasma cutter together with the plasma magmite to form a mega plasma cutter.")
 	//time to clean up all the magmite we used
 	for(var/obj/item/magmite in placed_objects)
 		if(used_magmite != 0)

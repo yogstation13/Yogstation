@@ -33,7 +33,7 @@
 	range = 5
 	mine_range = 5
 
-/obj/item/projectile/plasma/adv/forge
+/obj/item/projectile/plasma/adv/mega
 	range = 7
 	mine_range = 7
 

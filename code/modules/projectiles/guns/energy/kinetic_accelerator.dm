@@ -151,6 +151,11 @@
 	else
 		cut_overlays()
 
+/obj/item/gun/energy/kinetic_accelerator/mega
+	name = "mega proto-kinetic accelerator"
+	desc = "A self recharging, ranged mining tool that does increased damage in low pressure. This one has been enhanced with plasma magmite."
+	max_mod_capacity = 120
+
 //Casing
 /obj/item/ammo_casing/energy/kinetic
 	projectile_type = /obj/item/projectile/kinetic

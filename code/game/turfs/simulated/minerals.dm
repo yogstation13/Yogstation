@@ -68,7 +68,7 @@
 	else
 		return attack_hand(user)
 
-/turf/closed/mineral/proc/gets_drilled(mob/user, triggered_by_explosion = 0, override_bonus = FALSE)
+/turf/closed/mineral/proc/gets_drilled(mob/user, triggered_by_explosion = FALSE, override_bonus = FALSE)
 	if (mineralType && (mineralAmt > 0))
 		if(triggered_by_explosion && !override_bonus)
 			mineralAmt += 2 //bonus if it was exploded, USE EXPLOSIVES WOOO
@@ -83,7 +83,7 @@
 	addtimer(CALLBACK(src, .proc/AfterChange), 1, TIMER_UNIQUE)
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1) //beautiful destruction
 
-/turf/closed/mineral/proc/attempt_drill(mob/user,triggered_by_explosion = 0, power = 1)
+/turf/closed/mineral/proc/attempt_drill(mob/user,triggered_by_explosion = FALSE, power = 1)
 	hardness -= power
 	if(hardness <= 0)
 		gets_drilled(user,triggered_by_explosion)
@@ -799,7 +799,7 @@
 	spread = 0
 	scan_state = "rock_Magmite"
 
-/turf/closed/mineral/magmite/gets_drilled(mob/user, triggered_by_explosion = 0)
+/turf/closed/mineral/magmite/gets_drilled(mob/user, triggered_by_explosion = FALSE)
 	if(!triggered_by_explosion)
 		mineralAmt = 0
 	..(user,triggered_by_explosion,TRUE)

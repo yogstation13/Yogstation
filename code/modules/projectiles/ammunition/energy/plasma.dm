@@ -10,8 +10,8 @@
 	delay = 10
 	e_cost = 10
 
-/obj/item/ammo_casing/energy/plasma/adv/forge
-	projectile_type = /obj/item/projectile/plasma/adv/forge
+/obj/item/ammo_casing/energy/plasma/adv/mega
+	projectile_type = /obj/item/projectile/plasma/adv/mega
 
 /obj/item/ammo_casing/energy/plasma/scatter
 	projectile_type = /obj/item/projectile/plasma/scatter
