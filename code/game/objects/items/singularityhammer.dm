@@ -85,9 +85,6 @@
 	throwforce = 30
 	throw_range = 7
 	w_class = WEIGHT_CLASS_HUGE
-	var/zap_power = 20000
-	var/zap_range = 20
-	var/zap_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
 
 /obj/item/twohanded/mjollnir/proc/shock(mob/living/target)
 	target.Stun(60)
