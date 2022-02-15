@@ -1,8 +1,0 @@
-author: "TheGamerdk"
-delete-after: true 
-changes: 
-  - rscadd: "AI Projects have the ability to give active abilities"
-  - rscadd: "New project allows AI to charge a borg remotely"
-  - rscadd: "New project allows AI to keep APC operational even without power for a short duration"
-  - rscadd: "New project that notifies the AI when a tagged individual re-enters camera view."
-  - rscadd: "Adds AI abilities that can be recharged by using CPU power"
