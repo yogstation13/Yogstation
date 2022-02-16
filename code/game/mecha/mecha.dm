@@ -1069,18 +1069,22 @@
 			AI.remote_control = null
 			RemoveActions(occupant, 1)
 			mob_container = AI
-			newloc = GLOB.primary_data_core ? GLOB.primary_data_core : GLOB.data_cores[1]
-			if(!newloc)
-				to_chat(AI, span_userdanger("No cores available. Core code corrupted. Goodbye."))
-				qdel(AI)
-				return
+			newloc = null
+			if(GLOB.primary_data_core)
+				newloc = GLOB.primary_data_core
+			else if(LAZYLEN(GLOB.data_cores))
+				newloc = GLOB.data_cores[1]
+				
+			if(!istype(newloc, /obj/machinery/ai/data_core))
+				to_chat(AI, span_userdanger("No cores available. Core code corrupted."))
+				
 			is_ai_user = TRUE
 	else
 		return
 	var/mob/living/L = occupant
 	occupant = null //we need it null when forceMove calls Exited().
 	silicon_pilot = FALSE
-	if(mob_container.forceMove(newloc) && !is_ai_user)//ejecting mob container
+	if(mob_container.forceMove(newloc))//ejecting mob container
 		log_message("[mob_container] moved out.", LOG_MECHA)
 		L << browse(null, "window=exosuit")
 

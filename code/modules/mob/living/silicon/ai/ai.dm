@@ -113,6 +113,17 @@
 
 	var/login_warned_temp = FALSE
 
+	//Do we have access to camera tracking?
+	var/canCameraMemoryTrack = FALSE
+	//The person we are tracking
+	var/cameraMemoryTarget = null
+	//We only check every X ticks
+	var/cameraMemoryTickCount = 0
+
+	//Did we get the death prompt?
+	var/is_dying = FALSE 
+
+
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
 	. = ..()
@@ -178,7 +189,7 @@
 
 	dashboard = new(src)
 
-	if(isturf(loc))
+	if(isvalidAIloc(loc))
 		add_verb(src, list(/mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
 		/mob/living/silicon/ai/proc/botcall, /mob/living/silicon/ai/proc/control_integrated_radio, \
@@ -246,7 +257,14 @@
 			M.update()
 
 
-	
+/mob/living/silicon/ai/proc/add_verb_ai(addedVerb)
+	add_verb(src, addedVerb)
+	if(istype(loc, /obj/machinery/ai/data_core)) //A BYOND bug requires you to be viewing your core before your verbs update
+		var/obj/machinery/ai/data_core/core = loc
+		forceMove(get_turf(loc))
+		view_core()
+		sleep(1)
+		forceMove(core)
 
 /mob/living/silicon/ai/verb/pick_icon()
 	set category = "AI Commands"
@@ -414,29 +432,6 @@
 
 	QDEL_NULL(src)
 
-/mob/living/silicon/ai/verb/toggle_anchor()
-	set category = "AI Commands"
-	set name = "Toggle Floor Bolts"
-	if(!isturf(loc)) // if their location isn't a turf
-		return // stop
-	if(stat == DEAD)
-		return
-	if(incapacitated())
-		if(battery < 50)
-			to_chat(src, span_warning("Insufficient backup power!"))
-			return
-		battery = battery - 50
-		to_chat(src, span_notice("You route power from your backup battery to move the bolts."))
-	var/is_anchored = FALSE
-	if(move_resist == MOVE_FORCE_VERY_STRONG)
-		move_resist = MOVE_FORCE_NORMAL
-	else
-		is_anchored = TRUE
-		move_resist = MOVE_FORCE_VERY_STRONG
-
-	to_chat(src, "<b>You are now [is_anchored ? "" : "un"]anchored.</b>")
-	// the message in the [] will change depending whether or not the AI is anchored
-
 /mob/living/silicon/ai/update_mobility() //If the AI dies, mobs won't go through it anymore
 	if(stat != CONSCIOUS)
 		mobility_flags = NONE
@@ -520,11 +515,39 @@
 		if(!GLOB.cameranet.checkCameraVis(M))
 			to_chat(src, span_warning("Exosuit is no longer near active cameras."))
 			return
-		if(!isturf(loc))
+		if(!isvalidAIloc(loc))
 			to_chat(src, span_warning("You aren't in your core!"))
 			return
 		if(M)
 			M.transfer_ai(AI_MECH_HACK, src, usr) //Called om the mech itself.
+
+	if(href_list["stopTrackHuman"])
+		if(!cameraMemoryTarget)
+			return
+		to_chat(src, span_notice("Target no longer being tracked."))
+		cameraMemoryTarget = null
+
+	if(href_list["trackHuman"])
+		var/track_name = href_list["trackHuman"]
+		if(!track_name)
+			to_chat(src, span_warning("Unable to track target."))
+			return
+		if(cameraMemoryTarget)
+			to_chat(src, span_warning("Old target discarded. Exclusively tracking new target."))
+		else
+			to_chat(src, span_notice("Now tracking new target, [track_name]."))
+		
+		cameraMemoryTarget = track_name
+		cameraMemoryTickCount = 0
+	
+	if(href_list["instant_download"])
+		if(!href_list["console"])
+			return
+		var/obj/machinery/computer/ai_control_console/C = locate(href_list["console"])
+		if(!C)
+			return
+		if(C.downloading == src)
+			C.finish_download()
 
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
@@ -575,7 +598,10 @@
 
 
 /mob/living/silicon/ai/triggerAlarm(class, area/A, O, obj/alarmsource)
-	if(alarmsource.z != z)
+	var/turf/T = get_turf(src)
+	if(istype(loc, /obj/machinery/ai/data_core))
+		T = get_turf(loc)
+	if(alarmsource.z != T.z)
 		return
 	var/list/L = alarms[class]
 	for (var/I in L)
@@ -940,15 +966,8 @@
 	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 30 seconds.")
 	
 	view_core() //A BYOND bug requires you to be viewing your core before your verbs update
-	add_verb(src, /mob/living/silicon/ai/proc/choose_modules)
-	add_verb(src, /mob/living/silicon/ai/proc/toggle_download)
+	add_verb_ai(list(/mob/living/silicon/ai/proc/choose_modules, /mob/living/silicon/ai/proc/toggle_download))
 	malf_picker = new /datum/module_picker
-	if(istype(loc, /obj/machinery/ai/data_core)) //A BYOND bug requires you to be viewing your core before your verbs update
-		var/obj/machinery/ai/data_core/core = loc
-		forceMove(get_turf(loc))
-		view_core()
-		sleep(1)
-		forceMove(core)
 
 
 /mob/living/silicon/ai/reset_perspective(atom/A)

@@ -312,7 +312,7 @@
   *
   * unset redraw_mob to prevent the mob icons from being redrawn at the end.
   */
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, qdel_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, bypass_equip_delay_self = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, qdel_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, bypass_equip_delay_self = FALSE, initial = FALSE)
 	if(!istype(W))
 		return FALSE
 	if(!W.mob_can_equip(src, null, slot, disable_warning, bypass_equip_delay_self))
@@ -322,7 +322,7 @@
 			if(!disable_warning)
 				to_chat(src, span_warning("You are unable to equip that!"))
 		return FALSE
-	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+	equip_to_slot(W, slot, redraw_mob, initial) //This proc should not ever fail.
 	return TRUE
 
 /**
@@ -344,8 +344,8 @@
   *
   * Also bypasses equip delay checks, since the mob isn't actually putting it on.
   */
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot)
-	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, initial = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE, initial)
 
 /**
   * Auto equip the passed in item the appropriate slot based on equipment priority
@@ -1199,6 +1199,7 @@
 	.["Toggle Build Mode"] = "?_src_=vars;[HrefToken()];build_mode=[REF(src)]"
 	.["Assume Direct Control"] = "?_src_=vars;[HrefToken()];direct_control=[REF(src)]"
 	.["Offer Control to Ghosts"] = "?_src_=vars;[HrefToken()];offer_control=[REF(src)]"
+	.["Set AFK Timer"] = "?_src_=vars;[HrefToken()];set_afk=[REF(src)]"
 
 /**
   * extra var handling for the logging var

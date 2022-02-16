@@ -1,13 +1,10 @@
-#define BASE_POWER_PER_CPU 400
-#define POWER_PER_CARD 250
-
 GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 /obj/machinery/ai/expansion_card_holder
 	name = "Expansion Card Bus"
 	desc = "A simple rack of bPCIe slots for installing expansion cards."
 	icon = 'icons/obj/machines/telecomms.dmi'
-	icon_state = "processor"
+	icon_state = "expansion_bus"
 	
 	circuit = /obj/item/circuitboard/machine/expansion_card_holder
 
@@ -15,12 +12,18 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 	var/total_cpu = 0
 	var/total_ram = 0
+	//Idle power usage when no cards inserted. Not free running idle my friend
+	idle_power_usage = 100
+	//We manually calculate how power the cards + CPU give, so this is accounted for by that
+	active_power_usage = 0
 
 	var/max_cards = 2
 
 	var/was_valid_holder = FALSE
 	//Atmos hasn't run at the start so this has to be set to true if you map it in
 	var/roundstart = FALSE
+	///How many ticks we can go without fulfilling the criteria before shutting off
+	var/valid_ticks = MAX_AI_EXPANSION_TICKS
 
 
 /obj/machinery/ai/expansion_card_holder/Initialize(mapload)
@@ -38,48 +41,58 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	..()
 
 /obj/machinery/ai/expansion_card_holder/process()
-	
+	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
 	if(valid_holder())
 
-		var/power_multiple = total_cpu ** (8/9)
+		var/power_multiple = total_cpu ** (0.95) //Very slightly more efficient to centralize CPU.
 
-		var/total_usage = (power_multiple * BASE_POWER_PER_CPU) + POWER_PER_CARD * installed_cards.len
+		var/total_usage = (power_multiple * AI_BASE_POWER_PER_CPU) + AI_POWER_PER_CARD * installed_cards.len
 		use_power(total_usage)
 
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env.heat_capacity())
-			env.set_temperature(env.return_temperature() + total_usage / env.heat_capacity()) //assume all input power is dissipated
+			var/temperature_increase = total_usage / env.heat_capacity() //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
+			T.air_update_turf()
+		
 	else if(was_valid_holder)
+		if(valid_ticks > 0)
+			return
 		was_valid_holder = FALSE
 		cut_overlays()
 		GLOB.ai_os.update_hardware()
 	
 /obj/machinery/ai/expansion_card_holder/valid_holder()
-	if(stat & (BROKEN|NOPOWER|EMPED))
-		return FALSE
-	
-	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/env = T.return_air()
-	if(!env)
-		return FALSE
-	var/total_moles = env.total_moles()
-	if(istype(T, /turf/open/space) || total_moles < 10)
-		return FALSE
-	
-	if(env.return_temperature() > TEMP_LIMIT || !env.heat_capacity())
-		return FALSE
+	. = ..()
+	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
+	if(!.)
+		valid_ticks--
+		return .
+	valid_ticks++
 	if(!was_valid_holder)
 		update_icon()
 	was_valid_holder = TRUE
-	return TRUE
+
 
 /obj/machinery/ai/expansion_card_holder/update_icon()
 	cut_overlays()
-	
+
+	if(installed_cards.len > 0) 
+		var/mutable_appearance/top_overlay = mutable_appearance(icon, "expansion_bus_top")
+		add_overlay(top_overlay)
+	if(installed_cards.len > 1) 
+		var/mutable_appearance/bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom")
+		add_overlay(bottom_overlay)
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
-		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+		var/mutable_appearance/on_overlay = mutable_appearance(icon, "expansion_bus_on")
 		add_overlay(on_overlay)
+		if(installed_cards.len > 0)
+			var/mutable_appearance/on_top_overlay = mutable_appearance(icon, "expansion_bus_top_on")
+			add_overlay(on_top_overlay)
+		if(installed_cards.len > 1)
+			var/mutable_appearance/on_bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom_on")
+			add_overlay(on_bottom_overlay)
 
 /obj/machinery/ai/expansion_card_holder/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/processing_card) || istype(W, /obj/item/memory_card))
@@ -96,6 +109,8 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		if(istype(W, /obj/item/memory_card))
 			var/obj/item/memory_card/ram_card = W
 			total_ram += ram_card.tier
+		use_power = ACTIVE_POWER_USE
+		update_icon()
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(installed_cards.len)
@@ -107,7 +122,16 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			total_ram = 0
 			GLOB.ai_os.update_hardware()
 			to_chat(user, span_notice("You remove all the cards from [src]"))
+			use_power = IDLE_POWER_USE
+			update_icon()
 			return FALSE
+		else
+			if(default_deconstruction_crowbar(W))
+				return TRUE
+
+	if(default_deconstruction_screwdriver(user, "expansion_bus_o", "expansion_bus", W))
+		return TRUE
+
 	return ..()
 
 /obj/machinery/ai/expansion_card_holder/examine()
@@ -132,6 +156,3 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	installed_cards += cpu
 	installed_cards += ram
 	GLOB.ai_os.update_hardware()
-
-#undef BASE_POWER_PER_CPU
-#undef POWER_PER_CARD

@@ -182,12 +182,20 @@
 	hangup_all_calls()
 	add_hiddenprint(usr)
 
-/* Humans (With upgrade) */
+/* Humans (With upgrades) */
 /mob/living/carbon/human/AIShiftClick(mob/living/silicon/ai/user)
-	if(!user.canExamineHumans)
-		return
+	
 	if(user.client && (user.client.eye == user.eyeobj || user.client.eye == user.loc))
-		user.examinate(src)
+		if(user.canExamineHumans)
+			user.examinate(src)
+		if(user.canCameraMemoryTrack)
+			if(name == "Unknown")
+				to_chat(user, span_warning("Unable to track 'Unknown' persons! Their name must be visible."))
+				return
+			if(src == user.cameraMemoryTarget)
+				to_chat(user, span_warning("Stop tracking this individual? <a href='?src=[REF(user)];stopTrackHuman=1'>\[UNTRACK\]</a>"))
+			else
+				to_chat(user, span_warning("Track this individual? <a href='?src=[REF(user)];trackHuman=[src.name]'>\[TRACK\]</a>"))
 	return
 
 //

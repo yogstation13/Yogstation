@@ -54,8 +54,8 @@ AI MODULES
 				if(mylaw != "")
 					tot_laws++
 		if(tot_laws > CONFIG_GET(number/silicon_max_law_amount) && !bypass_law_amt_check)//allows certain boards to avoid this check, eg: reset
-			to_chat(user, span_caution("Not enough memory allocated to [law_datum.owner ? law_datum.owner : "the AI core"]'s law processor to handle this amount of laws."))
-			message_admins("[ADMIN_LOOKUPFLW(user)] tried to upload laws to [law_datum.owner ? ADMIN_LOOKUPFLW(law_datum.owner) : "an AI core"] that would exceed the law cap.")
+			to_chat(user, span_caution("Not enough memory allocated to [law_datum.owner ? law_datum.owner : "the onboard APU"]'s law processor to handle this amount of laws."))
+			message_admins("[ADMIN_LOOKUPFLW(user)] tried to upload laws to [law_datum.owner ? ADMIN_LOOKUPFLW(law_datum.owner) : "an MMI or similar"] that would exceed the law cap.")
 			overflow = TRUE
 
 	var/law2log = transmitInstructions(law_datum, user, overflow) //Freeforms return something extra we need to log
@@ -66,12 +66,12 @@ AI MODULES
 		to_chat(user, span_notice("Upload complete."))
 
 	var/time = time2text(world.realtime,"hh:mm:ss")
-	var/ainame = law_datum.owner ? law_datum.owner.name : "empty AI core"
+	var/ainame = law_datum.owner ? law_datum.owner.name : "an MMI object"
 	var/aikey = law_datum.owner ? law_datum.owner.ckey : "null"
 	GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) used [src.name] on [ainame]([aikey]).[law2log ? " The law specified [law2log]" : ""]")
 	log_law("[user.key]/[user.name] used [src.name] on [aikey]/([ainame]) from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""]")
-	message_admins("[ADMIN_LOOKUPFLW(user)] used [src.name] on [ADMIN_LOOKUPFLW(law_datum.owner)] from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""]")
-	if(law_datum.owner) //yogs
+	message_admins("[ADMIN_LOOKUPFLW(user)] used [src.name] on [law_datum.owner ? ADMIN_LOOKUPFLW(law_datum.owner) : "an MMI or similar"] from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""]")
+	if(law_datum.owner) //yogs, doesn't work for MMIs. (Doesn't matter much since MMIs don't follow laws before they're made into something that is silicon)
 		law_datum.owner.update_law_history(user)
 
 //The proc that actually changes the silicon's laws.
@@ -445,6 +445,13 @@ AI MODULES
 /obj/item/aiModule/core/full/cowboy
 	name = "'Cowboy' Core AI Module"
 	law_id = "cowboy"
+
+
+/******************** Mother *********************/
+
+/obj/item/aiModule/core/full/mother
+	name = "'Mother M(A.I.)' Core AI Module"
+	law_id = "mother"
 
 
 /******************** Freeform Core ******************/

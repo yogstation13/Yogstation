@@ -113,7 +113,7 @@
 		if(V.get_ability(/datum/vampire_passive/regen))
 			U.adjustBruteLoss(-1)
 			U.adjustOxyLoss(-2.5)
-			U.adjustToxLoss(-1)
+			U.adjustToxLoss(-1, TRUE, TRUE)
 			U.adjustFireLoss(-1)
 		sleep(7.5)
 
@@ -176,7 +176,7 @@
 
 
 /obj/effect/proc_holder/spell/pointed/hypno
-	name = "Hypnotize"
+	name = "Hypnotize (20)"
 	desc = "Knock out your target."
 	charge_max = 300
 	blood_used = 20

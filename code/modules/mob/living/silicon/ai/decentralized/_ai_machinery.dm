@@ -1,4 +1,3 @@
-#define TEMP_LIMIT 290.15 //17C, much hotter than a normal server room for leniency :)
 
 /obj/machinery/ai
 	name = "You shouldn't see this!"
@@ -19,6 +18,6 @@
 	if(istype(T, /turf/open/space) || total_moles < 10)
 		return FALSE
 	
-	if(env.return_temperature() > TEMP_LIMIT || !env.heat_capacity())
+	if(env.return_temperature() > AI_TEMP_LIMIT || !env.heat_capacity())
 		return FALSE
 	return TRUE

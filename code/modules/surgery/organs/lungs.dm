@@ -117,6 +117,7 @@
 	#define PP(air, gas) PP_MOLES(air.get_moles(gas))
 
 	var/gas_breathed = 0
+	var/eff = get_organ_efficiency()
 
 	var/pressure = breath.return_pressure()
 	var/total_moles = breath.total_moles()
@@ -259,7 +260,7 @@
 			H.adjustFireLoss(nitryl_pp/4)
 		gas_breathed = breath.get_moles(GAS_NITRYL)
 		if (gas_breathed > gas_stimulation_min)
-			H.reagents.add_reagent(/datum/reagent/nitryl,1)
+			H.reagents.add_reagent(/datum/reagent/nitryl,1*eff)
 
 		breath.adjust_moles(GAS_NITRYL, -gas_breathed)
 
@@ -277,7 +278,7 @@
 			H.adjustFireLoss(freon_pp/4)
 		gas_breathed = breath.get_moles(GAS_FREON)
 		if (gas_breathed > gas_stimulation_min)
-			H.reagents.add_reagent(/datum/reagent/freon,1)
+			H.reagents.add_reagent(/datum/reagent/freon,1*eff)
 
 		breath.adjust_moles(GAS_FREON, -gas_breathed)
 
@@ -287,7 +288,7 @@
 		if(healium_pp > SA_sleep_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
 			ADD_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
-			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1 - existing))
+			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1*eff - existing))
 			H.adjustFireLoss(-7)
 			H.adjustToxLoss(-5)
 			H.adjustBruteLoss(-5)
@@ -437,6 +438,18 @@
 		failed = FALSE
 	return
 
+/obj/item/organ/lungs/attackby(obj/item/W, mob/user, params)
+	if(!(organ_flags & ORGAN_SYNTHETIC) && organ_efficiency == 1 && W.tool_behaviour == TOOL_CROWBAR)
+		user.visible_message(span_notice("[user] extends [src] with [W]!"), span_notice("You use [W] to extend [src]!"), "You hear something stretching.")
+		name = "extended [name]"
+		icon_state += "-crobar" //shh! don't tell anyone i handed you this card
+		/*safe_oxygen_min *= 2 //SCREAM LOUDER i dont know maybe eventually
+		safe_toxins_min *= 2
+		safe_nitro_min *= 2 //BREATHE HARDER
+		safe_co2_min *= 2*/
+		organ_efficiency = 2 //HOLD YOUR BREATH FOR REALLY LONG
+		maxHealth *= 0.5 //This procedure is not legal but i will do it for you
+
 /obj/item/organ/lungs/prepare_eat()
 	var/obj/S = ..()
 	S.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 5)
@@ -482,6 +495,13 @@
 		var/plasma_pp = PP(breath, GAS_PLASMA)
 		owner.blood_volume += (0.2 * plasma_pp) // 10/s when breathing literally nothing but plasma, which will suffocate you.
 
+/obj/item/organ/lungs/ghetto
+	name = "oxygen tanks welded to a modular reciever"
+	desc = "A pair of oxygen tanks which have been attached to a modular (oxygen) receiver. They are incapable of supplying air, but can work as a replacement for lungs."
+	icon_state = "lungs_g"
+	organ_efficiency = 0.5
+	organ_flags = ORGAN_SYNTHETIC //the moment i understood the weakness of flesh, it disgusted me, and i yearned for the certainty, of steel
+
 /obj/item/organ/lungs/cybernetic
 	name = "cybernetic lungs"
 	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Slightly more effecient than organic lungs."
@@ -499,7 +519,7 @@
 
 /obj/item/organ/lungs/cybernetic/upgraded
 	name = "upgraded cybernetic lungs"
-	desc = "A more advanced version of the stock cybernetic lungs, for use in hazardous environments. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
+	desc = "A more advanced version of the stock cybernetic lungs, more efficient at, well, breathing. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
 	icon_state = "lungs-c-u"
 	safe_breath_min = 4
 	safe_breath_max = 250
@@ -508,6 +528,7 @@
 		GAS_CO2 = 30
 	)
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 1.5
 	SA_para_min = 3
 	SA_sleep_min = 6
 	BZ_trip_balls_min = 2

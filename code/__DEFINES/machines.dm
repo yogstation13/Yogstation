@@ -64,11 +64,14 @@
 #define MIN_NTNET_LOGS 10
 
 //Program bitflags
-#define PROGRAM_ALL		(~0)
-#define PROGRAM_CONSOLE	(1<<0)
-#define PROGRAM_LAPTOP	(1<<1)
-#define PROGRAM_TABLET	(1<<2)
-#define PROGRAM_PHONE	(1<<3)
+#define PROGRAM_ALL			(~0)
+#define PROGRAM_CONSOLE		(1<<0)
+#define PROGRAM_LAPTOP		(1<<1)
+#define PROGRAM_TABLET		(1<<2)
+#define PROGRAM_PHONE		(1<<3)
+#define PROGRAM_PDA			(1<<4)
+#define PROGRAM_TELESCREEN	(1<<5)
+#define PROGRAM_INTEGRATED	(1<<6)
 //Program states
 #define PROGRAM_STATE_KILLED 0
 #define PROGRAM_STATE_BACKGROUND 1

@@ -69,15 +69,29 @@
 		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 
 	R.revive()
+	R.logevent("WARN -- System recovered from unexpected shutdown.")
+	R.logevent("System brought online.")
 
-/obj/item/borg/upgrade/freeminer
-	name = "free miner cyborg firmware hack"
-	desc = "Used to override the default firmware of a cyborg with the freeminer version."
+/obj/item/borg/upgrade/panel_access_remover
+	name = "cyborg firmware hack"
+	desc = "Used to override the default firmware of a cyborg and disable panel access restrictions."
 	icon_state = "cyborg_upgrade2"
 	one_use = TRUE
 
-/obj/item/borg/upgrade/freeminer/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/panel_access_remover/action(mob/living/silicon/robot/R, user = usr)
+	R.req_access = list()
+	return TRUE //Makes sure we delete the upgrade since it's one_use
+
+/obj/item/borg/upgrade/panel_access_remover/freeminer
+	name = "free miner cyborg firmware hack"
+	desc = "Used to override the default firmware of a cyborg with the freeminer version."
+	icon_state = "cyborg_upgrade2"
+
+/obj/item/borg/upgrade/panel_access_remover/freeminer/action(mob/living/silicon/robot/R, user = usr)
 	R.req_access = list(ACCESS_FREEMINER_ENGINEER)
+	new /obj/item/borg/upgrade/panel_access_remover/freeminer(R.drop_location())
+	//This deletes the upgrade which is why we create a new one. This prevents the message "Upgrade Error" without a adding a once-used variable to every board
+	return TRUE
 
 /obj/item/borg/upgrade/vtec
 	name = "cyborg VTEC module"
@@ -145,6 +159,7 @@
 			return FALSE
 
 		R.ionpulse = TRUE
+		R.toggle_ionpulse() //Enabled by default
 
 /obj/item/borg/upgrade/thrusters/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -352,6 +367,8 @@
 			return FALSE
 
 		R.SetEmagged(1)
+		R.logevent("WARN: hardware installed with missing security certificate!") //A bit of fluff to hint it was an illegal tech item
+		R.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 
 		return TRUE
 
@@ -373,12 +390,12 @@
 	. = ..()
 	if(.)
 
-		R.weather_immunities += "lava"
+		R.weather_immunities += WEATHER_LAVA
 
 /obj/item/borg/upgrade/lavaproof/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		R.weather_immunities -= "lava"
+		R.weather_immunities -= WEATHER_LAVA
 
 /obj/item/borg/upgrade/selfrepair
 	name = "self-repair module"

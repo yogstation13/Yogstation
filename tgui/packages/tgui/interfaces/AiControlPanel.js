@@ -1,7 +1,8 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, Tabs, ProgressBar, Section, Flex, Icon, NoticeBox } from '../components';
+import { Box, Button, Input, Tabs, ProgressBar, Section, Flex, Icon, NoticeBox } from '../components';
 import { Window } from '../layouts';
+import { KEY_ENTER } from 'common/keycodes';
 
 export const AiControlPanel = (props, context) => {
   const { act, data } = useBackend(context);
@@ -9,6 +10,35 @@ export const AiControlPanel = (props, context) => {
   const { username, has_access } = data;
 
   const [tab, setTab] = useLocalState(context, 'tab', 1);
+
+  const [code, setCode] = useLocalState(context, 'code', null);
+
+  if (!data.cleared_for_use) {
+    return (
+      <Window
+        width={500}
+        height={450}
+        resizable>
+        <Window.Content scrollable>
+          <Section title="Authentication">
+            <Box textAlign="center">
+              <NoticeBox>Enter AI control code and press enter. (6 numbers)</NoticeBox>
+              <Input value={code} placeholder="123456"
+                onChange={(e, value) => {
+                  if (e.keyCode === KEY_ENTER) {
+                    setCode(null);
+                    act('clear_for_use', { 'control_code': value });
+                  } else {
+                    setCode(value);
+                  }
+                }}
+              />
+            </Box>
+          </Section>
+        </Window.Content>
+      </Window>
+    );
+  }
 
   return (
     <Window
@@ -34,7 +64,7 @@ export const AiControlPanel = (props, context) => {
               <Section title="Upload" buttons={(
                 <Fragment>
                   <Button onClick={() => act("eject_intellicard")} color="bad" icon="eject" tooltip="Ejects IntelliCard, cancelling any current downloads" disabled={!data.intellicard}>Eject IntelliCard</Button>
-                  <Button icon="sign-out-alt" color="bad" onClick={() => act("log_out")}>Log Out</Button>
+                  <Button icon="sign-out-alt" color="bad" tooltip={!data.can_log_out ? "This console has administrator privileges and cannot be logged out of." : null} disabled={!data.can_log_out} onClick={() => act("log_out")}>Log Out</Button>
                 </Fragment>
               )}>
                 <NoticeBox>Upload also possible by inserting an MMI or Positronic Brain</NoticeBox>
@@ -121,7 +151,7 @@ export const AiControlPanel = (props, context) => {
           </Fragment>
         ) || (
           <Section title="Welcome">
-            <Flex align="center" justify="center" mt="0.5rem">
+            <Flex align="center" justify="center" mt="0.5rem" mb="0.5rem">
               <Flex.Item>
                 <Fragment>
                   {data.user_image && (
@@ -155,7 +185,17 @@ export const AiControlPanel = (props, context) => {
                   </Box>
                 </Fragment>
               </Flex.Item>
+
             </Flex>
+            <NoticeBox color="red">Alternatively you can use the AI Control Code as a one-time password. This will alert the station of your location and name.</NoticeBox>
+            <Box textAlign="center">
+              <Input placeholder="123456"
+                onChange={(e, value) => {
+                  if (e.keyCode === KEY_ENTER) {
+                    act('log_in_control_code', { 'control_code': value });
+                  }
+                }} />
+            </Box>
           </Section>
         )}
       </Window.Content>

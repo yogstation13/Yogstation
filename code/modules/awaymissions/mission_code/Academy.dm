@@ -182,7 +182,7 @@
 	rigged_value = 1
 
 /obj/item/dice/d20/fate/cursed/stealth
-	name = "Die of Fate"
+	name = "d20"
 	color = null
 	desc = "A die with twenty sides. The preferred die to throw at the GM."
 
@@ -200,7 +200,7 @@
 	rigged_value = 20
 
 /obj/item/dice/d20/fate/blessed/stealth
-	name = "Die of Fate"
+	name = "d20"
 	desc = "A die with twenty sides. The preferred die to throw at the GM."
 
 /obj/item/dice/d20/fate/blessed/one_use

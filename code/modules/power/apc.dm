@@ -156,7 +156,7 @@
 	if(terminal)
 		terminal.connect_to_network()
 
-/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
+/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0, mob/user)
 	//if (!req_access)
 		//req_access = list(ACCESS_ENGINE_EQUIP) // Yogs -- Commented out to allow for use of req_one_access. Also this is just generally bad and the guy who wrote this doesn't get OOP
 	if (!armor)
@@ -193,7 +193,10 @@
 				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_x value ([pixel_x] - should be -25.)")
 			pixel_x = -25
 	if (building)
-		area = get_area(src)
+		if(user)
+			area = get_area(user)
+		else
+			area = get_area(src)
 		opened = APC_COVER_OPENED
 		operating = FALSE
 		name = "[area.name] APC"
@@ -1086,7 +1089,8 @@
 		occupier.parent = malf.parent
 	else
 		occupier.parent = malf
-	malf.shunted = 1
+	malf.shunted = TRUE
+	QDEL_NULL(occupier.builtInCamera)
 	occupier.eyeobj.name = "[occupier.name] (AI Eye)"
 	if(malf.parent)
 		qdel(malf)

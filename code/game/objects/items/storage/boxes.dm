@@ -29,6 +29,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	resistance_flags = FLAMMABLE
+	drop_sound = 'sound/items/handling/cardboardbox_drop.ogg'
+	pickup_sound =  'sound/items/handling/cardboardbox_pickup.ogg'
 	var/foldable = /obj/item/stack/sheet/cardboard
 	var/illustration = "writing"
 
@@ -388,6 +390,16 @@
 	for(var/i in 1 to 7)
 		new /obj/item/bodybag(src)
 
+/obj/item/storage/box/epb
+	name = "environment protection bags"
+	desc = "The label indicates that it contains environment protection bags."
+	illustration = "bodybags"
+
+/obj/item/storage/box/bodybags/PopulateContents()
+	..()
+	for(var/i in 1 to 7)
+		new /obj/item/bodybag/environmental(src)
+
 /obj/item/storage/box/rxglasses
 	name = "box of prescription glasses"
 	desc = "This box contains nerd glasses."
@@ -651,6 +663,8 @@
 	item_state = "zippo"
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = ITEM_SLOT_BELT
+	drop_sound = 'sound/items/handling/matchbox_drop.ogg'
+	pickup_sound =  'sound/items/handling/matchbox_pickup.ogg'
 
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()

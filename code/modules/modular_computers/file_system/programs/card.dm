@@ -13,7 +13,7 @@
 	program_icon_state = "id"
 	extended_desc = "Program for programming employee ID cards to access parts of the station."
 	transfer_access = ACCESS_HEADS
-	requires_ntnet = 0
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE
 	size = 8
 	tgui_id = "NtosCard"
 	program_icon = "id-card"
@@ -354,6 +354,7 @@
 			data["id_rank"] = id_card.assignment ? id_card.assignment : "Unassigned"
 			data["id_owner"] = id_card.registered_name ? id_card.registered_name : "-----"
 			data["access_on_card"] = id_card.access
+			data["id_age"] = id_card.registered_age
 
 	return data
 
