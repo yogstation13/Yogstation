@@ -40,10 +40,10 @@
 		//regerenation
 	if(regeneration && prob(spread_chance))
 		var/list/missing_limbs = owner.get_missing_limbs() - list(BODY_ZONE_HEAD, BODY_ZONE_CHEST) //don't regenerate the head or chest
-		if(missing_limbs.len > 0)
+		if(missing_limbs.len)
 			var/limb_to_regenerate = pick(missing_limbs)
-			owner.regenerate_limb(limb_to_regenerate,TRUE);
-			var/obj/item/bodypart/new_limb = owner.get_bodypart(limb_to_regenerate);
+			owner.regenerate_limb(limb_to_regenerate,TRUE)
+			var/obj/item/bodypart/new_limb = owner.get_bodypart(limb_to_regenerate)
 			new_limb.receive_damage(45); //45 brute damage should be fine I think??????
 			owner.emote("scream")
 			owner.visible_message(span_warning("Gnarly tumors burst out of [owner]'s stump and form into a [parse_zone(limb_to_regenerate)]!"), span_notice("You scream as your [parse_zone(limb_to_regenerate)] reforms."))
