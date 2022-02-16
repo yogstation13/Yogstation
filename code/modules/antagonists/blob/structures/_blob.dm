@@ -45,6 +45,8 @@
 		overmind.blobs_legit -= src  //if it was in the legit blobs list, it isn't now
 	GLOB.blobs -= src //it's no longer in the all blobs list either
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) //Expand() is no longer broken, no check necessary.
+	var/obj/item/assembly/signaler/anomaly/drop = new /obj/item/assembly/signaler/anomaly(src.loc)
+	drop.name = "Blob Anomaly Core"
 	return ..()
 
 /obj/structure/blob/blob_act()
