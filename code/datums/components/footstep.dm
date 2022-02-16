@@ -102,5 +102,3 @@
 						GLOB.barefootstep[T.barefootstep][2] * v,
 						TRUE,
 						GLOB.barefootstep[T.barefootstep][3] + e)
-					
-
