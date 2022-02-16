@@ -184,7 +184,7 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 			ticket.PopUps()
 			return
 		if("Administer")
-			ticket.Administer()
+			ticket.Administer(TRUE)
 			return
 		if("Wiki")
 			ticket.WikiIssue()

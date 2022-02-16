@@ -6,6 +6,7 @@
 	icon_state_unpowered = "tablet"
 	icon_state_powered = "tablet"
 	icon_state_menu = "menu"
+	id_rename = TRUE
 	hardware_flag = PROGRAM_TABLET
 	max_hardware_size = WEIGHT_CLASS_SMALL
 	w_class = WEIGHT_CLASS_NORMAL
@@ -14,14 +15,16 @@
 	slot_flags = ITEM_SLOT_BELT
 	has_light = TRUE //LED flashlight!
 	comp_light_luminosity = 2.3 //Same as the PDA
-	var/has_variants = TRUE
+	interact_sounds = list('sound/machines/computers/pda_click.ogg')
+
+	var/list/variants = list("red","blue","brown","green","black")
 	var/finish_color = null
 
 /obj/item/modular_computer/tablet/update_icon()
 	..()
-	if (has_variants)
+	if (!isnull(variants))
 		if(!finish_color)
-			finish_color = pick("red","blue","brown","green","black")
+			finish_color = pick(variants)
 		icon_state = "[icon_state_base]-[finish_color]"
 		icon_state_unpowered = "[icon_state_base]-[finish_color]"
 		icon_state_powered = "[icon_state_base]-[finish_color]"
@@ -37,13 +40,14 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_ID | ITEM_SLOT_BELT
 	comp_light_luminosity = 6.3
-	has_variants = FALSE
+	variants = null
 
 /// Given to Nuke Ops members.
 /obj/item/modular_computer/tablet/nukeops
 	comp_light_luminosity = 6.3
 	finish_color = "red"
 	device_theme = "syndicate"
+	light_color = COLOR_RED
 
 /obj/item/modular_computer/tablet/nukeops/emag_act(mob/user)
 	if(!enabled)

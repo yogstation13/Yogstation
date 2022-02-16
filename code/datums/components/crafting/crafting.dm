@@ -157,6 +157,8 @@
 /datum/component/personal_crafting/proc/construct_item(mob/user, datum/crafting_recipe/R)
 	var/list/contents = get_surroundings(user)
 	var/send_feedback = 1
+	if(HAS_TRAIT(user, TRAIT_CRAFTY))
+		R.time *= 0.75
 	if(check_contents(R, contents))
 		if(check_tools(user, R, contents))
 			if(do_after(user, R.time, target = user))

@@ -95,6 +95,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	l_pocket = /obj/item/pda/engineering
 	ears = /obj/item/radio/headset/headset_eng
 	uniform = /obj/item/clothing/under/rank/engineer
+	uniform_skirt = /obj/item/clothing/under/rank/engineer/skirt
 	shoes = /obj/item/clothing/shoes/workboots
 	head = /obj/item/clothing/head/hardhat
 	r_pocket = /obj/item/t_scanner
@@ -104,7 +105,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
 	pda_slot = SLOT_L_STORE
-	backpack_contents = list(/obj/item/modular_computer/tablet/phone/preset/advanced=1)
+	backpack_contents = list(/obj/item/modular_computer/tablet/pda/preset/basic=1)
 
 /datum/outfit/job/engineer/gloved
 	name = "Station Engineer (Gloves)"

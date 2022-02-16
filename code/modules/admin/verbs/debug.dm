@@ -473,6 +473,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			id.access = get_debug_access()
 			id.registered_name = H.real_name
 			id.assignment = "Captain"
+			id.originalassignment = "Captain"
 			id.update_label()
 
 			if(worn)

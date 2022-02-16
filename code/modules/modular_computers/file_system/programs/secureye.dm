@@ -8,7 +8,7 @@
 	extended_desc = "This program allows access to standard security camera networks."
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_SECURITY
-	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_INTEGRATED // Probably not a good idea to let borgs use this, though im curious how it will pan out
 	size = 10
 	tgui_id = "NtosSecurEye"
 	program_icon = "eye"
@@ -184,11 +184,32 @@
 			camlist["[cam.c_tag]"] = cam
 	return camlist
 
+//////////////////
+//Mining Cameras//
+//////////////////
+
+///A program that allows you to view the cameras on the Mining Base
 /datum/computer_file/program/secureye/mining
 	filename = "overwatch"
 	filedesc = "OverWatch"
 	extended_desc = "This program allows access to the mining base camera network."
 	transfer_access = ACCESS_MINING
 	size = 5
+	program_icon = "globe"
 
 	network = list("mine", "auxbase")
+
+//////////////////////
+//Labor Camp Cameras//
+//////////////////////
+
+///A program that allows you to view the cameras on the Labor Camp
+/datum/computer_file/program/secureye/laborcamp
+	filename = "overseer"
+	filedesc = "OverSeer"
+	extended_desc = "This program allows access to the labor camp camera network."
+	transfer_access = ACCESS_ARMORY
+	size = 5
+	program_icon = "dungeon"
+
+	network = list("labor")

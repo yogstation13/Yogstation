@@ -312,7 +312,7 @@
   *
   * unset redraw_mob to prevent the mob icons from being redrawn at the end.
   */
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, qdel_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, bypass_equip_delay_self = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, qdel_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, bypass_equip_delay_self = FALSE, initial = FALSE)
 	if(!istype(W))
 		return FALSE
 	if(!W.mob_can_equip(src, null, slot, disable_warning, bypass_equip_delay_self))
@@ -322,7 +322,7 @@
 			if(!disable_warning)
 				to_chat(src, span_warning("You are unable to equip that!"))
 		return FALSE
-	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+	equip_to_slot(W, slot, redraw_mob, initial) //This proc should not ever fail.
 	return TRUE
 
 /**
@@ -344,8 +344,8 @@
   *
   * Also bypasses equip delay checks, since the mob isn't actually putting it on.
   */
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot)
-	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, initial = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE, initial)
 
 /**
   * Auto equip the passed in item the appropriate slot based on equipment priority
@@ -438,19 +438,24 @@
 	face_atom(A)
 	var/list/result
 	if(client)
-		LAZYINITLIST(client.recent_examines)
-		if(!(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
-			var/extra_info = A.examine_more(src)
-			result = extra_info
-		if(!result)
-			client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
-			result = A.examine(src)
-			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
-			
+		if(istype(src, /mob/living/silicon/ai) && istype(A, /mob/living/carbon/human)) //Override for AI's examining humans
+			var/mob/living/carbon/human/H = A
+			result = H.examine_simple(src)
+		else	
+			LAZYINITLIST(client.recent_examines)
+			if(!(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
+				var/extra_info = A.examine_more(src)
+				result = extra_info
+			if(!result)
+				client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
+				result = A.examine(src)
+				addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)		
 	else
 		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
+
 	to_chat(src, result.Join("\n"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
+
 
 /mob/proc/clear_from_recent_examines(atom/A)
 	if(QDELETED(A) || !client)
@@ -1194,6 +1199,7 @@
 	.["Toggle Build Mode"] = "?_src_=vars;[HrefToken()];build_mode=[REF(src)]"
 	.["Assume Direct Control"] = "?_src_=vars;[HrefToken()];direct_control=[REF(src)]"
 	.["Offer Control to Ghosts"] = "?_src_=vars;[HrefToken()];offer_control=[REF(src)]"
+	.["Set AFK Timer"] = "?_src_=vars;[HrefToken()];set_afk=[REF(src)]"
 
 /**
   * extra var handling for the logging var

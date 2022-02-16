@@ -58,7 +58,7 @@
 #define ui_borg_module "CENTER+1:16,SOUTH:5"		//borgs
 #define ui_borg_store "CENTER+2:16,SOUTH:5"			//borgs
 #define ui_borg_camera "CENTER+3:21,SOUTH:5"		//borgs
-#define ui_borg_album "CENTER+4:21,SOUTH:5"			//borgs
+#define ui_borg_tablet "CENTER+4:21,SOUTH:5"		//borgs
 #define ui_borg_language_menu "CENTER+4:21,SOUTH+1:5"	//borgs
 
 #define ui_monkey_head "CENTER-5:13,SOUTH:5"	//monkey
@@ -122,23 +122,29 @@
 
 // AI
 
-#define ui_ai_core "SOUTH:6,WEST"
-#define ui_ai_camera_list "SOUTH:6,WEST+1"
-#define ui_ai_track_with_camera "SOUTH:6,WEST+2"
-#define ui_ai_camera_light "SOUTH:6,WEST+3"
-#define ui_ai_crew_monitor "SOUTH:6,WEST+4"
-#define ui_ai_crew_manifest "SOUTH:6,WEST+5"
-#define ui_ai_alerts "SOUTH:6,WEST+6"
-#define ui_ai_announcement "SOUTH:6,WEST+7"
-#define ui_ai_shuttle "SOUTH:6,WEST+8"
-#define ui_ai_state_laws "SOUTH:6,WEST+9"
-#define ui_ai_pda_send "SOUTH:6,WEST+10"
-#define ui_ai_pda_log "SOUTH:6,WEST+11"
-#define ui_ai_take_picture "SOUTH:6,WEST+12"
-#define ui_ai_view_images "SOUTH:6,WEST+13"
-#define ui_ai_sensor "SOUTH:6,WEST+14"
-#define ui_ai_multicam "SOUTH+1:6,WEST+13"
-#define ui_ai_add_multicam "SOUTH+1:6,WEST+14"
+#define ui_ai_core "CENTER-6:-32,SOUTH:6"
+#define ui_ai_dashboard "CENTER-7,SOUTH+1:6"
+#define ui_ai_camera_list "CENTER-5:-32,SOUTH:6"
+#define ui_ai_track_with_camera "CENTER-4:-32,SOUTH:6"
+#define ui_ai_camera_light "CENTER-3:-32,SOUTH:6"
+#define ui_ai_crew_monitor "CENTER-2:-32,SOUTH:6"
+#define ui_ai_crew_manifest "CENTER-1:-32,SOUTH:6"
+#define ui_ai_alerts "CENTER:-32,SOUTH:6"
+#define ui_ai_announcement "CENTER+1:-32,SOUTH:6"
+#define ui_ai_shuttle "CENTER+2:-32,SOUTH:6"
+#define ui_ai_state_laws "CENTER+3:-32,SOUTH:6"
+#define ui_ai_pda_send "CENTER+4:-32,SOUTH:6"
+#define ui_ai_pda_log "CENTER+5:-32,SOUTH:6"
+#define ui_ai_take_picture "CENTER+6:-32,SOUTH:6"
+#define ui_ai_view_images "CENTER+7:-32,SOUTH:6"
+#define ui_ai_sensor "CENTER+7,SOUTH:6"
+#define ui_ai_multicam "CENTER+6,SOUTH+1:6"
+#define ui_ai_add_multicam "CENTER+6,SOUTH+1:6"
+#define ui_ai_language_menu "CENTER+5,SOUTH+1:9"
+#define ui_ai_dashboard_widescreen "CENTER-8,SOUTH:6"
+#define ui_ai_add_multicam_widescreen "CENTER+9,SOUTH:6"
+#define ui_ai_multicam_widescreen "CENTER+8,SOUTH:6"
+#define ui_ai_language_menu_widescreen "CENTER-9,SOUTH:10"
 
 // pAI
 

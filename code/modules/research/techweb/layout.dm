@@ -463,10 +463,6 @@
 	ui_x = -384
 	ui_y = -608
 
-/datum/techweb_node/syndicate_surgery
-	ui_x = -320
-	ui_y = -608
-
 /datum/techweb_node/mech_modules
 	ui_x = -640
 	ui_y = -32

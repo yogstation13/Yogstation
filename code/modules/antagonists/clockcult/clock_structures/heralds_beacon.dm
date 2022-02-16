@@ -68,6 +68,10 @@
 	if(!available)
 		to_chat(user, span_danger("You can no longer vote with [src]."))
 		return
+	if(istype(user, /mob/living/simple_animal/drone/cogscarab))
+		to_chat(user, span_danger("You are unable to activate [src]."))
+		return
+
 	var/voting = !(user.key in voters)
 	if(alert(user, "[voting ? "Cast a" : "Undo your"] vote to activate the beacon?", "Herald's Beacon", "Change Vote", "Cancel") == "Cancel")
 		return

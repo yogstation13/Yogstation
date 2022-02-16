@@ -231,7 +231,7 @@
 	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/consumable/sugar = 0.06, /datum/reagent/consumable/ethanol = 0.04, /datum/reagent/stabilizing_agent = 0.06, /datum/reagent/toxin/minttoxin = 0.02, /datum/reagent/consumable/ashresin = 0.04)
+	reagents_add = list(/datum/reagent/consumable/sugar = 0.06, /datum/reagent/consumable/ethanol = 0.04, /datum/reagent/stabilizing_agent = 0.06, /datum/reagent/toxin/minttoxin = 0.02, /datum/reagent/consumable/ashresin = 0.08)
 
 /obj/item/seeds/lavaland/porcini
 	name = "pack of porcini mycelium"
@@ -267,6 +267,12 @@
 	reagents_add = list(/datum/reagent/consumable/tinlux = 0.04, /datum/reagent/consumable/nutriment = 0.02, /datum/reagent/drug/space_drugs = 0.02, /datum/reagent/consumable/ashresin = 0.02)
 
 //CRAFTING
+/datum/crafting_recipe/mushroomwood
+	name = "Wood Substitute"
+	result = /obj/item/stack/sheet/mineral/wood/mushroom
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 2)
+	time = 2 SECONDS
+	category = CAT_PRIMAL
 
 /datum/crafting_recipe/mushroom_bowl
 	name = "Mushroom Bowl"

@@ -325,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `SS13_mfa_logins` (
 	`ip` int(10) unsigned NOT NULL,
 	`cid` varchar(32) NOT NULL,
 	`datetime` timestamp NOT NULL DEFAULT current_timestamp(),
-	PRIMARY KEY (`ckey`,`ip`,`cid`)
+	PRIMARY KEY (`ckey`,`ip`,`cid`,`datetime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `SS13_misc`;

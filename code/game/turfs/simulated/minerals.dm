@@ -19,7 +19,6 @@
 	var/mineralAmt = 3
 	var/spread = 0 //will the seam spread?
 	var/spreadChance = 0 //the percentual chance of an ore spreading to the neighbouring tiles
-	var/last_act = 0
 	var/scan_state = "" //Holder for the image we display when we're pinged by a mining scanner
 	var/defer_change = FALSE
 
@@ -56,9 +55,8 @@
 		if (!isturf(T))
 			return
 
-		if(last_act + (40 * I.toolspeed) > world.time)//prevents message spam
+		if(INTERACTING_WITH(user, src))//prevents message spam
 			return
-		last_act = world.time
 		to_chat(user, span_notice("You start picking..."))
 
 		if(I.use_tool(src, user, 40, volume=50))

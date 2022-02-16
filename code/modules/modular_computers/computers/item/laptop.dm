@@ -37,7 +37,7 @@
 	if(screen_on)
 		..()
 	else
-		cut_overlays()
+		SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
 		icon_state = icon_state_closed
 
 /obj/item/modular_computer/laptop/attack_self(mob/user)

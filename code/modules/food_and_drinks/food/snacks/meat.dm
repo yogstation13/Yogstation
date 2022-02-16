@@ -296,6 +296,7 @@
 	filling_color = "#854817"
 	tastes = list("bacon" = 1)
 	foodtype = MEAT | BREAKFAST
+	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/meat/slab/gondola
 	name = "gondola meat"
@@ -348,7 +349,6 @@
 	icon_state = "meatsteak"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
-	trash = /obj/item/trash/plate
 	filling_color = "#B22222"
 	foodtype = MEAT
 	tastes = list("meat" = 1)

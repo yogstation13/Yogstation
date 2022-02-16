@@ -4,8 +4,8 @@
 	cost = 2
 	spell_type = /obj/effect/proc_holder/spell/self/predator
 	has_mode = TRUE
-	mode_on_msg = "<span class='danger'><B>You switch to analysis mode.</span></B>"
-	mode_off_msg = "<span class='danger'><B>You switch to combat mode.</span></B>"
+	mode_on_msg = span_bolddanger("You switch to analysis mode")
+	mode_off_msg = span_bolddanger("You switch to combat mode.")
 	var/list/can_track = list()
 
 /datum/guardian_ability/major/predator/Apply()
@@ -28,7 +28,7 @@
 				for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 					if(H.dna && blood[H.dna.unique_enzymes])
 						if(!(H in can_track))
-							to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
+							to_chat(guardian, span_italics(span_notice("<span class='notice italics'>We learn the identity of [H.real_name].")))
 							can_track += H
 			return TRUE
 		if(isobj(target))
@@ -39,14 +39,14 @@
 				for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 					if(H.dna && prints[md5(H.dna.uni_identity)])
 						if(!(H in can_track))
-							to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
+							to_chat(guardian, span_italics(span_notice("We learn the identity of [H.real_name].")))
 							can_track += H
 			var/list/blood = O.return_blood_DNA()
 			if(LAZYLEN(blood))
 				for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 					if(H.dna && blood[H.dna.unique_enzymes])
 						if(!(H in can_track))
-							to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
+							to_chat(guardian, span_italics(span_notice("We learn the identity of [H.real_name].")))
 							can_track += H
 			return TRUE
 
@@ -76,7 +76,7 @@
 		revert_cast()
 		to_chat(G, span_notice("You didn't select anyone to track!"))
 		return
-	to_chat(G, span_notice("We begin to track <B>[prey.real_name]</B>.[get_final_z(prey) == get_final_z(G) ? "" : " They are far away from here[G.stats.potential >= 4 ? ", on z-level [get_final_z(prey)]." : "."]"]"))
+	to_chat(G, span_notice("We begin to track [span_bold(prey.real_name)].[get_final_z(prey) == get_final_z(G) ? "" : " They are far away from here[G.stats.potential >= 4 ? ", on z-level [get_final_z(prey)]." : "."]"]"))
 	log_game("[key_name(G)] began to track [key_name(prey)] using Predator.") // why log this? Simple. Some idiot will eventually cry metacomms because someone used this ability to track them to their autistic maint base or random-ass locker.
 	for(var/datum/status_effect/agent_pinpointer/predator/status in G.status_effects)
 		status.scan_target = prey

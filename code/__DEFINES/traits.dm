@@ -250,6 +250,9 @@
 #define TRAIT_FRIENDLY			"friendly"
 #define TRAIT_ALLERGIC			"allergic"
 #define TRAIT_KLEPTOMANIAC		"kleptomaniac"
+#define TRAIT_EAT_LESS			"eat_less"
+#define TRAIT_CRAFTY			"crafty"
+#define TRAIT_ANOREXIC			"anorexic"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
@@ -316,6 +319,7 @@
 #define GUARDIAN_TRAIT "guardian_trait"
 #define RANDOM_BLACKOUTS "random_blackouts"
 #define MADE_UNCLONEABLE "made-uncloneable"
+#define HORROR_TRAIT "horror"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

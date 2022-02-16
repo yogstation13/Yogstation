@@ -23,7 +23,9 @@
 	GLOB.poi_list -= src
 	var/list/spawners = GLOB.mob_spawners[name]
 	LAZYREMOVE(spawners, src)
-	. = ..()
+	if(!LAZYLEN(spawners))
+		GLOB.mob_spawners -= name
+	return ..()
 
 /obj/item/clockwork/construct_chassis/examine(mob/user)
 	clockwork_desc = "[clockwork_desc]<br>[construct_desc]"

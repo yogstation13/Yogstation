@@ -210,8 +210,8 @@
 				return
 			if(alert("If you have been requested to reset the MFA credentials for someone, please confirm that you have verified their identity. Resetting MFA for an unverified person can result in a break of server security.", "Confirmation", "I Understand", "Cancel") != "I Understand")
 				return
-			message_admins("MFA for [src] has been reset by [usr]!")
-			log_admin("MFA Reset for [src] by [usr]!")
+			message_admins("MFA for [admin_ckey] has been reset by [usr]!")
+			log_admin("MFA Reset for [admin_ckey] by [usr]!")
 			mfa_reset(admin_ckey)
 	edit_admin_permissions()
 
