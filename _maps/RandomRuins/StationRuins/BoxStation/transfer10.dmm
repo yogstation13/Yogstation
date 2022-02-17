@@ -2,6 +2,32 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
+"b" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "executionfireblast";
+	name = "blast door"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	pixel_x = -4;
+	pixel_y = -16
+	},
+/area/template_noop)
 "d" = (
 /obj/structure/table,
 /obj/item/folder/red{
@@ -203,6 +229,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/template_noop)
+"G" = (
+/obj/effect/turf_decal/pool{
+	dir = 8
+	},
+/obj/structure/pool_ladder/reversed{
+	pixel_y = -23
+	},
+/turf/open/indestructible/sound/pool,
+/area/template_noop)
 "H" = (
 /obj/effect/turf_decal/pool{
 	dir = 4
@@ -210,16 +245,6 @@
 /obj/machinery/pool_filter{
 	pixel_x = -1;
 	pixel_y = -23
-	},
-/turf/open/indestructible/sound/pool,
-/area/template_noop)
-"J" = (
-/obj/effect/turf_decal/pool{
-	dir = 8
-	},
-/obj/structure/pool_ladder{
-	dir = 1;
-	pixel_y = -22
 	},
 /turf/open/indestructible/sound/pool,
 /area/template_noop)
@@ -266,29 +291,6 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"O" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/turf_decal/loading_area{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/pool{
-	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
@@ -453,7 +455,7 @@ f
 "}
 (4,1,1) = {"
 V
-J
+G
 Z
 r
 N
@@ -465,7 +467,7 @@ B
 (5,1,1) = {"
 t
 e
-O
+b
 w
 U
 L
