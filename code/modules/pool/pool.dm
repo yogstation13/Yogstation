@@ -182,6 +182,10 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "ladder"
 	pixel_y = 12
+	var/reversed = null
+
+/obj/structure/pool_ladder/reversed
+	reversed = TRUE
 
 GLOBAL_LIST_EMPTY(pool_filters)
 
@@ -278,7 +282,10 @@ GLOBAL_LIST_EMPTY(pool_filters)
 		if(do_after(user, 1 SECONDS, target=src))
 			S.RemoveComponent()
 			visible_message("<span class='notice'>[user] climbs out of the pool.</span>")
-			user.forceMove(get_turf(get_step(src, NORTH))) //Ladders shouldn't adjoin another pool section. Ever.
+			if(!reversed)
+				user.forceMove(get_turf(get_step(src, NORTH))) //Ladders shouldn't adjoin another pool section. Ever.
+			else
+				user.forceMove(get_turf(get_step(src, SOUTH)))
 	else
 		to_chat(user, "<span class='notice'>You start to climb into the pool...</span>")
 		var/turf/T = get_turf(src)
