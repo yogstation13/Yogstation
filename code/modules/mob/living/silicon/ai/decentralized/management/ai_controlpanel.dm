@@ -236,6 +236,12 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		if(action == "clear_for_use")
 			var/code = text2num(params["control_code"])
 			
+			if(!code)
+				return
+			
+			if(!GLOB.ai_control_code)
+				return
+			
 			var/length_of_number = round(log(10, code) + 1)
 			if(length_of_number < 6)
 				to_chat(usr, span_warning("Incorrect code. Too short"))
@@ -246,8 +252,6 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				return
 
 
-			if(!GLOB.ai_control_code)
-				return
 
 			if(!is_station_level(z))
 				to_chat(usr, span_warning("Unable to connect to NT Servers. Please verify you are onboard the station."))
