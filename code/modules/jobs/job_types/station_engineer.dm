@@ -106,6 +106,8 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	box = /obj/item/storage/box/engineer
 	backpack_contents = list(/obj/item/modular_computer/tablet/pda/preset/basic=1)
 
+	pda_slot = SLOT_L_STORE
+
 /datum/outfit/job/engineer/gloved
 	name = "Station Engineer (Gloves)"
 	gloves = /obj/item/clothing/gloves/color/yellow

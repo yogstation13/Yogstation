@@ -39,3 +39,5 @@
 
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
+
+	pda_slot = SLOT_L_STORE

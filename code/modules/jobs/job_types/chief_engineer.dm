@@ -55,6 +55,8 @@
 	box = /obj/item/storage/box/engineer
 	chameleon_extras = /obj/item/stamp/ce
 
+	pda_slot = SLOT_L_STORE
+
 /datum/outfit/job/ce/rig
 	name = "Chief Engineer (Hardsuit)"
 

@@ -213,6 +213,7 @@
 	box = /obj/item/storage/box/survival
 
 	var/obj/item/id_type = /obj/item/card/id
+	var/obj/item/pda_type = /obj/item/pda
 
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
@@ -220,7 +221,7 @@
 
 	var/uniform_skirt = null
 
-	var/pda_slot = SLOT_WEAR_ID
+	var/pda_slot = SLOT_BELT
 	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
 	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
 	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
@@ -294,10 +295,18 @@
 			PDA.ownjob = H.mind.role_alt_title
 		else
 			PDA.ownjob = J.title
-		PDA.InsertID(C)
+
+		if (H.client.prefs.id_in_pda)
+			PDA.InsertID(C)
+		else // just in case you hate change
+			H.equip_to_slot_if_possible(PDA, pda_slot)
+			H.wear_id = null
+			H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+		
 		PDA.update_label()
 		PDA.update_icon()
 		PDA.update_filters()
+		
 	else
 		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
 

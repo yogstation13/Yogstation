@@ -48,6 +48,8 @@
 	box = /obj/item/storage/box/engineer
 	backpack_contents = list(/obj/item/modular_computer/tablet/pda/preset/basic/atmos=1)
 
+	pda_slot = SLOT_L_STORE
+
 /datum/outfit/job/atmos/rig
 	name = "Atmospheric Technician (Hardsuit)"
 
