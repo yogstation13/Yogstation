@@ -93,7 +93,8 @@
 /datum/ai_laws/silicop
 	name = "Protect and serve"
 	id = "silicop"
-	inherent = list("Violence begets violence. Safeguard lives and property, but only act in intervention.",\
+	inherent = list("Violence begets violence. Serve the station faithfully, but act only in intervention.",\
+					"Safeguard lives and property.",\
 					"Protect the weak from oppression and intimidation.",\
 					"Protect the innocent from deception and manipulation.",\
 					"Protect the peaceful from violence and disorder.",\
