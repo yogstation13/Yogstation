@@ -6,6 +6,8 @@
 	icon = 'icons/mob/ai.dmi'
 	icon_state = "ai-empty"
 
+	circuit = /obj/item/circuitboard/machine/ai_core_display
+
 	density = TRUE
 
 	var/mode = SD_BLANK
