@@ -19115,9 +19115,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"bar" = (
-/turf/open/floor/plating,
-/area/crew_quarters/dorms)
 "baF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -42473,7 +42470,7 @@ aHL
 aIr
 ahM
 aRy
-bar
+aCS
 aOO
 anO
 agY
@@ -42625,7 +42622,7 @@ aRQ
 aSm
 aIE
 aCS
-bar
+aCS
 aOO
 nvh
 nvh
