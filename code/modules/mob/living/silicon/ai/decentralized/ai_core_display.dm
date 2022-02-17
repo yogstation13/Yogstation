@@ -27,13 +27,13 @@
 	. += "<b>NOTE: Does not contain the AI. Look for AI Data Cores to find the *actual* location of the AI</b>"
 	. += "<b>Networked AI Laws:</b>"
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
-		var/active_status = ""
+		var/active_status = "(Core: [FOLLOW_LINK(user, AI.loc)], Eye: [FOLLOW_LINK(user, AI.eye)])"
 		if(!AI.mind && AI.deployed_shell)
 			active_status = "(Controlling [FOLLOW_LINK(user, AI.deployed_shell)][AI.deployed_shell.name])"
 		else if(!AI.mind)
 			active_status = "([span_warning("OFFLINE")])"
 			
-		. += "<b>[FOLLOW_LINK(user, AI.loc)][AI] [active_status] has the following laws: </b>"
+		. += "<b>[AI] [active_status] has the following laws: </b>"
 		for(var/law in AI.laws.get_law_list(include_zeroth = TRUE))
 			. += law
 
