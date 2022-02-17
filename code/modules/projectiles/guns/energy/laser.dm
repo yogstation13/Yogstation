@@ -4,6 +4,7 @@
 	icon_state = "laser"
 	item_state = "laser"
 	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_MEDIUM
 	materials = list(/datum/material/iron=2000)
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun)
 	ammo_x_offset = 1
@@ -85,6 +86,7 @@
 	icon_state = "lasercannon"
 	item_state = "laser"
 	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
 	force = 10
 	flags_1 =  CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
@@ -114,6 +116,7 @@
 	desc = "A high-power laser gun capable of expelling concentrated X-ray blasts that pass through multiple soft targets and heavier materials."
 	icon_state = "xray"
 	item_state = null
+	weapon_weight = WEAPON_MEDIUM
 	ammo_type = list(/obj/item/ammo_casing/energy/xray)
 	pin = null
 	ammo_x_offset = 3
