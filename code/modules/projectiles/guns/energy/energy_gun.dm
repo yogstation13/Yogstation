@@ -7,6 +7,7 @@
 	modifystate = 1
 	can_flashlight = TRUE
 	ammo_x_offset = 3
+	weapon_weight = WEAPON_MEDIUM
 	flight_x_offset = 15
 	flight_y_offset = 10
 
@@ -16,6 +17,7 @@
 	icon_state = "mini"
 	item_state = "gun"
 	w_class = WEIGHT_CLASS_SMALL
+	var/weapon_weight = WEAPON_LIGHT
 	cell_type = /obj/item/stock_parts/cell/mini_egun
 	ammo_x_offset = 2
 	charge_sections = 3
