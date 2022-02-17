@@ -78,7 +78,7 @@
 			to_chat(user,"You forge the advanced plasma cutter together with the plasma magmite to form a mega plasma cutter.")
 	//time to clean up all the magmite we used
 	for(var/obj/item/magmite in placed_objects)
-		if(used_magmite != 0)
+		if(used_magmite)
 			used_magmite--
 			qdel(magmite)
 	update_icon()
