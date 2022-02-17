@@ -66,7 +66,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		return
 	. += "<b>Networked AI Laws:</b>"
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
-		var/active_status = "(Core: [FOLLOW_LINK(user, AI.loc)], Eye: [FOLLOW_LINK(user, AI.eye)])"
+		var/active_status = "(Core: [FOLLOW_LINK(user, AI.loc)], Eye: [FOLLOW_LINK(user, AI.eyeobj)])"
 		if(!AI.mind && AI.deployed_shell)
 			active_status = "(Controlling [FOLLOW_LINK(user, AI.deployed_shell)][AI.deployed_shell.name])"
 		else if(!AI.mind)
