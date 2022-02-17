@@ -6,13 +6,11 @@
 	icon_living = "smspider"
 	icon_dead = "smspider_dead"
 	gender = NEUTER
-	mob_biotypes = MOB_BUG|MOB_ROBOTIC
 	turns_per_move = 2
 	speak_emote = list("vibrates")
 	emote_see = list("vibrates")
 	emote_taunt = list("vibrates")
 	taunt_chance = 40
-	combat_mode = TRUE
 	maxHealth = 10
 	health = 10
 	minbodytemp = 0
@@ -27,6 +25,7 @@
 	faction = list("hostile")
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	ventcrawler = VENTCRAWLER_ALWAYS
 	deathmessage = "falls to the ground, its shard dulling to a miserable grey!"
 	footstep_type = FOOTSTEP_MOB_CLAW
 	var/overcharged = FALSE // if true, spider will not die if it dusts a limb
