@@ -1,7 +1,7 @@
 /// Pictograph display which the AI can use to emote.
 /obj/machinery/status_display/ai_core
 	name = "\improper AI core display"
-	desc = "A big screen which the AI can use to present a self-chosen image of itself. NOTE: For display purposes only. Is not capable of holding an AI."
+	desc = "A big screen which the AI can use to present a self-chosen image of itself. NOTE: For display purposes only. Is not capable of hosting an AI."
 
 	icon = 'icons/mob/ai.dmi'
 	icon_state = "ai-empty"
