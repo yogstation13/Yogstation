@@ -9,7 +9,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 */
 
 /obj/effect/overlay/poolwater
-	name = "Pool water"
+	name = "pool water"
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "water"
 	anchored = TRUE
@@ -17,7 +17,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /turf/open/indestructible/sound/pool
-	name = "Swimming pool"
+	name = "swimming pool"
 	desc = "A fun place where you go to swim! <b>Drag and drop yourself onto it to climb in...</b>"
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "pool"
