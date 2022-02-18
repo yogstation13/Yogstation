@@ -19,3 +19,7 @@
 		..()
 	else
 		to_chat(user,span_warning("The charge only works on rocks!"))
+
+/obj/item/grenade/deconstruct(disassembled = TRUE) //no gibbing a miner with pda bombs
+	if(!QDELETED(src))
+		qdel(src)
