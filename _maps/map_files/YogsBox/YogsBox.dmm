@@ -49561,8 +49561,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "nWL" = (
-/obj/machinery/atmospherics/components/binary/valve/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/components/binary/valve/digital/layer2,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "nXu" = (

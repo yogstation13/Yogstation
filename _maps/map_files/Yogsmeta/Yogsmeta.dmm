@@ -77500,12 +77500,12 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "rkZ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
 /obj/effect/mapping_helpers/teleport_anchor,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/binary/valve/digital/layer2{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
