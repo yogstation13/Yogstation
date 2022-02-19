@@ -57,22 +57,39 @@
 		to_chat(user,"The anvil does not have any plasma magmite on it!")
 		return ..()
 	for(var/obj/item/I in placed_objects)
-		if(I == /obj/item/gun/energy/kinetic_accelerator && forge_charges && used_magmite < magmite_amount)
+		if(istype(I,/obj/item/gun/energy/kinetic_accelerator) && forge_charges && used_magmite < magmite_amount)
 			var/obj/item/gun/energy/kinetic_accelerator/gun = I
+			if(gun.max_mod_capacity != 100)
+				to_chat(user,"This is not a base kinetic accelerator!")
+				break
 			if(gun.bayonet)
 				gun.remove_gun_attachment(item_to_remove = gun.bayonet)
 			if(gun.gun_light)
 				gun.remove_gun_attachment(item_to_remove = gun.gun_light)
 			for(var/obj/item/borg/upgrade/modkit/kit in gun.modkits)
 				kit.uninstall(gun)
-			new /obj/item/gun/energy/kinetic_accelerator/mega(src) 
+			var/obj/item/gun/energy/kinetic_accelerator/mega/newgun = new(src)
+			if(user.transferItemToLoc(newgun, src))
+				vis_contents += newgun
+				placed_objects += newgun
+				RegisterSignal(newgun, COMSIG_MOVABLE_MOVED, .proc/ItemMoved,TRUE)
+			ItemMoved(gun)
 			qdel(gun)
 			forge_charges--
 			used_magmite++
 			to_chat(user,"You forge the kinetic accelerator together with the plasma magmite to form a mega kinetic accelerator.")
-		if(I == /obj/item/gun/energy/plasmacutter/adv && forge_charges && used_magmite < magmite_amount)
-			new /obj/item/gun/energy/plasmacutter/adv/mega(src)
-			qdel(I)
+		if(istype(I,/obj/item/gun/energy/plasmacutter/adv) && forge_charges && used_magmite < magmite_amount)
+			var/obj/item/gun/energy/plasmacutter/adv/gun = I
+			if(gun.name != "advanced plasma cutter")
+				to_chat(user,"This is not an advanced plasma cutter!")
+				break
+			var/obj/item/gun/energy/plasmacutter/adv/mega/newgun = new(src)
+			if(user.transferItemToLoc(newgun, src))
+				vis_contents += newgun
+				placed_objects += newgun
+				RegisterSignal(newgun, COMSIG_MOVABLE_MOVED, .proc/ItemMoved,TRUE)
+			ItemMoved(gun)
+			qdel(gun)
 			forge_charges--
 			used_magmite++
 			to_chat(user,"You forge the advanced plasma cutter together with the plasma magmite to form a mega plasma cutter.")
@@ -80,6 +97,7 @@
 	for(var/obj/item/magmite in placed_objects)
 		if(used_magmite)
 			used_magmite--
+			ItemMoved(magmite)
 			qdel(magmite)
 	update_icon()
 	if(!forge_charges)
