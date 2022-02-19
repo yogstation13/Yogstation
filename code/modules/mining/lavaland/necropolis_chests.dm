@@ -1461,11 +1461,12 @@
 /obj/item/organ/grandcore
 	name = "grand core"
 	desc = "The source of the Legion's powers. Though mostly expended, you might be able to get some use out of it."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "blackbox"
 	slot = "hivecore"
-	w_class = WEIGHT_CLASS_SMALL
-	var/recharging_rate = 60 //don't want people to run out of all their blood with 14 clicks in 2 seconds 
+	w_class = WEIGHT_CLASS_SMALL 
 	decay_factor = 0
-	actions_types = list(/datum/action/item_action/organ_action/twobloodlings, /datum/action/item_action/organ_action/fivebloodlings)
+	actions_types = list(/datum/action/item_action/organ_action/threebloodlings, /datum/action/item_action/organ_action/raise)
 /obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
 	if(H == user && istype(H))
 		playsound(user,'sound/effects/singlebeat.ogg',40,1)
@@ -1478,21 +1479,17 @@
 	..()
 	if(owner)
 		to_chat(owner, "<span class ='userdanger'>Your body has taken in the grand core, enabling you to send out minions at the cost of your blood!</span>")
-/datum/action/item_action/organ_action/twobloodlings
+/datum/action/item_action/organ_action/threebloodlings
 	name = "Summon bloodlings"
-	desc = "You use some blood to summon a conjure a few bloodlings at your location."
-/datum/action/item_action/organ_action/twobloodlings/Trigger()
-	var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/A = new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
-	spawn_atom_to_turf(A, owner, 2, TRUE)
-	A.GiveTarget(target)
-	A.friends = owner
-	A.faction = list("blooded")
+	desc = "You let out your blood to summon a conjure a few bloodlings at your location."
+	var/cooldown = 60
+/datum/action/item_action/organ_action/threebloodlings/Trigger()
+	. = ..()
+	if(iscarbon(owner))
+		var/mob/living/carbon/H = owner
+		H.blood_volume -= 70
+	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 /datum/action/item_action/organ_action/fivebloodlings
-	name = "Bloodling swarm"
-	desc = "You sacrifice a dangerous amount of blood to summon a greater amount of bloodlings."
-/datum/action/item_action/organ_action/fivebloodlings/Trigger()
-	var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/A = new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
-	spawn_atom_to_turf(A, owner, 5, TRUE)
-	A.GiveTarget(target)
-	A.friends = owner
-	A.faction = list("blooded")
+	name = "Raise bloodman"
+	desc = "You use your cursed blood to raise a bloodman from a corpse."
+/datum/action/item_action/organ_action/raise/Trigger()
