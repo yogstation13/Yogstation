@@ -21,3 +21,11 @@
 	
 	starting_files = list(	new /datum/computer_file/program/crew_monitor)
 	initial_program = /datum/computer_file/program/crew_monitor
+
+
+////////////////
+// Wallframes //
+////////////////
+
+/obj/item/wallframe/telescreen/preset
+	result_path = /obj/machinery/modular_computer/telescreen/preset

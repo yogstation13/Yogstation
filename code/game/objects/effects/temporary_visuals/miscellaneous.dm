@@ -488,3 +488,8 @@
 	layer = FLY_LAYER
 	duration = 0.48 SECONDS
 	mouse_opacity = 0
+
+/obj/effect/temp_visual/summon
+	randomdir = FALSE
+	duration = 2 SECONDS
+	icon_state = "summon"

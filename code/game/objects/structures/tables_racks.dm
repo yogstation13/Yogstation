@@ -46,7 +46,7 @@
 	if(!istype(H) || H.shoes || !(H.mobility_flags & MOBILITY_STAND) || !H.dna.species.has_toes())
 		return
 	var/speed_multiplier = 2/H.cached_multiplicative_slowdown
-	var/blindness_multiplier = 0
+	var/blindness_multiplier = 1
 	if(H.eye_blurry)
 		blindness_multiplier = 4
 	if(H.eye_blind)

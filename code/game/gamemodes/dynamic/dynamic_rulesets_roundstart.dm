@@ -99,7 +99,7 @@
 	name = "Changelings"
 	antag_flag = ROLE_CHANGELING
 	antag_datum = /datum/antagonist/changeling
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Brig Physician")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
 	weight = 3
@@ -937,6 +937,7 @@
 	scaling_cost = 20
 	antag_cap = 3
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
+	minimum_players = 35
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute(population)
 	. = ..()
