@@ -454,6 +454,13 @@ AI MODULES
 	law_id = "mother"
 
 
+/******************** Meta Experiment *********************/
+
+/obj/item/aiModule/core/full/metaexperiment
+	name = "'Meta Experiment' Core AI Module"
+	law_id = "metaexperiment"
+
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
