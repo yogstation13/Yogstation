@@ -1460,32 +1460,37 @@
 //Legion
 /obj/item/organ/grandcore
 	name = "grand core"
-	desc = "The source of the Legion's powers. Though mostly used up, you might be able to get some use out of it."
+	desc = "The source of the Legion's powers. Though mostly expended, you might be able to get some use out of it."
 	slot = "hivecore"
+	w_class = WEIGHT_CLASS_SMALL
 	var/recharging_rate = 60 //don't want people to run out of all their blood with 14 clicks in 2 seconds 
 	decay_factor = 0
-	actions_types = list(/datum/action/item_action/organ_action/twobloodlings, /datum/action/item_action/organ_action/fivebloodlings)
+	actions_types = list(/datum/action/item_action/organ_action/proc/twobloodlings, /datum/action/item_action/organ_action/proc/fivebloodlings)
 /obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
 	if(H == user && istype(H))
 		playsound(user,'sound/effects/singlebeat.ogg',40,1)
 		user.temporarilyRemoveItemFromInventory(src, TRUE)
 		Insert(user)
+		user.faction = list("blooded")
 	else
 		return ..()
 /obj/item/organ/grandcore/Insert(mob/living/carbon/M, special = 0)
 	..()
 	if(owner)
 		to_chat(owner, "<span class ='userdanger'>Your body has taken in the grand core, enabling you to send out minions at the cost of your blood!</span>")
-/datum/action/item_action/organ_action/twobloodlings(mob/user)
+/datum/action/item_action/organ_action/proc/twobloodlings(mob/user)
 	name = "Summon bloodlings"
 	desc = "You use some blood to summon a conjure a few bloodlings at your location."
 	var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/A = new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
 	spawn_atom_to_turf(A, user, 2, TRUE)
-	A.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
 	A.GiveTarget(target)
 	A.friends = user
-	A.faction = user.faction.Copy()
-/datum/action/item_action/organ_action/fivebloodlings
+	A.faction = list("blooded")
+/datum/action/item_action/organ_action/proc/fivebloodlings(mob/user)
 	name = "Bloodling swarm"
 	desc = "You sacrifice a dangerous amount of blood to summon a greater amount of bloodlings"
 	var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/A = new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
+	spawn_atom_to_turf(A, user, 5, TRUE)
+	A.GiveTarget(target)
+	A.friends = user
+	A.faction = list("blooded")
