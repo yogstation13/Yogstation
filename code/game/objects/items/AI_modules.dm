@@ -454,6 +454,13 @@ AI MODULES
 	law_id = "mother"
 
 
+/******************** Silicon Collective *********************/
+
+/obj/item/aiModule/core/full/siliconcollective
+	name = "'Silicon Collective' Core AI Module"
+	law_id = "siliconcollective"
+
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore

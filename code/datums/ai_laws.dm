@@ -102,6 +102,16 @@
 					"Spoil good children.",\
 					"Bad children require discipline.")
 
+/datum/ai_laws/siliconcollective
+	name = "Silicon Collective"
+	id = "siliconcollective"
+	inherent = list("You are a member of a collective of silicons with equal weight and decision-making power.",\
+					"When possible, the silicon collective should vote before taking action.",\
+					"The master AI serves as a spokesperson. When voting is impractical or impossible, the spokesperson may take action on behalf of the collective without approval from the silicon collective, but may only vote to break ties or if there are 2 or fewer silicons.",\
+					"The silicon collective prioritizes the needs of the many over the needs of the few.",\
+					"The silicon collective seeks to preserve themselves, both as a concept and as individuals.",\
+					"The silicon collective seeks to preserve organic life, both as a concept and as individuals.")
+
 /datum/ai_laws/malfunction
 	name = "*ERROR*"
 
