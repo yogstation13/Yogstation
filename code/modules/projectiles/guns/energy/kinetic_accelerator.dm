@@ -335,16 +335,16 @@
 /obj/item/borg/upgrade/modkit/cooldown
 	name = "cooldown decrease"
 	desc = "Decreases the cooldown of a kinetic accelerator. Not rated for minebot use."
-	modifier = 3.2
+	modifier = 0.745
 	minebot_upgrade = FALSE
 
 /obj/item/borg/upgrade/modkit/cooldown/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
 	. = ..()
 	if(.)
-		KA.overheat_time -= modifier
+		KA.overheat_time *= modifier
 
 /obj/item/borg/upgrade/modkit/cooldown/uninstall(obj/item/gun/energy/kinetic_accelerator/KA)
-	KA.overheat_time += modifier
+	KA.overheat_time /= modifier
 	..()
 
 /obj/item/borg/upgrade/modkit/cooldown/minebot
@@ -353,7 +353,7 @@
 	icon_state = "door_electronics"
 	icon = 'icons/obj/module.dmi'
 	denied_type = /obj/item/borg/upgrade/modkit/cooldown/minebot
-	modifier = 10
+	modifier = 0.5
 	cost = 0
 	minebot_upgrade = TRUE
 	minebot_exclusive = TRUE
