@@ -1,0 +1,5 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - imageadd: "hammer now looks epic"
+  - imagedel: "blue hamoroo is gone"
