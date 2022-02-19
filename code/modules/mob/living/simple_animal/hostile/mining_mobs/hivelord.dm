@@ -182,6 +182,7 @@
 	var/can_infest_dead = FALSE
 
 //Bloodling
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
 	name = "bloodling"
 	desc = "Blood that hates."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -191,6 +192,7 @@
 	icon_dead = "legion_head"
 	icon_gib = "syndicate_gib"
 	friendly = "buzzes near"
+	faction = list("blooded")
 	vision_range = 10
 	maxHealth = 1
 	health = 5
@@ -205,7 +207,8 @@
 	del_on_death = TRUE
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
-	
+	var/can_infest_dead = TRUE
+
 // Snow Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow
 	name = "snow legion"
