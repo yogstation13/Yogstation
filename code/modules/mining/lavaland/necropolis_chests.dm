@@ -1462,7 +1462,7 @@
 	name = "grand core"
 	desc = "The source of the Legion's powers. Though mostly expended, you might be able to get some use out of it."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "blackbox"
+	icon_state = "grandcore"
 	slot = "hivecore"
 	w_class = WEIGHT_CLASS_SMALL 
 	decay_factor = 0
@@ -1479,7 +1479,7 @@
 	H.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/raise)
 	..()
 	if(owner)
-		to_chat(owner, "<span class ='userdanger'>Your body has taken in the grand core, enabling you to send out minions at the cost of your blood!</span>")
+		to_chat(owner, "<span class ='userdanger'>Your body has taken in the grand core, enabling you to control minions at the cost of your blood!</span>")
 /obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
 	H.RemoveSpell(/obj/effect/proc_holder/spell/targeted/touch/raise)
 	return ..()
@@ -1493,4 +1493,6 @@
 	if(iscarbon(owner))
 		var/mob/living/carbon/H = owner
 		H.blood_volume -= 70
-	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by faun
+	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
+
+

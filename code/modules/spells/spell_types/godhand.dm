@@ -162,5 +162,5 @@
 			L.stored_mob = M
 			M.forceMove(L)
 			qdel(src)
-			user.blood_volume -= 70
+			user.blood_volume -= 50
 			to_chat(user, "You curse the body with your blood, leaving you feeling a bit light-headed.")
