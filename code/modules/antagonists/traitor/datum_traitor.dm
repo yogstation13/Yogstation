@@ -9,6 +9,7 @@
 	antag_moodlet = /datum/mood_event/focused
 	var/special_role = ROLE_TRAITOR
 	var/employer = "The Syndicate"
+	var/obj_severity = 0
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
@@ -114,6 +115,7 @@
 			var/datum/objective/hijack/hijack_objective = new
 			hijack_objective.owner = owner
 			add_objective(hijack_objective)
+			obj_severity = obj_severity + 5
 			return
 
 
@@ -127,6 +129,7 @@
 		var/datum/objective/martyr/martyr_objective = new
 		martyr_objective.owner = owner
 		add_objective(martyr_objective)
+		obj_severity = obj_severity + 5
 		return
 
 	else
@@ -182,28 +185,33 @@
 			destroy_objective.owner = owner
 			destroy_objective.find_target()
 			add_objective(destroy_objective)
+			obj_severity = obj_severity + 2
 		else if(prob(30))
 			var/datum/objective/maroon/maroon_objective = new
 			maroon_objective.owner = owner
 			maroon_objective.find_target()
 			add_objective(maroon_objective)
+			obj_severity = obj_severity + 2
 		else
 			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
 			var/datum/objective/assassinate/kill_objective = new N
 			kill_objective.owner = owner
 			kill_objective.find_target()
 			add_objective(kill_objective)
+			obj_severity = obj_severity + 4
 	else
 		if(prob(15) && !(locate(/datum/objective/download) in objectives) && !(owner.assigned_role in list("Research Director", "Scientist", "Roboticist")))
 			var/datum/objective/download/download_objective = new
 			download_objective.owner = owner
 			download_objective.gen_amount_goal()
 			add_objective(download_objective)
+			obj_severity = obj_severity + 1
 		else
 			var/datum/objective/steal/steal_objective = new
 			steal_objective.owner = owner
 			steal_objective.find_target()
 			add_objective(steal_objective)
+			obj_severity = obj_severity + 1
 
 /datum/antagonist/traitor/proc/forge_single_AI_objective()
 	.=1
@@ -238,7 +246,15 @@
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
-	to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck."))
+	if obj_severity <= 3
+		to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck."))
+	else if obj_severity = 4
+		to_chat(owner.current, span_notice("Your employer [initial(company.name)] have made some ominous threats and kindly encouraged you to succeed."))
+	else if obj_severity <= 6
+		to_chat(owner.current, span_notice("Your employer [initial(company.name)] have taken someone close to you. This is the only way to save them."))
+	else if obj_severity >= 7
+		to_chat(owner.current, span_notice("Your masters at [initial(company.name)] have done something strange and wonderful to your mind... you owe them so much more than they are asking of you."))
+		
 
 /datum/antagonist/traitor/proc/update_traitor_icons_added(datum/mind/traitor_mind)
 	var/datum/atom_hud/antag/traitorhud = GLOB.huds[ANTAG_HUD_TRAITOR]
