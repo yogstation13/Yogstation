@@ -148,7 +148,7 @@
 
 /obj/item/melee/touch_attack/raisehand/afterattack(atom/target, mob/living/carbon/user, proximity)
 	var/mob/living/carbon/human/M = target
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/bloodman/L
 	if(!ishuman(M) || M == user)
 		return
 	if(M.stat == DEAD)
@@ -157,8 +157,10 @@
 			to_chat(M, span_warning("You ward off the evil blood!"))
 			..()
 			return
+		else
 			L = new(M.loc)
 			L.stored_mob = M
 			M.forceMove(L)
 			qdel(src)
-			return ..()
+			user.blood_volume -= 70
+			to_chat(user, "You curse the body with your blood, leaving you feeling a bit light-headed.")

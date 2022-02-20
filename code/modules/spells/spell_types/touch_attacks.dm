@@ -95,4 +95,3 @@
 	desc = "Turn a corpse into a bloodman at the cost of your own blood."
 	hand_path = /obj/item/melee/touch_attack/raisehand
 	clothes_req = FALSE
-	invocation_type = "Rise!" //you scream on connecting, not summoning
