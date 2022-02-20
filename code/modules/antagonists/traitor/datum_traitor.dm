@@ -115,7 +115,7 @@
 			var/datum/objective/hijack/hijack_objective = new
 			hijack_objective.owner = owner
 			add_objective(hijack_objective)
-			obj_severity = obj_severity + 5
+			obj_severity += 5
 			return
 
 
@@ -129,7 +129,7 @@
 		var/datum/objective/martyr/martyr_objective = new
 		martyr_objective.owner = owner
 		add_objective(martyr_objective)
-		obj_severity = obj_severity + 5
+		obj_severity += 5
 		return
 
 	else
@@ -185,7 +185,7 @@
 			destroy_objective.owner = owner
 			destroy_objective.find_target()
 			add_objective(destroy_objective)
-			obj_severity = obj_severity + 2
+			obj_severity += 2
 		else if(prob(30))
 			var/datum/objective/maroon/maroon_objective = new
 			maroon_objective.owner = owner
@@ -248,7 +248,7 @@
 		give_codewords()
 	if (obj_severity <= 3)
 		to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck."))
-	else if (obj_severity = 4)
+	else if (obj_severity == 4)
 		to_chat(owner.current, span_notice("Your employer [initial(company.name)] have made some ominous threats and kindly encouraged you to succeed."))
 	else if (obj_severity <= 6)
 		to_chat(owner.current, span_notice("Your employer [initial(company.name)] have taken someone close to you. This is the only way to save them."))
