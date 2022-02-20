@@ -246,13 +246,13 @@
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
-	if obj_severity <= 3
+	if obj_severity <= (3)
 		to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck."))
-	else if obj_severity = 4
+	else if obj_severity = (4)
 		to_chat(owner.current, span_notice("Your employer [initial(company.name)] have made some ominous threats and kindly encouraged you to succeed."))
-	else if obj_severity <= 6
+	else if obj_severity <= (6)
 		to_chat(owner.current, span_notice("Your employer [initial(company.name)] have taken someone close to you. This is the only way to save them."))
-	else if obj_severity >= 7
+	else if obj_severity >= (7)
 		to_chat(owner.current, span_notice("Your masters at [initial(company.name)] have done something strange and wonderful to your mind... you owe them so much more than they are asking of you."))
 		
 
