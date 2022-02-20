@@ -89,3 +89,10 @@
 	action_icon_state = "horror"
 	action_background_icon_state = "bg_ecult"
 	sound = 'sound/magic/fleshtostone.ogg'
+
+/obj/effect/proc_holder/spell/targeted/touch/raise
+	name = "Raise bloodman"
+	desc = "Turn a corpse into a bloodman at the cost of your own blood."
+	hand_path = /obj/item/melee/touch_attack/raisehand
+	clothes_req = FALSE
+	invocation_type = "Rise!" //you scream on connecting, not summoning

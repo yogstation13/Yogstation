@@ -1485,6 +1485,7 @@
 	var/cooldown = 60
 /datum/action/item_action/organ_action/threebloodlings/Trigger()
 	. = ..()
+	to_chat(owner, "You spill your blood, and it comes to life as bloodlings!")
 	if(iscarbon(owner))
 		var/mob/living/carbon/H = owner
 		H.blood_volume -= 70

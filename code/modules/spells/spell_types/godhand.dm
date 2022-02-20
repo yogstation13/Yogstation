@@ -138,3 +138,27 @@
 	M.emote("scream")
 	to_chat(M, span_warning("You feel an explosion of pain erupt in your mind!"))
 	return ..()
+
+/obj/item/melee/touch_attack/raisehand
+	name = "\improper raise bloodman"
+	desc = "The skin of your palm feels thin."
+	on_use_sound = 'sound/magic/wandodeath.ogg'
+	icon_state = "flagellation"
+	item_state = "hivehand"
+
+/obj/item/melee/touch_attack/raisehand/afterattack(atom/target, mob/living/carbon/user, proximity)
+	var/mob/living/carbon/human/M = target
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
+	if(!ishuman(M) || M == user)
+		return
+	if(M.stat == DEAD)
+		if(M.anti_magic_check())
+			to_chat(user, span_warning("The blood seems to bounce off of [M]!"))
+			to_chat(M, span_warning("You ward off the evil blood!"))
+			..()
+			return
+			L = new(M.loc)
+			L.stored_mob = M
+			M.forceMove(L)
+			qdel(src)
+			return ..()
