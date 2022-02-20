@@ -11,23 +11,23 @@
 	. = ..()
 	if(!.)
 		return .
-	var/area/A
-	for(var/obj/machinery/ai/data_core/datacores in GLOB.machines)
+	for(var/obj/machinery/ai/data_core/datacores in GLOB.data_cores)
+		var/area/A
 		A = get_area(datacores)
+		if (!A || A.party || A.name == "Space")
+			return
+		A.party = TRUE
+		if (!party_overlay)
+			party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party")
+		A.add_overlay(party_overlay)
 
-	if (!A || A.party || A.name == "Space")
-		return
-	A.party = TRUE
-	if (!party_overlay)
-		party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party")
-	A.add_overlay(party_overlay)
 
 /datum/ai_project/rgb/stop()
-	var/area/A
 	for(var/obj/machinery/ai/data_core/datacores in GLOB.machines)
+		var/area/A
 		A = get_area(datacores)
-	if (!A || !A.party)
-		return
-	A.party = FALSE
-	A.cut_overlay(party_overlay)
+		if (!A || !A.party)
+			return
+		A.party = FALSE
+		A.cut_overlay(party_overlay)
 	..()
