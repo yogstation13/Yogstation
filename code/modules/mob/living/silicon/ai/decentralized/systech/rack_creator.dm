@@ -14,7 +14,9 @@
 
 	var/list/ram_expansions = list() //List containing numbers corresponding to the amount of RAM that stick adds. 
 
+
 	//circuit = /obj/item/circuitboard/machine/circuit_imprinter
+
 
 
 /obj/machinery/rack_creator/proc/get_total_cost()
@@ -51,15 +53,19 @@
 
 
 	data["possible_ram"] = list()
-	for(var/datum/design/ram/D in subtypesof(/datum/design/ram))
+	for(var/ram_d in subtypesof(/datum/design/ram))
+		var/datum/design/ram/D = ram_d
+		D = SSresearch.techweb_design_by_id(initial(D.id))
 		var/materials_string
-		for(var/mat in initial(D.materials))
+		for(var/mat in D.materials)
 			var/datum/material/M = mat
 			if(!materials_string)
-				materials_string += "[M.name]: [initial(D.materials[mat])]"
+				materials_string += "[M.name]: [D.materials[mat]]"
 			else
-				materials_string += ", [M.name]: [initial(D.materials[mat])]"
-		data["possible_ram"] += list(list("name" = initial(D.name), "capacity" = initial(D.capacity), "cost" = materials_string))
+				materials_string += ", [M.name]: [D.materials[mat]]"
+		data["possible_ram"] += list(list("name" = D.name, "capacity" = D.capacity, "cost" = materials_string,"id" = D.id, "unlocked" = SSresearch.science_tech.isDesignResearchedID(D.id) ? TRUE : FALSE))
+
+	data["total_cost"] = get_total_cost()
 
 	return data
 
@@ -99,11 +105,14 @@
 			var/ram_type = locate(params["ram_type"])
 			if(!ram_type)
 				return
-			var/datum/design/ram/D = SSresearch.techweb_design_by_id(ram_type)
-			if(!istype(D))
+			var/datum/design/ram/D = SSresearch.science_tech.isDesignResearchedID(ram_type)
+			if(!D)
 				return
 			var/list/stats = list("name" = D.name,"capacity" = D.capacity, "cost" = D.materials)
 			ram_expansions += stats 
+
+			. = TRUE
+		if("finalize")
 
 			. = TRUE
 
