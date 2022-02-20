@@ -211,7 +211,7 @@
 			steal_objective.owner = owner
 			steal_objective.find_target()
 			add_objective(steal_objective)
-			obj_severity += 1
+			obj_severity += 2
 
 /datum/antagonist/traitor/proc/forge_single_AI_objective()
 	.=1
