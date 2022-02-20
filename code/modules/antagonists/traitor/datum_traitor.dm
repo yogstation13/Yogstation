@@ -129,7 +129,7 @@
 		var/datum/objective/martyr/martyr_objective = new
 		martyr_objective.owner = owner
 		add_objective(martyr_objective)
-		obj_severity += 5
+		obj_severity += 6
 		return
 
 	else
