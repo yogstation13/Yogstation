@@ -69,6 +69,8 @@
 		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 
 	R.revive()
+	R.logevent("WARN -- System recovered from unexpected shutdown.")
+	R.logevent("System brought online.")
 
 /obj/item/borg/upgrade/panel_access_remover
 	name = "cyborg firmware hack"
@@ -157,6 +159,7 @@
 			return FALSE
 
 		R.ionpulse = TRUE
+		R.toggle_ionpulse() //Enabled by default
 
 /obj/item/borg/upgrade/thrusters/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -364,6 +367,8 @@
 			return FALSE
 
 		R.SetEmagged(1)
+		R.logevent("WARN: hardware installed with missing security certificate!") //A bit of fluff to hint it was an illegal tech item
+		R.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 
 		return TRUE
 
@@ -385,12 +390,12 @@
 	. = ..()
 	if(.)
 
-		R.weather_immunities += "lava"
+		R.weather_immunities += WEATHER_LAVA
 
 /obj/item/borg/upgrade/lavaproof/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		R.weather_immunities -= "lava"
+		R.weather_immunities -= WEATHER_LAVA
 
 /obj/item/borg/upgrade/selfrepair
 	name = "self-repair module"

@@ -7,7 +7,7 @@
 	requires_ntnet = TRUE
 	transfer_access = null
 	available_on_ntnet = FALSE
-	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE
+	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_INTEGRATED
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosRadar"
@@ -72,6 +72,7 @@
 /datum/computer_file/program/radar/ui_act(action, params)
 	if(..())
 		return
+	computer.play_interact_sound()
 
 	switch(action)
 		if("selecttarget")

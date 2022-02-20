@@ -1199,6 +1199,7 @@
 	.["Toggle Build Mode"] = "?_src_=vars;[HrefToken()];build_mode=[REF(src)]"
 	.["Assume Direct Control"] = "?_src_=vars;[HrefToken()];direct_control=[REF(src)]"
 	.["Offer Control to Ghosts"] = "?_src_=vars;[HrefToken()];offer_control=[REF(src)]"
+	.["Set AFK Timer"] = "?_src_=vars;[HrefToken()];set_afk=[REF(src)]"
 
 /**
   * extra var handling for the logging var
