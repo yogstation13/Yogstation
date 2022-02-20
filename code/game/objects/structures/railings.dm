@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	climbable = TRUE
-	pixel_x = -16
+	pixel_y = -16
 	climb_time = 10 // not that hard to jump a rail
 	climb_stun = 0 // if you dont fall
 	///Initial direction of the railing.
