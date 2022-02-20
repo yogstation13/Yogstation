@@ -330,10 +330,10 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 		if("stop_download")
 			if(isAI(usr))
-				to_chat(span_warning("You need physical access to stop the download!"))
+				to_chat(usr, span_warning("You need physical access to stop the download!"))
 				return
 			if(!is_station_level(z))
-				to_chat(user, span_warning("No connection. Try again later."))
+				to_chat(usr, span_warning("No connection. Try again later."))
 				return
 			stop_download()
 
@@ -348,7 +348,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(!target.can_download)
 				return
 			if(!is_station_level(z))
-				to_chat(user, span_warning("No connection. Try again later."))
+				to_chat(usr, span_warning("No connection. Try again later."))
 				return
 			downloading = target
 			to_chat(downloading, span_userdanger("Warning! Someone is attempting to download you from [get_area(src)]! (<a href='?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))

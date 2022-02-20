@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	
 	circuit = /obj/item/circuitboard/machine/expansion_card_holder
 
-	var/list/installed_cards
+	var/list/installed_racks
 
 	var/total_cpu = 0
 	var/total_ram = 0
@@ -17,7 +17,9 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	//We manually calculate how power the cards + CPU give, so this is accounted for by that
 	active_power_usage = 0
 
-	var/max_cards = 2
+	var/cached_power_usage = 0
+
+	var/max_racks = 2
 
 	var/was_valid_holder = FALSE
 	//Atmos hasn't run at the start so this has to be set to true if you map it in
@@ -29,12 +31,12 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 /obj/machinery/ai/expansion_card_holder/Initialize(mapload)
 	..()
 	roundstart = mapload
-	installed_cards = list()
+	installed_racks = list()
 	GLOB.expansion_card_holders += src
 	update_icon()
 
 /obj/machinery/ai/expansion_card_holder/Destroy()
-	installed_cards = list()
+	installed_racks = list()
 	GLOB.expansion_card_holders -= src
 	//Recalculate all the CPUs and RAM :)
 	GLOB.ai_os.update_hardware()
@@ -43,16 +45,13 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 /obj/machinery/ai/expansion_card_holder/process()
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
 	if(valid_holder())
-
-		var/power_multiple = total_cpu ** (0.95) //Very slightly more efficient to centralize CPU.
-
-		var/total_usage = (power_multiple * AI_BASE_POWER_PER_CPU) + AI_POWER_PER_CARD * installed_cards.len
+		var/total_usage = cached_power_usage
 		use_power(total_usage)
 
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env.heat_capacity())
-			var/temperature_increase = total_usage / env.heat_capacity() //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+			var/temperature_increase = total_usage / env.heat_capacity()
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 			T.air_update_turf()
 		
@@ -78,50 +77,49 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 /obj/machinery/ai/expansion_card_holder/update_icon()
 	cut_overlays()
 
-	if(installed_cards.len > 0) 
+	if(installed_racks.len > 0) 
 		var/mutable_appearance/top_overlay = mutable_appearance(icon, "expansion_bus_top")
 		add_overlay(top_overlay)
-	if(installed_cards.len > 1) 
+	if(installed_racks.len > 1) 
 		var/mutable_appearance/bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom")
 		add_overlay(bottom_overlay)
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "expansion_bus_on")
 		add_overlay(on_overlay)
-		if(installed_cards.len > 0)
+		if(installed_racks.len > 0)
 			var/mutable_appearance/on_top_overlay = mutable_appearance(icon, "expansion_bus_top_on")
 			add_overlay(on_top_overlay)
-		if(installed_cards.len > 1)
+		if(installed_racks.len > 1)
 			var/mutable_appearance/on_bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom_on")
 			add_overlay(on_bottom_overlay)
 
 /obj/machinery/ai/expansion_card_holder/attackby(obj/item/W, mob/living/user, params)
-	if(istype(W, /obj/item/processing_card) || istype(W, /obj/item/memory_card))
-		if(installed_cards.len >= max_cards)
+	if(istype(W, /obj/item/server_rack))
+		if(installed_racks.len >= max_racks)
 			to_chat(user, span_warning("[src] cannot fit the [W]!"))
 			return ..()
 		to_chat(user, span_notice("You install [W] into [src]."))
 		W.forceMove(src)
-		installed_cards += W
+		installed_racks += W
+		var/obj/item/server_rack/rack = W
+		total_cpu += rack.get_cpu()
+		total_ram += rack.get_ram()
+		cached_power_usage += rack.get_power_usage()
 		GLOB.ai_os.update_hardware()
-		if(istype(W, /obj/item/processing_card))
-			var/obj/item/processing_card/cpu_card = W
-			total_cpu += cpu_card.tier
-		if(istype(W, /obj/item/memory_card))
-			var/obj/item/memory_card/ram_card = W
-			total_ram += ram_card.tier
 		use_power = ACTIVE_POWER_USE
 		update_icon()
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
-		if(installed_cards.len)
+		if(installed_racks.len)
 			var/turf/T = get_turf(src)
-			for(var/obj/item/C in installed_cards)
+			for(var/obj/item/C in installed_racks)
 				C.forceMove(T)
-			installed_cards.len = 0
+			installed_racks.len = 0
 			total_cpu = 0
 			total_ram = 0
+			cached_power_usage = 0
 			GLOB.ai_os.update_hardware()
-			to_chat(user, span_notice("You remove all the cards from [src]"))
+			to_chat(user, span_notice("You remove all the racks from [src]"))
 			use_power = IDLE_POWER_USE
 			update_icon()
 			return FALSE
@@ -138,21 +136,23 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	. = ..()
 	if(!valid_holder())
 		. += "A small screen is displaying the words 'OFFLINE.'"
-	. += "The machine has [installed_cards.len] cards out of a maximum of [max_cards] installed."
-	for(var/C in installed_cards)
-		. += "There is a [C] installed."
-	. += "Use a crowbar to remove cards."
+	. += "The machine has [installed_racks.len] racks out of a maximum of [max_racks] installed."
+
+	for(var/obj/item/server_rack/R in installed_racks)
+		. += "There is a rack installed with a processing capacity of [R.get_cpu()]THz and a memory capacity of [R.get_ram()]TB" 
+	. += "Use a crowbar to remove all currently inserted racks."
 
 
 /obj/machinery/ai/expansion_card_holder/prefilled/Initialize()
 	..()
-	var/obj/item/processing_card/cpu = new /obj/item/processing_card()
-	var/obj/item/memory_card/ram = new /obj/item/memory_card()
-
-	cpu.forceMove(src)
-	total_cpu++
-	ram.forceMove(src)
-	total_ram++
-	installed_cards += cpu
-	installed_cards += ram
+	var/obj/item/server_rack/roundstart/rack = new(src)
+	total_cpu += rack.get_cpu()
+	total_ram += rack.get_ram()
+	cached_power_usage += rack.get_power_usage()
+	installed_racks += rack
 	GLOB.ai_os.update_hardware()
+
+	
+
+
+
