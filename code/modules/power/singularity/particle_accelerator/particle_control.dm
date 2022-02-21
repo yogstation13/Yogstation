@@ -355,7 +355,7 @@
 				return
 			if(obj_flags & EMAGGED)
 				to_chat(operator,"The locking mechanism glitches out.")
-				area_restricted = FALSE //sanity check
+				locked = FALSE //sanity check
 				return
 			locked = !locked
 			to_chat(operator, "You [locked ? "enable" : "disable"] the toggle lock.")
