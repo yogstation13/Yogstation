@@ -1473,7 +1473,7 @@
 		user.temporarilyRemoveItemFromInventory(src, TRUE)
 		Insert(user)
 	else
-		to_chat(user, span_notice("[src] has decayed and can no longer be used to heal."))
+		to_chat(user, span_notice("The [src] refuses all prompts from bloodless bearers."))
 		return
 /obj/item/organ/grandcore/Insert(mob/living/carbon/H, special = 0)
 	H.faction = list("blooded")
