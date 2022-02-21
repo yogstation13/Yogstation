@@ -1473,7 +1473,8 @@
 		user.temporarilyRemoveItemFromInventory(src, TRUE)
 		Insert(user)
 	else
-		return ..()
+		to_chat(user, span_notice("[src] has decayed and can no longer be used to heal."))
+		return
 /obj/item/organ/grandcore/Insert(mob/living/carbon/H, special = 0)
 	H.faction = list("blooded")
 	H.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/raise)

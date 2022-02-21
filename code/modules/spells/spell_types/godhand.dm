@@ -158,6 +158,7 @@
 			..()
 			return
 		else
+			playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 			L = new(M.loc)
 			L.stored_mob = M
 			M.forceMove(L)

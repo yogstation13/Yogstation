@@ -124,10 +124,10 @@
 	desc = "You can still see what was once a human under the shifting mass of corruption."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	faction = list("blooded")
-	icon_state = "legion"
-	icon_living = "legion"
-	icon_aggro = "legion"
-	icon_dead = "legion"
+	icon_state = "bloodman"
+	icon_living = "bloodman"
+	icon_aggro = "bloodman"
+	icon_dead = "bloodman"
 	icon_gib = "syndicate_gib"
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mouse_opacity = MOUSE_OPACITY_ICON
@@ -142,7 +142,7 @@
 	crusher_drop_mod = 10
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
 	del_on_death = 1
-	stat_attack = UNCONSCIOUS
+	stat_attack = DEAD
 	pass_flags = null
 	robust_searching = 1
 	var/mob/living/carbon/human/stored_mob
@@ -215,10 +215,10 @@
 	name = "bloodling"
 	desc = "Blood that hates."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
-	icon_state = "legion_head"
-	icon_living = "legion_head"
-	icon_aggro = "legion_head"
-	icon_dead = "legion_head"
+	icon_state = "bloodling"
+	icon_living = "bloodling"
+	icon_aggro = "bloodling"
+	icon_dead = "bloodling"
 	icon_gib = "syndicate_gib"
 	friendly = "buzzes near"
 	faction = list("blooded")
@@ -234,7 +234,7 @@
 	throw_message = "is shrugged off by"
 	pass_flags = PASSTABLE
 	del_on_death = TRUE
-	stat_attack = UNCONSCIOUS
+	stat_attack = DEAD
 	robust_searching = 1
 	var/can_infest_dead = TRUE
 
