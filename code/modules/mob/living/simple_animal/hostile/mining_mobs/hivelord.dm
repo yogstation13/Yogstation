@@ -139,6 +139,7 @@
 	attack_sound = 'sound/weapons/pierce.ogg'
 	throw_message = "bounces harmlessly off of"
 	crusher_loot = /obj/item/crusher_trophy/legion_skull
+	loot = null
 	crusher_drop_mod = 10
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
 	del_on_death = 1
