@@ -181,7 +181,7 @@
 
 
 /obj/machinery/particle_accelerator/control_box/proc/toggle_power()
-	if(area_restricted)
+	if(active && area_restricted)
 		var/area/A = get_area(src)
 		if(!istype(A,/area/engine))
 			src.visible_message("Restricted area detected! Aborting.")
