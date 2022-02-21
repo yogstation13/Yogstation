@@ -10,7 +10,7 @@ export const ParticleAccelerator = (props, context) => {
     power,
     strength,
     locked,
-    area_restricted
+    area_restricted,
   } = data;
 
   return (
