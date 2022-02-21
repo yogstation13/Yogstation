@@ -151,17 +151,14 @@
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
 	if(!ishuman(M) || M == user)
 		return
-	if(M.stat == DEAD)
-		if(M.anti_magic_check())
-			to_chat(user, span_warning("The blood seems to bounce off of [M]!"))
-			to_chat(M, span_warning("You ward off the evil blood!"))
-			..()
-			return
-		else
-			playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
-			L = new(M.loc)
-			L.stored_mob = M
-			M.forceMove(L)
-			qdel(src)
-			user.blood_volume -= 50
-			to_chat(user, "You curse the body with your blood, leaving you feeling a bit light-headed.")
+	if(NOBLOOD in M.dna.species.species_traits)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5) //cheaper than the other spell because its not like you can stop near a corpse or find one near you in a fight 
+		to_chat(M, "Your head pounds as you produce bloodlings!")
+	else
+		playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
+		L = new(M.loc)
+		L.stored_mob = M
+		M.forceMove(L)
+		qdel(src)
+		user.blood_volume -= 50
+		to_chat(user, "You curse the body with your blood, leaving you feeling a bit light-headed.")

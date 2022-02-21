@@ -1490,7 +1490,7 @@
 	var/mob/living/carbon/H = owner
 	. = ..()
 	if(NOBLOOD in H.dna.species.species_traits)
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15) //brain damage wont stop you from running away so opting for that instead of poison or breath damage 
+		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10) //brain damage wont stop you from running away so opting for that instead of poison or breath damage 
 		to_chat(H, "Your head pounds as you produce bloodlings!")
 	else
 		to_chat(H, "You spill your blood, and it comes to life as bloodlings!")
