@@ -734,7 +734,7 @@ Difficulty: Very Hard
 	death = FALSE
 	roundstart = FALSE
 	short_desc = "You are a photogeist, a peaceful creature summoned by a plant god"
-	flavour_text = "<b>Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them.</b>"
+	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them."
 
 /obj/effect/mob_spawn/photogeist/Initialize()
 	. = ..()

@@ -274,6 +274,9 @@ BROTHER_OBJECTIVES_AMOUNT 2
 ## Uncomment to prohibit AI from becoming traitor (not malf!).
 #PROTECT_AI_FROM_TRAITOR
 
+## Uncomment to prohibit head roles from becoming most antagonists.
+PROTECT_HEADS_FROM_ANTAGONIST
+
 ## If non-human species are barred from joining as a head of staff
 ENFORCE_HUMAN_AUTHORITY
 

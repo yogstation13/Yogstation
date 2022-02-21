@@ -9,7 +9,7 @@
 	else if(is_shadow(usr)) to_chat(usr, span_warning("Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first."))
 	return 0
 
-/obj/effect/proc_holder/spell/targeted/sling //Stuns and mutes a human target for 10 seconds
+/obj/effect/proc_holder/spell/targeted/sling
 	ranged_mousepointer = 'icons/effects/cult_target.dmi'
 	var/mob/living/user
 	var/mob/living/target
@@ -52,7 +52,7 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/glare //Stuns and mutes a human target for 10 seconds
 	name = "Glare"
-	desc = "Disrupts the target's motor and speech abilities."
+	desc = "Disrupts the target's motor and speech abilities. Much more effective within two meters."
 	panel = "Shadowling Abilities"
 	charge_max = 300
 	human_req = TRUE
@@ -83,7 +83,10 @@
 	else //Distant glare
 		var/loss = 100 - (distance * 10)
 		target.adjustStaminaLoss(loss)
-		target.stuttering = loss
+		if(iscarbon(target))
+			target.stuttering = loss
+		else if(issilicon(target))
+			target.stuttering = distance
 		to_chat(target, span_userdanger("A purple light flashes across your vision, and exhaustion floods your body..."))
 		target.visible_message(span_danger("[target] looks very tired..."))
 	charge_counter = 0
@@ -159,8 +162,7 @@
 		if(istype(LO, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/borg = LO
 			if(!borg.lamp_cooldown)
-				borg.update_headlamp(TRUE, INFINITY)
-				to_chat(borg, span_userdanger("The lightbulb in your headlamp is fried! You'll need a human to help replace it."))
+				borg.smash_headlamp()
 		if(istype(LO, /obj/machinery/camera))
 			LO.set_light(0)
 			if(prob(10))

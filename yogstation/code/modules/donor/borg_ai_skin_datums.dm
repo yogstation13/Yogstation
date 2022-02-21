@@ -168,6 +168,12 @@
 	owner = null
 	module_locked = "Peacekeeper"
 
+/datum/borg_skin/abductor_peacekeeper
+	name = "Fazzkeeper"
+	icon_state = "fazzkeeper"
+	owner = null
+	module_locked = "Peacekeeper"
+
 /datum/borg_skin/abductor_miner
 	name = "Alien M.I.N.E.R"
 	icon_state = "abductor_miner"
