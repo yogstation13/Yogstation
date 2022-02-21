@@ -119,7 +119,7 @@
 	var/mob/living/carbon/human/stored_mob
 
 //Bloodman
-/mob/living/simple_animal/hostile/asteroid/hivelord/bloodman
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman
 	name = "bloodman"
 	desc = "You can still see what was once a human under the shifting mass of corruption."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
@@ -145,7 +145,7 @@
 	stat_attack = DEAD
 	pass_flags = null
 	robust_searching = 1
-	var/mob/living/carbon/human/stored_mob
+	var/mob/living/carbon/human/M
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/random/Initialize()
 	. = ..()
@@ -268,7 +268,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/Life()
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/bloodman/L
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
 	if(isturf(loc))
 		for(var/mob/living/carbon/human/M in view(src,1))
 			if(M.stat == DEAD)

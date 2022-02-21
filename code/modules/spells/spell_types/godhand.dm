@@ -148,7 +148,7 @@
 
 /obj/item/melee/touch_attack/raisehand/afterattack(atom/target, mob/living/carbon/user, proximity)
 	var/mob/living/carbon/human/M = target
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/bloodman/L
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
 	if(!ishuman(M) || M == user)
 		return
 	if(M.stat == DEAD)
