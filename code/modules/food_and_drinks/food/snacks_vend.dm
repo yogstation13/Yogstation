@@ -128,7 +128,7 @@
 
 /obj/item/reagent_containers/food/snacks/kakes
 	name = "top kakes"
-	desc = "Sugary bitsized cake delights guranteed to keep you up all night!"
+	desc = "Sugary bitsized cake delights guaranteed to keep you up all night!"
 	trash = /obj/item/trash/topkakes
 	icon_state = "topkakes"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 6)

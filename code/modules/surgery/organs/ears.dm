@@ -39,7 +39,7 @@
 	else if(!(organ_flags & ORGAN_FAILING)) // if this organ is failing, do not clear deaf stacks.
 		deaf = max(deaf - 1, 0)
 		if(prob(damage / 20) && (damage > low_threshold))
-			adjustEarDamage(0, 4)
+			adjustEarDamage(0, 2)
 			SEND_SOUND(C, sound('sound/weapons/flash_ring.ogg'))
 			to_chat(C, span_warning("The ringing in your ears grows louder, blocking out any external noises for a moment."))
 	else if((organ_flags & ORGAN_FAILING) && (deaf == 0))
@@ -109,6 +109,14 @@
 		H.dna.features["ears"] = "None"
 		H.dna.species.mutant_bodyparts -= "ears"
 		H.update_body()
+
+/obj/item/organ/ears/cybernetic
+	name = "cybernetic hearing apparatus"
+	desc = "A set of complex electronics that can mimic the functions of an ear. Slightly more resistant to damage."
+	icon_state = "ears-c"
+	damage_multiplier = 0.8
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC
 
 /obj/item/organ/ears/penguin
 	name = "penguin ears"

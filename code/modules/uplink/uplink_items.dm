@@ -1632,6 +1632,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	restricted = TRUE
 
+/datum/uplink_item/device_tools/potion/traitor
+	name = "Lesser Syndicate Sentience Potion"
+	item = /obj/item/slimepotion/slime/sentience/traitor
+	desc = "The Syndicate have recently synthesized artificial sentience potions thanks to stolen slime cores. \
+			Using it will make any animal sentient, and bound to serve you in your dastardly deeds."
+	cost = 2
+	limited_stock = 2 //only buy two, prevents certain mushroom shenanigans
+	include_modes = list() //clear the list
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
+
 /datum/uplink_item/device_tools/suspiciousphone
 	name = "Protocol CRAB-17 Phone"
 	desc = "The Protocol CRAB-17 Phone, a phone borrowed from an unknown third party, it can be used to crash the space market, funneling the losses of the crew to your bank account.\
@@ -1641,6 +1651,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	limited_stock = 1
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/device_tools/syndie_bodybag
+	name = "Syndicate Prisoner Transport Bag"
+	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. Designed to keep a victim unconscious, alive, and secured until they are transported to a required location."
+	item = /obj/item/bodybag/environmental/prisoner/syndicate
+	cost = 7
 
 // Implants
 /datum/uplink_item/implants
@@ -2010,6 +2026,17 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	restricted_roles = list("Chaplain")
 	surplus = 5 //Very low chance to get it in a surplus crate even without being the chaplain
+	
+/datum/uplink_item/role_restricted/horror
+	name = "Horror-in-a-box"
+	desc = "When dissecting the head of a dead Nanotrasen scientist, our surgeons noticed an incredibly peculiar creature inside and managed to extract it into safe containment. \
+	Either a failed experiment or otherworldly monster, this creature has been trained to aid whoever wakes it up. If you aren't afraid of it entering your head, it can prove a useful ally. \
+	We take no responsibility for your newfound madness and accept no refunds."
+	item = /obj/item/horrorspawner
+	cost = 16
+	surplus = 0
+	restricted_roles = list("Curator")
+	player_minimum = 20
 
 /datum/uplink_item/role_restricted/explosive_hot_potato
 	name = "Exploding Hot Potato"
@@ -2131,7 +2158,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Makeshift Weapons"
 	desc = "A one use book that grants access to a number of secret crafting recipes once it has been read."
 	item = /obj/item/book/granter/crafting_recipe/weapons
-	cost = 4
+	cost = 2
 	cant_discount = TRUE
 	illegal_tech = FALSE
 

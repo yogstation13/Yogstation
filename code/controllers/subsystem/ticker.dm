@@ -316,7 +316,7 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 
-	to_chat(world, "<h2>The way the AI works has changed. These changes are relevant if you have an objective to steal/destroy the AI, are a borg, is the RD, or is the network admin. \
+	to_chat(world, "<h2>The way the AI works has changed. These changes are relevant if: you have an objective to steal/destroy the AI, are playing as the AI / as a Borg, are the Research Director, or, are the Network Admin. \
 	Please read the following: https://github.com/yogstation13/Yogstation/pull/12815 </h2>")
 
 	return TRUE
@@ -421,7 +421,7 @@ SUBSYSTEM_DEF(ticker)
 			if(N.new_character)
 				to_chat(N, "Captainship not forced on anyone.")
 			CHECK_TICK
-	
+
 	if(no_bartender && !(SSevents.holidays && SSevents.holidays["St. Patrick's Day"]))
 		SSjob.random_bar_init()
 

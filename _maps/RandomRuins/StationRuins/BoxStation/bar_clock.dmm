@@ -312,6 +312,10 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
+"hn" = (
+/obj/machinery/oven,
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "ia" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -1518,7 +1522,7 @@ yl
 Bl
 SD
 np
-Ip
+hn
 Mg
 CT
 wp
