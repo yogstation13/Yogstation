@@ -273,16 +273,6 @@
 
 	..()
 
-/obj/machinery/particle_accelerator/control_box/emag_act(mob/user)
-	if(obj_flags & EMAGGED)
-		return
-	obj_flags |= EMAGGED
-	visible_message(span_warning("Sparks fly out of [src]!"), span_notice("You emag [src], disabling its safeties."))
-	locked = FALSE
-	area_restricted = FALSE
-	playsound(src, "sparks", 50, 1)
-
-
 /obj/machinery/particle_accelerator/control_box/blob_act(obj/structure/blob/B)
 	if(prob(50))
 		qdel(src)
