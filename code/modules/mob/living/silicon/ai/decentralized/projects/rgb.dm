@@ -5,29 +5,22 @@
 	ram_required = 0
 	research_requirements_text = "None"
 	category = AI_PROJECT_MISC
-	var/static/party_overlay
+	var/current_color
+	var/TimerID
 
 /datum/ai_project/rgb/run_project(force_run = FALSE)
 	. = ..()
 	if(!.)
 		return .
 	for(var/obj/machinery/ai/data_core/datacores in GLOB.data_cores)
-		var/area/A
-		A = get_area(datacores)
-		if (!A || A.party || A.name == "Space")
-			return
-		A.party = TRUE
-		if (!party_overlay)
-			party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party")
-		A.add_overlay(party_overlay)
+		datacores.partytime()
 
 
 /datum/ai_project/rgb/stop()
-	for(var/obj/machinery/ai/data_core/datacores in GLOB.machines)
-		var/area/A
-		A = get_area(datacores)
-		if (!A || !A.party)
-			return
-		A.party = FALSE
-		A.cut_overlay(party_overlay)
+	for(var/obj/machinery/ai/data_core/datacores in GLOB.data_cores)
+		datacores.stoptheparty()
 	..()
+
+		
+
+		

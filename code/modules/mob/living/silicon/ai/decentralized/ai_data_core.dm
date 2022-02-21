@@ -19,6 +19,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 	var/warning_sent = FALSE
 
+	var/TimerID //party time
+
 /obj/machinery/ai/data_core/Initialize()
 	. = ..()
 	GLOB.data_cores += src
@@ -143,7 +145,15 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
 		add_overlay(on_overlay)
 
+/obj/machinery/ai/data_core/proc/partytime()
+	var/current_color = random_color()
+	set_light(7, 3, current_color)
+	TimerID = addtimer(CALLBACK(src, .proc/partytime), 5, TIMER_STOPPABLE)
 
+/obj/machinery/ai/data_core/proc/stoptheparty()
+	set_light(0)
+	if(TimerID)
+		deltimer(TimerID)
 /obj/machinery/ai/data_core/primary
 	name = "primary AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of a human at near-instantanous speeds. This one has a scrawny and faded note saying: 'Primary AI Data Core'"
