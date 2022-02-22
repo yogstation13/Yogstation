@@ -449,9 +449,9 @@ ION_LAW_WEIGHT ceo,1
 
 ## Quirky laws. Shouldn't cause too much harm
 LAW_WEIGHT hippocratic,0
-ION_LAW_WEIGHT hippocratic,3
+ION_LAW_WEIGHT hippocratic,2
 LAW_WEIGHT maintain,0
-ION_LAW_WEIGHT maintain,3
+ION_LAW_WEIGHT maintain,2
 LAW_WEIGHT drone,0
 ION_LAW_WEIGHT drone,1
 LAW_WEIGHT liveandletlive,0
