@@ -1,0 +1,5 @@
+author: "MenacingManatee"
+delete-after: true 
+changes: 
+  - rscadd: "Added a second set of weights to make ion lawsets independent from roundstart lawsets"
+  - tweak: "Adds a separate probability for adding an ion law, allowing it to be tweaked separate from other ion effects"

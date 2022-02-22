@@ -390,12 +390,12 @@
 	. = ..()
 	if(.)
 
-		R.weather_immunities += "lava"
+		R.weather_immunities += WEATHER_LAVA
 
 /obj/item/borg/upgrade/lavaproof/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		R.weather_immunities -= "lava"
+		R.weather_immunities -= WEATHER_LAVA
 
 /obj/item/borg/upgrade/selfrepair
 	name = "self-repair module"
