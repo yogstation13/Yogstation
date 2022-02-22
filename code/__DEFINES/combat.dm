@@ -227,3 +227,12 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BULLET_ACT_TURF				"TURF"
 /// It hit something, but it should just keep going until it hit something else
 #define BULLET_ACT_PENETRATE		"PENETRATE"
+
+// Weather immunities //
+#define WEATHER_STORM "storm"
+#define WEATHER_ACID "acid"
+#define WEATHER_ASH "ash"
+#define WEATHER_LAVA "lava"
+#define WEATHER_RAD "rad"
+#define WEATHER_SNOW "snow"
+#define WEATHER_ALL "all"

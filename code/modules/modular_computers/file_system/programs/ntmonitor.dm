@@ -15,6 +15,7 @@
 /datum/computer_file/program/ntnetmonitor/ui_act(action, params)
 	if(..())
 		return
+	computer.play_interact_sound()
 	switch(action)
 		if("resetIDS")
 			if(SSnetworks.station_network)

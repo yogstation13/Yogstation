@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	name = "Expansion Card Bus"
 	desc = "A simple rack of bPCIe slots for installing expansion cards."
 	icon = 'icons/obj/machines/telecomms.dmi'
-	icon_state = "processor"
+	icon_state = "expansion_bus"
 	
 	circuit = /obj/item/circuitboard/machine/expansion_card_holder
 
@@ -77,10 +77,22 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 /obj/machinery/ai/expansion_card_holder/update_icon()
 	cut_overlays()
-	
+
+	if(installed_cards.len > 0) 
+		var/mutable_appearance/top_overlay = mutable_appearance(icon, "expansion_bus_top")
+		add_overlay(top_overlay)
+	if(installed_cards.len > 1) 
+		var/mutable_appearance/bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom")
+		add_overlay(bottom_overlay)
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
-		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+		var/mutable_appearance/on_overlay = mutable_appearance(icon, "expansion_bus_on")
 		add_overlay(on_overlay)
+		if(installed_cards.len > 0)
+			var/mutable_appearance/on_top_overlay = mutable_appearance(icon, "expansion_bus_top_on")
+			add_overlay(on_top_overlay)
+		if(installed_cards.len > 1)
+			var/mutable_appearance/on_bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom_on")
+			add_overlay(on_bottom_overlay)
 
 /obj/machinery/ai/expansion_card_holder/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/processing_card) || istype(W, /obj/item/memory_card))
@@ -98,6 +110,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			var/obj/item/memory_card/ram_card = W
 			total_ram += ram_card.tier
 		use_power = ACTIVE_POWER_USE
+		update_icon()
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(installed_cards.len)
@@ -110,12 +123,13 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			GLOB.ai_os.update_hardware()
 			to_chat(user, span_notice("You remove all the cards from [src]"))
 			use_power = IDLE_POWER_USE
+			update_icon()
 			return FALSE
 		else
 			if(default_deconstruction_crowbar(W))
 				return TRUE
 
-	if(default_deconstruction_screwdriver(user, "processor_o", "processor", W))
+	if(default_deconstruction_screwdriver(user, "expansion_bus_o", "expansion_bus", W))
 		return TRUE
 
 	return ..()

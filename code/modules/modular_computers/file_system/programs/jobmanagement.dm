@@ -57,6 +57,7 @@
 	var/authed = FALSE
 	var/mob/user = usr
 	var/obj/item/card/id/user_id = user.get_idcard()
+	computer.play_interact_sound()
 	if(user_id)
 		if(ACCESS_CHANGE_IDS in user_id.access)
 			authed = TRUE
