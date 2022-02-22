@@ -17,7 +17,7 @@ Difficulty: Extremely Hard
 	mob_biotypes = list(MOB_ORGANIC,MOB_HUMANOID)
 	light_color = "#E4C7C5"
 	movement_type = GROUND
-	weather_immunities = list("snow")
+	weather_immunities = list(WEATHER_SNOW)
 	speak_emote = list("roars")
 	armour_penetration = 100
 	melee_damage_lower = 10
