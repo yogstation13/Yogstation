@@ -268,6 +268,23 @@
 					M.adjust_fire_stacks(3)
 					M.IgniteMob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
 					M.adjustFireLoss(3)        //Hence the other damages... ain't I a bastard? // Yogs End
+	if(ishuman(M) && is_sinfuldemon(M) && prob(80))
+		switch(data)
+			if(1 to 4)
+				to_chat(M, span_warning("Your unholy blood begins to burn as holy power creeps through you."))
+				M.adjustFireLoss(1)
+			if(5 to 10)
+				to_chat(M, span_danger("The burning deepens and strengthens!"))
+				M.adjustFireLoss(2)
+			if(11 to 12)
+				to_chat(M, span_danger("Your flesh itself begins to melt apart in agony!"))
+				M.adjustFireLoss(3)
+				M.emote("scream")
+			if(13 to INFINITY)
+				M.visible_message("<span class='danger'>[M] suddenly ignites in a brilliant flash of white!<span>", span_userdanger("You suddenly ignite in a holy fire!"))
+				M.adjust_fire_stacks(3)
+				M.IgniteMob()           
+				M.adjustFireLoss(4)        
 	holder.remove_reagent(type, 0.4)	//fixed consumption to prevent balancing going out of whack
 
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
@@ -935,6 +952,8 @@
 
 /datum/reagent/silver/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.has_bane(BANE_SILVER))
+		M.reagents.add_reagent(/datum/reagent/toxin, reac_volume)
+	if(ishuman(M) && is_sinfuldemon(M) && prob(80)) //sinful demons have a lesser reaction to silver
 		M.reagents.add_reagent(/datum/reagent/toxin, reac_volume)
 	..()
 
