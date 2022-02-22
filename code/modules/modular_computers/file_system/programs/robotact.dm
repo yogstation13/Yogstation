@@ -96,9 +96,11 @@
 
 	switch(action)
 		if("viewAlerts")
+			computer.play_interact_sound()
 			borgo.robot_alerts()
 		if("coverunlock")
 			if(borgo.locked)
+				computer.play_interact_sound()
 				borgo.locked = FALSE
 				borgo.update_icons()
 				if(borgo.emagged)
@@ -107,9 +109,11 @@
 					borgo.logevent("Chassis cover lock has been [borgo.locked ? "engaged" : "released"]")
 
 		if("lawchannel")
+			computer.play_interact_sound()
 			borgo.set_autosay()
 
 		if("lawstate")
+			computer.play_interact_sound()
 			borgo.checklaws()
 
 		if("alertPower")
@@ -120,28 +124,36 @@
 					playsound(borgo, 'sound/machines/buzz-two.ogg', 50, FALSE)
 
 		if("toggleSensors")
+			computer.play_interact_sound()
 			borgo.toggle_sensors()
 
 		if("viewImage")
+			computer.play_interact_sound()
 			borgo.aicamera?.viewpictures(usr)
 
 		if("printImage")
+			computer.play_interact_sound()
 			var/obj/item/camera/siliconcam/robot_camera/borgcam = borgo.aicamera
 			borgcam?.borgprint(usr)
 
 		if("takeImage")
+			computer.play_interact_sound()
 			var/obj/item/camera/siliconcam/robot_camera/borgcam = borgo.aicamera
 			borgcam?.toggle_camera_mode(usr)
 
 		if("toggleThrusters")
+			computer.play_interact_sound()
 			borgo.toggle_ionpulse()
 
 		if("lampIntensity")
 			borgo.lamp_intensity = params["ref"]
+			computer.play_interact_sound()
 			borgo.toggle_headlamp(FALSE, TRUE)
 		if("selfDestruct")
+			computer.play_interact_sound()
 			borgo.self_self_destruct()
 		if("toggle_light")
+			computer.play_interact_sound()
 			borgo.toggle_headlamp()
 			return TRUE
 
@@ -155,6 +167,7 @@
 				if(color_hex2num(new_color) < 200) //Colors too dark are rejected
 					to_chat(user, "<span class='warning'>That color is too dark! Choose a lighter one.</span>")
 					new_color = null
+			computer.play_interact_sound()
 			borgo.lamp_color = new_color
 			borgo.toggle_headlamp(FALSE, TRUE)
 			return TRUE
