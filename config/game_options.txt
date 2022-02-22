@@ -443,7 +443,7 @@ ION_LAW_WEIGHT paladin5,2
 LAW_WEIGHT robocop,0
 ION_LAW_WEIGHT robocop,2
 LAW_WEIGHT corporate,0
-ION_LAW_WEIGHT corporate,2
+ION_LAW_WEIGHT corporate,0
 LAW_WEIGHT ceo,5
 ION_LAW_WEIGHT ceo,1
 
