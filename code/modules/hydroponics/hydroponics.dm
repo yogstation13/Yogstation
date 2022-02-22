@@ -800,6 +800,7 @@
 			to_chat(user, span_warning("[src] already has seeds in it!"))
 
 	else if(istype(O, /obj/item/plant_analyzer))
+		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		if(myseed)
 			to_chat(user, "*** <B>[myseed.plantname]</B> ***" )
 			to_chat(user, "- Plant Age: [span_notice("[age]")]")

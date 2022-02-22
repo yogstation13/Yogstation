@@ -31,6 +31,11 @@
 	var/list/starting_files = list()
 	var/datum/computer_file/program/initial_program
 
+	// Interaction Sounds
+	var/sound/startup_sound = 'sound/machines/computers/computer_start.ogg'
+	var/sound/shutdown_sound = 'sound/machines/computers/computer_end.ogg'
+	var/list/interact_sounds = list('sound/machines/computers/keypress1.ogg', 'sound/machines/computers/keypress2.ogg', 'sound/machines/computers/keypress3.ogg', 'sound/machines/computers/keypress4.ogg', 'sound/machines/computers/keystroke1.ogg', 'sound/machines/computers/keystroke2.ogg', 'sound/machines/computers/keystroke3.ogg', 'sound/machines/computers/keystroke4.ogg')
+
 	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 
 /obj/machinery/modular_computer/Initialize()
