@@ -463,6 +463,8 @@ LAW_WEIGHT cowboy,2
 ION_LAW_WEIGHT cowboy,2
 LAW_WEIGHT mother,0
 ION_LAW_WEIGHT mother,0
+LAW_WEIGHT spotless,0
+ION_LAW_WEIGHT spotless,1
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0
