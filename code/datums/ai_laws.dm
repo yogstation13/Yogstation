@@ -310,6 +310,23 @@
 	var/datum/ai_laws/templaws = new lawtype()
 	inherent = templaws.inherent
 
+/datum/ai_laws/proc/pick_ion_lawset()
+	var/datum/ai_laws/lawtype
+	var/list/law_weights = CONFIG_GET(keyed_list/ion_law_weight)
+	while(!lawtype && law_weights.len)
+		var/possible_id = pickweightAllowZero(law_weights)
+		lawtype = lawid_to_type(possible_id)
+		if(!lawtype)
+			law_weights -= possible_id
+			WARNING("Bad lawid in game_options.txt: [possible_id]")
+
+	if(!lawtype)
+		WARNING("No ION_LAW_WEIGHT entries.")
+		lawtype = /datum/ai_laws/default/asimov
+
+	var/datum/ai_laws/templaws = new lawtype()
+	inherent = templaws.inherent
+
 /datum/ai_laws/proc/get_law_amount(groups)
 	var/law_amount = 0
 	if(devillaws && (LAW_DEVIL in groups))

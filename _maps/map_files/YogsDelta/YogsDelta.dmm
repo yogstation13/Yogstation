@@ -126435,6 +126435,7 @@
 /obj/item/aicard,
 /obj/effect/turf_decal/bot,
 /obj/item/circuitboard/computer/ai_upload_download,
+/obj/item/disk/holodisk/tutorial/AICore,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hor)
 "tdY" = (
