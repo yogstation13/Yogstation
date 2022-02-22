@@ -44,6 +44,8 @@
 	overmind = null
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list -= src
+	var/obj/item/assembly/signaler/anomaly/drop = new /obj/item/assembly/signaler/anomaly(src.loc)
+	drop.name = "Blob Anomaly Core"
 	return ..()
 
 /obj/structure/blob/core/ex_act(severity, target)
