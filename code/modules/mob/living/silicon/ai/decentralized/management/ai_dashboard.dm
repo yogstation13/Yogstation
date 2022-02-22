@@ -84,12 +84,21 @@
 
 	for(var/datum/ai_project/AP as anything in available_projects)
 		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.canResearch(), "research_cost" = AP.research_cost, "research_progress" = AP.research_progress, 
-		"assigned_cpu" = cpu_usage[AP.name] ? cpu_usage[AP.name] : 0, "research_requirements" = AP.research_requirements, "category" = AP.category))
+		"assigned_cpu" = cpu_usage[AP.name] ? cpu_usage[AP.name] : 0, "research_requirements" = AP.research_requirements_text, "category" = AP.category))
 
-
+	var/list/ability_paths = list()
 	data["completed_projects"] = list()
+	data["chargeable_abilities"] = list()
 	for(var/datum/ai_project/P as anything in completed_projects)
-		data["completed_projects"] += list(list("name" = P.name, "description" = P.description, "ram_required" = P.ram_required, "running" = P.running, "category" = P.category))
+		data["completed_projects"] += list(list("name" = P.name, "description" = P.description, "ram_required" = P.ram_required, "running" = P.running, "category" = P.category, "can_be_run" = P.can_be_run))
+		if(P.ability_path && !(P.ability_path in ability_paths)) //Check that we've not already added a thing to recharge this type of ability
+			if(P.ability_recharge_cost <= 0)
+				continue
+			ability_paths += P.ability_path
+			var/datum/action/innate/ai/the_ability = locate(P.ability_path) in owner.actions
+			if(the_ability)
+				data["chargeable_abilities"] += list(list("assigned_cpu" = cpu_usage[P.name],"cost" = P.ability_recharge_cost, "progress" = P.ability_recharge_invested, "name" = the_ability.name, 
+				"project_name" = P.name, "uses" = the_ability.uses, "max_uses" = the_ability.max_uses))
 
 	return data
 
@@ -114,10 +123,22 @@
 				to_chat(owner, span_notice("Instance of [params["project_name"]] succesfully ended."))
 				. = TRUE
 		if("allocate_cpu")
-			var/datum/ai_project/project = get_project_by_name(params["project_name"])
-
+			var/datum/ai_project/project = get_project_by_name(params["project_name"], TRUE)
 			if(!project || !set_project_cpu(project, text2num(params["amount"])))
 				to_chat(owner, span_warning("Unable to add CPU to [params["project_name"]]. Either not enough free CPU or project is unavailable."))
+			. = TRUE
+		if("allocate_recharge_cpu")
+			var/datum/ai_project/project = get_project_by_name(params["project_name"])
+			if(!has_completed_project(project.type))
+				return
+			var/datum/action/innate/ai/the_ability = locate(project.ability_path) in owner.actions
+			if(!the_ability)
+				return
+			if(the_ability.uses >= the_ability.max_uses)
+				to_chat(owner, span_warning("This action already has the maximum amount of charges!"))
+				return
+			if(!project || !set_project_cpu(project, text2num(params["amount"])))
+				to_chat(owner, span_warning("Unable to add CPU to [params["project_name"]]. Either not enough free CPU or ability recharge is unavailable."))
 			. = TRUE
 			
 /datum/ai_dashboard/proc/get_project_by_name(project_name, only_available = FALSE)
@@ -138,6 +159,17 @@
 	
 	if(amount < 0)
 		return FALSE
+  
+	if(has_completed_project(project.type) && !project.ability_recharge_cost)
+		if(!project.ability_recharge_cost)
+			return
+		var/datum/action/innate/ai/the_ability = locate(project.ability_path) in owner.actions
+		if(!the_ability)
+			return
+		if(the_ability.uses >= the_ability.max_uses)
+			return
+	
+	
 
 	var/total_cpu_used = 0
 	for(var/I in cpu_usage)
@@ -173,20 +205,33 @@
 
 	return FALSE
 
-/datum/ai_dashboard/proc/has_completed_projects(project_name)
+/datum/ai_dashboard/proc/has_completed_project(project_type)
 	for(var/datum/ai_project/P as anything in completed_projects)
-		if(P.name == project_name)
+		if(P.type == project_type)
 			return TRUE
 	return FALSE
-
 
 /datum/ai_dashboard/proc/finish_project(datum/ai_project/project, notify_user = TRUE)
 	available_projects -= project
 	completed_projects += project
 	cpu_usage[project.name] = 0
+	project.finish()
 	if(notify_user)
 		to_chat(owner, span_notice("[project] has been completed. User input required."))
 	
+/datum/ai_dashboard/proc/recharge_ability(datum/ai_project/project, notify_user = TRUE)
+	cpu_usage[project.name] = 0
+	if(!project.ability_path)
+		return
+	var/datum/action/innate/ai/ability = locate(project.ability_path) in owner.actions
+	if(!ability)
+		return
+	ability.uses++
+	project.ability_recharge_invested = 0
+
+	if(notify_user)
+		to_chat(owner, span_notice("'[ability.name]' has been recharged."))
+
 
 //Stuff is handled in here per tick :)
 /datum/ai_dashboard/proc/tick(seconds)
@@ -235,15 +280,25 @@
 	if(reduction_of_resources)
 		to_chat(owner, span_warning("Lack of computational capacity. Some programs may have been stopped."))
 
+
 	for(var/project_being_researched in cpu_usage)
 		if(!cpu_usage[project_being_researched])
 			continue
+		
 		var/used_cpu = round(cpu_usage[project_being_researched] * seconds, 1)
-		var/datum/ai_project/project = get_project_by_name(project_being_researched, TRUE)
+		var/datum/ai_project/project = get_project_by_name(project_being_researched)
 		if(!project)
 			cpu_usage[project_being_researched] = 0
 			continue
+		if(has_completed_project(project.type)) //This means we're an ability recharging
+			project.ability_recharge_invested += used_cpu
+			if(project.ability_recharge_invested > project.ability_recharge_cost)
+				owner.playsound_local(owner, 'sound/machines/ping.ogg', 50, 0)
+				recharge_ability(project)
+			continue
+
 		project.research_progress += used_cpu
 		if(project.research_progress > project.research_cost)
+			owner.playsound_local(owner, 'sound/machines/ping.ogg', 50, 0)
 			finish_project(project)
 

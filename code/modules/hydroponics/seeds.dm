@@ -334,6 +334,7 @@
 
 /obj/item/seeds/attackby(obj/item/O, mob/user, params)
 	if (istype(O, /obj/item/plant_analyzer))
+		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		to_chat(user, span_info("*---------*\n This is \a [span_name("[src]")]."))
 		var/text = get_analyzer_text()
 		if(text)
