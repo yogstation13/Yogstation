@@ -2170,3 +2170,36 @@
 /datum/sprite_accessory/dorsal_tubes/dtdown
 	name = "Down"
 	icon_state = "dtdown"
+
+//ETHEREAL FACE MARKINGS
+/datum/sprite_accessory/ethereal_mark
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	//color_src = MUTCOLORS
+
+/datum/sprite_accessory/ethereal_mark/eyes
+	name = "Eyes"
+	icon_state = "eyes"
+
+/datum/sprite_accessory/ethereal_mark/diamond
+	name = "Diamond"
+	icon_state = "diamond"
+
+/datum/sprite_accessory/ethereal_mark/heart
+	name = "Heart"
+	icon_state = "heart"
+
+/datum/sprite_accessory/ethereal_mark/omega
+	name = "Omega"
+	icon_state = "omega"
+
+/datum/sprite_accessory/ethereal_mark/plus
+	name = "Plus"
+	icon_state = "plus"
+
+/datum/sprite_accessory/ethereal_mark/triangle
+	name = "Triangle"
+	icon_state = "triangle"
+
+/datum/sprite_accessory/ethereal_mark/x
+	name = "X"
+	icon_state = "x"

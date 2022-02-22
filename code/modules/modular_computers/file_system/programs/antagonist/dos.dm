@@ -42,6 +42,7 @@
 /datum/computer_file/program/ntnet_dos/ui_act(action, params)
 	if(..())
 		return
+	computer.play_interact_sound()
 	switch(action)
 		if("PRG_target_relay")
 			for(var/obj/machinery/ntnet_relay/R in SSnetworks.station_network.relays)
