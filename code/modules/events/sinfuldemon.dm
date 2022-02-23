@@ -8,7 +8,7 @@
 /datum/round_event/ghost_role/sinfuldemon
 	var/success_spawn = 0
 	minimum_required = 1
-	role_name = "sinfuldemon"
+	role_name = "demon of sin"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/sinfuldemon/kill()
@@ -34,7 +34,7 @@
 
 	var/mob/living/carbon/human/sinfuldemon = create_event_sinfuldemon()
 	Mind.transfer_to(sinfuldemon)
-	add_sinfuldemon(sinfuldemon, ascendable = FALSE)
+	Mind.add_antag_datum(/datum/antagonist/sinfuldemon)
 
 	spawned_mobs += sinfuldemon
 	message_admins("[ADMIN_LOOKUPFLW(sinfuldemon)] has been made into a demon of sin by an event.")
@@ -46,17 +46,16 @@
 
 
 /proc/create_event_sinfuldemon(spawn_loc)
-	var/mob/living/carbon/human/new_devil = new(spawn_loc)
+	var/mob/living/carbon/human/new_sinfuldemon = new(spawn_loc)
 	if(!spawn_loc)
 		SSjob.SendToLateJoin(new_sinfuldemon)
-	var/datum/preferences/A = new() //Randomize appearance for the devil.
+	var/datum/preferences/A = new() //Randomize appearance for the demon.
 	A.copy_to(new_sinfuldemon)
-	new_devil.dna.update_dna_identity()
-	return new_devil
+	new_sinfuldemon.dna.update_dna_identity()
+	return new_sinfuldemon
 
 /proc/create_sinfuldemon_mind(key)
 	var/datum/mind/Mind = new /datum/mind(key)
 	Mind.assigned_role = ROLE_SINFULDEMON
 	Mind.special_role = ROLE_SINFULDEMON
-	SSticker.mode.sinfuldemons |= Mind
 	return Mind
