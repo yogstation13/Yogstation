@@ -237,4 +237,4 @@
 /obj/item/reagent_containers/hypospray/medipen/sleepy/examine(mob/user)
 	. = ..()
 	if(!(reagents && reagents.reagent_list.len) && in_range(src, user))
-		. += span_notice("There is a small 'S' ingraved on the needle.")
+		. += span_notice("There is a small 'S' engraved on the needle.")
