@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/targeted/shapeshift/demon //emergency get out of jail card.
 	name = "Lesser Demon Form"
 	desc = "Take on your true demon form. This form is strong but very obvious, and especially weak to holy influence. \
-	Also note that damage taken in this form can transform into your normal body. Heal by attacking living creatures before transforming back if gravely wounded!"
+	Also, note that damage taken in this form can transform into your normal body. Heal by attacking living creatures before transforming back if gravely wounded!"
 	invocation = "COWER, MORTALS!!"
 	shapeshift_type = /mob/living/simple_animal/lesserdemon
 	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'

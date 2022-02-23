@@ -10,7 +10,7 @@
 
 /obj/effect/proc_holder/spell/pointed/trigger/ignite
 	name = "Ignite"
-	desc = "This spell sets a person on fire from range."
+	desc = "This ranged spell sets a person on fire."
 	school = "transmutation"
 	charge_max = 600
 	clothes_req = FALSE
