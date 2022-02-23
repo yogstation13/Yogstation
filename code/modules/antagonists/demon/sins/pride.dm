@@ -7,7 +7,7 @@
 	charge_max = 600
 	cooldown_min = 200
 	summon_type = list(/obj/structure/mirror/magic/lesser)
-	summon_lifespan = 600
+	summon_lifespan = 60 SECONDS
 	range = 1
 	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	action_icon_state = "magic_mirror"
