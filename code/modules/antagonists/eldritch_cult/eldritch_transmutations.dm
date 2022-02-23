@@ -153,7 +153,6 @@
 	name = "Attune Heart"
 	required_atoms = list(/obj/item/living_heart)
 	required_shit_list = "A living heart, which will be given a target for sacrifice or sacrifice its target if their corpse is on the rune."
-	var/effect_path = STATUS_EFFECT_HERETIC_SACRIFICE //conveniently works if you haven't bought anything
 
 /datum/eldritch_transmutation/basic/recipe_snowflake_check(list/atoms, loc)
 	. = ..()
@@ -172,7 +171,7 @@
 		if(LH.target && LH.target.stat == DEAD)
 			to_chat(carbon_user,span_danger("Your patrons accepts your offer.."))
 			var/mob/living/carbon/human/H = LH.target
-			H.apply_status_effect(effect_path)
+			//H.apply_status_effect(effect_path) switch this to the new stuff you dumbass
 			LH.target = null
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 

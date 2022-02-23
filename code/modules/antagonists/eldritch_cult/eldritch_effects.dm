@@ -1,3 +1,11 @@
+#define PENANCE_LIFE "Lose your life ()"
+#define PENANCE_SOUL "Lose your soul ()"
+#define PENANCE_LIMB "Lose a limb ()"
+#define PENANCE_SKELETON "Lose your flesh ()"
+#define PENANCE_TRAUMA_ADV "Lose your mind ()"
+#define PENANCE_TRAUMA_BASIC "Lose your mind ()"
+
+
 /obj/effect/eldritch
 	name = "Generic rune"
 	desc = "Weird combination of shapes and symbols etched into the floor itself. The indentation is filled with thick black tar-like fluid."
@@ -292,3 +300,97 @@
 	var/static/list/postfix = list("Flaw","Presence","Crack","Heat","Cold","Memory","Reminder","Breeze","Grasp","Sight","Whisper","Flow","Touch","Veil","Thought","Imperfection","Blemish","Blush")
 
 	name = pick(prefix) + " " + pick(postfix)
+
+
+/*
+ *
+ * brazil effects/status effect
+ * used to create a "fun and intuitive gameplay" for people who get sacrificed by heretics
+ * and by that i mean they get to lose stuff
+ *
+ */
+
+/datum/status_effect/brazil_penance
+	id = "brazil_penance"
+	alert_type = /obj/screen/alert/status_effect/brazil_penance
+	///counts how close to escaping brazil the owner is
+	var/penance_left = 15
+	///sacrifices made to reduce penance_left, each is applied when leaving
+	var/list/penance_sources = list()
+	var/list/unspooked_limbs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+
+/datum/status_effect/brazil_penance/on_apply()
+	var/datum/effect_system/smoke_spread/S = new
+	S.set_up(1, get_turf(owner))
+	S.start()
+	owner.revive(full_heal = TRUE) //this totally won't be used to bypass stuff(tm)
+	owner.regenerate_organs()
+	owner.regenerate_limbs()
+	owner.grab_ghost()
+	to_chat(owner, "<span class='revenbignotice'>You find yourself floating in a strange, unfamiliar void. Are you dead? ... no ... that feels different... Maybe there's a way out?</span>")
+	for(var/i in GLOB.brazil_reception)
+		if(locate(/mob) in get_turf(i)) //there are actually 64 total spots at brazil to get teleported to so if this gets filled (unlikely) they just get returned as a failsafe
+			continue
+		owner.forceMove(get_turf(i))
+		return TRUE
+
+/datum/status_effect/brazil_penance/tick()
+	if(!penance_left)
+		if(apply_effects())
+			qdel(src)
+		return
+	if(get_area(owner) != /area/brazil)
+		dust(owner)
+
+/datum/status_effect/brazil_penance/proc/apply_effects()
+	. = TRUE
+	var/mob/living/carbon/human/H = owner
+	for(var/p in penance_sources)
+		while(penance_sources[p])
+			switch(P)
+				if(PENANCE_LIFE)
+					owner.blood_volume = 0
+					owner.death()
+				if(PENANCE_SOUL)
+					owner.mind.hellbound = TRUE
+				if(PENANCE_LIMB)
+					var/obj/item/bodypart/BP
+					while(!BP)
+						if(!LAZYLEN(unspooked_limbs)) //this shouoldn't occur but i dont trust people
+							return FALSE
+						var/target_zone = pick_n_take(unspooked_limbs)
+						BP = C.get_bodypart(target_zone)
+					BP.dismember(BURN)
+				if(PENANCE_SKELETON)
+					var/obj/item/bodypart/BP
+					while(!BP || BP.species_id == "skeleton")
+						if(!LAZYLEN(unspooked_limbs))
+							return FALSE
+						var/target_zone = pick_n_take(unspooked_limbs)
+						BP = C.get_bodypart(target_zone)
+					var/obj/item/bodypart/replacement_part = new BP.type
+					replacement_part.max_damage = 15
+					replacement_part.species_id = "skeleton"
+					replacement_part.original_owner = "inside"
+					replacement_part.replace_limb(owner)
+				if(PENANCE_TRAUMA_ADV)
+					H.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
+				if(PENANCE_TRAUMA_BASIC)
+					H.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_SURGERY)
+			penance_sources[p] --
+			sleep(2)
+
+/obj/effect/penance_giver
+	name = "code ing"
+	desc = "it takes your soul, and other stuff potentially"
+	var/list/penance_given = list(PENANCE_LIFE, PENANCE_SOUL, PENANCE_LIMB, PENANCE_SKELETON, PENANCE_TRAUMA_ADV, PENANCE_TRAUMA_BASIC)
+
+/obj/effect/penance_giver/attack_hand(mob/user)
+	input("What will you offer?", "Lose") as null|anything in penance_given
+
+#undef PENANCE_LIFE
+#undef PENANCE_SOUL
+#undef PENANCE_LIMB
+#undef PENANCE_SKELETON
+#undef PENANCE_TRAUMA_ADV
+#undef PENANCE_TRAUMA_BASIC
