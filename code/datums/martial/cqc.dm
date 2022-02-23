@@ -26,7 +26,7 @@
 	name = "CQC"
 	id = MARTIALART_CQC
 	help_verb = /mob/living/carbon/human/proc/CQC_help
-	block_chance = 75
+	block_chance = 90 //Don't get into melee with someone specifically trained for melee and prepared for your attacks
 	nonlethal = TRUE //all attacks deal solely stamina damage or knock out before dealing lethal amounts of damage
 	///whether the art checks for being inside the kitchen for use
 	var/just_a_cook = FALSE
