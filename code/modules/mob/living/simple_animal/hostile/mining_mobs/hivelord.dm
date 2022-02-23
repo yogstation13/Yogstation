@@ -466,10 +466,8 @@
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/death()
 	. = ..()
 	GLOB.bloodmen_list -= src
-	message_admins("count went down 1")
 	return
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/Initialize()
 	. = ..()
 	GLOB.bloodmen_list += src
-	message_admins("count went up 1")
 	return

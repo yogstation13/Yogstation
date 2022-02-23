@@ -82,19 +82,8 @@
 	cooldown_min = 10
 	var/delete_old = TRUE //TRUE to delete the last summoned object if it's still there, FALSE for infinite item stream weeeee
 
-/obj/effect/proc_holder/spell/targeted/conjure_item/cast(list/targets, mob/user = usr)
-	if (delete_old && item && !QDELETED(item))
-		QDEL_NULL(item)
-	else
-		for(var/mob/living/carbon/C in targets)
-			if(C.dropItemToGround(C.get_active_held_item()))
-				C.put_in_hands(make_item(), TRUE)
+obj/effect/proc_holder/spell/aoe_turf/conjure/swarm 
+	name = "Dispense Wizard Justice"
+	desc = "This spell dispenses wizard justice."
 
-/obj/effect/proc_holder/spell/targeted/conjure_item/Destroy()
-	if(item)
-		qdel(item)
-	return ..()
-
-/obj/effect/proc_holder/spell/targeted/conjure_item/proc/make_item()
-	item = new item_type
-	return item
+/obj/effect/proc_holder/spell/aoe_turf/swarm/cast(list/targets,mob/user = usr)
