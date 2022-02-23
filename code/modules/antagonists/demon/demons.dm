@@ -15,10 +15,19 @@
 	name = "Sinful Demon"
 	roundend_category = "demons of sin"
 	antagpanel_category = "Demon"
-	job_rank = ROLE_DEVIL
+	job_rank = ROLE_SINFULDEMON
 	show_to_ghosts = TRUE
 	var/demonsin
 	var/static/list/demonsins = list(SIN_GLUTTONY,SIN_GREED,SIN_WRATH,SIN_ENVY,SIN_PRIDE)
+	var/static/list/demon_spells = typecacheof(list(
+		/obj/effect/proc_holder/spell/targeted/shapeshift/demon,
+		/obj/effect/proc_holder/spell/targeted/shapeshift/demon/gluttony,
+		/obj/effect/proc_holder/spell/targeted/shapeshift/demon/wrath,
+		/obj/effect/proc_holder/spell/targeted/forcewall/gluttony,
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/summon_greedslots,
+		/obj/effect/proc_holder/spell/targeted/inflict_handler/ignite,
+		/obj/effect/proc_holder/spell/targeted/touch/envy,
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/summon_mirror))
 
 /datum/antagonist/sinfuldemon/proc/sinfuldemon_life()
 	var/mob/living/carbon/C = owner.current
@@ -118,9 +127,10 @@
 		var/mob/living/carbon/human/S = owner.current
 		to_chat(S, span_notice("Your infernal nature has allowed you to overcome your clownishness."))
 		S.dna.remove_mutation(CLOWNMUT)
-	switch(demonsin)
+	switch(demonsin) 
 		if(SIN_GLUTTONY)
 			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon/gluttony)
+			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall/gluttony)
 		if(SIN_GREED)
 			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon)
 			owner.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/summon_greedslots)
@@ -138,8 +148,15 @@
 /datum/antagonist/sinfuldemon/on_removal()
 	owner.special_role = null
 	owner.current.faction -= "hell"
+	remove_spells()
 	to_chat(owner.current, span_userdanger("Your infernal link has been severed! You are no longer a demon!"))
 	.=..()
+
+/datum/antagonist/sinfuldemon/proc/remove_spells()
+	for(var/X in owner.spell_list)
+		var/obj/effect/proc_holder/spell/S = X
+		if(is_type_in_typecache(S, demon_spells))
+			owner.RemoveSpell(S)
 
 /datum/antagonist/sinfuldemon/roundend_report()
 	var/list/parts = list()

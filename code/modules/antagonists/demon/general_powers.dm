@@ -42,6 +42,8 @@
 	wound_bonus = -15
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	loot = (/obj/effect/decal/cleanable/blood)
+	del_on_death = 1
 
 /mob/living/simple_animal/lesserdemon/attackby(obj/item/W, mob/living/user, params)
 	. = ..()
@@ -61,5 +63,6 @@
 	if(!src)
 		return
 	if(istype(get_area(src.loc), /area/chapel)) //being a non-carbon will not save you!
-		src.visible_message(span_warning("[src] begins to melt apart!"), span_danger("Your very soul melts from the holy room!"), "You hear sizzling.")
-		adjustHealth(15) //15 damage every ~2 seconds
+		if(src.stat != DEAD) //being dead, however, will save you
+			src.visible_message(span_warning("[src] begins to melt apart!"), span_danger("Your very soul melts from the holy room!"), "You hear sizzling.")
+			adjustHealth(20) //20 damage every ~2 seconds. About 20 seconds for a full HP demon to melt apart in the chapel.
