@@ -272,7 +272,7 @@
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
 	if(isturf(loc))
 		for(var/mob/living/carbon/human/M in view(src,1))
-			if(M.stat == DEAD)
+			if(M.stat == DEAD && GLOB.bloodmen_list.len <= 2) //max of 3 bloodmen to minimize shitshows
 				L = new(M.loc)
 				L.stored_mob = M
 				M.forceMove(L)
@@ -463,3 +463,13 @@
 			backpack_contents = list(/obj/item/reagent_containers/glass/beaker/unholywater = 1, /obj/item/cult_shift = 1, /obj/item/flashlight/flare/culttorch = 1, /obj/item/stack/sheet/runed_metal = 15)
 	. = ..()
 
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/death()
+	. = ..()
+	GLOB.bloodmen_list -= src
+	message_admins("count went down 1")
+	return
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/Initialize()
+	. = ..()
+	GLOB.bloodmen_list += src
+	message_admins("count went up 1")
+	return

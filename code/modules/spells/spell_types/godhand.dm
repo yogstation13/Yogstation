@@ -149,11 +149,11 @@
 /obj/item/melee/touch_attack/raisehand/afterattack(atom/target, mob/living/carbon/user, proximity)
 	var/mob/living/carbon/human/M = target
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
-	if(!ishuman(M) || M == user)
+	if(!ishuman(M) || M == user || GLOB.bloodmen_list.len > 2)
 		return
 	if(NOBLOOD in M.dna.species.species_traits)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5) //cheaper than the other spell because its not like you can stop near a corpse or find one near you in a fight 
-		to_chat(M, "Your head pounds as you produce bloodlings!")
+		to_chat(M, "Your head pounds as you raise a bloodman!")
 	else
 		playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 		L = new(M.loc)

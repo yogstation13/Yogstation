@@ -1,5 +1,5 @@
 //The chests dropped by mob spawner tendrils. Also contains associated loot.
-
+GLOBAL_LIST_EMPTY(bloodmen_list)
 #define HIEROPHANT_CLUB_CARDINAL_DAMAGE 30
 
 
@@ -1494,7 +1494,7 @@
 		to_chat(H, "Your head pounds as you produce bloodlings!")
 	else
 		to_chat(H, "You spill your blood, and it comes to life as bloodlings!")
-		H.blood_volume -= 70
+		H.blood_volume -= 70 //like 13% of your blood taken
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 
 
