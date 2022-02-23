@@ -228,3 +228,13 @@
 	desc = "All-purpose snail medicine! Do not use on non-snails!"
 	list_reagents = list(/datum/reagent/snail = 10)
 	icon_state = "snail" */ //yogs we removed snail people cause we are bad people who hate fun
+
+/obj/item/reagent_containers/hypospray/medipen/sleepy
+	volume = 75
+	amount_per_transfer_from_this = 75
+	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 20, /datum/reagent/toxin/mutetoxin = 15, /datum/reagent/toxin/staminatoxin = 10, /datum/reagent/toxin/pancuronium = 7, /datum/reagent/toxin/sodium_thiopental = 23)
+
+/obj/item/reagent_containers/hypospray/medipen/sleepy/examine(mob/user)
+	. = ..()
+	if(!(reagents && reagents.reagent_list.len) && in_range(src, user))
+		. += span_notice("There is a small 'S' ingraved on the needle.")

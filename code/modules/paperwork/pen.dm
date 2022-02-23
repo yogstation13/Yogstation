@@ -152,6 +152,7 @@
  * Sleepypens
  */
 
+/*	Has been replaced by /obj/item/reagent_containers/hypospray/medipen/sleepy
 /obj/item/pen/sleepy/attack(mob/living/M, mob/user)
 	if(!is_syndicate(user)) // if non syndicate , it is just a regular pen as they don't know how to activate hidden payload.
 		. = ..()
@@ -174,6 +175,7 @@
 	reagents.add_reagent(/datum/reagent/toxin/staminatoxin, 10)
 	reagents.add_reagent(/datum/reagent/toxin/pancuronium, 7)
 	reagents.add_reagent(/datum/reagent/toxin/sodium_thiopental, 23)
+*/
 
 /*
  * (Alan) Edaggers

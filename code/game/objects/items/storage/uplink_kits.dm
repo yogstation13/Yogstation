@@ -29,7 +29,7 @@
 
 		if("stealth")
 			new /obj/item/gun/energy/kinetic_accelerator/crossbow(src)
-			new /obj/item/pen/sleepy(src)
+			new /obj/item/reagent_containers/hypospray/medipen/sleepy(src)
 			new /obj/item/healthanalyzer/rad_laser(src)
 			new /obj/item/chameleon(src)
 			new /obj/item/soap/syndie(src)
@@ -325,7 +325,7 @@
 		/obj/item/storage/box/syndie_kit/throwing_weapons,
 		/obj/item/gun/syringe/syndicate,
 		/obj/item/pen/edagger,
-		/obj/item/pen/sleepy,
+		/obj/item/reagent_containers/hypospray/medipen/sleepy,
 		/obj/item/flashlight/emp,
 		/obj/item/reagent_containers/syringe/mulligan,
 		/obj/item/clothing/shoes/chameleon/noslip/syndicate,

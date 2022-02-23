@@ -656,11 +656,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_weapons/sleepy_pen
 	name = "Sleepy Pen"
-	desc = "A syringe disguised as a functional pen, filled with a potent mix of drugs, including a \
+	desc = "A medipen filled with a potent mix of drugs, including a \
 			strong anesthetic and a chemical that prevents the target from speaking. \
-			The pen holds one dose of the mixture. Note that before the target \
-			falls asleep, they will be able to move and act."
-	item = /obj/item/pen/sleepy
+			Note that before the target falls asleep they will be able to move and act."
+	item = /obj/item/reagent_containers/hypospray/medipen/sleepy
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/nuclear)
