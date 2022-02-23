@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/touch/envy
 	name = "Vanity Steal"
-	desc = "Engulfs your arm in a jealous might, allowing you to steal the look of the first human-like struck with it. Note, the form change is not reversable."
+	desc = "Engulfs your arm in a jealous might, allowing you to steal the look of the first human-like struck with it. Note, the form change is not reversible."
 	hand_path = /obj/item/melee/touch_attack/envy
 	school = "evocation"
 	charge_max = 150
