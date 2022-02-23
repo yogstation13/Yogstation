@@ -245,14 +245,6 @@
 	start_showpiece_type = /obj/item/toy/rod_of_asclepius
 	req_access = list(ACCESS_CMO)
 
-/obj/structure/displaycase/cmo/Initialize()
-	. = ..()
-	if(prob(0.1))
-		qdel(showpiece)
-		showpiece = new /obj/item/rod_of_asclepius()
-	update_icon()
-
-
 /obj/structure/displaycase/noalert
 	alert = FALSE
 
