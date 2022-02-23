@@ -63,5 +63,5 @@
 			stat_args.Insert(1,inflict_status)
 			target.apply_status_effect(arglist(stat_args))
 
-		if(ignites == TRUE)
+		if(ignites)
 			target.IgniteMob()    
