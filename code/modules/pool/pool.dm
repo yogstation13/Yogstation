@@ -182,7 +182,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "ladder"
 	pixel_y = 12
-	var/reversed = null
+	var/reversed = FALSE
 
 /obj/structure/pool_ladder/reversed
 	reversed = TRUE
