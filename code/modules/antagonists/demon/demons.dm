@@ -66,14 +66,14 @@
 	demonsin = pick(demonsins)
 
 /datum/antagonist/sinfuldemon/proc/forge_objectives()
-	var/datum/objective/demonsingeneral/O
+	var/datum/objective/demon/O
 	switch(demonsin)//the 5 most interesting of the 8 sins. Left out sloth because it sounds boring, couldn't think of a good enough objective/power for acedia, and lust for obvious reasons.
 		if(SIN_GLUTTONY)
-			O = new /datum/objective/demonsingeneral/gluttony
+			O = new /datum/objective/demon/gluttony
 		if(SIN_GREED)
-			O = new /datum/objective/demonsingeneral/greed
+			O = new /datum/objective/demon/greed
 		if(SIN_WRATH)
-			O = new /datum/objective/demonsingeneral/wrath
+			O = new /datum/objective/demon/wrath
 			if(prob(50))
 				var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
 				var/datum/objective/assassinate/kill_objective = new N
@@ -81,7 +81,7 @@
 				kill_objective.find_target()
 				objectives += kill_objective
 		if(SIN_ENVY)
-			O = new /datum/objective/demonsingeneral/envy
+			O = new /datum/objective/demon/envy
 			if(prob(50))
 				var/datum/objective/escape/escape_with_identity/identity_theft = new
 				identity_theft.owner = owner
@@ -89,7 +89,7 @@
 				identity_theft.update_explanation_text()
 				objectives += identity_theft
 		if(SIN_PRIDE)
-			O = new /datum/objective/demonsingeneral/pride
+			O = new /datum/objective/demon/pride
 	objectives += O
 
 /datum/antagonist/sinfuldemon/can_be_owned(datum/mind/new_owner)
