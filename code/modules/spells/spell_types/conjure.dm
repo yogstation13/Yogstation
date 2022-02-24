@@ -89,6 +89,7 @@
 	action_icon_state = "horde"
 	var/list/summon_type = list() //determines what exactly will be summoned
 	//should be text, like list("/mob/living/simple_animal/bot/ed209")
+	clothes_req = FALSE
 
 	var/summon_lifespan = 0 // 0=permanent, any other time in deciseconds
 	var/summon_amt = 1 //amount of objects summoned
