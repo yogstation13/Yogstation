@@ -17,8 +17,10 @@
 	antagpanel_category = "Demon"
 	job_rank = ROLE_SINFULDEMON
 	show_to_ghosts = TRUE
+	///The sin a specific demon is assigned to. Defines what objectives and powers they'll receive.
 	var/demonsin
-	var/static/list/demonsins = list(SIN_GLUTTONY,SIN_GREED,SIN_WRATH,SIN_ENVY,SIN_PRIDE)
+	///The list of choosable sins for demons. One will be assigned to a demon when spawned naturally.
+	var/static/list/demonsins = list(SIN_GLUTTONY, SIN_GREED, SIN_WRATH, SIN_ENVY, SIN_PRIDE)
 	var/static/list/demon_spells = typecacheof(list(
 		/obj/effect/proc_holder/spell/targeted/shapeshift/demon,
 		/obj/effect/proc_holder/spell/targeted/shapeshift/demon/gluttony,
@@ -33,9 +35,10 @@
 	var/mob/living/carbon/C = owner.current
 	if(!C)
 		return
-	if(istype(get_area(C.loc), /area/chapel))
+	if(istype(get_area(C), /area/chapel))
 		demon_burn()
 
+///Handles burning and hurting sinful demons while they're in the chapel.
 /datum/antagonist/sinfuldemon/proc/demon_burn() //sinful demons are even more vulnerable to the chapel than vampires, but can turn into their true form to negate this.
 	var/mob/living/L = owner.current
 	if(!L)
@@ -92,9 +95,6 @@
 /datum/antagonist/sinfuldemon/can_be_owned(datum/mind/new_owner)
 	. = ..()
 	return . && (ishuman(new_owner.current) || iscyborg(new_owner.current))
-
-/proc/is_sinfuldemon(mob/living/M)
-	return M?.mind?.has_antag_datum(/datum/antagonist/sinfuldemon)
 
 /datum/antagonist/sinfuldemon/admin_add(datum/mind/new_owner,mob/admin)
 	var/choices = demonsins + "Random"
