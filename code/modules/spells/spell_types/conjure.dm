@@ -82,8 +82,28 @@
 	cooldown_min = 10
 	var/delete_old = TRUE //TRUE to delete the last summoned object if it's still there, FALSE for infinite item stream weeeee
 
-obj/effect/proc_holder/spell/aoe_turf/conjure/swarm 
-	name = "Dispense Wizard Justice"
-	desc = "This spell dispenses wizard justice."
+/obj/effect/proc_holder/spell/aoe_turf/horde
+	name = "Horde"
+	desc = "This spell conjures objs of the specified types in range."
+	action_icon = 'icons/mob/actions/actions_cult.dmi'
+	action_icon_state = "horde"
+	var/list/summon_type = list() //determines what exactly will be summoned
+	//should be text, like list("/mob/living/simple_animal/bot/ed209")
 
-/obj/effect/proc_holder/spell/aoe_turf/swarm/cast(list/targets,mob/user = usr)
+	var/summon_lifespan = 0 // 0=permanent, any other time in deciseconds
+	var/summon_amt = 1 //amount of objects summoned
+	var/summon_ignore_density = FALSE //if set to TRUE, adds dense tiles to possible spawn places
+	var/summon_ignore_prev_spawn_points = TRUE //if set to TRUE, each new object is summoned on a new spawn point
+
+	var/list/newVars = list() //vars of the summoned objects will be replaced with those where they meet
+	//should have format of list("emagged" = 1,"name" = "Wizard's Justicebot"), for example
+
+/obj/effect/proc_holder/spell/aoe_turf/horde/cast(list/targets,mob/user = usr)
+	visible_message(span_warning("The ground shakes near [src]!"))
+	var/list/directions = GLOB.cardinals.Copy() + GLOB.diagonals.Copy()
+	for(var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman in GLOB.bloodmen_list)
+		var/spawndir = pick_n_take(directions)
+		var/turf/T = get_step(src, spawndir)
+		if(T)
+			bloodman.forceMove(T)
+			playsound(src, 'sound/effects/bamf.ogg', 100, 1)
