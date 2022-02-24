@@ -30,7 +30,7 @@
 	var/key = selected_candidate.key
 
 	var/datum/mind/Mind = create_sinfuldemon_mind(key)
-	Mind.active = 1
+	Mind.active = TRUE
 
 	var/mob/living/carbon/human/sinfuldemon = create_event_sinfuldemon()
 	Mind.transfer_to(sinfuldemon)
