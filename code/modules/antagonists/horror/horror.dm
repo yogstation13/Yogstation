@@ -200,7 +200,7 @@
 		return
 
 	to_chat(src, "You begin consuming [victim.name]'s soul!")
-	if(do_after(src, 60 SECONDS, target = victim, stayStill = FALSE))
+	if(do_after(src, 30 SECONDS, target = victim, stayStill = FALSE))
 		consume()
 
 /mob/living/simple_animal/horror/proc/consume()
@@ -503,7 +503,7 @@
 		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	leaving = TRUE
-	if(do_after(src, 600, target = victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE)) //Enough time to do quick surgery
+	if(do_after(src, 300, target = victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE)) //Enough time to do quick surgery
 		release_host()
 
 /mob/living/simple_animal/horror/proc/release_host()
