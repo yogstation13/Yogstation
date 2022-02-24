@@ -113,4 +113,4 @@
 		var/turf/T = get_step(usr, spawndir)
 		if(T)
 			bloodman.forceMove(T)
-			playsound(usr, 'sound/effects/bamf.ogg', 100, 1)
+			playsound(usr, 'sound/magic/exit_blood.ogg', 100, 1)
