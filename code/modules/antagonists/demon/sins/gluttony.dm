@@ -45,6 +45,7 @@
 	return TRUE
 
 /obj/effect/gluttony/timed
+	///Time in deciseconds before it deletes itself.
 	var/timeleft = 150
 
 /obj/effect/gluttony/timed/Initialize()
