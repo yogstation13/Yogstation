@@ -152,13 +152,13 @@
 	if(!ishuman(M) || M == user || GLOB.bloodmen_list.len > 2)
 		return
 	if(NOBLOOD in M.dna.species.species_traits)
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5) //cheaper than the other spell because its not like you can stop near a corpse or find one near you in a fight 
-		to_chat(M, "Your head pounds as you raise a bloodman!")
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
+		to_chat(M, span_notice("Your head pounds as you raise a bloodman!"))
 	else
 		playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 		L = new(M.loc)
 		L.stored_mob = M
 		M.forceMove(L)
 		qdel(src)
-		user.blood_volume -= 50
+		user.blood_volume -= 50 //cheaper than the other spell because its not like you can stop near a corpse or find one near you in a fight 
 		to_chat(user, "You curse the body with your blood, leaving you feeling a bit light-headed.")
