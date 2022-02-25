@@ -181,65 +181,6 @@
 	robust_searching = 1
 	var/can_infest_dead = FALSE
 
-//Bloodman
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman
-	name = "bloodman"
-	desc = "You can still see what was once a human under the shifting mass of corruption."
-	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
-	faction = list("blooded")
-	icon_state = "bloodman"
-	icon_living = "bloodman"
-	icon_aggro = "bloodman"
-	icon_dead = "bloodman"
-	icon_gib = "syndicate_gib"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
-	mouse_opacity = MOUSE_OPACITY_ICON
-	obj_damage = 60
-	maxHealth = 30
-	health = 30 //dont want crew to have a hard time killing actual fodder
-	melee_damage_lower = 15
-	melee_damage_upper = 15
-	attacktext = "claws at"
-	speak_emote = list("echoes")
-	attack_sound = 'sound/weapons/pierce.ogg'
-	throw_message = "bounces harmlessly off of"
-	crusher_loot = /obj/item/crusher_trophy/legion_skull
-	loot = null
-	crusher_drop_mod = 10
-	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
-	del_on_death = 1
-	stat_attack = DEAD
-	pass_flags = null
-	robust_searching = 1
-	var/mob/living/carbon/human/M
-
-//Bloodling
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
-	name = "bloodling"
-	desc = "Blood that hates."
-	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
-	icon_state = "bloodling"
-	icon_living = "bloodling"
-	icon_aggro = "bloodling"
-	icon_dead = "bloodling"
-	icon_gib = "syndicate_gib"
-	friendly = "buzzes near"
-	faction = list("blooded")
-	vision_range = 10
-	maxHealth = 1
-	health = 5
-	harm_intent_damage = 5
-	melee_damage_lower = 12
-	melee_damage_upper = 12
-	attacktext = "lashes"
-	speak_emote = list("echoes")
-	attack_sound = 'sound/weapons/pierce.ogg'
-	throw_message = "is shrugged off by"
-	pass_flags = PASSTABLE
-	del_on_death = TRUE
-	stat_attack = DEAD
-	robust_searching = 1
-
 // Snow Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow
 	name = "snow legion"
@@ -473,3 +414,62 @@
 	. = ..()
 	GLOB.bloodmen_list += src
 	return
+
+//Bloodman
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman
+	name = "bloodman"
+	desc = "You can still see what was once a human under the shifting mass of corruption."
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	faction = list("blooded")
+	icon_state = "bloodman"
+	icon_living = "bloodman"
+	icon_aggro = "bloodman"
+	icon_dead = "bloodman"
+	icon_gib = "syndicate_gib"
+	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mouse_opacity = MOUSE_OPACITY_ICON
+	obj_damage = 60
+	maxHealth = 30
+	health = 30 //dont want crew to have a hard time killing actual fodder
+	melee_damage_lower = 15
+	melee_damage_upper = 15
+	attacktext = "claws at"
+	speak_emote = list("echoes")
+	attack_sound = 'sound/weapons/pierce.ogg'
+	throw_message = "bounces harmlessly off of"
+	crusher_loot = /obj/item/crusher_trophy/legion_skull
+	loot = null
+	crusher_drop_mod = 10
+	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
+	del_on_death = 1
+	stat_attack = DEAD
+	pass_flags = null
+	robust_searching = 1
+	var/mob/living/carbon/human/M
+
+//Bloodling
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
+	name = "bloodling"
+	desc = "Blood that hates."
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "bloodling"
+	icon_living = "bloodling"
+	icon_aggro = "bloodling"
+	icon_dead = "bloodling"
+	icon_gib = "syndicate_gib"
+	friendly = "buzzes near"
+	faction = list("blooded")
+	vision_range = 10
+	maxHealth = 1
+	health = 5
+	harm_intent_damage = 5
+	melee_damage_lower = 12
+	melee_damage_upper = 12
+	attacktext = "lashes"
+	speak_emote = list("echoes")
+	attack_sound = 'sound/weapons/pierce.ogg'
+	throw_message = "is shrugged off by"
+	pass_flags = PASSTABLE
+	del_on_death = TRUE
+	stat_attack = DEAD
+	robust_searching = 1
