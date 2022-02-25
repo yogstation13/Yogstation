@@ -84,7 +84,7 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/horde
 	name = "Horde"
-	desc = "Bring all your bloodmen to you at the cost of 18% blood."
+	desc = "Bring all your existing bloodmen to you at the cost of 18% blood (15 brain damage for those without blood)."
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_icon_state = "horde"
 	var/list/summon_type = list("/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman") //determines what exactly will be summoned
@@ -103,7 +103,7 @@
 		return
 	if(NOBLOOD in user.dna.species.species_traits)
 		to_chat(usr, span_notice("<span class ='userdanger'>You can almost feel your brain writhing as you call your bloodmen to you.</span>"))
-		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
+		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15)
 	else
 		to_chat(user, span_notice("<span class ='userdanger'>You feel yourself becoming pale as you call your minions to you.</span>"))
 		user.blood_volume -= 100 //most expensive because you're calling up to 3 bloodmen, like 18% blood cost
