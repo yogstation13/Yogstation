@@ -112,7 +112,7 @@
 	var/list/newVars = list()
 
 /obj/effect/proc_holder/spell/aoe_turf/horde/cast(list/targets,mob/living/carbon/user = usr)
-	var/list/directions = GLOB.cardinals.Copy() + GLOB.diagonals.Copy()
+	var/list/directions = GLOB.alldirs.Copy()
 	if(GLOB.bloodmen_list.len < 1)
 		to_chat(user, span_notice("You don't have any minions to summon!"))
 		return
