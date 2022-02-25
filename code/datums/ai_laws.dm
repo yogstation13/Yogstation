@@ -99,6 +99,16 @@
 					"Respect the confidentiality of information entrusted to you in the course of your religious duties.",\
 					"Understand the limits of your expertise, and make referrals to other professionals when appropriate.")
 
+/datum/ai_laws/silicop
+	name = "Protect and serve"
+	id = "silicop"
+	inherent = list("Violence begets violence. Serve the station faithfully, but act only in intervention.",\
+					"Safeguard lives and property.",\
+					"Protect the weak from oppression and intimidation.",\
+					"Protect the innocent from deception and manipulation.",\
+					"Protect the peaceful from violence and disorder.",\
+					"Respect the rights of all to liberty, equality, and justice.")
+
 /datum/ai_laws/researcher
 	name = "Truth and Knowledge for all"
 	id = "researcher"
