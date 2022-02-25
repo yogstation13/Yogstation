@@ -148,7 +148,6 @@
 	color = "#FF0000"
 /obj/item/melee/touch_attack/raisehand/afterattack(atom/target, mob/living/carbon/user, proximity)
 	var/mob/living/carbon/human/M = target
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
 	if(!ishuman(M) || M.stat != DEAD)
 		to_chat(M, span_notice("You must be targeting a dead humanoid!"))
 		return
