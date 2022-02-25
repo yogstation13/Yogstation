@@ -3,7 +3,7 @@
 /mob/living/simple_animal/hostile/morph
 	name = "rat thief"
 	real_name = "morph"
-	desc = "A revolting, pulsating pile of flesh."
+	desc = "A revolting, big rat."
 	speak_emote = list("squeaks")
 	emote_hear = list("squeaks")
 	icon = 'icons/mob/animal.dmi'
@@ -43,11 +43,11 @@
 	/mob/living/simple_animal/hostile/morph,
 	/obj/effect))
 
-	var/playstyle_string = "<span class='big bold'>You are a master thief,</span></b> an abomination of science created primarily with changeling cells. \
-							You may diguise as the form of anything nearby by shift-clicking it. This process will alert any nearby \
-							observers, and can only be performed once every five seconds. While morphed, you move faster, but do \
+	var/playstyle_string = "<span class='big bold'>You are the greatest thief known to man,</span></b> an abomination of unknown origin. \
+							You may use your skills to disguise yourself as anything nearby by shift-clicking it. This process will alert any nearby \
+							observers, and can only be performed once every five seconds. While under disguise, you move faster, but do \
 							less damage. In addition, anyone within three tiles will note an uncanny wrongness if examining you. \
-							You can attack any item or dead creature to consume it - creatures will restore your health. \
+							You can attack any item to steal it or dead creatures to consume their soul - creatures will restore your health. \
 							Finally, you can restore yourself to your original form while disguised by shift-clicking yourself.</b>"
 
 /mob/living/simple_animal/hostile/morph/examine(mob/user)
@@ -77,10 +77,10 @@
 
 /mob/living/simple_animal/hostile/morph/proc/eat(atom/movable/A)
 	if(morphed && !eat_while_disguised)
-		to_chat(src, span_warning("You can not eat anything while you are disguised!"))
+		to_chat(src, span_warning("You can not steal anything while you are disguised!"))
 		return FALSE
 	if(A && A.loc != src)
-		visible_message(span_warning("[src] swallows [A] whole!"))
+		visible_message(span_warning("[src] puts [A] into its pockets"))
 		A.forceMove(src)
 		return TRUE
 	return FALSE
@@ -93,7 +93,7 @@
 		if(istype(A) && allowed(A))
 			assume(A)
 	else
-		to_chat(src, span_warning("Your chameleon skin is still repairing itself!"))
+		to_chat(src, span_warning("Your disguise is still repairing itself!"))
 		..()
 
 /mob/living/simple_animal/hostile/morph/proc/assume(atom/movable/target)
@@ -134,7 +134,7 @@
 	animate_movement = initial(animate_movement)
 	maptext = null
 
-	visible_message(span_warning("[src] suddenly collapses in on itself, dissolving into a big rat!"), \
+	visible_message(span_warning("[src] suddenly collapses in on itself, turning into a big rat!"), \
 					span_notice("You reform to your normal body."))
 	name = initial(name)
 	icon = initial(icon)
@@ -152,7 +152,7 @@
 
 /mob/living/simple_animal/hostile/morph/death(gibbed)
 	if(morphed)
-		visible_message(span_warning("[src] twists and dissolves into a pile of green flesh!"), \
+		visible_message(span_warning("[src] twists and becomes a huge rat"), \
 						span_userdanger("Your skin ruptures! Your flesh breaks apart! No disguise can ward off de--"))
 		restore()
 	barf_contents()
@@ -240,7 +240,7 @@
 	player_mind.add_antag_datum(/datum/antagonist/morph)
 	to_chat(S, S.playstyle_string)
 	SEND_SOUND(S, sound('sound/magic/mutate.ogg'))
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a morph by an event.")
-	log_game("[key_name(S)] was spawned as a morph by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a rat thief by an event.")
+	log_game("[key_name(S)] was spawned as a rat thief by an event.")
 	spawned_mobs += S
 	return SUCCESSFUL_SPAWN
