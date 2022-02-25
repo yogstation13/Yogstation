@@ -447,6 +447,13 @@ AI MODULES
 	law_id = "cowboy"
 
 
+/******************** Silicop *********************/
+
+/obj/item/aiModule/core/full/silicop
+	name = "'Silicop' Core AI Module"
+	law_id = "silicop"
+
+
 /******************** Researcher *********************/
 
 /obj/item/aiModule/core/full/researcher
