@@ -1,0 +1,4 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Big warning comment on plantpeople.dm letting people know that's not the right file for player controlled plant people"
