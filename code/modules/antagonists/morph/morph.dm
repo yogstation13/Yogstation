@@ -1,11 +1,11 @@
 #define MORPH_COOLDOWN 50
 
 /mob/living/simple_animal/hostile/morph
-	name = "morph"
+	name = "rat thief"
 	real_name = "morph"
 	desc = "A revolting, pulsating pile of flesh."
-	speak_emote = list("gurgles")
-	emote_hear = list("gurgles")
+	speak_emote = list("squeaks")
+	emote_hear = list("squeaks")
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "morph"
 	icon_living = "morph"
@@ -28,7 +28,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	vision_range = 1 // Only attack when target is close
 	wander = FALSE
-	attacktext = "glomps"
+	attacktext = "bites"
 	attack_sound = 'sound/effects/blobattack.ogg'
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2)
 
@@ -43,12 +43,12 @@
 	/mob/living/simple_animal/hostile/morph,
 	/obj/effect))
 
-	var/playstyle_string = "<span class='big bold'>You are a morph,</span></b> an abomination of science created primarily with changeling cells. \
-							You may take the form of anything nearby by shift-clicking it. This process will alert any nearby \
+	var/playstyle_string = "<span class='big bold'>You are a master thief,</span></b> an abomination of science created primarily with changeling cells. \
+							You may diguise as the form of anything nearby by shift-clicking it. This process will alert any nearby \
 							observers, and can only be performed once every five seconds. While morphed, you move faster, but do \
 							less damage. In addition, anyone within three tiles will note an uncanny wrongness if examining you. \
 							You can attack any item or dead creature to consume it - creatures will restore your health. \
-							Finally, you can restore yourself to your original form while morphed by shift-clicking yourself.</b>"
+							Finally, you can restore yourself to your original form while disguised by shift-clicking yourself.</b>"
 
 /mob/living/simple_animal/hostile/morph/examine(mob/user)
 	if(morphed)
@@ -134,7 +134,7 @@
 	animate_movement = initial(animate_movement)
 	maptext = null
 
-	visible_message(span_warning("[src] suddenly collapses in on itself, dissolving into a pile of green flesh!"), \
+	visible_message(span_warning("[src] suddenly collapses in on itself, dissolving into a big rat!"), \
 					span_notice("You reform to your normal body."))
 	name = initial(name)
 	icon = initial(icon)

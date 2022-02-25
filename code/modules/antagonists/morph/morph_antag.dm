@@ -1,5 +1,5 @@
 /datum/antagonist/morph
-	name = "Morph"
+	name = "rat thief"
 	show_name_in_check_antagonists = TRUE
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
@@ -9,7 +9,7 @@
 	new_objective.owner = owner
 	new_objective.completed = TRUE
 	objectives += new_objective
-	new_objective.explanation_text = "Consume everything." // you can do whatever
+	new_objective.explanation_text = "steal everything." // you can do whatever
 	var/datum/objective/survive/survival = new
 	survival.owner = owner
 	objectives += survival // just dont die doing it
