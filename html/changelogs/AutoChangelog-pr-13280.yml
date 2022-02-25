@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Brass skewers no longer make the shishkebabbed mob unclickable by normal means"
+  - tweak: "Brass skewers stun for 2 seconds upon skewerification"

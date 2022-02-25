@@ -1,0 +1,4 @@
+author: " Xoxeyos, tf-4"
+delete-after: true 
+changes: 
+  - rscadd: "Adds additional checks for antagonist candidates before applying the datum."

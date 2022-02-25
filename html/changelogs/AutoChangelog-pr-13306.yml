@@ -1,0 +1,5 @@
+author: " Xoxeyos, arcturus-prime"
+delete-after: true 
+changes: 
+  - rscadd: "You can't escape from Cluwnes by staying within mechs, or in beds."
+  - bugfix: "Floor Cluwnes no longer stay visible before their attacking phase, or when their attack phase is finished."
