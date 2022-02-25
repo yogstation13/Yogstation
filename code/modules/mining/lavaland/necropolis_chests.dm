@@ -1457,6 +1457,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/wisp_lantern(src)
 		if(3)
 			new /obj/item/prisoncube(src)
+<<<<<<< HEAD
 //Legion
 /obj/item/organ/grandcore
 	name = "grand core"
@@ -1509,3 +1510,5 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		H.blood_volume -= 70 //like 13% of your blood taken
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 	next_expulsion = world.time + cooldown
+=======
+>>>>>>> parent of 18beabd8c49 (baseline for the toy or something idk its 3am)
