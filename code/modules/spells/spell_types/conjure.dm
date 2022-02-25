@@ -82,20 +82,34 @@
 	cooldown_min = 10
 	var/delete_old = TRUE //TRUE to delete the last summoned object if it's still there, FALSE for infinite item stream weeeee
 
+/obj/effect/proc_holder/spell/targeted/conjure_item/cast(list/targets, mob/user = usr)
+	if (delete_old && item && !QDELETED(item))
+		QDEL_NULL(item)
+	else
+		for(var/mob/living/carbon/C in targets)
+			if(C.dropItemToGround(C.get_active_held_item()))
+				C.put_in_hands(make_item(), TRUE)
+
+/obj/effect/proc_holder/spell/targeted/conjure_item/Destroy()
+	if(item)
+		qdel(item)
+	return ..()
+
+/obj/effect/proc_holder/spell/targeted/conjure_item/proc/make_item()
+	item = new item_type
+	return item
+
 /obj/effect/proc_holder/spell/aoe_turf/horde
 	name = "Horde"
 	desc = "Bring all your existing bloodmen to you at the cost of 18% blood (15 brain damage for those without blood)."
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_icon_state = "horde"
-	var/list/summon_type = list("/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman") //determines what exactly will be summoned
-	//should be text, like list("/mob/living/simple_animal/bot/ed209")
+	var/list/summon_type = list("/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman")
 	clothes_req = FALSE
-	var/summon_lifespan = 0 // 0=permanent, any other time in deciseconds
-	var/summon_ignore_density = FALSE //if set to TRUE, adds dense tiles to possible spawn places
-	var/summon_ignore_prev_spawn_points = TRUE //if set to TRUE, each new object is summoned on a new spawn point
-
-	var/list/newVars = list() //vars of the summoned objects will be replaced with those where they meet
-	//should have format of list("emagged" = 1,"name" = "Wizard's Justicebot"), for example
+	var/summon_lifespan = 0 
+	var/summon_ignore_density = FALSE 
+	var/summon_ignore_prev_spawn_points = TRUE 
+	var/list/newVars = list()
 
 /obj/effect/proc_holder/spell/aoe_turf/horde/cast(list/targets,mob/living/carbon/user = usr)
 	if(GLOB.bloodmen_list.len < 1)

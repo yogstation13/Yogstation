@@ -1467,11 +1467,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	w_class = WEIGHT_CLASS_SMALL 
 	decay_factor = 0
 	actions_types = list(/datum/action/item_action/organ_action/threebloodlings)
+
 /obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
 	if(H == user && istype(H))
 		playsound(user,'sound/effects/singlebeat.ogg',40,1)
 		user.temporarilyRemoveItemFromInventory(src, TRUE)
 		Insert(user)
+
 /obj/item/organ/grandcore/Insert(mob/living/carbon/H, special = 0)
 	H.faction = list("blooded")
 	H.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/raise)
@@ -1481,16 +1483,18 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		to_chat(owner, "<span class ='userdanger'>Despite lacking blood, you were able to take in the grand core. You will pay for your power in killer headaches!</span>")
 	else
 		to_chat(owner, "<span class ='userdanger'>You've taken in the grand core, allowing you to control minions at the cost of your blood!</span>")
+
 /obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
 	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise, /obj/effect/proc_holder/spell/aoe_turf/horde)
 	H.RemoveSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
 	return ..()
-/obj/item/organ/grandcore/on_life()
+
 /datum/action/item_action/organ_action/threebloodlings
 	name = "Summon bloodlings"
 	desc = "Summon a conjure a few bloodlings at the cost of 13% blood (8 brain damage for those without blood)."
 	var/next_expulsion = 0
 	var/cooldown = 10 //wheres the risk if it has a reasonable cooldown?
+	
 /datum/action/item_action/organ_action/threebloodlings/Trigger()
 	var/mob/living/carbon/H = owner
 	. = ..() 
