@@ -1490,7 +1490,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "Summon bloodlings"
 	desc = "Summon a conjure a few bloodlings at the cost of 13% blood (8 brain damage for those without blood)."
 	var/next_expulsion = 0
-	var/cooldown = 10
+	var/cooldown = 10 //wheres the risk if it has a reasonable cooldown?
 /datum/action/item_action/organ_action/threebloodlings/Trigger()
 	var/mob/living/carbon/H = owner
 	. = ..() 
