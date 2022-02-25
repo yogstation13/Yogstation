@@ -1,0 +1,5 @@
+author: "MenacingManatee"
+delete-after: true 
+changes: 
+  - rscadd: "Adds clown lawset to rnd"
+  - tweak: "Adds clown lawset to ion lawsets"
