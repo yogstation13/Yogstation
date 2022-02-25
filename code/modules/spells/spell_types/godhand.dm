@@ -145,7 +145,7 @@
 	on_use_sound = 'sound/magic/wandodeath.ogg'
 	icon_state = "flagellation"
 	item_state = "hivehand"
-
+	color = "#FF0000"
 /obj/item/melee/touch_attack/raisehand/afterattack(atom/target, mob/living/carbon/user, proximity)
 	var/mob/living/carbon/human/M = target
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L

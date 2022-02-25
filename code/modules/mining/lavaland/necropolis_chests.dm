@@ -1466,7 +1466,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	slot = "hivecore"
 	w_class = WEIGHT_CLASS_SMALL 
 	decay_factor = 0
-	var/recharging_rate = 60 
 	actions_types = list(/datum/action/item_action/organ_action/threebloodlings)
 /obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
 	if(H == user && istype(H))
@@ -1491,10 +1490,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "Summon bloodlings"
 	desc = "Summon a conjure a few bloodlings at the cost of 13% blood (8 brain damage for those without blood)."
 /datum/action/item_action/organ_action/threebloodlings/Trigger()
-	var/recharging_time = 0 
 	var/mob/living/carbon/H = owner
 	. = ..()
-	if(recharging_time > world.time)
+	var/recharging_rate = 60 
+	if(recharging_rate > world.time)
 		to_chat(owner, span_warning("The boot's internal propulsion needs to recharge still!"))
 		return
 	if(NOBLOOD in H.dna.species.species_traits)
