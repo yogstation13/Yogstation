@@ -465,6 +465,8 @@ LAW_WEIGHT mother,0
 ION_LAW_WEIGHT mother,0
 LAW_WEIGHT researcher,0
 ION_LAW_WEIGHT researcher,1
+LAW_WEIGHT clown,0
+ION_LAW_WEIGHT clown,1
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0
