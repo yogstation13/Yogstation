@@ -1489,12 +1489,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /datum/action/item_action/organ_action/threebloodlings
 	name = "Summon bloodlings"
 	desc = "Summon a conjure a few bloodlings at the cost of 13% blood (8 brain damage for those without blood)."
+	var/next_expulsion = 0
+	var/cooldown = 10
 /datum/action/item_action/organ_action/threebloodlings/Trigger()
 	var/mob/living/carbon/H = owner
-	. = ..()
-	var/recharging_rate = 60 
-	if(recharging_rate > world.time)
-		to_chat(owner, span_warning("The boot's internal propulsion needs to recharge still!"))
+	. = ..() 
+	if(next_expulsion > world.time)
+		to_chat(owner, span_warning("Don't spill your blood so haphazardly!"))
 		return
 	if(NOBLOOD in H.dna.species.species_traits)
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 8) //brain damage wont stop you from running away so opting for that instead of poison or breath damage 
@@ -1503,5 +1504,4 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")
 		H.blood_volume -= 70 //like 13% of your blood taken
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
-
-
+	next_expulsion = world.time + cooldown
