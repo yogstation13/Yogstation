@@ -442,5 +442,8 @@
 	icon_gib = "syndicate_gib"
 	friendly = "buzzes near"
 	faction = list("blooded")
+	harm_intent_damage = 2
+	melee_damage_lower = 2
+	melee_damage_upper = 2 //fodder isnt supposed to be strong
 	attacktext = "gnashes at"
 	stat_attack = DEAD
