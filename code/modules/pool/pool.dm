@@ -275,8 +275,8 @@ GLOBAL_LIST_EMPTY(pool_filters)
 				else if(current_temperature >= 308.5) //Hotter than 35 celsius is going to make you burn up
 					if(iscarbon(M))
 						C.adjust_bodytemperature(35, 0, current_temperature)
-					if(!HAS_TRAIT(L, TRAIT_RESISTHEAT))
-						L.adjustFireLoss(5)
+					if(!HAS_TRAIT(C, TRAIT_RESISTHEAT))
+						C.adjustFireLoss(5)
 					to_chat(M, "<span class='danger'>The water is searing hot!</span>")
 
 /obj/structure/pool_ladder/attack_hand(mob/user)
