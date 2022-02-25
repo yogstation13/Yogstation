@@ -112,19 +112,19 @@
 	var/list/newVars = list()
 
 /obj/effect/proc_holder/spell/aoe_turf/horde/cast(list/targets,mob/living/carbon/user = usr)
+	var/list/directions = GLOB.cardinals.Copy() + GLOB.diagonals.Copy()
 	if(GLOB.bloodmen_list.len < 1)
 		to_chat(user, span_notice("You don't have any minions to summon!"))
 		return
-	if(NOBLOOD in user.dna.species.species_traits)
-		to_chat(usr, span_notice("<span class ='userdanger'>You can almost feel your brain writhing as you call your bloodmen to you.</span>"))
-		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15)
-	else
-		to_chat(user, span_notice("<span class ='userdanger'>You feel yourself becoming pale as you call your minions to you.</span>"))
-		user.blood_volume -= 100 //most expensive because you're calling up to 3 bloodmen, like 18% blood cost
-	var/list/directions = GLOB.cardinals.Copy() + GLOB.diagonals.Copy()
 	for(var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman in GLOB.bloodmen_list)
 		var/spawndir = pick_n_take(directions)
 		var/turf/T = get_step(usr, spawndir)
+		if(NOBLOOD in user.dna.species.species_traits)
+			user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
+			to_chat(usr, span_notice("<span class ='userdanger'>You can almost feel your brain writhing as you call your bloodmen to you.</span>"))
+		else
+			user.blood_volume -= 30
+			to_chat(usr, span_notice("<span class ='userdanger'>You feel yourself becoming paler with every minion called.</span>"))
 		if(T)
 			bloodman.forceMove(T)
 			playsound(usr, 'sound/magic/exit_blood.ogg', 100, 1)
