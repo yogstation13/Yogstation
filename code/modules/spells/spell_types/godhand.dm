@@ -141,7 +141,7 @@
 
 /obj/item/melee/touch_attack/raisehand
 	name = "\improper raise bloodman"
-	desc = "Touch a dead humanoid to make a bloodman out of them."
+	desc = "Blood covers your hand like a glove as it waits for a new host."
 	on_use_sound = 'sound/magic/wandodeath.ogg'
 	icon_state = "flagellation"
 	item_state = "hivehand"
