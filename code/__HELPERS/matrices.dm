@@ -22,10 +22,8 @@
 		animate(src, transform = matrices[1], time = speed, loops , flags = ANIMATION_PARALLEL)
 	else
 		animate(src, transform = matrices[1], time = speed, loops)
-	for(var/i in 2 to segments) //2 because 1 is covered above
-		animate(transform = matrices[i], time = speed)
+	for(var/i in 2 to segments) //2 because 1 is covered above animate(transform = matrices[i], time = speed)
 		//doesn't have an object argument because this is "Stacking" with the animate call above
-		//3 billion% intentional
 
 /atom/proc/DabAnimation(speed = 1, loops = 1, direction = 1 , hold_seconds = 0  , angle = 1 , stay = FALSE) // Hopek 2019  
 	// By making this in atom/proc everything in the game can potentially dab. You have been warned.
