@@ -1466,6 +1466,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	slot = "hivecore"
 	w_class = WEIGHT_CLASS_SMALL 
 	decay_factor = 0
+	/var/recharge_time = 0
 	actions_types = list(/datum/action/item_action/organ_action/threebloodlings)
 /obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
 	if(H == user && istype(H))
@@ -1487,15 +1488,18 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	return ..()
 /datum/action/item_action/organ_action/threebloodlings
 	name = "Summon bloodlings"
-	desc = "You let out your blood to summon a conjure a few bloodlings at your location."
+	desc = "Summon a conjure a few bloodlings at the cost of 13% blood."
 /datum/action/item_action/organ_action/threebloodlings/Trigger()
 	var/mob/living/carbon/H = owner
 	. = ..()
+	if(recharge_time > world.time)
+		to_chat(owner, span_warning("You mustn't spill your blood so haphazardly!"))
+		return
 	if(NOBLOOD in H.dna.species.species_traits)
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10) //brain damage wont stop you from running away so opting for that instead of poison or breath damage 
-		to_chat(H, "Your head pounds as you produce bloodlings!")
+		to_chat(H, "<span class ='userdanger'>Your head pounds as you produce bloodlings!</span>")
 	else
-		to_chat(H, "You spill your blood, and it comes to life as bloodlings!")
+		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")
 		H.blood_volume -= 70 //like 13% of your blood taken
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 
