@@ -159,7 +159,7 @@
 		to_chat(M, span_notice("Your head pounds as you raise a bloodman!"))
 	else
 		playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
-		L = new(M.loc)
+		var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L = new(M.loc)
 		L.stored_mob = M
 		M.forceMove(L)
 		qdel(src)
