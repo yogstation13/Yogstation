@@ -150,6 +150,7 @@
 	var/mob/living/carbon/human/M = target
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
 	if(!ishuman(M) || M == user || GLOB.bloodmen_list.len > 2)
+		to_chat(M, span_notice("You can't control that many minions!"))
 		return
 	if(NOBLOOD in M.dna.species.species_traits)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
