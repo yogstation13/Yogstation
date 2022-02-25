@@ -1488,8 +1488,7 @@
 // helps bleeding wounds clot faster
 /datum/reagent/medicine/coagulant
 	name = "Sanguirite"
-	description = "A coagulant used to help open cuts clot faster."
-	description = "A proprietary coagulant used to help bleeding wounds clot faster."
+	description = "A proprietary coagulant used to help bleeding wounds clot faster, as well as slow organ decay."
 	reagent_state = LIQUID
 	color = "#bb2424"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
@@ -1502,11 +1501,13 @@
 	var/was_working
 
 /datum/reagent/medicine/coagulant/on_mob_metabolize(mob/living/M)
-	ADD_TRAIT(M, TRAIT_COAGULATING, /datum/reagent/medicine/coagulant)
+	ADD_TRAIT(M, TRAIT_COAGULATING, type)
+	ADD_TRAIT(M, TRAIT_PRESERVED_ORGANS, type)
 	return ..()
 
 /datum/reagent/medicine/coagulant/on_mob_end_metabolize(mob/living/M)
-	REMOVE_TRAIT(M, TRAIT_COAGULATING, /datum/reagent/medicine/coagulant)
+	REMOVE_TRAIT(M, TRAIT_COAGULATING, type)
+	REMOVE_TRAIT(M, TRAIT_PRESERVED_ORGANS, type)
 	return ..()
 
 /datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/M)

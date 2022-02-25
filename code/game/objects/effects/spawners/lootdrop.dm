@@ -241,6 +241,7 @@
 				/obj/item/aiModule/core/full/hippocratic,
 				/obj/item/aiModule/core/full/paladin_devotion,
 				/obj/item/aiModule/core/full/paladin,
+				/obj/item/aiModule/core/full/silicop,
 				/obj/item/aiModule/core/full/mother
 				)
 
@@ -256,7 +257,9 @@
 				/obj/item/aiModule/core/full/liveandletlive,
 				/obj/item/aiModule/core/full/hulkamania,
 				/obj/item/aiModule/core/full/cowboy,
-				/obj/item/aiModule/core/full/metaexperiment
+				/obj/item/aiModule/core/full/metaexperiment,
+				/obj/item/aiModule/core/full/researcher,
+				/obj/item/aiModule/core/full/clown
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_harmful // These will get the shuttle called

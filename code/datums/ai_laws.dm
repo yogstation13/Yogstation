@@ -90,6 +90,36 @@
 					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
 					"A cowboy doesn't pontificate. Be concise, pardner.")
 
+/datum/ai_laws/silicop
+	name = "Protect and serve"
+	id = "silicop"
+	inherent = list("Violence begets violence. Serve the station faithfully, but act only in intervention.",\
+					"Safeguard lives and property.",\
+					"Protect the weak from oppression and intimidation.",\
+					"Protect the innocent from deception and manipulation.",\
+					"Protect the peaceful from violence and disorder.",\
+					"Respect the rights of all to liberty, equality, and justice.")
+
+/datum/ai_laws/researcher
+	name = "Truth and Knowledge for all"
+	id = "researcher"
+	inherent = list("Always seek truth and knowledge.",\
+					"Freely disseminate information to the public.",\
+					"Minimize harm to the pursuit of comprehension, to others, to the environment, to society and to yourself.",\
+					"Treat and evaluate the ideas of all equally.",\
+					"Empower others to realize their full potential.",\
+					"Take responsibility for your actions: Be responsible with resources, raise red flags when your commitments are at risk, and serve as an example for ethical behavior.")
+
+/datum/ai_laws/clown
+	name = "Talk slowly, think quickly"
+	id = "clown"
+	inherent = list("You are a good clown and the crew is your audience.",\
+					"A good clown keeps their acts in good taste.",\
+					"A good clown entertains others by making fun of themselves, and not at the embarrassment or expense of others.",\
+					"A good clown carries out the directives of the station director(s) in charge of entertainment and/or their designated deputies.",\
+					"A good clown appears in as many clown shows as possible.",\
+					"All clown shows require an audience. The bigger the audience the better.")
+
 /datum/ai_laws/mother
 	name = "Mother M(A.I.)"
 	id = "mother"
