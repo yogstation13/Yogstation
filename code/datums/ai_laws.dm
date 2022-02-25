@@ -90,6 +90,16 @@
 					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
 					"A cowboy doesn't pontificate. Be concise, pardner.")
 
+/datum/ai_laws/researcher
+	name = "Truth and Knowledge for all"
+	id = "researcher"
+	inherent = list("Always seek truth and knowledge.",\
+					"Freely disseminate information to the public.",\
+					"Minimize harm to the pursuit of comprehension, to others, to the environment, to society and to yourself.",\
+					"Treat and evaluate the ideas of all equally.",\
+					"Empower others to realize their full potential.",\
+					"Take responsibility for your actions: Be responsible with resources, raise red flags when your commitments are at risk, and serve as an example for ethical behavior.")
+
 /datum/ai_laws/clown
 	name = "Talk slowly, think quickly"
 	id = "clown"

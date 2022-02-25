@@ -464,6 +464,8 @@ LAW_WEIGHT cowboy,2
 ION_LAW_WEIGHT cowboy,1
 LAW_WEIGHT mother,0
 ION_LAW_WEIGHT mother,2
+LAW_WEIGHT researcher,0
+ION_LAW_WEIGHT researcher,1
 LAW_WEIGHT clown,0
 ION_LAW_WEIGHT clown,1
 
