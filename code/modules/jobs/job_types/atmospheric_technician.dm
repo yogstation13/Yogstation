@@ -35,8 +35,9 @@
 	name = "Atmospheric Technician"
 	jobtype = /datum/job/atmos
 
+	pda_type = /obj/item/pda/atmos
+
 	belt = /obj/item/storage/belt/utility/atmostech
-	id = /obj/item/pda/atmos
 	ears = /obj/item/radio/headset/headset_eng
 	uniform = /obj/item/clothing/under/rank/atmospheric_technician
 	uniform_skirt = /obj/item/clothing/under/rank/atmospheric_technician/skirt

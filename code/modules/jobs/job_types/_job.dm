@@ -206,7 +206,6 @@
 	var/jobtype = null
 
 	uniform = /obj/item/clothing/under/color/grey
-	id = /obj/item/pda
 	ears = /obj/item/radio/headset
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
@@ -288,7 +287,7 @@
 				break
 		H.sec_hud_set_ID()
 
-	var/obj/item/pda/PDA = H.get_item_by_slot(SLOT_WEAR_ID)
+	var/obj/item/pda/PDA = new pda_type()
 	if(istype(PDA))
 		PDA.owner = H.real_name
 		if(H.mind?.role_alt_title)
@@ -298,9 +297,9 @@
 
 		if (H.client.prefs.id_in_pda)
 			PDA.InsertID(C)
+			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
 		else // just in case you hate change
 			H.equip_to_slot_if_possible(PDA, pda_slot)
-			H.wear_id = null
 			H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
 		
 		PDA.update_label()

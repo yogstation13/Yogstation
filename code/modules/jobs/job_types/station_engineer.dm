@@ -91,8 +91,9 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	name = "Station Engineer"
 	jobtype = /datum/job/engineer
 
+	pda_type = /obj/item/pda/engineering
+
 	belt = /obj/item/storage/belt/utility/full/engi
-	id = /obj/item/pda/engineering
 	ears = /obj/item/radio/headset/headset_eng
 	uniform = /obj/item/clothing/under/rank/engineer
 	uniform_skirt = /obj/item/clothing/under/rank/engineer/skirt

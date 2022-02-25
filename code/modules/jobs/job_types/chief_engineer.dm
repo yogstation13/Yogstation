@@ -37,8 +37,9 @@
 	jobtype = /datum/job/chief_engineer
 
 	id_type = /obj/item/card/id/silver
+	pda_type = /obj/item/pda/heads/ce
+
 	belt = /obj/item/storage/belt/utility/chief/full
-	id = /obj/item/pda/heads/ce
 	ears = /obj/item/radio/headset/heads/ce
 	uniform = /obj/item/clothing/under/rank/chief_engineer
 	uniform_skirt = /obj/item/clothing/under/rank/chief_engineer/skirt

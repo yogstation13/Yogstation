@@ -31,8 +31,9 @@
 	name = "Signal Technician"
 	jobtype = /datum/job/signal_tech
 
+	pda_type = /obj/item/pda/signaltech
+
 	belt = /obj/item/storage/belt/utility/full
-	id = /obj/item/pda/signaltech
 	ears = /obj/item/radio/headset/headset_eng
 	uniform = /obj/item/clothing/under/yogs/rank/signal_tech
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
