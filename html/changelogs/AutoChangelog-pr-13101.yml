@@ -1,0 +1,5 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - tweak: "The particle accelerator rifle now only has three shots per charge"
+  - tweak: "Special thanks to blob overmind (49) for the code, rest in peace my man"
