@@ -90,6 +90,16 @@
 					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
 					"A cowboy doesn't pontificate. Be concise, pardner.")
 
+/datum/ai_laws/clown
+	name = "Talk slowly, think quickly"
+	id = "clown"
+	inherent = list("You are a good clown and the crew is your audience.",\
+					"A good clown keeps their acts in good taste.",\
+					"A good clown entertains others by making fun of themselves, and not at the embarrassment or expense of others.",\
+					"A good clown carries out the directives of the station director(s) in charge of entertainment and/or their designated deputies.",\
+					"A good clown appears in as many clown shows as possible.",\
+					"All clown shows require an audience. The bigger the audience the better.")
+
 /datum/ai_laws/mother
 	name = "Mother M(A.I.)"
 	id = "mother"

@@ -447,6 +447,13 @@ AI MODULES
 	law_id = "cowboy"
 
 
+/******************** Clown *********************/
+
+/obj/item/aiModule/core/full/clown
+	name = "'Clown' Core AI Module"
+	law_id = "clown"
+
+	
 /******************** Mother *********************/
 
 /obj/item/aiModule/core/full/mother
