@@ -33,22 +33,45 @@
 	..()
 
 /mob/living/simple_animal/cockroach/Crossed(var/atom/movable/AM)
+	. = ..()
 	if(ismob(AM))
 		if(isliving(AM))
 			var/mob/living/A = AM
 			if(A.mob_size > MOB_SIZE_SMALL && !(A.movement_type & FLYING))
 				if(prob(squish_chance))
-					A.visible_message("<span class='notice'>[A] squashed [src].</span>", "<span class='notice'>You squashed [src].</span>")
+					A.visible_message(span_notice("[A] squashed [src]."), span_notice("You squashed [src]."))
 					adjustBruteLoss(1) //kills a normal cockroach
 				else
-					visible_message("<span class='notice'>[src] avoids getting crushed.</span>")
+					visible_message(span_notice("[src] avoids getting crushed."))
 	else
 		if(isstructure(AM))
 			if(prob(squish_chance))
-				AM.visible_message("<span class='notice'>[src] was crushed under [AM].</span>")
+				AM.visible_message(span_notice("[src] was crushed under [AM]."))
 				adjustBruteLoss(1)
 			else
-				visible_message("<span class='notice'>[src] avoids getting crushed.</span>")
+				visible_message(span_notice("[src] avoids getting crushed."))
 
 /mob/living/simple_animal/cockroach/ex_act() //Explosions are a terrible way to handle a cockroach.
 	return
+	
+/mob/living/simple_animal/cockroach/clownbug
+	name = "clown bug"
+	desc = "Absolutely disgusting... almost as horrid as that one green clown."
+	icon_state = "clowngoblin"
+	icon_dead = "clowngoblin"
+	gold_core_spawnable = HOSTILE_SPAWN
+	verb_say = "honks"
+	verb_ask = "honks inquisitively"
+	verb_exclaim = "honks loudly"
+	verb_yell = "honks loudly"
+	speak_emote = list("honks")
+
+
+/mob/living/simple_animal/cockroach/clownbug/death(gibbed)
+	var/turf/T = get_turf(src)
+	if(T)
+		var/mob/living/simple_animal/cockroach/clownbug/C = new /mob/living/simple_animal/cockroach/clownbug(T)
+		if(mind)
+			mind.transfer_to(C)
+		playsound(loc, 'sound/items/bikehorn.ogg', 100, 0)
+	..()

@@ -13,7 +13,7 @@
 /obj/machinery/aug_manipulator/examine(mob/user)
 	. = ..()
 	if(storedpart)
-		. += "<span class='notice'>Alt-click to eject the limb.</span>"
+		. += span_notice("Alt-click to eject the limb.")
 
 /obj/machinery/aug_manipulator/Initialize()
     initial_icon_state = initial(icon_state)
@@ -60,10 +60,10 @@
 	else if(istype(O, /obj/item/bodypart))
 		var/obj/item/bodypart/B = O
 		if(B.status != BODYPART_ROBOTIC)
-			to_chat(user, "<span class='warning'>The machine only accepts cybernetics!</span>")
+			to_chat(user, span_warning("The machine only accepts cybernetics!"))
 			return
 		if(storedpart)
-			to_chat(user, "<span class='warning'>There is already something inside!</span>")
+			to_chat(user, span_warning("There is already something inside!"))
 			return
 		else
 			O = user.get_active_held_item()
@@ -79,26 +79,20 @@
 				return
 
 			user.visible_message("[user] begins repairing [src].", \
-				"<span class='notice'>You begin repairing [src]...</span>", \
-				"<span class='italics'>You hear welding.</span>")
+				span_notice("You begin repairing [src]..."), \
+				span_italics("You hear welding."))
 
 			if(O.use_tool(src, user, 40, volume=50))
 				if(!(stat & BROKEN))
 					return
-				to_chat(user, "<span class='notice'>You repair [src].</span>")
+				to_chat(user, span_notice("You repair [src]."))
 				stat &= ~BROKEN
 				obj_integrity = max(obj_integrity, max_integrity)
 				update_icon()
 		else
-			to_chat(user, "<span class='notice'>[src] does not need repairs.</span>")
+			to_chat(user, span_notice("[src] does not need repairs."))
 	else
 		return ..()
-
-/obj/machinery/aug_manipulator/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(!(stat & BROKEN))
-			stat |= BROKEN
-			update_icon()
 
 /obj/machinery/aug_manipulator/attack_hand(mob/user)
 	. = ..()
@@ -118,7 +112,7 @@
 		eject_part(user)
 
 	else
-		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
+		to_chat(user, span_notice("\The [src] is empty."))
 
 /obj/machinery/aug_manipulator/proc/eject_part(mob/living/user)
 	if(storedpart)
@@ -126,7 +120,7 @@
 		storedpart = null
 		update_icon()
 	else
-		to_chat(user, "<span class='notice'>[src] is empty.</span>")
+		to_chat(user, span_notice("[src] is empty."))
 
 /obj/machinery/aug_manipulator/AltClick(mob/living/user)
 	..()
@@ -134,7 +128,3 @@
 		return
 	else
 		eject_part(user)
-
-/obj/machinery/aug_manipulator/power_change()
-	..()
-	update_icon()

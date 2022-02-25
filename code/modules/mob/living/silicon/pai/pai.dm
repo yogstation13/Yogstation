@@ -8,7 +8,7 @@
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	desc = "A generic pAI mobile hard-light holographics emitter. It seems to be deactivated."
-	weather_immunities = list("ash")
+	weather_immunities = list(WEATHER_ASH)
 	health = 500
 	maxHealth = 500
 	layer = BELOW_MOB_LAYER
@@ -137,7 +137,7 @@
 /mob/living/silicon/pai/proc/process_hack()
 
 	if(cable && cable.machine && istype(cable.machine, /obj/machinery/door) && cable.machine == hackdoor && get_dist(src, hackdoor) <= 1)
-		hackprogress = CLAMP(hackprogress + 4, 0, 100)
+		hackprogress = clamp(hackprogress + 20, 0, 100)
 	else
 		temp = "Door Jack: Connection to airlock has been lost. Hack aborted."
 		hackprogress = 0
@@ -166,13 +166,13 @@
 		else
 			client.eye = card
 
-/mob/living/silicon/pai/Stat()
-	..()
-	if(statpanel("Status"))
-		if(!stat)
-			stat(null, text("Emitter Integrity: [emitterhealth * (100/emittermaxhealth)]"))
-		else
-			stat(null, text("Systems nonfunctional"))
+
+/mob/living/silicon/pai/get_status_tab_items()
+	. += ..()
+	if(!stat)
+		. += text("Emitter Integrity: [emitterhealth * (100/emittermaxhealth)]")
+	else
+		. += text("Systems nonfunctional")
 
 /mob/living/silicon/pai/restrained(ignore_grab)
 	. = FALSE
@@ -181,7 +181,7 @@
 
 /mob/living/silicon/pai/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	if(be_close && !in_range(M, src))
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		to_chat(src, span_warning("You are too far away!"))
 		return FALSE
 	return TRUE
 
@@ -271,7 +271,7 @@
 	if(cable)
 		if(get_dist(src, cable) > 1)
 			var/turf/T = get_turf(src.loc)
-			T.visible_message("<span class='warning'>[src.cable] rapidly retracts back into its spool.</span>", "<span class='italics'>You hear a click and the sound of wire spooling rapidly.</span>")
+			T.visible_message(span_warning("[src.cable] rapidly retracts back into its spool."), span_italics("You hear a click and the sound of wire spooling rapidly."))
 			qdel(src.cable)
 			cable = null
 	silent = max(silent - 1, 0)
@@ -284,7 +284,7 @@
 	update_stat()
 
 /mob/living/silicon/pai/process()
-	emitterhealth = CLAMP((emitterhealth + emitterregen), -50, emittermaxhealth)
+	emitterhealth = clamp((emitterhealth + emitterregen), -50, emittermaxhealth)
 
 /obj/item/paicard/attackby(obj/item/W, mob/user, params)
 	..()

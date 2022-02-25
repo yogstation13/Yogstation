@@ -1,0 +1,149 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"c" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"e" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"g" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"k" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/template_noop)
+"l" = (
+/obj/item/circuitboard/machine/thermomachine/freezer,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"n" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/delivery/red,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"o" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"u" = (
+/obj/structure/table/glass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"z" = (
+/obj/effect/turf_decal/stripes/end{
+	dir = 4;
+	icon_state = "warn_end"
+	},
+/obj/structure/frame,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"C" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"E" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"G" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"K" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 9
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"O" = (
+/obj/machinery/computer/med_data{
+	dir = 8
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"P" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/effect/turf_decal/stripes/end,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"S" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/frame,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"T" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"W" = (
+/obj/effect/decal/cleanable/greenglow,
+/obj/item/reagent_containers/glass/beaker,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+
+(1,1,1) = {"
+u
+W
+z
+n
+"}
+(2,1,1) = {"
+P
+G
+C
+K
+"}
+(3,1,1) = {"
+T
+c
+l
+e
+"}
+(4,1,1) = {"
+c
+k
+o
+b
+"}
+(5,1,1) = {"
+S
+g
+E
+O
+"}

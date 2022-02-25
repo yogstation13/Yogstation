@@ -4,8 +4,8 @@
 /obj/machinery/particle_accelerator/control_box/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, "<span class='danger'>The laws of physics no longer apply in the future, god help you...</span>")
-	SSachievements.unlock_achievement(/datum/achievement/pa_emag, user.client)
+	to_chat(user, span_danger("The laws of physics no longer apply in the future, god help you..."))
+	SSachievements.unlock_achievement(/datum/achievement/engineering/pa_emag, user.client)
 	do_sparks(5, 0, src)
 	obj_flags |= EMAGGED
 

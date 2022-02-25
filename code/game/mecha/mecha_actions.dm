@@ -179,10 +179,10 @@
 	button_icon_state = "mech_defense_mode_[chassis.defence_mode ? "on" : "off"]"
 	if(chassis.defence_mode)
 		chassis.deflect_chance = chassis.defence_mode_deflect_chance
-		chassis.occupant_message("<span class='notice'>You enable [chassis] defence mode.</span>")
+		chassis.occupant_message(span_notice("You enable [chassis] defence mode."))
 	else
 		chassis.deflect_chance = initial(chassis.deflect_chance)
-		chassis.occupant_message("<span class='danger'>You disable [chassis] defence mode.</span>")
+		chassis.occupant_message(span_danger("You disable [chassis] defence mode."))
 	chassis.log_message("Toggled defence mode.", LOG_MECHA)
 	UpdateButtonIcon()
 
@@ -191,6 +191,8 @@
 	button_icon_state = "mech_overload_off"
 
 /datum/action/innate/mecha/mech_overload_mode/Activate(forced_state = null)
+	if(chassis?.equipment_disabled) // If a EMP or something has messed a mech up return instead of activating -- Moogle
+		return
 	if(!owner || !chassis || chassis.occupant != owner)
 		return
 	if(!isnull(forced_state))
@@ -204,13 +206,13 @@
 		chassis.bumpsmash = 1
 		chassis.step_in = min(1, round(chassis.step_in/2))
 		chassis.step_energy_drain = max(chassis.overload_step_energy_drain_min,chassis.step_energy_drain*chassis.leg_overload_coeff)
-		chassis.occupant_message("<span class='danger'>You enable leg actuators overload.</span>")
+		chassis.occupant_message(span_danger("You enable leg actuators overload."))
 	else
 		chassis.leg_overload_mode = 0
-		chassis.bumpsmash = 0
+		chassis.bumpsmash = initial(chassis.bumpsmash)
 		chassis.step_in = initial(chassis.step_in)
 		chassis.step_energy_drain = chassis.normal_step_energy_drain
-		chassis.occupant_message("<span class='notice'>You disable leg actuators overload.</span>")
+		chassis.occupant_message(span_notice("You disable leg actuators overload."))
 	UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_smoke
@@ -241,10 +243,10 @@
 		chassis.log_message("Toggled zoom mode.", LOG_MECHA)
 		chassis.occupant_message("<font color='[chassis.zoom_mode?"blue":"red"]'>Zoom mode [chassis.zoom_mode?"en":"dis"]abled.</font>")
 		if(chassis.zoom_mode)
-			owner.client.change_view(12)
+			owner.client.view_size.setTo(4.5)
 			SEND_SOUND(owner, sound('sound/mecha/imag_enh.ogg',volume=50))
 		else
-			owner.client.change_view(CONFIG_GET(string/default_view)) //world.view - default mob view size
+			owner.client.view_size.resetToDefault() //Let's not let this stack shall we?
 		UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_switch_damtype

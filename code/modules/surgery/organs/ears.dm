@@ -8,10 +8,10 @@
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 
-	low_threshold_passed = "<span class='info'>Your ears begin to resonate with an internal ring sometimes.</span>"
-	now_failing = "<span class='warning'>You are unable to hear at all!</span>"
-	now_fixed = "<span class='info'>Noise slowly begins filling your ears once more.</span>"
-	low_threshold_cleared = "<span class='info'>The ringing in your ears has died down.</span>"
+	low_threshold_passed = span_info("Your ears begin to resonate with an internal ring sometimes.")
+	now_failing = span_warning("You are unable to hear at all!")
+	now_fixed = span_info("Noise slowly begins filling your ears once more.")
+	low_threshold_cleared = span_info("The ringing in your ears has died down.")
 
 	// `deaf` measures "ticks" of deafness. While > 0, the person is unable
 	// to hear anything.
@@ -39,9 +39,9 @@
 	else if(!(organ_flags & ORGAN_FAILING)) // if this organ is failing, do not clear deaf stacks.
 		deaf = max(deaf - 1, 0)
 		if(prob(damage / 20) && (damage > low_threshold))
-			adjustEarDamage(0, 4)
+			adjustEarDamage(0, 2)
 			SEND_SOUND(C, sound('sound/weapons/flash_ring.ogg'))
-			to_chat(C, "<span class='warning'>The ringing in your ears grows louder, blocking out any external noises for a moment.</span>")
+			to_chat(C, span_warning("The ringing in your ears grows louder, blocking out any external noises for a moment."))
 	else if((organ_flags & ORGAN_FAILING) && (deaf == 0))
 		deaf = 1	//stop being not deaf you deaf idiot
 
@@ -110,6 +110,14 @@
 		H.dna.species.mutant_bodyparts -= "ears"
 		H.update_body()
 
+/obj/item/organ/ears/cybernetic
+	name = "cybernetic hearing apparatus"
+	desc = "A set of complex electronics that can mimic the functions of an ear. Slightly more resistant to damage."
+	icon_state = "ears-c"
+	damage_multiplier = 0.8
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC
+
 /obj/item/organ/ears/penguin
 	name = "penguin ears"
 	desc = "The source of a penguin's happy feet."
@@ -118,13 +126,13 @@
 /obj/item/organ/ears/penguin/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
 	. = ..()
 	if(istype(H))
-		to_chat(H, "<span class='notice'>You suddenly feel like you've lost your balance.</span>")
+		to_chat(H, span_notice("You suddenly feel like you've lost your balance."))
 		waddle = H.AddComponent(/datum/component/waddling)
 
 /obj/item/organ/ears/penguin/Remove(mob/living/carbon/human/H,  special = 0)
 	. = ..()
 	if(istype(H))
-		to_chat(H, "<span class='notice'>Your sense of balance comes back to you.</span>")
+		to_chat(H, span_notice("Your sense of balance comes back to you."))
 		QDEL_NULL(waddle)
 
 /obj/item/organ/ears/bronze

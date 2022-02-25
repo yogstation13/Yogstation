@@ -36,7 +36,7 @@
 
 /datum/component/mood/proc/print_mood(mob/user)
 	var/msg = "<span class='info'>*---------*\n<EM>Your current mood</EM>\n"
-	msg += "<span class='notice'>My mental status: </span>" //Long term
+	msg += span_notice("My mental status: ") //Long term
 	switch(sanity)
 		if(SANITY_GREAT to INFINITY)
 			msg += "<span class='nicegreen'>My mind feels like a temple!<span>\n"
@@ -45,13 +45,13 @@
 		if(SANITY_DISTURBED to SANITY_NEUTRAL)
 			msg += "<span class='nicegreen'>I have felt quite decent lately.<span>\n"
 		if(SANITY_UNSTABLE to SANITY_DISTURBED)
-			msg += "<span class='warning'>I'm feeling a little bit unhinged...</span>\n"
+			msg += "[span_warning("I'm feeling a little bit unhinged...")]\n"
 		if(SANITY_CRAZY to SANITY_UNSTABLE)
-			msg += "<span class='boldwarning'>I'm freaking out!!</span>\n"
+			msg += "[span_boldwarning("I'm freaking out!!")]\n"
 		if(SANITY_INSANE to SANITY_CRAZY)
-			msg += "<span class='boldwarning'>AHAHAHAHAHAHAHAHAHAH!!</span>\n"
+			msg += "[span_boldwarning("AHAHAHAHAHAHAHAHAHAH!!")]\n"
 
-	msg += "<span class='notice'>My current mood: </span>" //Short term
+	msg += span_notice("My current mood: ") //Short term
 	switch(mood_level)
 		if(1)
 			msg += "<span class='boldwarning'>I wish I was dead!<span>\n"
@@ -72,7 +72,7 @@
 		if(9)
 			msg += "<span class='nicegreen'>I love life!<span>\n"
 
-	msg += "<span class='notice'>Moodlets:\n</span>"//All moodlets
+	msg += span_notice("Moodlets:\n")//All moodlets
 	if(mood_events.len)
 		for(var/i in mood_events)
 			var/datum/mood_event/event = mood_events[i]
@@ -89,8 +89,8 @@
 		mood += event.mood_change
 		if(!event.hidden)
 			shown_mood += event.mood_change
-		mood *= mood_modifier
-		shown_mood *= mood_modifier
+	mood *= mood_modifier
+	shown_mood *= mood_modifier
 
 	switch(mood)
 		if(-INFINITY to MOOD_LEVEL_SAD4)
@@ -170,6 +170,9 @@
 
 /datum/component/mood/process() //Called on SSmood process
 	var/mob/living/owner = parent
+	if(!owner)
+		qdel(src)
+		return
 
 	switch(mood_level)
 		if(1)
@@ -193,7 +196,7 @@
 
 	if(HAS_TRAIT(owner, TRAIT_DEPRESSION))
 		if(prob(0.05))
-			add_event(null, "depression", /datum/mood_event/depression)
+			add_event(null, "depression", /datum/mood_event/depression_mild)
 			clear_event(null, "jolly")
 	if(HAS_TRAIT(owner, TRAIT_JOLLY))
 		if(prob(0.05))
@@ -205,7 +208,7 @@
 /datum/component/mood/proc/setSanity(amount, minimum=SANITY_INSANE, maximum=SANITY_NEUTRAL)
 	var/mob/living/owner = parent
 
-	amount = CLAMP(amount, minimum, maximum)
+	amount = clamp(amount, minimum, maximum)
 	if(amount == sanity)
 		return
 	// If we're out of the acceptable minimum-maximum range move back towards it in steps of 0.5
@@ -353,6 +356,10 @@
 			clear_event(null, "charge")
 		if(ETHEREAL_CHARGE_ALMOSTFULL to ETHEREAL_CHARGE_FULL)
 			add_event(null, "charge", /datum/mood_event/charged)
+
+/datum/component/mood/proc/check_area_mood(datum/source, area/A)
+	if(A.mood_bonus)
+		add_event(null, "area", /datum/mood_event/area, A.mood_bonus, A.mood_message)
 
 #undef MINOR_INSANITY_PEN
 #undef MAJOR_INSANITY_PEN

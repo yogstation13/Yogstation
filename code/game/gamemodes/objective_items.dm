@@ -134,8 +134,15 @@
 			if(!istype(o, /obj/item/tank))
 				continue
 			var/obj/item/tank/T = o
-			found_amount += T.air_contents.gases[/datum/gas/plasma] ? T.air_contents.gases[/datum/gas/plasma][MOLES] : 0
-
+			found_amount += T.air_contents.get_moles(/datum/gas/plasma)
+	if (istype(objective.team, /datum/team/infiltrator))
+		for (var/area/A in world)
+			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
+				for (var/obj/item/tank/T in A.GetAllContents()) //Check for items
+					found_amount += T.air_contents.get_moles(/datum/gas/plasma)
+					CHECK_TICK
+			CHECK_TICK
+		CHECK_TICK
 	return found_amount >= target_amount
 
 
@@ -176,6 +183,12 @@
 	if(E.Uses > 0)
 		return 1
 	return 0
+
+/datum/objective_item/steal/blackbox
+	name = "the telecommunications blackbox."
+	targetitem = /obj/item/blackbox
+	difficulty = 10
+	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician","Signal Technician")
 
 //Unique Objectives
 /datum/objective_item/unique/docs_red

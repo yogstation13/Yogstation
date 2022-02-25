@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(hair_styles_female_list)	//stores only hair names
 GLOBAL_LIST_EMPTY(facial_hair_styles_list)	//stores /datum/sprite_accessory/facial_hair indexed by name
 GLOBAL_LIST_EMPTY(facial_hair_styles_male_list)	//stores only hair names
 GLOBAL_LIST_EMPTY(facial_hair_styles_female_list)	//stores only hair names
+GLOBAL_LIST_EMPTY(hair_gradients_list) //stores /datum/sprite_accessory/hair_gradient indexed by name
 	//Underwear
 GLOBAL_LIST_EMPTY(underwear_list)		//stores /datum/sprite_accessory/underwear indexed by name
 GLOBAL_LIST_EMPTY(underwear_m)	//stores only underwear name
@@ -26,7 +27,11 @@ GLOBAL_LIST_EMPTY(frills_list)
 GLOBAL_LIST_EMPTY(spines_list)
 GLOBAL_LIST_EMPTY(legs_list)
 GLOBAL_LIST_EMPTY(animated_spines_list)
-
+	//Polysmorph
+GLOBAL_LIST_EMPTY(tails_list_polysmorph)
+GLOBAL_LIST_EMPTY(teeth_list)
+GLOBAL_LIST_EMPTY(dome_list)
+GLOBAL_LIST_EMPTY(dorsal_tubes_list)
 	//Mutant Human bits
 GLOBAL_LIST_EMPTY(tails_list_human)
 GLOBAL_LIST_EMPTY(animated_tails_list_human)
@@ -35,8 +40,10 @@ GLOBAL_LIST_EMPTY(wings_list)
 GLOBAL_LIST_EMPTY(wings_open_list)
 GLOBAL_LIST_EMPTY(r_wings_list)
 GLOBAL_LIST_EMPTY(moth_wings_list)
+GLOBAL_LIST_EMPTY(moth_wingsopen_list)
 GLOBAL_LIST_EMPTY(caps_list)
 
+GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
 GLOBAL_LIST_INIT(color_list_ethereal, list("F Class(Green)" = "97ee63", "F2 Class (Light Green)" = "00fa9a", "F3 Class (Dark Green)" = "37835b", "M Class (Red)" = "9c3030", "M1 Class (Purple)" = "ee82ee", "G Class (Yellow)" = "fbdf56", "O Class (Blue)" = "3399ff", "A Class (Cyan)" = "00ffff"))
 
 GLOBAL_LIST_INIT(ghost_forms_with_directions_list, list("ghost")) //stores the ghost forms that support directional sprites
@@ -48,7 +55,9 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Angel",
 	"Banned",
 	"Bliss",
+	"Blob",
 	"Blue",
+	"Cat",
 	"Clown",
 	"Database",
 	"Dorf",
@@ -63,11 +72,14 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Helios",
 	"House",
 	"Inverted",
+	"Malicious",
 	"Matrix",
 	"Monochrome",
 	"Murica",
 	"Nanotrasen",
 	"Not Malf",
+	"Plain",
+	"Portrait",
 	"President",
 	"Random",
 	"Rainbow",
@@ -87,9 +99,15 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	else
 		if(input == "Random")
 			input = pick(GLOB.ai_core_display_screens - "Random")
+		if(input == "Portrait")
+			var/datum/portrait_picker/tgui  = new(usr)//create the datum
+			tgui.ui_interact(usr)//datum has a tgui component, here we open the window
+			return "ai-portrait" //just take this until they decide
 		return "ai-[lowertext(input)]"
 
-GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
+GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
+
+GLOBAL_LIST_INIT(engineering_depts_prefs, list(ENG_DEPT_RANDOM, ENG_DEPT_NONE, ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, ENG_DEPT_SUPPLY, ENG_DEPT_SERVICE))
 
 	//Backpacks
 #define GBACKPACK "Grey Backpack"
@@ -101,6 +119,11 @@ GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_
 #define DDUFFELBAG "Department Duffel Bag"
 GLOBAL_LIST_INIT(backbaglist, list(DBACKPACK, DSATCHEL, DDUFFELBAG, GBACKPACK, GSATCHEL, GDUFFELBAG, LSATCHEL))
 
+// Suits/Skirts
+#define PREF_SUIT "Jumpsuit"
+#define PREF_SKIRT "Jumpskirt"
+GLOBAL_LIST_INIT(jumpsuitlist, list(PREF_SUIT, PREF_SKIRT))
+
 //Uplink spawn loc
 #define UPLINK_PDA		"PDA"
 #define UPLINK_RADIO	"Radio"
@@ -109,6 +132,9 @@ GLOBAL_LIST_INIT(uplink_spawn_loc_list, list(UPLINK_PDA, UPLINK_RADIO, UPLINK_PE
 
 	//Female Uniforms
 GLOBAL_LIST_EMPTY(female_clothing_icons)
+
+	//Skinny Uniforms
+GLOBAL_LIST_EMPTY(skinny_clothing_icons)
 
 	//radical shit
 GLOBAL_LIST_INIT(hit_appends, list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF"))
@@ -171,7 +197,7 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
 
 GLOBAL_LIST_INIT(station_prefixes, world.file2list("strings/station_prefixes.txt") + "")
 
-GLOBAL_LIST_INIT(station_names, world.file2list("strings/station_names.txt" + ""))
+GLOBAL_LIST_INIT(station_names, world.file2list("strings/station_names.txt") + "")
 
 GLOBAL_LIST_INIT(station_suffixes, world.file2list("strings/station_suffixes.txt"))
 

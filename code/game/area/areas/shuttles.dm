@@ -1,4 +1,3 @@
-
 //These are shuttle areas; all subtypes are only used as teleportation markers, they have no actual function beyond that.
 //Multi area shuttles are a thing now, use subtypes! ~ninjanomnom
 
@@ -107,6 +106,10 @@
 /area/shuttle/custom
 	name = "Custom player shuttle"
 
+/area/shuttle/custom/powered
+	name = "Custom Powered player shuttle"
+	requires_power = FALSE
+
 /area/shuttle/arrival
 	name = "Arrival Shuttle"
 	unique = TRUE  // SSjob refers to this area for latejoiners
@@ -143,7 +146,6 @@
 
 /area/shuttle/escape/luxury
 	name = "Luxurious Emergency Shuttle"
-	noteleport = TRUE
 
 /area/shuttle/escape/arena
 	name = "The Arena"

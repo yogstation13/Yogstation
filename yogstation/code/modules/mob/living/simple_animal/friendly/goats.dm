@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/goat/clown
-	name = "Clown Goat"
+	name = "Gary the Goat"
 	desc = "Rather kick your butt than tell jokes."
 	icon = 'yogstation/icons/mob/goats/clown_goat.dmi'
 	icon_state = "clowngoat"
@@ -210,13 +210,14 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/retaliate/goat/huge
-	name = "Huge Goat"
+	name = "Giant Goat"
 	desc = "Space Jesus, that's a big goat."
 	melee_damage_lower = 10
 	melee_damage_upper = 20
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/retaliate/goat/huge/Initialize()
+	. = ..()
 	transform *= 2
 
 /mob/living/simple_animal/hostile/retaliate/goat/tiny
@@ -227,6 +228,7 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/retaliate/goat/tiny/Initialize()
+	. = ..()
 	transform *= 0.5
 
 /mob/living/simple_animal/hostile/retaliate/goat/ghost
@@ -431,3 +433,26 @@
 	icon_dead = "spiffles_dead"
 	faction = list("goat")
 	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/suspicious
+	name = "suspicious goat"
+	desc = "A suspicious looking goat."
+	icon = 'yogstation/icons/mob/goats/suspicious_goat.dmi'
+	icon_state = "suspiciousgoat"
+	icon_living = "suspiciousgoat"
+	icon_dead = "suspiciousgoat_dead"
+	gold_core_spawnable = NO_SPAWN
+	ventcrawler = VENTCRAWLER_ALWAYS
+
+/mob/living/simple_animal/hostile/retaliate/goat/thrumbo
+	name = "Thrumboat"
+	desc = "A very fancy looking goat from those outer-rim worlds."
+	icon = 'yogstation/icons/mob/goats/thrumbo.dmi'
+	icon_state = "thrumbo"
+	icon_living = "thrumbo"
+	icon_dead = "thrumbo_dead"
+	emote_see = list("shakes its head.", "stamps a hoof.", "peers around.")
+	attacktext = "slashes"
+	attack_sound = 'sound/weapons/slash.ogg'
+	melee_damage_lower = 10
+	melee_damage_upper = 15

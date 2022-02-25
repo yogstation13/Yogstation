@@ -29,6 +29,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	resistance_flags = FLAMMABLE
+	drop_sound = 'sound/items/handling/cardboardbox_drop.ogg'
+	pickup_sound =  'sound/items/handling/cardboardbox_pickup.ogg'
 	var/foldable = /obj/item/stack/sheet/cardboard
 	var/illustration = "writing"
 
@@ -39,12 +41,12 @@
 /obj/item/storage/box/suicide_act(mob/living/carbon/user)
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 	if(myhead)
-		user.visible_message("<span class='suicide'>[user] puts [user.p_their()] head into \the [src], and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		user.visible_message(span_suicide("[user] puts [user.p_their()] head into \the [src], and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!"))
 		myhead.dismember()
 		myhead.forceMove(src)//force your enemies to kill themselves with your head collection box!
 		playsound(user,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
 		return BRUTELOSS
-	user.visible_message("<span class='suicide'>[user] beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /obj/item/storage/box/update_icon()
@@ -59,12 +61,12 @@
 	if(!foldable)
 		return
 	if(contents.len)
-		to_chat(user, "<span class='warning'>You can't fold this box with items still inside!</span>")
+		to_chat(user, span_warning("You can't fold this box with items still inside!"))
 		return
 	if(!ispath(foldable))
 		return
 
-	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
+	to_chat(user, span_notice("You fold [src] flat."))
 	var/obj/item/I = new foldable
 	qdel(src)
 	user.put_in_hands(I)
@@ -126,7 +128,10 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/map/station(src)
+	
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
+		new /obj/item/flashlight/flare(src)
+		new /obj/item/radio/off(src)
 
 /obj/item/storage/box/survival/radio/PopulateContents()
 	..() // we want the survival stuff too.
@@ -137,15 +142,12 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/map/station(src)
-
 
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/map/station(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
@@ -161,11 +163,16 @@
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/map/station(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
 	new /obj/item/radio/off(src)
+
+// Plasmaman survival box
+/obj/item/storage/box/plasmaman/PopulateContents()
+	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/tank/internals/plasmaman/belt/full(src)
+	new /obj/item/reagent_containers/hypospray/medipen(src)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
@@ -345,10 +352,9 @@
 
 /obj/item/storage/box/minertracker/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/implantcase/tracking = 3,
+		/obj/item/implantcase/tracking = 4,
 		/obj/item/implanter = 1,
-		/obj/item/implantpad = 1,
-		/obj/item/locator = 1)
+		/obj/item/computer_hardware/hard_drive/portable/implant_tracker = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/chemimp
@@ -383,6 +389,16 @@
 	..()
 	for(var/i in 1 to 7)
 		new /obj/item/bodybag(src)
+
+/obj/item/storage/box/envirobags
+	name = "environment protection bags"
+	desc = "The label indicates that it contains environment protection bags."
+	illustration = "bodybags"
+
+/obj/item/storage/box/envirobags/PopulateContents()
+	..()
+	for(var/i in 1 to 7)
+		new /obj/item/bodybag/environmental(src)
 
 /obj/item/storage/box/rxglasses
 	name = "box of prescription glasses"
@@ -608,7 +624,7 @@
 
 /obj/item/storage/box/mousetraps
 	name = "box of Pest-B-Gon mousetraps"
-	desc = "<span class='alert'>Keep out of reach of children.</span>"
+	desc = span_alert("Keep out of reach of children.")
 	illustration = "mousetrap"
 
 /obj/item/storage/box/mousetraps/PopulateContents()
@@ -647,6 +663,8 @@
 	item_state = "zippo"
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = ITEM_SLOT_BELT
+	drop_sound = 'sound/items/handling/matchbox_drop.ogg'
+	pickup_sound =  'sound/items/handling/matchbox_pickup.ogg'
 
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
@@ -736,14 +754,14 @@
 	foldable = null
 
 /obj/item/storage/box/hug/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] clamps the box of hugs on [user.p_their()] jugular! Guess it wasn't such a hugbox after all..</span>")
+	user.visible_message(span_suicide("[user] clamps the box of hugs on [user.p_their()] jugular! Guess it wasn't such a hugbox after all.."))
 	return (BRUTELOSS)
 
 /obj/item/storage/box/hug/attack_self(mob/user)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE)
 	playsound(loc, "rustle", 50, 1, -5)
-	user.visible_message("<span class='notice'>[user] hugs \the [src].</span>","<span class='notice'>You hug \the [src].</span>")
+	user.visible_message(span_notice("[user] hugs \the [src]."),span_notice("You hug \the [src]."))
 
 /////clown box & honkbot assembly
 /obj/item/storage/box/clown
@@ -754,12 +772,12 @@
 /obj/item/storage/box/clown/attackby(obj/item/I, mob/user, params)
 	if((istype(I, /obj/item/bodypart/l_arm/robot)) || (istype(I, /obj/item/bodypart/r_arm/robot)))
 		if(contents.len) //prevent accidently deleting contents
-			to_chat(user, "<span class='warning'>You need to empty [src] out first!</span>")
+			to_chat(user, span_warning("You need to empty [src] out first!"))
 			return
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return
 		qdel(I)
-		to_chat(user, "<span class='notice'>You add some wheels to the [src]! You've got a honkbot assembly now! Honk!</span>")
+		to_chat(user, span_notice("You add some wheels to the [src]! You've got a honkbot assembly now! Honk!"))
 		var/obj/item/bot_assembly/honkbot/A = new
 		qdel(src)
 		user.put_in_hands(A)
@@ -776,6 +794,10 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
+		new /obj/item/flashlight/flare(src)
+		new /obj/item/radio/off(src)
 
 /obj/item/storage/box/rubbershot
 	name = "box of rubber shots"
@@ -796,6 +818,16 @@
 /obj/item/storage/box/lethalshot/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/ammo_casing/shotgun/buckshot(src)
+
+/obj/item/storage/box/breacherslug
+	name = "box of breaching shotgun shells"
+	desc = "A box full of breaching slugs, designed for rapid entry."
+	icon_state = "breachershot_box"
+	illustration = null
+
+/obj/item/storage/box/breacherslug/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/ammo_casing/shotgun/breacher(src)
 
 /obj/item/storage/box/beanbag
 	name = "box of beanbags"
@@ -841,17 +873,17 @@
 	if(istype(W, /obj/item/pen))
 		//if a pen is used on the sack, dialogue to change its design appears
 		if(contents.len)
-			to_chat(user, "<span class='warning'>You can't modify [src] with items still inside!</span>")
+			to_chat(user, span_warning("You can't modify [src] with items still inside!"))
 			return
 		var/list/designs = list(NODESIGN, NANOTRASEN, SYNDI, HEART, SMILEY, "Cancel")
 		var/switchDesign = input("Select a Design:", "Paper Sack Design", designs[1]) in designs
 		if(get_dist(usr, src) > 1)
-			to_chat(usr, "<span class='warning'>You have moved too far away!</span>")
+			to_chat(usr, span_warning("You have moved too far away!"))
 			return
 		var/choice = designs.Find(switchDesign)
 		if(design == designs[choice] || designs[choice] == "Cancel")
 			return 0
-		to_chat(usr, "<span class='notice'>You make some modifications to [src] using your pen.</span>")
+		to_chat(usr, span_notice("You make some modifications to [src] using your pen."))
 		design = designs[choice]
 		icon_state = "paperbag_[design]"
 		item_state = "paperbag_[design]"
@@ -870,12 +902,12 @@
 	else if(W.is_sharp())
 		if(!contents.len)
 			if(item_state == "paperbag_None")
-				user.show_message("<span class='notice'>You cut eyeholes into [src].</span>", 1)
+				user.show_message(span_notice("You cut eyeholes into [src]."), MSG_VISUAL)
 				new /obj/item/clothing/head/papersack(user.loc)
 				qdel(src)
 				return 0
 			else if(item_state == "paperbag_SmileyFace")
-				user.show_message("<span class='notice'>You cut eyeholes into [src] and modify the design.</span>", 1)
+				user.show_message(span_notice("You cut eyeholes into [src] and modify the design."), MSG_VISUAL)
 				new /obj/item/clothing/head/papersack/smiley(user.loc)
 				qdel(src)
 				return 0
@@ -1053,6 +1085,17 @@
 	new /obj/item/circuitboard/machine/circuit_imprinter(src)
 	new /obj/item/circuitboard/computer/rdconsole(src)
 
+/obj/item/storage/box/rndboards/miner
+	name = "\proper Morokha Heavy Industries Research and Development Kit"
+	desc = "A box containing the essential circuit boards for research and development. Materials, stock parts, and intelligence not included."
+
+/obj/item/storage/box/rndboards/miner/PopulateContents()
+	new /obj/item/circuitboard/machine/autolathe(src)
+	new /obj/item/circuitboard/machine/protolathe(src)
+	new /obj/item/circuitboard/machine/destructive_analyzer(src)
+	new /obj/item/circuitboard/machine/circuit_imprinter(src)
+	new /obj/item/circuitboard/computer/rdconsole(src)
+
 /obj/item/storage/box/silver_sulf
 	name = "box of silver sulfadiazine patches"
 	desc = "Contains patches used to treat burns."
@@ -1119,3 +1162,36 @@
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/screwdriver = 1)
 	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/materials
+	name = "Materials Box"
+	desc = "Contains most of what you would need"
+
+/obj/item/storage/box/materials/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/stack/sheet/metal/fifty = 2,
+		/obj/item/stack/sheet/glass/fifty = 2,
+		/obj/item/stack/rods/fifty = 2,
+		/obj/item/stack/sheet/plasteel/fifty = 2,
+		/obj/item/stack/sheet/plastic/fifty = 2,
+		/obj/item/stack/sheet/plastitaniumglass/fifty = 2,
+		/obj/item/stack/sheet/titaniumglass/fifty = 2,
+		/obj/item/stack/sheet/plasmaglass/fifty = 2,
+		/obj/item/stack/sheet/rglass/fifty = 2,
+		/obj/item/stack/sheet/mineral/plastitanium/fifty = 1,
+		/obj/item/stack/sheet/mineral/wood/fifty = 1,
+		/obj/item/stack/sheet/mineral/titanium/fifty = 1,
+		/obj/item/stack/sheet/mineral/uranium/fifty = 1,
+		/obj/item/stack/sheet/mineral/diamond = 1,
+		/obj/item/stack/sheet/mineral/plasma/fifty = 1,
+		/obj/item/stack/sheet/mineral/gold/fifty = 1,
+		/obj/item/stack/sheet/mineral/silver/fifty = 1,
+		/obj/item/stack/sheet/mineral/bananium/fifty = 1)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/materials/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 200
+	STR.max_items = 30
+	STR.max_w_class = WEIGHT_CLASS_GIGANTIC

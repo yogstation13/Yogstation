@@ -1,0 +1,98 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/mob/living/simple_animal/cockroach,
+/turf/open/floor/plasteel/chapel{
+	dir = 1
+	},
+/area/template_noop)
+"f" = (
+/turf/open/floor/carpet/purple,
+/area/template_noop)
+"g" = (
+/obj/item/candle,
+/turf/open/floor/plating,
+/area/template_noop)
+"t" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/carpet/purple,
+/area/template_noop)
+"w" = (
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 1
+	},
+/area/template_noop)
+"x" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/turf/open/floor/plasteel/chapel,
+/area/template_noop)
+"B" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/obj/item/stack/tile/carpet/purple,
+/obj/item/stack/tile/carpet/purple,
+/turf/open/floor/plasteel/chapel,
+/area/template_noop)
+"D" = (
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/obj/item/stack/tile/carpet/purple,
+/obj/item/stack/tile/carpet/purple,
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
+/area/template_noop)
+"H" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating,
+/area/template_noop)
+"N" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"U" = (
+/mob/living/simple_animal/cockroach,
+/obj/item/clothing/under/burial,
+/obj/structure/table/wood,
+/turf/open/floor/plating,
+/area/template_noop)
+"W" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/mob/living/simple_animal/cockroach,
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/template_noop)
+
+(1,1,1) = {"
+t
+N
+f
+f
+N
+"}
+(2,1,1) = {"
+U
+w
+H
+b
+D
+"}
+(3,1,1) = {"
+g
+W
+B
+H
+x
+"}

@@ -3,7 +3,7 @@
 	var/list/exclude_objectives = list() //objectives to disallow the buyer from buying this item
 	var/surplus_nullcrates
 
-/datum/uplink_item/New()	
+/datum/uplink_item/New()
 	. = ..()
 	if(isnull(surplus_nullcrates))
 		surplus_nullcrates = surplus
@@ -52,13 +52,6 @@
 /////////New Items////////
 //////////////////////////
 
-/datum/uplink_item/dangerous/katana
-	name = "Katana"
-	desc = "The katana is an edged weapon with a blade of pure degeneracy. While more robust than an energy sword, it cannot be as easily sheathed and hidden. At a glance, it looks like a fake katana; you can tell from the pixels."
-	item = /obj/item/katana/faketoy
-	cost = 10
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
-
 /datum/uplink_item/stealthy_weapons/door_charge
 	name = "Explosive Airlock Charge"
 	desc = "A small, easily concealable device. It can be applied to an open airlock panel, booby-trapping it. \
@@ -77,16 +70,34 @@
 	cost = 5
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
-	
-/datum/uplink_item/device_tools/arm/nuke
-	cost = 15
-	exclude_modes = list()
-	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
 	var/limbs = user.held_items.len
 	user.change_number_of_hands(limbs+1)
 	to_chat(user, "You feel more dexterous")
+
+/datum/uplink_item/explosives/trap_disk
+	name = "Syndicate Trapped Disk"
+	desc = "A bomb disguised as a syndicate disk that triggers on removal or when tampered with. Nanotrasen IT staff will likely be able to identify its true nature at a glance."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/trap
+	cost = 5
+	surplus = 10
+
+/datum/uplink_item/device_tools/ntnet_dos
+	name = "DoS Traffic Generator Disk"
+	desc = "An advanced script in a portable disk that can perform denial of service attacks against NTNet quantum relays. \
+			The system administrator will probably notice this. \
+			Multiple devices can run this program together against the same relay for increased effect."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/ntnet_dos
+	cost = 2
+	surplus = 10
+
+/datum/uplink_item/race_restricted/xeno_organ_kit
+	name = "Xenomorph Organ Kit"
+	desc = "A kit containing some organs that were... \"donated\" by your ancestors. Contains an autosurgeon, a plasma vessel, a resin spinner, and an acid gland."
+	cost = 15
+	item = /obj/item/storage/box/syndie_kit/xeno_organ_kit
+	restricted_species = list("polysmorph")
 
 /datum/uplink_item/role_restricted/gondola_meat
 	name = "Gondola meat"
@@ -102,12 +113,29 @@
 	cost = 25
 	restricted_roles = list("Clown", "Cook")
 
+/datum/uplink_item/role_restricted/syndicate_basket
+	name = "Syndicate Frying Basket"
+	desc = "A syndicate basket which allows the deep frying of dead corpses, ejects anything which the corpse is wearing."
+	item = /obj/item/syndicate_basket
+	cost = 7
+	restricted_roles = list("Cook")
+
 /datum/uplink_item/implants/mindslave
 	name = "Mindslave Implant"
 	desc = "An implant injected into another body, forcing the victim to obey any command by the user."
 	item = /obj/item/storage/box/syndie_kit/imp_mindslave
 	cost = 7
+	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 20
+	exclude_modes = list(/datum/game_mode/infiltration)
+
+/datum/uplink_item/implants/greytide
+	name = "Greytide Implant"
+	desc = "An implant injected into another body, forcing the victim to greytide."
+	item = /obj/item/storage/box/syndie_kit/imp_greytide
+	cost = 5
+	surplus = 20
+	restricted_roles = list("Assistant")
 
 /datum/uplink_item/badass/frying_pan
 	name = "Bananium Plated Frying Pan"

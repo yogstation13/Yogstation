@@ -15,6 +15,7 @@
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_ENGINEERING
+	alt_titles = list("Engineering Director", "Head of Engineering")
 
 	outfit = /datum/outfit/job/ce
 
@@ -31,11 +32,6 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 
-	changed_maps = list("OmegaStation")
-
-/datum/job/chief_engineer/proc/OmegaStationChanges()
-	return TRUE
-
 /datum/outfit/job/ce
 	name = "Chief Engineer"
 	jobtype = /datum/job/chief_engineer
@@ -45,10 +41,13 @@
 	l_pocket = /obj/item/pda/heads/ce
 	ears = /obj/item/radio/headset/heads/ce
 	uniform = /obj/item/clothing/under/rank/chief_engineer
+	uniform_skirt = /obj/item/clothing/under/rank/chief_engineer/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
+	alt_shoes = /obj/item/clothing/shoes/xeno_wraps/command // Provides Command shoes to digitigrade species
 	head = /obj/item/clothing/head/hardhat/white
 	gloves = /obj/item/clothing/gloves/color/black/ce
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced=1) //yogs - removes eng budget
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/phone/preset/advanced/command=1) //yogs - removes eng budget
+	glasses = /obj/item/clothing/glasses/meson/sunglasses
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
@@ -64,7 +63,7 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/engine/elite
 	shoes = /obj/item/clothing/shoes/magboots/advance
 	suit_store = /obj/item/tank/internals/oxygen
-	glasses = /obj/item/clothing/glasses/meson/engine
+	glasses = /obj/item/clothing/glasses/meson/sunglasses
 	gloves = /obj/item/clothing/gloves/color/yellow
 	head = null
 	internals_slot = SLOT_S_STORE

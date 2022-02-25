@@ -105,8 +105,8 @@
 	new /obj/item/clothing/head/nun_hood(src)
 	new /obj/item/clothing/suit/chaplainsuit/holidaypriest(src)
 	new /obj/item/storage/backpack/cultpack(src)
-	new /obj/item/storage/fancy/candle_box(src)
-	new /obj/item/storage/fancy/candle_box(src)
+	new /obj/item/storage/box/fancy/candle_box(src)
+	new /obj/item/storage/box/fancy/candle_box(src)
 	return
 
 /obj/structure/closet/wardrobe/red
@@ -192,7 +192,7 @@
 		/obj/item/clothing/under/rank/medical/green = 1,
 		/obj/item/clothing/under/rank/medical/purple = 1,
 		/obj/item/clothing/under/rank/medical = 3,
-		/obj/item/clothing/suit/toggle/labcoat = 3,
+		/obj/item/clothing/suit/toggle/labcoat/md = 3,
 		/obj/item/clothing/suit/toggle/labcoat/emt = 3,
 		/obj/item/clothing/shoes/sneakers/white = 3,
 		/obj/item/clothing/head/soft/emt = 3)

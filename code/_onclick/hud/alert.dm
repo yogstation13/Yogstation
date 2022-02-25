@@ -227,11 +227,11 @@ or something covering your eyes."
 
 /obj/screen/alert/mind_control/Click()
 	var/mob/living/L = usr
-	to_chat(L, "<span class='mind_control'>[command]</span>")
+	to_chat(L, "[span_mind_control("[command]")]")
 
-/obj/screen/alert/drunk //Not implemented
+/obj/screen/alert/drunk
 	name = "Drunk"
-	desc = "All that alcohol you've been drinking is impairing your speech, motor skills, and mental cognition. Make sure to act like it."
+	desc = "All that alcohol you've been drinking is impairing your speech, motor skills, and mental cognition."
 	icon_state = "drunk"
 
 /obj/screen/alert/embeddedobject
@@ -268,6 +268,11 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	desc = "You're on fire. Click to stop, drop and roll to put the fire out or move to a vacuum area."
 	icon_state = "fire"
 
+/obj/screen/alert/brainwashed
+	name = "Brainwashed"
+	desc = "You've been brainwashed! Check your notes to see your objective."
+	icon_state = "hypnosis"
+
 /obj/screen/alert/fire/Click()
 	var/mob/living/L = usr
 	if(!istype(L) || !L.can_resist())
@@ -276,6 +281,29 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	if(L.mobility_flags & MOBILITY_MOVE)
 		return L.resist_fire() //I just want to start a flame in your hearrrrrrtttttt.
 
+/obj/screen/alert/give // information set when the give alert is made
+	icon_state = "default"
+	var/mob/living/carbon/giver
+	var/obj/item/receiving
+
+/obj/screen/alert/give/proc/setup(mob/living/carbon/taker, mob/living/carbon/giver, obj/item/receiving)
+	name = "[giver] is offering [receiving]"
+	desc = "[giver] is offering [receiving]. Click this alert to take it."
+	icon_state = "template"
+	cut_overlays()
+	add_overlay(receiving)
+	src.receiving = receiving
+	src.giver = giver
+	RegisterSignal(taker, COMSIG_MOVABLE_MOVED, /obj/screen/alert/give/.proc/removeAlert)
+
+/obj/screen/alert/give/proc/removeAlert()
+	to_chat(mob_viewer, span_warning("You moved out of range of [giver]!"))
+	mob_viewer.clear_alert("[giver]")
+
+/obj/screen/alert/give/Click(location, control, params)
+	. = ..()
+	var/mob/living/carbon/C = mob_viewer
+	C.take(giver, receiving)
 
 //ALIENS
 
@@ -427,7 +455,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 
 /obj/screen/alert/clockwork/infodump/MouseEntered(location,control,params)
 	if(GLOB.ratvar_awakens)
-		desc = "<font size=3><b>CHETR<br>NYY<br>HAGEHUGF-NAQ-UBABE<br>RATVAR.</b></font>"
+		desc = "<font size=3><b>CHETR<br>NYY<br>HAGEHGUF-NAQ-UBABE<br>RATVAR.</b></font>"
 	else
 		var/servants = 0
 		var/list/textlist = list()
@@ -657,7 +685,7 @@ so as to remain in compliance with the most up-to-date laws."
 		return
 	var/paramslist = params2list(params)
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		to_chat(usr, "<span class='boldnotice'>[name]</span> - <span class='info'>[desc]</span>")
+		to_chat(usr, "[span_boldnotice("[name]")] - [span_info("[desc]")]")
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)

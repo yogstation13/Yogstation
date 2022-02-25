@@ -14,7 +14,7 @@ It is possible to destroy the net by the occupant or someone else.
 	mouse_opacity = MOUSE_OPACITY_ICON//So you can hit it with stuff.
 	anchored = TRUE//Can't drag/grab the net.
 	layer = ABOVE_ALL_MOB_LAYER
-	max_integrity = 25 //How much health it has.
+	max_integrity = 40 //How much health it has.
 	can_buckle = 1
 	buckle_lying = 0
 	buckle_prevents_pull = TRUE
@@ -34,9 +34,9 @@ It is possible to destroy the net by the occupant or someone else.
 /obj/structure/energy_net/Destroy()
 	if(!success)
 		if(!QDELETED(affecting))
-			affecting.visible_message("[affecting.name] was recovered from the energy net!", "You were recovered from the energy net!", "<span class='italics'>You hear a grunt.</span>")
+			affecting.visible_message("[affecting.name] was recovered from the energy net!", "You were recovered from the energy net!", span_italics("You hear a grunt."))
 		if(!QDELETED(master))//As long as they still exist.
-			to_chat(master, "<span class='userdanger'>ERROR</span>: unable to initiate capture protocol. Procedure terminated.")
+			to_chat(master, "[span_userdanger("ERROR")]: unable to initiate capture protocol. Procedure terminated.")
 	return ..()
 
 /obj/structure/energy_net/process()
@@ -65,10 +65,10 @@ It is possible to destroy the net by the occupant or someone else.
 	visible_message("[affecting] suddenly vanishes!")
 	affecting.forceMove(pick(GLOB.holdingfacility)) //Throw mob in to the holding facility.
 	GLOB.ninja_capture += affecting
-	to_chat(affecting, "<span class='danger'>You appear in a strange place. You feel very trapped.</span>")
+	to_chat(affecting, span_danger("You appear in a strange place. You feel very trapped."))
 
 	if(!QDELETED(master))//As long as they still exist.
-		to_chat(master, "<span class='notice'><b>SUCCESS</b>: capture procedure of [affecting] complete.</span>")
+		to_chat(master, span_notice("<b>SUCCESS</b>: capture procedure of [affecting] complete."))
 	do_sparks(5, FALSE, affecting)
 	playsound(affecting, 'sound/effects/phasein.ogg', 25, 1)
 	playsound(affecting, 'sound/effects/sparks2.ogg', 50, 1)

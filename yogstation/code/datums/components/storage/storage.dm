@@ -1,3 +1,13 @@
+/datum/component/storage/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/M, datum/component/storage/remote)
+	. = ..()
+	if (.)
+		SEND_SIGNAL(parent, COMSIG_STORAGE_INSERTED, I, M)
+
+/datum/component/storage/remove_from_storage(atom/movable/AM, atom/new_location)
+	. = ..()
+	if (.)
+		SEND_SIGNAL(parent, COMSIG_STORAGE_REMOVED, AM, new_location)
+
 /datum/component/storage/RemoveComponent() // hey TG you dropped this
 	UnregisterSignal(parent, COMSIG_CONTAINS_STORAGE)
 	UnregisterSignal(parent, COMSIG_IS_STORAGE_LOCKED)
@@ -76,26 +86,32 @@
 			return
 		var/turf/loccheck = get_turf(A)
 		if(is_reebe(loccheck.z))
-			user.visible_message("<span class='warning'>An unseen force knocks [user] to the ground!</span>", "<span class='big_brass'>\"I think not!\"</span>")
+			user.visible_message(span_warning("An unseen force knocks [user] to the ground!"), "[span_big_brass("\"I think not!\"")]")
 			user.Paralyze(60)
 			return
 		if(istype(loccheck.loc, /area/fabric_of_reality))
-			to_chat(user, "<span class='danger'>You can't do that here!</span>")
-		to_chat(user, "<span class='danger'>The Bluespace interfaces of the two devices catastrophically malfunction!</span>")
+			to_chat(user, span_danger("You can't do that here!"))
+		to_chat(user, span_danger("The Bluespace interfaces of the two devices catastrophically malfunction!"))
 		qdel(W)
 		playsound(loccheck,'sound/effects/supermatter.ogg', 200, 1)
 
 		message_admins("[ADMIN_LOOKUPFLW(user)] detonated a bag of holding at [ADMIN_VERBOSEJMP(loccheck)].")
 		log_game("[key_name(user)] detonated a bag of holding at [loc_name(loccheck)].")
-
-		user.gib(TRUE, TRUE, TRUE)
-		for(var/turf/T in range(6,loccheck))
+		
+		for(var/turf/T in range(2,loccheck))
 			if(istype(T, /turf/open/space/transit))
 				continue
-			for(var/mob/living/M in T)
-				if(M.movement_type & FLYING)
-					M.visible_message("<span class='danger'>The bluespace collapse crushes the air towards it, pulling [M] towards the ground...</span>")
-					M.Paralyze(5, TRUE, TRUE)		//Overrides stun absorbs.
+			for(var/atom/AT in T)
+				AT.emp_act(EMP_HEAVY)
+				if(istype(AT, /obj))
+					var/obj/O = AT
+					O.obj_break()
+				if(istype(AT, /mob/living))
+					var/mob/living/M = AT
+					M.take_overall_damage(85)
+					if(M.movement_type & FLYING)
+						M.visible_message(span_danger("The bluespace collapse crushes the air towards it, pulling [M] towards the ground..."))
+						M.Paralyze(5, TRUE, TRUE)		//Overrides stun absorbs.
 			T.TerraformTurf(/turf/open/chasm/magic, /turf/open/chasm/magic)
 		for(var/fabricarea in get_areas(/area/fabric_of_reality))
 			var/area/fabric_of_reality/R = fabricarea
@@ -105,7 +121,7 @@
 		qdel(A)
 		return
 	. = ..()
-
+	
 /datum/component/storage/concrete/trashbag/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/M, datum/component/storage/remote)
 	..() // Actually sets the default return value
 	var/atom/real_location = real_location()

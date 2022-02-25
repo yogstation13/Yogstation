@@ -18,8 +18,8 @@
 	response_disarm = "flails at"
 	response_harm   = "flails at"
 	harm_intent_damage = 0
-	melee_damage_lower = 60 //Was 35, buffed
-	melee_damage_upper = 60
+	melee_damage_lower = 160 //Was 60, buffed
+	melee_damage_upper = 160
 	attacktext = "rends"
 	attack_sound = 'sound/weapons/slash.ogg'
 	minbodytemp = 0
@@ -40,9 +40,9 @@
 
 /mob/living/simple_animal/ascendant_shadowling/singularity_act()
 	to_chat(src, "<span class='shadowling>NO NO NO AAAAAAAAAAAAAAAAAAA-</span>")
-	to_chat(world, "<span class='shadowling'><b>\"<font size=6>NO!</font> <font size=5>I will</font> <font size=4>not be.... destroyed</font> <font size=3>by a....</font> <font size=2>AAAAAAA-</font>\"</span>")
+	to_chat(world, span_shadowling("<b>\"<font size=6>NO!</font> <font size=5>I will</font> <font size=4>not be.... destroyed</font> <font size=3>by a....</font> <font size=2>AAAAAAA-</font>\""))
 	for(var/X in GLOB.alive_mob_list)
 		var/mob/M = X
-		to_chat(M, "<span class='notice'><i><b>You feel a woosh as newly released energy temporarily distorts space itself...</b></i></span>")
+		to_chat(M, span_notice("<i><b>You feel a woosh as newly released energy temporarily distorts space itself...</b></i>"))
 		SEND_SOUND(M, sound('sound/hallucinations/wail.ogg'))
 	. = ..()

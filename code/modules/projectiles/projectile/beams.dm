@@ -3,6 +3,8 @@
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 20
+	wound_bonus = -20
+	bare_wound_bonus = 10
 	light_range = 2
 	damage_type = BURN
 	hitsound = 'sound/weapons/sear.ogg'
@@ -19,11 +21,25 @@
 	tracer_type = /obj/effect/projectile/tracer/laser
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	impact_type = /obj/effect/projectile/impact/laser
+	wound_bonus = -30
+	bare_wound_bonus = 40
+
+//overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
+/obj/item/projectile/beam/laser/hellfire
+	name = "hellfire laser"
+	damage = 25
+	wound_bonus = 0
+	speed = 0.6 // higher power = faster, that's how light works right
+
+/obj/projectile/beam/laser/hellfire/Initialize()
+	. = ..()
+	transform *= 2
 
 /obj/item/projectile/beam/laser/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
 	damage = 40
+	wound_bonus = 10
 	tracer_type = /obj/effect/projectile/tracer/heavy_laser
 	muzzle_type = /obj/effect/projectile/muzzle/heavy_laser
 	impact_type = /obj/effect/projectile/impact/heavy_laser
@@ -91,7 +107,10 @@
 /obj/item/projectile/beam/pulse/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
-		target.ex_act(EXPLODE_HEAVY)
+		if(isobj(target))
+			SSexplosions.med_mov_atom += target
+		else
+			SSexplosions.medturf += target
 
 /obj/item/projectile/beam/pulse/shotgun
 	damage = 40
@@ -111,6 +130,8 @@
 	name = "emitter beam"
 	icon_state = "emitter"
 	damage = 30
+	wound_bonus = -40
+	bare_wound_bonus = 70
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = LIGHT_COLOR_GREEN
 
@@ -180,5 +201,5 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/M = target
-		M.visible_message("<span class='danger'>[M] explodes into a shower of gibs!</span>")
+		M.visible_message(span_danger("[M] explodes into a shower of gibs!"))
 		M.gib()

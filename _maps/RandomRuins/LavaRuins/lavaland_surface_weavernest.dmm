@@ -14,65 +14,8 @@
 "ae" = (
 /turf/closed/wall/mineral/sandstone,
 /area/ruin/unpowered)
-"af" = (
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"ag" = (
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/structure/spider,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"ah" = (
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
 "ai" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"aj" = (
-/obj/structure/spider,
-/obj/item/gun/energy/kinetic_accelerator,
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/effect/turf_decal/sand,
-/obj/item/borg/upgrade/modkit/trigger_guard,
-/obj/item/borg/upgrade/modkit/chassis_mod/orange,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"ak" = (
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"al" = (
-/obj/structure/spider,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"am" = (
-/obj/effect/mob_spawn/human/corpse/pirate,
-/obj/item/melee/transforming/energy/sword/pirate,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"an" = (
-/obj/effect/mob_spawn/human/clown,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "ao" = (
 /obj/structure/spider,
@@ -80,18 +23,6 @@
 	icon_state = "stickyweb2"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"ap" = (
-/obj/effect/mob_spawn/human/skeleton,
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/structure/spider,
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "aq" = (
 /obj/effect/mob_spawn/human/skeleton,
@@ -101,31 +32,11 @@
 /obj/structure/spider,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
-"ar" = (
-/obj/structure/spider,
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"as" = (
-/obj/effect/turf_decal/sand,
-/mob/living/simple_animal/hostile/asteroid/marrowweaver,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
 "at" = (
 /obj/structure/spider{
 	icon_state = "stickyweb2"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"au" = (
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "av" = (
 /mob/living/simple_animal/hostile/asteroid/marrowweaver,
@@ -135,65 +46,9 @@
 /obj/item/kitchen/knife/combat/bone,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
-"ax" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"ay" = (
-/obj/item/reagent_containers/spray/spraytan,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"az" = (
-/obj/effect/mob_spawn/human/skeleton,
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/structure/spider,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aA" = (
-/obj/effect/mob_spawn/human/skeleton,
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
-/obj/structure/spider,
-/obj/structure/spider,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aB" = (
-/obj/effect/mob_spawn/human/corpse/russian/ranged,
-/obj/item/storage/firstaid,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aC" = (
-/obj/effect/mob_spawn/human/corpse/damaged{
-	gloves = /obj/item/clothing/gloves/yogs/chitinhands;
-	shoes = /obj/item/clothing/shoes/yogs/chitintreads;
-	suit = /obj/item/clothing/suit/yogs/armor/chitinplate
-	},
-/obj/item/pickaxe/drill/diamonddrill,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
 "aD" = (
 /obj/structure/spider,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"aE" = (
-/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,
-/obj/effect/turf_decal/sand,
-/obj/item/gun/ballistic/rifle/boltaction,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aF" = (
-/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "aG" = (
 /obj/item/reagent_containers/food/snacks/spidereggs,
@@ -213,16 +68,6 @@
 	icon_state = "stickyweb2"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"aJ" = (
-/obj/item/reagent_containers/food/snacks/spiderleg,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aK" = (
-/obj/item/storage/firstaid/regular,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "aL" = (
 /obj/item/reagent_containers/food/snacks/spiderleg,
@@ -249,23 +94,9 @@
 /obj/item/storage/firstaid/toxin,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
-"aQ" = (
-/obj/item/reagent_containers/food/snacks/spidereggs,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
 "aR" = (
 /obj/item/reagent_containers/food/snacks/spidereggs,
 /obj/item/reagent_containers/food/snacks/spiderleg,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"aS" = (
-/obj/effect/mob_spawn/human/skeleton,
-/obj/item/kitchen/knife/combat/bone,
-/obj/structure/spider,
-/obj/structure/spider{
-	icon_state = "stickyweb2"
-	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "aT" = (
@@ -295,27 +126,197 @@
 /obj/item/tank/internals/emergency_oxygen/double,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
-"aX" = (
-/obj/structure/table,
-/obj/item/twohanded/spear,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aY" = (
-/obj/structure/bed,
-/obj/effect/mob_spawn/human/skeleton,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aZ" = (
-/obj/structure/table,
-/obj/item/stack/sheet/animalhide/weaver_chitin,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
 "ba" = (
 /obj/structure/mineral_door/sandstone,
 /turf/open/floor/plasteel,
+/area/ruin/unpowered)
+"cY" = (
+/obj/structure/bed,
+/obj/effect/mob_spawn/human/skeleton,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"hT" = (
+/obj/structure/table,
+/obj/item/twohanded/spear,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"it" = (
+/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"ln" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"lB" = (
+/obj/structure/table,
+/obj/item/stack/sheet/animalhide/weaver_chitin,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"ni" = (
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/structure/spider,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"qH" = (
+/obj/effect/mob_spawn/human/skeleton,
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/structure/spider,
+/obj/structure/spider,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"uU" = (
+/obj/structure/spider,
+/obj/item/gun/energy/kinetic_accelerator,
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/effect/turf_decal/sand,
+/obj/item/borg/upgrade/modkit/trigger_guard,
+/obj/item/borg/upgrade/modkit/chassis_mod/orange,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"wt" = (
+/obj/item/reagent_containers/food/snacks/spidereggs,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"zF" = (
+/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,
+/obj/effect/turf_decal/sand,
+/obj/item/gun/ballistic/rifle/boltaction,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"CS" = (
+/obj/effect/mob_spawn/human/skeleton,
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/structure/spider,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Df" = (
+/obj/effect/mob_spawn/human/corpse/damaged{
+	gloves = /obj/item/clothing/gloves/yogs/chitinhands;
+	shoes = /obj/item/clothing/shoes/yogs/chitintreads;
+	suit = /obj/item/clothing/suit/yogs/armor/chitinplate
+	},
+/obj/item/pickaxe/drill/diamonddrill,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Dz" = (
+/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Gi" = (
+/obj/effect/mob_spawn/human/corpse/pirate,
+/obj/item/melee/transforming/energy/sword/pirate,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"GB" = (
+/obj/effect/mob_spawn/human/skeleton,
+/obj/item/kitchen/knife/combat/bone,
+/obj/structure/spider,
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"KZ" = (
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Mn" = (
+/obj/effect/turf_decal/sand,
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Nh" = (
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"NX" = (
+/obj/effect/mob_spawn/human/clown,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"PC" = (
+/obj/structure/spider,
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Rd" = (
+/obj/effect/mob_spawn/human/corpse/russian/ranged,
+/obj/item/storage/firstaid,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Um" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"VI" = (
+/obj/effect/mob_spawn/human/skeleton,
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/structure/spider,
+/obj/structure/spider{
+	icon_state = "stickyweb2"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Wq" = (
+/obj/structure/spider,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"WE" = (
+/obj/item/reagent_containers/food/snacks/spiderleg,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"WY" = (
+/obj/item/storage/firstaid/regular,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Zs" = (
+/obj/item/reagent_containers/spray/spraytan,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -409,8 +410,8 @@ aa
 aa
 aa
 ad
-au
-al
+KZ
+Wq
 ad
 aa
 aa
@@ -446,9 +447,9 @@ aa
 ad
 aa
 ae
-au
-ar
-ar
+KZ
+PC
+PC
 ad
 aa
 ad
@@ -484,8 +485,8 @@ ad
 ad
 ad
 ad
-au
-al
+KZ
+Wq
 ae
 ad
 ad
@@ -521,8 +522,8 @@ ad
 ai
 at
 ad
-ah
-ah
+ln
+ln
 ad
 ad
 ad
@@ -559,7 +560,7 @@ at
 ad
 ad
 ad
-ah
+ln
 ad
 ad
 ad
@@ -584,11 +585,11 @@ aa
 ac
 ad
 ae
-af
-am
+it
+Gi
 ae
-ax
-aB
+Um
+Rd
 ae
 ad
 at
@@ -621,12 +622,12 @@ aa
 aa
 ac
 ae
-ag
-ag
-ar
-ag
-ag
-aE
+ni
+ni
+PC
+ni
+ni
+zF
 ae
 ad
 ad
@@ -639,15 +640,15 @@ ai
 ai
 ai
 ad
-aQ
+wt
 ad
 ad
 ad
 ad
 ad
 ae
-aX
-aZ
+hT
+lB
 ae
 aa
 "}
@@ -658,11 +659,11 @@ aa
 ad
 ad
 ae
-ah
-ah
-ah
-as
-ar
+ln
+ln
+ln
+Mn
+PC
 ae
 ad
 ad
@@ -683,8 +684,8 @@ ad
 ad
 ad
 ae
-ah
-ah
+ln
+ln
 ae
 aa
 "}
@@ -695,22 +696,22 @@ aa
 ac
 ac
 ae
-ah
-an
-as
-ay
-ar
+ln
+NX
+Mn
+Zs
+PC
 ae
 ae
 aG
 at
-ah
-al
+ln
+Wq
 ai
 ai
 aO
 ad
-aQ
+wt
 ai
 ad
 at
@@ -720,8 +721,8 @@ ad
 ad
 ad
 ae
-aY
-ah
+cY
+ln
 ae
 aa
 "}
@@ -732,12 +733,12 @@ aa
 aa
 ad
 ae
-ah
-ah
-ah
-ar
-ag
-aF
+ln
+ln
+ln
+PC
+ni
+Dz
 ae
 ai
 aD
@@ -770,10 +771,10 @@ aa
 aa
 ae
 ad
-ah
-ah
+ln
+ln
 ad
-aC
+Df
 ae
 ad
 ad
@@ -820,7 +821,7 @@ ad
 ad
 ad
 aP
-ah
+ln
 av
 ao
 aD
@@ -845,27 +846,27 @@ ad
 ad
 ai
 ad
-ah
+ln
 av
 ad
 ad
 ad
 at
 ao
-ah
-ah
+ln
+ln
 aL
 aw
-ah
-aJ
+ln
+WE
 ad
 ad
 ad
 ai
-au
+KZ
 ao
-ah
-au
+ln
+KZ
 ai
 ai
 ac
@@ -922,8 +923,8 @@ ad
 at
 ad
 ad
-ah
-ah
+ln
+ln
 ai
 ai
 at
@@ -935,7 +936,7 @@ ai
 ai
 ad
 ai
-ah
+ln
 ad
 ad
 ad
@@ -956,7 +957,7 @@ ad
 ad
 ai
 ad
-au
+KZ
 ad
 ad
 ai
@@ -968,10 +969,10 @@ ai
 aD
 aM
 ai
-ah
+ln
 ai
 aD
-ah
+ln
 ai
 ad
 ad
@@ -993,10 +994,10 @@ ad
 ad
 ae
 ad
-ah
+ln
 ai
 ae
-ah
+ln
 ad
 at
 av
@@ -1030,7 +1031,7 @@ aa
 ae
 ad
 ai
-ah
+ln
 ad
 ad
 ad
@@ -1065,20 +1066,20 @@ aa
 aa
 ad
 ae
-aj
+uU
 ao
 ai
-al
-ah
+Wq
+ln
 ad
 ad
 aH
-ah
-ah
-as
+ln
+ln
+Mn
 at
 ai
-ah
+ln
 ai
 aR
 ad
@@ -1102,16 +1103,16 @@ aa
 ad
 ad
 ae
-ak
-ap
+Nh
+VI
 ai
-az
-ah
+CS
+ln
 ao
 ai
 ao
-aJ
-aK
+WE
+WY
 ai
 ad
 ad
@@ -1140,9 +1141,9 @@ aa
 ad
 ad
 ai
-ah
+ln
 av
-ah
+ln
 ai
 ao
 ad
@@ -1154,7 +1155,7 @@ ad
 ad
 ad
 ad
-ar
+PC
 ai
 aD
 aD
@@ -1191,7 +1192,7 @@ aD
 ad
 ao
 ai
-ah
+ln
 ad
 ad
 ai
@@ -1213,12 +1214,12 @@ aa
 ad
 ad
 ad
-al
+Wq
 aq
 ai
 aw
-ah
-ah
+ln
+ln
 ae
 ad
 ad
@@ -1227,12 +1228,12 @@ aD
 ai
 ad
 ai
-ah
-ah
+ln
+ln
 ad
 aD
 ai
-ah
+ln
 ai
 ad
 ad
@@ -1251,11 +1252,11 @@ ac
 ad
 ad
 ad
-al
+Wq
 ai
-aA
+qH
 aD
-al
+Wq
 ad
 aG
 at
@@ -1265,7 +1266,7 @@ ai
 at
 av
 ad
-ah
+ln
 ai
 ai
 ad
@@ -1289,7 +1290,7 @@ ac
 ad
 ad
 ai
-as
+Mn
 ai
 ai
 ad
@@ -1302,8 +1303,8 @@ ai
 at
 ad
 ad
-aS
-ah
+GB
+ln
 ai
 ad
 ad
@@ -1324,12 +1325,12 @@ aa
 aa
 aa
 ae
-ah
-ah
+ln
+ln
 ai
 ai
-ah
-ah
+ln
+ln
 ad
 ad
 ad
@@ -1340,7 +1341,7 @@ ad
 ad
 ad
 ad
-ar
+PC
 ad
 ad
 ad
@@ -1377,7 +1378,7 @@ ad
 ad
 ad
 ad
-ah
+ln
 ad
 ad
 ad
@@ -1414,7 +1415,7 @@ ad
 ad
 ad
 ad
-ah
+ln
 ad
 ad
 ad

@@ -38,15 +38,18 @@
 	QDEL_NULL(bulb)
 	return ..()
 
-/obj/machinery/flasher/power_change()
-	if (powered() && anchored && bulb)
-		stat &= ~NOPOWER
+/obj/machinery/flasher/powered()
+	if(!anchored || !bulb)
+		return FALSE
+	return ..()
+
+/obj/machinery/flasher/update_icon()
+	if (powered())
 		if(bulb.burnt_out)
 			icon_state = "[base_state]1-p"
 		else
 			icon_state = "[base_state]1"
 	else
-		stat |= NOPOWER
 		icon_state = "[base_state]1-p"
 
 //Don't want to render prison breaks impossible
@@ -54,9 +57,9 @@
 	add_fingerprint(user)
 	if (W.tool_behaviour == TOOL_WIRECUTTER)
 		if (bulb)
-			user.visible_message("[user] begins to disconnect [src]'s flashbulb.", "<span class='notice'>You begin to disconnect [src]'s flashbulb...</span>")
+			user.visible_message("[user] begins to disconnect [src]'s flashbulb.", span_notice("You begin to disconnect [src]'s flashbulb..."))
 			if(W.use_tool(src, user, 30, volume=50) && bulb)
-				user.visible_message("[user] has disconnected [src]'s flashbulb!", "<span class='notice'>You disconnect [src]'s flashbulb.</span>")
+				user.visible_message("[user] has disconnected [src]'s flashbulb!", span_notice("You disconnect [src]'s flashbulb."))
 				bulb.forceMove(loc)
 				bulb = null
 				power_change()
@@ -65,20 +68,20 @@
 		if (!bulb)
 			if(!user.transferItemToLoc(W, src))
 				return
-			user.visible_message("[user] installs [W] into [src].", "<span class='notice'>You install [W] into [src].</span>")
+			user.visible_message("[user] installs [W] into [src].", span_notice("You install [W] into [src]."))
 			bulb = W
 			power_change()
 		else
-			to_chat(user, "<span class='warning'>A flashbulb is already installed in [src]!</span>")
+			to_chat(user, span_warning("A flashbulb is already installed in [src]!"))
 
 	else if (W.tool_behaviour == TOOL_WRENCH)
 		if(!bulb)
-			to_chat(user, "<span class='notice'>You start unsecuring the flasher frame...</span>")
+			to_chat(user, span_notice("You start unsecuring the flasher frame..."))
 			if(W.use_tool(src, user, 40, volume=50))
-				to_chat(user, "<span class='notice'>You unsecure the flasher frame.</span>")
+				to_chat(user, span_notice("You unsecure the flasher frame."))
 				deconstruct(TRUE)
 		else
-			to_chat(user, "<span class='warning'>Remove a flashbulb from [src] first!</span>")
+			to_chat(user, span_warning("Remove a flashbulb from [src] first!"))
 	else
 		return ..()
 
@@ -133,12 +136,10 @@
 			power_change()
 
 /obj/machinery/flasher/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(!(stat & BROKEN))
-			stat |= BROKEN
-			if(bulb)
-				bulb.burn_out()
-				power_change()
+	. = ..()
+	if(. && bulb)
+		bulb.burn_out()
+		power_change()
 
 /obj/machinery/flasher/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -172,13 +173,13 @@
 		W.play_tool_sound(src, 100)
 
 		if (!anchored && !isinspace())
-			to_chat(user, "<span class='notice'>[src] is now secured.</span>")
+			to_chat(user, span_notice("[src] is now secured."))
 			add_overlay("[base_state]-s")
 			setAnchored(TRUE)
 			power_change()
 			proximity_monitor.SetRange(range)
 		else
-			to_chat(user, "<span class='notice'>[src] can now be moved.</span>")
+			to_chat(user, span_notice("[src] can now be moved."))
 			cut_overlays()
 			setAnchored(FALSE)
 			power_change()
@@ -197,7 +198,7 @@
 
 /obj/item/wallframe/flasher/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Its channel ID is '[id]'.</span>"
+	. += span_notice("Its channel ID is '[id]'.")
 
 /obj/item/wallframe/flasher/after_attach(var/obj/O)
 	..()

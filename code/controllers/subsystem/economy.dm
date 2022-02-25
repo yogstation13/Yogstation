@@ -18,7 +18,6 @@ SUBSYSTEM_DEF(economy)
 	var/datum/station_state/engineering_check = new /datum/station_state()
 	var/alive_humans_bounty = 100
 	var/crew_safety_bounty = 1500
-	var/monster_bounty = 150
 	var/mood_bounty = 100
 	var/techweb_bounty = 25 // yogs start - nerf insane rd budget
 	var/slime_bounty = list("grey" = 10,
@@ -48,43 +47,67 @@ SUBSYSTEM_DEF(economy)
 							"rainbow" = 1000)
 	var/list/bank_accounts = list() //List of normal accounts (not department accounts)
 	var/list/dep_cards = list()
+	///ref to moneysink. Only one should exist on the map. Has its payout() proc called every budget cycle
+	var/obj/item/energy_harvester/moneysink = null
+	///The modifier multiplied to the value of bounties paid out.
+	var/bounty_modifier = 1
+	///The modifier multiplied to the value of cargo pack prices.
+	var/pack_price_modifier = 1
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
 	for(var/A in department_accounts)
+		if(A == ACCOUNT_SEC)
+			new /datum/bank_account/department(A, STARTING_SEC_BUDGET)
+			continue
 		new /datum/bank_account/department(A, budget_to_hand_out)
 	return ..()
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
-	eng_payout()  // Payout based on nothing. What will replace it? Surplus power, powered APC's, air alarms? Who knows.
+	eng_payout() // Payout based on station integrity. Also adds money from excess power sold via energy harvester.
 	sci_payout() // Payout based on slimes.
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	civ_payout() // Payout based on ??? Profit
+	car_payout() // Cargo's natural gain in the cash moneys.
+	var/list/dictionary = list()
+	for(var/datum/corporation/c in GLOB.corporations)
+		dictionary[c] = list()
+		for(var/datum/mind/m in c.employees)
+			dictionary[c] += m.name
 	for(var/A in bank_accounts)
 		var/datum/bank_account/B = A
-		B.payday(1)
-
+		for(var/datum/corporation/c in dictionary)
+			if(B.account_holder in dictionary[c])
+				B.payday(c.paymodifier, TRUE)
+		B.payday(1)	
 
 /datum/controller/subsystem/economy/proc/get_dep_account(dep_id)
 	for(var/datum/bank_account/department/D in generated_accounts)
 		if(D.department_id == dep_id)
 			return D
 
+/** Payout for engineering every cycle. Uses a base of 3000 then multiplies it by station integrity. Afterwards, calls the payout proc from
+  * the energy harvester and adds the cash from that to the budget.
+  */
 /datum/controller/subsystem/economy/proc/eng_payout()
 	var/engineering_cash = 3000
 	engineering_check.count()
 	var/station_integrity = min(PERCENT(GLOB.start_state.score(engineering_check)), 100)
 	station_integrity *= 0.01
 	engineering_cash *= station_integrity
-	var/datum/bank_account/D = get_dep_account(ACCOUNT_ENG)
+	if(moneysink)
+		engineering_cash += moneysink.payout()
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(engineering_cash)
 
+
+/datum/controller/subsystem/economy/proc/car_payout()
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(500)
+
 /datum/controller/subsystem/economy/proc/secmedsrv_payout()
-	var/crew
-	var/alive_crew
-	var/dead_monsters
-	var/cash_to_grant
 	for(var/mob/m in GLOB.mob_list)
 		if(isnewplayer(m))
 			continue
@@ -93,9 +116,7 @@ SUBSYSTEM_DEF(economy)
 				continue
 			if(ishuman(m))
 				var/mob/living/carbon/human/H = m
-				crew++
 				if(H.stat != DEAD)
-					alive_crew++
 					var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 					var/medical_cash = (H.health / H.maxHealth) * alive_humans_bounty
 					if(mood)
@@ -108,21 +129,19 @@ SUBSYSTEM_DEF(economy)
 					var/datum/bank_account/D = get_dep_account(ACCOUNT_MED)
 					if(D)
 						D.adjust_money(medical_cash)
-		if(ishostile(m))
-			var/mob/living/simple_animal/hostile/H = m
-			if(H.stat == DEAD && H.z in SSmapping.levels_by_trait(ZTRAIT_STATION))
-				dead_monsters++
 		CHECK_TICK
-	var/living_ratio = alive_crew / crew
-	cash_to_grant = (crew_safety_bounty * living_ratio) + (monster_bounty * dead_monsters)
-	var/datum/bank_account/D = get_dep_account(ACCOUNT_SEC)
-	if(D)
-		D.adjust_money(min(cash_to_grant, MAX_GRANT_SECMEDSRV))
+
+	var/service_passive_income = (rand(1, 6) * 400) //min 400, max 2400
+	var/datum/bank_account/SRV = get_dep_account(ACCOUNT_SRV)
+	if(SRV)
+		SRV.adjust_money(service_passive_income)
 
 /datum/controller/subsystem/economy/proc/sci_payout()
 	var/science_bounty = 0
 	for(var/mob/living/simple_animal/slime/S in GLOB.mob_list)
 		if(S.stat == DEAD)
+			continue
+		if(!is_station_level(S.z))
 			continue
 		science_bounty += slime_bounty[S.colour]
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_SCI)

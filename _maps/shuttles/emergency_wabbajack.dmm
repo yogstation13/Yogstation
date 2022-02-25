@@ -6,8 +6,10 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ac" = (
-/obj/structure/grille,
-/obj/structure/window/shuttle/tinted,
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ad" = (
@@ -88,6 +90,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
 "ak" = (
@@ -112,13 +115,6 @@
 /area/shuttle/escape)
 "ao" = (
 /obj/structure/barricade/wooden,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
 "ap" = (
@@ -238,8 +234,18 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"aF" = (
+"aE" = (
 /obj/machinery/door/window/eastleft,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"aF" = (
+/obj/machinery/door/window/eastright,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aG" = (
@@ -272,13 +278,6 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"aK" = (
-/obj/machinery/stasis,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "aL" = (
 /obj/structure/table/reinforced,
@@ -317,10 +316,6 @@
 "aR" = (
 /obj/machinery/chem_master,
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"aS" = (
-/obj/machinery/door/window/eastright,
-/turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aT" = (
 /obj/structure/table/glass,
@@ -610,6 +605,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"sE" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "yZ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -663,9 +665,13 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"WP" = (
-/obj/machinery/stasis,
-/obj/machinery/door/firedoor/border_only,
+"Wh" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 
@@ -776,9 +782,9 @@ ab
 ab
 ab
 aq
-aK
+Wh
 aN
-WP
+sE
 aq
 ab
 ji
@@ -823,11 +829,11 @@ ao
 au
 az
 ab
-aF
+aE
 Ec
 bM
 sc
-aS
+aF
 as
 aI
 aI

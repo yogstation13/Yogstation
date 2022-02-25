@@ -12,7 +12,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	antag_flag = ROLE_CHANGELING
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel") //YOGS - added hop
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Brig Physician") //YOGS - added hop and brig physician
 	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 4
@@ -23,10 +23,15 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	<span class='green'>Changelings</span>: Accomplish the objectives assigned to you.\n\
 	<span class='notice'>Crew</span>: Root out and eliminate the changeling menace."
 
+	title_icon = "changeling"
 	var/const/changeling_amount = 4 //hard limit on changelings if scaling is turned off
 	var/list/changelings = list()
 
 /datum/game_mode/changeling/pre_setup()
+
+	if(num_players() <= lowpop_amount)
+		if(!prob((2*1.14**num_players())-2)) //exponential equation, chance of restriction goes up as pop goes down.
+			protected_jobs += GLOB.command_positions
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
@@ -96,17 +101,28 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 			of the Thing being sent to a station in this sector is highly likely. It may be in the guise of any crew member. Trust nobody - suspect everybody. Do not announce this to the crew, \
 			as paranoia may spread and inhibit workplace efficiency."
 
+/proc/is_changeling(mob/M) //Usefull check changeling
+	return M?.mind?.has_antag_datum(/datum/antagonist/changeling)
+
 /proc/changeling_transform(mob/living/carbon/human/user, datum/changelingprofile/chosen_prof)
 	var/datum/dna/chosen_dna = chosen_prof.dna
 	user.real_name = chosen_prof.name
 	user.underwear = chosen_prof.underwear
 	user.undershirt = chosen_prof.undershirt
 	user.socks = chosen_prof.socks
+	user.mind.accent_name = chosen_prof.accent
+	user.mind.RegisterSignal(user, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
 
 	chosen_dna.transfer_identity(user, 1)
 	user.updateappearance(mutcolor_update=1)
 	user.update_body()
 	user.domutcheck()
+
+	// get rid of any scars from previous changeling-ing
+	for(var/i in user.all_scars)
+		var/datum/scar/iter_scar = i
+		if(iter_scar.fake)
+			qdel(iter_scar)
 
 	//vars hackery. not pretty, but better than the alternative.
 	for(var/slot in GLOB.slots)
@@ -134,5 +150,26 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 		C.item_state = chosen_prof.item_state_list[slot]
 		if(equip)
 			user.equip_to_slot_or_del(C, GLOB.slot2slot[slot])
+	for(var/stored_scar_line in chosen_prof.stored_scars)
+		var/datum/scar/attempted_fake_scar = user.load_scar(stored_scar_line)
+		if(attempted_fake_scar)
+			attempted_fake_scar.fake = TRUE
 
 	user.regenerate_icons()
+
+/datum/game_mode/changeling/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Slippery Changelings:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/M in changelings)
+		var/datum/antagonist/changeling/cling = M.has_antag_datum(/datum/antagonist/changeling)
+		if(cling)
+			round_credits += "<center><h2>[cling.changelingID] in the body of [M.name]</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>Uh oh, we lost track of the shape shifters!</h2>", "<center><h2>Nobody move!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

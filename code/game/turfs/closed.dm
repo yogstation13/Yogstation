@@ -3,26 +3,34 @@
 	opacity = 1
 	density = TRUE
 	blocks_air = TRUE
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
+
+/turf/closed/Initialize()
+	. = ..()
+	update_air_ref()
 
 /turf/closed/AfterChange()
 	. = ..()
 	SSair.high_pressure_delta -= src
+	update_air_ref()
 
 /turf/closed/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	return FALSE
 
-/turf/closed/CanPass(atom/movable/mover, turf/target)
+/turf/closed/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSCLOSEDTURF))
 		return TRUE
-	return ..()
 
 /turf/closed/indestructible
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
 	flags_1 = NOJAUNT_1 | CAN_BE_DIRTY_1
+
+/turf/closed/indestructible/rust_heretic_act()
+	return
 
 /turf/closed/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
@@ -144,11 +152,23 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "icerock"
 
+/turf/closed/indestructible/rock/wood
+	name = "wooden wall"
+	desc = "A wall with wooden plating. Stiff."
+	icon = 'icons/turf/walls/wood_wall.dmi'
+	icon_state = "wood"
+
 /turf/closed/indestructible/paper
 	name = "thick paper wall"
 	desc = "A wall layered with impenetrable sheets of paper."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "paperwall"
+
+/turf/closed/indestructible/vault
+	name = "sturdy wall"
+	desc = "A huge chunk of metal used to separate rooms."
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rockvault"
 
 /turf/closed/indestructible/necropolis
 	name = "necropolis wall"

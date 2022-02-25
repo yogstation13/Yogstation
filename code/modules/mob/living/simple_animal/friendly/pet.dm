@@ -19,9 +19,23 @@
 		return
 	pcollar = P
 	regenerate_icons()
-	to_chat(user, "<span class='notice'>You put the [P] around [src]'s neck.</span>")
+	to_chat(user, span_notice("You put the [P] around [src]'s neck."))
 	if(P.tagname && !unique_pet)
 		fully_replace_character_name(null, "\proper [P.tagname]")
+
+/mob/living/simple_animal/pet/Move(NewLoc, direct)
+	. = ..()
+
+	if(!pcollar)
+		return
+	if (!(mobility_flags & MOBILITY_STAND))
+		return
+	if(loc != NewLoc)
+		return
+	if(!has_gravity(loc))
+		return
+		
+	SEND_SIGNAL(pcollar, COMSIG_NECK_STEP_ACTION)
 
 /mob/living/simple_animal/pet/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/clothing/neck/petcollar) && !pcollar)
@@ -72,4 +86,3 @@
 	if(pcollar && collar_type)
 		add_overlay("[collar_type]collar")
 		add_overlay("[collar_type]tag")
-

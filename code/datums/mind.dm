@@ -38,22 +38,26 @@
 	var/memory
 
 	var/assigned_role
+
+	var/role_alt_title
+	
 	var/special_role
 	var/list/restricted_roles = list()
+	var/list/datum/objective/objectives = list()
 
 	var/list/spell_list = list() // Wizard mode & "Give Spell" badmin button.
 
 	var/linglink
 	var/datum/martial_art/martial_art
 	var/static/default_martial_art = new/datum/martial_art
-	var/miming = 0 // Mime's vow of silence
+	var/miming = FALSE // Mime's vow of silence
 	var/list/antag_datums
 	var/antag_hud_icon_state = null //this mind's ANTAG_HUD should have this icon_state
 	var/datum/atom_hud/antag/antag_hud = null //this mind's antag HUD
 	var/damnation_type = 0
 	var/datum/mind/soulOwner //who owns the soul.  Under normal circumstances, this will point to src
 	var/hasSoul = TRUE // If false, renders the character unable to sell their soul.
-	var/isholy = FALSE //is this person a chaplain or admin role allowed to use bibles
+	var/holy_role = NONE //is this person a chaplain or admin role allowed to use bibles, Any rank besides 'NONE' allows for this.
 
 	var/mob/living/enslaved_to //If this mind's master is another mob (i.e. adamantine golems)
 	var/datum/language_holder/language_holder
@@ -67,8 +71,25 @@
 	var/list/learned_recipes //List of learned recipe TYPES.
 
 	var/flavour_text = null
+	///Are we zombified/uncloneable?
+	var/zombified = FALSE
+	///What character we joined in as- either at roundstart or latejoin, so we know for persistent scars if we ended as the same person or not
+	var/mob/original_character
+	/// What scar slot we have loaded, so we don't have to constantly check the savefile
+	var/current_scar_slot
+	/// The index for what character slot, if any, we were loaded from, so we can track persistent scars on a per-character basis. Each character slot gets PERSISTENT_SCAR_SLOTS scar slots
+	var/original_character_slot_index
+	/// The index for our current scar slot, so we don't have to constantly check the savefile (unlike the slots themselves, this index is independent of selected char slot, and increments whenever a valid char is joined with)
+	var/current_scar_slot_index
+	/// Is set to true if an antag was used to get this person picked as an antag
+	var/token_picked = FALSE
 
-/datum/mind/New(var/key)
+	/// If they have used the afk verb recently
+	var/afk_verb_used = FALSE
+	/// The timer for the afk verb
+	var/afk_verb_timer
+
+/datum/mind/New(key)
 	src.key = key
 	soulOwner = src
 	martial_art = default_martial_art
@@ -77,16 +98,18 @@
 	SSticker.minds -= src
 	if(islist(antag_datums))
 		QDEL_LIST(antag_datums)
+	current = null
+	soulOwner = null
 	return ..()
 
 /datum/mind/proc/get_language_holder()
 	if(!language_holder)
-		var/datum/language_holder/L = current.get_language_holder(shadow=FALSE)
-		language_holder = L.copy(src)
+		language_holder = new (src)
 
 	return language_holder
 
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
+	original_character = null
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
 		// Yogs start -- Mood preferences
@@ -102,10 +125,8 @@
 		// Yogs End
 		current.mind = null
 		UnregisterSignal(current, COMSIG_MOB_DEATH)
+		UnregisterSignal(current, COMSIG_MOB_SAY)
 		SStgui.on_transfer(current, new_character)
-	if(!language_holder)
-		var/datum/language_holder/mob_holder = new_character.get_language_holder(shadow = FALSE)
-		language_holder = mob_holder.copy(src)
 
 	if(key)
 		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
@@ -136,14 +157,24 @@
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
+	transfer_parasites()
 	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
+	if(accent_name)
+		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
+	if(new_character.client)
+		new_character.client.init_verbs() // re-initialize character specific verbs
+		LAZYCLEARLIST(new_character.client.recent_examines)
+	current.update_atom_languages()
 
 /datum/mind/proc/set_death_time()
 	last_death = world.time
 
 /datum/mind/proc/store_memory(new_text)
+	var/newlength = length_char(memory) + length_char(new_text)
+	if (newlength > MAX_MESSAGE_LEN * 100)
+		memory = copytext_char(memory, -newlength-MAX_MESSAGE_LEN * 100)
 	memory += "[new_text]<BR>"
 
 /datum/mind/proc/wipe_memory()
@@ -360,12 +391,13 @@
 
 	if(creator.mind.special_role)
 		message_admins("[ADMIN_LOOKUPFLW(current)] has been created by [ADMIN_LOOKUPFLW(creator)], an antagonist.")
-		to_chat(current, "<span class='userdanger'>Despite your creators current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed.</span>")
+		to_chat(current, span_userdanger("Despite your creators current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed."))
 
 /datum/mind/proc/show_memory(mob/recipient, window=1)
 	if(!recipient)
 		recipient = current
-	var/output = "<B>[current.real_name]'s Memories:</B><br>"
+	var/output = ""
+	output += "<B>[current.real_name]'s Memories:</B><br>"
 	output += memory
 
 
@@ -387,6 +419,7 @@
 				output += "</ul>"
 
 	if(window)
+		output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + output + "</BODY></HTML>"
 		recipient << browse(output,"window=memory")
 	else if(all_objectives.len || memory)
 		to_chat(recipient, "<i>[output]</i>")
@@ -402,18 +435,18 @@
 	if(href_list["remove_antag"])
 		var/datum/antagonist/A = locate(href_list["remove_antag"]) in antag_datums
 		if(!istype(A))
-			to_chat(usr,"<span class='warning'>Invalid antagonist ref to be removed.</span>")
+			to_chat(usr,span_warning("Invalid antagonist ref to be removed."))
 			return
 		A.admin_remove(usr)
 
 	if (href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in get_all_jobs()
+		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in sortList(get_all_jobs())
 		if (!new_role)
 			return
 		assigned_role = new_role
 
 	else if (href_list["memory_edit"])
-		var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null|message),1,MAX_MESSAGE_LEN)
+		var/new_memo = stripped_multiline_input(usr, "Write new memory", "Memory", memory, MAX_MESSAGE_LEN)
 		if (isnull(new_memo))
 			return
 		memory = new_memo
@@ -447,7 +480,7 @@
 					if(1)
 						target_antag = antag_datums[1]
 					else
-						var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", "(new custom antag)") as null|anything in antag_datums + "(new custom antag)"
+						var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", "(new custom antag)") as null|anything in sortList(antag_datums) + "(new custom antag)"
 						if (QDELETED(target))
 							return
 						else if(target == "(new custom antag)")
@@ -554,7 +587,7 @@
 							log_admin("[key_name(usr)] changed [current]'s telecrystal count to [crystals].")
 			if("uplink")
 				if(!equip_traitor())
-					to_chat(usr, "<span class='danger'>Equipping a syndicate failed!</span>")
+					to_chat(usr, span_danger("Equipping a syndicate failed!"))
 					log_admin("[key_name(usr)] tried and failed to give [current] an uplink.")
 				else
 					log_admin("[key_name(usr)] gave [current] an uplink.")
@@ -583,7 +616,7 @@
 
 /datum/mind/proc/announce_objectives()
 	var/obj_count = 1
-	to_chat(current, "<span class='notice'>Your current objectives:</span>")
+	to_chat(current, span_notice("Your current objectives:"))
 	for(var/objective in get_all_objectives())
 		var/datum/objective/O = objective
 		to_chat(current, "<B>Objective #[obj_count]</B>: [O.explanation_text]")
@@ -608,6 +641,10 @@
 	if(!(has_antag_datum(/datum/antagonist/traitor)))
 		add_antag_datum(/datum/antagonist/traitor)
 
+/datum/mind/proc/make_Contractor_Support()
+	if(!(has_antag_datum(/datum/antagonist/traitor/contractor_support)))
+		add_antag_datum(/datum/antagonist/traitor/contractor_support)
+
 /datum/mind/proc/make_Changeling()
 	// yogs start - Donor features, quiet round
 	if(quiet_round)
@@ -618,6 +655,12 @@
 		C = add_antag_datum(/datum/antagonist/changeling)
 		special_role = ROLE_CHANGELING
 	return C
+
+/datum/mind/proc/make_Heretic()
+	if(quiet_round)
+		return
+	if(!(has_antag_datum(/datum/antagonist/heretic)))
+		add_antag_datum(/datum/antagonist/heretic)
 
 /datum/mind/proc/make_Wizard()
 	// yogs start - Donor features, quiet round
@@ -668,6 +711,7 @@
 		if(istype(S, spell))
 			spell_list -= S
 			qdel(S)
+	current?.client << output(null, "statbrowser:check_spells")
 
 /datum/mind/proc/RemoveAllSpells()
 	for(var/obj/effect/proc_holder/S in spell_list)
@@ -687,6 +731,15 @@
 		for(var/datum/action/A in current.actions)
 			A.Grant(new_character)
 	transfer_mindbound_actions(new_character)
+
+//Check if there is a specific spell in mind
+/datum/mind/proc/CheckSpell(var/obj/effect/proc_holder/spell/spell)
+	if(!spell) return
+	for(var/X in spell_list)
+		var/obj/effect/proc_holder/spell/S = X
+		if(istype(S, spell))
+			return TRUE
+	return FALSE
 
 /datum/mind/proc/transfer_mindbound_actions(mob/living/new_character)
 	for(var/X in spell_list)
@@ -723,11 +776,26 @@
 			if(istype(O,objective_type))
 				return TRUE
 
+/datum/mind/proc/add_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			c.employees += src
+
+/datum/mind/proc/remove_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			c.employees -= src
+
+/datum/mind/proc/is_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			return src in c.employees
+
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
 	mind.active = 1		//indicates that the mind is currently synced with a client
 
-/datum/mind/proc/has_martialart(var/string)
+/datum/mind/proc/has_martialart(string)
 	if(martial_art && martial_art.id == string)
 		return martial_art
 	return FALSE

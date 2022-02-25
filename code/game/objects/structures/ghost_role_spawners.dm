@@ -11,15 +11,15 @@
 	roundstart = FALSE
 	death = FALSE
 	mob_species = /datum/species/pod
-	short_desc = "You are a sentient ecosystem, an example of the mastery over life that your creators possessed." 
+	short_desc = "You are a sentient ecosystem, an example of the mastery over life that your creators possessed."
 	flavour_text = "Your masters, benevolent as they were, created uncounted \
 	seed vaults and spread them across the universe to every planet they could chart. You are in one such seed vault. Your goal is to cultivate and spread life wherever it will go while waiting \
-	for contact from your creators. Estimated time of last contact: Deployment, 5x10^3 millennia ago.</b>"
+	for contact from your creators. Estimated time of last contact: Deployment, 5x10^3 millennia ago."
 	assignedrole = "Lifebringer"
 
 /obj/effect/mob_spawn/human/seed_vault/special(mob/living/new_spawn)
 	var/plant_name = pick("Tomato", "Potato", "Broccoli", "Carrot", "Ambrosia", "Pumpkin", "Ivy", "Kudzu", "Banana", "Moss", "Flower", "Bloom", "Root", "Bark", "Glowshroom", "Petal", "Leaf", \
-	"Venus", "Sprout","Cocoa", "Strawberry", "Citrus", "Oak", "Cactus", "Pepper", "Juniper")
+	"Venus", "Sprout", "Cocoa", "Strawberry", "Citrus", "Oak", "Cactus", "Pepper", "Juniper", "Cannabis")
 	new_spawn.fully_replace_character_name(null,plant_name)
 	if(ishuman(new_spawn))
 		var/mob/living/carbon/human/H = new_spawn
@@ -47,17 +47,13 @@
 	density = FALSE
 	short_desc = "You are an ash walker. Your tribe worships the Necropolis."
 	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. \
-	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. Fresh sacrifices for your nest.</b>"
+	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. Fresh sacrifices for your nest."
 	assignedrole = "Ash Walker"
 	var/datum/team/ashwalkers/team
 
 /obj/effect/mob_spawn/human/ash_walker/special(mob/living/new_spawn)
 	new_spawn.fully_replace_character_name(null,random_unique_lizard_name(gender))
 	to_chat(new_spawn, "<b>Drag the corpses of men and beasts to your nest. It will absorb them to create more of your kind. Glory to the Necropolis!</b>") //yogs - removed a sentence
-
-	new_spawn.grant_language(/datum/language/draconic)
-	var/datum/language_holder/holder = new_spawn.get_language_holder()
-	holder.selected_default_language = /datum/language/draconic
 
 	new_spawn.mind.add_antag_datum(/datum/antagonist/ashwalker, team)
 
@@ -71,7 +67,7 @@
 	var/area/A = get_area(src)
 	team = ashteam
 	if(A)
-		notify_ghosts("An ash walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
+		notify_ghosts("An ash walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
 
 /datum/outfit/ashwalker
 	name ="Ashwalker"
@@ -139,7 +135,7 @@
 	. = ..()
 	var/area/A = get_area(src)
 	if(!mapload && A)
-		notify_ghosts("\A [initial(species.prefix)] golem shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_GOLEM)
+		notify_ghosts("\A [initial(species.prefix)] golem shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_GOLEM)
 	if(has_owner && creator)
 		short_desc = "You are a Golem."
 		flavour_text = "You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. \
@@ -185,7 +181,7 @@
 		if(QDELETED(src) || uses <= 0)
 			return
 		log_game("[key_name(user)] golem-swapped into [src]")
-		user.visible_message("<span class='notice'>A faint light leaves [user], moving to [src] and animating it!</span>","<span class='notice'>You leave your old body behind, and transfer into [src]!</span>")
+		user.visible_message(span_notice("A faint light leaves [user], moving to [src] and animating it!"),span_notice("You leave your old body behind, and transfer into [src]!"))
 		show_flavour = FALSE
 		create(ckey = user.ckey,name = user.real_name)
 		user.death()
@@ -244,7 +240,7 @@
 			outfit.suit = /obj/item/clothing/suit/toggle/labcoat
 			outfit.back = /obj/item/storage/backpack/medic
 		if(4)
-			flavour_text += "you were always joked about by your friends for \"not playing with a full deck\", as they so <i>kindly</i> put it. It seems that they were right when you, on a tour \
+			flavour_text += "you were always joked about by your friends for \"not playing with a full deck\", as they so kindly put it. It seems that they were right when you, on a tour \
 			at one of Nanotrasen's state-of-the-art research facilities, were in one of the escape pods alone and saw the red button. It was big and shiny, and it caught your eye. You pressed \
 			it, and after a terrifying and fast ride for days, you landed here. You've had time to wisen up since then, and you think that your old friends wouldn't be laughing now."
 
@@ -266,9 +262,9 @@
 	name = "broken rejuvenation pod"
 	desc = "A small sleeper typically used to instantly restore minor wounds. This one seems broken, and its occupant is comatose."
 	mob_name = "a translocated vet"
-	flavour_text = "<span class='big bold'>What...?</span><b> Where are you? Where are the others? This is still the animal hospital - you should know, you've been an intern here for weeks - but \
+	flavour_text = "What...? Where are you? Where are the others? This is still the animal hospital - you should know, you've been an intern here for weeks - but \
 	everyone's gone. One of the cats scratched you just a few minutes ago. That's why you were in the pod - to heal the scratch. The scabs are still fresh; you see them right now. So where is \
-	everyone? Where did they go? What happened to the hospital? And is that <i>smoke</i> you smell? You need to find someone else. Maybe they can tell you what happened.</b>"
+	everyone? Where did they go? What happened to the hospital? And is that smoke you smell? You need to find someone else. Maybe they can tell you what happened."
 	assignedrole = "Translocated Vet"
 
 /obj/effect/mob_spawn/human/doctor/alive/lavaland/Destroy()
@@ -383,7 +379,7 @@
 	important_info = "Be aware that if you do not live up to [owner.name]'s expectations, they can send you back to hell with a single thought. [owner.name]'s death will also return you to hell."
 	var/area/A = get_area(src)
 	if(!mapload && A)
-		notify_ghosts("\A friendship shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE)
+		notify_ghosts("\A friendship shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE)
 	objectives = "Be [owner.name]'s friend, and keep [owner.name] alive, so you don't get sent back to hell."
 	spell = summoning_spell
 
@@ -401,7 +397,7 @@
 		id.registered_name = L.real_name
 		id.update_label()
 	else
-		to_chat(L, "<span class='userdanger'>Your owner is already dead!  You will soon perish.</span>")
+		to_chat(L, span_userdanger("Your owner is already dead!  You will soon perish."))
 		addtimer(CALLBACK(L, /mob.proc/dust, 150)) //Give em a few seconds as a mercy.
 
 /datum/outfit/demonic_friend
@@ -601,3 +597,33 @@
 
 /obj/effect/mob_spawn/human/pirate/gunner
 	rank = "Gunner"
+
+//The Innkeeper, a iceplanet ghostrole for peacefully operating a rest stop complete with food and drinks.
+/obj/effect/mob_spawn/human/innkeeper
+	name = "innkeeper sleeper"
+	desc = "A standard sleeper designed to keep someone in suspended animation until they are ready to awake."
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	outfit = /datum/outfit/innkeeper
+	id_job = "Bartender"
+	id_access_list = list(ACCESS_BAR,ACCESS_KITCHEN,ACCESS_HYDROPONICS)
+	random = TRUE
+	roundstart = FALSE
+	death = FALSE
+	short_desc = "You're a simpleman on a desolate ice land, with the goal of running your inn."
+	flavour_text = "The electricity bill isn't going to pay itself. Try to get some customers and earn some money at your inn."
+	assignedrole = "Innkeeper"
+
+/datum/outfit/innkeeper
+	name = "Innkeeper"
+	uniform = /obj/item/clothing/under/rank/bartender
+	head = /obj/item/clothing/head/flatcap
+	back = /obj/item/storage/backpack
+	suit = /obj/item/clothing/suit/armor/vest
+	mask = /obj/item/clothing/mask/cigarette/pipe
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	glasses = /obj/item/clothing/glasses/sunglasses/reagent
+	ears = /obj/item/radio/headset
+	id = /obj/item/card/id
+	implants = list(/obj/item/implant/teleporter/innkeeper) //stay at your inn please.
+	suit_store = /obj/item/gun/ballistic/shotgun/doublebarrel //emergency weapon, ice planets are dangerous, and customers can be too.

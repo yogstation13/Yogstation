@@ -30,8 +30,8 @@
 
 /datum/antagonist/gang/farewell()
 	if(ishuman(owner.current))
-		owner.current.visible_message("<span class='deconversion_message'>[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!</span>", null, null, null, owner.current)
-		to_chat(owner, "<span class='userdanger'>You are no longer a gangster!</span>")
+		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!")]", null, null, null, owner.current)
+		to_chat(owner, span_userdanger("You are no longer a gangster! Your memory is hazy from the time you were a gangster...the only thing you remember is the name of the one who brainwashed you..."))
 
 /datum/antagonist/gang/on_gain()
 	if(!gang)
@@ -84,6 +84,7 @@
 /datum/antagonist/gang/proc/promote() // Bump up to boss
 	var/datum/team/gang/old_gang = gang
 	var/datum/mind/old_owner = owner
+	silent = TRUE
 	owner.remove_antag_datum(/datum/antagonist/gang)
 	var/datum/antagonist/gang/boss/lieutenant/new_boss = new
 	new_boss.silent = TRUE
@@ -98,6 +99,7 @@
 	. = ..()
 	.["Promote"] = CALLBACK(src,.proc/admin_promote)
 	.["Set Influence"] = CALLBACK(src, .proc/admin_adjust_influence)
+	.["Set Uniform Influence"] = CALLBACK(src, .proc/admin_adjust_uniform_influence)
 	if(gang.domination_time != NOT_DOMINATING)
 		.["Set domination time left"] = CALLBACK(src, .proc/set_dom_time_left)
 
@@ -117,7 +119,7 @@
 			gang = new newgang
 	else
 		if(!GLOB.gangs.len) // no gangs exist
-			to_chat(admin, "<span class='danger'>No gangs exist, please create a new one instead.</span>")
+			to_chat(admin, span_danger("No gangs exist, please create a new one instead."))
 			return
 		var/existinggang = input(admin, "Select a gang, or select random to pick a random one.", "Existing gang") as null|anything in GLOB.gangs + "Random"
 		if(isnull(existinggang))
@@ -140,6 +142,13 @@
 		gang.influence = inf
 		message_admins("[key_name_admin(usr)] changed [gang.name]'s influence to [inf].")
 		log_admin("[key_name(usr)] changed [gang.name]'s influence to [inf].")
+
+/datum/antagonist/gang/proc/admin_adjust_uniform_influence()
+	var/inf = input("Uniform Influence for [gang.name]", "Uniform influence", gang.uniform_influence) as null | num
+	if(!isnull(inf))
+		gang.uniform_influence = inf
+		message_admins("[key_name_admin(usr)] changed [gang.name]'s uniform influence to [inf].")
+		log_admin("[key_name(usr)] changed [gang.name]'s uniform influence to [inf].")
 
 /datum/antagonist/gang/proc/add_to_gang()
 	gang.add_member(owner)
@@ -231,12 +240,12 @@
 /datum/antagonist/gang/boss/admin_add(datum/mind/new_owner,mob/admin)
 	if(!new_owner.has_antag_datum(parent_type))
 		..()
-		to_chat(new_owner.current, "<span class='userdanger'>You are a member of the [gang.name] Gang leadership now!</span>")
+		to_chat(new_owner.current, span_userdanger("You are a member of the [gang.name] Gang leadership now!"))
 		return
 	promote()
 	message_admins("[key_name_admin(admin)] has made [new_owner.current] a boss of the [gang.name] gang.")
 	log_admin("[key_name(admin)] has made [new_owner.current] a boss of the [gang.name] gang.")
-	to_chat(new_owner.current, "<span class='userdanger'>You are a member of the [gang.name] Gang leadership now!</span>")
+	to_chat(new_owner.current, span_userdanger("You are a member of the [gang.name] Gang leadership now!"))
 
 /datum/antagonist/gang/boss/get_admin_commands()
 	. = ..()
@@ -255,13 +264,13 @@
 	old_owner.add_antag_datum(new_gangster,old_gang)
 	new_gangster.silent = FALSE
 	log_game("[key_name(old_owner)] has been demoted to Gangster in the [gang.name] Gang")
-	to_chat(old_owner, "<span class='userdanger'>The gang has been disappointed by your ability to lead! You are a regular gangster now!</span>")
+	to_chat(old_owner, span_userdanger("The gang has been disappointed by your ability to lead! You are a regular gangster now!"))
 
 /datum/antagonist/gang/boss/proc/admin_take_gangtool(mob/admin)
 	var/list/L = owner.current.get_contents()
 	var/obj/item/gangtool/gangtool = locate() in L
 	if (!gangtool)
-		to_chat(admin, "<span class='danger'>Deleting gangtool failed!</span>")
+		to_chat(admin, span_danger("Deleting gangtool failed!"))
 		return
 	qdel(gangtool)
 
@@ -287,6 +296,7 @@
 	var/hud_entry_num // because if you put something other than a number in GLOB.huds, god have mercy on your fucking soul friend
 	var/list/leaders = list() // bosses
 	var/max_leaders = MAX_LEADERS_GANG
+	var/members_amount = 0 // Counting members
 	var/list/territories = list() // territories owned by the gang.
 	var/list/lost_territories = list() // territories lost by the gang.
 	var/list/new_territories = list() // territories captured by the gang.
@@ -295,6 +305,8 @@
 	var/dom_attempts = INITIAL_DOM_ATTEMPTS
 	var/color
 	var/influence = 0 // influence of the gang, based on how many territories they own. Can be used to buy weapons and tools from a gang uplink.
+	var/uniform_influence = 0 // Influence gained from members wearing uniforms. Counts only to weapons.  yogs
+	var/passive_uniform_income // Passive income for weapons. The more gang members  you have, the less you will get. Wear your uniform.
 	var/winner // Once the gang wins with a dominator, this becomes true. For roundend credits purposes.
 	var/list/inner_outfits = list()
 	var/list/outer_outfits = list()
@@ -328,11 +340,15 @@
 
 /datum/team/gang/roundend_report()
 	var/list/report = list()
-	report += "<span class='header'>[name]:</span>"
+	report += span_header("[name]:")
 	if(winner)
-		report += "<span class='greentext'>The [name] gang was successful!</span>"
+		report += span_greentext("The [name] gang was successful!")
+		for(var/datum/mind/M in leaders)
+			SSachievements.unlock_achievement(/datum/achievement/greentext/gangleader,M.current)
+		for(var/datum/mind/M in members) // Leaders are included in this too
+			SSachievements.unlock_achievement(/datum/achievement/greentext/gang,M.current) // and so get the lower achievement, too
 	else
-		report += "<span class='redtext'>The [name] gang has failed!</span>"
+		report += span_redtext("The [name] gang has failed!")
 
 	report += "The [name] gang bosses were:"
 	report += printplayerlist(leaders)
@@ -396,10 +412,14 @@
 		message += "<b>[domination_time_remaining()] seconds remain</b> in hostile takeover.<BR>"
 	else
 		var/new_influence = check_territory_income()
+		var/new_uniform_influence = check_uniform_income()
 		if(new_influence != influence)
-			message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories and [uniformed] uniformed gangsters.<BR>"
+			message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories<BR>"
+		if(new_uniform_influence != uniform_influence)  // yogs
+			message += "Gang supply has increased by [new_uniform_influence - uniform_influence] for having [uniformed] uniformed gangsters<BR>"
 		influence = new_influence
-		message += "Your gang now has <b>[influence] influence</b>.<BR>"
+		uniform_influence = new_uniform_influence
+		message += "Your gang now has <b>[influence] influence</b> and <b>[uniform_influence] supply points</b>.<BR>"
 	message_gangtools(message)
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
 
@@ -413,8 +433,14 @@
 	return valid_territories.len
 
 /datum/team/gang/proc/check_territory_income()
-	var/new_influence = min(999,influence + 15 + (check_clothing() * 2) + territories.len)
+	var/new_influence = min(999,influence + 15 + territories.len)
 	return new_influence
+
+/datum/team/gang/proc/check_uniform_income()
+	members_amount = 0 // reset so it doesnt just add last cycles to next
+	count_members()
+	var/new_uniform_influence = min(999,uniform_influence + passive_uniform_income + (check_clothing() * 5)) // 5 weapon supply points per uniformed gangster + free income per cycle based on members
+	return new_uniform_influence
 
 /datum/team/gang/proc/check_clothing()
 	//Count uniformed gangsters
@@ -438,12 +464,30 @@
 					gang_outfit = outfit
 
 			if(gang_outfit)
-				gangster << "<span class='notice'>The [src] Gang's influence grows as you wear [gang_outfit].</span>"
+				gangster << span_notice("The [src] Gang's influence grows as you wear [gang_outfit].")
 				uniformed++
 	return uniformed
 
 /datum/team/gang/proc/adjust_influence(value)
 	influence = max(0, influence + value)
+
+/datum/team/gang/proc/adjust_uniform_influence(value)
+	uniform_influence = max(0, uniform_influence + value)
+
+/datum/team/gang/proc/count_members()
+	for(var/datum/mind/gangmind in members)
+		if(ishuman(gangmind.current))
+			var/mob/living/carbon/human/gangster = gangmind.current
+			if(gangster.stat != DEAD)
+				members_amount++
+			switch(members_amount)
+				if(0 to 3)
+					passive_uniform_income = 15
+				if(4 to 5)
+					passive_uniform_income = 10
+				if(6 to INFINITY)
+					passive_uniform_income = 0
+
 
 /datum/team/gang/proc/message_gangtools(message)
 	if(!gangtools.len || !message)
@@ -454,7 +498,7 @@
 		if(mob && mob.mind && mob.stat == CONSCIOUS)
 			var/datum/antagonist/gang/gangster = mob.mind.has_antag_datum(/datum/antagonist/gang)
 			if(gangster.gang == src)
-				to_chat(mob, "<span class='warning'>[icon2html(tool, mob)] [message]</span>")
+				to_chat(mob, span_warning("[icon2html(tool, mob)] [message]"))
 				playsound(mob.loc, 'sound/machines/twobeep.ogg', 50, 1)
 			return
 

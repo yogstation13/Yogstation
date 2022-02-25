@@ -97,6 +97,7 @@ Actual Adjacent procs :
 		path = list()
 	return path
 
+/// Pathfinding for bots
 /proc/AStar(caller, _end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE)
 	//sanitation
 	var/turf/end = get_turf(_end)
@@ -172,6 +173,7 @@ Actual Adjacent procs :
 //Returns adjacent turfs in cardinal directions that are reachable
 //simulated_only controls whether only simulated turfs are considered or not
 
+/// Returns a list the src/caller can cross into
 /turf/proc/reachableAdjacentTurfs(caller, ID, simulated_only)
 	var/list/L = new()
 	var/turf/T
@@ -189,10 +191,11 @@ Actual Adjacent procs :
 	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
 		return TRUE
 
-//Returns adjacent turfs in cardinal directions that are reachable via atmos
+/// Returns adjacent turfs in cardinal directions that are reachable via atmos
 /turf/proc/reachableAdjacentAtmosTurfs()
 	return atmos_adjacent_turfs
 
+/// Check if there is a door that needs access in its way
 /turf/proc/LinkBlockedWithAccess(turf/T, caller, ID)
 	var/adir = get_dir(src, T)
 	var/rdir = ((adir & MASK_ODD)<<1)|((adir & MASK_EVEN)>>1)

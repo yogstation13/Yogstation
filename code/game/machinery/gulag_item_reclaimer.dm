@@ -35,17 +35,16 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			inserted_id = I
-			to_chat(user, "<span class='notice'>You insert [I].</span>")
+			to_chat(user, span_notice("You insert [I]."))
 			return
 		else
-			to_chat(user, "<span class='notice'>There's an ID inserted already.</span>")
+			to_chat(user, span_notice("There's an ID inserted already."))
 	return ..()
 
-/obj/machinery/gulag_item_reclaimer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/gulag_item_reclaimer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "gulag_item_reclaimer", name, 300, 400, master_ui, state)
+		ui = new(user, src, "GulagItemReclaimer", name)
 		ui.open()
 
 /obj/machinery/gulag_item_reclaimer/ui_data(mob/user)
@@ -80,29 +79,18 @@
 
 	return data
 
-/obj/machinery/gulag_item_reclaimer/ui_act(action, list/params)
-	switch(action)
-		if("handle_id")
-			if(inserted_id)
-				usr.put_in_hands(inserted_id)
-				inserted_id = null
-			else
-				var/obj/item/I = usr.is_holding_item_of_type(/obj/item/card/id/prisoner)
-				if(I)
-					if(!usr.transferItemToLoc(I, src))
-						return
-					inserted_id = I
+/obj/machinery/gulag_item_reclaimer/ui_act(action, params)
+	if(..())
+		return
 
+	switch(action)
 		if("release_items")
-			var/mob/M = locate(params["mobref"]) in stored_items
-			if(M == usr || allowed(usr))
-				if(inserted_id)
-					var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_SEC)
-					if(D)
-						D.adjust_money(inserted_id.points * 1.5)
-				drop_items(M)
-			else
-				to_chat(usr, "Access denied.")
+			var/mob/living/carbon/human/H = locate(params["mobref"]) in stored_items
+			if(H != usr && !allowed(usr))
+				to_chat(usr, span_warning("Access denied."))
+				return
+			drop_items(H)
+			. = TRUE
 
 /obj/machinery/gulag_item_reclaimer/proc/drop_items(mob/user)
 	if(!stored_items[user])

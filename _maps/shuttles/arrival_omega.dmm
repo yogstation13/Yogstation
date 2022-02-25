@@ -52,8 +52,12 @@
 /obj/machinery/vending/wallmed{
 	pixel_y = 32
 	},
-/obj/item/storage/toolbox/emergency,
-/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency{
+	pixel_y = -2
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_y = 2
+	},
 /obj/item/clothing/suit/hazardvest,
 /obj/item/clothing/suit/hazardvest,
 /obj/item/clothing/suit/hazardvest,
@@ -81,16 +85,16 @@
 /area/shuttle/arrival)
 "j" = (
 /obj/machinery/door/airlock/shuttle,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -122,14 +126,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/sign/poster/official/enlist{
-	pixel_x = 32
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
@@ -147,11 +151,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+/obj/machinery/status_display/ai{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel,
-/area/shuttle/arrival)
-"p" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
 /area/shuttle/arrival)
 "q" = (
 /obj/structure/chair/comfy/shuttle{
@@ -187,6 +190,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/status_display/evac{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
@@ -244,6 +250,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
+"A" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "C" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/pill_bottle/dice{
@@ -262,23 +273,18 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
-"J" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
+"Q" = (
+/obj/machinery/holopad,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
 /area/shuttle/arrival)
-"T" = (
+"R" = (
 /obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
+/obj/machinery/door/firedoor/window,
+/obj/effect/turf_decal/stripes/end{
+	dir = 1;
+	icon_state = "warn_end"
 	},
-/turf/open/floor/plating,
-/area/shuttle/arrival)
-"V" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 
@@ -288,11 +294,11 @@ d
 f
 j
 f
-J
-J
+R
+A
 d
-J
-J
+A
+A
 j
 F
 f
@@ -315,8 +321,8 @@ k
 u
 f
 f
-p
-V
+A
+A
 "}
 (3,1,1) = {"
 c
@@ -326,7 +332,7 @@ l
 l
 l
 l
-l
+Q
 l
 l
 l
@@ -334,7 +340,7 @@ v
 x
 y
 z
-V
+A
 "}
 (4,1,1) = {"
 b
@@ -351,8 +357,8 @@ t
 w
 f
 f
-p
-V
+A
+A
 "}
 (5,1,1) = {"
 a
@@ -360,11 +366,11 @@ d
 f
 f
 f
-T
-T
+A
+A
 d
-T
-T
+A
+A
 f
 F
 f

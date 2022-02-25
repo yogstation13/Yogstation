@@ -11,6 +11,8 @@
 
 	outfit = /datum/outfit/job/cargo_tech
 
+	alt_titles = list("Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher")
+
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY
@@ -18,9 +20,9 @@
 
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
 
-	changed_maps = list("MinskyStation", "OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
 
-/datum/job/cargo_tech/proc/MinskyStationChanges()
+/datum/job/cargo_tech/proc/EclipseStationChanges()
 	total_positions = 5
 	spawn_positions = 4
 
@@ -38,5 +40,6 @@
 	belt = /obj/item/pda/cargo
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargotech
+	uniform_skirt = /obj/item/clothing/under/rank/cargotech/skirt
 	l_hand = /obj/item/export_scanner
 

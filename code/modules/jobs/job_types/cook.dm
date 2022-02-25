@@ -12,6 +12,8 @@
 
 	outfit = /datum/outfit/job/cook
 
+	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist")
+
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY
@@ -19,11 +21,15 @@
 
 	display_order = JOB_DISPLAY_ORDER_COOK
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/cook/proc/OmegaStationChanges()
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
 	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
+
+/datum/job/cook/proc/EclipseStationChanges()
+	total_positions = 4
+	spawn_positions = 3
 
 /datum/outfit/job/cook
 	name = "Cook"
@@ -32,6 +38,7 @@
 	belt = /obj/item/pda/cook
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/chef
+	uniform_skirt = /obj/item/clothing/under/rank/chef/skirt
 	suit = /obj/item/clothing/suit/toggle/chef
 	head = /obj/item/clothing/head/chefhat
 	mask = /obj/item/clothing/mask/fakemoustache/italian

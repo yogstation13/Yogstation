@@ -1,7 +1,7 @@
 /client/proc/one_click_antag()
 	set name = "Create Antagonist"
 	set desc = "Auto-create an antagonist of your choice"
-	set category = "Admin"
+	set category = "Admin.Round Interaction"
 
 	if(holder)
 		holder.one_click_antag()
@@ -13,6 +13,7 @@
 	var/dat = {"
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=traitors'>Make Traitors</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=changelings'>Make Changelings</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=heretics'>Make Heretics</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revs'>Make Revs</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=cult'>Make Cult</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=clockcult'>Make Clockwork Cult</a><br>
@@ -23,6 +24,8 @@
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=abductors'>Make Abductor Team (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=shadowling'>Make Shadowling</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=vampire'>Make Vampire</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=infiltrator'>Make Infiltration Team (Requires Ghosts)</a>
 		"}
 
 	var/datum/browser/popup = new(usr, "oneclickantag", "Quick-Create Antagonist", 400, 400)
@@ -107,6 +110,37 @@
 
 	return 0
 
+/datum/admins/proc/makeHeretics()
+	var/datum/game_mode/heretics/temp = new
+
+	if(CONFIG_GET(flag/protect_roles_from_antagonist))
+		temp.restricted_jobs += temp.protected_jobs
+
+	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
+		temp.restricted_jobs += "Assistant"
+
+	var/list/mob/living/carbon/human/candidates = list()
+	var/mob/living/carbon/human/H = null
+
+	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
+		if(isReadytoRumble(applicant, ROLE_HERETIC))
+			if(temp.age_check(applicant.client))
+				if(!(applicant.job in temp.restricted_jobs))
+					candidates += applicant
+
+	if(candidates.len)
+		var/numHeretics = min(candidates.len, 3)
+
+		for(var/i = 0, i<numHeretics, i++)
+			H = pick(candidates)
+			H.mind.make_Heretic()
+			candidates.Remove(H)
+
+		return 1
+
+
+	return 0
+
 /datum/admins/proc/makeRevs()
 
 	var/datum/game_mode/revolution/temp = new
@@ -138,7 +172,7 @@
 
 /datum/admins/proc/makeWizard()
 
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for the position of a Wizard Foundation 'diplomat'?", ROLE_WIZARD, null)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for the position of a Wizard Federation 'diplomat'?", ROLE_WIZARD, null)
 
 	var/mob/dead/observer/selected = pick_n_take(candidates)
 
@@ -288,6 +322,7 @@
 	.["mainsettings"]["mission"]["value"] = newtemplate.mission
 	.["mainsettings"]["polldesc"]["value"] = newtemplate.polldesc
 	.["mainsettings"]["open_armory"]["value"] = newtemplate.opendoors ? "Yes" : "No"
+	.["mainsettings"]["open_mechbay"]["value"] = newtemplate.openmech ? "Yes" : "No"
 
 
 /datum/admins/proc/equipAntagOnDummy(mob/living/carbon/human/dummy/mannequin, datum/antagonist/antag)
@@ -296,8 +331,9 @@
 	if (ispath(antag, /datum/antagonist/ert))
 		var/datum/antagonist/ert/ert = antag
 		mannequin.equipOutfit(initial(ert.outfit), TRUE)
-	else if (ispath(antag, /datum/antagonist/official))
-		mannequin.equipOutfit(/datum/outfit/centcom_official, TRUE)
+	else if (ispath(antag, /datum/antagonist/centcom))
+		var/datum/antagonist/centcom/centcom = antag
+		mannequin.equipOutfit(initial(centcom.outfit), TRUE)
 
 /datum/admins/proc/makeERTPreviewIcon(list/settings)
 	// Set up the dummy for its photoshoot
@@ -344,7 +380,7 @@
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else
-		ertemplate = new /datum/ert/centcom_official
+		ertemplate = new /datum/ert/official
 
 	var/list/settings = list(
 		"preview_callback" = CALLBACK(src, .proc/makeERTPreviewIcon),
@@ -355,6 +391,7 @@
 		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),
 		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(CONFIG_GET(flag/enforce_human_authority) ? "Yes" : "No")]"),
 		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
+		"open_mechbay" = list("desc" = "Open Mech Bay", "type" = "boolean", "value" = "[(ertemplate.openmech ? "Yes" : "No")]"),
 		)
 	)
 
@@ -378,6 +415,7 @@
 		ertemplate.polldesc = prefs["polldesc"]["value"]
 		ertemplate.enforce_human = prefs["enforce_human"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.opendoors = prefs["open_armory"]["value"] == "Yes" ? TRUE : FALSE
+		ertemplate.openmech = prefs["open_mechbay"]["value"] == "Yes" ? TRUE : FALSE
 
 		var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for [ertemplate.polldesc] ?", "deathsquad", null)
 		var/teamSpawned = FALSE
@@ -415,7 +453,7 @@
 				chosen_candidate.client.prefs.copy_to(ERTOperative)
 				ERTOperative.key = chosen_candidate.key
 
-				if(ertemplate.enforce_human || !ERTOperative.dna.species.changesource_flags & ERT_SPAWN) // Don't want any exploding plasmemes
+				if(ertemplate.enforce_human || !(ERTOperative.dna.species.changesource_flags & ERT_SPAWN)) // Don't want any exploding plasmemes
 					ERTOperative.set_species(/datum/species/human)
 
 				//Give antag datum
@@ -441,8 +479,12 @@
 			//Open the Armory doors
 			if(ertemplate.opendoors)
 				for(var/obj/machinery/door/poddoor/ert/door in GLOB.airlocks)
-					door.open()
-					CHECK_TICK
+					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
+
+			//Open the Mech Bay
+			if(ertemplate.openmech)
+				for(var/obj/machinery/door/poddoor/deathsquad/door in GLOB.airlocks)
+					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
 			return TRUE
 		else
 			return FALSE

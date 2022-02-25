@@ -24,6 +24,9 @@ again.
 	name = "window spawner"
 	spawn_list = list(/obj/structure/grille, /obj/structure/window/fulltile)
 	dir = SOUTH
+	FASTDMM_PROP(\
+		pipe_astar_cost = 1\
+	)
 
 /obj/effect/spawner/structure/window/hollow
 	name = "hollow window spawner"
@@ -380,3 +383,18 @@ again.
 	name = "reinforced plasma shutter window spawner"
 	icon_state = "shprwindow_spawner"
 	spawn_list = list(/obj/machinery/door/firedoor/window, /obj/structure/grille, /obj/structure/window/plasma/reinforced/fulltile)
+
+// Solars
+
+/obj/effect/spawner/structure/solars/solar_96 // Spawn rate calibrated to miss on average 7-10 solars per shift
+	name = "solar spawner 96%" 
+	icon = 'icons/obj/structures_spawners.dmi'
+	icon_state = "solar_spawner"
+	spawn_list = list(/obj/machinery/power/solar)
+
+/obj/effect/spawner/structure/solars/solar_96/Initialize()
+	if (prob(3)) // I know mathmatically it is supphosed to be 4 but when set to 4 I got inconsistent results. 3 puts you at 7-10 consistently. Weird snowflake behavior of prob() - Hopek
+		qdel(src)
+		return
+	. = ..()
+	

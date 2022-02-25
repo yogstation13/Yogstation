@@ -1,12 +1,18 @@
 /*ALL DEFINES RELATED TO INVENTORY OBJECTS, MANAGEMENT, ETC, GO HERE*/
 
 //ITEM INVENTORY WEIGHT, FOR w_class
-#define WEIGHT_CLASS_TINY     1 //Usually items smaller then a human hand, (e.g. playing cards, lighter, scalpel, coins/holochips)
-#define WEIGHT_CLASS_SMALL    2 //Pockets can hold small and tiny items, (e.g. flashlight, multitool, grenades, GPS device)
-#define WEIGHT_CLASS_NORMAL   3 //Standard backpacks can carry tiny, small & normal items, (e.g. fire extinguisher, stun baton, gas mask, metal sheets)
-#define WEIGHT_CLASS_BULKY    4 //Items that can be weilded or equipped but not stored in an inventory, (e.g. defibrillator, backpack, space suits)
-#define WEIGHT_CLASS_HUGE     5 //Usually represents objects that require two hands to operate, (e.g. shotgun, two-handed melee weapons)
-#define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, (e.g. mech parts, safe)
+/// Usually items smaller then a human hand, (e.g. playing cards, lighter, scalpel, coins/holochips)
+#define WEIGHT_CLASS_TINY     1
+/// Pockets can hold small and tiny items, (e.g. flashlight, multitool, grenades, GPS device)
+#define WEIGHT_CLASS_SMALL    2
+/// Standard backpacks can carry tiny, small & normal items, (e.g. fire extinguisher, stun baton, gas mask, metal sheets)
+#define WEIGHT_CLASS_NORMAL   3
+/// Items that can be weilded or equipped but not stored in an inventory, (e.g. defibrillator, backpack, space suits)
+#define WEIGHT_CLASS_BULKY    4
+/// Usually represents objects that require two hands to operate, (e.g. shotgun, two-handed melee weapons)
+#define WEIGHT_CLASS_HUGE     5
+/// Essentially means it cannot be picked up or placed in an inventory, (e.g. mech parts, safe)
+#define WEIGHT_CLASS_GIGANTIC 6
 
 //Inventory depth: limits how many nested storage items you can access directly.
 //1: stuff in mob, 2: stuff in backpack, 3: stuff in box in backpack, etc
@@ -25,8 +31,10 @@
 #define ITEM_SLOT_ID			(1<<8)
 #define ITEM_SLOT_BELT			(1<<9)
 #define ITEM_SLOT_BACK			(1<<10)
-#define ITEM_SLOT_POCKET		(1<<11) // this is to allow items with a w_class of WEIGHT_CLASS_NORMAL or WEIGHT_CLASS_BULKY to fit in pockets.
-#define ITEM_SLOT_DENYPOCKET	(1<<12) // this is to deny items with a w_class of WEIGHT_CLASS_SMALL or WEIGHT_CLASS_TINY to fit in pockets.
+/// this is to allow items with a w_class of WEIGHT_CLASS_NORMAL or WEIGHT_CLASS_BULKY to fit in pockets.
+#define ITEM_SLOT_POCKET		(1<<11)
+/// this is to deny items with a w_class of WEIGHT_CLASS_SMALL or WEIGHT_CLASS_TINY to fit in pockets.
+#define ITEM_SLOT_DENYPOCKET	(1<<12)
 #define ITEM_SLOT_NECK			(1<<13)
 #define ITEM_SLOT_HANDS			(1<<14)
 #define ITEM_SLOT_BACKPACK		(1<<15)
@@ -36,8 +44,9 @@
 #define SLOT_BACK			1
 #define SLOT_WEAR_MASK		2
 #define SLOT_HANDCUFFED		3
-#define SLOT_HANDS			4 //wherever you provide a slot for hands you provide SLOT_HANDS
-								//SLOT_HANDS as a slot will pick ANY available hand
+/// wherever you provide a slot for hands you provide SLOT_HANDS.
+/// SLOT_HANDS as a slot will pick ANY available hand
+#define SLOT_HANDS			4
 #define SLOT_BELT			5
 #define SLOT_WEAR_ID		6
 #define SLOT_EARS			7
@@ -141,6 +150,12 @@
 #define NORMAL_STYLE		0
 #define ALT_STYLE			1
 #define DIGITIGRADE_STYLE 	2
+#define DIGIALT_STYLE       3		//Yogs
+
+//flags for digitigrade checks related to footwear. Only Human accessible / Both accessible / Only funny leg accessible.
+#define NO_DIGIT			0
+#define EITHER_STYLE		1
+#define YES_DIGIT		 	2
 
 //flags for outfits that have mutantrace variants (try not to use this): Currently only needed if you're trying to add tight fitting bootyshorts
 #define NO_MUTANTRACE_VARIATION		0
@@ -168,6 +183,7 @@ GLOBAL_LIST_INIT(advanced_hardsuit_allowed, typecacheof(list(
 	/obj/item/flashlight,
 	/obj/item/gun,
 	/obj/item/melee/baton,
+	/obj/item/melee/classic_baton,
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
 	/obj/item/tank/internals)))
@@ -179,6 +195,7 @@ GLOBAL_LIST_INIT(security_hardsuit_allowed, typecacheof(list(
 	/obj/item/gun/ballistic,
 	/obj/item/gun/energy,
 	/obj/item/melee/baton,
+	/obj/item/melee/classic_baton,
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
 	/obj/item/tank/internals)))
@@ -196,7 +213,7 @@ GLOBAL_LIST_INIT(detective_vest_allowed, typecacheof(list(
 	/obj/item/melee/classic_baton,
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
-	/obj/item/storage/fancy/cigarettes,
+	/obj/item/storage/box/fancy/cigarettes,
 	/obj/item/tank/internals/emergency_oxygen,
 	/obj/item/tank/internals/plasmaman)))
 
@@ -208,7 +225,7 @@ GLOBAL_LIST_INIT(security_vest_allowed, typecacheof(list(
 	/obj/item/gun/energy,
 	/obj/item/kitchen/knife/combat,
 	/obj/item/melee/baton,
-	/obj/item/melee/classic_baton/telescopic,
+	/obj/item/melee/classic_baton,
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
 	/obj/item/tank/internals/emergency_oxygen,
@@ -218,12 +235,12 @@ GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
 	/obj/item/ammo_box,
 	/obj/item/ammo_casing,
 	/obj/item/flashlight,
-	/obj/item/storage/fancy/cigarettes,
+	/obj/item/storage/box/fancy/cigarettes,
 	/obj/item/gun/ballistic,
 	/obj/item/gun/energy,
 	/obj/item/lighter,
 	/obj/item/melee/baton,
-	/obj/item/melee/classic_baton/telescopic,
+	/obj/item/melee/classic_baton,
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
 	/obj/item/tank/internals/emergency_oxygen,

@@ -14,16 +14,16 @@
 			new /obj/item/flashlight/emp(src)
 
 		if("bloodyspai")
-			new /obj/item/clothing/under/chameleon(src) // 2 tc since it's not the full set
-			new /obj/item/clothing/mask/chameleon(src) // Goes with above
+			new /obj/item/clothing/under/chameleon/syndicate(src) // 2 tc since it's not the full set
+			new /obj/item/clothing/mask/chameleon/syndicate(src) // Goes with above
 			new /obj/item/card/id/syndicate(src) // 2 tc
-			new /obj/item/clothing/shoes/chameleon/noslip(src) // 2 tc
+			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) // 2 tc
 			new /obj/item/camera_bug(src) // 1 tc
 			new /obj/item/multitool/ai_detect(src) // 1 tc
 			new /obj/item/encryptionkey/syndicate(src) // 2 tc
 			new /obj/item/reagent_containers/syringe/mulligan(src) // 4 tc
 			new /obj/item/switchblade(src) //I'll count this as 2 tc
-			new /obj/item/storage/fancy/cigarettes/cigpack_syndicate (src) // 2 tc this shit heals
+			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) // 2 tc this shit heals
 			new /obj/item/flashlight/emp(src) // 2 tc
 			new /obj/item/chameleon(src) // 7 tc
 
@@ -59,7 +59,7 @@
 			new /obj/item/melee/transforming/energy/sword/saber(src)
 			new /obj/item/clothing/glasses/thermal/syndi(src)
 			new /obj/item/card/emag(src)
-			new /obj/item/clothing/shoes/chameleon/noslip(src)
+			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src)
 			new /obj/item/encryptionkey/syndicate(src)
 			new /obj/item/grenade/syndieminibomb(src)
 
@@ -120,13 +120,13 @@
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "neo"=1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2)))
+	switch (pickweight(list( "bond" = 2, "neo"=1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
 		if("bond")
 			new /obj/item/gun/ballistic/automatic/pistol(src)
 			new /obj/item/suppressor(src)
 			new /obj/item/ammo_box/magazine/m10mm(src)
 			new /obj/item/ammo_box/magazine/m10mm(src)
-			new /obj/item/clothing/under/chameleon(src)
+			new /obj/item/clothing/under/chameleon/syndicate(src)
 			new /obj/item/card/id/syndicate(src)
 			new /obj/item/reagent_containers/syringe/stimulants(src)
 			new /obj/item/reagent_containers/glass/rag(src)
@@ -136,7 +136,7 @@
 			new /obj/item/implanter/adrenalin(src) // 8 tc
 			for(var/i in 1 to 6)
 				new /obj/item/throwing_star(src) // ~5 tc for all 6
-			new /obj/item/storage/belt/chameleon(src) // Unique but worth at least 2 tc
+			new /obj/item/storage/belt/chameleon/syndicate(src) // Unique but worth at least 2 tc
 			new /obj/item/card/id/syndicate(src) // 2 tc
 			new /obj/item/chameleon(src) // 7 tc
 
@@ -145,7 +145,7 @@
 			new /obj/item/dnainjector/telemut/darkbundle(src)
 			new /obj/item/clothing/suit/hooded/chaplain_hoodie(src)
 			new /obj/item/card/id/syndicate(src)
-			new /obj/item/clothing/shoes/chameleon/noslip(src) //because slipping while being a dark lord sucks
+			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //because slipping while being a dark lord sucks
 			new /obj/item/book/granter/spell/summonitem(src)
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else
@@ -154,6 +154,7 @@
 			new /obj/item/clothing/suit/space/hardsuit/carp(src)
 			new /obj/item/clothing/mask/gas/carp(src)
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
+			new /obj/item/twohanded/pitchfork/trident(src)
 
 		if("mad_scientist")
 			new /obj/item/clothing/suit/toggle/labcoat/mad(src) // 0 tc
@@ -168,7 +169,7 @@
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/storage/toolbox/syndicate(src) // 1 tc
 			new /obj/item/pen/edagger(src)
-			new /obj/item/gun/energy/wormhole_projector(src) //mooorttyyyy
+			new /obj/item/gun/energy/wormhole_projector/upgraded(src) //mooorttyyyy
 			new /obj/item/gun/energy/decloner/unrestricted(src)
 
 		if("bee")
@@ -183,7 +184,7 @@
 		if("mr_freeze")
 			new /obj/item/clothing/glasses/cold(src)
 			new /obj/item/clothing/gloves/color/black(src)
-			new /obj/item/clothing/mask/chameleon(src)
+			new /obj/item/clothing/mask/chameleon/syndicate(src)
 			new /obj/item/clothing/suit/hooded/wintercoat(src)
 			new /obj/item/clothing/shoes/winterboots(src)
 			new /obj/item/grenade/gluon(src)
@@ -194,7 +195,7 @@
 			new /obj/item/dnainjector/cryokinesis(src)
 			new /obj/item/gun/energy/temperature/security(src)
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue
-			
+
 		if("neo")
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/gun/ballistic/automatic/pistol(src)
@@ -209,7 +210,42 @@
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
-			
+
+
+		if("gang_boss")
+			new /obj/item/clothing/under/jabroni(src) //fishnet suit
+			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
+			new /obj/item/guardiancreator/tech(src) //15 TC
+			new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~45 for 3 holoparasite injectors and ~21 3 mindslave implants. although its difficult to conceal and the holoparasites are random.
+			new /obj/item/storage/box/fancy/donut_box(src) //d o n u t s
+			new /obj/item/reagent_containers/glass/bottle/drugs(src)
+			new /obj/item/slimecross/stabilized/green(src) //secret identity
+
+/obj/item/stand_arrow/boss
+	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
+	kill_chance = 0
+	arrowtype = "tech"
+	var/datum/mind/owner
+	can_requiem = FALSE
+
+/obj/item/stand_arrow/boss/attack_self(mob/user)
+	if(owner || !user.mind)
+		return
+	to_chat(user, span_notice("You prick your finger on the arrow, linking the mindslave nanites to you!"))
+	owner = user.mind
+
+/obj/item/stand_arrow/boss/attack(mob/living/M, mob/living/user)
+	if(owner && owner.current == M && user == M) //you have a holoparasite injector for this exact purpose
+		to_chat(M, span_warning("Implanting yourself with mindslave nanites is probably a bad idea..."))
+		return
+	. = ..()
+
+/obj/item/stand_arrow/boss/generate_stand(mob/living/carbon/human/H)
+	if(owner?.current && H != owner.current)//lol
+		var/obj/item/implant/mindslave/M = new /obj/item/implant/mindslave() //if someone injects themself with a gangster arrow it's entirely their fault for using contraband
+		if(!M.implant(H, owner.current))
+			qdel(M)
+	. = ..() //sure ok you stole the arrow
 
 /obj/item/storage/box/syndicate/contract_kit
 	name = "Contract Kit"
@@ -227,27 +263,30 @@
 	name = "Contractor Guide"
 
 /obj/item/paper/contractor_guide/Initialize()
-	info = {"<p>Welcome agent, congratulations on your new position as contractor. On top of your already assigned objectives, 
+	info = {"<p>Welcome agent, congratulations on your new position as contractor. On top of your already assigned objectives,
 			this kit will provide you contracts to take on for TC payments.</p>
 
-			<p>Provided within, we give your specialist contractor space suit. It's even more compact, being able to fit into a pocket, and faster than the 
-			Syndicate space suit available to you on the uplink. We also provide your chameleon jumpsuit and mask, both of which can be changed 
+			<p>Provided within, we give your specialist contractor space suit. It's even more compact, being able to fit into a pocket, and faster than the
+			Syndicate space suit available to you on the uplink. We also provide your chameleon jumpsuit and mask, both of which can be changed
 			to any form you need for the moment. The cigarettes are a special blend - it'll heal your injuries slowly overtime.</p>
 
-			<p>Your standard issue contractor baton hits harder than the ones you might be used to, and likely be your go to weapon for kidnapping your 
+			<p>Your standard issue contractor baton hits harder than the ones you might be used to, and likely be your go to weapon for kidnapping your
 			targets. The three additional items have been randomly selected from what we had available. We hope they're useful to you for your mission.</p>
+
+			<p>The contractor hub, available at the top right of the uplink, will provide you unique items and abilities. These are bought using Contractor Rep,
+			with two Rep being provided each time you complete a contract.</p>
 
 			<h3>Using the tablet</h3>
 			<ol>
 				<li>Open the Syndicate Contract Uplink program.</li>
 				<li>Here, you can accept a contract, and redeem your TC payments from completed contracts.</li>
-				<li>The payment number shown in brackets is the bonus you'll recieve when bringing your target <b>alive</b>. You recieve the 
+				<li>The payment number shown in brackets is the bonus you'll recieve when bringing your target <b>alive</b>. You recieve the
 				other number regardless of if they were alive or dead.</li>
 				<li>Contracts are completed by bringing the target to designated dropoff, calling for extraction, and putting them
 				inside the pod.</li>
 			</ol>
 
-			<p>Be careful when accepting a contract. While you'll be able to see the location of the dropoff point, cancelling will make it 
+			<p>Be careful when accepting a contract. While you'll be able to see the location of the dropoff point, cancelling will make it
 			unavailable to take on again.</p>
 			<p>The tablet can also be recharged at any cell charger.</p>
 			<h3>Extracting</h3>
@@ -258,21 +297,21 @@
 				<li>Grab your target, and drag them into the pod.</li>
 			</ol>
 			<h3>Ransoms</h3>
-			<p>We need your target for our own reasons, but we ransom them back to your mission area once their use is served. They will return back 
-			from where you sent them off from in several minutes time. Don't worry, we give you a cut of what we get paid. We pay this into whatever 
+			<p>We need your target for our own reasons, but we ransom them back to your mission area once their use is served. They will return back
+			from where you sent them off from in several minutes time. Don't worry, we give you a cut of what we get paid. We pay this into whatever
 			ID card you have equipped, on top of the TC payment we give.</p>
 			
-			<p>Good luck agent.</p>"}
+			<p>Good luck agent. You can burn this document with the supplied lighter.</p>"}
 
 	return ..()
 
 /obj/item/storage/box/syndicate/contractor_loadout/PopulateContents()
 	new /obj/item/clothing/head/helmet/space/syndicate/contract(src)
 	new /obj/item/clothing/suit/space/syndicate/contract(src)
-	new /obj/item/clothing/under/chameleon(src)
-	new /obj/item/clothing/mask/chameleon(src)
+	new /obj/item/clothing/under/chameleon/syndicate(src)
+	new /obj/item/clothing/mask/chameleon/syndicate(src)
 	new /obj/item/card/id/syndicate(src)
-	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
+	new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src)
 	new /obj/item/lighter(src)
 
 /obj/item/storage/box/syndicate/contract_kit/PopulateContents()
@@ -289,9 +328,8 @@
 		/obj/item/pen/sleepy,
 		/obj/item/flashlight/emp,
 		/obj/item/reagent_containers/syringe/mulligan,
-		/obj/item/clothing/shoes/chameleon/noslip,
+		/obj/item/clothing/shoes/chameleon/noslip/syndicate,
 		/obj/item/storage/firstaid/tactical,
-		/obj/item/storage/backpack/duffelbag/syndie/surgery,
 		/obj/item/encryptionkey/syndicate,
 		/obj/item/clothing/glasses/thermal/syndi,
 		/obj/item/slimepotion/slime/sentience/nuclear,
@@ -300,7 +338,8 @@
 		/obj/item/clothing/gloves/krav_maga/combatglovesplus,
 		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
 		/obj/item/reagent_containers/syringe/stimulants,
-		/obj/item/storage/box/syndie_kit/imp_freedom
+		/obj/item/storage/box/syndie_kit/imp_freedom,
+		/obj/item/toy/eightball/haunted
 	)
 
 	var/obj/item1 = pick_n_take(item_list)
@@ -384,6 +423,12 @@
 
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
+	
+/obj/item/storage/box/syndie_kit/imp_mindshield
+	name = "mindshield implant box"
+
+/obj/item/storage/box/syndie_kit/imp_mindshield/PopulateContents()
+	new /obj/item/implanter/mindshield/tot(src)
 
 /obj/item/storage/box/syndie_kit/space
 	name = "boxed space suit and helmet"
@@ -451,6 +496,16 @@
 	new /obj/item/hemostat/supermatter(src)
 	new /obj/item/nuke_core_container/supermatter(src)
 	new /obj/item/paper/guides/antag/supermatter_sliver(src)
+	
+/obj/item/storage/box/syndie_kit/supermatter_delaminator
+	name = "box"
+
+/obj/item/storage/box/syndie_kit/supermatter_delaminator/PopulateContents()
+	new /obj/item/hemostat/antinoblium(src)
+	new /obj/item/antinoblium_container(src)
+	new /obj/item/supermatter_corruptor(src)
+	new /obj/item/paper/guides/antag/antinoblium_guide(src)
+
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade
 	name = "virus grenade kit"
@@ -466,17 +521,17 @@
 	name = "chameleon kit"
 
 /obj/item/storage/box/syndie_kit/chameleon/PopulateContents()
-	new /obj/item/clothing/under/chameleon(src)
-	new /obj/item/clothing/suit/chameleon(src)
-	new /obj/item/clothing/gloves/chameleon(src)
-	new /obj/item/clothing/shoes/chameleon(src)
-	new /obj/item/clothing/glasses/chameleon(src)
-	new /obj/item/clothing/head/chameleon(src)
-	new /obj/item/clothing/mask/chameleon(src)
-	new /obj/item/storage/backpack/chameleon(src)
-	new /obj/item/radio/headset/chameleon(src)
-	new /obj/item/stamp/chameleon(src)
-	new /obj/item/pda/chameleon(src)
+	new /obj/item/clothing/under/chameleon/syndicate(src)
+	new /obj/item/clothing/suit/chameleon/syndicate(src)
+	new /obj/item/clothing/gloves/chameleon/syndicate(src)
+	new /obj/item/clothing/shoes/chameleon/syndicate(src)
+	new /obj/item/clothing/glasses/chameleon/syndicate(src)
+	new /obj/item/clothing/head/chameleon/syndicate(src)
+	new /obj/item/clothing/mask/chameleon/syndicate(src)
+	new /obj/item/storage/backpack/chameleon/syndicate(src)
+	new /obj/item/radio/headset/chameleon/syndicate(src)
+	new /obj/item/stamp/chameleon/syndicate(src)
+	new /obj/item/pda/chameleon/syndicate(src)
 
 //5*(2*4) = 5*8 = 45, 45 damage if you hit one person with all 5 stars.
 //Not counting the damage it will do while embedded (2*4 = 8, at 15% chance)
@@ -511,6 +566,7 @@
 
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()
 	new /obj/item/clothing/under/rank/centcom_officer(src)
+	new /obj/item/clothing/head/beret/sec/centcom(src)
 	new /obj/item/clothing/shoes/sneakers/black(src)
 	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/radio/headset/headset_cent/empty(src)
@@ -518,6 +574,7 @@
 	new /obj/item/storage/backpack/satchel(src)
 	new /obj/item/pda/heads(src)
 	new /obj/item/clipboard(src)
+	new /obj/item/implanter/mindshield(src)
 
 /obj/item/storage/box/syndie_kit/chameleon/broken/PopulateContents()
 	new /obj/item/clothing/under/chameleon/broken(src)

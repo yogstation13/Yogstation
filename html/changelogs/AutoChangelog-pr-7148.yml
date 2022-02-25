@@ -1,4 +1,0 @@
-author: "Lostlarry"
-delete-after: true 
-changes: 
-  - bugfix: "fixes disabler cooler borg upgrade not having an effect"

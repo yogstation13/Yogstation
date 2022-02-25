@@ -64,18 +64,17 @@
 /obj/machinery/light/small,
 /turf/open/floor/mineral/silver,
 /area/ruin/powered/pride)
+"x" = (
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/airlock/diamond,
+/turf/open/floor/mineral/silver,
+/area/ruin/powered/pride)
 "G" = (
 /turf/closed/wall/mineral/diamond,
 /area/ruin/powered/pride)
 "O" = (
 /obj/structure/mirror/magic/pride,
 /turf/closed/wall/mineral/diamond,
-/area/ruin/powered/pride)
-"Y" = (
-/obj/machinery/door/airlock/diamond,
-/turf/open/floor/mineral/silver{
-	blocks_air = 1
-	},
 /area/ruin/powered/pride)
 
 (1,1,1) = {"
@@ -206,7 +205,7 @@ g
 g
 g
 g
-Y
+x
 a
 a
 "}

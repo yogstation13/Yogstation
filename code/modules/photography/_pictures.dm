@@ -38,6 +38,7 @@
 
 /datum/picture/proc/get_small_icon()
 	if(!picture_icon)
+		picture_icon = icon('icons/obj/artstuff.dmi', "photo")// sets default icon if picture_icon doesn't exist.
 		regenerate_small_icon()
 	return picture_icon
 
@@ -45,7 +46,7 @@
 	if(!picture_image)
 		return
 	var/icon/small_img = icon(picture_image)
-	var/icon/ic = icon('icons/obj/items_and_weapons.dmi', "photo")
+	var/icon/ic = icon('icons/obj/artstuff.dmi', "photo")
 	small_img.Scale(8, 8)
 	ic.Blend(small_img,ICON_OVERLAY, 13, 13)
 	picture_icon = ic
@@ -117,9 +118,9 @@
 			if(data.len < 5)
 				return null
 			var/timestamp = data[2]
-			var/year = copytext(timestamp, 1, 5)
-			var/month = copytext(timestamp, 5, 7)
-			var/day = copytext(timestamp, 7, 9)
+			var/year = copytext_char(timestamp, 1, 5)
+			var/month = copytext_char(timestamp, 5, 7)
+			var/day = copytext_char(timestamp, 7, 9)
 			var/round = data[4]
 			. += "[year]/[month]/[day]/round-[round]"
 		if("O")
@@ -174,4 +175,5 @@
 		if(picture_image)
 			P.picture_image.Crop(cropx, cropy, psize_x - cropx, psize_y - cropy)
 		P.regenerate_small_icon()
+	P.mobs_seen = mobs_seen
 	return P

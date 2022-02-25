@@ -9,7 +9,7 @@
 	density = FALSE
 	var/transform_dead = 0
 	var/transform_standing = 0
-	var/cooldown_duration = 600 // 1 minute
+	var/cooldown_duration = 30 SECONDS
 	var/cooldown = 0
 	var/cooldown_timer
 	var/robot_cell_charge = 5000
@@ -34,10 +34,6 @@
 	QDEL_NULL(countdown)
 	. = ..()
 
-/obj/machinery/transformer/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/transformer/update_icon()
 	..()
 	if(stat & (BROKEN|NOPOWER) || cooldown == 1)
@@ -58,14 +54,14 @@
 			AM.forceMove(drop_location())
 			do_transform(AM)
 
-/obj/machinery/transformer/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/transformer/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	// Allows items to go through,
 	// to stop them from blocking the conveyor belt.
 	if(!ishuman(mover))
-		var/dir = get_dir(src, mover)
-		if(dir == EAST)
-			return ..()
-	return 0
+		if(get_dir(src, mover) == EAST)
+			return
+	return FALSE
 
 /obj/machinery/transformer/process()
 	if(cooldown && (cooldown_timer <= world.time))
@@ -101,7 +97,7 @@
  	// So he can't jump out the gate right away.
 	R.SetLockdown()
 	if(masterAI)
-		R.connected_ai = masterAI
+		R.set_connected_ai(masterAI)
 		R.lawsync()
 		R.lawupdate = 1
 	addtimer(CALLBACK(src, .proc/unlock_new_robot, R), 50)

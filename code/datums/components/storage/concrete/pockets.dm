@@ -8,9 +8,9 @@
 	. = ..()
 	if(. && silent && !prevent_warning)
 		if(quickdraw)
-			to_chat(user, "<span class='notice'>You discreetly slip [I] into [parent]. Alt-click [parent] to remove it.</span>")
+			to_chat(user, span_notice("You discreetly slip [I] into [parent]. Alt-click [parent] to remove it."))
 		else
-			to_chat(user, "<span class='notice'>You discreetly slip [I] into [parent].</span>")
+			to_chat(user, span_notice("You discreetly slip [I] into [parent]."))
 
 /datum/component/storage/concrete/pockets
 	max_w_class = WEIGHT_CLASS_NORMAL
@@ -50,7 +50,7 @@
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
 		/obj/item/firing_pin
 		),
-		list(/obj/item/screwdriver/power)
+		list(/obj/item/handdrill)
 		)
 
 /datum/component/storage/concrete/pockets/shoes/clown/Initialize()
@@ -61,7 +61,7 @@
 		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
 		/obj/item/firing_pin, /obj/item/bikehorn),
-		list(/obj/item/screwdriver/power)
+		list(/obj/item/handdrill)
 		)
 
 /datum/component/storage/concrete/pockets/pocketprotector

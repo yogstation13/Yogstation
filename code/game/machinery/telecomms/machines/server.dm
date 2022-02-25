@@ -7,7 +7,7 @@
 
 /obj/machinery/telecomms/server
 	name = "telecommunication server"
-	icon_state = "comm_server"
+	icon_state = "server"
 	desc = "A machine used to store data and network statistics."
 	density = TRUE
 	use_power = IDLE_POWER_USE
@@ -28,7 +28,7 @@
 		totaltraffic += traffic // add current traffic to total traffic
 
 	// Delete particularly old logs
-	if (log_entries.len >= 400)
+	if (log_entries.len >= SERVER_LOG_STORAGE_MAX)
 		log_entries.Cut(1, 2)
 
 	signal.data["server"] = src; //Yogs

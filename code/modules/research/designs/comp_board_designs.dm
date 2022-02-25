@@ -4,7 +4,7 @@
 	name = "Computer Design ( NULL ENTRY )"
 	desc = "I promise this doesn't give you syndicate goodies!"
 	build_type = IMPRINTER
-	materials = list(MAT_GLASS = 1000)
+	materials = list(/datum/material/glass = 1000)
 
 /datum/design/board/arcade_battle
 	name = "Computer Design (Battle Arcade Machine)"
@@ -283,5 +283,45 @@
 	desc = "Allows for the construction of circuit boards used to build a nanite cloud control console."
 	id = "nanite_cloud_control"
 	build_path = /obj/item/circuitboard/computer/nanite_cloud_controller
+	category = list("Computer Boards")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/shuttle/flight_control
+	name = "Computer Design (Shuttle Flight Controller)"
+	desc = "Allows for the construction of circuit boards used to build a console that enables shuttle flight"
+	id = "shuttle_control"
+	build_path = /obj/item/circuitboard/computer/shuttle/flight_control
+	category = list("Computer Boards", "Shuttle Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/board/shuttle/shuttle_docker
+	name = "Computer Design (Shuttle Zoning Designator)"
+	desc = "Allows for the construction of circuit boards used to build a console that enables the targetting of custom flight locations"
+	id = "shuttle_docker"
+	build_path = /obj/item/circuitboard/computer/shuttle/docker
+	category = list("Computer Boards", "Shuttle Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/board/ai_upload_download
+	name = "Computer Design (AI Control Console)"
+	desc = "Allows for the construction of circuit boards used to build an AI Control console."
+	id = "ai_control"
+	build_path = /obj/item/circuitboard/computer/ai_upload_download
+	category = list("Computer Boards")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/ai_server_overview
+	name = "Computer Design (AI Server Overview Console)"
+	desc = "Allows for the construction of circuit boards used to build an AI Server Overview console."
+	id = "ai_server_overview"
+	build_path = /obj/item/circuitboard/computer/ai_server_overview
+	category = list("Computer Boards")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/ai_resource_distribution
+	name = "Computer Design (AI Resource Distribution Console)"
+	desc = "Allows for the construction of circuit boards used to build an AI Resource Distribution console."
+	id = "ai_resource_distribution"
+	build_path = /obj/item/circuitboard/computer/ai_resource_distribution
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

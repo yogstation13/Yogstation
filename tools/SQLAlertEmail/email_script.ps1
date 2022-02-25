@@ -12,10 +12,10 @@ $Matches = Get-ChildItem "$Path$Date" -recurse -include *.log | Select-String "$
 
 $email = New-Object System.Net.Mail.MailMessage
 $email.From = $From
-foreach($i in $To) {$email.To.Add($i)}
+foreach ($i in $To) { $email.To.Add($i) }
 $email.Subject = $Subject
-$MatchList = foreach($m in $Matches) {"`t$m`n"}
-$email.Body = $Body+"`n"+$MatchList
+$MatchList = foreach ($m in $Matches) { "`t$m`n" }
+$email.Body = $Body + "`n" + $MatchList
 
 $smtp = New-Object System.Net.Mail.SmtpClient($SMTPServer, $SMTPPort);
 $smtp.Credentials = New-Object System.Net.NetworkCredential($Account, $Password);

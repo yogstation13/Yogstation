@@ -1,0 +1,88 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/template_noop)
+"n" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"r" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"B" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/gloves/color/fyellow,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"D" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"O" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"P" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"S" = (
+/obj/machinery/light/small/broken{
+	dir = 1;
+	icon_state = "bulb-broken"
+	},
+/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/template_noop)
+"X" = (
+/obj/structure/table,
+/obj/machinery/light/small/broken,
+/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/gloves/color/fyellow/old,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+b
+D
+B
+"}
+(2,1,1) = {"
+S
+P
+n
+"}
+(3,1,1) = {"
+D
+r
+D
+"}
+(4,1,1) = {"
+O
+r
+X
+"}
+(5,1,1) = {"
+O
+D
+n
+"}

@@ -8,6 +8,9 @@
 /obj/item/ammo_casing/magic/change
 	projectile_type = /obj/item/projectile/magic/change
 
+/obj/item/ammo_casing/magic/cheese
+	projectile_type = /obj/item/projectile/magic/cheese
+
 /obj/item/ammo_casing/magic/animate
 	projectile_type = /obj/item/projectile/magic/animate
 
@@ -38,6 +41,9 @@
 
 /obj/item/ammo_casing/magic/spellblade
 	projectile_type = /obj/item/projectile/magic/spellblade
+
+/obj/item/ammo_casing/magic/spellblade/weak
+	projectile_type = /obj/item/projectile/magic/spellblade/weak
 
 /obj/item/ammo_casing/magic/arcane_barrage
 	projectile_type = /obj/item/projectile/magic/arcane_barrage

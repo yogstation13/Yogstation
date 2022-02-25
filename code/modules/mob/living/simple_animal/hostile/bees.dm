@@ -51,6 +51,8 @@
 	var/datum/reagent/beegent = null //hehe, beegent
 	var/obj/structure/beebox/beehome = null
 	var/idle = 0
+	var/angery = FALSE //if the bees are MAD AS HELL
+	var/mutable_appearance/angery_eye
 	var/isqueen = FALSE
 	var/icon_base = "bee"
 	var/static/beehometypecache = typecacheof(/obj/structure/beebox)
@@ -60,12 +62,16 @@
 	. = ..()
 	generate_bee_visuals()
 	AddComponent(/datum/component/swarming)
+	angery_eye = mutable_appearance('icons/mob/bees.dmi', "angery_eye",MOB_LAYER)
+	RegisterSignal(src, COMSIG_MOB_APPLY_DAMAGE, .proc/alert_hive)
 
 /mob/living/simple_animal/hostile/poison/bees/Destroy()
 	if(beehome)
 		beehome.bees -= src
 		beehome = null
 	beegent = null
+	QDEL_NULL(angery_eye)
+	UnregisterSignal(src, COMSIG_MOB_APPLY_DAMAGE)
 	return ..()
 
 
@@ -74,6 +80,8 @@
 		beehome.bees -= src
 		beehome = null
 	beegent = null
+	QDEL_NULL(angery_eye)
+	UnregisterSignal(src, COMSIG_MOB_APPLY_DAMAGE)
 	..()
 
 
@@ -81,7 +89,7 @@
 	. = ..()
 
 	if(!beehome)
-		. += "<span class='warning'>This bee is homeless!</span>"
+		. += span_warning("This bee is homeless AND ANGRY!")
 
 
 /mob/living/simple_animal/hostile/poison/bees/proc/generate_bee_visuals()
@@ -109,14 +117,14 @@
 		return FALSE
 	if(isliving(the_target))
 		var/mob/living/H = the_target
-		return !H.bee_friendly()
+		return !H.bee_friendly() && (!beehome || angery)
 
 
 /mob/living/simple_animal/hostile/poison/bees/Found(atom/A)
 	if(isliving(A))
 		var/mob/living/H = A
-		return !H.bee_friendly()
-	if(istype(A, /obj/machinery/hydroponics))
+		return !H.bee_friendly() && (!beehome || angery)
+	if(istype(A, /obj/machinery/hydroponics) && !angery)
 		var/obj/machinery/hydroponics/Hydro = A
 		if(Hydro.myseed && !Hydro.dead && !Hydro.recent_bee_visit)
 			wanted_objects |= hydroponicstypecache //so we only hunt them while they're alive/seeded/not visisted
@@ -180,6 +188,14 @@
 	if(beehome)
 		beehome.bee_resources = min(beehome.bee_resources + growth, 100)
 
+/mob/living/simple_animal/hostile/poison/bees/proc/alert_hive()
+	beehome?.toggle_angery(TRUE)
+
+/mob/living/simple_animal/hostile/poison/bees/proc/toggle_angery(beecome_angery)
+	angery = beecome_angery
+	overlays -= angery_eye
+	if(angery)
+		overlays += angery_eye
 
 /mob/living/simple_animal/hostile/poison/bees/handle_automated_action()
 	. = ..()
@@ -265,18 +281,18 @@
 				if(queen && queen.beegent)
 					qb.queen.assign_reagent(queen.beegent) //Bees use the global singleton instances of reagents, so we don't need to worry about one bee being deleted and her copies losing their reagents.
 				user.put_in_active_hand(qb)
-				user.visible_message("<span class='notice'>[user] injects [src] with royal bee jelly, causing it to split into two bees, MORE BEES!</span>","<span class ='warning'>You inject [src] with royal bee jelly, causing it to split into two bees, MORE BEES!</span>")
+				user.visible_message(span_notice("[user] injects [src] with royal bee jelly, causing it to split into two bees, MORE BEES!"),"<span class ='warning'>You inject [src] with royal bee jelly, causing it to split into two bees, MORE BEES!</span>")
 			else
-				to_chat(user, "<span class='warning'>You don't have enough royal bee jelly to split a bee in two!</span>")
+				to_chat(user, span_warning("You don't have enough royal bee jelly to split a bee in two!"))
 		else
 			var/datum/reagent/R = GLOB.chemical_reagents_list[S.reagents.get_master_reagent_id()]
 			if(R && S.reagents.has_reagent(R.type, 5))
 				S.reagents.remove_reagent(R.type,5)
 				queen.assign_reagent(R)
-				user.visible_message("<span class='warning'>[user] injects [src]'s genome with [R.name], mutating its DNA!</span>","<span class='warning'>You inject [src]'s genome with [R.name], mutating its DNA!</span>")
+				user.visible_message(span_warning("[user] injects [src]'s genome with [R.name], mutating its DNA!"),span_warning("You inject [src]'s genome with [R.name], mutating its DNA!"))
 				name = queen.name
 			else
-				to_chat(user, "<span class='warning'>You don't have enough units of that chemical to modify the bee's DNA!</span>")
+				to_chat(user, span_warning("You don't have enough units of that chemical to modify the bee's DNA!"))
 	..()
 
 

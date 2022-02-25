@@ -17,13 +17,14 @@
 		useblacklist = FALSE
 
 	if(imp_in)
-		if(!is_centcom_level(imp_in.z)) //teleporting doesn't work on centcom
+		var/turf/T = get_turf_global(imp_in)
+		if(!is_centcom_level(T.z)) //teleporting doesn't work on centcom
 
 			if(blacklist.len && useblacklist)
 				var/i = 0
 				for(var/zlevel in blacklist)
 					i++
-					if(zlevel == imp_in.z)
+					if(zlevel == T.z)
 						if(on && pointofreturn)
 							retrieve_exile()
 						else
@@ -31,21 +32,21 @@
 					else
 						if(!on && i >= blacklist.len)  //we've just arrived on a non-blacklisted z, start blocking
 							on = TRUE
-							pointofreturn = imp_in.loc //we'll teleport back here if we go out of bounds
+							pointofreturn = T //we'll teleport back here if we go out of bounds
 
 			if(whitelist.len && usewhitelist)
 				for(var/zlevel in whitelist)
-					if(zlevel == imp_in.z)
+					if(zlevel == T.z)
 						if(!on)
 							on = TRUE //we're on a whitelisted z, start blocking
-							pointofreturn = imp_in.loc //we'll teleport back here if we go out of bounds
+							pointofreturn = T //we'll teleport back here if we go out of bounds
 						return // we're allowed here, stop
-
 				if(on && pointofreturn)
 					retrieve_exile()
 
 /obj/item/implant/teleporter/proc/retrieve_exile()
-	if(!is_centcom_level(imp_in.z))
+	var/turf/T = get_turf_global(imp_in)
+	if(!is_centcom_level(T.z))
 		do_teleport(imp_in, pointofreturn, 0, channel = TELEPORT_CHANNEL_WORMHOLE)
 		say(retrievalmessage)
 
@@ -80,14 +81,13 @@
 
 	if(user)
 		log_combat(user, target, "implanted", object="[name]")
-
+	var/turf/T = get_turf_global(imp_in)
 	if(useblacklist && !blacklist.len)
-		blacklist += imp_in.z
+		blacklist += T.z
 
 	if(usewhitelist && !whitelist.len)
-		whitelist += imp_in.z
-		pointofreturn = imp_in.loc
-
+		whitelist += T.z
+		pointofreturn = T
 	return 1
 
 /obj/item/implant/teleporter/removed(mob/living/source, silent = 0, special = 0)
@@ -104,3 +104,8 @@
 	pointofreturn = /area/ruin/powered/gasstation //for some reason it does not teleport them back to lavaland so I did this to fix it lets just say the gas station clerks implant is a older module
 	usewhitelist = TRUE
 	retrievalmessage = "Employee retrieval complete."
+
+/obj/item/implant/teleporter/innkeeper
+	pointofreturn = /area/ruin/powered/inn
+	usewhitelist = TRUE
+	retrievalmessage = "Safety retrieval complete."

@@ -3,7 +3,7 @@
 	id = "snail"
 	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,4), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 	default_color = "336600" //vomit green
-	species_traits = list(MUTCOLORS, NO_UNDERWEAR)
+	species_traits = list(MUTCOLORS, NO_UNDERWEAR, HAS_FLESH, HAS_BONE)
 	inherent_traits = list(TRAIT_ALWAYS_CLEAN)
 	attack_verb = "slap"
 	say_mod = "slurs"
@@ -14,7 +14,7 @@
 	siemens_coeff = 2 //snails are mostly water
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP
 	sexes = FALSE //snails are hermaphrodites
-	var/shell_type = /obj/item/storage/backpack/snail
+	var/shell_type = /obj/item/storage/backpack/snail/species
 
 	mutanteyes = /obj/item/organ/eyes/snail
 	mutanttongue = /obj/item/organ/tongue/snail
@@ -43,10 +43,10 @@
 	var/obj/item/storage/backpack/bag = C.get_item_by_slot(SLOT_BACK)
 	if(istype(bag, /obj/item/storage/backpack/snail))
 		bag.emptyStorage()
-		C.doUnEquip(bag, TRUE, no_move = TRUE)
+		C.temporarilyRemoveItemFromInventory(bag, TRUE)
 		qdel(bag)
 
-/obj/item/storage/backpack/snail
+/obj/item/storage/backpack/snail/species
 	name = "snail shell"
 	desc = "Worn by snails as armor and storage compartment."
 	icon_state = "snailshell"
@@ -59,4 +59,13 @@
 
 /obj/item/storage/backpack/snail/Initialize()
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+
+/datum/species/snail/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+
+	if(H.reagents.has_reagent(/datum/reagent/consumable/sodiumchloride))
+		H.adjustFireLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+
+	if(H.reagents.has_reagent(/datum/reagent/medicine/salglu_solution))
+		H.adjustFireLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)

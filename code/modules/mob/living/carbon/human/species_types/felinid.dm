@@ -1,48 +1,29 @@
 //Subtype of human
 /datum/species/human/felinid
-	name = "Felinid"
+	name = "Felinid Human"
 	id = "felinid"
 	limbs_id = "human"
 
 	mutant_bodyparts = list("ears", "tail_human")
 	default_features = list("mcolor" = "FFF", "tail_human" = "Cat", "ears" = "Cat", "wings" = "None")
-
+	rare_say_mod = list("meows"= 10)
+	liked_food = SEAFOOD | DAIRY
+	toxic_food = TOXIC | CHOCOLATE
 	mutantears = /obj/item/organ/ears/cat
 	mutanttail = /obj/item/organ/tail/cat
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
+	swimming_component = /datum/component/swimming/felinid
+	species_language_holder = /datum/language_holder/felinid
+
+	screamsound = list('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg', 'sound/voice/feline/scream3.ogg')
 
 /datum/species/human/felinid/qualifies_for_rank(rank, list/features)
 	return TRUE
 
 //Curiosity killed the cat's wagging tail.
-/datum/species/human/felinid/spec_death(gibbed, mob/living/carbon/human/H)
-	if(H)
-		stop_wagging_tail(H)
-
-/datum/species/human/felinid/spec_stun(mob/living/carbon/human/H,amount)
-	if(H)
-		stop_wagging_tail(H)
-	. = ..()
-
-/datum/species/human/felinid/can_wag_tail(mob/living/carbon/human/H)
-	return ("tail_human" in mutant_bodyparts) || ("waggingtail_human" in mutant_bodyparts)
-
-/datum/species/human/felinid/is_wagging_tail(mob/living/carbon/human/H)
-	return ("waggingtail_human" in mutant_bodyparts)
-
-/datum/species/human/felinid/start_wagging_tail(mob/living/carbon/human/H)
-	if("tail_human" in mutant_bodyparts)
-		mutant_bodyparts -= "tail_human"
-		mutant_bodyparts |= "waggingtail_human"
-	H.update_body()
-
-/datum/species/human/felinid/stop_wagging_tail(mob/living/carbon/human/H)
-	if("waggingtail_human" in mutant_bodyparts)
-		mutant_bodyparts -= "waggingtail_human"
-		mutant_bodyparts |= "tail_human"
-	H.update_body()
 
 /datum/species/human/felinid/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	. = ..()
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		if(!pref_load)			//Hah! They got forcefully purrbation'd. Force default felinid parts on them if they have no mutant parts in those areas!
@@ -60,7 +41,6 @@
 			tail.Insert(H, drop_if_replaced = FALSE)
 		else
 			mutanttail = null
-	return ..()
 
 /datum/species/human/felinid/on_species_loss(mob/living/carbon/H, datum/species/new_species, pref_load)
 	var/obj/item/organ/ears/cat/ears = H.getorgan(/obj/item/organ/ears/cat)
@@ -129,3 +109,11 @@
 
 	if(!silent)
 		to_chat(H, "You are no longer a cat.")
+		
+/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+	if(H.reagents.has_reagent(/datum/reagent/consumable/ethanol/catsip))
+		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+
+/datum/species/human/felinid/get_scream_sound(mob/living/carbon/human/H)
+	return pick(screamsound)

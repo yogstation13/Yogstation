@@ -3,7 +3,7 @@
 
 /obj/machinery/atmospherics/components
 	var/welded = FALSE //Used on pumps and scrubbers
-	var/showpipe = FALSE
+	var/showpipe = TRUE
 	var/shift_underlay_only = TRUE //Layering only shifts underlay?
 
 	var/list/datum/pipeline/parents
@@ -16,8 +16,7 @@
 	..()
 
 	for(var/i in 1 to device_type)
-		var/datum/gas_mixture/A = new
-		A.volume = 200
+		var/datum/gas_mixture/A = new(200)
 		airs[i] = A
 
 // Iconnery
@@ -30,16 +29,10 @@
 
 	underlays.Cut()
 
-	var/turf/T = loc
-	if(level == 2 || !T.intact)
-		showpipe = TRUE
-		plane = GAME_PLANE
-	else
-		showpipe = FALSE
-		plane = FLOOR_PLANE
+	plane = showpipe ? GAME_PLANE : FLOOR_PLANE
 
 	if(!showpipe)
-		return //no need to update the pipes if they aren't showing
+		return ..()
 
 	var/connected = 0 //Direction bitset
 
@@ -56,12 +49,13 @@
 
 	if(!shift_underlay_only)
 		PIPING_LAYER_SHIFT(src, piping_layer)
+	return ..()
 
 /obj/machinery/atmospherics/components/proc/get_pipe_underlay(state, dir, color = null)
 	if(color)
-		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, color, piping_layer = shift_underlay_only ? piping_layer : 2)
+		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, color, piping_layer = shift_underlay_only ? piping_layer : 3)
 	else
-		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, piping_layer = shift_underlay_only ? piping_layer : 2)
+		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, piping_layer = shift_underlay_only ? piping_layer : 3)
 
 // Pipenet stuff; housekeeping
 
@@ -85,7 +79,6 @@
 /obj/machinery/atmospherics/components/proc/nullifyPipenet(datum/pipeline/reference)
 	if(!reference)
 		CRASH("nullifyPipenet(null) called by [type] on [COORD(src)]")
-		return
 	var/i = parents.Find(reference)
 	reference.other_airs -= airs[i]
 	reference.other_atmosmch -= src
@@ -119,7 +112,7 @@
 		var/times_lost = 0
 		for(var/i in 1 to device_type)
 			var/datum/gas_mixture/air = airs[i]
-			lost += pressures*environment.volume/(air.temperature * R_IDEAL_GAS_EQUATION)
+			lost += pressures*environment.return_volume()/(air.return_temperature() * R_IDEAL_GAS_EQUATION)
 			times_lost++
 		var/shared_loss = lost/times_lost
 
@@ -146,8 +139,9 @@
 		var/datum/pipeline/parent = parents[i]
 		if(!parent)
 			WARNING("Component is missing a pipenet! Rebuilding...")
-			build_network()
-		parent.update = 1
+			SSair.add_to_rebuild_queue(src)
+		else
+			parent.update = 1
 
 /obj/machinery/atmospherics/components/returnPipenets()
 	. = list()
@@ -159,7 +153,7 @@
 /obj/machinery/atmospherics/components/ui_status(mob/user)
 	if(allowed(user))
 		return ..()
-	to_chat(user, "<span class='danger'>Access denied.</span>")
+	to_chat(user, span_danger("Access denied."))
 	return UI_CLOSE
 
 // Tool acts

@@ -31,11 +31,10 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
 "f" = (
-/obj/structure/grille,
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
-/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/labor)
 "g" = (

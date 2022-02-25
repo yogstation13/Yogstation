@@ -6,10 +6,42 @@
 
 /datum/food_processor_process/meat
 	input = /obj/item/reagent_containers/food/snacks/meat/slab
-	output = /obj/item/reagent_containers/food/snacks/meatball  //YOGS - Bigotry rule
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball  //YOGS - Bigotry rule
+
+/datum/food_processor_process/cutlet
+	input = /obj/item/reagent_containers/food/snacks/meat/cutlet/plain
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball
+
+/datum/food_processor_process/meat/human
+	input = /obj/item/reagent_containers/food/snacks/meat/slab/human
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball/human
+
+/datum/food_processor_process/cutlet/human
+	input = /obj/item/reagent_containers/food/snacks/meat/cutlet/plain/human
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball/human
+
+/datum/food_processor_process/meat/corgi
+	input = /obj/item/reagent_containers/food/snacks/meat/slab/corgi
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball/corgi
+
+/datum/food_processor_process/meat/xeno
+	input = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball/xeno
+
+/datum/food_processor_process/cutlet/xeno
+	input = /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball/xeno
+
+/datum/food_processor_process/meat/bear
+	input = /obj/item/reagent_containers/food/snacks/meat/slab/bear
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball/bear
+
+/datum/food_processor_process/cutlet/bear
+	input = /obj/item/reagent_containers/food/snacks/meat/cutlet/bear
+	output = /obj/item/reagent_containers/food/snacks/raw_meatball/bear
 
 /datum/food_processor_process/bacon
-	input = /obj/item/reagent_containers/food/snacks/meat/rawcutlet
+	input = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet
 	output = /obj/item/reagent_containers/food/snacks/meat/rawbacon
 
 /datum/food_processor_process/potatowedges
@@ -34,7 +66,7 @@
 
 /datum/food_processor_process/spaghetti
 	input = /obj/item/reagent_containers/food/snacks/doughslice
-	output = /obj/item/reagent_containers/food/snacks/spaghetti
+	output = /obj/item/reagent_containers/food/snacks/spaghetti/raw
 
 /datum/food_processor_process/corn
 	input = /obj/item/reagent_containers/food/snacks/grown/corn

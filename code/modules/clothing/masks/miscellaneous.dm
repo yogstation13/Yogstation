@@ -12,7 +12,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(src == C.wear_mask)
-			to_chat(user, "<span class='warning'>You need help taking this off!</span>")
+			to_chat(user, span_warning("You need help taking this off!"))
 			return
 	..()
 
@@ -122,7 +122,7 @@
 /obj/item/clothing/mask/frog/cursed/equipped(mob/user, slot)
 	var/mob/living/carbon/C = user
 	if(C.wear_mask == src && HAS_TRAIT_FROM(src, TRAIT_NODROP, CURSED_MASK_TRAIT))
-		to_chat(user, "<span class='userdanger'>[src] was cursed! Ree!!</span>")
+		to_chat(user, span_userdanger("[src] was cursed! Ree!!"))
 	return ..()
 
 /obj/item/clothing/mask/cowmask
@@ -239,17 +239,17 @@
 /obj/item/clothing/mask/bandana/attack_self(mob/user)
 	adjustmask(user)
 
-/obj/item/clothing/mask/bandana/AltClick(mob/user)
+/obj/item/clothing/mask/bandana/AltClick(mob/user,bypass = FALSE)
 	. = ..()
-	if(iscarbon(user))
+	if(iscarbon(user) && !bypass)
 		var/mob/living/carbon/C = user
 		if((C.get_item_by_slot(SLOT_HEAD == src)) || (C.get_item_by_slot(SLOT_WEAR_MASK) == src))
-			to_chat(user, "<span class='warning'>You can't tie [src] while wearing it!</span>")
+			to_chat(user, span_warning("You can't tie [src] while wearing it!"))
 			return
-	if(slot_flags & ITEM_SLOT_HEAD)
-		to_chat(user, "<span class='warning'>You must undo [src] before you can tie it into a neckerchief!</span>")
+	if(slot_flags & ITEM_SLOT_HEAD && !bypass)
+		to_chat(user, span_warning("You must undo [src] before you can tie it into a neckerchief!"))
 	else
-		if(user.is_holding(src))
+		if(user.is_holding(src) || bypass)
 			var/obj/item/clothing/neck/neckerchief/nk = new(src)
 			nk.name = "[name] neckerchief"
 			nk.desc = "[desc] It's tied up like a neckerchief."
@@ -258,10 +258,10 @@
 			var/currentHandIndex = user.get_held_index_of_item(src)
 			user.transferItemToLoc(src, null)
 			user.put_in_hand(nk, currentHandIndex)
-			user.visible_message("<span class='notice'>You tie [src] up like a neckerchief.</span>", "<span class='notice'>[user] ties [src] up like a neckerchief.</span>")
+			user.visible_message(span_notice("You tie [src] up like a neckerchief."), span_notice("[user] ties [src] up like a neckerchief."))
 			qdel(src)
 		else
-			to_chat(user, "<span class='warning'>You must be holding [src] in order to tie it!</span>")
+			to_chat(user, span_warning("You must be holding [src] in order to tie it!"))
 
 /obj/item/clothing/mask/bandana/red
 	name = "red bandana"
@@ -297,6 +297,10 @@
 	name = "durathread bandana"
 	desc =  "A bandana made from durathread, you wish it would provide some protection to its wearer, but it's far too thin..."
 	icon_state = "banddurathread"
+
+/obj/item/clothing/mask/bandana/durathread/tied/Initialize()
+	. = ..()
+	AltClick(bypass = TRUE)
 
 /obj/item/clothing/mask/mummy
 	name = "mummy mask"
@@ -334,3 +338,12 @@
 			message = replacetextEx(message,regex(capitalize(key),"g"), "[capitalize(value)]")
 			message = replacetextEx(message,regex(key,"g"), "[value]")
 	speech_args[SPEECH_MESSAGE] = trim(message)
+
+/obj/item/clothing/mask/rmask
+	name = "dusty mask"
+	desc = "A face is nothing, it’s what’s inside that matters."
+	icon_state = "rmask"
+	item_state = "rmaks"
+	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	clothing_flags = MASKINTERNALS
+	flags_cover = MASKCOVERSEYES

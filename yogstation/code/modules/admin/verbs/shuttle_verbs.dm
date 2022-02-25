@@ -5,7 +5,7 @@
 /client/proc/delay_shuttle()
 	set name = "Delay Shuttle"
 	set desc = "Toggles admin delay of the shuttle."
-	set category = "Admin"
+	set category = "Admin.Round Interaction"
 	var/static/datum/admin_delay/delay = new
 	
 	if(SSshuttle.hostileEnvironments.len)
@@ -15,7 +15,7 @@
 				log_admin("[key_name(usr)] has removed the admin-induced delay on the shuttle launching.")
 				message_admins("[key_name(usr)] has removed the admin-induced delay on the shuttle launching.")
 		else
-			to_chat(usr,"<span class='warning'>The shuttle is already delayed by something else!</span>", confidential=TRUE)
+			to_chat(usr,span_warning("The shuttle is already delayed by something else!"), confidential=TRUE)
 		return
 	
 	if(alert("Are you sure you want to delay the shuttle from launching?","Shuttle Delay","Yes","No") != "Yes")

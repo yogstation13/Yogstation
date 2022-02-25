@@ -43,12 +43,11 @@
 	if(!can_see(A))
 		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
-		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
-		var/message = "[key_name(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)]))"
-		log_admin(message)
-		if(REALTIMEOFDAY >= chnotify + 9000)
-			chnotify = REALTIMEOFDAY
-			send2irc_adminless_only("NOCHEAT", message)
+		message_admins("[ADMIN_LOOKUPFLW(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
+		log_admin("[key_name(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)])")
+		to_chat(src, span_reallybig("You have been automatically kicked because you clicked a turf you shouldn't have been able to see as an AI. You should reconnect automatically. If you do not, you can reconnect using the File --> Reconnect button."))
+		winset(usr, null, "command=.reconnect")
+		QDEL_IN(client, 3 SECONDS) //fallback if the reconnection doesnt work
 		return
 
 	var/list/modifiers = params2list(params)
@@ -58,8 +57,6 @@
 	if(modifiers["middle"])
 		if(controlled_mech) //Are we piloting a mech? Placed here so the modifiers are not overridden.
 			controlled_mech.click_action(A, src, params) //Override AI normal click behavior.
-		return
-
 		return
 	if(modifiers["shift"])
 		ShiftClickOn(A)
@@ -109,6 +106,7 @@
 	A.AICtrlShiftClick(src)
 /mob/living/silicon/ai/ShiftClickOn(var/atom/A)
 	A.AIShiftClick(src)
+
 /mob/living/silicon/ai/CtrlClickOn(var/atom/A)
 	A.AICtrlClick(src)
 /mob/living/silicon/ai/AltClickOn(var/atom/A)
@@ -130,6 +128,7 @@
 	return
 /atom/proc/AICtrlShiftClick()
 	return
+
 
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick() // Bolts doors
@@ -182,6 +181,22 @@
 /obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
 	hangup_all_calls()
 	add_hiddenprint(usr)
+
+/* Humans (With upgrades) */
+/mob/living/carbon/human/AIShiftClick(mob/living/silicon/ai/user)
+	
+	if(user.client && (user.client.eye == user.eyeobj || user.client.eye == user.loc))
+		if(user.canExamineHumans)
+			user.examinate(src)
+		if(user.canCameraMemoryTrack)
+			if(name == "Unknown")
+				to_chat(user, span_warning("Unable to track 'Unknown' persons! Their name must be visible."))
+				return
+			if(src == user.cameraMemoryTarget)
+				to_chat(user, span_warning("Stop tracking this individual? <a href='?src=[REF(user)];stopTrackHuman=1'>\[UNTRACK\]</a>"))
+			else
+				to_chat(user, span_warning("Track this individual? <a href='?src=[REF(user)];trackHuman=[src.name]'>\[TRACK\]</a>"))
+	return
 
 //
 // Override TurfAdjacent for AltClicking

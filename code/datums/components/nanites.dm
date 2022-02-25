@@ -32,6 +32,8 @@
 
 		if(cloud_id)
 			cloud_sync()
+/datum/component/nanites/proc/delete_nanites()
+	qdel(src)
 
 /datum/component/nanites/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_HAS_NANITES, .proc/confirm_nanites)
@@ -46,6 +48,7 @@
 	RegisterSignal(parent, COMSIG_NANITE_ADD_PROGRAM, .proc/add_program)
 	RegisterSignal(parent, COMSIG_NANITE_SCAN, .proc/nanite_scan)
 	RegisterSignal(parent, COMSIG_NANITE_SYNC, .proc/sync)
+	RegisterSignal(parent, COMSIG_NANITE_DELETE, .proc/delete_nanites)
 
 	if(isliving(parent))
 		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, .proc/on_emp)
@@ -78,7 +81,8 @@
 								COMSIG_MOVABLE_HEAR,
 								COMSIG_SPECIES_GAIN,
 								COMSIG_NANITE_SIGNAL,
-								COMSIG_NANITE_COMM_SIGNAL))
+								COMSIG_NANITE_COMM_SIGNAL,
+								COMSIG_NANITE_DELETE))
 
 /datum/component/nanites/Destroy()
 	STOP_PROCESSING(SSnanites, src)
@@ -97,6 +101,7 @@
 
 /datum/component/nanites/process()
 	adjust_nanites(null, regen_rate)
+	add_research()
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.on_process()
@@ -154,7 +159,7 @@
 	return (nanite_volume > 0)
 
 /datum/component/nanites/proc/adjust_nanites(datum/source, amount)
-	nanite_volume = CLAMP(nanite_volume + amount, 0, max_nanites)
+	nanite_volume = clamp(nanite_volume + amount, 0, max_nanites)
 	if(nanite_volume <= 0) //oops we ran out
 		qdel(src)
 
@@ -166,7 +171,7 @@
 	if(remove || stealth)
 		return //bye icon
 	var/nanite_percent = (nanite_volume / max_nanites) * 100
-	nanite_percent = CLAMP(CEILING(nanite_percent, 10), 10, 100)
+	nanite_percent = clamp(CEILING(nanite_percent, 10), 10, 100)
 	holder.icon_state = "nanites[nanite_percent]"
 
 /datum/component/nanites/proc/on_emp(datum/source, severity)
@@ -220,16 +225,16 @@
 	return FALSE
 
 /datum/component/nanites/proc/set_volume(datum/source, amount)
-	nanite_volume = CLAMP(amount, 0, max_nanites)
+	nanite_volume = clamp(amount, 0, max_nanites)
 
 /datum/component/nanites/proc/set_max_volume(datum/source, amount)
 	max_nanites = max(1, max_nanites)
 
 /datum/component/nanites/proc/set_cloud(datum/source, amount)
-	cloud_id = CLAMP(amount, 0, 100)
+	cloud_id = clamp(amount, 0, 100)
 
 /datum/component/nanites/proc/set_safety(datum/source, amount)
-	safety_threshold = CLAMP(amount, 0, max_nanites)
+	safety_threshold = clamp(amount, 0, max_nanites)
 
 /datum/component/nanites/proc/set_regen(datum/source, amount)
 	regen_rate = amount
@@ -248,26 +253,39 @@
 /datum/component/nanites/proc/get_programs(datum/source, list/nanite_programs)
 	nanite_programs |= programs
 
+/datum/component/nanites/proc/add_research()
+	var/research_value = NANITE_BASE_RESEARCH
+	if(!ishuman(host_mob))	
+		if(!iscarbon(host_mob))
+			research_value *= 0.4
+		else
+			research_value *= 0.8
+	if(!host_mob.client)
+		research_value *= 0.5
+	if(host_mob.stat == DEAD)
+		research_value *= 0.75
+	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_NANITES = research_value))
+
 /datum/component/nanites/proc/nanite_scan(datum/source, mob/user, full_scan)
 	if(!full_scan)
 		if(!stealth)
-			to_chat(user, "<span class='notice'><b>Nanites Detected</b></span>")
-			to_chat(user, "<span class='notice'>Saturation: [nanite_volume]/[max_nanites]</span>")
+			to_chat(user, span_notice("<b>Nanites Detected</b>"))
+			to_chat(user, span_notice("Saturation: [nanite_volume]/[max_nanites]"))
 			return TRUE
 	else
-		to_chat(user, "<span class='info'>NANITES DETECTED</span>")
-		to_chat(user, "<span class='info'>================</span>")
-		to_chat(user, "<span class='info'>Saturation: [nanite_volume]/[max_nanites]</span>")
-		to_chat(user, "<span class='info'>Safety Threshold: [safety_threshold]</span>")
-		to_chat(user, "<span class='info'>Cloud ID: [cloud_id ? cloud_id : "Disabled"]</span>")
-		to_chat(user, "<span class='info'>================</span>")
-		to_chat(user, "<span class='info'>Program List:</span>")
+		to_chat(user, span_info("NANITES DETECTED"))
+		to_chat(user, span_info("================"))
+		to_chat(user, span_info("Saturation: [nanite_volume]/[max_nanites]"))
+		to_chat(user, span_info("Safety Threshold: [safety_threshold]"))
+		to_chat(user, span_info("Cloud ID: [cloud_id ? cloud_id : "Disabled"]"))
+		to_chat(user, span_info("================"))
+		to_chat(user, span_info("Program List:"))
 		if(stealth)
-			to_chat(user, "<span class='alert'>%#$ENCRYPTED&^@</span>")
+			to_chat(user, span_alert("%#$ENCRYPTED&^@"))
 		else
 			for(var/X in programs)
 				var/datum/nanite_program/NP = X
-				to_chat(user, "<span class='info'><b>[NP.name]</b> | [NP.activated ? "Active" : "Inactive"]</span>")
+				to_chat(user, span_info("<b>[NP.name]</b> | [NP.activated ? "Active" : "Inactive"]"))
 		return TRUE
 
 /datum/component/nanites/proc/nanite_ui_data(datum/source, list/data, scan_level)

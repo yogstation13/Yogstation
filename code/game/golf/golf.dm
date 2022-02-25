@@ -15,47 +15,49 @@
 				icon_state = icon_state + "_w"
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message("[user.name] secures [src] to the floor.", \
-				"<span class='notice'>You secure [src] to the floor.</span>", \
-			"	<span class='italics'>You hear a ratchet</span>")
+				span_notice("You secure [src] to the floor."), \
+			"	[span_italics("You hear a ratchet")]")
 				src.anchored = 1
 			if(1)
 				anchored = 0
 				icon_state = initial(icon_state)
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message("[user.name] unsecures [src]  from the floor.", \
-				"<span class='notice'>You unwrench [src] from the floor.</span>", \
-				"<span class='italics'>You hear a ratchet.</span>")
+				span_notice("You unwrench [src] from the floor."), \
+				span_italics("You hear a ratchet."))
 				src.anchored = 0
 
-/obj/machinery/golfhole/CanPass(atom/movable/mover, turf/target, height=0)
-	if (contents.len >= 3)
-		visible_message("<span class='notice'>The golf hole is full! Try removing golfballs from the hole.</span>")
-		return ..(mover, target, height)
+/obj/machinery/golfhole/Cross(atom/movable/mover, turf/target)
+	. = ..()
 	if (istype(mover,/obj/item/golfball) && mover.throwing  && anchored)
+		if (contents.len >= 3)
+			visible_message(span_notice("The golf hole is full! Try removing golfballs from the hole."))
+			return FALSE
+
 		var/obj/item/golfball = mover
 		if(prob(75))
 			golfball.loc = src
-			visible_message("<span class='notice'>The golfball lands in [src].</span>")
+			visible_message(span_notice("The golfball lands in [src]."))
 
 			update_icon()
 		else
-			visible_message("<span class='notice'>The golfball bounces out of [src]!</span>")
-		return 0
+			visible_message(span_notice("The golfball bounces out of [src]!"))
+		return FALSE
 	else
-		return ..(mover, target, height)
+		return ..()
 
 
 /obj/machinery/golfhole/attack_hand(atom, mob/user)
 	var/obj/item/golfball/ball = locate(/obj/item/golfball) in contents
 	if (ball)
-		visible_message("<span class='notice'>The golfball is removed from the hole.</span>")
+		visible_message(span_notice("The golfball is removed from the hole."))
 		ball.loc = get_turf(src.loc)
 
 
 /obj/machinery/golfhole/proc/hole_place_item_in(obj/item/golfball, mob/user)
 	golfball.loc = src
 	user.visible_message("[user.name] knocks the golfball into [src].", \
-						"<span class='notice'>You knock the golfball into [src].</span>")
+						span_notice("You knock the golfball into [src]."))
 
 /obj/machinery/golfhole/blue
 	icon = 'yogstation/icons/code/game/golf/golfstuff.dmi'
@@ -81,6 +83,7 @@
 	if(istype(O, /obj/item/golfclub))
 		var/turf/throw_at = get_ranged_target_turf(src, get_dir(user, src), 3 )
 		throw_at(throw_at, 3 , 2)
+		user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/golfclub
 	desc = "A club for the game of golf."

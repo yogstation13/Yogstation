@@ -19,10 +19,10 @@
 	if(Adjacent(user))
 		. += "It [case ? "contains \a [case]" : "is currently empty"]."
 		if(case)
-			. += "<span class='info'>Alt-click to remove [case].</span>"
+			. += span_info("Alt-click to remove [case].")
 	else
 		if(case)
-			. += "<span class='warning'>There seems to be something inside it, but you can't quite tell what from here...</span>"
+			. += span_warning("There seems to be something inside it, but you can't quite tell what from here...")
 
 /obj/item/implantpad/handle_atom_del(atom/A)
 	if(A == case)
@@ -36,7 +36,7 @@
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
 	if(!case)
-		to_chat(user, "<span class='warning'>There's no implant to remove from [src].</span>")
+		to_chat(user, span_warning("There's no implant to remove from [src]."))
 		return
 
 	user.put_in_hands(case)
@@ -65,7 +65,10 @@
 		return
 
 	user.set_machine(src)
-	var/dat = "<B>Implant Mini-Computer:</B><HR>"
+	var/dat = ""
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+
+	dat += "<B>Implant Mini-Computer:</B><HR>"
 	if(case)
 		if(case.imp)
 			if(istype(case.imp, /obj/item/implant))
@@ -74,5 +77,6 @@
 			dat += "The implant casing is empty."
 	else
 		dat += "Please insert an implant casing!"
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=implantpad")
 	onclose(user, "implantpad")

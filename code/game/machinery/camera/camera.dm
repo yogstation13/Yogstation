@@ -42,6 +42,9 @@
 
 	var/internal_light = TRUE //Whether it can light up when an AI views it
 
+	//Reference to the obj/mob we're built into
+	var/built_in
+
 /obj/machinery/camera/preset/toxins //Bomb test site in space
 	name = "Hardened Bomb-Test Camera"
 	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site. An external light is attached to the top."
@@ -107,24 +110,24 @@
 	if(isEmpProof(TRUE)) //don't reveal it's upgraded if was done via MALF AI Upgrade Camera Network ability
 		. += "It has electromagnetic interference shielding installed."
 	else
-		. += "<span class='info'>It can be shielded against electromagnetic interference with some <b>plasma</b>.</span>"
+		. += span_info("It can be shielded against electromagnetic interference with some <b>plasma</b>.")
 	if(isXRay(TRUE)) //don't reveal it's upgraded if was done via MALF AI Upgrade Camera Network ability
 		. += "It has an X-ray photodiode installed."
 	else
-		. += "<span class='info'>It can be upgraded with an X-ray photodiode with an <b>analyzer</b>.</span>"
+		. += span_info("It can be upgraded with an X-ray photodiode with an <b>analyzer</b>.")
 	if(isMotion())
 		. += "It has a proximity sensor installed."
 	else
-		. += "<span class='info'>It can be upgraded with a <b>proximity sensor</b>.</span>"
+		. += span_info("It can be upgraded with a <b>proximity sensor</b>.")
 
 	if(!status)
-		. += "<span class='info'>It's currently deactivated.</span>"
+		. += span_info("It's currently deactivated.")
 		if(!panel_open && powered())
-			. += "<span class='notice'>You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.</span>"
+			. += span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.")
 	if(panel_open)
-		. += "<span class='info'>Its maintenance panel is currently open.</span>"
+		. += span_info("Its maintenance panel is currently open.")
 		if(!status && powered())
-			. += "<span class='info'>It can reactivated with <b>wirecutters</b>.</span>"
+			. += span_info("It can reactivated with <b>wirecutters</b>.")
 
 /obj/machinery/camera/emp_act(severity)
 	. = ..()
@@ -183,7 +186,7 @@
 	if(..())
 		return TRUE
 	panel_open = !panel_open
-	to_chat(user, "<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")
+	to_chat(user, span_notice("You screw the camera's panel [panel_open ? "open" : "closed"]."))
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE
@@ -201,7 +204,7 @@
 		return FALSE
 
 	setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
-	to_chat(user, "<span class='notice'>You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus.</span>")
+	to_chat(user, span_notice("You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus."))
 	return TRUE
 
 /obj/machinery/camera/welder_act(mob/living/user, obj/item/I)
@@ -211,10 +214,10 @@
 	if(!I.tool_start_check(user, amount=0))
 		return TRUE
 
-	to_chat(user, "<span class='notice'>You start to weld [src]...</span>")
+	to_chat(user, span_notice("You start to weld [src]..."))
 	if(I.use_tool(src, user, 100, volume=50))
-		user.visible_message("<span class='warning'>[user] unwelds [src], leaving it as just a frame bolted to the wall.</span>",
-			"<span class='warning'>You unweld [src], leaving it as just a frame bolted to the wall</span>")
+		user.visible_message(span_warning("[user] unwelds [src], leaving it as just a frame bolted to the wall."),
+			span_warning("You unweld [src], leaving it as just a frame bolted to the wall"))
 		deconstruct(TRUE)
 
 	return TRUE
@@ -227,19 +230,19 @@
 				if(!user.temporarilyRemoveItemFromInventory(I))
 					return
 				upgradeXRay(FALSE, TRUE)
-				to_chat(user, "<span class='notice'>You attach [I] into [assembly]'s inner circuits.</span>")
+				to_chat(user, span_notice("You attach [I] into [assembly]'s inner circuits."))
 				qdel(I)
 			else
-				to_chat(user, "<span class='notice'>[src] already has that upgrade!</span>")
+				to_chat(user, span_notice("[src] already has that upgrade!"))
 			return
 
 		else if(istype(I, /obj/item/stack/sheet/mineral/plasma))
 			if(!isEmpProof(TRUE)) //don't reveal it was already upgraded if was done via MALF AI Upgrade Camera Network ability
 				if(I.use_tool(src, user, 0, amount=1))
 					upgradeEmpProof(FALSE, TRUE)
-					to_chat(user, "<span class='notice'>You attach [I] into [assembly]'s inner circuits.</span>")
+					to_chat(user, span_notice("You attach [I] into [assembly]'s inner circuits."))
 			else
-				to_chat(user, "<span class='notice'>[src] already has that upgrade!</span>")
+				to_chat(user, span_notice("[src] already has that upgrade!"))
 			return
 
 		else if(istype(I, /obj/item/assembly/prox_sensor))
@@ -247,10 +250,10 @@
 				if(!user.temporarilyRemoveItemFromInventory(I))
 					return
 				upgradeMotion()
-				to_chat(user, "<span class='notice'>You attach [I] into [assembly]'s inner circuits.</span>")
+				to_chat(user, span_notice("You attach [I] into [assembly]'s inner circuits."))
 				qdel(I)
 			else
-				to_chat(user, "<span class='notice'>[src] already has that upgrade!</span>")
+				to_chat(user, span_notice("[src] already has that upgrade!"))
 			return
 
 	// OTHER
@@ -269,7 +272,7 @@
 			P = I
 			itemname = P.name
 			info = P.notehtml
-		to_chat(U, "<span class='notice'>You hold \the [itemname] up to the camera...</span>")
+		to_chat(U, span_notice("You hold \the [itemname] up to the camera..."))
 		U.changeNext_move(CLICK_CD_MELEE)
 		for(var/mob/O in GLOB.player_list)
 			if(isAI(O))
@@ -280,22 +283,22 @@
 					to_chat(AI, "<b>[U]</b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
 				else
 					to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(U.name)]'>[U]</a></b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
-				AI.last_paper_seen = "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
+				AI.last_paper_seen = "<HTML><HEAD><meta charset='UTF-8'><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
 			else if (O.client && O.client.eye == src)
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
-				O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
+				O << browse(text("<HTML><HEAD><meta charset='UTF-8'><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 		return
 
 	else if(istype(I, /obj/item/camera_bug))
 		if(!can_use())
-			to_chat(user, "<span class='notice'>Camera non-functional.</span>")
+			to_chat(user, span_notice("Camera non-functional."))
 			return
 		if(bug)
-			to_chat(user, "<span class='notice'>Camera bug removed.</span>")
+			to_chat(user, span_notice("Camera bug removed."))
 			bug.bugged_cameras -= src.c_tag
 			bug = null
 		else
-			to_chat(user, "<span class='notice'>Camera bugged.</span>")
+			to_chat(user, span_notice("Camera bugged."))
 			bug = I
 			bug.bugged_cameras[src.c_tag] = src
 		return
@@ -313,7 +316,10 @@
 	. = ..()
 
 /obj/machinery/camera/obj_break(damage_flag)
-	if(status && !(flags_1 & NODECONSTRUCT_1))
+	if(!status)
+		return
+	. = ..()
+	if(.)
 		triggerCameraAlarm()
 		toggle_cam(null, 0)
 
@@ -365,10 +371,10 @@
 		addtimer(CALLBACK(src, .proc/cancelCameraAlarm), 100)
 	if(displaymessage)
 		if(user)
-			visible_message("<span class='danger'>[user] [change_msg] [src]!</span>")
+			visible_message(span_danger("[user] [change_msg] [src]!"))
 			add_hiddenprint(user)
 		else
-			visible_message("<span class='danger'>\The [src] [change_msg]!</span>")
+			visible_message(span_danger("\The [src] [change_msg]!"))
 
 		playsound(src, 'sound/items/wirecutter.ogg', 100, TRUE)
 	update_icon() //update Initialize() if you remove this.
@@ -423,14 +429,12 @@
 	for(var/obj/machinery/camera/C in oview(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
-			break
 	return null
 
 /proc/near_range_camera(var/mob/M)
 	for(var/obj/machinery/camera/C in range(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
-			break
 
 	return null
 

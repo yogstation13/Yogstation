@@ -24,7 +24,6 @@ GLOBAL_PROTECT(protected_ranks)
 	if(!name)
 		qdel(src)
 		CRASH("Admin rank created without name.")
-		return
 	if(init_rights)
 		rights = init_rights
 	include_rights = rights
@@ -118,11 +117,7 @@ GLOBAL_PROTECT(protected_ranks)
 
 	var/list/sql_ranks = list()
 	for(var/datum/admin_rank/R in GLOB.protected_ranks)
-		var/sql_rank = sanitizeSQL(R.name)
-		var/sql_flags = sanitizeSQL(R.include_rights)
-		var/sql_exclude_flags = sanitizeSQL(R.exclude_rights)
-		var/sql_can_edit_flags = sanitizeSQL(R.can_edit_rights)
-		sql_ranks += list(list("rank" = "'[sql_rank]'", "flags" = "[sql_flags]", "exclude_flags" = "[sql_exclude_flags]", "can_edit_flags" = "[sql_can_edit_flags]"))
+		sql_ranks += list(list("rank" = R.name, "flags" = R.include_rights, "exclude_flags" = R.exclude_rights, "can_edit_flags" = R.can_edit_rights))
 	SSdbcore.MassInsert(format_table_name("admin_ranks"), sql_ranks, duplicate_key = TRUE)
 
 //load our rank - > rights associations
@@ -138,7 +133,7 @@ GLOBAL_PROTECT(protected_ranks)
 		if(!line || findtextEx(line,"#",1,2) || line == " ") //YOGS - added our DB support
 			continue
 		var/next = findtext(line, "=")
-		var/datum/admin_rank/R = new(ckeyEx(copytext(line, 1, next)))
+		var/datum/admin_rank/R = new(trim(copytext(line, 1, next)))
 		if(!R)
 			continue
 		GLOB.admin_ranks += R
@@ -162,7 +157,7 @@ GLOBAL_PROTECT(protected_ranks)
 			else
 				while(query_load_admin_ranks.NextRow())
 					var/skip
-					var/rank_name = ckeyEx(query_load_admin_ranks.item[1])
+					var/rank_name = trim(query_load_admin_ranks.item[1])
 					for(var/datum/admin_rank/R in GLOB.admin_ranks)
 						if(R.name == rank_name) //this rank was already loaded from txt override
 							skip = 1
@@ -236,7 +231,7 @@ GLOBAL_PROTECT(protected_ranks)
 		if(entry.len < 2)
 			continue
 		var/ckey = ckey(entry[1])
-		var/rank = ckeyEx(entry[2])
+		var/rank = trim(entry[2])
 		if(!ckey || !rank)
 			continue
 		new /datum/admins(rank_names[rank], ckey, 0, 1)
@@ -249,7 +244,7 @@ GLOBAL_PROTECT(protected_ranks)
 		else
 			while(query_load_admins.NextRow())
 				var/admin_ckey = ckey(query_load_admins.item[1])
-				var/admin_rank = ckeyEx(query_load_admins.item[2])
+				var/admin_rank = trim(query_load_admins.item[2])
 				var/skip
 				if(rank_names[admin_rank] == null)
 					message_admins("[admin_ckey] loaded with invalid admin rank [admin_rank].")
@@ -277,7 +272,9 @@ GLOBAL_PROTECT(protected_ranks)
 					skip = TRUE
 			if(skip)
 				continue
-			new /datum/admins(rank_names[ckeyEx(backup_file_json["admins"]["[J]"])], ckey("[J]"))
+			var/datum/admins/A = new /datum/admins(trim(rank_names[backup_file_json["admins"]["[J]"]["rank"]]), ckey("[J]"))
+			A.ip_cache = backup_file_json["admins"]["[J]"]["ip_cache"]
+			A.cid_cache = backup_file_json["admins"]["[J]"]["cid_cache"]
 	#ifdef TESTING
 	var/msg = "Admins Built:\n"
 	for(var/ckey in GLOB.admin_datums)

@@ -7,9 +7,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	report_type = "battleroyale"
 	false_report_weight = 0
 	required_players = 1 //Everyone is an antag in this mode
-	required_enemies = 1
 	recommended_enemies = 1
-	antag_flag = ROLE_BATTLEROYALE
 	enemy_minimum_age = 0
 	announce_span = "warning"
 	announce_text = "Attention ALL space station 13 crewmembers,\n\
@@ -23,6 +21,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/borderstage = 0
 	var/finished = FALSE
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
+	title_icon = "ss13"
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.sortedAreas //Assuming we've gotten this far, let's spawn the battle bus.
@@ -35,8 +34,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 				continue
 		var/datum/mind/virgin = L.mind
 		queued += virgin
-		virgin.assigned_role = ROLE_BATTLEROYALE
-		virgin.special_role = ROLE_BATTLEROYALE
 	return TRUE
 
 /datum/game_mode/fortnite/post_setup() //now add a place for them to spawn :)
@@ -191,7 +188,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/starter_z = 0 //What Z level did we start on?
 
 /obj/structure/battle_bus/attack_hand(mob/user)
-	if(!user in contents)
+	if(!(user in contents))
 		return
 	exit(user)
 
@@ -227,4 +224,5 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		qdel(src) // Thank you for your service
 
 /obj/structure/battle_bus/CanPass(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	return TRUE

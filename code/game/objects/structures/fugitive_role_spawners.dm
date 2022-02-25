@@ -1,5 +1,3 @@
-
-
 /obj/effect/mob_spawn/human/fugitive
 	assignedrole = "Fugitive Hunter"
 	flavour_text = "" //the flavor text will be the backstory argument called on the antagonist's greet, see hunter.dm for details
@@ -27,6 +25,7 @@
 	desc = "A small sleeper typically used to put people to sleep for briefing on the mission."
 	mob_name = "a spacepol officer"
 	flavour_text = "Justice has arrived. I am a member of the Spacepol!"
+	short_desc = "You are a Space Policeman!"
 	back_story = "space cop"
 	outfit = /datum/outfit/spacepol
 	icon = 'icons/obj/machines/sleeper.dmi'
@@ -35,9 +34,10 @@
 /obj/effect/mob_spawn/human/fugitive/russian
 	name = "russian pod"
 	flavour_text = "Ay blyat. I am a space-russian smuggler! We were mid-flight when our cargo was beamed off our ship!"
+	short_desc = "You are a space-russian smuggler!"
 	back_story = "russian"
 	desc = "A small sleeper typically used to make long distance travel a bit more bearable."
 	mob_name = "russian"
-	outfit = /datum/outfit/russiancorpse
+	outfit = /datum/outfit/russianhunters
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"

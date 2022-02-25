@@ -18,7 +18,7 @@
 /obj/item/nanite_hijacker/examine(mob/user)
 	. = ..()
 	if(disk)
-		. += "<span class='notice'>Alt-click [src] to eject the disk.</span>"
+		. += span_notice("Alt-click [src] to eject the disk.")
 
 /obj/item/nanite_hijacker/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/disk/nanite_program))
@@ -26,7 +26,7 @@
 		if(disk)
 			eject()
 		if(user.transferItemToLoc(N, src))
-			to_chat(user, "<span class='notice'>You insert [N] into [src]</span>")
+			to_chat(user, span_notice("You insert [N] into [src]"))
 			disk = N
 			program = N.program
 	else
@@ -47,17 +47,16 @@
 		var/success = SEND_SIGNAL(target, COMSIG_NANITE_ADD_PROGRAM, program.copy())
 		switch(success)
 			if(NONE)
-				to_chat(user, "<span class='notice'>You don't detect any nanites in [target].</span>")
+				to_chat(user, span_notice("You don't detect any nanites in [target]."))
 			if(COMPONENT_PROGRAM_INSTALLED)
-				to_chat(user, "<span class='notice'>You insert the currently loaded program into [target]'s nanites.</span>")
+				to_chat(user, span_notice("You insert the currently loaded program into [target]'s nanites."))
 			if(COMPONENT_PROGRAM_NOT_INSTALLED)
-				to_chat(user, "<span class='warning'>You try to insert the currently loaded program into [target]'s nanites, but the installation fails.</span>")
+				to_chat(user, span_warning("You try to insert the currently loaded program into [target]'s nanites, but the installation fails."))
 
 //Same UI as the nanite programmer, as it pretty much does the same
-/obj/item/nanite_hijacker/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/nanite_hijacker/ui_interact(mob/user, datum/tgui/ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "nanite_programmer", "Internal Nanite Programmer", 420, 800, master_ui, state)
+		ui = new(user, src, "nanite_programmer", "Internal Nanite Programmer")
 		ui.open()
 
 /obj/item/nanite_hijacker/ui_data()
@@ -108,20 +107,20 @@
 		if("set_code")
 			var/new_code = input("Set code (0000-9999):", name, null) as null|num
 			if(!isnull(new_code))
-				new_code = CLAMP(round(new_code, 1),0,9999)
+				new_code = clamp(round(new_code, 1),0,9999)
 			else
 				return
 
 			var/target_code = params["target_code"]
 			switch(target_code)
 				if("activation")
-					program.activation_code = CLAMP(round(new_code, 1),0,9999)
+					program.activation_code = clamp(round(new_code, 1),0,9999)
 				if("deactivation")
-					program.deactivation_code = CLAMP(round(new_code, 1),0,9999)
+					program.deactivation_code = clamp(round(new_code, 1),0,9999)
 				if("kill")
-					program.kill_code = CLAMP(round(new_code, 1),0,9999)
+					program.kill_code = clamp(round(new_code, 1),0,9999)
 				if("trigger")
-					program.trigger_code = CLAMP(round(new_code, 1),0,9999)
+					program.trigger_code = clamp(round(new_code, 1),0,9999)
 			. = TRUE
 		if("set_extra_setting")
 			program.set_extra_setting(usr, params["target_setting"])
@@ -129,7 +128,7 @@
 		if("set_activation_delay")
 			var/delay = input("Set activation delay in seconds (0-1800):", name, program.activation_delay) as null|num
 			if(!isnull(delay))
-				delay = CLAMP(round(delay, 1),0,1800)
+				delay = clamp(round(delay, 1),0,1800)
 				program.activation_delay = delay
 				if(delay)
 					program.activated = FALSE
@@ -138,7 +137,7 @@
 			var/timer = input("Set timer in seconds (10-3600):", name, program.timer) as null|num
 			if(!isnull(timer))
 				if(!timer == 0)
-					timer = CLAMP(round(timer, 1),10,3600)
+					timer = clamp(round(timer, 1),10,3600)
 				program.timer = timer
 			. = TRUE
 		if("set_timer_type")

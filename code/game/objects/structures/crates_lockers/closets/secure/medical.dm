@@ -51,17 +51,11 @@
 
 /obj/structure/closet/secure_closet/CMO/PopulateContents()
 	..()
-	new /obj/item/clothing/neck/cloak/cmo(src)
 	new /obj/item/storage/backpack/duffelbag/med(src)
-	new /obj/item/clothing/suit/bio_suit/cmo(src)
-	new /obj/item/clothing/head/bio_hood/cmo(src)
-	new /obj/item/clothing/suit/toggle/labcoat/cmo(src)
-	new /obj/item/clothing/under/rank/chief_medical_officer(src)
-	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
-	new /obj/item/clothing/shoes/sneakers/brown	(src)
 	new /obj/item/cartridge/cmo(src)
 	new /obj/item/radio/headset/heads/cmo(src)
 	new /obj/item/megaphone/command(src)
+	new /obj/item/clothing/neck/cloak/cmo(src)
 	new /obj/item/defibrillator/compact/loaded(src)
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 	new /obj/item/storage/belt/medical(src)
@@ -76,8 +70,9 @@
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/CMO(src)
 	new /obj/item/clipboard/yog/paperwork/cmo(src)
-	new /obj/item/card/id/departmental_budget/med(src)
-	new /obj/item/clothing/head/beret/cmo(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/med/chief(src)
+	new /obj/item/storage/lockbox/medal/med(src)
+
 
 /obj/structure/closet/secure_closet/paramedic
 	name = "paramedical closet"
@@ -112,9 +107,11 @@
 	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
 	new /obj/item/clothing/head/soft/emt(src)
 	new /obj/item/defibrillator/loaded(src)
-	new /obj/item/clothing/suit/toggle/labcoat/pmedic_jacket(src)
+	new /obj/item/clothing/suit/toggle/labcoat/emt/green(src)
+	new /obj/item/clothing/head/soft/emt/green (src)
 	new /obj/item/radio/headset/headset_med(src)
 	new /obj/item/storage/belt/medical(src)
+	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 
 /obj/structure/closet/secure_closet/mmedical
 	name = "mining medic's locker"
@@ -138,12 +135,13 @@
 	new /obj/item/radio/headset/headset_cargo(src)
 	new /obj/item/storage/firstaid/toxin(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
-	new /obj/item/storage/belt/medical(src)
 	new /obj/item/pickaxe(src)
+	new /obj/item/twohanded/binoculars(src)
+	new /obj/item/clothing/ears/earmuffs(src)
+	new /obj/item/pinpointer/crew(src)
 	new /obj/item/sensor_device(src)
-	new /obj/item/storage/box/bodybags(src)
+	new /obj/item/bodybag/environmental(src)
 	new /obj/item/extinguisher/mini(src)
-	new /obj/item/clothing/glasses/hud/health(src)
 	var/obj/item/key/K = new(src)
 	K.name = "ATV key"
 	K.desc = "It's a small grey key. Don't let those goddamn ashwalkers get it."

@@ -51,7 +51,7 @@
 	desc = "A sleek device often given to clowns on their 10th birthdays for protection. You can hear faint scratching coming from within."
 	icon_state = "clown_ball"
 	item_state = "clown_ball"
-	spawner_type = list(/mob/living/simple_animal/hostile/retaliate/clown/fleshclown, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk, /mob/living/simple_animal/hostile/retaliate/clown/longface, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus, /mob/living/simple_animal/hostile/retaliate/clown/mutant/blob, /mob/living/simple_animal/hostile/retaliate/clown/banana, /mob/living/simple_animal/hostile/retaliate/clown/honkling, /mob/living/simple_animal/hostile/retaliate/clown/lube)
+	spawner_type = list(/mob/living/simple_animal/hostile/retaliate/clown/fleshclown, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk, /mob/living/simple_animal/hostile/retaliate/clown/longface, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus, /mob/living/simple_animal/hostile/retaliate/clown/mutant/blob, /mob/living/simple_animal/hostile/retaliate/clown/banana, /mob/living/simple_animal/hostile/retaliate/clown/honkling, /mob/living/simple_animal/hostile/retaliate/clown/lube, /mob/living/simple_animal/hostile/retaliate/clown/afro, /mob/living/simple_animal/hostile/retaliate/clown/thin, /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/punisher, /mob/living/simple_animal/hostile/retaliate/clown/mutant/thicc)
 	deliveryamt = 1
 
 /obj/item/grenade/spawnergrenade/clown_broken
@@ -61,3 +61,28 @@
 	item_state = "clown_broken"
 	spawner_type = /mob/living/simple_animal/hostile/retaliate/clown/mutant
 	deliveryamt = 5
+	
+/obj/item/grenade/spawnergrenade/clownbugs
+	name = "clown bug special"
+	spawner_type = /mob/living/simple_animal/cockroach/clownbug
+	deliveryamt = 6
+
+/obj/item/grenade/spawnergrenade/feral_cats
+	name = "feral cat delivery grenade"
+	desc = "This grenade contains 5 dehydrated feral cats in a similar manner to dehydrated monkeys, which, upon detonation, will be rehydrated by a small reservoir of water contained within the grenade. These cats will then attack anything in sight."
+	spawner_type = /mob/living/simple_animal/hostile/feral_cat
+	deliveryamt = 5
+
+/obj/item/grenade/spawnergrenade/feral_cats/prime()			///Own proc for this because the regular one would flash people which was dumb.
+	update_mob()
+	if(spawner_type && deliveryamt)
+		var/turf/T = get_turf(src)
+		playsound(T, 'sound/effects/phasein.ogg', 100, 1)
+		for(var/i=1, i<=deliveryamt, i++)
+			var/atom/movable/x = new spawner_type
+			x.loc = T
+			if(prob(50))
+				for(var/j = 1, j <= rand(1, 3), j++)
+					step(x, pick(NORTH,SOUTH,EAST,WEST))
+	qdel(src)
+	return

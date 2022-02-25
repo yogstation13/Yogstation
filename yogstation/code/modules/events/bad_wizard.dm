@@ -8,7 +8,7 @@
 
 /datum/round_event/ghost_role/bad_wizard
 	minimum_required = 1
-	role_name = "Wizard Foundation Diplomat"
+	role_name = "Wizard Federation Diplomat"
 
 /datum/round_event/ghost_role/bad_wizard/spawn_role()
 	var/list/mob/dead/observer/candidates = get_candidates(ROLE_WIZARD, null, ROLE_WIZARD)
@@ -28,7 +28,7 @@
 	outfit_type = /datum/outfit/memewiznerd
 
 /datum/antagonist/wizard/meme/greet()
-	to_chat(owner, "<span class='boldannounce'>You are the Space Wizard!</span>")
+	to_chat(owner, span_boldannounce("You are the Space Wizard!"))
 	to_chat(owner, "<B>The Space Wizards Federation has given you the following tasks:</B>")
 	owner.announce_objectives()
 	to_chat(owner, "In your pockets you will find a teleport scroll. Use it as needed.")
@@ -36,7 +36,7 @@
 	make_spells()
 
 /datum/antagonist/wizard/meme/proc/make_spells()
-	switch(rand(9)) //keep this consistent with the amount of loadouts.
+	switch(rand(1,9)) //keep this consistent with the amount of loadouts.
 
 		if(1) //5x jaunt
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt, 4)
@@ -46,7 +46,7 @@
 
 		if(3) //2x smoke, 2x blind, and 2x barnyard :)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/smoke, 1)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/trigger/blind, 1)
+			SpellAdd(/obj/effect/proc_holder/spell/pointed/trigger/blind, 1)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/barnyardcurse, 1)
 
 		if(4) //5x summon guns - no
@@ -69,7 +69,7 @@
 		if(8) // 5x Flesh to stone 5x Animation Spell 2x Blind (Weeping Angels)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone, 4)
 			SpellAdd(/obj/effect/proc_holder/spell/aimed/animation, 4)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/trigger/blind, 1)
+			SpellAdd(/obj/effect/proc_holder/spell/pointed/trigger/blind, 1)
 
 		if(9) // 5x Mouse Shapeshift 5x Mindswap (From Men to Mice)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/shapeshift/mouse, 4)

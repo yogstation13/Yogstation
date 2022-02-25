@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 		wormholes += new /obj/effect/portal/wormhole(T, null, 0, null, FALSE)
 
 /datum/round_event/wormholes/announce(fake)
-	priority_announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", 'sound/ai/spanomalies.ogg')
+	priority_announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 
 /datum/round_event/wormholes/tick()
 	if(activeFor % shift_frequency == 0)
@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 		if(!(ismecha(M) && mech_sized))
 			return
 
-	if(ismovableatom(M))
+	if(ismovable(M))
 		if(GLOB.all_wormholes.len)
 			var/obj/effect/portal/wormhole/P = pick(GLOB.all_wormholes)
 			if(P && isturf(P.loc))

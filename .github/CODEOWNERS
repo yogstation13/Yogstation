@@ -9,28 +9,27 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#Altoids
+#Teams
 
-/yogstation/code/modules/scripting/ @Altoids1
+/.github/ @yogstation13/head-coders
+/SQL/ @yogstation13/head-coders
+/_maps/ @yogstation13/map
+/config/ @yogstation13/head-coders
+/goon/ @yogstation13/art
+/icons/ @yogstation13/art
+/yogstation/SQL/ @yogstation13/head-coders
+/yogstation/icons/ @yogstation13/art
 
-#AsV9
+/code/modules/client/preferences.dm @yogstation13/head-coders
+/code/modules/client/preferences_savefile.dm @yogstation13/head-coders
+/html/templates/ @yogstation13/head-coders
 
-/code/__DEFINES/MC.dm @AsV9
-/code/__DEFINES/tick.dm @AsV9
-/code/controllers/master.dm @AsV9
-/SQL/database_changelog.txt @AsV9
-/code/controllers/admin.dm @AsV9
-/code/controllers/failsafe.dm @AsV9
-/code/controllers/subsystem.dm @AsV9
-/code/controllers/subsystem/timer.dm @AsV9
-/code/datums/achievements/achievements.dm @AsV9
+#monster860
 
-#Identification
+/code/modules/atmospherics/ @monster860
+/yogstation/code/modules/atmospherics/ @monster860
 
-/icons/ @Ihonkification
-/yogstation/icons/ @Ihonkification
+#thegamerdk
 
-#Ktlwjec
-/_maps/map_files/ @Ktlwjec
-
-#Multiple Owners
+/code/modules/mob/living/silicon/ai/decentralized @TheGamerdk
+/code/modules/mob/living/silicon/ai/decentralized_ai.dm @TheGamerdk

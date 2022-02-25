@@ -7,6 +7,18 @@
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	strip_delay = 80
 
+/obj/item/clothing/head/centhat/admiral
+	name = "\improper CentCom admiral hat"
+	icon_state = "admiral"
+	desc = "It's good to be a god."
+	item_state = "admiral"
+
+/obj/item/clothing/head/centhat/admiral/grand
+	name = "\improper CentCom grand admiral hat"
+	icon_state = "grand_admiral"
+	desc = "It's good to be a Q."
+	item_state = "grand_admiral"
+
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
 	desc = "A powdered wig."
@@ -132,21 +144,24 @@
 	var/datum/language/piratespeak/L = new
 
 /obj/item/clothing/head/pirate/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_HEAD)
-		user.grant_language(/datum/language/piratespeak/)
+		user.grant_language(/datum/language/piratespeak/, TRUE, TRUE, LANGUAGE_HAT)
 		to_chat(user, "You suddenly know how to speak like a pirate!")
 
 /obj/item/clothing/head/pirate/dropped(mob/user)
+	. = ..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.get_item_by_slot(SLOT_HEAD) == src)
-		user.remove_language(/datum/language/piratespeak/)
+		user.remove_language(/datum/language/piratespeak/, TRUE, TRUE, LANGUAGE_HAT)
 		to_chat(user, "You can no longer speak like a pirate.")
 
 /obj/item/clothing/head/pirate/captain
+	name = "pirate captain"
 	icon_state = "hgpiratecap"
 	item_state = "hgpiratecap"
 
@@ -209,7 +224,7 @@
 	if(user.gender == FEMALE)
 		return 0
 	var/mob/living/carbon/human/H = user
-	user.visible_message("<span class='suicide'>[user] is donning [src]! It looks like [user.p_theyre()] trying to be nice to girls.</span>")
+	user.visible_message(span_suicide("[user] is donning [src]! It looks like [user.p_theyre()] trying to be nice to girls."))
 	user.say("M'lady.", forced = "fedora suicide")
 	sleep(10)
 	H.facial_hair_style = "Neckbeard"
@@ -299,7 +314,7 @@
 	name = "crown"
 	desc = "A crown fit for a king, a petty king maybe."
 	icon_state = "crown"
-	armor = list("melee" = 15, "bullet" = 0, "laser" = 0,"energy" = 15, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 15, "bullet" = 0, "laser" = 0,"energy" = 15, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50, "wound" = 5)
 	resistance_flags = FIRE_PROOF
 	dynamic_hair_suffix = ""
 
@@ -307,6 +322,13 @@
 	name = "magnificent crown"
 	desc = "A crown worn by only the highest emperors of the <s>land</s> space."
 	icon_state = "fancycrown"
+
+/obj/item/clothing/head/crown/resin
+	name = "resin crown"
+	desc = "Despite being formed with incredibly tough resin and given a mythril insert, it's still more of a fashion statement than a helmet."
+	icon_state = "resincrown"
+	armor = list("melee" = 25,"energy" = 10,"fire" = 0, "acid" = 10)
+	resistance_flags = NONE
 
 /obj/item/clothing/head/scarecrow_hat
 	name = "scarecrow hat"

@@ -63,7 +63,7 @@
 				. = pod
 
 /proc/grow_clone_from_record(obj/machinery/clonepod/pod, datum/data/record/R, empty)
-	return pod.growclone(R.fields["name"], R.fields["UI"], R.fields["SE"], R.fields["mindref"], R.fields["last_death"], R.fields["mrace"], R.fields["features"], R.fields["factions"], R.fields["quirks"], R.fields["bank_account"], R.fields["traumas"], empty)
+	return pod.growclone(R.fields["name"], R.fields["UI"], R.fields["SE"], R.fields["makeup"], R.fields["mindref"], R.fields["last_death"], R.fields["mrace"], R.fields["features"], R.fields["factions"], R.fields["quirks"], R.fields["bank_account"], R.fields["traumas"], empty)
 
 /obj/machinery/computer/cloning/process()
 	if(!(scanner && LAZYLEN(pods) && autoprocess))
@@ -138,7 +138,7 @@
 			if (!user.transferItemToLoc(W,src))
 				return
 			diskette = W
-			to_chat(user, "<span class='notice'>You insert [W].</span>")
+			to_chat(user, span_notice("You insert [W]."))
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 			updateUsrDialog()
 	else if(W.tool_behaviour == TOOL_MULTITOOL)
@@ -177,7 +177,7 @@
 		else
 			dat += "<a href='byond://?src=[REF(src)];task=stopautoprocess'>Stop autoprocess</a>"
 	else
-		dat += "<span class='linkOff'>Autoprocess</span>"
+		dat += span_linkOff("Autoprocess")
 	dat += "<h3>Cloning Pod Status</h3>"
 	dat += "<div class='statusDisplay'>[temp]&nbsp;</div>"
 	switch(menu)
@@ -214,14 +214,14 @@
 					dat += "<a href='byond://?src=[REF(src)];scan=1;body_only=1'>Body-Only Scan</a>"
 					dat += "<br><a href='byond://?src=[REF(src)];lock=1'>[scanner.locked ? "Unlock Scanner" : "Lock Scanner"]</a>"
 				else
-					dat += "<span class='linkOff'>Start Scan</span>"
+					dat += span_linkOff("Start Scan")
 
 			// Database
 			dat += "<h3>Database Functions</h3>"
 			if (records.len && records.len > 0)
 				dat += "<a href='byond://?src=[REF(src)];menu=2'>View Records ([records.len])</a><br>"
 			else
-				dat += "<span class='linkOff'>View Records (0)</span><br>"
+				dat += "[span_linkOff("View Records (0)")]<br>"
 			if (diskette)
 				dat += "<a href='byond://?src=[REF(src)];disk=eject'>Eject Disk</a><br>"
 
@@ -252,7 +252,7 @@
 				else
 					dat += "<font class='bad'>Unable to locate Health Implant.</font><br /><br />"
 
-				dat += "<b>Unique Identifier:</b><br /><span class='highlight'>[active_record.fields["UI"]]</span><br>"
+				dat += "<b>Unique Identifier:</b><br />[span_highlight("[active_record.fields["UI"]]")]<br>"
 				dat += "<b>Structural Enzymes:</b><br /><span class='highlight'>"
 				for(var/key in active_record.fields["SE"])
 					if(key != RACEMUT)
@@ -282,7 +282,7 @@
 					if(can_load)
 						dat += "<br /><a href='byond://?src=[REF(src)];disk=load'>Load From Disk</a>"
 					else
-						dat += "<span class='linkOff'>Cannot Load From Disk: Access Denied</span>"
+						dat += span_linkOff("Cannot Load From Disk: Access Denied")
 					if(diskette.fields["SE"])
 						if(!include_se)
 							dat += "<br /><a href='byond://?src=[REF(src)];task=include_se'>Currently Excluding SE</a>"
@@ -315,7 +315,6 @@
 
 	var/datum/browser/popup = new(user, "cloning", "Cloning System Control")
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
 /obj/machinery/computer/cloning/Topic(href, href_list)
@@ -474,8 +473,7 @@
 				temp = "<font class='bad'>Cannot initiate regular cloning with body-only scans.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			var/obj/machinery/clonepod/pod = GetAvailablePod()
-			var/success = FALSE
-			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs.
+			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs. Or if there isn't any meat available.
 			if(!LAZYLEN(pods))
 				temp = "<font class='bad'>No Clonepods detected.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
@@ -488,29 +486,28 @@
 			else if(pod.occupant)
 				temp = "<font class='bad'>Cloning cycle already in progress.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+			else if(pod.biomass < 100)
+				temp = "<font class ='bad'>Insufficient biomass levels.</font>"
+				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			else
 				var/result = grow_clone_from_record(pod, C, empty)
+				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
 				if(result & CLONING_SUCCESS)
 					temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 					if(active_record == C)
 						active_record = null
 					menu = 1
-					success = TRUE
 					if(!empty)
 						log_cloning("[key_name(usr)] initiated cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
 					else
 						log_cloning("[key_name(usr)] initiated EMPTY cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
 				if(result &	CLONING_DELETE_RECORD)
+					temp = "[C.fields["name"]] => <font class='bad'>Record deleted.</font>"
 					if(active_record == C)
 						active_record = null
 					menu = 1
 					records -= C
-
-			if(!success)
-				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
-				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-
 		else
 			temp = "<font class='bad'>Data corruption.</font>"
 			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
@@ -577,12 +574,13 @@
 		R.fields["mrace"] = rando_race.type
 
 	R.fields["name"] = mob_occupant.real_name
-	R.fields["id"] = copytext(md5(mob_occupant.real_name), 2, 6)
+	R.fields["id"] = copytext_char(md5(mob_occupant.real_name), 2, 6)
 	R.fields["UE"] = dna.unique_enzymes
 	R.fields["UI"] = dna.uni_identity
 	R.fields["SE"] = dna.mutation_index
 	R.fields["blood_type"] = dna.blood_type
 	R.fields["features"] = dna.features
+	R.fields["makeup"] = dna.default_mutation_genes
 	R.fields["factions"] = mob_occupant.faction
 	R.fields["quirks"] = list()
 	for(var/V in mob_occupant.roundstart_quirks)

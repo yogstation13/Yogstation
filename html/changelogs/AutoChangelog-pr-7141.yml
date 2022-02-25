@@ -1,5 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - rscadd: "the experimentor now clicks for you."
-  - bugfix: "fixes the part component ratings thingy for experimentor to not be broken"

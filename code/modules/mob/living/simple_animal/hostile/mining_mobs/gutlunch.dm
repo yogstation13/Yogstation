@@ -10,7 +10,7 @@
 	speak_emote = list("warbles", "quavers")
 	emote_hear = list("trills.")
 	emote_see = list("sniffs.", "burps.")
-	weather_immunities = list("lava","ash")
+	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
 	faction = list("mining", "ashwalker")
 	density = FALSE
 	speak_chance = 1
@@ -89,7 +89,7 @@
 	if(is_type_in_typecache(target,wanted_objects)) //we eats
 		udder.generateMilk()
 		regenerate_icons()
-		visible_message("<span class='notice'>[src] slurps up [target].</span>")
+		visible_message(span_notice("[src] slurps up [target]."))
 		qdel(target)
 	return ..()
 
@@ -149,7 +149,7 @@
 	L.faction = faction
 	L.setDir(dir)
 	L.Stun(20, ignore_canstun = TRUE)
-	visible_message("<span class='notice'>[src] grows up into [L].</span>")
+	visible_message(span_notice("[src] grows up into [L]."))
 	Destroy()
 
 //Gutlunch udder
@@ -163,6 +163,6 @@
 
 /obj/item/udder/gutlunch/generateMilk()
 	if(prob(60))
-		reagents.add_reagent(/datum/reagent/consumable/cream, rand(2, 5))
+		reagents.add_reagent(/datum/reagent/consumable/cream/bug, rand(2, 5))
 	if(prob(45))
 		reagents.add_reagent(/datum/reagent/medicine/salglu_solution, rand(2,5))

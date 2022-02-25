@@ -35,6 +35,8 @@ em						{font-style: normal;	font-weight: bold;}
 .admin					{color: #386aff;	font-weight: bold;}
 
 .name					{					font-weight: bold;}
+.mentor					{}
+
 
 .say					{}
 .deadsay				{color: #5c00e6;}
@@ -55,6 +57,7 @@ em						{font-style: normal;	font-weight: bold;}
 .aiprivradio			{color: #ff00ff;}
 .redteamradio           {color: #ff0000;}
 .blueteamradio          {color: #0000ff;}
+.singing				{font-family: "Trebuchet MS", cursive, sans-serif; font-style: italic;}
 
 .yell					{					font-weight: bold;}
 
@@ -70,6 +73,8 @@ h1.alert, h2.alert		{color: #000000;}
 
 .userdanger				{color: #ff0000;	font-weight: bold; font-size: 3;}
 .danger					{color: #ff0000;}
+.tinydanger				{color: #ff0000; font-size: 85%;}
+.smalldanger			{color: #ff0000; font-size: 90%;}
 .warning				{color: #ff0000;	font-style: italic;}
 .boldwarning			{color: #ff0000;	font-style: italic;	font-weight: bold}
 .announce 				{color: #228b22;	font-weight: bold;}
@@ -78,6 +83,10 @@ h1.alert, h2.alert		{color: #000000;}
 .rose					{color: #ff5050;}
 .info					{color: #0000CC;}
 .notice					{color: #000099;}
+.tinynotice				{color: #000099; font-size: 85%;}
+.tinynoticeital			{color: #000099; font-style: italic; font-size: 85%;}
+.smallnotice			{color: #000099; font-size: 90%;}
+.smallnoticeital		{color: #000099; font-style: italic;	font-size: 90%;}
 .boldnotice				{color: #000099;	font-weight: bold;}
 .adminnotice			{color: #0000ff;}
 .adminhelp              {color: #ff0000;    font-weight: bold;}
@@ -87,10 +96,10 @@ h1.alert, h2.alert		{color: #000000;}
 .nicegreen					{color: #14a833;}
 .shadowling				{color: #3b2769;}
 .velvet					{color: #21007F;}
-.cult					{color: #960000;}
-.cultlarge				{color: #960000; font-weight: bold; font-size: 3;}
-.narsie					{color: #960000; font-weight: bold; font-size: 15;}
-.narsiesmall			{color: #960000; font-weight: bold; font-size: 6;}
+.cult					{color: #973e3b;}
+.cultlarge				{color: #973e3b; font-weight: bold; font-size: 3;}
+.narsie					{color: #973e3b; font-weight: bold; font-size: 15;}
+.narsiesmall			{color: #973e3b; font-weight: bold; font-size: 6;}
 .colossus				{color: #7F282A; font-size: 5;}
 .hierophant				{color: #660099; font-weight: bold; font-style: italic;}
 .hierophant_warning		{color: #660099; font-style: italic;}
@@ -98,8 +107,8 @@ h1.alert, h2.alert		{color: #000000;}
 .holoparasite			{color: #35333a;}
 .surrender				{
 	color: #1235d1;
-	font-weight: bold; 
-	font-size: 3; 
+	font-weight: bold;
+	font-size: 3;
 	animation: surrender 1s ease-in-out infinite alternate;
 	transform-origin: 0 0;
 	display: inline-block;

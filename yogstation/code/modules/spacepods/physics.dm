@@ -23,7 +23,7 @@
 			desired_angular_velocity = 2 * sqrt((desired_angle - angle) * max_angular_acceleration * 0.25)
 		else
 			desired_angular_velocity = -2 * sqrt((angle - desired_angle) * max_angular_acceleration * 0.25)
-	var/angular_velocity_adjustment = CLAMP(desired_angular_velocity - angular_velocity, -max_angular_acceleration*time, max_angular_acceleration*time)
+	var/angular_velocity_adjustment = clamp(desired_angular_velocity - angular_velocity, -max_angular_acceleration*time, max_angular_acceleration*time)
 	if(angular_velocity_adjustment && cell && cell.use(abs(angular_velocity_adjustment) * 0.05))
 		last_rotate = angular_velocity_adjustment / time
 		angular_velocity += angular_velocity_adjustment
@@ -57,11 +57,11 @@
 			drag = max(drag, (velocity_mag - 20) / time)
 		if(drag)
 			if(velocity_mag)
-				var/drag_factor = 1 - CLAMP(drag * time / velocity_mag, 0, 1)
+				var/drag_factor = 1 - clamp(drag * time / velocity_mag, 0, 1)
 				velocity_x *= drag_factor
 				velocity_y *= drag_factor
 			if(angular_velocity != 0)
-				var/drag_factor_spin = 1 - CLAMP(drag * 30 * time / abs(angular_velocity), 0, 1)
+				var/drag_factor_spin = 1 - clamp(drag * 30 * time / abs(angular_velocity), 0, 1)
 				angular_velocity *= drag_factor_spin
 
 	// Alright now calculate the THRUST
@@ -75,12 +75,12 @@
 	last_thrust_right = 0
 	if(brakes)
 		if(user_thrust_dir)
-			to_chat(pilot, "<span class='warning'>Your brakes are on!</span>")
+			to_chat(pilot, span_warning("Your brakes are on!"))
 		// basically calculates how much we can brake using the thrust
 		var/forward_thrust = -((fx * velocity_x) + (fy * velocity_y)) / time
 		var/right_thrust = -((sx * velocity_x) + (sy * velocity_y)) / time
-		forward_thrust = CLAMP(forward_thrust, -backward_maxthrust, forward_maxthrust)
-		right_thrust = CLAMP(right_thrust, -side_maxthrust, side_maxthrust)
+		forward_thrust = clamp(forward_thrust, -backward_maxthrust, forward_maxthrust)
+		right_thrust = clamp(right_thrust, -side_maxthrust, side_maxthrust)
 		thrust_x += forward_thrust * fx + right_thrust * sx;
 		thrust_y += forward_thrust * fy + right_thrust * sy;
 		last_thrust_forward = forward_thrust
@@ -110,7 +110,7 @@
 		last_thrust_forward = 0
 		last_thrust_right = 0
 		if(!brakes && user_thrust_dir)
-			to_chat(pilot, "<span class='warning'>You are out of power!</span>")
+			to_chat(pilot, span_warning("You are out of power!"))
 
 	offset_x += velocity_x * time
 	offset_y += velocity_y * time
@@ -248,14 +248,14 @@
 		message_admins("[key_name_admin(pilot)] has impacted a spacepod into [A] with velocity [bump_velocity]")
 		take_damage(strength*10, BRUTE, "melee", TRUE)
 		log_game("[key_name(pilot)] has impacted a spacepod into [A] with velocity [bump_velocity]")
-		visible_message("<span class='danger'>The force of the impact causes a shockwave</span>")
+		visible_message(span_danger("The force of the impact causes a shockwave"))
 	else if(isliving(A) && bump_velocity > 5)
 		var/mob/living/M = A
 		M.apply_damage(bump_velocity * 2)
 		take_damage(bump_velocity, BRUTE, "melee", FALSE)
 		playsound(M.loc, "swing_hit", 1000, 1, -1)
 		M.Knockdown(bump_velocity * 2)
-		M.visible_message("<span class='warning'>The force of the impact knocks [M] down!</span>","<span class='userdanger'>The force of the impact knocks you down!</span>")
+		M.visible_message(span_warning("The force of the impact knocks [M] down!"),span_userdanger("The force of the impact knocks you down!"))
 		log_combat(pilot, M, "impacted", src, "with velocity of [bump_velocity]")
 	return ..()
 

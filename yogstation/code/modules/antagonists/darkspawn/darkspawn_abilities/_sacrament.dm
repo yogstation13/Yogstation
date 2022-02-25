@@ -13,7 +13,7 @@
 		darkspawn.sacrament()
 		return
 	if(!darkspawn || darkspawn.lucidity_drained < SSticker.mode.required_succs)
-		to_chat(usr, "<span class='warning'>You do not have enough unique lucidity! ([darkspawn.lucidity_drained] / [SSticker.mode.required_succs])</span>")
+		to_chat(usr, span_warning("You do not have enough unique lucidity! ([darkspawn.lucidity_drained] / [SSticker.mode.required_succs])"))
 		return
 	var/list/unpurchased_upgrades = list()
 	for(var/V in subtypesof(/datum/darkspawn_upgrade))
@@ -22,21 +22,21 @@
 			unpurchased_upgrades += initial(D.name)
 	if(unpurchased_upgrades.len)
 		var/upgrade_string = unpurchased_upgrades.Join(", ")
-		to_chat(usr, "<span class='warning'>You have not purchased all passive upgrades! You are missing:</span> <span class='danger'>[upgrade_string].</span>")
+		to_chat(usr, "[span_warning("You have not purchased all passive upgrades! You are missing:")] [span_danger("[upgrade_string].")]")
 		return
 	if(alert(usr, "The Sacrament is ready! Are you prepared?", name, "Yes", "No") == "No")
 		return
 	in_use = TRUE
 	var/mob/living/carbon/human/user = usr
-	user.visible_message("<span class='warning'>[user]'s sigils flare as energy swirls around them...</span>", "<span class='velvet'>You begin creating a psychic barrier around yourself...</span>")
+	user.visible_message(span_warning("[user]'s sigils flare as energy swirls around them..."), span_velvet("You begin creating a psychic barrier around yourself..."))
 	playsound(user, 'yogstation/sound/magic/sacrament_begin.ogg', 50, FALSE)
-	if(!do_after(user, 30, target = user))
+	if(!do_after(user, 3 SECONDS, target = user))
 		in_use = FALSE
 		return
 	var/image/alert_overlay = image('yogstation/icons/mob/actions/actions_darkspawn.dmi', "sacrament")
 	notify_ghosts("Darkspawn [user.real_name] has begun the Sacrament at [get_area(user)]! ", source = user, ghost_sound = 'yogstation/sound/magic/devour_will_victim.ogg', alert_overlay = alert_overlay, action = NOTIFY_ORBIT)
-	user.visible_message("<span class='warning'>A vortex of violet energies surrounds [user]!</span>", "<span class='velvet'>Your barrier will protect you.</span>")
-	user.visible_message("<span class='danger'>[user] suddenly jolts into the air, pulsing with screaming violet light.</span>", \
+	user.visible_message(span_warning("A vortex of violet energies surrounds [user]!"), span_velvet("Your barrier will protect you."))
+	user.visible_message(span_danger("[user] suddenly jolts into the air, pulsing with screaming violet light."), \
 						"<span class='velvet big'><b>You begin the Sacrament.</b></span>")
 	soundloop = new(GLOB.player_list, TRUE, TRUE)
 	for(var/turf/T in RANGE_TURFS(2, user))
@@ -45,20 +45,20 @@
 		soundloop.stage = stage
 		switch(stage)
 			if(1)
-				user.visible_message("<span class='userdanger'>[user]'s sigils howl out light. Their limbs twist and move, glowing cracks forming across their chitin.</span>", \
-									"<span class='velvet'>Power... <i>power...</i> flooding through you, the dreams and thoughts of those you've touched whispering in your ears...</span>")
+				user.visible_message(span_userdanger("[user]'s sigils howl out light. Their limbs twist and move, glowing cracks forming across their chitin."), \
+									span_velvet("Power... <i>power...</i> flooding through you, the dreams and thoughts of those you've touched whispering in your ears..."))
 				for(var/mob/M in GLOB.player_list)
 					M.playsound_local(M, 'yogstation/sound/magic/sacrament_01.ogg', 20, FALSE, pressure_affected = FALSE)
 					if(M != user)
-						to_chat(M, "<span class='warning'>What is that sound...?</span>")
+						to_chat(M, span_warning("What is that sound...?"))
 			if(2)
-				user.visible_message("<span class='userdanger'>[user] begins to... <i>grow.</i>.</span>", \
-									"<span class='velvet'>Yes! <font size=3>Yes! You feel the weak mortal shell coming apart!</font></span>")
+				user.visible_message(span_userdanger("[user] begins to... <i>grow.</i>."), \
+									span_velvet("Yes! <font size=3>Yes! You feel the weak mortal shell coming apart!</font>"))
 				for(var/mob/M in GLOB.player_list)
 					M.playsound_local(M, 'yogstation/sound/magic/sacrament_02.ogg', 20, FALSE, pressure_affected = FALSE)
 				animate(user, transform = matrix() * 2, time = 150)
-		if(!do_after(user, 150, target = user))
-			user.visible_message("<span class='warning'>[user] falls to the ground!</span>", "<span class='userdanger'>Your transformation was interrupted!</span>")
+		if(!do_after(user, 15 SECONDS, target = user))
+			user.visible_message(span_warning("[user] falls to the ground!"), span_userdanger("Your transformation was interrupted!"))
 			animate(user, transform = matrix(), pixel_y = initial(user.pixel_y), time = 30)
 			in_use = FALSE
 			QDEL_NULL(soundloop)
@@ -66,7 +66,7 @@
 	for(var/mob/M in GLOB.player_list)
 		M.playsound_local(M, 'yogstation/sound/magic/sacrament_ending.ogg', 75, FALSE, pressure_affected = FALSE)
 	soundloop.stage = 3
-	user.visible_message("<span class='userdanger'>[user] rises into the air, crackling with power!</span>", "<span class='velvet bold'>AND THE WEAK WILL KNOW <i>FEAR--</i></span>")
+	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), "<span class='velvet bold'>AND THE WEAK WILL KNOW <i>FEAR--</i></span>")
 	for(var/turf/T in range(7, owner))
 		if(prob(25))
 			addtimer(CALLBACK(src, .proc/unleashed_psi, T), rand(1, 40))

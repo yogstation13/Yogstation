@@ -2,6 +2,12 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
+"ab" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "ac" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
@@ -226,13 +232,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"aQ" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "aR" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
@@ -307,10 +306,6 @@
 	},
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
-"bd" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "be" = (
 /obj/structure/table,
@@ -413,6 +408,12 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "ga" = (
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"gh" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "iq" = (
@@ -607,7 +608,7 @@ aA
 aG
 aJ
 ad
-aQ
+ab
 Ri
 aC
 aC
@@ -783,9 +784,9 @@ am
 Ir
 aR
 ac
-bd
+gh
 be
-bd
+gh
 ad
 ad
 "}

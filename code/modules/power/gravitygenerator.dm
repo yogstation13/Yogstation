@@ -1,4 +1,3 @@
-
 //
 // Gravity Generator
 //
@@ -28,7 +27,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/sprite_number = 0
 
-/obj/machinery/gravity_generator/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force = MOVE_FORCE_STRONG)
+/obj/machinery/gravity_generator/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force = MOVE_FORCE_STRONG, quickstart = TRUE)
 	return FALSE
 
 /obj/machinery/gravity_generator/ex_act(severity, target)
@@ -57,7 +56,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	qdel(src)
 
 /obj/machinery/gravity_generator/proc/set_broken()
-	stat |= BROKEN
+	obj_break()
 
 /obj/machinery/gravity_generator/proc/set_fix()
 	stat &= ~BROKEN
@@ -79,7 +78,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	return main_part.attackby(I, user)
 
 /obj/machinery/gravity_generator/part/get_status()
-	return main_part.get_status()
+	return main_part?.get_status()
 
 /obj/machinery/gravity_generator/part/attack_hand(mob/user)
 	return main_part.attack_hand(user)
@@ -188,7 +187,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	switch(broken_state)
 		if(GRAV_NEEDS_SCREWDRIVER)
 			if(I.tool_behaviour == TOOL_SCREWDRIVER)
-				to_chat(user, "<span class='notice'>You secure the screws of the framework.</span>")
+				to_chat(user, span_notice("You secure the screws of the framework."))
 				I.play_tool_sound(src)
 				broken_state++
 				update_icon()
@@ -196,7 +195,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 		if(GRAV_NEEDS_WELDING)
 			if(I.tool_behaviour == TOOL_WELDER)
 				if(I.use_tool(src, user, 0, volume=50, amount=1))
-					to_chat(user, "<span class='notice'>You mend the damaged framework.</span>")
+					to_chat(user, span_notice("You mend the damaged framework."))
 					broken_state++
 					update_icon()
 				return
@@ -205,26 +204,25 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 				var/obj/item/stack/sheet/plasteel/PS = I
 				if(PS.get_amount() >= 10)
 					PS.use(10)
-					to_chat(user, "<span class='notice'>You add the plating to the framework.</span>")
+					to_chat(user, span_notice("You add the plating to the framework."))
 					playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
 					broken_state++
 					update_icon()
 				else
-					to_chat(user, "<span class='warning'>You need 10 sheets of plasteel!</span>")
+					to_chat(user, span_warning("You need 10 sheets of plasteel!"))
 				return
 		if(GRAV_NEEDS_WRENCH)
 			if(I.tool_behaviour == TOOL_WRENCH)
-				to_chat(user, "<span class='notice'>You secure the plating to the framework.</span>")
+				to_chat(user, span_notice("You secure the plating to the framework."))
 				I.play_tool_sound(src)
 				set_fix()
 				return
 	return ..()
 
-/obj/machinery/gravity_generator/main/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/gravity_generator/main/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "gravity_generator", name, 400, 200, master_ui, state)
+		ui = new(user, src, "GravityGenerator", name)
 		ui.open()
 
 /obj/machinery/gravity_generator/main/ui_data(mob/user)
@@ -247,11 +245,12 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 			breaker = !breaker
 			investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(usr)].", INVESTIGATE_GRAVITY)
 			set_power()
+			. = TRUE
 
 // Power and Icon States
 
 /obj/machinery/gravity_generator/main/power_change()
-	..()
+	. = ..()
 	investigate_log("has [stat & NOPOWER ? "lost" : "regained"] power.", INVESTIGATE_GRAVITY)
 	set_power()
 
@@ -384,6 +383,13 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	if(value != setting)
 		setting = value
 		shake_everyone()
+
+/obj/machinery/gravity_generator/main/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	breaker = !breaker
+	investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(usr)].", INVESTIGATE_GRAVITY)
+	set_power()
 
 // Misc
 

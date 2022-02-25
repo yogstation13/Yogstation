@@ -1,5 +1,5 @@
 ///////////	lavaland slot ruin items
 
-/obj/item/paper/fluff/stations/lavaland/sloth/note
+/obj/item/paper/fluff/stations/lavaland/sloth
 	name = "note from sloth"
-	desc = "have not gotten around to finishing my cursed item yet sorry - sloth"
+	info = "sorry guys i'll have the temple ready soon<br>- sloth"

@@ -72,18 +72,19 @@
 /obj/effect/decal/cleanable/blood/gibs/ex_act(severity, target)
 	return
 
-/obj/effect/decal/cleanable/blood/gibs/Crossed(mob/living/L)
-	if(istype(L) && has_gravity(loc))
-		playsound(loc, 'sound/effects/gib_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 20 : 50, 1)
+/obj/effect/decal/cleanable/blood/gibs/Crossed(atom/movable/L)
+	if(isliving(L) && has_gravity(loc))
+		playsound(loc, 'sound/effects/gib_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 20 : 50, TRUE)
 	. = ..()
 
-/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
+/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions, mapload=FALSE)
 	set waitfor = FALSE
 	var/list/diseases = list()
 	SEND_SIGNAL(src, COMSIG_GIBS_STREAK, directions, diseases)
 	var/direction = pick(directions)
 	for(var/i in 0 to pick(0, 200; 1, 150; 2, 50))
-		sleep(2)
+		if (!mapload)
+			sleep(2)
 		if(i > 0)
 			new /obj/effect/decal/cleanable/blood/splatter(loc, diseases)
 		if(!step_to(src, get_step(src, direction), 0))

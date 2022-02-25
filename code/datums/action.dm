@@ -19,6 +19,7 @@
 	var/icon_icon = 'icons/mob/actions.dmi' //This is the file for the ACTION icon
 	var/button_icon_state = "default" //And this is the state for the action icon
 	var/mob/owner
+	var/syndicate = FALSE // are these buttons only for syndicates?
 
 /datum/action/New(Target)
 	link_to(Target)
@@ -47,6 +48,9 @@
 				return
 			Remove(owner)
 		owner = M
+		if(syndicate)
+			if(!is_syndicate(M) && !is_clockcult(M)) // if a syndicate check is failed; don't generate button on the hud at all unless you are a clock cultist as well. - Hopek
+				return
 
 		//button id generation
 		var/counter = 0
@@ -199,6 +203,9 @@
 /datum/action/item_action/toggle_firemode
 	name = "Toggle Firemode"
 
+/datum/action/item_action/toggle_bodycam
+	name = "Toggle Bodycamera"
+
 /datum/action/item_action/rcl_col
 	name = "Change Cable Color"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
@@ -286,16 +293,6 @@
 			button_icon_state = "vortex_ff_on"
 			name = "Toggle Friendly Fire \[ON\]"
 	..()
-
-/datum/action/item_action/synthswitch
-	name = "Change Synthesizer Instrument"
-	desc = "Change the type of instrument your synthesizer is playing as."
-
-/datum/action/item_action/synthswitch/Trigger()
-	if(istype(target, /obj/item/instrument/piano_synth))
-		var/obj/item/instrument/piano_synth/synth = target
-		return synth.selectInstrument()
-	return ..()
 
 /datum/action/item_action/vortex_recall
 	name = "Vortex Recall"
@@ -435,7 +432,7 @@
 			owner.research_scanner++
 		else
 			owner.research_scanner--
-		to_chat(owner, "<span class='notice'>[target] research scanner has been [active ? "activated" : "deactivated"].</span>")
+		to_chat(owner, span_notice("[target] research scanner has been [active ? "activated" : "deactivated"]."))
 		return 1
 
 /datum/action/item_action/toggle_research_scanner/Remove(mob/M)
@@ -502,9 +499,9 @@
 		I.attack_self(owner)
 	else
 		if (owner.get_num_arms() <= 0)
-			to_chat(owner, "<span class='warning'>You dont have any usable hands!</span>")
+			to_chat(owner, span_warning("You dont have any usable hands!"))
 		else
-			to_chat(owner, "<span class='warning'>Your hands are full!</span>")
+			to_chat(owner, span_warning("Your hands are full!"))
 
 /datum/action/item_action/agent_box
 	name = "Deploy Box"
@@ -665,6 +662,12 @@
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
 
+/datum/action/item_action/dash
+	name = "Dash"
+	desc = "Momentarily maximizes the jets of the shoes, allowing the user to dash a short distance."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "thrust"
+
 /datum/action/language_menu
 	name = "Language Menu"
 	desc = "Open the language menu to review your languages, their keys, and select your default language."
@@ -685,6 +688,13 @@
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
 
+/datum/action/item_action/airshoes
+	name = "Toggle thrust on air shoes."
+	desc = "Switch between walking and hovering."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "airshoes_a"
+
+	
 /datum/action/item_action/kindleKicks
 	name = "Activate Kindle Kicks"
 	desc = "Kick you feet together, activating the lights in your Kindle Kicks."

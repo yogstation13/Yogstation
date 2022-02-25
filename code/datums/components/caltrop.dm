@@ -48,15 +48,15 @@
 		var/damage = rand(min_damage, max_damage)
 		if(HAS_TRAIT(H, TRAIT_LIGHT_STEP))
 			damage *= 0.75
-		H.apply_damage(damage, BRUTE, picked_def_zone)
+		H.apply_damage(damage, BRUTE, picked_def_zone, wound_bonus = CANT_WOUND)
 
 		if(cooldown < world.time - 10) //cooldown to avoid message spam.
 			if(!H.incapacitated(ignore_restraints = TRUE))
-				H.visible_message("<span class='danger'>[H] steps on [A].</span>", \
-						"<span class='userdanger'>You step on [A]!</span>")
+				H.visible_message(span_danger("[H] steps on [A]."), \
+						span_userdanger("You step on [A]!"))
 			else
-				H.visible_message("<span class='danger'>[H] slides on [A]!</span>", \
-						"<span class='userdanger'>You slide on [A]!</span>")
+				H.visible_message(span_danger("[H] slides on [A]!"), \
+						span_userdanger("You slide on [A]!"))
 
 			cooldown = world.time
 		H.Paralyze(60)

@@ -8,12 +8,12 @@
 	anchored = TRUE
 	var/mob_type = null
 	var/mob_name = ""
-	var/prompt_name = null// Yogs
+	var/prompt_name = null
 	var/mob_gender = null
 	var/death = TRUE //Kill the mob
 	var/roundstart = TRUE //fires on initialize
 	var/instant = FALSE	//fires on New
-	var/short_desc = "The mapper forgot to set this!"
+	var/short_desc = "A coder forgot to set this!"
 	var/flavour_text = ""
 	var/important_info = ""
 	var/faction = null
@@ -36,18 +36,21 @@
 /obj/effect/mob_spawn/attack_ghost(mob/user)
 	if(!SSticker.HasRoundStarted() || !loc || !ghost_usable)
 		return
+	if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER) && !(flags_1 & ADMIN_SPAWNED_1))
+		to_chat(user, span_warning("An admin has temporarily disabled non-admin ghost roles!"))
+		return
 	if(!uses)
-		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
+		to_chat(user, span_warning("This spawner is out of charges!"))
 		return
 	if(is_banned_from(user.key, banType))
-		to_chat(user, "<span class='warning'>You are jobanned!</span>")
+		to_chat(user, span_warning("You are job banned!"))
 		return
 	if(QDELETED(src) || QDELETED(user))
 		return
-	if(!check_allowed(user)) // Yogs
-		return // Yogs
-	var/ghost_role = alert("Become [prompt_name ? prompt_name : mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No") // Yogs
-	if(!check_allowed(user) || (ghost_role == "No") || !loc || QDELETED(src) || QDELETED(user)) // Yogs
+	if(!check_allowed(user))
+		return
+	var/ghost_role = alert("Become [prompt_name ? prompt_name : mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No")
+	if(!check_allowed(user) || (ghost_role == "No") || !loc || QDELETED(src) || QDELETED(user))
 		return
 	log_game("[key_name(user)] became [mob_name]")
 	create(ckey = user.ckey)
@@ -68,10 +71,8 @@
 		GLOB.mob_spawners -= name
 	return ..()
 
-// Yogs start
 /obj/effect/mob_spawn/proc/check_allowed(mob/M)
 	return TRUE
-// Yogs end
 
 /obj/effect/mob_spawn/proc/special(mob/M)
 	return
@@ -106,9 +107,9 @@
 		if(show_flavour)
 			var/output_message = "<span class='big bold'>[short_desc]</span>"
 			if(flavour_text != "")
-				output_message += "\n<span class='bold'>[flavour_text]</span>"
+				output_message += "\n[span_bold("[flavour_text]")]"
 			if(important_info != "")
-				output_message += "\n<span class='userdanger'>[important_info]</span>"
+				output_message += "\n[span_userdanger("[important_info]")]"
 			to_chat(M, output_message)
 			MM.memory += flavour_text
 		if(antagonist_type)
@@ -232,6 +233,7 @@
 			W.access |= id_access_list
 		if(id_job)
 			W.assignment = id_job
+			W.originalassignment = id_job
 		W.registered_name = H.real_name
 		W.update_label()
 
@@ -314,6 +316,9 @@
 
 /obj/effect/mob_spawn/human/corpse/assistant/spanishflu_infection
 	disease = /datum/disease/fluspanish
+
+/obj/effect/mob_spawn/human/corpse/assistant/jitters_infection
+	disease = /datum/disease/jitters
 
 /obj/effect/mob_spawn/human/corpse/cargo_tech
 	name = "Cargo Tech"
@@ -403,8 +408,24 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	suit = /obj/item/clothing/suit/armor/vest
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
-	implants = list(/obj/item/implant/teleporter/ghost_role) //yogs change no leaving for the bartender of space
+	implants = list(/obj/item/implant/teleporter/ghost_role)
 	id = /obj/item/card/id
+
+/obj/effect/mob_spawn/human/bartender/alive/space
+	name = "space bartender sleeper"
+	flavour_text = "You got this place from your old man, a bar in the middle of nowhere. Or at least, until NanoTrasen decided to move in. Time to mix drinks and change lives."
+	important_info = "Do not leave your post under any circumstances!"
+	outfit = /datum/outfit/spacebartender/space
+
+/obj/effect/mob_spawn/human/bartender/alive/space/special(mob/living/L)
+	L.fully_replace_character_name(null,"[L.real_name] Jr.")
+
+/datum/outfit/spacebartender/space
+	ears = /obj/item/radio/headset/headset_srv
+	backpack_contents = list(/obj/item/storage/box/beanbag=1)
+	suit_store = /obj/item/gun/ballistic/shotgun/doublebarrel
+	mask = /obj/item/clothing/mask/breath
+	l_pocket = /obj/item/tank/internals/emergency_oxygen/double
 
 /obj/effect/mob_spawn/human/beach
 	outfit = /datum/outfit/beachbum
@@ -578,7 +599,7 @@
 	var/despawn = alert("Return to cryosleep? (Warning, Your mob will be deleted!)",,"Yes","No")
 	if(despawn == "No" || !loc || !Adjacent(user))
 		return
-	user.visible_message("<span class='notice'>[user.name] climbs back into cryosleep...</span>")
+	user.visible_message(span_notice("[user.name] climbs back into cryosleep..."))
 	qdel(user)
 
 /datum/outfit/cryobartender

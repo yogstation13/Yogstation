@@ -27,6 +27,7 @@
 #define BOT_NAV				15	// computing navigation
 #define BOT_WAIT_FOR_NAV	16	// waiting for nav computation
 #define BOT_NO_ROUTE		17	// no destination beacon found (or no route)
+#define BOT_TIPPED			18	// someone tipped a medibot over ;_;
 
 //Bot types
 #define SEC_BOT				(1<<0)	// Secutritrons (Beepsky) and ED-209s
@@ -50,3 +51,10 @@
 #define ASSEMBLY_THIRD_STEP     2
 #define ASSEMBLY_FOURTH_STEP    3
 #define ASSEMBLY_FIFTH_STEP     4
+
+#define BORG_LAMP_CD_RESET -1 //special value to reset cyborg's lamp_cooldown
+
+/// Defines for whether or not module slots are broken.
+#define BORG_MODULE_ALL_DISABLED (1<<0)
+#define BORG_MODULE_TWO_DISABLED (1<<1)
+#define BORG_MODULE_THREE_DISABLED (1<<2)

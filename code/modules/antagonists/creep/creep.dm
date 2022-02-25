@@ -23,11 +23,11 @@
 
 /datum/antagonist/obsessed/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/creepalert.ogg', 100, FALSE, pressure_affected = FALSE)
-	to_chat(owner, "<span class='boldannounce'>You are the Obsessed!</span>")
+	to_chat(owner, span_boldannounce("You are the Obsessed!"))
 	to_chat(owner, "<B>The Voices have reached out to you, and are using you to complete their evil deeds.</B>")
 	to_chat(owner, "<B>You don't know their connection, but The Voices compel you to stalk [trauma.obsession], forcing them into a state of constant paranoia.</B>")
 	to_chat(owner, "<B>The Voices will retaliate if you fail to complete your tasks or spend too long away from your target.</B>")
-	to_chat(owner, "<span class='boldannounce'>This role does NOT enable you to otherwise surpass what's deemed creepy behavior per the rules.</span>")//ironic if you know the history of the antag
+	to_chat(owner, span_boldannounce("This role does NOT enable you to otherwise surpass what's deemed creepy behavior per the rules."))//ironic if you know the history of the antag
 	owner.announce_objectives()
 
 /datum/antagonist/obsessed/Destroy()
@@ -38,16 +38,22 @@
 /datum/antagonist/obsessed/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_added(M)
+	if(owner.current && ishuman(owner.current) && !owner.current.GetComponent(/datum/component/mood))
+		to_chat(owner, span_danger("You feel more aware of your condition, mood has been enabled!"))
+		owner.current.AddComponent(/datum/component/mood) //you fool you absolute buffoon to think you could escape
 
 /datum/antagonist/obsessed/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_removed(M)
+	var/mob/living/carbon/human/H = M
+	if(H && !H.mood_enabled)
+		var/datum/component/C = M.GetComponent(/datum/component/mood)
+		if(C) //we cannot be too sure they may have somehow removed it
+			to_chat(owner, span_danger("Your need for mental fitness vanishes alongside the voices, mood has been disabled."))
+			C.RemoveComponent()
 
 /datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
-	var/datum/objective/assassinate/obsessed/kill = new
-	kill.owner = owner
-	kill.target = obsessionmind
 	var/datum/quirk/family_heirloom/family_heirloom
 
 	for(var/datum/quirk/quirky in obsessionmind.current.roundstart_quirks)
@@ -70,14 +76,10 @@
 				spendtime.target = obsessionmind
 				objectives += spendtime
 			if("polaroid")
-				/*
-				 * This is currently commented out like this so that there still is a chance for a third objective if applicable
-				 * but this won't add the objective if it tries to select the picture one
 				var/datum/objective/polaroid/polaroid = new
 				polaroid.owner = owner
 				polaroid.target = obsessionmind
 				objectives += polaroid
-				*/
 			if("hug")
 				var/datum/objective/hug/hug = new
 				hug.owner = owner
@@ -94,13 +96,21 @@
 				jealous.owner = owner
 				jealous.target = obsessionmind//will reroll into a coworker on the objective itself
 				objectives += jealous
-
-	objectives += kill//finally add the assassinate last, because you'd have to complete it last to greentext.
+	var/datum/objective/protect/yandere_one = new
+	yandere_one.owner = owner
+	yandere_one.target = obsessionmind
+	yandere_one.update_explanation_text()
+	objectives += yandere_one
+	var/datum/objective/maroon/yandere_two = new
+	yandere_two.owner = owner
+	yandere_two.target = obsessionmind
+	yandere_two.update_explanation_text() //usually called in find_target()
+	objectives += yandere_two
 	for(var/datum/objective/O in objectives)
 		O.update_explanation_text()
 
 /datum/antagonist/obsessed/roundend_report_header()
-	return 	"<span class='header'>Someone became obsessed!</span><br>"
+	return 	"[span_header("Someone became obsessed!")]<br>"
 
 /datum/antagonist/obsessed/roundend_report()
 	var/list/report = list()
@@ -119,11 +129,11 @@
 				break
 	if(trauma)
 		if(trauma.total_time_creeping > 0)
-			report += "<span class='greentext'>The [name] spent a total of [DisplayTimeText(trauma.total_time_creeping)] being near [trauma.obsession]!</span>"
+			report += span_greentext("The [name] spent a total of [DisplayTimeText(trauma.total_time_creeping)] being near [trauma.obsession]!")
 		else
-			report += "<span class='redtext'>The [name] did not go near their obsession the entire round! That's extremely impressive!</span>"
+			report += span_redtext("The [name] did not go near their obsession the entire round! That's extremely impressive!")
 	else
-		report += "<span class='redtext'>The [name] had no trauma attached to their antagonist ways! Either it bugged out or an admin incorrectly gave this good samaritan antag and it broke! You might as well show yourself!!</span>"
+		report += span_redtext("The [name] had no trauma attached to their antagonist ways! Either it bugged out or an admin incorrectly gave this good samaritan antag and it broke! You might as well show yourself!!")
 
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
@@ -221,6 +231,8 @@
 		explanation_text = "Free Objective"
 
 /datum/objective/spendtime/check_completion()
+	if(..())
+		return TRUE
 	return timer <= 0 || explanation_text == "Free Objective"
 
 
@@ -239,6 +251,8 @@
 		explanation_text = "Free Objective"
 
 /datum/objective/hug/check_completion()
+	if(..())
+		return TRUE
 	var/datum/antagonist/obsessed/creeper = owner.has_antag_datum(/datum/antagonist/obsessed)
 	if(!creeper || !creeper.trauma || !hugs_needed)
 		return TRUE//free objective
@@ -255,6 +269,8 @@
 		explanation_text = "Free Objective"
 
 /datum/objective/polaroid/check_completion()
+	if(..())
+		return TRUE
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
 		if(!isliving(M.current))
@@ -263,7 +279,7 @@
 		for(var/obj/I in all_items) //Check for wanted items
 			if(istype(I, /obj/item/photo))
 				var/obj/item/photo/P = I
-				if(P.picture.mobs_seen.Find(owner) && P.picture.mobs_seen.Find(target) && !P.picture.dead_seen.Find(target))//you are in the picture, they are but they are not dead.
+				if(P.picture.mobs_seen.Find(owner.current) && P.picture.mobs_seen.Find(target.current) && !P.picture.dead_seen.Find(target.current))//you are in the picture, they are but they are not dead.
 					return TRUE
 	return FALSE
 

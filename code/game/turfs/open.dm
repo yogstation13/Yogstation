@@ -1,5 +1,10 @@
 /turf/open
 	plane = FLOOR_PLANE
+
+	FASTDMM_PROP(\
+		pipe_astar_cost = 1.5\
+	)
+
 	var/slowdown = 0 //negative for faster, positive for slower
 
 	var/postdig_icon_change = FALSE
@@ -52,6 +57,14 @@
 /turf/open/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
 
+/turf/open/indestructible/plating
+	name = "plating"
+	icon_state = "plating"
+	footstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD_BAREFOOT
+	clawfootstep = FOOTSTEP_HARD_CLAW
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
 /turf/open/indestructible/sound
 	name = "squeaky floor"
 	footstep = null
@@ -60,10 +73,10 @@
 	heavyfootstep = null
 	var/sound
 
-/turf/open/indestructible/sound/Entered(var/mob/AM)
+/turf/open/indestructible/sound/Entered(atom/movable/AM)
 	..()
-	if(istype(AM))
-		playsound(src,sound,50,1)
+	if(ismob(AM))
+		playsound(src,sound,50,TRUE)
 
 /turf/open/indestructible/necropolis
 	name = "necropolis floor"
@@ -85,6 +98,169 @@
 
 /turf/open/indestructible/necropolis/air
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+
+/turf/open/indestructible/carpet
+	name = "carpet"
+	desc = "Soft velvet carpeting. Feels good between your toes."
+	icon = 'icons/turf/floors/carpet.dmi'
+	icon_state = "carpet"
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/indestructible/carpet)
+	flags_1 = NONE
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET_BAREFOOT
+	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/indestructible/carpet/black
+	icon = 'icons/turf/floors/carpet_black.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/blue
+	icon = 'goon/icons/turfs/carpet_blue.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/green
+	icon = 'goon/icons/turfs/carpet_green.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/cyan
+	icon = 'icons/turf/floors/carpet_cyan.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/orange
+	icon = 'icons/turf/floors/carpet_orange.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/purple
+	icon = 'goon/icons/turfs/carpet_purple.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/red
+	icon = 'icons/turf/floors/carpet_red.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal
+	name = "carpet"
+	desc = "Soft velvet carpeting. Feels good between your toes."
+	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon_state = "carpet"
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/indestructible/carpet/royal)
+	flags_1 = NONE
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET_BAREFOOT
+	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/indestructible/carpet/royal/black
+	icon = 'icons/turf/floors/carpet_royalblack.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal/green
+	icon = 'icons/turf/floors/carpet_exoticgreen.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal/purple
+	icon = 'icons/turf/floors/carpet_exoticpurple.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/grass
+	name = "grass patch"
+	desc = "Yep, it's grass."
+	icon_state = "grass"
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	clawfootstep = FOOTSTEP_GRASS
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/indestructible/grass/sand
+	name = "sand"
+	desc = "Course, rough, irritating, gets everywhere."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "asteroid"
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/dirt
+	name = "dirt"
+	desc = "Upon closer examination, it's still dirt."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "dirt"
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/dirt/dark
+	icon_state = "greenerdirt"
+
+/turf/open/indestructible/grass/snow
+	name = "snow"
+	icon = 'icons/turf/snow.dmi'
+	desc = "Looks cold."
+	icon_state = "snow"
+	slowdown = 2
+	bullet_sizzle = TRUE
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/basalt
+	name = "volcanic floor"
+	desc = "Feels hot"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "basalt"
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/water
+	name = "water"
+	desc = "Shallow water."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "riverwater_motion"
+	slowdown = 1
+	bullet_sizzle = TRUE
+	bullet_bounce_sound = null //needs a splashing sound one day.
+	footstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	clawfootstep = FOOTSTEP_WATER
+	heavyfootstep = FOOTSTEP_WATER
+
+/turf/open/indestructible/grass/beach
+	name = "sand"
+	icon = 'icons/misc/beach.dmi'
+	icon_state = "sand"
+	bullet_bounce_sound = null
+
+/turf/open/indestructible/grass/beach/coast_t
+	name = "coastline"
+	icon_state = "sandwater_t"
+
+/turf/open/indestructible/grass/beach/coast_b
+	name = "coastline"
+	icon_state = "sandwater_b"
+
+/turf/open/indestructible/grass/beach/water
+	name = "water"
+	icon_state = "water"
+	slowdown = 1
+	bullet_sizzle = TRUE
+	footstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	clawfootstep = FOOTSTEP_WATER
+	heavyfootstep = FOOTSTEP_WATER
 
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
@@ -161,15 +337,35 @@
 		if(is_servant_of_ratvar(L) && L.stat != DEAD)
 			. = TRUE
 			L.forceMove(get_turf(pick(GLOB.servant_spawns)))
-			visible_message("<span class='warning'>[L] vanishes in a flash of red!</span>")
-			L.visible_message("<span class='warning'>[L] appears in a flash of red!</span>", \
-			"<span class='bold cult'>sas'so c'arta forbici</span><br><span class='danger'>You're yanked away from [src]!</span>")
+			visible_message(span_warning("[L] vanishes in a flash of red!"))
+			L.visible_message(span_warning("[L] appears in a flash of red!"), \
+			"<span class='bold cult'>sas'so c'arta forbici</span><br>[span_danger("You're yanked away from [src]!")]")
 			playsound(src, 'sound/magic/enter_blood.ogg', 50, TRUE)
 			playsound(L, 'sound/magic/exit_blood.ogg', 50, TRUE)
 			flash_color(L, flash_color = "#C80000", flash_time = 10)
 
+/turf/open/indestructible/brazil
+	name = ".."
+	desc = "it hurts to look at it hurts to see it hurts to think it hurts it hurts it hurts."
+	icon = 'icons/turf/space.dmi'
+
+/turf/open/indestructible/brazil/Initialize(mapload)
+	. = ..()
+	icon_state = "[rand(1,25)]"
+	add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), FIXED_COLOUR_PRIORITY)
+
+/turf/open/indestructible/brazil/Enter(atom/movable/AM, atom/old_loc)
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(!L.has_status_effect(STATUS_EFFECT_HERETIC_SACRIFICE))
+			var/turf/open/floor/safe_turf = find_safe_turf(zlevels = 2)
+			if(safe_turf)
+				to_chat(L, span_warning("You're not supposed to be here..."))
+				do_teleport(AM, safe_turf , 0, channel = TELEPORT_CHANNEL_FREE)
+	return FALSE //don't forget, you're here forever
+
 /turf/open/Initalize_Atmos(times_fired)
-	excited = 0
+	set_excited(FALSE)
 	update_visuals()
 
 	current_cycle = times_fired
@@ -177,19 +373,19 @@
 	for(var/i in atmos_adjacent_turfs)
 		var/turf/open/enemy_tile = i
 		var/datum/gas_mixture/enemy_air = enemy_tile.return_air()
-		if(!excited && air.compare(enemy_air))
+		if(!get_excited() && air.compare(enemy_air))
 			//testing("Active turf found. Return value of compare(): [is_active]")
-			excited = TRUE
+			set_excited(TRUE)
 			SSair.active_turfs |= src
 
 /turf/open/proc/GetHeatCapacity()
 	. = air.heat_capacity()
 
 /turf/open/proc/GetTemperature()
-	. = air.temperature
+	. = air.return_temperature()
 
 /turf/open/proc/TakeTemperature(temp)
-	air.temperature += temp
+	air.set_temperature(air.return_temperature() + temp)
 	air_update_turf()
 
 /turf/open/proc/freon_gas_act()
@@ -210,10 +406,12 @@
 	for(var/mob/living/simple_animal/slime/M in src)
 		M.apply_water()
 
-	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
-	for(var/obj/effect/O in src)
-		if(is_cleanable(O))
-			qdel(O)
+	wash(CLEAN_WASH)
+	for(var/am in src)
+		var/atom/movable/movable_content = am
+		if(ismopable(movable_content)) // Will have already been washed by the wash call above at this point.
+			continue
+		movable_content.wash(CLEAN_WASH)
 	return TRUE
 
 /turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
@@ -231,7 +429,7 @@
 			if(C.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
 				return 0
 		if(!(lube&SLIDE_ICE))
-			to_chat(C, "<span class='notice'>You slipped[ O ? " on the [O.name]" : ""]!</span>")
+			to_chat(C, span_notice("You slipped[ O ? " on the [O.name]" : ""]!"))
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
@@ -274,10 +472,14 @@
 
 /turf/open/rad_act(pulse_strength)
 	. = ..()
-	if (air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen])
-		pulse_strength = min(pulse_strength,air.gases[/datum/gas/carbon_dioxide][MOLES]*1000,air.gases[/datum/gas/oxygen][MOLES]*2000) //Ensures matter is conserved properly
-		air.gases[/datum/gas/carbon_dioxide][MOLES]=max(air.gases[/datum/gas/carbon_dioxide][MOLES]-(pulse_strength/1000),0)
-		air.gases[/datum/gas/oxygen][MOLES]=max(air.gases[/datum/gas/oxygen][MOLES]-(pulse_strength/2000),0)
-		air.assert_gas(/datum/gas/pluoxium)
-		air.gases[/datum/gas/pluoxium][MOLES]+=(pulse_strength/4000)
-		air.garbage_collect()
+	if (air.get_moles(/datum/gas/carbon_dioxide) && air.get_moles(/datum/gas/oxygen))
+		pulse_strength = min(pulse_strength,air.get_moles(/datum/gas/carbon_dioxide)*1000,air.get_moles(/datum/gas/oxygen)*2000) //Ensures matter is conserved properly
+		air.set_moles(/datum/gas/carbon_dioxide, max(air.get_moles(/datum/gas/carbon_dioxide)-(pulse_strength * 0.001),0))
+		air.set_moles(/datum/gas/oxygen, max(air.get_moles(/datum/gas/oxygen)-(pulse_strength * 0.002),0))
+		air.adjust_moles(/datum/gas/pluoxium, pulse_strength * 0.004)
+		air_update_turf()
+	if (air.get_moles(/datum/gas/hydrogen))
+		pulse_strength = min(pulse_strength, air.get_moles(/datum/gas/hydrogen) * 1000)
+		air.set_moles(/datum/gas/hydrogen, max(air.get_moles(/datum/gas/hydrogen) - (pulse_strength * 0.001), 0))
+		air.adjust_moles(/datum/gas/tritium, pulse_strength * 0.001)
+		air_update_turf()

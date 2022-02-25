@@ -69,6 +69,10 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 		if(dpdir & D)
 			new_dpdir = new_dpdir | angle2dir(rotation+dir2angle(D))
 	dpdir = new_dpdir
+	
+/obj/structure/reflector/shuttleRotate(rotation, params)
+	. = ..()
+	setAngle(rotation_angle + rotation, TRUE)
 
 /obj/structure/table/wood/bar/shuttleRotate(rotation, params)
 	. = ..()

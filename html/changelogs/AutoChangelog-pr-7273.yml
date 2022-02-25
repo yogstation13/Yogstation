@@ -1,5 +1,0 @@
-author: "  alexkar598, exploit found by Lovebird"
-delete-after: true 
-changes: 
-  - rscdel: "Red queen drink no longer changes your size"
-  - bugfix: "Growth serum can no longer make you invisible, thanks to Lovebird for the report."

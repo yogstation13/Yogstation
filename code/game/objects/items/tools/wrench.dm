@@ -11,7 +11,9 @@
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/ratchet.ogg'
-	materials = list(MAT_METAL=150)
+	materials = list(/datum/material/iron=150)
+	drop_sound = 'sound/items/handling/wrench_drop.ogg'
+	pickup_sound =  'sound/items/handling/wrench_pickup.ogg'
 
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	tool_behaviour = TOOL_WRENCH
@@ -19,7 +21,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
 
 /obj/item/wrench/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is beating [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is beating [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/weapons/genhit.ogg', 50, 1, -1)
 	return (BRUTELOSS)
 
@@ -43,34 +45,6 @@
 	usesound = 'sound/effects/empulse.ogg'
 	toolspeed = 0.1
 
-
-/obj/item/wrench/power
-	name = "hand drill"
-	desc = "A simple powered hand drill. It's fitted with a bolt bit."
-	icon_state = "drill_bolt"
-	item_state = "drill"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	usesound = 'sound/items/drill_use.ogg'
-	materials = list(MAT_METAL=150,MAT_SILVER=50,MAT_TITANIUM=25)
- //done for balance reasons, making them high value for research, but harder to get
-	force = 8 //might or might not be too high, subject to change
-	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 8
-	attack_verb = list("drilled", "screwed", "jabbed")
-	toolspeed = 0.7
-
-/obj/item/wrench/power/attack_self(mob/user)
-	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
-	var/obj/item/wirecutters/power/s_drill = new /obj/item/screwdriver/power(drop_location())
-	to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
-	qdel(src)
-	user.put_in_active_hand(s_drill)
-
-/obj/item/wrench/power/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is pressing [src] against [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
-	return (BRUTELOSS)
-
 /obj/item/wrench/medical
 	name = "medical wrench"
 	desc = "A medical wrench with common(medical?) uses. Can be found in your hand."
@@ -81,7 +55,7 @@
 	attack_verb = list("wrenched", "medicaled", "tapped", "jabbed", "whacked")
 
 /obj/item/wrench/medical/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] is praying to the medical wrench to take [user.p_their()] soul. It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is praying to the medical wrench to take [user.p_their()] soul. It looks like [user.p_theyre()] trying to commit suicide!"))
 	// TODO Make them glow with the power of the M E D I C A L W R E N C H
 	// during their ascension
 

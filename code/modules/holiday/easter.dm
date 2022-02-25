@@ -18,7 +18,7 @@
 	max_occurrences = 10
 
 /datum/round_event/rabbitrelease/announce(fake)
-	priority_announce("Unidentified furry objects detected coming aboard [station_name()]. Beware of Adorable-ness.", "Fluffy Alert", 'sound/ai/aliens.ogg')
+	priority_announce("Unidentified furry objects detected coming aboard [station_name()]. Beware of Adorable-ness.", "Fluffy Alert", ANNOUNCER_ALIENS)
 
 
 /datum/round_event/rabbitrelease/start()
@@ -135,7 +135,7 @@
 /obj/item/reagent_containers/food/snacks/egg/attack_self(mob/user)
 	..()
 	if(containsPrize)
-		to_chat(user, "<span class='notice'>You unwrap [src] and find a prize inside!</span>")
+		to_chat(user, span_notice("You unwrap [src] and find a prize inside!"))
 		dispensePrize(get_turf(user))
 		containsPrize = FALSE
 		qdel(src)
@@ -154,7 +154,7 @@
 		/datum/reagent/consumable/sugar = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/hotcrossbun
-	category = CAT_MISCFOOD
+	subcategory = CAT_MISCFOOD
 
 
 /obj/item/reagent_containers/food/snacks/store/cake/brioche
@@ -178,7 +178,7 @@
 		/datum/reagent/consumable/sugar = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/store/cake/brioche
-	category = CAT_MISCFOOD
+	subcategory = CAT_MISCFOOD
 
 /obj/item/reagent_containers/food/snacks/scotchegg
 	name = "scotch egg"
@@ -198,7 +198,7 @@
 		/obj/item/reagent_containers/food/snacks/meatball = 1  //YOGS - Bigotry rule
 	)
 	result = /obj/item/reagent_containers/food/snacks/scotchegg
-	category = CAT_MISCFOOD
+	subcategory = CAT_MISCFOOD
 
 /obj/item/reagent_containers/food/snacks/soup/mammi
 	name = "Mammi"
@@ -215,7 +215,7 @@
 		/datum/reagent/consumable/milk = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/soup/mammi
-	category = CAT_MISCFOOD
+	subcategory = CAT_MISCFOOD
 
 /obj/item/reagent_containers/food/snacks/chocolatebunny
 	name = "chocolate bunny"
@@ -232,4 +232,4 @@
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/chocolatebunny
-	category = CAT_MISCFOOD
+	subcategory = CAT_MISCFOOD

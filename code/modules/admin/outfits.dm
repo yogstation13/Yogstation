@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 
 /client/proc/outfit_manager()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Outfit Manager"
 
 	if(!check_rights(R_DEBUG))
@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	holder.outfit_manager(usr)
 
 /datum/admins/proc/outfit_manager(mob/admin)
-	var/list/dat = list("<ul>")
+	var/list/dat = list("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><ul>")
 	for(var/datum/outfit/O in GLOB.custom_outfits)
 		var/vv = FALSE
 		var/datum/outfit/varedit/VO = O
@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		dat += "<li>[O.name][vv ? "(VV)" : ""]</li> <a href='?_src_=holder;[HrefToken()];save_outfit=1;chosen_outfit=[REF(O)]'>Save</a> <a href='?_src_=holder;[HrefToken()];delete_outfit=1;chosen_outfit=[REF(O)]'>Delete</a>"
 	dat += "</ul>"
 	dat += "<a href='?_src_=holder;[HrefToken()];create_outfit_menu=1'>Create</a><br>"
-	dat += "<a href='?_src_=holder;[HrefToken()];load_outfit=1'>Load from file</a>"
+	dat += "<a href='?_src_=holder;[HrefToken()];load_outfit=1'>Load from file</a></BODY></HTML>"
 	admin << browse(dat.Join(),"window=outfitmanager")
 
 /datum/admins/proc/save_outfit(mob/admin,datum/outfit/O)
@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 /datum/admins/proc/delete_outfit(mob/admin,datum/outfit/O)
 	GLOB.custom_outfits -= O
 	qdel(O)
-	to_chat(admin,"<span class='notice'>Outfit deleted.</span>")
+	to_chat(admin,span_notice("Outfit deleted."))
 	outfit_manager(admin)
 
 /datum/admins/proc/load_outfit(mob/admin)
@@ -38,15 +38,15 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	var/filedata = file2text(outfit_file)
 	var/json = json_decode(filedata)
 	if(!json)
-		to_chat(admin,"<span class='warning'>JSON decode error.</span>")
+		to_chat(admin,span_warning("JSON decode error."))
 		return
 	var/otype = text2path(json["outfit_type"])
 	if(!ispath(otype,/datum/outfit))
-		to_chat(admin,"<span class='warning'>Malformed/Outdated file.</span>")
+		to_chat(admin,span_warning("Malformed/Outdated file."))
 		return
 	var/datum/outfit/O = new otype
 	if(!O.load_from(json))
-		to_chat(admin,"<span class='warning'>Malformed/Outdated file.</span>")
+		to_chat(admin,span_warning("Malformed/Outdated file."))
 		return
 	GLOB.custom_outfits += O
 	outfit_manager(admin)
@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	id_select += "</select>"
 
 	var/dat = {"
-	<html><head><title>Create Outfit</title></head><body>
+	<html><head><meta charset='UTF-8'><title>Create Outfit</title></head><body>
 	<form name="outfit" action="byond://?src=[REF(src)];[HrefToken()]" method="get">
 	<input type="hidden" name="src" value="[REF(src)]">
 	[HrefTokenFormField()]

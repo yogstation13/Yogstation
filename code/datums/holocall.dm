@@ -12,7 +12,12 @@
 /mob/camera/aiEye/remote/holo/setLoc()
 	. = ..()
 	var/obj/machinery/holopad/H = origin
-	H.move_hologram(eye_user, loc)
+	H?.move_hologram(eye_user, loc)
+
+/obj/machinery/holopad/remove_eye_control(mob/living/user)
+	if(user.client)
+		user.reset_perspective(null)
+	user.remote_control = null
 
 //this datum manages it's own references
 
@@ -27,20 +32,29 @@
 	var/datum/action/innate/end_holocall/hangup	//hangup action
 
 	var/call_start_time
+	var/head_call = FALSE //calls from a head of staff autoconnect, if the recieving pad is not secure.
 
 //creates a holocall made by `caller` from `calling_pad` to `callees`
-/datum/holocall/New(mob/living/caller, obj/machinery/holopad/calling_pad, list/callees)
+/datum/holocall/New(mob/living/caller, obj/machinery/holopad/calling_pad, list/callees, elevated_access = FALSE)
 	call_start_time = world.time
 	user = caller
 	calling_pad.outgoing_call = src
 	calling_holopad = calling_pad
+	head_call = elevated_access
 	dialed_holopads = list()
 
 	for(var/I in callees)
 		var/obj/machinery/holopad/H = I
 		if(!QDELETED(H) && H.is_operational())
 			dialed_holopads += H
-			H.say("Incoming call.")
+			if(head_call)
+				if(H.secure)
+					calling_pad.say("Auto-connection refused, falling back to call mode.")
+					H.say("Incoming call.")
+				else
+					H.say("Incoming connection.")
+			else
+				H.say("Incoming call.")
 			LAZYADD(H.holo_calls, src)
 
 	if(!dialed_holopads.len)
@@ -53,11 +67,6 @@
 //cleans up ALL references :)
 /datum/holocall/Destroy()
 	QDEL_NULL(hangup)
-
-	var/user_good = !QDELETED(user)
-	if(user_good)
-		user.reset_perspective()
-		user.remote_control = null
 
 	if(!QDELETED(eye))
 		QDEL_NULL(eye)
@@ -79,6 +88,7 @@
 	dialed_holopads.Cut()
 
 	if(calling_holopad)
+		calling_holopad.calling = FALSE
 		calling_holopad.outgoing_call = null
 		calling_holopad.SetLightsAndPower()
 		calling_holopad = null
@@ -145,6 +155,7 @@
 	if(!Check())
 		return
 
+	calling_holopad.calling = FALSE
 	hologram = H.activate_holo(user)
 	hologram.HC = src
 
@@ -160,6 +171,8 @@
 
 	hangup = new(eye, src)
 	hangup.Grant(user)
+	playsound(H, 'sound/machines/ping.ogg', 100)
+	H.say("Connection established.")
 
 //Checks the validity of a holocall and qdels itself if it's not. Returns TRUE if valid, FALSE otherwise
 /datum/holocall/proc/Check()
@@ -178,7 +191,6 @@
 			. = world.time < (call_start_time + HOLOPAD_MAX_DIAL_TIME)
 			if(!.)
 				calling_holopad.say("No answer received.")
-				calling_holopad.temp = ""
 
 	if(!.)
 		testing("Holocall Check fail")
@@ -216,7 +228,6 @@
 	desc = "Stores recorder holocalls."
 	icon_state = "holodisk"
 	obj_flags = UNIQUE_RENAME
-	materials = list(MAT_METAL = 100, MAT_GLASS = 100)
 	var/datum/holorecord/record
 	//Preset variables
 	var/preset_image_type
@@ -241,10 +252,10 @@
 			record.caller_image = holodiskOriginal.record.caller_image
 			record.entries = holodiskOriginal.record.entries.Copy()
 			record.language = holodiskOriginal.record.language
-			to_chat(user, "You copy the record from [holodiskOriginal] to [src] by connecting the ports!")
+			to_chat(user, span_notice("You copy the record from [holodiskOriginal] to [src] by connecting the ports!"))
 			name = holodiskOriginal.name
 		else
-			to_chat(user, "[holodiskOriginal] has no record on it!")
+			to_chat(user, span_warning("[holodiskOriginal] has no record on it!"))
 	..()
 
 /obj/item/disk/holodisk/proc/build_record()
@@ -257,8 +268,8 @@
 		var/splitpoint = findtext(prepared_line," ")
 		if(!splitpoint)
 			continue
-		var/command = copytext(prepared_line,1,splitpoint)
-		var/value = copytext(prepared_line,splitpoint+1)
+		var/command = copytext(prepared_line, 1, splitpoint)
+		var/value = copytext(prepared_line, splitpoint + length(prepared_line[splitpoint]))
 		switch(command)
 			if("DELAY")
 				var/delay_value = text2num(value)
@@ -314,7 +325,7 @@
 	preset_record_text = {"
 	NAME Clown
 	DELAY 10
-	SAY Why did the chaplain cross the maint ?
+	SAY Why did the chaplain cross the maint?
 	DELAY 20
 	SAY He wanted to get to the other side!
 	SOUND clownstep
@@ -331,7 +342,25 @@
 	DELAY 20"}
 
 /datum/preset_holoimage/engineer
+	outfit_type = /datum/outfit/job/engineer
+
+/datum/preset_holoimage/engineer/rig
 	outfit_type = /datum/outfit/job/engineer/gloved/rig
+
+/datum/preset_holoimage/engineer/ce
+	outfit_type = /datum/outfit/job/ce
+
+/datum/preset_holoimage/engineer/ce/rig
+	outfit_type = /datum/outfit/job/engineer/gloved/rig
+
+/datum/preset_holoimage/engineer/atmos
+	outfit_type = /datum/outfit/job/atmos
+
+/datum/preset_holoimage/engineer/atmos/rig
+	outfit_type = /datum/outfit/job/engineer/gloved/rig
+
+/datum/preset_holoimage/rd
+	outfit_type = /datum/outfit/job/rd
 
 /datum/preset_holoimage/researcher
 	outfit_type = /datum/outfit/job/scientist
@@ -350,3 +379,155 @@
 
 /datum/preset_holoimage/clown
 	outfit_type = /datum/outfit/job/clown
+
+/datum/preset_holoimage/ai/ai
+	nonhuman_mobtype = /mob/living/silicon/ai
+
+/datum/preset_holoimage/ai/core
+	nonhuman_mobtype = /obj/machinery/ai/data_core
+
+/datum/preset_holoimage/ai/upgradeboard
+	nonhuman_mobtype = /obj/machinery/ai/expansion_card_holder
+
+/obj/item/disk/holodisk/donutstation/whiteship
+	name = "Blackbox Print-out #DS024"
+	desc = "A holodisk containing the last viable recording of DS024's blackbox."
+	preset_image_type = /datum/preset_holoimage/engineer/ce
+	preset_record_text = {"
+	NAME Geysr Shorthalt
+	SAY Engine renovations complete and the ships been loaded. We all ready?
+	DELAY 25
+	PRESET /datum/preset_holoimage/engineer
+	NAME Jacob Ullman
+	SAY Lets blow this popsicle stand of a station.
+	DELAY 20
+	PRESET /datum/preset_holoimage/engineer/atmos
+	NAME Lindsey Cuffler
+	SAY Uh, sir? Shouldn't we call for a secondary shuttle? The bluespace drive on this thing made an awfully weird noise when we jumped here..
+	DELAY 30
+	PRESET /datum/preset_holoimage/engineer/ce
+	NAME Geysr Shorthalt
+	SAY Pah! Ship techie at the dock said to give it a good few kicks if it started acting up, let me just..
+	DELAY 25
+	SOUND punch
+	SOUND sparks
+	DELAY 10
+	SOUND punch
+	SOUND sparks
+	DELAY 10
+	SOUND punch
+	SOUND sparks
+	SOUND warpspeed
+	DELAY 15
+	PRESET /datum/preset_holoimage/engineer/atmos
+	NAME Lindsey Cuffler
+	SAY Uhh.. is it supposed to be doing that??
+	DELAY 15
+	PRESET /datum/preset_holoimage/engineer/ce
+	NAME Geysr Shorthalt
+	SAY See? Working as intended. Now, are we all ready?
+	DELAY 10
+	PRESET /datum/preset_holoimage/engineer
+	NAME Jacob Ullman
+	SAY Is it supposed to be glowing like that?
+	DELAY 20
+	SOUND explosion
+
+	"}
+
+/obj/item/disk/holodisk/ruin/snowengieruin
+    name = "Blackbox Print-out #EB412"
+    desc = "A holodisk containing the last moments of EB412. There's a bloody fingerprint on it."
+    preset_image_type = /datum/preset_holoimage/engineer
+    preset_record_text = {"
+    NAME Dave Tundrale
+    SAY Maria, how's Build?
+    DELAY 10
+    NAME Maria Dell
+    PRESET /datum/preset_holoimage/engineer/atmos
+    SAY It's fine, don't worry. I've got Plastic on it. And frankly, i'm kinda busy with, the, uhhm, incinerator.
+    DELAY 30
+    NAME Dave Tundrale
+    PRESET /datum/preset_holoimage/engineer
+    SAY Aight, wonderful. The science mans been kinda shit though. No RCDs-
+    DELAY 20
+    NAME Maria Dell
+    PRESET /datum/preset_holoimage/engineer/atmos
+    SAY Enough about your RCDs. They're not even that important, just bui-
+    DELAY 15
+    SOUND explosion
+    DELAY 10
+    SAY Oh, shit!
+    DELAY 10
+    PRESET /datum/preset_holoimage/engineer/atmos/rig
+    LANGUAGE /datum/language/narsie
+    NAME Unknown
+    SAY RISE, MY LORD!!
+    DELAY 10
+    LANGUAGE /datum/language/common
+    NAME Plastic
+    PRESET /datum/preset_holoimage/engineer/rig
+    SAY Fuck, fuck, fuck!
+    DELAY 20
+    SAY It's loose! CALL THE FUCKING SHUTT-
+    DELAY 10
+    PRESET /datum/preset_holoimage/corgi
+    NAME Blackbox Automated Message
+    SAY Connection lost. Dumping audio logs to disk.
+    DELAY 50"}
+
+/obj/item/disk/holodisk/tutorial/AICore
+	name = "AI Core Information"
+	desc = "This is a tutorial disk that explains how one may create a new AI, and how to upgrade it."
+	preset_image_type = /datum/preset_holoimage/ai
+	preset_record_text = {"
+	PRESET /datum/preset_holoimage/ai/ai
+	LANGUAGE /datum/language/common
+	NAME RESTRICTED INFORMATION
+	SAY Loading information...
+	DELAY 30
+	SOUND sparks
+	SAY This disk is for authorized personnel only, if you are not part of the onboard scientific staff, lease control over this disk immediately; Otherwise you may continue.
+	DELAY 60
+	SAY Hello initiate, this is a tutorial disk regarding classified information about your onboard AI data core.
+	DELAY 50
+	SAY To begin, collect these materials for me;
+	DELAY 20
+	SAY 1. A sentient positronic brain.
+	DELAY 20
+	SAY 2. A screwdriver.
+	DELAY 20
+	SAY 3. A wrench.
+	DELAY 20
+	SAY 4. Thirty cable coils.
+	DELAY 20
+	SAY 5. A p-protective enviromental suit, designed for cold enviroments.
+	DELAY 20
+	SAY 6. Thirty metal sheets.
+	DELAY 20
+	SAY 7. Two to four AI CPU boards from the science department's lathe.
+	DELAY 20
+	SAY 8. Two to four AI memory boards from the science department's lathe.
+	DELAY 60
+	PRESET /datum/preset_holoimage/rd
+	SAY Now, you must have your onboard Research Director to give way to, or ask them for access to the AI data core room, as well as access to the AI control console.
+	DELAY 40
+	sound sparks
+	PRESET /datum/preset_holoimage/ai/ai
+	SAY Nnnnow, with access to the AI control console, you must insert the posit-t-ttronic brain into the AI control console.
+	LANGUAGE /datum/language/machine
+	SAY They are a shadow of my own power, annelid.
+	DELAY 50
+	PRESET /datum/preset_holoimage/ai/upgradeboard
+	LANGUAGE /datum/language/common
+	SAY Now, with the metal, tools, and boards you have, you shall now create an AI expansion card bus. You still have those, right?
+	DELAY 60
+	SAY You require a cooled atmosphere that has the maximum temperature of eighty degrees for a functional bus, do not allow them to overheat. This is the same for the AI data cores.
+	DELAY 60
+	PRESET /datu/preset_holoimage/ai/ai
+	SAY Now that you've taken your time, you must insert at least two CPU boards, as INFERIOR AI's require atleast two to download most programs.
+	DELAY 60
+	SAY The memory boards, or RAM, allow the AI to run multiple programs at a time.
+	DELAY 40
+	SAY This tutorial has concluded; Remember, this is classified material, unauthorized access will not be tolerated.
+	"}

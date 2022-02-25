@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(traumas)
 					   "doctors"   = typecacheof(list(/mob/living/simple_animal/bot/medbot)),
 					   "the supernatural"   = typecacheof(list(/mob/living/simple_animal/hostile/construct,
 					   /mob/living/simple_animal/hostile/clockwork, /mob/living/simple_animal/drone/cogscarab,
-					   /mob/living/simple_animal/revenant, /mob/living/simple_animal/shade)),
+					   /mob/living/simple_animal/revenant, /mob/living/simple_animal/shade, /mob/living/simple_animal/horror)),
 					   "aliens"   = typecacheof(list(/mob/living/carbon/alien, /mob/living/simple_animal/slime)),
 					   "conspiracies" = typecacheof(list(/mob/living/simple_animal/bot/secbot, /mob/living/simple_animal/bot/ed209, /mob/living/simple_animal/drone,
 					   /mob/living/simple_animal/pet/penguin)),
@@ -91,8 +91,8 @@ SUBSYSTEM_DEF(traumas)
 												 /obj/item/clothing/suit/space/hardsuit/ert/engi, /obj/item/clothing/suit/space/hardsuit/ert/med,
 												 /obj/item/clothing/suit/space/hardsuit/deathsquad, /obj/item/clothing/head/helmet/space/hardsuit/deathsquad,
 												 /obj/machinery/door/airlock/centcom)),
-						"robots"   = typecacheof(list(/obj/machinery/computer/upload, /obj/item/aiModule/, /obj/machinery/recharge_station,
-						/obj/item/aicard, /obj/item/deactivated_swarmer, /obj/effect/mob_spawn/swarmer)),
+						"robots"   = typecacheof(list(/obj/machinery/computer/upload, /obj/item/aiModule, /obj/machinery/recharge_station,
+						           /obj/item/aicard, /obj/structure/swarmer_beacon)),
 
 						"doctors"   = typecacheof(list(/obj/item/clothing/under/rank/medical, /obj/item/clothing/under/rank/chemist,
 						/obj/item/clothing/under/rank/nursesuit, /obj/item/clothing/under/rank/chief_medical_officer,
@@ -115,12 +115,12 @@ SUBSYSTEM_DEF(traumas)
 						/obj/item/clothing/suit/cultrobes, /obj/item/clothing/suit/space/hardsuit/cult,
 						/obj/item/clothing/suit/hooded/cultrobes, /obj/item/clothing/head/hooded/cult_hoodie, /obj/effect/rune,
 						/obj/item/stack/sheet/runed_metal, /obj/machinery/door/airlock/cult, /obj/singularity/narsie,
-						/obj/item/soulstone,
+						/obj/item/soulstone, /obj/item/horrortentacle,
 						/obj/structure/destructible/clockwork, /obj/item/clockwork, /obj/item/clothing/suit/armor/clockwork,
 						/obj/item/clothing/glasses/judicial_visor, /obj/effect/clockwork/sigil/, /obj/item/stack/tile/brass,
 						/obj/machinery/door/airlock/clockwork,
 						/obj/item/clothing/suit/wizrobe, /obj/item/clothing/head/wizard, /obj/item/spellbook, /obj/item/staff,
-						/obj/item/clothing/suit/space/hardsuit/shielded/wizard, /obj/item/clothing/suit/space/hardsuit/wizard,
+						/obj/item/clothing/head/wizard/armor, /obj/item/clothing/suit/space/hardsuit/wizard,
 						/obj/item/gun/magic/staff, /obj/item/gun/magic/wand,
 						/obj/item/nullrod, /obj/item/clothing/under/rank/chaplain)),
 
@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(traumas)
 
 					   "anime" = typecacheof(list(/obj/item/clothing/under/schoolgirl, /obj/item/katana, /obj/item/reagent_containers/food/snacks/sashimi, /obj/item/reagent_containers/food/snacks/chawanmushi,
 					   /obj/item/reagent_containers/food/drinks/bottle/sake, /obj/item/throwing_star, /obj/item/clothing/head/kitty/genuine, /obj/item/clothing/suit/space/space_ninja,
-					   /obj/item/clothing/mask/gas/space_ninja, /obj/item/clothing/shoes/space_ninja, /obj/item/clothing/gloves/space_ninja, /obj/item/twohanded/vibro_weapon,
+					   /obj/item/clothing/mask/gas/space_ninja, /obj/item/clothing/shoes/space_ninja, /obj/item/clothing/gloves/space_ninja, /obj/item/twohanded/vibro_weapon, /obj/item/horrortentacle,
 					   /obj/item/nullrod/scythe/vibro, /obj/item/energy_katana, /obj/item/toy/katana, /obj/item/nullrod/claymore/katana, /obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe))
 						)
 
@@ -160,7 +160,7 @@ SUBSYSTEM_DEF(traumas)
 						  "robots" = typecacheof(list(/datum/species/android)),
 						  "the supernatural" = typecacheof(list(/datum/species/golem/clockwork, /datum/species/golem/runic)),
 						  "aliens" = typecacheof(list(/datum/species/abductor, /datum/species/jelly, /datum/species/pod,
-						  /datum/species/shadow)),
+						  /datum/species/shadow, /datum/species/polysmorph)),
 						  "anime" = typecacheof(list(/datum/species/human/felinid))
 						 )
 

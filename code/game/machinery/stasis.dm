@@ -25,12 +25,14 @@
 	for(var/direction in GLOB.cardinals)
 		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
 		if(computer)
-			computer.bed = src
+			computer.sbed = src
 			break
 
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click to [stasis_enabled ? "turn off" : "turn on"] the machine.</span>"
+	. += span_notice("Alt-click to [stasis_enabled ? "turn off" : "turn on"] the machine.")
+	if(obj_flags & EMAGGED)
+		. += span_warning("There's a worrying blue mist surrounding it.")
 
 /obj/machinery/stasis/proc/play_power_sound()
 	var/_running = stasis_running()
@@ -88,13 +90,12 @@
 
 /obj/machinery/stasis/obj_break(damage_flag)
 	. = ..()
-	play_power_sound()
-	update_icon()
+	if(.)
+		play_power_sound()
 
 /obj/machinery/stasis/power_change()
 	. = ..()
 	play_power_sound()
-	update_icon()
 
 /obj/machinery/stasis/proc/chill_out(mob/living/target)
 	if(target != occupant)
@@ -104,6 +105,8 @@
 	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
 	target.ExtinguishMob()
 	use_power = ACTIVE_POWER_USE
+	if(obj_flags & EMAGGED)
+		to_chat(target, span_warning("Your limbs start to feel numb..."))
 
 /obj/machinery/stasis/proc/thaw_them(mob/living/target)
 	target.remove_status_effect(STATUS_EFFECT_STASIS)
@@ -143,12 +146,18 @@
 	if(stasis_running())
 		if(!IS_IN_STASIS(L_occupant))
 			chill_out(L_occupant)
+		if(obj_flags & EMAGGED && L_occupant.getStaminaLoss() <= 200)
+			L_occupant.adjustStaminaLoss(5)
 	else if(IS_IN_STASIS(L_occupant))
 		thaw_them(L_occupant)
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)
 	. = default_deconstruction_screwdriver(user, "stasis_maintenance", "stasis", I)
 	update_icon()
+
+/obj/machinery/stasis/wrench_act(mob/living/user, obj/item/I)
+	if(default_change_direction_wrench(user, I))
+		return TRUE
 
 /obj/machinery/stasis/crowbar_act(mob/living/user, obj/item/I)
 	return default_deconstruction_crowbar(I)
@@ -161,4 +170,12 @@
 		unbuckle_mob(occupant)
 	else
 		..()
+
+/obj/machinery/stasis/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, span_warning("The stasis bed's safeties are already overriden!"))
+		return
+	to_chat(user, span_notice("You override the stasis bed's safeties!"))
+	obj_flags |= EMAGGED
+
 #undef STASIS_TOGGLE_COOLDOWN

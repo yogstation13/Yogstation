@@ -39,12 +39,11 @@
 	if(hotspot && istype(T) && T.air)
 		qdel(hotspot)
 		var/datum/gas_mixture/G = T.air
-		var/plas_amt = min(30,G.gases[/datum/gas/plasma][MOLES]) //Absorb some plasma
-		G.gases[/datum/gas/plasma][MOLES] -= plas_amt
+		var/plas_amt = min(30,G.get_moles(/datum/gas/plasma)) //Absorb some plasma
+		G.adjust_moles(/datum/gas/plasma, -plas_amt)
 		absorbed_plasma += plas_amt
-		if(G.temperature > T20C)
-			G.temperature = max(G.temperature/2,T20C)
-		G.garbage_collect()
+		if(G.return_temperature() > T20C)
+			G.set_temperature(max(G.return_temperature()/2,T20C))
 		T.air_update_turf()
 
 /obj/effect/particle_effect/foam/firefighting/kill_foam()
@@ -289,11 +288,8 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-	to_chat(user, "<span class='warning'>You hit [src] but bounce off it!</span>")
+	to_chat(user, span_warning("You hit [src] but bounce off it!"))
 	playsound(src.loc, 'sound/weapons/tap.ogg', 100, 1)
-
-/obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target)
-	return !density
 
 /obj/structure/foamedmetal/iron
 	max_integrity = 50
@@ -315,30 +311,28 @@
 		O.ClearWet()
 		if(O.air)
 			var/datum/gas_mixture/G = O.air
-			G.temperature = 293.15
+			G.set_temperature(293.15)
 			for(var/obj/effect/hotspot/H in O)
 				qdel(H)
-			var/list/G_gases = G.gases
-			for(var/I in G_gases)
+			for(var/I in G.get_gases())
 				if(I == /datum/gas/oxygen || I == /datum/gas/nitrogen)
 					continue
-				G_gases[I][MOLES] = 0
-			G.garbage_collect()
+				G.set_moles(I, 0)
 			O.air_update_turf()
 		for(var/obj/machinery/atmospherics/components/unary/U in O)
 			if(!U.welded)
 				U.welded = TRUE
 				U.update_icon()
-				U.visible_message("<span class='danger'>[U] sealed shut!</span>")
+				U.visible_message(span_danger("[U] sealed shut!"))
 		for(var/mob/living/L in O)
 			L.ExtinguishMob()
 		for(var/obj/item/Item in O)
 			Item.extinguish()
 
-/obj/structure/foamedmetal/resin/CanPass(atom/movable/mover, turf/target)
+/obj/structure/foamedmetal/resin/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
-	. = ..()
 
 #undef ALUMINUM_FOAM
 #undef IRON_FOAM

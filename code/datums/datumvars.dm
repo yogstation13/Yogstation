@@ -37,13 +37,13 @@
 
 
 /client/proc/debug_variables(datum/D in world)
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "View Variables"
 	//set src in world
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
 
 	if(!usr.client || !usr.client.holder) //The usr vs src abuse in this proc is intentional and must not be changed
-		to_chat(usr, "<span class='danger'>You need to be an administrator to access this.</span>")
+		to_chat(usr, span_danger("You need to be an administrator to access this."))
 		return
 
 	if(!D)
@@ -159,40 +159,40 @@
 				value = L[key]
 			variable_html += debug_variable(i, value, 0, D)
 	else if(isappearance(D))
-		variable_html += debug_variable("animate_movement", D:animate_movement, 0, D)
-		variable_html += debug_variable("screen_loc", D:screen_loc, 0, D)
-		variable_html += debug_variable("pixel_step_size", D:pixel_step_size, 0, D)
-		variable_html += debug_variable("glide_size", D:glide_size, 0, D)
 		variable_html += debug_variable("type", D:type, 0, D)
-		variable_html += debug_variable("parent_type", D:parent_type, 0, D)
-		variable_html += debug_variable("tag", D:tag, 0, D)
 		variable_html += debug_variable("name", D:name, 0, D)
 		variable_html += debug_variable("desc", D:desc, 0, D)
 		variable_html += debug_variable("suffix", D:suffix, 0, D)
 		variable_html += debug_variable("text", D:text, 0, D)
 		variable_html += debug_variable("icon", D:icon, 0, D)
 		variable_html += debug_variable("icon_state", D:icon_state, 0, D)
-		variable_html += debug_variable("overlays", D:overlays, 0, D)
-		variable_html += debug_variable("underlays", D:underlays, 0, D)
-		variable_html += debug_variable("dir", D:dir, 0, D)
 		variable_html += debug_variable("visibility", D:visibility, 0, D)
 		variable_html += debug_variable("luminosity", D:luminosity, 0, D)
 		variable_html += debug_variable("opacity", D:opacity, 0, D)
 		variable_html += debug_variable("density", D:density, 0, D)
-		variable_html += debug_variable("layer", D:layer, 0, D)
+		variable_html += debug_variable("verbs", D:verbs, 0, D)
+		variable_html += debug_variable("dir", D:dir, 0, D)
 		variable_html += debug_variable("gender", D:gender, 0, D)
+		variable_html += debug_variable("tag", D:tag, 0, D)
+		variable_html += debug_variable("overlays", D:overlays, 0, D)
+		variable_html += debug_variable("underlays", D:underlays, 0, D)
+		variable_html += debug_variable("layer", D:layer, 0, D)
+		variable_html += debug_variable("parent_type", D:parent_type, 0, D)
 		variable_html += debug_variable("mouse_over_pointer", D:mouse_over_pointer, 0, D)
 		variable_html += debug_variable("mouse_drag_pointer", D:mouse_drag_pointer, 0, D)
 		variable_html += debug_variable("mouse_drop_pointer", D:mouse_drop_pointer, 0, D)
 		variable_html += debug_variable("mouse_drop_zone", D:mouse_drop_zone, 0, D)
-		variable_html += debug_variable("verbs", D:verbs, 0, D)
-		variable_html += debug_variable("invisibility", D:invisibility, 0, D)
+		variable_html += debug_variable("animate_movement", D:animate_movement, 0, D)
+		variable_html += debug_variable("screen_loc", D:screen_loc, 0, D)
 		variable_html += debug_variable("infra_luminosity", D:infra_luminosity, 0, D)
+		variable_html += debug_variable("invisibility", D:invisibility, 0, D)
+		variable_html += debug_variable("mouse_opacity", D:mouse_opacity, 0, D)
 		variable_html += debug_variable("pixel_x", D:pixel_x, 0, D)
 		variable_html += debug_variable("pixel_y", D:pixel_y, 0, D)
-		variable_html += debug_variable("mouse_opacity", D:mouse_opacity, 0, D)
+		variable_html += debug_variable("pixel_step_size", D:pixel_step_size, 0, D)
 		variable_html += debug_variable("pixel_z", D:pixel_z, 0, D)
 		variable_html += debug_variable("override", D:override, 0, D)
+		variable_html += debug_variable("glide_size", D:glide_size, 0, D)
 		variable_html += debug_variable("maptext", D:maptext, 0, D)
 		variable_html += debug_variable("maptext_width", D:maptext_width, 0, D)
 		variable_html += debug_variable("maptext_height", D:maptext_height, 0, D)
@@ -206,12 +206,8 @@
 		variable_html += debug_variable("plane", D:plane, 0, D)
 		variable_html += debug_variable("appearance_flags", D:appearance_flags, 0, D)
 		variable_html += debug_variable("pixel_w", D:pixel_w, 0, D)
-		variable_html += debug_variable("filters", D:filters, 0, D)
-		variable_html += debug_variable("type", D:type, 0, D)
-		variable_html += debug_variable("text", D:text, 0, D)
-		variable_html += debug_variable("visibility", D:visibility, 0, D)
-		variable_html += debug_variable("luminosity", D:luminosity, 0, D)
-		variable_html += debug_variable("opacity", D:opacity, 0, D)
+		variable_html += debug_variable("render_source", D:render_source, 0, D)
+		variable_html += debug_variable("render_target", D:render_target, 0, D)
 	else
 
 		names = sortList(names)
@@ -222,17 +218,9 @@
 	var/html = {"
 <html>
 	<head>
+		<meta charset='UTF-8'>
 		<title>[title]</title>
-		<style>
-			body {
-				font-family: Verdana, sans-serif;
-				font-size: 9pt;
-			}
-			.value {
-				font-family: "Courier New", monospace;
-				font-size: 8pt;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="view_variables.css">
 	</head>
 	<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
 		<script type="text/javascript">
@@ -459,6 +447,7 @@
 
 
 #define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
+/// Get displayed variable in VV variable list
 /proc/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
 	var/header
 	if(DA && !isappearance(DA))
@@ -476,10 +465,10 @@
 
 	var/item
 	if (isnull(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>null</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("null")]"
 
 	else if (istext(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>\"[VV_HTML_ENCODE(value)]\"</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("\"[VV_HTML_ENCODE(value)]\"")]"
 
 	else if (isicon(value))
 		#ifdef VARSICON
@@ -487,21 +476,29 @@
 		var/rnd = rand(1,10000)
 		var/rname = "tmp[REF(I)][rnd].png"
 		usr << browse_rsc(I, rname)
-		item = "[VV_HTML_ENCODE(name)] = (<span class='value'>[value]</span>) <img class=icon src=\"[rname]\">"
+		item = "[VV_HTML_ENCODE(name)] = ([span_value("[value]")]) <img class=icon src=\"[rname]\">"
 		#else
-		item = "[VV_HTML_ENCODE(name)] = /icon (<span class='value'>[value]</span>)"
+		item = "[VV_HTML_ENCODE(name)] = /icon ([span_value("[value]")])"
 		#endif
 
 	else if (isfile(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("'[value]'")]"
 
-	else if(istype(value, /matrix))
+	else if(istype(value,/matrix)) // Needs to be before datum
 		var/matrix/M = value
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>matrix([M.a], [M.b], [M.c], [M.d], [M.e], [M.f])</span>"
+		item = {"[VV_HTML_ENCODE(name)] = <span class='value'>
+			<table class='matrixbrak'><tbody><tr><td class='lbrak'>&nbsp;</td><td>
+			<table class='matrix'>
+			<tbody>
+				<tr><td>[M.a]</td><td>[M.d]</td><td>0</td></tr>
+				<tr><td>[M.b]</td><td>[M.e]</td><td>0</td></tr>
+				<tr><td>[M.c]</td><td>[M.f]</td><td>1</td></tr>
+			</tbody>
+			</table></td><td class='rbrak'>&nbsp;</td></tr></tbody></table></span>"} //TODO link to modify_transform wrapper for all matrices
 
 	else if(isappearance(value))
 		var/image/I = value
-		item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = appearance(<span class='value'>[I.icon]</span>, <span class='value'>\"[I.icon_state]\"</span>)"
+		item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = appearance([span_value("[I.icon]")], [span_value("\"[I.icon_state]\"")])"
 
 	else if (istype(value, /datum))
 		var/datum/D = value
@@ -537,7 +534,7 @@
 				flags += i
 			item = "[VV_HTML_ENCODE(name)] = [VV_HTML_ENCODE(jointext(flags, ", "))]"
 	else
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>[VV_HTML_ENCODE(value)]</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("[VV_HTML_ENCODE(value)]")]"
 
 	return "[header][item]</li>"
 
@@ -646,7 +643,7 @@
 		C.debug_variables(thing)
 	// yogs start - offer control can now be used by mods
 	else if(href_list["offer_control"])
-		if(!check_rights(NONE))
+		if(!check_rights(R_ADMIN))
 			return
 
 		var/mob/M = locate(href_list["offer_control"]) in GLOB.mob_list
@@ -656,33 +653,32 @@
 		offer_control(M)
 	// yogs end
 
+	//~CARN: for renaming mobs (updates their name, real_name, mind.name, their ID/PDA and datacore records).
+
+	else if(href_list["rename"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
+		if(!istype(M))
+			to_chat(usr, "This can only be used on instances of type /mob")
+			return
+
+		var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
+		if( !new_name || !M )
+			return
+
+		message_admins("Admin [key_name_admin(usr)] renamed [key_name_admin(M)] to [new_name].")
+		M.fully_replace_character_name(M.real_name,new_name)
+		vv_update_display(M, "name", new_name)
+		vv_update_display(M, "real_name", M.real_name || "No real name")
 
 //Needs +VAREDIT past this point
 
+
 	else if(check_rights(R_VAREDIT))
 
-
-	//~CARN: for renaming mobs (updates their name, real_name, mind.name, their ID/PDA and datacore records).
-
-		if(href_list["rename"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-
-			var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
-			if( !new_name || !M )
-				return
-
-			message_admins("Admin [key_name_admin(usr)] renamed [key_name_admin(M)] to [new_name].")
-			M.fully_replace_character_name(M.real_name,new_name)
-			vv_update_display(M, "name", new_name)
-			vv_update_display(M, "real_name", M.real_name || "No real name")
-
-		else if(href_list["varnameedit"] && href_list["datumedit"])
+		if(href_list["varnameedit"] && href_list["datumedit"])
 			if(!check_rights(NONE))
 				return
 
@@ -910,6 +906,33 @@
 
 		// yogs - offer control moved up
 
+		else if(href_list["set_afk"])
+			if(!check_rights(R_ADMIN))
+				return
+			
+			var/mob/M = locate(href_list["set_afk"]) in GLOB.mob_list
+			if(!istype(M))
+				to_chat(usr, "This can only be used on instances of type /mob")
+				return
+			
+			if(!M.mind)
+				to_chat(usr, "This cannot be used on mobs without a mind")
+				return
+			
+			var/timer = input("Input AFK length in minutes, 0 to cancel the current timer", text("Input"))  as num|null
+			if(timer == null) // Explicit null check for cancel, rather than generic truthyness, so 0 is handled differently
+				return
+
+			deltimer(M.mind.afk_verb_timer)
+			M.mind.afk_verb_used = FALSE
+
+			if(!timer)
+				return
+			
+			M.mind.afk_verb_used = TRUE
+			M.mind.afk_verb_timer = addtimer(VARSET_CALLBACK(M.mind, afk_verb_used, FALSE), timer MINUTES, TIMER_STOPPABLE);
+
+
 		else if (href_list["modarmor"])
 			if(!check_rights(NONE))
 				return
@@ -941,7 +964,7 @@
 			                  fire = text2num(result["values"]["fire"]),\
 			                  acid = text2num(result["values"]["acid"]))
 				log_admin("[key_name(usr)] modified the armor on [O] ([O.type]) to melee: [O.armor.melee], bullet: [O.armor.bullet], laser: [O.armor.laser], energy: [O.armor.energy], bomb: [O.armor.bomb], bio: [O.armor.bio], rad: [O.armor.rad], fire: [O.armor.fire], acid: [O.armor.acid]")
-				message_admins("<span class='notice'>[key_name_admin(usr)] modified the armor on [O] ([O.type]) to melee: [O.armor.melee], bullet: [O.armor.bullet], laser: [O.armor.laser], energy: [O.armor.energy], bomb: [O.armor.bomb], bio: [O.armor.bio], rad: [O.armor.rad], fire: [O.armor.fire], acid: [O.armor.acid]</span>")
+				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [O] ([O.type]) to melee: [O.armor.melee], bullet: [O.armor.bullet], laser: [O.armor.laser], energy: [O.armor.energy], bomb: [O.armor.bomb], bio: [O.armor.bio], rad: [O.armor.rad], fire: [O.armor.fire], acid: [O.armor.acid]"))
 			else
 				return
 
@@ -977,7 +1000,7 @@
 						to_chat(usr, "No objects of this type exist")
 						return
 					log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) </span>")
+					message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
 				if("Type and subtypes")
 					var/i = 0
 					for(var/obj/Obj in world)
@@ -989,7 +1012,7 @@
 						to_chat(usr, "No objects of this type exist")
 						return
 					log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
-					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
+					message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
 
 		else if(href_list["addreagent"])
 			if(!check_rights(NONE))
@@ -1009,14 +1032,16 @@
 					if("Enter ID")
 						var/valid_id
 						while(!valid_id)
-							chosen_id = stripped_input(usr, "Enter the ID of the reagent you want to add.")
+							chosen_id = stripped_input(usr, "Enter the name of the reagent you want to add. (Case Sensitive!)")
 							if(!chosen_id) //Get me out of here!
 								break
 							for(var/ID in reagent_options)
-								if(ID == chosen_id)
-									valid_id = 1
+								var/datum/reagent/selected = reagent_options[ID]
+								if(selected?.name == chosen_id) //apparently I have to do this because the other method wasn't WORKING
+									valid_id = TRUE
+									chosen_id = ID
 							if(!valid_id)
-								to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
+								to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 					if("Choose ID")
 						chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in reagent_options
 				if(chosen_id)
@@ -1024,7 +1049,7 @@
 					if(amount)
 						A.reagents.add_reagent(chosen_id, amount)
 						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]")
-						message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]</span>")
+						message_admins(span_notice("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]"))
 
 		else if(href_list["explode"])
 			if(!check_rights(R_FUN))
@@ -1036,6 +1061,12 @@
 				return
 
 			src.cmd_admin_explosion(A)
+
+		else if(href_list["radiate"] && check_rights(R_FUN))
+			var/atom/A = locate(href_list["radiate"])
+			var/strength = input(usr, "Choose the radiation strength.", "Choose the strength.") as num|null
+			if(!isnull(strength))
+				A.AddComponent(/datum/component/radioactive, strength, src)
 
 		else if(href_list["emp"])
 			if(!check_rights(R_FUN))
@@ -1129,7 +1160,7 @@
 				var/datum/martial_art/MA = new chosenart
 				MA.teach(C)
 				log_admin("[key_name(usr)] has taught [MA] to [key_name(C)].")
-				message_admins("<span class='notice'>[key_name_admin(usr)] has taught [MA] to [key_name_admin(C)].</span>")
+				message_admins(span_notice("[key_name_admin(usr)] has taught [MA] to [key_name_admin(C)]."))
 
 		else if(href_list["givetrauma"])
 			if(!check_rights(NONE))
@@ -1154,7 +1185,7 @@
 			var/datum/brain_trauma/BT = C.gain_trauma(result)
 			if(BT)
 				log_admin("[key_name(usr)] has traumatized [key_name(C)] with [BT.name]")
-				message_admins("<span class='notice'>[key_name_admin(usr)] has traumatized [key_name_admin(C)] with [BT.name].</span>")
+				message_admins(span_notice("[key_name_admin(usr)] has traumatized [key_name_admin(C)] with [BT.name]."))
 
 		else if(href_list["curetraumas"])
 			if(!check_rights(NONE))
@@ -1167,7 +1198,7 @@
 
 			C.cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
 			log_admin("[key_name(usr)] has cured all traumas from [key_name(C)].")
-			message_admins("<span class='notice'>[key_name_admin(usr)] has cured all traumas from [key_name_admin(C)].</span>")
+			message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(C)]."))
 
 		else if(href_list["hallucinate"])
 			if(!check_rights(NONE))
@@ -1397,7 +1428,7 @@
 				to_chat(usr, "Mob doesn't exist anymore")
 				return
 			H.cluwneify()
-			message_admins("<span class='notice'>[key_name(usr)] has made [key_name(H)] into a Cluwne.</span>")
+			message_admins(span_notice("[key_name(usr)] has made [key_name(H)] into a Cluwne."))
 			return // yogs end
 
 		else if(href_list["makepacman"])
@@ -1464,7 +1495,7 @@
 				var/log_msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]"
 				message_admins("[key_name(usr)] dealt [amount] amount of [Text] damage to [ADMIN_LOOKUPFLW(L)]")
 				log_admin(log_msg)
-				admin_ticket_log(L, "<font color='blue'>[log_msg]</font>")
+				admin_ticket_log(L, log_msg)
 				vv_update_display(L, Text, "[newamt]")
 		else if(href_list["copyoutfit"])
 			if(!check_rights(R_SPAWN))
@@ -1498,3 +1529,27 @@
 						H.remove_quirk(T)
 					else
 						H.add_quirk(T,TRUE)
+		else if(href_list["delete_paint"])
+			if(!check_rights(R_ADMIN))
+				return
+
+			var/obj/structure/sign/painting/P = locate(href_list["delete_paint"])
+
+			var/mob/user = usr
+			if(!P.persistence_id || !P.C)
+				to_chat(user,span_warning("This is not a persistent painting."))
+				return
+			var/md5 = md5(P.C.get_data_string())
+			var/author = P.C.author_ckey
+			var/list/current = SSpersistence.paintings[P.persistence_id]
+			if(current)
+				for(var/list/entry in current)
+					if(entry["md5"] == md5)
+						current -= entry
+				var/png = "data/paintings/[P.persistence_id]/[md5].png"
+				fdel(png)
+			for(var/obj/structure/sign/painting/PA in SSpersistence.painting_frames)
+				if(PA.C && md5(PA.C.get_data_string()) == md5)
+					QDEL_NULL(PA.C)
+			log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
+			message_admins(span_notice("[key_name_admin(user)] has deleted persistent painting made by [author]."))

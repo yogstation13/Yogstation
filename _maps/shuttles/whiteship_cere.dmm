@@ -5,29 +5,6 @@
 "ab" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
-"ac" = (
-/obj/machinery/door/airlock/titanium{
-	name = "mech bay external airlock"
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/docking_port/mobile{
-	dheight = 0;
-	dir = 2;
-	dwidth = 8;
-	height = 16;
-	id = "whiteship";
-	launch_status = 0;
-	name = "NT Recovery White-Ship";
-	port_direction = 8;
-	preferred_direction = 1;
-	width = 16
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/abandoned)
 "ad" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 1
@@ -436,6 +413,29 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/abandoned)
+"cF" = (
+/obj/machinery/door/airlock/titanium{
+	name = "mech bay external airlock"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/docking_port/mobile{
+	dheight = 0;
+	dir = 2;
+	dwidth = 8;
+	height = 16;
+	id = "whiteship";
+	launch_status = 0;
+	name = "NT Recovery White-Ship";
+	port_direction = 8;
+	preferred_direction = 2;
+	width = 16
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/abandoned)
 "HL" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only,
@@ -551,7 +551,7 @@ aZ
 HL
 "}
 (7,1,1) = {"
-ac
+cF
 ah
 am
 am

@@ -17,7 +17,7 @@
 	leap_icon.icon_state = "leap_[leap_on_click ? "on":"off"]"
 	update_icons()
 	if(message)
-		to_chat(src, "<span class='noticealien'>You will now [leap_on_click ? "leap at":"slash at"] enemies!</span>")
+		to_chat(src, span_noticealien("You will now [leap_on_click ? "leap at":"slash at"] enemies!"))
 	else
 		return
 
@@ -35,23 +35,23 @@
 		return
 
 	if(pounce_cooldown > world.time)
-		to_chat(src, "<span class='alertalien'>You are too fatigued to pounce right now!</span>")
+		to_chat(src, span_alertalien("You are too fatigued to pounce right now!"))
 		return
 
 	if(!has_gravity() || !A.has_gravity())
-		to_chat(src, "<span class='alertalien'>It is unsafe to leap without gravity!</span>")
+		to_chat(src, span_alertalien("It is unsafe to leap without gravity!"))
 		//It's also extremely buggy visually, so it's balance+bugfix
 		return
 
 	else //Maybe uses plasma in the future, although that wouldn't make any sense...
 		leaping = 1
-		weather_immunities += "lava"
+		weather_immunities += WEATHER_LAVA
 		update_icons()
 		throw_at(A, MAX_ALIEN_LEAP_DIST, 1, src, FALSE, TRUE, callback = CALLBACK(src, .proc/leap_end))
 
 /mob/living/carbon/alien/humanoid/hunter/proc/leap_end()
 	leaping = 0
-	weather_immunities -= "lava"
+	weather_immunities -= WEATHER_LAVA
 	update_icons()
 
 /mob/living/carbon/alien/humanoid/hunter/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

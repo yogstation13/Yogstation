@@ -24,7 +24,7 @@
 	smooth = SMOOTH_TRUE
 	can_be_unanchored = FALSE
 	CanAtmosPass = ATMOS_PASS_DENSITY
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
 	var/mineral = /obj/item/stack/sheet/metal
 	var/mineral_amount = 2
@@ -41,20 +41,25 @@
 	new /obj/structure/falsewall/brass(loc)
 	qdel(src)
 
+/obj/structure/falsewall/honk_act()
+	new /obj/structure/falsewall/bananium(loc)
+	qdel(src)
+
 /obj/structure/falsewall/attack_hand(mob/user)
 	if(opening)
 		return
 	. = ..()
 	if(.)
 		return
+	toggle(user)
 
-	opening = TRUE
-	update_icon()
+/obj/structure/falsewall/proc/toggle(mob/user)
 	if(!density)
 		var/srcturf = get_turf(src)
 		for(var/mob/living/obstacle in srcturf) //Stop people from using this as a shield
-			opening = FALSE
 			return
+	opening = TRUE
+	update_icon()
 	addtimer(CALLBACK(src, /obj/structure/falsewall/proc/toggle_open), 5)
 
 /obj/structure/falsewall/proc/toggle_open()
@@ -90,22 +95,27 @@
 
 /obj/structure/falsewall/attackby(obj/item/W, mob/user, params)
 	if(opening)
-		to_chat(user, "<span class='warning'>You must wait until the door has stopped moving!</span>")
+		to_chat(user, span_warning("You must wait until the door has stopped moving!"))
+		return
+
+	if(W.tool_behaviour == TOOL_CROWBAR)
+		to_chat(user, span_warning("You pry open the false wall!"))
+		toggle(user)
 		return
 
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(density)
 			var/turf/T = get_turf(src)
 			if(T.density)
-				to_chat(user, "<span class='warning'>[src] is blocked!</span>")
+				to_chat(user, span_warning("[src] is blocked!"))
 				return
 			if(!isfloorturf(T))
-				to_chat(user, "<span class='warning'>[src] bolts must be tightened on the floor!</span>")
+				to_chat(user, span_warning("[src] bolts must be tightened on the floor!"))
 				return
-			user.visible_message("<span class='notice'>[user] tightens some bolts on the wall.</span>", "<span class='notice'>You tighten the bolts on the wall.</span>")
+			user.visible_message(span_notice("[user] tightens some bolts on the wall."), span_notice("You tighten the bolts on the wall."))
 			ChangeToWall()
 		else
-			to_chat(user, "<span class='warning'>You can't reach, close it first!</span>")
+			to_chat(user, span_warning("You can't reach, close it first!"))
 
 	else if(W.tool_behaviour == TOOL_WELDER)
 		if(W.use_tool(src, user, 0, volume=50))
@@ -114,7 +124,7 @@
 		return ..()
 
 /obj/structure/falsewall/proc/dismantle(mob/user, disassembled=TRUE, obj/item/tool = null)
-	user.visible_message("[user] dismantles the false wall.", "<span class='notice'>You dismantle the false wall.</span>")
+	user.visible_message("[user] dismantles the false wall.", span_notice("You dismantle the false wall."))
 	if(tool)
 		tool.play_tool_sound(src, 100)
 	else
@@ -134,8 +144,7 @@
 	return null
 
 /obj/structure/falsewall/examine_status(mob/user) //So you can't detect falsewalls by examine.
-	to_chat(user, "<span class='notice'>The outer plating is <b>welded</b> firmly in place.</span>")
-	return null
+	return span_notice("The outer plating is <b>welded</b> firmly in place.")
 
 /*
  * False R-Walls
@@ -150,8 +159,7 @@
 	mineral = /obj/item/stack/sheet/plasteel
 
 /obj/structure/falsewall/reinforced/examine_status(mob/user)
-	to_chat(user, "<span class='notice'>The outer <b>grille</b> is fully intact.</span>")
-	return null
+	return span_notice("The outer <b>grille</b> is fully intact.")
 
 /obj/structure/falsewall/reinforced/attackby(obj/item/tool, mob/user)
 	..()
@@ -261,6 +269,8 @@
 	walltype = /turf/closed/wall/mineral/bananium
 	canSmoothWith = list(/obj/structure/falsewall/bananium, /turf/closed/wall/mineral/bananium)
 
+/obj/structure/falsewall/bananium/honk_act()
+	return FALSE
 
 /obj/structure/falsewall/sandstone
 	name = "sandstone wall"
@@ -286,7 +296,7 @@
 	icon = 'icons/turf/walls/iron_wall.dmi'
 	icon_state = "iron"
 	mineral = /obj/item/stack/rods
-	mineral_amount = 5
+	mineral_amount = 2
 	walltype = /turf/closed/wall/mineral/iron
 	canSmoothWith = list(/obj/structure/falsewall/iron, /turf/closed/wall/mineral/iron)
 

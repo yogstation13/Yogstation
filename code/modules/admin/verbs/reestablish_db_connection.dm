@@ -1,8 +1,8 @@
 /client/proc/reestablish_db_connection()
-	set category = "Special Verbs"
+	set category = "Server"
 	set name = "Reestablish DB Connection"
 	if (!CONFIG_GET(flag/sql_enabled))
-		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>", confidential=TRUE)
+		to_chat(usr, span_adminnotice("The Database is not enabled!"), confidential=TRUE)
 		return
 
 	if (SSdbcore.IsConnected())

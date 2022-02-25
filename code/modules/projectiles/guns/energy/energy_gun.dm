@@ -16,7 +16,7 @@
 	icon_state = "mini"
 	item_state = "gun"
 	w_class = WEIGHT_CLASS_SMALL
-	cell_type = /obj/item/stock_parts/cell{charge = 600; maxcharge = 600}
+	cell_type = /obj/item/stock_parts/cell/mini_egun
 	ammo_x_offset = 2
 	charge_sections = 3
 	can_flashlight = FALSE // Can't attach or detach the flashlight, and override it's icon update
@@ -53,7 +53,7 @@
 /obj/item/gun/energy/e_gun/hos
 	name = "\improper X-01 MultiPhase Energy Gun"
 	desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time."
-	cell_type = /obj/item/stock_parts/cell{charge = 1200; maxcharge = 1200}
+	cell_type = /obj/item/stock_parts/cell/hos_gun
 	icon_state = "hoslaser"
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/hos, /obj/item/ammo_casing/energy/laser/hos, /obj/item/ammo_casing/energy/ion/hos)
@@ -70,13 +70,14 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/net, /obj/item/ammo_casing/energy/trap)
 	can_flashlight = FALSE
 	ammo_x_offset = 1
+	weapon_weight = WEAPON_MEDIUM
 	var/obj/item/beacon/teletarget = null
 
 /obj/item/gun/energy/e_gun/dragnet/AltClick(mob/living/user) //stolen from hand teleporter code
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	var/area/current_area = current_location.loc
 	if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
-		to_chat(user, "<span class='notice'>\The [src] isn't capable of locking a beacon from here.</span>")
+		to_chat(user, span_notice("\The [src] isn't capable of locking a beacon from here."))
 		return
 	var/list/L = list(  )
 	for(var/obj/machinery/computer/teleporter/com in GLOB.machines)
@@ -94,20 +95,20 @@
 		return
 	if(!L[t1])
 		teletarget = null
-		user.show_message("<span class='notice'>Random teleport enabled.</span>")
+		user.show_message(span_notice("Random teleport enabled."))
 	else
 		var/obj/item/beacon/T = L[t1]
 		var/area/A = get_area(T)
 		if(A.noteleport)
-			to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")
+			to_chat(user, span_notice("\The [src] is malfunctioning."))
 			return
 		current_location = get_turf(user)	//Recheck.
 		current_area = current_location.loc
 		if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
-			to_chat(user, "<span class='notice'>\The [src] isn't capable of locking a beacon from here.</span>")
+			to_chat(user, span_notice("\The [src] isn't capable of locking a beacon from here."))
 			return
 		teletarget = T
-		user.show_message("<span class='notice'>Locked In.</span>", 2)
+		user.show_message(span_notice("Locked In."), MSG_AUDIBLE)
 
 /obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/item/projectile/energy/net/N)
 	N.teletarget = teletarget
@@ -150,7 +151,7 @@
 		fail_tick--
 	..()
 
-/obj/item/gun/energy/e_gun/nuclear/shoot_live_shot()
+/obj/item/gun/energy/e_gun/nuclear/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	failcheck()
 	update_icon()
 	..()
@@ -162,12 +163,12 @@
 			if(0 to 200)
 				fail_tick += (2*(fail_chance))
 				M.rad_act(40)
-				to_chat(M, "<span class='userdanger'>Your [name] feels warmer.</span>")
+				to_chat(M, span_userdanger("Your [name] feels warmer."))
 			if(201 to INFINITY)
 				SSobj.processing.Remove(src)
 				M.rad_act(80)
 				reactor_overloaded = TRUE
-				to_chat(M, "<span class='userdanger'>Your [name]'s reactor overloads!</span>")
+				to_chat(M, span_userdanger("Your [name]'s reactor overloads!"))
 
 /obj/item/gun/energy/e_gun/nuclear/emp_act(severity)
 	. = ..()

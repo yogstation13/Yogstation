@@ -11,6 +11,7 @@
 	var/role = "Security Officer"
 	var/list/name_source
 	show_in_antagpanel = FALSE
+	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
 	can_hijack = HIJACK_PREVENT
 
@@ -33,6 +34,10 @@
 /datum/antagonist/ert/deathsquad/New()
 	. = ..()
 	name_source = GLOB.commando_names
+	
+/datum/antagonist/ert/clown/New()
+	. = ..()
+	name_source = GLOB.clown_names
 
 /datum/antagonist/ert/deathsquad/apply_innate_effects(mob/living/mob_override)
 	ADD_TRAIT(owner, TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
@@ -74,8 +79,16 @@
 /datum/antagonist/ert/medic/inquisitor
 	outfit = /datum/outfit/ert/medic/inquisitor
 
+/datum/antagonist/ert/medic/inquisitor/on_gain()
+	. = ..()
+	owner.holy_role = HOLY_ROLE_PRIEST
+
 /datum/antagonist/ert/security/inquisitor
 	outfit = /datum/outfit/ert/security/inquisitor
+
+/datum/antagonist/ert/security/inquisitor/on_gain()
+	. = ..()
+	owner.holy_role = HOLY_ROLE_PRIEST
 
 /datum/antagonist/ert/chaplain
 	role = "Chaplain"
@@ -86,14 +99,14 @@
 
 /datum/antagonist/ert/chaplain/on_gain()
 	. = ..()
-	owner.isholy = TRUE
+	owner.holy_role = HOLY_ROLE_PRIEST
 
 /datum/antagonist/ert/commander/inquisitor
 	outfit = /datum/outfit/ert/commander/inquisitor
 
 /datum/antagonist/ert/commander/inquisitor/on_gain()
 	. = ..()
-	owner.isholy = TRUE
+	owner.holy_role = HOLY_ROLE_PRIEST
 
 /datum/antagonist/ert/janitor
 	role = "Janitor"
@@ -108,15 +121,45 @@
 	outfit = /datum/outfit/death_commando
 	role = "Officer"
 
-/datum/antagonist/ert/clown/robust
-	name = "Clown Commander"
-	outfit = /datum/outfit/ert/clown/leader
-	role = "Clown Commander"
+/datum/antagonist/ert/amber
+	name = "Amber Soldier"
+	outfit = /datum/outfit/amber
+	role = "Soldier"
+
+/datum/antagonist/ert/amber/medic
+	name = "Amber Medic"
+	outfit = /datum/outfit/amber/medic
+	role = "Medic"
+
+/datum/antagonist/ert/amber/commander
+	name = "Amber Commander"
+	outfit = /datum/outfit/amber/commander
+	role = "Commander"
+
+/datum/antagonist/ert/occupying
+	name = "Occupying Officer"
+	outfit = /datum/outfit/occupying
+	role = "Officer"
+
+/datum/antagonist/ert/occupying/heavy
+	name = "Occupying Riot Officer"
+	outfit = /datum/outfit/occupying/heavy
+	role = "Riot Officer"
+	
+/datum/antagonist/ert/occupying/commander
+	name = "Occupying Commander"
+	outfit = /datum/outfit/occupying/commander
+	role = "Commander"
 
 /datum/antagonist/ert/clown
-	name = "Clown"
-	outfit = /datum/outfit/ert/clown
-	role = "Clown"
+	name = "Comedy Response Officer"
+	outfit = /datum/outfit/centcom_clown
+	role = "Prankster"
+
+/datum/antagonist/ert/clown/honk
+	name = "HONK Squad Trooper"
+	outfit = /datum/outfit/centcom_clown/honk_squad
+	role = "HONKER"
 
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
@@ -144,10 +187,14 @@
 	else
 		missiondesc += " Follow orders given to you by your squad leader."
 
-		missiondesc += "Avoid civilian casualites when possible."
+	missiondesc += " Avoid civilian casualties when possible."
 
-	missiondesc += "<BR><B>Your Mission</B> : [ert_team.mission.explanation_text]"
+	missiondesc += "<BR><B>Your Mission</B>: [ert_team.mission.explanation_text]"
 	to_chat(owner,missiondesc)
+
+/datum/antagonist/ert/amber/greet()
+	. = ..()
+	to_chat(owner,"You also have a combat knife inside your boots.")
 
 /datum/antagonist/ert/deathsquad/greet()
 	if(!ert_team)
@@ -163,3 +210,18 @@
 
 	missiondesc += "<BR><B>Your Mission</B> : [ert_team.mission.explanation_text]"
 	to_chat(owner,missiondesc)
+
+/datum/antagonist/ert/clown/greet()
+	if(!ert_team)
+		return
+
+	to_chat(owner, "<B><font size=3 color=red>You are the [name].</font></B>")
+
+	var/missiondesc = "Your squad is being sent on a mission to [station_name()] by Nanotrasen's Comedy Division."
+	if(leader) //If Squad Leader
+		missiondesc += " You are the worst clown here. As such, you were able to stop slipping the admiral for long enough to be given command. Good luck, honk!"
+	else
+		missiondesc += " Follow orders given to you by your squad leader in order to ensure maximum laughs."
+
+		missiondesc += " Be the funniest Prankster possible!"
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/hornin.ogg', 100, FALSE, pressure_affected = FALSE)

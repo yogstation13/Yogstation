@@ -39,22 +39,22 @@
 		if (W.tool_behaviour == TOOL_SCREWDRIVER)
 			if (W.use_tool(src, user, 20))
 				open =! open
-				to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the service panel.</span>")
+				to_chat(user, span_notice("You [open ? "open" : "close"] the service panel."))
 			return
 		if (W.tool_behaviour == TOOL_WIRECUTTER)
-			to_chat(user, "<span class='danger'>[src] is protected from this sort of tampering, yet it appears the internal memory wires can still be <b>pulsed</b>.</span>")
+			to_chat(user, span_danger("[src] is protected from this sort of tampering, yet it appears the internal memory wires can still be <b>pulsed</b>."))
 		if ((W.tool_behaviour == TOOL_MULTITOOL) && (!l_hacking))
 			if(open == 1)
-				to_chat(user, "<span class='danger'>Now attempting to reset internal memory, please hold.</span>")
+				to_chat(user, span_danger("Now attempting to reset internal memory, please hold."))
 				l_hacking = 1
 				if (W.use_tool(src, user, 400))
-					to_chat(user, "<span class='danger'>Internal memory reset - lock has been disengaged.</span>")
+					to_chat(user, span_danger("Internal memory reset - lock has been disengaged."))
 					l_set = 0
 					l_hacking = 0
 				else
 					l_hacking = 0
 			else
-				to_chat(user, "<span class='notice'>You must <b>unscrew</b> the service panel before you can pulse the wiring.</span>")
+				to_chat(user, span_notice("You must <b>unscrew</b> the service panel before you can pulse the wiring."))
 			return
 		//At this point you have exhausted all the special things to do when locked
 		// ... but it's still locked.
@@ -66,7 +66,7 @@
 /obj/item/storage/secure/attack_self(mob/user)
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	user.set_machine(src)
-	var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (locked ? "LOCKED" : "UNLOCKED"))
+	var/dat = text("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><TT><B>[]</B><BR>\n\nLock Status: []",src, (locked ? "LOCKED" : "UNLOCKED"))
 	var/message = "Code"
 	if ((l_set == 0) && (!l_setshort))
 		dat += text("<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>")
@@ -75,7 +75,7 @@
 	message = text("[]", code)
 	if (!locked)
 		message = "*****"
-	dat += text("<HR>\n>[]<BR>\n<A href='?src=[REF(src)];type=1'>1</A>-<A href='?src=[REF(src)];type=2'>2</A>-<A href='?src=[REF(src)];type=3'>3</A><BR>\n<A href='?src=[REF(src)];type=4'>4</A>-<A href='?src=[REF(src)];type=5'>5</A>-<A href='?src=[REF(src)];type=6'>6</A><BR>\n<A href='?src=[REF(src)];type=7'>7</A>-<A href='?src=[REF(src)];type=8'>8</A>-<A href='?src=[REF(src)];type=9'>9</A><BR>\n<A href='?src=[REF(src)];type=R'>R</A>-<A href='?src=[REF(src)];type=0'>0</A>-<A href='?src=[REF(src)];type=E'>E</A><BR>\n</TT>", message)
+	dat += text("<HR>\n>[]<BR>\n<A href='?src=[REF(src)];type=1'>1</A>-<A href='?src=[REF(src)];type=2'>2</A>-<A href='?src=[REF(src)];type=3'>3</A><BR>\n<A href='?src=[REF(src)];type=4'>4</A>-<A href='?src=[REF(src)];type=5'>5</A>-<A href='?src=[REF(src)];type=6'>6</A><BR>\n<A href='?src=[REF(src)];type=7'>7</A>-<A href='?src=[REF(src)];type=8'>8</A>-<A href='?src=[REF(src)];type=9'>9</A><BR>\n<A href='?src=[REF(src)];type=R'>R</A>-<A href='?src=[REF(src)];type=0'>0</A>-<A href='?src=[REF(src)];type=E'>E</A><BR>\n</TT></BODY></HTML>", message)
 	user << browse(dat, "window=caselock;size=300x280")
 
 /obj/item/storage/secure/Topic(href, href_list)

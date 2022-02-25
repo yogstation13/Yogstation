@@ -8,9 +8,9 @@
 	spawn_positions = 3
 	supervisors = "the research director"
 	selection_color = "#ffeeff"
-	exp_requirements = 60
+	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
-
+	alt_titles = list("Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Xenobiologist", "Explosives Technician")
 
 	outfit = /datum/outfit/job/scientist
 
@@ -21,9 +21,9 @@
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 
-	changed_maps = list("MinskyStation", "OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
 
-/datum/job/scientist/proc/MinskyStationChanges()
+/datum/job/scientist/proc/EclipseStationChanges()
 	total_positions = 6
 	spawn_positions = 5
 
@@ -41,6 +41,7 @@
 	belt = /obj/item/pda/toxins
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/scientist
+	uniform_skirt = /obj/item/clothing/under/rank/scientist/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 

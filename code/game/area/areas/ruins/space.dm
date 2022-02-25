@@ -50,7 +50,9 @@
 	name = "Bridge"
 	icon_state = "bridge"
 
-
+/area/ruin/space/has_grav/powered/spacebar //yogs start
+	name = "Space Bar"
+	icon_state = "dk_yellow" //yogs end
 
 /area/ruin/space/has_grav/powered/dinner_for_two
 	name = "Dinner for Two"
@@ -65,6 +67,8 @@
 	name = "Aesthetic"
 	ambientsounds = list('sound/ambience/ambivapor1.ogg')
 
+/area/ruin/space/has_grav/powered/gaming
+	name ="Game Room"
 
 //Ruin of Hotel
 
@@ -243,7 +247,6 @@
 /area/ruin/space/has_grav/ancientstation/atmo
 	name = "Beta Station Atmospherics"
 	icon_state = "red"
-	has_gravity = FALSE
 
 /area/ruin/space/has_grav/ancientstation/betanorth
 	name = "Beta Station North Corridor"
@@ -280,6 +283,27 @@
 /area/ruin/space/has_grav/ancientstation/proto
 	name = "Delta Station Prototype Lab"
 	icon_state = "toxlab"
+
+/area/ruin/space/has_grav/ancientstation/deltaai
+	name = "Delta Station AI Core"
+	icon_state = "ai"
+	ambientsounds = list('sound/ambience/ambimalf.ogg', 'sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg')
+
+/area/ruin/space/has_grav/ancientstation/medbay
+	name = "Beta Station Medbay"
+	icon_state = "medbay"
+
+/area/ruin/space/has_grav/ancientstation/mining
+	name = "Beta Station Mining Equipment"
+	icon_state = "mining"
+
+/area/ruin/space/has_grav/ancientstation/betastorage
+	name = "Beta Station Storage"
+	icon_state = "storage"
+
+/area/ruin/space/has_grav/ancientstation/betacorridor
+	name = "Beta Station Main Corridor"
+	icon_state = "bluenew"
 
 /area/ruin/space/has_grav/ancientstation/rnd
 	name = "Delta Station Research and Development"

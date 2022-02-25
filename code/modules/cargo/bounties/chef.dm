@@ -120,7 +120,7 @@
 	description = "Here at Nanotrasen we consider employees to be family. And you know what families love? Pancakes. Ship a baker's dozen."
 	reward = 5000
 	required_count = 13
-	wanted_types = list(/datum/crafting_recipe/food/pancakes)
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/pancakes)
 
 /datum/bounty/item/chef/nuggies
 	name = "Chicken Nuggets"
@@ -136,3 +136,9 @@
 	required_count = 1
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan)
 
+/datum/bounty/item/chef/healthyjerky
+	name = "Homemade Jerky"
+	description = "One of our officers needs to go on a diet, but she can't get enough of her jerky. Send some healthier jerky to help out and we will reward you."
+	reward = 1500
+	required_count = 3
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/sosjerky/healthy)

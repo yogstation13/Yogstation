@@ -16,6 +16,8 @@ SUBSYSTEM_DEF(mapping)
 	var/list/ruins_templates = list()
 	var/list/space_ruins_templates = list()
 	var/list/lava_ruins_templates = list()
+	var/list/ice_ruins_templates = list()
+	var/list/ice_ruins_underground_templates = list()
 
 	var/list/shuttle_templates = list()
 	var/list/shelter_templates = list()
@@ -56,7 +58,7 @@ SUBSYSTEM_DEF(mapping)
 		var/old_config = config
 		config = global.config.defaultmap
 		if(!config || config.defaulted)
-			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to Box Station</span>")
+			to_chat(world, span_boldannounce("Unable to load next or default map config, defaulting to Box Station"))
 			config = old_config
 	loadWorld()
 	repopulate_sorted_areas()
@@ -78,25 +80,55 @@ SUBSYSTEM_DEF(mapping)
 
 	// Load the virtual reality hub
 	if(CONFIG_GET(flag/virtual_reality))
-		to_chat(world, "<span class='boldannounce'>Loading virtual reality...</span>")
+		to_chat(world, span_boldannounce("Loading virtual reality..."))
 		load_new_z_level("_maps/RandomZLevels/VR/vrhub.dmm", "Virtual Reality Hub")
-		to_chat(world, "<span class='boldannounce'>Virtual reality loaded.</span>")
+		to_chat(world, span_boldannounce("Virtual reality loaded."))
 
 	// Generate mining ruins
 	loading_ruins = TRUE
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
 	if (lava_ruins.len)
-		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), /area/lavaland/surface/outdoors/unexplored, lava_ruins_templates)
+		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), list(/area/lavaland/surface/outdoors/unexplored), lava_ruins_templates)
 		for (var/lava_z in lava_ruins)
 			spawn_rivers(lava_z)
+
+	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
+	if (ice_ruins.len)
+		// needs to be whitelisted for underground too so place_below ruins work
+		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/surface/outdoors/unexplored, /area/icemoon/underground/unexplored), ice_ruins_templates)
+		for(var/ice_z in ice_ruins)
+			spawn_rivers(ice_z, 4, /turf/open/openspace/icemoon, /area/icemoon/surface/outdoors/unexplored)
+
+	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
+	if (ice_ruins_underground.len)
+		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/underground/unexplored), ice_ruins_underground_templates)
+		for(var/ice_z in ice_ruins_underground)
+			spawn_rivers(ice_z, 4, /turf/open/lava/plasma/ice_moon, /area/icemoon/underground/unexplored)
 
 	// Generate deep space ruins
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
 	if (space_ruins.len)
-		seedRuins(space_ruins, CONFIG_GET(number/space_budget), /area/space, space_ruins_templates)
+		seedRuins(space_ruins, CONFIG_GET(number/space_budget), list(/area/space), space_ruins_templates)
 	seedStation()
 	loading_ruins = FALSE
 #endif
+
+	//Load Reebe
+	var/list/errorList = list()
+	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
+	if(errorList.len)	// reebe failed to load
+		message_admins("Reebe failed to load!")
+		log_game("Reebe failed to load!")
+	for(var/datum/parsed_map/PM in reebes)
+		PM.initTemplateBounds()
+	//Load an Arena
+	errorList = list()
+	var/list/arenas = SSmapping.LoadGroup(errorList, "Arena", "templates", "arena.dmm", silent = TRUE)
+	if(errorList.len)	// arena failed to load
+		message_admins("A shuttle arena failed to load!")
+		log_game("A shuttle arena failed to load!")
+	for(var/datum/parsed_map/PM in arenas)
+		PM.initTemplateBounds()
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
@@ -165,6 +197,8 @@ SUBSYSTEM_DEF(mapping)
 	ruins_templates = SSmapping.ruins_templates
 	space_ruins_templates = SSmapping.space_ruins_templates
 	lava_ruins_templates = SSmapping.lava_ruins_templates
+	ice_ruins_templates = SSmapping.ice_ruins_templates
+	ice_ruins_underground_templates = SSmapping.ice_ruins_underground_templates
 	shuttle_templates = SSmapping.shuttle_templates
 	shelter_templates = SSmapping.shelter_templates
 	unused_turfs = SSmapping.unused_turfs
@@ -178,7 +212,7 @@ SUBSYSTEM_DEF(mapping)
 
 	z_list = SSmapping.z_list
 
-#define INIT_ANNOUNCE(X) to_chat(world, "<span class='boldannounce'>[X]</span>"); log_world(X)
+#define INIT_ANNOUNCE(X) to_chat(world, span_boldannounce("[X]")); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
 	. = list()
 	var/start_time = REALTIMEOFDAY
@@ -238,7 +272,9 @@ SUBSYSTEM_DEF(mapping)
 	LoadGroup(FailedZs, "Station", config.map_path, config.map_file, config.traits, ZTRAITS_STATION)
 
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[config.map_name]' WHERE id = [GLOB.round_id]")
+		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery({"
+			UPDATE [format_table_name("round")] SET map_name = :map_name WHERE id = :round_id
+		"}, list("map_name" = config.map_name, "round_id" = GLOB.round_id))
 		query_round_map_name.Execute()
 		qdel(query_round_map_name)
 
@@ -251,6 +287,9 @@ SUBSYSTEM_DEF(mapping)
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND) //Yogs, yoglavaland
+	else if(config.minetype == "icemoon")
+		LoadGroup(FailedZs, "Ice moon", "map_files/mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
+		LoadGroup(FailedZs, "Ice moon Underground", "map_files/mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif
@@ -329,10 +368,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if (!pickedmap)
 		return
 	var/datum/map_config/VM = global.config.maplist[pickedmap]
-	message_admins("Randomly rotating map to [VM.map_name]")
+	message_admins("Randomly rotating map to [VM.map_name].")
 	. = changemap(VM)
 	if (. && VM.map_name != config.map_name)
-		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
+		to_chat(world, span_boldannounce("Map rotation has chosen [VM.map_name] for next round!"))
 
 /datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
 	if(!VM.MakeNextMap())
@@ -357,6 +396,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	// Still supporting bans by filename
 	var/list/banned = generateMapList("[global.config.directory]/lavaruinblacklist.txt")
 	banned += generateMapList("[global.config.directory]/spaceruinblacklist.txt")
+	banned += generateMapList("[global.config.directory]/iceruinblacklist.txt")
 
 	for(var/item in sortList(subtypesof(/datum/map_template/ruin), /proc/cmp_ruincost_priority))
 		var/datum/map_template/ruin/ruin_type = item
@@ -373,6 +413,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 		if(istype(R, /datum/map_template/ruin/lavaland))
 			lava_ruins_templates[R.name] = R
+		else if(istype(R, /datum/map_template/ruin/icemoon/underground))
+			ice_ruins_underground_templates[R.name] = R
+		else if(istype(R, /datum/map_template/ruin/icemoon))
+			ice_ruins_templates[R.name] = R
 		else if(istype(R, /datum/map_template/ruin/space))
 			space_ruins_templates[R.name] = R
 		else if(istype(R, /datum/map_template/ruin/station)) //yogs
@@ -406,7 +450,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 //Manual loading of away missions.
 /client/proc/admin_away()
 	set name = "Load Away Mission"
-	set category = "Fun"
+	set category = "Misc.Server Debug"
 
 	if(!holder ||!check_rights(R_FUN))
 		return
@@ -427,13 +471,13 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			if(!mapfile)
 				return
 			away_name = "[mapfile] custom"
-			to_chat(usr,"<span class='notice'>Loading [away_name]...</span>")
+			to_chat(usr,span_notice("Loading [away_name]..."))
 			var/datum/map_template/template = new(mapfile, "Away Mission")
 			away_level = template.load_new_z()
 		else
 			if(answer in GLOB.potentialRandomZlevels)
 				away_name = answer
-				to_chat(usr,"<span class='notice'>Loading [away_name]...</span>")
+				to_chat(usr,span_notice("Loading [away_name]..."))
 				var/datum/map_template/template = new(away_name, "Away Mission")
 				away_level = template.load_new_z()
 			else
@@ -508,6 +552,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 //DO NOT CALL THIS PROC DIRECTLY, CALL wipe_reservations().
 /datum/controller/subsystem/mapping/proc/do_wipe_turf_reservations()
+	PRIVATE_PROC(TRUE)
 	UNTIL(initialized)							//This proc is for AFTER init, before init turf reservations won't even exist and using this will likely break things.
 	for(var/i in turf_reservations)
 		var/datum/turf_reservation/TR = i
@@ -524,7 +569,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	reserve_turfs(clearing)
 
 /datum/controller/subsystem/mapping/proc/build_minimaps()
-	to_chat(world, "<span class='boldannounce'>Building minimaps...</span>")
+	to_chat(world, span_boldannounce("Building minimaps..."))
 	for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION))
 		station_minimaps += new /datum/minimap(z)
 

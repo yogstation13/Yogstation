@@ -2,7 +2,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold
 	icon = 'icons/obj/atmospherics/pipes/manifold.dmi'
-	icon_state = "manifold-2"
+	icon_state = "manifold-3"
 
 	name = "pipe manifold"
 	desc = "A manifold composed of regular pipes."
@@ -14,6 +14,11 @@
 
 	construction_type = /obj/item/pipe/trinary
 	pipe_state = "manifold"
+
+	FASTDMM_PROP(\
+		pipe_type = PIPE_TYPE_MANIFOLD,\
+		pipe_interference_group = "atmos-[piping_layer]"\
+	)
 
 	var/mutable_appearance/center
 

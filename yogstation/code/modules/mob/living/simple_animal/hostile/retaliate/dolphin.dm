@@ -18,14 +18,14 @@
 	speed = 0
 	maxHealth = 25
 	health = 25
-	a_intent = "harm"
+	a_intent = INTENT_HARM
 	spacewalk = TRUE
 
 	environment_smash = 0
 	harm_intent_damage = 8
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	pass_flags = PASSTABLE //secretly a tactical dolphin buff.
+	pass_flags = PASSTABLE | PASSCOMPUTER //secretly a tactical dolphin buff.
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("chitters", "squeeks", "clicks")

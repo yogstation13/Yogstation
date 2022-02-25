@@ -2,6 +2,16 @@
 	name = "Paramedic Staging Area"
 	icon_state = "emergencystorage"
 
+//Minsky Specific Areas
+/area/medical/paramedic/a
+	name = "Primary Paramedic Staging Area"
+	icon_state = "emergencystorage"
+
+/area/medical/paramedic/b
+	name = "Secondary Paramedic Staging Area"
+	icon_state = "emergencystorage"
+//end Minsky Specific Areas
+
 /area/medical/psych
 	name = "Psychiatrists office"
 	icon_state = "exam_room"
@@ -9,6 +19,14 @@
 /area/clerk
 	name = "Clerks office"
 	icon_state = "cafeteria"
+
+/area/security/brig/infirmary
+	name = "Brig Infirmary"
+	icon_state = "brig_infirmary"
+
+/area/security/physician
+	name = "Brig Physician's Office"
+	icon_state = "physician"
 
 /area/maintenance
 	ambientsounds = list('sound/ambience/ambimaint1.ogg',

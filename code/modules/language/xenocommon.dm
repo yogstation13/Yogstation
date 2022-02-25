@@ -7,5 +7,5 @@
 	key = "4"
 	syllables = list("sss","sSs","SSS")
 	default_priority = 50
-
+	sing_verb = "hisses musically"
 	icon_state = "xeno"

@@ -77,8 +77,8 @@
 /area/ruin/powered)
 "r" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/ruin/powered)
@@ -93,11 +93,6 @@
 /obj/item/toy/figure/syndie,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/ruin/powered)
-"u" = (
-/obj/structure/table,
-/obj/item/gun/ballistic/automatic/pistol,
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/ruin/powered)
 "v" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/template_noop,
@@ -105,6 +100,10 @@
 "w" = (
 /obj/structure/shuttle/engine/platform,
 /turf/closed/wall/mineral/titanium,
+/area/ruin/powered)
+"E" = (
+/obj/structure/table,
+/turf/open/floor/mineral/plastitanium/red/brig,
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -186,7 +185,7 @@ j
 m
 q
 e
-u
+E
 w
 v
 a

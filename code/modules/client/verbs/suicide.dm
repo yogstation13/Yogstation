@@ -25,7 +25,7 @@
 	return
 
 /mob/living/carbon/human/virtual_reality/canSuicide()
-	to_chat(src, "<span class='warning'>I'm sorry [first_name()], I'm afraid you can't do that.</span>")
+	to_chat(src, span_warning("I'm sorry [first_name()], I'm afraid you can't do that."))
 	return
 
 /mob/living/carbon/human/verb/suicide()
@@ -33,7 +33,7 @@
 	if(!canSuicide())
 		return
 	var/oldkey = ckey
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = alert("Are you sure you want to commit suicide? This will prevent you from being revived!", "Confirm Suicide", "Yes", "No")
 	if(ckey != oldkey)
 		return
 	if(!canSuicide())
@@ -105,7 +105,7 @@
 								"[src] is twisting [p_their()] own neck! It looks like [p_theyre()] trying to commit suicide.", \
 								"[src] is holding [p_their()] breath! It looks like [p_theyre()] trying to commit suicide.")
 
-		visible_message("<span class='danger'>[suicide_message]</span>", "<span class='userdanger'>[suicide_message]</span>")
+		visible_message(span_danger("[suicide_message]"), span_userdanger("[suicide_message]"))
 
 		suicide_log()
 
@@ -113,7 +113,7 @@
 		death(FALSE)
 
 /mob/living/brain/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -121,15 +121,15 @@
 		return
 	if(confirm == "Yes")
 		set_suicide(TRUE)
-		visible_message("<span class='danger'>[src]'s brain is growing dull and lifeless. [p_they(TRUE)] look[p_s()] like [p_theyve()] lost the will to live.</span>", \
-						"<span class='userdanger'>[src]'s brain is growing dull and lifeless. [p_they(TRUE)] look[p_s()] like [p_theyve()] lost the will to live.</span>")
+		visible_message(span_danger("[src]'s brain is growing dull and lifeless. [p_they(TRUE)] look[p_s()] like [p_theyve()] lost the will to live."), \
+						span_userdanger("[src]'s brain is growing dull and lifeless. [p_they(TRUE)] look[p_s()] like [p_theyve()] lost the will to live."))
 
 		suicide_log()
 
 		death(FALSE)
 
 /mob/living/carbon/monkey/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -137,8 +137,8 @@
 		return
 	if(confirm == "Yes")
 		set_suicide(TRUE)
-		visible_message("<span class='danger'>[src] is attempting to bite [p_their()] tongue. It looks like [p_theyre()] trying to commit suicide.</span>", \
-				"<span class='userdanger'>[src] is attempting to bite [p_their()] tongue. It looks like [p_theyre()] trying to commit suicide.</span>")
+		visible_message(span_danger("[src] is attempting to bite [p_their()] tongue. It looks like [p_theyre()] trying to commit suicide."), \
+				span_userdanger("[src] is attempting to bite [p_their()] tongue. It looks like [p_theyre()] trying to commit suicide."))
 
 		suicide_log()
 
@@ -146,7 +146,7 @@
 		death(FALSE)
 
 /mob/living/silicon/ai/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -154,8 +154,8 @@
 		return
 	if(confirm == "Yes")
 		set_suicide(TRUE)
-		visible_message("<span class='danger'>[src] is powering down. It looks like [p_theyre()] trying to commit suicide.</span>", \
-				"<span class='userdanger'>[src] is powering down. It looks like [p_theyre()] trying to commit suicide.</span>")
+		visible_message(span_danger("[src] is powering down. It looks like [p_theyre()] trying to commit suicide."), \
+				span_userdanger("[src] is powering down. It looks like [p_theyre()] trying to commit suicide."))
 
 		suicide_log()
 
@@ -164,7 +164,7 @@
 		death(FALSE)
 
 /mob/living/silicon/robot/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -172,8 +172,8 @@
 		return
 	if(confirm == "Yes")
 		set_suicide(TRUE)
-		visible_message("<span class='danger'>[src] is powering down. It looks like [p_theyre()] trying to commit suicide.</span>", \
-				"<span class='userdanger'>[src] is powering down. It looks like [p_theyre()] trying to commit suicide.</span>")
+		visible_message(span_danger("[src] is powering down. It looks like [p_theyre()] trying to commit suicide."), \
+				span_userdanger("[src] is powering down. It looks like [p_theyre()] trying to commit suicide."))
 
 		suicide_log()
 
@@ -182,12 +182,12 @@
 		death(FALSE)
 
 /mob/living/silicon/pai/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
 	if(confirm == "Yes")
 		var/turf/T = get_turf(src.loc)
-		T.visible_message("<span class='notice'>[src] flashes a message across its screen, \"Wiping core files. Please acquire a new personality to continue using pAI device functions.\"</span>", null, \
-		 "<span class='notice'>[src] bleeps electronically.</span>")
+		T.visible_message(span_notice("[src] flashes a message across its screen, \"Wiping core files. Please acquire a new personality to continue using pAI device functions.\""), null, \
+		 span_notice("[src] bleeps electronically."))
 
 		suicide_log()
 
@@ -196,7 +196,7 @@
 		to_chat(src, "Aborting suicide attempt.")
 
 /mob/living/carbon/alien/humanoid/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -204,9 +204,9 @@
 		return
 	if(confirm == "Yes")
 		set_suicide(TRUE)
-		visible_message("<span class='danger'>[src] is thrashing wildly! It looks like [p_theyre()] trying to commit suicide.</span>", \
-				"<span class='userdanger'>[src] is thrashing wildly! It looks like [p_theyre()] trying to commit suicide.</span>", \
-				"<span class='italics'>You hear thrashing.</span>")
+		visible_message(span_danger("[src] is thrashing wildly! It looks like [p_theyre()] trying to commit suicide."), \
+				span_userdanger("[src] is thrashing wildly! It looks like [p_theyre()] trying to commit suicide."), \
+				span_italics("You hear thrashing."))
 
 		suicide_log()
 
@@ -215,7 +215,7 @@
 		death(FALSE)
 
 /mob/living/simple_animal/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -223,8 +223,8 @@
 		return
 	if(confirm == "Yes")
 		set_suicide(TRUE)
-		visible_message("<span class='danger'>[src] begins to fall down. It looks like [p_theyve()] lost the will to live.</span>", \
-						"<span class='userdanger'>[src] begins to fall down. It looks like [p_theyve()] lost the will to live.</span>")
+		visible_message(span_danger("[src] begins to fall down. It looks like [p_theyve()] lost the will to live."), \
+						span_userdanger("[src] begins to fall down. It looks like [p_theyve()] lost the will to live."))
 
 		suicide_log()
 
@@ -236,22 +236,45 @@
 /mob/living/carbon/human/suicide_log()
 	log_game("[key_name(src)] (job: [src.job ? "[src.job]" : "None"]) committed suicide at [AREACOORD(src)].")
 
+//IS_IMPORTANT()
+// Returns whether this player can be programmatically deemed to be important to the game. As of 5 Apr 2020, only used for canSuicide().
+// Split into several type-specific implementations because I wanted to pretend that this programming language was Julia for dozen lines or so.
+/mob/living/proc/is_important() 
+	return (mind && mind.special_role)
+
+/mob/living/carbon/alien/is_important() 
+	return TRUE // :clap: all :clap: aliens :clap: are :clap: valid (and ergo shouldn't be fucking suiciding you pieces of shit)
+
+/mob/living/carbon/human/is_important()
+	return (..() || (job in GLOB.command_positions) || mind?.has_antag_datum(/datum/antagonist/ert))
+//end IS_IMPORTANT()
+
 /mob/living/proc/canSuicide()
 	switch(stat)
-		if(CONSCIOUS)
-			return TRUE
 		if(SOFT_CRIT)
-			to_chat(src, "You can't commit suicide while in a critical condition!")
+			to_chat(src, span_warning("You can't commit suicide while in a critical condition!"))
+			return FALSE
 		if(UNCONSCIOUS)
-			to_chat(src, "You need to be conscious to commit suicide!")
+			to_chat(src, span_warning("You need to be conscious to commit suicide!"))
+			return FALSE
 		if(DEAD)
-			to_chat(src, "You're already dead!")
-	return
+			to_chat(src, span_warning("You're already dead!"))
+			return FALSE
+	//We're assuming they're CONSCIOUS
+	if(is_important()) // If they are someone critical to the round, for some reason
+		var/result = (alert("WARNING: You seem to be serving a critical role. Suiciding now may be against the rules. Consider using the AFK verb instead. Continue regardless?","Suicide Warning","Yes","No") == "Yes")
+		if(!result)
+			return FALSE
+		message_admins("[key_name(src)] may be committing suicide as an important role!")
+	return TRUE
 
 /mob/living/carbon/canSuicide()
 	if(!..())
 		return
 	if(!(mobility_flags & MOBILITY_USE))	//just while I finish up the new 'fun' suiciding verb. This is to prevent metagaming via suicide
 		to_chat(src, "You can't commit suicide whilst immobile! ((You can type Ghost instead however.))")
+		return
+	if(has_horror_inside())
+		to_chat(src, "Something inside your head stops your action!")
 		return
 	return TRUE

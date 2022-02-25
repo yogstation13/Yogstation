@@ -1,18 +1,18 @@
 /obj/item/reagent_containers/hypospray/mixi
-	name = "QMC Bicaridine Injector"
-	desc = "A quick-mix capital combat injector loaded with bicaridine."
+	name = "QMC Libital Injector"
+	desc = "A quick-mix capital combat injector loaded with libital."
 	amount_per_transfer_from_this = 5
 	icon_state = "combat_hypo"
 	volume = 50
-	list_reagents = list(/datum/reagent/medicine/bicaridine = 50)
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 50)
 
 /obj/item/reagent_containers/hypospray/derm
-	name = "QMC Kelotane Injector"
-	desc = "A quick-mix capital combat injector loaded with kelotane."
+	name = "QMC Aiuri Injector"
+	desc = "A quick-mix capital combat injector loaded with aiuri."
 	amount_per_transfer_from_this = 5
 	icon_state = "combat_hypo"
 	volume = 50
-	list_reagents = list(/datum/reagent/medicine/kelotane = 50)
+	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 50)
 
 /obj/item/reagent_containers/hypospray/medipen/stimpack/large
 	name = "stimpack injector"
@@ -30,7 +30,7 @@
 		icon_state = "[initial(icon_state)]25"
 	else
 		icon_state = "[initial(icon_state)]0"
-		
+
 /obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill
 	name = "Red Pill injector"
 	desc = "Contains two heavy doses of Red Pills (Stimulants)."

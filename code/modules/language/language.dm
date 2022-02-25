@@ -21,7 +21,7 @@
 	var/list/spans = list()
 	var/list/scramble_cache = list()
 	var/default_priority = 0          // the language that an atom knows with the highest "default_priority" is selected by default.
-
+	var/sing_verb = "sings"			  // Used for singing.
 	// if you are seeing someone speak popcorn language, then something is wrong.
 	var/icon = 'icons/misc/language.dmi'
 	var/icon_state = "popcorn"
@@ -35,7 +35,7 @@
 	return TRUE
 
 /datum/language/proc/get_icon()
-	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/goonchat)
+	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
 	return sheet.icon_tag("language-[icon_state]")
 
 /datum/language/proc/get_random_name(gender, name_count=2, syllable_count=4, syllable_divisor=2)
@@ -80,11 +80,11 @@
 	if(lookup)
 		return lookup
 
-	var/input_size = length(input)
+	var/input_size = length_char(input)
 	var/scrambled_text = ""
 	var/capitalize = TRUE
 
-	while(length(scrambled_text) < input_size)
+	while(length_char(scrambled_text) < input_size)
 		var/next = pick(syllables)
 		if(capitalize)
 			next = capitalize(next)
@@ -98,10 +98,10 @@
 			scrambled_text += " "
 
 	scrambled_text = trim(scrambled_text)
-	var/ending = copytext(scrambled_text, length(scrambled_text))
+	var/ending = copytext_char(scrambled_text, -1)
 	if(ending == ".")
-		scrambled_text = copytext(scrambled_text,1,length(scrambled_text)-1)
-	var/input_ending = copytext(input, input_size)
+		scrambled_text = copytext_char(scrambled_text, 1, -2)
+	var/input_ending = copytext_char(input, -1)
 	if(input_ending in list("!","?","."))
 		scrambled_text += input_ending
 
@@ -111,16 +111,17 @@
 
 /datum/language/proc/scramble_HTML(intext) // Calls scramble() on HTML text, making sure to not disturb the HTML.
 	var/text = ""
-	var/regex/plaintext = regex(@"(?:<\/?[\w\s\d=\x22]+>|^)((?:[\w\s\d!@#$%^&*\(\)\-+?:\x22'}{\[\]~`|;,.\\])+)") // Finds plaintext within the HTML.
+	var/regex/plaintext = regex(@"((>|^)([^<>]+)(?:<|$)") // Finds plaintext within the HTML.
 	var/newtext = intext
 	var/startpos = 1
 	while(startpos < 8192 && startpos > -1)
-		var/f = plaintext.Find(newtext,startpos)
-		if(!f)
+		var/regexstart = plaintext.Find(newtext,startpos) // Where the *regex* first matches
+		if(!regexstart)
 			break
-		var/sentence = plaintext.group[1]
+		var/capturestart = regexstart + length(plaintext.group[1]) // Where the *capture* first matches, the actual plaintext of this section
+		var/sentence = plaintext.group[2]
 		var/scramb = scramble(sentence) // The scrambled version of the sentence.
-		newtext = replacetext(newtext, sentence, scramb, f, length(sentence)+1)
+		newtext = replacetext(newtext, sentence, scramb, capturestart, capturestart + length(sentence)+1)
 		startpos = plaintext.next + (length(scramb) - length(sentence))
 	text += newtext
 	return text

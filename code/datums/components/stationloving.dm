@@ -5,7 +5,7 @@
 	var/allow_death = FALSE
 
 /datum/component/stationloving/Initialize(inform_admins = FALSE, allow_death = FALSE)
-	if(!ismovableatom(parent))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_MOVABLE_Z_CHANGED), .proc/check_in_bounds)
 	RegisterSignal(parent, list(COMSIG_MOVABLE_SECLUDED_LOCATION), .proc/relocate)
@@ -33,7 +33,7 @@
 
 	var/atom/movable/AM = parent
 	AM.forceMove(targetturf)
-	to_chat(get(parent, /mob), "<span class='danger'>You can't help but feel that you just lost something back there...</span>")
+	to_chat(get(parent, /mob), span_danger("You can't help but feel that you just lost something back there..."))
 	// move the disc, so ghosts remain orbiting it even if it's "destroyed"
 	return targetturf
 

@@ -12,6 +12,7 @@
 #define SCANGATE_FELINID		"felinid"
 #define SCANGATE_FLY			"fly"
 #define SCANGATE_PLASMAMAN		"plasma"
+#define SCANGATE_POLYSMORPH		"polysmorph"
 #define SCANGATE_MOTH			"moth"
 #define SCANGATE_JELLY			"jelly"
 #define SCANGATE_POD			"pod"
@@ -44,12 +45,15 @@
 /obj/machinery/scanner_gate/examine(mob/user)
 	. = ..()
 	if(locked)
-		. += "<span class='notice'>The control panel is ID-locked. Swipe a valid ID to unlock it.</span>"
+		. += span_notice("The control panel is ID-locked. Swipe a valid ID to unlock it.")
 	else
-		. += "<span class='notice'>The control panel is unlocked. Swipe an ID to lock it.</span>"
+		. += span_notice("The control panel is unlocked. Swipe an ID to lock it.")
 
 /obj/machinery/scanner_gate/Crossed(atom/movable/AM)
-	..()
+	. = ..()
+	auto_scan(AM)
+
+/obj/machinery/scanner_gate/proc/auto_scan(atom/movable/AM)
 	if(!(stat & (BROKEN|NOPOWER)) && isliving(AM))
 		perform_scan(AM)
 
@@ -67,14 +71,14 @@
 			if(allowed(user))
 				locked = FALSE
 				req_access = list()
-				to_chat(user, "<span class='notice'>You unlock [src].</span>")
+				to_chat(user, span_notice("You unlock [src]."))
 		else if(!(obj_flags & EMAGGED))
-			to_chat(user, "<span class='notice'>You lock [src] with [W].</span>")
+			to_chat(user, span_notice("You lock [src] with [W]."))
 			var/list/access = W.GetAccess()
 			req_access = access
 			locked = TRUE
 		else
-			to_chat(user, "<span class='warning'>You try to lock [src] with [W], but nothing happens.</span>")
+			to_chat(user, span_warning("You try to lock [src] with [W], but nothing happens."))
 	else
 		return ..()
 
@@ -84,7 +88,7 @@
 	locked = FALSE
 	req_access = list()
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='notice'>You fry the ID checking system.</span>")
+	to_chat(user, span_notice("You fry the ID checking system."))
 
 /obj/machinery/scanner_gate/proc/perform_scan(mob/living/M)
 	var/beep = FALSE
@@ -127,6 +131,8 @@
 						scan_species = /datum/species/human/felinid
 					if(SCANGATE_PLASMAMAN)
 						scan_species = /datum/species/plasmaman
+					if(SCANGATE_POLYSMORPH)
+						scan_species = /datum/species/polysmorph
 					if(SCANGATE_MOTH)
 						scan_species = /datum/species/moth
 					if(SCANGATE_JELLY)
@@ -175,11 +181,10 @@
 		return FALSE
 	return ..()
 
-/obj/machinery/scanner_gate/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/scanner_gate/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "scanner_gate", name, 600, 400, master_ui, state)
+		ui = new(user, src, "ScannerGate", name)
 		ui.open()
 
 /obj/machinery/scanner_gate/ui_data()
@@ -214,7 +219,7 @@
 			. = TRUE
 		if("set_nanite_cloud")
 			var/new_cloud = text2num(params["new_cloud"])
-			nanite_cloud = CLAMP(round(new_cloud, 1), 1, 100)
+			nanite_cloud = clamp(round(new_cloud, 1), 1, 100)
 			. = TRUE
 		//Some species are not scannable, like abductors (too unknown), androids (too artificial) or skeletons (too magic)
 		if("set_target_species")
@@ -227,7 +232,7 @@
 				"Starving",
   				"Obese"
 			)
-			if(new_nutrition && new_nutrition in nutrition_list)
+			if(new_nutrition && (new_nutrition in nutrition_list))
 				switch(new_nutrition)
 					if("Starving")
 						detect_nutrition = NUTRITION_LEVEL_STARVING

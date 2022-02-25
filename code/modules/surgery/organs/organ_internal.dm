@@ -10,7 +10,10 @@
 	// DO NOT add slots with matching names to different zones - it will break internal_organs_slot list!
 	var/organ_flags = 0
 	var/maxHealth = STANDARD_ORGAN_THRESHOLD
-	var/damage = 0		//total damage this organ has sustained
+	///total damage this organ has sustained
+	var/damage = 0
+	///how functional this organ is, higher numbers = stronger lower = garbage, scales multiplicitively with health (50% health = *50% efficiency)
+	var/organ_efficiency = 1
 	///Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick
 	var/healing_factor 	= 0										//fraction of maxhealth healed per on_life(), set to 0 for generic organs
 	var/decay_factor 	= 0										//same as above but when without a living owner, set to 0 for generic organs
@@ -77,7 +80,7 @@
 		var/mob/living/carbon/C = owner
 		if(!C)
 			return
-		if(C.stat == DEAD && !IS_IN_STASIS(C))
+		if(C.stat == DEAD && !(IS_IN_STASIS(C) || HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS)))
 			if(damage >= maxHealth)
 				organ_flags |= ORGAN_FAILING
 				damage = maxHealth
@@ -102,7 +105,6 @@
 			damage = max(0, damage - ((maxHealth * healing_factor) * (C.satiety / MAX_SATIETY) * 4))
 		check_damage_thresholds(C)
 		prev_damage = damage
-	return
 
 /** check_damage_thresholds
   * input: M (a mob, the owner of the organ we call the proc on)
@@ -138,13 +140,13 @@
 /obj/item/organ/examine(mob/user)
 	. = ..()
 	if(status == ORGAN_ROBOTIC && (organ_flags & ORGAN_FAILING))
-		. += "<span class='warning'>[src] seems to be broken!</span>"
+		. += span_warning("[src] seems to be broken!")
 
 	else if(organ_flags & ORGAN_FAILING)
-		. += "<span class='warning'>[src] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
+		. += span_warning("[src] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!")
 
 	else if(damage > high_threshold)
-		. += "<span class='warning'>[src] is starting to look discolored.</span>"
+		. += span_warning("[src] is starting to look discolored.")
 
 
 /obj/item/organ/proc/prepare_eat()
@@ -191,6 +193,10 @@
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.
 
+///returns an organ's efficiency, a percent value (rounded to the 10s) based on its damage and organ_efficiency
+/obj/item/organ/proc/get_organ_efficiency()
+	return damage < low_threshold ? organ_efficiency : round(organ_efficiency * (damage/maxHealth), 0.1)
+
 ///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
 /obj/item/organ/proc/applyOrganDamage(var/d, var/maximum = maxHealth)	//use for damaging effects
 	if(maximum < d + damage)
@@ -199,7 +205,7 @@
 
 ///SETS an organ's damage to the amount "d", and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken
 /obj/item/organ/proc/setOrganDamage(var/d)	//use mostly for admin heals
-	damage = CLAMP(d, 0 ,maxHealth)
+	damage = clamp(d, 0 ,maxHealth)
 	if(d >= maxHealth)
 		organ_flags |= ORGAN_FAILING
 	else

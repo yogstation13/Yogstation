@@ -15,6 +15,14 @@
 	name = "Flu"
 	symptoms = list(new/datum/symptom/cough)
 	..()
+	
+/datum/disease/advance/necropolis
+	copy_type = /datum/disease/advance
+
+/datum/disease/advance/necropolis/New()
+	name = "Necropolis Seed"
+	symptoms = list(new/datum/symptom/necroseed)
+	..()
 
 //Randomly generated Disease, for virus crates and events
 /datum/disease/advance/random
@@ -27,6 +35,8 @@
 	var/list/datum/symptom/possible_symptoms = list()
 	for(var/symptom in subtypesof(/datum/symptom))
 		var/datum/symptom/S = symptom
+		if(!initial(S.naturally_occuring))
+			continue
 		if(initial(S.level) > max_level)
 			continue
 		if(initial(S.level) <= 0) //unobtainable symptoms

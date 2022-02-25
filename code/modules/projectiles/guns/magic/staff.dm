@@ -12,6 +12,14 @@
 	icon_state = "staffofchange"
 	item_state = "staffofchange"
 
+/obj/item/gun/magic/staff/cheese
+	name = "staff of cheese"
+	desc = "An artefact that spits bolts of cheesey energy which twists the target into a wheel of parmesan."
+	fire_sound = 'sound/magic/staff_change.ogg'
+	ammo_type = /obj/item/ammo_casing/magic/cheese
+	icon_state = "staffofcheese"
+	item_state = "staffofcheese"
+
 /obj/item/gun/magic/staff/animate
 	name = "staff of animation"
 	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
@@ -72,9 +80,12 @@
 	max_charges = 4
 	recharge_rate = 8
 
+/obj/item/gun/magic/staff/honk/honk_act()
+	return FALSE
+
 /obj/item/gun/magic/staff/spellblade
 	name = "spellblade"
-	desc = "A deadly combination of laziness and boodlust, this blade allows the user to dismember their enemies without all the hard work of actually swinging the sword."
+	desc = "A deadly combination of laziness and bloodlust, this blade allows the user to dismember their enemies without all the hard work of actually swinging the sword."
 	fire_sound = 'sound/magic/fireball.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/spellblade
 	icon_state = "spellblade"
@@ -85,8 +96,13 @@
 	force = 20
 	armour_penetration = 75
 	block_chance = 50
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	max_charges = 4
+
+/obj/item/gun/magic/staff/spellblade/weak
+	name = "ashy spellblade"
+	desc = "A deadly combination of laziness and bloodlust, this blade allows the user to dismember their enemies without all the hard work of actually swinging the sword. This one seems to be covered in ash."
+	ammo_type = /obj/item/ammo_casing/magic/spellblade/weak
 
 /obj/item/gun/magic/staff/spellblade/Initialize()
 	. = ..()
@@ -104,8 +120,8 @@
 	ammo_type = /obj/item/ammo_casing/magic/locker
 	icon_state = "locker"
 	item_state = "locker"
-	max_charges = 6
-	recharge_rate = 4
+	max_charges = 2
+	recharge_rate = 12
 
 //yes, they don't have sounds. they're admin staves, and their projectiles will play the chaos bolt sound anyway so why bother?
 

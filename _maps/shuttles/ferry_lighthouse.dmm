@@ -17,11 +17,28 @@
 "ad" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/transport)
+"ae" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "garbage"
+	},
+/turf/open/floor/wood,
+/area/shuttle/transport)
 "af" = (
 /turf/closed/wall/r_wall,
 /area/shuttle/transport)
 "ag" = (
 /turf/open/floor/plating/airless,
+/area/shuttle/transport)
+"ah" = (
+/obj/machinery/door/airlock/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/shuttle/transport)
 "ai" = (
 /obj/machinery/vending/liberationstation,
@@ -95,22 +112,43 @@
 /turf/open/floor/wood,
 /area/shuttle/transport)
 "av" = (
-/obj/machinery/door/airlock/wood,
-/obj/machinery/door/firedoor/border_only,
+/obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
-	dir = 4
+	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/wood,
+/turf/open/floor/plating,
 /area/shuttle/transport)
 "aw" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/transport)
+"ax" = (
+/obj/structure/table/wood,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/shuttle/transport)
+"ay" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/bluespace,
+/area/shuttle/transport)
 "az" = (
+/obj/structure/table/wood,
+/obj/item/toy/crayon/spraycan,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/shuttle/transport)
+"aA" = (
 /obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/transport)
 "aB" = (
@@ -121,6 +159,10 @@
 "aC" = (
 /obj/structure/table/wood,
 /obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/vending_refill/snack,
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -204,11 +246,6 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/transport)
-"aS" = (
-/obj/structure/table/wood,
-/obj/item/toy/crayon/spraycan,
-/turf/open/floor/wood,
-/area/shuttle/transport)
 "aT" = (
 /obj/structure/bed,
 /obj/item/bedsheet/centcom,
@@ -237,27 +274,12 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/transport)
-"ba" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "garbage"
-	},
-/turf/open/floor/wood,
-/area/shuttle/transport)
 "bb" = (
 /obj/machinery/conveyor{
 	dir = 1;
 	id = "garbage";
 	layer = 2.5
 	},
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"bc" = (
-/obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/item/vending_refill/snack,
 /turf/open/floor/wood,
 /area/shuttle/transport)
 "bd" = (
@@ -393,7 +415,7 @@ ak
 ak
 aP
 aX
-ba
+ae
 be
 bh
 bi
@@ -460,12 +482,12 @@ aa
 aa
 ap
 ap
-av
+ah
+ax
+ax
+az
+ax
 aC
-aC
-aS
-aC
-bc
 aM
 ad
 aa
@@ -569,9 +591,9 @@ aa
 aa
 aa
 aw
-aE
-aE
-aE
+ay
+ay
+ay
 ad
 aa
 aa
@@ -658,11 +680,11 @@ aa
 aa
 aa
 aa
-az
+av
 aI
 aE
 aW
-az
+aA
 aa
 aa
 aa
@@ -730,11 +752,11 @@ aa
 aa
 aa
 aa
-az
+av
 aJ
 aE
 aW
-az
+aA
 aa
 aa
 aa

@@ -39,11 +39,11 @@
 	if(!istype(I, /obj/item/reagent_containers/food/snacks/customizable) && istype(I, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/S = I
 		if(I.w_class > WEIGHT_CLASS_SMALL)
-			to_chat(user, "<span class='warning'>The ingredient is too big for [src]!</span>")
+			to_chat(user, span_warning("The ingredient is too big for [src]!"))
 		else if((ingredients.len >= ingMax) || (reagents.total_volume >= volume))
-			to_chat(user, "<span class='warning'>You can't add more ingredients to [src]!</span>")
+			to_chat(user, span_warning("You can't add more ingredients to [src]!"))
 		else if(istype(I, /obj/item/reagent_containers/food/snacks/pizzaslice/custom) || istype(I, /obj/item/reagent_containers/food/snacks/cakeslice/custom))
-			to_chat(user, "<span class='warning'>Adding [I.name] to [src] would make a mess.</span>")
+			to_chat(user, span_warning("Adding [I.name] to [src] would make a mess."))
 		else
 			if(!user.transferItemToLoc(I, src))
 				return
@@ -54,7 +54,7 @@
 			S.reagents.trans_to(src,min(S.reagents.total_volume, 15), transfered_by = user) //limit of 15, we don't want our custom food to be completely filled by just one ingredient with large reagent volume.
 			foodtype |= S.foodtype
 			update_overlays(S)
-			to_chat(user, "<span class='notice'>You add the [I.name] to the [name].</span>")
+			to_chat(user, span_notice("You add the [I.name] to the [name]."))
 			update_name(S)
 	else
 		. = ..()
@@ -78,7 +78,7 @@
 			customname = S.name
 	name = "[customname] [initial(name)]"
 
-/obj/item/reagent_containers/food/snacks/customizable/proc/initialize_custom_food(obj/item/BASE, obj/item/I, mob/user)
+/obj/item/reagent_containers/food/snacks/customizable/proc/initialize_custom_food(obj/item/BASE, obj/item/I, mob/user, delayDeletion = FALSE)
 	if(istype(BASE, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/RC = BASE
 		RC.reagents.trans_to(src,RC.reagents.total_volume, transfered_by = user)
@@ -86,7 +86,8 @@
 		contents += O
 	if(I && user)
 		attackby(I, user)
-	qdel(BASE)
+	if(!delayDeletion)
+		qdel(BASE)
 
 /obj/item/reagent_containers/food/snacks/customizable/proc/mix_filling_color(obj/item/reagent_containers/food/snacks/S)
 	if(ingredients.len == 1)
@@ -180,7 +181,7 @@
 	icon = 'icons/obj/food/piecake.dmi'
 	icon_state = "plaincake"
 	foodtype = GRAIN | DAIRY
-	
+
 /obj/item/reagent_containers/food/snacks/customizable/cheesewheel/cheddar
 	name = "cheese"
 	ingredients_placement = INGREDIENTS_SCATTER
@@ -228,6 +229,16 @@
 	icon = 'icons/obj/food/pizzaspaghetti.dmi'
 	icon_state = "pizzamargherita"
 	foodtype = GRAIN | DAIRY
+	burns_in_oven = TRUE
+
+/obj/item/reagent_containers/food/snacks/customizable/pizza/raw
+	name = "raw pizza"
+	icon_state = "pizzamargherita_raw"
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/customizable/pizza/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/customizable/pizza, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE, TRUE)
 
 
 /obj/item/reagent_containers/food/snacks/customizable/salad
@@ -257,7 +268,7 @@
 		var/obj/item/reagent_containers/food/snacks/breadslice/BS = I
 		if(finished)
 			return
-		to_chat(user, "<span class='notice'>You finish the [src.name].</span>")
+		to_chat(user, span_notice("You finish the [src.name]."))
 		finished = 1
 		name = "[customname] sandwich"
 		BS.reagents.trans_to(src, BS.reagents.total_volume, transfered_by = user)
@@ -300,16 +311,16 @@
 	icon = 'icons/obj/food/soupsalad.dmi'
 	icon_state = "bowl"
 	reagent_flags = OPENCONTAINER
-	materials = list(MAT_GLASS = 500)
+	materials = list(/datum/material/glass = 500)
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/reagent_containers/glass/bowl/attackby(obj/item/I,mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/S = I
 		if(I.w_class > WEIGHT_CLASS_SMALL)
-			to_chat(user, "<span class='warning'>The ingredient is too big for [src]!</span>")
+			to_chat(user, span_warning("The ingredient is too big for [src]!"))
 		else if(contents.len >= 20)
-			to_chat(user, "<span class='warning'>You can't add more ingredients to [src]!</span>")
+			to_chat(user, span_warning("You can't add more ingredients to [src]!"))
 		else
 			if(reagents.has_reagent(/datum/reagent/water, 10)) //are we starting a soup or a salad?
 				var/obj/item/reagent_containers/food/snacks/customizable/A = new/obj/item/reagent_containers/food/snacks/customizable/soup(get_turf(src))

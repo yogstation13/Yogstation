@@ -12,10 +12,10 @@ TRICORDER
 
 /obj/item/multitool/tricorder
 	name = "tricorder"
+	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
 	icon = 'yogstation/icons/obj/device.dmi'
 	icon_state = "tricorder"
-	item_state = "analyzer"
-	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
+	item_state = "tricorder"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -28,13 +28,13 @@ TRICORDER
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=500,MAT_SILVER=300,MAT_GOLD=300)
+	materials = list(/datum/material/iron=500,/datum/material/silver=300,/datum/material/gold=300)
 
 	var/medicalTricorder = FALSE	//Set to TRUE for normal medical scanner, set to FALSE for a gutted version
 
 
 obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] thinks today IS a good day to die!</span>")
+	user.visible_message(span_suicide("[user] thinks today IS a good day to die!"))
 	return BRUTELOSS
 
 
@@ -56,7 +56,7 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 		return
 
 //Gas Analyzer Tank Scan
-/obj/item/multitool/tricorder/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
+/obj/item/multitool/tricorder/afterattack(atom/A as obj, mob/user, proximity)
 	if(!proximity)
 		return
 	A.analyzer_act(user, src)
@@ -79,7 +79,7 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 	// Status Readout
 	// Tricorder can detect damage but can only give estimates in most cases
 	//Temperature
-	to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
+	to_chat(user, span_info("Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)"))
 	//Brute
 	to_chat(user, "\t <font color='red'>*</font> Brute Damage: <font color ='orange'>[brute_damage > 100 ? "<font color='red'>Critical</font>" : brute_damage > 75 ? "Catastrophic" : brute_damage > 50 ? "Extreme" : brute_damage > 25 ? "Severe" : brute_damage > 0 ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
 	//Burn

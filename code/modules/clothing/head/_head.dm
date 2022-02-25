@@ -23,7 +23,7 @@
 		if(HAS_BLOOD_DNA(src))
 			. += mutable_appearance('icons/effects/blood.dmi', "helmetblood")
 
-/obj/item/clothing/head/update_clothes_damaged_state(damaging = TRUE)
+/obj/item/clothing/head/update_clothes_damaged_state()
 	..()
 	if(ismob(loc))
 		var/mob/M = loc

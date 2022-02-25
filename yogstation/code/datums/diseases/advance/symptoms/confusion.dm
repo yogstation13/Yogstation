@@ -13,28 +13,33 @@
 	symptom_delay_max = 10
 	var/stun_reduce = -15
 	var/stamina_regen = FALSE
-	threshold_desc = "<b>Resistance 8:</b> Increases stun resistance.<br>\
-					  <b>Transmission 6:</b> Gives stamina regen.<br>\
-					  <b>Stealth 4:</b> The symptom remains hidden until active."
+	threshold_descs = list(
+		"Resistance 8" = "Increases stun resistance.",
+		"Transmission 6" = "Gives stamina regen.",
+		"Stealth 4" = "The symptom remains hidden until active."
+	)
 					  
 /datum/symptom/numb/Start(datum/disease/advance/A)  //ADD Stamina reg, and a stun resist
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["stealth"] >= 4)
+	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
-	if(A.properties["resistance"] >= 8)
+	if(A.totalResistance() >= 8)
 		stun_reduce = -25
-	if(A.properties["transmission"] >= 7)
+	if(A.totalTransmittable() >= 6)
 		stamina_regen = TRUE
 		
 /datum/symptom/numb/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	if(A.stage < 5)
 		if(prob(base_message_chance) && !suppress_warning)
-			to_chat(M, "<span class='notice'>[pick("You feel better.")]</span>")
+			to_chat(M, span_notice("[pick("You feel better.")]"))
 	else
+		ADD_TRAIT(M, TRAIT_SURGERY_PREPARED, DISEASE_TRAIT)
 		M.AdjustStun(stun_reduce, 0)
 		M.set_screwyhud(SCREWYHUD_HEALTHY)
 		if(stamina_regen)
@@ -45,9 +50,11 @@
 	
 /datum/symptom/numb/End(datum/disease/advance/A)
 	var/mob/living/carbon/M = A.affected_mob
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	else
+		REMOVE_TRAIT(M, TRAIT_SURGERY_PREPARED, DISEASE_TRAIT)
 		M.set_screwyhud(SCREWYHUD_NONE)
 		M.updatehealth()
 	return

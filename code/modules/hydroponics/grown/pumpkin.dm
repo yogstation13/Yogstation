@@ -14,7 +14,7 @@
 	icon_dead = "pumpkin-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/pumpkin/blumpkin)
-	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.2)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.2)
 
 /obj/item/reagent_containers/food/snacks/grown/pumpkin
 	seed = /obj/item/seeds/pumpkin
@@ -29,7 +29,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(W.is_sharp())
-		user.show_message("<span class='notice'>You carve a face into [src]!</span>", 1)
+		user.show_message(span_notice("You carve a face into [src]!"), MSG_VISUAL)
 		new /obj/item/clothing/head/hardhat/pumpkinhead(user.loc)
 		qdel(src)
 		return

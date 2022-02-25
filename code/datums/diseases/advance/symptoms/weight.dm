@@ -29,23 +29,27 @@ Bonus
 	base_message_chance = 100
 	symptom_delay_min = 15
 	symptom_delay_max = 45
-	threshold_desc = "<b>Stealth 4:</b> The symptom is less noticeable."
+	threshold_descs = list(
+		"Stealth 4" = "The symptom is less noticeable."
+	)
 
 /datum/symptom/weight_loss/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["stealth"] >= 4) //warn less often
+	if(A.totalStealth() >= 4) //warn less often
 		base_message_chance = 25
 
 /datum/symptom/weight_loss/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)
 		if(1, 2, 3, 4)
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='warning'>[pick("You feel hungry.", "You crave for food.")]</span>")
+				to_chat(M, span_warning("[pick("You feel hungry.", "You crave for food.")]"))
 		else
-			to_chat(M, "<span class='warning'><i>[pick("So hungry...", "You'd kill someone for a bite of food...", "Hunger cramps seize you...")]</i></span>")
+			to_chat(M, span_warning("<i>[pick("So hungry...", "You'd kill someone for a bite of food...", "Hunger cramps seize you...")]</i>"))
 			M.overeatduration = max(M.overeatduration - 100, 0)
 			M.adjust_nutrition(-100)

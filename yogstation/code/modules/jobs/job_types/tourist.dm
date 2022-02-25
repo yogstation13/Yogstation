@@ -9,7 +9,7 @@
 	selection_color = "#dddddd"
 	access = list()
 	minimal_access = list()
-
+	alt_titles = list("Visitor", "Traveler", "Siteseer")
 	outfit = /datum/outfit/job/tourist
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV

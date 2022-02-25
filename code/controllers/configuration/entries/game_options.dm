@@ -11,6 +11,10 @@
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_NUM
 
+/datum/config_entry/keyed_list/job_species_whitelist	// Assigns species-based exceptions to Command roles
+	key_mode = KEY_MODE_TYPE
+	value_mode = VALUE_MODE_TEXT
+
 /datum/config_entry/keyed_list/max_pop/ValidateListEntry(key_name)
 	return key_name in config.modes
 
@@ -83,10 +87,17 @@
 	integer = FALSE
 	min_val = 1
 
+/datum/config_entry/number/ecult_scaling_coeff	//how much does the amount of players get divided by to determine e_cult
+	config_entry_value = 6
+	integer = FALSE
+	min_val = 1
+
 /datum/config_entry/number/security_scaling_coeff	//how much does the amount of players get divided by to determine open security officer positions
 	config_entry_value = 8
 	integer = FALSE
 	min_val = 1
+
+/datum/config_entry/number/min_security_scaling_coeff	//how much does the amount of players get divided by to determine forced security positions
 
 /datum/config_entry/number/abductor_scaling_coeff	//how many players per abductor team
 	config_entry_value = 15
@@ -106,6 +117,8 @@
 /datum/config_entry/flag/protect_roles_from_antagonist	//If security and such can be traitor/cult/other
 
 /datum/config_entry/flag/protect_assistant_from_antagonist	//If assistants can be traitor/cult/other
+
+/datum/config_entry/flag/protect_heads_from_antagonist	//If heads can be traitor/cult/other
 
 /datum/config_entry/flag/enforce_human_authority	//If non-human species are barred from joining as a head of staff
 
@@ -150,6 +163,10 @@
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
 
+/datum/config_entry/keyed_list/mentor_races	//races for gamers only
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG
+
 /datum/config_entry/keyed_list/roundstart_no_hard_check // Species contained in this list will not cause existing characters with no-longer-roundstart species set to be resetted to the human race.
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
@@ -181,6 +198,12 @@
 
 /datum/config_entry/string/alert_red_downto
 	config_entry_value = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+
+/datum/config_entry/string/alert_gamma
+	config_entry_value = "Central Command has ordered the Gamma security level on the station. Security is to have weapons equipped at all times, and all civilians are to immediately seek their nearest head for transportation to a secure location. Violating orders is punishable by death."
+
+/datum/config_entry/string/alert_epsilon
+	config_entry_value = "Central Command has ordered the Epsilon security level on the station. Consider all contracts terminated."
 
 /datum/config_entry/string/alert_delta
 	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
@@ -296,6 +319,11 @@
 	value_mode = VALUE_MODE_NUM
 	splitter = ","
 
+/datum/config_entry/keyed_list/ion_law_weight
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_NUM
+	splitter = ","
+
 /datum/config_entry/number/max_law_len
 	config_entry_value = 1024
 
@@ -311,6 +339,11 @@
 
 /datum/config_entry/number/lavaland_budget
 	config_entry_value = 60
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/icemoon_budget
+	config_entry_value = 90
 	integer = FALSE
 	min_val = 0
 
@@ -370,3 +403,15 @@
 /datum/config_entry/number/monkeycap
 	config_entry_value = 64
 	min_val = 0
+
+/datum/config_entry/flag/dynamic_config_enabled
+
+/datum/config_entry/number/engine_type
+	config_entry_value = 3
+
+//Shuttle size limiter
+/datum/config_entry/number/max_shuttle_count
+	config_entry_value = 6
+
+/datum/config_entry/number/max_shuttle_size
+	config_entry_value = 250

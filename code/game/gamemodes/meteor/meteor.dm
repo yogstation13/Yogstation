@@ -7,6 +7,7 @@
 	var/nometeors = 0
 	var/rampupdelta = 5
 	required_players = 0
+	title_icon = "meteor"
 
 	announce_span = "danger"
 	announce_text = "A major meteor shower is bombarding the station! The crew needs to evacuate or survive the onslaught."
@@ -26,7 +27,7 @@
 	if (prob(meteorminutes/2))
 		wavetype = GLOB.meteors_catastrophic
 
-	var/ramp_up_final = CLAMP(round(meteorminutes/rampupdelta), 1, 10)
+	var/ramp_up_final = clamp(round(meteorminutes/rampupdelta), 1, 10)
 
 	spawn_meteors(ramp_up_final, wavetype)
 
@@ -40,11 +41,11 @@
 			++survivors
 
 			if(player.onCentCom())
-				survivor_list += "<span class='greentext'>[player.real_name] escaped to the safety of CentCom.</span>"
+				survivor_list += span_greentext("[player.real_name] escaped to the safety of CentCom.")
 			else if(player.onSyndieBase())
-				survivor_list += "<span class='greentext'>[player.real_name] escaped to the (relative) safety of Syndicate Space.</span>"
+				survivor_list += span_greentext("[player.real_name] escaped to the (relative) safety of Syndicate Space.")
 			else
-				survivor_list += "<span class='neutraltext'>[player.real_name] survived but is stranded without any hope of rescue.</span>"
+				survivor_list += span_neutraltext("[player.real_name] survived but is stranded without any hope of rescue.")
 
 	if(survivors)
 		return "<div class='panel greenborder'><span class='header'>The following survived the meteor storm:</span><br>[survivor_list.Join("<br>")]</div>"

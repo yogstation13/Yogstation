@@ -14,11 +14,12 @@
 	recommended_enemies = 3
 	enemy_minimum_age = 15
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician
+	title_icon = "ss13"
 
 /datum/game_mode/darkspawn/announce()
 	to_chat(world, "<b>The current game mode is - Darkspawn!</b>")
-	to_chat(world, "<b>There are alien <span class='velvet'>darkspawn</span> on the station. Crew: Kill the darkspawn before they can complete the Sacrament. Darkspawn: Consume enough lucidity to complete the Sacrament and become the ultimate lifeform.</b>")
+	to_chat(world, "<b>There are alien [span_velvet("darkspawn")] on the station. Crew: Kill the darkspawn before they can complete the Sacrament. Darkspawn: Consume enough lucidity to complete the Sacrament and become the ultimate lifeform.</b>")
 
 /datum/game_mode/darkspawn/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
@@ -27,14 +28,14 @@
 		restricted_jobs += "Assistant"
 	var/darkbois = max(required_enemies, round(num_players()/14))
 	while(darkbois)
-		var/datum/mind/darkboi = pick(antag_candidates)
+		var/datum/mind/darkboi = antag_pick(antag_candidates)
 		darkspawn += darkboi
 		antag_candidates -= darkboi
 		darkboi.special_role = "Darkspawn"
 		darkboi.restricted_roles = restricted_jobs
 		darkbois--
 	var/succ_scaling = round(num_players() / 3)
-	required_succs = CLAMP(succ_scaling, 15, 30)
+	required_succs = clamp(succ_scaling, 15, 30)
 	succ_ratio = required_succs / 15
 	return TRUE
 
@@ -113,13 +114,13 @@
 	if(!istype(mind))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
-		src.visible_message("<span class='warning'>[src] seems to resist an unseen force!</span>")
+		src.visible_message(span_warning("[src] seems to resist an unseen force!"))
 		to_chat(src, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
 		A mind brushes against your own. You dream.\n\
 		Of a vast, empty Void in the deep of space.\n\
 		Something lies in the Void. Ancient. Unknowable. It watches you with hungry eyes. \n\
 		Eyes filled with stars.</b>\n\
-		<span class='boldwarning'>It needs to die.</span>")
+		[span_boldwarning("It needs to die.")]")
 		return FALSE
 	return mind.add_antag_datum(/datum/antagonist/veil)
 
@@ -127,3 +128,18 @@
 	if(!istype(mind))
 		return FALSE
 	return mind.remove_antag_datum(/datum/antagonist/veil)
+
+/datum/game_mode/darkspawn/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Darkspawn:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/darkboi in darkspawn)
+		round_credits += "<center><h2>[darkboi.name] as a Darkspawn</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The Darkspawn have moved to the shadows!</h2>", "<center><h2>We couldn't locate them!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

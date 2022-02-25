@@ -9,5 +9,6 @@
 	righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
 	throwforce= 15
 	armour_penetration = 25
+	sharpness = SHARP_POINTY
 	slot_flags = null
 	attack_verb = list("stabbed", "poked", "slashed", "enlightened")
