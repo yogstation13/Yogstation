@@ -1,0 +1,4 @@
+author: "bruhlookatthisdood"
+delete-after: true 
+changes: 
+  - rscadd: "Status displays now scroll text smoothly."
