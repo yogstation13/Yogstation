@@ -7,6 +7,8 @@
 	real_name = "wrathful demon"
 	melee_damage_lower = 28
 	melee_damage_upper = 28
+	icon_state = "lesserdaemon_wrath"
+	icon_living = "lesserdaemon_wrath"
 
 /obj/effect/proc_holder/spell/pointed/trigger/ignite
 	name = "Ignite"

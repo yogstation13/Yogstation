@@ -25,6 +25,8 @@
 /mob/living/simple_animal/lesserdemon/gluttony //capable of devouring corpses for health
 	name = "gluttonous demon"
 	real_name = "gluttonous demon"
+	icon_state = "lesserdaemon_gluttony"
+	icon_living = "lesserdaemon_gluttony"
 
 /mob/living/simple_animal/lesserdemon/gluttony/UnarmedAttack(mob/living/L)
 	if(isliving(L)) //Eat Corpses to regen health
