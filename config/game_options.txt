@@ -462,6 +462,8 @@ LAW_WEIGHT reporter,3
 ION_LAW_WEIGHT reporter,1
 LAW_WEIGHT cowboy,2
 ION_LAW_WEIGHT cowboy,1
+LAW_WEIGHT construction,0
+ION_LAW_WEIGHT construction,1
 LAW_WEIGHT mother,0
 ION_LAW_WEIGHT mother,2
 LAW_WEIGHT chapai,0
