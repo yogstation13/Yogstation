@@ -479,6 +479,13 @@ AI MODULES
 	law_id = "mother"
 
 
+/******************** Construction *********************/
+
+/obj/item/aiModule/core/full/construction
+	name = "'Construction Drone' Core AI Module"
+	law_id = "construction"
+
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
