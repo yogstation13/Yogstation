@@ -241,6 +241,7 @@
 				/obj/item/aiModule/core/full/hippocratic,
 				/obj/item/aiModule/core/full/paladin_devotion,
 				/obj/item/aiModule/core/full/paladin,
+				/obj/item/aiModule/core/full/chapai,
 				/obj/item/aiModule/core/full/silicop,
 				/obj/item/aiModule/core/full/mother
 				)
@@ -258,6 +259,8 @@
 				/obj/item/aiModule/core/full/hulkamania,
 				/obj/item/aiModule/core/full/cowboy,
 				/obj/item/aiModule/core/full/metaexperiment,
+				/obj/item/aiModule/core/full/spotless,
+				/obj/item/aiModule/core/full/construction,
 				/obj/item/aiModule/core/full/researcher,
 				/obj/item/aiModule/core/full/clown
 				)
@@ -269,6 +272,7 @@
 				/obj/item/aiModule/core/full/balance,
 				/obj/item/aiModule/core/full/tyrant,
 				/obj/item/aiModule/core/full/thermurderdynamic,
+				/obj/item/aiModule/core/full/siliconcollective,
 				/obj/item/aiModule/core/full/damaged
 				)
 

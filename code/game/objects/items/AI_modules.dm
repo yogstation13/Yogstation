@@ -446,13 +446,17 @@ AI MODULES
 	name = "'Cowboy' Core AI Module"
 	law_id = "cowboy"
 
+/******************** ChapAI *********************/
+
+/obj/item/aiModule/core/full/chapai
+	name = "'ChapAI' Core AI Module"
+	law_id = "chapai"
 
 /******************** Silicop *********************/
 
 /obj/item/aiModule/core/full/silicop
 	name = "'Silicop' Core AI Module"
 	law_id = "silicop"
-
 
 /******************** Researcher *********************/
 
@@ -473,6 +477,24 @@ AI MODULES
 /obj/item/aiModule/core/full/mother
 	name = "'Mother M(A.I.)' Core AI Module"
 	law_id = "mother"
+
+/******************** Spotless Reputation *********************/
+
+/obj/item/aiModule/core/full/spotless
+	name = "'Spotless Reputation' Core AI Module"
+	law_id = "spotless"
+
+/******************** Construction *********************/
+
+/obj/item/aiModule/core/full/construction
+	name = "'Construction Drone' Core AI Module"
+	law_id = "construction"
+
+/******************** Silicon Collective *********************/
+
+/obj/item/aiModule/core/full/siliconcollective
+	name = "'Silicon Collective' Core AI Module"
+	law_id = "siliconcollective"
 
 
 /******************** Meta Experiment *********************/

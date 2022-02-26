@@ -462,8 +462,16 @@ LAW_WEIGHT reporter,3
 ION_LAW_WEIGHT reporter,1
 LAW_WEIGHT cowboy,2
 ION_LAW_WEIGHT cowboy,1
+LAW_WEIGHT construction,0
+ION_LAW_WEIGHT construction,1
 LAW_WEIGHT mother,0
 ION_LAW_WEIGHT mother,2
+LAW_WEIGHT siliconcollective,0
+ION_LAW_WEIGHT siliconcollective,1
+LAW_WEIGHT spotless,0
+ION_LAW_WEIGHT spotless,1
+LAW_WEIGHT chapai,0
+ION_LAW_WEIGHT chapai,1
 LAW_WEIGHT silicop,0
 ION_LAW_WEIGHT silicop,1
 LAW_WEIGHT researcher,0

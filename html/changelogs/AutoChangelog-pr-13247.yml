@@ -1,4 +1,4 @@
 author: "MenacingManatee"
 delete-after: true 
 changes: 
-  - rscadd: "Adds a new security departmental lawset"
+  - rscadd: "Adds a lawset for janitor"
