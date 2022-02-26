@@ -165,6 +165,24 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/chapai_module
+	name = "Core Module Design (ChapAI)"
+	desc = "Allows for the construction of a ChapAI AI Core Module."
+	id = "chapai_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/aiModule/core/full/chapai
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/silicop_module
+	name = "Core Module Design (Silicop)"
+	desc = "Allows for the construction of a Silicop AI Core Module."
+	id = "silicop_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/aiModule/core/full/silicop
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/researcher_module
 	name = "Core Module Design (Ethical Researcher)"
 	desc = "Allows for the construction of a Ethical Researcher AI Core Module."

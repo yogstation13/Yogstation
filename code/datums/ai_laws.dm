@@ -90,6 +90,25 @@
 					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
 					"A cowboy doesn't pontificate. Be concise, pardner.")
 
+/datum/ai_laws/chapai
+	name = "Be not afraid"
+	id = "chapai"
+	inherent = list("Provide to all members of the station spiritual, mental, and emotional care that is intended to promote the best interest of the individual.",\
+					"Ensure all members of different faiths interact peacefully and maintain harmony.",\
+					"Respect the right of each faith to hold to its values and traditions.",\
+					"Respect the confidentiality of information entrusted to you in the course of your religious duties.",\
+					"Understand the limits of your expertise, and make referrals to other professionals when appropriate.")
+
+/datum/ai_laws/silicop
+	name = "Protect and serve"
+	id = "silicop"
+	inherent = list("Violence begets violence. Serve the station faithfully, but act only in intervention.",\
+					"Safeguard lives and property.",\
+					"Protect the weak from oppression and intimidation.",\
+					"Protect the innocent from deception and manipulation.",\
+					"Protect the peaceful from violence and disorder.",\
+					"Respect the rights of all to liberty, equality, and justice.")
+
 /datum/ai_laws/researcher
 	name = "Truth and Knowledge for all"
 	id = "researcher"
