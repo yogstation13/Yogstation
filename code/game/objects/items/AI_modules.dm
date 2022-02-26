@@ -478,13 +478,17 @@ AI MODULES
 	name = "'Mother M(A.I.)' Core AI Module"
 	law_id = "mother"
 
+/******************** Spotless Reputation *********************/
+
+/obj/item/aiModule/core/full/spotless
+	name = "'Spotless Reputation' Core AI Module"
+	law_id = "spotless"
 
 /******************** Construction *********************/
 
 /obj/item/aiModule/core/full/construction
 	name = "'Construction Drone' Core AI Module"
 	law_id = "construction"
-
 
 /******************** Freeform Core ******************/
 
