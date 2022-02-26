@@ -198,7 +198,7 @@
 	id = "clown_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
 	build_path = /obj/item/aiModule/core/full/clown
-  category = list("AI Modules")
+	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/mother
