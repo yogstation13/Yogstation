@@ -271,6 +271,7 @@
 				/obj/item/aiModule/core/full/balance,
 				/obj/item/aiModule/core/full/tyrant,
 				/obj/item/aiModule/core/full/thermurderdynamic,
+				/obj/item/aiModule/core/full/siliconcollective,
 				/obj/item/aiModule/core/full/damaged
 				)
 

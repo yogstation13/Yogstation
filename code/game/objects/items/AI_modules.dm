@@ -490,6 +490,13 @@ AI MODULES
 	name = "'Construction Drone' Core AI Module"
 	law_id = "construction"
 
+/******************** Silicon Collective *********************/
+
+/obj/item/aiModule/core/full/siliconcollective
+	name = "'Silicon Collective' Core AI Module"
+	law_id = "siliconcollective"
+
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
