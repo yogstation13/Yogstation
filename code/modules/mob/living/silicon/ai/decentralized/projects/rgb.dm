@@ -5,8 +5,6 @@
 	ram_required = 0
 	research_requirements_text = "None"
 	category = AI_PROJECT_MISC
-	var/current_color
-	var/TimerID
 
 /datum/ai_project/rgb/run_project(force_run = FALSE)
 	. = ..()
@@ -20,7 +18,3 @@
 	for(var/obj/machinery/ai/data_core/datacores in GLOB.data_cores)
 		datacores.stoptheparty()
 	..()
-
-		
-
-		
