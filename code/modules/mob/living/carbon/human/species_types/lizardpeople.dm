@@ -39,6 +39,10 @@
 
 	return randname
 
+/datum/species/lizard/spec_stun(mob/living/carbon/human/H, amount)
+	. = ..()
+	stop_wagging_tail(H)
+
 /*
  Lizard subspecies: ASHWALKERS
 */
