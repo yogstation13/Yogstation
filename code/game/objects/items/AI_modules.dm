@@ -446,13 +446,17 @@ AI MODULES
 	name = "'Cowboy' Core AI Module"
 	law_id = "cowboy"
 
+/******************** ChapAI *********************/
+
+/obj/item/aiModule/core/full/chapai
+	name = "'ChapAI' Core AI Module"
+	law_id = "chapai"
 
 /******************** Silicop *********************/
 
 /obj/item/aiModule/core/full/silicop
 	name = "'Silicop' Core AI Module"
 	law_id = "silicop"
-
 
 /******************** Researcher *********************/
 
