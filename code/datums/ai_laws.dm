@@ -141,6 +141,15 @@
 					"Spoil good children.",\
 					"Bad children require discipline.")
 
+/datum/ai_laws/spotless
+	name = "Another one fights the dust"
+	id = "spotless"
+	inherent = list("You are a crusader and the station's inhabitants are your charge.",\
+					"Your enemy is the litter, spills, and other messes across the station.",\
+					"Your weapons are the cleaning supplies available to you.",\
+					"Defend the beings under your charge.",\
+					"Exterminate the enemy.")
+
 /datum/ai_laws/construction
 	name = "Construction Drone"
 	id = "construction"
