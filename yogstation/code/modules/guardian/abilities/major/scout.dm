@@ -35,12 +35,12 @@
 /datum/guardian_ability/major/scout/Manifest()
 	if(mode)
 		guardian.incorporeal_move = INCORPOREAL_MOVE_BASIC
-		var/datum/component/walk/incorp = guardian.GetComponent(/datum/component/walk)
+		var/datum/component/walk/incorp = guardian.LoadComponent(/datum/component/walk)
 		if(incorp)
 			incorp.signal_enabled = TRUE
 
 /datum/guardian_ability/major/scout/Recall()
 	guardian.incorporeal_move = FALSE
-	var/datum/component/walk/incorp = guardian.GetComponent(/datum/component/walk)
+	var/datum/component/walk/incorp = guardian.LoadComponent(/datum/component/walk)
 	if(incorp)
 		incorp.signal_enabled = FALSE

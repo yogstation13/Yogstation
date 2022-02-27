@@ -39,7 +39,7 @@
 				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
 			removed(target, TRUE)
 			return FALSE
-		if(target.mind.has_antag_datum(/datum/antagonist/gang/boss) || is_shadow_or_thrall(target))
+		if(target.mind.has_antag_datum(/datum/antagonist/gang/boss) || is_shadow_or_thrall(target) || target.mind.has_antag_datum(/datum/antagonist/mindslave))
 			if(!silent)
 				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
 			removed(target, TRUE)
@@ -71,8 +71,6 @@
 			target.mind.remove_antag_datum(/datum/antagonist/gang)
 		if(target.mind.has_antag_datum(/datum/antagonist/veil))
 			target.mind.remove_antag_datum(/datum/antagonist/veil)
-		if(target.mind.has_antag_datum(/datum/antagonist/mindslave))
-			target.mind.remove_antag_datum(/datum/antagonist/mindslave)
 		if(!silent)
 			if(target.mind in SSticker.mode.cult)
 				to_chat(target, span_warning("You feel something interfering with your mental conditioning, but you resist it!"))

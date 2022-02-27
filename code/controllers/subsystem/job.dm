@@ -557,7 +557,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/random_bar_init()
 	var/list/player_box = list()
 	for(var/mob/H in GLOB.player_list)
-		if(H.client)
+		if(H.client && H.client.prefs) // Prefs was null once and there was no bar
 			player_box += H.client.prefs.bar_choice
 
 	var/choice
@@ -596,6 +596,19 @@ SUBSYSTEM_DEF(job)
 		log_game("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
 		return
 
+	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+		template.load(B.loc, centered = FALSE)
+		qdel(B)
+
+/proc/spawn_bar()
+	var/datum/map_template/template
+	for(var/backup_bar in GLOB.potential_box_bars)
+		template = SSmapping.station_room_templates[backup_bar]
+		if(!isnull(template))
+			break
+	if(isnull(template))
+		message_admins("UNABLE TO SPAWN BAR")
+	
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)

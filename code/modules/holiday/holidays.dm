@@ -93,7 +93,7 @@
 /datum/holiday/valentines
 	name = VALENTINES
 	begin_day = 13
-	end_day = 17
+	end_day = 15
 	begin_month = FEBRUARY
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=cEwZpejd4rM", // Charlie Wilson - Forever Valentine
@@ -585,7 +585,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=kfZtNVEqsBs",  // Christopher Lee - Jingle Hell
 		"https://soundcloud.com/garym03062/beacons-in-the-darkness",	// Gary McGath - Beacons in the Darkness
 		"https://www.youtube.com/watch?v=KGEfBop0nkI",	// Julia Ecklar - "Christmastime in Sector 5" - "Little Drummer Boy"
-		"https://www.youtube.com/watch?v=1twga61Kd14"	// Julia Ecklar - #1 - Christmas Time
+		"https://www.youtube.com/watch?v=1twga61Kd14",	// Julia Ecklar - #1 - Christmas Time
+		"https://www.youtube.com/watch?v=imjMjnczqkU"	// Pete Gold - Ive Been a Bad Boy
 		)
 
 /datum/holiday/xmas/greet()

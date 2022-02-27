@@ -381,11 +381,15 @@
 /obj/item/projectile/magic/spellblade
 	name = "blade energy"
 	icon_state = "lavastaff"
-	damage = 15
+	damage = 20
 	damage_type = BURN
 	flag = "magic"
 	dismemberment = 50
 	nodamage = FALSE
+
+/obj/item/projectile/magic/spellblade/weak
+	damage = 15
+	dismemberment = 20
 
 /obj/item/projectile/magic/arcane_barrage
 	name = "arcane bolt"

@@ -35,6 +35,8 @@
 	var/list/datum/symptom/possible_symptoms = list()
 	for(var/symptom in subtypesof(/datum/symptom))
 		var/datum/symptom/S = symptom
+		if(!initial(S.naturally_occuring))
+			continue
 		if(initial(S.level) > max_level)
 			continue
 		if(initial(S.level) <= 0) //unobtainable symptoms
