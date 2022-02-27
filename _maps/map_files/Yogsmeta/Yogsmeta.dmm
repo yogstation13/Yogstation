@@ -64734,6 +64734,10 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"dKR" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/turf/open/space/basic,
+/area/space/nearstation)
 "dKX" = (
 /obj/machinery/shower{
 	dir = 8;
@@ -72716,11 +72720,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"maW" = (
-/obj/structure/grille,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "mcD" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -73412,9 +73411,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"nbR" = (
-/turf/open/space,
-/area/space/nearstation)
 "ncC" = (
 /obj/structure/table,
 /obj/item/stock_parts/subspace/treatment,
@@ -75429,6 +75425,11 @@
 /obj/machinery/rnd/production/techfab/department/service,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"pjR" = (
+/obj/structure/grille,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "pjT" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -76984,6 +76985,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"qGY" = (
+/turf/open/space,
+/area/space/nearstation)
 "qHF" = (
 /obj/structure/table/glass,
 /obj/item/clothing/glasses/meson,
@@ -127957,7 +127961,7 @@ aaa
 aaa
 aaa
 aaa
-nbR
+qGY
 aaf
 aaa
 aaa
@@ -128197,7 +128201,7 @@ uBz
 uBz
 uBz
 lMJ
-eaC
+aaa
 lMJ
 aaa
 aaa
@@ -128934,7 +128938,7 @@ qNp
 aWH
 dgi
 lnT
-dgO
+dKR
 aZn
 dgO
 xZK
@@ -135112,7 +135116,7 @@ aaf
 aaf
 aag
 aaa
-maW
+pjR
 aaa
 aaa
 aaa
