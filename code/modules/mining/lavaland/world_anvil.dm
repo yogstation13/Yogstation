@@ -77,7 +77,7 @@
 			qdel(gun)
 			forge_charges--
 			used_magmite++
-			to_chat(user,"You forge the kinetic accelerator together with the plasma magmite to form a mega kinetic accelerator.")
+			to_chat(user,"Harsh tendrils wrap around the kinetic accelerator, consuming the plasma magmite to form a mega kinetic accelerator.")
 		if(istype(I,/obj/item/gun/energy/plasmacutter/adv) && forge_charges && used_magmite < magmite_amount)
 			var/obj/item/gun/energy/plasmacutter/adv/gun = I
 			if(gun.name != "advanced plasma cutter")
@@ -92,7 +92,7 @@
 			qdel(gun)
 			forge_charges--
 			used_magmite++
-			to_chat(user,"You forge the advanced plasma cutter together with the plasma magmite to form a mega plasma cutter.")
+			to_chat(user,"Harsh tendrils wrap around the plasma cutter, consuming the plasma magmite to form a mega plasma cutter.")
 	//time to clean up all the magmite we used
 	for(var/obj/item/magmite in placed_objects)
 		if(used_magmite)

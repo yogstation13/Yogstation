@@ -153,6 +153,7 @@
 
 /obj/item/gun/energy/kinetic_accelerator/mega
 	name = "mega proto-kinetic accelerator"
+	icon_state = "kineticgun_m"
 	desc = "A self recharging, ranged mining tool that does increased damage in low pressure. This one has been enhanced with plasma magmite."
 	max_mod_capacity = 120
 
