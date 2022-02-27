@@ -395,15 +395,6 @@
 			backpack_contents = list(/obj/item/reagent_containers/glass/beaker/unholywater = 1, /obj/item/cult_shift = 1, /obj/item/flashlight/flare/culttorch = 1, /obj/item/stack/sheet/runed_metal = 15)
 	. = ..()
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/death()
-	. = ..()
-	GLOB.bloodmen_list -= src
-	return
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/Initialize()
-	. = ..()
-	GLOB.bloodmen_list += src
-	return
-
 //Bloodman
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman
 	name = "bloodman"
@@ -418,6 +409,16 @@
 	health = 30 //dont want crew to have a hard time killing actual fodder
 	loot = null
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
+
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/Initialize()
+	. = ..()
+	GLOB.bloodmen_list += src
+	return
+
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/death()
+	. = ..()
+	GLOB.bloodmen_list -= src
+	return
 
 //Bloodling
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
