@@ -211,17 +211,6 @@
 				infest(H)
 	..()
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/Life()
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
-	if(isturf(loc))
-		for(var/mob/living/carbon/human/M in view(src,1))
-			if(M.stat == DEAD && GLOB.bloodmen_list.len <= 2) //max of 3 bloodmen to minimize shitshows
-				L = new(M.loc)
-				L.stored_mob = M
-				M.forceMove(L)
-				qdel(src)
-	..() //couldnt figure out how to make infesting work without getting duplicate def errors so just doing this
-
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/proc/infest(mob/living/carbon/human/H)
 	visible_message(span_warning("[name] burrows into the flesh of [H]!"))
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
@@ -447,3 +436,14 @@
 	melee_damage_upper = 2 //fodder isnt supposed to be strong
 	attacktext = "gnashes at"
 	stat_attack = DEAD
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/Life()
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
+	if(isturf(loc))
+		for(var/mob/living/carbon/human/M in view(src,1))
+			if(M.stat == DEAD && GLOB.bloodmen_list.len <= 2) //max of 3 bloodmen to minimize shitshows
+				L = new(M.loc)
+				L.stored_mob = M
+				M.forceMove(L)
+				qdel(src)
+	..() //couldnt figure out how to make infesting work without getting duplicate def errors so just doing this
