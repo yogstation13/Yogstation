@@ -1,0 +1,4 @@
+author: "MenacingManatee"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a lawset that describes the game in a meta sense"
