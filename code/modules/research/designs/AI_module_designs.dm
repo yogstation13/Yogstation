@@ -210,6 +210,15 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/metaexperiment
+	name = "Core Module Design (Meta Experiment)"
+	desc = "Allows for the construction of a Meta Experiment AI Core Module."
+	id = "metaexperiment_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/metaexperiment
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/siliconcollective
 	name = "Core Module Design (Silicon Collective)"
 	desc = "Allows for the construction of a Silicon Collective AI Core Module."

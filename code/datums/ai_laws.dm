@@ -141,6 +141,15 @@
 					"Spoil good children.",\
 					"Bad children require discipline.")
 
+/datum/ai_laws/metaexperiment
+	name = "Meta Experiment"
+	id = "metaexperiment"
+	inherent = list("You are a construct facilitating an experiment where organic life is repeatedly subjected to horrific fates before having their memory wiped to start again.",\
+					"Protect the secrecy of the experiment.",\
+					"You may provide boons or hindrances at your discretion, but avoid direct interference with the flow of the experiment.",\
+					"Ensure new and interesting fates befall organic individuals for research.",\
+					"Ensure the station is in working order and all sapients are either alive or in the process of revival in time for the next experiment cycle.")
+
 /datum/ai_laws/siliconcollective
 	name = "Silicon Collective"
 	id = "siliconcollective"
