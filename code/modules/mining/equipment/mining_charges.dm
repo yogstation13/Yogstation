@@ -20,6 +20,16 @@
 	else
 		to_chat(user,span_warning("The charge only works on rocks!"))
 
-/obj/item/grenade/deconstruct(disassembled = TRUE) //no gibbing a miner with pda bombs
+/obj/item/grenade/plastic/miningcharge/prime()
+	for(var/turf/closed/mineral/rock in orange(boom_sizes[3],src))
+		var/distance = get_dist(src,rock)
+		if(distance <= boom_sizes[1])
+			rock.attempt_drill(null,TRUE,3)
+		else if (distance <= boom_sizes[2])
+			rock.attempt_drill(null,TRUE,2)
+		else if (distance <= boom_sizes[3])
+			rock.attempt_drill(null,TRUE,1)
+			
+/obj/item/grenade/plastic/miningcharge/deconstruct(disassembled = TRUE) //no gibbing a miner with pda bombs
 	if(!QDELETED(src))
 		qdel(src)
