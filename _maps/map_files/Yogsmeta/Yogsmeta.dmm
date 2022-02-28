@@ -67338,19 +67338,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
-"gsb" = (
-/obj/structure/rack,
-/obj/item/lightreplacer{
-	pixel_y = 7
-	},
-/obj/machinery/status_display/supply{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "gsA" = (
 /obj/structure/sign/directions/engineering{
 	dir = 4;
@@ -69754,6 +69741,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"jhk" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/machinery/computer/rdconsole/production{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "jhQ" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
@@ -69990,19 +69990,6 @@
 /obj/effect/landmark/start/head_of_personnel,
 /turf/open/floor/carpet,
 /area/bridge)
-"jsE" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 4
-	},
-/obj/machinery/computer/rdconsole/production{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "jty" = (
 /obj/structure/chair{
 	dir = 4
@@ -71519,6 +71506,19 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"kQC" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/machinery/rnd/production/protolathe/department/engineering,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "kQY" = (
 /obj/structure/rack,
 /obj/item/radio/off,
@@ -73311,19 +73311,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"mTm" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 4
-	},
-/obj/machinery/rnd/production/protolathe/department/engineering,
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "mTv" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -75184,19 +75171,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"oWY" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 4
-	},
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/item/storage/belt/utility,
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "oXa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -77241,6 +77215,19 @@
 /obj/machinery/door/poddoor/shutters,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"qVU" = (
+/obj/structure/rack,
+/obj/item/lightreplacer{
+	pixel_y = 7
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 5
+	},
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "qWj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -78393,6 +78380,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"sqW" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 6
+	},
+/obj/machinery/rnd/production/circuit_imprinter,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "src" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -80267,16 +80264,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"ukK" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 6
-	},
-/obj/machinery/rnd/production/circuit_imprinter,
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "ukR" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 4
@@ -83719,6 +83706,19 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/closed/wall,
 /area/maintenance/port/fore)
+"xNk" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/storage/belt/utility,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "xNl" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -126611,11 +126611,11 @@ dfp
 kXl
 aTN
 axY
-gsb
-oWY
-jsE
-mTm
-ukK
+qVU
+xNk
+jhk
+kQC
+sqW
 msD
 rqn
 kXD
