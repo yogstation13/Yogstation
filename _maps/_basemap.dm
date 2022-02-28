@@ -8,7 +8,7 @@
 		#include "map_files\mining\Icemoon.dmm"
 		#include "map_files\mining\IcemoonUnderground.dmm"
 		#include "map_files\debug\runtimestation.dmm"
-		#include "map_files\YogsBox\Yogsbox.dmm"
+		#include "map_files\YogStation\Yogstation.dmm"
 		#include "map_files\YogsMeta\YogsMeta.dmm"
 		#include "map_files\YogsDelta\YogsDelta.dmm"
 		#include "map_files\EclipseStation\EclipseStation.dmm"
