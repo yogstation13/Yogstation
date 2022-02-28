@@ -62346,18 +62346,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"dcB" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/item/storage/belt/utility,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "dcD" = (
 /obj/machinery/reagentgrinder{
 	pixel_x = -1;
@@ -67958,6 +67946,19 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
+"hgn" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/storage/belt/utility,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "hhg" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -68064,17 +68065,6 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "hkq" = (
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
-"hkI" = (
-/obj/machinery/rnd/production/protolathe/department/engineering,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
 "hla" = (
@@ -71901,6 +71891,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"lmr" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/machinery/rnd/production/circuit_imprinter,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "lmt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -71926,17 +71927,6 @@
 "lnc" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"lnH" = (
-/obj/machinery/rnd/production/circuit_imprinter,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "lnT" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -77282,21 +77272,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"qZq" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 4
-	},
-/obj/machinery/computer/rdconsole/production{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "qZA" = (
 /obj/machinery/meter,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -77995,6 +77970,18 @@
 	},
 /turf/closed/wall,
 /area/maintenance/port/aft)
+"rLP" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 6
+	},
+/obj/machinery/computer/rdconsole/production{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "rMg" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
@@ -79379,6 +79366,19 @@
 	},
 /turf/open/floor/plating,
 /area/engine/foyer)
+"tnN" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/machinery/rnd/production/protolathe/department/engineering,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "tnW" = (
 /obj/machinery/recharge_station,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -126612,10 +126612,10 @@ kXl
 aTN
 axY
 gsb
-lnH
-hkI
-qZq
-dcB
+hgn
+lmr
+tnN
+rLP
 msD
 rqn
 kXD
