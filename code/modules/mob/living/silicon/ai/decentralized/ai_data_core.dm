@@ -146,6 +146,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		add_overlay(on_overlay)
 
 /obj/machinery/ai/data_core/proc/partytime()
+	if(TimerID)
+		return 0
 	var/current_color = random_color()
 	set_light(7, 3, current_color)
 	TimerID = addtimer(CALLBACK(src, .proc/partytime), 0.5 SECONDS, TIMER_STOPPABLE)
