@@ -187,6 +187,10 @@
 /turf/open/proc/equalize_pressure_in_zone(cyclenum)
 /turf/open/proc/consider_firelocks(turf/T2)
 	var/reconsider_adj = FALSE
+	for(var/obj/machinery/atmospherics/components/unary/vent_pump/stopped in T2)
+		stopped.on = FALSE
+	for(var/obj/machinery/atmospherics/components/unary/vent_pump/stopped in src)
+		stopped.on = FALSE
 	for(var/obj/machinery/door/firedoor/FD in T2)
 		/*if((FD.flags_1 & ON_BORDER_1) && get_dir(T2, src) != FD.dir)
 			continue*/
