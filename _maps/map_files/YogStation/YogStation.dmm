@@ -49125,16 +49125,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"nIU" = (
-/obj/machinery/doorButtons/airlock_controller{
-	idExterior = "ai_core_airlock_exterior";
-	idInterior = "ai_core_airlock_interior";
-	idSelf = "ai_core_airlock_control";
-	pixel_x = 5;
-	pixel_y = 25
-	},
-/turf/closed/wall/r_wall,
-/area/ai_monitored/turret_protected/ai)
 "nJj" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -108007,7 +107997,7 @@ tgv
 tgv
 tgv
 cva
-nIU
+cva
 uUP
 cva
 cva
