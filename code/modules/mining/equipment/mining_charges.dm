@@ -21,14 +21,17 @@
 		to_chat(user,span_warning("The charge only works on rocks!"))
 
 /obj/item/grenade/plastic/miningcharge/prime()
-	for(var/turf/closed/mineral/rock in orange(boom_sizes[3],src))
-		var/distance = get_dist(src,rock)
+	var/turf/closed/mineral/location = get_turf(target)
+	location.attempt_drill(null,TRUE,3) //orange says it doesnt include the actual middle
+	for(var/turf/closed/mineral/rock in orange(boom_sizes[3],location))
+		var/distance = get_dist(location,rock)
 		if(distance <= boom_sizes[1])
 			rock.attempt_drill(null,TRUE,3)
 		else if (distance <= boom_sizes[2])
 			rock.attempt_drill(null,TRUE,2)
 		else if (distance <= boom_sizes[3])
 			rock.attempt_drill(null,TRUE,1)
+	qdel(src)
 			
 /obj/item/grenade/plastic/miningcharge/deconstruct(disassembled = TRUE) //no gibbing a miner with pda bombs
 	if(!QDELETED(src))
