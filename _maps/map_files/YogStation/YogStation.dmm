@@ -44864,6 +44864,19 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"kZX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen{
+	pixel_x = -4
+	},
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "laH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -45965,19 +45978,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"lJp" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
-/obj/item/pen{
-	pixel_x = -4
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "lKf" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/closed/wall/r_wall,
@@ -49699,6 +49699,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"ocq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/weightmachine/stacklifter,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "ocv" = (
 /obj/effect/landmark/stationroom/maint/fivexfour,
 /turf/template_noop,
@@ -56350,11 +56355,6 @@
 "rYO" = (
 /turf/template_noop,
 /area/maintenance/starboard)
-"rZf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "rZt" = (
 /turf/closed/wall,
 /area/medical/paramedic)
@@ -58087,6 +58087,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"tiF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/weightmachine/weightlifter,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "tiN" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -93742,7 +93747,7 @@ aVF
 aVF
 bac
 aat
-aat
+ocq
 aat
 bay
 acd
@@ -93998,9 +94003,9 @@ aaM
 aaM
 aaM
 bad
-baa
-lJp
-baa
+aat
+tiF
+aat
 baB
 acf
 abB
@@ -94513,7 +94518,7 @@ aaM
 aaM
 bad
 baa
-rZf
+kZX
 baa
 abF
 acd
