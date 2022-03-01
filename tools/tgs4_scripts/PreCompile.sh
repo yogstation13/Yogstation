@@ -71,7 +71,7 @@ apt-get install -y build-essential g++-multilib libc6-i386 libstdc++6:i386
 # Update auxmos
 if [ ! -d "auxmos" ]; then
 	echo "Cloning auxmos..."
-	git clone https://github.com/Putnam3145/auxmos
+	git clone https://github.com/yogstation13/auxmos
 	cd auxmos
 	~/.cargo/bin/rustup target add i686-unknown-linux-gnu
 else
