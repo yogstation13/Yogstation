@@ -1,6 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - rscadd: "Added a ceremonial Rod of Asclepius, which is just a toy with the sprites from the regular one"
-  - rscadd: "Added a display case stores a ceremonial rod in the CMO's office"
-  - tweak: "being turned into Asclepius's Snake now forces you back into your body"
