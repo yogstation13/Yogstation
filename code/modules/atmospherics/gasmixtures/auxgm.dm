@@ -99,6 +99,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 			if(gas.fire_products)
 				fire_products[g] = gas.fire_products
 			enthalpies[g] = gas.enthalpy
+		_auxtools_register_gas(gas)
 
 /proc/finalize_gas_refs()
 
