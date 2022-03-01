@@ -35,20 +35,10 @@ nobliumformation = 1001
 			continue
 		reaction = new r
 		. += reaction
-	sortTim(., /proc/cmp_gas_reactions)
+	sortTim(., /proc/cmp_gas_reaction)
 
-/proc/cmp_gas_reactions(list/datum/gas_reaction/a, list/datum/gas_reaction/b) // compares lists of reactions by the maximum priority contained within the list
-	if (!length(a) || !length(b))
-		return length(b) - length(a)
-	var/maxa
-	var/maxb
-	for (var/datum/gas_reaction/R in a)
-		if (R.priority > maxa)
-			maxa = R.priority
-	for (var/datum/gas_reaction/R in b)
-		if (R.priority > maxb)
-			maxb = R.priority
-	return maxb - maxa
+/proc/cmp_gas_reaction(datum/gas_reaction/a, datum/gas_reaction/b) // compares lists of reactions by the maximum priority contained within the list
+	return b.priority - a.priority
 
 /datum/gas_reaction
 	//regarding the requirements lists: the minimum or maximum requirements must be non-zero.
@@ -85,20 +75,25 @@ nobliumformation = 1001
 	id = "vapor"
 
 /datum/gas_reaction/water_vapor/init_reqs()
-	min_requirements = list(GAS_H2O = MOLES_GAS_VISIBLE)
+	min_requirements = list(
+		GAS_H2O = MOLES_GAS_VISIBLE, 
+		"MAX_TEMP" = T0C + 40
+	)
 
 /datum/gas_reaction/water_vapor/react(datum/gas_mixture/air, datum/holder)
-	var/turf/open/location = isturf(holder) ? holder : null
-	. = NO_REACTION
+	var/turf/open/location = holder
+	if(!istype(location))
+		return NO_REACTION
 	if (air.return_temperature() <= WATER_VAPOR_FREEZE)
 		if(location && location.freon_gas_act())
-			. = REACTING
+			return REACTING
 	else if(location && location.water_vapor_gas_act())
-		air.adjust_moles(GAS_H2O, -MOLES_GAS_VISIBLE)
-		. = REACTING
+		air.adjust_moles(GAS_H2O,-MOLES_GAS_VISIBLE)
+		return REACTING
 
 /datum/gas_reaction/nitrous_decomp
 	priority = 0
+	exclude = TRUE // generic fire now takes care of this
 	name = "Nitrous Oxide Decomposition"
 	id = "nitrous_decomp"
 
@@ -133,6 +128,7 @@ nobliumformation = 1001
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/tritfire
 	priority = -1 //fire should ALWAYS be last, but tritium fires happen before plasma fires
+	exclude = TRUE // generic fire now takes care of this
 	name = "Tritium Combustion"
 	id = "tritfire"
 
@@ -222,6 +218,7 @@ nobliumformation = 1001
 	priority = -2 //fire should ALWAYS be last, but plasma fires happen after tritium fires
 	name = "Plasma Combustion"
 	id = "plasmafire"
+	exclude = TRUE // generic fire now takes care of this
 
 /datum/gas_reaction/plasmafire/init_reqs()
 	min_requirements = list(
@@ -348,7 +345,7 @@ nobliumformation = 1001
 			fuels[fuel] *= oxidation_ratio
 	fuels += oxidizers
 	var/list/fire_products = GLOB.gas_data.fire_products
-	var/list/fire_enthalpies = GLOB.gas_data.fire_enthalpies
+	var/list/fire_enthalpies = GLOB.gas_data.enthalpies
 	for(var/fuel in fuels + oxidizers)
 		var/amt = fuels[fuel]
 		if(!burn_results[fuel])
@@ -707,6 +704,7 @@ nobliumformation = 1001
 /datum/gas_reaction/h2fire
 	priority = -3 //fire should ALWAYS be last, but tritium fires happen before plasma fires
 	name = "Hydrogen Combustion"
+	exclude = TRUE // generic fire now takes care of this
 	id = "h2fire"
 
 /datum/gas_reaction/h2fire/init_reqs()

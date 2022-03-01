@@ -59,13 +59,14 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		return TRUE
 	return ..()
 
+//NOTE: See /obj/machinery/status_display/examine in ai_core_display.dm
 /obj/machinery/ai/data_core/examine(mob/user)
 	. = ..()
 	if(!isobserver(user))
 		return
 	. += "<b>Networked AI Laws:</b>"
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
-		var/active_status = ""
+		var/active_status = "(Core: [FOLLOW_LINK(user, AI.loc)], Eye: [FOLLOW_LINK(user, AI.eyeobj)])"
 		if(!AI.mind && AI.deployed_shell)
 			active_status = "(Controlling [FOLLOW_LINK(user, AI.deployed_shell)][AI.deployed_shell.name])"
 		else if(!AI.mind)
