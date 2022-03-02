@@ -104,7 +104,7 @@
 	buckle_lying = 180
 	Ghost_desc = "This is a Vassal rack, which allows Bloodsuckers to thrall crewmembers into loyal minions."
 	Vamp_desc = "This is the Vassal rack, which allows you to thrall crewmembers into loyal minions in your service.\n\
-		Simply click and hold on a victim, and then drag their sprite on the vassal rack. Right-click on the vassal rack to unbuckle them.\n\
+		Simply click and hold on a victim, and then drag their sprite on the vassal rack. Click on help intent on the vassal rack to unbuckle them.\n\
 		To convert into a Vassal, repeatedly click on the persuasion rack. The time required scales with the tool in your off hand. This costs Blood to do.\n\
 		Once you have Vassals ready, you are able to select a Favorite Vassal;\n\
 		Click the Rack as a Vassal is buckled onto it to turn them into your Favorite. This can only be done once, so choose carefully!\n\
@@ -161,20 +161,6 @@
 	use_lock = FALSE
 
 /// Attempt Release (Owner vs Non Owner)
-/obj/structure/bloodsucker/vassalrack/MouseDrop(mob/user, modifiers)
-	. = ..()
-	if(!user.canUseTopic(src, BE_CLOSE))
-		return
-	if(!has_buckled_mobs() || !isliving(user) || use_lock)
-		return
-	var/mob/living/carbon/buckled_carbons = pick(buckled_mobs)
-	if(buckled_carbons)
-		if(user == owner)
-			unbuckle_mob(buckled_carbons)
-		else
-			user_unbuckle_mob(buckled_carbons, user)
-
-/// Attempt Buckle
 /obj/structure/bloodsucker/vassalrack/proc/attach_victim(mob/living/target, mob/living/user)
 	// Standard Buckle Check
 	target.forceMove(get_turf(src))
@@ -205,8 +191,8 @@
 			)
 		else
 			buckled_mob.visible_message(
-				span_danger("[user] tries to pull [buckled_mob] rack!"),
-				span_danger("[user] tries to pull [buckled_mob] rack!"),
+				span_danger("[user] tries to pull [buckled_mob] from the rack!"),
+				span_danger("[user] tries to pull [buckled_mob] from the rack!"),
 				span_hear("You hear a squishy wet noise."),
 			)
 		// Monster hunters are used to this sort of stuff, they know how they work, which includes breaking others out
@@ -236,11 +222,14 @@
 	if(use_lock || !has_buckled_mobs())
 		return FALSE
 	var/mob/living/carbon/buckled_carbons = pick(buckled_mobs)
-	/// If I'm not a Bloodsucker, try to unbuckle them.
-	if(!istype(bloodsuckerdatum))
-		return
 	if(user.a_intent == INTENT_HELP)
-		return
+		if(istype(bloodsuckerdatum))
+			unbuckle_mob(buckled_carbons)
+			return FALSE
+		else
+			user_unbuckle_mob(buckled_carbons, user)
+			return
+	/// If I'm not a Bloodsucker, try to unbuckle them.
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(buckled_carbons)
 	// Are they our Vassal, or Dead?
 	if(istype(vassaldatum) && vassaldatum.master == bloodsuckerdatum || buckled_carbons.stat >= DEAD)
@@ -490,14 +479,6 @@
 	. = ..()
 	anchored = FALSE
 	density = FALSE
-
-/obj/structure/bloodsucker/candelabrum/MouseDrop(mob/user, modifiers)
-	. = ..()
-	if(!has_buckled_mobs() || !isliving(user))
-		return
-	var/mob/living/carbon/target = pick(buckled_mobs)
-	if(target)
-		unbuckle_mob(target, user)
 
 /obj/structure/bloodsucker/candelabrum/proc/toggle(mob/user)
 	lit = !lit

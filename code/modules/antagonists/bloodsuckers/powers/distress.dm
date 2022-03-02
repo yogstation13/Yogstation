@@ -15,7 +15,7 @@
 	var/turf/open/floor/target_area = get_area(owner)
 	var/datum/antagonist/vassal/vassaldatum = owner.mind.has_antag_datum(/datum/antagonist/vassal)
 
-	to_chat(owner, "you call out for your master!")
+	to_chat(owner, "You call out for your master!")
 	to_chat(vassaldatum.master.owner, "<span class='userdanger'>[owner], your loyal Vassal, is desperately calling for aid at [target_area]!</span>")
 
 	var/mob/living/user = owner

@@ -277,7 +277,7 @@
 	title = "the Archive of the Kindred"
 	desc = "Cryptic documents explaining hidden truths behind Undead beings. It is said only Curators can decipher what they really mean."
 	icon = 'icons/obj/vamp_obj.dmi'
-	lefthand_file = 'icons/mob/inhands/antag/bs_rightinhand.dmi'
+	lefthand_file = 'icons/mob/inhands/antag/bs_leftinhand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/bs_rightinhand.dmi'
 	icon_state = "kindred_book"
 	author = "dozens of generations of Curators"
