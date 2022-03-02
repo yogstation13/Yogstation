@@ -1969,7 +1969,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		ToggleFlight(H)
 		flyslip(H)
 	. = stunmod * H.physiology.stun_mod * amount
-	stop_wagging_tail(H)
 
 //////////////
 //Space Move//
@@ -1990,7 +1989,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 ////////////////
 
 /datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
-	if(H.IsParalyzed() || H.IsStun())
+	if(H.IsParalyzed())
 		return FALSE
 	return (H.getorganslot(ORGAN_SLOT_TAIL))
 
