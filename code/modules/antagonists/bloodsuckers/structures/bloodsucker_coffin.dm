@@ -16,7 +16,7 @@
 	coffin = claimed
 	lair = get_area(claimed)
 	to_chat(owner, span_userdanger("You have claimed the [claimed] as your place of immortal rest! Your lair is now [lair]."))
-	to_chat(owner, span_announce("Bloodsucker Tip: Find new lair recipes in the Misc tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Vassals."))
+	to_chat(owner, span_announce("Bloodsucker Tip: Find new lair recipes in the tribal tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Vassals."))
 	return TRUE
 
 /// From crate.dm

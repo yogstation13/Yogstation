@@ -238,7 +238,8 @@
 	var/mob/living/carbon/buckled_carbons = pick(buckled_mobs)
 	/// If I'm not a Bloodsucker, try to unbuckle them.
 	if(!istype(bloodsuckerdatum))
-		user_unbuckle_mob(buckled_carbons, user)
+		return
+	if(user.a_intent == INTENT_HELP)
 		return
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(buckled_carbons)
 	// Are they our Vassal, or Dead?
