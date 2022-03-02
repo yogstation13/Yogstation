@@ -35,6 +35,9 @@
 	var/req_one_access_txt = "0"
 
 	var/renamedByPlayer = FALSE //set when a player uses a pen on a renamable object
+	
+	var/required_skill = SKILL_STRENGTH // Skill that allows people to use this obj
+	var/required_skill_level = SKILLLEVEL_UNSKILLED // Skill level of required_skill that allows people to use this obj
 
 /obj/vv_edit_var(vname, vval)
 	switch(vname)

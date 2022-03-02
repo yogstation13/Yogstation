@@ -70,8 +70,11 @@
 
 	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
 
+	// If this job uses skills
 	var/uses_skills = TRUE
+	// The base number of skill points this job gets
 	var/skillpoints = 30
+	// The skill list that is used when no custom one is made
 	var/list/default_skill_list = list(
 		SKILL_STRENGTH = SKILLLEVEL_UNSKILLED,
 		SKILL_DEXTERITY = SKILLLEVEL_UNSKILLED,
@@ -96,6 +99,10 @@
 		SKILL_MECHANICS = SKILLLEVEL_UNSKILLED,
 		SKILL_IT = SKILLLEVEL_UNSKILLED,
 		SKILL_ATMOSPHERICS = SKILLLEVEL_UNSKILLED)
+	// A list of minimum skill levels indexed by the coresponding skill ID 
+	var/list/minimum_skill_list = list()
+	// A list of maximum skill levels indexed by the coresponding skill ID 
+	var/list/maximum_skill_list = list()
 
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum

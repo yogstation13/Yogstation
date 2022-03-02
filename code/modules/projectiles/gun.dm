@@ -72,12 +72,11 @@
 	var/recent_shoot = null //time of the last shot with the gun. Used to track if firing happened for feedback out of all things
 
 	//Yogs: Skill stuff
-	var/use_skill = SKILL_RANGED_WEAPONS	//What skill is used for the calculations
-	var/required_skilllevel = SKILLLEVEL_UNSKILLED	//What skill level is the minimum needed to fire this gun? Leave as it is to allow everyone to use it
-	var/list/skill_accuracy_curve = list(SKILLLEVEL_UNSKILLED = 0,	//List of additional spread for each skill level. This is filled out so admins can easly bus changes.
-										SKILLLEVEL_BASIC = 0,
-										SKILLLEVEL_TRAINED = 0,
-										SKILLLEVEL_EXPERIENCED = 0,
+	required_skill = SKILL_RANGED_WEAPONS
+	var/list/skill_accuracy_curve = list(SKILLLEVEL_UNSKILLED = 20,	//List of additional spread for each skill level.
+										SKILLLEVEL_BASIC = 10,
+										SKILLLEVEL_TRAINED = 5,
+										SKILLLEVEL_EXPERIENCED = 3,
 										SKILLLEVEL_MASTER = 0)
 
 /obj/item/gun/Initialize()
@@ -253,9 +252,9 @@
 				addtimer(CALLBACK(G, /obj/item/gun.proc/process_fire, target, user, TRUE, params, null, bonus_spread), loop_counter)
 
 	//Yogs: Skill requirements and spread
-	if(!isnull(use_skill))
-		var/skill_level = find_skill_level(user, use_skill)
-		if(skill_level < required_skilllevel)
+	if(!isnull(required_skill))
+		var/skill_level = find_skill_level(user, required_skill)
+		if(skill_level < required_skill_level)
 			to_chat(user, "<span class='userdanger'>You don't know how to to use \the [src]!</span>")
 			return
 		var/skill_spread = 0

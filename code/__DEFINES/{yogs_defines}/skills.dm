@@ -102,6 +102,10 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
 	SKILLLEVEL_MASTER = "slateblue"))
 
 //Skill Procs, kinda self explainitory
+
+/**
+  * Finds the skillset datum of the target mind/mob/skill
+  */
 /proc/find_skillset(target)
 	//Get the skillset from the mind
 	if(istype(target, /datum/mind))
@@ -125,6 +129,9 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
 	//No match
 	return null
 
+/**
+  * Finds the skill datum of the given skill ID from the target mind/mob/skill
+  */
 /proc/find_skill(target, skill)
 	var/results = find_skillset(target)
 	if(istype(results, /datum/skillset))
@@ -132,22 +139,18 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
 		return target_skillset.get_skill(skill)
 	return null
 
+/**
+  * Finds the skill level of the given skill ID from the target mind/mob/skill
+  */
 /proc/find_skill_level(target, skill)
-	var/results = find_skillset(target)
-	if(istype(results, /datum/skillset))
-		var/datum/skillset/target_skillset = results
+	var/datum/skillset/target_skillset = find_skillset(target)
+	if(target_skillset)
 		return target_skillset.get_skill_level(skill)
 	return null
 
-/proc/difficulty_to_text(difficulty)
-	switch(difficulty)
-		if(1)
-			return "Easy"
-		if(2)
-			return "Medium"
-		if(3)
-			return "Hard"
-
+/**
+  * Checks if the target mind/mob/skill uses skills
+  */
 /proc/usesSkills(target)
 	var/datum/skillset/target_skillset = find_skillset(target)
 	return target_skillset.use_skills == TRUE

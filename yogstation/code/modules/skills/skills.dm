@@ -1,3 +1,6 @@
+/**
+  * A datum containing the information about a specific skills
+  */
 /datum/skill
 	var/id
 	var/name
@@ -12,6 +15,12 @@
 							SKILLLEVEL_TRAINED		= "Trained Description",
 							SKILLLEVEL_EXPERIENCED	= "Experienced Description",
 							SKILLLEVEL_MASTER		= "Master Description")
+	var/list/level_base_cost = list(
+							SKILLLEVEL_UNSKILLED	= 0,
+							SKILLLEVEL_BASIC		= 1,
+							SKILLLEVEL_TRAINED		= 2,
+							SKILLLEVEL_EXPERIENCED	= 2,
+							SKILLLEVEL_MASTER		= 3)
 	var/difficulty = 1
 	var/max_starting
 	var/list/proficient_jobs
@@ -20,6 +29,9 @@
 	..()
 	parent = new_parent
 
+/**
+  * Copies the skill data to a current/new skill
+  */
 /datum/skill/proc/Copy(var/datum/skill/new_skill, var/datum/skillset/new_parent)
 	if(isnull(new_skill))
 		new_skill = new()
@@ -54,9 +66,8 @@
 	if(isnull(J) && !isnull(parent))
 		var/datum/mind/owner = parent.owner
 		J = owner.assigned_role
-	for(var/current_job in proficient_jobs)
-		if(!isnull(J) && J == job && active_difficulty > 1)
-			active_difficulty -= 1
+	if(J in proficient_jobs && active_difficulty > 1)
+		active_difficulty -= 1
 	
 	return active_difficulty
 
@@ -64,17 +75,7 @@
 	var/active_difficulty = find_active_difficulty(job)
 	if(!level)
 		level = current_level
-	switch(level)
-		if(SKILLLEVEL_UNSKILLED)
-			return 0
-		if(SKILLLEVEL_BASIC)
-			return active_difficulty
-		if(SKILLLEVEL_TRAINED, SKILLLEVEL_EXPERIENCED)
-			return 2 * active_difficulty
-		if(SKILLLEVEL_MASTER)
-			return 3 * active_difficulty
-		else
-			return 0
+	return level_base_cost[current_level] * active_difficulty
 
 /datum/skill/proc/get_full_cost(var/level, var/job = null)
 	var/total = 0

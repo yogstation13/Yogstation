@@ -56,8 +56,6 @@
 			. += span_warning("[t_He] [t_has] [hand_number > 1 ? "" : "a"] blood-stained hand[hand_number > 1 ? "s" : ""]!")
 
 	//handcuffed?
-
-	//handcuffed?
 	if(handcuffed)
 		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
 			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!")

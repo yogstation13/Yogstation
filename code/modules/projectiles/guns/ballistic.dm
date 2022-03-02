@@ -109,11 +109,11 @@
 	var/feedback_slide_close_move = TRUE // does the slide closing cause the gun to twist clockwise?
 
 	//Yogs: Skill stuff unique to ballistics, mainly reloading
-	var/list/skill_reload_delay = list(SKILLLEVEL_UNSKILLED = 0,	//List of additional time it takes to reload a cartridge for each skill level. This is filled out so admins can easly bus changes.
-									SKILLLEVEL_BASIC = 0,
-									SKILLLEVEL_TRAINED = 0,
-									SKILLLEVEL_EXPERIENCED = 0,
-									SKILLLEVEL_MASTER = 0)
+	var/list/skill_reload_delay = list(	SKILLLEVEL_UNSKILLED = 20,
+										SKILLLEVEL_BASIC = 10,
+										SKILLLEVEL_TRAINED = 5,
+										SKILLLEVEL_EXPERIENCED = 3,
+										SKILLLEVEL_MASTER = 0)
 
 /obj/item/gun/ballistic/proc/feedback(type) // checks to see if gun has that feedback type enabled then commences the animation
 	if(feedback_types[type])
@@ -252,7 +252,7 @@
 				to_chat(user, span_notice("\The [src]'s [bolt_wording] is already cocked!"))
 			return
 		bolt_locked = FALSE
-	if (user && do_after(user, 0, target = src, stayStill = FALSE, required_skill = use_skill, required_skill_level = required_skilllevel, skill_delay_scaling = skill_reload_delay))
+	if (user && do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_scaling = skill_reload_delay))
 		to_chat(user, span_notice("You rack the [bolt_wording] of \the [src]."))
 	process_chamber(!chambered, FALSE)
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
@@ -279,7 +279,7 @@
 	if(!istype(AM, mag_type))
 		to_chat(user, span_warning("\The [AM] doesn't seem to fit into \the [src]..."))
 		return FALSE
-	if(user.transferItemToLoc(AM, src) && do_after(user, 0, target = src, stayStill = FALSE, required_skill = use_skill, required_skill_level = required_skilllevel, skill_delay_scaling = skill_reload_delay))
+	if(user.transferItemToLoc(AM, src) && do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_scaling = skill_reload_delay))
 		if(reload_say && AM.ammo_count() && !get_ammo(FALSE, FALSE))
 			user.say(reload_say, forced = "reloading")
 		magazine = AM
@@ -345,7 +345,7 @@
 		return
 	if (istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_box))
 		if (bolt_type == BOLT_TYPE_NO_BOLT || internal_magazine)
-			if(do_after(user, 0, target = src, stayStill = FALSE, required_skill = use_skill, required_skill_level = required_skilllevel, skill_delay_scaling = skill_reload_delay))
+			if(do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_scaling = skill_reload_delay))
 				if (chambered && !chambered.BB)
 					chambered.forceMove(drop_location())
 					chambered = null

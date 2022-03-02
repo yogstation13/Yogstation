@@ -165,7 +165,7 @@
 		skill_data["level"] = skill.current_level
 		skill_data["difficulty"] = skill.find_active_difficulty(current_job)
 		skill_data["level_desc"] = skill.level_descriptions[skill.current_level]
-		skill_data["cost"] = skill.get_full_cost(job = current_job)
+		skill_data["cost"] = skill.get_full_cost(skill.current_level, current_job)
 		skill_data["canDecrease"] = FALSE
 		skill_data["canIncrease"] = FALSE
 		if(skillset.can_change_skill(job_datum, skill.id, skill.current_level - 1))
