@@ -16,10 +16,8 @@
 	minbodytemp = 0
 	maxbodytemp = 1500
 	healable = 0
-	attack_verb_continuous = "slices"
-	attack_verb_simple = "slice"
+	attacktext = "slices"
 	attack_sound = 'sound/effects/supermatter.ogg'
-	attack_vis_effect = ATTACK_EFFECT_CLAW
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	robust_searching = 1
 	faction = list("hostile")
@@ -27,7 +25,6 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	ventcrawler = VENTCRAWLER_ALWAYS
 	deathmessage = "falls to the ground, its shard dulling to a miserable grey!"
-	footstep_type = FOOTSTEP_MOB_CLAW
 	var/overcharged = FALSE // if true, spider will not die if it dusts a limb
 
 /mob/living/simple_animal/hostile/smspider/AttackingTarget()
