@@ -67,7 +67,7 @@
 		to_chat(user, "you take the [bait] off the fishing rod.")
 		bait = null
 
-/obj/item/fishingrod/pre_attack(atom/target, mob/living/user)
+/obj/item/fishingrod/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!fishing_turf)
 		fishing_turf = target;
 	else if(target == fishing_turf)
