@@ -144,8 +144,7 @@
 	return null
 
 /obj/structure/falsewall/examine_status(mob/user) //So you can't detect falsewalls by examine.
-	to_chat(user, span_notice("The outer plating is <b>welded</b> firmly in place."))
-	return null
+	return span_notice("The outer plating is <b>welded</b> firmly in place.")
 
 /*
  * False R-Walls
@@ -160,8 +159,7 @@
 	mineral = /obj/item/stack/sheet/plasteel
 
 /obj/structure/falsewall/reinforced/examine_status(mob/user)
-	to_chat(user, span_notice("The outer <b>grille</b> is fully intact."))
-	return null
+	return span_notice("The outer <b>grille</b> is fully intact.")
 
 /obj/structure/falsewall/reinforced/attackby(obj/item/tool, mob/user)
 	..()
@@ -298,7 +296,7 @@
 	icon = 'icons/turf/walls/iron_wall.dmi'
 	icon_state = "iron"
 	mineral = /obj/item/stack/rods
-	mineral_amount = 5
+	mineral_amount = 2
 	walltype = /turf/closed/wall/mineral/iron
 	canSmoothWith = list(/obj/structure/falsewall/iron, /turf/closed/wall/mineral/iron)
 

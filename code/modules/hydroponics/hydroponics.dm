@@ -495,6 +495,10 @@
 		mutmod = 0
 		adjustNutri(round(S.get_reagent_amount(/datum/reagent/plantnutriment/robustharvestnutriment) *1 ))
 
+	if(S.has_reagent(/datum/reagent/plantnutriment/tribalnutriment, 1))
+		mutmod = 0
+		adjustNutri(round(S.get_reagent_amount(/datum/reagent/plantnutriment/tribalnutriment) *1 ))
+
 	// Ambrosia Gaia produces earthsblood.
 	if(S.has_reagent(/datum/reagent/medicine/earthsblood))
 		self_sufficiency_progress += S.get_reagent_amount(/datum/reagent/medicine/earthsblood)
@@ -796,6 +800,7 @@
 			to_chat(user, span_warning("[src] already has seeds in it!"))
 
 	else if(istype(O, /obj/item/plant_analyzer))
+		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		if(myseed)
 			to_chat(user, "*** <B>[myseed.plantname]</B> ***" )
 			to_chat(user, "- Plant Age: [span_notice("[age]")]")

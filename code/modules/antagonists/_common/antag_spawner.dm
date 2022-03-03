@@ -3,7 +3,10 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE
-	var/discountPrice = 0 //if this is discounted, we keep track of that, for refund purposes
+
+/obj/item/antag_spawner/ComponentInitialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
 
 /obj/item/antag_spawner/proc/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	return
@@ -11,6 +14,8 @@
 /obj/item/antag_spawner/proc/equip_antag(mob/target)
 	return
 
+/obj/item/antag_spawner/proc/refund_check()
+	return !used
 
 ///////////WIZARD
 

@@ -8,7 +8,9 @@
 	//yogs start - pretty filter
 	if(isnotpretty(message))
 		to_chat(usr, span_notice("You fumble over your words. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
-		message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
+		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
+		message_admins(log_message)
+		log_say(log_message)
 		return
 	if(isliving(src))
 		message = minor_filter(to_utf8(message)) //yogs end - pretty filter
@@ -27,7 +29,9 @@
 	//yogs start - pretty filter
 	if(isnotpretty(message))
 		to_chat(usr, span_notice("You fumble over your words. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
-		message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
+		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
+		message_admins(log_message)
+		log_say(log_message)
 		return
 	message = to_utf8(minor_filter(message)) //yogs end - pretty filter
 

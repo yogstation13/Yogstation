@@ -182,12 +182,12 @@
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25) //something something determination something
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/accessory/pandora_hope/on_uniform_equip(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/pandora_hope/on_clothing_equip(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L && L.mind)
 		SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "hope_lavaland", /datum/mood_event/hope_lavaland)
 
-/obj/item/clothing/accessory/pandora_hope/on_uniform_dropped(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/pandora_hope/on_clothing_dropped(obj/item/clothing/under/U, user)
 	var/mob/living/L = user
 	if(L && L.mind)
 		SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "hope_lavaland")

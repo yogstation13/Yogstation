@@ -325,6 +325,21 @@
 		return ..()
 	return ..()
 
+////////////////////////ash resin//////////////
+/obj/structure/statue/resin
+	max_integrity = 50
+	material_drop_type = /obj/item/stack/sheet/ashresin
+	impressiveness = 20
+	desc = "A decently well done statue made of solid resin."
+
+/obj/structure/statue/resin/ashwalker
+	name = "statue of an ashwalker"
+	icon_state = "ashwalker"
+
+
+
+///////////////////other//////////////////////////
+
 /obj/structure/statue/elder_atmosian
 	name = "Elder Atmosian"
 	desc = "A statue of an Elder Atmosian, capable of bending the laws of thermodynamics to their will."

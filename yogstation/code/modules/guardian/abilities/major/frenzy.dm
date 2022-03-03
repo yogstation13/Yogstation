@@ -29,13 +29,13 @@
 	if(isliving(target) && world.time >= next_rush && guardian.is_deployed())
 		var/mob/living/L = target
 		if(guardian.summoner?.current && get_dist_euclidian(guardian.summoner.current, L) > master_stats.range)
-			to_chat(guardian, "<span class='danger italics'>[L] is out of your range!</span>")
+			to_chat(guardian, span_italics(span_danger("[L] is out of your range!")))
 			return
 		playsound(guardian, 'yogstation/sound/effects/vector_rush.ogg', 100, FALSE)
 		guardian.forceMove(get_step(get_turf(L), get_dir(L, guardian)))
 		guardian.target = L
 		guardian.AttackingTarget()
-		L.throw_at(get_edge_target_turf(L, get_dir(guardian, L)), 20, 4, guardian, TRUE)
+		L.throw_at(get_edge_target_turf(L, get_dir(guardian, L)), world.maxx / 4, 4, guardian, TRUE)
 		next_rush = world.time + 3 SECONDS
 
 /datum/guardian_ability/major/frenzy/StatusTab()
@@ -53,18 +53,18 @@
 		return
 	var/mob/living/simple_animal/hostile/guardian/G = caller
 	if(!G.is_deployed())
-		to_chat(G, "<span class='danger italics'>You are not manifested!</span>")
+		to_chat(G, span_italics(span_danger("You are not manifested!")))
 		revert_cast()
 		return
 	if(!isliving(A))
-		to_chat(G, "<span class='danger italics'>[A] is not a living thing.</span>")
+		to_chat(G, span_italics(span_danger("[A] is not a living thing.")))
 		revert_cast()
 		return
 	if(!G.stats)
 		revert_cast()
 		return
 	if(get_dist_euclidian(G.summoner?.current, A) > G.range)
-		to_chat(G, "<span class='danger italics'>[A] is out of your range!</span>")
+		to_chat(G, span_italics(span_danger("[A] is out of your range!")))
 		revert_cast()
 		return
 	remove_ranged_ability()

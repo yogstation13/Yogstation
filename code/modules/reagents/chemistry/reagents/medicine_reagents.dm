@@ -1140,29 +1140,6 @@
 	. = 1
 	..()
 
-/datum/reagent/medicine/tribalordrazine
-	name = "Tribalordrazine" //tribal version of tricord. Slightly less effective than the real stuff, and doesn't heal toxins. Doesn't heal toxins since capmix should do that.
-	description = "Has a high chance to heal brute, burn, and oxygen damage. Overdose instead causes it."
-	reagent_state = LIQUID
-	color = "#C8A5DC"
-	overdose_threshold = 30
-	taste_description = "bland gel"
-
-/datum/reagent/medicine/tribalordrazine/on_mob_life(mob/living/carbon/M)
-	if(prob(60))
-		M.adjustBruteLoss(-1*REM, 0)
-		M.adjustFireLoss(-1*REM, 0)
-		M.adjustOxyLoss(-1*REM, 0)
-		. = 1
-	..()
-
-/datum/reagent/medicine/tribalordrazine/overdose_process(mob/living/M)
-	M.adjustOxyLoss(2*REM, 0)
-	M.adjustBruteLoss(2*REM, FALSE, FALSE, BODYPART_ORGANIC)
-	M.adjustFireLoss(2*REM, FALSE, FALSE, BODYPART_ORGANIC)
-	..()
-	. = 1
-
 /datum/reagent/medicine/tribaldetox
 	name = "Cap Mix"
 	description = "Heals toxin damage and removes toxins in the bloodstream via vomit. Can't overdose."
@@ -1511,8 +1488,7 @@
 // helps bleeding wounds clot faster
 /datum/reagent/medicine/coagulant
 	name = "Sanguirite"
-	description = "A coagulant used to help open cuts clot faster."
-	description = "A proprietary coagulant used to help bleeding wounds clot faster."
+	description = "A proprietary coagulant used to help bleeding wounds clot faster, as well as slow organ decay."
 	reagent_state = LIQUID
 	color = "#bb2424"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
@@ -1525,11 +1501,13 @@
 	var/was_working
 
 /datum/reagent/medicine/coagulant/on_mob_metabolize(mob/living/M)
-	ADD_TRAIT(M, TRAIT_COAGULATING, /datum/reagent/medicine/coagulant)
+	ADD_TRAIT(M, TRAIT_COAGULATING, type)
+	ADD_TRAIT(M, TRAIT_PRESERVED_ORGANS, type)
 	return ..()
 
 /datum/reagent/medicine/coagulant/on_mob_end_metabolize(mob/living/M)
-	REMOVE_TRAIT(M, TRAIT_COAGULATING, /datum/reagent/medicine/coagulant)
+	REMOVE_TRAIT(M, TRAIT_COAGULATING, type)
+	REMOVE_TRAIT(M, TRAIT_PRESERVED_ORGANS, type)
 	return ..()
 
 /datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/M)

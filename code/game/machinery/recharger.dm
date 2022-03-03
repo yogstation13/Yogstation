@@ -1,7 +1,7 @@
 /obj/machinery/recharger
 	name = "recharger"
 	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "recharger0"
+	icon_state = "recharger"
 	desc = "A charging dock for energy based weaponry."
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 4
@@ -11,10 +11,8 @@
 	var/obj/item/charging = null
 	var/recharge_coeff = 1
 
-	var/icon_state_off = "rechargeroff"
-	var/icon_state_idle = "recharger0"
-	var/icon_state_charging = "recharger1"
-	var/icon_state_recharged = "recharger2"
+	/// Has a special 
+	var/icon_state_filled = null
 	var/icon_state_open = "rechargeropen"
 
 	var/static/list/allowed_devices = typecacheof(list(
@@ -50,10 +48,12 @@
 	if (new_charging)
 		START_PROCESSING(SSmachines, src)
 		use_power = ACTIVE_POWER_USE
-		update_icon(scan = TRUE)
+		if(icon_state_filled)
+			icon_state = icon_state_filled
 	else
 		use_power = IDLE_POWER_USE
-		update_icon()
+		icon_state = initial(icon_state)
+	update_icon()
 
 /obj/machinery/recharger/attackby(obj/item/G, mob/user, params)
 	if(G.tool_behaviour == TOOL_WRENCH)
@@ -94,7 +94,7 @@
 		return 1
 
 	if(anchored && !charging)
-		if(default_deconstruction_screwdriver(user, "rechargeropen", "recharger0", G))
+		if(default_deconstruction_screwdriver(user, "rechargeropen", "recharger", G))
 			return
 
 		if(panel_open && G.tool_behaviour == TOOL_CROWBAR)
@@ -125,23 +125,20 @@
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		return PROCESS_KILL
 
-	var/using_power = 0
 	if(charging)
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
 		if(C)
 			if(C.charge < C.maxcharge)
 				C.give(C.chargerate * recharge_coeff)
 				use_power(250 * recharge_coeff)
-				using_power = 1
-			update_icon(using_power)
+			update_icon()
 
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 			var/obj/item/ammo_box/magazine/recharge/R = charging
 			if(R.stored_ammo.len < R.max_ammo)
 				R.stored_ammo += new R.ammo_type(R)
 				use_power(200 * recharge_coeff)
-				using_power = 1
-			update_icon(using_power)
+			update_icon()
 			return
 	else
 		return PROCESS_KILL
@@ -162,37 +159,26 @@
 				B.cell.charge = 0
 
 
-/obj/machinery/recharger/update_icon(using_power = 0, scan)	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
-	if(stat & (NOPOWER|BROKEN) || !anchored)
-		icon_state = icon_state_off
-		pixel_x = 0
-		pixel_y = 0
-		return
-	if(scan)
-		icon_state = icon_state_idle
-		return
-	if(panel_open)
-		icon_state = icon_state_open
-		return
+/obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
+	cut_overlays()
 	if(charging)
-		if(using_power)
-			icon_state = icon_state_charging
-		else
-			icon_state = icon_state_recharged
-		return
-	icon_state = icon_state_idle
+		var/mutable_appearance/scan = mutable_appearance(icon, "[initial(icon_state)]filled")
+		var/obj/item/stock_parts/cell/C = charging.get_cell()
+		if(C)
+			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(C.charge/C.maxcharge, 0.01))
+		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
+			var/obj/item/ammo_box/magazine/recharge/R = charging
+			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(R.stored_ammo.len/R.max_ammo, 0.01))
+		add_overlay(scan)
 
 /obj/machinery/recharger/wallrecharger
 	name = "wall recharger"
 	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "wrecharger0"
+	icon_state = "wrecharger"
 	desc = "A wall mounted charging dock for energy based weaponry."
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 400
 
-	icon_state_off = "wrechargeroff"
-	icon_state_idle = "wrecharger0"
-	icon_state_charging = "wrecharger1"
-	icon_state_recharged = "wrecharger2"
+	icon_state_filled = "wrechargerweapon"
 	icon_state_open = "wrechargeropen"

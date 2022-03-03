@@ -25,6 +25,12 @@
 	results = list(/datum/reagent/consumable/ethanol/bilk/soy = 2)
 	required_reagents = list(/datum/reagent/consumable/soymilk = 1, /datum/reagent/consumable/ethanol/beer = 1)
 
+/datum/chemical_reaction/cilk
+	name = "Cilk"
+	id = /datum/reagent/consumable/cilk
+	results = list(/datum/reagent/consumable/cilk = 2)
+	required_reagents = list(/datum/reagent/consumable/milk = 1, /datum/reagent/consumable/space_cola = 1)
+
 /datum/chemical_reaction/icetea
 	name = "Iced Tea"
 	id = /datum/reagent/consumable/icetea
@@ -632,7 +638,7 @@
 	name = "Squirt Cider"
 	id = /datum/reagent/consumable/ethanol/squirt_cider
 	results = list(/datum/reagent/consumable/ethanol/squirt_cider = 1)
-	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/consumable/nutriment = 1)
+	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/consumable/nutriment = 1)
 	mix_message = "The mix swirls and turns a bright red that reminds you of an apple's skin."
 
 /datum/chemical_reaction/fringe_weaver

@@ -208,14 +208,6 @@
 	name = "Bun (Tight)"
 	icon_state = "hair_tightbun"
 
-/datum/sprite_accessory/hair/bun2
-	name = "Bun Head 2"
-	icon_state = "hair_bunhead2"
-
-/datum/sprite_accessory/hair/bun3
-	name = "Bun Head 3"
-	icon_state = "hair_bun3"
-
 /datum/sprite_accessory/hair/business
 	name = "Business Hair"
 	icon_state = "hair_business"
@@ -300,7 +292,7 @@
 	name = "Drill Hair"
 	icon_state = "hair_drillhair"
 
-/datum/sprite_accessory/hair/drillhair
+/datum/sprite_accessory/hair/drillhairruru
 	name = "Drillruru"
 	icon_state = "hair_drillruru"
 
@@ -484,7 +476,7 @@
 	name = "Mohawk (Shaved)"
 	icon_state = "hair_shavedmohawk"
 
-/datum/sprite_accessory/hair/shavedmohawk
+/datum/sprite_accessory/hair/unshavedmohawk
 	name = "Mohawk (Unshaven)"
 	icon_state = "hair_unshaven_mohawk"
 
@@ -787,6 +779,77 @@
 /datum/sprite_accessory/hair/wisp
 	name = "Wisp"
 	icon_state = "hair_wisp"
+
+/*
+/////////////////////////////////////
+/  =---------------------------=    /
+/  == Gradient Hair Definitions ==  /
+/  =---------------------------=    /
+/////////////////////////////////////
+*/
+
+/datum/sprite_accessory/hair_gradient
+	icon = 'icons/mob/hair_gradients.dmi'
+
+/datum/sprite_accessory/hair_gradient/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/hair_gradient/fadeup
+	name = "Fade Up"
+	icon_state = "fadeup"
+
+/datum/sprite_accessory/hair_gradient/fadedown
+	name = "Fade Down"
+	icon_state = "fadedown"
+
+/datum/sprite_accessory/hair_gradient/fadevertical
+	name = "Fade Vertical"
+	icon_state = "fadevertical"
+
+/datum/sprite_accessory/hair_gradient/vertical_split
+	name = "Vertical Split"
+	icon_state = "vsplit"
+
+/datum/sprite_accessory/hair_gradient/_split
+	name = "Horizontal Split"
+	icon_state = "bottomflat"
+
+/datum/sprite_accessory/hair_gradient/reflected
+	name = "Reflected"
+	icon_state = "reflected_high"
+
+/datum/sprite_accessory/hair_gradient/reflected_inverse
+	name = "Reflected Inverse"
+	icon_state = "reflected_inverse_high"
+
+/datum/sprite_accessory/hair_gradient/wavy
+	name = "Wavy"
+	icon_state = "wavy"
+
+/datum/sprite_accessory/hair_gradient/long_fade_up
+	name = "Long Fade Up"
+	icon_state = "long_fade_up"
+
+/datum/sprite_accessory/hair_gradient/long_fade_down
+	name = "Long Fade Down"
+	icon_state = "long_fade_down"
+
+/datum/sprite_accessory/hair_gradient/long_fade_vertical
+	name = "Long Fade Vertical"
+	icon_state = "long_fade_vertical"
+
+/datum/sprite_accessory/hair_gradient/short_fade_up
+	name = "Short Fade Up"
+	icon_state = "short_fade_up"
+
+/datum/sprite_accessory/hair_gradient/short_fade_down
+	name = "Short Fade Down"
+	icon_state = "short_fade_down"
+
+/datum/sprite_accessory/hair_gradient/wavy_spike
+	name = "Spiked Wavy"
+	icon_state = "wavy_spiked"
 
 /////////////////////////////
 // Facial Hair Definitions //
@@ -1701,6 +1764,14 @@
 	name = "Long"
 	icon_state = "long"
 
+/datum/sprite_accessory/horns/knight
+	name = "Knight"
+	icon_state = "knight"
+
+/datum/sprite_accessory/horns/drake
+	name = "Drake"
+	icon_state = "drake"
+
 /datum/sprite_accessory/ears
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
@@ -2034,7 +2105,7 @@
 /datum/sprite_accessory/tails/polysmorph/polys
 	name = "Polys"
 	icon_state = "polys"
-	color_src = null
+	color_src = MUTCOLORS
 
 /datum/sprite_accessory/teeth
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -2054,7 +2125,7 @@
 
 /datum/sprite_accessory/dome
 	icon = 'icons/mob/mutant_bodyparts.dmi'
-	color_src = null
+	color_src = MUTCOLORS
 
 /datum/sprite_accessory/dome/none
 	name = "None"
@@ -2078,7 +2149,7 @@
 
 /datum/sprite_accessory/dorsal_tubes
 	icon = 'icons/mob/mutant_bodyparts.dmi'
-	color_src = null
+	color_src = MUTCOLORS
 
 /datum/sprite_accessory/dorsal_tubes/none
 	name = "None"
@@ -2091,3 +2162,44 @@
 /datum/sprite_accessory/dorsal_tubes/dtdouble
 	name = "Double"
 	icon_state = "dtdouble"
+
+/datum/sprite_accessory/dorsal_tubes/dtsplit
+	name = "Split"
+	icon_state = "dtsplit"
+
+/datum/sprite_accessory/dorsal_tubes/dtdown
+	name = "Down"
+	icon_state = "dtdown"
+
+//ETHEREAL FACE MARKINGS
+/datum/sprite_accessory/ethereal_mark
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	//color_src = MUTCOLORS
+
+/datum/sprite_accessory/ethereal_mark/eyes
+	name = "Eyes"
+	icon_state = "eyes"
+
+/datum/sprite_accessory/ethereal_mark/diamond
+	name = "Diamond"
+	icon_state = "diamond"
+
+/datum/sprite_accessory/ethereal_mark/heart
+	name = "Heart"
+	icon_state = "heart"
+
+/datum/sprite_accessory/ethereal_mark/omega
+	name = "Omega"
+	icon_state = "omega"
+
+/datum/sprite_accessory/ethereal_mark/plus
+	name = "Plus"
+	icon_state = "plus"
+
+/datum/sprite_accessory/ethereal_mark/triangle
+	name = "Triangle"
+	icon_state = "triangle"
+
+/datum/sprite_accessory/ethereal_mark/x
+	name = "X"
+	icon_state = "x"

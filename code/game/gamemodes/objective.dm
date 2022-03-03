@@ -175,6 +175,13 @@ GLOBAL_LIST_EMPTY(objectives)
 		explanation_text = team_explanation_text
 
 /datum/objective/proc/give_special_equipment(special_equipment)
+	if(istype(team, /datum/team/infiltrator))
+		for(var/eq_path in special_equipment)
+			if(eq_path)
+				for(var/turf/T in GLOB.infiltrator_objective_items)
+					if(!(eq_path in T.contents))
+						new eq_path(T)
+		return
 	var/datum/mind/receiver = pick(get_owners())
 	if(receiver && receiver.current)
 		if(ishuman(receiver.current))
@@ -206,6 +213,39 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/assassinate/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
+
+/datum/objective/assassinate/once
+	name = "assassinate revival allowed"
+
+/datum/objective/assassinate/once/update_explanation_text()
+	START_PROCESSING(SSprocessing, src)
+	if(target && target.current)
+		explanation_text = "Ensure [target.name], the [!target_role_type ? target.assigned_role : target.special_role] has died at least once."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/assassinate/once/process()
+	if(target?.current?.stat == DEAD)
+		completed = TRUE
+		STOP_PROCESSING(SSprocessing, src)
+
+/datum/objective/assassinate/cloned
+	name = "assassinate cloning allowed"
+	var/mob/living/original
+
+/datum/objective/assassinate/cloned/update_explanation_text()
+	if(target && target.current)
+		explanation_text = "Ensure the [!target_role_type ? target.assigned_role : target.special_role] [target.name]'s original body is dead."
+		original = target.current
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/assassinate/cloned/check_completion()
+	. = ..()
+	if(.)
+		return
+	if(target && target.current != original)
+		return TRUE
 
 /datum/objective/assassinate/internal
 	var/stolen = 0 		//Have we already eliminated this target?
@@ -628,6 +668,21 @@ GLOBAL_LIST_EMPTY(possible_items)
 			if(targetinfo && (I.type in targetinfo.altitems)) //Ok, so you don't have the item. Do you have an alternative, at least?
 				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had 1 item that didn't pass and got checked first!
 					return TRUE
+	if (istype(team, /datum/team/infiltrator))
+		for (var/area/A in world)
+			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
+				for (var/obj/item/I in A.GetAllContents()) //Check for items
+					if (istype(I, steal_target))
+						if (!targetinfo)
+							return TRUE
+						else if (targetinfo.check_special_completion(I))
+							return TRUE
+					if (targetinfo && (I.type in targetinfo.altitems))
+						if (targetinfo.check_special_completion(I))
+							return TRUE
+					CHECK_TICK
+			CHECK_TICK
+		CHECK_TICK
 	return FALSE
 
 GLOBAL_LIST_EMPTY(possible_items_special)
@@ -708,6 +763,14 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			var/list/otherwise = M.GetAllContents()
 			for(var/obj/item/disk/tech_disk/TD in otherwise)
 				TD.stored_research.copy_research_to(checking)
+	if (istype(team, /datum/team/infiltrator))
+		for (var/area/A in world)
+			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
+				for (var/obj/item/disk/tech_disk/TD in A.GetAllContents()) //Check for items
+					TD.stored_research.copy_research_to(checking)
+				CHECK_TICK
+			CHECK_TICK
+		CHECK_TICK
 	return checking.researched_nodes.len >= target_amount
 
 /datum/objective/download/admin_edit(mob/admin)
@@ -734,10 +797,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/captured_amount = 0
 	var/area/centcom/holding/A = GLOB.areas_by_type[/area/centcom/holding]
 	for(var/mob/living/carbon/human/M in A)//Humans.
-		if(M.stat == DEAD)//Dead folks are worth less.
-			captured_amount+=0.5
-			continue
-		captured_amount+=1
+		if(!istype(src,/datum/objective/capture/living) && M.stat == DEAD)
+			captured_amount+= 0.5
+		else
+			captured_amount+= 1 //dont care if they are dead or alive in living capture because you shouldn't be able to capture them if they dead
 	for(var/mob/living/carbon/monkey/M in A)//Monkeys are almost worthless, you failure.
 		captured_amount+=0.1
 	for(var/mob/living/carbon/alien/larva/M in A)//Larva are important for research.
@@ -763,6 +826,13 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	if(count)
 		target_amount = count
 	update_explanation_text()
+
+/datum/objective/capture/living
+	name = "capture living"
+
+/datum/objective/capture/living/update_explanation_text()
+	. = ..()
+	explanation_text = "Capture [target_amount] living lifeform\s with an energy net. Only alive specimens count."
 
 /datum/objective/protect_object
 	name = "protect object"
@@ -1303,6 +1373,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 	var/list/allowed_types = list(
 		/datum/objective/assassinate,
+		/datum/objective/assassinate/cloned,
+		/datum/objective/assassinate/once,
 		/datum/objective/maroon,
 		/datum/objective/debrain,
 		/datum/objective/protect,

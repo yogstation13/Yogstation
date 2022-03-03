@@ -419,6 +419,7 @@
 			new /obj/item/rod_of_asclepius(owner.loc)
 			if(owner.mind)
 				owner.mind.transfer_to(healSnake)
+			healSnake.grab_ghost()
 			qdel(owner)
 	else
 		if(iscarbon(owner))

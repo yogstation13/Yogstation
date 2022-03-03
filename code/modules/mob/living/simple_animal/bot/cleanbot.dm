@@ -316,3 +316,11 @@ Maintenance panel panel is [open ? "opened" : "closed"]"})
 /mob/living/simple_animal/bot/cleanbot/medical/Initialize()
     . = ..()
     bot_core.req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS, ACCESS_MEDICAL)
+
+/mob/living/simple_animal/bot/cleanbot/spacebar
+    name = "Frank Cleansington III"
+    desc = "A little cleaning robot, he looks so excited! You still have no idea why your dad named it this."
+
+/mob/living/simple_animal/bot/cleanbot/spacebar/Initialize()
+	. = ..()
+	bot_core.req_access = list(ACCESS_BAR)

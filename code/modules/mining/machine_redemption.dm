@@ -190,6 +190,8 @@
 		if(O.refined_type == null)
 			to_chat(user, span_notice("[O] has already been refined!"))
 			return
+		smelt_ore(O)
+		return
 
 	return ..()
 

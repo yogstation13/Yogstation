@@ -30,7 +30,7 @@
 /datum/guardianbuilder/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src,"Guardian", "Build-A-Guardian")
+		ui = new(user, src, "Guardian", "Build-A-Guardian")
 		ui.open()
 
 /datum/guardianbuilder/ui_data(mob/user)
@@ -59,7 +59,6 @@
 						name = "Range",
 						level = saved_stats.range
 					))
-	.["no_ability"] = (!saved_stats.ability || !istype(saved_stats.ability))
 	.["melee"] = !saved_stats.ranged
 	.["abilities_major"] = list()
 	var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : ((subtypesof(/datum/guardian_ability/major)-/datum/guardian_ability/major/healing) - typesof(/datum/guardian_ability/major/special))
@@ -190,7 +189,7 @@
 			used = FALSE
 			return FALSE
 	// IMPORTANT - if we're debugging, the user gets thrown into the stand
-	var/list/mob/dead/observer/candidates = debug_mode ? list(user) : pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+	var/list/mob/dead/observer/candidates = debug_mode ? list(user) : pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]? ([saved_stats.short_info()])", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/hostile/guardian/G = new(user, theme)
@@ -255,6 +254,13 @@
 /obj/item/guardiancreator/Initialize()
 	. = ..()
 	builder = new(mob_name, theme, failure_message, max_points, allowspecial, debug_mode)
+
+/obj/item/guardiancreator/ComponentInitialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
+	
+/obj/item/guardiancreator/proc/refund_check()
+	return !builder.used
 
 /obj/item/guardiancreator/attack_self(mob/living/user)
 	if(isguardian(user) && !allowguardian)

@@ -273,6 +273,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	if(isnotpretty(str))
 		to_chat(user, "<span class='warning'>Nanotrasen prohibited words are in use in this shuttle name, blares the [src] in a slightly offended tone.</span>")
 		message_admins("[ADMIN_LOOKUPFLW(user)] attempted to created a new shuttle with a [src] at [ADMIN_VERBOSEJMP(user)], but failed because of not passing the pretty filter")
+		log_say("[key_name(usr)] just tripped a pretty filter: '[str]'.")
 		user.create_area_cooldown = world.time + 10
 		return FALSE
 //Yogs End

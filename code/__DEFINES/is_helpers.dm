@@ -6,7 +6,7 @@
 
 #define isweakref(D) (istype(D, /datum/weakref))
 
-#define isappearance(A) (copytext("\ref[A]", 4, 6) == "3a")
+#define isappearance(A) (!isnum(A) && copytext("\ref[A]", 4, 6) == "3a")
 
 #define isnan(x) ( isnum((x)) && ((x) != (x)) )
 
@@ -43,6 +43,10 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define ischasm(A) (istype(A, /turf/open/chasm))
 
 #define isplatingturf(A) (istype(A, /turf/open/floor/plating))
+
+#define isaicore(A) (istype(A, /obj/machinery/ai/data_core))
+
+#define isvalidAIloc(A) ((isturf(A) || isaicore(A)))
 
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
@@ -112,6 +116,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
 
 #define isrevenant(A) (istype(A, /mob/living/simple_animal/revenant))
+
+#define ishorror(A) (istype(A, /mob/living/simple_animal/horror))
 
 #define isbot(A) (istype(A, /mob/living/simple_animal/bot))
 
@@ -212,6 +218,8 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 #define isobj(A) istype(A, /obj) //override the byond proc because it returns true on children of /atom/movable that aren't objs
 
 #define isitem(A) (istype(A, /obj/item))
+
+#define isidcard(I) (istype(I, /obj/item/card/id))
 
 #define isstructure(A) (istype(A, /obj/structure))
 

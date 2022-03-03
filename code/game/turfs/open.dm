@@ -102,7 +102,7 @@
 /turf/open/indestructible/carpet
 	name = "carpet"
 	desc = "Soft velvet carpeting. Feels good between your toes."
-	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet"
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/turf/open/indestructible/carpet)
@@ -113,6 +113,61 @@
 	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+
+/turf/open/indestructible/carpet/black
+	icon = 'icons/turf/floors/carpet_black.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/blue
+	icon = 'goon/icons/turfs/carpet_blue.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/green
+	icon = 'goon/icons/turfs/carpet_green.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/cyan
+	icon = 'icons/turf/floors/carpet_cyan.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/orange
+	icon = 'icons/turf/floors/carpet_orange.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/purple
+	icon = 'goon/icons/turfs/carpet_purple.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/red
+	icon = 'icons/turf/floors/carpet_red.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal
+	name = "carpet"
+	desc = "Soft velvet carpeting. Feels good between your toes."
+	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon_state = "carpet"
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/indestructible/carpet/royal)
+	flags_1 = NONE
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET_BAREFOOT
+	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/indestructible/carpet/royal/black
+	icon = 'icons/turf/floors/carpet_royalblack.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal/green
+	icon = 'icons/turf/floors/carpet_exoticgreen.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal/purple
+	icon = 'icons/turf/floors/carpet_exoticpurple.dmi'
+	icon_state = "carpet"
 
 /turf/open/indestructible/grass
 	name = "grass patch"
@@ -288,6 +343,26 @@
 			playsound(src, 'sound/magic/enter_blood.ogg', 50, TRUE)
 			playsound(L, 'sound/magic/exit_blood.ogg', 50, TRUE)
 			flash_color(L, flash_color = "#C80000", flash_time = 10)
+
+/turf/open/indestructible/brazil
+	name = ".."
+	desc = "it hurts to look at it hurts to see it hurts to think it hurts it hurts it hurts."
+	icon = 'icons/turf/space.dmi'
+
+/turf/open/indestructible/brazil/Initialize(mapload)
+	. = ..()
+	icon_state = "[rand(1,25)]"
+	add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), FIXED_COLOUR_PRIORITY)
+
+/turf/open/indestructible/brazil/Enter(atom/movable/AM, atom/old_loc)
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(!L.has_status_effect(STATUS_EFFECT_HERETIC_SACRIFICE))
+			var/turf/open/floor/safe_turf = find_safe_turf(zlevels = 2)
+			if(safe_turf)
+				to_chat(L, span_warning("You're not supposed to be here..."))
+				do_teleport(AM, safe_turf , 0, channel = TELEPORT_CHANNEL_FREE)
+	return FALSE //don't forget, you're here forever
 
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)

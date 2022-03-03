@@ -902,7 +902,7 @@
 
 	var/bleed_rate = 0
 	if(generic_bleedstacks > 0)
-		bleed_rate++
+		bleed_rate += generic_bleedstacks
 
 	//We want an accurate reading of .len
 	listclearnulls(embedded_objects)

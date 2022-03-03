@@ -906,6 +906,33 @@
 
 		// yogs - offer control moved up
 
+		else if(href_list["set_afk"])
+			if(!check_rights(R_ADMIN))
+				return
+			
+			var/mob/M = locate(href_list["set_afk"]) in GLOB.mob_list
+			if(!istype(M))
+				to_chat(usr, "This can only be used on instances of type /mob")
+				return
+			
+			if(!M.mind)
+				to_chat(usr, "This cannot be used on mobs without a mind")
+				return
+			
+			var/timer = input("Input AFK length in minutes, 0 to cancel the current timer", text("Input"))  as num|null
+			if(timer == null) // Explicit null check for cancel, rather than generic truthyness, so 0 is handled differently
+				return
+
+			deltimer(M.mind.afk_verb_timer)
+			M.mind.afk_verb_used = FALSE
+
+			if(!timer)
+				return
+			
+			M.mind.afk_verb_used = TRUE
+			M.mind.afk_verb_timer = addtimer(VARSET_CALLBACK(M.mind, afk_verb_used, FALSE), timer MINUTES, TIMER_STOPPABLE);
+
+
 		else if (href_list["modarmor"])
 			if(!check_rights(NONE))
 				return
@@ -1005,12 +1032,14 @@
 					if("Enter ID")
 						var/valid_id
 						while(!valid_id)
-							chosen_id = stripped_input(usr, "Enter the ID of the reagent you want to add.")
+							chosen_id = stripped_input(usr, "Enter the name of the reagent you want to add. (Case Sensitive!)")
 							if(!chosen_id) //Get me out of here!
 								break
 							for(var/ID in reagent_options)
-								if(ID == chosen_id)
-									valid_id = 1
+								var/datum/reagent/selected = reagent_options[ID]
+								if(selected?.name == chosen_id) //apparently I have to do this because the other method wasn't WORKING
+									valid_id = TRUE
+									chosen_id = ID
 							if(!valid_id)
 								to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 					if("Choose ID")

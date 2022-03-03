@@ -9,7 +9,7 @@
 	light_color = LIGHT_COLOR_RED
 	req_access = list(ACCESS_SYNDICATE)
 	shuttleId = "syndicate"
-	possible_destinations = "syndicate_away;syndicate_z5;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s;syndicate_custom"
+	possible_destinations = "syndicate_away;syndicate_z5;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s;spacebar;syndicate_custom"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	flags_1 = NODECONSTRUCT_1
 

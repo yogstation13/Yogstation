@@ -316,6 +316,31 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"lc" = (
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	dir = 1;
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -9
+	},
+/obj/item/sharpener{
+	pixel_x = 8
+	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "lp" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -351,14 +376,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
-"mM" = (
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "nK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -456,6 +473,12 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"rt" = (
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/structure/table/wood,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "rw" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
@@ -507,6 +530,10 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"th" = (
+/obj/machinery/oven,
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "tt" = (
 /obj/structure/table/wood,
 /obj/machinery/door/firedoor/border_only{
@@ -648,11 +675,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"xK" = (
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "xR" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -688,28 +710,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"zm" = (
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -9;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	dir = 1;
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -9
-	},
-/obj/item/sharpener{
-	pixel_x = 8
-	},
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "Ap" = (
 /obj/machinery/requests_console{
 	department = "Bar";
@@ -1062,11 +1062,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"LV" = (
-/obj/item/kitchen/rollingpin,
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "Me" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1203,6 +1198,12 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"Rm" = (
+/obj/item/book/manual/chef_recipes,
+/obj/structure/table/wood,
+/obj/item/stack/packageWrap,
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "RB" = (
 /obj/machinery/light/small,
 /obj/effect/landmark/xeno_spawn,
@@ -1382,15 +1383,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
-"YD" = (
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "YY" = (
 /obj/structure/table/wood/poker,
 /obj/item/clothing/head/yogs/truecowboy,
@@ -1424,6 +1416,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"ZE" = (
+/obj/machinery/griddle,
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 EP
@@ -1798,8 +1794,8 @@ Eg
 Ta
 Hb
 VM
-xK
-LV
+rt
+ZE
 Vq
 Eo
 KL
@@ -1818,8 +1814,8 @@ Uk
 Ta
 hH
 dC
-zm
-mM
+lc
+th
 lZ
 Eo
 IL
@@ -1838,7 +1834,7 @@ Bs
 PP
 Av
 Bv
-YD
+Rm
 rR
 HF
 Eo

@@ -350,6 +350,7 @@
 	to_chat(user, "<span class='velvet bold'>Your mind has expanded. The Psi Web is now available. Avoid the light. Keep to the shadows. Your time will come.</span>")
 	user.fully_heal()
 	user.set_species(/datum/species/darkspawn)
+	show_to_ghosts = TRUE
 	add_ability("psi_web", TRUE)
 	add_ability("sacrament", TRUE)
 	add_ability("devour_will", TRUE)

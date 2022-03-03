@@ -11,7 +11,7 @@
 	light_color = LIGHT_COLOR_CYAN
 	req_access = list( )
 	var/shuttleId
-	var/possible_destinations = "whiteship_home"
+	var/possible_destinations = "whiteship_home;auxiliary_construction;spacebar"
 	var/admin_controlled
 	var/no_destination_swap = 0
 	var/calculated_mass = 0
@@ -106,7 +106,7 @@
 
 /obj/machinery/computer/custom_shuttle/proc/linkShuttle(var/new_id)
 	shuttleId = new_id
-	possible_destinations = "whiteship_home;shuttle[new_id]_custom"
+	possible_destinations = "whiteship_home;auxiliary_construction;spacebar;shuttle[new_id]_custom"
 
 /obj/machinery/computer/custom_shuttle/proc/calculateStats(var/useFuel = FALSE, var/dist = 0, var/ignore_cooldown = FALSE)
 	if(!ignore_cooldown && stat_calc_cooldown >= world.time)

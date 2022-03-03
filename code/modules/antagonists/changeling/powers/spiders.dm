@@ -6,6 +6,7 @@
 	chemical_cost = 45
 	dna_cost = 1
 	req_absorbs = 3
+	xenoling_available = FALSE
 
 //Makes some spiderlings. Good for setting traps and causing general trouble.
 /datum/action/changeling/spiders/sting_action(mob/user)

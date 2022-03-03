@@ -795,3 +795,45 @@
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("bashes", "smacks", "whacks")
+
+/obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(hud_type && slot == SLOT_GLASSES)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.add_hud_to(user)
+
+/obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
+	..()
+	if(hud_type && istype(user) && user.glasses == src)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.remove_hud_from(user)
+/obj/item/nullrod/servoskull
+	name = "servitor skull"
+	desc = "Even in death, i still serve"
+	icon = 'icons/obj/clothing/neck.dmi'
+	slot_flags = ITEM_SLOT_NECK
+	icon_state = "servoskull"
+	item_state = "servoskull"
+	w_class = WEIGHT_CLASS_SMALL
+	force = 7
+	throwforce = 15
+	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
+	var/hud_type = DATA_HUD_DIAGNOSTIC_ADVANCED
+	var/hud_type2 = DATA_HUD_MEDICAL_ADVANCED
+	
+/obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(hud_type && slot == SLOT_NECK)
+		to_chat(user, "Sensory augmentation initiated")
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.add_hud_to(user)
+		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
+		H2.add_hud_to(user)
+
+/obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
+	..()
+	if(hud_type && istype(user) && user.wear_neck == src)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.remove_hud_from(user)
+		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
+		H2.remove_hud_from(user)

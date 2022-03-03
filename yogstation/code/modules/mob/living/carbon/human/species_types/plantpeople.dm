@@ -6,6 +6,7 @@
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH,HAS_BONE)
+	rare_say_mod = list("rustles" = 10)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -90,17 +91,20 @@
 				light_level = 4
 				H.nutrition += light_amount * 1.75
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
-					H.adjustToxLoss(-0.5 * light_heal_multiplier, 1)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
+					//podpeople shouldn't be able to outheal radiation damage, making them functionally immune
+					if(H.radiation < 500)
+						H.adjustToxLoss(-0.5 * light_heal_multiplier, 1)
 			if (0.76 to 1)
 				//super high light
 				light_level = 5
 				H.nutrition += light_amount * 1.5
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
-					H.adjustToxLoss(-1 * light_heal_multiplier, 1)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1.5 * light_heal_multiplier, 1.5 * light_heal_multiplier)
+					if(H.radiation < 500)
+						H.adjustToxLoss(-1 * light_heal_multiplier, 1)
 	else
 		//no light, this is baaaaaad
 		light_level = 0

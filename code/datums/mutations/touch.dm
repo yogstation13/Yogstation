@@ -29,9 +29,11 @@
 	on_use_sound = 'sound/weapons/zapbang.ogg'
 	icon_state = "zapper"
 	item_state = "zapper"
+	var/far = FALSE
 
 /obj/item/melee/touch_attack/shock/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!proximity)
+	if(!(proximity || far) || !can_see(user, target, 5) || get_dist(target, user) > 5)
+		user.visible_message("<span class='notice'>[user]'s hand reaches out but nothing happens.</span>")
 		return
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
