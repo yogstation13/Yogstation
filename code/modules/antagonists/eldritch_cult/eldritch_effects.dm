@@ -1,9 +1,11 @@
-#define PENANCE_LIFE "Lose your life ()"
-#define PENANCE_SOUL "Lose your soul ()"
-#define PENANCE_LIMB "Lose a limb ()"
-#define PENANCE_SKELETON "Lose your flesh ()"
-#define PENANCE_TRAUMA_ADV "Lose your mind ()"
-#define PENANCE_TRAUMA_BASIC "Lose a smaller, but still important part of your mind ()"
+#define PENANCE_LIFE "Lose your life (10)"
+#define PENANCE_SOUL "Lose your soul (14)"
+#define PENANCE_LIMB "Lose a limb (5)"
+#define PENANCE_SKELETON "Lose your flesh (1)"
+#define PENANCE_TRAUMA_ADV "Lose your mind (5)"
+#define PENANCE_TRAUMA_BASIC "Lose a smaller, but still important part of your mind (1)"
+#define TRAUMA_ADV_CAP 1
+#define TRAUMA_BASIC_CAP 3
 
 
 /obj/effect/eldritch
@@ -312,7 +314,7 @@
 
 /datum/status_effect/brazil_penance
 	id = "brazil_penance"
-	//alert_type = /obj/screen/alert/status_effect/brazil_penance
+	alert_type = /obj/screen/alert/status_effect/brazil_penance
 	///counts how close to escaping brazil the owner is
 	var/penance_left = 15
 	///sacrifices made to reduce penance_left, each is applied when leaving
@@ -320,15 +322,16 @@
 	///list of limbs to do stuff to
 	var/list/unspooked_limbs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 
-/*/obj/screen/alert/status_effect/brazil_penance
+/obj/screen/alert/status_effect/brazil_penance
 	name = "Otherworldly Tarrif"
 	desc = "The things of this place want something from you, you won't be able to leave until enough has been taken."
 	icon_state = "shadow_mend"
 
-/obj/screen/alert/status_effect/brazil_penanceMouseEntered(location,control,params)
+/obj/screen/alert/status_effect/brazil_penance/MouseEntered(location,control,params)
 	desc = initial(desc)
-	desc += "<br><font size=3><b>You currently need to sacrifice [penance_left] </b></font>"
-	..()*/
+	var/datum/status_effect/brazil_penance/P = attached_effect
+	desc += "<br><font size=3><b>You currently need to sacrifice [P.penance_left] worth of yourself to escape.</b></font>"
+	..()
 
 /datum/status_effect/brazil_penance/on_apply()
 	var/datum/effect_system/smoke_spread/S = new
@@ -338,23 +341,21 @@
 	owner.regenerate_organs()
 	owner.regenerate_limbs()
 	owner.grab_ghost()
+	owner.status_flags |= GODMODE //knowing how people treat the ninja dojo this is a necessary sacrifice
 	to_chat(owner, "<span class='revenbignotice'>You find yourself floating in a strange, unfamiliar void. Are you dead? ... no ... that feels different... Maybe there's a way out?</span>")
-	for(var/i in GLOB.brazil_reception)
-		if(locate(/mob) in get_turf(i)) //there are actually 64 total spots at brazil to get teleported to so if this gets filled (unlikely) they just get returned as a failsafe
-			continue
-		owner.forceMove(get_turf(i))
-		return TRUE
+	var/destination = pick(GLOB.brazil_reception)
+	owner.forceMove(get_turf(destination))
+	return TRUE
 
 /datum/status_effect/brazil_penance/tick()
 	if(!penance_left)
 		if(apply_effects())
 			qdel(src)
 		return
-	//if(get_area(owner) != /area/brazil)
-		//dust(owner)
 
 /datum/status_effect/brazil_penance/proc/apply_effects()
 	. = TRUE
+	owner.status_flags &= ~GODMODE
 	var/mob/living/carbon/C = owner
 	for(var/P in penance_sources)
 		while(penance_sources[P])
@@ -391,22 +392,30 @@
 			penance_sources[P] --
 			sleep(2)
 
+/datum/status_effect/brazil_penance/on_remove()
+	. = ..()
+	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar.</span>")
+	owner.Unconscious(2 SECONDS, ignore_canstun = TRUE)
+	var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary))
+	if(safe_turf)
+		owner.forceMove(safe_turf)
+
 /obj/effect/penance_giver
 	name = "code ing"
 	desc = "it takes your soul, and other stuff"
-	icon = 'icons/effects/400x400.dmi'
-	icon_state = "ratvar"
-	///list of penance this can give
-	var/list/penance_given = list(PENANCE_LIFE, PENANCE_SOUL, PENANCE_LIMB, PENANCE_SKELETON, PENANCE_TRAUMA_ADV, PENANCE_TRAUMA_BASIC)
+	icon = 'icons/mob/triangle.dmi'
+	icon_state = "triangle"
+	///list of penance this can give with the amount of points they are worth
+	var/list/penance_given = list(PENANCE_LIFE = 10, PENANCE_SOUL = 14, PENANCE_LIMB = 5, PENANCE_SKELETON = 1, PENANCE_TRAUMA_ADV = 5, PENANCE_TRAUMA_BASIC = 1)
 
-/*/obj/effect/penance_giver/attack_hand(mob/user)
-	var/datum/status_effect/brazil_penance/ticket = user.has_status_effect(/datum/status_effect/brazil_penanceticket) //this will be a define
+/obj/effect/penance_giver/attack_hand(mob/user)
+	var/mob/living/carbon/C = user
+	var/datum/status_effect/brazil_penance/ticket = C.has_status_effect(/datum/status_effect/brazil_penance) //this will be a define
 	if(!ticket)
 		return
 	var/loss = input("What will you offer?", "Lose") as null|anything in penance_given
 	if(!loss)
 		return
-	var/mob/living/carbon/C = user
 	switch(loss) //check fail cases (soul/life can only be taken once and conflict, limb stuff requires existing limbs, etc)
 		if(PENANCE_LIFE, PENANCE_SOUL)
 			if(ticket.penance_sources[PENANCE_LIFE] || ticket.penance_sources[PENANCE_SOUL])
@@ -427,7 +436,24 @@
 			if(ticket.penance_sources[PENANCE_TRAUMA_BASIC] == TRAUMA_BASIC_CAP)
 				return
 	ticket.penance_sources[loss]++
-	ticket.check_escape()*/
+	ticket.penance_left -= penance_given[loss]
+
+/obj/effect/penance_giver/blood
+	name = "this space for rent"
+	desc = "this space also for rent"
+	icon = 'icons/obj/cult_large.dmi'
+	icon_state = "shell_narsie_active"
+	penance_given = list(PENANCE_LIFE = 10, PENANCE_LIMB = 5)
+
+/obj/effect/penance_giver/mind
+	name = "this space for rent"
+	desc = "this space also for rent"
+	penance_given = list(PENANCE_TRAUMA_ADV = 5, PENANCE_TRAUMA_BASIC = 1)
+
+/obj/effect/penance_giver/eldritch
+	name = "this space for rent"
+	desc = "this space also for rent"
+	penance_given = list(PENANCE_SOUL = 14, PENANCE_SKELETON = 1)
 
 #undef PENANCE_LIFE
 #undef PENANCE_SOUL
@@ -435,3 +461,5 @@
 #undef PENANCE_SKELETON
 #undef PENANCE_TRAUMA_ADV
 #undef PENANCE_TRAUMA_BASIC
+#undef TRAUMA_ADV_CAP
+#undef TRAUMA_BASIC_CAP

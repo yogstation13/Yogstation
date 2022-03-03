@@ -291,13 +291,20 @@
 
 /turf/open/indestructible/brazil
 	name = ".."
-	desc = "it hurts to look at it hurts to see it hurts to think it hurts it hurts it hurts."
+	desc = "..."
+
+/turf/open/indestructible/brazil/space
 	icon = 'icons/turf/space.dmi'
 
-/turf/open/indestructible/brazil/Initialize(mapload)
+/turf/open/indestructible/brazil/space/Initialize(mapload)
 	. = ..()
 	icon_state = "[rand(1,25)]"
 	add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), FIXED_COLOUR_PRIORITY)
+
+/turf/open/indestructible/brazil/narsie
+	icon_state = "cult"
+
+/turf/open/indestructible/brazil/
 
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)
