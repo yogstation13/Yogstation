@@ -138,6 +138,12 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
+"iv" = (
+/obj/structure/pool_ladder{
+	anchored = 1
+	},
+/turf/open/indestructible/sound/pool/end,
+/area/shuttle/escape/luxury)
 "jr" = (
 /turf/open/indestructible/sound/pool,
 /area/shuttle/escape/luxury)
@@ -414,10 +420,6 @@
 /turf/open/floor/mineral/gold{
 	dir = 4
 	},
-/area/shuttle/escape/luxury)
-"xe" = (
-/obj/structure/pool_ladder,
-/turf/open/indestructible/sound/pool/end,
 /area/shuttle/escape/luxury)
 "yo" = (
 /obj/machinery/door/firedoor/border_only,
@@ -1144,7 +1146,7 @@ fR
 mt
 zQ
 yo
-xe
+iv
 jr
 jr
 jr
@@ -1171,7 +1173,7 @@ sG
 mt
 zQ
 wY
-xe
+iv
 jr
 jr
 jr

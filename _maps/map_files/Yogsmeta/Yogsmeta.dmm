@@ -70088,10 +70088,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"jwI" = (
-/obj/structure/pool_ladder,
-/turf/open/indestructible/sound/pool/end,
-/area/crew_quarters/fitness/recreation)
 "jwW" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/crew_quarters/fitness/recreation)
@@ -72647,6 +72643,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"lWv" = (
+/obj/structure/pool_ladder{
+	anchored = 1
+	},
+/turf/open/indestructible/sound/pool/end,
+/area/crew_quarters/fitness/recreation)
 "lWT" = (
 /obj/structure/sign/warning/vacuum{
 	pixel_x = 32
@@ -119898,7 +119900,7 @@ sGn
 hvR
 agu
 xmU
-jwI
+lWv
 cBC
 cBC
 cBC
