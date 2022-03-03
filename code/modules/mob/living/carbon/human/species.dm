@@ -1969,6 +1969,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		ToggleFlight(H)
 		flyslip(H)
 	. = stunmod * H.physiology.stun_mod * amount
+/datum/species/proc/spec_paralyze(mob/living/carbon/human/H,amount)
+	stop_wagging_tail(H)
 
 //////////////
 //Space Move//
