@@ -156,6 +156,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	///Bitflag that controls what in game ways can select this species as a spawnable source. Think magic mirror and pride mirror, slime extract, ERT etc, see defines in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
 	var/changesource_flags = NONE
+
+	//The component to add when swimming
+	var/swimming_component = /datum/component/swimming
+	
 ///////////
 // PROCS //
 ///////////
@@ -1986,6 +1990,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 ////////////////
 
 /datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
+	if(H.IsParalyzed() || H.IsStun())
+		return FALSE
 	return (H.getorganslot(ORGAN_SLOT_TAIL))
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
@@ -2129,3 +2135,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		. |= BIO_JUST_FLESH
 	if(HAS_BONE in species_traits)
 		. |= BIO_JUST_BONE
+
+/datum/species/proc/get_scream_sound(mob/living/carbon/human/H)
+	if(islist(screamsound))
+		return pick(screamsound)
+	return screamsound

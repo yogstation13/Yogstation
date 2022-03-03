@@ -1,0 +1,4 @@
+author: "maxion12345"
+delete-after: true 
+changes: 
+  - rscadd: "AI's can now research RGB lightings for their datacores."
