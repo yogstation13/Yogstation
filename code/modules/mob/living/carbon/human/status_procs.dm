@@ -9,6 +9,7 @@
 
 /mob/living/carbon/human/Paralyze(amount, updating = TRUE, ignore_canstun = FALSE)
 	amount = dna.species.spec_stun(src, amount)
+	dna.species.stop_wagging_tail(src)
 	return ..()
 
 /mob/living/carbon/human/Immobilize(amount, updating = TRUE, ignore_canstun = FALSE)
