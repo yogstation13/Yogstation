@@ -6,6 +6,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	item_state = "clamps"
+	required_skill = SKILL_ANATOMY
 	materials = list(/datum/material/iron=6000, /datum/material/glass=3000)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
@@ -31,6 +32,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	item_state = "clamps"
+	required_skill = SKILL_ANATOMY
 	materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
@@ -58,6 +60,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	item_state = "cautery"
+	required_skill = SKILL_ANATOMY
 	materials = list(/datum/material/iron=2500, /datum/material/glass=750)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
@@ -85,6 +88,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	hitsound = 'sound/weapons/circsawhit.ogg'
+	required_skill = SKILL_ANATOMY
 	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
@@ -126,6 +130,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	item_state = "scalpel"
+	required_skill = SKILL_ANATOMY
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_SCALPEL
@@ -176,6 +181,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	mob_throw_hit_sound =  'sound/weapons/pierce.ogg'
+	required_skill = SKILL_ANATOMY
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_SAW
@@ -216,6 +222,7 @@
 	icon_state = "bone setter"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	required_skill = SKILL_ANATOMY
 	custom_materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
@@ -231,6 +238,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	item_state = "drapes"
+	required_skill = SKILL_ANATOMY
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("slapped")
 

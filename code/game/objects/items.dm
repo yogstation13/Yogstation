@@ -120,6 +120,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/list/grind_results //A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
 	var/list/juice_results //A reagent list containing blah blah... but when JUICED in a grinder!
 
+	var/list/use_speed_by_skill = list(
+		SKILLLEVEL_UNSKILLED = 0.5,
+		SKILLLEVEL_BASIC = 0.75,
+		SKILLLEVEL_TRAINED = 1,
+		SKILLLEVEL_EXPERIENCED = 1.25,
+		SKILLLEVEL_MASTER = 1.5
+	)// Time modifier dependent on the rank of required_skill
+
 /obj/item/Initialize()
 
 	materials =	typelist("materials", materials)
@@ -777,9 +785,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return
 	delay *= toolspeed
 
-	if(IS_ENGINEERING(user) && tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
-		delay *= 0.8
-
 	// Play tool sound at the beginning of tool usage.
 	play_tool_sound(target, volume)
 
@@ -792,7 +797,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				return
 
 		else
-			if(!do_after(user, delay, target=target, extra_checks=tool_check))
+			if(!do_after(user, delay, target=target, extra_checks=tool_check, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_scaling = use_speed_by_skill))
 				return
 	else
 		// Invoke the extra checks once, just in case.

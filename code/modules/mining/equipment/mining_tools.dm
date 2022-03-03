@@ -10,6 +10,7 @@
 	item_state = "pickaxe"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
+	required_skill = SKILL_SURVIVAL
 	w_class = WEIGHT_CLASS_BULKY
 	materials = list(/datum/material/iron=2000) //one sheet, but where can you make them?
 	tool_behaviour = TOOL_MINING
@@ -108,6 +109,7 @@ obj/item/pickaxe/bonepickaxe
 	icon_state = "shovel"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
+	required_skill = SKILL_SURVIVAL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
 	force = 8

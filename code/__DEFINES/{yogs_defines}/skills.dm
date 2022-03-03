@@ -155,5 +155,17 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
 	var/datum/skillset/target_skillset = find_skillset(target)
 	return target_skillset.use_skills == TRUE
 
+/**
+  * Checks if the skill level of the given the target mind/mob/skill/skillset is greater than or equal to the required skill level
+  * Also checks if the target uses skills, and returns the oposite of requires_skills if they dont
+  */
+/proc/skill_check(target, skill, required, requires_skills = FALSE)
+	if(usesSkills(target))
+		return find_skill_level(target, skill) >= required
+	else
+		return !requires_skills
+
 #define GET_SKILLS(target) (find_skill(target))
 #define SKILL_CHECK(target, skill, required) (find_skill_level(target, skill) >= required)
+#define SKILL_INDEX(target, skill, list) (list?[find_skill_level(target, skill)])
+

@@ -53,9 +53,9 @@
 		return ..()
 	
 	var/list/msg = list()
-	if(!usesSkills(user) || SKILL_CHECK(user, identifing_skill, descriptive_skilllevel))
+	if(skill_check(user, identifing_skill, descriptive_skilllevel))
 		msg += "The cuts on [victim.p_their()] [limb.name] are wrapped with "
-	else if(SKILL_CHECK(user, identifing_skill, identifing_skilllevel))
+	else if(skill_check(user, identifing_skill, identifing_skilllevel))
 		msg += "[victim.p_their(TRUE)] [limb.name] Looks messed up under a wrapping of "
 	else
 		msg += "[victim.p_their(TRUE)] [limb.name] is wrapped with "

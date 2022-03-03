@@ -11,13 +11,15 @@
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	required_skill = SKILL_FORENSICS
+	required_skill_level = SKILLLEVEL_TRAINED
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
 	actions_types = list(/datum/action/item_action/displayDetectiveScanResults)
 	var/icons_available = list() // stores available icons for radial menu
 	var/icon_directory = 'icons/effects/icons.dmi' // dmi file containing the icons used in the radial menu
-	var/scanning = 0
+	var/scanning = FALSE
 	var/found_something // placeholder for result boolean. placed here for admin scanner.
 	var/list/log = list()
 	var/range = 8
@@ -87,7 +89,7 @@
 	
 /obj/item/detective_scanner/proc/option_print(mob/user)
 	if(log.len && !scanning)
-		scanning = 1
+		scanning = TRUE
 		scan_animation()
 		to_chat(user, span_notice("Printing report, please wait..."))
 		if(admin)
@@ -146,7 +148,7 @@
 
 	// Clear the logs
 	log = list()
-	scanning = 0
+	scanning = FALSE
 	scan_animation()
 
 /obj/item/detective_scanner/afterattack(atom/A, mob/user, params)
@@ -156,118 +158,125 @@
 
 /obj/item/detective_scanner/proc/scan(atom/A, mob/user)
 	set waitfor = 0
-	if(!scanning)
-		// Can remotely scan objects and mobs.
-		if((get_dist(A, user) > range) || (!(A in view(range, user)) && view_check) || (loc != user))
-			return
 
-		scanning = 1
-		scan_animation()
-
-		user.visible_message("\The [user] points the [src.name] at \the [A] and performs a forensic scan.")
-		to_chat(user, span_notice("You scan \the [A]. The scanner is now analysing the results..."))
-
-		// GATHER INFORMATION
-		//Make our lists
-		var/list/fingerprints = list()
-		var/list/blood = A.return_blood_DNA()
-		var/list/fibers = A.return_fibers()
-		var/list/reagents = list()
-
-		var/target_name = A.name
-
-		// Start gathering
-
-		if(ishuman(A))
-
-			var/mob/living/carbon/human/H = A
-			if(!H.gloves)
-				fingerprints += md5(H.dna.uni_identity)
-
-		else if(!ismob(A))
-
-			fingerprints = ( admin ? A.return_hiddenprints() : A.return_fingerprints() )
-
-			// Only get reagents from non-mobs.
-			if(A.reagents && A.reagents.reagent_list.len)
-
-				for(var/datum/reagent/R in A.reagents.reagent_list)
-					reagents[R.name] = R.volume
-
-					// Get blood data from the blood reagent.
-					if(istype(R, /datum/reagent/blood))
-
-						if(R.data["blood_DNA"] && R.data["blood_type"])
-							var/blood_DNA = R.data["blood_DNA"]
-							var/blood_type = R.data["blood_type"]
-							LAZYINITLIST(blood)
-							blood[blood_DNA] = blood_type
-
-		// We gathered everything. Create a fork and slowly display the results to the holder of the scanner.
-		found_something = 0
-		add_log("<B>[station_time_timestamp()][get_timestamp()] - [target_name]</B>", 0)
-		if(advanced)
-			var/area/location_of_scan = get_area(A)
-			add_log("<B>Location of scan:</B> [location_of_scan.map_name].")
-			add_log("<B>GPS coordinate of scan:</B> [(get_turf(A)).x],[(get_turf(A)).y]")
-
-		// Fingerprints
-		feedback(sound_scanner_scan)
-		if(length(fingerprints))
-			add_log(span_info("<B>Prints:</B>"))
-			for(var/finger in fingerprints)
-				add_log("[finger]")
-			found_something = 1
-			feedback(sound_scanner_positive)
-
-		// Blood
-		feedback(sound_scanner_scan)
-		if (length(blood))
-			feedback(sound_scanner_positive)
-			add_log(span_info("<B>Blood:</B>"))
-			for(var/B in blood)
-				add_log("Type: <font color='red'>[blood[B]]</font> DNA: <font color='red'>[B]</font>")
-				found_something = 1
-
-		//Fibers
-		feedback(sound_scanner_scan)
-		if(length(fibers))
-			feedback(sound_scanner_positive)
-			add_log(span_info("<B>Fibers:</B>"))
-			for(var/fiber in fibers)
-				add_log("[fiber]")
-			found_something = 1
-
-		//Reagents
-		feedback(sound_scanner_scan)
-		if(length(reagents))
-			add_log(span_info("<B>Reagents:</B>"))
-			for(var/R in reagents)
-				add_log("Reagent: <font color='red'>[R]</font> Volume: <font color='red'>[reagents[R]]</font>")
-			found_something = 1
-			feedback(sound_scanner_positive)
-
-		// Get a new user
-		var/mob/holder = null
-		if(ismob(src.loc))
-			holder = src.loc
-
-		if(!found_something)
-			feedback(sound_scanner_nomatch)
-			add_log("<I># No forensic traces found #</I>", 0) // Don't display this to the holder user
-			if(holder)
-				to_chat(holder, span_warning("Unable to locate any fingerprints, materials, fibers, or blood on \the [target_name]!"))
-		else
-			feedback(sound_scanner_match)
-			if(holder)
-				to_chat(holder, span_notice("You finish scanning \the [target_name]."))
-
-		add_log("---------------------------------------------------------", 0)
-		scanning = 0
-		scan_animation()
+	if(scanning)
+		return
+	
+	if(!skill_check(user, required_skill, required_skill_level, TRUE))
+		to_chat(user, span_notice("You don't know how to use \the [src]."))
 		return
 
-/obj/item/detective_scanner/proc/add_log(msg, broadcast = 1)
+	// Can remotely scan objects and mobs.
+	if((get_dist(A, user) > range) || (!(A in view(range, user)) && view_check) || (loc != user))
+		return
+
+	scanning = TRUE
+	scan_animation()
+
+	user.visible_message("\The [user] points the [src.name] at \the [A] and performs a forensic scan.")
+	to_chat(user, span_notice("You scan \the [A]. The scanner is now analysing the results..."))
+
+	// GATHER INFORMATION
+	//Make our lists
+	var/list/fingerprints = list()
+	var/list/blood = A.return_blood_DNA()
+	var/list/fibers = A.return_fibers()
+	var/list/reagents = list()
+
+	var/target_name = A.name
+
+	// Start gathering
+
+	if(ishuman(A))
+
+		var/mob/living/carbon/human/H = A
+		if(!H.gloves)
+			fingerprints += md5(H.dna.uni_identity)
+
+	else if(!ismob(A))
+
+		fingerprints = ( admin ? A.return_hiddenprints() : A.return_fingerprints() )
+
+		// Only get reagents from non-mobs.
+		if(A.reagents && A.reagents.reagent_list.len)
+
+			for(var/datum/reagent/R in A.reagents.reagent_list)
+				reagents[R.name] = R.volume
+
+				// Get blood data from the blood reagent.
+				if(istype(R, /datum/reagent/blood))
+
+					if(R.data["blood_DNA"] && R.data["blood_type"])
+						var/blood_DNA = R.data["blood_DNA"]
+						var/blood_type = R.data["blood_type"]
+						LAZYINITLIST(blood)
+						blood[blood_DNA] = blood_type
+
+	// We gathered everything. Create a fork and slowly display the results to the holder of the scanner.
+	found_something = FALSE
+	add_log("<B>[station_time_timestamp()][get_timestamp()] - [target_name]</B>", FALSE)
+	if(advanced)
+		var/area/location_of_scan = get_area(A)
+		add_log("<B>Location of scan:</B> [location_of_scan.map_name].")
+		add_log("<B>GPS coordinate of scan:</B> [(get_turf(A)).x],[(get_turf(A)).y]")
+
+	// Fingerprints
+	feedback(sound_scanner_scan)
+	if(length(fingerprints))
+		add_log(span_info("<B>Prints:</B>"))
+		for(var/finger in fingerprints)
+			add_log("[finger]")
+		found_something = 1
+		feedback(sound_scanner_positive)
+
+	// Blood
+	feedback(sound_scanner_scan)
+	if (length(blood))
+		feedback(sound_scanner_positive)
+		add_log(span_info("<B>Blood:</B>"))
+		for(var/B in blood)
+			add_log("Type: <font color='red'>[blood[B]]</font> DNA: <font color='red'>[B]</font>")
+			found_something = 1
+
+	//Fibers
+	feedback(sound_scanner_scan)
+	if(length(fibers))
+		feedback(sound_scanner_positive)
+		add_log(span_info("<B>Fibers:</B>"))
+		for(var/fiber in fibers)
+			add_log("[fiber]")
+		found_something = TRUE
+
+	//Reagents
+	feedback(sound_scanner_scan)
+	if(length(reagents))
+		add_log(span_info("<B>Reagents:</B>"))
+		for(var/R in reagents)
+			add_log("Reagent: <font color='red'>[R]</font> Volume: <font color='red'>[reagents[R]]</font>")
+		found_something = TRUE
+		feedback(sound_scanner_positive)
+
+	// Get a new user
+	var/mob/holder = null
+	if(ismob(src.loc))
+		holder = src.loc
+
+	if(!found_something)
+		feedback(sound_scanner_nomatch)
+		add_log("<I># No forensic traces found #</I>", FALSE) // Don't display this to the holder user
+		if(holder)
+			to_chat(holder, span_warning("Unable to locate any fingerprints, materials, fibers, or blood on \the [target_name]!"))
+	else
+		feedback(sound_scanner_match)
+		if(holder)
+			to_chat(holder, span_notice("You finish scanning \the [target_name]."))
+
+	add_log("---------------------------------------------------------", FALSE)
+	scanning = FALSE
+	scan_animation()
+	return
+
+/obj/item/detective_scanner/proc/add_log(msg, broadcast = TRUE)
 	if(scanning)
 		if(broadcast && ismob(loc))
 			var/mob/M = loc
@@ -302,6 +311,7 @@
 /obj/item/detective_scanner/admin // Strictly an admin tool. returns hidden fingerprints and the duration is instant.
 	name = "badmin forensic scanner"
 	desc = "An unbelievable scanner capable of returning results seemingly out of nowhere."
+	required_skill_level = SKILLLEVEL_UNSKILLED
 	admin = TRUE
 	advanced = TRUE
 	color = "#00FFFF" // aqua
@@ -322,5 +332,6 @@
 	desc = "Processes data much quicker and gives more detailed reports. Scan from at least 2 tiles away to avoid leaving prints on the scene of the crime!"
 	icon_state = "forensic2"
 	icon_state_scanning =  "forensic2_scan" // icon state for scanning
+	required_skill_level = SKILLLEVEL_EXPERIENCED
 	scan_speed = 2
 	advanced = TRUE

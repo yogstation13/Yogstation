@@ -364,10 +364,10 @@
   * * mob/user: The user examining the wound's owner, if that matters
   */
 /datum/wound/proc/get_examine_description(mob/user)
-	if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+	if(skill_check(user, identifing_skill, descriptive_skilllevel))
 		. = "[victim.p_their(TRUE)] [limb.name] [examine_desc]"
 		. = severity <= WOUND_SEVERITY_MODERATE ? "[.]." : "<B>[.]!</B>"
-	else if(SKILL_CHECK(user, identifing_skill, identifing_skilllevel))
+	else if(skill_check(user, identifing_skill, identifing_skilllevel))
 		. = "[victim.p_their(TRUE)] [limb.name] looks messed up"
 
 /datum/wound/proc/get_scanner_description(mob/user)

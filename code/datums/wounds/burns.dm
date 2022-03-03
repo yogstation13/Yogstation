@@ -127,15 +127,15 @@
 		return span_deadsay("<B>[victim.p_their(TRUE)] [limb.name] has locked up completely and is non-functional.</B>")
 
 	var/list/condition = list("[victim.p_their(TRUE)] [limb.name]" )
-	if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+	if(skill_check(user, identifing_skill, descriptive_skilllevel))
 		condition += " [examine_desc]"
-	else if(SKILL_CHECK(user, identifing_skill, identifing_skilllevel))
+	else if(skill_check(user, identifing_skill, identifing_skilllevel))
 		condition += " looks messed up"
 	else
 		condition += " is hidden"
 	if(limb.current_gauze)
 		var/bandage_condition
-		if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+		if(skill_check(user, identifing_skill, descriptive_skilllevel))
 			switch(limb.current_gauze.absorption_capacity)
 				if(0 to 1.25)
 					bandage_condition = "nearly ruined "
@@ -148,7 +148,7 @@
 
 		condition += " underneath a dressing of [bandage_condition][limb.current_gauze.name]"
 	else
-		if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+		if(skill_check(user, identifing_skill, descriptive_skilllevel))
 			switch(infestation)
 				if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
 					condition += ", <span class='deadsay'>with early signs of infection.</span>"

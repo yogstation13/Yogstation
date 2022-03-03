@@ -86,15 +86,12 @@
 		surgery.step_in_progress = 0
 		return
 
-	if(!usesSkills(user) || SKILL_CHECK(user, dependant_skill, required_skill_level))
+	if(skill_check(user, dependant_skill, required_skill_level))
 		to_chat(user, span_warning("You don't know where to begin with this step of the operation!"))
 		return
 
 	if(tool)
 		tool_speed_mod = tool.toolspeed
-
-	if(IS_MEDICAL(user))
-		user_speed_mod = 0.8
 
 	if(do_after(user, time * tool_speed_mod * user_speed_mod, target = target))
 		var/prob_chance = 100

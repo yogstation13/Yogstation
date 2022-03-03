@@ -145,19 +145,19 @@
 
 
 /datum/wound/blunt/get_examine_description(mob/user)
-	if(!limb.current_gauze && !gelled && !taped || usesSkills(user) && !SKILL_CHECK(user, identifing_skill, identifing_skilllevel))
+	if(!limb.current_gauze && !gelled && !taped ||!skill_check(user, identifing_skill, identifing_skilllevel, TRUE))
 		return ..()
 
 	var/list/msg = list()
 	if(!limb.current_gauze)
-		if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+		if(skill_check(user, identifing_skill, descriptive_skilllevel))
 			msg += "[victim.p_their(TRUE)] [limb.name] [examine_desc]"
-		else if(SKILL_CHECK(user, identifing_skill, identifing_skilllevel))
+		else if(skill_check(user, identifing_skill, identifing_skilllevel))
 			. = "[victim.p_their(TRUE)] [limb.name] Looks messed up"
 	else
 		var/sling_condition = ""
 		// how much life we have left in these bandages
-		if(SKILL_CHECK(user, identifing_skill, descriptive_skilllevel) || !usesSkills(user))
+		if(skill_check(user, identifing_skill, descriptive_skilllevel))
 			switch(limb.current_gauze.absorption_capacity)
 				if(0 to 1.25)
 					sling_condition = "just barely "

@@ -159,7 +159,7 @@
 		return TRUE
 
 	for(var/skill in R.required_skill_levels)
-		if(!SKILL_CHECK(user, skill, R.required_skill_levels[skill]))
+		if(!skill_check(user, skill, R.required_skill_levels[skill]))
 			return FALSE
 	return TRUE
 
