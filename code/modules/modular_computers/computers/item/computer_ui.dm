@@ -14,7 +14,7 @@
 
 // Operates TGUI
 /obj/item/modular_computer/ui_interact(mob/user, datum/tgui/ui)
-	if (!can_show_ui(user, ui))
+	if (!can_show_ui(user))
 		if(ui)
 			ui.close()
 		return

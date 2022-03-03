@@ -197,7 +197,7 @@
 
 /datum/computer_file/program/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
-	if (!computer.can_show_ui(user, ui))
+	if (!computer.can_show_ui(user))
 		if(ui)
 			ui.close()
 		return
