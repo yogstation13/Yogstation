@@ -29,7 +29,7 @@
 		if(CLAN_BRUJAH)
 			my_clan = CLAN_BRUJAH
 			to_chat(owner, span_announce("You have Ranked up enough to learn: You are part of the Brujah Clan!\n\
-				* As part of the Bujah Clan, you are more prone to falling into Frenzy, though you are used to it, and can enter it whenever you want!\n\
+				* As part of the Bujah Clan, you lose blood twice as fast, though you are more prone to falling into Frenzy, and can enter it whenever you want!\n\
 				* Additionally, Brawn and punches deal more damage than other Bloodsuckers. Use this to your advantage!\n\
 				* Finally, your Favorite Vassal will gain the Brawn ability to help you in combat."))
 			/// Makes their max punch, and by extension Brawn, stronger - Stolen from SpendRank()
@@ -40,6 +40,7 @@
 			var/datum/objective/bloodsucker/gourmand/brujah/brujah_objective = new
 			brujah_objective.owner = owner
 			objectives += brujah_objective
+			passive_blood_drain -= 0.2
 		if(CLAN_NOSFERATU)
 			my_clan = CLAN_NOSFERATU
 			to_chat(owner, span_announce("You have Ranked up enough to learn: You are part of the Nosferatu Clan!\n\
