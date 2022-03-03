@@ -1,6 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "removes ugly shielding and replaces it"
-  - bugfix: "fix map oversight where a rack was unable to be accessed"
-  - bugfix: "supply display -> evac display (status)"
