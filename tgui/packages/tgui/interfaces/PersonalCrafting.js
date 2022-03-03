@@ -139,9 +139,7 @@ const CraftingList = (props, context) => {
               icon="cog"
               content="Craft"
               disabled={!craftability[craftable.ref]}
-              tooltip={craftable.tool_text && (
-                'Tools needed: ' + craftable.tool_text
-              )}
+              tooltip={craftable.tooltip_text && (craftable.tooltip_text)}
               tooltipPosition="left"
               onClick={() => act('make', {
                 recipe: craftable.ref,

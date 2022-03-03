@@ -5,6 +5,9 @@
 	var/blacklist[] = list() //type paths of items explicitly not allowed as an ingredient
 	var/result //type path of item resulting from this craft
 	var/tools[] = list() //type paths of items needed but not consumed
+	var/modifier_skill = SKILL_DESIGN // What skill modifies the crafting time
+	var/list/skill_time_mod = list(SKILLLEVEL_UNSKILLED = 5, SKILLLEVEL_BASIC = 2, SKILLLEVEL_TRAINED = 1, SKILLLEVEL_EXPERIENCED = 0.75, SKILLLEVEL_MASTER = 0.5) // Time modifiers for each skill level
+	var/list/required_skill_levels = list() //type paths of items needed but not consumed
 	var/time = 3 SECONDS //time in seconds
 	var/parts[] = list() //type paths of items that will be placed in the result
 	var/chem_catalysts[] = list() //like tools but for reagents
@@ -408,6 +411,7 @@
 	time = 6 SECONDS
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/rods = 10)
+	required_skill_levels = list(SKILL_MECHANICS = SKILLLEVEL_BASIC)
 	category = CAT_MISC
 
 /datum/crafting_recipe/scooter
@@ -416,6 +420,7 @@
 	time = 6.5 SECONDS
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/rods = 12)
+	required_skill_levels = list(SKILL_MECHANICS = SKILLLEVEL_BASIC)
 	category = CAT_MISC
 
 /datum/crafting_recipe/wheelchair
@@ -424,6 +429,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 4,
 				/obj/item/stack/rods = 6)
 	time = 10 SECONDS
+	required_skill_levels = list(SKILL_MECHANICS = SKILLLEVEL_BASIC)
 	category = CAT_MISC
 
 /datum/crafting_recipe/ghetto_heart
@@ -435,6 +441,8 @@
 				/obj/item/reagent_containers/hypospray/medipen/pumpup = 1)
 	tools = list(TOOL_WIRECUTTER, TOOL_WELDER)
 	time = 15 SECONDS
+	modifier_skill = SKILL_MECHANICS
+	required_skill_levels = list(SKILL_ANATOMY = SKILLLEVEL_TRAINED, SKILL_MECHANICS = SKILLLEVEL_BASIC, SKILL_ELECTRONICS = SKILLLEVEL_BASIC)
 	category = CAT_MISC
 
 /datum/crafting_recipe/ghetto_lungs
@@ -444,6 +452,8 @@
 				/obj/item/weaponcrafting/receiver = 1) //it recieves the oxygen
 	tools = list(TOOL_WELDER)
 	time = 15 SECONDS
+	modifier_skill = SKILL_MECHANICS
+	required_skill_levels = list(SKILL_ANATOMY = SKILLLEVEL_TRAINED, SKILL_MECHANICS = SKILLLEVEL_BASIC, SKILL_ELECTRONICS = SKILLLEVEL_BASIC)
 	category = CAT_MISC
 
 /datum/crafting_recipe/mousetrap
@@ -470,6 +480,8 @@
 		/obj/item/flashlight = 2,
 		/obj/item/restraints/handcuffs/cable = 1
 	)
+	modifier_skill = SKILL_MECHANICS
+	required_skill_levels = list(SKILL_ANATOMY = SKILLLEVEL_TRAINED, SKILL_MECHANICS = SKILLLEVEL_BASIC, SKILL_ELECTRONICS = SKILLLEVEL_BASIC)
 	category = CAT_MISC
 
 /datum/crafting_recipe/paperframes
@@ -546,6 +558,7 @@
 	name = "Secure Closet"
 	reqs = list(/obj/item/stack/sheet/metal = 5, /obj/item/stack/cable_coil = 10, /obj/item/electronics/airlock = 1)
 	parts = list(/obj/item/electronics/airlock = 1)
+	required_skill_levels = list(SKILL_MECHANICS = SKILLLEVEL_BASIC, SKILL_ELECTRONICS = SKILLLEVEL_BASIC)
 	result = /obj/structure/closet/secure_closet
 	category = CAT_MISC
 
@@ -554,6 +567,8 @@
 	reqs = list(/obj/item/stack/sheet/plasteel = 10, /obj/item/stack/cable_coil = 5, /obj/item/electronics/airlock = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 10 SECONDS
+	modifier_skill = SKILL_MECHANICS
+	required_skill_levels = list(SKILL_MECHANICS = SKILLLEVEL_TRAINED, SKILL_ELECTRONICS = SKILLLEVEL_BASIC)
 	result = /obj/machinery/door/poddoor/shutters/preopen
 	category = CAT_MISC
 
@@ -562,6 +577,8 @@
 	reqs = list(/obj/item/stack/sheet/plasteel = 20, /obj/item/stack/cable_coil = 10, /obj/item/electronics/airlock = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 20 SECONDS
+	modifier_skill = SKILL_MECHANICS
+	required_skill_levels = list(SKILL_MECHANICS = SKILLLEVEL_TRAINED, SKILL_ELECTRONICS = SKILLLEVEL_BASIC)
 	result = /obj/machinery/door/poddoor/preopen
 	category = CAT_MISC
 
@@ -596,6 +613,8 @@
 	result = /obj/item/clothing/suit/armor/bone
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 6)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/tribalcoat
@@ -612,6 +631,8 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2,
 				 /obj/item/stack/sheet/sinew = 1)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonecodpiece
@@ -620,6 +641,8 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2,
 				 /obj/item/stack/sheet/animalhide/goliath_hide = 1)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/resinband
@@ -627,6 +650,8 @@
 	result = /obj/item/clothing/accessory/resinband
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/ashresin = 3)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bracers
@@ -635,6 +660,8 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2,
 				 /obj/item/stack/sheet/sinew = 1)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/skullhelm
@@ -642,6 +669,8 @@
 	result = /obj/item/clothing/head/helmet/skull
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 4)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/shamanhat
@@ -649,6 +678,8 @@
 	result = /obj/item/clothing/head/helmet/shaman
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 4)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/resincrown
@@ -657,6 +688,8 @@
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/sheet/ashresin = 2,
 		/obj/item/stack/sheet/mineral/mythril = 1)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/goliathcloak
@@ -666,6 +699,8 @@
 	reqs = list(/obj/item/stack/sheet/leather = 2,
 				/obj/item/stack/sheet/sinew = 1,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 2) //it takes 4 goliaths to make 1 cloak if the plates are skinned
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/goliathshield
@@ -674,6 +709,8 @@
 	time = 6 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 4,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 3)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED, SKILL_MELEE_WEAPONS = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/pathkasa
@@ -683,6 +720,8 @@
 	reqs = list(/obj/item/stack/sheet/bone = 12,
 				/obj/item/stack/sheet/sinew = 12,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 12)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_EXPERIENCED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/pathcloak
@@ -692,6 +731,8 @@
 	reqs = list(/obj/item/clothing/suit/hooded/cloak/goliath = 1,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 4, //2 plates for the cloak plus 4 here plus 3 for plating the armor = 9 total
 				/obj/item/stack/sheet/sinew = 6)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_EXPERIENCED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/pathtreads
@@ -700,6 +741,8 @@
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/sinew = 12,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 16)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_EXPERIENCED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonesword
@@ -708,6 +751,8 @@
 	time = 4 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/sheet/sinew = 2)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED, SKILL_MELEE_WEAPONS = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonepickaxe
@@ -716,6 +761,8 @@
 	time = 50
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/sheet/sinew = 2)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/drakecloak
@@ -725,6 +772,8 @@
 	reqs = list(/obj/item/stack/sheet/bone = 10,
 				/obj/item/stack/sheet/sinew = 2,
 				/obj/item/stack/sheet/animalhide/ashdrake = 5)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_EXPERIENCED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/carpsuit
@@ -734,6 +783,8 @@
 	reqs = list(/obj/item/stack/sheet/bone = 10,
 				/obj/item/stack/sheet/sinew = 2,
 				/obj/item/stack/sheet/animalhide/carpdragon = 5)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_EXPERIENCED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/sinewbelt
@@ -741,6 +792,8 @@
 	result = /obj/item/storage/belt/mining/primitive
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/sinew = 4)
+	modifier_skill = SKILL_SURVIVAL
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/medpouchcloth
@@ -777,6 +830,7 @@
 	result = /obj/item/kitchen/knife/combat/bone
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2)
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_BASIC, SKILL_MELEE_WEAPONS = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonespear
@@ -785,6 +839,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 4,
 				 /obj/item/stack/sheet/sinew = 1)
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_BASIC, SKILL_MELEE_WEAPONS = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/boneaxe
@@ -793,6 +848,7 @@
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 6,
 				 /obj/item/stack/sheet/sinew = 3)
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_BASIC, SKILL_MELEE_WEAPONS = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/chitinspear
@@ -803,6 +859,7 @@
 				/obj/item/stack/sheet/sinew = 3,
 				/obj/item/stack/sheet/ashresin = 1,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 6)
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED, SKILL_MELEE_WEAPONS = SKILLLEVEL_TRAINED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonfire
@@ -810,6 +867,7 @@
 	time = 6 SECONDS
 	reqs = list(/obj/item/grown/log = 5)
 	result = /obj/structure/bonfire
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/rake //Category resorting incoming
@@ -817,6 +875,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 5)
 	result = /obj/item/cultivator/rake
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_BASIC, SKILL_BOTANY = SKILLLEVEL_BASIC)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/woodbucket
@@ -824,6 +883,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 3)
 	result = /obj/item/reagent_containers/glass/bucket/wooden
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/cleanleather
@@ -831,6 +891,7 @@
 	result = /obj/item/stack/sheet/wetleather
 	reqs = list(/obj/item/stack/sheet/hairlesshide = 1, /datum/reagent/water = 20)
 	time = 10 SECONDS //its pretty hard without the help of a washing machine.
+	required_skill_levels = list(SKILL_SURVIVAL = SKILLLEVEL_TRAINED)
 	category = CAT_MISC
 
 /datum/crafting_recipe/headpike
@@ -927,6 +988,7 @@
 	result = /obj/item/tank/jetpack/improvised
 	time = 3 SECONDS
 	reqs = list(/obj/item/tank/internals/oxygen = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = MAXCOIL)
+	required_skill_levels = list(SKILL_DESIGN = SKILLLEVEL_TRAINED)
 	category = CAT_MISC
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
 

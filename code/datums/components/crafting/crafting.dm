@@ -154,28 +154,49 @@
 			return FALSE
 	return TRUE
 
+/datum/component/personal_crafting/proc/check_skills(mob/user, datum/crafting_recipe/R)
+	if(!R.required_skill_levels.len || !usesSkills(user))
+		return TRUE
+
+	for(var/skill in R.required_skill_levels)
+		if(!SKILL_CHECK(user, skill, R.required_skill_levels[skill]))
+			return FALSE
+	return TRUE
+
 /datum/component/personal_crafting/proc/construct_item(mob/user, datum/crafting_recipe/R)
-	var/list/contents = get_surroundings(user)
 	var/send_feedback = 1
 	if(HAS_TRAIT(user, TRAIT_CRAFTY))
 		R.time *= 0.75
-	if(check_contents(R, contents))
-		if(check_tools(user, R, contents))
-			if(do_after(user, R.time, target = user))
-				contents = get_surroundings(user)
-				if(!check_contents(R, contents))
-					return ", missing component."
-				if(!check_tools(user, R, contents))
-					return ", missing tool."
-				var/list/parts = del_reqs(R, user)
-				var/atom/movable/I = new R.result (get_turf(user.loc))
-				I.CheckParts(parts, R)
-				if(send_feedback)
-					SSblackbox.record_feedback("tally", "object_crafted", 1, I.type)
-				return 0
-			return "."
+
+	// Check to see if we can craft this
+	if(!check_skills(user, R))
+		return ", missing skills."
+	var/list/contents = get_surroundings(user)
+	if(!check_contents(R, contents))
+		return ", missing component."
+	if(!check_tools(user, R, contents))
 		return ", missing tool."
-	return ", missing component."
+
+	// Timer and progress bar
+	if(!do_after(user, R.time, target = user, required_skill = R.modifier_skill, skill_delay_scaling = R.skill_time_mod))
+		return "."
+
+	// Check again incase things have changed
+	if(!check_skills(user, R))
+		return ", missing skills."
+	contents = get_surroundings(user)
+	if(!check_contents(R, contents))
+		return ", missing component."
+	if(!check_tools(user, R, contents))
+		return ", missing tool."
+
+	// Actually makes the thing	
+	var/list/parts = del_reqs(R, user)
+	var/atom/movable/I = new R.result (get_turf(user.loc))
+	I.CheckParts(parts, R)
+	if(send_feedback)
+		SSblackbox.record_feedback("tally", "object_crafted", 1, I.type)
+	return FALSE
 
 
 /*Del reqs works like this:
@@ -402,7 +423,9 @@
 	data["name"] = R.name
 	data["ref"] = "[REF(R)]"
 	var/req_text = ""
+	var/skill_text = ""
 	var/tool_text = ""
+	var/tooltip_text = ""
 	var/catalyst_text = ""
 
 	for(var/a in R.reqs)
@@ -419,6 +442,11 @@
 	catalyst_text = replacetext(catalyst_text,",","",-1)
 	data["catalyst_text"] = catalyst_text
 
+	for(var/skill in R.required_skill_levels)
+		skill_text += " [GLOB.skill_level_to_text[R.required_skill_levels[skill]]] in [skill]," 	
+	skill_text = replacetext(skill_text,",","",-1)
+	tooltip_text = "[skill_text == "" ? "" : "Skills needed: "][skill_text]"
+
 	for(var/a in R.tools)
 		if(ispath(a, /obj/item))
 			var/obj/item/b = a
@@ -426,7 +454,9 @@
 		else
 			tool_text += " [a],"
 	tool_text = replacetext(tool_text,",","",-1)
-	data["tool_text"] = tool_text
+	tooltip_text += "[tooltip_text == "" ? "" : "\n"][tool_text == "" ? "" : "Tools needed: "][tool_text]"
+
+	data["tooltip_text"] = tooltip_text
 
 	return data
 
