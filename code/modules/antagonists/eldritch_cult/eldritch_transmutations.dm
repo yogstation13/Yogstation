@@ -170,7 +170,7 @@
 
 		if(LH.target && LH.target.stat == DEAD)
 			to_chat(carbon_user,span_danger("Your patrons accepts your offer.."))
-			var/mob/living/carbon/human/H = LH.target
+			//var/mob/living/carbon/human/H = LH.target
 			//H.apply_status_effect(effect_path) switch this to the new stuff you dumbass
 			LH.target = null
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)

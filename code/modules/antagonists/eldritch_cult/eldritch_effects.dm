@@ -3,7 +3,7 @@
 #define PENANCE_LIMB "Lose a limb ()"
 #define PENANCE_SKELETON "Lose your flesh ()"
 #define PENANCE_TRAUMA_ADV "Lose your mind ()"
-#define PENANCE_TRAUMA_BASIC "Lose your mind ()"
+#define PENANCE_TRAUMA_BASIC "Lose a smaller, but still important part of your mind ()"
 
 
 /obj/effect/eldritch
@@ -304,7 +304,7 @@
 
 /*
  *
- * brazil effects/status effect
+ * brazil related statuses and effects
  * used to create a "fun and intuitive gameplay" for people who get sacrificed by heretics
  * and by that i mean they get to lose stuff
  *
@@ -312,12 +312,23 @@
 
 /datum/status_effect/brazil_penance
 	id = "brazil_penance"
-	alert_type = /obj/screen/alert/status_effect/brazil_penance
+	//alert_type = /obj/screen/alert/status_effect/brazil_penance
 	///counts how close to escaping brazil the owner is
 	var/penance_left = 15
 	///sacrifices made to reduce penance_left, each is applied when leaving
 	var/list/penance_sources = list()
+	///list of limbs to do stuff to
 	var/list/unspooked_limbs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+
+/*/obj/screen/alert/status_effect/brazil_penance
+	name = "Otherworldly Tarrif"
+	desc = "The things of this place want something from you, you won't be able to leave until enough has been taken."
+	icon_state = "shadow_mend"
+
+/obj/screen/alert/status_effect/brazil_penanceMouseEntered(location,control,params)
+	desc = initial(desc)
+	desc += "<br><font size=3><b>You currently need to sacrifice [penance_left] </b></font>"
+	..()*/
 
 /datum/status_effect/brazil_penance/on_apply()
 	var/datum/effect_system/smoke_spread/S = new
@@ -339,20 +350,20 @@
 		if(apply_effects())
 			qdel(src)
 		return
-	if(get_area(owner) != /area/brazil)
-		dust(owner)
+	//if(get_area(owner) != /area/brazil)
+		//dust(owner)
 
 /datum/status_effect/brazil_penance/proc/apply_effects()
 	. = TRUE
-	var/mob/living/carbon/human/H = owner
-	for(var/p in penance_sources)
-		while(penance_sources[p])
+	var/mob/living/carbon/C = owner
+	for(var/P in penance_sources)
+		while(penance_sources[P])
 			switch(P)
 				if(PENANCE_LIFE)
 					owner.blood_volume = 0
 					owner.death()
 				if(PENANCE_SOUL)
-					owner.mind.hellbound = TRUE
+					owner.hellbound = TRUE
 				if(PENANCE_LIMB)
 					var/obj/item/bodypart/BP
 					while(!BP)
@@ -374,19 +385,49 @@
 					replacement_part.original_owner = "inside"
 					replacement_part.replace_limb(owner)
 				if(PENANCE_TRAUMA_ADV)
-					H.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
+					C.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 				if(PENANCE_TRAUMA_BASIC)
-					H.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_SURGERY)
-			penance_sources[p] --
+					C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_SURGERY)
+			penance_sources[P] --
 			sleep(2)
 
 /obj/effect/penance_giver
 	name = "code ing"
-	desc = "it takes your soul, and other stuff potentially"
+	desc = "it takes your soul, and other stuff"
+	icon = 'icons/effects/400x400.dmi'
+	icon_state = "ratvar"
+	///list of penance this can give
 	var/list/penance_given = list(PENANCE_LIFE, PENANCE_SOUL, PENANCE_LIMB, PENANCE_SKELETON, PENANCE_TRAUMA_ADV, PENANCE_TRAUMA_BASIC)
 
-/obj/effect/penance_giver/attack_hand(mob/user)
-	input("What will you offer?", "Lose") as null|anything in penance_given
+/*/obj/effect/penance_giver/attack_hand(mob/user)
+	var/datum/status_effect/brazil_penance/ticket = user.has_status_effect(/datum/status_effect/brazil_penanceticket) //this will be a define
+	if(!ticket)
+		return
+	var/loss = input("What will you offer?", "Lose") as null|anything in penance_given
+	if(!loss)
+		return
+	var/mob/living/carbon/C = user
+	switch(loss) //check fail cases (soul/life can only be taken once and conflict, limb stuff requires existing limbs, etc)
+		if(PENANCE_LIFE, PENANCE_SOUL)
+			if(ticket.penance_sources[PENANCE_LIFE] || ticket.penance_sources[PENANCE_SOUL])
+				return
+		if(PENANCE_LIMB, PENANCE_SKELETON)
+			var/available_parts = -(ticket.penance_sources[PENANCE_LIMB] + ticket.penance_sources[PENANCE_SKELETON]) //get all the current limb effecting penance
+			var/obj/item/bodypart/BP
+			for(var/target_zone in ticket.unspooked_limbs) //get all the current effectable limbs
+				BP = C.get_bodypart(target_zone)
+				if(BP) //these skeleton limbs are worse than normal ones and even surplus prosthetics so it doesnt matter if you have those
+					available_parts++
+			if(available_parts <= 0)
+				return
+		if(PENANCE_TRAUMA_ADV)
+			if(ticket.penance_sources[PENANCE_TRAUMA_ADV] == TRAUMA_ADV_CAP)
+				return
+		if(PENANCE_TRAUMA_BASIC)
+			if(ticket.penance_sources[PENANCE_TRAUMA_BASIC] == TRAUMA_BASIC_CAP)
+				return
+	ticket.penance_sources[loss]++
+	ticket.check_escape()*/
 
 #undef PENANCE_LIFE
 #undef PENANCE_SOUL
