@@ -72643,12 +72643,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"lWv" = (
-/obj/structure/pool_ladder{
-	anchored = 1
-	},
-/turf/open/indestructible/sound/pool/end,
-/area/crew_quarters/fitness/recreation)
 "lWT" = (
 /obj/structure/sign/warning/vacuum{
 	pixel_x = 32
@@ -83874,6 +83868,12 @@
 	},
 /obj/effect/turf_decal/pool,
 /turf/open/floor/plasteel,
+/area/crew_quarters/fitness/recreation)
+"xWT" = (
+/obj/structure/pool_ladder{
+	anchored = 1
+	},
+/turf/open/indestructible/sound/pool/end,
 /area/crew_quarters/fitness/recreation)
 "xXt" = (
 /obj/structure/lattice,
@@ -119900,7 +119900,7 @@ sGn
 hvR
 agu
 xmU
-lWv
+xWT
 cBC
 cBC
 cBC
