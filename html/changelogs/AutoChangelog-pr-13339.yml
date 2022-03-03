@@ -1,4 +1,0 @@
-author: "alexkar598"
-delete-after: true 
-changes: 
-  - rscadd: "Adds the ability for external tooling to send server messages"
