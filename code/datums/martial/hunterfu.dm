@@ -1,6 +1,6 @@
 #define BODYSLAM_COMBO "GH"
 #define STAKESTAB_COMBO "HH"
-#define NECKSNAP_COMBO "GD"
+#define NECKSNAP_COMBO "GDH"
 #define HOLYKICK_COMBO "DG"
 
 // From CQC.dm
@@ -94,7 +94,7 @@
 		playsound(get_turf(user), 'sound/effects/snap.ogg', 50, TRUE, -1)
 		log_combat(user, target, "neck snapped (Hunter-Fu)")
 		if(!target.mind)
-			target.SetSleeping(45)
+			target.SetSleeping(30)
 			playsound(get_turf(user), 'sound/effects/snap.ogg', 50, TRUE, -1)
 			log_combat(user, target, "neck snapped (Hunter-Fu)")
 			return TRUE
@@ -104,13 +104,13 @@
 		if(target.mind.has_antag_datum(/datum/antagonist/heretic))
 			to_chat(target, span_cultlarge("The power of the Codex Cicatrix flares as we are swiftly put to sleep!"))
 			target.apply_damage(15, BRUTE, BODY_ZONE_HEAD)
-			target.SetSleeping(50)
+			target.SetSleeping(40)
 			return TRUE
 		if(target.mind.has_antag_datum(/datum/antagonist/bloodsucker))
 			to_chat(target, span_warning("Our undead form protects us from being put to sleep!"))
 			return TRUE
 		else
-			target.SetSleeping(45)
+			target.SetSleeping(30)
 	return TRUE
 
 /datum/martial_art/hunterfu/proc/holy_kick(mob/living/user, mob/living/target)
@@ -217,7 +217,7 @@
 
 	to_chat(usr, span_notice("<b>Body Slam</b>: Grab Harm. Slam opponent into the ground, knocking you both down."))
 	to_chat(usr, span_notice("<b>Stake Stab</b>: Harm Harm. Stabs opponent with your bare fist, as strong as a Stake."))
-	to_chat(usr, span_notice("<b>Neck Snap</b>: Grab Disarm. Snaps an opponents neck, knocking them out."))
+	to_chat(usr, span_notice("<b>Neck Snap</b>: Grab Disarm Harm. Snaps an opponents neck, knocking them out."))
 	to_chat(usr, span_notice("<b>Holy Kick</b>: Disarm Grab. Splashes the user with Holy Water, removing Cult Spells, while dealing stamina damage."))
 
 	to_chat(usr, span_notice("<b><i>In addition, by having your throw mode on, you take a defensive position, allowing you to block and sometimes even counter attacks done to you.</i></b>"))

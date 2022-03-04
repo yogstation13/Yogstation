@@ -270,7 +270,7 @@
 /datum/mind/proc/can_make_bloodsucker(datum/mind/convertee, datum/mind/converter)
 	// Species Must have a HEART (Sorry Plasmamen)
 	var/mob/living/carbon/human/user = convertee.current
-	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
+	if(NOBLOOD in user.dna.species.species_traits)
 		if(converter)
 			to_chat(converter, span_danger("[convertee]'s DNA isn't compatible!"))
 		return FALSE
