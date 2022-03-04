@@ -172,3 +172,22 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "multitool"
 	toolspeed = 0.1
+
+/obj/item/multitool/makeshift
+	name = "makeshift multitool"
+	desc = "As crappy as it is, its still mostly the same as a standard issue Nanotrasen one."
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "multitool_makeshift"
+	toolspeed = 2
+
+/obj/item/multitool/makeshift/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	..()
+	if(prob(5))
+		to_chat(user, "<span class='danger'>[src] crumbles apart in your hands!</span>")
+		qdel(src)
+		return
+	else if(prob(5))
+		user.rad_act(20)
+		to_chat(user, "<span class='userdanger'>[src] breaks down and emits dangerous rays!</span>")
+		src.tool_behaviour = 0
+		return

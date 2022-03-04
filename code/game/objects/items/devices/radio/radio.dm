@@ -425,3 +425,9 @@
 /obj/item/radio/off	// Station bounced radios, their only difference is spawning with the speakers off, this was made to help the lag.
 	listening = 0			// And it's nice to have a subtype too for future features.
 	dog_fashion = /datum/dog_fashion/back
+
+/obj/item/radio/off/makeshift	// Makeshift SBR, limited use cases but could be useful.
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "radio_makeshift"
+	subspace_switchable = TRUE  // Made with a headset, so it can transmit over subspace I guess
+	freqlock = TRUE

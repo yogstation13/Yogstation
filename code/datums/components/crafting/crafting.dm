@@ -20,6 +20,7 @@
 					CAT_WEAPON,
 					CAT_AMMO,
 				),
+				CAT_TOOLS = CAT_NONE,
 				CAT_ROBOT = CAT_NONE,
 				CAT_MISC = CAT_NONE,
 				CAT_PRIMAL = CAT_NONE,
