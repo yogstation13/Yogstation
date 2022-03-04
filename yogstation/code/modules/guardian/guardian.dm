@@ -376,6 +376,24 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			to_chat(src, span_bolddanger("You can't attack yourself!"))
 			return FALSE
 		else if (target == summoner?.current)
+			if (iscarbon(target))
+				var/mob/living/carbon/stando_master = target
+				if (stando_master.handcuffed || stando_master.legcuffed)
+					if (stats.damage >= 4) // only A or B
+						playsound(stando_master, 'sound/effects/bang.ogg', 50, TRUE)
+						if (stando_master.handcuffed)
+							visible_message(span_danger("[src] smashes \the [stando_master.handcuffed] restraining [stando_master]!"))
+							QDEL_NULL(stando_master.handcuffed)
+							stando_master.update_handcuffed()
+						else if (stando_master.legcuffed) // you gotta do it twice for both hand and leg cuffs
+							visible_message(span_danger("[src] smashes \the [stando_master.legcuffed] restraining [stando_master]!"))
+							QDEL_NULL(stando_master.legcuffed)
+							stando_master.update_inv_legcuffed()
+						if (stando_master.pulledby && stando_master.pulledby != src)
+							stando_master.pulledby.stop_pulling()
+					else
+						to_chat(src, span_warning("You are not strong enough to free your master from their restraints..."))
+					return
 			to_chat(src, span_bolddanger("You can't attack your summoner!"))
 			return FALSE
 		else if (istype(target, /mob/living/simple_animal/hostile/guardian))
