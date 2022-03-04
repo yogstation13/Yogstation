@@ -26,6 +26,7 @@
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+	always_availible = FALSE
 
 /datum/crafting_recipe/makeshiftmagazine
 	name = "Makeshift Pistol Magazine (10mm)"
@@ -35,6 +36,7 @@
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+	always_availible = FALSE
 
 /datum/crafting_recipe/makeshiftsuppressor
 	name = "Makeshift Suppressor"
@@ -46,6 +48,7 @@
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+	always_availible = FALSE
 
 
 ///////////
@@ -58,6 +61,7 @@
 	result = /obj/item/crowbar/makeshift
 	time = 12 SECONDS
 	category = CAT_TOOLS
+	always_availible = FALSE
 
 /datum/crafting_recipe/makeshiftwrench
 	name = "Makeshift Wrench"
@@ -65,6 +69,7 @@
 	result = /obj/item/wrench/makeshift
 	time = 12 SECONDS
 	category = CAT_TOOLS
+	always_availible = FALSE
 
 /datum/crafting_recipe/makeshiftwirecutters
 	name = "Makeshift Wirecutters"
@@ -73,6 +78,7 @@
 	result = /obj/item/wirecutters/makeshift
 	time = 15 SECONDS
 	category = CAT_TOOLS
+	always_availible = FALSE
 
 /datum/crafting_recipe/makeshiftweldingtool
 	name = "Makeshift Welding Tool"
@@ -82,6 +88,7 @@
 	result = /obj/item/weldingtool/makeshift
 	time = 16 SECONDS
 	category = CAT_TOOLS
+	always_availible = FALSE
 
 /datum/crafting_recipe/makeshiftmultitool
 	name = "Makeshift Multitool"
@@ -93,6 +100,7 @@
 	result = /obj/item/multitool/makeshift
 	time = 16 SECONDS
 	category = CAT_TOOLS
+	always_availible = FALSE
 
 /datum/crafting_recipe/makeshiftscrewdriver
 	name = "Makeshift Screwdriver"
@@ -100,6 +108,7 @@
 	result = /obj/item/screwdriver/makeshift
 	time = 12 SECONDS
 	category = CAT_TOOLS
+	always_availible = FALSE
 
 /datum/crafting_recipe/makeshiftknife
 	name = "Makeshift Knife"
@@ -109,6 +118,7 @@
 	result = /obj/item/kitchen/knife/makeshift
 	time = 12 SECONDS
 	category = CAT_TOOLS
+	always_availible = FALSE
 
 /datum/crafting_recipe/makeshiftpickaxe
 	name = "Makeshift Pickaxe"
@@ -118,6 +128,7 @@
            /obj/item/stack/tape = 1)
 	result = /obj/item/pickaxe/makeshift
 	category = CAT_TOOLS
+	always_availible = FALSE
 
 /datum/crafting_recipe/makeshiftradio
 	name = "Makeshift Radio"	
@@ -128,3 +139,4 @@
 	result = /obj/item/radio/off/makeshift
 	time = 12 SECONDS
 	category = CAT_TOOLS
+	always_availible = FALSE
