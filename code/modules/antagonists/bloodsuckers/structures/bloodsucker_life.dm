@@ -6,8 +6,11 @@
 		return
 	// Deduct Blood
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
-		INVOKE_ASYNC(src, .proc/AddBloodVolume, passive_blood_drain) // -.2 currently
+		INVOKE_ASYNC(src, .proc/AddBloodVolume, passive_blood_drain) // -.1 currently
 	if(HandleHealing(1))
+		var/mob/living/carbon/human/user = owner.current
+		if(user.dna.species.id == "preternis") //robot has to heal itself
+			return
 		if((COOLDOWN_FINISHED(src, bloodsucker_spam_healing)) && owner.current.blood_volume > 0)
 			to_chat(owner.current, span_notice("The power of your blood begins knitting your wounds..."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_HEALING)
@@ -333,6 +336,9 @@
 		Torpor_End()
 
 /datum/antagonist/bloodsucker/proc/Torpor_Begin()
+	var/mob/living/carbon/human/user = owner.current
+	if(user.dna.species.id == "preternis")
+		return //robot has to heal itself
 	to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
 	/// Force them to go to sleep
 	REMOVE_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
@@ -346,6 +352,9 @@
 	DisableAllPowers()
 
 /datum/antagonist/bloodsucker/proc/Torpor_End()
+	var/mob/living/carbon/human/user = owner.current
+	if(user.dna.species.id == "preternis") 
+		return //robot has to heal itself
 	owner.current.grab_ghost()
 	to_chat(owner.current, span_warning("You have recovered from Torpor."))
 	REMOVE_TRAIT(owner.current, TRAIT_RESISTLOWPRESSURE, BLOODSUCKER_TRAIT)

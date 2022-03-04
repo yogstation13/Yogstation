@@ -45,7 +45,7 @@
 
 	var/bloodsucker_level
 	var/bloodsucker_level_unspent = 1
-	var/passive_blood_drain = -0.2
+	var/passive_blood_drain = -0.1
 	var/additional_regen
 	var/bloodsucker_regen_rate = 0.3
 	var/max_blood_volume = 600
