@@ -23,6 +23,7 @@
  *		Clockwork Watches
  *		Toy Daggers
  *		Turn Tracker
+ *		ceremonial Rod of Asclepius
  */
 
 
@@ -1616,3 +1617,15 @@ obj/item/toy/turn_tracker
 /obj/item/storage/box/heretic_box/PopulateContents()
 	for(var/i in 1 to rand(1,4))
 		new /obj/item/toy/reality_pierce(src)
+
+/*
+ * ceremonial Rod of Asclepius
+ */
+
+/obj/item/toy/rod_of_asclepius
+	name = "ceremonial Rod of Asclepius"
+	desc = "A wooden rod about the size of your forearm with a snake carved around it, winding its way up the sides of the rod. This is a ceremonial recreation given to the Chief Medical Officer, and has 'Nanotrasen Emergency Medical' engraved at the bottom."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
+	icon_state = "asclepius_dormant"
