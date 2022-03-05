@@ -19,9 +19,9 @@ SUBSYSTEM_DEF(bluespace_locker)
 		- typesof(/obj/structure/closet/cardboard) - typesof(/obj/structure/closet/crate) \
 		- typesof(/obj/structure/closet/supplypod) - typesof(/obj/structure/closet/stasis) \
 		- typesof(/obj/structure/closet/abductor) - typesof(/obj/structure/closet/bluespace), only_root_path = TRUE)
-	var/list/valid_areas = typecacheof(list(/area/maintenance, /area/hallway, /area/crew_quarters/dorms, \
-		/area/crew_quarters/toilet, /area/crew_quarters/locker, /area/crew_quarters/lounge, /area/crew_quarters/fitness, \
-		/area/vacant_room))
+	var/list/invalid_areas = typecacheof(list(/area/bridge, /area/crew_quarters/heads, /area/comms, /area/server, \
+		/area/engine/engine_smes, /area/engine/gravity_generator, /area/teleporter, /area/gateway, /area/medical/virology, \
+		/area/security, /area/quartermaster/qm, /area/storage/eva, /area/ai_monitored, /area/tcommsat))
 
 	var/list/lockers_list = list()
 	for(var/obj/structure/closet/L in GLOB.lockers)
@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(bluespace_locker)
 		if (!is_type_in_typecache(L, valid_lockers))
 			continue
 		var/area/A = get_area(L)
-		if (!is_type_in_typecache(A, valid_areas))
+		if (is_type_in_typecache(A, invalid_areas))
 			continue
 		if (L.secure || L.welded || L.locked || L.wall_mounted)
 			continue
