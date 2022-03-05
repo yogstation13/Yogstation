@@ -1,6 +1,7 @@
 /mob/living/simple_animal/snail
 	name = "snail"
-	desc = "a slow friend"
+	desc = "snails are mollusks, putting them in the same category as oysters, clams, and mussels.
+	"
 	icon_state = "snail"
 	icon_living = "snail"
 	icon_dead = "snail_dead"
