@@ -14,16 +14,27 @@ SUBSYSTEM_DEF(bluespace_locker)
 	if(external_locker)
 		return
 	// basically any normal-looking locker that isn't a secure one
-	var/list/valid_lockers = typecacheof(typesof(/obj/structure/closet) - typesof(/obj/structure/closet/body_bag)\
-	- typesof(/obj/structure/closet/secure_closet) - typesof(/obj/structure/closet/cabinet)\
-	- typesof(/obj/structure/closet/cardboard) - typesof(/obj/structure/closet/crate)\
-	- typesof(/obj/structure/closet/supplypod) - typesof(/obj/structure/closet/stasis)\
-	- typesof(/obj/structure/closet/abductor) - typesof(/obj/structure/closet/bluespace), only_root_path = TRUE)
+	var/list/valid_lockers = typecacheof(typesof(/obj/structure/closet) - typesof(/obj/structure/closet/body_bag) \
+		- typesof(/obj/structure/closet/secure_closet) - typesof(/obj/structure/closet/cabinet) \
+		- typesof(/obj/structure/closet/cardboard) - typesof(/obj/structure/closet/crate) \
+		- typesof(/obj/structure/closet/supplypod) - typesof(/obj/structure/closet/stasis) \
+		- typesof(/obj/structure/closet/abductor) - typesof(/obj/structure/closet/bluespace), only_root_path = TRUE)
+	var/list/valid_areas = typecacheof(list(/area/maintenance, /area/hallway, /area/crew_quarters/dorms, \
+		/area/crew_quarters/toilet, /area/crew_quarters/locker, /area/crew_quarters/lounge, /area/crew_quarters/fitness, \
+		/area/vacant_room))
 
 	var/list/lockers_list = list()
 	for(var/obj/structure/closet/L in GLOB.lockers)
-		if(is_station_level(L.z) && is_type_in_typecache(L, valid_lockers))
-			lockers_list += L
+		if (!is_station_level(L.z))
+			continue
+		if (!is_type_in_typecache(L, valid_lockers))
+			continue
+		var/area/A = get_area(L)
+		if (!is_type_in_typecache(A, valid_areas))
+			continue
+		if (L.secure || L.welded || L.locked || L.wall_mounted)
+			continue
+		lockers_list += L
 	if(!lockers_list.len)
 		// Congratulations, you managed to destroy all the lockers somehow.
 		// Now let's make a new one.
