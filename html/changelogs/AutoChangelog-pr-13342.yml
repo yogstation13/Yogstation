@@ -1,0 +1,5 @@
+author: "cuackles"
+delete-after: true 
+changes: 
+  - imageadd: "added t45b new sprite"
+  - imagedel: "deleted t45b old sprite"
