@@ -313,6 +313,9 @@
 			SEND_SIGNAL(W, COMSIG_TRY_STORAGE_INSERT, cell, null, null, TRUE)
 			to_chat(user, span_notice("[capitalize(cell.name)] replaced with [best_cell.name]."))
 		best_cell.forceMove(src)
+		var/amount_to_charge = min(best_cell.maxcharge - best_cell.charge, cell.charge)
+		if (cell.use(amount_to_charge))
+			best_cell.give(amount_to_charge)
 		cell = best_cell
 		W.play_rped_sound()
 
