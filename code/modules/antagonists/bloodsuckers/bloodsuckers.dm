@@ -376,7 +376,7 @@
 	// Spend Rank Immediately?
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 		if(my_clan == CLAN_VENTRUE)
-			to_chat(owner, span_announce("You have recieved a new Rank to level up your Favorite Vassal with!"))
+			to_chat(owner, span_announce("You have received a new Rank to level up your Favorite Vassal with!"))
 			return
 		SpendRank()
 	else

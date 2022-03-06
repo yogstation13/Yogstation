@@ -223,7 +223,7 @@
 			bloodsuckerdatum.FinalDeath()
 		else
 			to_chat(target, span_userdanger("You have been staked! Your powers are useless, your death forever, while it remains in place."))
-			to_chat(target, "you have been staked!")
+			to_chat(target, span_userdanger("You have been staked!"))
 
 /// Can this target be staked? If someone stands up before this is complete, it fails. Best used on someone stationary.
 /mob/living/carbon/proc/can_be_staked()

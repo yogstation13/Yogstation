@@ -5,7 +5,7 @@
 	false_report_weight = 10
 	traitors_possible = 3 // Hard limit on Traitors if scaling is turned off
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Captain", "Head of Personnel", "Head of Security", "Research Director", "Chief Engineer", "Chief Medical Officer", "Quartermaster", "Warden", "Security Officer", "Detective", "Brig Physician", "Deputy",)
+	protected_jobs = list("Captain", "Head of Personnel", "Head of Security", "Research Director", "Chief Engineer", "Chief Medical Officer", "Curator", "Warden", "Security Officer", "Detective", "Brig Physician")
 	required_players = 20
 	required_enemies = 1 // How many of each type are required
 	recommended_enemies = 2
