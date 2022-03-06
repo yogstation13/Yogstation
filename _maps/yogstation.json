@@ -1,7 +1,7 @@
 {
-    "map_name": "YogsBox",
-    "map_path": "map_files/YogsBox",
-    "map_file": "YogsBox.dmm",
+    "map_name": "YogStation",
+    "map_path": "map_files/YogStation",
+    "map_file": "YogStation.dmm",
     "shuttles": {
 	    "cargo": "cargo_box",
 	    "ferry": "ferry_fancy",
