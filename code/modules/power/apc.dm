@@ -328,7 +328,7 @@
 						// 2 if we need to update the overlays
 	if(!update)
 		icon_update_needed = FALSE
-		returnd
+		return
 
 	if(update & 1) // Updating the icon state
 		if(update_state & UPSTATE_ALLGOOD)
