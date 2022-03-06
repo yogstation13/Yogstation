@@ -56,6 +56,7 @@
 	integrity_failure = 50
 	resistance_flags = FIRE_PROOF
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
+	works_with_rped_anyways = TRUE
 	FASTDMM_PROP(\
 		set_instance_vars(\
 			pixel_x = dir == EAST ? 24 : (dir == WEST ? -25 : INSTANCE_VAR_DEFAULT),\
@@ -291,6 +292,31 @@
 	if(issilicon(user))
 		. += span_notice("Ctrl-Click the APC to switch the breaker [ operating ? "off" : "on"].")
 
+/obj/machinery/power/apc/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
+	if(!istype(W))
+		return FALSE
+	if(!opened && !W.works_from_distance)
+		return FALSE
+	var/current_cell_rating = cell ? cell.get_part_rating() : -1
+	var/best_cell_rating = current_cell_rating
+	var/obj/item/stock_parts/cell/best_cell
+	for(var/C in W.contents)
+		var/obj/item/stock_parts/cell/cell = C
+		if (!cell || !istype(cell))
+			continue
+		var/cell_rating = cell.get_part_rating()
+		if (cell_rating > best_cell_rating || (cell_rating == best_cell_rating && cell.charge > best_cell.charge))
+			best_cell_rating = cell_rating
+			best_cell = cell
+	if (best_cell)
+		if (cell)
+			SEND_SIGNAL(W, COMSIG_TRY_STORAGE_INSERT, cell, null, null, TRUE)
+			to_chat(user, span_notice("[capitalize(cell.name)] replaced with [best_cell.name]."))
+		best_cell.forceMove(src)
+		cell = best_cell
+		W.play_rped_sound()
+
+
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
 /obj/machinery/power/apc/update_icon()
@@ -299,7 +325,7 @@
 						// 2 if we need to update the overlays
 	if(!update)
 		icon_update_needed = FALSE
-		return
+		returnd
 
 	if(update & 1) // Updating the icon state
 		if(update_state & UPSTATE_ALLGOOD)
