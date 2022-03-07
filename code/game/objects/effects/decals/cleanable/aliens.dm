@@ -13,6 +13,12 @@
 	. = ..()
 	add_blood_DNA(list("UNKNOWN DNA" = "X*"))
 
+/obj/effect/decal/cleanable/xenoblood/Crossed(atom/movable/L)
+	if(prob(10) && iscarbon(L)) // shoutout to the polysmorphs
+		var/mob/living/carbon/C = L
+		C.slip(80, src, NO_SLIP_WHEN_WALKING)
+	. = ..()
+
 /obj/effect/decal/cleanable/xenoblood/xsplatter
 	random_icon_states = list("xgibbl1", "xgibbl2", "xgibbl3", "xgibbl4", "xgibbl5")
 
