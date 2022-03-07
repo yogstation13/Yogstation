@@ -297,7 +297,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("stabbed", "ripped", "gored", "impaled")
 	embedding = list("embedded_pain_multiplier" = 8, "embed_chance" = 100, "embedded_fall_chance" = 0, "embedded_impact_pain_multiplier" = 15) //55 damage+embed on hit
 
-/obj/item/throwing_star/cannonball
+/obj/item/cannonball
 	name = "cannonball"
 	desc = "A big ball of lead, perfect for shooting holes into a space station."
 	icon = 'icons/obj/ammo.dmi'

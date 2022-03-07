@@ -356,4 +356,5 @@
 	throw_amount = 1
 	maxWeightClass = 3 //a single cannonball
 	spin_item = FALSE
-	var/static/list/magspear_typecache = typecacheof(/obj/item/throwing_star/cannonball)
+	var/static/list/magspear_typecache = typecacheof(/obj/item/cannonball)
+
