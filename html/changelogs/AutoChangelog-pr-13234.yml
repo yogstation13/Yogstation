@@ -1,0 +1,7 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - rscdel: "Removed invisible escape and funny aoe knockout ability upgrades"
+  - tweak: "Massively increased escape time and soul eating time"
+  - tweak: "Moderate increases to direct host transfer time"
+  - tweak: "Increases time to crawl into someone's ear"
