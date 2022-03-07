@@ -35,8 +35,6 @@
 	var/datum/team/vampireclan/clan
 	///Frenzy Grab Martial art given to Bloodsuckers in a Frenzy
 	var/datum/martial_art/frenzygrab/frenzygrab = new
-	///You get assigned a Clan once you Rank up enough
-	var/my_clan = NONE
 
 	///Vassals under my control. Periodically remove the dead ones.
 	var/list/datum/antagonist/vassal/vassals = list()
@@ -240,9 +238,6 @@
 	// Vamp name
 	report += "<br><span class='header'><b>\[[ReturnFullName(TRUE)]\]</b></span>"
 	report += printplayer(owner)
-	// Clan (Actual Clan, not Team) name
-	if(my_clan != NONE)
-		report += "They were part of the <b>[my_clan]</b>!"
 
 	// Default Report
 	var/objectives_complete = TRUE
@@ -375,11 +370,6 @@
 	bloodsucker_level_unspent++
 	// Spend Rank Immediately?
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
-		if(my_clan == CLAN_VENTRUE)
-			to_chat(owner, span_announce("You have received a new Rank to level up your Favorite Vassal with!"))
-			return
-		SpendRank()
-	else
 		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin that you have claimed to thicken your blood and become more powerful.</EM>"))
 		if(bloodsucker_level_unspent >= 2)
 			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
@@ -422,9 +412,6 @@
 	if(target)
 		power_mode = PURCHASE_VASSAL
 		upgrade_message = "You have the opportunity to level up your Favorite Vassal. Select a power you wish them to recieve."
-	if(my_clan == CLAN_TREMERE)
-		power_mode = PURCHASE_TREMERE
-		upgrade_message = "You have the opportunity to grow more ancient. Select a power you wish to upgrade."
 	// Purchase Power Prompt
 	var/list/options = list()
 	switch(power_mode)
@@ -506,9 +493,6 @@
 	if(spend_rank)
 		bloodsucker_level_unspent--
 
-	// Ranked up enough? Let them join a Clan.
-	if(bloodsucker_level == 3)
-		AssignClanAndBane()
 	// Ranked up enough to get your true Reputation?
 	if(bloodsucker_level == 4)
 		SelectReputation(am_fledgling = FALSE, forced = TRUE)
@@ -708,8 +692,6 @@
 			continue
 		to_chat(clan_minds, span_userdanger("[owner.current] has broken the Masquerade! Ensure they are eliminated at all costs!"))
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = clan_minds.has_antag_datum(/datum/antagonist/bloodsucker)
-		if(bloodsuckerdatum.my_clan != CLAN_MALKAVIAN)
-			continue
 		var/datum/objective/assassinate/masquerade_objective = new /datum/objective/assassinate
 		masquerade_objective.target = owner.current
 		masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, is Final Death'ed."

@@ -33,7 +33,6 @@
 #define CLAN_TREMERE "Tremere Clan"
 #define CLAN_VENTRUE "Ventrue Clan"
 #define CLAN_MALKAVIAN "Malkavian Clan"
-// Flavortext-only clans
 #define CLAN_TOREADOR "Toreador Clan"
 #define CLAN_GANGREL "Gangrel Clan"
 

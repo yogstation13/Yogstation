@@ -22,7 +22,7 @@
 		return FALSE
 	/// Have No Lair (NOTE: You only got this power if you had a lair, so this means it's destroyed)
 	if(!istype(bloodsuckerdatum_power) || !bloodsuckerdatum_power.coffin)
-		to_chat(owner, "Your coffin has been destroyed!")
+		to_chat(owner, span_warning("Your coffin has been destroyed!"))
 		return FALSE
 	return TRUE
 

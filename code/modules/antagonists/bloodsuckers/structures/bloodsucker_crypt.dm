@@ -302,9 +302,7 @@
 	if(bloodsuckerdatum && bloodsuckerdatum.attempt_turn_vassal(target))
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 			remove_loyalties(target)
-		if(bloodsuckerdatum.my_clan == CLAN_TREMERE)
-			to_chat(user, span_danger("You have now gained an additional Rank to spend!"))
-			bloodsuckerdatum.bloodsucker_level_unspent++
+		bloodsuckerdatum.bloodsucker_level_unspent++
 		user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
 		target.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
 		target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
@@ -464,11 +462,6 @@
 
 /obj/structure/bloodsucker/candelabrum/examine(mob/user)
 	. = ..()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum.my_clan == CLAN_VENTRUE)
-		. += span_cult("As part of the Ventrue Clan, you can Rank Up your Favorite Vassal.\n\
-		Drag your Vassal's sprite onto the Candelabrum to secure them in place. From there, Clicking will Rank them up, while Right-click will unbuckle, as long as you are in reach.\n\
-		Ranking up a Vassal will rank up what powers you currently have, and will allow you to choose what Power your Favorite Vassal will recieve.")
 
 /obj/structure/bloodsucker/candelabrum/bolt()
 	. = ..()
@@ -515,31 +508,6 @@
 		return
 	if(!anchored)
 		return
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	// Checks: We're Ventrue, they're Buckled & Alive.
-	if(bloodsuckerdatum && bloodsuckerdatum.my_clan == CLAN_VENTRUE)
-		if(!has_buckled_mobs())
-			toggle()
-			return
-		var/mob/living/carbon/target = pick(buckled_mobs)
-		if(target.stat >= DEAD)
-			unbuckle_mob(target)
-			return
-		// Are we spending a Rank?
-		if(!bloodsuckerdatum.bloodsucker_level_unspent <= 0)
-			bloodsuckerdatum.SpendRank(target)
-		else if(user.blood_volume >= 550)
-			// We don't have any ranks to spare? Let them upgrade... with enough Blood.
-			switch(input("Do you wish to spend 550 Blood to Rank [target] up?") in list("Yes", "No"))
-				if("Yes")
-					user.blood_volume -= 550
-					bloodsuckerdatum.SpendRank(target, spend_rank = FALSE)
-					return
-		else
-			// Neither? Shame. Goodbye!
-			to_chat(user, span_danger("You don't have any levels or enough Blood to Rank [target] up with."))
-			return
-
 	if(IS_BLOODSUCKER(user) || IS_VASSAL(user))
 		toggle()
 
@@ -555,9 +523,6 @@
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(target)
 	/// Are you even a Bloodsucker?
 	if(!bloodsuckerdatum || !vassaldatum)
-		return
-	/// Are you part of Ventrue? No? Then go away.
-	if(!bloodsuckerdatum.my_clan == CLAN_VENTRUE)
 		return
 	/// Are they a Favorite Vassal?
 	if(!vassaldatum.favorite_vassal)

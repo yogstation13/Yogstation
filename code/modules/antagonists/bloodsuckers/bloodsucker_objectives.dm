@@ -217,7 +217,7 @@
 
 // GENERATE!
 /datum/objective/bloodsucker/gourmand/New()
-	target_amount = rand(450,650)
+	target_amount = rand(650,1250)
 	..()
 
 // EXPLANATION
@@ -236,105 +236,6 @@
 	return FALSE
 
 // HOW: Track each feed (if human). Count victory.
-
-
-
-//////////////////////////////
-//     CLAN OBJECTIVES      //
-//////////////////////////////
-
-/// Drink certain amount of Blood while in a Frenzy - Brujah Clan Objective
-/datum/objective/bloodsucker/gourmand/brujah
-	name = "brujah gourmand"
-//	NOTE: This is a copy paste from default Gourmand objective.
-
-// EXPLANATION
-/datum/objective/bloodsucker/gourmand/brujah/update_explanation_text()
-	. = ..()
-	explanation_text = "While in a Frenzy, using your Feed ability, drink [target_amount] units of Blood."
-
-// WIN CONDITIONS?
-/datum/objective/bloodsucker/gourmand/brujah/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(!bloodsuckerdatum)
-		return FALSE
-	var/stolen_blood = bloodsuckerdatum.frenzy_blood_drank
-	if(stolen_blood >= target_amount)
-		return TRUE
-	return FALSE
-
-//////////////////////////////////////////////////////////////////////////////////////
-
-/// Steal the Archive of the Kindred - Nosferatu Clan objective
-/datum/objective/bloodsucker/kindred
-	name = "steal kindred"
-
-// EXPLANATION
-/datum/objective/bloodsucker/kindred/update_explanation_text()
-	. = ..()
-	explanation_text = "Ensure Nosferatu steals and keeps control over the Archive of the Kindred."
-
-// WIN CONDITIONS?
-/datum/objective/bloodsucker/kindred/check_completion()
-	if(!owner.current)
-		return FALSE
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(!bloodsuckerdatum)
-		return FALSE
-
-	for(var/datum/mind/bloodsucker_minds in bloodsuckerdatum.clan?.members)
-		var/datum/antagonist/bloodsucker/allsuckers = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
-		if(allsuckers.my_clan != CLAN_NOSFERATU)
-			continue
-		if(!isliving(bloodsucker_minds.current))
-			continue
-		var/list/all_items = allsuckers.owner.current.GetAllContents()
-		for(var/obj/items in all_items)
-			if(istype(items, /obj/item/book/kindred))
-				return TRUE
-	return FALSE
-
-//////////////////////////////////////////////////////////////////////////////////////
-
-/// Max out a Tremere Power - Tremere Clan objective
-/datum/objective/bloodsucker/tremere_power
-	name = "tremerepower"
-
-// EXPLANATION
-/datum/objective/bloodsucker/tremere_power/update_explanation_text()
-	explanation_text = "Upgrade a Blood Magic power to the maximum level, remember that Vassalizing gives more Ranks!"
-
-// WIN CONDITIONS?
-/datum/objective/bloodsucker/tremere_power/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
-	for(var/datum/action/bloodsucker/targeted/tremere/tremere_powers in bloodsuckerdatum.powers)
-		if(tremere_powers.level_current >= 5)
-			return TRUE
-	return FALSE
-
-//////////////////////////////////////////////////////////////////////////////////////
-
-/// Convert a crewmate - Ventrue Clan objective
-/datum/objective/bloodsucker/embrace
-	name = "embrace"
-
-// EXPLANATION
-/datum/objective/bloodsucker/embrace/update_explanation_text()
-	. = ..()
-	explanation_text = "Use the Candelabrum to Rank your Favorite Vassal up enough to become a Bloodsucker."
-
-// WIN CONDITIONS?
-/datum/objective/bloodsucker/embrace/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(!bloodsuckerdatum || bloodsuckerdatum.my_clan != CLAN_VENTRUE)
-		return FALSE
-	for(var/datum/antagonist/vassal/vassaldatum in bloodsuckerdatum.vassals)
-		if(vassaldatum.owner && vassaldatum.favorite_vassal)
-			if(vassaldatum.owner.has_antag_datum(/datum/antagonist/bloodsucker))
-				return TRUE
-	return FALSE
-
-
 
 //////////////////////////////
 // MONSTERHUNTER OBJECTIVES //

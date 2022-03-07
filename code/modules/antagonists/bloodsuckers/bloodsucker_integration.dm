@@ -147,8 +147,6 @@
 	if(blood_volume <= BLOOD_VOLUME_BAD(user) || bloodsuckerdatum.frenzied)
 		return BLOODSUCKER_HIDE_BLOOD
 	// Special check: Nosferatu will always be Pale Death
-	if(bloodsuckerdatum.my_clan == CLAN_NOSFERATU)
-		return "<b>[p_they(TRUE)] look[p_s()] like pale death"
 	if(HAS_TRAIT(src, TRAIT_MASQUERADE))
 		return BLOODSUCKER_HIDE_BLOOD
 	switch(blood_volume)

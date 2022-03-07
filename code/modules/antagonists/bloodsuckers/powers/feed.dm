@@ -67,11 +67,6 @@
 	if(!isliving(target) || issilicon(target))
 		to_chat(owner, span_warning("You may only feed from living beings."))
 		return FALSE
-	// Is a Mouse on an Invalid Clan.
-	if(istype(target, /mob/living/simple_animal/mouse))
-		if(bloodsuckerdatum_power.my_clan == CLAN_VENTRUE)
-			to_chat(owner, span_warning("The thought of feeding off of a dirty rat leaves your stomach aching."))
-			return FALSE
 	// Check for other animals (Supposed to be after Mouse so Mouse can skip over it)
 	else if(!iscarbon(target))
 		to_chat(owner, span_warning("Such simple beings cannot be fed off of."))
@@ -91,11 +86,6 @@
 			return FALSE
 		if(NOBLOOD in target_user.dna.species.species_traits)// || owner.get_blood_id() != target.get_blood_id())
 			to_chat(owner, span_warning("Your victim's blood is not suitable for you to take."))
-			return FALSE
-	// Special Check: If you're part of the Ventrue clan, they can't be mindless!
-	if(bloodsuckerdatum_power.my_clan == CLAN_VENTRUE && !bloodsuckerdatum_power.frenzied)
-		if(!target.mind)
-			to_chat(owner, span_warning("The thought of drinking blood from the mindsless leaves a distasteful feeling in your mouth."))
 			return FALSE
 	return TRUE
 
@@ -160,9 +150,8 @@
 		var/mob/living/simple_animal/mouse_target = feed_target
 		bloodsuckerdatum_power.AddBloodVolume(25)
 		to_chat(user, span_notice("You recoil at the taste of a lesser lifeform."))
-		if(bloodsuckerdatum_power.my_clan != CLAN_NOSFERATU && bloodsuckerdatum_power.my_clan != CLAN_MALKAVIAN)
-			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood_bad)
-			bloodsuckerdatum_power.AddHumanityLost(1)
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood_bad)
+		bloodsuckerdatum_power.AddHumanityLost(1)
 		DeactivatePower()
 		mouse_target.adjustBruteLoss(20)
 		return
@@ -276,12 +265,6 @@
 	// Drank good blood? - GOOD
 	if(amount_taken > 5 && feed_target.stat < DEAD && ishuman(feed_target))
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood)
-	// Drank mindless as Ventrue? - BAD
-	if(!feed_target.mind && bloodsuckerdatum_power.my_clan == CLAN_VENTRUE)
-		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood_bad)
-		if(!warning_target_inhuman)
-			to_chat(user, span_notice("You feel disgusted at the taste of a non-sentient creature."))
-			warning_target_inhuman = TRUE
 	// Dead Blood? - BAD
 	if(feed_target.stat >= DEAD)
 		if(ishuman(feed_target))

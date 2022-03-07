@@ -208,9 +208,7 @@
 				if("Yes")
 					ClaimCoffin(user)
 			LockMe(user)
-		/// Level up? Auto-Fails if not appropriate - Ventrue cannot level up in a Coffin.
-		if(bloodsuckerdatum.my_clan != CLAN_VENTRUE)
-			bloodsuckerdatum.SpendRank()
+		bloodsuckerdatum.SpendRank()
 		/// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the oppertunity to do so.
 		bloodsuckerdatum.Check_Begin_Torpor()
 	return TRUE

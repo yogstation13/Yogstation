@@ -322,13 +322,11 @@
 		// Are we a Bloodsucker | Are we on Masquerade. If one is true, they will fail.
 		if(IS_BLOODSUCKER(target) && !HAS_TRAIT(target, TRAIT_MASQUERADE))
 			if(bloodsuckerdatum.broke_masquerade)
-				to_chat(user, span_warning("[target], also known as '[bloodsuckerdatum.ReturnFullName(TRUE)]', is indeed a [bloodsuckerdatum.my_clan] Bloodsucker, but you already knew this."))
+				to_chat(user, span_warning("[target], also known as '[bloodsuckerdatum.ReturnFullName(TRUE)]', is indeed a Bloodsucker, but you already knew this."))
 				return
-			if(bloodsuckerdatum.my_clan != NONE)
-				to_chat(user, span_warning("You found the one! [target], also known as '[bloodsuckerdatum.ReturnFullName(TRUE)]', is part of the [bloodsuckerdatum.my_clan]! You quickly note this information down, memorizing it."))
 			else
 				to_chat(user, span_warning("You found the one! [target], also known as '[bloodsuckerdatum.ReturnFullName(TRUE)]', is not knowingly part of a Clan. You quickly note this information down, memorizing it."))
-			bloodsuckerdatum.break_masquerade()
+				bloodsuckerdatum.break_masquerade()
 		else
 			to_chat(user, span_notice("You fail to draw any conclusions to [target] being a Bloodsucker."))
 	// Bloodsucker using it
@@ -390,7 +388,7 @@
 
 /obj/item/book/kindred/proc/search(mob/reader, clan)
 	dat = "<head>List of information gathered on the <b>[clan]</b>:</head><br>"
-	if(clan == CLAN_BRUJAH)
+	if(clan == CLAN_BRUJAH) // Flavortext only
 		dat += "This Clan has proven to be the strongest in melee combat, boasting a <b>powerful punch</b>.<br> \
 		They also appear to be more calm than the others, entering their 'frenzies' whenever they want, but <i>dont seem affected</i>.<br> \
 		Be wary, as they are fearsome warriors, rebels and anarchists, with an inclination towards Frenzy.<br> \
@@ -404,7 +402,7 @@
 		<b>Favorite Vassal</b>: Their favorite Vassal gains the Mesmerize ability \
 		<b>Strength</b>: Highly charismatic and influential.<br> \
 		<b>Weakness</b>: Physically and Morally weak."
-	if(clan == CLAN_NOSFERATU)
+	if(clan == CLAN_NOSFERATU) // Flavortext only
 		dat += "This Clan has been the most obvious to find information about.<br> \
 		They are <i>disfigured, ghoul-like</i> vampires upon embrace by their Sire, scouts that travel through desolate paths to avoid violating the Masquerade.<br> \
 		They make <i>no attempts</i> at hiding themselves within the crew, and have a terrible taste for <i>heavy items</i>.<br> \
@@ -412,7 +410,7 @@
 		<b>Favorite Vassal</b>: Their Favorite Vassal gains the ability to ventcrawl while naked and becomes disfigured. \
 		<b>Strength</b>: Ventcrawl.<br> \
 		<b>Weakness</b>: Can't disguise themselves, permanently pale, can easily be discovered by their DNA or Blood Level."
-	if(clan == CLAN_TREMERE)
+	if(clan == CLAN_TREMERE) // Flavortext only
 		dat += "This Clan seems to hate entering the <i>Chapel</i>.<br> \
 		They are a secluded Clan, they are Vampires who've mastered the power of blood, and seek knowledge.<br> \
 		They appear to be focused more on their Blood Magic than their other Powers, getting stronger faster the more Vassals they have.<br> \
@@ -428,7 +426,7 @@
 		<b>Favorite Vassal</b>: Their Favorite Vassal turns into a Werewolf whenever their Master does.. \
 		<b>Strength</b>: Feral, Werewolf during Frenzy.<br> \
 		<b>Weakness</b>: Weak to True Faith."
-	if(clan == CLAN_VENTRUE)
+	if(clan == CLAN_VENTRUE) // Flavortext only
 		dat += "This Clan seems to <i>despise</i> drinking from non sentient organics.<br> \
 		They are Masters of manipulation, Greedy and entitled. Authority figures between the kindred society.<br> \
 		They seem to take their Vassal's lives <i>very seriously</i>, going as far as to give Vassals some of their own Blood.<br> \
@@ -436,7 +434,7 @@
 		<b>Favorite Vassal</b>: Their Favorite Vassal will slowly be turned into a Bloodsucker overtime. \
 		<b>Strength</b>: Slowly turns a Vassal into a Bloodsucker.<br> \
 		<b>Weakness</b>: Does not gain more abilities overtime, it is best to target the Bloodsucker over the Vassal."
-	if(clan == CLAN_MALKAVIAN)
+	if(clan == CLAN_MALKAVIAN) // Flavortext only
 		dat += "There is barely any information known about this Clan.<br> \
 		Members of this Clan seems to <i>mumble things to themselves</i>, unaware of their surroundings.<br> \
 		They also seem to enter and dissapear into areas randomly, <i>as if not even they know where they are</i>.<br> \

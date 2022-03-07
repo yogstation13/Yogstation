@@ -19,20 +19,6 @@
 	INVOKE_ASYNC(src, .proc/HandleStarving)
 	INVOKE_ASYNC(src, .proc/HandleTorpor)
 
-	// Clan-unique Checks
-	if(my_clan == CLAN_TREMERE)
-		var/area/current_area = get_area(owner.current)
-		if(istype(current_area, /area/chapel))
-			to_chat(owner.current, span_warning("You don't belong in holy areas!"))
-			owner.current.adjustFireLoss(10)
-			owner.current.adjust_fire_stacks(2)
-			owner.current.IgniteMob()
-	if(my_clan == CLAN_MALKAVIAN)
-		if(prob(85) || owner.current.stat != CONSCIOUS || HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
-			return
-		var/message = pick(strings("malkavian_revelations.json", "revelations", "strings"))
-		INVOKE_ASYNC(owner.current, /atom/movable/proc/say, message, , , , , , CLAN_MALKAVIAN)
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //			BLOOD
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -194,11 +180,7 @@
 			continue
 		yucky_organs.Remove(bloodsuckeruser)
 		yucky_organs.forceMove(get_turf(bloodsuckeruser))
-
-	// Part of Malkavian? Give them their traumas back.
-	if(my_clan == CLAN_MALKAVIAN)
-		bloodsuckeruser.gain_trauma(/datum/brain_trauma/mild/hallucinations, TRAUMA_RESILIENCE_ABSOLUTE)
-		bloodsuckeruser.gain_trauma(/datum/brain_trauma/special/bluespace_prophet, TRAUMA_RESILIENCE_ABSOLUTE)
+	
 	// Good to go!
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -240,7 +222,7 @@
 //	handled in bloodsucker_integration.dm
 
 	// BLOOD_VOLUME_EXIT: [250] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
-	if(owner.current.blood_volume >= FRENZY_THRESHOLD_EXIT && frenzied && my_clan != CLAN_BRUJAH)
+	if(owner.current.blood_volume >= FRENZY_THRESHOLD_EXIT && frenzied)
 		owner.current.remove_status_effect(STATUS_EFFECT_FRENZY)
 	// BLOOD_VOLUME_BAD: [224] - Jitter
 	if(owner.current.blood_volume < BLOOD_VOLUME_BAD(owner.current) && prob(0.5) && !HAS_TRAIT(owner.current, TRAIT_NODEATH) && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
@@ -264,15 +246,7 @@
 		additional_regen = 0.5
 
 /datum/antagonist/bloodsucker/proc/enter_frenzy()
-	if(my_clan == CLAN_BRUJAH)
-		for(var/datum/action/bloodsucker/power in powers)
-			if(!(istype(power, /datum/action/bloodsucker/brujah)))
-				continue
-			if(power.active)
-				break
-			power.ActivatePower()
-	else
-		owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
+	owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
 
 /**
  * # Torpor
