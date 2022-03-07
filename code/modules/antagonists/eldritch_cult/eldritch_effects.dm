@@ -349,27 +349,23 @@
 
 /datum/status_effect/brazil_penance/tick()
 	if(!penance_left)
-		if(apply_effects())
-			qdel(src)
-		return
+		apply_effects()
+		qdel(src)
 
 /datum/status_effect/brazil_penance/proc/apply_effects()
-	. = TRUE
 	owner.status_flags &= ~GODMODE
 	var/mob/living/carbon/C = owner
 	for(var/P in penance_sources)
 		while(penance_sources[P])
 			switch(P)
-				if(PENANCE_LIFE)
-					owner.blood_volume = 0
-					owner.death()
 				if(PENANCE_SOUL)
 					owner.hellbound = TRUE
 				if(PENANCE_LIMB)
 					var/obj/item/bodypart/BP
 					while(!BP)
-						if(!LAZYLEN(unspooked_limbs)) //this shouoldn't occur but i dont trust people
-							return FALSE
+						if(!LAZYLEN(unspooked_limbs))
+							message_admins(span_notice("Someone managed to break brazil limb sacrificing stuff tell theos"))
+							break
 						var/target_zone = pick_n_take(unspooked_limbs)
 						BP = C.get_bodypart(target_zone)
 					BP.dismember(BURN)
@@ -377,7 +373,8 @@
 					var/obj/item/bodypart/BP
 					while(!BP || BP.species_id == "skeleton")
 						if(!LAZYLEN(unspooked_limbs))
-							return FALSE
+							message_admins(span_notice("Someone managed to break brazil limb sacrificing stuff tell theos"))
+							break
 						var/target_zone = pick_n_take(unspooked_limbs)
 						BP = C.get_bodypart(target_zone)
 					var/obj/item/bodypart/replacement_part = new BP.type
@@ -389,6 +386,9 @@
 					C.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 				if(PENANCE_TRAUMA_BASIC)
 					C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_SURGERY)
+				if(PENANCE_LIFE)
+					owner.blood_volume = 0
+					owner.death()
 			penance_sources[P] --
 			sleep(2)
 
@@ -396,7 +396,7 @@
 	. = ..()
 	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar.</span>")
 	owner.Unconscious(2 SECONDS, ignore_canstun = TRUE)
-	var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary))
+	var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
 	if(safe_turf)
 		owner.forceMove(safe_turf)
 
@@ -409,6 +409,8 @@
 	var/list/penance_given = list(PENANCE_LIFE = 10, PENANCE_SOUL = 14, PENANCE_LIMB = 5, PENANCE_SKELETON = 1, PENANCE_TRAUMA_ADV = 5, PENANCE_TRAUMA_BASIC = 1)
 
 /obj/effect/penance_giver/attack_hand(mob/user)
+	..()
+	setDir(get_dir(src, user)) //for some reason setDir and get_dir use different casing
 	var/mob/living/carbon/C = user
 	var/datum/status_effect/brazil_penance/ticket = C.has_status_effect(/datum/status_effect/brazil_penance) //this will be a define
 	if(!ticket)
@@ -443,16 +445,22 @@
 	desc = "this space also for rent"
 	icon = 'icons/obj/cult_large.dmi'
 	icon_state = "shell_narsie_active"
+	pixel_x = -16
+	pixel_y = -17
 	penance_given = list(PENANCE_LIFE = 10, PENANCE_LIMB = 5)
 
 /obj/effect/penance_giver/mind
 	name = "this space for rent"
 	desc = "this space also for rent"
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "curseblob"
 	penance_given = list(PENANCE_TRAUMA_ADV = 5, PENANCE_TRAUMA_BASIC = 1)
 
 /obj/effect/penance_giver/eldritch
 	name = "this space for rent"
 	desc = "this space also for rent"
+	icon = 'icons/mob/evilpope.dmi' //fun fact the pope's mask is off center on his north sprite and now you have to see it too
+	icon_state = "EvilPope"
 	penance_given = list(PENANCE_SOUL = 14, PENANCE_SKELETON = 1)
 
 #undef PENANCE_LIFE

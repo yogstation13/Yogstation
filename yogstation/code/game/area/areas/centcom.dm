@@ -31,3 +31,4 @@
 	blob_allowed = FALSE
 	has_gravity = TRUE
 	noteleport = TRUE
+	flags_1 = NONE
