@@ -14,6 +14,5 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stomps"
-	stop_automated_movement = 1
 	friendly = "bops"
 	gold_core_spawnable = FRIENDLY_SPAWN
