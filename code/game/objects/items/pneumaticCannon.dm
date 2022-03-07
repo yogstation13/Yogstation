@@ -339,3 +339,21 @@
 /obj/item/storage/backpack/magspear_quiver/PopulateContents()
 	for(var/i in 1 to 20)
 		new /obj/item/throwing_star/magspear(src)
+
+/obj/item/pneumatic_cannon/handcannon
+	name = "Hand Cannon"
+	desc = "Since the times of shooting cannonballs from ships has long passed, pirate culture has moved onto making these ship-piercing weapons handheld."
+	icon = 'icons/obj/guns/projectile.dmi'
+	icon_state = "handcannon"
+	item_state = "handycannon"
+	w_class = WEIGHT_CLASS_BULKY
+	force = 10
+	fire_sound = 'sound/weapons/blastcannon.ogg'
+	pressureSetting = 3 //yogs: makes spears embed without messing with the speargun
+	gasPerThrow = 0
+	checktank = FALSE
+	range_multiplier = 3
+	throw_amount = 1
+	maxWeightClass = 3 //a single cannonball
+	spin_item = FALSE
+	var/static/list/magspear_typecache = typecacheof(/obj/item/throwing_star/cannonball)

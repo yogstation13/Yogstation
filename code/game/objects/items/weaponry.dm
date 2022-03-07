@@ -297,6 +297,16 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("stabbed", "ripped", "gored", "impaled")
 	embedding = list("embedded_pain_multiplier" = 8, "embed_chance" = 100, "embedded_fall_chance" = 0, "embedded_impact_pain_multiplier" = 15) //55 damage+embed on hit
 
+/obj/item/throwing_star/cannonball
+	name = "cannonball"
+	desc = "A big ball of lead, perfect for shooting holes into a space station."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "cannonball"
+	throwforce = 25 //i'd think that a bowling ball to the gut at high speed would hurt more but dunno if something functionally similar to the speargun should have that
+	force = 3
+	throw_range = 0
+	attack_verb = list("bashed", "hit")
+
 /obj/item/switchblade
 	name = "switchblade"
 	icon_state = "switchblade"
@@ -756,3 +766,4 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "tore", "ripped", "diced", "cut")
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+
