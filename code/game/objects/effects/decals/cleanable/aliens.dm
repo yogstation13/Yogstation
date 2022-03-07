@@ -16,7 +16,7 @@
 /obj/effect/decal/cleanable/xenoblood/Crossed(atom/movable/L)
 	if(prob(1) && iscarbon(L)) // shoutout to the polysmorphs
 		var/mob/living/carbon/C = L
-		C.slip(80, src, NO_SLIP_WHEN_WALKING)
+		C.slip(10, src, NO_SLIP_WHEN_WALKING)
 	. = ..()
 
 /obj/effect/decal/cleanable/xenoblood/xsplatter
