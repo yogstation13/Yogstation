@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "All traitor-available autosurgeons are now corrected to be one-time-use"
