@@ -17,8 +17,7 @@
 /obj/effect/decal/cleanable/blood/Crossed(atom/movable/L)
 	if(prob(10) && iscarbon(L) && !istype(src, /obj/effect/decal/cleanable/blood/old)) // why would u slip on dry blood dummy?
 		var/mob/living/carbon/C = L
-		if(C.m_intent != MOVE_INTENT_WALK)
-			C.slip(80, src)
+		C.slip(80, src, NO_SLIP_WHEN_WALKING)
 	. = ..()
 
 /obj/effect/decal/cleanable/blood/old
