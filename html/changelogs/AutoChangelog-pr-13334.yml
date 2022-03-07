@@ -1,0 +1,7 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed pool emp effect being the wrong severity"
+  - bugfix: "fixed pools temperature instantly lowering"
+  - bugfix: "fixed pools damaging people with heat resistance"
+  - bugfix: "fixed pools violating the laws of thermodynamics"
