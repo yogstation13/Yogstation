@@ -122,4 +122,4 @@
 		return
 	for(var/turf/closed/mineral/T in orange(1, M))
 		if(istype(T) && M.mineralType == T.mineralType)
-			new /obj/effect/temp_visual/resonance(T, creator, null, burst_time)	//yogs end
+			new /obj/effect/temp_visual/resonance(T, creator, null, duration)	//yogs end
