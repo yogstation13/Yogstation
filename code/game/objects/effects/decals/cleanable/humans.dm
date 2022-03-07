@@ -14,6 +14,13 @@
 			C.bloodiness += bloodiness
 	return ..()
 
+/obj/effect/decal/cleanable/blood/Crossed(atom/movable/L)
+	if(prob(10) && iscarbon(L) && !istype(src, /obj/effect/decal/cleanable/blood/old)) // why would u slip on dry blood dummy?
+		var/mob/living/carbon/C = L
+		if(C.m_intent != MOVE_INTENT_WALK)
+			C.slip(80, src)
+	. = ..()
+
 /obj/effect/decal/cleanable/blood/old
 	name = "dried blood"
 	desc = "Looks like it's been here a while.  Eew."
