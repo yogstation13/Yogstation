@@ -1,0 +1,6 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "modular laptops now use the correct icons when opened"
+  - bugfix: "you can no longer use programs on a modular laptop with its lid is shut"
+  - bugfix: "fixed some buttons not having interaction sounds"
