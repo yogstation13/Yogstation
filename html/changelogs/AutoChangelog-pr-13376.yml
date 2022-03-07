@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a missing wire on meta"
