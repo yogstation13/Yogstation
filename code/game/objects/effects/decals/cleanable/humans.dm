@@ -15,7 +15,7 @@
 	return ..()
 
 /obj/effect/decal/cleanable/blood/Crossed(atom/movable/L)
-	if(prob(10) && iscarbon(L) && !istype(src, /obj/effect/decal/cleanable/blood/old)) // why would u slip on dry blood dummy?
+	if(prob(1) && iscarbon(L) && !istype(src, /obj/effect/decal/cleanable/blood/old)) // why would u slip on dry blood dummy?
 		var/mob/living/carbon/C = L
 		C.slip(80, src, NO_SLIP_WHEN_WALKING)
 	. = ..()

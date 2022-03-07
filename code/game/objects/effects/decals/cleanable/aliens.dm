@@ -14,7 +14,7 @@
 	add_blood_DNA(list("UNKNOWN DNA" = "X*"))
 
 /obj/effect/decal/cleanable/xenoblood/Crossed(atom/movable/L)
-	if(prob(10) && iscarbon(L)) // shoutout to the polysmorphs
+	if(prob(1) && iscarbon(L)) // shoutout to the polysmorphs
 		var/mob/living/carbon/C = L
 		C.slip(80, src, NO_SLIP_WHEN_WALKING)
 	. = ..()
