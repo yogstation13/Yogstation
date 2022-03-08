@@ -12,7 +12,6 @@ AshCorr	=	Host
 Xantam	=	Host
  
 tehladyk = Council Member
-Ynot01  =   Council Member
 MenacingManatee = Council Member
 Num1bamf = Council Member
 adamsogm = Council Member
