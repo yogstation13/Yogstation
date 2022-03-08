@@ -295,7 +295,7 @@
 		else
 			PDA.ownjob = J.title
 
-		if (H.client.prefs.id_in_pda)
+		if (H.id_in_pda)
 			PDA.InsertID(C)
 			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
 		else // just in case you hate change
