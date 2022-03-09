@@ -399,7 +399,6 @@
 /datum/antagonist/bloodsucker/proc/SpendRank(spend_rank = TRUE)
 	set waitfor = FALSE
 
-	var/datum/antagonist/vassal/vassaldatum = target?.mind.has_antag_datum(/datum/antagonist/vassal)
 	if(!owner || !owner.current || !owner.current.client || (spend_rank && bloodsucker_level_unspent <= 0))
 		return
 	// Purchase Power Prompt
@@ -456,12 +455,6 @@
 	* Your existing powers have all ranked up as well!"))
 	update_hud(owner.current)
 	owner.current.playsound_local(null, 'sound/effects/pope_entry.ogg', 25, TRUE, pressure_affected = FALSE)
-
-///Set the Vassal's rank to their Bloodsucker level
-/datum/antagonist/bloodsucker/proc/set_vassal_level(mob/living/carbon/human/target)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(target)
-	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(target)
-	bloodsuckerdatum.bloodsucker_level = vassaldatum.vassal_level
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 

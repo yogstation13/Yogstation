@@ -45,7 +45,7 @@
 	/// Give Vampire Language & Hud
 	owner.current.grant_all_languages(FALSE, FALSE, TRUE)
 	owner.current.grant_language(/datum/language/vampiric)
-	update_bloodsucker_icons_added(owner)
+	update_vassal_icons_added(owner.current)
 	. = ..()
 
 /datum/antagonist/vassal/on_removal()
@@ -65,7 +65,7 @@
 		power.Remove(owner.current)
 	/// Remove Language & Hud
 	owner.current.remove_language(/datum/language/vampiric)
-	update_bloodsucker_icons_removed(owner)
+	update_vassal_icons_removed(owner.current)
 	return ..()
 
 /datum/antagonist/vassal/proc/add_objective(datum/objective/added_objective)

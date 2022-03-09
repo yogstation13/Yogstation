@@ -609,12 +609,6 @@
 //                                          //
 //////////////////////////////////////////////
 
-//////////////////////////////////////////////
-//                                          //
-//          MIDROUND BLOODSUCKER            //
-//                                          //
-//////////////////////////////////////////////
-
 /datum/dynamic_ruleset/midround/bloodsucker
 	name = "Vampiric Accident"
 	antag_datum = /datum/antagonist/bloodsucker
