@@ -173,12 +173,11 @@
  * # HUD
  */
 /datum/antagonist/vassal/proc/update_vassal_icons_added(mob/living/vassal, icontype = "vassal")
-	var/datum/atom_hud/antag/bloodsucker/hud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
 	hud.join_hud(vassal)
 	/// Located in icons/mob/hud.dmi
 	set_antag_hud(vassal, icontype)
 	/// FULP ADDITION! Check prepare_huds in mob.dm to see why.
-	owner.current.hud_list[ANTAG_HUD].icon = image('fulp_modules/main_features/bloodsuckers/icons/bloodsucker_icons.dmi', owner.current, "bloodsucker")
 
 /datum/antagonist/vassal/proc/update_vassal_icons_removed(mob/living/vassal)
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
