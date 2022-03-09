@@ -233,7 +233,11 @@
 	antag_datum = /datum/antagonist/bloodsucker
 	antag_flag = ROLE_BLOODSUCKERBREAKOUT
 	antag_flag_override = ROLE_BLOODSUCKER
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician", "Curator")
+	protected_roles = list(
+		"Captain", "Head of Personnel", "Head of Security",
+		"Warden", "Security Officer", "Detective", "Brig Physician",
+		"Curator"
+	)
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
 	weight = 5
@@ -255,90 +259,4 @@
 		sucker.bloodsucker_level_unspent = rand(2,3)
 		message_admins("[ADMIN_LOOKUPFLW(selected_player)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
 		log_game("DYNAMIC: [key_name(selected_player)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
-	return TRUE
-
-
-//////////////////////////////////////////////////////////////////////////////
-
-/*
- *	# Assigning Bloodsucker status
- *
- *	Here we assign the Bloodsuckers themselves, ensuring they arent Plasmamen
- *	Also deals with Vassalization status.
- */
-
-/datum/mind/proc/can_make_bloodsucker(datum/mind/convertee, datum/mind/converter)
-	// Species Must have a HEART (Sorry Plasmamen)
-	var/mob/living/carbon/human/user = convertee.current
-	if(NOBLOOD in user.dna.species.species_traits)
-		if(converter)
-			to_chat(converter, span_danger("[convertee]'s DNA isn't compatible!"))
-		return FALSE
-	// Check for Fledgeling
-	if(converter)
-		message_admins("[convertee] has become a Bloodsucker, and was created by [converter].")
-		log_admin("[convertee] has become a Bloodsucker, and was created by [converter].")
-	return TRUE
-
-/datum/antagonist/bloodsucker/proc/can_make_vassal(mob/living/converted, datum/mind/converter, can_vassal_sleeping = FALSE)//, check_antag_or_loyal=FALSE)
-	// Not Correct Type: Abort
-	if(!iscarbon(converted) || !converter)
-		return FALSE
-	if(converted.stat > UNCONSCIOUS && !can_vassal_sleeping)
-		return FALSE
-	// No Mind!
-	if(!converted.mind)
-		to_chat(converter, span_danger("[converted] isn't self-aware enough to be made into a Vassal."))
-		return FALSE
-	// Already MY Vassal
-	var/datum/antagonist/vassal/vassaldatum = converted.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(istype(vassaldatum) && vassaldatum.master)
-		if(vassaldatum.master.owner == converter)
-			to_chat(converter, span_danger("[converted] is already your loyal Vassal!"))
-		else
-			to_chat(converter, span_danger("[converted] is the loyal Vassal of another Bloodsucker!"))
-		return FALSE
-	// Already Antag or Loyal (Vamp Hunters count as antags)
-	if(!isnull(converted.mind.enslaved_to) || AmInvalidAntag(converted))
-		to_chat(converter, span_danger("[converted] resists the power of your blood to dominate their mind!"))
-		return FALSE
-	return TRUE
-
-/datum/antagonist/bloodsucker/proc/AmValidAntag(mob/target)
-	/// Check if they are an antag, if so, check if they're Invalid.
-	if(target.mind?.special_role || !isnull(target.mind?.antag_datums))
-		return !AmInvalidAntag(target)
-	/// Otherwise, just cancel out.
-	return FALSE
-
-/datum/antagonist/bloodsucker/proc/AmInvalidAntag(mob/target)
-	/// Not an antag?
-	if(!is_special_character(target))
-		return FALSE
-	/// Checks if the person is an antag banned from being vassalized, stored in bloodsucker's datum.
-	for(var/datum/antagonist/antag_datum in target.mind.antag_datums)
-		if(antag_datum.type in vassal_banned_antags)
-			//message_admins("DEBUG VASSAL: Found Invalid: [antag_datum] // [antag_datum.type]")
-			return TRUE
-//	message_admins("DEBUG VASSAL: Valid Antags! (total of [target.antag_datums.len])")
-	// WHEN YOU DELETE THE ABOVE: Remove the 3 second timer on converting the vassal too.
-	return FALSE
-
-/datum/antagonist/bloodsucker/proc/attempt_turn_vassal(mob/living/carbon/convertee, can_vassal_sleeping = FALSE)
-	convertee.silent = 0
-	return make_vassal(convertee, owner, can_vassal_sleeping)
-
-/datum/antagonist/bloodsucker/proc/make_vassal(mob/living/convertee, datum/mind/converter, sleeping = FALSE)
-	if(!can_make_vassal(convertee, converter, can_vassal_sleeping = sleeping))
-		return FALSE
-	// Make Vassal
-	var/datum/antagonist/vassal/vassaldatum = new(convertee.mind)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = converter.has_antag_datum(/datum/antagonist/bloodsucker)
-	vassaldatum.master = bloodsuckerdatum
-	convertee.mind.add_antag_datum(vassaldatum, vassaldatum.master.get_team())
-	// Update Bloodsucker Title
-	bloodsuckerdatum.SelectTitle(am_fledgling = FALSE) // Only works if you have no title yet.
-	// Log it
-	message_admins("[convertee] has become a Vassal, and is enslaved to [converter].")
-	log_admin("[convertee] has become a Vassal, and is enslaved to [converter].")
 	return TRUE

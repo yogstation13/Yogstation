@@ -609,12 +609,22 @@
 //                                          //
 //////////////////////////////////////////////
 
+//////////////////////////////////////////////
+//                                          //
+//          MIDROUND BLOODSUCKER            //
+//                                          //
+//////////////////////////////////////////////
+
 /datum/dynamic_ruleset/midround/bloodsucker
 	name = "Vampiric Accident"
 	antag_datum = /datum/antagonist/bloodsucker
 	antag_flag = ROLE_VAMPIRICACCIDENT
 	antag_flag_override = ROLE_BLOODSUCKER
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician", "Curator")
+	protected_roles = list(
+		"Captain", "Head of Personnel", "Head of Security",
+		"Warden", "Security Officer", "Detective", "Brig Physician",
+		"Curator"
+	)
 	restricted_roles = list("AI","Cyborg", "Positronic Brain")
 	required_candidates = 1
 	weight = 5
