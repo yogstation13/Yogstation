@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "resonator field replication now works if you manually detonate the resonatoe field rather than only working if the field detonates naturally"
