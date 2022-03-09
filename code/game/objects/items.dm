@@ -120,12 +120,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/list/grind_results //A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
 	var/list/juice_results //A reagent list containing blah blah... but when JUICED in a grinder!
 
+	
+	var/required_skill = SKILL_STRENGTH // Skill that allows people to use this obj
+	var/required_skill_level = SKILLLEVEL_UNSKILLED // Skill level of required_skill that allows people to use this obj
 	var/list/use_speed_by_skill = list(
-		SKILLLEVEL_UNSKILLED = 0.5,
-		SKILLLEVEL_BASIC = 0.75,
+		SKILLLEVEL_UNSKILLED = 1.5,
+		SKILLLEVEL_BASIC = 1.25,
 		SKILLLEVEL_TRAINED = 1,
-		SKILLLEVEL_EXPERIENCED = 1.25,
-		SKILLLEVEL_MASTER = 1.5
+		SKILLLEVEL_EXPERIENCED = 0.75,
+		SKILLLEVEL_MASTER = 0.5
 	)// Time modifier dependent on the rank of required_skill
 
 /obj/item/Initialize()
@@ -797,7 +800,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				return
 
 		else
-			if(!do_after(user, delay, target=target, extra_checks=tool_check, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_scaling = use_speed_by_skill))
+			if(!do_after(user, delay, target=target, extra_checks=tool_check, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_mult_scaling = use_speed_by_skill))
 				return
 	else
 		// Invoke the extra checks once, just in case.

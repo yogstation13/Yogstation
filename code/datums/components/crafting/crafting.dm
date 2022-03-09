@@ -178,7 +178,7 @@
 		return ", missing tool."
 
 	// Timer and progress bar
-	if(!do_after(user, R.time, target = user, required_skill = R.modifier_skill, skill_delay_scaling = R.skill_time_mod))
+	if(!do_after(user, R.time, target = user, required_skill = R.modifier_skill, skill_delay_mult_scaling = R.skill_time_mod))
 		return "."
 
 	// Check again incase things have changed

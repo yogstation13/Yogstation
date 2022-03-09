@@ -252,7 +252,7 @@
 				to_chat(user, span_notice("\The [src]'s [bolt_wording] is already cocked!"))
 			return
 		bolt_locked = FALSE
-	if (user && do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_scaling = skill_reload_delay))
+	if (user && do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_mult_scaling = skill_reload_delay))
 		to_chat(user, span_notice("You rack the [bolt_wording] of \the [src]."))
 	process_chamber(!chambered, FALSE)
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
@@ -279,7 +279,7 @@
 	if(!istype(AM, mag_type))
 		to_chat(user, span_warning("\The [AM] doesn't seem to fit into \the [src]..."))
 		return FALSE
-	if(user.transferItemToLoc(AM, src) && do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_scaling = skill_reload_delay))
+	if(user.transferItemToLoc(AM, src) && do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_mult_scaling = skill_reload_delay))
 		if(reload_say && AM.ammo_count() && !get_ammo(FALSE, FALSE))
 			user.say(reload_say, forced = "reloading")
 		magazine = AM
@@ -345,7 +345,7 @@
 		return
 	if (istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_box))
 		if (bolt_type == BOLT_TYPE_NO_BOLT || internal_magazine)
-			if(do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_scaling = skill_reload_delay))
+			if(do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_mult_scaling = skill_reload_delay))
 				if (chambered && !chambered.BB)
 					chambered.forceMove(drop_location())
 					chambered = null

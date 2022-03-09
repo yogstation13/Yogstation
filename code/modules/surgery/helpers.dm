@@ -66,6 +66,10 @@
 				return
 			if(!S.can_start(user, M))
 				return
+	
+			if(!skill_check(user, S.required_skill, S.required_skill_level))
+				to_chat(user, span_warning("You don't know where to begin with that surgery!"))
+				return FALSE
 
 			if(S.ignore_clothes || get_location_accessible(M, selected_zone))
 				var/datum/surgery/procedure = new S.type(M, selected_zone, affecting)

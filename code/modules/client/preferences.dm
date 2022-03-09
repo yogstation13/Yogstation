@@ -1316,17 +1316,26 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	else if(href_list["preference"] == "skills")
 		switch(href_list["task"])
 			if("menu")
-				if(!temp_skillset)
-					temp_skillset = new()
-					temp_skillset.set_skill_levels(job_skills["Assistant"], TRUE)
-				if(!temp_skillset.skill_selection_menu)
-					temp_skillset.skill_selection_menu = new (temp_skillset, src)
-				temp_skillset.open_skill_selection_menu(user)
-				if(!istype(temp_skillset))
-					temp_skillset = new
-				
 				if(SSjob.occupations.len <= 0)
 					to_chat(user, span_danger("The job SSticker is not yet finished creating jobs, please try again later"))
+					return
+				
+				// So the selected job is the same the appears in the preview for QOL
+				var/highest_pref = 0
+				var/highest_job = "Assistant"
+				for(var/job in job_preferences)
+					if(!job_preferences[job] > highest_pref)
+						continue
+					highest_job = job
+					highest_pref = job_preferences[job]
+
+				if(!temp_skillset)
+					temp_skillset = new()
+					temp_skillset.set_skill_levels(job_skills[highest_job], TRUE)
+				if(!temp_skillset.skill_selection_menu)
+					temp_skillset.skill_selection_menu = new (temp_skillset, src)
+					temp_skillset.skill_selection_menu.current_job = highest_job
+				temp_skillset.open_skill_selection_menu(user)
 
 	else if(href_list["preference"] == "trait")
 		switch(href_list["task"])

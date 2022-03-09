@@ -107,6 +107,11 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
   * Finds the skillset datum of the target mind/mob/skill
   */
 /proc/find_skillset(target)
+	//If its a client, our actual target is the mob
+	if(istype(target, /client))
+		var/client/C = target
+		target = C
+
 	//Get the skillset from the mind
 	if(istype(target, /datum/mind))
 		var/datum/mind/M = target
@@ -117,7 +122,7 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
 		var/mob/living/L = target
 		return L.mind?.get_skillset()
 
-	//If its a skill, get it from the parent
+	//If its a skill, get its parent
 	if(istype(target, /datum/skill))
 		var/datum/skill/S = target
 		return S.parent

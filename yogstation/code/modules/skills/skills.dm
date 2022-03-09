@@ -75,7 +75,7 @@
 	var/active_difficulty = find_active_difficulty(job)
 	if(!level)
 		level = current_level
-	return level_base_cost[current_level] * active_difficulty
+	return level_base_cost[level] * active_difficulty
 
 /datum/skill/proc/get_full_cost(var/level, var/job = null)
 	var/total = 0

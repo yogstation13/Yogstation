@@ -4,10 +4,10 @@ GLOBAL_DATUM_INIT(skill_menu_state, /datum/ui_state/skill_menu, new)
 	. = UI_CLOSE
 	if(check_rights_for(user.client, R_ADMIN))
 		. = UI_INTERACTIVE
+		
 	else if(istype(src_object, /datum/skill_menu))
 		var/datum/skill_menu/SM = src_object
-		. = UI_INTERACTIVE
-		if(SM.skillset.owner == find_skillset(user))
+		if(SM.skillset == find_skillset(user))
 			. = UI_INTERACTIVE
 
 GLOBAL_DATUM_INIT(skill_selection_menu_state, /datum/ui_state/skill_selection_menu, new)

@@ -72,6 +72,11 @@
 	if(..())
 		return
 	var/mob/user = usr
+	var/client/user_client = user.client
+	var/datum/mind/target_mind = skillset.owner
+	var/mob/target_mob = target_mind.current
+	var/client/target_client = target_mob.client
+	var/datum/preferences/target_prefs = target_client.prefs
 
 	var/datum/skill/skill = skillset.get_skill(current_skill)
 	
@@ -81,10 +86,12 @@
 		if("increase_level")
 			if(is_admin && !isnull(skill))
 				skill.adjust_level(1)
+				log_admin("[key_name(user)] increased [key_name(target_mob)]'s skill in [current_skill].")
 				. = TRUE
 		if("decrease_level")
 			if(is_admin && !isnull(skill))
 				skill.adjust_level(-1)
+				log_admin("[key_name(user)] decrease [key_name(target_mob)]'s skill in [current_skill].")
 				. = TRUE
 		if("change_current_skill")
 			current_skill = params["id"]
@@ -92,26 +99,66 @@
 		if("toggle_use_skills")
 			if(is_admin)
 				skillset.use_skills = !skillset.use_skills
+				log_admin("[key_name(user)] [skillset.use_skills ? "enabled" : "disabled"] skills for [key_name(target_mob)].")
+				message_admins(span_adminnotice("[key_name_admin(user)] [skillset.use_skills ? "enabled" : "disabled"] skills for [ADMIN_LOOKUPFLW(target_mob)]."))
 				. = TRUE
 		if("debug_variables_skillset")
 			if(is_admin)
-				var/client/C = user.client
-				C.debug_variables(skillset)
+				user_client.debug_variables(skillset)
 				. = TRUE
 		if("reset_skillset")
+			if(is_admin && target_mind && target_mind && target_prefs)
+				if(target_mind.assigned_role in target_prefs.job_skills)
+					skillset.set_skill_levels(target_prefs.job_skills[target_mind.assigned_role])
+				else
+					var/datum/job/job_datum = SSjob.name_occupations_all[target_mind.assigned_role]
+					skillset.set_skill_levels(job_datum.default_skill_list)
+				log_admin("[key_name(user)] reset the skillset of [key_name(target_mob)].")
+				message_admins(span_adminnotice("[key_name_admin(user)] reset the skillset of [ADMIN_LOOKUPFLW(target_mob)]."))
+				. = TRUE
+		if("set_skill_levels")
 			if(is_admin)
-				var/client/C = user.client
-				C.debug_variables(skillset)
+				var/silent = FALSE
+				var/list/skill_list = skillset.get_skill_levels()
+				var/list/options = list("Job Default...", "Player Skill Lists...", "Your Skill Lists...", "Original", "All Unskilled", "All Basic", "All Trained", "All Experienced", "All Master")
+				if(!target_prefs)
+					options.Remove("Player Skill Lists...", "Original")
+				var/choice = input("Select skill list", "Super skill trainer") as null|anything in options
+				choice = sanitize_inlist(choice, options)
+				switch(choice)
+					if("Job Default...")
+						var/job_choice = input("Select job skill list", "Super skill trainer") as null|anything in SSjob.name_occupations_all
+						if(job_choice in SSjob.name_occupations_all)
+							var/datum/job/job_datum = SSjob.name_occupations_all[job_choice]
+							skill_list = job_datum.default_skill_list
+					if("Player Skill Lists...")
+						var/job_choice = input("Select job skill list", "Super skill trainer") as null|anything in target_prefs.job_skills
+						if(job_choice in target_prefs.job_skills)
+							skill_list = target_prefs.job_skills[job_choice]
+					if("Your Skill Lists...")
+						var/datum/preferences/user_prefs = user_client.prefs
+						var/job_choice = input("Select job skill list", "Super skill trainer") as null|anything in user_prefs.job_skills
+						if(job_choice in user_prefs.job_skills)
+							skill_list = user_prefs.job_skills[job_choice]
+					if("Original")
+						if(target_mind.assigned_role in target_prefs.job_skills)
+							skill_list = target_prefs.job_skills[target_mind.assigned_role]
+					if("All Unskilled")
+						skill_list = GLOB.skill_list_unskilled
+					if("All Basic")
+						skill_list = GLOB.skill_list_basic
+					if("All Trained")
+						skill_list = GLOB.skill_list_trained
+					if("All Experienced")
+						skill_list = GLOB.skill_list_experienced
+					if("All Master")
+						skill_list = GLOB.skill_list_master
+
+				skillset.set_skill_levels(skill_list, silent)
 				. = TRUE
 		if("debug_variables_skill")
 			if(is_admin)
-				var/client/C = user.client
-				C.debug_variables(skill)
-				. = TRUE
-		if("reset_skillset")
-			if(is_admin)
-				var/client/C = user.client
-				C.debug_variables(skillset)
+				user_client.debug_variables(skill)
 				. = TRUE
 
 
@@ -169,11 +216,11 @@
 		skill_data["canDecrease"] = FALSE
 		skill_data["canIncrease"] = FALSE
 		if(skillset.can_change_skill(job_datum, skill.id, skill.current_level - 1))
-			skill_data["costDecrease"] = skill.get_full_cost(skill.current_level - 1, current_job)
+			skill_data["costDecrease"] = -skill.get_cost(skill.current_level, current_job)
 			skill_data["canDecrease"] = TRUE
 		
 		if(skillset.can_change_skill(job_datum, skill.id, skill.current_level + 1))
-			skill_data["costIncrease"] = skill.get_full_cost(skill.current_level + 1, current_job)
+			skill_data["costIncrease"] = skill.get_cost(skill.current_level + 1, current_job)
 			skill_data["canIncrease"] = TRUE
 
 		data["skills"] += list(skill_data)

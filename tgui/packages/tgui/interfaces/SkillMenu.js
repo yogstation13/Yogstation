@@ -68,10 +68,7 @@ export const SkillMenu = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     admin_mode,
-    is_living,
     disable_skills,
-    experience_mod,
-    skill_freeze,
     name,
     job,
     job_title,
@@ -83,7 +80,6 @@ export const SkillMenu = (props, context) => {
     current_icon,
     current_desc,
     current_level,
-    current_experience,
     current_difficulty,
     current_level_desc,
   } = data;
@@ -97,22 +93,21 @@ export const SkillMenu = (props, context) => {
       <Window.Content>
         <Section
           title="Skills"
-          buttons={(
+          buttons={!!admin_mode && (
             <Fragment >
               <Button.Checkbox
                 content="Dont Use Skills"
                 checked={disable_skills}
                 onClick={() => act('toggle_use_skills')} />
-              <Button.Checkbox
-                content="Max Skills"
-                checked={disable_skills} />
               <Button
                 icon="list-ul"
                 onClick={() => act('debug_variables_skillset')} />
               <Button
-                icon="clone" />
+                icon="clone"
+                onClick={() => act('set_skill_levels')} />
               <Button
-                icon="save" />
+                icon="undo-alt"
+                onClick={() => act('reset_skillset')} />
             </Fragment>
           )}>
           <Flex>

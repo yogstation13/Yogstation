@@ -167,6 +167,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/view_runtimes,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all,
+	/client/proc/cmd_view_skill_menu_context,
 	/client/proc/SDQL2_query,
 	/client/proc/pump_random_event,
 	/client/proc/enable_debug_verbs,

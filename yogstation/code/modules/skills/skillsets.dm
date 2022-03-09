@@ -172,3 +172,18 @@
 
 	var/datum/skillset/target_skillset = find_skillset(src)
 	target_skillset.open_skill_menu(usr)
+
+/client/proc/cmd_view_skill_menu_context(mob/M in GLOB.mob_list)
+	set category = "Misc.Server Debug"
+	set name = "View Skill Menu"
+
+	if(!check_rights(R_DEBUG))
+		return
+	if(!M.mind)
+		to_chat(src, span_warning("Target has no mind!"))
+		return
+	var/datum/skillset/target_skillset = find_skillset(M)
+	if(!target_skillset)
+		to_chat(src, span_warning("Target has no skillset!"))
+		return
+	target_skillset.open_skill_menu(mob)

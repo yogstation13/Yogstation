@@ -68,7 +68,7 @@
 			to_chat(user, span_warning("[target] is full."))
 			return
 
-		if(!do_after(user, required_skill = SKILL_CHEMISTRY, required_skill_level = SKILLLEVEL_UNSKILLED, skill_delay_scaling = list(SKILLLEVEL_UNSKILLED = 5 * amount_per_transfer_from_this, SKILLLEVEL_BASIC = 3 * amount_per_transfer_from_this, SKILLLEVEL_TRAINED = amount_per_transfer_from_this, SKILLLEVEL_EXPERIENCED = 0, SKILLLEVEL_MASTER = 0), target = target))
+		if(!do_after(user, required_skill = SKILL_CHEMISTRY, required_skill_level = SKILLLEVEL_UNSKILLED, skill_delay_mult_scaling = list(SKILLLEVEL_UNSKILLED = 5 * amount_per_transfer_from_this, SKILLLEVEL_BASIC = 3 * amount_per_transfer_from_this, SKILLLEVEL_TRAINED = amount_per_transfer_from_this, SKILLLEVEL_EXPERIENCED = 0, SKILLLEVEL_MASTER = 0), target = target))
 			return
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 		to_chat(user, span_notice("You transfer [trans] unit\s of the solution to [target]."))
