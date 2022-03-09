@@ -143,7 +143,6 @@
 
 	. = ..()
 	update_bloodsucker_icons_added(owner.current)
-	SSticker.mode.bloodsuckers += owner
 	// Assign Powers
 	AssignStarterPowersAndStats()
 
@@ -385,8 +384,6 @@
 
 /datum/antagonist/bloodsucker/proc/LevelUpPowers()
 	for(var/datum/action/bloodsucker/power as anything in powers)
-		if(istype(power, /datum/action/bloodsucker/targeted/tremere))
-			continue
 		power.level_current++
 
 ///Disables all powers, accounting for torpor

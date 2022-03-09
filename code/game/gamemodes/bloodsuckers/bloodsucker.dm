@@ -37,7 +37,7 @@
 			break
 		var/datum/mind/bloodsucker = pick(antag_candidates)
 		// Can we even BE a bloodsucker?
-		if(!bloodsucker.can_make_bloodsucker(bloodsucker, display_warning=FALSE))
+		if(!bloodsucker.can_make_bloodsucker(bloodsucker))
 			antag_candidates.Remove(bloodsucker)
 			continue
 		bloodsuckers += bloodsucker
@@ -51,7 +51,7 @@
 /datum/game_mode/bloodsucker/post_setup()
 	// Vamps
 	for(var/datum/mind/bloodsucker in bloodsuckers)
-		if(!make_bloodsucker(bloodsucker))
+		if(!bloodsucker.make_bloodsucker(bloodsucker))
 			bloodsuckers -= bloodsucker
 	..()
 

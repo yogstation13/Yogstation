@@ -47,10 +47,10 @@
 #define ROLE_HORROR				"Eldritch Horror" // Yogs
 #define ROLE_INFILTRATOR		"Infiltrator" // Yogs
 #define ROLE_ZOMBIE				"Zombie"
-#define ROLE_BLOODSUCKER "Bloodsucker"
-#define ROLE_VAMPIRICACCIDENT "Vampiric Accident"
-#define ROLE_BLOODSUCKERBREAKOUT "Bloodsucker Breakout"
-#define ROLE_MONSTERHUNTER "Monster Hunter"
+#define ROLE_BLOODSUCKER		"Bloodsucker"
+#define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
+#define ROLE_BLOODSUCKERBREAKOUT	"Bloodsucker Breakout"
+#define ROLE_MONSTERHUNTER		"Monster Hunter"
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough

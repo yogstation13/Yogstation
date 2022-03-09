@@ -45,7 +45,7 @@
 			antag_candidates -= bloodsucker
 			possible_bloodsuckers -= bloodsucker
 			bloodsucker.special_role = ROLE_BLOODSUCKER
-			bloodsuckers += bloodsucker
+			possible_bloodsuckers += bloodsucker
 			bloodsucker.restricted_roles = restricted_jobs
 		. = ..()
 		return
@@ -53,7 +53,7 @@
 		return FALSE
 
 /datum/game_mode/traitor/bloodsucker/post_setup()
-	for(var/datum/mind/bloodsucker in bloodsuckers)
+	for(var/datum/mind/bloodsucker in possible_bloodsuckers)
 		bloodsucker.add_antag_datum(/datum/antagonist/bloodsucker)
 	return ..()
 

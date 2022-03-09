@@ -984,7 +984,6 @@
 		assigned += selected_mobs.mind
 		selected_mobs.mind.restricted_roles = restricted_roles
 		selected_mobs.mind.special_role = ROLE_BLOODSUCKER
-		GLOB.pre_setup_antags += selected_mobs.mind
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/bloodsucker/execute()
@@ -992,5 +991,4 @@
 		var/datum/mind/bloodsuckermind = assigned_bloodsuckers
 		if(!bloodsuckermind.make_bloodsucker(assigned_bloodsuckers))
 			assigned -= assigned_bloodsuckers
-		GLOB.pre_setup_antags -= bloodsuckermind
 	return TRUE
