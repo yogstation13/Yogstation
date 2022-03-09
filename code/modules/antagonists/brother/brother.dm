@@ -94,7 +94,7 @@
 	.["Convert To Traitor"] = CALLBACK(src, .proc/make_traitor)
 
 /datum/antagonist/brother/proc/make_traitor()
-	if(alert("Are you sure? This will turn the blood borther into a traitor with the same objectives!",,"Yes","No") != "Yes")
+	if(alert("Are you sure? This will turn the blood brother into a traitor with the same objectives!",,"Yes","No") != "Yes")
 		return
 
 	var/datum/antagonist/traitor/tot = new()
