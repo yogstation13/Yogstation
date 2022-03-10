@@ -83,6 +83,7 @@
 /obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O, mob/user, params)
 	..()
 	if (istype(O, /obj/item/plant_analyzer))
+		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		var/msg = "<span class='info'>*---------*\n This is \a [span_name("[src]")].\n"
 		if(seed)
 			msg += seed.get_analyzer_text()

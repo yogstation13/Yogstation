@@ -40,6 +40,9 @@
 	starting_components = machinery_computer.starting_components
 	starting_files = machinery_computer.starting_files
 	initial_program = machinery_computer.initial_program
+	startup_sound = machinery_computer.startup_sound
+	shutdown_sound = machinery_computer.shutdown_sound
+	interact_sounds = machinery_computer.interact_sounds
 
 	..()
 

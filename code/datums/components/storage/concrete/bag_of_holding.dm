@@ -25,6 +25,10 @@
 	qdel(W)
 	playsound(loccheck,'sound/effects/supermatter.ogg', 200, 1)
 
+	to_chat(user, span_danger("You are pulled into the bluespace disruption!")) // No escaping
+	user.forceMove(loccheck)
+	user.Paralyze(10)
+
 	message_admins("[ADMIN_LOOKUPFLW(user)] detonated a bag of holding at [ADMIN_VERBOSEJMP(loccheck)].")
 	log_game("[key_name(user)] detonated a bag of holding at [loc_name(loccheck)].")
 

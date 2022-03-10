@@ -296,7 +296,7 @@
 	icon = 'icons/turf/walls/iron_wall.dmi'
 	icon_state = "iron"
 	mineral = /obj/item/stack/rods
-	mineral_amount = 5
+	mineral_amount = 2
 	walltype = /turf/closed/wall/mineral/iron
 	canSmoothWith = list(/obj/structure/falsewall/iron, /turf/closed/wall/mineral/iron)
 

@@ -27,6 +27,8 @@
 	COOLDOWN_START(src, autotraitor_cooldown_check, autotraitor_cooldown)
 	var/num_traitors = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_traitors)
+		if(candidates.len <= 0)
+			break
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_TRAITOR
@@ -112,6 +114,8 @@
 	. = ..()
 	var/num_changelings = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_changelings)
+		if(candidates.len <= 0)
+			break
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.restricted_roles = restricted_roles
@@ -149,6 +153,8 @@
 	var/num_ecult = get_antag_cap(population) * (scaled_times + 1)
 
 	for (var/i = 1 to num_ecult)
+		if(candidates.len <= 0)
+			break
 		var/mob/picked_candidate = pick_n_take(candidates)
 		assigned += picked_candidate.mind
 		picked_candidate.mind.restricted_roles = restricted_roles
@@ -844,6 +850,8 @@
 	COOLDOWN_START(src, autovamp_cooldown_check, autovamp_cooldown)
 	var/num_vampires = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_vampires)
+		if(candidates.len <= 0)
+			break
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_VAMPIRE
@@ -937,11 +945,14 @@
 	scaling_cost = 20
 	antag_cap = 3
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
+	minimum_players = 35
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute(population)
 	. = ..()
 	var/num_darkspawn = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_darkspawn)
+		if(candidates.len <= 0)
+			break
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_DARKSPAWN
