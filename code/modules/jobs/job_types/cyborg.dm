@@ -48,7 +48,7 @@
 	if(!is_donator(C))
 		return
 
-	if(C.prefs.donor_hat)
+	if(C.prefs.donor_hat && C.prefs.borg_hat)
 		var/type = C.prefs.donor_hat
 		if(type)
 			var/obj/item/hat = new type()
