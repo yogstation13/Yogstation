@@ -175,7 +175,7 @@
 /datum/antagonist/bloodsucker/proc/remove_objectives(datum/objective/removed_objective)
 	objectives -= removed_objective
 
-// Called when using admin tools to give antag status
+// Called when using admin tools to give antag status, admin spawned bloodsuckers don't get turned human if plasmaman.
 /datum/antagonist/bloodsucker/admin_add(datum/mind/new_owner, mob/admin)
 	var/levels = input("How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", bloodsucker_level_unspent) as null | num
 	var/msg = " made [key_name_admin(new_owner)] into \a [name]"
@@ -700,10 +700,10 @@
 /datum/mind/proc/can_make_bloodsucker(datum/mind/convertee, datum/mind/converter)
 	// Species Must have a HEART (Sorry Plasmamen)
 	var/mob/living/carbon/human/user = convertee.current
+	var/mob/M = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
-		if(converter)
-			to_chat(converter, span_danger("[convertee]'s DNA isn't compatible!"))
-		return FALSE
+		user.set_species(/datum/species/human)
+		user.apply_pref_name("human", M.client)
 	// Check for Fledgeling
 	if(converter)
 		message_admins("[convertee] has become a Bloodsucker, and was created by [converter].")

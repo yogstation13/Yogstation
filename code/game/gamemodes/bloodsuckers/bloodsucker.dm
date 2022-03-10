@@ -9,7 +9,7 @@
 		"Captain", "Head of Personnel", "Head of Security",
 		"Warden", "Security Officer", "Detective", "Brig Physician",
 	)
-	required_players = 0
+	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 4
 	reroll_friendly = 1
