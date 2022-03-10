@@ -520,6 +520,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous/pistol/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		spawn_path = /obj/item/gun/ballistic/automatic/pistol/pacifist
+		to_chat(user, span_notice("Your employer has loaded your purchased weapon with non-leathal ammunition"))
 	..()
 
 /datum/uplink_item/dangerous/bolt_action
