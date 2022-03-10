@@ -49,6 +49,8 @@
 	var/spawnwithmagazine = TRUE
 	///Compatible magazines with the gun
 	var/mag_type = /obj/item/ammo_box/magazine/m10mm //Removes the need for max_ammo and caliber info
+	///What magazine this gun starts with, if null it will just use mag_type
+	var/starting_mag_type
 	///Whether the sprite has a visible magazine or not
 	var/mag_display = FALSE
 	///Whether the sprite has a visible ammo display or not
@@ -167,13 +169,13 @@
 		bolt_locked = TRUE
 		update_icon()
 		return
-	load_starting_mag()
-	update_icon()
-
-/obj/item/gun/ballistic/proc/load_starting_mag()
 	if (!magazine)
-		magazine = new mag_type(src)
+		if (!starting_mag_type)
+			magazine = new mag_type(src)
+		else
+			magazine = new starting_mag_type(src)
 	chamber_round()
+	update_icon()
 	
 
 /obj/item/gun/ballistic/update_icon()

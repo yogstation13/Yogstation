@@ -31,10 +31,8 @@
 	var/obj/item/suppressor/S = new(src)
 	install_suppressor(S)
 
-/obj/item/gun/ballistic/automatic/pistol/pacifist/load_starting_mag()
-	if (!magazine)
-		magazine = new /obj/item/ammo_box/magazine/m10mm/sp(src)
-	chamber_round()
+/obj/item/gun/ballistic/automatic/pistol/pacifist
+	starting_mag_type = /obj/item/ammo_box/magazine/m10mm/sp
 
 /obj/item/gun/ballistic/automatic/pistol/m1911
 	name = "\improper M1911"
