@@ -1257,6 +1257,8 @@
 /mob/vv_auto_rename(new_name)
 	//Do not do parent's actions, as we *usually* do this differently.
 	fully_replace_character_name(real_name, new_name)
+	usr.client.vv_update_display(src, "name", new_name)
+	usr.client.vv_update_display(src, "real_name", real_name || "No real name")
 
 ///Show the language menu for this mob
 /mob/verb/open_language_menu()
