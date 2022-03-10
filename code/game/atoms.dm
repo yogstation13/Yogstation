@@ -994,6 +994,15 @@
 					return
 				transform = M.Turn(angle)
 
+	if(href_list[VV_HK_AUTO_RENAME] && check_rights(R_VAREDIT))
+		var/newname = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
+		// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.
+		if(newname)
+			vv_auto_rename(newname)
+
+/atom/proc/vv_auto_rename(newname)
+	name = newname
+
 /atom/vv_get_header()
 	. = ..()
 	var/refid = REF(src)
