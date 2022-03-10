@@ -1420,7 +1420,6 @@
 		return
 	else
 		return
-	..()
 
 /obj/structure/wax_pile
 	name = "pile of wax"
