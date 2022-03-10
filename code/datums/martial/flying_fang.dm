@@ -37,7 +37,7 @@
 		return
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(A.zone_selected))
-	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 50)
+	var/armor_block = D.run_armor_check(affecting, "melee", armor_penetration = 50)
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	playsound(D, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	D.apply_damage(25, STAMINA, selected_zone, armor_block)
@@ -69,7 +69,7 @@
 			return
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(A.zone_selected))
-	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 50)
+	var/armor_block = D.run_armor_check(affecting, "melee", armor_penetration = 50)
 	A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 	D.apply_damage(25, STAMINA, selected_zone, armor_block)
 	D.apply_damage(10, A.dna.species.attack_type, selected_zone, armor_block)

@@ -75,7 +75,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	w_class_on = WEIGHT_CLASS_HUGE
 	flags_1 = CONDUCT_1
-	armour_penetration = 100
+	armor_penetration = 100
 	attack_verb_off = list("attacked", "chopped", "cleaved", "torn", "cut")
 	attack_verb_on = list()
 	light_color = "#40ceff"
@@ -98,7 +98,7 @@
 	throw_range = 5
 	sharpness = SHARP_EDGED
 	embedding = list("embed_chance" = 75, "embedded_impact_pain_multiplier" = 10)
-	armour_penetration = 35
+	armor_penetration = 35
 	block_chance = 50
 
 /obj/item/melee/transforming/energy/sword/transform_weapon(mob/living/user, supress_message_text)

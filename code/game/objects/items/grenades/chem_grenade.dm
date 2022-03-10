@@ -456,7 +456,7 @@
 
 /obj/item/grenade/chem_grenade/facid
 	name = "acid grenade"
-	desc = "Used for melting armoured opponents."
+	desc = "Used for melting armored opponents."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/facid/Initialize()

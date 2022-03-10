@@ -719,7 +719,7 @@
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/drakecloak
-	name = "Ash Drake Armour"
+	name = "Ash Drake Armor"
 	result = /obj/item/clothing/suit/hooded/cloak/drake
 	time = 6 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 10,
@@ -728,7 +728,7 @@
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/carpsuit
-	name = "Space Dragon Armour"
+	name = "Space Dragon Armor"
 	result = /obj/item/clothing/suit/space/hardsuit/carp/dragon
 	time = 6 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 10,

@@ -9,13 +9,13 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/gun/energy/kinetic_accelerator)
 
-/obj/item/clothing/suit/armor/vest/rycliesarmour
-	name = "war armour"
+/obj/item/clothing/suit/armor/vest/rycliesarmor
+	name = "war armor"
 	desc = "Good for protecting your chest during war."
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
-	icon_state = "rycliesarmour"
-	item_state = "rycliesarmour"
+	icon_state = "rycliesarmor"
+	item_state = "rycliesarmor"
 
 /obj/item/clothing/suit/armor/vest/namflakjacket
 	name = "nam flak jacket"

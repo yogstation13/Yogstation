@@ -11,7 +11,7 @@
 	friendly = "scans"
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	speak_emote = list("screeches")
-	armour_penetration = 40
+	armor_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	speed = 5
@@ -142,7 +142,7 @@
 	name = "energy pike"
 	icon_state = "arcane_barrage"
 	damage = 20
-	armour_penetration = 100
+	armor_penetration = 100
 	speed = 5
 	eyeblur = 0
 	damage_type = BURN
@@ -153,7 +153,7 @@
 	name = "volatile orb"
 	icon_state = "wipe"
 	damage = 300
-	armour_penetration = 100
+	armor_penetration = 100
 	speed = 1
 	eyeblur = 0
 	pass_flags = PASSTABLE

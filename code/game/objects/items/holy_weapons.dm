@@ -68,7 +68,7 @@
 	dog_fashion = null
 
 /obj/item/clothing/suit/armor/riot/chaplain
-	name = "crusader armour"
+	name = "crusader armor"
 	desc = "God wills it!"
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
@@ -155,7 +155,7 @@
 	item_state = "knight_ancient"
 
 /obj/item/clothing/suit/armor/riot/chaplain/ancient
-	name = "ancient armour"
+	name = "ancient armor"
 	desc = "Defend the treasure..."
 	icon_state = "knight_ancient"
 	item_state = "knight_ancient"
@@ -493,7 +493,7 @@
 	name = "reaper scythe"
 	desc = "Ask not for whom the bell tolls..."
 	w_class = WEIGHT_CLASS_BULKY
-	armour_penetration = 35
+	armor_penetration = 35
 	slot_flags = ITEM_SLOT_BACK
 	sharpness = SHARP_EDGED
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
@@ -521,7 +521,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	name = "hypertool"
 	desc = "A tool so powerful even you cannot perfectly use it."
-	armour_penetration = 35
+	armor_penetration = 35
 	damtype = BRAIN
 	attack_verb = list("pulsed", "mended", "cut")
 	hitsound = 'sound/effects/sparks4.ogg'

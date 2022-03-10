@@ -270,7 +270,7 @@
 		"\bsteam\b": "water-air",
 		"\bliquid\b": "water-thing",
 		"\bteeth\b": "fang-teeth",
-		"\bshell\b": "shell-armour",
+		"\bshell\b": "shell-armor",
 		"\bneck\b": "neck-neck",
 		"\bsec\b": "clan"
 	}

@@ -10,7 +10,7 @@
 	attack_sound = 'yogstation/sound/creatures/progenitor_attack.ogg'
 	friendly = "stares down"
 	speak_emote = list("roars")
-	armour_penetration = 100
+	armor_penetration = 100
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	move_to_delay = 10

@@ -222,7 +222,7 @@
 	maxHealth = 500
 	health = 500
 	speed = -2
-	armour_penetration = 20
+	armor_penetration = 20
 	attacktext = "steals the girlfriend of"
 	attack_sound = 'sound/items/airhorn2.ogg'
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/foam, /obj/item/soap)
@@ -262,7 +262,7 @@
 	harm_intent_damage = 30
 	melee_damage_lower = 20
 	melee_damage_upper = 40
-	armour_penetration = 30
+	armor_penetration = 30
 	attacktext = "acts out divine vengeance on"
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
@@ -282,7 +282,7 @@
 	harm_intent_damage = 25
 	melee_damage_lower = 15
 	melee_damage_upper = 35
-	armour_penetration = 25
+	armor_penetration = 25
 	stat_attack = UNCONSCIOUS
 	attacktext = "flexes on"
 	obj_damage = 50

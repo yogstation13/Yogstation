@@ -5904,7 +5904,7 @@
 	pixel_y = 26
 	},
 /obj/machinery/camera{
-	c_tag = "Armoury - Internal"
+	c_tag = "Armory - Internal"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -35496,7 +35496,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/door/airlock/security{
-	name = "Armoury";
+	name = "Armory";
 	req_access_txt = "3"
 	},
 /obj/effect/turf_decal/stripes/line{

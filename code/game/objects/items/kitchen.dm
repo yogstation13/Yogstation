@@ -235,7 +235,7 @@
 	force = 6
 	throwforce = 8
 	throw_speed = 5 //yeets
-	armour_penetration = 5
+	armor_penetration = 5
 	max_integrity = 100
 	weapon_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 5, DAMAGE_HIGH = 7)
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 20, "embedded_fall_chance" = 10) // Incentive to disengage/stop chasing when stuck

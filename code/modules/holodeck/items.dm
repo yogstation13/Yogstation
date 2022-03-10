@@ -22,7 +22,7 @@
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	hitsound = "swing_hit"
-	armour_penetration = 50
+	armor_penetration = 50
 	var/active = 0
 
 /obj/item/holo/esword/green/Initialize()

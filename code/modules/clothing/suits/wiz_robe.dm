@@ -179,10 +179,10 @@
 	to_chat(usr, span_notice("\The robe hums, its internal magic supply restored."))
 
 
-//Shielded Armour
+//Shielded Armor
 
 /obj/item/clothing/suit/wizrobe/armor
-	name = "battlemage armour"
+	name = "battlemage armor"
 	desc = "Not all wizards are afraid of getting up close and personal. It does not protect against the vacuum of space, nothing a wizard can't handle."
 	icon_state = "battlemage"
 	item_state = "battlemage"
@@ -219,16 +219,16 @@
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard/attack_self(mob/user)
 	return
 
-/obj/item/wizard_armour_charge
+/obj/item/wizard_armor_charge
 	name = "battlemage shield charges"
-	desc = "A powerful rune that will increase the number of hits a suit of battlemage armour can take before failing.."
+	desc = "A powerful rune that will increase the number of hits a suit of battlemage armor can take before failing.."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity2"
 
-/obj/item/wizard_armour_charge/afterattack(obj/item/clothing/suit/wizrobe/armor/W, mob/user)
+/obj/item/wizard_armor_charge/afterattack(obj/item/clothing/suit/wizrobe/armor/W, mob/user)
 	. = ..()
 	if(!istype(W))
-		to_chat(user, span_warning("The rune can only be used on battlemage armour!"))
+		to_chat(user, span_warning("The rune can only be used on battlemage armor!"))
 		return
 	W.current_charges += 8
 	to_chat(user, span_notice("You charge \the [W]. It can now absorb [W.current_charges] hits."))

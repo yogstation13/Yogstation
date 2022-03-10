@@ -45,7 +45,7 @@
 			return
 		guardian.melee_damage_lower = 50
 		guardian.melee_damage_upper = 50
-		guardian.armour_penetration = 100
+		guardian.armor_penetration = 100
 		guardian.obj_damage = 0
 		guardian.environment_smash = ENVIRONMENT_SMASH_NONE
 		new /obj/effect/temp_visual/guardian/phase/out(get_turf(guardian))
@@ -54,7 +54,7 @@
 	else
 		guardian.melee_damage_lower = initial(guardian.melee_damage_lower)
 		guardian.melee_damage_upper = initial(guardian.melee_damage_upper)
-		guardian.armour_penetration = initial(guardian.armour_penetration)
+		guardian.armor_penetration = initial(guardian.armor_penetration)
 		guardian.obj_damage = initial(guardian.obj_damage)
 		guardian.environment_smash = initial(guardian.environment_smash)
 		guardian.alpha = initial(guardian.alpha)

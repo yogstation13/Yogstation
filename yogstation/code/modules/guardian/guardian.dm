@@ -719,4 +719,4 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	icon_state = "greyscale_bolt"
 	damage = 10
 	damage_type = BRUTE
-	armour_penetration = 100
+	armor_penetration = 100

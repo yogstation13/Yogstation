@@ -46,7 +46,7 @@ Difficulty: Insanely Hard
 	stat_attack = DEAD
 	wander = FALSE
 	maxHealth = 500
-	armour_penetration = 35
+	armor_penetration = 35
 	melee_damage_lower = 35
 	melee_damage_upper = 55
 	minbodytemp = 0
@@ -88,7 +88,7 @@ Difficulty: Insanely Hard
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 36, /obj/item/clothing/head/yogs/goatpelt/king = 1)
 	health = 750
 	maxHealth = 750
-	armour_penetration = 50
+	armor_penetration = 50
 	melee_damage_lower = 40
 	melee_damage_upper = 60
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
@@ -135,7 +135,7 @@ Difficulty: Insanely Hard
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	armour_penetration = 10
+	armor_penetration = 10
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 
@@ -147,7 +147,7 @@ Difficulty: Insanely Hard
 	icon_dead = "goat_guard_m_dead"
 	health = 200
 	maxHealth = 200
-	armour_penetration = 15
+	armor_penetration = 15
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	move_to_delay = 3
@@ -160,7 +160,7 @@ Difficulty: Insanely Hard
 	icon_dead = "goat_pope_dead"
 	health = 1
 	maxHealth = 1
-	armour_penetration = 25
+	armor_penetration = 25
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	move_to_delay = 3

@@ -4,7 +4,7 @@
 	damage = 0
 	damage_type = OXY
 	nodamage = TRUE
-	armour_penetration = 100
+	armor_penetration = 100
 	flag = "magic"
 	var/tile_dropoff = 0
 	var/tile_dropoff_s = 0
@@ -397,7 +397,7 @@
 	damage = 20
 	damage_type = BURN
 	nodamage = FALSE
-	armour_penetration = 0
+	armor_penetration = 0
 	flag = "magic"
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
@@ -684,7 +684,7 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
-	armour_penetration = 100
+	armor_penetration = 100
 	temperature = 50
 	flag = "magic"
 

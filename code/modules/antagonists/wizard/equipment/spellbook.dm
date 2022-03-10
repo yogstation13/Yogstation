@@ -434,8 +434,8 @@
 	item_path = /obj/item/twohanded/singularityhammer
 
 /datum/spellbook_entry/item/battlemage
-	name = "Battlemage Armour"
-	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted. It is not protected against the void of space."
+	name = "Battlemage Armor"
+	desc = "An ensorceled suit of armor, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted. It is not protected against the void of space."
 	item_path = /obj/item/clothing/suit/wizrobe/armor
 	limit = 1
 	category = "Defensive"
@@ -447,9 +447,9 @@
 
 
 /datum/spellbook_entry/item/battlemage_charge
-	name = "Battlemage Armour Charges"
-	desc = "A powerful defensive rune, it will grant eight additional charges to a suit of battlemage armour."
-	item_path = /obj/item/wizard_armour_charge
+	name = "Battlemage Armor Charges"
+	desc = "A powerful defensive rune, it will grant eight additional charges to a suit of battlemage armor."
+	item_path = /obj/item/wizard_armor_charge
 	category = "Defensive"
 	cost = 1
 

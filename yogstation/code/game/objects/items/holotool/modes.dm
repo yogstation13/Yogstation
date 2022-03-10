@@ -67,7 +67,7 @@
 	H.sharpness = SHARP_EDGED
 	H.force = 17
 	H.attack_verb = list("sliced", "torn", "cut")
-	H.armour_penetration = 45
+	H.armor_penetration = 45
 	H.embedding = list("embed_chance" = 40, "embedded_fall_chance" = 0, "embedded_pain_multiplier" = 5)
 	H.hitsound = 'sound/weapons/blade1.ogg'
 
@@ -76,6 +76,6 @@
 	H.sharpness = initial(H.sharpness)
 	H.force = initial(H.force)
 	H.attack_verb = initial(H.attack_verb)
-	H.armour_penetration = initial(H.armour_penetration)
+	H.armor_penetration = initial(H.armor_penetration)
 	H.embedding = initial(H.embedding)
 	H.hitsound = initial(H.hitsound)

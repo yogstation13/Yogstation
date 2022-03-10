@@ -248,8 +248,8 @@
 
 //this is all part of one item set
 /obj/item/clothing/suit/armor/plate/crusader
-	name = "Crusader's Armour"
-	desc = "Armour that's comprised of metal and cloth."
+	name = "Crusader's Armor"
+	desc = "Armor that's comprised of metal and cloth."
 	icon_state = "crusader"
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 2.0 //gotta pretend we're balanced.
@@ -358,8 +358,8 @@
 
 
 /obj/item/storage/box/itemset/crusader
-	name = "Crusader's Armour Set" //i can't into ck2 references
-	desc = "This armour is said to be based on the armor of kings on another world thousands of years ago, who tended to assassinate, conspire, and plot against everyone who tried to do the same to them.  Some things never change."
+	name = "Crusader's Armor Set" //i can't into ck2 references
+	desc = "This armor is said to be based on the armor of kings on another world thousands of years ago, who tended to assassinate, conspire, and plot against everyone who tried to do the same to them.  Some things never change."
 
 
 /obj/item/storage/box/itemset/crusader/blue/PopulateContents()
@@ -380,7 +380,7 @@
 	desc = "This one is rusted."
 	force = 30
 	block_chance = 30
-	armour_penetration = 5
+	armor_penetration = 5
 
 /obj/item/claymore/weak/ceremonial
 	desc = "A rusted claymore, once at the heart of a powerful scottish clan struck down and oppressed by tyrants, it has been passed down the ages as a symbol of defiance."

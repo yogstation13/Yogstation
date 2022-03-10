@@ -7,7 +7,7 @@
 	item_state = "ratvarian_spear"
 	force = 15 //Extra damage is dealt to targets in attack()
 	throwforce = 25
-	armour_penetration = 10
+	armor_penetration = 10
 	sharpness = SHARP_POINTY
 	attack_verb = list("stabbed", "poked", "slashed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -19,12 +19,12 @@
 		force = 20
 		bonus_burn = 10
 		throwforce = 40
-		armour_penetration = 50
+		armor_penetration = 50
 	else
 		force = initial(force)
 		bonus_burn = initial(bonus_burn)
 		throwforce = initial(throwforce)
-		armour_penetration = initial(armour_penetration)
+		armor_penetration = initial(armor_penetration)
 
 /obj/item/clockwork/weapon/ratvarian_spear/examine(mob/user)
 	. = ..()

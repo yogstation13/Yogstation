@@ -7,9 +7,9 @@
 #define MELEE 1
 #define RANGED 2
 
-#define FRONT_ARMOUR 1
-#define SIDE_ARMOUR 2
-#define BACK_ARMOUR 3
+#define FRONT_ARMOR 1
+#define SIDE_ARMOR 2
+#define BACK_ARMOR 3
 
 
 /obj/mecha
@@ -36,7 +36,7 @@
 	max_integrity = 300 //max_integrity is base health
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
-	var/list/facing_modifiers = list(FRONT_ARMOUR = 1.5, SIDE_ARMOUR = 1, BACK_ARMOUR = 0.5)
+	var/list/facing_modifiers = list(FRONT_ARMOR = 1.5, SIDE_ARMOR = 1, BACK_ARMOR = 0.5)
 	var/equipment_disabled = 0 //disabled due to EMP
 	var/obj/item/stock_parts/cell/cell ///Keeps track of the mech's cell
 	var/obj/item/stock_parts/scanning_module/scanmod ///Keeps track of the mech's scanning module

@@ -151,7 +151,7 @@
 	prefix = "Diamond"
 	special_names = list("Back","Grill")
 
-//Faster but softer and less armoured
+//Faster but softer and less armored
 /datum/species/golem/gold
 	name = "Gold Golem"
 	id = "gold golem"

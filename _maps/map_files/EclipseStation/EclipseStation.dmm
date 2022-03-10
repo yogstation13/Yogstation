@@ -1921,7 +1921,7 @@
 "aeV" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "armory";
-	name = "Armoury Shutter"
+	name = "Armory Shutter"
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -2457,7 +2457,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/door/airlock/security/glass{
-	name = "Armoury";
+	name = "Armory";
 	req_access_txt = "3"
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -3445,11 +3445,11 @@
 /area/ai_monitored/security/armory)
 "ail" = (
 /obj/machinery/door/window/eastleft{
-	name = "armoury desk";
+	name = "armory desk";
 	req_access_txt = "1"
 	},
 /obj/machinery/door/window/westleft{
-	name = "armoury desk";
+	name = "armory desk";
 	req_access_txt = "3"
 	},
 /obj/structure/table/reinforced,

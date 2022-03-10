@@ -13,12 +13,12 @@
 	damage = 20
 	wound_bonus = -5
 	bare_wound_bonus = 5
-	armour_penetration = 20
+	armor_penetration = 20
 
 /obj/item/projectile/bullet/c46x30mm_ap
 	name = "4.6x30mm armor-piercing bullet"
 	damage = 15
-	armour_penetration = 50
+	armor_penetration = 50
 
 /obj/item/projectile/bullet/incendiary/c46x30mm
 	name = "4.6x30mm incendiary bullet"
