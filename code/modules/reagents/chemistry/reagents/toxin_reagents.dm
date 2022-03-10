@@ -759,6 +759,7 @@
 		var/list/screens = list(M.hud_used.plane_masters["[FLOOR_PLANE]"], M.hud_used.plane_masters["[GAME_PLANE]"], M.hud_used.plane_masters["[LIGHTING_PLANE]"])
 		for(var/whole_screen in screens)
 			animate(whole_screen, transform = matrix(), time = 5, easing = QUAD_EASING)
+		animate(M, transform = matrix(), time = 5, easing = QUAD_EASING)
 	..()
 
 /datum/reagent/toxin/anacea
