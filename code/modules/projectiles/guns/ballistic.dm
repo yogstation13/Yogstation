@@ -167,10 +167,14 @@
 		bolt_locked = TRUE
 		update_icon()
 		return
+	load_starting_mag()
+	update_icon()
+
+/obj/item/gun/ballistic/proc/load_starting_mag()
 	if (!magazine)
 		magazine = new mag_type(src)
 	chamber_round()
-	update_icon()
+	
 
 /obj/item/gun/ballistic/update_icon()
 	if (QDELETED(src))
