@@ -20355,34 +20355,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"aOB" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/bottle/beesease{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/glass/bottle/gbs{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/glass/bottle/pierrot_throat,
-/obj/item/reagent_containers/glass/bottle/romerol{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/glass/bottle/wizarditis,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "aOC" = (
 /obj/structure/table/wood,
 /obj/item/ship_in_a_bottle,
@@ -22617,22 +22589,6 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
-"aTd" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/bottle/potion/flight,
-/obj/item/reagent_containers/glass/bottle/potion/flight,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "aTe" = (
 /obj/structure/railing{
 	dir = 1
@@ -26116,6 +26072,58 @@
 /obj/item/reagent_containers/medspray/sterilizine,
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
+"kGN" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/skilltrainer/max{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/item/skilltrainer/combat{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/centcom/testchamber)
+"sDW" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/bottle/potion/flight,
+/obj/item/reagent_containers/glass/bottle/potion/flight,
+/obj/item/reagent_containers/glass/bottle/romerol{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/gbs{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/bottle/beesease{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/glass/bottle/wizarditis,
+/obj/item/reagent_containers/glass/bottle/pierrot_throat,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom/testchamber)
 "uDo" = (
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/o2{
@@ -73665,7 +73673,7 @@ aOf
 awS
 awS
 awS
-aTd
+sDW
 aNt
 aNt
 atY
@@ -73922,7 +73930,7 @@ aOn
 aug
 aOm
 awS
-aOB
+kGN
 aNt
 aPq
 aNt
