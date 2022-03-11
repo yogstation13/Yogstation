@@ -5132,12 +5132,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"akN" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
 "akQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -72521,6 +72515,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"lTY" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness/recreation)
 "lUl" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -119386,7 +119389,7 @@ jPM
 oSR
 qca
 vLb
-akN
+lTY
 ahg
 ahg
 ahg
