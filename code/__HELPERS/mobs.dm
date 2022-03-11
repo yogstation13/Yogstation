@@ -277,7 +277,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, stayStill = TRUE, required_skill = null, required_skill_level = SKILLLEVEL_UNSKILLED, list/skill_delay_mult_scaling = list())
+/proc/do_after(mob/user, var/delay, needhand = TRUE, atom/target = null, progress = TRUE, datum/callback/extra_checks = null, stayStill = TRUE, required_skill = null, required_skill_level = SKILLLEVEL_UNSKILLED, list/skill_delay_mult_scaling = list())
 	if(!user)
 		return FALSE
 	var/atom/Tloc = null
@@ -287,9 +287,9 @@ GLOBAL_LIST_EMPTY(species_list)
 			if(skill_delay_mult_scaling.len > 0)
 				var/skill_delay_mult = SKILL_INDEX(user, required_skill, skill_delay_mult_scaling)
 				to_chat(user, span_admin("[skill_delay_mult]"))
-				if(skill_delay_mult > 0)
+				if(skill_delay_mult > 1)
 					user_skill.struggle_text()
-				else if(skill_delay_mult < 0)
+				else if(skill_delay_mult < 1)
 					user_skill.proficient_text()
 				delay *= skill_delay_mult
 		else

@@ -45,6 +45,14 @@
 #define SKILL_ELECTRONICS		"Electronics"
 #define SKILL_ATMOSPHERICS		"Atmospherics"
 
+//Skills Catagory
+#define SKILLCAT_PHYSICAL			"Physical"
+#define SKILLCAT_GENERAL			"General"
+#define SKILLCAT_COMBAT				"Combat"
+#define SKILLCAT_MEDICAL			"Medical"
+#define SKILLCAT_SCIENCE			"Science"
+#define SKILLCAT_ENGINEERING		"Engineering"
+
 GLOBAL_LIST_INIT(all_skill_ids, list(
 	SKILL_STRENGTH,
 	SKILL_DEXTERITY,
@@ -158,7 +166,7 @@ GLOBAL_LIST_INIT(skill_level_to_color, list(
   */
 /proc/usesSkills(target)
 	var/datum/skillset/target_skillset = find_skillset(target)
-	return target_skillset.use_skills == TRUE
+	return (target_skillset && target_skillset.use_skills == TRUE)
 
 /**
   * Checks if the skill level of the given the target mind/mob/skill/skillset is greater than or equal to the required skill level

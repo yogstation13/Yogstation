@@ -88,24 +88,29 @@
 
 //Text Procs
 /datum/skill/proc/skill_increase()
-	to_chat(parent.owner, span_notice("You feel more capable at [name] than before."))
+	if(parent)
+		to_chat(parent.owner, span_notice("You feel more capable at [name] than before."))
 
 /datum/skill/proc/skill_decrease()
-	to_chat(parent.owner, span_warning("You feel less capable at [name] than before."))
+	if(parent)
+		to_chat(parent.owner, span_warning("You feel less capable at [name] than before."))
 
 /datum/skill/proc/incapable_text()
-	to_chat(parent.owner, span_warning("You dont know how to do this as you lack the knowledge in [name]."))
+	if(parent)
+		to_chat(parent.owner, span_warning("You dont know how to do this as you lack the knowledge in [name]."))
 
 /datum/skill/proc/proficient_text()
-	to_chat(parent.owner, span_notice("You quickly preform the task due to your knowledge in [name]."))
+	if(parent)
+		to_chat(parent.owner, span_notice("You quickly preform the task due to your knowledge in [name]."))
 
 /datum/skill/proc/struggle_text()
-	to_chat(parent.owner, span_warning("You struggle as you lack the knowledge in [name]."))
+	if(parent)
+		to_chat(parent.owner, span_warning("You struggle as you lack the knowledge in [name]."))
 
 /datum/skill/strength
 	id = SKILL_STRENGTH
 	name = "Strength"
-	catagory = ""
+	catagory = SKILLCAT_PHYSICAL
 	icon = "box"
 	desc = "How good you are at lifting, pushing, or carrying heavy objects."
 	level_descriptions = list(
@@ -116,18 +121,21 @@
 							SKILLLEVEL_MASTER		= "Your body has reached its limits— veins and sheer prowess bulging from your figure with every motion. Woe to whatever finds itself at the mercy of your legendary power.")
 
 /datum/skill/strength/incapable_text()
-	to_chat(parent.owner, span_warning("You dont know how to do this as you lack the knowledge in [name]."))
+	if(parent)
+		to_chat(parent.owner, span_warning("You dont know how to do this as you lack the knowledge in [name]."))
 
 /datum/skill/strength/proficient_text()
-	to_chat(parent.owner, span_notice("You quickly preform the task due to your knowledge in [name]."))
+	if(parent)
+		to_chat(parent.owner, span_notice("You quickly preform the task due to your knowledge in [name]."))
 
 /datum/skill/strength/struggle_text()
-	to_chat(parent.owner, span_warning("You struggle as you are not strong enough."))
+	if(parent)
+		to_chat(parent.owner, span_warning("You struggle as you are not strong enough."))
 
 /datum/skill/dexterity
 	id = SKILL_DEXTERITY
 	name = "Dexterity"
-	catagory = ""
+	catagory = SKILLCAT_PHYSICAL
 	icon = "running"
 	desc = "How good you are at quickly and accurately moving yourself and your limbs."
 	level_descriptions = list(
@@ -140,7 +148,7 @@
 /datum/skill/endurance
 	id = SKILL_ENDURANCE
 	name = "Endurance"
-	catagory = ""
+	catagory = SKILLCAT_PHYSICAL
 	icon = "heart"
 	desc = "How good you are at tanking through hits and resisting chemicals and alcohol."
 	level_descriptions = list(
@@ -153,7 +161,7 @@
 /datum/skill/botany
 	id = SKILL_BOTANY
 	name = "Botany"
-	catagory = ""
+	catagory = SKILLCAT_GENERAL
 	icon = "seedling"
 	desc = "TODO"
 	level_descriptions = list(
@@ -166,7 +174,7 @@
 /datum/skill/cooking
 	id = SKILL_COOKING
 	name = "Cooking"
-	catagory = ""
+	catagory = SKILLCAT_GENERAL
 	icon = "apple-alt"
 	desc = "TODO"
 	level_descriptions = list(
@@ -179,7 +187,7 @@
 /datum/skill/creativity
 	id = SKILL_CREATIVITY
 	name = "Creativity"
-	catagory = ""
+	catagory = SKILLCAT_GENERAL
 	icon = "lightbulb"
 	desc = "TODO"
 	level_descriptions = list(
@@ -192,7 +200,7 @@
 /datum/skill/survival
 	id = SKILL_SURVIVAL
 	name = "Survival"
-	catagory = ""
+	catagory = SKILLCAT_GENERAL
 	difficulty = 2
 	icon = "campground"
 	desc = "TODO"
@@ -206,7 +214,7 @@
 /datum/skill/piloting
 	id = SKILL_PILOTING
 	name = "Piloting"
-	catagory = ""
+	catagory = SKILLCAT_GENERAL
 	difficulty = 2
 	icon = "rocket"
 	desc = "TODO"
@@ -220,7 +228,7 @@
 /datum/skill/leadership
 	id = SKILL_LEADERSHIP
 	name = "Leadership"
-	catagory = ""
+	catagory = SKILLCAT_GENERAL
 	difficulty = 3
 	icon = "bullhorn"
 	desc = "TODO"
@@ -234,7 +242,7 @@
 /datum/skill/forensics
 	id = SKILL_FORENSICS	
 	name = "Forensics"
-	catagory = ""
+	catagory = SKILLCAT_COMBAT
 	difficulty = 3
 	icon = "search"
 	desc = "TODO"
@@ -248,7 +256,7 @@
 /datum/skill/hand_to_hand
 	id = SKILL_HAND_TO_HAND
 	name = "Hand-to-Hand"
-	catagory = ""
+	catagory = SKILLCAT_COMBAT
 	difficulty = 2
 	icon = "fist-raised"
 	desc = "TODO"
@@ -262,7 +270,7 @@
 /datum/skill/melee
 	id = SKILL_MELEE_WEAPONS	
 	name = "Melee Weapons"
-	catagory = ""
+	catagory = SKILLCAT_COMBAT
 	difficulty = 2
 	icon = "toolbox"
 	desc = "TODO"
@@ -276,7 +284,7 @@
 /datum/skill/ranged
 	id = SKILL_RANGED_WEAPONS
 	name = "Ranged Weapons"
-	catagory = ""
+	catagory = SKILLCAT_COMBAT
 	difficulty = 2
 	icon = "crosshairs"
 	desc = "TODO"
@@ -290,7 +298,7 @@
 /datum/skill/medicine
 	id = SKILL_MEDICINE
 	name = "Medicine"
-	catagory = ""
+	catagory = SKILLCAT_MEDICAL
 	difficulty = 2
 	icon = "first-aid"
 	desc = "TODO"
@@ -304,7 +312,7 @@
 /datum/skill/anatomy
 	id = SKILL_ANATOMY
 	name = "Anatomy"
-	catagory = ""
+	catagory = SKILLCAT_MEDICAL
 	difficulty = 3
 	icon = "x-ray"
 	desc = "TODO"
@@ -318,7 +326,7 @@
 /datum/skill/chemistry
 	id = SKILL_CHEMISTRY
 	name = "Chemistry"
-	catagory = ""
+	catagory = SKILLCAT_MEDICAL
 	difficulty = 3
 	icon = "flask"
 	desc = "TODO"
@@ -332,7 +340,7 @@
 /datum/skill/psychology
 	id = SKILL_PHSYCHOLOGY
 	name = "Psychology"
-	catagory = ""
+	catagory = SKILLCAT_MEDICAL
 	difficulty = 2
 	icon = "brain"
 	desc = "TODO"
@@ -346,7 +354,7 @@
 /datum/skill/design
 	id = SKILL_DESIGN
 	name = "Design"
-	catagory = ""
+	catagory = SKILLCAT_SCIENCE
 	difficulty = 3
 	icon = "pencil-ruler"
 	desc = "TODO"
@@ -360,7 +368,7 @@
 /datum/skill/it
 	id = SKILL_IT
 	name = "Information Technology"
-	catagory = ""
+	catagory = SKILLCAT_SCIENCE
 	icon = "microchip"
 	desc = "TODO"
 	level_descriptions = list(
@@ -373,7 +381,7 @@
 /datum/skill/biology
 	id = SKILL_BIOLOGY
 	name = "Biology"
-	catagory = ""
+	catagory = SKILLCAT_SCIENCE
 	icon = "dna"
 	desc = "TODO"
 	level_descriptions = list(
@@ -386,7 +394,7 @@
 /datum/skill/mechanics
 	id = SKILL_MECHANICS
 	name = "Mechanics"
-	catagory = ""
+	catagory = SKILLCAT_ENGINEERING
 	icon = "tools"
 	desc = "TODO"
 	level_descriptions = list(
@@ -399,7 +407,7 @@
 /datum/skill/electronics
 	id = SKILL_ELECTRONICS
 	name = "Electronics"
-	catagory = ""
+	catagory = SKILLCAT_ENGINEERING
 	icon = "bolt"
 	desc = "TODO"
 	level_descriptions = list(
@@ -412,6 +420,7 @@
 /datum/skill/atmospherics
 	id = SKILL_ATMOSPHERICS
 	name = "Atmospherics"
+	catagory = SKILLCAT_ENGINEERING
 	icon = "cloud"
 	desc = "TODO"
 	level_descriptions = list(

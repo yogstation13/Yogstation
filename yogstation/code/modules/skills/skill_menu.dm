@@ -120,9 +120,10 @@
 			if(is_admin)
 				var/silent = FALSE
 				var/list/skill_list = skillset.get_skill_levels()
-				var/list/options = list("Job Default...", "Player Skill Lists...", "Your Skill Lists...", "Original", "All Unskilled", "All Basic", "All Trained", "All Experienced", "All Master")
+				var/list/options = list("Job Default...", "Player Skill Lists...", "Your Skill Lists...", "Original")
 				if(!target_prefs)
 					options.Remove("Player Skill Lists...", "Original")
+				options += SSskills.skill_lists
 				var/choice = input("Select skill list", "Super skill trainer") as null|anything in options
 				choice = sanitize_inlist(choice, options)
 				switch(choice)
@@ -143,16 +144,9 @@
 					if("Original")
 						if(target_mind.assigned_role in target_prefs.job_skills)
 							skill_list = target_prefs.job_skills[target_mind.assigned_role]
-					if("All Unskilled")
-						skill_list = GLOB.skill_list_unskilled
-					if("All Basic")
-						skill_list = GLOB.skill_list_basic
-					if("All Trained")
-						skill_list = GLOB.skill_list_trained
-					if("All Experienced")
-						skill_list = GLOB.skill_list_experienced
-					if("All Master")
-						skill_list = GLOB.skill_list_master
+				
+				if(choice in SSskills.skill_lists)
+					skill_list = SSskills.skill_lists[choice]
 
 				skillset.set_skill_levels(skill_list, silent)
 				. = TRUE

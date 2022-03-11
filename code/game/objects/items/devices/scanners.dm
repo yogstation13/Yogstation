@@ -112,7 +112,7 @@ GENE SCANNER
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
 	flick("[icon_state]-scan", src)	//makes it so that it plays the scan animation upon scanning, including clumsy scanning
   
-	if(!do_after(user, target = M, required_skill = SKILL_MEDICINE, required_skill_level = SKILLLEVEL_BASIC, skill_delay_mult_scaling = list(SKILLLEVEL_UNSKILLED = 10, SKILLLEVEL_BASIC = 10, SKILLLEVEL_TRAINED = 5, SKILLLEVEL_EXPERIENCED = 0, SKILLLEVEL_MASTER = 0)))
+	if(!do_after(user, 10, target = M, required_skill = SKILL_MEDICINE, required_skill_level = SKILLLEVEL_BASIC, skill_delay_mult_scaling = list(SKILLLEVEL_UNSKILLED = 2, SKILLLEVEL_BASIC = 1, SKILLLEVEL_TRAINED = 0.5, SKILLLEVEL_EXPERIENCED = 0, SKILLLEVEL_MASTER = 0)))
 		return
     
 	playsound(src, 'sound/effects/fastbeep.ogg', 20)

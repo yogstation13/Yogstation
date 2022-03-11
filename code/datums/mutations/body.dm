@@ -252,6 +252,20 @@
 	text_lose_indication = span_notice("You feel fairly weak.")
 	difficulty = 12
 	instability = 10
+	var/original_strength
+
+/datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
+	. = ..()
+	if(usesSkills(owner))
+		var/datum/skillset/target_skillset = find_skillset(owner)
+		original_strength = find_skill_level(owner, SKILL_STRENGTH)
+		target_skillset.set_skill_level(SKILL_STRENGTH, SKILLLEVEL_MASTER)
+
+/datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
+	. = ..()
+	if(usesSkills(owner))
+		var/datum/skillset/target_skillset = find_skillset(owner)
+		target_skillset.set_skill_level(SKILL_STRENGTH, original_strength)
 
 /datum/mutation/human/insulated
 	name = "Insulated"
