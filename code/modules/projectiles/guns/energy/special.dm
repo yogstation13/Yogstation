@@ -218,6 +218,7 @@
 /obj/item/gun/energy/plasmacutter/adv/mega
 	name = "mega plasma cutter"
 	icon_state = "adv_plasmacutter_m"
+	item_state = "plasmacutter_mega"
 	desc = "A mining tool capable of expelling concentrated plasma bursts. You could use it to cut limbs off xenos! Or, you know, mine stuff. This one has been enhanced with plasma magmite."
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/mega)
 
