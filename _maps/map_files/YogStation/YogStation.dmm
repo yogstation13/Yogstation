@@ -44668,14 +44668,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"kZp" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "cmo";
-	name = "CMO office shutters"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/heads/cmo)
 "kZX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -108777,7 +108769,7 @@ bbz
 aYV
 aYV
 aYV
-kZp
+bEi
 jOv
 bCY
 bCY
