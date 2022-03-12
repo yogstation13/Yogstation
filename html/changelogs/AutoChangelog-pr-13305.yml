@@ -1,5 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "expands box incinerator to have a little tinkering area"
-  - tweak: "moves AI sat 3 tiles down on box"
