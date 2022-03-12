@@ -20154,10 +20154,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bnH" = (
-/obj/machinery/door/airlock/research{
-	name = "Genetics Research Access";
-	req_access_txt = "47"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -20174,6 +20170,19 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/airlock/research{
+	name = "Research Division Access";
+	req_access_txt = "47"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -38269,18 +38278,15 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "hzm" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
 /obj/machinery/camera{
 	c_tag = "Chief Medical Office";
 	network = list("ss13","medbay")
 	},
-/obj/machinery/sleeper,
-/turf/open/floor/plasteel/cafeteria,
+/obj/structure/bed,
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/noslip,
 /area/crew_quarters/heads/cmo)
 "hzQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -40079,6 +40085,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -42503,7 +42512,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/structure/bed,
+/obj/machinery/sleeper{
+	dir = 4
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "jPG" = (
@@ -46816,6 +46827,9 @@
 	id = "genedesk";
 	name = "genetics lab shutters"
 	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
 /turf/open/floor/plating,
 /area/medical/genetics)
 "mtT" = (
@@ -47105,6 +47119,7 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "/area/medical/morgue";
+	dir = 1;
 	name = "Morgue APC";
 	pixel_y = 32
 	},
@@ -49444,7 +49459,6 @@
 "nMc" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/department/medical/morgue";
-	dir = 1;
 	name = "Morgue Maintenance APC";
 	pixel_y = -32
 	},
@@ -51729,6 +51743,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"oVu" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "oVF" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -56612,10 +56632,16 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/research{
-	name = "Genetics Research Access";
+	name = "Research Division Access";
 	req_access_txt = "47"
 	},
-/turf/open/floor/plasteel,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/science/research)
 "rPk" = (
 /obj/machinery/disposal/bin,
@@ -59515,6 +59541,9 @@
 	pixel_y = -32
 	},
 /obj/machinery/dna_scannernew,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "tCm" = (
@@ -59526,6 +59555,9 @@
 	},
 /obj/machinery/computer/scan_consolenew{
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -110814,8 +110846,8 @@ nPI
 qbI
 qqG
 ixA
-mZG
-mZG
+oVu
+oVu
 tBG
 kYK
 vto
