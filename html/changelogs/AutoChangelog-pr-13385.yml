@@ -1,0 +1,5 @@
+author: "cuackles"
+delete-after: true 
+changes: 
+  - imageadd: "add a new brass knuckles sprite"
+  - imagedel: "deleted old brass knuckles sprite"
