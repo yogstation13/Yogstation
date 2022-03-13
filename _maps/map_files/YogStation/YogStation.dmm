@@ -22193,9 +22193,9 @@
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
 "bvB" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/machinery/light/small{
-	dir = 8
+/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -37883,6 +37883,19 @@
 	dir = 1
 	},
 /area/science/research)
+"hnW" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Chief Medical Office";
+	network = list("ss13","medbay")
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "hoc" = (
 /turf/closed/wall,
 /area/security/checkpoint/service)
@@ -38278,10 +38291,6 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "hzm" = (
-/obj/machinery/camera{
-	c_tag = "Chief Medical Office";
-	network = list("ss13","medbay")
-	},
 /obj/structure/bed,
 /obj/machinery/shower{
 	dir = 8
@@ -40085,9 +40094,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -42245,6 +42251,9 @@
 	icon_state = "0-8"
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "jGt" = (
@@ -51736,11 +51745,13 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "oVu" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/starboard/fore)
 "oVF" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -59534,7 +59545,7 @@
 	},
 /obj/machinery/dna_scannernew,
 /obj/structure/cable{
-	icon_state = "1-4"
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -60475,6 +60486,9 @@
 	pixel_y = 2
 	},
 /obj/item/radio/headset/headset_medsci,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "ubH" = (
@@ -64541,7 +64555,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
-	areastring = "/area/science/mixing";
+	areastring = "/area/hallway/primary/aft_starboard";
 	dir = 4;
 	name = "Aft Starboard Hall APC";
 	pixel_x = 24
@@ -66550,9 +66564,13 @@
 /turf/template_noop,
 /area/crew_quarters/dorms)
 "xKE" = (
-/obj/effect/spawner/structure/window,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "cmo";
+	name = "CMO office shutters"
+	},
 /turf/open/floor/plating,
-/area/hallway/secondary/service)
+/area/crew_quarters/heads/cmo)
 "xKF" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -108769,7 +108787,7 @@ bbz
 aYV
 aYV
 aYV
-bEi
+xKE
 jOv
 bCY
 bCY
@@ -109027,7 +109045,7 @@ qBf
 oXu
 oXu
 kiy
-hNI
+hnW
 hNI
 hNI
 hNI
@@ -110838,8 +110856,8 @@ nPI
 qbI
 qqG
 ixA
-oVu
-oVu
+mZG
+mZG
 tBG
 kYK
 vto
@@ -111318,17 +111336,17 @@ syq
 syq
 syq
 alP
-alP
-alP
+aoQ
+bvB
 aIp
 aIp
 bbH
 aRJ
 aRJ
 aIp
+aIp
 aNQ
-aNQ
-aNQ
+aIp
 cVb
 cVb
 cVb
@@ -111575,8 +111593,8 @@ alP
 vTK
 alP
 alP
-bvB
-auD
+jhp
+aLd
 aIp
 dPy
 dPy
@@ -111591,7 +111609,7 @@ xGs
 wYL
 cmw
 qNt
-xKE
+cVb
 jaX
 aYV
 hoB
@@ -111833,7 +111851,7 @@ aty
 anf
 anf
 anf
-anf
+aLd
 aRh
 aRJ
 aRJ
@@ -112090,7 +112108,7 @@ alP
 alP
 alP
 anf
-aty
+oVu
 aIp
 ihg
 ihg
