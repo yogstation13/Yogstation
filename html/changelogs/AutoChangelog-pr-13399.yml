@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - rscdel: "Removed 2FA requirement to open the permissions panel, still required to edit permissions"

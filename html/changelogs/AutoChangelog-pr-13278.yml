@@ -1,5 +1,0 @@
-author: "tattax"
-delete-after: true 
-changes: 
-  - rscadd: "Added blob zombos' sentiency (blobs are smart)"
-  - tweak: "Changed how Networked Fibers works."
