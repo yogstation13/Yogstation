@@ -58,7 +58,7 @@
 		else
 			return TRUE
 	
-	if(skill_check(user, required_skill, required_skill_level))
+	if(!skill_check(user, required_skill, required_skill_level))
 		to_chat(user, span_warning("You don't know where to begin with this surgery!"))
 		return FALSE
 
