@@ -1,4 +1,4 @@
-/mob/living/simple_animal/snail
+/mob/living/simple_animal/pet/snail
 	name = "snail"
 	desc = "Snails are mollusks, putting them in the same category as oysters, clams, and mussels.
 	"
@@ -17,7 +17,7 @@
 	friendly = "bops"
 	gold_core_spawnable = FRIENDLY_SPAWN
 
-/mob/living/simple_animal/snail/gary
+/mob/living/simple_animal/pet/snail/gary
 	name = "Gary the snail"
 	desc = "Gary come home"
 	icon_state = "snail"
