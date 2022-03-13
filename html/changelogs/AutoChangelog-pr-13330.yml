@@ -1,0 +1,6 @@
+author: "LazennG"
+delete-after: true 
+changes: 
+  - rscadd: "adds new legion loot called 'grand core', along with a legion subtype called bloodman/bloodlings."
+  - rscdel: "Removes champ's hardsuit from legion loot"
+  - imageadd: "added some sprites for the grand core and its abilities"
