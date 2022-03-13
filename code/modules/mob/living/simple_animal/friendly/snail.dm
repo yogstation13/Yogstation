@@ -2,6 +2,7 @@
 	name = "snail"
 	desc = "Snails are mollusks, putting them in the same category as oysters, clams, and mussels.
 	"
+	icon = 'icon/mob/pets.dmi'
 	icon_state = "snail"
 	icon_living = "snail"
 	icon_dead = "snail_dead"
