@@ -12080,7 +12080,7 @@
 	pixel_y = 24
 	},
 /obj/machinery/camera{
-	c_tag = "Hydroponics Storage"
+	c_tag = "Hydroponics Storage North"
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -30935,6 +30935,11 @@
 	dir = 4;
 	pixel_x = -24
 	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Desk Interior";
+	dir = 1;
+	network = list("ss13","rd")
+	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "cQO" = (
@@ -38669,12 +38674,11 @@
 /area/maintenance/aft)
 "hJc" = (
 /obj/machinery/camera{
-	c_tag = "Xenobiology Northwest";
-	dir = 4;
-	network = list("ss13","rd")
+	c_tag = "Hydroponics Storage East";
+	dir = 8
 	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "hJu" = (
 /obj/machinery/light,
 /obj/structure/sign/warning/electricshock{
@@ -44472,7 +44476,7 @@
 /area/hallway/primary/central)
 "kUD" = (
 /obj/machinery/camera{
-	c_tag = "Xenobiology Desk - Exterior";
+	c_tag = "Xenobiology Desk Exterior";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -46925,10 +46929,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
 /obj/structure/chair/office/light,
 /obj/effect/landmark/start/geneticist,
 /turf/open/floor/plasteel/white,
@@ -47892,7 +47892,8 @@
 /area/maintenance/fore/secondary)
 "mVy" = (
 /obj/machinery/door/window/brigdoor/eastright{
-	dir = 2
+	dir = 2;
+	req_access_txt = "55"
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -48627,6 +48628,11 @@
 "nkW" = (
 /obj/structure/cable{
 	icon_state = "1-4"
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Northwest";
+	dir = 4;
+	network = list("ss13","rd")
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -51013,10 +51019,6 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "oBE" = (
@@ -53188,11 +53190,6 @@
 /obj/effect/turf_decal/box/corners{
 	dir = 8
 	},
-/obj/machinery/camera{
-	c_tag = "Xenobiology Southwest";
-	dir = 4;
-	network = list("ss13","rd")
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "pRT" = (
@@ -53768,11 +53765,6 @@
 "qfB" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Xenobiology South";
-	dir = 1;
-	network = list("ss13","rd")
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
@@ -57645,7 +57637,7 @@
 /area/engine/atmos_distro)
 "stp" = (
 /obj/machinery/camera{
-	c_tag = "Aft-Starboard Primary Hallway";
+	c_tag = "Aft Starboard Primary Hallway";
 	dir = 8;
 	pixel_y = -22
 	},
@@ -60273,7 +60265,7 @@
 	pixel_x = -26
 	},
 /obj/machinery/camera{
-	c_tag = "Service Hall - Exterior";
+	c_tag = "Service Hall Exterior";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -62502,6 +62494,11 @@
 	},
 /obj/effect/turf_decal/box/corners{
 	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Southwest";
+	dir = 4;
+	network = list("ss13","rd")
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
@@ -65343,7 +65340,7 @@
 /area/maintenance/port/aft)
 "wYL" = (
 /obj/machinery/camera{
-	c_tag = "Service Hall - Interior";
+	c_tag = "Service Hall Interior";
 	dir = 4
 	},
 /obj/machinery/firealarm{
@@ -65925,11 +65922,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Xenobiology Desk - Interior";
-	dir = 1;
-	network = list("ss13","rd")
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -111676,7 +111668,7 @@ ntA
 tiH
 fhl
 yeI
-hJc
+wJm
 cQC
 bDb
 tke
@@ -112150,7 +112142,7 @@ gvD
 aRJ
 aRJ
 aRJ
-aRJ
+hJc
 bHK
 cVb
 bQq
