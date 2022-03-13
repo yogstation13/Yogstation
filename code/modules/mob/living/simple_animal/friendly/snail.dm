@@ -11,11 +11,16 @@
 	emote_see = list("gurgles.")
 	speak_chance = 1
 	turns_per_move = 7
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 1)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 1)}
+	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stomps"
 	friendly = "bops"
+	melee_damage_lower = 2
+	melee_damage_upper = 2
+	health = 50
+	maxHealth = 50
 	gold_core_spawnable = FRIENDLY_SPAWN
 
 /mob/living/simple_animal/pet/snail/gary
