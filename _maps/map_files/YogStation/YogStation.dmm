@@ -18005,9 +18005,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/sorting/mail{
-	sortType = 9
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bfV" = (
@@ -54681,6 +54679,9 @@
 /obj/structure/sink{
 	dir = 4;
 	pixel_x = 11
+	},
+/obj/machinery/camera{
+	c_tag = "Research Division Access"
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
