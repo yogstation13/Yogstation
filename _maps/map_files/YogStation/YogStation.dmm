@@ -19530,7 +19530,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
 "blw" = (
-/obj/machinery/airalarm/server{
+/obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -24
 	},
@@ -20013,7 +20013,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/research{
-	name = "Genetics Research Access";
+	name = "Genetics Lab";
 	req_access_txt = "9"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -21038,6 +21038,11 @@
 /obj/item/storage/box/lights/mixed{
 	pixel_x = -1;
 	pixel_y = 6
+	},
+/obj/item/toy/toy_xeno{
+	layer = 2.5;
+	pixel_x = 10;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -30925,6 +30930,13 @@
 	},
 /turf/open/floor/plating,
 /area/medical/surgery)
+"cQC" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "cQO" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -32036,6 +32048,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"dzC" = (
+/turf/closed/wall,
+/area/medical/medbay/aft)
 "dzD" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
@@ -32869,6 +32884,18 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	icon_state = "1-4"
+	},
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 8
+	},
+/obj/item/toy/plush/slimeplushie{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/radio{
+	pixel_x = 8;
+	pixel_y = 3
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
@@ -35450,6 +35477,10 @@
 /obj/structure/lattice,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
+"fJO" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/medical/medbay/aft)
 "fJS" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	name = "Input Gas Connector Port"
@@ -36968,6 +36999,10 @@
 /obj/item/laser_pointer,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"gGD" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/medical/medbay/aft)
 "gGQ" = (
 /obj/structure/fireaxecabinet{
 	pixel_y = 32
@@ -43663,33 +43698,11 @@
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
 "kxw" = (
-/obj/structure/table,
-/obj/item/toy/plush/slimeplushie{
-	pixel_x = -8;
-	pixel_y = 3
-	},
-/obj/item/toy/toy_xeno{
-	layer = 2.5;
-	pixel_x = 10;
-	pixel_y = 12
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/camera{
-	c_tag = "Xenobiology South";
-	dir = 8;
-	network = list("ss13","rd")
-	},
-/obj/item/radio{
-	pixel_x = 8;
-	pixel_y = 3
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
-	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_y = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -44540,7 +44553,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/maintenance/aft)
+/area/medical/medbay/aft)
 "kWi" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -53393,6 +53406,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"pWD" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "pWW" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -53748,6 +53768,11 @@
 "qfB" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology South";
+	dir = 1;
+	network = list("ss13","rd")
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
@@ -55522,7 +55547,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/maintenance/aft)
+/area/medical/medbay/aft)
 "rhN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -59699,6 +59724,14 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"tEJ" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/turf/open/floor/plating,
+/area/medical/medbay/aft)
 "tEY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -65120,7 +65153,7 @@
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
-/area/maintenance/aft)
+/area/medical/medbay/aft)
 "wRD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -109325,7 +109358,7 @@ pEC
 ruc
 fQz
 ruc
-bzs
+dzC
 rhg
 bNd
 bNd
@@ -109582,7 +109615,7 @@ gxA
 giB
 pSS
 kYK
-bKQ
+tEJ
 kVV
 bNd
 jLB
@@ -109839,7 +109872,7 @@ oMM
 wXJ
 oob
 kYK
-bKQ
+tEJ
 kVV
 bNd
 bOt
@@ -110096,7 +110129,7 @@ ohN
 dwe
 siU
 kYK
-bZN
+fJO
 kVV
 bNd
 wGT
@@ -110353,7 +110386,7 @@ ddA
 iAO
 mGA
 kYK
-bBR
+gGD
 kVV
 bNd
 eaG
@@ -110610,7 +110643,7 @@ rlV
 mvX
 oEE
 kYK
-bzs
+dzC
 wRn
 bNd
 tbq
@@ -111644,7 +111677,7 @@ tiH
 fhl
 yeI
 hJc
-wJm
+cQC
 bDb
 tke
 mPG
@@ -112158,7 +112191,7 @@ owD
 mVy
 mGO
 wUc
-wJm
+pWD
 bDb
 mqp
 bzs
