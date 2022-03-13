@@ -16,3 +16,10 @@
 	response_harm   = "stomps"
 	friendly = "bops"
 	gold_core_spawnable = FRIENDLY_SPAWN
+
+/mob/living/simple_animal/snail/gary
+	name = "Gary the snail"
+	desc = "Gary come home"
+	icon_state = "snail"
+	icon_living = "snail"
+	icon_dead = "snail_dead"
