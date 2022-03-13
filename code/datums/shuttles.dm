@@ -474,6 +474,10 @@
 	suffix = "kilo"
 	name = "supply shuttle (Kilo)"
 
+/datum/map_template/shuttle/cargo/gax
+	suffix = "gax"
+	name = "supply shuttle (Gax)"
+
 /datum/map_template/shuttle/emergency/delta
 	suffix = "delta"
 	name = "Delta Station Emergency Shuttle"
@@ -513,6 +517,10 @@
 /datum/map_template/shuttle/labour/kilo
 	suffix = "kilo"
 	name = "labour shuttle (Kilo)"
+
+/datum/map_template/shuttle/labour/gax
+	suffix = "gax"
+	name = "labour shuttle (Gax)"
 
 /datum/map_template/shuttle/infiltrator/basic
 	suffix = "basic"
