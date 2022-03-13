@@ -32127,10 +32127,14 @@
 	dir = 4;
 	sortType = 21
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/structure/cable{
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -43234,17 +43238,6 @@
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/cmo)
 "kiE" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -54698,7 +54691,7 @@
 	pixel_x = 11
 	},
 /obj/machinery/camera{
-	c_tag = "Research Division Access"
+	c_tag = "Research Division Secondary Access"
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
@@ -109565,7 +109558,7 @@ alP
 anf
 anf
 anf
-kiE
+jxh
 dCp
 aJB
 aKD
@@ -111619,7 +111612,7 @@ alP
 vTK
 alP
 alP
-jhp
+anf
 aLd
 aIp
 dPy
@@ -111871,7 +111864,7 @@ anf
 nIg
 anf
 aty
-anf
+kiE
 anf
 aty
 anf
@@ -112133,7 +112126,7 @@ alP
 alP
 alP
 alP
-anf
+jhp
 oVu
 aIp
 ihg
