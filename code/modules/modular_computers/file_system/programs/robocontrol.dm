@@ -62,6 +62,7 @@
 	var/obj/item/computer_hardware/card_slot/card_slot
 	var/obj/item/card/id/id_card
 	if(computer)
+		computer.play_interact_sound()
 		card_slot = computer.all_components[MC_CARD]
 		if(card_slot)
 			id_card = card_slot.stored_card

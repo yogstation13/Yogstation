@@ -571,6 +571,14 @@
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/board/oven
+	name = "Machine Design (Oven)"
+	desc = "The circuit board for a Oven."
+	id = "oven"
+	build_path = /obj/item/circuitboard/machine/oven
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/board/donksofttoyvendor
 	name = "Machine Design (Donksoft Toy Vendor Board)"
 	desc = "The circuit board for a Donksoft Toy Vendor."
@@ -680,5 +688,14 @@
 	desc = "The circuit board for an AI data core."
 	id = "ai_data_core"
 	build_path = /obj/item/circuitboard/machine/ai_data_core
+	category = list("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+
+/datum/design/board/ai_core_display
+	name = "Machine Design (AI Core Display Board)"
+	desc = "The circuit board for an AI core display."
+	id = "ai_core_display"
+	build_path = /obj/item/circuitboard/machine/ai_core_display
 	category = list("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

@@ -93,5 +93,23 @@
 			var/normal_role = special_role || M.job || initial(M.name) || "unknown job"
 			message_admins("[ADMIN_LOOKUPFLW(src)] has used the AFK verb as '[normal_role]' for duration of '[time]'")
 			log_game("[key_name(src)] has used the AFK verb as '[normal_role]' for duration of '[time]'")
+		
+		/// Amount of time in time units they selected
+		var/afk_time = list(
+			"5 minutes" = 5 MINUTES,
+			"10 minutes" = 10 MINUTES,
+			"15 minutes" = 15 MINUTES,
+			"30 minutes" = 30 MINUTES,
+			"Whole round" = 0 MINUTES, // No cryo protections for whole round
+			"Unknown" = 15 MINUTES // Middleish ground
+		)[time]
+
+		if(!time || !mob.mind)
+			return
+		
+		deltimer(mob.mind.afk_verb_timer) // In case they used the verb again
+		mob.mind.afk_verb_used = TRUE
+		mob.mind.afk_verb_timer = addtimer(VARSET_CALLBACK(mob.mind, afk_verb_used, FALSE), afk_time, TIMER_STOPPABLE);
+
 	else
 		to_chat(src, span_boldnotice("It is not necessary to report being AFK if you are not in the game."))

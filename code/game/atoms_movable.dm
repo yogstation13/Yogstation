@@ -48,6 +48,11 @@
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 
+	/// The degree of thermal insulation that mobs in list/contents have from the external environment, between 0 and 1
+	var/contents_thermal_insulation = 0
+	/// The degree of pressure protection that mobs in list/contents have from the external environment, between 0 and 1
+	var/contents_pressure_protection = 0
+
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -824,9 +829,8 @@
 
 /atom/movable/vv_get_dropdown()
 	. = ..()
-	. -= "Jump to"
-	.["Follow"] = "?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]"
-	.["Get"] = "?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]"
+	. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Follow</option>"
+	. += "<option value='?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]'>Get</option>"
 
 /atom/movable/proc/ex_check(ex_id)
 	if(!ex_id)

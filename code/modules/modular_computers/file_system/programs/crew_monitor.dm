@@ -8,7 +8,7 @@
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_MEDICAL
 	available_on_ntnet = TRUE
-	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN // For my other PR
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN | PROGRAM_INTEGRATED
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosCrewMonitor"
@@ -38,7 +38,7 @@
 		var/turf/T = get_turf(computer)
 		z = T.z
 	var/list/death_list = GLOB.crewmonitor.death_list?["[z]"]
-	if(death_list.len > 0)
+	if(death_list && death_list.len > 0)
 		alarm = TRUE
 	else
 		alarm = FALSE

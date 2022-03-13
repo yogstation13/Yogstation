@@ -12329,28 +12329,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"azH" = (
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/obj/item/circular_saw,
-/obj/item/retractor{
-	pixel_x = 4
-	},
-/obj/item/hemostat{
-	pixel_x = -4
-	},
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/centcom/control)
 "azI" = (
 /obj/structure/bed/roller,
 /obj/machinery/iv_drip,
@@ -13369,25 +13347,6 @@
 	pixel_y = 3
 	},
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/centcom/control)
-"aBL" = (
-/obj/item/storage/firstaid/toxin,
-/obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
@@ -26143,6 +26102,43 @@
 /mob/living/simple_animal/hostile/carp/ranged/chaos,
 /turf/open/space/basic,
 /area/centcom/testchamber)
+"gDu" = (
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/mask/surgical,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/reagent_containers/medspray/sterilizine,
+/turf/open/floor/plasteel/white,
+/area/centcom/control)
+"uDo" = (
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/o2{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/storage/firstaid/advanced{
+	pixel_x = -15;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/centcom/control)
 "wDa" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/holodeck_effect/mobspawner{
@@ -72077,7 +72073,7 @@ axp
 awG
 aqr
 aim
-azH
+gDu
 aAq
 aAU
 aBF
@@ -73622,7 +73618,7 @@ aiu
 azK
 aAs
 azJ
-aBL
+uDo
 aiu
 alN
 aiu

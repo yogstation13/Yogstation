@@ -162,8 +162,7 @@
 		if(istype(LO, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/borg = LO
 			if(!borg.lamp_cooldown)
-				borg.update_headlamp(TRUE, INFINITY)
-				to_chat(borg, span_userdanger("The lightbulb in your headlamp is fried! You'll need a human to help replace it."))
+				borg.smash_headlamp()
 		if(istype(LO, /obj/machinery/camera))
 			LO.set_light(0)
 			if(prob(10))
@@ -176,6 +175,8 @@
 		if(istype(LO, /obj/machinery/power/floodlight))
 			var/obj/machinery/power/floodlight/FL = LO
 			FL.change_setting(2) // Set floodlight to lowest setting
+		if(istype(LO, /obj/structure/light_prism))
+			qdel(LO)
 
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
 		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
