@@ -93,3 +93,4 @@
 /datum/horror_chem/oxandrolone
 	chemname = "oxandrolone"
 	R = /datum/reagent/medicine/oxandrolone
+	chem_desc = "Stimulates the healing of severe burns. Rapidly heals severe burns and slowly heals minor ones."
