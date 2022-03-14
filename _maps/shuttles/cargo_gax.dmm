@@ -1,4 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/supply)
 "b" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/supply)
@@ -163,11 +166,11 @@ y
 c
 e
 e
+a
 e
 e
 e
-e
-e
+a
 e
 e
 b
@@ -177,11 +180,11 @@ y
 c
 e
 e
-e
-e
-e
-e
-e
+a
+a
+a
+a
+a
 e
 v
 b
@@ -191,11 +194,11 @@ y
 c
 e
 e
+a
 e
+a
 e
-e
-e
-e
+a
 e
 e
 b

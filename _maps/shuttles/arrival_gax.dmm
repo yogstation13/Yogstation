@@ -5,12 +5,52 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
+"d" = (
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"g" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"h" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -5;
+	pixel_y = 30
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "k" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_y = 32;
 	use_power = 0
 	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"m" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/crate/internals,
+/obj/item/storage/firstaid/o2,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "o" = (
@@ -49,13 +89,10 @@
 "w" = (
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
-"A" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
-	},
-/obj/machinery/light{
-	dir = 4
+"C" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/machinery/status_display/ai{
+	pixel_y = 32
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
@@ -68,6 +105,19 @@
 "E" = (
 /obj/machinery/light{
 	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"H" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/arrival)
+"I" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/status_display/ai{
+	pixel_y = -32
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
@@ -102,9 +152,17 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
-"V" = (
+"Z" = (
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_y = 5
+	},
+/obj/item/storage/toolbox/emergency,
+/obj/structure/table/reinforced,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
@@ -129,11 +187,11 @@ o
 "}
 (3,1,1) = {"
 o
-V
+Z
 w
 K
 w
-V
+m
 o
 "}
 (4,1,1) = {"
@@ -156,7 +214,7 @@ s
 "}
 (6,1,1) = {"
 o
-w
+d
 b
 M
 b
@@ -174,7 +232,7 @@ s
 "}
 (8,1,1) = {"
 o
-w
+h
 b
 K
 b
@@ -183,7 +241,7 @@ s
 "}
 (9,1,1) = {"
 o
-A
+g
 w
 K
 w
@@ -193,9 +251,9 @@ o
 (10,1,1) = {"
 o
 o
-r
+C
 K
-T
+I
 o
 o
 "}
@@ -210,11 +268,11 @@ p
 "}
 (12,1,1) = {"
 p
-o
+H
 r
 K
 R
-o
+H
 p
 "}
 (13,1,1) = {"
