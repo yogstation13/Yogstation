@@ -42,6 +42,12 @@
 	. = ..()
 	var/mob/living/silicon/robot/R = loc
 	R.PickBorgSkin()
+	if(hat)
+		if(R.hat_offset == INFINITY)
+			R.forceMove(get_turf(R))
+		else
+			R.place_on_head(hat)
+		hat = null
 
 /mob/living/silicon/robot/update_icons() //Need to change this, as it's killing donorborgs
 	var/old_icon = icon_state

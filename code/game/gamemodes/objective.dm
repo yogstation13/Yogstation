@@ -191,6 +191,12 @@ GLOBAL_LIST_EMPTY(objectives)
 				var/obj/O = new eq_path
 				H.equip_in_one_of_slots(O, slots)
 
+/// Copy the target from the other objective
+/datum/objective/proc/copy_target(datum/objective/old_obj)
+	target = old_obj.get_target()
+	target_amount = old_obj.target_amount
+	explanation_text = explanation_text
+
 /datum/objective/assassinate
 	name = "assassinate"
 	var/target_role_type=FALSE
@@ -530,6 +536,10 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/escape/escape_with_identity/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
 
+/datum/objective/escape/escape_with_identity/copy_target(datum/objective/escape/escape_with_identity/old_obj)
+	target_real_name = old_obj.target_real_name
+	target_missing_id = old_obj.target_missing_id
+
 /datum/objective/survive
 	name = "survive"
 	explanation_text = "Stay alive until the end."
@@ -624,6 +634,10 @@ GLOBAL_LIST_EMPTY(possible_items)
 	else
 		explanation_text = "Free objective"
 		return
+
+/datum/objective/steal/copy_target(datum/objective/steal/old_obj)
+	. = ..()
+	set_target(old_obj.targetinfo)
 
 /datum/objective/steal/admin_edit(mob/admin)
 	var/list/possible_items_all = GLOB.possible_items+"custom"
@@ -1217,6 +1231,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		return TRUE
 	return !record || !(record in GLOB.data_core.security)
 
+/datum/objective/minor/secrecords/copy_target(datum/objective/minor/secrecords/old_obj)
+	. = ..()
+	record = old_obj.record
 
 /**
   * # Kill Pet
@@ -1272,7 +1289,11 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/minor/pet/update_explanation_text()
 	explanation_text = "Assassinate the important animal, [pet.name]"
-	
+
+/datum/objective/minor/pet/copy_target(datum/objective/minor/pet/old_obj)
+	. = ..()
+	pet = old_obj.pet
+
 /**
   * Check whether Pet is dead
   */
