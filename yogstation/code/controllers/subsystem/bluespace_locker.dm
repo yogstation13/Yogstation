@@ -32,9 +32,12 @@ SUBSYSTEM_DEF(bluespace_locker)
 		var/area/A = get_area(L)
 		if (is_type_in_typecache(A, invalid_areas))
 			continue
-		if (L.secure || L.welded || L.locked || L.wall_mounted)
+		if (L.secure || L.welded || L.wall_mounted)
 			continue
-		lockers_list += L
+		var/score = 1
+		if (L.locked)
+			score -= 0.25
+		lockers_list[L] = score
 	if(!lockers_list.len)
 		// Congratulations, you managed to destroy all the lockers somehow.
 		// Now let's make a new one.
@@ -44,8 +47,8 @@ SUBSYSTEM_DEF(bluespace_locker)
 				targetturf = get_turf(pick(GLOB.blobstart))
 			else
 				CRASH("Unable to find a blobstart landmark")
-		lockers_list += new /obj/structure/closet(targetturf)
-	var/obj/structure/closet/L = pick(lockers_list)
+		lockers_list[new /obj/structure/closet(targetturf)] = 1
+	var/obj/structure/closet/L = pickweight(lockers_list)
 
 	var/obj/structure/closet/bluespace/external/E = new(L.loc)
 	E.contents = L.contents
