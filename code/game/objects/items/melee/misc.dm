@@ -183,7 +183,7 @@
 	var/cooldown = 1 SECONDS // Default wait time until can stun again.
 	var/knockdown_time_carbon = 1.5 SECONDS // Knockdown length for carbons.
 	var/stun_time_silicon = 5 SECONDS // If enabled, how long do we stun silicons.
-	var/stamina_damage = 20 // How much stamina damage we deal.
+	var/stamina_damage = 30 // How much stamina damage we deal.
 	var/block_threshold = 50 // Threshold at which armor blocks special effects.
 	var/affect_silicon = FALSE // Does it stun silicons.
 	var/on_sound // "On" sound, played when switching between able to stun or not.
@@ -237,16 +237,17 @@
 	
 	if(armor_block >= block_threshold)
 		target.visible_message(desc["visible"], desc["local"])
+		playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
 		return
 
 	// Special effects
 	if(affecting.stamina_dam >= 50 && (istype(affecting, /obj/item/bodypart/l_leg) || istype(affecting, /obj/item/bodypart/r_leg)))
 		desc = get_stun_description(target, user)
 		target.Knockdown(knockdown_time_carbon)
-		
-	else if(affecting.stamina_dam >= 15 && istype(affecting, /obj/item/bodypart/l_arm) && target.held_items[LEFT_HANDS])
+
+	else if(istype(affecting, /obj/item/bodypart/l_arm) && target.held_items[LEFT_HANDS])
 		target.dropItemToGround(target.held_items[LEFT_HANDS])
-	else if(affecting.stamina_dam >= 15 && istype(affecting, /obj/item/bodypart/r_arm) && target.held_items[RIGHT_HANDS])
+	else if(istype(affecting, /obj/item/bodypart/r_arm) && target.held_items[RIGHT_HANDS])
 		target.dropItemToGround(target.held_items[RIGHT_HANDS])
 	target.visible_message(desc["visible"], desc["local"])
 
@@ -375,7 +376,7 @@
 	on_item_state = "nullrod"
 	force_on = 10
 	force_off = 0
-	stamina_damage = 15
+	stamina_damage = 20
 	weight_class_on = WEIGHT_CLASS_BULKY
 	bare_wound_bonus = 5
 
@@ -453,6 +454,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+			playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
 			return
 		var/datum/martial_art/M = H.check_block()
 		if(M)
