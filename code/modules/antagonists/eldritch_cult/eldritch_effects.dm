@@ -1,9 +1,9 @@
-#define PENANCE_LIFE "Lose your life (10)"
-#define PENANCE_SOUL "Lose your soul (14)"
-#define PENANCE_LIMB "Lose a limb (5)"
-#define PENANCE_SKELETON "Lose your flesh (1)"
-#define PENANCE_TRAUMA_ADV "Lose your mind (5)"
-#define PENANCE_TRAUMA_BASIC "Lose a smaller, but still important part of your mind (1)"
+#define PENANCE_LIFE "Lose your life (10 marbles)"
+#define PENANCE_SOUL "Lose your soul (14 marbles)"
+#define PENANCE_LIMB "Lose a limb (5 marbles)"
+#define PENANCE_SKELETON "Lose your flesh (1 marbles)"
+#define PENANCE_TRAUMA_ADV "Lose your mind (5 marbles)"
+#define PENANCE_TRAUMA_BASIC "Lose a smaller, but still important part of your mind (1 marbles)"
 #define TRAUMA_ADV_CAP 1
 #define TRAUMA_BASIC_CAP 3
 
@@ -330,7 +330,7 @@
 /obj/screen/alert/status_effect/brazil_penance/MouseEntered(location,control,params)
 	desc = initial(desc)
 	var/datum/status_effect/brazil_penance/P = attached_effect
-	desc += "<br><font size=3><b>You currently need to sacrifice [P.penance_left] worth of yourself to escape.</b></font>"
+	desc += "<br><font size=3><b>You currently need to sacrifice [P.penance_left] marbles to escape.</b></font>"
 	..()
 
 /datum/status_effect/brazil_penance/on_apply()
@@ -343,6 +343,7 @@
 	owner.grab_ghost()
 	owner.status_flags |= GODMODE //knowing how people treat the ninja dojo this is a necessary sacrifice
 	to_chat(owner, "<span class='revenbignotice'>You find yourself floating in a strange, unfamiliar void. Are you dead? ... no ... that feels different... Maybe there's a way out?</span>")
+	to_chat(owner, span_notice("You've come into posession of [penance_left] marbles. To escape, you will need to get rid of them."))
 	var/destination = pick(GLOB.brazil_reception)
 	owner.forceMove(get_turf(destination))
 	return TRUE
@@ -360,6 +361,7 @@
 			switch(P)
 				if(PENANCE_SOUL)
 					owner.hellbound = TRUE
+					to_chat(owner, span_velvet("You feel a peculular emptiness..."))
 				if(PENANCE_LIMB)
 					var/obj/item/bodypart/BP
 					while(!BP)
@@ -368,6 +370,7 @@
 							break
 						var/target_zone = pick_n_take(unspooked_limbs)
 						BP = C.get_bodypart(target_zone)
+					C.visible_message(span_warning("[owner]'s [BP] suddenly disintegrates!"), span_warning("In a flash, your [BP] is torn from your body and disintegrates!"))
 					BP.dismember(BURN)
 				if(PENANCE_SKELETON)
 					var/obj/item/bodypart/BP
@@ -382,11 +385,13 @@
 					replacement_part.species_id = "skeleton"
 					replacement_part.original_owner = "inside"
 					replacement_part.replace_limb(owner)
+					C.visible_message(span_warning("The skin on [owner]'s [BP] suddenly melts off, revealing bone!"), span_warning("The skin and muscle on your [BP] is suddenly melted off!"))
 				if(PENANCE_TRAUMA_ADV)
 					C.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 				if(PENANCE_TRAUMA_BASIC)
 					C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_SURGERY)
 				if(PENANCE_LIFE)
+					to_chat(owner, span_cultsmall("You feel the strange sensation of all your blood exiting your body."))
 					owner.blood_volume = 0
 					owner.death()
 			penance_sources[P] --
@@ -421,6 +426,7 @@
 	switch(loss) //check fail cases (soul/life can only be taken once and conflict, limb stuff requires existing limbs, etc)
 		if(PENANCE_LIFE, PENANCE_SOUL)
 			if(ticket.penance_sources[PENANCE_LIFE] || ticket.penance_sources[PENANCE_SOUL])
+				to_chat(user, span_warning("You can only die here once."))
 				return
 		if(PENANCE_LIMB, PENANCE_SKELETON)
 			var/available_parts = -(ticket.penance_sources[PENANCE_LIMB] + ticket.penance_sources[PENANCE_SKELETON]) //get all the current limb effecting penance
@@ -430,19 +436,23 @@
 				if(BP) //these skeleton limbs are worse than normal ones and even surplus prosthetics so it doesnt matter if you have those
 					available_parts++
 			if(available_parts <= 0)
+				to_chat(user, span_warning("You've got no limbs to spare! Expendable limbs, that is."))
 				return
 		if(PENANCE_TRAUMA_ADV)
 			if(ticket.penance_sources[PENANCE_TRAUMA_ADV] == TRAUMA_ADV_CAP)
+				to_chat(user, span_warning("You've lost a rather large portion of your mind already. You need to find another way to lose your marbles."))
 				return
 		if(PENANCE_TRAUMA_BASIC)
 			if(ticket.penance_sources[PENANCE_TRAUMA_BASIC] == TRAUMA_BASIC_CAP)
+				to_chat(user, span_warning("You've lost enough bits of your mind already. You need to find another way to lose your marbles."))
 				return
 	ticket.penance_sources[loss]++
 	ticket.penance_left -= penance_given[loss]
+	to_chat(user, span_notice("[src] accepts [penance_given[loss]] of your marbles, you have [ticket.penance_left] marbles remaining.")) //better flavor text maybe idk
 
 /obj/effect/penance_giver/blood
-	name = "this space for rent"
-	desc = "this space also for rent"
+	name = "Bloody Construct"
+	desc = "This ominous construct will accept marbles in exchange for blood. Your blood of course."
 	icon = 'icons/obj/cult_large.dmi'
 	icon_state = "shell_narsie_active"
 	pixel_x = -16
@@ -450,15 +460,15 @@
 	penance_given = list(PENANCE_LIFE = 10, PENANCE_LIMB = 5)
 
 /obj/effect/penance_giver/mind
-	name = "this space for rent"
-	desc = "this space also for rent"
+	name = "Headache"
+	desc = "A small, gaseous blob that makes your head pound as you approach it. It will accept your marbles." //get it you LOSe your mARlbeSe hehehahaeheahaeh
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "curseblob"
 	penance_given = list(PENANCE_TRAUMA_ADV = 5, PENANCE_TRAUMA_BASIC = 1)
 
 /obj/effect/penance_giver/eldritch
-	name = "this space for rent"
-	desc = "this space also for rent"
+	name = "The Antipope of Hell"
+	desc = "This denizen of hell will accept your soul, and flesh, for your marbles."
 	icon = 'icons/mob/evilpope.dmi' //fun fact the pope's mask is off center on his north sprite and now you have to see it too
 	icon_state = "EvilPope"
 	penance_given = list(PENANCE_SOUL = 14, PENANCE_SKELETON = 1)

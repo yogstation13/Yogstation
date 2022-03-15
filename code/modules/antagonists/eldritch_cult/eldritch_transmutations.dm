@@ -200,6 +200,7 @@
 			qdel(A)
 			if(LH.target)
 				to_chat(user,span_warning("Your new target has been selected, go and sacrifice [LH.target.real_name]!"))
+
 			else
 				to_chat(user,span_warning("A target could not be found for the living heart."))
 

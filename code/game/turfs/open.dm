@@ -369,7 +369,8 @@
 			to_chat(L, span_velvet("Get out of here, stalker."))
 			var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
 			if(safe_turf)
-				L.forceMove(safe_turf) //add some flashy screen effect here idk
+				L.forceMove(safe_turf)
+				flash_color(L, flash_color = "#000000", flash_time = 10)
 
 /turf/open/indestructible/brazil/space
 	icon = 'icons/turf/space.dmi'
@@ -389,6 +390,12 @@
 	. = ..()
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"
+
+/turf/open/indestructible/brazil/lostit
+	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
+	canSmoothWith = list(/turf/open/indestructible/brazil/lostit)
+	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
+	icon_state = "smooth"
 
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)
