@@ -10177,7 +10177,7 @@
 "aHq" = (
 /obj/structure/cable,
 /obj/machinery/power/tracker,
-/turf/open/space,
+/turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/aft)
 "aHr" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -25053,9 +25053,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bQV" = (
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/space)
 "bQZ" = (
 /turf/closed/wall/r_wall,
 /area/science/misc_lab)
@@ -29672,13 +29669,6 @@
 	},
 /turf/open/floor/wood,
 /area/vacant_room)
-"dnb" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/solars/solar_96,
-/turf/open/space/basic,
-/area/solar/starboard/aft)
 "doh" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -29862,10 +29852,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"dtV" = (
-/obj/structure/lattice,
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/space/nearstation)
 "dvd" = (
 /obj/structure/table,
 /turf/open/floor/plasteel,
@@ -35952,11 +35938,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"hfJ" = (
-/obj/structure/cable,
-/obj/effect/spawner/structure/solars/solar_96,
-/turf/open/space,
-/area/solar/starboard/aft)
 "hgw" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -36574,13 +36555,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"hxa" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/solars/solar_96,
-/turf/open/space,
-/area/solar/starboard/aft)
 "hxe" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 0
@@ -66567,11 +66541,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/port)
-"xJM" = (
-/obj/structure/cable,
-/obj/effect/spawner/structure/solars/solar_96,
-/turf/open/space/basic,
-/area/solar/starboard/aft)
 "xKy" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -118376,11 +118345,11 @@ rpK
 gnl
 cVk
 fSG
-hfJ
+gnl
 aaa
-hxa
+cVk
 fSG
-hfJ
+gnl
 aaa
 aaS
 aaa
@@ -119661,11 +119630,11 @@ dLP
 aaa
 aaa
 dLP
-bQV
 aaa
-bQV
+aaa
+aaa
 lXV
-bQV
+aaa
 aaa
 aoV
 aaf
@@ -120182,7 +120151,7 @@ vIa
 aoV
 aoV
 aoV
-dtV
+gXs
 aoV
 aaS
 aaa
@@ -120432,11 +120401,11 @@ crG
 gnl
 cVk
 crG
-xJM
+gnl
 aaa
-dnb
+cVk
 crG
-xJM
+gnl
 aaa
 gXs
 aaS
@@ -121717,11 +121686,11 @@ aaa
 aaf
 aaf
 aoV
-dtV
+gXs
 aaa
-dtV
+gXs
 aoV
-dtV
+gXs
 aaa
 ace
 aaa
