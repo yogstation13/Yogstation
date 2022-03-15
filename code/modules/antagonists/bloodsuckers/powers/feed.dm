@@ -185,7 +185,7 @@
 	// Give them the effects (Depending on if we are silent or not)
 	if(!amSilent)
 		// Sleep & paralysis.
-		ApplyVictimEffects(feed_target)
+		ApplyVictimEffects(feed_target, first_hit = TRUE)
 		// Pull target to you if they don't take up space.
 		if(!feed_target.density)
 			feed_target.Move(user.loc)
@@ -258,7 +258,7 @@
 	bloodsuckerdatum_power.HandleFeeding(feed_target, blood_take_mult, level_current)
 	amount_taken += amSilent ? 0.3 : 1
 	if(!amSilent)
-		ApplyVictimEffects(feed_target) // Sleep, paralysis, immobile, unconscious, and mute
+		ApplyVictimEffects(feed_target)
 
 	///////////////////////////////////////////////////////////
 	// MOOD EFFECTS //
@@ -314,12 +314,12 @@
 	return TRUE
 
 /// Bloodsuckers not affected by "the Kiss" of another vampire
-/datum/action/bloodsucker/feed/proc/ApplyVictimEffects(mob/living/carbon/human/target)
-	if(!IS_BLOODSUCKER(target))
+/datum/action/bloodsucker/feed/proc/ApplyVictimEffects(mob/living/target, first_hit = FALSE)
+	if(IS_BLOODSUCKER(target) || IS_VASSAL(target))
+		return
+	if(first_hit)
 		target.Unconscious(50,0)
-		target.Paralyze(40 + 5 * level_current,1) // NOTE: This is based on level of power!
-		if(ishuman(target))
-			target.adjustStaminaLoss(5, forced = TRUE) // Base Stamina Damage
+	target.Paralyze(40 + 5 * level_current)
 
 /datum/action/bloodsucker/feed/DeactivatePower()
 	. = ..() // activate = FALSE

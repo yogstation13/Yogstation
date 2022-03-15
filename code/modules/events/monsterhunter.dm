@@ -22,36 +22,35 @@
 
 /datum/round_event/bloodsucker_hunters
 	fakeable = FALSE
-	var/cancel_me = FALSE
+	var/cancel_me = TRUE
 
 /datum/round_event/bloodsucker_hunters/start()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(!IS_BLOODSUCKER(H))
-			message_admins("BLOODSUCKER NOTICE: Monster Hunters couldnt verify any Bloodsuckers.")
-			cancel_me = TRUE
+	for(var/mob/living/carbon/human/all_players in GLOB.player_list)
+		if(IS_BLOODSUCKER(all_players))
+			message_admins("BLOODSUCKER NOTICE: Monster Hunters found a valid Bloodsucker.")
+			cancel_me = FALSE
 			break
-		message_admins("BLOODSUCKER NOTICE: A Monster Hunter is attempting to awaken.")
-	// because kill() doesn't work.
 	if(cancel_me)
+		kill()
 		return
-	for(var/mob/living/carbon/human/H in shuffle(GLOB.player_list))
-		if(!H.client || !H.mind || !(ROLE_MONSTERHUNTER in H.client.prefs.be_special))
+	for(var/mob/living/carbon/human/all_players in shuffle(GLOB.player_list))
+		if(!all_players.client || !all_players.mind || !(ROLE_MONSTERHUNTER in all_players.client.prefs.be_special))
 			continue
-		if(H.stat == DEAD)
+		if(all_players.stat == DEAD)
 			continue
-		if(!SSjob.GetJob(H.mind.assigned_role) || (H.mind.assigned_role in GLOB.nonhuman_positions)) // Only crewmembers on-station.
+		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.nonhuman_positions)) // Only crewmembers on-station.
 			continue
-		if(!SSjob.GetJob(H.mind.assigned_role) || (H.mind.assigned_role in GLOB.command_positions))
+		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.command_positions))
 			continue
-		if(!SSjob.GetJob(H.mind.assigned_role) || (H.mind.assigned_role in GLOB.security_positions))
+		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.security_positions))
 			continue
-		if(IS_BLOODSUCKER(H) || IS_VASSAL(H))
+		if(IS_BLOODSUCKER(all_players) || IS_VASSAL(all_players))
 			continue
-		if(!H.getorgan(/obj/item/organ/brain))
+		if(!all_players.getorgan(/obj/item/organ/brain))
 			continue
-		H.mind.add_antag_datum(/datum/antagonist/monsterhunter)
-		message_admins("BLOODSUCKER NOTICE: [H] has awoken as a Monster Hunter.")
-		announce_to_ghosts(H)
+		all_players.mind.add_antag_datum(/datum/antagonist/monsterhunter)
+		message_admins("BLOODSUCKER NOTICE: [all_players] has awoken as a Monster Hunter.")
+		announce_to_ghosts(all_players)
 		break
 
 /// Randomly spawned Monster hunters during TraitorChangeling, Changeling, Heretic and Cult rounds.
@@ -67,36 +66,35 @@
 
 /datum/round_event/monster_hunters
 	fakeable = FALSE
-	var/cancel_me = FALSE
+	var/cancel_me = TRUE
 
 /datum/round_event/monster_hunters/start()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(!iscultist(H) && !IS_HERETIC(H) && !iswizard(H) && !is_servant_of_ratvar(H) && !H.mind.has_antag_datum(/datum/antagonist/changeling))
-			message_admins("MONSTERHUNTER NOTICE: Monster Hunters couldnt verify any Monsters.")
-			cancel_me = TRUE
+	for(var/mob/living/carbon/human/all_players in GLOB.player_list)
+		if(iscultist(all_players) || IS_HERETIC(all_players) || iswizard(all_players) || is_servant_of_ratvar(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
+			message_admins("MONSTERHUNTER NOTICE: Monster Hunters found a valid Monster.")
+			cancel_me = FALSE
 			break
-		message_admins("MONSTERHUNTER NOTICE: A Monster Hunter is attempting to awaken.")
-	// because kill() doesn't work.
 	if(cancel_me)
+		kill()
 		return
-	for(var/mob/living/carbon/human/H in shuffle(GLOB.player_list))
+	for(var/mob/living/carbon/human/all_players in shuffle(GLOB.player_list))
 		/// From obsessed
-		if(!H.client || !H.mind || !(ROLE_MONSTERHUNTER in H.client.prefs.be_special))
+		if(!all_players.client || !all_players.mind || !(ROLE_MONSTERHUNTER in all_players.client.prefs.be_special))
 			continue
-		if(H.stat == DEAD)
+		if(all_players.stat == DEAD)
 			continue
-		if(!SSjob.GetJob(H.mind.assigned_role) || (H.mind.assigned_role in GLOB.nonhuman_positions)) // Only crewmembers on-station.
+		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.nonhuman_positions)) // Only crewmembers on-station.
 			continue
-		if(!SSjob.GetJob(H.mind.assigned_role) || (H.mind.assigned_role in GLOB.command_positions))
+		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.command_positions))
 			continue
-		if(!SSjob.GetJob(H.mind.assigned_role) || (H.mind.assigned_role in GLOB.security_positions))
+		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.security_positions))
 			continue
 		/// Bobux no IS_CHANGELING
-		if(IS_HERETIC(H) || iscultist(H) || iswizard(H) || is_servant_of_ratvar(H) || H.mind.has_antag_datum(/datum/antagonist/changeling))
+		if(IS_HERETIC(all_players) || iscultist(all_players) || iswizard(all_players) || is_servant_of_ratvar(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
 			continue
-		if(!H.getorgan(/obj/item/organ/brain))
+		if(!all_players.getorgan(/obj/item/organ/brain))
 			continue
-		H.mind.add_antag_datum(/datum/antagonist/monsterhunter)
-		message_admins("MONSTERHUNTER NOTICE: [H] has awoken as a Monster Hunter.")
-		announce_to_ghosts(H)
+		all_players.mind.add_antag_datum(/datum/antagonist/monsterhunter)
+		message_admins("MONSTERHUNTER NOTICE: [all_players] has awoken as a Monster Hunter.")
+		announce_to_ghosts(all_players)
 		break

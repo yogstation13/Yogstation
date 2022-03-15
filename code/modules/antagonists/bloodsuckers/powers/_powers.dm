@@ -170,8 +170,8 @@
 	bloodsuckerdatum_power?.update_hud()
 
 /datum/action/bloodsucker/proc/ActivatePower()
+	active = TRUE
 	if(power_flags & BP_AM_TOGGLE)
-		active = TRUE
 		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/UsePower)
 
 	owner.log_message("used [src].", LOG_ATTACK, color="red")
