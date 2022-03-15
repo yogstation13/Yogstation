@@ -324,7 +324,7 @@
 
 /obj/screen/alert/status_effect/brazil_penance
 	name = "Otherworldly Tarrif"
-	desc = "The things of this place want something from you, you won't be able to leave until enough has been taken."
+	desc = "The things of this place want something from you. You won't be able to leave until enough has been taken."
 	icon_state = "shadow_mend"
 
 /obj/screen/alert/status_effect/brazil_penance/MouseEntered(location,control,params)
