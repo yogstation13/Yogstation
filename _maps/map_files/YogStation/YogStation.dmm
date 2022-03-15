@@ -37448,7 +37448,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "hXF" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -37456,6 +37455,7 @@
 	id = "xenodesk";
 	name = "xenobiology lab shutters"
 	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "hXJ" = (
@@ -61255,17 +61255,17 @@
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
 "uKK" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
 	icon_state = "0-2"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "xenodesk";
 	name = "xenobiology lab shutters"
 	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "uKO" = (
