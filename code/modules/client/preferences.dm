@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
-	var/list/features = list("mcolor" = "FFF", "gradientstyle" = "None", "gradientcolor" = "000", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No")
+	var/list/features = list("mcolor" = "FFF", "gradientstyle" = "None", "gradientcolor" = "000", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No", "ethereal_mark" = "None")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 
@@ -368,16 +368,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
 				dat += "<a href ='?_src_=prefs;preference=facial_hair_style_color;task=lock'>[random_locks["facial"] ? "Unlock" : "Lock"]</a><BR>"
 
-				if(pref_species.id != "ethereal")
-					dat += "<h3>Hair Gradient</h3>"
+				dat += "<h3>Hair Gradient</h3>"
 
-					dat += "<a href='?_src_=prefs;preference=hair_gradient_style;task=input'>[features["gradientstyle"]]</a>"
-					dat += "<a href ='?_src_=prefs;preference=hair_gradient_style;task=lock'>[random_locks["gradientstyle"] ? "Unlock" : "Lock"]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=hair_gradient_style;task=input'>[features["gradientstyle"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=hair_gradient_style;task=lock'>[random_locks["gradientstyle"] ? "Unlock" : "Lock"]</a><BR>"
 
-					dat += "<a href='?_src_=prefs;preference=previous_hair_gradient_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_gradient_style;task=input'>&gt;</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=previous_hair_gradient_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_gradient_style;task=input'>&gt;</a><BR>"
 
-					dat += "<span style='border:1px solid #161616; background-color: #[features["gradientcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_gradient;task=input'>Change</a>"
-					dat += "<a href ='?_src_=prefs;preference=hair_gradient_color;task=lock'>[random_locks["gradientcolor"] ? "Unlock" : "Lock"]</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[features["gradientcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_gradient;task=input'>Change</a>"
+				dat += "<a href ='?_src_=prefs;preference=hair_gradient_color;task=lock'>[random_locks["gradientcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "</td>"
 
@@ -546,6 +545,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<a href='?_src_=prefs;preference=dorsal_tubes;task=input'>[features["dorsal_tubes"]]</a>"
 				dat += "<a href ='?_src_=prefs;preference=dorsal_tubes;task=lock'>[random_locks["dorsal_tubes"] ? "Unlock" : "Lock"]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+			
+			if("ethereal_mark" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Ethereal Mark</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=ethereal_mark;task=input'>[features["ethereal_mark"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=ethereal_mark;task=lock'>[random_locks["ethereal_mark"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -827,6 +840,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Donator Preferences</h2>"
 			if(is_donator(user.client))
 				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.yogtoggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+				dat += "Wear fancy hat as borg: "
+				dat += "<a href='?_src_=prefs;preference=donor;task=borghat'>[borg_hat ? "Yes" : "No"]</a><br>"
 				dat += "<b>Fancy Hat:</b> "
 				///This is the typepath of the donor's hat that they may choose to spawn with.
 				var/typehat = donor_hat
@@ -1227,7 +1242,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(href_list["preference"] == "donor")
 		if(is_donator(user))
 			var/client/C = (istype(user, /client)) ? user : user.client
+			message_admins("Donor task [href_list["task"]]")
 			switch(href_list["task"])
+				if("borghat")
+					borg_hat = !borg_hat
 				if("hat")
 					C.custom_donator_item()
 				if("item")
@@ -1384,6 +1402,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						"teeth" = 1,
 						"dome" = 1,
 						"dorsal_tubes" = 1,
+						"ethereal_mark" = 1,
 					)
 				if("gender")
 					random_locks["random_locks"] = gender
@@ -1673,6 +1692,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_dorsal_tubes = input(user, "Choose if your character has dorsal tubes:", "Character Preference") as null|anything in GLOB.dorsal_tubes_list
 					if(new_dorsal_tubes)
 						features["dorsal_tubes"] = new_dorsal_tubes
+
+				if("ethereal_mark")
+					var/new_ethereal_mark
+					new_ethereal_mark = input(user, "Choose if your character has a facial mark", "Character Preference") as null|anything in GLOB.ethereal_mark_list
+					if(new_ethereal_mark)
+						features["ethereal_mark"] = new_ethereal_mark
 
 				if("s_tone")
 					var/new_s_tone = input(user, "Choose your character's skin-tone:", "Character Preference")  as null|anything in GLOB.skin_tones

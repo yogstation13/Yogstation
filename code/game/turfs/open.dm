@@ -102,7 +102,7 @@
 /turf/open/indestructible/carpet
 	name = "carpet"
 	desc = "Soft velvet carpeting. Feels good between your toes."
-	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet"
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/turf/open/indestructible/carpet)
@@ -113,6 +113,61 @@
 	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+
+/turf/open/indestructible/carpet/black
+	icon = 'icons/turf/floors/carpet_black.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/blue
+	icon = 'goon/icons/turfs/carpet_blue.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/green
+	icon = 'goon/icons/turfs/carpet_green.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/cyan
+	icon = 'icons/turf/floors/carpet_cyan.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/orange
+	icon = 'icons/turf/floors/carpet_orange.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/purple
+	icon = 'goon/icons/turfs/carpet_purple.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/red
+	icon = 'icons/turf/floors/carpet_red.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal
+	name = "carpet"
+	desc = "Soft velvet carpeting. Feels good between your toes."
+	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon_state = "carpet"
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/indestructible/carpet/royal)
+	flags_1 = NONE
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET_BAREFOOT
+	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/indestructible/carpet/royal/black
+	icon = 'icons/turf/floors/carpet_royalblack.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal/green
+	icon = 'icons/turf/floors/carpet_exoticgreen.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal/purple
+	icon = 'icons/turf/floors/carpet_exoticpurple.dmi'
+	icon_state = "carpet"
 
 /turf/open/indestructible/grass
 	name = "grass patch"
@@ -385,7 +440,7 @@
 		movable_content.wash(CLEAN_WASH)
 	return TRUE
 
-/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
+/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, stun_amount, force_drop)
 	if(C.movement_type & FLYING)
 		return 0
 	if(has_gravity(src))
@@ -412,7 +467,7 @@
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
 			C.Knockdown(knockdown_amount)
-			C.Paralyze(paralyze_amount)
+			C.Stun(stun_amount)
 			C.stop_pulling()
 		else
 			C.Knockdown(20)

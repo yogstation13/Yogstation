@@ -517,6 +517,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/dangerous/pistol/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	if(HAS_TRAIT_FROM(user, TRAIT_PACIFISM, ROUNDSTART_TRAIT))
+		spawn_path = /obj/item/gun/ballistic/automatic/pistol/pacifist
+		to_chat(user, span_notice("Your employer has loaded your purchased weapon with non-lethal ammunition"))
+	..()
+
 /datum/uplink_item/dangerous/bolt_action
 	name = "Surplus Rifle"
 	desc = "A horribly outdated bolt action weapon. You've got to be desperate to use this."
@@ -1651,6 +1657,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	limited_stock = 1
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/device_tools/syndie_bodybag
+	name = "Syndicate Prisoner Transport Bag"
+	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. Designed to keep a victim unconscious, alive, and secured until they are transported to a required location."
+	item = /obj/item/bodybag/environmental/prisoner/syndicate
+	cost = 7
 
 // Implants
 /datum/uplink_item/implants
