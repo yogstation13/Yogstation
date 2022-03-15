@@ -293,6 +293,29 @@
 	name = ".."
 	desc = "..."
 
+/turf/open/indestructible/brazil/Entered()
+	..()
+	START_PROCESSING(SSfastprocess, src)
+
+/turf/open/indestructible/brazil/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
+	. = ..()
+
+/turf/open/indestructible/brazil/process()
+	if(!gtfo())
+		STOP_PROCESSING(SSfastprocess, src)
+
+///teleports people back to a safe station turf in case they somehow manage to end up here without the status effect
+/turf/open/indestructible/brazil/proc/gtfo()
+	. = FALSE
+	for(var/mob/living/L in src)
+		if(L.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE))
+			. = TRUE
+			to_chat(L, span_velvet("Get out of here, stalker."))
+			var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
+			if(safe_turf)
+				L.forceMove(safe_turf) //add some flashy screen effect here idk
+
 /turf/open/indestructible/brazil/space
 	icon = 'icons/turf/space.dmi'
 
@@ -304,7 +327,13 @@
 /turf/open/indestructible/brazil/narsie
 	icon_state = "cult"
 
-/turf/open/indestructible/brazil/
+/turf/open/indestructible/brazil/necropolis
+	icon_state = "necro1"
+
+/turf/open/indestructible/brazil/necropolis/Initialize()
+	. = ..()
+	if(prob(12))
+		icon_state = "necro[rand(2,3)]"
 
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)

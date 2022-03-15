@@ -170,8 +170,8 @@
 
 		if(LH.target && LH.target.stat == DEAD)
 			to_chat(carbon_user,span_danger("Your patrons accepts your offer.."))
-			//var/mob/living/carbon/human/H = LH.target
-			//H.apply_status_effect(effect_path) switch this to the new stuff you dumbass
+			var/mob/living/carbon/human/H = LH.target
+			H.apply_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
 			LH.target = null
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 
@@ -187,15 +187,19 @@
 			A.owner = user.mind
 			var/list/targets = list()
 			for(var/i in 0 to 3)
-				var/datum/mind/targeted =  A.find_target()//easy way, i dont feel like copy pasting that entire block of code
+				var/list/BR = list()
+				var/datum/mind/targeted =  A.find_target(blacklist = BR)//easy way, i dont feel like copy pasting that entire block of code
 				if(!targeted)
 					break
+				if(targeted.current?.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)) //stops people from being selected while afk in the shadow realm
+					BR |= targeted
+					i--
+					continue
 				targets[targeted.current.real_name] = targeted.current
 			LH.target = targets[input(user,"Choose your next target","Target") in targets]
 			qdel(A)
 			if(LH.target)
 				to_chat(user,span_warning("Your new target has been selected, go and sacrifice [LH.target.real_name]!"))
-
 			else
 				to_chat(user,span_warning("A target could not be found for the living heart."))
 

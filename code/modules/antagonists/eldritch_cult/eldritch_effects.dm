@@ -410,9 +410,9 @@
 
 /obj/effect/penance_giver/attack_hand(mob/user)
 	..()
-	setDir(get_dir(src, user)) //for some reason setDir and get_dir use different casing
+	setDir(get_dir(src, user)) //look at the guy
 	var/mob/living/carbon/C = user
-	var/datum/status_effect/brazil_penance/ticket = C.has_status_effect(/datum/status_effect/brazil_penance) //this will be a define
+	var/datum/status_effect/brazil_penance/ticket = C.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
 	if(!ticket)
 		return
 	var/loss = input("What will you offer?", "Lose") as null|anything in penance_given
