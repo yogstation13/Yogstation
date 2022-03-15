@@ -1,0 +1,5 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - rscadd: "Adds text saying that you can use a lit candle instead of a welder to heat up bowls, substitute cacti for porcini leaves, and that resin uses water now instead of heat to solidify, to the ash walker's knowledge book."
+  - spellcheck: "Fixed a typo with poultice making."
