@@ -427,3 +427,11 @@
 	desc = "An extra-mustahabb way of showing your devotion to Allah."
 	icon_state = "taqiyahred"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
+
+/obj/item/clothing/head/hastsky
+	name = "sergeant hatsky"
+	desc = "A hat for true Beepsky appreciators. Not guaranteed to actually keep you safe from anything."
+	icon_state = "hatsky"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
+

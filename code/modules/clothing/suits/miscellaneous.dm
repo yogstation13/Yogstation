@@ -90,6 +90,11 @@
 	allowed = list(/obj/item/storage/box/fancy/cigarettes, /obj/item/stack/spacecash)
 	flags_inv = HIDEJUMPSUIT
 
+/obj/item/clothing/suit/buns
+	name = "hotdog bun costume"
+	desc = "A comically large wearable hot dog bun. Does wearing this make you a sandwich, or a taco?"
+	icon_state = "hotdog_buns"
+	item_state = "hotdog_buns"
 
 /obj/item/clothing/suit/apron/overalls
 	name = "coveralls"
@@ -242,6 +247,21 @@
 	item_state = "w_suit"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	flags_inv = HIDEJUMPSUIT|HIDESHOES
+
+/obj/item/clothing/suit/hooded/raincoat
+	name = "raincoat"
+	desc = "A poncho-styled raincoat with a hood that is sure to keep you dry. If it ever rained in space..."
+	icon_state = "raincoat"
+	item_state = "raincoat"
+	body_parts_covered = CHEST|GROIN
+	hoodtype = /obj/item/clothing/head/hooded/raincoat
+
+/obj/item/clothing/head/hooded/raincoat
+	name = "raincoat hood"
+	desc = "A lightweight but protective hood that will keep all manner of fluids off you."
+	icon_state = "raincoat"
+	body_parts_covered = HEAD
+	flags_inv = HIDEHAIR|HIDEEARS|HIDEFACIALHAIR|HIDEFACE
 
 /obj/item/clothing/suit/hooded/carp_costume
 	name = "carp costume"
