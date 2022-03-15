@@ -53,7 +53,7 @@
 			if(!(fullpower)) 							//if we haven't gotten the buff yet
 				M.dna.species.punchdamagelow += 4
 				M.dna.species.punchdamagehigh += 4
-				M.dna.species.punchstunthreshold += 4 	//Makes standard punches 5-14 with same stun chance
+				M.dna.species.punchstunthreshold += 1 	//Makes standard punches 5-14 with higher stun chance (1-10, stun on 10 -> 5-14, stun on 11-14)
 				M.dna.species.brutemod *= 0.6
 				M.dna.species.burnmod *= 0.6
 				M.dna.species.heatmod *= 0.6
@@ -99,7 +99,7 @@
 		M.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
 		M.dna.species.punchdamagelow -= 4
 		M.dna.species.punchdamagehigh -= 4
-		M.dna.species.punchstunthreshold -= 4
+		M.dna.species.punchstunthreshold -= 1
 		M.dna.species.brutemod /= 0.6
 		M.dna.species.burnmod /= 0.6
 		M.dna.species.heatmod /= 0.6
