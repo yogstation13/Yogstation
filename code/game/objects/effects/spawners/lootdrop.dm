@@ -243,7 +243,8 @@
 				/obj/item/aiModule/core/full/paladin,
 				/obj/item/aiModule/core/full/chapai,
 				/obj/item/aiModule/core/full/silicop,
-				/obj/item/aiModule/core/full/mother
+				/obj/item/aiModule/core/full/mother,
+				/obj/item/aiModule/core/full/druid
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_neutral // These shouldn't allow the AI to start butchering people without reason
