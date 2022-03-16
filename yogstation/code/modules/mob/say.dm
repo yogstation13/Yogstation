@@ -18,7 +18,11 @@
 	for(var/mob/M in listening)
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
-	typing_overlay = image('icons/mob/talk.dmi', src, "default_talking", FLY_LAYER)
+	var/bubble = "default"
+	if(isliving(src))
+		var/mob/living/L = src
+		bubble = L.bubble_icon
+	typing_overlay = image('icons/mob/talk.dmi', src, "[bubble]_talking", FLY_LAYER)
 	typing_overlay.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, typing_overlay, speech_bubble_recipients)
 
