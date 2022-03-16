@@ -700,10 +700,9 @@
 /datum/mind/proc/can_make_bloodsucker(datum/mind/convertee, datum/mind/converter)
 	// Species Must have a HEART (Sorry Plasmamen)
 	var/mob/living/carbon/human/user = convertee.current
-	var/mob/M = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
 		user.set_species(/datum/species/human)
-		user.apply_pref_name("human", M.client)
+		user.apply_pref_name("human", user.client)
 	// Check for Fledgeling
 	if(converter)
 		message_admins("[convertee] has become a Bloodsucker, and was created by [converter].")
