@@ -230,6 +230,9 @@
 
 
 /obj/item/camera/syndicate/attack(mob/living/carbon/human/M, mob/user) // syndicate camera flash
+	if(!is_syndicate(user))
+		. = ..() // Non-syndicates get the normal camera usage when they try to use it.
+		return
 	if(!on)
 		return
 	if(iscarbon(M))
@@ -281,6 +284,10 @@
 
 /obj/item/camera/syndicate/proc/flash_cooldown()
 	var/realcooldown = cooldown + 30 // longer delay to recharge than normal usage
+	if(user)
+		var/mob/living/carbon/human/H = user
+		if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER)) // yes; knowing how to use a camera will help you out here as well
+			realcooldown *= 0.5
 	icon_state = state_off
 	on = FALSE
 	sleep(realcooldown)
