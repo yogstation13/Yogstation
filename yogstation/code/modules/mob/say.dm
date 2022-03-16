@@ -1,3 +1,5 @@
+#define TYPING_INDICATOR_RANGE 7
+
 /mob/proc/get_say()
 	create_typing_indicator()
 	var/msg = input(src, null, "say \"text\"") as text|null
@@ -9,8 +11,9 @@
 	var/list/speech_bubble_recipients
 
 /mob/proc/create_typing_indicator()
-	if(typing_overlay) return
-	var/list/listening = get_hearers_in_view(6, src) //we do a little bit of hardcoding
+	if(typing_overlay) 
+		return
+	var/list/listening = get_hearers_in_view(TYPING_INDICATOR_RANGE, src)
 	speech_bubble_recipients = list()
 	for(var/mob/M in listening)
 		if(M.client)
@@ -22,8 +25,10 @@
 	return
 
 /mob/proc/remove_typing_indicator()
-	if(!typing_overlay) return
+	if(!typing_overlay) 
+		return
 	INVOKE_ASYNC(GLOBAL_PROC, /proc/remove_images_from_clients, typing_overlay, speech_bubble_recipients)
 	typing_overlay = null
 	speech_bubble_recipients = list()
-	return
+
+#undef TYPING_INDICATOR_RANGE
