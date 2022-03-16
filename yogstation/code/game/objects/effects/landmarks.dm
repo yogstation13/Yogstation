@@ -106,12 +106,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(2)
 			return "Engine Singulo And Tesla"
 		if(3)
-			if(prob(33))
-				return "Engine SM"
-			if(prob(33))
-				return "Engine Singulo And Tesla"
-			if(prob(33))
-				return "Engine TEG"
+			return . //We let the normal choose() do the work if we want to have all of them in play
 		if(4)
 			return "Engine TEG"
 
