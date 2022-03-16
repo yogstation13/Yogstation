@@ -429,7 +429,7 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
 
 /obj/item/clothing/head/hatsky
-	name = "Sergeant Hatsky"
+	name = "Officer Hatsky"
 	desc = "A hat for true Beepsky appreciators. Not guaranteed to actually keep you safe from anything."
 	icon_state = "beepsky_hat"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
