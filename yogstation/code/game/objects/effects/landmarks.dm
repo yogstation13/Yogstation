@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(2)
 			return "Engine Singulo And Tesla"
 		if(3)
-			pickweight(template_names)
+			return .
 		if(4)
 			return "Engine TEG"
 
