@@ -25,6 +25,3 @@
 /mob/living/simple_animal/pet/snail/gary
 	name = "Gary the snail"
 	desc = "Gary come home"
-	icon_state = "snail"
-	icon_living = "snail"
-	icon_dead = "snail_dead"
