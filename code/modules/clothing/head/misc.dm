@@ -428,10 +428,22 @@
 	icon_state = "taqiyahred"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
 
-/obj/item/clothing/head/hastsky
-	name = "sergeant hatsky"
+/obj/item/clothing/head/hatsky
+	name = "Sergeant Hatsky"
 	desc = "A hat for true Beepsky appreciators. Not guaranteed to actually keep you safe from anything."
 	icon_state = "hatsky"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
-	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
+	//flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
+	var/recharge_time = 0
+	var/recharge_rate = 50
+	actions_types = list(/datum/action/item_action/hatsky_voiceline)
 
+/obj/item/clothing/head/hatsky/ui_action_click(mob/user, action)
+	if(istype(action,/datum/action/item_action/hatsky_voiceline))
+		if(recharge_time > world.time)
+			to_chat(user, span_warning("Hatsky needs more time to recharge its voice box!"))
+			return
+		playsound(loc, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
+		recharge_time = world.time + recharge_rate
+	else
+		to_chat(user, span_warning("Broken test i guess lmao"))

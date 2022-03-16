@@ -255,6 +255,7 @@
 	item_state = "raincoat"
 	body_parts_covered = CHEST|GROIN
 	hoodtype = /obj/item/clothing/head/hooded/raincoat
+	flags_inv = HIDEGLOVES
 
 /obj/item/clothing/head/hooded/raincoat
 	name = "raincoat hood"
