@@ -624,6 +624,7 @@ Class Procs:
 	machineclimber = user
 	if(do_mob(user, user, adjusted_climb_time))
 		if(src.loc) //Checking if structure has been destroyed
+		var/mob/living/carbon/human/H = user
 			if(do_climb(user))
 				user.visible_message("<span class='warning'>[user] climbs onto [src].</span>", \
 									"<span class='notice'>You climb onto [src].</span>")
