@@ -16,7 +16,7 @@
 	var/list/listening = get_hearers_in_view(TYPING_INDICATOR_RANGE, src)
 	speech_bubble_recipients = list()
 	for(var/mob/M in listening)
-		if(M.client)
+		if(M.client && !(isobserver(src) && !isobserver(M)))
 			speech_bubble_recipients.Add(M.client)
 	var/bubble = "default"
 	if(isliving(src))
