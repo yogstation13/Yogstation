@@ -539,9 +539,11 @@ SUBSYSTEM_DEF(job)
 	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
 	job.give_cape(living_mob, M)
 	job.give_map_flare(living_mob, M)
-	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
+	/*if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
 		irish_override() // Assuming direct control.
 	else if(living_mob.job == "Bartender")
+		job.give_bar_choice(living_mob, M)    Yeeting because its broken          */
+	if(living_mob.job == "Bartender")
 		job.give_bar_choice(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
