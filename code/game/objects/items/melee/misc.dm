@@ -183,8 +183,8 @@
 	var/cooldown = 1 SECONDS // Default wait time until can stun again.
 	var/knockdown_time_carbon = 1.5 SECONDS // Knockdown length for carbons.
 	var/stun_time_silicon = 5 SECONDS // If enabled, how long do we stun silicons.
-	var/stamina_damage = 30 // How much stamina damage we deal.
-	var/block_threshold = 50 // Threshold at which armor blocks special effects.
+	var/stamina_damage = 60 // How much stamina damage we deal.
+	var/block_threshold = 60 // Threshold at which armor blocks special effects.
 	var/affect_silicon = FALSE // Does it stun silicons.
 	var/on_sound // "On" sound, played when switching between able to stun or not.
 	var/on_stun_sound = "sound/effects/woodhit.ogg" // Default path to sound for when we stun.
@@ -376,7 +376,8 @@
 	on_item_state = "nullrod"
 	force_on = 10
 	force_off = 0
-	stamina_damage = 20
+	stamina_damage = 40
+	block_threshold = 50
 	weight_class_on = WEIGHT_CLASS_BULKY
 	bare_wound_bonus = 5
 
