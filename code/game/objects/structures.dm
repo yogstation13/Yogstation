@@ -87,11 +87,11 @@
 					user.Stun(climb_stun)
 					if(ishuman(user))
 						var/mob/living/carbon/human/H = user
-					var/wagging = FALSE
-					if(H.dna.species.is_wagging_tail())
-						wagging = TRUE
-					if(wagging)
-						H.dna.species.start_wagging_tail(H)
+						var/wagging = FALSE
+						if(H.dna.species.is_wagging_tail())
+							wagging = TRUE
+						if(wagging)
+							H.dna.species.start_wagging_tail(H)
 				. = 1
 			else
 				to_chat(user, span_warning("You fail to climb onto [src]."))
