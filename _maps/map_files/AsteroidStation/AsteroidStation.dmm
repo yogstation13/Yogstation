@@ -830,12 +830,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
-"cI" = (
-/mob/living/simple_animal/hostile/retaliate/dolphin/manatee{
-	name = "Boris"
-	},
-/turf/open/floor/fakespace,
-/area/maintenance/starboard/fore)
 "cJ" = (
 /obj/machinery/computer/communications,
 /turf/open/floor/wood,
@@ -11449,6 +11443,13 @@
 "KM" = (
 /turf/open/floor/plasteel,
 /area/clerk)
+"KN" = (
+/mob/living/simple_animal/hostile/retaliate/dolphin/manatee{
+	desc = "An older looking Space Manatee with a coating of what looks like ash. It looks at you with warm, old eyes";
+	name = "Boris"
+	},
+/turf/open/floor/fakespace,
+/area/maintenance/starboard/fore)
 "KO" = (
 /obj/machinery/door/window/southleft,
 /turf/open/floor/plasteel,
@@ -55690,7 +55691,7 @@ io
 aN
 HO
 io
-cI
+KN
 Ce
 Ce
 io
