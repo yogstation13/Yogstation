@@ -119,7 +119,7 @@
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"
-	desc = "A camera with an upgraded flash. Can be used much like a flash except with a much longer cooldown between uses."
+	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down; avoid burning out altogether."
 	item = /obj/item/camera/syndicate
 	cost = 4
 	surplus = 20
