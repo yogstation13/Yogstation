@@ -83,7 +83,7 @@
 	triggering = TRUE
 	if(alert_observers)
 		message_admins("<span class='bold'><font color = red>Random Event triggering in [RANDOM_EVENT_ADMIN_INTERVENTION_TIME] seconds: [name] (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)</font color></span>")
-		sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME SECONDS)
+		sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)
 		//Yogs end
 		var/gamemode = SSticker.mode.config_tag
 		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
