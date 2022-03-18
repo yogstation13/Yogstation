@@ -26,7 +26,6 @@
 	typing_overlay.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, typing_overlay, speech_bubble_recipients)
 
-	return
 
 /mob/proc/remove_typing_indicator()
 	if(!typing_overlay) 
