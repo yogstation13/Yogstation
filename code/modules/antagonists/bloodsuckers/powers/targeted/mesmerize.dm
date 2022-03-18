@@ -105,7 +105,7 @@
 		var/mob/living/carbon/mesmerized = target
 		to_chat(owner, span_notice("Successfully mesmerized [mesmerized]."))
 		if(level_current >= 6)
-			mesmerized.SetUnconscious(world.time + power_time )
+			mesmerized.SetUnconscious(power_time)
 		else if(level_current >= 2)
 			ADD_TRAIT(mesmerized, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 		mesmerized.Immobilize(power_time)
