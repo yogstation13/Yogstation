@@ -31,7 +31,7 @@
 
 	var/remote_door_id = ""
 
-	var/bot_access_flags = 0 //Bit flags. Selection: SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT
+	var/bot_access_flags = 0 //Bit flags. Selection: SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 	var/spam_enabled = 0 //Enables "Send to All" Option
 
 	var/obj/item/pda/host_pda = null
@@ -65,7 +65,7 @@
 	name = "\improper BreatheDeep cartridge"
 	icon_state = "cart-a"
 	access = CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = FLOOR_BOT
+	bot_access_flags = FLOOR_BOT | FIRE_BOT
 
 /obj/item/cartridge/medical
 	name = "\improper Med-U cartridge"
@@ -111,8 +111,8 @@
 
 /obj/item/cartridge/roboticist
 	name = "\improper B.O.O.P. Remote Control cartridge"
-	desc = "Packed with heavy duty triple-bot interlink!"
-	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT
+	desc = "Packed with heavy duty quad-bot interlink!"
+	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 	access = CART_DRONEPHONE
 
 /obj/item/cartridge/signal
@@ -160,7 +160,7 @@
 	name = "\improper Power-On DELUXE cartridge"
 	icon_state = "cart-ce"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_ENGINE | CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = FLOOR_BOT
+	bot_access_flags = FLOOR_BOT | FIRE_BOT
 
 /obj/item/cartridge/cmo
 	name = "\improper Med-U DELUXE cartridge"
@@ -172,7 +172,7 @@
 	name = "\improper Signal Ace DELUXE cartridge"
 	icon_state = "cart-rd"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_REAGENT_SCANNER | CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT
+	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 
 /obj/item/cartridge/rd/Initialize()
 	. = ..()
@@ -183,7 +183,7 @@
 	desc = "Now with 350% more value!" //Give the Captain...EVERYTHING! (Except Mime, Clown, and Syndie)
 	icon_state = "cart-c"
 	access = ~(CART_CLOWN | CART_MIME | CART_REMOTE_DOOR)
-	bot_access_flags = SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT
+	bot_access_flags = SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 	spam_enabled = 1
 
 /obj/item/cartridge/captain/Initialize()
@@ -273,7 +273,7 @@ Code:
 
 
 			if(!powercount)
-				menu += "<span class='danger'>No connection<BR></span>"
+				menu += span_danger("No connection<BR>")
 			else
 
 				menu += "<FONT SIZE=-1>"
@@ -287,7 +287,7 @@ Code:
 		if (433)
 			menu = "<h4>[PDAIMG(power)] Power Monitor </h4><BR>"
 			if(!powmonitor || !powmonitor.get_powernet())
-				menu += "<span class='danger'>No connection<BR></span>"
+				menu += span_danger("No connection<BR>")
 			else
 				var/list/L = list()
 				var/datum/powernet/connected_powernet = powmonitor.get_powernet()
@@ -307,8 +307,8 @@ Code:
 					var/list/chg = list("N","C","F")
 
 					for(var/obj/machinery/power/apc/A in L)
-						menu += copytext(add_tspace(A.area.name, 30), 1, 30)
-						menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_lspace(DisplayPower(A.lastused_total), 6)]  [A.cell ? "[add_lspace(round(A.cell.percent()), 3)]% [chg[A.charging+1]]" : "  N/C"]<BR>"
+						menu += copytext_char(add_trailing(A.area.name, 30, " "), 1, 30)
+						menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_leading(DisplayPower(A.lastused_total), 6, " ")]  [A.cell ? "[add_leading(round(A.cell.percent()), 3, " ")]% [chg[A.charging+1]]" : "  N/C"]<BR>"
 
 				menu += "</FONT></PRE>"
 
@@ -323,7 +323,7 @@ Code:
 
 			if(active1 in GLOB.data_core.general)
 				menu += "Name: [active1.fields["name"]] ID: [active1.fields["id"]]<br>"
-				menu += "Sex: [active1.fields["sex"]]<br>"
+				menu += "Gender: [active1.fields["gender"]]<br>"
 				menu += "Age: [active1.fields["age"]]<br>"
 				menu += "Rank: [active1.fields["rank"]]<br>"
 				menu += "Fingerprint: [active1.fields["fingerprint"]]<br>"
@@ -367,7 +367,7 @@ Code:
 
 			if(active1 in GLOB.data_core.general)
 				menu += "Name: [active1.fields["name"]] ID: [active1.fields["id"]]<br>"
-				menu += "Sex: [active1.fields["sex"]]<br>"
+				menu += "Gender: [active1.fields["gender"]]<br>"
 				menu += "Age: [active1.fields["age"]]<br>"
 				menu += "Rank: [active1.fields["rank"]]<br>"
 				menu += "Fingerprint: [active1.fields["fingerprint"]]<br>"
@@ -382,7 +382,7 @@ Code:
 			if(active3 in GLOB.data_core.security)
 				menu += "Criminal Status: [active3.fields["criminal"]]<br>"
 
-				menu += text("<BR>\nMinor Crimes:")
+				menu += text("<BR>\nCrimes:")
 
 				menu +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
@@ -391,7 +391,7 @@ Code:
 <th>Author</th>
 <th>Time Added</th>
 </tr>"}
-				for(var/datum/data/crime/c in active3.fields["mi_crim"])
+				for(var/datum/data/crime/c in active3.fields["crimes"])
 					menu += "<tr><td>[c.crimeName]</td>"
 					menu += "<td>[c.crimeDetails]</td>"
 					menu += "<td>[c.author]</td>"
@@ -399,18 +399,16 @@ Code:
 					menu += "</tr>"
 				menu += "</table>"
 
-				menu += text("<BR>\nMajor Crimes:")
+				menu += text("<BR>\nComments:")
 
 				menu +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th>Crime</th>
-<th>Details</th>
+<th>Comment</th>
 <th>Author</th>
 <th>Time Added</th>
 </tr>"}
-				for(var/datum/data/crime/c in active3.fields["ma_crim"])
-					menu += "<tr><td>[c.crimeName]</td>"
-					menu += "<td>[c.crimeDetails]</td>"
+				for(var/datum/data/comment/c in active3.fields["comments"])
+					menu += "<tr><td>[c.commentText]</td>"
 					menu += "<td>[c.author]</td>"
 					menu += "<td>[c.time]</td>"
 					menu += "</tr>"
@@ -543,7 +541,7 @@ Code:
 					current = chan
 			if(!current)
 				menu += "<h5> ERROR : NO CHANNEL FOUND </h5>"
-				return
+				return menu
 			var/i = 1
 			for(var/datum/newscaster/feed_message/msg in current.messages)
 				menu +="-[msg.returnBody(-1)] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[msg.returnAuthor(-1)]</FONT>\]</FONT><BR>"
@@ -606,6 +604,7 @@ Code:
 			switch(href_list["statdisp"])
 				if("message")
 					post_status("message", message1, message2)
+					message_admins("[ADMIN_LOOKUPFLW(usr)] set the status lines to: [message1] - [message2].")
 				if("alert")
 					post_status("alert", href_list["alert"])
 				if("setmsg1")
@@ -657,13 +656,14 @@ Code:
 			if("botlist")
 				active_bot = null
 			if("summon") //Args are in the correct order, they are stated here just as an easy reminder.
-				active_bot.bot_control(command= "summon", user_turf= get_turf(usr), user_access= host_pda.GetAccess())
+				active_bot.bot_control("summon", usr, host_pda.GetAccess())
 			else //Forward all other bot commands to the bot itself!
-				active_bot.bot_control(command= href_list["op"], user= usr)
+				active_bot.bot_control(href_list["op"], usr)
 
 	if(href_list["mule"]) //MULEbots are special snowflakes, and need different args due to how they work.
-
-		active_bot.bot_control(command= href_list["mule"], user= usr, pda= 1)
+		var/mob/living/simple_animal/bot/mulebot/mule = active_bot
+		if (istype(mule))
+			mule.bot_control(href_list["mule"], usr, pda=TRUE)
 
 	if(!host_pda)
 		return
@@ -735,4 +735,4 @@ Code:
 	return ""
 
 //This is called for special abilities of cartridges
-/obj/item/cartridge/proc/special(mov/living/user, list/params)
+/obj/item/cartridge/proc/special(mob/living/user, list/params)

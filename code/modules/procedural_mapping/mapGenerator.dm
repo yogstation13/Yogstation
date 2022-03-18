@@ -30,7 +30,7 @@
 /datum/mapGenerator/New()
 	..()
 	if(buildmode_name == "Undocumented")
-		buildmode_name = copytext("[type]", 20)	// / d a t u m / m a p g e n e r a t o r / = 20 characters.
+		buildmode_name = copytext_char("[type]", 20)	// / d a t u m / m a p g e n e r a t o r / = 20 characters.
 	initialiseModules()
 
 //Defines the region the map represents, sets map
@@ -144,7 +144,7 @@
 
 /client/proc/debugNatureMapGenerator()
 	set name = "Test Nature Map Generator"
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 
 	var/datum/mapGenerator/nature/N = new()
 	var/startInput = input(usr,"Start turf of Map, (X;Y;Z)", "Map Gen Settings", "1;1;1") as text

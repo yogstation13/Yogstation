@@ -79,7 +79,7 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone
 	name = "Summon Soulstone"
-	desc = "This spell reaches into Nar-Sie's realm, summoning one of the legendary fragments across time and space."
+	desc = "This spell reaches into Nar'Sie's realm, summoning one of the legendary fragments across time and space."
 
 	school = "conjuration"
 	charge_max = 2400
@@ -99,6 +99,9 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone/noncult
 	summon_type = list(/obj/item/soulstone/anybody)
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone/noncult/purified
+	summon_type = list(/obj/item/soulstone/anybody/purified)
 
 /obj/effect/proc_holder/spell/targeted/forcewall/cult
 	name = "Shield"
@@ -146,11 +149,14 @@
 	clothes_req = FALSE
 	invocation = "none"
 	invocation_type = "none"
-	proj_lifespan = 10
 	max_targets = 6
 	action_icon_state = "magicm"
 	action_background_icon_state = "bg_demon"
+	proj_type = /obj/item/projectile/magic/spell/magic_missile/lesser
 
+/obj/item/projectile/magic/spell/magic_missile/lesser
+	color = "red" //Looks more culty this way
+	range = 10
 
 /obj/effect/proc_holder/spell/targeted/smoke/disable
 	name = "Paralysing Smoke"
@@ -191,22 +197,22 @@
 
 /obj/effect/proc_holder/spell/targeted/abyssal_gaze/cast(list/targets, mob/user = usr)
 	if(!LAZYLEN(targets))
-		to_chat(user, "<span class='notice'>No target found in range.</span>")
+		to_chat(user, span_notice("No target found in range."))
 		revert_cast()
 		return
 
 	var/mob/living/carbon/target = targets[1]
 
 	if(!(target in oview(range)))
-		to_chat(user, "<span class='notice'>[target] is too far away!</span>")
+		to_chat(user, span_notice("[target] is too far away!"))
 		revert_cast()
 		return
 
 	if(target.anti_magic_check(TRUE, TRUE))
-		to_chat(target, "<span class='warning'>You feel a freezing darkness closing in on you, but it rapidly dissipates.</span>")
+		to_chat(target, span_warning("You feel a freezing darkness closing in on you, but it rapidly dissipates."))
 		return
 
-	to_chat(target, "<span class='userdanger'>A freezing darkness surrounds you...</span>")
+	to_chat(target, span_userdanger("A freezing darkness surrounds you..."))
 	target.playsound_local(get_turf(target), 'sound/hallucinations/i_see_you1.ogg', 50, 1)
 	user.playsound_local(get_turf(user), 'sound/effects/ghost2.ogg', 50, 1)
 	target.become_blind(ABYSSAL_GAZE_BLIND)
@@ -220,7 +226,7 @@
 
 /obj/effect/proc_holder/spell/targeted/dominate
 	name = "Dominate"
-	desc = "This spell dominates the mind of a lesser creature to the will of Nar'sie, allying it only to her direct followers."
+	desc = "This spell dominates the mind of a lesser creature to the will of Nar'Sie, allying it only to her direct followers."
 
 	charge_max = 600
 	range = 7
@@ -238,29 +244,29 @@
 
 /obj/effect/proc_holder/spell/targeted/dominate/cast(list/targets, mob/user = usr)
 	if(!LAZYLEN(targets))
-		to_chat(user, "<span class='notice'>No target found in range.</span>")
+		to_chat(user, span_notice("No target found in range."))
 		revert_cast()
 		return
 
 	var/mob/living/simple_animal/S = targets[1]
 
 	if(S.ckey)
-		to_chat(user, "<span class='warning'>[S] is too intelligent to dominate!</span>")
+		to_chat(user, span_warning("[S] is too intelligent to dominate!"))
 		revert_cast()
 		return
 
 	if(S.stat)
-		to_chat(user, "<span class='warning'>[S] is dead!</span>")
+		to_chat(user, span_warning("[S] is dead!"))
 		revert_cast()
 		return
 
 	if(S.sentience_type != SENTIENCE_ORGANIC)
-		to_chat(user, "<span class='warning'>[S] cannot be dominated!</span>")
+		to_chat(user, span_warning("[S] cannot be dominated!"))
 		revert_cast()
 		return
 
 	if(!(S in oview(range)))
-		to_chat(user, "<span class='notice'>[S] is too far away!</span>")
+		to_chat(user, span_notice("[S] is too far away!"))
 		revert_cast()
 		return
 
@@ -282,37 +288,37 @@
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/cult/phase/out
 
 
-/obj/effect/proc_holder/spell/dumbfire/juggernaut
+/obj/effect/proc_holder/spell/targeted/projectile/dumbfire/juggernaut
 	name = "Gauntlet Echo"
 	desc = "Channels energy into your gauntlet - firing its essence forward in a slow moving, yet devastating, attack."
-	proj_icon_state = "cultfist"
-	proj_name = "gauntlet echo"
-	proj_type = "/obj/effect/proc_holder/spell/targeted/inflict_handler/juggernaut" //IMPORTANT use only subtypes of this
-	proj_lifespan = 15
-	proj_step_delay = 7
+	proj_type = /obj/item/projectile/magic/spell/juggernaut
 	charge_max = 350
 	clothes_req = FALSE
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_icon_state = "cultfist"
 	action_background_icon_state = "bg_demon"
 	sound = 'sound/weapons/resonator_blast.ogg'
-	proj_trigger_range = 0
-	ignore_factions = list("cult")
-	check_holy = TRUE
 
-/obj/effect/proc_holder/spell/targeted/inflict_handler/juggernaut
+/obj/item/projectile/magic/spell/juggernaut
 	name = "Gauntlet Echo"
+	icon_state = "cultfist"
 	alpha = 180
-	amt_dam_brute = 30
-	amt_knockdown = 50
-	sound = 'sound/weapons/punch3.ogg'
+	damage = 30
+	damage_type = BRUTE
+	knockdown = 50
+	hitsound = 'sound/weapons/punch3.ogg'
+	trigger_range = 0
+	check_holy = TRUE
+	ignored_factions = list("cult")
+	range = 15
+	speed = 7
 
-/obj/effect/proc_holder/spell/targeted/inflict_handler/juggernaut/cast(list/targets,mob/user = usr)
+/obj/item/projectile/magic/spell/juggernaut/on_hit(atom/target, blocked)
+	. = ..()
 	var/turf/T = get_turf(src)
 	playsound(T, 'sound/weapons/resonator_blast.ogg', 100, FALSE)
 	new /obj/effect/temp_visual/cult/sac(T)
 	for(var/obj/O in range(src,1))
 		if(O.density && !istype(O, /obj/structure/destructible/cult))
 			O.take_damage(90, BRUTE, "melee", 0)
-			new /obj/effect/temp_visual/cult/turf/floor
-	..()
+			new /obj/effect/temp_visual/cult/turf/floor(get_turf(O))

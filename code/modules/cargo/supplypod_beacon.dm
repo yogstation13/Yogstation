@@ -45,11 +45,11 @@
 	update_status()
 
 /obj/item/supplypod_beacon/examine(user)
-	..()
+	. = ..()
 	if(!express_console)
-		to_chat(user, "<span class='notice'>[src] is not currently linked to an Express Supply console.</span>")
+		. += span_notice("[src] is not currently linked to an Express Supply console.")
 	else
-		to_chat(user, "<span class='notice'>Alt-click to unlink it from the Express Supply console.</span>")
+		. += span_notice("Alt-click to unlink it from the Express Supply console.")
 
 /obj/item/supplypod_beacon/Destroy()
 	if(express_console)
@@ -61,7 +61,7 @@
 		express_console.beacon = null
 		express_console = null
 	update_status(SP_UNLINK)
-	update_status(SP_UNREADY) 
+	update_status(SP_UNREADY)
 
 /obj/item/supplypod_beacon/proc/link_console(obj/machinery/computer/cargo/express/C, mob/living/user)
 	if (C.beacon)//if new console has a beacon, then...
@@ -73,7 +73,7 @@
 	update_status(SP_LINKED)
 	if (express_console.usingBeacon)
 		update_status(SP_READY)
-	to_chat(user, "<span class='notice'>[src] linked to [C].</span>")
+	to_chat(user, span_notice("[src] linked to [C]."))
 
 /obj/item/supplypod_beacon/AltClick(mob/user)
 	if (!user.canUseTopic(src, !issilicon(user)))
@@ -81,7 +81,7 @@
 	if (express_console)
 		unlink_console()
 	else
-		to_chat(user, "<span class='notice'>There is no linked console!</span>")
+		to_chat(user, span_notice("There is no linked console!"))
 
 /obj/item/supplypod_beacon/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/pen)) //give a tag that is visible from the linked express console
@@ -91,5 +91,5 @@
 		if(new_beacon_name)
 			name += " ([tag])"
 		return
-	else	
+	else
 		return ..()

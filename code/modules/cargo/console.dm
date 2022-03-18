@@ -7,7 +7,7 @@
 	var/contraband = FALSE
 	var/safety_warning = "For safety reasons, the automated supply shuttle \
 		cannot transport live organisms, human remains, classified nuclear weaponry \
-		or homing beacons."
+		or homing beacons. Additionally, remove any privately ordered crates from the shuttle."
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
 
 	light_color = "#E2853D"//orange
@@ -29,17 +29,17 @@
 		obj_flags &= ~EMAGGED
 
 /obj/machinery/computer/cargo/proc/get_export_categories()
-	var/cat = EXPORT_CARGO
+	. = EXPORT_CARGO
 	if(contraband)
-		cat |= EXPORT_CONTRABAND
+		. |= EXPORT_CONTRABAND
 	if(obj_flags & EMAGGED)
-		cat |= EXPORT_EMAG
+		. |= EXPORT_EMAG
 
 /obj/machinery/computer/cargo/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	user.visible_message("<span class='warning'>[user] swipes a suspicious card through [src]!</span>",
-	"<span class='notice'>You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband.</span>")
+	user.visible_message(span_warning("[user] swipes a suspicious card through [src]!"),
+	span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
 
 	obj_flags |= EMAGGED
 	contraband = TRUE
@@ -48,22 +48,22 @@
 	var/obj/item/circuitboard/computer/cargo/board = circuit
 	board.contraband = TRUE
 	board.obj_flags |= EMAGGED
+	update_static_data(user)
 
-/obj/machinery/computer/cargo/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/cargo/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "cargo", name, 1000, 800, master_ui, state)
+		ui = new(user, src, "Cargo", name)
 		ui.open()
 
 /obj/machinery/computer/cargo/ui_data()
 	var/list/data = list()
-	data["requestonly"] = requestonly
 	data["location"] = SSshuttle.supply.getStatusText()
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
 		data["points"] = D.account_balance
 	data["away"] = SSshuttle.supply.getDockedId() == "supply_away"
+	//data["self_paid"] = self_paid //This is present on TG, but not here, we'll see if it's necessary.
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
@@ -73,6 +73,31 @@
 	if(SSshuttle.supplyBlocked)
 		message = blockade_warning
 	data["message"] = message
+	data["cart"] = list()
+	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
+		data["cart"] += list(list(
+			"object" = SO.pack.name,
+			"cost" = SO.pack.get_cost(),
+			"id" = SO.id,
+			"orderer" = SO.orderer,
+			"paid" = !isnull(SO.paying_account) //paid by requester
+		))
+
+	data["requests"] = list()
+	for(var/datum/supply_order/SO in SSshuttle.requestlist)
+		data["requests"] += list(list(
+			"object" = SO.pack.name,
+			"cost" = SO.pack.get_cost(),
+			"orderer" = SO.orderer,
+			"reason" = SO.reason,
+			"id" = SO.id
+		))
+
+	return data
+
+/obj/machinery/computer/cargo/ui_static_data(mob/user)
+	var/list/data = list()
+	data["requestonly"] = requestonly
 	data["supplies"] = list()
 	for(var/pack in SSshuttle.supply_packs)
 		var/datum/supply_pack/P = SSshuttle.supply_packs[pack]
@@ -85,37 +110,16 @@
 			continue
 		data["supplies"][P.group]["packs"] += list(list(
 			"name" = P.name,
-			"cost" = P.cost,
+			"cost" = P.get_cost(),
 			"id" = pack,
-			"desc" = P.desc || P.name // If there is a description, use it. Otherwise use the pack's name.
+			"desc" = P.desc || P.name, // If there is a description, use it. Otherwise use the pack's name.
+			"small_item" = P.small_item,
+			"access" = P.access
 		))
-
-	data["cart"] = list()
-	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
-		data["cart"] += list(list(
-			"object" = SO.pack.name,
-			"cost" = SO.pack.cost,
-			"id" = SO.id,
-			"orderer" = SO.orderer,
-			"paid" = !isnull(SO.paying_account) //paid by requester
-		))
-
-	data["requests"] = list()
-	for(var/datum/supply_order/SO in SSshuttle.requestlist)
-		data["requests"] += list(list(
-			"object" = SO.pack.name,
-			"cost" = SO.pack.cost,
-			"orderer" = SO.orderer,
-			"reason" = SO.reason,
-			"id" = SO.id
-		))
-
 	return data
 
 /obj/machinery/computer/cargo/ui_act(action, params, datum/tgui/ui)
 	if(..())
-		return
-	if(action != "add" && requestonly)
 		return
 	switch(action)
 		if("send")

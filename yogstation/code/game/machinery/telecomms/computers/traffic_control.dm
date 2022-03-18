@@ -22,6 +22,14 @@
 
 	req_access = list(ACCESS_TCOM_ADMIN)
 
+/obj/machinery/computer/telecomms/traffic/Initialize(mapload)
+	. = ..()
+	GLOB.traffic_comps += src
+
+/obj/machinery/computer/telecomms/traffic/Destroy()
+	GLOB.traffic_comps -= src
+	return ..()
+
 /obj/machinery/computer/telecomms/traffic/proc/stop_editing()
 	if(editingcode)
 		if(editingcode.client)
@@ -86,7 +94,7 @@
 	if(..())
 		return
 	user.set_machine(src)
-	var/dat = "<TITLE>Telecommunication Traffic Control</TITLE><center><b>Telecommunications Traffic Control</b></center>"
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'><TITLE>Telecommunication Traffic Control</TITLE></HEAD><BODY><center><b>Telecommunications Traffic Control</b></center>"
 	dat += "<br><b><font color='[(auth ? "green" : "red")]'>[(auth ? "AUTHED" : "NOT AUTHED")]:</font></b> <A href='?src=\ref[src];auth=1'>[(!auth ? "Insert ID" : auth)]</A><BR>"
 	dat += "<A href='?src=\ref[src];print=1'>View System Log</A><HR>"
 
@@ -130,7 +138,7 @@
 					screen = 0
 					return
 
-
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=traffic_control;size=575x400")
 	onclose(user, "server_control")
 
@@ -151,9 +159,10 @@
 	access_log += "\[[get_timestamp()]\] [id] [entry]"
 
 /obj/machinery/computer/telecomms/traffic/proc/print_logs()
-	. = "<center><h2>Traffic Control Telecomms System Log</h2></center><HR>"
+	. = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><center><h2>Traffic Control Telecomms System Log</h2></center><HR>"
 	for(var/entry in access_log)
 		. += entry + "<BR>"
+	. += "</BODY></HTML>"
 	return .
 
 /obj/machinery/computer/telecomms/traffic/Topic(href, href_list)
@@ -188,7 +197,7 @@
 		return
 
 	if(!auth && !issilicon(usr) && !emagged)
-		to_chat(usr, "<span class='danger'>ACCESS DENIED.</span>")
+		to_chat(usr, span_danger("ACCESS DENIED."))
 		return
 
 	if(href_list["viewserver"])
@@ -227,7 +236,7 @@
 
 			if("editcode")
 				if(is_banned_from(usr.ckey, "Signal Technician"))
-					to_chat(usr, "<span class='warning'>You are banned from using NTSL.</span>")
+					to_chat(usr, span_warning("You are banned from using NTSL."))
 					return
 				if(editingcode == usr)
 					return
@@ -285,9 +294,30 @@
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = TRUE
-		to_chat(user, "<span class='notice'>You you disable the security protocols.</span>")
+		to_chat(user, span_notice("You you disable the security protocols."))
 
 /obj/machinery/computer/telecomms/traffic/proc/canAccess(mob/user)
 	if(issilicon(user) || in_range(user, src))
 		return 1
 	return 0
+
+/obj/machinery/computer/telecomms/traffic/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		if(!auth)
+			var/obj/item/card/id/I = C.get_active_held_item()
+			if(istype(I))
+				if(check_access(I))
+					if(!C.transferItemToLoc(I, src))
+						return
+					auth = I
+					create_log("has logged in.", user)
+		else
+			create_log("has logged out.", user)
+			auth.forceMove(drop_location())
+			C.put_in_hands(auth)
+			auth = null
+		updateUsrDialog()
+		return

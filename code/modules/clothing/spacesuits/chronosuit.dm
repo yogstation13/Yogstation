@@ -75,8 +75,8 @@
 	switch(severity)
 		if(1)
 			if(activated && user && ishuman(user) && (user.wear_suit == src))
-				to_chat(user, "<span class='danger'>E:FATAL:RAM_READ_FAIL\nE:FATAL:STACK_EMPTY\nE:FATAL:READ_NULL_POINT\nE:FATAL:PWR_BUS_OVERLOAD</span>")
-				to_chat(user, "<span class='userdanger'>An electromagnetic pulse disrupts your [name] and violently tears you out of time-bluespace!</span>")
+				to_chat(user, span_danger("E:FATAL:RAM_READ_FAIL\nE:FATAL:STACK_EMPTY\nE:FATAL:READ_NULL_POINT\nE:FATAL:PWR_BUS_OVERLOAD"))
+				to_chat(user, span_userdanger("An electromagnetic pulse disrupts your [name] and violently tears you out of time-bluespace!"))
 				user.emote("scream")
 			deactivate(1, 1)
 
@@ -98,7 +98,7 @@
 		user.anchored = FALSE
 		teleporting = 0
 		for(var/obj/item/I in user.held_items)
-			I.remove_trait(TRAIT_NODROP, CHRONOSUIT_TRAIT)
+			REMOVE_TRAIT(I, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 		if(camera)
 			camera.remove_target_ui()
 			camera.forceMove(user)
@@ -128,12 +128,12 @@
 		for(var/exposed_item in exposed)
 			var/obj/item/exposed_I = exposed_item
 			if(exposed_I && !(exposed_I.type in chronosafe_items) && user.dropItemToGround(exposed_I))
-				to_chat(user, "<span class='notice'>Your [exposed_I.name] got left behind.</span>")
+				to_chat(user, span_notice("Your [exposed_I.name] got left behind."))
 
 		user.ExtinguishMob()
 
 		for(var/obj/item/I in user.held_items)
-			I.add_trait(TRAIT_NODROP, CHRONOSUIT_TRAIT)
+			ADD_TRAIT(I, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 		user.animate_movement = NO_STEPS
 		user.changeNext_move(8 + phase_in_ds)
 		user.notransform = 1
@@ -192,9 +192,9 @@
 			if(user.head && istype(user.head, /obj/item/clothing/head/helmet/space/chronos))
 				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Mounting /dev/helm")
 				helmet = user.head
-				helmet.add_trait(TRAIT_NODROP, CHRONOSUIT_TRAIT)
+				ADD_TRAIT(helmet, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 				helmet.suit = src
-				add_trait(TRAIT_NODROP, CHRONOSUIT_TRAIT)
+				ADD_TRAIT(src, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Starting brainwave scanner")
 				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Starting ui display driver")
 				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Initializing chronowalk4-view")
@@ -213,7 +213,7 @@
 		activating = 1
 		var/mob/living/carbon/human/user = src.loc
 		var/hard_landing = teleporting && force
-		remove_trait(TRAIT_NODROP, CHRONOSUIT_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 		cooldown = world.time + cooldowntime * 1.5
 		activated = 0
 		activating = 0
@@ -234,7 +234,7 @@
 						to_chat(user, "\[ <span style='color: #ff5500;'>ok</span> \] Unmounting /dev/helmet")
 					to_chat(user, "logout")
 		if(helmet)
-			helmet.remove_trait(TRAIT_NODROP, CHRONOSUIT_TRAIT)
+			REMOVE_TRAIT(helmet, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 			helmet.suit = null
 			helmet = null
 		if(camera)

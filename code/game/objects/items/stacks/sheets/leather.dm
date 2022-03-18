@@ -124,6 +124,13 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "weed_extract"
 
+/obj/item/goldgrubguts
+	name= "Gold Grub Guts"
+	desc = "Gross, slimy, and green intestines retrieved from a Gold Grub. Legends say it is valuable in traditional medicines."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "goldgrubguts"
+	grind_results = list(/datum/reagent/medicine/grubjuice = 5)
+
 /obj/item/stack/sheet/hairlesshide
 	name = "hairless hide"
 	desc = "This hide was stripped of its hair, but still needs washing and tanning."
@@ -159,7 +166,9 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	new/datum/stack_recipe("bandolier", /obj/item/storage/belt/bandolier, 5), \
 	new/datum/stack_recipe("leather jacket", /obj/item/clothing/suit/jacket/leather, 7), \
 	new/datum/stack_recipe("leather shoes", /obj/item/clothing/shoes/laceup, 2), \
+	new/datum/stack_recipe("footwraps", /obj/item/clothing/shoes/xeno_wraps, 2), \
 	new/datum/stack_recipe("leather overcoat", /obj/item/clothing/suit/jacket/leather/overcoat, 10), \
+	new/datum/stack_recipe("leather cloak", /obj/item/clothing/neck/cloak, 5), \
 ))
 
 /obj/item/stack/sheet/leather/Initialize(mapload, new_amount, merge = TRUE)
@@ -177,9 +186,14 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	icon_state = "sinew"
 	novariants = TRUE
 
+/obj/item/stack/sheet/sinew/wolf
+	name = "wolf sinew"
+	desc = "Long stringy filaments which came from the insides of a wolf."
+	singular_name = "wolf sinew"
+
 
 GLOBAL_LIST_INIT(sinew_recipes, list ( \
-	new/datum/stack_recipe("sinew restraints", /obj/item/restraints/handcuffs/sinew, 1), \
+	new/datum/stack_recipe("sinew restraints", /obj/item/restraints/handcuffs/cable/sinew, 1), \
 ))
 
 /obj/item/stack/sheet/sinew/Initialize(mapload, new_amount, merge = TRUE)
@@ -201,6 +215,11 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	w_class = WEIGHT_CLASS_NORMAL
 	layer = MOB_LAYER
 
+/obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide
+	name = "polar bear hides"
+	desc = "Pieces of a polar bear's fur, these might be able to make your suit a bit more durable to attack from the local fauna."
+	icon_state = "polar_bear_hide"
+	singular_name = "polar bear hide"
 
 /obj/item/stack/sheet/animalhide/ashdrake
 	name = "ash drake hide"
@@ -214,15 +233,26 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	w_class = WEIGHT_CLASS_NORMAL
 	layer = MOB_LAYER
 
+/obj/item/stack/sheet/animalhide/carpdragon
+	name = "carp dragon hide"
+	desc = "The strong, scaled hide of a space dragon."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "carpdragon_hide"
+	singular_name = "carp plate"
+	max_amount = 10
+	novariants = TRUE
+	item_flags = NOBLUDGEON
+	w_class = WEIGHT_CLASS_NORMAL
+	layer = MOB_LAYER
 
 //Step one - dehairing.
 
 /obj/item/stack/sheet/animalhide/attackby(obj/item/W, mob/user, params)
 	if(W.is_sharp())
 		playsound(loc, 'sound/weapons/slice.ogg', 50, 1, -1)
-		user.visible_message("[user] starts cutting hair off \the [src].", "<span class='notice'>You start cutting the hair off \the [src]...</span>", "<span class='italics'>You hear the sound of a knife rubbing against flesh.</span>")
-		if(do_after(user, 50, target = src))
-			to_chat(user, "<span class='notice'>You cut the hair from this [src.singular_name].</span>")
+		user.visible_message("[user] starts cutting hair off \the [src].", span_notice("You start cutting the hair off \the [src]..."), span_italics("You hear the sound of a knife rubbing against flesh."))
+		if(do_after(user, 5 SECONDS, target = src))
+			to_chat(user, span_notice("You cut the hair from this [src.singular_name]."))
 			new /obj/item/stack/sheet/hairlesshide(user.drop_location(), 1)
 			use(1)
 	else
@@ -245,3 +275,11 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	..()
 	new /obj/item/stack/sheet/leather(drop_location(), amount)
 	qdel(src)
+
+
+/obj/item/stack/sheet/animalhide/egg
+	name = "egg shell pieces"
+	desc = "The shattered remains of an eggperson."
+	singular_name = "egg shell pieces"
+	icon_state = "sheet-gondola"
+	item_state = "sheet-gondola"

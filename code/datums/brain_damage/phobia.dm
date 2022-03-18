@@ -2,8 +2,8 @@
 	name = "Phobia"
 	desc = "Patient is unreasonably afraid of something."
 	scan_desc = "phobia"
-	gain_text = "<span class='warning'>You start finding default values very unnerving...</span>"
-	lose_text = "<span class='notice'>You no longer feel afraid of default values.</span>"
+	gain_text = span_warning("You start finding default values very unnerving...")
+	lose_text = span_notice("You no longer feel afraid of default values.")
 	var/phobia_type
 	var/next_check = 0
 	var/next_scare = 0
@@ -21,8 +21,8 @@
 	if(!phobia_type)
 		phobia_type = pick(SStraumas.phobia_types)
 
-	gain_text = "<span class='warning'>You start finding [phobia_type] very unnerving...</span>"
-	lose_text = "<span class='notice'>You no longer feel afraid of [phobia_type].</span>"
+	gain_text = span_warning("You start finding [phobia_type] very unnerving...")
+	lose_text = span_notice("You no longer feel afraid of [phobia_type].")
 	scan_desc += " of [phobia_type]"
 	trigger_words = SStraumas.phobia_words[phobia_type]
 	trigger_mobs = SStraumas.phobia_mobs[phobia_type]
@@ -38,7 +38,7 @@
 
 /datum/brain_trauma/mild/phobia/on_life()
 	..()
-	if(owner.has_trait(TRAIT_FEARLESS))
+	if(HAS_TRAIT(owner, TRAIT_FEARLESS))
 		return
 	if(is_blind(owner))
 		return
@@ -51,6 +51,12 @@
 				if(is_type_in_typecache(O, trigger_objs))
 					freak_out(O)
 					return
+			for(var/mob/living/carbon/human/HU in seen_atoms) //check equipment for trigger items
+				for(var/X in HU.get_all_slots() | HU.held_items)
+					var/obj/I = X
+					if(!QDELETED(I) && is_type_in_typecache(I, trigger_objs))
+						freak_out(I)
+						return
 
 		if(LAZYLEN(trigger_turfs))
 			for(var/turf/T in seen_atoms)
@@ -58,48 +64,42 @@
 					freak_out(T)
 					return
 
-		if(LAZYLEN(trigger_mobs) || LAZYLEN(trigger_objs))
+		seen_atoms -= owner //make sure they aren't afraid of themselves.
+		if(LAZYLEN(trigger_mobs) || LAZYLEN(trigger_species))
 			for(var/mob/M in seen_atoms)
 				if(is_type_in_typecache(M, trigger_mobs))
 					freak_out(M)
 					return
 
-				else if(ishuman(M)) //check their equipment for trigger items
+				else if(ishuman(M)) //check their species
 					var/mob/living/carbon/human/H = M
 
 					if(LAZYLEN(trigger_species) && H.dna && H.dna.species && is_type_in_typecache(H.dna.species, trigger_species))
 						freak_out(H)
+						return
 
-					for(var/X in H.get_all_slots() | H.held_items)
-						var/obj/I = X
-						if(!QDELETED(I) && is_type_in_typecache(I, trigger_objs))
-							freak_out(I)
-							return
-
-/datum/brain_trauma/mild/phobia/on_hear(message, speaker, message_language, raw_message, radio_freq)
+/datum/brain_trauma/mild/phobia/handle_hearing(datum/source, list/hearing_args)
 	if(!owner.can_hear() || world.time < next_scare) //words can't trigger you if you can't hear them *taps head*
-		return message
-	if(owner.has_trait(TRAIT_FEARLESS))
-		return message
+		return
+	if(HAS_TRAIT(owner, TRAIT_FEARLESS))
+		return
 	for(var/word in trigger_words)
 		var/regex/reg = regex("(\\b|\\A)[REGEX_QUOTE(word)]'?s*(\\b|\\Z)", "i")
 
-		if(findtext(raw_message, reg))
+		if(findtext(hearing_args[HEARING_RAW_MESSAGE], reg))
 			addtimer(CALLBACK(src, .proc/freak_out, null, word), 10) //to react AFTER the chat message
-			message = reg.Replace(message, "<span class='phobia'>$1</span>")
+			hearing_args[HEARING_MESSAGE] = reg.Replace(hearing_args[HEARING_MESSAGE], span_phobia("$1"))
 			break
-	return message
 
-/datum/brain_trauma/mild/phobia/on_say(message)
-	if(owner.has_trait(TRAIT_FEARLESS))
-		return message
+/datum/brain_trauma/mild/phobia/handle_speech(datum/source, list/speech_args)
+	if(HAS_TRAIT(owner, TRAIT_FEARLESS))
+		return
 	for(var/word in trigger_words)
 		var/regex/reg = regex("(\\b|\\A)[REGEX_QUOTE(word)]'?s*(\\b|\\Z)", "i")
 
-		if(findtext(message, reg))
-			to_chat(owner, "<span class='warning'>You can't bring yourself to say the word \"<span class='phobia'>[word]</span>\"!</span>")
-			return ""
-	return message
+		if(findtext(speech_args[SPEECH_MESSAGE], reg))
+			to_chat(owner, span_warning("You can't bring yourself to say the word \"[span_phobia("[word]")]\"!"))
+			speech_args[SPEECH_MESSAGE] = ""
 
 /datum/brain_trauma/mild/phobia/proc/freak_out(atom/reason, trigger_word)
 	next_scare = world.time + 120
@@ -107,15 +107,15 @@
 		return
 	var/message = pick("spooks you to the bone", "shakes you up", "terrifies you", "sends you into a panic", "sends chills down your spine")
 	if(reason)
-		to_chat(owner, "<span class='userdanger'>Seeing [reason] [message]!</span>")
+		to_chat(owner, span_userdanger("Seeing [reason] [message]!"))
 	else if(trigger_word)
-		to_chat(owner, "<span class='userdanger'>Hearing \"[trigger_word]\" [message]!</span>")
+		to_chat(owner, span_userdanger("Hearing \"[trigger_word]\" [message]!"))
 	else
-		to_chat(owner, "<span class='userdanger'>Something [message]!</span>")
+		to_chat(owner, span_userdanger("Something [message]!"))
 	var/reaction = rand(1,4)
 	switch(reaction)
 		if(1)
-			to_chat(owner, "<span class='warning'>You are paralyzed with fear!</span>")
+			to_chat(owner, span_warning("You are paralyzed with fear!"))
 			owner.Stun(70)
 			owner.Jitter(8)
 		if(2)
@@ -125,7 +125,7 @@
 			if(reason)
 				owner.pointed(reason)
 		if(3)
-			to_chat(owner, "<span class='warning'>You shut your eyes in terror!</span>")
+			to_chat(owner, span_warning("You shut your eyes in terror!"))
 			owner.Jitter(5)
 			owner.blind_eyes(10)
 		if(4)

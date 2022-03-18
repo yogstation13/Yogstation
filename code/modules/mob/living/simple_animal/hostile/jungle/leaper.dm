@@ -42,7 +42,7 @@
 	..()
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		C.reagents.add_reagent("leaper_venom", 5)
+		C.reagents.add_reagent(/datum/reagent/toxin/leaper_venom, 5)
 		return
 	if(isanimal(target))
 		var/mob/living/simple_animal/L = target
@@ -96,7 +96,7 @@
 			L.Paralyze(50)
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
-				C.reagents.add_reagent("leaper_venom", 5)
+				C.reagents.add_reagent(/datum/reagent/toxin/leaper_venom, 5)
 			if(isanimal(L))
 				var/mob/living/simple_animal/A = L
 				A.adjustHealth(25)
@@ -105,7 +105,6 @@
 
 /datum/reagent/toxin/leaper_venom
 	name = "Leaper venom"
-	id = "leaper_venom"
 	description = "A toxin spat out by leapers that, while harmless in small doses, quickly creates a toxic reaction if too much is in the body."
 	color = "#801E28" // rgb: 128, 30, 40
 	toxpwr = 0
@@ -129,7 +128,7 @@
 
 /mob/living/simple_animal/hostile/jungle/leaper/Initialize()
 	. = ..()
-	verbs -= /mob/living/verb/pulled
+	remove_verb(src, /mob/living/verb/pulled)
 
 /mob/living/simple_animal/hostile/jungle/leaper/CtrlClickOn(atom/A)
 	face_atom(A)
@@ -241,7 +240,7 @@
 				throw_dir = pick(GLOB.alldirs)
 			var/throwtarget = get_edge_target_turf(src, throw_dir)
 			L.throw_at(throwtarget, 3, 1)
-			visible_message("<span class='warning'>[L] is thrown clear of [src]!</span>")
+			visible_message(span_warning("[L] is thrown clear of [src]!"))
 	if(ckey)//Lessens ability to chain stun as a player
 		ranged_cooldown = ranged_cooldown_time + world.time
 		update_icons()

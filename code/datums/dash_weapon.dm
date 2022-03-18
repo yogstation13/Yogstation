@@ -32,6 +32,10 @@
 	if(!IsAvailable())
 		return
 	var/turf/T = get_turf(target)
+	var/area/AU = get_area(user)
+	var/area/AT = get_area(T)
+	if(AT.noteleport || AU.noteleport)
+		return
 	if(target in view(user.client.view, get_turf(user)))
 		var/obj/spot1 = new phaseout(get_turf(user), user.dir)
 		user.forceMove(T)
@@ -43,8 +47,8 @@
 		addtimer(CALLBACK(src, .proc/charge), charge_rate)
 
 /datum/action/innate/dash/proc/charge()
-	current_charges = CLAMP(current_charges + 1, 0, max_charges)
+	current_charges = clamp(current_charges + 1, 0, max_charges)
 	holder.update_action_buttons_icon()
 	if(recharge_sound)
 		playsound(dashing_item, recharge_sound, 50, 1)
-	to_chat(holder, "<span class='notice'>[src] now has [current_charges]/[max_charges] charges.</span>")
+	to_chat(holder, span_notice("[src] now has [current_charges]/[max_charges] charges."))

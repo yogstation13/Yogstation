@@ -7,6 +7,7 @@
 	has_sensor = NO_SENSORS
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 40)
 	alt_covers_chest = TRUE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/syndicate/tacticool
 	name = "tacticool turtleneck"
@@ -14,6 +15,7 @@
 	icon_state = "tactifool"
 	item_state = "bl_suit"
 	item_color = "tactifool"
+	has_sensor = HAS_SENSORS
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 40)
 
 /obj/item/clothing/under/syndicate/sniper
@@ -47,3 +49,13 @@
 	icon_state = "syndicate_combat"
 	item_color = "syndicate_combat"
 	can_adjust = FALSE
+
+/obj/item/clothing/under/syndicate/rus_army
+	name = "advanced military tracksuit"
+	desc = "Military grade tracksuits for frontline squatting."
+	icon_state = "rus_under"
+	item_color = "rus_under"
+	can_adjust = FALSE
+	armor = list("melee" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	resistance_flags = NONE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION

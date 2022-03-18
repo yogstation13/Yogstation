@@ -18,12 +18,19 @@
 
 /obj/item/teleportation_scroll/attack_self(mob/user)
 	user.set_machine(src)
-	var/dat = "<B>Teleportation Scroll:</B><BR>"
+	var/dat = ""
+
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+
+	dat +="<B>Teleportation Scroll:</B><BR>"
 	dat += "Number of uses: [src.uses]<BR>"
 	dat += "<HR>"
 	dat += "<B>Four uses, use them wisely:</B><BR>"
 	dat += "<A href='byond://?src=[REF(src)];spell_teleport=1'>Teleport</A><BR>"
 	dat += "Kind regards,<br>Wizards Federation<br><br>P.S. Don't forget to bring your gear, you'll need it to cast most spells.<HR>"
+
+	dat += "</BODY></HTML>"
+
 	user << browse(dat, "window=scroll")
 	onclose(user, "scroll")
 	return
@@ -58,9 +65,15 @@
 	smoke.attach(user)
 	smoke.start()
 	var/list/L = list()
-	for(var/turf/T in get_area_turfs(thearea.type))
-		if(!is_blocked_turf(T))
-			L += T
+	var/list/achors = thearea.teleport_anchors
+	if(achors.len)		//check the areas prefered teleportation list if it is empty just use a random enpty tile like before
+		for(var/turf/T in achors)
+			if(!is_blocked_turf(T))
+				L += T
+	if(!L.len)
+		for(var/turf/T in get_area_turfs(thearea.type))
+			if(!is_blocked_turf(T))
+				L += T
 
 	if(!L.len)
 		to_chat(user, "The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry.")

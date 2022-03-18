@@ -1,8 +1,11 @@
+GLOBAL_LIST_EMPTY(ninja_capture)
+
 /datum/antagonist/ninja
 	name = "Ninja"
 	antagpanel_category = "Ninja"
 	job_rank = ROLE_NINJA
 	show_name_in_check_antagonists = TRUE
+	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
 	var/helping_station = FALSE
 	var/give_objectives = TRUE
@@ -15,10 +18,16 @@
 
 /datum/antagonist/ninja/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
+	for(var/obj/item/implant/explosive/E in M.implants)
+		if(E)
+			RegisterSignal(E, COMSIG_IMPLANT_ACTIVATED, .proc/on_death)
 	update_ninja_icons_added(M)
 
 /datum/antagonist/ninja/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
+	for(var/obj/item/implant/explosive/E in M.implants)
+		if(E)
+			UnregisterSignal(M, COMSIG_IMPLANT_ACTIVATED)
 	update_ninja_icons_removed(M)
 
 /datum/antagonist/ninja/proc/equip_space_ninja(mob/living/carbon/human/H = owner.current)
@@ -53,6 +62,7 @@
 			if(2)	//steal
 				var/datum/objective/steal/special/O = new /datum/objective/steal/special()
 				O.owner = owner
+				O.find_target()
 				objectives += O
 
 			if(3)	//protect/kill
@@ -88,7 +98,12 @@
 					O.explanation_text = "Steal the brain of [M.current.real_name]."
 					objectives += O
 				else										//capture
-					var/datum/objective/capture/O = new /datum/objective/capture()
+					var/datum/objective/capture/O
+					if(helping_station) {
+						O = new /datum/objective/capture()
+					} else {
+						O = new /datum/objective/capture/living()
+					}
 					O.owner = owner
 					O.gen_amount_goal()
 					objectives += O
@@ -106,7 +121,7 @@
 	return TRUE
 
 /proc/is_ninja(mob/living/M)
-	return M && M.mind && M.mind.has_antag_datum(/datum/antagonist/ninja)
+	return M?.mind?.has_antag_datum(/datum/antagonist/ninja)
 
 
 /datum/antagonist/ninja/greet()
@@ -114,6 +129,10 @@
 	to_chat(owner.current, "I am an elite mercenary assassin of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!")
 	to_chat(owner.current, "Surprise is my weapon. Shadows are my armor. Without them, I am nothing. (//initialize your suit by right clicking on it, to use abilities like stealth)!")
 	to_chat(owner.current, "Officially, [helping_station?"Nanotrasen":"The Syndicate"] are my employer.")
+	to_chat(owner.current, "<b>If you are new to playing the Space Ninja, please review the <a href='https://wiki.yogstation.net/wiki/Space_Ninja'>Space Ninja</a> wiki entry for explanations and abilities.</b>") //Yogs
+	if(helping_station) {
+		to_chat(owner.current, "<b>As a Nanotrasen ninja, you are beholden to <a href='https://forums.yogstation.net/help/rules/#rule-3_1_1'>rule 3.1.1</a>: Do not murderbone.</b>")
+	}
 	owner.announce_objectives()
 	return
 
@@ -124,6 +143,24 @@
 	if(give_equipment)
 		equip_space_ninja(owner.current)
 	. = ..()
+
+/datum/antagonist/ninja/proc/on_death()
+	for(var/mob/L in GLOB.ninja_capture)
+		if(get_area(L) == GLOB.areas_by_type[/area/centcom/holding])
+			if(!L)
+				continue
+			var/atom/movable/target = L
+			if(isobj(L.loc))
+				target = L.loc
+			target.forceMove(get_turf(pick(GLOB.generic_event_spawns)))
+			if(isliving(L))
+				var/mob/living/LI = L
+				LI.Knockdown(120)
+				LI.blind_eyes(10)
+				to_chat(L, span_danger("You lose your footing as the dojo suddenly disappears. You're free!"))
+				playsound(L, 'sound/effects/phasein.ogg', 25, 1)
+				playsound(L, 'sound/effects/sparks2.ogg', 50, 1)
+		GLOB.ninja_capture -= L
 
 /datum/antagonist/ninja/admin_add(datum/mind/new_owner,mob/admin)
 	var/adj

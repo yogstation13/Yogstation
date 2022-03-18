@@ -93,7 +93,7 @@
 /datum/disease/transformation/jungle_fever
 	name = "Jungle Fever"
 	cure_text = "Death."
-	cures = list("adminordrazine")
+	cures = list(/datum/reagent/medicine/adminordrazine)
 	spread_text = "Monkey Bites"
 	spread_flags = DISEASE_SPREAD_SPECIAL
 	viable_mobtypes = list(/mob/living/carbon/monkey, /mob/living/carbon/human)
@@ -112,15 +112,15 @@
 	stage1	= list()
 	stage2	= list()
 	stage3	= list()
-	stage4	= list("<span class='warning'>Your back hurts.</span>", "<span class='warning'>You breathe through your mouth.</span>",
-					"<span class='warning'>You have a craving for bananas.</span>", "<span class='warning'>Your mind feels clouded.</span>")
-	stage5	= list("<span class='warning'>You feel like monkeying around.</span>")
+	stage4	= list(span_warning("Your back hurts."), span_warning("You breathe through your mouth."),
+					span_warning("You have a craving for bananas."), span_warning("Your mind feels clouded."))
+	stage5	= list(span_warning("You feel like monkeying around."))
 
 /datum/disease/transformation/jungle_fever/do_disease_transformation(mob/living/carbon/affected_mob)
 	if(affected_mob.mind && !is_monkey(affected_mob.mind))
 		add_monkey(affected_mob.mind)
 	if(ishuman(affected_mob))
-		var/mob/living/carbon/monkey/M = affected_mob.monkeyize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSE)
+		var/mob/living/carbon/monkey/M = affected_mob.monkeyize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_KEEPSE)
 		M.ventcrawler = VENTCRAWLER_ALWAYS
 
 
@@ -129,10 +129,10 @@
 	switch(stage)
 		if(2)
 			if(prob(2))
-				to_chat(affected_mob, "<span class='notice'>Your [pick("back", "arm", "leg", "elbow", "head")] itches.</span>")
+				to_chat(affected_mob, span_notice("Your [pick("back", "arm", "leg", "elbow", "head")] itches."))
 		if(3)
 			if(prob(4))
-				to_chat(affected_mob, "<span class='danger'>You feel a stabbing pain in your head.</span>")
+				to_chat(affected_mob, span_danger("You feel a stabbing pain in your head."))
 				affected_mob.confused += 10
 		if(4)
 			if(prob(3))
@@ -145,28 +145,29 @@
 /datum/disease/transformation/jungle_fever/monkeymode
 	visibility_flags = HIDDEN_SCANNER|HIDDEN_PANDEMIC
 	disease_flags = CAN_CARRY //no vaccines! no cure!
-
+	cure_text = "Clown's Tears."
+	cures = list(/datum/reagent/consumable/clownstears)
+	
 /datum/disease/transformation/jungle_fever/monkeymode/after_add()
 	if(affected_mob && !is_monkey_leader(affected_mob.mind))
 		visibility_flags = NONE
-
 
 
 /datum/disease/transformation/robot
 
 	name = "Robotic Transformation"
 	cure_text = "An injection of copper."
-	cures = list("copper")
+	cures = list(/datum/reagent/copper)
 	cure_chance = 5
 	agent = "R2D2 Nanomachines"
 	desc = "This disease, actually acute nanomachine infection, converts the victim into a cyborg."
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = 0
 	stage1	= list()
-	stage2	= list("Your joints feel stiff.", "<span class='danger'>Beep...boop..</span>")
-	stage3	= list("<span class='danger'>Your joints feel very stiff.</span>", "Your skin feels loose.", "<span class='danger'>You can feel something move...inside.</span>")
-	stage4	= list("<span class='danger'>Your skin feels very loose.</span>", "<span class='danger'>You can feel... something...inside you.</span>")
-	stage5	= list("<span class='danger'>Your skin feels as if it's about to burst off!</span>")
+	stage2	= list("Your joints feel stiff.", span_danger("Beep...boop.."))
+	stage3	= list(span_danger("Your joints feel very stiff."), "Your skin feels loose.", span_danger("You can feel something move...inside."))
+	stage4	= list(span_danger("Your skin feels very loose."), span_danger("You can feel... something...inside you."))
+	stage5	= list(span_danger("Your skin feels as if it's about to burst off!"))
 	new_form = /mob/living/silicon/robot
 	infectable_biotypes = list(MOB_ORGANIC, MOB_UNDEAD, MOB_ROBOTIC)
 	bantype = "Cyborg"
@@ -178,7 +179,7 @@
 			if (prob(8))
 				affected_mob.say(pick("Beep, boop", "beep, beep!", "Boop...bop"), forced = "robotic transformation")
 			if (prob(4))
-				to_chat(affected_mob, "<span class='danger'>You feel a stabbing pain in your head.</span>")
+				to_chat(affected_mob, span_danger("You feel a stabbing pain in your head."))
 				affected_mob.Unconscious(40)
 		if(4)
 			if (prob(20))
@@ -189,17 +190,17 @@
 
 	name = "Xenomorph Transformation"
 	cure_text = "Spaceacillin & Glycerol"
-	cures = list("spaceacillin", "glycerol")
+	cures = list(/datum/reagent/medicine/spaceacillin, /datum/reagent/glycerol)
 	cure_chance = 5
 	agent = "Rip-LEY Alien Microbes"
 	desc = "This disease changes the victim into a xenomorph."
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = 0
 	stage1	= list()
-	stage2	= list("Your throat feels scratchy.", "<span class='danger'>Kill...</span>")
-	stage3	= list("<span class='danger'>Your throat feels very scratchy.</span>", "Your skin feels tight.", "<span class='danger'>You can feel something move...inside.</span>")
-	stage4	= list("<span class='danger'>Your skin feels very tight.</span>", "<span class='danger'>Your blood boils!</span>", "<span class='danger'>You can feel... something...inside you.</span>")
-	stage5	= list("<span class='danger'>Your skin feels as if it's about to burst off!</span>")
+	stage2	= list("Your throat feels scratchy.", span_danger("Kill..."))
+	stage3	= list(span_danger("Your throat feels very scratchy."), "Your skin feels tight.", span_danger("You can feel something move...inside."))
+	stage4	= list(span_danger("Your skin feels very tight."), span_danger("Your blood boils!"), span_danger("You can feel... something...inside you."))
+	stage5	= list(span_danger("Your skin feels as if it's about to burst off!"))
 	new_form = /mob/living/carbon/alien/humanoid/hunter
 	bantype = ROLE_ALIEN
 
@@ -208,7 +209,7 @@
 	switch(stage)
 		if(3)
 			if (prob(4))
-				to_chat(affected_mob, "<span class='danger'>You feel a stabbing pain in your head.</span>")
+				to_chat(affected_mob, span_danger("You feel a stabbing pain in your head."))
 				affected_mob.Unconscious(40)
 		if(4)
 			if (prob(20))
@@ -218,7 +219,7 @@
 /datum/disease/transformation/slime
 	name = "Advanced Mutation Transformation"
 	cure_text = "frost oil"
-	cures = list("frostoil")
+	cures = list(/datum/reagent/consumable/frostoil)
 	cure_chance = 80
 	agent = "Advanced Mutation Toxin"
 	desc = "This highly concentrated extract converts anything into more of itself."
@@ -226,9 +227,9 @@
 	visibility_flags = 0
 	stage1	= list("You don't feel very well.")
 	stage2	= list("Your skin feels a little slimy.")
-	stage3	= list("<span class='danger'>Your appendages are melting away.</span>", "<span class='danger'>Your limbs begin to lose their shape.</span>")
-	stage4	= list("<span class='danger'>You are turning into a slime.</span>")
-	stage5	= list("<span class='danger'>You have become a slime.</span>")
+	stage3	= list(span_danger("Your appendages are melting away."), span_danger("Your limbs begin to lose their shape."))
+	stage4	= list(span_danger("You are turning into a slime."))
+	stage5	= list(span_danger("You have become a slime."))
 	new_form = /mob/living/simple_animal/slime/random
 
 /datum/disease/transformation/slime/stage_act()
@@ -247,16 +248,16 @@
 /datum/disease/transformation/corgi
 	name = "The Barkening"
 	cure_text = "Death"
-	cures = list("adminordrazine")
+	cures = list(/datum/reagent/medicine/adminordrazine)
 	agent = "Fell Doge Majicks"
 	desc = "This disease transforms the victim into a corgi."
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = 0
 	stage1	= list("BARK.")
 	stage2	= list("You feel the need to wear silly hats.")
-	stage3	= list("<span class='danger'>Must... eat... chocolate....</span>", "<span class='danger'>YAP</span>")
-	stage4	= list("<span class='danger'>Visions of washing machines assail your mind!</span>")
-	stage5	= list("<span class='danger'>AUUUUUU!!!</span>")
+	stage3	= list(span_danger("Must... eat... chocolate...."), span_danger("YAP"))
+	stage4	= list(span_danger("Visions of washing machines assail your mind!"))
+	stage5	= list(span_danger("AUUUUUU!!!"))
 	new_form = /mob/living/simple_animal/pet/dog/corgi
 
 /datum/disease/transformation/corgi/stage_act()
@@ -271,8 +272,8 @@
 
 /datum/disease/transformation/morph
 	name = "Gluttony's Blessing"
-	cure_text = "Unknown" //Yogs - changed "nothing" to "unknown"
-	cures = list("adminordrazine")
+	cure_text = /datum/reagent/consumable/nothing
+	cures = list(/datum/reagent/medicine/adminordrazine)
 	agent = "Gluttony's Blessing"
 	desc = "A 'gift' from somewhere terrible."
 	stage_prob = 20
@@ -280,16 +281,33 @@
 	visibility_flags = 0
 	stage1	= list("Your stomach rumbles.")
 	stage2	= list("Your skin feels saggy.")
-	stage3	= list("<span class='danger'>Your appendages are melting away.</span>", "<span class='danger'>Your limbs begin to lose their shape.</span>")
-	stage4	= list("<span class='danger'>You're ravenous.</span>")
-	stage5	= list("<span class='danger'>You have become a morph.</span>")
+	stage3	= list(span_danger("Your appendages are melting away."), span_danger("Your limbs begin to lose their shape."))
+	stage4	= list(span_danger("You're ravenous."))
+	stage5	= list(span_danger("You have become a morph."))
 	new_form = /mob/living/simple_animal/hostile/morph
+	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
+	
+/datum/disease/transformation/ghost
+	name = "Spectral Curse"
+	cure_text = "Holy Water"
+	cures = list(/datum/reagent/water/holywater)
+	agent = "Spectral Curse"
+	desc = "A 'gift' from the spectral realm"
+	stage_prob = 20
+	severity = DISEASE_SEVERITY_BIOHAZARD
+	visibility_flags = 0
+	stage1	= list("Your stomach rumbles.")
+	stage2	= list("Your body feels tired")
+	stage3	= list(span_danger("Your skin starts to look transparent"), span_danger("Your limbs begin to lose their shape."))
+	stage4	= list(span_danger("your organs seems to suddenly disappear."))
+	stage5	= list(span_danger("You have become a ghost."))
+	new_form = /mob/living/simple_animal/hostile/retaliate/ghost
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
 
 /datum/disease/transformation/gondola
 	name = "Gondola Transformation"
 	cure_text = "Condensed Capsaicin, ingested or injected." //getting pepper sprayed doesn't help
-	cures = list("condensedcapsaicin") //beats the hippie crap right out of your system
+	cures = list(/datum/reagent/consumable/condensedcapsaicin) //beats the hippie crap right out of your system
 	cure_chance = 80
 	stage_prob = 5
 	agent = "Tranquility"
@@ -298,9 +316,9 @@
 	visibility_flags = 0
 	stage1	= list("You seem a little lighter in your step.")
 	stage2	= list("You catch yourself smiling for no reason.")
-	stage3	= list("<span class='danger'>A cruel sense of calm overcomes you.</span>", "<span class='danger'>You can't feel your arms!</span>", "<span class='danger'>You let go of the urge to hurt clowns.</span>")
-	stage4	= list("<span class='danger'>You can't feel your arms. It does not bother you anymore.</span>", "<span class='danger'>You forgive the clown for hurting you.</span>")
-	stage5	= list("<span class='danger'>You have become a Gondola.</span>")
+	stage3	= list(span_danger("A cruel sense of calm overcomes you."), span_danger("You can't feel your arms!"), span_danger("You let go of the urge to hurt clowns."))
+	stage4	= list(span_danger("You can't feel your arms. It does not bother you anymore."), span_danger("You forgive the clown for hurting you."))
+	stage5	= list(span_danger("You have become a Gondola."))
 	new_form = /mob/living/simple_animal/pet/gondola
 
 /datum/disease/transformation/gondola/stage_act()
@@ -310,18 +328,18 @@
 			if (prob(5))
 				affected_mob.emote("smile")
 			if (prob(20))
-				affected_mob.reagents.add_reagent_list(list("pax" = 5))
+				affected_mob.reagents.add_reagent_list(list(/datum/reagent/pax = 5))
 		if(3)
 			if (prob(5))
 				affected_mob.emote("smile")
 			if (prob(20))
-				affected_mob.reagents.add_reagent_list(list("pax" = 5))
+				affected_mob.reagents.add_reagent_list(list(/datum/reagent/pax = 5))
 		if(4)
 			if (prob(5))
 				affected_mob.emote("smile")
 			if (prob(20))
-				affected_mob.reagents.add_reagent_list(list("pax" = 5))
+				affected_mob.reagents.add_reagent_list(list(/datum/reagent/pax = 5))
 			if (prob(2))
-				to_chat(affected_mob, "<span class='danger'>You let go of what you were holding.</span>")
+				to_chat(affected_mob, span_danger("You let go of what you were holding."))
 				var/obj/item/I = affected_mob.get_active_held_item()
 				affected_mob.dropItemToGround(I)

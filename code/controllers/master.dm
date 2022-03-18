@@ -8,6 +8,7 @@
  **/
 
 //This is the ABSOLUTE ONLY THING that should init globally like this
+//2019 update: the failsafe,config and Global controllers also do it
 GLOBAL_REAL(Master, /datum/controller/master) = new
 
 //THIS IS THE INIT ORDER
@@ -34,6 +35,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/tickdrift = 0
 
 	var/sleep_delta = 1
+
+	///Only run ticker subsystems for the next n ticks.
+	var/skip_ticks = 0
 
 	var/make_runtime = 0
 
@@ -148,7 +152,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				msg = "The [BadBoy.name] subsystem seems to be destabilizing the MC and will be offlined."
 				BadBoy.flags |= SS_NO_FIRE
 		if(msg)
-			to_chat(GLOB.admins, "<span class='boldannounce'>[msg]</span>")
+			to_chat(GLOB.admins, span_boldannounce("[msg]"))
 			log_world(msg)
 
 	if (istype(Master.subsystems))
@@ -158,7 +162,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		current_runlevel = Master.current_runlevel
 		StartProcessing(10)
 	else
-		to_chat(world, "<span class='boldannounce'>The Master Controller is having some issues, we will need to re-initialize EVERYTHING</span>")
+		to_chat(world, span_boldannounce("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
 		Initialize(20, TRUE)
 
 
@@ -176,7 +180,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(init_sss)
 		init_subtypes(/datum/controller/subsystem, subsystems)
 
-	to_chat(world, "<span class='boldannounce'>Initializing subsystems...</span>")
+	to_chat(world, span_boldannounce("Initializing subsystems..."))
 
 	// Sort subsystems by init_order, so they initialize in the correct order.
 	sortTim(subsystems, /proc/cmp_subsystem_init)
@@ -193,7 +197,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, "<span class='boldannounce'>[msg]</span>")
+	to_chat(world, span_boldannounce("[msg]"))
 	log_world(msg)
 	//yogs start - webhook support
 	var/list/webhookData = list(\
@@ -209,7 +213,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	// Sort subsystems by display setting for easy access.
 	sortTim(subsystems, /proc/cmp_subsystem_display)
 	// Set world options.
-	world.fps = CONFIG_GET(number/fps)
+	world.change_fps(CONFIG_GET(number/fps))
 	var/initialized_tod = REALTIMEOFDAY
 
 	if(sleep_offline_after_initializations)
@@ -341,7 +345,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			new/datum/controller/failsafe() // (re)Start the failsafe.
 
 		//now do the actual stuff
-		if (!queue_head || !(iteration % 3))
+		if (!skip_ticks)
 			var/checking_runlevel = current_runlevel
 			if(cached_runlevel != checking_runlevel)
 				//resechedule subsystems
@@ -387,6 +391,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 		iteration++
 		last_run = world.time
+		if (skip_ticks)
+			skip_ticks--
 		src.sleep_delta = MC_AVERAGE_FAST(src.sleep_delta, sleep_delta)
 		current_ticklimit = TICK_LIMIT_RUNNING
 		if (processing * sleep_delta <= world.tick_lag)
@@ -453,6 +459,10 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 			queue_node_flags = queue_node.flags
 			queue_node_priority = queue_node.queued_priority
+
+			if (!(queue_node_flags & SS_TICKER) && skip_ticks)
+				queue_node = queue_node.queue_next
+				continue
 
 			//super special case, subsystems where we can't make them pause mid way through
 			//if we can't run them this tick (without going over a tick)
@@ -589,14 +599,13 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	log_world("MC: SoftReset: Finished.")
 	. = 1
 
+/datum/controller/master/proc/laggy_byond_map_update_incoming()
+	if (!skip_ticks)
+		skip_ticks = 1
 
-
-/datum/controller/master/stat_entry()
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
-
-	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%))")
-	stat("Master Controller:", statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])"))
+/datum/controller/master/stat_entry(msg)
+	msg = "(TickRate:[Master.processing]) (Iteration:[Master.iteration]) (TickLimit: [round(Master.current_ticklimit, 0.1)])"
+	return msg
 
 /datum/controller/master/StartLoadingMap()
 	//disallow more than one map to load at once, multithreading it will just cause race conditions
@@ -622,3 +631,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		processing = CONFIG_GET(number/mc_tick_rate/base_mc_tick_rate)
 	else if (client_count > CONFIG_GET(number/mc_tick_rate/high_pop_mc_mode_amount))
 		processing = CONFIG_GET(number/mc_tick_rate/high_pop_mc_tick_rate)
+
+/datum/controller/master/proc/OnConfigLoad()
+	for (var/thing in subsystems)
+		var/datum/controller/subsystem/SS = thing
+		SS.OnConfigLoad()

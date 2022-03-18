@@ -5,21 +5,28 @@
 	burnt_states = list("floorscorched1", "floorscorched2")
 
 /turf/open/floor/plasteel/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>There's a <b>small crack</b> on the edge of it.</span>")
+	. = ..()
+	. += span_notice("There's a <b>small crack</b> on the edge of it.")
+
+/turf/open/floor/plasteel/rust_heretic_act()
+	if(prob(70))
+		new /obj/effect/glowing_rune(src)
+	ChangeTurf(/turf/open/floor/plating/rust)
 
 /turf/open/floor/plasteel/update_icon()
 	if(!..())
 		return 0
 	if(!broken && !burnt)
-		icon_state = icon_regular_floor
+		icon = icon_regular_floor
+		icon_state = icon_state_regular_floor
 
 
 /turf/open/floor/plasteel/airless
 	initial_gas_mix = AIRLESS_ATMOS
 /turf/open/floor/plasteel/telecomms
 	initial_gas_mix = TCOMMS_ATMOS
-
+/turf/open/floor/plasteel/lavaland
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/plasteel/dark
 	icon_state = "darkfull"
@@ -33,6 +40,8 @@
 	icon_state = "dark"
 /turf/open/floor/plasteel/dark/corner
 	icon_state = "darkcorner"
+/turf/open/floor/plasteel/dark/lavaland
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 /turf/open/floor/plasteel/checker
 	icon_state = "checker"
 
@@ -51,6 +60,8 @@
 	icon_state = "whitecorner"
 /turf/open/floor/plasteel/white/telecomms
 	initial_gas_mix = TCOMMS_ATMOS
+/turf/open/floor/plasteel/white/lavaland
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 
 /turf/open/floor/plasteel/yellowsiding

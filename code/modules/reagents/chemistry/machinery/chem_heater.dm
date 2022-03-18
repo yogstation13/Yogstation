@@ -9,7 +9,8 @@
 	circuit = /obj/item/circuitboard/machine/chem_heater
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
-	var/heater_coefficient = 0.1
+	/// Multiplier for heat
+	var/heater_coefficient = 0.025
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
@@ -23,10 +24,13 @@
 		update_icon()
 
 /obj/machinery/chem_heater/update_icon()
-	if(beaker)
-		icon_state = "mixer1b"
-	else
-		icon_state = "mixer0b"
+	icon_state = "mixer[beaker ? 1 : 0][on ? "a" : "b"]"
+
+/obj/machinery/chem_heater/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	on = !on
+	update_icon()
 
 /obj/machinery/chem_heater/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -47,14 +51,14 @@
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
-	heater_coefficient = 0.1
+	heater_coefficient = initial(heater_coefficient)
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		heater_coefficient *= M.rating
 
 /obj/machinery/chem_heater/examine(mob/user)
-	..()
+	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Heating reagents at <b>[heater_coefficient*1000]%</b> speed.<span>")
+		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_coefficient*1000]%</b> speed.<span>"
 
 /obj/machinery/chem_heater/process()
 	..()
@@ -62,7 +66,14 @@
 		return
 	if(on)
 		if(beaker && beaker.reagents.total_volume)
-			beaker.reagents.adjust_thermal_energy((target_temperature - beaker.reagents.chem_temp) * heater_coefficient * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
+			var/direction = beaker.reagents.chem_temp > target_temperature // is it cooling? used to allow it to snap to the target temp
+			var/heating = (1000 - beaker.reagents.chem_temp) * heater_coefficient * (direction ? -1 : 1) // How much to increase the heat by
+			if(heating + beaker.reagents.chem_temp >= target_temperature && !direction) // Heat snapping condition
+				heating = target_temperature - beaker.reagents.chem_temp // Makes it snap to target temp
+			else if(heating + beaker.reagents.chem_temp <= target_temperature && direction) // Cooling snapping condition
+				heating = target_temperature - beaker.reagents.chem_temp // Makes it snap to target temp
+
+			beaker.reagents.adjust_thermal_energy(heating * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
 			beaker.reagents.handle_reactions()
 
 /obj/machinery/chem_heater/attackby(obj/item/I, mob/user, params)
@@ -78,7 +89,7 @@
 		if(!user.transferItemToLoc(B, src))
 			return
 		replace_beaker(user, B)
-		to_chat(user, "<span class='notice'>You add [B] to [src].</span>")
+		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
 		update_icon()
 		return
@@ -88,11 +99,10 @@
 	replace_beaker()
 	return ..()
 
-/obj/machinery/chem_heater/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/chem_heater/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "chem_heater", name, 275, 400, master_ui, state)
+		ui = new(user, src, "ChemHeater", name)
 		ui.open()
 
 /obj/machinery/chem_heater/ui_data()
@@ -119,6 +129,7 @@
 		if("power")
 			on = !on
 			. = TRUE
+			update_icon()
 		if("temperature")
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])
@@ -132,7 +143,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				target_temperature = CLAMP(target, 0, 1000)
+				target_temperature = clamp(target, 0, 1000)
 		if("eject")
 			on = FALSE
 			replace_beaker(usr)

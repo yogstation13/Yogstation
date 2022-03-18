@@ -23,7 +23,7 @@
 		return
 	template = SSmapping.shelter_templates[template_id]
 	if(!template)
-		throw EXCEPTION("Shelter template ([template_id]) not found!")
+		WARNING("Shelter template ([template_id]) not found!")
 		qdel(src)
 
 /obj/item/survivalcapsule/Destroy()
@@ -33,37 +33,37 @@
 /obj/item/survivalcapsule/examine(mob/user)
 	. = ..()
 	get_template()
-	to_chat(user, "This capsule has the [template.name] stored.")
-	to_chat(user, template.description)
+	. += "This capsule has the [template.name] stored."
+	. += template.description
 
 /obj/item/survivalcapsule/attack_self()
 	//Can't grab when capsule is New() because templates aren't loaded then
 	get_template()
 	if(!used)
-		loc.visible_message("<span class='warning'>\The [src] begins to shake. Stand back!</span>")
+		loc.visible_message(span_warning("\The [src] begins to shake. Stand back!"))
 		used = TRUE
 		sleep(50)
-		var/turf/deploy_location = get_turf(src)
+		var/turf/deploy_location = get_turf_global(src)
 		var/status = template.check_deploy(deploy_location)
 		switch(status)
 			if(SHELTER_DEPLOY_BAD_AREA)
-				src.loc.visible_message("<span class='warning'>\The [src] will not function in this area.</span>")
-			if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS)
+				src.loc.visible_message(span_warning("\The [src] will not function in this area."))
+			if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS, SHELTER_DEPLOY_OUTSIDE_MAP)
 				var/width = template.width
 				var/height = template.height
-				src.loc.visible_message("<span class='warning'>\The [src] doesn't have room to deploy! You need to clear a [width]x[height] area!</span>")
+				src.loc.visible_message(span_warning("\The [src] doesn't have room to deploy! You need to clear a [width]x[height] area!"))
 
 		if(status != SHELTER_DEPLOY_ALLOWED)
 			used = FALSE
 			return
 
-		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
-
+		template.load(deploy_location, centered = TRUE)
 		var/turf/T = deploy_location
 		if(!is_mining_level(T.z)) //only report capsules away from the mining/lavaland level
 			message_admins("[ADMIN_LOOKUPFLW(usr)] activated a bluespace capsule away from the mining level! [ADMIN_VERBOSEJMP(T)]")
 			log_admin("[key_name(usr)] activated a bluespace capsule away from the mining level at [AREACOORD(T)]")
-		template.load(deploy_location, centered = TRUE)
+
+		playsound(src, 'sound/effects/phasein.ogg', 100, TRUE)
 		new /obj/effect/particle_effect/smoke(get_turf(src))
 		qdel(src)
 
@@ -72,6 +72,11 @@
 	desc = "An exorbitantly expensive luxury suite stored within a pocket of bluespace."
 	template_id = "shelter_beta"
 
+/obj/item/survivalcapsule/luxuryelite
+	name = "luxury elite bar capsule"
+	desc = "A luxury bar in a capsule. Bartender required and not included."
+	template_id = "shelter_charlie"
+	
 //Pod objects
 
 //Window
@@ -102,6 +107,7 @@
 	icon = 'icons/obj/doors/airlocks/survival/survival.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/survival/survival_overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_pod
+	anim_parts = "topbolts=0,6,0,3;bottombolts=0,-6,3,-6;top=0,4,0,2;bottom=0,-4,0,2;rightbolts=14,0,1.5,5;left=-15,0,1.5,5;right=14,0,1.5,5"
 
 /obj/machinery/door/airlock/survival_pod/glass
 	opacity = FALSE
@@ -138,6 +144,19 @@
 	else
 		add_overlay("sleeper_cover")
 
+//Lifeform Stasis Unit
+/obj/machinery/stasis/survival_pod
+	icon = 'icons/obj/lavaland/survival_pod.dmi'
+	icon_state = "sleeper"
+	mattress_state = null
+	buckle_lying = 270
+
+/obj/machinery/stasis/survival_pod/play_power_sound()
+	return
+
+/obj/machinery/stasis/survival_pod/update_icon()
+	return
+
 //Computer
 /obj/item/gps/computer
 	name = "pod computer"
@@ -151,8 +170,8 @@
 	if(flags_1 & NODECONSTRUCT_1)
 		return TRUE
 
-	user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
-		"<span class='notice'>You start to disassemble [src]...</span>", "You hear clanking and banging noises.")
+	user.visible_message(span_warning("[user] disassembles [src]."),
+		span_notice("You start to disassemble [src]..."), "You hear clanking and banging noises.")
 	if(I.use_tool(src, user, 20, volume=50))
 		new /obj/item/gps(loc)
 		qdel(src)
@@ -181,6 +200,10 @@
 	max_n_of_items = 10
 	pixel_y = -4
 	flags_1 = NODECONSTRUCT_1
+	supports_full_indicator_state = FALSE
+	supports_retrieval_state = FALSE
+	supports_capacity_indication = FALSE
+	pitches = FALSE
 	var/empty = FALSE
 
 /obj/machinery/smartfridge/survival_pod/update_icon()
@@ -230,8 +253,8 @@
 	if(flags_1 & NODECONSTRUCT_1)
 		return TRUE
 
-	user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
-		"<span class='notice'>You start to disassemble [src]...</span>", "You hear clanking and banging noises.")
+	user.visible_message(span_warning("[user] disassembles [src]."),
+		span_notice("You start to disassemble [src]..."), "You hear clanking and banging noises.")
 	if(I.use_tool(src, user, 20, volume=50))
 		deconstruct()
 	return TRUE
@@ -293,12 +316,11 @@
 						/obj/item/gun/ballistic/automatic/l6_saw,
 						/obj/item/gun/magic/staff/chaos,
 						/obj/item/gun/magic/staff/spellblade,
-						/obj/item/gun/magic/wand/death,
 						/obj/item/gun/magic/wand/fireball,
 						/obj/item/stack/telecrystal/twenty,
 						/obj/item/nuke_core,
 						/obj/item/phylactery,
-						/obj/item/banhammer)
+						/obj/item/bikehorn)
 
 /obj/item/fakeartefact/Initialize()
 	. = ..()

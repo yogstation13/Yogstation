@@ -52,6 +52,8 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/human, GLOB.tails_list_human)
 	if(!GLOB.tails_list_lizard.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/lizard, GLOB.tails_list_lizard)
+	if(!GLOB.tails_list_polysmorph.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/polysmorph, GLOB.tails_list_polysmorph)
 	if(!GLOB.snouts_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts, GLOB.snouts_list)
 	if(!GLOB.horns_list.len)
@@ -70,9 +72,39 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.wings_list)
 	if(!GLOB.moth_wings_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list)
+	if(!GLOB.teeth_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/teeth, GLOB.teeth_list)
+	if(!GLOB.dome_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/dome, GLOB.dome_list)
+	if(!GLOB.dorsal_tubes_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
+	if(!GLOB.ethereal_mark_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ethereal_mark, GLOB.ethereal_mark_list)
 
-	//For now we will always return none for tail_human and ears.
-	return(list("mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)], "tail_lizard" = pick(GLOB.tails_list_lizard), "tail_human" = "None", "wings" = "None", "snout" = pick(GLOB.snouts_list), "horns" = pick(GLOB.horns_list), "ears" = "None", "frills" = pick(GLOB.frills_list), "spines" = pick(GLOB.spines_list), "body_markings" = pick(GLOB.body_markings_list), "legs" = "Normal Legs", "caps" = pick(GLOB.caps_list), "moth_wings" = pick(GLOB.moth_wings_list)))
+	//For now we will always return none for tail_human and ears.		this shit was unreadable if you do somethign like this make it at least readable
+	return(list(
+		"mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
+		"gradientstyle" = random_hair_gradient_style(10),
+		"gradientcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
+		"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)],
+		"tail_lizard" = pick(GLOB.tails_list_lizard),
+		"tail_human" = "None",
+		"wings" = "None",
+		"snout" = pick(GLOB.snouts_list),
+		"horns" = pick(GLOB.horns_list),
+		"ears" = "None",
+		"frills" = pick(GLOB.frills_list),
+		"spines" = pick(GLOB.spines_list),
+		"body_markings" = pick(GLOB.body_markings_list),
+		"legs" = "Normal Legs",
+		"caps" = pick(GLOB.caps_list),
+		"moth_wings" = pick(GLOB.moth_wings_list),
+		"tail_polysmorph" = "Polys",
+		"teeth" = pick(GLOB.teeth_list),
+		"dome" = pick(GLOB.dome_list),
+		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list),
+		"ethereal_mark" = pick(GLOB.ethereal_mark_list)
+	))
 
 /proc/random_hair_style(gender)
 	switch(gender)
@@ -91,6 +123,12 @@
 			return pick(GLOB.facial_hair_styles_female_list)
 		else
 			return pick(GLOB.facial_hair_styles_list)
+
+/proc/random_hair_gradient_style(weight)
+	if(rand(0, 100) <= weight)
+		return pick(GLOB.hair_gradients_list)
+	else
+		return "None"
 
 /proc/random_unique_name(gender, attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
@@ -126,6 +164,13 @@
 /proc/random_unique_moth_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(pick(GLOB.moth_first)) + " " + capitalize(pick(GLOB.moth_last))
+
+		if(!findname(.))
+			break
+
+/proc/random_unique_polysmorph_name(attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(pick(GLOB.polysmorph_names))
 
 		if(!findname(.))
 			break
@@ -173,6 +218,10 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
+
+/mob/var/action_speed_modifier = 1 //Value to multiply action delays by //yogs start: fuck
+/mob/var/action_speed_adjust = 0 //Value to add or remove to action delays //yogs end
+
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
 	if(!user || !target)
 		return 0
@@ -185,6 +234,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/target_loc = target.loc
 
 	var/holding = user.get_active_held_item()
+	time = ((time + user.action_speed_adjust) * user.action_speed_modifier) //yogs: darkspawn
 	var/datum/progressbar/progbar
 	if (progress)
 		progbar = new(user, time, target)
@@ -227,12 +277,16 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null)
+/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, stayStill = TRUE)
 	if(!user)
 		return 0
 	var/atom/Tloc = null
 	if(target && !isturf(target))
 		Tloc = target.loc
+
+	if(target)
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
 
 	var/atom/Uloc = user.loc
 
@@ -246,7 +300,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(holding)
 		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
 
-	delay *= user.do_after_coefficent()
+	delay = ((delay + user.action_speed_adjust) * user.action_speed_modifier * user.do_after_coefficent()) //yogs: darkspawn
 
 	var/datum/progressbar/progbar
 	if (progress)
@@ -264,7 +318,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			drifting = 0
 			Uloc = user.loc
 
-		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc && stayStill) || (extra_checks && !extra_checks.Invoke()))
 			. = 0
 			break
 
@@ -275,9 +329,13 @@ GLOBAL_LIST_EMPTY(species_list)
 				break
 
 		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if((Uloc != Tloc || Tloc != user) && !drifting)
+			if((Uloc != Tloc || Tloc != user) && !drifting && stayStill)
 				. = 0
 				break
+
+		if(target && !(target in user.do_afters))
+			. = 0
+			break
 
 		if(needhand)
 			//This might seem like an odd check, but you can still need a hand even when it's empty
@@ -291,6 +349,10 @@ GLOBAL_LIST_EMPTY(species_list)
 				break
 	if (progress)
 		qdel(progbar)
+
+	if(!QDELETED(target))
+		LAZYREMOVE(user.do_afters, target)
+		LAZYREMOVE(target.targeted_by, user)
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
 	. = 1
@@ -312,6 +374,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		originalloc[target] = target.loc
 
 	var/holding = user.get_active_held_item()
+	time = ((time + user.action_speed_adjust) * user.action_speed_modifier) //yogs: darkspawn
 	var/datum/progressbar/progbar
 	if(progress)
 		progbar = new(user, time, targets[1])
@@ -379,7 +442,14 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/list/spawned_mobs = new(amount)
 
 	for(var/j in 1 to amount)
-		var/atom/movable/X = new spawn_type(T)
+		var/atom/movable/X
+
+		if (istype(spawn_type, /list))
+			var/mob_type = pick(spawn_type)
+			X = new mob_type(T)
+		else
+			X = new spawn_type(T)
+
 		if (admin_spawn)
 			X.flags_1 |= ADMIN_SPAWNED_1
 
@@ -396,8 +466,10 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	return spawned_mobs
 
-/proc/deadchat_broadcast(message, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR)
-	message = "<span class='linkify'>[message]</span>"
+// Displays a message in deadchat, sent by source. Source is not linkified, message is, to avoid stuff like character names to be linkified.
+// Automatically gives the class deadsay to the whole message (message + source)
+/proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR)
+	message = span_deadsay("[source][span_linkify("[message]")]")
 	for(var/mob/M in GLOB.player_list)
 		var/datum/preferences/prefs
 		if(M.client && M.client.prefs)
@@ -408,13 +480,15 @@ GLOBAL_LIST_EMPTY(species_list)
 		var/override = FALSE
 		if(M.client && M.client.holder && (prefs.chat_toggles & CHAT_DEAD))
 			override = TRUE
-		if(M.has_trait(TRAIT_SIXTHSENSE))
+		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE))
+			override = TRUE
+		if(SSticker.current_state == GAME_STATE_FINISHED)
 			override = TRUE
 		if(isnewplayer(M) && !override)
 			continue
 		if(M.stat != DEAD && !override)
 			continue
-		if(speaker_key && speaker_key in prefs.ignoring)
+		if(speaker_key && (speaker_key in prefs.ignoring))
 			continue
 
 		switch(message_type)
@@ -464,3 +538,32 @@ GLOBAL_LIST_EMPTY(species_list)
 		chosen = pick(mob_spawn_meancritters)
 	var/mob/living/simple_animal/C = new chosen(spawn_location)
 	return C
+
+/proc/passtable_on(target, source)
+	var/mob/living/L = target
+	if (!HAS_TRAIT(L, TRAIT_PASSTABLE) && L.pass_flags & PASSTABLE)
+		ADD_TRAIT(L, TRAIT_PASSTABLE, INNATE_TRAIT)
+	ADD_TRAIT(L, TRAIT_PASSTABLE, source)
+	L.pass_flags |= PASSTABLE
+
+/proc/passtable_off(target, source)
+	var/mob/living/L = target
+	REMOVE_TRAIT(L, TRAIT_PASSTABLE, source)
+	if(!HAS_TRAIT(L, TRAIT_PASSTABLE))
+		L.pass_flags &= ~PASSTABLE
+
+/proc/dance_rotate(atom/movable/AM, datum/callback/callperrotate, set_original_dir=FALSE)
+	set waitfor = FALSE
+	var/originaldir = AM.dir
+	for(var/i in list(NORTH,SOUTH,EAST,WEST,EAST,SOUTH,NORTH,SOUTH,EAST,WEST,EAST,SOUTH))
+		if(!AM)
+			return
+		AM.setDir(i)
+		callperrotate?.Invoke()
+		sleep(1)
+	if(set_original_dir)
+		AM.setDir(originaldir)
+
+/// Gets the client of the mob, allowing for mocking of the client.
+/// You only need to use this if you know you're going to be mocking clients somewhere else.
+#define GET_CLIENT(mob) (##mob.client || ##mob.mock_client)

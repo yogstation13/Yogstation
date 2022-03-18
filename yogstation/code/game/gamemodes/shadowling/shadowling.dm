@@ -56,11 +56,12 @@ Made by Xhuis
 	recommended_enemies = 3
 	enemy_minimum_age = 14
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
+	title_icon = "ss13"
 
 /datum/game_mode/shadowling/announce()
 	to_chat(world, "<b>The current game mode is - Shadowling!</b>")
-	to_chat(world, "<b>There are alien <span class='shadowling'>shadowlings</span> on the station. Crew: Kill the shadowlings before they can enthrall the crew. Shadowlings: Enthrall the crew while remaining in hiding.</b>")
+	to_chat(world, "<b>There are alien [span_shadowling("shadowlings")] on the station. Crew: Kill the shadowlings before they can enthrall the crew. Shadowlings: Enthrall the crew while remaining in hiding.</b>")
 
 /datum/game_mode/shadowling/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
@@ -76,7 +77,7 @@ Made by Xhuis
 		shadow.restricted_roles = restricted_jobs
 		shadowlings--
 	var/thrall_scaling = round(num_players() / 3)
-	required_thralls = CLAMP(thrall_scaling, 15, 30)
+	required_thralls = clamp(thrall_scaling, 15, 30)
 	thrall_ratio = required_thralls / 15
 	return TRUE
 
@@ -126,6 +127,13 @@ Made by Xhuis
 	text += "<br>"
 	to_chat(world, text)
 
+/datum/game_mode/shadowling/set_round_result()
+	..()
+	if(check_shadow_victory())
+		SSticker.mode_result = "win - shadowlings have ascended"
+	else
+		SSticker.mode_result = "loss - staff stopped the shadowlings"
+
 /*
 	MISCELLANEOUS
 */
@@ -134,7 +142,7 @@ Made by Xhuis
 	name = "Shadowling"
 	id = "shadowling"
 	say_mod = "chitters"
-	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYES)
+	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE)
 	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE)
 	nojumpsuit = TRUE
@@ -145,6 +153,9 @@ Made by Xhuis
 	var/shadow_charges = 3
 	var/last_charge = 0
 
+/datum/species/shadow/ling/negates_gravity(mob/living/carbon/human/H)
+	return TRUE
+
 /datum/species/shadow/ling/on_species_gain(mob/living/carbon/human/C)
 	C.draw_yogs_parts(TRUE)
 	eyes_overlay = mutable_appearance('yogstation/icons/mob/sling.dmi', "eyes", 25)
@@ -153,6 +164,7 @@ Made by Xhuis
 
 /datum/species/shadow/ling/on_species_loss(mob/living/carbon/human/C)
 	C.draw_yogs_parts(FALSE)
+	C.remove_movespeed_modifier(id)
 	if(eyes_overlay)
 		C.cut_overlay(eyes_overlay)
 		QDEL_NULL(eyes_overlay)
@@ -167,12 +179,12 @@ Made by Xhuis
 			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN)
 			H.remove_movespeed_modifier(id)
 			if(H.stat != DEAD)
-				to_chat(H, "<span class='userdanger'>The light burns you!</span>") //Message spam to say "GET THE FUCK OUT"
+				to_chat(H, span_userdanger("The light burns you!")) //Message spam to say "GET THE FUCK OUT"
 				H.playsound_local(get_turf(H), 'sound/weapons/sear.ogg', 150, 1, pressure_affected = FALSE)
-		else if (light_amount < LIGHT_HEAL_THRESHOLD)
+		else if (light_amount < LIGHT_HEAL_THRESHOLD  && !istype(H.loc, /obj/effect/dummy/phased_mob/shadowling)) //Can't heal while jaunting
 			H.heal_overall_damage(5,5)
 			H.adjustToxLoss(-5)
-			H.adjustBrainLoss(-25) //Shad O. Ling gibbers, "CAN U BE MY THRALL?!!"
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25) //Shad O. Ling gibbers, "CAN U BE MY THRALL?!!"
 			H.adjustCloneLoss(-1)
 			H.SetKnockdown(0)
 			H.SetStun(0)
@@ -188,7 +200,7 @@ Made by Xhuis
 	if(istype(T) && shadow_charges > 0)
 		var/light_amount = T.get_lumcount()
 		if(light_amount < LIGHT_DAM_THRESHOLD)
-			H.visible_message("<span class='danger'>The shadows around [H] ripple as they absorb \the [P]!</span>")
+			H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
 			playsound(T, "bullet_miss", 75, 1)
 			shadow_charges = min(shadow_charges - 1, 0)
 			return -1
@@ -198,10 +210,11 @@ Made by Xhuis
 	name = "Lesser Shadowling"
 	id = "l_shadowling"
 	say_mod = "chitters"
-	species_traits = list(NOBLOOD,NO_DNA_COPY,NOTRANSSTING,NOEYES)
-	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RADIMMUNE)
-	burnmod = 1.1
-	heatmod = 1.1
+	species_traits = list(NOBLOOD,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
+	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD)
+	burnmod = 1.25
+	heatmod = 1.25
+	brutemod = 0.75
 
 /datum/species/shadow/ling/lesser/spec_life(mob/living/carbon/human/H)
 	H.nutrition = NUTRITION_LEVEL_WELL_FED //i aint never get hongry
@@ -211,9 +224,9 @@ Made by Xhuis
 		if(light_amount > LIGHT_DAM_THRESHOLD && !H.incorporeal_move)
 			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN/2)
 		else if (light_amount < LIGHT_HEAL_THRESHOLD)
-			H.heal_overall_damage(2,2)
+			H.heal_overall_damage(4,4)
 			H.adjustToxLoss(-5)
-			H.adjustBrainLoss(-25)
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25)
 			H.adjustCloneLoss(-1)
 
 /datum/game_mode/proc/update_shadow_icons_added(datum/mind/shadow_mind)
@@ -245,3 +258,18 @@ Made by Xhuis
 	if(!istype(mind))
 		return FALSE
 	return mind.remove_antag_datum(ANTAG_DATUM_SLING)
+
+/datum/game_mode/shadowling/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Shadowlings:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/shadow in shadows)
+		round_credits += "<center><h2>[shadow.name] as a Shadowling</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The Shadowlings have moved to the shadows!</h2>", "<center><h2>We couldn't locate them!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

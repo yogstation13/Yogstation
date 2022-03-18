@@ -12,7 +12,7 @@
 	icon_dead = "banana-dead"
 	genes = list(/datum/plant_gene/trait/slip, /datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/banana/mime, /obj/item/seeds/banana/bluespace)
-	reagents_add = list("banana" = 0.1, "potassium" = 0.1, "vitamin" = 0.04, "nutriment" = 0.02)
+	reagents_add = list(/datum/reagent/consumable/banana = 0.1, /datum/reagent/potassium = 0.1, /datum/reagent/consumable/nutriment = 0.02)
 
 /obj/item/reagent_containers/food/snacks/grown/banana
 	seed = /obj/item/seeds/banana
@@ -24,16 +24,23 @@
 	filling_color = "#FFFF00"
 	bitesize = 5
 	foodtype = FRUIT
-	juice_results = list("banana" = 0)
-	distill_reagent = "bananahonk"
+	juice_results = list(/datum/reagent/consumable/banana = 0)
+	distill_reagent = /datum/reagent/consumable/ethanol/bananahonk
+
+/obj/item/reagent_containers/food/snacks/grown/banana/generate_trash(atom/location)
+	. = ..()
+	var/obj/item/grown/bananapeel/peel = .
+	if(istype(peel))
+		peel.grind_results = list(/datum/reagent/medicine/coagulant/banana_peel = seed.potency * 0.2)
+		peel.juice_results = list(/datum/reagent/medicine/coagulant/banana_peel = seed.potency * 0.2)
 
 /obj/item/reagent_containers/food/snacks/grown/banana/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is aiming [src] at [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is aiming [src] at [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/items/bikehorn.ogg', 50, 1, -1)
 	sleep(25)
 	if(!user)
 		return (OXYLOSS)
-	user.say("BANG!", forced = "banana")
+	user.say("BANG!", forced = /datum/reagent/consumable/banana)
 	sleep(25)
 	if(!user)
 		return (OXYLOSS)
@@ -55,7 +62,7 @@
 	throw_range = 7
 
 /obj/item/grown/bananapeel/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is deliberately slipping on [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is deliberately slipping on [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/misc/slip.ogg', 50, 1, -1)
 	return (BRUTELOSS)
 
@@ -70,7 +77,7 @@
 	product = /obj/item/reagent_containers/food/snacks/grown/banana/mime
 	growthstages = 4
 	mutatelist = list()
-	reagents_add = list("nothing" = 0.1, "mutetoxin" = 0.1, "nutriment" = 0.02)
+	reagents_add = list(/datum/reagent/consumable/nothing = 0.1, /datum/reagent/toxin/mutetoxin = 0.1, /datum/reagent/consumable/nutriment = 0.02)
 	rarity = 15
 
 /obj/item/reagent_containers/food/snacks/grown/banana/mime
@@ -80,7 +87,7 @@
 	icon_state = "mimana"
 	trash = /obj/item/grown/bananapeel/mimanapeel
 	filling_color = "#FFFFEE"
-	distill_reagent = "silencer"
+	distill_reagent = /datum/reagent/consumable/ethanol/silencer
 
 /obj/item/grown/bananapeel/mimanapeel
 	seed = /obj/item/seeds/banana/mime
@@ -92,7 +99,7 @@
 // Bluespace Banana
 /obj/item/seeds/banana/bluespace
 	name = "pack of bluespace banana seeds"
-	desc = "They're seeds that grow into bluespace banana trees. When grown, keep away from bluespace clown."
+	desc = "Mutated bananas capable of using inter-dimensional fatigue to create a temporary overlap between the current dimension and bluespace, spontaneously teleporting entities."
 	icon_state = "seed-banana-blue"
 	species = "bluespacebanana"
 	icon_grow = "banana-grow"
@@ -100,7 +107,7 @@
 	product = /obj/item/reagent_containers/food/snacks/grown/banana/bluespace
 	mutatelist = list()
 	genes = list(/datum/plant_gene/trait/slip, /datum/plant_gene/trait/teleport, /datum/plant_gene/trait/repeated_harvest)
-	reagents_add = list("bluespace" = 0.2, "banana" = 0.1, "vitamin" = 0.04, "nutriment" = 0.02)
+	reagents_add = list(/datum/reagent/bluespace = 0.2, /datum/reagent/consumable/banana = 0.1, /datum/reagent/consumable/nutriment = 0.02)
 	rarity = 30
 
 /obj/item/reagent_containers/food/snacks/grown/banana/bluespace
@@ -125,6 +132,6 @@
 	name = "synthesized banana peel"
 	desc = "A synthetic banana peel."
 
-/obj/item/grown/bananapeel/specialpeel/Initialize(AM)
+/obj/item/grown/bananapeel/specialpeel/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 40)

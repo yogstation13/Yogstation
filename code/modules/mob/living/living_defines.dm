@@ -29,12 +29,15 @@
 	var/lying = 0			//number of degrees. DO NOT USE THIS IN CHECKS. CHECK FOR MOBILITY FLAGS INSTEAD!!
 	var/lying_prev = 0		//last value of lying on update_mobility
 
-	var/audiolocation = FALSE
 	var/confused = 0	//Makes the mob move in random directions.
+
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/timeofdeath = 0
+
+	///This var, if true, kills the mob on initalize
+	var/startDead = FALSE
 
 	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
 	var/incorporeal_move = FALSE //FALSE is off, INCORPOREAL_MOVE_BASIC is normal, INCORPOREAL_MOVE_SHADOW is for ninjas
@@ -91,6 +94,9 @@
 	var/list/status_effects //a list of all status effects the mob has
 	var/druggy = 0
 
+	/// List of changes to body temperature, used by desease symtoms like fever
+	var/list/body_temp_changes = list()
+
 	//Speech
 	var/stuttering = 0
 	var/slurring = 0
@@ -100,8 +106,6 @@
 	var/list/implants = null
 
 	var/datum/riding/riding_datum
-
-	var/datum/language/selected_default_language
 
 	var/last_words	//used for database logging
 
@@ -116,3 +120,9 @@
 	//List of active diseases
 	var/list/diseases = list() // list of all diseases in a mob
 	var/list/disease_resistances = list()
+
+	//Whether the mob is slowed down when dragging another prone mob
+	var/drag_slowdown = TRUE
+
+	//Allergies
+	var/allergies

@@ -11,12 +11,19 @@
 
 	outfit = /datum/outfit/job/quartermaster
 
+	alt_titles = list("Stock Controller", "Cargo Coordinator", "Shipping Overseer")
+
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER
+
+	changed_maps = list("OmegaStation")
+
+/datum/job/qm/proc/OmegaStationChanges()
+	return TRUE
 
 /datum/outfit/job/quartermaster
 	name = "Quartermaster"
@@ -25,10 +32,11 @@
 	belt = /obj/item/pda/quartermaster
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargo
+	uniform_skirt = /obj/item/clothing/under/rank/cargo/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard
-	backpack_contents = list(/obj/item/card/id/departmental_budget/car=1)
+	l_pocket = /obj/item/export_scanner
 
 	chameleon_extras = /obj/item/stamp/qm
 

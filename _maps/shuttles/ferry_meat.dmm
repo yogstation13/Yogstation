@@ -4,12 +4,25 @@
 /area/template_noop)
 "b" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 4
+	dir = 8
 	},
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/transport)
 "c" = (
 /turf/closed/wall/mineral/titanium,
+/area/shuttle/transport)
+"d" = (
+/obj/machinery/door/airlock/freezer{
+	name = "Meat Tradeship Backroom";
+	req_access_txt = "28"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
 /area/shuttle/transport)
 "e" = (
 /turf/closed/wall/mineral/titanium/interior,
@@ -27,7 +40,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/transport)
 "h" = (
-/obj/structure/closet/secure_closet/freezer/meat{
+/obj/structure/closet/secure_closet/freezer/meat/open{
 	name = "\"meat\" fridge"
 	},
 /obj/item/reagent_containers/food/snacks/meat/slab/bear,
@@ -77,7 +90,13 @@
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/transport)
 "l" = (
-/obj/structure/table/reinforced,
+/obj/machinery/door/airlock/titanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/transport)
 "m" = (
@@ -94,12 +113,20 @@
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/transport)
 "o" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/shuttle/transport)
 "p" = (
-/obj/machinery/door/airlock/titanium,
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/transport)
 "q" = (
@@ -113,6 +140,12 @@
 	port_direction = 2;
 	width = 5
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/transport)
 "t" = (
@@ -121,13 +154,6 @@
 /area/shuttle/transport)
 "u" = (
 /obj/structure/kitchenspike,
-/turf/open/floor/plasteel/freezer,
-/area/shuttle/transport)
-"v" = (
-/obj/machinery/door/airlock/freezer{
-	name = "Meat Tradeship Backroom";
-	req_access_txt = "28"
-	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/transport)
 "w" = (
@@ -140,7 +166,7 @@
 (1,1,1) = {"
 a
 b
-p
+l
 b
 a
 "}
@@ -195,9 +221,9 @@ c
 "}
 (9,1,1) = {"
 c
-l
-l
-v
+p
+p
+d
 c
 "}
 (10,1,1) = {"

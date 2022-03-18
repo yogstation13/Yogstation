@@ -8,7 +8,6 @@
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_FORENSICS_LOCKERS)
 	circuit = /obj/item/circuitboard/computer/med_data
 	var/obj/item/card/id/scan = null
-	var/authenticated = null
 	var/rank = null
 	var/screen = null
 	var/datum/data/record/active1
@@ -30,7 +29,7 @@
 		if(!user.transferItemToLoc(O, src))
 			return
 		scan = O
-		to_chat(user, "<span class='notice'>You insert [O].</span>")
+		to_chat(user, span_notice("You insert [O]."))
 	else
 		return ..()
 
@@ -48,7 +47,6 @@
 <A href='?src=[REF(src)];search=1'>Search Records</A>
 <BR><A href='?src=[REF(src)];screen=2'>List Records</A>
 <BR>
-<BR><A href='?src=[REF(src)];screen=5'>Virus Database</A>
 <BR><A href='?src=[REF(src)];screen=6'>Medbot Tracking</A>
 <BR>
 <BR><A href='?src=[REF(src)];screen=3'>Record Maintenance</A>
@@ -116,7 +114,7 @@
 						dat += "<td><a href='?src=[REF(src)];field=show_photo_front'><img src=photo_front height=80 width=80 border=4></a></td>"
 						dat += "<td><a href='?src=[REF(src)];field=show_photo_side'><img src=photo_side height=80 width=80 border=4></a></td></tr>"
 						dat += "<tr><td>ID:</td><td>[active1.fields["id"]]</td></tr>"
-						dat += "<tr><td>Sex:</td><td><A href='?src=[REF(src)];field=sex'>&nbsp;[active1.fields["sex"]]&nbsp;</A></td></tr>"
+						dat += "<tr><td>Gender:</td><td><A href='?src=[REF(src)];field=gender'>&nbsp;[active1.fields["gender"]]&nbsp;</A></td></tr>"
 						dat += "<tr><td>Age:</td><td><A href='?src=[REF(src)];field=age'>&nbsp;[active1.fields["age"]]&nbsp;</A></td></tr>"
 						dat += "<tr><td>Species:</td><td><A href='?src=[REF(src)];field=species'>&nbsp;[active1.fields["species"]]&nbsp;</A></td></tr>"
 						dat += "<tr><td>Fingerprint:</td><td><A href='?src=[REF(src)];field=fingerprint'>&nbsp;[active1.fields["fingerprint"]]&nbsp;</A></td></tr>"
@@ -154,14 +152,6 @@
 					dat += "<tr><td><A href='?src=[REF(src)];screen=2'>Back</A></td></tr>"
 					dat += "</table>"
 				if(5)
-					dat += "<CENTER><B>Virus Database</B></CENTER>"
-					for(var/Dt in typesof(/datum/disease/))
-						var/datum/disease/Dis = new Dt(0)
-						if(istype(Dis, /datum/disease/advance))
-							continue // TODO (tm): Add advance diseases to the virus database which no one uses.
-						if(!Dis.desc)
-							continue
-						dat += "<br><a href='?src=[REF(src)];vir=[Dt]'>[Dis.name]</a>"
 					dat += "<br><a href='?src=[REF(src)];screen=1'>Back</a>"
 				if(6)
 					dat += "<center><b>Medical Robot Monitor</b></center>"
@@ -189,7 +179,6 @@
 			dat += "<A href='?src=[REF(src)];login=1'>{Log In}</A>"
 	var/datum/browser/popup = new(user, "med_rec", "Medical Records Console", 600, 400)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/med_data/Topic(href, href_list)
@@ -259,25 +248,11 @@
 				src.screen = text2num(href_list["screen"])
 				if(src.screen < 1)
 					src.screen = 1
+				if(src.screen == 5)
+					src.screen = 1
 
 				src.active1 = null
 				src.active2 = null
-
-			else if(href_list["vir"])
-				var/type = href_list["vir"]
-				var/datum/disease/Dis = new type(0)
-				var/AfS = ""
-				for(var/mob/M in Dis.viable_mobtypes)
-					AfS += " [initial(M.name)];"
-				src.temp = {"<b>Name:</b> [Dis.name]
-<BR><b>Number of stages:</b> [Dis.max_stages]
-<BR><b>Spread:</b> [Dis.spread_text] Transmission
-<BR><b>Possible Cure:</b> [(Dis.cure_text||"none")]
-<BR><b>Affected Lifeforms:</b>[AfS]
-<BR>
-<BR><b>Notes:</b> [Dis.desc]
-<BR>
-<BR><b>Severity:</b> [Dis.severity]"}
 
 			else if(href_list["del_all"])
 				src.temp = "Are you sure you wish to delete all records?<br>\n\t<A href='?src=[REF(src)];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='?src=[REF(src)];temp=1'>No</A><br>"
@@ -297,12 +272,14 @@
 							if(!canUseMedicalRecordsConsole(usr, t1, a1))
 								return
 							src.active1.fields["fingerprint"] = t1
-					if("sex")
+					if("gender")
 						if(active1)
-							if(src.active1.fields["sex"] == "Male")
-								src.active1.fields["sex"] = "Female"
+							if(src.active1.fields["gender"] == "Male")
+								src.active1.fields["gender"] = "Female"
+							else if(src.active1.fields["gender"] == "Female")
+								src.active1.fields["gender"] = "Other"
 							else
-								src.active1.fields["sex"] = "Male"
+								src.active1.fields["gender"] = "Male"
 					if("age")
 						if(active1)
 							var/t1 = input("Please input age:", "Med. records", src.active1.fields["age"], null)  as num
@@ -530,7 +507,7 @@
 					var/obj/item/paper/P = new /obj/item/paper( src.loc )
 					P.info = "<CENTER><B>Medical Record - (MR-[GLOB.data_core.medicalPrintCount])</B></CENTER><BR>"
 					if(active1 in GLOB.data_core.general)
-						P.info += text("Name: [] ID: []<BR>\nSex: []<BR>\nAge: []<BR>", src.active1.fields["name"], src.active1.fields["id"], src.active1.fields["sex"], src.active1.fields["age"])
+						P.info += text("Name: [] ID: []<BR>\nGender: []<BR>\nAge: []<BR>", src.active1.fields["name"], src.active1.fields["id"], src.active1.fields["gender"], src.active1.fields["age"])
 						P.info += "\nSpecies: [active1.fields["species"]]<BR>"
 						P.info += text("\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src.active1.fields["fingerprint"], src.active1.fields["p_stat"], src.active1.fields["m_stat"])
 					else
@@ -546,6 +523,7 @@
 						P.info += "<B>Medical Record Lost!</B><BR>"
 						P.name = text("MR-[] '[]'", GLOB.data_core.medicalPrintCount, "Record Lost")
 					P.info += "</TT>"
+					P.update_icon()
 					src.printing = null
 
 	src.add_fingerprint(usr)
@@ -560,11 +538,11 @@
 				switch(rand(1,6))
 					if(1)
 						if(prob(10))
-							R.fields["name"] = random_unique_lizard_name(R.fields["sex"],1)
+							R.fields["name"] = random_unique_lizard_name(R.fields["gender"],1)
 						else
-							R.fields["name"] = random_unique_name(R.fields["sex"],1)
+							R.fields["name"] = random_unique_name(R.fields["gender"],1)
 					if(2)
-						R.fields["sex"]	= pick("Male", "Female")
+						R.fields["gender"]	= pick("Male", "Female", "Other")
 					if(3)
 						R.fields["age"] = rand(AGE_MIN, AGE_MAX)
 					if(4)
@@ -583,7 +561,7 @@
 	if(user)
 		if(message)
 			if(authenticated)
-				if(user.canUseTopic(src))
+				if(user.canUseTopic(src, BE_CLOSE))
 					if(!record1 || record1 == active1)
 						if(!record2 || record2 == active2)
 							return 1
@@ -597,3 +575,14 @@
 	icon_keyboard = "laptop_key"
 	clockwork = TRUE //it'd look weird
 	pass_flags = PASSTABLE
+
+/obj/machinery/computer/med_data/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(scan)
+		user.put_in_hands(scan)
+		scan = null
+	else
+		var/obj/item/I = usr.is_holding_item_of_type(/obj/item/card/id)
+		if(I && user.transferItemToLoc(I, src))
+			scan = I

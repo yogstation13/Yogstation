@@ -20,9 +20,11 @@
 	var/atom/target = get_edge_target_turf(src, dir)
 	for(var/atom/movable/O in loc)
 		if(!O.anchored || ismecha(O))	//Mechs need their launch platforms.
+			if(ismob(O) && !isliving(O))
+				continue
 			O_limit++
 			if(O_limit >= 20)
-				audible_message("<span class='notice'>[src] lets out a screech, it doesn't seem to be able to handle the load.</span>")
+				audible_message(span_notice("[src] lets out a screech, it doesn't seem to be able to handle the load."))
 				break
 			use_power(500)
 			O.throw_at(target, drive_range * power, power)

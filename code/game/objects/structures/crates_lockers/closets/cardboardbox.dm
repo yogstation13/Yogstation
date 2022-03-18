@@ -13,6 +13,7 @@
 	material_drop = /obj/item/stack/sheet/cardboard
 	delivery_icon = "deliverybox"
 	anchorable = FALSE
+	door_anim_time = 0 // no animation
 	var/move_speed_multiplier = 1
 	var/move_delay = FALSE
 	var/egged = 0
@@ -69,3 +70,14 @@
 	open_sound = 'sound/machines/click.ogg'
 	material_drop = /obj/item/stack/sheet/plasteel
 #undef SNAKE_SPAM_TICKS
+
+/obj/structure/closet/cardboard/relaymove(mob/living/user, direction)
+	if(!istype(user) || opened || move_delay || user.incapacitated() || !isturf(loc) || !has_gravity(loc))
+		return
+	move_delay = TRUE
+	var/oldloc = loc
+	step(src, direction)
+	if(oldloc != loc)
+		addtimer(CALLBACK(src, .proc/ResetMoveDelay), CONFIG_GET(number/movedelay/walk_delay) * move_speed_multiplier)
+	else
+		move_delay = FALSE

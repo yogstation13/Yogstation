@@ -6,10 +6,9 @@
 
 	w_class = WEIGHT_CLASS_TINY
 
-	var/taste_sensitivity = 15
+	speech_span = null
 
-/obj/item/taster/get_spans()
-	return list()
+	var/taste_sensitivity = 15
 
 /obj/item/taster/afterattack(atom/O, mob/user, proximity)
 	. = ..()
@@ -18,4 +17,4 @@
 
 	if(O.reagents)
 		var/message = O.reagents.generate_taste_message(taste_sensitivity)
-		to_chat(user, "<span class='notice'>[src] tastes <span class='italics'>[message]</span> in [O].</span>")
+		to_chat(user, span_notice("[src] tastes [span_italics("[message]")] in [O]."))

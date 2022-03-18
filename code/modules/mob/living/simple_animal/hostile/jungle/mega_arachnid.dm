@@ -50,7 +50,7 @@
 
 /obj/item/projectile/mega_arachnid
 	name = "flesh snare"
-	nodamage = 1
+	nodamage = TRUE
 	damage = 0
 	icon_state = "tentacle_end"
 
@@ -63,6 +63,7 @@
 /obj/item/restraints/legcuffs/beartrap/mega_arachnid
 	name = "fleshy restraints"
 	desc = "Used by mega arachnids to immobilize their prey."
+	armed = TRUE
 	item_flags = DROPDEL
 	flags_1 = NONE
 	icon_state = "tentacle_end"

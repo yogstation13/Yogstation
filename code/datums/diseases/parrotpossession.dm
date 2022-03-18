@@ -5,7 +5,7 @@
 	spread_flags = DISEASE_SPREAD_SPECIAL
 	disease_flags = CURABLE
 	cure_text = "Holy Water."
-	cures = list("holywater")
+	cures = list(/datum/reagent/water/holywater)
 	cure_chance = 20
 	agent = "Avian Vengence"
 	viable_mobtypes = list(/mob/living/carbon/human)
@@ -26,5 +26,5 @@
 /datum/disease/parrot_possession/cure()
 	if(parrot && parrot.loc == affected_mob)
 		parrot.forceMove(affected_mob.drop_location())
-		affected_mob.visible_message("<span class='danger'>[parrot] is violently driven out of [affected_mob]!</span>", "<span class='userdanger'>[parrot] bursts out of your chest!</span>")
+		affected_mob.visible_message(span_danger("[parrot] is violently driven out of [affected_mob]!"), span_userdanger("[parrot] bursts out of your chest!"))
 	..()

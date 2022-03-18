@@ -1,3 +1,6 @@
+//*******************Contains everything related to the flora on lavaland.*******************************
+//This includes: The structures, their produce, their seeds and the crafting recipe for the mushroom bowl
+
 /obj/structure/flora/ash
 	gender = PLURAL
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER //sporangiums up don't shoot
@@ -37,7 +40,7 @@
 				msg = harvest_message_low
 			else if(rand_harvested == harvest_amount_high)
 				msg = harvest_message_high
-			to_chat(user, "<span class='notice'>[msg]</span>")
+			to_chat(user, span_notice("[msg]"))
 		for(var/i in 1 to rand_harvested)
 			new harvest(get_turf(src))
 
@@ -55,8 +58,8 @@
 	harvested = FALSE
 
 /obj/structure/flora/ash/attackby(obj/item/W, mob/user, params)
-	if(!harvested && needs_sharp_harvest && W.sharpness)
-		user.visible_message("<span class='notice'>[user] starts to harvest from [src] with [W].</span>","<span class='notice'>You begin to harvest from [src] with [W].</span>")
+	if(!harvested && needs_sharp_harvest && W.is_sharp())
+		user.visible_message(span_notice("[user] starts to harvest from [src] with [W]."),span_notice("You begin to harvest from [src] with [W]."))
 		if(do_after(user, harvest_time, target = src))
 			harvest(user)
 	else
@@ -67,7 +70,7 @@
 	if(.)
 		return
 	if(!harvested && !needs_sharp_harvest)
-		user.visible_message("<span class='notice'>[user] starts to harvest from [src].</span>","<span class='notice'>You begin to harvest from [src].</span>")
+		user.visible_message(span_notice("[user] starts to harvest from [src]."),span_notice("You begin to harvest from [src]."))
 		if(do_after(user, harvest_time, target = src))
 			harvest(user)
 
@@ -143,57 +146,152 @@
 	// min dmg 3, max dmg 6, prob(70)
 	AddComponent(/datum/component/caltrop, 3, 6, 70)
 
+//SNACKS
+
 /obj/item/reagent_containers/food/snacks/grown/ash_flora
 	name = "mushroom shavings"
 	desc = "Some shavings from a tall mushroom. With enough, might serve as a bowl."
 	icon = 'icons/obj/lavaland/ash_flora.dmi'
 	icon_state = "mushroom_shavings"
-	list_reagents = list("sugar" = 3, "ethanol" = 2, "stabilizing_agent" = 3, "minttoxin" = 2)
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
 	seed = /obj/item/seeds/lavaland/polypore
-	wine_power = 20
+	distill_reagent = /datum/reagent/consumable/ethanol/polyporepop
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/Initialize()
 	. = ..()
 	pixel_x = rand(-4, 4)
 	pixel_y = rand(-4, 4)
 
-
-/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings //for actual crafting
+/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings //So we can't craft bowls from everything.
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_leaf
 	name = "mushroom leaf"
 	desc = "A leaf, from a mushroom."
-	list_reagents = list("nutriment" = 3, "vitfro" = 2, "nicotine" = 2)
 	icon_state = "mushroom_leaf"
 	seed = /obj/item/seeds/lavaland/porcini
-	wine_power = 40
+	distill_reagent = /datum/reagent/consumable/ethanol/porcinisap
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap
 	name = "mushroom cap"
 	desc = "The cap of a large mushroom."
-	list_reagents = list("mindbreaker" = 2, "entpoly" = 4, "mushroomhallucinogen" = 2)
 	icon_state = "mushroom_cap"
 	seed = /obj/item/seeds/lavaland/inocybe
-	wine_power = 70
+	distill_reagent = /datum/reagent/consumable/ethanol/inocybeshine
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem
 	name = "mushroom stem"
 	desc = "A long mushroom stem. It's slightly glowing."
-	list_reagents = list("tinlux" = 2, "vitamin" = 1, "space_drugs" = 1)
 	icon_state = "mushroom_stem"
 	seed = /obj/item/seeds/lavaland/ember
-	wine_power = 60
+	distill_reagent = /datum/reagent/consumable/ethanol/embershroomcream
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit
 	name = "cactus fruit"
-	list_reagents = list("vitamin" = 2, "nutriment" = 2, "vitfro" = 4)
 	desc = "A cactus fruit covered in a thick, reddish skin. And some ash."
 	icon_state = "cactus_fruit"
 	seed = /obj/item/seeds/lavaland/cactus
-	wine_power = 50
+	distill_reagent = /datum/reagent/consumable/ethanol/cactuscooler
+
+//SEEDS
+
+/obj/item/seeds/lavaland
+	name = "lavaland seeds"
+	desc = "You should never see this."
+	lifespan = 50
+	endurance = 25
+	maturation = 7
+	production = 4
+	yield = 4
+	potency = 15
+	growthstages = 3
+	rarity = 20
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
+	resistance_flags = FIRE_PROOF
+
+/obj/item/seeds/lavaland/cactus
+	name = "pack of fruiting cactus seeds"
+	desc = "These seeds grow into fruiting cacti."
+	icon_state = "seed-cactus"
+	species = "cactus"
+	plantname = "Fruiting Cactus"
+	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit
+	genes = list(/datum/plant_gene/trait/fire_resistance)
+	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
+	growthstages = 2
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.02, /datum/reagent/consumable/vitfro = 0.08, /datum/reagent/consumable/ashresin = 0.02)
+
+/obj/item/seeds/lavaland/polypore
+	name = "pack of polypore mycelium"
+	desc = "This mycelium grows into bracket mushrooms, also known as polypores. Woody and firm, shaft miners often use them for makeshift crafts."
+	icon_state = "mycelium-polypore"
+	species = "polypore"
+	plantname = "Polypore Mushrooms"
+	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
+	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	reagents_add = list(/datum/reagent/consumable/sugar = 0.06, /datum/reagent/consumable/ethanol = 0.04, /datum/reagent/stabilizing_agent = 0.06, /datum/reagent/toxin/minttoxin = 0.02, /datum/reagent/consumable/ashresin = 0.08)
+
+/obj/item/seeds/lavaland/porcini
+	name = "pack of porcini mycelium"
+	desc = "This mycelium grows into Boletus edulus, also known as porcini. Native to the late Earth, but discovered on Lavaland. Has culinary, medicinal and relaxant effects."
+	icon_state = "mycelium-porcini"
+	species = "porcini"
+	plantname = "Porcini Mushrooms"
+	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_leaf
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
+	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.02, /datum/reagent/consumable/vitfro = 0.04, /datum/reagent/drug/nicotine = 0.04, /datum/reagent/consumable/ashresin = 0.02)
+
+/obj/item/seeds/lavaland/inocybe
+	name = "pack of inocybe mycelium"
+	desc = "This mycelium grows into an inocybe mushroom, a species of Lavaland origin with hallucinatory and toxic effects."
+	icon_state = "mycelium-inocybe"
+	species = "inocybe"
+	plantname = "Inocybe Mushrooms"
+	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
+	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	reagents_add = list(/datum/reagent/toxin/mindbreaker = 0.04, /datum/reagent/consumable/entpoly = 0.08, /datum/reagent/drug/mushroomhallucinogen = 0.04, /datum/reagent/consumable/ashresin = 0.02)
+
+/obj/item/seeds/lavaland/ember
+	name = "pack of embershroom mycelium"
+	desc = "This mycelium grows into embershrooms, a species of bioluminescent mushrooms native to Lavaland."
+	icon_state = "mycelium-ember"
+	species = "ember"
+	plantname = "Embershroom Mushrooms"
+	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/glow, /datum/plant_gene/trait/fire_resistance)
+	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	reagents_add = list(/datum/reagent/consumable/tinlux = 0.04, /datum/reagent/consumable/nutriment = 0.02, /datum/reagent/drug/space_drugs = 0.02, /datum/reagent/consumable/ashresin = 0.02)
+
+//CRAFTING
+/datum/crafting_recipe/mushroomwood
+	name = "Wood Substitute"
+	result = /obj/item/stack/sheet/mineral/wood/mushroom
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 2)
+	time = 2 SECONDS
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/mushroom_bowl
+	name = "Mushroom Bowl"
+	result = /obj/item/reagent_containers/glass/bowl/mushroom_bowl
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 5)
+	time = 3 SECONDS
+	category = CAT_PRIMAL
+
+/obj/item/reagent_containers/food/snacks/customizable/salad/ashsalad
+	desc = "Very ashy."
+	trash = /obj/item/reagent_containers/glass/bowl/mushroom_bowl
+	icon = 'icons/obj/lavaland/ash_flora.dmi'
+	icon_state = "mushroom_bowl"
+
+/obj/item/reagent_containers/food/snacks/customizable/soup/ashsoup
+	desc = "A bowl with ash and... stuff in it."
+	trash = /obj/item/reagent_containers/glass/bowl/mushroom_bowl
+	icon = 'icons/obj/lavaland/ash_flora.dmi'
+	icon_state = "mushroom_soup"
 
 /obj/item/reagent_containers/glass/bowl/mushroom_bowl
 	name = "mushroom bowl"
@@ -214,11 +312,11 @@
 	if(istype(I, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/S = I
 		if(I.w_class > WEIGHT_CLASS_SMALL)
-			to_chat(user, "<span class='warning'>The ingredient is too big for [src]!</span>")
+			to_chat(user, span_warning("The ingredient is too big for [src]!"))
 		else if(contents.len >= 20)
-			to_chat(user, "<span class='warning'>You can't add more ingredients to [src]!</span>")
+			to_chat(user, span_warning("You can't add more ingredients to [src]!"))
 		else
-			if(reagents.has_reagent("water", 10)) //are we starting a soup or a salad?
+			if(reagents.has_reagent(/datum/reagent/water, 10)) //are we starting a soup or a salad?
 				var/obj/item/reagent_containers/food/snacks/customizable/A = new/obj/item/reagent_containers/food/snacks/customizable/soup/ashsoup(get_turf(src))
 				A.initialize_custom_food(src, S, user)
 			else
@@ -226,23 +324,3 @@
 				A.initialize_custom_food(src, S, user)
 	else
 		. = ..()
-
-//what you can craft with these things
-/datum/crafting_recipe/mushroom_bowl
-	name = "Mushroom Bowl"
-	result = /obj/item/reagent_containers/glass/bowl/mushroom_bowl
-	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 5)
-	time = 30
-	category = CAT_PRIMAL
-
-/obj/item/reagent_containers/food/snacks/customizable/salad/ashsalad
-	desc = "Very ashy."
-	trash = /obj/item/reagent_containers/glass/bowl/mushroom_bowl
-	icon = 'icons/obj/lavaland/ash_flora.dmi'
-	icon_state = "mushroom_bowl"
-
-/obj/item/reagent_containers/food/snacks/customizable/soup/ashsoup
-	desc = "A bowl with ash and... stuff in it."
-	trash = /obj/item/reagent_containers/glass/bowl/mushroom_bowl
-	icon = 'icons/obj/lavaland/ash_flora.dmi'
-	icon_state = "mushroom_soup"

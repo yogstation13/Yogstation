@@ -13,6 +13,9 @@
 #define TK_MAXRANGE 15
 
 /atom/proc/attack_tk(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
+		to_chat(user, span_notice("You can't touch things, even with your mind!"))
+		return
 	if(user.stat || !tkMaxRangeCheck(user, src))
 		return
 	new /obj/effect/temp_visual/telekinesis(get_turf(src))
@@ -99,16 +102,16 @@
 
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_HANDS)
 		return
 	qdel(src)
-	return
 
 /obj/item/tk_grab/examine(user)
 	if (focus)
-		focus.examine(user)
+		return focus.examine(user)
 	else
-		..()
+		return ..()
 
 /obj/item/tk_grab/attack_self(mob/user)
 	if(!focus)
@@ -170,7 +173,7 @@
 	if(!tk_user || !istype(tk_user) || QDELETED(target) || !istype(target) || !tk_user.dna.check_mutation(TK))
 		qdel(src)
 		return
-	if(!tkMaxRangeCheck(tk_user, target) || target.anchored || !isturf(target.loc))
+	if(!tkMaxRangeCheck(tk_user, target) || target.anchored || target.buckled_mobs?.len || !isturf(target.loc))
 		qdel(src)
 		return
 	return TRUE
@@ -192,7 +195,7 @@
 		focus.plane = old_plane
 
 /obj/item/tk_grab/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is using [user.p_their()] telekinesis to choke [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is using [user.p_their()] telekinesis to choke [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (OXYLOSS)
 
 

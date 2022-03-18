@@ -7,15 +7,23 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
-	selection_color = "#ffeef0"
+	selection_color = "#d4ebf2"
+	alt_titles = list("Counsellor", "Therapist", "Mentalist")
 
 	outfit = /datum/outfit/job/psych
+
+	minimal_character_age = 24 // "According to age statistics published by the Association of American Medical Colleges, the average age among medical students who matriculated at U.S. medical schools in the 2017-2018 school year was 24"
 
 	access = list(ACCESS_MEDICAL)
 	minimal_access = list(ACCESS_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_PSYCHIATRIST
+
+	changed_maps = list("OmegaStation")
+
+/datum/job/psych/proc/OmegaStationChanges()
+	return TRUE
 
 /datum/outfit/job/psych
 	name = "Psych"

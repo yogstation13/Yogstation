@@ -3,7 +3,7 @@
 // Data from the seeds carry over to these grown foods
 // ***********************************************************
 
-// Base type. Subtypes are found in /grown dir.
+// Base type. Subtypes are found in /grown dir. Lavaland-based subtypes can be found in mining/ash_flora.dm
 /obj/item/reagent_containers/food/snacks/grown
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	var/obj/item/seeds/seed = null // type path, gets converted to item on New(). It's safe to assume it's always a seed item.
@@ -56,16 +56,35 @@
 	return 0
 
 /obj/item/reagent_containers/food/snacks/grown/examine(user)
-	..()
+	. = ..()
 	if(seed)
 		for(var/datum/plant_gene/trait/T in seed.genes)
 			if(T.examine_line)
-				to_chat(user, T.examine_line)
+				. += T.examine_line
+
+/// Ghost attack proc
+/obj/item/reagent_containers/food/snacks/grown/attack_ghost(mob/user)
+	..()
+	var/msg = "<span class='info'>*---------*\n This is \a [span_name("[src]")].\n"
+	if(seed)
+		msg += seed.get_analyzer_text()
+	var/reag_txt = ""
+	if(seed)
+		for(var/reagent_id in seed.reagents_add)
+			var/datum/reagent/R  = GLOB.chemical_reagents_list[reagent_id]
+			var/amt = reagents.get_reagent_amount(reagent_id)
+			reag_txt += "\n[span_info("- [R.name]: [amt]")]"
+
+	if(reag_txt)
+		msg += reag_txt
+		msg += "<br>[span_info("*---------*")]"
+	to_chat(user, msg)
 
 /obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O, mob/user, params)
 	..()
 	if (istype(O, /obj/item/plant_analyzer))
-		var/msg = "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>.\n"
+		playsound(src, 'sound/effects/fastbeep.ogg', 30)
+		var/msg = "<span class='info'>*---------*\n This is \a [span_name("[src]")].\n"
 		if(seed)
 			msg += seed.get_analyzer_text()
 		var/reag_txt = ""
@@ -73,11 +92,11 @@
 			for(var/reagent_id in seed.reagents_add)
 				var/datum/reagent/R  = GLOB.chemical_reagents_list[reagent_id]
 				var/amt = reagents.get_reagent_amount(reagent_id)
-				reag_txt += "\n<span class='info'>- [R.name]: [amt]</span>"
+				reag_txt += "\n[span_info("- [R.name]: [amt]")]"
 
 		if(reag_txt)
 			msg += reag_txt
-			msg += "<br><span class='info'>*---------*</span>"
+			msg += "<br>[span_info("*---------*")]"
 		to_chat(user, msg)
 	else
 		if(seed)
@@ -113,7 +132,7 @@
 	if(trash)
 		generate_trash(T)
 
-	visible_message("<span class='warning'>[src] has been squashed.</span>","<span class='italics'>You hear a smack.</span>")
+	visible_message(span_warning("[src] has been squashed."),span_italics("You hear a smack."))
 	if(seed)
 		for(var/datum/plant_gene/trait/trait in seed.genes)
 			trait.on_squash(src, target)
@@ -140,31 +159,31 @@
 
 /obj/item/reagent_containers/food/snacks/grown/grind_requirements()
 	if(dry_grind && !dry)
-		to_chat(usr, "<span class='warning'>[src] needs to be dry before it can be ground up!</span>")
+		to_chat(usr, span_warning("[src] needs to be dry before it can be ground up!"))
 		return
 	return TRUE
 
 /obj/item/reagent_containers/food/snacks/grown/on_grind()
-	var/nutriment = reagents.get_reagent_amount("nutriment")
+	var/nutriment = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 	if(grind_results&&grind_results.len)
 		for(var/i in 1 to grind_results.len)
 			grind_results[grind_results[i]] = nutriment
-		reagents.del_reagent("nutriment")
-		reagents.del_reagent("vitamin")
+		reagents.del_reagent(/datum/reagent/consumable/nutriment)
+		reagents.del_reagent(/datum/reagent/consumable/nutriment/vitamin)
 
 /obj/item/reagent_containers/food/snacks/grown/on_juice()
-	var/nutriment = reagents.get_reagent_amount("nutriment")
+	var/nutriment = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 	if(juice_results&&juice_results.len)
 		for(var/i in 1 to juice_results.len)
 			juice_results[juice_results[i]] = nutriment
-		reagents.del_reagent("nutriment")
-		reagents.del_reagent("vitamin")
+		reagents.del_reagent(/datum/reagent/consumable/nutriment)
+		reagents.del_reagent(/datum/reagent/consumable/nutriment/vitamin)
 
-// For item-containing growns such as eggy or gatfruit
+// For item-containing growns such as eggy
 /obj/item/reagent_containers/food/snacks/grown/shell/attack_self(mob/user)
 	var/obj/item/T
 	if(trash)
 		T = generate_trash()
 		qdel(src)
 		user.putItemFromInventoryInHandIfPossible(T, user.active_hand_index, TRUE)
-		to_chat(user, "<span class='notice'>You open [src]\'s shell, revealing \a [T].</span>")
+		to_chat(user, span_notice("You open [src]\'s shell, revealing \a [T]."))

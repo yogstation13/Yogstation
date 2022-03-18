@@ -6,7 +6,7 @@
 	var/category //string of what category this mood was added in as
 	var/special_screen_obj //if it isn't null, it will replace or add onto the mood icon with this (same file). see happiness drug for example
 	var/special_screen_replace = TRUE //if false, it will be an overlay instead
-	var/mob/owner
+	var/datum/component/mood/owner
 
 /datum/mood_event/New(mob/M, param)
 	owner = M

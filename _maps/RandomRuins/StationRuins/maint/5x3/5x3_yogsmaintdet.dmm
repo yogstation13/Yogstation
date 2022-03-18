@@ -1,0 +1,74 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/maintenance/aft)
+"o" = (
+/obj/structure/chair/wood,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"p" = (
+/obj/item/clothing/head/fedora/det_hat,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"q" = (
+/obj/item/cigbutt,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"A" = (
+/obj/item/book/manual/wiki/detective,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/maintenance/aft)
+"C" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/reagent_containers/food/drinks/flask/det,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"L" = (
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"Q" = (
+/obj/structure/rack,
+/obj/item/detective_scanner,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"S" = (
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"Z" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+/obj/item/cigbutt,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+
+(1,1,1) = {"
+A
+L
+L
+"}
+(2,1,1) = {"
+p
+Z
+c
+"}
+(3,1,1) = {"
+o
+C
+L
+"}
+(4,1,1) = {"
+q
+c
+q
+"}
+(5,1,1) = {"
+Q
+L
+S
+"}

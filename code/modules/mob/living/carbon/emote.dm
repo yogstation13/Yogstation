@@ -34,11 +34,23 @@
 							'sound/misc/clap3.ogg',
 							'sound/misc/clap4.ogg')
 
+/datum/emote/living/carbon/crack
+	key = "crack"
+	key_third_person = "cracks"
+	message = "cracks their knuckles."
+	sound = 'sound/misc/knuckles.ogg'
+	cooldown = 6 SECONDS
+
+/datum/emote/living/carbon/crack/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
+	if(user.get_num_arms() < 2)
+		return FALSE
+	return ..()
+
 /datum/emote/living/carbon/gnarl
 	key = "gnarl"
 	key_third_person = "gnarls"
 	message = "gnarls and shows its teeth..."
-	mob_type_allowed_typecache = list(/mob/living/carbon/monkey, /mob/living/carbon/alien)
+	mob_type_allowed_typecache = list(/mob/living/carbon/monkey)
 
 /datum/emote/living/carbon/moan
 	key = "moan"
@@ -95,3 +107,15 @@
 	key = "wink"
 	key_third_person = "winks"
 	message = "winks."
+
+/datum/emote/living/snap
+	key = "snap"
+	key_third_person = "snaps"
+	message = "snaps their fingers."
+	message_param = "snaps their fingers at %t."
+	emote_type = EMOTE_AUDIBLE
+	mob_type_allowed_typecache = list(/mob/living/carbon/human)
+	restraint_check = TRUE
+
+/datum/emote/living/snap/get_sound(mob/living/user)
+	return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')

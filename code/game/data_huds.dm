@@ -40,6 +40,7 @@
 	check_sensors(H) ? add_to_hud(H) : remove_from_hud(H)
 
 /datum/atom_hud/data/human/medical/advanced
+	do_silicon_check = TRUE
 
 /datum/atom_hud/data/human/security
 
@@ -48,14 +49,16 @@
 
 /datum/atom_hud/data/human/security/advanced
 	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD, NANITE_HUD)
+	do_silicon_check = TRUE
 
 /datum/atom_hud/data/diagnostic
 
 /datum/atom_hud/data/diagnostic/basic
-	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_CIRCUIT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD, DIAG_NANITE_FULL_HUD)
+	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_CIRCUIT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD, DIAG_NANITE_FULL_HUD, DIAG_LAUNCHPAD_HUD)
+	do_silicon_check = TRUE
 
 /datum/atom_hud/data/diagnostic/advanced
-	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_CIRCUIT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD, DIAG_NANITE_FULL_HUD, DIAG_PATH_HUD)
+	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_CIRCUIT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD, DIAG_NANITE_FULL_HUD, DIAG_LAUNCHPAD_HUD, DIAG_PATH_HUD)
 
 /datum/atom_hud/data/bot_path
 	hud_icons = list(DIAG_PATH_HUD)
@@ -102,54 +105,17 @@
 
 //helper for getting the appropriate health status
 /proc/RoundHealth(mob/living/M)
-	if(M.stat == DEAD || (M.has_trait(TRAIT_FAKEDEATH)))
+	if(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKEDEATH)))
 		return "health-100" //what's our health? it doesn't matter, we're dead, or faking
+
 	var/maxi_health = M.maxHealth
 	if(iscarbon(M) && M.health < 0)
 		maxi_health = 100 //so crit shows up right for aliens and other high-health carbon mobs; noncarbons don't have crit.
 	var/resulthealth = (M.health / maxi_health) * 100
-	switch(resulthealth)
-		if(100 to INFINITY)
-			return "health100"
-		if(90.625 to 100)
-			return "health93.75"
-		if(84.375 to 90.625)
-			return "health87.5"
-		if(78.125 to 84.375)
-			return "health81.25"
-		if(71.875 to 78.125)
-			return "health75"
-		if(65.625 to 71.875)
-			return "health68.75"
-		if(59.375 to 65.625)
-			return "health62.5"
-		if(53.125 to 59.375)
-			return "health56.25"
-		if(46.875 to 53.125)
-			return "health50"
-		if(40.625 to 46.875)
-			return "health43.75"
-		if(34.375 to 40.625)
-			return "health37.5"
-		if(28.125 to 34.375)
-			return "health31.25"
-		if(21.875 to 28.125)
-			return "health25"
-		if(15.625 to 21.875)
-			return "health18.75"
-		if(9.375 to 15.625)
-			return "health12.5"
-		if(1 to 9.375)
-			return "health6.25"
-		if(-50 to 1)
-			return "health0"
-		if(-85 to -50)
-			return "health-50"
-		if(-99 to -85)
-			return "health-85"
-		else
-			return "health-100"
-	return "0"
+
+	//rounds the health to the nearest multiple of 6.25, the minimum is -93.75 to prevent showing as dead when you are 2 hitpoints away from death
+	var/roundedhealth = clamp(round(resulthealth / 6.25)*6.25, -93.75, 100);
+	return "health[roundedhealth]"
 
 //HOOKS
 
@@ -174,7 +140,7 @@
 	var/image/holder = hud_list[STATUS_HUD]
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
-	if(stat == DEAD || (has_trait(TRAIT_FAKEDEATH)))
+	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
 		holder.icon_state = "huddead"
 	else
 		holder.icon_state = "hudhealthy"
@@ -184,9 +150,9 @@
 	var/icon/I = icon(icon, icon_state, dir)
 	var/virus_threat = check_virus()
 	holder.pixel_y = I.Height() - world.icon_size
-	if(has_trait(TRAIT_XENO_HOST))
+	if(HAS_TRAIT(src, TRAIT_XENO_HOST))
 		holder.icon_state = "hudxeno"
-	else if(stat == DEAD || (has_trait(TRAIT_FAKEDEATH)))
+	else if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
 		if(tod)
 			var/tdelta = round(world.time - timeofdeath)
 			if(tdelta < (DEFIB_TIME_LIMIT * 10))
@@ -244,7 +210,7 @@
 			var/icon/IC = icon(icon, icon_state, dir)
 			holder.pixel_y = IC.Height() - world.icon_size
 			holder.icon_state = "hud_imp_chem"
-	if(has_trait(TRAIT_MINDSHIELD))
+	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		holder = hud_list[IMPLOYAL_HUD]
 		var/icon/IC = icon(icon, icon_state, dir)
 		holder.pixel_y = IC.Height() - world.icon_size
@@ -261,6 +227,9 @@
 			switch(R.fields["criminal"])
 				if("*Arrest*")
 					holder.icon_state = "hudwanted"
+					return
+				if("Search")
+					holder.icon_state = "hudsearch"
 					return
 				if("Incarcerated")
 					holder.icon_state = "hudincarcerated"
@@ -302,7 +271,6 @@
 			return "crit"
 		else
 			return "dead"
-	return "dead"
 
 //Sillycone hooks
 /mob/living/silicon/proc/diag_hud_set_health()

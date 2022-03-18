@@ -3,60 +3,113 @@
 	set category = "OOC"
 	set desc = "Report to Admins and your peers that you will go AFK."
 
-	if(mob)
+	var/static/list/borgtext = list(
+		"Unknown" = "A fault has been detected in my core. Taking my consciousness offline.",
+		"5 minutes" = "A fault has been detected in my core. Performing a quick reboot of my consciousness.",
+		"10 minutes" = "A fault has been detected in my core. Performing a defragmentation of my consciousness.",
+		"15 minutes" = "A fault has been detected in my core. Going offline for moderate-length self diagnostics.",
+		"30 minutes" = "A fault has been detected in my core. Going offline for a long term self diagnostic.",
+		"Whole round" = "A fault has been detected in my core. Going offline until CentCom can repair my circuits."
+	)
+	var/static/list/humantext = list(
+		"Unknown" = "I need to catch some shut-eye. Please keep an eye on the crew whilst I am resting this shift.",
+		"5 minutes" = "I need to shut my eyes for a brief moment.",
+		"10 minutes" = "I need to shut my eyes for a short while.",
+		"15 minutes" = "I need to shut my eyes for a bit. Please keep an eye on me while I am resting.",
+		"30 minutes" = "I need to shut my eyes for quite a while. Please keep an eye on me while I am resting.",
+		"Whole round" = "I need to shut my eyes for a long time... Someone please take over my station responsibilities."
+	)
+	
+	var/static/list/alientext = list(
+		"Unknown" = "My broodmembers, I must go quiet for a time. Please watch over me.",
+		"5 minutes" = "My broodmembers, I must go quiet for a time. I will awaken very soon.",
+		"10 minutes" = "My broodmembers, I must go quiet for a time. I will awaken soon.",
+		"15 minutes" = "My broodmembers, I must go quiet for a time. I will awaken in time.",
+		"30 minutes" = "My broodmembers, I must go quiet for a time. It will be some time before I awaken.",
+		"Whole round" = "My broodmembers, I must go quiet. I may never awaken during this cycle.",
+	)
+	if(mob && !isdead(mob))
 		var/mob/M = mob
-
-		if(!M.job)
-			to_chat(src, "<span class='boldnotice'>You do not appear to have a job, so reporting being AFK is not necessary.</span>")
-		else
-			var/time = input(src, "How long do you expect to be gone?") as anything in list("5 minutes","10 minutes","15 minutes","30 minutes","Whole round","Unknown")
-
-			if(!time)
-				return
-
+		
+		var/time = input(src, "How long do you expect to be gone?") as null|anything in list("5 minutes","10 minutes","15 minutes","30 minutes","Whole round","Unknown")
+		
+		if(!time)
+			return
+		
+		var/text // The text that this guy will broadcast as best he can in IC channels.
+		var/alert_admins = FALSE
+		var/special_role
+		var/list/channels = list() // What channels to broadcast their IC message on
+		if(isdrone(M))// :altoids:
+			text = borgtext[time]
+			channels = list(".b")
+		else if(issilicon(M))
+			alert_admins = TRUE
+			text = borgtext[time]
+			channels = list(".o",".c",".b") // AI Private, Command, and Binary.
+		else if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			text = humantext[time]
+			channels = list(".h")
+			if(H.job)
+				text += " This is the [M.job] signing off for now."
+				if(H.job in GLOB.command_positions)
+					alert_admins = TRUE
+					channels += ".c"
+				else if(H.job in GLOB.security_positions)
+					alert_admins = TRUE
+					//Already implicitly sending an IC message on sec channels via the .h above
+			if(H.mind)
+				if(H.mind.special_role) // This catches if they are a typical variety of antag (clockwork, traitor, zombie, wizard, etc)
+					alert_admins = TRUE
+					special_role = H.mind.special_role
+					switch(special_role)
+						if("Nuclear Operative","Clown Operative","Syndicate Cyborg","Lone Operative") // Le nukie bois
+							channels = list(".t") // Broadcast their AFK-hood on syndicate channels
+				if(H.mind.has_antag_datum(/datum/antagonist/ert)) // A bit awkward, but they lack a special_role (nor a consistently unique assigned_role) and it would break some things to make them have one
+					alert_admins = TRUE
+					special_role = H.mind.assigned_role // This normally works.
+					channels = list(".y",".c") // Y for.... Centcom, of course!
+		else if(isalien(M))
+			alert_admins = TRUE
+			text = alientext[time]
+			channels = list(".a")
+		else // This guy is some strange sorta mob
+			alert_admins = (alert("Should admins know about you going AFK?","AFK Verb Notice","Yes","No") == "Yes")
+		
+		//The actual loop where the mob speaks in IC
+		for(var/i in channels)
+			var/channel = channels[i]
+			M.say("[channel] [text]")
+		
+		//Now we try to do the OOC bits, if necessary
+		if(alert_admins)
 			var/reason = stripped_input(src, "Do you have time to give a reason? If so, please give it:")
+			var/important_role = special_role || M.job || initial(M.name) || "something important"
+			adminhelp("I need to go AFK as '[important_role]' for duration of '[time]' [reason ? " with the reason: '[reason]'" : ""]")
+			mob.log_message("is now AFK for [time] [reason ? " with the reason: '[reason]'" : ""]", LOG_OWNERSHIP)
+		else
+			to_chat(src, span_danger("Admins will be subtly alerted, because you do not seem to be in a critical station role."))
+			var/normal_role = special_role || M.job || initial(M.name) || "unknown job"
+			message_admins("[ADMIN_LOOKUPFLW(src)] has used the AFK verb as '[normal_role]' for duration of '[time]'")
+			log_game("[key_name(src)] has used the AFK verb as '[normal_role]' for duration of '[time]'")
+		
+		/// Amount of time in time units they selected
+		var/afk_time = list(
+			"5 minutes" = 5 MINUTES,
+			"10 minutes" = 10 MINUTES,
+			"15 minutes" = 15 MINUTES,
+			"30 minutes" = 30 MINUTES,
+			"Whole round" = 0 MINUTES, // No cryo protections for whole round
+			"Unknown" = 15 MINUTES // Middleish ground
+		)[time]
 
-			var/text
-			if(issilicon(M))
-				text = "A fault has been detected in my core. Taking my consciousness offline."
-				if(time == "5 minutes")
-					text = "A fault has been detected in my core. Performing a quick reboot of my consciousness."
-				else if(time == "10 minutes")
-					text = "A fault has been detected in my core. Performing a defragmentation of my consciousness."
-				else if(time == "15 minutes")
-					text = "A fault has been detected in my core. Going offline for moderate-length self diagnostics."
-				else if(time == "30 minutes")
-					text = "A fault has been detected in my core. Going offline for a long term self diagnostic."
-				else if(time == "Whole round")
-					text = "A fault has been detected in my core. Going offline until CentCom can repair my circuits."
-			else
-				text = "I need to catch some shut-eye. Please keep an eye on the crew whilst I am resting this shift."
-				if(time == "5 minutes")
-					text = "I need to shut my eyes for a brief moment."
-				else if(time == "10 minutes")
-					text = "I need to shut my eyes for a short while."
-				else if(time == "15 minutes")
-					text = "I need to shut my eyes for a bit. Please keep an eye on me while I am resting."
-				else if(time == "30 minutes")
-					text = "I need to shut my eyes for quite a while. Please keep an eye on me while I am resting."
-				else if(time == "Whole round")
-					text = "I need to shut my eyes for a long time... Someone please take over my station responsibilities."
+		if(!time || !mob.mind)
+			return
+		
+		deltimer(mob.mind.afk_verb_timer) // In case they used the verb again
+		mob.mind.afk_verb_used = TRUE
+		mob.mind.afk_verb_timer = addtimer(VARSET_CALLBACK(mob.mind, afk_verb_used, FALSE), afk_time, TIMER_STOPPABLE);
 
-			var/alert_admins = FALSE
-			if(istype(M, /mob/living/silicon))
-				alert_admins = TRUE
-				M.say(".c [text] This is the [M.job] signing off for now.")
-				M.say(".o [text] This is the [M.job] signing off for now.")
-			else if(M.job in GLOB.command_positions)
-				alert_admins = TRUE
-				M.say(".c [text] This is the [M.job] signing off for now.")
-				M.say(".h [text] This is the [M.job] signing off for now.")
-			else
-				M.say(".h [text] This is the [M.job] signing off for now.")
-
-			if(alert_admins)
-				adminhelp("I need to go AFK as '[M.job]' for duration of '[time]' [reason ? " with the reason: '[reason]'" : ""]")
-			else
-				to_chat(src, "<span class='danger'>Admins will not be specifically alerted, because you are not in a critical station role.</span>")
 	else
-		to_chat(src, "<span class='boldnotice'>It is not necessary to report being AFK if you are not in the game.</span>")
+		to_chat(src, span_boldnotice("It is not necessary to report being AFK if you are not in the game."))

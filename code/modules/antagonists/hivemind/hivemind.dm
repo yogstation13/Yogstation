@@ -20,8 +20,8 @@
 		/obj/effect/proc_holder/spell/target_hive/hive_add = 0,
 		/obj/effect/proc_holder/spell/target_hive/hive_remove = 0,
 		/obj/effect/proc_holder/spell/target_hive/hive_see = 0,
-		/obj/effect/proc_holder/spell/target_hive/hive_shock = 0,
-		/obj/effect/proc_holder/spell/target_hive/hive_warp = 0,
+		/obj/effect/proc_holder/spell/targeted/hive_shock = 0,
+		/obj/effect/proc_holder/spell/self/telekinetic_hand = 0,
 		//Tier 2 - Tracking related powers
 		/obj/effect/proc_holder/spell/self/hive_scan = 5,
 		/obj/effect/proc_holder/spell/targeted/hive_reclaim = 5,
@@ -35,8 +35,8 @@
 		/obj/effect/proc_holder/spell/self/hive_loyal = 15,
 		/obj/effect/proc_holder/spell/target_hive/hive_control = 15,
 		//Tier 5 - Deadly powers
-		/obj/effect/proc_holder/spell/targeted/induce_sleep = 20,
-		/obj/effect/proc_holder/spell/target_hive/hive_attack = 20
+		/obj/effect/proc_holder/spell/targeted/pin = 20,
+		/obj/effect/proc_holder/spell/target_hive/nightmare = 20
 	)
 
 
@@ -69,7 +69,7 @@
 			var/obj/effect/proc_holder/spell/the_spell = new power(null)
 			owner.AddSpell(the_spell)
 			if(hive_size > 0)
-				to_chat(owner, "<span class='assimilator'>We have unlocked [the_spell.name].</span><span class='bold'> [the_spell.desc]</span>")
+				to_chat(owner, "[span_assimilator("We have unlocked [the_spell.name].")][span_bold(" [the_spell.desc]")]")
 
 	if(!unlocked_one_mind && hive_size >= 15)
 		var/lead = TRUE
@@ -83,7 +83,7 @@
 		if(lead)
 			unlocked_one_mind = TRUE
 			owner.AddSpell(new/obj/effect/proc_holder/spell/self/one_mind)
-			to_chat(owner, "<big><span class='assimilator'>Our true power, the One Mind, is finally within reach.</span></big>")
+			to_chat(owner, "<big>[span_assimilator("Our true power, the One Mind, is finally within reach.")]</big>")
 
 /datum/antagonist/hivemind/proc/add_track_bonus(datum/antagonist/hivemind/enemy, bonus)
 	if(!individual_track_bonus[enemy])
@@ -106,7 +106,7 @@
 		hivemembers |= M
 		calc_size()
 
-	var/user_warning = "<span class='userdanger'>We have detected an enemy hivemind using our physical form as a vessel and have begun ejecting their mind! They will be alerted of our disappearance once we succeed!</span>"
+	var/user_warning = span_userdanger("We have detected an enemy hivemind using our physical form as a vessel and have begun ejecting their mind! They will be alerted of our disappearance once we succeed!")
 	if(C.is_real_hivehost())
 		var/eject_time = rand(1400,1600) //2.5 minutes +- 10 seconds
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, user_warning), rand(500,1300)) // If the host has assimilated an enemy hive host, alert the enemy before booting them from the hive after a short while
@@ -153,16 +153,21 @@
 	if(C == real_C) //Mind control check
 		real_C2.apply_status_effect(STATUS_EFFECT_HIVE_TRACKER, real_C, hive_C.get_track_bonus(hive_C2))
 		real_C.apply_status_effect(STATUS_EFFECT_HIVE_RADAR)
-		to_chat(real_C2, "<span class='assimilator'>We detect a surge of psionic energy from a far away vessel before they disappear from the hive. Whatever happened, there's a good chance they're after us now.</span>")
+		to_chat(real_C2, span_assimilator("We detect a surge of psionic energy from a far away vessel before they disappear from the hive. Whatever happened, there's a good chance they're after us now."))
 	if(C2 == real_C2)
 		real_C.apply_status_effect(STATUS_EFFECT_HIVE_TRACKER, real_C2, hive_C2.get_track_bonus(hive_C))
 		real_C2.apply_status_effect(STATUS_EFFECT_HIVE_RADAR)
 		user_warning += " and we've managed to pinpoint their location"
-	to_chat(real_C, "<span class='userdanger'>[user_warning]!</span>")
+	to_chat(real_C, span_userdanger("[user_warning]!"))
 
 /datum/antagonist/hivemind/proc/destroy_hive()
+	go_back_to_sleep()
 	hivemembers = list()
 	calc_size()
+	for(var/power in upgrade_tiers)
+		if(!upgrade_tiers[power])
+			continue
+		owner.RemoveSpell(power)
 
 /datum/antagonist/hivemind/antag_panel_data()
 	return "Vessels Assimilated: [hive_size] (+[size_mod])"
@@ -174,12 +179,33 @@
 	if(!C)
 		return
 	owner.AddSpell(new/obj/effect/proc_holder/spell/self/hive_comms)
-	C.add_trait(TRAIT_STUNIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
-	C.add_trait(TRAIT_SLEEPIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
-	C.add_trait(TRAIT_VIRUSIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
-	C.add_trait(TRAIT_NOLIMBDISABLE, HIVEMIND_ONE_MIND_TRAIT)
-	C.add_trait(TRAIT_NOHUNGER, HIVEMIND_ONE_MIND_TRAIT)
-	C.add_trait(TRAIT_NODISMEMBER, HIVEMIND_ONE_MIND_TRAIT)
+	ADD_TRAIT(C, TRAIT_STUNIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
+	ADD_TRAIT(C, TRAIT_SLEEPIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
+	ADD_TRAIT(C, TRAIT_VIRUSIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
+	ADD_TRAIT(C, TRAIT_NOLIMBDISABLE, HIVEMIND_ONE_MIND_TRAIT)
+	ADD_TRAIT(C, TRAIT_NOHUNGER, HIVEMIND_ONE_MIND_TRAIT)
+	ADD_TRAIT(C, TRAIT_NODISMEMBER, HIVEMIND_ONE_MIND_TRAIT)
+	log_game("[key_name(owner)] has awakened vessels.")
+
+/datum/antagonist/hivemind/proc/go_back_to_sleep()
+	if(!active_one_mind)
+		return
+	for(var/datum/mind/M in hivemembers)
+		M.remove_antag_datum(/datum/antagonist/hivevessel)
+		active_one_mind.remove_member(M)
+	if(!(owner?.current))
+		return
+	var/mob/living/carbon/C = owner.current.get_real_hivehost()
+	if(!C)
+		return
+	owner.RemoveSpell(new/obj/effect/proc_holder/spell/self/hive_comms)
+	REMOVE_TRAIT(C, TRAIT_STUNIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_SLEEPIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_VIRUSIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_NOLIMBDISABLE, HIVEMIND_ONE_MIND_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_NOHUNGER, HIVEMIND_ONE_MIND_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_NODISMEMBER, HIVEMIND_ONE_MIND_TRAIT)
+	active_one_mind.Destroy()
 
 /datum/antagonist/hivemind/on_gain()
 	owner.special_role = special_role
@@ -213,7 +239,7 @@
 		owner.RemoveSpell(power)
 
 	if(!silent && owner.current)
-		to_chat(owner.current,"<span class='userdanger'> Your psionic powers fade, you are no longer the hivemind's host! </span>")
+		to_chat(owner.current,span_userdanger(" Your psionic powers fade, you are no longer the hivemind's host! "))
 	owner.special_role = null
 	..()
 

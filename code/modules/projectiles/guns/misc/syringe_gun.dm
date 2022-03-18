@@ -7,7 +7,7 @@
 	throw_speed = 3
 	throw_range = 7
 	force = 4
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	clumsy_check = 0
 	fire_sound = 'sound/items/syringeproj.ogg'
 	var/list/syringes = list()
@@ -35,12 +35,12 @@
 		recharge_newshot()
 
 /obj/item/gun/syringe/examine(mob/user)
-	..()
-	to_chat(user, "Can hold [max_syringes] syringe\s. Has [syringes.len] syringe\s remaining.")
+	. = ..()
+	. += "Can hold [max_syringes] syringe\s. Has [syringes.len] syringe\s remaining."
 
 /obj/item/gun/syringe/attack_self(mob/living/user)
 	if(!syringes.len)
-		to_chat(user, "<span class='warning'>[src] is empty!</span>")
+		to_chat(user, span_warning("[src] is empty!"))
 		return 0
 
 	var/obj/item/reagent_containers/syringe/S = syringes[syringes.len]
@@ -50,7 +50,7 @@
 	user.put_in_hands(S)
 
 	syringes.Remove(S)
-	to_chat(user, "<span class='notice'>You unload [S] from \the [src].</span>")
+	to_chat(user, span_notice("You unload [S] from \the [src]."))
 
 	return 1
 
@@ -59,12 +59,12 @@
 		if(syringes.len < max_syringes)
 			if(!user.transferItemToLoc(A, src))
 				return FALSE
-			to_chat(user, "<span class='notice'>You load [A] into \the [src].</span>")
+			to_chat(user, span_notice("You load [A] into \the [src]."))
 			syringes += A
 			recharge_newshot()
 			return TRUE
 		else
-			to_chat(user, "<span class='warning'>[src] cannot hold more syringes!</span>")
+			to_chat(user, span_warning("[src] cannot hold more syringes!"))
 	return FALSE
 
 /obj/item/gun/syringe/rapidsyringe
@@ -95,15 +95,30 @@
 	if(istype(A, /obj/item/dnainjector))
 		var/obj/item/dnainjector/D = A
 		if(D.used)
-			to_chat(user, "<span class='warning'>This injector is used up!</span>")
+			to_chat(user, span_warning("This injector is used up!"))
 			return
 		if(syringes.len < max_syringes)
 			if(!user.transferItemToLoc(D, src))
 				return FALSE
-			to_chat(user, "<span class='notice'>You load \the [D] into \the [src].</span>")
+			to_chat(user, span_notice("You load \the [D] into \the [src]."))
 			syringes += D
 			recharge_newshot()
 			return TRUE
 		else
-			to_chat(user, "<span class='warning'>[src] cannot hold more syringes!</span>")
+			to_chat(user, span_warning("[src] cannot hold more syringes!"))
 	return FALSE
+
+/obj/item/gun/syringe/blowgun
+	name = "blowgun"
+	desc = "Fire syringes at a short distance."
+	icon_state = "blowgun"
+	item_state = "blowgun"
+	fire_sound = 'sound/items/syringeproj.ogg'
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //it's a fucking blowgun it shouldn't even have a triggerguard
+
+/obj/item/gun/syringe/blowgun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	visible_message(span_danger("[user] starts aiming with a blowgun!"))
+	if(do_after(user, 25, target = src))
+		user.adjustStaminaLoss(20)
+		user.adjustOxyLoss(20)
+		..()

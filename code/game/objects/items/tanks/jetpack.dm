@@ -12,7 +12,9 @@
 	var/on = FALSE
 	var/stabilizers = FALSE
 	var/full_speed = TRUE // If the jetpack will have a speedboost in space/nograv or not
+	var/classic = TRUE // If the jetpack uses the classic two-tank sprite. False if it has its own special sprite (syndicate jetpack, or void jetpack)
 	var/datum/effect_system/trail_follow/ion/ion_trail
+	var/jetspeed = -0.3 // Negative increases speed
 
 /obj/item/tank/jetpack/Initialize()
 	. = ..()
@@ -21,8 +23,7 @@
 
 /obj/item/tank/jetpack/populate_gas()
 	if(gas_type)
-		air_contents.assert_gas(gas_type)
-		air_contents.gases[gas_type][MOLES] = ((6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
+		air_contents.set_moles(gas_type, ((6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C)))
 
 /obj/item/tank/jetpack/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/toggle_jetpack))
@@ -30,7 +31,7 @@
 	else if(istype(action, /datum/action/item_action/jetpack_stabilization))
 		if(on)
 			stabilizers = !stabilizers
-			to_chat(user, "<span class='notice'>You turn the jetpack stabilization [stabilizers ? "on" : "off"].</span>")
+			to_chat(user, span_notice("You turn the jetpack stabilization [stabilizers ? "on" : "off"]."))
 	else
 		toggle_internals(user)
 
@@ -41,10 +42,10 @@
 
 	if(!on)
 		turn_on(user)
-		to_chat(user, "<span class='notice'>You turn the jetpack on.</span>")
+		to_chat(user, span_notice("You turn the jetpack on."))
 	else
 		turn_off(user)
-		to_chat(user, "<span class='notice'>You turn the jetpack off.</span>")
+		to_chat(user, span_notice("You turn the jetpack off."))
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
@@ -52,16 +53,25 @@
 
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
 	on = TRUE
-	icon_state = "[initial(icon_state)]-on"
+	update_icon()
 	ion_trail.start()
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/move_react)
 	if(full_speed)
-		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=-2, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
+		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=jetspeed, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
+
+/obj/item/tank/jetpack/update_icon()
+	icon_state = initial(icon_state)
+	if(!classic && on) //does the jetpack have its own on sprite?
+		icon_state = "[initial(icon_state)]-on"
+	else //or does it use the classic overlay
+		cut_overlays()
+		if(on)
+			add_overlay("on_overlay")
 
 /obj/item/tank/jetpack/proc/turn_off(mob/user)
 	on = FALSE
 	stabilizers = FALSE
-	icon_state = initial(icon_state)
+	update_icon()
 	ion_trail.stop()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	user.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
@@ -90,7 +100,7 @@
 	if (istype(user, /mob/living/carbon/human/))
 		var/mob/living/carbon/human/H = user
 		H.forcesay("WHAT THE FUCK IS CARBON DIOXIDE?")
-		H.visible_message("<span class='suicide'>[user] is suffocating [user.p_them()]self with [src]! It looks like [user.p_they()] didn't read what that jetpack says!</span>")
+		H.visible_message(span_suicide("[user] is suffocating [user.p_them()]self with [src]! It looks like [user.p_they()] didn't read what that jetpack says!"))
 		return (OXYLOSS)
 	else
 		..()
@@ -111,7 +121,7 @@
 		turn_off(user)
 		return
 	if(rand(0,250) == 0)
-		to_chat(user, "<span class='notice'>You feel your jetpack's engines cut out.</span>")
+		to_chat(user, span_notice("You feel your jetpack's engines cut out."))
 		turn_off(user)
 		return
 
@@ -130,6 +140,7 @@
 	desc = "It works well in a void."
 	icon_state = "jetpack-void"
 	item_state =  "jetpack-void"
+	classic = FALSE //uses its own custom sprite
 
 /obj/item/tank/jetpack/oxygen
 	name = "jetpack (oxygen)"
@@ -145,6 +156,7 @@
 	volume = 40
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
+	classic = FALSE //uses its own custom sprite
 
 /obj/item/tank/jetpack/oxygen/captain
 	name = "\improper Captain's jetpack"
@@ -197,12 +209,12 @@
 
 /obj/item/tank/jetpack/suit/cycle(mob/user)
 	if(!istype(loc, /obj/item/clothing/suit/space/hardsuit))
-		to_chat(user, "<span class='warning'>\The [src] must be connected to a hardsuit!</span>")
+		to_chat(user, span_warning("\The [src] must be connected to a hardsuit!"))
 		return
 
 	var/mob/living/carbon/human/H = user
 	if(!istype(H.s_store, /obj/item/tank/internals))
-		to_chat(user, "<span class='warning'>You need a tank in your suit storage!</span>")
+		to_chat(user, span_warning("You need a tank in your suit storage!"))
 		return
 	..()
 

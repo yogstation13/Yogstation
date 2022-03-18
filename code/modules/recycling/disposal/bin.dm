@@ -10,7 +10,7 @@
 	resistance_flags = FIRE_PROOF
 	interaction_flags_machine = INTERACT_MACHINE_OPEN | INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
 	obj_flags = CAN_BE_HIT | USES_TGUI
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/full_pressure = FALSE
 	var/pressure_charging = TRUE
@@ -80,15 +80,15 @@
 		if(I.tool_behaviour == TOOL_SCREWDRIVER)
 			panel_open = !panel_open
 			I.play_tool_sound(src)
-			to_chat(user, "<span class='notice'>You [panel_open ? "remove":"attach"] the screws around the power connection.</span>")
+			to_chat(user, span_notice("You [panel_open ? "remove":"attach"] the screws around the power connection."))
 			return
 		else if(I.tool_behaviour == TOOL_WELDER && panel_open)
 			if(!I.tool_start_check(user, amount=0))
 				return
 
-			to_chat(user, "<span class='notice'>You start slicing the floorweld off \the [src]...</span>")
+			to_chat(user, span_notice("You start slicing the floorweld off \the [src]..."))
 			if(I.use_tool(src, user, 20, volume=100) && panel_open)
-				to_chat(user, "<span class='notice'>You slice the floorweld off \the [src].</span>")
+				to_chat(user, span_notice("You slice the floorweld off \the [src]."))
 				deconstruct()
 			return
 
@@ -103,7 +103,7 @@
 
 /obj/machinery/disposal/proc/place_item_in_disposal(obj/item/I, mob/user)
 	I.forceMove(src)
-	user.visible_message("[user.name] places \the [I] into \the [src].", "<span class='notice'>You place \the [I] into \the [src].</span>")
+	user.visible_message("[user.name] places \the [I] into \the [src].", span_notice("You place \the [I] into \the [src]."))
 
 //mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/living/target, mob/living/user)
@@ -111,7 +111,7 @@
 		stuff_mob_in(target, user)
 
 /obj/machinery/disposal/proc/stuff_mob_in(mob/living/target, mob/living/user)
-	if(!iscarbon(user) && !user.ventcrawler) //only carbon and ventcrawlers can climb into disposal by themselves.
+	if(!iscarbon(user) && !user.ventcrawler && user == target) //only carbon and ventcrawlers can climb into disposal by themselves.
 		if (iscyborg(user))
 			var/mob/living/silicon/robot/borg = user
 			if (!borg.module || !borg.module.canDispose)
@@ -123,21 +123,21 @@
 	if(target.buckled || target.has_buckled_mobs())
 		return
 	if(target.mob_size > MOB_SIZE_HUMAN)
-		to_chat(user, "<span class='warning'>[target] doesn't fit inside [src]!</span>")
+		to_chat(user, span_warning("[target] doesn't fit inside [src]!"))
 		return
 	add_fingerprint(user)
 	if(user == target)
-		user.visible_message("[user] starts climbing into [src].", "<span class='notice'>You start climbing into [src]...</span>")
+		user.visible_message("[user] starts climbing into [src].", span_notice("You start climbing into [src]..."))
 	else
-		target.visible_message("<span class='danger'>[user] starts putting [target] into [src].</span>", "<span class='userdanger'>[user] starts putting you into [src]!</span>")
+		target.visible_message(span_danger("[user] starts putting [target] into [src]."), span_userdanger("[user] starts putting you into [src]!"))
 	if(do_mob(user, target, 20))
 		if (!loc)
 			return
 		target.forceMove(src)
 		if(user == target)
-			user.visible_message("[user] climbs into [src].", "<span class='notice'>You climb into [src].</span>")
+			user.visible_message("[user] climbs into [src].", span_notice("You climb into [src]."))
 		else
-			target.visible_message("<span class='danger'>[user] has placed [target] in [src].</span>", "<span class='userdanger'>[user] has placed [target] in [src].</span>")
+			target.visible_message(span_danger("[user] has placed [target] in [src]."), span_userdanger("[user] has placed [target] in [src]."))
 			log_combat(user, target, "stuffed", addition="into [src]")
 			target.LAssailant = user
 		update_icon()
@@ -205,11 +205,6 @@
 /obj/machinery/disposal/proc/flushAnimation()
 	flick("[icon_state]-flush", src)
 
-// called when area power changes
-/obj/machinery/disposal/power_change()
-	..()	// do default setting/reset of stat NOPOWER bit
-	update_icon()	// update icon
-
 // called when holder is expelled from a disposal
 /obj/machinery/disposal/proc/expel(obj/structure/disposalholder/H)
 	H.active = FALSE
@@ -251,7 +246,7 @@
 	. = ..()
 	if(.)
 		return
-	for(var/obj/item/I in src_object)
+	for(var/obj/item/I in src_object.contents())
 		if(user.active_storage != src_object)
 			if(I.on_found(user))
 				return
@@ -274,8 +269,8 @@
 /obj/machinery/disposal/bin/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/bag/trash))	//Not doing component overrides because this is a specific type.
 		var/obj/item/storage/bag/trash/T = I
-		GET_COMPONENT_FROM(STR, /datum/component/storage, T)
-		to_chat(user, "<span class='warning'>You empty the bag.</span>")
+		var/datum/component/storage/STR = T.GetComponent(/datum/component/storage)
+		to_chat(user, span_warning("You empty the bag."))
 		for(var/obj/item/O in T.contents)
 			STR.remove_from_storage(O,src)
 		T.update_icon()
@@ -285,13 +280,22 @@
 
 // handle machine interaction
 
-/obj/machinery/disposal/bin/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
+/obj/machinery/disposal/bin/AltClick(mob/user)
+	. = ..()
+	if(!user.canUseTopic(src, TRUE))
+		return
+	flush = !flush
+	update_icon()
+
+/obj/machinery/disposal/bin/ui_state(mob/user)
+	return GLOB.notcontained_state
+
+/obj/machinery/disposal/bin/ui_interact(mob/user, datum/tgui/ui)
 	if(stat & BROKEN)
 		return
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "disposal_unit", name, 300, 200, master_ui, state)
+		ui = new(user, src, "DisposalUnit", name)
 		ui.open()
 
 /obj/machinery/disposal/bin/ui_data(mob/user)
@@ -300,8 +304,7 @@
 	data["full_pressure"] = full_pressure
 	data["pressure_charging"] = pressure_charging
 	data["panel_open"] = panel_open
-	var/per = CLAMP(100* air_contents.return_pressure() / (SEND_PRESSURE), 0, 100)
-	data["per"] = round(per, 1)
+	data["per"] = CLAMP01(air_contents.return_pressure() / (SEND_PRESSURE))
 	data["isai"] = isAI(user)
 	return data
 
@@ -335,13 +338,17 @@
 
 
 /obj/machinery/disposal/bin/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
-	if(isitem(AM) && AM.CanEnterDisposals())
+	if(AM.CanEnterDisposals())
 		if(prob(75))
 			AM.forceMove(src)
-			visible_message("<span class='notice'>[AM] lands in [src].</span>")
+			if(ismob(AM))
+				do_flush()
+				visible_message(span_notice("[AM] lands in [src] and triggers the flush system!."))
+			else
+				visible_message(span_notice("[AM] lands in [src]."))
 			update_icon()
 		else
-			visible_message("<span class='notice'>[AM] bounces off of [src]'s rim!</span>")
+			visible_message(span_notice("[AM] bounces off of [src]'s rim!"))
 			return ..()
 	else
 		return ..()
@@ -415,8 +422,8 @@
 	var/datum/gas_mixture/env = L.return_air()
 	var/pressure_delta = (SEND_PRESSURE*1.01) - air_contents.return_pressure()
 
-	if(env.temperature > 0)
-		var/transfer_moles = 0.1 * pressure_delta*air_contents.volume/(env.temperature * R_IDEAL_GAS_EQUATION)
+	if(env.return_temperature() > 0)
+		var/transfer_moles = 0.1 * pressure_delta*air_contents.return_volume()/(env.return_temperature() * R_IDEAL_GAS_EQUATION)
 
 		//Actually transfer the gas
 		var/datum/gas_mixture/removed = env.remove(transfer_moles)
@@ -478,7 +485,7 @@
 	else if(ismob(AM))
 		var/mob/M = AM
 		if(prob(2)) // to prevent mobs being stuck in infinite loops
-			to_chat(M, "<span class='warning'>You hit the edge of the chute.</span>")
+			to_chat(M, span_warning("You hit the edge of the chute."))
 			return
 		M.forceMove(src)
 	flush()

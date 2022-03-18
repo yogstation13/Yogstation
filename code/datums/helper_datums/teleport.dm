@@ -1,13 +1,20 @@
-// teleatom: atom to teleport
-// destination: destination to teleport to
-// precision: teleport precision (0 is most precise, the default)
-// effectin: effect to show right before teleportation
-// effectout: effect to show right after teleportation
-// asoundin: soundfile to play before teleportation
-// asoundout: soundfile to play after teleportation
-// forceMove: if false, teleport will use Move() proc (dense objects will prevent teleportation)
-// no_effects: disable the default effectin/effectout of sparks
-// forced: whether or not to ignore no_teleport
+/**
+  * Teleport an atom
+  *
+  * Teleports a atom to a destination along with being able to randomly teleport them
+  * You can also control the effects, such as sound, and sparks
+  * Arguments:
+  * * teleatom - The atom to teleport
+  * * destination - Destination of the atom
+  * * percision - How precise is the teleport, 0(default) is the most precise
+  * * effectin - effect to spawn before teleportation
+  * * effectout - effect to show right after teleportation
+  * * asoundin - soundfile to play before teleportation
+  * * asoundout - soundfile to play after teleportation
+  * * forceMove - if false, teleport will use Move() proc (dense objects will prevent teleportation)
+  * * no_effects - disable the default effectin/effectout of sparks
+  * * forced - whether or not to ignore no_teleport
+  */
 /proc/do_teleport(atom/movable/teleatom, atom/destination, precision=null, forceMove = TRUE, datum/effect_system/effectin=null, datum/effect_system/effectout=null, asoundin=null, asoundout=null, no_effects=FALSE, channel=TELEPORT_CHANNEL_BLUESPACE, forced = FALSE)
 	// teleporting most effects just deletes them
 	var/static/list/delete_atoms = typecacheof(list(
@@ -15,6 +22,7 @@
 		)) - typecacheof(list(
 		/obj/effect/dummy/chameleon,
 		/obj/effect/wisp,
+		/obj/effect/mob_spawn,
 		))
 	if(delete_atoms[teleatom.type])
 		qdel(teleatom)
@@ -36,16 +44,25 @@
 				precision = max(rand(1,100)*bagholding.len,100)
 				if(isliving(teleatom))
 					var/mob/living/MM = teleatom
-					to_chat(MM, "<span class='warning'>The bluespace interface on your bag of holding interferes with the teleport!</span>")
+					to_chat(MM, span_warning("The bluespace interface on your bag of holding interferes with the teleport!"))
 
-	// if effects are not specified and not explicitly disabled, sparks
-	if ((!effectin || !effectout) && !no_effects)
-		var/datum/effect_system/spark_spread/sparks = new
-		sparks.set_up(5, 1, teleatom)
-		if (!effectin)
-			effectin = sparks
-		if (!effectout)
-			effectout = sparks
+			// if effects are not specified and not explicitly disabled, sparks
+			if ((!effectin || !effectout) && !no_effects)
+				var/datum/effect_system/spark_spread/sparks = new
+				sparks.set_up(5, 1, teleatom)
+				if (!effectin)
+					effectin = sparks
+				if (!effectout)
+					effectout = sparks
+		if(TELEPORT_CHANNEL_QUANTUM)
+			// if effects are not specified and not explicitly disabled, rainbow sparks
+			if ((!effectin || !effectout) && !no_effects)
+				var/datum/effect_system/spark_spread/quantum/sparks = new
+				sparks.set_up(5, 1, teleatom)
+				if (!effectin)
+					effectin = sparks
+				if (!effectout)
+					effectout = sparks
 
 	// perform the teleport
 	var/turf/curturf = get_turf(teleatom)
@@ -56,7 +73,7 @@
 
 	var/area/A = get_area(curturf)
 	var/area/B = get_area(destturf)
-	if(!forced && (teleatom.has_trait(TRAIT_NO_TELEPORT) || A.noteleport || B.noteleport))
+	if(!forced && (HAS_TRAIT(teleatom, TRAIT_NO_TELEPORT) || A.noteleport || B.noteleport))
 		return FALSE
 
 	if(SEND_SIGNAL(destturf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, curturf, destturf))
@@ -76,6 +93,16 @@
 
 	return TRUE
 
+/**
+  * Plays the effects/sound set in do_teleport
+  *
+  * Plays the effects/sound set in do_teleport
+  * Arguments:
+  * * teleatom - used to check if they exist
+  * * location - location of the effect/sound to play
+  * * effect - effect to spawn
+  * * sound - sound to play
+  */
 /proc/tele_play_specials(atom/movable/teleatom, atom/location, datum/effect_system/effect, sound)
 	if (location && !isobserver(teleatom))
 		if (sound)
@@ -84,8 +111,16 @@
 			effect.attach(location)
 			effect.start()
 
-// Safe location finder
-/proc/find_safe_turf(zlevel, list/zlevels, extended_safety_checks = FALSE)
+/**
+  * Finds a safe turf on a given Z level
+  *
+  * Finds a safe turf on a given Z level and has safety checks
+  * Arguments:
+  * * zlevel - Z-level to check for a safe turf
+  * * zlevels - list of z-levels to check for a safe turf
+  * * extended_safety_checks - check for lava
+  */
+/proc/find_safe_turf(zlevel, list/zlevels, extended_safety_checks = FALSE, dense_atoms = TRUE)
 	if(!zlevels)
 		if (zlevel)
 			zlevels = list(zlevel)
@@ -98,7 +133,9 @@
 		var/y = rand(1, world.maxy)
 		var/z = pick(zlevels)
 		var/random_location = locate(x,y,z)
-
+		
+		if(istype(get_area(random_location), /area/mine/laborcamp))
+			continue
 		if(!isfloorturf(random_location))
 			continue
 		var/turf/open/floor/F = random_location
@@ -106,9 +143,8 @@
 			continue
 
 		var/datum/gas_mixture/A = F.air
-		var/list/A_gases = A.gases
 		var/trace_gases
-		for(var/id in A_gases)
+		for(var/id in A.get_gases())
 			if(id in GLOB.hardcoded_gases)
 				continue
 			trace_gases = TRUE
@@ -117,15 +153,15 @@
 		// Can most things breathe?
 		if(trace_gases)
 			continue
-		if(!(A_gases[/datum/gas/oxygen] && A_gases[/datum/gas/oxygen][MOLES] >= 16))
+		if(A.get_moles(/datum/gas/oxygen) < 16)
 			continue
-		if(A_gases[/datum/gas/plasma])
+		if(A.get_moles(/datum/gas/plasma))
 			continue
-		if(A_gases[/datum/gas/carbon_dioxide] && A_gases[/datum/gas/carbon_dioxide][MOLES] >= 10)
+		if(A.get_moles(/datum/gas/carbon_dioxide) >= 10)
 			continue
 
 		// Aim for goldilocks temperatures and pressure
-		if((A.temperature <= 270) || (A.temperature >= 360))
+		if((A.return_temperature() <= 270) || (A.return_temperature() >= 360))
 			continue
 		var/pressure = A.return_pressure()
 		if((pressure <= 20) || (pressure >= 550))
@@ -136,6 +172,16 @@
 				var/turf/open/lava/L = F
 				if(!L.is_safe())
 					continue
+					
+		// Check that we're not warping onto a table or window
+		if(!dense_atoms)
+			var/density_found = FALSE
+			for(var/atom/movable/found_movable in F)
+				if(found_movable.density)
+					density_found = TRUE
+					break
+			if(density_found)
+				continue
 
 		// DING! You have passed the gauntlet, and are "probably" safe.
 		return F

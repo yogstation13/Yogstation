@@ -5,17 +5,18 @@
 
 /datum/map_config
 	// Metadata
-	var/config_filename = "_maps/boxstation.json"
+	var/config_filename = "_maps/yogstation.json"
 	var/defaulted = TRUE  // set to FALSE by LoadConfig() succeeding
 	// Config from maps.txt
 	var/config_max_users = 0
 	var/config_min_users = 0
 	var/voteweight = 1
+	var/votable = FALSE
 
 	// Config actually from the JSON - should default to Box
-	var/map_name = "Box Station"
-	var/map_path = "map_files/BoxStation"
-	var/map_file = "BoxStation.dmm"
+	var/map_name = "YogStation"
+	var/map_path = "map_files/YogStation"
+	var/map_file = "YogStation.dmm"
 
 	var/traits = null
 	var/space_ruin_levels = 7

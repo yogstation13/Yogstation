@@ -17,10 +17,10 @@
 	projectilesound = 'sound/effects/hit_on_shattered_glass.ogg'
 	ranged = 1
 	range = 13
-	playstyle_string = "<span class='holoparasite'>As a <b>ranged</b> type, you have only light damage resistance, but are capable of spraying shards of crystal at incredibly high speed. You can also deploy surveillance snares to monitor enemy movement. Finally, you can switch to scout mode, in which you can't attack, but can move without limit.</span>"
-	magic_fluff_string = "<span class='holoparasite'>..And draw the Sentinel, an alien master of ranged combat.</span>"
-	tech_fluff_string = "<span class='holoparasite'>Boot sequence complete. Ranged combat modules active. Holoparasite swarm online.</span>"
-	carp_fluff_string = "<span class='holoparasite'>CARP CARP CARP! Caught one, it's a ranged carp. This fishy can watch people pee in the ocean.</span>"
+	playstyle_string = span_holoparasite("As a <b>ranged</b> type, you have only light damage resistance, but are capable of spraying shards of crystal at incredibly high speed. You can also deploy surveillance snares to monitor enemy movement. Finally, you can switch to scout mode, in which you can't attack, but can move without limit.")
+	magic_fluff_string = span_holoparasite("..And draw the Sentinel, an alien master of ranged combat.")
+	tech_fluff_string = span_holoparasite("Boot sequence complete. Ranged combat modules active. Holoparasite swarm online.")
+	carp_fluff_string = span_holoparasite("CARP CARP CARP! Caught one, it's a ranged carp. This fishy can watch people pee in the ocean.")
 	see_invisible = SEE_INVISIBLE_LIVING
 	see_in_dark = 8
 	toggle_button_type = /obj/screen/guardian/ToggleMode
@@ -79,7 +79,7 @@
 			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 			msg = "You deactivate your night vision."
 
-	to_chat(src, "<span class='notice'>[msg]</span>")
+	to_chat(src, span_notice("[msg]"))
 
 
 /mob/living/simple_animal/hostile/guardian/ranged/verb/Snare()
@@ -114,6 +114,7 @@
 
 
 /obj/effect/snare/Crossed(AM as mob|obj)
+	. = ..()
 	if(isliving(AM) && spawner && spawner.summoner && AM != spawner && !spawner.hasmatchingsummoner(AM))
 		to_chat(spawner.summoner, "<span class='danger'><B>[AM] has crossed surveillance snare, [name].</span></B>")
 		var/list/guardians = spawner.summoner.hasparasites()
@@ -129,7 +130,7 @@
 /mob/living/simple_animal/hostile/guardian/ranged/Manifest(forced)
 	if (toggle)
 		incorporeal_move = INCORPOREAL_MOVE_BASIC
-		GET_COMPONENT(incorp, /datum/component/walk) //yogs start
+		var/datum/component/walk/incorp = GetComponent(/datum/component/walk) //yogs start
 		if(incorp)
 			incorp.signal_enabled = TRUE //yogs end
 	. = ..()
@@ -137,7 +138,7 @@
 /mob/living/simple_animal/hostile/guardian/ranged/Recall(forced)
 	// To stop scout mode from moving when recalled
 	incorporeal_move = FALSE
-	GET_COMPONENT(incorp, /datum/component/walk) //yogs start
+	var/datum/component/walk/incorp = GetComponent(/datum/component/walk) //yogs start
 	if(incorp)
 		incorp.signal_enabled = FALSE //yogs end
 	. = ..()

@@ -36,7 +36,7 @@
 
 /obj/effect/step_trigger/message/Trigger(mob/M)
 	if(M.client)
-		to_chat(M, "<span class='info'>[message]</span>")
+		to_chat(M, span_info("[message]"))
 		if(once)
 			qdel(src)
 
@@ -52,7 +52,7 @@
 	var/list/affecting = list()
 
 /obj/effect/step_trigger/thrower/Trigger(atom/A)
-	if(!A || !ismovableatom(A))
+	if(!A || !ismovable(A))
 		return
 	var/atom/movable/AM = A
 	var/curtiles = 0

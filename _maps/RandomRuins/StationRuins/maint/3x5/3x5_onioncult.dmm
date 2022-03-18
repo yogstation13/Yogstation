@@ -1,0 +1,52 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"s" = (
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/bronze,
+/area/template_noop)
+"y" = (
+/turf/open/floor/bronze,
+/area/template_noop)
+"z" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"D" = (
+/obj/structure/grille/ratvar/broken,
+/turf/open/floor/bronze,
+/area/template_noop)
+"E" = (
+/obj/item/reagent_containers/food/snacks/grown/onion,
+/turf/open/floor/bronze,
+/area/template_noop)
+"K" = (
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/template_noop)
+"N" = (
+/obj/structure/grille/ratvar/broken,
+/turf/open/floor/plating,
+/area/template_noop)
+"R" = (
+/turf/closed/wall/mineral/bronze,
+/area/template_noop)
+
+(1,1,1) = {"
+z
+R
+D
+s
+z
+"}
+(2,1,1) = {"
+y
+N
+E
+R
+D
+"}
+(3,1,1) = {"
+D
+K
+N
+R
+z
+"}

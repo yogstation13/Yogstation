@@ -53,7 +53,7 @@
 
 /obj/item/clothing/head/collectable/police
 	name = "collectable police officer's hat"
-	desc = "A collectable police officer's Hat. This hat emphasizes that you are THE LAW."
+	desc = "A collectable police officer's hat. This hat emphasizes that you are THE LAW."
 	icon_state = "policehelm"
 	dynamic_hair_suffix = ""
 
@@ -98,9 +98,20 @@
 	desc = "The fur feels... a bit too realistic."
 	icon_state = "kitty"
 	item_state = "kitty"
+	color = "#999999"
 	dynamic_hair_suffix = ""
 
 	dog_fashion = /datum/dog_fashion/head/kitty
+
+/obj/item/clothing/head/collectable/kitty/equipped(mob/living/carbon/human/user, slot)
+	if(ishuman(user) && slot == SLOT_HEAD)
+		update_icon(user)
+		user.update_inv_head() //Color might have been changed by update_icon.
+	..()
+
+/obj/item/clothing/head/collectable/kitty/update_icon(mob/living/carbon/human/user)
+	if(ishuman(user))
+		add_atom_colour("#[user.hair_color]", FIXED_COLOUR_PRIORITY)
 
 /obj/item/clothing/head/collectable/rabbitears
 	name = "collectable rabbit ears"
@@ -140,7 +151,7 @@
 
 /obj/item/clothing/head/collectable/thunderdome
 	name = "collectable Thunderdome helmet"
-	desc = "Go Red! I mean Green! I mean Red! No Green!"
+	desc = "Go Red! I mean Green! I mean Red! No, Green!"
 	icon_state = "thunderdome"
 	item_state = "thunderdome"
 	resistance_flags = NONE

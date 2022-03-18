@@ -4,7 +4,7 @@
 	icon_state = "wizard"
 	gas_transfer_coefficient = 0.01 // IT'S MAGICAL OKAY JEEZ +1 TO NOT DIE
 	permeability_coefficient = 0.01
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100, "wound" = 20)
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -66,7 +66,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100, "wound" = 20)
 	allowed = list(/obj/item/teleportation_scroll)
 	flags_inv = HIDEJUMPSUIT
 	strip_delay = 50
@@ -165,7 +165,7 @@
 	if(!isliving(usr))
 		return
 	if(!robe_charge)
-		to_chat(usr, "<span class='warning'>\The robe's internal magic supply is still recharging!</span>")
+		to_chat(usr, span_warning("\The robe's internal magic supply is still recharging!"))
 		return
 
 	usr.say("Rise, my creation! Off your page into this realm!", forced = "stickman summoning")
@@ -176,38 +176,45 @@
 	src.robe_charge = FALSE
 	sleep(30)
 	src.robe_charge = TRUE
-	to_chat(usr, "<span class='notice'>\The robe hums, its internal magic supply restored.</span>")
+	to_chat(usr, span_notice("\The robe hums, its internal magic supply restored."))
 
 
 //Shielded Armour
 
-/obj/item/clothing/suit/space/hardsuit/shielded/wizard
+/obj/item/clothing/suit/wizrobe/armor
 	name = "battlemage armour"
-	desc = "Not all wizards are afraid of getting up close and personal."
+	desc = "Not all wizards are afraid of getting up close and personal. It does not protect against the vacuum of space, nothing a wizard can't handle."
 	icon_state = "battlemage"
 	item_state = "battlemage"
-	recharge_rate = 0
-	current_charges = 15
-	recharge_cooldown = INFINITY
-	shield_state = "shield-red"
-	shield_on = "shield-red"
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
 	slowdown = 0
+	clothing_flags = THICKMATERIAL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	w_class = WEIGHT_CLASS_BULKY
+	var/current_charges = 15
+	var/max_charges = 3
+	var/recharge_delay = 0
+	var/recharge_cooldown = INFINITY
+	var/recharge_rate = 0
+	var/shield_state = "shield-red"
+	var/shield_on = "shield-red"
 
-/obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard
+/obj/item/clothing/head/wizard/armor
 	name = "battlemage helmet"
 	desc = "A suitably impressive helmet.."
 	icon_state = "battlemage"
 	item_state = "battlemage"
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
 	actions_types = null //No inbuilt light
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	clothing_flags = THICKMATERIAL
+
+
+
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard/attack_self(mob/user)
 	return
@@ -218,11 +225,55 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity2"
 
-/obj/item/wizard_armour_charge/afterattack(obj/item/clothing/suit/space/hardsuit/shielded/wizard/W, mob/user)
+/obj/item/wizard_armour_charge/afterattack(obj/item/clothing/suit/wizrobe/armor/W, mob/user)
 	. = ..()
 	if(!istype(W))
-		to_chat(user, "<span class='warning'>The rune can only be used on battlemage armour!</span>")
+		to_chat(user, span_warning("The rune can only be used on battlemage armour!"))
 		return
 	W.current_charges += 8
-	to_chat(user, "<span class='notice'>You charge \the [W]. It can now absorb [W.current_charges] hits.</span>")
+	to_chat(user, span_notice("You charge \the [W]. It can now absorb [W.current_charges] hits."))
 	qdel(src)
+
+/obj/item/clothing/suit/wizrobe/armor/Initialize()
+	. = ..()
+	if(!allowed)
+		allowed = GLOB.advanced_hardsuit_allowed
+
+/obj/item/clothing/suit/wizrobe/armor/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	recharge_cooldown = world.time + recharge_delay
+	if(current_charges > 0)
+		var/datum/effect_system/spark_spread/s = new
+		s.set_up(2, 1, src)
+		s.start()
+		owner.visible_message(span_danger("[owner]'s shields deflect [attack_text] in a shower of sparks!"))
+		current_charges--
+		if(recharge_rate)
+			START_PROCESSING(SSobj, src)
+		if(current_charges <= 0)
+			owner.visible_message("[owner]'s shield overloads!")
+			shield_state = "broken"
+			owner.update_inv_wear_suit()
+		return 1
+	return 0
+
+
+/obj/item/clothing/suit/wizrobe/armor/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/clothing/suit/wizrobe/armor/process()
+	if(world.time > recharge_cooldown && current_charges < max_charges)
+		current_charges = clamp((current_charges + recharge_rate), 0, max_charges)
+		playsound(loc, 'sound/magic/charge.ogg', 50, 1)
+		if(current_charges == max_charges)
+			playsound(loc, 'sound/machines/ding.ogg', 50, 1)
+			STOP_PROCESSING(SSobj, src)
+		shield_state = "[shield_on]"
+		if(ishuman(loc))
+			var/mob/living/carbon/human/C = loc
+			C.update_inv_wear_suit()
+
+/obj/item/clothing/suit/wizrobe/armor/worn_overlays(isinhands)
+	. = list()
+	if(!isinhands)
+		. += mutable_appearance('icons/effects/effects.dmi', shield_state, MOB_LAYER + 0.01)

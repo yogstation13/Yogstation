@@ -16,6 +16,12 @@
 	desc = "A 10mm hollow-point bullet casing."
 	projectile_type = /obj/item/projectile/bullet/c10mm_hp
 
+/obj/item/ammo_casing/c10mm/sp
+	name = "10mm soporific bullet casing"
+	desc = "A 10mm soporific bullet casing."
+	projectile_type = /obj/item/projectile/bullet/c10mm_sp
+	harmful = FALSE
+
 /obj/item/ammo_casing/c10mm/fire
 	name = "10mm incendiary bullet casing"
 	desc = "A 10mm incendiary bullet casing."

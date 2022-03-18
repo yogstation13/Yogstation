@@ -1,5 +1,5 @@
 /datum/species/jelly/slime/on_species_loss(mob/living/carbon/C)
-	UnregisterSignal(C, COMSIG_ALT_CLICK_ON, .proc/handle_altclick)
+	UnregisterSignal(C, COMSIG_ALT_CLICK_ON)
 	..()
 
 /datum/species/jelly/slime/on_species_gain(mob/living/carbon/C)

@@ -22,7 +22,7 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	var/datum/mind/origin
 	var/egg_lain = 0
-	gold_core_spawnable = HOSTILE_SPAWN //yogs
+	gold_core_spawnable = NO_SPAWN //yogs
 
 /mob/living/simple_animal/hostile/headcrab/proc/Infect(mob/living/carbon/victim)
 	var/obj/item/organ/body_egg/changeling_egg/egg = new(victim)
@@ -33,8 +33,8 @@
 		egg.origin = mind
 	for(var/obj/item/organ/I in src)
 		I.forceMove(egg)
-	visible_message("<span class='warning'>[src] plants something in [victim]'s flesh!</span>", \
-					"<span class='danger'>We inject our egg into [victim]'s body!</span>")
+	visible_message(span_warning("[src] plants something in [victim]'s flesh!"), \
+					span_danger("We inject our egg into [victim]'s body!"))
 	egg_lain = 1
 
 /mob/living/simple_animal/hostile/headcrab/AttackingTarget()
@@ -43,11 +43,11 @@
 		// Changeling egg can survive in aliens!
 		var/mob/living/carbon/C = target
 		if(C.stat == DEAD)
-			if(C.has_trait(TRAIT_XENO_HOST))
-				to_chat(src, "<span class='userdanger'>A foreign presence repels us from this body. Perhaps we should try to infest another?</span>")
+			if(HAS_TRAIT(C, TRAIT_XENO_HOST))
+				to_chat(src, span_userdanger("A foreign presence repels us from this body. Perhaps we should try to infest another?"))
 				return
 			Infect(target)
-			to_chat(src, "<span class='userdanger'>With our egg laid, our death approaches rapidly...</span>")
+			to_chat(src, span_userdanger("With our egg laid, our death approaches rapidly..."))
 			addtimer(CALLBACK(src, .proc/death), 100)
 
 /obj/item/organ/body_egg/changeling_egg
@@ -66,7 +66,7 @@
 
 /obj/item/organ/body_egg/changeling_egg/proc/Pop()
 	var/mob/living/carbon/monkey/M = new(owner)
-	owner.stomach_contents += M
+	owner.stomach_contents += M // Yogs -- Yogs vorecode
 
 	for(var/obj/item/organ/I in src)
 		I.Insert(M, 1)

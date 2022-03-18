@@ -6,6 +6,7 @@
 	stat = DEAD //we start dead by default
 	see_invisible = SEE_INVISIBLE_LIVING
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM) //for mechas
+	speech_span = SPAN_ROBOT
 
 /mob/living/brain/Initialize()
 	. = ..()
@@ -81,6 +82,8 @@
 		doMove(destination)
 	else if (istype(destination, /obj/item/mmi))
 		doMove(destination)
+	else if (istype(destination, /obj/item/reagent_containers/food/snacks/egg))
+		doMove(destination)
 	else
 		CRASH("Brainmob without a container [src] attempted to move to [destination].")
 
@@ -102,3 +105,9 @@
 	if(istype(loc, /obj/item/organ/brain))
 		var/obj/item/organ/brain/B = loc
 		. = B.traumas
+
+/mob/living/brain/get_policy_keywords()
+	. = ..()
+
+	if(container)
+		. += "[container.type]"

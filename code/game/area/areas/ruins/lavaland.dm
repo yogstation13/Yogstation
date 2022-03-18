@@ -32,10 +32,28 @@
 /area/ruin/powered/seedvault
 	icon_state = "dk_yellow"
 
+/area/ruin/powered/kinggoatlair
+	name = "King Goat Lair"
+	icon_state = "dk_yellow"
+
+/area/ruin/powered/gasstation //yogs start
+	name = "Lavaland Gas Station"
+	icon_state = "dk_yellow" // yogs end
+
 /area/ruin/unpowered/syndicate_lava_base
 	name = "Secret Base"
 	icon_state = "dk_yellow"
 	ambientsounds = HIGHSEC
+
+/area/ruin/powered/kinggoat_arena //yogs start
+	name = "King Goat Arena"
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	noteleport = TRUE
+	icon_state = "dk_yellow" //yogs end
+
+/area/ruin/unpowered/russianbunker
+	name = "Russian Bunker"
+	noteleport = TRUE
 
 /area/ruin/unpowered/syndicate_lava_base/engineering
 	name = "Syndicate Lavaland Engineering"
@@ -69,6 +87,11 @@
 
 /area/ruin/unpowered/syndicate_lava_base/telecomms
 	name = "Syndicate Lavaland Telecommunications"
+
+/area/ruin/unpowered/dragonslair //yogs start
+	name = "Dragons Lair"
+	hidden = TRUE
+	noteleport = TRUE //yogs (bell)end
 
 //Xeno Nest
 

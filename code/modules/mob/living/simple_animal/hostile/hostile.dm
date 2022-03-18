@@ -137,10 +137,8 @@
 			if(can_see(targets_from, HM, vision_range))
 				. += HM
 	else
-		. = list() // The following code is only very slightly slower than just returning oview(vision_range, targets_from), but it saves us much more work down the line, particularly when bees are involved
-		for (var/obj/A in oview(vision_range, targets_from))
-			. += A
-		for (var/mob/A in oview(vision_range, targets_from))
+		. = list()
+		for (var/atom/movable/A in oview(vision_range, targets_from))
 			. += A
 
 /mob/living/simple_animal/hostile/proc/FindTarget(var/list/possible_targets, var/HasTargetsList = 0)//Step 2, filter down possible targets to things we actually care about
@@ -337,6 +335,7 @@
 
 
 /mob/living/simple_animal/hostile/proc/AttackingTarget()
+	SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
 	in_melee = TRUE
 	return target.attack_animal(src)
 
@@ -387,7 +386,7 @@
 /mob/living/simple_animal/hostile/proc/OpenFire(atom/A)
 	if(CheckFriendlyFire(A))
 		return
-	visible_message("<span class='danger'><b>[src]</b> [ranged_message] at [A]!</span>")
+	visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))
 
 
 	if(rapid > 1)
@@ -406,12 +405,13 @@
 	if(casingtype)
 		var/obj/item/ammo_casing/casing = new casingtype(startloc)
 		playsound(src, projectilesound, 100, 1)
-		casing.fire_casing(targeted_atom, src, null, null, null, ran_zone())
+		casing.fire_casing(targeted_atom, src, null, null, null, ran_zone(), 0,  src)
 	else if(projectiletype)
 		var/obj/item/projectile/P = new projectiletype(startloc)
 		playsound(src, projectilesound, 100, 1)
 		P.starting = startloc
 		P.firer = src
+		P.fired_from = src
 		P.yo = targeted_atom.y - startloc.y
 		P.xo = targeted_atom.x - startloc.x
 		if(AIStatus != AI_ON)//Don't want mindless mobs to have their movement screwed up firing in space
@@ -551,7 +551,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 		toggle_ai(AI_Z_OFF)
 		return
 
-	var/cheap_search = isturf(T) && !is_station_level(T.z)
+	var/cheap_search = isturf(T) && !(is_station_level(T.z) || is_mining_level(T.z))
 	if (cheap_search)
 		tlist = ListTargetsLazy(T.z)
 	else

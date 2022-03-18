@@ -3,7 +3,7 @@
 	max_stages = 3
 	spread_text = "On contact" //Yogs
 	cure_text = "Rest & Spaceacillin"
-	cures = list("spaceacillin")
+	cures = list(/datum/reagent/medicine/spaceacillin)
 	agent = "XY-rhinovirus"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	permeability_mod = 0.5
@@ -15,11 +15,11 @@
 	switch(stage)
 		if(2)
 			if(!(affected_mob.mobility_flags & MOBILITY_STAND) && prob(40))  //changed FROM prob(10) until sleeping is fixed
-				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
+				to_chat(affected_mob, span_notice("You feel better."))
 				cure()
 				return
 			if(prob(1) && prob(5))
-				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
+				to_chat(affected_mob, span_notice("You feel better."))
 				cure()
 				return
 			if(prob(1))
@@ -27,16 +27,16 @@
 			if(prob(1))
 				affected_mob.emote("cough")
 			if(prob(1))
-				to_chat(affected_mob, "<span class='danger'>Your throat feels sore.</span>")
+				to_chat(affected_mob, span_danger("Your throat feels sore."))
 			if(prob(1))
-				to_chat(affected_mob, "<span class='danger'>Mucous runs down the back of your throat.</span>")
+				to_chat(affected_mob, span_danger("Mucous runs down the back of your throat."))
 		if(3)
 			if(!(affected_mob.mobility_flags & MOBILITY_STAND) && prob(25))  //changed FROM prob(5) until sleeping is fixed
-				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
+				to_chat(affected_mob, span_notice("You feel better."))
 				cure()
 				return
 			if(prob(1) && prob(1))
-				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
+				to_chat(affected_mob, span_notice("You feel better."))
 				cure()
 				return
 			if(prob(1))
@@ -44,9 +44,9 @@
 			if(prob(1))
 				affected_mob.emote("cough")
 			if(prob(1))
-				to_chat(affected_mob, "<span class='danger'>Your throat feels sore.</span>")
+				to_chat(affected_mob, span_danger("Your throat feels sore."))
 			if(prob(1))
-				to_chat(affected_mob, "<span class='danger'>Mucous runs down the back of your throat.</span>")
+				to_chat(affected_mob, span_danger("Mucous runs down the back of your throat."))
 			if(prob(1) && prob(50))
 				if(!affected_mob.disease_resistances.Find(/datum/disease/flu))
 					var/datum/disease/Flu = new /datum/disease/flu()

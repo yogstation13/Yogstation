@@ -26,12 +26,13 @@
 /atom/movable/Adjacent(var/atom/neighbor)
 	if(neighbor == loc)
 		return TRUE
-	if(!isturf(loc))
+	var/turf/T = loc
+	if(!istype(T))
 		return FALSE
 	if((islist(locs) && locs.len > 1) && (bound_width != world.icon_size || bound_height != world.icon_size))
-		for(var/turf/T in locs) //this is to handle multi tile objects
-			if(T.Adjacent(neighbor, src, src))
+		for(var/turf/place in locs) //this is to handle multi tile objects
+			if(place.Adjacent(neighbor, src, src))
 				return TRUE
-	else if(loc.Adjacent(neighbor,target = neighbor, mover = src))
+	else if(T.Adjacent(neighbor,target = neighbor, mover = src))
 		return TRUE
 	return FALSE

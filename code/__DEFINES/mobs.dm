@@ -7,24 +7,54 @@
 #define PLAYER_READY_TO_PLAY 1
 #define PLAYER_READY_TO_OBSERVE 2
 
+//Game mode list indexes
+#define CURRENT_LIVING_PLAYERS	"living_players_list"
+#define CURRENT_LIVING_ANTAGS	"living_antags_list"
+#define CURRENT_DEAD_PLAYERS	"dead_players_list"
+#define CURRENT_OBSERVERS		"current_observers_list"
+
 //movement intent defines for the m_intent var
 #define MOVE_INTENT_WALK "walk"
 #define MOVE_INTENT_RUN  "run"
 
-//Blood levels
-#define BLOOD_VOLUME_MAXIMUM		2000
-#define BLOOD_VOLUME_SLIME_SPLIT	1120
-#define BLOOD_VOLUME_NORMAL			560
-#define BLOOD_VOLUME_SAFE			475
-#define BLOOD_VOLUME_OKAY			336
-#define BLOOD_VOLUME_BAD			224
-#define BLOOD_VOLUME_SURVIVE		122
+//Blood volumes, in cL
+#define BLOOD_VOLUME_GENERIC		560 // The default amount of blood in a blooded creature, in cL, based off IRL data about humans
+#define BLOOD_VOLUME_MONKEY			325 // Based on IRL data bout Chimpanzees
+#define BLOOD_VOLUME_XENO			700 // Based off data from my asshole
+
+#define BLOOD_VOLUME_SLIME_SPLIT	(2.0 * BLOOD_VOLUME_GENERIC) // Amount of blood needed by slimebois for splitting in twain
+
+//Blood multiplers -- Multiply the original default value of blood your Carbon has with these in order to get the actual blood tiers
+// i.e.	if(h.blood_volume < initial(h.blood_volume) * BLOOD_OKAY_MULTI) or whatever
+//used by :living/proc/get_blood_state()
+#define BLOOD_MAXIMUM_MULTI 3.6 // 360%
+#define BLOOD_SAFE_MULTI 0.848	// 84.8%
+#define BLOOD_OKAY_MULTI 0.6	// 60%
+#define BLOOD_BAD_MULTI 0.4		// 40%
+#define BLOOD_SURVIVE_MULTI 0.2	// 20%
+
+//Blood state enums, again used by get_blood_state()
+#define BLOOD_MAXIMUM 5
+#define BLOOD_SAFE 4
+#define BLOOD_OKAY 3
+#define BLOOD_BAD 2
+#define BLOOD_SURVIVE 1
+#define BLOOD_DEAD 0
+
+//Defines to get the actual volumes for these varying states
+#define BLOOD_VOLUME_MAXIMUM(L)		(initial(##L.blood_volume) * BLOOD_MAXIMUM_MULTI)
+#define BLOOD_VOLUME_NORMAL(L)		(initial(##L.blood_volume))
+#define BLOOD_VOLUME_SAFE(L)		(initial(##L.blood_volume) * BLOOD_SAFE_MULTI)
+#define BLOOD_VOLUME_OKAY(L)		(initial(##L.blood_volume) * BLOOD_OKAY_MULTI)
+#define BLOOD_VOLUME_BAD(L)			(initial(##L.blood_volume) * BLOOD_BAD_MULTI)
+#define BLOOD_VOLUME_SURVIVE(L)		(initial(##L.blood_volume) * BLOOD_SURVIVE_MULTI)
 
 //Sizes of mobs, used by mob/living/var/mob_size
 #define MOB_SIZE_TINY 0
 #define MOB_SIZE_SMALL 1
 #define MOB_SIZE_HUMAN 2
 #define MOB_SIZE_LARGE 3
+#define MOB_SIZE_HUGE 4
 
 //Ventcrawling defines
 #define VENTCRAWLER_NONE   0
@@ -54,10 +84,6 @@
 #define BODYPART_ORGANIC   1
 #define BODYPART_ROBOTIC   2
 
-#define BODYPART_NOT_DISABLED 0
-#define BODYPART_DISABLED_DAMAGE 1
-#define BODYPART_DISABLED_PARALYSIS 2
-
 #define DEFAULT_BODYPART_ICON_ORGANIC 'icons/mob/human_parts_greyscale.dmi'
 #define DEFAULT_BODYPART_ICON_ROBOTIC 'icons/mob/augmentation/augments.dmi'
 
@@ -70,6 +96,8 @@
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3
 #define HUMAN_CRIT_MAX_OXYLOSS (SSmobs.wait/30)
+
+#define STAMINA_REGEN_BLOCK_TIME (10 SECONDS)
 
 #define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 3 //Amount of damage applied when your body temperature passes the 400K point
@@ -101,12 +129,14 @@
 #define TRAUMA_RESILIENCE_BASIC 1      //Curable with chems
 #define TRAUMA_RESILIENCE_SURGERY 2    //Curable with brain surgery
 #define TRAUMA_RESILIENCE_LOBOTOMY 3   //Curable with lobotomy
-#define TRAUMA_RESILIENCE_MAGIC 4      //Curable only with magic
-#define TRAUMA_RESILIENCE_ABSOLUTE 5   //This is here to stay
+#define TRAUMA_RESILIENCE_WOUND 4    //Curable by healing the head wound
+#define TRAUMA_RESILIENCE_MAGIC 5      //Curable only with magic
+#define TRAUMA_RESILIENCE_ABSOLUTE 6   //This is here to stay
 
 //Limit of traumas for each resilience tier
 #define TRAUMA_LIMIT_BASIC 3
 #define TRAUMA_LIMIT_SURGERY 2
+#define TRAUMA_LIMIT_WOUND 2
 #define TRAUMA_LIMIT_LOBOTOMY 3
 #define TRAUMA_LIMIT_MAGIC 3
 #define TRAUMA_LIMIT_ABSOLUTE INFINITY
@@ -136,6 +166,9 @@
 #define MOOD_LEVEL_SAD3 -18
 #define MOOD_LEVEL_SAD4 -25
 
+// Mob Caps
+#define MAX_WALKINGMUSHROOM 50
+
 //Sanity levels for humans
 #define SANITY_GREAT 125
 #define SANITY_NEUTRAL 100
@@ -143,11 +176,6 @@
 #define SANITY_UNSTABLE 50
 #define SANITY_CRAZY 25
 #define SANITY_INSANE 0
-
-//Hygiene levels for humans
-#define HYGIENE_LEVEL_CLEAN 250
-#define HYGIENE_LEVEL_NORMAL 200
-#define HYGIENE_LEVEL_DIRTY 75
 
 //Nutrition levels for humans
 #define NUTRITION_LEVEL_FAT 600
@@ -217,10 +245,9 @@
 #define SLIDE					(1<<1)
 #define GALOSHES_DONT_HELP		(1<<2)
 #define SLIDE_ICE				(1<<3)
+#define SLIP_WHEN_CRAWLING		(1<<4) //clown planet ruin
 
 #define MAX_CHICKENS 50
-
-#define UNHEALING_EAR_DAMAGE 100
 
 
 #define INCORPOREAL_MOVE_BASIC 1
@@ -257,8 +284,9 @@
 #define OFFSET_NECK "neck"
 
 //MINOR TWEAKS/MISC
-#define AGE_MIN				17	//youngest a character can be
+#define AGE_MIN				18	//youngest a character can be
 #define AGE_MAX				85	//oldest a character can be
+#define AGE_MINOR			21  //legal age of space drinking and smoking
 #define WIZARD_AGE_MIN		30	//youngest a wizard can be
 #define APPRENTICE_AGE_MIN	29	//youngest an apprentice can be
 #define SHOES_SLOWDOWN		0	//How much shoes slow you down by default. Negative values speed you up
@@ -267,7 +295,6 @@
 
 #define	HUNGER_FACTOR		0.1	//factor at which mob nutrition decreases
 #define	ETHEREAL_CHARGE_FACTOR	0.12 //factor at which ethereal's charge decreases
-#define	HYGIENE_FACTOR  0.1	//factor at which mob hygiene decreases
 #define	REAGENTS_METABOLISM 0.4	//How many units of reagent are consumed per tick, by default.
 #define REAGENTS_EFFECT_MULTIPLIER (REAGENTS_METABOLISM / 0.4)	// By defining the effect multiplier this way, it'll exactly adjust all effects according to how they originally were with the 0.4 metabolism
 
@@ -291,6 +318,9 @@
 #define GRAB_PIXEL_SHIFT_AGGRESSIVE 12
 #define GRAB_PIXEL_SHIFT_NECK 16
 
+#define PULL_PRONE_SLOWDOWN 1.5
+#define HUMAN_CARRY_SLOWDOWN 0.35
+
 //Flags that control what things can spawn species (whitelist)
 //Badmin magic mirror
 #define MIRROR_BADMIN (1<<0)
@@ -306,3 +336,8 @@
 #define SLIME_EXTRACT (1<<5)
 //Wabbacjack staff projectiles
 #define WABBAJACK     (1<<6)
+
+#define SLEEP_CHECK_DEATH(X) sleep(X); if(QDELETED(src) || stat == DEAD) return;
+/// If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()
+#define EXAMINE_MORE_TIME	1 SECONDS
+#define INTERACTING_WITH(X, Y) (Y in X.do_afters)

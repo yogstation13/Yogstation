@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
 	var/netspeed = 5 // how much traffic to lose per tick (50 gigabytes/second * netspeed)
+	var/net_efective = 100 //yogs percentage of netspeed aplied
 	var/list/autolinkers = list() // list of text/number values to link with
 	var/id = "NULL" // identification string
 	var/network = "NULL" // the network of the machinery
@@ -31,13 +32,18 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/long_range_link = FALSE  // Can you link it across Z levels or on the otherside of the map? (Relay & Hub)
 	var/hide = FALSE  // Is it a hidden machine?
 
+	var/generates_heat = TRUE 	//yogs turn off tcomms generating heat
+	var/heatoutput = 2500		//yogs modify power output per trafic removed(usual heat capacity of the air in server room is 1600J/K)
+
+	var/on_icon = "" // used for special cases broadcaster/reciever
+
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/subspace/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
 
 	if(!on)
 		return
-		
+
 	if(filter && !ispath(filter)) // Yogs -- for debugging telecomms later when I soop up NTSL some more
 		CRASH("relay_information() was given a path filter that wasn't actually a path!")
 	var/send_count = 0
@@ -111,18 +117,22 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 			for(var/x in autolinkers)
 				if(x in T.autolinkers)
 					links |= T
+					T.links |= src
+
 
 /obj/machinery/telecomms/update_icon()
+	cut_overlays()
 	if(on)
-		if(panel_open)
-			icon_state = "[initial(icon_state)]_o"
+		var/mutable_appearance/on_overlay
+		if(on_icon)
+			on_overlay = mutable_appearance(icon, on_icon)
 		else
-			icon_state = initial(icon_state)
+			on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+		add_overlay(on_overlay)
+	if(panel_open)
+		icon_state = "[initial(icon_state)]_o"
 	else
-		if(panel_open)
-			icon_state = "[initial(icon_state)]_o_off"
-		else
-			icon_state = "[initial(icon_state)]_off"
+		icon_state = initial(icon_state)
 
 /obj/machinery/telecomms/proc/update_power()
 
@@ -134,22 +144,57 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	else
 		on = FALSE
 
+
+/obj/machinery/telecomms/proc/update_speed()
+	if(!on)
+		return
+	var/turf/T = get_turf(src) //yogs
+	var/speedloss = 0
+	var/datum/gas_mixture/env = T.return_air()
+	var/temperature = env.return_temperature()
+	if(temperature <= 150)				// 150K optimal operating parameters
+		net_efective = 100
+	else
+		if(temperature >= 1150)		// at 1000K above 150K the efectivity becomes 0
+			net_efective = 0
+			speedloss = netspeed
+		else
+			var/ratio = 1000/netspeed			// temp per one unit of speedloss
+			speedloss = round((temperature - 150)/ratio)	// exact speedloss
+			net_efective = 100 - speedloss/netspeed		// percantage speedloss ui use only
+
+	if(traffic > 0)
+		var/deltaT = netspeed - speedloss  //yogs start
+		if (traffic < deltaT)
+			deltaT = traffic
+			traffic = 0
+		else
+			traffic -= deltaT
+		if(generates_heat && env.heat_capacity())
+			env.set_temperature(env.return_temperature() + deltaT * heatoutput / env.heat_capacity())   //yogs end
+
 /obj/machinery/telecomms/process()
 	update_power()
 
 	// Update the icon
 	update_icon()
+	update_speed()
 
-	if(traffic > 0)
-		traffic -= netspeed
+
 
 /obj/machinery/telecomms/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(prob(100/severity))
-		if(!(stat & EMPED))
-			stat |= EMPED
-			var/duration = (300 * 10)/severity
-			spawn(rand(duration - 20, duration + 20)) // Takes a long time for the machines to reboot.
-				stat &= ~EMPED
+	if(prob(100/severity) && !(stat & EMPED))
+		stat |= EMPED
+		var/duration = (300 * 10)/severity
+		addtimer(CALLBACK(src, .proc/de_emp), rand(duration - 20, duration + 20))
+
+/obj/machinery/telecomms/proc/de_emp()
+	stat &= ~EMPED
+
+/obj/machinery/telecomms/emag_act()
+	obj_flags |= EMAGGED
+	visible_message(span_notice("Sparks fly out of the [src]!"))
+	traffic += 50

@@ -3,27 +3,36 @@
 	opacity = 1
 	density = TRUE
 	blocks_air = TRUE
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
+
+/turf/closed/Initialize()
+	. = ..()
+	update_air_ref()
 
 /turf/closed/AfterChange()
 	. = ..()
 	SSair.high_pressure_delta -= src
+	update_air_ref()
 
 /turf/closed/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	return FALSE
 
-/turf/closed/CanPass(atom/movable/mover, turf/target)
+/turf/closed/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSCLOSEDTURF))
 		return TRUE
-	return ..()
 
 /turf/closed/indestructible
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
+	flags_1 = NOJAUNT_1 | CAN_BE_DIRTY_1
 
-/turf/closed/indestructible/TerraformTurf(path, defer_change = FALSE, ignore_air = FALSE)
+/turf/closed/indestructible/rust_heretic_act()
+	return
+
+/turf/closed/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
 
 /turf/closed/indestructible/acid_act(acidpwr, acid_volume, acid_id)
@@ -77,6 +86,11 @@
 	icon_state = "riveted"
 	smooth = SMOOTH_TRUE
 
+/turf/closed/indestructible/syndicate
+	icon = 'icons/turf/walls/plastitanium_wall.dmi'
+	icon_state = "map-shuttle"
+	smooth = SMOOTH_MORE
+
 /turf/closed/indestructible/riveted/uranium
 	icon = 'icons/turf/walls/uranium_wall.dmi'
 	icon_state = "uranium"
@@ -99,6 +113,19 @@
 	icon_state = null //set the icon state to null, so our base state isn't visible
 	underlays += mutable_appearance('icons/obj/structures.dmi', "grille") //add a grille underlay
 	underlays += mutable_appearance('icons/turf/floors.dmi', "plating") //add the plating underlay, below the grille
+
+/turf/closed/indestructible/opsglass
+	name = "window"
+	icon_state = "plastitanium_window"
+	opacity = 0
+	smooth = SMOOTH_TRUE
+	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
+
+/turf/closed/indestructible/opsglass/Initialize()
+	. = ..()
+	icon_state = null
+	underlays += mutable_appearance('icons/obj/structures.dmi', "grille")
+	underlays += mutable_appearance('icons/turf/floors.dmi', "plating")
 
 /turf/closed/indestructible/fakedoor
 	name = "CentCom Access"
@@ -125,11 +152,23 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "icerock"
 
+/turf/closed/indestructible/rock/wood
+	name = "wooden wall"
+	desc = "A wall with wooden plating. Stiff."
+	icon = 'icons/turf/walls/wood_wall.dmi'
+	icon_state = "wood"
+
 /turf/closed/indestructible/paper
 	name = "thick paper wall"
 	desc = "A wall layered with impenetrable sheets of paper."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "paperwall"
+
+/turf/closed/indestructible/vault
+	name = "sturdy wall"
+	desc = "A huge chunk of metal used to separate rooms."
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rockvault"
 
 /turf/closed/indestructible/necropolis
 	name = "necropolis wall"

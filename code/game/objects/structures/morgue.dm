@@ -31,6 +31,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 /obj/structure/bodycontainer/Initialize()
 	. = ..()
 	GLOB.bodycontainers += src
+	recursive_organ_check(src)
 
 /obj/structure/bodycontainer/Destroy()
 	GLOB.bodycontainers -= src
@@ -53,7 +54,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	if(locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50
-			to_chat(user, "<span class='warning'>[src]'s door won't budge!</span>")
+			to_chat(user, span_warning("[src]'s door won't budge!"))
 		return
 	open()
 
@@ -65,7 +66,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	if(.)
 		return
 	if(locked)
-		to_chat(user, "<span class='danger'>It's locked.</span>")
+		to_chat(user, span_danger("It's locked."))
 		return
 	if(!connected)
 		to_chat(user, "That doesn't appear to have a tray.")
@@ -85,7 +86,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	add_fingerprint(user)
 	if(istype(P, /obj/item/pen))
 		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on the side of [src]!</span>")
+			to_chat(user, span_notice("You scribble illegibly on the side of [src]!"))
 			return
 		var/t = stripped_input(user, "What would you like the label to be?", text("[]", name), null)
 		if (user.get_active_held_item() != P)
@@ -101,6 +102,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/deconstruct(disassembled = TRUE)
 	new /obj/item/stack/sheet/metal (loc, 5)
+	recursive_organ_check(src)
 	qdel(src)
 
 /obj/structure/bodycontainer/container_resist(mob/living/user)
@@ -110,22 +112,24 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message(null, \
-		"<span class='notice'>You lean on the back of [src] and start pushing the tray open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
-		"<span class='italics'>You hear a metallic creaking from [src].</span>")
+		span_notice("You lean on the back of [src] and start pushing the tray open... (this will take about [DisplayTimeText(breakout_time)].)"), \
+		span_italics("You hear a metallic creaking from [src]."))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src )
 			return
-		user.visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>", \
-			"<span class='notice'>You successfully break out of [src]!</span>")
+		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
+			span_notice("You successfully break out of [src]!"))
 		open()
 
 /obj/structure/bodycontainer/proc/open()
+	recursive_organ_check(src)
 	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 	playsound(src, 'sound/effects/roll.ogg', 5, 1)
 	var/turf/T = get_step(src, dir)
 	connected.setDir(dir)
 	for(var/atom/movable/AM in src)
 		AM.forceMove(T)
+	recursive_organ_check(src)
 	update_icon()
 
 /obj/structure/bodycontainer/proc/close()
@@ -159,15 +163,15 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	connected.connected = src
 
 /obj/structure/bodycontainer/morgue/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.</span>")
+	. = ..()
+	. += span_notice("The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.")
 
 /obj/structure/bodycontainer/morgue/AltClick(mob/user)
 	..()
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	beeper = !beeper
-	to_chat(user, "<span class='notice'>You turn the speaker function [beeper ? "on" : "off"].</span>")
+	to_chat(user, span_notice("You turn the speaker function [beeper ? "on" : "off"]."))
 
 /obj/structure/bodycontainer/morgue/update_icon()
 	if (!connected || connected.loc != src) // Open or tray is gone.
@@ -184,7 +188,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 			for(var/mob/living/M in compiled)
 				var/mob/living/mob_occupant = get_mob_or_brainmob(M)
-				if(mob_occupant.client && !mob_occupant.suiciding && !(mob_occupant.has_trait(TRAIT_BADDNA)) && !mob_occupant.hellbound)
+				if(mob_occupant.client && !mob_occupant.suiciding && !(HAS_TRAIT(mob_occupant, TRAIT_BADDNA)) && !mob_occupant.hellbound)
 					icon_state = "morgue4" // Cloneable
 					if(mob_occupant.stat == DEAD && beeper)
 						if(world.time > next_beep)
@@ -209,7 +213,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	var/id = 1
 
 /obj/structure/bodycontainer/crematorium/attack_robot(mob/user) //Borgs can't use crematoriums without help
-	to_chat(user, "<span class='warning'>[src] is locked against you.</span>")
+	to_chat(user, span_warning("[src] is locked against you."))
 	return
 
 /obj/structure/bodycontainer/crematorium/Destroy()
@@ -247,18 +251,24 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	var/list/conts = GetAllContents() - src - connected
 
 	if(!conts.len)
-		audible_message("<span class='italics'>You hear a hollow crackle.</span>")
+		audible_message(span_italics("You hear a hollow crackle."))
 		return
 
 	else
-		audible_message("<span class='italics'>You hear a roar as the crematorium activates.</span>")
+		audible_message(span_italics("You hear a roar as the crematorium activates."))
 
 		locked = TRUE
 		update_icon()
 
 		for(var/mob/living/M in conts)
-			if (M.stat != DEAD)
+			if(M.stat != DEAD)
 				M.emote("scream")
+			if(M.client)
+				if(M.stat != DEAD)
+					SSachievements.unlock_achievement(/datum/achievement/cremated_alive, M.client) //they are in body and alive, give achievement
+				SSachievements.unlock_achievement(/datum/achievement/cremated, M.client) //they are in body, but dead, they can have one achievement
+			else if(M.oobe_client) //they might be ghosted if they are dead, we'll allow it.
+				SSachievements.unlock_achievement(/datum/achievement/cremated, M.oobe_client) //no burning alive achievement if you are ghosted though
 			if(user)
 				log_combat(user, M, "cremated")
 			else
@@ -305,10 +315,10 @@ GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/tray
 	icon = 'icons/obj/stationobjs.dmi'
 	density = TRUE
-	layer = BELOW_OBJ_LAYER
 	var/obj/structure/bodycontainer/connected = null
 	anchored = TRUE
 	pass_flags = LETPASSTHROW
+	layer = TABLE_LAYER
 	max_integrity = 350
 
 /obj/structure/tray/Destroy()
@@ -333,10 +343,10 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		connected.close()
 		add_fingerprint(user)
 	else
-		to_chat(user, "<span class='warning'>That's not connected to anything!</span>")
+		to_chat(user, span_warning("That's not connected to anything!"))
 
 /obj/structure/tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user)
-	if(!ismovableatom(O) || O.anchored || !Adjacent(user) || !user.Adjacent(O) || O.loc == user)
+	if(!ismovable(O) || O.anchored || !Adjacent(user) || !user.Adjacent(O) || O.loc == user)
 		return
 	if(!ismob(O))
 		if(!istype(O, /obj/structure/closet/body_bag))
@@ -353,7 +363,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 			return
 	O.forceMove(src.loc)
 	if (user != O)
-		visible_message("<span class='warning'>[user] stuffs [O] into [src].</span>")
+		visible_message(span_warning("[user] stuffs [O] into [src]."))
 	return
 
 /*
@@ -372,16 +382,15 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	desc = "Apply corpse before closing."
 	icon_state = "morguet"
 
-/obj/structure/tray/m_tray/CanPass(atom/movable/mover, turf/target)
+/obj/structure/tray/m_tray/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
-		return 1
+		return TRUE
 	if(locate(/obj/structure/table) in get_turf(mover))
-		return 1
-	else
-		return 0
+		return TRUE
 
 /obj/structure/tray/m_tray/CanAStarPass(ID, dir, caller)
 	. = !density
-	if(ismovableatom(caller))
+	if(ismovable(caller))
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSTABLE)

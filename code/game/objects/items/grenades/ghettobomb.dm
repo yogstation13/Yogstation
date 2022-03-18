@@ -46,7 +46,7 @@
 /obj/item/grenade/iedcasing/attack_self(mob/user) //
 	if(!active)
 		if(clown_check(user))
-			to_chat(user, "<span class='warning'>You light the [name]!</span>")
+			to_chat(user, span_warning("You light the [name]!"))
 			cut_overlay("improvised_grenade_filled")
 			preprime(user, null, FALSE)
 
@@ -56,5 +56,5 @@
 	qdel(src)
 
 /obj/item/grenade/iedcasing/examine(mob/user)
-	..()
-	to_chat(user, "You can't tell when it will explode!")
+	. = ..()
+	. += "You can't tell when it will explode!"

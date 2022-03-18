@@ -33,6 +33,9 @@
 	if(href_list["create_area"])
 		if(in_use)
 			return
+		var/turf/T = get_turf(usr)
+		if(is_reebe(T.z))
+			to_chat(usr, span_danger("[src] will not function on Reebe!"))
 		in_use = TRUE
 		create_area(usr)
 		in_use = FALSE
@@ -59,7 +62,7 @@
 /obj/item/areaeditor/blueprints/attack_self(mob/user)
 	. = ..()
 	if(!legend)
-		var/area/A = get_area()
+		var/area/A = get_area(user)
 		if(get_area_type() == AREA_STATION)
 			. += "<p>According to \the [src], you are now in <b>\"[html_encode(A.name)]\"</b>.</p>"
 			. += "<p><a href='?src=[REF(src)];edit_area=1'>Change area name</a></p>"
@@ -101,9 +104,9 @@
 	if(href_list["view_wireset"])
 		legend = href_list["view_wireset"];
 	if(href_list["view_blueprints"])
-		set_viewer(usr, "<span class='notice'>You flip the blueprints over to view the complex information diagram.</span>")
+		set_viewer(usr, span_notice("You flip the blueprints over to view the complex information diagram."))
 	if(href_list["hide_blueprints"])
-		clear_viewer(usr,"<span class='notice'>You flip the blueprints over to view the simple information diagram.</span>")
+		clear_viewer(usr,span_notice("You flip the blueprints over to view the simple information diagram."))
 	if(href_list["refresh"])
 		clear_viewer(usr)
 		set_viewer(usr)
@@ -140,12 +143,9 @@
 	legend = FALSE
 
 
-/obj/item/areaeditor/proc/get_area()
-	var/turf/T = get_turf(usr)
-	var/area/A = T.loc
-	return A
-
-/obj/item/areaeditor/proc/get_area_type(area/A = get_area())
+/obj/item/areaeditor/proc/get_area_type(area/A)
+	if (!A)
+		A = get_area(usr)
 	if(A.outdoors)
 		return AREA_SPACE
 	var/list/SPECIALS = list(
@@ -183,18 +183,18 @@
 	return ""
 
 /obj/item/areaeditor/proc/edit_area()
-	var/area/A = get_area()
+	var/area/A = get_area(usr)
 	var/prevname = "[A.name]"
 	var/str = stripped_input(usr,"New area name:", "Area Creation", "", MAX_NAME_LEN)
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
-		to_chat(usr, "<span class='warning'>The given name is too long.  The area's name is unchanged.</span>")
+		to_chat(usr, span_warning("The given name is too long.  The area's name is unchanged."))
 		return
 
 	rename_area(A, str)
 
-	to_chat(usr, "<span class='notice'>You rename the '[prevname]' to '[str]'.</span>")
+	to_chat(usr, span_notice("You rename the '[prevname]' to '[str]'."))
 	log_game("[key_name(usr)] has renamed [prevname] to [str]")
 	A.update_areasize()
 	interact()

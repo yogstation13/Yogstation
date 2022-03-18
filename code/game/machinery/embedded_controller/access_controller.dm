@@ -9,7 +9,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/idSelf
 
 /obj/machinery/doorButtons/attackby(obj/O, mob/user)
@@ -32,10 +32,10 @@
 	req_access = list()
 	req_one_access = list()
 	playsound(src, "sparks", 100, 1)
-	to_chat(user, "<span class='warning'>You short out the access controller.</span>")
+	to_chat(user, span_warning("You short out the access controller."))
 
 /obj/machinery/doorButtons/proc/removeMe()
-
+	return
 
 /obj/machinery/doorButtons/access_button
 	icon = 'icons/obj/airlock_machines.dmi'
@@ -61,7 +61,7 @@
 	if(busy)
 		return
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 		return
 	if(controller && !controller.busy && door)
 		if(controller.stat & NOPOWER)
@@ -78,9 +78,11 @@
 					controller.cycleClose(door)
 		else
 			controller.onlyClose(door)
-		sleep(20)
-		busy = FALSE
-		update_icon()
+		addtimer(CALLBACK(src, .proc/not_busy), 2 SECONDS)
+
+/obj/machinery/doorButtons/access_button/proc/not_busy()
+	busy = FALSE
+	update_icon()
 
 /obj/machinery/doorButtons/access_button/update_icon()
 	if(stat & NOPOWER)
@@ -90,10 +92,6 @@
 			icon_state = "access_button_cycle"
 		else
 			icon_state = "access_button_standby"
-
-/obj/machinery/doorButtons/access_button/power_change()
-	..()
-	update_icon()
 
 /obj/machinery/doorButtons/access_button/removeMe(obj/O)
 	if(O == door)
@@ -131,7 +129,7 @@
 	if(busy)
 		return
 	if(!allowed(usr))
-		to_chat(usr, "<span class='warning'>Access denied.</span>")
+		to_chat(usr, span_warning("Access denied."))
 		return
 	switch(href_list["command"])
 		if("close_exterior")
@@ -159,22 +157,21 @@
 		closeDoor(A)
 
 /obj/machinery/doorButtons/airlock_controller/proc/closeDoor(obj/machinery/door/airlock/A)
-	set waitfor = FALSE
 	if(A.density)
 		goIdle()
-		return 0
+		return FALSE
 	update_icon()
+	A.safe = FALSE //Door crushies, manual door after all. Set every time in case someone changed it, safe doors can end up waiting forever.
 	A.unbolt()
-	. = 1
-	if(A && A.close())
+	if(A.close())
 		if(stat & NOPOWER || lostPower || !A || QDELETED(A))
-			goIdle(1)
-			return
+			goIdle(TRUE)
+			return FALSE
 		A.bolt()
-		if(busy == CLOSING)
-			goIdle(1)
-	else
-		goIdle(1)
+		goIdle(TRUE)
+		return TRUE
+	goIdle(TRUE)
+	return FALSE
 
 /obj/machinery/doorButtons/airlock_controller/proc/cycleClose(obj/machinery/door/airlock/A)
 	if(!A || !exteriorAirlock || !interiorAirlock)
@@ -192,7 +189,7 @@
 
 /obj/machinery/doorButtons/airlock_controller/proc/cycleOpen(obj/machinery/door/airlock/A)
 	if(!A)
-		goIdle(1)
+		goIdle(TRUE)
 	if(A == exteriorAirlock)
 		if(interiorAirlock)
 			if(!interiorAirlock.density || !interiorAirlock.locked)
@@ -207,17 +204,17 @@
 
 /obj/machinery/doorButtons/airlock_controller/proc/openDoor(obj/machinery/door/airlock/A)
 	if(exteriorAirlock && interiorAirlock && (!exteriorAirlock.density || !interiorAirlock.density))
-		goIdle(1)
+		goIdle(TRUE)
 		return
 	A.unbolt()
 	spawn()
 		if(A && A.open())
 			if(stat | (NOPOWER) && !lostPower && A && !QDELETED(A))
 				A.bolt()
-		goIdle(1)
+		goIdle(TRUE)
 
 /obj/machinery/doorButtons/airlock_controller/proc/goIdle(update)
-	lostPower = 0
+	lostPower = FALSE
 	busy = FALSE
 	if(update)
 		update_icon()
@@ -232,13 +229,12 @@
 		cycleOpen(interiorAirlock)
 
 /obj/machinery/doorButtons/airlock_controller/power_change()
-	..()
+	. = ..()
 	if(stat & NOPOWER)
-		lostPower = 1
+		lostPower = TRUE
 	else
 		if(!busy)
-			lostPower = 0
-	update_icon()
+			lostPower = FALSE
 
 /obj/machinery/doorButtons/airlock_controller/findObjsByTag()
 	for(var/obj/machinery/door/airlock/A in GLOB.machines)
@@ -258,7 +254,6 @@
 
 /obj/machinery/doorButtons/airlock_controller/ui_interact(mob/user)
 	var/datum/browser/popup = new(user, "computer", name)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.set_content(returnText())
 	popup.open()
 

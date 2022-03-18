@@ -1,19 +1,20 @@
 /datum/antagonist/santa
 	name = "Santa"
-	show_in_antagpanel = FALSE
+	show_in_antagpanel = TRUE
 	show_name_in_check_antagonists = TRUE
+	show_to_ghosts = TRUE
 
 /datum/antagonist/santa/on_gain()
 	. = ..()
 	give_equipment()
 	give_objective()
 
-	owner.add_trait(TRAIT_CANNOT_OPEN_PRESENTS, TRAIT_SANTA)
-	owner.add_trait(TRAIT_PRESENT_VISION, TRAIT_SANTA)
+	ADD_TRAIT(owner, TRAIT_CANNOT_OPEN_PRESENTS, TRAIT_SANTA)
+	ADD_TRAIT(owner, TRAIT_PRESENT_VISION, TRAIT_SANTA)
 
 /datum/antagonist/santa/greet()
 	. = ..()
-	to_chat(owner, "<span class='boldannounce'>You are Santa! Your objective is to bring joy to the people on this station. You have a magical bag, which generates presents as long as you have it! You can examine the presents to take a peek inside, to make sure that you give the right gift to the right person.</span>")
+	to_chat(owner, span_boldannounce("You are Santa! Your objective is to bring joy to the people on this station. You have a magical bag, which generates presents as long as you have it! You can examine the presents to take a peek inside, to make sure that you give the right gift to the right person."))
 
 /datum/antagonist/santa/proc/give_equipment()
 	var/mob/living/carbon/human/H = owner.current

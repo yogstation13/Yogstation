@@ -1,11 +1,14 @@
-/mob/dead/observer/DblClickOn(var/atom/A, var/params)
+/mob/dead/observer/DblClickOn(atom/A, params)
+	if(check_click_intercept(params, A))
+		return	
+
 	if(can_reenter_corpse && mind && mind.current)
 		if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
 			reenter_corpse()						// (cloning scanner, body bag, closet, mech, etc)
 			return									// seems legit.
 
 	// Things you might plausibly want to follow
-	if(ismovableatom(A))
+	if(ismovable(A))
 		ManualFollow(A)
 
 	// Otherwise jump
@@ -57,6 +60,8 @@
 /mob/living/attack_ghost(mob/dead/observer/user)
 	if(user.client && user.health_scan)
 		healthscan(user, src, 1, TRUE)
+	if(user.client && user.chem_scan)
+		chemscan(user, src)
 	return ..()
 
 // ---------------------------------------

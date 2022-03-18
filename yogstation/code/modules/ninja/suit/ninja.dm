@@ -61,13 +61,13 @@
 		return ..()
 
 	if(!istype(H.wear_mask, /obj/item/clothing/mask/gas/space_ninja))
-		to_chat(H, "<span class='userdanger'>ERROR</span>: 10453 UNABLE TO LOCATE FACE MASK\nABORTING...")
+		to_chat(H, "[span_userdanger("ERROR")]: 10453 UNABLE TO LOCATE FACE MASK\nABORTING...")
 		return FALSE
 
 	.=..()
 	if(.)
 		n_mask = H.wear_mask
-		n_mask.add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
+		ADD_TRAIT(n_mask, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 		n_mask.lights_on = TRUE
 		n_shoes.lights_on = TRUE
 		n_gloves.lights_on = TRUE
@@ -77,7 +77,7 @@
 /obj/item/clothing/suit/space/space_ninja/unlock_suit()
 	.=..()
 	if(n_mask)
-		n_mask.remove_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
+		REMOVE_TRAIT(n_mask, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 		n_mask.lights_on = FALSE
 
 	if(n_shoes)
@@ -102,7 +102,7 @@
 		return .
 
 	if(!s_initialized)
-		to_chat(user, "<span class='warning'><b>ERROR</b>: suit offline.  Please activate suit.</span>")
+		to_chat(user, span_warning("<b>ERROR</b>: suit offline.  Please activate suit."))
 		return FALSE
 
 	if(istype(action, /datum/action/item_action/ninjacolour))

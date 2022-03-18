@@ -5,6 +5,7 @@
 	slot_flags = ITEM_SLOT_MASK
 	strip_delay = 40
 	equip_delay_other = 40
+	var/modifies_speech = FALSE
 	var/mask_adjusted = 0
 	var/adjusted_flags = null
 
@@ -12,7 +13,20 @@
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
 		TOGGLE_BITFIELD(clothing_flags, VOICEBOX_DISABLED)
 		var/status = !CHECK_BITFIELD(clothing_flags, VOICEBOX_DISABLED)
-		to_chat(user, "<span class='notice'>You turn the voice box in [src] [status ? "on" : "off"].</span>")
+		to_chat(user, span_notice("You turn the voice box in [src] [status ? "on" : "off"]."))
+
+/obj/item/clothing/mask/equipped(mob/M, slot)
+	. = ..()
+	if (slot == SLOT_WEAR_MASK && modifies_speech)
+		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	else
+		UnregisterSignal(M, COMSIG_MOB_SAY)
+
+/obj/item/clothing/mask/dropped(mob/M)
+	. = ..()
+	UnregisterSignal(M, COMSIG_MOB_SAY)
+
+/obj/item/clothing/mask/proc/handle_speech()
 
 /obj/item/clothing/mask/worn_overlays(isinhands = FALSE)
 	. = list()
@@ -20,10 +34,10 @@
 		if(body_parts_covered & HEAD)
 			if(damaged_clothes)
 				. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
-			IF_HAS_BLOOD_DNA(src)
+			if(HAS_BLOOD_DNA(src))
 				. += mutable_appearance('icons/effects/blood.dmi', "maskblood")
 
-/obj/item/clothing/mask/update_clothes_damaged_state(damaging = TRUE)
+/obj/item/clothing/mask/update_clothes_damaged_state()
 	..()
 	if(ismob(loc))
 		var/mob/M = loc
@@ -41,11 +55,11 @@
 		clothing_flags |= visor_flags
 		flags_inv |= visor_flags_inv
 		flags_cover |= visor_flags_cover
-		to_chat(user, "<span class='notice'>You push \the [src] back into place.</span>")
+		to_chat(user, span_notice("You push \the [src] back into place."))
 		slot_flags = initial(slot_flags)
 	else
 		icon_state += "_up"
-		to_chat(user, "<span class='notice'>You push \the [src] out of the way.</span>")
+		to_chat(user, span_notice("You push \the [src] out of the way."))
 		gas_transfer_coefficient = null
 		permeability_coefficient = null
 		clothing_flags &= ~visor_flags

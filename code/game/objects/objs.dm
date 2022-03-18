@@ -1,16 +1,24 @@
 
 /obj
 	animate_movement = 2
+	speech_span = SPAN_ROBOT
 	var/obj_flags = CAN_BE_HIT
 	var/set_obj_flags // ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
 
 	var/damtype = BRUTE
 	var/force = 0
 
+	/// How good a given object is at causing wounds on carbons. Higher values equal better shots at creating serious wounds.
+	var/wound_bonus = 0
+	/// If this attacks a human with no wound armor on the affected body part, add this to the wound mod. Some attacks may be significantly worse at wounding if there's even a slight layer of armor to absorb some of it vs bare flesh
+	var/bare_wound_bonus = 0
+
 	var/datum/armor/armor
 	var/obj_integrity	//defaults to max_integrity
 	var/max_integrity = 500
 	var/integrity_failure = 0 //0 if we have no special broken behavior
+	///Damage under this value will be completely ignored
+	var/damage_deflection = 0
 
 	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
 
@@ -57,8 +65,8 @@
 		var/flagslist = splittext(set_obj_flags,";")
 		var/list/string_to_objflag = GLOB.bitfields["obj_flags"]
 		for (var/flag in flagslist)
-			if (findtext(flag,"!",1,2))
-				flag = copytext(flag,1-(length(flag))) // Get all but the initial !
+			if(flag[1] == "!")
+				flag = copytext(flag, length(flag[1]) + 1) // Get all but the initial !
 				obj_flags &= ~string_to_objflag[flag]
 			else
 				obj_flags |= string_to_objflag[flag]
@@ -77,10 +85,10 @@
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
 	anchored = anchorvalue
 
-/obj/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
+/obj/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
 	..()
 	if(obj_flags & FROZEN)
-		visible_message("<span class='danger'>[src] shatters into a million pieces!</span>")
+		visible_message(span_danger("[src] shatters into a million pieces!"))
 		qdel(src)
 
 
@@ -123,7 +131,7 @@
 			if ((M.client && M.machine == src))
 				is_in_use = TRUE
 				ui_interact(M)
-		if(isAI(usr) || iscyborg(usr) || IsAdminGhost(usr))
+		if(issilicon(usr) || IsAdminGhost(usr))
 			if (!(usr in nearby))
 				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
 					is_in_use = TRUE
@@ -202,9 +210,6 @@
 	if(!anchored || current_size >= STAGE_FIVE)
 		step_towards(src,S)
 
-/obj/get_spans()
-	return ..() | SPAN_ROBOT
-
 /obj/get_dumping_location(datum/component/storage/source,mob/user)
 	return get_turf(src)
 
@@ -216,16 +221,85 @@
 
 /obj/vv_get_dropdown()
 	. = ..()
-	.["Delete all of type"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
-	.["Osay"] = "?_src_=vars;[HrefToken()];osay[REF(src)]"
-	.["Modify armor values"] = "?_src_=vars;[HrefToken()];modarmor=[REF(src)]"
+	VV_DROPDOWN_SEPERATOR
+	VV_DROPDOWN_OPTION(VV_HK_MASS_DEL_TYPE, "Delete all of type")
+	VV_DROPDOWN_OPTION(VV_HK_OSAY, "Object Say")
+	VV_DROPDOWN_OPTION(VV_HK_ARMOR_MOD, "Modify armor values")
+
+/obj/vv_do_topic(list/href_list)
+	if(!(. = ..()))
+		return
+	if(href_list[VV_HK_OSAY])
+		if(check_rights(R_FUN, FALSE))
+			usr.client.object_say(src)
+	if(href_list[VV_HK_ARMOR_MOD])
+		var/list/pickerlist = list()
+		var/list/armorlist = armor.getList()
+
+		for (var/i in armorlist)
+			pickerlist += list(list("value" = armorlist[i], "name" = i))
+
+		var/list/result = presentpicker(usr, "Modify armor", "Modify armor: [src]", Button1="Save", Button2 = "Cancel", Timeout=FALSE, inputtype = "text", values = pickerlist)
+
+		if (islist(result))
+			if (result["button"] != 2) // If the user pressed the cancel button
+				// text2num conveniently returns a null on invalid values
+				armor = armor.setRating(melee = text2num(result["values"]["melee"]),\
+			                  bullet = text2num(result["values"]["bullet"]),\
+			                  laser = text2num(result["values"]["laser"]),\
+			                  energy = text2num(result["values"]["energy"]),\
+			                  bomb = text2num(result["values"]["bomb"]),\
+			                  bio = text2num(result["values"]["bio"]),\
+			                  rad = text2num(result["values"]["rad"]),\
+			                  fire = text2num(result["values"]["fire"]),\
+			                  acid = text2num(result["values"]["acid"]))
+				log_admin("[key_name(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], fire: [armor.fire], acid: [armor.acid]")
+				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], fire: [armor.fire], acid: [armor.acid]"))
+	if(href_list[VV_HK_MASS_DEL_TYPE])
+		if(check_rights(R_DEBUG|R_SERVER))
+			var/action_type = alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
+			if(action_type == "Cancel" || !action_type)
+				return
+
+			if(alert(usr, "Are you really sure you want to delete all objects of type [type]?",,list("Yes","No")) != "Yes")
+				return
+
+			if(alert(usr, "Second confirmation required. Delete?",,list("Yes","No")) != "Yes")
+				return
+
+			var/O_type = type
+			switch(action_type)
+				if("Strict type")
+					var/i = 0
+					for(var/obj/Obj in world)
+						if(Obj.type == O_type)
+							i++
+							qdel(Obj)
+						CHECK_TICK
+					if(!i)
+						to_chat(usr, "No objects of this type exist")
+						return
+					log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
+					message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
+				if("Type and subtypes")
+					var/i = 0
+					for(var/obj/Obj in world)
+						if(istype(Obj,O_type))
+							i++
+							qdel(Obj)
+						CHECK_TICK
+					if(!i)
+						to_chat(usr, "No objects of this type exist")
+						return
+					log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
+					message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
 
 /obj/examine(mob/user)
-	..()
+	. = ..()
 	if(obj_flags & UNIQUE_RENAME)
-		to_chat(user, "<span class='notice'>Use a pen on it to rename it or change its description.</span>")
+		. += span_notice("Use a pen on it to rename it or change its description.")
 	if(unique_reskin && !current_skin)
-		to_chat(user, "<span class='notice'>Alt-click it to reskin it.</span>")
+		. += span_notice("Alt-click it to reskin it.")
 
 /obj/AltClick(mob/user)
 	. = ..()
@@ -238,7 +312,7 @@
 	to_chat(M, "<b>Reskin options for [name]:</b>")
 	for(var/V in unique_reskin)
 		var/output = icon2html(src, M, unique_reskin[V])
-		to_chat(M, "[V]: <span class='reallybig'>[output]</span>")
+		to_chat(M, "[V]: [span_reallybig("[output]")]")
 
 	var/choice = input(M,"Warning, you can only reskin [src] once!","Reskin Object") as null|anything in unique_reskin
 	if(!QDELETED(src) && choice && !current_skin && !M.incapacitated() && in_range(M,src))
@@ -247,3 +321,13 @@
 		current_skin = choice
 		icon_state = unique_reskin[choice]
 		to_chat(M, "[src] is now skinned as '[choice].'")
+
+/obj/analyzer_act(mob/living/user, obj/item/I)
+	var/turf/T = get_turf(src)
+	if(T)
+		if(atmosanalyzer_scan(T.return_air(), user, src))
+			return TRUE
+	return ..()
+
+/obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
+	return

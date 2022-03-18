@@ -64,7 +64,7 @@
 	if(!isturf(tturf))
 		return
 	if(get_dist(src, target) <= 7)//Screen range check, so you can't get tentacle'd offscreen
-		visible_message("<span class='warning'>[src] digs its tentacles under [target]!</span>")
+		visible_message(span_warning("[src] digs its tentacles under [target]!"))
 		new /obj/effect/temp_visual/goliath_tentacle/original(tturf, src)
 		ranged_cooldown = world.time + ranged_cooldown_time
 		icon_state = icon_aggro
@@ -93,6 +93,7 @@
 	throw_message = "does nothing to the tough hide of the"
 	pre_attack_icon = "goliath2"
 	crusher_loot = /obj/item/crusher_trophy/goliath_tentacle
+	crusher_drop_mod = 10
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/goliath = 2, /obj/item/stack/sheet/bone = 2)
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/goliath_hide = 1)
 	loot = list()
@@ -147,6 +148,18 @@
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/tendril
 	fromtendril = TRUE
 
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/joe
+	name = "Joe"
+	desc = "The mining team's pet goliath! Usually found hard at work at the coin press."
+	response_help = "pets"
+	crusher_loot = null
+	guaranteed_butcher_results = list() //no plates from joe
+	move_force = MOVE_FORCE_DEFAULT
+	move_resist = MOVE_RESIST_DEFAULT
+	pull_force = PULL_FORCE_DEFAULT
+	faction = list("neutral")
+	environment_smash = ENVIRONMENT_SMASH_NONE
+
 //tentacles
 /obj/effect/temp_visual/goliath_tentacle
 	name = "goliath tentacle"
@@ -187,8 +200,11 @@
 	for(var/mob/living/L in loc)
 		if((!QDELETED(spawner) && spawner.faction_check_mob(L)) || L.stat == DEAD)
 			continue
-		visible_message("<span class='danger'>[src] grabs hold of [L]!</span>")
-		L.Stun(100)
+		visible_message(span_danger("[src] grabs hold of [L]!"))
+		if(!L.IsStun())
+			L.Stun(100)
+		else
+			L.AdjustStun(20)
 		L.adjustBruteLoss(rand(10,15))
 		latched = TRUE
 	if(!latched)

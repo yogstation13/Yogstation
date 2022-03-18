@@ -10,11 +10,20 @@
 	selection_color = "#dddddd"
 	access = list(ACCESS_MANUFACTURING)
 	minimal_access = list(ACCESS_MANUFACTURING)
-
+	alt_titles = list("Salesman", "Gift Shop Attendent", "Retail Worker")
 	outfit = /datum/outfit/job/clerk
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_CLERK
+
+	changed_maps = list("EclipseStation", "OmegaStation")
+
+/datum/job/clerk/proc/EclipseStationChanges()
+	total_positions = 2
+	spawn_positions = 1
+
+/datum/job/clerk/proc/OmegaStationChanges()
+	return TRUE
 
 /datum/outfit/job/clerk
 	name = "Clerk"

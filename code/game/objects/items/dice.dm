@@ -31,7 +31,7 @@
 		new /obj/item/dice/d100(src)
 
 /obj/item/storage/pill_bottle/dice/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (OXYLOSS)
 
 /obj/item/dice //depreciated d6, use /obj/item/dice/d6 if you actually want a d6
@@ -55,7 +55,7 @@
 	update_icon()
 
 /obj/item/dice/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (OXYLOSS)
 
 /obj/item/dice/d1
@@ -170,7 +170,7 @@
 /obj/item/dice/proc/diceroll(mob/user)
 	result = roll(sides)
 	if(rigged != DICE_NOT_RIGGED && result != rigged_value)
-		if(rigged == DICE_BASICALLY_RIGGED && prob(CLAMP(1/(sides - 1) * 100, 25, 80)))
+		if(rigged == DICE_BASICALLY_RIGGED && prob(clamp(1/(sides - 1) * 100, 25, 80)))
 			result = rigged_value
 		else if(rigged == DICE_TOTALLY_RIGGED)
 			result = rigged_value
@@ -188,12 +188,17 @@
 		result = (result - 1)*10
 	if(special_faces.len == sides)
 		result = special_faces[result]
+	if(!has_gravity())
+		if(user)
+			user.visible_message("[user] has thrown [src].", \
+							 span_notice("You throw [src]."))
+		return
 	if(user != null) //Dice was rolled in someone's hand
 		user.visible_message("[user] has thrown [src]. It lands on [result]. [comment]", \
-							 "<span class='notice'>You throw [src]. It lands on [result]. [comment]</span>", \
-							 "<span class='italics'>You hear [src] rolling, it sounds like a [fake_result].</span>")
+							 span_notice("You throw [src]. It lands on [result]. [comment]"), \
+							 span_italics("You hear [src] rolling, it sounds like a [fake_result]."))
 	else if(!src.throwing) //Dice was thrown and is coming to rest
-		visible_message("<span class='notice'>[src] rolls to a stop, landing on [result]. [comment]</span>")
+		visible_message(span_notice("[src] rolls to a stop, landing on [result]. [comment]"))
 
 /obj/item/dice/update_icon()
 	cut_overlays()

@@ -2,7 +2,7 @@
 	if(!message || !subject)
 		return
 	var/F = file("[GLOB.log_directory]/[subject].html")
-	WRITE_FILE(F, "<small>[time_stamp()] [REF(src)] ([x],[y],[z])</small> || [src] [message]<br>")
+	WRITE_FILE(F, "[time_stamp()] [REF(src)] ([x],[y],[z]) || [src] [message]<br>")
 
 /client/proc/investigate_show()
 	set name = "Investigate"
@@ -37,6 +37,6 @@
 
 	var/F = file("[GLOB.log_directory]/[selected].html")
 	if(!fexists(F))
-		to_chat(src, "<span class='danger'>No [selected] logfile was found.</span>")
+		to_chat(src, span_danger("No [selected] logfile was found."), confidential=TRUE)
 		return
 	src << browse(F,"window=investigate[selected];size=800x300")

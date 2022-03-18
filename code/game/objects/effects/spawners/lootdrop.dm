@@ -48,13 +48,6 @@
 				/obj/item/gun/ballistic/automatic/pistol/deagle,
 				/obj/item/storage/box/syndie_kit/throwing_weapons = 3)
 
-/obj/effect/spawner/lootdrop/armory_contraband/donutstation
-	loot = list(/obj/item/grenade/clusterbuster/teargas = 5,
-				/obj/item/gun/ballistic/shotgun/automatic/combat = 5,
-				/obj/item/bikehorn/golden,
-				/obj/item/grenade/clusterbuster,
-				/obj/item/storage/box/syndie_kit/throwing_weapons = 3)
-
 /obj/effect/spawner/lootdrop/gambling
 	name = "gambling valuables spawner"
 	loot = list(
@@ -76,6 +69,22 @@
 			/obj/item/trash/popcorn = 1,
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
+			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
+			/obj/item/trash/syndi_cakes = 1)
+
+/obj/effect/spawner/lootdrop/trashbin
+	name = "trash spawner"
+	loot = list(/obj/item/cigbutt = 1,
+			/obj/item/trash/cheesie = 1,
+			/obj/item/trash/candy = 1,
+			/obj/item/trash/chips = 1,
+			/obj/item/reagent_containers/food/snacks/deadmouse = 1,
+			/obj/item/trash/pistachios = 1,
+			/obj/item/trash/plate = 1,
+			/obj/item/trash/popcorn = 1,
+			/obj/item/trash/raisins = 1,
+			/obj/item/trash/sosjerky = 1,
+			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
 			/obj/item/trash/syndi_cakes = 1)
 
 /obj/effect/spawner/lootdrop/three_course_meal
@@ -113,6 +122,13 @@
 
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
+	
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
+		lootcount = FLOOR(lootcount * 1.5, 1)
+
+	else if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
+		lootcount = FLOOR(lootcount * 0.5, 1)
+
 	. = ..()
 
 /obj/effect/spawner/lootdrop/maintenance/two
@@ -221,22 +237,32 @@
 	loot = list(
 				/obj/item/aiModule/core/full/asimov,
 				/obj/item/aiModule/core/full/asimovpp,
+				/obj/item/aiModule/core/full/crewsimov,
 				/obj/item/aiModule/core/full/hippocratic,
 				/obj/item/aiModule/core/full/paladin_devotion,
-				/obj/item/aiModule/core/full/paladin
+				/obj/item/aiModule/core/full/paladin,
+				/obj/item/aiModule/core/full/chapai,
+				/obj/item/aiModule/core/full/silicop,
+				/obj/item/aiModule/core/full/mother
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_neutral // These shouldn't allow the AI to start butchering people without reason
 	name = "neutral AI module spawner"
 	loot = list(
-				/obj/item/aiModule/core/full/corp,
+				/obj/item/aiModule/core/full/ceo,
 				/obj/item/aiModule/core/full/maintain,
 				/obj/item/aiModule/core/full/drone,
 				/obj/item/aiModule/core/full/peacekeeper,
 				/obj/item/aiModule/core/full/reporter,
 				/obj/item/aiModule/core/full/robocop,
 				/obj/item/aiModule/core/full/liveandletlive,
-				/obj/item/aiModule/core/full/hulkamania
+				/obj/item/aiModule/core/full/hulkamania,
+				/obj/item/aiModule/core/full/cowboy,
+				/obj/item/aiModule/core/full/metaexperiment,
+				/obj/item/aiModule/core/full/spotless,
+				/obj/item/aiModule/core/full/construction,
+				/obj/item/aiModule/core/full/researcher,
+				/obj/item/aiModule/core/full/clown
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_harmful // These will get the shuttle called
@@ -246,6 +272,7 @@
 				/obj/item/aiModule/core/full/balance,
 				/obj/item/aiModule/core/full/tyrant,
 				/obj/item/aiModule/core/full/thermurderdynamic,
+				/obj/item/aiModule/core/full/siliconcollective,
 				/obj/item/aiModule/core/full/damaged
 				)
 
@@ -337,8 +364,7 @@
 	name = "secure AI circuit board spawner"
 	loot = list(
 				/obj/item/circuitboard/computer/aiupload,
-				/obj/item/circuitboard/computer/borgupload,
-				/obj/item/circuitboard/aicore
+				/obj/item/circuitboard/computer/borgupload
 				)
 
 /obj/effect/spawner/lootdrop/techstorage/command

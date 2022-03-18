@@ -11,7 +11,7 @@
 //     but overall network volume is also increased as this increases...
 
 /obj/machinery/atmospherics/components/binary/volume_pump
-	icon_state = "volpump_map-2"
+	icon_state = "volpump_map-3"
 	name = "volumetric gas pump"
 	desc = "A pump that moves gas by volume."
 
@@ -19,6 +19,7 @@
 	shift_underlay_only = FALSE
 
 	var/transfer_rate = MAX_TRANSFER_RATE
+	var/overclocked = FALSE
 
 	var/frequency = 0
 	var/id = null
@@ -28,13 +29,13 @@
 	pipe_state = "volumepump"
 
 /obj/machinery/atmospherics/components/binary/volume_pump/CtrlClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
 		on = !on
 		update_icon()
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/AltClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
 		transfer_rate = MAX_TRANSFER_RATE
 		update_icon()
 	return ..()
@@ -44,7 +45,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/update_icon_nopipes()
-	icon_state = on && is_operational() ? "volpump_on" : "volpump_off"
+	icon_state = on && is_operational() ? "volpump_on-[set_overlay_offset(piping_layer)]" : "volpump_off-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/volume_pump/process_atmos()
 //	..()
@@ -54,21 +55,37 @@
 	var/datum/gas_mixture/air1 = airs[1]
 	var/datum/gas_mixture/air2 = airs[2]
 
-// Pump mechanism just won't do anything if the pressure is too high/too low
+// Pump mechanism just won't do anything if the pressure is too high/too low unless you overclock it.
 
 	var/input_starting_pressure = air1.return_pressure()
 	var/output_starting_pressure = air2.return_pressure()
 
-	if((input_starting_pressure < 0.01) || (output_starting_pressure > 9000))
+	if((input_starting_pressure < 0.01) || ((output_starting_pressure > 9000))&&!overclocked)
 		return
 
-	var/transfer_ratio = transfer_rate/air1.volume
+	if(overclocked && (output_starting_pressure-input_starting_pressure > 1000))//Overclocked pumps can only force gas a certain amount.
+		return
+
+
+	var/transfer_ratio = transfer_rate/air1.return_volume()
 
 	var/datum/gas_mixture/removed = air1.remove_ratio(transfer_ratio)
+
+	if(overclocked)//Some of the gas from the mixture leaks to the environment when overclocked
+		var/turf/open/T = loc
+		if(istype(T))
+			var/datum/gas_mixture/leaked = removed.remove_ratio(VOLUME_PUMP_LEAK_AMOUNT)
+			T.assume_air(leaked)
+			T.air_update_turf()
 
 	air2.merge(removed)
 
 	update_parents()
+
+/obj/machinery/atmospherics/components/binary/volume_pump/examine(mob/user)
+	. = ..()
+	if(overclocked)
+		. += "Its warning light is on[on ? " and it's spewing gas!" : "."]"
 
 /obj/machinery/atmospherics/components/binary/volume_pump/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
@@ -89,11 +106,10 @@
 	))
 	radio_connection.post_signal(src, signal)
 
-/obj/machinery/atmospherics/components/binary/volume_pump/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-																		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/atmospherics/components/binary/volume_pump/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_pump", name, 310, 115, master_ui, state)
+		ui = new(user, src, "AtmosPump", name)
 		ui.open()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/ui_data()
@@ -130,7 +146,7 @@
 				rate = text2num(rate)
 				. = TRUE
 			if(.)
-				transfer_rate = CLAMP(rate, 0, MAX_TRANSFER_RATE)
+				transfer_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
 				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
 				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 	update_icon()
@@ -149,7 +165,7 @@
 
 	if("set_transfer_rate" in signal.data)
 		var/datum/gas_mixture/air1 = airs[1]
-		transfer_rate = CLAMP(text2num(signal.data["set_transfer_rate"]),0,air1.volume)
+		transfer_rate = clamp(text2num(signal.data["set_transfer_rate"]),0,air1.return_volume())
 
 	if(on != old_on)
 		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)
@@ -162,34 +178,39 @@
 	broadcast_status()
 	update_icon()
 
-/obj/machinery/atmospherics/components/binary/volume_pump/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/atmospherics/components/binary/volume_pump/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational())
-		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
+		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
 		return FALSE
+
+/obj/machinery/atmospherics/components/binary/volume_pump/multitool_act(mob/living/user, obj/item/I)
+	if(!overclocked)
+		overclocked = TRUE
+		to_chat(user, "The pump makes a grinding noise and air starts to hiss out as you disable its pressure limits.")
+	else
+		overclocked = FALSE
+		to_chat(user, "The pump quiets down as you turn its limiters back on.")
+	return TRUE
 
 // mapping
 
-/obj/machinery/atmospherics/components/binary/volume_pump/layer1
-	piping_layer = 1
-	icon_state = "volpump_map-1"
+/obj/machinery/atmospherics/components/binary/volume_pump/layer2
+	piping_layer = 2
+	icon_state = "volpump_map-2"
 
-/obj/machinery/atmospherics/components/binary/volume_pump/layer3
-	piping_layer = 3
-	icon_state = "volpump_map-3"
+/obj/machinery/atmospherics/components/binary/volume_pump/layer4
+	piping_layer = 4
+	icon_state = "volpump_map-4"
 
 /obj/machinery/atmospherics/components/binary/volume_pump/on
 	on = TRUE
 	icon_state = "volpump_on_map"
 
-/obj/machinery/atmospherics/components/binary/volume_pump/on/layer1
-	piping_layer = 1
-	icon_state = "volpump_map-1"
+/obj/machinery/atmospherics/components/binary/volume_pump/on/layer2
+	piping_layer = 2
+	icon_state = "volpump_map-2"
 
-/obj/machinery/atmospherics/components/binary/volume_pump/on/layer3
-	piping_layer = 3
-	icon_state = "volpump_map-3"
+/obj/machinery/atmospherics/components/binary/volume_pump/on/layer4
+	piping_layer = 4
+	icon_state = "volpump_map-4"

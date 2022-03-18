@@ -2,6 +2,11 @@
 	projectile_type = /obj/item/projectile/beam/laser
 	select_name = "kill"
 
+/obj/item/ammo_casing/energy/laser/hellfire
+	projectile_type = /obj/item/projectile/beam/laser/hellfire
+	e_cost = 130
+	select_name = "maim"
+
 /obj/item/ammo_casing/energy/lasergun
 	projectile_type = /obj/item/projectile/beam/laser
 	e_cost = 83
@@ -13,7 +18,7 @@
 	select_name = "kill"
 
 /obj/item/ammo_casing/energy/laser/hos
-	e_cost = 100
+	e_cost = 120
 
 /obj/item/ammo_casing/energy/laser/practice
 	projectile_type = /obj/item/projectile/beam/practice
@@ -31,6 +36,11 @@
 	pellets = 3
 	variance = 15
 	harmful = FALSE
+
+/obj/item/ammo_casing/energy/laser/cyborg
+	projectile_type = /obj/item/projectile/beam/laser
+	select_name = "kill"
+	e_cost = 125
 
 /obj/item/ammo_casing/energy/laser/heavy
 	projectile_type = /obj/item/projectile/beam/laser/heavylaser

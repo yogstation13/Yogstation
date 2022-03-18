@@ -25,6 +25,11 @@
 #define NOBLUDGEON				(1<<7)		// when an item has this it produces no "X has been hit by Y with Z" message in the default attackby()
 #define ABSTRACT				(1<<9) 	// for all things that are technically items but used for various different stuff
 #define IMMUTABLE_SLOW			(1<<10) // When players should not be able to change the slowdown of the item (Speed potions, etc)
+#define IN_STORAGE				(1<<11) //is this item in the storage item, such as backpack? used for tooltips
+#define SURGICAL_TOOL			(1<<12)	//Tool commonly used for surgery: won't attack targets in an active surgical operation on help intent (in case of mistakes)
+#define UNCATCHABLE				(1<<13) // Makes any item uncatchable if it is thrown at them
+#define MEDRESIST				(1<<14) // This item will block medical sprays when worn
+#define HAND_ITEM (1<<15) // If an item is just your hand (circled hand, slapper) and shouldn't block things like riding
 
 // Flags for the clothing_flags var on /obj/item/clothing
 
@@ -33,7 +38,25 @@
 #define BLOCK_GAS_SMOKE_EFFECT	(1<<2)	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
 #define MASKINTERNALS				    (1<<3)		// mask allows internals
 #define NOSLIP                  (1<<4)   //prevents from slipping on wet floors, in space etc
-#define THICKMATERIAL				(1<<5)	//prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
-#define VOICEBOX_TOGGLABLE (1<<6) // The voicebox in this clothing can be toggled.
-#define VOICEBOX_DISABLED (1<<7) // The voicebox is currently turned off.
-#define SHOWEROKAY				(1<<8)	//prevents you from being stupid if you shower in them
+#define NOSLIP_ICE				(1<<5)	 //prevents from slipping on frozen floors
+#define THICKMATERIAL				(1<<6)	//prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define VOICEBOX_TOGGLABLE (1<<7) // The voicebox in this clothing can be toggled.
+#define VOICEBOX_DISABLED (1<<8) // The voicebox is currently turned off.
+#define SHOWEROKAY				(1<<9)	//prevents you from being stupid if you shower in them
+#define SCAN_REAGENTS (1<<10) // Allows helmets and glasses to scan reagents.
+
+/// Flags for the organ_flags var on /obj/item/organ
+
+#define ORGAN_SYNTHETIC			(1<<0)	//Synthetic organs, or cybernetic organs. Reacts to EMPs and don't deteriorate or heal
+#define ORGAN_FROZEN			(1<<1)	//Frozen organs, don't deteriorate
+#define ORGAN_FAILING			(1<<2)	//Failing organs perform damaging effects until replaced or fixed
+#define ORGAN_EXTERNAL			(1<<3)	//Was this organ implanted/inserted/etc, if true will not be removed during species change.
+#define ORGAN_VITAL				(1<<4)	//Currently only the brain
+
+/// Flags for the pod_flags var on /obj/structure/closet/supplypod
+#define FIRST_SOUNDS (1<<0) // If it shouldn't play sounds the first time it lands, used for reverse mode
+
+/// Integrity defines for clothing (not flags but close enough)
+#define CLOTHING_PRISTINE	0 // We have no damage on the clothing
+#define CLOTHING_DAMAGED	1 // There's some damage on the clothing but it still has at least one functioning bodypart and can be equipped
+#define CLOTHING_SHREDDED	2 // The clothing is useless and cannot be equipped unless repaired first

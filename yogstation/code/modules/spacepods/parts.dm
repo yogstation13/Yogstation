@@ -1,5 +1,5 @@
 /obj/item/pod_parts
-	icon = 'yogstation/goon/icons/obj/spacepods/parts.dmi'
+	icon = 'goon/icons/obj/spacepods/parts.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	flags_1 = CONDUCT_1
 
@@ -57,10 +57,10 @@
 		var/obj/item/stack/rods/R = O
 		var/list/linkedparts = find_square()
 		if(!linkedparts)
-			to_chat(user, "<span class='warning'>You cannot assemble a pod frame because you do not have the necessary assembly.</span>")
+			to_chat(user, span_warning("You cannot assemble a pod frame because you do not have the necessary assembly."))
 			return TRUE
 		if(!R.use(10))
-			to_chat(user, "<span class='warning'>You need 10 rods for this.</span>")
+			to_chat(user, span_warning("You need 10 rods for this."))
 			return TRUE
 		var/obj/spacepod/pod = new
 		pod.forceMove(loc)
@@ -74,14 +74,14 @@
 			if(EAST)
 				pod.angle = 90
 		pod.process(2)
-		to_chat(user, "<span class='notice'>You strut the pod frame together.</span>")
+		to_chat(user, span_notice("You strut the pod frame together."))
 		for(var/obj/item/pod_parts/pod_frame/F in linkedparts)
 			if(1 == turn(F.dir, -F.link_angle)) //if the part links north during construction, as the bottom left part always does
 				pod.forceMove(F.loc)
 			qdel(F)
 		return TRUE
 	if(O.tool_behaviour == TOOL_WRENCH)
-		to_chat(user, "<span class='notice'>You [!anchored ? "secure \the [src] in place."  : "remove the securing bolts."]</span>")
+		to_chat(user, span_notice("You [!anchored ? "secure \the [src] in place."  : "remove the securing bolts."]"))
 		anchored = !anchored
 		density = anchored
 		O.play_tool_sound(src)
@@ -119,7 +119,7 @@
 	name = "civilian pod armor"
 	icon_state = "pod_armor_civ"
 	desc = "Spacepod armor. This is the civilian version. It looks rather flimsy."
-	var/pod_icon = 'yogstation/goon/icons/obj/spacepods/2x2.dmi'
+	var/pod_icon = 'goon/icons/obj/spacepods/2x2.dmi'
 	var/pod_icon_state = "pod_civ"
 	var/pod_desc = "A sleek civilian space pod."
 	var/pod_integrity = 250
@@ -160,6 +160,13 @@
 	icon_state = "pod_armor_mil"
 	desc = "Tough military-grade pod armor, meant for use by the NanoTrasen military and it's sub-divisons for space combat."
 	pod_icon_state = "pod_mil"
+	pod_desc = "An armed security spacepod with reinforced armor plating brandishing the Nanotrasen Military insignia"
+	pod_integrity = 350
+/obj/item/pod_parts/armor/security/red
+	name = "security pod armor"
+	icon_state = "pod_armor_synd"
+	desc = "Tough military-grade pod armor, meant for use by the NanoTrasen military and it's sub-divisons for space combat."
+	pod_icon_state = "pod_synd"
 	pod_desc = "An armed security spacepod with reinforced armor plating brandishing the Nanotrasen Military insignia"
 	pod_integrity = 350
 

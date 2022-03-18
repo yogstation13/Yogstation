@@ -4,7 +4,7 @@
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space.;Thats cheap ass soda!"
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,
 		            /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 10,
@@ -12,16 +12,22 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/space_up = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime = 10,
+					/obj/item/reagent_containers/food/drinks/soda_cans/sol_dry = 10,
 					/obj/item/reagent_containers/glass/beaker/waterbottle = 10)
 	contraband = list(/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 6,
-		              /obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 6)
-	premium = list(/obj/item/reagent_containers/food/drinks/drinkingglass/filled/nuka_cola = 1,
+		              /obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 6,
+					  /obj/item/reagent_containers/food/drinks/soda_cans/buzz_fuzz = 5,
+					  /obj/item/reagent_containers/food/drinks/soda_cans/mystery = 1,
+		              /obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry = 2)
+	premium = list(/obj/item/reagent_containers/food/drinks/bottle/nukacola = 1,
 		           /obj/item/reagent_containers/food/drinks/soda_cans/air = 1,
+		           /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 1,
 		           /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1)
 	refill_canister = /obj/item/vending_refill/cola
-	default_price = 10
+	default_price = 2
 	extra_price = 30
 	payment_department = ACCOUNT_SRV
+
 /obj/item/vending_refill/cola
 	machine_name = "Robust Softdrinks"
 	icon_state = "refill_cola"
@@ -84,3 +90,9 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 10)
 	product_slogans = "~Shake me up some of that Shambler's Juice!~"
 	product_ads = "Refreshing!;Jyrbv dv lg jfdv fw kyrk Jyrdscvi'j Alztv!;Over 1 trillion souls drank!;Thirsty? Nyp efk uizeb kyv uribevjj?;Kyv Jyrdscvi uizebj kyv ezxyk!;Drink up!;Krjkp."
+
+/obj/machinery/vending/cola/shamblers/prison
+	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 80)
+	premium = list(/obj/item/reagent_containers/glass/bottle/water = 5)
+	default_price = 0
+	extra_price = 0

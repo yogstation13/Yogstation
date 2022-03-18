@@ -8,6 +8,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
 	desc = "A handheld device that creates small fields of energy that resonate until they detonate, crushing rock. It does increased damage in low pressure."
 	w_class = WEIGHT_CLASS_NORMAL
+	obj_flags = UNIQUE_RENAME
 	force = 15
 	throwforce = 10
 	var/burst_time = 30
@@ -26,10 +27,10 @@
 /obj/item/resonator/attack_self(mob/user)
 	if(burst_time == 50)
 		burst_time = 30
-		to_chat(user, "<span class='info'>You set the resonator's fields to detonate after 3 seconds.</span>")
+		to_chat(user, span_info("You set the resonator's fields to detonate after 3 seconds."))
 	else
 		burst_time = 50
-		to_chat(user, "<span class='info'>You set the resonator's fields to detonate after 5 seconds.</span>")
+		to_chat(user, span_info("You set the resonator's fields to detonate after 5 seconds."))
 
 /obj/item/resonator/proc/CreateResonance(target, mob/user)
 	var/turf/T = get_turf(target)
@@ -95,13 +96,14 @@
 	new /obj/effect/temp_visual/resonance_crush(T)
 	if(ismineralturf(T))
 		var/turf/closed/mineral/M = T
+		replicate(M)
 		M.gets_drilled(creator)
 	check_pressure(T)
 	playsound(T,'sound/weapons/resonator_blast.ogg',50,1)
 	for(var/mob/living/L in T)
 		if(creator)
 			log_combat(creator, L, "used a resonator field on", "resonator")
-		to_chat(L, "<span class='userdanger'>[src] ruptured with you in it!</span>")
+		to_chat(L, span_userdanger("[src] ruptured with you in it!"))
 		L.apply_damage(resonance_damage, BRUTE)
 	qdel(src)
 
@@ -114,3 +116,10 @@
 	. = ..()
 	transform = matrix()*1.5
 	animate(src, transform = matrix()*0.1, alpha = 50, time = 4)
+
+/obj/effect/temp_visual/resonance/proc/replicate(turf/closed/mineral/M)	//yogs start: adds replication to resonator fields
+	if(!istype(M) || !M.mineralType) // so we don't end up in the ultimate chain reaction
+		return
+	for(var/turf/closed/mineral/T in orange(1, M))
+		if(istype(T) && M.mineralType == T.mineralType)
+			new /obj/effect/temp_visual/resonance(T, creator, null, duration)	//yogs end

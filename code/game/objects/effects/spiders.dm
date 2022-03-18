@@ -35,18 +35,18 @@
 		icon_state = "stickyweb2"
 	. = ..()
 
-/obj/structure/spider/stickyweb/CanPass(atom/movable/mover, turf/target)
+/obj/structure/spider/stickyweb/Cross(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover, /mob/living/simple_animal/hostile/poison/giant_spider))
 		return TRUE
 	else if(isliving(mover))
 		if(istype(mover.pulledby, /mob/living/simple_animal/hostile/poison/giant_spider))
 			return TRUE
 		if(prob(50))
-			to_chat(mover, "<span class='danger'>You get stuck in \the [src] for a moment.</span>")
+			to_chat(mover, span_danger("You get stuck in \the [src] for a moment."))
 			return FALSE
 	else if(istype(mover, /obj/item/projectile))
 		return prob(30)
-	return TRUE
 
 /obj/structure/spider/eggcluster
 	name = "egg cluster"
@@ -55,7 +55,7 @@
 	var/amount_grown = 0
 	var/player_spiders = 0
 	var/directive = "" //Message from the mother
-	var/poison_type = "toxin"
+	var/poison_type = /datum/reagent/toxin
 	var/poison_per_bite = 5
 	var/list/faction = list("spiders")
 
@@ -141,7 +141,7 @@
 			var/obj/machinery/atmospherics/components/unary/vent_pump/exit_vent = pick(vents)
 			if(prob(50))
 				visible_message("<B>[src] scrambles into the ventilation ducts!</B>", \
-								"<span class='italics'>You hear something scampering through the ventilation ducts.</span>")
+								span_italics("You hear something scampering through the ventilation ducts."))
 
 			spawn(rand(20,60))
 				forceMove(exit_vent)
@@ -154,7 +154,7 @@
 						return
 
 					if(prob(50))
-						audible_message("<span class='italics'>You hear something scampering through the ventilation ducts.</span>")
+						audible_message(span_italics("You hear something scampering through the ventilation ducts."))
 					sleep(travel_time)
 
 					if(!exit_vent || exit_vent.welded)
@@ -174,7 +174,7 @@
 			var/target_atom = pick(nearby)
 			walk_to(src, target_atom)
 			if(prob(40))
-				src.visible_message("<span class='notice'>\The [src] skitters[pick(" away"," around","")].</span>")
+				src.visible_message(span_notice("\The [src] skitters[pick(" away"," around","")]."))
 	else if(prob(10))
 		//ventcrawl!
 		for(var/obj/machinery/atmospherics/components/unary/vent_pump/v in view(7,src))
@@ -195,7 +195,7 @@
 			S.directive = directive
 			if(player_spiders)
 				S.playable_spider = TRUE
-				notify_ghosts("Spider [S.name] can be controlled", null, enter_link="<a href=?src=[REF(S)];activate=1>(Click to play)</a>", source=S, action=NOTIFY_ATTACK, ignore_key = POLL_IGNORE_SPIDER)
+				notify_ghosts("Spider [S.name] can be controlled", null, enter_link="<a href=?src=[REF(S)];activate=1>(Click to play)</a>", source=S, action=NOTIFY_ATTACKORBIT, ignore_key = POLL_IGNORE_SPIDER)
 			qdel(src)
 
 
@@ -214,7 +214,7 @@
 	var/breakout_time = 600
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	to_chat(user, "<span class='notice'>You struggle against the tight bonds... (This will take about [DisplayTimeText(breakout_time)].)</span>")
+	to_chat(user, span_notice("You struggle against the tight bonds... (This will take about [DisplayTimeText(breakout_time)].)"))
 	visible_message("You see something struggling and writhing in \the [src]!")
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src)
@@ -225,7 +225,7 @@
 
 /obj/structure/spider/cocoon/Destroy()
 	var/turf/T = get_turf(src)
-	src.visible_message("<span class='warning'>\The [src] splits open.</span>")
+	src.visible_message(span_warning("\The [src] splits open."))
 	for(var/atom/movable/A in contents)
 		A.forceMove(T)
 	return ..()

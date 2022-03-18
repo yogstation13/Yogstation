@@ -6,6 +6,7 @@
 	antagpanel_category = "Abductor"
 	job_rank = ROLE_ABDUCTOR
 	show_in_antagpanel = FALSE //should only show subtypes
+	show_to_ghosts = TRUE
 	var/datum/team/abductor_team/team
 	var/sub_role
 	var/outfit
@@ -44,20 +45,20 @@
 	owner.assigned_role = "[name] [sub_role]"
 	objectives += team.objectives
 	finalize_abductor()
-	owner.add_trait(TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
+	ADD_TRAIT(owner.current, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST) // Yogs -- Fixes abductors having their traits associated with their mind instead of their mob
 	return ..()
 
 /datum/antagonist/abductor/on_removal()
 	if(owner.current)
-		to_chat(owner.current,"<span class='userdanger'>You are no longer the [owner.special_role]!</span>")
+		to_chat(owner.current,span_userdanger("You are no longer the [owner.special_role]!"))
 	owner.special_role = null
-	owner.remove_trait(TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
+	REMOVE_TRAIT(owner.current, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST) // Yogs -- Fixes abductors having their traits associated with their mind instead of their mob
 	return ..()
 
 /datum/antagonist/abductor/greet()
-	to_chat(owner.current, "<span class='notice'>You are the [owner.special_role]!</span>")
-	to_chat(owner.current, "<span class='notice'>With the help of your teammate, kidnap and experiment on station crew members!</span>")
-	to_chat(owner.current, "<span class='notice'>[greet_text]</span>")
+	to_chat(owner.current, span_notice("You are the [owner.special_role]!"))
+	to_chat(owner.current, span_notice("With the help of your teammate, kidnap and experiment on station crew members!"))
+	to_chat(owner.current, span_notice("[greet_text]"))
 	owner.announce_objectives()
 
 /datum/antagonist/abductor/proc/finalize_abductor()
@@ -79,13 +80,13 @@
 	update_abductor_icons_added(owner,"abductor")
 
 /datum/antagonist/abductor/scientist/on_gain()
-	owner.add_trait(TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
-	owner.add_trait(TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
+	ADD_TRAIT(owner.current, TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
+	ADD_TRAIT(owner.current, TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
 	. = ..()
 
 /datum/antagonist/abductor/scientist/on_removal()
-	owner.remove_trait(TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
-	owner.remove_trait(TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
+	REMOVE_TRAIT(owner.current, TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
+	REMOVE_TRAIT(owner.current, TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
 	. = ..()
 
 /datum/antagonist/abductor/admin_add(datum/mind/new_owner,mob/admin)
@@ -109,7 +110,7 @@
 
 /datum/antagonist/abductor/proc/admin_equip(mob/admin)
 	if(!ishuman(owner.current))
-		to_chat(admin, "<span class='warning'>This only works on humans!</span>")
+		to_chat(admin, span_warning("This only works on humans!"))
 		return
 	var/mob/living/carbon/human/H = owner.current
 	var/gear = alert(admin,"Agent or Scientist Gear","Gear","Agent","Scientist")
@@ -146,12 +147,13 @@
 	for(var/datum/objective/O in objectives)
 		if(!O.check_completion())
 			won = FALSE
+			break
 	if(won)
 		result += "<span class='greentext big'>[name] team fulfilled its mission!</span>"
 	else
 		result += "<span class='redtext big'>[name] team failed its mission.</span>"
 
-	result += "<span class='header'>The abductors of [name] were:</span>"
+	result += span_header("The abductors of [name] were:")
 	for(var/datum/mind/abductor_mind in members)
 		result += printplayer(abductor_mind)
 	result += printobjectives(objectives)
@@ -168,7 +170,7 @@
 	. = ..()
 
 /datum/antagonist/abductee/greet()
-	to_chat(owner, "<span class='warning'><b>Your mind snaps!</b></span>")
+	to_chat(owner, span_warning("<b>Your mind snaps!</b>"))
 	to_chat(owner, "<big><span class='warning'><b>You can't remember how you got here...</b></span></big>")
 	owner.announce_objectives()
 
@@ -204,6 +206,8 @@
 	explanation_text = "Experiment on [target_amount] humans."
 
 /datum/objective/experiment/check_completion()
+	if(..())
+		return TRUE
 	for(var/obj/machinery/abductor/experiment/E in GLOB.machines)
 		if(!istype(team, /datum/team/abductor_team))
 			return FALSE

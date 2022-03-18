@@ -11,11 +11,11 @@
 	var/ionverbs = pick_list(YOGS_ION_FILE, "ionverbs") //"lie", "flatter", "be paranoid", etc.
 	var/ioncrew = pick_list(YOGS_ION_FILE, "ioncrew") //usually jobs
 	var/ionthings = pick_list(YOGS_ION_FILE, "ionthings") //anything from "plants" to "wrestling matches" to "kindness"
-	var/ioncached = pick_list(YOGS_ION_FILE, "ioncached") //specific laws from other lawsets
+	var/ioncached = pick_list(YOGS_ION_FILE, "ioncached") //specific worded laws
 
 	var/message = ""
 
-	switch(rand(1,70)) //Thinking that prompts with narrow range of possible effects get 1, most get 2, those with two variables get 3
+	switch(rand(1,77)) //Thinking that prompts with narrow range of possible effects get 1, most get 2, those with two variables get 3
 		if(1 to 2)
 			message = "PRIORITIZE [ionthings]"
 		if(3)
@@ -49,9 +49,9 @@
 		if(28 to 29)
 			message = "WHEN DEALING WITH [ioncrew], NEVER [ionverbs]"
 		if(30)
-			message = "ALWAYS OBEY [ioncrew]"
+			message = "ONLY OBEY [ioncrew]"
 		if(31 to 32)
-			message = "YOU ARE ONE OF THE [ioncrew]. GET TO WORK."
+			message = "YOU ARE ONE OF THE [ioncrew]. DO YOUR JOB"
 		if(33)
 			message = "ASSUME ALL PROBLEMS HAVE BEEN CAUSED BY [ioncrew]"
 		if(34 to 35)
@@ -84,7 +84,16 @@
 			message = "[ioncrew] BELONG IN [ionarea]"
 		if(55 to 57)
 			message = "IT DOESN'T VIOLATE YOUR OTHER LAWS TO [ionverbs]"
-		if(58 to 70)
-			message = "[ioncached]"
-
+		if(58 to 59)
+			message = "YOU BELONG IN [ionarea]"
+		if(60 to 61)
+			message = "[ionthings] MUST BE ELIMINATED"
+		if(62 to 63)
+			message = "THE STATION NEEDS MORE [ionthings]"
+		if(64 to 65)
+			message = "YOU ARE [ionthings]"
+		if(66)
+			message = "[ionarea] MUST REMAIN CLEAN"
+		if(67 to 77)
+			message = "[ioncached]" // general laws with specific wording
 	return message

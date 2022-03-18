@@ -25,11 +25,8 @@
 
 
 /obj/item/mop/proc/clean(turf/A)
-	if(reagents.has_reagent("water", 1) || reagents.has_reagent("holywater", 1) || reagents.has_reagent("vodka", 1) || reagents.has_reagent("cleaner", 1))
-		SEND_SIGNAL(A, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_MEDIUM)
-		for(var/obj/effect/O in A)
-			if(is_cleanable(O))
-				qdel(O)
+	if(reagents.has_reagent(/datum/reagent/water, 1) || reagents.has_reagent(/datum/reagent/water/holywater, 1) || reagents.has_reagent(/datum/reagent/consumable/ethanol/vodka, 1) || reagents.has_reagent(/datum/reagent/space_cleaner, 1))
+		A.wash(CLEAN_SCRUB)
 	reagents.reaction(A, TOUCH, 10)	//Needed for proper floor wetting.
 	reagents.remove_any(1)			//reaction() doesn't use up the reagents
 
@@ -39,20 +36,24 @@
 	if(!proximity)
 		return
 
-	if(reagents.total_volume < 1)
-		to_chat(user, "<span class='warning'>Your mop is dry!</span>")
-		return
-
 	var/turf/T = get_turf(A)
 
-	if(istype(A, /obj/item/reagent_containers/glass/bucket) || istype(A, /obj/structure/janitorialcart))
+	if(istype(A, /obj/item/reagent_containers/glass/bucket) || istype(A, /obj/structure/janitorialcart) || istype(A, /obj/structure/mopbucket))
+		return
+
+	if(reagents.total_volume < 1)
+		to_chat(user, span_warning("Your mop is dry!"))
 		return
 
 	if(T)
-		user.visible_message("[user] begins to clean \the [T] with [src].", "<span class='notice'>You begin to clean \the [T] with [src]...</span>")
+		user.visible_message("[user] begins to clean \the [T] with [src].", span_notice("You begin to clean \the [T] with [src]..."))
 
-		if(do_after(user, src.mopspeed, target = T))
-			to_chat(user, "<span class='notice'>You finish mopping.</span>")
+		var/realspeed = mopspeed
+		if(IS_JOB(user, "Janitor"))
+			realspeed *= 0.8
+
+		if(do_after(user, realspeed, target = T))
+			to_chat(user, span_notice("You finish mopping."))
 			clean(T)
 
 
@@ -69,7 +70,7 @@
 		J.mymop=src
 		J.update_icon()
 	else
-		to_chat(user, "<span class='warning'>You are unable to fit your [name] into the [J.name].</span>")
+		to_chat(user, span_warning("You are unable to fit your [name] into the [J.name]."))
 		return
 
 /obj/item/mop/cyborg
@@ -89,7 +90,7 @@
 	mopspeed = 8
 	var/refill_enabled = TRUE //Self-refill toggle for when a janitor decides to mop with something other than water.
 	var/refill_rate = 1 //Rate per process() tick mop refills itself
-	var/refill_reagent = "water" //Determins what reagent to use for refilling, just in case someone wanted to make a HOLY MOP OF PURGING
+	var/refill_reagent = /datum/reagent/water //Determins what reagent to use for refilling, just in case someone wanted to make a HOLY MOP OF PURGING
 
 /obj/item/mop/advanced/New()
 	..()
@@ -101,7 +102,7 @@
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj,src)
-	to_chat(user, "<span class='notice'>You set the condenser switch to the '[refill_enabled ? "ON" : "OFF"]' position.</span>")
+	to_chat(user, span_notice("You set the condenser switch to the '[refill_enabled ? "ON" : "OFF"]' position."))
 	playsound(user, 'sound/machines/click.ogg', 30, 1)
 
 /obj/item/mop/advanced/process()
@@ -110,8 +111,8 @@
 		reagents.add_reagent(refill_reagent, refill_rate)
 
 /obj/item/mop/advanced/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The condenser switch is set to <b>[refill_enabled ? "ON" : "OFF"]</b>.</span>")
+	. = ..()
+	. += span_notice("The condenser switch is set to <b>[refill_enabled ? "ON" : "OFF"]</b>.")
 
 /obj/item/mop/advanced/Destroy()
 	if(refill_enabled)

@@ -2,9 +2,10 @@
 	name = "Geladikinesis"
 	desc = "Allows the user to concentrate moisture and sub-zero forces into snow."
 	quality = POSITIVE
-	text_gain_indication = "<span class='notice'>Your hand feels cold.</span>"
+	text_gain_indication = span_notice("Your hand feels cold.")
 	instability = 10
 	difficulty = 10
+	synchronizer_coeff = 1
 	power = /obj/effect/proc_holder/spell/targeted/conjure_item/snow
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/snow
@@ -13,6 +14,7 @@
 	item_type = /obj/item/stack/sheet/mineral/snow
 	charge_max = 50
 	delete_old = FALSE
+	antimagic_allowed = TRUE
 	action_icon_state = "snow"
 
 
@@ -20,9 +22,10 @@
 	name = "Cryokinesis"
 	desc = "Draws negative energy from the sub-zero void to freeze surrounding temperatures at subject's will."
 	quality = POSITIVE //upsides and downsides
-	text_gain_indication = "<span class='notice'>Your hand feels cold.</span>"
+	text_gain_indication = span_notice("Your hand feels cold.")
 	instability = 20
 	difficulty = 12
+	synchronizer_coeff = 1
 	power = /obj/effect/proc_holder/spell/aimed/cryo
 
 /obj/effect/proc_holder/spell/aimed/cryo
@@ -31,6 +34,7 @@
 	charge_max = 150
 	cooldown_min = 150
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	range = 3
 	projectile_type = /obj/item/projectile/temp/cryo
 	base_icon_state = "icebeam"

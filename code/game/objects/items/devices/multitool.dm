@@ -24,18 +24,20 @@
 	throwforce = 0
 	throw_range = 7
 	throw_speed = 3
-	materials = list(MAT_METAL=50, MAT_GLASS=20)
+	materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	drop_sound = 'sound/items/handling/multitool_drop.ogg'
+	pickup_sound =  'sound/items/handling/multitool_pickup.ogg'
 	var/obj/machinery/buffer // simple machine buffer for device linkage
 	toolspeed = 1
 	usesound = 'sound/weapons/empty.ogg'
 	var/mode = 0
 
 /obj/item/multitool/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Its buffer [buffer ? "contains [buffer]." : "is empty."]</span>")
+	. = ..()
+	. += span_notice("Its buffer [buffer ? "contains [buffer]." : "is empty."]")
 
 /obj/item/multitool/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] puts the [src] to [user.p_their()] chest. It looks like [user.p_theyre()] trying to pulse [user.p_their()] heart off!</span>")
+	user.visible_message(span_suicide("[user] puts the [src] to [user.p_their()] chest. It looks like [user.p_theyre()] trying to pulse [user.p_their()] heart off!"))
 	return OXYLOSS//theres a reason it wasnt recommended by doctors
 
 
@@ -92,7 +94,7 @@
 /obj/item/multitool/ai_detect/proc/toggle_hud(mob/user)
 	hud_on = !hud_on
 	if(user)
-		to_chat(user, "<span class='notice'>You toggle the ai detection HUD on [src] [hud_on ? "on" : "off"].</span>")
+		to_chat(user, span_notice("You toggle the ai detection HUD on [src] [hud_on ? "on" : "off"]."))
 	if(hud_on)
 		show_hud(user)
 	else
@@ -149,6 +151,7 @@
 /datum/action/item_action/toggle_multitool
 	name = "Toggle AI detector HUD"
 	check_flags = NONE
+	syndicate = TRUE
 
 /datum/action/item_action/toggle_multitool/Trigger()
 	if(!..())

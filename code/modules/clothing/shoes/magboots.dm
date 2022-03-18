@@ -29,7 +29,7 @@
 		slowdown = slowdown_active
 	magpulse = !magpulse
 	icon_state = "[magboot_state][magpulse]"
-	to_chat(user, "<span class='notice'>You [magpulse ? "enable" : "disable"] the mag-pulse traction system.</span>")
+	to_chat(user, span_notice("You [magpulse ? "enable" : "disable"] the mag-pulse traction system."))
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_gravity(user.has_gravity())
 	for(var/X in actions)
@@ -40,8 +40,8 @@
 	return clothing_flags & NOSLIP
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
-	..()
-	to_chat(user, "Its mag-pulse traction system appears to be [magpulse ? "enabled" : "disabled"].")
+	. = ..()
+	. += "Its mag-pulse traction system appears to be [magpulse ? "enabled" : "disabled"]."
 
 
 /obj/item/clothing/shoes/magboots/advance
@@ -57,3 +57,10 @@
 	name = "blood-red magboots"
 	icon_state = "syndiemag0"
 	magboot_state = "syndiemag"
+
+/obj/item/clothing/shoes/magboots/security
+	name = "combat magboots"
+	desc = "Combat-edition magboots issued by Nanotrasen Security for extravehicular missions."
+	icon_state = "cmagboots0"
+	magboot_state = "cmagboots"
+	slowdown_active = 1

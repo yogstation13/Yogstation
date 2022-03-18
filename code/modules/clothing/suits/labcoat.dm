@@ -1,6 +1,7 @@
 /obj/item/clothing/suit/toggle/labcoat
 	name = "labcoat"
 	desc = "A suit that protects against minor chemical spills."
+	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi' //yogs - labcoat sprite tweaks
 	icon_state = "labcoat"
 	item_state = "labcoat"
 	blood_overlay_type = "coat"
@@ -16,10 +17,24 @@
 	icon_state = "labcoat_cmo"
 	item_state = "labcoat_cmo"
 
+/obj/item/clothing/suit/toggle/labcoat/md
+	name = "medical doctor's labcoat"
+	desc = "A white labcoat with blue medical crosses."
+	icon_state = "labcoat_md"
+	item_state = "labcoat_md"
+
 /obj/item/clothing/suit/toggle/labcoat/emt
 	name = "\improper EMT's jacket"
 	desc = "A dark blue jacket with reflective strips for emergency medical technicians."
+	alternate_worn_icon = 'icons/mob/suit.dmi' //yogs - subtype of labcoat, retains worn sprite
 	icon_state = "labcoat_emt"
+	item_state = "labcoat_cmo"
+
+/obj/item/clothing/suit/toggle/labcoat/emt/green
+	name = "\improper green EMT's jacket"
+	desc = "A green jacket with reflective strips for emergency medical technicians."
+	alternate_worn_icon = 'icons/mob/suit.dmi' //yogs - subtype of labcoat, retains worn sprite
+	icon_state = "labcoat_emtgr"
 	item_state = "labcoat_cmo"
 
 /obj/item/clothing/suit/toggle/labcoat/mad

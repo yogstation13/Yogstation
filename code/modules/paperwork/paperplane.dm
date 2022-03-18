@@ -43,10 +43,12 @@
 	return ..()
 
 /obj/item/paperplane/suicide_act(mob/living/user)
+	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
 	user.Stun(200)
-	user.visible_message("<span class='suicide'>[user] jams [src] in [user.p_their()] nose. It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] jams [src] in [user.p_their()] nose. It looks like [user.p_theyre()] trying to commit suicide!"))
 	user.adjust_blurriness(6)
-	user.adjust_eye_damage(rand(6,8))
+	if(eyes)
+		eyes.applyOrganDamage(rand(6,8))
 	sleep(10)
 	return (BRUTELOSS)
 
@@ -58,7 +60,7 @@
 			add_overlay("paperplane_[S]")
 
 /obj/item/paperplane/attack_self(mob/user)
-	to_chat(user, "<span class='notice'>You unfold [src].</span>")
+	to_chat(user, span_notice("You unfold [src]."))
 	var/obj/item/paper/internal_paper_tmp = internalPaper
 	internal_paper_tmp.forceMove(loc)
 	internalPaper = null
@@ -68,7 +70,7 @@
 /obj/item/paperplane/attackby(obj/item/P, mob/living/carbon/human/user, params)
 	..()
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
-		to_chat(user, "<span class='notice'>You should unfold [src] before changing it.</span>")
+		to_chat(user, span_notice("You should unfold [src] before changing it."))
 		return
 
 	else if(istype(P, /obj/item/stamp)) 	//we don't randomize stamps on a paperplane
@@ -76,9 +78,9 @@
 		update_icon()
 
 	else if(P.is_hot())
-		if(user.has_trait(TRAIT_CLUMSY) && prob(10))
-			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", \
-				"<span class='userdanger'>You miss [src] and accidentally light yourself on fire!</span>")
+		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
+			user.visible_message(span_warning("[user] accidentally ignites [user.p_them()]self!"), \
+				span_userdanger("You miss [src] and accidentally light yourself on fire!"))
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
 			user.IgniteMob()
@@ -87,14 +89,14 @@
 		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
 			return
 		user.dropItemToGround(src)
-		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
+		user.visible_message(span_danger("[user] lights [src] ablaze with [P]!"), span_danger("You light [src] on fire!"))
 		fire_act()
 
 	add_fingerprint(user)
 
 
-/obj/item/paperplane/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback)
-	. = ..(target, range, speed, thrower, FALSE, diagonals_first, callback)
+/obj/item/paperplane/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback, quickstart = TRUE)
+	. = ..(target, range, speed, thrower, FALSE, diagonals_first, callback, quickstart = TRUE)
 
 /obj/item/paperplane/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(hit_atom))
@@ -107,23 +109,24 @@
 	if(..() || !ishuman(hit_atom))//if the plane is caught or it hits a nonhuman
 		return
 	var/mob/living/carbon/human/H = hit_atom
+	var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
 	if(prob(hit_probability))
 		if(H.is_eyes_covered())
 			return
-		visible_message("<span class='danger'>\The [src] hits [H] in the eye!</span>")
+		visible_message(span_danger("\The [src] hits [H] in the eye!"))
 		H.adjust_blurriness(6)
-		H.adjust_eye_damage(rand(6,8))
+		eyes.applyOrganDamage(rand(6,8))
 		H.Paralyze(40)
 		H.emote("scream")
 
 /obj/item/paper/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click [src] to fold it into a paper plane.</span>")
+	. = ..()
+	. += span_notice("Alt-click [src] to fold it into a paper plane.")
 
 /obj/item/paper/AltClick(mob/living/carbon/user, obj/item/I)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
-	to_chat(user, "<span class='notice'>You fold [src] into the shape of a plane!</span>")
+	to_chat(user, span_notice("You fold [src] into the shape of a plane!"))
 	user.temporarilyRemoveItemFromInventory(src)
 	var/obj/item/paperplane/plane_type = /obj/item/paperplane
 	//Origami Master

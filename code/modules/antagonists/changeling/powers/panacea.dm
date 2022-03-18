@@ -9,7 +9,14 @@
 
 //Heals the things that the other regenerative abilities don't.
 /datum/action/changeling/panacea/sting_action(mob/user)
-	to_chat(user, "<span class='notice'>We cleanse impurities from our form.</span>")
+	to_chat(user, span_notice("We cleanse impurities from our form."))
+	var/mob/living/simple_animal/horror/H = user.has_horror_inside()
+	if(H)
+		H.leave_victim()
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			C.vomit(0, toxic = TRUE)
+			to_chat(user, span_notice("A parasite exits our form."))
 	..()
 	var/list/bad_organs = list(
 		user.getorgan(/obj/item/organ/body_egg),
@@ -26,10 +33,10 @@
 			C.vomit(0, toxic = TRUE)
 		O.forceMove(get_turf(user))
 
-	user.reagents.add_reagent("mutadone", 10)
-	user.reagents.add_reagent("pen_acid", 20)
-	user.reagents.add_reagent("antihol", 10)
-	user.reagents.add_reagent("mannitol", 25)
+	user.reagents.add_reagent(/datum/reagent/medicine/mutadone, 10)
+	user.reagents.add_reagent(/datum/reagent/medicine/pen_acid, 20)
+	user.reagents.add_reagent(/datum/reagent/medicine/antihol, 10)
+	user.reagents.add_reagent(/datum/reagent/medicine/mannitol, 25)
 
 	if(isliving(user))
 		var/mob/living/L = user

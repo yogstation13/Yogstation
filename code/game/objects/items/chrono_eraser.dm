@@ -58,7 +58,7 @@
 
 /obj/item/gun/energy/chrono_gun/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, CHRONO_GUN_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CHRONO_GUN_TRAIT)
 	if(istype(loc, /obj/item/chrono_eraser))
 		TED = loc
 	else //admin must have spawned it
@@ -85,14 +85,14 @@
 	var/mob/living/user = loc
 	if(F.gun)
 		if(isliving(user) && F.captured)
-			to_chat(user, "<span class='alert'><b>FAIL: <i>[F.captured]</i> already has an existing connection.</b></span>")
+			to_chat(user, span_alert("<b>FAIL: <i>[F.captured]</i> already has an existing connection.</b>"))
 		field_disconnect(F)
 	else
 		startpos = get_turf(src)
 		field = F
 		F.gun = src
 		if(isliving(user) && F.captured)
-			to_chat(user, "<span class='notice'>Connection established with target: <b>[F.captured]</b></span>")
+			to_chat(user, span_notice("Connection established with target: <b>[F.captured]</b>"))
 
 
 /obj/item/gun/energy/chrono_gun/proc/field_disconnect(obj/structure/chrono_field/F)
@@ -101,7 +101,7 @@
 		if(F.gun == src)
 			F.gun = null
 		if(isliving(user) && F.captured)
-			to_chat(user, "<span class='alert'>Disconnected from target: <b>[F.captured]</b></span>")
+			to_chat(user, span_alert("Disconnected from target: <b>[F.captured]</b>"))
 	field = null
 	startpos = null
 
@@ -124,7 +124,7 @@
 	name = "eradication beam"
 	icon_state = "chronobolt"
 	range = CHRONO_BEAM_RANGE
-	nodamage = 1
+	nodamage = TRUE
 	var/obj/item/gun/energy/chrono_gun/gun = null
 
 /obj/item/projectile/energy/chrono_beam/Initialize()
@@ -188,7 +188,7 @@
 		mob_underlay = mutable_appearance(cached_icon, "frame1")
 		update_icon()
 
-		desc = initial(desc) + "<br><span class='info'>It appears to contain [target.name].</span>"
+		desc = initial(desc) + "<br>[span_info("It appears to contain [target.name].")]"
 	START_PROCESSING(SSobj, src)
 	return ..()
 
@@ -199,7 +199,7 @@
 
 /obj/structure/chrono_field/update_icon()
 	var/ttk_frame = 1 - (tickstokill / initial(tickstokill))
-	ttk_frame = CLAMP(CEILING(ttk_frame * CHRONO_FRAME_COUNT, 1), 1, CHRONO_FRAME_COUNT)
+	ttk_frame = clamp(CEILING(ttk_frame * CHRONO_FRAME_COUNT, 1), 1, CHRONO_FRAME_COUNT)
 	if(ttk_frame != RPpos)
 		RPpos = ttk_frame
 		mob_underlay.icon_state = "frame[RPpos]"
@@ -213,7 +213,7 @@
 				AM.forceMove(drop_location())
 			qdel(src)
 		else if(tickstokill <= 0)
-			to_chat(captured, "<span class='boldnotice'>As the last essence of your being is erased from time, you are taken back to your most enjoyable memory. You feel happy...</span>")
+			to_chat(captured, span_boldnotice("As the last essence of your being is erased from time, you are taken back to your most enjoyable memory. You feel happy..."))
 			var/mob/dead/observer/ghost = captured.ghostize(1)
 			if(captured.mind)
 				if(ghost)
@@ -252,10 +252,9 @@
 
 /obj/structure/chrono_field/return_air() //we always have nominal air and temperature
 	var/datum/gas_mixture/GM = new
-	GM.add_gases(/datum/gas/oxygen, /datum/gas/nitrogen)
-	GM.gases[/datum/gas/oxygen][MOLES] = MOLES_O2STANDARD
-	GM.gases[/datum/gas/nitrogen][MOLES] = MOLES_N2STANDARD
-	GM.temperature = T20C
+	GM.set_moles(/datum/gas/oxygen, MOLES_O2STANDARD)
+	GM.set_moles(/datum/gas/nitrogen, MOLES_N2STANDARD)
+	GM.set_temperature(T20C)
 	return GM
 
 /obj/structure/chrono_field/singularity_act()

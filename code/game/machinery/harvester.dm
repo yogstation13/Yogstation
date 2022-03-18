@@ -65,7 +65,7 @@
 			if(!isitem(A))
 				continue
 			var/obj/item/I = A
-			if(!(I.has_trait(TRAIT_NODROP)))
+			if(!(HAS_TRAIT(I, TRAIT_NODROP)))
 				say("Subject may not have abiotic items on.")
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 				return
@@ -73,7 +73,7 @@
 		say("Subject is not organic.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 		return
-	if(!allow_living && !(C.stat == DEAD || C.has_trait(TRAIT_FAKEDEATH)))     //I mean, the machines scanners arent advanced enough to tell you're alive
+	if(!allow_living && !(C.stat == DEAD || HAS_TRAIT(C, TRAIT_FAKEDEATH)))     //I mean, the machines scanners arent advanced enough to tell you're alive
 		say("Subject is still alive.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 		return
@@ -85,7 +85,7 @@
 	var/mob/living/carbon/C = occupant
 	operation_order = reverseList(C.bodyparts)   //Chest and head are first in bodyparts, so we invert it to make them suffer more
 	harvesting = TRUE
-	visible_message("<span class='notice'>The [name] begins warming up!</span>")
+	visible_message(span_notice("The [name] begins warming up!"))
 	say("Initializing harvest protocol.")
 	update_icon(TRUE)
 	addtimer(CALLBACK(src, .proc/harvest), interval)
@@ -135,10 +135,10 @@
 	if(..())
 		return
 	if(occupant)
-		to_chat(user, "<span class='warning'>[src] is currently occupied!</span>")
+		to_chat(user, span_warning("[src] is currently occupied!"))
 		return
 	if(state_open)
-		to_chat(user, "<span class='warning'>[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!</span>")
+		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
 		return
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
 		return
@@ -154,7 +154,7 @@
 	. = !(state_open || panel_open || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR //We removed is_operational() here
 	if(.)
 		I.play_tool_sound(src, 50)
-		visible_message("<span class='notice'>[usr] pries open \the [src].</span>", "<span class='notice'>You pry open [src].</span>")
+		visible_message(span_notice("[usr] pries open \the [src]."), span_notice("You pry open [src]."))
 		open_machine()
 
 /obj/machinery/harvester/emag_act(mob/user)
@@ -162,15 +162,15 @@
 		return
 	obj_flags |= EMAGGED
 	allow_living = TRUE
-	to_chat(user, "<span class='warning'>You overload [src]'s lifesign scanners.</span>")
+	to_chat(user, span_warning("You overload [src]'s lifesign scanners."))
 
 /obj/machinery/harvester/container_resist(mob/living/user)
 	if(!harvesting)
-		visible_message("<span class='notice'>[occupant] emerges from [src]!</span>",
-			"<span class='notice'>You climb out of [src]!</span>")
+		visible_message(span_notice("[occupant] emerges from [src]!"),
+			span_notice("You climb out of [src]!"))
 		open_machine()
 	else
-		to_chat(user,"<span class='warning'>[src] is active and can't be opened!</span>") //rip
+		to_chat(user,span_warning("[src] is active and can't be opened!")) //rip
 
 /obj/machinery/harvester/Exited(atom/movable/user)
 	if (!state_open && user == occupant)
@@ -181,12 +181,12 @@
 		container_resist(user)
 
 /obj/machinery/harvester/examine(mob/user)
-	..()
+	. = ..()
 	if(stat & BROKEN)
 		return
 	if(state_open)
-		to_chat(user, "<span class='notice'>[src] must be closed before harvesting.</span>")
+		. += span_notice("[src] must be closed before harvesting.")
 	else if(!harvesting)
-		to_chat(user, "<span class='notice'>Alt-click [src] to start harvesting.</span>")
+		. += span_notice("Alt-click [src] to start harvesting.")
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Harvest speed at <b>[interval*0.1]</b> seconds per organ.<span>")
+		. += "<span class='notice'>The status display reads: Harvest speed at <b>[interval*0.1]</b> seconds per organ.<span>"

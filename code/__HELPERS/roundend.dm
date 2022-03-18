@@ -171,9 +171,8 @@
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
 
+	RollCredits()
 	for(var/client/C in GLOB.clients)
-		if(!C.credits)
-			C.RollCredits()
 		C.playtitlemusic(40)
 
 	var/popcount = gather_roundend_feedback()
@@ -192,10 +191,15 @@
 	//Set news report and mode result
 	mode.set_round_result()
 
+	// Check whether the cargo king achievement was achieved
+	cargoking()
+
 	send2irc("Server", "Round just ended.")
 
 	if(length(CONFIG_GET(keyed_list/cross_server)))
 		send_news_report()
+
+	set_observer_default_invisibility(0, span_warning("The round is over! You are now visible to the living."))
 
 	CHECK_TICK
 
@@ -226,6 +230,8 @@
 
 	//stop collecting feedback during grifftime
 	SSblackbox.Seal()
+
+	toggle_all_ctf()
 
 	sleep(50)
 	ready_for_reboot = TRUE
@@ -258,10 +264,23 @@
 	parts += antag_report()
 
 	CHECK_TICK
+	//Security
+	parts += sec_report()
+
+	CHECK_TICK
 	//Medals
 	parts += medal_report()
+	CHECK_TICK
+
+	parts += mouse_report()
+
+	CHECK_TICK
 	//Station Goals
-	parts += goal_report()
+	parts += station_goal_report()
+
+	CHECK_TICK
+	// Department Goals
+	parts += department_goal_report()
 
 	listclearnulls(parts)
 
@@ -275,8 +294,9 @@
 		var/statspage = CONFIG_GET(string/roundstatsurl)
 		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[GLOB.TAB]Round ID: <b>[info]</b>"
+	parts += "[GLOB.TAB]Gamemode: <B>[SSticker.mode.name]</B>"
 	parts += "[GLOB.TAB]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
-	parts += "[GLOB.TAB]Station Integrity: <B>[mode.station_was_nuked ? "<span class='redtext'>Destroyed</span>" : "[popcount["station_integrity"]]%"]</B>"
+	parts += "[GLOB.TAB]Station Integrity: <B>[mode.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
 	var/total_players = GLOB.joined_player_list.len
 	if(total_players)
 		parts+= "[GLOB.TAB]Total Population: <B>[total_players]</B>"
@@ -291,6 +311,13 @@
 			//ignore this comment, it fixes the broken sytax parsing caused by the " above
 			else
 				parts += "[GLOB.TAB]<i>Nobody died this shift!</i>"
+	if(istype(SSticker.mode, /datum/game_mode/dynamic))
+		var/datum/game_mode/dynamic/mode = SSticker.mode
+		parts += "[FOURSPACES]Threat level: [mode.threat_level]"
+		parts += "[FOURSPACES]Threat left: [mode.mid_round_budget]"
+		parts += "[FOURSPACES]Executed rules:"
+		for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
+			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()
@@ -305,7 +332,7 @@
 	if(!previous)
 		var/list/report_parts = list(personal_report(C), GLOB.common_report)
 		content = report_parts.Join()
-		C.verbs -= /client/proc/show_previous_roundend_report
+		remove_verb(C, /client/proc/show_previous_roundend_report)
 		fdel(filename)
 		text2file(content, filename)
 	else
@@ -313,6 +340,7 @@
 	roundend_report.set_content(content)
 	roundend_report.stylesheets = list()
 	roundend_report.add_stylesheet("roundend", 'html/browser/roundend.css')
+	roundend_report.add_stylesheet("font-awesome", 'html/font-awesome/css/all.min.css')
 	roundend_report.open(FALSE)
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
@@ -323,17 +351,22 @@
 			if(EMERGENCY_ESCAPED_OR_ENDGAMED)
 				if(!M.onCentCom() && !M.onSyndieBase())
 					parts += "<div class='panel stationborder'>"
-					parts += "<span class='marooned'>You managed to survive, but were marooned on [station_name()]...</span>"
+					parts += span_marooned("You managed to survive, but were marooned on [station_name()]...")
 				else
 					parts += "<div class='panel greenborder'>"
-					parts += "<span class='greentext'>You managed to survive the events on [station_name()] as [M.real_name].</span>"
+					parts += span_greentext("You managed to survive the events on [station_name()] as [M.real_name].")
 			else
 				parts += "<div class='panel greenborder'>"
-				parts += "<span class='greentext'>You managed to survive the events on [station_name()] as [M.real_name].</span>"
+				parts += span_greentext("You managed to survive the events on [station_name()] as [M.real_name].")
+				if(M.mind.assigned_role in GLOB.engineering_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
+					SSachievements.unlock_achievement(/datum/achievement/engineering, C)
+				else if(M.mind.assigned_role in GLOB.supply_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
+					SSachievements.unlock_achievement(/datum/achievement/cargo, C)
+
 
 		else
 			parts += "<div class='panel redborder'>"
-			parts += "<span class='redtext'>You did not survive the events on [station_name()]...</span>"
+			parts += span_redtext("You did not survive the events on [station_name()]...")
 	else
 		parts += "<div class='panel stationborder'>"
 	parts += "<br>"
@@ -357,9 +390,11 @@
 	for (var/i in GLOB.ai_list)
 		var/mob/living/silicon/ai/aiPlayer = i
 		if(aiPlayer.mind)
-			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was <span class='redtext'>deactivated</span>"] were:"
+			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was [span_redtext("deactivated")]"] were:"
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
-
+		else if(aiPlayer.deployed_shell?.mind)
+			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.deployed_shell.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was [span_redtext("deactivated")]"] were:"
+			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
 
 		if (aiPlayer.connected_robots.len)
@@ -368,14 +403,14 @@
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				borg_num--
 				if(robo.mind)
-					robolist += "<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>)[robo.stat == DEAD ? " <span class='redtext'>(Deactivated)</span>" : ""][borg_num ?", ":""]<br>"
+					robolist += "<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>)[robo.stat == DEAD ? " [span_redtext("(Deactivated)")]" : ""][borg_num ?", ":""]<br>"
 			parts += "[robolist]"
 		if(!borg_spacer)
 			borg_spacer = TRUE
 
 	for (var/mob/living/silicon/robot/robo in GLOB.silicon_mobs)
 		if (!robo.connected_ai && robo.mind)
-			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) [(robo.stat != DEAD)? "<span class='greentext'>survived</span> as an AI-less borg!" : "was <span class='redtext'>unable to survive</span> the rigors of being a cyborg without an AI."] Its laws were:"
+			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) [(robo.stat != DEAD)? "[span_greentext("survived")] as an AI-less borg!" : "was [span_redtext("unable to survive")] the rigors of being a cyborg without an AI."] Its laws were:"
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				parts += robo.laws.get_law_list(include_zeroth=TRUE)
@@ -388,7 +423,7 @@
 	else
 		return ""
 
-/datum/controller/subsystem/ticker/proc/goal_report()
+/datum/controller/subsystem/ticker/proc/station_goal_report()
 	var/list/parts = list()
 	if(mode.station_goals.len)
 		for(var/V in mode.station_goals)
@@ -396,12 +431,55 @@
 			parts += G.get_result()
 		return "<div class='panel stationborder'><ul>[parts.Join()]</ul></div>"
 
+/datum/controller/subsystem/ticker/proc/department_goal_report()
+	var/list/parts = list("<div class='panel stationborder'><ul>")
+	var/list/goals = list(
+		ACCOUNT_ENG = list(),
+		ACCOUNT_SCI = list(),
+		ACCOUNT_MED = list(),
+		ACCOUNT_SRV = list(),
+		ACCOUNT_CAR = list(),
+		ACCOUNT_SEC = list())
+	for(var/datum/department_goal/dg in SSYogs.department_goals)
+		goals[dg.account] += dg.get_result()
+
+	parts += "<br>[span_header("Engineering department goals:")]<br>"
+	parts += goals[ACCOUNT_ENG]
+
+	parts += "<br>[span_header("Science department goals:")]<br>"
+	parts += goals[ACCOUNT_SCI]
+
+	parts += "<br>[span_header("Medical department goals:")]<br>"
+	parts += goals[ACCOUNT_MED]
+
+	parts += "<br>[span_header("Service department goals:")]<br>"
+	parts += goals[ACCOUNT_SRV]
+
+	parts += "<br>[span_header("Cargo department goals:")]<br>"
+	parts += goals[ACCOUNT_CAR]
+
+	parts += "<br>[span_header("Security department goals:")]<br>"
+	parts += goals[ACCOUNT_SEC]
+
+	parts += "</ul></div>"
+	return parts.Join()
+
 /datum/controller/subsystem/ticker/proc/medal_report()
 	if(GLOB.commendations.len)
 		var/list/parts = list()
-		parts += "<span class='header'>Medal Commendations:</span>"
+		parts += span_header("Medal Commendations:")
 		for (var/com in GLOB.commendations)
 			parts += com
+		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
+	return ""
+
+/datum/controller/subsystem/ticker/proc/mouse_report()
+	if(GLOB.mouse_food_eaten)
+		var/list/parts = list()
+		parts += span_header("Mouse stats:")
+		parts += "Mice Born: [GLOB.mouse_spawned]"
+		parts += "Mice Killed: [GLOB.mouse_killed]"
+		parts += "Trash Eaten: [GLOB.mouse_food_eaten]"
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	return ""
 
@@ -414,7 +492,7 @@
 		if(!A.members)
 			continue
 		all_teams |= A
-	
+
 	for(var/datum/antagonist/A in GLOB.antagonists)
 		if(!A.owner)
 			continue
@@ -455,6 +533,21 @@
 
 	return result.Join()
 
+/datum/controller/subsystem/ticker/proc/sec_report()
+	var/list/sec = list()
+	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
+		if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
+			sec |= player.mind
+	if (sec.len)
+		var/list/result = list()
+		result += span_header("Security Officers:<br>")
+		for(var/mob/living/carbon/human/player in GLOB.carbon_list)
+			if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
+				result += "<ul class='player report'><b>[player.name]</b> (Played by: <b>[player.mind.key]</b>) [(player.stat != DEAD)? "[span_greentext("survived")] as a <b>[player.mind.assigned_role]</b>" : "[span_redtext("fell in the line of duty")] as a <b>[player.mind.assigned_role]</b>"]<br></ul>"
+
+		return "<div class='panel stationborder'><ul>[result.Join()]</ul></div>"
+	return ""
+
 /proc/cmp_antag_category(datum/antagonist/A,datum/antagonist/B)
 	return sorttext(B.roundend_category,A.roundend_category)
 
@@ -491,17 +584,17 @@
 	var/text = "<b>[ply.key]</b> was <b>[ply.name]</b>[jobtext] and"
 	if(ply.current)
 		if(ply.current.stat == DEAD)
-			text += " <span class='redtext'>died</span>"
+			text += " [span_redtext("died")]"
 		else
-			text += " <span class='greentext'>survived</span>"
+			text += " [span_greentext("survived")]"
 		if(fleecheck)
 			var/turf/T = get_turf(ply.current)
 			if(!T || !is_station_level(T.z))
-				text += " while <span class='redtext'>fleeing the station</span>"
+				text += " while [span_redtext("fleeing the station")]"
 		if(ply.current.real_name != ply.name)
 			text += " as <b>[ply.current.real_name]</b>"
 	else
-		text += " <span class='redtext'>had their body destroyed</span>"
+		text += " [span_redtext("had their body destroyed")]"
 	return text
 
 /proc/printplayerlist(list/players,fleecheck)
@@ -521,9 +614,9 @@
 	var/count = 1
 	for(var/datum/objective/objective in objectives)
 		if(objective.check_completion())
-			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</span>"
+			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_greentext("Success!")]"
 		else
-			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
 		count++
 	return objective_parts.Join("<br>")
 
@@ -539,9 +632,7 @@
 	var/list/sql_admins = list()
 	for(var/i in GLOB.protected_admins)
 		var/datum/admins/A = GLOB.protected_admins[i]
-		var/sql_ckey = sanitizeSQL(A.target)
-		var/sql_rank = sanitizeSQL(A.rank.name)
-		sql_admins += list(list("ckey" = "'[sql_ckey]'", "rank" = "'[sql_rank]'"))
+		sql_admins += list(list("ckey" = A.target, "rank" = A.rank.name))
 	SSdbcore.MassInsert(format_table_name("admin"), sql_admins, duplicate_key = TRUE)
 	var/datum/DBQuery/query_admin_rank_update = SSdbcore.NewQuery("UPDATE [format_table_name("player")] p INNER JOIN [format_table_name("admin")] a ON p.ckey = a.ckey SET p.lastadminrank = a.rank")
 	query_admin_rank_update.Execute()
@@ -561,7 +652,10 @@
 			A = GLOB.deadmins[i]
 			if (!A)
 				continue
-		file_data["admins"]["[i]"] = A.rank.name
+		file_data["admins"]["[i]"] = list()
+		file_data["admins"]["[i]"]["rank"] = A.rank.name
+		file_data["admins"]["[i]"]["ip_cache"] = A.ip_cache
+		file_data["admins"]["[i]"]["cid_cache"] = A.cid_cache
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 
@@ -576,17 +670,44 @@
 			flags += "can_edit_flags"
 		if(!flags.len)
 			continue
-		var/sql_rank = sanitizeSQL(R.name)
 		var/flags_to_check = flags.Join(" != [R_EVERYTHING] AND ") + " != [R_EVERYTHING]"
-		var/datum/DBQuery/query_check_everything_ranks = SSdbcore.NewQuery("SELECT flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")] WHERE rank = '[sql_rank]' AND ([flags_to_check])")
+		var/datum/DBQuery/query_check_everything_ranks = SSdbcore.NewQuery(
+			"SELECT flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")] WHERE rank = :rank AND ([flags_to_check])",
+			list("rank" = R.name)
+		)
 		if(!query_check_everything_ranks.Execute())
 			qdel(query_check_everything_ranks)
 			return
 		if(query_check_everything_ranks.NextRow()) //no row is returned if the rank already has the correct flag value
 			var/flags_to_update = flags.Join(" = [R_EVERYTHING], ") + " = [R_EVERYTHING]"
-			var/datum/DBQuery/query_update_everything_ranks = SSdbcore.NewQuery("UPDATE [format_table_name("admin_ranks")] SET [flags_to_update] WHERE rank = '[sql_rank]'")
+			var/datum/DBQuery/query_update_everything_ranks = SSdbcore.NewQuery(
+				"UPDATE [format_table_name("admin_ranks")] SET [flags_to_update] WHERE rank = :rank",
+				list("rank" = R.name)
+			)
 			if(!query_update_everything_ranks.Execute())
 				qdel(query_update_everything_ranks)
 				return
 			qdel(query_update_everything_ranks)
 		qdel(query_check_everything_ranks)
+
+/datum/controller/subsystem/ticker/proc/cargoking()
+	var/datum/achievement/cargoking/CK = SSachievements.get_achievement(/datum/achievement/cargoking)
+	var/cargoking = FALSE
+	var/ducatduke = FALSE
+	if(SSshuttle.points > 1000000)//Why is the cargo budget on SSshuttle instead of SSeconomy :thinking:
+		ducatduke = TRUE
+		if(SSshuttle.points > CK.amount)
+			cargoking = TRUE
+	var/hasQM = FALSE //we only wanna update the record if there's a QM
+	for(var/mob/M in GLOB.player_list)
+		if(M.mind?.assigned_role == "Quartermaster")
+			if(ducatduke)
+				SSachievements.unlock_achievement(/datum/achievement/ducatduke, M.client)
+				if(cargoking)
+					SSachievements.unlock_achievement(/datum/achievement/cargoking, M.client)
+			hasQM = TRUE //there might be more than one QM, so we do the DB stuff outside of the loop
+	if(hasQM && cargoking)
+		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET `value` = '[SSshuttle.points]' WHERE `key` = 'cargorecord'")
+		Q.Execute()
+		qdel(Q)
+

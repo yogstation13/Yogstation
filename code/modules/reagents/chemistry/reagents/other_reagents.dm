@@ -1,7 +1,6 @@
 /datum/reagent/blood
-	data = list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null)
+	data = list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null,"quirks"=null)
 	name = "Blood"
-	id = "blood"
 	color = "#C80000" // rgb: 200, 0, 0
 	metabolization_rate = 5 //fast rate so it disappears fast.
 	taste_description = "iron"
@@ -26,11 +25,11 @@
 
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		if(C.get_blood_id() == "blood" && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
+		if(C.get_blood_id() == /datum/reagent/blood && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
 			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)))
-				C.reagents.add_reagent("toxin", reac_volume * 0.5)
+				C.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 			else
-				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
+				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(C))
 
 
 /datum/reagent/blood/on_new(list/data)
@@ -84,16 +83,20 @@
 
 /datum/reagent/liquidgibs
 	name = "Liquid gibs"
-	id = "liquidgibs"
 	color = "#FF9966"
 	description = "You don't even want to think about what's in here."
 	taste_description = "gross iron"
 	shot_glass_icon_state = "shotglassred"
 
+/datum/reagent/polysmorphblood
+	name = "Polysmorph blood"
+	color = "#96BB00"
+	description = "The blood of a polysmorph"
+	taste_description = "acidic"
+
 /datum/reagent/vaccine
 	//data must contain virus type
 	name = "Vaccine"
-	id = "vaccine"
 	color = "#C81040" // rgb: 200, 16, 64
 	taste_description = "slime"
 
@@ -111,7 +114,6 @@
 
 /datum/reagent/water
 	name = "Water"
-	id = "water"
 	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
 	taste_description = "water"
@@ -140,7 +142,7 @@
 	if(hotspot && !isspaceturf(T))
 		if(T.air)
 			var/datum/gas_mixture/G = T.air
-			G.temperature = max(min(G.temperature-(CT*1000),G.temperature/CT),TCMB)
+			G.set_temperature(max(min(G.return_temperature()-(CT*1000),G.return_temperature()/CT),TCMB))
 			G.react(src)
 			qdel(hotspot)
 	var/obj/effect/acid/A = (locate(/obj/effect/acid) in T)
@@ -181,47 +183,54 @@
 		M.ExtinguishMob()
 	..()
 
+/datum/reagent/water/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(M.blood_volume)
+		M.blood_volume += 0.1 // water is good for you!
+
 /datum/reagent/water/holywater
 	name = "Holy Water"
-	id = "holywater"
 	description = "Water blessed by some deity."
 	color = "#E0E8EF" // rgb: 224, 232, 239
 	glass_icon_state  = "glass_clear"
 	glass_name = "glass of holy water"
 	glass_desc = "A glass of holy water."
+	self_consuming = TRUE //divine intervention won't be limited by the lack of a liver
 
-/datum/reagent/water/holywater/on_mob_add(mob/living/L)
+/datum/reagent/water/holywater/on_mob_metabolize(mob/living/L)
 	..()
-	L.add_trait(TRAIT_HOLY, id)
+	ADD_TRAIT(L, TRAIT_HOLY, type)
 
-/datum/reagent/water/holywater/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_HOLY, id)
+/datum/reagent/water/holywater/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_HOLY, type)
 	..()
 
 /datum/reagent/water/holywater/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(is_servant_of_ratvar(M))
-		to_chat(M, "<span class='userdanger'>A darkness begins to spread its unholy tendrils through your mind, purging the Justiciar's influence!</span>")
+		to_chat(M, span_userdanger("A darkness begins to spread its unholy tendrils through your mind, purging the Justiciar's influence!"))
 	..()
 
 /datum/reagent/water/holywater/on_mob_life(mob/living/carbon/M)
+	if(M.blood_volume)
+		M.blood_volume += 0.1 // water is good for you!
 	if(!data)
-		data = 1
-	data++
+		data = list("misc" = 1)
+	data["misc"]++
 	M.jitteriness = min(M.jitteriness+4,10)
 	if(iscultist(M))
 		for(var/datum/action/innate/cult/blood_magic/BM in M.actions)
-			to_chat(M, "<span class='cultlarge'>Your blood rites falter as holy water scours your body!</span>")
+			to_chat(M, span_cultlarge("Your blood rites falter as holy water scours your body!"))
 			for(var/datum/action/innate/cult/blood_spell/BS in BM.spells)
 				qdel(BS)
-	if(data >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
+	if(data["misc"] >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
 		if(!M.stuttering)
 			M.stuttering = 1
 		M.stuttering = min(M.stuttering+4, 10)
 		M.Dizzy(5)
 		if(iscultist(M) && prob(20))
-			M.say(pick("Av'te Nar'sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
+			M.say(pick("Av'te Nar'Sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
 			if(prob(10))
-				M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
+				M.visible_message(span_danger("[M] starts having a seizure!"), span_userdanger("You have a seizure!"))
 				M.Unconscious(120)
 				to_chat(M, "<span class='cultlarge'>[pick("Your blood is your bond - you are nothing without it", "Do not forget your place", \
 				"All that power, and you still fail?", "If you cannot scour this poison, I shall scour your meager life!")].</span>")
@@ -233,8 +242,8 @@
 					to_chat(M, "<span class='boldwarning'>[pick("Ratvar's illumination of your mind has begun to flicker", "He lies rusting in Reebe, derelict and forgotten. And there he shall stay", \
 					"You can't save him. Nothing can save him now", "It seems that Nar-Sie will triumph after all")].</span>")
 				if("emote")
-					M.visible_message("<span class='warning'>[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")].</span>")
-	if(data >= 60)	// 30 units, 135 seconds
+					M.visible_message(span_warning("[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")]."))
+	if(data["misc"] >= 60)	// 30 units, 135 seconds
 		if(iscultist(M) || is_servant_of_ratvar(M))
 			if(iscultist(M))
 				SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
@@ -242,24 +251,24 @@
 				remove_servant_of_ratvar(M)
 			M.jitteriness = 0
 			M.stuttering = 0
-			holder.remove_reagent(id, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
+			holder.remove_reagent(type, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
 	if(ishuman(M) && is_vampire(M) && prob(80)) // Yogs Start
 		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
 		if(!V.get_ability(/datum/vampire_passive/full))
 			switch(data)
 				if(1 to 4)
-					to_chat(M, "<span class='warning'>Something sizzles in your veins!</span>")
+					to_chat(M, span_warning("Something sizzles in your veins!"))
 					M.adjustFireLoss(0.5)
 				if(5 to 12)
-					to_chat(M, "<span class='danger'>You feel an intense burning inside of you!</span>")
+					to_chat(M, span_danger("You feel an intense burning inside of you!"))
 					M.adjustFireLoss(1)
 				if(13 to INFINITY)
-					M.visible_message("<span class='danger'>[M] suddenly bursts into flames!<span>", "<span class='userdanger'>You suddenly ignite in a holy fire!</span>")
+					M.visible_message("<span class='danger'>[M] suddenly bursts into flames!<span>", span_userdanger("You suddenly ignite in a holy fire!"))
 					M.adjust_fire_stacks(3)
 					M.IgniteMob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
 					M.adjustFireLoss(3)        //Hence the other damages... ain't I a bastard? // Yogs End
-	holder.remove_reagent(id, 0.4)	//fixed consumption to prevent balancing going out of whack
+	holder.remove_reagent(type, 0.4)	//fixed consumption to prevent balancing going out of whack
 
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
 	..()
@@ -272,13 +281,12 @@
 
 /datum/reagent/fuel/unholywater		//if you somehow managed to extract this from someone, dont splash it on yourself and have a smoke
 	name = "Unholy Water"
-	id = "unholywater"
 	description = "Something that shouldn't exist on this plane of existence."
 	taste_description = "suffering"
 
 /datum/reagent/fuel/unholywater/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
-		M.reagents.add_reagent(id,reac_volume/4)
+		M.reagents.add_reagent(type,reac_volume/4)
 		return
 	return ..()
 
@@ -291,20 +299,19 @@
 		M.adjustOxyLoss(-2, 0)
 		M.adjustBruteLoss(-2, 0)
 		M.adjustFireLoss(-2, 0)
-		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL)
+		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
 			M.blood_volume += 3
 	else  // Will deal about 90 damage when 50 units are thrown
-		M.adjustBrainLoss(3, 150)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 		M.adjustToxLoss(2, 0)
 		M.adjustFireLoss(2, 0)
 		M.adjustOxyLoss(2, 0)
 		M.adjustBruteLoss(2, 0)
-	holder.remove_reagent(id, 1)
+	holder.remove_reagent(type, 1)
 	return TRUE
 
 /datum/reagent/hellwater			//if someone has this in their system they've really pissed off an eldrich god
 	name = "Hell Water"
-	id = "hell_water"
 	description = "YOUR FLESH! IT BURNS!"
 	taste_description = "burning"
 
@@ -313,18 +320,42 @@
 	M.IgniteMob()			//Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
 	M.adjustToxLoss(1, 0)
 	M.adjustFireLoss(1, 0)		//Hence the other damages... ain't I a bastard?
-	M.adjustBrainLoss(5, 150)
-	holder.remove_reagent(id, 1)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 150)
+	holder.remove_reagent(type, 1)
+
+/datum/reagent/eldritch
+	name = "Eldritch Essence"
+	description = "Strange liquid that defies the laws of physics"
+	taste_description = "glass"
+	color = "#1f8016"
+
+/datum/reagent/eldritch/on_mob_life(mob/living/carbon/M)
+	if(IS_HERETIC(M) || IS_HERETIC_MONSTER(M))
+		M.drowsyness = max(M.drowsyness-5, 0)
+		M.AdjustAllImmobility(-40, FALSE)
+		M.adjustStaminaLoss(-10, FALSE)
+		M.adjustToxLoss(-2, FALSE)
+		M.adjustOxyLoss(-2, FALSE)
+		M.adjustBruteLoss(-2, FALSE)
+		M.adjustFireLoss(-2, FALSE)
+		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
+			M.blood_volume += 3
+	else
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
+		M.adjustToxLoss(2, FALSE)
+		M.adjustFireLoss(2, FALSE)
+		M.adjustOxyLoss(2, FALSE)
+		M.adjustBruteLoss(2, FALSE)
+	holder.remove_reagent(type, 1)
+	return TRUE
 
 /datum/reagent/medicine/omnizine/godblood
 	name = "Godblood"
-	id = "godblood"
 	description = "Slowly heals all damage types. Has a rather high overdose threshold. Glows with mysterious power."
 	overdose_threshold = 150
 
 /datum/reagent/lube
 	name = "Space Lube"
-	id = "lube"
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	color = "#009CA8" // rgb: 0, 156, 168
 	taste_description = "cherry" // by popular demand
@@ -337,12 +368,12 @@
 
 /datum/reagent/spraytan
 	name = "Spray Tan"
-	id = "spraytan"
 	description = "A substance applied to the skin to darken the skin."
 	color = "#FFC080" // rgb: 255, 196, 128  Bright orange
 	metabolization_rate = 10 * REAGENTS_METABOLISM // very fast, so it can be applied rapidly.  But this changes on an overdose
 	overdose_threshold = 11 //Slightly more than one un-nozzled spraybottle.
 	taste_description = "sour oranges"
+	var/saved_color
 
 /datum/reagent/spraytan/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(ishuman(M))
@@ -375,9 +406,13 @@
 
 			if(MUTCOLORS in N.dna.species.species_traits) //take current alien color and darken it slightly
 				var/newcolor = ""
-				var/len = length(N.dna.features["mcolor"])
-				for(var/i=1, i<=len, i+=1)
-					var/ascii = text2ascii(N.dna.features["mcolor"],i)
+				var/string = N.dna.features["mcolor"]
+				var/len = length(string)
+				var/char = ""
+				var/ascii = 0
+				for(var/i=1, i<=len, i += length(char))
+					char = string[i]
+					ascii = text2ascii(char)
 					switch(ascii)
 						if(48)
 							newcolor += "0"
@@ -401,7 +436,7 @@
 
 		if(method == INGEST)
 			if(show_message)
-				to_chat(M, "<span class='notice'>That tasted horrible.</span>")
+				to_chat(M, span_notice("That tasted horrible."))
 	..()
 
 
@@ -417,8 +452,10 @@
 		if(!(HAIR in N.dna.species.species_traits)) //No hair? No problem!
 			N.dna.species.species_traits += HAIR
 		if(N.dna.species.use_skintones)
+			saved_color = N.skin_tone
 			N.skin_tone = "orange"
 		else if(MUTCOLORS in N.dna.species.species_traits) //Aliens with custom colors simply get turned orange
+			saved_color = N.dna.features["mcolor"]
 			N.dna.features["mcolor"] = "f80"
 		N.regenerate_icons()
 		if(prob(7))
@@ -427,25 +464,34 @@
 			else
 				M.visible_message("<b>[M]</b> flexes [M.p_their()] arms.")
 	if(prob(10))
-		M.say(pick("Shit was SO cash.", "You are everything bad in the world.", "What sports do you play, other than 'jack off to naked drawn Japanese people?'", "Don’t be a stranger. Just hit me with your best shot.", "My name is John and I hate every single one of you."), forced = "spraytan")
+		M.say(pick("Shit was SO cash.", "You are everything bad in the world.", "What sports do you play, other than 'jack off to naked drawn Japanese people?'", "Don???t be a stranger. Just hit me with your best shot.", "My name is John and I hate every single one of you."), forced = /datum/reagent/spraytan)
 	..()
 	return
 
+/datum/reagent/spraytan/on_mob_delete(mob/living/M)
+	if(ishuman(M) && saved_color)
+		var/mob/living/carbon/human/N = M
+		if(N.dna.species.use_skintones)
+			N.skin_tone = saved_color
+		else if(MUTCOLORS in N.dna.species.species_traits)
+			N.dna.features["mcolor"] = saved_color
+		N.regenerate_icons()
+	..()
+
 /datum/reagent/mutationtoxin
 	name = "Stable Mutation Toxin"
-	id = "stablemutationtoxin"
 	description = "A humanizing toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	metabolization_rate = INFINITY //So it instantly removes all of itself
 	taste_description = "slime"
 	var/datum/species/race = /datum/species/human
-	var/mutationtext = "<span class='danger'>The pain subsides. You feel... human.</span>"
+	var/mutationtext = span_danger("The pain subsides. You feel... human.")
 
 /datum/reagent/mutationtoxin/on_mob_life(mob/living/carbon/human/H)
 	..()
 	if(!istype(H))
 		return
-	to_chat(H, "<span class='warning'><b>You crumple in agony as your flesh wildly morphs into new forms!</b></span>")
+	to_chat(H, span_warning("<b>You crumple in agony as your flesh wildly morphs into new forms!</b>"))
 	H.visible_message("<b>[H]</b> falls to the ground and screams as [H.p_their()] skin bubbles and froths!") //'froths' sounds painful when used with SKIN.
 	H.Paralyze(60)
 	addtimer(CALLBACK(src, .proc/mutate, H), 30)
@@ -459,135 +505,136 @@
 	if(mutation && mutation != current_species)
 		to_chat(H, mutationtext)
 		H.set_species(mutation)
+		if(HAS_TRAIT(H, TRAIT_GENELESS))
+			if(H.has_dna())
+				H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
 	else
-		to_chat(H, "<span class='danger'>The pain vanishes suddenly. You feel no different.</span>")
+		to_chat(H, span_danger("The pain vanishes suddenly. You feel no different."))
 
 /datum/reagent/mutationtoxin/classic //The one from plasma on green slimes
 	name = "Mutation Toxin"
-	id = "mutationtoxin"
 	description = "A corruptive toxin."
 	color = "#13BC5E" // rgb: 19, 188, 94
 	race = /datum/species/jelly/slime
-	mutationtext = "<span class='danger'>The pain subsides. Your whole body feels like slime.</span>"
+	mutationtext = span_danger("The pain subsides. Your whole body feels like slime.")
 
 /datum/reagent/mutationtoxin/felinid
 	name = "Felinid Mutation Toxin"
-	id = "felinidmutationtoxin"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/human/felinid
-	mutationtext = "<span class='danger'>The pain subsides. You feel... like a degenerate.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... like a degenerate.")
 
 /datum/reagent/mutationtoxin/lizard
 	name = "Lizard Mutation Toxin"
-	id = "lizardmutationtoxin"
 	description = "A lizarding toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/lizard
-	mutationtext = "<span class='danger'>The pain subsides. You feel... scaly.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... scaly.")
 
 /datum/reagent/mutationtoxin/fly
 	name = "Fly Mutation Toxin"
-	id = "flymutationtoxin"
 	description = "An insectifying toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/fly
-	mutationtext = "<span class='danger'>The pain subsides. You feel... buzzy.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... buzzy.")
 
 /datum/reagent/mutationtoxin/moth
 	name = "Moth Mutation Toxin"
-	id = "mothmutationtoxin"
 	description = "A glowing toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/moth
-	mutationtext = "<span class='danger'>The pain subsides. You feel... attracted to light.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... attracted to light.")
 
 /datum/reagent/mutationtoxin/pod
 	name = "Podperson Mutation Toxin"
-	id = "podmutationtoxin"
 	description = "A vegetalizing toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/pod
-	mutationtext = "<span class='danger'>The pain subsides. You feel... plantlike.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... plantlike.")
+
+/datum/reagent/mutationtoxin/ethereal
+	name = "Ethereal Mutation Toxin"
+	description = "An electrifying toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/ethereal
+	mutationtext = span_danger("The pain subsides. You feel... ecstatic.")
+
+/datum/reagent/mutationtoxin/polysmorph
+	name = "Polysmorph Mutation Toxin"
+	description = "An acidic toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/polysmorph
+	mutationtext = span_danger("The pain subsides. You feel... Alien.")
 
 /datum/reagent/mutationtoxin/jelly
 	name = "Imperfect Mutation Toxin"
-	id = "jellymutationtoxin"
 	description = "An jellyfying toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/jelly
-	mutationtext = "<span class='danger'>The pain subsides. You feel... wobbly.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... wobbly.")
 
 /datum/reagent/mutationtoxin/golem
 	name = "Golem Mutation Toxin"
-	id = "golemmutationtoxin"
 	description = "A crystal toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/golem/random
-	mutationtext = "<span class='danger'>The pain subsides. You feel... rocky.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... rocky.")
 
 /datum/reagent/mutationtoxin/abductor
 	name = "Abductor Mutation Toxin"
-	id = "abductormutationtoxin"
 	description = "An alien toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/abductor
-	mutationtext = "<span class='danger'>The pain subsides. You feel... alien.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... alien.")
 
 /datum/reagent/mutationtoxin/android
 	name = "Android Mutation Toxin"
-	id = "androidmutationtoxin"
 	description = "A robotic toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/android
-	mutationtext = "<span class='danger'>The pain subsides. You feel... artificial.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... artificial.")
 
 
 //BLACKLISTED RACES
 /datum/reagent/mutationtoxin/skeleton
 	name = "Skeleton Mutation Toxin"
-	id = "skeletonmutationtoxin"
 	description = "A scary toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/skeleton
-	mutationtext = "<span class='danger'>The pain subsides. You feel... spooky.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... spooky.")
 
 /datum/reagent/mutationtoxin/zombie
 	name = "Zombie Mutation Toxin"
-	id = "zombiemutationtoxin"
 	description = "An undead toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/zombie //Not the infectious kind. The days of xenobio zombie outbreaks are long past.
-	mutationtext = "<span class='danger'>The pain subsides. You feel... undead.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... undead.")
 
 /datum/reagent/mutationtoxin/ash
 	name = "Ash Mutation Toxin"
-	id = "ashmutationtoxin"
 	description = "An ashen toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/lizard/ashwalker
-	mutationtext = "<span class='danger'>The pain subsides. You feel... savage.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... savage.")
 
 
 //DANGEROUS RACES
 /datum/reagent/mutationtoxin/shadow
 	name = "Shadow Mutation Toxin"
-	id = "shadowmutationtoxin"
 	description = "A dark toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/shadow
-	mutationtext = "<span class='danger'>The pain subsides. You feel... darker.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... darker.")
 
 /datum/reagent/mutationtoxin/plasma
 	name = "Plasma Mutation Toxin"
-	id = "plasmamutationtoxin"
 	description = "A plasma-based toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/plasmaman
-	mutationtext = "<span class='danger'>The pain subsides. You feel... flammable.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... flammable.")
 
 /datum/reagent/slime_toxin
 	name = "Slime Mutation Toxin"
-	id = "slime_toxin"
 	description = "A toxin that turns organic material into slime."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	taste_description = "slime"
@@ -601,30 +648,29 @@
 		return
 
 	if(isjellyperson(H))
-		to_chat(H, "<span class='warning'>Your jelly shifts and morphs, turning you into another subspecies!</span>")
+		to_chat(H, span_warning("Your jelly shifts and morphs, turning you into another subspecies!"))
 		var/species_type = pick(subtypesof(/datum/species/jelly))
 		H.set_species(species_type)
-		H.reagents.del_reagent(id)
+		H.reagents.del_reagent(type)
 
 	switch(current_cycle)
 		if(1 to 6)
 			if(prob(10))
-				to_chat(H, "<span class='warning'>[pick("You don't feel very well.", "Your skin feels a little slimy.")]</span>")
+				to_chat(H, span_warning("[pick("You don't feel very well.", "Your skin feels a little slimy.")]"))
 		if(7 to 12)
 			if(prob(10))
-				to_chat(H, "<span class='warning'>[pick("Your appendages are melting away.", "Your limbs begin to lose their shape.")]</span>")
+				to_chat(H, span_warning("[pick("Your appendages are melting away.", "Your limbs begin to lose their shape.")]"))
 		if(13 to 19)
 			if(prob(10))
-				to_chat(H, "<span class='warning'>[pick("You feel your internal organs turning into slime.", "You feel very slimelike.")]</span>")
+				to_chat(H, span_warning("[pick("You feel your internal organs turning into slime.", "You feel very slimelike.")]"))
 		if(20 to INFINITY)
 			var/species_type = pick(subtypesof(/datum/species/jelly))
 			H.set_species(species_type)
-			H.reagents.del_reagent(id)
-			to_chat(H, "<span class='warning'>You've become \a jellyperson!</span>")
+			H.reagents.del_reagent(type)
+			to_chat(H, span_warning("You've become \a jellyperson!"))
 
 /datum/reagent/mulligan
 	name = "Mulligan Toxin"
-	id = "mulligan"
 	description = "This toxin will rapidly change the DNA of human beings. Commonly used by Syndicate spies and assassins in need of an emergency ID change."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	metabolization_rate = INFINITY
@@ -634,13 +680,12 @@
 	..()
 	if (!istype(H))
 		return
-	to_chat(H, "<span class='warning'><b>You grit your teeth in pain as your body rapidly mutates!</b></span>")
+	to_chat(H, span_warning("<b>You grit your teeth in pain as your body rapidly mutates!</b>"))
 	H.visible_message("<b>[H]</b> suddenly transforms!")
 	randomize_human(H)
 
 /datum/reagent/aslimetoxin
 	name = "Advanced Mutation Toxin"
-	id = "amutationtoxin"
 	description = "An advanced corruptive toxin produced by slimes."
 	color = "#13BC5E" // rgb: 19, 188, 94
 	taste_description = "slime"
@@ -651,7 +696,6 @@
 
 /datum/reagent/gluttonytoxin
 	name = "Gluttony's Blessing"
-	id = "gluttonytoxin"
 	description = "An advanced corruptive toxin produced by something terrible."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	can_synth = FALSE
@@ -660,9 +704,18 @@
 /datum/reagent/gluttonytoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	L.ForceContractDisease(new /datum/disease/transformation/morph(), FALSE, TRUE)
 
+/datum/reagent/ghosttoxin
+	name = "Ghost's Curse"
+	description = "An advanced corruptive toxin produced by something otherwordly."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	can_synth = FALSE
+	taste_description = "decay"
+
+/datum/reagent/ghosttoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	L.ForceContractDisease(new /datum/disease/transformation/ghost(), FALSE, TRUE)
+
 /datum/reagent/serotrotium
 	name = "Serotrotium"
-	id = "serotrotium"
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
 	color = "#202040" // rgb: 20, 20, 40
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
@@ -676,7 +729,6 @@
 
 /datum/reagent/oxygen
 	name = "Oxygen"
-	id = "oxygen"
 	description = "A colorless, odorless gas. Grows on trees but is still pretty valuable."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -696,7 +748,6 @@
 
 /datum/reagent/copper
 	name = "Copper"
-	id = "copper"
 	description = "A highly ductile metal. Things made out of copper aren't very durable, but it makes a decent material for electrical wiring."
 	reagent_state = SOLID
 	color = "#6E3B08" // rgb: 110, 59, 8
@@ -711,7 +762,6 @@
 
 /datum/reagent/nitrogen
 	name = "Nitrogen"
-	id = "nitrogen"
 	description = "A colorless, odorless, tasteless gas. A simple asphyxiant that can silently displace vital oxygen."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -731,7 +781,6 @@
 
 /datum/reagent/hydrogen
 	name = "Hydrogen"
-	id = "hydrogen"
 	description = "A colorless, odorless, nonmetallic, tasteless, highly combustible diatomic gas."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -739,7 +788,6 @@
 
 /datum/reagent/potassium
 	name = "Potassium"
-	id = "potassium"
 	description = "A soft, low-melting solid that can easily be cut with a knife. Reacts violently with water."
 	reagent_state = SOLID
 	color = "#A0A0A0" // rgb: 160, 160, 160
@@ -747,7 +795,6 @@
 
 /datum/reagent/mercury
 	name = "Mercury"
-	id = "mercury"
 	description = "A curious metal that's a liquid at room temperature. Neurodegenerative and very bad for the mind."
 	color = "#484848" // rgb: 72, 72, 72A
 	taste_mult = 0 // apparently tasteless.
@@ -757,12 +804,11 @@
 		step(M, pick(GLOB.cardinals))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
-	M.adjustBrainLoss(1)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
 	..()
 
 /datum/reagent/sulfur
 	name = "Sulfur"
-	id = "sulfur"
 	description = "A sickly yellow solid mostly known for its nasty smell. It's actually much more helpful than it looks in biochemisty."
 	reagent_state = SOLID
 	color = "#BF8C00" // rgb: 191, 140, 0
@@ -770,7 +816,6 @@
 
 /datum/reagent/carbon
 	name = "Carbon"
-	id = "carbon"
 	description = "A crumbly black solid that, while unexciting on a physical level, forms the base of all known life. Kind of a big deal."
 	reagent_state = SOLID
 	color = "#1C1300" // rgb: 30, 20, 0
@@ -784,7 +829,6 @@
 
 /datum/reagent/chlorine
 	name = "Chlorine"
-	id = "chlorine"
 	description = "A pale yellow gas that's well known as an oxidizer. While it forms many harmless molecules in its elemental form it is far from harmless."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -797,7 +841,6 @@
 
 /datum/reagent/fluorine
 	name = "Fluorine"
-	id = "fluorine"
 	description = "A comically-reactive chemical element. The universe does not want this stuff to exist in this form in the slightest."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -810,7 +853,6 @@
 
 /datum/reagent/sodium
 	name = "Sodium"
-	id = "sodium"
 	description = "A soft silver metal that can easily be cut with a knife. It's not salt just yet, so refrain from putting in on your chips."
 	reagent_state = SOLID
 	color = "#808080" // rgb: 128, 128, 128
@@ -818,7 +860,6 @@
 
 /datum/reagent/phosphorus
 	name = "Phosphorus"
-	id = "phosphorus"
 	description = "A ruddy red powder that burns readily. Though it comes in many colors, the general theme is always the same."
 	reagent_state = SOLID
 	color = "#832828" // rgb: 131, 40, 40
@@ -826,7 +867,6 @@
 
 /datum/reagent/lithium
 	name = "Lithium"
-	id = "lithium"
 	description = "A silver metal, its claim to fame is its remarkably low density. Using it is a bit too effective in calming oneself down."
 	reagent_state = SOLID
 	color = "#808080" // rgb: 128, 128, 128
@@ -841,17 +881,16 @@
 
 /datum/reagent/glycerol
 	name = "Glycerol"
-	id = "glycerol"
 	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "sweetness"
 
 /datum/reagent/space_cleaner/sterilizine
 	name = "Sterilizine"
-	id = "sterilizine"
 	description = "Sterilizes wounds in preparation for surgery."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	taste_description = "bitterness"
+	toxpwr = 0
 
 /datum/reagent/space_cleaner/sterilizine/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
 	if(method in list(TOUCH, VAPOR, PATCH))
@@ -863,7 +902,6 @@
 
 /datum/reagent/iron
 	name = "Iron"
-	id = "iron"
 	description = "Pure iron is a metal."
 	reagent_state = SOLID
 	taste_description = "iron"
@@ -871,19 +909,18 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/iron/on_mob_life(mob/living/carbon/C)
-	if(C.blood_volume < BLOOD_VOLUME_NORMAL)
+	if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 		C.blood_volume += 0.5
 	..()
 
 /datum/reagent/iron/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.has_bane(BANE_IRON)) //If the target is weak to cold iron, then poison them.
 		if(holder && holder.chem_temp < 100) // COLD iron.
-			M.reagents.add_reagent("toxin", reac_volume)
+			M.reagents.add_reagent(/datum/reagent/toxin, reac_volume)
 	..()
 
 /datum/reagent/gold
 	name = "Gold"
-	id = "gold"
 	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
 	reagent_state = SOLID
 	color = "#F7C430" // rgb: 247, 196, 48
@@ -891,7 +928,6 @@
 
 /datum/reagent/silver
 	name = "Silver"
-	id = "silver"
 	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
 	reagent_state = SOLID
 	color = "#D0D0D0" // rgb: 208, 208, 208
@@ -899,12 +935,11 @@
 
 /datum/reagent/silver/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.has_bane(BANE_SILVER))
-		M.reagents.add_reagent("toxin", reac_volume)
+		M.reagents.add_reagent(/datum/reagent/toxin, reac_volume)
 	..()
 
 /datum/reagent/uranium
 	name ="Uranium"
-	id = "uranium"
 	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
 	reagent_state = SOLID
 	color = "#B8B8C0" // rgb: 184, 184, 192
@@ -921,11 +956,10 @@
 			var/obj/effect/decal/cleanable/greenglow/GG = locate() in T.contents
 			if(!GG)
 				GG = new/obj/effect/decal/cleanable/greenglow(T)
-			GG.reagents.add_reagent(id, reac_volume)
+			GG.reagents.add_reagent(type, reac_volume)
 
 /datum/reagent/uranium/radium
 	name = "Radium"
-	id = "radium"
 	description = "Radium is an alkaline earth metal. It is extremely radioactive."
 	reagent_state = SOLID
 	color = "#C7C7C7" // rgb: 199,199,199
@@ -934,7 +968,6 @@
 
 /datum/reagent/bluespace
 	name = "Bluespace Dust"
-	id = "bluespace"
 	description = "A dust composed of microscopic bluespace crystals, with minor space-warping properties."
 	reagent_state = SOLID
 	color = "#0000CC"
@@ -947,7 +980,7 @@
 
 /datum/reagent/bluespace/on_mob_life(mob/living/carbon/M)
 	if(current_cycle > 10 && prob(15))
-		to_chat(M, "<span class='warning'>You feel unstable...</span>")
+		to_chat(M, span_warning("You feel unstable..."))
 		M.Jitter(2)
 		current_cycle = 1
 		addtimer(CALLBACK(M, /mob/living/proc/bluespace_shuffle), 30)
@@ -958,7 +991,6 @@
 
 /datum/reagent/aluminium
 	name = "Aluminium"
-	id = "aluminium"
 	description = "A silvery white and ductile member of the boron group of chemical elements."
 	reagent_state = SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
@@ -966,7 +998,6 @@
 
 /datum/reagent/silicon
 	name = "Silicon"
-	id = "silicon"
 	description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
 	reagent_state = SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
@@ -974,7 +1005,6 @@
 
 /datum/reagent/fuel
 	name = "Welding fuel"
-	id = "welding_fuel"
 	description = "Required for welders. Flammable."
 	color = "#660000" // rgb: 102, 0, 0
 	taste_description = "gross metal"
@@ -995,84 +1025,59 @@
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
-	id = "cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	color = "#A5F0EE" // rgb: 165, 240, 238
+	var/toxpwr = 1
 	taste_description = "sourness"
 	reagent_weight = 0.6 //so it sprays further
+	var/clean_types = CLEAN_WASH
 
 /datum/reagent/space_cleaner/reaction_obj(obj/O, reac_volume)
-	if(istype(O, /obj/effect/decal/cleanable))
-		qdel(O)
-	else
-		if(O)
-			O.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-			SEND_SIGNAL(O, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+	O?.wash(clean_types)
 
 /datum/reagent/space_cleaner/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
-		T.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-		SEND_SIGNAL(T, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
-		for(var/obj/effect/decal/cleanable/C in T)
-			qdel(C)
+		T.wash(clean_types)
+		for(var/am in T)
+			var/atom/movable/movable_content = am
+			if(ismopable(movable_content)) // Mopables will be cleaned anyways by the turf wash
+				continue
+			movable_content.wash(clean_types)
 
 		for(var/mob/living/simple_animal/slime/M in T)
 			M.adjustToxLoss(rand(5,10))
 
 /datum/reagent/space_cleaner/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
-		M.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-		if(iscarbon(M))
-			var/mob/living/carbon/C = M
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(H.lip_style)
-					H.lip_style = null
-					H.update_body()
-			for(var/obj/item/I in C.held_items)
-				SEND_SIGNAL(I, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
-			if(C.wear_mask)
-				if(SEND_SIGNAL(C.wear_mask, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-					C.update_inv_wear_mask()
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = C
-				if(H.head)
-					if(SEND_SIGNAL(H.head, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-						H.update_inv_head()
-				if(H.wear_suit)
-					if(SEND_SIGNAL(H.wear_suit, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-						H.update_inv_wear_suit()
-				else if(H.w_uniform)
-					if(SEND_SIGNAL(H.w_uniform, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-						H.update_inv_w_uniform()
-				if(H.shoes)
-					if(SEND_SIGNAL(H.shoes, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-						H.update_inv_shoes()
-				H.wash_cream()
-			SEND_SIGNAL(M, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+		M.wash(clean_types)
+
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(toxpwr*REM, 0)
+	..()
 
 /datum/reagent/space_cleaner/ez_clean
 	name = "EZ Clean"
-	id = "ez_clean"
 	description = "A powerful, acidic cleaner sold by Waffle Co. Affects organic matter while leaving other objects unaffected."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "acid"
+	can_synth = FALSE
 
 /datum/reagent/space_cleaner/ez_clean/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(3.33)
-	M.adjustFireLoss(3.33)
-	M.adjustToxLoss(3.33)
+	M.adjustBruteLoss(6.33)
+	M.adjustFireLoss(6.33)
+	M.adjustToxLoss(6.33)
 	..()
 
 /datum/reagent/space_cleaner/ez_clean/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	..()
 	if((method == TOUCH || method == VAPOR) && !issilicon(M))
-		M.adjustBruteLoss(1)
-		M.adjustFireLoss(1)
+		M.reagents.add_reagent(/datum/reagent/space_cleaner/ez_clean, reac_volume)
+		M.adjustBruteLoss(1 * reac_volume)
+		M.adjustFireLoss(1 * reac_volume)
+		M.emote("scream")
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
-	id = "cryptobiolin"
 	description = "Cryptobiolin causes confusion and dizziness."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -1087,7 +1092,6 @@
 
 /datum/reagent/impedrezene
 	name = "Impedrezene"
-	id = "impedrezene"
 	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
 	color = "#C8A5DC" // rgb: 200, 165, 220A
 	taste_description = "numbness"
@@ -1095,7 +1099,7 @@
 /datum/reagent/impedrezene/on_mob_life(mob/living/carbon/M)
 	M.jitteriness = max(M.jitteriness-5,0)
 	if(prob(80))
-		M.adjustBrainLoss(2*REM)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM)
 	if(prob(50))
 		M.drowsyness = max(M.drowsyness, 3)
 	if(prob(10))
@@ -1104,7 +1108,6 @@
 
 /datum/reagent/nanomachines
 	name = "Nanomachines"
-	id = "nanomachines"
 	description = "Microscopic construction robots."
 	color = "#535E66" // rgb: 83, 94, 102
 	can_synth = FALSE
@@ -1116,7 +1119,6 @@
 
 /datum/reagent/xenomicrobes
 	name = "Xenomicrobes"
-	id = "xenomicrobes"
 	description = "Microbes with an entirely alien cellular structure."
 	color = "#535E66" // rgb: 83, 94, 102
 	can_synth = FALSE
@@ -1128,7 +1130,6 @@
 
 /datum/reagent/fungalspores
 	name = "Tubercle bacillus Cosmosis microbes"
-	id = "fungalspores"
 	description = "Active fungal spores."
 	color = "#92D17D" // rgb: 146, 209, 125
 	can_synth = FALSE
@@ -1140,7 +1141,6 @@
 
 /datum/reagent/snail
 	name = "Agent-S"
-	id = "snailserum"
 	description = "Virological agent that infects the subject with Gastrolosis."
 	color = "#003300" // rgb(0, 51, 0)
 	taste_description = "goo"
@@ -1152,14 +1152,12 @@
 
 /datum/reagent/fluorosurfactant//foam precursor
 	name = "Fluorosurfactant"
-	id = "fluorosurfactant"
 	description = "A perfluoronated sulfonic acid that forms a foam when mixed with water."
 	color = "#9E6B38" // rgb: 158, 107, 56
 	taste_description = "metal"
 
 /datum/reagent/foaming_agent// Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming agent"
-	id = "foaming_agent"
 	description = "An agent that yields metallic foam when mixed with light metal and a strong acid."
 	reagent_state = SOLID
 	color = "#664B63" // rgb: 102, 75, 99
@@ -1167,7 +1165,6 @@
 
 /datum/reagent/smart_foaming_agent //Smart foaming agent. Functions similarly to metal foam, but conforms to walls.
 	name = "Smart foaming agent"
-	id = "smart_foaming_agent"
 	description = "An agent that yields metallic foam which conforms to area boundaries when mixed with light metal and a strong acid."
 	reagent_state = SOLID
 	color = "#664B63" // rgb: 102, 75, 99
@@ -1175,7 +1172,6 @@
 
 /datum/reagent/ammonia
 	name = "Ammonia"
-	id = "ammonia"
 	description = "A caustic substance commonly used in fertilizer or household cleaners."
 	reagent_state = GAS
 	color = "#404030" // rgb: 64, 64, 48
@@ -1183,14 +1179,12 @@
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"
-	id = "diethylamine"
 	description = "A secondary amine, mildly corrosive."
 	color = "#604030" // rgb: 96, 64, 48
 	taste_description = "iron"
 
 /datum/reagent/carbondioxide
 	name = "Carbon Dioxide"
-	id = "co2"
 	reagent_state = GAS
 	description = "A gas commonly produced by burning carbon fuels. You're constantly producing this in your lungs."
 	color = "#B0B0B0" // rgb : 192, 192, 192
@@ -1210,7 +1204,6 @@
 
 /datum/reagent/nitrous_oxide
 	name = "Nitrous Oxide"
-	id = "nitrous_oxide"
 	description = "A potent oxidizer used as fuel in rockets and as an anaesthetic during surgery."
 	reagent_state = LIQUID
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -1244,21 +1237,21 @@
 
 /datum/reagent/stimulum
 	name = "Stimulum"
-	id = "stimulum"
 	description = "An unstable experimental gas that greatly increases the energy of those that inhale it"
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "E1A116"
+	can_synth = FALSE
 	taste_description = "sourness"
 
-/datum/reagent/stimulum/on_mob_add(mob/living/L)
+/datum/reagent/stimulum/on_mob_metabolize(mob/living/L)
 	..()
-	L.add_trait(TRAIT_STUNIMMUNE, id)
-	L.add_trait(TRAIT_SLEEPIMMUNE, id)
+	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
+	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 
-/datum/reagent/stimulum/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_STUNIMMUNE, id)
-	L.remove_trait(TRAIT_SLEEPIMMUNE, id)
+/datum/reagent/stimulum/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
+	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 	..()
 
 /datum/reagent/stimulum/on_mob_life(mob/living/carbon/M)
@@ -1267,20 +1260,120 @@
 
 /datum/reagent/nitryl
 	name = "Nitryl"
-	id = "no2"
 	description = "A highly reactive gas that makes you feel faster"
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "burning"
 
-/datum/reagent/nitryl/on_mob_add(mob/living/L)
+/datum/reagent/nitryl/on_mob_metabolize(mob/living/L)
 	..()
-	L.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 
-/datum/reagent/nitryl/on_mob_delete(mob/living/L)
-	L.remove_movespeed_modifier(id)
+/datum/reagent/nitryl/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
 	..()
+
+/datum/reagent/freon
+	name = "Freon"
+	description = "A powerful heat adsorbant."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
+	color = "90560B"
+	can_synth = FALSE
+	taste_description = "burning"
+
+/datum/reagent/freon/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.6, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/freon/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	return ..()
+
+/datum/reagent/hypernoblium
+	name = "Hyper-Noblium"
+	description = "A suppressive gas that stops gas reactions on those who inhale it."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
+	color = "90560B"
+	can_synth = FALSE
+	taste_description = "searingly cold"
+
+/datum/reagent/hypernoblium/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(isplasmaman(L))
+		ADD_TRAIT(L, TRAIT_NOFIRE, type)
+
+/datum/reagent/hypernoblium/on_mob_end_metabolize(mob/living/L)
+	if(isplasmaman(L))
+		REMOVE_TRAIT(L, TRAIT_NOFIRE, type)
+	return ..()
+
+/datum/reagent/healium
+	name = "Healium"
+	description = "A Powerful sleeping agent with healing properties."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
+	color = "90560B"
+	can_synth = FALSE
+	taste_description = "rubbery"
+
+/datum/reagent/healium/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.SetSleeping(1000, ignore_canstun = TRUE)
+	L.SetUnconscious(1000, ignore_canstun = TRUE)
+
+/datum/reagent/healium/on_mob_life(mob/living/carbon/M)
+	M.SetSleeping(1000, ignore_canstun = TRUE)
+	M.SetUnconscious(1000, ignore_canstun = TRUE) //in case you have sleep immunity :^)
+	..()
+
+/datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
+	L.SetSleeping(10, ignore_canstun = TRUE)
+	L.SetUnconscious(10, ignore_canstun = TRUE)
+	return ..()
+
+/datum/reagent/halon
+	name = "Halon"
+	description = "A firefighter gas that removes oxygen and cools down an area."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
+	color = "90560B"
+	can_synth = FALSE
+	taste_description = "minty"
+
+/datum/reagent/halon/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.8, blacklisted_movetypes=(FLYING|FLOATING))
+	ADD_TRAIT(L, TRAIT_RESISTHEAT, type)
+
+/datum/reagent/halon/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	REMOVE_TRAIT(L, TRAIT_RESISTHEAT, type)
+	return ..()
+
+/datum/reagent/hexane
+	name = "Hexane"
+	description = "A filtering gas, don't breathe it if you suffer from brain conditions."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
+	color = "90560B"
+	can_synth = FALSE
+	taste_description = "fresh"
+
+/datum/reagent/hexane/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.8, blacklisted_movetypes=(FLYING|FLOATING))
+	ADD_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
+	ADD_TRAIT(L, TRAIT_RADIMMUNE, type)
+
+/datum/reagent/hexane/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	REMOVE_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
+	REMOVE_TRAIT(L, TRAIT_RADIMMUNE, type)
+	return ..()
 
 /////////////////////////Coloured Crayon Powder////////////////////////////
 //For colouring in /proc/mix_color_from_reagents
@@ -1288,7 +1381,6 @@
 
 /datum/reagent/colorful_reagent/crayonpowder
 	name = "Crayon Powder"
-	id = "crayon powder"
 	var/colorname = "none"
 	description = "A powder made by grinding down crayons, good for colouring chemical reagents."
 	reagent_state = SOLID
@@ -1301,63 +1393,54 @@
 
 /datum/reagent/colorful_reagent/crayonpowder/red
 	name = "Red Crayon Powder"
-	id = "redcrayonpowder"
 	colorname = "red"
 	color = "#DA0000" // red
 	random_color_list = list("#DA0000")
 
 /datum/reagent/colorful_reagent/crayonpowder/orange
 	name = "Orange Crayon Powder"
-	id = "orangecrayonpowder"
 	colorname = "orange"
 	color = "#FF9300" // orange
 	random_color_list = list("#FF9300")
 
 /datum/reagent/colorful_reagent/crayonpowder/yellow
 	name = "Yellow Crayon Powder"
-	id = "yellowcrayonpowder"
 	colorname = "yellow"
 	color = "#FFF200" // yellow
 	random_color_list = list("#FFF200")
 
 /datum/reagent/colorful_reagent/crayonpowder/green
 	name = "Green Crayon Powder"
-	id = "greencrayonpowder"
 	colorname = "green"
 	color = "#A8E61D" // green
 	random_color_list = list("#A8E61D")
 
 /datum/reagent/colorful_reagent/crayonpowder/blue
 	name = "Blue Crayon Powder"
-	id = "bluecrayonpowder"
 	colorname = "blue"
 	color = "#00B7EF" // blue
 	random_color_list = list("#00B7EF")
 
 /datum/reagent/colorful_reagent/crayonpowder/purple
 	name = "Purple Crayon Powder"
-	id = "purplecrayonpowder"
 	colorname = "purple"
 	color = "#DA00FF" // purple
 	random_color_list = list("#DA00FF")
 
 /datum/reagent/colorful_reagent/crayonpowder/invisible
 	name = "Invisible Crayon Powder"
-	id = "invisiblecrayonpowder"
 	colorname = "invisible"
 	color = "#FFFFFF00" // white + no alpha
 	random_color_list = list(null)	//because using the powder color turns things invisible
 
 /datum/reagent/colorful_reagent/crayonpowder/black
 	name = "Black Crayon Powder"
-	id = "blackcrayonpowder"
 	colorname = "black"
 	color = "#1C1C1C" // not quite black
 	random_color_list = list("#404040")
 
 /datum/reagent/colorful_reagent/crayonpowder/white
 	name = "White Crayon Powder"
-	id = "whitecrayonpowder"
 	colorname = "white"
 	color = "#FFFFFF" // white
 	random_color_list = list("#FFFFFF") //doesn't actually change appearance at all
@@ -1369,7 +1452,6 @@
 
 /datum/reagent/plantnutriment
 	name = "Generic nutriment"
-	id = "plantnutriment"
 	description = "Some kind of nutriment. You can't really tell what it is. You should probably report it, along with how you obtained it."
 	color = "#000000" // RBG: 0, 0, 0
 	var/tox_prob = 0
@@ -1383,26 +1465,28 @@
 
 /datum/reagent/plantnutriment/eznutriment
 	name = "E-Z-Nutrient"
-	id = "eznutriment"
 	description = "Cheap and extremely common type of plant nutriment."
 	color = "#376400" // RBG: 50, 100, 0
 	tox_prob = 10
 
 /datum/reagent/plantnutriment/left4zednutriment
 	name = "Left 4 Zed"
-	id = "left4zednutriment"
 	description = "Unstable nutriment that makes plants mutate more often than usual."
 	color = "#1A1E4D" // RBG: 26, 30, 77
 	tox_prob = 25
 
 /datum/reagent/plantnutriment/robustharvestnutriment
 	name = "Robust Harvest"
-	id = "robustharvestnutriment"
 	description = "Very potent nutriment that prevents plants from mutating."
 	color = "#9D9D00" // RBG: 157, 157, 0
 	tox_prob = 15
 
-
+/datum/reagent/plantnutriment/tribalnutriment
+	name = "Mushroom Paste Fertilizer"
+	description = "A fertilizer made from mushrooms and gutlunch honey found on lavaland that preventes plants from mutating."
+	color = "#800000"
+	tox_prob = 15
+	taste_description = "actual hell"
 
 
 
@@ -1414,7 +1498,6 @@
 
 /datum/reagent/oil
 	name = "Oil"
-	id = "oil"
 	description = "Burns in a small smoky fire, mostly used to get Ash."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1422,7 +1505,6 @@
 
 /datum/reagent/stable_plasma
 	name = "Stable Plasma"
-	id = "stable_plasma"
 	description = "Non-flammable plasma locked into a liquid form that cannot ignite or become gaseous/solid."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1435,7 +1517,6 @@
 
 /datum/reagent/iodine
 	name = "Iodine"
-	id = "iodine"
 	description = "Commonly added to table salt as a nutrient. On its own it tastes far less pleasing."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1443,7 +1524,6 @@
 
 /datum/reagent/carpet
 	name = "Carpet"
-	id = "carpet"
 	description = "For those that need a more creative way to roll out a red carpet."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1452,12 +1532,11 @@
 /datum/reagent/carpet/reaction_turf(turf/T, reac_volume)
 	if(isplatingturf(T) || istype(T, /turf/open/floor/plasteel))
 		var/turf/open/floor/F = T
-		F.PlaceOnTop(/turf/open/floor/carpet)
+		F.PlaceOnTop(/turf/open/floor/carpet, flags = CHANGETURF_INHERIT_AIR)
 	..()
 
 /datum/reagent/bromine
 	name = "Bromine"
-	id = "bromine"
 	description = "A brownish liquid that's highly reactive. Useful for stopping free radicals, but not intended for human consumption."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1465,7 +1544,6 @@
 
 /datum/reagent/phenol
 	name = "Phenol"
-	id = "phenol"
 	description = "An aromatic ring of carbon with a hydroxyl group. A useful precursor to some medicines, but has no healing properties on its own."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1473,7 +1551,6 @@
 
 /datum/reagent/ash
 	name = "Ash"
-	id = "ash"
 	description = "Supposedly phoenixes rise from these, but you've never seen it."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1481,7 +1558,6 @@
 
 /datum/reagent/acetone
 	name = "Acetone"
-	id = "acetone"
 	description = "A slick, slightly carcinogenic liquid. Has a multitude of mundane uses in everyday life."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1489,7 +1565,6 @@
 
 /datum/reagent/colorful_reagent
 	name = "Colorful Reagent"
-	id = "colorful_reagent"
 	description = "Thoroughly sample the rainbow."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1517,7 +1592,6 @@
 
 /datum/reagent/hair_dye
 	name = "Quantum Hair Dye"
-	id = "hair_dye"
 	description = "Has a high chance of making you look like a mad scientist."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1534,7 +1608,6 @@
 
 /datum/reagent/barbers_aid
 	name = "Barber's Aid"
-	id = "barbers_aid"
 	description = "A solution to hair loss across the world."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1552,7 +1625,6 @@
 
 /datum/reagent/concentrated_barbers_aid
 	name = "Concentrated Barber's Aid"
-	id = "concentrated_barbers_aid"
 	description = "A concentrated solution to hair loss across the world."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1568,7 +1640,6 @@
 
 /datum/reagent/saltpetre
 	name = "Saltpetre"
-	id = "saltpetre"
 	description = "Volatile. Controversial. Third Thing."
 	reagent_state = LIQUID
 	color = "#60A584" // rgb: 96, 165, 132
@@ -1576,7 +1647,6 @@
 
 /datum/reagent/lye
 	name = "Lye"
-	id = "lye"
 	description = "Also known as sodium hydroxide. As a profession making this is somewhat underwhelming."
 	reagent_state = LIQUID
 	color = "#FFFFD6" // very very light yellow
@@ -1584,7 +1654,6 @@
 
 /datum/reagent/drying_agent
 	name = "Drying agent"
-	id = "drying_agent"
 	description = "A desiccant. Can be used to dry things."
 	reagent_state = LIQUID
 	color = "#A70FFF"
@@ -1604,59 +1673,85 @@
 
 /datum/reagent/toxin/mutagen/mutagenvirusfood
 	name = "mutagenic agar"
-	id = "mutagenvirusfood"
 	color = "#A3C00F" // rgb: 163,192,15
 	taste_description = "sourness"
 
+/datum/reagent/toxin/mutagen/mutagenvirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(1.5*REM, 0)
+	..()
+
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar
 	name = "sucrose agar"
-	id = "sugarvirusfood"
 	color = "#41B0C0" // rgb: 65,176,192
 	taste_description = "sweetness"
 
+/datum/reagent/toxin/mutagen/mutagenvirusfood/sugar/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.5*REM, 0)
+	..()
+
+
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood
 	name = "virus rations"
-	id = "synaptizinevirusfood"
 	color = "#D18AA5" // rgb: 209,138,165
 	taste_description = "bitterness"
 
+/datum/reagent/medicine/synaptizine/synaptizinevirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.25*REM, 0)
+	..()
+
+
 /datum/reagent/toxin/plasma/plasmavirusfood
 	name = "virus plasma"
-	id = "plasmavirusfood"
 	color = "#A69DA9" // rgb: 166,157,169
 	taste_description = "bitterness"
 	taste_mult = 1.5
 
+/datum/reagent/toxin/plasma/plasmavirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(REM, 0)
+	..()
+
+
 /datum/reagent/toxin/plasma/plasmavirusfood/weak
 	name = "weakened virus plasma"
-	id = "weakplasmavirusfood"
 	color = "#CEC3C6" // rgb: 206,195,198
 	taste_description = "bitterness"
 	taste_mult = 1.5
 
+/datum/reagent/toxin/plasma/plasmavirusfood/weak/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.5*REM, 0)
+	..()
+
 /datum/reagent/uranium/uraniumvirusfood
 	name = "decaying uranium gel"
-	id = "uraniumvirusfood"
 	color = "#67ADBA" // rgb: 103,173,186
 	taste_description = "the inside of a reactor"
 
+/datum/reagent/uranium/uraniumvirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(2.5*REM, 0)
+	..()
+
 /datum/reagent/uranium/uraniumvirusfood/unstable
 	name = "unstable uranium gel"
-	id = "uraniumplasmavirusfood_unstable"
 	color = "#2FF2CB" // rgb: 47,242,203
 	taste_description = "the inside of a reactor"
 
+/datum/reagent/uranium/uraniumvirusfood/unstable/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(2*REM, 0)
+	..()
+
 /datum/reagent/uranium/uraniumvirusfood/stable
 	name = "stable uranium gel"
-	id = "uraniumplasmavirusfood_stable"
 	color = "#04506C" // rgb: 4,80,108
 	taste_description = "the inside of a reactor"
+
+/datum/reagent/uranium/uraniumvirusfood/stable/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(1.5*REM, 0)
+	..()
 
 // Bee chemicals
 
 /datum/reagent/royal_bee_jelly
 	name = "royal bee jelly"
-	id = "royal_bee_jelly"
 	description = "Royal Bee Jelly, if injected into a Queen Space Bee said bee will split into two bees."
 	color = "#00ff80"
 	taste_description = "strange honey"
@@ -1671,7 +1766,6 @@
 /datum/reagent/romerol
 	name = "Romerol"
 	// the REAL zombie powder
-	id = "romerol"
 	description = "Romerol is a highly experimental bioterror agent \
 		which causes dormant nodules to be etched into the grey matter of \
 		the subject. These nodules only become active upon death of the \
@@ -1689,9 +1783,15 @@
 		ZI.Insert(H)
 	..()
 
+/datum/reagent/romerol/on_mob_life(mob/living/carbon/human/H)
+	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
+		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
+		ZI.Insert(H)
+	if(holder)
+		holder.remove_reagent(type, INFINITY) //By default it slowly disappears.
+
 /datum/reagent/magillitis
 	name = "Magillitis"
-	id = "magillitis"
 	description = "An experimental serum which causes rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas."
 	reagent_state = LIQUID
 	color = "#00f041"
@@ -1703,46 +1803,43 @@
 
 /datum/reagent/growthserum
 	name = "Growth Serum"
-	id = "growthserum"
 	description = "A commercial chemical designed to help older men in the bedroom."//not really it just makes you a giant
 	color = "#ff0000"//strong red. rgb 255, 0, 0
-	var/current_size = 1
+	var/current_size = RESIZE_DEFAULT_SIZE
 	taste_description = "bitterness" // apparently what viagra tastes like
 
-/datum/reagent/growthserum/on_mob_life(mob/living/carbon/H)
+/datum/reagent/growthserum/on_mob_metabolize(mob/living/carbon/H)
 	var/newsize = current_size
 	switch(volume)
 		if(0 to 19)
-			newsize = 1.25
+			newsize = 1.25*RESIZE_DEFAULT_SIZE
 		if(20 to 49)
-			newsize = 1.5
+			newsize = 1.5*RESIZE_DEFAULT_SIZE
 		if(50 to 99)
-			newsize = 2
+			newsize = 2*RESIZE_DEFAULT_SIZE
 		if(100 to 199)
-			newsize = 2.5
+			newsize = 2.5*RESIZE_DEFAULT_SIZE
 		if(200 to INFINITY)
-			newsize = 3.5
-
+			newsize = 3.5*RESIZE_DEFAULT_SIZE
 	H.resize = newsize/current_size
 	current_size = newsize
 	H.update_transform()
 	..()
 
-/datum/reagent/growthserum/on_mob_delete(mob/living/M)
-	M.resize = 1/current_size
+/datum/reagent/growthserum/on_mob_end_metabolize(mob/living/M)
+	M.resize = RESIZE_DEFAULT_SIZE/current_size
+	current_size = RESIZE_DEFAULT_SIZE
 	M.update_transform()
 	..()
 
 /datum/reagent/plastic_polymers
 	name = "plastic polymers"
-	id = "plastic_polymers"
 	description = "the petroleum based components of plastic."
 	color = "#f7eded"
 	taste_description = "plastic"
 
 /datum/reagent/glitter
 	name = "generic glitter"
-	id = "glitter"
 	description = "if you can see this description, contact a coder."
 	color = "#FFFFFF" //pure white
 	taste_description = "plastic"
@@ -1756,59 +1853,54 @@
 
 /datum/reagent/glitter/pink
 	name = "pink glitter"
-	id = "pink_glitter"
 	description = "pink sparkles that get everywhere"
 	color = "#ff8080" //A light pink color
 	glitter_type = /obj/effect/decal/cleanable/glitter/pink
 
 /datum/reagent/glitter/white
 	name = "white glitter"
-	id = "white_glitter"
 	description = "white sparkles that get everywhere"
 	glitter_type = /obj/effect/decal/cleanable/glitter/white
 
 /datum/reagent/glitter/blue
 	name = "blue glitter"
-	id = "blue_glitter"
 	description = "blue sparkles that get everywhere"
 	color = "#4040FF" //A blueish color
 	glitter_type = /obj/effect/decal/cleanable/glitter/blue
 
 /datum/reagent/pax
 	name = "Pax"
-	id = "pax"
 	description = "A colorless liquid that suppresses violence on the subjects."
 	color = "#AAAAAA55"
 	taste_description = "water"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 
-/datum/reagent/pax/on_mob_add(mob/living/L)
+/datum/reagent/pax/on_mob_metabolize(mob/living/L)
 	..()
-	L.add_trait(TRAIT_PACIFISM, id)
+	ADD_TRAIT(L, TRAIT_PACIFISM, type)
 
-/datum/reagent/pax/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_PACIFISM, id)
+/datum/reagent/pax/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_PACIFISM, type)
 	..()
 
 /datum/reagent/bz_metabolites
 	name = "BZ metabolites"
-	id = "bz_metabolites"
 	description = "A harmless metabolite of BZ gas"
 	color = "#FAFF00"
 	taste_description = "acrid cinnamon"
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 
-/datum/reagent/bz_metabolites/on_mob_add(mob/living/L)
+/datum/reagent/bz_metabolites/on_mob_metabolize(mob/living/L)
 	..()
-	L.add_trait(CHANGELING_HIVEMIND_MUTE, id)
+	ADD_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
 	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
-		to_chat(L, "<span class='userdanger'>We have toxins in our blood, our powers are weakening rapidly!</span>") //yogs
+		to_chat(L, span_userdanger("We have toxins in our blood, our powers are weakening rapidly!")) //yogs
 
-/datum/reagent/bz_metabolites/on_mob_delete(mob/living/L)
+/datum/reagent/bz_metabolites/on_mob_end_metabolize(mob/living/L)
 	..()
-	L.remove_trait(CHANGELING_HIVEMIND_MUTE, id)
+	REMOVE_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
 	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
-		to_chat(L, "<span class='boldnotice'>Our blood is pure, we can regenerate chemicals again.</span>") //yogs
+		to_chat(L, span_boldnotice("Our blood is pure, we can regenerate chemicals again.")) //yogs
 
 /datum/reagent/bz_metabolites/on_mob_life(mob/living/L)
 	if(L.mind)
@@ -1819,29 +1911,26 @@
 
 /datum/reagent/pax/peaceborg
 	name = "synth-pax"
-	id = "synthpax"
 	description = "A colorless liquid that suppresses violence on the subjects. Cheaper to synthetize, but wears out faster than normal Pax."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/peaceborg/confuse
 	name = "Dizzying Solution"
-	id = "dizzysolution"
 	description = "Makes the target off balance and dizzy"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "dizziness"
 
 /datum/reagent/peaceborg/confuse/on_mob_life(mob/living/carbon/M)
 	if(M.confused < 6)
-		M.confused = CLAMP(M.confused + 3, 0, 5)
+		M.confused = clamp(M.confused + 3, 0, 5)
 	if(M.dizziness < 6)
-		M.dizziness = CLAMP(M.dizziness + 3, 0, 5)
+		M.dizziness = clamp(M.dizziness + 3, 0, 5)
 	if(prob(20))
 		to_chat(M, "You feel confused and disorientated.")
 	..()
 
 /datum/reagent/peaceborg/tire
 	name = "Tiring Solution"
-	id = "tiresolution"
 	description = "An extremely weak stamina-toxin that tires out the target. Completely harmless."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "tiredness"
@@ -1856,7 +1945,6 @@
 
 /datum/reagent/tranquility
 	name = "Tranquility"
-	id = "tranquility"
 	description = "A highly mutative liquid of unknown origin."
 	color = "#9A6750" //RGB: 154, 103, 80
 	taste_description = "inner peace"
@@ -1865,3 +1953,74 @@
 /datum/reagent/tranquility/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
 		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
+
+
+/datum/reagent/spider_extract
+	name = "Spider Extract"
+	description = "A highly specialized extract coming from the Australicus sector, used to create broodmother spiders."
+	color = "#ED2939"
+	taste_description = "upside down"
+	can_synth = FALSE
+
+/datum/reagent/monkey_powder //monkey powder from TG
+	name = "Monkey Powder"
+	description = "Just add water!"
+	color = "#9C5A19"
+	taste_description = "bananas"
+	can_synth = TRUE
+
+/datum/reagent/gorilla_powder //modified monkey powder
+	name = "Gorilla Powder"
+	description = "Just add water!"
+	color = "#020202"
+	taste_description = "bananas"
+	can_synth = TRUE
+
+/datum/reagent/cellulose
+	name = "Cellulose Fibers"
+	description = "A crystalline polydextrose polymer, plants swear by this stuff."
+	reagent_state = SOLID
+	color = "#E6E6DA"
+	taste_mult = 0
+
+/datum/reagent/lemoline
+	name = "Lemoline"
+	description = "Synthesized in off-station laboratories, used in several high-quality medicines."
+	color ="#FFF44F"
+	taste_description = "lemony"
+
+/datum/reagent/determination
+	name = "Determination"
+	description = "For when you need to push on a little more. Do NOT allow near plants."
+	reagent_state = LIQUID
+	color = "#D2FFFA"
+	metabolization_rate = 0.75 * REAGENTS_METABOLISM // 5u (WOUND_DETERMINATION_CRITICAL) will last for ~17 ticks
+	self_consuming = TRUE
+	/// Whether we've had at least WOUND_DETERMINATION_SEVERE (2.5u) of determination at any given time. No damage slowdown immunity or indication we're having a second wind if it's just a single moderate wound
+	var/significant = FALSE
+
+// "Second wind" reagent generated when someone suffers a wound. Epinephrine, adrenaline, and stimulants are all already taken so here we are
+/datum/reagent/determination/on_mob_end_metabolize(mob/living/carbon/M)
+	if(significant)
+		var/stam_crash = 0
+		for(var/thing in M.all_wounds)
+			var/datum/wound/W = thing
+			stam_crash += (W.severity + 1) * 3 // spike of 3 stam damage per wound severity (moderate = 6, severe = 9, critical = 12) when the determination wears off if it was a combat rush
+		M.adjustStaminaLoss(stam_crash)
+	M.remove_status_effect(STATUS_EFFECT_DETERMINED)
+	..()
+
+/datum/reagent/determination/on_mob_life(mob/living/carbon/M)
+	if(!significant && volume >= WOUND_DETERMINATION_SEVERE)
+		significant = TRUE
+		M.apply_status_effect(STATUS_EFFECT_DETERMINED) // in addition to the slight healing, limping cooldowns are divided by 4 during the combat high
+
+	volume = min(volume, WOUND_DETERMINATION_MAX)
+
+	for(var/thing in M.all_wounds)
+		var/datum/wound/W = thing
+		var/obj/item/bodypart/wounded_part = W.limb
+		if(wounded_part)
+			wounded_part.heal_damage(0.25, 0.25)
+		M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
+	..()

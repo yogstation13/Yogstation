@@ -38,11 +38,11 @@
 	var/static/mutable_appearance/cap_dead
 
 /mob/living/simple_animal/hostile/mushroom/examine(mob/user)
-	..()
+	. = ..()
 	if(health >= maxHealth)
-		to_chat(user, "<span class='info'>It looks healthy.</span>")
+		. += span_info("It looks healthy.")
 	else
-		to_chat(user, "<span class='info'>It looks like it's been roughed up.</span>")
+		. += span_info("It looks like it's been roughed up.")
 
 /mob/living/simple_animal/hostile/mushroom/Life()
 	..()
@@ -97,7 +97,7 @@
 			M.visible_message("[M] chews a bit on [src].")
 			faint_ticker++
 			return TRUE
-		M.visible_message("<span class='warning'>[M] devours [src]!</span>")
+		M.visible_message(span_warning("[M] devours [src]!"))
 		var/level_gain = (powerlevel - M.powerlevel)
 		if(level_gain >= -1 && !bruised && !M.ckey)//Player shrooms can't level up to become robust gods.
 			if(level_gain < 1)//So we still gain a level if two mushrooms were the same level
@@ -115,6 +115,7 @@
 		. = 1
 
 /mob/living/simple_animal/hostile/mushroom/death(gibbed)
+	GLOB.walkingmushroom -= src
 	..(gibbed)
 	UpdateMushroomCap()
 
@@ -159,7 +160,7 @@
 			Recover()
 			qdel(I)
 		else
-			to_chat(user, "<span class='warning'>[src] won't eat it!</span>")
+			to_chat(user, span_warning("[src] won't eat it!"))
 		return
 	if(I.force)
 		Bruise()
@@ -186,6 +187,6 @@
 	var/counter
 	for(counter=0, counter<=powerlevel, counter++)
 		var/obj/item/reagent_containers/food/snacks/hugemushroomslice/S = new /obj/item/reagent_containers/food/snacks/hugemushroomslice(src.loc)
-		S.reagents.add_reagent("mushroomhallucinogen", powerlevel)
-		S.reagents.add_reagent("omnizine", powerlevel)
-		S.reagents.add_reagent("synaptizine", powerlevel)
+		S.reagents.add_reagent(/datum/reagent/drug/mushroomhallucinogen, powerlevel)
+		S.reagents.add_reagent(/datum/reagent/medicine/omnizine, powerlevel)
+		S.reagents.add_reagent(/datum/reagent/medicine/synaptizine, powerlevel)

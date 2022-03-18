@@ -40,6 +40,10 @@
 	if(!QDELETED(cell) && (cell.charge > shot.e_cost))
 		add_overlay("decloner_spin")
 
+/obj/item/gun/energy/decloner/unrestricted
+	pin = /obj/item/firing_pin
+	ammo_type = list(/obj/item/ammo_casing/energy/declone/weak)
+
 /obj/item/gun/energy/floragun
 	name = "floral somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
@@ -58,8 +62,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	ammo_type = list(/obj/item/ammo_casing/energy/meteor)
 	cell_type = "/obj/item/stock_parts/cell/potato"
-	clumsy_check = 0 //Admin spawn only, might as well let clowns use it.
-	selfcharge = 1
+	clumsy_check = 0 // Yogs Might as well let clowns use it.
+	/*selfcharge = 1*/ // Yogs Not admeme only anymore
 
 /obj/item/gun/energy/meteorgun/pen
 	name = "meteor pen"
@@ -85,7 +89,7 @@
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	suppressed = TRUE
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt)
 	weapon_weight = WEAPON_LIGHT
@@ -108,7 +112,7 @@
 	desc = "A reverse engineered weapon using syndicate technology."
 	icon_state = "crossbowlarge"
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=4000)
+	materials = list(/datum/material/iron=4000)
 	suppressed = null
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/large)
 	pin = null
@@ -123,7 +127,7 @@
 	flags_1 = CONDUCT_1
 	attack_verb = list("attacked", "slashed", "cut", "sliced")
 	force = 12
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	can_charge = FALSE
 
 	heat = 3800
@@ -139,9 +143,9 @@
 	AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
 
 /obj/item/gun/energy/plasmacutter/examine(mob/user)
-	..()
+	. = ..()
 	if(cell)
-		to_chat(user, "<span class='notice'>[src] is [round(cell.percent())]% charged.</span>")
+		. += span_notice("[src] is [round(cell.percent())]% charged.")
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
 	var/charge_multiplier = 0 //2 = Refined stack, 1 = Ore
@@ -151,11 +155,11 @@
 		charge_multiplier = 1
 	if(charge_multiplier)
 		if(cell.charge == cell.maxcharge)
-			to_chat(user, "<span class='notice'>You try to insert [I] into [src], but it's fully charged.</span>") //my cell is round and full
+			to_chat(user, span_notice("You try to insert [I] into [src], but it's fully charged.")) //my cell is round and full
 			return
 		I.use(1)
 		cell.give(500*charge_multiplier)
-		to_chat(user, "<span class='notice'>You insert [I] in [src], recharging it.</span>")
+		to_chat(user, span_notice("You insert [I] in [src], recharging it."))
 	else
 		..()
 
@@ -170,13 +174,13 @@
 // Amount cannot be defaulted to 1: most of the code specifies 0 in the call.
 /obj/item/gun/energy/plasmacutter/tool_use_check(mob/living/user, amount)
 	if(QDELETED(cell))
-		to_chat(user, "<span class='warning'>[src] does not have a cell, and cannot be used!</span>")
+		to_chat(user, span_warning("[src] does not have a cell, and cannot be used!"))
 		return FALSE
 	// Amount cannot be used if drain is made continuous, e.g. amount = 5, charge_weld = 25
 	// Then it'll drain 125 at first and 25 periodically, but fail if charge dips below 125 even though it still can finish action
 	// Alternately it'll need to drain amount*charge_weld every period, which is either obscene or makes it free for other uses
 	if(amount ? cell.charge < charge_weld * amount : cell.charge < charge_weld)
-		to_chat(user, "<span class='warning'>You need more charge to complete this task!</span>")
+		to_chat(user, span_warning("You need more charge to complete this task!"))
 		return FALSE
 
 	return TRUE
@@ -211,6 +215,52 @@
 	force = 15
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
 
+/obj/item/gun/energy/plasmacutter/scatter
+	name = "plasma cutter shotgun"
+	icon_state = "miningshotgun"
+	item_state = "miningshotgun"
+	desc = "An industrial-grade heavy-duty mining shotgun"
+	force = 10
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter)
+
+/obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(try_upgrade(I))
+		to_chat(user, span_notice("You install [I] into [src]"))
+		playsound(loc, 'sound/items/screwdriver.ogg', 100, 1)
+		qdel(I)
+
+/obj/item/gun/energy/plasmacutter/adv/cyborg
+	name = "cyborg advanced plasma cutter"
+	icon_state = "adv_plasmacutter"
+	force = 15
+	selfcharge = 1
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/cyborg)
+
+// Upgrades for plasma cutters
+/obj/item/upgrade/plasmacutter
+	name = "generic upgrade kit"
+	desc = "An upgrade for plasma shotguns."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "modkit"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/upgrade/plasmacutter/defuser
+	name = "plasma cutter defusal kit"
+	desc = "An upgrade for plasma shotguns that allows it to automatically defuse gibtonite."
+
+/obj/item/gun/energy/plasmacutter/proc/try_upgrade(obj/item/I)
+	return // no upgrades for the plasmacutter
+
+/obj/item/gun/energy/plasmacutter/scatter/try_upgrade(obj/item/I)
+	if(.)
+		return
+	if(istype(I, /obj/item/upgrade/plasmacutter/defuser))
+		var/kaboom = new/obj/item/ammo_casing/energy/plasma/scatter/adv
+		ammo_type = list(kaboom)
+		return TRUE
+	return FALSE
+
 /obj/item/gun/energy/wormhole_projector
 	name = "bluespace wormhole projector"
 	desc = "A projector that emits high density quantum-coupled bluespace beams."
@@ -220,6 +270,10 @@
 	var/obj/effect/portal/p_blue
 	var/obj/effect/portal/p_orange
 	var/atmos_link = FALSE
+
+/obj/item/gun/energy/wormhole_projector/upgraded
+	desc = "A projector that emits high density quantum-coupled bluespace beams. This one seems to be modified to go through glass."
+	ammo_type = list(/obj/item/ammo_casing/energy/wormhole/upgraded, /obj/item/ammo_casing/energy/wormhole/orange/upgraded)
 
 /obj/item/gun/energy/wormhole_projector/update_icon()
 	icon_state = "[initial(icon_state)][select]"

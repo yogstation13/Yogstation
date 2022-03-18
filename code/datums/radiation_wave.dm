@@ -9,7 +9,9 @@
 	var/can_contaminate
 
 /datum/radiation_wave/New(atom/_source, dir, _intensity=0, _range_modifier=RAD_DISTANCE_COEFFICIENT, _can_contaminate=TRUE)
-	source = _source
+
+	source = "[_source] \[[REF(_source)]\]"
+
 	master_turf = get_turf(_source)
 
 	move_dir = dir
@@ -99,7 +101,6 @@
 		// modify the ignored_things list in __HELPERS/radiation.dm instead
 		var/static/list/blacklisted = typecacheof(list(
 			/turf,
-			/mob,
 			/obj/structure/cable,
 			/obj/machinery/atmospherics,
 			/obj/item/ammo_casing,
@@ -107,6 +108,8 @@
 			/obj/singularity
 			))
 		if(!can_contaminate || blacklisted[thing.type])
+			continue
+		if(thing.flags_1 & RAD_NO_CONTAMINATE_1 || SEND_SIGNAL(thing, COMSIG_ATOM_RAD_CONTAMINATING, strength) & COMPONENT_BLOCK_CONTAMINATION)
 			continue
 		if(prob(contamination_chance)) // Only stronk rads get to have little baby rads
 			if(SEND_SIGNAL(thing, COMSIG_ATOM_RAD_CONTAMINATING, strength) & COMPONENT_BLOCK_CONTAMINATION)

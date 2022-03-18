@@ -19,7 +19,7 @@
 	var/v = volume
 	var/e = e_range
 	if(!T.footstep || LM.buckled || LM.lying || !CHECK_MULTIPLE_BITFIELDS(LM.mobility_flags, MOBILITY_STAND | MOBILITY_MOVE) || LM.throwing || LM.movement_type & (VENTCRAWLING | FLYING))
-		if (LM.lying && !(!T.footstep || LM.movement_type & (VENTCRAWLING | FLYING))) //play crawling sound if we're lying
+		if (LM.lying && !LM.buckled && !(!T.footstep || LM.movement_type & (VENTCRAWLING | FLYING))) //play crawling sound if we're lying
 			playsound(T, 'sound/effects/footstep/crawl1.ogg', 15 * v)
 		return
 	
@@ -88,13 +88,13 @@
 			var/mob/living/carbon/human/H = LM
 			var/feetCover = (H.wear_suit && (H.wear_suit.body_parts_covered & FEET)) || (H.w_uniform && (H.w_uniform.body_parts_covered & FEET))
 			
-			if(H.shoes || feetCover) //are we wearing shoes
+			if((H.shoes && !istype(H.shoes, /obj/item/clothing/shoes/xeno_wraps)) || feetCover)
 				playsound(T, pick(GLOB.footstep[T.footstep][1]),
 					GLOB.footstep[T.footstep][2] * v,
 					TRUE,
 					GLOB.footstep[T.footstep][3] + e)
 			
-			if((!H.shoes && !feetCover)) //are we NOT wearing shoes
+			else
 				if(H.dna.species.special_step_sounds)
 					playsound(T, pick(H.dna.species.special_step_sounds), 50, TRUE)
 				else

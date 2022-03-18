@@ -11,20 +11,23 @@
 
 	outfit = /datum/outfit/job/curator
 
-	access = list(ACCESS_LIBRARY)
-	minimal_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION,ACCESS_MINING_STATION)
+	alt_titles = list("Librarian", "Journalist", "Archivist")
+
+	access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_CURATOR
-
 
 /datum/outfit/job/curator
 	name = "Curator"
 	jobtype = /datum/job/curator
 
 	belt = /obj/item/pda/curator
+	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/curator
+	uniform_skirt = /obj/item/clothing/under/rank/curator/skirt
 	l_hand = /obj/item/storage/bag/books
 	r_pocket = /obj/item/key/displaycase
 	l_pocket = /obj/item/laser_pointer
@@ -35,11 +38,10 @@
 		/obj/item/barcodescanner = 1
 	)
 
-
 /datum/outfit/job/curator/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
 
 	if(visualsOnly)
 		return
 
-	H.grant_all_languages(omnitongue=TRUE)
+	H.grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_CURATOR)

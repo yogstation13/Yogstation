@@ -33,8 +33,9 @@
 	else
 		var/datum/objective/brainwashing/obj = new(objective)
 		vessel.objectives += obj
-		var/message = "<span class='deadsay'><b>[M]</b> has been brainwashed with the following objectives: [objective]."
-		deadchat_broadcast(message, follow_target = M, turf_target = get_turf(M), message_type=DEADCHAT_REGULAR)
+		var/message = " has been awoken with the following objectives: [objective]."
+		deadchat_broadcast(message, "<b>[M]</b>", follow_target = M, turf_target = get_turf(M), message_type=DEADCHAT_REGULAR)
+		log_game("[key_name(M)] has been awoken with the following objectives: [objective]")
 	if(!M.has_antag_datum(/datum/antagonist/hivevessel))
 		M.add_antag_datum(vessel)
 
@@ -59,7 +60,7 @@
 	set_antag_hud(owner.current, null)
 
 /datum/antagonist/hivevessel/greet()
-	to_chat(owner, "<span class='assimilator'>Your mind is suddenly opened, as you see the pinnacle of evolution...</span>")
+	to_chat(owner, span_assimilator("Your mind is suddenly opened, as you see the pinnacle of evolution..."))
 	to_chat(owner, "<big><span class='warning'><b>Follow your objectives, at any cost!</b></span></big>")
 	var/i = 1
 	for(var/X in objectives)
@@ -75,5 +76,18 @@
 	..()
 
 /datum/antagonist/hivevessel/farewell()
-	to_chat(owner, "<span class='assimilator'>Your mind closes up once more...</span>")
+	to_chat(owner, span_assimilator("Your mind closes up once more..."))
 	to_chat(owner, "<big><span class='warning'><b>You feel the weight of your objectives disappear! You no longer have to obey them.</b></span></big>")
+
+/datum/antagonist/hivevessel/roundend_report()
+	if(!owner)
+		CRASH("antagonist datum without owner")
+
+	if(one_mind)
+		return printplayer(owner)
+
+	var/list/report = list()
+	report += printplayer(owner)
+	if(objectives.len)
+		report += printobjectives(objectives)
+	return report.Join("<br>")

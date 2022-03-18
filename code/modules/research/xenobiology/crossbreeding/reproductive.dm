@@ -8,6 +8,7 @@ Reproductive extracts:
 	desc = "It pulses with a strange hunger."
 	icon_state = "reproductive"
 	effect = "reproductive"
+	effect_desc = "When fed monkey cubes it produces more extracts. Bio bag compatible as well."
 	var/extract_type = /obj/item/slime_extract/
 	var/cubes_eaten = 0
 	var/last_produce = 0
@@ -15,7 +16,7 @@ Reproductive extracts:
 
 /obj/item/slimecross/reproductive/attackby(obj/item/O, mob/user)
 	if((last_produce + cooldown) > world.time)
-		to_chat(user, "<span class='warning'>[src] is still digesting!</span>")
+		to_chat(user, span_warning("[src] is still digesting!"))
 		return
 	if(istype(O, /obj/item/storage/bag/bio))
 		var/list/inserted = list()
@@ -25,12 +26,12 @@ Reproductive extracts:
 			if(istype(M))
 				eat_cube(M, user)
 		else
-			to_chat(user, "<span class='warning'>There are no monkey cubes in the bio bag!</span>")
+			to_chat(user, span_warning("There are no monkey cubes in the bio bag!"))
 	if(istype(O,/obj/item/reagent_containers/food/snacks/monkeycube))
 		eat_cube(O, user)
 	if(cubes_eaten >= 3)
 		var/cores = rand(1,4)
-		visible_message("<span class='notice'>[src] briefly swells to a massive size, and expels [cores] extract[cores > 1 ? "s":""]!</span>")
+		visible_message(span_notice("[src] briefly swells to a massive size, and expels [cores] extract[cores > 1 ? "s":""]!"))
 		playsound(src, 'sound/effects/splat.ogg', 40, 1)
 		last_produce = world.time
 		for(var/i = 0, i < cores, i++)
@@ -40,7 +41,7 @@ Reproductive extracts:
 /obj/item/slimecross/reproductive/proc/eat_cube(obj/item/reagent_containers/food/snacks/monkeycube, mob/user)
 		qdel(monkeycube)
 		cubes_eaten++
-		to_chat(user, "<span class='notice'>You feed [monkeycube] to [src], and it pulses gently.</span>")
+		to_chat(user, span_notice("You feed [monkeycube] to [src], and it pulses gently."))
 		playsound(src, 'sound/items/eatfood.ogg', 20, 1)
 
 /obj/item/slimecross/reproductive/grey

@@ -7,9 +7,10 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the chief medical officer and research director"
-	selection_color = "#ffeef0"
+	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 60
+	alt_titles = list("DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer")
 
 	outfit = /datum/outfit/job/geneticist
 
@@ -20,6 +21,15 @@
 
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
 
+	changed_maps = list("OmegaStation", "EclipseStation")
+
+/datum/job/geneticist/proc/OmegaStationChanges()
+	return TRUE
+
+/datum/job/geneticist/proc/EclipseStationChanges()
+	total_positions = 3
+	spawn_positions = 3
+
 /datum/outfit/job/geneticist
 	name = "Geneticist"
 	jobtype = /datum/job/geneticist
@@ -27,6 +37,7 @@
 	belt = /obj/item/pda/geneticist
 	ears = /obj/item/radio/headset/headset_medsci
 	uniform = /obj/item/clothing/under/rank/geneticist
+	uniform_skirt = /obj/item/clothing/under/rank/geneticist
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/genetics
 	suit_store =  /obj/item/flashlight/pen

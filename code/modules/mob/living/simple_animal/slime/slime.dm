@@ -38,6 +38,8 @@
 	// for the sake of cleanliness, though, here they are.
 	status_flags = CANUNCONSCIOUS|CANPUSH
 
+	hud_type = /datum/hud/slime
+
 	var/cores = 1 // the number of /obj/item/slime_extract's the slime has left inside
 	var/mutation_chance = 30 // Chance of mutating, should be between 25 and 35
 
@@ -140,23 +142,54 @@
 	. = ..()
 	remove_movespeed_modifier(MOVESPEED_ID_SLIME_REAGENTMOD, TRUE)
 	var/amount = 0
-	if(reagents.has_reagent("morphine")) // morphine slows slimes down
+	if(reagents.has_reagent(/datum/reagent/medicine/morphine)) // morphine slows slimes down
 		amount = 2
-	if(reagents.has_reagent("frostoil")) // Frostoil also makes them move VEEERRYYYYY slow
+	if(reagents.has_reagent(/datum/reagent/consumable/frostoil)) // Frostoil also makes them move VEEERRYYYYY slow
 		amount = 5
 	if(amount)
 		add_movespeed_modifier(MOVESPEED_ID_SLIME_REAGENTMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = amount)
 
 /mob/living/simple_animal/slime/updatehealth()
 	. = ..()
-	remove_movespeed_modifier(MOVESPEED_ID_SLIME_HEALTHMOD, FALSE)
-	var/health_deficiency = (100 - health)
 	var/mod = 0
-	if(health_deficiency >= 45)
-		mod += (health_deficiency / 25)
-	if(health <= 0)
-		mod += 2
-	add_movespeed_modifier(MOVESPEED_ID_SLIME_HEALTHMOD, TRUE, 100, multiplicative_slowdown = mod)
+	if(!HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
+		var/health_deficiency = (maxHealth - health)
+		if(health_deficiency >= 45)
+			mod += (health_deficiency / 25)
+		if(health <= 0)
+			mod += 2
+	add_movespeed_modifier(MOVESPEED_ID_SLIME_HEALTHMOD, TRUE, 100, multiplicative_slowdown = mod, override = TRUE)
+	update_health_hud()
+
+/mob/living/simple_animal/slime/update_health_hud()
+	if(hud_used)
+		var/severity = 0
+		var/healthpercent = (health/maxHealth) * 100
+		switch(healthpercent)
+			if(100 to INFINITY)
+				hud_used.healths.icon_state = "slime_health0"
+			if(80 to 100)
+				hud_used.healths.icon_state = "slime_health1"
+				severity = 1
+			if(60 to 80)
+				hud_used.healths.icon_state = "slime_health2"
+				severity = 2
+			if(40 to 60)
+				hud_used.healths.icon_state = "slime_health3"
+				severity = 3
+			if(20 to 40)
+				hud_used.healths.icon_state = "slime_health4"
+				severity = 4
+			if(1 to 20)
+				hud_used.healths.icon_state = "slime_health5"
+				severity = 5
+			else
+				hud_used.healths.icon_state = "slime_health7"
+				severity = 6
+		if(severity > 0)
+			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
+		else
+			clear_fullscreen("brute")
 
 /mob/living/simple_animal/slime/adjust_bodytemperature()
 	. = ..()
@@ -196,21 +229,20 @@
 /mob/living/simple_animal/slime/Process_Spacemove(movement_dir = 0)
 	return 2
 
-/mob/living/simple_animal/slime/Stat()
-	if(..())
-
-		if(!docile)
-			stat(null, "Nutrition: [nutrition]/[get_max_nutrition()]")
-		if(amount_grown >= SLIME_EVOLUTION_THRESHOLD)
-			if(is_adult)
-				stat(null, "You can reproduce!")
-			else
-				stat(null, "You can evolve!")
-
-		if(stat == UNCONSCIOUS)
-			stat(null,"You are knocked out by high levels of BZ!")
+/mob/living/simple_animal/slime/get_status_tab_items()
+	. = ..()
+	if(!docile)
+		. += "Nutrition: [nutrition]/[get_max_nutrition()]"
+	if(amount_grown >= SLIME_EVOLUTION_THRESHOLD)
+		if(is_adult)
+			. += "You can reproduce!"
 		else
-			stat(null,"Power Level: [powerlevel]")
+			. += "You can evolve!"
+
+	if(stat == UNCONSCIOUS)
+		. += "You are knocked out by high levels of BZ!"
+	else
+		. += "Power Level: [powerlevel]"
 
 
 /mob/living/simple_animal/slime/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
@@ -240,7 +272,7 @@
 			Feedon(Food)
 	return ..()
 
-/mob/living/simple_animal/slime/doUnEquip(obj/item/W)
+/mob/living/simple_animal/slime/doUnEquip(obj/item/W, force, newloc, no_move, invdrop = TRUE, silent = FALSE)
 	return
 
 /mob/living/simple_animal/slime/start_pulling(atom/movable/AM, state, force = move_force, supress_message = FALSE)
@@ -255,7 +287,7 @@
 			return
 		if(buckled)
 			Feedstop(silent = TRUE)
-			visible_message("<span class='danger'>[M] pulls [src] off!</span>")
+			visible_message(span_danger("[M] pulls [src] off!"))
 			return
 		attacked += 5
 		if(nutrition >= 100) //steal some nutrition. negval handled in life()
@@ -289,22 +321,22 @@
 		M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 		if(buckled == M)
 			if(prob(60))
-				visible_message("<span class='warning'>[M] attempts to wrestle \the [name] off!</span>")
+				visible_message(span_warning("[M] attempts to wrestle \the [name] off!"))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
-				visible_message("<span class='warning'>[M] manages to wrestle \the [name] off!</span>")
+				visible_message(span_warning("[M] manages to wrestle \the [name] off!"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				discipline_slime(M)
 
 		else
 			if(prob(30))
-				visible_message("<span class='warning'>[M] attempts to wrestle \the [name] off of [buckled]!</span>")
+				visible_message(span_warning("[M] attempts to wrestle \the [name] off of [buckled]!"))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
-				visible_message("<span class='warning'>[M] manages to wrestle \the [name] off of [buckled]!</span>")
+				visible_message(span_warning("[M] manages to wrestle \the [name] off of [buckled]!"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				discipline_slime(M)
@@ -334,7 +366,7 @@
 			++Friends[user]
 		else
 			Friends[user] = 1
-		to_chat(user, "<span class='notice'>You feed the slime the plasma. It chirps happily.</span>")
+		to_chat(user, span_notice("You feed the slime the plasma. It chirps happily."))
 		var/obj/item/stack/sheet/mineral/plasma/S = W
 		S.use(1)
 		return
@@ -343,7 +375,7 @@
 		if(prob(25))
 			user.do_attack_animation(src)
 			user.changeNext_move(CLICK_CD_MELEE)
-			to_chat(user, "<span class='danger'>[W] passes right through [src]!</span>")
+			to_chat(user, span_danger("[W] passes right through [src]!"))
 			return
 		if(Discipline && prob(50)) // wow, buddy, why am I getting attacked??
 			Discipline = 0
@@ -356,7 +388,7 @@
 	if(istype(W, /obj/item/storage/bag/bio))
 		var/obj/item/storage/P = W
 		if(!effectmod)
-			to_chat(user, "<span class='warning'>The slime is not currently being mutated.</span>")
+			to_chat(user, span_warning("The slime is not currently being mutated."))
 			return
 		var/hasOutput = FALSE //Have we outputted text?
 		var/hasFound = FALSE //Have we found an extract to be added?
@@ -367,23 +399,23 @@
 				applied++
 				hasFound = TRUE
 			if(applied >= SLIME_EXTRACT_CROSSING_REQUIRED)
-				to_chat(user, "<span class='notice'>You feed the slime as many of the extracts from the bag as you can, and it mutates!</span>")
+				to_chat(user, span_notice("You feed the slime as many of the extracts from the bag as you can, and it mutates!"))
 				playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 				spawn_corecross()
 				hasOutput = TRUE
 				break
 		if(!hasOutput)
 			if(!hasFound)
-				to_chat(user, "<span class='warning'>There are no extracts in the bag that this slime will accept!</span>")
+				to_chat(user, span_warning("There are no extracts in the bag that this slime will accept!"))
 			else
-				to_chat(user, "<span class='notice'>You feed the slime some extracts from the bag.</span>")
+				to_chat(user, span_notice("You feed the slime some extracts from the bag."))
 				playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 		return
 	..()
 
 /mob/living/simple_animal/slime/proc/spawn_corecross()
 	var/static/list/crossbreeds = subtypesof(/obj/item/slimecross)
-	visible_message("<span class='danger'>[src] shudders, its mutated core consuming the rest of its body!</span>")
+	visible_message(span_danger("[src] shudders, its mutated core consuming the rest of its body!"))
 	playsound(src, 'sound/magic/smoke.ogg', 50, 1)
 	var/crosspath
 	for(var/X in crossbreeds)
@@ -394,7 +426,7 @@
 	if(crosspath)
 		new crosspath(loc)
 	else
-		visible_message("<span class='warning'>The mutated core shudders, and collapses into a puddle, unable to maintain its form.</span>")
+		visible_message(span_warning("The mutated core shudders, and collapses into a puddle, unable to maintain its form."))
 	qdel(src)
 
 /mob/living/simple_animal/slime/proc/apply_water()
@@ -406,37 +438,34 @@
 	return
 
 /mob/living/simple_animal/slime/examine(mob/user)
-
-	var/msg = "<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!\n"
-	if (src.stat == DEAD)
-		msg += "<span class='deadsay'>It is limp and unresponsive.</span>\n"
+	. = list("<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!")
+	if (stat == DEAD)
+		. += span_deadsay("It is limp and unresponsive.")
 	else
 		if (stat == UNCONSCIOUS) // Slime stasis
-			msg += "<span class='deadsay'>It appears to be alive but unresponsive.</span>\n"
-		if (src.getBruteLoss())
-			msg += "<span class='warning'>"
-			if (src.getBruteLoss() < 40)
-				msg += "It has some punctures in its flesh!"
+			. += span_deadsay("It appears to be alive but unresponsive.")
+		if (getBruteLoss())
+			. += "<span class='warning'>"
+			if (getBruteLoss() < 40)
+				. += "It has some punctures in its flesh!"
 			else
-				msg += "<B>It has severe punctures and tears in its flesh!</B>"
-			msg += "</span>\n"
+				. += "<B>It has severe punctures and tears in its flesh!</B>"
+			. += "</span>\n"
 
 		switch(powerlevel)
 			if(2 to 3)
-				msg += "It is flickering gently with a little electrical activity.\n"
+				. += "It is flickering gently with a little electrical activity."
 
 			if(4 to 5)
-				msg += "It is glowing gently with moderate levels of electrical activity.\n"
+				. += "It is glowing gently with moderate levels of electrical activity."
 
 			if(6 to 9)
-				msg += "<span class='warning'>It is glowing brightly with high levels of electrical activity.</span>\n"
+				. += span_warning("It is glowing brightly with high levels of electrical activity.")
 
 			if(10)
-				msg += "<span class='warning'><B>It is radiating with massive levels of electrical activity!</B></span>\n"
+				. += span_warning("<B>It is radiating with massive levels of electrical activity!</B>")
 
-	msg += "*---------*</span>"
-	to_chat(user, msg)
-	return
+	. += "*---------*</span>"
 
 /mob/living/simple_animal/slime/proc/discipline_slime(mob/user)
 	if(stat)

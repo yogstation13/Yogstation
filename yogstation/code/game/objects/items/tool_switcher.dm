@@ -40,7 +40,7 @@
 
 /obj/item/storage/belt/tool_switcher/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	var/static/list/can_hold = typecacheof(list(
 		/obj/item/crowbar,
 		/obj/item/screwdriver,
@@ -98,12 +98,16 @@
 		item_state = initial(item_state)
 		lefthand_file = initial(lefthand_file)
 		righthand_file = initial(righthand_file)
+		tool_behaviour = initial(tool_behaviour)
+		toolspeed = initial(toolspeed)
 	else
 		name = "[initial(name)] ([T.name])"
 		force = T.force
 		item_state = T.item_state
 		lefthand_file = T.lefthand_file
 		righthand_file = T.righthand_file
+		tool_behaviour = T.tool_behaviour
+		toolspeed = T.toolspeed
 	cut_overlays()
 	if(T)
 		var/mutable_appearance/overlay = new(T)
@@ -212,7 +216,7 @@
 		. = tool.melee_attack_chain(arglist(args)) // copy the tool's actions
 		// make sure the tool didn't get removed
 		if(!QDELETED(tool) && tool.loc != src)
-			GET_COMPONENT(STR, /datum/component/storage)
+			var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 			STR.remove_from_storage(tool, tool.loc) // update the shizz
 	else
 		. = ..()

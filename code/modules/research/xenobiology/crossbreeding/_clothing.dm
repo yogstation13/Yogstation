@@ -7,7 +7,7 @@ Slimecrossing Armor
 //Rebreather mask - Chilling Blue
 /obj/item/clothing/mask/nobreath
 	name = "rebreather mask"
-	desc = "A transparent mask, resembling a conventional breath mask, but made of bluish slime. Seems to lack any air supply tube, though."
+	desc = "A transparent mask, resembling a conventional breath mask, but made of bluish slime. Seems to lack any air supply tube, though, as if it doesn't need one."
 	icon_state = "slime"
 	item_state = "slime"
 	body_parts_covered = NONE
@@ -20,14 +20,14 @@ Slimecrossing Armor
 /obj/item/clothing/mask/nobreath/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(slot == SLOT_WEAR_MASK)
-		user.add_trait(TRAIT_NOBREATH, "breathmask_[REF(src)]")
+		ADD_TRAIT(user, TRAIT_NOBREATH, "breathmask_[REF(src)]")
 		user.failed_last_breath = FALSE
 		user.clear_alert("not_enough_oxy")
 		user.apply_status_effect(/datum/status_effect/rebreathing)
 
 /obj/item/clothing/mask/nobreath/dropped(mob/living/carbon/human/user)
 	..()
-	user.remove_trait(TRAIT_NOBREATH, "breathmask_[REF(src)]")
+	REMOVE_TRAIT(user, TRAIT_NOBREATH, "breathmask_[REF(src)]")
 	user.remove_status_effect(/datum/status_effect/rebreathing)
 
 /obj/item/clothing/glasses/prism_glasses
@@ -58,7 +58,7 @@ Slimecrossing Armor
 	set_light(5)
 
 /obj/structure/light_prism/attack_hand(mob/user)
-	to_chat(user, "<span class='notice'>You dispel [src]</span>")
+	to_chat(user, span_notice("You dispel [src]"))
 	qdel(src)
 
 /datum/action/item_action/change_prism_colour
@@ -85,13 +85,13 @@ Slimecrossing Armor
 		return
 	var/obj/item/clothing/glasses/prism_glasses/glasses = target
 	if(locate(/obj/structure/light_prism) in get_turf(owner))
-		to_chat(owner, "<span class='warning'>There isn't enough ambient energy to fabricate another light prism here.</span>")
+		to_chat(owner, span_warning("There isn't enough ambient energy to fabricate another light prism here."))
 		return
 	if(istype(glasses))
 		if(!glasses.glasses_color)
-			to_chat(owner, "<span class='warning'>The lens is oddly opaque...</span>")
+			to_chat(owner, span_warning("The lens is oddly opaque..."))
 			return
-		to_chat(owner, "<span class='notice'>You channel nearby light into a glowing, ethereal prism.</span>")
+		to_chat(owner, span_notice("You channel nearby light into a glowing, ethereal prism."))
 		new /obj/structure/light_prism(get_turf(owner), glasses.glasses_color)
 
 /obj/item/clothing/head/peaceflower
@@ -112,17 +112,17 @@ Slimecrossing Armor
 /obj/item/clothing/head/peaceflower/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(slot == SLOT_HEAD)
-		user.add_trait(TRAIT_PACIFISM, "peaceflower_[REF(src)]")
+		ADD_TRAIT(user, TRAIT_PACIFISM, "peaceflower_[REF(src)]")
 
 /obj/item/clothing/head/peaceflower/dropped(mob/living/carbon/human/user)
 	..()
-	user.remove_trait(TRAIT_PACIFISM, "peaceflower_[REF(src)]")
+	REMOVE_TRAIT(user, TRAIT_PACIFISM, "peaceflower_[REF(src)]")
 
 /obj/item/clothing/head/peaceflower/attack_hand(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(src == C.head)
-			to_chat(user, "<span class='warning'>You feel at peace. <b style='color:pink'>Why would you want anything else?</b></span>")
+			to_chat(user, span_warning("You feel at peace. <b style='color:pink'>Why would you want anything else?</b>"))
 			return
 	return ..()
 
@@ -133,6 +133,7 @@ Slimecrossing Armor
 	item_state = "adamsuit"
 	flags_inv = NONE
 	obj_flags = IMMUTABLE_SLOW
+	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 50, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 90, "acid" = 90)
 	slowdown = 4
 	var/hit_reflect_chance = 40
 

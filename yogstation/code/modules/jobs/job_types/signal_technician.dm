@@ -11,12 +11,21 @@
 
 	outfit = /datum/outfit/job/signal_tech
 
+	alt_titles = list("NTSL Programmer", "Comms Tech", "Station IT Support")
+
 	access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP,
-					ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE)
-	minimal_access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE)
+					ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_NETWORK)
+	minimal_access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_NETWORK)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_SIGNAL_TECHNICIAN
+
+	changed_maps = list("OmegaStation")
+
+/datum/job/signal_tech/proc/OmegaStationChanges()
+	access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN)
+	minimal_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN)
+	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/signal_tech
 	name = "Signal Technician"
@@ -29,6 +38,7 @@
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/workboots
+	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1)
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng

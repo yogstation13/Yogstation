@@ -10,12 +10,13 @@
 	active_power_usage = 500
 	circuit = /obj/item/circuitboard/computer/crew
 
+
 	light_color = LIGHT_COLOR_BLUE
 
 /obj/machinery/computer/crew/syndie
 	icon_keyboard = "syndie_key"
 
-/obj/machinery/computer/crew/interact(mob/user)
+/obj/machinery/computer/crew/ui_interact(mob/user)
 	GLOB.crewmonitor.show(user,src)
 
 GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
@@ -25,6 +26,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/list/jobs
 	var/list/data_by_z = list()
 	var/list/last_update = list()
+	var/list/death_list = list()
 
 /datum/crewmonitor/New()
 	. = ..()
@@ -41,12 +43,17 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Geneticist"] = 22
 	jobs["Virologist"] = 23
 	jobs["Medical Doctor"] = 24
+	jobs["Paramedic"] = 25 //Yogs: Added IDs for this job
+	jobs["Psychiatrist"] = 26 //Yogs: Added IDs for this job
+	jobs["Mining Medic"] = 27 //Yogs: Added IDs for this job
+	jobs["Brig Physician"] = 28 //Yogs: Added IDs for this job
 	jobs["Research Director"] = 30
 	jobs["Scientist"] = 31
 	jobs["Roboticist"] = 32
 	jobs["Chief Engineer"] = 40
 	jobs["Station Engineer"] = 41
 	jobs["Atmospheric Technician"] = 42
+	jobs["Signal Technician"] = 43 //Yogs: Added IDs for this job
 	jobs["Quartermaster"] = 51
 	jobs["Shaft Miner"] = 52
 	jobs["Cargo Technician"] = 53
@@ -59,6 +66,10 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Mime"] = 67
 	jobs["Janitor"] = 68
 	jobs["Lawyer"] = 69
+	jobs["Clerk"] = 71 //Yogs: Added IDs for this job, also need to skip 70 or it clerk would be considered a head job
+	jobs["Tourist"] = 72 //Yogs: Added IDs for this job
+	jobs["Artist"] = 73 //Yogs: Added IDs for this job
+	jobs["Assistant"] = 74 //Yogs: Assistants are with the other civilians
 	jobs["Admiral"] = 200
 	jobs["CentCom Commander"] = 210
 	jobs["Custodian"] = 211
@@ -68,18 +79,18 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Security Response Officer"] = 221
 	jobs["Engineer Response Officer"] = 222
 	jobs["Medical Response Officer"] = 223
-	jobs["Assistant"] = 999 //Unknowns/custom jobs should appear after civilians, and before assistants
 
 	src.jobs = jobs
 
 /datum/crewmonitor/Destroy()
 	return ..()
 
-/datum/crewmonitor/ui_interact(mob/user, ui_key = "crew", datum/tgui/ui = null, force_open = FALSE, \
-							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/crewmonitor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, ui_key, "crew", "crew monitor", 800, 600 , master_ui, state)
+		for(var/datum/minimap/M in SSmapping.station_minimaps)
+			M.send(user)
+		ui = new(user, src, "CrewConsole")
 		ui.open()
 
 /datum/crewmonitor/proc/show(mob/M, source)
@@ -98,17 +109,19 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	. = list()
 	.["sensors"] = zdata
 	.["link_allowed"] = isAI(user)
-
+	.["z"] = z
 /datum/crewmonitor/proc/update_data(z)
 	if(data_by_z["[z]"] && last_update["[z]"] && world.time <= last_update["[z]"] + SENSORS_UPDATE_PERIOD)
 		return data_by_z["[z]"]
 
 	var/list/results = list()
+	var/list/new_death_list = list()
 	var/obj/item/clothing/under/U
 	var/obj/item/card/id/I
 	var/turf/pos
 	var/ijob
 	var/name
+	var/assignment_title
 	var/assignment
 	var/oxydam
 	var/toxdam
@@ -133,22 +146,24 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				pos = H.z == 0 || (nanite_sensors || U.sensor_mode == SENSOR_COORDS) ? get_turf(H) : null
 
 				// Special case: If the mob is inside an object confirm the z-level on turf level.
-				if (H.z == 0 && (!pos || pos.z != z))
+				if (H.z == 0 && (!pos || (pos.z != z) && !(is_station_level(pos.z) && is_station_level(z))))
 					continue
 
 				I = H.wear_id ? H.wear_id.GetID() : null
 
 				if (I)
 					name = I.registered_name
-					assignment = I.assignment
-					ijob = jobs[I.assignment]
+					assignment_title = I.assignment
+					assignment = I.originalassignment
+					ijob = jobs[I.originalassignment]
 				else
 					name = "Unknown"
+					assignment_title = ""
 					assignment = ""
 					ijob = 80
 
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
-					life_status = (!H.stat ? TRUE : FALSE)
+					life_status = H.stat < DEAD
 				else
 					life_status = null
 
@@ -174,10 +189,15 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					pos_x = null
 					pos_y = null
 
-				results[++results.len] = list("name" = name, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				if(life_status == FALSE)
+					new_death_list.Add(H)
+
+				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time
+	death_list["[z]"] = new_death_list
+	SEND_SIGNAL(src, COMSIG_MACHINERY_CREWMON_UPDATE)
 
 	return results
 

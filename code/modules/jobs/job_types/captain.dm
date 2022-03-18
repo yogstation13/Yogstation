@@ -1,18 +1,21 @@
 /datum/job/captain
 	title = "Captain"
 	flag = CAPTAIN
+	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("CentCom")
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Nanotrasen officials and Space law"
+	supervisors = "NanoTrasen officers and Space law" //Changed to officer to separate from CentCom officials being their superior.
 	selection_color = "#ccccff"
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
 	minimal_player_age = 14
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_COMMAND
+	alt_titles = list("Station Commander", "Facility Director")
 
 	outfit = /datum/outfit/job/captain
 
@@ -42,10 +45,11 @@
 	ears = /obj/item/radio/headset/heads/captain/alt
 	gloves = /obj/item/clothing/gloves/color/captain
 	uniform =  /obj/item/clothing/under/rank/captain
+	uniform_skirt = /obj/item/clothing/under/rank/captain/skirt
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	head = /obj/item/clothing/head/caphat
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1, /obj/item/card/id/departmental_budget/civ=1, /obj/item/gun/energy/e_gun=1) //yogs - adds egun
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1, /obj/item/gun/energy/e_gun=1) //yogs - adds egun/removes civ budget
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel = /obj/item/storage/backpack/satchel/cap

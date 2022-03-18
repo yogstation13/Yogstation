@@ -1,5 +1,5 @@
 /datum/surgery/organ_extraction
-	name = "experimental organ replacement"
+	name = "Experimental organ replacement"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/extract_organ, /datum/surgery_step/gland_insert)
 	possible_locs = list(BODY_ZONE_CHEST)
 	ignore_clothes = 1
@@ -27,16 +27,16 @@
 		if(A.type in organ_types)
 			IC = A
 			break
-	user.visible_message("[user] starts to remove [target]'s organs.", "<span class='notice'>You start to remove [target]'s organs...</span>")
+	user.visible_message("[user] starts to remove [target]'s organs.", span_notice("You start to remove [target]'s organs..."))
 
 /datum/surgery_step/extract_organ/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(IC)
-		user.visible_message("[user] pulls [IC] out of [target]'s [target_zone]!", "<span class='notice'>You pull [IC] out of [target]'s [target_zone].</span>")
+		user.visible_message("[user] pulls [IC] out of [target]'s [target_zone]!", span_notice("You pull [IC] out of [target]'s [target_zone]."))
 		user.put_in_hands(IC)
 		IC.Remove(target)
 		return 1
 	else
-		to_chat(user, "<span class='warning'>You don't find anything in [target]'s [target_zone]!</span>")
+		to_chat(user, span_warning("You don't find anything in [target]'s [target_zone]!"))
 		return 1
 
 /datum/surgery_step/gland_insert

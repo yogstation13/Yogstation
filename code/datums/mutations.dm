@@ -11,7 +11,7 @@
 	var/lowest_value = 256 * 8
 	var/text_gain_indication = ""
 	var/text_lose_indication = ""
-	var/static/list/mutable_appearance/visual_indicators = list()
+	var/static/list/list/mutable_appearance/visual_indicators = list()
 	var/obj/effect/proc_holder/spell/power
 	var/layer_used = MUTATIONS_LAYER //which mutation layer to use
 	var/list/species_allowed = list() //to restrict mutation to only certain species
@@ -27,6 +27,8 @@
 	var/alias           //'Mutation #49', decided every round to get some form of distinction between undiscovered mutations
 	var/scrambled = FALSE //Wheter we can read it if it's active. To avoid cheesing with mutagen
 	var/class           //Decides player accesibility, sorta
+	var/list/conflicts //any mutations that might conflict. put mutation typepath defines in here. make sure to enter it both ways (so that A conflicts with B, and B with A)
+	var/allow_transfer  //Do we transfer upon cloning?
 	//MUT_NORMAL - A mutation that can be activated and deactived by completing a sequence
 	//MUT_EXTRA - A mutation that is in the mutations tab, and can be given and taken away through though the DNA console. Has a 0 before it's name in the mutation section of the dna console
 	//MUT_OTHER Cannot be interacted with by players through normal means. I.E. wizards mutate
@@ -42,6 +44,7 @@
 	var/synchronizer_coeff = -1 //makes the mutation hurt the user less
 	var/power_coeff = -1 //boosts mutation strength
 	var/energy_coeff = -1 //lowers mutation cooldown
+	var/list/valid_chrom_list = list() //List of strings of valid chromosomes this mutation can accept.
 
 /datum/mutation/human/New(class_ = MUT_OTHER, timer, datum/mutation/human/copymut)
 	. = ..()
@@ -51,10 +54,14 @@
 		timed = TRUE
 	if(copymut && istype(copymut, /datum/mutation/human))
 		copy_mutation(copymut)
+	update_valid_chromosome_list()
 
 /datum/mutation/human/proc/on_acquiring(mob/living/carbon/human/H)
 	if(!H || !istype(H) || H.stat == DEAD || (src in H.dna.mutations))
 		return TRUE
+	for(var/i in H.dna.mutations)
+		if(is_type_in_list(i, conflicts))
+			return TRUE
 	if(species_allowed.len && !species_allowed.Find(H.dna.species.id))
 		return TRUE
 	if(health_req && H.health < health_req)
@@ -87,9 +94,6 @@
 /datum/mutation/human/proc/on_ranged_attack(atom/target)
 	return
 
-/datum/mutation/human/proc/on_move(new_loc)
-	return
-
 /datum/mutation/human/proc/on_life()
 	return
 
@@ -110,13 +114,6 @@
 			qdel(src)
 		return 0
 	return 1
-
-/datum/mutation/human/proc/say_mod(message)
-	if(message)
-		return message
-
-/datum/mutation/human/proc/get_spans()
-	return list()
 
 /mob/living/carbon/proc/update_mutations_overlay()
 	return
@@ -156,6 +153,7 @@
 	energy_coeff = HM.energy_coeff
 	mutadone_proof = HM.mutadone_proof
 	can_chromosome = HM.can_chromosome
+	valid_chrom_list = HM.valid_chrom_list
 
 /datum/mutation/human/proc/remove_chromosome()
 	stabilizer_coeff = initial(stabilizer_coeff)
@@ -173,7 +171,7 @@
 		qdel(src)
 
 /datum/mutation/human/proc/grant_spell()
-	if(!power || !owner)
+	if(!ispath(power) || !owner)
 		return FALSE
 
 	power = new power()
@@ -181,3 +179,23 @@
 	power.panel = "Genetic"
 	owner.AddSpell(power)
 	return TRUE
+
+// Runs through all the coefficients and uses this to determine which chromosomes the
+// mutation can take. Stores these as text strings in a list.
+/datum/mutation/human/proc/update_valid_chromosome_list()
+	valid_chrom_list.Cut()
+
+	if(can_chromosome == CHROMOSOME_NEVER)
+		valid_chrom_list += "none"
+		return
+
+	valid_chrom_list += "Reinforcement"
+
+	if(stabilizer_coeff != -1)
+		valid_chrom_list += "Stabilizer"
+	if(synchronizer_coeff != -1)
+		valid_chrom_list += "Synchronizer"
+	if(power_coeff != -1)
+		valid_chrom_list += "Power"
+	if(energy_coeff != -1)
+		valid_chrom_list += "Energetic"

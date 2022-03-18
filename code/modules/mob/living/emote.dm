@@ -46,7 +46,7 @@
 	message = "collapses!"
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/collapse/run_emote(mob/user, params)
+/datum/emote/living/collapse/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(. && isliving(user))
 		var/mob/living/L = user
@@ -58,9 +58,9 @@
 	message = "coughs!"
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/cough/can_run_emote(mob/user, status_check = TRUE)
+/datum/emote/living/cough/can_run_emote(mob/user, status_check = TRUE , intentional)
 	. = ..()
-	if(user.has_trait(TRAIT_SOOTHED_THROAT))
+	if(HAS_TRAIT(user, TRAIT_SOOTHED_THROAT))
 		return FALSE
 
 /datum/emote/living/dance
@@ -80,8 +80,9 @@
 	message_monkey = "lets out a faint chimper as it collapses and stops moving..."
 	message_simple =  "stops moving..."
 	stat_allowed = UNCONSCIOUS
+	cooldown = 3.4 SECONDS
 
-/datum/emote/living/deathgasp/run_emote(mob/user, params)
+/datum/emote/living/deathgasp/run_emote(mob/user, params, type_override, intentional)
 	var/mob/living/simple_animal/S = user
 	if(istype(S) && S.deathmessage)
 		message_simple = S.deathmessage
@@ -104,11 +105,22 @@
 	key_third_person = "faints"
 	message = "faints."
 
-/datum/emote/living/faint/run_emote(mob/user, params)
+/datum/emote/living/faint/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(. && isliving(user))
 		var/mob/living/L = user
 		L.SetSleeping(200)
+
+/datum/emote/living/trip
+	key = "trip"
+	key_third_person = "trips"
+	message = "trips and falls!"
+
+/datum/emote/living/trip/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && isliving(user))
+		var/mob/living/L = user
+		L.Knockdown(60)
 
 /datum/emote/living/flap
 	key = "flap"
@@ -117,7 +129,7 @@
 	restraint_check = TRUE
 	var/wing_time = 20
 
-/datum/emote/living/flap/run_emote(mob/user, params)
+/datum/emote/living/flap/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(. && ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -206,7 +218,7 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 
-/datum/emote/living/laugh/can_run_emote(mob/living/user, status_check = TRUE)
+/datum/emote/living/laugh/can_run_emote(mob/living/user, status_check = TRUE , intentional)
 	. = ..()
 	if(. && iscarbon(user))
 		var/mob/living/carbon/C = user
@@ -215,7 +227,8 @@
 /datum/emote/living/laugh/get_sound(mob/living/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.dna.species.id == "human" && (!H.mind || !H.mind.miming))
+		var/human_laugh = ishumanbasic(H) || iscatperson(H)
+		if(human_laugh && (!H.mind || !H.mind.miming))
 			if(user.gender == FEMALE)
 				return 'sound/voice/human/womanlaugh.ogg'
 			else
@@ -240,17 +253,17 @@
 	message_param = "points at %t."
 	restraint_check = TRUE
 
-/datum/emote/living/point/run_emote(mob/user, params)
+/datum/emote/living/point/run_emote(mob/user, params, type_override, intentional)
 	message_param = initial(message_param) // reset
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.get_num_arms() == 0)
 			if(H.get_num_legs() != 0)
-				message_param = "tries to point at %t with a leg, <span class='userdanger'>falling down</span> in the process!"
+				message_param = "tries to point at %t with a leg, [span_userdanger("falling down")] in the process!"
 				H.Paralyze(20)
 			else
-				message_param = "<span class='userdanger'>bumps [user.p_their()] head on the ground</span> trying to motion towards %t."
-				H.adjustBrainLoss(5)
+				message_param = "[span_userdanger("bumps [user.p_their()] head on the ground")] trying to motion towards %t."
+				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 	..()
 
 /datum/emote/living/pout
@@ -265,6 +278,12 @@
 	message = "screams."
 	message_mime = "acts out a scream!"
 	emote_type = EMOTE_AUDIBLE
+	mob_type_blacklist_typecache = list(/mob/living/carbon/human) //Humans get specialized scream.
+
+/datum/emote/living/scream/select_message_type(mob/user, intentional)
+	. = ..()
+	if(!intentional && isanimal(user))
+		return "makes a loud and pained whimper."
 
 /datum/emote/living/scowl
 	key = "scowl"
@@ -344,10 +363,11 @@
 /datum/emote/living/surrender
 	key = "surrender"
 	key_third_person = "surrenders"
-	message = "puts their hands on their head and falls to the ground, they surrender!"
+	message = span_surrender("puts their hands on their head and falls to the ground, they surrender!")
 	emote_type = EMOTE_AUDIBLE
+	mob_type_blacklist_typecache = list(/mob/living/simple_animal)
 
-/datum/emote/living/surrender/run_emote(mob/user, params)
+/datum/emote/living/surrender/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(. && isliving(user))
 		var/mob/living/L = user
@@ -399,20 +419,19 @@
 	key_third_person = "custom"
 	message = null
 
-/datum/emote/living/custom/proc/check_invalid(mob/user, input)
-	. = TRUE
-	if(copytext(input,1,5) == "says")
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
-	else if(copytext(input,1,9) == "exclaims")
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
-	else if(copytext(input,1,6) == "yells")
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
-	else if(copytext(input,1,5) == "asks")
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
-	else
-		. = FALSE
+/datum/emote/living/custom/can_run_emote(mob/user, status_check, intentional)
+	. = ..() && intentional
 
-/datum/emote/living/custom/run_emote(mob/user, params, type_override = null)
+/datum/emote/living/custom/proc/check_invalid(mob/user, input)
+	var/static/regex/stop_bad_mime = regex(@"says|exclaims|yells|asks")
+	if(stop_bad_mime.Find(input, 1, 1))
+		to_chat(user, span_danger("Invalid emote."))
+		return TRUE
+	return FALSE
+
+/datum/emote/living/custom/run_emote(mob/user, params, type_override = null, intentional = FALSE)
+	if(!can_run_emote(user, TRUE, intentional))
+		return FALSE
 	if(is_banned_from(user.ckey, "Emote"))
 		to_chat(user, "You cannot send custom emotes (banned).")
 		return FALSE
@@ -422,7 +441,7 @@
 		to_chat(user, "You cannot send IC messages (muted).")
 		return FALSE
 	else if(!params)
-		var/custom_emote = copytext(sanitize(input("Choose an emote to display.") as text|null), 1, MAX_MESSAGE_LEN)
+		var/custom_emote = copytext(sanitize(to_utf8(input("Choose an emote to display.") as text|null)), 1, MAX_MESSAGE_LEN)
 		if(custom_emote && !check_invalid(user, custom_emote))
 			var/type = input("Is this a visible or hearable emote?") as null|anything in list("Visible", "Hearable")
 			switch(type)
@@ -438,6 +457,12 @@
 		message = params
 		if(type_override)
 			emote_type = type_override
+	if(isnotpretty(message))
+		to_chat(usr, span_notice("You fumble over your action. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
+		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
+		message_admins(log_message)
+		log_emote(log_message)
+		return
 	. = ..()
 	message = null
 	emote_type = EMOTE_VISIBLE
@@ -448,18 +473,16 @@
 /datum/emote/living/help
 	key = "help"
 
-/datum/emote/living/help/run_emote(mob/user, params)
+/datum/emote/living/help/run_emote(mob/user, params, type_override, intentional)
 	var/list/keys = list()
 	var/list/message = list("Available emotes, you can use them with say \"*emote\": ")
 
-	var/datum/emote/E
-	var/list/emote_list = E.emote_list
-	for(var/e in emote_list)
-		if(e in keys)
-			continue
-		E = emote_list[e]
-		if(E.can_run_emote(user, status_check = FALSE))
-			keys += E.key
+	for(var/key in GLOB.emote_list)
+		for(var/datum/emote/P in GLOB.emote_list[key])
+			if(P.key in keys)
+				continue
+			if(P.can_run_emote(user, status_check = FALSE , intentional = TRUE))
+				keys += P.key
 
 	keys = sortList(keys)
 
@@ -488,26 +511,26 @@
 	key_third_person = "circles"
 	restraint_check = TRUE
 
-/datum/emote/living/circle/run_emote(mob/user, params)
+/datum/emote/living/circle/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	var/obj/item/circlegame/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, "<span class='notice'>You make a circle with your hand.</span>")
+		to_chat(user, span_notice("You make a circle with your hand."))
 	else
 		qdel(N)
-		to_chat(user, "<span class='warning'>You don't have any free hands to make a circle with.</span>")
+		to_chat(user, span_warning("You don't have any free hands to make a circle with."))
 
 /datum/emote/living/slap
 	key = "slap"
 	key_third_person = "slaps"
 	restraint_check = TRUE
 
-/datum/emote/living/slap/run_emote(mob/user, params)
+/datum/emote/living/slap/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/slapper/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, "<span class='notice'>You ready your slapping hand.</span>")
+		to_chat(user, span_notice("You ready your slapping hand."))
 	else
-		to_chat(user, "<span class='warning'>You're incapable of slapping in your current state.</span>")
+		to_chat(user, span_warning("You're incapable of slapping in your current state."))

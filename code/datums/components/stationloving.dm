@@ -5,7 +5,7 @@
 	var/allow_death = FALSE
 
 /datum/component/stationloving/Initialize(inform_admins = FALSE, allow_death = FALSE)
-	if(!ismovableatom(parent))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_MOVABLE_Z_CHANGED), .proc/check_in_bounds)
 	RegisterSignal(parent, list(COMSIG_MOVABLE_SECLUDED_LOCATION), .proc/relocate)
@@ -33,7 +33,7 @@
 
 	var/atom/movable/AM = parent
 	AM.forceMove(targetturf)
-	to_chat(get(parent, /mob), "<span class='danger'>You can't help but feel that you just lost something back there...</span>")
+	to_chat(get(parent, /mob), span_danger("You can't help but feel that you just lost something back there..."))
 	// move the disc, so ghosts remain orbiting it even if it's "destroyed"
 	return targetturf
 
@@ -52,13 +52,16 @@
 
 /datum/component/stationloving/proc/in_bounds()
 	var/static/list/allowed_shuttles = typecacheof(list(/area/shuttle/syndicate, /area/shuttle/escape, /area/shuttle/pod_1, /area/shuttle/pod_2, /area/shuttle/pod_3, /area/shuttle/pod_4))
+	var/static/list/disallowed_centcom_areas = typecacheof(list(/area/abductor_ship, /area/fabric_of_reality, /area/awaymission/errorroom))
 	var/turf/T = get_turf_global(parent) // yogs - replace get_turf with get_turf_global
 	if (!T)
 		return FALSE
 	var/area/A = T.loc
-	if(istype(A, /area/fabric_of_reality)) // Obviously terrible, just for test merging
-		return FALSE
-	if (is_station_level(T.z) || is_centcom_level(T.z))
+	if (is_station_level(T.z))
+		return TRUE
+	if (is_centcom_level(T.z))
+		if (is_type_in_typecache(A, disallowed_centcom_areas))
+			return FALSE
 		return TRUE
 	if (is_reserved_level(T.z))
 		if (is_type_in_typecache(A, allowed_shuttles))

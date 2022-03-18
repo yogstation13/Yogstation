@@ -1,7 +1,7 @@
 /obj/item/banner
 	name = "banner"
 	desc = "A banner with Nanotrasen's logo on it."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/banners.dmi'
 	icon_state = "banner"
 	item_state = "banner"
 	force = 8
@@ -16,18 +16,18 @@
 	var/warcry
 
 /obj/item/banner/examine(mob/user)
-	..()
+	. = ..()
 	if(inspiration_available)
-		to_chat(user, "<span class='notice'>Activate it in your hand to inspire nearby allies of this banner's allegiance!</span>")
+		. += span_notice("Activate it in your hand to inspire nearby allies of this banner's allegiance!")
 
 /obj/item/banner/attack_self(mob/living/carbon/human/user)
 	if(!inspiration_available)
 		return
 	if(morale_time > world.time)
-		to_chat(user, "<span class='warning'>You aren't feeling inspired enough to flourish [src] again yet.</span>")
+		to_chat(user, span_warning("You aren't feeling inspired enough to flourish [src] again yet."))
 		return
 	user.visible_message("<span class='big notice'>[user] flourishes [src]!</span>", \
-	"<span class='notice'>You raise [src] skywards, inspiring your allies!</span>")
+	span_notice("You raise [src] skywards, inspiring your allies!"))
 	playsound(src, "rustle", 100, FALSE)
 	if(warcry)
 		user.say("[warcry]", forced="banner")
@@ -44,9 +44,9 @@
 		if(H.stat == DEAD || H == user)
 			continue
 		if(H.mind && (has_job_loyalties || has_role_loyalties))
-			if(has_job_loyalties && H.mind.assigned_role in job_loyalties)
+			if(has_job_loyalties && (H.mind.assigned_role in job_loyalties))
 				inspired += H
-			else if(has_role_loyalties && H.mind.special_role in role_loyalties)
+			else if(has_role_loyalties && (H.mind.special_role in role_loyalties))
 				inspired += H
 		else if(check_inspiration(H))
 			inspired += H
@@ -54,7 +54,7 @@
 	for(var/V in inspired)
 		var/mob/living/carbon/human/H = V
 		if(H != user)
-			to_chat(H, "<span class='notice'>Your confidence surges as [user] flourishes [user.p_their()] [name]!</span>")
+			to_chat(H, span_notice("Your confidence surges as [user] flourishes [user.p_their()] [name]!"))
 		inspiration(H)
 		special_inspiration(H)
 
@@ -78,6 +78,9 @@
 	name = "securistan banner"
 	desc = "The banner of Securistan, ruling the station with an iron fist."
 	icon_state = "banner_security"
+	item_state = "banner_security"
+	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
 	job_loyalties = list("Security Officer", "Warden", "Detective", "Head of Security")
 	warcry = "EVERYONE DOWN ON THE GROUND!!"
 
@@ -87,7 +90,7 @@
 /datum/crafting_recipe/security_banner
 	name = "Securistan Banner"
 	result = /obj/item/banner/security/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/security = 1)
 	category = CAT_MISC
@@ -96,6 +99,9 @@
 	name = "meditopia banner"
 	desc = "The banner of Meditopia, generous benefactors that cure wounds and shelter the weak."
 	icon_state = "banner_medical"
+	item_state = "banner_medical"
+	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
 	job_loyalties = list("Medical Doctor", "Chemist", "Geneticist", "Virologist", "Chief Medical Officer")
 	warcry = "No wounds cannot be healed!"
 
@@ -108,7 +114,7 @@
 /datum/crafting_recipe/medical_banner
 	name = "Meditopia Banner"
 	result = /obj/item/banner/medical/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/medical = 1)
 	category = CAT_MISC
@@ -116,12 +122,15 @@
 /obj/item/banner/medical/special_inspiration(mob/living/carbon/human/H)
 	H.adjustToxLoss(-15)
 	H.setOxyLoss(0)
-	H.reagents.add_reagent("inaprovaline", 5)
+	H.reagents.add_reagent(/datum/reagent/medicine/inaprovaline, 5)
 
 /obj/item/banner/science
 	name = "sciencia banner"
 	desc = "The banner of Sciencia, bold and daring thaumaturges and researchers that take the path less traveled."
 	icon_state = "banner_science"
+	item_state = "banner_science"
+	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
 	job_loyalties = list("Scientist", "Roboticist", "Research Director")
 	warcry = "For Cuban Pete!"
 
@@ -134,7 +143,7 @@
 /datum/crafting_recipe/science_banner
 	name = "Sciencia Banner"
 	result = /obj/item/banner/science/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/scientist = 1)
 	category = CAT_MISC
@@ -143,6 +152,9 @@
 	name = "cargonia banner"
 	desc = "The banner of the eternal Cargonia, with the mystical power of conjuring any object into existence."
 	icon_state = "banner_cargo"
+	item_state = "banner_cargo"
+	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
 	job_loyalties = list("Cargo Technician", "Shaft Miner", "Quartermaster")
 	warcry = "Hail Cargonia!"
 
@@ -152,7 +164,7 @@
 /datum/crafting_recipe/cargo_banner
 	name = "Cargonia Banner"
 	result = /obj/item/banner/cargo/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/cargotech = 1)
 	category = CAT_MISC
@@ -161,6 +173,9 @@
 	name = "engitopia banner"
 	desc = "The banner of Engitopia, wielders of limitless power."
 	icon_state = "banner_engineering"
+	item_state = "banner_engineering"
+	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
 	job_loyalties = list("Station Engineer", "Atmospheric Technician", "Chief Engineer")
 	warcry = "All hail lord Singuloth!!"
 
@@ -173,7 +188,7 @@
 /datum/crafting_recipe/engineering_banner
 	name = "Engitopia Banner"
 	result = /obj/item/banner/engineering/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/engineer = 1)
 	category = CAT_MISC
@@ -189,12 +204,12 @@
 	inspiration_available = FALSE
 
 /obj/item/banner/command/check_inspiration(mob/living/carbon/human/H)
-	return H.has_trait(TRAIT_MINDSHIELD) //Command is stalwart but rewards their allies.
+	return HAS_TRAIT(H, TRAIT_MINDSHIELD) //Command is stalwart but rewards their allies.
 
 /datum/crafting_recipe/command_banner
 	name = "Command Banner"
 	result = /obj/item/banner/command/mundane
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/captainparade = 1)
 	category = CAT_MISC
@@ -218,7 +233,7 @@
 
 /obj/item/storage/backpack/bannerpack/Initialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 27 //6 more then normal, for the tradeoff of declaring yourself an antag at all times.
 
 /obj/item/storage/backpack/bannerpack/red
@@ -294,7 +309,7 @@
 	if(staffcooldown + staffwait > world.time)
 		return
 	user.visible_message("[user] chants deeply and waves [user.p_their()] staff!")
-	if(do_after(user, 20,1,src))
+	if(do_after(user, 2 SECONDS,1,src))
 		target.add_atom_colour(conversion_color, WASHABLE_COLOUR_PRIORITY) //wololo
 	staffcooldown = world.time
 
@@ -364,10 +379,9 @@
 /obj/item/claymore/weak
 	desc = "This one is rusted."
 	force = 30
-	armour_penetration = 15
-	
+	block_chance = 30
+	armour_penetration = 5
+
 /obj/item/claymore/weak/ceremonial
 	desc = "A rusted claymore, once at the heart of a powerful scottish clan struck down and oppressed by tyrants, it has been passed down the ages as a symbol of defiance."
 	force = 15
-	block_chance = 30
-	armour_penetration = 5

@@ -20,7 +20,7 @@
 			else
 				check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT))
 		if(. >= 5 || prob(33))
-			occupant_message("<span class='userdanger'>Taking damage!</span>")
+			occupant_message(span_userdanger("Taking damage!"))
 		log_message("Took [damage_amount] points of damage. Damage type: [damage_type]", LOG_MECHA)
 
 /obj/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
@@ -47,7 +47,7 @@
 		booster_damage_modifier /= facing_modifier
 		booster_deflection_modifier *= facing_modifier
 	if(prob(deflect_chance * booster_deflection_modifier))
-		visible_message("<span class='danger'>[src]'s armour deflects the attack!</span>")
+		visible_message(span_danger("[src]'s armour deflects the attack!"))
 		log_message("Armor saved.", LOG_MECHA)
 		return 0
 	if(.)
@@ -61,7 +61,7 @@
 	user.changeNext_move(CLICK_CD_MELEE) // Ugh. Ideally we shouldn't be setting cooldowns outside of click code.
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	playsound(loc, 'sound/weapons/tap.ogg', 40, 1, -1)
-	user.visible_message("<span class='danger'>[user] hits [name]. Nothing happens.</span>", null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_danger("[user] hits [name]. Nothing happens."), null, null, COMBAT_MESSAGE_RANGE)
 	log_message("Attack by hand/paw. Attacker - [user].", LOG_MECHA, color="red")
 
 /obj/mecha/attack_paw(mob/user as mob)
@@ -107,12 +107,18 @@
 /obj/mecha/attack_tk()
 	return
 
+/obj/mecha/rust_heretic_act()
+	take_damage(500,  BRUTE)
+
 /obj/mecha/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum) //wrapper
 	log_message("Hit by [AM].", LOG_MECHA, color="red")
 	. = ..()
 
 
 /obj/mecha/bullet_act(obj/item/projectile/Proj) //wrapper
+	if (!enclosed && occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
+		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
+		return BULLET_ACT_HIT
 	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", LOG_MECHA, color="red")
 	. = ..()
 
@@ -127,10 +133,22 @@
 	severity++
 	for(var/X in equipment)
 		var/obj/item/mecha_parts/mecha_equipment/ME = X
-		ME.ex_act(severity,target)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += ME
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += ME
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += ME
 	for(var/Y in trackers)
 		var/obj/item/mecha_parts/mecha_tracking/MT = Y
-		MT.ex_act(severity, target)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += MT
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += MT
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += MT
 	if(occupant)
 		occupant.ex_act(severity,target)
 
@@ -148,7 +166,15 @@
 		use_power((cell.charge/3)/(severity*2))
 		take_damage(30 / severity, BURN, "energy", 1)
 	log_message("EMP detected", LOG_MECHA, color="red")
-	check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
+
+	if(istype(src, /obj/mecha/combat))
+		mouse_pointer = 'icons/mecha/mecha_mouse-disable.dmi'
+		occupant?.update_mouse_pointer()
+	if(!equipment_disabled && occupant) //prevent spamming this message with back-to-back EMPs
+		to_chat(occupant, "<span=danger>Error -- Connection to equipment control unit has been lost.</span>")
+	overload_action.Activate(0)
+	addtimer(CALLBACK(src, /obj/mecha/proc/restore_equipment), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	equipment_disabled = 1
 
 /obj/mecha/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature>max_temperature)
@@ -164,6 +190,10 @@
 			to_chat(user, "[src]-[W] interface initialization failed.")
 		return
 
+	if(istype(W, /obj/item/mecha_ammo))
+		ammo_resupply(W, user)
+		return
+
 	if(W.GetID())
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(user))
@@ -176,60 +206,75 @@
 				output_maintenance_dialog(id_card, user)
 				return
 			else
-				to_chat(user, "<span class='warning'>Invalid ID: Access denied.</span>")
+				to_chat(user, span_warning("Invalid ID: Access denied."))
 		else
-			to_chat(user, "<span class='warning'>Maintenance protocols disabled by operator.</span>")
+			to_chat(user, span_warning("Maintenance protocols disabled by operator."))
 	else if(W.tool_behaviour == TOOL_WRENCH)
 		if(state==1)
 			state = 2
-			to_chat(user, "<span class='notice'>You undo the securing bolts.</span>")
+			to_chat(user, span_notice("You undo the securing bolts."))
 		else if(state==2)
 			state = 1
-			to_chat(user, "<span class='notice'>You tighten the securing bolts.</span>")
+			to_chat(user, span_notice("You tighten the securing bolts."))
 		return
 	else if(W.tool_behaviour == TOOL_CROWBAR)
 		if(state==2)
 			state = 3
-			to_chat(user, "<span class='notice'>You open the hatch to the power unit.</span>")
+			to_chat(user, span_notice("You open the hatch to the power unit."))
 		else if(state==3)
 			state=2
-			to_chat(user, "<span class='notice'>You close the hatch to the power unit.</span>")
+			to_chat(user, span_notice("You close the hatch to the power unit."))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
 		if(state == 3 && (internal_damage & MECHA_INT_SHORT_CIRCUIT))
 			var/obj/item/stack/cable_coil/CC = W
 			if(CC.use(2))
 				clearInternalDamage(MECHA_INT_SHORT_CIRCUIT)
-				to_chat(user, "<span class='notice'>You replace the fused wires.</span>")
+				to_chat(user, span_notice("You replace the fused wires."))
 			else
-				to_chat(user, "<span class='warning'>You need two lengths of cable to fix this mech!</span>")
-		return
-	else if(W.tool_behaviour == TOOL_SCREWDRIVER && user.a_intent != INTENT_HARM)
-		if(internal_damage & MECHA_INT_TEMP_CONTROL)
-			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
-			to_chat(user, "<span class='notice'>You repair the damaged temperature controller.</span>")
-		else if(state==3 && cell)
-			cell.forceMove(loc)
-			cell = null
-			state = 4
-			to_chat(user, "<span class='notice'>You unscrew and pry out the powercell.</span>")
-			log_message("Powercell removed", LOG_MECHA)
-		else if(state==4 && cell)
-			state=3
-			to_chat(user, "<span class='notice'>You screw the cell in place.</span>")
+				to_chat(user, span_warning("You need two lengths of cable to fix this mech!"))
 		return
 
 	else if(istype(W, /obj/item/stock_parts/cell))
-		if(state==4)
+		if(state==3)
 			if(!cell)
-				if(!user.transferItemToLoc(W, src))
+				if(!user.transferItemToLoc(W, src, silent = FALSE))
 					return
 				var/obj/item/stock_parts/cell/C = W
-				to_chat(user, "<span class='notice'>You install the powercell.</span>")
+				to_chat(user, span_notice("You install the power cell."))
+				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
 				cell = C
 				log_message("Powercell installed", LOG_MECHA)
 			else
-				to_chat(user, "<span class='notice'>There's already a powercell installed.</span>")
+				to_chat(user, span_notice("There's already a power cell installed."))
+		return
+
+	if(istype(W, /obj/item/stock_parts/scanning_module))
+		if(state == 3)
+			if(!scanmod)
+				if(!user.transferItemToLoc(W, src))
+					return
+				to_chat(user, span_notice("You install the scanning module."))
+				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
+				scanmod = W
+				log_message("[W] installed", LOG_MECHA)
+				update_part_values()
+			else
+				to_chat(user, span_notice("There's already a scanning module installed."))
+		return
+
+	if(istype(W, /obj/item/stock_parts/capacitor))
+		if(state == 3)
+			if(!capacitor)
+				if(!user.transferItemToLoc(W, src))
+					return
+				to_chat(user, span_notice("You install the capacitor."))
+				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
+				capacitor = W
+				log_message("[W] installed", LOG_MECHA)
+				update_part_values()
+			else
+				to_chat(user, span_notice("There's already a capacitor installed."))
 		return
 
 	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
@@ -238,21 +283,26 @@
 			if(W.use_tool(src, user, 0, volume=50, amount=1))
 				if (internal_damage & MECHA_INT_TANK_BREACH)
 					clearInternalDamage(MECHA_INT_TANK_BREACH)
-					to_chat(user, "<span class='notice'>You repair the damaged gas tank.</span>")
+					to_chat(user, span_notice("You repair the damaged gas tank."))
 				else
-					user.visible_message("<span class='notice'>[user] repairs some damage to [name].</span>", "<span class='notice'>You repair some damage to [src].</span>")
+					user.visible_message(span_notice("[user] repairs some damage to [name]."), span_notice("You repair some damage to [src]."))
 					obj_integrity += min(10, max_integrity-obj_integrity)
 					if(obj_integrity == max_integrity)
-						to_chat(user, "<span class='notice'>It looks to be fully repaired now.</span>")
+						to_chat(user, span_notice("It looks to be fully repaired now."))
 			return 1
 		else
-			to_chat(user, "<span class='warning'>The [name] is at full integrity!</span>")
+			to_chat(user, span_warning("The [name] is at full integrity!"))
 		return 1
 
 	else if(istype(W, /obj/item/mecha_parts))
 		var/obj/item/mecha_parts/P = W
 		P.try_attach_part(user, src)
 		return
+
+	else if(istype(W, /obj/item/airlock_scanner))		//yogs start
+		var/obj/item/airlock_scanner/S = W
+		S.show_access(src, user)					//yogs end
+
 	else
 		return ..()
 
@@ -263,10 +313,10 @@
 /obj/mecha/proc/mech_toxin_damage(mob/living/target)
 	playsound(src, 'sound/effects/spray2.ogg', 50, 1)
 	if(target.reagents)
-		if(target.reagents.get_reagent_amount("cryptobiolin") + force < force*2)
-			target.reagents.add_reagent("cryptobiolin", force/2)
-		if(target.reagents.get_reagent_amount("toxin") + force < force*2)
-			target.reagents.add_reagent("toxin", force/2.5)
+		if(target.reagents.get_reagent_amount(/datum/reagent/cryptobiolin) + force < force*2)
+			target.reagents.add_reagent(/datum/reagent/cryptobiolin, force/2)
+		if(target.reagents.get_reagent_amount(/datum/reagent/toxin) + force < force*2)
+			target.reagents.add_reagent(/datum/reagent/toxin, force/2.5)
 
 
 /obj/mecha/mech_melee_attack(obj/mecha/M)
@@ -293,11 +343,7 @@
 		clearInternalDamage(MECHA_INT_CONTROL_LOST)
 
 /obj/mecha/narsie_act()
-	if(occupant)
-		var/mob/living/L = occupant
-		go_out(TRUE)
-		if(L)
-			L.narsie_act()
+	emp_act(EMP_HEAVY)
 
 /obj/mecha/ratvar_act()
 	if((GLOB.ratvar_awakens || GLOB.clockwork_gateway_activated) && occupant)
@@ -320,3 +366,25 @@
 			else if(damtype == TOX)
 				visual_effect_icon = ATTACK_EFFECT_MECHTOXIN
 	..()
+
+/obj/mecha/obj_destruction()
+	if(wreckage)
+		var/mob/living/silicon/ai/AI
+		if(isAI(occupant))
+			AI = occupant
+			occupant = null
+		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
+		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+			if(E.salvageable && prob(30))
+				WR.crowbar_salvage += E
+				E.detach(WR) //detaches from src into WR
+				E.equip_ready = 1
+			else
+				E.detach(loc)
+				qdel(E)
+		if(cell)
+			WR.crowbar_salvage += cell
+			cell.forceMove(WR)
+			cell.charge = rand(0, cell.charge)
+			cell = null
+	. = ..()

@@ -12,22 +12,53 @@
 
 /obj/item/book/granter/proc/turn_page(mob/user)
 	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, 1)
-	if(do_after(user,50, user))
-		to_chat(user, "<span class='notice'>[pick(remarks)]</span>")
+	if(do_after(user, 5 SECONDS, user))
+		if(remarks.len)
+			to_chat(user, span_notice("[pick(remarks)]"))
+		else
+			to_chat(user, span_notice("You keep reading..."))
 		return TRUE
 	return FALSE
 
 /obj/item/book/granter/proc/recoil(mob/user) //nothing so some books can just return
 
+/obj/item/book/granter/proc/already_known(mob/user)
+	return FALSE
+
+/obj/item/book/granter/proc/on_reading_start(mob/user)
+	to_chat(user, span_notice("You start reading [name]..."))
+
+/obj/item/book/granter/proc/on_reading_stopped(mob/user)
+	to_chat(user, span_notice("You stop reading..."))
+
+/obj/item/book/granter/proc/on_reading_finished(mob/user)
+	to_chat(user, span_notice("You finish reading [name]!"))
+
 /obj/item/book/granter/proc/onlearned(mob/user)
 	used = TRUE
 
+
 /obj/item/book/granter/attack_self(mob/user)
 	if(reading)
-		to_chat(user, "<span class='warning'>You're already reading this!</span>")
+		to_chat(user, span_warning("You're already reading this!"))
 		return FALSE
 	if(!user.can_read(src))
 		return FALSE
+	if(already_known(user))
+		return FALSE
+	if(used && oneuse)
+		recoil(user)
+	else
+		on_reading_start(user)
+		reading = TRUE
+		for(var/i=1, i<=pages_to_mastery, i++)
+			if(!turn_page(user))
+				on_reading_stopped()
+				reading = FALSE
+				return
+		if(do_after(user, 5 SECONDS, user))
+			on_reading_finished(user)
+		reading = FALSE
 	return TRUE
 
 ///ACTION BUTTONS///
@@ -36,33 +67,23 @@
 	var/granted_action
 	var/actionname = "catching bugs" //might not seem needed but this makes it so you can safely name action buttons toggle this or that without it fucking up the granter, also caps
 
-/obj/item/book/granter/action/attack_self(mob/user)
-	. = ..()
-	if(!.)
-		return
+/obj/item/book/granter/action/already_known(mob/user)
 	if(!granted_action)
-		return
-	var/datum/action/G = new granted_action
+		return TRUE
 	for(var/datum/action/A in user.actions)
-		if(A.type == G.type)
-			to_chat(user, "<span class='notice'>You already know all about [actionname].</span>")
-			qdel(G)
-			return
-	if(used == TRUE && oneuse == TRUE)
-		recoil(user)
-	else
-		to_chat(user, "<span class='notice'>You start reading about [actionname]...</span>")
-		reading = TRUE
-		for(var/i=1, i<=pages_to_mastery, i++)
-			if(!turn_page(user))
-				to_chat(user, "<span class='notice'>You stop reading...</span>")
-				reading = FALSE
-				qdel(G)
-				return
-		if(do_after(user,50, user))
-			to_chat(user, "<span class='notice'>You feel like you've got a good handle on [actionname]!</span>")
-			G.Grant(user)
-		reading = FALSE
+		if(A.type == granted_action)
+			to_chat(user, span_notice("You already know all about [actionname]."))
+			return TRUE
+	return FALSE
+
+/obj/item/book/granter/action/on_reading_start(mob/user)
+	to_chat(user, span_notice("You start reading about [actionname]..."))
+
+/obj/item/book/granter/action/on_reading_finished(mob/user)
+	to_chat(user, span_notice("You feel like you've got a good handle on [actionname]!"))
+	var/datum/action/G = new granted_action
+	G.Grant(user)
+	onlearned(user)
 
 /obj/item/book/granter/action/origami
 	granted_action = /datum/action/innate/origami
@@ -80,13 +101,13 @@
 	check_flags = NONE
 
 /datum/action/innate/origami/Activate()
-	to_chat(owner, "<span class='notice'>You will now fold origami planes.</span>")
+	to_chat(owner, span_notice("You will now fold origami planes."))
 	button_icon_state = "origami_on"
 	active = TRUE
 	UpdateButtonIcon()
 
 /datum/action/innate/origami/Deactivate()
-	to_chat(owner, "<span class='notice'>You will no longer fold origami planes.</span>")
+	to_chat(owner, span_notice("You will no longer fold origami planes."))
 	button_icon_state = "origami_off"
 	active = FALSE
 	UpdateButtonIcon()
@@ -97,46 +118,36 @@
 	var/spell
 	var/spellname = "conjure bugs"
 
-/obj/item/book/granter/spell/attack_self(mob/user)
-	. = ..()
-	if(!.)
-		return
+/obj/item/book/granter/spell/already_known(mob/user)
 	if(!spell)
-		return
-	var/obj/effect/proc_holder/spell/S = new spell
+		return TRUE
 	for(var/obj/effect/proc_holder/spell/knownspell in user.mind.spell_list)
-		if(knownspell.type == S.type)
+		if(knownspell.type == spell)
 			if(user.mind)
 				if(iswizard(user))
-					to_chat(user,"<span class='notice'>You're already far more versed in this spell than this flimsy how-to book can provide.</span>")
+					to_chat(user,span_notice("You're already far more versed in this spell than this flimsy how-to book can provide."))
 				else
-					to_chat(user,"<span class='notice'>You've already read this one.</span>")
-			return FALSE
-	if(used == TRUE && oneuse == TRUE)
-		recoil(user)
-	else
-		to_chat(user, "<span class='notice'>You start reading about casting [spellname]...</span>")
-		reading = TRUE
-		for(var/i=1, i<=pages_to_mastery, i++)
-			if(!turn_page(user))
-				to_chat(user, "<span class='notice'>You stop reading...</span>")
-				reading = FALSE
-				qdel(S)
-				return FALSE
-		if(do_after(user,50, user))
-			to_chat(user, "<span class='notice'>You feel like you've experienced enough to cast [spellname]!</span>")
-			user.mind.AddSpell(S)
-			user.log_message("learned the spell [spellname] ([S])", LOG_ATTACK, color="orange")
-			onlearned(user)
-		reading = FALSE
+					to_chat(user,span_notice("You've already read this one."))
+			return TRUE
+	return FALSE
+
+/obj/item/book/granter/spell/on_reading_start(mob/user)
+	to_chat(user, span_notice("You start reading about casting [spellname]..."))
+
+/obj/item/book/granter/spell/on_reading_finished(mob/user)
+	to_chat(user, span_notice("You feel like you've experienced enough to cast [spellname]!"))
+	var/obj/effect/proc_holder/spell/S = new spell
+	user.mind.AddSpell(S)
+	user.log_message("learned the spell [spellname] ([S])", LOG_ATTACK, color="orange")
+	onlearned(user)
 
 /obj/item/book/granter/spell/recoil(mob/user)
-	user.visible_message("<span class='warning'>[src] glows in a black light!</span>")
+	user.visible_message(span_warning("[src] glows in a black light!"))
 
 /obj/item/book/granter/spell/onlearned(mob/user)
 	..()
 	if(oneuse)
-		user.visible_message("<span class='caution'>[src] glows dark for a second!</span>")
+		user.visible_message(span_caution("[src] glows dark for a second!"))
 
 /obj/item/book/granter/spell/fireball
 	spell = /obj/effect/proc_holder/spell/aimed/fireball
@@ -169,14 +180,14 @@
 
 /obj/item/book/granter/spell/smoke/recoil(mob/user)
 	..()
-	to_chat(user,"<span class='caution'>Your stomach rumbles...</span>")
+	to_chat(user,span_caution("Your stomach rumbles..."))
 	if(user.nutrition)
 		user.set_nutrition(200)
 		if(user.nutrition <= 0)
 			user.set_nutrition(0)
 
 /obj/item/book/granter/spell/blind
-	spell = /obj/effect/proc_holder/spell/targeted/trigger/blind
+	spell = /obj/effect/proc_holder/spell/pointed/trigger/blind
 	spellname = "blind"
 	icon_state ="bookblind"
 	desc = "This book looks blurry, no matter how you look at it."
@@ -184,7 +195,7 @@
 
 /obj/item/book/granter/spell/blind/recoil(mob/user)
 	..()
-	to_chat(user,"<span class='warning'>You go blind!</span>")
+	to_chat(user,span_warning("You go blind!"))
 	user.blind_eyes(10)
 
 /obj/item/book/granter/spell/mindswap
@@ -207,17 +218,17 @@
 		stored_swap = null
 	if(!stored_swap)
 		stored_swap = user
-		to_chat(user,"<span class='warning'>For a moment you feel like you don't even know who you are anymore.</span>")
+		to_chat(user,span_warning("For a moment you feel like you don't even know who you are anymore."))
 		return
 	if(stored_swap == user)
-		to_chat(user,"<span class='notice'>You stare at the book some more, but there doesn't seem to be anything else to learn...</span>")
+		to_chat(user,span_notice("You stare at the book some more, but there doesn't seem to be anything else to learn..."))
 		return
 	var/obj/effect/proc_holder/spell/targeted/mind_transfer/swapper = new
 	if(swapper.cast(list(stored_swap), user, TRUE, TRUE))
-		to_chat(user,"<span class='warning'>You're suddenly somewhere else... and someone else?!</span>")
-		to_chat(stored_swap,"<span class='warning'>Suddenly you're staring at [src] again... where are you, who are you?!</span>")
+		to_chat(user,span_warning("You're suddenly somewhere else... and someone else?!"))
+		to_chat(stored_swap,span_warning("Suddenly you're staring at [src] again... where are you, who are you?!"))
 	else
-		user.visible_message("<span class='warning'>[src] fizzles slightly as it stops glowing!</span>") //if the mind_transfer failed to transfer mobs, likely due to the target being catatonic.
+		user.visible_message(span_warning("[src] fizzles slightly as it stops glowing!")) //if the mind_transfer failed to transfer mobs, likely due to the target being catatonic.
 
 	stored_swap = null
 
@@ -230,7 +241,7 @@
 
 /obj/item/book/granter/spell/forcewall/recoil(mob/living/user)
 	..()
-	to_chat(user,"<span class='warning'>You suddenly feel very solid!</span>")
+	to_chat(user,span_warning("You suddenly feel very solid!"))
 	user.Stun(40, ignore_canstun = TRUE)
 	user.petrify(30)
 
@@ -243,7 +254,7 @@
 
 /obj/item/book/granter/spell/knock/recoil(mob/living/user)
 	..()
-	to_chat(user,"<span class='warning'>You're knocked down!</span>")
+	to_chat(user,span_warning("You're knocked down!"))
 	user.Paralyze(40)
 
 /obj/item/book/granter/spell/barnyard
@@ -262,7 +273,7 @@
 		user.equip_to_slot_if_possible(magichead, SLOT_WEAR_MASK, TRUE, TRUE)
 		qdel(src)
 	else
-		to_chat(user,"<span class='notice'>I say thee neigh</span>") //It still lives here
+		to_chat(user,span_notice("I say thee neigh")) //It still lives here
 
 /obj/item/book/granter/spell/charge
 	spell = /obj/effect/proc_holder/spell/targeted/charge
@@ -273,7 +284,7 @@
 
 /obj/item/book/granter/spell/charge/recoil(mob/user)
 	..()
-	to_chat(user,"<span class='warning'>[src] suddenly feels very warm!</span>")
+	to_chat(user,span_warning("[src] suddenly feels very warm!"))
 	empulse(src, 1, 1)
 
 /obj/item/book/granter/spell/summonitem
@@ -285,7 +296,7 @@
 
 /obj/item/book/granter/spell/summonitem/recoil(mob/user)
 	..()
-	to_chat(user,"<span class='warning'>[src] suddenly vanishes!</span>")
+	to_chat(user,span_warning("[src] suddenly vanishes!"))
 	qdel(src)
 
 /obj/item/book/granter/spell/random
@@ -293,7 +304,7 @@
 
 /obj/item/book/granter/spell/random/Initialize()
 	. = ..()
-	var/static/banned_spells = list(/obj/item/book/granter/spell/mimery_blockade, /obj/item/book/granter/spell/mimery_guns)
+	var/static/banned_spells = list(/obj/item/book/granter/spell/mimery_blockade, /obj/item/book/granter/spell/mimery_guns, /obj/item/book/granter/spell/fireball)
 	var/real_type = pick(subtypesof(/obj/item/book/granter/spell) - banned_spells)
 	new real_type(loc)
 	return INITIALIZE_HINT_QDEL
@@ -305,50 +316,42 @@
 	var/martialname = "bug jitsu"
 	var/greet = "You feel like you have mastered the art in breaking code. Nice work, jackass."
 
-/obj/item/book/granter/martial/attack_self(mob/user)
-	. = ..()
-	if(!.)
-		return
+
+/obj/item/book/granter/martial/already_known(mob/user)
 	if(!martial)
-		return
+		return TRUE
+	var/datum/martial_art/MA = martial
+	if(user.mind.has_martialart(initial(MA.id)))
+		to_chat(user,span_warning("You already know [martialname]!"))
+		return TRUE
+	return FALSE
+
+/obj/item/book/granter/martial/on_reading_start(mob/user)
+	to_chat(user, span_notice("You start reading about [martialname]..."))
+
+/obj/item/book/granter/martial/on_reading_finished(mob/user)
+	to_chat(user, "[greet]")
 	var/datum/martial_art/MA = new martial
-	if(user.mind.has_martialart(MA.id))
-		to_chat(user,"<span class='warning'>You already know [martialname]!</span>")
-		return
-	if(used == TRUE && oneuse == TRUE)
-		recoil(user)
-	else
-		to_chat(user, "<span class='notice'>You start reading about [martialname]...</span>")
-		reading = TRUE
-		for(var/i=1, i<=pages_to_mastery, i++)
-			if(!turn_page(user))
-				to_chat(user, "<span class='notice'>You stop reading...</span>")
-				reading = FALSE
-				qdel(MA)
-				return
-		if(do_after(user,50, user))
-			to_chat(user, "[greet]")
-			MA.teach(user)
-			user.log_message("learned the martial art [martialname] ([MA])", LOG_ATTACK, color="orange")
-			onlearned(user)
-		reading = FALSE
+	MA.teach(user)
+	user.log_message("learned the martial art [martialname] ([MA])", LOG_ATTACK, color="orange")
+	onlearned(user)
 
 /obj/item/book/granter/martial/cqc
 	martial = /datum/martial_art/cqc
 	name = "old manual"
 	martialname = "close quarters combat"
 	desc = "A small, black manual. There are drawn instructions of tactical hand-to-hand combat."
-	greet = "<span class='boldannounce'>You've mastered the basics of CQC.</span>"
+	greet = span_boldannounce("You've mastered the basics of CQC.")
 	icon_state = "cqcmanual"
 	remarks = list("Kick... Slam...", "Lock... Kick...", "Strike their abdomen, neck and back for critical damage...", "Slam... Lock...", "I could probably combine this with some other martial arts!", "Words that kill...", "The last and final moment is yours...")
 
 /obj/item/book/granter/martial/cqc/onlearned(mob/living/carbon/user)
 	..()
 	if(oneuse == TRUE)
-		to_chat(user, "<span class='warning'>[src] beeps ominously...</span>")
+		to_chat(user, span_warning("[src] beeps ominously..."))
 
 /obj/item/book/granter/martial/cqc/recoil(mob/living/carbon/user)
-	to_chat(user, "<span class='warning'>[src] explodes!</span>")
+	to_chat(user, span_warning("[src] explodes!"))
 	playsound(src,'sound/effects/explosion1.ogg',40,1)
 	user.flash_act(1, 1)
 	user.adjustBruteLoss(6)
@@ -373,6 +376,31 @@
 		name = "empty scroll"
 		icon_state = "blankscroll"
 
+/obj/item/book/granter/martial/flyingfang
+	martial = /datum/martial_art/flyingfang
+	name = "strange tablet"
+	martialname = "Flying Fang"
+	desc = "A tablet with strange pictograms that appear to detail some kind of fighting technique."
+	force = 10
+	greet = "<span class='sciradio'>You have learned the ancient martial art of Flying Fang! Your unarmed attacks have become somewhat more effective,  \
+	and you are more resistant to damage and stun-based weaponry. However, you are also unable to use any ranged weaponry or armor. You can learn more about your newfound art by using the Recall Teachings verb in the Flying Fang tab.</span>"
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "stone_tablet"
+	remarks = list("Feasting on the insides of your enemies...", "Some of these techniques look a bit dizzying...", "Not like I need armor anyways...", "Don't get shot, whatever that means...")
+
+/obj/item/book/granter/martial/flyingfang/already_known(mob/user)
+	if(!islizard(user))
+		to_chat(user, span_warning("You can't tell if this is some poorly written fanfiction or an actual guide to something."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/flyingfang/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It's completely blank."
+		name = "blank tablet"
+		icon_state = "stone_tablet_blank"
+
 /obj/item/book/granter/martial/plasma_fist
 	martial = /datum/martial_art/plasma_fist
 	name = "frayed scroll"
@@ -392,3 +420,25 @@
 		icon_state = "blankscroll"
 
 // I did not include mushpunch's grant, it is not a book and the item does it just fine.
+
+
+//Crafting Recipe books
+
+/obj/item/book/granter/crafting_recipe
+	var/list/crafting_recipe_types = list()
+
+/obj/item/book/granter/crafting_recipe/on_reading_finished(mob/user)
+	. = ..()
+	if(!user.mind)
+		return
+	for(var/crafting_recipe_type in crafting_recipe_types)
+		var/datum/crafting_recipe/R = crafting_recipe_type
+		user.mind.teach_crafting_recipe(crafting_recipe_type)
+		to_chat(user,span_notice("You learned how to make [initial(R.name)]."))
+
+/obj/item/book/granter/crafting_recipe/weapons
+	name = "makeshift weapons 101"
+	desc = "A book filled with directions on how to make various weaponry."
+	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/flamethrower)
+	icon_state = "bookCrafting"
+	oneuse = TRUE

@@ -15,6 +15,7 @@
 	var/precision_coeff
 	var/message_cooldown
 	var/breakout_time = 1200
+	var/obj/machinery/computer/scan_consolenew/linked_console = null
 
 /obj/machinery/dna_scannernew/RefreshParts()
 	scan_level = 0
@@ -22,17 +23,17 @@
 	precision_coeff = 0
 	for(var/obj/item/stock_parts/scanning_module/P in component_parts)
 		scan_level += P.rating
-	for(var/obj/item/stock_parts/manipulator/P in component_parts)
-		precision_coeff = P.rating
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
+		precision_coeff = M.rating
 	for(var/obj/item/stock_parts/micro_laser/P in component_parts)
 		damage_coeff = P.rating
 
 /obj/machinery/dna_scannernew/examine(mob/user)
-	..()
+	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Radiation pulse accuracy increased by factor <b>[precision_coeff**2]</b>.<br>Radiation pulse damage decreased by factor <b>[damage_coeff**2]</b>.<span>")
+		. += "<span class='notice'>The status display reads: Radiation pulse accuracy increased by factor <b>[precision_coeff**2]</b>.<br>Radiation pulse damage decreased by factor <b>[damage_coeff**2]</b>.<span>"
 		if(scan_level >= 3)
-			to_chat(user, "<span class='notice'>Scanner has been upgraded to support autoprocessing.<span>")
+			. += "<span class='notice'>Scanner has been upgraded to support autoprocessing.<span>"
 
 /obj/machinery/dna_scannernew/update_icon()
 
@@ -53,13 +54,9 @@
 	//running
 	icon_state = initial(icon_state)+ (state_open ? "_open" : "")
 
-/obj/machinery/dna_scannernew/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/dna_scannernew/proc/toggle_open(mob/user)
 	if(panel_open)
-		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+		to_chat(user, span_notice("Close the maintenance panel first."))
 		return
 
 	if(state_open)
@@ -67,7 +64,7 @@
 		return
 
 	else if(locked)
-		to_chat(user, "<span class='notice'>The bolts are locked down, securing the door shut.</span>")
+		to_chat(user, span_notice("The bolts are locked down, securing the door shut."))
 		return
 
 	open_machine()
@@ -78,15 +75,15 @@
 		return
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message("<span class='notice'>You see [user] kicking against the door of [src]!</span>", \
-		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
-		"<span class='italics'>You hear a metallic creaking from [src].</span>")
+	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
+		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
+		span_italics("You hear a metallic creaking from [src]."))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked)
 			return
 		locked = FALSE
-		user.visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>", \
-			"<span class='notice'>You successfully break out of [src]!</span>")
+		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
+			span_notice("You successfully break out of [src]!"))
 		open_machine()
 
 /obj/machinery/dna_scannernew/proc/locate_computer(type_)
@@ -104,9 +101,8 @@
 
 	// DNA manipulators cannot operate on severed heads or brains
 	if(iscarbon(occupant))
-		var/obj/machinery/computer/scan_consolenew/console = locate_computer(/obj/machinery/computer/scan_consolenew)
-		if(console)
-			console.on_scanner_close()
+		if(linked_console)
+			linked_console.on_scanner_close()
 
 	return TRUE
 
@@ -116,13 +112,16 @@
 
 	..()
 
+	if(linked_console)
+		linked_console.on_scanner_open()
+
 	return TRUE
 
 /obj/machinery/dna_scannernew/relaymove(mob/user as mob)
 	if(user.stat || locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50
-			to_chat(user, "<span class='warning'>[src]'s door won't budge!</span>")
+			to_chat(user, span_warning("[src]'s door won't budge!"))
 		return
 	open_machine()
 

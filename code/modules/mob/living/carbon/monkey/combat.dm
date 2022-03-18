@@ -118,7 +118,7 @@
 		cuff_resist(I)
 
 /mob/living/carbon/monkey/proc/should_target(var/mob/living/L)
-	if(has_trait(TRAIT_PACIFISM))
+	if(HAS_TRAIT(src, TRAIT_PACIFISM))
 		return FALSE
 
 	if(enemies[L])
@@ -132,7 +132,7 @@
 
 /mob/living/carbon/monkey/proc/handle_combat()
 	if(pickupTarget)
-		if(restrained() || blacklistItems[pickupTarget] || pickupTarget.has_trait(TRAIT_NODROP))
+		if(IsDeadOrIncap() || restrained() || blacklistItems[pickupTarget] || HAS_TRAIT(pickupTarget, TRAIT_NODROP))
 			pickupTarget = null
 		else
 			pickupTimer++
@@ -152,7 +152,7 @@
 						var/mob/M = pickupTarget.loc
 						if(!pickpocketing)
 							pickpocketing = TRUE
-							M.visible_message("[src] starts trying to take [pickupTarget] from [M]", "[src] tries to take [pickupTarget]!")
+							M.visible_message("[src] starts trying to take [pickupTarget] from [M]!", "[src] tries to take [pickupTarget]!")
 							INVOKE_ASYNC(src, .proc/pickpocket, M)
 			return TRUE
 
@@ -308,12 +308,12 @@
 	if(do_mob(src, M, MONKEY_ITEM_SNATCH_DELAY) && pickupTarget)
 		for(var/obj/item/I in M.held_items)
 			if(I == pickupTarget)
-				M.visible_message("<span class='danger'>[src] snatches [pickupTarget] from [M].</span>", "<span class='userdanger'>[src] snatched [pickupTarget]!</span>")
+				M.visible_message(span_danger("[src] snatches [pickupTarget] from [M]."), span_userdanger("[src] snatched [pickupTarget]!"))
 				if(M.temporarilyRemoveItemFromInventory(pickupTarget))
 					if(!QDELETED(pickupTarget) && !equip_item(pickupTarget))
 						pickupTarget.forceMove(drop_location())
 				else
-					M.visible_message("<span class='danger'>[src] tried to snatch [pickupTarget] from [M], but failed!</span>", "<span class='userdanger'>[src] tried to grab [pickupTarget]!</span>")
+					M.visible_message(span_danger("[src] tried to snatch [pickupTarget] from [M], but failed!"), span_userdanger("[src] tried to grab [pickupTarget]!"))
 	pickpocketing = FALSE
 	pickupTarget = null
 	pickupTimer = 0

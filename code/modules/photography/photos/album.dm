@@ -3,18 +3,19 @@
  */
 /obj/item/storage/photo_album
 	name = "photo album"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/artstuff.dmi'
 	icon_state = "album"
 	item_state = "briefcase"
 	lefthand_file = 'icons/mob/inhands/equipment/briefcase_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/briefcase_righthand.dmi'
 	resistance_flags = FLAMMABLE
 	var/persistence_id
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 
 /obj/item/storage/photo_album/Initialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
-	STR.can_hold = typecacheof(list(/obj/item/photo))
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/photo))
 	STR.max_combined_w_class = 42
 	STR.max_items = 21
 	LAZYADD(SSpersistence.photo_albums, src)

@@ -211,6 +211,10 @@
 /obj/item/proc/worn_overlays(isinhands = FALSE, icon_file)
 	. = list()
 
+/mob/living/carbon/proc/assign_bodypart_ownership()
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/BP = X
+		BP.original_owner = src
 
 /mob/living/carbon/update_body()
 	update_body_parts()
@@ -276,7 +280,7 @@
 		else
 			. += "-robotic"
 
-	if(has_trait(TRAIT_HUSK))
+	if(HAS_TRAIT(src, TRAIT_HUSK))
 		. += "-husk"
 
 

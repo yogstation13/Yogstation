@@ -10,7 +10,7 @@
 	speak_emote = list("warbles", "quavers")
 	emote_hear = list("trills.")
 	emote_see = list("sniffs.", "burps.")
-	weather_immunities = list("lava","ash")
+	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
 	faction = list("mining", "ashwalker")
 	density = FALSE
 	speak_chance = 1
@@ -31,13 +31,13 @@
 	stop_automated_movement_when_pulled = TRUE
 	stat_exclusive = TRUE
 	robust_searching = TRUE
-	search_objects = TRUE
+	search_objects = 3 //Ancient simplemob AI shitcode. This makes them ignore all other mobs.
 	del_on_death = TRUE
 	loot = list(/obj/effect/decal/cleanable/blood/gibs)
 	deathmessage = "is pulped into bugmash."
 
 	animal_species = /mob/living/simple_animal/hostile/asteroid/gutlunch
-	childtype = list(/mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck = 45, /mob/living/simple_animal/hostile/asteroid/gutlunch/guthen = 55)
+	childtype = list(/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch = 100)
 
 	wanted_objects = list(/obj/effect/decal/cleanable/xenoblood/xgibs, /obj/effect/decal/cleanable/blood/gibs/, /obj/item/organ)
 	var/obj/item/udder/gutlunch/udder = null
@@ -89,7 +89,7 @@
 	if(is_type_in_typecache(target,wanted_objects)) //we eats
 		udder.generateMilk()
 		regenerate_icons()
-		visible_message("<span class='notice'>[src] slurps up [target].</span>")
+		visible_message(span_notice("[src] slurps up [target]."))
 		qdel(target)
 	return ..()
 
@@ -120,6 +120,38 @@
 		udder.reagents.clear_reagents()
 		regenerate_icons()
 
+/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch
+	name = "grublunch"
+	wanted_objects = list() //They don't eat.
+	gold_core_spawnable = NO_SPAWN
+	var/growth = 0
+
+//Baby gutlunch
+/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch/Initialize()
+	. = ..()
+	add_atom_colour("#9E9E9E", FIXED_COLOUR_PRIORITY) //Somewhat hidden
+	resize = 0.45
+	update_transform()
+
+/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch/Life()
+	..()
+	growth++
+	if(growth > 50) //originally used a timer for this but was more problem that it's worth.
+		growUp()
+
+/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch/proc/growUp()
+	var/mob/living/L
+	if(prob(45))
+		L = new /mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck(loc)
+	else
+		L = new /mob/living/simple_animal/hostile/asteroid/gutlunch/guthen(loc)
+	mind?.transfer_to(L)
+	L.faction = faction
+	L.setDir(dir)
+	L.Stun(20, ignore_canstun = TRUE)
+	visible_message(span_notice("[src] grows up into [L]."))
+	Destroy()
+
 //Gutlunch udder
 /obj/item/udder/gutlunch
 	name = "nutrient sac"
@@ -131,7 +163,6 @@
 
 /obj/item/udder/gutlunch/generateMilk()
 	if(prob(60))
-		reagents.add_reagent("cream", rand(2, 5))
+		reagents.add_reagent(/datum/reagent/consumable/cream/bug, rand(2, 5))
 	if(prob(45))
-		reagents.add_reagent("salglu_solution", rand(2,5))
-
+		reagents.add_reagent(/datum/reagent/medicine/salglu_solution, rand(2,5))

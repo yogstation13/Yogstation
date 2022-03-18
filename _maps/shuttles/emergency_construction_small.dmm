@@ -1,0 +1,460 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"d" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/docking_port/mobile/emergency/shuttle_build{
+	dwidth = 9;
+	height = 15;
+	name = "Shuttle Under Construction";
+	port_direction = 4;
+	preferred_direction = 2;
+	width = 26
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"f" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/stack/rods/fifty,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"i" = (
+/obj/structure/table,
+/obj/item/storage/box/lights/mixed{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/electronics/airalarm{
+	pixel_x = 8
+	},
+/obj/item/electronics/airalarm{
+	pixel_x = 8
+	},
+/obj/item/electronics/airalarm{
+	pixel_x = 8
+	},
+/obj/item/electronics/airalarm{
+	pixel_x = 8
+	},
+/obj/item/electronics/airlock{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/electronics/airlock{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/electronics/airlock{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/electronics/airlock{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/electronics/airlock{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/electronics/airlock{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/electronics/airlock{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/electronics/airlock{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"k" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/shuttle/engine/heater,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"l" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"n" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 4
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/item/airlock_painter,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"s" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"t" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/escape)
+"u" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"w" = (
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"z" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"B" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/electrical,
+/obj/item/clothing/gloves/color/yellow{
+	pixel_y = 8
+	},
+/obj/item/storage/toolbox/electrical,
+/obj/item/multitool{
+	pixel_x = 2;
+	pixel_y = -4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"E" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"M" = (
+/turf/closed/wall/mineral/titanium/interior,
+/area/shuttle/escape)
+"Q" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/shuttle/escape)
+"U" = (
+/obj/structure/table,
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/titaniumglass{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"X" = (
+/obj/structure/table,
+/obj/item/stack/sheet/mineral/titanium/fifty{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Z" = (
+/obj/machinery/computer/emergency_shuttle,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+
+(1,1,1) = {"
+a
+a
+a
+a
+t
+t
+t
+E
+t
+d
+t
+t
+z
+t
+t
+l
+t
+l
+t
+t
+Q
+a
+"}
+(2,1,1) = {"
+a
+t
+t
+t
+t
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+Q
+Q
+"}
+(3,1,1) = {"
+t
+M
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+k
+s
+"}
+(4,1,1) = {"
+z
+w
+w
+w
+w
+w
+w
+w
+w
+w
+u
+u
+w
+w
+w
+w
+w
+w
+w
+w
+k
+s
+"}
+(5,1,1) = {"
+z
+w
+w
+w
+w
+w
+w
+w
+w
+w
+n
+f
+w
+w
+w
+w
+w
+w
+w
+w
+k
+s
+"}
+(6,1,1) = {"
+z
+Z
+w
+w
+w
+w
+w
+w
+w
+w
+B
+X
+w
+w
+w
+w
+w
+w
+w
+w
+k
+s
+"}
+(7,1,1) = {"
+z
+w
+w
+w
+w
+w
+w
+w
+w
+w
+i
+U
+w
+w
+w
+w
+w
+w
+w
+w
+k
+s
+"}
+(8,1,1) = {"
+z
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+k
+s
+"}
+(9,1,1) = {"
+t
+M
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+k
+s
+"}
+(10,1,1) = {"
+a
+t
+t
+t
+t
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+Q
+Q
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+t
+t
+t
+t
+z
+t
+t
+t
+z
+t
+t
+t
+z
+t
+t
+t
+Q
+a
+"}

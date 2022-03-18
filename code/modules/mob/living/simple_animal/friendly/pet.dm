@@ -2,7 +2,7 @@
 	icon = 'icons/mob/pets.dmi'
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	blood_volume = BLOOD_VOLUME_NORMAL
+	blood_volume = BLOOD_VOLUME_GENERIC
 	var/unique_pet = FALSE // if the mob can be renamed
 	var/obj/item/clothing/neck/petcollar/pcollar
 	var/collar_type //if the mob has collar sprites, define them.
@@ -19,12 +19,26 @@
 		return
 	pcollar = P
 	regenerate_icons()
-	to_chat(user, "<span class='notice'>You put the [P] around [src]'s neck.</span>")
+	to_chat(user, span_notice("You put the [P] around [src]'s neck."))
 	if(P.tagname && !unique_pet)
 		fully_replace_character_name(null, "\proper [P.tagname]")
 
+/mob/living/simple_animal/pet/Move(NewLoc, direct)
+	. = ..()
+
+	if(!pcollar)
+		return
+	if (!(mobility_flags & MOBILITY_STAND))
+		return
+	if(loc != NewLoc)
+		return
+	if(!has_gravity(loc))
+		return
+		
+	SEND_SIGNAL(pcollar, COMSIG_NECK_STEP_ACTION)
+
 /mob/living/simple_animal/pet/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/clothing/neck/petcollar) && !pcollar && collar_type)
+	if(istype(O, /obj/item/clothing/neck/petcollar) && !pcollar)
 		add_collar(O, user)
 		return
 
@@ -72,4 +86,3 @@
 	if(pcollar && collar_type)
 		add_overlay("[collar_type]collar")
 		add_overlay("[collar_type]tag")
-

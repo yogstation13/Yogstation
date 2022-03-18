@@ -32,17 +32,22 @@
 	var/weaponscheck = FALSE //If true, arrest people for weapons if they lack access
 	var/check_records = TRUE //Does it check security records?
 	var/arrest_type = FALSE //If true, don't handcuff
+	var/russian = FALSE // If true, it uses russian voice lines
+	var/stuncount = 0 // The securitron will stun you until it gets tired of doing it
+	var/mob/living/carbon/lastStunned // Who was stunned last?
 
 /mob/living/simple_animal/bot/secbot/beepsky
-	name = "Officer Beep O'sky"
-	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
+	name = "Commander Beepsky"
+	desc = "It's Commander Beepsky! Officially the superior officer of all bots on station, Beepsky remains as humble and dedicated to the law as the day he was first fabricated."
 	idcheck = FALSE
 	weaponscheck = FALSE
 	auto_patrol = TRUE
+	commissioned = TRUE
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr
 	name = "Officer Pipsqueak"
-	desc = "It's Officer Beep O'sky's smaller, just-as aggressive cousin, Pipsqueak."
+	desc = "It's Commander Beepsky's smaller, just-as aggressive cousin, Pipsqueak."
+	commissioned = FALSE
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr/Initialize()
 	. = ..()
@@ -51,10 +56,11 @@
 
 
 /mob/living/simple_animal/bot/secbot/beepsky/explode()
+	lastStunned = null
 	var/atom/Tsec = drop_location()
 	new /obj/item/stock_parts/cell/potato(Tsec)
 	var/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/S = new(Tsec)
-	S.reagents.add_reagent("whiskey", 15)
+	S.reagents.add_reagent(/datum/reagent/consumable/ethanol/whiskey, 15)
 	S.on_reagent_change(ADD_REAGENT)
 	..()
 
@@ -73,6 +79,9 @@
 	//SECHUD
 	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 	secsensor.add_hud_to(src)
+
+	if(prob(5))
+		russian = TRUE // imported from Russia
 
 /mob/living/simple_animal/bot/secbot/update_icon()
 	if(mode == BOT_HUNT)
@@ -130,7 +139,10 @@ Auto Patrol: []"},
 
 /mob/living/simple_animal/bot/secbot/Topic(href, href_list)
 	if(..())
-		return 1
+		return TRUE
+
+	if(!issilicon(usr) && !IsAdminGhost(usr) && !(bot_core.allowed(usr) || !locked))
+		return TRUE
 
 	switch(href_list["operation"])
 		if("idcheck")
@@ -193,9 +205,9 @@ Auto Patrol: []"},
 	..()
 	if(emagged == 2)
 		if(user)
-			to_chat(user, "<span class='danger'>You short out [src]'s target assessment circuits.</span>")
+			to_chat(user, span_danger("You short out [src]'s target assessment circuits."))
 			oldtarget_name = user.name
-		audible_message("<span class='danger'>[src] buzzes oddly!</span>")
+		audible_message(span_danger("[src] buzzes oddly!"))
 		declare_arrests = FALSE
 		update_icon()
 
@@ -211,9 +223,15 @@ Auto Patrol: []"},
 		return
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if(!C.IsParalyzed() || arrest_type)
+		if((!C.IsParalyzed() || arrest_type) && stuncount < 30)
 			stun_attack(A)
+			if(lastStunned && lastStunned == A)
+				stuncount++
+			else
+				stuncount = 0
+			lastStunned = A
 		else if(C.canBeHandcuffed() && !C.handcuffed)
+			stuncount = 0
 			cuff(A)
 	else
 		..()
@@ -229,8 +247,8 @@ Auto Patrol: []"},
 /mob/living/simple_animal/bot/secbot/proc/cuff(mob/living/carbon/C)
 	mode = BOT_ARREST
 	playsound(src, 'sound/weapons/cablecuff.ogg', 30, TRUE, -2)
-	C.visible_message("<span class='danger'>[src] is trying to put zipties on [C]!</span>",\
-						"<span class='userdanger'>[src] is trying to put zipties on you!</span>")
+	C.visible_message(span_danger("[src] is trying to put zipties on [C]!"),\
+						span_userdanger("[src] is trying to put zipties on you!"))
 	addtimer(CALLBACK(src, .proc/attempt_handcuff, C), 60)
 
 /mob/living/simple_animal/bot/secbot/proc/attempt_handcuff(mob/living/carbon/C)
@@ -239,7 +257,7 @@ Auto Patrol: []"},
 	if(!C.handcuffed)
 		C.handcuffed = new /obj/item/restraints/handcuffs/cable/zipties/used(C)
 		C.update_handcuffed()
-		playsound(src, "law", 50, 0)
+		playsound(src, russian ? "law_russian" : "law", 50, 0)
 		back_to_idle()
 
 /mob/living/simple_animal/bot/secbot/proc/stun_attack(mob/living/carbon/C)
@@ -262,8 +280,8 @@ Auto Patrol: []"},
 	if(declare_arrests)
 		var/area/location = get_area(src)
 		speak("[arrest_type ? "Detaining" : "Arresting"] level [threat] scumbag <b>[C]</b> in [location].", radio_channel)
-	C.visible_message("<span class='danger'>[src] has stunned [C]!</span>",\
-							"<span class='userdanger'>[src] has stunned you!</span>")
+	C.visible_message(span_danger("[src] has stunned [C]!"),\
+							span_userdanger("[src] has stunned you!"))
 
 /mob/living/simple_animal/bot/secbot/handle_automated_action()
 	if(!..())
@@ -387,7 +405,10 @@ Auto Patrol: []"},
 			target = C
 			oldtarget_name = C.name
 			speak("Level [threatlevel] infraction alert!")
-			playsound(loc, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
+			if(russian)
+				playsound(loc, pick('sound/voice/beepsky_russian/criminal.ogg', 'sound/voice/beepsky_russian/justice.ogg', 'sound/voice/beepsky_russian/freeze.ogg'), 50, FALSE)
+			else
+				playsound(loc, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
 			visible_message("<b>[src]</b> points at [C.name]!")
 			mode = BOT_HUNT
 			INVOKE_ASYNC(src, .proc/handle_automated_action)
@@ -403,7 +424,7 @@ Auto Patrol: []"},
 /mob/living/simple_animal/bot/secbot/explode()
 
 	walk_to(src,0)
-	visible_message("<span class='boldannounce'>[src] blows apart!</span>")
+	visible_message(span_boldannounce("[src] blows apart!"))
 	var/atom/Tsec = drop_location()
 
 	var/obj/item/bot_assembly/secbot/Sa = new (Tsec)

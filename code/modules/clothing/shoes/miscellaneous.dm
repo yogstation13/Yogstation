@@ -19,6 +19,10 @@
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
+/obj/item/clothing/shoes/combat/combat_knife/ComponentInitialize()
+	. = ..()
+	new /obj/item/kitchen/knife/combat(src)
+
 /obj/item/clothing/shoes/combat/swat //overpowered boots for death squads
 	name = "\improper SWAT boots"
 	desc = "High speed, no drag combat boots."
@@ -61,7 +65,7 @@
 
 /obj/item/clothing/shoes/galoshes/dry
 	name = "absorbent galoshes"
-	desc = "A pair of orange rubber boots, designed to prevent slipping on wet surfaces while also drying them."
+	desc = "A pair of purple rubber boots, designed to prevent slipping on wet surfaces while also drying them."
 	icon_state = "galoshes_dry"
 
 /obj/item/clothing/shoes/galoshes/dry/step_action()
@@ -77,11 +81,17 @@
 	item_color = "clown"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes/clown
 	var/datum/component/waddle
-	var/enabled_waddle = FALSE
+	var/enabled_waddle = TRUE
+
+/obj/item/clothing/shoes/clown_shoes/clowncrocs
+	desc = "The prankster's standard-issue clowning crocs. Damn, they're cool! These crocs seems smaller than the clown's standard shoes. Ctrl-click to toggle waddle dampeners."
+	name = "clown crocs"
+	icon_state = "clowncrocs"
+	item_state = "clowncrocs"
 
 /obj/item/clothing/shoes/clown_shoes/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, /datum/outputs/clownstep, 50)
+	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50)
 
 /obj/item/clothing/shoes/clown_shoes/equipped(mob/user, slot)
 	. = ..()
@@ -104,10 +114,10 @@
 		to_chat(user, "You must hold the [src] in your hand to do this.")
 		return
 	if (!enabled_waddle)
-		to_chat(user, "<span class='notice'>You switch off the waddle dampeners!</span>")
+		to_chat(user, span_notice("You switch off the waddle dampeners!"))
 		enabled_waddle = TRUE
 	else
-		to_chat(user, "<span class='notice'>You switch on the waddle dampeners!</span>")
+		to_chat(user, span_notice("You switch on the waddle dampeners!"))
 		enabled_waddle = FALSE
 
 /obj/item/clothing/shoes/clown_shoes/jester
@@ -128,9 +138,20 @@
 	resistance_flags = NONE
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+	force = 1
 
 /obj/item/clothing/shoes/jackboots/fast
 	slowdown = -1
+
+/obj/item/clothing/shoes/jackboots/warden
+	name = "warden's spur jackboots"
+	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time. These boots have spurs attached to them."
+	icon_state = "spurboots"
+	item_state = "spurboots"
+
+/obj/item/clothing/shoes/jackboots/warden/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/effects/spurstep.ogg'))
 
 /obj/item/clothing/shoes/winterboots
 	name = "winter boots"
@@ -143,6 +164,13 @@
 	heat_protection = FEET|LEGS
 	max_heat_protection_temperature = SHOES_MAX_TEMP_PROTECT
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+
+/obj/item/clothing/shoes/winterboots/ice_boots
+	name = "ice hiking boots"
+	desc = "A pair of winter boots with special grips on the bottom, designed to prevent slipping on frozen surfaces."
+	icon_state = "iceboots"
+	item_state = "iceboots"
+	clothing_flags = NOSLIP_ICE
 
 /obj/item/clothing/shoes/workboots
 	name = "work boots"
@@ -163,8 +191,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/shoes/cult
-	name = "nar-sian invoker boots"
-	desc = "A pair of boots worn by the followers of Nar-Sie."
+	name = "\improper Nar'Sien invoker boots"
+	desc = "A pair of boots worn by the followers of Nar'Sie."
 	icon_state = "cult"
 	item_state = "cult"
 	item_color = "cult"
@@ -182,7 +210,7 @@
 
 /obj/item/clothing/shoes/cult/alt/ghost/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, CULT_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
 /obj/item/clothing/shoes/cyborg
 	name = "cyborg boots"
@@ -225,31 +253,23 @@
 	var/jumpspeed = 3
 	var/recharging_rate = 60 //default 6 seconds between each dash
 	var/recharging_time = 0 //time until next dash
-	var/jumping = FALSE //are we mid-jump?
 
 /obj/item/clothing/shoes/bhop/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
 
-	if(jumping)
-		return
-
 	if(recharging_time > world.time)
-		to_chat(user, "<span class='warning'>The boot's internal propulsion needs to recharge still!</span>")
+		to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
 		return
 
 	var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 
-	if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = CALLBACK(src, .proc/hop_end)))
-		jumping = TRUE
+	if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
 		playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
-		user.visible_message("<span class='warning'>[usr] dashes forward into the air!</span>")
+		user.visible_message(span_warning("[usr] dashes forward into the air!"))
+		recharging_time = world.time + recharging_rate
 	else
-		to_chat(user, "<span class='warning'>Something prevents you from dashing forward!</span>")
-
-/obj/item/clothing/shoes/bhop/proc/hop_end()
-	jumping = FALSE
-	recharging_time = world.time + recharging_rate
+		to_chat(user, span_warning("Something prevents you from dashing forward!"))
 
 /obj/item/clothing/shoes/singery
 	name = "yellow performer's boots"
@@ -290,7 +310,7 @@
 	if(!isliving(user))
 		return
 	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/wheelys))
-		to_chat(user, "<span class='warning'>You must be wearing the wheely-heels to use them!</span>")
+		to_chat(user, span_warning("You must be wearing the wheely-heels to use them!"))
 		return
 	if(!(W.is_occupant(user)))
 		wheelToggle = FALSE
@@ -337,3 +357,191 @@
 		set_light(0)
 		lightCycle = 0
 		active = FALSE
+
+/obj/item/clothing/shoes/russian
+	name = "russian boots"
+	desc = "Comfy shoes."
+	icon_state = "rus_shoes"
+	item_state = "rus_shoes"
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+
+/obj/item/clothing/shoes/cowboy
+	name = "cowboy boots"
+	desc = "A small sticker lets you know they've been inspected for snakes, It is unclear how long ago the inspection took place..."
+	icon_state = "cowboy_brown"
+	permeability_coefficient = 0.05 //these are quite tall
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+	custom_price = 35 //poor assistants cant afford 50 credits
+	var/list/occupants = list()
+	var/max_occupants = 4
+
+/obj/item/clothing/shoes/cowboy/Initialize()
+	. = ..()
+	if(prob(2))
+		var/mob/living/simple_animal/hostile/retaliate/poison/snake/bootsnake = new/mob/living/simple_animal/hostile/retaliate/poison/snake(src)
+		occupants += bootsnake
+
+
+/obj/item/clothing/shoes/cowboy/equipped(mob/living/carbon/user, slot)
+	. = ..()
+	if(slot == SLOT_SHOES)
+		for(var/mob/living/occupant in occupants)
+			occupant.forceMove(user.drop_location())
+			user.visible_message(span_warning("[user] recoils as something slithers out of [src]."), span_userdanger(" You feel a sudden stabbing pain in your [pick("foot", "toe", "ankle")]!"))
+			user.Knockdown(20) //Is one second paralyze better here? I feel you would fall on your ass in some fashion.
+			user.apply_damage(5, BRUTE, pick(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
+			if(istype(occupant, /mob/living/simple_animal/hostile/retaliate/poison))
+				user.reagents.add_reagent(/datum/reagent/toxin, 7)
+		occupants.Cut()
+
+/obj/item/clothing/shoes/cowboy/MouseDrop_T(mob/living/target, mob/living/user)
+	. = ..()
+	if(user.stat || !(user.mobility_flags & MOBILITY_USE) || user.restrained() || !Adjacent(user) || !user.Adjacent(target) || target.stat == DEAD)
+		return
+	if(occupants.len >= max_occupants)
+		to_chat(user, span_notice("[src] are full!"))
+		return
+	if(istype(target, /mob/living/simple_animal/hostile/retaliate/poison/snake) || istype(target, /mob/living/simple_animal/hostile/headcrab) || istype(target, /mob/living/carbon/alien/larva))
+		occupants += target
+		target.forceMove(src)
+		to_chat(user, span_notice("[target] slithers into [src]"))
+
+/obj/item/clothing/shoes/cowboy/container_resist(mob/living/user)
+	if(!do_after(user, 1 SECONDS, target = user))
+		return
+	user.forceMove(user.drop_location())
+	occupants -= user
+
+/obj/item/clothing/shoes/cowboy/white
+	name = "white cowboy boots"
+	icon_state = "cowboy_white"
+
+/obj/item/clothing/shoes/cowboy/black
+	name = "black cowboy boots"
+	desc = "You get the feeling someone might have been hanged in these boots."
+	icon_state = "cowboy_black"
+
+/obj/item/clothing/shoes/cowboy/fancy
+	name = "bilton wrangler boots"
+	desc = "A pair of authentic haute couture boots from Japanifornia. You doubt they have ever been close to cattle."
+	icon_state = "cowboy_fancy"
+	permeability_coefficient = 0.08
+
+/obj/item/clothing/shoes/cowboy/lizard
+	name = "lizard skin boots"
+	desc = "You can hear a faint hissing from inside the boots; you hope it is just a mournful ghost."
+	icon_state = "lizardboots_green"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 0) //lizards like to stay warm
+
+/obj/item/clothing/shoes/cowboy/lizard/masterwork
+	name = "\improper Hugs-The-Feet lizard skin boots"
+	desc = "A pair of masterfully crafted lizard skin boots. Finally a good application for the station's most bothersome inhabitants."
+	icon_state = "lizardboots_blue"
+
+/obj/effect/spawner/lootdrop/lizardboots
+	name = "random lizard boot quality"
+	desc = "Which ever gets picked, the lizard race loses"
+	icon = 'icons/obj/clothing/shoes.dmi'
+	icon_state = "lizardboots_green"
+	loot = list(
+		/obj/item/clothing/shoes/cowboy/lizard = 7,
+		/obj/item/clothing/shoes/cowboy/lizard/masterwork = 1)
+
+/obj/item/clothing/shoes/pathtreads
+	name = "pathfinder treads"
+	desc = "Massive boots made from chitin, they look hand-crafted."
+	icon_state = "pathtreads"
+	item_state = "pathtreads"
+	strip_delay = 50
+	body_parts_covered = LEGS|FEET
+	resistance_flags = FIRE_PROOF
+	heat_protection = LEGS|FEET
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	cold_protection = LEGS|FEET
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
+/obj/item/clothing/shoes/xeno_wraps //Standard for all digitigrade legs and feets
+	name = "footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps for those with podiatric deficiencies. They're quite itchy and scratchy."
+	icon_state = "footwraps"
+	item_state = "footwraps"
+	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
+	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+
+/obj/item/clothing/shoes/xeno_wraps/jackboots // Footwraps woven with security-grade materials, still somewhat inferior to full jackboots.
+	name = "reinforced footwraps"
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
+	icon_state = "footwraps_s"
+	item_state = "footwraps_s"
+	strip_delay = 25 // Half time to take off
+	equip_delay_other = 25 // Half time
+	resistance_flags = NONE
+	permeability_coefficient = 0.70 // Fabric is more permeable than boot, but still somewhat resistant
+	// pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes -- No storage pocket for wraps
+	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
+	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+
+/obj/item/clothing/shoes/xeno_wraps/command  // Not applicable unless 11505 merges - Digitigrade-exclusive shoes for Command positions
+	name = "command footwraps"
+	desc = "These Command-grade NanoTrasen fiber footwraps exude an air of refinement not often felt by those with alien podiatric structures."
+	icon_state = "footwraps_c"
+	item_state = "footwraps_c"
+	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
+	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+
+/obj/item/clothing/shoes/airshoes
+	name = "air shoes"
+	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
+	icon_state = "airshoes"
+	obj_flags = UNIQUE_RENAME //im not fucking naming them 'sonic 11's you can do that yourself ffm
+	actions_types = list(/datum/action/item_action/airshoes, /datum/action/item_action/dash)
+	var/airToggle = FALSE
+	var/obj/vehicle/ridden/scooter/airshoes/A
+	permeability_coefficient = 0.05
+	var/recharging_time = 0 
+	var/jumpdistance = 7 //Increased distance so it might see some offensive use
+	var/jumpspeed = 5 //fast
+	var/recharging_rate = 60 
+	syndicate = TRUE
+
+/obj/item/clothing/shoes/airshoes/Initialize()
+	. = ..()
+	A = new/obj/vehicle/ridden/scooter/airshoes(null)
+	
+/obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
+	if(!isliving(user))
+		return
+	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/airshoes))
+		to_chat(user, span_warning("You must be wearing the air shoes to use them!"))
+		return
+	if(istype(action,/datum/action/item_action/airshoes))
+		if(!(A.is_occupant(user)))
+			airToggle = FALSE
+		if(airToggle)
+			A.unbuckle_mob(user)
+			airToggle = FALSE
+			return
+		A.forceMove(get_turf(user))
+		A.buckle_mob(user)
+		airToggle = TRUE
+	else if(istype(action,/datum/action/item_action/dash))
+		if(recharging_time > world.time)
+			to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
+			return
+		
+		var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
+		if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
+			playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
+			user.visible_message(span_warning("[usr] dashes forward into the air!"))
+			recharging_time = world.time + recharging_rate
+		else
+			to_chat(user, span_warning("Something prevents you from dashing forward!"))
+
+/obj/item/clothing/shoes/airshoes/dropped(mob/user)
+	if(airToggle)
+		A.unbuckle_mob(user)
+		airToggle = FALSE
+	..()
+/obj/item/clothing/shoes/airshoes/Destroy()
+	QDEL_NULL(A)
+	. = ..()

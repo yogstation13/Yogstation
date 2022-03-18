@@ -1,9 +1,13 @@
+GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
+GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
+GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
+
 /client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 
 	if(!mob)
@@ -11,21 +15,21 @@
 
 	if(!holder)
 		if(!GLOB.ooc_allowed)
-			to_chat(src, "<span class='danger'>OOC is globally muted.</span>")
+			to_chat(src, span_danger("OOC is globally muted."))
 			return
 		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
+			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
+			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 	if(is_banned_from(ckey, "OOC"))
-		to_chat(src, "<span class='danger'>You have been banned from OOC.</span>")
+		to_chat(src, span_danger("You have been banned from OOC."))
 		return
 	if(QDELETED(src))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)
@@ -34,7 +38,11 @@
 	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
-	if((copytext(msg, 1, 2) in list(".",";",":","#")) || (findtext(lowertext(copytext(msg, 1, 5)), "say")))
+	//yogs start -- smarter ick ock detection
+	var/regex/ickock = regex(@"^\s*(#.*|,.*|(:|;)(\w|\s|\d)|(say \x22)|\.\.?(?!\.))","i")
+	//captures a lot of accidental in character speech in ooc chat
+	if(length(msg) > 4 && ickock.Find(msg))
+	//yogs end
 		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
 			return
 
@@ -48,7 +56,7 @@
 			return
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
-		to_chat(src, "<span class='danger'>You have OOC muted.</span>")
+		to_chat(src, span_danger("You have OOC muted."))
 		return
 
 	mob.log_talk(raw_msg, LOG_OOC)
@@ -63,15 +71,31 @@
 			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
 	//YOG START - Yog OOC
-	var/regex/ping = regex("@(\\w+)","g")//Now lets check if they pinged anyone
-	if(ping.Find(msg))
+
+	//PINGS
+	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
+	// Regex101 link to this specific regex, as of 3rd April 2019: https://regex101.com/r/YtmLDs/7
+	var/list/pinged = list()
+	while(ping.Find(msg))
+		for(var/x in ping.group)
+			pinged |= ckey(x)
+	var/list/clientkeys = list()
+	for(var/x in GLOB.clients)// If the "SENDING MESSAGES OUT" for-loop starts iterating over something else, make this GLOB *that* something else.
+		var/client/Y = x //God bless typeless for-loops
+		clientkeys += Y.ckey
+		if(Y.holder && Y.holder.fakekey)
+			clientkeys += Y.holder.fakekey
+	pinged &= clientkeys
+	if(pinged.len)
 		if((world.time - last_ping_time) < 30)
-			to_chat(src,"<span class='danger'>You are pinging too much! Please wait before pinging again.</span>")
+			to_chat(src,span_danger("You are pinging too much! Please wait before pinging again."))
 			return
 		last_ping_time = world.time
-	var/list/pinged = ping.group
-	for(var/x in pinged)
-		x = ckey(x)
+
+	//MESSAGE CRAFTING -- This part handles actually making the messages that are to be displayed.
+	var/bussedcolor = GLOB.OOC_COLOR ? GLOB.OOC_COLOR : "" // So /TG/ decided to fuck up how OOC colours are handled.
+	// So we're sticking a weird <font color='[bussedcolor]'></font> into shit to handle their new system.
+	// Completely rewrote this OOC-handling code and /TG/ still manages to make it bad. Hate tg.
 	var/oocmsg = ""; // The message sent to normal people
 	var/oocmsg_toadmins = FALSE; // The message sent to admins.
 	if(holder) // If the speaker is an admin or something
@@ -80,23 +104,29 @@
 		else // Else if they're an AdminObserver
 			oocmsg += "<span class='adminobserverooc'><span class='prefix'>[find_admin_rank(src)]" // The header for an AO's OOC.
 		//Check yogstation\code\module\client\verbs\ooc for the find_admin_rank definition.
-		
+
 		if(holder.fakekey) // If they're stealhminning
 			oocmsg_toadmins = oocmsg + "OOC:</span> <EM>[keyname]/([holder.fakekey]):</EM> <span class='message linkify'>[msg]</span></span></font>"
 			// ^ Message sent to people who should know when someone's stealthminning
-			oocmsg = "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey]:</EM> <span class='message linkify'>[msg]</span></span></font>"
+			oocmsg = span_ooc("<font color='[bussedcolor]'>[span_prefix("OOC:")] <EM>[holder.fakekey]:</EM> <span class='message linkify'>[msg]</span></font>")
 			// ^ Message sent to normal people
 		else
 			oocmsg += "OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>" // Footer for an admin or AO's OOC.
 			oocmsg_toadmins = oocmsg
 	else
 		if(is_mentor()) // If the speaker is a mentor
-			oocmsg = "<font color='[GLOB.mentor_ooc_colour]'>"
+			var mposition = "Mentor"
+			mposition = src.mentor_datum?.position
+			oocmsg = "<span class='ooc'>\["
+			oocmsg += "[mposition]"
+			oocmsg += "]<font color='[prefs.ooccolor]'>"
 		else
-			oocmsg = "<font color='[GLOB.normal_ooc_colour]'>"
-		oocmsg += "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>"
+			oocmsg = "<span class='ooc'>[(is_donator(src) && !CONFIG_GET(flag/everyone_is_donator)) ? "(Donator)" : ""]"
+			oocmsg += "<font color='[bussedcolor]'>"
+		oocmsg += "[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></font></span>"
 		oocmsg_toadmins = oocmsg
-	
+
+	//SENDING THE MESSAGES OUT
 	for(var/c in GLOB.clients)
 		var/client/C = c // God bless typeless for-loops
 		if( (C.prefs.chat_toggles & CHAT_OOC) && (holder || !(key in C.prefs.ignoring)) )
@@ -105,7 +135,7 @@
 				sentmsg = oocmsg_toadmins // Get the admin one
 			else
 				sentmsg = oocmsg
-			if(ckey(C.key) in pinged)
+			if( (ckey(C.key) in pinged) || (C.holder && C.holder.fakekey && (C.holder.fakekey in pinged)) )
 				var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
 				pingsound.volume = 50
 				pingsound.pan = 80
@@ -113,6 +143,16 @@
 				sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
 			to_chat(C,sentmsg)
 	//YOGS END
+	var/data = list()
+	data["normal"] = oocmsg
+	data["admin"] = oocmsg_toadmins
+
+	var/source = list()
+	source["is_admin"] = !!holder
+	source["key"] = key
+
+	send2otherserver(json_encode(source), json_encode(data), "ooc_relay")
+
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
 		if(toggle != GLOB.ooc_allowed)
@@ -132,20 +172,17 @@
 	else
 		GLOB.dooc_allowed = !GLOB.dooc_allowed
 
-GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
-GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
-
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
-	set category = "Fun"
-	GLOB.normal_ooc_colour = sanitize_ooccolor(newColor)
+	set category = "Misc"
+	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
 
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
-	set category = "Fun"
-	GLOB.normal_ooc_colour = OOC_COLOR
+	set category = "Misc"
+	GLOB.OOC_COLOR = null
 
 /client/verb/colorooc()
 	set name = "Set Your OOC Color"
@@ -181,91 +218,9 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	set desc ="Check the admin notice if it has been set"
 
 	if(GLOB.admin_notice)
-		to_chat(src, "<span class='boldnotice'>Admin Notice:</span>\n \t [GLOB.admin_notice]")
+		to_chat(src, "[span_boldnotice("Admin Notice:")]\n \t [GLOB.admin_notice]")
 	else
-		to_chat(src, "<span class='notice'>There are no admin notices at the moment.</span>")
-
-/client/verb/fix_chat()
-	set name = "Fix chat"
-	set category = "OOC"
-	if (!chatOutput || !istype(chatOutput))
-		var/action = alert(src, "Invalid Chat Output data found!\nRecreate data?", "Wot?", "Recreate Chat Output data", "Cancel")
-		if (action != "Recreate Chat Output data")
-			return
-		chatOutput = new /datum/chatOutput(src)
-		chatOutput.start()
-		action = alert(src, "Goon chat reloading, wait a bit and tell me if it's fixed", "", "Fixed", "Nope")
-		if (action == "Fixed")
-			log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by re-creating the chatOutput datum")
-		else
-			chatOutput.load()
-			action = alert(src, "How about now? (give it a moment (it may also try to load twice))", "", "Yes", "No")
-			if (action == "Yes")
-				log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by re-creating the chatOutput datum and forcing a load()")
-			else
-				action = alert(src, "Welp, I'm all out of ideas. Try closing byond and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "", "Thanks anyways", "Switch to old chat")
-				if (action == "Switch to old chat")
-					winset(src, "output", "is-visible=true;is-disabled=false")
-					winset(src, "browseroutput", "is-visible=false")
-				log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window after recreating the chatOutput and forcing a load()")
-
-	else if (chatOutput.loaded)
-		var/action = alert(src, "ChatOutput seems to be loaded\nDo you want me to force a reload, wiping the chat log or just refresh the chat window because it broke/went away?", "Hmmm", "Force Reload", "Refresh", "Cancel")
-		switch (action)
-			if ("Force Reload")
-				chatOutput.loaded = FALSE
-				chatOutput.start() //this is likely to fail since it asks , but we should try it anyways so we know.
-				action = alert(src, "Goon chat reloading, wait a bit and tell me if it's fixed", "", "Fixed", "Nope")
-				if (action == "Fixed")
-					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a start()")
-				else
-					chatOutput.load()
-					action = alert(src, "How about now? (give it a moment (it may also try to load twice))", "", "Yes", "No")
-					if (action == "Yes")
-						log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a load()")
-					else
-						action = alert(src, "Welp, I'm all out of ideas. Try closing byond and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "", "Thanks anyways", "Switch to old chat")
-						if (action == "Switch to old chat")
-							winset(src, "output", "is-visible=true;is-disabled=false")
-							winset(src, "browseroutput", "is-visible=false")
-						log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window forcing a start() and forcing a load()")
-
-			if ("Refresh")
-				chatOutput.showChat()
-				action = alert(src, "Goon chat refreshing, wait a bit and tell me if it's fixed", "", "Fixed", "Nope, force a reload")
-				if (action == "Fixed")
-					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a show()")
-				else
-					chatOutput.loaded = FALSE
-					chatOutput.load()
-					action = alert(src, "How about now? (give it a moment)", "", "Yes", "No")
-					if (action == "Yes")
-						log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a load()")
-					else
-						action = alert(src, "Welp, I'm all out of ideas. Try closing byond and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "", "Thanks anyways", "Switch to old chat")
-						if (action == "Switch to old chat")
-							winset(src, "output", "is-visible=true;is-disabled=false")
-							winset(src, "browseroutput", "is-visible=false")
-						log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window forcing a show() and forcing a load()")
-		return
-
-	else
-		chatOutput.start()
-		var/action = alert(src, "Manually loading Chat, wait a bit and tell me if it's fixed", "", "Fixed", "Nope")
-		if (action == "Fixed")
-			log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by manually calling start()")
-		else
-			chatOutput.load()
-			alert(src, "How about now? (give it a moment (it may also try to load twice))", "", "Yes", "No")
-			if (action == "Yes")
-				log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by manually calling start() and forcing a load()")
-			else
-				action = alert(src, "Welp, I'm all out of ideas. Try closing byond and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "", "Thanks anyways", "Switch to old chat")
-				if (action == "Switch to old chat")
-					winset(src, "output", list2params(list("on-show" = "", "is-disabled" = "false", "is-visible" = "true")))
-					winset(src, "browseroutput", "is-disabled=true;is-visible=false")
-				log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window after manually calling start() and forcing a load()")
-
+		to_chat(src, span_notice("There are no admin notices at the moment."))
 
 
 /client/verb/motd()
@@ -277,15 +232,15 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	if(motd)
 		to_chat(src, "<div class=\"motd\">[motd]</div>", handle_whitespace=FALSE)
 	else
-		to_chat(src, "<span class='notice'>The Message of the Day has not been set.</span>")
+		to_chat(src, span_notice("The Message of the Day has not been set."))
 
 /client/proc/self_notes()
-	set name = "View Admin Remarks"
+	set name = "View Own Admin Notes"
 	set category = "OOC"
 	set desc = "View the notes that admins have written about you"
 
 	if(!CONFIG_GET(flag/see_own_notes))
-		to_chat(usr, "<span class='notice'>Sorry, that function is not enabled on this server.</span>")
+		to_chat(usr, span_notice("Sorry, that function is not enabled on this server."))
 		return
 
 	browse_messages(null, usr.ckey, null, TRUE)
@@ -296,14 +251,11 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	set desc = "View the amount of playtime for roles the server has tracked."
 
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, "<span class='notice'>Sorry, tracking is currently disabled.</span>")
+		to_chat(usr, span_notice("Sorry, tracking is currently disabled."))
 		return
 
-	var/list/body = list()
-	body += "<html><head><title>Playtime for [key]</title></head><BODY><BR>Playtime:"
-	body += get_exp_report()
-	body += "</BODY></HTML>"
-	usr << browse(body.Join(), "window=playerplaytime[ckey];size=550x615")
+	new /datum/job_report_menu(src, usr)
+
 
 /client/proc/ignore_key(client)
 	var/client/C = client
@@ -389,3 +341,31 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 
 		pct += delta
 		winset(src, "mainwindow.split", "splitter=[pct]")
+
+
+/client/verb/policy()
+	set name = "Show Policy"
+	set desc = "Show special server rules related to your current character."
+	set category = "OOC"
+
+	//Collect keywords
+	var/list/keywords = mob.get_policy_keywords()
+	var/header = get_policy(POLICY_VERB_HEADER)
+	var/list/policytext = list(header,"<hr>")
+	var/anything = FALSE
+	for(var/keyword in keywords)
+		var/p = get_policy(keyword)
+		if(p)
+			policytext += p
+			policytext += "<hr>"
+			anything = TRUE
+	if(!anything)
+		policytext += "No related rules found."
+
+	usr << browse(policytext.Join(""),"window=policy")
+
+/client/verb/fix_stat_panel()
+	set name = "Fix Stat Panel"
+	set hidden = TRUE
+
+	init_verbs()

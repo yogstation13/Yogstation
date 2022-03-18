@@ -8,7 +8,7 @@
 	sexes = 0
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
-	species_traits = list(NOBLOOD,NOEYES)
+	species_traits = list(NOBLOOD,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 
@@ -36,12 +36,12 @@
 	limbs_id = "shadow"
 	burnmod = 1.5
 	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE)
-	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYES)
+	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	mutanteyes = /obj/item/organ/eyes/night_vision/nightmare
 	mutant_organs = list(/obj/item/organ/heart/nightmare)
 	mutant_brain = /obj/item/organ/brain/nightmare
-
+	
 	var/info_text = "You are a <span class='danger'>Nightmare</span>. The ability <span class='warning'>shadow walk</span> allows unlimited, unrestricted movement in the dark while activated. \
 					Your <span class='warning'>light eater</span> will destroy any light producing objects you attack, as well as destroy any lights a living creature may be holding. You will automatically dodge gunfire and melee attacks when on a dark tile. If killed, you will eventually revive if left in darkness."
 
@@ -49,21 +49,17 @@
 	. = ..()
 	to_chat(C, "[info_text]")
 
-	C.real_name = "[pick(GLOB.nightmare_names)]"
-	C.name = C.real_name
-	if(C.mind)
-		C.mind.name = C.real_name
-	C.dna.real_name = C.real_name
+	C.fully_replace_character_name("[C.real_name]","[pick(GLOB.nightmare_names)]") // Yogs -- fixes nightmares not having special spooky names. this proc takes the old name first, and *THEN* the new name!
 
 /datum/species/shadow/nightmare/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
 		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
-			H.visible_message("<span class='danger'>[H] dances in the shadows, evading [P]!</span>")
+			H.visible_message(span_danger("[H] dances in the shadows, evading [P]!"))
 			playsound(T, "bullet_miss", 75, 1)
 			return BULLET_ACT_FORCE_PIERCE
-	return BULLET_ACT_HIT
+	return ..()
 
 /datum/species/shadow/nightmare/check_roundstart_eligible()
 	return FALSE
@@ -80,7 +76,7 @@
 	..()
 	if(M.dna.species.id != "nightmare")
 		M.set_species(/datum/species/shadow/nightmare)
-		visible_message("<span class='warning'>[M] thrashes as [src] takes root in [M.p_their()] body!</span>")
+		visible_message(span_warning("[M] thrashes as [src] takes root in [M.p_their()] body!"))
 	var/obj/effect/proc_holder/spell/targeted/shadowwalk/SW = new
 	M.AddSpell(SW)
 	shadowwalk = SW
@@ -100,18 +96,19 @@
 	color = "#1C1C1C"
 	var/respawn_progress = 0
 	var/obj/item/light_eater/blade
+	decay_factor = 0
 
 
 /obj/item/organ/heart/nightmare/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)
 		return ..()
-	user.visible_message("<span class='warning'>[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!</span>", \
-						 "<span class='danger'>[src] feels unnaturally cold in your hands. You raise [src] your mouth and devour it!</span>")
+	user.visible_message(span_warning("[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!"), \
+						 span_danger("[src] feels unnaturally cold in your hands. You raise [src] your mouth and devour it!"))
 	playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 
 
-	user.visible_message("<span class='warning'>Blood erupts from [user]'s arm as it reforms into a weapon!</span>", \
-						 "<span class='userdanger'>Icy blood pumps through your veins as your arm reforms itself!</span>")
+	user.visible_message(span_warning("Blood erupts from [user]'s arm as it reforms into a weapon!"), \
+						 span_userdanger("Icy blood pumps through your veins as your arm reforms itself!"))
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	Insert(user)
 
@@ -126,8 +123,8 @@
 	STOP_PROCESSING(SSobj, src)
 	respawn_progress = 0
 	if(blade && special != HEART_SPECIAL_SHADOWIFY)
+		M.visible_message(span_warning("\The [blade] disintegrates!"))
 		QDEL_NULL(blade)
-		M.visible_message("<span class='warning'>\The [blade] disintegrates!</span>")
 	..()
 
 /obj/item/organ/heart/nightmare/Stop()
@@ -154,9 +151,9 @@
 			Remove(owner, HEART_SPECIAL_SHADOWIFY)
 			old_owner.set_species(/datum/species/shadow)
 			Insert(old_owner, HEART_SPECIAL_SHADOWIFY)
-			to_chat(owner, "<span class='userdanger'>You feel the shadows invade your skin, leaping into the center of your chest! You're alive!</span>")
+			to_chat(owner, span_userdanger("You feel the shadows invade your skin, leaping into the center of your chest! You're alive!"))
 			SEND_SOUND(owner, sound('sound/effects/ghost.ogg'))
-		owner.visible_message("<span class='warning'>[owner] staggers to [owner.p_their()] feet!</span>")
+		owner.visible_message(span_warning("[owner] staggers to [owner.p_their()] feet!"))
 		playsound(owner, 'sound/hallucinations/far_noise.ogg', 50, 1)
 		respawn_progress = 0
 
@@ -164,6 +161,7 @@
 
 /obj/item/light_eater
 	name = "light eater" //as opposed to heavy eater
+	icon = 'icons/obj/changeling.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
 	force = 25
@@ -171,12 +169,16 @@
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	item_flags = ABSTRACT | DROPDEL
+	tool_behaviour = TOOL_MINING
 	w_class = WEIGHT_CLASS_HUGE
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
+	wound_bonus = -30
+	bare_wound_bonus = 20
+	resistance_flags = ACID_PROOF
 
 /obj/item/light_eater/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
 
 /obj/item/light_eater/afterattack(atom/movable/AM, mob/user, proximity)
@@ -190,12 +192,11 @@
 		if(isethereal(AM))
 			AM.emp_act(EMP_LIGHT)
 
-		if(iscyborg(AM))
+		else if(iscyborg(AM))
 			var/mob/living/silicon/robot/borg = AM
-			if(!borg.lamp_cooldown)
-				borg.update_headlamp(TRUE, INFINITY)
-				to_chat(borg, "<span class='danger'>Your headlamp is fried! You'll need a human to help replace it.</span>")
-		else
+			if(borg.lamp_enabled)
+				borg.smash_headlamp()
+		else if(ishuman(AM))
 			for(var/obj/item/O in AM)
 				if(O.light_range && O.light_power)
 					disintegrate(O)
@@ -213,9 +214,9 @@
 		PDA.fon = FALSE
 		PDA.f_lum = 0
 		PDA.update_icon()
-		visible_message("<span class='danger'>The light in [PDA] shorts out!</span>")
+		visible_message(span_danger("The light in [PDA] shorts out!"))
 	else
-		visible_message("<span class='danger'>[O] is disintegrated by [src]!</span>")
+		visible_message(span_danger("[O] is disintegrated by [src]!"))
 		O.burn()
 	playsound(src, 'sound/items/welder.ogg', 50, 1)
 

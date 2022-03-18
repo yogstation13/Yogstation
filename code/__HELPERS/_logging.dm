@@ -1,13 +1,17 @@
 //wrapper macros for easier grepping
 #define DIRECT_OUTPUT(A, B) A << B
+#define DIRECT_INPUT(A, B) A >> B
 #define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)
 #define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
 #define SEND_TEXT(target, text) DIRECT_OUTPUT(target, text)
 #define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
-#define WRITE_LOG(log, text) rustg_log_write(log, text)
+#define READ_FILE(file, text) DIRECT_INPUT(file, text)
+//This is an external call, "true" and "false" are how rust parses out booleans
+#define WRITE_LOG(log, text) rustg_log_write(log, text, "true")
+#define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
 
 //print a warning message to world.log
-#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
+#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
 /proc/warning(msg)
 	msg = "## WARNING: [msg]"
 	log_world(msg)
@@ -25,7 +29,7 @@
 #define testing(msg)
 #endif
 
-#ifdef UNIT_TESTS
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 /proc/log_test(text)
 	WRITE_LOG(GLOB.test_log, text)
 	SEND_TEXT(world.log, text)
@@ -66,6 +70,16 @@
 	if (CONFIG_GET(flag/log_virus))
 		WRITE_LOG(GLOB.world_virus_log, "VIRUS: [text]")
 
+/proc/log_cloning(text, mob/initiator)
+	if(CONFIG_GET(flag/log_cloning))
+		WRITE_LOG(GLOB.world_cloning_log, "CLONING: [text]")
+
+/proc/log_paper(text)
+	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
+
+/proc/log_asset(text)
+	WRITE_LOG(GLOB.world_asset_log, "ASSET: [text]")
+
 /proc/log_access(text)
 	if (CONFIG_GET(flag/log_access))
 		WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
@@ -77,6 +91,10 @@
 /proc/log_attack(text)
 	if (CONFIG_GET(flag/log_attack))
 		WRITE_LOG(GLOB.world_attack_log, "ATTACK: [text]")
+
+/proc/log_wounded(text)
+	if (CONFIG_GET(flag/log_attack))
+		WRITE_LOG(GLOB.world_attack_log, "WOUND: [text]")
 
 /proc/log_manifest(ckey, datum/mind/mind,mob/body, latejoin = FALSE)
 	if (CONFIG_GET(flag/log_manifest))
@@ -129,6 +147,10 @@
 	if (CONFIG_GET(flag/log_telecomms))
 		WRITE_LOG(GLOB.world_telecomms_log, "TCOMMS: [text]")
 
+/proc/log_ntsl(text)
+	if (CONFIG_GET(flag/log_ntsl))
+		WRITE_LOG(GLOB.world_ntsl_log, "NTSL: [text]")
+
 /proc/log_chat(text)
 	if (CONFIG_GET(flag/log_pda))
 		//same thing here
@@ -174,7 +196,40 @@
 	WRITE_LOG(GLOB.config_error_log, text)
 	SEND_TEXT(world.log, text)
 
+/proc/log_mapping(text)
+	WRITE_LOG(GLOB.world_map_error_log, text)
 
+/**
+ * Appends a tgui-related log entry. All arguments are optional.
+ */
+/proc/log_tgui(user, message, context,
+		datum/tgui_window/window,
+		datum/src_object)
+	var/entry = ""
+	// Insert user info
+	if(!user)
+		entry += "<nobody>"
+	else if(istype(user, /mob))
+		var/mob/mob = user
+		entry += "[mob.ckey] (as [mob] at [mob.x],[mob.y],[mob.z])"
+	else if(istype(user, /client))
+		var/client/client = user
+		entry += "[client.ckey]"
+	// Insert context
+	if(context)
+		entry += " in [context]"
+	else if(window)
+		entry += " in [window.id]"
+	// Resolve src_object
+	if(!src_object && window && window.locked_by)
+		src_object = window.locked_by.src_object
+	// Insert src_object info
+	if(src_object)
+		entry += "\nUsing: [src_object.type] [REF(src_object)]"
+	// Insert message
+	if(message)
+		entry += "\n[message]"
+	WRITE_LOG(GLOB.tgui_log, entry)
 /* For logging round startup. */
 /proc/start_log(log)
 	WRITE_LOG(log, "Starting up round ID [GLOB.round_id].\n-------------------------")

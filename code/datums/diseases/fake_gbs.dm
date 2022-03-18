@@ -4,7 +4,7 @@
 	spread_text = "On contact"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
 	cure_text = "Synaptizine & Sulfur"
-	cures = list("synaptizine","sulfur")
+	cures = list(/datum/reagent/medicine/synaptizine,/datum/reagent/sulfur)
 	agent = "Gravitokinetic Bipotential SADS-"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	desc = "If left untreated death will occur."
@@ -22,7 +22,7 @@
 			else if(prob(5))
 				affected_mob.emote("gasp")
 			if(prob(10))
-				to_chat(affected_mob, "<span class='danger'>You're starting to feel very weak...</span>")
+				to_chat(affected_mob, span_danger("You're starting to feel very weak..."))
 		if(4)
 			if(prob(10))
 				affected_mob.emote("cough")

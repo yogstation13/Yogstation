@@ -7,10 +7,10 @@
 	. = ..()
 	var/obj/item/highfive/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, "<span class='notice'>You raise your hand for a high-five.</span>")
+		to_chat(user, span_notice("You raise your hand for a high-five."))
 	else
 		qdel(N)
-		to_chat(user, "<span class='warning'>You don't have any free hands to high-five with.</span>")
+		to_chat(user, span_warning("You don't have any free hands to high-five with."))
 
 /datum/emote/living/pose
 	key = "pose"
@@ -22,12 +22,6 @@
 	key = "mpose"
 	key_third_person = "mposes"
 	message = "strikes a menacing pose!"
-	restraint_check = TRUE
-
-/datum/emote/living/tpose
-	key = "tpose"
-	key_third_person = "tposes"
-	message = "strikes a T-pose!"
 	restraint_check = TRUE
 
 /datum/emote/living/vpose
@@ -68,6 +62,9 @@
 
 /datum/emote/living/dab/run_emote(mob/user, params)
 	. = ..()
-	if(ishuman(user))
+	if(. && ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.adjustBrainLoss(5)
+		var/light_dab_angle = rand(35,55)
+		var/light_dab_speed = rand(3,7)
+		H.DabAnimation(angle = light_dab_angle , speed = light_dab_speed)
+		SSachievements.unlock_achievement(/datum/achievement/dab,H.client)

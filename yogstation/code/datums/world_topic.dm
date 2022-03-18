@@ -1,17 +1,22 @@
+GLOBAL_VAR_INIT(mentornoot, FALSE)
+
 /datum/world_topic/asay
 	keyword = "asay"
 	require_comms_key = TRUE
 
 /datum/world_topic/asay/Run(list/input)
-	to_chat(GLOB.admins, "<span class='adminsay'><span class='prefix'>DISCORD:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["asay"]]</span></span>")
+	to_chat(GLOB.admins, span_adminsay("[span_prefix("DISCORD:")] <EM>[input["admin"]]</EM>: [span_message("[input["asay"]]")]"), confidential=TRUE)
 
 /datum/world_topic/ooc
 	keyword = "ooc"
 	require_comms_key = TRUE
 
 /datum/world_topic/ooc/Run(list/input)
+	if(!GLOB.ooc_allowed)
+		return
+	input["ooc"] = pretty_filter(input["ooc"])
 	for(var/client/C in GLOB.clients)
-		to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>DISCORD OOC:</span> <EM>[input["admin"]]:</EM> <span class='message'>[input["ooc"]]</span></span></font>")
+		to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'>[span_prefix("DISCORD OOC:")] <EM>[input["admin"]]:</EM> [span_message("[input["ooc"]]")]</span></font>")
 
 /datum/world_topic/toggleooc
 	keyword = "toggleooc"
@@ -43,9 +48,9 @@
 	var/msgTitle = input["announce"]
 	var/author = input["author"]
 	var/id = input["id"]
-	var/link = "https://github.com/yogstation13/Yogstation-TG/pull/[id]"
+	var/link = "https://github.com/yogstation13/Yogstation/pull/[id]"
 
-	var/final_composed = "<span class='announce'>PR: <a href=[link]>[msgTitle]</a> by [author]</span>"
+	var/final_composed = span_announce("PR: <a href=[link]>[msgTitle]</a> by [author]")
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
 
@@ -61,7 +66,7 @@
 	require_comms_key = TRUE
 
 /datum/world_topic/msay/Run(list/input)
-	to_chat(GLOB.admins | GLOB.mentors, "<b><font color ='#8A2BE2'><span class='prefix'>MENTOR:</span>DISCORD MENTOR:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["msay"]]</span></span>")
+	to_chat(GLOB.admins | GLOB.mentors, "<b><font color ='#8A2BE2'>[span_prefix("DISCORD MENTOR:")]</span> <EM>[input["admin"]]</EM>: [span_message("[input["msay"]]")]</span>")
 
 /datum/world_topic/mhelp
 	keyword = "mhelp"
@@ -71,12 +76,30 @@
 	var/whom = input["whom"]
 	var/msg = input["msg"]
 	var/from = input["admin"]
-	var/client/C = GLOB.directory[whom]
+	var/from_id = input["admin_id"]
+	var/client/C = GLOB.directory[ckey(whom)]
 	if(!C)
-		return
-
-	to_chat(C, "<font color='purple'>Mentor PM from-<b>[from]</b>: [msg]</font>")
+		return 0
+	if((C.prefs.toggles & SOUND_ALT) && (GLOB.mentornoot || prob(1)))
+		SEND_SOUND(C, sound('sound/misc/nootnoot.ogg'))
+	else
+		SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
+	to_chat(C, "<font color='purple'>Mentor PM from-<b>[discord_mentor_link(from, from_id)]</b>: [msg]</font>")
 	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	for(var/client/X in GLOB.mentors | GLOB.admins)
-		if(!X == C)
-			to_chat(X, "<B><font color='green'>Mentor PM: [from]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>")
+		if(X != C)
+			to_chat(X, "<B><font color='green'>Mentor PM: [discord_mentor_link(from, from_id)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='cyan'> [msg]</font>")
+	return 1
+
+/datum/world_topic/unlink
+	keyword = "unlink"
+	require_comms_key = TRUE
+
+/datum/world_topic/unlink/Run(list/input)
+	var/ckey = input["unlink"]
+	var/returned_id = SSdiscord.lookup_id(ckey)
+	if(returned_id)
+		SSdiscord.unlink_account(ckey)
+		return "[ckey] has been unlinked!"
+	else
+		return "Account not unlinked! Please contact a coder."

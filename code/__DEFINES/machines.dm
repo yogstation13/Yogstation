@@ -39,11 +39,13 @@
 #define MC_HDD "HDD"
 #define MC_SDD "SDD"
 #define MC_CARD "CARD"
+#define MC_CARD2 "CARD2"
 #define MC_NET "NET"
 #define MC_PRINT "PRINT"
 #define MC_CELL "CELL"
 #define MC_CHARGE "CHARGE"
 #define MC_AI "AI"
+#define MC_SENSORS "SENSORS"
 
 //NTNet stuff, for modular computers
 									// NTNet module-configuration values. Do not change these. If you need to add another use larger number (5..6..7 etc)
@@ -62,14 +64,24 @@
 #define MIN_NTNET_LOGS 10
 
 //Program bitflags
-#define PROGRAM_ALL		(~0)
-#define PROGRAM_CONSOLE	(1<<0)
-#define PROGRAM_LAPTOP	(1<<1)
-#define PROGRAM_TABLET	(1<<2)
+#define PROGRAM_ALL			(~0)
+#define PROGRAM_CONSOLE		(1<<0)
+#define PROGRAM_LAPTOP		(1<<1)
+#define PROGRAM_TABLET		(1<<2)
+#define PROGRAM_PHONE		(1<<3)
+#define PROGRAM_PDA			(1<<4)
+#define PROGRAM_TELESCREEN	(1<<5)
+#define PROGRAM_INTEGRATED	(1<<6)
 //Program states
 #define PROGRAM_STATE_KILLED 0
 #define PROGRAM_STATE_BACKGROUND 1
 #define PROGRAM_STATE_ACTIVE 2
+//Program categories
+#define PROGRAM_CATEGORY_CREW "Crew"
+#define PROGRAM_CATEGORY_ENGI "Engineering"
+#define PROGRAM_CATEGORY_ROBO "Robotics"
+#define PROGRAM_CATEGORY_SUPL "Supply"
+#define PROGRAM_CATEGORY_MISC "Other"
 
 #define FIREDOOR_OPEN 1
 #define FIREDOOR_CLOSED 2
@@ -93,6 +105,13 @@
 #define NUKESTATE_WELDED		2
 #define NUKESTATE_CORE_EXPOSED	1
 #define NUKESTATE_CORE_REMOVED	0
+
+#define NUKEUI_AWAIT_DISK 0
+#define NUKEUI_AWAIT_CODE 1
+#define NUKEUI_AWAIT_TIMER 2
+#define NUKEUI_AWAIT_ARM 3
+#define NUKEUI_TIMING 4
+#define NUKEUI_EXPLODED 5
 
 #define NUKE_OFF_LOCKED		0
 #define NUKE_OFF_UNLOCKED	1

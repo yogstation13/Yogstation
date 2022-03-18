@@ -19,29 +19,29 @@
 	var/dispense_flavour = ICECREAM_VANILLA
 	var/flavour_name = "vanilla"
 	var/static/list/icecream_vat_reagents = list(
-		"milk" = 5,
-		"flour" = 5,
-		"sugar" = 5,
-		"ice" = 5,
-		"cocoa" = 5,
-		"vanilla" = 5,
-		"berryjuice" = 5,
-		"singulo" = 5)
+		/datum/reagent/consumable/milk = 5,
+		/datum/reagent/consumable/flour = 5,
+		/datum/reagent/consumable/sugar = 5,
+		/datum/reagent/consumable/ice = 5,
+		/datum/reagent/consumable/coco = 5,
+		/datum/reagent/consumable/vanilla = 5,
+		/datum/reagent/consumable/berryjuice = 5,
+		/datum/reagent/consumable/ethanol/singulo = 5)
 
 /obj/machinery/icecream_vat/proc/get_ingredient_list(type)
 	switch(type)
 		if(ICECREAM_CHOCOLATE)
-			return list("milk", "ice", "cocoa")
+			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/coco)
 		if(ICECREAM_STRAWBERRY)
-			return list("milk", "ice", "berryjuice")
+			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/berryjuice)
 		if(ICECREAM_BLUE)
-			return list("milk", "ice", "singulo")
+			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/ethanol/singulo)
 		if(CONE_WAFFLE)
-			return list("flour", "sugar")
+			return list(/datum/reagent/consumable/flour, /datum/reagent/consumable/sugar)
 		if(CONE_CHOC)
-			return list("flour", "sugar", "cocoa")
+			return list(/datum/reagent/consumable/flour, /datum/reagent/consumable/sugar, /datum/reagent/consumable/coco)
 		else //ICECREAM_VANILLA
-			return list("milk", "ice", "vanilla")
+			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/vanilla)
 
 
 /obj/machinery/icecream_vat/proc/get_flavour_name(flavour_type)
@@ -84,7 +84,7 @@
 	dat += "<b>VAT CONTENT</b><br>"
 	for(var/datum/reagent/R in reagents.reagent_list)
 		dat += "[R.name]: [R.volume]"
-		dat += "<A href='?src=[REF(src)];disposeI=[R.id]'>Purge</A><BR>"
+		dat += "<A href='?src=[REF(src)];disposeI=[R.type]'>Purge</A><BR>"
 	dat += "<a href='?src=[REF(src)];refresh=1'>Refresh</a> <a href='?src=[REF(src)];close=1'>Close</a>"
 
 	var/datum/browser/popup = new(user, "icecreamvat","Icecream Vat", 700, 500, src)
@@ -96,15 +96,15 @@
 		var/obj/item/reagent_containers/food/snacks/icecream/I = O
 		if(!I.ice_creamed)
 			if(product_types[dispense_flavour] > 0)
-				visible_message("[icon2html(src, viewers(src))] <span class='info'>[user] scoops delicious [flavour_name] ice cream into [I].</span>")
+				visible_message("[icon2html(src, viewers(src))] [span_info("[user] scoops delicious [flavour_name] ice cream into [I].")]")
 				product_types[dispense_flavour] -= 1
 				I.add_ice_cream(flavour_name)
 				if(I.reagents.total_volume < 10)
-					I.reagents.add_reagent("sugar", 10 - I.reagents.total_volume)
+					I.reagents.add_reagent(/datum/reagent/consumable/sugar, 10 - I.reagents.total_volume)
 			else
-				to_chat(user, "<span class='warning'>There is not enough ice cream left!</span>")
+				to_chat(user, span_warning("There is not enough ice cream left!"))
 		else
-			to_chat(user, "<span class='notice'>[O] already has ice cream in it.</span>")
+			to_chat(user, span_notice("[O] already has ice cream in it."))
 		return 1
 	else if(O.is_drainable())
 		return
@@ -123,11 +123,11 @@
 		product_types[make_type] += amount
 		var/flavour = get_flavour_name(make_type)
 		if(make_type > 4)
-			src.visible_message("<span class='info'>[user] cooks up some [flavour] cones.</span>")
+			src.visible_message(span_info("[user] cooks up some [flavour] cones."))
 		else
-			src.visible_message("<span class='info'>[user] whips up some [flavour] icecream.</span>")
+			src.visible_message(span_info("[user] whips up some [flavour] icecream."))
 	else
-		to_chat(user, "<span class='warning'>You don't have the ingredients to make this!</span>")
+		to_chat(user, span_warning("You don't have the ingredients to make this!"))
 
 /obj/machinery/icecream_vat/Topic(href, href_list)
 	if(..())
@@ -135,7 +135,7 @@
 	if(href_list["select"])
 		dispense_flavour = text2num(href_list["select"])
 		flavour_name = get_flavour_name(dispense_flavour)
-		src.visible_message("<span class='notice'>[usr] sets [src] to dispense [flavour_name] flavoured ice cream.</span>")
+		src.visible_message(span_notice("[usr] sets [src] to dispense [flavour_name] flavoured ice cream."))
 
 	if(href_list["cone"])
 		var/dispense_cone = text2num(href_list["cone"])
@@ -144,9 +144,9 @@
 			product_types[dispense_cone] -= 1
 			var/obj/item/reagent_containers/food/snacks/icecream/I = new(src.loc)
 			I.set_cone_type(cone_name)
-			src.visible_message("<span class='info'>[usr] dispenses a crunchy [cone_name] cone from [src].</span>")
+			src.visible_message(span_info("[usr] dispenses a crunchy [cone_name] cone from [src]."))
 		else
-			to_chat(usr, "<span class='warning'>There are no [cone_name] cones left!</span>")
+			to_chat(usr, span_warning("There are no [cone_name] cones left!"))
 
 	if(href_list["make"])
 		var/amount = (text2num(href_list["amount"]))
@@ -179,16 +179,16 @@
 /obj/item/reagent_containers/food/snacks/icecream/Initialize()
 	. = ..()
 	create_reagents(20)
-	reagents.add_reagent("nutriment", 4)
+	reagents.add_reagent(/datum/reagent/consumable/nutriment, 4)
 
 /obj/item/reagent_containers/food/snacks/icecream/proc/set_cone_type(var/cone_name)
 	cone_type = cone_name
 	icon_state = "icecream_cone_[cone_name]"
 	switch (cone_type)
 		if ("waffle")
-			reagents.add_reagent("nutriment", 1)
+			reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 		if ("chocolate")
-			reagents.add_reagent("cocoa", 1) // chocolate ain't as nutritious kids
+			reagents.add_reagent(/datum/reagent/consumable/coco, 1) // chocolate ain't as nutritious kids
 
 	desc = "Delicious [cone_name] cone, but no ice cream."
 
@@ -201,16 +201,17 @@
 			desc = "A delicious [cone_type] cone filled with vanilla ice cream. All the other ice creams take content from it."
 		if ("chocolate")
 			desc = "A delicious [cone_type] cone filled with chocolate ice cream. Surprisingly, made with real cocoa."
-			reagents.add_reagent("cocoa", 2)
+			foodtype = DAIRY | CHOCOLATE
+			reagents.add_reagent(/datum/reagent/consumable/coco, 2)
 		if ("strawberry")
 			desc = "A delicious [cone_type] cone filled with strawberry ice cream. Definitely not made with real strawberries."
-			reagents.add_reagent("berryjuice", 2)
+			reagents.add_reagent(/datum/reagent/consumable/berryjuice, 2)
 		if ("blue")
 			desc = "A delicious [cone_type] cone filled with blue ice cream. Made with real... blue?"
-			reagents.add_reagent("singulo", 2)
+			reagents.add_reagent(/datum/reagent/consumable/ethanol/singulo, 2)
 		if ("mob")
 			desc = "A suspicious [cone_type] cone filled with bright red ice cream. That's probably not strawberry..."
-			reagents.add_reagent("liquidgibs", 2)
+			reagents.add_reagent(/datum/reagent/liquidgibs, 2)
 	ice_creamed = 1
 
 /obj/item/reagent_containers/food/snacks/icecream/proc/add_mob_flavor(var/mob/M)

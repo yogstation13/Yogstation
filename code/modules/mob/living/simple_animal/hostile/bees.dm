@@ -41,6 +41,7 @@
 	movement_type = FLYING
 	gold_core_spawnable = HOSTILE_SPAWN
 	search_objects = 1 //have to find those plant trays!
+	ventcrawler = VENTCRAWLER_ALWAYS
 
 	//Spaceborn beings don't get hurt by space
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -50,6 +51,8 @@
 	var/datum/reagent/beegent = null //hehe, beegent
 	var/obj/structure/beebox/beehome = null
 	var/idle = 0
+	var/angery = FALSE //if the bees are MAD AS HELL
+	var/mutable_appearance/angery_eye
 	var/isqueen = FALSE
 	var/icon_base = "bee"
 	var/static/beehometypecache = typecacheof(/obj/structure/beebox)
@@ -59,12 +62,16 @@
 	. = ..()
 	generate_bee_visuals()
 	AddComponent(/datum/component/swarming)
+	angery_eye = mutable_appearance('icons/mob/bees.dmi', "angery_eye",MOB_LAYER)
+	RegisterSignal(src, COMSIG_MOB_APPLY_DAMAGE, .proc/alert_hive)
 
 /mob/living/simple_animal/hostile/poison/bees/Destroy()
 	if(beehome)
 		beehome.bees -= src
 		beehome = null
 	beegent = null
+	QDEL_NULL(angery_eye)
+	UnregisterSignal(src, COMSIG_MOB_APPLY_DAMAGE)
 	return ..()
 
 
@@ -73,14 +80,16 @@
 		beehome.bees -= src
 		beehome = null
 	beegent = null
+	QDEL_NULL(angery_eye)
+	UnregisterSignal(src, COMSIG_MOB_APPLY_DAMAGE)
 	..()
 
 
 /mob/living/simple_animal/hostile/poison/bees/examine(mob/user)
-	..()
+	. = ..()
 
 	if(!beehome)
-		to_chat(user, "<span class='warning'>This bee is homeless!</span>")
+		. += span_warning("This bee is homeless AND ANGRY!")
 
 
 /mob/living/simple_animal/hostile/poison/bees/proc/generate_bee_visuals()
@@ -108,14 +117,14 @@
 		return FALSE
 	if(isliving(the_target))
 		var/mob/living/H = the_target
-		return !H.bee_friendly()
+		return !H.bee_friendly() && (!beehome || angery)
 
 
 /mob/living/simple_animal/hostile/poison/bees/Found(atom/A)
 	if(isliving(A))
 		var/mob/living/H = A
-		return !H.bee_friendly()
-	if(istype(A, /obj/machinery/hydroponics))
+		return !H.bee_friendly() && (!beehome || angery)
+	if(istype(A, /obj/machinery/hydroponics) && !angery)
 		var/obj/machinery/hydroponics/Hydro = A
 		if(Hydro.myseed && !Hydro.dead && !Hydro.recent_bee_visit)
 			wanted_objects |= hydroponicstypecache //so we only hunt them while they're alive/seeded/not visisted
@@ -142,7 +151,7 @@
 			var/mob/living/L = target
 			if(L.reagents)
 				beegent.reaction_mob(L, INJECT)
-				L.reagents.add_reagent(beegent.id, rand(1,5))
+				L.reagents.add_reagent(beegent.type, rand(1,5))
 
 
 /mob/living/simple_animal/hostile/poison/bees/proc/assign_reagent(datum/reagent/R)
@@ -179,6 +188,14 @@
 	if(beehome)
 		beehome.bee_resources = min(beehome.bee_resources + growth, 100)
 
+/mob/living/simple_animal/hostile/poison/bees/proc/alert_hive()
+	beehome?.toggle_angery(TRUE)
+
+/mob/living/simple_animal/hostile/poison/bees/proc/toggle_angery(beecome_angery)
+	angery = beecome_angery
+	overlays -= angery_eye
+	if(angery)
+		overlays += angery_eye
 
 /mob/living/simple_animal/hostile/poison/bees/handle_automated_action()
 	. = ..()
@@ -208,7 +225,7 @@
 /mob/living/simple_animal/hostile/poison/bees/toxin/Initialize()
 	. = ..()
 	var/datum/reagent/R = pick(typesof(/datum/reagent/toxin))
-	assign_reagent(GLOB.chemical_reagents_list[initial(R.id)])
+	assign_reagent(GLOB.chemical_reagents_list[R])
 
 /mob/living/simple_animal/hostile/poison/bees/queen
 	name = "queen bee"
@@ -228,7 +245,7 @@
 	if(. && beegent && isliving(target))
 		var/mob/living/L = target
 		beegent.reaction_mob(L, TOUCH)
-		L.reagents.add_reagent(beegent.id, rand(1,5))
+		L.reagents.add_reagent(beegent.type, rand(1,5))
 
 
 //PEASENT BEES
@@ -239,7 +256,7 @@
 /mob/living/simple_animal/hostile/poison/bees/proc/reagent_incompatible(mob/living/simple_animal/hostile/poison/bees/B)
 	if(!B)
 		return FALSE
-	if(B.beegent && beegent && B.beegent.id != beegent.id || B.beegent && !beegent || !B.beegent && beegent)
+	if(B.beegent && beegent && B.beegent.type != beegent.type || B.beegent && !beegent || !B.beegent && beegent)
 		return TRUE
 	return FALSE
 
@@ -256,26 +273,26 @@
 /obj/item/queen_bee/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I
-		if(S.reagents.has_reagent("royal_bee_jelly")) //checked twice, because I really don't want royal bee jelly to be duped
-			if(S.reagents.has_reagent("royal_bee_jelly",5))
-				S.reagents.remove_reagent("royal_bee_jelly", 5)
+		if(S.reagents.has_reagent(/datum/reagent/royal_bee_jelly)) //checked twice, because I really don't want royal bee jelly to be duped
+			if(S.reagents.has_reagent(/datum/reagent/royal_bee_jelly,5))
+				S.reagents.remove_reagent(/datum/reagent/royal_bee_jelly, 5)
 				var/obj/item/queen_bee/qb = new(user.drop_location())
 				qb.queen = new(qb)
 				if(queen && queen.beegent)
 					qb.queen.assign_reagent(queen.beegent) //Bees use the global singleton instances of reagents, so we don't need to worry about one bee being deleted and her copies losing their reagents.
 				user.put_in_active_hand(qb)
-				user.visible_message("<span class='notice'>[user] injects [src] with royal bee jelly, causing it to split into two bees, MORE BEES!</span>","<span class ='warning'>You inject [src] with royal bee jelly, causing it to split into two bees, MORE BEES!</span>")
+				user.visible_message(span_notice("[user] injects [src] with royal bee jelly, causing it to split into two bees, MORE BEES!"),"<span class ='warning'>You inject [src] with royal bee jelly, causing it to split into two bees, MORE BEES!</span>")
 			else
-				to_chat(user, "<span class='warning'>You don't have enough royal bee jelly to split a bee in two!</span>")
+				to_chat(user, span_warning("You don't have enough royal bee jelly to split a bee in two!"))
 		else
 			var/datum/reagent/R = GLOB.chemical_reagents_list[S.reagents.get_master_reagent_id()]
-			if(R && S.reagents.has_reagent(R.id, 5))
-				S.reagents.remove_reagent(R.id,5)
+			if(R && S.reagents.has_reagent(R.type, 5))
+				S.reagents.remove_reagent(R.type,5)
 				queen.assign_reagent(R)
-				user.visible_message("<span class='warning'>[user] injects [src]'s genome with [R.name], mutating its DNA!</span>","<span class='warning'>You inject [src]'s genome with [R.name], mutating its DNA!</span>")
+				user.visible_message(span_warning("[user] injects [src]'s genome with [R.name], mutating its DNA!"),span_warning("You inject [src]'s genome with [R.name], mutating its DNA!"))
 				name = queen.name
 			else
-				to_chat(user, "<span class='warning'>You don't have enough units of that chemical to modify the bee's DNA!</span>")
+				to_chat(user, span_warning("You don't have enough units of that chemical to modify the bee's DNA!"))
 	..()
 
 
@@ -296,10 +313,10 @@
 			forceMove(beehome.drop_location())
 	else
 		..()
-		
+
 /mob/living/simple_animal/hostile/poison/bees/short
 	desc = "These bees seem unstable and won't survive for long."
 
-/mob/living/simple_animal/hostile/poison/bees/short/Initialize()
+/mob/living/simple_animal/hostile/poison/bees/short/Initialize(mapload, timetolive=50 SECONDS)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/death), 50 SECONDS)
+	addtimer(CALLBACK(src, .proc/death), timetolive)

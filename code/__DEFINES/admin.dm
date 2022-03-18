@@ -5,7 +5,8 @@
 #define MUTE_OOC		(1<<1)
 #define MUTE_PRAY		(1<<2)
 #define MUTE_ADMINHELP	(1<<3)
-#define MUTE_DEADCHAT	(1<<4)
+#define MUTE_MENTORHELP (1<<4)
+#define MUTE_DEADCHAT	(1<<5)
 #define MUTE_ALL		(~0)
 
 //Some constants for DB_Ban
@@ -13,11 +14,13 @@
 #define BANTYPE_TEMP		2
 #define BANTYPE_JOB_PERMA	3
 #define BANTYPE_JOB_TEMP	4
-#define BANTYPE_ANY_FULLBAN	5 //used to locate stuff to unban.
+/// used to locate stuff to unban.
+#define BANTYPE_ANY_FULLBAN	5
 
 #define BANTYPE_ADMIN_PERMA	7
 #define BANTYPE_ADMIN_TEMP	8
-#define BANTYPE_ANY_JOB		9 //used to remove jobbans
+/// used to remove jobbans
+#define BANTYPE_ANY_JOB		9
 
 //Admin Permissions
 #define R_BUILDMODE		(1<<0)
@@ -72,12 +75,47 @@
 #define ADMIN_PUNISHMENT_SUPPLYPOD_QUICK "Supply Pod (Quick)"
 #define ADMIN_PUNISHMENT_SUPPLYPOD "Supply Pod"
 #define ADMIN_PUNISHMENT_MAZING "Puzzle"
+#define ADMIN_PUNISHMENT_PIE "Pie"
+#define ADMIN_PUNISHMENT_WHISTLE "Whistle"
+#define ADMIN_PUNISHMENT_CLUWNE "Cluwne"
+#define ADMIN_PUNISHMENT_MCNUGGET "Nugget"
+#define ADMIN_PUNISHMENT_CRACK ":B:oneless"
+#define ADMIN_PUNISHMENT_BLEED ":B:loodless"
+#define ADMIN_PUNISHMENT_PERFORATE ":B:erforate"
+#define ADMIN_PUNISHMENT_SCARIFY "Scarify"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2
 #define AHELP_RESOLVED 3
 
-#define ROUNDSTART_LOGOUT_REPORT_TIME	6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
+/// Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
+#define ROUNDSTART_LOGOUT_REPORT_TIME	6000
 
-#define SPAM_TRIGGER_WARNING	5	//Number of identical messages required before the spam-prevention will warn you to stfu
-#define SPAM_TRIGGER_AUTOMUTE	10	//Number of identical messages required before the spam-prevention will automute you
+/// Number of identical messages required before the spam-prevention will warn you to stfu
+#define SPAM_TRIGGER_WARNING	5
+/// Number of identical messages required before the spam-prevention will automute you
+#define SPAM_TRIGGER_AUTOMUTE	10
+
+#define STICKYBAN_DB_CACHE_TIME 10 SECONDS
+#define STICKYBAN_ROGUE_CHECK_TIME 5
+
+
+/// Shown to vicitm of staff of change and related effects.
+#define POLICY_POLYMORPH "polymorph"
+/// Shown on top of policy verb window
+#define POLICY_VERB_HEADER "policy_verb_header"
+
+// allowed ghost roles this round, starts as everything allowed
+GLOBAL_VAR_INIT(ghost_role_flags, (~0))
+
+//Flags that control what ways ghosts can get back into the round
+//ie fugitives, space dragon, etc. also includes dynamic midrounds as it's the same deal
+#define GHOSTROLE_MIDROUND_EVENT	(1<<0)
+//ie ashwalkers, free golems, beach bums
+#define GHOSTROLE_SPAWNER			(1<<1)
+//ie mind monkeys, sentience potion
+#define GHOSTROLE_STATION_SENTIENCE	(1<<2)
+//ie pais, posibrains
+#define GHOSTROLE_SILICONS			(1<<3)
+//ie mafia, ctf
+#define GHOSTROLE_MINIGAME			(1<<4)

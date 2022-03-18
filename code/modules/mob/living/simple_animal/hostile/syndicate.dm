@@ -51,6 +51,8 @@
 
 	do_footstep = TRUE
 
+/mob/living/simple_animal/hostile/syndicate/sentience_act()
+	faction -= ROLE_SYNDICATE
 ///////////////Melee////////////
 
 /mob/living/simple_animal/hostile/syndicate/space
@@ -133,7 +135,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/melee/bullet_act(obj/item/projectile/Proj)
 	if(prob(projectile_deflect_chance))
-		visible_message("<span class='danger'>[src] blocks [Proj] with its shield!</span>")
+		visible_message(span_danger("[src] blocks [Proj] with its shield!"))
 		return BULLET_ACT_BLOCK
 	return ..()
 
@@ -288,13 +290,16 @@
 	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations."
 	icon_state = "viscerator_attack"
 	icon_living = "viscerator_attack"
-	pass_flags = PASSTABLE | PASSMOB
+	pass_flags = PASSTABLE | PASSMOB | PASSCOMPUTER
 	a_intent = INTENT_HARM
 	mob_biotypes = list(MOB_ROBOTIC)
 	health = 25
 	maxHealth = 25
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	wound_bonus = -10
+	bare_wound_bonus = 20
+	sharpness = SHARP_EDGED
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	attacktext = "cuts"

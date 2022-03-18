@@ -1,5 +1,5 @@
 /datum/job
-	//The name of the job
+	//The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
 	var/title = "NOPE"
 
 	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
@@ -13,8 +13,9 @@
 	var/list/head_announce = null
 
 	//Bitflags for the job
-	var/flag = 0
-	var/department_flag = 0
+	var/department_flag = NONE //Deprecated
+	var/flag = NONE //Deprecated
+	var/auto_deadmin_role_flags = NONE
 
 	//Players will be allowed to spawn in as jobs that are set to "Station"
 	var/faction = "None"
@@ -34,6 +35,8 @@
 	//Sellection screen color
 	var/selection_color = "#ffffff"
 
+	//List of alternate titles, if any
+	var/list/alt_titles
 
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
@@ -45,6 +48,7 @@
 
 	//If you have the use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/minimal_player_age = 0
+	var/minimal_character_age = 0 // This is the IC age requirement for the players' *character* in order to be this job.
 
 	var/outfit = null
 
@@ -64,13 +68,47 @@
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
+	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
+
+/*
+	If you want to change a job on a specific map with this system, you will want to go onto that job datum
+	and add said map's name to the changed_maps list, like so:
+
+	changed_maps = list("OmegaStation")
+
+	Then, you're going to want to make a proc called "OmegaStationChanges" on the job, which will be the one
+	actually making the changes, like so:
+
+	/datum/job/miner/proc/OmegaStationChanges()
+
+	If you want to remove the job from said map, you will return TRUE in the proc, otherwise you can make
+	whatever changes to the job datum you need to make. For example, say we want to make it so 2 wardens spawn
+	on OmegaStation, we'd do the following:
+
+	/datum/job/warden
+		changed_maps = list("OmegaStation")
+
+	/datum/job/warden/proc/OmegaStationChanges()
+		total_positions = 2
+		spawn_positions = 2
+*/
+
+
+/datum/job/New()
+	.=..()
+	if(changed_maps.len)
+		for(var/map in changed_maps)
+			RegisterSignal(src, map, text2path("[type]/proc/[map]Changes"))
+
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
 /datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	//do actions on H but send messages to M as the key may not have been transferred_yet
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, H, M, latejoin)
 	if(mind_traits)
 		for(var/t in mind_traits)
-			H.mind.add_trait(t, JOB_TRAIT)
+			ADD_TRAIT(H.mind, t, JOB_TRAIT)
+	H.mind.add_employee(/datum/corporation/nanotrasen)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
@@ -92,14 +130,17 @@
 /datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	if(!H)
 		return FALSE
-	if(!visualsOnly)
-		var/datum/bank_account/bank_account = new(H.real_name, src)
-		bank_account.payday(STARTING_PAYCHECKS, TRUE)
-		H.account_id = bank_account.account_id
-	if(CONFIG_GET(flag/enforce_human_authority) && (title in GLOB.command_positions))
+
+//This reads Command placement exceptions in code/controllers/configuration/entries/game_options to allow non-Humans in specified Command roles. If the combination of species and command role is invalid, default to Human.
+	if(CONFIG_GET(keyed_list/job_species_whitelist)[type] && !splittext(CONFIG_GET(keyed_list/job_species_whitelist)[type], ",").Find(H.dna.species.id))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
 			H.apply_pref_name("human", preference_source)
+
+	if(!visualsOnly)
+		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
+		bank_account.payday(STARTING_PAYCHECKS, TRUE)
+		H.account_id = bank_account.account_id
 
 	//Equip the rest of the gear
 	H.dna.species.before_equip_job(src, H, visualsOnly)
@@ -143,8 +184,8 @@
 		return 0
 	if(!CONFIG_GET(flag/use_age_restriction_for_jobs))
 		return 0
-	if(!isnum(C.player_age))
-		return 0 //This is only a number if the db connection is established, otherwise it is text: "Requires database", meaning these restrictions cannot be enforced
+	if(!SSdbcore.Connect())
+		return 0 //Without a database connection we can't get a player's age so we'll assume they're old enough for all jobs
 	if(!isnum(minimal_player_age))
 		return 0
 
@@ -176,7 +217,12 @@
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 
+	var/uniform_skirt = null
+
 	var/pda_slot = SLOT_BELT
+	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
+	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
+	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
@@ -195,6 +241,19 @@
 		else
 			back = backpack //Department backpack
 
+	if (H.jumpsuit_style == PREF_SKIRT && uniform_skirt)
+		uniform = uniform_skirt
+
+	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
+		box = null
+	if(DIGITIGRADE in H.dna.species.species_traits)
+		if(IS_COMMAND(H)) // command gets snowflake shoes too.
+			shoes = alt_shoes_c
+		else if(IS_SECURITY(H) || find_job(H) == "Brig Physician") // Special shoes for sec and brig phys, roll first to avoid defaulting
+			shoes = alt_shoes_s
+		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" || IS_ENGINEERING(H)) // Check to assign default digitigrade shoes to special cases
+			shoes = alt_shoes
+
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
@@ -208,7 +267,16 @@
 		C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
-		C.assignment = J.title
+		if(H.mind?.role_alt_title)
+			C.assignment = H.mind.role_alt_title
+		else
+			C.assignment = J.title
+		if(H.mind?.assigned_role)
+			C.originalassignment = H.mind.assigned_role
+		else
+			C.originalassignment = J.title
+		if(H.age)
+			C.registered_age = H.age
 		C.update_label()
 		for(var/A in SSeconomy.bank_accounts)
 			var/datum/bank_account/B = A
@@ -221,7 +289,10 @@
 	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
 	if(istype(PDA))
 		PDA.owner = H.real_name
-		PDA.ownjob = J.title
+		if(H.mind?.role_alt_title)
+			PDA.ownjob = H.mind.role_alt_title
+		else
+			PDA.ownjob = J.title
 		PDA.update_label()
 
 /datum/outfit/job/get_chameleon_disguise_info()
@@ -237,4 +308,3 @@
 	if(CONFIG_GET(flag/security_has_maint_access))
 		return list(ACCESS_MAINT_TUNNELS)
 	return list()
-

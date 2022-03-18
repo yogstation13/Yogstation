@@ -30,9 +30,9 @@
 		scan_level += P.rating
 
 /obj/machinery/nanite_chamber/examine(mob/user)
-	..()
+	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Scanning module has been upgraded to level <b>[scan_level]</b>.<span>")
+		. += "<span class='notice'>The status display reads: Scanning module has been upgraded to level <b>[scan_level]</b>.<span>"
 
 /obj/machinery/nanite_chamber/proc/set_busy(status, message, working_icon)
 	busy = status
@@ -77,7 +77,7 @@
 		return
 	occupant.AddComponent(/datum/component/nanites, 100)
 
-/obj/machinery/nanite_chamber/proc/install_program(datum/nanite_program/NP)
+/obj/machinery/nanite_chamber/proc/remove_nanites(datum/nanite_program/NP)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if((stat & MAINT) || panel_open)
@@ -88,45 +88,21 @@
 	var/locked_state = locked
 	locked = TRUE
 
-	//TODO COMPUTERY MACHINE SOUNDS
-	set_busy(TRUE, "Initializing installation protocol...", "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Connecting to nanite framework...", "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Installing program...", "[initial(icon_state)]_falling"),35)
-	addtimer(CALLBACK(src, .proc/complete_installation, locked_state, NP),55)
+	//TODO OMINOUS MACHINE SOUNDS
+	set_busy(TRUE, "Initializing cleanup protocol...", "[initial(icon_state)]_raising")
+	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"),20)
+	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Pinging nanites...", "[initial(icon_state)]_active"),40)
+	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Initiating graceful self-destruct sequence...", "[initial(icon_state)]_active"),70)
+	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Removing debris...", "[initial(icon_state)]_falling"),110)
+	addtimer(CALLBACK(src, .proc/complete_removal, locked_state),130)
 
-/obj/machinery/nanite_chamber/proc/complete_installation(locked_state, datum/nanite_program/NP)
+/obj/machinery/nanite_chamber/proc/complete_removal(locked_state)
 	//TODO MACHINE DING
 	locked = locked_state
 	set_busy(FALSE)
 	if(!occupant)
 		return
-
-	SEND_SIGNAL(occupant, COMSIG_NANITE_ADD_PROGRAM, NP.copy())
-
-/obj/machinery/nanite_chamber/proc/uninstall_program(datum/nanite_program/NP)
-	if(stat & (NOPOWER|BROKEN))
-		return
-	if((stat & MAINT) || panel_open)
-		return
-	if(!occupant || busy)
-		return
-
-	var/locked_state = locked
-	locked = TRUE
-
-	//TODO COMPUTERY MACHINE SOUNDS
-	set_busy(TRUE, "Initializing uninstallation protocol...", "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Connecting to nanite framework...", "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Uninstalling program...", "[initial(icon_state)]_falling"),35)
-	addtimer(CALLBACK(src, .proc/complete_uninstallation, locked_state, NP),55)
-
-/obj/machinery/nanite_chamber/proc/complete_uninstallation(locked_state, datum/nanite_program/NP)
-	//TODO MACHINE DING
-	locked = locked_state
-	set_busy(FALSE)
-	if(!occupant)
-		return
-	qdel(NP)
+	SEND_SIGNAL(occupant, COMSIG_NANITE_DELETE)
 
 /obj/machinery/nanite_chamber/update_icon()
 	cut_overlays()
@@ -153,13 +129,9 @@
 	//running
 	icon_state = initial(icon_state)+ (state_open ? "_open" : "")
 
-/obj/machinery/nanite_chamber/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/nanite_chamber/proc/toggle_open(mob/user)
 	if(panel_open)
-		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+		to_chat(user, span_notice("Close the maintenance panel first."))
 		return
 
 	if(state_open)
@@ -167,7 +139,7 @@
 		return
 
 	else if(locked)
-		to_chat(user, "<span class='notice'>The bolts are locked down, securing the door shut.</span>")
+		to_chat(user, span_notice("The bolts are locked down, securing the door shut."))
 		return
 
 	open_machine()
@@ -180,15 +152,15 @@
 		return
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message("<span class='notice'>You see [user] kicking against the door of [src]!</span>", \
-		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
-		"<span class='italics'>You hear a metallic creaking from [src].</span>")
+	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
+		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
+		span_italics("You hear a metallic creaking from [src]."))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked || busy)
 			return
 		locked = FALSE
-		user.visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>", \
-			"<span class='notice'>You successfully break out of [src]!</span>")
+		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
+			span_notice("You successfully break out of [src]!"))
 		open_machine()
 
 /obj/machinery/nanite_chamber/close_machine(mob/living/carbon/user)
@@ -210,7 +182,7 @@
 	if(user.stat || locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50
-			to_chat(user, "<span class='warning'>[src]'s door won't budge!</span>")
+			to_chat(user, span_warning("[src]'s door won't budge!"))
 		return
 	open_machine()
 

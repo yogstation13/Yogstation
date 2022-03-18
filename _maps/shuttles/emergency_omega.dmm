@@ -3,8 +3,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ab" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ac" = (
@@ -124,6 +123,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "an" = (
@@ -158,7 +161,7 @@
 /area/shuttle/escape)
 "ap" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -184,6 +187,12 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
@@ -251,6 +260,10 @@
 	name = "Holding Area";
 	req_access_txt = "2"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "aw" = (
@@ -268,6 +281,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "ay" = (
@@ -285,6 +302,12 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
@@ -335,6 +358,9 @@
 	pixel_x = -32
 	},
 /obj/effect/turf_decal/bot,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aE" = (
@@ -509,6 +535,12 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "aQ" = (
@@ -527,16 +559,11 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aS" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "aT" = (
 /obj/machinery/door/airlock/shuttle{
@@ -548,6 +575,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aU" = (
@@ -564,6 +595,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aW" = (
@@ -609,9 +644,6 @@
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "ba" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = -26;
@@ -623,6 +655,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "bb" = (
@@ -635,9 +668,6 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "bc" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
 /obj/item/radio/intercom{
 	name = "Station Intercom";
 	pixel_x = 26
@@ -648,6 +678,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "bd" = (
@@ -681,11 +712,11 @@
 	},
 /obj/item/storage/toolbox/emergency,
 /obj/item/storage/toolbox/emergency,
-/obj/item/flashlight/flare{
+/obj/item/flashlight/flare/signal{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/flashlight/flare{
+/obj/item/flashlight/flare/signal{
 	pixel_x = -6;
 	pixel_y = -2
 	},
@@ -707,6 +738,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "bi" = (
@@ -871,6 +903,153 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
+"bw" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"bx" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"by" = (
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-21";
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"kt" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"ps" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"pZ" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"qw" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"wV" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/status_display/evac{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"Aw" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"AJ" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"DX" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"Ts" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"Va" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"Yu" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
 
 (1,1,1) = {"
 aa
@@ -880,9 +1059,9 @@ aq
 ac
 ay
 aa
-ab
-ab
-ab
+bx
+bx
+bx
 aa
 aP
 ac
@@ -904,7 +1083,7 @@ aD
 aJ
 aJ
 aJ
-aD
+wV
 az
 ab
 az
@@ -915,17 +1094,17 @@ br
 bv
 "}
 (3,1,1) = {"
-ab
+aS
 ae
 al
 al
 av
 aA
+Ts
 aE
 aE
 aE
-aE
-aE
+pZ
 aQ
 aT
 aW
@@ -936,17 +1115,17 @@ bs
 bv
 "}
 (4,1,1) = {"
-ab
+aS
 ae
 al
 al
 ab
 aA
-aF
+Va
 aK
 aF
 aF
-aF
+Aw
 aQ
 aT
 aX
@@ -962,13 +1141,13 @@ af
 al
 ar
 ab
-aA
+ps
 aG
 aL
 aI
 aM
 aG
-aQ
+AJ
 ab
 aY
 bg
@@ -1004,13 +1183,13 @@ ag
 an
 as
 ab
-aA
+Yu
 aI
 aM
 aG
 aL
 aI
-aQ
+kt
 ab
 ba
 bh
@@ -1020,17 +1199,17 @@ bt
 bv
 "}
 (8,1,1) = {"
-ab
+aS
 ah
 ao
 an
 ax
 aA
-aJ
+qw
 aN
 aJ
 aJ
-aJ
+DX
 aQ
 aV
 bb
@@ -1041,17 +1220,17 @@ bt
 bv
 "}
 (9,1,1) = {"
-ab
+aS
 ai
 an
 at
 ab
 aA
+Ts
 aE
 aE
 aE
-aE
-aE
+pZ
 aQ
 aV
 bb
@@ -1062,18 +1241,18 @@ bt
 bv
 "}
 (10,1,1) = {"
-ab
+aS
 aj
 ap
 au
 aa
 aC
+Va
 aF
 aF
 aF
-aF
-aF
-aS
+Aw
+by
 ab
 bc
 bi
@@ -1084,16 +1263,16 @@ bv
 "}
 (11,1,1) = {"
 aa
-ab
-ab
+bw
+bw
 aa
 ac
 aa
-ab
-ab
-ab
-ab
-ab
+bw
+bw
+bw
+bw
+bw
 aa
 ac
 aa

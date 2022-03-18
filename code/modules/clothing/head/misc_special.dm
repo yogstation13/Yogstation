@@ -19,7 +19,7 @@
 	icon_state = "welding"
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	item_state = "welding"
-	materials = list(MAT_METAL=1750, MAT_GLASS=400)
+	materials = list(/datum/material/iron=1750, /datum/material/glass=400)
 	flash_protect = 2
 	tint = 2
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 60)
@@ -47,7 +47,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	brightness_on = 2 //luminosity when on
 	flags_cover = HEADCOVERSEYES
-	heat = 1000
+	heat = 999
 
 /obj/item/clothing/head/hardhat/cakehat/process()
 	var/turf/location = src.loc
@@ -61,10 +61,10 @@
 
 /obj/item/clothing/head/hardhat/cakehat/turn_on()
 	..()
-	force = 15
-	throwforce = 15
+	force = 5
+	throwforce = 5
 	damtype = BURN
-	hitsound = 'sound/items/welder.ogg'
+	hitsound = 'sound/weapons/sear.ogg'
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/head/hardhat/cakehat/turn_off()
@@ -97,12 +97,12 @@
 		src.icon_state = "ushankaup"
 		src.item_state = "ushankaup"
 		earflaps = 0
-		to_chat(user, "<span class='notice'>You raise the ear flaps on the ushanka.</span>")
+		to_chat(user, span_notice("You raise the ear flaps on the ushanka."))
 	else
 		src.icon_state = "ushankadown"
 		src.item_state = "ushankadown"
 		earflaps = 1
-		to_chat(user, "<span class='notice'>You lower the ear flaps on the ushanka.</span>")
+		to_chat(user, span_notice("You lower the ear flaps on the ushanka."))
 
 /*
  * Pumpkin head
@@ -134,7 +134,19 @@
 	if(ishuman(user) && slot == SLOT_HEAD)
 		update_icon(user)
 		user.update_inv_head() //Color might have been changed by update_icon.
+		var/datum/language_holder/LH = user.get_language_holder()
+		if(!LH.has_language(/datum/language/felinid) || !LH.can_speak_language(/datum/language/felinid))
+			to_chat(user, "Your mind floods with thoughts of hairballs.")
+			LH.grant_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
 	..()
+
+/obj/item/clothing/head/kitty/dropped(mob/user)
+	..()
+	var/datum/language_holder/LH = user.get_language_holder()
+	if(LH.has_language(/datum/language/felinid) || LH.can_speak_language(/datum/language/felinid)) //sanity
+		to_chat(user, "You rid yourself of degeneracy.")
+		LH.remove_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
+	
 
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
 	if(ishuman(user))
@@ -184,7 +196,7 @@
 /obj/item/clothing/head/wig
 	name = "wig"
 	desc = "A bunch of hair without a head attached."
-	icon_state = ""
+	icon_state = "pwig"
 	item_state = "pwig"
 	flags_inv = HIDEHAIR
 	var/hair_style = "Very Long Hair"
@@ -197,6 +209,7 @@
 
 /obj/item/clothing/head/wig/update_icon()
 	cut_overlays()
+	icon_state = ""
 	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
 	if(!S)
 		icon_state = "pwig"
@@ -223,10 +236,11 @@
 		return
 	if(new_style && new_style != hair_style)
 		hair_style = new_style
-		user.visible_message("<span class='notice'>[user] changes \the [src]'s hairstyle to [new_style].</span>", "<span class='notice'>You change \the [src]'s hairstyle to [new_style].</span>")
+		user.visible_message(span_notice("[user] changes \the [src]'s hairstyle to [new_style]."), span_notice("You change \the [src]'s hairstyle to [new_style]."))
 	if(adjustablecolor)
 		hair_color = input(usr,"","Choose Color",hair_color) as color|null
 	update_icon()
+
 
 /obj/item/clothing/head/wig/random/Initialize(mapload)
 	hair_style = pick(GLOB.hair_styles_list - "Bald") //Don't want invisible wig
@@ -245,6 +259,7 @@
 	. = ..()
 
 /obj/item/clothing/head/wig/natural/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
 	if(ishuman(user) && slot == SLOT_HEAD)
 		hair_color = "#[user.hair_color]"
 		update_icon()
@@ -266,27 +281,71 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = -5,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = -5, "fire" = 0, "acid" = 0)
 	equip_delay_other = 140
 	var/datum/brain_trauma/mild/phobia/conspiracies/paranoia
+	var/warped = FALSE
+
+/obj/item/clothing/head/foilhat/Initialize(mapload)
+	. = ..()
+	if(!warped)
+		AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_HEAD,  6, TRUE, null, CALLBACK(src, .proc/warp_up))
+	else
+		warp_up()
 
 /obj/item/clothing/head/foilhat/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if(slot == SLOT_HEAD)
-		if(paranoia)
-			QDEL_NULL(paranoia)
-		paranoia = new()
-		paranoia.clonable = FALSE
+	. = ..()
+	if(slot != SLOT_HEAD || warped)
+		return
+	if(paranoia)
+		QDEL_NULL(paranoia)
+	paranoia = new()
+	paranoia.clonable = FALSE
 
-		user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC)
-		to_chat(user, "<span class='warning'>As you don the foiled hat, an entire world of conspiracy theories and seemingly insane ideas suddenly rush into your mind. What you once thought unbelievable suddenly seems.. undeniable. Everything is connected and nothing happens just by accident. You know too much and now they're out to get you. </span>")
+	user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC)
+	to_chat(user, span_warning("As you don the foiled hat, an entire world of conspiracy theories and seemingly insane ideas suddenly rush into your mind. What you once thought unbelievable suddenly seems.. undeniable. Everything is connected and nothing happens just by accident. You know too much and now they're out to get you. "))
+
+
+/obj/item/clothing/head/foilhat/MouseDrop(atom/over_object)
+	//God Im sorry
+	if(!warped && iscarbon(usr))
+		var/mob/living/carbon/C = usr
+		if(src == C.head)
+			to_chat(C, span_userdanger("Why would you want to take this off? Do you want them to get into your mind?!"))
+			return
+	return ..()
 
 /obj/item/clothing/head/foilhat/dropped(mob/user)
-	..()
+	. = ..()
 	if(paranoia)
 		QDEL_NULL(paranoia)
 
+/obj/item/clothing/head/foilhat/proc/warp_up()
+	name = "scorched tinfoil hat"
+	desc = "A badly warped up hat. Quite unprobable this will still work against any of fictional and contemporary dangers it used to."
+	warped = TRUE
+	if(!isliving(loc) || !paranoia)
+		return
+	var/mob/living/target = loc
+	if(target.get_item_by_slot(SLOT_HEAD) != src)
+		return
+	QDEL_NULL(paranoia)
+	if(!target.IsUnconscious())
+		to_chat(target, span_warning("Your zealous conspirationism rapidly dissipates as the donned hat warps up into a ruined mess. All those theories starting to sound like nothing but a ridicolous fanfare."))
+
 /obj/item/clothing/head/foilhat/attack_hand(mob/user)
-	if(iscarbon(user))
+	if(!warped && iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(src == C.head)
-			to_chat(user, "<span class='userdanger'>Why would you want to take this off? Do you want them to get into your mind?!</span>")
+			to_chat(user, span_userdanger("Why would you want to take this off? Do you want them to get into your mind?!"))
 			return
-	..()
+	return ..()
+
+/obj/item/clothing/head/foilhat/microwave_act(obj/machinery/microwave/M)
+	. = ..()
+	if(!warped)
+		warp_up()
+
+/obj/item/clothing/head/franks_hat
+	name = "Frank's Hat"
+	desc = "You feel ashamed about what you had to do to get this hat"
+	icon_state = "cowboy"
+	item_state = "cowboy"
+

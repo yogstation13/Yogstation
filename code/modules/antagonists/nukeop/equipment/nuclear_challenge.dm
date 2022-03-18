@@ -1,6 +1,6 @@
 #define CHALLENGE_TELECRYSTALS 280
 #define CHALLENGE_TIME_LIMIT 3000
-#define CHALLENGE_MIN_PLAYERS 50
+#define CHALLENGE_MIN_PLAYERS 40
 #define CHALLENGE_SHUTTLE_DELAY 15000 // 25 minutes, so the ops have at least 5 minutes before the shuttle is callable.
 
 GLOBAL_LIST_EMPTY(jam_on_wardec)
@@ -50,7 +50,8 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	if(!check_allowed(user) || !war_declaration)
 		return
 
-	priority_announce(war_declaration, title = "Declaration of War", sound = 'sound/machines/alarm.ogg')
+	priority_announce(war_declaration, title = "Declaration of War", sound = 'sound/machines/alarm.ogg', has_important_message = TRUE)
+	set_security_level(SEC_LEVEL_GAMMA)
 
 	to_chat(user, "You've attracted the attention of powerful forces within the syndicate. A bonus bundle of telecrystals has been granted to your team. Great things await you if you complete the mission.")
 
@@ -61,7 +62,39 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	for(var/obj/machinery/computer/camera_advanced/shuttle_docker/D in GLOB.jam_on_wardec)
 		D.jammed = TRUE
 
-	new uplink_type(get_turf(user), user.key, CHALLENGE_TELECRYSTALS)
+	var/list/orphans = list()
+	var/list/uplinks = list()
+
+	for (var/datum/mind/M in get_antag_minds(/datum/antagonist/nukeop))
+		if (iscyborg(M.current))
+			continue
+		var/datum/component/uplink/uplink = M.find_syndicate_uplink()
+		if (!uplink)
+			orphans += M.current
+			continue
+		uplinks += uplink
+
+
+	var/tc_to_distribute = CHALLENGE_TELECRYSTALS
+	var/tc_per_nukie = round(tc_to_distribute / (length(orphans)+length(uplinks)))
+
+	for (var/datum/component/uplink/uplink in uplinks)
+		uplink.telecrystals += tc_per_nukie
+		tc_to_distribute -= tc_per_nukie
+
+	for (var/mob/living/L in orphans)
+		var/TC = new /obj/item/stack/telecrystal(user.drop_location(), tc_per_nukie)
+		to_chat(L, span_warning("Your uplink could not be found so your share of the team's bonus telecrystals has been bluespaced to your [L.put_in_hands(TC) ? "hands" : "feet"]."))
+		tc_to_distribute -= tc_per_nukie
+
+	if (tc_to_distribute > 0) // What shall we do with the remainder...
+		for (var/mob/living/simple_animal/hostile/carp/cayenne/C in GLOB.mob_living_list)
+			if (C.stat != DEAD)
+				var/obj/item/stack/telecrystal/TC = new(C.drop_location(), tc_to_distribute)
+				TC.throw_at(get_step(C, C.dir), 3, 3)
+				C.visible_message(span_notice("[C] coughs up a half-digested telecrystal"),span_usernotice("You cough up a half-digested telecrystal!"))
+				break
+
 	CONFIG_SET(number/shuttle_refuel_delay, max(CONFIG_GET(number/shuttle_refuel_delay), CHALLENGE_SHUTTLE_DELAY))
 	SSblackbox.record_feedback("amount", "nuclear_challenge_mode", 1)
 

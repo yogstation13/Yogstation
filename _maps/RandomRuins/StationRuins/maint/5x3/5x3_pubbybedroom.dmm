@@ -1,0 +1,71 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/plating,
+/area/template_noop)
+"b" = (
+/obj/structure/table,
+/obj/structure/bedsheetbin,
+/turf/open/floor/plating,
+/area/template_noop)
+"c" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"f" = (
+/obj/item/storage/box/mousetraps,
+/turf/open/floor/plating,
+/area/template_noop)
+"g" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plating,
+/area/template_noop)
+"h" = (
+/obj/structure/bed,
+/obj/item/bedsheet/dorms,
+/turf/open/floor/plating,
+/area/template_noop)
+"u" = (
+/obj/machinery/washing_machine,
+/turf/open/floor/plating,
+/area/template_noop)
+"w" = (
+/obj/item/flashlight/lamp,
+/turf/open/floor/plating,
+/area/template_noop)
+"T" = (
+/obj/structure/bed,
+/obj/item/bedsheet/dorms,
+/obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/template_noop)
+"Z" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+f
+u
+"}
+(2,1,1) = {"
+b
+g
+Z
+"}
+(3,1,1) = {"
+c
+c
+c
+"}
+(4,1,1) = {"
+c
+c
+c
+"}
+(5,1,1) = {"
+h
+w
+T
+"}

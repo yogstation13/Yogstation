@@ -69,18 +69,13 @@
 /mob/living/simple_animal/hostile/construct/examine(mob/user)
 	var/t_He = p_they(TRUE)
 	var/t_s = p_s()
-	var/msg = "<span class='cult'>*---------*\nThis is [icon2html(src, user)] \a <b>[src]</b>!\n"
-	msg += "[desc]\n"
+	. = list("<span class='cult'>*---------*\nThis is [icon2html(src, user)] \a <b>[src]</b>!\n[desc]")
 	if(health < maxHealth)
-		msg += "<span class='warning'>"
 		if(health >= maxHealth/2)
-			msg += "[t_He] look[t_s] slightly dented.\n"
+			. += span_warning("[t_He] look[t_s] slightly dented.")
 		else
-			msg += "<b>[t_He] look[t_s] severely dented!</b>\n"
-		msg += "</span>"
-	msg += "*---------*</span>"
-
-	to_chat(user, msg)
+			. += span_warning("<b>[t_He] look[t_s] severely dented!</b>")
+	. += "*---------*</span>"
 
 /mob/living/simple_animal/hostile/construct/attack_animal(mob/living/simple_animal/M)
 	if(isconstruct(M)) //is it a construct?
@@ -91,16 +86,16 @@
 			adjustHealth(-5)
 			if(src != M)
 				Beam(M,icon_state="sendbeam",time=4)
-				M.visible_message("<span class='danger'>[M] repairs some of \the <b>[src]'s</b> dents.</span>", \
-						   "<span class='cult'>You repair some of <b>[src]'s</b> dents, leaving <b>[src]</b> at <b>[health]/[maxHealth]</b> health.</span>")
+				M.visible_message(span_danger("[M] repairs some of \the <b>[src]'s</b> dents."), \
+						   span_cult("You repair some of <b>[src]'s</b> dents, leaving <b>[src]</b> at <b>[health]/[maxHealth]</b> health."))
 			else
-				M.visible_message("<span class='danger'>[M] repairs some of [p_their()] own dents.</span>", \
-						   "<span class='cult'>You repair some of your own dents, leaving you at <b>[M.health]/[M.maxHealth]</b> health.</span>")
+				M.visible_message(span_danger("[M] repairs some of [p_their()] own dents."), \
+						   span_cult("You repair some of your own dents, leaving you at <b>[M.health]/[M.maxHealth]</b> health."))
 		else
 			if(src != M)
-				to_chat(M, "<span class='cult'>You cannot repair <b>[src]'s</b> dents, as [p_they()] [p_have()] none!</span>")
+				to_chat(M, span_cult("You cannot repair <b>[src]'s</b> dents, as [p_they()] [p_have()] none!"))
 			else
-				to_chat(M, "<span class='cult'>You cannot repair your own dents, as you have none!</span>")
+				to_chat(M, span_cult("You cannot repair your own dents, as you have none!"))
 	else if(src != M)
 		return ..()
 
@@ -114,6 +109,13 @@
 	. = ..()
 	if(updating_health)
 		update_health_hud()
+
+mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user, params)
+	. = ..()
+	if(istype(W, /obj/item/nullrod))
+		visible_message(span_warning("[src] recoils from the blow!"), \
+						span_cult("As \the [W] hits you, you feel holy power blast through your form, tearing it apart!"))
+		adjustBruteLoss(45)
 
 /////////////////Juggernaut///////////////
 /mob/living/simple_animal/hostile/construct/armored
@@ -137,7 +139,7 @@
 	mob_size = MOB_SIZE_LARGE
 	force_threshold = 10
 	construct_spells = list(/obj/effect/proc_holder/spell/targeted/forcewall/cult,
-							/obj/effect/proc_holder/spell/dumbfire/juggernaut)
+							/obj/effect/proc_holder/spell/targeted/projectile/dumbfire/juggernaut)
 	runetype = /datum/action/innate/cult/create_rune/wall
 	playstyle_string = "<b>You are a Juggernaut. Though slow, your shell can withstand heavy punishment, \
 						create shield walls, rip apart enemies and walls alike, and even deflect energy weapons.</b>"
@@ -151,8 +153,8 @@
 		var/reflectchance = 40 - round(P.damage/3)
 		if(prob(reflectchance))
 			apply_damage(P.damage * 0.5, P.damage_type)
-			visible_message("<span class='danger'>The [P.name] is reflected by [src]'s armored shell!</span>", \
-							"<span class='userdanger'>The [P.name] is reflected by your armored shell!</span>")
+			visible_message(span_danger("The [P.name] is reflected by [src]'s armored shell!"), \
+							span_userdanger("The [P.name] is reflected by your armored shell!"))
 
 			// Find a turf near or on the original location to bounce to
 			if(P.starting)
@@ -174,6 +176,14 @@
 			return BULLET_ACT_FORCE_PIERCE // complete projectile permutation
 
 	return ..()
+
+//////////////////////////Angelic-Juggernaut////////////////////////////
+/mob/living/simple_animal/hostile/construct/armored/angelic
+	icon_state = "behemoth_angelic"
+	icon_living = "behemoth_angelic"
+	loot = list(/obj/item/ectoplasm/angelic)
+
+/mob/living/simple_animal/hostile/construct/armored/noncult
 
 ////////////////////////Wraith/////////////////////////////////////////////
 /mob/living/simple_animal/hostile/construct/wraith
@@ -220,7 +230,13 @@
 /mob/living/simple_animal/hostile/construct/wraith/hostile //actually hostile, will move around, hit things
 	AIStatus = AI_ON
 
+//////////////////////////Angelic-Wraith////////////////////////////
+/mob/living/simple_animal/hostile/construct/wraith/angelic
+	icon_state = "floating_angelic"
+	icon_living = "floating_angelic"
+	loot = list(/obj/item/ectoplasm/angelic)
 
+/mob/living/simple_animal/hostile/construct/wraith/noncult
 
 /////////////////////////////Artificer/////////////////////////
 /mob/living/simple_animal/hostile/construct/builder
@@ -297,14 +313,21 @@
 	AIStatus = AI_ON
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES //only token destruction, don't smash the cult wall NO STOP
 
-/////////////////////////////Non-cult Artificer/////////////////////////
+/////////////////////////////Angelic Artificer/////////////////////////
+/mob/living/simple_animal/hostile/construct/builder/angelic
+	icon_state = "artificer_angelic"
+	icon_living = "artificer_angelic"
+	loot = list(/obj/item/ectoplasm/angelic)
+	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone/noncult/purified,
+							/obj/effect/proc_holder/spell/aoe_turf/conjure/construct/lesser,
+							/obj/effect/proc_holder/spell/targeted/projectile/magic_missile/lesser)
+
 /mob/living/simple_animal/hostile/construct/builder/noncult
 	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/wall,
 							/obj/effect/proc_holder/spell/aoe_turf/conjure/floor,
 							/obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone/noncult,
 							/obj/effect/proc_holder/spell/aoe_turf/conjure/construct/lesser,
 							/obj/effect/proc_holder/spell/targeted/projectile/magic_missile/lesser)
-
 
 /////////////////////////////Harvester/////////////////////////
 /mob/living/simple_animal/hostile/construct/harvester
@@ -342,7 +365,7 @@
 /mob/living/simple_animal/hostile/construct/harvester/AttackingTarget()
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		if(C.has_trait(TRAIT_NODISMEMBER))
+		if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
 			return ..()		//ATTACK!
 		var/list/parts = list()
 		var/undismembermerable_limbs = 0
@@ -357,8 +380,8 @@
 			if(undismembermerable_limbs) //they have limbs we can't remove, and no parts we can, attack!
 				return ..()
 			C.Paralyze(60)
-			visible_message("<span class='danger'>[src] knocks [C] down!</span>")
-			to_chat(src, "<span class='cultlarge'>\"Bring [C.p_them()] to me.\"</span>")
+			visible_message(span_danger("[src] knocks [C] down!"))
+			to_chat(src, span_cultlarge("\"Bring [C.p_them()] to me.\""))
 			return FALSE
 		do_attack_animation(C)
 		var/obj/item/bodypart/BP = pick(parts)
@@ -463,4 +486,3 @@
 			hud_used.healths.icon_state = "[icon_state]_health5"
 		else
 			hud_used.healths.icon_state = "[icon_state]_health6"
-

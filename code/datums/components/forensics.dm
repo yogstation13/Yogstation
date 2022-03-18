@@ -1,5 +1,6 @@
 /datum/component/forensics
 	dupe_mode = COMPONENT_DUPE_UNIQUE
+	can_transfer = TRUE
 	var/list/fingerprints		//assoc print = print
 	var/list/hiddenprints		//assoc ckey = realname/gloves/ckey
 	var/list/blood_DNA			//assoc dna = bloodtype
@@ -21,7 +22,17 @@
 	blood_DNA = new_blood_DNA
 	fibers = new_fibers
 	check_blood()
+
+/datum/component/forensics/RegisterWithParent()
+	check_blood()
 	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_act)
+
+/datum/component/forensics/UnregisterFromParent()
+    UnregisterSignal(parent, list(COMSIG_COMPONENT_CLEAN_ACT))
+
+/datum/component/forensics/PostTransfer()
+	if(!isatom(parent))
+		return COMPONENT_INCOMPATIBLE
 
 /datum/component/forensics/proc/wipe_fingerprints()
 	fingerprints = null
@@ -40,13 +51,16 @@
 	fibers = null
 	return TRUE
 
-/datum/component/forensics/proc/clean_act(datum/source, strength)
-	if(strength >= CLEAN_STRENGTH_FINGERPRINTS)
+/datum/component/forensics/proc/clean_act(datum/source, clean_types)
+	if(clean_types & CLEAN_TYPE_FINGERPRINTS)
 		wipe_fingerprints()
-	if(strength >= CLEAN_STRENGTH_BLOOD)
+		. = TRUE
+	if(clean_types & CLEAN_TYPE_BLOOD)
 		wipe_blood_DNA()
-	if(strength >= CLEAN_STRENGTH_FIBERS)
+		. = TRUE
+	if(clean_types & CLEAN_TYPE_FIBERS)
 		wipe_fibers()
+		. = TRUE
 
 /datum/component/forensics/proc/add_fingerprint_list(list/_fingerprints)	//list(text)
 	if(!length(_fingerprints))

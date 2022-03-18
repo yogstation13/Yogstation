@@ -7,9 +7,12 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
-	selection_color = "#ffeef0"
+	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
-	exp_requirements = 60
+	exp_requirements = 120
+	exp_type_department = EXP_TYPE_MEDICAL
+
+	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist")
 
 	outfit = /datum/outfit/job/chemist
 
@@ -20,6 +23,15 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHEMIST
 
+	changed_maps = list("OmegaStation", "EclipseStation")
+
+/datum/job/chemist/proc/OmegaStationChanges()
+	return TRUE
+
+/datum/job/chemist/proc/EclipseStationChanges()
+	total_positions = 3
+	spawn_positions = 3
+
 /datum/outfit/job/chemist
 	name = "Chemist"
 	jobtype = /datum/job/chemist
@@ -28,6 +40,7 @@
 	belt = /obj/item/pda/chemist
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/chemist
+	uniform_skirt = /obj/item/clothing/under/rank/chemist/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/chemist
 	backpack = /obj/item/storage/backpack/chemistry

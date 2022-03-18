@@ -42,7 +42,7 @@
 		nadeassembly = A
 		A.master = src
 		assemblyattacher = user.ckey
-		to_chat(user, "<span class='notice'>You add [A] to the [name].</span>")
+		to_chat(user, span_notice("You add [A] to the [name]."))
 		playsound(src, 'sound/weapons/tap.ogg', 20, 1)
 		update_icon()
 		return
@@ -57,16 +57,18 @@
 
 /obj/item/grenade/plastic/prime()
 	var/turf/location
+	var/density_check = FALSE
 	if(target)
 		if(!QDELETED(target))
 			location = get_turf(target)
+			density_check = target.density //since turfs getting exploded makes this a bit fucky wucky we need to assert whether we should go directional before that part
 			target.cut_overlay(plastic_overlay, TRUE)
 			if(!ismob(target) || full_damage_on_mobs)
 				target.ex_act(2, target)
 	else
 		location = get_turf(src)
 	if(location)
-		if(directional && target && target.density)
+		if(directional && target && density_check)
 			var/turf/T = get_step(location, aim_dir)
 			explosion(get_step(T, aim_dir), boom_sizes[1], boom_sizes[2], boom_sizes[3])
 		else
@@ -81,6 +83,7 @@
 	prime()
 
 /obj/item/grenade/plastic/Crossed(atom/movable/AM)
+	. = ..()
 	if(nadeassembly)
 		nadeassembly.Crossed(AM)
 
@@ -94,7 +97,7 @@
 		return
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(user.get_active_held_item() == src)
-		newtime = CLAMP(newtime, 10, 60000)
+		newtime = clamp(newtime, 10, 60000)
 		det_time = newtime
 		to_chat(user, "Timer set for [det_time] seconds.")
 
@@ -105,10 +108,14 @@
 		return
 	if(ismob(AM) && !can_attach_mob)
 		return
+	if(AM.GetComponent(/datum/component/storage))
+		var/fuckup_safety = alert(user, "Doing this will arm the explosive and attach it to the [AM.name], not put it inside. Are you sure you want to do this?", "Are you sure?", "Yes", "No")
+		if(fuckup_safety != "Yes")
+			return
 
-	to_chat(user, "<span class='notice'>You start planting [src]. The timer is set to [det_time]...</span>")
+	to_chat(user, span_notice("You start planting [src]. The timer is set to [det_time]..."))
 
-	if(do_after(user, 30, target = AM))
+	if(do_after(user, 3 SECONDS, target = AM))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		target = AM
@@ -116,7 +123,7 @@
 		message_admins("[ADMIN_LOOKUPFLW(user)] planted [name] on [target.name] at [ADMIN_VERBOSEJMP(target)] with [det_time] second fuse")
 		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)] with a [det_time] second fuse")
 
-		notify_ghosts("[user] has planted \a [src] on [target] with a [det_time] second fuse!", source = target, action = NOTIFY_ORBIT)
+		notify_ghosts("[user] has planted \a [src] on [target] with a [det_time] second fuse!", source = target, action = NOTIFY_ORBIT, header = "Bomb Planted" )
 
 		moveToNullspace()	//Yep
 
@@ -128,7 +135,7 @@
 
 		target.add_overlay(plastic_overlay, TRUE)
 		if(!nadeassembly)
-			to_chat(user, "<span class='notice'>You plant the bomb. Timer counting down from [det_time].</span>")
+			to_chat(user, span_notice("You plant the bomb. Timer counting down from [det_time]."))
 			addtimer(CALLBACK(src, .proc/prime), det_time*10)
 		else
 			qdel(src)	//How?
@@ -154,7 +161,7 @@
 /obj/item/grenade/plastic/suicide_act(mob/user)
 	message_admins("[ADMIN_LOOKUPFLW(user)] suicided with [src] at [ADMIN_VERBOSEJMP(user)]")
 	log_game("[key_name(user)] suicided with [src] at [AREACOORD(user)]")
-	user.visible_message("<span class='suicide'>[user] activates [src] and holds it above [user.p_their()] head! It looks like [user.p_theyre()] going out with a bang!</span>")
+	user.visible_message(span_suicide("[user] activates [src] and holds it above [user.p_their()] head! It looks like [user.p_theyre()] going out with a bang!"))
 	shout_syndicate_crap(user)
 	explosion(user,0,2,0) //Cheap explosion imitation because putting prime() here causes runtimes
 	user.gib(1, 1)
@@ -188,7 +195,7 @@
 	return ..()
 
 /obj/item/grenade/plastic/c4/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] activates the [src.name] and holds it above [user.p_their()] head! It looks like [user.p_theyre()] going out with a bang!</span>")
+	user.visible_message(span_suicide("[user] activates the [src.name] and holds it above [user.p_their()] head! It looks like [user.p_theyre()] going out with a bang!"))
 	shout_syndicate_crap(user)
 	target = user
 	message_admins("[ADMIN_LOOKUPFLW(user)] suicided with [name] at [ADMIN_VERBOSEJMP(src)]")
@@ -200,7 +207,7 @@
 /obj/item/grenade/plastic/c4/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		open_panel = !open_panel
-		to_chat(user, "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>")
+		to_chat(user, span_notice("You [open_panel ? "open" : "close"] the wire panel."))
 	else if(is_wire_tool(I))
 		wires.interact(user)
 	else
@@ -215,7 +222,7 @@
 			location = get_turf(target)
 			target.cut_overlay(plastic_overlay, TRUE)
 			if(!ismob(target) || full_damage_on_mobs)
-				target.ex_act(2, target)
+				target.ex_act(EXPLODE_HEAVY, target)
 	else
 		location = get_turf(src)
 	if(location)

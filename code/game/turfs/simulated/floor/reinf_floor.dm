@@ -1,11 +1,10 @@
-
 /turf/open/floor/engine
 	name = "reinforced floor"
 	desc = "Extremely sturdy."
 	icon_state = "engine"
 	thermal_conductivity = 0.025
 	heat_capacity = INFINITY
-	floor_tile = /obj/item/stack/rods
+	floor_tile = /obj/item/stack/sheet/metal
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
@@ -13,8 +12,8 @@
 	tiled_dirt = FALSE
 
 /turf/open/floor/engine/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The reinforcement rods are <b>wrenched</b> firmly in place.</span>")
+	. += ..()
+	. += span_notice("The reinforcement plates are <b>wrenched</b> firmly in place.")
 
 /turf/open/floor/engine/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -25,6 +24,10 @@
 /turf/open/floor/engine/burn_tile()
 	return //unburnable
 
+/turf/open/floor/engine/Melt()
+	to_be_destroyed = FALSE
+	return src
+
 /turf/open/floor/engine/make_plating(force = 0)
 	if(force)
 		..()
@@ -33,17 +36,20 @@
 /turf/open/floor/engine/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
 
+/turf/open/floor/engine/remove_tile(mob/user, silent = FALSE, make_tile = TRUE)
+	return
+
 /turf/open/floor/engine/crowbar_act(mob/living/user, obj/item/I)
 	return
 
 /turf/open/floor/engine/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You begin removing rods...</span>")
+	to_chat(user, span_notice("You begin removing plates..."))
 	if(I.use_tool(src, user, 30, volume=80))
 		if(!istype(src, /turf/open/floor/engine))
 			return TRUE
 		if(floor_tile)
-			new floor_tile(src, 2)
-		ScrapeAway()
+			new floor_tile(src, 1)
+		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	return TRUE
 
 /turf/open/floor/engine/acid_act(acidpwr, acid_volume)
@@ -56,31 +62,30 @@
 	if(severity != 1 && shielded && target != src)
 		return
 	if(target == src)
-		ScrapeAway()
+		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		return
 	switch(severity)
 		if(1)
 			if(prob(80))
 				if(!length(baseturfs) || !ispath(baseturfs[baseturfs.len-1], /turf/open/floor))
-					ScrapeAway()
+					ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					ReplaceWithLattice()
 				else
-					ScrapeAway(2)
+					ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 			else if(prob(50))
-				ScrapeAway(2)
+				ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 			else
-				ScrapeAway()
+				ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		if(2)
 			if(prob(50))
-				ScrapeAway()
+				ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 /turf/open/floor/engine/singularity_pull(S, current_size)
-	..()
 	if(current_size >= STAGE_FIVE)
 		if(floor_tile)
 			if(prob(30))
 				new floor_tile(src)
-				make_plating()
+				make_plating(TRUE)
 		else if(prob(30))
 			ReplaceWithLattice()
 

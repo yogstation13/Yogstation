@@ -6,7 +6,7 @@
 
 /mob/living/simple_animal/hostile/poison
 	var/poison_per_bite = 5
-	var/poison_type = "toxin"
+	var/poison_type = /datum/reagent/toxin
 
 /mob/living/simple_animal/hostile/poison/AttackingTarget()
 	. = ..()
@@ -66,14 +66,16 @@
 /mob/living/simple_animal/hostile/poison/giant_spider/Topic(href, href_list)
 	if(href_list["activate"])
 		var/mob/dead/observer/ghost = usr
-		if(istype(ghost) && playable_spider)
+		if(istype(ghost) && playable_spider && !(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
 			humanize_spider(ghost)
 
 /mob/living/simple_animal/hostile/poison/giant_spider/Login()
 	..()
 	if(directive)
-		to_chat(src, "<span class='notice'>Your mother left you a directive! Follow it at all costs.</span>")
-		to_chat(src, "<span class='spider'><b>[directive]</b></span>")
+		to_chat(src, span_spider("Your mother left you a directive! Follow it at all costs."))
+		to_chat(src, span_spider("<b>[directive]</b>"))
+		if(mind)
+			mind.store_memory(span_spider("<b>[directive]</b>"))
 
 /mob/living/simple_animal/hostile/poison/giant_spider/attack_ghost(mob/user)
 	. = ..()
@@ -88,7 +90,7 @@
 	if(spider_ask == "No" || !src || QDELETED(src))
 		return 1
 	if(key)
-		to_chat(user, "<span class='notice'>Someone else already took this spider.</span>")
+		to_chat(user, span_notice("Someone else already took this spider."))
 		return 1
 	key = user.key
 	return 1
@@ -112,6 +114,7 @@
 	var/datum/action/innate/spider/lay_eggs/lay_eggs
 	var/datum/action/innate/spider/set_directive/set_directive
 	var/static/list/consumed_mobs = list() //the tags of mobs that have been consumed by nurse spiders to lay eggs
+	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/Initialize()
 	. = ..()
@@ -126,6 +129,27 @@
 	RemoveAbility(wrap)
 	QDEL_NULL(lay_eggs)
 	QDEL_NULL(set_directive)
+	return ..()
+
+//broodmothers are the queen of the spiders, can send messages to all them and web faster. That rare round where you get a queen spider and turn your 'for honor' players into 'r6siege' players will be a fun one.
+/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife
+	name = "broodmother"
+	desc = "Furry and black, it makes you shudder to look at it. This one has scintillating green eyes. Might also be hiding a real knife somewhere."
+	icon_state = "midwife"
+	icon_living = "midwife"
+	icon_dead = "midwife_dead"
+	maxHealth = 40
+	health = 40
+	var/datum/action/innate/spider/comm/letmetalkpls
+	gold_core_spawnable = HOSTILE_SPAWN //yogs xenobio spiders best spiders
+
+/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife/Initialize()
+	. = ..()
+	letmetalkpls = new
+	letmetalkpls.Grant(src)
+
+/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife/Destroy()
+	QDEL_NULL(letmetalkpls)
 	return ..()
 
 //hunters have the most poison and move the fastest, so they can find prey
@@ -154,7 +178,7 @@
 	melee_damage_upper = 1
 	poison_per_bite = 12
 	move_to_delay = 4
-	poison_type = "venom" //all in venom, glass cannon. you bite 5 times and they are DEFINITELY dead, but 40 health and you are extremely obvious. Ambush, maybe?
+	poison_type = /datum/reagent/toxin/venom //all in venom, glass cannon. you bite 5 times and they are DEFINITELY dead, but 40 health and you are extremely obvious. Ambush, maybe?
 	speed = 1
 	gold_core_spawnable = NO_SPAWN
 
@@ -175,42 +199,24 @@
 	status_flags = NONE
 	mob_size = MOB_SIZE_LARGE
 	gold_core_spawnable = NO_SPAWN
+	var/slowed_by_webs = FALSE
 
-/mob/living/simple_animal/hostile/poison/giant_spider/tarantula/movement_delay()
-	var/turf/T = get_turf(src)
-	if(locate(/obj/structure/spider/stickyweb) in T)
-		speed = 2
-	else
-		speed = 7
+/mob/living/simple_animal/hostile/poison/giant_spider/tarantula/Moved(atom/oldloc, dir)
 	. = ..()
-
-//midwives are the queen of the spiders, can send messages to all them and web faster. That rare round where you get a queen spider and turn your 'for honor' players into 'r6siege' players will be a fun one.
-/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife
-	name = "midwife"
-	desc = "Furry and black, it makes you shudder to look at it. This one has scintillating green eyes."
-	icon_state = "midwife"
-	icon_living = "midwife"
-	icon_dead = "midwife_dead"
-	maxHealth = 40
-	health = 40
-	var/datum/action/innate/spider/comm/letmetalkpls
-	gold_core_spawnable = NO_SPAWN
-
-/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife/Initialize()
-	. = ..()
-	letmetalkpls = new
-	letmetalkpls.Grant(src)
-
-/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife/Destroy()
-	QDEL_NULL(letmetalkpls)
-	return ..()
+	if(slowed_by_webs)
+		if(!(locate(/obj/structure/spider/stickyweb) in loc))
+			remove_movespeed_modifier(MOVESPEED_ID_TARANTULA_WEB)
+			slowed_by_webs = FALSE
+	else if(locate(/obj/structure/spider/stickyweb) in loc)
+		add_movespeed_modifier(MOVESPEED_ID_TARANTULA_WEB, priority=100, multiplicative_slowdown=3)
+		slowed_by_webs = TRUE
 
 /mob/living/simple_animal/hostile/poison/giant_spider/ice //spiders dont usually like tempatures of 140 kelvin who knew
 	name = "giant ice spider"
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
-	poison_type = "frostoil"
+	poison_type = /datum/reagent/consumable/frostoil
 	color = rgb(114,228,250)
 	gold_core_spawnable = NO_SPAWN
 
@@ -219,16 +225,15 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
-	poison_type = "frostoil"
+	poison_type = /datum/reagent/consumable/frostoil
 	color = rgb(114,228,250)
-	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter/ice
 	name = "giant ice spider"
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
-	poison_type = "frostoil"
+	poison_type = /datum/reagent/consumable/frostoil
 	color = rgb(114,228,250)
 	gold_core_spawnable = NO_SPAWN
 
@@ -301,23 +306,24 @@
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/proc/cocoon()
 	if(stat != DEAD && cocoon_target && !cocoon_target.anchored)
 		if(cocoon_target == src)
-			to_chat(src, "<span class='warning'>You can't wrap yourself!</span>")
+			to_chat(src, span_warning("You can't wrap yourself!"))
 			return
 		if(istype(cocoon_target, /mob/living/simple_animal/hostile/poison/giant_spider))
-			to_chat(src, "<span class='warning'>You can't wrap other spiders!</span>")
+			to_chat(src, span_warning("You can't wrap other spiders!"))
 			return
 		if(!Adjacent(cocoon_target))
-			to_chat(src, "<span class='warning'>You can't reach [cocoon_target]!</span>")
+			to_chat(src, span_warning("You can't reach [cocoon_target]!"))
 			return
 		if(busy == SPINNING_COCOON)
-			to_chat(src, "<span class='warning'>You're already spinning a cocoon!</span>")
+			to_chat(src, span_warning("You're already spinning a cocoon!"))
 			return //we're already doing this, don't cancel out or anything
 		busy = SPINNING_COCOON
-		visible_message("<span class='notice'>[src] begins to secrete a sticky substance around [cocoon_target].</span>","<span class='notice'>You begin wrapping [cocoon_target] into a cocoon.</span>")
+		visible_message(span_notice("[src] begins to secrete a sticky substance around [cocoon_target]."),span_notice("You begin wrapping [cocoon_target] into a cocoon."))
 		stop_automated_movement = TRUE
 		walk(src,0)
-		if(do_after(src, 50, target = cocoon_target))
+		if(do_after(src, 5 SECONDS, target = cocoon_target))
 			if(busy == SPINNING_COCOON)
+				log_admin("[src] spun a cocoon around [cocoon_target]")
 				var/obj/structure/spider/cocoon/C = new(cocoon_target.loc)
 				if(isliving(cocoon_target))
 					var/mob/living/L = cocoon_target
@@ -325,10 +331,10 @@
 						consumed_mobs[L.tag] = TRUE
 						fed++
 						lay_eggs.UpdateButtonIcon(TRUE)
-						visible_message("<span class='danger'>[src] sticks a proboscis into [L] and sucks a viscous substance out.</span>","<span class='notice'>You suck the nutriment out of [L], feeding you enough to lay a cluster of eggs.</span>")
+						visible_message(span_danger("[src] sticks a proboscis into [L] and sucks a viscous substance out."),span_notice("You suck the nutriment out of [L], feeding you enough to lay a cluster of eggs."))
 						L.death() //you just ate them, they're dead.
 					else
-						to_chat(src, "<span class='warning'>[L] cannot sate your hunger!</span>")
+						to_chat(src, span_warning("[L] cannot sate your hunger!"))
 				cocoon_target.forceMove(C)
 
 				if(cocoon_target.density || ismob(cocoon_target))
@@ -358,12 +364,12 @@
 
 	var/obj/structure/spider/stickyweb/W = locate() in T
 	if(W)
-		to_chat(S, "<span class='warning'>There's already a web here!</span>")
+		to_chat(S, span_warning("There's already a web here!"))
 		return
 
 	if(S.busy != SPINNING_WEB)
 		S.busy = SPINNING_WEB
-		S.visible_message("<span class='notice'>[S] begins to secrete a sticky substance.</span>","<span class='notice'>You begin to lay a web.</span>")
+		S.visible_message(span_notice("[S] begins to secrete a sticky substance."),span_notice("You begin to lay a web."))
 		S.stop_automated_movement = TRUE
 		if(do_after(S, 40, target = T))
 			if(S.busy == SPINNING_WEB && S.loc == T)
@@ -371,7 +377,7 @@
 		S.busy = SPIDER_IDLE
 		S.stop_automated_movement = FALSE
 	else
-		to_chat(S, "<span class='warning'>You're already spinning a web!</span>")
+		to_chat(S, span_warning("You're already spinning a web!"))
 
 /obj/effect/proc_holder/wrap
 	name = "Wrap"
@@ -402,10 +408,10 @@
 /obj/effect/proc_holder/wrap/proc/activate(mob/living/user)
 	var/message
 	if(active)
-		message = "<span class='notice'>You no longer prepare to wrap something in a cocoon.</span>"
+		message = span_notice("You no longer prepare to wrap something in a cocoon.")
 		remove_ranged_ability(message)
 	else
-		message = "<span class='notice'>You prepare to wrap something in a cocoon. <B>Left-click your target to start wrapping!</B></span>"
+		message = span_notice("You prepare to wrap something in a cocoon. <B>Left-click your target to start wrapping!</B>")
 		add_ranged_ability(user, message, TRUE)
 		return 1
 
@@ -452,17 +458,18 @@
 
 	var/obj/structure/spider/eggcluster/E = locate() in get_turf(S)
 	if(E)
-		to_chat(S, "<span class='warning'>There is already a cluster of eggs here!</span>")
+		to_chat(S, span_warning("There is already a cluster of eggs here!"))
 	else if(!S.fed)
-		to_chat(S, "<span class='warning'>You are too hungry to do this!</span>")
+		to_chat(S, span_warning("You are too hungry to do this!"))
 	else if(S.busy != LAYING_EGGS)
 		S.busy = LAYING_EGGS
-		S.visible_message("<span class='notice'>[S] begins to lay a cluster of eggs.</span>","<span class='notice'>You begin to lay a cluster of eggs.</span>")
+		S.visible_message(span_notice("[S] begins to lay a cluster of eggs."),span_notice("You begin to lay a cluster of eggs."))
 		S.stop_automated_movement = TRUE
 		if(do_after(S, 50, target = get_turf(S)))
 			if(S.busy == LAYING_EGGS)
 				E = locate() in get_turf(S)
 				if(!E || !isturf(S.loc))
+					log_admin("[src] layed eggs at [S.loc]")
 					var/obj/structure/spider/eggcluster/C = new /obj/structure/spider/eggcluster(get_turf(S))
 					if(S.ckey)
 						C.player_spiders = TRUE
@@ -516,7 +523,7 @@
 	if(!message)
 		return
 	var/my_message
-	my_message = "<span class='spider'><b>Command from [user]:</b> [message]</span>"
+	my_message = span_spider("<b>Command from [user]:</b> [message]")
 	for(var/mob/living/simple_animal/hostile/poison/giant_spider/M in GLOB.spidermobs)
 		to_chat(M, my_message)
 	for(var/M in GLOB.dead_mob_list)

@@ -4,12 +4,18 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE
 
+/obj/item/antag_spawner/ComponentInitialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
+
 /obj/item/antag_spawner/proc/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	return
 
 /obj/item/antag_spawner/proc/equip_antag(mob/target)
 	return
 
+/obj/item/antag_spawner/proc/refund_check()
+	return !used
 
 ///////////WIZARD
 
@@ -19,9 +25,17 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state ="scroll2"
 
+	var/unlocked = FALSE
+
+/obj/item/antag_spawner/contract/unlocked
+	unlocked = TRUE
+
 /obj/item/antag_spawner/contract/attack_self(mob/user)
+	if(!unlocked && !user.mind.has_antag_datum(/datum/antagonist/wizard))
+		to_chat(user, span_warning("You do not understand the words on this paper."))
+		return
 	user.set_machine(src)
-	var/dat
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	if(used)
 		dat = "<B>You have already summoned your apprentice.</B><BR>"
 	else
@@ -37,6 +51,8 @@
 		dat += "<I>Your apprentice is training to cast spells that will aid your survival. They know Forcewall and Charge and come with a Staff of Healing.</I><BR>"
 		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_ROBELESS]'>Robeless</A><BR>"
 		dat += "<I>Your apprentice is training to cast spells without their robes. They know Knock and Mindswap.</I><BR>"
+
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return
@@ -105,13 +121,13 @@
 
 /obj/item/antag_spawner/nuke_ops/proc/check_usability(mob/user)
 	if(used)
-		to_chat(user, "<span class='warning'>[src] is out of power!</span>")
+		to_chat(user, span_warning("[src] is out of power!"))
 		return FALSE
 	if(!user.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
-		to_chat(user, "<span class='danger'>AUTHENTICATION FAILURE. ACCESS DENIED.</span>")
+		to_chat(user, span_danger("AUTHENTICATION FAILURE. ACCESS DENIED."))
 		return FALSE
 	if(!user.onSyndieBase())
-		to_chat(user, "<span class='warning'>[src] is out of range! It can only be used at your base!</span>")
+		to_chat(user, span_warning("[src] is out of range! It can only be used at your base!"))
 		return FALSE
 	return TRUE
 
@@ -120,7 +136,7 @@
 	if(!(check_usability(user)))
 		return
 
-	to_chat(user, "<span class='notice'>You activate [src] and wait for confirmation.</span>")
+	to_chat(user, span_notice("You activate [src] and wait for confirmation."))
 	var/list/nuke_candidates = pollGhostCandidates("Do you want to play as a syndicate [borg_to_spawn ? "[lowertext(borg_to_spawn)] cyborg":"operative"]?", ROLE_OPERATIVE, null, ROLE_OPERATIVE, 150, POLL_IGNORE_SYNDICATE)
 	if(LAZYLEN(nuke_candidates))
 		if(QDELETED(src) || !check_usability(user))
@@ -131,7 +147,7 @@
 		do_sparks(4, TRUE, src)
 		qdel(src)
 	else
-		to_chat(user, "<span class='warning'>Unable to connect to Syndicate command. Please wait and try again later or use the teleporter on your uplink to get your points refunded.</span>")
+		to_chat(user, span_warning("Unable to connect to Syndicate command. Please wait and try again later or use the teleporter on your uplink to get your points refunded."))
 
 /obj/item/antag_spawner/nuke_ops/spawn_antag(client/C, turf/T, kind, datum/mind/user)
 	var/mob/living/carbon/human/M = new/mob/living/carbon/human(T)
@@ -229,15 +245,15 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "vial"
 
-	var/shatter_msg = "<span class='notice'>You shatter the bottle, no turning back now!</span>"
-	var/veil_msg = "<span class='warning'>You sense a dark presence lurking just beyond the veil...</span>"
+	var/shatter_msg = span_notice("You shatter the bottle, no turning back now!")
+	var/veil_msg = span_warning("You sense a dark presence lurking just beyond the veil...")
 	var/mob/living/demon_type = /mob/living/simple_animal/slaughter
 	var/antag_type = /datum/antagonist/slaughter
 
 
 /obj/item/antag_spawner/slaughter_demon/attack_self(mob/user)
 	if(!is_station_level(user.z))
-		to_chat(user, "<span class='notice'>You should probably wait until you reach the station.</span>")
+		to_chat(user, span_notice("You should probably wait until you reach the station."))
 		return
 	if(used)
 		return
@@ -253,7 +269,7 @@
 		playsound(user.loc, 'sound/effects/glassbr1.ogg', 100, 1)
 		qdel(src)
 	else
-		to_chat(user, "<span class='notice'>You can't seem to work up the nerve to shatter the bottle. Perhaps you should try again later.</span>")
+		to_chat(user, span_notice("You can't seem to work up the nerve to shatter the bottle. Perhaps you should try again later."))
 
 
 /obj/item/antag_spawner/slaughter_demon/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
@@ -276,6 +292,6 @@
 	icon_state = "vial"
 	color = "#FF69B4" // HOT PINK
 
-	veil_msg = "<span class='warning'>You sense an adorable presence lurking just beyond the veil...</span>"
+	veil_msg = span_warning("You sense an adorable presence lurking just beyond the veil...")
 	demon_type = /mob/living/simple_animal/slaughter/laughter
 	antag_type = /datum/antagonist/slaughter/laughter

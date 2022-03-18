@@ -25,6 +25,12 @@
 /obj/structure/spawner/lavaland/legion
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril)
 
+/obj/structure/spawner/lavaland/magmawing
+	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/tendril)
+
+/obj/structure/spawner/lavaland/icewatcher
+	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing)
+
 GLOBAL_LIST_INIT(tendrils, list())
 /obj/structure/spawner/lavaland/Initialize()
 	. = ..()
@@ -43,17 +49,6 @@ GLOBAL_LIST_INIT(tendrils, list())
 
 
 /obj/structure/spawner/lavaland/Destroy()
-	var/last_tendril = TRUE
-	if(GLOB.tendrils.len>1)
-		last_tendril = FALSE
-	
-	if(last_tendril && !(flags_1 & ADMIN_SPAWNED_1))
-		if(SSmedals.hub_enabled)
-			for(var/mob/living/L in view(7,src))
-				if(L.stat || !L.client)
-					continue
-				SSmedals.UnlockMedal("[BOSS_MEDAL_TENDRIL] [ALL_KILL_MEDAL]", L.client)
-				SSmedals.SetScore(TENDRIL_CLEAR_SCORE, L.client, 1)
 	GLOB.tendrils -= src
 	QDEL_NULL(emitted_light)
 	//QDEL_NULL(gps) //yogs - lol
@@ -77,8 +72,8 @@ GLOBAL_LIST_INIT(tendrils, list())
 /obj/effect/collapse/Initialize()
 	. = ..()
 	emitted_light = new(loc)
-	visible_message("<span class='boldannounce'>The tendril writhes in fury as the earth around it begins to crack and break apart! Get back!</span>")
-	visible_message("<span class='warning'>Something falls free of the tendril!</span>")
+	visible_message(span_boldannounce("The tendril writhes in fury as the earth around it begins to crack and break apart! Get back!"))
+	visible_message(span_warning("Something falls free of the tendril!"))
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, 0, 50, 1, 1)
 	addtimer(CALLBACK(src, .proc/collapse), 50)
 
@@ -90,8 +85,8 @@ GLOBAL_LIST_INIT(tendrils, list())
 	for(var/mob/M in range(7,src))
 		shake_camera(M, 15, 1)
 	playsound(get_turf(src),'sound/effects/explosionfar.ogg', 200, 1)
-	visible_message("<span class='boldannounce'>The tendril falls inward, the ground around it widening into a yawning chasm!</span>")
+	visible_message(span_boldannounce("The tendril falls inward, the ground around it widening into a yawning chasm!"))
 	for(var/turf/T in range(2,src))
 		if(!T.density)
-			T.TerraformTurf(/turf/open/chasm/lavaland, /turf/open/chasm/lavaland)
+			T.TerraformTurf(/turf/open/chasm/lavaland, /turf/open/chasm/lavaland, flags = CHANGETURF_INHERIT_AIR)
 	qdel(src)

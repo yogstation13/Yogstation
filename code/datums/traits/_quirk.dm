@@ -11,9 +11,13 @@
 	var/mood_quirk = FALSE //if true, this quirk affects mood and is unavailable if moodlets are disabled
 	var/mob_trait //if applicable, apply and remove this mob trait
 	var/mob/living/quirk_holder
+	var/not_init = FALSE // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
 
-/datum/quirk/New(mob/living/quirk_mob, spawn_effects)
+/datum/quirk/New(mob/living/quirk_mob, spawn_effects, no_init = FALSE)
 	..()
+	if(no_init) // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
+		not_init = TRUE
+		return
 	if(!quirk_mob || (human_only && !ishuman(quirk_mob)) || quirk_mob.has_quirk(type))
 		qdel(src)
 	quirk_holder = quirk_mob
@@ -21,7 +25,7 @@
 	to_chat(quirk_holder, gain_text)
 	quirk_holder.roundstart_quirks += src
 	if(mob_trait)
-		quirk_holder.add_trait(mob_trait, ROUNDSTART_TRAIT)
+		ADD_TRAIT(quirk_holder, mob_trait, ROUNDSTART_TRAIT)
 	START_PROCESSING(SSquirks, src)
 	add()
 	if(spawn_effects)
@@ -29,22 +33,25 @@
 		addtimer(CALLBACK(src, .proc/post_add), 30)
 
 /datum/quirk/Destroy()
+	if(not_init) // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
+		return ..()
 	STOP_PROCESSING(SSquirks, src)
 	remove()
 	if(quirk_holder)
 		to_chat(quirk_holder, lose_text)
 		quirk_holder.roundstart_quirks -= src
 		if(mob_trait)
-			quirk_holder.remove_trait(mob_trait, ROUNDSTART_TRAIT, TRUE)
+			REMOVE_TRAIT(quirk_holder, mob_trait, ROUNDSTART_TRAIT)
 	SSquirks.quirk_objects -= src
 	return ..()
 
+/// Used to transfer quicks from one mob to another
 /datum/quirk/proc/transfer_mob(mob/living/to_mob)
 	quirk_holder.roundstart_quirks -= src
 	to_mob.roundstart_quirks += src
 	if(mob_trait)
-		quirk_holder.remove_trait(mob_trait, ROUNDSTART_TRAIT)
-		to_mob.add_trait(mob_trait, ROUNDSTART_TRAIT)
+		REMOVE_TRAIT(quirk_holder, mob_trait, ROUNDSTART_TRAIT)
+		ADD_TRAIT(to_mob, mob_trait, ROUNDSTART_TRAIT)
 	quirk_holder = to_mob
 	on_transfer()
 
@@ -57,6 +64,9 @@
 
 /datum/quirk/proc/clone_data() //return additional data that should be remembered by cloning
 /datum/quirk/proc/on_clone(data) //create the quirk from clone data
+
+/datum/quirk/proc/check_quirk(datum/preferences/prefs) // Yogs -- allows quirks to check the preferences of the user who may acquire it
+	return FALSE
 
 /datum/quirk/process()
 	if(QDELETED(quirk_holder))
@@ -111,11 +121,11 @@ Use this as a guideline
 
 	mob_trait = TRAIT_NEARSIGHT
 	///This define is in __DEFINES/traits.dm and is the actual "trait" that the game tracks
-	///You'll need to use "has_trait(X, sources)" checks around the code to check this; for instance, the Ageusia trait is checked in taste code
+	///You'll need to use "HAS_TRAIT_FROM(src, X, sources)" checks around the code to check this; for instance, the Ageusia trait is checked in taste code
 	///If you need help finding where to put it, the declaration finder on GitHub is the best way to locate it
 
-	gain_text = "<span class='danger'>Things far away from you start looking blurry.</span>"
-	lose_text = "<span class='notice'>You start seeing faraway things normally again.</span>"
+	gain_text = span_danger("Things far away from you start looking blurry.")
+	lose_text = span_notice("You start seeing faraway things normally again.")
 	medical_record_text = "Subject has permanent nearsightedness."
 	///These three are self-explanatory
 

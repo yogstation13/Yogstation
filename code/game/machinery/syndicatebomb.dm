@@ -11,6 +11,7 @@
 	density = FALSE
 	layer = BELOW_MOB_LAYER //so people can't hide it and it's REALLY OBVIOUS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	speed_process = TRUE
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_OFFLINE
 
@@ -22,7 +23,6 @@
 
 	var/open_panel = FALSE 	//are the wires exposed?
 	var/active = FALSE		//is the bomb counting down?
-	var/defused = FALSE		//is the bomb capable of exploding?
 	var/obj/item/bombcore/payload = /obj/item/bombcore
 	var/beepsound = 'sound/items/timer.ogg'
 	var/delayedbig = FALSE	//delay wire pulsed?
@@ -34,7 +34,7 @@
 	var/explode_now = FALSE
 
 /obj/machinery/syndicatebomb/proc/try_detonate(ignore_active = FALSE)
-	. = (payload in src) && (active || ignore_active) && !defused
+	. = (payload in src) && (active || ignore_active)
 	if(.)
 		payload.detonate()
 
@@ -52,6 +52,8 @@
 		detonation_timer = null
 		next_beep = null
 		countdown.stop()
+		if(payload in src)
+			payload.defuse()
 		return
 
 	if(!isnull(next_beep) && (next_beep <= world.time))
@@ -72,17 +74,11 @@
 		playsound(loc, beepsound, volume, 0)
 		next_beep = world.time + 10
 
-	if(active && !defused && ((detonation_timer <= world.time) || explode_now))
+	if(active && ((detonation_timer <= world.time) || explode_now))
 		active = FALSE
 		timer_set = initial(timer_set)
 		update_icon()
 		try_detonate(TRUE)
-	//Counter terrorists win
-	else if(!active || defused)
-		if(defused && payload in src)
-			payload.defuse()
-			countdown.stop()
-			STOP_PROCESSING(SSfastprocess, src)
 
 /obj/machinery/syndicatebomb/Initialize()
 	. = ..()
@@ -91,6 +87,7 @@
 		payload = new payload(src)
 	update_icon()
 	countdown = new(src)
+	STOP_PROCESSING(SSfastprocess, src)
 
 /obj/machinery/syndicatebomb/Destroy()
 	QDEL_NULL(wires)
@@ -99,8 +96,8 @@
 	return ..()
 
 /obj/machinery/syndicatebomb/examine(mob/user)
-	..()
-	to_chat(user, "A digital display on it reads \"[seconds_remaining()]\".")
+	. = ..()
+	. += {"A digital display on it reads "[seconds_remaining()]"."}
 
 /obj/machinery/syndicatebomb/update_icon()
 	icon_state = "[initial(icon_state)][active ? "-active" : "-inactive"][open_panel ? "-wires" : ""]"
@@ -115,25 +112,25 @@
 	if(I.tool_behaviour == TOOL_WRENCH && can_unanchor)
 		if(!anchored)
 			if(!isturf(loc) || isspaceturf(loc))
-				to_chat(user, "<span class='notice'>The bomb must be placed on solid ground to attach it.</span>")
+				to_chat(user, span_notice("The bomb must be placed on solid ground to attach it."))
 			else
-				to_chat(user, "<span class='notice'>You firmly wrench the bomb to the floor.</span>")
+				to_chat(user, span_notice("You firmly wrench the bomb to the floor."))
 				I.play_tool_sound(src)
 				setAnchored(TRUE)
 				if(active)
-					to_chat(user, "<span class='notice'>The bolts lock in place.</span>")
+					to_chat(user, span_notice("The bolts lock in place."))
 		else
 			if(!active)
-				to_chat(user, "<span class='notice'>You wrench the bomb from the floor.</span>")
+				to_chat(user, span_notice("You wrench the bomb from the floor."))
 				I.play_tool_sound(src)
 				setAnchored(FALSE)
 			else
-				to_chat(user, "<span class='warning'>The bolts are locked down!</span>")
+				to_chat(user, span_warning("The bolts are locked down!"))
 
 	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		open_panel = !open_panel
 		update_icon()
-		to_chat(user, "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>")
+		to_chat(user, span_notice("You [open_panel ? "open" : "close"] the wire panel."))
 
 	else if(is_wire_tool(I) && open_panel)
 		wires.interact(user)
@@ -141,23 +138,23 @@
 	else if(I.tool_behaviour == TOOL_CROWBAR)
 		if(open_panel && wires.is_all_cut())
 			if(payload)
-				to_chat(user, "<span class='notice'>You carefully pry out [payload].</span>")
+				to_chat(user, span_notice("You carefully pry out [payload]."))
 				payload.forceMove(drop_location())
 				payload = null
 			else
-				to_chat(user, "<span class='warning'>There isn't anything in here to remove!</span>")
+				to_chat(user, span_warning("There isn't anything in here to remove!"))
 		else if (open_panel)
-			to_chat(user, "<span class='warning'>The wires connecting the shell to the explosives are holding it down!</span>")
+			to_chat(user, span_warning("The wires connecting the shell to the explosives are holding it down!"))
 		else
-			to_chat(user, "<span class='warning'>The cover is screwed on, it won't pry off!</span>")
+			to_chat(user, span_warning("The cover is screwed on, it won't pry off!"))
 	else if(istype(I, /obj/item/bombcore))
 		if(!payload)
 			if(!user.transferItemToLoc(I, src))
 				return
 			payload = I
-			to_chat(user, "<span class='notice'>You place [payload] into [src].</span>")
+			to_chat(user, span_notice("You place [payload] into [src]."))
 		else
-			to_chat(user, "<span class='warning'>[payload] is already loaded into [src]! You'll have to remove it first.</span>")
+			to_chat(user, span_warning("[payload] is already loaded into [src]! You'll have to remove it first."))
 	else if(I.tool_behaviour == TOOL_WELDER)
 		if(payload || !wires.is_all_cut() || !open_panel)
 			return
@@ -165,16 +162,16 @@
 		if(!I.tool_start_check(user, amount=5))  //uses up 5 fuel
 			return
 
-		to_chat(user, "<span class='notice'>You start to cut [src] apart...</span>")
+		to_chat(user, span_notice("You start to cut [src] apart..."))
 		if(I.use_tool(src, user, 20, volume=50, amount=5)) //uses up 5 fuel
-			to_chat(user, "<span class='notice'>You cut [src] apart.</span>")
+			to_chat(user, span_notice("You cut [src] apart."))
 			new /obj/item/stack/sheet/plasteel( loc, 5)
 			qdel(src)
 	else
 		var/old_integ = obj_integrity
 		. = ..()
-		if((old_integ > obj_integrity) && active && !defused && (payload in src))
-			to_chat(user, "<span class='warning'>That seems like a really bad idea...</span>")
+		if((old_integ > obj_integrity) && active  && (payload in src))
+			to_chat(user, span_warning("That seems like a really bad idea..."))
 
 /obj/machinery/syndicatebomb/interact(mob/user)
 	wires.interact(user)
@@ -182,7 +179,7 @@
 		if(!active)
 			settings(user)
 		else if(anchored)
-			to_chat(user, "<span class='warning'>The bomb is bolted to the floor!</span>")
+			to_chat(user, span_warning("The bomb is bolted to the floor!"))
 
 /obj/machinery/syndicatebomb/proc/activate()
 	active = TRUE
@@ -196,15 +193,11 @@
 /obj/machinery/syndicatebomb/proc/settings(mob/user)
 	var/new_timer = input(user, "Please set the timer.", "Timer", "[timer_set]") as num
 	if(in_range(src, user) && isliving(user)) //No running off and setting bombs from across the station
-		timer_set = CLAMP(new_timer, minimum_timer, maximum_timer)
-		loc.visible_message("<span class='notice'>[icon2html(src, viewers(src))] timer set for [timer_set] seconds.</span>")
+		timer_set = clamp(new_timer, minimum_timer, maximum_timer)
+		loc.visible_message(span_notice("[icon2html(src, viewers(src))] timer set for [timer_set] seconds."))
 	if(alert(user,"Would you like to start the countdown now?",,"Yes","No") == "Yes" && in_range(src, user) && isliving(user))
-		if(defused || active)
-			if(defused)
-				visible_message("<span class='warning'>[icon2html(src, viewers(src))] Device error: User intervention required.</span>")
-			return
-		else
-			visible_message("<span class='danger'>[icon2html(src, viewers(loc))] [timer_set] seconds until detonation, please clear the area.</span>")
+		if(!active)
+			visible_message(span_danger("[icon2html(src, viewers(loc))] [timer_set] seconds until detonation, please clear the area."))
 			activate()
 			update_icon()
 			add_fingerprint(user)
@@ -220,6 +213,11 @@
 	icon_state = "training-bomb"
 	desc = "A salvaged syndicate device gutted of its explosives to be used as a training aid for aspiring bomb defusers."
 	payload = /obj/item/bombcore/training
+	
+/obj/machinery/syndicatebomb/emp
+	name = "EMP Bomb"
+	desc = "A modified bomb designed to release a crippling electromagnetic pulse instead of an explosion"
+	payload = /obj/item/bombcore/emp
 
 /obj/machinery/syndicatebomb/badmin
 	name = "generic summoning badmin bomb"
@@ -264,10 +262,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE //Burnable (but the casing isn't)
 	var/adminlog = null
-	var/range_heavy = 3
-	var/range_medium = 9
-	var/range_light = 17
-	var/range_flame = 17
+	var/range_heavy = 5
+	var/range_medium = 10
+	var/range_light = 20
+	var/range_flame = 20
 
 /obj/item/bombcore/ex_act(severity, target) // Little boom can chain a big boom.
 	detonate()
@@ -281,14 +279,13 @@
 	if(adminlog)
 		message_admins(adminlog)
 		log_game(adminlog)
-	explosion(src, range_heavy, range_medium, range_light, flame_range = range_flame)
+	explosion(src, range_heavy, range_medium, range_light, flame_range = range_flame, ignorecap = TRUE)
 	if(loc && istype(loc, /obj/machinery/syndicatebomb/))
 		qdel(loc)
 	qdel(src)
 
 /obj/item/bombcore/proc/defuse()
-//Note: 	Because of how var/defused is used you shouldn't override this UNLESS you intend to set the var to 0 or
-//			otherwise remove the core/reset the wires before the end of defuse(). It will repeatedly be called otherwise.
+//Note: 	the machine's defusal is mostly done from the wires code, this is here if you want the core itself to do anything.
 
 ///Bomb Core Subtypes///
 
@@ -304,18 +301,18 @@
 		if(holder.wires)
 			holder.wires.repair()
 			holder.wires.shuffle_wires()
-		holder.defused = 0
-		holder.open_panel = 0
 		holder.delayedbig = FALSE
 		holder.delayedlittle = FALSE
+		holder.explode_now = FALSE
 		holder.update_icon()
 		holder.updateDialog()
+		STOP_PROCESSING(SSfastprocess, holder)
 
 /obj/item/bombcore/training/detonate()
 	var/obj/machinery/syndicatebomb/holder = loc
 	if(istype(holder))
 		attempts++
-		holder.loc.visible_message("<span class='danger'>[icon2html(holder, viewers(holder))] Alert: Bomb has detonated. Your score is now [defusals] for [attempts]. Resetting wires...</span>")
+		holder.loc.visible_message(span_danger("[icon2html(holder, viewers(holder))] Alert: Bomb has detonated. Your score is now [defusals] for [attempts]. Resetting wires..."))
 		reset()
 	else
 		qdel(src)
@@ -325,7 +322,7 @@
 	if(istype(holder))
 		attempts++
 		defusals++
-		holder.loc.visible_message("<span class='notice'>[icon2html(holder, viewers(holder))] Alert: Bomb has been defused. Your score is now [defusals] for [attempts]! Resetting wires in 5 seconds...</span>")
+		holder.loc.visible_message(span_notice("[icon2html(holder, viewers(holder))] Alert: Bomb has been defused. Your score is now [defusals] for [attempts]! Resetting wires in 5 seconds..."))
 		sleep(50)	//Just in case someone is trying to remove the bomb core this gives them a little window to crowbar it out
 		if(istype(holder))
 			reset()
@@ -446,9 +443,9 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			beakers += I
-			to_chat(user, "<span class='notice'>You load [src] with [I].</span>")
+			to_chat(user, span_notice("You load [src] with [I]."))
 		else
-			to_chat(user, "<span class='warning'>[I] won't fit! \The [src] can only hold up to [max_beakers] containers.</span>")
+			to_chat(user, span_warning("[I] won't fit! \The [src] can only hold up to [max_beakers] containers."))
 			return
 	..()
 
@@ -492,8 +489,20 @@
 
 		qdel(G)
 
+/obj/item/bombcore/emp
+	name = "EMP payload"
+	desc = "A set of superconducting electromagnetic coils designed to release a powerful pulse to destroy electronics and scramble circuits"
+	range_heavy = 15
+	range_medium = 25
 
+/obj/item/bombcore/emp/detonate()
+	if(adminlog)
+		message_admins(adminlog)
+		log_game(adminlog)
 
+	empulse(src, range_heavy, range_medium)
+	
+	qdel(src)
 
 ///Syndicate Detonator (aka the big red button)///
 
@@ -518,7 +527,7 @@
 				detonated++
 			existent++
 		playsound(user, 'sound/machines/click.ogg', 20, 1)
-		to_chat(user, "<span class='notice'>[existent] found, [detonated] triggered.</span>")
+		to_chat(user, span_notice("[existent] found, [detonated] triggered."))
 		if(detonated)
 			detonated--
 			log_bomber(user, "remotely detonated [detonated ? "syndicate bombs" : "a syndicate bomb"] using a", src)

@@ -11,13 +11,12 @@
 
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
 
-/datum/component/heirloom/proc/examine(datum/source, mob/user)
+/datum/component/heirloom/proc/examine(datum/source, mob/user, list/examine_list)
 	if(user.mind == owner)
-		to_chat(user, "<span class='notice'>It is your precious [family_name] family heirloom. Keep it safe!</span>")
+		examine_list += span_notice("It is your precious [family_name] family heirloom. Keep it safe!")
 	else if(isobserver(user))
-		to_chat(user, "<span class='notice'>It is the [family_name] family heirloom, belonging to [owner].</span>")
+		examine_list += span_notice("It is the [family_name] family heirloom, belonging to [owner].")
 	else
-		var/datum/antagonist/creep/creeper = user.mind.has_antag_datum(/datum/antagonist/creep)
+		var/datum/antagonist/obsessed/creeper = user.mind.has_antag_datum(/datum/antagonist/obsessed)
 		if(creeper && creeper.trauma.obsession == owner)
-			to_chat(user, "<span class='nicegreen'>This must be [owner]'s family heirloom! It smells just like them...</span>")
-
+			examine_list += span_nicegreen("This must be [owner]'s family heirloom! It smells just like them...")

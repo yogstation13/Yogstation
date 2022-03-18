@@ -28,7 +28,7 @@
 		//this is largely copypasted from there.
 
 		//handle facial hair (if necessary)
-		if(H.gender == MALE)
+		if(H.gender != FEMALE)
 			var/new_style = input(user, "Select a facial hair style", "Grooming")  as null|anything in GLOB.facial_hair_styles_list
 			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 				return	//no tele-grooming
@@ -48,8 +48,8 @@
 
 /obj/structure/mirror/examine_status(mob/user)
 	if(broken)
-		return // no message spam
-	..()
+		return list()// no message spam
+	return ..()
 
 /obj/structure/mirror/obj_break(damage_flag, mapload)
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
@@ -76,9 +76,9 @@
 	if(!I.tool_start_check(user, amount=0))
 		return TRUE
 
-	to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
+	to_chat(user, span_notice("You begin repairing [src]..."))
 	if(I.use_tool(src, user, 10, volume=50))
-		to_chat(user, "<span class='notice'>You repair [src].</span>")
+		to_chat(user, span_notice("You repair [src]."))
 		broken = 0
 		icon_state = initial(icon_state)
 		desc = initial(desc)
@@ -134,7 +134,7 @@
 
 	switch(choice)
 		if("name")
-			var/newname = copytext(sanitize(input(H, "Who are we again?", "Name change", H.name) as null|text),1,MAX_NAME_LEN)
+			var/newname = sanitize_name(reject_bad_text(stripped_input(H, "Who are we again?", "Name change", H.name, MAX_NAME_LEN)))
 
 			if(!newname)
 				return
@@ -158,6 +158,13 @@
 				return
 			H.set_species(newrace, icon_update=0)
 
+			if(FGENDER in H.dna.species.species_traits)
+				H.gender = FEMALE
+			if(MGENDER in H.dna.species.species_traits)
+				H.gender = MALE
+			if(AGENDER in H.dna.species.species_traits)
+				H.gender = PLURAL
+
 			if(H.dna.species.use_skintones)
 				var/new_s_tone = input(user, "Choose your skin tone:", "Race change")  as null|anything in GLOB.skin_tones
 				if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -167,7 +174,7 @@
 					H.skin_tone = new_s_tone
 					H.dna.update_ui_block(DNA_SKIN_TONE_BLOCK)
 
-			if(MUTCOLORS in H.dna.species.species_traits)
+			if((MUTCOLORS in H.dna.species.species_traits) && !(NOCOLORCHANGE in H.dna.species.species_traits))
 				var/new_mutantcolor = input(user, "Choose your skin color:", "Race change","#"+H.dna.features["mcolor"]) as color|null
 				if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 					return
@@ -178,7 +185,7 @@
 						H.dna.features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 
 					else
-						to_chat(H, "<span class='notice'>Invalid color. Your color is not bright enough.</span>")
+						to_chat(H, span_notice("Invalid color. Your color is not bright enough."))
 
 			H.update_body()
 			H.update_hair()
@@ -188,21 +195,21 @@
 		if("gender")
 			if(!(H.gender in list("male", "female"))) //blame the patriarchy
 				return
-			if(H.gender == "male")
+			if((H.gender == "male") && !(MGENDER in H.dna.species.species_traits))
 				if(alert(H, "Become a Witch?", "Confirmation", "Yes", "No") == "Yes")
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return
 					H.gender = "female"
-					to_chat(H, "<span class='notice'>Man, you feel like a woman!</span>")
+					to_chat(H, span_notice("Man, you feel like a woman!"))
 				else
 					return
 
-			else
+			else if((H.gender == "female") && !(FGENDER in H.dna.species.species_traits))
 				if(alert(H, "Become a Warlock?", "Confirmation", "Yes", "No") == "Yes")
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return
 					H.gender = "male"
-					to_chat(H, "<span class='notice'>Whoa man, you feel like a man!</span>")
+					to_chat(H, span_notice("Whoa man, you feel like a man!"))
 				else
 					return
 			H.dna.update_ui_block(DNA_GENDER_BLOCK)

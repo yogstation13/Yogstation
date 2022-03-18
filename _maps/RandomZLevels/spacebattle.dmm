@@ -213,8 +213,8 @@
 "bc" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon;
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/syndicate2)
@@ -309,8 +309,8 @@
 "by" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon;
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/syndicate3)
@@ -327,8 +327,8 @@
 "bG" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon;
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/syndicate1)
@@ -570,7 +570,7 @@
 	},
 /area/awaymission/spacebattle/cruiser)
 "cH" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
@@ -949,8 +949,8 @@
 "dZ" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon;
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
@@ -1873,8 +1873,8 @@
 "gP" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon;
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/syndicate7)
@@ -2472,7 +2472,7 @@
 /area/awaymission/spacebattle/cruiser)
 "jt" = (
 /obj/structure/rack,
-/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/gun/energy/disabler,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "ju" = (
@@ -2543,7 +2543,7 @@
 "jB" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced,
-/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/gun/energy/disabler,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "jC" = (
@@ -2774,8 +2774,8 @@
 "kq" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon;
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)

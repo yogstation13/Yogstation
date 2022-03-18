@@ -11,7 +11,7 @@
 	potency = 15
 	icon_dead = "wheat-dead"
 	mutatelist = list(/obj/item/seeds/wheat/oat, /obj/item/seeds/wheat/meat)
-	reagents_add = list("nutriment" = 0.04)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.04)
 
 /obj/item/reagent_containers/food/snacks/grown/wheat
 	seed = /obj/item/seeds/wheat
@@ -22,9 +22,9 @@
 	filling_color = "#F0E68C"
 	bitesize_mod = 2
 	foodtype = GRAIN
-	grind_results = list("flour" = 0)
+	grind_results = list(/datum/reagent/consumable/flour = 0)
 	tastes = list("wheat" = 1)
-	distill_reagent = "beer"
+	distill_reagent = /datum/reagent/consumable/ethanol/beer
 
 // Oat
 /obj/item/seeds/wheat/oat
@@ -35,6 +35,7 @@
 	plantname = "Oat Stalks"
 	product = /obj/item/reagent_containers/food/snacks/grown/oat
 	mutatelist = list()
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/oat
 	seed = /obj/item/seeds/wheat/oat
@@ -45,16 +46,16 @@
 	filling_color = "#556B2F"
 	bitesize_mod = 2
 	foodtype = GRAIN
-	grind_results = list("flour" = 0)
+	grind_results = list(/datum/reagent/consumable/flour = 0)
 	tastes = list("oat" = 1)
-	distill_reagent = "ale"
+	distill_reagent = /datum/reagent/consumable/ethanol/ale
 
 // Rice
 /obj/item/seeds/wheat/rice
 	name = "pack of rice seeds"
 	desc = "These may, or may not, grow into rice."
 	icon_state = "seed-rice"
-	species = "rice"
+	species = /datum/reagent/consumable/rice
 	plantname = "Rice Stalks"
 	product = /obj/item/reagent_containers/food/snacks/grown/rice
 	mutatelist = list()
@@ -69,9 +70,9 @@
 	filling_color = "#FAFAD2"
 	bitesize_mod = 2
 	foodtype = GRAIN
-	grind_results = list("rice" = 0)
+	grind_results = list(/datum/reagent/consumable/rice = 0)
 	tastes = list("rice" = 1)
-	distill_reagent = "sake"
+	distill_reagent = /datum/reagent/consumable/ethanol/sake
 
 //Meatwheat - grows into synthetic meat
 /obj/item/seeds/wheat/meat
@@ -82,6 +83,7 @@
 	plantname = "Meatwheat"
 	product = /obj/item/reagent_containers/food/snacks/grown/meatwheat
 	mutatelist = list()
+	rarity = 20 //it's literally growing meat, this is a bit of a standout
 
 /obj/item/reagent_containers/food/snacks/grown/meatwheat
 	name = "meatwheat"
@@ -92,12 +94,12 @@
 	bitesize_mod = 2
 	seed = /obj/item/seeds/wheat/meat
 	foodtype = MEAT | GRAIN
-	grind_results = list("flour" = 0, "blood" = 0)
+	grind_results = list(/datum/reagent/consumable/flour = 0, /datum/reagent/blood = 0)
 	tastes = list("meatwheat" = 1)
 	can_distill = FALSE
 
 /obj/item/reagent_containers/food/snacks/grown/meatwheat/attack_self(mob/living/user)
-	user.visible_message("<span class='notice'>[user] crushes [src] into meat.</span>", "<span class='notice'>You crush [src] into something that resembles meat.</span>")
+	user.visible_message(span_notice("[user] crushes [src] into meat."), span_notice("You crush [src] into something that resembles meat."))
 	playsound(user, 'sound/effects/blobattack.ogg', 50, 1)
 	var/obj/item/reagent_containers/food/snacks/meat/slab/meatwheat/M = new
 	qdel(src)

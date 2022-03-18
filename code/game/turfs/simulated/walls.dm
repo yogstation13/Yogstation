@@ -12,8 +12,12 @@
 
 	baseturfs = /turf/open/floor/plating
 
-	var/hardness = 40 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
-	var/slicing_duration = 100  //default time taken to slice the wall
+	FASTDMM_PROP(\
+		pipe_astar_cost = 50 /* nich really doesn't like pipes that go through walls */\
+	)
+
+	var/hardness = 30 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
+	var/slicing_duration = 200  //default time taken to slice the wall
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/sheet_amount = 2
 	var/girder_type = /obj/structure/girder
@@ -31,12 +35,22 @@
 
 	var/list/dent_decals
 
-/turf/closed/wall/examine(mob/user)
+/turf/closed/wall/Initialize(mapload)
+	. = ..()
+	if(is_station_level(z))
+		GLOB.station_turfs += src
+
+/turf/closed/wall/Destroy()
+	if(is_station_level(z))
+		GLOB.station_turfs -= src
 	..()
-	deconstruction_hints(user)
+
+/turf/closed/wall/examine(mob/user)
+	. += ..()
+	. += deconstruction_hints(user)
 
 /turf/closed/wall/proc/deconstruction_hints(mob/user)
-	to_chat(user, "<span class='notice'>The outer plating is <b>welded</b> firmly in place.</span>")
+	return span_notice("The outer plating is <b>welded</b> firmly in place.")
 
 /turf/closed/wall/attack_tk()
 	return
@@ -66,7 +80,8 @@
 			var/obj/structure/sign/poster/P = O
 			P.roll_and_drop(src)
 
-	ScrapeAway()
+	var/turf/new_floor = ScrapeAway()
+	new_floor.air_update_turf()
 
 /turf/closed/wall/proc/break_wall()
 	new sheet_type(src, sheet_amount)
@@ -110,7 +125,7 @@
 	switch(M.damtype)
 		if(BRUTE)
 			playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
-			visible_message("<span class='danger'>[M.name] has hit [src]!</span>", null, null, COMBAT_MESSAGE_RANGE)
+			visible_message(span_danger("[M.name] has hit [src]!"), null, null, COMBAT_MESSAGE_RANGE)
 			if(prob(hardness + M.force) && M.force > 20)
 				dismantle_wall(1)
 				playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
@@ -144,7 +159,7 @@
 	else
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 		add_dent(WALL_DENT_HIT)
-		to_chat(user, text("<span class='notice'>You punch the wall.</span>"))
+		to_chat(user, span_notice("You punch the wall."))
 	return TRUE
 
 /turf/closed/wall/attack_hand(mob/user)
@@ -152,14 +167,14 @@
 	if(.)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	to_chat(user, "<span class='notice'>You push the wall but nothing happens!</span>")
+	to_chat(user, span_notice("You push the wall but nothing happens!"))
 	playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 	add_fingerprint(user)
 
 /turf/closed/wall/attackby(obj/item/W, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return
 
 	//get the user's location
@@ -171,7 +186,7 @@
 	var/turf/T = user.loc	//get user's location for delay checks
 
 	//the istype cascade has been spread among various procs for easy overriding
-	if(try_clean(W, user, T) || try_wallmount(W, user, T) || try_decon(W, user, T) || try_destroy(W, user, T))
+	if(try_clean(W, user, T) || try_wallmount(W, user, T) || try_decon(W, user, T))
 		return
 
 	return ..()
@@ -184,10 +199,10 @@
 		if(!W.tool_start_check(user, amount=0))
 			return FALSE
 
-		to_chat(user, "<span class='notice'>You begin fixing dents on the wall...</span>")
+		to_chat(user, span_notice("You begin fixing dents on the wall..."))
 		if(W.use_tool(src, user, 0, volume=100))
 			if(iswallturf(src) && LAZYLEN(dent_decals))
-				to_chat(user, "<span class='notice'>You fix some dents on the wall.</span>")
+				to_chat(user, span_notice("You fix some dents on the wall."))
 				cut_overlay(dent_decals)
 				dent_decals.Cut()
 			return TRUE
@@ -205,6 +220,9 @@
 	else if(istype(W, /obj/item/poster))
 		place_poster(W,user)
 		return TRUE
+	//Borg Poster STuff
+	else if(istype(W, /obj/item/wantedposterposter))
+		place_borg_poster(W, user)
 
 	return FALSE
 
@@ -213,25 +231,13 @@
 		if(!I.tool_start_check(user, amount=0))
 			return FALSE
 
-		to_chat(user, "<span class='notice'>You begin slicing through the outer plating...</span>")
+		to_chat(user, span_notice("You begin slicing through the outer plating..."))
 		if(I.use_tool(src, user, slicing_duration, volume=100))
 			if(iswallturf(src))
-				to_chat(user, "<span class='notice'>You remove the outer plating.</span>")
+				to_chat(user, span_notice("You remove the outer plating."))
 				dismantle_wall()
 			return TRUE
 
-	return FALSE
-
-
-/turf/closed/wall/proc/try_destroy(obj/item/I, mob/user, turf/T)
-	if(istype(I, /obj/item/pickaxe/drill/jackhammer))
-		if(!iswallturf(src))
-			return TRUE
-		if(user.loc == T)
-			I.play_tool_sound(src)
-			dismantle_wall()
-			visible_message("<span class='warning'>[user] smashes through [src] with [I]!</span>", "<span class='italics'>You hear the grinding of metal.</span>")
-			return TRUE
 	return FALSE
 
 /turf/closed/wall/singularity_pull(S, current_size)
@@ -254,6 +260,9 @@
 	if(.)
 		ChangeTurf(/turf/closed/wall/clockwork)
 
+/turf/closed/wall/honk_act()
+	ChangeTurf(/turf/closed/wall/mineral/bananium)
+
 /turf/closed/wall/get_dumping_location(obj/item/storage/source, mob/user)
 	return null
 
@@ -274,7 +283,7 @@
 /turf/closed/wall/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_DECONSTRUCT)
-			to_chat(user, "<span class='notice'>You deconstruct the wall.</span>")
+			to_chat(user, span_notice("You deconstruct the wall."))
 			ScrapeAway()
 			return TRUE
 	return FALSE
@@ -300,5 +309,10 @@
 		dent_decals = list(decal)
 
 	add_overlay(dent_decals)
+
+/turf/closed/wall/rust_heretic_act()
+	if(prob(70))
+		new /obj/effect/glowing_rune(src)
+	ChangeTurf(/turf/closed/wall/rust)
 
 #undef MAX_DENT_DECALS

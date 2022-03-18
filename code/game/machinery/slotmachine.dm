@@ -78,43 +78,39 @@
 	else
 		icon_state = "slots1"
 
-/obj/machinery/computer/slot_machine/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/computer/slot_machine/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/coin))
 		var/obj/item/coin/C = I
 		if(paymode == COIN)
 			if(prob(2))
-				if(!user.transferItemToLoc(C, drop_location()))
+				if(!user.transferItemToLoc(C, drop_location(), silent = FALSE))
 					return
 				C.throw_at(user, 3, 10)
 				if(prob(10))
 					balance = max(balance - SPIN_PRICE, 0)
-				to_chat(user, "<span class='warning'>[src] spits your coin back out!</span>")
+				to_chat(user, span_warning("[src] spits your coin back out!"))
 
 			else
 				if(!user.temporarilyRemoveItemFromInventory(C))
 					return
-				to_chat(user, "<span class='notice'>You insert a [C.cmineral] coin into [src]'s slot!</span>")
+				to_chat(user, span_notice("You insert a [C.cmineral] coin into [src]'s slot!"))
 				balance += C.value
 				qdel(C)
 		else
-			to_chat(user, "<span class='warning'>This machine is only accepting holochips!</span>")
+			to_chat(user, span_warning("This machine is only accepting holochips!"))
 	else if(istype(I, /obj/item/holochip))
 		if(paymode == HOLOCHIP)
 			var/obj/item/holochip/H = I
 			if(!user.temporarilyRemoveItemFromInventory(H))
 				return
-			to_chat(user, "<span class='notice'>You insert [H.credits] holocredits into [src]'s!</span>")
+			to_chat(user, span_notice("You insert [H.credits] holocredits into [src]'s holoreader!"))
 			balance += H.credits
 			qdel(H)
 		else
-			to_chat(user, "<span class='warning'>This machine is only accepting coins!</span>")
+			to_chat(user, span_warning("This machine is only accepting coins!"))
 	else if(I.tool_behaviour == TOOL_MULTITOOL)
 		if(balance > 0)
-			visible_message("<b>[src]</b> says, 'ERROR! Please empty the machine balance before altering paymode'") //Prevents converting coins into holocredits and vice versa
+			visible_message("<b>[src]</b> says, 'ERROR! Please empty the machine balance before altering paymode.'") //Prevents converting coins into holocredits and vice versa
 		else
 			if(paymode == HOLOCHIP)
 				paymode = COIN
@@ -157,12 +153,12 @@
 		<A href='?src=[REF(src)];spin=1'>Play!</A><BR>
 		<BR>
 		[reeltext]
-		<BR>
-		<font size='1'><A href='?src=[REF(src)];refund=1'>Refund balance</A><BR>"}
+		<BR>"}
+		if(balance > 0)
+			dat+="<font size='1'><A href='?src=[REF(src)];refund=1'>Refund balance</A><BR>"
 
 	var/datum/browser/popup = new(user, "slotmachine", "Slot Machine")
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
 /obj/machinery/computer/slot_machine/Topic(href, href_list)
@@ -174,8 +170,9 @@
 		spin(usr)
 
 	else if(href_list["refund"])
-		give_payout(balance)
-		balance = 0
+		if(balance > 0)
+			give_payout(balance)
+			balance = 0
 
 /obj/machinery/computer/slot_machine/emp_act(severity)
 	. = ..()
@@ -198,7 +195,7 @@
 	var/the_name
 	if(user)
 		the_name = user.real_name
-		visible_message("<span class='notice'>[user] pulls the lever and the slot machine starts spinning!</span>")
+		visible_message(span_notice("[user] pulls the lever and the slot machine starts spinning!"))
 	else
 		the_name = "Exaybachay"
 
@@ -226,14 +223,14 @@
 
 /obj/machinery/computer/slot_machine/proc/can_spin(mob/user)
 	if(stat & NOPOWER)
-		to_chat(user, "<span class='warning'>The slot machine has no power!</span>")
+		to_chat(user, span_warning("The slot machine has no power!"))
 	if(stat & BROKEN)
-		to_chat(user, "<span class='warning'>The slot machine is broken!</span>")
+		to_chat(user, span_warning("The slot machine is broken!"))
 	if(working)
-		to_chat(user, "<span class='warning'>You need to wait until the machine stops spinning before you can play again!</span>")
+		to_chat(user, span_warning("You need to wait until the machine stops spinning before you can play again!"))
 		return 0
 	if(balance < SPIN_PRICE)
-		to_chat(user, "<span class='warning'>Insufficient money to play!</span>")
+		to_chat(user, span_warning("Insufficient money to play!"))
 		return 0
 	return 1
 
@@ -276,12 +273,12 @@
 		give_money(SMALL_PRIZE)
 
 	else if(linelength == 3)
-		to_chat(user, "<span class='notice'>You win three free games!</span>")
+		to_chat(user, span_notice("You win three free games!"))
 		balance += SPIN_PRICE * 4
 		money = max(money - SPIN_PRICE * 4, money)
 
 	else
-		to_chat(user, "<span class='warning'>No luck!</span>")
+		to_chat(user, span_warning("No luck!"))
 
 /obj/machinery/computer/slot_machine/proc/get_lines()
 	var/amountthesame
@@ -327,7 +324,7 @@
 /obj/machinery/computer/slot_machine/proc/dispense(amount = 0, cointype = /obj/item/coin/silver, mob/living/target, throwit = 0)
 	if(paymode == HOLOCHIP)
 		var/obj/item/holochip/H = new /obj/item/holochip(loc,amount)
-		
+
 		if(throwit && target)
 			H.throw_at(target, 3, 10)
 	else

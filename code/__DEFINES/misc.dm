@@ -9,19 +9,6 @@
 #define TEXT_EAST			"[EAST]"
 #define TEXT_WEST			"[WEST]"
 
-//These get to go at the top, because they're special
-//You can use these defines to get the typepath of the currently running proc/verb (yes procs + verbs are objects)
-/* eg:
-/mob/living/carbon/human/death()
-	to_chat(world, THIS_PROC_TYPE_STR) //You can only output the string versions
-Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a string with () (eg: the _WITH_ARGS defines) to make it look nicer)
-*/
-#define THIS_PROC_TYPE .....
-#define THIS_PROC_TYPE_STR "[THIS_PROC_TYPE]" //Because you can only obtain a string of THIS_PROC_TYPE using "[]", and it's nice to just +/+= strings
-#define THIS_PROC_TYPE_STR_WITH_ARGS "[THIS_PROC_TYPE]([args.Join(",")])"
-#define THIS_PROC_TYPE_WEIRD ...... //This one is WEIRD, in some cases (When used in certain defines? (eg: ASSERT)) THIS_PROC_TYPE will fail to work, but THIS_PROC_TYPE_WEIRD will work instead
-//define THIS_PROC_TYPE_WEIRD_STR "[THIS_PROC_TYPE_WEIRD]" //Included for completeness
-//define THIS_PROC_TYPE_WEIRD_STR_WITH_ARGS "[THIS_PROC_TYPE_WEIRD]([args.Join(",")])" //Ditto
 
 //Human Overlays Indexes/////////
 #define MUTATIONS_LAYER			28		//mutations. Tk headglows, cold resistance glow, etc
@@ -41,8 +28,8 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define GLASSES_LAYER			14
 #define BELT_LAYER				13		//Possible make this an overlay of somethign required to wear a belt?
 #define SUIT_STORE_LAYER		12
-#define NECK_LAYER				11
-#define BACK_LAYER				10
+#define BACK_LAYER				11
+#define NECK_LAYER				10
 #define HAIR_LAYER				9		//TODO: make part of head layer?
 #define FACEMASK_LAYER			8
 #define HEAD_LAYER				7
@@ -50,7 +37,7 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define LEGCUFF_LAYER			5
 #define HANDS_LAYER				4
 #define BODY_FRONT_LAYER		3
-#define SMELL_LAYER				2
+#define HALO_LAYER				2		//blood cult ascended halo, because there's currently no better solution for adding/removing
 #define FIRE_LAYER				1		//If you're on fire
 #define TOTAL_LAYERS			28		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
 
@@ -66,10 +53,12 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 
 
 //Security levels
-#define SEC_LEVEL_GREEN	0
-#define SEC_LEVEL_BLUE	1
-#define SEC_LEVEL_RED	2
-#define SEC_LEVEL_DELTA	3
+#define SEC_LEVEL_GREEN		0
+#define SEC_LEVEL_BLUE		1
+#define SEC_LEVEL_RED		2
+#define SEC_LEVEL_GAMMA		3
+#define SEC_LEVEL_EPSILON	4
+#define SEC_LEVEL_DELTA		5
 
 //some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26	//Used to trigger removal from a processing list
@@ -102,6 +91,7 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define GAME_STATE_PLAYING		3
 #define GAME_STATE_FINISHED		4
 
+
 //FONTS:
 // Used by Paper and PhotoCopier (and PaperBin once a year).
 // Used by PDA's Notekeeper.
@@ -112,6 +102,8 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define CRAYON_FONT "Comic Sans MS"
 #define PRINTER_FONT "Times New Roman"
 #define SIGNFONT "Times New Roman"
+#define CHARCOAL_FONT "Candara"
+
 
 #define RESIZE_DEFAULT_SIZE 1
 
@@ -161,11 +153,12 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 #define LOCKED_SENSORS 2
 
 //Wet floor type flags. Stronger ones should be higher in number.
-#define TURF_DRY		0
-#define TURF_WET_WATER	1
-#define TURF_WET_PERMAFROST	2
-#define TURF_WET_ICE 4
-#define TURF_WET_LUBE	8
+#define TURF_DRY			(0)
+#define TURF_WET_WATER		(1<<0)
+#define TURF_WET_PERMAFROST	(1<<1)
+#define TURF_WET_ICE 		(1<<2)
+#define TURF_WET_LUBE		(1<<3)
+#define TURF_WET_SUPERLUBE	(1<<4)
 
 #define IS_WET_OPEN_TURF(O) O.GetComponent(/datum/component/wet_floor)
 
@@ -186,6 +179,9 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 
 //Gets the turf this atom inhabits
 #define get_turf(A) (get_step(A, 0))
+
+//Same as above except gets the area instead
+#define get_area(A) (isarea(A) ? A : get_step(A, 0)?.loc)
 
 //Ghost orbit types:
 #define GHOST_ORBIT_CIRCLE		"circle"
@@ -231,9 +227,6 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
-//Color Defines
-#define OOC_COLOR  "#002eb8"
-
 /////////////////////////////////////
 // atom.appearence_flags shortcuts //
 /////////////////////////////////////
@@ -274,7 +267,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define MAP_MAXZ 6
 
 // Defib stats
-#define DEFIB_TIME_LIMIT 120
+#define DEFIB_TIME_LIMIT 900
 #define DEFIB_TIME_LOSS 60
 
 // Diagonal movement
@@ -284,17 +277,25 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define DEADCHAT_ARRIVALRATTLE "arrivalrattle"
 #define DEADCHAT_DEATHRATTLE "deathrattle"
 #define DEADCHAT_REGULAR "regular-deadchat"
+#define DEADCHAT_ANNOUNCEMENT "announcement"
 
 // Bluespace shelter deploy checks
 #define SHELTER_DEPLOY_ALLOWED "allowed"
 #define SHELTER_DEPLOY_BAD_TURFS "bad turfs"
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
+#define SHELTER_DEPLOY_OUTSIDE_MAP "outside map"
 
 //debug printing macros
-#define debug_world(msg) if (GLOB.Debug2) to_chat(world, "DEBUG: [msg]")
-#define debug_usr(msg) if (GLOB.Debug2&&usr) to_chat(usr, "DEBUG: [msg]")
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins, "DEBUG: [msg]")
+#define debug_world(msg) if (GLOB.Debug2) to_chat(world, \
+	type = MESSAGE_TYPE_DEBUG, \
+	text = "DEBUG: [msg]")
+#define debug_usr(msg) if (GLOB.Debug2&&usr) to_chat(usr, \
+	type = MESSAGE_TYPE_DEBUG, \
+	text = "DEBUG: [msg]")
+#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins, \
+	type = MESSAGE_TYPE_DEBUG, \
+	text = "DEBUG: [msg]")
 #define debug_world_log(msg) if (GLOB.Debug2) log_world("DEBUG: [msg]")
 
 #define INCREMENT_TALLY(L, stat) if(L[stat]){L[stat]++}else{L[stat] = 1}
@@ -405,7 +406,10 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define ION_FILE "ion_laws.json"
 #define PIRATE_NAMES_FILE "pirates.json"
 #define REDPILL_FILE "redpill.json"
-
+#define WANTED_FILE "wanted_message.json"
+#define FLESH_SCAR_FILE "wounds/flesh_scar_desc.json"
+#define BONE_SCAR_FILE "wounds/bone_scar_desc.json"
+#define SCAR_LOC_FILE "wounds/scar_loc.json"
 
 //Fullscreen overlay resolution in tiles.
 #define FULLSCREEN_OVERLAY_RESOLUTION_X 15
@@ -436,7 +440,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define PDAIMG(what) {"<span class="pda16x16 [#what]"></span>"}
 
 //Filters
-#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, border=4, color="#04080FAA")
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, color="#04080FAA")
 #define GAUSSIAN_BLUR(filter_size) filter(type="blur", size=filter_size)
 
 #define STANDARD_GRAVITY 1 //Anything above this is high gravity, anything below no grav
@@ -459,3 +463,28 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define DICE_NOT_RIGGED 1
 #define DICE_BASICALLY_RIGGED 2
 #define DICE_TOTALLY_RIGGED 3
+
+#define VOMIT_TOXIC 1
+#define VOMIT_PURPLE 2
+
+//chem grenades defines
+#define GRENADE_EMPTY 1
+#define GRENADE_WIRED 2
+#define GRENADE_READY 3
+
+//Misc text define. Does 4 spaces. Used as a makeshift tabulator.
+#define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
+
+
+// camera shooting modes , originally was going to put this under tools since the camera is a tool in rl but wasn't 100% sure
+#define CAMERA_STANDARD 		"standard"
+#define CAMERA_DESCRIPTION		"description"
+
+//Religion
+
+#define HOLY_ROLE_PRIEST 1 //default priestly role
+#define HOLY_ROLE_HIGHPRIEST 2 //the one who designates the religion
+
+#define ALIGNMENT_GOOD "good"
+#define ALIGNMENT_NEUT "neutral"
+#define ALIGNMENT_EVIL "evil"

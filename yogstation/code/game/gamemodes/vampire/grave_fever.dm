@@ -4,8 +4,8 @@
 	stage_prob = 5
 	spread_text = "Non-Contagious"
 	spread_flags = DISEASE_SPREAD_SPECIAL
-	cure_text = "Antibiotics"
-	cures = list("spaceacillin")
+	cure_text = "Spaceacillin"
+	cures = list(/datum/reagent/medicine/spaceacillin)
 	agent = "Grave Dust"
 	cure_chance = 20
 	viable_mobtypes = list(/mob/living/carbon/human)
@@ -22,10 +22,10 @@
 
 	if(prob(15))
 		if(prob(33))
-			to_chat(affected_mob, "<span class='danger'>You feel sickly and weak.</span>")
+			to_chat(affected_mob, span_danger("You feel sickly and weak."))
 		affected_mob.adjustToxLoss(toxdamage)
 
 	if(prob(5))
-		to_chat(affected_mob, "<span class='danger'>Your joints ache horribly!</span>")
+		to_chat(affected_mob, span_danger("Your joints ache horribly!"))
 		affected_mob.Knockdown(stuntime)
 		affected_mob.Stun(stuntime)

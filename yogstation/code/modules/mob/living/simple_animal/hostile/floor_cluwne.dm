@@ -19,7 +19,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	attacktext = "attacks"
 	attack_sound = 'sound/items/bikehorn.ogg'
 	del_on_death = TRUE
-	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | LETPASSTHROW | PASSGLASS | PASSBLOB//it's practically a ghost when unmanifested (under the floor)
+	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | LETPASSTHROW | PASSGLASS | PASSBLOB | PASSMACHINES //it's practically a ghost when unmanifested (under the floor)
+	sentience_type = SENTIENCE_BOSS
 	loot = list(/obj/item/clothing/mask/yogs/cluwne)
 	wander = FALSE
 	minimum_distance = 2
@@ -37,7 +38,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	var/stage = STAGE_HAUNT
 	var/interest = 0
 	var/target_area
-	var/invalid_area_typecache = list(/area/space, /area/lavaland, /area/centcom, /area/reebe, /area/shuttle/syndicate)
+	var/invalid_area_typecache = list(/area/space, /area/lavaland, /area/mine, /area/centcom, /area/reebe, /area/shuttle/syndicate)
 	var/eating = FALSE
 	var/obj/effect/dummy/floorcluwne_orbit/poi
 	var/obj/effect/temp_visual/fcluwne_manifest/cluwnehole
@@ -50,7 +51,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	. = ..()
 	access_card = new /obj/item/card/id(src)
 	access_card.access = get_all_accesses()//THERE IS NO ESCAPE
-	access_card.add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	invalid_area_typecache = typecacheof(invalid_area_typecache)
 	Manifest()
 	if(!current_victim)
@@ -74,14 +75,15 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/CanPass(atom/A, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	return TRUE
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/Life()
 	do_jitter_animation(1000)
 	pixel_y = 8
-
-	if(is_type_in_typecache(get_area(src.loc), invalid_area_typecache) || !is_station_level(z))
+	var/area/A = get_area(loc) // Has to be separated from the below since is_type_in_typecache is also a funky macro
+	if(is_type_in_typecache(A, invalid_area_typecache) || !is_station_level(z))
 		var/area = pick(GLOB.teleportlocs)
 		var/area/tp = GLOB.teleportlocs[area]
 		forceMove(pick(get_area_turfs(tp.type)))
@@ -99,12 +101,13 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		return
 
 	var/turf/T = get_turf(current_victim)
+	A = get_area(T) // Has to be separated from the below since is_type_in_typecache is also a funky macro
 	if(prob(5))//checks roughly every 20 ticks
-		if(current_victim.stat == DEAD || current_victim.dna.check_mutation(CLUWNEMUT) || is_type_in_typecache(get_area(T), invalid_area_typecache) || !is_station_level(current_victim.z))
+		if(current_victim.stat == DEAD || current_victim.dna.check_mutation(CLUWNEMUT) || is_type_in_typecache(A, invalid_area_typecache) || !is_station_level(current_victim.z))
 			if(!Found_You())
 				Acquire_Victim()
 
-	if(get_dist(src, current_victim) > 9 && !manifested &&  !is_type_in_typecache(get_area(T), invalid_area_typecache))//if cluwne gets stuck he just teleports
+	if(get_dist(src, current_victim) > 9 && !manifested &&  !is_type_in_typecache(A, invalid_area_typecache))//if cluwne gets stuck he just teleports
 		do_teleport(src, T)
 
 	interest++
@@ -123,11 +126,14 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	..()
 
 /mob/living/simple_animal/hostile/floor_cluwne/Goto(target, delay, minimum_distance)
-	if(!manifested && !is_type_in_typecache(get_area(current_victim.loc), invalid_area_typecache) && is_station_level(current_victim.z))
+	var/area/A = get_area(current_victim.loc)
+	if(!manifested && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(current_victim.z))
 		walk_to(src, target, minimum_distance, delay)
 	else
 		walk_to(src,0)
 
+/mob/living/simple_animal/hostile/floor_cluwne/mob_negates_gravity()
+	return TRUE
 
 /mob/living/simple_animal/hostile/floor_cluwne/FindTarget()
 	return current_victim
@@ -149,24 +155,43 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	return FALSE
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Found_You()
+	var/foundVictim = FALSE
+	
 	for(var/obj/structure/closet/hiding_spot in orange(7,src))
 		if(current_victim.loc == hiding_spot)
 			hiding_spot.bust_open()
-			current_victim.Paralyze(40)
-			to_chat(current_victim, "<span class='warning'>...edih t'nac uoY</span>")
-			return TRUE
-	return FALSE
+			to_chat(current_victim, span_warning("...edih t'nac uoY"))
+			foundVictim = TRUE
+	
+	for(var/obj/mecha/hiding_spot in orange(7,src))
+		if(hiding_spot.occupant == current_victim)
+			hiding_spot.go_out(TRUE)
+			to_chat(current_victim, span_warning("...thgif t'nac uoY"))
+			foundVictim = TRUE
+
+	for(var/obj/structure/bed/roller/cheap_escape in orange(7,src))
+		if(cheap_escape.buckled_mobs.Find(current_victim))
+			cheap_escape.unbuckle_mob(current_victim, TRUE)
+			to_chat(current_victim, span_warning("...epacse t'nac uoY"))
+			foundVictim = TRUE
+
+	if(foundVictim)
+		current_victim.Paralyze(40)
+
+	return foundVictim
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Acquire_Victim(specific)
 	for(var/I in GLOB.player_list)//better than a potential recursive loop
 		var/mob/living/carbon/human/H = pick(GLOB.player_list)//so the check is fair
-
+		var/area/A
 		if(specific)
 			H = specific
-			if(H.stat != DEAD && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(get_area(H.loc), invalid_area_typecache) && is_station_level(H.z))
+			A = get_area(H.loc)
+			if(H.stat != DEAD && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
 				return target = current_victim
 
-		if(H && ishuman(H) && H.stat != DEAD && H != current_victim && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(get_area(H.loc), invalid_area_typecache) && is_station_level(H.z))
+		A = get_area(H.loc)
+		if(H && ishuman(H) && H.stat != DEAD && H != current_victim && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
 			current_victim = H
 			interest = 0
 			stage = STAGE_HAUNT
@@ -175,7 +200,12 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	message_admins("Floor Cluwne was deleted due to a lack of valid targets, if this was a manually targeted instance please re-evaluate your choice.")
 	qdel(src)
 
-
+/**
+ * Using an external variable to modify the basic behaviour of a proc like this is confusing and unnecessary.
+ * Instead, there should be two procs, one for the manifest behavior animation and one for demanifesting. If not this, then the "manifested" variable should be set within this proc instead.
+ * It is intuitive for this proc to implicitly toggle it.
+ * - AP
+**/
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Manifest()//handles disappearing and appearance anim
 	if(manifested)
 		mobility_flags &= ~MOBILITY_MOVE
@@ -204,13 +234,13 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	if(colour && H)
 		H.client.color = colour
 
-
 /mob/living/simple_animal/hostile/floor_cluwne/proc/On_Stage()
 	var/mob/living/carbon/human/H = current_victim
+	if(!H)
+		FindTarget()
+		return
 	switch(stage)
-
 		if(STAGE_HAUNT)
-
 			if(prob(5))
 				H.blur_eyes(1)
 
@@ -224,14 +254,13 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				var/obj/item/I = locate() in orange(H, 8)
 				if(I && !I.anchored)
 					I.throw_at(H, 4, 3)
-					to_chat(H, "<span class='warning'>What threw that?</span>")
+					to_chat(H, span_warning("What threw that?"))
 
 		if(STAGE_SPOOK)
-
 			if(prob(4))
 				var/turf/T = get_turf(H)
 				T.handle_slip(H, 20)
-				to_chat(H, "<span class='warning'>The floor shifts underneath you!</span>")
+				to_chat(H, span_warning("The floor shifts underneath you!"))
 
 			if(prob(5))
 				H.playsound_local(src,'yogstation/sound/voice/cluwnelaugh2.ogg', 2)
@@ -247,32 +276,20 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				var/obj/item/I = locate() in orange(H, 8)
 				if(I && !I.anchored)
 					I.throw_at(H, 4, 3)
-					to_chat(H, "<span class='warning'>What threw that?</span>")
-
+					to_chat(H, span_warning("What threw that?"))
+					
 			if(prob(2))
 				to_chat(H, "<i>yalp ot tnaw I</i>")
 				Appear()
 				manifested = FALSE
-				addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Manifest), 1)
-				if(current_victim.hud_used)//yay skewium
-					var/list/screens = list(current_victim.hud_used.plane_masters["[GAME_PLANE]"], current_victim.hud_used.plane_masters["[LIGHTING_PLANE]"])
-					var/matrix/skew = matrix()
-					var/intensity = 8
-					skew.set_skew(rand(-intensity,intensity), rand(-intensity,intensity))
-					var/matrix/newmatrix = skew
-
-					for(var/whole_screen in screens)
-						animate(whole_screen, transform = newmatrix, time = 5, easing = QUAD_EASING, loop = -1)
-						animate(transform = -newmatrix, time = 5, easing = QUAD_EASING)
-
-					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Reset_View, screens), 10)
+				addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Manifest), 2)
+				current_victim.set_drugginess(rand(1,10))
 
 		if(STAGE_TORMENT)
-
 			if(prob(5))
 				var/turf/T = get_turf(H)
 				T.handle_slip(H, 20)
-				to_chat(H, "<span class='warning'>The floor shifts underneath you!</span>")
+				to_chat(H, span_warning("The floor shifts underneath you!"))
 
 			if(prob(3))
 				playsound(src,pick('sound/spookoween/scary_horn.ogg', 'sound/spookoween/scary_horn2.ogg', 'sound/spookoween/scary_horn3.ogg'), 30, 1)
@@ -290,16 +307,16 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				for(var/obj/item/I in orange(H, 8))
 					if(I && !I.anchored)
 						I.throw_at(H, 4, 3)
-				to_chat(H, "<span class='warning'>What the hell?!</span>")
+				to_chat(H, span_warning("What the hell?!"))
 
 			if(prob(2))
-				to_chat(H, "<span class='warning'>Something feels very wrong...</span>")
+				to_chat(H, span_warning("Something feels very wrong..."))
 				H.playsound_local(src,'sound/hallucinations/behind_you1.ogg', 25)
 				H.flash_act()
 
 			if(prob(2))
 				to_chat(H, "<i>!?REHTOMKNOH eht esiarp uoy oD</i>")
-				to_chat(H, "<span class='warning'>Something grabs your foot!</span>")
+				to_chat(H, span_warning("Something grabs your foot!"))
 				H.playsound_local(src,'sound/hallucinations/i_see_you1.ogg', 25)
 				H.Stun(20)
 
@@ -310,12 +327,12 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					playsound(src, 'sound/effects/meteorimpact.ogg', 30, 1)
 
 			if(prob(1))
-				to_chat(H, "<span class='userdanger'>WHAT THE FUCK IS THAT?!</span>")
+				to_chat(H, span_userdanger("WHAT THE FUCK IS THAT?!"))
 				to_chat(H, "<i>.KNOH !nuf hcum os si uoy htiw gniyalP .KNOH KNOH KNOH</i>")
 				H.playsound_local(src,'sound/hallucinations/im_here1.ogg', 25)
-				H.reagents.add_reagent("mindbreaker", 3)
-				H.reagents.add_reagent("laughter", 5)
-				H.reagents.add_reagent("mercury", 3)
+				H.reagents.add_reagent(/datum/reagent/toxin/mindbreaker, 3)
+				H.reagents.add_reagent(/datum/reagent/consumable/laughter, 5)
+				H.reagents.add_reagent(/datum/reagent/mercury, 3)
 				Appear()
 				manifested = FALSE
 				addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Manifest), 2)
@@ -332,24 +349,26 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					for(var/obj/structure/O in T)
 						if(O.density || istype(O, /obj/machinery/door/airlock))
 							forceMove(H.loc)
-				to_chat(H, "<span class='userdanger'>You feel the floor closing in on your feet!</span>")
+				to_chat(H, span_userdanger("You feel the floor closing in on your feet!"))
 				H.Paralyze(300)
 				H.emote("scream")
 				H.adjustBruteLoss(10)
 				manifested = TRUE
 				Manifest()
 				if(!eating)
+					empulse(src, 6, 6)
 					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Grab, H), 50, TIMER_OVERRIDE|TIMER_UNIQUE)
 					for(var/turf/open/O in range(src, 6))
-						O.MakeSlippery(TURF_WET_LUBE, 20)
+						O.MakeSlippery(TURF_WET_LUBE, 30)
 						playsound(src, 'sound/effects/meteorimpact.ogg', 30, 1)
 				eating = TRUE
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Grab(mob/living/carbon/human/H)
-	to_chat(H, "<span class='userdanger'>You feel a cold, gloved hand clamp down on your ankle!</span>")
+	to_chat(H, span_userdanger("You feel a cold, gloved hand clamp down on your ankle!"))
 	for(var/I in 1 to get_dist(src, H))
-		if(do_after(src, 5, target = H))
+		if(do_after(src, 0.5 SECONDS, target = H))
+			Found_You()
 			step_towards(H, src)
 			playsound(H, pick('yogstation/sound/effects/bodyscrape-01.ogg', 'yogstation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			if(prob(40))
@@ -359,16 +378,16 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				playsound(src, pick('yogstation/sound/voice/cluwnelaugh1.ogg', 'yogstation/sound/voice/cluwnelaugh2.ogg', 'yogstation/sound/voice/cluwnelaugh3.ogg'), 50, 1)
 
 	if(get_dist(src,H) <= 1)
-		visible_message("<span class='danger'>[src] begins dragging [H] under the floor!</span>")
-		if(do_after(src, 50, target = H) && eating)
+		visible_message(span_danger("[src] begins dragging [H] under the floor!"))
+		if(do_after(src, 5 SECONDS, target = H) && eating)
 			H.become_blind()
 			H.layer = GAME_PLANE
 			H.invisibility = INVISIBILITY_OBSERVER
 			H.density = FALSE
 			H.anchored = TRUE
 			addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Kill, H), 100, TIMER_OVERRIDE|TIMER_UNIQUE)
-			visible_message("<span class='danger'>[src] pulls [H] under!</span>")
-			to_chat(H, "<span class='userdanger'>[src] drags you underneath the floor!</span>")
+			visible_message(span_danger("[src] pulls [H] under!"))
+			to_chat(H, span_userdanger("[src] drags you underneath the floor!"))
 		else
 			eating = FALSE
 	else
@@ -389,14 +408,14 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	animate(H.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
 	for(var/turf/T in orange(H, 4))
 		H.add_splatter_floor(T)
-	if(do_after(src, 50, target = H))
+	if(do_after(src, 5 SECONDS, target = H))
 		H.unequip_everything()//more runtime prevention
 		if(prob(75))
 			H.gib(FALSE)
 		else
 			H.cluwneify()
 			H.adjustBruteLoss(30)
-			H.adjustBrainLoss(100)
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 100)
 			H.cure_blind()
 			H.layer = initial(H.layer)
 			H.invisibility = initial(H.invisibility)

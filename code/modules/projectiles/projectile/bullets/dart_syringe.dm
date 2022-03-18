@@ -19,8 +19,8 @@
 				return BULLET_ACT_HIT
 			else
 				blocked = 100
-				target.visible_message("<span class='danger'>\The [src] was deflected!</span>", \
-									   "<span class='userdanger'>You were protected against \the [src]!</span>")
+				target.visible_message(span_danger("\The [src] was deflected!"), \
+									   span_userdanger("You were protected against \the [src]!"))
 
 	..(target, blocked)
 	DISABLE_BITFIELD(reagents.flags, NO_REACT)
@@ -29,9 +29,9 @@
 
 /obj/item/projectile/bullet/dart/metalfoam/Initialize()
 	. = ..()
-	reagents.add_reagent("aluminium", 15)
-	reagents.add_reagent("foaming_agent", 5)
-	reagents.add_reagent("facid", 5)
+	reagents.add_reagent(/datum/reagent/aluminium, 15)
+	reagents.add_reagent(/datum/reagent/foaming_agent, 5)
+	reagents.add_reagent(/datum/reagent/toxin/acid/fluacid, 5)
 
 /obj/item/projectile/bullet/dart/syringe
 	name = "syringe"

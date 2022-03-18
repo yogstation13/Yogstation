@@ -3,10 +3,17 @@
 	select_name = "ion"
 	fire_sound = 'sound/weapons/ionrifle.ogg'
 
+/obj/item/ammo_casing/energy/ion/hos
+	projectile_type = /obj/item/projectile/ion/weak
+	e_cost = 300
+
 /obj/item/ammo_casing/energy/declone
 	projectile_type = /obj/item/projectile/energy/declone
 	select_name = "declone"
 	fire_sound = 'sound/weapons/pulse3.ogg'
+
+/obj/item/ammo_casing/energy/declone/weak
+	projectile_type = /obj/item/projectile/energy/declone/weak
 
 /obj/item/ammo_casing/energy/flora
 	fire_sound = 'sound/effects/stealthoff.ogg'
@@ -38,8 +45,14 @@
 	projectile_type = /obj/item/projectile/energy/net
 	select_name = "netting"
 	pellets = 6
-	variance = 40
+	variance = 26
 	harmful = FALSE
+
+/obj/item/ammo_casing/energy/net/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
+	..()
+	if(loc && istype(loc, /obj/item/gun/energy/e_gun/dragnet))
+		var/obj/item/gun/energy/e_gun/dragnet/DR = loc
+		DR.modify_projectile(BB)
 
 /obj/item/ammo_casing/energy/trap
 	projectile_type = /obj/item/projectile/energy/trap

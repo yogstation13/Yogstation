@@ -14,14 +14,15 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	var/global_mode = TRUE //If disabled, only GPS signals of the same Z level are shown
 
 /obj/item/gps/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to switch it [tracking ? "off":"on"].</span>")
+	. = ..()
+	. += span_notice("Alt-click to switch it [tracking ? "off":"on"].")
 
 /obj/item/gps/Initialize()
 	. = ..()
 	GLOB.GPS_list += src
 	name = "global positioning system ([gpstag])"
-	add_overlay("working")
+	if(tracking) //Some roundstart GPS are off.
+		add_overlay("working")
 
 /obj/item/gps/Destroy()
 	GLOB.GPS_list -= src
@@ -63,17 +64,18 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		tracking = TRUE
 
 
-/obj/item/gps/ui_interact(mob/user, ui_key = "gps", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state) // Remember to use the appropriate state.
+/obj/item/gps/ui_interact(mob/user, datum/tgui/ui) // Remember to use the appropriate state.
 	if(emped)
 		to_chat(user, "[src] fizzles weakly.")
 		return
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		var/gps_window_height = 300 + GLOB.GPS_list.len * 20 // Variable window height, depending on how many GPS units there are to show
-		ui = new(user, src, ui_key, "gps", "Global Positioning System", 600, gps_window_height, master_ui, state) //width, height
+		// Variable window height, depending on how many GPS units there are
+		// to show
+		ui = new(user, src, "Gps") //width, height
 		ui.open()
 
-	ui.set_autoupdate(state = updating)
+	ui.set_autoupdate(updating)
 
 
 /obj/item/gps/ui_data(mob/user)
@@ -86,7 +88,8 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		return data
 
 	var/turf/curr = get_turf_global(src) // yogs - get_turf_global instead of get_turf
-	data["current"] = "[get_area_name(curr, TRUE)] ([curr.x], [curr.y], [curr.z])"
+	data["currentArea"] = "[get_area_name(curr, TRUE)]"
+	data["currentCoords"] = "[curr.x], [curr.y], [curr.z]"
 
 	var/list/signals = list()
 	data["signals"] = list()
@@ -96,20 +99,16 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		if(G.emped || !G.tracking || G == src)
 			continue
 		var/turf/pos = get_turf_global(G) // yogs - get_turf_global instead of get_turf
+		if(!pos)
+			continue
 		if(!global_mode && pos.z != curr.z)
 			continue
 		var/list/signal = list()
 		signal["entrytag"] = G.gpstag //Name or 'tag' of the GPS
-		signal["area"] = get_area_name(G, TRUE)
-		signal["coord"] = "[pos.x], [pos.y], [pos.z]"
+		signal["coords"] = "[pos.x], [pos.y], [pos.z]"
 		if(pos.z == curr.z) //Distance/Direction calculations for same z-level only
 			signal["dist"] = max(get_dist(curr, pos), 0) //Distance between the src and remote GPS turfs
 			signal["degrees"] = round(Get_Angle(curr, pos)) //0-360 degree directional bearing, for more precision.
-			var/direction = uppertext(dir2text(get_dir(curr, pos))) //Direction text (East, etc). Not as precise, but still helpful.
-			if(!direction)
-				direction = "CENTER"
-				signal["degrees"] = "N/A"
-			signal["direction"] = direction
 
 		signals += list(signal) //Add this signal to the list of signals
 	data["signals"] = signals
@@ -122,8 +121,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		return
 	switch(action)
 		if("rename")
-			var/a = input("Please enter desired tag.", name, gpstag) as text
-			a = copytext(sanitize(a), 1, 20)
+			var/a = stripped_input(usr, "Please enter desired tag.", name, gpstag, 20)
 			gpstag = a
 			. = TRUE
 			name = "global positioning system ([gpstag])"
@@ -159,7 +157,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 /obj/item/gps/cyborg/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, CYBORG_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 
 /obj/item/gps/internal
 	icon_state = null
@@ -211,3 +209,34 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	tagged = null
 	STOP_PROCESSING(SSfastprocess, src)
 	. = ..()
+
+/**
+  * # Pirate GPS
+  *
+  *	Pirate GPS used for targeting by the [Blue Space Artillery] [/obj/machinery/computer/bsa_control]
+  *
+  * When shot at, relays the fact that it was shot at to [the pirate event] [/datum/round_event/pirates] so it cancels
+  */
+
+/obj/item/gps/pirate
+
+/**
+  *	Initializes the GPS with the correct name, taken from the pirate ship's name
+  *	If no name is provided, it'll default to "Jolly Robuster"
+  *
+  *	Arguments:
+  *	* ship_name - The name that of the ship that we're pretending to be, defaults to "Jolly Robuster"
+  */
+/obj/item/gps/pirate/Initialize(ship_name = "Jolly Robuster")
+	.=..()
+	if(ship_name)
+		name = ship_name
+		gpstag = ship_name
+
+/**
+  * Relays that the [Blue Space Artillery] [/obj/machinery/computer/bsa_control] has shot the ship to the event, then qdels
+  */
+/obj/item/gps/pirate/proc/on_shoot()
+	var/datum/round_event/pirates/r = locate() in SSevents.running
+	r?.shot_down()
+	qdel(src)

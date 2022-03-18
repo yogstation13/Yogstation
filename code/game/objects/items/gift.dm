@@ -29,23 +29,23 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	contains_type = get_gift_type()
 
 /obj/item/a_gift/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] peeks inside [src] and cries [user.p_them()]self to death! It looks like [user.p_they()] [user.p_were()] on the naughty list...</span>")
+	user.visible_message(span_suicide("[user] peeks inside [src] and cries [user.p_them()]self to death! It looks like [user.p_they()] [user.p_were()] on the naughty list..."))
 	return (BRUTELOSS)
 
 /obj/item/a_gift/examine(mob/M)
 	. = ..()
-	if(M.has_trait(TRAIT_PRESENT_VISION) || isobserver(M))
-		to_chat(M, "<span class='notice'>It contains \a [initial(contains_type.name)].</span>")
+	if((M.mind && HAS_TRAIT(M.mind, TRAIT_PRESENT_VISION)) || isobserver(M))
+		. += span_notice("It contains \a [initial(contains_type.name)].")
 
 /obj/item/a_gift/attack_self(mob/M)
-	if(M.has_trait(TRAIT_CANNOT_OPEN_PRESENTS))
-		to_chat(M, "<span class='warning'>You're supposed to be spreading gifts, not opening them yourself!</span>")
+	if(M.mind && HAS_TRAIT(M.mind, TRAIT_CANNOT_OPEN_PRESENTS))
+		to_chat(M, span_warning("You're supposed to be spreading gifts, not opening them yourself!"))
 		return
 
 	qdel(src)
 
 	var/obj/item/I = new contains_type(get_turf(M))
-	M.visible_message("<span class='notice'>[M] unwraps \the [src], finding \a [I] inside!</span>")
+	M.visible_message(span_notice("[M] unwraps \the [src], finding \a [I] inside!"))
 	I.investigate_log("([I.type]) was found in a present by [key_name(M)].", INVESTIGATE_PRESENTS)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
@@ -56,7 +56,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/storage/photo_album,
 		/obj/item/storage/box/snappops,
 		/obj/item/storage/crayons,
-		/obj/item/storage/backpack/holding,
 		/obj/item/storage/belt/champion,
 		/obj/item/soap/deluxe,
 		/obj/item/pickaxe/diamond,
@@ -71,7 +70,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/bikehorn,
 		/obj/item/toy/beach_ball,
 		/obj/item/toy/beach_ball/holoball,
-		/obj/item/banhammer,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia/deus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris,
 		/obj/item/paicard,
@@ -86,7 +84,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/clothing/suit/poncho/red,
 		/obj/item/clothing/suit/snowman,
 		/obj/item/clothing/head/snowman,
-		/obj/item/trash/coal)
+		/obj/item/stack/sheet/mineral/coal)
 
 	gift_type_list += subtypesof(/obj/item/clothing/head/collectable)
 	gift_type_list += subtypesof(/obj/item/toy) - (((typesof(/obj/item/toy/cards) - /obj/item/toy/cards/deck) + /obj/item/toy/figure + /obj/item/toy/ammo)) //All toys, except for abstract types and syndicate cards.

@@ -7,18 +7,26 @@
 	attack_sound = 'sound/weapons/etherealhit.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ethereal
-	exotic_blood = "liquidelectricity" //Liquid Electricity. fuck you think of something better gamer
+	mutantstomach = /obj/item/organ/stomach/ethereal
+	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //They're weak to punches
+	payday_modifier = 0.7 //Neutrally useful to NT
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
-	species_traits = list(DYNCOLORS, NOSTOMACH, AGENDER, NO_UNDERWEAR)
+	species_traits = list(NOEYESPRITES,DYNCOLORS, AGENDER, NO_UNDERWEAR, HAIR, FACEHAIR, HAS_FLESH, HAS_BONE) // i mean i guess they have blood so they can have wounds too
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER)
+	mutant_bodyparts = list("ethereal_mark")
+	default_features = list("ethereal_mark" = "Eyes")
+	species_language_holder = /datum/language_holder/ethereal
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE
+	inert_mutation = SHOCKTOUCH
+	hair_color = "fixedmutcolor"
+	hair_alpha = 140
+	swimming_component = /datum/component/swimming/ethereal
 	var/current_color
-	var/ethereal_charge = ETHEREAL_CHARGE_FULL
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
 	var/r1
@@ -26,7 +34,7 @@
 	var/b1
 	var/static/r2 = 237
 	var/static/g2 = 164
-	var/static/b2 = 149	
+	var/static/b2 = 149
 	//this is shit but how do i fix it? no clue.
 
 
@@ -35,9 +43,9 @@
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		default_color = "#" + H.dna.features["ethcolor"]
-		r1 = GetRedPart(default_color)
-		g1 = GetGreenPart(default_color)
-		b1 = GetBluePart(default_color)
+		r1 = GETREDPART(default_color)
+		g1 = GETGREENPART(default_color)
+		b1 = GETBLUEPART(default_color)
 		spec_updatehealth(H)
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
@@ -59,7 +67,7 @@
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
 		H.set_light(1 + (2 * healthpercent), 1 + (1 * healthpercent), current_color)
-		fixed_mut_color = copytext(current_color, 2)
+		fixed_mut_color = copytext_char(current_color, 2)
 	else
 		H.set_light(0)
 		fixed_mut_color = rgb(128,128,128)
@@ -69,7 +77,7 @@
 	.=..()
 	EMPeffect = TRUE
 	spec_updatehealth(H)
-	to_chat(H, "<span class='notice'>You feel the light of your body leave you.</span>")
+	to_chat(H, span_notice("You feel the light of your body leave you."))
 	switch(severity)
 		if(EMP_LIGHT)
 			addtimer(CALLBACK(src, .proc/stop_emp, H), 100, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 seconds
@@ -80,30 +88,23 @@
 	if(emageffect)
 		return
 	emageffect = TRUE
-	to_chat(user, "<span class='notice'>You tap [H] on the back with your card.</span>")
-	H.visible_message("<span class='danger'>[H] starts flickering in an array of colors!</span>")
+	to_chat(user, span_notice("You tap [H] on the back with your card."))
+	H.visible_message(span_danger("[H] starts flickering in an array of colors!"))
 	handle_emag(H)
 	addtimer(CALLBACK(src, .proc/stop_emag, H), 300, TIMER_UNIQUE|TIMER_OVERRIDE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
 
 
 /datum/species/ethereal/spec_life(mob/living/carbon/human/H)
 	.=..()
+	if(H.stat == DEAD)
+		return
 	handle_charge(H)
-
-/datum/species/ethereal/spec_fully_heal(mob/living/carbon/human/H)
-	.=..()
-	set_charge(ETHEREAL_CHARGE_FULL)
-
-/datum/species/ethereal/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
-	.=..()
-	adjust_charge(shock_damage * siemens_coeff * 2)
-	to_chat(H, "<span class='notice'>You absorb some of the shock into your body!</span>")
 
 
 /datum/species/ethereal/proc/stop_emp(mob/living/carbon/human/H)
 	EMPeffect = FALSE
 	spec_updatehealth(H)
-	to_chat(H, "<span class='notice'>You feel more energized as your shine comes back.</span>")
+	to_chat(H, span_notice("You feel more energized as your shine comes back."))
 
 
 /datum/species/ethereal/proc/handle_emag(mob/living/carbon/human/H)
@@ -116,18 +117,17 @@
 /datum/species/ethereal/proc/stop_emag(mob/living/carbon/human/H)
 	emageffect = FALSE
 	spec_updatehealth(H)
-	H.visible_message("<span class='danger'>[H] stops flickering and goes back to their normal state!</span>")
+	H.visible_message(span_danger("[H] stops flickering and goes back to their normal state!"))
 
 /datum/species/ethereal/proc/handle_charge(mob/living/carbon/human/H)
-	var/charge_rate = ETHEREAL_CHARGE_FACTOR
 	brutemod = 1.25
-	adjust_charge(-charge_rate)
-	switch(ethereal_charge)
+	switch(get_charge(H))
 		if(ETHEREAL_CHARGE_NONE)
 			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 3)
 		if(ETHEREAL_CHARGE_NONE to ETHEREAL_CHARGE_LOWPOWER)
 			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 2)
-			apply_damage(0.5, BRUTE, null, null, H)
+			if(H.health > 10.5)
+				apply_damage(0.65, TOX, null, null, H)
 			brutemod = 1.75
 		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
 			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 1)
@@ -135,8 +135,8 @@
 		else
 			H.clear_alert("ethereal_charge")
 
-/datum/species/ethereal/proc/adjust_charge(var/change)
-	ethereal_charge = CLAMP(ethereal_charge + change, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_FULL)
-
-/datum/species/ethereal/proc/set_charge(var/change)
-	ethereal_charge = CLAMP(change, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_FULL)
+/datum/species/ethereal/proc/get_charge(mob/living/carbon/H) //this feels like it should be somewhere else. Eh?
+	var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+	if(istype(stomach))
+		return stomach.crystal_charge
+	return ETHEREAL_CHARGE_NONE

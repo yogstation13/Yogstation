@@ -12,6 +12,8 @@
 	explanation_text = "End the round with at least [target_amount] beings assimilated into the hive."
 
 /datum/objective/hivemind/hivesize/check_completion()
+	if(..())
+		return TRUE
 	var/datum/antagonist/hivemind/host = owner.has_antag_datum(/datum/antagonist/hivemind)
 	if(!host)
 		return FALSE
@@ -29,17 +31,13 @@
 	explanation_text = "Have at least [target_amount] members of the hive escape on the shuttle alive and free."
 
 /datum/objective/hivemind/hiveescape/check_completion()
+	if(..())
+		return TRUE
 	var/count = 0
 	var/datum/antagonist/hivemind/host = owner.has_antag_datum(/datum/antagonist/hivemind)
 	if(!host)
 		return FALSE
-	for(var/obj/item/organ/brain/B in host.hivemembers)
-		var/mob/living/carbon/C = B.owner
-		if(!C)
-			continue
-		var/datum/mind/M = C.mind
-		if(!M)
-			continue
+	for(var/datum/mind/M in host.hivemembers)
 		if(considered_escaped(M))
 			count++
 	return count >= target_amount
@@ -48,6 +46,8 @@
 	explanation_text = "End the round with more vessels than any other hivemind host."
 
 /datum/objective/hivemind/biggest/check_completion()
+	if(..())
+		return TRUE
 	var/datum/antagonist/hivemind/host = owner.has_antag_datum(/datum/antagonist/hivemind)
 	if(!host)
 		return FALSE

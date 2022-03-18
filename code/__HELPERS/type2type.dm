@@ -339,10 +339,24 @@
 /proc/isLeap(y)
 	return ((y) % 4 == 0 && ((y) % 100 != 0 || (y) % 400 == 0))
 
-
+/// For finding out what body parts a body zone covers, the inverse of the below basically
+/proc/zone2body_parts_covered(def_zone)
+	switch(def_zone)
+		if(BODY_ZONE_CHEST)
+			return list(CHEST, GROIN)
+		if(BODY_ZONE_HEAD)
+			return list(HEAD)
+		if(BODY_ZONE_L_ARM)
+			return list(ARM_LEFT, HAND_LEFT)
+		if(BODY_ZONE_R_ARM)
+			return list(ARM_RIGHT, HAND_RIGHT)
+		if(BODY_ZONE_L_LEG)
+			return list(LEG_LEFT, FOOT_LEFT)
+		if(BODY_ZONE_R_LEG)
+			return list(LEG_RIGHT, FOOT_RIGHT)
 
 //Turns a Body_parts_covered bitfield into a list of organ/limb names.
-//(I challenge you to find a use for this)
+//(I challenge you to find a use for this)-I found a use for it!!
 /proc/body_parts_covered2organ_names(bpc)
 	var/list/covered_parts = list()
 
@@ -448,16 +462,6 @@
 		else
 			. = max(0, min(255, 138.5177312231 * log(temp - 10) - 305.0447927307))
 
-/proc/fusionpower2text(power) //used when displaying fusion power on analyzers
-	switch(power)
-		if(0 to 5)
-			return "low"
-		if(5 to 20)
-			return "mid"
-		if(20 to 50)
-			return "high"
-		if(50 to INFINITY)
-			return "super"
 
 /proc/color2hex(color)	//web colors
 	if(!color)
@@ -542,17 +546,17 @@
 
 //assumes format #RRGGBB #rrggbb
 /proc/color_hex2num(A)
-	if(!A)
+	if(!A || length(A) != length_char(A))
 		return 0
-	var/R = hex2num(copytext(A,2,4))
-	var/G = hex2num(copytext(A,4,6))
-	var/B = hex2num(copytext(A,6,0))
+	var/R = hex2num(copytext(A, 2, 4))
+	var/G = hex2num(copytext(A, 4, 6))
+	var/B = hex2num(copytext(A, 6, 8))
 	return R+G+B
 
 //word of warning: using a matrix like this as a color value will simplify it back to a string after being set
 /proc/color_hex2color_matrix(string)
 	var/length = length(string)
-	if(length != 7 && length != 9)
+	if((length != 7 && length != 9) || length != length_char(string))
 		return color_matrix_identity()
 	var/r = hex2num(copytext(string, 2, 4))/255
 	var/g = hex2num(copytext(string, 4, 6))/255
@@ -606,26 +610,7 @@
 		else //regex everything else (works for /proc too)
 			return lowertext(replacetext("[the_type]", "[type2parent(the_type)]/", ""))
 
-/proc/strtohex(str)
-	if(!istext(str)||!str)
-		return
-	var/r
-	var/c
-	for(var/i = 1 to length(str))
-		c= text2ascii(str,i)
-		r+= num2hex(c)
-	return r
-
-// Decodes hex to raw byte string.
-// If safe=TRUE, returns null on incorrect input strings instead of CRASHing
-/proc/hextostr(str, safe=FALSE)
-	if(!istext(str)||!str)
-		return
-	var/r
-	var/c
-	for(var/i = 1 to length(str)/2)
-		c = hex2num(copytext(str,i*2-1,i*2+1), safe)
-		if(isnull(c))
-			return null
-		r += ascii2text(c)
-	return r
+/// Return html to load a url.
+/// for use inside of browse() calls to html assets that might be loaded on a cdn.
+/proc/url2htmlloader(url)
+	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}

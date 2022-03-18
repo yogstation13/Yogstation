@@ -2,12 +2,14 @@
 /obj/item/pressure_plate
 	name = "pressure plate"
 	desc = "An electronic device that triggers when stepped on."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/puzzle_small.dmi'
 	item_state = "flash"
 	icon_state = "pressureplate"
 	level = 1
+	layer = LOW_OBJ_LAYER
 	var/trigger_mob = TRUE
 	var/trigger_item = FALSE
+	var/specific_item = null
 	var/trigger_silent = FALSE
 	var/sound/trigger_sound = 'sound/effects/pressureplate.ogg'
 	var/obj/item/assembly/signaler/sigdev = null
@@ -20,6 +22,7 @@
 	var/image/tile_overlay = null
 	var/can_trigger = TRUE
 	var/trigger_delay = 10
+	var/protected = FALSE
 
 /obj/item/pressure_plate/Initialize()
 	. = ..()
@@ -35,9 +38,11 @@
 	. = ..()
 	if(!can_trigger || !active)
 		return
+	if(trigger_item && !istype(AM, specific_item))
+		return
 	if(trigger_mob && isliving(AM))
 		var/mob/living/L = AM
-		to_chat(L, "<span class='warning'>You feel something click beneath you!</span>")
+		to_chat(L, span_warning("You feel something click beneath you!"))
 	else if(!trigger_item)
 		return
 	can_trigger = FALSE
@@ -51,16 +56,26 @@
 /obj/item/pressure_plate/attackby(obj/item/I, mob/living/L)
 	if(istype(I, /obj/item/assembly/signaler) && !istype(sigdev) && removable_signaller && L.transferItemToLoc(I, src))
 		sigdev = I
-		to_chat(L, "<span class='notice'>You attach [I] to [src]!</span>")
+		to_chat(L, span_notice("You attach [I] to [src]!"))
 	return ..()
 
 /obj/item/pressure_plate/attack_self(mob/living/L)
 	if(removable_signaller && istype(sigdev))
-		to_chat(L, "<span class='notice'>You remove [sigdev] from [src]</span>")
+		to_chat(L, span_notice("You remove [sigdev] from [src]"))
 		if(!L.put_in_hands(sigdev))
 			sigdev.forceMove(get_turf(src))
 		sigdev = null
 	return ..()
+
+/obj/item/pressure_plate/CtrlClick(mob/user)
+	if(protected)
+		to_chat(user, span_warning("You can't quite seem to turn this pressure plate off..."))
+		return
+	active = !active
+	if (active == TRUE)
+		to_chat(user, span_notice("You turn [src] on."))
+	else
+		to_chat(user, span_notice("You turn [src] off."))
 
 /obj/item/pressure_plate/hide(yes)
 	if(yes)

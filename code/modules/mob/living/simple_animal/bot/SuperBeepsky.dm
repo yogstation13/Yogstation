@@ -5,7 +5,7 @@
 	icon_state = "grievous"
 	health = 150
 	maxHealth = 150
-	baton_type = /obj/item/melee/transforming/energy/sword
+	baton_type = /obj/item/melee/transforming/energy/sword/saber
 	base_speed = 4 //he's a fast fucker
 	var/obj/item/weapon
 	var/block_chance = 50
@@ -33,7 +33,7 @@
 /mob/living/simple_animal/bot/secbot/grievous/Initialize()
 	. = ..()
 	weapon = new baton_type(src)
-	weapon.attack_self(src)
+	INVOKE_ASYNC(weapon, /obj/item.proc/attack_self, src)
 
 /mob/living/simple_animal/bot/secbot/grievous/Destroy()
 	QDEL_NULL(weapon)
@@ -116,7 +116,10 @@
 			target = C
 			oldtarget_name = C.name
 			speak("Level [threatlevel] infraction alert!")
-			playsound(src, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
+			if(russian)
+				playsound(loc, pick('sound/voice/beepsky_russian/criminal.ogg', 'sound/voice/beepsky_russian/justice.ogg', 'sound/voice/beepsky_russian/freeze.ogg'), 50, FALSE)
+			else
+				playsound(loc, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
 			playsound(src,'sound/weapons/saberon.ogg',50,TRUE,-1)
 			visible_message("[src] ignites his energy swords!")
 			icon_state = "grievous-c"
@@ -131,7 +134,7 @@
 /mob/living/simple_animal/bot/secbot/grievous/explode()
 
 	walk_to(src,0)
-	visible_message("<span class='boldannounce'>[src] lets out a huge cough as it blows apart!</span>")
+	visible_message(span_boldannounce("[src] lets out a huge cough as it blows apart!"))
 	var/atom/Tsec = drop_location()
 
 	var/obj/item/bot_assembly/secbot/Sa = new (Tsec)
