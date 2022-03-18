@@ -27,7 +27,7 @@
 
 /datum/surgery_step/revive
 	name = "shock body"
-	implements = list(/obj/item/twohanded/shockpaddles = 100, /obj/item/melee/baton = 75, /obj/item/gun/energy = 60, /obj/item/melee/touch_attack/shock = 100)
+	implements = list(/obj/item/twohanded/shockpaddles = 100, /obj/item/melee/baton = 75, /obj/item/melee/baton/cattleprod = 60, /obj/item/melee/touch_attack/shock = 100)
 	time = 120
 
 /datum/surgery_step/revive/tool_check(mob/user, obj/item/tool)
@@ -42,14 +42,12 @@
 		if(!B.status)
 			to_chat(user, span_warning("[B] needs to be active!"))
 			return FALSE
-	if(istype(tool, /obj/item/gun/energy))
-		var/obj/item/gun/energy/E = tool
-		if(E.chambered && istype(E.chambered, /obj/item/ammo_casing/energy/electrode))
-			return TRUE
-		else
-			to_chat(user, span_warning("You need an electrode for this!"))
+	if(istype(tool, /obj/item/melee/baton/cattleprod))
+		var/obj/item/melee/baton/cattleprod/B = tool
+		if(!B.status)
+			to_chat(user, span_warning("[B] needs to be active!"))
 			return FALSE
-
+	
 /datum/surgery_step/revive/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You prepare to give [target]'s brain the spark of life with [tool]."),
 		"[user] prepares to shock [target]'s brain with [tool].",
