@@ -59,7 +59,7 @@
 
 	//spreading
 	if(prob(tumor_chance)) //2% chance to make a new tumor somewhere
-		spread()
+		spread(M)
 
 /datum/symptom/tumor/proc/spread(mob/living/carbon/human/M, from_tumor = FALSE)
 	if(!M)

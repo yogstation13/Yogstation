@@ -57,7 +57,7 @@
 			owner.visible_message(span_warning("Gnarly tumors burst out of [owner]'s stump and form into a [parse_zone(limb_to_regenerate)]!"), span_notice("You scream as your [parse_zone(limb_to_regenerate)] reforms."))
 	if(prob(spread_chance))
 		if(ownerdisease)
-			ownerdisease.spread(TRUE)
+			ownerdisease.spread(owner, TRUE)
 
 
 /obj/item/organ/tumor/premalignant
