@@ -1,16 +1,24 @@
+#define TUMOR_STRENGTH_WEAK 0.125
+#define TUMOR_STRENGTH_AVERAGE 0.25
+#define TUMOR_STRENGTH_STRONG 0.5
+
+#define TUMOR_SPREAD_WEAK 0.5
+#define TUMOR_SPREAD_AVERAGE 1
+#define TUMOR_SPREAD_STRONG 2
+
 /obj/item/organ/tumor
 	name = "benign tumor"
 	desc = "Hope there aren't more of these."
 	icon_state = "tumor"
 
-	var/strength = 0.125
-	var/spread_chance = 0.5
+	var/strength = TUMOR_STRENGTH_WEAK
+	var/spread_chance = TUMOR_SPREAD_WEAK
 
 	var/helpful = FALSE //keeping track if they're helpful or not
 	var/regeneration = FALSE //if limbs are regenerating
-	var/datum/disease/advance/ownerdisease //what disease it comes from
+	var/datum/disease/advance/tumor/ownerdisease //what disease it comes from
 
-/obj/item/organ/tumor/Insert(var/mob/living/carbon/M, special = 0)
+/obj/item/organ/tumor/Insert(mob/living/carbon/M, special = 0)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -37,7 +45,7 @@
 			owner.adjustFireLoss(-(strength/2))
 	else
 		owner.adjustToxLoss(strength) //just take toxin damage
-		//regerenation
+		//regeneration
 	if(regeneration && prob(spread_chance))
 		var/list/missing_limbs = owner.get_missing_limbs() - list(BODY_ZONE_HEAD, BODY_ZONE_CHEST) //don't regenerate the head or chest
 		if(missing_limbs.len)
@@ -48,33 +56,25 @@
 			owner.emote("scream")
 			owner.visible_message(span_warning("Gnarly tumors burst out of [owner]'s stump and form into a [parse_zone(limb_to_regenerate)]!"), span_notice("You scream as your [parse_zone(limb_to_regenerate)] reforms."))
 	if(prob(spread_chance))
-		spread()
+		if(ownerdisease)
+			ownerdisease.spread(TRUE)
 
-/obj/item/organ/tumor/proc/spread()
-	var/list/possibleZones = list(BODY_ZONE_HEAD,BODY_ZONE_CHEST,BODY_ZONE_L_ARM,BODY_ZONE_R_ARM,BODY_ZONE_L_LEG,BODY_ZONE_R_LEG,BODY_ZONE_PRECISE_EYES,BODY_ZONE_PRECISE_GROIN) - owner.get_missing_limbs()
-	//check if we can put an organ in there
-	var/insertionZone = pick(possibleZones)
-	var/insertionAvailable = TRUE
-	for(var/obj/item/organ/tumor/IT in owner.internal_organs)
-		if(IT.zone == insertionZone)
-			insertionAvailable = FALSE
-	if(insertionAvailable)
-		var/obj/item/organ/tumor/T = new type()
-		T.name = T.name + " (" + parse_zone(insertionZone) + ")"
-		T.helpful = helpful
-		T.regeneration = regeneration
-		T.ownerdisease = ownerdisease
-		T.Insert(owner,FALSE,FALSE,insertionZone)
-		to_chat(owner, span_warning("Your [parse_zone(insertionZone)] hurts."))
 
 /obj/item/organ/tumor/premalignant
 	name = "premalignant tumor"
 	desc = "It doesn't look too bad... at least you're not dead, right?"
-	strength = 0.25
-	spread_chance = 1
+	strength = TUMOR_STRENGTH_AVERAGE
+	spread_chance = TUMOR_SPREAD_AVERAGE
 
 /obj/item/organ/tumor/malignant
 	name = "malignant tumor"
 	desc = "Yikes. There's probably more of these in you."
-	strength = 0.5
-	spread_chance = 2
+	strength = TUMOR_STRENGTH_STRONG
+	spread_chance = TUMOR_SPREAD_STRONG
+
+#undef TUMOR_STRENGTH_WEAK 
+#undef TUMOR_STRENGTH_AVERAGE 
+#undef TUMOR_STRENGTH_STRONG 
+#undef TUMOR_SPREAD_WEAK
+#undef TUMOR_SPREAD_AVERAGE
+#undef TUMOR_SPREAD_STRONG

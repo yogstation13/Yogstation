@@ -37,10 +37,12 @@
 
 /datum/symptom/tumor/Activate(datum/disease/advance/A)
 	. = ..()
+
 	if(!.)
 		return
 	var/mob/living/carbon/human/M = A.affected_mob
-	if(!M) return
+	if(!M) 
+		return
 
 	if(M.visible_tumors)
 		//clothes wearing
@@ -57,21 +59,29 @@
 
 	//spreading
 	if(prob(tumor_chance)) //2% chance to make a new tumor somewhere
-		var/list/possibleZones = list(BODY_ZONE_HEAD,BODY_ZONE_CHEST,BODY_ZONE_L_ARM,BODY_ZONE_R_ARM,BODY_ZONE_L_LEG,BODY_ZONE_R_LEG,BODY_ZONE_PRECISE_EYES,BODY_ZONE_PRECISE_GROIN) - M.get_missing_limbs() //no inserting into magic limbs you dont have
-		//check if we can put an organ in there
-		var/insertionZone = pick(possibleZones)
-		var/insertionAvailable = TRUE
-		for(var/obj/item/organ/tumor/IT in M.internal_organs)
-			if(IT.zone == insertionZone)
-				insertionAvailable = FALSE
-		if(insertionAvailable)
-			var/obj/item/organ/tumor/T = new tumortype()
-			T.name = T.name + " (" + parse_zone(insertionZone) + ")"
-			T.helpful = helpful
-			T.regeneration = regeneration
-			T.ownerdisease = ownerdisease
-			T.Insert(M,FALSE,FALSE,insertionZone)
+		spread()
+
+/datum/symptom/tumor/proc/spread(mob/living/carbon/human/M, from_tumor = FALSE)
+	if(!M)
+		return
+	var/list/possibleZones = list(BODY_ZONE_HEAD,BODY_ZONE_CHEST,BODY_ZONE_L_ARM,BODY_ZONE_R_ARM,BODY_ZONE_L_LEG,BODY_ZONE_R_LEG,BODY_ZONE_PRECISE_EYES,BODY_ZONE_PRECISE_GROIN) - M.get_missing_limbs() //no inserting into magic limbs you dont have
+	//check if we can put an organ in there
+	var/insertionZone = pick(possibleZones)
+	var/insertionAvailable = TRUE
+	for(var/obj/item/organ/tumor/IT in M.internal_organs)
+		if(IT.zone == insertionZone)
+			insertionAvailable = FALSE
+	if(insertionAvailable)
+		var/obj/item/organ/tumor/T = new tumortype()
+		T.name = T.name + " (" + parse_zone(insertionZone) + ")"
+		T.helpful = helpful
+		T.regeneration = regeneration
+		T.ownerdisease = ownerdisease
+		T.Insert(M,FALSE,FALSE,insertionZone)
+		if(from_tumor)
 			to_chat(M, span_warning("[pick("Your insides writhe.", "You feel your insides squirm.")]"))
+		else
+			to_chat(M, span_warning("Your [parse_zone(insertionZone)] hurts."))
 				
 /datum/symptom/tumor/End(datum/disease/advance/A)
 	..()
