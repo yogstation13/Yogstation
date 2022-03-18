@@ -283,7 +283,7 @@
 
 
 /obj/item/camera/syndicate/proc/flash_cooldown(mob/user)
-	var/realcooldown = cooldown + 30 // longer delay to recharge than normal usage
+	var/realcooldown = cooldown + 3 SECONDS // longer delay to recharge than normal usage
 	if(user)
 		var/mob/living/carbon/human/H = user
 		if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER)) // yes; knowing how to use a camera will help you out here as well
