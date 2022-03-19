@@ -130,7 +130,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "Mqiib"
 	unlock_path = /obj/item/clothing/accessory/sing_necklace
 
-/datum/donator_gear/mqiib
+/datum/donator_gear/nTHREEdSIX
 	name = "Mug root beer"
 	ckey = "n3d6"
 	unlock_path = /obj/item/storage/box/fancy/mug_pack
