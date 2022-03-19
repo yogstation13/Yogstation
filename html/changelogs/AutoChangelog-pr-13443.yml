@@ -1,0 +1,5 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - bugfix: "climbing things doesn't discourage waggers"
+  - tweak: "felinids can now oppress other species"
