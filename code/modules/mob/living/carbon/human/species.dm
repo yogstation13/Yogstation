@@ -761,6 +761,14 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "ethereal_mark"
 
+	if("pod_hair" in mutant_bodyparts)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "pod_hair"
+	
+	if("pod_flower" in mutant_bodyparts)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "pod_flower"
+
 	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
 	var/update_needed = FALSE
 	var/not_digitigrade = TRUE
@@ -855,6 +863,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
 				if("ethereal_mark")
 					S = GLOB.ethereal_mark_list[H.dna.features["ethereal_mark"]]
+				if("pod_hair")
+					S = GLOB.pod_hair_list[H.dna.features["pod_hair"]]
+				if("pod_flower")
+					S = GLOB.pod_flower_list[H.dna.features["pod_flower"]]
 			if(!S || S.icon_state == "none")
 				continue
 

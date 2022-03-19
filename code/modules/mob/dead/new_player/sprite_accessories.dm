@@ -2203,3 +2203,93 @@
 /datum/sprite_accessory/ethereal_mark/x
 	name = "X"
 	icon_state = "x"
+
+//Phytosian hair
+/datum/sprite_accessory/pod_hair
+	icon = 'icons/mob/human_face.dmi'
+	color_src = HAIR
+
+/datum/sprite_accessory/pod_hair/cabbage
+	name = "Cabbage"
+	icon_state = "cabbage"
+
+/datum/sprite_accessory/pod_hair/fig
+	name = "Fig"
+	icon_state = "fig"
+
+/datum/sprite_accessory/pod_hair/hibiscus
+	name = "Hibiscus"
+	icon_state = "hibiscus"
+
+/datum/sprite_accessory/pod_hair/ivy
+	name = "Ivy"
+	icon_state = "ivy"
+
+/datum/sprite_accessory/pod_hair/orchid
+	name = "Orchid"
+	icon_state = "orchid"
+
+/datum/sprite_accessory/pod_hair/prayer
+	name = "Prayer"
+	icon_state = "prayer"
+
+/datum/sprite_accessory/pod_hair/rose
+	name = "Rose"
+	icon_state = "rose"
+
+/datum/sprite_accessory/pod_hair/shrub
+	name = "Shrub"
+	icon_state = "shrub"
+
+/datum/sprite_accessory/pod_hair/spinach
+	name = "Spinach"
+	icon_state = "spinach"
+
+/datum/sprite_accessory/pod_hair/vine
+	name = "Vine"
+	icon_state = "vine"
+
+//Phytosian hair flower
+/datum/sprite_accessory/pod_flower
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	//color_src = HAIR
+
+/datum/sprite_accessory/pod_flower/cabbage
+	name = "Cabbage"
+	icon_state = "cabbage"
+
+/datum/sprite_accessory/pod_flower/fig
+	name = "Fig"
+	icon_state = "fig"
+
+/datum/sprite_accessory/pod_flower/hibiscus
+	name = "Hibiscus"
+	icon_state = "hibiscus"
+
+/datum/sprite_accessory/pod_flower/ivy
+	name = "Ivy"
+	icon_state = "ivy"
+
+/datum/sprite_accessory/pod_flower/orchid
+	name = "Orchid"
+	icon_state = "orchid"
+
+/datum/sprite_accessory/pod_flower/prayer
+	name = "Prayer"
+	icon_state = "prayer"
+
+/datum/sprite_accessory/pod_flower/rose
+	name = "Rose"
+	icon_state = "rose"
+
+/datum/sprite_accessory/pod_flower/shrub
+	name = "Shrub"
+	icon_state = "shrub"
+
+/datum/sprite_accessory/pod_flower/spinach
+	name = "Spinach"
+	icon_state = "spinach"
+
+/datum/sprite_accessory/pod_flower/vine
+	name = "Vine"
+	icon_state = "vine"
