@@ -205,7 +205,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 /obj/machinery/computer/ai_control_console/proc/finish_download()
 	if(intellicard)
-		if(!isaicore(get_turf(downloading)))
+		if(!isaicore(downloading.loc))
 			stop_download(TRUE)
 			return
 		downloading.transfer_ai(AI_TRANS_TO_CARD, user_downloading, null, intellicard)
