@@ -5,6 +5,13 @@
 "b" = (
 /turf/open/indestructible/pocketspace,
 /area/yogstation/pocket_dimension)
+"e" = (
+/turf/open/space/basic,
+/area/space)
+"o" = (
+/obj/machinery/telecomms/allinone/indestructable,
+/turf/open/indestructible/plating,
+/area/yogstation/pocket_dimension)
 
 (1,1,1) = {"
 a
@@ -104,4 +111,15 @@ a
 a
 a
 a
+"}
+(10,1,1) = {"
+e
+e
+e
+e
+e
+e
+e
+e
+o
 "}
