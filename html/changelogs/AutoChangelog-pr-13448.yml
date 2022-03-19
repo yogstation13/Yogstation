@@ -1,0 +1,6 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "TRAC implant now lasts 15 minutes"
+  - tweak: " Detectives now start with a modular PDA"
+  - tweak: "Radar programs now work on PDAs and the implant tracking program now only requires brig access"
