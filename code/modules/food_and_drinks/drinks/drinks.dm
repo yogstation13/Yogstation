@@ -595,3 +595,10 @@
 	. = ..()
 	if(prob(20))
 		desc = pick(descs)
+
+/obj/item/reagent_containers/food/drinks/soda_cans/mug_beer
+	name = "MUG Root Beer"
+	desc = "I love my MUG root beer!"
+	icon_state = "mug"
+	list_reagents = list(/datum/reagent/consumable/mug_beer = 50)
+	foodtype = SUGAR | ALCOHOL
