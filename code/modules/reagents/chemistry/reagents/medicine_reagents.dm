@@ -1500,12 +1500,12 @@
 	/// For tracking when we tell the person we're no longer bleeding
 	var/was_working
 
-/datum/reagent/medicine/coagulant/on_mob_metabolize(mob/living/M)
+/datum/reagent/medicine/coagulant/on_mob_add(mob/living/M)
 	ADD_TRAIT(M, TRAIT_COAGULATING, type)
 	ADD_TRAIT(M, TRAIT_PRESERVED_ORGANS, type)
 	return ..()
 
-/datum/reagent/medicine/coagulant/on_mob_end_metabolize(mob/living/M)
+/datum/reagent/medicine/coagulant/on_mob_delete(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_COAGULATING, type)
 	REMOVE_TRAIT(M, TRAIT_PRESERVED_ORGANS, type)
 	return ..()
