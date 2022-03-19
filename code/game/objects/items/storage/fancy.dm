@@ -368,6 +368,7 @@
 	name = "MUG pack"
 	desc = "Delicious MUG in a 4-pack!"
 	icon = 'icons/obj/food/containers.dmi'
+	item_state = "mug4"
 	icon_state = "mug4"
 	icon_type = "mug"
 	spawn_type = /obj/item/reagent_containers/food/drinks/soda_cans/mug_beer
