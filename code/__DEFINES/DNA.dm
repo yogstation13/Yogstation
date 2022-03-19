@@ -4,8 +4,8 @@
 
 //Defines copying names of mutations in all cases, make sure to change this if you change mutation's type
 #define HULK		/datum/mutation/human/hulk
-#define ACTIVE_HULK /datum/mutation/human/hulk/genetics_hulk/active_hulk
-#define GENETICS_HULK	/datum/mutation/human/hulk/genetics_hulk
+#define ACTIVE_HULK /datum/mutation/human/active_hulk
+#define GENETICS_HULK	/datum/mutation/human/genetics_hulk
 #define XRAY		/datum/mutation/human/thermal/x_ray
 #define SPACEMUT	/datum/mutation/human/space_adaptation
 #define HEATMUT		/datum/mutation/human/heat_adaptation
