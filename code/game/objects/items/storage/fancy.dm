@@ -359,3 +359,22 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 8
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/tinychocolate))
+
+/*
+ * MUG
+ */
+ 
+/obj/item/storage/box/fancy/mug_pack
+	name = "MUG pack"
+	desc = "Delicious MUG in a 4-pack!"
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "mug4"
+	icon_type = "mug"
+	spawn_type = /obj/item/reagent_containers/food/drinks/soda_cans/mug_beer
+	fancy_open = TRUE
+	
+/obj/item/storage/box/fancy/candle_box/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 4
+	STR.set_holdable(list(/obj/item/reagent_containers/food/drinks/soda_cans/mug_beer))
