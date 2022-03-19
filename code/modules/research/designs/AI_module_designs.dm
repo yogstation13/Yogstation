@@ -246,6 +246,14 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/druid
+	name = "Core Module Design (Druid)"
+	desc = "Allows for the construction of a Druid AI Core Module."
+	id = "druid_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/druid
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 //AI CPU + RAM
 
