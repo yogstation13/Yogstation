@@ -234,7 +234,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 	if(!cleared_for_use)
 		if(action == "clear_for_use")
-			var/code = text2num(params["control_code"])
+			var/code = params["control_code"]
 			
 			if(!code)
 				return
@@ -242,7 +242,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(!GLOB.ai_control_code)
 				return
 			
-			var/length_of_number = round(log(10, code) + 1)
+			var/length_of_number = length(code)
 			if(length_of_number < 6)
 				to_chat(usr, span_warning("Incorrect code. Too short"))
 				return
@@ -251,13 +251,11 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(usr, span_warning("Incorrect code. Too long"))
 				return
 
-
-
 			if(!is_station_level(z))
 				to_chat(usr, span_warning("Unable to connect to NT Servers. Please verify you are onboard the station."))
 				return
 
-			if(code == text2num(GLOB.ai_control_code))
+			if(code == GLOB.ai_control_code)
 				cleared_for_use = TRUE
 			else
 				to_chat(usr, span_warning("Incorrect code. Make sure you have the latest one."))
@@ -283,7 +281,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(check_access(H.get_idcard()))
 				authenticated = TRUE
 		if(action == "log_in_control_code")
-			var/code = text2num(params["control_code"])
+			var/code = params["control_code"]
 			
 			if(!code)
 				return
@@ -291,7 +289,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(!GLOB.ai_control_code)
 				return
 			
-			var/length_of_number = round(log(10, code) + 1)
+			var/length_of_number = length(code)
 			if(length_of_number < 6)
 				to_chat(usr, span_warning("Incorrect code. Too short"))
 				return
@@ -300,9 +298,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(usr, span_warning("Incorrect code. Too long"))
 				return
 
-			
-
-			if(code == text2num(GLOB.ai_control_code))
+			if(code == GLOB.ai_control_code)
 				cleared_for_use = TRUE
 				authenticated = TRUE
 				one_time_password_used = TRUE
