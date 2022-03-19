@@ -1018,12 +1018,19 @@
 	glass_name = "glass of... MUG root beer?"
 	glass_desc = "It's not the same without a can..."
 	addiction_threshold = 1
+	overdose_threshold = 40
 
 /datum/reagent/consumable/mug_beer/on_mob_life(mob/living/carbon/M)
 	M.status_flags |= GODMODE //FULL OF MUG
 	..()
+	
+/datum/reagent/consumable/mug_beer/overdose_process(mob/living/M)
+	M.Jitter(5)
+	if(prob(10))
+		M.say("I LOVE MY MUG ROOT BEER!!")
+	..()
 
-/datum/reagent/consumable/monkey_energy/on_mob_end_metabolize(mob/living/carbon/M)
+/datum/reagent/consumable/mug_beer/on_mob_end_metabolize(mob/living/carbon/M)
 	M.status_flags &= ~GODMODE
 	spawn(1 SECONDS) //it takes one second without MUG for one to die
 		M.gib()
