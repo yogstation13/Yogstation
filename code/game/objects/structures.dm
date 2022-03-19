@@ -86,7 +86,7 @@
 				if(climb_stun)
 					var/mob/living/carbon/human/H = user
 					var/wagging = FALSE
-					if(H.dna.species.is_wagging_tail())
+					if(H && H.dna.species.is_wagging_tail())
 						wagging = TRUE
 					user.Stun(climb_stun)
 					if(wagging)
