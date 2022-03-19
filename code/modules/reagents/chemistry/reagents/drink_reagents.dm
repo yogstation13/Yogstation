@@ -1009,3 +1009,42 @@
 	if(prob(25))
 		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "Ideal of the worker drone", "A Hive of Flavour", "Sap back that missing energy!", "Got Honey?", "The Queen approved it!")]</span>")
 	..()
+
+/datum/reagent/consumable/mug_beer
+	name = "MUG"
+	description = "The delicious formula will make you wish for nothing else."
+	color = "#C9A144"
+	taste_description = "bubblegum"
+	glass_name = "glass of... MUG root beer?"
+	glass_desc = "It's not the same without a can..."
+	addiction_threshold = 1
+
+/datum/reagent/consumable/mug_beer/on_mob_life(mob/living/carbon/M)
+	M.status_flags |= GODMODE //FULL OF MUG
+	..()
+
+/datum/reagent/consumable/monkey_energy/on_mob_end_metabolize(mob/living/carbon/M)
+	M.status_flags &= ~GODMODE
+	spawn(1 SECONDS) //it takes one second without MUG for one to die
+		M.gib()
+	..()
+	
+/datum/reagent/consumable/mug_beer/addiction_act_stage1(mob/living/M)
+	if(prob(5))
+		to_chat(M, "<span class = 'notice'>[pick("MUG... It gives me power!", "I LOVE MY MUG ROOT BEER!", "MUGNESS... IN MY VEINS!")]</span>")
+	..()
+
+/datum/reagent/consumable/mug_beer/addiction_act_stage2(mob/living/M)
+	if(prob(10))
+		to_chat(M, "<span class = 'notice'>[pick("I need more MUG!", "Ah, sweet MUG...", "NOTHING COMPARES TO MUG", "I LOVE MY MUG ROOT BEER!")]</span>")
+	..()
+
+/datum/reagent/consumable/mug_beer/addiction_act_stage3(mob/living/M)
+	if(prob(15))
+		to_chat(M, "<span class = 'notice'>[pick("I LOVE MY MUG ROOT BEER!", "I NEED MORE!", "GIVE ME MORE MUG!!", "I can feel the MUG coursing through my body...", "MUG MUG MUG MUG MUG MUG MUG!")]</span>")
+	..()
+
+/datum/reagent/consumable/mug_beer/addiction_act_stage4(mob/living/M)
+	if(prob(25))
+		to_chat(M, "<span class = 'notice'>[pick("I AM FULL OF MUG!", "I AM A GOD!", "I NEED MORE MUG", "IS THERE ANY MORE MUG LEFT?", "I LOVE MY MUG ROOT BEER!")]</span>")
+	..()
