@@ -1,0 +1,5 @@
+author: "cuackles"
+delete-after: true 
+changes: 
+  - rscadd: "Added new simple mob   (snail)"
+  - imageadd: "added some icons and images  of said simple mob (snail)"
