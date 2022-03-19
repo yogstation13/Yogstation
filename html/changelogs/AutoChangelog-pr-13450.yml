@@ -1,0 +1,5 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "captain starts with a phone round start"
+  - tweak: "CE's phone starts with a sensor package"
