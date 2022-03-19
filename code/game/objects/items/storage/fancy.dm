@@ -373,7 +373,7 @@
 	spawn_type = /obj/item/reagent_containers/food/drinks/soda_cans/mug_beer
 	fancy_open = TRUE
 	
-/obj/item/storage/box/fancy/candle_box/ComponentInitialize()
+/obj/item/storage/box/fancy/mug_pack/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 4
