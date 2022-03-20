@@ -1210,8 +1210,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/ai_monitored/secondarydatacoreserver
 	name = "AI Secondary Datacore Servers"
 	icon_state = "ai"
-	minimap_color = ="#00fff6"
-	
+	minimap_color = "#00fff6"
+
 	//Turret_protected
 
 /area/ai_monitored/turret_protected
