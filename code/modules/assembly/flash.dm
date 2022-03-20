@@ -148,15 +148,16 @@
 		flash_carbon(M, user, 5, 1)
 		return TRUE
 	else if(issilicon(M))
-		var/mob/living/silicon/robot/R = M
-		log_combat(user, R, "flashed", src)
-		update_icon(1)
-		R.Paralyze(rand(80,120))
-		var/diff = 5 * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
-		R.confused += min(5, diff)
-		R.flash_act(affect_silicon = 1)
-		user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
-		return TRUE
+		if(!M.sensor_protection)
+			var/mob/living/silicon/robot/R = M
+			log_combat(user, R, "flashed", src)
+			update_icon(1)
+			R.Paralyze(rand(80,120))
+			var/diff = 5 * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
+			R.confused += min(5, diff)
+			R.flash_act(affect_silicon = 1)
+			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
+			return TRUE
 
 	user.visible_message(span_disarm("[user] fails to blind [M] with the flash!"), span_warning("You fail to blind [M] with the flash!"))
 
