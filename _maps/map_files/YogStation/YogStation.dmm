@@ -58321,6 +58321,10 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"tdu" = (
+/mob/living/simple_animal/pet/snail/gary,
+/turf/open/floor/carpet,
+/area/library)
 "tdV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -111109,7 +111113,7 @@ aac
 gOa
 aYW
 aYW
-aYW
+tdu
 aYW
 foa
 aYW
