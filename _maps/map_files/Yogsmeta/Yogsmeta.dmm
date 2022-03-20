@@ -65276,12 +65276,6 @@
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
 "eno" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32;
 	pixel_y = 0
@@ -65289,6 +65283,12 @@
 /obj/machinery/camera{
 	c_tag = "Atmospherics Tanks East";
 	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -74191,6 +74191,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "nOu" = (
@@ -79859,6 +79865,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"tNq" = (
+/mob/living/simple_animal/pet/snail/gary,
+/turf/open/floor/carpet,
+/area/library)
 "tND" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
@@ -103769,7 +103779,7 @@ bwc
 bwc
 bwc
 bwc
-bwc
+tNq
 bwc
 bnK
 boe

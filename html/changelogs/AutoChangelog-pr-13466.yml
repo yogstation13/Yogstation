@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - bugfix: "AI Control Console passwords should no longer sporadically fail"
