@@ -256,7 +256,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	hoodtype = /obj/item/clothing/head/hooded/raincoat
 	flags_inv = HIDEGLOVES|HIDESUITSTORAGE|HIDENECK|HIDEJUMPSUIT
-	alternate_worn_layer = UNDER_HEAD_LAYER
+	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
 	
 /obj/item/clothing/head/hooded/raincoat
 	name = "raincoat hood"
@@ -266,7 +266,6 @@
 	flags_inv = HIDEHAIR|HIDEEARS
 	dynamic_hair_suffix = ""
 	dynamic_fhair_suffix = ""
-	//alternate_worn_layer = UNDER_HEAD_LAYER
 
 /obj/item/clothing/suit/hooded/carp_costume
 	name = "carp costume"
