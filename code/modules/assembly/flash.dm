@@ -148,8 +148,8 @@
 		flash_carbon(M, user, 5, 1)
 		return TRUE
 	else if(issilicon(M))
-		if(!M.sensor_protection)
-			var/mob/living/silicon/robot/R = M
+		var/mob/living/silicon/robot/R = M
+		if(!R.sensor_protection)
 			log_combat(user, R, "flashed", src)
 			update_icon(1)
 			R.Paralyze(rand(80,120))
