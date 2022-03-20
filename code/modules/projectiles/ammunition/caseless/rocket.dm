@@ -17,3 +17,12 @@
 	caliber = "75"
 	icon_state = "s-casing-live"
 	projectile_type = /obj/item/projectile/bullet/gyro
+
+
+/obj/item/ammo_casing/caseless/cannonball
+	name = "cannonball"
+	desc = "A big ball of lead, perfect for shooting holes into a space station."
+	caliber = "30mm"
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "cannonball"
+	projectile_type = /obj/item/projectile/bullet/cball

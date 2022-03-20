@@ -73,3 +73,15 @@
 			return BULLET_ACT_HIT
 	//if(istype(target, /turf/closed) || ismecha(target))
 	new /obj/item/broken_missile(get_turf(src), 1)
+
+/obj/item/projectile/bullet/reusable/cball
+	name = "cannonball"
+	icon_state = "cannonball"
+	desc = "Not for bowling purposes"
+	damage = 30
+
+/obj/item/projectile/bullet/cball/on_hit(atom/target, blocked=0)
+	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
+		damage = 500 
+		..()
+
