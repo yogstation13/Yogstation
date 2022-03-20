@@ -635,17 +635,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
-"abo" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/item/folder/white,
-/obj/item/wrench/medical,
-/obj/item/toy/figure/cmo,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/cmo)
 "abp" = (
 /turf/closed/wall,
 /area/security/prison)
@@ -22723,32 +22712,6 @@
 "aPa" = (
 /turf/closed/wall/r_wall/rust,
 /area/medical/storage)
-"aPb" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/item/cartridge/medical{
-	pixel_x = 6;
-	pixel_y = 2
-	},
-/obj/item/cartridge/medical{
-	pixel_x = 5;
-	pixel_y = 1
-	},
-/obj/item/cartridge/medical{
-	pixel_x = 4
-	},
-/obj/item/cartridge/chemistry{
-	pixel_x = -6;
-	pixel_y = 8
-	},
-/obj/item/clothing/neck/stethoscope{
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/heads/cmo)
 "aPc" = (
 /turf/closed/wall/r_wall,
 /area/medical/storage)
@@ -23810,24 +23773,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port/fore)
-"aQA" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2
-	},
-/obj/item/healthanalyzer,
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Chief Medical Officer's Desk";
-	departmentType = 5;
-	name = "Chief Medical Officer RC";
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/cmo)
 "aQB" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -97813,6 +97758,33 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
+"raM" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/item/cartridge/medical{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/cartridge/medical{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/obj/item/cartridge/medical{
+	pixel_x = 4
+	},
+/obj/item/cartridge/chemistry{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/wrench/medical,
+/obj/item/clothing/neck/stethoscope{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/heads/cmo)
 "rbv" = (
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/plating{
@@ -100878,6 +100850,14 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/aft)
+"uvA" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/displaycase/cmo,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/cmo)
 "uwc" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12";
@@ -104019,6 +103999,28 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/disposal/incinerator)
+"xIU" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Chief Medical Officer's Desk";
+	departmentType = 5;
+	name = "Chief Medical Officer RC";
+	pixel_y = 28
+	},
+/obj/item/toy/figure/cmo{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2
+	},
+/obj/item/healthanalyzer,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/cmo)
 "xJk" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -122916,7 +122918,7 @@ aOm
 abl
 abm
 agj
-aPb
+raM
 aPq
 aPV
 aOZ
@@ -123171,7 +123173,7 @@ aum
 aOE
 aOq
 abl
-abo
+uvA
 agk
 agI
 vly
@@ -123428,7 +123430,7 @@ auo
 awc
 aOc
 afD
-aQA
+xIU
 agl
 aRd
 mxg

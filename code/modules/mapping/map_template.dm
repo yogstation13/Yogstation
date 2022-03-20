@@ -90,6 +90,9 @@
 		var/turf/turf_to_disable = L
 		turf_to_disable.set_sleeping(TRUE)
 
+	if(SSair.initialized)
+		sleep(1)
+
 	// Accept cached maps, but don't save them automatically - we don't want
 	// ruins clogging up memory for the whole round.
 	var/datum/parsed_map/parsed = cached_map || new(file(mappath))
