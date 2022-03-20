@@ -34367,16 +34367,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
-"bgZ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/wood,
-/area/library)
 "bha" = (
 /turf/closed/wall/r_wall/rust,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -95858,6 +95848,17 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/warehouse)
+"pge" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/landmark/event_spawn,
+/mob/living/simple_animal/pet/snail/gary,
+/turf/open/floor/wood,
+/area/library)
 "pgv" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -129359,7 +129360,7 @@ bup
 aTe
 bfJ
 btM
-bgZ
+pge
 bjp
 bjq
 bvd
