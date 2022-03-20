@@ -11,7 +11,7 @@
 	if(!.)
 		return .
 	for(var/obj/machinery/ai/data_core/datacores in GLOB.data_cores)
-		if(datacores.TimerID = null)
+		if(datacores.TimerID == null)
 			datacores.partytime()
 
 
