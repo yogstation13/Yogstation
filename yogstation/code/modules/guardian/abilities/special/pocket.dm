@@ -63,6 +63,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 /datum/guardian_ability/major/special/pocket/Remove()
 	guardian.RemoveSpell(manifest_spell)
 	guardian.RemoveSpell(move_spell)
+	UnregisterSignal(guardian, COMSIG_MOVABLE_MOVED)
 	if (LAZYLEN(manifestations))
 		demanifest_dimension()
 
@@ -75,9 +76,9 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	return zs[1]
 
 /datum/guardian_ability/major/special/pocket/proc/auto_demanifest()
-	if (!pocket_dim || manifesting || !LAZYLEN(manifestations) || !(manifestation_x && manifestation_y && manifestation_z))
+	if (!pocket_dim || manifesting || !LAZYLEN(manifestations) || !(manifested_at_x && manifested_at_y && manifested_at_z))
 		return
-	var/turf/center = locate(manifestation_x, manifestation_y, manifestation_z)
+	var/turf/center = locate(manifested_at_x, manifested_at_y, manifested_at_z)
 	if (!center)
 		return
 	var/turf/guardian_loc = get_turf(guardian)
@@ -126,8 +127,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 			var/matrix/downscaled_matrix = new
 			downscaled_matrix.Scale(0.1)
 			manifestation.transform = downscaled_matrix
-			var/manifestation_relative_x = manifested_at_x - manifestation_turf.x
-			var/manifestation_relative_y = manifested_at_y - manifestation_turf.y
+			var/manifestation_relative_x = manifested_at_x - manifestation_turf.x + 4
+			var/manifestation_relative_y = manifested_at_y - manifestation_turf.y + 4
 			var/pixel_x_shift = manifestation_relative_x * world.icon_size
 			var/pixel_y_shift = manifestation_relative_y * world.icon_size
 			manifestation.pixel_x = pixel_x_shift
@@ -145,8 +146,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		var/matrix/downscaled_matrix = new
 		downscaled_matrix.Scale(0.1)
 		// Calculate the relative x and y of this manifestation
-		var/manifestation_relative_x = manifested_at_x - manifestation.x
-		var/manifestation_relative_y = manifested_at_y - manifestation.y
+		var/manifestation_relative_x = manifested_at_x - manifestation.x + 4
+		var/manifestation_relative_y = manifested_at_y - manifestation.y + 4
 		// Calculate the pixel_x and y shift needed to have this effect converge to the center
 		var/pixel_x_shift = manifestation_relative_x * world.icon_size
 		var/pixel_y_shift = manifestation_relative_y * world.icon_size
