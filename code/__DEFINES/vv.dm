@@ -38,9 +38,12 @@
 #define VV_TOPIC_LINK(datum, href_key, text) "<a href='?_src_=vars;[HrefToken()];[href_key]=TRUE;target=[REF(datum)]'>text</a>"
 //Helpers for vv_get_dropdown()
 #define VV_DROPDOWN_OPTION(href_key, name) . += "<option value='?_src_=vars;[HrefToken()];[href_key]=TRUE;target=[REF(src)]'>[name]</option>"
+#define VV_DROPDOWN_SEPERATOR VV_DROPDOWN_OPTION("", "-----")
+
 // VV HREF KEYS
 #define VV_HK_TARGET "target"
 #define VV_HK_VARNAME "targetvar"		//name or index of var for 1 variable targetting hrefs.
+
 // vv_do_list() keys
 #define VV_HK_LIST_ADD "listadd"
 #define VV_HK_LIST_EDIT "listedit"
@@ -50,10 +53,12 @@
 #define VV_HK_LIST_ERASE_DUPES "listdupes"
 #define VV_HK_LIST_SHUFFLE "listshuffle"
 #define VV_HK_LIST_SET_LENGTH "listlen"
+
 // vv_do_basic() keys
 #define VV_HK_BASIC_EDIT "datumedit"
 #define VV_HK_BASIC_CHANGE "datumchange"
 #define VV_HK_BASIC_MASSEDIT "massedit"
+
 // /datum
 #define VV_HK_DELETE "delete"
 #define VV_HK_EXPOSE "expose"
@@ -69,6 +74,44 @@
 #define VV_HK_TRIGGER_EXPLOSION "explode"
 #define VV_HK_AUTO_RENAME "auto_rename"
 #define VV_HK_RADIATE "radiate"
+#define VV_HK_SHOW_HIDDENPRINTS "show_hiddenprints"
 
 // /obj
 #define VV_HK_OSAY "osay"
+#define VV_HK_MASS_DEL_TYPE "mass_delete_type"
+#define VV_HK_ARMOR_MOD "mod_obj_armor"
+
+// /obj/structure/sign/painting
+#define VV_HK_REMOVE_PAINTING "delete_paint"
+
+// /mob
+#define VV_HK_GIB "gib"
+#define VV_HK_GIVE_SPELL "give_spell"
+#define VV_HK_REMOVE_SPELL "remove_spell"
+#define VV_HK_GIVE_DISEASE "give_disease"
+#define VV_HK_GODMODE "godmode"
+#define VV_HK_DROP_ALL "dropall"
+#define VV_HK_REGEN_ICONS "regen_icons"
+#define VV_HK_PLAYER_PANEL "player_panel"
+#define VV_HK_BUILDMODE "buildmode"
+#define VV_HK_DIRECT_CONTROL "direct_control"
+#define VV_HK_OFFER_GHOSTS "offer_ghosts"
+#define VV_HK_SET_AFK_TIMER "set_afk_timer"
+
+// /mob/living/carbon/human
+#define VV_HK_SET_SPECIES "set_species"
+#define VV_HK_PURRBATION "toggle_purrbation"
+#define VV_HK_COPY_OUTFIT "copy_outfit"
+#define VV_HK_MOD_QUIRKS "mod_quirks"
+
+// misc
+#define VV_HK_SPACEVINE_PURGE "spacevine_purge"
+
+// /mob/living/carbon
+#define VV_HK_MAKE_AI "aiify"
+#define VV_HK_MODIFY_BODYPART "mod_bodypart"
+#define VV_HK_MODIFY_ORGANS "organs_modify"
+#define VV_HK_HALLUCINATION "force_hallucinate"
+#define VV_HK_MARTIAL_ART "give_martial_art"
+#define VV_HK_GIVE_TRAUMA "give_trauma"
+#define VV_HK_CURE_TRAUMA "cure_trauma"
