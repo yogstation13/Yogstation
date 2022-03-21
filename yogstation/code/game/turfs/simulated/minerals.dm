@@ -14,4 +14,4 @@
 
 /turf/closed/mineral/dilithium/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 1
+	hardness = 2
