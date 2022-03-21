@@ -250,6 +250,32 @@ SUBSYSTEM_DEF(air)
 		if(MC_TICK_CHECK)
 			return
 
+/datum/controller/subsystem/air/proc/start_processing_machine(obj/machinery/machine)
+	if(machine.atmos_processing)
+		return
+	machine.atmos_processing = TRUE
+	if(machine.interacts_with_air)
+		atmos_air_machinery += machine
+	else
+		atmos_machinery += machine
+
+/datum/controller/subsystem/air/proc/stop_processing_machine(obj/machinery/machine)
+	if(!machine.atmos_processing)
+		return
+	machine.atmos_processing = FALSE
+	if(machine.interacts_with_air)
+		atmos_air_machinery -= machine
+	else
+		atmos_machinery -= machine
+
+	// If we're currently processing atmos machines, there's a chance this machine is in
+	// the currentrun list, which is a cache of atmos_machinery. Remove it from that list
+	// as well to prevent processing qdeleted objects in the cache.
+	if(currentpart == SSAIR_ATMOSMACHINERY)
+		currentrun -= machine
+	if(machine.interacts_with_air && currentpart == SSAIR_ATMOSMACHINERY_AIR)
+		currentrun -= machine
+
 /datum/controller/subsystem/air/proc/add_to_rebuild_queue(atmos_machine)
 	if(istype(atmos_machine, /obj/machinery/atmospherics))
 		pipenets_needing_rebuilt += atmos_machine
@@ -290,7 +316,7 @@ SUBSYSTEM_DEF(air)
 		if(M == null)
 			atmos_machinery.Remove(M)
 		if(!M || (M.process_atmos() == PROCESS_KILL))
-			atmos_machinery.Remove(M)
+			stop_processing_machine(M)
 		if(MC_TICK_CHECK)
 			return
 
@@ -304,7 +330,7 @@ SUBSYSTEM_DEF(air)
 		var/obj/machinery/M = currentrun[currentrun.len]
 		currentrun.len--
 		if(!M || (M.process_atmos(seconds) == PROCESS_KILL))
-			atmos_air_machinery.Remove(M)
+			stop_processing_machine(M)
 		if(MC_TICK_CHECK)
 			return
 

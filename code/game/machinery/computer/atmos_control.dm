@@ -7,6 +7,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "gsensor1"
 	resistance_flags = FIRE_PROOF
+	interacts_with_air = TRUE
 
 	var/on = TRUE
 
@@ -73,11 +74,11 @@
 
 /obj/machinery/air_sensor/Initialize()
 	. = ..()
-	SSair.atmos_air_machinery += src
+	SSair.start_processing_machine(src)
 	set_frequency(frequency)
 
 /obj/machinery/air_sensor/Destroy()
-	SSair.atmos_air_machinery -= src
+	SSair.stop_processing_machine(src)
 	SSradio.remove_object(src, frequency)
 	return ..()
 

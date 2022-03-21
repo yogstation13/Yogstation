@@ -14,6 +14,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 10)
 	circuit = /obj/item/circuitboard/machine/space_heater
 	use_power = NO_POWER_USE
+	interacts_with_air = TRUE
 	var/obj/item/stock_parts/cell/cell
 	var/on = FALSE
 	var/mode = HEATER_MODE_STANDBY
@@ -241,7 +242,7 @@
 	usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", span_notice("You switch [on ? "on" : "off"] \the [src]."))
 	update_icon()
 	if (on)
-		SSair.atmos_air_machinery += src
+		SSair.start_processing_machine(src)
 
 /obj/machinery/space_heater/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))

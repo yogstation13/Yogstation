@@ -5,6 +5,7 @@
 	max_integrity = 250
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 60, "acid" = 30)
 	anchored = FALSE
+	interacts_with_air = TRUE
 
 	var/datum/gas_mixture/air_contents
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port
@@ -16,13 +17,13 @@
 
 /obj/machinery/portable_atmospherics/Initialize()
 	. = ..()
-	SSair.atmos_air_machinery += src
+	SSair.start_processing_machine(src)
 
 	air_contents = new(volume)
 	air_contents.set_temperature(T20C)
 
 /obj/machinery/portable_atmospherics/Destroy()
-	SSair.atmos_air_machinery -= src
+	SSair.stop_processing_machine(src)
 
 	disconnect()
 	qdel(air_contents)
