@@ -74,10 +74,10 @@
 	name = "Bipedal GlaDos"
 	icon_state = "glados"
 
-/datum/borg_skin/dio
+/datum/borg_skin/dio // originally made for atrealdonaldtrump, left
 	name = "DIO L.I.T.E"
 	icon_state = "diosecborg"
-	owner = "atrealdonaldtrump"
+	owner = null
 	module_locked = "Security"
 
 /datum/borg_skin/brainjar
@@ -109,10 +109,10 @@
 	owner = null
 	module_locked = "Peacekeeper"
 
-/datum/borg_skin/mrsparako
+/datum/borg_skin/mrsparako // originally made for nickvr628, banned
 	name = "Mr. Sparako"
 	icon_state = "mrsparako"
-	owner = "nickvr628"
+	owner = null
 
 /datum/borg_skin/paladin_engi
 	name = "Paladin (engineering)"
@@ -295,10 +295,10 @@
 	icon_state = "sneaker_database"
 	owner = "kmc2000"
 
-/datum/ai_skin/dio
+/datum/ai_skin/dio // originally made for atrealdonaldtrump, left
 	name = "D.I.O"
 	icon_state = "dioAI"
-	owner = "atrealdonaldtrump"
+	owner = null
 
 /datum/ai_skin/englandismycity
 	name = "Nick Crompton"
