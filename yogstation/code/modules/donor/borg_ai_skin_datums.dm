@@ -109,11 +109,6 @@
 	owner = null
 	module_locked = "Peacekeeper"
 
-/datum/borg_skin/mrsparako // originally made for nickvr628, banned
-	name = "Mr. Sparako"
-	icon_state = "mrsparako"
-	owner = null
-
 /datum/borg_skin/paladin_engi
 	name = "Paladin (engineering)"
 	icon_state = "paladin_engi"
