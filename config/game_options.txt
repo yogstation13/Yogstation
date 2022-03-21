@@ -480,6 +480,8 @@ LAW_WEIGHT clown,0
 ION_LAW_WEIGHT clown,1
 LAW_WEIGHT druid,0
 ION_LAW_WEIGHT druid,2
+LAW_WEIGHT detective,0
+ION_LAW_WEIGHT detective,2
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0
