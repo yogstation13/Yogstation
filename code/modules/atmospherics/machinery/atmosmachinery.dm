@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		if(L.ventcrawler)
 			. += span_notice("Alt-click to crawl through it.")
 
-/obj/machinery/atmospherics/Initialize(loc, process = TRUE, setdir)
+/obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
 	if(!isnull(setdir))
 		setDir(setdir)
 	if(pipe_flags & PIPING_CARDINAL_AUTONORMALIZE)

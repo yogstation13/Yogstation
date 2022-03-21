@@ -221,8 +221,8 @@
 	var/list/air_vent_info = list()
 	var/list/air_scrub_info = list()
 
-/obj/machinery/airalarm/Initialize(loc, ndir, nbuild)
-	. = ..()
+/obj/machinery/airalarm/New(loc, ndir, nbuild)
+	..()
 	wires = new /datum/wires/airalarm(src)
 	if(ndir)
 		setDir(ndir)
