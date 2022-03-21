@@ -152,6 +152,7 @@ SUBSYSTEM_DEF(air)
 			return
 		resumed = 0
 		currentpart = SSAIR_ATMOSMACHINERY
+
 	// This is only machinery like filters, mixers that don't interact with air
 	if(currentpart == SSAIR_ATMOSMACHINERY)
 		timer = TICK_USAGE_REAL
@@ -170,6 +171,7 @@ SUBSYSTEM_DEF(air)
 			return
 		resumed = 0
 		currentpart = SSAIR_FINALIZE_TURFS
+
 	// This literally just waits for the turf processing thread to finish, doesn't do anything else.
 	// this is necessary cause the next step after this interacts with the air--we get consistency
 	// issues if we don't wait for it, disappearing gases etc.
@@ -182,6 +184,7 @@ SUBSYSTEM_DEF(air)
 		thread_wait_ticks = MC_AVERAGE(thread_wait_ticks, cur_thread_wait_ticks)
 		cur_thread_wait_ticks = 0
 		currentpart = SSAIR_DEFERRED_AIRS
+
 	if(currentpart == SSAIR_DEFERRED_AIRS)
 		timer = TICK_USAGE_REAL
 		process_deferred_airs(resumed)
@@ -189,6 +192,8 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
+		currentpart = SSAIR_ATMOSMACHINERY_AIR
+
 	if(currentpart == SSAIR_ATMOSMACHINERY_AIR)
 		timer = TICK_USAGE_REAL
 		process_atmos_air_machinery(resumed)
@@ -206,6 +211,7 @@ SUBSYSTEM_DEF(air)
 			return
 		resumed = 0
 		currentpart = heat_enabled ? SSAIR_TURF_CONDUCTION : SSAIR_ACTIVETURFS
+
 	// Heat -- slow and of questionable usefulness. Off by default for this reason. Pretty cool, though.
 	if(currentpart == SSAIR_TURF_CONDUCTION)
 		timer = TICK_USAGE_REAL
@@ -216,6 +222,7 @@ SUBSYSTEM_DEF(air)
 			return
 		resumed = 0
 		currentpart = SSAIR_ACTIVETURFS
+
 	// This simply starts the turf thread. It runs in the background until the FINALIZE_TURFS step, at which point it's waited for.
 	// This also happens to do all the commented out stuff below, all in a single separate thread. This is mostly so that the
 	// waiting is consistent.
@@ -226,37 +233,7 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
-	/*
-	// Monstermos and/or Putnamos--making large pressure deltas move faster
-	if(currentpart == SSAIR_EQUALIZE)
-		timer = TICK_USAGE_REAL
-		process_turf_equalize(resumed)
-		cost_equalize = MC_AVERAGE(cost_equalize, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-		if(state != SS_RUNNING)
-			return
-		resumed = 0
-		currentpart = SSAIR_EXCITEDGROUPS
-	// Making small pressure deltas equalize immediately so they don't process anymore
-	if(currentpart == SSAIR_EXCITEDGROUPS)
-		timer = TICK_USAGE_REAL
-		process_excited_groups(resumed)
-		cost_groups = MC_AVERAGE(cost_groups, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-		if(state != SS_RUNNING)
-			return
-		resumed = 0
-		currentpart = SSAIR_TURF_POST_PROCESS
-	// Quick multithreaded "should we display/react?" checks followed by finishing those up before the next step
-	if(currentpart == SSAIR_TURF_POST_PROCESS)
-		timer = TICK_USAGE_REAL
-		post_process_turfs(resumed)
-		cost_post_process = MC_AVERAGE(cost_post_process, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-		if(state != SS_RUNNING)
-			return
-		resumed = 0
-		currentpart = SSAIR_HOTSPOTS
-	*/
 	currentpart = SSAIR_REBUILD_PIPENETS
-
 
 /datum/controller/subsystem/air/proc/process_pipenets(resumed = FALSE)
 	if (!resumed)
