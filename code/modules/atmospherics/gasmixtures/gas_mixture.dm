@@ -58,7 +58,6 @@ we use a hook instead
 		dummy["THERMAL ENERGY"] = thermal_energy()
 		return debug_variable("gases (READ ONLY)", dummy, 0, src)
 
-/*
 /datum/gas_mixture/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---")
@@ -112,7 +111,7 @@ we use a hook instead
 		volume = max(0, volume)
 		log_admin("[key_name(usr)] modified gas mixture [REF(src)]: Changed volume to [volume].")
 		message_admins("[key_name(usr)] modified gas mixture [REF(src)]: Changed volume to [volume].")
-		set_volume(volume)*/
+		set_volume(volume)
 
 /datum/gas_mixture/proc/__gasmixture_unregister()
 /datum/gas_mixture/proc/__gasmixture_register()
