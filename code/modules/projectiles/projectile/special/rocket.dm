@@ -74,14 +74,24 @@
 	//if(istype(target, /turf/closed) || ismecha(target))
 	new /obj/item/broken_missile(get_turf(src), 1)
 
-/obj/item/projectile/bullet/reusable/cball
+/obj/item/projectile/bullet/cball
 	name = "cannonball"
 	icon_state = "cannonball"
 	desc = "Not for bowling purposes"
 	damage = 30
 
 /obj/item/projectile/bullet/cball/on_hit(atom/target, blocked=0)
+	var/mob/living/carbon/human/H = firer
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 
 		..()
-
+	if(isliving(target))
+		var/mob/living/L = target
+		if(!L.anchored && !L.throwing)//avoid double hits
+			if(iscarbon(L))
+				var/mob/living/carbon/C = L
+				var/mob/M = firer
+				if(istype(M))
+					C.visible_message(span_danger("[L] is pulled by [H]'s tentacle!"),span_userdanger("A tentacle grabs you and pulls you towards [H]!"))
+					C.throw_at(get_step_towards(H,C), 8, 2)
+					return BULLET_ACT_HIT

@@ -112,5 +112,5 @@
 	tac_reloads = FALSE
 	can_suppress = FALSE
 	force = 10
-	fire_sound = 'sound/weapons/blastcannon.ogg'
+	fire_sound = 'sound/effects/bang.ogg'
 	pin = /obj/item/firing_pin
