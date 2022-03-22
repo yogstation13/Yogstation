@@ -2206,7 +2206,7 @@
 
 //Phytosian hair
 /datum/sprite_accessory/pod_hair
-	icon = 'icons/mob/human_face.dmi'
+	icon = 'icons/mob/mutant_bodyparts.dmi'
 	color_src = HAIR
 
 /datum/sprite_accessory/pod_hair/cabbage

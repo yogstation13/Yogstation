@@ -587,8 +587,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Head Flowers Style</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=pod_hair;task=input'>[features["pod_flower"]]</a>"
-				dat += "<a href ='?_src_=prefs;preference=pod_hair;task=lock'>[random_locks["pod_hair"] ? "Unlock" : "Lock"]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=pod_flower;task=input'>[features["pod_flower"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=pod_flower;task=lock'>[random_locks["pod_flower"] ? "Unlock" : "Lock"]</a><BR>"
 				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
 				dat += "<a href ='?_src_=prefs;preference=facial_hair_style_color;task=lock'>[random_locks["facial"] ? "Unlock" : "Lock"]</a><BR>"
 
@@ -1731,6 +1731,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_ethereal_mark = input(user, "Choose if your character has a facial mark", "Character Preference") as null|anything in GLOB.ethereal_mark_list
 					if(new_ethereal_mark)
 						features["ethereal_mark"] = new_ethereal_mark
+				
+				if("pod_hair")
+					var/new_pod_hair
+					new_pod_hair = input(user, "Choose the style of your head vegitation", "Character Preference") as null|anything in GLOB.pod_hair_list
+					if(new_pod_hair)
+						features["pod_hair"] = new_pod_hair
+				
+				if("pod_flower")
+					var/new_pod_flower
+					new_pod_flower = input(user, "Choose the style of your head vegitation", "Character Preference") as null|anything in GLOB.pod_flower_list
+					if(new_pod_flower)
+						features["pod_flower"] = new_pod_flower
 
 				if("s_tone")
 					var/new_s_tone = input(user, "Choose your character's skin-tone:", "Character Preference")  as null|anything in GLOB.skin_tones
