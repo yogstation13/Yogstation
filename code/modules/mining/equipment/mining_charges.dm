@@ -23,8 +23,8 @@
 /obj/item/grenade/plastic/miningcharge/prime()
 	var/turf/closed/mineral/location = get_turf(target)
 	location.attempt_drill(null,TRUE,3) //orange says it doesnt include the actual middle
-	for(var/turf/closed/mineral/rock in orange(boom_sizes[3],location))
-		var/distance = get_dist(location,rock)
+	for(var/turf/closed/mineral/rock in circlerangeturfs(boom_sizes[3],location))
+		var/distance = get_dist_euclidian(location,rock)
 		if(distance <= boom_sizes[1])
 			rock.attempt_drill(null,TRUE,3)
 		else if (distance <= boom_sizes[2])
