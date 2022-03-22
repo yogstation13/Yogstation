@@ -68,6 +68,10 @@
 	var/mob/living/silicon/robot/R = usr
 	R.uneq_active()
 
+/obj/screen/robot/thrusters
+	name = "ion thrusters"
+	icon_state = "ionpulse0"
+
 /obj/screen/robot/thrusters/Click()
 	if(..())
 		return
@@ -121,6 +125,11 @@
 	using = new /obj/screen/ai/image_take()
 	using.screen_loc = ui_borg_camera
 	using.hud = src
+	static_inventory += using
+
+//Sec/Med HUDs
+	using = new /obj/screen/ai/sensors()
+	using.screen_loc = ui_borg_sensor
 	static_inventory += using
 
 //Thrusters

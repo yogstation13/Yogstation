@@ -1592,6 +1592,13 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
+"sC" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/optable,
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
 "sU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -3365,15 +3372,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/storage)
-"SP" = (
-/obj/structure/table/optable{
-	name = "Robotics Operating Table"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
 "SV" = (
 /obj/structure/table,
 /obj/machinery/light/small{
@@ -5003,7 +5001,7 @@ RO
 kD
 kD
 xv
-SP
+sC
 ML
 oU
 TQ
