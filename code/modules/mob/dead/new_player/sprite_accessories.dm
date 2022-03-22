@@ -2252,7 +2252,7 @@
 //Phytosian hair flower
 /datum/sprite_accessory/pod_flower
 	icon = 'icons/mob/mutant_bodyparts.dmi'
-	//color_src = HAIR
+	color_src = FACEHAIR
 
 /datum/sprite_accessory/pod_flower/cabbage
 	name = "Cabbage"
