@@ -47280,9 +47280,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "nbB" = (
@@ -50827,6 +50824,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"oRG" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "oRZ" = (
 /obj/structure/table,
 /obj/item/stack/cable_coil{
@@ -108036,7 +108045,7 @@ peX
 peX
 uEc
 bEi
-hoP
+oRG
 pwa
 qcI
 qAR
