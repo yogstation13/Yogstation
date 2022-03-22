@@ -72,6 +72,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	valid_ticks++
 	if(!was_valid_holder)
 		update_icon()
+		GLOB.ai_os.update_hardware()
 	was_valid_holder = TRUE
 
 
