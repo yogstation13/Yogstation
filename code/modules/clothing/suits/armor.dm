@@ -324,6 +324,6 @@
 	desc = "A stylish coat given to CentCom Commanders. Perfect for sending ERTs to suicide missions with style!"
 	icon_state = "centcom_formal"
 	item_state = "centcom"
-	item_color = "officer_turtle"
+	item_color = "centcom_formal"
 	body_parts_covered = CHEST|GROIN|ARMS
 	armor = list(MELEE = 35, BULLET = 40, LASER = 40, ENERGY = 50, BOMB = 35, BIO = 10, RAD = 10, FIRE = 10, ACID = 60)
