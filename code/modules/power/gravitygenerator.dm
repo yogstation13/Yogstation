@@ -391,16 +391,6 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(usr)].", INVESTIGATE_GRAVITY)
 	set_power()
 
-/obj/machinery/gravity_generator/main/mini
-	name = "gravitational generator"
-	icon_state = "mini"
-
-/obj/machinery/gravity_generator/main/mini/update_icon()
-	return
-
-/obj/machinery/gravity_generator/main/mini/setup_parts() //we don't want any parts thank you!
-	return
-
 // Misc
 
 /obj/item/paper/guides/jobs/engi/gravity_gen

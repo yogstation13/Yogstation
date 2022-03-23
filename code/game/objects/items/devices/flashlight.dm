@@ -393,11 +393,6 @@
 	desc = "A mining lantern."
 	brightness_on = 6			// luminosity when on
 
-/obj/item/flashlight/lantern/debug
-	name = "debug lantern"
-	desc = "so you can see WITHOUT DAMN LIGHTS"
-	brightness_on = 20
-
 /obj/item/flashlight/lantern/heirloom_moth
 	name = "old lantern"
 	desc = "An old lantern that has seen plenty of use."

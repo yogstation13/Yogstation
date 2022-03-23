@@ -261,7 +261,7 @@
 		P = worklist[index] //get the next power object found
 		index++
 
-		if(istype(P, /obj/structure/cable))
+		if( istype(P, /obj/structure/cable))
 			var/obj/structure/cable/C = P
 			if(C.powernet != PN) //add it to the powernet, if it isn't already there
 				PN.add_cable(C)
