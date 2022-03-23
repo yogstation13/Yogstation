@@ -136,7 +136,7 @@
 	return FALSE
 
 /obj/structure/destructible/cult/bloodstone/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
-	to_chat(actor, span_warning("Err: unresolved object. Aborting.))
+	to_chat(actor, span_warning("Err: unresolved object. Aborting."))
 
 /obj/structure/reagent_dispensers/fueltank/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	to_chat(S, span_warning("Destroying this object could cause a chain reaction. Aborting."))
