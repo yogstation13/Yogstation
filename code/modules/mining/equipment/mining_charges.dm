@@ -31,7 +31,14 @@
 			rock.attempt_drill(null,TRUE,2)
 		else if (distance <= boom_sizes[3])
 			rock.attempt_drill(null,TRUE,1)
+	for(var/mob/living/carbon/C in circlerange(boom_sizes[3],location))
+		if(ishuman(C) && C.soundbang_act(1, 0))
+			to_chat(C, span_warning("<font size='2'><b>You are knocked down by the power of the mining charge!</font></b>"))
+			var/distance = get_dist_euclidian(location,C)
+			C.Knockdown((boom_sizes[3] - distance) * 1 SECONDS) //1 second for how close you are to center if you're in range
+			C.adjustEarDamage(0, (boom_sizes[3] - distance) * 5) //5 ear damage for every tile you're closer to the center
 	qdel(src)
+
 			
 /obj/item/grenade/plastic/miningcharge/deconstruct(disassembled = TRUE) //no gibbing a miner with pda bombs
 	if(!QDELETED(src))
