@@ -1,1 +1,1 @@
-#define FORCE_MAP "_maps/GaxStation.json"
+#define FORCE_MAP "_maps/gaxstation.json"
