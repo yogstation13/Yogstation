@@ -642,7 +642,7 @@
 	src.visible_message(span_danger("[user] unbuckles themselves from [src]."))
 	if(IS_BLOODSUCKER(user))
 		UnregisterSignal(user, COMSIG_MOB_SAY)
-	. = ..()
+	return ..()
 
 /obj/structure/bloodsucker/bloodthrone/post_unbuckle_mob(mob/living/target)
 	target.pixel_y -= 2
