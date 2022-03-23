@@ -550,10 +550,6 @@
 	suffix = "kilo"
 	name = "arrival shuttle (Kilo)"
 
-/datum/map_template/shuttle/arrival/ship
-	suffix = "ship"
-	name = "arrival shuttle (Ship)"
-
 /datum/map_template/shuttle/aux_base/default
 	suffix = "default"
 	name = "auxilliary base (Default)"
