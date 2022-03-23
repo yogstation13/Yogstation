@@ -318,3 +318,12 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 50, "energy" = 15, "bomb" = 30, "bio" = 20, "rad" = 10, "fire" = 80, "acid" = 80, "wound" = 10)
 	slowdown = 0.9
+
+/obj/item/clothing/suit/armor/vest/centcom_formal
+	name = "\improper CentCom Formal Coat"
+	desc = "A stylish coat given to CentCom Commanders. Perfect for sending ERTs to suicide missions with style!"
+	icon_state = "centcom_formal"
+	item_state = "centcom"
+	item_color = "officer_turtle"
+	body_parts_covered = CHEST|GROIN|ARMS
+	armor = list(MELEE = 35, BULLET = 40, LASER = 40, ENERGY = 50, BOMB = 35, BIO = 10, RAD = 10, FIRE = 10, ACID = 60)

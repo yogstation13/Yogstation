@@ -130,6 +130,25 @@
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
+/obj/item/clothing/under/rank/chief_medical_officer/turtleneck
+	name = "chief medical officer's turtleneck"
+	desc = "A light blue turtleneck and tan khakis, for a chief medical officer with a superior sense of style."
+	icon_state = "cmoturtle"
+	item_state = "b_suit"
+	item_color = "cmoturtle"
+	can_adjust = TRUE
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/chief_medical_officer/turtleneck/skirt
+	name = "chief medical officer's turtleneck skirt"
+	desc = "A light blue turtleneck and tan khaki skirt, for a chief medical officer with a superior sense of style."
+	icon_state = "cmoturtle_skirt"
+	item_state = "b_suit"
+	item_color = "cmoturtle_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
+
 /obj/item/clothing/under/rank/geneticist
 	desc = "It's made of a special fiber that gives special protection against biohazards. It has a genetics rank stripe on it."
 	name = "geneticist's jumpsuit"

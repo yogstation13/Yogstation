@@ -145,6 +145,46 @@
 	item_color = "officer"
 	alt_covers_chest = TRUE
 
+/obj/item/clothing/under/rank/centcom_officer/replica
+	desc = "It's a jumpsuit worn by CentCom Officers."
+	name = "\improper CentCom officer's jumpsuit replica"
+
+/obj/item/clothing/under/rank/centcom_officer/skirt
+	name = "\improper CentCom officer's jumpskirt"
+	desc = "It's a jumpskirt worn by CentCom's highest-tier Commanders."
+	icon_state = "centcom_skirt"
+	item_color = "centcom_skirt"
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
+
+/obj/item/clothing/under/rank/centcom_officer/skirt/replica
+	name = "\improper CentCom officer's jumpskirt replica"
+	desc = "A cheap copy of the CentCom jumpskirt! A Donk Co. logo can be seen on the collar."
+
+/obj/item/clothing/under/rank/centcom_officer/turtleneck
+	name = "\improper CentCom turtleneck suit"
+	desc = "A casual, yet refined green turtleneck, used by CentCom Officials. It has a fragrance of aloe."
+	icon_state = "officer_turtle"
+	item_state = "dg_suit"
+	item_color = "officer_turtle"
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/centcom_officer/turtleneck/replica
+	name = "\improper CentCom turtleneck replica"
+	desc = "A cheap copy of the CentCom turtleneck! A Donk Co. logo can be seen on the collar."
+
+/obj/item/clothing/under/rank/centcom_officer/turtleneck/skirt
+	name = "\improper CentCom turtleneck skirt"
+	desc = "A skirt version of the CentCom turtleneck, rarer and more sought after than the original."
+	icon_state = "officer_turtle_skirt"
+	item_color = "officer_turtle_skirt"
+	alt_covers_chest = TRUE
+	fitted = FEMALE_UNIFORM_TOP
+
+/obj/item/clothing/under/rank/centcom_officer/turtleneck/skirt/replica
+	name = "\improper CentCom turtleneck skirt replica"
+	desc = "A cheap copy of the CentCom turtleneck skirt! A Donk Co. logo can be seen on the collar."
+
 /obj/item/clothing/under/rank/centcom_commander
 	desc = "It's a jumpsuit with gold markings worn by CentCom's highest-tier commanders."
 	name = "\improper CentCom officer's jumpsuit"

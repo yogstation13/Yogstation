@@ -190,6 +190,10 @@
 		              /obj/item/clothing/under/jabroni = 1,
 		              /obj/item/clothing/suit/vapeshirt = 1,
 		              /obj/item/clothing/under/geisha = 1, //yogs added a ,
+					  /obj/item/clothing/under/rank/centcom_officer/replica = 1,
+					  /obj/item/clothing/under/rank/centcom_officer/skirt = 1,
+					  /obj/item/clothing/under/rank/centcom_officer/turtleneck/replica = 1,
+					  /obj/item/clothing/under/rank/centcom_officer/turtleneck/skirt/replica = 1,
 		              /obj/item/clothing/under/yogs/soviet_dress_uniform = 1) //yogs
 	premium = list(/obj/item/clothing/under/suit_jacket/checkered = 1,
 		           /obj/item/clothing/head/mailman = 1,
