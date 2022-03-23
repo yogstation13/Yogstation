@@ -109,7 +109,6 @@
 		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list),
 		"ethereal_mark" = pick(GLOB.ethereal_mark_list),
 		"pod_hair" = pick(GLOB.pod_hair_list),
-		"pod_flower" = "pod_hair"
 	))
 
 /proc/random_hair_style(gender)
