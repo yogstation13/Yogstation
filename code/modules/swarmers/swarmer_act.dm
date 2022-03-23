@@ -135,7 +135,7 @@
 	to_chat(S, span_warning("Searching... sensor malfunction! Target lost. Aborting."))
 	return FALSE
 
-/obj/structure/destructible/cult/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+/obj/structure/destructible/cult/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
 	to_chat(actor, span_warning("Err: unresolved object. Aborting."))
 	return FALSE
 
