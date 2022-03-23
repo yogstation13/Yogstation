@@ -41,7 +41,7 @@
 				return
 			//yogs start
 			if(isnotpretty(message))
-				if(client.prefs.muted & MUTE_IC)
+				if(usr.client.prefs.muted & MUTE_IC)
 					return
 				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
@@ -84,7 +84,7 @@
 				return
 			//yogs start
 			if(isnotpretty(channel_title))
-				if(client.prefs.muted & MUTE_IC)
+				if(usr.client.prefs.muted & MUTE_IC)
 					return
 				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
@@ -118,7 +118,7 @@
 				return
 			//yogs start
 			if(isnotpretty(newname))
-				if(client.prefs.muted & MUTE_IC)
+				if(usr.client.prefs.muted & MUTE_IC)
 					return
 				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
@@ -165,7 +165,7 @@
 				return
 			//yogs start
 			if(isnotpretty(newname))
-				if(client.prefs.muted & MUTE_IC)
+				if(usr.client.prefs.muted & MUTE_IC)
 					return
 				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
@@ -192,7 +192,7 @@
 
 			//yogs start
 			if(isnotpretty(new_password))
-				if(client.prefs.muted & MUTE_IC)
+				if(usr.client.prefs.muted & MUTE_IC)
 					return
 				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
