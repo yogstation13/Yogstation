@@ -41,7 +41,7 @@
 				return
 			//yogs start
 			if(isnotpretty(message))
-				usr.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
 				message_admins(log_message)
@@ -82,7 +82,7 @@
 				return
 			//yogs start
 			if(isnotpretty(channel_title))
-				usr.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[channel_title]'."
 				message_admins(log_message)
@@ -114,7 +114,7 @@
 				return
 			//yogs start
 			if(isnotpretty(newname))
-				usr.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[newname]'."
 				message_admins(log_message)
@@ -159,7 +159,7 @@
 				return
 			//yogs start
 			if(isnotpretty(newname))
-				usr.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[newname]'."
 				message_admins(log_message)
@@ -184,7 +184,7 @@
 
 			//yogs start
 			if(isnotpretty(new_password))
-				usr.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[new_password]'."
 				message_admins(log_message)
