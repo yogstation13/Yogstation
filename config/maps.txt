@@ -37,7 +37,7 @@ map kilostation
 	votable
 endmap
 
-map shipstation
+map gaxstation
 	maxplayers 30
 	votable
 endmap

@@ -1,7 +1,7 @@
 {
-	"map_name": "ShipStation",
-	"map_path": "map_files/ShipStation",
-	"map_file": "ShipStation.dmm",
+	"map_name": "GaxStation",
+	"map_path": "map_files/GaxStation",
+	"map_file": "GaxStation.dmm",
 	"shuttles": {
 		"cargo": "cargo_gax",
 		"ferry": "ferry_fancy",
