@@ -130,6 +130,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "Mqiib"
 	unlock_path = /obj/item/clothing/accessory/sing_necklace
 
+/datum/donator_gear/marmio64
+	name = "Eldritch Cowl"
+	ckey = "Marmio64"
+	unlock_path = /obj/item/clothing/suit/hooded/fiendcowl/eldritch
+
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie

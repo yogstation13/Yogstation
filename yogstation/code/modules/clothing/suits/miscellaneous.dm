@@ -205,6 +205,16 @@
     icon_state = "fiendhood"
     flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
+/obj/item/clothing/suit/hooded/fiendcowl/eldritch
+	name = "eldritch cowl"
+	desc = "Only a really edgy person would wear such an insanity inducing cowl!"
+	icon_state = "eldritchcowl"
+	item_state = "eldritchcowl"
+	hoodtype = /obj/item/clothing/head/hooded/fiendhood/eldritch
+
+/obj/item/clothing/head/hooded/fiendhood/eldritch
+    icon_state = "eldritchhood"
+
 /obj/item/clothing/suit/yogs/infsuit
 	name = "russian gangster suit"
 	desc = "So you wanna be a fancy gangster, ay?"
