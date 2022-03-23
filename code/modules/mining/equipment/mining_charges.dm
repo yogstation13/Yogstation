@@ -23,7 +23,7 @@
 /obj/item/grenade/plastic/miningcharge/prime()
 	var/turf/closed/mineral/location = get_turf(target)
 	location.attempt_drill(null,TRUE,3) //orange says it doesnt include the actual middle
-	for(var/turf/closed/mineral/rock in circlerangeturfs(boom_sizes[3],location))
+	for(var/turf/closed/mineral/rock in circlerangeturfs(location,boom_sizes[3]))
 		var/distance = get_dist_euclidian(location,rock)
 		if(distance <= boom_sizes[1])
 			rock.attempt_drill(null,TRUE,3)
@@ -31,7 +31,7 @@
 			rock.attempt_drill(null,TRUE,2)
 		else if (distance <= boom_sizes[3])
 			rock.attempt_drill(null,TRUE,1)
-	for(var/mob/living/carbon/C in circlerange(boom_sizes[3],location))
+	for(var/mob/living/carbon/C in circlerange(location,boom_sizes[3]))
 		if(ishuman(C) && C.soundbang_act(1, 0))
 			to_chat(C, span_warning("<font size='2'><b>You are knocked down by the power of the mining charge!</font></b>"))
 			var/distance = get_dist_euclidian(location,C)
