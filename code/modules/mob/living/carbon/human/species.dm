@@ -605,7 +605,52 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(hair_overlay.icon)
 			standing += hair_overlay
 			standing += gradient_overlay
-
+		if("pod_hair" in H.dna.species.mutant_bodyparts)
+		//alright bear with me for a second while i explain this awful code since it was literally 3 days of me bumbling through blind
+		//for hair code to work, you need to start by removing the layer, as in the beginning with remove_overlay(head), then you need to use a mutable appearance variable
+		//the mutable appearance will store the sprite file dmi, the name of the sprite (icon_state), and the layer this will go on (in this case HAIR_LAYER)
+		//those are the basic variables, then you color the sprite with whatever source color you're using and set the alpha. from there it's added to the "standing" list
+		//which is storing all the individual mutable_appearance variables (each one is a sprite), and then standing is loaded into the H.overlays_standing and finalized
+		//with apply_overlays.
+		//if you're working with sprite code i hope this helps because i wish i was dead now.
+			S = GLOB.pod_hair_list[H.dna.features["pod_hair"]]
+			if(S)
+				var/hair_state = S.icon_state
+				var/hair_file = S.icon
+				hair_overlay.icon = hair_file
+				hair_overlay.icon_state = hair_state
+				if(!forced_colour)
+					if(hair_color)
+						if(hair_color == "mutcolor")
+							hair_overlay.color = "#" + H.dna.features["mcolor"]
+						else if(hair_color == "fixedmutcolor")
+							hair_overlay.color = "#[fixed_mut_color]"
+						else
+							hair_overlay.color = "#" + hair_color
+					else
+						hair_overlay.color = "#" + H.hair_color
+				hair_overlay.alpha = hair_alpha
+				standing+=hair_overlay
+				//var/mutable_appearance/pod_flower = mutable_appearance(GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon, GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon_state, -HAIR_LAYER)
+				S = GLOB.pod_flower_list[H.dna.features["pod_flower"]]
+				if(S)					
+					var/flower_state = S.icon_state
+					var/flower_file = S.icon
+					// flower_overlay.icon = flower_file
+					// flower_overlay.icon_state = flower_state
+					var/mutable_appearance/flower_overlay = mutable_appearance(flower_file, flower_state, -HAIR_LAYER)
+					if(!forced_colour)
+						if(hair_color)
+							if(hair_color == "mutcolor")
+								flower_overlay.color = "#" + H.dna.features["mcolor"]
+							else if(hair_color == "fixedmutcolor")
+								flower_overlay.color = "#[fixed_mut_color]"
+							else
+								flower_overlay.color = "#" + hair_color
+						else		
+							flower_overlay.color = "#" + H.facial_hair_color
+					flower_overlay.alpha = hair_alpha
+					standing += flower_overlay			
 	if(standing.len)
 		H.overlays_standing[HAIR_LAYER] = standing
 
@@ -768,7 +813,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if("pod_flower" in mutant_bodyparts)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "pod_flower"
-		
+		if(H.dna.features["pod_flower"] != H.dna.features["pod_hair"])
+			H.dna.features["pod_flower"] = H.dna.features["pod_hair"]
+
 	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
 	var/update_needed = FALSE
 	var/not_digitigrade = TRUE
@@ -863,10 +910,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
 				if("ethereal_mark")
 					S = GLOB.ethereal_mark_list[H.dna.features["ethereal_mark"]]
-				if("pod_hair")
-					S = GLOB.pod_hair_list[H.dna.features["pod_hair"]]
-				if("pod_flower")
-					S = GLOB.pod_flower_list[H.dna.features["pod_flower"]]
 			if(!S || S.icon_state == "none")
 				continue
 
@@ -939,9 +982,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			return "BEHIND"
 		if(BODY_ADJ_LAYER)
 			return "ADJ"
+		if(HAIR_LAYER)
+			return "HAIR"
 		if(BODY_FRONT_LAYER)
-			return "FRONT"
-
+			return "FRONT"	
 
 /datum/species/proc/spec_life(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOBREATH))
