@@ -22,7 +22,7 @@
 	liked_food = VEGETABLES | FRUIT | GRAIN
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/pod
-	
+
 	var/no_light_heal = FALSE
 	var/light_heal_multiplier = 1
 	var/dark_damage_multiplier = 1

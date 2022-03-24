@@ -982,8 +982,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			return "BEHIND"
 		if(BODY_ADJ_LAYER)
 			return "ADJ"
-		if(HAIR_LAYER)
-			return "HAIR"
 		if(BODY_FRONT_LAYER)
 			return "FRONT"	
 
