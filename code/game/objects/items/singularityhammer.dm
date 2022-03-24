@@ -112,7 +112,7 @@
 		if(A)
 			if(isitem(A))
 				M.visible_message(span_warning("[M]'s [A] glows brightly as it disrupts the Mjolnir's power!"))
-			visible_message(span_boldwarning("<span class='big bold'>With a mighty thud, Mjolnier slams into the [src.loc], and its glow fades!</span><br>"))
+			visible_message(span_boldwarning("<span class='big bold'>With a mighty thud, Mjolnir slams into the [src.loc], and its glow fades!</span><br>"))
 			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1, extrarange = 30)
 			new /obj/structure/mjollnir(src.loc)
 			qdel(src)
