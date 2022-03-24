@@ -1431,8 +1431,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						"dome" = 1,
 						"dorsal_tubes" = 1,
 						"ethereal_mark" = 1,
-						"pod_hair" = 1,
-						"pod_flower" = 1,
 					)
 				if("gender")
 					random_locks["random_locks"] = gender
