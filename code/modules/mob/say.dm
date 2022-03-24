@@ -7,6 +7,9 @@
 
 	//yogs start - pretty filter
 	if(isnotpretty(message))
+		if(client.prefs.muted & MUTE_IC)
+			return
+		client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 		to_chat(usr, span_notice("You fumble over your words. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
 		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
 		message_admins(log_message)
@@ -28,6 +31,9 @@
 
 	//yogs start - pretty filter
 	if(isnotpretty(message))
+		if(client.prefs.muted & MUTE_IC)
+			return
+		client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 		to_chat(usr, span_notice("You fumble over your words. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
 		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
 		message_admins(log_message)
