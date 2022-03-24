@@ -40,8 +40,6 @@
 	H.dna.features["ethereal_mark"] = pick(GLOB.ethereal_mark_list)
 	H.dna.features["pod_hair"] = pick(GLOB.pod_hair_list)
 	H.dna.features["pod_flower"] = GLOB.pod_flower_list[H.dna.features["pod_hair"]]
-	if("pod_hair" in H.dna.species.mutant_bodyparts) //random facial hair color means random flower accent color. just to spice up the random pods a bit
-		H.facial_hair_color = random_short_color()
 
 
 	H.update_body()
