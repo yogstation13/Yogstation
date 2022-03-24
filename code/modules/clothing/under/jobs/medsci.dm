@@ -225,3 +225,10 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/medical/mortician
+	name = "coroner's scrubs"
+	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is as dark as an emo's poetry."
+	icon_state = "scrubsblack"
+	item_color = "scrubsblack"
+	can_adjust = FALSE 

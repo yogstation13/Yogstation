@@ -21,7 +21,8 @@ GLOBAL_LIST_INIT(original_medical_positions, list(
 	"Paramedic",
 	"Psychiatrist",
 	"Mining Medic",
-	"Brig Physician"))
+	"Brig Physician"
+	"Coroner"))
 
 GLOBAL_LIST_INIT(original_science_positions, list(
 	"Research Director",

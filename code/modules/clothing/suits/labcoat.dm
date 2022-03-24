@@ -23,6 +23,12 @@
 	icon_state = "labcoat_md"
 	item_state = "labcoat_md"
 
+/obj/item/clothing/suit/storage/labcoat/mortician
+	name = "coroner labcoat"
+	desc = "A suit that protects against minor chemical spills. Has a black stripe on the shoulder."
+	icon_state = "labcoat_mort_open"
+	item_state = "labcoat_mort_open"
+
 /obj/item/clothing/suit/toggle/labcoat/emt
 	name = "\improper EMT's jacket"
 	desc = "A dark blue jacket with reflective strips for emergency medical technicians."

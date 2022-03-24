@@ -24,7 +24,7 @@
 #define GENETICIST		(1<<5)
 #define VIROLOGIST		(1<<6)
 #define BRIGPHYS       (1<<7)
-
+#define JOB_CORONER		(1<<8)
 
 #define CIVILIAN		(1<<2)
 
