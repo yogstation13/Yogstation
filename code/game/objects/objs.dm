@@ -257,14 +257,14 @@
 				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], fire: [armor.fire], acid: [armor.acid]"))
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(check_rights(R_DEBUG|R_SERVER))
-			var/action_type = alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
+			var/action_type = alert(usr, "Strict type ([type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
 			if(action_type == "Cancel" || !action_type)
 				return
 
-			if(alert(usr, "Are you really sure you want to delete all objects of type [type]?",,list("Yes","No")) != "Yes")
+			if(alert(usr, "Are you really sure you want to delete all objects of type [type]?",,"Yes","No") != "Yes")
 				return
 
-			if(alert(usr, "Second confirmation required. Delete?",,list("Yes","No")) != "Yes")
+			if(alert(usr, "Second confirmation required. Delete?",,"Yes","No") != "Yes")
 				return
 
 			var/O_type = type
