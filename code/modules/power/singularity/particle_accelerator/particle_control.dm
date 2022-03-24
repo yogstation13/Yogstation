@@ -122,10 +122,11 @@
 			toggle_power()
 			update_icon()
 			return
-		if(area_restricted && !istype(get_turf(src),/area/engine))
+		if(area_restricted && !istype(get_area(src),/area/engine))
 			investigate_log("had its area restriction turned on while in an invalid area; It <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
 			toggle_power()
 			update_icon()
+			return
 		//emit some particles
 		for(var/obj/structure/particle_accelerator/particle_emitter/PE in connected_parts)
 			PE.emit_particle(strength)
