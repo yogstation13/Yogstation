@@ -1271,6 +1271,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(href_list["preference"] == "donor")
 		if(is_donator(user))
 			var/client/C = (istype(user, /client)) ? user : user.client
+			message_admins("Donor task [href_list["task"]]")
 			switch(href_list["task"])
 				if("borghat")
 					borg_hat = !borg_hat
