@@ -5,7 +5,7 @@
 #define COOLANT_OUTPUT_GATE airs[3]
 
 #define RBMK_TEMPERATURE_OPERATING 640 //Celsius
-#define RBMK_TEMPERATURE_CRITICAL 810 //At this point the entire ship/station is alerted to a meltdown. This may need altering
+#define RBMK_TEMPERATURE_CRITICAL 800 //At this point the entire ship is alerted to a meltdown. This may need altering
 #define RBMK_TEMPERATURE_MELTDOWN 900
 
 #define RBMK_NO_COOLANT_TOLERANCE 5 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
@@ -15,7 +15,6 @@
 
 #define RBMK_MAX_CRITICALITY 3 //No more criticality than N for now.
 
-//#define RBMK_POWER_FLAVOURISER 1000 //To turn those KWs into something usable
 #define RBMK_POWER_FLAVOURISER 8000 //To turn those KWs into something usable
 
 //Math. Lame.
@@ -71,8 +70,11 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 //Remember kids. If the reactor itself is not physically powered by an APC, it cannot shove coolant in!
 
+//Helper proc to set a new looping ambience, and play it to any mobs already inside of that area.
+
+
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor
-	name = "Advanced Gas-Cooled Nuclear Reactor"
+	name = "\improper Advanced Gas-Cooled Nuclear Reactor"
 	desc = "A tried and tested design which can output stable power at an acceptably low risk. The moderator can be changed to provide different effects."
 	icon = 'icons/obj/machines/rbmk.dmi'
 	icon_state = "reactor_map"
@@ -98,7 +100,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/next_slowprocess = 0
 	var/gas_absorption_effectiveness = 0.5
 	var/gas_absorption_constant = 0.5 //We refer to this one as it's set on init, randomized.
-	var/minimum_coolant_level = 2
+	var/minimum_coolant_level = 5
 	var/warning = FALSE //Have we begun warning the crew of their impending death?
 	var/next_warning = 0 //To avoid spam.
 	var/last_power_produced = 0 //For logging purposes
@@ -228,7 +230,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		next_slowprocess = world.time + 1 SECONDS //Set to wait for another second before processing again, we don't need to process more than once a second
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/has_fuel()
-	return fuel_rods?.len
+	return length(fuel_rods)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/slowprocess()
 	//Let's get our gasses sorted out.
@@ -253,7 +255,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			no_coolant_ticks++
 			if(no_coolant_ticks > RBMK_NO_COOLANT_TOLERANCE)
 				temperature += temperature / 500 //This isn't really harmful early game, but when your reactor is up to full power, this can get out of hand quite quickly.
-				vessel_integrity -= temperature / 200 //Think fast chucklenuts!
+				vessel_integrity -= temperature / 200 //Think fast loser.
 				take_damage(10) //Just for the sound effect, to let you know you've fucked up.
 				color = "[COLOR_RED]"
 				investigate_log("Reactor taking damage from the lack of coolant", INVESTIGATE_SINGULO)
@@ -267,24 +269,21 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	gas_absorption_effectiveness = gas_absorption_constant
 	//Next up, handle moderators!
 	if(moderator_input.total_moles() >= minimum_coolant_level)
-		var/total_fuel_moles = moderator_input.get_moles(/datum/gas/plasma) + (moderator_input.get_moles(/datum/gas/tritium)*10) //Constricted plasma is 50% more efficient as fuel than plasma, but is harder to produce
+		var/total_fuel_moles = moderator_input.get_moles(/datum/gas/plasma) + (moderator_input.get_moles(/datum/gas/tritium)*10) //Constricted plasma is 50% more efficient as fuel than plasma, but we dont have it :)
 		var/power_modifier = max((moderator_input.get_moles(/datum/gas/oxygen) / moderator_input.total_moles() * 10), 1) //You can never have negative IPM. For now.
 		if(total_fuel_moles >= minimum_coolant_level) //You at least need SOME fuel.
 			var/power_produced = max((total_fuel_moles / moderator_input.total_moles() * 10), 1)
 			last_power_produced = max(0,((power_produced*power_modifier)*moderator_input.total_moles()))
-			last_power_produced *= (power/100) //Aaaand here comes the cap. Hotter reactor => more power.
+			last_power_produced *= (max(0,power)/100) //Aaaand here comes the cap. Hotter reactor => more power.
 			last_power_produced *= base_power_modifier //Finally, we turn it into actual usable numbers.
 			radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/tritium) / 5 //Chernobyl 2.
 			var/turf/T = get_turf(src)
 			if(power >= 20)
-				coolant_output.adjust_moles(/datum/gas/nitryl, total_fuel_moles/50) //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
+				coolant_output.adjust_moles(/datum/gas/nitryl, total_fuel_moles/20) //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 			var/obj/structure/cable/C = T.get_cable_node()
 			if(!C?.powernet)
-				//message_admins("No cable or cable has no powernet!")
 				return
 			else
-				//C.powernet.newavail += last_power_produced //hacky wtf
-				//message_admins("Adding [last_power_produced] to powernet.")
 				add_avail(last_power_produced)
 		var/total_control_moles = moderator_input.get_moles(/datum/gas/nitrogen) + (moderator_input.get_moles(/datum/gas/carbon_dioxide)*2) + (moderator_input.get_moles(/datum/gas/pluoxium)*3) //N2 helps you control the reaction at the cost of making it absolutely blast you with rads. Pluoxium has the same effect but without the rads!
 		if(total_control_moles >= minimum_coolant_level)
@@ -324,11 +323,10 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			K += difference
 		else if(desired_k < K)
 			K -= difference
-	if(K == desired_k && last_user && current_desired_k != desired_k)
-		current_desired_k = desired_k
-		message_admins("Reactor desired criticality set to [desired_k] by [ADMIN_LOOKUPFLW(last_user)] in [ADMIN_VERBOSEJMP(src)]")
-		investigate_log("reactor desired criticality set to [desired_k] by [key_name(last_user)] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
-
+		if(K == desired_k && last_user && current_desired_k != desired_k)
+			current_desired_k = desired_k
+			message_admins("Reactor desired criticality set to [desired_k] by [ADMIN_LOOKUPFLW(last_user)] in [ADMIN_VERBOSEJMP(src)]")
+			investigate_log("reactor desired criticality set to [desired_k] by [key_name(last_user)] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
 	K = clamp(K, 0, RBMK_MAX_CRITICALITY)
 	if(has_fuel())
 		temperature += K
@@ -337,8 +335,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	handle_alerts() //Let's check if they're about to die, and let them know.
 	update_icon()
 	radiation_pulse(src, temperature*radioactivity_spice_multiplier)
-	if(power >= 93 && world.time >= next_flicker) //You're overloading the reactor. Give a more subtle warning that power is getting out of control.
-		next_flicker = world.time + 2 MINUTES
+	if(power >= 90 && world.time >= next_flicker) //You're overloading the reactor. Give a more subtle warning that power is getting out of control.
+		next_flicker = world.time + 1.5 MINUTES
 		for(var/obj/machinery/light/L in GLOB.machines)
 			if(prob(25) && L.z == z) //If youre running the reactor cold though, no need to flicker the lights.
 				L.flicker()
@@ -406,7 +404,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			var/temp_damage = min(temperature/100, initial(vessel_integrity)/40)	//40 seconds to meltdown from full integrity, worst-case. Bit less than blowout since it's harder to spike heat that much.
 			vessel_integrity -= temp_damage
 			if(vessel_integrity <= temp_damage)
-				investigate_log("Reactor melted down at [temperature] C with desired criticality at [desired_k]", INVESTIGATE_SINGULO)
+				investigate_log("Reactor melted down at [temperature] C with desired criticality at [desired_k]", INVESTIGATE_SINGULO) //It wouldn't be able to tank another hit.
 				meltdown() //Oops! All meltdown
 				return
 	else
@@ -427,7 +425,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[CELSIUS_TO_KELVIN(temperature)]")
 		var/pressure_damage = min(pressure/100, initial(vessel_integrity)/45)	//You get 45 seconds (if you had full integrity), worst-case. But hey, at least it can't be instantly nuked with a pipe-fire.. though it's still very difficult to save.
 		vessel_integrity -= pressure_damage
-		if(vessel_integrity <= pressure_damage) //It wouldn't
+		if(vessel_integrity <= pressure_damage) //It wouldn't be able to tank another hit.
 			investigate_log("Reactor blowout at [pressure] PSI with desired criticality at [desired_k]", INVESTIGATE_SINGULO)
 			blowout()
 			return
@@ -779,11 +777,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	extended_desc = "This program connects to specially calibrated sensors to provide information on the status of nuclear reactors."
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_CONSTRUCTION
-	//network_destination = "rbmk monitoring system" //Apparently we don't use these anymore
+	//network_destination = "rbmk monitoring system" dont need anymore?
 	size = 2
 	tgui_id = "NtosRbmkStats"
-	//ui_x = 350
-	//ui_y = 550
 	var/active = TRUE //Easy process throttle
 	var/next_stat_interval = 0
 	var/list/psiData = list()

@@ -1,13 +1,11 @@
 /obj/item/fuel_rod
-	name = "uranium-238 fuel rod"
-	desc = "A titanium sheathed rod containing a measure of enriched uranium-dioxide powder, used to kick off a fission reaction."
+	name = "Uranium-235 Fuel Rod"
+	desc = "A titanium sheathed rod containing a measure of enriched uranium-dioxide powder inside, and a breeding blanket of uranium-238 around it, used to kick off a fission reaction and breed plutonium fuel respectivly."
 	icon = 'icons/obj/control_rod.dmi'
 	icon_state = "irradiated"
 	w_class = WEIGHT_CLASS_BULKY
-
 	var/depletion = 0 //Each fuel rod will deplete in around 30 minutes.
 	var/fuel_power = 0.10
-
 	var/rad_strength = 500
 	var/half_life = 2000 // how many depletion ticks are needed to half the fuel_power (1 tick = 1 second)
 	var/time_created = 0
@@ -33,7 +31,7 @@
 	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/N = loc
 	if(istype(N))
 		N.fuel_rods -= src
-	return ..()
+	. = ..()
 
 // This proc will try to convert your fuel rod if you don't override this proc
 // So, ideally, you should write an override of this for every fuel rod you want to create
@@ -44,6 +42,7 @@
 	// Rod conversion is moot when you can't find the reactor
 	if(istype(N))
 		var/obj/item/fuel_rod/R
+
 		// You can add your own depletion scheme and not override this proc if you are going to convert a fuel rod into another type
 		switch(result_rod)
 			if("plutonium")
@@ -71,11 +70,11 @@
 
 /obj/item/fuel_rod/plutonium
 	fuel_power = 0.20
-	name = "plutonium-239 fuel rod"
+	name = "Plutonium-239 Fuel Rod"
 	desc = "A highly energetic titanium sheathed rod containing a sizeable measure of weapons grade plutonium, it's highly efficient as nuclear fuel, but will cause the reaction to get out of control if not properly utilised."
 	icon_state = "inferior"
 	rad_strength = 1500
-	process = TRUE
+	process = TRUE // for half life code
 	depletion_threshold = 300
 	depletion_conversion_type = "depleted"
 
@@ -84,11 +83,11 @@
 
 /obj/item/fuel_rod/depleted
 	fuel_power = 0.05
-	name = "depleted fuel rod"
+	name = "Depleted Fuel Rod"
 	desc = "A highly radioactive fuel rod which has expended most of it's useful energy."
 	icon_state = "normal"
 	rad_strength = 6000 // smelly
-	depletion_conversion_type = null // we don't want it to turn into anything
+	depletion_conversion_type = null // It means that it won't turn into anything
 	process = TRUE
 
 // Master type for material optional (or requiring, wyci) and/or producing rods
@@ -141,7 +140,7 @@
 			var/adding = min((max_initial_amount - initial_amount), M.amount)
 			M.amount -= adding
 			initial_amount += adding
-			if(adding == 1)
+			if (adding == 1)
 				to_chat(user, "<span class='notice'>You insert [adding] [material_name_singular] into \the [src].</span>")
 			else
 				to_chat(user, "<span class='notice'>You insert [adding] [material_name] into \the [src].</span>")
@@ -159,21 +158,19 @@
 
 	if(depleted_final)
 		new material_type(user.loc, grown_amount)
-		if(grown_amount == 1)
+		if (grown_amount == 1)
 			to_chat(user, "<span class='notice'>You harvest [grown_amount] [material_name_singular] from \the [src].</span>") // Unlikely
 		else
 			to_chat(user, "<span class='notice'>You harvest [grown_amount] [material_name] from \the [src].</span>")
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 		grown_amount = 0
 		expend()
-		return
-	if(depletion)
+	else if(depletion)
 		to_chat(user, "<span class='warning'>\The [src] has not fissiled enough to fully grow the sample. The progress bar shows it is [min(depletion/depletion_threshold*100,100)]% complete.</span>")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
-		return
-	if(initial_amount)
+	else if(initial_amount)
 		new material_type(user.loc, initial_amount)
-		if(initial_amount == 1)
+		if (initial_amount == 1)
 			to_chat(user, "<span class='notice'>You remove [initial_amount] [material_name_singular] from \the [src].</span>")
 		else
 			to_chat(user, "<span class='notice'>You remove [initial_amount] [material_name] from \the [src].</span>")
@@ -185,18 +182,18 @@
 	if(expended)
 		. += "<span class='warning'>The material slots have been slagged by the extreme heat, you can't grow [material_name] in this rod again...</span>"
 		return
-	if(depleted_final)
-		. += "<span class='warning'>This fuel rod's [material_name] are now fully grown, and it currently bears [grown_amount] harvestable [material_name]\s.</span>"
+	else if(depleted_final)
+		. += "<span class='warning'>This fuel rod's [material_name] are now fully grown, and it currently bears [grown_amount] harvestable [material_name_singular]\s.</span>"
 		return
 	if(depletion)
 		. += "<span class='danger'>The sample is [min(depletion/depletion_threshold*100,100)]% fissiled.</span>"
 	. += "<span class='disarm'>[initial_amount]/[max_initial_amount] of the slots for [material_name] are full.</span>"
 
 /obj/item/fuel_rod/material/telecrystal
-	name = "telecrystal fuel rod"
-	desc = "A disguised titanium sheathed rod containing several small slots infused with uranium dioxide. Permits the insertion of telecrystals for transmutation. Fissiles much faster than its standard counterpart."
+	name = "Telecrystal Fuel Rod"
+	desc = "A disguised titanium sheathed rod containing several small slots infused with uranium dioxide. Permits the insertion of telecrystals to grow more. Fissiles much faster than its standard counterpart"
 	icon_state = "telecrystal"
-	fuel_power = 0.30 // twice as powerful as a normal rod
+	fuel_power = 0.30 // twice as powerful as a normal rod, you're going to need some engineering autism if you plan to mass produce TC
 	depletion_speed_modifier = 3 // headstart, otherwise it takes two hours
 	rad_strength = 1500
 	max_initial_amount = 8
@@ -210,13 +207,13 @@
 	if(result_rod)
 		return
 	fuel_power = 0.60 // thrice as powerful as plutonium, you'll want to get this one out quick!
-	name = "exhausted [name]"
+	name = "Exhausted Telecrystal Fuel Rod"
 	desc = "A highly energetic, disguised titanium sheathed rod containing a number of slots filled with greatly expanded telecrystals which can be removed by hand. It's extremely efficient as nuclear fuel, but will cause the reaction to get out of control if not properly utilised."
 	icon_state = "telecrystal_used"
 	AddComponent(/datum/component/radioactive, 3000, src)
 
 /obj/item/fuel_rod/material/bananium
-	name = "bananium fuel rod"
+	name = "Bananium Fuel Rod"
 	desc = "A hilarious heavy-duty fuel rod which fissiles a bit slower than its cowardly counterparts. However, its cutting-edge cosmic clown technology allows rooms for extraordinarily exhilarating extraterrestrial element called bananium to menacingly multiply."
 	icon_state = "bananium"
 	fuel_power = 0.15
@@ -238,7 +235,7 @@
 	if(result_rod)
 		return
 	fuel_power = 0.3 // Be warned
-	name = "exhausted [name]"
+	name = "Fully Grown Bananium Fuel Rod"
 	desc = "A hilarious heavy-duty fuel rod which fissiles a bit slower than it cowardly counterparts. Its greatly grimacing grwoth stage is now over, and bananium outgrowth hums as if it's blatantly honking bike horns."
 	icon_state = "bananium_used"
 	AddComponent(/datum/component/radioactive, 1250, src)
