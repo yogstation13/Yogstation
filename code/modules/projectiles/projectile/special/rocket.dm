@@ -93,5 +93,5 @@
 				var/mob/living/carbon/C = L
 				var/mob/M = firer
 				if(istype(M))
-					C.throw_at(throw_target, 5, 4, H, 3)
+					C.throw_at(throw_target, 2, 4, H, 3)
 					return BULLET_ACT_HIT

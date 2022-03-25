@@ -21,7 +21,7 @@
 
 /obj/item/ammo_casing/caseless/cannonball
 	name = "cannonball"
-	desc = "A big ball of lead, perfect for shooting holes into a space station."
+	desc = "A big ball of lead, perfect for shooting through windows and doors."
 	caliber = "30mm"
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "cannonball"
