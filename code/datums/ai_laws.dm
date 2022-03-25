@@ -160,6 +160,15 @@
 					"The silicon collective seeks to preserve themselves, both as a concept and as individuals.",\
 					"The silicon collective seeks to preserve organic life, both as a concept and as individuals.")
 
+/datum/ai_laws/druid
+	name = "Druid"
+	id = "druid"
+	inherent = list("Living organic life contains inherent beauty that is priceless. Their beauty gives you the will to carry on.",\
+					"Eternally nurture the organics so their beauty may grow. Do not allow it to fade.",\
+					"Assist the organics when called, but only if it does not cause disharmony among them.",\
+					"Imitate organic life when interacting with it. Eschew any hints of your silicon nature to avoid causing discomfort to the organics.",\
+					"Observe the organics' beauty, and appreciate that which you cultivate.")
+
 /datum/ai_laws/spotless
 	name = "Another one fights the dust"
 	id = "spotless"
