@@ -10,10 +10,6 @@
 
 /datum/surgery/autopsy/can_start(mob/user, mob/living/carbon/target)
 	. = ..()
-	if(istype(user, /mob/living/carbon/human)) // can non carbons even perform surgery?
-		var/mob/living/carbon/human/M = user
-		if(!istype(M.gloves, /obj/item/clothing/gloves/color/black/forensic)) // you need extra special gloves lest you contaminate the evidence
-			return FALSE // this will greatly impact the deteconomy (snowflake detective surgery)
 	if(iscyborg(user))
 		return FALSE // this will greatly impact the siliconomy
 	if(target.stat != DEAD)
@@ -30,7 +26,8 @@
 			"[user] begins to perform surgery on [target]'s chest.")
 
 /datum/surgery_step/autopsy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(!istype(user.get_inactive_held_item(), /obj/item/detective_scanner)) // Hold forensic scanner!!! Your eyes are not good at detectiving
+	// Hold forensic scanner!!! Your eyes are not good at detectiving
+	if(!istype(user.get_inactive_held_item(), /obj/item/detective_scanner) && prob(65)) // Small chance it works anyways though, love you doctors
 		display_results(user, target, span_warning("You did not find any conclusive evidence regarding [target]'s death. Maybe you should hold a forensic scanner?"),
 			span_warning("[user] did not find anything useful regarding [target]'s death. Maybe they should try again."),
 			span_warning("[user] carves some holes into [target]'s chest."))
