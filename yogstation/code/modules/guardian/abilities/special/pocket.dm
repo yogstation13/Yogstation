@@ -1,4 +1,5 @@
 GLOBAL_VAR_INIT(pocket_dim, 1)
+GLOBAL_LIST_EMPTY(pocket_corners)
 GLOBAL_LIST_EMPTY(pocket_mirrors)
 
 /proc/get_final_z(atom/A)
@@ -16,6 +17,31 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	requires_power = FALSE
 	show_on_sensors = FALSE
 	ambientsounds = SPACE
+	parallax_movedir = EAST
+
+/obj/effect/landmark/pocket_dimension_corner
+	name = "pocket dimension corner (bottom left)"
+
+/obj/effect/landmark/pocket_dimension_corner/Initialize()
+	. = ..()
+	var/datum/space_level/level = SSmapping.get_level(z)
+	if (!level)
+		to_chat(world, "uh oh, stinky!!")
+		return INITIALIZE_HINT_QDEL
+	GLOB.pocket_corners[level.name] = list(
+		"bl-corner" = get_turf(src), // Bottom left corner
+		"center" = locate(x + 4, y + 4, z),
+		"tr-corner" = locate(x + 8, y + 8, z), // Top right corner
+	)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/interdimsional_wall
+	name = "interdimensional wall"
+	desc = "YOU SHALL NOT PASS"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	opacity = FALSE
+	anchored = TRUE
+	density = TRUE
 
 /datum/guardian_ability/major/special/pocket
 	name = "Dimensional Manifestation"
@@ -51,14 +77,14 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		pocket_dim = "Pocket Dimension [GLOB.pocket_dim++]"
 		GLOB.pocket_mirrors[pocket_dim] = list()
 		var/pz = get_pocket_z()
-		eye = new
-		eye.guardian = guardian
-		eye.pocket_z = pz
-		eye.guardian_ability = src
-		eye.name = "Inactive Guardian Eye ([guardian])"
 		for (var/turf/open/indestructible/pocketspace/pocketspace in world)
 			if (pocketspace.z == pz)
 				GLOB.pocket_mirrors[pocket_dim] += pocketspace
+		eye = new
+		eye.guardian = guardian
+		eye.guardian_ability = src
+		eye.name = "Inactive Guardian Eye ([guardian])"
+		eye.forceMove(get_turf(guardian))
 
 /datum/guardian_ability/major/special/pocket/Remove()
 	guardian.RemoveSpell(manifest_spell)
@@ -92,13 +118,30 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	if (dist_from_manifestation > max_dist)
 		to_chat(guardian, span_warning("Your pocket dimension demanifests, as you can't keep it manifested from so far away!"))
 		demanifest_dimension()
-	
+
+/datum/guardian_ability/major/special/pocket/proc/get_targets(require_neck_grab = FALSE)
+	. = list()
+	if (guardian.summoner?.current)	
+		var/mob/living/summoner = guardian.summoner.current
+		. += summoner
+		var/bring_pull_in = FALSE
+		if (summoner.pulling && !summoner.pulling.anchored)
+			if (isobj(summoner.pulling))
+				bring_pull_in = TRUE
+			else if (isliving(summoner.pulling))
+				var/mob/living/pulling = summoner.pulling
+				bring_pull_in = !require_neck_grab || pulling.stat >= UNCONSCIOUS || summoner.grab_state >= GRAB_NECK
+		if(bring_pull_in)
+			. += summoner.pulling
+		for (var/G in guardian.summoner.hasparasites())
+			var/mob/living/simple_animal/hostile/guardian/guardian = G
+			if (guardian.is_deployed())
+				. += guardian
+	else if (guardian.is_deployed())
+		. |= guardian
 
 /datum/guardian_ability/major/special/pocket/proc/manifest_dimension(pos_already_set = FALSE)
-	var/pocket_z = get_pocket_z()
-	if (!pocket_z)
-		return
-	destroy_pocket_mirror(pocket_z)
+	destroy_pocket_mirror(pocket_dim)
 	manifesting = TRUE
 	if (LAZYLEN(GLOB.pocket_mirrors[pocket_dim]))
 		for (var/turf/open/indestructible/pocketspace/PS in GLOB.pocket_mirrors[pocket_dim])
@@ -113,7 +156,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		manifested_at_z = get_final_z(guardian)
 
 	var/list/us = block(locate(corrected_max, corrected_may, manifested_at_z), locate(min(corrected_max + 8, world.maxx), min(corrected_may + 8, world.maxy), manifested_at_z))
-	var/list/them = block(locate(1, 1, pocket_z), locate(9, 9, pocket_z))
+	var/list/them = block(GLOB.pocket_corners[pocket_dim]["bl-corner"], GLOB.pocket_corners[pocket_dim]["tr-corner"])
 	for (var/idx in 1 to min(LAZYLEN(us), LAZYLEN(them)))
 		var/turf/manifestation_turf = us[idx]
 		var/turf/dimension_turf = them[idx]
@@ -138,6 +181,65 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 
 	addtimer(VARSET_CALLBACK(src, manifesting, FALSE), 3 SECONDS)
 
+/datum/guardian_ability/major/special/pocket/proc/manifest_mobs_into_real_world()
+	var/list/targets = get_targets()
+	var/turf/corner = GLOB.pocket_corners[pocket_dim]["bl-corner"]
+	var/mob/living/pull_target
+	var/mob/living/summoner
+	for (var/M in targets)
+		var/mob/living/target = M
+		var/target_x = manifested_at_x + (target.x - corner.x)
+		var/target_y = manifested_at_y + (target.y - corner.y)
+		var/turf/target_turf = locate(target_x, target_y, manifested_at_z)
+		if (!target_turf)
+			continue
+		if (target == guardian.summoner?.current?.pulling)
+			pull_target = target
+		else if (target == guardian.summoner?.current)
+			summoner = target
+		take_effects(target)
+		if (target.alpha == 255)
+			target.alpha = 0
+			animate(target, alpha = 255, time = 3 SECONDS, easing = LINEAR_EASING)
+		target.forceMove(target_turf)
+	if (pull_target)
+		to_chat(pull_target, span_danger("All of existence fades out for a moment..."))
+		summoner.start_pulling(pull_target)
+		pull_target.Paralyze(5 SECONDS)
+
+/datum/guardian_ability/major/special/pocket/proc/bring_mobs_into_pocket_dimension()
+	var/turf/corner = GLOB.pocket_corners[pocket_dim]["bl-corner"]
+	var/bl_safe_x = manifested_at_x + 1
+	var/bl_safe_y = manifested_at_y + 1
+	var/tr_safe_x = min(world.maxx, manifested_at_x + 7)
+	var/tr_safe_y = min(world.maxy, manifested_at_y + 7)
+	var/list/safe_locations = block(locate(bl_safe_x, bl_safe_y, manifested_at_z), locate(tr_safe_x, tr_safe_y, manifested_at_z))
+	var/pocket_z = get_pocket_z()
+	var/list/targets = get_targets(TRUE)
+	var/mob/living/pull_target
+	var/mob/living/summoner
+	for (var/M in targets)
+		var/mob/living/target = M
+		if (!(target.loc in safe_locations))
+			continue
+		var/target_x = corner.x + (target.x - manifested_at_x)
+		var/target_y = corner.y + (target.y - manifested_at_y)
+		var/turf/target_turf = locate(target_x, target_y, pocket_z)
+		if (!target_turf)
+			continue
+		if (target == guardian.summoner?.current?.pulling)
+			pull_target = target
+		else if (target == guardian.summoner?.current)
+			summoner = target
+		if (target != pull_target)
+			add_effects(target)
+		target.forceMove(target_turf)
+	if (pull_target)
+		to_chat(pull_target, span_danger("All of existence fades out for a moment..."))
+		summoner.start_pulling(pull_target)
+		pull_target.Paralyze(5 SECONDS)
+
+
 /datum/guardian_ability/major/special/pocket/proc/demanifest_dimension()
 	manifesting = TRUE
 	for (var/obj/effect/manifestation/manifestation in manifestations)
@@ -156,9 +258,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		manifestations -= manifestation
 		QDEL_IN(manifestation, 3 SECONDS)
 
-	var/pocket_z = get_pocket_z()
-	if (pocket_z)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/update_pocket_mirror, pocket_z, manifested_at_x, manifested_at_y, manifested_at_z), 3.5 SECONDS)
+	if (pocket_dim)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/update_pocket_mirror, pocket_dim, manifested_at_x, manifested_at_y, manifested_at_z), 3.5 SECONDS)
 
 	addtimer(VARSET_CALLBACK(src, manifesting, FALSE), 3 SECONDS)
 
@@ -235,7 +336,6 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 /obj/effect/proc_holder/spell/self/pocket_dim/Click()
 	if (!guardian || !istype(guardian))
 		return
-	var/mob/living/summoner = guardian.summoner?.current
 	if (!guardian.is_deployed())
 		to_chat(guardian, span_red(span_bold("You must be manifested to summon the pocket dimension!</span>")))
 		return
@@ -261,28 +361,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		guardian.remote_control = null
 	if (LAZYLEN(PD.manifestations))
 		guardian.visible_message(span_warning("The distorted space surronding [guardian] is sucked in!"))
-		var/list/people_to_suck_in = list(guardian)
-		if (summoner)
-			people_to_suck_in += summoner
-			for (var/mob/living/L in summoner.hasparasites())
-				people_to_suck_in |= L
-		var/real_max = PD.manifested_at_x
-		var/real_may = PD.manifested_at_y
-		for (var/mob/living/L in people_to_suck_in)
-			if (L.x > real_max && L.y > PD.manifested_at_y && L.x < real_max + 8 && L.y < PD.manifested_at_y + 8 && L.z == PD.manifested_at_z)
-				var/manifest_at_x = L.x - real_max + 1
-				var/manifest_at_y = L.y - real_may + 1
-				var/atom/movable/pull = L.pulling
-				if (pull && ((isobj(pull) && !pull.anchored) || (isliving(pull) && L.grab_state == GRAB_NECK)))
-					pull.forceMove(locate(manifest_at_x, manifest_at_y, pocket_z))
-					if (isliving(pull))
-						var/mob/living/LL = L
-						to_chat(LL, span_danger("All of existence fades out for a moment..."))
-						LL.Paralyze(5 SECONDS)
-				L.forceMove(locate(manifest_at_x, manifest_at_y, pocket_z))
-				PD.add_effects(L)
-				if (pull)
-					L.start_pulling(pull)
+		PD.eye.forceMove(get_turf(guardian))
+		PD.bring_mobs_into_pocket_dimension()
 		PD.demanifest_dimension()
 		charge_counter = 0
 		start_recharge()
@@ -290,34 +370,12 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	else
 		if (get_final_z(guardian) == pocket_z)
 			PD.manifest_dimension(TRUE)
-			var/list/people_to_suck_out = list(guardian)
-			if (summoner)
-				people_to_suck_out += summoner
-				for (var/mob/living/L in summoner.hasparasites())
-					people_to_suck_out |= L
-			for (var/mob/living/L in people_to_suck_out)
-				var/manifest_at_x = PD.manifested_at_x + L.x - 1
-				var/manifest_at_y = PD.manifested_at_y + L.y - 1
-				var/atom/movable/pull = L.pulling
-				if (pull && ((isobj(pull) && !pull.anchored) || (isliving(pull) && L.grab_state >= GRAB_NECK)))
-					pull.forceMove(locate(manifest_at_x, manifest_at_y, PD.manifested_at_z))
-					if (pull.alpha == 255)
-						pull.alpha = 0
-						animate(pull, alpha = 255, time = 3 SECONDS, easing = LINEAR_EASING)
-					if (isliving(pull))
-						var/mob/living/LL = L
-						to_chat(LL, span_danger("All of existence fades out for a moment..."))
-						LL.Paralyze(5 SECONDS)
-				if (L.alpha == 255)
-					L.alpha = 0
-					animate(L, alpha = 255, time = 3 SECONDS, easing = LINEAR_EASING)
-				PD.take_effects(L)
-				L.forceMove(locate(manifest_at_x, manifest_at_y, PD.manifested_at_z))
-				if (pull)
-					L.start_pulling(pull)
+			PD.manifest_mobs_into_real_world()
+			PD.eye.forceMove(get_turf(guardian))
 		else
 			guardian.visible_message(span_warning("[guardian] emits a burst of energy, distorting the space around it!"))
 			PD.manifest_dimension()
+			PD.eye.forceMove(get_turf(guardian))
 		charge_counter = max(0, charge_max - 3 SECONDS)
 		start_recharge()
 		action.UpdateButtonIcon()
@@ -378,6 +436,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	icon_state = "0"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	planetary_atmos = TRUE
+	flags_1 = NOJAUNT_1
 	var/next_animate = 0
 
 /turf/open/indestructible/pocketspace/Initialize()
@@ -410,9 +469,9 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 /mob/camera/aiEye/remote/pocket
 	name = "Inactive Guardian Eye"
 	move_on_shuttle = TRUE
+	use_static = USE_STATIC_NONE
 	var/mob/living/simple_animal/hostile/guardian/guardian
 	var/datum/guardian_ability/major/special/pocket/guardian_ability
-	var/pocket_z
 
 /mob/camera/aiEye/remote/pocket/setLoc()
 	. = ..()
@@ -421,21 +480,24 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		guardian_ability.manifested_at_x = clamp(T.x, 1, world.maxx)
 		guardian_ability.manifested_at_y = clamp(T.y, 1, world.maxy)
 		guardian_ability.manifested_at_z = T.z
-		if (pocket_z)
-			if (guardian_ability.manifesting || LAZYLEN(guardian_ability.manifestations))
-				destroy_pocket_mirror(pocket_z)
-			else
-				update_pocket_mirror(pocket_z, T.x, T.y, T.z)
+		if (guardian_ability.manifesting || LAZYLEN(guardian_ability.manifestations))
+			destroy_pocket_mirror(guardian_ability.pocket_dim)
+		else
+			update_pocket_mirror(guardian_ability.pocket_dim, T.x, T.y, T.z)
 
-/proc/update_pocket_mirror(pocket_z, sx, sy, sz)
-	for (var/T in block(locate(2, 2, pocket_z), locate(8, 8, pocket_z)))
+/proc/update_pocket_mirror(pocket_dim, sx, sy, sz)
+	var/turf/bl_corner = GLOB.pocket_corners[pocket_dim]["bl-corner"]
+	var/turf/tr_corner = GLOB.pocket_corners[pocket_dim]["tr-corner"]
+	for (var/T in block(bl_corner, tr_corner))
 		var/turf/open/indestructible/pocketspace/pocket_space = T
 		if (pocket_space && istype(pocket_space))
 			pocket_space.vis_contents.Cut()
-			pocket_space.vis_contents += locate(sx + pocket_space.x - 1, sy + pocket_space.y - 1, sz)
+			pocket_space.vis_contents += locate(sx + (pocket_space.x - bl_corner.x), sy + (pocket_space.y - bl_corner.y), sz)
 
-/proc/destroy_pocket_mirror(pocket_z)
-	for (var/T in block(locate(2, 2, pocket_z), locate(8, 8, pocket_z)))
+/proc/destroy_pocket_mirror(pocket_dim)
+	var/turf/bl_corner = GLOB.pocket_corners[pocket_dim]["bl-corner"]
+	var/turf/tr_corner = GLOB.pocket_corners[pocket_dim]["tr-corner"]
+	for (var/T in block(bl_corner, tr_corner))
 		var/turf/open/indestructible/pocketspace/PS = T
 		if (PS && istype(PS))
 			PS.vis_contents.Cut()
