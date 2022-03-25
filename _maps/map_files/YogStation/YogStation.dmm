@@ -53932,31 +53932,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"qrP" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat  Antechamber";
-	dir = 8;
-	network = list("minisat","ss13")
-	},
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/doorButtons/airlock_controller{
-	idExterior = "ai_core_airlock_exterior";
-	idInterior = "ai_core_airlock_interior";
-	idSelf = "ai_core_airlock_control";
-	pixel_x = 25;
-	pixel_y = 7
-	},
-/obj/machinery/doorButtons/access_button{
-	idDoor = "ai_core_airlock_interior";
-	idSelf = "ai_core_airlock_control";
-	pixel_x = 23;
-	pixel_y = -7
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/aisat_interior)
 "qsa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -57171,6 +57146,31 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"snx" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "MiniSat  Antechamber";
+	dir = 8;
+	network = list("minisat","ss13")
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/doorButtons/airlock_controller{
+	idExterior = "ai_core_airlock_exterior";
+	idInterior = "ai_core_airlock_interior";
+	idSelf = "ai_core_airlock_control";
+	pixel_x = 25;
+	pixel_y = 7
+	},
+/obj/machinery/doorButtons/access_button{
+	idDoor = "ai_core_airlock_exterior";
+	idSelf = "ai_core_airlock_control";
+	pixel_x = 23;
+	pixel_y = -7
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/aisat_interior)
 "snD" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -108112,7 +108112,7 @@ igK
 iaT
 pnH
 swt
-qrP
+snx
 fpW
 jmx
 eOj
