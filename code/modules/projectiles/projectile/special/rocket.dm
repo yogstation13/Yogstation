@@ -82,6 +82,7 @@
 
 /obj/item/projectile/bullet/cball/on_hit(atom/target, blocked=0)
 	var/mob/living/carbon/human/H = firer
+	var/atom/throw_target = get_edge_target_turf(target, H.dir)
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 
 		..()
@@ -92,6 +93,5 @@
 				var/mob/living/carbon/C = L
 				var/mob/M = firer
 				if(istype(M))
-					C.visible_message(span_danger("[L] is pulled by [H]'s tentacle!"),span_userdanger("A tentacle grabs you and pulls you towards [H]!"))
-					C.throw_at(get_step_towards(H,C), 8, 2)
+					C.throw_at(throw_target, 5, 4, H, 3)
 					return BULLET_ACT_HIT
