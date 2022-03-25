@@ -1,0 +1,6 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "crafted structures now have their own crafting category because having everything in misc only works for so long"
+  - tweak: "extendohand is now in the weapons category"
+  - tweak: "the flashlight eyes are in the robot category"
