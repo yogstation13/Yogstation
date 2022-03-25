@@ -65276,12 +65276,6 @@
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
 "eno" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32;
 	pixel_y = 0
@@ -65289,6 +65283,12 @@
 /obj/machinery/camera{
 	c_tag = "Atmospherics Tanks East";
 	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -67408,6 +67408,27 @@
 /obj/structure/table/glass,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"gxv" = (
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/storage/lockbox/vialbox/blood{
+	pixel_x = -4;
+	pixel_y = 11
+	},
+/obj/item/healthanalyzer{
+	pixel_x = 3;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "gxY" = (
 /obj/machinery/camera{
 	c_tag = "Club - Aft";
@@ -68042,31 +68063,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"hkb" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Brig Infirmary Maintenance";
-	req_access_txt = "63"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "hkc" = (
 /obj/structure/chair/comfy/black,
 /turf/open/floor/plasteel,
@@ -71980,6 +71976,31 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"lqR" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Brig Infirmary Maintenance";
+	req_access_txt = "74"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "lqY" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -74170,6 +74191,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "nOu" = (
@@ -75555,27 +75582,6 @@
 /obj/item/reagent_containers/syringe,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"pss" = (
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/storage/lockbox/vialbox/virology{
-	pixel_x = -4;
-	pixel_y = 11
-	},
-/obj/item/healthanalyzer{
-	pixel_x = 3;
-	pixel_y = -1
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "puB" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced{
@@ -79859,6 +79865,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"tNq" = (
+/mob/living/simple_animal/pet/snail/gary,
+/turf/open/floor/carpet,
+/area/library)
 "tND" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
@@ -103769,7 +103779,7 @@ bwc
 bwc
 bwc
 bwc
-bwc
+tNq
 bwc
 bnK
 boe
@@ -106804,7 +106814,7 @@ aax
 aaf
 lnX
 lnX
-hkb
+lqR
 lnX
 lnX
 lnX
@@ -108343,7 +108353,7 @@ abe
 ahw
 air
 ahx
-pss
+gxv
 alE
 alp
 szL
