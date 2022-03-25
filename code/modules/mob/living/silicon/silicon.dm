@@ -385,18 +385,16 @@
 	medsensor.add_hud_to(src)
 	diagsensor.add_hud_to(src)
 
-/mob/living/silicon/proc/toggle_sensors(silent = FALSE)
+/mob/living/silicon/proc/toggle_sensors()
 	if(incapacitated())
 		return
 	sensors_on = !sensors_on
 	if (!sensors_on)
-		if(!silent)
-			to_chat(src, "Sensor overlay deactivated.")
+		to_chat(src, "Sensor overlay deactivated.")
 		remove_sensors()
 		return
 	add_sensors()
-	if(!silent)
-		to_chat(src, "Sensor overlay activated.")
+	to_chat(src, "Sensor overlay activated.")
 
 /mob/living/silicon/proc/GetPhoto(mob/user)
 	if (aicamera)

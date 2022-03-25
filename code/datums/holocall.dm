@@ -383,12 +383,6 @@
 /datum/preset_holoimage/ai/ai
 	nonhuman_mobtype = /mob/living/silicon/ai
 
-/datum/preset_holoimage/ai/core
-	nonhuman_mobtype = /obj/machinery/ai/data_core
-
-/datum/preset_holoimage/ai/upgradeboard
-	nonhuman_mobtype = /obj/machinery/ai/expansion_card_holder
-
 /obj/item/disk/holodisk/donutstation/whiteship
 	name = "Blackbox Print-out #DS024"
 	desc = "A holodisk containing the last viable recording of DS024's blackbox."

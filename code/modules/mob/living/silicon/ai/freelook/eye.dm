@@ -71,7 +71,7 @@
 
 /mob/camera/aiEye/proc/setLoc(T, force_update = FALSE)
 	if(ai)
-		if(!(isturf(ai.loc) || istype(ai.loc, /obj/machinery/ai/data_core)))
+		if(!isturf(ai.loc))
 			return
 		T = get_turf(T)
 		if(!force_update && (T == get_turf(src)) )
@@ -132,7 +132,7 @@
 /client/proc/AIMove(n, direct, mob/living/silicon/ai/user)
 
 	var/initial = initial(user.sprint)
-	var/max_sprint = user.max_camera_sprint
+	var/max_sprint = 50
 
 	if(user.cooldown && user.cooldown < world.timeofday) // 3 seconds
 		user.sprint = initial
@@ -161,7 +161,7 @@
 	cameraFollow = null
 	unset_machine()
 
-	if(isvalidAIloc(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
+	if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
 		to_chat(src, "ERROR: Eyeobj not found. Creating new eye...")
 		create_eye()
 

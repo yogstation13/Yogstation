@@ -2,6 +2,14 @@
 //////////AI Module Disks//////////
 ///////////////////////////////////
 
+/datum/design/board/aicore
+	name = "AI Design (AI Core)"
+	desc = "Allows for the construction of circuit boards used to build new AI cores."
+	id = "aicore"
+	build_path = /obj/item/circuitboard/aicore
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/safeguard_module
 	name = "Module Design (Safeguard)"
 	desc = "Allows for the construction of a Safeguard AI Module."
@@ -252,25 +260,5 @@
 	id = "druid_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
 	build_path = /obj/item/aiModule/core/full/druid
-	category = list("AI Modules")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
-
-//AI CPU + RAM
-
-/datum/design/board/processing_card_1
-	name = "AI CPU board (Tier 1)"
-	desc = "Allows for the construction of a basic AI processing board."
-	id = "ai_cpu_1"
-	materials = list(/datum/material/glass = 2000, /datum/material/gold = 4000)
-	build_path = /obj/item/processing_card
-	category = list("AI Modules")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
-
-/datum/design/board/memory_card_1
-	name = "AI Memory board (Tier 1)"
-	desc = "Allows for the construction of a basic AI memory board."
-	id = "ai_memory_1"
-	materials = list(/datum/material/glass = 2000, /datum/material/gold = 4000)
-	build_path = /obj/item/memory_card
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

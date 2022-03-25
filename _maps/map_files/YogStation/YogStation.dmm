@@ -32787,10 +32787,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"dpE" = (
-/obj/machinery/ai/expansion_card_holder/prefilled,
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "dpF" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible,
 /obj/effect/landmark/xeno_spawn,
@@ -35525,7 +35521,6 @@
 /obj/structure/sign/plaques/cave{
 	pixel_y = 32
 	},
-/obj/item/circuitboard/computer/ai_upload_download,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "feu" = (
@@ -39613,15 +39608,6 @@
 "hOT" = (
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"hOU" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/computer/ai_server_console{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "hPk" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -40494,7 +40480,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "inN" = (
-/obj/machinery/ai/data_core/primary,
+/obj/effect/landmark/start/ai,
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "inQ" = (
@@ -44099,10 +44085,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"kvI" = (
-/obj/machinery/ai/expansion_card_holder,
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/ai_monitored/secondarydatacore)
 "kvX" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -44198,9 +44180,6 @@
 "kzW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
-	},
-/obj/structure/sign/plaques/ai_password{
-	pixel_x = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
@@ -47621,7 +47600,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/status_display/ai_core,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "mJy" = (
@@ -51259,7 +51237,7 @@
 /obj/item/stack/cable_coil,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/landmark/start/ai,
+/obj/effect/landmark/start/ai/secondary,
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "oLx" = (
@@ -52512,9 +52490,9 @@
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "pDa" = (
-/obj/machinery/ai/data_core,
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/ai_monitored/secondarydatacore)
+/obj/effect/landmark/start/ai/secondary,
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "pDG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -54466,7 +54444,6 @@
 /area/maintenance/solars/starboard/fore)
 "qJg" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/ai/expansion_card_holder/prefilled,
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "qJt" = (
@@ -54584,9 +54561,6 @@
 /area/ai_monitored/turret_protected/ai)
 "qNr" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/computer/ai_resource_distribution{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
@@ -58588,9 +58562,6 @@
 /obj/machinery/newscaster/security_unit{
 	pixel_x = 28
 	},
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 8
-	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
 "tnK" = (
@@ -58869,9 +58840,6 @@
 /area/medical/medbay/central)
 "tuX" = (
 /obj/machinery/light,
-/obj/machinery/computer/ai_server_console{
-	dir = 1
-	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
 "tva" = (
@@ -66093,9 +66061,6 @@
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
-	},
-/obj/machinery/computer/ai_control_console{
-	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -109916,7 +109881,7 @@ inN
 tkF
 wGq
 hyK
-hOT
+pDa
 cva
 cva
 mGQ
@@ -110173,7 +110138,7 @@ mRq
 jXD
 pft
 fhN
-dpE
+hOT
 cva
 cva
 pEf
@@ -116819,7 +116784,7 @@ oGM
 oxg
 oxg
 dBH
-pDa
+tXb
 oGM
 oGM
 vJS
@@ -117330,10 +117295,10 @@ asW
 oGM
 nnm
 wQd
-hOU
+qNr
 oxg
 tQv
-kvI
+tXb
 oGM
 oGM
 vJS

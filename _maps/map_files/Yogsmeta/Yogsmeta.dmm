@@ -69841,9 +69841,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
-/obj/structure/sign/plaques/ai_password{
-	pixel_x = 32
-	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "jlR" = (
@@ -72351,7 +72348,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "lEF" = (
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/effect/landmark/start/ai/secondary,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/ai_monitored/turret_protected/ai)
 "lFX" = (
@@ -73184,7 +73181,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/ai/data_core,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/science/server)
 "mDW" = (
@@ -75756,7 +75752,7 @@
 	pixel_y = -23;
 	req_access_txt = "16"
 	},
-/obj/machinery/ai/data_core/primary,
+/obj/effect/landmark/start/ai,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/ai_monitored/turret_protected/ai)
 "pBH" = (
@@ -78056,7 +78052,6 @@
 "rTF" = (
 /obj/structure/table,
 /obj/item/aicard,
-/obj/item/circuitboard/computer/ai_upload_download,
 /obj/item/disk/holodisk/tutorial/AICore,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -81343,12 +81338,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"vjL" = (
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "vkS" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -83156,7 +83145,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/status_display/ai_core,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "xey" = (
@@ -83549,9 +83537,6 @@
 	c_tag = "Telecomms - Control Room";
 	dir = 1;
 	network = list("ss13","tcomms")
-	},
-/obj/machinery/computer/ai_control_console{
-	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
@@ -83955,7 +83940,6 @@
 /obj/machinery/status_display/ai{
 	pixel_y = 31
 	},
-/obj/machinery/computer/ai_server_console,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "ycD" = (
@@ -139239,7 +139223,7 @@ btL
 syj
 bxq
 bgM
-vjL
+bxq
 bCE
 bCE
 bCE

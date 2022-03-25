@@ -395,14 +395,6 @@ const PageMain = (props, context) => {
             onClick={() => act("printSpare")}
           />}
 
-          {!!canPrintIdAndCode && <Button
-            icon="key"
-            disabled={!importantActionReady}
-            content="Print AI Control Code"
-            tooltip={"Prints a password for making new AI control consoles. Will cancel all previous passwords."}
-            onClick={() => act("printAIControlCode")}
-          />}
-
           {!!canToggleEmergencyAccess && <Button.Confirm
             icon="id-card-o"
             content={`${emergencyAccess ? "Disable" : "Enable"} Emergency Maintenance Access`}

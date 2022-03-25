@@ -1002,13 +1002,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	apply_clickcatcher()
 	mob.reload_fullscreen()
 
-	if(mob && istype(mob.hud_used, /datum/hud/ai))
-		if(new_size == CONFIG_GET(string/default_view) || new_size == CONFIG_GET(string/default_view_square))
-			QDEL_NULL(mob.hud_used)
-			mob.create_mob_hud()
-			mob.hud_used.show_hud(mob.hud_used.hud_version)
-			mob.hud_used.update_ui_style(ui_style2icon(prefs.UI_style))
-
 	if (isliving(mob))
 		var/mob/living/M = mob
 		M.update_damage_hud()

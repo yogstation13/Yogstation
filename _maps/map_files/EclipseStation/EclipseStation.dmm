@@ -11688,7 +11688,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "azC" = (
-/obj/machinery/ai/data_core/primary,
 /obj/item/radio/intercom{
 	freerange = 1;
 	listening = 0;
@@ -44060,7 +44059,6 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/machinery/computer/ai_server_console,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "bNd" = (
@@ -45016,9 +45014,6 @@
 "bOS" = (
 /obj/structure/window/reinforced{
 	layer = 4.1
-	},
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -59456,7 +59451,6 @@
 /area/crew_quarters/heads/hor)
 "cto" = (
 /obj/structure/rack,
-/obj/item/circuitboard/computer/ai_upload_download,
 /obj/item/disk/holodisk/tutorial/AICore,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hor)
@@ -63853,7 +63847,6 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/circuitboard/machine/ai_data_core,
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
@@ -80338,9 +80331,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "djf" = (
-/obj/machinery/computer/ai_server_console{
-	dir = 8
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
 /area/ai_monitored/secondarydatacore)
@@ -83466,11 +83456,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"ihx" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible,
-/obj/machinery/ai/data_core,
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/ai_monitored/secondarydatacore)
 "ihF" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -83822,6 +83807,7 @@
 	dir = 1;
 	network = list("ss13; AI")
 	},
+/obj/effect/landmark/start/ai/secondary,
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
 "iLF" = (
@@ -84400,6 +84386,7 @@
 /area/teleporter)
 "jUn" = (
 /obj/machinery/holopad,
+/obj/effect/landmark/start/ai,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "jVk" = (
@@ -86292,9 +86279,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "nsA" = (
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
@@ -86666,7 +86650,6 @@
 /area/maintenance/department/science)
 "nUq" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
-/obj/machinery/ai/expansion_card_holder,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/ai_monitored/secondarydatacore)
 "nWA" = (
@@ -87863,10 +87846,6 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
 /area/hallway/primary/fore)
-"qxO" = (
-/obj/machinery/status_display/ai_core,
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "qxS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -89306,10 +89285,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
-"sVd" = (
-/obj/machinery/ai/expansion_card_holder/prefilled,
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "sVG" = (
 /obj/structure/mopbucket,
 /turf/open/floor/plasteel,
@@ -90565,9 +90540,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
 	},
-/obj/machinery/computer/ai_control_console{
-	dir = 1
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "vat" = (
@@ -90822,6 +90794,7 @@
 	c_tag = "AI Chamber South";
 	network = list("ss13; AI")
 	},
+/obj/effect/landmark/start/ai/secondary,
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
 "vut" = (
@@ -124779,7 +124752,7 @@ sCA
 oRC
 sCA
 xJf
-ihx
+nUq
 qMa
 cBy
 ddE
@@ -131144,9 +131117,9 @@ akU
 sJx
 vkI
 mxD
-qxO
 sJx
-sVd
+sJx
+sJx
 wkU
 vkI
 sJx
@@ -131660,7 +131633,7 @@ vkI
 bMi
 azC
 bOh
-sVd
+sJx
 wkU
 vkI
 sJx

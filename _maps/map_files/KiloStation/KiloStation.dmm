@@ -84111,7 +84111,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/ai_server_console,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -84627,7 +84626,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/ai/data_core,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/science/server)
 "dYQ" = (
@@ -86249,7 +86247,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/table,
 /obj/item/hand_labeler,
-/obj/item/circuitboard/computer/ai_upload_download,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hor)
 "fMR" = (
@@ -87504,7 +87501,7 @@
 	pixel_y = 24;
 	req_access_txt = "16"
 	},
-/obj/machinery/ai/data_core/primary,
+/obj/effect/landmark/start/ai,
 /turf/open/floor/circuit/red/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "gVj" = (
@@ -91991,9 +91988,6 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/satellite)
 "laJ" = (
@@ -92352,9 +92346,6 @@
 	dir = 1
 	},
 /obj/effect/mapping_helpers/teleport_anchor,
-/obj/structure/sign/plaques/ai_password{
-	pixel_x = -32
-	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/science/server)
 "lzb" = (
@@ -92373,9 +92364,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/computer/ai_control_console{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -100647,7 +100635,7 @@
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
 "umc" = (
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/effect/landmark/start/ai/secondary,
 /turf/open/floor/circuit/red/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "umJ" = (

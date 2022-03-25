@@ -674,28 +674,3 @@
 	build_path = /obj/item/circuitboard/machine/crystallizer
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
-
-/datum/design/board/expansion_card_holder
-	name = "Machine Design (Expansion Card Bus Board)"
-	desc = "The circuit board for an expansion card bus."
-	id = "expansion_card_holder"
-	build_path = /obj/item/circuitboard/machine/expansion_card_holder
-	category = list("Engineering Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
-
-/datum/design/board/ai_data_core
-	name = "Machine Design (AI Data Core Board)"
-	desc = "The circuit board for an AI data core."
-	id = "ai_data_core"
-	build_path = /obj/item/circuitboard/machine/ai_data_core
-	category = list("Engineering Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
-
-
-/datum/design/board/ai_core_display
-	name = "Machine Design (AI Core Display Board)"
-	desc = "The circuit board for an AI core display."
-	id = "ai_core_display"
-	build_path = /obj/item/circuitboard/machine/ai_core_display
-	category = list("Engineering Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
