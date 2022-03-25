@@ -323,7 +323,7 @@
 	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
 
 	if(hurt_limbs.len)
-		for(var/X in hurt_limbs)
+		for(var/obj/item/bodypart/affecting in hurt_limbs)
 			var/obj/item/bodypart/affecting = X
 			if(affecting.heal_damage(0, heal_amt, null, BODYPART_ORGANIC))
 				H.update_damage_overlays()
