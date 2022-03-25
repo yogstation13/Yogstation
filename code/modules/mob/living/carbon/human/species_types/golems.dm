@@ -1429,7 +1429,7 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "pile_wax"
 
-	var/revive_time = 800
+	var/revive_time = 80 SECONDS
 	var/mob/living/carbon/human/wax_golem
 
 /obj/structure/wax_pile/Initialize(mapload, mob/living/carbon/human/H)
