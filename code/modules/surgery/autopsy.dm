@@ -20,7 +20,7 @@
 		return FALSE // performing autopsy on the living is unethical
 
 /datum/surgery_step/autopsy
-	name = "perform autopsy"
+	name = "perform autopsy with a sharp tool"
 	implements = list(TOOL_SCALPEL = 75, /obj/item/kitchen/knife = 30, /obj/item/shard = 15)
 	time = 150
 
@@ -30,12 +30,18 @@
 			"[user] begins to perform surgery on [target]'s chest.")
 
 /datum/surgery_step/autopsy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, span_notice("You succeed in inspecting [target]'s damage."),
-		"[user] successfully inspects [target]'s damage!",
-		"[user] completes the surgery on [target]'s chest.")
-	to_chat(user, span_notice("It seems this dealt the killing blow to [target]: [target.last_damage]"))
-	target.apply_damage(200, BRUTE, "[target_zone]") // you are a very bad doctor
-	return TRUE
+	if(!istype(user.get_inactive_held_item(), /obj/item/detective_scanner)) // Hold forensic scanner!!! Your eyes are not good at detectiving
+		display_results(user, target, span_warning("You did not find any conclusive evidence regarding [target]'s death. Maybe you should hold a forensic scanner?"),
+			span_warning("[user] did not find anything useful regarding [target]'s death. Maybe they should try again."),
+			span_warning("[user] carves some holes into [target]'s chest."))
+		return FALSE
+	else
+		display_results(user, target, span_notice("You succeed in inspecting [target]'s damage."),
+			"[user] successfully inspects [target]'s damage!",
+			"[user] completes the surgery on [target]'s chest.")
+		to_chat(user, span_notice("It seems this dealt the killing blow to [target]: [target.last_damage]"))
+		target.apply_damage(200, BRUTE, "[target_zone]") // you are a very bad doctor
+		return TRUE
 
 /datum/surgery_step/autopsy/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_warning("You did not find any conclusive evidence regarding [target]'s death. Maybe try again?"),
