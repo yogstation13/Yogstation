@@ -164,6 +164,9 @@
 			to_chat(user, span_notice("You detach [A] from [src]."))
 		else
 			to_chat(user, span_notice("You detach [A] from [src] and it falls on the floor."))
+			var/turf/T = get_turf(src)
+			if(!T)
+				T = get_turf(user)
 			A.forceMove(get_turf(src))
 		
 		if(ishuman(loc))
