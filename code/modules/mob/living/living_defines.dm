@@ -127,5 +127,5 @@
 	//Allergies
 	var/allergies
 
-	//Last item/projectile that damaged this mob
+	//Last item/projectile that damaged this mob, not including surgery
 	var/last_damage = ""
