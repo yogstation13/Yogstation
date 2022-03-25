@@ -339,8 +339,3 @@
 /obj/item/storage/backpack/magspear_quiver/PopulateContents()
 	for(var/i in 1 to 20)
 		new /obj/item/throwing_star/magspear(src)
-
-
-
-
-
