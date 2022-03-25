@@ -615,9 +615,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		//if you're working with sprite code i hope this helps because i wish i was dead now.
 			S = GLOB.pod_hair_list[H.dna.features["pod_hair"]]
 			if(S)
-				var/temp_hsv = RGBtoHSV(hair_color)
-				if(ReadHSV(temp_hsv)[3] <= ReadHSV("#7F7F7F")[3])
-					hair_color = H.dna.species.default_color
 				var/hair_state = S.icon_state
 				var/hair_file = S.icon
 				hair_overlay.icon = hair_file
