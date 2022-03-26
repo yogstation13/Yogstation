@@ -1,6 +1,6 @@
 /datum/language/xenocommon
 	name = "Xenocommon"
-	desc = "The tongue instictively known by xenomorph and their cousins the polysmorphs."
+	desc = "The tongue instictively known by xenomorphs and their cousins the polysmorphs."
 	speech_verb = "hisses"
 	ask_verb = "hisses"
 	exclaim_verb = "hisses"
