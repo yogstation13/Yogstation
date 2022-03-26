@@ -7,7 +7,7 @@
 #define HUMAN 1
 #define MONKEY 2
 #define ROBOT 4
-#define POLYSMORPH 8
+#define XENO 8
 #define DRACONIC 16
 #define BEACHTONGUE 32
 #define SYLVAN 64
