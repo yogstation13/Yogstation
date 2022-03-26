@@ -42,7 +42,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/lair/update_explanation_text()
-	explanation_text = "Create a lair by claiming a coffin, and protect it until the end of the shift."//  Make sure to keep it safe!"
+	explanation_text = "Claim a coffin by entering it to create your lair, and protect it until the end of the shift."//  Make sure to keep it safe!"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/lair/check_completion()
@@ -217,7 +217,7 @@
 
 // GENERATE!
 /datum/objective/bloodsucker/gourmand/New()
-	target_amount = rand(650,1250)
+	target_amount = rand(1250,2000)
 	..()
 
 // EXPLANATION

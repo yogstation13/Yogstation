@@ -318,7 +318,7 @@
 	if(IS_BLOODSUCKER(target) || IS_VASSAL(target))
 		return
 	if(first_hit)
-		target.Unconscious(50,0)
+		target.Unconscious(5 SECONDS,0)
 	target.Paralyze(40 + 5 * level_current)
 
 /datum/action/bloodsucker/feed/DeactivatePower()

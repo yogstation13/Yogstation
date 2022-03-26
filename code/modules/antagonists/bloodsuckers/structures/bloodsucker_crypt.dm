@@ -105,7 +105,7 @@
 	Ghost_desc = "This is a Vassal rack, which allows Bloodsuckers to thrall crewmembers into loyal minions."
 	Vamp_desc = "This is the Vassal rack, which allows you to thrall crewmembers into loyal minions in your service.\n\
 		Simply click and hold on a victim, and then drag their sprite on the vassal rack. Click on help intent on the vassal rack to unbuckle them.\n\
-		To convert into a Vassal, repeatedly click on the persuasion rack. The time required scales with the tool in your off hand. This costs Blood to do.\n\
+		To convert into a Vassal, repeatedly click on the persuasion rack while NOT on help intent. The time required scales with the tool in your off hand. This costs Blood to do.\n\
 		Once you have Vassals ready, you are able to select a Favorite Vassal;\n\
 		Click the Rack as a Vassal is buckled onto it to turn them into your Favorite. This can only be done once, so choose carefully!\n\
 		This process costs 150 Blood to do, and will make your Vassal unable to be deconverted, outside of you reaching Final Death."
@@ -301,7 +301,8 @@
 	bloodsuckerdatum.AddBloodVolume(-TORTURE_CONVERSION_COST)
 	if(bloodsuckerdatum && bloodsuckerdatum.attempt_turn_vassal(target))
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-			remove_loyalties(target)
+			to_chat(user, span_danger("<i>They're mindshielded! Break their mindshield with a candelabrum or surgery before continuing!</i>"))
+			return
 		bloodsuckerdatum.bloodsucker_level_unspent++
 		user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
 		target.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
@@ -342,7 +343,7 @@
 				torture_dmg_burn += 5
 		held_item.play_tool_sound(target)
 	/// Minimum 5 seconds.
-	torture_time = max(50, torture_time * 10)
+	torture_time = max(5 SECONDS, torture_time SECONDS)
 	/// Now run process.
 	if(!do_mob(user, target, torture_time * mult))
 		return FALSE
@@ -366,8 +367,6 @@
 		if(use_lock && target && target.client)
 			to_chat(user, span_notice("[target] has been given the opportunity for servitude. You await their decision..."))
 			var/alert_text = "You are being tortured! Do you want to give in and pledge your undying loyalty to [user]?"
-		/*	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-				alert_text += "\n\nYou will no longer be loyal to the station!" */
 			alert_text += "\n\nYou will not lose your current objectives, but they come second to the will of your new master!"
 			to_chat(target, span_cultlarge("THE HORRIBLE PAIN! WHEN WILL IT END?!"))
 			var/list/torture_icons = list(
@@ -388,7 +387,7 @@
 
 /obj/structure/bloodsucker/vassalrack/proc/RequireDisloyalty(mob/living/user, mob/living/target)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
-	return bloodsuckerdatum.AmValidAntag(target) || HAS_TRAIT(target, TRAIT_MINDSHIELD)
+	return bloodsuckerdatum.AmValidAntag(target)
 
 /obj/structure/bloodsucker/vassalrack/proc/disloyalty_accept(mob/living/target)
 	// FAILSAFE: Still on the rack?
@@ -396,8 +395,6 @@
 		return
 	// NOTE: You can say YES after torture. It'll apply to next time.
 	disloyalty_confirm = TRUE
-	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-		to_chat(target, span_boldnotice("You give in to the will of your torturer. If they are successful, you will no longer be loyal to the station!"))
 
 /obj/structure/bloodsucker/vassalrack/proc/disloyalty_refuse(mob/living/target)
 	// FAILSAFE: Still on the rack?
@@ -408,12 +405,6 @@
 		return
 	to_chat(target, span_notice("You refuse to give in! You <i>will not</i> break!"))
 
-/obj/structure/bloodsucker/vassalrack/proc/remove_loyalties(mob/living/target)
-	// Find Mind Implant & Destroy
-	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-		for(var/obj/item/implant/mindshield/L in target)
-			if(L)
-				qdel(L)
 
 /obj/structure/bloodsucker/vassalrack/proc/offer_favorite_vassal(mob/living/carbon/human/user, mob/living/target)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -445,10 +436,9 @@
 	Ghost_desc = "This is a magical candle which drains at the sanity of non Bloodsuckers and Vassals.\n\
 		Vassals can turn the candle on manually, while Bloodsuckers can do it from a distance."
 	Vamp_desc = "This is a magical candle which drains at the sanity of mortals who are not under your command while it is active.\n\
-		You can right-click on it from any range to turn it on remotely, or simply be next to it and click on it to turn it on and off normally."
+		You can click on it from any range to turn it on remotely, clicking on it with a mindshielded individual buckled will start to disable their mindshields."
 	Vassal_desc = "This is a magical candle which drains at the sanity of the fools who havent yet accepted your master, as long as it is active.\n\
-		You can turn it on and off by clicking on it while you are next to it.\n\
-		If your Master is part of the Ventrue Clan, they utilize this to upgrade their Favorite Vassal."
+		You can turn it on and off by clicking on it while you are next to it."
 	Hunter_desc = "This is a blue Candelabrum, which causes insanity to those near it while active."
 	var/lit = FALSE
 
@@ -508,6 +498,29 @@
 		return
 	if(!anchored)
 		return
+	// Checks: They're Buckled & Alive.
+	if(IS_BLOODSUCKER(user))
+		if(!has_buckled_mobs())
+			toggle()
+			return
+		var/mob/living/carbon/target = pick(buckled_mobs)
+		if(target.stat >= DEAD || user.a_intent == INTENT_HELP)
+			unbuckle_mob(target)
+			return
+		if(user.blood_volume >= 150)
+			switch(input("Do you wish to spend 150 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
+				if("Yes")
+					user.blood_volume -= 150
+					if(!do_mob(user, target, 60 SECONDS))
+						to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
+						return FALSE
+					remove_loyalties(target)
+					to_chat(user, span_notice("You deactivated [target]'s mindshield!"))
+					return
+		else
+			to_chat(user, span_danger("You don't have enough Blood to deactivate [target]'s mindshield."))
+			return
+
 	if(IS_BLOODSUCKER(user) || IS_VASSAL(user))
 		toggle()
 
@@ -519,18 +532,9 @@
 	/// Default checks
 	if(!target.Adjacent(src) || target == user || !isliving(user) || has_buckled_mobs() || user.incapacitated() || target.buckled)
 		return
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
-	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(target)
-	/// Are you even a Bloodsucker?
-	if(!bloodsuckerdatum || !vassaldatum)
+	/// Are they mindshielded or a bloodsucker/vassal?
+	if(!HAS_TRAIT(target, TRAIT_MINDSHIELD))
 		return
-	/// Are they a Favorite Vassal?
-	if(!vassaldatum.favorite_vassal)
-		return
-	/// They are a Favorite vassal, but are they OUR Vassal?
-	if(!vassaldatum.master == bloodsuckerdatum)
-		return
-
 	/// Good to go - Buckle them!
 	if(do_mob(user, target, 5 SECONDS))
 		attach_mob(target, user)
@@ -548,6 +552,12 @@
 		return
 	update_icon()
 
+/obj/structure/bloodsucker/candelabrum/proc/remove_loyalties(mob/living/target, mob/living/user)
+	// Find Mindshield implant & destroy, takes a good while.
+	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+		for(var/obj/item/implant/mindshield/L in target)
+			if(L)
+				qdel(L)
 /// Attempt Unbuckle
 /obj/structure/bloodsucker/candelabrum/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	. = ..()

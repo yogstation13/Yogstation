@@ -43,12 +43,18 @@
 // Modify description to add cost.
 /datum/action/bloodsucker/New(Target)
 	. = ..()
+	UpdateDesc()
+
+/datum/action/bloodsucker/proc/UpdateDesc()
+	desc = initial(desc)
 	if(bloodcost > 0)
 		desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)
 		desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] Blood maintain active.</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
 		desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
+	if(level_current > 0)
+		desc += "<br><br><b>LEVEL:</b><i> [name] is currently level [level_current].</i>"
 
 /datum/action/bloodsucker/Destroy()
 	bloodsuckerdatum_power = null
@@ -91,7 +97,7 @@
 		return FALSE
 	// Cooldown?
 	if(!COOLDOWN_FINISHED(src, bloodsucker_power_cooldown))
-		to_chat(owner, "[src] on cooldown!")
+		to_chat(owner, span_warning("[src] on cooldown!"))
 		return FALSE
 	// Have enough blood? Bloodsuckers in a Frenzy don't need to pay them
 	var/mob/living/user = owner
@@ -173,7 +179,6 @@
 	active = TRUE
 	if(power_flags & BP_AM_TOGGLE)
 		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/UsePower)
-
 	owner.log_message("used [src].", LOG_ATTACK, color="red")
 	UpdateButtonIcon()
 

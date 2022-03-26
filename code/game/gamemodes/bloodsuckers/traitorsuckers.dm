@@ -14,6 +14,7 @@
 	announce_text = "There are vampiric monsters on the station along with some syndicate operatives out for their own gain! Do not let the bloodsuckers or the traitors succeed!"
 
 	var/list/possible_bloodsuckers = list()
+	var/list/bloodsuckers = list()
 	var/const/bloodsucker_amount = 2
 
 /datum/game_mode/traitor/bloodsucker/can_start()
@@ -26,16 +27,16 @@
 	return TRUE
 
 /datum/game_mode/traitor/bloodsucker/pre_setup()
+
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
-
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
 	var/list/datum/mind/possible_bloodsuckers = get_players_for_role(ROLE_BLOODSUCKER)
 
 	var/num_bloodsuckers = 1
-	num_bloodsuckers = max(1, min(num_players(), bloodsucker_amount/2))
+	num_bloodsuckers = clamp(round(bloodsucker_amount/2), 1, num_players())
 
 	if(possible_bloodsuckers.len>0)
 		for(var/j = 0, j < num_bloodsuckers, j++)
@@ -45,15 +46,14 @@
 			antag_candidates -= bloodsucker
 			possible_bloodsuckers -= bloodsucker
 			bloodsucker.special_role = ROLE_BLOODSUCKER
-			possible_bloodsuckers += bloodsucker
+			bloodsuckers += bloodsucker
 			bloodsucker.restricted_roles = restricted_jobs
-		. = ..()
-		return
+		return ..()
 	else
 		return FALSE
 
 /datum/game_mode/traitor/bloodsucker/post_setup()
-	for(var/datum/mind/bloodsucker in possible_bloodsuckers)
+	for(var/datum/mind/bloodsucker in bloodsuckers)
 		bloodsucker.add_antag_datum(/datum/antagonist/bloodsucker)
 	return ..()
 

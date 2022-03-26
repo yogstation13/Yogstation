@@ -55,7 +55,7 @@
 			amDay = FALSE
 			issued_XP = FALSE
 			time_til_cycle = TIME_BLOODSUCKER_NIGHT
-			message_admins("BLOODSUCKER NOTICE: Daylight Ended. Resetting to Night (Lasts for [TIME_BLOODSUCKER_NIGHT / 60] minutes.")
+			message_admins("BLOODSUCKER NOTICE: Daylight Ended. Resetting to Night (Lasts for [TIME_BLOODSUCKER_NIGHT / 60] minutes.)")
 			for(var/datum/mind/bloodsucker_minds as anything in get_antag_minds(/datum/antagonist/bloodsucker))
 				if(!istype(bloodsucker_minds) || !istype(bloodsucker_minds.current))
 					continue
@@ -71,7 +71,7 @@
 					"")
 				give_home_power()
 			if(TIME_BLOODSUCKER_DAY_FINAL_WARN)
-				message_admins("BLOODSUCKER NOTICE: Daylight beginning in [TIME_BLOODSUCKER_DAY_FINAL_WARN] seconds.)")
+				message_admins("BLOODSUCKER NOTICE: Daylight beginning in [TIME_BLOODSUCKER_DAY_FINAL_WARN] seconds.")
 				warn_daylight(2, span_userdanger("Solar Flares are about to bombard the station! You have [TIME_BLOODSUCKER_DAY_FINAL_WARN] seconds to find cover!"), \
 					span_danger("In [TIME_BLOODSUCKER_DAY_FINAL_WARN / 10], your master will be at risk of a Solar Flare. Make sure they find cover!"), \
 					"")
@@ -82,6 +82,16 @@
 			if(0)
 				amDay = TRUE
 				time_til_cycle = TIME_BLOODSUCKER_DAY
+				for(var/datum/mind/bloodsucker_minds as anything in get_antag_minds(/datum/antagonist/bloodsucker))
+					if(!istype(bloodsucker_minds) || !istype(bloodsucker_minds.current))
+						continue
+					var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
+					if(!istype(bloodsuckerdatum))
+						continue
+					if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
+						if(!iscarbon(bloodsucker_minds.current))
+							qdel(bloodsucker_minds.current)
+						give_transform_power()
 				warn_daylight(4, span_userdanger("Solar flares bombard the station with deadly UV light!<br><span class = ''>Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk Final Death!"), \
 					span_userdanger("Solar flares bombard the station with UV light!"), \
 					span_userdanger("The sunlight is visible throughout the station, the Bloodsuckers must be asleep by now!"))
@@ -154,7 +164,7 @@
 /// It's late, give the "Vanishing Act" (gohome) power to Bloodsuckers.
 /obj/effect/sunlight/proc/give_home_power()
 	for(var/datum/mind/bloodsucker_minds as anything in get_antag_minds(/datum/antagonist/bloodsucker))
-		if(!istype(bloodsucker_minds) || !istype(bloodsucker_minds.current))
+		if(!istype(bloodsucker_minds) || !istype(bloodsucker_minds.current) || !iscarbon(bloodsucker_minds.current))
 			continue
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
 		if(istype(bloodsuckerdatum) && bloodsuckerdatum.lair && !(locate(/datum/action/bloodsucker/gohome) in bloodsuckerdatum.powers))
@@ -170,3 +180,11 @@
 			if(istype(power, /datum/action/bloodsucker/gohome))
 				bloodsuckerdatum.powers -= power
 				power.Remove(bloodsucker_minds.current)
+
+/obj/effect/sunlight/proc/give_transform_power()
+	for(var/datum/mind/bloodsucker_minds as anything in get_antag_minds(/datum/antagonist/bloodsucker))
+		if(!istype(bloodsucker_minds) || !istype(bloodsucker_minds.current))
+			continue
+		var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
+		if(!(locate(/datum/action/bloodsucker/gangrel/transform) in bloodsuckerdatum.powers))
+			bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/gangrel/transform)

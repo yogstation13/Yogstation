@@ -1,12 +1,12 @@
 /datum/action/bloodsucker/targeted/lunge
 	name = "Predatory Lunge"
-	desc = "Spring at your target to grapple them without warning, or tear the dead's heart out. Attacks from concealment or the rear may even knock them down if strong enough."
+	desc = "Spring at a humanoid to grapple them without warning, or tear the dead's heart out. Attacks from concealment or the rear may even knock them down if strong enough."
 	button_icon_state = "power_lunge"
 	power_explanation = "<b>Predatory Lunge</b>:\n\
 		Click any player to instantly dash at them, aggressively grabbing them.\n\
 		You cannot use the Power if you are aggressively grabbed.\n\
 		If the target is wearing riot gear or is a Monster Hunter, you will merely passively grab them.\n\
-		If grabbed from behind or from the darkness (Cloak of Darkness counts), you will additionally knock the target down.\n\
+		If grabbed from behind or from the darkness (Cloak of Darkness counts) with a power level at or above 4, will additionally knock the target down.\n\
 		Higher levels will increase the knockdown dealt to enemies."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
@@ -78,7 +78,7 @@
 
 /datum/action/bloodsucker/targeted/lunge/proc/prepare_target_lunge(atom/target_atom)
 	START_PROCESSING(SSprocessing, src)
-	to_chat(owner, span_notice("You prepare to lunge...!"))
+	to_chat(owner, span_notice("You prepare to lunge!"))
 	//animate them shake
 	var/base_x = owner.pixel_x
 	var/base_y = owner.pixel_y
@@ -88,7 +88,7 @@
 		var/y_offset = base_y + rand(-3, 3)
 		animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
 
-	if(!do_after(owner, 4 SECONDS, extra_checks = CheckCanTarget(target_atom)))
+	if(!do_after(owner, 4 SECONDS, extra_checks = CALLBACK(src, .proc/CheckCanTarget, target_atom)))
 		animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1)
 		STOP_PROCESSING(SSprocessing, src)
 		return FALSE

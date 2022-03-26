@@ -129,7 +129,7 @@
 			)
 			target.Knockdown(min(5, rand(10, 10 * powerlevel)))
 		// Attack!
-		to_chat(owner, "You punch [target]!")
+		to_chat(owner, span_warning("You punch [target]!"))
 		playsound(get_turf(target), 'sound/weapons/punch4.ogg', 60, 1, -1)
 		user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(target.zone_selected))

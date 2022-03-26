@@ -32,7 +32,7 @@
 			var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 			bloodsuckerdatum.AddBloodVolume(5)
 			var/mob/living/carbon/H = user
-			reagents.trans_to(user, INGEST, gulp_size)
+			reagents.trans_to(user, INGEST, 500)
 			if(H.blood_volume >= bloodsuckerdatum.max_blood_volume)
 				to_chat(user, span_notice("You are full, and can't consume more blood"))
 				return

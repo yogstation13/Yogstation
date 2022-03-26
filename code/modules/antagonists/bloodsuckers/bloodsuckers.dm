@@ -35,6 +35,8 @@
 	var/datum/team/vampireclan/clan
 	///Frenzy Grab Martial art given to Bloodsuckers in a Frenzy
 	var/datum/martial_art/frenzygrab/frenzygrab = new
+	///You get assigned a Clan once you Rank up enough
+	var/my_clan = NONE
 
 	///Vassals under my control. Periodically remove the dead ones.
 	var/list/datum/antagonist/vassal/vassals = list()
@@ -91,7 +93,7 @@
 	set category = "Mentor"
 
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	var/choice = alert(usr, "What Power are you looking into?", "Mentorhelp v2", bloodsuckerdatum.powers)
+	var/choice = input(usr, "What Power are you looking into?", "Mentorhelp v2") in bloodsuckerdatum.powers
 	if(!choice)
 		return
 	var/datum/action/bloodsucker/power = choice
@@ -237,6 +239,9 @@
 	// Vamp name
 	report += "<br><span class='header'><b>\[[ReturnFullName(TRUE)]\]</b></span>"
 	report += printplayer(owner)
+	// Clan (Actual Clan, not Team) name
+	if(my_clan != NONE)
+		report += "They were part of the <b>[my_clan]</b>!"
 
 	// Default Report
 	var/objectives_complete = TRUE
@@ -385,6 +390,7 @@
 /datum/antagonist/bloodsucker/proc/LevelUpPowers()
 	for(var/datum/action/bloodsucker/power as anything in powers)
 		power.level_current++
+		power.UpdateDesc()
 
 ///Disables all powers, accounting for torpor
 /datum/antagonist/bloodsucker/proc/DisableAllPowers()
@@ -408,7 +414,7 @@
 		to_chat(owner.current, span_notice("You grow more ancient by the night!"))
 	else
 		// Give them the UI to purchase a power.
-		var/choice = input("You have the opportunity to grow more ancient. Select a power to advance your Rank.", "Your Blood Thickens...") in options
+		var/choice = input("You have the opportunity to grow more ancient, increasing the level of all your powers by 1. Select a power to advance your Rank.", "Your Blood Thickens...") in options
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
 		if(spend_rank && bloodsucker_level_unspent <= 0)
 			return
@@ -442,6 +448,9 @@
 	bloodsucker_level++
 	if(spend_rank)
 		bloodsucker_level_unspent--
+	// Ranked up enough? Let them join a Clan.
+	if(bloodsucker_level == 3)
+		AssignClanAndBane()
 
 	// Ranked up enough to get your true Reputation?
 	if(bloodsucker_level == 4)

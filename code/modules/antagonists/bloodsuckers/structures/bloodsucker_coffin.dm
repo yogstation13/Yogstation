@@ -204,7 +204,7 @@
 		if(!bloodsuckerdatum)
 			return FALSE
 		if(!bloodsuckerdatum.coffin && !resident)
-			switch(input("Do you wish to claim this as your coffin? [get_area(src)] will be your lair.","Claim Lair") in list("Yes", "No"))
+			switch(input("Do you wish to claim this as your coffin? [get_area(src)] will be your lair, and you will learn to craft new structures.","Claim Lair") in list("Yes", "No"))
 				if("Yes")
 					ClaimCoffin(user)
 			LockMe(user)

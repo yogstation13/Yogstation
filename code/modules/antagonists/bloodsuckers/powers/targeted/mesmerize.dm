@@ -13,7 +13,7 @@
 	desc = "Dominate the mind of a mortal who can see your eyes."
 	button_icon_state = "power_mez"
 	power_explanation = "<b>Mesmerize</b>:\n\
-		Click any player to attempt to mesmerize them.\n\
+		Click any player to attempt to mesmerize them. This process takes 5 seconds and will be interrupted on movement.\n\
 		You cannot wear anything covering your face, and both parties must be facing eachother. Obviously, both parties need to not be blind. \n\
 		If your target is already mesmerized or a Monster Hunter, the Power will fail.\n\
 		Once mesmerized, the target will be unable to move for a certain amount of time, scaling with level.\n\

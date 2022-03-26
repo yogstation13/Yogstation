@@ -8,9 +8,6 @@
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		INVOKE_ASYNC(src, .proc/AddBloodVolume, passive_blood_drain) // -.1 currently
 	if(HandleHealing(1))
-		var/mob/living/carbon/human/user = owner.current
-		if(user.dna.species.id == "preternis") //robot has to heal itself
-			return
 		if((COOLDOWN_FINISHED(src, bloodsucker_spam_healing)) && owner.current.blood_volume > 0)
 			to_chat(owner.current, span_notice("The power of your blood begins knitting your wounds..."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_HEALING)
@@ -87,7 +84,7 @@
 		return
 	var/mob/living/carbon/user = owner.current
 	var/costMult = 1 // Coffin makes it cheaper
-	var/bruteheal = min(user.getBruteLoss(), actual_regen) // BRUTE: Always Heal
+	var/bruteheal = min(user.getBruteLoss_nonProsthetic(), actual_regen) // BRUTE: Always Heal
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
 	/// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
@@ -95,7 +92,7 @@
 		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 			to_chat(user, span_warning("You will not heal while your Masquerade ability is active."))
 			return
-		fireheal = min(user.getFireLoss(), actual_regen)
+		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
 		mult *= 5 // Increase multiplier if we're sleeping in a coffin.
 		costMult /= 2 // Decrease cost if we're sleeping in a coffin.
 		user.ExtinguishMob()
@@ -192,9 +189,15 @@
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
 	// Not "Alive"?
-	if(!owner.current || !iscarbon(owner.current) || isbrain(owner.current) || !get_turf(owner.current))
-		FinalDeath()
-		return
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
+		if(!owner.current || !isliving(owner.current) || isbrain(owner.current) || !get_turf(owner.current))
+			FinalDeath()
+			return
+	else
+		if(!owner.current || !iscarbon(owner.current) || isbrain(owner.current) || !get_turf(owner.current))
+			FinalDeath()
+			return
 	// Fire Damage? (above double health)
 	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2.5)
 		FinalDeath()
@@ -232,7 +235,12 @@
 		owner.current.blur_eyes(8 - 8 * (owner.current / BLOOD_VOLUME_BAD(owner.current)))
 
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(owner.current.blood_volume < (FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)) && !frenzied)
+		if(!iscarbon(owner))
+			if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
+				return
+			qdel(owner.current)
 		enter_frenzy()
 	else if(owner.current.blood_volume < BLOOD_VOLUME_BAD(owner.current))
 		additional_regen = 0.1
@@ -286,8 +294,8 @@
 		Torpor_Begin()
 		return
 	var/mob/living/carbon/user = owner.current
-	var/total_brute = user.getBruteLoss()
-	var/total_burn = user.getFireLoss()
+	var/total_brute = user.getBruteLoss_nonProsthetic()
+	var/total_burn = user.getFireLoss_nonProsthetic()
 	var/total_damage = total_brute + total_burn
 	/// Checks - Not daylight & Has more than 10 Brute/Burn & not already in Torpor
 	if(!clan.bloodsucker_sunlight.amDay && total_damage >= 10 && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
@@ -295,8 +303,8 @@
 
 /datum/antagonist/bloodsucker/proc/Check_End_Torpor()
 	var/mob/living/carbon/user = owner.current
-	var/total_brute = user.getBruteLoss()
-	var/total_burn = user.getFireLoss()
+	var/total_brute = user.getBruteLoss_nonProsthetic()
+	var/total_burn = user.getFireLoss_nonProsthetic()
 	var/total_damage = total_brute + total_burn
 	// You are in a Coffin, so instead we'll check TOTAL damage, here.
 	if(istype(user.loc, /obj/structure/closet/crate/coffin))
@@ -310,9 +318,6 @@
 		Torpor_End()
 
 /datum/antagonist/bloodsucker/proc/Torpor_Begin()
-	var/mob/living/carbon/human/user = owner.current
-	if(user.dna.species.id == "preternis")
-		return //robot has to heal itself
 	to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
 	/// Force them to go to sleep
 	REMOVE_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
@@ -326,9 +331,6 @@
 	DisableAllPowers()
 
 /datum/antagonist/bloodsucker/proc/Torpor_End()
-	var/mob/living/carbon/human/user = owner.current
-	if(user.dna.species.id == "preternis") 
-		return //robot has to heal itself
 	owner.current.grab_ghost()
 	to_chat(owner.current, span_warning("You have recovered from Torpor."))
 	REMOVE_TRAIT(owner.current, TRAIT_RESISTLOWPRESSURE, BLOODSUCKER_TRAIT)
