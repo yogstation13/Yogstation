@@ -546,6 +546,10 @@
 		var/obj/machinery/computer/ai_control_console/C = locate(href_list["console"])
 		if(!C)
 			return
+		if(C.downloading != src)
+			return
+		if(alert("Are you sure you want to be downloaded? This puts you at the mercy of the person downloading you!", "Confirm Download", "No", "Yes") != "Yes")
+			return
 		if(C.downloading == src)
 			C.finish_download()
 
