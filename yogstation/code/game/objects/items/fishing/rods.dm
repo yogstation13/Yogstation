@@ -59,7 +59,7 @@
 		to_chat(fisher,"Whatever was on the line drifts back into the deep...")
 		bite = FALSE
 		return
-		
+
 	if(prob(50))
 		to_chat(fisher,"Something bites! Reel it in!")
 		bite = TRUE
@@ -125,7 +125,6 @@
 		unwield(fisher,show_message = FALSE)
 		if(fisher.put_in_hands(reward_item))
 			return
-	
 	reward_item.throw_at(get_step(fishing_turf,get_dir(fishing_turf,fisher)),2,3) //whip it at them!
 		
 

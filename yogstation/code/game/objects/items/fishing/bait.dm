@@ -25,6 +25,11 @@
 	icon_state = "bait_2"
 	fishing_power = 30
 
+/obj/item/reagent_containers/food/snacks/bait/master/Initialize(mapload) //HEE HEEE HAHAHAHAHH  HEEHEH E E EHEEE
+	. = ..()
+	if(prob(1))
+		desc = "Don't you dare say it"
+
 /obj/item/reagent_containers/food/snacks/bait/worm
 	name = "worm bait"
 	desc = "Might be able to catch a lizard with this..."
