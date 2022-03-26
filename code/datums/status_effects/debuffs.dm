@@ -1203,7 +1203,7 @@
 	return ..()
 
 /datum/status_effect/knuckled/be_replaced()
-	owner.underlays -= bruise //if this is being called, we should have an owner at this point.
+	owner.underlays -= bruise 
 	..()
 
 #undef HERETIC_SACRIFICE_EFFECT_THRESHOLD

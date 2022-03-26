@@ -1119,14 +1119,20 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	icon_state = "bloodyknuckle"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
-	attack_verb = list("thrashed", "pummels", "walloped")
+	attack_verb = list("thrashed", "pummeled", "walloped")
 	actions_types = list(/datum/action/item_action/visegrip, /datum/action/item_action/reach)
 
 /obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user)
-	target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+	var/mob/living/L = target
+	if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+		L.remove_status_effect(STATUS_EFFECT_KNUCKLED)
+		L.apply_status_effect(/datum/status_effect/root)
+		return
+	else
+		L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 
-/obj/item/twohanded/required/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
-	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+
+
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
