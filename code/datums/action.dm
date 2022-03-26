@@ -527,6 +527,22 @@
 		owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)
 		QDEL_NULL(box)
 
+/datum/action/item_action/visegrip
+	name = "Vise Grip"
+	desc = "Root marked victims, trapping creatures for 10 seconds and humanoids for 2"
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "draw"
+	buttontooltipstyle = "cult"
+	background_icon_state = "bg_demon"
+	
+/datum/action/item_action/reach
+	name = "Reach"
+	desc = "Claw at those standing on blood in an attempt to root creatures for 8 seconds and humanoids for 1"
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "draw"
+	buttontooltipstyle = "cult"
+	background_icon_state = "bg_demon"
+
 //Preset for spells
 /datum/action/spell_action
 	check_flags = NONE

@@ -1112,6 +1112,21 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	log_combat(user, L, "took out a blood contract on", src)
 	qdel(src)
 
+/obj/item/melee/knuckles
+	name = "Bloody Knuckles"
+	desc = "Knuckles borne of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Prime an opponent with an attack and follow up to snare them. People snared like this suffer the effects for 3 seconds and creatures suffer it for 15."
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "bloodyknuckle"
+	w_class = WEIGHT_CLASS_SMALL
+	force = 18
+	attack_verb = list("thrashed", "pummels", "walloped")
+	actions_types = list(/datum/action/item_action/visegrip, /datum/action/item_action/reach)
+
+/obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user)
+	target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+
+/obj/item/twohanded/required/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
+	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
