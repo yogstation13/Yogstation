@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "plate sprite is now removed from the rest of the filet migrawr frames"
