@@ -35,7 +35,7 @@
 	name = "recover DNA"
 	implements = list(/obj/item/reagent_containers/syringe = 100, /obj/item/pen = 30)
 	time = 150
-	chems_needed = list(/datum/reagent/medicine/rezadone)
+	chems_needed = list(/datum/reagent/medicine/rezadone, /datum/reagent/medicine/earthsblood)
 	require_all_chems = FALSE
 
 /datum/surgery_step/dna_recovery/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
