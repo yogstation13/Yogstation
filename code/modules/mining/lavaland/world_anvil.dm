@@ -51,7 +51,7 @@
 		return ..()
 	var/magmite_amount = 0
 	var/used_magmite = 0
-	for(var/obj/item/magmite in placed_objects)
+	for(var/obj/item/magmite/placed_magmite in placed_objects)
 		magmite_amount++
 	if(magmite_amount <= 0)
 		to_chat(user,"The anvil does not have any plasma magmite on it!")
