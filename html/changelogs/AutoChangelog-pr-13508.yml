@@ -1,0 +1,4 @@
+author: " NovaAzure"
+delete-after: true 
+changes: 
+  - bugfix: "Placing a new bulb into a borg fixes their headlamp"
