@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - bugfix: "AI servers should no longer sporadically fail to add resources"
