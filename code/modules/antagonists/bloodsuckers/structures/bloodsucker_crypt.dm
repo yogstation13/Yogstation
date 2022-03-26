@@ -628,7 +628,6 @@
 	if(!anchored)
 		to_chat(user, span_announce("[src] is not bolted to the ground!"))
 		return
-	. = ..()
 	user.visible_message(
 		span_notice("[user] sits down on [src]."),
 		span_boldnotice("You sit down onto [src]."),
@@ -640,6 +639,8 @@
 		to_chat(user, span_cult("The power of the blood throne overwhelms you!"))
 		user.apply_damage(10, BRUTE)
 		unbuckle_mob(user)
+		return
+	return ..()
 
 /obj/structure/bloodsucker/bloodthrone/post_buckle_mob(mob/living/target)
 	. = ..()
@@ -651,7 +652,7 @@
 	src.visible_message(span_danger("[user] unbuckles themselves from [src]."))
 	if(IS_BLOODSUCKER(user))
 		UnregisterSignal(user, COMSIG_MOB_SAY)
-	. = ..()
+	return ..()
 
 /obj/structure/bloodsucker/bloodthrone/post_unbuckle_mob(mob/living/target)
 	target.pixel_y -= 2
