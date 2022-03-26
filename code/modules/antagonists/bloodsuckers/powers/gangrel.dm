@@ -114,7 +114,8 @@
 			else
 				user.set_species(/datum/species/human/felinid)
 				playsound(user.loc, 'sound/voice/feline/meow1.ogg', 50)
-			user.dna.species.punchdamagehigh += 2.0 //stronk
+			user.dna.species.punchdamagehigh += 5.0 //stronk
+			user.dna.species.armor += 30
 			to_chat(user, span_notice("You aren't strong enough to morph into something stronger! But you do certainly feel more feral than before."))
 		if(500 to 1000)
 			user.set_species(/datum/species/gorilla)
@@ -252,10 +253,10 @@
 /obj/item/projectile/magic/arcane_barrage/bloodsucker/on_hit(target)
 	if(ismob(target))
 		qdel(src)
-		return BULLET_ACT_HIT
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
 			C.Knockdown(0.1)
+		return BULLET_ACT_HIT
 	. = ..()
 
 /datum/action/bloodsucker/gangrel/wingslam
