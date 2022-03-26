@@ -284,7 +284,7 @@
 	modifies_speech = TRUE
 	var/static/list/languages_possible_polysmorph = typecacheof(list(
 		/datum/language/common,
-		/datum/language/polysmorph))
+		/datum/language/xenocommon))
 
 /obj/item/organ/tongue/polysmorph/handle_speech(datum/source, list/speech_args)
 	..()
