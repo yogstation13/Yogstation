@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		oldlang = MONKEY
 	else if(oldlang == /datum/language/machine)
 		oldlang = ROBOT
-	else if(oldlang == /datum/language/xenocommon
+	else if(oldlang == /datum/language/xenocommon)
 		oldlang = XENO
 	else if(oldlang == /datum/language/draconic)
 		oldlang = DRACONIC
