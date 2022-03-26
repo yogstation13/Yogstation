@@ -177,7 +177,7 @@
 		/datum/language/etherean,
 		/datum/language/felinid,
 		/datum/language/mothian,
-		/datum/language/polysmorph,
+		/datum/language/xenocommon,
 		/datum/language/sylvan
 	)
 
@@ -191,7 +191,7 @@
 		/datum/language/etherean,
 		/datum/language/felinid,
 		/datum/language/mothian,
-		/datum/language/polysmorph,
+		/datum/language/xenocommon,
 		/datum/language/sylvan,
 		/datum/language/aphasia,
 		/datum/language/beachbum,
