@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		"human" = HUMAN,
 		"monkey" = MONKEY,
 		"robot" = ROBOT,
-		"polysmorph" = POLYSMORPH,
+		"xenocommon" = XENO,
 		"draconic" = DRACONIC,
 		"beachtounge" = BEACHTONGUE,
 		"sylvan" = SYLVAN,
@@ -158,8 +158,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		oldlang = MONKEY
 	else if(oldlang == /datum/language/machine)
 		oldlang = ROBOT
-	else if(oldlang == /datum/language/polysmorph)
-		oldlang = POLYSMORPH
+	else if(oldlang == /datum/language/xenocommon
+		oldlang = XENO
 	else if(oldlang == /datum/language/draconic)
 		oldlang = DRACONIC
 	else if(oldlang == /datum/language/beachbum)
@@ -298,8 +298,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 			return /datum/language/monkey
 		if(ROBOT)
 			return /datum/language/machine
-		if(POLYSMORPH)
-			return /datum/language/polysmorph
+		if(XENO)
+			return /datum/language/xenocommon
 		if(DRACONIC)
 			return /datum/language/draconic
 		if(BEACHTONGUE)
@@ -482,7 +482,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #undef HUMAN
 #undef MONKEY
 #undef ROBOT
-#undef POLYSMORPH
+#undef XENO
 #undef DRACONIC
 #undef BEACHTONGUE
 #undef SYLVAN
