@@ -15,6 +15,7 @@ SUBSYSTEM_DEF(input)
 	setup_default_movement_keys()
 
 	initialized = TRUE
+	refresh_client_macro_sets()
 
 	return ..()
 
@@ -104,6 +105,12 @@ SUBSYSTEM_DEF(input)
 	)
 
 	movement_arrows = arrow_keys.Copy()
+
+/datum/controller/subsystem/input/proc/refresh_client_macro_sets()
+	var/list/clients = GLOB.clients
+	for(var/i in 1 to clients.len)
+		var/client/user = clients[i]
+		user.set_macros()
 
 /datum/controller/subsystem/input/fire()
 	var/list/clients = GLOB.clients // Let's sing the list cache song
