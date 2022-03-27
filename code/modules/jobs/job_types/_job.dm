@@ -213,7 +213,6 @@
 
 	var/obj/item/id_type = /obj/item/card/id
 	var/obj/item/pda_type = /obj/item/pda
-
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
