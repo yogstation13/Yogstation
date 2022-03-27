@@ -1,0 +1,4 @@
+author: " maxion12345, Simplehorror"
+delete-after: true 
+changes: 
+  - bugfix: "Rapid Pipe Dispensers can no longer print transit tubes, disposal pipes or plumbing pipes on turfs containing dense atoms."
