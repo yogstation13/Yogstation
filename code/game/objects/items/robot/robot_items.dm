@@ -108,11 +108,12 @@
 					else
 						user.visible_message(span_notice("[user] hugs [M] to make [M.p_them()] feel better!"), \
 								span_notice("You hug [M] to make [M.p_them()] feel better!"))
+					if(M.resting)
+						M.set_resting(FALSE, TRUE)
 				else
 					user.visible_message(span_notice("[user] pets [M]!"), \
 							span_notice("You pet [M]!"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				M.set_resting(FALSE)
 		if(1)
 			if(M.health >= 0)
 				if(ishuman(M))
@@ -126,11 +127,12 @@
 					else
 						user.visible_message(span_warning("[user] hugs [M] in a firm bear-hug! [M] looks uncomfortable..."), \
 								span_warning("You hug [M] firmly to make [M.p_them()] feel better! [M] looks uncomfortable..."))
+					if(M.resting)
+						M.set_resting(FALSE, TRUE)
 				else
 					user.visible_message(span_warning("[user] bops [M] on the head!"), \
 							span_warning("You bop [M] on the head!"))
 				playsound(loc, 'sound/weapons/tap.ogg', 50, 1, -1)
-				M.set_resting(FALSE)
 		if(2)
 			if(scooldown < world.time)
 				if(M.health >= 0)
