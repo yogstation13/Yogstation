@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(408 modules,
-    623/7038 macros, 8.9%)</aside></h3>
+    623/7045 macros, 8.8%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -147,7 +147,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li><a href="code/datums/outfit.html" title="code&#x2F;datums&#x2F;outfit">outfit</a></li>
     <li class="has-children"><span title="code&#x2F;datums&#x2F;station_traits">station_traits</span><ul class="index-tree">
     <li><a href="code/datums/station_traits/_station_trait.html" title="code&#x2F;datums&#x2F;station_traits&#x2F;_station_trait">_station_trait</a></li>
-    <li><a href="code/datums/station_traits/neutral_traits.html" title="code&#x2F;datums&#x2F;station_traits&#x2F;neutral_traits">neutral_traits</a></li>
+    <li><a href="code/datums/station_traits/negative_traits.html" title="code&#x2F;datums&#x2F;station_traits&#x2F;negative_traits">negative_traits</a></li>
     </ul></li>
     <li><span class="no-substance">status_effects&#x2F;</span><a href="code/datums/status_effects/wound_effects.html" title="code&#x2F;datums&#x2F;status_effects&#x2F;wound_effects">wound_effects</a></li>
     <li><a href="code/datums/view.html" title="code&#x2F;datums&#x2F;view">view</a></li>
@@ -636,7 +636,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(396 detailed/968 documented/24015 total, 4%)</aside></h3>
+<aside>(400 detailed/972 documented/24069 total, 4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1153,10 +1153,11 @@ They attach to an atom and provide the editor + playback functionality.</li>
     <li><a href="datum/station_request.html" title="&#x2F;datum&#x2F;station_request">station_request</a> - A combined all in one datum that stores everything about the request, the requester's account, as well as the requestee's account
 All of this is passed to the Request Console UI in order to present in organized way.</li>
     <li class="has-children"><a href="datum/station_trait.html" title="&#x2F;datum&#x2F;station_trait">unnamed station trait</a> - Base class of station traits. These are used to influence rounds in one way or the other by influencing the levers of the station.<ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;station_trait&#x2F;bananium_shipment">Bananium Shipment</span> - The bot's language holder - so we can randomize and change their language</li>
     <li><a href="datum/station_trait/bot_languages.html" title="&#x2F;datum&#x2F;station_trait&#x2F;bot_languages">Bot Language Matrix Malfunction</a></li>
+    <li><a href="datum/station_trait/random_event_weight_modifier.html" title="&#x2F;datum&#x2F;station_trait&#x2F;random_event_weight_modifier">Random Event Modifier</a> - The bot's language holder - so we can randomize and change their language</li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;status_effect">status_effect</span><ul class="index-tree">
+    <li><a href="datum/status_effect/brazil_penance.html" title="&#x2F;datum&#x2F;status_effect&#x2F;brazil_penance">brazil_penance</a></li>
     <li><a href="datum/status_effect/cloudstruck.html" title="&#x2F;datum&#x2F;status_effect&#x2F;cloudstruck">cloudstruck</a></li>
     <li class="has-children"><a href="datum/status_effect/eldritch.html" title="&#x2F;datum&#x2F;status_effect&#x2F;eldritch">eldritch</a><ul class="index-tree">
     <li><a href="datum/status_effect/eldritch/ash.html" title="&#x2F;datum&#x2F;status_effect&#x2F;eldritch&#x2F;ash">ash</a></li>
@@ -1367,6 +1368,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;overlay&#x2F;status_display_text">status_display_text</span> - Nice overlay to make text smoothly scroll with no client updates after setup.</li>
     </ul></li>
     <li><span class="no-substance">particle_effect&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;smoke">smoke</span> - SMOKE SYSTEMS</li>
+    <li><a href="obj/effect/penance_giver.html" title="&#x2F;obj&#x2F;effect&#x2F;penance_giver">code ing</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;proc_holder">proc_holder</span><ul class="index-tree">
     <li class="has-children"><a href="obj/effect/proc_holder/drakeling.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;drakeling">ULTRA DRAGON ATTACK</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;drakeling&#x2F;fire_breath">Fire Breath</span> - drakeling fire breath attack: shoots a short line of fire that is very effective against lavaland fauna and not very effective against much else</li>
@@ -1404,6 +1406,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;cowboy">&#x27;Cowboy&#x27; Core AI Module</span> - Cowboy</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;crewsimov">&#x27;Crewsimov&#x27; Core AI Module</span> - Crewsimov</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;custom">Default Core AI Module</span> - Custom</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;detective">&#x27;Detective&#x27; Core AI Module</span> - Detective</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;drone">&#x27;Mother Drone&#x27; Core AI Module</span> - Mother Drone</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;druid">&#x27;Druid&#x27; Core AI Module</span> - Druid</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;hippocratic">&#x27;Robodoctor&#x27; Core AI Module</span> - Robodoctor</li>
@@ -1963,6 +1966,7 @@ uranium</li>
     <li><span class="no-substance">basalt&#x2F;</span><span class="no-substance" title="&#x2F;turf&#x2F;open&#x2F;floor&#x2F;plating&#x2F;asteroid&#x2F;basalt&#x2F;lava_land_surface">lava_land_surface</span> - Surface. The surface is warm, but survivable without a suit. Internals are required. The floors break to chasms, which drop you into the underground.</li>
     </ul></li>
     </ul></li>
+    <li><span class="no-substance">indestructible&#x2F;</span><a href="turf/open/indestructible/brazil.html" title="&#x2F;turf&#x2F;open&#x2F;indestructible&#x2F;brazil">..</a></li>
     <li><span class="no-substance" title="&#x2F;turf&#x2F;open&#x2F;lava">lava</span> - LAVA</li>
     </ul></li>
     </ul></li>
@@ -1973,7 +1977,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/123bf89df6147280c0ed02d16ec7b0c2afd7f81a">123bf89</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/2588d9e39b606fadcb7da938e8fa88884fd34714">2588d9e</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
