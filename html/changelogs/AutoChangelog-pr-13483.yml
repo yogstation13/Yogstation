@@ -1,4 +1,0 @@
-author: " MrMelbert, Simplehorror"
-delete-after: true 
-changes: 
-  - rscadd: "Add 3 new station traits, Ionic Stormfront (increases Ion Storm chances), Radiation Stormfront (increases Radiation Storm chances), Eventful (decreases time between events),"

@@ -1,6 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Adds 3 new tumors"
-  - rscadd: "Adds 3 new virology symptoms"
-  - tweak: "lets organs be inserted into special funny slots"

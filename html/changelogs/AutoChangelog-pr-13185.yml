@@ -1,9 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Adds rock hardness"
-  - rscadd: "Add PKA mod to increase what hardness rocks you can destroy"
-  - rscadd: "Adds plasma magmite"
-  - rscadd: "Adds world anvil to necropolis gate"
-  - tweak: "adds hard rocks to lavaland"
-  - tweak: "just read the PR"

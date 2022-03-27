@@ -1,4 +1,0 @@
-author: "Simplehorror"
-delete-after: true 
-changes: 
-  - bugfix: "Fix macros not loading if you join game before SSinput is started"
