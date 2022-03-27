@@ -82,6 +82,18 @@
 		if(W.try_treating(I, user))
 			return TRUE
 
+	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+
+	if(user.a_intent != INTENT_HARM && I.tool_behaviour = TOOL_WELDER && affecting?.status == BODYPART_ROBOTIC)
+		if(I.use_tool(H, user, 0, volume=50, amount=1))
+			if(user == H)
+				user.visible_message(span_notice("[user] starts to fix some of the dents on [H]'s [affecting.name]."),
+					span_notice("You start fixing some of the dents on [H == user ? "your" : "[H]'s"] [affecting.name]."))
+				if(!do_mob(user, H, 50))
+					return TRUE
+			item_heal_robotic(H, user, 15, 0)
+			return TRUE
+
 	return ..()
 
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
