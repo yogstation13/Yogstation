@@ -1,0 +1,5 @@
+author: "  Chubbygummibear, Lazzen"
+delete-after: true 
+changes: 
+  - tweak: "Grand Core organ adds the blooded faction tag instead of replacing your neutral faction"
+  - tweak: "Grand Core organ removes the blooded faction when it's removed from you"
