@@ -1,0 +1,8 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - tweak: "Genetics Hulk and Hulk state have an instability cost to them now"
+  - tweak: "Genetics Hulk and Hulk state work with all races"
+  - tweak: "Genetics Hulk no longer naturally appears through spawns or gene randomizing"
+  - tweak: "Genetics Hulk has to be created through Genetics"
+  - tweak: "Genetics Hulk and Hulk state can both be removed with mutadone"
