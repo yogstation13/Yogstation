@@ -15,7 +15,6 @@ SUBSYSTEM_DEF(input)
 	setup_default_movement_keys()
 
 	initialized = TRUE
-	
 	refresh_client_macro_sets()
 
 	return ..()
