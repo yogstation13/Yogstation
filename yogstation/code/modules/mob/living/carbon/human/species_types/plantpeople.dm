@@ -6,6 +6,8 @@
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH,HAS_BONE)
+	mutant_bodyparts = list()
+	default_features = list()
 	rare_say_mod = list("rustles" = 10)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'

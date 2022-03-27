@@ -29,6 +29,10 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	if(mapload)
 		cleared_for_use = TRUE
 
+/obj/machinery/computer/ai_control_console/Destroy()
+	stop_download()
+	. = ..()
+
 /obj/machinery/computer/ai_control_console/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/aicard))
 		if(intellicard)

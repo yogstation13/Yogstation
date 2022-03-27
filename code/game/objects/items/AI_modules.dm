@@ -511,6 +511,13 @@ AI MODULES
 	law_id = "druid"
 
 	
+/******************** Detective *********************/
+
+/obj/item/aiModule/core/full/detective
+	name = "'Detective' Core AI Module"
+	law_id = "detective"
+
+	
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
