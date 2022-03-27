@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "preternis can now be placed in cryo to heal oxygen and toxin damage and not get immediately kicked back out"
