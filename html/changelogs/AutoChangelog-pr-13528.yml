@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "non-welders that act as welders i.e. holotool can now be used to repair cybernetic limbs"
