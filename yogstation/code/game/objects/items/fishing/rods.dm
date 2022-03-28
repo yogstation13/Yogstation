@@ -3,7 +3,7 @@
 	desc = "A fishing rod used for fishing. Despite looking ordinary, fishing has evolved for the cosmos with features like auto-reeling."
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
 	icon_state = "fishing_rod"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/fishing_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	usesound = 'sound/items/crowbar.ogg'
 	slot_flags = ITEM_SLOT_BACK

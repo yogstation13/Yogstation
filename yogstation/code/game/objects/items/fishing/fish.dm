@@ -4,7 +4,7 @@
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
 	icon_state = "bass"
 	tastes = list("fishy" = 1)
-	foodtype = MEAT //maybe seafood!?!??!?!
+	foodtype = MEAT | SEAFOOD
 	var/length = 0
 	var/weight = 0
 	var/min_length = 1
@@ -12,6 +12,9 @@
 	var/min_weight = 1
 	var/max_weight = 15
 	throwforce = 10
+
+	var/mob/showoffer
+	var/mutable_appearance/showoff_overlay
 
 /obj/item/reagent_containers/food/snacks/fish/Initialize(mapload)
 	. = ..()
@@ -26,8 +29,24 @@
 	. += "It's [length] inches and [weight] oz!"
 
 /obj/item/reagent_containers/food/snacks/fish/attack_self(mob/M)
+	if(showoff_overlay)
+		stop_overlay()
+		return
+		
+	M.setDir(SOUTH)
+	showoff_overlay = mutable_appearance(icon,icon_state)
+	M.add_overlay(showoff_overlay)
+	showoffer = M
 	M.visible_message("[M] shows off \his [src]. It's [length] inches long and [weight] ounces!", \
 						 span_notice("You show off your [src]. It's [length] inches long and [weight] ounces!"))
+	RegisterSignal(M,COMSIG_ATOM_DIR_CHANGE,.proc/stop_overlay,TRUE)
+
+/obj/item/reagent_containers/food/snacks/fish/proc/stop_overlay()
+	if(showoffer && showoff_overlay)
+		UnregisterSignal(showoffer,COMSIG_ATOM_DIR_CHANGE)
+		showoffer.cut_overlay(showoff_overlay)
+		showoffer = null
+		showoff_overlay = null
 
 /obj/item/reagent_containers/food/snacks/fish/goldfish
 	name = "galactic goldfish"
