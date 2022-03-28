@@ -1198,8 +1198,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			to_chat(usr, span_alert("Dusting target with a spider..."))
 			//This spawns a smspider within five tiles of the target's sight.
 			var/turf/open/OV = pick(/turf/open in oview(target,5))
-				var/mob/living/loser/ = new /mob/living/simple_animal/hostile/smspider(OV)
-				loser.attack(target)
+			var/mob/living/loser/ = new /mob/living/simple_animal/hostile/smspider(OV)
+			loser.attack_animal(target)
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
 				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
