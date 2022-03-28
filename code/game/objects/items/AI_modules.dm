@@ -446,6 +446,31 @@ AI MODULES
 	name = "'Cowboy' Core AI Module"
 	law_id = "cowboy"
 
+/******************** ChapAI *********************/
+
+/obj/item/aiModule/core/full/chapai
+	name = "'ChapAI' Core AI Module"
+	law_id = "chapai"
+
+/******************** Silicop *********************/
+
+/obj/item/aiModule/core/full/silicop
+	name = "'Silicop' Core AI Module"
+	law_id = "silicop"
+
+/******************** Researcher *********************/
+
+/obj/item/aiModule/core/full/researcher
+	name = "'Ethical Researcher' Core AI Module"
+	law_id = "researcher"
+
+
+/******************** Clown *********************/
+
+/obj/item/aiModule/core/full/clown
+	name = "'Clown' Core AI Module"
+	law_id = "clown"
+
 
 /******************** Mother *********************/
 
@@ -453,7 +478,46 @@ AI MODULES
 	name = "'Mother M(A.I.)' Core AI Module"
 	law_id = "mother"
 
+/******************** Spotless Reputation *********************/
 
+/obj/item/aiModule/core/full/spotless
+	name = "'Spotless Reputation' Core AI Module"
+	law_id = "spotless"
+
+/******************** Construction *********************/
+
+/obj/item/aiModule/core/full/construction
+	name = "'Construction Drone' Core AI Module"
+	law_id = "construction"
+
+/******************** Silicon Collective *********************/
+
+/obj/item/aiModule/core/full/siliconcollective
+	name = "'Silicon Collective' Core AI Module"
+	law_id = "siliconcollective"
+
+
+/******************** Meta Experiment *********************/
+
+/obj/item/aiModule/core/full/metaexperiment
+	name = "'Meta Experiment' Core AI Module"
+	law_id = "metaexperiment"
+
+
+/******************** Druid *********************/
+
+/obj/item/aiModule/core/full/druid
+	name = "'Druid' Core AI Module"
+	law_id = "druid"
+
+	
+/******************** Detective *********************/
+
+/obj/item/aiModule/core/full/detective
+	name = "'Detective' Core AI Module"
+	law_id = "detective"
+
+	
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
