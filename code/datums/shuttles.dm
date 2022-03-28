@@ -611,6 +611,7 @@
 	name = "arrival shuttle (Gax)"
 
 /datum/map_template/shuttle/ai/gax
+	port_id = "ai"
 	suffix = "gax"
 	name = "ai ship shuttle (Gax)"
 

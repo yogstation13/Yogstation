@@ -20,27 +20,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/mining)
-"p" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Mining Shuttle Airlock"
-	},
-/obj/docking_port/mobile{
-	dir = 4;
-	dwidth = 3;
-	height = 5;
-	id = "mining";
-	name = "mining shuttle";
-	port_direction = 4;
-	width = 7
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/mining)
 "q" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -55,6 +34,25 @@
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/mining)
+"x" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Mining Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/docking_port/mobile{
+	dir = 2;
+	dwidth = 2;
+	height = 6;
+	id = "ai_ship";
+	name = "ai ship shuttle";
+	port_direction = 4;
+	width = 5
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
 "y" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -67,6 +65,18 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/mining)
+"B" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Mining Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/shuttle/mining)
 "C" = (
 /obj/structure/shuttle/engine/propulsion/burst{
@@ -81,16 +91,6 @@
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/mining)
-"R" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Mining Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/mining)
@@ -131,7 +131,7 @@
 C
 V
 L
-p
+B
 f
 e
 "}
@@ -144,7 +144,7 @@ f
 f
 "}
 (3,1,1) = {"
-R
+x
 r
 r
 u
