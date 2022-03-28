@@ -35,6 +35,7 @@
 #define CLAN_MALKAVIAN "Malkavian Clan"
 #define CLAN_TOREADOR "Toreador Clan"
 #define CLAN_GANGREL "Gangrel Clan"
+#define CLAN_LASOMBRA "Lasombra Clan"
 
 /**
  * Power defines

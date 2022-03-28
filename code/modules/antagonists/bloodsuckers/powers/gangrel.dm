@@ -121,6 +121,8 @@
 			user.set_species(/datum/species/gorilla)
 			to_chat(owner, span_notice("You transform into a gorrila-ey beast!"))
 			playsound(user.loc, 'sound/creatures/gorilla.ogg', 50)
+			user.dna.species.punchdamagehigh += 7.5 //very stronk
+			user.dna.species.armor += 35
 		if(1500 to INFINITY)
 			var/mob/living/simple_animal/hostile/bloodsucker/giantbat/gb
 			if(!gb || gb.stat == DEAD)

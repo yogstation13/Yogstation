@@ -185,7 +185,7 @@
 
 // GENERATE!
 /datum/objective/bloodsucker/heartthief/New()
-	target_amount = rand(2,3)
+	target_amount = rand(3,4)
 	..()
 
 // EXPLANATION

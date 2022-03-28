@@ -477,20 +477,23 @@
 	objectives += survive_objective
 
 	// Objective 1: Vassalize a Head/Command, or a specific target
+	var/list/rolled_objectives = list()
 	switch(rand(1, 3))
-		if(1) // Protege Objective
-			var/datum/objective/bloodsucker/protege/protege_objective = new
-			protege_objective.owner = owner
-			objectives += protege_objective
-		if(2) // Heart Thief Objective
-			var/datum/objective/bloodsucker/heartthief/heartthief_objective = new
-			heartthief_objective.owner = owner
-			objectives += heartthief_objective
-		if(3) // Drink Blood Objective
-			var/datum/objective/bloodsucker/gourmand/gourmand_objective = new
-			gourmand_objective.owner = owner
-			objectives += gourmand_objective
-
+		if(1) // Protege and Drink Objective
+			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/gourmand)
+			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
+				objective.owner = owner
+				objectives += objective
+		if(2) // Heart Thief and Protege Objective
+			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief)
+			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
+				objective.owner = owner
+				objectives += objective
+		if(3) // All of them
+			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief, new /datum/objective/bloodsucker/gourmand)
+			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
+				objective.owner = owner
+				objectives += objective
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()
