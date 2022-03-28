@@ -1204,7 +1204,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				FOVTurflist.Add(item)
 
 			//Okay, now we spawn a spider on the turf picked, and have it target the victim.
-			var/turf/open/OV = pick(FOVTurflist)
 			var/mob/living/simple_animal/hostile/smspider/spider = new /mob/living/simple_animal/hostile/smspider(pick(FOVlist))
 			spider.GiveTarget(target)
 			to_chat(usr, span_alert("Dusting target with a spider..."))
