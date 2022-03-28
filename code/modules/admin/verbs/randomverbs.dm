@@ -1195,13 +1195,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/confirm = alert(usr, "Dust target with a spider? There is no chance of revival!", "Supermatter Spider", "Yes", "No")
 			if(confirm == "No")
 				return
-			//What's an open turf within the target's sight?
+			//What's an open turf within the target's sight? Lets make a list of them.
 			var/FOVlist = circleviewturfs(target,5)
-			//Let's compile a list of these turfs.
-			//This adds all available open turfs into this list.
-
-			//Okay, now we spawn a spider on the turf picked, and have it target the victim.
+			//Okay, now we spawn a spider on the turf...
 			var/mob/living/simple_animal/hostile/smspider/spider = new /mob/living/simple_animal/hostile/smspider(pick(FOVlist))
+			//And have it target the victim.
 			spider.GiveTarget(target)
 			to_chat(usr, span_alert("Dusting target with a spider..."))
 		if(ADMIN_PUNISHMENT_CRACK)
