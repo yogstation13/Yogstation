@@ -610,3 +610,7 @@
 	suffix = "gax"
 	name = "arrival shuttle (Gax)"
 
+/datum/map_template/shuttle/ai/gax
+	suffix = "gax"
+	name = "ai ship shuttle (Gax)"
+

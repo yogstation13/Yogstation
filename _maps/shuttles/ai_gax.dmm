@@ -1,0 +1,169 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/mining)
+"e" = (
+/turf/template_noop,
+/area/template_noop)
+"f" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/mining)
+"g" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"m" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/mining)
+"p" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Mining Shuttle Airlock"
+	},
+/obj/docking_port/mobile{
+	dir = 4;
+	dwidth = 3;
+	height = 5;
+	id = "mining";
+	name = "mining shuttle";
+	port_direction = 4;
+	width = 7
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"q" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"r" = (
+/turf/open/floor/mineral/titanium,
+/area/shuttle/mining)
+"u" = (
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/mining)
+"y" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"z" = (
+/obj/machinery/computer/shuttle/mining{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/mining)
+"C" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/mining)
+"E" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/mining)
+"L" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"R" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Mining Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"S" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"U" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/mining)
+"V" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/mining)
+"W" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/mining)
+
+(1,1,1) = {"
+C
+V
+L
+p
+f
+e
+"}
+(2,1,1) = {"
+q
+m
+E
+U
+f
+f
+"}
+(3,1,1) = {"
+R
+r
+r
+u
+z
+g
+"}
+(4,1,1) = {"
+q
+W
+W
+d
+f
+f
+"}
+(5,1,1) = {"
+C
+V
+y
+S
+f
+e
+"}
