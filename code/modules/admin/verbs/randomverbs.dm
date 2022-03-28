@@ -1196,7 +1196,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(confirm == "No")
 				return
 			//What's an open turf within the target's sight?
-			var/list/FOVlist = oview(target,5)
+			var/FOVlist = circleviewturfs(target,5)
 			//Let's compile a list of these turfs.
 			//This adds all available open turfs into this list.
 
