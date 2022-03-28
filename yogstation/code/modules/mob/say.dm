@@ -31,6 +31,8 @@
 /mob/proc/create_typing_indicator()
 	if(typing_overlay) 
 		return
+	if(stat)
+		return
 	var/list/listening = get_hearers_in_view(TYPING_INDICATOR_RANGE, src)
 	speech_bubble_recipients = list()
 	for(var/mob/M in listening)
