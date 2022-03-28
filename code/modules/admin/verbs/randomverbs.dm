@@ -1100,7 +1100,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 									ADMIN_PUNISHMENT_CRACK,
 									ADMIN_PUNISHMENT_BLEED,
 									ADMIN_PUNISHMENT_PERFORATE,
-									ADMIN_PUNISHMENT_SCARIFY
+									ADMIN_PUNISHMENT_SCARIFY,
+									ADMIN_PUNISHMENT_SMSPIDER
 									)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1190,6 +1191,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(target, span_reallybigphobia("HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT."))
 			var/mob/living/carbon/human/H = target
 			H?.cluwneify()
+ 		if(ADMIN_PUNISHMENT_SMSPIDER)
+ 			confirm = alert(usr, "Dust target with a spider?", "Confirm? There is no chance of revival!", "Yes", "No")
+ 			if(confirm == "Yes")
+			//This spawns a smspider within five tiles of the target's sight.
+				var/turf/OV = get_turf(target)
+				for(OV in oview(target))
+					new /mob/living/simple_animal/hostile/smspider
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
 				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
@@ -1276,6 +1284,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
   * * wound_bonus- the wounding power we're assigning to the bullet, since we don't care about the base one
   * * damage- the damage we're assigning to the bullet, since we don't care about the base one
   */
+
 /proc/firing_squad(mob/living/carbon/target, turf/source_turf, body_zone, wound_bonus, damage)
 	if(!target.get_bodypart(body_zone))
 		return
