@@ -89,8 +89,7 @@
 	reqs = list(/datum/reagent/fuel = 50,
 				/obj/item/stack/cable_coil = 1,
 				/obj/item/assembly/igniter = 1,
-				/obj/item/pipe = 1,
-				/obj/item/reagent_containers/food/drinks/soda_cans = 1)
+				/obj/item/pipe = 1)
 	tools = list(TOOL_WELDER, TOOL_WRENCH, TOOL_WIRECUTTER)
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY
