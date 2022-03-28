@@ -840,6 +840,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Donator Preferences</h2>"
 			if(is_donator(user.client))
 				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.yogtoggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+				dat += "Wear fancy hat as borg: "
+				dat += "<a href='?_src_=prefs;preference=donor;task=borghat'>[borg_hat ? "Yes" : "No"]</a><br>"
 				dat += "<b>Fancy Hat:</b> "
 				///This is the typepath of the donor's hat that they may choose to spawn with.
 				var/typehat = donor_hat
@@ -1241,6 +1243,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(is_donator(user))
 			var/client/C = (istype(user, /client)) ? user : user.client
 			switch(href_list["task"])
+				if("borghat")
+					borg_hat = !borg_hat
 				if("hat")
 					C.custom_donator_item()
 				if("item")

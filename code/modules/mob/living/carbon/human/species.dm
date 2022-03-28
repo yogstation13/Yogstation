@@ -1990,6 +1990,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 ////////////////
 
 /datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
+	if(H.IsParalyzed() || H.IsStun())
+		return FALSE
 	return (H.getorganslot(ORGAN_SLOT_TAIL))
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)

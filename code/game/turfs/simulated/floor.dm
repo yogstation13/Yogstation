@@ -125,6 +125,9 @@
 /turf/open/floor/proc/gets_drilled()
 	return
 
+/turf/open/floor/proc/attempt_drilled()
+	return
+
 /turf/open/floor/proc/break_tile_to_plating()
 	var/turf/open/floor/plating/T = make_plating()
 	if(!istype(T))

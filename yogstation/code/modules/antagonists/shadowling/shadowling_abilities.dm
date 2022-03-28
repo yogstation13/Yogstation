@@ -175,6 +175,8 @@
 		if(istype(LO, /obj/machinery/power/floodlight))
 			var/obj/machinery/power/floodlight/FL = LO
 			FL.change_setting(2) // Set floodlight to lowest setting
+		if(istype(LO, /obj/structure/light_prism))
+			qdel(LO)
 
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
 		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
