@@ -1,40 +1,78 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/machinery/light,
+"a" = (
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/mining)
-"e" = (
-/turf/template_noop,
-/area/template_noop)
-"f" = (
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/mining)
-"g" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/mining)
-"m" = (
+/area/shuttle/ai)
+"b" = (
 /obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/mining)
-"q" = (
+/area/shuttle/ai)
+"e" = (
+/turf/template_noop,
+/area/template_noop)
+"h" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/ai)
+"m" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/mining)
-"r" = (
+/area/shuttle/ai)
+"o" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/ai)
+"q" = (
 /turf/open/floor/mineral/titanium,
-/area/shuttle/mining)
+/area/shuttle/ai)
 "u" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/ai)
+"z" = (
+/obj/machinery/computer/shuttle/ai_ship{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/ai)
+"C" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/titanium,
-/area/shuttle/mining)
-"x" = (
+/area/shuttle/ai)
+"G" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/ai)
+"H" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/ai)
+"M" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Mining Shuttle Airlock"
 	},
@@ -52,21 +90,24 @@
 	width = 5
 	},
 /turf/open/floor/plating,
-/area/shuttle/mining)
-"y" = (
-/obj/effect/spawner/structure/window/shuttle,
+/area/shuttle/ai)
+"N" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/ai)
+"Q" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
-/area/shuttle/mining)
-"z" = (
-/obj/machinery/computer/shuttle/mining{
-	dir = 1
+/area/shuttle/ai)
+"U" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/mining)
-"B" = (
+/area/shuttle/ai)
+"W" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Mining Shuttle Airlock"
 	},
@@ -77,93 +118,45 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/mining)
-"C" = (
-/obj/structure/shuttle/engine/propulsion/burst{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/mining)
-"E" = (
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/mining)
-"L" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/mining)
-"S" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/shuttle/mining)
-"U" = (
-/obj/machinery/light,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/mining)
-"V" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	layer = 2.9
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/mining)
-"W" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/mining)
+/area/shuttle/ai)
 
 (1,1,1) = {"
-C
-V
-L
-B
-f
+H
+h
+N
+W
+N
 e
 "}
 (2,1,1) = {"
-q
 m
-E
-U
-f
-f
+G
+a
+q
+N
+N
 "}
 (3,1,1) = {"
-x
-r
-r
-u
+M
+q
+q
+C
 z
-g
+u
 "}
 (4,1,1) = {"
-q
-W
-W
-d
-f
-f
+m
+U
+b
+o
+N
+N
 "}
 (5,1,1) = {"
-C
-V
-y
-S
-f
+H
+h
+N
+Q
+N
 e
 "}
