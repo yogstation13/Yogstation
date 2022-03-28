@@ -1192,7 +1192,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/mob/living/carbon/human/H = target
 			H?.cluwneify()
 		if(ADMIN_PUNISHMENT_SMSPIDER)
-			var/confirm = alert(usr, "Dust target with a spider?", "Confirm? There is no chance of revival!", "Yes", "No")
+			var/confirm = alert(usr, "Dust target with a spider? There is no chance of revival!", "Supermatter Spider", "Yes", "No")
 			if(confirm == "No")
 				return
 			//What's an open turf within the target's sight?
