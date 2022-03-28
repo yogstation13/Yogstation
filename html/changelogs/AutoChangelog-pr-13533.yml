@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscdel: "Removed player access to edit variables on any apc on station"
