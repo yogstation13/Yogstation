@@ -1195,6 +1195,18 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/confirm = alert(usr, "Dust target with a spider?", "Confirm? There is no chance of revival!", "Yes", "No")
 			if(confirm == "No")
 				return
+			//What's an open turf within the target's sight?
+			var/list/FOVlist = oview(target,5)
+			//Let's compile a list of these turfs.
+			var/list/FOVTurflist = new/list()
+			//This adds all available open turfs into this list.
+			for(var/turf/open/item in FOVlist)
+				FOVTurflist.Add(item)
+
+			//Okay, now we spawn a spider on the turf picked, and have it target the victim.
+			var/turf/open/OV = pick(FOVTurflist)
+			var/mob/living/loser/ = new /mob/living/simple_animal/hostile/smspider(OV)
+			loser.attack_animal(target)
 			to_chat(usr, span_alert("Dusting target with a spider..."))
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
@@ -1295,20 +1307,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	divine_wrath.spread = 0
 	divine_wrath.preparePixelProjectile(target, source_turf)
 	divine_wrath.fire()
-
-/proc/SMspidermission(var/mob/living/target)
-	//What's an open turf within the target's sight?
-	var/list/FOVlist = oview(target,5)
-	//Let's compile a list of these turfs.
-	var/list/FOVTurflist = new/list()
-	//This adds all available open turfs into this list.
-	for(var/turf/open/item in FOVlist)
-		FOVTurflist.Add(item)
-
-	//Okay, now we spawn a spider on the turf picked, and have it target the victim.
-	var/turf/open/OV = pick(FOVTurflist)
-	var/mob/living/loser/ = new /mob/living/simple_animal/hostile/smspider(OV)
-	loser.attack_animal(target)
 
 /client/proc/punish_log(var/whom, var/punishment)
 	var/msg = "[key_name(usr)] punished [key_name_admin(whom)] with [punishment]." //yogs - Yog tickets
