@@ -122,3 +122,20 @@
 /datum/station_trait/quick_shuttle/on_round_start()
 	. = ..()
 	SSshuttle.supply.callTime *= 0.5
+
+//SSticker.triai
+
+/datum/station_trait/triumvirate
+	name = "AI surplus"
+	trait_type = STATION_TRAIT_NEUTRAL
+	weight = 4
+	show_in_report = TRUE
+	report_message = "We're conducting a new experiment on AI collectives, so we have sent multiple AIs to your station."
+
+/datum/station_trait/triumvirate/New()
+	if (prob(50))
+		show_in_report = FALSE
+
+/datum/station_trait/triumvirate/on_before_setup()
+	. = ..()
+	SSticker.triai = 1

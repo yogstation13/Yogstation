@@ -23,6 +23,7 @@
 /datum/station_trait/New()
 	. = ..()
 	SSticker.OnRoundstart(CALLBACK(src, .proc/on_round_start))
+	SSticker.BeforeRoundSetup(CALLBACK(src, .proc/on_before_setup))
 	if(trait_processes)
 		START_PROCESSING(SSstation, src)
 	if(trait_to_give)
@@ -30,6 +31,10 @@
 
 ///Proc ran when round starts. Use this for roundstart effects.
 /datum/station_trait/proc/on_round_start()
+	return
+
+//Proc ran before round setups. Use this for presetup effects.
+/datum/station_trait/proc/on_before_setup()
 	return
 
 ///type of info the centcom report has on this trait, if any.

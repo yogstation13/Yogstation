@@ -55,6 +55,7 @@ SUBSYSTEM_DEF(ticker)
 	var/round_start_time = 0
 	var/list/round_start_events
 	var/list/round_end_events
+	var/list/pre_setup_events
 	var/mode_result = "undefined"
 	var/end_state = "undefined"
 
@@ -216,6 +217,11 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
+	for(var/I in pre_setup_events)
+		var/datum/callback/cb = I
+		cb.InvokeAsync()
+	LAZYCLEARLIST(pre_setup_events)
+
 	to_chat(world, span_boldannounce("Starting game..."))
 	var/init_start = world.timeofday
 		//Create and announce mode
@@ -344,6 +350,12 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
 	if(!HasRoundStarted())
 		LAZYADD(round_start_events, cb)
+	else
+		cb.InvokeAsync()
+
+/datum/controller/subsystem/ticker/proc/BeforeRoundSetup(datum/callback/cb)
+	if(current_state >= GAME_STATE_SETTING_UP)
+		LAZYADD(pre_setup_events, cb)
 	else
 		cb.InvokeAsync()
 
