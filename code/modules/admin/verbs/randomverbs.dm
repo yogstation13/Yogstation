@@ -1205,7 +1205,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 			//Okay, now we spawn a spider on the turf picked, and have it target the victim.
 			var/turf/open/OV = pick(FOVTurflist)
-			var/mob/living/loser/ = new /mob/living/simple_animal/hostile/smspider(OV)
+			var/mob/living/simple_animal/hostile/smspider/spider = new /mob/living/simple_animal/hostile/smspider(pick(FOVlist))
 			loser.attack_animal(target)
 			to_chat(usr, span_alert("Dusting target with a spider..."))
 		if(ADMIN_PUNISHMENT_CRACK)
