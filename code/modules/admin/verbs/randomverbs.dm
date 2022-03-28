@@ -1192,12 +1192,20 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/mob/living/carbon/human/H = target
 			H?.cluwneify()
  		if(ADMIN_PUNISHMENT_SMSPIDER)
- 			confirm = alert(usr, "Dust target with a spider?", "Confirm? There is no chance of revival!", "Yes", "No")
+ 			var/confirm = alert(usr, "Dust target with a spider?", "Confirm? There is no chance of revival!", "Yes", "No")
 			if(confirm == "No")
 				return
 			to_chat(usr, span_alert("Dusting target with a spider..."))
-			//This spawns a smspider within five tiles of the target's sight.
-			var/turf/open/OV = pick(/turf/open in oview(target,5))
+			//What's an open turf within the target's sight?
+			var/list/FOVlist = oview(5,target)
+			//Let's compile a list of these turfs.
+			var/list/FOVTurflist = new/list()
+			//This adds all available open turfs into this list.
+			for(var/turf/open/item in FOVlist)
+				FOVTurflist.Add(item)
+
+			//Okay, now we spawn a spider on the turf picked, and have it target the victim.
+			var/turf/open/OV = pick(FOVTurflist)
 			var/mob/living/loser/ = new /mob/living/simple_animal/hostile/smspider(OV)
 			loser.attack_animal(target)
 		if(ADMIN_PUNISHMENT_CRACK)
