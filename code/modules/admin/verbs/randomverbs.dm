@@ -1192,7 +1192,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/mob/living/carbon/human/H = target
 			H?.cluwneify()
 		if(ADMIN_PUNISHMENT_SMSPIDER)
-
+			var/confirm = alert(usr, "Dust target with a spider?", "Confirm? There is no chance of revival!", "Yes", "No")
+			if(confirm == "No")
+				return
+			to_chat(usr, span_alert("Dusting target with a spider..."))
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
 				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
@@ -1294,10 +1297,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	divine_wrath.fire()
 
 /proc/SMspidermission(var/mob/living/target)
-	var/confirm = alert(usr, "Dust target with a spider?", "Confirm? There is no chance of revival!", "Yes", "No")
-	if(confirm == "No")
-		return
-	to_chat(usr, span_alert("Dusting target with a spider..."))
 	//What's an open turf within the target's sight?
 	var/list/FOVlist = oview(target,5)
 	//Let's compile a list of these turfs.
