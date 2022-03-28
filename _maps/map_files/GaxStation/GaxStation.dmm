@@ -27345,12 +27345,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"pnk" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 6
-	},
-/turf/closed/wall,
-/area/science/mixing)
 "pnM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -38023,13 +38017,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
-"vDq" = (
-/obj/effect/turf_decal/trimline/purple/filled/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner,
-/turf/closed/wall/r_wall,
-/area/science/lab)
 "vDr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -79471,7 +79458,7 @@ eDH
 rVq
 sRp
 xju
-pnk
+hbW
 tXV
 kUA
 wIQ
@@ -81522,7 +81509,7 @@ kYl
 vxj
 kYl
 fVq
-vDq
+eiF
 mxs
 dPW
 uUD
