@@ -236,7 +236,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/wirerod
 	name = "wired rod"
 	desc = "A rod with some wire wrapped around the top. It'd be easy to attach something to the top bit."
-	icon = 'icons/obj/baton.dmi'
+	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "wiredrod"
 	item_state = "rods"
 	flags_1 = CONDUCT_1
