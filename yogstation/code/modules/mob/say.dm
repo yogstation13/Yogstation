@@ -9,6 +9,24 @@
 /mob
 	var/image/typing_overlay
 	var/list/speech_bubble_recipients
+	var/last_typed
+	var/last_typed_time
+
+/mob/proc/handle_typing_indicator()
+	if(client)
+		var/temp = winget(client, "input", "text")
+		if(temp != last_typed)
+			last_typed = temp
+			last_typed_time = world.time
+		if(world.time > last_typed_time + 10 SECONDS)
+			remove_typing_indicator()
+			return
+		if(length(temp) > 5 && findtext(temp, "Say \"", 1, 7))
+			create_typing_indicator()
+		else if(length(temp) > 3 && findtext(temp, "Me ", 1, 5))
+			//set_typing_indicator(1)
+		else
+			remove_typing_indicator()
 
 /mob/proc/create_typing_indicator()
 	if(typing_overlay) 
