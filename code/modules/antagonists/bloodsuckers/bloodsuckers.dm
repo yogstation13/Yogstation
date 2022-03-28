@@ -372,6 +372,7 @@
 	if(!owner || !owner.current || vassaldatum)
 		return
 	bloodsucker_level_unspent++
+	passive_blood_drain -= 0.03 * bloodsucker_level //do something. It's here because if you are gaining points through other means you are doing good
 	// Spend Rank Immediately?
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin that you have claimed to thicken your blood and become more powerful.</EM>"))

@@ -7,7 +7,7 @@
 
 /datum/action/bloodsucker/gangrel/transform
 	name = "Transform"
-	desc = "Allow the Monster deep-inside of you, run free."
+	desc = "Allows you to unleash your inner form and turn into something greater."
 	button_icon_state = "power_gangrel"
 	power_explanation = "<b>Transform</b>:\n\
 		A gangrel only power, will turn you into a feral being depending on your blood sucked.\n\
@@ -103,6 +103,7 @@
 /datum/action/bloodsucker/gangrel/transform/ActivatePower()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/human/user = owner
+	var/datum/species/user_species = user.dna.species
 	user.Immobilize(10 SECONDS)
 	if(!do_mob(user, user, 10 SECONDS, 1))
 		return
@@ -114,13 +115,17 @@
 			else
 				user.set_species(/datum/species/human/felinid)
 				playsound(user.loc, 'sound/voice/feline/meow1.ogg', 50)
+				if((DIGITIGRADE in user_species.species_traits))
+					user_species.species_traits -= DIGITIGRADE
 			user.dna.species.punchdamagehigh += 5.0 //stronk
 			user.dna.species.armor += 30
-			to_chat(user, span_notice("You aren't strong enough to morph into something stronger! But you do certainly feel more feral than before."))
+			to_chat(user, span_notice("You aren't strong enough to morph into something stronger! But you do certainly feel more feral and stronger than before."))
 		if(500 to 1000)
 			user.set_species(/datum/species/gorilla)
-			to_chat(owner, span_notice("You transform into a gorrila-ey beast!"))
+			to_chat(owner, span_notice("You transform into a gorrila-ey beast, you feel stronger!"))
 			playsound(user.loc, 'sound/creatures/gorilla.ogg', 50)
+			if((DIGITIGRADE in user_species.species_traits))
+				user_species.species_traits -= DIGITIGRADE
 			user.dna.species.punchdamagehigh += 7.5 //very stronk
 			user.dna.species.armor += 35
 		if(1500 to INFINITY)
