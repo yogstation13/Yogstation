@@ -1193,11 +1193,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			H?.cluwneify()
  		if(ADMIN_PUNISHMENT_SMSPIDER)
  			confirm = alert(usr, "Dust target with a spider?", "Confirm? There is no chance of revival!", "Yes", "No")
- 			if(confirm == "Yes")
+			if(confirm == "No")
+				return
+			to_chat(usr, span_alert("Dusting target with a spider..."))
 			//This spawns a smspider within five tiles of the target's sight.
-				var/turf/OV = get_turf(target)
-				for(OV in oview(target))
-					new /mob/living/simple_animal/hostile/smspider
+			var/turf/open/OV = pick(/turf/open in oview(target,5))
+				var/mob/living/loser/ = new /mob/living/simple_animal/hostile/smspider(OV)
+				loser.attack(target)
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
 				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
