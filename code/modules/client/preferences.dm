@@ -130,7 +130,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/chat_on_map = TRUE
 	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
 	var/see_chat_non_mob = TRUE
-	var/see_typing_indicators = TRUE
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
 
@@ -626,7 +625,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
-			dat += "<b>See Typing Indicators:</b> <a href='?_src_=prefs;preference=see_typing_indicators'>[see_typing_indicators ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>See Typing Indicators:</b> <a href='?_src_=prefs;preference=see_typing_indicators'>[(chat_toggles & CHAT_TYPING_INDICATOR) ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
@@ -1860,7 +1859,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("see_rc_emotes")
 					see_rc_emotes = !see_rc_emotes
 				if("see_typing_indicators")
-					see_typing_indicators != see_typing_indicators
+					chat_toggles ^= CHAT_TYPING_INDICATOR
 				if("action_buttons")
 					buttons_locked = !buttons_locked
 				if("tgui_fancy")
