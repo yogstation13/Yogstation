@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "brazil now only kicks out people who aren't supposed to be there instead of people who are"
