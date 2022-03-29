@@ -1,0 +1,4 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a bug that made borgs not unrest people and the message when clicking on a resting person"
