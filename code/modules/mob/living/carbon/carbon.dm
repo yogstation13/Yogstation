@@ -74,14 +74,6 @@
 				if(S.next_step(user,user.a_intent))
 					return TRUE
 
-	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
-		return ..()
-
-	for(var/i in shuffle(all_wounds))
-		var/datum/wound/W = i
-		if(W.try_treating(I, user))
-			return TRUE
-
 	var/obj/item/bodypart/affecting = get_bodypart(check_zone(user.zone_selected))
 
 	if(user.a_intent != INTENT_HARM && I.tool_behaviour == TOOL_WELDER && affecting?.status == BODYPART_ROBOTIC)
@@ -92,6 +84,14 @@
 				if(!do_mob(user, src, 50))
 					return TRUE
 			item_heal_robotic(src, user, 15, 0)
+			return TRUE
+
+	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
+		return ..()
+
+	for(var/i in shuffle(all_wounds))
+		var/datum/wound/W = i
+		if(W.try_treating(I, user))
 			return TRUE
 
 	return ..()
