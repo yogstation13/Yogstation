@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "you can now repair cybernetic limbs again without the target having to have a wound"

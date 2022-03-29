@@ -38,6 +38,8 @@
 
 	var/syndicate_module = FALSE /// If the borg should blow emag size regardless of emag state
 
+	var/obj/item/hat // Keeps track of the hat while transforming, to attempt to place back on the borg's head
+
 /obj/item/robot_module/Initialize()
 	. = ..()
 	for(var/i in basic_modules)
@@ -213,8 +215,10 @@
 /obj/item/robot_module/proc/do_transform_animation()
 	var/mob/living/silicon/robot/R = loc
 	if(R.hat)
-		R.hat.forceMove(get_turf(R))
+		hat = R.hat
 		R.hat = null
+		hat.moveToNullspace()
+
 	R.cut_overlays()
 	R.setDir(SOUTH)
 	do_transform_delay()

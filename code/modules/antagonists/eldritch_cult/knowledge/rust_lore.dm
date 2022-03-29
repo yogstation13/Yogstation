@@ -8,12 +8,6 @@
 	route = PATH_RUST
 	tier = TIER_PATH
 
-/datum/eldritch_knowledge/base_rust/on_gain(mob/user)
-	..()
-	var/datum/antagonist/heretic/EC = user.mind?.has_antag_datum(/datum/antagonist/heretic)
-	var/datum/eldritch_transmutation/basic/B = EC.get_transmutation(1)
-	B.effect_path = STATUS_EFFECT_HERETIC_SACRIFICE_RUST
-
 /datum/eldritch_knowledge/base_rust/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(ishuman(target))
