@@ -19,14 +19,13 @@
 	.=..()
 	var/datum/job/ai/job = SSjob.GetJob("AI")
 	for(var/datum/mind/candidate in .)
-		if(job.required_playtime_remaining(candidate.current.client))
+		if(is_banned_from(candidate.current.ckey, rank) || QDELETED(candidate) || !job.player_old_enough(candidate.current.client) || job.required_playtime_remaining(candidate.current.client))
 			. -= candidate
 	return .
 
 /datum/game_mode/malf/pre_setup()
 	var/datum/mind/AI = antag_pick(antag_candidates)
-	SSjob.AssignRole(AI.current, "AI")
-	return TRUE
+	return SSjob.AssignRole(AI.current, "AI")
 
 /datum/game_mode/malf/post_setup()
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list) //triumvirate AIs ride for free. Oh well, it's basically an event in that case
