@@ -232,7 +232,7 @@
 		owner.current.Jitter(3)
 	// BLOOD_VOLUME_SURVIVE: [122] - Blur Vision
 	if(owner.current.blood_volume < BLOOD_VOLUME_SURVIVE(owner.current))
-		owner.current.blur_eyes(8 - 8 * (owner.current / BLOOD_VOLUME_BAD(owner.current)))
+		owner.current.blur_eyes(8 - 8 * (owner.current.blood_volume / BLOOD_VOLUME_BAD(owner.current)))
 
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
