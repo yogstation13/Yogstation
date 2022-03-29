@@ -364,7 +364,7 @@
 /turf/open/indestructible/brazil/proc/gtfo()
 	. = FALSE
 	for(var/mob/living/L in src)
-		if(L.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE))
+		if(!L.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE))
 			. = TRUE
 			to_chat(L, span_velvet("Get out of here, stalker."))
 			var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
