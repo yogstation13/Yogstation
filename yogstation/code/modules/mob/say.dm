@@ -13,6 +13,8 @@
 	var/last_typed_time
 
 /mob/proc/handle_typing_indicator()
+	if(!GLOB.typing_indicators)
+		return
 	if(client)
 		var/temp = winget(client, "input", "text")
 		if(temp != last_typed)
