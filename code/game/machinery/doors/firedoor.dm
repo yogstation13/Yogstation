@@ -279,11 +279,25 @@
 				T.ImmediateCalculateAdjacentTurfs()
 
 /obj/machinery/door/firedoor/proc/emergency_pressure_stop(consider_timer = TRUE)
-	set waitfor = 0
 	if(density || operating || welded)
 		return
 	if(world.time >= emergency_close_timer || !consider_timer)
-		close()
+		emergency_pressure_close()
+
+/obj/machinery/door/firedoor/proc/emergency_pressure_close()
+	if(density)
+		return
+	if(operating || welded)
+		return
+	density = TRUE
+	air_update_turf(1)
+	update_icon()
+	if(visible && !glass)
+		set_opacity(1)
+	update_freelook_sight()
+	if(!(flags_1 & ON_BORDER_1))
+		crush()
+
 
 /obj/machinery/door/firedoor/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1) && disassembled)

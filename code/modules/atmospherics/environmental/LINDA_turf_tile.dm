@@ -186,23 +186,14 @@
 
 /turf/open/proc/equalize_pressure_in_zone(cyclenum)
 /turf/open/proc/consider_firelocks(turf/T2)
-	var/reconsider_adj = FALSE
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/stopped in T2)
 		stopped.on = FALSE
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/stopped in src)
 		stopped.on = FALSE
 	for(var/obj/machinery/door/firedoor/FD in T2)
-		/*if((FD.flags_1 & ON_BORDER_1) && get_dir(T2, src) != FD.dir)
-			continue*/
 		FD.emergency_pressure_stop()
-		reconsider_adj = TRUE
 	for(var/obj/machinery/door/firedoor/FD in src)
-		/*if((FD.flags_1 & ON_BORDER_1) && get_dir(src, T2) != FD.dir)
-			continue*/
 		FD.emergency_pressure_stop()
-		reconsider_adj = TRUE
-	if(reconsider_adj)
-		T2.ImmediateCalculateAdjacentTurfs() // We want those firelocks closed yesterday.
 
 /turf/proc/handle_decompression_floor_rip()
 /turf/open/floor/handle_decompression_floor_rip(sum)
