@@ -2,8 +2,10 @@
 
 /mob/proc/get_say()
 	create_typing_indicator()
+	window_typing = TRUE
 	var/msg = input(src, null, "say \"text\"") as text|null
 	remove_typing_indicator()
+	window_typing = FALSE
 	say_verb(msg)
 
 /mob
@@ -11,6 +13,8 @@
 	var/list/speech_bubble_recipients
 	var/last_typed
 	var/last_typed_time
+	var/window_typing = FALSE
+	var/bar_typing = FALSE
 
 /mob/proc/handle_typing_indicator()
 	if(!GLOB.typing_indicators)
@@ -22,13 +26,16 @@
 			last_typed_time = world.time
 		if(world.time > last_typed_time + 10 SECONDS)
 			remove_typing_indicator()
+			bar_typing = FALSE
 			return
 		if(length(temp) > 5 && findtext(temp, "Say \"", 1, 7))
 			create_typing_indicator()
+			bar_typing = TRUE
 		else if(length(temp) > 3 && findtext(temp, "Me ", 1, 5))
 			//set_typing_indicator(1)
 		else
 			remove_typing_indicator()
+			bar_typing = FALSE
 
 /mob/proc/create_typing_indicator()
 	if(typing_overlay) 
@@ -51,6 +58,8 @@
 
 /mob/proc/remove_typing_indicator()
 	if(!typing_overlay) 
+		return
+	if(window_typing || bar_typing)
 		return
 	INVOKE_ASYNC(GLOBAL_PROC, /proc/remove_images_from_clients, typing_overlay, speech_bubble_recipients)
 	typing_overlay = null
