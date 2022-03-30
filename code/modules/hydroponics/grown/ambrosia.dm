@@ -77,3 +77,22 @@
 	seed = /obj/item/seeds/ambrosia/gaia
 	wine_power = 70
 	wine_flavor = "the earthmother's blessing"
+
+
+
+// Ambrosia Cruciatus
+/obj/item/seeds/ambrosia/cruciatus
+    name = "pack of ambrosia cruciatus seeds"
+    desc = "A special ambrosia type, mutated at syndicate laboratories."
+    icon_state = "seed-ambrosia_gaia"
+    species = "ambrosia_cruciatus"
+    plantname = "Ambrosia Cruciatus"
+    product = /obj/item/reagent_containers/food/snacks/grown/ambrosia/cruciatus
+    reagents_add = list(/datum/reagent/medicine/bicaridine = 0.1, /datum/reagent/consumable/nutriment = 0.05, /datum/reagent/drug/bath_salts = 0.2, /datum/reagent/toxin/staminatoxin = 0.1, /datum/reagent/medicine/kelotane = 0.15)
+    rarity = 90
+
+/obj/item/reagent_containers/food/snacks/grown/ambrosia/cruciatus
+    seed = /obj/item/seeds/ambrosia/cruciatus
+    name = "ambrosia cruciatus branch"
+    desc = "Eating this makes you feel immortal!"
+    wine_power = 70

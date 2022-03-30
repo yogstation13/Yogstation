@@ -2032,7 +2032,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	restricted_roles = list("Chaplain")
 	surplus = 5 //Very low chance to get it in a surplus crate even without being the chaplain
-	
+
 /datum/uplink_item/role_restricted/horror
 	name = "Horror-in-a-box"
 	desc = "When dissecting the head of a dead Nanotrasen scientist, our surgeons noticed an incredibly peculiar creature inside and managed to extract it into safe containment. \
@@ -2230,3 +2230,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/stamp/syndiround
 	cost = 1
 	illegal_tech = FALSE
+
+
+
+/datum/uplink_item/role_restricted/explosive_hot_potato
+    name = "Ambrosia Cruciatus Seeds"
+    desc = "A pack of ambrosia seeds, that contain usefull chemicals inside. This chemicals could be used for healing yourself, or killing other people."
+    item = /obj/item/seeds/ambrosia/cruciatus
+    cost = 2
+    surplus = 0
+    restricted_roles = list("Cook", "Botanist")
