@@ -4,8 +4,8 @@
 	create_typing_indicator()
 	window_typing = TRUE
 	var/msg = input(src, null, "say \"text\"") as text|null
-	remove_typing_indicator()
 	window_typing = FALSE
+	remove_typing_indicator()
 	say_verb(msg)
 
 /mob
@@ -25,8 +25,8 @@
 			last_typed = temp
 			last_typed_time = world.time
 		if(world.time > last_typed_time + 10 SECONDS)
-			remove_typing_indicator()
 			bar_typing = FALSE
+			remove_typing_indicator()
 			return
 		if(length(temp) > 5 && findtext(temp, "Say \"", 1, 7))
 			create_typing_indicator()
@@ -34,8 +34,9 @@
 		else if(length(temp) > 3 && findtext(temp, "Me ", 1, 5))
 			//set_typing_indicator(1)
 		else
-			remove_typing_indicator()
 			bar_typing = FALSE
+			remove_typing_indicator()
+			
 
 /mob/proc/create_typing_indicator()
 	if(typing_overlay) 
