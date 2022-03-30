@@ -833,4 +833,3 @@
 	else
 		RemoveInfestActions()
 		GrantHorrorActions()
-		

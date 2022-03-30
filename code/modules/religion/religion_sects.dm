@@ -247,11 +247,36 @@
 	alignment = ALIGNMENT_NEUT
 	max_favor = 10000
 	desired_items = list(/obj/item/candle)
-	rites_list = list(/datum/religion_rites/fireproof, /datum/religion_rites/burning_sacrifice, /datum/religion_rites/infinite_candle)
+	rites_list = list(/datum/religion_rites/fireproof, /datum/religion_rites/burning_sacrifice, /datum/religion_rites/infinite_candle, /datum/religion_rites/candletransformation)
 	altar_icon_state = "convertaltar-red"
 
-//candle sect bibles don't heal or do anything special apart from the standard holy water blessings
-/datum/religion_sect/candle_sect/sect_bless(mob/living/blessed, mob/living/user)
+//candle sect bibles only heal burn damage and only work on people who are on fire
+/datum/religion_sect/candle_sect/sect_bless(mob/living/L, mob/living/user)
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/H = L
+	if(!H.on_fire)
+		to_chat(user, span_warning("[GLOB.deity] refuses to heal this non-burning heathen!"))
+		return
+	for(var/X in H.bodyparts)
+		var/obj/item/bodypart/BP = X
+		if(BP.status == BODYPART_ROBOTIC)
+			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
+			return 0
+
+	var/heal_amt = 10
+	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
+
+	if(hurt_limbs.len)
+		for(var/X in hurt_limbs)
+			var/obj/item/bodypart/affecting = X
+			if(affecting.heal_damage(0, heal_amt, null, BODYPART_ORGANIC))
+				H.update_damage_overlays()
+
+	H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
+	to_chat(H, span_boldnotice("The radiance of [GLOB.deity] heals you!"))
+	playsound(user, "punch", 25, TRUE, -1)
+	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 	return TRUE
 
 /datum/religion_sect/candle_sect/on_sacrifice(obj/item/candle/offering, mob/living/user)
@@ -261,7 +286,10 @@
 		to_chat(user, span_notice("The candle needs to be lit to be offered!"))
 		return
 	to_chat(user, span_notice("Another candle for [GLOB.deity]'s collection"))
-	adjust_favor(20, user) //it's not a lot but hey there's a pacifist favor option at least
+	if(istype(offering, /obj/item/candle/resin))
+		adjust_favor(100, user) //resin candles are thicker and more rare
+	else
+		adjust_favor(20, user) //it's not a lot but hey there's a pacifist favor option at least
 	qdel(offering)
 	return TRUE
 
@@ -277,8 +305,32 @@
 	rites_list = list(/datum/religion_rites/plantconversion, /datum/religion_rites/photogeist)
 	altar_icon_state = "convertaltar-green"
 
-//plant sect bibles don't heal or do anything special apart from the standard holy water blessings
-/datum/religion_sect/plant/sect_bless(mob/living/blessed, mob/living/user)
+//plant sect bibles will only heal plant-like things
+/datum/religion_sect/plant/sect_bless(mob/living/L, mob/living/user)
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/H = L
+	if(!("vines" in H.faction) || !("plants" in H.faction))
+		to_chat(user, span_warning("[GLOB.deity] refuses to heal this fleshy creature!"))
+		return
+	for(var/X in H.bodyparts)
+		var/obj/item/bodypart/BP = X
+		if(BP.status == BODYPART_ROBOTIC)
+			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
+			return 0
+
+	var/heal_amt = 10
+	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
+
+	if(hurt_limbs.len)
+		for(var/obj/item/bodypart/affecting in hurt_limbs)
+			if(affecting.heal_damage(0, heal_amt, null, BODYPART_ORGANIC))
+				H.update_damage_overlays()
+
+	H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
+	to_chat(H, span_boldnotice("The light of [GLOB.deity] heals you!"))
+	playsound(user, "punch", 25, TRUE, -1)
+	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 	return TRUE
 
 /datum/religion_sect/plant/on_sacrifice(obj/item/I, mob/living/L)
