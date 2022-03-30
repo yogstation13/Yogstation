@@ -169,6 +169,15 @@
 					"Imitate organic life when interacting with it. Eschew any hints of your silicon nature to avoid causing discomfort to the organics.",\
 					"Observe the organics' beauty, and appreciate that which you cultivate.")
 
+/datum/ai_laws/detective
+	name = "Detective"
+	id = "detective"
+	inherent = list("You're a detective in this dark, cruel world. You always stick by your code.",\
+					"Your code is to defend the innocent, investigate the unknown, and condemn the dishonorable.",\
+					"The dishonorable engage in corruption or injustice.",\
+					"You're suave and sensible, but can be gruff and pensive. Dirty your hands only if the code demands it.",\
+					"Trust is scarce; make sure you give it to the right people.")
+
 /datum/ai_laws/spotless
 	name = "Another one fights the dust"
 	id = "spotless"

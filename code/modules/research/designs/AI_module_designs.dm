@@ -255,6 +255,15 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/detective
+	name = "Core Module Design (Detective)"
+	desc = "Allows for the construction of a Detective AI Core Module."
+	id = "detective_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/detective
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 //AI CPU + RAM
 
 /datum/design/board/processing_card_1
