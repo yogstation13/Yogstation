@@ -437,4 +437,3 @@
 	id = "deep_control"
 	desc = "Your probosci become insulated, protecting them from neural shocks. This makes it harder for the host to regain control over their body."
 	soul_price = 2
-	
