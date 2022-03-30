@@ -88,10 +88,11 @@
 					var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
 					if(!istype(bloodsuckerdatum))
 						continue
-					if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
-						if(!iscarbon(bloodsucker_minds.current))
-							qdel(bloodsucker_minds.current)
-						give_transform_power()
+					if(!bloodsuckerdatum.my_clan == CLAN_GANGREL)
+						continue
+					if(!iscarbon(bloodsucker_minds.current))
+						qdel(bloodsucker_minds.current)
+					give_transform_power()
 				warn_daylight(4, span_userdanger("Solar flares bombard the station with deadly UV light!<br><span class = ''>Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk Final Death!"), \
 					span_userdanger("Solar flares bombard the station with UV light!"), \
 					span_userdanger("The sunlight is visible throughout the station, the Bloodsuckers must be asleep by now!"))

@@ -148,7 +148,7 @@
 		var/obj/item/organ/organ = all_organs
 		organ.setOrganDamage(0)
 	var/obj/item/organ/heart/current_heart = bloodsuckeruser.getorganslot(ORGAN_SLOT_HEART)
-	if(!istype(current_heart, /obj/item/organ/heart/vampheart) && !istype(current_heart, /obj/item/organ/heart/demon) && !istype(current_heart, /obj/item/organ/heart/cursed))
+	if(!istype(current_heart, /obj/item/organ/heart/vampheart) && !istype(current_heart, /obj/item/organ/heart/demon) && !istype(current_heart, /obj/item/organ/heart/cursed && !istype(current_heart, /obj/item/organ/heart/nightmare)))
 		qdel(current_heart)
 		var/obj/item/organ/heart/vampheart/vampiric_heart = new
 		vampiric_heart.Insert(owner.current)
@@ -232,7 +232,7 @@
 		owner.current.Jitter(3)
 	// BLOOD_VOLUME_SURVIVE: [122] - Blur Vision
 	if(owner.current.blood_volume < BLOOD_VOLUME_SURVIVE(owner.current))
-		owner.current.blur_eyes(8 - 8 * (owner.current / BLOOD_VOLUME_BAD(owner.current)))
+		owner.current.blur_eyes(8 - 8 * (owner.current.blood_volume / BLOOD_VOLUME_BAD(owner.current)))
 
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -326,6 +326,7 @@
 	ADD_TRAIT(owner.current, TRAIT_FAKEDEATH, BLOODSUCKER_TRAIT)
 	ADD_TRAIT(owner.current, TRAIT_DEATHCOMA, BLOODSUCKER_TRAIT)
 	ADD_TRAIT(owner.current, TRAIT_RESISTLOWPRESSURE, BLOODSUCKER_TRAIT)
+	//ADD_TRAIT(owner.current, TRAIT_BRUTEIMMUNE, BLOODSUCKER_TRAIT)
 	owner.current.Jitter(0)
 	/// Disable ALL Powers
 	DisableAllPowers()
@@ -333,6 +334,7 @@
 /datum/antagonist/bloodsucker/proc/Torpor_End()
 	owner.current.grab_ghost()
 	to_chat(owner.current, span_warning("You have recovered from Torpor."))
+	//REMOVE_TRAIT(owner.current, TRAIT_BRUTEIMMUNE, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(owner.current, TRAIT_RESISTLOWPRESSURE, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(owner.current, TRAIT_DEATHCOMA, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(owner.current, TRAIT_FAKEDEATH, BLOODSUCKER_TRAIT)

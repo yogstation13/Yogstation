@@ -297,12 +297,12 @@
 		to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 		use_lock = FALSE
 		return
+	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+		to_chat(user, span_danger("<i>They're mindshielded! Break their mindshield with a candelabrum or surgery before continuing!</i>"))
+		return
 	/// Convert to Vassal!
 	bloodsuckerdatum.AddBloodVolume(-TORTURE_CONVERSION_COST)
 	if(bloodsuckerdatum && bloodsuckerdatum.attempt_turn_vassal(target))
-		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-			to_chat(user, span_danger("<i>They're mindshielded! Break their mindshield with a candelabrum or surgery before continuing!</i>"))
-			return
 		bloodsuckerdatum.bloodsucker_level_unspent++
 		user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
 		target.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
