@@ -13,6 +13,6 @@
 	var/client/C = usr
 	if(!C.holder)
 		return
-	C.holder.debug_variables(selected_ai)
+	C.debug_variables(selected_ai)
 	
 
