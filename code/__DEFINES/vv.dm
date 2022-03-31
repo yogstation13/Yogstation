@@ -97,6 +97,7 @@
 #define VV_HK_DIRECT_CONTROL "direct_control"
 #define VV_HK_OFFER_GHOSTS "offer_ghosts"
 #define VV_HK_SET_AFK_TIMER "set_afk_timer"
+#define VV_HK_ADMIN_CRYO "admin_cryo"
 
 // /mob/living/carbon/human
 #define VV_HK_SET_SPECIES "set_species"

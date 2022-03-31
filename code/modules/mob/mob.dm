@@ -1200,6 +1200,7 @@
 	VV_DROPDOWN_OPTION(VV_HK_DIRECT_CONTROL, "Assume Direct Control")
 	VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "Offer Control to Ghosts")
 	VV_DROPDOWN_OPTION(VV_HK_SET_AFK_TIMER, "Set AFK Timer")
+	VV_DROPDOWN_OPTION(VV_HK_ADMIN_CRYO, "Admin Cryo")
 
 
 /mob/vv_do_topic(list/href_list)
@@ -1243,6 +1244,8 @@
 		
 		mind.afk_verb_used = TRUE
 		mind.afk_verb_timer = addtimer(VARSET_CALLBACK(mind, afk_verb_used, FALSE), timer MINUTES, TIMER_STOPPABLE);
+	if(href_list[VV_HK_ADMIN_CRYO])
+		usr.admincryo(src)
 
 
 /**
