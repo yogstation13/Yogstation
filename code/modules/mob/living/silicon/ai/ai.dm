@@ -553,11 +553,13 @@
 		if(C.downloading == src)
 			C.finish_download()
 	if(href_list["go_to_machine"])
-		var/atom/target = locatae(href_list["go_to_machine"])
+		var/atom/target = locate(href_list["go_to_machine"])
 		if(!target)
 			return
 		if(can_see(target))
 			eyeobj.setLoc(get_turf(target))
+		else
+			to_chat(src, "[target] is not on or near any active cameras on the station.")
 
 
 
