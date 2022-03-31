@@ -83,7 +83,7 @@
 	///turfs that we could see last update but cant see now
 	var/list/newly_obscured_turfs = visibleTurfs - updated_visible_turfs
 
-	for(var/mob/camera/ai_eye/client_eye as anything in seenby)
+	for(var/mob/camera/aiEye/client_eye as anything in seenby)
 		var/client/client = client_eye.ai?.client || client_eye.client
 		if(!client)
 			continue
@@ -120,7 +120,7 @@
 
 	changed = FALSE
 
-	for(var/mob/camera/ai_eye/client_eye as anything in seenby)
+	for(var/mob/camera/aiEye/client_eye as anything in seenby)
 		var/client/client = client_eye.ai?.client || client_eye.client
 		if(!client)
 			continue
