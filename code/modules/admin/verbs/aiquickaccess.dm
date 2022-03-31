@@ -1,5 +1,5 @@
 /client/proc/ai_quick_access(obj/machinery/ai/data_core/M in world)
-	set name = "Show AI PP"
+	set name = "View AI Variables"
 	set category = "Admin"
 	if (!istype(M))
 		return
@@ -13,6 +13,6 @@
 	var/client/C = usr
 	if(!C.holder)
 		return
-	C.holder.show_player_panel(selected_ai)
+	C.holder.debug_variables(selected_ai)
 	
 
