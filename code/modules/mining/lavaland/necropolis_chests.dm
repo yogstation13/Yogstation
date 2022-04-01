@@ -1132,16 +1132,25 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		else
 			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 
-/obj/item/melee/knuckles/ui_action_click(mob/living/user, mob/living/target, action)
+/obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
 	var/mob/living/U = user
-	if(!isliving(U))
-		return
-	for(var/mob/living/L in view(8, U))
-		for(var/obj/effect/decal/cleanable/B in range(0,L))
-			if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
-				message_admins("message")
-				L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
-
+	if(istype(action, /datum/action/item_action/reach))
+		message_admins("message")
+		if(!isliving(U))
+			return
+		for(var/mob/living/L in view(8, U))
+			for(var/obj/effect/decal/cleanable/B in range(0,L))
+				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
+					L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+					return
+	else if(istype(action, /datum/action/item_action/visegrip))
+		if(!isliving(U))
+			return
+		for(var/mob/living/L in view(8, U))
+			if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+				L.remove_status_effect(STATUS_EFFECT_KNUCKLED)
+				L.apply_status_effect(/datum/status_effect/roots)
+				return
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
