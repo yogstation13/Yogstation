@@ -1,40 +1,34 @@
-/datum/status_effect/root
-	id = "snared"
-	duration = 100
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /obj/screen/alert/status_effect/root
+/datum/status_effect/roots
+	id = "roots"
+	alert_type = /obj/screen/alert/status_effect/roots
 	var/icon/cube
-	var/can_melt = TRUE
+	duration = 20
 
-/obj/screen/alert/status_effect/root
+/obj/screen/alert/status_effect/roots
 	name = "grasped"
 	desc = "You're held in place by some hellish force! Fight back while you can!"
 	icon_state = "grip"
 
-/datum/status_effect/root/on_apply()
-	RegisterSignal(owner, COMSIG_LIVING_RESIST, .proc/owner_resist)
+/datum/status_effect/roots/on_apply()
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/owner_moved)
 	if(!owner.stat)
-		to_chat(owner, span_userdanger("You become caught in blood!"))
+		to_chat(owner, span_userdanger("You become frozen in a cube!"))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")
+	var/icon/size_check = icon(owner.icon, owner.icon_state)
+	cube.Scale(size_check.Width(), size_check.Height())
 	owner.add_overlay(cube)
-	owner.update_mobility()
+	owner.remove_status_effect(STATUS_EFFECT_KNUCKLED)
+	if(!ishuman(owner))
+		duration = 100
+		owner.adjustBruteLoss(50)
 	return ..()
 
-/datum/status_effect/root/proc/owner_resist()
-	to_chat(owner, "You start breaking out of the ice cube!")
-	if(do_mob(owner, owner, 40))
-		if(!QDELETED(src))
-			to_chat(owner, "You break out of the ice cube!")
-			owner.remove_status_effect(/datum/status_effect/root)
-			owner.update_mobility()
+/datum/status_effect/roots/proc/owner_moved()
+	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
-/datum/status_effect/root/on_remove()
+/datum/status_effect/roots/on_remove()
 	if(!owner.stat)
 		to_chat(owner, "Your bindings are gone!")
 	owner.cut_overlay(cube)
 	owner.update_mobility()
 	UnregisterSignal(owner, COMSIG_LIVING_RESIST)
-
-/datum/status_effect/root/watcher
-	duration = 8
-	can_melt = FALSE

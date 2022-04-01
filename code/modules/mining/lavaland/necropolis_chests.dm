@@ -1114,24 +1114,33 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/melee/knuckles
 	name = "Bloody Knuckles"
-	desc = "Knuckles borne of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Prime an opponent with an attack and follow up to snare them. People snared like this suffer the effects for 3 seconds and creatures suffer it for 15."
+	desc = "Knuckles borne of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Prime an opponent with an attack and follow up to snare them. People snared like this suffer the effects for 1 second and creatures suffer it for 10."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "bloodyknuckle"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
 	attack_verb = list("thrashed", "pummeled", "walloped")
-	actions_types = list(/datum/action/item_action/visegrip, /datum/action/item_action/reach)
+	actions_types = list(/datum/action/item_action/reach)
 
-/obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user)
+/obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
 	var/mob/living/L = target
-	if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
-		L.remove_status_effect(STATUS_EFFECT_KNUCKLED)
-		L.apply_status_effect(/datum/status_effect/root)
+	if (proximity)
+		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+			L.remove_status_effect(STATUS_EFFECT_KNUCKLED)
+			L.apply_status_effect(/datum/status_effect/roots)
+			return
+		else
+			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+
+/obj/item/melee/knuckles/ui_action_click(mob/living/user, mob/living/target, action)
+	var/mob/living/U = user
+	if(!isliving(U))
 		return
-	else
-		L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
-
-
+	for(var/mob/living/L in view(8, U))
+		for(var/obj/effect/decal/cleanable/B in range(0,L))
+			if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
+				message_admins("message")
+				L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus

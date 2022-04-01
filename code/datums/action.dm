@@ -533,19 +533,15 @@
 
 /datum/action/item_action/visegrip
 	name = "Vise Grip"
-	desc = "Root marked victims, trapping creatures for 10 seconds and humanoids for 2"
+	desc = "Remotely detonates marked targets."
 	icon_icon = 'icons/mob/actions/actions_cult.dmi'
-	button_icon_state = "draw"
-	buttontooltipstyle = "cult"
-	background_icon_state = "bg_demon"
+	button_icon_state = "manip"
 	
 /datum/action/item_action/reach
 	name = "Reach"
-	desc = "Claw at those standing on blood in an attempt to root creatures for 8 seconds and humanoids for 1"
+	desc = "Claw at those standing on blood in an attempt to mark them."
 	icon_icon = 'icons/mob/actions/actions_cult.dmi'
-	button_icon_state = "draw"
-	buttontooltipstyle = "cult"
-	background_icon_state = "bg_demon"
+	button_icon_state = "cultfist"
 
 //Preset for spells
 /datum/action/spell_action
