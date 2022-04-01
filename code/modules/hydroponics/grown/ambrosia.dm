@@ -83,7 +83,7 @@
 // Ambrosia Cruciatus
 /obj/item/seeds/ambrosia/cruciatus
     name = "pack of ambrosia cruciatus seeds"
-    desc = "A special ambrosia type, mutated at syndicate laboratories."
+    desc = "A special ambrosia type, mutated in syndicate laboratories."
     icon_state = "seed-ambrosia_gaia"
     species = "ambrosia_cruciatus"
     plantname = "Ambrosia Cruciatus"
