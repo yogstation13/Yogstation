@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - tweak: "When a data core has failed/is failing the AI can now jump directly to the it."
