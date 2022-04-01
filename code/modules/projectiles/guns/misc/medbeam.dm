@@ -246,6 +246,10 @@
 	if(!IsAvailable())
 		return
 
+	if(gun.ubering)
+		to_chat(owner, span_warning("You are already using übercharge!"))
+		return
+
 	if(gun.ubercharge < 100)
 		to_chat(owner, span_warning("[gun] is only [gun.ubercharge]% charged!"))
 		return

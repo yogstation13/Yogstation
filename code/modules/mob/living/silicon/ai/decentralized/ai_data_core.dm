@@ -94,9 +94,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
 	
 	if(valid_holder())
-		if(valid_ticks <= 0)
-			update_icon()
 		valid_ticks++
+		if(valid_ticks == 1)
+			update_icon()
 		use_power = ACTIVE_POWER_USE
 		warning_sent = FALSE
 	else
@@ -147,8 +147,6 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		add_overlay(on_overlay)
 
 /obj/machinery/ai/data_core/proc/partytime()
-	if(TimerID)
-		return FALSE
 	var/current_color = random_color()
 	set_light(7, 3, current_color)
 	TimerID = addtimer(CALLBACK(src, .proc/partytime), 0.5 SECONDS, TIMER_STOPPABLE)
@@ -157,6 +155,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	set_light(0)
 	if(TimerID)
 		deltimer(TimerID)
+		TimerID = null
 /obj/machinery/ai/data_core/primary
 	name = "primary AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of a human at near-instantanous speeds. This one has a scrawny and faded note saying: 'Primary AI Data Core'"

@@ -29,12 +29,15 @@
 	var/high_threshold_cleared
 	var/low_threshold_cleared
 
-/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE,special_zone = null)
 	if(!iscarbon(M) || owner == M)
 		return
 
+	if(special_zone)
+		zone = special_zone
+
 	var/obj/item/organ/replaced = M.getorganslot(slot)
-	if(replaced)
+	if(replaced && !special_zone)
 		replaced.Remove(M, special = 1)
 		if(drop_if_replaced)
 			replaced.forceMove(get_turf(M))

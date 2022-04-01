@@ -7,7 +7,7 @@
 	requires_ntnet = TRUE
 	transfer_access = null
 	available_on_ntnet = FALSE
-	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_INTEGRATED
+	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_PDA | PROGRAM_INTEGRATED
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosRadar"
@@ -314,7 +314,7 @@
 	filedesc = "Implant Tracker"
 	extended_desc = "This program allows for tracking those implanted with tracking implants."
 	requires_ntnet = TRUE
-	transfer_access = ACCESS_SECURITY
+	transfer_access = ACCESS_BRIG
 	available_on_ntnet = TRUE
 	program_icon = "microchip"
 
