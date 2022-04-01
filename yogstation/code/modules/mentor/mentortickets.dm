@@ -6,7 +6,7 @@
 	if(!who)
 		return
 	owner = who.ckey
-	SSYogs.mentortickets[owner] = src
+	SSyogs.mentortickets[owner] = src
 
 /client/proc/show_mentor_tickets()
 	set category = "Mentor"
@@ -18,8 +18,8 @@
 	var/datum/browser/popup = new(mob, "mhelps", "Mentor Tickets", 400, 500)
 	var/dat = ""
 
-	for(var/M in SSYogs.mentortickets)
-		var/datum/mentorticket/T = SSYogs.mentortickets[M]
+	for(var/M in SSyogs.mentortickets)
+		var/datum/mentorticket/T = SSyogs.mentortickets[M]
 
 		dat += "<A href='?src=[REF(src)];[HrefToken()];showmticket=[T.owner]'>[T.owner]</A><BR>"
 

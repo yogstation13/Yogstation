@@ -440,7 +440,7 @@
 		ACCOUNT_SRV = list(),
 		ACCOUNT_CAR = list(),
 		ACCOUNT_SEC = list())
-	for(var/datum/department_goal/dg in SSYogs.department_goals)
+	for(var/datum/department_goal/dg in SSyogs.department_goals)
 		goals[dg.account] += dg.get_result()
 
 	parts += "<br>[span_header("Engineering department goals:")]<br>"

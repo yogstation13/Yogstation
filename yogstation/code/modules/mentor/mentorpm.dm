@@ -94,8 +94,8 @@
 			to_chat(src, "<font color='green mentor'>Mentor PM to-<b>[discord_mentor_link(whom, discord_id)]</b>: [msg]</font>", confidential=TRUE)
 		else
 			to_chat(src, "<font color='green mentor'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, 0)]</b>: [msg]</font>", confidential=TRUE)
-		if(ckey in SSYogs.mentortickets)
-			var/datum/mentorticket/T = SSYogs.mentortickets[ckey]
+		if(ckey in SSyogs.mentortickets)
+			var/datum/mentorticket/T = SSyogs.mentortickets[ckey]
 			T.log += "<b>[key]:</b> [msg]"
 
 	else
@@ -103,8 +103,8 @@
 			if(C)
 				to_chat(C, "<span class='purple mentor'>Mentor PM from-<b>[key_name_mentor(src, C, 1, 0, 0)]</b>: [msg]</span>", confidential=TRUE)
 			to_chat(src, "<font color='green mentor'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, show_char)]</b>: [msg]</font>", confidential=TRUE)
-			if(C.ckey in SSYogs.mentortickets)
-				var/datum/mentorticket/T = SSYogs.mentortickets[C.ckey]
+			if(C.ckey in SSyogs.mentortickets)
+				var/datum/mentorticket/T = SSyogs.mentortickets[C.ckey]
 				T.log += "<b>[key]:</b> [msg]"
 
 	webhook_send_mres(C, src, msg)

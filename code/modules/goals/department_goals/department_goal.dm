@@ -13,9 +13,9 @@
 	var/name = "Be nice."
 	/// The description of the goal - Describe how to accomplish it
 	var/desc = "Be nice to each other for once."
-	/// If true, this goal will only be checked at round-end, otherwise it'll get checked every time [SSYogs][/datum/controller/subsystem/Yogs] fires
+	/// If true, this goal will only be checked at round-end, otherwise it'll get checked every time [SSyogs][/datum/controller/subsystem/Yogs] fires
 	var/endround = FALSE
-	/// Whether its already been completed. If true, [SSYogs][/datum/controller/subsystem/Yogs] won't check it again
+	/// Whether its already been completed. If true, [SSyogs][/datum/controller/subsystem/Yogs] won't check it again
 	var/completed = FALSE
 
 	/// Whether the goal can be completed multiple times with multiple payouts, or just once. Will be 0 if it's completed-once, otherwise it'll be the amount of time inbetween checks
@@ -31,10 +31,10 @@
 /**
   * Creates the new goal.
   *
-  * Adds the goal to the list of goals in [SSYogs][/datum/controller/subsystem/Yogs], and if the game is currently running, messages players. See: [/datum/department_goal/proc/message_players]
+  * Adds the goal to the list of goals in [SSyogs][/datum/controller/subsystem/Yogs], and if the game is currently running, messages players. See: [/datum/department_goal/proc/message_players]
   */
 /datum/department_goal/New()
-	SSYogs.department_goals += src
+	SSyogs.department_goals += src
 	if(SSticker.current_state == GAME_STATE_PLAYING)
 		message_players("new")
 	return ..()
@@ -42,10 +42,10 @@
 /**
   * Destroys the goal.
   * 
-  * Removes the goal from the list of goals in [SSYogs][/datum/controller/subsystem/Yogs], and if the game is currently running, messages players. See: [/datum/department_goal/proc/message_players]
+  * Removes the goal from the list of goals in [SSyogs][/datum/controller/subsystem/Yogs], and if the game is currently running, messages players. See: [/datum/department_goal/proc/message_players]
   */
 /datum/department_goal/Destroy()
-	SSYogs.department_goals -= src
+	SSyogs.department_goals -= src
 	if(SSticker.current_state == GAME_STATE_PLAYING)
 		message_players("ded")
 	return ..()
@@ -132,4 +132,4 @@
   * If the goal is continuous, this will set the timer to now + how-ever-long-the-timer-is
   */
 /datum/department_goal/proc/continuing()
-	SSYogs.department_goals[src] = world.time + continuous
+	SSyogs.department_goals[src] = world.time + continuous

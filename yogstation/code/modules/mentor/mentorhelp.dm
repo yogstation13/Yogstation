@@ -35,8 +35,8 @@
 	to_chat(src, "<span class='mentornotice purple'>PM to-<b>Mentors</b>: [msg]</span>", confidential=TRUE)
 
 	var/datum/mentorticket/mt
-	if(ckey in SSYogs.mentortickets)
-		mt = SSYogs.mentortickets[ckey]
+	if(ckey in SSyogs.mentortickets)
+		mt = SSyogs.mentortickets[ckey]
 
 	if(!mt)
 		mt = new(src)

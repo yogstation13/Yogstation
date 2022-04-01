@@ -44,7 +44,7 @@
 
 	//Mentor Ticket
 	if(href_list["showmticket"])
-		var/datum/mentorticket/T = SSYogs.mentortickets[href_list["showmticket"]]
+		var/datum/mentorticket/T = SSyogs.mentortickets[href_list["showmticket"]]
 		show_mentor_ticket(T)
 
 	//Mentor Ticket Reply

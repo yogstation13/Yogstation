@@ -684,7 +684,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			investigate_log("has been powered for the first time.", INVESTIGATE_SUPERMATTER)
 			message_admins("[src] has been powered for the first time [ADMIN_JMP(src)].")
 			has_been_powered = TRUE
-			var/datum/department_goal/eng/additional_supermatter/goal = locate() in SSYogs.department_goals
+			var/datum/department_goal/eng/additional_supermatter/goal = locate() in SSyogs.department_goals
 			if(goal)
 				goal.complete()
 

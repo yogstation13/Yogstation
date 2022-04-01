@@ -426,8 +426,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 					mode = 0
 					return
 				var/dep_account = id.registered_account.account_job.paycheck_department
-				dat += "<h4>Department Goals for the [SSYogs.getDepartmentFromAccount(dep_account)] department:</h4><ul>"
-				for(var/datum/department_goal/dg in SSYogs.department_goals)
+				dat += "<h4>Department Goals for the [SSyogs.getDepartmentFromAccount(dep_account)] department:</h4><ul>"
+				for(var/datum/department_goal/dg in SSyogs.department_goals)
 					if(dg.account == dep_account)
 						dat += "<li>[dg.name]:</li>"
 						dat += "<li>[dg.desc]</li><br>"

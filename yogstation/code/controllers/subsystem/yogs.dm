@@ -1,7 +1,7 @@
 #define ROUND_END_ANNOUNCEMENT_TIME 105 //the time at which the game will announce that the shuttle can be called, in minutes.
 #define REBWOINK_TIME 50 // Number of seconds before unclaimed tickets bwoink again and yell about being unclaimed
 
-SUBSYSTEM_DEF(Yogs)
+SUBSYSTEM_DEF(yogs)
 	name = "Yog Features"
 	flags = SS_BACKGROUND
 	init_order = -101 //last subsystem to initialize, and first to shut down
@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(Yogs)
 				P.name = "paper - 'department goals'"
 				P.info = ""
 				var/list/listOfGoals = list()
-				for(var/datum/department_goal/d in SSYogs.department_goals)
+				for(var/datum/department_goal/d in SSyogs.department_goals)
 					if(!listOfGoals[d.account])
 						listOfGoals[d.account] = list()
 					listOfGoals[d.account] += d
@@ -129,7 +129,7 @@ SUBSYSTEM_DEF(Yogs)
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
 				P.name = "paper - '[getDepartmentFromAccount(account)] department goals'"
 				P.info = "<ul>"
-				for(var/datum/department_goal/d in SSYogs.department_goals)
+				for(var/datum/department_goal/d in SSyogs.department_goals)
 					if(d.account == account)
 						P.info += d.get_name()
 				P.info += "</ul>"
