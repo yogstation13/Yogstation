@@ -70,12 +70,9 @@
 			activate(M)
 
 /obj/item/wormhole_jaunter/proc/chasm_react(mob/user)
-	if(user.get_item_by_slot(SLOT_BELT) == src)
-		to_chat(user, "Your [name] activates, saving you from the chasm!</span>")
-		SSblackbox.record_feedback("tally", "jaunter", 1, "Chasm") // chasm automatic activation
-		activate(user, FALSE)
-	else
-		to_chat(user, "[src] is not attached to your belt, preventing it from saving you from the chasm. RIP.</span>")
+	to_chat(user, "Your [name] activates, saving you from the chasm!</span>")
+	SSblackbox.record_feedback("tally", "jaunter", 1, "Chasm") // chasm automatic activation
+	activate(user, FALSE)
 
 //jaunter tunnel
 /obj/effect/portal/jaunt_tunnel
