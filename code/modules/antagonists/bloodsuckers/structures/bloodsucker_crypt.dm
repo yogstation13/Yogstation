@@ -478,10 +478,11 @@
 		/// We dont want Bloodsuckers or Vassals affected by this
 		if(IS_VASSAL(nearly_people) || IS_BLOODSUCKER(nearly_people))
 			continue
-		if(nearly_people.getStaminaLoss() >= 100)
+		if(nearly_people.getStaminaLoss() >= 40)
+			nearly_people.adjustStaminaLoss(0.01) // keeps the slowness by constantly updating it
 			continue
-		nearly_people.hallucination += 10
-		nearly_people.adjustStaminaLoss(10)
+		nearly_people.hallucination += 5
+		nearly_people.adjustStaminaLoss(5)
 		SEND_SIGNAL(nearly_people, COMSIG_ADD_MOOD_EVENT, "vampcandle", /datum/mood_event/vampcandle)
 		to_chat(nearly_people, span_warning("<i>You start to feel extremely weak and drained.</i>"))
 		sleep(3)
