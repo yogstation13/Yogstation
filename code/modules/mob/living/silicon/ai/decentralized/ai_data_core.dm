@@ -94,9 +94,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
 	
 	if(valid_holder())
-		if(valid_ticks <= 0)
-			update_icon()
 		valid_ticks++
+		if(valid_ticks == 1)
+			update_icon()
 		use_power = ACTIVE_POWER_USE
 		warning_sent = FALSE
 	else

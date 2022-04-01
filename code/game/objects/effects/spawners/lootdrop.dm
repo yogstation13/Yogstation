@@ -263,7 +263,8 @@
 				/obj/item/aiModule/core/full/spotless,
 				/obj/item/aiModule/core/full/construction,
 				/obj/item/aiModule/core/full/researcher,
-				/obj/item/aiModule/core/full/clown
+				/obj/item/aiModule/core/full/clown,
+				/obj/item/aiModule/core/full/detective
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_harmful // These will get the shuttle called
