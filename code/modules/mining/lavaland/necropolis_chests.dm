@@ -1120,7 +1120,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
 	attack_verb = list("thrashed", "pummeled", "walloped")
-	actions_types = list(/datum/action/item_action/reach)
+	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
 /obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
 	var/mob/living/L = target
