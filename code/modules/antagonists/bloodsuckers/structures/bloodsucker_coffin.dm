@@ -11,6 +11,7 @@
 		owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
+		owner.teach_crafting_recipe(/datum/crafting_recipe/staketrap)
 		to_chat(owner, span_danger("You learned new recipes - You can view them in the Tribal section of the crafting menu!"))
 	// This is my Lair
 	coffin = claimed

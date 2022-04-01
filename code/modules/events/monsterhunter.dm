@@ -44,7 +44,7 @@
 			continue
 		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.security_positions))
 			continue
-		if(IS_BLOODSUCKER(all_players) || IS_VASSAL(all_players))
+		if(IS_BLOODSUCKER(all_players) || IS_VASSAL(all_players) || IS_HERETIC(all_players) || iscultist(all_players) || iswizard(all_players) || is_servant_of_ratvar(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
 			continue
 		if(!all_players.getorgan(/obj/item/organ/brain))
 			continue

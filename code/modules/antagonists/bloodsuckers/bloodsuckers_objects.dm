@@ -1,4 +1,63 @@
 //////////////////////
+//       TRAP       //
+//////////////////////
+
+/obj/item/restraints/legcuffs/beartrap/bloodsucker
+	name = "stake trap"
+	desc = "Turn the stakes against the staker! Or something like that..."
+	icon = 'icons/obj/vamp_obj.dmi'
+	icon_state = "staketrap"
+	slowdown = 10
+	var/area/lair_area
+	var/mob/lair_owner
+
+/obj/item/restraints/legcuffs/beartrap/bloodsucker/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/restraints/legcuffs/beartrap/bloodsucker/attack_self(mob/user)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	lair_area = bloodsuckerdatum.lair
+	lair_owner = user
+	START_PROCESSING(SSobj, src)
+	if(!bloodsuckerdatum)
+		to_chat(user, span_notice("Although it seems simple you have no idea how to reactivate the stake trap."))
+		return
+	if(armed)
+		STOP_PROCESSING(SSobj,src)
+		return ..() //disarm it, otherwise continue to try and place
+	if(!bloodsuckerdatum.lair)
+		to_chat(user, span_danger("You don't have a lair. Claim a coffin to make that location your lair."))
+		return
+	if(lair_area != get_area(src))
+		to_chat(user, span_danger("You may only activate this trap in your lair: [lair_area]."))
+		return
+	lair_area = bloodsuckerdatum.lair
+	lair_owner = user
+	START_PROCESSING(SSobj, src)
+	..()
+
+/obj/item/restraints/legcuffs/beartrap/bloodsucker/Crossed(AM as mob|obj)
+	var/mob/living/carbon/human/user = AM
+	if(armed && (IS_BLOODSUCKER(user) || IS_VASSAL(user)))
+		to_chat(user, span_notice("You gracefully step over the blood puddle and avoid triggering the trap"))
+		return
+	..()
+
+/obj/item/restraints/legcuffs/beartrap/bloodsucker/close_trap()
+	STOP_PROCESSING(SSobj, src)
+	lair_area = null
+	lair_owner = null
+	return ..()
+	
+/obj/item/restraints/legcuffs/beartrap/bloodsucker/process()
+	if(!armed)
+		STOP_PROCESSING(SSobj,src)
+		return
+	if(get_area(src) != lair_area)
+		close_trap()
+
+//////////////////////
 //      HEART       //
 //////////////////////
 

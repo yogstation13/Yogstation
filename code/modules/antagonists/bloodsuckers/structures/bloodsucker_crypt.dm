@@ -58,7 +58,7 @@
 			to_chat(user, span_danger("You may only activate this structure in your lair: [bloodsuckerdatum.lair]."))
 			return FALSE
 
-		/// Radial menu for securing your Persuasion rack in place.
+		/// Menu for securing your Persuasion rack in place.
 		switch(input("Do you wish to secure [src] here?") in list("Yes", "No"))
 			if("Yes")
 				user.playsound_local(null, 'sound/items/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
@@ -73,11 +73,11 @@
 		switch(input("Unbolt [src]?") in list("Yes", "No"))
 			if("Yes")
 				unbolt(user)
-/*
+
 /obj/structure/bloodsucker/bloodaltar
 	name = "bloody altar"
 	desc = "It is made of marble, lined with basalt, and radiates an unnerving chill that puts your skin on edge."
-/obj/structure/bloodsucker/bloodstatue
+/*/obj/structure/bloodsucker/bloodstatue
 	name = "bloody countenance"
 	desc = "It looks upsettingly familiar..."
 /obj/structure/bloodsucker/bloodportrait
@@ -88,9 +88,7 @@
 	desc = "It burns slowly, but doesn't radiate any heat."
 /obj/structure/bloodsucker/bloodmirror
 	name = "faded mirror"
-	desc = "You get the sense that the foggy reflection looking back at you has an alien intelligence to it."
-/obj/item/restraints/legcuffs/beartrap/bloodsucker
-*/
+	desc = "You get the sense that the foggy reflection looking back at you has an alien intelligence to it."*/
 
 /obj/structure/bloodsucker/vassalrack
 	name = "persuasion rack"
@@ -480,8 +478,13 @@
 		/// We dont want Bloodsuckers or Vassals affected by this
 		if(IS_VASSAL(nearly_people) || IS_BLOODSUCKER(nearly_people))
 			continue
-		nearly_people.hallucination += 5
+		if(nearly_people.getStaminaLoss() >= 100)
+			continue
+		nearly_people.hallucination += 10
+		nearly_people.adjustStaminaLoss(10)
 		SEND_SIGNAL(nearly_people, COMSIG_ADD_MOOD_EVENT, "vampcandle", /datum/mood_event/vampcandle)
+		to_chat(nearly_people, span_warning("<i>You start to feel extremely weak and drained.</i>"))
+		sleep(3)
 
 /*
  *	# Candelabrum Ventrue Stuff

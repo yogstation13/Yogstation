@@ -59,6 +59,20 @@
 	category = CAT_PRIMAL
 	always_availible = FALSE
 
+/datum/crafting_recipe/staketrap
+	name = "Stake Trap"
+	result = /obj/item/restraints/legcuffs/beartrap/bloodsucker
+	tools = list(TOOL_SCREWDRIVER, TOOL_HATCHET)
+	reqs = list(
+		/obj/item/stake = 2,
+		/obj/item/reagent_containers/blood = 1,
+		/obj/item/stack/sheet/mineral/wood = 2,
+		/obj/item/restraints/handcuffs/cable = 1,
+	)
+	time = 12.5 SECONDS
+	category = CAT_PRIMAL
+	always_availible = FALSE
+
 /datum/crafting_recipe/candelabrum
 	name = "Candelabrum"
 	result = /obj/structure/bloodsucker/candelabrum
