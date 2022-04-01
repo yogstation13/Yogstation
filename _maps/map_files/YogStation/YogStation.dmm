@@ -7276,12 +7276,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"aux" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "auy" = (
 /obj/machinery/computer/nanite_chamber_control{
 	dir = 4
@@ -42848,6 +42842,13 @@
 	},
 /turf/open/space,
 /area/solar/port/fore)
+"jEv" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/alien/maid,
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "jFB" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -99779,7 +99780,7 @@ arf
 asf
 ati
 ati
-aux
+jEv
 eOo
 axL
 bbl
