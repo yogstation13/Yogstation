@@ -1303,6 +1303,7 @@
 #include "code\modules\admin\whitelist.dm"
 #include "code\modules\admin\verbs\adminjump.dm"
 #include "code\modules\admin\verbs\adminpm.dm"
+#include "code\modules\admin\verbs\aiquickaccess.dm"
 #include "code\modules\admin\verbs\atmosdebug.dm"
 #include "code\modules\admin\verbs\beakerpanel.dm"
 #include "code\modules\admin\verbs\bluespacearty.dm"
