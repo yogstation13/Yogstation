@@ -2235,7 +2235,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/role_restricted/ambrosia_cruciatus_seeds
     name = "Ambrosia Cruciatus Seeds"
-    desc = "A pack of ambrosia seeds, that contain usefull chemicals inside. This chemicals could be used for healing yourself, or killing other people."
+    desc = "A pack of ambrosia seeds that contain useful chemicals inside. These chemicals can be used for healing yourself, or killing other people."
     item = /obj/item/seeds/ambrosia/cruciatus
     cost = 2
     surplus = 0
