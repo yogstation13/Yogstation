@@ -67,4 +67,4 @@
 
 	adjustOxyLoss(200) //Die!!
 
-	QDEL_IN(src, 2 SECONDS)
+	//QDEL_IN(src, 2 SECONDS)
