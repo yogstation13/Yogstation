@@ -70,6 +70,11 @@
 	suffix = "bar_arcade.dmm"
 	name = "Bar Arcade"
 
+/datum/map_template/ruin/station/box/bar/xeno
+	id = "bar_xeno"
+	suffix = "bar_xeno.dmm"
+	name = "Bar Xeno"
+
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
 	suffix = "engine_sm.dmm"
