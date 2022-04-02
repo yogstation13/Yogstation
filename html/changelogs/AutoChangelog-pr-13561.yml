@@ -1,4 +1,0 @@
-author: "TheGamerdk"
-delete-after: true 
-changes: 
-  - tweak: "AI data cores get a 45 tick grace period, up from 15 ticks"
