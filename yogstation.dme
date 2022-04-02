@@ -3054,6 +3054,7 @@
 #include "code\modules\spells\spell_types\pointed\blind.dm"
 #include "code\modules\spells\spell_types\pointed\pointed.dm"
 #include "code\modules\surgery\amputation.dm"
+#include "code\modules\surgery\autopsy.dm"
 #include "code\modules\surgery\bone_mending.dm"
 #include "code\modules\surgery\brain_surgery.dm"
 #include "code\modules\surgery\burn_dressing.dm"
