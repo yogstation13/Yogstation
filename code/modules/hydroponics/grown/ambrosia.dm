@@ -15,7 +15,7 @@
 	name = "pack of ambrosia vulgaris seeds"
 	desc = "Common ambrosia, contains various healing chemicals."
 	icon_state = "seed-ambrosiavulgaris"
-	species = "ambrosia_gaia"
+	species = "ambrosiavulgaris"
 	plantname = "Ambrosia Vulgaris"
 	product = /obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris
 	lifespan = 60
@@ -85,7 +85,7 @@
     name = "pack of ambrosia cruciatus seeds"
     desc = "A special ambrosia type, mutated in syndicate laboratories."
     icon_state = "seed-ambrosia_gaia"
-    species = "ambrosia_cruciatus"
+    species = "ambrosia_gaia"
     plantname = "Ambrosia Cruciatus"
     product = /obj/item/reagent_containers/food/snacks/grown/ambrosia/cruciatus
     reagents_add = list(/datum/reagent/medicine/bicaridine = 0.1, /datum/reagent/consumable/nutriment = 0.05, /datum/reagent/drug/bath_salts = 0.2, /datum/reagent/toxin/staminatoxin = 0.1, /datum/reagent/medicine/kelotane = 0.15)
