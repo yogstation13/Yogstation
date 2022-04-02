@@ -41,7 +41,6 @@
 	H.dna.features["pod_hair"] = pick(GLOB.pod_hair_list)
 	H.dna.features["pod_flower"] = GLOB.pod_flower_list[H.dna.features["pod_hair"]]
 
-
 	H.update_body()
 	H.update_hair()
 	H.update_body_parts()
