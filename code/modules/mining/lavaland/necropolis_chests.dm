@@ -1119,6 +1119,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	icon_state = "bloodyknuckle"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
+	var/cooldown = 20
+	var/next_reach = 0
+	var/next_grip = 0
 	attack_verb = list("thrashed", "pummeled", "walloped")
 	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
@@ -1126,7 +1129,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/mob/living/L = target
 	if (proximity)
 		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
-			L.remove_status_effect(STATUS_EFFECT_KNUCKLED)
 			L.apply_status_effect(/datum/status_effect/roots)
 			return
 		else
@@ -1135,22 +1137,25 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
 	var/mob/living/U = user
 	if(istype(action, /datum/action/item_action/reach))
-		message_admins("message")
-		if(!isliving(U))
+		if(next_reach > world.time)
+			to_chat(U, span_warning("Don't spill your blood so haphazardly!"))
 			return
-		for(var/mob/living/L in view(8, U))
+		for(var/mob/living/L in view(7, U))
 			for(var/obj/effect/decal/cleanable/B in range(0,L))
 				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
 					L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+				else
+					message_admins ("lol")
 					return
+		next_reach = world.time + cooldown
 	else if(istype(action, /datum/action/item_action/visegrip))
-		if(!isliving(U))
+		if(next_grip > world.time)
+			to_chat(U, span_warning("You can't do that yet!"))
 			return
-		for(var/mob/living/L in view(8, U))
+		for(var/mob/living/L in view(8, U)) 
 			if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
-				L.remove_status_effect(STATUS_EFFECT_KNUCKLED)
 				L.apply_status_effect(/datum/status_effect/roots)
-				return
+		next_grip = world.time + cooldown
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"

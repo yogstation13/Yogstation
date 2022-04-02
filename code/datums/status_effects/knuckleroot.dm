@@ -13,7 +13,7 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/owner_moved)
 	if(!owner.stat)
 		to_chat(owner, span_userdanger("You become frozen in a cube!"))
-	cube = icon('icons/effects/freeze.dmi', "ice_cube")
+	cube = icon('icons/effects/bubblegum.dmi', "smack ya one")
 	var/icon/size_check = icon(owner.icon, owner.icon_state)
 	cube.Scale(size_check.Width(), size_check.Height())
 	owner.add_overlay(cube)
