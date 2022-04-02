@@ -80,7 +80,7 @@
 			to_chat(user, span_warning("You don't see anything that can be pried with [I]!"))
 
 
-/obj/structure/mecha_wreckage/transfer_ai(interaction, mob/user, null, obj/item/aicard/card)
+/obj/structure/mecha_wreckage/transfer_ai(interaction, mob/user, _, obj/item/aicard/card)
 	if(!..())
 		return
 
