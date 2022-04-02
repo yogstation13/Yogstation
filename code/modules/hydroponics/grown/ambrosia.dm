@@ -15,7 +15,7 @@
 	name = "pack of ambrosia vulgaris seeds"
 	desc = "Common ambrosia, contains various healing chemicals."
 	icon_state = "seed-ambrosiavulgaris"
-	species = "ambrosiavulgaris"
+	species = "ambrosia_gaia"
 	plantname = "Ambrosia Vulgaris"
 	product = /obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris
 	lifespan = 60
