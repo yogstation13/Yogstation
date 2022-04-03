@@ -55,7 +55,7 @@
 	var/next_breath = 4
 	var/obj/item/organ/lungs/L = getorganslot(ORGAN_SLOT_LUNGS)
 	if(L?.damage)
-			next_breath *= L.get_organ_efficiency()
+		next_breath *= L.get_organ_efficiency()
 
 	if(!next_breath || (times_fired % next_breath) == 0 || failed_last_breath)
 		breathe() //Breathe per 4 ticks if healthy, down to 1 based on lung damage, unless suffocating
