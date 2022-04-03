@@ -1122,6 +1122,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/cooldown = 20
 	var/next_reach = 0
 	var/next_grip = 0
+	var/list/afflicted = list()
 	attack_verb = list("thrashed", "pummeled", "walloped")
 	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
@@ -1138,12 +1139,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/mob/living/U = user
 	if(istype(action, /datum/action/item_action/reach))
 		if(next_reach > world.time)
-			to_chat(U, span_warning("Don't spill your blood so haphazardly!"))
+			to_chat(U, span_warning("You can't do that yet!"))
 			return
 		for(var/mob/living/L in view(7, U))
 			for(var/obj/effect/decal/cleanable/B in range(0,L))
 				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
 					L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+					afflicted += L
 				else
 					message_admins ("lol")
 					return
@@ -1152,9 +1154,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(next_grip > world.time)
 			to_chat(U, span_warning("You can't do that yet!"))
 			return
-		for(var/mob/living/L in view(8, U)) 
-			if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+		for(var/mob/living/L in view(8, U))
+			if(afflicted.len <= 0)
+				to_chat(U, span_warning("There's nobody to use this on!"))
+				return
+			else if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
 				L.apply_status_effect(/datum/status_effect/roots)
+				afflicted -= L
 		next_grip = world.time + cooldown
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus

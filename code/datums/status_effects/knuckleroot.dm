@@ -3,6 +3,7 @@
 	alert_type = /obj/screen/alert/status_effect/roots
 	var/icon/cube
 	duration = 20
+	var/list/afflicted = list()
 
 /obj/screen/alert/status_effect/roots
 	name = "grasped"
