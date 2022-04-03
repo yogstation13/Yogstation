@@ -77,6 +77,20 @@
 /obj/structure/bloodsucker/bloodaltar
 	name = "bloody altar"
 	desc = "It is made of marble, lined with basalt, and radiates an unnerving chill that puts your skin on edge."
+	icon = 'icons/obj/vamp_obj.dmi'
+	icon_state = "vassalrack"
+	density = TRUE
+	anchored = TRUE
+	climbable = TRUE
+	pass_flags = LETPASSTHROW
+	can_buckle = TRUE
+	buckle_lying = 90
+
+/obj/structure/bloodsucker/vassalrack/attack_hand(mob/user, list/modifiers)
+	. = ..()
+	if(!.)
+		return FALSE
+
 /*/obj/structure/bloodsucker/bloodstatue
 	name = "bloody countenance"
 	desc = "It looks upsettingly familiar..."
@@ -478,15 +492,16 @@
 		/// We dont want Bloodsuckers or Vassals affected by this
 		if(IS_VASSAL(nearly_people) || IS_BLOODSUCKER(nearly_people))
 			continue
-		if(nearly_people.getStaminaLoss() >= 40)
-			nearly_people.adjustStaminaLoss(0.01) // keeps the slowness by constantly updating it
-			continue
 		nearly_people.hallucination += 5
-		nearly_people.adjustStaminaLoss(5)
+		if(nearly_people.getStaminaLoss() >= 100)
+			continue
+		if(nearly_people.getStaminaLoss() >= 60)
+			spawn(10)
+			nearly_people.adjustStaminaLoss(1) // keeps the slowness by constantly updating it
+		else
+			nearly_people.adjustStaminaLoss(10)
 		SEND_SIGNAL(nearly_people, COMSIG_ADD_MOOD_EVENT, "vampcandle", /datum/mood_event/vampcandle)
 		to_chat(nearly_people, span_warning("<i>You start to feel extremely weak and drained.</i>"))
-		sleep(3)
-
 /*
  *	# Candelabrum Ventrue Stuff
  *
