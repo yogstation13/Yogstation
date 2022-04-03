@@ -1041,7 +1041,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(2)
 			new /obj/item/blood_contract(src)
 		if(3)
-			new /obj/item/gun/magic/staff/spellblade/weak(src)
+			new /obj/item/melee/knuckles(src)
 		if(4)
 			new /obj/item/organ/stomach/cursed(src)
 
@@ -1114,12 +1114,12 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/melee/knuckles
 	name = "Bloody Knuckles"
-	desc = "Knuckles borne of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Prime an opponent with an attack and follow up to snare them. People snared like this suffer the effects for 1 second and creatures suffer it for 10."
+	desc = "Knuckles borne of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Prime an opponent with an attack and follow up to snare them. Creatures suffer the snare for 6 seconds and take hefty damage while people stay snared for 1."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "bloodyknuckle"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
-	var/cooldown = 20
+	var/cooldown = 200
 	var/next_reach = 0
 	var/next_grip = 0
 	attack_verb = list("thrashed", "pummeled", "walloped")
