@@ -1,5 +1,0 @@
-author: " ynot01, maxion12345"
-delete-after: true 
-changes: 
-  - rscadd: "Added the autopsy surgery, performed by detectives"
-  - rscadd: "Gave detective an autopsy room on boxstation with accompanying tutorial paper"
