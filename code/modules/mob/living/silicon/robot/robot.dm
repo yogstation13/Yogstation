@@ -594,13 +594,14 @@
 			return
 		if(!opened)
 			to_chat(user, span_warning("You need to open the panel to repair the headlamp!"))
-		else if(lamp_cooldown <= world.time)
+		else if(lamp_cooldown <= world.time && lamp_functional)
 			to_chat(user, span_warning("The headlamp is already functional!"))
 		else
 			if(!user.temporarilyRemoveItemFromInventory(B))
 				to_chat(user, span_warning("[B] seems to be stuck to your hand. You'll have to find a different light."))
 				return
 			lamp_cooldown = 0
+			lamp_functional = TRUE
 			qdel(B)
 			to_chat(user, span_notice("You replace the headlamp bulb.")) //yogs end
 	else

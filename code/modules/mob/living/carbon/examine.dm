@@ -82,6 +82,9 @@
 	if(fire_stacks < 0)
 		msg += "[t_He] look[p_s()] a little soaked.\n"
 
+	if(visible_tumors)
+		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
+
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
 

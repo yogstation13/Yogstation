@@ -101,7 +101,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/cmd_admin_fuckrads,
   	/client/proc/admincryo,
 	/client/proc/cmd_admin_dress,
-	/client/proc/disconnect_panel
+	/client/proc/disconnect_panel,
+	/client/proc/ai_quick_access
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
