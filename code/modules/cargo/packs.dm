@@ -841,6 +841,13 @@
 	contains = list(/obj/item/vending_refill/engivend)
 	crate_name = "engineering supply crate"
 
+/datum/supply_pack/service/vending/crittervend
+	name = "CritterCare Supply Crate"
+	desc = "People whant to have some pet fishes, or the kitchen is out off food? This should help."
+	cost = 1250
+	contains = list(/obj/item/vending_refill/crittercare)
+	crate_name = "fishkeeping supply crate"
+
 /datum/supply_pack/engineering/bsa
 	name = "Bluespace Artillery Parts"
 	desc = "The pride of Nanotrasen Naval Command. The legendary Bluespace Artillery Cannon is a devastating feat of human engineering and testament to wartime determination. Highly advanced research is required for proper construction. "

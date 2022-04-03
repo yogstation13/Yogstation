@@ -183,7 +183,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/stewedsoymeat
 	subcategory = CAT_MEAT
-	
+
 /datum/crafting_recipe/food/meatclown
 	name = "Meat Clown"
 	reqs = list(

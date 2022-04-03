@@ -618,6 +618,7 @@
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
 		/obj/machinery/vending/sovietsoda = "BODA",
+		/obj/machinery/vending/crittercare = "CritterCare",
 		/obj/machinery/vending/security = "SecTech")//Yogs
 		//obj/machinery/vending/modularpc = "Deluxe Silicate Selections") // Yogs comment-out, because ktlwjec is bad at merging mirrors
 
@@ -973,7 +974,7 @@
 		/obj/item/stock_parts/matter_bin = 4,
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stack/sheet/glass = 2)
-		
+
 /obj/item/circuitboard/machine/ai_core_display
 	name = "AI Core Display (Machine Board)"
 	icon_state = "science"

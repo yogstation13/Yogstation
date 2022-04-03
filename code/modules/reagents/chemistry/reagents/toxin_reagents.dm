@@ -939,3 +939,12 @@
 /datum/reagent/toxin/ninjatoxin/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(3)
 	..()
+
+/datum/reagent/toxin/fishwater
+	name = "Fish Water"
+	description = "Smelly water from a fish tank. Gross!"
+	reagent_state = LIQUID
+	color = "#757547"
+	taste_description = "puke"
+	toxpwr = 0.5
+

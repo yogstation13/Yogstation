@@ -46606,6 +46606,19 @@
 /obj/item/toy/figure/rd,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
+"mbz" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/sign/painting{
+	persistence_id = "public";
+	pixel_x = -32
+	},
+/obj/machinery/vending/crittercare,
+/turf/open/floor/plasteel/white/corner{
+	dir = 8
+	},
+/area/hallway/secondary/exit)
 "mcc" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -56411,18 +56424,6 @@
 	},
 /turf/closed/wall,
 /area/engine/atmos_distro)
-"rSW" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/structure/sign/painting{
-	persistence_id = "public";
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/white/corner{
-	dir = 8
-	},
-/area/hallway/secondary/exit)
 "rTw" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -116760,7 +116761,7 @@ aMZ
 aMZ
 aMZ
 rlB
-rSW
+mbz
 tCq
 qyQ
 qyQ

@@ -487,3 +487,22 @@
 /obj/item/storage/pill_bottle/aiur/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/aiur(src)
+
+///Aquatic Starter Kit
+
+/obj/item/storage/firstaid/aquatic_kit
+	name = "aquatic starter kit"
+	desc = "It's a starter kit box for an aquarium."
+	icon_state = "AquaticKit"
+	throw_speed = 2
+	throw_range = 8
+
+/obj/item/storage/firstaid/aquatic_kit/full
+	desc = "It's a starter kit for an aquarium; includes 1 tank brush, 1 egg scoop, 1 fish net, 1 container of fish food and 1 fish bag."
+
+/obj/item/storage/firstaid/aquatic_kit/full/New()
+	..()
+	new /obj/item/egg_scoop(src)
+	new /obj/item/fish_net(src)
+	new /obj/item/tank_brush(src)
+	new /obj/item/fishfood(src)

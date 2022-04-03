@@ -20309,15 +20309,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"aLa" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/structure/sink{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
 "aLb" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -50946,24 +50937,6 @@
 /obj/machinery/status_display/shuttle,
 /turf/closed/wall,
 /area/storage/tech)
-"bIr" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/pen,
-/obj/effect/turf_decal/loading_area{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/entry)
 "bIs" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -92850,6 +92823,15 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"mab" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "man" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12";
@@ -96428,6 +96410,19 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/space/nearstation)
+"pNW" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 1
+	},
+/obj/machinery/vending/crittercare,
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
 "pPN" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -137323,7 +137318,7 @@ aSS
 bqm
 ezV
 ajt
-aLa
+mab
 bnr
 boT
 beM
@@ -144561,7 +144556,7 @@ bPe
 bYN
 vkF
 bXc
-bIr
+pNW
 lfx
 qjY
 kBN
