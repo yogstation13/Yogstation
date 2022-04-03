@@ -1140,10 +1140,15 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(next_reach > world.time)
 			to_chat(U, span_warning("You can't do that yet!"))
 			return
+		var/valid_reaching = FALSE
 		for(var/mob/living/L in view(7, U))
 			for(var/obj/effect/decal/cleanable/B in range(0,L))
 				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
+					valid_reaching = TRUE
 					L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+		if(!valid_reaching)
+			to_chat(U, span_warning("There's nobody to use this on!"))
+			return
 		next_reach = world.time + cooldown
 	else if(istype(action, /datum/action/item_action/visegrip))
 		if(next_grip > world.time)
