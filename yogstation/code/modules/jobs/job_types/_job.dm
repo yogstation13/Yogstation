@@ -136,7 +136,7 @@
 	
 	if (!S)
 		S = H
-		if (!C)
+		if (!S)
 			choice = "Random"
 
 	if (C)
