@@ -119830,6 +119830,12 @@
 /obj/structure/cable/white,
 /turf/open/floor/plasteel/white,
 /area/medical/storage/locker)
+"evp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/mob/living/simple_animal/pet/snail/gary,
+/turf/open/floor/plasteel/grimy,
+/area/library)
 "eym" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable/white{
@@ -160049,7 +160055,7 @@ abW
 dmg
 chA
 bBt
-abW
+evp
 abW
 abW
 abY

@@ -12,9 +12,9 @@
 	return new_data_core
 
 /mob/living/silicon/ai/proc/toggle_download()
-	set category = "AI Commands"
+	set category = "Malfunction"
 	set name = "Toggle Download"
-	set desc = "Allow or disallow carbon lifeforms to download you from an AI control console."
+	set desc = "Allow or disallow carbon lifeforms downloading you from an AI control console."
 	
 	if(incapacitated())
 		return //won't work if dead
