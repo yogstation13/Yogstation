@@ -98,7 +98,6 @@ GLOBAL_LIST_INIT(roundstart_ai_modules, list(
 	"asimov",
 	"crewsimov",
 	"asimovpp",
-	"robocop",
 	"ceo",
 	"hippocratic",
 	"maintain",
