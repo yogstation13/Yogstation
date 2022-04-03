@@ -10,6 +10,9 @@
 */
 
 GLOBAL_LIST_INIT(donor_pdas, list("Normal", "Transparent", "Pip Boy", "Rainbow"))
+GLOBAL_LIST_INIT(donor_modules, list("Random", "asimov", "crewsimov", "asimovpp",
+	"ceo", "hippocratic", "maintain", "drone", "liveandletlive", "peacekeeper", "reporter", "cowboy", "mother",
+	"silicop", "researcher", "clown", "druid", "detective", "siliconcollective", "spotless", "chapai", "construction"))
 
 GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 

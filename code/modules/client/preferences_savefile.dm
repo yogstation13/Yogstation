@@ -222,6 +222,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// yogs start - Donor features
 	READ_FILE(S["donor_pda"], donor_pda)
+	READ_FILE(S["donor_module"], donor_module)
 	READ_FILE(S["donor_hat"], donor_hat)
 	READ_FILE(S["borg_hat"], borg_hat)
 	READ_FILE(S["donor_item"], donor_item)
@@ -289,6 +290,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features & yogtoggles
 	yogtoggles		= sanitize_integer(yogtoggles, 0, (1 << 23), initial(yogtoggles))
 	donor_pda		= sanitize_integer(donor_pda, 1, GLOB.donor_pdas.len, 1)
+	donor_module	= sanitize_integer(donor_module, 1, GLOB.donor_modules.len, 1)
 	purrbation      = sanitize_integer(purrbation, FALSE, TRUE, initial(purrbation))
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
@@ -358,6 +360,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features & Yogstoggle
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
 	WRITE_FILE(S["donor_pda"], donor_pda)
+	WRITE_FILE(S["donor_module"], donor_module)
 	WRITE_FILE(S["donor_hat"], donor_hat)
 	WRITE_FILE(S["borg_hat"], borg_hat)
 	WRITE_FILE(S["donor_item"], donor_item)

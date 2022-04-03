@@ -544,7 +544,7 @@ SUBSYSTEM_DEF(job)
 	else if(living_mob.job == "Bartender")
 		job.give_bar_choice(living_mob, M)
 	else if(living_mob.job == "AI")
-		if (is_donator(living_mob.client))
+		if (is_donator(M.client))
 			job.give_lawset_choice(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 

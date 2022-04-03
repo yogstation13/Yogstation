@@ -3,6 +3,7 @@
 	var/donor_item = null
 	var/borg_hat = FALSE
 	var/donor_pda = null
+	var/donor_module = null
 	var/quiet_round = FALSE
 	var/yogtoggles = YOGTOGGLES_DEFAULT
 	var/purrbation = null

@@ -129,19 +129,26 @@
 
 	var/client/C = H.client
 	var/mob/living/silicon/S = H
+	message_admins("lawset choice proc called")
 	if (!C)
 		C = M.client
 		if (!C)
+			message_admins("C failure")
 			return
 	
 	if (!S)
 		S = M
 		if (!S)
+			message_admins("S failure")
 			return
 
 	if (C)
-		choice = C.prefs.preferred_ai_module
+		choice = GLOB.donor_modules[C.prefs.donor_module]
 
+	if (!choice)
+		message_admins("Choice failure")
+		return
+	
 	if (choice != "Random" && prob(25))
 		var/datum/ai_laws/lawtype
 		var/all_ai_laws = subtypesof(/datum/ai_laws)
@@ -150,7 +157,9 @@
 			if(initial(ai_law.id) == choice)
 				lawtype = al
 		if(!lawtype)
+			message_admins("lawtype failure")
 			return
 		var/datum/ai_laws/templaws = new lawtype()
 		S.laws.inherent = templaws.inherent
+	message_admins("prob failure or choice is random")
 		
