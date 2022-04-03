@@ -93,6 +93,31 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Triumvirate-M",
 	"Weird"))
 
+GLOBAL_LIST_INIT(roundstart_ai_modules, list(
+	"Random",
+	"asimov",
+	"crewsimov",
+	"asimovpp",
+	"robocop",
+	"ceo",
+	"hippocratic",
+	"maintain",
+	"drone",
+	"liveandletlive",
+	"peacekeeper",
+	"reporter",
+	"cowboy",
+	"mother",
+	"silicop",
+	"researcher",
+	"clown",
+	"druid",
+	"detective",
+	"siliconcollective",
+	"spotless",
+	"chapai",
+	"construction"))
+
 /proc/resolve_ai_icon(input)
 	if(!input || !(input in GLOB.ai_core_display_screens))
 		return "ai"

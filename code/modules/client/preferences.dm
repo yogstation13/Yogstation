@@ -121,6 +121,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/flare = 1
 
 	var/bar_choice = "Random"
+	var/preferred_ai_module = "Random"
 
 	var/list/exp = list()
 	var/list/menuoptions
@@ -635,6 +636,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Map:</b> <a href='?_src_=prefs;task=input;preference=map'>[map ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Preferred Box Bar:</b> <a href='?_src_=prefs;task=input;preference=bar_choice'>[bar_choice]</a><br>"
+			if (is_donator(user.client))
+				dat += "<b>Preferred Starting AI Module:</b> <a href='?_src_=prefs;task=input;preference=preferred_ai_module'>[preferred_ai_module]</a><br>"
 			dat += "<br>"
 			dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
 			dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "All Messages":"No Messages"]</a><br>"
@@ -1819,6 +1822,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(!pickedbar)
 						return
 					bar_choice = pickedbar
+				if ("preferred_ai_module")
+					var/pickedmodule = input(user, "Choose your weighted module.", "Character Preference", preferred_ai_module) as null|anything in (GLOB.roundstart_ai_modules|"Random")
+					if (!pickedmodule)
+						return
+					preferred_ai_module = pickedmodule
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))

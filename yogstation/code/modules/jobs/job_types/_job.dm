@@ -122,3 +122,30 @@
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
+
+/datum/job/proc/give_lawset_choice(mob/living/H, mob/M)
+
+	var/choice
+
+	var/client/C = M.client
+	var/mob/living/silicon/S = H
+	if (!C)
+		C = H.client
+		if (!C)
+			choice = "Random"
+
+	if (C)
+		choice = C.prefs.preferred_ai_module
+
+	if (choice != "Random" && prob(25))
+		var/datum/ai_laws/lawtype
+		var/all_ai_laws = subtypesof(/datum/ai_laws)
+			for(var/al in all_ai_laws)
+				var/datum/ai_laws/ai_law = al
+				if(initial(ai_law.id) == choice)
+					lawtype = al
+		if(!lawtype)
+			choice = "Random"
+		var/datum/ai_laws/templaws = new lawtype()
+		S.laws.inherent = templaws.inherent
+		
