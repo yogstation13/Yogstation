@@ -128,9 +128,14 @@
 	var/choice
 
 	var/client/C = M.client
-	var/mob/living/silicon/S = H
+	var/mob/living/silicon/S = M
 	if (!C)
 		C = H.client
+		if (!C)
+			choice = "Random"
+	
+	if (!S)
+		S = H
 		if (!C)
 			choice = "Random"
 
