@@ -4,7 +4,6 @@
 	desc = "Used for sticking things together."
 	icon = 'icons/obj/tapes.dmi'
 	icon_state = "tape_w"
-	var/prefix = "sticky"
 	item_flags = NOBLUDGEON
 	amount = 5
 	max_amount = 5

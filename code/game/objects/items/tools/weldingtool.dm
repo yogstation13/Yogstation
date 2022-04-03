@@ -382,8 +382,8 @@
 	..()
 	if(welding && get_fuel() >= 1 && prob(2))
 		var/datum/effect_system/reagents_explosion/e = new()
-		to_chat(user, "<span class='userdanger'>Shoddy construction causes [src] to blow the fuck up!</span>")
-		e.set_up(round(reagents.get_reagent_amount("welding_fuel") / 10, 1), get_turf(src), 0, 0)
+		to_chat(user, span_userdanger("Shoddy construction causes [src] to blow the fuck up!"))
+		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/fuel) / 10, 1), get_turf(src), 0, 0)
 		e.start()
 		qdel(src)
 		return
