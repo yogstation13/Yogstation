@@ -127,17 +127,17 @@
 
 	var/choice
 
-	var/client/C = M.client
-	var/mob/living/silicon/S = M
+	var/client/C = H.client
+	var/mob/living/silicon/S = H
 	if (!C)
-		C = H.client
+		C = M.client
 		if (!C)
-			choice = "Random"
+			return
 	
 	if (!S)
-		S = H
+		S = M
 		if (!S)
-			choice = "Random"
+			return
 
 	if (C)
 		choice = C.prefs.preferred_ai_module
@@ -150,7 +150,7 @@
 			if(initial(ai_law.id) == choice)
 				lawtype = al
 		if(!lawtype)
-			choice = "Random"
+			return
 		var/datum/ai_laws/templaws = new lawtype()
 		S.laws.inherent = templaws.inherent
 		
