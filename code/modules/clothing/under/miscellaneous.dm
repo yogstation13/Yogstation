@@ -915,3 +915,11 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+
+/obj/item/clothing/under/weiner
+	name = "weiner outfit"
+	desc = "The meat part of a hot dog costume. People may think you're trying to compensate for something."
+	icon_state = "weiner"
+	item_state = "weiner"
+	item_color = "weiner"
+	can_adjust = FALSE

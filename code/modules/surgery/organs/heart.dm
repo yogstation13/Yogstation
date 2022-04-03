@@ -103,7 +103,7 @@
 /obj/item/organ/heart/cursed
 	name = "cursed heart"
 	desc = "A heart that, when inserted, will force you to pump it manually."
-	icon_state = "cursedheart-off"
+	icon_state = "cursedheart"
 	icon_base = "cursedheart"
 	decay_factor = 0
 	actions_types = list(/datum/action/item_action/organ_action/cursed_heart)

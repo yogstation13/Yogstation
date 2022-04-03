@@ -1,0 +1,6 @@
+author: " code by Chubbygummibear, sprites by Sheets"
+delete-after: true 
+changes: 
+  - rscadd: "gives pod race hairstyle options"
+  - imageadd: "hairstyle sprites for pods"
+  - imagedel: "Phytosians no longer have brush built into their heads"
