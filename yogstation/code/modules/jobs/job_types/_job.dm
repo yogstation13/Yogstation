@@ -145,10 +145,10 @@
 	if (choice != "Random" && prob(25))
 		var/datum/ai_laws/lawtype
 		var/all_ai_laws = subtypesof(/datum/ai_laws)
-			for(var/al in all_ai_laws)
-				var/datum/ai_laws/ai_law = al
-				if(initial(ai_law.id) == choice)
-					lawtype = al
+		for(var/al in all_ai_laws)
+			var/datum/ai_laws/ai_law = al
+			if(initial(ai_law.id) == choice)
+				lawtype = al
 		if(!lawtype)
 			choice = "Random"
 		var/datum/ai_laws/templaws = new lawtype()
