@@ -178,3 +178,14 @@
 		add_filter("backdrop_ambient_occlusion",1,YOGS_AMBIENT_OCCLUSION)
 
 	//YOGS EDIT END
+
+
+//YOGS EDIT
+/obj/screen/plane_master/above_lighting
+	name = "above lighting plane master"
+	plane = ABOVE_LIGHTING_PLANE
+	appearance_flags = PLANE_MASTER
+	blend_mode = BLEND_OVERLAY
+
+
+//YOGS EDIT END

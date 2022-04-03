@@ -17,7 +17,7 @@
 		chosen_turf = turf_type
 		spawn_loose_flora(gen_turf)
 
-	gen_turf.ChangeTurf(chosen_turf, null, CHANGETURF_DEFER_CHANGE)
+	. = gen_turf.ChangeTurf(chosen_turf, null, CHANGETURF_DEFER_CHANGE)
 
 /datum/biome/jungleland/proc/spawn_dense_flora(turf/gen_turf)
 	if(length(dense_flora)  && prob(dense_flora_density))

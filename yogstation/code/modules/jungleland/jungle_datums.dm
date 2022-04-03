@@ -97,10 +97,11 @@ GLOBAL_DATUM_INIT(herb_manager,/datum/herb_manager,new)
 
 // I seperated these functions from the ones right above this comment for clarity, and because i wanted to seperate visual stuff from effects stuff, makes it easier to understand.
 /datum/reagent/jungle/polybycin/proc/add_filters(mob/living/L)
-	if(!L.client)
+	if(!L.hud_used || !L.client)
 		return
-	var/obj/screen/plane_master/game_world/game_plane = locate(/obj/screen/plane_master/game_world) in L.client.screen
-	var/obj/screen/plane_master/floor/floor_plane  = locate(/obj/screen/plane_master/floor) in L.client.screen
+
+	var/obj/screen/plane_master/game_world/game_plane =  L.hud_used.plane_masters["[GAME_PLANE]"]
+	var/obj/screen/plane_master/floor/floor_plane  = L.hud_used.plane_masters["[FLOOR_PLANE]"]
 
 	cached_screen = L.overlay_fullscreen("polycybin_trip",/obj/screen/fullscreen/trip)
 	cached_screen_floor = L.overlay_fullscreen("polycybin_ftrip",/obj/screen/fullscreen/ftrip)
@@ -125,7 +126,7 @@ GLOBAL_DATUM_INIT(herb_manager,/datum/herb_manager,new)
 /datum/reagent/jungle/polybycin/proc/update_filters(mob/living/L)
 	if(!L.client)
 		return
-
+	
 	animate(cached_screen, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
 	animate(cached_screen_floor, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
 	animate(cached_screen_game, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)

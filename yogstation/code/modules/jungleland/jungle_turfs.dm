@@ -11,6 +11,17 @@
 	icon = 'yogstation/icons/turf/floors/jungle.dmi'
 	icon_state = "jungle"
 
+	var/can_spawn_ore = TRUE
+	var/ore_present = ORE_EMPTY
+
+/turf/open/floor/plating/dirt/jungleland/proc/spawn_rock()
+	if(ore_present == ORE_EMPTY && !can_spawn_ore)
+		return
+	can_spawn_ore = FALSE
+	add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
+	var/ore_type = GLOB.jungle_ores[ore_present]
+	new ore_type(src)
+
 /turf/open/floor/plating/dirt/jungleland/barren_rocks
 	icon_state = "barren_rocks"
 
@@ -29,7 +40,35 @@
 /turf/open/floor/plating/dirt/jungleland/jungle
 	icon_state = "jungle"
 
+/turf/open/floor/plating/dirt/jungleland/iron 
+	icon_state = "iron"
+	
+/turf/open/floor/plating/dirt/jungleland/silver
+	icon_state = "silver"
+
+/turf/open/floor/plating/dirt/jungleland/titanium
+	icon_state = "titanium"
+
+/turf/open/floor/plating/dirt/jungleland/gold
+	icon_state = "gold"
+
+/turf/open/floor/plating/dirt/jungleland/uranium
+	icon_state = "uranium"
+
+/turf/open/floor/plating/dirt/jungleland/plasma
+	icon_state = "plasma"
+
+/turf/open/floor/plating/dirt/jungleland/diamond
+	icon_state = "diamond"
+
+/turf/open/floor/plating/dirt/jungleland/bluespace
+	icon_state = "bluespace"
+
+/turf/open/floor/plating/dirt/jungleland/nothing
+	icon_state = "nothing"
 
 /turf/open/water/toxic_pit
 	name = "sulphuric pit"
 	color = "#003a00"
+
+
