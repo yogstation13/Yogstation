@@ -1073,21 +1073,18 @@
     alert_type = null
     var/mutable_appearance/bruise
     var/obj/item/melee/knuckles
-    var/list/afflicted = list()
 
 /datum/status_effect/knuckled/on_apply()
-    bruise = mutable_appearance('icons/effects/effects.dmi', "shield2")
+    bruise = mutable_appearance('icons/effects/effects.dmi', "shield-red")
     bruise.pixel_x = -owner.pixel_x
     bruise.pixel_y = -owner.pixel_y
     owner.underlays += bruise
-    afflicted += owner
     return TRUE
 
 /datum/status_effect/knuckled/Destroy()
     if(owner)
         owner.underlays -= bruise
     QDEL_NULL(bruise)
-    afflicted -= owner
     return ..()
 
 /datum/status_effect/knuckled/be_replaced()
