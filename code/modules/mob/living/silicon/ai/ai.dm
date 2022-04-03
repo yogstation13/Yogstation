@@ -1,6 +1,6 @@
 #define CALL_BOT_COOLDOWN 900
 
-//Not sure why this is necessary...
+//Not sure why this is necessary....
 /proc/AutoUpdateAI(obj/subject)
 	var/is_in_use = 0
 	if (subject!=null)
