@@ -221,9 +221,6 @@
 	. += get_modular_computer_parts_examine(user)
 
 /obj/item/modular_computer/update_icon()
-	if(!physical)
-		return
-
 	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
 	var/program_overlay = ""
 	var/is_broken = obj_integrity <= integrity_failure
@@ -563,3 +560,4 @@
 			active_program = program
 			program.alert_pending = FALSE
 			enabled = TRUE
+			update_icon()

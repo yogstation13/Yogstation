@@ -153,6 +153,7 @@
 	name = "Attune Heart"
 	required_atoms = list(/obj/item/living_heart)
 	required_shit_list = "A living heart, which will be given a target for sacrifice or sacrifice its target if their corpse is on the rune."
+	var/effect_path = STATUS_EFFECT_HERETIC_SACRIFICE //conveniently works if you haven't bought anything
 
 /datum/eldritch_transmutation/basic/recipe_snowflake_check(list/atoms, loc)
 	. = ..()
@@ -171,7 +172,7 @@
 		if(LH.target && LH.target.stat == DEAD)
 			to_chat(carbon_user,span_danger("Your patrons accepts your offer.."))
 			var/mob/living/carbon/human/H = LH.target
-			H.apply_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
+			H.apply_status_effect(effect_path)
 			LH.target = null
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 
@@ -187,14 +188,9 @@
 			A.owner = user.mind
 			var/list/targets = list()
 			for(var/i in 0 to 3)
-				var/list/BR = list()
-				var/datum/mind/targeted =  A.find_target(blacklist = BR)//easy way, i dont feel like copy pasting that entire block of code
+				var/datum/mind/targeted =  A.find_target()//easy way, i dont feel like copy pasting that entire block of code
 				if(!targeted)
 					break
-				if(targeted.current?.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)) //stops people from being selected while afk in the shadow realm
-					BR |= targeted
-					i--
-					continue
 				targets[targeted.current.real_name] = targeted.current
 			LH.target = targets[input(user,"Choose your next target","Target") in targets]
 			qdel(A)

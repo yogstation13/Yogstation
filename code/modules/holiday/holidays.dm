@@ -93,7 +93,7 @@
 /datum/holiday/valentines
 	name = VALENTINES
 	begin_day = 13
-	end_day = 15
+	end_day = 17
 	begin_month = FEBRUARY
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=cEwZpejd4rM", // Charlie Wilson - Forever Valentine

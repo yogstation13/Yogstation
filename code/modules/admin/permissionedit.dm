@@ -2,7 +2,7 @@
 	set category = "Server"
 	set name = "Permissions Panel"
 	set desc = "Edit admin permissions"
-	if(!check_rights(R_PERMISSIONS))
+	if(!check_rights(R_PERMISSIONS) || !mfa_query()) // Require MFA to access the permissions panel
 		return
 	usr.client.holder.edit_admin_permissions()
 

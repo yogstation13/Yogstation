@@ -1,5 +1,5 @@
 //The chests dropped by mob spawner tendrils. Also contains associated loot.
-GLOBAL_LIST_EMPTY(bloodmen_list)
+
 #define HIEROPHANT_CLUB_CARDINAL_DAMAGE 30
 
 
@@ -902,9 +902,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
-			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard/draconid)
+			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities."))
+			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+			H.set_species(/datum/species/lizard)
 			H.eye_color = "fee5a3"
 			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 			H.updateappearance()
@@ -1460,57 +1460,3 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/wisp_lantern(src)
 		if(3)
 			new /obj/item/prisoncube(src)
-
-//Legion
-/obj/item/organ/grandcore
-	name = "grand core"
-	desc = "The source of the Legion's powers. Though mostly expended, you might be able to get some use out of it."
-	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "grandcore"
-	slot = "hivecore"
-	w_class = WEIGHT_CLASS_SMALL 
-	decay_factor = 0
-	actions_types = list(/datum/action/item_action/organ_action/threebloodlings)
-
-/obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
-	if(H == user && istype(H))
-		playsound(user,'sound/effects/singlebeat.ogg',40,1)
-		user.temporarilyRemoveItemFromInventory(src, TRUE)
-		Insert(user)
-
-/obj/item/organ/grandcore/Insert(mob/living/carbon/H, special = 0)
-	..()
-	H.faction |= "blooded"
-	H.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/raise)
-	H.AddSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
-	if(NOBLOOD in H.dna.species.species_traits)
-		to_chat(owner, "<span class ='userdanger'>Despite lacking blood, you were able to take in the grand core. You will pay for your power in killer headaches!</span>")
-	else
-		to_chat(owner, "<span class ='userdanger'>You've taken in the grand core, allowing you to control minions at the cost of your blood!</span>")
-
-/obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
-	H.faction -= "blooded"
-	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise, /obj/effect/proc_holder/spell/aoe_turf/horde)
-	H.RemoveSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
-	..()
-
-/datum/action/item_action/organ_action/threebloodlings
-	name = "Summon bloodlings"
-	desc = "Summon a conjure a few bloodlings at the cost of 13% blood (8 brain damage for those without blood)."
-	var/next_expulsion = 0
-	var/cooldown = 10 //wheres the risk if it has a reasonable cooldown?
-	
-/datum/action/item_action/organ_action/threebloodlings/Trigger()
-	var/mob/living/carbon/H = owner
-	. = ..() 
-	if(next_expulsion > world.time)
-		to_chat(owner, span_warning("Don't spill your blood so haphazardly!"))
-		return
-	if(NOBLOOD in H.dna.species.species_traits)
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 8) //brain damage wont stop you from running away so opting for that instead of poison or breath damage 
-		to_chat(H, "<span class ='userdanger'>Your head pounds as you produce bloodlings!</span>")
-	else
-		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")
-		H.blood_volume -= 70 //like 13% of your blood taken
-	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
-	next_expulsion = world.time + cooldown

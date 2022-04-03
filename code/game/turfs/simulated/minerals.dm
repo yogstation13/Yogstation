@@ -21,7 +21,6 @@
 	var/spreadChance = 0 //the percentual chance of an ore spreading to the neighbouring tiles
 	var/scan_state = "" //Holder for the image we display when we're pinged by a mining scanner
 	var/defer_change = FALSE
-	var/hardness = 1 //how hard the material is, we'll have to have more powerful stuff if we want to blast harder materials.
 
 /turf/closed/mineral/Initialize()
 	if (!canSmoothWith)
@@ -63,15 +62,13 @@
 		if(I.use_tool(src, user, 40, volume=50))
 			if(ismineralturf(src))
 				to_chat(user, span_notice("You finish cutting into the rock."))
-				attempt_drill(user)
+				gets_drilled(user)
 				SSblackbox.record_feedback("tally", "pick_used_mining", 1, I.type)
 	else
 		return attack_hand(user)
 
-/turf/closed/mineral/proc/gets_drilled(mob/user, triggered_by_explosion = FALSE, override_bonus = FALSE)
+/turf/closed/mineral/proc/gets_drilled()
 	if (mineralType && (mineralAmt > 0))
-		if(triggered_by_explosion && !override_bonus)
-			mineralAmt += 2 //bonus if it was exploded, USE EXPLOSIVES WOOO
 		new mineralType(src, mineralAmt)
 		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
 	for(var/obj/effect/temp_visual/mining_overlay/M in src)
@@ -83,25 +80,9 @@
 	addtimer(CALLBACK(src, .proc/AfterChange), 1, TIMER_UNIQUE)
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1) //beautiful destruction
 
-/turf/closed/mineral/proc/attempt_drill(mob/user,triggered_by_explosion = FALSE, power = 1)
-	hardness -= power
-	if(hardness <= 0)
-		gets_drilled(user,triggered_by_explosion)
-	else
-		update_icon()
-
-/turf/closed/mineral/proc/update_icon()
-	if(hardness != initial(hardness))
-		var/mutable_appearance/cracks = mutable_appearance('icons/turf/mining.dmi',"rock_cracks",ON_EDGED_TURF_LAYER)
-		var/matrix/M = new
-		M.Translate(4,4)
-		cracks.transform = M
-		add_overlay(cracks)
-
-
 /turf/closed/mineral/attack_animal(mob/living/simple_animal/user)
 	if((user.environment_smash & ENVIRONMENT_SMASH_WALLS) || (user.environment_smash & ENVIRONMENT_SMASH_RWALLS))
-		attempt_drill()
+		gets_drilled()
 	..()
 
 /turf/closed/mineral/attack_alien(mob/living/carbon/alien/M)
@@ -109,7 +90,7 @@
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1)
 	if(do_after(M, 4 SECONDS, target = src))
 		to_chat(M, span_notice("You tunnel into the rock."))
-		attempt_drill(M)
+		gets_drilled(M)
 
 /turf/closed/mineral/Bumped(atom/movable/AM)
 	..()
@@ -135,16 +116,12 @@
 	switch(severity)
 		if(3)
 			if (prob(75))
-				attempt_drill(null,TRUE,2)
-			else if(prob(90))
-				attempt_drill(null,TRUE,1)
+				gets_drilled(null, 1)
 		if(2)
 			if (prob(90))
-				attempt_drill(null,TRUE,2)
-			else
-				attempt_drill(null,TRUE,1)
+				gets_drilled(null, 1)
 		if(1)
-			attempt_drill(null,TRUE,3)
+			gets_drilled(null, 1)
 	return
 
 /turf/closed/mineral/Spread(turf/T)
@@ -176,7 +153,7 @@
 
 		if(T && ismineralturf(T))
 			var/turf/closed/mineral/M = T
-			M.mineralAmt = rand(1, 5) + max(0,((hardness - 1) * 2)) //2 bonus ore for every hardness above 1
+			M.mineralAmt = rand(1, 5)
 			M.environment_type = src.environment_type
 			M.turf_type = src.turf_type
 			M.baseturfs = src.baseturfs
@@ -266,17 +243,6 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
-/turf/closed/mineral/random/volcanic/hard
-	name = "hardened basalt"
-	icon_state = "rock_hard"
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	mineralChance = 15
-	hardness = 2
-
-	mineralSpawnChanceList = list(
-		/turf/closed/mineral/uranium/volcanic/hard = 5, /turf/closed/mineral/diamond/volcanic/hard = 1, /turf/closed/mineral/gold/volcanic/hard = 10, /turf/closed/mineral/titanium/volcanic/hard = 11, /turf/closed/mineral/magmite/volcanic/hard = 0.5,
-		/turf/closed/mineral/silver/volcanic/hard = 12, /turf/closed/mineral/plasma/volcanic/hard = 20, /turf/closed/mineral/iron/volcanic/hard = 20, /turf/closed/mineral/dilithium/volcanic/hard = 2, /turf/closed/mineral/gibtonite/volcanic/hard = 4, /turf/closed/mineral/bscrystal/volcanic/hard = 2, /turf/open/floor/plating/asteroid/airless/cave/volcanic = 1)
-
 /turf/closed/mineral/random/snow
 	name = "snowy mountainside"
 	icon = 'icons/turf/mining.dmi'
@@ -342,10 +308,6 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
-/turf/closed/mineral/iron/volcanic/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 2
-
 /turf/closed/mineral/iron/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_iron"
@@ -373,10 +335,6 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
-
-/turf/closed/mineral/uranium/volcanic/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 2
 
 /turf/closed/mineral/uranium/ice
 	environment_type = "snow_cavern"
@@ -406,10 +364,6 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
-/turf/closed/mineral/diamond/volcanic/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 2
-
 /turf/closed/mineral/diamond/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_diamond"
@@ -437,10 +391,6 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
-
-/turf/closed/mineral/gold/volcanic/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 2
 
 /turf/closed/mineral/gold/ice
 	environment_type = "snow_cavern"
@@ -470,10 +420,6 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
-/turf/closed/mineral/silver/volcanic/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 2
-
 /turf/closed/mineral/silver/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_silver"
@@ -502,10 +448,6 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
-/turf/closed/mineral/titanium/volcanic/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 2
-
 /turf/closed/mineral/titanium/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_titanium"
@@ -533,10 +475,6 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
-
-/turf/closed/mineral/plasma/volcanic/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 2
 
 /turf/closed/mineral/plasma/ice
 	environment_type = "snow_cavern"
@@ -590,10 +528,6 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
-/turf/closed/mineral/bscrystal/volcanic/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 2
-
 /turf/closed/mineral/bscrystal/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_BScrystal"
@@ -620,9 +554,6 @@
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	defer_change = TRUE
-
-/turf/closed/mineral/volcanic/lava_land_surface/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
 
 /turf/closed/mineral/ash_rock //wall piece
 	name = "rock"
@@ -743,7 +674,7 @@
 			det_time = 0
 		visible_message(span_notice("The chain reaction was stopped! The gibtonite had [det_time] reactions left till the explosion!"))
 
-/turf/closed/mineral/gibtonite/attempt_drill(mob/user, triggered_by_explosion = 0)
+/turf/closed/mineral/gibtonite/gets_drilled(mob/user, triggered_by_explosion = 0)
 	if(stage == GIBTONITE_UNSTRUCK && mineralAmt >= 1) //Gibtonite deposit is activated
 		playsound(src,'sound/effects/hit_on_shattered_glass.ogg',50,1)
 		explosive_reaction(user, triggered_by_explosion)
@@ -776,10 +707,6 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
-/turf/closed/mineral/gibtonite/volcanic/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 2
-
 /turf/closed/mineral/gibtonite/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_Gibtonite"
@@ -793,25 +720,3 @@
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice/icemoon
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
-
-/turf/closed/mineral/magmite
-	mineralType = /obj/item/magmite
-	spread = 0
-	scan_state = "rock_Magmite"
-
-/turf/closed/mineral/magmite/gets_drilled(mob/user, triggered_by_explosion = FALSE)
-	if(!triggered_by_explosion)
-		mineralAmt = 0
-	..(user,triggered_by_explosion,TRUE)
-
-/turf/closed/mineral/magmite/volcanic
-	environment_type = "basalt"
-	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
-	defer_change = TRUE
-
-/turf/closed/mineral/magmite/volcanic/hard
-	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
-	hardness = 2
-

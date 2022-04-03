@@ -112,7 +112,7 @@
 	var/turf/T = get_step(get_turf(src), move_dir)
 	if(ismineralturf(T))
 		var/turf/closed/mineral/M = T
-		M.attempt_drill()
+		M.gets_drilled()
 	if(T.density)
 		return
 	for(var/obj/structure/window/W in T.contents)

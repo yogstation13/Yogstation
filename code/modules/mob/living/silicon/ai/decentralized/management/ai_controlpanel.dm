@@ -29,10 +29,6 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	if(mapload)
 		cleared_for_use = TRUE
 
-/obj/machinery/computer/ai_control_console/Destroy()
-	stop_download()
-	. = ..()
-
 /obj/machinery/computer/ai_control_console/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/aicard))
 		if(intellicard)
@@ -209,9 +205,6 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 /obj/machinery/computer/ai_control_console/proc/finish_download()
 	if(intellicard)
-		if(!isaicore(downloading.loc))
-			stop_download(TRUE)
-			return
 		downloading.transfer_ai(AI_TRANS_TO_CARD, user_downloading, null, intellicard)
 		intellicard.forceMove(get_turf(src))
 		intellicard.update_icon()
@@ -241,15 +234,9 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 	if(!cleared_for_use)
 		if(action == "clear_for_use")
-			var/code = params["control_code"]
+			var/code = text2num(params["control_code"])
 			
-			if(!code)
-				return
-			
-			if(!GLOB.ai_control_code)
-				return
-			
-			var/length_of_number = length(code)
+			var/length_of_number = round(log(10, code) + 1)
 			if(length_of_number < 6)
 				to_chat(usr, span_warning("Incorrect code. Too short"))
 				return
@@ -258,11 +245,15 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(usr, span_warning("Incorrect code. Too long"))
 				return
 
+
+			if(!GLOB.ai_control_code)
+				return
+
 			if(!is_station_level(z))
 				to_chat(usr, span_warning("Unable to connect to NT Servers. Please verify you are onboard the station."))
 				return
 
-			if(code == GLOB.ai_control_code)
+			if(code == text2num(GLOB.ai_control_code))
 				cleared_for_use = TRUE
 			else
 				to_chat(usr, span_warning("Incorrect code. Make sure you have the latest one."))
@@ -288,15 +279,9 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(check_access(H.get_idcard()))
 				authenticated = TRUE
 		if(action == "log_in_control_code")
-			var/code = params["control_code"]
+			var/code = text2num(params["control_code"])
 			
-			if(!code)
-				return
-			
-			if(!GLOB.ai_control_code)
-				return
-			
-			var/length_of_number = length(code)
+			var/length_of_number = round(log(10, code) + 1)
 			if(length_of_number < 6)
 				to_chat(usr, span_warning("Incorrect code. Too short"))
 				return
@@ -305,7 +290,10 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(usr, span_warning("Incorrect code. Too long"))
 				return
 
-			if(code == GLOB.ai_control_code)
+			if(!GLOB.ai_control_code)
+				return
+
+			if(code == text2num(GLOB.ai_control_code))
 				cleared_for_use = TRUE
 				authenticated = TRUE
 				one_time_password_used = TRUE

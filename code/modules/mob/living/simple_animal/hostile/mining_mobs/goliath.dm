@@ -177,7 +177,7 @@
 		spawner = new_spawner
 	if(ismineralturf(loc))
 		var/turf/closed/mineral/M = loc
-		M.attempt_drill()
+		M.gets_drilled()
 	deltimer(timerid)
 	timerid = addtimer(CALLBACK(src, .proc/tripanim), 7, TIMER_STOPPABLE)
 

@@ -19,8 +19,6 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 	var/warning_sent = FALSE
 
-	var/TimerID //party time
-
 /obj/machinery/ai/data_core/Initialize()
 	. = ..()
 	GLOB.data_cores += src
@@ -43,14 +41,14 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		all_ais -= AI
 		if(!AI.is_dying)
 			AI.relocate()
-
     
 	for(var/mob/living/silicon/ai/AI in all_ais)
 		if(!AI.mind && AI.deployed_shell.mind)
-			to_chat(AI.deployed_shell, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
-		else
-			to_chat(AI, span_userdanger("Warning! <A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data Core</A> brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
+			all_ais += AI.deployed_shell
 		
+
+	to_chat(all_ais, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
+	
 	..()
 
 /obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
@@ -61,14 +59,13 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		return TRUE
 	return ..()
 
-//NOTE: See /obj/machinery/status_display/examine in ai_core_display.dm
 /obj/machinery/ai/data_core/examine(mob/user)
 	. = ..()
 	if(!isobserver(user))
 		return
 	. += "<b>Networked AI Laws:</b>"
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
-		var/active_status = "(Core: [FOLLOW_LINK(user, AI.loc)], Eye: [FOLLOW_LINK(user, AI.eyeobj)])"
+		var/active_status = ""
 		if(!AI.mind && AI.deployed_shell)
 			active_status = "(Controlling [FOLLOW_LINK(user, AI.deployed_shell)][AI.deployed_shell.name])"
 		else if(!AI.mind)
@@ -94,9 +91,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
 	
 	if(valid_holder())
-		valid_ticks++
-		if(valid_ticks == 1)
+		if(valid_ticks <= 0)
 			update_icon()
+		valid_ticks++
 		use_power = ACTIVE_POWER_USE
 		warning_sent = FALSE
 	else
@@ -112,11 +109,10 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			var/list/send_to = GLOB.ai_list.Copy()
 			for(var/mob/living/silicon/ai/AI in send_to)
 				if(!AI.mind && AI.deployed_shell.mind)
-					to_chat(AI.deployed_shell, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
-				else
-					to_chat(AI, span_userdanger("<A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data core</A> in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+					send_to += AI.deployed_shell
+			to_chat(send_to, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+			for(var/mob/living/silicon/ai/AI in send_to)
 				AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
-			
 
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/turf/T = get_turf(src)
@@ -147,16 +143,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
 		add_overlay(on_overlay)
 
-/obj/machinery/ai/data_core/proc/partytime()
-	var/current_color = random_color()
-	set_light(7, 3, current_color)
-	TimerID = addtimer(CALLBACK(src, .proc/partytime), 0.5 SECONDS, TIMER_STOPPABLE)
 
-/obj/machinery/ai/data_core/proc/stoptheparty()
-	set_light(0)
-	if(TimerID)
-		deltimer(TimerID)
-		TimerID = null
 /obj/machinery/ai/data_core/primary
 	name = "primary AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of a human at near-instantanous speeds. This one has a scrawny and faded note saying: 'Primary AI Data Core'"

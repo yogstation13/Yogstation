@@ -277,7 +277,7 @@
 			L.adjustBruteLoss(40)
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.attempt_drill(firer)
+		M.gets_drilled(firer)
 		if(mine_range)
 			mine_range--
 			range++

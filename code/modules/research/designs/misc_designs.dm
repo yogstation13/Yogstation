@@ -444,16 +444,16 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /////////////////////////////////////////
-////////////////Armor///////////////////
+////////////////Armour///////////////////
 /////////////////////////////////////////
 
-/datum/design/reactive_armor
-	name = "Reactive Armor Shell"
-	desc = "An experimental suit of armor capable of utilizing an implanted anomaly core to protect the user."
-	id = "reactive_armor"
+/datum/design/reactive_armour
+	name = "Reactive Armour Shell"
+	desc = "An experimental suit of armour capable of utilizing an implanted anomaly core to protect the user."
+	id = "reactive_armour"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/diamond = 5000, /datum/material/uranium = 8000, /datum/material/silver = 4500, /datum/material/gold = 5000)
-	build_path = /obj/item/reactive_armor_shell
+	build_path = /obj/item/reactive_armour_shell
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 

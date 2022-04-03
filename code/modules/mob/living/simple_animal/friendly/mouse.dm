@@ -233,10 +233,6 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	M.cheese_up()
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/cheesiehonkers/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)	
-
 /obj/item/grown/bananapeel/bluespace/mouse_eat(mob/living/simple_animal/mouse/M)
 	var/teleport_radius = max(round(seed.potency / 10), 1)
 	var/turf/T = get_turf(M)

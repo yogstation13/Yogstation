@@ -76,4 +76,4 @@
 	result = /obj/structure/fermenting_barrel
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 30)
 	time = 5 SECONDS
-	category = CAT_STRUCTURES
+	category = CAT_PRIMAL

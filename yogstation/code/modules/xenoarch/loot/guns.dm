@@ -136,7 +136,7 @@
 	playsound(loc, impact_sound, 30)
 	if(istype(target,/turf/closed/mineral))
 		var/turf/closed/mineral/M = target
-		M.attempt_drill()
+		M.gets_drilled()
 	..()
 
 /obj/item/ammo_casing/energy/polarstar/spur

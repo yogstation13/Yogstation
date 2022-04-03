@@ -317,7 +317,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, span_danger("You cannot speak in IC (muted)."))
 			return FALSE
-		if(!ignore_spam && message != null && client.handle_spam_prevention(message,MUTE_IC))
+		if(!ignore_spam && client.handle_spam_prevention(message,MUTE_IC))
 			return FALSE
 
 	return TRUE

@@ -9,7 +9,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 */
 
 /obj/effect/overlay/poolwater
-	name = "pool water"
+	name = "Pool water"
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "water"
 	anchored = TRUE
@@ -17,7 +17,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /turf/open/indestructible/sound/pool
-	name = "swimming pool"
+	name = "Swimming pool"
 	desc = "A fun place where you go to swim! <b>Drag and drop yourself onto it to climb in...</b>"
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "pool"
@@ -133,8 +133,6 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 			var/obj/item/clothing/CS = F.wear_suit
 			if (CS.clothing_flags & THICKMATERIAL)
 				zap --
-		if(zap > 0)
-			zap = 3 - zap // 1 is higher severity emp than 2
 	if(zap > 0)
 		user.emp_act(zap)
 		user.emote("scream") //Chad coders use M.say("*scream")
@@ -184,11 +182,6 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "ladder"
 	pixel_y = 12
-	var/reversed = FALSE
-	anchored = TRUE
-
-/obj/structure/pool_ladder/reversed
-	reversed = TRUE
 
 GLOBAL_LIST_EMPTY(pool_filters)
 
@@ -204,7 +197,6 @@ GLOBAL_LIST_EMPTY(pool_filters)
 	var/desired_temperature = 300 //Room temperature
 	var/current_temperature = 300 //current temp
 	var/preset_reagent_type = null //Set this if you want your pump to start filled with a given reagent. SKEWIUM POOL SKEWIUM POOL!
-	var/temp_rate = 0.5
 
 /obj/machinery/pool_filter/examine(mob/user)
 	. = ..()
@@ -245,13 +237,9 @@ GLOBAL_LIST_EMPTY(pool_filters)
 	if(!LAZYLEN(pool) || !is_operational())
 		return //No use having one of these processing for no reason is there?
 	use_power(idle_power_usage)
-	if (current_temperature > desired_temperature)
-		current_temperature -= temp_rate
-		current_temperature = max(desired_temperature, current_temperature)
-	else if (current_temperature < desired_temperature)
-		current_temperature += temp_rate
-		current_temperature = min(desired_temperature, current_temperature)
-
+	var/delta = (current_temperature > desired_temperature) ? -0.5 : 0.5
+	current_temperature += delta
+	current_temperature = clamp(current_temperature, T0C, desired_temperature)
 	var/trans_amount = reagents.total_volume / pool.len //Split up the reagents equally.
 	for(var/turf/open/indestructible/sound/pool/water as() in pool)
 		if(reagents.reagent_list.len)
@@ -275,13 +263,12 @@ GLOBAL_LIST_EMPTY(pool_filters)
 				var/mob/living/carbon/C = M
 				if(current_temperature <= 283.5) //Colder than 10 degrees is going to make you very cold
 					if(iscarbon(M))
-						C.adjust_bodytemperature(-80, current_temperature)
+						C.adjust_bodytemperature(-80, 80)
 					to_chat(M, "<span class='warning'>The water is freezing cold!</span>")
 				else if(current_temperature >= 308.5) //Hotter than 35 celsius is going to make you burn up
 					if(iscarbon(M))
-						C.adjust_bodytemperature(35, 0, current_temperature)
-					if(!HAS_TRAIT(C, TRAIT_RESISTHEAT))
-						C.adjustFireLoss(5)
+						C.adjust_bodytemperature(35, 0, 500)
+					M.adjustFireLoss(5)
 					to_chat(M, "<span class='danger'>The water is searing hot!</span>")
 
 /obj/structure/pool_ladder/attack_hand(mob/user)
@@ -291,10 +278,7 @@ GLOBAL_LIST_EMPTY(pool_filters)
 		if(do_after(user, 1 SECONDS, target=src))
 			S.RemoveComponent()
 			visible_message("<span class='notice'>[user] climbs out of the pool.</span>")
-			if(!reversed)
-				user.forceMove(get_turf(get_step(src, NORTH))) //Ladders shouldn't adjoin another pool section. Ever.
-			else
-				user.forceMove(get_turf(get_step(src, SOUTH)))
+			user.forceMove(get_turf(get_step(src, NORTH))) //Ladders shouldn't adjoin another pool section. Ever.
 	else
 		to_chat(user, "<span class='notice'>You start to climb into the pool...</span>")
 		var/turf/T = get_turf(src)

@@ -522,7 +522,6 @@
 			return
 	if(frn)
 		client.prefs.random_character()
-		client.prefs.accent = null
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
 	client.prefs.copy_to(H)
 

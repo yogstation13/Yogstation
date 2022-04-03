@@ -565,7 +565,7 @@ obj/effect/temp_visual/fireball
 	sleep(duration)
 	if(ismineralturf(T))
 		var/turf/closed/mineral/M = T
-		M.attempt_drill()
+		M.gets_drilled()
 	playsound(T, "explosion", 80, 1)
 	new /obj/effect/hotspot(T)
 	T.hotspot_expose(700, 50, 1)

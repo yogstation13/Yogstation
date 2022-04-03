@@ -53,8 +53,7 @@
 	r_pocket = /obj/item/lighter
 	backpack_contents = list(/obj/item/storage/box/evidence=1,\
 		/obj/item/detective_scanner=1,\
-		/obj/item/melee/classic_baton=1,\
-		/obj/item/modular_computer/tablet/pda/preset/basic=1)
+		/obj/item/melee/classic_baton=1)
 	mask = /obj/item/clothing/mask/cigarette
 
 	implants = list(/obj/item/implant/mindshield)

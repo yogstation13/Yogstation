@@ -390,12 +390,12 @@
 	for(var/i in 1 to 7)
 		new /obj/item/bodybag(src)
 
-/obj/item/storage/box/envirobags
+/obj/item/storage/box/epb
 	name = "environment protection bags"
 	desc = "The label indicates that it contains environment protection bags."
 	illustration = "bodybags"
 
-/obj/item/storage/box/envirobags/PopulateContents()
+/obj/item/storage/box/bodybags/PopulateContents()
 	..()
 	for(var/i in 1 to 7)
 		new /obj/item/bodybag/environmental(src)

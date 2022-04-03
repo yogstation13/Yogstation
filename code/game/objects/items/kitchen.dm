@@ -224,7 +224,7 @@
 
 // Shank - Makeshift weapon that can embed on throw
 /obj/item/kitchen/knife/shank
-	name = "shank"
+	name = "Shank"
 	desc = "A crude knife fashioned by securing a glass shard and a rod together with cables, and welding them together."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "shank"
@@ -240,7 +240,6 @@
 	weapon_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 5, DAMAGE_HIGH = 7)
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 20, "embedded_fall_chance" = 10) // Incentive to disengage/stop chasing when stuck
 	attack_verb = list("stuck", "shanked", "stabbed", "shivved")
-	materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 
 /obj/item/kitchen/rollingpin
 	name = "rolling pin"

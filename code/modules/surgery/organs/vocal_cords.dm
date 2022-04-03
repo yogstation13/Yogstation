@@ -126,7 +126,7 @@
 /proc/voice_of_god(message, mob/living/user, list/span_list, base_multiplier = 1, include_speaker = FALSE, message_admins = TRUE, forced_span = FALSE)
 	var/cooldown = 0
 
-	if(!user || !user.can_speak(message) || user.stat)
+	if(!user || !user.can_speak() || user.stat)
 		return 0 //no cooldown
 
 	var/log_message = uppertext(message)

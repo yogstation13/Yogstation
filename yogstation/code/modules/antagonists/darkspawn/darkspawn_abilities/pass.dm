@@ -2,7 +2,7 @@
 /datum/action/innate/darkspawn/pass
 	name = "Pass"
 	id = "pass"
-	desc = "Twists an active arm into tendrils with many important uses. Examine the tendrils to see a list of uses."
+	desc = "Twists an active arm into tendrils with many uses."
 	button_icon_state = "pass"
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_CONSCIOUS
 	blacklisted = TRUE //baseline

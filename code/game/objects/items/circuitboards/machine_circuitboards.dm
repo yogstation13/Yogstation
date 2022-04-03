@@ -973,11 +973,6 @@
 		/obj/item/stock_parts/matter_bin = 4,
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stack/sheet/glass = 2)
-		
-/obj/item/circuitboard/machine/ai_core_display
-	name = "AI Core Display (Machine Board)"
-	icon_state = "science"
-	build_path = /obj/machinery/status_display/ai_core
 
 /obj/item/circuitboard/machine/ai_data_core
 	name = "AI Data Core (Machine Board)"

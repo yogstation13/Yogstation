@@ -1,9 +1,4 @@
 // yogs - This file is mirrored to plantpeople.dm
-/*
-THIS FILE IS UNUSED AND NOT THE CORRECT FILE FOR WORKING WITH THE PLAYER CONTROLLED PODPEOPLE.
-yogstation\code\modules\mob\living\carbon\human\species_types\plantpeople.dm IS THE PLAYER RACE FOR PLANT PEOPLE
-DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED POD PEOPLE
-*/
 /datum/species/pod
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
 	name = "Podperson"
