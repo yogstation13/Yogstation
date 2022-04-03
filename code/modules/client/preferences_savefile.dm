@@ -212,6 +212,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["tip_delay"], tip_delay)
 	READ_FILE(S["pda_style"], pda_style)
 	READ_FILE(S["pda_color"], pda_color)
+	READ_FILE(S["id_in_pda"], id_in_pda)
 
 	READ_FILE(S["skillcape"], skillcape)
 	READ_FILE(S["skillcape_id"], skillcape_id)
@@ -348,6 +349,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["tip_delay"], tip_delay)
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
+	WRITE_FILE(S["id_in_pda"], id_in_pda)
 	WRITE_FILE(S["skillcape"], skillcape)
 	WRITE_FILE(S["skillcape_id"], skillcape_id)
 	WRITE_FILE(S["show_credits"], show_credits)

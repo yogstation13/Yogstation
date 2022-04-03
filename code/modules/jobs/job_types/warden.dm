@@ -44,7 +44,8 @@
 	name = "Warden"
 	jobtype = /datum/job/warden
 
-	belt = /obj/item/pda/warden
+	pda_type = /obj/item/pda/warden
+
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/warden
 	uniform_skirt = /obj/item/clothing/under/rank/warden/skirt
