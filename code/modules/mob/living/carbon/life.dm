@@ -54,11 +54,10 @@
 /mob/living/carbon/handle_breathing(times_fired)
 	var/next_breath = 4
 	var/obj/item/organ/lungs/L = getorganslot(ORGAN_SLOT_LUNGS)
-	if(L)
-		if(L.damage)
+	if(L?.damage)
 			next_breath *= L.get_organ_efficiency()
 
-	if((times_fired % next_breath) == 0 || failed_last_breath)
+	if(!next_breath || (times_fired % next_breath) == 0 || failed_last_breath)
 		breathe() //Breathe per 4 ticks if healthy, down to 1 based on lung damage, unless suffocating
 		if(failed_last_breath)
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "suffocation", /datum/mood_event/suffocation)
