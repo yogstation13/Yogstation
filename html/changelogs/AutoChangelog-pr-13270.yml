@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "pda now starts in the id slot with the id inserted for most playable jobs."
+  - tweak: "adds an option to the game preferences for whether you want this change or not."
