@@ -865,7 +865,7 @@
 		if(M.suiciding || M.hellbound) //they are never coming back
 			M.visible_message(span_warning("[M]'s body does not react..."))
 			return
-		if(iscarbon(M) &&(M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK))) //body is too damaged to be revived
+		if(iscarbon(M) && (M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK))) //body is too damaged to be revived
 			M.visible_message(span_warning("[M]'s body convulses a bit, and then falls still once more."))
 			M.do_jitter_animation(10)
 			return
