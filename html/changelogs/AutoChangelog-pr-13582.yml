@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "escaping brazil no longer requires exactly 0 marbles, now accepts negative numbers"
