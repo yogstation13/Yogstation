@@ -78,8 +78,6 @@
 	wine_power = 70
 	wine_flavor = "the earthmother's blessing"
 
-
-
 // Ambrosia Cruciatus
 /obj/item/seeds/ambrosia/cruciatus
     name = "pack of ambrosia cruciatus seeds"

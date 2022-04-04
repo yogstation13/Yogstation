@@ -2231,8 +2231,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	illegal_tech = FALSE
 
-
-
 /datum/uplink_item/role_restricted/ambrosia_cruciatus_seeds
     name = "Ambrosia Cruciatus Seeds"
     desc = "A pack of ambrosia seeds that contain useful chemicals inside. These chemicals can be used for healing yourself, or killing other people."
