@@ -1,9 +1,10 @@
 /datum/round_event_control/chem_spill
 	name = "Chemical Spill: Normal"
 	typepath = /datum/round_event/chem_spill
-	weight = 10
+	weight = 20
 	max_occurrences = 3
 	min_players = 10
+	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/chem_spill
 	announceWhen	= 1
@@ -11,7 +12,7 @@
 	endWhen			= 35
 	var/interval 	= 2
 	var/list/filters  = list()
-	var/randomProbability = 1
+	var/randomProbability = 25
 	var/reagentsAmount = 50
 	var/list/saferChems = list(/datum/reagent/water,/datum/reagent/carbon,/datum/reagent/consumable/flour,/datum/reagent/space_cleaner,/datum/reagent/consumable/nutriment,/datum/reagent/consumable/condensedcapsaicin,/datum/reagent/drug/mushroomhallucinogen,/datum/reagent/lube,/datum/reagent/glitter/pink,/datum/reagent/cryptobiolin,
 						 /datum/reagent/toxin/plantbgone,/datum/reagent/blood,/datum/reagent/medicine/charcoal,/datum/reagent/drug/space_drugs,/datum/reagent/medicine/morphine,/datum/reagent/water/holywater,/datum/reagent/consumable/ethanol,/datum/reagent/consumable/hot_coco,/datum/reagent/toxin/acid,/datum/reagent/toxin/mindbreaker,/datum/reagent/toxin/rotatium,/datum/reagent/bluespace,
@@ -43,23 +44,23 @@
 /datum/round_event_control/chem_spill/threatening
 	name = "Chemical Spill: Threatening"
 	typepath = /datum/round_event/chem_spill/threatening
-	weight = 4
+	weight = 10
 	min_players = 25
 	max_occurrences = 1
-	earliest_start = 35 MINUTES
+	earliest_start = 20 MINUTES
 
 /datum/round_event/chem_spill/threatening
-	randomProbability = 10
-	reagentsAmount = 100
+	randomProbability = 50
+	reagentsAmount = 75
 
 /datum/round_event_control/chem_spill/catastrophic
 	name = "Chemical Spill: Catastrophic"
 	typepath = /datum/round_event/chem_spill/catastrophic
-	weight = 2
+	weight = 5
 	min_players = 35
 	max_occurrences = 1
-	earliest_start = 45 MINUTES
+	earliest_start = 30 MINUTES
 
 /datum/round_event/chem_spill/catastrophic
-	randomProbability = 30
-	reagentsAmount = 150
+	randomProbability = 75
+	reagentsAmount = 100
