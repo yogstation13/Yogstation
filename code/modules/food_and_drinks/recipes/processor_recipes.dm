@@ -80,7 +80,7 @@
 	input = /mob/living/simple_animal/slime
 	output = null
 	required_machine = /obj/machinery/processor/slime
-	
+
 /datum/food_processor_process/bluemix
 	input = /obj/item/reagent_containers/food/snacks/cheesemix_heated/blue
 	output = /obj/item/reagent_containers/food/snacks/store/cheesewheel/blue
@@ -116,4 +116,16 @@
 /datum/food_processor_process/swissmix
 	input = /obj/item/reagent_containers/food/snacks/cheesemix_heated/swiss
 	output = /obj/item/reagent_containers/food/snacks/store/cheesewheel/swiss
+
+/datum/food_processor_process/boiled_shrimp
+	input = /obj/item/reagent_containers/food/snacks/shrimp
+	output = /obj/item/reagent_containers/food/snacks/boiled_shrimp
+
+/datum/food_processor_process/salmonsteak
+	input = /obj/item/reagent_containers/food/snacks/salmonmeat
+	output = /obj/item/reagent_containers/food/snacks/salmonsteak
+
+/datum/food_processor_process/fried_tofu
+	input = /obj/item/reagent_containers/food/snacks/tofu
+	output = /obj/item/reagent_containers/food/snacks/fried_tofu
 

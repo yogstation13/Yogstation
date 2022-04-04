@@ -97,6 +97,220 @@
 	result = /obj/item/reagent_containers/food/snacks/fishfingers
 	subcategory = CAT_MEAT
 
+/datum/crafting_recipe/sushi_Unagi
+	name = "Sushi Unagi"
+	reqs = list(
+		/obj/item/fish/electric_eel = 1,
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_Unagi
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/sushi_Tai
+	name = "Sushi Tai"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/catfishmeat = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_Tai
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/Tai_maki
+	name = "Tai Maki Roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/catfishmeat = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/Tai_maki
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/sushi_TobikoEgg
+	name = "Tobiko and Egg Sushi"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/sushi_Tobiko = 1,
+		/obj/item/reagent_containers/food/snacks/egg = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_TobikoEgg
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/TobikoEgg_maki
+	name = "Tobiko and Egg Maki Roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/sushi_Tobiko = 4,
+		/obj/item/reagent_containers/food/snacks/egg = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/TobikoEgg_maki
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/sushi_Tobiko
+	name = "Sushi Tobiko"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/fish_eggs/shark = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_Tobiko
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/Tobiko_maki
+	name = "Tobiko Maki Roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/fish_eggs/shark = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/Tobiko_maki
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/sushi_Masago
+	name = "Sushi Masago"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/fish_eggs/goldfish = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_Masago
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/Masago_maki
+	name = "Masago Maki Roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/fish_eggs/goldfish = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/Masago_maki
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/sushi_Inari
+	name = "Sushi Inari"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/fried_tofu = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_Inari
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/Inari_maki
+	name = "Inari Maki Roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/fried_tofu = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/Inari_maki
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/sushi_Tamago
+	name = "Sushi Tamago"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/egg = 1,
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_Tamago
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/sushi_SmokedSalmon
+	name = "Smoked Salmon Sushi"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/salmonsteak = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_SmokedSalmon
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/SmokedSalmon_maki
+	name = "Smoked Salmon Maki Roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/salmonsteak = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/SmokedSalmon_maki
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/SmokedSalmon_maki
+	name = "Smoked Salmon Maki Roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/salmonsteak = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/SmokedSalmon_maki
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/sushi_Sake
+	name = "Sake Sushi"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/salmonmeat = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_Sake
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/Sake_maki
+	name = "Sake Maki Roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/salmonmeat = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/Sake_maki
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/sushi_Ikura
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/fish_eggs/salmon = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_Ikura
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/Ikura_maki
+	name = "Ikura Maki Roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/fish_eggs/salmon = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/Ikura_maki
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/sushi_Ebi
+	name = "Sushi Ebi"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/boiled_shrimp = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/sushi_Ebi
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/Ebi_maki
+	name = "Ebi Maki Roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/boiled_shrimp = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/Ebi_maki
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/fish_skewer
+	name = "Fish Skewer"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salmonmeat = 2,
+		/obj/item/stack/rods = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/fish_skewer
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/shrimp_skewer
+	name = "Shrimp Skewer"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/shrimp = 4,
+		/obj/item/stack/rods = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/shrimp_skewer
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/fishburger
+	name = "Fishburger"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/bun = 1,
+		/obj/item/reagent_containers/food/snacks/carpmeat = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/fishburger
+	subcategory = CAT_MEAT
 ////////////////////////////////////////////////OTHER////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/nugget

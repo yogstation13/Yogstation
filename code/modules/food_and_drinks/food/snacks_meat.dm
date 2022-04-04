@@ -456,6 +456,17 @@
 	tastes = list("tofu" = 1)
 	foodtype = VEGETABLES
 
+/obj/item/reagent_containers/food/snacks/fried_tofu
+	name = "fried tofu"
+	icon_state = "tofu"
+	desc = "Proof that even vegetarians crave unhealthy foods."
+	filling_color = "#FFFEE0"
+	bitesize = 3
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
+	tastes = list("tofu" = 1)
+	foodtype = VEGETABLES
+
+
 /obj/item/reagent_containers/food/snacks/tofu/prison
 	name = "soggy tofu"
 	desc = "You refuse to eat this strange bean curd."
