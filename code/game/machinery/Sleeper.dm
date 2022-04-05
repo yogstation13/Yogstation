@@ -193,7 +193,7 @@
 			C.remove_status_effect(STATUS_EFFECT_STASIS)
 		if(obj_flags & EMAGGED)
 			var/existing = C.reagents.get_reagent_amount(/datum/reagent/toxin/amanitin)
-			C.reagents.add_reagent(/datum/reagent/toxin/amanitin, max(0, 1 - existing)) //this should be enough that you immediately eat shit on exiting but not before
+			C.reagents.add_reagent(/datum/reagent/toxin/amanitin, max(0, 1.5 - existing)) //this should be enough that you immediately eat shit on exiting but not before
 		switch(active_treatment)
 			if(SLEEPER_TEND)
 				C.heal_bodypart_damage(SLEEPER_HEAL_RATE,SLEEPER_HEAL_RATE) //this is slow as hell, use the rest of medbay you chumps
@@ -213,6 +213,8 @@
 							break
 			if(SLEEPER_CHEMPURGE)
 				C.adjustToxLoss(-SLEEPER_HEAL_RATE)
+				if(obj_flags & EMAGGED)
+					return
 				var/purge_rate = 0.5 * efficiency
 				for(var/datum/reagent/R in C.reagents.reagent_list)
 					if(istype(R, /datum/reagent/toxin))
