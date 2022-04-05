@@ -1,4 +1,4 @@
-#define STATION_RENAME_TIME_LIMIT 6000 // Deciseconds
+#define STATION_RENAME_TIME_LIMIT (10 MINUTES)
 
 /obj/item/station_charter
 	name = "station charter"
