@@ -151,10 +151,11 @@
 		var/want_rank = alert("Do you want to gain a task? This will cost 100 Blood.", "Task Manager", "Yes", "No")
 		if(want_rank == "No" || QDELETED(src))
 			return
-		if(bloodsuckerdatum.blood_volue < 100)
+		var/mob/living/carbon/C = user
+		if(C.blood_volume < 100)
 			to_chat(user, span_danger("You don't have enough blood to gain a task!"))
 			return
-		user.blood_volume -= 100
+		C.blood_volume -= 100
 		switch(rand(1, 3))
 			if(1,2)
 				task = "suck [suckamount] units of blood."
