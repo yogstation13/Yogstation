@@ -1122,6 +1122,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/cooldown = 200
 	var/next_reach = 0
 	var/next_grip = 0
+	var/next_knuckle = 0
 	attack_verb = list("thrashed", "pummeled", "walloped")
 	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
@@ -1131,8 +1132,12 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
 			L.apply_status_effect(/datum/status_effect/roots)
 			return
+		if(next_reach > world.time)
+			to_chat(user, span_warning("The knuckles aren't ready to mark yet."))
+			return
 		else
 			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+			next_reach = world.time + cooldown
 
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
 	var/mob/living/U = user

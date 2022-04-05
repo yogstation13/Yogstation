@@ -1075,7 +1075,7 @@
     var/obj/item/melee/knuckles
 
 /datum/status_effect/knuckled/on_apply()
-    bruise = mutable_appearance('icons/effects/effects.dmi', "shield-red")
+    bruise = mutable_appearance('icons/effects/effects.dmi', "rshield")
     bruise.pixel_x = -owner.pixel_x
     bruise.pixel_y = -owner.pixel_y
     owner.underlays += bruise

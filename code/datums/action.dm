@@ -533,15 +533,15 @@
 
 /datum/action/item_action/visegrip
 	name = "Vise Grip"
-	desc = "Remotely detonates marked targets."
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
-	button_icon_state = "manip"
+	desc = "Remotely detonate marked targets."
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "leghold"
 	
 /datum/action/item_action/reach
 	name = "Reach"
-	desc = "Claw at those standing on blood in an attempt to mark them."
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
-	button_icon_state = "cultfist"
+	desc = "Mark those standing on blood."
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "rshield"
 
 //Preset for spells
 /datum/action/spell_action

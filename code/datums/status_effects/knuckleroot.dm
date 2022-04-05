@@ -2,18 +2,18 @@
 	id = "roots"
 	alert_type = /obj/screen/alert/status_effect/roots
 	var/icon/cube
-	duration = 20
+	duration = 10
 
 /obj/screen/alert/status_effect/roots
 	name = "grasped"
-	desc = "You're held in place by some hellish force! Fight back while you can!"
+	desc = "You're rooted in place"
 	icon_state = "grip"
 
 /datum/status_effect/roots/on_apply()
 	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/owner_moved)
 	if(!owner.stat)
-		to_chat(owner, span_userdanger("You become frozen in a cube!"))
-	cube = icon('icons/effects/bubblegum.dmi', "smack ya one")
+		to_chat(owner, span_userdanger("You're held in place by some hellish force! Fight back while you can!"))
+	cube = icon('icons/effects/effects.dmi', "leghold")
 	var/icon/size_check = icon(owner.icon, owner.icon_state)
 	cube.Scale(size_check.Width(), size_check.Height())
 	owner.add_overlay(cube)
