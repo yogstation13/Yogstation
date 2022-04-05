@@ -21688,18 +21688,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
-"bqL" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "bqM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -34494,6 +34482,21 @@
 /obj/effect/spawner/lootdrop/techstorage/rnd,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
+"exZ" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "eyp" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -47220,6 +47223,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"mxD" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "mxE" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -50313,17 +50323,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"olU" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "olX" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -101157,8 +101156,8 @@ end
 eTm
 bmE
 aMQ
-olU
-bqL
+exZ
+aMQ
 cna
 bef
 bva
@@ -101414,8 +101413,8 @@ aJq
 aJq
 aMO
 aJq
+mxD
 aJq
-dEb
 jSG
 aJq
 aJq
@@ -101671,8 +101670,8 @@ aJq
 aJq
 azI
 aJq
+mxD
 aJq
-dEb
 jSG
 aJq
 aJq
