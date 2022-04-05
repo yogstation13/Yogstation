@@ -13,7 +13,8 @@
 		owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/staketrap)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/woodenducky)
-		to_chat(owner, span_danger("You learned new recipes - You can view them in the Tribal section of the crafting menu!"))
+		owner.teach_crafting_recipe(/datum/crafting_recipe/bloodaltar)
+		to_chat(owner, span_danger("You learned new recipes - You can view them in the Structure and Weaponry section of the crafting menu!"))
 	// This is my Lair
 	coffin = claimed
 	lair = get_area(claimed)

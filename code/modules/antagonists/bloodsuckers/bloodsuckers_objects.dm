@@ -171,6 +171,7 @@
 	name = "wooden ducky"
 	desc = "Remember to not drench your wooden ducky in bath water to prevent it from stinking."
 	icon_state = "ducky"
+	hitsound = 'sound/items/bikehorn.ogg'
 	sharpness = SHARP_POINTY //torture ducky
 
 /obj/item/stake/ducky/Initialize()

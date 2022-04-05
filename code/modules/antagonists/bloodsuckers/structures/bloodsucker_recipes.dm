@@ -10,7 +10,7 @@
 		/obj/item/stack/sheet/metal = 1,
 	)
 	time = 15 SECONDS
-	category = CAT_PRIMAL
+	category = CAT_STRUCTURES
 
 /datum/crafting_recipe/securecoffin
 	name = "Secure Coffin"
@@ -22,7 +22,7 @@
 		/obj/item/stack/sheet/metal = 5,
 	)
 	time = 15 SECONDS
-	category = CAT_PRIMAL
+	category = CAT_STRUCTURES
 
 /datum/crafting_recipe/meatcoffin
 	name = "Meat Coffin"
@@ -33,7 +33,7 @@
 		/obj/item/restraints/handcuffs/cable = 1,
 	)
 	time = 15 SECONDS
-	category = CAT_PRIMAL
+	category = CAT_STRUCTURES
 	always_availible = FALSE //The sacred coffin!
 
 /datum/crafting_recipe/metalcoffin
@@ -44,7 +44,21 @@
 		/obj/item/stack/rods = 2,
 	)
 	time = 10 SECONDS
-	category = CAT_PRIMAL
+	category = CAT_STRUCTURES
+
+/datum/crafting_recipe/bloodaltar
+	name = "Blood Altar"
+	result = /obj/structure/bloodsucker/bloodaltar
+	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
+	reqs = list(
+		/obj/item/stack/rods = 5,
+		/obj/item/stack/sheet/metal = 2,
+		/obj/item/stack/sheet/plasteel = 5,
+		/datum/reagent/ash = 30,
+	)
+	time = 13 SECONDS
+	category = CAT_STRUCTURES
+	always_availible = FALSE
 
 /datum/crafting_recipe/vassalrack
 	name = "Persuasion Rack"
@@ -56,7 +70,7 @@
 		/obj/item/restraints/handcuffs/cable = 2,
 	)
 	time = 15 SECONDS
-	category = CAT_PRIMAL
+	category = CAT_STRUCTURES
 	always_availible = FALSE
 
 /datum/crafting_recipe/staketrap
@@ -70,7 +84,7 @@
 		/obj/item/restraints/handcuffs/cable = 1,
 	)
 	time = 12.5 SECONDS
-	category = CAT_PRIMAL
+	category = CAT_STRUCTURES
 	always_availible = FALSE
 
 /datum/crafting_recipe/candelabrum
@@ -83,7 +97,7 @@
 		/obj/item/candle = 1,
 	)
 	time = 10 SECONDS
-	category = CAT_PRIMAL
+	category = CAT_STRUCTURES
 	always_availible = FALSE
 
 /datum/crafting_recipe/bloodthrone
@@ -96,7 +110,7 @@
 		/obj/item/stack/sheet/mineral/wood = 1,
 	)
 	time = 5 SECONDS
-	category = CAT_PRIMAL
+	category = CAT_STRUCTURES
 	always_availible = FALSE
 
 /datum/crafting_recipe/stake
