@@ -1137,7 +1137,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			return
 		else
 			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
-			next_reach = world.time + cooldown
+			next_knuckle = world.time + cooldown
 
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
 	var/mob/living/U = user
