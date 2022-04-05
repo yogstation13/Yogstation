@@ -30,6 +30,8 @@
 	var/frenzied = FALSE
 	///If we have a task assigned
 	var/current_task = FALSE
+	///How many times have we used a blood altar
+	var/altar_uses = 0
 
 	///ALL Powers currently owned
 	var/list/datum/action/powers = list()
