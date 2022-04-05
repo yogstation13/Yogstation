@@ -82,8 +82,6 @@
 			if(0)
 				amDay = TRUE
 				time_til_cycle = TIME_BLOODSUCKER_DAY
-				for(var/obj/structure/bloodsucker/bloodaltar/ba in GLOB.bloodaltars)
-					ba.uses = 0
 				for(var/datum/mind/bloodsucker_minds as anything in get_antag_minds(/datum/antagonist/bloodsucker))
 					if(!istype(bloodsucker_minds) || !istype(bloodsucker_minds.current))
 						continue
@@ -94,6 +92,9 @@
 						give_transform_power()
 					if(!iscarbon(bloodsucker_minds.current))
 						qdel(bloodsucker_minds.current)
+					if(bloodsuckerdatum.altar_uses > 0)
+						to_chat(bloodsuckerdatum, span_notice("Your Altar uses have been reset!"))
+						bloodsuckerdatum.altar_uses = 0
 				warn_daylight(4, span_userdanger("Solar flares bombard the station with deadly UV light!<br><span class = ''>Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk Final Death!"), \
 					span_userdanger("Solar flares bombard the station with UV light!"), \
 					span_userdanger("The sunlight is visible throughout the station, the Bloodsuckers must be asleep by now!"))
