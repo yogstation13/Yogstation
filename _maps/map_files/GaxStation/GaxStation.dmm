@@ -31038,10 +31038,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"qFD" = (
-/obj/effect/spawner/structure/solars/solar_96,
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/port/aft)
 "qFO" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -50589,15 +50585,15 @@ vJA
 vJA
 vJA
 vJA
-qFD
-qFD
-qFD
+vJA
+vJA
+vJA
 vRP
 iUu
 vRP
-qFD
-qFD
-qFD
+vJA
+vJA
+vJA
 vJA
 vJA
 vJA
@@ -51103,15 +51099,15 @@ opd
 opd
 opd
 opd
-qFD
-qFD
-qFD
+opd
+opd
+opd
 vRP
 iUu
 vRP
-qFD
-qFD
-qFD
+opd
+opd
+opd
 opd
 opd
 opd
