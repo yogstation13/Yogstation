@@ -13,12 +13,12 @@
 		if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
 			handle_organs()
 
-		. = ..()
+		..()
 
 		if (QDELETED(src))
 			return
 
-		if(.) //not dead
+		if(stat != DEAD) //not dead
 			handle_blood()
 
 		if(stat != DEAD)
