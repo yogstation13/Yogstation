@@ -7,6 +7,7 @@
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list(
 		"Captain", "Head of Personnel", "Head of Security",
+		"Research Director", "Chief Engineer", "Chief Medical Officer", "Curator", 
 		"Warden", "Security Officer", "Detective", "Brig Physician",
 	)
 	required_players = 15
@@ -15,7 +16,7 @@
 	reroll_friendly = 1
 	round_ends_with_antag_death = FALSE
 
-	announce_span = "greem"
+	announce_span = "green"
 	announce_text = "Filthy, bloodsucking vampires are crawling around disguised as crewmembers!\n\
 	<span class='danger'>Bloodsuckers</span>: Claim a coffin and grow strength, turn the crew into your slaves.\n\
 	<span class='notice'>Crew</span>: Put an end to the undead menace and resist their brainwashing!"
@@ -38,12 +39,12 @@
 		var/datum/mind/bloodsucker = pick(antag_candidates)
 		// Can we even BE a bloodsucker?
 		if(!bloodsucker.can_make_bloodsucker(bloodsucker))
-			antag_candidates.Remove(bloodsucker)
+			antag_candidates -= bloodsucker
 			continue
 		bloodsuckers += bloodsucker
 		bloodsucker.restricted_roles = restricted_jobs
 		log_game("[bloodsucker.key] (ckey) has been selected as a Bloodsucker.")
-		antag_candidates.Remove(bloodsucker) // Apparently you can also write antag_candidates -= bloodsucker
+		antag_candidates -= bloodsucker// Apparently you can also write antag_candidates -= bloodsucker
 
 	// Do we have enough vamps to continue?
 	return bloodsuckers.len >= required_enemies
