@@ -173,6 +173,10 @@
 	icon_state = "ducky"
 	sharpness = SHARP_POINTY //torture ducky
 
+/obj/item/stake/ducky/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
+
 //////////////////////
 //     ARCHIVES     //
 //////////////////////
