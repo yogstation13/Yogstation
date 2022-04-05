@@ -167,6 +167,12 @@
 	embedding = list("embed_chance" = 65)
 	staketime = 60
 
+/obj/item/stake/ducky
+	name = "wooden ducky"
+	desc = "Remember to not drench your wooden ducky in bath water to prevent it from stinking."
+	icon_state = "ducky"
+	sharpness = SHARP_POINTY //torture ducky
+
 //////////////////////
 //     ARCHIVES     //
 //////////////////////

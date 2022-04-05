@@ -107,6 +107,19 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/woodenducky
+	name = "Wooden Ducky"
+	result = /obj/item/stake/ducky
+	tools = list(TOOL_HATCHET)
+	reqs = list(
+		/obj/item/stake = 1,
+		/obj/item/bikehorn/rubberducky = 1,
+	)
+	time = 6 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
 /datum/crafting_recipe/hardened_stake
 	name = "Hardened Stake"
 	result = /obj/item/stake/hardened

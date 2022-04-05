@@ -28,6 +28,8 @@
 	var/frenzy_threshold = FRENZY_THRESHOLD_ENTER
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
+	///If we have a task assigned
+	var/current_task = FALSE
 
 	///ALL Powers currently owned
 	var/list/datum/action/powers = list()
@@ -55,6 +57,7 @@
 	var/obj/structure/closet/crate/coffin
 	var/total_blood_drank = 0
 	var/frenzy_blood_drank = 0
+	var/task_blood_drank = 0
 	var/frenzies = 0
 
 	/// Static typecache of all bloodsucker powers.
@@ -371,7 +374,7 @@
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(owner.current)
 	if(!owner || !owner.current || vassaldatum)
 		return
-	bloodsucker_level_unspent++
+	bloodsucker_level_unspent++ //same thing as below
 	passive_blood_drain -= 0.03 * bloodsucker_level //do something. It's here because if you are gaining points through other means you are doing good
 	// Spend Rank Immediately?
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
@@ -403,7 +406,7 @@
 /datum/antagonist/bloodsucker/proc/SpendRank(spend_rank = TRUE)
 	set waitfor = FALSE
 
-	if(!owner || !owner.current || !owner.current.client || (spend_rank && bloodsucker_level_unspent <= 0))
+	if(!owner || !owner.current || !owner.current.client || (spend_rank && bloodsucker_level_unspent <= 0.5))
 		return
 	// Purchase Power Prompt
 	var/list/options = list()

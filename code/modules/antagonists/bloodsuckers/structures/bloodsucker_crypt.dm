@@ -75,21 +75,119 @@
 				unbolt(user)
 
 /obj/structure/bloodsucker/bloodaltar
-	name = "bloody altar"
+	name = "blood altar"
 	desc = "It is made of marble, lined with basalt, and radiates an unnerving chill that puts your skin on edge."
 	icon = 'icons/obj/vamp_obj.dmi'
-	icon_state = "vassalrack"
+	icon_state = "bloodaltar"
 	density = TRUE
-	anchored = TRUE
+	anchored = FALSE
 	climbable = TRUE
 	pass_flags = LETPASSTHROW
-	can_buckle = TRUE
-	buckle_lying = 90
+	can_buckle = FALSE
+	var/task_completed = FALSE
+	var/sacrifices = 0
+	var/uses = 0
+	var/taskheart = FALSE
+	Ghost_desc = "This is a Blood Altar, where bloodsuckers can get two tasks per night to get more ranks."
+	Vamp_desc = "This is a Blood Altar, which allows you to do two tasks per day to advance your ranks.\n\
+		Interact with the Altar by clicking on it after it's bolted to get a a task.\n\
+		By checking your notes or the chat you can see what task needs to be done.\n\
+		Remember you only get two tasks per night."
+	Vassal_desc = "This is the blood altar, where your master does bounties to advanced their bloodsucking powers.\n\
+		Aid your master by bringing them what they need for these bounties or by helping get them."
+	Hunter_desc = "This is a blood altar, where monsters usually practice a sort of bounty system to advanced their powers.\n\
+		They normally sacrifice hearts or blood in exchange for these ranks, forcing them to move out of their lair.\n\
+		It can only be used twice per night and it needs to be interacted it to be claimed, making bloodsuckers come back twice a night."
+/obj/structure/bloodsucker/bloodaltar/Initialize()
+	. = ..()
+	GLOB.bloodaltars += src
 
-/obj/structure/bloodsucker/vassalrack/attack_hand(mob/user, list/modifiers)
+/obj/structure/bloodsucker/bloodaltar/Destroy()
+	GLOB.bloodaltars -= src
+	return ..()
+
+/obj/structure/bloodsucker/bloodaltar/bolt()
+	. = ..()
+	anchored = TRUE
+
+/obj/structure/bloodsucker/bloodaltar/unbolt()
+	. = ..()
+	anchored = FALSE
+	
+/obj/structure/bloodsucker/bloodaltar/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!IS_BLOODSUCKER(user))
+		to_chat(user, span_warning("You can't figure out how this works."))
+		return FALSE
+	if(uses == 2)
+		to_chat(user, span_notice("You have done all tasks for this night, come back tomorrow for more."))
+		return
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/task
+	var/suckamount = 0
+	var/heartamount = 0
+	switch(bloodsuckerdatum.bloodsucker_level + bloodsuckerdatum.bloodsucker_level_unspent)
+		if(0 to 3)
+			suckamount = rand(100, 200)
+			heartamount = rand(1,2)
+		if(3 to 8)
+			suckamount = rand(300, 400)
+			heartamount = rand(3,4)
+		if(8 to INFINITY)
+			suckamount = rand(500, 600)
+			heartamount = rand(5,6)
+	if(bloodsuckerdatum.task_blood_drank >= suckamount || sacrifices >= heartamount)
+		task_completed = TRUE
+	if(task_completed)
+		bloodsuckerdatum.task_memory = null
+		bloodsuckerdatum.current_task = FALSE
+		bloodsuckerdatum.bloodsucker_level_unspent++
+		uses++
+		bloodsuckerdatum.task_blood_drank = 0
+		sacrifices = 0
+		to_chat(user, span_notice("You have sucessfully done a task and gained a rank!"))
+		task_completed = FALSE
+		taskheart = FALSE
+		return
+	if(bloodsuckerdatum.current_task)
+		to_chat(user, span_warning("You already have a rank up task!"))
+		return
+	if(!bloodsuckerdatum.current_task)
+		var/want_rank = alert("Do you want to gain a task?", "Task Manager", "Yes", "No")
+		if(want_rank == "No" || QDELETED(src))
+			return
+		switch(rand(1, 3))
+			if(1,2)
+				task = "suck [suckamount] units of blood."
+			if(3)
+				task = "sacrifice [heartamount] hearts by using them on the altar."
+				taskheart = TRUE
+		bloodsuckerdatum.task_memory += "<B>Current Rank Up Task</B>: [task]<br>"
+		bloodsuckerdatum.current_task = TRUE
+		to_chat(user, span_boldnotice("You have gained a new Task! Your task is to [task] Remember to collect it by using the blood altar!"))
+
+/obj/structure/bloodsucker/bloodaltar/examine(mob/user)
+	. = ..()
+	if(taskheart)
+		. += span_boldnotice("It currently contains [sacrifices] hearts.")
+	else 
+		return ..()
+
+/obj/structure/bloodsucker/bloodaltar/attackby(obj/item/H, mob/user, params)
+	if(!IS_BLOODSUCKER(user) && !IS_VASSAL(user))
+		return ..()
+	if(taskheart)
+		if(istype(H, /obj/item/organ/heart))
+			if(istype(H, /obj/item/organ/heart/gland))
+				to_chat(usr, span_warning("This type of organ doesn't have blood to sustain the altar!"))
+				return ..()
+			to_chat(usr, span_notice("You feed the heart to the altar!"))
+			qdel(H)
+			sacrifices++
+			return 
+	return ..()
 
 /*/obj/structure/bloodsucker/bloodstatue
 	name = "bloody countenance"
