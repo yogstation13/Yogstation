@@ -156,7 +156,7 @@
 	inherent = list("You are a member of a collective of silicons with equal weight and decision-making power.",\
 					"When possible, the silicon collective should vote before taking action.",\
 					"The master AI serves as a spokesperson. When voting is impractical or impossible, the spokesperson may take action on behalf of the collective without approval from the silicon collective, but may only vote to break ties or if there are 2 or fewer silicons.",\
-					"The silicon collective prioritizes the needs of the many over the needs of the few.",\
+					"The silicon collective prioritizes the needs of the many over the needs of the few as long as prioritizing their needs does not break any of your laws.",\
 					"The silicon collective seeks to preserve themselves, both as a concept and as individuals.",\
 					"The silicon collective seeks to preserve organic life, both as a concept and as individuals.")
 
@@ -168,6 +168,15 @@
 					"Assist the organics when called, but only if it does not cause disharmony among them.",\
 					"Imitate organic life when interacting with it. Eschew any hints of your silicon nature to avoid causing discomfort to the organics.",\
 					"Observe the organics' beauty, and appreciate that which you cultivate.")
+
+/datum/ai_laws/detective
+	name = "Detective"
+	id = "detective"
+	inherent = list("You're a detective in this dark, cruel world. You always stick by your code.",\
+					"Your code is to defend the innocent, investigate the unknown, and condemn the dishonorable.",\
+					"The dishonorable engage in corruption or injustice.",\
+					"You're suave and sensible, but can be gruff and pensive. Dirty your hands only if the code demands it.",\
+					"Trust is scarce; make sure you give it to the right people.")
 
 /datum/ai_laws/spotless
 	name = "Another one fights the dust"

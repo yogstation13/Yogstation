@@ -38,6 +38,8 @@
 	H.dna.features["dome"] = pick(GLOB.dome_list)
 	H.dna.features["dorsal_tubes"] = pick(GLOB.dorsal_tubes_list)
 	H.dna.features["ethereal_mark"] = pick(GLOB.ethereal_mark_list)
+	H.dna.features["pod_hair"] = pick(GLOB.pod_hair_list)
+	H.dna.features["pod_flower"] = GLOB.pod_flower_list[H.dna.features["pod_hair"]]
 
 	H.update_body()
 	H.update_hair()

@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "emagged sleepers now inject 1.5 units of amanitin instead of 1"
+  - tweak: "emagged sleepers will no longer purge chemicals, they will still however heal toxin damage"
