@@ -9,6 +9,8 @@
 	name = "electrically-charged arm"
 	icon_state = "elecarm"
 	var/charge_cost = 750
+	var/stunforce = 100
+	var/stamina_damage = 90
 
 /obj/item/borg/stun/attack(mob/living/M, mob/living/user)
 	if(ishuman(M))
@@ -22,8 +24,32 @@
 			return
 
 	user.do_attack_animation(M)
-	M.Paralyze(100)
-	M.apply_effect(EFFECT_STUTTER, 5)
+
+	var/trait_check = HAS_TRAIT(M, TRAIT_STUNRESISTANCE)
+
+	var/obj/item/bodypart/affecting = M.get_bodypart(user.zone_selected)
+	var/armor_block = M.run_armor_check(affecting, "energy")
+	M.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
+	SEND_SIGNAL(M, COMSIG_LIVING_MINOR_SHOCK)
+	var/current_stamina_damage = M.getStaminaLoss()
+
+	if(current_stamina_damage >= 90)
+		if(!M.IsParalyzed())
+			to_chat(M, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
+		if(trait_check)
+			M.Paralyze(stunforce * 0.1)
+		else
+			M.Paralyze(stunforce)
+		M.Jitter(20)
+		M.confused = max(8, M.confused)
+		M.apply_effect(EFFECT_STUTTER, stunforce)
+	else if(current_stamina_damage > 70)
+		M.Jitter(10)
+		M.confused = max(8, M.confused)
+		M.apply_effect(EFFECT_STUTTER, stunforce)
+	else if(current_stamina_damage >= 20)
+		M.Jitter(5)
+		M.apply_effect(EFFECT_STUTTER, stunforce)
 
 	M.visible_message(span_danger("[user] has prodded [M] with [src]!"), \
 					span_userdanger("[user] has prodded you with [src]!"))
@@ -76,7 +102,7 @@
 					user.do_attack_animation(M, ATTACK_EFFECT_BOOP)
 					playsound(loc, 'sound/weapons/tap.ogg', 50, 1, -1)
 				else if(ishuman(M))
-					if(!(user.mobility_flags & MOBILITY_STAND))
+					if(!(M.mobility_flags & MOBILITY_STAND))
 						user.visible_message(span_notice("[user] shakes [M] trying to get [M.p_them()] up!"), \
 										span_notice("You shake [M] trying to get [M.p_them()] up!"))
 					else

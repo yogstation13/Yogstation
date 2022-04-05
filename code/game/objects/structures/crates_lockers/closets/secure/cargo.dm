@@ -5,13 +5,13 @@
 
 /obj/structure/closet/secure_closet/quartermaster/PopulateContents()
 	..()
-	new /obj/item/clothing/neck/yogs/shawl/qm(src) //Yogs
 	new /obj/item/storage/lockbox/medal/cargo(src)
 	new /obj/item/clothing/under/rank/cargo(src)
 	new /obj/item/clothing/under/rank/cargo/skirt(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/radio/headset/headset_cargo(src)
 	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/neck/cloak/qm(src)
 	new /obj/item/clothing/gloves/fingerless(src)
 	new /obj/item/megaphone/cargo(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)

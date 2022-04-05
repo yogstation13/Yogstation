@@ -5,8 +5,8 @@
 	name = "modular microcomputer"
 	desc = "A small portable microcomputer."
 
-	var/enabled = 0											// Whether the computer is turned on.
-	var/screen_on = 1										// Whether the computer is active/opened/it's screen is on.
+	var/enabled = FALSE										// Whether the computer is turned on.
+	var/screen_on = TRUE									// Whether the computer is active/opened/it's screen is on.
 	var/device_theme = "ntos"								// Sets the theme for the main menu, hardware config, and file browser apps. Overridden by certain non-NT devices.
 	var/datum/computer_file/program/active_program = null	// A currently active program running on the computer.
 	var/hardware_flag = 0									// A flag that describes this device type
@@ -27,8 +27,11 @@
 	var/icon_state_unpowered = null							// Icon state when the computer is turned off.
 	var/icon_state_powered = null							// Icon state when the computer is turned on.
 	var/icon_state_menu = "menu"							// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
+	var/id_rename = FALSE										// If we should update the name of the computer with the name and job of the stored ID.
+	var/icon_state_screensaver = "standby"					// Icon state overlay when the computer is turned off, but not out of power.
 	var/max_hardware_size = 0								// Maximal hardware w_class. Tablets/PDAs have 1, laptops 2, consoles 4.
 	var/steel_sheet_cost = 5								// Amount of steel sheets refunded when disassembling an empty frame of this computer.
+	var/overlay_skin = null									// What set of icons should be used for program overlays.
 
 	integrity_failure = 50
 	max_integrity = 100
@@ -48,6 +51,14 @@
 	var/comp_light_luminosity = 3				//The brightness of that light
 	var/comp_light_color			//The color of that light
 
+	// Preset Stuff
+	var/list/starting_components = list()
+	var/list/starting_files = list()
+	var/datum/computer_file/program/initial_program
+	var/sound/startup_sound = 'sound/machines/computers/computer_start.ogg'
+	var/sound/shutdown_sound = 'sound/machines/computers/computer_end.ogg'
+	var/list/interact_sounds = list('sound/machines/computers/keypress1.ogg', 'sound/machines/computers/keypress2.ogg', 'sound/machines/computers/keypress3.ogg', 'sound/machines/computers/keypress4.ogg', 'sound/machines/computers/keystroke1.ogg', 'sound/machines/computers/keystroke2.ogg', 'sound/machines/computers/keystroke3.ogg', 'sound/machines/computers/keystroke4.ogg')
+
 
 /obj/item/modular_computer/Initialize()
 	. = ..()
@@ -56,6 +67,8 @@
 		physical = src
 	comp_light_color = "#FFFFFF"
 	idle_threads = list()
+	install_starting_components()
+	install_starting_files()
 	update_icon()
 
 /obj/item/modular_computer/Destroy()
@@ -87,6 +100,11 @@
  */
 /obj/item/modular_computer/proc/play_ping()
 	playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), FALSE, -1)
+
+// Plays a random interaction sound, which is by default a bunch of keboard clacking
+/obj/item/modular_computer/proc/play_interact_sound()
+	playsound(loc, pick(interact_sounds), get_clamped_volume(), FALSE, -1)
+
 
 /obj/item/modular_computer/AltClick(mob/user)
 	..()
@@ -154,6 +172,13 @@
 		return attack_self(M)
 	return ..()
 
+/obj/item/modular_computer/CtrlClick()
+	var/mob/M = usr
+	if(ishuman(usr) && usr.CanReach(src) && usr.canUseTopic(src))
+		return attack_self(M)
+	else
+		..()
+
 /obj/item/modular_computer/attack_ai(mob/user)
 	return attack_self(user)
 
@@ -196,20 +221,49 @@
 	. += get_modular_computer_parts_examine(user)
 
 /obj/item/modular_computer/update_icon()
-	cut_overlays()
+	if(!physical)
+		return
+
+	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
+	var/program_overlay = ""
+	var/is_broken = obj_integrity <= integrity_failure
+	if(overlay_skin)
+		program_overlay = "[overlay_skin]-"
 	if(!enabled)
-		icon_state = icon_state_unpowered
+		if(use_power() && !isnull(icon_state_screensaver))
+			program_overlay += icon_state_screensaver
+		else
+			icon_state = icon_state_unpowered
 	else
 		icon_state = icon_state_powered
-		if(active_program)
-			add_overlay(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
+		if(is_broken)
+			program_overlay += "bsod"
 		else
-			add_overlay(icon_state_menu)
+			if(active_program)
+				program_overlay += active_program.program_icon_state ? "[active_program.program_icon_state]" : "[icon_state_menu]"
+			else
+				program_overlay += icon_state_menu
 
-	if(obj_integrity <= integrity_failure)
-		add_overlay("bsod")
-		add_overlay("broken")
+	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, physical.plane, physical.dir)
+	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, EMISSIVE_PLANE, physical.dir)
+	if(is_broken)
+		SSvis_overlays.add_vis_overlay(physical, physical.icon, "broken", physical.layer, physical.plane, physical.dir)
 
+/obj/item/modular_computer/equipped()
+	. = ..()
+	update_icon()
+
+/obj/item/modular_computer/dropped()
+	. = ..()
+	update_icon()
+
+
+/obj/item/modular_computer/proc/update_label()
+	var/obj/item/card/id/stored_id = GetID()
+	if(id_rename && stored_id)
+		name = "[stored_id.registered_name]'s [initial(name)] ([stored_id.assignment])"
+	else
+		name = initial(name)
 
 // On-click handling. Turns on the computer if it's off and opens the GUI.
 /obj/item/modular_computer/interact(mob/user)
@@ -230,15 +284,16 @@
 	// If we have a recharger, enable it automatically. Lets computer without a battery work.
 	var/obj/item/computer_hardware/recharger/recharger = all_components[MC_CHARGE]
 	if(recharger)
-		recharger.enabled = 1
+		recharger.enabled = TRUE
 
 	if(all_components[MC_CPU] && use_power()) // use_power() checks if the PC is powered
 		if(issynth)
 			to_chat(user, span_notice("You send an activation signal to \the [src], turning it on."))
 		else
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
-		enabled = 1
+		enabled = TRUE
 		update_icon()
+		playsound(loc, startup_sound, get_clamped_volume(), FALSE, -1)
 		ui_interact(user)
 	else // Unpowered
 		if(issynth)
@@ -250,11 +305,11 @@
 /obj/item/modular_computer/process()
 	if(!enabled) // The computer is turned off
 		last_power_usage = 0
-		return 0
+		return FALSE
 
 	if(obj_integrity <= integrity_failure)
 		shutdown_computer()
-		return 0
+		return FALSE
 
 	if(active_program && active_program.requires_ntnet && !get_ntnet_status(active_program.requires_ntnet_feature))
 		active_program.event_networkfailure(0) // Active program requires NTNet to run but we've just lost connection. Crash.
@@ -395,8 +450,34 @@
 		idle_threads.Remove(P)
 	if(loud)
 		physical.visible_message(span_notice("\The [src] shuts down."))
-	enabled = 0
+	enabled = FALSE
 	update_icon()
+	playsound(loc, shutdown_sound, get_clamped_volume(), FALSE, -1)
+
+/obj/item/modular_computer/screwdriver_act(mob/user, obj/item/tool)
+	if(!all_components.len)
+		to_chat(user, "<span class='warning'>This device doesn't have any components installed.</span>")
+		return
+	var/list/component_names = list()
+	for(var/h in all_components)
+		var/obj/item/computer_hardware/H = all_components[h]
+		component_names.Add(H.name)
+
+	var/choice = input(user, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in sortList(component_names)
+
+	if(!choice)
+		return
+
+	if(!Adjacent(user))
+		return
+
+	var/obj/item/computer_hardware/H = find_hardware_by_name(choice)
+
+	if(!H)
+		return
+
+	uninstall_component(H, user)
+	return
 
 
 /obj/item/modular_computer/attackby(obj/item/W as obj, mob/user as mob)
@@ -435,31 +516,6 @@
 			to_chat(user, span_notice("You repair \the [src]."))
 		return
 
-	if(W.tool_behaviour == TOOL_SCREWDRIVER)
-		if(!all_components.len)
-			to_chat(user, span_warning("This device doesn't have any components installed."))
-			return
-		var/list/component_names = list()
-		for(var/h in all_components)
-			var/obj/item/computer_hardware/H = all_components[h]
-			component_names.Add(H.name)
-
-		var/choice = input(user, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in component_names
-
-		if(!choice)
-			return
-
-		if(!Adjacent(user))
-			return
-
-		var/obj/item/computer_hardware/H = find_hardware_by_name(choice)
-
-		if(!H)
-			return
-
-		uninstall_component(H, user)
-		return
-
 	..()
 
 // Used by processor to relay qdel() to machinery type.
@@ -471,3 +527,39 @@
 	if(physical && physical != src)
 		return physical.Adjacent(neighbor)
 	return ..()
+
+// Starting Comps/Programs, mainly used for presets. Edit starting_components, starting_files, and initial_program.
+/obj/item/modular_computer/proc/install_starting_components()
+	if(starting_components.len < 1)
+		return
+	for(var/part in starting_components)
+		var/new_part = new part
+		if(istype(new_part, /obj/item/computer_hardware))
+			var/result = install_component(new_part)
+			if(result == FALSE)
+				CRASH("[src] failed to install starting component for an unknown reason")
+		else if(istype(new_part, /obj/item/stock_parts/cell/computer))
+			var/new_cell = new /obj/item/computer_hardware/battery(src, part)
+			qdel(new_part)
+			var/result = install_component(new_cell)
+			if(result == FALSE)
+				CRASH("[src] failed to install starting cell for an unknown reason")
+
+/obj/item/modular_computer/proc/install_starting_files()
+	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
+	if(!istype(hard_drive) || starting_files.len < 1)
+		if(!starting_files.len < 1)
+			CRASH("[src] failed to install files due to not having a hard drive even though it has starting files")
+		return
+	for(var/datum/computer_file/file in starting_files)
+		var/result = hard_drive.store_file(file)
+		if(result == FALSE)
+			CRASH("[src] failed to install starting files for an unknown reason")
+		if(istype(result, initial_program) && istype(result, /datum/computer_file/program))
+			var/datum/computer_file/program/program = result
+			if(program.requires_ntnet && program.network_destination)
+				program.generate_network_log("Connection opened to [program.network_destination].")
+			program.program_state = PROGRAM_STATE_ACTIVE
+			active_program = program
+			program.alert_pending = FALSE
+			enabled = TRUE

@@ -1067,10 +1067,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"Sl" = (
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "SE" = (
 /obj/machinery/smartfridge/drinks,
 /obj/machinery/door/poddoor/preopen{
@@ -1103,6 +1099,10 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"XY" = (
+/obj/machinery/oven,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "ZP" = (
@@ -1412,7 +1412,7 @@ al
 bE
 ce
 EV
-Sl
+XY
 ce
 by
 XV

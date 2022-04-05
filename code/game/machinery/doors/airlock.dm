@@ -95,8 +95,6 @@
 	var/abandoned = FALSE
 	/// Material of inner filling; if its an airlock with glass, this should be set to "glass"
 	var/airlock_material
-	/// Can this airlock be repainted, FALSE if it has weird transforms(hatches)
-	var/can_repaint = TRUE
 
 	var/obj/item/electronics/airlock/electronics
 	var/previous_airlock = /obj/structure/door_assembly //what airlock assembly mineral plating was applied to
@@ -1437,9 +1435,6 @@
 
 
 /obj/machinery/door/airlock/proc/change_paintjob(obj/item/airlock_painter/painter, mob/user)
-	if(!can_repaint)
-		to_chat(user, span_warning("The airlock painter does not support this airlock."))
-		return
 
 	if((!in_range(src, user) && loc != user) || !painter.can_use(user)) // user should be adjacent to the airlock, and the painter should have a toner cartridge that isn't empty
 		return
@@ -1462,6 +1457,8 @@
 	icon = initial(airlock.icon)
 	overlays_file = initial(airlock.overlays_file)
 	assemblytype = initial(airlock.assemblytype)
+	anim_parts = initial(airlock.anim_parts)
+	rebuild_parts()
 	update_icon()
 
 /obj/machinery/door/airlock/CanAStarPass(obj/item/card/id/ID)

@@ -208,14 +208,6 @@
 	name = "Bun (Tight)"
 	icon_state = "hair_tightbun"
 
-/datum/sprite_accessory/hair/bun2
-	name = "Bun Head 2"
-	icon_state = "hair_bunhead2"
-
-/datum/sprite_accessory/hair/bun3
-	name = "Bun Head 3"
-	icon_state = "hair_bun3"
-
 /datum/sprite_accessory/hair/business
 	name = "Business Hair"
 	icon_state = "hair_business"
@@ -300,7 +292,7 @@
 	name = "Drill Hair"
 	icon_state = "hair_drillhair"
 
-/datum/sprite_accessory/hair/drillhair
+/datum/sprite_accessory/hair/drillhairruru
 	name = "Drillruru"
 	icon_state = "hair_drillruru"
 
@@ -484,7 +476,7 @@
 	name = "Mohawk (Shaved)"
 	icon_state = "hair_shavedmohawk"
 
-/datum/sprite_accessory/hair/shavedmohawk
+/datum/sprite_accessory/hair/unshavedmohawk
 	name = "Mohawk (Unshaven)"
 	icon_state = "hair_unshaven_mohawk"
 
@@ -1772,6 +1764,14 @@
 	name = "Long"
 	icon_state = "long"
 
+/datum/sprite_accessory/horns/knight
+	name = "Knight"
+	icon_state = "knight"
+
+/datum/sprite_accessory/horns/drake
+	name = "Drake"
+	icon_state = "drake"
+
 /datum/sprite_accessory/ears
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
@@ -2162,3 +2162,134 @@
 /datum/sprite_accessory/dorsal_tubes/dtdouble
 	name = "Double"
 	icon_state = "dtdouble"
+
+/datum/sprite_accessory/dorsal_tubes/dtsplit
+	name = "Split"
+	icon_state = "dtsplit"
+
+/datum/sprite_accessory/dorsal_tubes/dtdown
+	name = "Down"
+	icon_state = "dtdown"
+
+//ETHEREAL FACE MARKINGS
+/datum/sprite_accessory/ethereal_mark
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	//color_src = MUTCOLORS
+
+/datum/sprite_accessory/ethereal_mark/eyes
+	name = "Eyes"
+	icon_state = "eyes"
+
+/datum/sprite_accessory/ethereal_mark/diamond
+	name = "Diamond"
+	icon_state = "diamond"
+
+/datum/sprite_accessory/ethereal_mark/heart
+	name = "Heart"
+	icon_state = "heart"
+
+/datum/sprite_accessory/ethereal_mark/omega
+	name = "Omega"
+	icon_state = "omega"
+
+/datum/sprite_accessory/ethereal_mark/plus
+	name = "Plus"
+	icon_state = "plus"
+
+/datum/sprite_accessory/ethereal_mark/triangle
+	name = "Triangle"
+	icon_state = "triangle"
+
+/datum/sprite_accessory/ethereal_mark/x
+	name = "X"
+	icon_state = "x"
+
+//Phytosian hair
+/datum/sprite_accessory/pod_hair
+	icon = 'icons/mob/pod_hair.dmi'
+	color_src = HAIR
+
+/datum/sprite_accessory/pod_hair/cabbage
+	name = "Cabbage"
+	icon_state = "pod_hair_cabbage"
+
+/datum/sprite_accessory/pod_hair/fig
+	name = "Fig"
+	icon_state = "pod_hair_fig"
+
+/datum/sprite_accessory/pod_hair/hibiscus
+	name = "Hibiscus"
+	icon_state = "pod_hair_hibiscus"
+
+/datum/sprite_accessory/pod_hair/ivy
+	name = "Ivy"
+	icon_state = "pod_hair_ivy"
+
+/datum/sprite_accessory/pod_hair/orchid
+	name = "Orchid"
+	icon_state = "pod_hair_orchid"
+
+/datum/sprite_accessory/pod_hair/prayer
+	name = "Prayer"
+	icon_state = "pod_hair_prayer"
+
+/datum/sprite_accessory/pod_hair/rose
+	name = "Rose"
+	icon_state = "pod_hair_rose"
+
+/datum/sprite_accessory/pod_hair/shrub
+	name = "Shrub"
+	icon_state = "pod_hair_shrub"
+
+/datum/sprite_accessory/pod_hair/spinach
+	name = "Spinach"
+	icon_state = "pod_hair_spinach"
+
+/datum/sprite_accessory/pod_hair/vine
+	name = "Vine"
+	icon_state = "pod_hair_vine"
+
+//Phytosian hair flower
+/datum/sprite_accessory/pod_flower
+	icon = 'icons/mob/pod_hair.dmi'
+	color_src = FACEHAIR
+
+/datum/sprite_accessory/pod_flower/cabbage
+	name = "Cabbage"
+	icon_state = "pod_flower_cabbage"
+
+/datum/sprite_accessory/pod_flower/fig
+	name = "Fig"
+	icon_state = "pod_flower_fig"
+
+/datum/sprite_accessory/pod_flower/hibiscus
+	name = "Hibiscus"
+	icon_state = "pod_flower_hibiscus"
+
+/datum/sprite_accessory/pod_flower/ivy
+	name = "Ivy"
+	icon_state = "pod_flower_ivy"
+
+/datum/sprite_accessory/pod_flower/orchid
+	name = "Orchid"
+	icon_state = "pod_flower_orchid"
+
+/datum/sprite_accessory/pod_flower/prayer
+	name = "Prayer"
+	icon_state = "pod_flower_prayer"
+
+/datum/sprite_accessory/pod_flower/rose
+	name = "Rose"
+	icon_state = "pod_flower_rose"
+
+/datum/sprite_accessory/pod_flower/shrub
+	name = "Shrub"
+	icon_state = "pod_flower_shrub"
+
+/datum/sprite_accessory/pod_flower/spinach
+	name = "Spinach"
+	icon_state = "pod_flower_spinach"
+
+/datum/sprite_accessory/pod_flower/vine
+	name = "Vine"
+	icon_state = "pod_flower_vine"

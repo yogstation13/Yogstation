@@ -13,7 +13,7 @@
 	program_icon_state = "id"
 	extended_desc = "Program for programming employee ID cards to access parts of the station."
 	transfer_access = ACCESS_HEADS
-	requires_ntnet = 0
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE
 	size = 8
 	tgui_id = "NtosCard"
 	program_icon = "id-card"
@@ -70,6 +70,7 @@
 	if(!target_dept && (ACCESS_CHANGE_IDS in id_card.access))
 		minor = FALSE
 		authenticated = TRUE
+		region_access = list(CARDCON_DEPARTMENT_SERVICE, CARDCON_DEPARTMENT_COMMAND, CARDCON_DEPARTMENT_SECURITY, CARDCON_DEPARTMENT_MEDICAL, CARDCON_DEPARTMENT_SCIENCE, CARDCON_DEPARTMENT_ENGINEERING)
 		update_static_data(user)
 		return TRUE
 
@@ -251,7 +252,7 @@
 			if(!computer || !authenticated)
 				return
 			var/region = text2num(params["region"])
-			if(isnull(region) || !(region in region_access))
+			if(isnull(region) || (!(region in region_access) && minor))
 				return
 			target_id_card.access |= get_region_accesses(region)
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
@@ -260,7 +261,7 @@
 			if(!computer || !authenticated)
 				return
 			var/region = text2num(params["region"])
-			if(isnull(region) || !(region in region_access))
+			if(isnull(region) || (!(region in region_access) && minor))
 				return
 			target_id_card.access -= get_region_accesses(region)
 			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
@@ -353,6 +354,7 @@
 			data["id_rank"] = id_card.assignment ? id_card.assignment : "Unassigned"
 			data["id_owner"] = id_card.registered_name ? id_card.registered_name : "-----"
 			data["access_on_card"] = id_card.access
+			data["id_age"] = id_card.registered_age
 
 	return data
 

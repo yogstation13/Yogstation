@@ -28,10 +28,20 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	var/mob/living/silicon/ai/owner_AI
 	/// If we have multiple uses of the same power
 	var/uses
+	///How many uses can we store up? Only used for non-antag AI upgrade
+	var/max_uses
+	///delete the ability when we're out of uses?
+	var/delete_on_empty = TRUE
 	/// If we automatically use up uses on each activation
 	var/auto_use_uses = TRUE
 	/// If applicable, the time in deciseconds we have to wait before using any more modules
 	var/cooldown_period
+	//Can our uses be recharged using CPU in the reworked AI system?
+	var/can_be_recharged = FALSE
+
+/datum/action/innate/ai/New()
+	. = ..()
+	max_uses = uses
 
 /datum/action/innate/ai/Grant(mob/living/L)
 	. = ..()
@@ -47,6 +57,9 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		return
 
 /datum/action/innate/ai/Trigger()
+	if(uses <= 0 && !isnull(uses))
+		to_chat(owner, span_warning("[name] has no more uses! Charge it using CPU cycles in your dashboard."))
+		return FALSE
 	. = ..()
 	if(auto_use_uses)
 		adjust_uses(-1)
@@ -58,9 +71,10 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(!silent && uses)
 		to_chat(owner, span_notice("[name] now has <b>[uses]</b> use[uses > 1 ? "s" : ""] remaining."))
 	if(!uses)
-		if(initial(uses) > 1) //no need to tell 'em if it was one-use anyway!
+		if(initial(uses) > 1 || !delete_on_empty) //no need to tell 'em if it was one-use anyway!
 			to_chat(owner, span_warning("[name] has run out of uses!"))
-		qdel(src)
+		if(delete_on_empty)
+			qdel(src)
 
 /// Framework for ranged abilities that can have different effects by left-clicking stuff.
 /datum/action/innate/ai/ranged
@@ -85,10 +99,11 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(!silent && uses)
 		to_chat(owner, span_notice("[name] now has <b>[uses]</b> use[uses > 1 ? "s" : ""] remaining."))
 	if(!uses)
-		if(initial(uses) > 1) //no need to tell 'em if it was one-use anyway!
+		if(initial(uses) > 1 || !delete_on_empty) //no need to tell 'em if it was one-use anyway!
 			to_chat(owner, span_warning("[name] has run out of uses!"))
-		Remove(owner)
-		QDEL_IN(src, 100) //let any active timers on us finish up
+		if(delete_on_empty)
+			Remove(owner)
+			QDEL_IN(src, 100) //let any active timers on us finish up
 
 /datum/action/innate/ai/ranged/Destroy()
 	QDEL_NULL(linked_ability)
@@ -134,6 +149,9 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	/// Sound played when an ability is unlocked
 	var/unlock_sound
 
+/datum/AI_Module/proc/can_use(mob/living/silicon/ai/AI)
+	return TRUE
+
  /// Applies upgrades
 /datum/AI_Module/proc/upgrade(mob/living/silicon/ai/AI)
 	return
@@ -159,9 +177,12 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	power_type = /datum/action/innate/ai/nuke_station
 	unlock_text = span_notice("You slowly, carefully, establish a connection with the on-station self-destruct. You can now activate it at any time.")
 
+/datum/AI_Module/destructive/nuke_station/can_use(mob/living/silicon/ai/AI)
+	return !AI.mind.has_antag_datum(/datum/antagonist/hijacked_ai)
+
 /datum/action/innate/ai/nuke_station
 	name = "Doomsday Device"
-	desc = "Activates the doomsday device. This is not reversible."
+	desc = "Activates the doomsday device. This is not reversible and you must be in your core to start the process."
 	button_icon_state = "doomsday_device"
 	auto_use_uses = FALSE
 
@@ -169,6 +190,9 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	var/turf/T = get_turf(owner)
 	if(!istype(T) || !is_station_level(T.z))
 		to_chat(owner, span_warning("You cannot activate the doomsday device while off-station!"))
+		return
+	if(!isaicore(owner.loc))
+		to_chat(owner, span_warning("You must be in your core to do this!"))
 		return
 	if(alert(owner, "Send arming signal? (true = arm, false = cancel)", "purge_all_life()", "confirm = TRUE;", "confirm = FALSE;") != "confirm = TRUE;")
 		return
@@ -239,6 +263,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	owner.playsound_local(owner, 'sound/misc/server-ready.ogg', 50, 0)
 	sleep(30)
 	if(!owner || QDELETED(owner))
+		return
+	if(owner.stat == DEAD)
 		return
 	priority_announce("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert", ANNOUNCER_AIMALF)
 	set_security_level("delta")
@@ -545,6 +571,9 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	unlock_text = span_notice("You make contact with Space Amazon and request a robotics factory for delivery.")
 	unlock_sound = 'sound/machines/ping.ogg'
 
+/datum/AI_Module/utility/place_cyborg_transformer/can_use(mob/living/silicon/ai/AI)
+	return !AI.mind.has_antag_datum(/datum/antagonist/hijacked_ai)
+
 /datum/action/innate/ai/place_transformer
 	name = "Place Robotics Factory"
 	desc = "Places a machine that converts humans into cyborgs. Conveyor belts included!"
@@ -582,7 +611,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		C.images -= I
 
 /mob/living/silicon/ai/proc/can_place_transformer(datum/action/innate/ai/place_transformer/action)
-	if(!eyeobj || !isturf(loc) || incapacitated() || !action)
+	if(!eyeobj || !isvalidAIloc(loc) || incapacitated() || !action)
 		return
 	var/turf/middle = get_turf(eyeobj)
 	var/list/turfs = list(middle, locate(middle.x - 1, middle.y, middle.z), locate(middle.x + 1, middle.y, middle.z))

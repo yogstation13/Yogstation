@@ -842,19 +842,6 @@
 /obj/effect/spawner/xmastree,
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
-"qD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "Bar Shutters Control";
-	pixel_x = -26;
-	pixel_y = 24;
-	req_access_txt = "28"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "tZ" = (
 /obj/machinery/griddle,
 /turf/open/floor/plasteel/ameridiner,
@@ -1026,6 +1013,19 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
+"TC" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = -26;
+	pixel_y = 24;
+	req_access_txt = "25"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Uk" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/toy/figure/chef,
@@ -1066,6 +1066,10 @@
 /obj/machinery/reagentgrinder/kitchen{
 	pixel_y = 6
 	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"YN" = (
+/obj/machinery/oven,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "ZU" = (
@@ -1279,7 +1283,7 @@ ax
 aK
 aW
 be
-qD
+TC
 cm
 cm
 bZ
@@ -1395,7 +1399,7 @@ bs
 bB
 bc
 Fx
-tZ
+YN
 cq
 co
 Ul

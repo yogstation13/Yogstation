@@ -102,7 +102,7 @@
 /turf/open/indestructible/carpet
 	name = "carpet"
 	desc = "Soft velvet carpeting. Feels good between your toes."
-	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet"
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/turf/open/indestructible/carpet)
@@ -113,6 +113,61 @@
 	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+
+/turf/open/indestructible/carpet/black
+	icon = 'icons/turf/floors/carpet_black.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/blue
+	icon = 'goon/icons/turfs/carpet_blue.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/green
+	icon = 'goon/icons/turfs/carpet_green.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/cyan
+	icon = 'icons/turf/floors/carpet_cyan.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/orange
+	icon = 'icons/turf/floors/carpet_orange.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/purple
+	icon = 'goon/icons/turfs/carpet_purple.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/red
+	icon = 'icons/turf/floors/carpet_red.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal
+	name = "carpet"
+	desc = "Soft velvet carpeting. Feels good between your toes."
+	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon_state = "carpet"
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/indestructible/carpet/royal)
+	flags_1 = NONE
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET_BAREFOOT
+	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/indestructible/carpet/royal/black
+	icon = 'icons/turf/floors/carpet_royalblack.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal/green
+	icon = 'icons/turf/floors/carpet_exoticgreen.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal/purple
+	icon = 'icons/turf/floors/carpet_exoticpurple.dmi'
+	icon_state = "carpet"
 
 /turf/open/indestructible/grass
 	name = "grass patch"
@@ -291,23 +346,56 @@
 
 /turf/open/indestructible/brazil
 	name = ".."
-	desc = "it hurts to look at it hurts to see it hurts to think it hurts it hurts it hurts."
+	desc = "..."
+
+/turf/open/indestructible/brazil/Entered()
+	..()
+	START_PROCESSING(SSfastprocess, src)
+
+/turf/open/indestructible/brazil/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
+	. = ..()
+
+/turf/open/indestructible/brazil/process()
+	if(!gtfo())
+		STOP_PROCESSING(SSfastprocess, src)
+
+///teleports people back to a safe station turf in case they somehow manage to end up here without the status effect
+/turf/open/indestructible/brazil/proc/gtfo()
+	. = FALSE
+	for(var/mob/living/L in src)
+		if(!L.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE))
+			. = TRUE
+			to_chat(L, span_velvet("Get out of here, stalker."))
+			var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
+			if(safe_turf)
+				L.forceMove(safe_turf)
+				flash_color(L, flash_color = "#000000", flash_time = 10)
+
+/turf/open/indestructible/brazil/space
 	icon = 'icons/turf/space.dmi'
 
-/turf/open/indestructible/brazil/Initialize(mapload)
+/turf/open/indestructible/brazil/space/Initialize(mapload)
 	. = ..()
 	icon_state = "[rand(1,25)]"
 	add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), FIXED_COLOUR_PRIORITY)
 
-/turf/open/indestructible/brazil/Enter(atom/movable/AM, atom/old_loc)
-	if(isliving(AM))
-		var/mob/living/L = AM
-		if(!L.has_status_effect(STATUS_EFFECT_HERETIC_SACRIFICE))
-			var/turf/open/floor/safe_turf = find_safe_turf(zlevels = 2)
-			if(safe_turf)
-				to_chat(L, span_warning("You're not supposed to be here..."))
-				do_teleport(AM, safe_turf , 0, channel = TELEPORT_CHANNEL_FREE)
-	return FALSE //don't forget, you're here forever
+/turf/open/indestructible/brazil/narsie
+	icon_state = "cult"
+
+/turf/open/indestructible/brazil/necropolis
+	icon_state = "necro1"
+
+/turf/open/indestructible/brazil/necropolis/Initialize()
+	. = ..()
+	if(prob(12))
+		icon_state = "necro[rand(2,3)]"
+
+/turf/open/indestructible/brazil/lostit
+	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
+	canSmoothWith = list(/turf/open/indestructible/brazil/lostit)
+	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
+	icon_state = "smooth"
 
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)
@@ -359,7 +447,7 @@
 		movable_content.wash(CLEAN_WASH)
 	return TRUE
 
-/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
+/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, stun_amount, force_drop)
 	if(C.movement_type & FLYING)
 		return 0
 	if(has_gravity(src))
@@ -386,7 +474,7 @@
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
 			C.Knockdown(knockdown_amount)
-			C.Paralyze(paralyze_amount)
+			C.Stun(stun_amount)
 			C.stop_pulling()
 		else
 			C.Knockdown(20)

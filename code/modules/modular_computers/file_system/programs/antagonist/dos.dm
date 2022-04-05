@@ -3,11 +3,10 @@
 	filedesc = "DoS Traffic Generator"
 	category = PROGRAM_CATEGORY_MISC
 	program_icon_state = "hostile"
-	extended_desc = "This advanced script can perform denial of service attacks against NTNet quantum relays. The system administrator will probably notice this. Multiple devices can run this program together against same relay for increased effect"
+	extended_desc = "This advanced script can perform denial of service attacks against NTNet quantum relays. The system administrator will probably notice this. Multiple devices can run this program together against the same relay for increased effect"
 	size = 20
 	requires_ntnet = TRUE
 	available_on_ntnet = FALSE
-	available_on_syndinet = TRUE
 	tgui_id = "NtosNetDos"
 	program_icon = "satellite-dish"
 
@@ -43,6 +42,7 @@
 /datum/computer_file/program/ntnet_dos/ui_act(action, params)
 	if(..())
 		return
+	computer.play_interact_sound()
 	switch(action)
 		if("PRG_target_relay")
 			for(var/obj/machinery/ntnet_relay/R in SSnetworks.station_network.relays)

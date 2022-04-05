@@ -31,7 +31,7 @@
 /datum/antagonist/gang/farewell()
 	if(ishuman(owner.current))
 		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!")]", null, null, null, owner.current)
-		to_chat(owner, span_userdanger("You are no longer a gangster!"))
+		to_chat(owner, span_userdanger("You are no longer a gangster! Your memory is hazy from the time you were a gangster...the only thing you remember is the name of the one who brainwashed you..."))
 
 /datum/antagonist/gang/on_gain()
 	if(!gang)

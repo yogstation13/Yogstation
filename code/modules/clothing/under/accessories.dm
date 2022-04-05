@@ -367,6 +367,15 @@
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = GROIN
 
+/obj/item/clothing/accessory/resinband
+	name = "resin armband"
+	desc = "A smooth amber colored armband made of solid resin, generally worn by tribal aristocracy."
+	icon_state = "resinband"
+	item_color = "resinband"
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
+	attachment_slot = null
+	above_suit = TRUE
+
 /////////////
 //Poppy Pin//
 /////////////

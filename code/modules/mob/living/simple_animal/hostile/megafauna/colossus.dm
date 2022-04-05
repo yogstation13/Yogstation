@@ -734,7 +734,7 @@ Difficulty: Very Hard
 	death = FALSE
 	roundstart = FALSE
 	short_desc = "You are a photogeist, a peaceful creature summoned by a plant god"
-	flavour_text = "<b>Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them.</b>"
+	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them."
 
 /obj/effect/mob_spawn/photogeist/Initialize()
 	. = ..()
@@ -750,6 +750,11 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/lightgeist/healing/slime
 	name = "crystalline lightgeist"
 
+/mob/living/simple_animal/hostile/lightgeist/healing/slime/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_MUTE, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_EMOTEMUTE, INNATE_TRAIT)
+		
 /obj/machinery/anomalous_crystal/refresher //Deletes and recreates a copy of the item, "refreshing" it.
 	observer_desc = "This crystal \"refreshes\" items that it affects, rendering them as new."
 	activation_method = ACTIVATE_TOUCH

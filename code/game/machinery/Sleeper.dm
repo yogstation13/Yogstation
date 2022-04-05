@@ -20,8 +20,6 @@
 
 	///efficiency, used to increase the effect of some healing methods
 	var/efficiency = 1
-	///maximum status stasis will activate at, occurs automatically
-	var/stasis_health = UNCONSCIOUS
 	///treatments currently available for use
 	var/list/available_treatments
 	///if the patient is able to use the sleeper's controls
@@ -38,6 +36,8 @@
 	///if the sleeper puts its patient into stasis
 	var/stasis = FALSE
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
+	var/open_sound = 'sound/machines/podopen.ogg'
+	var/close_sound = 'sound/machines/podclose.ogg'
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
 
@@ -88,6 +88,8 @@
 		if(mob_occupant)
 			mob_occupant.remove_status_effect(STATUS_EFFECT_STASIS)
 		flick("[initial(icon_state)]-anim", src)
+		if(open_sound)
+			playsound(src, open_sound, 40)
 		..()
 
 /obj/machinery/sleeper/close_machine(mob/user)
@@ -99,6 +101,8 @@
 			to_chat(occupant, "[enter_message]")
 		if(mob_occupant && stasis)
 			mob_occupant.ExtinguishMob()
+		if(close_sound)
+			playsound(src, close_sound, 40)
 
 /obj/machinery/sleeper/emp_act(severity)
 	. = ..()
@@ -183,7 +187,7 @@
 	check_nap_violations()
 	var/mob/living/carbon/C = occupant
 	if(C)
-		if(stasis && C.stat >= stasis_health)
+		if(stasis && (C.stat == DEAD || C.health < 0))
 			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
 		else
 			C.remove_status_effect(STATUS_EFFECT_STASIS)

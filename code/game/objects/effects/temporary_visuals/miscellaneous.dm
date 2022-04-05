@@ -300,6 +300,11 @@
 	icon_state = "mummy_revive"
 	duration = 20
 
+/obj/effect/temp_visual/wax_animation
+	icon = 'icons/mob/mob.dmi'
+	icon_state = "wax_revive"
+	duration = 20
+
 /obj/effect/temp_visual/heal //color is white by default, set to whatever is needed
 	name = "healing glow"
 	icon_state = "heal"
@@ -483,3 +488,8 @@
 	layer = FLY_LAYER
 	duration = 0.48 SECONDS
 	mouse_opacity = 0
+
+/obj/effect/temp_visual/summon
+	randomdir = FALSE
+	duration = 2 SECONDS
+	icon_state = "summon"

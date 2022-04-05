@@ -12,7 +12,7 @@
 
 /datum/guardian_ability/major/gravity/Attack(atom/target)
 	if(isliving(target) && target != guardian)
-		to_chat(guardian, "<span class='danger'><B>Your punch has applied heavy gravity to [target]!</span></B>")
+		to_chat(guardian, span_bolddanger("Your punch has applied heavy gravity to [target]!"))
 		add_gravity(target, 2)
 		to_chat(target, span_userdanger("Everything feels really heavy!"))
 

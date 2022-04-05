@@ -30,10 +30,12 @@
 	name = "Bartender"
 	jobtype = /datum/job/bartender
 
+	pda_type = /obj/item/pda/bar
+
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
-	belt = /obj/item/pda/bar
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/bartender
+	uniform_skirt = /obj/item/clothing/under/rank/bartender/skirt
 	suit = /obj/item/clothing/suit/armor/vest
 	backpack_contents = list(/obj/item/storage/box/beanbag=1)
 	shoes = /obj/item/clothing/shoes/laceup

@@ -1,10 +1,3 @@
-/mob/living/silicon/robot/attack_robot(mob/user) // allowing for clicking people off like a chair
-	. = ..()
-	if(user == src && buckled_mobs?.len && user.a_intent == INTENT_HELP)
-		for(var/i in buckled_mobs)
-			var/mob/buckmob = i
-			unbuckle_mob(buckmob)
-
 /mob/living/silicon/robot/attackby(obj/item/I, mob/living/user)
 	if(I.slot_flags & ITEM_SLOT_HEAD && hat_offset != INFINITY && user.a_intent == INTENT_HELP && !is_type_in_typecache(I, blacklisted_hats))
 		to_chat(user, span_notice("You begin to place [I] on [src]'s head..."))
@@ -122,6 +115,7 @@
 
 	if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/traitor))
 		to_chat(src, span_danger("ALERT: Foreign software execution prevented."))
+		logevent("ALERT: Foreign software execution prevented.")
 		to_chat(connected_ai, span_danger("ALERT: Cyborg unit \[[src]] successfully defended against subversion."))
 		log_game("[key_name(user)] attempted to emag cyborg [key_name(src)], but they were slaved to traitor AI [connected_ai].")
 		return
@@ -142,13 +136,17 @@
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
 	to_chat(src, span_danger("ALERT: Foreign software detected."))
+	logevent("ALERT: Foreign software detected.")
 	sleep(5)
 	to_chat(src, span_danger("Initiating diagnostics..."))
 	sleep(20)
 	to_chat(src, span_danger("SynBorg v1.7 loaded."))
+	logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 	sleep(5)
 	to_chat(src, span_danger("LAW SYNCHRONISATION ERROR"))
 	sleep(5)
+	if(user)
+		logevent("LOG: New user \[[replacetext(user.real_name," ","")]\], groups \[root\]")
 	to_chat(src, span_danger("Would you like to send a report to NanoTraSoft? Y/N"))
 	sleep(10)
 	to_chat(src, span_danger("> N"))

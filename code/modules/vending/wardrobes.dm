@@ -186,7 +186,8 @@
 					/obj/item/clothing/shoes/sneakers/black = 2,
 					/obj/item/clothing/gloves/fingerless = 2,
 					/obj/item/clothing/head/soft/black = 2,
-					/obj/item/clothing/mask/bandana/skull = 2)
+					/obj/item/clothing/mask/bandana/skull = 2,
+					/obj/item/clothing/suit/hooded/amech = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/robo_wardrobe
 	payment_department = ACCOUNT_SCI
 /obj/item/vending_refill/wardrobe/robo_wardrobe
@@ -405,6 +406,7 @@
 					/obj/item/clothing/under/yogs/caretaker = 1,
 					/obj/item/clothing/suit/hooded/caretakercloak = 1,
 					/obj/item/clothing/suit/yogs/monkrobes = 1,
+					/obj/item/clothing/suit/hooded/amech = 2,
 					/obj/item/storage/box/fancy/candle_box = 2,
 					/obj/item/clothing/head/kippah = 3,
 					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,

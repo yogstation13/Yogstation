@@ -498,7 +498,7 @@
 			set_light(gun_light.brightness_on)
 		else
 			set_light(0)
-		cut_overlays(flashlight_overlay, TRUE)
+		cut_overlay(flashlight_overlay, TRUE)
 		var/state = "flight[gun_light.on? "_on":""]"	//Generic state.
 		if(gun_light.icon_state in icon_states('icons/obj/guns/flashlights.dmi'))	//Snowflake state?
 			state = gun_light.icon_state
@@ -508,7 +508,7 @@
 		add_overlay(flashlight_overlay, TRUE)
 	else
 		set_light(0)
-		cut_overlays(flashlight_overlay, TRUE)
+		cut_overlay(flashlight_overlay, TRUE)
 		flashlight_overlay = null
 	update_icon(TRUE)
 	for(var/X in actions)
@@ -553,6 +553,10 @@
 		return
 
 	semicd = FALSE
+
+	if(user == target && user.has_horror_inside())
+		user.visible_message(span_warning("[user] decided not to shoot."), span_notice("Something inside your head stops your action!"))
+		return
 
 	target.visible_message(span_warning("[user] pulls the trigger!"), span_userdanger("[(user == target) ? "You pull" : "[user] pulls"] the trigger!"))
 
