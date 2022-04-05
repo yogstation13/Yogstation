@@ -74,6 +74,7 @@
 			if("Yes")
 				unbolt(user)
 
+#define ALTAR_RANKS_PER_DAY 2
 /obj/structure/bloodsucker/bloodaltar
 	name = "blood altar"
 	desc = "It is made of marble, lined with basalt, and radiates an unnerving chill that puts your skin on edge."
@@ -86,7 +87,6 @@
 	can_buckle = FALSE
 	var/task_completed = FALSE
 	var/sacrifices = 0
-	var/uses = 0
 	var/taskheart = FALSE
 	Ghost_desc = "This is a Blood Altar, where bloodsuckers can get two tasks per night to get more ranks."
 	Vamp_desc = "This is a Blood Altar, which allows you to do two tasks per day to advance your ranks.\n\
@@ -98,13 +98,6 @@
 	Hunter_desc = "This is a blood altar, where monsters usually practice a sort of bounty system to advanced their powers.\n\
 		They normally sacrifice hearts or blood in exchange for these ranks, forcing them to move out of their lair.\n\
 		It can only be used twice per night and it needs to be interacted it to be claimed, making bloodsuckers come back twice a night."
-/obj/structure/bloodsucker/bloodaltar/Initialize()
-	. = ..()
-	GLOB.bloodaltars += src
-
-/obj/structure/bloodsucker/bloodaltar/Destroy()
-	GLOB.bloodaltars -= src
-	return ..()
 
 /obj/structure/bloodsucker/bloodaltar/bolt()
 	. = ..()
@@ -121,10 +114,10 @@
 	if(!IS_BLOODSUCKER(user))
 		to_chat(user, span_warning("You can't figure out how this works."))
 		return FALSE
-	if(uses == 2)
-		to_chat(user, span_notice("You have done all tasks for this night, come back tomorrow for more."))
-		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum.altar_uses >= ALTAR_RANKS_PER_DAY)
+		to_chat(user, span_notice("You have done all tasks for the night, come back tomorrow for more."))
+		return
 	var/task
 	var/suckamount = 0
 	var/heartamount = 0
@@ -144,7 +137,7 @@
 		bloodsuckerdatum.task_memory = null
 		bloodsuckerdatum.current_task = FALSE
 		bloodsuckerdatum.bloodsucker_level_unspent++
-		uses++
+		bloodsuckerdatum.altar_uses++
 		bloodsuckerdatum.task_blood_drank = 0
 		sacrifices = 0
 		to_chat(user, span_notice("You have sucessfully done a task and gained a rank!"))
@@ -155,9 +148,13 @@
 		to_chat(user, span_warning("You already have a rank up task!"))
 		return
 	if(!bloodsuckerdatum.current_task)
-		var/want_rank = alert("Do you want to gain a task?", "Task Manager", "Yes", "No")
+		var/want_rank = alert("Do you want to gain a task? This will cost 100 Blood.", "Task Manager", "Yes", "No")
 		if(want_rank == "No" || QDELETED(src))
 			return
+		if(bloodsuckerdatum.blood_volue < 100)
+			to_chat(user, span_danger("You don't have enough blood to gain a task!"))
+			return
+		user.blood_volume -= 100
 		switch(rand(1, 3))
 			if(1,2)
 				task = "suck [suckamount] units of blood."
@@ -188,6 +185,7 @@
 			sacrifices++
 			return 
 	return ..()
+#undef ALTAR_RANKS_PER_DAY
 
 /*/obj/structure/bloodsucker/bloodstatue
 	name = "bloody countenance"
