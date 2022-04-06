@@ -8,7 +8,7 @@
 
 /datum/round_event/chem_spill
 	announceWhen	= 1
-	startWhen		= 5
+	startWhen		= 1
 	endWhen			= 35
 	var/interval 	= 2
 	var/list/filters  = list()
@@ -20,7 +20,7 @@
 	//needs to be chemid unit checked at some point
 
 /datum/round_event/chem_spill/announce()
-	priority_announce("Due to a chemical spill in your sector, your pool water may be contaminated.", "Atmospherics alert")
+	priority_announce("Due to a chemical spill, your pool[filters.len > 1 ? "s" : ""] may have been contaminated", "Hazmat alert")
 
 /datum/round_event/chem_spill/setup()
 	endWhen = rand(25, 100)
@@ -32,7 +32,7 @@
 		return kill()
 
 /datum/round_event/chem_spill/start()
-	for(var/obj/machinery/pool_filter/filter in vents)
+	for(var/obj/machinery/pool_filter/filter in filters)
 		if(filter && filter.loc)
 			var/datum/reagents/R = filter.reagents
 			if (prob(randomProbability))
