@@ -1123,7 +1123,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
 	var/cooldown = 150
-	var/cd = 100
+	var/cdh = 100
+	var/cda = 60
 	var/next_reach = 0
 	var/next_grip = 0
 	var/next_knuckle = 0
@@ -1141,7 +1142,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			return
 		else
 			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
-			next_knuckle = world.time + cd
+			if(ishuman(L))
+				next_knuckle = world.time + cdh
+			if(!ishuman(L))
+				next_knuckle = world.time + cda
 
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
 	var/mob/living/U = user
