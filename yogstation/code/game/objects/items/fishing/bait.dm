@@ -35,3 +35,9 @@
 	desc = "Might be able to catch a lizard with this..."
 	icon_state = "bait_worm"
 	fishing_power = 15
+
+/obj/item/reagent_containers/food/snacks/bait/type
+	name = "type bait"
+	desc = "Are you talking to me?"
+	icon_state = "bait_t"
+	fishing_power = 25
