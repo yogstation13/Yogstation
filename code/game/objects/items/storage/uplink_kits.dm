@@ -300,7 +300,7 @@
 			<p>We need your target for our own reasons, but we ransom them back to your mission area once their use is served. They will return back
 			from where you sent them off from in several minutes time. Don't worry, we give you a cut of what we get paid. We pay this into whatever
 			ID card you have equipped, on top of the TC payment we give.</p>
-			
+
 			<p>Good luck agent. You can burn this document with the supplied lighter.</p>"}
 
 	return ..()
@@ -423,7 +423,7 @@
 
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
-	
+
 /obj/item/storage/box/syndie_kit/imp_mindshield
 	name = "mindshield implant box"
 
@@ -496,7 +496,7 @@
 	new /obj/item/hemostat/supermatter(src)
 	new /obj/item/nuke_core_container/supermatter(src)
 	new /obj/item/paper/guides/antag/supermatter_sliver(src)
-	
+
 /obj/item/storage/box/syndie_kit/supermatter_delaminator
 	name = "box"
 
@@ -597,3 +597,8 @@
 /obj/item/storage/box/syndie_kit/bee_grenades/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/grenade/spawnergrenade/buzzkill(src)
+
+
+
+
+
