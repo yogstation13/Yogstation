@@ -390,9 +390,15 @@ SUBSYSTEM_DEF(air)
 			//EG.self_breakdown(space_is_all_consuming = 1)
 			//EG.dismantle()
 			CHECK_TICK*/
-
-		var/msg = "HEY! LISTEN! [DisplayTimeText(world.timeofday - timer)] were wasted processing [starting_ats] turf(s) (connected to [ending_ats] other turfs) with atmos differences at round start."
-		to_chat(world, span_boldannounce("[msg]"))
+		var/time_msg = DisplayTimeText(world.timeofday - timer) // Yogs -- Nicer atmos complaining text
+		var/msg = ""
+		if(time_msg == "right now")
+			msg = "hi c: No time was wasted at all processing [starting_ats] turf(s) (connected to [ending_ats] other turfs) with atmos differences at round start."
+			to_chat(world,span_notice(msg))
+		else
+			msg = "HEY! LISTEN! [time_msg] were wasted processing [starting_ats] turf(s) (connected to [ending_ats] other turfs) with atmos differences at round start."
+			to_chat(world, span_boldannounce(msg))
+		//yogs end
 		warning(msg)
 
 /turf/open/proc/resolve_active_graph()
