@@ -1,4 +1,4 @@
-// Ambrosia - b// Ambrosia - base type
+// Ambrosia - base type
 /obj/item/reagent_containers/food/snacks/grown/ambrosia
 	seed = /obj/item/seeds/ambrosia
 	name = "ambrosia branch"
