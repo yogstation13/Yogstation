@@ -65,7 +65,10 @@
 		new /datum/data/mining_equipment("Survival Medipen",			/obj/item/reagent_containers/hypospray/medipen/survival,			500, VENDING_MEDS),
 		new /datum/data/mining_equipment("Brute First-Aid Kit",			/obj/item/storage/firstaid/brute,									600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Tracking Implant Kit", 		/obj/item/storage/box/minertracker,									600, VENDING_MEDS),
-		new /datum/data/mining_equipment("Point Transfer Card",			/obj/item/card/mining_point_card,									500, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (500)",	/obj/item/card/mining_point_card,									500, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (1000)", 	/obj/item/card/mining_point_card/thousand,							1000, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (5000)", 	/obj/item/card/mining_point_card/fivethousand,						5000, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (10000)",	/obj/item/card/mining_point_card/tenthousand,						10000, VENDING_MISC),
 		new /datum/data/mining_equipment("Alien Toy",					/obj/item/clothing/mask/facehugger/toy,								300, VENDING_MISC),
 		new /datum/data/mining_equipment("Whiskey",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100, VENDING_MISC),
 		new /datum/data/mining_equipment("Absinthe",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100, VENDING_MISC),
@@ -312,7 +315,10 @@
 		new /datum/data/mining_equipment("Fire First-Aid Kit",			/obj/item/storage/firstaid/fire,								600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Toxin First-Aid Kit",			/obj/item/storage/firstaid/toxin,								600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Stimpack Bundle",				/obj/item/storage/box/medipens/utility,							200, VENDING_MEDS),
-		new /datum/data/mining_equipment("Point Transfer Card", 		/obj/item/card/mining_point_card,								500, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (500)", 	/obj/item/card/mining_point_card,								500, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (1000)", 	/obj/item/card/mining_point_card/thousand,						1000, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (5000)", 	/obj/item/card/mining_point_card/fivethousand,					5000, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (10000)",	/obj/item/card/mining_point_card/tenthousand,					10000, VENDING_MISC),
 		new /datum/data/mining_equipment("Space Cash",    				/obj/item/stack/spacecash/c1000,								2000, VENDING_MISC),
 		new /datum/data/mining_equipment("R&D Starter Kit",  			/obj/item/storage/box/rndboards/miner,							2500, VENDING_TOOL)
 		)
@@ -379,6 +385,15 @@
 	desc = "A small card preloaded with mining points. Swipe your ID card over it to transfer the points, then discard."
 	icon_state = "data_1"
 	var/points = 500
+
+/obj/item/card/mining_point_card/thousand
+	points = 1000
+
+/obj/item/card/mining_point_card/fivethousand
+	points = 5000
+
+/obj/item/card/mining_point_card/tenthousand
+	points = 10000
 
 /obj/item/card/mining_point_card/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/card/id))
