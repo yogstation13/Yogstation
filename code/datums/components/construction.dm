@@ -103,8 +103,9 @@
 				if(located_item)
 					located_item.forceMove(drop_location())
 
-			else if(ispath(target_step_key, /obj/item/stack))
-				new target_step_key(drop_location(), target_step["amount"])
+			else 
+				if(ispath(target_step_key, /obj/item/stack))
+					new target_step_key(drop_location(), target_step["amount"])
 
 /datum/component/construction/proc/spawn_result()
 	// Some constructions result in new components being added.
