@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "the heart's organ efficiency rating only effects blood regen once instead of twice"
