@@ -331,7 +331,7 @@
 /obj/item/toolset_handler/tool_use_check(mob/living/user, amount)
 	return active_tool.tool_use_check(user, amount)
 
-.obj/item/toolset_handler/use(amount)
+/obj/item/toolset_handler/use(amount)
 	return(active_tool.use(amount))
 
 /obj/item/organ/cyberimp/arm/esword
