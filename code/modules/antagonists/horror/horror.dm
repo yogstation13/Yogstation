@@ -85,6 +85,16 @@
 	victim = null
 	return ..()
 
+//Yogs -- slightly fancier examine
+/mob/living/simple_animal/horror/examine(mob/user) // Return a more... positive description when the examiner is themselves an eldritch horror.
+	if(user == src) // Hey, that's me!
+		return list("[icon2html(src, user)] That's [src.real_name], \a [initial(src.name)].","I'm so beautiful!")
+	else if(ishorror(user))
+		return list("[get_examine_string(user, TRUE)].","What a handsome rogue.")
+	else
+		return ..()
+//Yogs end
+	
 /mob/living/simple_animal/horror/AltClickOn(atom/A)
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
