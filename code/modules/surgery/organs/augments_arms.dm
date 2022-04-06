@@ -204,7 +204,7 @@
 		return
 
 	owner.visible_message(span_notice("[owner] retracts [linkedpallate] back into [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
-		span_notice("[holder] snaps back into your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+		span_notice("[linkedpallate] snaps back into your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
 		span_italics("You hear a short mechanical noise."))
 
 	if(istype(linkedpallate.active_tool, /obj/item/weldingtool))
@@ -300,7 +300,6 @@
 	sharpness = active_tool.sharpness
 	usesound = active_tool.usesound
 	hitsound = active_tool.hitsound
-	appearance = null
 	appearance = active_tool.appearance
 	item_state = active_tool.item_state
 	tool_behaviour = active_tool.tool_behaviour
