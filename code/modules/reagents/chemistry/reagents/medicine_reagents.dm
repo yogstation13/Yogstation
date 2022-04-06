@@ -1756,5 +1756,4 @@
 			movable_content.wash(clean_types)
 
 #undef PERF_BASE_DAMAGE
-#undef REAGENT_REVIVE_MINIMUM_HEALTH
 #undef REQUIRED_STRANGE_REAGENT_FOR_REVIVAL
