@@ -100,7 +100,7 @@
 		return
 	if(iscarbon(victim))
 		var/mob/living/carbon/C = victim
-		if(C.breathe_from_internals(0)) //check if we have internals on
+		if(C.get_breath_from_internal(0)) //check if we have internals on
 			return
 	return (!(victim.mobility_flags & MOBILITY_STAND)) && (!HAS_TRAIT(victim, TRAIT_NOBREATH))
 
