@@ -224,3 +224,4 @@ tgui/.yarn/*
 
 # Common build tooling
 !/tools/build
+tgui/yarn.lock
