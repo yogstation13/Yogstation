@@ -1113,8 +1113,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	qdel(src)
 
 /obj/item/melee/knuckles
-	name = "Bloody Knuckles"
-	desc = "Knuckles borne of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Prime an opponent with an attack and follow up to snare them. Creatures suffer the snare for 6 seconds and take hefty damage while people stay snared for 1."
+	name = "bloody knuckles"
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Prime an opponent with an attack and follow up to snare them. Creatures suffer the snare for 6 seconds and take hefty damage while people stay snared for 1."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "bloodyknuckle"
 	w_class = WEIGHT_CLASS_SMALL
