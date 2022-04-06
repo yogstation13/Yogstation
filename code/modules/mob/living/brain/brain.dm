@@ -111,3 +111,9 @@
 
 	if(container)
 		. += "[container.type]"
+
+/mob/living/brain/say()
+	if(container && container.rebooting)
+		to_chat(src, span_danger("Speech synthesizers still offine, wait for the reboot process to complete"))
+		return
+	return ..()
