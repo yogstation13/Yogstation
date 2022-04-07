@@ -74,7 +74,6 @@
 
 /datum/job/ai/announce(mob/living/silicon/ai/AI)
 	. = ..()
-	var/area/A = get_area(AI)//yogs
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to the central AI network.")) //YOGS - removed the co-ordinates
 
 /datum/job/ai/config_check()
