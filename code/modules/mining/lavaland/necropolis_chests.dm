@@ -1175,7 +1175,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(!valid_casting)
 			to_chat(U, span_warning("There's nobody to use this on!"))
 			return
-		next_grip = world.time + cooldown
+		next_grip = world.time + COOLDOWN
+		#undef COOLDOWN
+		#undef COOLDOWN_HUMAN
+		#undef COOLDOWN_ANIMAL
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
