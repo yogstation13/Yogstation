@@ -10,6 +10,7 @@
 	var/datum/action/innate/yalp_transmit/transmit
 	var/datum/action/innate/yalp_transport/transport
 	var/datum/action/cooldown/yalp_heal/heal
+	var/hunters_release_time // Yogs -- making Login() dialogue make more sense
 
 /mob/camera/yalp_elor/Initialize()
 	. = ..()
@@ -20,6 +21,7 @@
 	transport.Grant(src)
 	heal.Grant(src)
 	START_PROCESSING(SSobj, src)
+	hunters_release_time = world.time + 10 MINUTES // Yogs -- making Login() dialogue make more sense
 
 /mob/camera/yalp_elor/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -37,11 +39,15 @@
 /mob/camera/yalp_elor/Process_Spacemove(movement_dir = 0)
 	return TRUE
 
-/mob/camera/yalp_elor/Login()
+/mob/camera/yalp_elor/Login() // Yogs -- better Login() dialogue
 	..()
-	to_chat(src, "<B>You must protect your followers from Nanotrasen!</B>")
-	to_chat(src, "<B>Only your followers can hear you, and you can speak to send messages to all of them, wherever they are. You can also locally whisper to anyone.</B>")
-	to_chat(src, "<B>Nanotrasen will reach you and your followers in about 10 minutes. Make sure they are ready when the time is up.</B>")
+	to_chat(src,span_boldnotice("You are [name], the old god!"))
+	to_chat(src,span_notice("You must protect your followers from Nanotrasen!"))
+	to_chat(src,span_notice("Only your followers can hear you, and you can speak to send messages to all of them, wherever they are. <i>You can also locally whisper to anyone.</i>"))
+	var/passed_time = hunters_release_time - world.time
+	if(passed_time > 0)
+		to_chat(src, span_warning("Nanotrasen will reach you and your followers in about [DisplayTimeText(passed_time)]. Make sure they are ready when the time is up."))
+//yogs end
 
 /mob/camera/yalp_elor/Move(NewLoc, direct)
 	if(!NewLoc)
