@@ -19,7 +19,7 @@
 	owner.add_overlay(cube)
 	owner.remove_status_effect(STATUS_EFFECT_KNUCKLED)
 	if(!ishuman(owner))
-		duration = 60
+		duration = 6 SECONDS
 		owner.adjustBruteLoss(50)
 	return ..()
 
