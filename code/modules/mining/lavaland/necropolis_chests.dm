@@ -1165,7 +1165,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(!valid_reaching)
 			to_chat(U, span_warning("There's nobody to use this on!"))
 			return
-		next_reach = world.time + cooldown
+		next_reach = world.time + COOLDOWN
 	else if(istype(action, /datum/action/item_action/visegrip))
 		if(next_grip > world.time)
 			to_chat(U, span_warning("You can't do that yet!"))
