@@ -28,7 +28,7 @@
 
 /datum/status_effect/roots/on_remove()
 	if(!owner.stat)
-		to_chat(owner, "Your bindings are gone!")
+		to_chat(owner, span_notice("Your bindings are gone!"))
 	owner.cut_overlay(cube)
 	owner.update_mobility()
 	UnregisterSignal(owner, COMSIG_LIVING_RESIST)
