@@ -85,20 +85,24 @@
 		else if(isobserver(V))
 			to_chat(V, "[FOLLOW_LINK(V, src)] [message]")
 
-/mob/camera/yalp_elor/process()
-	var/safe = FALSE
-	for(var/mob/V in GLOB.player_list)
-		if(!V.mind)
+/mob/camera/yalp_elor/process() // Yogs -- fixing oldgod race conditions
+	for(var/V in GLOB.mob_living_list)
+		var/mob/living/L = V
+		if (!L.ckey) // never had a client (logic stolen from how game_mode.dm does these kinda checks)
+			continue  
+		if(L.stat == DEAD) // Seems like a paranoid check to do against GLOB.mob_living_list but, whatever.
 			continue
-		var/datum/antagonist/fugitive/fug = isfugitive(V)
-		if(!fug || V == src)
+		//Note that the above counts "living fugitives which are unfortunately AFK" as valid for this loss-condition check.
+		var/datum/antagonist/fugitive/fug = isfugitive(L)
+		if(!fug)
 			continue
-		if(fug.is_captured)
-			safe = TRUE
-			break
-	if(!safe)
-		to_chat(src, span_userdanger("All of your followers are gone. That means you cease to exist."))
-		qdel(src)
+		if(!fug.is_captured) // Found a living fugitive!!
+			return
+	//otherwise, eat shit and commit qdel()
+	to_chat(src, span_userdanger("All of your followers are gone. That means you cease to exist."))
+	playsound_local(get_turf(src), 'sound/machines/clockcult/ark_deathrattle.ogg', 100, FALSE, pressure_affected = FALSE)
+	qdel(src)
+//yogs end
 
 /datum/action/innate/yalp_transmit
 	name = "Divine Oration"
