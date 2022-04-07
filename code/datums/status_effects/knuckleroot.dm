@@ -2,7 +2,7 @@
 	id = "roots"
 	alert_type = /obj/screen/alert/status_effect/roots
 	var/icon/cube
-	duration = 10
+	duration = 1 SECONDS
 
 /obj/screen/alert/status_effect/roots
 	name = "grasped"
