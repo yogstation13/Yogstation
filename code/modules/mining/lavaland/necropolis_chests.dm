@@ -1112,6 +1112,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	log_combat(user, L, "took out a blood contract on", src)
 	qdel(src)
 
+#define COOLDOWN 150
+#define COOLDOWN_HUMAN 100
+#define COOLDOWN_ANIMAL 60
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
 	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner."
