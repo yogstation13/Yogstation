@@ -1125,9 +1125,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	item_state = "knuckles"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
-	var/cooldown = 150
-	var/cdh = 100
-	var/cda = 60
 	var/next_reach = 0
 	var/next_grip = 0
 	var/next_knuckle = 0
