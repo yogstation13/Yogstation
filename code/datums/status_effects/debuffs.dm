@@ -1068,7 +1068,7 @@
 
 /datum/status_effect/knuckled
     id = "knuckle_wound"
-    duration = 100 
+    duration = 10 SECONDS
     status_type = STATUS_EFFECT_REPLACE
     alert_type = null
     var/mutable_appearance/bruise

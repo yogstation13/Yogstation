@@ -1112,6 +1112,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	log_combat(user, L, "took out a blood contract on", src)
 	qdel(src)
 
+#define COOLDOWN 150
+#define COOLDOWN_HUMAN 100
+#define COOLDOWN_ANIMAL 60
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
 	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner."
@@ -1122,9 +1125,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	item_state = "knuckles"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
-	var/cooldown = 150
-	var/cdh = 100
-	var/cda = 60
 	var/next_reach = 0
 	var/next_grip = 0
 	var/next_knuckle = 0
@@ -1143,9 +1143,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		else
 			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 			if(ishuman(L))
-				next_knuckle = world.time + cdh
-			if(!ishuman(L))
-				next_knuckle = world.time + cda
+				next_knuckle = world.time + COOLDOWN_HUMAN
+				return
+			next_knuckle = world.time + COOLDOWN_ANIMAL
 
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
 	var/mob/living/U = user
@@ -1162,7 +1162,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(!valid_reaching)
 			to_chat(U, span_warning("There's nobody to use this on!"))
 			return
-		next_reach = world.time + cooldown
+		next_reach = world.time + COOLDOWN
 	else if(istype(action, /datum/action/item_action/visegrip))
 		if(next_grip > world.time)
 			to_chat(U, span_warning("You can't do that yet!"))
@@ -1175,7 +1175,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(!valid_casting)
 			to_chat(U, span_warning("There's nobody to use this on!"))
 			return
-		next_grip = world.time + cooldown
+		next_grip = world.time + COOLDOWN
+		#undef COOLDOWN
+		#undef COOLDOWN_HUMAN
+		#undef COOLDOWN_ANIMAL
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"

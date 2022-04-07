@@ -2,7 +2,7 @@
 	id = "roots"
 	alert_type = /obj/screen/alert/status_effect/roots
 	var/icon/cube
-	duration = 10
+	duration = 1 SECONDS
 
 /obj/screen/alert/status_effect/roots
 	name = "grasped"
@@ -19,7 +19,7 @@
 	owner.add_overlay(cube)
 	owner.remove_status_effect(STATUS_EFFECT_KNUCKLED)
 	if(!ishuman(owner))
-		duration = 60
+		duration = 6 SECONDS
 		owner.adjustBruteLoss(50)
 	return ..()
 
