@@ -1146,9 +1146,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		else
 			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 			if(ishuman(L))
-				next_knuckle = world.time + cdh
-			if(!ishuman(L))
-				next_knuckle = world.time + cda
+				next_knuckle = world.time + COOLDOWN_HUMAN
+				return
+			next_knuckle = world.time + COOLDOWN_ANIMAL
 
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
 	var/mob/living/U = user
