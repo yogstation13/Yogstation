@@ -53,10 +53,11 @@
 		var/mob/living/L = src
 		bubble = L.bubble_icon
 	typing_overlay = image('icons/mob/talk.dmi', src, "[bubble]_talking", FLY_LAYER)
-	typing_overlay.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	typing_overlay.appearance_flags = APPEARANCE_UI
 	typing_overlay.invisibility = invisibility
-	add_overlay(typing_overlay)
-	//INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, typing_overlay, speech_bubble_recipients)
+	typing_overlay.alpha = alpha
+	for(var/client/C in speech_bubble_recipients)
+		C.images += typing_overlay;
 
 
 /mob/proc/remove_typing_indicator()
@@ -64,8 +65,8 @@
 		return
 	if(window_typing || bar_typing)
 		return
-	//INVOKE_ASYNC(GLOBAL_PROC, /proc/remove_images_from_clients, typing_overlay, speech_bubble_recipients)
-	cut_overlay(typing_overlay)
+	for(var/client/C in speech_bubble_recipients)
+		C.images -= typing_overlay;
 	typing_overlay = null
 	speech_bubble_recipients = list()
 
