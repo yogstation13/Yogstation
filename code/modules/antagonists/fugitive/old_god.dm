@@ -23,14 +23,11 @@
 	START_PROCESSING(SSobj, src)
 	hunters_release_time = world.time + 10 MINUTES // Yogs -- making Login() dialogue make more sense
 
-/mob/camera/yalp_elor/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
-/mob/camera/yalp_elor/Destroy()
+/mob/camera/yalp_elor/Destroy() // Yogs -- fixes duplicated Destroy() proc
 	QDEL_NULL(transmit)
 	QDEL_NULL(transport)
-	. = ..()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /mob/camera/yalp_elor/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(FALSE)
