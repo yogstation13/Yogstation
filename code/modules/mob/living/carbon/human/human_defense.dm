@@ -126,13 +126,14 @@
 	var/block_chance_modifier = round(damage / -3)
 
 	for(var/obj/item/I in held_items)
-		if(!istype(I, /obj/item/clothing))
-			var/final_block_chance = I.block_chance - (clamp((armour_penetration-I.armour_penetration)/2,0,100)) + block_chance_modifier //So armour piercing blades can still be parried by other blades, for example
-			if(I.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
-				if (istype(I, /obj/item/shield))
-					var/obj/item/shield/S = I
-					return S.on_shield_block(src, AM, attack_text, damage, attack_type)
-				return TRUE
+		if(istype(I, /obj/item/clothing))
+			continue
+		var/final_block_chance = I.block_chance - (clamp((armour_penetration-I.armour_penetration)/2,0,100)) + block_chance_modifier //So armour piercing blades can still be parried by other blades, for example
+		if(I.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
+			if (istype(I, /obj/item/shield))
+				var/obj/item/shield/S = I
+				return S.on_shield_block(src, AM, attack_text, damage, attack_type)
+			return TRUE
 	if(wear_suit)
 		var/final_block_chance = wear_suit.block_chance - (clamp((armour_penetration-wear_suit.armour_penetration)/2,0,100)) + block_chance_modifier
 		if(wear_suit.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
@@ -145,6 +146,11 @@
 		var/final_block_chance = wear_neck.block_chance - (clamp((armour_penetration-wear_neck.armour_penetration)/2,0,100)) + block_chance_modifier
 		if(wear_neck.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
 			return TRUE
+	if(belt)
+		if(istype(belt, /obj/item/storage/belt))//don't want stuff doing this without being supposed to
+			var/final_block_chance = belt.block_chance - (clamp((armour_penetration-belt.armour_penetration)/2,0,100)) + block_chance_modifier
+			if(belt.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
+				return TRUE
   return FALSE
 
 /mob/living/carbon/human/proc/check_block()
@@ -726,7 +732,7 @@
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return
 		else if(istype(src.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard) && creamed)
-			visible_message(span_notice("[src] eats the pie off [p_their()] face with [p_their()] forked tongue."), 
+			visible_message(span_notice("[src] eats the pie off [p_their()] face with [p_their()] forked tongue."),
 							"<span class='notice'>You eat the pie off your face with your forked tongue.")
 			reagents.add_reagent(/datum/reagent/consumable/banana, 1)
 			wash_cream()
