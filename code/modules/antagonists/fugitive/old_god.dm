@@ -129,6 +129,12 @@
 	var/input = stripped_input(owner, "What do you wish to tell [target]?", null, "")
 	if(QDELETED(src) || !input || !IsAvailable())
 		return FALSE
+	if(isnotpretty(input)) // Yogs -- Pretty filter
+		to_chat(owner,span_warning("That's not a very nice thing to tell [target.p_them()]."))
+		var/log_message = "[key_name(owner)] just tripped a pretty filter: '[input]'."
+		message_admins(log_message)
+		log_say(log_message)
+		return FALSE // yogs end
 
 	transmit(owner, target, input)
 	return TRUE
