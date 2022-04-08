@@ -1,4 +1,0 @@
-author: " Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Moneybag Cargo Technicians can no longer spawn an infinite number of cargo encryption keys to flex on their inferiors."
