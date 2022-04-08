@@ -90,13 +90,13 @@
 	..()
 
 
-/mob/living/mech_melee_attack(obj/mecha/M, target)
+/mob/living/mech_melee_attack(obj/mecha/M, target/T)
 	if(M.occupant.a_intent == INTENT_HARM)
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
 			var/throwtarget = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
-			D.throw_at(throwtarget, 4, 2, A) //copied from psychobrawling
+			T.throw_at(throwtarget, 4, 2, A) //copied from psychobrawling
 		switch(M.damtype)
 			if(BRUTE)
 				Knockdown(10)
