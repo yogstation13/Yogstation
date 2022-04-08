@@ -141,7 +141,7 @@
 	var/safety = get_dist(user, targeted_turf) * 3 + 1
 	var/consecutive_failures = 0
 	var/hit_target = FALSE
-	var/var/turf/next_turf
+	var/turf/next_turf
 	while(--safety && (get_turf(user) != targeted_turf))
 		next_turf = get_step(user, get_dir(user, targeted_turf))
 		for(var/mob/living/L in next_turf) //check if we are going to be interrupted by someone who is about to have a bad day
