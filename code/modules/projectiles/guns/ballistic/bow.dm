@@ -47,7 +47,7 @@
 		update_icon()
 
 /obj/item/gun/ballistic/bow/update_icon()
-	icon_state = "[initial(icon_state)]_[get_ammo() ? (chambered ? "firing" : "loaded") : "unloaded"]"
+	icon_state = "[initial(icon_state)][get_ammo() ? (chambered ? "_firing" : "_loaded") : ""]"
 
 /obj/item/gun/ballistic/bow/can_shoot()
 	return chambered

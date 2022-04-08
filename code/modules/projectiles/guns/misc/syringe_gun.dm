@@ -73,7 +73,7 @@
 			to_chat(user, span_warning("[src] cannot hold more syringes!"))
 	return FALSE
 
-/obj/item/gun/syringe/update_overlays()
+/obj/item/gun/syringe/update_icon()
 	. = ..()
 	if(!has_syringe_overlay)
 		return
