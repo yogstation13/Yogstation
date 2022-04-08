@@ -167,9 +167,17 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/advanced
 	recharge_time = 0
 
+/obj/item/gun/ballistic/bow/energy/syndicate
+	name = "Syndicate Hardlight Bow"
+	desc = "A modern bow that can fabricate hardlight arrows using an internal energy. This one is designed for silent takedowns of targets by the syndicate."
+	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/syndicate
+	recharge_time = 20
+	zoomable = TRUE
+	zoom_amt = 10
+	zoom_out_amt = 5
+
 /obj/item/gun/ballistic/bow/energy/clockwork
 	name = "Brass Bow"
 	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and frabricates arrows by itself."
 	icon_state = "bow_clockwork"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/clockcult
-	recharge_time = 15
