@@ -100,10 +100,9 @@
 			if(BRUTE)
 				Knockdown(10)
 				take_overall_damage(rand(M.force/2, M.force))
-				if(ismovable(target))
-					var/atom/movable/M = target
+				if(ismovable())
 					var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
-					M.throw_at(throw_target, 3, 2)
+					M.throw_at(throw_target, 3, 2) //copied from meteorslugs
 				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(BURN)
 				take_overall_damage(0, rand(M.force/2, M.force))
