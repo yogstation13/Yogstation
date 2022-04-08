@@ -59,12 +59,12 @@
 
 /datum/antagonist/brainwashed/proc/update_traitor_icons_added(datum/mind/slave_mind)
 	var/datum/atom_hud/antag/brainwashedhud = GLOB.huds[ANTAG_HUD_BRAINWASHED]
-	slavehud.join_hud(owner.current)
+	brainwashedhud.join_hud(owner.current)
 	set_antag_hud(owner.current, "brainwashed")
 
 /datum/antagonist/brainwashed/proc/update_traitor_icons_removed(datum/mind/slave_mind)
 	var/datum/atom_hud/antag/brainwashedhud = GLOB.huds[ANTAG_HUD_BRAINWASHED]
-	slavehud.leave_hud(owner.current)
+	brainwashedhud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
 
 /datum/antagonist/brainwashed/admin_add(datum/mind/new_owner,mob/admin)
