@@ -1,7 +1,0 @@
-author: " Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "You can no longer name the space station your favourite ethnic slur."
-  - bugfix: "Apostrophes, etc. within custom station names are no longer clobbered into nonsense."
-  - tweak: "The Captain now has ten minutes to rename the station, up from five minutes."
-  - spellcheck: "The admin dialog for station renaming is now a bit clearer and allows you to manually approve a station name."
