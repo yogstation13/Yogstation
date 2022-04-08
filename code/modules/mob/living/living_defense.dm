@@ -99,9 +99,11 @@
 		switch(M.damtype)
 			if(BRUTE)
 				Knockdown(10)
-				var/atom/throw_target = get_edge_target_turf(target, user.dir)
-				target.throw_at(throw_target, rand(8,10), 14, user)
-				SSexplosions.medturf += throw_target //throwing code copied straight from baseball bats
+				take_overall_damage(rand(M.force/2, M.force))
+				if(ismovable(target))
+					var/atom/movable/M = target
+					var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
+					M.throw_at(throw_target, 3, 2)
 				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(BURN)
 				take_overall_damage(0, rand(M.force/2, M.force))
