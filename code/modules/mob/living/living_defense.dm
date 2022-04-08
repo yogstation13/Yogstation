@@ -90,19 +90,17 @@
 	..()
 
 
-/mob/living/mech_melee_attack(obj/mecha/M)
+/mob/living/mech_melee_attack(obj/mecha/M, target)
 	if(M.occupant.a_intent == INTENT_HARM)
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
-			step_away(src,M,15)
+			var/throwtarget = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
+			D.throw_at(throwtarget, 4, 2, A) //copied from psychobrawling
 		switch(M.damtype)
 			if(BRUTE)
 				Knockdown(10)
 				take_overall_damage(rand(M.force/2, M.force))
-				if(ismovable())
-					var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
-					M.throw_at(throw_target, 3, 2) //copied from meteorslugs
 				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(BURN)
 				take_overall_damage(0, rand(M.force/2, M.force))
