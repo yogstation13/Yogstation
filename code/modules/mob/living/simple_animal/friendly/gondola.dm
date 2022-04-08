@@ -25,6 +25,8 @@
 	maxHealth = 200
 	health = 200
 	del_on_death = TRUE
+	var/mob/living/carbon/human/stored_mob //could be changed
+	var/M
 
 	//Gondolas don't make footstep sounds
 

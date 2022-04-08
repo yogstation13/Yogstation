@@ -97,3 +97,15 @@
 	action_icon_state = "raise"
 	hand_path = /obj/item/melee/touch_attack/raisehand
 	clothes_req = FALSE
+
+/obj/effect/proc_holder/spell/targeted/touch/gondolatouch
+	name = "Gondola Touch"
+	desc = "This spell charges your hand with pure pacifism, allowing you to turn people into gondolas."
+	hand_path = /obj/item/melee/touch_attack/gondolatouch
+
+	school = "evocation"
+	charge_max = 600
+	clothes_req = TRUE
+	cooldown_min = 200 //100 deciseconds reduction per rank
+
+	action_icon_state = "gondola"

@@ -22,7 +22,10 @@
 		/mob/living/simple_animal/hostile/carp/ranged/chaos,\
 		/mob/living/simple_animal/bot/ed209,\
 		/mob/living/simple_animal/hostile/poison/giant_spider/hunter/viper,\
-		/mob/living/simple_animal/hostile/construct/armored)
+		/mob/living/simple_animal/hostile/construct/armored,\
+		/mob/living/simple_animal/pet/gondola,\
+		/mob/living/simple_animal/hostile/clockwork/marauder,\
+		/mob/living/simple_animal/hostile/eldritch/raw_prophet/wizard)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/cast(list/targets,mob/user = usr)
 	if(src in user.mob_spell_list)

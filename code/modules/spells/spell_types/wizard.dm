@@ -389,3 +389,40 @@
 		T.break_tile()
 	playsound(usr.loc, 'sound/effects/meteorimpact.ogg', 30, 1, 2)
 	..()
+
+
+/obj/effect/proc_holder/spell/targeted/void_pull
+	name = "Void Pull"
+	desc = "Call the void, this pulls all nearby people closer to you. If they are 4 tiles or closer they are also knocked down and a micro-stun is applied."
+	action_icon = 'icons/mob/actions/actions_spells.dmi'
+	action_icon_state = "voidpull"
+	action_background_icon_state = "bg_default"
+	invocation = "BR'NG F'RTH TH'M T' M'"
+	school = "forbiden"
+	clothes_req = TRUE
+	range = -1
+	include_user = TRUE
+	charge_max = 400
+	cooldown_min = 150
+	invocation_type = "whisper"
+
+/obj/effect/temp_visual/voidin
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "void_blink_in"
+	alpha = 150
+	duration = 6
+	pixel_x = -32
+	pixel_y = -32
+
+/obj/effect/proc_holder/spell/targeted/void_pull/cast(list/targets, mob/user)
+	. = ..()
+	playsound(user,'sound/magic/voidblink.ogg',100)
+	new /obj/effect/temp_visual/voidin(user.drop_location())
+	for(var/mob/living/livies in view(7, user) - user)
+
+		if(get_dist(user, livies) < 4)
+			livies.AdjustKnockdown(3 SECONDS)
+			livies.AdjustParalyzed(0.5 SECONDS)
+
+		for(var/i in 1 to 3)
+			livies.forceMove(get_step_towards(livies,user))

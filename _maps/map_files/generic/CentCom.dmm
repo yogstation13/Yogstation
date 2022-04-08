@@ -12392,13 +12392,6 @@
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/engine/cult,
 /area/wizard_station)
-"azO" = (
-/obj/structure/destructible/cult/talisman{
-	desc = "An altar dedicated to the Wizards' Federation"
-	},
-/obj/item/kitchen/knife/ritual,
-/turf/open/floor/engine/cult,
-/area/wizard_station)
 "azP" = (
 /obj/item/clothing/shoes/sandal/marisa,
 /obj/item/clothing/suit/wizrobe/marisa,
@@ -26175,6 +26168,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
+"vtQ" = (
+/obj/structure/destructible/cult/talisman{
+	desc = "An altar dedicated to the Wizards' Federation"
+	},
+/obj/effect/spawner/lootdrop/WizardKnife,
+/turf/open/floor/engine/cult,
+/area/wizard_station)
 "wDa" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/holodeck_effect/mobspawner{
@@ -33046,7 +33046,7 @@ aqZ
 ayb
 aqZ
 aqZ
-azO
+vtQ
 aAy
 aqZ
 aBS

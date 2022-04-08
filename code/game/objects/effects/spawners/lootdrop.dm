@@ -122,7 +122,7 @@
 
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
-	
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
 		lootcount = FLOOR(lootcount * 1.5, 1)
 
@@ -383,4 +383,14 @@
 				/obj/item/circuitboard/computer/mecha_control,
 				/obj/item/circuitboard/computer/apc_control,
 				/obj/item/circuitboard/computer/robotics
+				)
+
+/obj/effect/spawner/lootdrop/WizardKnife
+	name = "wizard den knife spawner"
+	loot = list(
+				/obj/item/kitchen/knife/ritual,
+				/obj/item/melee/sickly_blade/rust,
+				/obj/item/melee/sickly_blade/ash,
+				/obj/item/melee/sickly_blade/flesh,
+				/obj/item/clockwork/weapon/ratvarian_spear
 				)

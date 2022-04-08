@@ -162,7 +162,7 @@
 	var/mob/living/new_mob
 
 	if(!randomize)
-		randomize = pick("monkey","robot","slime","xeno","humanoid","animal")
+		randomize = pick("monkey","robot","slime","xeno","humanoid","animal","demon")
 	switch(randomize)
 		if("monkey")
 			new_mob = new /mob/living/carbon/monkey(M.loc)
@@ -172,7 +172,8 @@
 							/mob/living/silicon/robot/modules/syndicate,
 							/mob/living/silicon/robot/modules/syndicate/medical,
 							/mob/living/silicon/robot/modules/syndicate/saboteur,
-							200;/mob/living/simple_animal/drone/polymorphed)
+							200;/mob/living/simple_animal/drone/polymorphed,
+							/mob/living/simple_animal/hostile/swarmer)
 			new_mob = new robot(M.loc)
 			if(issilicon(new_mob))
 				new_mob.gender = M.gender
@@ -229,7 +230,19 @@
 							/mob/living/simple_animal/pet/fox,
 							/mob/living/simple_animal/butterfly,
 							/mob/living/simple_animal/pet/cat/cak,
-							/mob/living/simple_animal/chick)
+							/mob/living/simple_animal/chick,
+							/mob/living/simple_animal/pet/gondola)
+			new_mob = new path(M.loc)
+
+		if("demon")
+			var/path = pick(/mob/living/simple_animal/hostile/clockwork/marauder,
+							/mob/living/simple_animal/hostile/eldritch/ash_spirit,
+							/mob/living/simple_animal/hostile/eldritch/stalker,
+							/mob/living/simple_animal/hostile/eldritch/raw_prophet,
+							/mob/living/simple_animal/hostile/construct/armored,
+							/mob/living/simple_animal/hostile/construct/wraith,
+							/mob/living/simple_animal/hostile/faithless,
+							/mob/living/simple_animal/hostile/construct/harvester)
 			new_mob = new path(M.loc)
 
 		if("humanoid")
@@ -299,7 +312,7 @@
 	if(!B)
 		return
 	B.stored_mob = M
-	M.forceMove(B)	
+	M.forceMove(B)
 	M.log_message("became [B.real_name]", LOG_ATTACK, color="orange")
 	B.desc = "What appears to be [M.real_name] reformed into a wheel of delicious parmesan..."
 	B.name = "[M.name] Parmesan"

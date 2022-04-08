@@ -163,5 +163,28 @@
 		L.stored_mob = M
 		M.forceMove(L)
 		qdel(src)
-		user.blood_volume -= 50 // 9% blood cost, cheaper than the other spell because its not like you can stop near a corpse or find one near you in a fight 
+		user.blood_volume -= 50 // 9% blood cost, cheaper than the other spell because its not like you can stop near a corpse or find one near you in a fight
 		to_chat(user, "<span class ='userdanger'>You curse the body with your blood, leaving you feeling a bit light-headed.</span>")
+
+/obj/item/melee/touch_attack/gondolatouch
+    name = "\improper gondola touch"
+    desc = "Bruh"
+    catchphrase = "GON'DOLA"
+    on_use_sound = 'sound/magic/wandodeath.ogg'
+    icon_state = "flagellation"
+    item_state = "hivehand"
+    color = "#FF0000"
+
+/obj/item/melee/touch_attack/gondolatouch/afterattack(atom/target, mob/living/carbon/user, proximity)
+    if(!proximity || target == user || !isliving(target) || !iscarbon(user))
+        return
+
+    var/mob/living/carbon/human/M = target
+    var/mob/living/simple_animal/pet/gondola/G = new(M.loc)
+    G.stored_mob = M
+    M.forceMove(G)
+    qdel(src)
+    M.mind.transfer_to(G)
+    return ..()
+
+

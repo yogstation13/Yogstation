@@ -78,6 +78,10 @@
 	var/used = FALSE
 	color = rgb(130, 105, 160)
 
+/obj/item/horrorspawner/wizard
+	name = "magic cage"
+	desc = "A magical cage. A strange creature is locked inside."
+
 /obj/item/horrorspawner/attack_self(mob/living/user)
 	if(used)
 		to_chat(user, "The pet carrier appears unresponsive.")

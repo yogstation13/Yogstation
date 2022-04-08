@@ -26,6 +26,7 @@
 #define APPRENTICE_BLUESPACE "bluespace"
 #define APPRENTICE_ROBELESS "robeless"
 #define APPRENTICE_HEALING "healing"
+#define APPRENTICE_MELEE "melee"
 
 
 //Blob
@@ -86,6 +87,7 @@
 #define IS_HERETIC(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic))
 #define IS_HERETIC_MONSTER(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic_monster))
 #define IS_EXCLUSIVE_KNOWLEDGE(knowledge) (knowledge.tier % 2)
+#define IS_WIZARD(mob) (mob.mind?.has_antag_datum(/datum/antagonist/wizard))
 
 #define PATH_SIDE "Side"
 

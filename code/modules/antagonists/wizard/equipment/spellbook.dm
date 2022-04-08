@@ -119,6 +119,10 @@
 	spell_type = /obj/effect/proc_holder/spell/targeted/projectile/magic_missile
 	category = "Defensive"
 
+/datum/spellbook_entry/gondola
+	name = "Gondola Touch"
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/gondolatouch
+
 /datum/spellbook_entry/disintegrate
 	name = "Disintegrate"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/disintegrate
@@ -133,6 +137,10 @@
 	name = "Repulse"
 	spell_type = /obj/effect/proc_holder/spell/aoe_turf/repulse
 	category = "Defensive"
+
+/datum/spellbook_entry/void_pull
+	name = "Void Pull"
+	spell_type = /obj/effect/proc_holder/spell/targeted/void_pull
 
 /datum/spellbook_entry/lightningPacket
 	name = "Lightning bolt!  Lightning bolt!"
@@ -406,6 +414,13 @@
 	desc = "A bottle of magically infused blood, the smell of which will attract extradimensional beings when broken. Be careful though, the kinds of creatures summoned by blood magic are indiscriminate in their killing, and you yourself may become a victim."
 	item_path = /obj/item/antag_spawner/slaughter_demon
 	limit = 3
+	category = "Assistance"
+
+/datum/spellbook_entry/item/horror
+	name = "Magical Cage"
+	desc = "A magical cage with a strange creature inside. It can mindcontrol your enemies, or inject usefull chemicals inside your body."
+	item_path = /obj/item/horrorspawner/wizard
+	limit = 1
 	category = "Assistance"
 
 /datum/spellbook_entry/item/hugbottle
