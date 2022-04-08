@@ -439,6 +439,6 @@
 /obj/item/book/granter/crafting_recipe/weapons
 	name = "makeshift weapons 101"
 	desc = "A book filled with directions on how to make various weaponry."
-	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/flamethrower)
+	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/flamethrower, /datum/crafting_recipe/bola_arrow, /datum/crafting_recipe/explosive_arrow, /datum/crafting_recipe/flaming_arrow)
 	icon_state = "bookCrafting"
 	oneuse = TRUE

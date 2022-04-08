@@ -358,8 +358,11 @@ GLOBAL_LIST_INIT(silk_recipes, list ( \
 	singular_name = "Silk Sheet"
 	icon_state = "sheet-silk"
 	item_state = "sheet-silk"
+	icon = 'icons/obj/stack_objects.dmi'
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/silk
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 
 /obj/item/stack/sheet/silk/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.silk_recipes
