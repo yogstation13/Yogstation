@@ -441,6 +441,7 @@
 	parts = list(/obj/item/ammo_casing/caseless/arrow = 1, /obj/item/restraints/legcuffs/bola = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+	always_availible = FALSE
 
 /datum/crafting_recipe/explosive_arrow
 	name = "Explosive arrow"
@@ -452,6 +453,7 @@
 	parts = list(/obj/item/ammo_casing/caseless/arrow = 1, /obj/item/grenade = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+	always_availible = FALSE
 
 /datum/crafting_recipe/flaming_arrow
 	name = "Flaming arrow"
@@ -463,6 +465,7 @@
 	parts = list(/obj/item/ammo_casing/caseless/arrow = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+	always_availible = FALSE
 
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
