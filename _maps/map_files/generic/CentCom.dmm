@@ -10620,24 +10620,6 @@
 /obj/item/clothing/neck/stripedbluescarf,
 /turf/open/floor/grass,
 /area/centcom/testchamber)
-"awh" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/gun/energy/kinetic_accelerator/crossbow/large{
-	pin = /obj/item/firing_pin;
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "awi" = (
 /obj/structure/statue/diamond/captain,
 /turf/open/floor/holofloor/grass,
@@ -22893,27 +22875,6 @@
 	icon_state = "reebe"
 	},
 /area/holodeck/rec_center/spacechess)
-"aTE" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/gun/ballistic/revolver/mateba,
-/obj/item/gun/ballistic/revolver/nagant{
-	pixel_y = -8
-	},
-/obj/item/gun/ballistic/revolver/reverse{
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "aTF" = (
 /obj/machinery/light{
 	dir = 8
@@ -22933,27 +22894,6 @@
 	},
 /turf/open/floor/circuit,
 /area/centcom/ferry)
-"aTI" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/gun/ballistic/automatic/pistol/APS{
-	pixel_y = -10
-	},
-/obj/item/gun/ballistic/automatic/pistol/deagle,
-/obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted{
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "aTJ" = (
 /obj/structure/table/reinforced,
 /obj/item/grenade/spawnergrenade/syndiesoap,
@@ -24413,25 +24353,6 @@
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/item/pneumatic_cannon/pie/selfcharge,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
-"aWI" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/gun/ballistic/automatic/pistol/deagle/gold{
-	pixel_y = -6
-	},
-/obj/item/gun/ballistic/revolver/golden,
-/obj/item/gun/energy/kinetic_accelerator/crossbow/halloween,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aWJ" = (
@@ -26138,6 +26059,28 @@
 /obj/effect/penance_giver/eldritch,
 /turf/open/indestructible/brazil/necropolis,
 /area/brazil)
+"gmo" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/quiver/admin/full,
+/obj/item/gun/ballistic/bow,
+/obj/item/gun/ballistic/bow/ashen{
+	pixel_y = -2
+	},
+/obj/item/gun/ballistic/bow/pipe{
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "gDu" = (
 /obj/item/clothing/gloves/color/latex,
 /obj/item/clothing/mask/surgical,
@@ -26152,6 +26095,62 @@
 /obj/item/reagent_containers/medspray/sterilizine,
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
+"hIA" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/gun/ballistic/bow/energy/advanced,
+/obj/item/gun/ballistic/bow/energy/syndicate{
+	pixel_y = -4
+	},
+/obj/item/gun/ballistic/bow/energy/clockwork{
+	pixel_y = -8
+	},
+/obj/item/gun/energy/kinetic_accelerator/crossbow/large{
+	pin = /obj/item/firing_pin;
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/gun/energy/kinetic_accelerator/crossbow/halloween{
+	pixel_x = -1;
+	pixel_y = -7
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
+"kai" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/gun/ballistic/revolver/reverse{
+	pixel_y = 7
+	},
+/obj/item/gun/ballistic/revolver/mateba{
+	pixel_y = 3
+	},
+/obj/item/gun/ballistic/revolver/golden{
+	pixel_y = -5
+	},
+/obj/item/gun/ballistic/revolver/nagant{
+	pixel_y = -8
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "uDo" = (
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/o2{
@@ -26184,6 +26183,30 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"wFh" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/gun/ballistic/automatic/pistol/APS{
+	pixel_y = -10
+	},
+/obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted{
+	pixel_y = 10
+	},
+/obj/item/gun/ballistic/automatic/pistol/deagle/gold{
+	pixel_y = -6
+	},
+/obj/item/gun/ballistic/automatic/pistol/deagle,
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 
 (1,1,1) = {"
 azH
@@ -64442,8 +64465,8 @@ aaa
 aNt
 aAC
 aWx
-aTE
-aTI
+kai
+wFh
 aYc
 aNZ
 aST
@@ -64960,8 +64983,8 @@ awS
 aQo
 aHE
 awS
-aWI
-awh
+gmo
+hIA
 aWx
 aZw
 aQz
