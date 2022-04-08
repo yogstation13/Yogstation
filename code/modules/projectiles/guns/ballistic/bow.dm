@@ -112,8 +112,7 @@
 	if(magazine.get_round(TRUE))
 		return
 	var/ammo_type = magazine.ammo_type
-	var/obj/item/ammo_casing/caseless/arrow/energy/EB = new ammo_type()
-	magazine.stored_ammo += EB
+	magazine.give_round(new ammo_type())
 
 	update_icon()
 
