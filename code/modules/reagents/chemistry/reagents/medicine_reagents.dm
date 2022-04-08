@@ -1767,7 +1767,7 @@
 
 /datum/reagent/medicine/radaway/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
-		M.wash(CLEAN_RAD)
+		M.wash(CLEAN_RAD) //you only get decontaminated if it's spray based, can't spam out 100 1u pills
 	
 /datum/reagent/medicine/radaway/on_mob_life(mob/living/carbon/M)
 	if(M.radiation > 0)
