@@ -307,7 +307,6 @@
 	name = "Pink Bioluminescence"
 	glow_color = "#FFB3DA"
 
-
 /datum/plant_gene/trait/teleport
 	// Makes plant teleport people when squashed or slipped on.
 	// Teleport radius is calculated as max(round(potency*rate), 1)
