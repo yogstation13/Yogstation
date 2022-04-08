@@ -153,19 +153,6 @@
 			to_chat(mob_viewer, span_notice("You succesfuly remove the durathread strand."))
 			L.remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 
-
-/datum/status_effect/pacify/on_creation(mob/living/new_owner, set_duration)
-	if(isnum(set_duration))
-		duration = set_duration
-	. = ..()
-
-/datum/status_effect/pacify/on_apply()
-	ADD_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
-	return ..()
-
-/datum/status_effect/pacify/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
-
 //OTHER DEBUFFS
 /datum/status_effect/pacify
 	id = "pacify"
@@ -1065,3 +1052,56 @@
 		var/mob/living/simple_animal/S = owner
 		for(var/i in S.damage_coeff)
 			S.damage_coeff[i] /= power
+
+// A simple slowdown effect mainly for simple mobs, only used by watcher bolas
+/datum/status_effect/slowdown
+	id = "slowdown"
+	duration = 10 SECONDS
+	// Spagetti code makes it so if this is higher, the mob moves slower. Do not set it equal to 0
+	var/speed_mult = 2
+
+/datum/status_effect/slowdown/on_creation(mob/living/new_owner, set_duration, set_speed_mult)
+	if(isnum(set_duration))
+		duration = set_duration
+	if(isnum(set_speed_mult))
+		speed_mult = set_speed_mult
+	. = ..()
+
+/datum/status_effect/slowdown/on_apply()
+	if(!..())
+		return
+	if(isanimal(owner))
+		var/mob/living/simple_animal/A = owner
+		A.speed *= speed_mult
+
+/datum/status_effect/slowdown/on_remove()
+	if(!..())
+		return
+	if(isanimal(owner) && speed_mult != 0)
+		var/mob/living/simple_animal/A = owner
+		A.speed /= speed_mult
+
+// Snowflake effect that drops the leg cuff when ended, designed for watcher bolas but should work for any legcuffs
+/datum/status_effect/slowdown/watcherbola
+	id = "watcherbola"
+	var/obj/item/restraints/legcuffs/original_legcuffs
+
+/datum/status_effect/slowdown/watcherbola/on_creation(mob/living/new_owner, set_duration, set_speed_mult, set_original_legcuffs)
+	. = ..()
+	if(istype(set_original_legcuffs, /obj/item/restraints/legcuffs))
+		original_legcuffs = set_original_legcuffs
+
+/datum/status_effect/slowdown/watcherbola/on_apply()
+	if(ismegafauna(owner))
+		owner.visible_message(span_warning("[owner] easily brakes out of \the [original_legcuffs]"), span_warning("You easily brake out of \the [original_legcuffs]"))
+		qdel(original_legcuffs)
+		return FALSE
+	..()
+
+/datum/status_effect/slowdown/watcherbola/on_remove()
+	if(!..())
+		return
+	if(original_legcuffs)
+		owner.visible_message(span_warning("[owner] manages to get free from \the [original_legcuffs]"), span_warning("You manages to get free from \the [original_legcuffs]"))
+		original_legcuffs.doMove(owner.drop_location())
+		original_legcuffs.dropped(owner)

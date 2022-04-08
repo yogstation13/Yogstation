@@ -70,6 +70,25 @@
 /turf/open/floor/wood/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
+/turf/open/floor/bamboo
+	desc = "A bamboo mat with a decorative trim."
+	icon = 'icons/turf/floors/bamboo_mat.dmi'
+	icon_state = "bamboo"
+	floor_tile = /obj/item/stack/tile/bamboo
+	broken_states = list("damaged")
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/floor/bamboo)
+	flags_1 = NONE
+	footstep = FOOTSTEP_WOOD
+	barefootstep = FOOTSTEP_WOOD_BAREFOOT
+	clawfootstep = FOOTSTEP_WOOD_CLAW
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/floor/carpet/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>There's a <b>small crack</b> on the edge of it.</span>"
+
 /turf/open/floor/grass
 	name = "grass patch"
 	desc = "You can't tell if this is real grass or just cheap plastic imitation."

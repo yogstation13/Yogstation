@@ -23,6 +23,8 @@
 	if(proximity_flag)
 		if(istype(target, /obj/item/gun))
 			var/obj/item/gun/G = target
+			if(G.no_pin_required)
+				return
 			if(G.pin && (force_replace || G.pin.pin_removeable))
 				G.pin.forceMove(get_turf(G))
 				if(!G.pin.gun_remove(user))
