@@ -159,7 +159,7 @@
 	tastes = list("fish" = 1, "hot peppers" = 1)
 	foodtype = SEAFOOD | TOXIC
 
-	/obj/item/reagent_containers/food/snacks/fishburger
+/obj/item/reagent_containers/food/snacks/fishburger
 	name = "Fillet-O-Carp sandwich"
 	desc = "Almost like a carp is yelling somewhere... Give me back that fillet -o- carp, give me that carp."
 	icon = 'icons/obj/food/seafood.dmi'
