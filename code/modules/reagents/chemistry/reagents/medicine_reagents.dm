@@ -1770,8 +1770,6 @@
 		M.wash(CLEAN_RAD) //you only get decontaminated if it's spray based, can't spam out 100 1u pills
 	
 /datum/reagent/medicine/radaway/on_mob_life(mob/living/carbon/M)
-	if(M.radiation > 0)
-		M.radiation -= min(M.radiation, 15)
 	M.adjustToxLoss(1*REM, 0)
 	..()
 
@@ -1785,7 +1783,7 @@
 	L.rad_insulation = old_insulation
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.vomit() //it binds with the radioactive particles inside you, and they have to come out somehow
+		C.vomit(stun = FALSE) //it binds with the radioactive particles inside you, and they have to come out somehow
 	..()
 	
 /datum/reagent/medicine/radaway/reaction_obj(obj/O, reac_volume)
