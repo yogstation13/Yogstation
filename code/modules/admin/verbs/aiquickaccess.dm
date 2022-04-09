@@ -1,4 +1,4 @@
-/client/proc/ai_quick_access(obj/machinery/ai/data_core/M in world)
+/client/proc/ai_quick_access(obj/machinery/ai/data_core/M in GLOB.data_cores)
 	set name = "View AI Variables"
 	set category = "Admin"
 	if (!istype(M))
