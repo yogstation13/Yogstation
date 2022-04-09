@@ -27,6 +27,12 @@
 			var/obj/item/clothing/CS = shoes
 			if (CS.clothing_flags & NOSLIP_ICE)
 				return 0
+	var/wagging = FALSE
+	if(src.dna.species.is_wagging_tail())
+		wagging = TRUE
+	src.Stun(stun_amount)
+	if(wagging)
+		src.dna.species.start_wagging_tail(C)
 	return ..()
 
 /mob/living/carbon/human/experience_pressure_difference(pressure_difference)
