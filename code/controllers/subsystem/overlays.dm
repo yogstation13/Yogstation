@@ -5,6 +5,8 @@ SUBSYSTEM_DEF(overlays)
 	priority = FIRE_PRIORITY_OVERLAYS
 	init_order = INIT_ORDER_OVERLAY
 
+	loading_points = 2.3 SECONDS // Yogs -- loading times
+
 	var/list/queue
 	var/list/stats
 	var/list/overlay_icon_state_caches
