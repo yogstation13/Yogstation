@@ -57,7 +57,7 @@
 	typing_overlay.invisibility = invisibility
 	typing_overlay.alpha = alpha
 	for(var/client/C in speech_bubble_recipients)
-		C.images += typing_overlay;
+		C.images += typing_overlay
 
 
 /mob/proc/remove_typing_indicator()
@@ -66,7 +66,7 @@
 	if(window_typing || bar_typing)
 		return
 	for(var/client/C in speech_bubble_recipients)
-		C.images -= typing_overlay;
+		C.images -= typing_overlay
 	typing_overlay = null
 	speech_bubble_recipients = list()
 
