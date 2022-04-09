@@ -90,7 +90,7 @@
 	..()
 
 
-/mob/living/mech_melee_attack(obj/mecha/M, mob/living/A)
+/mob/living/mech_melee_attack(obj/mecha/M)
 	if(M.occupant.a_intent == INTENT_HARM)
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
