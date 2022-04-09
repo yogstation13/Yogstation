@@ -95,11 +95,11 @@
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
-			var/throwtarget = get_edge_target_turf(src, get_dir(src, get_step_away(M, src)))
-			src.throw_at(throwtarget, 4, 2, src) //copied from psychobrawling
+			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
+			src.throw_at(throwtarget, 4, 2, M) //copied from psychobrawling
 		switch(M.damtype)
 			if(BRUTE)
-				Knockdown(10)
+				Unconscious(20)
 				take_overall_damage(rand(M.force/2, M.force))
 				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(BURN)
