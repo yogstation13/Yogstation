@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "you can no longer drown through a mask"
+  - bugfix: "the pool will no longer cause you to think your clothes are wet even if you aren't wearing any"
