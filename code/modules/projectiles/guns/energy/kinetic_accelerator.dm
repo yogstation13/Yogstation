@@ -490,7 +490,7 @@
 	name = "death syphon"
 	desc = "Killing or assisting in killing a creature permanently increases your damage against that type of creature."
 	denied_type = /obj/item/borg/upgrade/modkit/bounty
-	modifier = 1.25
+	modifier = 5
 	cost = 30
 	var/maximum_bounty = 25
 	var/list/bounties_reaped = list()
@@ -519,7 +519,7 @@
 /obj/item/borg/upgrade/modkit/bounty/proc/get_kill(mob/living/L)
 	var/bonus_mod = 1
 	if(ismegafauna(L)) //megafauna reward
-		bonus_mod = 4
+		bonus_mod = 5
 	if(!bounties_reaped[L.type])
 		bounties_reaped[L.type] = min(modifier * bonus_mod, maximum_bounty)
 	else
