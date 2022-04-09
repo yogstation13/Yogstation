@@ -10,7 +10,9 @@
 	if(!selected_ai)
 		return
 	
-	var/client/C = usr
+	var/client/C = usr.client
+	if(!C || !istype(C))
+		return
 	if(!C.holder)
 		return
 	C.debug_variables(selected_ai)
