@@ -27,7 +27,7 @@
 			var/obj/item/clothing/CS = shoes
 			if (CS.clothing_flags & NOSLIP_ICE)
 				return 0
-		return ..()
+	return ..()
 
 /mob/living/carbon/human/experience_pressure_difference(pressure_difference)
 	if(pressure_difference > 100)
