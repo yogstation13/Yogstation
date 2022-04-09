@@ -251,6 +251,11 @@
 	desc = "A small bottle. Contains H13N1 flu virion culture in synthblood medium."
 	spawned_disease = /datum/disease/advance/flu
 
+/obj/item/reagent_containers/glass/bottle/tumor
+	name = "tumor culture bottle"
+	desc = "A small bottle. Contains tumor culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/tumor
+
 /obj/item/reagent_containers/glass/bottle/retrovirus
 	name = "Retrovirus culture bottle"
 	desc = "A small bottle. Contains a retrovirus culture in a synthblood medium."

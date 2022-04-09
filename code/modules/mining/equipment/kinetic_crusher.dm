@@ -154,7 +154,7 @@
 	if(ismineralturf(target_turf))
 		var/turf/closed/mineral/M = target_turf
 		new /obj/effect/temp_visual/kinetic_blast(M)
-		M.gets_drilled(firer)
+		M.attempt_drill(firer)
 	..()
 
 //trophies
@@ -422,7 +422,7 @@
 	bonus_value = 40
 
 /obj/item/crusher_trophy/malformed_bone/effect_desc()
-	return "mark detonation to have a <b>[bonus_value]</b>% chance to trigger a second detonation"
+	return "mark detonation to have a <b>[bonus_value]</b>% chance to mark nearby targets"
 
 /obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/required/kinetic_crusher/hammer_synced)
     if(hammer_synced)
