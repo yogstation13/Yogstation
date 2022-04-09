@@ -391,7 +391,7 @@
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
 			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
-			src.throw_at(throwtarget, 4, 2, M)//copied from psychobrawling
+			src.throw_at(throwtarget, 4, 2, src)//range and speed copied from psychobrawling
 		var/obj/item/bodypart/temp = get_bodypart(pick(BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_HEAD))
 		if(temp)
 			var/update = 0
