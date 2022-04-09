@@ -1,0 +1,8 @@
+author: " Altoids"
+delete-after: true 
+changes: 
+  - tweak: "Voice of God, when used with the colossal vocal cords, now does not always have of a range of 8. Instead, it has same range as the typical speech of the user."
+  - bugfix: "Fixed hard accents making it impossible to use the Voice of God."
+  - bugfix: "Fixed vocal cords (including divine ones) bypassing the fact that it is hard to speak loudly in space."
+  - bugfix: "Fixed some edge-cases that allowed you to speak your last words when in full crit, without dying."
+  - bugfix: "Fixed objects that listen to your speech not picking it up in some circumstances."
