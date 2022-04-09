@@ -149,6 +149,7 @@
 					/obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms = 1,
 					/obj/item/clothing/under/yogs/rank/signal_tech = 1,
 					/obj/item/clothing/shoes/workboots = 1,
+					/obj/item/clothing/shoes/xeno_wraps/programmer = 1,
 					/obj/item/clothing/under/yogs/rank/signal_tech/skirt = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/sig_wardrobe
 	payment_department = ACCOUNT_ENG

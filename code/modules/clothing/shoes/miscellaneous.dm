@@ -489,6 +489,14 @@
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
 	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
+/obj/item/clothing/shoes/xeno_wraps/programmer
+	name = "programmers footwraps"
+	desc = "A Special blend of cotton and will, proven to improve your programming abilites!"
+	icon_state = "footwraps_p"
+	item_state = "footwraps_p"
+	xenoshoe = EITHER_STYLE
+	mutantrace_variation = MUTANTRACE_VARIATION
+
 /obj/item/clothing/shoes/airshoes
 	name = "air shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
