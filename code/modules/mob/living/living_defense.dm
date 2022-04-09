@@ -96,7 +96,7 @@
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
 			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
-			src.throw_at(throwtarget, 4, 2, src)//range and speed copied from psychobrawling
+			src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 		switch(M.damtype)
 			if(BRUTE)
 				Unconscious(20)
