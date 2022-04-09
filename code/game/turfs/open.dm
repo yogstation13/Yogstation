@@ -441,12 +441,7 @@
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
 			C.Knockdown(knockdown_amount)
-			var/wagging = FALSE
-			if(C.dna.species.is_wagging_tail())
-				wagging = TRUE
 			C.Stun(stun_amount)
-			if(wagging)
-				C.dna.species.start_wagging_tail(C)
 			C.stop_pulling()
 		else
 			C.Knockdown(20)
