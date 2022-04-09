@@ -391,9 +391,14 @@ SUBSYSTEM_DEF(air)
 			//EG.dismantle()
 			CHECK_TICK*/
 
-		var/msg = "HEY! LISTEN! [DisplayTimeText(world.timeofday - timer)] were wasted processing [starting_ats] turf(s) (connected to [ending_ats] other turfs) with atmos differences at round start."
-		to_chat(world, span_boldannounce("[msg]"))
-		warning(msg)
+		//Yogs start -- prettier atmos notices
+		var/msg = "HEY! LISTEN! [(world.timeofday - timer)/10] seconds were wasted processing [starting_ats] turf(s) (connected to [ending_ats] other turfs) with atmos differences at round start."
+		to_chat(GLOB.admins,
+		type = MESSAGE_TYPE_DEBUG,
+		html = span_notice(msg),
+		confidential = FALSE) 
+		warning(msg) // This logs it
+		//yogs end
 
 /turf/open/proc/resolve_active_graph()
 	. = list()
