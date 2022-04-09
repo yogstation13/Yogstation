@@ -1788,7 +1788,10 @@
 	
 /datum/reagent/medicine/radaway/reaction_obj(obj/O, reac_volume)
 	//scrubs the contamination and applies a light treatment to it to mitigate immediate recontamination
-	O.wash(CLEAN_RAD)
+	var/datum/component/radioactive/radiation = O.GetComponent(/datum/component/radioactive)
+	if(radiation)
+		radiation.strength -= max(0, reac_volume * (RAD_BACKGROUND_RADIATION * 5))
+	O.wash(CLEAN_RAD | CLEAN_TYPE_WEAK)
 	if(O.rad_insulation < RAD_LIGHT_INSULATION)
 		O.rad_insulation = RAD_LIGHT_INSULATION
 
