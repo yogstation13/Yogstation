@@ -379,6 +379,6 @@
 	name = "RadAway"
 	id = /datum/reagent/medicine/radaway
 	results = list(/datum/reagent/medicine/radaway = 3)
-	required_reagents = list(/datum/reagent/medicine/potass_iodide = 1, /datum/reagent/water = 1, /datum/reagent/chlorine = 1)
+	required_reagents = list(/datum/reagent/medicine/potass_iodide = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/chlorine = 1)
 	required_temp = 200
 	is_cold_recipe = 1
