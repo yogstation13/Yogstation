@@ -95,8 +95,8 @@
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
-			var/throwtarget = get_edge_target_turf(A, get_dir(A, get_step_away(M, A)))
-			A.throw_at(throwtarget, 4, 2, A) //copied from psychobrawling
+			var/throwtarget = get_edge_target_turf(src, get_dir(src, get_step_away(M, src)))
+			src.throw_at(throwtarget, 4, 2, src) //copied from psychobrawling
 		switch(M.damtype)
 			if(BRUTE)
 				Knockdown(10)
