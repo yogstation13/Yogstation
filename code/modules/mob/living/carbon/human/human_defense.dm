@@ -390,8 +390,8 @@
 	if(M.occupant.a_intent == INTENT_HARM)
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
-			var/throwtarget = get_edge_target_turf(src, get_dir(src, get_step_away(M, src)))
-			src.throw_at(throwtarget, 4, 2, src) //copied from psychobrawling
+			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
+			src.throw_at(throwtarget, 4, 2, M) //copied from psychobrawling
 		var/obj/item/bodypart/temp = get_bodypart(pick(BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_HEAD))
 		if(temp)
 			var/update = 0
@@ -399,7 +399,7 @@
 			switch(M.damtype)
 				if("brute")
 					if(M.force > 20)
-						Knockdown(10)
+						Knockdown(20)
 					update |= temp.receive_damage(dmg, 0)
 					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 				if("fire")
