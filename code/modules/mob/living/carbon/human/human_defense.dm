@@ -391,7 +391,7 @@
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
 			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
-			src.throw_at(throwtarget, 4, 2, src)//range and speed copied from psychobrawling
+			src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 		var/obj/item/bodypart/temp = get_bodypart(pick(BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_HEAD))
 		if(temp)
 			var/update = 0
@@ -399,7 +399,7 @@
 			switch(M.damtype)
 				if("brute")
 					if(M.force > 20)
-						Knockdown(20)
+						Knockdown(15)//the victim could get up before getting hit again
 					update |= temp.receive_damage(dmg, 0)
 					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 				if("fire")
