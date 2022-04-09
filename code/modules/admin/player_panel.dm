@@ -241,6 +241,9 @@
 						M_job = ROLE_PAI
 					else if(iscyborg(M))
 						M_job = "Cyborg"
+						var/mob/living/silicon/robot/R = M
+						if(R.module)
+							M_job += " [R.module.name]"
 					else
 						M_job = "Silicon-based"
 
