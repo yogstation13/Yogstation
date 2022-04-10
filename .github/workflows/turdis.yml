@@ -16,7 +16,7 @@ jobs:
     name: Lints
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         
       - name: Cache SpacemanDMM
         uses: actions/cache@v1
@@ -61,7 +61,7 @@ jobs:
     name: Compile All Maps
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         
       - name: Install Dependencies
         run: |
@@ -103,7 +103,7 @@ jobs:
         MARIADB_ALLOW_EMPTY_PASSWORD: yes
         
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         
       - name: Install Dependencies
         run: |
