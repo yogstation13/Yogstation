@@ -50,7 +50,7 @@
 				nutrition_ratio *= 1.25
 			nutrition_ratio *= heart_ratio
 			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
-			blood_volume = min(BLOOD_VOLUME_NORMAL(src), blood_volume + 0.5 * nutrition_ratio * heart_ratio)
+			blood_volume = min(BLOOD_VOLUME_NORMAL(src), blood_volume + 0.5 * nutrition_ratio)
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")

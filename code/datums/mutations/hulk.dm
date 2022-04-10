@@ -70,6 +70,7 @@
 	quality = POSITIVE
 	instability = 30
 	class = MUT_OTHER
+	locked = TRUE
 	text_gain_indication = span_notice("Your muscles hurt!")
 	health_req = 1
 	var/health_based = 0
