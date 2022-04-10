@@ -29,7 +29,7 @@
 	ComponentInitialize()
 
 	. = ..()
-	
+
 	GLOB.new_player_list += src
 
 /mob/dead/new_player/Destroy()
@@ -136,7 +136,7 @@
 
 	if(href_list["late_join"])
 		if(!SSticker || !SSticker.IsRoundInProgress())
-			to_chat(usr, "<span class='danger'>The round is either not ready, or has already finished...</span>")
+			to_chat(usr, span_danger("The round is either not ready, or has already finished..."))
 			return
 
 		if(href_list["late_join"] == "override")
@@ -146,20 +146,20 @@
 		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.admin_datums)))
 			//yogs start -- donors bypassing the queue
 			if(ckey(key) in get_donators())
-				to_chat(usr, "<span class='notice'>Because you are a donator, you have bypassed the queue! Thank you for donating!</span>")
+				to_chat(usr, span_notice("Because you are a donator, you have bypassed the queue! Thank you for donating!"))
 				LateChoices()
 				return
 			//yogs end
-			to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
+			to_chat(usr, span_danger("[CONFIG_GET(string/hard_popcap_message)]"))
 
 			var/queue_position = SSticker.queued_players.Find(usr)
 			if(queue_position == 1)
-				to_chat(usr, "<span class='notice'>You are next in line to join the game. You will be notified when a slot opens up.</span>")
+				to_chat(usr, span_notice("You are next in line to join the game. You will be notified when a slot opens up."))
 			else if(queue_position)
-				to_chat(usr, "<span class='notice'>There are [queue_position-1] players in front of you in the queue to join the game.</span>")
+				to_chat(usr, span_notice("There are [queue_position-1] players in front of you in the queue to join the game."))
 			else
 				SSticker.queued_players += usr
-				to_chat(usr, "<span class='notice'>You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len].</span>")
+				to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len]."))
 			return
 		LateChoices()
 
@@ -169,23 +169,23 @@
 	if(href_list["SelectedJob"])
 
 		if(!SSticker || !SSticker.IsRoundInProgress())
-			to_chat(usr, "<span class='danger'>The round is either not ready, or has already finished...</span>")
+			to_chat(usr, span_danger("The round is either not ready, or has already finished..."))
 			return
 
 		if(!GLOB.enter_allowed)
-			to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
+			to_chat(usr, span_notice("There is an administrative lock on entering the game!"))
 			return
 
 		if(SSticker.queued_players.len && !(ckey(key) in GLOB.admin_datums))
 			if((living_player_count() >= relevant_cap) || (src != SSticker.queued_players[1]))
-				to_chat(usr, "<span class='warning'>Server is full.</span>")
+				to_chat(usr, span_warning("Server is full."))
 				return
 
 		// Check if random role is requested
 		if(href_list["SelectedJob"] == "Random")
 			var/datum/job/job = SSjob.GetRandomJob(src)
 			if(!job)
-				to_chat(usr, "<span class='warning'>There is no randomly assignable Job at this time. Please manually choose one of the other possible options.</span>")
+				to_chat(usr, span_warning("There is no randomly assignable Job at this time. Please manually choose one of the other possible options."))
 				return
 			href_list["SelectedJob"] = job.title
 
@@ -216,15 +216,15 @@
 			if(POLLTYPE_OPTION)
 				var/optionid = text2num(href_list["voteoptionid"])
 				if(vote_on_poll(pollid, optionid))
-					to_chat(usr, "<span class='notice'>Vote successful.</span>")
+					to_chat(usr, span_notice("Vote successful."))
 				else
-					to_chat(usr, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
+					to_chat(usr, span_danger("Vote failed, please try again or contact an administrator."))
 			if(POLLTYPE_TEXT)
 				var/replytext = href_list["replytext"]
 				if(log_text_poll_reply(pollid, replytext))
-					to_chat(usr, "<span class='notice'>Feedback logging successful.</span>")
+					to_chat(usr, span_notice("Feedback logging successful."))
 				else
-					to_chat(usr, "<span class='danger'>Feedback logging failed, please try again or contact an administrator.</span>")
+					to_chat(usr, span_danger("Feedback logging failed, please try again or contact an administrator."))
 			if(POLLTYPE_RATING)
 				var/id_min = text2num(href_list["minid"])
 				var/id_max = text2num(href_list["maxid"])
@@ -245,9 +245,9 @@
 								return
 
 						if(!vote_on_numval_poll(pollid, optionid, rating))
-							to_chat(usr, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
+							to_chat(usr, span_danger("Vote failed, please try again or contact an administrator."))
 							return
-				to_chat(usr, "<span class='notice'>Vote successful.</span>")
+				to_chat(usr, span_notice("Vote successful."))
 			if(POLLTYPE_MULTI)
 				var/id_min = text2num(href_list["minoptionid"])
 				var/id_max = text2num(href_list["maxoptionid"])
@@ -263,21 +263,21 @@
 							if(0)
 								continue
 							if(1)
-								to_chat(usr, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
+								to_chat(usr, span_danger("Vote failed, please try again or contact an administrator."))
 								return
 							if(2)
-								to_chat(usr, "<span class='danger'>Maximum replies reached.</span>")
+								to_chat(usr, span_danger("Maximum replies reached."))
 								break
-				to_chat(usr, "<span class='notice'>Vote successful.</span>")
+				to_chat(usr, span_notice("Vote successful."))
 			if(POLLTYPE_IRV)
 				if (!href_list["IRVdata"])
-					to_chat(src, "<span class='danger'>No ordering data found. Please try again or contact an administrator.</span>")
+					to_chat(src, span_danger("No ordering data found. Please try again or contact an administrator."))
 					return
 				var/list/votelist = splittext(href_list["IRVdata"], ",")
 				if (!vote_on_irv_poll(pollid, votelist))
-					to_chat(src, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
+					to_chat(src, span_danger("Vote failed, please try again or contact an administrator."))
 					return
-				to_chat(src, "<span class='notice'>Vote successful.</span>")
+				to_chat(src, span_notice("Vote successful."))
 
 //When you cop out of the round (NB: this HAS A SLEEP FOR PLAYER INPUT IN IT)
 /mob/dead/new_player/proc/make_me_an_observer()
@@ -299,11 +299,11 @@
 	observer.started_as_observer = TRUE
 	close_spawn_windows()
 	var/obj/effect/landmark/observer_start/O = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
-	to_chat(src, "<span class='notice'>Now teleporting.</span>")
+	to_chat(src, span_notice("Now teleporting."))
 	if (O)
 		observer.forceMove(O.loc)
 	else
-		to_chat(src, "<span class='notice'>Teleporting failed. Ahelp an admin please</span>")
+		to_chat(src, span_notice("Teleporting failed. Ahelp an admin please"))
 		stack_trace("There's no freaking observer landmark available on this map or you're making observers before the map is initialised")
 	observer.key = key
 	observer.client = client
@@ -312,11 +312,6 @@
 		observer.real_name = observer.client.prefs.real_name
 		observer.name = observer.real_name
 		observer.client.init_verbs()
-	if(observer?.client?.holder?.fakekey)
-		observer.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
-		observer.alpha = 0 //JUUUUST IN CASE
-		observer.name = " "
-		observer.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	observer.update_icon()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	QDEL_NULL(mind)
@@ -422,12 +417,15 @@
 			AnnounceArrival(humanc, rank)
 		AddEmploymentContract(humanc)
 		if(GLOB.highlander)
-			to_chat(humanc, "<span class='userdanger'><i>THERE CAN BE ONLY ONE!!!</i></span>")
+			to_chat(humanc, span_userdanger("<i>THERE CAN BE ONLY ONE!!!</i>"))
 			humanc.make_scottish()
+
+		humanc.increment_scar_slot()
+		humanc.load_persistent_scars()
 
 		if(GLOB.curse_of_madness_triggered)
 			give_madness(humanc, GLOB.curse_of_madness_triggered)
-			
+
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CREWMEMBER_JOINED, humanc, rank)
 
 	GLOB.joined_player_list += character.ckey
@@ -480,11 +478,11 @@
 				if(job in GLOB.command_positions)
 					command_bold = " command"
 				if(job_datum in SSjob.prioritized_jobs)
-					dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'><span class='priority'>[job_datum.title] ([job_datum.current_positions])</span></a>"
+					dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'>[span_priority("[job_datum.title] ([job_datum.current_positions])")]</a>"
 				else
 					dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'>[job_datum.title] ([job_datum.current_positions])</a>"
 		if(!dept_dat.len)
-			dept_dat += "<span class='nopositions'>No positions open.</span>"
+			dept_dat += span_nopositions("No positions open.")
 		dat += jointext(dept_dat, "")
 		dat += "</fieldset><br>"
 		column_counter++
@@ -519,21 +517,26 @@
 			return
 	if(frn)
 		client.prefs.random_character()
+		client.prefs.accent = null
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
+	client.prefs.copy_to(H)
+
 	client.prefs.copy_to(H)
 	H.dna.update_dna_identity()
 	if(mind)
 		if(mind.assigned_role)
 			var/datum/job/J = SSjob.GetJob(mind.assigned_role)
 			if(H.age < J?.minimal_character_age)
-				to_chat(client,"<span class='warning'>Your character is too young to play your assigned job. Their age has been corrected to the minimum possible.</span>")
+				to_chat(client,span_warning("Your character is too young to play your assigned job. Their age has been corrected to the minimum possible."))
 				H.age = J.minimal_character_age
 		if(transfer_after)
 			mind.late_joiner = TRUE
-		mind.active = 0					//we wish to transfer the key manually
+		mind.active = FALSE					//we wish to transfer the key manually
+		mind.original_character_slot_index = client.prefs.default_slot
 		if(!HAS_TRAIT(H,TRAIT_RANDOM_ACCENT))
 			mind.accent_name = client.prefs.accent
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
+		mind.original_character = H
 
 	H.name = real_name
 	client.init_verbs()
@@ -595,7 +598,7 @@
 			log_admin("[src.ckey] has rolled antag with no jobs enabled")
 			return TRUE
 		if(!ineligible_for_roles)
-			to_chat(src, "<span class='danger'>You have no jobs enabled, along with return to lobby if job is unavailable. This makes you ineligible for any round start role, please update your job preferences.</span>")
+			to_chat(src, span_danger("You have no jobs enabled, along with return to lobby if job is unavailable. This makes you ineligible for any round start role, please update your job preferences."))
 		ineligible_for_roles = TRUE
 		ready = PLAYER_NOT_READY
 		if(has_antags)

@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		new prizeselect(src)
 
 	var/atom/movable/the_prize = pick(contents)
-	visible_message("<span class='notice'>[src] dispenses [the_prize]!</span>", "<span class='notice'>You hear a chime and a clunk.</span>")
+	visible_message(span_notice("[src] dispenses [the_prize]!"), span_notice("You hear a chime and a clunk."))
 
 	the_prize.forceMove(get_turf(src))
 
@@ -134,13 +134,13 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		var/obj/item/stack/arcadeticket/T = O
 		var/amount = T.get_amount()
 		if(amount <2)
-			to_chat(user, "<span class='warning'>You need 2 tickets to claim a prize!</span>")
+			to_chat(user, span_warning("You need 2 tickets to claim a prize!"))
 			return
 		prizevend(user)
 		T.pay_tickets()
 		T.update_icon()
 		O = T
-		to_chat(user, "<span class='notice'>You turn in 2 tickets to the [src] and claim a prize!</span>")
+		to_chat(user, span_notice("You turn in 2 tickets to the [src] and claim a prize!"))
 		return
 
 // ** BATTLE ** //
@@ -330,7 +330,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 /obj/machinery/computer/arcade/battle/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, "<span class='warning'>A mesmerizing Rhumba beat starts playing from the arcade machine's speakers!</span>")
+	to_chat(user, span_warning("A mesmerizing Rhumba beat starts playing from the arcade machine's speakers!"))
 	temp = "If you die in the game, you die for real!"
 	player_hp = 30
 	player_mp = 10
@@ -467,17 +467,17 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				dat += "<br>You ran out of food and starved."
 				if(obj_flags & EMAGGED)
 					user.set_nutrition(0) //yeah you pretty hongry
-					to_chat(user, "<span class='userdanger'>Your body instantly contracts to that of one who has not eaten in months. Agonizing cramps seize you as you fall to the floor.</span>")
+					to_chat(user, span_userdanger("Your body instantly contracts to that of one who has not eaten in months. Agonizing cramps seize you as you fall to the floor."))
 			if(fuel <= 0)
 				dat += "<br>You ran out of fuel, and drift, slowly, into a star."
 				if(obj_flags & EMAGGED)
 					var/mob/living/M = user
 					M.adjust_fire_stacks(5)
 					M.IgniteMob() //flew into a star, so you're on fire
-					to_chat(user, "<span class='userdanger'>You feel an immense wave of heat emanate from the arcade machine. Your skin bursts into flames.</span>")
+					to_chat(user, span_userdanger("You feel an immense wave of heat emanate from the arcade machine. Your skin bursts into flames."))
 
 		if(obj_flags & EMAGGED)
-			to_chat(user, "<span class='userdanger'>You're never going to make it to Orion...</span>")
+			to_chat(user, span_userdanger("You're never going to make it to Orion..."))
 			user.death()
 			obj_flags &= ~EMAGGED //removes the emagged status after you lose
 			gameStatus = ORION_STATUS_START
@@ -545,21 +545,21 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				switch(event)
 					if(ORION_TRAIL_RAIDERS)
 						if(prob(50))
-							to_chat(usr, "<span class='userdanger'>You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?</span>")
+							to_chat(usr, span_userdanger("You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?"))
 							M.hallucination += 30
 						else
-							to_chat(usr, "<span class='userdanger'>Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there...</span>")
+							to_chat(usr, span_userdanger("Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there..."))
 							M.take_bodypart_damage(30)
 							playsound(loc, 'sound/weapons/genhit2.ogg', 100, 1)
 					if(ORION_TRAIL_ILLNESS)
 						var/severity = rand(1,3) //pray to RNGesus. PRAY, PIGS
 						if(severity == 1)
-							to_chat(M, "<span class='userdanger'>You suddenly feel slightly nauseated.</span>" )
+							to_chat(M, span_userdanger("You suddenly feel slightly nauseated.") )
 						if(severity == 2)
-							to_chat(usr, "<span class='userdanger'>You suddenly feel extremely nauseated and hunch over until it passes.</span>")
+							to_chat(usr, span_userdanger("You suddenly feel extremely nauseated and hunch over until it passes."))
 							M.Stun(60)
 						if(severity >= 3) //you didn't pray hard enough
-							to_chat(M, "<span class='warning'>An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit.</span>")
+							to_chat(M, span_warning("An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit."))
 							M.Stun(100)
 							sleep(30)
 							M.vomit(10, distance = 5)
@@ -570,7 +570,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 							M.take_bodypart_damage(25)
 							playsound(loc, 'sound/weapons/genhit.ogg', 100, 1)
 						else
-							to_chat(M, "<span class='userdanger'>A violent gale blows past you, and you barely manage to stay standing!</span>")
+							to_chat(M, span_userdanger("A violent gale blows past you, and you barely manage to stay standing!"))
 					if(ORION_TRAIL_COLLISION) //by far the most damaging event
 						if(prob(90))
 							playsound(loc, 'sound/effects/bang.ogg', 100, 1)
@@ -590,7 +590,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 							playsound(loc, 'sound/effects/bang.ogg', 50, 1)
 					if(ORION_TRAIL_MALFUNCTION)
 						playsound(loc, 'sound/effects/empulse.ogg', 50, 1)
-						visible_message("<span class='danger'>[src] malfunctions, randomizing in-game stats!</span>")
+						visible_message(span_danger("[src] malfunctions, randomizing in-game stats!"))
 						var/oldfood = food
 						var/oldfuel = fuel
 						food = rand(10,80) / rand(1,2)
@@ -598,9 +598,9 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 						if(electronics)
 							sleep(10)
 							if(oldfuel > fuel && oldfood > food)
-								audible_message("<span class='danger'>[src] lets out a somehow reassuring chime.</span>")
+								audible_message(span_danger("[src] lets out a somehow reassuring chime."))
 							else if(oldfuel < fuel || oldfood < food)
-								audible_message("<span class='danger'>[src] lets out a somehow ominous chime.</span>")
+								audible_message(span_danger("[src] lets out a somehow ominous chime."))
 							food = oldfood
 							fuel = oldfuel
 							playsound(loc, 'sound/machines/chime.ogg', 50, 1)
@@ -1086,7 +1086,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 /obj/machinery/computer/arcade/orion_trail/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, "<span class='notice'>You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Realism Mode.</span>")
+	to_chat(user, span_notice("You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Realism Mode."))
 	name = "The Orion Trail: Realism Edition"
 	desc = "Learn how our ancestors got to Orion, and try not to die in the process!"
 	newgame()
@@ -1112,9 +1112,9 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	if(!(in_range(user, src)))
 		return
 	if(!active)
-		. += "<span class='notice'>There's a little switch on the bottom. It's flipped down.</span>"
+		. += span_notice("There's a little switch on the bottom. It's flipped down.")
 	else
-		. += "<span class='notice'>There's a little switch on the bottom. It's flipped up.</span>"
+		. += span_notice("There's a little switch on the bottom. It's flipped up.")
 
 /obj/item/orion_ship/attack_self(mob/user) //Minibomb-level explosion. Should probably be more because of how hard it is to survive the machine! Also, just over a 5-second fuse
 	if(active)
@@ -1122,19 +1122,19 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 	log_bomber(usr, "primed an explosive", src, "for detonation")
 
-	to_chat(user, "<span class='warning'>You flip the switch on the underside of [src].</span>")
+	to_chat(user, span_warning("You flip the switch on the underside of [src]."))
 	active = 1
-	visible_message("<span class='notice'>[src] softly beeps and whirs to life!</span>")
+	visible_message(span_notice("[src] softly beeps and whirs to life!"))
 	playsound(loc, 'sound/machines/defib_SaftyOn.ogg', 25, 1)
 	say("This is ship ID #[rand(1,1000)] to Orion Port Authority. We're coming in for landing, over.")
 	sleep(20)
-	visible_message("<span class='warning'>[src] begins to vibrate...</span>")
+	visible_message(span_warning("[src] begins to vibrate..."))
 	say("Uh, Port? Having some issues with our reactor, could you check it out? Over.")
 	sleep(30)
 	say("Oh, God! Code Eight! CODE EIGHT! IT'S GONNA BL-")
 	playsound(loc, 'sound/machines/buzz-sigh.ogg', 25, 1)
 	sleep(3.6)
-	visible_message("<span class='userdanger'>[src] explodes!</span>")
+	visible_message(span_userdanger("[src] explodes!"))
 	explosion(loc, 2,4,8, flame_range = 16)
 	qdel(src)
 
@@ -1152,9 +1152,9 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	var/mob/living/carbon/c_user = user
 	if(!c_user.get_bodypart(BODY_ZONE_L_ARM) && !c_user.get_bodypart(BODY_ZONE_R_ARM))
 		return
-	to_chat(c_user, "<span class='warning'>You move your hand towards the machine, and begin to hesitate as a bloodied guillotine emerges from inside of it...</span>")
-	if(do_after(c_user, 50, target = src))
-		to_chat(c_user, "<span class='userdanger'>The guillotine drops on your arm, and the machine sucks it in!</span>")
+	to_chat(c_user, span_warning("You move your hand towards the machine, and begin to hesitate as a bloodied guillotine emerges from inside of it..."))
+	if(do_after(c_user, 5 SECONDS, target = src))
+		to_chat(c_user, span_userdanger("The guillotine drops on your arm, and the machine sucks it in!"))
 		playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 		var/which_hand = BODY_ZONE_L_ARM
 		if(!(c_user.active_hand_index % 2))
@@ -1166,7 +1166,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		for(var/i=1; i<=rand(3,5); i++)
 			prizevend(user)
 	else
-		to_chat(c_user, "<span class='notice'>You (wisely) decide against putting your hand in the machine.</span>")
+		to_chat(c_user, span_notice("You (wisely) decide against putting your hand in the machine."))
 
 #undef ORION_TRAIL_WINTURN
 #undef ORION_TRAIL_RAIDERS

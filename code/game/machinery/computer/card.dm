@@ -57,14 +57,14 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 /obj/machinery/computer/card/examine(mob/user)
 	. = ..()
 	if(modify)
-		. += "<span class='notice'>Alt-click to eject the ID card.</span>"
+		. += span_notice("Alt-click to eject the ID card.")
 
 /obj/machinery/computer/card/Initialize()
 	. = ..()
 	change_position_cooldown = CONFIG_GET(number/id_console_jobslot_delay)
 
 /obj/machinery/computer/card/attackby(obj/O, mob/user, params)//TODO:SANITY
-	if(istype(O, /obj/item/card/id))
+	if(isidcard(O))
 		var/obj/item/card/id/idcard = O
 		if(!modify)
 			if (!user.transferItemToLoc(idcard,src))
@@ -370,7 +370,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 						if(region_access)
 							authenticated = 1
 			else if ((!( authenticated ) && issilicon(usr)) && (!modify))
-				to_chat(usr, "<span class='warning'>You can't modify an ID without an ID inserted to modify! Once one is in the modify slot on the computer, you can log in.</span>")
+				to_chat(usr, span_warning("You can't modify an ID without an ID inserted to modify! Once one is in the modify slot on the computer, you can log in."))
 		if ("logout")
 			region_access = null
 			head_subordinates = null
@@ -390,10 +390,11 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		if ("assign")
 			if (authenticated == 2)
 				var/t1 = href_list["assign_target"]
+				var/t2 = href_list["assign_target"]
 				if(t1 == "Custom")
 					var/newJob = reject_bad_text(input("Enter a custom job assignment.", "Assignment", modify ? modify.assignment : "Unassigned"), MAX_NAME_LEN)
 					if(newJob)
-						t1 = newJob
+						t2 = newJob
 
 				else if(t1 == "Unassigned")
 					modify.access -= get_all_accesses()
@@ -407,25 +408,26 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 							updateUsrDialog()
 							break
 					if(!jobdatum)
-						to_chat(usr, "<span class='warning'>No log exists for this job.</span>")
+						to_chat(usr, span_warning("No log exists for this job."))
 						updateUsrDialog()
 						return
 					if(!isnull(modify.registered_age) && modify.registered_age < jobdatum.minimal_character_age)
-						to_chat(usr, "<span class='warning'>This individual is too young to hold that Job, per Nanotrasen guidelines. Suggest aborting Job Assignment!</span>")
+						to_chat(usr, span_warning("This individual is too young to hold that Job, per Nanotrasen guidelines. Suggest aborting Job Assignment!"))
 					if(modify.registered_account)
 						modify.registered_account.account_job = jobdatum // this is a terrible idea and people will grief but sure whatever
 
 					modify.access = ( istype(src, /obj/machinery/computer/card/centcom) ? get_centcom_access(t1) : jobdatum.get_access() )
 				if (modify)
 					log_game("[modify.registered_name]'s ID had its job changed to [t1] from [modify.assignment] by [usr.name]") // yogs - ID card change logging
-					modify.assignment = t1
+					modify.originalassignment = t1
+					modify.assignment = t2
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 		if ("demote")
-			if(modify.assignment in head_subordinates || modify.assignment == "Assistant")
+			if(modify.assignment in head_subordinates || modify.originalassignment == "Assistant")
 				modify.assignment = "Unassigned"
 				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 			else
-				to_chat(usr, "<span class='error'>You are not authorized to demote this position.</span>")
+				to_chat(usr, span_error("You are not authorized to demote this position."))
 		if ("reg")
 			if (authenticated)
 				var/t2 = modify
@@ -435,7 +437,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 						modify.registered_age = newAge
 						playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 					else if(!isnull(newAge))
-						to_chat(usr, "<span class='alert'>Invalid age entered- age not updated.</span>")
+						to_chat(usr, span_alert("Invalid age entered- age not updated."))
 						updateUsrDialog()
 
 					var/newName = reject_bad_name(href_list["reg"])
@@ -443,7 +445,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 						modify.registered_name = newName
 						playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 					else
-						to_chat(usr, "<span class='error'>Invalid name entered.</span>")
+						to_chat(usr, span_error("Invalid name entered."))
 						updateUsrDialog()
 						return
 		if ("mode")
@@ -502,12 +504,12 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					SSjob.prioritized_jobs -= j
 					priority = FALSE
 				else if(j.total_positions <= j.current_positions)
-					to_chat(usr, "<span class='notice'>[j.title] has had all positions filled. Open up more slots before prioritizing it.</span>")
+					to_chat(usr, span_notice("[j.title] has had all positions filled. Open up more slots before prioritizing it."))
 					updateUsrDialog()
 					return
 				else
 					SSjob.prioritized_jobs += j
-				to_chat(usr, "<span class='notice'>[j.title] has been successfully [priority ?  "prioritized" : "unprioritized"]. Potential employees will notice your request.</span>")
+				to_chat(usr, span_notice("[j.title] has been successfully [priority ?  "prioritized" : "unprioritized"]. Potential employees will notice your request."))
 				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 
 		if ("print")

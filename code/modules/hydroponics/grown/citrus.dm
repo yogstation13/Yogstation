@@ -103,6 +103,7 @@
 	endurance = 45
 	yield = 4
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05)
+	rarity = 20
 
 /obj/item/reagent_containers/food/snacks/grown/firelemon
 	seed = /obj/item/seeds/firelemon
@@ -114,7 +115,7 @@
 	wine_power = 70
 
 /obj/item/reagent_containers/food/snacks/grown/firelemon/attack_self(mob/living/user)
-	user.visible_message("<span class='warning'>[user] primes [src]!</span>", "<span class='userdanger'>You prime [src]!</span>")
+	user.visible_message(span_warning("[user] primes [src]!"), span_userdanger("You prime [src]!"))
 	log_bomber(user, "primed a", src, "for detonation")
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
@@ -175,6 +176,7 @@
 	icon_dead = "lime-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05)
+	rarity = 30 
 
 /obj/item/reagent_containers/food/snacks/grown/citrus/orange_3d
 	seed = /obj/item/seeds/orange_3d

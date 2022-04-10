@@ -118,7 +118,7 @@
 	if(!eyeobj.eye_initialized)
 		var/camera_location
 		var/turf/myturf = get_turf(src)
-		if(eyeobj.use_static != USE_STATIC_NONE)
+		if(eyeobj.use_static != FALSE)
 			if((!z_lock.len || (myturf.z in z_lock)) && GLOB.cameranet.checkTurfVis(myturf))
 				camera_location = myturf
 			else
@@ -177,7 +177,7 @@
 	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
 	user.sight = SEE_TURFS | SEE_BLACKNESS
 	user.see_in_dark = 2
-	return 1
+	return TRUE
 
 /mob/camera/aiEye/remote/Destroy()
 	if(origin && eye_user)
@@ -198,14 +198,16 @@
 			forceMove(T)
 		else
 			moveToNullspace()
+
 		update_ai_detect_hud()
-		if(use_static != USE_STATIC_NONE)
+
+		if(use_static)
 			GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
-		if(visible_icon)
-			if(eye_user.client)
-				eye_user.client.images -= user_image
-				user_image = image(icon,loc,icon_state,FLY_LAYER)
-				eye_user.client.images += user_image
+
+		if(visible_icon && eye_user.client)
+			eye_user.client.images -= user_image
+			user_image = image(icon,loc,icon_state,FLY_LAYER)
+			eye_user.client.images += user_image
 
 /mob/camera/aiEye/remote/relaymove(mob/user,direct)
 	var/initial = initial(sprint)
@@ -311,10 +313,10 @@
 
 /obj/machinery/computer/camera_advanced/ratvar/can_use(mob/living/user)
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='warning'>[src]'s keys are in a language foreign to you, and you don't understand anything on its screen.</span>")
+		to_chat(user, span_warning("[src]'s keys are in a language foreign to you, and you don't understand anything on its screen."))
 		return
 	if(clockwork_ark_active())
-		to_chat(user, "<span class='warning'>The Ark is active, and [src] has shut down.</span>")
+		to_chat(user, span_warning("The Ark is active, and [src] has shut down."))
 		return
 	. = ..()
 
@@ -343,31 +345,31 @@
 	if(!is_reebe(user.z) || !is_station_level(T.z))
 		return
 	if(isclosedturf(T))
-		to_chat(user, "<span class='sevtug_small'>You can't teleport into a wall.</span>")
+		to_chat(user, "[span_sevtug_small("You can't teleport into a wall.")]")
 		return
 	else if(isspaceturf(T))
-		to_chat(user, "<span class='sevtug_small'>[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]</span>")
+		to_chat(user, "[span_sevtug_small("[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]")]")
 		return
 	else if(T.flags_1 & NOJAUNT_1)
-		to_chat(user, "<span class='sevtug_small'>This tile is blessed by strange energies and deflects the warp.</span>")
+		to_chat(user, "[span_sevtug_small("This tile is blessed by strange energies and deflects the warp.")]")
 		return
 	else if(locate(/obj/effect/blessing, T))
-		to_chat(user, "<span class='sevtug_small'>This tile is blessed by holy water and deflects the warp.</span>")
+		to_chat(user, "[span_sevtug_small("This tile is blessed by holy water and deflects the warp.")]")
 		return
 	var/area/AR = get_area(T)
 	if(!AR.clockwork_warp_allowed)
-		to_chat(user, "<span class='sevtug_small'>[AR.clockwork_warp_fail]</span>")
+		to_chat(user, "[span_sevtug_small("[AR.clockwork_warp_fail]")]")
 		return
 	if(alert(user, "Are you sure you want to warp to [AR]?", target.name, "Warp", "Cancel") == "Cancel" || QDELETED(R) || !user.canUseTopic(R))
 		return
 	do_sparks(5, TRUE, user)
 	do_sparks(5, TRUE, T)
-	user.visible_message("<span class='warning'>[user]'s [target.name] flares!</span>", "<span class='bold sevtug_small'>You begin warping to [AR]...</span>")
+	user.visible_message(span_warning("[user]'s [target.name] flares!"), "<span class='bold sevtug_small'>You begin warping to [AR]...</span>")
 	button_icon_state = "warp_cancel"
 	owner.update_action_buttons()
 	var/warp_time = 50
 	if(!istype(T, /turf/open/floor/clockwork) && GLOB.clockwork_hardmode_active)
-		to_chat(user, "<span class='sevtug_small'>The [target.name]'s inner machinery protests vehemently as it attempts to warp you to a non-brass tile, this will take time...</span>")
+		to_chat(user, "[span_sevtug_small("The [target.name]'s inner machinery protests vehemently as it attempts to warp you to a non-brass tile, this will take time...")]")
 		warp_time = 300
 	warping = new(T, user, warp_time)
 	if(!do_after(user, warp_time, target = warping, extra_checks = CALLBACK(src, .proc/is_canceled)))
@@ -379,7 +381,7 @@
 		return
 	button_icon_state = "warp_down"
 	owner.update_action_buttons()
-	T.visible_message("<span class='warning'>[user] warps in!</span>")
+	T.visible_message(span_warning("[user] warps in!"))
 	playsound(user, 'sound/magic/magic_missile.ogg', 50, TRUE)
 	playsound(T, 'sound/magic/magic_missile.ogg', 50, TRUE)
 	user.forceMove(get_turf(T))

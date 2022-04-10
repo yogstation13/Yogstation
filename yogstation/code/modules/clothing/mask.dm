@@ -98,7 +98,7 @@
 		if(does_cluwne)
 			log_admin("[key_name(H)] was made into a cluwne by [src]")
 			message_admins("[key_name(H)] got cluwned by [src]")
-			to_chat(H, "<span class='userdanger'>The masks straps suddenly tighten to your face and your thoughts are erased by a horrible green light!</span>")
+			to_chat(H, span_userdanger("The masks straps suddenly tighten to your face and your thoughts are erased by a horrible green light!"))
 			H.dropItemToGround(src)
 			ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 			H.cluwneify()
@@ -109,7 +109,7 @@
 			S.Acquire_Victim(user)
 			log_admin("[key_name(user)] summoned a floor cluwne using the [src]")
 			message_admins("[key_name(user)] summoned a floor cluwne using the [src]")
-			to_chat(H, "<span class='warning'>The mask suddenly slips off your face and... slides under the floor?</span>")
+			to_chat(H, span_warning("The mask suddenly slips off your face and... slides under the floor?"))
 			to_chat(H, "<i>...dneirf uoy ot gnoleb ton seod tahT</i>")
 			qdel(src)
 

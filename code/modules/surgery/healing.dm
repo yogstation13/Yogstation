@@ -20,7 +20,7 @@
 
 /datum/surgery_step/heal
 	name = "repair body"
-	implements = list(/obj/item/hemostat = 100, TOOL_SCREWDRIVER = 65, /obj/item/pen = 55)
+	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCREWDRIVER = 65, /obj/item/pen = 55)
 	repeatable = TRUE
 	time = 2 SECONDS
 	fuckup_damage = 0
@@ -42,19 +42,19 @@
 	if(istype(surgery,/datum/surgery/healing))
 		var/datum/surgery/healing/the_surgery = surgery
 		if(!the_surgery.antispam)
-			display_results(user, target, "<span class='notice'>You attempt to patch some of [target]'s [woundtype].</span>",
-		"<span class='notice'>[user] attempts to patch some of [target]'s [woundtype].</span>",
-		"<span class='notice'>[user] attempts to patch some of [target]'s [woundtype].</span>")
+			display_results(user, target, span_notice("You attempt to patch some of [target]'s [woundtype]."),
+		span_notice("[user] attempts to patch some of [target]'s [woundtype]."),
+		span_notice("[user] attempts to patch some of [target]'s [woundtype]."))
 
 /datum/surgery_step/heal/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	var/list/list_org_limbs = target.get_damaged_bodyparts(brutehealing, burnhealing, FALSE, BODYPART_ORGANIC)
 	if(!list_org_limbs.len)
-		to_chat(user, "<span class='notice'>[target] has no wounds left to treat. The rest of the damage is mechanical limbs</span>")
+		to_chat(user, span_notice("[target] has no wounds left to treat. The rest of the damage is mechanical limbs"))
 	if(..())
 		while((brutehealing && target.getBruteLoss()) || (burnhealing && target.getFireLoss()))
 			list_org_limbs = target.get_damaged_bodyparts(brutehealing, burnhealing, FALSE, BODYPART_ORGANIC)
 			if(!list_org_limbs.len) // if there are no organic bodypart with damage we should stop
-				to_chat(user, "<span class='notice'>[target] has no wounds left to treat. The rest of the damage is mechanical limbs</span>")
+				to_chat(user, span_notice("[target] has no wounds left to treat. The rest of the damage is mechanical limbs"))
 				break
 			if(!..())
 				break
@@ -79,7 +79,7 @@
 	target.heal_bodypart_damage(urhealedamt_brute,urhealedamt_burn)
 	umsg += get_progress(user, target, urhealedamt_brute, urhealedamt_burn)
 
-	display_results(user, target, "<span class='notice'>[umsg].</span>",
+	display_results(user, target, span_notice("[umsg]."),
 		"[tmsg].",
 		"[tmsg].")
 	if(istype(surgery, /datum/surgery/healing))
@@ -88,16 +88,16 @@
 	return TRUE
 
 /datum/surgery_step/heal/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='warning'>You screwed up!</span>",
-		"<span class='warning'>[user] screws up!</span>",
-		"<span class='notice'>[user] fixes some of [target]'s wounds.</span>", TRUE)
+	display_results(user, target, span_warning("You screwed up!"),
+		span_warning("[user] screws up!"),
+		span_notice("[user] fixes some of [target]'s wounds."), TRUE)
 	var/urdamageamt_burn = brutehealing * 0.8
 	var/urdamageamt_brute = burnhealing * 0.8
 	if(missinghpbonus)
 		urdamageamt_brute += round((target.getBruteLoss()/ (missinghpbonus*2)),0.1)
 		urdamageamt_burn += round((target.getFireLoss()/ (missinghpbonus*2)),0.1)
 
-	target.take_bodypart_damage(urdamageamt_brute, urdamageamt_burn)
+	target.take_bodypart_damage(urdamageamt_brute, urdamageamt_burn, wound_bonus=CANT_WOUND)
 	return FALSE
 
 /***************************BRUTE***************************/
@@ -197,7 +197,7 @@
 	var/estimated_remaining_steps = target.getFireLoss() / burn_healed
 	var/progress_text
 	if(locate(/obj/item/healthanalyzer) in user.held_items)
-		progress_text = ". Remaining brute: <font color='#ff9933'>[target.getFireLoss()]</font>"
+		progress_text = ". Remaining burn: <font color='#ff9933'>[target.getFireLoss()]</font>"
 	else
 		switch(estimated_remaining_steps)
 			if(-INFINITY to 1)
@@ -304,7 +304,7 @@
 	missinghpbonus = 2.5
 
 /datum/surgery_step/heal/combo/upgraded/femto/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='warning'>You screwed up!</span>",
-		"<span class='warning'>[user] screws up!</span>",
-		"<span class='notice'>[user] fixes some of [target]'s wounds.</span>", TRUE)
+	display_results(user, target, span_warning("You screwed up!"),
+		span_warning("[user] screws up!"),
+		span_notice("[user] fixes some of [target]'s wounds."), TRUE)
 	target.take_bodypart_damage(5,5)

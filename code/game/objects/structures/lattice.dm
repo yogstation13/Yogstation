@@ -22,7 +22,7 @@
 	. += deconstruction_hints(user)
 
 /obj/structure/lattice/proc/deconstruction_hints(mob/user)
-	return "<span class='notice'>The rods look like they could be <b>cut</b>. There's space for more <i>rods</i> or a <i>tile</i>.</span>"
+	return span_notice("The rods look like they could be <b>cut</b>. There's space for more <i>rods</i> or a <i>tile</i>.")
 
 /obj/structure/lattice/Initialize(mapload)
 	. = ..()
@@ -40,7 +40,7 @@
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	if(C.tool_behaviour == TOOL_WIRECUTTER)
-		to_chat(user, "<span class='notice'>Slicing [name] joints ...</span>")
+		to_chat(user, span_notice("Slicing [name] joints ..."))
 		deconstruct()
 	else
 		var/turf/T = get_turf(src)
@@ -57,7 +57,7 @@
 
 /obj/structure/lattice/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	if(passed_mode == RCD_FLOORWALL)
-		to_chat(user, "<span class='notice'>You build a floor.</span>")
+		to_chat(user, span_notice("You build a floor."))
 		var/turf/T = src.loc
 		if(isspaceturf(T))
 			T.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
@@ -88,63 +88,6 @@
 		pixel_y = -9
 	else
 		icon = 'icons/obj/smooth_structures/lattice_clockwork.dmi'
-		pixel_x = 0
-		pixel_y = 0
-	return TRUE
-
-/obj/structure/lattice/catwalk
-	name = "catwalk"
-	desc = "A catwalk for easier EVA maneuvering and cable placement."
-	icon = 'icons/obj/smooth_structures/catwalk.dmi'
-	icon_state = "catwalk"
-	number_of_rods = 2
-	smooth = SMOOTH_TRUE
-	canSmoothWith = null
-
-/obj/structure/lattice/catwalk/deconstruction_hints(mob/user)
-	return "<span class='notice'>The supporting rods look like they could be <b>cut</b>.</span>"
-
-/obj/structure/lattice/catwalk/ratvar_act()
-	new /obj/structure/lattice/catwalk/clockwork(loc)
-
-/obj/structure/lattice/catwalk/Move()
-	var/turf/T = loc
-	for(var/obj/structure/cable/C in T)
-		C.deconstruct()
-	..()
-
-/obj/structure/lattice/catwalk/deconstruct()
-	var/turf/T = loc
-	for(var/obj/structure/cable/C in T)
-		C.deconstruct()
-	..()
-
-/obj/structure/lattice/catwalk/clockwork
-	name = "clockwork catwalk"
-	icon = 'icons/obj/smooth_structures/catwalk_clockwork.dmi'
-	canSmoothWith = list(/obj/structure/lattice,
-	/turf/open/floor,
-	/turf/open/indestructible/clock_spawn_room,
-	/turf/closed/wall,
-	/obj/structure/falsewall)
-	smooth = SMOOTH_MORE
-
-/obj/structure/lattice/catwalk/clockwork/Initialize(mapload)
-	. = ..()
-	ratvar_act()
-	if(!mapload)
-		new /obj/effect/temp_visual/ratvar/floor/catwalk(loc)
-		new /obj/effect/temp_visual/ratvar/beam/catwalk(loc)
-	if(is_reebe(z))
-		resistance_flags |= INDESTRUCTIBLE
-
-/obj/structure/lattice/catwalk/clockwork/ratvar_act()
-	if(ISODD(x+y))
-		icon = 'icons/obj/smooth_structures/catwalk_clockwork_large.dmi'
-		pixel_x = -9
-		pixel_y = -9
-	else
-		icon = 'icons/obj/smooth_structures/catwalk_clockwork.dmi'
 		pixel_x = 0
 		pixel_y = 0
 	return TRUE

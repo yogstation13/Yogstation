@@ -19,10 +19,10 @@
 	msg = emoji_parse(msg)
 	msg = keywords_lookup(msg)
 	if(check_rights(R_ADMIN,0))
-		msg = "<span class='adminsay'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>"
+		msg = span_adminsay("[span_prefix("ADMIN:")] <EM>[key_name(usr, 1)]</EM> [ADMIN_FLW(mob)]: [span_message("[msg]")]")
 		to_chat(GLOB.admins, msg, confidential=TRUE)
 	else
-		msg = "<span class='adminsay'><span class='prefix'>OBSERVER:</span> <EM>[key_name(usr, 1)]</EM> [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>"
+		msg = span_adminsay("[span_prefix("OBSERVER:")] <EM>[key_name(usr, 1)]</EM> [ADMIN_FLW(mob)]: [span_message("[msg]")]")
 		to_chat(GLOB.admins, msg, confidential=TRUE)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Asay") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

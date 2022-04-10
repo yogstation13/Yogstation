@@ -11,6 +11,11 @@
 	var/hair_color = "000"
 	var/hair_style = "Bald"
 
+	///Colour used for the hair gradient.
+	var/grad_color = "000"
+	///Style used for the hair gradient.
+	var/grad_style
+
 	//Facial hair colour and style
 	var/facial_hair_color = "000"
 	var/facial_hair_style = "Shaved"
@@ -29,6 +34,8 @@
 	var/undershirt = "Nude" //Which undershirt the player wants
 	var/socks = "Nude" //Which socks the player wants
 	var/backbag = DBACKPACK		//Which backpack type the player has chosen.
+	var/jumpsuit_style = PREF_SUIT //suit/skirt
+	var/id_in_pda = FALSE //Whether the player wants their ID to start in their PDA
 
 	//Equipment slots
 	var/obj/item/clothing/wear_suit = null
@@ -41,7 +48,6 @@
 
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
-	var/bleed_rate = 0 //how much are we bleeding
 	var/bleedsuppress = 0 //for stopping bloodloss, eventually this will be limb-based like bleeding
 
 	var/name_override //For temporary visible name changes

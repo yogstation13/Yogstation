@@ -32,7 +32,7 @@
   * This proc is called whenever a new eldritch knowledge is added to an antag datum
   */
 /datum/eldritch_knowledge/proc/on_gain(mob/user)
-	to_chat(user, "<span class='warning'>[gain_text]</span>")
+	to_chat(user, span_warning("[gain_text]"))
 	for(var/S in spells_to_add)
 		var/obj/effect/proc_holder/spell/spell2add = new S
 		user.mind.AddSpell(spell2add)
@@ -88,5 +88,5 @@
 	gain_text = "Gates of mansus open up to your mind."
 	cost = 0
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp)
-	unlocked_transmutations = list(/datum/eldritch_transmutation/basic, /datum/eldritch_transmutation/living_heart, /datum/eldritch_transmutation/codex_cicatrix, /datum/eldritch_transmutation/recall)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/basic, /datum/eldritch_transmutation/living_heart, /datum/eldritch_transmutation/codex_cicatrix)
 	route = "Start"

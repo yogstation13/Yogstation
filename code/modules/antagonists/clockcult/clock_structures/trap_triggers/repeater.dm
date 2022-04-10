@@ -14,11 +14,11 @@
 		return
 	if(!(datum_flags & DF_ISPROCESSING))
 		START_PROCESSING(SSprocessing, src)
-		to_chat(user, "<span class='notice'>You activate [src].</span>")
+		to_chat(user, span_notice("You activate [src]."))
 		icon_state = "[icon_state]_on"
 	else
 		STOP_PROCESSING(SSprocessing, src)
-		to_chat(user, "<span class='notice'>You halt [src]'s ticking.</span>")
+		to_chat(user, span_notice("You halt [src]'s ticking."))
 		icon_state = initial(icon_state)
 
 /obj/structure/destructible/clockwork/trap/trigger/repeater/process()

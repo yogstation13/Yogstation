@@ -41,7 +41,7 @@
 	. = ..()
 	if(health <= maxHealth*0.1)
 		if(!retreat_message_said && target)
-			visible_message("<span class='danger'>The [name] tries to flee from [target]!</span>")
+			visible_message(span_danger("The [name] tries to flee from [target]!"))
 			retreat_message_said = TRUE
 		retreat_distance = 30
 	else

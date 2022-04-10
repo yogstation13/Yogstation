@@ -13,16 +13,16 @@
 		if("Throw Lollipop")
 			if(mode == THROW_LOLLIPOP_MODE)
 				mode = DISPENSE_LOLLIPOP_MODE
-				to_chat(user, "<span class='notice'>Module is now dispensing lollipops.</span>")
+				to_chat(user, span_notice("Module is now dispensing lollipops."))
 			else
 				mode = THROW_LOLLIPOP_MODE
-				to_chat(user, "<span class='notice'>Module is now throwing lollipops.</span>")
+				to_chat(user, span_notice("Module is now throwing lollipops."))
 		if("Throw Gumball")
 			mode = THROW_GUMBALL_MODE
-			to_chat(user, "<span class='notice'>Module is now blasting gumballs.</span>")
+			to_chat(user, span_notice("Module is now blasting gumballs."))
 		if("Dispense Icecream")
 			mode = DISPENSE_ICECREAM_MODE
-			to_chat(user, "<span class='notice'>Module is now dispensing ice cream.</span>")
+			to_chat(user, span_notice("Module is now dispensing ice cream."))
 
 #undef DISPENSE_LOLLIPOP_MODE
 #undef THROW_LOLLIPOP_MODE

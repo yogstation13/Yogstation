@@ -197,7 +197,7 @@
 		return
 
 	if(!auth && !issilicon(usr) && !emagged)
-		to_chat(usr, "<span class='danger'>ACCESS DENIED.</span>")
+		to_chat(usr, span_danger("ACCESS DENIED."))
 		return
 
 	if(href_list["viewserver"])
@@ -236,7 +236,7 @@
 
 			if("editcode")
 				if(is_banned_from(usr.ckey, "Signal Technician"))
-					to_chat(usr, "<span class='warning'>You are banned from using NTSL.</span>")
+					to_chat(usr, span_warning("You are banned from using NTSL."))
 					return
 				if(editingcode == usr)
 					return
@@ -294,7 +294,7 @@
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = TRUE
-		to_chat(user, "<span class='notice'>You you disable the security protocols.</span>")
+		to_chat(user, span_notice("You you disable the security protocols."))
 
 /obj/machinery/computer/telecomms/traffic/proc/canAccess(mob/user)
 	if(issilicon(user) || in_range(user, src))

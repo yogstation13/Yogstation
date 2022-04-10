@@ -202,6 +202,13 @@
 	name = "Crashed Ship"
 	description = "Among civilian vessels the most common cause of tragedy is lack of food. \
 	This ship was outfitted with a multitude of food-generating features, then summarily ran into an asteroid shortly after takeoff."
+	
+/datum/map_template/ruin/space/crashedufo
+	id = "crashedufo"
+	suffix = "crashedufo.dmm"
+	name = "Crashed UFO"
+	description = "Turns out even high-tech ships of abductors happen to crash into stray asteroids. \
+	Who knows what secrets might be unearthed from the wreckage?"
 
 /datum/map_template/ruin/space/listeningstation
 	id = "listeningstation"

@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	33
+#define SAVEFILE_VERSION_MAX	35
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -47,7 +47,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(LAZYFIND(be_special,"Ragin"))
 			be_special -= "Ragin"
 			be_special += "Ragin Mages"
-	//
+	if (current_version < 35)
+		toggles |= SOUND_ALT
 	return
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
@@ -131,7 +132,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!ispath(donor_item))
 			donor_item = null
 	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing
-		toggles &= ~DEADMIN_ALWAYS 
+		toggles &= ~DEADMIN_ALWAYS
 		toggles &= ~DEADMIN_ANTAGONIST
 		toggles &= ~DEADMIN_POSITION_HEAD
 		toggles &= ~DEADMIN_POSITION_SECURITY
@@ -144,10 +145,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			qdel(cape)
 	if(current_version < 33) //Reset map preference to no choice
 		if(preferred_map)
-			to_chat(parent, "<span class='userdanger'>Your preferred map has been reset to nothing. Please set it to the map you wish to play on.</span>")
+			to_chat(parent, span_userdanger("Your preferred map has been reset to nothing. Please set it to the map you wish to play on."))
 		preferred_map = null
-		
-		
+	if(current_version < 34) // default to on
+		toggles |= SOUND_VOX
 		
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
@@ -211,6 +212,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["tip_delay"], tip_delay)
 	READ_FILE(S["pda_style"], pda_style)
 	READ_FILE(S["pda_color"], pda_color)
+	READ_FILE(S["id_in_pda"], id_in_pda)
 
 	READ_FILE(S["skillcape"], skillcape)
 	READ_FILE(S["skillcape_id"], skillcape_id)
@@ -222,6 +224,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features
 	READ_FILE(S["donor_pda"], donor_pda)
 	READ_FILE(S["donor_hat"], donor_hat)
+	READ_FILE(S["borg_hat"], borg_hat)
 	READ_FILE(S["donor_item"], donor_item)
 	READ_FILE(S["purrbation"], purrbation)
 	READ_FILE(S["yogtoggles"], yogtoggles)
@@ -248,7 +251,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	buttons_locked		= sanitize_integer(buttons_locked, FALSE, TRUE, initial(buttons_locked))
 	windowflashing		= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
 	default_slot		= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles				= sanitize_integer(toggles, 0, (1 << 23), initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
+	toggles				= sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
 	clientfps			= sanitize_integer(clientfps, 0, 1000, 0)
 	parallax			= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	ambientocclusion	= sanitize_integer(ambientocclusion, FALSE, TRUE, initial(ambientocclusion))
@@ -281,9 +284,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			break
 	if(!bar_sanitize)
 		bar_choice = "Random"
-	
 	if(!player_alt_titles) player_alt_titles = new()
-
 	show_credits	= sanitize_integer(show_credits, FALSE, TRUE, initial(show_credits))
 
 	// yogs start - Donor features & yogtoggles
@@ -348,6 +349,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["tip_delay"], tip_delay)
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
+	WRITE_FILE(S["id_in_pda"], id_in_pda)
 	WRITE_FILE(S["skillcape"], skillcape)
 	WRITE_FILE(S["skillcape_id"], skillcape_id)
 	WRITE_FILE(S["show_credits"], show_credits)
@@ -359,6 +361,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
 	WRITE_FILE(S["donor_pda"], donor_pda)
 	WRITE_FILE(S["donor_hat"], donor_hat)
+	WRITE_FILE(S["borg_hat"], borg_hat)
 	WRITE_FILE(S["donor_item"], donor_item)
 	WRITE_FILE(S["purrbation"], purrbation)
 
@@ -420,8 +423,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["undershirt"], undershirt)
 	READ_FILE(S["socks"], socks)
 	READ_FILE(S["backbag"], backbag)
+	READ_FILE(S["jumpsuit_style"], jumpsuit_style)
 	READ_FILE(S["uplink_loc"], uplink_spawn_loc)
 	READ_FILE(S["feature_mcolor"], features["mcolor"])
+	READ_FILE(S["feature_gradientstyle"], features["gradientstyle"])
+	READ_FILE(S["feature_gradientcolor"], features["gradientcolor"])
 	READ_FILE(S["feature_ethcolor"], features["ethcolor"])
 	READ_FILE(S["feature_lizard_tail"], features["tail_lizard"])
 	READ_FILE(S["feature_lizard_snout"], features["snout"])
@@ -435,6 +441,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_polysmorph_teeth"], features["teeth"])
 	READ_FILE(S["feature_polysmorph_dome"], features["dome"])
 	READ_FILE(S["feature_polysmorph_dorsal_tubes"], features["dorsal_tubes"])
+	READ_FILE(S["feature_ethereal_mark"], features["ethereal_mark"])
+	READ_FILE(S["feature_pod_hair"], features["pod_hair"])
+	READ_FILE(S["feature_pod_flower"], features["pod_flower"])
+
+	READ_FILE(S["persistent_scars"], persistent_scars)
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
 		features["tail_human"] = "none"
 		features["ears"] = "none"
@@ -513,8 +524,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	eye_color		= sanitize_hexcolor(eye_color, 3, 0)
 	skin_tone		= sanitize_inlist(skin_tone, GLOB.skin_tones)
 	backbag			= sanitize_inlist(backbag, GLOB.backbaglist, initial(backbag))
+	jumpsuit_style	= sanitize_inlist(jumpsuit_style, GLOB.jumpsuitlist, initial(jumpsuit_style))
 	uplink_spawn_loc = sanitize_inlist(uplink_spawn_loc, GLOB.uplink_spawn_loc_list, initial(uplink_spawn_loc))
 	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], 3, 0)
+	features["gradientstyle"]			= sanitize_inlist(features["gradientstyle"], GLOB.hair_gradients_list)
+	features["gradientcolor"]		= sanitize_hexcolor(features["gradientcolor"], 3, 0)
 	features["ethcolor"]	= copytext_char(features["ethcolor"], 1, 7)
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_polysmorph"]	= sanitize_inlist(features["tail_polysmorph"], GLOB.tails_list_polysmorph)
@@ -530,6 +544,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["teeth"]	= sanitize_inlist(features["teeth"], GLOB.teeth_list)
 	features["dome"]	= sanitize_inlist(features["dome"], GLOB.dome_list)
 	features["dorsal_tubes"]	= sanitize_inlist(features["dorsal_tubes"], GLOB.dorsal_tubes_list)
+	features["ethereal_mark"]	= sanitize_inlist(features["ethereal_mark"], GLOB.ethereal_mark_list)
+	features["pod_hair"]	= sanitize_inlist(features["pod_hair"], GLOB.pod_hair_list)
+	features["pod_flower"]	= sanitize_inlist(features["pod_flower"], GLOB.pod_flower_list)
+
+	persistent_scars = sanitize_integer(persistent_scars)
 
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
 	//Validate job prefs
@@ -567,9 +586,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["undershirt"]			, undershirt)
 	WRITE_FILE(S["socks"]				, socks)
 	WRITE_FILE(S["backbag"]			, backbag)
+	WRITE_FILE(S["jumpsuit_style"]  , jumpsuit_style)
 	WRITE_FILE(S["uplink_loc"]			, uplink_spawn_loc)
 	WRITE_FILE(S["species"]			, pref_species.id)
 	WRITE_FILE(S["feature_mcolor"]					, features["mcolor"])
+	WRITE_FILE(S["feature_gradientstyle"]	, features["gradientstyle"])
+	WRITE_FILE(S["feature_gradientcolor"]	, 	features["gradientcolor"])
 	WRITE_FILE(S["feature_ethcolor"]					, features["ethcolor"])
 	WRITE_FILE(S["feature_lizard_tail"]			, features["tail_lizard"])
 	WRITE_FILE(S["feature_polysmorph_tail"]			, features["tail_polysmorph"])
@@ -585,6 +607,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_polysmorph_teeth"]			, features["teeth"])
 	WRITE_FILE(S["feature_polysmorph_dome"]			, features["dome"])
 	WRITE_FILE(S["feature_polysmorph_dorsal_tubes"]			, features["dorsal_tubes"])
+	WRITE_FILE(S["feature_ethereal_mark"]			, features["ethereal_mark"])
+	WRITE_FILE(S["feature_pod_hair"]			, features["pod_hair"])
+	WRITE_FILE(S["feature_pod_flower"]			, features["pod_flower"])
+	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

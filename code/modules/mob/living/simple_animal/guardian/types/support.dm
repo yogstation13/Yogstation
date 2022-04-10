@@ -6,10 +6,10 @@
 	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, CLONE = 0.7, STAMINA = 0, OXY = 0.7)
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	playstyle_string = "<span class='holoparasite'>As a <b>support</b> type, you may toggle your basic attacks to a healing mode. In addition, Alt-Clicking on an adjacent object or mob will warp them to your bluespace beacon after a short delay.</span>"
-	magic_fluff_string = "<span class='holoparasite'>..And draw the CMO, a potent force of life... and death.</span>"
-	carp_fluff_string = "<span class='holoparasite'>CARP CARP CARP! You caught a support carp. It's a kleptocarp!</span>"
-	tech_fluff_string = "<span class='holoparasite'>Boot sequence complete. Support modules active. Holoparasite swarm online.</span>"
+	playstyle_string = span_holoparasite("As a <b>support</b> type, you may toggle your basic attacks to a healing mode. In addition, Alt-Clicking on an adjacent object or mob will warp them to your bluespace beacon after a short delay.")
+	magic_fluff_string = span_holoparasite("..And draw the CMO, a potent force of life... and death.")
+	carp_fluff_string = span_holoparasite("CARP CARP CARP! You caught a support carp. It's a kleptocarp!")
+	tech_fluff_string = span_holoparasite("Boot sequence complete. Support modules active. Holoparasite swarm online.")
 	toggle_button_type = /obj/screen/guardian/ToggleMode
 	var/obj/structure/receiving_pad/beacon
 	var/beacon_cooldown = 0
@@ -35,7 +35,7 @@
 		C.adjustToxLoss(-5)
 		var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(C))
 		if(namedatum)
-			H.color = namedatum.colour
+			H.color = namedatum.color
 		if(C == summoner)
 			update_health_hud()
 			med_hud_set_health()
@@ -69,12 +69,12 @@
 	set desc = "Mark a floor as your beacon point, allowing you to warp targets to it. Your beacon will not work at extreme distances."
 
 	if(beacon_cooldown >= world.time)
-		to_chat(src, "<span class='danger'><B>Your power is on cooldown. You must wait five minutes between placing beacons.</B></span>")
+		to_chat(src, span_danger("<B>Your power is on cooldown. You must wait five minutes between placing beacons.</B>"))
 		return
 
 	var/turf/beacon_loc = get_turf(src.loc)
 	if(!isfloorturf(beacon_loc))
-		to_chat(src, "<span class='danger'>Your beacon can only be placed on solid flooring!</span>")
+		to_chat(src, span_danger("Your beacon can only be placed on solid flooring!"))
 		return
 
 	if(beacon)
@@ -100,7 +100,7 @@
 /obj/structure/receiving_pad/New(loc, mob/living/simple_animal/hostile/guardian/healer/G)
 	. = ..()
 	if(G.namedatum)
-		add_atom_colour(G.namedatum.colour, FIXED_COLOUR_PRIORITY)
+		add_atom_colour(G.namedatum.color, FIXED_COLOUR_PRIORITY)
 
 /obj/structure/receiving_pad/proc/disappear()
 	visible_message("[src] vanishes!")
@@ -128,8 +128,8 @@
 		return
 
 	to_chat(src, "<span class='danger'><B>You begin to warp [A].</span></B>")
-	A.visible_message("<span class='danger'>[A] starts to glow faintly!</span>", \
-	"<span class='userdanger'>You start to faintly glow, and you feel strangely weightless!</span>")
+	A.visible_message(span_danger("[A] starts to glow faintly!"), \
+	span_userdanger("You start to faintly glow, and you feel strangely weightless!"))
 	do_attack_animation(A)
 
 	if(!do_mob(src, A, 60)) //now start the channel
@@ -140,7 +140,7 @@
 	if(isliving(A))
 		var/mob/living/L = A
 		L.flash_act()
-	A.visible_message("<span class='danger'>[A] disappears in a flash of light!</span>", \
-	"<span class='userdanger'>Your vision is obscured by a flash of light!</span>")
+	A.visible_message(span_danger("[A] disappears in a flash of light!"), \
+	span_userdanger("Your vision is obscured by a flash of light!"))
 	do_teleport(A, beacon, 0, channel = TELEPORT_CHANNEL_BLUESPACE)
 	new /obj/effect/temp_visual/guardian/phase(get_turf(A))

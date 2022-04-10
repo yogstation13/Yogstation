@@ -43,6 +43,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/sl_suit
 	desc = "It's a very amish looking suit."
@@ -91,6 +92,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
@@ -243,6 +245,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
 	name = "head of personnel's suit"
@@ -262,6 +265,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/suit_jacket
 	name = "black suit"
@@ -610,7 +614,7 @@
 	icon_state = "janimaid"
 	item_state = "janimaid"
 	item_color = "janimaid"
-	body_parts_covered = CHEST|GROIN
+	body_parts_covered = CHEST|GROIN|FEET|LEGS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
@@ -728,7 +732,7 @@
 
 /obj/item/clothing/under/plasmaman/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>There are [extinguishes_left] extinguisher charges left in this suit.</span>"
+	. += span_notice("There are [extinguishes_left] extinguisher charges left in this suit.")
 
 /obj/item/clothing/under/plasmaman/proc/Extinguish(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -740,7 +744,7 @@
 				return
 			next_extinguish = world.time + extinguish_cooldown
 			extinguishes_left--
-			H.visible_message("<span class='warning'>[H]'s suit automatically extinguishes [H.p_them()]!</span>","<span class='warning'>Your suit automatically extinguishes you.</span>")
+			H.visible_message(span_warning("[H]'s suit automatically extinguishes [H.p_them()]!"),span_warning("Your suit automatically extinguishes you."))
 			H.ExtinguishMob()
 			new /obj/effect/particle_effect/water(get_turf(H))
 	return 0
@@ -749,10 +753,10 @@
 	..()
 	if (istype(E, /obj/item/extinguisher_refill))
 		if (extinguishes_left == 5)
-			to_chat(user, "<span class='notice'>The inbuilt extinguisher is full.</span>")
+			to_chat(user, span_notice("The inbuilt extinguisher is full."))
 		else
 			extinguishes_left = 5
-			to_chat(user, "<span class='notice'>You refill the suit's built-in extinguisher, using up the cartridge.</span>")
+			to_chat(user, span_notice("You refill the suit's built-in extinguisher, using up the cartridge."))
 			qdel(E)
 
 /obj/item/extinguisher_refill
@@ -896,7 +900,7 @@
 
 	if(on)
 		set_light(brightness_on)
-		user.visible_message("<span class='notice'>[user] discreetly pulls a cord for the bulbs under [user.p_their()] skirt, turning [user.p_them()] on.</span>")
+		user.visible_message(span_notice("[user] discreetly pulls a cord for the bulbs under [user.p_their()] skirt, turning [user.p_them()] on."))
 	else
 		set_light(0)
 
@@ -911,3 +915,11 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+
+/obj/item/clothing/under/weiner
+	name = "weiner outfit"
+	desc = "The meat part of a hot dog costume. People may think you're trying to compensate for something."
+	icon_state = "weiner"
+	item_state = "weiner"
+	item_color = "weiner"
+	can_adjust = FALSE

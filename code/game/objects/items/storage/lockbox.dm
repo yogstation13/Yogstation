@@ -28,26 +28,26 @@
 	if(!locked)
 		return ..()
 	else
-		to_chat(user, "<span class='danger'>It's locked!</span>")
+		to_chat(user, span_danger("It's locked!"))
 
 /obj/item/storage/lockbox/proc/togglelock(mob/living/user, silent)
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	if(broken)
-		to_chat(user, "<span class='danger'>It appears to be broken.</span>")
+		to_chat(user, span_danger("It appears to be broken."))
 		return
 	if(allowed(user))
 		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
 		locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 		if(locked)
 			icon_state = icon_locked
-			to_chat(user, "<span class='danger'>You lock the [src.name]!</span>")
+			to_chat(user, span_danger("You lock the [src.name]!"))
 			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
 		else
 			icon_state = icon_closed
-			to_chat(user, "<span class='danger'>You unlock the [src.name]!</span>")
+			to_chat(user, span_danger("You unlock the [src.name]!"))
 			return
 	else
-		to_chat(user, "<span class='danger'>Access Denied.</span>")
+		to_chat(user, span_danger("Access Denied."))
 		return
 
 /obj/item/storage/lockbox/emag_act(mob/user)
@@ -57,7 +57,7 @@
 		desc += "It appears to be broken."
 		icon_state = src.icon_broken
 		if(user)
-			visible_message("<span class='warning'>\The [src] has been broken by [user] with an electromagnetic card!</span>")
+			visible_message(span_warning("\The [src] has been broken by [user] with an electromagnetic card!"))
 			return
 
 /obj/item/storage/lockbox/Entered()
@@ -110,14 +110,14 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
-	STR.max_items = 10
+	STR.max_items = 15
 	STR.max_combined_w_class = 20
 	STR.set_holdable(list(/obj/item/clothing/accessory/medal))
 
 /obj/item/storage/lockbox/medal/examine(mob/user)
 	. = ..()
 	if(!SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
-		. += "<span class='notice'>Alt-click to [open ? "close":"open"] it.</span>"
+		. += span_notice("Alt-click to [open ? "close":"open"] it.")
 
 /obj/item/storage/lockbox/medal/AltClick(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE))
@@ -131,6 +131,8 @@
 	new /obj/item/clothing/accessory/medal/silver/valor(src)
 	new /obj/item/clothing/accessory/medal/silver/valor(src)
 	new /obj/item/clothing/accessory/medal/silver/security(src)
+	new /obj/item/clothing/accessory/medal/silver/medical(src)
+	new /obj/item/clothing/accessory/medal/silver/engineering(src)
 	new /obj/item/clothing/accessory/medal/bronze_heart(src)
 	new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
 	new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
@@ -194,3 +196,111 @@
 /obj/item/storage/lockbox/medal/sci/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
+
+/obj/item/storage/lockbox/medal/med
+	name = "medical medal box"
+	desc = "A locked box used to store medals to be given to members of the medical department."
+	req_access = list(ACCESS_CMO)
+
+/obj/item/storage/lockbox/medal/med/PopulateContents()
+	for(var/i in 1 to 3)
+		new /obj/item/clothing/accessory/medal/silver/medical(src)
+
+/obj/item/storage/lockbox/medal/eng
+	name = "engineering medal box"
+	desc = "A locked box used to store medals to be given to members of the engineering department."
+	req_access = list(ACCESS_CE)
+
+/obj/item/storage/lockbox/medal/eng/PopulateContents()
+	for(var/i in 1 to 3)
+		new /obj/item/clothing/accessory/medal/silver/engineering(src)
+
+//Yogs: Vial Holder
+/obj/item/storage/lockbox/vialbox
+	name = "vial box"
+	desc = "A small box that can hold up to six vials in a sealed enviroment."
+	icon = 'icons/obj/vial_box.dmi'
+	icon_state = "vialbox"
+	req_access = list(ACCESS_MEDICAL)
+	icon_locked = "vialbox"
+	icon_closed = "vialbox"
+	icon_broken = "vialbox"
+
+/obj/item/storage/lockbox/vialbox/update_icon()
+	cut_overlays()
+	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
+	var/slot = 1
+	for(var/obj/item/reagent_containers/glass/G in contents)
+		var/mutable_appearance/vial = mutable_appearance(icon, "vialboxvial[slot]")
+		var/mutable_appearance/filling = mutable_appearance(icon, "vialboxvial[slot]-")
+		if(G.reagents.total_volume)
+			var/percent = round((G.reagents.total_volume / G.volume) * 100)
+			switch(percent)
+				if(75 to 79)
+					filling.icon_state = "vialboxvial[slot]-75"
+				if(80 to 90)
+					filling.icon_state = "vialboxvial[slot]-80"
+				if(91 to INFINITY)
+					filling.icon_state = "vialboxvial[slot]-100"
+
+			filling.color = mix_color_from_reagents(G.reagents.reagent_list)
+		add_overlay(vial)
+		add_overlay(filling)
+		slot++
+	if(!broken)
+		var/mutable_appearance/led = mutable_appearance(icon, "led[locked]")
+		add_overlay(led)
+	if(!open)
+		var/mutable_appearance/lid = mutable_appearance(icon, "vialboxcover")
+		add_overlay(lid)
+	..()
+
+/obj/item/storage/lockbox/vialbox/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/storage/lockbox/vialbox/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_TINY
+	STR.max_combined_w_class = 6
+	STR.max_items = 6
+	STR.locked = TRUE
+	STR.set_holdable(list(/obj/item/reagent_containers/glass/bottle/vial))
+
+/obj/item/storage/lockbox/vialbox/AltClick(mob/user)
+	if(user.canUseTopic(src, BE_CLOSE))
+		if(!SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
+			open = (open ? FALSE : TRUE)
+			update_icon()
+			if(open)
+				to_chat(user, span_danger("You open the lid on [src.name]."))
+			else
+				to_chat(user, span_danger("You put the lid on [src.name]."))
+
+/obj/item/storage/lockbox/vialbox/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	update_icon()
+
+/obj/item/storage/lockbox/vialbox/full/PopulateContents()
+	for(var/i in 1 to 6)
+		new /obj/item/reagent_containers/glass/bottle/vial(src)
+
+/obj/item/storage/lockbox/vialbox/virology
+	name = "virology vial box"
+	desc = "A small box that can hold up to six vials in a sealed enviroment. This one requires virology access to open."
+	req_access = list(ACCESS_MEDICAL)
+
+/obj/item/storage/lockbox/vialbox/virology/PopulateContents()
+	new /obj/item/reagent_containers/glass/bottle/vial/cold(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/flu_virion(src)
+	for(var/i in 1 to 4)
+		new /obj/item/reagent_containers/glass/bottle/vial(src)
+
+/obj/item/storage/lockbox/vialbox/blood
+	name = "blood sample box"
+	desc = "A small box that can hold up to six vials in a sealed enviroment. This one is intended to store blood."
+
+/obj/item/storage/lockbox/vialbox/blood/PopulateContents()
+	for(var/i in 1 to 6)
+		new /obj/item/reagent_containers/glass/bottle/vial(src)

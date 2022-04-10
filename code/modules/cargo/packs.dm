@@ -32,7 +32,7 @@
 
 	fill(C)
 	return C
-	
+
 /datum/supply_pack/proc/get_cost()
 	. = cost
 	. *= SSeconomy.pack_price_modifier
@@ -510,11 +510,17 @@
 	crate_name = "\improper DRAGnet crate"
 
 /datum/supply_pack/security/armory/energy_single
-	name = "Energy Guns Single-Pack"
+	name = "Energy Gun Single-Pack"
 	desc = "Contains one energy gun, capable of firing both non-lethal and lethal blasts of light. Requires Armory access to open."
 	cost = 1500
 	small_item = TRUE
 	contains = list(/obj/item/gun/energy/e_gun)
+
+/datum/supply_pack/security/armory/hell_single
+	name = "Hellgun Single-Pack"
+	desc = "Contains one hellgun, an old pattern of laser gun infamous for its ability to horribly disfigure targets with burns. Technically violates the Space Geneva Convention when used on humanoids."
+	cost = 1500
+	contains = list(/obj/item/gun/energy/laser/hellgun)
 
 /datum/supply_pack/security/armory/energy
 	name = "Energy Guns Crate"
@@ -1176,12 +1182,28 @@
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
 
+/datum/supply_pack/medical/medipen_variety
+	name = "Medipen Variety-Pak"
+	desc = "Contains eight different medipens in three different varieties, to assist in quickly treating seriously injured patients."
+	cost = 2000
+	contains = list(/obj/item/reagent_containers/hypospray/medipen/,
+					/obj/item/reagent_containers/hypospray/medipen/,
+					/obj/item/reagent_containers/hypospray/medipen/ekit,
+					/obj/item/reagent_containers/hypospray/medipen/ekit,
+					/obj/item/reagent_containers/hypospray/medipen/ekit,
+					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
+					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
+					/obj/item/reagent_containers/hypospray/medipen/blood_loss
+)
+	crate_name = "medipen crate"
+
 /datum/supply_pack/medical/firstaid_single
 	name = "First Aid Kit Single-Pack"
 	desc = "Contains one first aid kit for healing most types of wounds."
 	cost = 150
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/regular)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/firstaidbruises_single
 	name = "Bruise Treatment Kit Single-Pack"
@@ -1189,6 +1211,7 @@
 	cost = 100
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/brute)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/firstaidburns_single
 	name = "Burn Treatment Kit Single-Pack"
@@ -1196,6 +1219,7 @@
 	cost = 100
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/fire)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/firstaidtoxins_single
 	name = "Toxin Treatment Kit Single-Pack"
@@ -1203,6 +1227,7 @@
 	cost = 100
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/toxin)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/firstaidoxygen_single
 	name = "Oxygen Deprivation Kit Single-Pack"
@@ -1210,6 +1235,14 @@
 	cost = 70 //oxygen damage tends to be far rarer and these kits use perf which is objectively bad without any toxin healing
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/o2)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/medipen_twopak
+	name = "Medipen Two-Pak"
+	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
+	cost = 500
+	contains = list(/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/hypospray/medipen/ekit)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/chemical
 	name = "Chemical Starter Kit Crate"
@@ -1279,6 +1312,8 @@
 					/obj/item/reagent_containers/blood/OMinus,
 					/obj/item/storage/pill_bottle/mining,
 					/obj/item/reagent_containers/pill/neurine,
+					/obj/item/stack/medical/bone_gel,
+					/obj/item/stack/medical/bone_gel,
 					/obj/item/vending_refill/medical)
 	crate_name = "medical supplies crate"
 
@@ -1663,6 +1698,7 @@
 	group = "Unlocked Clearance"
 	special = TRUE
 	small_item = TRUE
+	crate_type = /obj/structure/closet/crate/secure/cheap //:^
 
 /datum/supply_pack/clearance/ka_damage
 	name = "KA Damage Mods"
@@ -2433,7 +2469,7 @@
 /datum/supply_pack/misc/artsupply
 	name = "Art Supplies"
 	desc = "Make some happy little accidents with six canvasses, two easels, and two rainbow crayons!"
-	cost = 400 
+	cost = 400
 	contains = list(/obj/structure/easel,
 					/obj/structure/easel,
 					/obj/item/canvas/nineteenXnineteen,
@@ -2559,3 +2595,65 @@
 					/obj/item/toner,
 					/obj/item/toner)
 	crate_name = "toner crate"
+
+/datum/supply_pack/misc/jukebox
+	name = "Jukebox Crate"
+	desc = "Did the bartender not bring his jukebox? Your problem is solved with this ancient jukebox found in a junk pile."
+	cost = 5000
+	contains = list(/obj/machinery/jukebox)
+	crate_name = "jukebox crate"
+	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/misc/pda
+	name = "Modular Personal Digital Assistant Crate"
+	desc = "A create containing five modular PDAs, enough for an entire department."
+	cost = 500
+	contains = list(/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic)
+	crate_name = "pda crate"
+
+/datum/supply_pack/misc/laptop
+	name = "Modular Laptop Crate"
+	desc = "A create containing five modular laptop computers, enough for an entire department."
+	cost = 1000
+	contains = list(/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset)
+	crate_name = "laptop crate"
+
+/datum/supply_pack/misc/tablet
+	name = "Modular Tablet Crate"
+	desc = "A create containing five modular tablet computers, enough for an entire department."
+	cost = 3000
+	contains = list(/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap)
+	crate_name = "tablet crate"
+
+/datum/supply_pack/misc/phone
+	name = "Modular Phone Crate"
+	desc = "A create containing five modular phone computers, enough for an entire department. Does not include games."
+	cost = 4000
+	contains = list(/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap)
+	crate_name = "phone crate"
+
+/datum/supply_pack/misc/telescreen
+	name = "Modular Telescreen Crate"
+	desc = "A create containing four modular telescreens, featuring the latest in Nanotrasen digital displaying technology."
+	cost = 1000
+	contains = list(/obj/item/wallframe/telescreen/preset,
+					/obj/item/wallframe/telescreen/preset,
+					/obj/item/wallframe/telescreen/preset,
+					/obj/item/wallframe/telescreen/preset)
+	crate_name = "telescreen crate"

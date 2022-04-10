@@ -12,4 +12,4 @@
 			if(isliving(A))
 				var/mob/M = A
 				M.reset_perspective()
-		user.visible_message("<span class='alertealien'>[user] hurls out the contents of their stomach!</span>")
+		user.visible_message(span_alertealien("[user] hurls out the contents of their stomach!"))

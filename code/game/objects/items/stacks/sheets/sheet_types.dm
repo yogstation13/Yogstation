@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("computer frame", /obj/structure/frame/computer, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("machine frame", /obj/structure/frame/machine, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("modular console", /obj/machinery/modular_computer/console/buildable/, 10, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("modular console", /obj/machinery/modular_computer/console/, 10, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new /datum/stack_recipe_list("airlock assemblies", list( \
 		new /datum/stack_recipe("airtight hatch assembly", /obj/structure/door_assembly/door_assembly_hatch, 4, time = 50, one_per_turf = 1, on_floor = 1), \
@@ -98,6 +98,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("button frame", /obj/item/wallframe/button, 1), \
 	new/datum/stack_recipe("extinguisher cabinet frame", /obj/item/wallframe/extinguisher_cabinet, 2), \
 	new/datum/stack_recipe("fire alarm frame", /obj/item/wallframe/firealarm, 2), \
+	new/datum/stack_recipe("telescreen frame", /obj/item/wallframe/telescreen, 3), \
 	null, \
 	new/datum/stack_recipe("floodlight frame", /obj/structure/floodlight_frame, 5, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("iron door", /obj/structure/mineral_door/iron, 20, one_per_turf = TRUE, on_floor = TRUE), \
@@ -149,14 +150,13 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	return ..()
 
 /obj/item/stack/sheet/metal/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins whacking [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins whacking [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /*
  * Plasteel
  */
 GLOBAL_LIST_INIT(plasteel_recipes, list ( \
-	new/datum/stack_recipe("AI core", /obj/structure/AIcore, 4, time = 50, one_per_turf = TRUE), \
 	new/datum/stack_recipe("bomb assembly", /obj/machinery/syndicatebomb/empty, 10, time = 50), \
 	null, \
 	new /datum/stack_recipe_list("airlock assemblies", list( \
@@ -254,8 +254,42 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	recipes = GLOB.wood_recipes
 	return ..()
 
+/obj/item/stack/sheet/mineral/wood/attackby(obj/item/item, mob/user, params)
+	if(item.get_sharpness())
+		user.visible_message(
+			span_notice("[user] begins whittling [src] into a pointy object."),
+			span_notice("You begin whittling [src] into a sharp point at one end."),
+			span_hear("You hear wood carving."),
+		)
+		// 5 Second Timer
+		if(!do_after(user, 5 SECONDS, src, NONE, TRUE))
+			return
+		// Make Stake
+		var/obj/item/stake/new_item = new(user.loc)
+		user.visible_message(
+			span_notice("[user] finishes carving a stake out of [src]."),
+			span_notice("You finish carving a stake out of [src]."),
+		)
+		// Prepare to Put in Hands (if holding wood)
+		var/obj/item/stack/sheet/mineral/wood/wood_stack = src
+		var/replace = (user.get_inactive_held_item() == wood_stack)
+		// Use Wood
+		wood_stack.use(1)
+		// If stack depleted, put item in that hand (if it had one)
+		if(!wood_stack && replace)
+			user.put_in_hands(new_item)
+	if(istype(item, merge_type))
+		var/obj/item/stack/merged_stack = item
+		if(merge(merged_stack))
+			to_chat(user, span_notice("Your [merged_stack.name] stack now contains [merged_stack.get_amount()] [merged_stack.singular_name]\s."))
+		return
+	return ..()
+
 /obj/item/stack/sheet/mineral/wood/fifty
 	amount = 50
+
+/obj/item/stack/sheet/mineral/wood/mushroom
+	desc = "Wood made of packed together mushroom shavings that have dried and changed color. Just tough enough to pass as wood."
 
 /*
  * Bamboo
@@ -328,6 +362,8 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cloth
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 
 /obj/item/stack/sheet/cloth/durathread
 	name = "durathread"
@@ -335,6 +371,8 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	singular_name = "durathread roll"
 	icon_state = "sheet-durathread"
 	merge_type = /obj/item/stack/sheet/cloth/durathread
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 
 /obj/item/stack/sheet/cloth/durathread/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
@@ -468,9 +506,23 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 		var/atom/droploc = drop_location()
 		if(use(1))
 			playsound(I, 'sound/items/bikehorn.ogg', 50, 1, -1)
-			to_chat(user, "<span class='notice'>You stamp the cardboard! It's a clown box! Honk!</span>")
+			to_chat(user, span_notice("You stamp the cardboard! It's a clown box! Honk!"))
 			if (amount >= 0)
 				new/obj/item/storage/box/clown(droploc) //bugfix
+
+	if(istype(I, /obj/item/stamp/chameleon) && !istype(loc, /obj/item/storage))
+		var/atom/droploc = drop_location()
+		if(use(1))
+			to_chat(user, span_notice("You stamp the cardboard in a sinister way"))
+			if (amount >= 0)
+				new/obj/item/storage/box/syndie_kit(droploc)
+	
+	if(istype(I, /obj/item/stamp/syndiround) && !istype(loc, /obj/item/storage))
+		var/atom/droploc = drop_location()
+		if(use(1))
+			to_chat(user, span_notice("You stamp the cardboard in a sinister way"))
+			if (amount >= 0)
+				new/obj/item/storage/box/syndie_kit(droploc)
 
 	else if(I.is_hot())
 		fire_act(I.is_hot())
@@ -509,12 +561,12 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 
 /obj/item/stack/sheet/runed_metal/attack_self(mob/living/user)
 	if(!iscultist(user))
-		to_chat(user, "<span class='warning'>Only one with forbidden knowledge could hope to work this metal...</span>")
+		to_chat(user, span_warning("Only one with forbidden knowledge could hope to work this metal..."))
 		return
 	var/turf/T = get_turf(user) //we may have moved. adjust as needed...
 	var/area/A = get_area(user)
 	if((!is_station_level(T.z) && !is_mining_level(T.z) && !is_reebe(T.z)) || (A && !A.blob_allowed))
-		to_chat(user, "<span class='warning'>The veil is not weak enough here.</span>")
+		to_chat(user, span_warning("The veil is not weak enough here."))
 		return FALSE
 	return ..()
 
@@ -577,7 +629,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 
 /obj/item/stack/tile/brass/attack_self(mob/living/user)
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='danger'>[src] seems far too fragile and rigid to build with.</span>") //haha that's because it's actually replicant alloy you DUMMY
+		to_chat(user, span_danger("[src] seems far too fragile and rigid to build with.")) //haha that's because it's actually replicant alloy you DUMMY
 		return
 	..()
 
@@ -626,7 +678,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 
 /obj/item/stack/tile/bronze/attack_self(mob/living/user)
 	if(is_servant_of_ratvar(user)) //still lets them build with it, just gives a message
-		to_chat(user, "<span class='danger'>Wha... what is this cheap imitation crap? This isn't brass at all!</span>")
+		to_chat(user, span_danger("Wha... what is this cheap imitation crap? This isn't brass at all!"))
 	..()
 
 /obj/item/stack/tile/bronze/Initialize(mapload, new_amount, merge = TRUE)
@@ -781,3 +833,23 @@ GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
 	recipes = GLOB.ruinous_metal_recipes
 	. = ..()
 
+/obj/item/stack/sheet/ashresin
+	name = "ashy resin"
+	desc = "A solidified mass of sticky plant resin. Useful as an incredibly strong bonding agent."
+	icon_state = "sheet-resin"
+	item_state = "sheet-resin"
+	icon = 'icons/obj/stack_objects.dmi'
+	sheettype = null
+	singular_name = "resin droplet"
+	max_amount = 10
+	novariants = TRUE
+	grind_results = list(/datum/reagent/consumable/ashresin = 5)
+	merge_type = /obj/item/stack/sheet/ashresin
+	
+GLOBAL_LIST_INIT(ashresin_recipes, list (
+	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40), \
+	new/datum/stack_recipe("resin candle", /obj/item/candle/resin )))
+
+/obj/item/stack/sheet/ashresin/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.ashresin_recipes
+	. = ..()

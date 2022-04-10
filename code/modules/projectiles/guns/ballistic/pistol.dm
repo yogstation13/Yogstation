@@ -31,6 +31,9 @@
 	var/obj/item/suppressor/S = new(src)
 	install_suppressor(S)
 
+/obj/item/gun/ballistic/automatic/pistol/pacifist
+	starting_mag_type = /obj/item/ammo_box/magazine/m10mm/sp
+
 /obj/item/gun/ballistic/automatic/pistol/m1911
 	name = "\improper M1911"
 	desc = "A classic .45 handgun with a small magazine capacity."
@@ -92,12 +95,12 @@
 
 /obj/item/gun/ballistic/automatic/pistol/stickman/pickup(mob/living/user)
 	SHOULD_CALL_PARENT(FALSE)
-	to_chat(user, "<span class='notice'>As you try to pick up [src], it slips out of your grip..</span>")
+	to_chat(user, span_notice("As you try to pick up [src], it slips out of your grip.."))
 	if(prob(50))
-		to_chat(user, "<span class='notice'>..and vanishes from your vision! Where the hell did it go?</span>")
+		to_chat(user, span_notice("..and vanishes from your vision! Where the hell did it go?"))
 		qdel(src)
 		user.update_icons()
 	else
-		to_chat(user, "<span class='notice'>..and falls into view. Whew, that was a close one.</span>")
+		to_chat(user, span_notice("..and falls into view. Whew, that was a close one."))
 		user.dropItemToGround(src)
 

@@ -10,6 +10,7 @@
 	new /obj/item/radio/headset/heads/ce(src)
 	new /obj/item/storage/toolbox/mechanical(src)
 	new /obj/item/megaphone/command(src)
+	new /obj/item/clothing/neck/cloak/ce(src)
 	new /obj/item/areaeditor/blueprints(src)
 	new /obj/item/airlock_painter(src)
 	new /obj/item/holosign_creator/atmos(src)
@@ -25,7 +26,8 @@
 	new /obj/item/energy_harvester(src)
 	new /obj/item/clipboard/yog/paperwork/ce(src)
 	new /obj/item/poster/firstsingularity(src)
-	new /obj/item/storage/backpack/duffelbag/engineering/chief/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/ce(src)
+	new /obj/item/storage/lockbox/medal/eng(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies locker"

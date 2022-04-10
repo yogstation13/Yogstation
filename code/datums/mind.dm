@@ -73,6 +73,21 @@
 	var/flavour_text = null
 	///Are we zombified/uncloneable?
 	var/zombified = FALSE
+	///What character we joined in as- either at roundstart or latejoin, so we know for persistent scars if we ended as the same person or not
+	var/mob/original_character
+	/// What scar slot we have loaded, so we don't have to constantly check the savefile
+	var/current_scar_slot
+	/// The index for what character slot, if any, we were loaded from, so we can track persistent scars on a per-character basis. Each character slot gets PERSISTENT_SCAR_SLOTS scar slots
+	var/original_character_slot_index
+	/// The index for our current scar slot, so we don't have to constantly check the savefile (unlike the slots themselves, this index is independent of selected char slot, and increments whenever a valid char is joined with)
+	var/current_scar_slot_index
+	/// Is set to true if an antag was used to get this person picked as an antag
+	var/token_picked = FALSE
+
+	/// If they have used the afk verb recently
+	var/afk_verb_used = FALSE
+	/// The timer for the afk verb
+	var/afk_verb_timer
 
 /datum/mind/New(key)
 	src.key = key
@@ -94,6 +109,7 @@
 	return language_holder
 
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
+	original_character = null
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
 		// Yogs start -- Mood preferences
@@ -141,6 +157,7 @@
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
+	transfer_parasites()
 	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
 	if(accent_name)
 		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
@@ -148,6 +165,7 @@
 		new_character.key = key		//now transfer the key to link the client to our new body
 	if(new_character.client)
 		new_character.client.init_verbs() // re-initialize character specific verbs
+		LAZYCLEARLIST(new_character.client.recent_examines)
 	current.update_atom_languages()
 
 /datum/mind/proc/set_death_time()
@@ -373,7 +391,7 @@
 
 	if(creator.mind.special_role)
 		message_admins("[ADMIN_LOOKUPFLW(current)] has been created by [ADMIN_LOOKUPFLW(creator)], an antagonist.")
-		to_chat(current, "<span class='userdanger'>Despite your creators current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed.</span>")
+		to_chat(current, span_userdanger("Despite your creators current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed."))
 
 /datum/mind/proc/show_memory(mob/recipient, window=1)
 	if(!recipient)
@@ -385,6 +403,7 @@
 
 	var/list/all_objectives = list()
 	for(var/datum/antagonist/A in antag_datums)
+		output += A.task_memory
 		output += A.antag_memory
 		all_objectives |= A.objectives
 
@@ -417,7 +436,7 @@
 	if(href_list["remove_antag"])
 		var/datum/antagonist/A = locate(href_list["remove_antag"]) in antag_datums
 		if(!istype(A))
-			to_chat(usr,"<span class='warning'>Invalid antagonist ref to be removed.</span>")
+			to_chat(usr,span_warning("Invalid antagonist ref to be removed."))
 			return
 		A.admin_remove(usr)
 
@@ -569,7 +588,7 @@
 							log_admin("[key_name(usr)] changed [current]'s telecrystal count to [crystals].")
 			if("uplink")
 				if(!equip_traitor())
-					to_chat(usr, "<span class='danger'>Equipping a syndicate failed!</span>")
+					to_chat(usr, span_danger("Equipping a syndicate failed!"))
 					log_admin("[key_name(usr)] tried and failed to give [current] an uplink.")
 				else
 					log_admin("[key_name(usr)] gave [current] an uplink.")
@@ -598,7 +617,7 @@
 
 /datum/mind/proc/announce_objectives()
 	var/obj_count = 1
-	to_chat(current, "<span class='notice'>Your current objectives:</span>")
+	to_chat(current, span_notice("Your current objectives:"))
 	for(var/objective in get_all_objectives())
 		var/datum/objective/O = objective
 		to_chat(current, "<B>Objective #[obj_count]</B>: [O.explanation_text]")

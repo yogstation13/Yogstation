@@ -148,7 +148,7 @@
 /obj/item/hand_tele/proc/try_dispel_portal(atom/target, mob/user)
 	if(is_parent_of_portal(target))
 		qdel(target)
-		to_chat(user, "<span class='notice'>You dispel [target] with \the [src]!</span>")
+		to_chat(user, span_notice("You dispel [target] with \the [src]!"))
 		return TRUE
 	return FALSE
 
@@ -160,7 +160,7 @@
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	var/area/current_area = current_location.loc
 	if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
-		to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")
+		to_chat(user, span_notice("\The [src] is malfunctioning."))
 		return
 	var/list/L = list(  )
 	for(var/obj/machinery/computer/teleporter/com in GLOB.machines)
@@ -188,19 +188,19 @@
 	if (!t1 || user.get_active_held_item() != src || user.incapacitated())
 		return
 	if(active_portal_pairs.len >= max_portal_pairs)
-		user.show_message("<span class='notice'>\The [src] is recharging!</span>")
+		user.show_message(span_notice("\The [src] is recharging!"))
 		return
 	var/atom/T = L[t1]
 	var/area/A = get_area(T)
 	if(A.noteleport)
-		to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")
+		to_chat(user, span_notice("\The [src] is malfunctioning."))
 		return
 	current_location = get_turf(user)	//Recheck.
 	current_area = current_location.loc
 	if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
-		to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")
+		to_chat(user, span_notice("\The [src] is malfunctioning."))
 		return
-	user.show_message("<span class='notice'>Locked In.</span>", MSG_AUDIBLE)
+	user.show_message(span_notice("Locked In."), MSG_AUDIBLE)
 	var/list/obj/effect/portal/created = create_portal_pair(current_location, get_teleport_turf(get_turf(T)), src, 300, 1, null, atmos_link_override)
 	if(!(LAZYLEN(created) == 2))
 		return
@@ -226,14 +226,14 @@
 
 /obj/item/hand_tele/suicide_act(mob/user)
 	if(iscarbon(user))
-		user.visible_message("<span class='suicide'>[user] is creating a weak portal and sticking [user.p_their()] head through! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		user.visible_message(span_suicide("[user] is creating a weak portal and sticking [user.p_their()] head through! It looks like [user.p_theyre()] trying to commit suicide!"))
 		var/mob/living/carbon/itemUser = user
 		var/obj/item/bodypart/head/head = itemUser.get_bodypart(BODY_ZONE_HEAD)
 		if(head)
 			head.drop_limb()
 			var/list/safeLevels = SSmapping.levels_by_any_trait(list(ZTRAIT_SPACE_RUINS, ZTRAIT_LAVA_RUINS, ZTRAIT_STATION, ZTRAIT_MINING))
 			head.forceMove(locate(rand(1, world.maxx), rand(1, world.maxy), pick(safeLevels)))
-			itemUser.visible_message("<span class='suicide'>The portal snaps closed taking [user]'s head with it!</span>")
+			itemUser.visible_message(span_suicide("The portal snaps closed taking [user]'s head with it!"))
 		else
-			itemUser.visible_message("<span class='suicide'>[user] looks even further depressed as they realize they do not have a head...and suddenly dies of shame!</span>")
+			itemUser.visible_message(span_suicide("[user] looks even further depressed as they realize they do not have a head...and suddenly dies of shame!"))
 		return (BRUTELOSS)

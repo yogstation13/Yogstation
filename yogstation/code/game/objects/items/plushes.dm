@@ -30,26 +30,26 @@
 		if (!targets_to_pick_from.len)
 			return
 		target = pick(targets_to_pick_from)
-		visible_message("<span class='notice'>[src] stares at [target].</span>")
+		visible_message(span_notice("[src] stares at [target]."))
 	if (world.time > cooldown && target)
 		ram()
 
 /obj/item/toy/plush/goatplushie/angry/proc/ram()
 	if(prob((obj_flags & EMAGGED) ? 98:90) && isturf(loc) && considered_alive(target.mind))
 		throw_at(target, 10, 10)
-		visible_message("<span class='danger'>[src] rams [target]!</span>")
+		visible_message(span_danger("[src] rams [target]!"))
 		cooldown = world.time + cooldown_modifier
 	target = null
-	visible_message("<span class='notice'>[src] looks disinterested.</span>")
+	visible_message(span_notice("[src] looks disinterested."))
 
 /obj/item/toy/plush/goatplushie/angry/emag_act(mob/user)
 	if (obj_flags&EMAGGED)
-		visible_message("<span class='notice'>[src] already looks angry enough, you shouldn't anger it more.</span>")
+		visible_message(span_notice("[src] already looks angry enough, you shouldn't anger it more."))
 		return
 	cooldown_modifier = 5
 	throwforce = 20
 	obj_flags |= EMAGGED
-	visible_message("<span class='danger'>[src] stares at [user] angrily before going docile.</span>")
+	visible_message(span_danger("[src] stares at [user] angrily before going docile."))
 
 /obj/item/toy/plush/goatplushie/angry/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -113,14 +113,14 @@
 
 /obj/item/toy/plush/goatplushie/angry/ascendedkinggoat/attackby(obj/item/I,mob/living/user,params)
 	if(I.is_sharp())
-		user.visible_message("<span class='notice'>[user] attempts to stab [src]!</span>", "<span class='suicide'>[I] bounces off of [src]'s back before breaking into millions of pieces... [src] glares at [user]!</span>") // You fucked up now son
+		user.visible_message(span_notice("[user] attempts to stab [src]!"), span_suicide("[I] bounces off of [src]'s back before breaking into millions of pieces... [src] glares at [user]!")) // You fucked up now son
 		I.play_tool_sound(src)
 		qdel(I)
 		addtimer(CALLBACK(user, /mob/living/.proc/gib), 3 SECONDS)
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat/attackby(obj/item/I,mob/living/user,params)
 	if(I.is_sharp())
-		user.visible_message("<span class='notice'>[user] stabs [src] to shreds!</span>", "<span class='notice'>[src]'s death has attracted the attention of the king goat plushie guards!</span>")
+		user.visible_message(span_notice("[user] stabs [src] to shreds!"), span_notice("[src]'s death has attracted the attention of the king goat plushie guards!"))
 		I.play_tool_sound(src)
 		qdel(src)
 		var/turf/location = get_turf(user)
@@ -139,7 +139,7 @@
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat/attackby(/obj/item/reagent_containers/food/snacks/grown/cabbage/C,mob/living/user,params)
 		var/C = /obj/item/reagent_containers/food/snacks/grown/cabbage
-		user.visible_message("<span class='notice'>[user] watches as [src] takes a bite out of the cabbage!</span>", "<span class='notice'>[src]'s fur now starts glowing it seems it has ascended!</span>")
+		user.visible_message(span_notice("[user] watches as [src] takes a bite out of the cabbage!"), span_notice("[src]'s fur now starts glowing it seems it has ascended!"))
 		playsound(src, 'sound/items/eatfood.ogg', 50, 1)
 		qdel(C)
 		qdel(src)

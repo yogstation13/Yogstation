@@ -39,6 +39,9 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/blobwincount = 400
 	var/victory_in_progress = FALSE
 	var/rerolling = FALSE
+	var/announcement_size = 75
+	var/announcement_time
+	var/has_announced = FALSE
 
 /mob/camera/blob/Initialize(mapload, starting_points = 60)
 	validate_location()
@@ -56,6 +59,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(blob_core)
 		blob_core.update_icon()
 	SSshuttle.registerHostileEnvironment(src)
+	announcement_time = world.time + 6000
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -98,7 +102,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		if(!placed)
 			if(manualplace_min_time && world.time >= manualplace_min_time)
 				to_chat(src, "<b><span class='big'><font color=\"#EE4000\">You may now place your blob core.</font></span></b>")
-				to_chat(src, "<span class='big'><font color=\"#EE4000\">You will automatically place your blob core in [DisplayTimeText(autoplace_max_time - world.time)].</font></span>")
+				to_chat(src, span_big("<font color=\"#EE4000\">You will automatically place your blob core in [DisplayTimeText(autoplace_max_time - world.time)].</font>"))
 				manualplace_min_time = 0
 			if(autoplace_max_time && world.time >= autoplace_max_time)
 				place_blob_core(1)
@@ -109,7 +113,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		priority_announce("Biohazard has reached critical mass. Station loss is imminent.", "Biohazard Alert")
 		set_security_level("delta")
 		max_blob_points = INFINITY
-		blob_points = INFINITY
+		blob_points = INFINITY	
 		addtimer(CALLBACK(src, .proc/victory), 450)
 	else if(!free_strain_rerolls && (last_reroll_time + BLOB_REROLL_TIME<world.time))
 		to_chat(src, "<b><span class='big'><font color=\"#EE4000\">You have gained another free strain re-roll.</font></span></b>")
@@ -117,6 +121,10 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	if(!victory_in_progress && max_count < blobs_legit.len)
 		max_count = blobs_legit.len
+
+	if((world.time >= announcement_time || blobs_legit.len >= announcement_size) && !has_announced)
+		priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/ai/default/outbreak5.ogg')
+		has_announced = TRUE
 
 /mob/camera/blob/proc/victory()
 	sound_to_playing_players('sound/machines/alarm.ogg')
@@ -183,7 +191,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 /mob/camera/blob/Login()
 	..()
-	to_chat(src, "<span class='notice'>You are the overmind!</span>")
+	to_chat(src, span_notice("You are the overmind!"))
 	blob_help()
 	update_health_hud()
 	add_points(0)
@@ -230,7 +238,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	src.log_talk(message, LOG_SAY)
 
 	var/message_a = say_quote(message)
-	var/rendered = "<span class='big'><font color=\"#EE4000\"><b>\[Blob Telepathy\] [name](<font color=\"[blobstrain.color]\">[blobstrain.name]</font>)</b> [message_a]</font></span>"
+	var/rendered = span_big("<font color=\"#EE4000\"><b>\[Blob Telepathy\] [name](<font color=\"[blobstrain.color]\">[blobstrain.name]</font>)</b> [message_a]</font>")
 
 	for(var/mob/M in GLOB.mob_list)
 		if(isovermind(M) || istype(M, /mob/living/simple_animal/hostile/blob))

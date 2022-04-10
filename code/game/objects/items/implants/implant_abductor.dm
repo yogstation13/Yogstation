@@ -14,7 +14,7 @@
 		cooldown = 0
 		START_PROCESSING(SSobj, src)
 	else
-		to_chat(imp_in, "<span class='warning'>You must wait [30 - cooldown] seconds to use [src] again!</span>")
+		to_chat(imp_in, span_warning("You must wait [30 - cooldown] seconds to use [src] again!"))
 
 /obj/item/implant/abductor/process()
 	if(cooldown < initial(cooldown))

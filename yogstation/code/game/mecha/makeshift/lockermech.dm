@@ -18,7 +18,7 @@
 	if(href_list["drop_from_cargo"])
 		var/obj/O = locate(sanitize(href_list["drop_from_cargo"]))
 		if(O && (O in cargo))
-			occupant_message("<span class='notice'>You unload [O].</span>")
+			occupant_message(span_notice("You unload [O]."))
 			O.forceMove(loc)
 			cargo -= O
 			log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - src.cargo.len]", LOG_MECHA)
@@ -58,16 +58,16 @@
 	return output
 
 /obj/mecha/makeshift/relay_container_resist(mob/living/user, obj/O)
-	to_chat(user, "<span class='notice'>You lean on the back of [O] and start pushing so it falls out of [src].</span>")
-	if(do_after(user, 10, target = O))//Its a fukken locker
+	to_chat(user, span_notice("You lean on the back of [O] and start pushing so it falls out of [src]."))
+	if(do_after(user, 1 SECONDS, target = O))//Its a fukken locker
 		if(!user || user.stat != CONSCIOUS || user.loc != src || O.loc != src )
 			return
-		to_chat(user, "<span class='notice'>You successfully pushed [O] out of [src]!</span>")
+		to_chat(user, span_notice("You successfully pushed [O] out of [src]!"))
 		O.loc = loc
 		cargo -= O
 	else
 		if(user.loc == src) //so we don't get the message if we resisted multiple times and succeeded.
-			to_chat(user, "<span class='warning'>You fail to push [O] out of [src]!</span>")
+			to_chat(user, span_warning("You fail to push [O] out of [src]!"))
 
 /obj/mecha/makeshift/Destroy()
 	new /obj/structure/closet(loc)

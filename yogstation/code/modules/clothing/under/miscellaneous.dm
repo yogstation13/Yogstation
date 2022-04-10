@@ -106,14 +106,6 @@
 	item_color = "doomsday_s"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/enclaveo
-	name = "enclave suit"
-	desc = "Here to protect what makes this station great."
-	icon_state = "enclaveo_s"
-	item_state = "enclaveo"
-	item_color = "enclaveo_s"
-	can_adjust = FALSE
-
 /obj/item/clothing/under/yogs/rycliesuni
 	name = "aluminum foil coated suit"
 	desc = "Protects your body from mental brainwashing. Too bad there is no brain inside of your chest."

@@ -63,34 +63,34 @@
 			default_deconstruction_screwdriver(user, "button-open", "[skin]",W)
 			update_icon()
 		else
-			to_chat(user, "<span class='danger'>Maintenance Access Denied</span>")
+			to_chat(user, span_danger("Maintenance Access Denied"))
 			flick("[skin]-denied", src)
 		return
 
 	if(panel_open)
 		if(!device && istype(W, /obj/item/assembly))
 			if(!user.transferItemToLoc(W, src))
-				to_chat(user, "<span class='warning'>\The [W] is stuck to you!</span>")
+				to_chat(user, span_warning("\The [W] is stuck to you!"))
 				return
 			device = W
-			to_chat(user, "<span class='notice'>You add [W] to the button.</span>")
+			to_chat(user, span_notice("You add [W] to the button."))
 
 		if(!board && istype(W, /obj/item/electronics/airlock))
 			if(!user.transferItemToLoc(W, src))
-				to_chat(user, "<span class='warning'>\The [W] is stuck to you!</span>")
+				to_chat(user, span_warning("\The [W] is stuck to you!"))
 				return
 			board = W
 			if(board.one_access)
 				req_one_access = board.accesses
 			else
 				req_access = board.accesses
-			to_chat(user, "<span class='notice'>You add [W] to the button.</span>")
+			to_chat(user, span_notice("You add [W] to the button."))
 
 		if(!device && !board && W.tool_behaviour == TOOL_WRENCH)
-			to_chat(user, "<span class='notice'>You start unsecuring the button frame...</span>")
+			to_chat(user, span_notice("You start unsecuring the button frame..."))
 			W.play_tool_sound(src)
 			if(W.use_tool(src, user, 4 SECONDS))
-				to_chat(user, "<span class='notice'>You unsecure the button frame.</span>")
+				to_chat(user, span_notice("You unsecure the button frame."))
 				transfer_fingerprints_to(new /obj/item/wallframe/button(get_turf(src)))
 				playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 				qdel(src)
@@ -100,19 +100,19 @@
 				var/obj/item/multitool/P = W
 				if(!id) // Generate New ID if none exists
 					id = rand(1, 25565) // rare enough that ids should never conflict
-					to_chat(user, "<span class='notice'>No ID found. Generating New ID</span>")
+					to_chat(user, span_notice("No ID found. Generating New ID"))
 
 				P.buffer = id
-				to_chat(user, "<span class='notice'>You link the button to the [P].</span>")
+				to_chat(user, span_notice("You link the button to the [P]."))
 				setup_device() // Has to be done. It sets the signaller up
 			else
-				to_chat(user, "<span class='warning'>No blast door controller found</span>")
+				to_chat(user, span_warning("No blast door controller found"))
 
 		if(board && W.tool_behaviour == TOOL_WIRECUTTER)
-			to_chat(user, "<span class='warning'>You start wiping the button's ID...</span>")
+			to_chat(user, span_warning("You start wiping the button's ID..."))
 			W.play_tool_sound(src)
 			if(W.use_tool(src, user, 4 SECONDS)) // To make sure they're not doing this unintentionally
-				to_chat(user, "<span class='notice'>You wipe the button's ID.</span>")
+				to_chat(user, span_notice("You wipe the button's ID."))
 				id = null
 
 		update_icon()
@@ -165,14 +165,14 @@
 				req_one_access = list()
 				board = null
 			update_icon()
-			to_chat(user, "<span class='notice'>You remove electronics from the button frame.</span>")
+			to_chat(user, span_notice("You remove electronics from the button frame."))
 
 		else
 			if(skin == "doorctrl")
 				skin = "launcher"
 			else
 				skin = "doorctrl"
-			to_chat(user, "<span class='notice'>You change the button frame's front panel.</span>")
+			to_chat(user, span_notice("You change the button frame's front panel."))
 		return
 
 	if((stat & (NOPOWER|BROKEN)))
@@ -182,7 +182,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, "<span class='danger'>Access Denied</span>")
+		to_chat(user, span_danger("Access Denied"))
 		flick("[skin]-denied", src)
 		return
 

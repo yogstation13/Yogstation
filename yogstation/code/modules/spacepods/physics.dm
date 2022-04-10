@@ -75,7 +75,7 @@
 	last_thrust_right = 0
 	if(brakes)
 		if(user_thrust_dir)
-			to_chat(pilot, "<span class='warning'>Your brakes are on!</span>")
+			to_chat(pilot, span_warning("Your brakes are on!"))
 		// basically calculates how much we can brake using the thrust
 		var/forward_thrust = -((fx * velocity_x) + (fy * velocity_y)) / time
 		var/right_thrust = -((sx * velocity_x) + (sy * velocity_y)) / time
@@ -110,7 +110,7 @@
 		last_thrust_forward = 0
 		last_thrust_right = 0
 		if(!brakes && user_thrust_dir)
-			to_chat(pilot, "<span class='warning'>You are out of power!</span>")
+			to_chat(pilot, span_warning("You are out of power!"))
 
 	offset_x += velocity_x * time
 	offset_y += velocity_y * time
@@ -248,14 +248,14 @@
 		message_admins("[key_name_admin(pilot)] has impacted a spacepod into [A] with velocity [bump_velocity]")
 		take_damage(strength*10, BRUTE, "melee", TRUE)
 		log_game("[key_name(pilot)] has impacted a spacepod into [A] with velocity [bump_velocity]")
-		visible_message("<span class='danger'>The force of the impact causes a shockwave</span>")
+		visible_message(span_danger("The force of the impact causes a shockwave"))
 	else if(isliving(A) && bump_velocity > 5)
 		var/mob/living/M = A
 		M.apply_damage(bump_velocity * 2)
 		take_damage(bump_velocity, BRUTE, "melee", FALSE)
 		playsound(M.loc, "swing_hit", 1000, 1, -1)
 		M.Knockdown(bump_velocity * 2)
-		M.visible_message("<span class='warning'>The force of the impact knocks [M] down!</span>","<span class='userdanger'>The force of the impact knocks you down!</span>")
+		M.visible_message(span_warning("The force of the impact knocks [M] down!"),span_userdanger("The force of the impact knocks you down!"))
 		log_combat(pilot, M, "impacted", src, "with velocity of [bump_velocity]")
 	return ..()
 

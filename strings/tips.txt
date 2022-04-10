@@ -52,6 +52,8 @@ As a Medical Doctor, treating plasmamen is not impossible! Salbutamol stops them
 As a Medical Doctor, you can point your penlight at people to create a medical hologram. This lets them know that you're coming to treat them.
 As a Medical Doctor, you can extract implants by holding an empty implant case in your offhand while performing the extraction step.
 As a Medical Doctor, clone scanning people will implant them with a health tracker that displays their vitals in the clone records. Useful to check on crew members that didn't activate suit sensors!
+As a Medical Doctor, Saline-Glucose not only acts as a temporary boost to a patient's blood level, it also speeds blood regeneration! Perfect for drained patients!
+As a Medical Doctor, almost every type of wound can be treated at least temporarily with gauze. When in doubt, wrap it up!
 As a Chemist, there are dozens of chemicals that can heal, and even more that can cause harm. Experiment!
 As a Chemist, some chemicals can only be synthesized by heating up the contents with a chemical heater or manually with lighters and similar tools.
 As a Chemist, you will be expected to supply crew with certain chemicals. For example, clonexadone and mannitol for the cryo tubes, unstable mutagen and saltpetre for botany as well as healing pills and patches for the front desk.
@@ -234,6 +236,13 @@ As a Revenant, the illness inflicted on humans by Blight can be easily cured by 
 As a Swarmer, you can deconstruct more things than you think. Try deconstructing light switches, buttons, air alarms and more. Experiment!
 As a Swarmer, you can teleport fellow swarmers away if you think they are in danger.
 As a Morph, you can talk while disguised, but your words have a chance of being slurred, giving you away!
+As an Eldritch Horror, improvise! You have many abilities you can mutate, most of them applying to diverse situations. Experiment!
+As an Eldritch Horror, don't forget that you're not exempt from server rules while mind-controlling someone. Their actions become your actions.
+You can remove an Eldritch Horror from someone's head via surgery. Decapitation also works!
+You can detect an Eldritch Horror inside someone's head with an advanced health analyzer.
+If you see an Eldritch Horror trying to enter someone's head, you can quickly shove it away to interrupt the process!
+Eldritch Horrors can enter any creature that has a brain organ. Yes, that includes xenomorphs.
+Contrary to popular belief, Eldritch Horrors are not "cute".
 As a Drone, you can ping other drones to alert them of areas in the station in need of repair.
 As a Ghost, you can see the inside of a container on the ground by clicking on it.
 As a Ghost, you can double click on just about anything to follow it. Or just warp around!
@@ -259,3 +268,12 @@ Questions? Consult the Wiki: https://wiki.yogstation.net/wiki/Main_Page
 Questions? Consult the Mentors using the 'MHelp' system.
 Starving makes you move slower. Be sure to keep fed!
 As the Chaplain, You can use your bible on the "Altar of God" to choose a variety of religions with special rites.
+As a Changeling, your Regenerate Limbs power will quickly heal all of your wounds, but they'll still leave scars. Changelings can use Fleshmend to get rid of scars, or you can ingest Carpotoxin to get rid of them like a normal person.
+Stasis beds halt ALL passive life functions, including regeneration. If your patient isn't responding to treatment, especially with cut or burn wounds, try unbuckling them!
+Standard epipens contain a potent coagulant that not only slow bloodloss, but also help clot whichever of your wounds is bleeding the most! If you're suffering multiple bad bleeding wounds, make sure to seek out additional treatment ASAP!
+If a patient has an absurd amount of wounds, putting them in cryo will slowly treat all of their wounds simultaneously.
+Anything you can light a cigarette with, you can use to cauterize a bleeding wound. Technically, that includes the supermatter.
+Moderate and Severe cuts will slowly clot by themselves and don't require immediate attention on their own. Critical cuts will actively get worse with time, and are an immediate threat to the patient's life.
+Laying down will help slow down bloodloss. Death will halt it entirely.
+If you're bleeding, you can apply pressure to the limb by grabbing yourself while targeting the bleeding limb. This will slow you down and take up a hand, but it'll slow down how fast you lose blood. Note this won't help the bleeding clot any faster.
+The TOME OF HERBAL KNOWLEDGE in the ashwalker's den provides useful information on surviving the lavaland wastes.

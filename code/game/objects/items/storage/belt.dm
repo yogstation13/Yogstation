@@ -6,13 +6,15 @@
 	item_state = "utility"
 	lefthand_file = 'icons/mob/inhands/equipment/belt_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/belt_righthand.dmi'
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	max_integrity = 300
+	equip_sound = 'sound/items/handling/toolbelt_equip.ogg'
 	var/content_overlays = FALSE //If this is true, the belt will gain overlays based on what it's holding
 
 /obj/item/storage/belt/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins belting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins belting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /obj/item/storage/belt/update_icon()
@@ -34,6 +36,8 @@
 	item_state = "utility"
 	content_overlays = TRUE
 	custom_price = 50
+	drop_sound = 'sound/items/handling/toolbelt_drop.ogg'
+	pickup_sound =  'sound/items/handling/toolbelt_pickup.ogg'
 
 /obj/item/storage/belt/utility/ComponentInitialize()
 	. = ..()
@@ -71,7 +75,8 @@
 		/obj/item/grenade/chem_grenade/metalfoam,
 		/obj/item/storage/bag/construction,
 		/obj/item/handdrill,
-		/obj/item/jawsoflife
+		/obj/item/jawsoflife,
+		/obj/item/shuttle_creator //Yogs: Added this here cause I felt it fits
 		))
 
 /obj/item/storage/belt/utility/chief
@@ -89,6 +94,18 @@
 	new /obj/item/extinguisher/mini(src)
 	new /obj/item/holosign_creator/multi/CE(src)
 	//much roomier now that we've managed to remove two tools
+
+/obj/item/storage/belt/utility/chief/admin/full/PopulateContents()
+	new /obj/item/construction/rcd/combat/admin(src)
+	new /obj/item/pipe_dispenser(src)
+	new /obj/item/shuttle_creator/admin(src)
+	new /obj/item/handdrill(src)
+	new /obj/item/jawsoflife(src)
+	new /obj/item/weldingtool/experimental(src)//This can be changed if this is too much
+	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
+	new /obj/item/storage/bag/construction/admin/full(src)
+	new /obj/item/extinguisher/mini(src)
+	new /obj/item/holosign_creator/multi/CE(src)
 
 /obj/item/storage/belt/utility/full/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -138,7 +155,7 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.max_items = 12
-	STR.max_combined_w_class = 21
+	STR.max_combined_w_class = 18
 	STR.set_holdable(list(
 		/obj/item/healthanalyzer,
 		/obj/item/dnainjector,
@@ -166,6 +183,7 @@
 		/obj/item/surgical_drapes, //for true paramedics
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
+		/obj/item/bonesetter,
 		/obj/item/surgicaldrill,
 		/obj/item/retractor,
 		/obj/item/cautery,
@@ -176,8 +194,6 @@
 		/obj/item/clothing/glasses,
 		/obj/item/wrench/medical,
 		/obj/item/clothing/mask/muzzle,
-		/obj/item/storage/bag/chemistry,
-		/obj/item/storage/bag/bio,
 		/obj/item/reagent_containers/blood,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/gun/syringe/syndicate,
@@ -185,6 +201,7 @@
 		/obj/item/implant,
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
+		/obj/item/stack/medical/bone_gel,
 		/obj/item/holosign_creator/medical
 		))
 
@@ -193,6 +210,7 @@
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
+	w_class = WEIGHT_CLASS_NORMAL
 	content_overlays = TRUE
 
 /obj/item/storage/belt/security/ComponentInitialize()
@@ -233,6 +251,7 @@
 	desc = "Unique and versatile chest rig, can hold security gear."
 	icon_state = "securitywebbing"
 	item_state = "securitywebbing"
+	w_class = WEIGHT_CLASS_BULKY
 	content_overlays = FALSE
 	custom_premium_price = 800
 
@@ -246,7 +265,6 @@
 	desc = "A versatile chest rig, cherished by miners and hunters alike."
 	icon_state = "explorer1"
 	item_state = "explorer1"
-	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/belt/mining/ComponentInitialize()
 	. = ..()
@@ -288,6 +306,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/ore,
 		/obj/item/reagent_containers/food/drinks,
+		/obj/item/hivelordstabilizer,
 		/obj/item/organ/regenerative_core,
 		/obj/item/wormhole_jaunter,
 		/obj/item/storage/bag/plants,
@@ -661,7 +680,6 @@
 	desc = "An ornate sheath designed to hold an officer's blade."
 	icon_state = "sheath"
 	item_state = "sheath"
-	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/belt/sabre/ComponentInitialize()
 	. = ..()
@@ -676,14 +694,14 @@
 /obj/item/storage/belt/sabre/examine(mob/user)
 	. = ..()
 	if(length(contents))
-		. += "<span class='notice'>Alt-click it to quickly draw the blade.</span>"
+		. += span_notice("Alt-click it to quickly draw the blade.")
 
 /obj/item/storage/belt/sabre/AltClick(mob/user)
 	if(!iscarbon(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(length(contents))
 		var/obj/item/I = contents[1]
-		user.visible_message("[user] takes [I] out of [src].", "<span class='notice'>You take [I] out of [src].</span>")
+		user.visible_message("[user] takes [I] out of [src].", span_notice("You take [I] out of [src]."))
 		user.put_in_hands(I)
 		update_icon()
 	else
@@ -703,3 +721,8 @@
 /obj/item/storage/belt/sabre/PopulateContents()
 	new /obj/item/melee/sabre(src)
 	update_icon()
+
+/obj/item/storage/belt/multi
+	name = "multi-belt"
+	desc = "Can hold quite a lot of stuff."
+	w_class = WEIGHT_CLASS_NORMAL

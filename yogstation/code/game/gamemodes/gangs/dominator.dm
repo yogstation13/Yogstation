@@ -77,14 +77,14 @@
 
 	if(gang && gang.domination_time != NOT_DOMINATING)
 		if(gang.domination_time > world.time)
-			. += "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>"
+			. += span_notice("Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.")
 		else
-			. += "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>"
+			. += span_notice("Hostile Takeover of [station_name()] successful. Have a great day.")
 	else
-		. += "<span class='notice'>System on standby.</span>"
+		. += span_notice("System on standby.")
 	if(nukedisk)
-		. += "<span class='notice'>[nukedisk] seems to be stuck inside.</span>"
-	. += "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>"
+		. += span_notice("[nukedisk] seems to be stuck inside.")
+	. += span_danger("System Integrity: [round((obj_integrity/max_integrity)*100,1)]%")
 
 /obj/machinery/dominator/process()
 	..()
@@ -170,15 +170,15 @@
 		return
 
 	if(tempgang.domination_time != NOT_DOMINATING)
-		to_chat(user, "<span class='warning'>Error: Hostile Takeover is already in progress.</span>")
+		to_chat(user, span_warning("Error: Hostile Takeover is already in progress."))
 		return
 
 	if(!tempgang.dom_attempts)
-		to_chat(user, "<span class='warning'>Error: Unable to breach station network. Firewall has logged our signature and is blocking all further attempts.</span>")
+		to_chat(user, span_warning("Error: Unable to breach station network. Firewall has logged our signature and is blocking all further attempts."))
 		return
 
 	if(!nukedisk)
-		to_chat(user, "<span class='warning'>Error: Nuclear Authentication Disk required to breach station network.</span>")
+		to_chat(user, span_warning("Error: Nuclear Authentication Disk required to breach station network."))
 		return
 
 	var/time = round(tempgang.determine_domination_time()/60,0.1)

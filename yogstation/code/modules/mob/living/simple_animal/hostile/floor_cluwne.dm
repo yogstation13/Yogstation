@@ -38,7 +38,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	var/stage = STAGE_HAUNT
 	var/interest = 0
 	var/target_area
-	var/invalid_area_typecache = list(/area/space, /area/lavaland, /area/centcom, /area/reebe, /area/shuttle/syndicate)
+	var/invalid_area_typecache = list(/area/space, /area/lavaland, /area/mine, /area/centcom, /area/reebe, /area/shuttle/syndicate)
 	var/eating = FALSE
 	var/obj/effect/dummy/floorcluwne_orbit/poi
 	var/obj/effect/temp_visual/fcluwne_manifest/cluwnehole
@@ -132,6 +132,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	else
 		walk_to(src,0)
 
+/mob/living/simple_animal/hostile/floor_cluwne/mob_negates_gravity()
+	return TRUE
 
 /mob/living/simple_animal/hostile/floor_cluwne/FindTarget()
 	return current_victim
@@ -153,13 +155,30 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	return FALSE
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Found_You()
+	var/foundVictim = FALSE
+	
 	for(var/obj/structure/closet/hiding_spot in orange(7,src))
 		if(current_victim.loc == hiding_spot)
 			hiding_spot.bust_open()
-			current_victim.Paralyze(40)
-			to_chat(current_victim, "<span class='warning'>...edih t'nac uoY</span>")
-			return TRUE
-	return FALSE
+			to_chat(current_victim, span_warning("...edih t'nac uoY"))
+			foundVictim = TRUE
+	
+	for(var/obj/mecha/hiding_spot in orange(7,src))
+		if(hiding_spot.occupant == current_victim)
+			hiding_spot.go_out(TRUE)
+			to_chat(current_victim, span_warning("...thgif t'nac uoY"))
+			foundVictim = TRUE
+
+	for(var/obj/structure/bed/roller/cheap_escape in orange(7,src))
+		if(cheap_escape.buckled_mobs.Find(current_victim))
+			cheap_escape.unbuckle_mob(current_victim, TRUE)
+			to_chat(current_victim, span_warning("...epacse t'nac uoY"))
+			foundVictim = TRUE
+
+	if(foundVictim)
+		current_victim.Paralyze(40)
+
+	return foundVictim
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Acquire_Victim(specific)
 	for(var/I in GLOB.player_list)//better than a potential recursive loop
@@ -181,7 +200,12 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	message_admins("Floor Cluwne was deleted due to a lack of valid targets, if this was a manually targeted instance please re-evaluate your choice.")
 	qdel(src)
 
-
+/**
+ * Using an external variable to modify the basic behaviour of a proc like this is confusing and unnecessary.
+ * Instead, there should be two procs, one for the manifest behavior animation and one for demanifesting. If not this, then the "manifested" variable should be set within this proc instead.
+ * It is intuitive for this proc to implicitly toggle it.
+ * - AP
+**/
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Manifest()//handles disappearing and appearance anim
 	if(manifested)
 		mobility_flags &= ~MOBILITY_MOVE
@@ -210,7 +234,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	if(colour && H)
 		H.client.color = colour
 
-
 /mob/living/simple_animal/hostile/floor_cluwne/proc/On_Stage()
 	var/mob/living/carbon/human/H = current_victim
 	if(!H)
@@ -231,13 +254,13 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				var/obj/item/I = locate() in orange(H, 8)
 				if(I && !I.anchored)
 					I.throw_at(H, 4, 3)
-					to_chat(H, "<span class='warning'>What threw that?</span>")
+					to_chat(H, span_warning("What threw that?"))
 
 		if(STAGE_SPOOK)
 			if(prob(4))
 				var/turf/T = get_turf(H)
 				T.handle_slip(H, 20)
-				to_chat(H, "<span class='warning'>The floor shifts underneath you!</span>")
+				to_chat(H, span_warning("The floor shifts underneath you!"))
 
 			if(prob(5))
 				H.playsound_local(src,'yogstation/sound/voice/cluwnelaugh2.ogg', 2)
@@ -253,19 +276,20 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				var/obj/item/I = locate() in orange(H, 8)
 				if(I && !I.anchored)
 					I.throw_at(H, 4, 3)
-					to_chat(H, "<span class='warning'>What threw that?</span>")
+					to_chat(H, span_warning("What threw that?"))
 					
 			if(prob(2))
 				to_chat(H, "<i>yalp ot tnaw I</i>")
 				Appear()
 				manifested = FALSE
+				addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Manifest), 2)
 				current_victim.set_drugginess(rand(1,10))
 
 		if(STAGE_TORMENT)
 			if(prob(5))
 				var/turf/T = get_turf(H)
 				T.handle_slip(H, 20)
-				to_chat(H, "<span class='warning'>The floor shifts underneath you!</span>")
+				to_chat(H, span_warning("The floor shifts underneath you!"))
 
 			if(prob(3))
 				playsound(src,pick('sound/spookoween/scary_horn.ogg', 'sound/spookoween/scary_horn2.ogg', 'sound/spookoween/scary_horn3.ogg'), 30, 1)
@@ -283,16 +307,16 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				for(var/obj/item/I in orange(H, 8))
 					if(I && !I.anchored)
 						I.throw_at(H, 4, 3)
-				to_chat(H, "<span class='warning'>What the hell?!</span>")
+				to_chat(H, span_warning("What the hell?!"))
 
 			if(prob(2))
-				to_chat(H, "<span class='warning'>Something feels very wrong...</span>")
+				to_chat(H, span_warning("Something feels very wrong..."))
 				H.playsound_local(src,'sound/hallucinations/behind_you1.ogg', 25)
 				H.flash_act()
 
 			if(prob(2))
 				to_chat(H, "<i>!?REHTOMKNOH eht esiarp uoy oD</i>")
-				to_chat(H, "<span class='warning'>Something grabs your foot!</span>")
+				to_chat(H, span_warning("Something grabs your foot!"))
 				H.playsound_local(src,'sound/hallucinations/i_see_you1.ogg', 25)
 				H.Stun(20)
 
@@ -303,7 +327,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					playsound(src, 'sound/effects/meteorimpact.ogg', 30, 1)
 
 			if(prob(1))
-				to_chat(H, "<span class='userdanger'>WHAT THE FUCK IS THAT?!</span>")
+				to_chat(H, span_userdanger("WHAT THE FUCK IS THAT?!"))
 				to_chat(H, "<i>.KNOH !nuf hcum os si uoy htiw gniyalP .KNOH KNOH KNOH</i>")
 				H.playsound_local(src,'sound/hallucinations/im_here1.ogg', 25)
 				H.reagents.add_reagent(/datum/reagent/toxin/mindbreaker, 3)
@@ -325,7 +349,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					for(var/obj/structure/O in T)
 						if(O.density || istype(O, /obj/machinery/door/airlock))
 							forceMove(H.loc)
-				to_chat(H, "<span class='userdanger'>You feel the floor closing in on your feet!</span>")
+				to_chat(H, span_userdanger("You feel the floor closing in on your feet!"))
 				H.Paralyze(300)
 				H.emote("scream")
 				H.adjustBruteLoss(10)
@@ -341,9 +365,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Grab(mob/living/carbon/human/H)
-	to_chat(H, "<span class='userdanger'>You feel a cold, gloved hand clamp down on your ankle!</span>")
+	to_chat(H, span_userdanger("You feel a cold, gloved hand clamp down on your ankle!"))
 	for(var/I in 1 to get_dist(src, H))
-		if(do_after(src, 5, target = H))
+		if(do_after(src, 0.5 SECONDS, target = H))
+			Found_You()
 			step_towards(H, src)
 			playsound(H, pick('yogstation/sound/effects/bodyscrape-01.ogg', 'yogstation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			if(prob(40))
@@ -353,16 +378,16 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				playsound(src, pick('yogstation/sound/voice/cluwnelaugh1.ogg', 'yogstation/sound/voice/cluwnelaugh2.ogg', 'yogstation/sound/voice/cluwnelaugh3.ogg'), 50, 1)
 
 	if(get_dist(src,H) <= 1)
-		visible_message("<span class='danger'>[src] begins dragging [H] under the floor!</span>")
-		if(do_after(src, 50, target = H) && eating)
+		visible_message(span_danger("[src] begins dragging [H] under the floor!"))
+		if(do_after(src, 5 SECONDS, target = H) && eating)
 			H.become_blind()
 			H.layer = GAME_PLANE
 			H.invisibility = INVISIBILITY_OBSERVER
 			H.density = FALSE
 			H.anchored = TRUE
 			addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Kill, H), 100, TIMER_OVERRIDE|TIMER_UNIQUE)
-			visible_message("<span class='danger'>[src] pulls [H] under!</span>")
-			to_chat(H, "<span class='userdanger'>[src] drags you underneath the floor!</span>")
+			visible_message(span_danger("[src] pulls [H] under!"))
+			to_chat(H, span_userdanger("[src] drags you underneath the floor!"))
 		else
 			eating = FALSE
 	else
@@ -383,7 +408,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	animate(H.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
 	for(var/turf/T in orange(H, 4))
 		H.add_splatter_floor(T)
-	if(do_after(src, 50, target = H))
+	if(do_after(src, 5 SECONDS, target = H))
 		H.unequip_everything()//more runtime prevention
 		if(prob(75))
 			H.gib(FALSE)

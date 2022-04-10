@@ -1,7 +1,7 @@
 /datum/guardian_ability/major/assassin
 	name = "Assassin"
 	desc = "The guardian can sneak up on people and do a powerful attack."
-	cost = 4
+	cost = 3
 	has_mode = TRUE
 	recall_mode = TRUE
 	mode_on_msg = "<span class='danger'><B>You enter stealth, empowering your next attack.</span></B>"
@@ -15,15 +15,15 @@
 
 /datum/guardian_ability/major/assassin/Apply()
 	. = ..()
-	guardian.do_the_cool_invisible_thing = FALSE
+	guardian.do_temp_anchor = FALSE
 	stealthcooldown = 75 / master_stats.potential
 
 /datum/guardian_ability/major/assassin/Remove()
 	. = ..()
-	guardian.do_the_cool_invisible_thing = initial(guardian.do_the_cool_invisible_thing)
+	guardian.do_temp_anchor = initial(guardian.do_temp_anchor)
 
 /datum/guardian_ability/major/assassin/Health(amount)
-	if(amount > 0)
+	if (amount > 0)
 		mode = FALSE
 		Mode(TRUE)
 
@@ -32,14 +32,14 @@
 	Mode(TRUE)
 
 /datum/guardian_ability/major/assassin/AfterAttack(atom/target)
-	if(mode && (isliving(target) || istype(target, /obj/structure/window) || istype(target, /obj/structure/grille)))
+	if (mode && (isliving(target) || istype(target, /obj/structure/window) || istype(target, /obj/structure/grille)))
 		mode = FALSE
 		Mode()
 
 /datum/guardian_ability/major/assassin/Mode(forced = FALSE)
-	if(mode)
-		if(next_stealth >= world.time)
-			to_chat(guardian, "<span class='danger'><B>You cannot yet enter stealth, wait another [DisplayTimeText(next_stealth - world.time)]!</span></B>")
+	if (mode)
+		if (next_stealth >= world.time)
+			to_chat(guardian, span_bolddanger("You cannot yet enter stealth, wait another [DisplayTimeText(next_stealth - world.time)]!"))
 			mode = FALSE
 			Mode()
 			return
@@ -59,21 +59,21 @@
 		guardian.environment_smash = initial(guardian.environment_smash)
 		guardian.alpha = initial(guardian.alpha)
 		master_stats.Apply(guardian)
-		if(!forced)
-			guardian.visible_message("<span class='danger'>\The [guardian] suddenly appears!</span>")
+		if (!forced)
+			guardian.visible_message(span_danger("[guardian] suddenly appears!"))
 			next_stealth = world.time + stealthcooldown
 			guardian.cooldown = world.time + 40
 		updatestealthalert()
 
 /datum/guardian_ability/major/assassin/proc/updatestealthalert()
-	if(next_stealth <= world.time)
-		if(mode)
-			if(!instealthalert)
+	if (next_stealth <= world.time)
+		if (mode)
+			if (!instealthalert)
 				instealthalert = guardian.throw_alert("instealth", /obj/screen/alert/instealth)
 				guardian.clear_alert("canstealth")
 				canstealthalert = null
 		else
-			if(!canstealthalert)
+			if (!canstealthalert)
 				canstealthalert = guardian.throw_alert("canstealth", /obj/screen/alert/canstealth)
 				guardian.clear_alert("instealth")
 				instealthalert = null

@@ -20,7 +20,7 @@
 	materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	var/list/trophies = list()
 	var/charged = TRUE
 	var/charge_time = 15
@@ -37,22 +37,22 @@
 
 /obj/item/twohanded/required/kinetic_crusher/examine(mob/living/user)
 	. = ..()
-	. += "<span class='notice'>Mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.</span>"
-	. += "<span class='notice'>Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.</span>"
+	. += span_notice("Mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.")
+	. += span_notice("Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.")
 	for(var/t in trophies)
 		var/obj/item/crusher_trophy/T = t
-		. += "<span class='notice'>It has \a [T] attached, which causes [T.effect_desc()].</span>"
+		. += span_notice("It has \a [T] attached, which causes [T.effect_desc()].")
 
 /obj/item/twohanded/required/kinetic_crusher/attackby(obj/item/I, mob/living/user)
 	if(I.tool_behaviour == TOOL_CROWBAR)
 		if(LAZYLEN(trophies))
-			to_chat(user, "<span class='notice'>You remove [src]'s trophies.</span>")
+			to_chat(user, span_notice("You remove [src]'s trophies."))
 			I.play_tool_sound(src)
 			for(var/t in trophies)
 				var/obj/item/crusher_trophy/T = t
 				T.remove_from(src, user)
 		else
-			to_chat(user, "<span class='warning'>There are no trophies on [src].</span>")
+			to_chat(user, span_warning("There are no trophies on [src]."))
 	else if(istype(I, /obj/item/crusher_trophy))
 		var/obj/item/crusher_trophy/T = I
 		T.add_to(src, user)
@@ -102,7 +102,7 @@
 		var/target_health = L.health
 		for(var/t in trophies)
 			var/obj/item/crusher_trophy/T = t
-			T.on_mark_detonation(target, user)
+			T.on_mark_detonation(target, user, src) //we pass in the kinetic crusher so that on_mark_detonation can use the properties of the crusher to reapply marks: see malformed_bone
 		if(!QDELETED(L))
 			if(!QDELETED(C))
 				C.total_damage += target_health - L.health //we did some damage, but let's not assume how much we did
@@ -154,7 +154,7 @@
 	if(ismineralturf(target_turf))
 		var/turf/closed/mineral/M = target_turf
 		new /obj/effect/temp_visual/kinetic_blast(M)
-		M.gets_drilled(firer)
+		M.attempt_drill(firer)
 	..()
 
 //trophies
@@ -168,7 +168,7 @@
 
 /obj/item/crusher_trophy/examine(mob/living/user)
 	. = ..()
-	. += "<span class='notice'>Causes [effect_desc()] when attached to a kinetic crusher.</span>"
+	. += span_notice("Causes [effect_desc()] when attached to a kinetic crusher.")
 
 /obj/item/crusher_trophy/proc/effect_desc()
 	return "errors"
@@ -183,12 +183,12 @@
 	for(var/t in H.trophies)
 		var/obj/item/crusher_trophy/T = t
 		if(istype(T, denied_type) || istype(src, T.denied_type))
-			to_chat(user, "<span class='warning'>You can't seem to attach [src] to [H]. Maybe remove a few trophies?</span>")
+			to_chat(user, span_warning("You can't seem to attach [src] to [H]. Maybe remove a few trophies?"))
 			return FALSE
 	if(!user.transferItemToLoc(src, H))
 		return
 	H.trophies += src
-	to_chat(user, "<span class='notice'>You attach [src] to [H].</span>")
+	to_chat(user, span_notice("You attach [src] to [H]."))
 	return TRUE
 
 /obj/item/crusher_trophy/proc/remove_from(obj/item/twohanded/required/kinetic_crusher/H, mob/living/user)
@@ -412,3 +412,20 @@
 
 /obj/effect/temp_visual/hierophant/wall/crusher
 	duration = 75
+
+//Legion (Megafauna)
+/obj/item/crusher_trophy/malformed_bone
+	name = "malformed bone"
+	desc = "A piece of bone caught in the act of division. Suitable as a trophy for a kinetic crusher."
+	icon_state = "malf_bone"
+	denied_type = /obj/item/crusher_trophy/malformed_bone
+	bonus_value = 40
+
+/obj/item/crusher_trophy/malformed_bone/effect_desc()
+	return "mark detonation to have a <b>[bonus_value]</b>% chance to mark nearby targets"
+
+/obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/required/kinetic_crusher/hammer_synced)
+    if(hammer_synced)
+        for(var/mob/living/L in oview(2,user))//fuck you and everything around you with a mark
+            if(prob(bonus_value) && !L.has_status_effect(STATUS_EFFECT_CRUSHERMARK))
+                L.apply_status_effect(STATUS_EFFECT_CRUSHERMARK,hammer_synced)

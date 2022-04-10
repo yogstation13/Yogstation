@@ -223,7 +223,7 @@
 		LAZYREMOVE(M.do_afters, src)
 
 	targeted_by = null
-	
+
 	QDEL_NULL(light)
 
 	return ..()
@@ -491,11 +491,25 @@
 				. += "Nothing."
 		else if(reagents.flags & AMOUNT_VISIBLE)
 			if(reagents.total_volume)
-				. += "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>"
+				. += span_notice("It has [reagents.total_volume] unit\s left.")
 			else
-				. += "<span class='danger'>It's empty.</span>"
+				. += span_danger("It's empty.")
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
+/**
+  * Called when a mob examines (shift click or verb) this atom twice (or more) within EXAMINE_MORE_TIME (default 1.5 seconds)
+  *
+  * This is where you can put extra information on something that may be superfluous or not important in critical gameplay
+  * moments, while allowing people to manually double-examine to take a closer look
+  *
+  * Produces a signal [COMSIG_PARENT_EXAMINE_MORE]
+  */
+/atom/proc/examine_more(mob/user)
+	. = list()
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE_MORE, user, .)
+	if(!LAZYLEN(.)) // lol ..length
+		return FALSE
 
 /**
   * An atom we are buckled or is contained within us has tried to move
@@ -506,7 +520,7 @@
 /atom/proc/relaymove(mob/user)
 	if(buckle_message_cooldown <= world.time)
 		buckle_message_cooldown = world.time + 50
-		to_chat(user, "<span class='warning'>You can't move while buckled to [src]!</span>")
+		to_chat(user, span_warning("You can't move while buckled to [src]!"))
 	return
 
 /// Handle what happens when your contents are exploded by a bomb
@@ -560,7 +574,7 @@
 		step(AM, turn(AM.dir, 180))
 
 ///Handle the atom being slipped over
-/atom/proc/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze, force_drop)
+/atom/proc/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, stun, force_drop)
 	return
 
 ///returns the mob's dna info as a list, to be inserted in an object's blood_DNA list
@@ -744,13 +758,13 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	//yogs start -- stops things from dumping into themselves
 	if(STR == src_object)
-		to_chat(user,"<span class='warning'>You can't dump the contents of [src_object.parent] into itself!</span>")
+		to_chat(user,span_warning("You can't dump the contents of [src_object.parent] into itself!"))
 		return
 	//yogs end
-	while (do_after(user, 10, TRUE, src, FALSE, CALLBACK(STR, /datum/component/storage.proc/handle_mass_item_insertion, things, src_object, user, progress)))
+	while (do_after(user, 1 SECONDS, TRUE, src, FALSE, CALLBACK(STR, /datum/component/storage.proc/handle_mass_item_insertion, things, src_object, user, progress)))
 		stoplag(1)
 	qdel(progress)
-	to_chat(user, "<span class='notice'>You dump as much of [src_object.parent]'s contents into [STR.insert_preposition]to [src] as you can.</span>")
+	to_chat(user, span_notice("You dump as much of [src_object.parent]'s contents into [STR.insert_preposition]to [src] as you can."))
 	STR.orient2hud(user)
 	src_object.orient2hud(user)
 	if(user.active_storage) //refresh the HUD to show the transfered contents
@@ -894,15 +908,106 @@
   */
 /atom/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	var/turf/curturf = get_turf(src)
-	if (curturf)
-		.["Jump to"] = "?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
-	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
-	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
-	.["Trigger EM pulse"] = "?_src_=vars;[HrefToken()];emp=[REF(src)]"
-	.["Trigger explosion"] = "?_src_=vars;[HrefToken()];explode=[REF(src)]"
-	.["Radiate"] = "?_src_=vars;[HrefToken()];radiate=[REF(src)]"
+	VV_DROPDOWN_SEPERATOR
+	if(!ismovable(src))
+		var/turf/curturf = get_turf(src)
+		if (curturf)
+			. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]'>Jump To</option>"
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRANSFORM, "Modify Transform")
+	VV_DROPDOWN_OPTION(VV_HK_SHOW_HIDDENPRINTS, "Show Hiddenprint log")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_REAGENT, "Add Reagent")
+	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EMP, "EMP Pulse")
+	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EXPLOSION, "Explosion")
+	VV_DROPDOWN_OPTION(VV_HK_RADIATE, "Radiate")
+
+/atom/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_ADD_REAGENT] && check_rights(R_VAREDIT))
+		if(!reagents)
+			var/amount = input(usr, "Specify the reagent size of [src]", "Set Reagent Size", 50) as num|null
+			if(amount)
+				create_reagents(amount)
+
+		if(reagents)
+			var/chosen_id
+			switch(alert(usr, "Choose a method.", "Add Reagents", "Search", "Choose from a list", "I'm feeling lucky"))
+				if("Search")
+					var/valid_id
+					while(!valid_id)
+						chosen_id = input(usr, "Enter the ID of the reagent you want to add.", "Search reagents") as null|text
+						if(isnull(chosen_id)) //Get me out of here!
+							break
+						if (!ispath(text2path(chosen_id)))
+							chosen_id = pick_closest_path(chosen_id, make_types_fancy(subtypesof(/datum/reagent)))
+							if (ispath(chosen_id))
+								valid_id = TRUE
+						else
+							valid_id = TRUE
+						if(!valid_id)
+							to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
+				if("Choose from a list")
+					chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in sortList(subtypesof(/datum/reagent), /proc/cmp_typepaths_asc)
+				if("I'm feeling lucky")
+					chosen_id = pick(subtypesof(/datum/reagent))
+			if(chosen_id)
+				var/amount = input(usr, "Choose the amount to add.", "Choose the amount.", reagents.maximum_volume) as num|null
+				if(amount)
+					reagents.add_reagent(chosen_id, amount)
+					log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [src]")
+					message_admins(span_notice("[key_name(usr)] has added [amount] units of [chosen_id] to [src]"))
+
+	if(href_list[VV_HK_TRIGGER_EXPLOSION] && check_rights(R_FUN))
+		usr.client.cmd_admin_explosion(src)
+
+	if(href_list[VV_HK_TRIGGER_EMP] && check_rights(R_FUN))
+		usr.client.cmd_admin_emp(src)
+
+	if(href_list[VV_HK_SHOW_HIDDENPRINTS])
+		usr.client.cmd_show_hiddenprints(src)
+
+	if(href_list[VV_HK_RADIATE] && check_rights(R_FUN))
+		var/strength = input(usr, "Choose the radiation strength.", "Choose the strength.") as num|null
+		if(!isnull(strength))
+			AddComponent(/datum/component/radioactive, strength)
+
+	if(href_list[VV_HK_MODIFY_TRANSFORM] && check_rights(R_VAREDIT))
+		var/result = input(usr, "Choose the transformation to apply","Transform Mod") as null|anything in list("Scale","Translate","Rotate")
+		var/matrix/M = transform
+		if(!result)
+			return
+		switch(result)
+			if("Scale")
+				var/x = input(usr, "Choose x mod","Transform Mod") as null|num
+				var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+				if(isnull(x) || isnull(y))
+					return
+				transform = M.Scale(x,y)
+			if("Translate")
+				var/x = input(usr, "Choose x mod (negative = left, positive = right)","Transform Mod") as null|num
+				var/y = input(usr, "Choose y mod (negative = down, positive = up)","Transform Mod") as null|num
+				if(isnull(x) || isnull(y))
+					return
+				transform = M.Translate(x,y)
+			if("Rotate")
+				var/angle = input(usr, "Choose angle to rotate","Transform Mod") as null|num
+				if(isnull(angle))
+					return
+				transform = M.Turn(angle)
+
+	if(href_list[VV_HK_AUTO_RENAME] && check_rights(R_VAREDIT))
+		var/newname = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
+		// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.
+		if(newname)
+			vv_auto_rename(newname)
+
+/atom/proc/vv_auto_rename(newname)
+	name = newname
+
+/atom/vv_get_header()
+	. = ..()
+	var/refid = REF(src)
+	. += "[VV_HREF_TARGETREF(refid, VV_HK_AUTO_RENAME, "<b id='name'>[src]</b>")]"
+	. += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(dir) || dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 
 ///Where atoms should drop if taken from this atom
 /atom/proc/drop_location()
@@ -983,7 +1088,7 @@
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
 	if(!istype(I, /obj/item/multitool))
 		if(user && !silent)
-			to_chat(user, "<span class='warning'>[I] has no data buffer!</span>")
+			to_chat(user, span_warning("[I] has no data buffer!"))
 		return FALSE
 	return TRUE
 
@@ -1109,6 +1214,40 @@
 	if(user != target)
 		var/reverse_message = "has been [what_done] by [ssource][postfix]"
 		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=FALSE)
+
+/**
+  * log_wound() is for when someone is *attacked* and suffers a wound. Note that this only captures wounds from damage, so smites/forced wounds aren't logged, as well as demotions like cuts scabbing over
+  *
+  * Note that this has no info on the attack that dealt the wound: information about where damage came from isn't passed to the bodypart's damaged proc. When in doubt, check the attack log for attacks at that same time
+  * TODO later: Add logging for healed wounds, though that will require some rewriting of healing code to prevent admin heals from spamming the logs. Not high priority
+  *
+  * Arguments:
+  * * victim- The guy who got wounded
+  * * suffered_wound- The wound, already applied, that we're logging. It has to already be attached so we can get the limb from it
+  * * dealt_damage- How much damage is associated with the attack that dealt with this wound.
+  * * dealt_wound_bonus- The wound_bonus, if one was specified, of the wounding attack
+  * * dealt_bare_wound_bonus- The bare_wound_bonus, if one was specified *and applied*, of the wounding attack. Not shown if armor was present
+  * * base_roll- Base wounding ability of an attack is a random number from 1 to (dealt_damage ** WOUND_DAMAGE_EXPONENT). This is the number that was rolled in there, before mods
+  */
+/proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll)
+	if(QDELETED(victim) || !suffered_wound)
+		return
+	var/message = "has suffered: [suffered_wound][suffered_wound.limb ? " to [suffered_wound.limb.name]" : null]"// maybe indicate if it's a promote/demote?
+
+	if(dealt_damage)
+		message += " | Damage: [dealt_damage]"
+		// The base roll is useful since it can show how lucky someone got with the given attack. For example, dealing a cut
+		if(base_roll)
+			message += "(rolled [base_roll]/[dealt_damage ** WOUND_DAMAGE_EXPONENT])"
+
+	if(dealt_wound_bonus)
+		message += " | WB: [dealt_wound_bonus]"
+
+	if(dealt_bare_wound_bonus)
+		message += " | BWB: [dealt_bare_wound_bonus]"
+
+	victim.log_message(message, LOG_ATTACK, color="blue")
+
 
 /atom/movable/proc/add_filter(name,priority,list/params)
 	if(!filter_data)

@@ -11,13 +11,18 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
-	species_traits = list(EYECOLOR,HAIR,LIPS)
+	species_traits = list(EYECOLOR,HAIR,LIPS,HAS_FLESH,HAS_BONE)
 	say_mod = "intones"
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	toxic_food = NONE
-	brutemod = 1.25
-	burnmod = 1.5
+	brutemod = 1.25 //Have you ever punched a metal plate?
+	burnmod = 1.5 //Computers don't like heat
+	coldmod = 0.8 //Computers like cold, but their lungs may not
+	heatmod = 1.75 //Again, computers don't like heat
+	speedmod = 0.1 //Metal legs are heavy and slow
+	punchstunthreshold = 9 //Stun range 9-10 on punch, you are being slugged in the brain by a metal robot fist.
+	siemens_coeff = 1.75 //Computers REALLY don't like being shorted out
 	payday_modifier = 0.8 //Useful to NT for engineering + very close to Human
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/preternis
@@ -64,15 +69,15 @@ adjust_charge - take a positive or negative value to adjust the charge level
 			H.adjustFireLoss(20)
 			H.Paralyze(50)
 			charge *= 0.4
-			H.visible_message("<span class='danger'>Electricity ripples over [H]'s subdermal implants, smoking profusely.</span>", \
-							"<span class='userdanger'>A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake.</span>")
+			H.visible_message(span_danger("Electricity ripples over [H]'s subdermal implants, smoking profusely."), \
+							span_userdanger("A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake."))
 		if(EMP_LIGHT)
 			H.adjustBruteLoss(10)
 			H.adjustFireLoss(10)
 			H.Paralyze(20)
 			charge *= 0.6
-			H.visible_message("<span class='danger'>A faint fizzling emanates from [H].</span>", \
-							"<span class='userdanger'>A fit of twitching overtakes you as your subdermal implants convulse violently from the electromagnetic disruption. Your sustenance reserves have been partially depleted from the blast.</span>")
+			H.visible_message(span_danger("A faint fizzling emanates from [H]."), \
+							span_userdanger("A fit of twitching overtakes you as your subdermal implants convulse violently from the electromagnetic disruption. Your sustenance reserves have been partially depleted from the blast."))
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user)
 	. = ..()
@@ -84,11 +89,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	switch(emag_lvl)
 		if(1)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50) //HALP AM DUMB
-			to_chat(H,"<span class='danger'>ALERT! MEMORY UNIT [rand(1,5)] FAILURE.NERVEOUS SYSTEM DAMAGE.</span>")
+			to_chat(H,span_danger("ALERT! MEMORY UNIT [rand(1,5)] FAILURE.NERVEOUS SYSTEM DAMAGE."))
 		if(2)
 			H.overlay_fullscreen("preternis_emag", /obj/screen/fullscreen/high)
 			H.throw_alert("preternis_emag", /obj/screen/alert/high/preternis)
-			to_chat(H,"<span class='danger'>ALERT! OPTIC SENSORS FAILURE.VISION PROCESSOR COMPROMISED.</span>")
+			to_chat(H,span_danger("ALERT! OPTIC SENSORS FAILURE.VISION PROCESSOR COMPROMISED."))
 
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
@@ -125,7 +130,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 			if (!eating_msg_cooldown)
 				eating_msg_cooldown = TRUE
 				addtimer(VARSET_CALLBACK(src, eating_msg_cooldown, FALSE), 2 MINUTES)
-				to_chat(H,"<span class='info'>NOTICE: Digestive subroutines are inefficient. Seek sustenance via power-cell C.O.N.S.U.M.E. technology induction.</span>")
+				to_chat(H,span_info("NOTICE: Digestive subroutines are inefficient. Seek sustenance via power-cell C.O.N.S.U.M.E. technology induction."))
 
 	if(chem.current_cycle >= 20)
 		H.reagents.del_reagent(chem.type)
@@ -152,7 +157,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)
 	charge = clamp(charge - power_drain,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
 	if(charge == PRETERNIS_LEVEL_NONE)
-		to_chat(H,"<span class='danger'>Warning! System power criti-$#@$</span>")
+		to_chat(H,span_danger("Warning! System power criti-$#@$"))
 		H.death()
 	else if(charge < PRETERNIS_LEVEL_STARVING)
 		H.throw_alert("preternis_charge", /obj/screen/alert/preternis_charge, 3)

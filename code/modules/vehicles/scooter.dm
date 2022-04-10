@@ -12,11 +12,11 @@
 
 
 /obj/vehicle/ridden/scooter/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You begin to remove the handlebars...</span>")
+	to_chat(user, span_notice("You begin to remove the handlebars..."))
 	if(I.use_tool(src, user, 40, volume=50))
 		var/obj/vehicle/ridden/scooter/skateboard/S = new(drop_location())
 		new /obj/item/stack/rods(drop_location(), 2)
-		to_chat(user, "<span class='notice'>You remove the handlebars from [src].</span>")
+		to_chat(user, span_notice("You remove the handlebars from [src]."))
 		if(has_buckled_mobs())
 			var/mob/living/carbon/H = buckled_mobs[1]
 			unbuckle_mob(H)
@@ -37,7 +37,7 @@
 	if(!istype(M))
 		return FALSE
 	if(M.get_num_legs() < legs_required && M.get_num_arms() < arms_required)
-		to_chat(M, "<span class='warning'>You don't think it'd be a good idea trying to ride \the [src]...</span>")
+		to_chat(M, span_warning("You don't think it'd be a good idea trying to ride \the [src]..."))
 		return FALSE
 	return ..()
 
@@ -104,7 +104,7 @@
 			if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 				H.updatehealth()
-			visible_message("<span class='danger'>[src] crashes into [A], sending [H] flying!</span>")
+			visible_message(span_danger("[src] crashes into [A], sending [H] flying!"))
 			H.Paralyze(80)
 		else
 			var/backdir = turn(dir, 180)
@@ -123,7 +123,7 @@
 			unbuckle_mob(L)
 			var/atom/throw_target = get_edge_target_turf(src, pick(GLOB.cardinals))
 			L.throw_at(throw_target, 2, 2)
-			visible_message("<span class='danger'>[L] loses [L.p_their()] footing and slams on the ground!</span>")
+			visible_message(span_danger("[L] loses [L.p_their()] footing and slams on the ground!"))
 			L.Paralyze(40)
 			grinding = FALSE
 			icon_state = board_icon
@@ -147,7 +147,7 @@
 	if(!istype(M) || M.incapacitated() || !Adjacent(M))
 		return
 	if(has_buckled_mobs() && over_object == M)
-		to_chat(M, "<span class='warning'>You can't lift this up when somebody's on it.</span>")
+		to_chat(M, span_warning("You can't lift this up when somebody's on it."))
 		return
 	if(over_object == M)
 		var/board = new board_item_type(get_turf(M))
@@ -199,16 +199,16 @@
 	if(istype(I, /obj/item/stack/sheet/metal))
 		if(!I.tool_start_check(user, amount=5))
 			return
-		to_chat(user, "<span class='notice'>You begin to add wheels to [src].</span>")
+		to_chat(user, span_notice("You begin to add wheels to [src]."))
 		if(I.use_tool(src, user, 80, volume=50, amount=5))
-			to_chat(user, "<span class='notice'>You finish making wheels for [src].</span>")
+			to_chat(user, span_notice("You finish making wheels for [src]."))
 			new /obj/vehicle/ridden/scooter/skateboard(user.loc)
 			qdel(src)
 	else
 		return ..()
 
 /obj/item/scooter_frame/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You deconstruct [src].</span>")
+	to_chat(user, span_notice("You deconstruct [src]."))
 	new /obj/item/stack/rods(drop_location(), 10)
 	I.play_tool_sound(src)
 	qdel(src)
@@ -218,9 +218,9 @@
 	if(istype(I, /obj/item/stack/rods))
 		if(!I.tool_start_check(user, amount=2))
 			return
-		to_chat(user, "<span class='notice'>You begin making handlebars for [src].</span>")
+		to_chat(user, span_notice("You begin making handlebars for [src]."))
 		if(I.use_tool(src, user, 25, volume=50, amount=2))
-			to_chat(user, "<span class='notice'>You add the rods to [src], creating handlebars.</span>")
+			to_chat(user, span_notice("You add the rods to [src], creating handlebars."))
 			var/obj/vehicle/ridden/scooter/S = new(loc)
 			if(has_buckled_mobs())
 				var/mob/living/carbon/H = buckled_mobs[1]
@@ -233,9 +233,9 @@
 /obj/vehicle/ridden/scooter/skateboard/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
-	to_chat(user, "<span class='notice'>You begin to deconstruct and remove the wheels on [src]...</span>")
+	to_chat(user, span_notice("You begin to deconstruct and remove the wheels on [src]..."))
 	if(I.use_tool(src, user, 20, volume=50))
-		to_chat(user, "<span class='notice'>You deconstruct the wheels on [src].</span>")
+		to_chat(user, span_notice("You deconstruct the wheels on [src]."))
 		new /obj/item/stack/sheet/metal(drop_location(), 5)
 		new /obj/item/scooter_frame(drop_location())
 		if(has_buckled_mobs())
@@ -265,12 +265,12 @@
 
 /obj/vehicle/ridden/scooter/wheelys/post_unbuckle_mob(mob/living/M)
 	if(!has_buckled_mobs())
-		to_chat(M, "<span class='notice'>You pop the Wheely-Heels' wheels back into place.</span>")
+		to_chat(M, span_notice("You pop the Wheely-Heels' wheels back into place."))
 		moveToNullspace()
 	return ..()
 
 /obj/vehicle/ridden/scooter/wheelys/post_buckle_mob(mob/living/M)
-	to_chat(M, "<span class='notice'>You pop out the Wheely-Heels' wheels.</span>")
+	to_chat(M, span_notice("You pop out the Wheely-Heels' wheels."))
 	return ..()
 
 /obj/vehicle/ridden/scooter/wheelys/Bump(atom/A)
@@ -286,5 +286,104 @@
 		if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
 			H.updatehealth()
-		visible_message("<span class='danger'>[src] crashes into [A], sending [H] flying!</span>")
+		visible_message(span_danger("[src] crashes into [A], sending [H] flying!"))
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
+
+//Air Shoes
+/obj/vehicle/ridden/scooter/airshoes
+	name = "Air Shoes"
+	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
+	icon = 'icons/obj/vehicles.dmi'
+	density = FALSE
+	var/next_crash
+	var/instability = 3
+	var/grinding = FALSE
+	var/board_icon = "airshoes"
+	var/datum/effect_system/spark_spread/sparks
+	icon_state = "airshoes"
+		
+/obj/vehicle/ridden/scooter/airshoes/Initialize()
+	. = ..()
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.vehicle_move_delay = 0.25
+	D.set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	D.set_vehicle_dir_layer(NORTH, OBJ_LAYER)
+	D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
+	D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
+	sparks = new
+	sparks.set_up(1, 0, src)
+	sparks.attach(src)
+
+/obj/vehicle/ridden/scooter/airshoes/Destroy()
+	if(sparks)
+		QDEL_NULL(sparks)
+	. = ..()
+/obj/vehicle/ridden/scooter/airshoes/relaymove()
+	if (grinding || world.time < next_crash)
+		return FALSE
+	return ..()
+
+/obj/vehicle/ridden/scooter/airshoes/generate_actions()
+	. = ..()
+	initialize_controller_action_type(/datum/action/vehicle/ridden/scooter/airshoes/ollie, VEHICLE_CONTROL_DRIVE)
+
+/obj/vehicle/ridden/scooter/airshoes/post_unbuckle_mob(mob/living/M)
+	if(!has_buckled_mobs())
+		to_chat(M, span_notice("The jets of the shoes wind down."))
+		moveToNullspace()
+	return ..()
+
+/obj/vehicle/ridden/scooter/airshoes/post_buckle_mob(mob/living/M)
+	to_chat(M, span_notice("You activate the hover functions of the shoes."))
+	sparks.start() //Jet shoes are a fire hazard
+	return ..()
+
+/obj/vehicle/ridden/scooter/airshoes/Bump(atom/A)
+	. = ..()
+	if(A.density && has_buckled_mobs())
+		var/mob/living/H = buckled_mobs[1]
+
+		H.adjustStaminaLoss(instability*6)
+		playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
+		if(!iscarbon(H) || H.getStaminaLoss() >= 100 || grinding || world.time < next_crash)
+			var/atom/throw_target = get_edge_target_turf(H, pick(GLOB.cardinals))
+			unbuckle_mob(H)
+			H.throw_at(throw_target, 3, 2)
+			var/head_slot = H.get_item_by_slot(SLOT_HEAD)
+			if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
+				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
+				H.updatehealth()
+			visible_message(span_danger("[src] crashes into [A], sending [H] flying!"))
+			H.Paralyze(80)
+		else
+			var/backdir = turn(dir, 180)
+			vehicle_move(backdir)
+			H.spin(4, 1)
+		next_crash = world.time + 10
+/obj/vehicle/ridden/scooter/airshoes/proc/grind()
+	vehicle_move(dir)
+	if(has_buckled_mobs() && locate(/obj/structure/table) in loc.contents)
+		var/mob/living/L = buckled_mobs[1]
+		L.adjustStaminaLoss(instability*0.5)
+		if (L.getStaminaLoss() >= 100)
+			playsound(src, 'sound/effects/bang.ogg', 20, TRUE)
+			unbuckle_mob(L)
+			var/atom/throw_target = get_edge_target_turf(src, pick(GLOB.cardinals))
+			L.throw_at(throw_target, 2, 2)
+			visible_message(span_danger("[L] loses [L.p_their()] footing and slams on the ground!"))
+			L.Paralyze(40)
+			grinding = FALSE
+			icon_state = board_icon
+			return
+		else
+			playsound(src, 'sound/vehicles/skateboard_roll.ogg', 50, TRUE)
+			if(prob (25))
+				var/turf/location = get_turf(loc)
+				if(location)
+					location.hotspot_expose(1000,1000)
+				sparks.start() 
+			addtimer(CALLBACK(src, .proc/grind), 2)
+			return
+	else
+		grinding = FALSE
+		icon_state = board_icon

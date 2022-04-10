@@ -322,7 +322,10 @@ MAPROTATIONCHANCEDELTA 1
 #AUTO_DEADMIN_HEADS
 #AUTO_DEADMIN_SECURITY
 #AUTO_DEADMIN_SILICONS
+#AUTO_DEADMIN_CRITICAL
 
+## The minimum nubmer of admins to allow for auto deadminning, includes the deadminning admin
+AUTO_DEADMIN_THRESHOLD 4
 
 ## CLIENT VERSION CONTROL
 ## This allows you to configure the minimum required client version, as well as a warning version, and message for both.
@@ -442,3 +445,10 @@ CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
 
 ## Uncomment to disable hard deletes entirely, even things that explicitly request. This is not recommended unless you have a need for it during events or other high pop times where performance is key.
 #DISABLE_ALL_HARD_DELETES
+
+## Custom shuttle spam prevention. Changine these numbers allows you to change the maxsize and amount of custom shuttles.
+MAX_SHUTTLE_COUNT 6
+MAX_SHUTTLE_SIZE 300
+
+## Enable/disable roundstart station traits
+#STATION_TRAITS

@@ -17,6 +17,12 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"bg" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "bj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -73,11 +79,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
-"dw" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "dD" = (
 /obj/machinery/door/firedoor/border_only{
@@ -439,15 +440,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"nV" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "ot" = (
 /obj/machinery/light,
 /obj/machinery/disposal/bin,
@@ -664,6 +656,10 @@
 /obj/structure/window,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"xj" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "xl" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -5;
@@ -686,11 +682,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"yd" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "yg" = (
 /obj/machinery/door/airlock{
 	name = "Bar Storage";
@@ -815,6 +806,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"BQ" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "BT" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar{
@@ -952,6 +947,15 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"ES" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "EY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -1077,14 +1081,6 @@
 /mob/living/carbon/monkey/punpun,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"IZ" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "Jk" = (
 /obj/machinery/light/small,
 /obj/effect/landmark/xeno_spawn,
@@ -1962,8 +1958,8 @@ kR
 EE
 cn
 rZ
-dw
-yd
+bg
+BQ
 dU
 XE
 qO
@@ -1983,7 +1979,7 @@ EE
 tg
 GH
 XA
-IZ
+xj
 vR
 XE
 wo
@@ -2002,7 +1998,7 @@ CH
 EE
 xl
 YC
-nV
+ES
 yV
 Rr
 XE

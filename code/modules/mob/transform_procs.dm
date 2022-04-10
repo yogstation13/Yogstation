@@ -3,6 +3,9 @@
 /mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
 	if (notransform || transformation_timer)
 		return
+	if(has_horror_inside())
+		to_chat(src, "<span class='warning'>You feel something strongly clinging to your humanity!</span>")
+		return
 	//Handle items on mob
 
 	if(tr_flags & TR_KEEPITEMS)
@@ -393,6 +396,7 @@
 
 	. = new /mob/living/silicon/ai(pick(landmark_loc), null, src)
 
+
 	if(preference_source)
 		apply_pref_name("ai",preference_source)
 
@@ -601,7 +605,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "<span class='danger'>Sorry but this mob type is currently unavailable.</span>")
+		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))
 		return
 
 	if(notransform)
@@ -635,7 +639,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "<span class='danger'>Sorry but this mob type is currently unavailable.</span>")
+		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)

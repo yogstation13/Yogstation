@@ -21,7 +21,7 @@
 		painting = C
 		C.forceMove(get_turf(src))
 		C.layer = layer+0.1
-		user.visible_message("<span class='notice'>[user] puts \the [C] on \the [src].</span>","<span class='notice'>You place \the [C] on \the [src].</span>")
+		user.visible_message(span_notice("[user] puts \the [C] on \the [src]."),span_notice("You place \the [C] on \the [src]."))
 	else
 		return ..()
 
@@ -270,17 +270,17 @@
 /obj/structure/sign/painting/examine(mob/user)
 	. = ..()
 	if(persistence_id)
-		. += "<span class='notice'>Any painting placed here will be archived at the end of the shift.</span>"
+		. += span_notice("Any painting placed here will be archived at the end of the shift.")
 	if(C)
 		C.ui_interact(user)
-		. += "<span class='notice'>Use wirecutters to remove the painting.</span>"
+		. += span_notice("Use wirecutters to remove the painting.")
 
 /obj/structure/sign/painting/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(C)
 		C.forceMove(drop_location())
 		C = null
-		to_chat(user, "<span class='notice'>You remove the painting from the frame.</span>")
+		to_chat(user, span_notice("You remove the painting from the frame."))
 		update_icon()
 		return TRUE
 
@@ -289,7 +289,7 @@
 		C = new_canvas
 		if(!C.finalized)
 			C.finalize(user)
-		to_chat(user,"<span class='notice'>You frame [C].</span>")
+		to_chat(user,span_notice("You frame [C]."))
 	update_icon()
 
 /obj/structure/sign/painting/proc/try_rename(mob/user)
@@ -400,4 +400,25 @@
 
 /obj/structure/sign/painting/vv_get_dropdown()
 	. = ..()
-	.["Remove Persistent Painting"] = "?_src_=vars;[HrefToken()];delete_paint=[REF(src)]"
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_PAINTING, "Remove Persistent Painting")
+
+/obj/structure/sign/painting/vv_do_topic(list/href_list)
+	. = ..()
+	var/mob/user = usr
+	if(!persistence_id || !C)
+		to_chat(user,span_warning("This is not a persistent painting."))
+		return
+	var/md5 = md5(C.get_data_string())
+	var/author = C.author_ckey
+	var/list/current = SSpersistence.paintings[persistence_id]
+	if(current)
+		for(var/list/entry in current)
+			if(entry["md5"] == md5)
+				current -= entry
+		var/png = "data/paintings/[persistence_id]/[md5].png"
+		fdel(png)
+	for(var/obj/structure/sign/painting/PA in SSpersistence.painting_frames)
+		if(PA.C && md5(PA.C.get_data_string()) == md5)
+			QDEL_NULL(PA.C)
+	log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
+	message_admins(span_notice("[key_name_admin(user)] has deleted persistent painting made by [author]."))

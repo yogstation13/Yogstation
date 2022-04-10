@@ -2,7 +2,7 @@
 	name = "Flyperson"
 	id = "fly"
 	say_mod = "buzzes"
-	species_traits = list(NOEYESPRITES)
+	species_traits = list(NOEYESPRITES, HAS_FLESH, HAS_BONE)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_BUG)
 	mutanttongue = /obj/item/organ/tongue/fly
 	mutantliver = /obj/item/organ/liver/fly
@@ -26,8 +26,8 @@
 			var/turf/pos = get_turf(H)
 			H.vomit(0, FALSE, FALSE, 2, TRUE)
 			playsound(pos, 'sound/effects/splat.ogg', 50, 1)
-			H.visible_message("<span class='danger'>[H] vomits on the floor!</span>", \
-						"<span class='userdanger'>You throw up on the floor!</span>")
+			H.visible_message(span_danger("[H] vomits on the floor!"), \
+						span_userdanger("You throw up on the floor!"))
 	..()
 
 /datum/species/fly/check_species_weakness(obj/item/weapon, mob/living/attacker)

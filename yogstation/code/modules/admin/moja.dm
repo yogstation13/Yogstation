@@ -2,8 +2,8 @@
 	INVOKE_ASYNC(_moja_divulge())
 
 /mob/living/proc/_moja_divulge()
-	visible_message("<span class='warning'>A vortex of violet energies surrounds [src]!</span>", "<span class='velvet'>Your barrier will keep you shielded to a point..</span>")
-	visible_message("<span class='danger'>[src] slowly rises into the air, their belongings falling away, and begins to shimmer...</span>", \
+	visible_message(span_warning("A vortex of violet energies surrounds [src]!"), span_velvet("Your barrier will keep you shielded to a point.."))
+	visible_message(span_danger("[src] slowly rises into the air, their belongings falling away, and begins to shimmer..."), \
 						"<span class='velvet big'><b>You begin the removal of your human disguise. You will be completely vulnerable during this time.</b></span>")
 	setDir(SOUTH)
 	for(var/obj/item/I in src)
@@ -13,32 +13,32 @@
 	for(var/stage in 1 to 3)
 		switch(stage)
 			if(1)
-				visible_message("<span class='userdanger'>Vibrations pass through the air. [src]'s eyes begin to glow a deep violet.</span>", \
-									"<span class='velvet'>Psi floods into your consciousness. You feel your mind growing more powerful... <i>expanding.</i></span>")
+				visible_message(span_userdanger("Vibrations pass through the air. [src]'s eyes begin to glow a deep violet."), \
+									span_velvet("Psi floods into your consciousness. You feel your mind growing more powerful... <i>expanding.</i>"))
 				playsound(src, 'yogstation/sound/magic/divulge_01.ogg', 30, 0)
 			if(2)
-				visible_message("<span class='userdanger'>Gravity fluctuates. Psychic tendrils extend outward and feel blindly around the area.</span>", \
-									"<span class='velvet'>Gravity around you fluctuates. You tentatively reach out, feel with your mind.</span>")
+				visible_message(span_userdanger("Gravity fluctuates. Psychic tendrils extend outward and feel blindly around the area."), \
+									span_velvet("Gravity around you fluctuates. You tentatively reach out, feel with your mind."))
 				Shake(0, 3, 750) //50 loops in a second times 15 seconds = 750 loops
 				playsound(src, 'yogstation/sound/magic/divulge_02.ogg', 40, 0)
 			if(3)
-				visible_message("<span class='userdanger'>Sigils form along [src]'s body. \His skin blackens as \he glows a blinding purple.</span>", \
-									"<span class='velvet'>Your body begins to warp. Sigils etch themselves upon your flesh.</span>")
+				visible_message(span_userdanger("Sigils form along [src]'s body. \His skin blackens as \he glows a blinding purple."), \
+									span_velvet("Your body begins to warp. Sigils etch themselves upon your flesh."))
 				animate(src, color = list(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0)), time = 150) //Produces a slow skin-blackening effect
 				playsound(src, 'yogstation/sound/magic/divulge_03.ogg', 50, 0)
-		if(!do_after(src, 150, target = src))
-			visible_message("<span class='warning'>[src] falls to the ground!</span>", "<span class='userdanger'>Your transformation was interrupted!</span>")
+		if(!do_after(src, 15 SECONDS, target = src))
+			visible_message(span_warning("[src] falls to the ground!"), span_userdanger("Your transformation was interrupted!"))
 			animate(src, color = initial(src.color), pixel_y = initial(src.pixel_y), time = 10)
 			return
 	playsound(src, 'yogstation/sound/magic/divulge_ending.ogg', 50, 0)
-	visible_message("<span class='userdanger'>[src] rises into the air, crackling with power!</span>", "<span class='velvet bold'>Your mind...! can't--- THINK--</span>")
+	visible_message(span_userdanger("[src] rises into the air, crackling with power!"), "<span class='velvet bold'>Your mind...! can't--- THINK--</span>")
 	animate(src, pixel_y = src.pixel_y + 8, time = 60)
 	sleep(45)
 	Shake(5, 5, 110)
 	for(var/i in 1 to 20)
 		to_chat(src, "<span class='velvet bold'>[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-")]</span>")
 		sleep(1.1) //Spooky flavor message spam
-	visible_message("<span class='userdanger'>A tremendous shockwave emanates from [src]!</span>", "<span class='velvet big'><b>YOU ARE FREE!!</b></span>")
+	visible_message(span_userdanger("A tremendous shockwave emanates from [src]!"), "<span class='velvet big'><b>YOU ARE FREE!!</b></span>")
 	playsound(src, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
 	animate(src, color = initial(color), pixel_y = initial(pixel_y), time = 30)
 	for(var/mob/living/L in view(7, src))

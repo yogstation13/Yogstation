@@ -60,16 +60,16 @@
 	. = ..()
 	if(red_alert_access)
 		if(GLOB.security_level >= SEC_LEVEL_RED)
-			. += "<span class='notice'>Due to a security threat, its access requirements have been lifted!</span>"
+			. += span_notice("Due to a security threat, its access requirements have been lifted!")
 		else
-			. += "<span class='notice'>In the event of a red alert, its access requirements will automatically lift.</span>"
+			. += span_notice("In the event of a red alert, its access requirements will automatically lift.")
 	if(!poddoor)
-		. += "<span class='notice'>Its maintenance panel is <b>screwed</b> in place.</span>"
+		. += span_notice("Its maintenance panel is <b>screwed</b> in place.")
 	if(!isdead(user))
 		var/userDir = turn(get_dir(src, user), 180)
 		var/turf/T = get_step(src, userDir)
 		var/areaName = T.loc.name
-		. += "<span class='notice'>It leads into [areaName].</span>"
+		. += span_notice("It leads into [areaName].")
 
 /obj/machinery/door/check_access_list(list/access_list)
 	if(red_alert_access && GLOB.security_level >= SEC_LEVEL_RED)
@@ -370,7 +370,12 @@
 
 /obj/machinery/door/proc/crush()
 	for(var/mob/living/L in get_turf(src))
-		L.visible_message("<span class='warning'>[src] closes on [L], crushing [L.p_them()]!</span>", "<span class='userdanger'>[src] closes on you and crushes you!</span>")
+		L.visible_message(span_warning("[src] closes on [L], crushing [L.p_them()]!"), span_userdanger("[src] closes on you and crushes you!"))
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			for(var/i in C.all_wounds) // should probably replace with signal
+				var/datum/wound/W = i
+				W.crush(DOOR_CRUSH_DAMAGE)
 		if(isalien(L))  //For xenos
 			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE * 1.5) //Xenos go into crit after aproximately the same amount of crushes as humans.
 			L.emote("roar")

@@ -27,7 +27,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/carrot/attackby(obj/item/I, mob/user, params)
 	if(I.is_sharp())
-		to_chat(user, "<span class='notice'>You sharpen the carrot into a shiv with [I].</span>")
+		to_chat(user, span_notice("You sharpen the carrot into a shiv with [I]."))
 		var/obj/item/kitchen/knife/carrotshiv/Shiv = new /obj/item/kitchen/knife/carrotshiv
 		remove_item_from_storage(user)
 		qdel(src)
@@ -46,6 +46,7 @@
 	icon_dead = "carrot-dead"
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05)
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/parsnip
 	seed = /obj/item/seeds/carrot/parsnip
@@ -99,6 +100,7 @@
 	icon_dead = "whitebeet-dead"
 	genes = list(/datum/plant_gene/trait/maxchem)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05)
+	rarity = 20 //noteworthy for being the usual source of densified chems trait
 
 /obj/item/reagent_containers/food/snacks/grown/redbeet
 	seed = /obj/item/seeds/redbeet

@@ -12,6 +12,8 @@
 	spillable = TRUE
 	resistance_flags = ACID_PROOF
 	obj_flags = UNIQUE_RENAME
+	drop_sound = 'sound/items/handling/drinkglass_drop.ogg'
+	pickup_sound =  'sound/items/handling/drinkglass_pickup.ogg'
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/on_reagent_change(changetype)
 	cut_overlays()
@@ -98,9 +100,9 @@
 		var/obj/item/reagent_containers/food/snacks/egg/E = I
 		if(reagents)
 			if(reagents.total_volume >= reagents.maximum_volume)
-				to_chat(user, "<span class='notice'>[src] is full.</span>")
+				to_chat(user, span_notice("[src] is full."))
 			else
-				to_chat(user, "<span class='notice'>You break [E] in [src].</span>")
+				to_chat(user, span_notice("You break [E] in [src]."))
 				reagents.add_reagent(/datum/reagent/consumable/eggyolk, 5)
 				qdel(E)
 			return
@@ -109,8 +111,8 @@
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/attack(obj/target, mob/user)
 	if(user.a_intent == INTENT_HARM && ismob(target) && target.reagents && reagents.total_volume)
-		target.visible_message("<span class='danger'>[user] splashes the contents of [src] onto [target]!</span>", \
-						"<span class='userdanger'>[user] splashes the contents of [src] onto [target]!</span>")
+		target.visible_message(span_danger("[user] splashes the contents of [src] onto [target]!"), \
+						span_userdanger("[user] splashes the contents of [src] onto [target]!"))
 		log_combat(user, target, "splashed", src)
 		reagents.reaction(target, TOUCH)
 		reagents.clear_reagents()
@@ -123,8 +125,8 @@
 		return
 
 	else if(reagents.total_volume && user.a_intent == INTENT_HARM)
-		user.visible_message("<span class='danger'>[user] splashes the contents of [src] onto [target]!</span>", \
-							"<span class='notice'>You splash the contents of [src] onto [target].</span>")
+		user.visible_message(span_danger("[user] splashes the contents of [src] onto [target]!"), \
+							span_notice("You splash the contents of [src] onto [target]."))
 		reagents.reaction(target, TOUCH)
 		reagents.clear_reagents()
 		return

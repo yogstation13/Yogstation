@@ -301,7 +301,7 @@
 							new /obj/item/storage/backpack/duffelbag/syndie/c4(loc)
 							new /obj/item/storage/backpack/duffelbag/syndie/x4(loc)
 					message_admins("[key_name_admin(user)] won emagged Minesweeper and got [itemname]!")
-					visible_message("<span class='notice'>[src] dispenses [itemname]!</span>", "<span class='notice'>You hear a chime and a clunk.</span>")
+					visible_message(span_notice("[src] dispenses [itemname]!"), span_notice("You hear a chime and a clunk."))
 				else
 					prizevend(user)
 				prizevended = TRUE
@@ -328,10 +328,10 @@
 	randomcolour = rgb(randomnumber,randomnumber/2,randomnumber/3)
 	obj_flags |= EMAGGED
 	if(game_status == MINESWEEPER_GAME_MAIN_MENU)
-		to_chat(user, "<span class='warning'>An ominous tune plays from the arcade's speakers!</span>")
+		to_chat(user, span_warning("An ominous tune plays from the arcade's speakers!"))
 		playsound(user, 'yogstation/sound/arcade/minesweeper_emag1.ogg', 100, 0, extrarange = 3, falloff = 10)
 	else	//Can't let you do that, star fox!
-		to_chat(user, "<span class='warning'>The machine buzzes and sparks... the game has been reset!</span>")
+		to_chat(user, span_warning("The machine buzzes and sparks... the game has been reset!"))
 		playsound(user, 'sound/machines/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff = 10)	//Loud buzz
 		game_status = MINESWEEPER_GAME_MAIN_MENU
 
@@ -404,7 +404,7 @@
 
 /obj/machinery/computer/arcade/minesweeper/proc/explode_EVERYTHING()
 	var/mob/living/user = usr
-	to_chat(user, "<span class='warning'><font size='2'><b>You feel a great sense of dread wash over you. You feel as if you just unleashed armageddon upon yourself!</b></span>")
+	to_chat(user, span_warning("<font size='2'><b>You feel a great sense of dread wash over you. You feel as if you just unleashed armageddon upon yourself!</b>"))
 	var/row_limit = rows-1
 	var/column_limit = columns-1
 	var/mine_limit_v2 = mine_limit
@@ -423,5 +423,5 @@
 		for(var/x69=x-column_limit;x69<x+column_limit;x69++)
 			if(prob(mine_limit_v2))	//Probability of explosion happening, according to how many mines were on the board... up to a limit
 				var/explosionloc
-				explosionloc = locate(y69,x69,z)
-				explosion(explosionloc, ,rand(1,2),rand(1,5),rand(3,10), adminlog = FALSE)
+				explosionloc = locate(x69,y69,z)
+				explosion(explosionloc,0,rand(1,2),rand(1,5),rand(3,10), adminlog = FALSE)

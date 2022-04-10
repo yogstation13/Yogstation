@@ -8,7 +8,7 @@
 	if(!holder)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = "<span class='danger'>Error: Admin-PM-Context: Only administrators may use this command.</span>",
+			html = span_danger("Error: Admin-PM-Context: Only administrators may use this command."),
 			confidential = TRUE)
 		return
 	if(!ismob(M)) //yogs start
@@ -28,7 +28,7 @@
 	if(!holder)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = "<span class='danger'>Error: Admin-PM-Panel: Only administrators may use this command.</span>",
+			html = span_danger("Error: Admin-PM-Panel: Only administrators may use this command."),
 			confidential = TRUE)
 		return
 	var/list/client/targets[0]
@@ -50,7 +50,7 @@
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = "<span class='danger'>Error: Admin-PM: You are unable to use admin PM-s (muted).</span>",
+			html = span_danger("Error: Admin-PM: You are unable to use admin PM-s (muted)."),
 			confidential = TRUE)
 		return
 	var/client/C
@@ -64,7 +64,7 @@
 		if(holder)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = "<span class='danger'>Error: Admin-PM: Client not found.</span>",
+				html = span_danger("Error: Admin-PM: Client not found."),
 				confidential = TRUE)
 		return
 
@@ -84,18 +84,18 @@
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = "<span class='danger'>Error: Admin-PM: You are unable to use admin PM-s (muted).</span>",
+			html = span_danger("Error: Admin-PM: You are unable to use admin PM-s (muted)."),
 			confidential = TRUE)
 		return
 
 	if(!holder && !current_ticket)	//no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = "<span class='danger'>You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be.</span>",
+			html = span_danger("You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be."),
 			confidential = TRUE)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = "<span class='notice'>Message: [msg]</span>",
+			html = span_notice("Message: [msg]"),
 			confidential = TRUE)
 
 		return
@@ -127,7 +127,7 @@
 		if(holder)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = "<span class='danger'>Error: Use the admin IRC/Discord channel, nerd.</span>",
+				html = span_danger("Error: Use the admin IRC/Discord channel, nerd."),
 				confidential = TRUE)
 			return
 
@@ -135,7 +135,7 @@
 	else
 		if(!recipient)
 			if(holder)
-				to_chat(src, "<span class='danger'>Error: Admin-PM: Client not found.</span>", confidential=TRUE)
+				to_chat(src, span_danger("Error: Admin-PM: Client not found."), confidential=TRUE)
 				if(msg)
 					to_chat(src, msg, confidential=TRUE)
 				return
@@ -151,14 +151,14 @@
 				return
 
 			if(prefs.muted & MUTE_ADMINHELP)
-				to_chat(src, "<span class='danger'>Error: Admin-PM: You are unable to use admin PM-s (muted).</span>", confidential=TRUE)
+				to_chat(src, span_danger("Error: Admin-PM: You are unable to use admin PM-s (muted)."), confidential=TRUE)
 				return
 
 			if(!recipient)
 				if(holder)
 					to_chat(src,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = "<span class='danger'>Error: Admin-PM: Client not found.</span>",
+						html = span_danger("Error: Admin-PM: Client not found."),
 						confidential = TRUE)
 				else
 					current_ticket.MessageNoRecipient(msg)
@@ -181,7 +181,7 @@
 	var/keywordparsedmsg = keywords_lookup(msg)
 
 	if(irc)
-		to_chat(src, "<span class='notice'>PM to-<b>Admins</b>: <span class='linkify'>[rawmsg]</span></span>", confidential=TRUE)
+		to_chat(src, span_notice("PM to-<b>Admins</b>: [span_linkify("[rawmsg]")]"), confidential=TRUE)
 		var/datum/admin_help/AH = admin_ticket_log(src, rawmsg) // yogs - Yog Tickets
 		ircreplyamount--
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
@@ -190,18 +190,18 @@
 			if(holder)
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<span class='danger'>Admin PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>",
+					html = span_danger("Admin PM from-<b>[key_name(src, recipient, 1)]</b>: [span_linkify("[keywordparsedmsg]")]"),
 					confidential = TRUE)
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>",
+					html = span_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [span_linkify("[keywordparsedmsg]")]"),
 					confidential = TRUE)
 
 				//omg this is dumb, just fill in both their tickets
 				// yogs start - Yog Tickets
 				admin_ticket_log(src, msg, FALSE)
 				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
-					recipient.current_ticket.Administer(src)
+					recipient.current_ticket.Administer()
 				// yogs end - Yog Tickets
 				if(recipient != src)	//reeee
 					admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
@@ -209,11 +209,11 @@
 			else		//recipient is an admin but sender is not
 				//YOGS START -- Yogs Tickets
 				if(!current_ticket)
-					to_chat(src, "<span class='notice'>Ticket closed, please make a new one before trying to contact admins!</span>", confidential=TRUE)
+					to_chat(src, span_notice("Ticket closed, please make a new one before trying to contact admins!"), confidential=TRUE)
 					return
 				admin_ticket_log(src, msg, FALSE)
-				to_chat(recipient, "<span class='danger'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>", confidential=TRUE)
-				to_chat(src, "<span class='notice'>-- [key_name(src, null, 0)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></span>", confidential=TRUE)
+				to_chat(recipient, span_danger("Reply PM from-<b>[key_name(src, recipient, 1)]</b>: [span_linkify("[keywordparsedmsg]")]"), confidential=TRUE)
+				to_chat(src, span_notice("-- [key_name(src, null, 0)] -> <b>Admins</b>: [span_linkify("[msg]")]"), confidential=TRUE)
 				//YOGS END
 
 			//play the receiving admin the adminhelp sound (if they have them enabled)
@@ -225,12 +225,12 @@
 				if(!recipient.current_ticket)
 					new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
 				if(!recipient.current_ticket.handling_admin)
-					recipient.current_ticket.Administer(src) // yogs - Yog Tickets
+					recipient.current_ticket.Administer() // yogs - Yog Tickets
 
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>", confidential=TRUE)
-				to_chat(recipient, "<span class='adminsay'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span></span>", confidential=TRUE)
-				to_chat(recipient, "<span class='adminsay'><i>Click on the administrator's name to reply.</i></span>", confidential=TRUE)
-				to_chat(src, "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span></span>", confidential=TRUE)
+				to_chat(recipient, span_adminsay("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [span_linkify("[msg]")]"), confidential=TRUE)
+				to_chat(recipient, span_adminsay("<i>Click on the administrator's name to reply.</i>"), confidential=TRUE)
+				to_chat(src, span_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [span_linkify("[msg]")]"), confidential=TRUE)
 
 				admin_ticket_log(recipient, "PM From [src]: [msg]", FALSE)// yogs - Yog Tickets
 
@@ -253,7 +253,7 @@
 			else		//neither are admins
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<span class='danger'>Error: Admin-PM: Non-admin to non-admin PM communication is forbidden.</span>",
+					html = span_danger("Error: Admin-PM: Non-admin to non-admin PM communication is forbidden."),
 					confidential = TRUE)
 				return
 
@@ -262,7 +262,7 @@
 		for(var/client/X in GLOB.admins)
 			to_chat(X,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = "<span class='notice'><B>PM: [key_name(src, X, 0)]-&gt;External:</B> [keywordparsedmsg]</span>",
+				html = span_notice("<B>PM: [key_name(src, X, 0)]-&gt;External:</B> [keywordparsedmsg]"),
 				confidential = TRUE)
 	else
 		window_flash(recipient, ignorepref = TRUE)
@@ -272,7 +272,7 @@
 			if(X.key!=key && X.key!=recipient.key)	//check client/X is an admin and isn't the sender or recipientD
 				to_chat(X,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<span class='notice'><B>PM: [key_name(src, X, 0)]-&gt;[key_name(recipient, X, 0)]:</B> [keywordparsedmsg]</span>" ,
+					html = span_notice("<B>PM: [key_name(src, X, 0)]-&gt;[key_name(recipient, X, 0)]:</B> [keywordparsedmsg]") ,
 					confidential = TRUE)
 
 
@@ -361,11 +361,11 @@
 		confidential = TRUE)
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = "<span class='adminsay'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</span>",
+		html = span_adminsay("Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"),
 		confidential = TRUE) // yogs - Yog Tickets
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = "<span class='adminsay'><i>Click on the administrator's name to reply.</i></span>",
+		html = span_adminsay("<i>Click on the administrator's name to reply.</i>"),
 		confidential = TRUE) // yogs - Yog Tickets
 
 	admin_ticket_log(C, "PM From [irc_tagged]: [msg]") // yogs - Yog Tickets

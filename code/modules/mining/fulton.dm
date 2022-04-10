@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/item/extraction_pack/attack_self(mob/user)
 	if(is_species(user, /datum/species/lizard/ashwalker))
-		to_chat(user, "<span class='warning'>You don't know how to use this!</span>")
+		to_chat(user, span_warning("You don't know how to use this!"))
 		return FALSE
 	var/list/possible_beacons = list()
 	for(var/B in GLOB.total_extraction_beacons)
@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 /obj/item/extraction_pack/afterattack(atom/movable/A, mob/living/carbon/human/user, flag, params)
 	. = ..()
 	if(is_species(user, /datum/species/lizard/ashwalker))
-		to_chat(user, "<span class='warning'>You don't know how to use this!</span>")
+		to_chat(user, span_warning("You don't know how to use this!"))
 		return FALSE
 	if(!beacon)
 		to_chat(user, "[src] is not linked to a beacon, and cannot be used.")
@@ -66,9 +66,9 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			return
 		if(A.anchored || (A.move_resist > max_force_fulton))
 			return
-		to_chat(user, "<span class='notice'>You start attaching the pack to [A]...</span>")
-		if(do_after(user,50,target=A))
-			to_chat(user, "<span class='notice'>You attach the pack to [A] and activate it.</span>")
+		to_chat(user, span_notice("You start attaching the pack to [A]..."))
+		if(do_after(user, 5 SECONDS,target=A))
+			to_chat(user, span_notice("You attach the pack to [A] and activate it."))
 			if(loc == user && istype(user.back, /obj/item/storage/backpack))
 				var/obj/item/storage/backpack/B = user.back
 				SEND_SIGNAL(B, COMSIG_TRY_STORAGE_INSERT, src, user, FALSE, FALSE)

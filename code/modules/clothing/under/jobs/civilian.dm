@@ -36,7 +36,9 @@
 	item_color = "captain"
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 15)
 	mutantrace_variation = MUTANTRACE_VARIATION
+
 /obj/item/clothing/under/rank/captain/skirt
 	name = "captain's jumpskirt"
 	desc = "It's a blue jumpskirt with some gold markings denoting the rank of \"Captain\"."
@@ -448,6 +450,7 @@
 	icon_state = "miner"
 	item_state = "miner"
 	item_color = "miner"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 0, "wound" = 10)
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/miner/lavaland

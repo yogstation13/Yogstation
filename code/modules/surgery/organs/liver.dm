@@ -10,7 +10,7 @@
 	desc = "Pairing suggestion: chianti and fava beans."
 	maxHealth = STANDARD_ORGAN_THRESHOLD
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = STANDARD_ORGAN_DECAY
+	decay_factor = STANDARD_ORGAN_DECAY // smack in the middle of decay times
 	var/alcohol_tolerance = ALCOHOL_RATE//affects how much damage the liver takes from alcohol
 	var/toxTolerance = LIVER_DEFAULT_TOX_TOLERANCE//maximum amount of toxins the liver can just shrug off
 	var/toxLethality = LIVER_DEFAULT_TOX_LETHALITY//affects how much damage toxins do to the liver
@@ -42,7 +42,7 @@
 			C.reagents.metabolize(C, can_overdose=TRUE)
 
 			if(provide_pain_message && damage > 10 && prob(damage/3))//the higher the damage the higher the probability
-				to_chat(C, "<span class='warning'>You feel a dull pain in your abdomen.</span>")
+				to_chat(C, span_warning("You feel a dull pain in your abdomen."))
 		else	//for when our liver's failing
 			reagents.end_metabolization(C, keep_liverless = TRUE) //Stops trait-based effects on reagents, to prevent permanent buffs
 			reagents.metabolize(C, can_overdose=FALSE, liverless = TRUE)
@@ -50,7 +50,7 @@
 				return
 			C.adjustToxLoss(4, TRUE,  TRUE)
 			if(prob(30))
-				to_chat(C, "<span class='warning'>You feel a stabbing pain in your abdomen!</span>")
+				to_chat(C, span_warning("You feel a stabbing pain in your abdomen!"))
 
 	if(damage > maxHealth)//cap liver damage
 		damage = maxHealth

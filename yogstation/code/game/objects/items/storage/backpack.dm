@@ -14,7 +14,7 @@
 
 /obj/item/storage/backpack/holding/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/disabled_boh) && appears_split) // allows you to make a split bag appear whole, so that you can fool security or whatever with it. it's a bit pricey though since you need to bork an entire bag to do so.
-		to_chat(user, "<span class='notice'>You graft the outer shell of the disabled bag onto this one.</span>")
+		to_chat(user, span_notice("You graft the outer shell of the disabled bag onto this one."))
 		qdel(W)
 		cut = FALSE
 		appears_split = FALSE
@@ -23,21 +23,21 @@
 		return TRUE
 	if(istype(W, /obj/item/scalpel) && istype(loc, /turf) && !appears_split) // you gotta do this on the ground.
 		if(!cut)
-			user.visible_message("[user] begins to make an incision on the outer shell of [src].", "<span class='notice'>You begin to make an incision on the outer shell of [src]...</span>")
+			user.visible_message("[user] begins to make an incision on the outer shell of [src].", span_notice("You begin to make an incision on the outer shell of [src]..."))
 			if(W.use_tool(src, user, 40))
 				if(!appears_split && !cut)
-					user.visible_message("[user] succeeds!", "<span class='notice'>You succeed.</span>")
+					user.visible_message("[user] succeeds!", span_notice("You succeed."))
 					cut = TRUE
 					name = "cut [initial(name)]"
 					icon_state = "holdingpack-cut"
 			else
-				user.visible_message("<span class='warning'>[user] screws up!</span>", "<span class='warning'>You screw up!</span>")
+				user.visible_message(span_warning("[user] screws up!"), span_warning("You screw up!"))
 			return TRUE
 		else
-			user.visible_message("[user] begins to carefully cut [src]'s bluespace interface in half.", "<span class='notice'>You begin to carefully cut [src]'s bluespace interface in half...</span>")
+			user.visible_message("[user] begins to carefully cut [src]'s bluespace interface in half.", span_notice("You begin to carefully cut [src]'s bluespace interface in half..."))
 			if(W.use_tool(src, user, 40))
 				if(!appears_split && cut)
-					user.visible_message("[user] succeeds!", "<span class='notice'>You succeed.</span>")
+					user.visible_message("[user] succeeds!", span_notice("You succeed."))
 					cut = FALSE
 					appears_split = TRUE
 					name = "split [initial(name)]"
@@ -57,21 +57,21 @@
 					twin.name = "split [initial(twin.name)]"
 					twin.icon_state = "holdingpack-split-left"
 			else // HAHAHAHA YOU FUCKED UP BIG TIME MATE
-				user.visible_message("<span class='danger'>[user] screws up, causing the bluespace interface to collapse catastrophically!</span>", "<span class='userdanger'>You screw up, causing the bluespace interface to collapse catastrophically! Try not moving next time?</span>")
+				user.visible_message(span_danger("[user] screws up, causing the bluespace interface to collapse catastrophically!"), span_userdanger("You screw up, causing the bluespace interface to collapse catastrophically! Try not moving next time?"))
 				fuck_up(user)
 			return TRUE
 	else if(istype(W, /obj/item/hemostat) && istype(loc, /turf) && !appears_split && cut) // how to bork a bag of holding
-		user.visible_message("[user] begins to carefully disrupt [src]'s bluespace interface.", "<span class='notice'>You begin to carefully disrupt [src]'s bluespace interface...</span>")
+		user.visible_message("[user] begins to carefully disrupt [src]'s bluespace interface.", span_notice("You begin to carefully disrupt [src]'s bluespace interface..."))
 		if(W.use_tool(src, user, 40))
 			if(!appears_split && cut)
-				user.visible_message("[user] succeeds!", "<span class='notice'>You succeed.</span>")
+				user.visible_message("[user] succeeds!", span_notice("You succeed."))
 				disable_bag(TRUE)
 				var/obj/item/disabled_boh/replacement = new(loc)
 				replacement.icon_state = replacetext(icon_state, "holdingpack", "brokenpack")
 				replacement.name = name
 				qdel(src)
 		else // HAHAHAHA YOU FUCKED UP BIG TIME MATE
-			user.visible_message("<span class='danger'>[user] screws up, causing the bluespace interface to collapse catastrophically!</span>", "<span class='userdanger'>You screw up, causing the bluespace interface to collapse catastrophically! Try not moving next time?</span>")
+			user.visible_message(span_danger("[user] screws up, causing the bluespace interface to collapse catastrophically!"), span_userdanger("You screw up, causing the bluespace interface to collapse catastrophically! Try not moving next time?"))
 			fuck_up(user)
 		return TRUE
 	return ..()
@@ -121,7 +121,7 @@
 			continue
 		for(var/mob/living/M in T)
 			if(M.movement_type & FLYING)
-				M.visible_message("<span class='danger'>The bluespace collapse crushes the air towards it, pulling [M] towards the ground...</span>")
+				M.visible_message(span_danger("The bluespace collapse crushes the air towards it, pulling [M] towards the ground..."))
 				M.Paralyze(5, TRUE, TRUE)		//Overrides stun absorbs.
 		T.TerraformTurf(/turf/open/chasm/magic, /turf/open/chasm/magic)
 	for(var/fabricarea in get_areas(/area/fabric_of_reality))
@@ -195,6 +195,14 @@
 	item_state = "snail_green"
 	icon_state = "snail_green"
 
+/obj/item/storage/backpack/fakesnail
+	name = "green shell backpack"
+	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt."
+	icon = 'yogstation/icons/obj/storage.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	item_state = "snail_green"
+	icon_state = "snail_green"
+
 /obj/item/storage/backpack/banana
 	name = "banana backpack"
 	desc = "Is it a backpack made of bananas or a backpack with a banana texture? The world may never know."
@@ -212,11 +220,11 @@
 	item_state = "clownfacebackpack"
 
 //Clothing Bags
-/obj/item/storage/backpack/duffelbag/sec/physician/clothing
+/obj/item/storage/backpack/duffelbag/clothing/sec/physician
 	name = "Brig Physician's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/sec/physician/clothing/PopulateContents()
+/obj/item/storage/backpack/duffelbag/clothing/sec/physician/PopulateContents()
 	new /obj/item/clothing/under/yogs/rank/physician(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt/physician(src)
 	new /obj/item/clothing/head/soft/emt/phys(src)

@@ -14,7 +14,7 @@
 
 /datum/antagonist/heretic_monster/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ecult_op.ogg', 100, FALSE, pressure_affected = FALSE)//subject to change
-	to_chat(owner, "<span class='boldannounce'>You became an Eldritch Horror!</span>")
+	to_chat(owner, span_boldannounce("You became an Eldritch Horror!"))
 
 /datum/antagonist/heretic_monster/on_gain()
 	SSticker.mode.update_heretic_icons_added(owner)
@@ -22,7 +22,7 @@
 
 /datum/antagonist/heretic_monster/on_removal()
 	if(owner)
-		to_chat(owner, "<span class='boldannounce'>Your master is no longer [master.owner.current.real_name]</span>")
+		to_chat(owner, span_boldannounce("Your master is no longer [master.owner.current.real_name]"))
 		owner = null
 	SSticker.mode.update_heretic_icons_removed(owner)
 	return ..()
@@ -35,5 +35,5 @@
 	objectives += master_obj
 	master_obj.completed = TRUE
 	owner.announce_objectives()
-	to_chat(owner, "<span class='boldannounce'>Your master is [master.owner.current.real_name]</span>")
+	to_chat(owner, span_boldannounce("Your master is [master.owner.current.real_name]"))
 	return

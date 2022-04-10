@@ -152,6 +152,7 @@ SUBSYSTEM_DEF(persistence)
 		CollectAntagReputation()
 	SaveRandomizedRecipes()
 	SavePaintings()
+	SaveScars()
 
 /datum/controller/subsystem/persistence/proc/GetPhotoAlbums()
 	var/album_path = file("data/photo_albums.json")
@@ -346,3 +347,15 @@ SUBSYSTEM_DEF(persistence)
 	var/json_file = file("data/paintings.json")
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(paintings))
+
+/datum/controller/subsystem/persistence/proc/SaveScars()
+	for(var/i in GLOB.joined_player_list)
+		var/mob/living/carbon/human/ending_human = get_mob_by_ckey(i)
+		if(!istype(ending_human) || !ending_human.mind?.original_character_slot_index || !ending_human.client || !ending_human.client.prefs || !ending_human.client.prefs.persistent_scars)
+			continue
+
+		var/mob/living/carbon/human/original_human = ending_human.mind.original_character
+		if(!original_human || original_human.stat == DEAD || !original_human.all_scars || original_human != ending_human)
+			original_human.save_persistent_scars(TRUE)
+		else
+			original_human.save_persistent_scars()

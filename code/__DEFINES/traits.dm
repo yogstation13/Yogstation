@@ -1,3 +1,6 @@
+#define SIGNAL_ADDTRAIT(trait_ref) "addtrait [trait_ref]"
+#define SIGNAL_REMOVETRAIT(trait_ref) "removetrait [trait_ref]"
+
 // trait accessor defines
 #define ADD_TRAIT(target, trait, source) \
 	do { \
@@ -6,12 +9,14 @@
 			target.status_traits = list(); \
 			_L = target.status_traits; \
 			_L[trait] = list(source); \
+			SEND_SIGNAL(target, SIGNAL_ADDTRAIT(trait), trait); \
 		} else { \
 			_L = target.status_traits; \
 			if (_L[trait]) { \
 				_L[trait] |= list(source); \
 			} else { \
 				_L[trait] = list(source); \
+				SEND_SIGNAL(target, SIGNAL_ADDTRAIT(trait), trait); \
 			} \
 		} \
 	} while (0)
@@ -31,9 +36,34 @@
 				} \
 			};\
 			if (!length(_L[trait])) { \
-				_L -= trait \
+				_L -= trait; \
+				SEND_SIGNAL(target, SIGNAL_REMOVETRAIT(trait), trait); \
 			}; \
 			if (!length(_L)) { \
+				target.status_traits = null \
+			}; \
+		} \
+	} while (0)
+#define REMOVE_TRAIT_NOT_FROM(target, trait, sources) \
+	do { \
+		var/list/_traits_list = target.status_traits; \
+		var/list/_sources_list; \
+		if (sources && !islist(sources)) { \
+			_sources_list = list(sources); \
+		} else { \
+			_sources_list = sources\
+		}; \
+		if (_traits_list && _traits_list[trait]) { \
+			for (var/_trait_source in _traits_list[trait]) { \
+				if (!(_trait_source in _sources_list)) { \
+					_traits_list[trait] -= _trait_source \
+				} \
+			};\
+			if (!length(_traits_list[trait])) { \
+				_traits_list -= trait; \
+				SEND_SIGNAL(target, SIGNAL_REMOVETRAIT(trait), trait); \
+			}; \
+			if (!length(_traits_list)) { \
 				target.status_traits = null \
 			}; \
 		} \
@@ -46,11 +76,36 @@
 			for (var/_T in _L) { \
 				_L[_T] &= _S;\
 				if (!length(_L[_T])) { \
-					_L -= _T } \
+					_L -= _T; \
+					SEND_SIGNAL(target, SIGNAL_REMOVETRAIT(_T), _T); \
+					}; \
 				};\
-				if (!length(_L)) { \
-					target.status_traits = null\
+			if (!length(_L)) { \
+				target.status_traits = null\
+			};\
+		}\
+	} while (0)
+
+#define REMOVE_TRAITS_IN(target, sources) \
+	do { \
+		var/list/_L = target.status_traits; \
+		var/list/_S = sources; \
+		if (sources && !islist(sources)) { \
+			_S = list(sources); \
+		} else { \
+			_S = sources\
+		}; \
+		if (_L) { \
+			for (var/_T in _L) { \
+				_L[_T] -= _S;\
+				if (!length(_L[_T])) { \
+					_L -= _T; \
+					SEND_SIGNAL(target, SIGNAL_REMOVETRAIT(_T)); \
+					}; \
 				};\
+			if (!length(_L)) { \
+				target.status_traits = null\
+			};\
 		}\
 	} while (0)
 #define HAS_TRAIT(target, trait) (target.status_traits ? (target.status_traits[trait] ? TRUE : FALSE) : FALSE)
@@ -105,8 +160,10 @@
 #define TRAIT_EASYDISMEMBER		"easy_dismember"
 #define TRAIT_LIMBATTACHMENT 	"limb_attach"
 #define TRAIT_NOLIMBDISABLE		"no_limb_disable"
-#define TRAIT_EASYLIMBDISABLE	"easy_limb_disable"
+#define TRAIT_EASILY_WOUNDED		"easy_limb_wound"
+#define TRAIT_HARDLY_WOUNDED		"hard_limb_wound"
 #define TRAIT_TOXINLOVER		"toxinlover"
+#define TRAIT_TOXIMMUNE         "toxin_immune"
 #define TRAIT_NOBREATH			"no_breath"
 #define TRAIT_ANTIMAGIC			"anti_magic"
 #define TRAIT_HOLY				"holy"
@@ -158,9 +215,17 @@
 #define TRAIT_SURGERY_PREPARED	"surgery_prepared"
 #define TRAIT_NO_PASSIVE_COOLING "no-passive-cooling"
 #define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
+#define TRAIT_BLOODY_MESS		"bloody_mess" //from heparin, makes open bleeding wounds rapidly spill more blood
+#define TRAIT_COAGULATING		"coagulating" //from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
+#define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
+#define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
+#define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp 
 
 //non-mob traits
-#define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
+/// Used for limb-based paralysis, where replacing the limb will fix it.
+#define TRAIT_PARALYSIS				"paralysis"
+/// Used for limbs.
+#define TRAIT_DISABLED_BY_WOUND		"disabled-by-wound"
 
 // item traits
 #define TRAIT_NODROP            "nodrop"
@@ -189,6 +254,9 @@
 #define TRAIT_FRIENDLY			"friendly"
 #define TRAIT_ALLERGIC			"allergic"
 #define TRAIT_KLEPTOMANIAC		"kleptomaniac"
+#define TRAIT_EAT_LESS			"eat_less"
+#define TRAIT_CRAFTY			"crafty"
+#define TRAIT_ANOREXIC			"anorexic"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
@@ -255,6 +323,9 @@
 #define GUARDIAN_TRAIT "guardian_trait"
 #define RANDOM_BLACKOUTS "random_blackouts"
 #define MADE_UNCLONEABLE "made-uncloneable"
+#define BLOODSUCKER_TRAIT "bloodsucker_trait"
+#define FRENZY_TRAIT "frenzy_trait"
+#define HORROR_TRAIT "horror"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

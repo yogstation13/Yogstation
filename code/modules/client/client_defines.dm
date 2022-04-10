@@ -129,6 +129,9 @@
 
 	var/datum/viewData/view_size
 
+///A lazy list of atoms we've examined in the last EXAMINE_MORE_TIME (default 1.5) seconds, so that we will call [atom/proc/examine_more()] instead of [atom/proc/examine()] on them when examining
+	var/list/recent_examines
+
 	/// our current tab
 	var/stat_tab
 

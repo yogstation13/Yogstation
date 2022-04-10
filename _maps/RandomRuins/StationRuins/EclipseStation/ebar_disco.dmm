@@ -118,6 +118,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"dG" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "dO" = (
 /obj/machinery/requests_console{
 	department = "Bar";
@@ -157,6 +166,10 @@
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"hj" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "hk" = (
 /obj/structure/chair/americandiner/booth/end_left,
 /turf/open/floor/plasteel/dark,
@@ -185,6 +198,12 @@
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/crew_quarters/theatre)
+"ig" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "ir" = (
 /turf/closed/wall,
 /area/crew_quarters/theatre)
@@ -302,15 +321,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"nd" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "nn" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Kitchen";
@@ -530,11 +540,6 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"vb" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "vo" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/dark,
@@ -710,11 +715,6 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
-"EE" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "EQ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -786,14 +786,6 @@
 	icon_state = "vent_map_on-1"
 	},
 /obj/effect/landmark/start/cook,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"HJ" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "HK" = (
@@ -940,6 +932,10 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"Qc" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Qd" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
@@ -1626,8 +1622,8 @@ rz
 Wv
 xE
 Hv
-EE
-vb
+ig
+Qc
 CP
 Ul
 Tk
@@ -1647,7 +1643,7 @@ Wv
 jJ
 QG
 qc
-HJ
+hj
 hw
 Ul
 Un
@@ -1666,7 +1662,7 @@ MO
 Wv
 wk
 BJ
-nd
+dG
 ui
 sf
 Ul

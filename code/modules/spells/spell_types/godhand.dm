@@ -4,10 +4,10 @@
 	var/catchphrase = "High Five!"
 	var/on_use_sound = null
 	var/obj/effect/proc_holder/spell/targeted/touch/attached_spell
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/wizard.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
-	icon_state = "syndballoon"
+	icon_state = "disintegrate"
 	item_state = null
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
@@ -25,7 +25,7 @@
 	if(!iscarbon(user)) //Look ma, no hands
 		return
 	if(!(user.mobility_flags & MOBILITY_USE))
-		to_chat(user, "<span class='warning'>You can't reach out!</span>")
+		to_chat(user, span_warning("You can't reach out!"))
 		return
 	..()
 
@@ -54,7 +54,7 @@
 	if(!proximity || target == user || !ismob(target) || !iscarbon(user) || !(user.mobility_flags & MOBILITY_USE)) //exploding after touching yourself would be bad
 		return
 	if(!user.can_speak_vocal())
-		to_chat(user, "<span class='notice'>You can't get the words out!</span>")
+		to_chat(user, span_notice("You can't get the words out!"))
 		return
 	var/mob/M = target
 	do_sparks(4, FALSE, M.loc)
@@ -64,8 +64,8 @@
 	var/atom/A = M.anti_magic_check()
 	if(A)
 		if(isitem(A))
-			target.visible_message("<span class='warning'>[target]'s [A] glows brightly as it wards off the spell!</span>")
-		user.visible_message("<span class='warning'>The feedback blows [user]'s arm off!</span>","<span class='userdanger'>The spell bounces from [M]'s skin back into your arm!</span>")
+			target.visible_message(span_warning("[target]'s [A] glows brightly as it wards off the spell!"))
+		user.visible_message(span_warning("The feedback blows [user]'s arm off!"),span_userdanger("The spell bounces from [M]'s skin back into your arm!"))
 		user.flash_act()
 		var/obj/item/bodypart/part = user.get_holding_bodypart_of_item(src)
 		if(part)
@@ -73,7 +73,7 @@
 		return ..()
 	var/obj/item/clothing/suit/hooded/bloated_human/suit = M.get_item_by_slot(SLOT_WEAR_SUIT)
 	if(istype(suit))
-		M.visible_message("<span class='danger'>[M]'s [suit] explodes off of them into a puddle of gore!</span>")
+		M.visible_message(span_danger("[M]'s [suit] explodes off of them into a puddle of gore!"))
 		M.dropItemToGround(suit)
 		qdel(suit)
 		new /obj/effect/gibspawner(M.loc)
@@ -93,15 +93,15 @@
 	if(!proximity || target == user || !isliving(target) || !iscarbon(user)) //getting hard after touching yourself would also be bad
 		return
 	if(!(user.mobility_flags & MOBILITY_USE))
-		to_chat(user, "<span class='warning'>You can't reach out!</span>")
+		to_chat(user, span_warning("You can't reach out!"))
 		return
 	if(!user.can_speak_vocal())
-		to_chat(user, "<span class='notice'>You can't get the words out!</span>")
+		to_chat(user, span_notice("You can't get the words out!"))
 		return
 	var/mob/living/M = target
 	if(M.anti_magic_check())
-		to_chat(user, "<span class='warning'>The spell can't seem to affect [M]!</span>")
-		to_chat(M, "<span class='warning'>You feel your flesh turn to stone for a moment, then revert back!</span>")
+		to_chat(user, span_warning("The spell can't seem to affect [M]!"))
+		to_chat(M, span_warning("You feel your flesh turn to stone for a moment, then revert back!"))
 		..()
 		return
 	M.Stun(40)
@@ -120,21 +120,48 @@
 	if(!proximity || target == user || !isliving(target) || !iscarbon(user)) //flagellating your own mind painfully wouldn't be THAT bad but still bad
 		return
 	if(!(user.mobility_flags & MOBILITY_USE))
-		to_chat(user, "<span class='warning'>You can't reach out!</span>")
+		to_chat(user, span_warning("You can't reach out!"))
 		return
 	if(!user.can_speak_vocal())
-		to_chat(user, "<span class='notice'>You can't get the words out!</span>")
+		to_chat(user, span_notice("You can't get the words out!"))
 		return
 	var/mob/living/M = target
 	if(M.anti_magic_check())
-		to_chat(user, "<span class='warning'>The spell can't seem to affect [M]!</span>")
-		to_chat(M, "<span class='warning'>You feel faint energies trying to get into your head, before they suddenly vanish!</span>")
+		to_chat(user, span_warning("The spell can't seem to affect [M]!"))
+		to_chat(M, span_warning("You feel faint energies trying to get into your head, before they suddenly vanish!"))
 		..()
 		return
 	M.adjustBruteLoss(18) //same as nullrod, but with a large cooldown, so it should be fine
 	M.blur_eyes(10)
 	M.confused = max(M.confused, 6)
-	M.visible_message("<span class='danger'>[M] cringes in pain as they hold their head for a second!</span>")
+	M.visible_message(span_danger("[M] cringes in pain as they hold their head for a second!"))
 	M.emote("scream")
-	to_chat(M, "<span class='warning'>You feel an explosion of pain erupt in your mind!</span>")
+	to_chat(M, span_warning("You feel an explosion of pain erupt in your mind!"))
 	return ..()
+
+/obj/item/melee/touch_attack/raisehand
+	name = "\improper raise bloodman"
+	desc = "Blood covers your hand like a glove as it waits for a new host."
+	on_use_sound = 'sound/magic/wandodeath.ogg'
+	icon_state = "flagellation"
+	item_state = "hivehand"
+	color = "#FF0000"
+/obj/item/melee/touch_attack/raisehand/afterattack(atom/target, mob/living/carbon/user, proximity)
+	var/mob/living/carbon/human/M = target
+	if(!ishuman(M) || M.stat != DEAD)
+		to_chat(M, span_notice("You must be targeting a dead humanoid!"))
+		return
+	if(GLOB.bloodmen_list.len > 2)
+		to_chat(M, span_notice("You can't control that many minions!"))
+		return
+	if(NOBLOOD in M.dna.species.species_traits)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
+		to_chat(M, span_notice("Your head pounds as you raise a bloodman!"))
+	else
+		playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
+		var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L = new(M.loc)
+		L.stored_mob = M
+		M.forceMove(L)
+		qdel(src)
+		user.blood_volume -= 50 // 9% blood cost, cheaper than the other spell because its not like you can stop near a corpse or find one near you in a fight 
+		to_chat(user, "<span class ='userdanger'>You curse the body with your blood, leaving you feeling a bit light-headed.</span>")

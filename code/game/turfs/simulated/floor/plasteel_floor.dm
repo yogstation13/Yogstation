@@ -6,7 +6,7 @@
 
 /turf/open/floor/plasteel/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>There's a <b>small crack</b> on the edge of it.</span>"
+	. += span_notice("There's a <b>small crack</b> on the edge of it.")
 
 /turf/open/floor/plasteel/rust_heretic_act()
 	if(prob(70))
@@ -17,7 +17,8 @@
 	if(!..())
 		return 0
 	if(!broken && !burnt)
-		icon_state = icon_regular_floor
+		icon = icon_regular_floor
+		icon_state = icon_state_regular_floor
 
 
 /turf/open/floor/plasteel/airless

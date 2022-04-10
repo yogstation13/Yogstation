@@ -8,11 +8,14 @@
 #define Z_TURFS(ZLEVEL) block(locate(1,1,ZLEVEL), locate(world.maxx, world.maxy, ZLEVEL))
 #define CULT_POLL_WAIT 2400
 
-/proc/get_area_name(atom/X, format_text = FALSE)
+/proc/get_area_name(atom/X, format_text = FALSE, is_sensor = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
 		return null
-	return format_text ? format_text(A.name) : A.name
+	var/name = A.name
+	if (is_sensor && !A.show_on_sensors)
+		name = Gibberish(name, TRUE, 90)
+	return format_text ? format_text(name) : name
 
 /proc/get_areas_in_range(dist=0, atom/center=usr)
 	if(!dist)
@@ -440,22 +443,22 @@
 		window_flash(M.client)
 	switch(ignore_category ? askuser(M,Question,"Please answer in [DisplayTimeText(poll_time)]!","Yes","No","Never for this round", StealFocus=0, Timeout=poll_time) : askuser(M,Question,"Please answer in [DisplayTimeText(poll_time)]!","Yes","No", StealFocus=0, Timeout=poll_time))
 		if(1)
-			to_chat(M, "<span class='notice'>Choice registered: Yes.</span>")
+			to_chat(M, span_notice("Choice registered: Yes."))
 			if(time_passed + poll_time <= world.time)
-				to_chat(M, "<span class='danger'>Sorry, you answered too late to be considered!</span>")
+				to_chat(M, span_danger("Sorry, you answered too late to be considered!"))
 				SEND_SOUND(M, 'sound/machines/buzz-sigh.ogg')
 				candidates -= M
 			else
 				candidates += M
 		if(2)
-			to_chat(M, "<span class='danger'>Choice registered: No.</span>")
+			to_chat(M, span_danger("Choice registered: No."))
 			candidates -= M
 		if(3)
 			var/list/L = GLOB.poll_ignore[ignore_category]
 			if(!L)
 				GLOB.poll_ignore[ignore_category] = list()
 			GLOB.poll_ignore[ignore_category] += M.ckey
-			to_chat(M, "<span class='danger'>Choice registered: Never for this round.</span>")
+			to_chat(M, span_danger("Choice registered: Never for this round."))
 			candidates -= M
 		else
 			candidates -= M
@@ -669,7 +672,7 @@
 	var/area/A = get_area(character)
 	if(character.mind.role_alt_title)
 		rank = character.mind.role_alt_title
-	deadchat_broadcast(" has arrived at the station at <span class='name'>[A.name]</span>.", "<span class='game'><span class='name'>[character.real_name]</span> ([rank])", follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
+	deadchat_broadcast(" has arrived at the station at [span_name("[A.name]")].", "<span class='game'>[span_name("[character.real_name]")] ([rank])", follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
 	if((!GLOB.announcement_systems.len) || (!character.mind))
 		return
 	if((character.mind.assigned_role == "Cyborg") || (character.mind.assigned_role == character.mind.special_role))

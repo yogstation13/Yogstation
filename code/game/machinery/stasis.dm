@@ -30,9 +30,9 @@
 
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click to [stasis_enabled ? "turn off" : "turn on"] the machine.</span>"
+	. += span_notice("Alt-click to [stasis_enabled ? "turn off" : "turn on"] the machine.")
 	if(obj_flags & EMAGGED)
-		. += "<span class='warning'>There's a worrying blue mist surrounding it.</span>"
+		. += span_warning("There's a worrying blue mist surrounding it.")
 
 /obj/machinery/stasis/proc/play_power_sound()
 	var/_running = stasis_running()
@@ -106,7 +106,7 @@
 	target.ExtinguishMob()
 	use_power = ACTIVE_POWER_USE
 	if(obj_flags & EMAGGED)
-		to_chat(target, "<span class='warning'>Your limbs start to feel numb...</span>")
+		to_chat(target, span_warning("Your limbs start to feel numb..."))
 
 /obj/machinery/stasis/proc/thaw_them(mob/living/target)
 	target.remove_status_effect(STATUS_EFFECT_STASIS)
@@ -173,9 +173,9 @@
 
 /obj/machinery/stasis/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
-		to_chat(user, "<span class='warning'>The stasis bed's safeties are already overriden!</span>")
+		to_chat(user, span_warning("The stasis bed's safeties are already overriden!"))
 		return
-	to_chat(user, "<span class='notice'>You override the stasis bed's safeties!</span>")
+	to_chat(user, span_notice("You override the stasis bed's safeties!"))
 	obj_flags |= EMAGGED
 
 #undef STASIS_TOGGLE_COOLDOWN

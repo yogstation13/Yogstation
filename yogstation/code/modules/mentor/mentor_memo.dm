@@ -6,7 +6,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(src, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 
 	var/memotask = input(usr,"Choose task", "Memo") in list("Show", "Write", "Edit", "Remove")
@@ -23,7 +23,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(src, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 
 	mentor_memo_output("Show")
@@ -33,7 +33,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(src, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 
 	switch(task)
@@ -126,7 +126,7 @@
 				var/memotext = query_memoshow.item[2]
 				var/timestamp = query_memoshow.item[3]
 				var/last_editor = query_memoshow.item[4]
-				output += "<span class='memo'>Mentor memo by <span class='prefix'>[ckey]</span> on [timestamp]"
+				output += "<span class='memo'>Mentor memo by [span_prefix("[ckey]")] on [timestamp]"
 				if(last_editor)
 					output += "<br><span class='memoedit'>Last edit by [last_editor] <A href='?_src_=holder;mentormemoeditlist=[ckey];[HrefToken(TRUE)]'>(Click here to see edit log)</A></span>"
 

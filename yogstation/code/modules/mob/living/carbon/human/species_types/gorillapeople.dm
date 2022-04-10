@@ -4,7 +4,7 @@
 	id = "gorilla"
 	say_mod = "grunts"
 	default_color = "FFFFDD"
-	species_traits = list(EYECOLOR,LIPS)
+	species_traits = list(EYECOLOR,LIPS,HAS_FLESH,HAS_BONE)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	coldmod =0.75 // Average 5% weaker to temperature-based damage
 	heatmod = 1.35

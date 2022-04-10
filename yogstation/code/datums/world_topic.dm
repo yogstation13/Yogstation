@@ -5,15 +5,18 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	require_comms_key = TRUE
 
 /datum/world_topic/asay/Run(list/input)
-	to_chat(GLOB.admins, "<span class='adminsay'><span class='prefix'>DISCORD:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["asay"]]</span></span>", confidential=TRUE)
+	to_chat(GLOB.admins, span_adminsay("[span_prefix("DISCORD:")] <EM>[input["admin"]]</EM>: [span_message("[input["asay"]]")]"), confidential=TRUE)
 
 /datum/world_topic/ooc
 	keyword = "ooc"
 	require_comms_key = TRUE
 
 /datum/world_topic/ooc/Run(list/input)
+	if(!GLOB.ooc_allowed)
+		return
+	input["ooc"] = pretty_filter(input["ooc"])
 	for(var/client/C in GLOB.clients)
-		to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>DISCORD OOC:</span> <EM>[input["admin"]]:</EM> <span class='message'>[input["ooc"]]</span></span></font>")
+		to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'>[span_prefix("DISCORD OOC:")] <EM>[input["admin"]]:</EM> [span_message("[input["ooc"]]")]</span></font>")
 
 /datum/world_topic/toggleooc
 	keyword = "toggleooc"
@@ -47,7 +50,7 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	var/id = input["id"]
 	var/link = "https://github.com/yogstation13/Yogstation/pull/[id]"
 
-	var/final_composed = "<span class='announce'>PR: <a href=[link]>[msgTitle]</a> by [author]</span>"
+	var/final_composed = span_announce("PR: <a href=[link]>[msgTitle]</a> by [author]")
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
 
@@ -63,7 +66,7 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	require_comms_key = TRUE
 
 /datum/world_topic/msay/Run(list/input)
-	to_chat(GLOB.admins | GLOB.mentors, "<b><font color ='#8A2BE2'><span class='prefix'>DISCORD MENTOR:</span></span> <EM>[input["admin"]]</EM>: <span class='message'>[input["msay"]]</span></span>")
+	to_chat(GLOB.admins | GLOB.mentors, "<b><font color ='#8A2BE2'>[span_prefix("DISCORD MENTOR:")]</span> <EM>[input["admin"]]</EM>: [span_message("[input["msay"]]")]</span>")
 
 /datum/world_topic/mhelp
 	keyword = "mhelp"
@@ -77,7 +80,7 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	var/client/C = GLOB.directory[ckey(whom)]
 	if(!C)
 		return 0
-	if(GLOB.mentornoot || prob(1))
+	if((C.prefs.toggles & SOUND_ALT) && (GLOB.mentornoot || prob(1)))
 		SEND_SOUND(C, sound('sound/misc/nootnoot.ogg'))
 	else
 		SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))

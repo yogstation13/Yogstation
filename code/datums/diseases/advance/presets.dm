@@ -24,6 +24,15 @@
 	symptoms = list(new/datum/symptom/necroseed)
 	..()
 
+/datum/disease/advance/tumor
+	copy_type = /datum/disease/advance
+
+/datum/disease/advance/tumor/New()
+	name = "Tumors"
+	symptoms = list(new/datum/symptom/tumor,new/datum/symptom/sneeze,new/datum/symptom/fever,new/datum/symptom/shivering,new/datum/symptom/itching,new/datum/symptom/cough)
+	..()
+
+
 //Randomly generated Disease, for virus crates and events
 /datum/disease/advance/random
 	name = "Experimental Disease"
@@ -35,6 +44,8 @@
 	var/list/datum/symptom/possible_symptoms = list()
 	for(var/symptom in subtypesof(/datum/symptom))
 		var/datum/symptom/S = symptom
+		if(!initial(S.naturally_occuring))
+			continue
 		if(initial(S.level) > max_level)
 			continue
 		if(initial(S.level) <= 0) //unobtainable symptoms

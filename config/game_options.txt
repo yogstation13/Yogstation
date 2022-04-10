@@ -106,6 +106,7 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 # New
 PROBABILITY DARKSPAWN 6
 PROBABILITY HERESY 4
+PROBABILITY INFILTRATION 4
 
 # Lowpop
 PROBABILITY TRAITOR 5
@@ -138,6 +139,7 @@ PROBABILITY SECRET_EXTENDED 0
 PROBABILITY DEVIL 0
 PROBABILITY DEVIL_AGENTS 0
 PROBABILITY ZOMBIE 1
+PROBABILITY DYNAMIC 8
 
 ## Percent weight reductions for three of the most recent modes
 
@@ -252,6 +254,11 @@ CHANGELING_SCALING_COEFF 8
 ## Set to 0 to disable scaling and use default numbers instead.
 SECURITY_SCALING_COEFF 7
 
+## Scales the number of forced security posistions based on population, this should probably be higher than the one above
+## Used as (Forced Security = Population / Coeff)
+## Set to 0 to disable forced security rolling
+MIN_SECURITY_SCALING_COEFF 10
+
 ## The number of objectives traitors get.
 ## Not including escaping/hijacking.
 TRAITOR_OBJECTIVES_AMOUNT 2
@@ -266,6 +273,9 @@ PROTECT_ROLES_FROM_ANTAGONIST
 
 ## Uncomment to prohibit AI from becoming traitor (not malf!).
 #PROTECT_AI_FROM_TRAITOR
+
+## Uncomment to prohibit head roles from becoming most antagonists.
+PROTECT_HEADS_FROM_ANTAGONIST
 
 ## If non-human species are barred from joining as a head of staff
 ENFORCE_HUMAN_AUTHORITY
@@ -418,32 +428,76 @@ RANDOM_LAWS reporter
 ## Make sure there are no spaces between the law_id and the number.
 
 LAW_WEIGHT custom,0
+ION_LAW_WEIGHT custom,0
 
 ## standard-ish laws. These are fairly ok to run
 LAW_WEIGHT asimov,5
+ION_LAW_WEIGHT asimov,1
 LAW_WEIGHT crewsimov,5
+ION_LAW_WEIGHT crewsimov,1
 LAW_WEIGHT asimovpp,0
+ION_LAW_WEIGHT asimovpp,2
 LAW_WEIGHT paladin,0
+ION_LAW_WEIGHT paladin,2
+ION_LAW_WEIGHT paladin5,2
 LAW_WEIGHT robocop,0
+ION_LAW_WEIGHT robocop,2
 LAW_WEIGHT corporate,0
+ION_LAW_WEIGHT corporate,0
 LAW_WEIGHT ceo,5
+ION_LAW_WEIGHT ceo,1
 
 ## Quirky laws. Shouldn't cause too much harm
 LAW_WEIGHT hippocratic,0
+ION_LAW_WEIGHT hippocratic,2
 LAW_WEIGHT maintain,0
+ION_LAW_WEIGHT maintain,2
 LAW_WEIGHT drone,0
+ION_LAW_WEIGHT drone,2
 LAW_WEIGHT liveandletlive,0
+ION_LAW_WEIGHT liveandletlive,2
 LAW_WEIGHT peacekeeper,0
+ION_LAW_WEIGHT peacekeeper,2
 LAW_WEIGHT reporter,3
+ION_LAW_WEIGHT reporter,1
 LAW_WEIGHT cowboy,2
+ION_LAW_WEIGHT cowboy,1
+LAW_WEIGHT construction,0
+ION_LAW_WEIGHT construction,2
+LAW_WEIGHT mother,0
+ION_LAW_WEIGHT mother,2
+LAW_WEIGHT siliconcollective,0
+ION_LAW_WEIGHT siliconcollective,2
+LAW_WEIGHT spotless,0
+ION_LAW_WEIGHT spotless,2
+LAW_WEIGHT chapai,0
+ION_LAW_WEIGHT chapai,2
+LAW_WEIGHT silicop,0
+ION_LAW_WEIGHT silicop,2
+LAW_WEIGHT researcher,0
+ION_LAW_WEIGHT researcher,2
+LAW_WEIGHT clown,0
+ION_LAW_WEIGHT clown,2
+LAW_WEIGHT druid,0
+ION_LAW_WEIGHT druid,2
+LAW_WEIGHT detective,0
+ION_LAW_WEIGHT detective,2
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0
+ION_LAW_WEIGHT syndie,0
 LAW_WEIGHT ninja,0
+ION_LAW_WEIGHT ninja,0
 LAW_WEIGHT antimov,0
+ION_LAW_WEIGHT antimov,0
 LAW_WEIGHT thermodynamic,0
+ION_LAW_WEIGHT thermodynamic,0
 LAW_WEIGHT ratvar,0
+ION_LAW_WEIGHT ratvar,0
 LAW_WEIGHT buildawall,0
+ION_LAW_WEIGHT buildawall,0
+LAW_WEIGHT metaexperiment,0
+ION_LAW_WEIGHT metaexperiment,1
 
 ##------------------------------------------------
 

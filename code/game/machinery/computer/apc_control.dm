@@ -32,7 +32,7 @@
 
 /obj/machinery/computer/apc_control/attack_ai(mob/user)
 	if(!IsAdminGhost(user))
-		to_chat(user,"<span class='warning'>[src] does not support AI control.</span>") //You already have APC access, cheater!
+		to_chat(user,span_warning("[src] does not support AI control.")) //You already have APC access, cheater!
 		return
 	..()
 
@@ -151,6 +151,14 @@
 			var/obj/machinery/power/apc/target = locate(ref) in GLOB.apcs_list
 			if(!target)
 				return
+			value = target.setsubsystem(text2num(value))
+			switch(type) // Sanity check
+				if("equipment", "lighting", "environ")
+					target.vars[type] = value
+				else
+					message_admins("Warning: possible href exploit by [key_name(usr)] - attempted to set [html_encode(type)] on [target] to [html_encode(value)]")
+					log_game("Warning: possible href exploit by [key_name(usr)] - attempted to set [html_encode(type)] on [target] to [html_encode(value)]")
+					return
 			target.vars[type] = target.setsubsystem(text2num(value))
 			target.update_icon()
 			target.update()

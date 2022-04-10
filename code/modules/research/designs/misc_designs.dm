@@ -3,6 +3,36 @@
 /////////////////HUDs////////////////////
 /////////////////////////////////////////
 
+/datum/design/shuttle_speed_upgrade
+	name = "Shuttle Route Optimisation Upgrade"
+	desc = "A disk that allows for calculating shorter routes when inserted into a flight control console."
+	id = "disk_shuttle_route"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000)
+	build_path = /obj/item/shuttle_route_optimisation
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/shuttle_speed_upgrade_hyper
+	name = "Shuttle Bluespace Hyperlane Optimisation Upgrade"
+	desc = "A disk that allows for calculating shorter routes when inserted into a flight control console. This one abuses bluespace hyperlanes for increased efficiency."
+	id = "disk_shuttle_route_hyper"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000)
+	build_path = /obj/item/shuttle_route_optimisation/hyperlane
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/shuttle_speed_upgrade_void
+	name = "Shuttle Voidspace Optimisation Upgrade"
+	desc = "A disk that allows for calculating shorter routes when inserted into a flight control console. This one access voidspace for increased efficiency."
+	id = "disk_shuttle_route_void"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000)
+	build_path = /obj/item/shuttle_route_optimisation/void
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/health_hud
 	name = "Health Scanner HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
@@ -414,16 +444,16 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /////////////////////////////////////////
-////////////////Armour///////////////////
+////////////////Armor///////////////////
 /////////////////////////////////////////
 
-/datum/design/reactive_armour
-	name = "Reactive Armour Shell"
-	desc = "An experimental suit of armour capable of utilizing an implanted anomaly core to protect the user."
-	id = "reactive_armour"
+/datum/design/reactive_armor
+	name = "Reactive Armor Shell"
+	desc = "An experimental suit of armor capable of utilizing an implanted anomaly core to protect the user."
+	id = "reactive_armor"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/diamond = 5000, /datum/material/uranium = 8000, /datum/material/silver = 4500, /datum/material/gold = 5000)
-	build_path = /obj/item/reactive_armour_shell
+	build_path = /obj/item/reactive_armor_shell
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
@@ -501,4 +531,12 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-
+/datum/design/oven_tray
+	name = "Oven Tray"
+	desc = "Gotta shove something in!"
+	id = "oven_tray"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 500)
+	build_path = /obj/item/plate/oven_tray
+	category = list("initial","Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE

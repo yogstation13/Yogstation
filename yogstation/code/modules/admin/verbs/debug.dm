@@ -12,12 +12,12 @@
 
 	var/list/a = subtypesof(msg)
 	if(!a.len)
-		to_chat(src,"<span class='warning'>That type doesn't seem to exist!</span>", confidential=TRUE)
+		to_chat(src,span_warning("That type doesn't seem to exist!"), confidential=TRUE)
 		return
 	if(a.len > 100)
 		if(alert("That type has [a.len] derived types. Are you sure you want to have all of them spammed into your chatbox?",,"Yes","No") != "Yes")
 			return
 
-	to_chat(usr,"<span class='notice'>Subtypes of [msg] ([a.len] Entries):</span>", confidential=TRUE)
+	to_chat(usr,span_notice("Subtypes of [msg] ([a.len] Entries):"), confidential=TRUE)
 	for(var/x in a)
 		to_chat(usr,"[x]", confidential=TRUE)

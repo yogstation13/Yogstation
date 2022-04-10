@@ -4,7 +4,7 @@
 	desc = "A deadly brass spike, cleverly concealed in the floor. You think you should be safe if you disarm whatever's meant to set it off."
 	clockwork_desc = "A barbaric but undeniably effective weapon: a spear through the chest. It immobilizes anyone unlucky enough to step on it and keeps them in place until they get help.."
 	icon_state = "brass_skewer"
-	break_message = "<span class='warning'>The skewer snaps in two!</span>"
+	break_message = span_warning("The skewer snaps in two!")
 	max_integrity = 40
 	density = FALSE
 	can_buckle = TRUE
@@ -23,7 +23,7 @@
 		var/mob/living/L = buckled_mobs[1]
 		if(iscarbon(L))
 			L.Paralyze(100)
-			L.visible_message("<span class='warning'>[L] is maimed as the skewer shatters while still in [L.p_their()] body!</span>")
+			L.visible_message(span_warning("[L] is maimed as the skewer shatters while still in [L.p_their()] body!"))
 			L.adjustBruteLoss(15)
 		unbuckle_mob(L)
 	return ..()
@@ -36,7 +36,7 @@
 
 /obj/structure/destructible/clockwork/trap/attackby(obj/item/I, mob/living/user, params)
 	if(buckled_mobs && (user in buckled_mobs))
-		to_chat(user, "<span class='warning'>You can't reach!</span>")
+		to_chat(user, span_warning("You can't reach!"))
 		return
 	..()
 
@@ -53,22 +53,22 @@
 	if(squirrel)
 		if(iscyborg(squirrel))
 			if(!squirrel.stat)
-				squirrel.visible_message("<span class='boldwarning'>A massive brass spike erupts from the ground, rending [squirrel]'s chassis but shattering into pieces!</span>", \
-				"<span class='userdanger'>A massive brass spike rips through your chassis and bursts into shrapnel in your casing!</span>")
+				squirrel.visible_message(span_boldwarning("A massive brass spike erupts from the ground, rending [squirrel]'s chassis but shattering into pieces!"), \
+				span_userdanger("A massive brass spike rips through your chassis and bursts into shrapnel in your casing!"))
 				squirrel.adjustBruteLoss(50)
 				squirrel.Stun(20)
 				addtimer(CALLBACK(src, .proc/take_damage, max_integrity), 1)
 		else
-			squirrel.visible_message("<span class='boldwarning'>A massive brass spike erupts from the ground, impaling [squirrel]!</span>", \
-			"<span class='userdanger'>A massive brass spike rams through your chest, hoisting you into the air!</span>")
+			squirrel.visible_message(span_boldwarning("A massive brass spike erupts from the ground, impaling [squirrel]!"), \
+			span_userdanger("A massive brass spike rams through your chest, hoisting you into the air!"))
 			squirrel.emote("scream")
 			playsound(squirrel, 'sound/effects/splat.ogg', 50, TRUE)
 			playsound(squirrel, 'sound/misc/desceration-03.ogg', 50, TRUE)
 			squirrel.apply_damage(20, BRUTE, BODY_ZONE_CHEST)
-		mouse_opacity = MOUSE_OPACITY_OPAQUE //So players can interact with the tile it's on to pull them off
+			squirrel.Stun(20)
 		buckle_mob(squirrel, TRUE)
 	else
-		visible_message("<span class='danger'>A massive brass spike erupts from the ground!</span>")
+		visible_message(span_danger("A massive brass spike erupts from the ground!"))
 	playsound(src, 'sound/machines/clockcult/brass_skewer.ogg', 75, FALSE)
 	icon_state = "[initial(icon_state)]_extended"
 	density = TRUE //Skewers are one-use only
@@ -90,11 +90,11 @@
 	if(user == skewee)
 		if(wiggle_wiggle)
 			return
-		user.visible_message("<span class='warning'>[user] starts wriggling off of [src]!</span>", \
-		"<span class='danger'>You start agonizingly working your way off of [src]...</span>")
+		user.visible_message(span_warning("[user] starts wriggling off of [src]!"), \
+		span_danger("You start agonizingly working your way off of [src]..."))
 		wiggle_wiggle = TRUE
-		if(!do_after(user, 300, target = user))
-			user.visible_message("<span class='warning'>[user] slides back down [src]!</span>")
+		if(!do_after(user, 30 SECONDS, target = user))
+			user.visible_message(span_warning("[user] slides back down [src]!"))
 			user.emote("scream")
 			user.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
 			playsound(user, 'sound/misc/desceration-03.ogg', 50, TRUE)
@@ -102,14 +102,14 @@
 			return
 		wiggle_wiggle = FALSE
 	else
-		user.visible_message("<span class='danger'>[user] starts tenderly lifting [skewee] off of [src]...</span>", \
-		"<span class='danger'>You start tenderly lifting [skewee] off of [src]...</span>")
-		if(!do_after(user, 60, target = skewee))
-			skewee.visible_message("<span class='warning'>[skewee] painfully slides back down [src].</span>")
+		user.visible_message(span_danger("[user] starts tenderly lifting [skewee] off of [src]..."), \
+		span_danger("You start tenderly lifting [skewee] off of [src]..."))
+		if(!do_after(user, 6 SECONDS, target = skewee))
+			skewee.visible_message(span_warning("[skewee] painfully slides back down [src]."))
 			skewee.emote("moan")
 			return
-	skewee.visible_message("<span class='danger'>[skewee] comes free of [src] with a squelching pop!</span>", \
-	"<span class='boldannounce'>You come free of [src]!</span>")
+	skewee.visible_message(span_danger("[skewee] comes free of [src] with a squelching pop!"), \
+	span_boldannounce("You come free of [src]!"))
 	skewee.Paralyze(30)
 	playsound(skewee, 'sound/misc/desceration-03.ogg', 50, TRUE)
 	unbuckle_mob(skewee)
