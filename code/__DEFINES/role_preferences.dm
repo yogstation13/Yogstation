@@ -90,6 +90,43 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_ZOMBIE = /datum/game_mode/zombie,
 	ROLE_FUGITIVE,
 	ROLE_BLOODSUCKER = /datum/game_mode/bloodsucker,
+	ROLE_MONSTERHUNTER, 
+))
+
+GLOBAL_LIST_INIT(special_roles, list(
+	ROLE_TRAITOR = /datum/game_mode/traitor,
+	ROLE_BROTHER = /datum/game_mode/traitor/bros,
+	ROLE_OPERATIVE = /datum/game_mode/nuclear,
+	ROLE_CHANGELING = /datum/game_mode/changeling,
+	ROLE_WIZARD = /datum/game_mode/wizard,
+	ROLE_RAGINMAGES = /datum/game_mode/wizard,
+	ROLE_BULLSHITMAGES = /datum/game_mode/wizard,
+	ROLE_MALF,
+	ROLE_REV = /datum/game_mode/revolution,
+	ROLE_ALIEN,
+	ROLE_HORROR,
+	ROLE_PAI,
+	ROLE_CULTIST = /datum/game_mode/cult,
+	ROLE_BLOB,
+	ROLE_NINJA,
+	ROLE_OBSESSED,
+	ROLE_MONKEY = /datum/game_mode/monkey,
+	ROLE_REVENANT,
+	ROLE_ABDUCTOR,
+	ROLE_DEVIL = /datum/game_mode/devil,
+	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
+	ROLE_VAMPIRE = /datum/game_mode/vampire, // Yogs
+	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
+	ROLE_GANG = /datum/game_mode/gang, // yogs
+	ROLE_HERETIC = /datum/game_mode/heretics,
+	ROLE_HIVE = /datum/game_mode/hivemind,
+	ROLE_INFILTRATOR = /datum/game_mode/infiltration, // Yogs
+	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
+	ROLE_DARKSPAWN = /datum/game_mode/darkspawn,
+	ROLE_SENTIENCE,
+	ROLE_ZOMBIE = /datum/game_mode/zombie,
+	ROLE_FUGITIVE,
+	ROLE_BLOODSUCKER = /datum/game_mode/bloodsucker,
 	ROLE_MONSTERHUNTER, ROLE_SPACE_DRAGON,
 ))
 
