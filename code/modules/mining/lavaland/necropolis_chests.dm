@@ -1121,7 +1121,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
 	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "bloodyknuckle"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
