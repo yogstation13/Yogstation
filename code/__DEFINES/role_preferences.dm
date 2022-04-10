@@ -91,13 +91,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_FUGITIVE,
 	ROLE_BLOODSUCKER = /datum/game_mode/bloodsucker,
 	ROLE_MONSTERHUNTER,
-<<<<<<< DragonUpdate
-	ROLE_SPACE_DRAGON,
-=======
->>>>>>> master
 ))
-
-#define ROLE_SPACE_DRAGON		"Space Dragon"
 
 //Job defines for what happens when you fail to qualify for any job during job selection
 #define BEOVERFLOW 	1
