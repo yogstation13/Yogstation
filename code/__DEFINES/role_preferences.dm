@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_FUGITIVE,
 	ROLE_BLOODSUCKER = /datum/game_mode/bloodsucker,
 	ROLE_MONSTERHUNTER, 
-	ROLE_DRAGON,
+	ROLE_SPACEDRAGON,
 ))
 
 
