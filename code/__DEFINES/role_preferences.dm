@@ -71,7 +71,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_BLOB,
 	ROLE_NINJA,
 	ROLE_OBSESSED,
-	ROLE_SPACE_DRAGON,
 	ROLE_MONKEY = /datum/game_mode/monkey,
 	ROLE_REVENANT,
 	ROLE_ABDUCTOR,
@@ -87,7 +86,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_DARKSPAWN = /datum/game_mode/darkspawn,
 	ROLE_SENTIENCE,
 	ROLE_ZOMBIE = /datum/game_mode/zombie,
-	ROLE_FUGITIVE
+	ROLE_FUGITIVE,
+	ROLE_SPACE_DRAGON,
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
