@@ -806,7 +806,7 @@
 	desc = "Contains an atmospheric hardsuit, a breath mask and a set of magboots for working in high temperature low pressure environments. Requires Atmospheric access to open."
 	cost = 3000
 	access = ACCESS_ATMOSPHERICS
-	contains = list(/obj/item/clothing/suit/space/hardsuit/atmos,
+	contains = list(/obj/item/clothing/suit/space/hardsuit/engine/atmos,
 					/obj/item/clothing/mask/breath,
 					/obj/item/clothing/shoes/magboots)
 	crate_name = "atmospheric hardsuit crate"
