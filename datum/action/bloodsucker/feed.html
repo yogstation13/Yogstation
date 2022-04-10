@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;feed - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/bloodsucker/feed.html#var">Var Details</a> - <a href="datum/action/bloodsucker/feed.html#proc">Proc Details</a></header>
+<main>
+<h1>Feed <aside>/<a href="datum.html">datum</a>/<a href="datum/action/bloodsucker.html">action/bloodsucker</a>/<a href="datum/action/bloodsucker/feed.html">feed</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#var/amSilent">amSilent</a></th><td>Am I Silent?</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#var/amount_taken">amount_taken</a></th><td>How much Blood did I drink? This is used for logs</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#var/blood_take_mult">blood_take_mult</a></th><td>Quantity to take per tick, based on Silent/frenzied or not.</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#var/feed_target">feed_target</a></th><td>So we can validate more than just the guy we're grappling.</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#var/feed_time">feed_time</a></th><td>The initial wait before you start drinking blood.</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#var/feeds_noticed">feeds_noticed</a></th><td>Amount of times we were seen Feeding. If seen 3 times, we broke the Masquerade.</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#var/notice_range">notice_range</a></th><td>Distance before silent feeding is noticed.</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#var/target_grappled">target_grappled</a></th><td>If you started grappled, then ending it will end your Feed.</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#var/warning_target_inhuman">warning_target_inhuman</a></th><td>CHECKS - To prevent spam.</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#var/was_noticed">was_noticed</a></th><td>Check if we were noticed Feeding.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#proc/ApplyVictimEffects">ApplyVictimEffects</a></th><td>Bloodsuckers not affected by &quot;the Kiss&quot; of another vampire</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#proc/CheckKilledTarget">CheckKilledTarget</a></th><td>Check if we killed our target</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#proc/ContinueActive">ContinueActive</a></th><td>NOTE: We only care about pulling if target started off that way. Mostly only important for Aggressive feed.</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#proc/ValidateTarget">ValidateTarget</a></th><td>Called twice: validating a subtle victim, or validating your grapple victim.</td></tr>
+            <tr><th><a href="datum/action/bloodsucker/feed.html#proc/find_target">find_target</a></th><td>If I'm not grabbing someone, find me someone nearby.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/amSilent"><aside class="declaration">var </aside>amSilent
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 31"/></a></h3>
+        <p>Am I Silent?</p><h3 id="var/amount_taken"><aside class="declaration">var </aside>amount_taken
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 33"/></a></h3>
+        <p>How much Blood did I drink? This is used for logs</p><h3 id="var/blood_take_mult"><aside class="declaration">var </aside>blood_take_mult
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 37"/></a></h3>
+        <p>Quantity to take per tick, based on Silent/frenzied or not.</p><h3 id="var/feed_target"><aside class="declaration">var </aside>feed_target
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 27"/></a></h3>
+        <p>So we can validate more than just the guy we're grappling.</p><h3 id="var/feed_time"><aside class="declaration">var </aside>feed_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 35"/></a></h3>
+        <p>The initial wait before you start drinking blood.</p><h3 id="var/feeds_noticed"><aside class="declaration">var </aside>feeds_noticed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 21"/></a></h3>
+        <p>Amount of times we were seen Feeding. If seen 3 times, we broke the Masquerade.</p><h3 id="var/notice_range"><aside class="declaration">var </aside>notice_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 23"/></a></h3>
+        <p>Distance before silent feeding is noticed.</p><h3 id="var/target_grappled"><aside class="declaration">var </aside>target_grappled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 29"/></a></h3>
+        <p>If you started grappled, then ending it will end your Feed.</p><h3 id="var/warning_target_inhuman"><aside class="declaration">var </aside>warning_target_inhuman
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 39"/></a></h3>
+        <p>CHECKS - To prevent spam.</p><h3 id="var/was_noticed"><aside class="declaration">var </aside>was_noticed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 25"/></a></h3>
+        <p>Check if we were noticed Feeding.</p><h2 id="proc">Proc Details</h2><h3 id="proc/ApplyVictimEffects"><aside class="declaration">proc </aside>ApplyVictimEffects<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target, first_hit) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L317">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 317"/></a></aside>
+        </h3>
+        <p>Bloodsuckers not affected by &quot;the Kiss&quot; of another vampire</p><h3 id="proc/CheckKilledTarget"><aside class="declaration">proc </aside>CheckKilledTarget<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L301">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 301"/></a></aside>
+        </h3>
+        <p>Check if we killed our target</p><h3 id="proc/ContinueActive"><aside class="parent"><a title="/datum/action/bloodsucker" href="datum/action/bloodsucker.html#proc/ContinueActive">&uarr;</a></aside>ContinueActive<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L307">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 307"/></a></aside>
+        </h3>
+        <p>NOTE: We only care about pulling if target started off that way. Mostly only important for Aggressive feed.</p><h3 id="proc/ValidateTarget"><aside class="declaration">proc </aside>ValidateTarget<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 61"/></a></aside>
+        </h3>
+        <p>Called twice: validating a subtle victim, or validating your grapple victim.</p><h3 id="proc/find_target"><aside class="declaration">proc </aside>find_target<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb/code/modules/antagonists/bloodsuckers/powers/feed.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;feed.dm 93"/></a></aside>
+        </h3>
+        <p>If I'm not grabbing someone, find me someone nearby.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/4f42b8d25c55e70dd2cc7c27a2cf85efb4e93afb">4f42b8d</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
+</body>
+</html>
