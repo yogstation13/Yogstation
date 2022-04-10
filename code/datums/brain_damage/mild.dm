@@ -19,6 +19,26 @@
 	owner.hallucination = 0
 	..()
 
+/datum/brain_trauma/mild/reality_dissociation
+	name = "Reality Dissociation Syndrome"
+	desc = "Patient suffers from acute reality dissociation syndrome and experiences vivid hallucinations"
+	scan_desc = "reality dissociation syndrome"
+	gain_text = span_userdanger("...")
+	lose_text = span_notice("You feel in tune with the world again.")
+	random_gain = FALSE
+	resilience = TRAUMA_RESILIENCE_ABSOLUTE
+
+/datum/brain_trauma/mild/reality_dissociation/on_life()
+	if(owner.reagents.has_reagent(/datum/reagent/toxin/mindbreaker, needs_metabolizing = TRUE))
+		owner.hallucination = 0
+	else if(prob(2))
+		owner.hallucination += rand(10, 25)
+	..()
+
+/datum/brain_trauma/mild/reality_dissociation/on_lose()
+	owner.hallucination = 0
+	..()
+
 /datum/brain_trauma/mild/stuttering
 	name = "Stuttering"
 	desc = "Patient can't speak properly."
