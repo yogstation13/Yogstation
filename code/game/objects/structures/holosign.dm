@@ -49,7 +49,7 @@
 
 /obj/structure/holosign/barrier
 	name = "holobarrier"
-	desc = "A short holographic barrier which can only be passed by walking."
+	desc = "A short hard light barrier which can only be passed by walking."
 	icon_state = "holosign_sec"
 	pass_flags = LETPASSTHROW
 	density = TRUE
@@ -95,7 +95,7 @@
 
 /obj/structure/holosign/barrier/atmos
 	name = "holofirelock"
-	desc = "A holographic barrier resembling a firelock. Though it does not prevent solid objects from passing through, gas is kept out."
+	desc = "A hard light barrier resembling a firelock. Though it does not prevent solid objects from passing through, gas is kept out."
 	icon_state = "holo_firelock"
 	density = FALSE
 	anchored = TRUE
