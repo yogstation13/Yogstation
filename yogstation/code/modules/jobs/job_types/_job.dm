@@ -87,38 +87,42 @@
 				flare.forceMove(BP)
 
 /datum/job/proc/give_bar_choice(mob/living/H, mob/M)
+	try
+		var/choice
 
-	var/choice
-
-	var/client/C = M.client
-	if(!C)
-		C = H.client
+		var/client/C = M.client
 		if(!C)
-			choice = "Random"
+			C = H.client
+			if(!C)
+				choice = "Random"
 
-	if(C)
-		choice = C.prefs.bar_choice
+		if(C)
+			choice = C.prefs.bar_choice
 
-	if(choice != "Random")
-		var/bar_sanitize = FALSE
-		for(var/A in GLOB.potential_box_bars)
-			if(choice == A)
-				bar_sanitize = TRUE
-				break
+		if(choice != "Random")
+			var/bar_sanitize = FALSE
+			for(var/A in GLOB.potential_box_bars)
+				if(choice == A)
+					bar_sanitize = TRUE
+					break
 
-		if(!bar_sanitize)
-			choice = "Random"
-	
-	if(choice == "Random")
-		choice = pick(GLOB.potential_box_bars)
-	
-	var/datum/map_template/template = SSmapping.station_room_templates[choice]
+			if(!bar_sanitize)
+				choice = "Random"
+		
+		if(choice == "Random")
+			choice = pick(GLOB.potential_box_bars)
+		
+		var/datum/map_template/template = SSmapping.station_room_templates[choice]
 
-	if(!template)
-		log_game("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
-		message_admins("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
-		template = SSmapping.station_room_templates["Bar Arcade"]
+		if(!template)
+			log_game("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
+			message_admins("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
+			template = SSmapping.station_room_templates["Bar Arcade"]
 
-	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
-		template.load(B.loc, centered = FALSE)
-		qdel(B)
+		for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+			template.load(B.loc, centered = FALSE)
+			qdel(B)
+	catch(var/exception/e)
+		message_admins("RUNTIME IN GIVE_BAR_CHANCE")
+		spawn_bar()
+		throw e
