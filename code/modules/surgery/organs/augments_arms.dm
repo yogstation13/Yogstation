@@ -225,7 +225,8 @@
 			W.switched_on(owner) //for some godawful reason this proc handles BOTH switching on and off while switching off just hard disables a welder
 
 	linkedpallate.active_tool = item
-	linkedpallate.update_tool()
+	spawn(1)
+		linkedpallate.update_tool()
 
 	var/obj/item/arm_item = owner.get_active_held_item()
 
@@ -299,32 +300,36 @@
 	force = active_tool.force
 	sharpness = active_tool.sharpness
 	usesound = active_tool.usesound
-	hitsound = active_tool.hitsound
 	appearance = active_tool.appearance
+	hitsound = active_tool.hitsound
 	item_state = active_tool.item_state
 	tool_behaviour = active_tool.tool_behaviour
 	lefthand_file = active_tool.lefthand_file
 	righthand_file = active_tool.righthand_file
+	plane = 22
 
 /obj/item/toolset_handler/attack_self(mob/user)
 	linkedarm.ui_action_click()
 
 /obj/item/toolset_handler/AltClick(mob/user)
 	active_tool.attack_self(user)
-	update_tool()
+	spawn(1)
+		update_tool()
 
 /obj/item/toolset_handler/pre_attack(atom/target, mob/living/user, params)
 	if(istype(target, /obj/structure/reagent_dispensers) && active_tool?.tool_behaviour == TOOL_WELDER)
 		target.attackby(active_tool, user, params)
+		return
 	. = ..()
 
 /obj/item/toolset_handler/attack(mob/living/M, mob/user)
 	if(active_tool)
-		if(istype(active_tool, /obj/item/surgical_drapes))
+		if(istype(active_tool, /obj/item/surgical_drapes)) //of all the things to not have a tool behavior its drapes
 			attempt_initiate_surgery(src, M, user)
 			return
 	..()
 
+//we still USE the tools because while we are pretending to use them we are actually pretending to pretend to use them
 /obj/item/toolset_handler/tool_start_check(mob/living/user, amount)
 	return active_tool.tool_start_check(user, amount)
 
