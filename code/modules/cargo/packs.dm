@@ -647,7 +647,7 @@
 	crate_name = "stun mine crate"
 
 /datum/supply_pack/security/armory/hardsuit
-ame = "Security Hardsuit Crate"
+	name = "Security Hardsuit Crate"
 	desc = "Contains a reinforced security hardsuit, a security gasmask and a set of combat magboots for combat in low pressure environments. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/clothing/suit/space/hardsuit/security,
