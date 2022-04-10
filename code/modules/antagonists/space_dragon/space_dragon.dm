@@ -1,8 +1,12 @@
 /datum/antagonist/space_dragon
 	name = "Space Dragon"
-	show_in_antagpanel = FALSE
+	roundend_category = "space dragons"
+	antagpanel_category = "Space Dragon"
+	job_rank = ROLE_SPACE_DRAGON
+	show_in_antagpanel = TRUE
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
+	var/list/datum/mind/carp = list()
 
 /datum/antagonist/space_dragon/greet()
 	to_chat(owner, "<b>I am Space Dragon, ex-space carp, and defender of the secrets of constellation, Draco.</b>")
@@ -14,19 +18,37 @@
 	to_chat(owner, "<b>From the wizard's writings, he had been studying this station and its hierarchy.  From this, I know who leads the station, and will kill them so the station underlings see me as their new leader.</b>")
 	owner.announce_objectives()
 	SEND_SOUND(owner.current, sound('sound/magic/demon_attack1.ogg'))
-	
+
 /datum/antagonist/space_dragon/proc/forge_objectives()
-	var/current_heads = SSjob.get_all_heads()
-	var/datum/objective/assassinate/killchosen = new
-	killchosen.owner = owner
-	var/datum/mind/selected = pick(current_heads)
-	killchosen.target = selected
-	killchosen.update_explanation_text()
-	objectives += killchosen
-	var/datum/objective/survive/survival = new
-	survival.owner = owner
-	objectives += survival
-	
+	var/datum/objective/summon_carp/summon = new()
+	summon.dragon = src
+	objectives += summon
+
 /datum/antagonist/space_dragon/on_gain()
 	forge_objectives()
 	. = ..()
+
+/datum/objective/summon_carp
+	var/datum/antagonist/space_dragon/dragon
+	explanation_text = "Summon and protect the rifts to flood the station with carp."
+
+/datum/antagonist/space_dragon/roundend_report()
+	var/list/parts = list()
+	var/datum/objective/summon_carp/S = locate() in objectives
+	if(S.check_completion())
+		parts += "<span class='redtext big'>The [name] has succeeded!  Station space has been reclaimed by the space carp!</span>"
+	parts += printplayer(owner)
+	var/objectives_complete = TRUE
+	if(objectives.len)
+		parts += printobjectives(objectives)
+		for(var/datum/objective/objective in objectives)
+			if(!objective.check_completion())
+				objectives_complete = FALSE
+				break
+	if(objectives_complete)
+		parts += "<span class='greentext big'>The [name] was successful!</span>"
+	else
+		parts += "<span class='redtext big'>The [name] has failed!</span>"
+	parts += "<span class='header'>The [name] was assisted by:</span>"
+	parts += printplayerlist(carp)
+	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"

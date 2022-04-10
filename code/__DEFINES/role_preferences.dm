@@ -47,6 +47,7 @@
 #define ROLE_HORROR				"Eldritch Horror" // Yogs
 #define ROLE_INFILTRATOR		"Infiltrator" // Yogs
 #define ROLE_ZOMBIE				"Zombie"
+#define ROLE_SPACE_DRAGON		"Space Dragon"
 
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
@@ -70,6 +71,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_BLOB,
 	ROLE_NINJA,
 	ROLE_OBSESSED,
+	ROLE_SPACE_DRAGON,
 	ROLE_MONKEY = /datum/game_mode/monkey,
 	ROLE_REVENANT,
 	ROLE_ABDUCTOR,

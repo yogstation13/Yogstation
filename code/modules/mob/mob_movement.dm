@@ -285,6 +285,8 @@
 /mob/Process_Spacemove(movement_dir = 0)
 	if(spacewalk || ..())
 		return TRUE
+	if(. || HAS_TRAIT(src, TRAIT_SPACEWALK))
+		return TRUE
 	var/atom/movable/backup = get_spacemove_backup()
 	if(backup)
 		if(istype(backup) && movement_dir && !backup.anchored)
