@@ -653,7 +653,7 @@
 	contains = list(/obj/item/clothing/suit/space/hardsuit/security,
 					/obj/item/clothing/mask/gas/sechailer,
 					/obj/item/clothing/shoes/magboots/security)
-	crate_name = "security hardsuit crate
+	crate_name = "security hardsuit crate"
 
 /datum/supply_pack/security/armory/swat
 	name = "SWAT Crate"
