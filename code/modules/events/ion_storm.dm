@@ -5,7 +5,6 @@
 	typepath = /datum/round_event/ion_storm
 	weight = 15
 	min_players = 2
-	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/ion_storm
 	var/addIonLawChance = 100 // chance a new ion law will be added in addition to other ion effects
