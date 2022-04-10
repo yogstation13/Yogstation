@@ -17,15 +17,15 @@
 	medsensor.remove_hud_from(guardian)
 
 /datum/guardian_ability/major/healing/Attack(atom/target)
-	if(mode)
+	if (mode)
 		var/list/guardians = guardian.summoner?.current?.hasparasites()
-		if(target == guardian)
+		if (target == guardian)
 			to_chat(guardian, span_bolddanger("You can't heal yourself!"))
 			return TRUE
-		if((target == guardian.summoner?.current || guardians.Find(target)) && !healuser)
+		if ((target == guardian.summoner?.current || guardians.Find(target)) && !healuser)
 			to_chat(guardian, span_bolddanger("You can't heal your user!"))
 			return TRUE
-		if(isliving(target))
+		if (isliving(target))
 			var/mob/living/L = target
 			guardian.do_attack_animation(L)
 			L.adjustBruteLoss(-(master_stats.potential * 1.5), forced = TRUE)
@@ -33,21 +33,21 @@
 			L.adjustOxyLoss(-(master_stats.potential * 1.5), forced = TRUE)
 			L.adjustToxLoss(-(master_stats.potential * 1.5), forced = TRUE)
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(L))
-			if(guardian.namedatum)
-				H.color = guardian.namedatum.colour
-			if(L == guardian.summoner?.current)
+			if (guardian.namedatum)
+				H.color = guardian.namedatum.color
+			if (L == guardian.summoner?.current)
 				guardian.update_health_hud()
 				guardian.med_hud_set_health()
 				guardian.med_hud_set_status()
 			return TRUE
-		else if(isobj(target))
+		else if (isobj(target))
 			var/obj/O = target
 			guardian.do_attack_animation(O)
 			O.obj_integrity = min(O.obj_integrity + (O.max_integrity * 0.1), O.max_integrity)
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(O))
 			O.update_icon()
-			if(guardian.namedatum)
-				H.color = guardian.namedatum.colour
+			if (guardian.namedatum)
+				H.color = guardian.namedatum.color
 			guardian.changeNext_move(CLICK_CD_MELEE)
 			return TRUE
 
