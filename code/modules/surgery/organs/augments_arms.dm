@@ -225,7 +225,7 @@
 			W.switched_on(owner) //for some godawful reason this proc handles BOTH switching on and off while switching off just hard disables a welder
 
 	linkedpallate.active_tool = item
-	spawn(1) //so you are probably asking hey theos why are  you using spawn(1) here and that's a good question the answer is the welder APPARENTLY doesn't update its icon immediately
+	spawn(1) //so you are probably asking hey theos why are  you using spawn(1) here and that's a good question the answer is the welder APPARENTLY doesn't update its icon immediately, meaning if we don't wait we'll get the pre-toggled icon
 		linkedpallate.update_tool() //so we give it a little bit of breathing space
 
 	var/obj/item/arm_item = owner.get_active_held_item()
