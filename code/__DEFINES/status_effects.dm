@@ -46,6 +46,8 @@
 
 #define STATUS_EFFECT_DETERMINED /datum/status_effect/determined //currently in a combat high from being seriously wounded
 
+#define STATUS_EFFECT_FRENZY /datum/status_effect/frenzy //Makes you fast and stronger
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -146,6 +148,8 @@
 #define STATUS_EFFECT_TAGALONG /datum/status_effect/tagalong //allows darkspawn to accompany people's shadows //Yogs
 
 #define STATUS_EFFECT_PROGENITORCURSE /datum/status_effect/progenitor_curse
+
+#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade 
 
 /////////////
 //  SLIME  //
