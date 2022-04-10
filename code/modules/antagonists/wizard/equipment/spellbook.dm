@@ -416,13 +416,6 @@
 	limit = 3
 	category = "Assistance"
 
-/datum/spellbook_entry/item/horror
-	name = "Magical Cage"
-	desc = "A magical cage with a strange creature inside. It can mindcontrol your enemies, or inject usefull chemicals inside your body."
-	item_path = /obj/item/horrorspawner/wizard
-	limit = 1
-	category = "Assistance"
-
 /datum/spellbook_entry/item/hugbottle
 	name = "Bottle of Tickles"
 	desc = "A bottle of magically infused fun, the smell of which will \
