@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "CQC active block increased up to 90% (from 75%)"
-  - tweak: "CQC active block costs 10 stamina each time it is successful"
