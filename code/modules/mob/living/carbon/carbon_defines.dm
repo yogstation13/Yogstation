@@ -71,5 +71,6 @@
 	var/list/all_wounds
 	/// All of the scars a carbon has afflicted throughout their limbs
 	var/list/all_scars
+	var/visible_tumors = FALSE //if you are seem with some tumors, for examine
 
 	COOLDOWN_DECLARE(bleeding_message_cd)

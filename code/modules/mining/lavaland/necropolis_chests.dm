@@ -219,6 +219,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	if(hasholos.len)
 		to_chat(user, span_warning("The pendant refuses to work with a guardian spirit..."))
 		return
+	if(IS_BLOODSUCKER(user))
+		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))
+		return
 	to_chat(user, span_warning("You feel your life being drained by the pendant..."))
 	if(do_after(user, 4 SECONDS, target = user))
 		to_chat(user, span_notice("Your lifeforce is now linked to the pendant! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die."))
@@ -899,9 +902,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities."))
-			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard)
+			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
+			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+			H.set_species(/datum/species/lizard/draconid)
 			H.eye_color = "fee5a3"
 			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 			H.updateappearance()
@@ -1476,19 +1479,20 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		Insert(user)
 
 /obj/item/organ/grandcore/Insert(mob/living/carbon/H, special = 0)
-	H.faction = list("blooded")
+	..()
+	H.faction |= "blooded"
 	H.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/raise)
 	H.AddSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
-	..()
 	if(NOBLOOD in H.dna.species.species_traits)
 		to_chat(owner, "<span class ='userdanger'>Despite lacking blood, you were able to take in the grand core. You will pay for your power in killer headaches!</span>")
 	else
 		to_chat(owner, "<span class ='userdanger'>You've taken in the grand core, allowing you to control minions at the cost of your blood!</span>")
 
 /obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
+	H.faction -= "blooded"
 	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise, /obj/effect/proc_holder/spell/aoe_turf/horde)
 	H.RemoveSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
-	return ..()
+	..()
 
 /datum/action/item_action/organ_action/threebloodlings
 	name = "Summon bloodlings"

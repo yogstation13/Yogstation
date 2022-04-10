@@ -1,0 +1,11 @@
+author: "Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Yalp Elor no longer instantaneously dies on-spawn."
+  - bugfix: "Yalp Elor no longer dies if all of its followers go AFK, or adminghost, or anything like that."
+  - bugfix: "Yalp Elor can no longer whisper slurs to its followers."
+  - bugfix: "Yalp Elor now destructs properly on death, making SSobj slightly happier."
+  - bugfix: "Reconnecting as the Yalp Elor no longer erroneously informs you that the captor threat is always coming in ten minutes."
+  - bugfix: "Waldo fugitives probably work slightly better. I think. Maybe."
+  - soundadd: "Dying as the Yalp Elor now actually makes some sort of dramatic sound instead of just low-key qdel-ing you."
+  - spellcheck: "The Yalp Elor login dialogue now looks nicer."

@@ -1534,7 +1534,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/sbeacondrop
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/supermatter_delaminator
@@ -1546,7 +1546,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/supermatter_delaminator
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/powersink
@@ -1598,9 +1598,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/surgerybag
 	name = "Syndicate Surgery Duffel Bag"
 	desc = "The Syndicate surgery duffel bag is a toolkit containing all surgery tools, surgical drapes, \
-			a Syndicate brand MMI, a straitjacket, and a muzzle."
+			a Syndicate brand MMI, an implant case, a straitjacket, and a muzzle."
 	item = /obj/item/storage/backpack/duffelbag/syndie/surgery
-	cost = 3
+	cost = 2
 
 /datum/uplink_item/device_tools/encryptionkey
 	name = "Syndicate Encryption Key"

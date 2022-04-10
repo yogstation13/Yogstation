@@ -60,6 +60,11 @@
 	suffix = "bar_cheese.dmm"
 	name = "Bar Cheese"
 
+/datum/map_template/ruin/station/box/bar/grassy
+	id = "bar_grassy"
+	suffix = "bar_grassy.dmm"
+	name = "Bar Grassy"
+
 /datum/map_template/ruin/station/box/bar/clock
 	id = "bar_clock"
 	suffix = "bar_clock.dmm"
