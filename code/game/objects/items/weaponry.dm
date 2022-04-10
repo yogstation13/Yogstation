@@ -607,7 +607,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		return
 	to_chat(user, span_warning("You begin gathering strength..."))
 	playsound(get_turf(src), 'sound/magic/lightning_chargeup.ogg', 65, 1)
-	if(do_after(user, 90, target = src))
+	if(do_after(user, 9 SECONDS, target = src))
 		to_chat(user, span_userdanger("You gather power! Time for a home run!"))
 		homerun_ready = 1
 	..()
@@ -727,7 +727,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	force = 0
 	throwforce = 5
-	reach = 2
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	var/min_reach = 2
 
 /obj/item/extendohand/acme

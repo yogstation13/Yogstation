@@ -11,22 +11,12 @@
 	density = TRUE
 	base_idle_power_usage = 100
 	base_active_power_usage = 500
-	max_hardware_size = 4
+	max_hardware_size = WEIGHT_CLASS_BULKY
 	steel_sheet_cost = 10
 	light_strength = 2
 	max_integrity = 300
 	integrity_failure = 150
 	var/console_department = "" // Used in New() to set network tag according to our area.
-
-/obj/machinery/modular_computer/console/buildable/Initialize()
-	. = ..()
-	// User-built consoles start as empty frames.
-	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
-	var/obj/item/computer_hardware/hard_drive/network_card = cpu.all_components[MC_NET]
-	var/obj/item/computer_hardware/hard_drive/recharger = cpu.all_components[MC_CHARGE]
-	qdel(recharger)
-	qdel(network_card)
-	qdel(hard_drive)
 
 /obj/machinery/modular_computer/console/Initialize()
 	. = ..()

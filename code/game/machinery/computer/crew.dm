@@ -26,6 +26,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/list/jobs
 	var/list/data_by_z = list()
 	var/list/last_update = list()
+	var/list/death_list = list()
 
 /datum/crewmonitor/New()
 	. = ..()
@@ -114,11 +115,13 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		return data_by_z["[z]"]
 
 	var/list/results = list()
+	var/list/new_death_list = list()
 	var/obj/item/clothing/under/U
 	var/obj/item/card/id/I
 	var/turf/pos
 	var/ijob
 	var/name
+	var/assignment_title
 	var/assignment
 	var/oxydam
 	var/toxdam
@@ -150,15 +153,17 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 				if (I)
 					name = I.registered_name
+					assignment_title = I.assignment
 					assignment = I.originalassignment
 					ijob = jobs[I.originalassignment]
 				else
 					name = "Unknown"
+					assignment_title = ""
 					assignment = ""
 					ijob = 80
 
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
-					life_status = (!H.stat ? TRUE : FALSE)
+					life_status = H.stat < DEAD
 				else
 					life_status = null
 
@@ -176,7 +181,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if (nanite_sensors || U.sensor_mode >= SENSOR_COORDS)
 					if (!pos)
 						pos = get_turf(H)
-					area = get_area_name(H, TRUE)
+					area = get_area_name(H, TRUE, is_sensor = TRUE)
 					pos_x = pos.x
 					pos_y = pos.y
 				else
@@ -184,10 +189,15 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					pos_x = null
 					pos_y = null
 
-				results[++results.len] = list("name" = name, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				if(life_status == FALSE)
+					new_death_list.Add(H)
+
+				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time
+	death_list["[z]"] = new_death_list
+	SEND_SIGNAL(src, COMSIG_MACHINERY_CREWMON_UPDATE)
 
 	return results
 

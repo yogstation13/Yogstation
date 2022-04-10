@@ -46,6 +46,8 @@
 
 #define STATUS_EFFECT_DETERMINED /datum/status_effect/determined //currently in a combat high from being seriously wounded
 
+#define STATUS_EFFECT_FRENZY /datum/status_effect/frenzy //Makes you fast and stronger
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -84,6 +86,8 @@
 
 #define STATUS_EFFECT_BLOODLETTING /datum/status_effect/saw_bleed/bloodletting //same but smaller
 
+#define STATUS_EFFECT_EXPOSED /datum/status_effect/exposed //increases incoming damage
+
 #define STATUS_EFFECT_NECROPOLIS_CURSE /datum/status_effect/necropolis_curse
 #define STATUS_EFFECT_HIVEMIND_CURSE /datum/status_effect/necropolis_curse/hivemind
 #define CURSE_BLINDING	1 //makes the edges of the target's screen obscured
@@ -112,6 +116,8 @@
 #define STATUS_EFFECT_CLOUDSTRUCK /datum/status_effect/cloudstruck //blinds and applies an overlay.
 
 #define STATUS_EFFECT_LIMP /datum/status_effect/limp //For when you have a busted leg (or two!) and want additional slowdown when walking on that leg
+
+#define STATUS_EFFECT_BRAZIL_PENANCE /datum/status_effect/brazil_penance //controls heretic sacrifice
 
 /////////////
 // NEUTRAL //
@@ -142,6 +148,8 @@
 #define STATUS_EFFECT_TAGALONG /datum/status_effect/tagalong //allows darkspawn to accompany people's shadows //Yogs
 
 #define STATUS_EFFECT_PROGENITORCURSE /datum/status_effect/progenitor_curse
+
+#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade 
 
 /////////////
 //  SLIME  //

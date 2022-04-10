@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(hair_styles_female_list)	//stores only hair names
 GLOBAL_LIST_EMPTY(facial_hair_styles_list)	//stores /datum/sprite_accessory/facial_hair indexed by name
 GLOBAL_LIST_EMPTY(facial_hair_styles_male_list)	//stores only hair names
 GLOBAL_LIST_EMPTY(facial_hair_styles_female_list)	//stores only hair names
+GLOBAL_LIST_EMPTY(hair_gradients_list) //stores /datum/sprite_accessory/hair_gradient indexed by name
 	//Underwear
 GLOBAL_LIST_EMPTY(underwear_list)		//stores /datum/sprite_accessory/underwear indexed by name
 GLOBAL_LIST_EMPTY(underwear_m)	//stores only underwear name
@@ -42,8 +43,11 @@ GLOBAL_LIST_EMPTY(moth_wings_list)
 GLOBAL_LIST_EMPTY(moth_wingsopen_list)
 GLOBAL_LIST_EMPTY(caps_list)
 
+GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
 GLOBAL_LIST_INIT(color_list_ethereal, list("F Class(Green)" = "97ee63", "F2 Class (Light Green)" = "00fa9a", "F3 Class (Dark Green)" = "37835b", "M Class (Red)" = "9c3030", "M1 Class (Purple)" = "ee82ee", "G Class (Yellow)" = "fbdf56", "O Class (Blue)" = "3399ff", "A Class (Cyan)" = "00ffff"))
 
+GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
+GLOBAL_LIST_EMPTY(pod_flower_list) //ethereal face marks
 GLOBAL_LIST_INIT(ghost_forms_with_directions_list, list("ghost")) //stores the ghost forms that support directional sprites
 GLOBAL_LIST_INIT(ghost_forms_with_accessories_list, list("ghost")) //stores the ghost forms that support hair and other such things
 
@@ -116,6 +120,11 @@ GLOBAL_LIST_INIT(engineering_depts_prefs, list(ENG_DEPT_RANDOM, ENG_DEPT_NONE, E
 #define DSATCHEL "Department Satchel"
 #define DDUFFELBAG "Department Duffel Bag"
 GLOBAL_LIST_INIT(backbaglist, list(DBACKPACK, DSATCHEL, DDUFFELBAG, GBACKPACK, GSATCHEL, GDUFFELBAG, LSATCHEL))
+
+// Suits/Skirts
+#define PREF_SUIT "Jumpsuit"
+#define PREF_SKIRT "Jumpskirt"
+GLOBAL_LIST_INIT(jumpsuitlist, list(PREF_SUIT, PREF_SKIRT))
 
 //Uplink spawn loc
 #define UPLINK_PDA		"PDA"

@@ -6,6 +6,8 @@
 #define BAD_COORDS	3
 #define BAD_TURF	4
 
+#define SCIENCE_AMOUNT 500 // How much science to generate per minute
+
 /area/shuttle/auxiliary_base
 	name = "Auxiliary Base"
 	luminosity = 0 //Lighting gets lost when it lands anyway
@@ -30,12 +32,25 @@
 	/// If blind drop option is available
 	var/blind_drop_ready = TRUE
 
-	// Reference to probe for easy access
-	var/obj/machinery/sci_probe/probe
+	// A radio
+	var/obj/item/radio/radio
+	var/radio_freq = FREQ_SCIENCE
+
+	/// Is the LPM Setup already
+	var/setup = FALSE
+	/// Decorational varibale shows all megafauna
+	var/mobs = 0
+	/// Calibration of the probe
+	var/calibration = 1
 
 /obj/machinery/computer/auxiliary_base/Initialize()
 	. = ..()
-	probe = new /obj/machinery/sci_probe(src)
+	radio = new /obj/item/radio(src)
+	radio.frequency = radio_freq
+
+/obj/machinery/computer/auxiliary_base/Destroy()
+	QDEL_NULL(radio)
+	return ..()
 
 /obj/machinery/computer/auxiliary_base/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -55,10 +70,10 @@
 	data["destination"] = destination
 	data["blind_drop"] = blind_drop_ready
 	data["turrets"] = list()
-	data["probestatus"] = probe.setup
-	data["foundmobs"] = probe.mobs
+	data["probestatus"] = setup
+	data["foundmobs"] = mobs
 	data["science"] = SCIENCE_AMOUNT
-	data["calibration"] = probe.calibration
+	data["calibration"] = calibration
 	if(LAZYLEN(turrets))
 		for(var/turret in turrets)
 			var/obj/machinery/porta_turret/aux_base/base_turret = turret
@@ -181,19 +196,25 @@
 			base_turret.on = !base_turret.on
 			return 
 		if("status")
-			probe.setup = !probe.setup
-			probe.canoperate()
-			if(probe.setup)
-				probe.radio.talk_into(src, "L.P.M Engaged. Producing science from local megafauna", probe.radio_freq)
+			setup = !setup
+			canoperate()
+			var/turf/T = src.loc
+			if(!is_mining_level(T.z)) // If it somehow moves
+				if(setup) // Anti-Spam
+					say("Warning: L.P.M is not on lavaland!")
+				setup = FALSE // Turn machine off
+				mobs = 0
+			if(setup)
+				radio.talk_into(src, "L.P.M Engaged. Producing science from local megafauna", radio_freq)
 		if("calibrate")
-			probe.calibration = initial(probe.calibration)
+			calibration = initial(calibration)
 
 
 /obj/machinery/computer/auxiliary_base/proc/set_mining_mode()
 	if(is_mining_level(z)) //The console switches to controlling the mining shuttle once landed.
 		req_one_access = list()
 		shuttleId = "mining" //The base can only be dropped once, so this gives the console a new purpose.
-		possible_destinations = "mining_home;mining_away;landing_zone_dock;mining_public"
+		possible_destinations = "mining_home;mining_away;landing_zone_dock;mining_public;auxiliary_construction"
 
 /obj/machinery/computer/auxiliary_base/proc/set_landing_zone(turf/T, mob/user, no_restrictions)
 	var/obj/docking_port/mobile/auxiliary_base/base_dock = locate(/obj/docking_port/mobile/auxiliary_base) in SSshuttle.mobile
@@ -262,7 +283,7 @@
 
 	to_chat(user, span_notice("You begin setting the landing zone parameters..."))
 	setting = TRUE
-	if(!do_after(user, 50, target = user)) //You get a few seconds to cancel if you do not want to drop there.
+	if(!do_after(user, 5 SECONDS, target = user)) //You get a few seconds to cancel if you do not want to drop there.
 		setting = FALSE
 		return
 	setting = FALSE
@@ -430,6 +451,37 @@
 
 /obj/structure/mining_shuttle_beacon/attack_robot(mob/user)
 	return attack_hand(user) //So borgies can help
+
+/obj/machinery/computer/auxiliary_base/process()
+	canoperate() // Check if it can operate
+	if(setup) // Avoid needless processing
+		var/ssadjust = 1 MINUTES/SSmachines.wait // This is the science adjustment factor. This allows science generation to stay the same if the subsystem firerate changes
+		mobs = findmobs() // Decorational Display
+		calibration = clamp((calibration -= 0.0005), 0, initial(calibration)) // Can't just be a cheap science generator
+		SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, (SCIENCE_AMOUNT/ssadjust)*calibration) // Add Science
+
+/obj/machinery/computer/auxiliary_base/proc/findmobs()
+	var/foundmobs = 0
+	if(!canoperate()) // Shows detected mobs as 0 if not on lavaland
+		return
+	for(var/mob/living/simple_animal/hostile/megafauna/S in GLOB.mob_list)
+		if(S.stat == DEAD)
+			continue
+		if(!is_mining_level(S.z))
+			continue
+		foundmobs += 1
+	return foundmobs
+
+/obj/machinery/computer/auxiliary_base/proc/canoperate() // Code simplification
+	var/turf/T = src.loc
+	if(!is_mining_level(T.z)) // If it somehow moves
+		if(setup) // Anti-Spam
+			say("Warning: L.P.M is not on lavaland!")
+		setup = FALSE // Turn machine off
+		mobs = 0
+		return FALSE
+	return TRUE
+
 
 #undef ZONE_SET
 #undef BAD_ZLEVEL

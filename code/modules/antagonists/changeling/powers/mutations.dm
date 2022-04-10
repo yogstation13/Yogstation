@@ -138,17 +138,19 @@
 	name = "Arm Blade"
 	desc = "We reform one of our arms into a deadly blade. Costs 20 chemicals."
 	helptext = "We may retract our armblade in the same manner as we form it. Cannot be used while in lesser form."
+//	button_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "armblade"
 	chemical_cost = 20
 	dna_cost = 2
 	req_human = 1
 	weapon_type = /obj/item/melee/arm_blade
 	weapon_name_simple = "blade"
+	xenoling_available = FALSE
 
 /obj/item/melee/arm_blade
 	name = "arm blade"
 	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/changeling.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
@@ -203,7 +205,7 @@
 			user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("We start forcing the airlock open."), //yogs modified description
 			span_italics("You hear a metal screeching sound."))
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
-			if(!do_after(user, 100, target = A))
+			if(!do_after(user, 10 SECONDS, target = A))
 				return
 		//user.say("Heeeeeeeeeerrre's Johnny!")
 		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the airlock to open."), //yogs modified description
@@ -224,7 +226,7 @@
 	desc = "We ready a tentacle to grab items or victims with. Costs 10 chemicals."
 	helptext = "We can use it once to retrieve a distant item. If used on living creatures, the effect depends on the intent: \
 	Help will simply drag them closer, Disarm will grab whatever they're holding instead of them, Grab will put the victim in our hold after catching it, \
-	and Harm will stun it, and stab it if we're also holding a sharp weapon. Cannot be used while in lesser form."
+	and Harm will stab it if we're also holding a sharp weapon. Cannot be used while in lesser form."
 	button_icon_state = "tentacle"
 	chemical_cost = 10
 	dna_cost = 2
@@ -232,11 +234,12 @@
 	weapon_type = /obj/item/gun/magic/tentacle
 	weapon_name_simple = "tentacle"
 	silent = TRUE
+	xenoling_available = FALSE
 
 /obj/item/gun/magic/tentacle
 	name = "tentacle"
 	desc = "A fleshy tentacle that can stretch out and grab things or people."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/changeling.dmi'
 	icon_state = "tentacle"
 	item_state = "tentacle"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
@@ -411,6 +414,7 @@
 	chemical_cost = 20
 	dna_cost = 1
 	req_human = 1
+	xenoling_available = FALSE
 
 	weapon_type = /obj/item/shield/changeling
 	weapon_name_simple = "shield"
@@ -428,7 +432,6 @@
 	name = "shield-like mass"
 	desc = "A mass of tough, boney tissue. You can still see the fingers as a twisted pattern in the shield."
 	item_flags = ABSTRACT | DROPDEL
-	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "ling_shield"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
@@ -519,6 +522,7 @@
 	dna_cost = 1
 	req_human = 1
 	recharge_slowdown = 0.25
+	xenoling_available = FALSE
 
 	suit_type = /obj/item/clothing/suit/armor/changeling
 	helmet_type = /obj/item/clothing/head/helmet/changeling

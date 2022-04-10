@@ -213,7 +213,6 @@
 /datum/spellbook_entry/lightningbolt
 	name = "Lightning Bolt"
 	spell_type = /obj/effect/proc_holder/spell/aimed/lightningbolt
-	cost = 3
 
 /datum/spellbook_entry/lightningbolt/Buy(mob/living/carbon/human/user,obj/item/spellbook/book) //return TRUE on success
 	. = ..()
@@ -360,7 +359,7 @@
 
 /datum/spellbook_entry/item/armor
 	name = "Mastercrafted Armor Set"
-	desc = "An artefact suit of armor that allows you to cast spells while providing more protection against attacks and the void of space."
+	desc = "An artifact suit of armor that allows you to cast spells while providing more protection against attacks and the void of space. Additionally provides anti-magic protection, though this may interfere with magic you cast on yourself (i.e Mutate or wands)."
 	item_path = /obj/item/clothing/suit/space/hardsuit/wizard
 	cost = 1
 	category = "Defensive"
@@ -427,6 +426,7 @@
 	name = "Mjolnir"
 	desc = "A mighty hammer on loan from Thor, God of Thunder. It crackles with barely contained power."
 	item_path = /obj/item/twohanded/mjollnir
+	cost = 3
 
 /datum/spellbook_entry/item/singularity_hammer
 	name = "Singularity Hammer"
@@ -500,6 +500,34 @@
 	to_chat(user, span_notice("You have cast summon ghosts!"))
 	playsound(get_turf(user), 'sound/effects/ghost2.ogg', 50, 1)
 	return TRUE
+
+/datum/spellbook_entry/summon/portals
+	name = "Summon Portal Storm"
+	desc = "Terrorize the crew with a portal storm! Whatever crawls out of these portals will be a threat not just to the crew, but you as well!"
+	cost = 1
+
+/datum/spellbook_entry/summon/portals/IsAvailible()
+	if(!SSticker.mode)
+		return FALSE
+	else
+		return TRUE
+
+/datum/spellbook_entry/summon/portals/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
+    SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
+    var/portaltype = pick("port_shocktroop","port_narsiespawn")
+    switch(portaltype)
+        if("port_shocktroop")
+            var/datum/round_event_control/portal_storm_syndicate/newShocktroopControl = new /datum/round_event_control/portal_storm_syndicate()
+            var/datum/round_event/portal_storm/syndicate_shocktroop/newShocktroopStorm = newShocktroopControl.runEvent()
+            newShocktroopStorm.setup()
+        if("port_narsiespawn")
+            var/datum/round_event_control/portal_storm_narsie/newNarsieControl = new /datum/round_event_control/portal_storm_narsie()
+            var/datum/round_event/portal_storm/portal_storm_narsie/newNarsieStorm = newNarsieControl.runEvent()
+            newNarsieStorm.setup()
+    active = TRUE
+    to_chat(user, span_notice("You have summoned a portal storm!"))
+    playsound(get_turf(user), 'sound/magic/lightningbolt.ogg', 50, 1)
+    return TRUE
 
 /datum/spellbook_entry/summon/curse_of_madness
 	name = "Curse of Madness"

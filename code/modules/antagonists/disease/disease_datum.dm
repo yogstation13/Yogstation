@@ -80,6 +80,8 @@
 	explanation_text = "Survive and infect as many people as possible."
 
 /datum/objective/disease_infect/check_completion()
+	if(..())
+		return TRUE
 	var/mob/camera/disease/D = owner.current
 	if(istype(D) && D.hosts.len) //theoretically it should not exist if it has no hosts, but better safe than sorry.
 		return TRUE
@@ -90,6 +92,8 @@
 	explanation_text = "Ensure that at least one infected host escapes on the shuttle or an escape pod."
 
 /datum/objective/disease_infect_centcom/check_completion()
+	if(..())
+		return TRUE
 	var/mob/camera/disease/D = owner.current
 	if(!istype(D))
 		return FALSE

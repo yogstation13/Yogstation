@@ -197,14 +197,14 @@
 	if(isliving(target)) //Eat Corpses to regen health
 		var/mob/living/L = target
 		if(L.stat == DEAD)
-			if(do_after(src, 30, target = L))
+			if(do_after(src, 3 SECONDS, target = L))
 				if(eat(L))
 					adjustHealth(-50)
 			return
 	else if(isitem(target)) //Eat items just to be annoying
 		var/obj/item/I = target
 		if(!I.anchored)
-			if(do_after(src, 20, target = I))
+			if(do_after(src, 2 SECONDS, target = I))
 				eat(I)
 			return
 	return ..()

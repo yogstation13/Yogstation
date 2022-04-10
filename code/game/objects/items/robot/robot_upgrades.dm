@@ -69,15 +69,29 @@
 		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 
 	R.revive()
+	R.logevent("WARN -- System recovered from unexpected shutdown.")
+	R.logevent("System brought online.")
 
-/obj/item/borg/upgrade/freeminer
-	name = "free miner cyborg firmware hack"
-	desc = "Used to override the default firmware of a cyborg with the freeminer version."
+/obj/item/borg/upgrade/panel_access_remover
+	name = "cyborg firmware hack"
+	desc = "Used to override the default firmware of a cyborg and disable panel access restrictions."
 	icon_state = "cyborg_upgrade2"
 	one_use = TRUE
 
-/obj/item/borg/upgrade/freeminer/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/panel_access_remover/action(mob/living/silicon/robot/R, user = usr)
+	R.req_access = list()
+	return TRUE //Makes sure we delete the upgrade since it's one_use
+
+/obj/item/borg/upgrade/panel_access_remover/freeminer
+	name = "free miner cyborg firmware hack"
+	desc = "Used to override the default firmware of a cyborg with the freeminer version."
+	icon_state = "cyborg_upgrade2"
+
+/obj/item/borg/upgrade/panel_access_remover/freeminer/action(mob/living/silicon/robot/R, user = usr)
 	R.req_access = list(ACCESS_FREEMINER_ENGINEER)
+	new /obj/item/borg/upgrade/panel_access_remover/freeminer(R.drop_location())
+	//This deletes the upgrade which is why we create a new one. This prevents the message "Upgrade Error" without a adding a once-used variable to every board
+	return TRUE
 
 /obj/item/borg/upgrade/vtec
 	name = "cyborg VTEC module"
@@ -145,11 +159,68 @@
 			return FALSE
 
 		R.ionpulse = TRUE
+		R.toggle_ionpulse() //Enabled by default
 
 /obj/item/borg/upgrade/thrusters/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
 		R.ionpulse = FALSE
+
+/obj/item/borg/upgrade/language
+	name = "translation matrix upgrade"
+	desc = "Increases the translation matrix to include all xeno languages"
+	icon_state = "cyborg_upgrade2"
+	var/list/languages = list(
+		/datum/language/bonespeak,
+		/datum/language/draconic,
+		/datum/language/english,
+		/datum/language/etherean,
+		/datum/language/felinid,
+		/datum/language/mothian,
+		/datum/language/polysmorph,
+		/datum/language/sylvan
+	)
+
+/obj/item/borg/upgrade/language/expanded
+	name = "advanced translation matrix upgrade"
+	desc = "Increases the translation matrix to include an even wider variety in langauges"
+	languages = list(
+		/datum/language/bonespeak,
+		/datum/language/draconic,
+		/datum/language/english,
+		/datum/language/etherean,
+		/datum/language/felinid,
+		/datum/language/mothian,
+		/datum/language/polysmorph,
+		/datum/language/sylvan,
+		/datum/language/aphasia,
+		/datum/language/beachbum,
+		/datum/language/egg,
+		/datum/language/monkey,
+		/datum/language/mouse,
+		/datum/language/mushroom,
+		/datum/language/slime
+	)
+
+/obj/item/borg/upgrade/language/omni
+	name = "universal translation matrix upgrade"
+	desc = "Allow the translation matrix to handle any language"
+	languages = list()
+
+/obj/item/borg/upgrade/language/omni/Initialize(mapload)
+	. = ..()
+	languages = subtypesof(/datum/language)
+
+/obj/item/borg/upgrade/language/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		for(var/datum/language/lang as anything in languages)
+			R.grant_language(lang, TRUE, TRUE, LANGUAGE_SOFTWARE)
+
+/obj/item/borg/upgrade/language/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		R.remove_all_languages(LANGUAGE_SOFTWARE)
 
 /obj/item/borg/upgrade/ddrill
 	name = "mining cyborg diamond drill"
@@ -296,6 +367,8 @@
 			return FALSE
 
 		R.SetEmagged(1)
+		R.logevent("WARN: hardware installed with missing security certificate!") //A bit of fluff to hint it was an illegal tech item
+		R.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 
 		return TRUE
 
@@ -317,12 +390,12 @@
 	. = ..()
 	if(.)
 
-		R.weather_immunities += "lava"
+		R.weather_immunities += WEATHER_LAVA
 
 /obj/item/borg/upgrade/lavaproof/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		R.weather_immunities -= "lava"
+		R.weather_immunities -= WEATHER_LAVA
 
 /obj/item/borg/upgrade/selfrepair
 	name = "self-repair module"
@@ -523,33 +596,46 @@
 		for(var/obj/item/twohanded/shockpaddles/cyborg/S in R.module.modules)
 			R.module.remove_module(S, TRUE)
 
-/obj/item/borg/upgrade/processor
-	name = "medical cyborg surgical processor"
-	desc = "An upgrade to the Medical module, installing a processor \
-		capable of scanning surgery disks and carrying \
-		out procedures"
-	icon_state = "cyborg_upgrade3"
-	require_module = 1
+/obj/item/borg/upgrade/adv_analyzer
+	name = "medical cyborg advanced health analyzer"
+	desc = "An upgrade to the Medical module, loading a more advanced \
+		health analyzer into the holder's module, \
+		replacing the old one."
+	icon_state = "cyborg_upgrade5"
+	require_module = TRUE
 	module_type = /obj/item/robot_module/medical
 	module_flags = BORG_MODULE_MEDICAL
 
-/obj/item/borg/upgrade/processor/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/adv_analyzer/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/surgical_processor/SP = locate() in R.module.modules  //yogs start
-		if(SP)
-			to_chat(user, span_warning("This unit is already equipped with a surgical processor module."))
+		/// Removes old analyzer
+		for(var/obj/item/healthanalyzer/healthanalyzer in R.module.modules)
+			R.module.remove_module(healthanalyzer, TRUE)
+
+		var/obj/item/healthanalyzer/advanced/advancedanal = locate() in R.module.modules
+
+		if(advancedanal)
+			to_chat(user, span_warning("This unit is already equipped with an advanced health analyzer."))
 			return FALSE
 
-		SP = new(R.module) //yogs end
-		R.module.basic_modules += SP
-		R.module.add_module(SP, FALSE, TRUE)
+		/// Puts in new advanced analyzer
+		advancedanal = new(R.module)
+		R.module.basic_modules += advancedanal
+		R.module.add_module(advancedanal, FALSE, TRUE)
 
-/obj/item/borg/upgrade/processor/deactivate(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/adv_analyzer/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
-	if (.)
-		for(var/obj/item/surgical_processor/SP in R.module.modules)
-			R.module.remove_module(SP, TRUE)
+	if(.)
+		/// Removes new advanced analyzer
+		for(var/obj/item/healthanalyzer/advanced/advancedanal in R.module.modules)
+			R.module.remove_module(advancedanal, TRUE)
+
+		/// Puts in old analyzer
+		var/obj/item/healthanalyzer/healthanalyzer = locate() in R.module.modules
+		healthanalyzer = new(R.module)
+		R.module.basic_modules += healthanalyzer
+		R.module.add_module(healthanalyzer, FALSE, TRUE)
 
 /obj/item/borg/upgrade/surgerykit
 	name = "medical cyborg advanced surgical kit"

@@ -21,7 +21,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/stop_sounds,
 	/client/proc/fix_air, // yogs - fix air verb
 	/client/proc/fix_air_z,
-	/client/proc/debugstatpanel
+	/client/proc/debugstatpanel,
+	/client/proc/clear_mfa,
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -392,7 +393,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(check_rights(R_ADMIN))
 	// yogs start
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
-		if((!isobserver(usr) && SSticker.HasRoundStarted()) || !check_rights(R_VAREDIT))
+		if((!isobserver(usr) && SSticker.HasRoundStarted()) || !check_rights(R_VAREDIT, FALSE))
 			message_admins("[key_name_admin(usr)] checked antagonists.")
 		holder.check_antagonists()
 
@@ -480,11 +481,6 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(holder)
 		if(holder.fakekey)
 			holder.fakekey = null
-			if(isobserver(mob))
-				mob.invisibility = initial(mob.invisibility)
-				mob.alpha = initial(mob.alpha)
-				mob.name = initial(mob.name)
-				mob.mouse_opacity = initial(mob.mouse_opacity)
 		else
 			var/new_key = ckeyEx(stripped_input(usr, "Enter your desired display name.", "Fake Key", key, 26))
 			if(!new_key)
@@ -492,11 +488,6 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			holder.fakekey = new_key
 			holder.fakename = random_unique_name(prob(50) ? MALE : FEMALE)
 			createStealthKey()
-			if(isobserver(mob))
-				mob.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
-				mob.alpha = 0 //JUUUUST IN CASE
-				mob.name = " "
-				mob.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		log_admin("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 		message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Stealth Mode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -694,7 +685,16 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[src] deadmined themself.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Deadmin")
 
+/client/proc/clear_mfa()
+	set name = "Forget 2FA logins"
+	set category = "Admin"
+	set desc= "Forgets all saved 2FA logins"
 
+	if(!holder)
+		return
+	
+	if(alert("Are you sure? This will forget all the previously saved 2FA logins", "Confirmation", "Yes", "No") == "Yes")
+		mfa_reset(ckey, TRUE)
 
 /client/proc/readmin()
 	set name = "Readmin"

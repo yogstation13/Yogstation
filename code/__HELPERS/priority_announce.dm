@@ -62,7 +62,7 @@
 
 	SScommunications.send_message(M)
 
-/proc/minor_announce(message, title = "Attention:", alert)
+/proc/minor_announce(message, title = "Attention:", alert, custom_alert_sound)
 	if(!message)
 		return
 
@@ -75,7 +75,11 @@
 			else
 				to_chat(M, "<span class='big bold'><font color = red>[html_encode(title)]</font color><BR>[html_encode(message)]</span><BR>")
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
-				if(alert)
-					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
+				var/s = sound(custom_alert_sound)
+				if(custom_alert_sound)
+					SEND_SOUND(M, s)
 				else
-					SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
+					if(alert)
+						SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
+					else
+						SEND_SOUND(M, sound('sound/misc/notice2.ogg'))

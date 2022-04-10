@@ -1,0 +1,5 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscadd: "Added fake link to stealthmin dsay"
+  - rscdel: "Removed stealthmin making you invis"

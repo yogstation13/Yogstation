@@ -286,6 +286,13 @@
 			if(!istype(disk.gene, /datum/plant_gene/core) && disk.gene.can_add(seed))
 				seed.genes += disk.gene.Copy()
 				if(istype(disk.gene, /datum/plant_gene/reagent))
+					var/datum/plant_gene/reagent/G = disk.gene
+					if(istype(G.reagent_id,/datum/reagent/water) || istype(G.reagent_id,/datum/reagent/potassium))
+						var/opposing_reagent = istype(G.reagent_id,/datum/reagent/water) ? /datum/reagent/potassium : /datum/reagent/water
+						for(var/datum/plant_gene/reagent/reagentgene in seed.genes)
+							if(istype(reagentgene,opposing_reagent))
+								message_admins("[key_name(usr)] has added [G.reagent_id] to a seed that contains [reagentgene.reagent_id].")
+								log_admin("[key_name(usr)] has added [G.reagent_id] to a seed that contains [reagentgene.reagent_id].")
 					seed.reagents_from_genes()
 			update_genes()
 			repaint_seed()

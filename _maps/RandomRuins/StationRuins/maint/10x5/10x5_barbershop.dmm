@@ -138,21 +138,26 @@
 	},
 /turf/open/floor/carpet,
 /area/template_noop)
-"F" = (
-/obj/structure/table,
-/obj/structure/mirror{
-	pixel_y = 28
-	},
-/obj/item/razor{
-	pixel_x = -5
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel/cafeteria,
-/area/template_noop)
 "H" = (
 /obj/structure/table,
 /obj/item/reagent_containers/spray/pepper/empty,
 /turf/open/floor/plasteel/vaporwave,
+/area/template_noop)
+"I" = (
+/obj/structure/table,
+/obj/structure/mirror{
+	pixel_y = 28
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/item/dyespray{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/obj/item/razor{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
 "J" = (
 /obj/machinery/light/small{
@@ -248,7 +253,7 @@ X
 s
 "}
 (3,1,1) = {"
-F
+I
 Q
 h
 x

@@ -110,7 +110,7 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
-	STR.max_items = 10
+	STR.max_items = 15
 	STR.max_combined_w_class = 20
 	STR.set_holdable(list(/obj/item/clothing/accessory/medal))
 
@@ -131,6 +131,8 @@
 	new /obj/item/clothing/accessory/medal/silver/valor(src)
 	new /obj/item/clothing/accessory/medal/silver/valor(src)
 	new /obj/item/clothing/accessory/medal/silver/security(src)
+	new /obj/item/clothing/accessory/medal/silver/medical(src)
+	new /obj/item/clothing/accessory/medal/silver/engineering(src)
 	new /obj/item/clothing/accessory/medal/bronze_heart(src)
 	new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
 	new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
@@ -195,6 +197,24 @@
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
 
+/obj/item/storage/lockbox/medal/med
+	name = "medical medal box"
+	desc = "A locked box used to store medals to be given to members of the medical department."
+	req_access = list(ACCESS_CMO)
+
+/obj/item/storage/lockbox/medal/med/PopulateContents()
+	for(var/i in 1 to 3)
+		new /obj/item/clothing/accessory/medal/silver/medical(src)
+
+/obj/item/storage/lockbox/medal/eng
+	name = "engineering medal box"
+	desc = "A locked box used to store medals to be given to members of the engineering department."
+	req_access = list(ACCESS_CE)
+
+/obj/item/storage/lockbox/medal/eng/PopulateContents()
+	for(var/i in 1 to 3)
+		new /obj/item/clothing/accessory/medal/silver/engineering(src)
+
 //Yogs: Vial Holder
 /obj/item/storage/lockbox/vialbox
 	name = "vial box"
@@ -242,7 +262,7 @@
 /obj/item/storage/lockbox/vialbox/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_w_class = WEIGHT_CLASS_TINY 
+	STR.max_w_class = WEIGHT_CLASS_TINY
 	STR.max_combined_w_class = 6
 	STR.max_items = 6
 	STR.locked = TRUE

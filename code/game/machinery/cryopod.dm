@@ -170,6 +170,8 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	var/on_store_message = "has entered long-term storage."
 	var/on_store_name = "Cryogenic Oversight"
+	var/open_sound = 'sound/machines/podopen.ogg'
+	var/close_sound = 'sound/machines/podclose.ogg'
 
 	// 5 minutes-ish safe period before being despawned.
 	var/time_till_despawn = 15 MINUTES // Time if a player gets forced into cryo
@@ -177,6 +179,11 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	var/obj/machinery/computer/cryopod/control_computer
 	var/cooldown = FALSE
+
+	/// If the timer is on hold due to the occupant using the afk verb
+	var/afk_hold = FALSE
+
+	var/despawn_timer
 
 /obj/machinery/cryopod/Initialize()
 	..()
@@ -194,6 +201,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 /obj/machinery/cryopod/proc/PowerOn()
 	if(!occupant)
 		open_machine()
+
+/obj/machinery/cryopod/proc/PowerOff()
+	if(!occupant)
+		icon_state = "cryopod-off"
 
 /obj/machinery/cryopod/proc/find_control_computer(urgent = 0)
 	for(var/M in GLOB.cryopod_computers)
@@ -218,25 +229,37 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		..(user)
 		icon_state = "cryopod"
 		var/mob/living/mob_occupant = occupant
+		if(close_sound)
+			playsound(src, close_sound, 40)
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, span_boldnotice("You feel cool air surround you. You go numb as your senses turn inward."))
 		if(!occupant) //Check they still exist
 			return
 		if(mob_occupant.client)//if they're logged in
-			var/offertimer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
+			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
 			if(alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No") == "Yes")
-				deltimer(offertimer) //Player wants to offer, cancel the timer
+				deltimer(despawn_timer) //Player wants to offer, cancel the timer
 				if(!offer_control(occupant))
 					//Player is a jackass that noone wants the body of, restart the timer
-					addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1))
+					despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1), TIMER_STOPPABLE)
 		else
-			addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn)
+			if(mob_occupant.mind.afk_verb_used) // If they used the afk verb, don't start the timer yet
+				afk_hold = TRUE
+				return
+			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn, TIMER_STOPPABLE)
 
 /obj/machinery/cryopod/open_machine()
 	..()
 	icon_state = GLOB.cryopods_enabled ? "cryopod-open" : "cryopod-off"
+	if(open_sound)
+		playsound(src, open_sound, 40)
 	density = TRUE
 	name = initial(name)
+
+	// Clear the afk hold and ready flag/timer
+	afk_hold = FALSE
+	deltimer(despawn_timer)
+	ready = FALSE
 
 /obj/machinery/cryopod/container_resist(mob/living/user)
 	visible_message(span_notice("[occupant] emerges from [src]!"),
@@ -252,6 +275,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant)
+		if(afk_hold && !mob_occupant.mind.afk_verb_used) // AFK hold ended
+			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn, TIMER_STOPPABLE)
+			afk_hold = FALSE
+			
 		// Eject dead people
 		if(mob_occupant.stat == DEAD)
 			open_machine()
@@ -362,7 +389,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		return
 
 	if(!GLOB.cryopods_enabled)
-		to_chat(user, span_boldnotice("[src] is currently disabled. It will be enabled in [round(((30 MINUTES) - world.time) / (1 MINUTES))] minutes"))
+		to_chat(user, span_boldnotice("NanoTrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
 		return
 
 	if(occupant)

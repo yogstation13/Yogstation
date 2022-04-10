@@ -10,7 +10,10 @@
 	// DO NOT add slots with matching names to different zones - it will break internal_organs_slot list!
 	var/organ_flags = 0
 	var/maxHealth = STANDARD_ORGAN_THRESHOLD
-	var/damage = 0		//total damage this organ has sustained
+	///total damage this organ has sustained
+	var/damage = 0
+	///how functional this organ is, higher numbers = stronger lower = garbage, scales multiplicitively with health (50% health = *50% efficiency)
+	var/organ_efficiency = 1
 	///Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick
 	var/healing_factor 	= 0										//fraction of maxhealth healed per on_life(), set to 0 for generic organs
 	var/decay_factor 	= 0										//same as above but when without a living owner, set to 0 for generic organs
@@ -26,12 +29,15 @@
 	var/high_threshold_cleared
 	var/low_threshold_cleared
 
-/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE,special_zone = null)
 	if(!iscarbon(M) || owner == M)
 		return
 
+	if(special_zone)
+		zone = special_zone
+
 	var/obj/item/organ/replaced = M.getorganslot(slot)
-	if(replaced)
+	if(replaced && !special_zone)
 		replaced.Remove(M, special = 1)
 		if(drop_if_replaced)
 			replaced.forceMove(get_turf(M))
@@ -102,7 +108,6 @@
 			damage = max(0, damage - ((maxHealth * healing_factor) * (C.satiety / MAX_SATIETY) * 4))
 		check_damage_thresholds(C)
 		prev_damage = damage
-	return
 
 /** check_damage_thresholds
   * input: M (a mob, the owner of the organ we call the proc on)
@@ -190,6 +195,10 @@
 
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.
+
+///returns an organ's efficiency, a percent value (rounded to the 10s) based on damage that is multiplied by organ_efficiency
+/obj/item/organ/proc/get_organ_efficiency()
+	return damage < low_threshold ? organ_efficiency : round(organ_efficiency * 1-(damage/maxHealth), 0.1)
 
 ///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
 /obj/item/organ/proc/applyOrganDamage(var/d, var/maximum = maxHealth)	//use for damaging effects

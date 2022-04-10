@@ -238,7 +238,7 @@
 	else if(istype(W, /obj/item/stock_parts/cell))
 		if(state==3)
 			if(!cell)
-				if(!user.transferItemToLoc(W, src))
+				if(!user.transferItemToLoc(W, src, silent = FALSE))
 					return
 				var/obj/item/stock_parts/cell/C = W
 				to_chat(user, span_notice("You install the power cell."))

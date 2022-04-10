@@ -40,7 +40,7 @@
 			return
 		visible_message(span_warning("[user] starts picking up [src]."), \
 						span_userdanger("[user] starts picking you up!"))
-		if(!do_after(user, 20, target = src))
+		if(!do_after(user, 2 SECONDS, target = src))
 			return
 		visible_message(span_warning("[user] picks up [src]!"), \
 						span_userdanger("[user] picks you up!"))
@@ -67,8 +67,9 @@
 		to_chat(user, span_warning("You can't seem to find the [pick(faux_gadgets)]! Without it, [src] [pick(faux_problems)]."))
 		return
 	user.visible_message(span_notice("[user] begins to reactivate [src]."), span_notice("You begin to reactivate [src]..."))
-	if(do_after(user, 30, 1, target = src))
+	if(do_after(user, 3 SECONDS, 1, target = src))
 		revive(full_heal = 1)
+		grab_ghost()
 		user.visible_message(span_notice("[user] reactivates [src]!"), span_notice("You reactivate [src]."))
 		var/turf/A = get_area(src)
 		alert_drones(DRONE_NET_CONNECT)

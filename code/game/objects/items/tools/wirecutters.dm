@@ -16,6 +16,8 @@
 	attack_verb = list("pinched", "nipped")
 	hitsound = 'sound/items/wirecutter.ogg'
 	usesound = 'sound/items/wirecutter.ogg'
+	drop_sound = 'sound/items/handling/wirecutter_drop.ogg'
+	pickup_sound =  'sound/items/handling/wirecutter_pickup.ogg'
 
 	tool_behaviour = TOOL_WIRECUTTER
 	toolspeed = 1
@@ -55,7 +57,7 @@
 		return
 	else if(istype(C) && C.has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 		to_chat(C, span_notice("You attempt to remove the durathread strand from around your neck."))
-		if(do_after(user, 15, null, C))
+		if(do_after(user, 1.5 SECONDS, null, C))
 			to_chat(C, span_notice("You succesfuly remove the durathread strand."))
 			C.remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 	else

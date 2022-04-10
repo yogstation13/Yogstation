@@ -204,6 +204,21 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a shadowling. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create a shadowling.")
+			if("vampire")
+				if(makeVampire())
+					message_admins("[key_name(usr)] created a vampire.")
+					log_admin("[key_name(usr)] created a vampire.")
+				else
+					message_admins("[key_name_admin(usr)] tried to create a vampire. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to create a vampire.")
+			if("infiltrator")
+				message_admins("[key_name(usr)] is creating an infiltration team...")
+				if(makeInfiltratorTeam())
+					message_admins("[key_name(usr)] created an infiltration team.")
+					log_admin("[key_name(usr)] created an infiltration team.")
+				else
+					message_admins("[key_name_admin(usr)] tried to create an infiltration team. Unfortunately, there were not enough candidates available.")
+					log_admin("[key_name(usr)] failed to create an infiltration team.")
 	else if(href_list["forceevent"])
 		if(!check_rights(R_FUN))
 			return
@@ -794,12 +809,13 @@
 		if(!SSticker.is_mode("dynamic"))
 			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
 		var/latejoin_rules = list()
+		var/datum/game_mode/dynamic/mode = SSticker.mode
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/latejoin))
 			var/datum/dynamic_ruleset/latejoin/newrule = new rule()
+			mode.configure_ruleset(newrule)
 			latejoin_rules[newrule.name] = newrule
 		var/added_rule = input(usr,"What ruleset do you want to force upon the next latejoiner? This will bypass threat level and population restrictions.", "Rigging Latejoin", null) as null|anything in latejoin_rules
 		if (added_rule)
-			var/datum/game_mode/dynamic/mode = SSticker.mode
 			mode.forced_latejoin_rule = latejoin_rules[added_rule]
 			log_admin("[key_name(usr)] set [added_rule] to proc on the next latejoin.")
 			message_admins("[key_name(usr)] set [added_rule] to proc on the next latejoin.", 1)
@@ -820,7 +836,7 @@
 			return
 		if(!SSticker || !SSticker.mode)
 			return alert(usr, "The game must start first.", null, null, null, null)
-		if(!SSticker.is_mode("dynamic"))
+		if(GLOB.master_mode != "dynamic")
 			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
 		var/midround_rules = list()
 		var/datum/game_mode/dynamic/mode = SSticker.mode
@@ -1414,7 +1430,12 @@
 
 		var/mob/M = locate(href_list["HeadsetMessage"])
 		usr.client.admin_headset_message(M)
-
+	else if(href_list["accept_custom_name"]) // yogs start
+		if(!check_rights(R_ADMIN))
+			return
+		var/obj/item/station_charter/charter = locate(href_list["accept_custom_name"])
+		if(istype(charter))
+			charter.accept_proposed(usr) // yogs end
 	else if(href_list["reject_custom_name"])
 		if(!check_rights(R_ADMIN))
 			return

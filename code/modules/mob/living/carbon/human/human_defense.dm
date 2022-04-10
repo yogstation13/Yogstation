@@ -235,6 +235,8 @@
 		var/mob/living/carbon/human/H = user
 		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // yogs start -- vampire biting
 			return // yogs end
+		if(H.a_intent == INTENT_HARM)
+			last_damage = "fist"
 		dna.species.spec_attack_hand(H, src)
 
 /mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/M)
@@ -719,7 +721,7 @@
 	if(src == M)
 		if(has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 			to_chat(src, span_notice("You attempt to remove the durathread strand from around your neck."))
-			if(do_after(src, 35, null, src))
+			if(do_after(src, 3.5 SECONDS, null, src))
 				to_chat(src, span_notice("You succesfuly remove the durathread strand."))
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return

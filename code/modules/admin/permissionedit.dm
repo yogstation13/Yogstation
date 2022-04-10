@@ -119,7 +119,7 @@
 			else
 				deadminlink = " <a class='small' href='?src=[REF(src)];[HrefToken()];editrights=deactivate;key=[adm_ckey]'>\[DA\]</a>"
 			output += "<tr>"
-			output += "<td style='text-align:center;'>[adm_ckey]<br>[deadminlink]<a class='small' href='?src=[REF(src)];[HrefToken()];editrights=remove;key=[adm_ckey]'>\[-\]</a><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=sync;key=[adm_ckey]'>\[SYNC TGDB\]</a></td>"
+			output += "<td style='text-align:center;'>[adm_ckey]<br>[deadminlink]<a class='small' href='?src=[REF(src)];[HrefToken()];editrights=remove;key=[adm_ckey]'>\[-\]</a><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=mfareset;key=[adm_ckey]'>\[2FA\]</a><br><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=sync;key=[adm_ckey]'>\[SYNC TGDB\]</a></td>"
 			output += "<td><a href='?src=[REF(src)];[HrefToken()];editrights=rank;key=[adm_ckey]'>[D.rank.name]</a></td>"
 			output += "<td><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=permissions;key=[adm_ckey]'>[rights2text(D.rank.include_rights," ")]</a></td>"
 			output += "<td><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=permissions;key=[adm_ckey]'>[rights2text(D.rank.exclude_rights," ", "-")]</a></td>"
@@ -138,6 +138,8 @@
 	if(IsAdminAdvancedProcCall())
 		to_chat(usr, "<span class='admin prefix'>Admin Edit blocked: Advanced ProcCall detected.</span>", confidential=TRUE)
 		return
+	if(!owner.mfa_query())
+		return
 	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
 	permissions_assets.send(src)
 	var/admin_key = href_list["key"]
@@ -147,7 +149,7 @@
 	var/task = href_list["editrights"]
 	var/skip
 	var/legacy_only
-	if(task == "activate" || task == "deactivate" || task == "sync")
+	if(task == "activate" || task == "deactivate" || task == "sync" || task == "mfareset")
 		skip = TRUE
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_admins) && task == "rank")
 		if(admin_ckey in GLOB.protected_admins)
@@ -203,6 +205,14 @@
 			force_deadmin(admin_key, D)
 		if("sync")
 			sync_lastadminrank(admin_ckey, admin_key, D)
+		if("mfareset")
+			if(alert("WARNING! This will reset the 2FA code and backup for [admin_key], possibly comprimising the security of the server. Are you sure you wish to continue?", "Confirmation", "Cancel", "Continue") != "Continue")
+				return
+			if(alert("If you have been requested to reset the MFA credentials for someone, please confirm that you have verified their identity. Resetting MFA for an unverified person can result in a break of server security.", "Confirmation", "I Understand", "Cancel") != "I Understand")
+				return
+			message_admins("MFA for [admin_ckey] has been reset by [usr]!")
+			log_admin("MFA Reset for [admin_ckey] by [usr]!")
+			mfa_reset(admin_ckey)
 	edit_admin_permissions()
 
 /datum/admins/proc/add_admin(admin_ckey, admin_key, use_db)
@@ -316,6 +326,8 @@
 	if(new_rank == "*New Rank*")
 		new_rank = trim(input("Please input a new rank", "New custom rank") as text|null)
 	if(!new_rank)
+		if(!D)
+			remove_admin(admin_ckey, admin_key, use_db, null)
 		return
 	R = rank_names[new_rank]
 	if(!R) //rank with that name doesn't exist yet - make it

@@ -2,25 +2,21 @@
 	. = ..()
 	ui_interact(user)
 
-/obj/item/modular_computer/proc/can_show_ui(mob/user, datum/tgui/ui)
+/obj/item/modular_computer/proc/can_show_ui(mob/user)
 	if(!enabled)
-		if(ui)
-			ui.close()
-		return 0
+		return FALSE
 	if(!use_power())
-		if(ui)
-			ui.close()
-		return 0
+		return FALSE
 	// Robots don't really need to see the screen, their wireless connection works as long as computer is on.
 	if(!screen_on && !issilicon(user))
-		if(ui)
-			ui.close()
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 // Operates TGUI
 /obj/item/modular_computer/ui_interact(mob/user, datum/tgui/ui)
-	if (!can_show_ui(user, ui))
+	if (!can_show_ui(user))
+		if(ui)
+			ui.close()
 		return
 	// If we have an active program switch to it now.
 	if(active_program)
@@ -38,22 +34,56 @@
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "NtosMain")
-		ui.set_autoupdate(TRUE)
-		ui.open()
-		ui.send_asset(get_asset_datum(/datum/asset/simple/headers))
+		var/headername
+		switch(device_theme)
+			if("ntos")
+				headername = "NtOS Main Menu"
+			if("syndicate")
+				headername = "Syndix Main Menu"
+		ui = new(user, src, "NtosMain", headername, 400, 500)
+		if(ui.open())
+			ui.send_asset(get_asset_datum(/datum/asset/simple/headers))
 
 
 /obj/item/modular_computer/ui_data(mob/user)
 	var/list/data = get_header_data()
+	data["device_theme"] = device_theme
+	data["login"] = list()
+	var/obj/item/computer_hardware/card_slot/cardholder = all_components[MC_CARD]
+	data["cardholder"] = FALSE
+	if(cardholder)
+		data["cardholder"] = TRUE
+		var/obj/item/card/id/stored_card = cardholder.GetID()
+		if(stored_card)
+			var/stored_name = stored_card.registered_name
+			var/stored_title = stored_card.assignment
+			if(!stored_name)
+				stored_name = "Unknown"
+			if(!stored_title)
+				stored_title = "Unknown"
+			data["login"] = list(
+				IDName = stored_name,
+				IDJob = stored_title,
+			)
+
+	data["removable_media"] = list()
+	if(all_components[MC_SDD])
+		data["removable_media"] += "removable storage disk"
+	var/obj/item/computer_hardware/ai_slot/intelliholder = all_components[MC_AI]
+	if(intelliholder?.stored_card)
+		data["removable_media"] += "intelliCard"
+	var/obj/item/computer_hardware/card_slot/secondarycardholder = all_components[MC_CARD2]
+	if(secondarycardholder?.stored_card)
+		data["removable_media"] += "secondary RFID card"
+
 	data["programs"] = list()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
 	for(var/datum/computer_file/program/P in hard_drive.stored_files)
-		var/running = 0
+		var/running = FALSE
 		if(P in idle_threads)
-			running = 1
+			running = TRUE
 
-		data["programs"] += list(list("name" = P.filename, "desc" = P.filedesc, "running" = running))
+		data["programs"] += list(list("name" = P.filename, "desc" = P.filedesc, "running" = running, "icon" = P.program_icon, "alert" = P.alert_pending))
 
 	data["has_light"] = has_light
 	data["light_on"] = light_on
@@ -68,16 +98,19 @@
 	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
 	switch(action)
 		if("PC_exit")
+			play_interact_sound()
 			kill_program()
-			return 1
+			return TRUE
 		if("PC_shutdown")
+			play_interact_sound()
 			shutdown_computer()
-			return 1
+			return TRUE
 		if("PC_minimize")
 			var/mob/user = usr
 			if(!active_program || !all_components[MC_CPU])
 				return
-
+			
+			play_interact_sound()
 			idle_threads.Add(active_program)
 			active_program.program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
 
@@ -96,6 +129,7 @@
 			if(!istype(P) || P.program_state == PROGRAM_STATE_KILLED)
 				return
 
+			play_interact_sound()
 			P.kill_program(forced = TRUE)
 			to_chat(user, span_notice("Program [P.filename].[P.filetype] with PID [rand(100,999)] has been killed."))
 
@@ -105,7 +139,7 @@
 			var/mob/user = usr
 			if(hard_drive)
 				P = hard_drive.find_file_by_name(prog)
-
+			play_interact_sound()
 			if(!P || !istype(P)) // Program not found or it's not executable program.
 				to_chat(user, span_danger("\The [src]'s screen shows \"I/O ERROR - Unable to run program\" warning."))
 				return
@@ -119,6 +153,7 @@
 			if(P in idle_threads)
 				P.program_state = PROGRAM_STATE_ACTIVE
 				active_program = P
+				P.alert_pending = FALSE
 				idle_threads.Remove(P)
 				update_icon()
 				return
@@ -134,10 +169,12 @@
 				return
 			if(P.run_program(user))
 				active_program = P
+				P.alert_pending = FALSE
 				update_icon()
-			return 1
+			return TRUE
 
 		if("PC_toggle_light")
+			play_interact_sound()
 			light_on = !light_on
 			if(light_on)
 				set_light(comp_light_luminosity, 1, comp_light_color)
@@ -148,10 +185,12 @@
 		if("PC_light_color")
 			var/mob/user = usr
 			var/new_color
+			play_interact_sound()
 			while(!new_color)
 				new_color = input(user, "Choose a new color for [src]'s flashlight.", "Light Color",light_color) as color|null
 				if(!new_color)
 					return
+				play_interact_sound()
 				if(color_hex2num(new_color) < 200) //Colors too dark are rejected
 					to_chat(user, span_warning("That color is too dark! Choose a lighter one."))
 					new_color = null
@@ -159,6 +198,38 @@
 			light_color = new_color
 			update_light()
 			return TRUE
+
+		if("PC_Eject_Disk")
+			var/param = params["name"]
+			var/mob/user = usr
+			switch(param)
+				if("removable storage disk")
+					var/obj/item/computer_hardware/hard_drive/portable/portable_drive = all_components[MC_SDD]
+					if(!portable_drive)
+						return
+					if(uninstall_component(portable_drive, usr))
+						user.put_in_hands(portable_drive)
+						playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50)
+				if("intelliCard")
+					var/obj/item/computer_hardware/ai_slot/intelliholder = all_components[MC_AI]
+					if(!intelliholder)
+						return
+					if(intelliholder.try_eject(user))
+						playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50)
+				if("ID")
+					var/obj/item/computer_hardware/card_slot/cardholder = all_components[MC_CARD]
+					if(!cardholder)
+						return
+					cardholder.try_eject(user)
+					playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50)
+				if("secondary RFID card")
+					var/obj/item/computer_hardware/card_slot/cardholder = all_components[MC_CARD2]
+					if(!cardholder)
+						return
+					cardholder.try_eject(user)
+					playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50)
+
+
 		else
 			return
 

@@ -285,7 +285,7 @@
 	build_type = PROTOLATHE | MECHFAB
 	materials = list (/datum/material/iron = 2500, /datum/material/glass = 1500, /datum/material/silver = 1500)
 	construction_time = 200
-	build_path = /obj/item/organ/cyberimp/arm/surgery
+	build_path = /obj/item/organ/cyberimp/arm/toolset/surgery
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -540,6 +540,39 @@
 	construction_time = 50
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 500, /datum/material/gold=200)
 	build_path = /obj/item/organ/lungs/cybernetic/upgraded
+	category = list("Cybernetics", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/cybernetic_ears
+	name = "Cybernetic Ears"
+	desc = "A pair of cybernetic ears"
+	id = "cybernetic_ears"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 40
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
+	build_path = /obj/item/organ/ears/cybernetic
+	category = list("Cybernetics", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/cybernetic_stomach
+	name = "Cybernetic stomach"
+	desc = "A cybernetic stomach"
+	id = "cybernetic_stomach"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 40
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
+	build_path = /obj/item/organ/stomach/cybernetic
+	category = list("Cybernetics", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/cybernetic_stomach_u
+	name = "Upgraded Cybernetic Stomach"
+	desc = "An upgraded cybernetic stomach"
+	id = "cybernetic_stomach_u"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 50
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 500, /datum/material/gold=200)
+	build_path = /obj/item/organ/stomach/cybernetic/upgraded
 	category = list("Cybernetics", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 

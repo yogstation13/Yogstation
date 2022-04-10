@@ -312,7 +312,7 @@
   *
   * unset redraw_mob to prevent the mob icons from being redrawn at the end.
   */
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, qdel_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, bypass_equip_delay_self = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, qdel_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, bypass_equip_delay_self = FALSE, initial = FALSE)
 	if(!istype(W))
 		return FALSE
 	if(!W.mob_can_equip(src, null, slot, disable_warning, bypass_equip_delay_self))
@@ -322,7 +322,7 @@
 			if(!disable_warning)
 				to_chat(src, span_warning("You are unable to equip that!"))
 		return FALSE
-	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+	equip_to_slot(W, slot, redraw_mob, initial) //This proc should not ever fail.
 	return TRUE
 
 /**
@@ -344,8 +344,8 @@
   *
   * Also bypasses equip delay checks, since the mob isn't actually putting it on.
   */
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot)
-	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, initial = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE, initial)
 
 /**
   * Auto equip the passed in item the appropriate slot based on equipment priority
@@ -438,19 +438,24 @@
 	face_atom(A)
 	var/list/result
 	if(client)
-		LAZYINITLIST(client.recent_examines)
-		if(!(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
-			var/extra_info = A.examine_more(src)
-			result = extra_info
-		if(!result)
-			client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
-			result = A.examine(src)
-			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
-			
+		if(istype(src, /mob/living/silicon/ai) && istype(A, /mob/living/carbon/human)) //Override for AI's examining humans
+			var/mob/living/carbon/human/H = A
+			result = H.examine_simple(src)
+		else	
+			LAZYINITLIST(client.recent_examines)
+			if(!(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
+				var/extra_info = A.examine_more(src)
+				result = extra_info
+			if(!result)
+				client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
+				result = A.examine(src)
+				addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)		
 	else
 		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
+
 	to_chat(src, result.Join("\n"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
+
 
 /mob/proc/clear_from_recent_examines(atom/A)
 	if(QDELETED(A) || !client)
@@ -1174,23 +1179,71 @@
 /mob/proc/get_idcard(hand_first)
 	return
 
+/mob/proc/get_id_in_hand()
+	return
+
 /**
   * Get the mob VV dropdown extras
   */
 /mob/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Gib"] = "?_src_=vars;[HrefToken()];gib=[REF(src)]"
-	.["Give Spell"] = "?_src_=vars;[HrefToken()];give_spell=[REF(src)]"
-	.["Remove Spell"] = "?_src_=vars;[HrefToken()];remove_spell=[REF(src)]"
-	.["Give Disease"] = "?_src_=vars;[HrefToken()];give_disease=[REF(src)]"
-	.["Toggle Godmode"] = "?_src_=vars;[HrefToken()];godmode=[REF(src)]"
-	.["Drop Everything"] = "?_src_=vars;[HrefToken()];drop_everything=[REF(src)]"
-	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
-	.["Show player panel"] = "?_src_=vars;[HrefToken()];mob_player_panel=[REF(src)]"
-	.["Toggle Build Mode"] = "?_src_=vars;[HrefToken()];build_mode=[REF(src)]"
-	.["Assume Direct Control"] = "?_src_=vars;[HrefToken()];direct_control=[REF(src)]"
-	.["Offer Control to Ghosts"] = "?_src_=vars;[HrefToken()];offer_control=[REF(src)]"
+	VV_DROPDOWN_SEPERATOR
+	VV_DROPDOWN_OPTION(VV_HK_GIB, "Gib")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_DISEASE, "Give Disease")
+	VV_DROPDOWN_OPTION(VV_HK_GODMODE, "Toggle Godmode")
+	VV_DROPDOWN_OPTION(VV_HK_DROP_ALL, "Drop Everything")
+	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS, "Regenerate Icons")
+	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "Show player panel")
+	VV_DROPDOWN_OPTION(VV_HK_BUILDMODE, "Toggle Buildmode")
+	VV_DROPDOWN_OPTION(VV_HK_DIRECT_CONTROL, "Assume Direct Control")
+	VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "Offer Control to Ghosts")
+	VV_DROPDOWN_OPTION(VV_HK_SET_AFK_TIMER, "Set AFK Timer")
+
+
+/mob/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_REGEN_ICONS] && check_rights(R_VAREDIT))
+		regenerate_icons()
+	if(href_list[VV_HK_PLAYER_PANEL])
+		usr.client.holder.show_player_panel(src)
+	if(href_list[VV_HK_GODMODE]  && check_rights(R_ADMIN))
+		usr.client.cmd_admin_godmode(src)
+	if(href_list[VV_HK_GIVE_SPELL] && check_rights(R_VAREDIT))
+		usr.client.give_spell(src)
+	if(href_list[VV_HK_REMOVE_SPELL]  && check_rights(R_VAREDIT))
+		usr.client.remove_spell(src)
+	if(href_list[VV_HK_GIVE_DISEASE] && check_rights(R_VAREDIT))
+		usr.client.give_disease(src)
+	if(href_list[VV_HK_GIB] && check_rights(R_FUN))
+		usr.client.cmd_admin_gib(src)
+	if(href_list[VV_HK_BUILDMODE] && check_rights(R_BUILDMODE))
+		togglebuildmode(src)
+	if(href_list[VV_HK_DROP_ALL] && check_rights(R_ADMIN))
+		usr.client.cmd_admin_drop_everything(src)
+	if(href_list[VV_HK_DIRECT_CONTROL] && check_rights(R_VAREDIT))
+		usr.client.cmd_assume_direct_control(src)
+	if(href_list[VV_HK_OFFER_GHOSTS] && check_rights(R_ADMIN))
+		offer_control(src)
+	if(href_list[VV_HK_SET_AFK_TIMER] && check_rights(R_ADMIN))
+		if(!mind)
+			to_chat(usr, "This cannot be used on mobs without a mind")
+			return
+		
+		var/timer = input("Input AFK length in minutes, 0 to cancel the current timer", text("Input"))  as num|null
+		if(timer == null) // Explicit null check for cancel, rather than generic truthyness, so 0 is handled differently
+			return
+
+		deltimer(mind.afk_verb_timer)
+		mind.afk_verb_used = FALSE
+
+		if(!timer)
+			return
+		
+		mind.afk_verb_used = TRUE
+		mind.afk_verb_timer = addtimer(VARSET_CALLBACK(mind, afk_verb_used, FALSE), timer MINUTES, TIMER_STOPPABLE);
+
 
 /**
   * extra var handling for the logging var
@@ -1200,6 +1253,12 @@
 		if("logging")
 			return debug_variable(var_name, logging, 0, src, FALSE)
 	. = ..()
+
+/mob/vv_auto_rename(new_name)
+	//Do not do parent's actions, as we *usually* do this differently.
+	fully_replace_character_name(real_name, new_name)
+	usr.client.vv_update_display(src, "name", new_name)
+	usr.client.vv_update_display(src, "real_name", real_name || "No real name")
 
 ///Show the language menu for this mob
 /mob/verb/open_language_menu()

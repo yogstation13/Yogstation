@@ -319,7 +319,7 @@
 /// Called from cryoxadone and pyroxadone when they're proc'ing. Wounds will slowly be fixed separately from other methods when these are in effect. crappy name but eh
 /datum/wound/proc/on_xadone(power)
 	cryo_progress += power
-	if(cryo_progress > 33 * severity)
+	if(cryo_progress > 66 * severity)
 		qdel(src)
 
 /// When synthflesh is applied to the victim, we call this. No sense in setting up an entire chem reaction system for wounds when we only care for a few chems. Probably will change in the future

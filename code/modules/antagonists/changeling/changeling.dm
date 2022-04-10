@@ -42,6 +42,7 @@
 	var/datum/action/innate/cellular_emporium/emporium_action
 
 	var/static/list/all_powers = typecacheof(/datum/action/changeling,TRUE)
+	var/list/stored_snapshots = list() //list of stored snapshots
 
 /datum/antagonist/changeling/New()
 	. = ..()
@@ -121,10 +122,20 @@
 
 /datum/antagonist/changeling/proc/remove_changeling_powers()
 	if(ishuman(owner.current) || ismonkey(owner.current))
-		reset_properties()
+		var/additionalpoints = geneticpoints
+
+		changeling_speak = 0
+		chosen_sting = null
+		mimicing = ""
+
 		for(var/datum/action/changeling/p in purchasedpowers)
+			if(p.dna_cost > 0)
+				additionalpoints += p.dna_cost
+			
 			purchasedpowers -= p
 			p.Remove(owner.current)
+			
+		geneticpoints = additionalpoints
 
 	//MOVE THIS
 	if(owner.current.hud_used && owner.current.hud_used.lingstingdisplay)
@@ -320,6 +331,12 @@
 
 /datum/antagonist/changeling/proc/add_new_profile(mob/living/carbon/human/H, protect = 0)
 	var/datum/changelingprofile/prof = create_profile(H, protect)
+	var/datum/icon_snapshot/entry = new
+	entry.name = H.real_name
+	entry.icon = H.icon
+	entry.icon_state = H.icon_state
+	entry.overlays = H.get_overlays_copy(list(HANDS_LAYER))	//ugh
+	stored_snapshots[entry.name] = entry
 	add_profile(prof)
 	return prof
 
@@ -441,7 +458,8 @@
 		objectives += destroy_objective
 	else
 		if(prob(70))
-			var/datum/objective/assassinate/kill_objective = new
+			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+			var/datum/objective/assassinate/kill_objective = new N
 			kill_objective.owner = owner
 			if(team_mode) //No backstabbing while in a team
 				kill_objective.find_target_by_role(role = ROLE_CHANGELING, role_type = TRUE, invert = TRUE)

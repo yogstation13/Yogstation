@@ -73,6 +73,9 @@
 	return FALSE
 
 /obj/structure/window/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd)
+	if (resistance_flags & INDESTRUCTIBLE)
+		return FALSE
+
 	switch(the_rcd.mode)
 		if(RCD_DECONSTRUCT)
 			to_chat(user, span_notice("You deconstruct the window."))
@@ -180,7 +183,7 @@
 			return
 		else
 			to_chat(user, span_notice("You start adding [I] to [src]..."))
-			if(do_after(user, 50, target=src))
+			if(do_after(user, 5 SECONDS, target=src))
 				W.use(5)
 				new /obj/structure/barricade/wooden/crude(get_turf(src))
 				return
@@ -914,7 +917,7 @@
 		return ..()
 	if(istype(W, /obj/item/paper) && obj_integrity < max_integrity)
 		user.visible_message("[user] starts to patch the holes in \the [src].")
-		if(do_after(user, 20, target = src))
+		if(do_after(user, 2 SECONDS, target = src))
 			obj_integrity = min(obj_integrity+4,max_integrity)
 			qdel(W)
 			user.visible_message("[user] patches some of the holes in \the [src].")

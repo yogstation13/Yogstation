@@ -242,7 +242,7 @@
 		var/mob/living/L = track.tracked_by
 		if(!L)
 			continue
-		if(!do_after(user,5,0,user))
+		if(!do_after(user, 0.5 SECONDS, 0, user))
 			to_chat(user, span_notice("Our concentration has been broken!"))
 			break
 		distance = get_dist(user, L)
@@ -262,7 +262,7 @@
 					message += " is quite far away."
 		to_chat(user, span_assimilator("[message]"))
 	for(var/datum/antagonist/hivemind/enemy in hive.individual_track_bonus)
-		if(!do_after(user,5,0,user))
+		if(!do_after(user, 0.5 SECONDS, 0, user))
 			to_chat(user, span_notice("Our concentration has been broken!"))
 			break
 		var/mob/living/carbon/C = enemy.owner?.current
@@ -317,7 +317,7 @@
 	to_chat(user, span_notice("We begin siphoning power from our many vessels!"))
 	while(iterations < 7)
 		var/mob/living/carbon/target = pick(carbon_members)
-		if(!do_after(user,10,0,user))
+		if(!do_after(user, 1 SECONDS, 0, user))
 			to_chat(user, span_warning("Our concentration has been broken!"))
 			break
 		if(!target)
@@ -621,14 +621,14 @@
 
 /obj/effect/proc_holder/spell/target_hive/nightmare/cast(list/targets, mob/living/user = usr)
 	var/mob/living/carbon/target = targets[1]
-	if(!do_after(user,30,0,user))
+	if(!do_after(user, 3 SECONDS, 0, user))
 		to_chat(user, span_notice("Our concentration has been broken!"))
 		revert_cast()
 		return
 	to_chat(target, span_userdanger("You see dark smoke swirling around you!"))
 	if(target.anti_magic_check(FALSE, FALSE, TRUE))
 		to_chat(user, span_notice("We begin bruteforcing the tinfoil barriers of [target.name] and pulling out their nightmares."))
-		if(!do_after(user, 30, FALSE, user) || !(target in view(range)))
+		if(!do_after(user, 3 SECONDS, FALSE, user) || !(target in view(range)))
 			to_chat(user, span_notice("Our concentration has been broken!"))
 			return
 	target.apply_status_effect(STATUS_EFFECT_HIVEMIND_CURSE, CURSE_SPAWNING | CURSE_BLINDING)
@@ -648,7 +648,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 
-	reach = 3
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	min_reach = -1
 	item_flags = ABSTRACT | DROPDEL
 
@@ -698,7 +698,7 @@
 	var/list/enemies = list()
 
 	to_chat(user, span_notice("We begin probing [target.name]'s mind!"))
-	if(do_after(user,100,0,target))
+	if(do_after(user, 10 SECONDS, 0, target))
 		var/foiled = target.anti_magic_check(FALSE, FALSE, TRUE)
 		if(!in_hive || foiled)
 			var/timely = !in_hive ? 200 : 100

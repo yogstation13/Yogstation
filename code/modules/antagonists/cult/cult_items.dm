@@ -919,7 +919,6 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/shield/mirror
 	name = "mirror shield"
 	desc = "An infamous shield used by Nar'sien sects to confuse and disorient their enemies. Its edges are weighted for use as a throwing weapon - capable of disabling multiple foes with preternatural accuracy."
-	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "mirror_shield" // eshield1 for expanded
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
@@ -1002,6 +1001,9 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				L.visible_message(span_warning("[src] bounces off of [L], as if repelled by an unseen force!"))
 		else if(!..())
 			if(!L.anti_magic_check())
+				if(L.buckled)
+					L.buckled.unbuckle_mob(L)
+
 				if(is_servant_of_ratvar(L))
 					L.Paralyze(60)
 				else

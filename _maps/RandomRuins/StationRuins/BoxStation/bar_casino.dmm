@@ -451,15 +451,6 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"bm" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "bp" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -32
@@ -720,14 +711,6 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"cg" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "ck" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/chair/americandiner,
@@ -811,6 +794,15 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"fG" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "ge" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -850,19 +842,10 @@
 /obj/effect/spawner/xmastree,
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
-"qD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "Bar Shutters Control";
-	pixel_x = -26;
-	pixel_y = 24;
-	req_access_txt = "28"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
+"tZ" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "yX" = (
 /obj/machinery/holopad,
 /turf/open/floor/carpet,
@@ -886,14 +869,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"AK" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "CC" = (
@@ -931,11 +906,14 @@
 /obj/item/toy/figure/bartender,
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
-"Fj" = (
+"Fx" = (
 /obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
 	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -958,6 +936,12 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"KE" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "LT" = (
@@ -1029,11 +1013,19 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"TA" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
+"TC" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = -26;
+	pixel_y = 24;
+	req_access_txt = "25"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Uk" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/toy/figure/chef,
@@ -1074,6 +1066,10 @@
 /obj/machinery/reagentgrinder/kitchen{
 	pixel_y = 6
 	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"YN" = (
+/obj/machinery/oven,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "ZU" = (
@@ -1287,7 +1283,7 @@ ax
 aK
 aW
 be
-qD
+TC
 cm
 cm
 bZ
@@ -1386,8 +1382,8 @@ bi
 am
 bA
 bQ
-TA
-AK
+fG
+tZ
 co
 co
 Kb
@@ -1402,8 +1398,8 @@ bj
 bs
 bB
 bc
-cg
-Fj
+Fx
+YN
 cq
 co
 Ul
@@ -1434,7 +1430,7 @@ aQ
 am
 aU
 bT
-bm
+KE
 cf
 co
 co

@@ -883,15 +883,6 @@
 	},
 /turf/open/floor/light,
 /area/crew_quarters/kitchen)
-"cc" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/kitchen)
 "cd" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8;
@@ -1040,14 +1031,6 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
-"cE" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/kitchen)
 "cK" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -1067,6 +1050,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"cM" = (
+/obj/machinery/oven,
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "cN" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -1228,6 +1215,15 @@
 /obj/item/clothing/head/hardhat/cakehat,
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/bar)
+"ij" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "kM" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8;
@@ -1338,14 +1334,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"DJ" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/kitchen)
 "Ef" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1409,19 +1397,6 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"Hw" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/kitchen)
-"Jf" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/kitchen)
 "Ki" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1;
@@ -1459,6 +1434,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"ND" = (
+/obj/machinery/griddle,
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
+"Of" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "OF" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/structure/table/wood,
@@ -1555,6 +1540,17 @@
 /obj/effect/spawner/xmastree,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"UR" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "Vc" = (
 /obj/structure/table/reinforced{
 	color = "purple"
@@ -1894,8 +1890,8 @@ br
 ak
 bR
 cm
-Jf
-DJ
+ij
+ND
 db
 do
 mp
@@ -1910,8 +1906,8 @@ bs
 bG
 bS
 bc
-cE
-Hw
+UR
+cM
 cP
 do
 Be
@@ -1942,7 +1938,7 @@ bf
 ak
 bU
 cp
-cc
+Of
 cD
 db
 do

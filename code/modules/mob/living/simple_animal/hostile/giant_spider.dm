@@ -321,7 +321,7 @@
 		visible_message(span_notice("[src] begins to secrete a sticky substance around [cocoon_target]."),span_notice("You begin wrapping [cocoon_target] into a cocoon."))
 		stop_automated_movement = TRUE
 		walk(src,0)
-		if(do_after(src, 50, target = cocoon_target))
+		if(do_after(src, 5 SECONDS, target = cocoon_target))
 			if(busy == SPINNING_COCOON)
 				log_admin("[src] spun a cocoon around [cocoon_target]")
 				var/obj/structure/spider/cocoon/C = new(cocoon_target.loc)

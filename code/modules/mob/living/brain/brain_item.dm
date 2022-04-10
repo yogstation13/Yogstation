@@ -56,6 +56,10 @@
 
 /obj/item/organ/brain/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
 	..()
+	if(!special)
+		if(C.has_horror_inside())
+			var/mob/living/simple_animal/horror/B = C.has_horror_inside()
+			B.leave_victim()
 	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
 		var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
 		for(var/d in bruh.purchasedpowers)
@@ -118,7 +122,7 @@
 			return
 
 		user.visible_message("[user] starts to pour the contents of [O] onto [src].", span_notice("You start to slowly pour the contents of [O] onto [src]."))
-		if(!do_after(user, 60, TRUE, src))
+		if(!do_after(user, 6 SECONDS, TRUE, src))
 			to_chat(user, span_warning("You failed to pour [O] onto [src]!"))
 			return
 

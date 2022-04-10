@@ -2,6 +2,7 @@
 	name = "singularity hammer"
 	desc = "The pinnacle of close combat technology, the hammer harnesses the power of a miniaturized singularity to deal crushing blows."
 	icon_state = "singhammer0"
+	icon = 'icons/obj/wizard.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -73,6 +74,7 @@
 	name = "Mjolnir"
 	desc = "A weapon worthy of a god, able to strike with the force of a lightning bolt. It crackles with barely contained energy."
 	icon_state = "mjollnir0"
+	icon = 'icons/obj/wizard.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -105,7 +107,17 @@
 /obj/item/twohanded/mjollnir/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(isliving(hit_atom))
-		shock(hit_atom)
+		var/mob/M = hit_atom
+		var/atom/A = M.anti_magic_check()
+		if(A)
+			if(isitem(A))
+				M.visible_message(span_warning("[M]'s [A] glows brightly as it disrupts the Mjolnir's power!"))
+			visible_message(span_boldwarning("<span class='big bold'>With a mighty thud, Mjolnir slams into the [src.loc], and its glow fades!</span><br>"))
+			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1, extrarange = 30)
+			new /obj/structure/mjollnir(src.loc)
+			qdel(src)
+		else
+			shock(hit_atom)
 
 /obj/item/twohanded/mjollnir/update_icon()  //Currently only here to fuck with the on-mob icons.
 	icon_state = "mjollnir[wielded]"

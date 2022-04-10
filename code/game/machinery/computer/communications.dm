@@ -338,9 +338,22 @@
 				deadchat_broadcast(" enabled emergency maintenance access at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
 		if ("printSpare")
 			if (authenticated_as_non_silicon_head(usr))
+				if (!COOLDOWN_FINISHED(src, important_action_cooldown))
+					return
 				playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
 				new /obj/item/card/id/captains_spare/temporary(loc)
+				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", SSstation.announcer.get_rand_report_sound())
+		if("printAIControlCode")
+			if(authenticated_as_non_silicon_head(usr))
+				if(!COOLDOWN_FINISHED(src, important_action_cooldown))
+					return
+				playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
+				GLOB.ai_control_code = random_nukecode(6)
+				new /obj/item/paper/ai_control_code(loc)
+				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
+				priority_announce("The AI Control Code been printed by [authorize_name]. All previous codes have been invalidated.", "Central Tech Support", SSstation.announcer.get_rand_report_sound())
+				
 
 /obj/machinery/computer/communications/ui_data(mob/user)
 	var/list/data = list(
@@ -372,7 +385,7 @@
 				data["importantActionReady"] = COOLDOWN_FINISHED(src, important_action_cooldown)
 				data["shuttleCalled"] = FALSE
 				data["shuttleLastCalled"] = FALSE
-				data["canPrintId"] = FALSE
+				data["canPrintIdAndCode"] = FALSE
 
 				data["alertLevel"] = get_security_level()
 				data["authorizeName"] = authorize_name
@@ -384,7 +397,7 @@
 					data["canRequestNuke"] = TRUE
 
 				if (!issilicon(user))
-					data["canPrintId"] = TRUE
+					data["canPrintIdAndCode"] = TRUE
 
 				if (can_send_messages_to_other_sectors(user))
 					data["canSendToSectors"] = TRUE

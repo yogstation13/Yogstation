@@ -323,6 +323,13 @@
 	desc = "A crown worn by only the highest emperors of the <s>land</s> space."
 	icon_state = "fancycrown"
 
+/obj/item/clothing/head/crown/resin
+	name = "resin crown"
+	desc = "Despite being formed with incredibly tough resin and given a mythril insert, it's still more of a fashion statement than a helmet."
+	icon_state = "resincrown"
+	armor = list("melee" = 25,"energy" = 10,"fire" = 0, "acid" = 10)
+	resistance_flags = NONE
+
 /obj/item/clothing/head/scarecrow_hat
 	name = "scarecrow hat"
 	desc = "A simple straw hat."
@@ -420,3 +427,22 @@
 	desc = "An extra-mustahabb way of showing your devotion to Allah."
 	icon_state = "taqiyahred"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
+
+/obj/item/clothing/head/hatsky
+	name = "officer hatsky"
+	desc = "A hat for true Beepsky appreciators. Not guaranteed to actually keep you safe from anything."
+	icon_state = "beepsky_hat"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
+	var/recharge_time = 0
+	var/recharge_rate = 50
+	actions_types = list(/datum/action/item_action/hatsky_voiceline)
+
+/obj/item/clothing/head/hatsky/ui_action_click(mob/user, action)
+	if(istype(action,/datum/action/item_action/hatsky_voiceline))
+		user.visible_message("[user] presses a button on [user.p_their()] General Hatsky!")
+		if(recharge_time > world.time)
+			to_chat(user, span_warning("Hatsky needs more time to recharge its voice box!"))
+			return
+		playsound(loc, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
+		recharge_time = world.time + recharge_rate

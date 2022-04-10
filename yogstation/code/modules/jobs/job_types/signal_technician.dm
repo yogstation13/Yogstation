@@ -14,8 +14,8 @@
 	alt_titles = list("NTSL Programmer", "Comms Tech", "Station IT Support")
 
 	access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP,
-					ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE)
-	minimal_access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE)
+					ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_NETWORK)
+	minimal_access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_NETWORK)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_SIGNAL_TECHNICIAN
@@ -31,16 +31,19 @@
 	name = "Signal Technician"
 	jobtype = /datum/job/signal_tech
 
+	pda_type = /obj/item/pda/signaltech
+
 	belt = /obj/item/storage/belt/utility/full
-	l_pocket = /obj/item/pda/signaltech
 	ears = /obj/item/radio/headset/headset_eng
 	uniform = /obj/item/clothing/under/yogs/rank/signal_tech
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/workboots
+	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1)
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
+
 	pda_slot = SLOT_L_STORE

@@ -175,7 +175,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	throwhitsound =  'sound/weapons/pierce.ogg'
+	mob_throw_hit_sound =  'sound/weapons/pierce.ogg'
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_SAW
@@ -199,8 +199,6 @@
 	desc = "A small but very fast spinning saw. Edges dulled to prevent accidental cutting inside of the surgeon."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "saw"
-	hitsound = 'sound/weapons/circsawhit.ogg'
-	throwhitsound =  'sound/weapons/pierce.ogg'
 	force = 10
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 9
@@ -306,13 +304,13 @@
 	if(istype(O, /obj/item/disk/surgery))
 		to_chat(user, span_notice("You load the surgery protocol from [O] into [src]."))
 		var/obj/item/disk/surgery/D = O
-		if(do_after(user, 10, target = O))
+		if(do_after(user, 1 SECONDS, target = O))
 			advanced_surgeries |= D.surgeries
 		return TRUE
 	if(istype(O, /obj/machinery/computer/operating))
 		to_chat(user, span_notice("You copy surgery protocols from [O] into [src]."))
 		var/obj/machinery/computer/operating/OC = O
-		if(do_after(user, 10, target = O))
+		if(do_after(user, 1 SECONDS, target = O))
 			advanced_surgeries |= OC.advanced_surgeries
 		return TRUE
 	return

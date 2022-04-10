@@ -202,12 +202,7 @@
 /obj/item/stock_parts/cell/mini_egun
 	name = "miniature energy gun power cell"
 	maxcharge = 600
-
-/obj/item/stock_parts/cell/hos_gun
-	name = "X-01 multiphase energy gun power cell"
-	maxcharge = 1200
-
-
+	
 /obj/item/stock_parts/cell/pulse //200 pulse shots
 	name = "pulse rifle power cell"
 	maxcharge = 40000
@@ -340,7 +335,7 @@
 /obj/item/stock_parts/cell/beam_rifle
 	name = "beam rifle capacitor"
 	desc = "A high powered capacitor that can provide huge amounts of energy in an instant."
-	maxcharge = 50000
+	maxcharge = 30000
 	chargerate = 5000	//Extremely energy intensive
 
 /obj/item/stock_parts/cell/beam_rifle/corrupt()

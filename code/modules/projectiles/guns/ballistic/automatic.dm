@@ -83,7 +83,7 @@
 
 /obj/item/gun/ballistic/automatic/wt550
 	name = "security auto rifle"
-	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle."
+	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle. Has a single fire burst mode, but you still can't figure out what advantage that has over semi automatic."
 	icon_state = "wt550"
 	item_state = "arg"
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
@@ -100,7 +100,7 @@
 
 /obj/item/gun/ballistic/automatic/wt550/occupying
 	name = "surplus security auto rifle"
-	desc = "Crude surplus variant of the WT-550 Automatic Rifle meant for mass deployment. Does not come with the benefits of a two round burst."
+	desc = "Crude surplus variant of the WT-550 Automatic Rifle meant for mass deployment. Does not come with the benefits of a two round burst, but has a single fire burst mode for all the advantages that it has over semi automatic mode (i.e none)."
 	mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
 
 /obj/item/gun/ballistic/automatic/mini_uzi
@@ -226,7 +226,6 @@
 	weapon_weight = WEAPON_HEAVY
 	var/cover_open = FALSE
 	can_suppress = FALSE
-	burst_size = 3
 	fire_delay = 1
 	spread = 7
 	pin = /obj/item/firing_pin/implant/pindicate

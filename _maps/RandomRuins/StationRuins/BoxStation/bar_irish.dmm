@@ -1084,20 +1084,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"ck" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"cn" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "co" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
@@ -1189,14 +1175,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"cu" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "cw" = (
@@ -1597,14 +1575,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"iw" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "kY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -1622,6 +1592,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"mB" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "nx" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1634,11 +1613,14 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"pI" = (
+"oj" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"oN" = (
 /obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_y = 5
-	},
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "vu" = (
@@ -1662,6 +1644,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"wc" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "yt" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
@@ -1848,6 +1834,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"XT" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -2146,8 +2142,8 @@ bp
 aj
 bJ
 bY
-ck
-cu
+mB
+oj
 bX
 bX
 FU
@@ -2162,8 +2158,8 @@ bq
 bz
 bK
 bZ
-pI
-iw
+XT
+wc
 cE
 bX
 nx
@@ -2194,7 +2190,7 @@ bh
 aj
 bM
 cb
-cn
+oN
 cw
 bX
 bX

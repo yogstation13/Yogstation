@@ -161,6 +161,7 @@
 
 /obj/item/light_eater
 	name = "light eater" //as opposed to heavy eater
+	icon = 'icons/obj/changeling.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
 	force = 25
@@ -191,12 +192,11 @@
 		if(isethereal(AM))
 			AM.emp_act(EMP_LIGHT)
 
-		if(iscyborg(AM))
+		else if(iscyborg(AM))
 			var/mob/living/silicon/robot/borg = AM
-			if(!borg.lamp_cooldown)
-				borg.update_headlamp(TRUE, INFINITY)
-				to_chat(borg, span_danger("Your headlamp is fried! You'll need a human to help replace it."))
-		else
+			if(borg.lamp_enabled)
+				borg.smash_headlamp()
+		else if(ishuman(AM))
 			for(var/obj/item/O in AM)
 				if(O.light_range && O.light_power)
 					disintegrate(O)

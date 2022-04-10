@@ -37,9 +37,9 @@
 	owner.announce_objectives()
 	to_chat(owner, "<span class='cult'>The book whispers, the forbidden knowledge walks once again!<br>\
 	Your book allows you to research abilities, read it very carefully! you cannot undo what has been done!<br>\
-	You gain charges by either collecting influences or sacrifcing people tracked by the living heart<br> \
+	You gain charges by either collecting influences or sacrificing people tracked by the living heart<br> \
 	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span><br>\
-	If you need to quickly check your unlocked transmutation recipes, transmute your Codex Cicatrix.")
+	If you need to quickly check your unlocked transmutation recipes, alt+click your Codex Cicatrix.")
 
 /datum/antagonist/heretic/on_gain()
 	var/mob/living/current = owner.current
@@ -112,8 +112,9 @@
 	for(var/i in 1 to 2)
 		var/pck = pick("assassinate","protect")
 		switch(pck)
-			if("assassinate")
-				var/datum/objective/assassinate/A = new
+			if("assasinate")
+				var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+				var/datum/objective/assassinate/A = new N
 				A.owner = owner
 				var/list/owners = A.get_owners()
 				A.find_target(owners,protection)
@@ -141,7 +142,7 @@
 		var/mob/living/carbon/human/traitor_mob = owner.current
 		if(traitor_mob && istype(traitor_mob))
 			if(!silent)
-				to_chat(traitor_mob, "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
+				to_chat(traitor_mob, "Your knowledge allow you to overcome your clownish nature, allowing you to wield weapons with impunity.")
 			traitor_mob.dna.remove_mutation(CLOWNMUT)
 	current.faction |= "heretics"
 
@@ -192,7 +193,7 @@
 				cultiewin = FALSE
 			count++
 	if(ascended)
-		parts += "<span class='greentext big'>HERETIC HAS ASCENDED!</span>"
+		parts += "<span class='greentext big'>THE HERETIC HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
 			parts += span_greentext("The heretic was successful!")
@@ -268,6 +269,8 @@
 	explanation_text = "Sacrifice at least [target_amount] people."
 
 /datum/objective/sacrifice_ecult/check_completion()
+	if(..())
+		return TRUE
 	if(!owner)
 		return FALSE
 	var/datum/antagonist/heretic/cultie = owner.has_antag_datum(/datum/antagonist/heretic)

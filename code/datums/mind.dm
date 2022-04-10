@@ -81,6 +81,13 @@
 	var/original_character_slot_index
 	/// The index for our current scar slot, so we don't have to constantly check the savefile (unlike the slots themselves, this index is independent of selected char slot, and increments whenever a valid char is joined with)
 	var/current_scar_slot_index
+	/// Is set to true if an antag was used to get this person picked as an antag
+	var/token_picked = FALSE
+
+	/// If they have used the afk verb recently
+	var/afk_verb_used = FALSE
+	/// The timer for the afk verb
+	var/afk_verb_timer
 
 /datum/mind/New(key)
 	src.key = key
@@ -150,6 +157,7 @@
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
+	transfer_parasites()
 	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
 	if(accent_name)
 		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
@@ -395,6 +403,7 @@
 
 	var/list/all_objectives = list()
 	for(var/datum/antagonist/A in antag_datums)
+		output += A.task_memory
 		output += A.antag_memory
 		all_objectives |= A.objectives
 

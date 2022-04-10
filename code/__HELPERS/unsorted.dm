@@ -1231,10 +1231,10 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 #define RANDOM_COLOUR (rgb(rand(0,255),rand(0,255),rand(0,255)))
 
-/proc/random_nukecode()
-	var/val = rand(0, 99999)
+/proc/random_nukecode(max_length = 5)
+	var/val = rand(0, (10 ** max_length - 1))
 	var/str = "[val]"
-	while(length(str) < 5)
+	while(length(str) < max_length)
 		str = "0" + str
 	. = str
 

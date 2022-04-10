@@ -1,3 +1,13 @@
+/datum/component/storage/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/M, datum/component/storage/remote)
+	. = ..()
+	if (.)
+		SEND_SIGNAL(parent, COMSIG_STORAGE_INSERTED, I, M)
+
+/datum/component/storage/remove_from_storage(atom/movable/AM, atom/new_location)
+	. = ..()
+	if (.)
+		SEND_SIGNAL(parent, COMSIG_STORAGE_REMOVED, AM, new_location)
+
 /datum/component/storage/RemoveComponent() // hey TG you dropped this
 	UnregisterSignal(parent, COMSIG_CONTAINS_STORAGE)
 	UnregisterSignal(parent, COMSIG_IS_STORAGE_LOCKED)

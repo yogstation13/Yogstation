@@ -162,7 +162,7 @@
 		if(is_holding_pressure())
 			// tell the user that this is a bad idea, and have a do_after as well
 			to_chat(user, span_warning("As you begin crowbarring \the [src] a gush of air blows in your face... maybe you should reconsider?"))
-			if(!do_after(user, 15, TRUE, src)) // give them a few seconds to reconsider their decision.
+			if(!do_after(user, 1.5 SECONDS, TRUE, src)) // give them a few seconds to reconsider their decision.
 				return
 			log_game("[key_name_admin(user)] has opened a firelock with a pressure difference at [AREACOORD(loc)]") // there bibby I made it logged just for you. Enjoy.
 			// since we have high-pressure-ness, close all other firedoors on the tile
@@ -504,16 +504,26 @@
 				update_icon()
 				return
 			if(C.tool_behaviour == TOOL_WRENCH)
-				if(locate(/obj/machinery/door/firedoor) in get_turf(src))
-					to_chat(user, span_warning("There's already a firelock there."))
-					return
+				for(var/obj/machinery/door/firedoor/door in get_turf(src)) //go through each obj/machinery/door/firedoor in the turf
+					if(istype(door,/obj/machinery/door/firedoor/border_only)) //check if it's a full-tile or a directional one
+						if(door.dir == dir) //check if the direction of the firelock is the same as the one we wanna make
+							to_chat(user,span_warning("There is already a directional firelock there.")) //if it is then then them there's already one here
+							return //cancel construction
+					else //since we know there's a fulltile here we just cancel it then
+						to_chat(user, span_warning("There's already a firelock there."))
+						return    
 				C.play_tool_sound(src)
 				user.visible_message(span_notice("[user] starts bolting down [src]..."), \
 									 span_notice("You begin bolting [src]..."))
 				if(!C.use_tool(src, user, 30))
 					return
-				if(locate(/obj/machinery/door/firedoor) in get_turf(src))
-					return
+				//sanity check time, do this dumb ass check again SOMEBODY FIX THIS
+				for(var/obj/machinery/door/firedoor/door in get_turf(src)) 
+					if(istype(door,/obj/machinery/door/firedoor/border_only)) 
+						if(door.dir == dir) 
+							return 
+					else 
+						return    
 				user.visible_message(span_notice("[user] finishes the firelock."), \
 									 span_notice("You finish the firelock."))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
@@ -539,7 +549,7 @@
 				user.visible_message(span_notice("[user] begins reinforcing [src]..."), \
 									 span_notice("You begin reinforcing [src]..."))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
-				if(do_after(user, 60, target = src))
+				if(do_after(user, 6 SECONDS, target = src))
 					if(constructionStep != CONSTRUCTION_PANEL_OPEN || reinforced || P.get_amount() < 2 || !P)
 						return
 					user.visible_message(span_notice("[user] reinforces [src]."), \
@@ -600,7 +610,7 @@
 				user.visible_message(span_notice("[user] begins wiring [src]..."), \
 									 span_notice("You begin adding wires to [src]..."))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
-				if(do_after(user, 60, target = src))
+				if(do_after(user, 6 SECONDS, target = src))
 					if(constructionStep != CONSTRUCTION_GUTTED || B.get_amount() < 5 || !B)
 						return
 					user.visible_message(span_notice("[user] adds wires to [src]."), \
@@ -632,7 +642,7 @@
 				user.visible_message(span_notice("[user] starts adding [C] to [src]..."), \
 									 span_notice("You begin adding a circuit board to [src]..."))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
-				if(!do_after(user, 40, target = src))
+				if(!do_after(user, 4 SECONDS, target = src))
 					return
 				if(constructionStep != CONSTRUCTION_NOCIRCUIT)
 					return

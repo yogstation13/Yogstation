@@ -106,6 +106,10 @@
 /area/shuttle/custom
 	name = "Custom player shuttle"
 
+/area/shuttle/custom/powered
+	name = "Custom Powered player shuttle"
+	requires_power = FALSE
+
 /area/shuttle/arrival
 	name = "Arrival Shuttle"
 	unique = TRUE  // SSjob refers to this area for latejoiners
@@ -132,6 +136,10 @@
 
 /area/shuttle/supply
 	name = "Supply Shuttle"
+	blob_allowed = FALSE
+
+/area/shuttle/ai
+	name = "AI Ship Shuttle"
 	blob_allowed = FALSE
 
 /area/shuttle/escape

@@ -41,7 +41,7 @@
 
 /obj/structure/checkoutmachine/examine(mob/living/user)
 	. = ..()
-	. += span_info("It's integrated integrity meter reads: <b>HEALTH: [obj_integrity]</b>.")
+	. += span_info("Its integrated integrity meter reads: <b>HEALTH: [obj_integrity]</b>.")
 
 /obj/structure/checkoutmachine/proc/check_if_finished()
 	for(var/i in accounts_to_rob)
@@ -62,7 +62,7 @@
 		if(!card.registered_account.being_dumped)
 			to_chat(user, span_warning("It appears that your funds are safe from draining!"))
 			return
-		if(do_after(user, 40, target = src))
+		if(do_after(user, 4 SECONDS, target = src))
 			if(!card.registered_account.being_dumped)
 				return
 			to_chat(user, span_warning("You quickly cash out your funds to a more secure banking location. Funds are safu."))
@@ -214,7 +214,7 @@
 	bogdanoff = user
 	addtimer(CALLBACK(src, .proc/startLaunch), 100)
 	sound_to_playing_players('sound/items/dump_it.ogg', 20)
-	deadchat_broadcast("Protocol CRAB-17 has been activated. A space-coin market has been launched at the station!", turf_target = get_turf(src))
+	deadchat_broadcast("Protocol CRAB-17 has been activated. A spacecoin market has been launched at the station!", turf_target = get_turf(src))
 
 /obj/effect/dumpeetTarget/proc/startLaunch()
 	DF = new /obj/effect/dumpeetFall(drop_location())

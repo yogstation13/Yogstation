@@ -9,9 +9,10 @@
 	item_state = "sechailer"
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	flags_inv = HIDEFACIALHAIR|HIDEFACE
+	flags_1 = HEAR_1
 	w_class = WEIGHT_CLASS_SMALL
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
-	visor_flags_inv = HIDEFACE
+	visor_flags_inv = HIDEFACIALHAIR|HIDEFACE
 	flags_cover = MASKCOVERSMOUTH
 	visor_flags_cover = MASKCOVERSMOUTH
 	var/aggressiveness = 2
@@ -19,6 +20,7 @@
 	var/recent_uses = 0
 	var/broken_hailer = 0
 	var/safety = TRUE
+	var/voicetoggled = TRUE
 
 /obj/item/clothing/mask/gas/sechailer/swat
 	name = "\improper SWAT mask"
@@ -215,3 +217,105 @@
 /obj/item/clothing/mask/gas/sechailer/on_mob_death()
 	. = ..()
 	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0) //lost biosignal for protection team unit 4, remaining units contain 
+
+/obj/item/clothing/mask/gas/sechailer/verb/toggle()
+	set name = "Toggle voice modulator"
+	set category = "Object"
+	set src in usr
+	var/mob/M = usr
+	if (istype(M, /mob/dead/))
+		return
+	if (!can_use(M))
+		return
+	if(voicetoggled == TRUE)
+		to_chat(usr, span_notice("You disable the security mask's voice modulator."))
+		voicetoggled = FALSE
+	else
+		to_chat(usr, span_notice("You enable the security mask's voice modulator."))
+		voicetoggled = TRUE
+	
+/obj/item/clothing/mask/gas/sechailer/verb/viewkeywords()
+	set name = "View voice modulator keywords"
+	set category = "Object"
+	set src in usr
+	var/mob/M = usr
+	if (istype(M, /mob/dead/))
+		return
+	if (!can_use(M))
+		return
+	to_chat(usr, span_notice("The security mask quickly relays a list of recognized keywords"))
+	to_chat(usr, span_notice("Affirmative; Copy; Alright, you can go; Backup; Citizen; Get down; Get out of here; Grenade; Help; Hold it; In position; I said move along; Keep moving; Lookout; Move along; Move back right now; Move it; Now get out of here; Pick up that can; I said pick up the can; Suspect prepare to receive civil judgement; Now put it in the trash can; Responding; Roger that; Shit; Take cover; You knocked it over, pick it up; Searching for suspect; First warning, move away; Sentence delivered; Issuing malcompliant citation; Anticitizen; Apply; Hehe"))
+
+/obj/item/clothing/mask/gas/sechailer/on_mob_say(mob/living/carbon/L, message, message_range)
+	if(voicetoggled == FALSE)
+		return 1
+	if(findtext(message, "Affirmative", 1, 12))
+		playsound(L, 'sound/voice/cpvoicelines/affirmative.ogg', 50, FALSE)
+	else if(findtext(message, "Copy", 1, 5))
+		playsound(L, 'sound/voice/cpvoicelines/copy.ogg', 50, FALSE)
+	else if(findtext(message, "Alright, you can go", 1, 20))
+		playsound(L, 'sound/voice/cpvoicelines/allrightyoucango.ogg', 50, FALSE)
+	else if(findtext(message, "Backup", 1, 7))
+		playsound(L, 'sound/voice/cpvoicelines/backup.ogg', 50, FALSE)
+	else if(findtext(message, "Citizen", 1, 8))
+		playsound(L, 'sound/voice/cpvoicelines/citizen.ogg', 50, FALSE)
+	else if(findtext(message, "Get down", 1, 9))
+		playsound(L, 'sound/voice/cpvoicelines/getdown.ogg', 50, FALSE)
+	else if(findtext(message, "Get out of here", 1, 16))
+		playsound(L, 'sound/voice/cpvoicelines/getoutofhere.ogg', 50, FALSE)
+	else if(findtext(message, "Grenade", 1, 8))
+		playsound(L, 'sound/voice/cpvoicelines/grenade.ogg', 50, FALSE)
+	else if(findtext(message, "Help", 1, 5))
+		playsound(L, 'sound/voice/cpvoicelines/help.ogg', 50, FALSE)
+	else if(findtext(message, "Hold it", 1, 8))
+		playsound(L, 'sound/voice/cpvoicelines/holdit.ogg', 50, FALSE)
+	else if(findtext(message, "In position", 1, 12))
+		playsound(L, 'sound/voice/cpvoicelines/inposition.ogg', 50, FALSE)
+	else if(findtext(message, "I said move along", 1, 18))
+		playsound(L, 'sound/voice/cpvoicelines/isaidmovealong.ogg', 50, FALSE)
+	else if(findtext(message, "Keep moving", 1, 12))
+		playsound(L, 'sound/voice/cpvoicelines/keepmoving.ogg', 50, FALSE)
+	else if(findtext(message, "Lookout", 1, 8))
+		playsound(L, 'sound/voice/cpvoicelines/Lookout.ogg', 50, FALSE)
+	else if(findtext(message, "Move along", 1, 11))
+		playsound(L, 'sound/voice/cpvoicelines/movealong.ogg', 50, FALSE)
+	else if(findtext(message, "Move back right now", 1, 20))
+		playsound(L, 'sound/voice/cpvoicelines/movebackrightnow.ogg', 50, FALSE)
+	else if(findtext(message, "Move it", 1, 8))
+		playsound(L, 'sound/voice/cpvoicelines/moveit2.ogg', 50, FALSE)
+	else if(findtext(message, "Now get out of here", 1, 20))
+		playsound(L, 'sound/voice/cpvoicelines/nowgetoutofhere.ogg', 50, FALSE)
+	else if(findtext(message, "Pick up that can", 1, 17))
+		playsound(L, 'sound/voice/cpvoicelines/pickupthecan1.ogg', 50, FALSE)
+	else if(findtext(message, "I said pick up the can", 1, 24))
+		playsound(L, 'sound/voice/cpvoicelines/pickupthecan3.ogg', 50, FALSE)
+	else if(findtext(message, "Suspect prepare to receive civil judgement", 1, 43))
+		playsound(L, 'sound/voice/cpvoicelines/prepareforjudgement.ogg', 50, FALSE)
+	else if(findtext(message, "Now put it in the trash can", 1, 29))
+		playsound(L, 'sound/voice/cpvoicelines/putitinthetrash1.ogg', 50, FALSE)
+	else if(findtext(message, "Responding", 1, 11))
+		playsound(L, 'sound/voice/cpvoicelines/responding2.ogg', 50, FALSE)
+	else if(findtext(message, "Roger that", 1, 11))
+		playsound(L, 'sound/voice/cpvoicelines/rodgerthat.ogg', 50, FALSE)
+	else if(findtext(message, "Shit", 1, 5))
+		playsound(L, 'sound/voice/cpvoicelines/shit.ogg', 50, FALSE)
+	else if(findtext(message, "Take cover", 1, 11))
+		playsound(L, 'sound/voice/cpvoicelines/takecover.ogg', 50, FALSE)
+	else if(findtext(message, "You knocked it over, pick it up", 1, 32))
+		playsound(L, 'sound/voice/cpvoicelines/youknockeditover.ogg', 50, FALSE)
+	else if(findtext(message, "Searching for suspect", 1, 22))
+		playsound(L, 'sound/voice/cpvoicelines/searchingforsuspect.ogg', 50, FALSE)
+	else if(findtext(message, "First warning, move away", 1, 25))
+		playsound(L, 'sound/voice/cpvoicelines/firstwarningmove.ogg', 50, FALSE)
+	else if(findtext(message, "Sentence delivered", 1, 19))
+		playsound(L, 'sound/voice/cpvoicelines/sentencedelivered.ogg', 50, FALSE)
+	else if(findtext(message, "Issuing malcompliant citation", 1, 30))
+		playsound(L, 'sound/voice/cpvoicelines/issuingmalcompliantcitation.ogg', 50, FALSE)
+	else if(findtext(message, "Anticitizen", 1, 12))
+		playsound(L, 'sound/voice/cpvoicelines/anticitizen.ogg', 50, FALSE)
+	else if(findtext(message, "Apply", 1, 6))
+		playsound(L, 'sound/voice/cpvoicelines/apply.ogg', 50, FALSE)
+	else if(findtext(message, "Hehe", 1, 5))
+		playsound(L, 'sound/voice/cpvoicelines/chuckle.ogg', 50, FALSE)
+	
+

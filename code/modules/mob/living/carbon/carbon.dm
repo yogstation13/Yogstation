@@ -74,6 +74,18 @@
 				if(S.next_step(user,user.a_intent))
 					return TRUE
 
+	var/obj/item/bodypart/affecting = get_bodypart(check_zone(user.zone_selected))
+
+	if(user.a_intent != INTENT_HARM && I.tool_behaviour == TOOL_WELDER && affecting?.status == BODYPART_ROBOTIC)
+		if(I.use_tool(src, user, 0, volume=50, amount=1))
+			if(user == src)
+				user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.name]."),
+					span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.name]."))
+				if(!do_mob(user, src, 50))
+					return TRUE
+			item_heal_robotic(src, user, 15, 0)
+			return TRUE
+
 	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
 		return ..()
 
@@ -163,6 +175,7 @@
 				stop_pulling()
 				if(HAS_TRAIT(src, TRAIT_PACIFISM))
 					to_chat(src, span_notice("You gently let go of [throwable_mob]."))
+					return
 				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 				var/turf/end_T = get_turf(target)
 				if(start_T && end_T)
@@ -170,7 +183,7 @@
 
 	else if(!CHECK_BITFIELD(I.item_flags, ABSTRACT) && !HAS_TRAIT(I, TRAIT_NODROP))
 		thrown_thing = I
-		dropItemToGround(I)
+		dropItemToGround(I, silent = TRUE)
 
 		if(HAS_TRAIT(src, TRAIT_PACIFISM) && I.throwforce)
 			to_chat(src, span_notice("You set [I] down gently on the ground."))
@@ -951,14 +964,114 @@
 
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Make AI"] = "?_src_=vars;[HrefToken()];makeai=[REF(src)]"
-	.["Modify bodypart"] = "?_src_=vars;[HrefToken()];editbodypart=[REF(src)]"
-	.["Modify organs"] = "?_src_=vars;[HrefToken()];editorgans=[REF(src)]"
-	.["Hallucinate"] = "?_src_=vars;[HrefToken()];hallucinate=[REF(src)]"
-	.["Give martial arts"] = "?_src_=vars;[HrefToken()];givemartialart=[REF(src)]"
-	.["Give brain trauma"] = "?_src_=vars;[HrefToken()];givetrauma=[REF(src)]"
-	.["Cure brain traumas"] = "?_src_=vars;[HrefToken()];curetraumas=[REF(src)]"
+	VV_DROPDOWN_SEPERATOR
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_BODYPART, "Modify bodypart")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_ORGANS, "Modify organs")
+	VV_DROPDOWN_OPTION(VV_HK_HALLUCINATION, "Hallucinate")
+	VV_DROPDOWN_OPTION(VV_HK_MARTIAL_ART, "Give Martial Arts")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_TRAUMA, "Give Brain Trauma")
+	VV_DROPDOWN_OPTION(VV_HK_CURE_TRAUMA, "Cure Brain Traumas")
+
+/mob/living/carbon/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_MODIFY_BODYPART])
+		if(!check_rights(R_SPAWN))
+			return
+		var/edit_action = input(usr, "What would you like to do?","Modify Body Part") as null|anything in list("add","remove", "augment")
+		if(!edit_action)
+			return
+		var/list/limb_list = list()
+		if(edit_action == "remove" || edit_action == "augment")
+			for(var/obj/item/bodypart/B in bodyparts)
+				limb_list += B.body_zone
+			if(edit_action == "remove")
+				limb_list -= BODY_ZONE_CHEST
+		else
+			limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+			for(var/obj/item/bodypart/B in bodyparts)
+				limb_list -= B.body_zone
+		var/result = input(usr, "Please choose which body part to [edit_action]","[capitalize(edit_action)] Body Part") as null|anything in sortList(limb_list)
+		if(result)
+			var/obj/item/bodypart/BP = get_bodypart(result)
+			switch(edit_action)
+				if("remove")
+					if(BP)
+						BP.drop_limb()
+					else
+						to_chat(usr, span_boldwarning("[src] doesn't have such bodypart."))
+				if("add")
+					if(BP)
+						to_chat(usr, span_boldwarning("[src] already has such bodypart."))
+					else
+						if(!regenerate_limb(result))
+							to_chat(usr, span_boldwarning("[src] cannot have such bodypart."))
+				if("augment")
+					if(ishuman(src))
+						if(BP)
+							BP.change_bodypart_status(BODYPART_ROBOTIC, TRUE, TRUE)
+						else
+							to_chat(usr, span_boldwarning("[src] doesn't have such bodypart."))
+					else
+						to_chat(usr, span_boldwarning("Only humans can be augmented."))
+		admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src]")
+	if(href_list[VV_HK_MODIFY_ORGANS])
+		if(!check_rights(NONE))
+			return
+		usr.client.manipulate_organs(src)
+	if(href_list[VV_HK_MARTIAL_ART])
+		if(!check_rights(NONE))
+			return
+		var/list/artpaths = subtypesof(/datum/martial_art)
+		var/list/artnames = list()
+		for(var/i in artpaths)
+			var/datum/martial_art/M = i
+			artnames[initial(M.name)] = M
+		var/result = input(usr, "Choose the martial art to teach","JUDO CHOP") as null|anything in sortList(artnames, /proc/cmp_typepaths_asc)
+		if(!usr)
+			return
+		if(QDELETED(src))
+			to_chat(usr, span_boldwarning("Mob doesn't exist anymore."))
+			return
+		if(result)
+			var/chosenart = artnames[result]
+			var/datum/martial_art/MA = new chosenart
+			MA.teach(src)
+			log_admin("[key_name(usr)] has taught [MA] to [key_name(src)].")
+			message_admins(span_notice("[key_name_admin(usr)] has taught [MA] to [key_name_admin(src)]."))
+	if(href_list[VV_HK_GIVE_TRAUMA])
+		if(!check_rights(NONE))
+			return
+		var/list/traumas = subtypesof(/datum/brain_trauma)
+		var/result = input(usr, "Choose the brain trauma to apply","Traumatize") as null|anything in sortList(traumas, /proc/cmp_typepaths_asc)
+		if(!usr)
+			return
+		if(QDELETED(src))
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+		if(!result)
+			return
+		var/datum/brain_trauma/BT = gain_trauma(result)
+		if(BT)
+			log_admin("[key_name(usr)] has traumatized [key_name(src)] with [BT.name]")
+			message_admins(span_notice("[key_name_admin(usr)] has traumatized [key_name_admin(src)] with [BT.name]."))
+	if(href_list[VV_HK_CURE_TRAUMA])
+		if(!check_rights(NONE))
+			return
+		cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
+		log_admin("[key_name(usr)] has cured all traumas from [key_name(src)].")
+		message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(src)]."))
+	if(href_list[VV_HK_HALLUCINATION])
+		if(!check_rights(NONE))
+			return
+		var/list/hallucinations = subtypesof(/datum/hallucination)
+		var/result = input(usr, "Choose the hallucination to apply","Send Hallucination") as null|anything in sortList(hallucinations, /proc/cmp_typepaths_asc)
+		if(!usr)
+			return
+		if(QDELETED(src))
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+		if(result)
+			new result(src, TRUE)
 
 /mob/living/carbon/can_resist()
 	return bodyparts.len > 2 && ..()

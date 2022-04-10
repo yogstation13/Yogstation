@@ -161,6 +161,104 @@
 				</html>
 			"}
 
+/obj/item/book/manual/ashwalker
+	name = "Tome of Herbal Knowledge"
+	icon_state = "book1"
+	author = "Ma'sha Alazee the Shaman"
+	title = "Tome of Herbal Knowledge"
+	dat = {"<html>
+				<head>
+				<style>
+				h1 {font-size: 18px; margin: 15px 0px 5px;}
+				h2 {font-size: 15px; margin: 15px 0px 5px;}
+				li {margin: 2px 0px 2px 15px;}
+				ul {list-style: none; margin: 5px; padding: 0px;}
+				ol {margin: 5px; padding: 0px 15px;}
+				</style>
+				</head>
+				<body>
+
+				<h1>Ancient Ashwalker Recipes</h1>
+				I pass down my knowledge to my kin, all that I know shall forever be preserved in this book.
+				Inside, I shall teach you various important healing recipes and crafting techniques.
+
+
+				<h2>Poultice:</h2>
+
+				To prepare, first gather mushroom stems, cacti or porcini leaves, ashes from a burnt item, and a heat source such as a welder/lit candle.
+				Next, mash together 4 mushroom stems and 3 cacti fruit.
+				Porcini can be used instead of cacti fruit, but due to having less concentration it may be harder to fit enough leaves required to make the product.
+				Afterwards, scoop up ashes with the mortar. If the ashes are warm enough, it may mix without extra heat needed.
+				If it has yet to mix, heat up the bowl by using the welder on it until it has done so.
+				Apply product to wounded parts to heal them. May cause loss of breath.
+
+				<h2>Bone Gel:</h2>
+
+				To prepare, first mash up either 3 of any plant or 1 polypore mushroom shaving.
+				Next, milk a gutlunch, one of which should be near the tendril.
+				Afterwards, once enough honey is gathered, mix the two together and heat.
+				Once heated enough it will solidify into a usable product.
+				Apply product to broken bones in order to mend them.
+
+				<h2>Capmix:</h2>
+
+				To prepare, first gather a mushroom cap, ashes from a burnt item, and a heat source such as a welder/lit candle.
+				Next, mash together one mushroom cap.
+				Afterwards, scoop up ashes with the mortar. If the ashes are warm enough, it may mix without extra heat needed.
+				If it has yet to mix, heat up the bowl by using the welder on it until it has done so.
+				Consume in moderation in order to detox the body. Note, this may induce vomiting.
+
+				<h2>Resin:</h2>
+
+				All the plants here contain a small amount of resin, likely to deter consumption of them, or perhaps to retain water.
+				Either way, it is known to cause belly aches and toxicity within our bodies when consumed in large amounts.
+				However there is several methods for avoiding this:
+				Consuming plants in small quantities, or not consuming them at all.
+				Mashing the plants up and adding water to the bowl to solidify and remove most of the resin.
+				Ingesting capmix in order to expel the resin.
+
+				Resin is also useful for ensuring things stick together, and is a stronger binder than watcher sinew.
+				To use it for this purpose you'll have to solidify it by adding water.
+
+				<h2>Mushroom Paste:</h2>
+
+				To prepare, first gather mushroom stems, cacti or porcini leaves, and a bowl of gutlunch honey/milk.
+				Next, mash together a stem and a cacti fruit/porcini leaf within a mortar with the help of a pestle.
+				Afterwards, the mix should congeal into a odorous paste.
+				This paste can then be applied to crops in order to fertilize them to nurtur and stabilize them.
+
+				<h2>Bug Cheese:</h2>
+
+				A recipe passed down from generation to generation, far before we even discovered the healing properties of mushrooms and such.
+				Although I am not an avid chef, I found it important to ensure the knowledge of making this is never lost either.
+				Creating this delicious food is rather easy.
+				All you must do is use a mortar and pestle to crush a cacti fruit or porcini leaf and then mix it with gutlunch honey.
+				The resulting creation is a ball of healthy bug cheese, ready to eat.
+
+				<h2>Flora:</h2>
+
+				Every plant we are blessed with can be used in some way. 
+				All are not dangerous when consumed in moderation, save for mushroom caps.
+				All may be fermented and brewed into substances that induce a woozy and feel-good high.
+				Cacti fruit is rich in juices that will nurtur and heal your body.
+				Polypore shavings are tough and can be used for crafts such as bowls and wood substitute, and contain a higher than average resin content.
+				Porcini leaves contain a similar content to cacti fruit along with a substance that increases brain focus.
+				Inocybe caps contain deadly toxins in their raw state, but with ash and heat can be neutralized to instead detox the body.
+				Embershroom stems contain a bioluminescient substance that manages to even light up the body when consumed.
+
+				<h2>Leather:</h2>
+
+				Leather does not need to be interacted with much as a shaman,
+				especially if you are prioritizing medicine.
+				However, it can still be useful to know how to make it,
+				Especially since you can use it, or cloth, to create a medicinal pouch useful for holding plants and medicines.
+				To create it, acquire some hide, the most available of which will be goliath hide.
+				Next, skin it well with a sharp tool.
+				Afterwards, wash with water thoroughly, and then dry by placing it over a grill atop a lit bonfire.
+				</body>
+				</html>
+			"}
+
 /obj/item/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
 	icon_state ="bookNuclear"

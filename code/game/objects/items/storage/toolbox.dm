@@ -14,6 +14,8 @@
 	materials = list(/datum/material/iron = 500)
 	attack_verb = list("robusted")
 	hitsound = 'sound/weapons/smash.ogg'
+	drop_sound = 'sound/items/handling/toolbox_drop.ogg'
+	pickup_sound =  'sound/items/handling/toolbox_pickup.ogg'
 	custom_materials = list(/datum/material/iron = 500) //Toolboxes by default use iron as their core, custom material.
 	var/latches = "single_latch"
 	var/has_latches = TRUE
@@ -164,21 +166,16 @@
 	STR.silent = TRUE
 
 /obj/item/storage/toolbox/syndicate/PopulateContents()
-	//YOGS start - toolspeed
-	var/obj/item/I
 	new /obj/item/screwdriver/nuke(src)
-	I = new /obj/item/wrench(src)
-	I.toolspeed = 0.5
-	I = new /obj/item/weldingtool/largetank(src)
-	I.toolspeed = 0.5
-	I = new /obj/item/crowbar/red(src)
-	I.toolspeed = 0.5
-	I = new /obj/item/wirecutters(src, "red")
-	I.toolspeed = 0.5
-	I = new /obj/item/multitool(src)
-	I.toolspeed = 0.5
-	I = new /obj/item/clothing/gloves/combat(src)
-	I.toolspeed = 0.5
+	new /obj/item/wrench(src)
+	new /obj/item/weldingtool/largetank(src)
+	new /obj/item/crowbar/red(src)
+	new /obj/item/wirecutters(src, "red")
+	new /obj/item/multitool(src)
+	new /obj/item/clothing/gloves/combat(src)
+	//YOGS start - toolspeed
+	for(var/obj/item/I in contents)
+		I.toolspeed = 0.5
 
 /obj/item/storage/toolbox/drone
 	name = "mechanical toolbox"
@@ -269,6 +266,8 @@
 	desc = "It contains a few clips."
 	icon_state = "ammobox"
 	item_state = "ammobox"
+	drop_sound = 'sound/items/handling/ammobox_drop.ogg'
+	pickup_sound =  'sound/items/handling/ammobox_pickup.ogg'
 
 /obj/item/storage/toolbox/ammo/PopulateContents()
 	new /obj/item/ammo_box/a762(src)

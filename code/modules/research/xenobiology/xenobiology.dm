@@ -103,7 +103,7 @@
 			return 120
 		if(SLIME_ACTIVATE_MAJOR)
 			to_chat(user, span_notice("Your [name] starts pulsing..."))
-			if(do_after(user, 40, target = user))
+			if(do_after(user, 4 SECONDS, target = user))
 				var/mob/living/simple_animal/slime/S = new(get_turf(user), "grey")
 				playsound(user, 'sound/effects/splat.ogg', 50, 1)
 				to_chat(user, span_notice("You spit out [S]."))
@@ -121,7 +121,7 @@
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
 			user.visible_message(span_warning("[user] starts shaking!"),span_notice("Your [name] starts pulsing gently..."))
-			if(do_after(user, 40, target = user))
+			if(do_after(user, 4 SECONDS, target = user))
 				var/mob/living/simple_animal/S = create_random_mob(user.drop_location(), FRIENDLY_SPAWN)
 				S.faction |= "neutral"
 				playsound(user, 'sound/effects/splat.ogg', 50, 1)
@@ -130,7 +130,7 @@
 
 		if(SLIME_ACTIVATE_MAJOR)
 			user.visible_message(span_warning("[user] starts shaking violently!"),span_warning("Your [name] starts pulsing violently..."))
-			if(do_after(user, 50, target = user))
+			if(do_after(user, 5 SECONDS, target = user))
 				var/mob/living/simple_animal/S = create_random_mob(user.drop_location(), HOSTILE_SPAWN)
 				if(user.a_intent != INTENT_HARM)
 					S.faction |= "neutral"
@@ -379,7 +379,7 @@
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
 			to_chat(user, span_warning("You feel yourself reverting to human form..."))
-			if(do_after(user, 120, target = user))
+			if(do_after(user, 12 SECONDS, target = user))
 				to_chat(user, span_warning("You feel human again!"))
 				user.set_species(/datum/species/human)
 				return
@@ -387,7 +387,7 @@
 
 		if(SLIME_ACTIVATE_MAJOR)
 			to_chat(user, span_warning("You feel yourself radically changing your slime type..."))
-			if(do_after(user, 120, target = user))
+			if(do_after(user, 12 SECONDS, target = user))
 				to_chat(user, span_warning("You feel different!"))
 				user.set_species(pick(/datum/species/jelly/slime, /datum/species/jelly/stargazer))
 				return
@@ -432,7 +432,7 @@
 
 		if(SLIME_ACTIVATE_MAJOR)
 			to_chat(user, span_warning("You feel your own light turning dark..."))
-			if(do_after(user, 120, target = user))
+			if(do_after(user, 12 SECONDS, target = user))
 				to_chat(user, span_warning("You feel a longing for darkness."))
 				user.set_species(pick(/datum/species/shadow))
 				return
@@ -454,7 +454,7 @@
 
 		if(SLIME_ACTIVATE_MAJOR)
 			user.visible_message(span_warning("[user]'s skin starts pulsing and glowing ominously..."), span_userdanger("You feel unstable..."))
-			if(do_after(user, 60, target = user))
+			if(do_after(user, 6 SECONDS, target = user))
 				to_chat(user, span_userdanger("You explode!"))
 				explosion(get_turf(user), 1 ,3, 6)
 				user.gib()
@@ -480,7 +480,7 @@
 
 		if(SLIME_ACTIVATE_MAJOR)
 			to_chat(user, span_warning("You feel your body rapidly crystallizing..."))
-			if(do_after(user, 120, target = user))
+			if(do_after(user, 12 SECONDS, target = user))
 				to_chat(user, span_warning("You feel solid."))
 				user.set_species(pick(/datum/species/golem/adamantine))
 				return
@@ -590,7 +590,7 @@
 
 		if(SLIME_ACTIVATE_MAJOR)
 			to_chat(user, span_warning("You begin to anchor yourself to your current chronicity..."))
-			if(do_after(user, 10, target = user))
+			if(do_after(user, 1 SECONDS, target = user))
 				user.AddComponent(/datum/component/dejavu)
 				return 300
 
@@ -737,6 +737,10 @@
 
 	SM.access_card = new /obj/item/card/id/syndicate(SM)
 	ADD_TRAIT(SM.access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+
+/obj/item/slimepotion/slime/sentience/traitor
+	name = "lesser syndicate intelligence potion"
+	desc = "A miraculous chemical mix that grants human like intelligence to living beings. The Syndicate have gone to great lengths to secure this, don't waste it!"
 
 /obj/item/slimepotion/transference
 	name = "consciousness transference potion"

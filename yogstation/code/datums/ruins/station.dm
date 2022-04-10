@@ -60,6 +60,11 @@
 	suffix = "bar_cheese.dmm"
 	name = "Bar Cheese"
 
+/datum/map_template/ruin/station/box/bar/grassy
+	id = "bar_grassy"
+	suffix = "bar_grassy.dmm"
+	name = "Bar Grassy"
+
 /datum/map_template/ruin/station/box/bar/clock
 	id = "bar_clock"
 	suffix = "bar_clock.dmm"
@@ -249,6 +254,11 @@
 	id = "transfer9"
 	suffix = "transfer9.dmm"
 	name = "Transfer 9"
+
+/datum/map_template/ruin/station/box/transfer/transfer10
+	id = "transfer10"
+	suffix = "transfer10.dmm"
+	name = "Transfer 10"
 
 /datum/map_template/ruin/station/eclipse
     prefix = "_maps/RandomRuins/StationRuins/EclipseStation/"

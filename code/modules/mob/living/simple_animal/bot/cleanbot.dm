@@ -214,7 +214,7 @@
 		mode = BOT_CLEANING
 
 		var/turf/T = get_turf(A)
-		if(do_after(src, 1, target = T))
+		if(do_after(src, 0.1 SECONDS, target = T))
 			T.wash(CLEAN_WASH)
 			visible_message(span_notice("[src] cleans \the [T]."))
 			target = null
@@ -316,3 +316,11 @@ Maintenance panel panel is [open ? "opened" : "closed"]"})
 /mob/living/simple_animal/bot/cleanbot/medical/Initialize()
     . = ..()
     bot_core.req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS, ACCESS_MEDICAL)
+
+/mob/living/simple_animal/bot/cleanbot/spacebar
+    name = "Frank Cleansington III"
+    desc = "A little cleaning robot, he looks so excited! You still have no idea why your dad named it this."
+
+/mob/living/simple_animal/bot/cleanbot/spacebar/Initialize()
+	. = ..()
+	bot_core.req_access = list(ACCESS_BAR)

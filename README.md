@@ -83,7 +83,7 @@ where the admin rank must be properly capitalised.
 This codebase also depends on a native library called rust-g. A precompiled
 Windows DLL is included in this repository, but Linux users will need to build
 and install it themselves. Directions can be found at the [rust-g
-repo](https://github.com/tgstation/rust-g).
+repo](https://github.com/tgstation/rust-g). The `hash` feature is required.
 
 Finally, to start the server, run Dream Daemon and enter the path to your
 compiled yogstation.dmb file. Make sure to set the port to the one you

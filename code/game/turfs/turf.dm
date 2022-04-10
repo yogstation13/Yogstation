@@ -120,6 +120,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 /turf/attack_hand(mob/user)
 	. = ..()
+	if(SEND_SIGNAL(user, COMSIG_MOB_ATTACK_HAND_TURF, src) & COMPONENT_NO_ATTACK_HAND)
+		. = TRUE
 	if(.)
 		return
 	user.Move_Pulled(src)
@@ -355,12 +357,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		return
 	if(length(src_object.contents()))
 		to_chat(usr, span_notice("You start dumping out the contents..."))
-		if(!do_after(usr,20,target=src_object.parent))
+		if(!do_after(usr, 2 SECONDS, target=src_object.parent))
 			return FALSE
 
 	var/list/things = src_object.contents()
 	var/datum/progressbar/progress = new(user, things.len, src)
-	while (do_after(usr, 10, TRUE, src, FALSE, CALLBACK(src_object, /datum/component/storage.proc/mass_remove_from_storage, src, things, progress)))
+	while (do_after(usr, 1 SECONDS, TRUE, src, FALSE, CALLBACK(src_object, /datum/component/storage.proc/mass_remove_from_storage, src, things, progress)))
 		stoplag(1)
 	qdel(progress)
 
@@ -402,18 +404,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 /turf/proc/visibilityChanged()
 	GLOB.cameranet.updateVisibility(src)
-	// The cameranet usually handles this for us, but if we've just been
-	// recreated we should make sure we have the cameranet vis_contents.
-	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
-	if(C)
-		if(C.obscuredTurfs[src])
-			vis_contents += GLOB.cameranet.vis_contents_objects
-		else
-			vis_contents -= GLOB.cameranet.vis_contents_objects
 
 /turf/proc/burn_tile()
+	return
 
 /turf/proc/is_shielded()
+	return
 
 /turf/contents_explosion(severity, target)
 	for(var/thing in contents)

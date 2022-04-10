@@ -11,7 +11,8 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
-	var/icon_regular_floor = "floor" //used to remember what icon the tile should have by default
+	var/icon_state_regular_floor = "floor" //used to remember what icon state the tile should have by default
+	var/icon_regular_floor = 'icons/turf/floors.dmi' //used to remember what icon the tile should have by default
 	var/icon_plating = "plating"
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
@@ -51,9 +52,11 @@
 					"ironsand6", "ironsand7", "ironsand8", "ironsand9", "ironsand10", "ironsand11",
 					"ironsand12", "ironsand13", "ironsand14", "ironsand15")
 	if(broken || burnt || (icon_state in icons_to_ignore_at_floor_init)) //so damaged/burned tiles or plating icons aren't saved as the default
-		icon_regular_floor = "floor"
+		icon_state_regular_floor = "floor"
+		icon_regular_floor = 'icons/turf/floors.dmi'
 	else
-		icon_regular_floor = icon_state
+		icon_state_regular_floor = icon_state
+		icon_regular_floor = icon
 	if(mapload && prob(33))
 		MakeDirty()
 	if(is_station_level(z))
@@ -122,6 +125,9 @@
 /turf/open/floor/proc/gets_drilled()
 	return
 
+/turf/open/floor/proc/attempt_drilled()
+	return
+
 /turf/open/floor/proc/break_tile_to_plating()
 	var/turf/open/floor/plating/T = make_plating()
 	if(!istype(T))
@@ -152,9 +158,11 @@
 	if(!ispath(path, /turf/open/floor))
 		return ..()
 	var/old_icon = icon_regular_floor
+	var/old_icon_state = icon_state_regular_floor
 	var/old_dir = dir
 	var/turf/open/floor/W = ..()
 	W.icon_regular_floor = old_icon
+	W.icon_state_regular_floor = old_icon_state
 	W.setDir(old_dir)
 	W.update_icon()
 	return W

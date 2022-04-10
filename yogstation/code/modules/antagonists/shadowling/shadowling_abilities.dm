@@ -9,7 +9,7 @@
 	else if(is_shadow(usr)) to_chat(usr, span_warning("Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first."))
 	return 0
 
-/obj/effect/proc_holder/spell/targeted/sling //Stuns and mutes a human target for 10 seconds
+/obj/effect/proc_holder/spell/targeted/sling
 	ranged_mousepointer = 'icons/effects/cult_target.dmi'
 	var/mob/living/user
 	var/mob/living/target
@@ -52,7 +52,7 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/glare //Stuns and mutes a human target for 10 seconds
 	name = "Glare"
-	desc = "Disrupts the target's motor and speech abilities."
+	desc = "Disrupts the target's motor and speech abilities. Much more effective within two meters."
 	panel = "Shadowling Abilities"
 	charge_max = 300
 	human_req = TRUE
@@ -83,7 +83,10 @@
 	else //Distant glare
 		var/loss = 100 - (distance * 10)
 		target.adjustStaminaLoss(loss)
-		target.stuttering = loss
+		if(iscarbon(target))
+			target.stuttering = loss
+		else if(issilicon(target))
+			target.stuttering = distance
 		to_chat(target, span_userdanger("A purple light flashes across your vision, and exhaustion floods your body..."))
 		target.visible_message(span_danger("[target] looks very tired..."))
 	charge_counter = 0
@@ -159,8 +162,7 @@
 		if(istype(LO, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/borg = LO
 			if(!borg.lamp_cooldown)
-				borg.update_headlamp(TRUE, INFINITY)
-				to_chat(borg, span_userdanger("The lightbulb in your headlamp is fried! You'll need a human to help replace it."))
+				borg.smash_headlamp()
 		if(istype(LO, /obj/machinery/camera))
 			LO.set_light(0)
 			if(prob(10))
@@ -173,6 +175,8 @@
 		if(istype(LO, /obj/machinery/power/floodlight))
 			var/obj/machinery/power/floodlight/FL = LO
 			FL.change_setting(2) // Set floodlight to lowest setting
+		if(istype(LO, /obj/structure/light_prism))
+			qdel(LO)
 
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
 		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
@@ -386,7 +390,7 @@
 		if(is_thrall(M))
 			thralls++
 			to_chat(M, span_shadowling("You feel hooks sink into your mind and pull."))
-	if(!do_after(user, 30, target = user))
+	if(!do_after(user, 3 SECONDS, target = user))
 		to_chat(user, span_warning("Your concentration has been broken. The mental hooks you have sent out now retract into your mind."))
 		return
 	if(thralls >= CEILING(3 * SSticker.mode.thrall_ratio, 1) && !screech_acquired)
@@ -458,7 +462,7 @@
 	target_apc.visible_message(span_warning("The [target_apc] flickers and begins to grow dark."))
 
 	to_chat(user, span_shadowling("You dim the APC's screen and carefully begin siphoning its power into the void."))
-	if(!do_after(user, 200, target=target_apc))
+	if(!do_after(user, 20 SECONDS, target=target_apc))
 		//Whoops!  The APC's light turns back on
 		to_chat(user, span_shadowling("Your concentration breaks and the APC suddenly repowers!"))
 		target_apc.set_light(2)
@@ -684,7 +688,7 @@
 						  span_notice("You begin to draw [M]'s life force."))
 		M.visible_message(span_warning("[M]'s face falls slack, their jaw slightly distending."), \
 						  span_boldannounce("You are suddenly transported... far, far away..."))
-		if(!do_after(user, 50, target = M))
+		if(!do_after(user, 5 SECONDS, target = M))
 			to_chat(M, span_warning("You are snapped back to reality, your haze dissipating!"))
 			to_chat(user, span_warning("You have been interrupted. The draw has failed."))
 			return

@@ -56,6 +56,7 @@
 				return
 			else if(!grilled_item && user.transferItemToLoc(food_item, src))
 				grilled_item = food_item
+				RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
 				grilled_item.foodtype |= GRILLED
 				to_chat(user, span_notice("You put the [grilled_item] on [src]."))
 				update_icon()
@@ -83,6 +84,7 @@
 			smoke.set_up(1, loc)
 			smoke.start()
 	if(grilled_item)
+		SEND_SIGNAL(grilled_item, COMSIG_ITEM_GRILLED, src, 1)
 		grill_time++
 		grilled_item.reagents.add_reagent(/datum/reagent/consumable/char, 0.2)
 		grill_fuel -= GRILL_FUELUSAGE_ACTIVE
@@ -144,7 +146,12 @@
 			grilled_item.desc = "A [grilled_item.name]. Reminds you of your wife, wait, no, it's prettier!"
 			grilled_item.foodtype |= GRILLED
 	grill_time = 0
+	UnregisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
 	grill_loop.stop()
+
+///Called when a food is transformed by the grillable component
+/obj/machinery/grill/proc/GrillCompleted(obj/item/source, atom/grilled_result)
+	grilled_item = grilled_result //use the new item!!
 
 /obj/machinery/grill/unwrenched
 	anchored = FALSE

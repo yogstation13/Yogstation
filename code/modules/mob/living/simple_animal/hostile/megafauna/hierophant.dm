@@ -509,7 +509,7 @@ Difficulty: Hard
 	. = ..()
 	if(ismineralturf(loc))
 		var/turf/closed/mineral/M = loc
-		M.gets_drilled(caster)
+		M.attempt_drill(caster)
 
 /obj/effect/temp_visual/hierophant/wall //smoothing and pooling were not friends, but pooling is dead.
 	name = "vortex wall"
@@ -646,7 +646,7 @@ Difficulty: Hard
 		hit_things += new_caster
 	if(ismineralturf(loc)) //drill mineral turfs
 		var/turf/closed/mineral/M = loc
-		M.gets_drilled(caster)
+		M.attempt_drill(caster)
 	INVOKE_ASYNC(src, .proc/blast)
 
 /obj/effect/temp_visual/hierophant/blast/proc/blast()
@@ -721,7 +721,7 @@ Difficulty: Hard
 			to_chat(user, span_notice("You start removing your hierophant beacon..."))
 			H.timer = world.time + 51
 			INVOKE_ASYNC(H, /obj/item/hierophant_club.proc/prepare_icon_update)
-			if(do_after(user, 50, target = src))
+			if(do_after(user, 5 SECONDS, target = src))
 				playsound(src,'sound/magic/blind.ogg', 200, 1, -4)
 				new /obj/effect/temp_visual/hierophant/telegraph/teleport(get_turf(src), user)
 				to_chat(user, "[span_hierophant_warning("You collect [src], reattaching it to the club!")]")

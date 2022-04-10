@@ -157,7 +157,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	layer = MOB_LAYER
 	visible_message(span_danger("[src] starts eating away [A]..."),
 						 span_notice("You start eating the [A]..."))
-	if(do_after(src, 30, FALSE, A))
+	if(do_after(src, 3 SECONDS, FALSE, A))
 		if(QDELETED(A))
 			return
 		visible_message(span_danger("[src] finishes eating up [A]!"),
@@ -232,6 +232,10 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /obj/item/reagent_containers/food/snacks/customizable/cheesewheel/mouse_eat(mob/living/simple_animal/mouse/M)
 	M.cheese_up()
 	qdel(src)
+
+/obj/item/reagent_containers/food/snacks/cheesiehonkers/mouse_eat(mob/living/simple_animal/mouse/M)
+	M.cheese_up()
+	qdel(src)	
 
 /obj/item/grown/bananapeel/bluespace/mouse_eat(mob/living/simple_animal/mouse/M)
 	var/teleport_radius = max(round(seed.potency / 10), 1)
