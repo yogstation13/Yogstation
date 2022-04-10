@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "toolset implants can have their tool switch menu opened by using the currently active tool in-hand"
+  - bugfix: "fixes a runtime caused by welding fuel tanks attempting to refill any TOOL_WELDER then expecting them to actually be welders"

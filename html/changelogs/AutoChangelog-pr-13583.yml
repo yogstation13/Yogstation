@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "runtime fix"
-  - bugfix: "organ efficiency now calculates properly"

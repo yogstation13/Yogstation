@@ -1,0 +1,7 @@
+author: " TheSwain, JohnFulpWillard"
+delete-after: true 
+changes: 
+  - rscadd: "Added new antags from fulp: bloodsuckers and monster hunters, together with stakes and other structures and a new language"
+  - soundadd: "added new epic bloodsucker and monster hunter sounds (together with many owls)"
+  - imageadd: "added new books and coffins"
+  - spellcheck: "fixed some minor coding spelling mistakes"
