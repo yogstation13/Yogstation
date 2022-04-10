@@ -1,5 +1,0 @@
-author: " Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Using the \"Jump to Network\" verb as an AI no longer clobbers the AI's network variable with mistyped data."
-  - spellcheck: "Cancelling a jump to another camera network as the AI no longer tells you that you're \\"switching to the /list\\" network."

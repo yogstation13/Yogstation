@@ -1,4 +1,0 @@
-author: "00ze-cyclone"
-delete-after: true 
-changes: 
-  - rscdel: "Removed the special battery and \\"ammo\\" of the X-01, and make it now use regular ones, tell me if you can manage to see the difference"
