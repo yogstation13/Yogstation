@@ -39,7 +39,6 @@ endmap
 
 map gaxstation
 	maxplayers 30
-	votable
 endmap
 
 map icebox
