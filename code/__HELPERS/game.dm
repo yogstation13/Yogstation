@@ -8,11 +8,14 @@
 #define Z_TURFS(ZLEVEL) block(locate(1,1,ZLEVEL), locate(world.maxx, world.maxy, ZLEVEL))
 #define CULT_POLL_WAIT 2400
 
-/proc/get_area_name(atom/X, format_text = FALSE)
+/proc/get_area_name(atom/X, format_text = FALSE, is_sensor = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
 		return null
-	return format_text ? format_text(A.name) : A.name
+	var/name = A.name
+	if (is_sensor && !A.show_on_sensors)
+		name = Gibberish(name, TRUE, 90)
+	return format_text ? format_text(name) : name
 
 /proc/get_areas_in_range(dist=0, atom/center=usr)
 	if(!dist)
