@@ -47,17 +47,11 @@
 #define ROLE_HORROR				"Eldritch Horror" // Yogs
 #define ROLE_INFILTRATOR		"Infiltrator" // Yogs
 #define ROLE_ZOMBIE				"Zombie"
-<<<<<<< DragonUpdate
-#define ROLE_SPACE_DRAGON		"Space Dragon"
-
-=======
 #define ROLE_BLOODSUCKER		"Bloodsucker"
 #define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
-#define ROLE_BLOODSUCKERBREAKOUT "Bloodsucker Breakout"
+#define ROLE_BLOODSUCKERBREAKOUT	"Bloodsucker Breakout"
 #define ROLE_MONSTERHUNTER		"Monster Hunter"
-
->>>>>>>master
-
+#define ROLE_SPACE_DRAGON		"Space Dragon"
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -97,6 +91,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_ZOMBIE = /datum/game_mode/zombie,
 	ROLE_FUGITIVE,
 	ROLE_SPACE_DRAGON,
+	ROLE_BLOODSUCKER = /datum/game_mode/bloodsucker,
+	ROLE_MONSTERHUNTER,
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
