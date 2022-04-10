@@ -1,12 +1,12 @@
 
 /datum/guardianname
 	var/prefixname = "Default" //the prefix the guardian uses for its name
-	var/suffixcolor = "Name" //the suffix the guardian uses for its name
+	var/suffixcolour = "Name" //the suffix the guardian uses for its name
 	var/parasiteicon = "techbase" //the icon of the guardian
 	var/bubbleicon = "holo" //the speechbubble icon of the guardian
 	var/theme = "tech" //what the actual theme of the guardian is
-	var/color = "#C3C3C3" //what color the guardian's name is in chat and what color is used for effects from the guardian
-	var/stainself = 0 //whether to use the color var to literally dye ourself our chosen color, for lazy spriting
+	var/colour = "#C3C3C3" //what color the guardian's name is in chat and what color is used for effects from the guardian
+	var/stainself = 0 //whether to use the color var to literally dye ourself our chosen colour, for lazy spriting
 
 /datum/guardianname/carp
 	bubbleicon = "guardian"
@@ -18,52 +18,52 @@
 	prefixname = pick(GLOB.carp_names)
 
 /datum/guardianname/carp/sand
-	suffixcolor = "Sand"
-	color = "#C2B280"
+	suffixcolour = "Sand"
+	colour = "#C2B280"
 
 /datum/guardianname/carp/seashell
-	suffixcolor = "Seashell"
-	color = "#FFF5EE"
+	suffixcolour = "Seashell"
+	colour = "#FFF5EE"
 
 /datum/guardianname/carp/coral
-	suffixcolor = "Coral"
-	color = "#FF7F50"
+	suffixcolour = "Coral"
+	colour = "#FF7F50"
 
 /datum/guardianname/carp/salmon
-	suffixcolor = "Salmon"
-	color = "#FA8072"
+	suffixcolour = "Salmon"
+	colour = "#FA8072"
 
 /datum/guardianname/carp/sunset
-	suffixcolor = "Sunset"
-	color = "#FAD6A5"
+	suffixcolour = "Sunset"
+	colour = "#FAD6A5"
 
 /datum/guardianname/carp/riptide
-	suffixcolor = "Riptide"
-	color = "#89D9C8"
+	suffixcolour = "Riptide"
+	colour = "#89D9C8"
 
 /datum/guardianname/carp/seagreen
-	suffixcolor = "Sea Green"
-	color = "#2E8B57"
+	suffixcolour = "Sea Green"
+	colour = "#2E8B57"
 
 /datum/guardianname/carp/ultramarine
-	suffixcolor = "Ultramarine"
-	color = "#3F00FF"
+	suffixcolour = "Ultramarine"
+	colour = "#3F00FF"
 
 /datum/guardianname/carp/cerulean
-	suffixcolor = "Cerulean"
-	color = "#007BA7"
+	suffixcolour = "Cerulean"
+	colour = "#007BA7"
 
 /datum/guardianname/carp/aqua
-	suffixcolor = "Aqua"
-	color = "#00FFFF"
+	suffixcolour = "Aqua"
+	colour = "#00FFFF"
 
 /datum/guardianname/carp/paleaqua
-	suffixcolor = "Pale Aqua"
-	color = "#BCD4E6"
+	suffixcolour = "Pale Aqua"
+	colour = "#BCD4E6"
 
 /datum/guardianname/carp/hookergreen
-	suffixcolor = "Hooker Green"
-	color = "#49796B"
+	suffixcolour = "Hooker Green"
+	colour = "#49796B"
 
 /datum/guardianname/magic
 	bubbleicon = "guardian"
@@ -73,89 +73,89 @@
 	prefixname = pick("Aries", "Leo", "Sagittarius", "Taurus", "Virgo", "Capricorn", "Gemini", "Libra", "Aquarius", "Cancer", "Scorpio", "Pisces", "Ophiuchus")
 
 /datum/guardianname/magic/red
-	suffixcolor = "Red"
+	suffixcolour = "Red"
 	parasiteicon = "magicRed"
-	color = "#E32114"
+	colour = "#E32114"
 
 /datum/guardianname/magic/pink
-	suffixcolor = "Pink"
+	suffixcolour = "Pink"
 	parasiteicon = "magicPink"
-	color = "#FB5F9B"
+	colour = "#FB5F9B"
 
 /datum/guardianname/magic/orange
-	suffixcolor = "Orange"
+	suffixcolour = "Orange"
 	parasiteicon = "magicOrange"
-	color = "#F3CF24"
+	colour = "#F3CF24"
 
 /datum/guardianname/magic/green
-	suffixcolor = "Green"
+	suffixcolour = "Green"
 	parasiteicon = "magicGreen"
-	color = "#A4E836"
+	colour = "#A4E836"
 
 /datum/guardianname/magic/blue
-	suffixcolor = "Blue"
+	suffixcolour = "Blue"
 	parasiteicon = "magicBlue"
-	color = "#78C4DB"
+	colour = "#78C4DB"
 
 /datum/guardianname/tech/New()
 	prefixname = pick("Gallium", "Indium", "Thallium", "Bismuth", "Aluminium", "Mercury", "Iron", "Silver", "Zinc", "Titanium", "Chromium", "Nickel", "Platinum", "Tellurium", "Palladium", "Rhodium", "Cobalt", "Osmium", "Tungsten", "Iridium")
 
 /datum/guardianname/tech/rose
-	suffixcolor = "Rose"
+	suffixcolour = "Rose"
 	parasiteicon = "techRose"
-	color = "#F62C6B"
+	colour = "#F62C6B"
 
 /datum/guardianname/tech/peony
-	suffixcolor = "Peony"
+	suffixcolour = "Peony"
 	parasiteicon = "techPeony"
-	color = "#E54750"
+	colour = "#E54750"
 
 /datum/guardianname/tech/lily
-	suffixcolor = "Lily"
+	suffixcolour = "Lily"
 	parasiteicon = "techLily"
-	color = "#F6562C"
+	colour = "#F6562C"
 
 /datum/guardianname/tech/daisy
-	suffixcolor = "Daisy"
+	suffixcolour = "Daisy"
 	parasiteicon = "techDaisy"
-	color = "#ECCD39"
+	colour = "#ECCD39"
 
 /datum/guardianname/tech/zinnia
-	suffixcolor = "Zinnia"
+	suffixcolour = "Zinnia"
 	parasiteicon = "techZinnia"
-	color = "#89F62C"
+	colour = "#89F62C"
 
 /datum/guardianname/tech/ivy
-	suffixcolor = "Ivy"
+	suffixcolour = "Ivy"
 	parasiteicon = "techIvy"
-	color = "#5DF62C"
+	colour = "#5DF62C"
 
 /datum/guardianname/tech/iris
-	suffixcolor = "Iris"
+	suffixcolour = "Iris"
 	parasiteicon = "techIris"
-	color = "#2CF6B8"
+	colour = "#2CF6B8"
 
 /datum/guardianname/tech/petunia
-	suffixcolor = "Petunia"
+	suffixcolour = "Petunia"
 	parasiteicon = "techPetunia"
-	color = "#51A9D4"
+	colour = "#51A9D4"
 
 /datum/guardianname/tech/violet
-	suffixcolor = "Violet"
+	suffixcolour = "Violet"
 	parasiteicon = "techViolet"
-	color = "#8A347C"
+	colour = "#8A347C"
 
 /datum/guardianname/tech/lotus
-	suffixcolor = "Lotus"
+	suffixcolour = "Lotus"
 	parasiteicon = "techLotus"
-	color = "#463546"
+	colour = "#463546"
 
 /datum/guardianname/tech/lilac
-	suffixcolor = "Lilac"
+	suffixcolour = "Lilac"
 	parasiteicon = "techLilac"
-	color = "#C7A0F6"
+	colour = "#C7A0F6"
 
 /datum/guardianname/tech/orchid
-	suffixcolor = "Orchid"
+	suffixcolour = "Orchid"
 	parasiteicon = "techOrchid"
-	color = "#F62CF5"
+	colour = "#F62CF5"

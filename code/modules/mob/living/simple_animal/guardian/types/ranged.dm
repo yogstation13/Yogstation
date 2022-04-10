@@ -61,7 +61,7 @@
 	if(istype(., /obj/item/projectile))
 		var/obj/item/projectile/P = .
 		if(namedatum)
-			P.color = namedatum.color
+			P.color = namedatum.colour
 
 /mob/living/simple_animal/hostile/guardian/ranged/ToggleLight()
 	var/msg
