@@ -56,6 +56,12 @@
 	/// Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
 	var/unres_sides = 0
 
+/obj/machinery/door/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, list/message_mods = list())
+	. = ..()
+	if(raw_message == "AI, open")
+		locked = FALSE
+		open()
+
 /obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(red_alert_access)
@@ -88,6 +94,8 @@
 	//doors only block while dense though so we have to use the proc
 	real_explosion_block = explosion_block
 	explosion_block = EXPLOSION_BLOCK_PROC
+
+	flags_1 |= HEAR_1
 
 /obj/machinery/door/proc/set_init_door_layer()
 	if(density)
