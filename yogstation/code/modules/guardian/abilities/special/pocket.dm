@@ -469,7 +469,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 /mob/camera/aiEye/remote/pocket
 	name = "Inactive Guardian Eye"
 	move_on_shuttle = TRUE
-	use_static = USE_STATIC_NONE
+	use_static = FALSE
 	var/mob/living/simple_animal/hostile/guardian/guardian
 	var/datum/guardian_ability/major/special/pocket/guardian_ability
 
