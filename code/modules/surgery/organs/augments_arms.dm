@@ -181,16 +181,16 @@
 	contents = newlist(/obj/item/screwdriver/cyborg, /obj/item/wrench/cyborg, /obj/item/weldingtool/largetank/cyborg,
 		/obj/item/crowbar/cyborg, /obj/item/wirecutters/cyborg, /obj/item/multitool/cyborg)
 	///currently used pallate
-	var/obj/item/toolset_handler/linkedpallate
+	var/obj/item/toolset_handler/linkedhandler
 
 /obj/item/organ/cyberimp/arm/toolset/l
 	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/toolset/Initialize()
 	. = ..()
-	linkedpallate = new
-	linkedpallate.linkedarm = src
-	ADD_TRAIT(linkedpallate, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	linkedhandler = new
+	linkedhandler.linkedarm = src
+	ADD_TRAIT(linkedhandler, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 /obj/item/organ/cyberimp/arm/toolset/emag_act()
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
@@ -200,19 +200,19 @@
 	return FALSE
 
 /obj/item/organ/cyberimp/arm/toolset/Retract()
-	if(!linkedpallate || !(linkedpallate in owner.contents))
+	if(!linkedhandler || !(linkedhandler in owner.contents))
 		return
 
-	owner.visible_message(span_notice("[owner] retracts [linkedpallate] back into [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
-		span_notice("[linkedpallate] snaps back into your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+	owner.visible_message(span_notice("[owner] retracts [linkedhandler] back into [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+		span_notice("[linkedhandler] snaps back into your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
 		span_italics("You hear a short mechanical noise."))
 
-	if(istype(linkedpallate.active_tool, /obj/item/weldingtool))
-		var/obj/item/weldingtool/W = linkedpallate.active_tool
+	if(istype(linkedhandler.active_tool, /obj/item/weldingtool))
+		var/obj/item/weldingtool/W = linkedhandler.active_tool
 		if(W.welding)
 			W.switched_on(owner)
 
-	owner.transferItemToLoc(linkedpallate, src, TRUE)
+	owner.transferItemToLoc(linkedhandler, src, TRUE)
 	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
 
 /obj/item/organ/cyberimp/arm/toolset/Extend(var/obj/item/item)
@@ -224,13 +224,13 @@
 		if(!W.welding)
 			W.switched_on(owner) //for some godawful reason this proc handles BOTH switching on and off while switching off just hard disables a welder
 
-	linkedpallate.active_tool = item
+	linkedhandler.active_tool = item
 	spawn(1) //so you are probably asking hey theos why are  you using spawn(1) here and that's a good question the answer is the welder APPARENTLY doesn't update its icon immediately, meaning if we don't wait we'll get the pre-toggled icon
-		linkedpallate.update_tool() //so we give it a little bit of breathing space
+		linkedhandler.update_tool() //so we give it a little bit of breathing space
 
 	var/obj/item/arm_item = owner.get_active_held_item()
 
-	if(arm_item && arm_item != linkedpallate)
+	if(arm_item && arm_item != linkedhandler)
 		if(!owner.dropItemToGround(arm_item))
 			to_chat(owner, span_warning("Your [arm_item] interferes with [src]!"))
 			return
@@ -239,11 +239,11 @@
 
 	var/result = FALSE
 	var/need_switch = TRUE
-	if(linkedpallate in owner.contents)
+	if(linkedhandler in owner.contents)
 		result = TRUE
 		need_switch = FALSE
 	else
-		result = (zone == BODY_ZONE_R_ARM ? owner.put_in_r_hand(linkedpallate) : owner.put_in_l_hand(linkedpallate))
+		result = (zone == BODY_ZONE_R_ARM ? owner.put_in_r_hand(linkedhandler) : owner.put_in_l_hand(linkedhandler))
 	if(!result)
 		to_chat(owner, span_warning("Your [name] fails to activate!"))
 		return
@@ -258,7 +258,7 @@
 	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
 
 /obj/item/organ/cyberimp/arm/toolset/ui_action_click()
-	if((organ_flags & ORGAN_FAILING) || (!holder && !contents.len) || !linkedpallate)
+	if((organ_flags & ORGAN_FAILING) || (!holder && !contents.len) || !linkedhandler)
 		to_chat(owner, span_warning("The implant doesn't respond. It seems to be broken..."))
 		return
 
