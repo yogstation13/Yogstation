@@ -225,8 +225,8 @@
 			W.switched_on(owner) //for some godawful reason this proc handles BOTH switching on and off while switching off just hard disables a welder
 
 	linkedpallate.active_tool = item
-	spawn(1)
-		linkedpallate.update_tool()
+	spawn(1) //so you are probably asking hey theos why are  you using spawn(1) here and that's a good question the answer is the welder APPARENTLY doesn't update its icon immediately
+		linkedpallate.update_tool() //so we give it a little bit of breathing space
 
 	var/obj/item/arm_item = owner.get_active_held_item()
 
@@ -337,7 +337,7 @@
 	return active_tool.tool_use_check(user, amount)
 
 /obj/item/toolset_handler/use(amount)
-	return(active_tool.use(amount))
+	return active_tool.use(amount)
 
 /obj/item/organ/cyberimp/arm/esword
 	name = "arm-mounted energy blade"
