@@ -14,8 +14,11 @@ DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED 
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	burnmod = 1.25
-	heatmod = 1.5
+	burnmod = 1.5 //Ow my plant
+	heatmod = 1.5 //Ow my plant
+	siemen_coeff = 0.75 //I wouldn't make semiconductors out of plant material
+	punchdamagehigh = 8 //I am being attacked by a dandelion
+	punchstunthreshold = 9 //TF2 no-crits special
 	payday_modifier = 0.7 //Neutrally viewed by NT
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY | SEAFOOD
