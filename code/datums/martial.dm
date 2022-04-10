@@ -128,6 +128,7 @@
 	D.visible_message(span_danger("[A] has [atk_verb]ed [D]!"), \
 			span_userdanger("[A] has [atk_verb]ed [D]!"), null, COMBAT_MESSAGE_RANGE)
 
+	D.last_damage = "masterful fist"
 	D.apply_damage(damage, A.dna.species.attack_type, affecting, armor_block)
 
 	log_combat(A, D, "punched")
