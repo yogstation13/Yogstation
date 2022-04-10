@@ -95,7 +95,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 ))
 
 
-#define ROLE_SPACE_DRAGON		"Space Dragon"
 //Job defines for what happens when you fail to qualify for any job during job selection
 #define BEOVERFLOW 	1
 #define BERANDOMJOB 	2
