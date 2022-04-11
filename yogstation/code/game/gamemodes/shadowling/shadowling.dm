@@ -209,7 +209,7 @@ Made by Xhuis
 /datum/species/shadow/ling/proc/apply_darkness_speed(mob/living/carbon/C)
 	var/turf/T = get_turf(C)
 	var/light_amount = T.get_lumcount()
-	if(light_amount > LIGHT_DAM_THRESHOLD) //Can survive in very small light levels. Also doesn't take damage while incorporeal, for shadow walk purposes
+	if(light_amount > LIGHT_DAM_THRESHOLD)
 		H.remove_movespeed_modifier(id)
 	else
 		H.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
