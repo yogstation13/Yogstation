@@ -6,8 +6,8 @@
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH,HAS_BONE)
-	mutant_bodyparts = list()
-	default_features = list()
+	mutant_bodyparts = list("pod_hair", "pod_flower")
+	default_features = list("mcolor" = "0F0", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	rare_say_mod = list("rustles" = 10)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
@@ -17,6 +17,10 @@
 	coldmod = 1.5
 	acidmod = 2
 	speedmod = 0.33
+	siemens_coeff = 0.75 //I wouldn't make semiconductors out of plant material
+	punchdamagehigh = 8 //I am being attacked by a dandelion
+	punchstunthreshold = 9 //TF2 no-crits special
+	payday_modifier = 0.7 //Neutrally viewed by NT
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY
 	liked_food = VEGETABLES | FRUIT | GRAIN
@@ -49,6 +53,8 @@
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_THRALL)))
+		return
+	if(IS_BLOODSUCKER(H) && !HAS_TRAIT(H, TRAIT_MASQUERADE))
 		return
 	var/turf/T = get_turf(H)
 	if(!T)

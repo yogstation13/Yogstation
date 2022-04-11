@@ -40,6 +40,11 @@
 	. = ..()
 	. += "Currently set to \"[dept_list[target_dept]]\"."
 
+/obj/item/circuitboard/computer/ai_ship
+	name = "AI Ship Shuttle (Computer Board)"
+	icon_state = "command"
+	build_path = /obj/machinery/computer/shuttle/ai_ship
+
 
 //obj/item/circuitboard/computer/shield
 //	name = "Shield Control (Computer Board)"
@@ -519,3 +524,4 @@
 	name = "Mining Shuttle (Computer Board)"
 	icon_state = "supply"
 	build_path = /obj/machinery/computer/shuttle/mining
+
