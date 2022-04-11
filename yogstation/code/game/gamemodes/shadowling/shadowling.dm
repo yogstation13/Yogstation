@@ -166,7 +166,7 @@ Made by Xhuis
 /datum/species/shadow/ling/on_species_loss(mob/living/carbon/human/C)
 	C.draw_yogs_parts(FALSE)
 	UnregisterSignal(C, COMSIG_MOVABLE_MOVED)
-	H.remove_movespeed_modifier(id)
+	C.remove_movespeed_modifier(id)
 	if(eyes_overlay)
 		C.cut_overlay(eyes_overlay)
 		QDEL_NULL(eyes_overlay)
@@ -210,9 +210,9 @@ Made by Xhuis
 	var/turf/T = get_turf(C)
 	var/light_amount = T.get_lumcount()
 	if(light_amount > LIGHT_DAM_THRESHOLD)
-		H.remove_movespeed_modifier(id)
+		C.remove_movespeed_modifier(id)
 	else
-		H.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
+		C.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 	
 
 /datum/species/shadow/ling/lesser //Empowered thralls. Obvious, but powerful
