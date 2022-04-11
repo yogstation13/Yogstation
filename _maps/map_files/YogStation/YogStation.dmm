@@ -33451,6 +33451,14 @@
 /obj/item/storage/box/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"fbI" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+/obj/machinery/announcement_system,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/department/tcoms)
 "fbJ" = (
 /obj/machinery/power/tracker,
 /obj/structure/cable{
@@ -41768,6 +41776,15 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"jMU" = (
+/obj/machinery/camera{
+	c_tag = "Telecomms Control Room";
+	dir = 4;
+	network = list("ss13","tcomms")
+	},
+/obj/machinery/rack_creator,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "jNo" = (
 /obj/machinery/lapvend,
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -46312,6 +46329,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"mwO" = (
+/obj/machinery/status_display/ai{
+	pixel_x = -32
+	},
+/obj/structure/table/wood,
+/obj/item/crowbar,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "mwV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
@@ -50406,6 +50431,27 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"ozl" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/machinery/computer/security/telescreen{
+	dir = 1;
+	name = "Telecomms Camera Monitor";
+	network = list("tcomms");
+	pixel_x = 30;
+	pixel_y = -37
+	},
+/obj/item/radio/intercom{
+	dir = 1;
+	freerange = 1;
+	name = "Station Intercom (Telecomms)";
+	pixel_x = 28;
+	pixel_y = -26
+	},
+/obj/effect/landmark/start/yogs/network_admin,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "ozw" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -50818,13 +50864,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
-"oKv" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/department/tcoms)
 "oKC" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -54068,27 +54107,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"qHe" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/obj/effect/landmark/start/yogs/signal_technician,
-/obj/machinery/computer/security/telescreen{
-	dir = 1;
-	name = "Telecomms Camera Monitor";
-	network = list("tcomms");
-	pixel_x = 30;
-	pixel_y = -37
-	},
-/obj/item/radio/intercom{
-	dir = 1;
-	freerange = 1;
-	name = "Station Intercom (Telecomms)";
-	pixel_x = 28;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "qHy" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/dark,
@@ -54197,6 +54215,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"qKJ" = (
+/obj/machinery/camera/motion{
+	c_tag = "Telecomms Maintenance";
+	dir = 1;
+	network = list("ss13","tcomms")
+	},
+/obj/machinery/vending/wardrobe/sig_wardrobe,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/department/tcoms)
 "qKK" = (
 /obj/machinery/telecomms/server/presets/supply,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -54895,15 +54922,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"rdw" = (
-/obj/machinery/camera{
-	c_tag = "Telecomms Control Room";
-	dir = 4;
-	network = list("ss13","tcomms")
-	},
-/obj/machinery/announcement_system,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "rdE" = (
 /obj/machinery/light{
 	dir = 1
@@ -55699,13 +55717,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
-"rDi" = (
-/obj/machinery/status_display/ai{
-	pixel_x = -32
-	},
-/obj/machinery/vending/wardrobe/sig_wardrobe,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "rDX" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -66176,7 +66187,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/science/xenobiology";
 	name = "Xenobiology APC";
-	pixel_y = -32
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel/white,
@@ -67183,14 +67194,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"xZW" = (
-/obj/machinery/camera/motion{
-	c_tag = "Telecomms Maintenance";
-	dir = 1;
-	network = list("ss13","tcomms")
-	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/department/tcoms)
 "yau" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -96834,8 +96837,8 @@ oGy
 bVJ
 pSY
 lhk
-rdw
-rDi
+jMU
+mwO
 aJw
 azc
 bne
@@ -97087,7 +97090,7 @@ mOa
 wrd
 rdE
 hJQ
-oKv
+fbI
 bVJ
 pTL
 lhk
@@ -97601,7 +97604,7 @@ mQB
 wrd
 nRp
 olh
-xZW
+qKJ
 bVJ
 fKy
 lhk
@@ -97861,7 +97864,7 @@ kGr
 nao
 bVJ
 eQZ
-qHe
+ozl
 caD
 vme
 aJw
