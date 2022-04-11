@@ -20,20 +20,19 @@ export const AiRackCreator = (props, context) => {
   const [ramIndex, setRamIndex] = useLocalState(context, 'ram', 0);
 
 
-  function upperCaseWords(string) {
-    if(!string) return
-    let words = string.split(" ")
+  let upperCaseWords = function (string) {
+    if (!string) return;
+    let words = string.split(" ");
     for (let i = 0; i < words.length; i++) {
       words[i] = words[i][0].toUpperCase() + words[i].substr(1);
     }
-    return words.join(" ")
-  }
+    return words.join(" ");
+  };
 
   return (
     <Window
       width={700}
-      height={878}
-      >
+      height={878}>
       <Window.Content scrollable>
         <Flex
           align="center"
@@ -62,10 +61,10 @@ export const AiRackCreator = (props, context) => {
                     <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("insert_cpu")} />
                   ) || (
                     <Fragment>
-                      <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("remove_cpu", {cpu_index: 1})} />
-                      <Box inline bold position="absolute" bottom="50px" left="30px">{data.cpus[0].speed}Thz</Box>
-                      <Box inline bold position="absolute" bottom="50px" right="30px">{data.cpus[0].power_usage}W</Box>
-                      <Box inline bold position="absolute" bottom="35px" right="25px">({data.cpus[0].efficiency}%)</Box>
+                      <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("remove_cpu", { cpu_index: 1 })} />
+                      <Box inline bold position="absolute" bottom="50px" left="30px">{ data.cpus[0].speed }Thz</Box>
+                      <Box inline bold position="absolute" bottom="50px" right="30px">{ data.cpus[0].power_usage }W</Box>
+                      <Box inline bold position="absolute" bottom="35px" right="25px">({ data.cpus[0].efficiency }%)</Box>
                     </Fragment>
                   )}
                 </Section>
@@ -85,14 +84,14 @@ export const AiRackCreator = (props, context) => {
                     <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("insert_cpu")} />
                   ) || (
                     <Fragment>
-                      <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("remove_cpu", {cpu_index: 2})} />
+                      <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("remove_cpu", { cpu_index: 2 })} />
                       <Box inline bold position="absolute" bottom="50px" right="30px">{data.cpus[1].speed}Thz</Box>
                       <Box inline bold position="absolute" bottom="50px" left="30px">{data.cpus[1].power_usage}W</Box>
                       <Box inline bold position="absolute" bottom="35px" left="30px">({data.cpus[1].efficiency}%)</Box>
                     </Fragment>
                   )}
                   {data.unlocked_cpu < 2 && (
-                    <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+                    <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
                   )}
                 </Section>
               </Flex.Item>
@@ -104,14 +103,14 @@ export const AiRackCreator = (props, context) => {
                     <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("insert_cpu")} />
                   ) || (
                     <Fragment>
-                      <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("remove_cpu", {cpu_index: 3})} />
-                      <Box inline bold position="absolute" bottom="50px" left="30px">{data.cpus[2].speed}Thz</Box>
-                      <Box inline bold position="absolute" bottom="50px" right="30px">{data.cpus[2].power_usage}W</Box>
-                      <Box inline bold position="absolute" bottom="35px" right="25px">({data.cpus[2].efficiency}%)</Box>
+                      <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("remove_cpu", { cpu_index: 3 })} />
+                      <Box inline bold position="absolute" bottom="50px" left="30px">{ data.cpus[2].speed }Thz</Box>
+                      <Box inline bold position="absolute" bottom="50px" right="30px">{ data.cpus[2].power_usage }W</Box>
+                      <Box inline bold position="absolute" bottom="35px" right="25px">({ data.cpus[2].efficiency }%)</Box>
                     </Fragment>
                   )}
                   {data.unlocked_cpu < 3 && (
-                    <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+                    <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
                   )}
                 </Section>
               </Flex.Item>
@@ -125,14 +124,14 @@ export const AiRackCreator = (props, context) => {
                     <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("insert_cpu")} />
                   ) || (
                     <Fragment>
-                      <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("remove_cpu", {cpu_index: 4})} />
+                      <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("remove_cpu", { cpu_index: 4 })} />
                       <Box inline bold position="absolute" bottom="50px" right="30px">{data.cpus[3].speed}Thz</Box>
                       <Box inline bold position="absolute" bottom="50px" left="30px">{data.cpus[3].power_usage}W</Box>
                       <Box inline bold position="absolute" bottom="35px" left="30px">({data.cpus[3].efficiency}%)</Box>
                     </Fragment>
                   )}
                   {data.unlocked_cpu < 4 && (
-                    <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+                    <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
                   )}
                 </Section>
               </Flex.Item>
@@ -142,10 +141,10 @@ export const AiRackCreator = (props, context) => {
         <Section title="Random Access Memory">
           <Section title="Stick #1" textAlign="center">
             {data.ram.length <= 0 && (
-              <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)}></Button>
+              <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)} />
             ) || (
               <Fragment>
-                <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", {ram_index: 1})}></Button>
+                <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", { ram_index: 1 })} />
                 <Box inline bold position="absolute" bottom="25px" left="150px">{upperCaseWords(data.ram[0].name)}</Box>
                 <Box inline position="absolute" bottom="25px" right="250px">{data.ram[0].capacity}TB</Box>
                 <Box inline position="absolute" bottom="25px" right="75px">{data.ram[0].cost.charAt(0).toUpperCase() + data.ram[0].cost.slice(1)}</Box>
@@ -153,61 +152,61 @@ export const AiRackCreator = (props, context) => {
             )}
           </Section>
           <Section title="Stick #2" textAlign="center">
-          {data.ram.length <= 1 && (
-              <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)}></Button>
+            {data.ram.length <= 1 && (
+              <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)} />
             ) || (
               <Fragment>
-                <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", {ram_index: 2})}></Button>
-                <Box inline bold position="absolute" bottom="25px" left="150px">{upperCaseWords(data.ram[1].name)}</Box>
-                <Box inline position="absolute" bottom="25px" right="250px">{data.ram[1].capacity}TB</Box>
-                <Box inline position="absolute" bottom="25px" right="75px">{data.ram[1].cost.charAt(0).toUpperCase() + data.ram[1].cost.slice(1)}</Box>
+                <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", { ram_index: 2 })} />
+                <Box inline bold position="absolute" bottom="25px" left="150px">{ upperCaseWords(data.ram[1].name) }</Box>
+                <Box inline position="absolute" bottom="25px" right="250px">{ data.ram[1].capacity }TB</Box>
+                <Box inline position="absolute" bottom="25px" right="75px">{ data.ram[1].cost.charAt(0).toUpperCase() + data.ram[1].cost.slice(1) }</Box>
               </Fragment>
             )}
             {data.unlocked_ram < 2 && (
-              <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+              <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
             )}
           </Section>
           <Section title="Stick #3" textAlign="center">
             {data.ram.length <= 2 && (
-              <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)}></Button>
+              <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)} />
             ) || (
               <Fragment>
-                <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", {ram_index: 3})}></Button>
-                <Box inline bold position="absolute" bottom="25px" left="150px">{upperCaseWords(data.ram[2].name)}</Box>
-                <Box inline position="absolute" bottom="25px" right="250px">{data.ram[2].capacity}TB</Box>
-                <Box inline position="absolute" bottom="25px" right="75px">{data.ram[2].cost.charAt(0).toUpperCase() + data.ram[2].cost.slice(1)}</Box>
+                <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", { ram_index: 3 })} />
+                <Box inline bold position="absolute" bottom="25px" left="150px">{ upperCaseWords(data.ram[2].name) }</Box>
+                <Box inline position="absolute" bottom="25px" right="250px">{ data.ram[2].capacity }TB</Box>
+                <Box inline position="absolute" bottom="25px" right="75px">{ data.ram[2].cost.charAt(0).toUpperCase() + data.ram[2].cost.slice(1) }</Box>
               </Fragment>
             )}
             {data.unlocked_ram < 3 && (
-              <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+              <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
             )}
           </Section>
           <Section title="Stick #4" textAlign="center">
             {data.ram.length <= 3 && (
-              <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)}></Button>
+              <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)} />
             ) || (
               <Fragment>
-                <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", {ram_index: 4})}></Button>
-                <Box inline bold position="absolute" bottom="25px" left="150px">{upperCaseWords(data.ram[3].name)}</Box>
-                <Box inline position="absolute" bottom="25px" right="250px">{data.ram[3].capacity}TB</Box>
-                <Box inline position="absolute" bottom="25px" right="75px">{data.ram[3].cost.charAt(0).toUpperCase() + data.ram[3].cost.slice(1)}</Box>
+                <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", { ram_index: 4 })} />
+                <Box inline bold position="absolute" bottom="25px" left="150px">{ upperCaseWords(data.ram[3].name) }</Box>
+                <Box inline position="absolute" bottom="25px" right="250px">{ data.ram[3].capacity }TB</Box>
+                <Box inline position="absolute" bottom="25px" right="75px">{ data.ram[3].cost.charAt(0).toUpperCase() + data.ram[3].cost.slice(1) }</Box>
               </Fragment>
             )}
             {data.unlocked_ram < 4 && (
-              <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+              <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
             )}
           </Section>
         </Section>
-        <Button.Confirm fontSize="20px" textAlign="center" icon="arrow-right" width="100%" color="good" content="Finalize" onClick={() => act("finalize")}></Button.Confirm>
+        <Button.Confirm fontSize="20px" textAlign="center" icon="arrow-right" width="100%" color="good" content="Finalize" onClick={() => act("finalize")} />
       </Window.Content>
       {modalStatus && (
         <Modal width="600px">
           <Section title="Select RAM">
-            {data.possible_ram.map((entry) => (
-              <Section title={entry.name} buttons={(<Button color="green" tooltip={!entry.unlocked ? "Not Unlocked!" : ""} disabled={!entry.unlocked} onClick={() => {act("insert_ram", {ram_type: entry.id}); setModalStatus(false)}}>Select</Button>)}>
+            {data.possible_ram.map((entry, index) => (
+              <Section key={index} title={entry.name} buttons={(<Button color="green" tooltip={!entry.unlocked ? "Not Unlocked!" : ""} disabled={!entry.unlocked} onClick={() => { act("insert_ram", { ram_type: entry.id }); setModalStatus(false); }}>Select</Button>)}>
                 <Box inline bold>Capacity:&nbsp;</Box>
                 <Box inline>{entry.capacity}TB</Box>
-                <br></br>
+                <br />
                 <Box inline bold>Cost:&nbsp;</Box>
                 <Box italic inline>{entry.cost.charAt(0).toUpperCase() + entry.cost.slice(1)}</Box>
               </Section>
@@ -238,8 +237,7 @@ const Materials = (props, context) => {
             formatsi />
           <Box
             mt={1}
-            style={{ "text-align": "center" }}>
-          </Box>
+            style={{ "text-align": "center" }} />
         </Flex.Item>
       ))}
     </Flex>
@@ -255,7 +253,7 @@ const MaterialAmount = (props, context) => {
     style,
   } = props;
 
-  if(MATERIAL_KEYS[name]) {
+  if (MATERIAL_KEYS[name]) {
     return (
       <Flex
         direction="column"
