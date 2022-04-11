@@ -121,7 +121,7 @@
 		//no light, this is baaaaaad
 		light_level = 0
 		light_msg = span_userdanger("Darkness! Your insides churn and your skin screams in pain!")
-		H.nutrition -= 3
+		H.nutrition -= 10
 		//enough to make you faint for good, and eventually die
 		if(H.getOxyLoss() < 60)
 			H.adjustOxyLoss(min(5 * dark_damage_multiplier, 60 - H.getOxyLoss()), 1)
