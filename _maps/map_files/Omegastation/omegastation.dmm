@@ -35518,7 +35518,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/landmark/start/yogs/signal_technician,
+/obj/effect/landmark/start/yogs/network_admin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},

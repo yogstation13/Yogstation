@@ -33151,7 +33151,7 @@
 /obj/structure/chair/office/dark{
 	dir = 4
 	},
-/obj/effect/landmark/start/yogs/signal_technician,
+/obj/effect/landmark/start/yogs/network_admin,
 /obj/machinery/computer/security/telescreen{
 	dir = 1;
 	name = "Telecomms Camera Monitor";

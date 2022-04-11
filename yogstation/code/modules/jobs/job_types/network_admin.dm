@@ -1,24 +1,24 @@
 /datum/job/network_admin
-	title = "Signal Technician"
+	title = "Network Admin"
 	flag = NETWORKADMIN
-	department_head = list("Chief Engineer")
+	department_head = list("Chief Engineer", "Research Director")
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the chief engineer"
+	supervisors = "the chief engineer and research director"
 	selection_color = "#fff5cc"
 
-	outfit = /datum/outfit/job/signal_tech
+	outfit = /datum/outfit/job/network_admin
 
-	alt_titles = list("NTSL Programmer", "Comms Tech", "Station IT Support")
+	alt_titles = list("AI Tech Support", "SysOp")
 
 	access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP,
 					ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_NETWORK)
 	minimal_access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_NETWORK)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
-	display_order = JOB_DISPLAY_ORDER_SIGNAL_TECHNICIAN
+	display_order = JOB_DISPLAY_ORDER_NETWORK_ADMIN
 
 	changed_maps = list("OmegaStation")
 
@@ -27,15 +27,15 @@
 	minimal_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN)
 	supervisors = "the captain and the head of personnel"
 
-/datum/outfit/job/signal_tech
-	name = "Signal Technician"
+/datum/outfit/job/network_admin
+	name = "Network Admin"
 	jobtype = /datum/job/network_admin
 
-	pda_type = /obj/item/pda/signaltech
+	pda_type = /obj/item/pda/network_admin
 
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/radio/headset/headset_eng
-	uniform = /obj/item/clothing/under/yogs/rank/signal_tech
+	ears = /obj/item/radio/headset/headset_network
+	uniform = /obj/item/clothing/under/yogs/rank/network_admin
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/workboots

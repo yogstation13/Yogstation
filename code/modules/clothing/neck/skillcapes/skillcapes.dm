@@ -174,12 +174,12 @@
 	icon_state = "brigphys-trimmed"
 	item_state = "brigphys-trimmed"
 
-/obj/item/clothing/neck/skillcape/signaltech
+/obj/item/clothing/neck/skillcape/network_admin
 	name = "cape of the network admin"
 	icon_state = "signal-skillcape"
 	item_state = "signal-skillcape"
 
-/obj/item/clothing/neck/skillcape/trimmed/signaltech
+/obj/item/clothing/neck/skillcape/trimmed/network_admin
 	name = "cape of the grand network admin"
 	icon_state = "signal-trimmed"
 	item_state = "signal-trimmed"

@@ -101751,7 +101751,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/effect/landmark/start/yogs/signal_technician,
+/obj/effect/landmark/start/yogs/network_admin,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
