@@ -32,13 +32,13 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	. = ..()
 	water_overlay = new /obj/effect/overlay/poolwater(get_turf(src))
 
-/turf/open/indestructible/sound/pool/proc/set_colour(colour)
-	water_overlay.color = colour
-
-/turf/open/indestructible/sound/pool/end/ChangeTurf(path, list/new_baseturfs, flags)
+/turf/open/indestructible/sound/pool/Destroy()
 	if(water_overlay)
 		qdel(water_overlay)
-	. = ..()
+	return ..()
+
+/turf/open/indestructible/sound/pool/proc/set_colour(colour)
+	water_overlay.color = colour
 
 /turf/open/CanPass(atom/movable/mover, turf/target)
 	var/datum/component/swimming/S = mover.GetComponent(/datum/component/swimming) //If you're swimming around, you don't really want to stop swimming just like that do you?
@@ -164,6 +164,16 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 		return TRUE
 	if(!(H.head?.clothing_flags & SHOWEROKAY))
 		return TRUE
+
+/turf/open/indestructible/sound/pool/singularity_act() // Pool's closed
+	playsound(src, 'sound/effects/splosh.ogg', 100, 1) // Slourmping up all the pool water is very sploshy.
+	visible_message(span_warning("The pool's water is sucked into the singularity!"))
+	for(var/turf/open/indestructible/sound/pool/water in get_area_turfs(get_area(src))) // Basically, we can just turn into plating or something.
+		if(water != src)
+			if(isnull(id) || id == water.id) // To make sure this is the same pool being drained
+				water.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+	ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+	return
 
 /obj/effect/turf_decal/pool
 	name = "Pool siding"
