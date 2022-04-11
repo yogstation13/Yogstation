@@ -9,7 +9,7 @@
 
 	flags_1 = CONDUCT_1
 	force = 5
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
