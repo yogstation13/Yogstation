@@ -391,7 +391,7 @@
 	..()
 
 
-/obj/effect/proc_holder/spell/targeted/void_pull
+/obj/effect/proc_holder/spell/targeted/wizzpull
 	name = "Void Pull"
 	desc = "Call the void, this pulls all nearby people closer to you. If they are 4 tiles or closer they are also knocked down and a micro-stun is applied."
 	action_icon = 'icons/mob/actions/actions_spells.dmi'
@@ -414,7 +414,7 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/proc_holder/spell/targeted/void_pull/cast(list/targets, mob/user)
+/obj/effect/proc_holder/spell/targeted/wizzpull/cast(list/targets, mob/user)
 	. = ..()
 	playsound(user,'sound/magic/voidblink.ogg',100)
 	new /obj/effect/temp_visual/voidin(user.drop_location())
