@@ -225,6 +225,7 @@
 	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
 	var/alt_shoes_e = /obj/item/clothing/shoes/xeno_wraps/engineering // Engineering footwraps
 	var/alt_shoes_ca = /obj/item/clothing/shoes/xeno_wraps/cargo // Cargo Footwraps
+	var/alt_shoes_m = /obj/item/clothing/shoes/xeno_wraps/medical // Medical Footwraps
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
@@ -255,8 +256,10 @@
 			shoes = alt_shoes_s
 		else if(IS_ENGINEERING(H)) // Now engineers and miners get their department specific shoes, rather than generic ones.
 			shoes = alt_shoes_e		
-		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" ) 
+		else if(find_job(H) == "Shaft Miner")
 			shoes = alt_shoes_ca
+		else if(find_job(H) == "Mining Medic")
+			shoes = alt_shoes_m
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
