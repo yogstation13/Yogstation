@@ -103,24 +103,3 @@
 	slot_flags = ITEM_SLOT_BELT
 	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
-
-/obj/item/toy/pet_rock
-	name = "pet rock"
-	desc = "The perfect pet!"
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "pet_rock"
-	w_class = WEIGHT_CLASS_SMALL
-	force = 5
-	throwforce = 5
-	attack_verb = list("attacked", "bashed", "smashed", "stoned")
-	hitsound = "swing_hit"
-
-/obj/item/toy/pet_rock/fred
-	name = "fred"
-	desc = "Fred, the bestest boy pet in the whole wide universe!"
-	icon_state = "fred"
-
-/obj/item/toy/pet_rock/roxie
-	name = "roxie"
-	desc = "Roxie, the bestest girl pet in the whole wide universe!"
-	icon_state = "roxie"
