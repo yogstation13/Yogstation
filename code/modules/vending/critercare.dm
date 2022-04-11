@@ -11,10 +11,9 @@
 	products = list(/obj/item/clothing/neck/petcollar = 5, /obj/item/storage/firstaid/aquatic_kit/full =5, /obj/item/fish_eggs/goldfish = 5,
 					/obj/item/fish_eggs/clownfish = 5, /obj/item/fish_eggs/shark = 5, /obj/item/fish_eggs/feederfish = 10,
 					/obj/item/fish_eggs/salmon = 5, /obj/item/fish_eggs/catfish = 5, /obj/item/fish_eggs/glofish = 5,
-					/obj/item/fish_eggs/electric_eel = 5, /obj/item/fish_eggs/shrimp = 10, /obj/item/toy/pet_rock = 5,)
+					/obj/item/fish_eggs/electric_eel = 5, /obj/item/fish_eggs/shrimp = 10,)
 
 	contraband = list(/obj/item/fish_eggs/babycarp = 5)
-	premium = list(/obj/item/toy/pet_rock/fred = 1, /obj/item/toy/pet_rock/roxie = 1)
 	refill_canister = /obj/item/vending_refill/crittercare
 	default_price = 10
 	extra_price = 50
