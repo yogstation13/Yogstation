@@ -138,9 +138,9 @@
 	spell_type = /obj/effect/proc_holder/spell/aoe_turf/repulse
 	category = "Defensive"
 
-/datum/spellbook_entry/void_pull
+/datum/spellbook_entry/wizzpull
 	name = "Void Pull"
-	spell_type = /obj/effect/proc_holder/spell/targeted/void_pull
+	spell_type = /obj/effect/proc_holder/spell/targeted/wizzpull
 
 /datum/spellbook_entry/lightningPacket
 	name = "Lightning bolt!  Lightning bolt!"
