@@ -28639,15 +28639,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"caD" = (
-/obj/machinery/camera{
-	c_tag = "Telecomms Control Room";
-	dir = 4;
-	network = list("ss13","tcomms")
-	},
-/obj/machinery/announcement_system,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "caR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -33202,6 +33193,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"dEx" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "dET" = (
 /obj/structure/grille,
 /obj/structure/window{
@@ -34990,6 +34987,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"eKO" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+/obj/machinery/announcement_system,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/department/tcoms)
 "eLa" = (
 /obj/structure/chair/sofa/right{
 	dir = 8
@@ -34999,13 +35004,6 @@
 "eLu" = (
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"eLz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/item/ai_cpu,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "eMZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -39740,14 +39738,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"hSA" = (
-/obj/machinery/camera/motion{
-	c_tag = "Telecomms Maintenance";
-	dir = 1;
-	network = list("ss13","tcomms")
-	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/department/tcoms)
 "hSC" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
@@ -42101,6 +42091,15 @@
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
+"jjV" = (
+/obj/machinery/camera/motion{
+	c_tag = "Telecomms Maintenance";
+	dir = 1;
+	network = list("ss13","tcomms")
+	},
+/obj/machinery/vending/wardrobe/sig_wardrobe,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/department/tcoms)
 "jjW" = (
 /obj/machinery/light{
 	dir = 8
@@ -47126,6 +47125,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"mvR" = (
+/obj/machinery/camera{
+	c_tag = "Telecomms Control Room";
+	dir = 4;
+	network = list("ss13","tcomms")
+	},
+/obj/machinery/rack_creator,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "mvV" = (
 /obj/item/reagent_containers/glass/beaker/large{
 	pixel_x = 1;
@@ -60811,10 +60819,6 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating,
 /area/security/prison)
-"uER" = (
-/obj/machinery/rack_creator,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "uGQ" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 1
@@ -60971,13 +60975,6 @@
 /obj/structure/transit_tube/curved,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"uKO" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/department/tcoms)
 "uKT" = (
 /obj/machinery/holopad,
 /obj/machinery/door/firedoor/border_only{
@@ -61765,13 +61762,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"vme" = (
-/obj/machinery/status_display/ai{
-	pixel_x = -32
-	},
-/obj/machinery/vending/wardrobe/sig_wardrobe,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "vmm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/darkblue{
@@ -66158,6 +66148,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
+"ybu" = (
+/obj/machinery/status_display/ai{
+	pixel_x = -32
+	},
+/obj/structure/table/wood,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "yco" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
@@ -96786,8 +96783,8 @@ nao
 bVJ
 eQZ
 qHe
-caD
-vme
+mvR
+ybu
 aJw
 mUt
 bne
@@ -97039,11 +97036,11 @@ lhU
 yeb
 pOT
 ogk
-uKO
+eKO
 bVJ
 pCZ
-uER
-eLz
+qHe
+dEx
 qHe
 aJw
 gIj
@@ -97553,7 +97550,7 @@ mZf
 yeb
 jgh
 kJo
-hSA
+jjV
 bVJ
 pUH
 qHe
