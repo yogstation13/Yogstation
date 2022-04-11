@@ -183,7 +183,6 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 			if(isnull(id) || id == water.id) // To make sure this is the same pool being drained
 				water.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
-	return
 
 /obj/effect/turf_decal/pool
 	name = "Pool siding"
