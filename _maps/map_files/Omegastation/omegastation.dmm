@@ -26692,7 +26692,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "fav" = (
@@ -37584,7 +37584,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "pZe" = (

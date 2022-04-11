@@ -100647,7 +100647,7 @@
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
 "umc" = (
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/circuit/red/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "umJ" = (

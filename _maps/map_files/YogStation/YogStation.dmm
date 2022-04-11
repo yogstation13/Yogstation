@@ -31827,7 +31827,7 @@
 /area/hallway/primary/port)
 "eee" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "eeK" = (
@@ -42934,7 +42934,7 @@
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
 "kvI" = (
-/obj/machinery/ai/expansion_card_holder,
+/obj/machinery/ai/server_cabinet,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/ai_monitored/secondarydatacore)
 "kvX" = (
@@ -65758,7 +65758,7 @@
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "xgY" = (
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "xhl" = (
