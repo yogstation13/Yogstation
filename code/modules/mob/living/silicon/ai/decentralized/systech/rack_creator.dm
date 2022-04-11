@@ -169,23 +169,23 @@
 		if(1)
 			. = TRUE
 		if(2)
-			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_cpu_1)
+			. = SSresearch.science_tech.isNodeResearchedID("ai_cpu_2")
 		if(3)
-			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_cpu_2)
+			. = SSresearch.science_tech.isNodeResearchedID("ai_cpu_3")
 
 		if(4)
-			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_cpu_3)
+			. = SSresearch.science_tech.isNodeResearchedID("ai_cpu_4")
 
 /obj/machinery/rack_creator/proc/slotUnlockedRAM(slot_number)
 	switch(slot_number)
 		if(1)
 			. = TRUE
 		if(2)
-			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_ram_1)
+			. = SSresearch.science_tech.isNodeResearchedID("ai_ram_2")
 		if(3)
-			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_ram_2)
+			. = SSresearch.science_tech.isNodeResearchedID("ai_ram_3")
 		if(4)
-			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_ram_3)
+			. = SSresearch.science_tech.isNodeResearchedID("ai_ram_4")
 
 
 /obj/machinery/rack_creator/ui_act(action, params)
