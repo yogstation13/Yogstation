@@ -1,7 +1,7 @@
 /obj/item/clothing/under/yogs/rank/network_admin
 	desc = "It's a green high jumpsuit worn by network admins. It is slightly warmer than most jumpsuits."
 	name = "network admin's jumpsuit"
-	icon_state = "network_admin"
+	icon_state = "signaltech"
 	item_state = "ro_suit"
 	cold_protection = CHEST
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
