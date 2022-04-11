@@ -1,12 +1,12 @@
-GLOBAL_LIST_EMPTY(expansion_card_holders)
+GLOBAL_LIST_EMPTY(server_cabinets)
 
-/obj/machinery/ai/expansion_card_holder
-	name = "Expansion Card Bus"
-	desc = "A simple rack of bPCIe slots for installing expansion cards."
+/obj/machinery/ai/server_cabinet
+	name = "Server Cabinet"
+	desc = "A simple cabinet of bPCIe slots for installing server racks."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "expansion_bus"
 	
-	circuit = /obj/item/circuitboard/machine/expansion_card_holder
+	circuit = /obj/item/circuitboard/machine/server_cabinet
 
 	var/list/installed_racks
 
@@ -30,21 +30,21 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	var/valid_ticks = MAX_AI_EXPANSION_TICKS
 
 
-/obj/machinery/ai/expansion_card_holder/Initialize(mapload)
+/obj/machinery/ai/server_cabinet/Initialize(mapload)
 	..()
 	roundstart = mapload
 	installed_racks = list()
-	GLOB.expansion_card_holders += src
+	GLOB.server_cabinets += src
 	update_icon()
 
-/obj/machinery/ai/expansion_card_holder/Destroy()
+/obj/machinery/ai/server_cabinet/Destroy()
 	installed_racks = list()
-	GLOB.expansion_card_holders -= src
+	GLOB.server_cabinets -= src
 	//Recalculate all the CPUs and RAM :)
 	GLOB.ai_os.update_hardware()
 	..()
 
-/obj/machinery/ai/expansion_card_holder/process()
+/obj/machinery/ai/server_cabinet/process()
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
 	if(valid_holder())
 		var/total_usage = cached_power_usage
@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		hardware_synced = FALSE
 		GLOB.ai_os.update_hardware()
 	
-/obj/machinery/ai/expansion_card_holder/valid_holder()
+/obj/machinery/ai/server_cabinet/valid_holder()
 	. = ..()
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
 	if(!.)
@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	was_valid_holder = TRUE
 
 
-/obj/machinery/ai/expansion_card_holder/update_icon()
+/obj/machinery/ai/server_cabinet/update_icon()
 	cut_overlays()
 
 	if(installed_racks.len > 0) 
@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			var/mutable_appearance/on_bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom_on")
 			add_overlay(on_bottom_overlay)
 
-/obj/machinery/ai/expansion_card_holder/attackby(obj/item/W, mob/living/user, params)
+/obj/machinery/ai/server_cabinet/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/server_rack))
 		if(installed_racks.len >= max_racks)
 			to_chat(user, span_warning("[src] cannot fit the [W]!"))
@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 	return ..()
 
-/obj/machinery/ai/expansion_card_holder/examine()
+/obj/machinery/ai/server_cabinet/examine()
 	. = ..()
 	if(!valid_holder())
 		. += "A small screen is displaying the words 'OFFLINE.'"
@@ -150,7 +150,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	. += "Use a crowbar to remove all currently inserted racks."
 
 
-/obj/machinery/ai/expansion_card_holder/prefilled/Initialize()
+/obj/machinery/ai/server_cabinet/prefilled/Initialize()
 	..()
 	var/obj/item/server_rack/roundstart/rack = new(src)
 	total_cpu += rack.get_cpu()

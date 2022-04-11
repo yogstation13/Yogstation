@@ -139,13 +139,13 @@
     path = /obj/item/clothing/neck/skillcape/trimmed/physician
 
 /datum/skillcape/signaltech
-	name = "cape of the signal technician"
+	name = "cape of the network admin"
 	job = "Signal Technician"
 	path = /obj/item/clothing/neck/skillcape/signaltech
 	id = "signaltech"
 
 /datum/skillcape/trimmed/signaltech
-	name = "cape of the grand signal technician"
+	name = "cape of the grand network admin"
 	job = "Signal Technician"
 	path = /obj/item/clothing/neck/skillcape/trimmed/signaltech
 	id = "signaltech_trimmed"

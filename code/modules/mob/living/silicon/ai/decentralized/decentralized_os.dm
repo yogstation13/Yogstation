@@ -40,7 +40,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	previous_ram = total_ram
 	total_cpu = 0
 	total_ram = 0
-	for(var/obj/machinery/ai/expansion_card_holder/C in GLOB.expansion_card_holders)
+	for(var/obj/machinery/ai/server_cabinet/C in GLOB.server_cabinets)
 		if(!C.valid_holder() && !C.roundstart)
 			continue
 		total_cpu += C.total_cpu

@@ -444,7 +444,7 @@
 /datum/outfit/job/plasmaman/sigtech
 	name = "Plasmaman Signal Technician"
 	
-	jobtype = /datum/job/signal_tech
+	jobtype = /datum/job/network_admin
 
 	pda_type = /obj/item/pda/signaltech
 

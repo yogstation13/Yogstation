@@ -2,7 +2,7 @@
 	name = "server rack"
 	desc = "A self-contained rack for usage in an artifical intelligence system. Ready to be slotted into a server rack and start working."
 	icon = 'icons/obj/module.dmi'
-	icon_state = "std_mod"
+	icon_state = "server_rack"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'

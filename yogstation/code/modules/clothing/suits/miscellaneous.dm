@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
-	name = "signal technician's winter coat"
+	name = "network admin's winter coat"
 	icon_state = "coatsignaltech"
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/analyzer, /obj/item/multitool, /obj/item/assembly/signaler, /obj/item/tank/internals/plasmaman)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering/tcomms

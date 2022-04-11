@@ -32,7 +32,7 @@ export const AiServerConsole = (props, context) => {
 
                   maxValue={750}>{server.temp}K
                 </ProgressBar>
-                <Box textAlign="center">Capacity: <Box inline bold>{server.card_capacity} cards</Box></Box>
+                <Box textAlign="center">Capacity: <Box inline bold>{server.card_capacity} servers</Box></Box>
                 <Box textAlign="center">CPU Power: <Box inline bold>{server.total_cpu} THz</Box></Box>
                 <Box textAlign="center">RAM Capacity: <Box inline bold>{server.ram} TB</Box></Box>
               </Section>

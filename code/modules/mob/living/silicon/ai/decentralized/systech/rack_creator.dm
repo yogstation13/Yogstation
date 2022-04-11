@@ -17,6 +17,13 @@
 
 	//circuit = /obj/item/circuitboard/machine/circuit_imprinter
 
+	var/datum/component/remote_materials/rmat
+
+
+/obj/machinery/rack_creator/Initialize(mapload)
+	rmat = AddComponent(/datum/component/remote_materials, "rackcreator", mapload)
+	rmat.set_local_size(200000)
+	return ..()
 
 
 /obj/machinery/rack_creator/proc/get_total_cost()
@@ -40,6 +47,9 @@
 
 /obj/machinery/rack_creator/ui_data(mob/living/carbon/human/user)
 	var/list/data = list()
+
+	data["materials"] = output_available_resources()
+	data["can_print"] = check_resources()
 
 	data["cpus"] = list()
 	data["total_cpu"] = 0
@@ -66,9 +76,18 @@
 	data["ram"] = list()
 	data["total_ram"] = 0
 	for(var/RAM in ram_expansions)
-		var/ram_list = list(list("capacity" = RAM["capacity"], "name" = RAM["name"]))
+		var/materials_string
+		for(var/mat in RAM["cost"])
+			var/datum/material/M = mat
+			if(!materials_string)
+				materials_string += "[M.name]: [RAM["cost"][mat]]"
+			else
+				materials_string += ", [M.name]: [RAM["cost"][mat]]"
+
+		var/ram_list = list(list("capacity" = RAM["capacity"], "name" = RAM["name"], "cost" = materials_string))
 		data["ram"] += ram_list
 		data["total_ram"] += RAM["capacity"]
+		
 
 	data["power_usage"] += ram_expansions.len * AI_RAM_POWER_USAGE
 
@@ -97,34 +116,76 @@
 
 	return data
 
+/obj/machinery/rack_creator/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
+	)
+
+/obj/machinery/rack_creator/proc/check_resources()
+	var/list/total_cost = list()
+	for(var/RAM in ram_expansions)
+		for(var/mat in RAM["cost"])
+			var/datum/material/M = mat
+			total_cost[M] += RAM["cost"][M]
+
+	if(!total_cost.len)
+		return -1
+
+	var/datum/component/material_container/materials = rmat.mat_container
+	
+	if(materials.has_materials(total_cost))
+		return total_cost
+	return FALSE	
+
+
+
+/obj/machinery/rack_creator/proc/output_available_resources()
+	var/datum/component/material_container/materials = rmat.mat_container
+
+	var/list/material_data = list()
+
+	if(materials)
+		for(var/mat_id in materials.materials)
+			var/datum/material/M = mat_id
+			var/list/material_info = list()
+			var/amount = materials.materials[mat_id]
+
+			material_info = list(
+				"name" = M.name,
+				"ref" = REF(M),
+				"amount" = amount,
+				"sheets" = round(amount / MINERAL_MATERIAL_AMOUNT),
+				"removable" = amount >= MINERAL_MATERIAL_AMOUNT
+			)
+
+			material_data += list(material_info)
+
+		return material_data
+
+	return null
+
 /obj/machinery/rack_creator/proc/slotUnlockedCPU(slot_number)
 	switch(slot_number)
 		if(1)
 			. = TRUE
 		if(2)
-			//. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_cpu_1)
-			. = TRUE
+			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_cpu_1)
 		if(3)
-			//. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_cpu_2)
-			. = FALSE
+			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_cpu_2)
 
 		if(4)
-			//. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_cpu_3)
-			. = FALSE
+			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_cpu_3)
 
 /obj/machinery/rack_creator/proc/slotUnlockedRAM(slot_number)
 	switch(slot_number)
 		if(1)
 			. = TRUE
 		if(2)
-			//. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_ram_1)
-			. = TRUE
+			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_ram_1)
 		if(3)
-			//. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_ram_2)
-			. = FALSE
+			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_ram_2)
 		if(4)
-			//. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_ram_3)
-			. = FALSE
+			. = SSresearch.science_tech.isNodeResearched(/datum/techweb_node/ai_ram_3)
 
 
 /obj/machinery/rack_creator/ui_act(action, params)
@@ -146,6 +207,7 @@
 			var/obj/item/ai_cpu/cpu = I
 			if(slotUnlockedCPU(inserted_cpus.len + 1))
 				inserted_cpus += cpu
+				cpu.forceMove(src)
 			else
 				to_chat(usr, span_warning("This socket has not been researched!"))
 				return
@@ -171,7 +233,7 @@
 			if(!D)
 				return
 			if(slotUnlockedRAM(ram_expansions.len + 1))
-				var/list/stats = list("name" = D.name,"capacity" = D.capacity, "cost" = D.materials)
+				var/list/stats = list(list("name" = D.name,"capacity" = D.capacity, "cost" = D.materials))
 				ram_expansions += stats 
 			else
 				to_chat(usr, span_warning("This socket has not been researched!"))
@@ -184,11 +246,51 @@
 				return
 			if(index > ram_expansions.len || index < 1)
 				return
-			var/ram = ram_expansions[index]
-			ram_expansions -= ram
+			ram_expansions.Cut(index, index + 1)
 			. = TRUE
 
 		if("finalize")
+			if(!ram_expansions.len && !inserted_cpus.len)
+				say("No RAM nor CPUs inserted. Process aborted.")
+				return
+			var/datum/component/material_container/materials = rmat.mat_container
+			if (!materials)
+				say("No access to material storage, please contact the quartermaster.")
+				return FALSE
+			if (rmat.on_hold())
+				say("Mineral access is on hold, please contact the quartermaster.")
+				return FALSE
+			var/total_cost = check_resources()
+			if(!total_cost)
+				say("Not enough resources to finalize.")
+				return FALSE
+			if(islist(total_cost))
+				materials.use_materials(total_cost)
+				rmat.silo_log(src, "built", -1, "server rack", total_cost)
 
+			var/obj/item/server_rack/new_rack = new(src)
+			for(var/obj/item/ai_cpu/CPU in inserted_cpus)
+				CPU.forceMove(new_rack)
+				new_rack.contained_cpus += CPU
+			inserted_cpus = list()
+			
+
+			var/total_ram = 0
+			for(var/RAM in ram_expansions)
+				for(var/mat in RAM["cost"])
+					new_rack.materials[mat] += RAM["cost"][mat]
+
+				total_ram += RAM["capacity"]
+
+			
+			new_rack.contained_ram = total_ram
+			ram_expansions = list()
+
+			flick("circuit_imprinter_ani", src)
+			addtimer(CALLBACK(src, .proc/finalize_post, new_rack), 1.5 SECONDS)
 			. = TRUE
 
+/obj/machinery/rack_creator/proc/finalize_post(obj/item/server_rack/rack)
+	if(!rack)
+		return
+	rack.forceMove(get_turf(src))

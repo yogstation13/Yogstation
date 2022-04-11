@@ -1,6 +1,6 @@
-/datum/job/signal_tech
+/datum/job/network_admin
 	title = "Signal Technician"
-	flag = SIGNALTECH
+	flag = NETWORKADMIN
 	department_head = list("Chief Engineer")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -22,14 +22,14 @@
 
 	changed_maps = list("OmegaStation")
 
-/datum/job/signal_tech/proc/OmegaStationChanges()
+/datum/job/network_admin/proc/OmegaStationChanges()
 	access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN)
 	minimal_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN)
 	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/signal_tech
 	name = "Signal Technician"
-	jobtype = /datum/job/signal_tech
+	jobtype = /datum/job/network_admin
 
 	pda_type = /obj/item/pda/signaltech
 

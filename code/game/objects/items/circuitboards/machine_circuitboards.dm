@@ -965,10 +965,10 @@
 	icon_state = "science"
 	build_path = /obj/machinery/rnd/production/techfab/department/science
 
-/obj/item/circuitboard/machine/expansion_card_holder
-	name = "Expansion Card Bus (Machine Board)"
+/obj/item/circuitboard/machine/server_cabinet
+	name = "Server Cabinet (Machine Board)"
 	icon_state = "science"
-	build_path = /obj/machinery/ai/expansion_card_holder
+	build_path = /obj/machinery/ai/server_cabinet
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 4,
 		/obj/item/stock_parts/manipulator = 2,
