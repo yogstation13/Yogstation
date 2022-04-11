@@ -164,6 +164,25 @@
 
 	return null
 
+
+/obj/machinery/rack_creator/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ai_cpu))
+		var/obj/item/ai_cpu/CPU = I
+		if(inserted_cpus.len >= AI_MAX_CPUS_PER_RACK)
+			to_chat(user, span_warning("This rack cannot fit anymore CPUs!"))
+			return ..()
+		if(slotUnlockedCPU(inserted_cpus.len + 1))
+			inserted_cpus += CPU
+			CPU.forceMove(src)
+			return FALSE
+		else
+			to_chat(user, span_warning("This socket has not been researched!"))
+			return ..()
+		
+
+
+	return ..()
+
 /obj/machinery/rack_creator/proc/slotUnlockedCPU(slot_number)
 	switch(slot_number)
 		if(1)
