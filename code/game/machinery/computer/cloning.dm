@@ -98,7 +98,7 @@
 	else
 		START_PROCESSING(SSmachines, src)
 
-/obj/machinery/computer/cloning/proc/findscanner(extended_search = FALSE)
+/obj/machinery/computer/cloning/proc/findscanner()
 	var/obj/machinery/dna_scannernew/scannerf = null
 
 	// Loop through every direction
