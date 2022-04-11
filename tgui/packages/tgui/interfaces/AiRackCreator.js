@@ -2,6 +2,7 @@ import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Dropdown, Modal, Section, Flex, Icon, Dimmer } from '../components';
 import { Window } from '../layouts';
+import { formatPower } from '../format';
 
 export const AiRackCreator = (props, context) => {
   const { act, data } = useBackend(context);
@@ -20,44 +21,56 @@ export const AiRackCreator = (props, context) => {
             <Flex>
               <Flex.Item width="40%" textAlign="center">
                 <Section title="CPU #1">
-                  <Button color="transparent" icon="microchip" iconSize="5" width="100%">
-                  </Button>
+                  {data.cpus.length <= 0 && (
+                    <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("insert_cpu")} />
+                  ) || (
+                    <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("remove_cpu", {cpu_index: 1})} />
+                  )}
                 </Section>
               </Flex.Item>
               <Flex.Item grow={1} textAlign="center">
                 <Box bold>Statistics</Box>
                 <Box bold>Processing Power</Box>
-                <Box>2.11Thz</Box>
+                <Box>{data.total_cpu}Thz</Box>
                 <Box bold>Power usage</Box>
-                <Box>275W</Box>
+                <Box>{formatPower(data.power_usage)}</Box>
                 <Box bold>Efficiency</Box>
-                <Box>96%</Box>
+                <Box>{Math.round(data.efficiency * 100) / 100 * 100}%</Box>
               </Flex.Item>
               <Flex.Item width="40%" textAlign="center">
                 <Section title="CPU #2">
-                  <Button color="transparent" icon="microchip" iconSize="5" width="100%">
-                  </Button>
-                  <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+                  {data.cpus.length <= 1 && (
+                    <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("insert_cpu")} />
+                  )}
+                  {data.unlocked_cpu < 2 && (
+                    <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+                  )}
                 </Section>
               </Flex.Item>
             </Flex>
             <Flex mt={2}>
               <Flex.Item width="40%" textAlign="center">
                 <Section title="CPU #3">
-                  <Button color="transparent" icon="microchip" iconSize="5" width="100%">
-                  </Button>
-                  <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+                  {data.cpus.length <= 2 && (
+                    <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("insert_cpu")} />
+                  )}
+                  {data.unlocked_cpu < 3 && (
+                    <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+                  )}
                 </Section>
               </Flex.Item>
               <Flex.Item grow={1} textAlign="center">
                 <Box bold>Memory Capacity</Box>
-                <Box>2Tb</Box>
+                <Box>{data.total_ram}Tb</Box>
               </Flex.Item>
               <Flex.Item width="40%" textAlign="center">
                 <Section title="CPU #4">
-                  <Button color="transparent" icon="microchip" iconSize="5" width="100%">
-                  </Button>
-                  <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+                  {data.cpus.length <= 3 && (
+                    <Button color="transparent" icon="microchip" iconSize="5" width="100%" onClick={() => act("insert_cpu")} />
+                  )}
+                  {data.unlocked_cpu < 4 && (
+                    <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+                  )}
                 </Section>
               </Flex.Item>
             </Flex>
@@ -69,15 +82,21 @@ export const AiRackCreator = (props, context) => {
           </Section>
           <Section title="Stick #2" textAlign="center">
             <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)}></Button>
-            <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+            {data.unlocked_ram < 2 && (
+              <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+            )}
           </Section>
           <Section title="Stick #3" textAlign="center">
             <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)}></Button>
-            <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+            {data.unlocked_ram < 3 && (
+              <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+            )}
           </Section>
           <Section title="Stick #4" textAlign="center">
             <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => setModalStatus(true)}></Button>
-            <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+            {data.unlocked_ram < 4 && (
+              <Dimmer><Box color="average">Locked <br/>Requires tech ###</Box></Dimmer>
+            )}
           </Section>
         </Section>
         <Button.Confirm fontSize="20px" textAlign="center" icon="arrow-right" width="100%" color="good" content="Finalize" onClick={() => act("finalize")}></Button.Confirm>
