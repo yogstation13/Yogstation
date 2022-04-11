@@ -86,7 +86,7 @@
 				//low light
 				light_level = 2
 				light_msg = span_warning("The ambient light levels are too low. Your breath is coming more slowly as your insides struggle to keep up on their own.")
-				if(H.nutrition > NUTRITION_LEVEL_HUNGRY)
+				if(H.nutrition > NUTRITION_LEVEL_STARVING)
 					H.nutrition -= light_amount * 3
 				//not enough to faint but enough to slow you down
 				if(H.getOxyLoss() < 50)
@@ -94,7 +94,7 @@
 			if (0.31 to 0.5)
 				//medium, average, doing nothing for now
 				light_level = 3
-				if(H.nutrition < NUTRITION_LEVEL_FED)				
+				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)				
 					H.nutrition += light_amount * 2
 			if (0.51 to 0.75)
 				//high light, regen here
@@ -110,7 +110,8 @@
 			if (0.76 to 1)
 				//super high light
 				light_level = 5
-				if(H.nutrition < NUTRITION_LEVEL_WELL_FED)
+				if(H.nutrition < NUTRITION_LEVEL_FED)
+					//this will give the positive fed moodlet instead of being stuck on "i'm so fat" for existing
 					H.nutrition += light_amount * 1.5
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
