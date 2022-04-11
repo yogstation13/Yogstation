@@ -80,7 +80,7 @@
 	name = "alien wirecutters"
 	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "cutters"
+	icon_state = "cutters_alien"
 	toolspeed = 0.1
 
 	random_color = FALSE
