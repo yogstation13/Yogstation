@@ -490,8 +490,8 @@
 	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
 /obj/item/clothing/shoes/xeno_wraps/programmer
-	name = "programmers socks"
-	desc = "A Special blend of cotton and will, proven to improve your programming abilites!"
+	name = "programming socks"
+	desc = "A special blend of cotton and will, proven to improve your programming abilites!"
 	icon_state = "footwraps_p"
 	item_state = "footwraps_p"
 	xenoshoe = EITHER_STYLE
