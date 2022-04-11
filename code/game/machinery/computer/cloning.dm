@@ -120,7 +120,7 @@
 	if(extended_search)
 		for(var/obj/machinery/clonepod/podf in view(3,src))
 			if(!isnull(podf) && podf.is_operational())
-				attachCloner(podf)
+				AttachCloner(podf)
 	else
 		for(var/direction in GLOB.cardinals)
 			podf = locate(/obj/machinery/clonepod, get_step(src, direction))
