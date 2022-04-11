@@ -1223,7 +1223,7 @@
 
 /datum/techweb_node/ai_ram_2
 	id = "ai_ram_3"
-	display_name = "Advanced Memory BUs"
+	display_name = "Advanced Memory Bus"
 	description = "256 bit computing allows the introduction of another memory module."
 	prereq_ids = list("ai_arch_256", "ai_ram_2")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)

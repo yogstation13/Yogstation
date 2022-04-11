@@ -91,7 +91,7 @@ export const AiRackCreator = (props, context) => {
                     </Fragment>
                   )}
                   {data.unlocked_cpu < 2 && (
-                    <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
+                    <Dimmer><Box color="average">Locked <br />Requires tech Improved CPU Sockets</Box></Dimmer>
                   )}
                 </Section>
               </Flex.Item>
@@ -110,7 +110,7 @@ export const AiRackCreator = (props, context) => {
                     </Fragment>
                   )}
                   {data.unlocked_cpu < 3 && (
-                    <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
+                    <Dimmer><Box color="average">Locked <br />Requires tech Advanced CPU Sockets</Box></Dimmer>
                   )}
                 </Section>
               </Flex.Item>
@@ -131,7 +131,7 @@ export const AiRackCreator = (props, context) => {
                     </Fragment>
                   )}
                   {data.unlocked_cpu < 4 && (
-                    <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
+                    <Dimmer><Box color="average">Locked <br />Requires tech Bluespace CPU Sockets</Box></Dimmer>
                   )}
                 </Section>
               </Flex.Item>
@@ -163,7 +163,7 @@ export const AiRackCreator = (props, context) => {
               </Fragment>
             )}
             {data.unlocked_ram < 2 && (
-              <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
+              <Dimmer><Box color="average">Locked <br />Requires tech Improved Memory Bus</Box></Dimmer>
             )}
           </Section>
           <Section title="Stick #3" textAlign="center">
@@ -178,7 +178,7 @@ export const AiRackCreator = (props, context) => {
               </Fragment>
             )}
             {data.unlocked_ram < 3 && (
-              <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
+              <Dimmer><Box color="average">Locked <br />Requires tech Advanced Memory Bus</Box></Dimmer>
             )}
           </Section>
           <Section title="Stick #4" textAlign="center">
@@ -193,7 +193,7 @@ export const AiRackCreator = (props, context) => {
               </Fragment>
             )}
             {data.unlocked_ram < 4 && (
-              <Dimmer><Box color="average">Locked <br />Requires tech ###</Box></Dimmer>
+              <Dimmer><Box color="average">Locked <br />Requires tech Bluespace Memory Bus</Box></Dimmer>
             )}
           </Section>
         </Section>
