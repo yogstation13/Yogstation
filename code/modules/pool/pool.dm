@@ -99,7 +99,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 		splash(dropping)
 
 /datum/mood_event/poolparty
-	description = "<span class='nicegreen'>I love swimming!.</span>\n"
+	description = "<span class='nicegreen'>I love swimming!</span>\n"
 	mood_change = 2
 	timeout = 2 MINUTES
 
@@ -109,7 +109,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	timeout = 2 MINUTES
 
 /datum/mood_event/poolwet
-	description = "<span class='warning'>Eugh! my clothes are soaking wet from that swim.</span>\n"
+	description = "<span class='warning'>Eugh! My clothes are soaking wet from that swim.</span>\n"
 	mood_change = -4
 	timeout = 4 MINUTES
 
