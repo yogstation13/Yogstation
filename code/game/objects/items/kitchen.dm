@@ -226,7 +226,7 @@
 /obj/item/kitchen/knife/shank
 	name = "shank"
 	desc = "A crude knife fashioned by securing a glass shard and a rod together with cables, and welding them together."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "shank"
 	item_state = "shank"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_EARS

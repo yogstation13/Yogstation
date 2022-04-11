@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - tweak: "tweaked the events that can spawn on gamma alert and higher"

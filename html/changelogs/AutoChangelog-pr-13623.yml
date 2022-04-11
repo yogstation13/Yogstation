@@ -1,0 +1,6 @@
+author: " @Chubbygummibear, @ToasterBiome, @cuackles"
+delete-after: true 
+changes: 
+  - rscadd: "Added new item: bloody knuckles"
+  - rscdel: "Removes ashy spellblade from bg loot pool"
+  - imageadd: "sprites for knuckles, the mark, and root effect"
