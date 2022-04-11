@@ -94,7 +94,8 @@
 			if (0.31 to 0.5)
 				//medium, average, doing nothing for now
 				light_level = 3
-				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)				
+				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)	
+					//just enough to function			
 					H.nutrition += light_amount * 2
 			if (0.51 to 0.75)
 				//high light, regen here
