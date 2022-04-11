@@ -81,7 +81,7 @@
 					/obj/item/clothing/suit/toggle/labcoat/md = 4,
 					/obj/item/clothing/suit/toggle/labcoat/emt = 4,
 					/obj/item/clothing/shoes/sneakers/white = 4,
-					/obj/item/clothing/shoes/xeno_wraps/doctor = 4,
+					/obj/item/clothing/shoes/xeno_wraps/medical = 4,
 					/obj/item/clothing/head/soft/emt = 4,
 					/obj/item/clothing/suit/apron/surgical = 4,
 					/obj/item/clothing/mask/surgical = 4,

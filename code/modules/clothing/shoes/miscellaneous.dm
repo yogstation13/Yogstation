@@ -505,8 +505,8 @@
 	xenoshoe = YES_DIGIT 
 	mutantrace_variation = MUTANTRACE_VARIATION
 
-/obj/item/clothing/shoes/xeno_wraps/doctor
-	name = "doctor footwraps"
+/obj/item/clothing/shoes/xeno_wraps/medical
+	name = "medical footwraps"
 	desc = "Standard issue NanoTrasen cloth footwraps, for when you dont want other people's blood all over your feet."
 	icon_state = "footwraps_m"
 	item_state = "footwraps_m"
