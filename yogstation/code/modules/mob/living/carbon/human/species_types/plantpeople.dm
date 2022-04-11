@@ -28,7 +28,7 @@
 	species_language_holder = /datum/language_holder/pod
 
 	var/no_light_heal = FALSE
-	var/light_heal_multiplier = 1
+	var/light_heal_multiplier = 0.5
 	var/dark_damage_multiplier = 1
 	var/last_light_level = 0
 	var/last_light_message = -STATUS_MESSAGE_COOLDOWN
@@ -86,15 +86,15 @@
 				//low light
 				light_level = 2
 				light_msg = span_warning("The ambient light levels are too low. Your breath is coming more slowly as your insides struggle to keep up on their own.")
-				H.nutrition -= light_amount * 3
+				if(H.nutrition > NUTRITION_LEVEL_HUNGRY)
+					H.nutrition -= light_amount * 3
 				//not enough to faint but enough to slow you down
 				if(H.getOxyLoss() < 50)
 					H.adjustOxyLoss(min(3 * dark_damage_multiplier, 50 - H.getOxyLoss()), 1)
 			if (0.31 to 0.5)
 				//medium, average, doing nothing for now
 				light_level = 3
-				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)	
-					//just enough to function			
+				if(H.nutrition < NUTRITION_LEVEL_FED)				
 					H.nutrition += light_amount * 2
 			if (0.51 to 0.75)
 				//high light, regen here
@@ -110,8 +110,7 @@
 			if (0.76 to 1)
 				//super high light
 				light_level = 5
-				if(H.nutrition < NUTRITION_LEVEL_FED)
-					//this will give the positive fed moodlet instead of being stuck on "i'm so fat" for existing
+				if(H.nutrition < NUTRITION_LEVEL_WELL_FED)
 					H.nutrition += light_amount * 1.5
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
@@ -138,9 +137,6 @@
 			if(light_msg)
 				last_light_message = world.time
 				to_chat(H, light_msg)
-
-	if(H.nutrition > NUTRITION_LEVEL_FULL)
-		H.nutrition = NUTRITION_LEVEL_FULL
 
 	if(H.nutrition < NUTRITION_LEVEL_STARVING + 50)
 		if (H.stat != UNCONSCIOUS && H.stat != DEAD)
