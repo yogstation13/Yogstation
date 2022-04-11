@@ -424,13 +424,13 @@
 /obj/item/nullrod/claymore/saber
 	name = "light energy sword"
 	hitsound = 'sound/weapons/blade1.ogg'
+	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "swordblue"
 	item_state = "swordblue"
 	desc = "If you strike me down, I shall become more robust than you can possibly imagine."
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/nullrod/claymore/saber/red
-	icon = 'icons/obj/weapons/energy.dmi'
 	name = "dark energy sword"
 	icon_state = "swordred"
 	item_state = "swordred"
