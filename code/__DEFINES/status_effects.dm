@@ -82,6 +82,8 @@
 
 #define STATUS_EFFECT_CRUSHERMARK /datum/status_effect/crusher_mark //if struck with a proto-kinetic crusher, takes a ton of damage
 
+#define STATUS_EFFECT_KNUCKLED /datum/status_effect/knuckled //if struck with bloody knuckles or their ability, gets rooted
+
 #define STATUS_EFFECT_SAWBLEED /datum/status_effect/saw_bleed //if the bleed builds up enough, takes a ton of damage
 
 #define STATUS_EFFECT_BLOODLETTING /datum/status_effect/saw_bleed/bloodletting //same but smaller
