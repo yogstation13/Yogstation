@@ -78,12 +78,6 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"ax" = (
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/obj/item/reagent_containers/food/snacks/chocolateegg,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
 "aF" = (
 /obj/machinery/door/window/southleft{
 	base_state = "left";
@@ -224,15 +218,6 @@
 /obj/structure/alien/weeds,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"bS" = (
-/obj/structure/noticeboard{
-	dir = 1;
-	pixel_y = -27
-	},
-/obj/structure/alien/weeds,
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
 "cH" = (
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -247,17 +232,24 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
+"cZ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
 "dx" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/alien/weeds,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"dQ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+"dA" = (
+/obj/structure/table/abductor,
+/obj/item/reagent_containers/food/snacks/burger/xeno,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "dX" = (
 /obj/item/radio/intercom{
@@ -271,10 +263,14 @@
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
 "ec" = (
-/obj/structure/alien/weeds,
-/obj/structure/alien/weeds,
-/obj/structure/bed/nest,
-/turf/open/floor/grass/fakebasalt,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/structure/table/abductor,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "fa" = (
 /obj/structure/table/wood,
@@ -286,49 +282,81 @@
 /obj/item/toy/figure/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"fZ" = (
-/obj/structure/alien/weeds,
-/obj/structure/alien/weeds/node,
-/turf/open/floor/grass/fakebasalt,
+"fm" = (
+/obj/machinery/newscaster{
+	pixel_y = -28
+	},
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
+"fz" = (
+/obj/structure/table/abductor,
+/obj/item/reagent_containers/food/snacks/breadslice/xenomeat{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/snacks/breadslice/xenomeat{
+	pixel_x = -4;
+	pixel_y = 10
+	},
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"fD" = (
+/obj/item/clothing/head/hardhat/cakehat,
+/obj/structure/table/abductor,
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"fV" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Kitchen";
+	req_access_txt = "28"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/kitchen)
 "gk" = (
 /obj/structure/sign/poster/official/no_erp,
 /turf/closed/wall,
 /area/crew_quarters/theatre)
 "gu" = (
-/obj/structure/alien/weeds,
-/obj/structure/bed/nest,
-/turf/open/floor/grass/fakebasalt,
+/obj/machinery/holopad,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
-"gX" = (
-/obj/effect/spawner/xmastree,
-/obj/effect/landmark/event_spawn,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+"hs" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"iy" = (
+/obj/machinery/light,
+/obj/machinery/airalarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -24
+	},
+/obj/structure/table/abductor,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"iT" = (
+/obj/machinery/disposal/bin,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
 	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"id" = (
-/obj/structure/alien/weeds,
-/obj/structure/alien/weeds,
-/obj/machinery/vending/snack/random,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"iH" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/machinery/disposal/bin,
-/obj/machinery/firealarm{
-	dir = 2;
-	pixel_y = 26
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "jC" = (
 /obj/machinery/microwave{
@@ -343,51 +371,51 @@
 /obj/structure/sign/poster/official/no_erp,
 /turf/open/floor/plating/asteroid/basalt,
 /area/crew_quarters/kitchen)
-"jU" = (
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"kf" = (
-/obj/machinery/camera{
-	c_tag = "Theatre Stage";
-	dir = 2
+"ku" = (
+/obj/machinery/light{
+	dir = 4
 	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"kq" = (
-/obj/effect/landmark/event_spawn,
-/obj/item/radio/intercom{
-	pixel_y = -32
+/obj/machinery/requests_console{
+	department = "Bar";
+	departmentType = 2;
+	pixel_x = 30
 	},
-/obj/structure/alien/weeds,
-/obj/structure/alien/weeds/node,
-/turf/open/floor/grass/fakebasalt,
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"kV" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/item/clothing/head/xenos,
+/obj/item/clothing/suit/xenos,
+/obj/item/clothing/under/maid,
+/obj/item/clothing/under/waiter,
+/obj/structure/rack,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "ld" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"mu" = (
-/obj/machinery/light{
-	dir = 4
+"lL" = (
+/obj/item/instrument/piano_synth{
+	pixel_x = 6;
+	pixel_y = -4
 	},
-/obj/structure/alien/weeds,
-/obj/structure/chair/wood{
-	dir = 1
+/obj/structure/table/abductor,
+/obj/item/instrument/eguitar{
+	pixel_x = -3;
+	pixel_y = 3
 	},
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
-"mS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
+"mL" = (
+/obj/machinery/door/window/southright{
+	name = "Bar Door";
+	req_one_access_txt = "25;28"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/alien/weeds,
-/obj/structure/chair/wood/normal,
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "mU" = (
 /obj/machinery/door/poddoor/preopen{
@@ -396,6 +424,11 @@
 	},
 /obj/structure/alien/resin/membrane,
 /turf/open/floor/plating,
+/area/crew_quarters/bar)
+"ni" = (
+/obj/structure/alien/egg/burst,
+/obj/item/clothing/mask/facehugger/toy,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "nu" = (
 /obj/machinery/deepfryer,
@@ -411,24 +444,37 @@
 /obj/structure/table/abductor,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"oh" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/item/radio/intercom{
-	pixel_y = 28
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+"nS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
-"oT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
+"ou" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
 	},
-/obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/alien/maid/barmaid{
-	desc = "It looks like it rode a ripley for a time.";
-	name = "Ridley"
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
 	},
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"pn" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/structure/table/abductor,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"pD" = (
+/obj/machinery/vending/snack/random,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "pF" = (
 /obj/machinery/door/airlock/public/glass{
@@ -450,15 +496,6 @@
 	},
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"pP" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8;
-	icon_state = "vent_map_on-1"
-	},
-/obj/structure/alien/weeds,
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
 "qh" = (
 /obj/item/storage/box/fancy/donut_box,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -472,21 +509,6 @@
 /obj/structure/table/abductor,
 /turf/open/floor/plating/asteroid/basalt,
 /area/crew_quarters/kitchen)
-"qA" = (
-/obj/machinery/disposal/bin,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
 "qE" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -503,10 +525,24 @@
 /obj/structure/alien/weeds,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"qG" = (
-/obj/structure/alien/weeds,
-/obj/structure/mecha_wreckage/ripley,
-/turf/open/floor/grass/fakebasalt,
+"qP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = -25;
+	pixel_y = 24;
+	req_access_txt = "25"
+	},
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "rf" = (
 /obj/structure/sink/kitchen{
@@ -519,6 +555,18 @@
 /obj/machinery/oven,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
+"rK" = (
+/obj/effect/landmark/event_spawn,
+/obj/item/radio/intercom{
+	pixel_y = -32
+	},
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"sa" = (
+/obj/effect/landmark/start/assistant,
+/obj/structure/bed/nest,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
 "sd" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
@@ -535,52 +583,35 @@
 /obj/machinery/light,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"tc" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/pie/cream,
-/obj/machinery/door/window/westright,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
+"sZ" = (
+/obj/structure/noticeboard{
+	dir = 1;
+	pixel_y = -27
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"tq" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
 "ts" = (
 /obj/item/book/manual/chef_recipes,
 /obj/item/stack/packageWrap,
 /obj/structure/table/abductor,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"tz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/structure/alien/weeds,
-/obj/structure/chair/wood/normal,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"tK" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+"tL" = (
+/obj/structure/chair/wood/normal{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/holopad,
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
-"tW" = (
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -31
+"uc" = (
+/obj/machinery/light{
+	dir = 8
 	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "ug" = (
 /obj/machinery/light/small{
@@ -589,33 +620,47 @@
 /obj/structure/alien/weeds,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"uS" = (
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/structure/table/abductor,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
 "vp" = (
 /obj/structure/alien/resin/wall,
 /obj/structure/sign/poster/official/no_erp,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/bar)
-"vS" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer{
-	dir = 8
+"vy" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
 	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
+/obj/machinery/camera{
+	c_tag = "Bar West";
+	dir = 4
 	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"wp" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -31
+	},
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "ww" = (
 /obj/structure/alien/resin/wall,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"xg" = (
-/obj/machinery/newscaster{
-	pixel_y = -28
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+"wR" = (
+/obj/structure/mecha_wreckage/ripley,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"xA" = (
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "yd" = (
 /obj/structure/disposalpipe/segment,
@@ -623,6 +668,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
+"yk" = (
+/obj/machinery/airalarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
 "zf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -653,78 +705,29 @@
 	},
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"zA" = (
-/obj/item/clothing/head/that,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
-	},
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
 "Af" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/toy/figure/chef,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"BR" = (
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
-	pixel_x = 5;
-	pixel_y = 10
+"Bf" = (
+/obj/machinery/light,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
 	},
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/turf/open/floor/grass/fakebasalt,
+/obj/structure/alien/egg/burst,
+/obj/item/clothing/mask/facehugger/toy,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
-"BU" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"Cr" = (
-/obj/structure/chair/stool/bar,
-/obj/structure/alien/weeds,
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"CE" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "Bar Shutters Control";
-	pixel_x = -25;
-	pixel_y = 24;
-	req_access_txt = "25"
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"CL" = (
-/obj/machinery/holopad,
-/obj/structure/alien/weeds,
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"CN" = (
-/obj/item/toy/cards/deck,
+"Cp" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
 	},
-/obj/structure/alien/weeds,
 /obj/structure/table/abductor,
-/turf/open/floor/grass/fakebasalt,
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "CV" = (
 /obj/structure/disposalpipe/segment,
@@ -738,73 +741,45 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"CW" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/alien/weeds/node,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
 "De" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /obj/structure/alien/weeds,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"Dh" = (
-/obj/structure/window/reinforced{
+"DH" = (
+/obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/structure/window/reinforced,
+/obj/machinery/disposal/bin,
+/obj/machinery/firealarm{
+	dir = 2;
+	pixel_y = 26
+	},
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"DN" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"Em" = (
+/obj/structure/alien/resin/wall,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"Eq" = (
+/obj/item/lighter,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
 	},
-/obj/structure/alien/weeds,
 /obj/structure/table/abductor,
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
-"DE" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/obj/structure/alien/weeds,
-/obj/item/clothing/head/xenos,
-/obj/item/clothing/suit/xenos,
-/obj/item/clothing/under/maid,
-/obj/item/clothing/under/waiter,
-/obj/structure/rack,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"DU" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/structure/alien/weeds,
-/obj/structure/chair/wood/normal{
-	dir = 8
-	},
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"Er" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/structure/alien/weeds,
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"Gd" = (
-/obj/item/instrument/piano_synth{
-	pixel_x = 6;
-	pixel_y = -4
-	},
-/obj/structure/alien/weeds,
+"Fi" = (
 /obj/structure/table/abductor,
-/obj/item/instrument/eguitar{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/turf/open/floor/grass/fakebasalt,
+/obj/item/reagent_containers/food/snacks/chocolateegg,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "Gf" = (
 /obj/structure/alien/weeds,
@@ -814,42 +789,30 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"Gk" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
+"Gg" = (
+/obj/machinery/camera{
+	c_tag = "Theatre Stage";
+	dir = 2
 	},
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/obj/effect/landmark/xeno_spawn,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"GP" = (
-/obj/structure/alien/weeds,
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"GR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"Hw" = (
-/obj/machinery/smartfridge/drinks,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "HB" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
 	},
 /turf/open/floor/grass/fakebasalt,
+/area/crew_quarters/kitchen)
+"It" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/machinery/door/window/westright,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/kitchen)
 "IL" = (
 /obj/structure/sign/plaques/deempisi{
@@ -859,39 +822,32 @@
 /obj/structure/alien/resin/wall,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/bar)
-"Jd" = (
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/obj/item/reagent_containers/food/snacks/breadslice/xenomeat{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/food/snacks/breadslice/xenomeat{
-	pixel_x = -4;
-	pixel_y = 10
-	},
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"Jk" = (
-/obj/structure/alien/weeds,
-/obj/structure/alien/egg/burst,
-/obj/item/clothing/mask/facehugger/toy,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
 "Jr" = (
 /obj/structure/sign/barsign,
 /obj/structure/alien/resin/wall,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/bar)
-"JA" = (
-/obj/effect/landmark/start/bartender,
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+"JE" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/radio/intercom{
+	pixel_y = 28
+	},
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "JT" = (
 /obj/effect/landmark/start/cook,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
+"Kh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
 "Kx" = (
 /obj/effect/landmark/start/cook,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -900,25 +856,16 @@
 	},
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"Lf" = (
-/obj/structure/alien/weeds,
-/obj/structure/alien/weeds,
-/obj/structure/alien/egg/burst,
-/obj/item/clothing/mask/facehugger/toy,
-/turf/open/floor/grass/fakebasalt,
+"Ky" = (
+/obj/structure/table/abductor,
+/obj/item/reagent_containers/food/snacks/pie/xemeatpie,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "Lx" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table/wood,
 /obj/structure/alien/weeds,
 /turf/open/floor/wood,
-/area/crew_quarters/bar)
-"LB" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/bar)
 "MG" = (
 /obj/structure/disposalpipe/segment{
@@ -946,41 +893,15 @@
 /obj/structure/table/abductor,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"Ni" = (
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/obj/item/reagent_containers/food/snacks/burger/xeno,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"Nq" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Bar";
-	dir = 8
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"NO" = (
-/obj/structure/alien/weeds,
-/obj/structure/chair/stool/bar,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"Of" = (
-/obj/machinery/vending/boozeomat,
-/obj/machinery/light{
+"NJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/requests_console{
-	department = "Bar";
-	departmentType = 2;
-	pixel_x = 30
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
 	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+/obj/structure/chair/wood/normal,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "Ol" = (
 /obj/structure/disposalpipe/segment{
@@ -988,11 +909,24 @@
 	},
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"OF" = (
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/obj/item/reagent_containers/food/snacks/pie/xemeatpie,
-/turf/open/floor/grass/fakebasalt,
+"OD" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/chair/wood/normal,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"OM" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/structure/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "OU" = (
 /obj/structure/disposalpipe/segment,
@@ -1001,25 +935,13 @@
 /obj/structure/alien/weeds,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"Pd" = (
-/obj/effect/landmark/start/assistant,
-/obj/structure/alien/weeds,
-/obj/structure/bed/nest,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
 "Pl" = (
 /obj/machinery/griddle,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"PL" = (
-/obj/item/lighter,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
-	},
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/turf/open/floor/grass/fakebasalt,
+"Qu" = (
+/obj/structure/bed/nest,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "QY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -1033,6 +955,21 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
+"RJ" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"Sy" = (
+/obj/item/clothing/head/that,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/structure/table/abductor,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
 "SO" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -5;
@@ -1040,13 +977,15 @@
 	},
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"ST" = (
-/obj/machinery/airalarm{
-	dir = 2;
-	pixel_y = 24
+"Tg" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+/mob/living/simple_animal/hostile/alien/maid/barmaid{
+	desc = "It looks like it rode a ripley for a time.";
+	name = "Ridley"
+	},
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "Tr" = (
 /obj/structure/alien/resin/wall,
@@ -1059,14 +998,6 @@
 /obj/structure/alien/weeds,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"TL" = (
-/obj/machinery/door/window/southright{
-	name = "Bar Door";
-	req_one_access_txt = "25;28"
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
 "Ud" = (
 /obj/structure/closet/secure_closet/bar{
 	req_access_txt = "25"
@@ -1078,10 +1009,14 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"UJ" = (
-/obj/structure/bed/nest,
+"Uv" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
 /obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "UN" = (
 /obj/machinery/microwave{
@@ -1097,72 +1032,46 @@
 /obj/structure/table/abductor,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"Vh" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
+"Va" = (
+/obj/item/toy/cards/deck,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
 	},
-/obj/machinery/camera{
-	c_tag = "Bar West";
-	dir = 4
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
+/obj/structure/table/abductor,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "Vm" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"Vn" = (
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
-	},
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"Vs" = (
-/obj/machinery/light,
-/obj/machinery/airalarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -24
-	},
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"Wx" = (
-/obj/machinery/door/airlock/public/glass{
+"Vv" = (
+/obj/machinery/door/airlock{
 	name = "Kitchen";
 	req_access_txt = "28"
 	},
 /obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"WZ" = (
-/obj/structure/alien/weeds,
-/obj/structure/chair/wood/normal{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/kitchen)
+"VQ" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Bar";
+	dir = 8
+	},
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "Xd" = (
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"XK" = (
-/obj/machinery/light,
-/obj/structure/alien/weeds,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
 "XL" = (
 /obj/machinery/requests_console{
 	department = "Kitchen";
@@ -1175,9 +1084,13 @@
 /obj/structure/table/abductor,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"XN" = (
-/obj/structure/alien/weeds/node,
-/turf/open/floor/grass/fakebasalt,
+"XO" = (
+/obj/machinery/light,
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
+"Yu" = (
+/obj/effect/landmark/start/bartender,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "YB" = (
 /obj/structure/disposalpipe/segment,
@@ -1204,42 +1117,28 @@
 	},
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/kitchen)
-"YZ" = (
-/obj/item/clothing/head/hardhat/cakehat,
-/obj/structure/alien/weeds,
-/obj/structure/table/abductor,
-/obj/effect/landmark/xeno_spawn,
-/turf/open/floor/grass/fakebasalt,
-/area/crew_quarters/bar)
-"Zu" = (
-/obj/machinery/light,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
+"Zm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
 	},
-/obj/structure/alien/weeds,
-/obj/structure/alien/egg/burst,
-/obj/item/clothing/mask/facehugger/toy,
-/turf/open/floor/grass/fakebasalt,
+/turf/open/floor/grass/fakeweeds,
 /area/crew_quarters/bar)
 "ZG" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/alien/resin/wall,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/bar)
-"ZM" = (
-/obj/machinery/door/airlock{
-	name = "Kitchen";
-	req_access_txt = "28"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
+"ZQ" = (
+/obj/effect/spawner/xmastree,
+/obj/effect/landmark/event_spawn,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/grass/fakeweeds,
+/area/crew_quarters/bar)
 "ZV" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 28
@@ -1267,177 +1166,177 @@ Tr
 (2,1,1) = {"
 aa
 aa
-CW
-jU
-tW
-jU
-jU
-jU
-Vh
-Jk
-dQ
-GP
-id
+uc
+xA
+wp
+xA
+xA
+xA
+vy
+ni
+uc
+xA
+pD
 Tr
 "}
 (3,1,1) = {"
 aa
 aa
-jU
-jU
-jU
-gu
-Pd
-gu
-gu
-gu
-UJ
-fZ
-Er
+xA
+xA
+xA
+Qu
+sa
+Qu
+Qu
+Qu
+Qu
+xA
+RJ
 Tr
 "}
 (4,1,1) = {"
 ac
-DE
-jU
-Jk
-jU
-ax
-ax
-ax
-ax
-ax
-ax
-jU
-xg
+kV
+xA
+ni
+xA
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+xA
+fm
 Tr
 "}
 (5,1,1) = {"
 ab
-BU
-tz
-YZ
-jU
-gu
-gu
-gu
-gu
-gu
-ec
-jU
-Zu
+nS
+OD
+fD
+xA
+Qu
+Qu
+Qu
+Qu
+Qu
+Qu
+xA
+Bf
 Tr
 "}
 (6,1,1) = {"
 ac
-ST
-mS
-BR
-jU
-jU
-jU
-XN
-jU
-jU
-GP
-Jk
-jU
+yk
+NJ
+uS
+xA
+xA
+xA
+xA
+xA
+xA
+xA
+ni
+xA
 pF
 "}
 (7,1,1) = {"
 gk
-kf
-tK
-fZ
-jU
-gu
-gu
-gu
-gu
-gu
-gu
-jU
-jU
+Gg
+Kh
+xA
+xA
+Qu
+Qu
+Qu
+Qu
+Qu
+Qu
+xA
+xA
 mU
 "}
 (8,1,1) = {"
 ac
-oh
-gX
-jU
-jU
-OF
-OF
-Ni
-Ni
-Jd
-Jd
-jU
-jU
+JE
+ZQ
+xA
+xA
+Ky
+Ky
+dA
+dA
+fz
+fz
+xA
+xA
 pF
 "}
 (9,1,1) = {"
 ag
-jU
-GR
-jU
-jU
-gu
-gu
-gu
-gu
-gu
-gu
-jU
-jU
+xA
+Zm
+xA
+xA
+Qu
+Qu
+Qu
+Qu
+Qu
+Qu
+xA
+xA
 Jr
 "}
 (10,1,1) = {"
 CV
-LB
-pP
-jU
-fZ
-jU
-Jk
-XN
-jU
-jU
-jU
-jU
-XK
+DN
+hs
+xA
+xA
+xA
+ni
+xA
+xA
+xA
+xA
+xA
+XO
 Tr
 "}
 (11,1,1) = {"
 ag
-iH
-Gd
-mu
-qG
-CL
-NO
-NO
-NO
-NO
-NO
-GP
-kq
+DH
+lL
+cZ
+wR
+gu
+tq
+tq
+tq
+tq
+tq
+xA
+rK
 Tr
 "}
 (12,1,1) = {"
 ag
-Tr
+Em
 Tr
 Tr
 IL
-qA
-Dh
-CN
-zA
-PL
-Gk
-GP
-bS
+iT
+pn
+Va
+Sy
+Eq
+Cp
+xA
+sZ
 Tr
 "}
 (13,1,1) = {"
@@ -1446,14 +1345,14 @@ Lx
 qE
 Ud
 Tr
-CE
-jU
-JA
-jU
-fZ
-Vn
-Cr
-WZ
+qP
+xA
+Yu
+xA
+xA
+ec
+tq
+tL
 Tr
 "}
 (14,1,1) = {"
@@ -1462,14 +1361,14 @@ OU
 YB
 dx
 bo
-oT
-jU
-jU
-jU
-jU
-TL
-Lf
-Vs
+Tg
+xA
+xA
+xA
+xA
+mL
+ni
+iy
 Tr
 "}
 (15,1,1) = {"
@@ -1478,14 +1377,14 @@ Gf
 QY
 cH
 Tr
-vS
-Nq
-jU
-Of
-jU
-Hw
-GP
-DU
+ou
+VQ
+xA
+ku
+xA
+Uv
+xA
+OM
 Tr
 "}
 (16,1,1) = {"
@@ -1496,11 +1395,11 @@ ag
 Tr
 ww
 ww
-Wx
+fV
 ww
-tc
+It
 ww
-ZM
+Vv
 jK
 ww
 "}

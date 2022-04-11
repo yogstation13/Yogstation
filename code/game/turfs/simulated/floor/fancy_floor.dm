@@ -163,6 +163,38 @@
 		set_basalt_light(src)
 
 
+/turf/open/floor/grass/fakeweeds
+	name = "aesthetic resin floor covering"
+	desc = "Lab-made resin flooring"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "weeds"
+	floor_tile = /obj/item/stack/tile/fakeweeds
+	slowdown = 0
+	footstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET_BAREFOOT
+	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/floor/grass/fakeweeds/Initialize()
+	pixel_x = -4
+	pixel_y = -4 //so the sprites line up right in the map editor
+	. = ..()
+	if(icon == initial(icon))
+		switch(rand(1,4))
+			if(1)
+				icon = 'icons/obj/smooth_structures/alien/weeds1.dmi'
+			if(2)
+				icon = 'icons/obj/smooth_structures/alien/weeds2.dmi'
+			if(3)
+				icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
+			if (4)
+				if (prob(25))
+					icon_state = "weednode"
+					icon = 'icons/obj/smooth_structures/alien/weednode.dmi'
+				else
+					icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
+
+
 /turf/open/floor/carpet
 	name = "carpet"
 	desc = "Soft velvet carpeting. Feels good between your toes."

@@ -97,6 +97,15 @@
 	item_state = "tile-basalt"
 	turf_type = /turf/open/floor/grass/fakebasalt
 
+//Alien Weeds
+/obj/item/stack/tile/fakeweeds
+	name = "resin weed tile"
+	singular_name = "resin weed floor tile"
+	desc = "Lab-made resin flooring themed on xenomorph architecture"
+	icon_state = "tile-weeds"
+	item_state = "tile-weeds"
+	turf_type = /turf/open/floor/grass/fakeweeds
+
 //Carpets
 /obj/item/stack/tile/carpet
 	name = "carpet"
