@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/regalrat
-	name = "regal rat"
+	name = "feral regal rat"
 	desc = "An evolved rat, created through some strange science. It leads nearby rats with deadly efficiency to protect its kingdom. Not technically a king."
 	icon_state = "regalrat"
 	icon_living = "regalrat"
@@ -340,3 +340,20 @@
 	else if(prob(5))
 		C.vomit()
 	..()
+
+/mob/living/simple_animal/hostile/regalrat/controlled
+	name = "regal rat"
+
+/mob/living/simple_animal/hostile/regalrat/controlled/Initialize()
+	. = ..()
+	INVOKE_ASYNC(src, .proc/get_player)
+
+/mob/living/simple_animal/hostile/rat/death(gibbed)
+	if(!ckey)
+		..(TRUE)
+		if(!gibbed)
+			var/obj/item/reagent_containers/food/snacks/deadmouse/mouse = new(loc)
+			mouse.icon_state = icon_dead
+			mouse.name = name
+	SSmobs.cheeserats -= src // remove rats on death
+	return ..()
