@@ -175,7 +175,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	_interactions = list()
 
 	if(is_bwoink)
-		AddInteraction("[usr.client.ckey] PM'd [initiator_key_name]")
+		AddInteraction("[usr.client?.ckey] PM'd [initiator_key_name]") 
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
 	else
 		MessageNoRecipient(msg)
@@ -208,7 +208,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE, ckey = null)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
-	webhook_send("ticket", list("ticketid" = id, "message" = strip_html_simple(msg), "roundid" = GLOB.round_id, "user" = ckey ? ckey : usr.client.ckey))
+	webhook_send("ticket", list("ticketid" = id, "message" = strip_html_simple(msg), "roundid" = GLOB.round_id, "user" = ckey ? ckey : usr.client?.ckey))
 
 //Removes the ahelp verb and returns it after 2 minutes
 /datum/admin_help/proc/TimeoutVerb()
