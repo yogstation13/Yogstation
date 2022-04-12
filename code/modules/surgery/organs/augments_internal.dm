@@ -112,6 +112,7 @@
 /obj/item/organ/cyberimp/brain/anti_stun/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
 	UnregisterSignal(M, signalCache)
+	UnregisterSignal(M, COMSIG_CARBON_STATUS_STAMCRIT)
 
 /obj/item/organ/cyberimp/brain/anti_stun/Insert()
 	. = ..()
