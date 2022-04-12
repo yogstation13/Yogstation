@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "shadowling speed is now updated on switching tiles, no more being slow in the dark and/or fast in the light"
