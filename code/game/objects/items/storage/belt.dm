@@ -212,30 +212,14 @@
 	icon_state = "medicalbelt_cmo"
 	item_state = "medical_cmo"
 
-/obj/item/storage/belt/medical/chief/full/PopulateContents() // Nothing too fancy, just the items that start in a medical aid kit
-	new /obj/item/stack/medical/gauze/twelve(src)
-	new /obj/item/stack/medical/suture(src)
-	new /obj/item/stack/medical/suture(src)
-	new /obj/item/stack/medical/mesh(src)
-	new /obj/item/stack/medical/mesh(src)
-	new /obj/item/reagent_containers/hypospray/medipen/ekit(src)
-	new /obj/item/healthanalyzer/advanced(src)
+/obj/item/storage/belt/medical/chief/full/PopulateContents()
 	new /obj/item/surgical_drapes(src)
-	new /obj/item/scalpel(src)
-	new /obj/item/hemostat(src)
-	new /obj/item/cautery(src)
-
-/obj/item/storage/belt/medical/chief/admin/full/PopulateContents() // Nothing too fancy, just the items that start in a medical aid kit
-	new /obj/item/scalpel/alien(src)
-	new /obj/item/hemostat/alien(src)
-	new /obj/item/retractor/alien(src)
-	new /obj/item/circular_saw/alien(src)
-	new /obj/item/surgicaldrill/alien(src)
-	new /obj/item/cautery/alien(src)
-	new /obj/item/bonesetter(src)
-	new /obj/item/surgical_drapes(src)
+	new /obj/item/scalpel/advanced(src)
+	new /obj/item/retractor/advanced(src)
+	new /obj/item/cautery/advanced(src)
+	new /obj/item/pinpointer/crew(src)
+	new /obj/item/sensor_device(src)
 	new /obj/item/healthanalyzer/advanced(src)
-	new /obj/item/reagent_containers/pill/adminordrazine(src)
 
 /obj/item/storage/belt/security
 	name = "security belt"

@@ -42,7 +42,7 @@
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/pda/heads/cmo
 
-	belt = /obj/item/storage/belt/medical/chief
+	belt = /obj/item/storage/belt/medical/chief/full
 	l_pocket = /obj/item/pinpointer/crew
 	ears = /obj/item/radio/headset/heads/cmo
 	uniform = /obj/item/clothing/under/rank/chief_medical_officer
