@@ -45,10 +45,19 @@ export const jobToColor = jobId => {
   return COLORS.department.other;
 };
 
-export const healthToColor = (oxy, tox, burn, brute) => {
-  const healthSum = oxy + tox + burn + brute;
-  const level = Math.min(Math.max(Math.ceil(healthSum / 25), 0), 5);
-  return HEALTH_COLOR_BY_LEVEL[level];
+export const healthToColor = (oxy, tox, burn, brute, is_alive) => { // Yogs -- show deadness
+  if (is_alive === null || is_alive)
+  {
+    if (oxy === null) // No damage data -- just show that they're alive
+    {
+      return HEALTH_COLOR_BY_LEVEL[0];
+    }
+    const healthSum = oxy + tox + burn + brute;
+    const level = Math.min(Math.max(Math.ceil(healthSum / 25), 0), 5);
+    return HEALTH_COLOR_BY_LEVEL[level];
+  }
+  return HEALTH_COLOR_BY_LEVEL[5]; // Dead is dead, son
+  // Yogs end
 };
 
 export const HealthStat = props => {
@@ -132,15 +141,12 @@ export const CrewConsoleContent = (props, context) => {
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   <ColorBox
-                    color={sensor.oxydam !== null
-                      ? healthToColor(
-                        sensor.oxydam,
-                        sensor.toxdam,
-                        sensor.burndam,
-                        sensor.brutedam) : (
-                        sensor.life_status
-                          ? HEALTH_COLOR_BY_LEVEL[0]
-                          : HEALTH_COLOR_BY_LEVEL[5])} />
+                    color={healthToColor( // yogs -- show death when dead
+                      sensor.oxydam,
+                      sensor.toxdam,
+                      sensor.burndam,
+                      sensor.brutedam,
+                      sensor.life_status)} />
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
