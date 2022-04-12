@@ -264,7 +264,7 @@
 
 /obj/item/organ/heart/gland/ventcrawling/Remove(mob/living/carbon/M, special)
 	. = ..()
-	onwer.ventcrawler = previous_ventcrawling
+	owner.ventcrawler = previous_ventcrawling
 	previous_ventcrawling = VENTCRAWLER_NONE
 
 /obj/item/organ/heart/gland/viral
