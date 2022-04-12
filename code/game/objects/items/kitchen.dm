@@ -135,13 +135,11 @@
 	name = "great ruinous knife" 
 	desc = "A heavy knife inscribed with dozens of runes."
 	force = 15
-	wound_bonus = 15 //same stats as butcher cleaver, though since cargo always hacks their autolathe it is probably actually easier to just get a cleaver
 
 /obj/item/kitchen/knife/ritual/holy/strong/blood
 	name = "blood-soaked ruinous knife" 
 	desc = "Runes stretch across the surface of the knife, seemingly endless."
-	wound_bonus = 20
-	bare_wound_bonus = 25 //a decent bit better than a butcher cleaver, you've earned it for finding blood cult metal and doing the previous steps
+	wound_bonus = 20 //a bit better than a butcher cleaver, you've earned it for finding blood cult metal and doing the previous steps
 
 /obj/item/kitchen/knife/ritual/holy/Initialize()
 	. = ..()
