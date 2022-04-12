@@ -82,7 +82,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	return FALSE
 
 //Two ways to activate a positronic brain. A clickable link in the ghost notif, or simply clicking the object itself.
-/obj/item/mmi/posibrain/proc/activate(mob/user)
+/obj/item/mmi/posibrain/proc/activate(mob/dead/observer/user)
 	if(QDELETED(brainmob))
 		return
 	if(is_occupied() || is_banned_from(user.ckey, ROLE_POSIBRAIN) || QDELETED(brainmob) || QDELETED(src) || QDELETED(user))
@@ -95,6 +95,9 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		return
 	var/posi_ask = alert("Become a [name]? (Warning, You can no longer be cloned, and all past lives will be forgotten!)","Are you positive?","Yes","No")
 	if(posi_ask == "No" || QDELETED(src))
+		return
+	if(user.antag_sight_unlocked)
+		to_chat(user, span_warning("[src] cannot be used after unlocking the Antag HUD."))
 		return
 	if(brainmob.suiciding) //clear suicide status if the old occupant suicided.
 		brainmob.set_suicide(FALSE)

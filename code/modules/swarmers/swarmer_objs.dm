@@ -68,9 +68,12 @@
   * Arguments:
   * * user - A reference to the ghost interacting with the beacon
   */
-/obj/structure/swarmer_beacon/proc/que_swarmer(mob/user)
+/obj/structure/swarmer_beacon/proc/que_swarmer(mob/dead/observer/user)
 	var/swarm_ask = alert("Become a swarmer?", "Do you wish to consume the station?", "Yes", "No")
 	if(swarm_ask == "No" || QDELETED(src) || QDELETED(user) || processing_swarmer)
+		return FALSE
+	if(user.antag_sight_unlocked)
+		to_chat(user, span_warning("You cannot spawn after unlocking the Antag HUD."))
 		return FALSE
 	var/mob/living/simple_animal/hostile/swarmer/newswarmer = new /mob/living/simple_animal/hostile/swarmer(src)
 	newswarmer.key = user.key

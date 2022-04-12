@@ -18,6 +18,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	hud_type = /datum/hud/ghost
 	movement_type = GROUND | FLYING
 	var/can_reenter_corpse
+	/// If this ghost has elected to sit out for the rest of the round in exchange for antag HUD and orbit POIs including the stealthy antags
+	var/antag_sight_unlocked = FALSE
 	var/datum/hud/living/carbon/hud = null // hud
 	var/bootime = 0
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
@@ -370,9 +372,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(response != "DNR")
 		return
 
-	can_reenter_corpse = FALSE
-	to_chat(src, "You can no longer be brought back into your body.")
+	force_dnr()
+
+	to_chat(src, span_boldnotice("You can no longer be brought back into your body."))
 	return TRUE
+
+/// Sets the DNR values, used by multiple verbs
+/mob/dead/observer/proc/force_dnr()
+	if(!mind || !can_reenter_corpse)
+		return
+
+	can_reenter_corpse = FALSE
 
 /mob/dead/observer/proc/notify_cloning(var/message, var/sound, var/atom/source, flashwindow = TRUE)
 	if(flashwindow)
@@ -713,15 +723,32 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/mind_initialize()
 	return
 
+/mob/dead/observer/Login()
+	. = ..()
+	var/datum/player_details/deets = LAZYACCESS(GLOB.player_details, ckey)
+	if(antag_sight_unlocked || !deets || !deets.antag_sight_unlocked)
+		return
+	// prevent ghosts reverting unlock after finding a safe way to spawn, like CTF
+	// unfortunately mind datum is no good for this
+	antag_sight_unlocked = TRUE
+	for(var/datum/atom_hud/antag/antag_hud in GLOB.huds)
+		antag_hud.add_hud_to(src)
+
 /mob/dead/observer/proc/show_data_huds()
 	for(var/hudtype in datahuds)
 		var/datum/atom_hud/H = GLOB.huds[hudtype]
 		H.add_hud_to(src)
+	if(antag_sight_unlocked)
+		for(var/datum/atom_hud/antag/antag_hud in GLOB.huds)
+			antag_hud.add_hud_to(src)
 
 /mob/dead/observer/proc/remove_data_huds()
 	for(var/hudtype in datahuds)
 		var/datum/atom_hud/H = GLOB.huds[hudtype]
 		H.remove_hud_from(src)
+	if(antag_sight_unlocked)
+		for(var/datum/atom_hud/antag/antag_hud in GLOB.huds)
+			antag_hud.remove_hud_from(src)
 
 /mob/dead/observer/verb/toggle_data_huds()
 	set name = "Toggle Sec/Med/Diag HUD"
@@ -735,6 +762,36 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	data_huds_on = !data_huds_on
 	to_chat(src, span_notice("Data HUDs [data_huds_on ? "enabled" : "disabled"]."))
+
+/mob/dead/observer/verb/unlock_antag_sight()
+	set category = "Ghost"
+	set name = "Unlock Antag HUD"
+	if(!client)
+		return
+	if(CONFIG_GET(flag/disable_ghost_unlock_antag_hud))
+		to_chat(src, span_warning("Unlocking the Antag HUD is currently disabled."))
+		return
+	if(antag_sight_unlocked)
+		to_chat(src, span_warning("Antag HUD already unlocked."))
+		return
+
+//	var/response = tgui_alert(src, "Are you sure you want to reveal antagonists? [can_reenter_corpse ? "You will be unrevivable, and" : "You will be"] disqualified from ghost role offers and spawners.", "Confirm Antag HUD Unlock", list("Yes - I am sure", "No - Cancel"))
+	if(!askuser(src,"Are you sure you want to reveal antagonists? [can_reenter_corpse ? "You will be unrevivable, and" : "You will be"] disqualified from ghost role offers and spawners.", "Confirm Antag HUD Unlock","Yes","No", StealFocus=0))
+		return
+
+	to_chat(src, span_warning("Pain."))
+
+	force_dnr()
+	antag_sight_unlocked = TRUE
+	var/datum/player_details/deets = GLOB.player_details[ckey]
+	deets.antag_sight_unlocked = TRUE
+
+	if(data_huds_on) // add the huds right away if already on
+		for(var/datum/atom_hud/antag/antag_hud in GLOB.huds)
+			antag_hud.add_hud_to(src)
+
+	to_chat(src, span_notice("Antag HUD unlocked."))
+	log_message("Unlocked their ghost Antag HUD sight.", LOG_GAME)
 
 /mob/dead/observer/verb/toggle_health_scan()
 	set name = "Toggle Health Scan"
