@@ -122,7 +122,7 @@
 	icon_grow = "cherry-grow"
 	icon_dead = "cherry-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/cherry/blue)
+	mutatelist = list(/obj/item/seeds/cherry/blue, /obj/item/seeds/cherry/bulb)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.07, /datum/reagent/consumable/sugar = 0.07)
 
 /obj/item/reagent_containers/food/snacks/grown/cherries

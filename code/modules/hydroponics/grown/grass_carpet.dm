@@ -88,7 +88,6 @@
 			if(/datum/plant_gene/trait/glow/shadow)
 				stacktype = /obj/item/stack/tile/fairygrass/dark
 		
-
 	. = ..()
 	
 // Carpet
