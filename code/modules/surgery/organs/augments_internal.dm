@@ -105,7 +105,6 @@
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
 		COMSIG_LIVING_STATUS_PARALYZE,
-		COMSIG_CARBON_STATUS_STAMCRIT,
 	)
 
 	var/stun_cap_amount = 40
@@ -117,8 +116,13 @@
 /obj/item/organ/cyberimp/brain/anti_stun/Insert()
 	. = ..()
 	RegisterSignal(owner, signalCache, .proc/on_signal)
+	RegisterSignal(owner, COMSIG_CARBON_STATUS_STAMCRIT, .proc/on_signal_stamina)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal(datum/source, amount)
+	if(!(organ_flags & ORGAN_FAILING) && amount > 0)
+		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
+
+/obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal_stamina()
 	if(!(organ_flags & ORGAN_FAILING))
 		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
 
