@@ -103,6 +103,8 @@
 
 // Plays a random interaction sound, which is by default a bunch of keboard clacking
 /obj/item/modular_computer/proc/play_interact_sound()
+	if(isobserver(usr))
+		return
 	playsound(loc, pick(interact_sounds), get_clamped_volume(), FALSE, -1)
 
 

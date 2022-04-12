@@ -1,6 +1,7 @@
 /obj/item/tome
 	name = "arcane tome"
 	desc = "An old, dusty tome with frayed edges and a sinister-looking cover."
+	icon = 'icons/obj/library.dmi'
 	icon_state ="tome"
 	throw_speed = 2
 	throw_range = 5
@@ -33,6 +34,7 @@
 /obj/item/melee/cultblade
 	name = "eldritch longsword"
 	desc = "A sword humming with unholy energy. It glows with a dim red light."
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "cultblade"
 	item_state = "cultblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -100,6 +102,7 @@
 	sharpness = SHARP_EDGED
 	light_color = "#ff0000"
 	attack_verb = list("cleaved", "slashed", "torn", "hacked", "ripped", "diced", "carved")
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "cultbastard"
 	item_state = "cultbastard"
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -659,6 +662,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/twohanded/cult_spear
 	name = "blood halberd"
 	desc = "A sickening spear composed entirely of crystallized blood."
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "bloodspear0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -804,7 +808,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/blood_beam
 	name = "\improper magical aura"
 	desc = "Sinister looking aura that distorts the flow of reality around it."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/wizard.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "disintegrate"

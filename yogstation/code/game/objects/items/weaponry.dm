@@ -1,6 +1,7 @@
 /obj/item/highfive
 	name = "raised hand"
 	desc = "Slap my hand."
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "latexballon"
 	item_state = "nothing"
 	hitsound = 'sound/weapons/punchmiss.ogg'
