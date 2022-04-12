@@ -649,7 +649,7 @@
 /datum/supply_pack/security/armory/hardsuit
 	name = "Security Hardsuit Crate"
 	desc = "Contains a reinforced security hardsuit, a security gasmask and a set of combat magboots for combat in low pressure environments. Requires Armory access to open."
-	cost = 3000
+	cost = 5000
 	contains = list(/obj/item/clothing/suit/space/hardsuit/security,
 					/obj/item/clothing/mask/gas/sechailer,
 					/obj/item/clothing/shoes/magboots/security)
@@ -658,7 +658,7 @@
 /datum/supply_pack/security/armory/swat
 	name = "SWAT Crate"
 	desc = "Contains two fullbody sets of tough, fireproof, pressurized suits designed in a joint effort by IS-ERI and Nanotrasen. Each set contains a suit, helmet, mask, combat belt, and combat gloves. Requires Armory access to open."
-	cost = 8000
+	cost = 12000
 	contains = list(/obj/item/clothing/head/helmet/swat/nanotrasen,
 					/obj/item/clothing/head/helmet/swat/nanotrasen,
 					/obj/item/clothing/suit/space/swat,
@@ -794,7 +794,7 @@
 /datum/supply_pack/engineering/hardsuit_engi
 	name = "Engineering Hardsuit Crate"
 	desc = "Contains an engineering hardsuit, a breath mask and a set of magboots for working in irradiated low pressure environments. Requires Construction access to open."
-	cost = 3000
+	cost = 5000
 	access = ACCESS_CONSTRUCTION
 	contains = list(/obj/item/clothing/suit/space/hardsuit/engine,
 					/obj/item/clothing/mask/breath,
@@ -804,7 +804,7 @@
 /datum/supply_pack/engineering/hardsuit_atmos
 	name = "Atmospheric Hardsuit Crate"
 	desc = "Contains an atmospheric hardsuit, a breath mask and a set of magboots for working in high temperature low pressure environments. Requires Atmospheric access to open."
-	cost = 3000
+	cost = 5000
 	access = ACCESS_ATMOSPHERICS
 	contains = list(/obj/item/clothing/suit/space/hardsuit/engine/atmos,
 					/obj/item/clothing/mask/breath,
