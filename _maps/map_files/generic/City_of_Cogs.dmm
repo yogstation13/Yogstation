@@ -205,8 +205,7 @@
 /turf/open/indestructible/clock_spawn_room,
 /area/reebe/city_of_cogs)
 "aQ" = (
-/obj/structure/table/reinforced/brass,
-/obj/item/kitchen/fork,
+/obj/structure/table/optable,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "bj" = (
@@ -230,6 +229,11 @@
 /obj/item/kitchen/fork{
 	pixel_x = -4
 	},
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"lH" = (
+/obj/structure/table/reinforced/brass,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "mj" = (
@@ -258,6 +262,10 @@
 	pixel_x = -10;
 	pixel_y = -5
 	},
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"qa" = (
+/obj/structure/table/reinforced/brass,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "wm" = (
@@ -3782,7 +3790,7 @@ aj
 aj
 aj
 ah
-ah
+qa
 av
 aj
 aj
@@ -3794,7 +3802,7 @@ ai
 aj
 aj
 av
-ah
+au
 ah
 aj
 aj
@@ -4874,7 +4882,7 @@ aj
 aj
 aj
 ah
-ah
+aQ
 aj
 aj
 aj
@@ -4886,7 +4894,7 @@ ai
 aj
 aj
 aj
-ah
+qa
 ah
 aj
 aj
@@ -5058,7 +5066,7 @@ aj
 aj
 aj
 ah
-aQ
+lH
 am
 ai
 aj
