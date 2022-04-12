@@ -119,11 +119,11 @@
 	RegisterSignal(owner, signalCache, .proc/on_signal)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal(datum/source, amount)
-	if(!(organ_flags & ORGAN_FAILING) && amount > 0)
+	if(!(organ_flags & ORGAN_FAILING))
 		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/clear_stuns()
-	if(owner || !(organ_flags & ORGAN_FAILING))
+	if(owner && !(organ_flags & ORGAN_FAILING))
 		owner.remove_CC()
 
 /obj/item/organ/cyberimp/brain/anti_stun/emp_act(severity)
