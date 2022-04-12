@@ -76,7 +76,7 @@
 /datum/action/cooldown/coffer
 	name = "Fill Coffers"
 	desc = "Your newly granted regality and poise let you scavenge for lost junk, but more importantly, cheese."
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	icon_icon = 'icons/mob/actions/actions_ratking.dmi'
 	background_icon_state = "bg_clock"
 	button_icon_state = "coffer"
 	cooldown_time = 50
@@ -120,7 +120,7 @@
 /datum/action/cooldown/riot
 	name = "Raise Army"
 	desc = "Raise an army out of the hordes of mice and pests crawling around the maintenance shafts."
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	icon_icon = 'icons/mob/actions/actions_ratking.dmi'
 	button_icon_state = "riot"
 	background_icon_state = "bg_clock"
 	cooldown_time = 80
