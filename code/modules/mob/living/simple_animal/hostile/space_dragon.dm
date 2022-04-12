@@ -39,8 +39,6 @@
 	pixel_x = -16
 	turns_per_move = 5
 	spacewalk = TRUE
-	spacewalk = TRUE
-	spacewalk = TRUE
 	ranged = TRUE
 	mouse_opacity = MOUSE_OPACITY_ICON
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
