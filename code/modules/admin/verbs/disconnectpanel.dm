@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(connection_logs)
 	CE.disconnected = world.time
 	CE.disconnect_type = C?.type
 	CE.living = isliving(C)
-	CE.job = C.mind?.assigned_role || "Ghost"
+	CE.job = C?.mind?.assigned_role || "Ghost"
 	last_data_point = CE
 	data_points |= CE
 
