@@ -29,9 +29,7 @@ SUBSYSTEM_DEF(minor_mapping)
 				mouse.forceMove(proposed_turf)
 		else
 			mouse = new /mob/living/simple_animal/hostile/regalrat/controlled(proposed_turf)
-		if(proposed_turf.air.has_gas(/datum/gas/oxygen, 5))
-			num_mice -= 1
-			mouse = null
+
 
 /datum/controller/subsystem/minor_mapping/proc/place_satchels(amount=10)
 	var/list/turfs = find_satchel_suitable_turfs()

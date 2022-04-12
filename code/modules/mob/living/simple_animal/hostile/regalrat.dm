@@ -357,3 +357,11 @@
 			mouse.name = name
 	SSmobs.cheeserats -= src // remove rats on death
 	return ..()
+
+/mob/living/simple_animal/hostile/regalrat/proc/get_player()
+	var/list/mob/dead/observer/candidates = poll_ghost_candidates("Do you want to play as the Royal Rat, cheesey be their crown?", ROLE_SENTIENCE, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
+	if(LAZYLEN(candidates) && !mind)
+		var/mob/dead/observer/C = pick(candidates)
+		key = C.key
+		notify_ghosts("All rise for the rat king, ascendant to the throne in \the [get_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Sentient Rat Created")
+	to_chat(src, span_notice("You are an independent, invasive force on the station! Horde coins, trash, cheese, and the like from the safety of darkness!"))
