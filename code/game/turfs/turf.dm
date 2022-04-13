@@ -68,7 +68,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(requires_activation)
 		CALCULATE_ADJACENT_TURFS(src)
 		SSair.add_to_active(src)
-
+	if(color)
+		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
+	
 	if (light_power && light_range)
 		update_light()
 
@@ -85,7 +87,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		has_opaque_atom = TRUE
 
 	ComponentInitialize()
-
+	if(color)
+		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	return INITIALIZE_HINT_NORMAL
 
 /turf/proc/Initalize_Atmos(times_fired)
