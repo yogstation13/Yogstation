@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "fixed runtime caused by having a mobless client"
