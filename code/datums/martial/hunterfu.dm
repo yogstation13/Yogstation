@@ -47,7 +47,7 @@
 			return TRUE
 		if(target.mind.has_antag_datum(/datum/antagonist/changeling))
 			to_chat(target, span_cultlarge("Our DNA shakes as we are body slammed!"))
-			target.apply_damage(15, BRUTE)
+			target.apply_damage(user.dna.species.punchdamagehigh + 5, BRUTE)	//15 damage
 			target.Paralyze(60)
 			user.Paralyze(25)
 			return TRUE
@@ -67,20 +67,21 @@
 	to_chat(user, span_danger("You stab [target] viciously!"))
 	playsound(get_turf(user), 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
 	log_combat(user, target, "stakestabbed (Hunter-Fu)")
+	var/stake_damagehigh = user.dna.species.punchdamagehigh * 1.5 + 10	//25 damage
 	if(!target.mind)
-		target.apply_damage(15, BRUTE, BODY_ZONE_CHEST)
+		target.apply_damage(user.dna.species.punchdamagehigh + 5, BRUTE, BODY_ZONE_CHEST)	//15 damage
 		return TRUE
 	if(target.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(target, span_danger("Their arm tears through our monstrous form!"))
-		target.apply_damage(25, BRUTE, BODY_ZONE_CHEST)
+		target.apply_damage(stake_damagehigh, BRUTE, BODY_ZONE_CHEST)
 		return TRUE
 	if(target.mind.has_antag_datum(/datum/antagonist/bloodsucker))
 		to_chat(target, span_cultlarge("Their arm stakes straight into our undead flesh!"))
-		target.apply_damage(20, BURN)
-		target.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
+		target.apply_damage(user.dna.species.punchdamagehigh + 10, BURN)				//20 damage
+		target.apply_damage(user.dna.species.punchdamagehigh, BRUTE, BODY_ZONE_CHEST)	//10 damage
 		return TRUE
 	else
-		target.apply_damage(15, BRUTE, BODY_ZONE_CHEST)
+		target.apply_damage(user.dna.species.punchdamagehigh + 5, BRUTE, BODY_ZONE_CHEST)	//15 damage
 	return TRUE
 
 /datum/martial_art/hunterfu/proc/neck_snap(mob/living/user, mob/living/target)
@@ -103,7 +104,7 @@
 			return TRUE
 		if(target.mind.has_antag_datum(/datum/antagonist/heretic))
 			to_chat(target, span_cultlarge("The power of the Codex Cicatrix flares as we are swiftly put to sleep!"))
-			target.apply_damage(15, BRUTE, BODY_ZONE_HEAD)
+			target.apply_damage(user.dna.species.punchdamagehigh + 5, BRUTE, BODY_ZONE_HEAD)	//15 damage
 			target.SetSleeping(40)
 			return TRUE
 		if(target.mind.has_antag_datum(/datum/antagonist/bloodsucker))
@@ -122,14 +123,16 @@
 	to_chat(user, span_danger("You holy kick [target]!"))
 	playsound(get_turf(user), 'sound/weapons/slash.ogg', 50, TRUE, -1)
 	log_combat(user, target, "holy kicked (Hunter-Fu)")
+	var/holykick_staminadamage = user.dna.species.punchdamagehigh * 3 + 30 //60 damage (holy shit)
+	var/holykick_hereticburn = user.dna.species.punchdamagehigh * 1.5 + 10	//25 damage
 	if(!target.mind)
-		target.apply_damage(60, STAMINA)
+		target.apply_damage(holykick_staminadamage, STAMINA)
 		target.Paralyze(20)
 		return TRUE
 	if(target.mind.has_antag_datum(/datum/antagonist/heretic))
 		to_chat(target, span_cultlarge("The holy water burns our flesh!"))
-		target.apply_damage(25, BURN)
-		target.apply_damage(60, STAMINA)
+		target.apply_damage(holykick_hereticburn, BURN)
+		target.apply_damage(holykick_staminadamage, STAMINA)
 		target.Paralyze(20)
 		return TRUE
 	if(target.mind.has_antag_datum(/datum/antagonist/bloodsucker))
@@ -140,7 +143,7 @@
 			to_chat(target, span_cultlarge("Our blood rites falter as the holy water drips onto our body!"))
 			for(var/datum/action/innate/cult/blood_spell/BS in BD.spells)
 				qdel(BS)
-		target.apply_damage(60, STAMINA)
+		target.apply_damage(holykick_staminadamage, STAMINA)
 		target.Paralyze(20)
 		return TRUE
 	if(target.mind.has_antag_datum(/datum/antagonist/wizard) || (/datum/antagonist/wizard/apprentice))
@@ -148,11 +151,11 @@
 		var/mob/living/carbon/human/human_target = target // I guess monkey wizards aren't getting affected.
 		if(human_target.silent <= 10)
 			human_target.silent = clamp(human_target.silent + 10, 0, 10)
-		target.apply_damage(60, STAMINA)
+		target.apply_damage(holykick_staminadamage, STAMINA)
 		target.Paralyze(20)
 		return TRUE
 	else
-		target.apply_damage(60, STAMINA)
+		target.apply_damage(holykick_staminadamage, STAMINA)
 		target.Paralyze(20)
 	return TRUE
 
@@ -171,12 +174,13 @@
 	var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 	user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
 	var/atk_verb = pick("kick", "chop", "hit", "slam")
+	var/harm_damage = user.dna.species.punchdamagehigh + rand(0,5)	//10-15 damage
 	target.visible_message(
 		span_danger("[user] [atk_verb]s [target]!"),
 		span_userdanger("[user] [atk_verb]s you!"),
 	)
 	to_chat(user, span_danger("You [atk_verb] [target]!"))
-	target.apply_damage(rand(10,15), BRUTE, affecting, wound_bonus = CANT_WOUND)
+	target.apply_damage(harm_damage, BRUTE, affecting, wound_bonus = CANT_WOUND)
 	playsound(get_turf(target), 'sound/weapons/punch1.ogg', 25, TRUE, -1)
 	log_combat(user, target, "harmed (Hunter-Fu)")
 	return TRUE
