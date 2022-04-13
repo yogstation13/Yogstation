@@ -35,7 +35,7 @@
 	if(D.mobility_flags & MOBILITY_STAND)
 		D.visible_message(
 			span_danger("[A] slams both them and [D] into the ground!"),
-			span_Adanger("You're slammed into the ground by [A]!"),
+			span_userdanger("You're slammed into the ground by [A]!"),
 			span_hear("You hear a sickening sound of flesh hitting flesh!"),
 		)
 		to_chat(A, span_danger("You slam [D] into the ground!"))
@@ -61,7 +61,7 @@
 /datum/martial_art/hunterfu/proc/stake_stab(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	D.visible_message(
 		span_danger("[A] stabs [D] in the heart!"),
-		span_Adanger("You're staked in the heart by [A]!"),
+		span_userdanger("You're staked in the heart by [A]!"),
 		span_hear("You hear a sickening sound of flesh hitting flesh!"),
 	)
 	to_chat(A, span_danger("You stab [D] viciously!"))
@@ -88,7 +88,7 @@
 	if(!D.stat)
 		D.visible_message(
 			span_danger("[A] snapped [D]'s neck!"),
-			span_Adanger("Your neck is snapped by [A]!"),
+			span_userdanger("Your neck is snapped by [A]!"),
 			span_hear("You hear a snap!"),
 		)
 		to_chat(A, span_danger("You snap [D]'s neck!"))
@@ -117,7 +117,7 @@
 /datum/martial_art/hunterfu/proc/holy_kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	D.visible_message(
 		span_warning("[A] kicks [D], splashing holy water in every direction!"),
-		span_Adanger("You're kicked by [A], with holy water dripping down on you!"),
+		span_userdanger("You're kicked by [A], with holy water dripping down on you!"),
 		span_hear("You hear a sickening sound of flesh hitting flesh!"),
 	)
 	to_chat(A, span_danger("You holy kick [D]!"))
@@ -177,7 +177,7 @@
 	var/harm_damage = A.dna.species.punchdamagehigh + rand(0,5)	//10-15 damage
 	D.visible_message(
 		span_danger("[A] [atk_verb]s [D]!"),
-		span_Adanger("[A] [atk_verb]s you!"),
+		span_userdanger("[A] [atk_verb]s you!"),
 	)
 	to_chat(A, span_danger("You [atk_verb] [D]!"))
 	D.apply_damage(harm_damage, BRUTE, affecting, wound_bonus = CANT_WOUND)
@@ -198,7 +198,7 @@
 			log_combat(A, D, "grabbed (Hunter-Fu)")
 			D.visible_message(
 				span_warning("[A] violently grabs [D]!"),
-				span_Adanger("You're grabbed violently by [A]!"),
+				span_userdanger("You're grabbed violently by [A]!"),
 				span_hear("You hear sounds of aggressive fondling!"),
 			)
 			to_chat(A, span_danger("You violently grab [D]!"))
