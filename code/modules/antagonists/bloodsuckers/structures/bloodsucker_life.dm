@@ -237,12 +237,9 @@
 		owner.current.blur_eyes(8 - 8 * (owner.current.blood_volume / BLOOD_VOLUME_BAD(owner.current)))
 
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(owner.current.blood_volume < (FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)) && !frenzied)
-		if(!iscarbon(owner))
-			if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
-				return
-			qdel(owner.current)
+		if(!iscarbon(owner.current))
+			return
 		enter_frenzy()
 	else if(owner.current.blood_volume < BLOOD_VOLUME_BAD(owner.current))
 		additional_regen = 0.1

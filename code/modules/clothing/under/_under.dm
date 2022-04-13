@@ -167,7 +167,8 @@
 			var/turf/T = get_turf(src)
 			if(!T)
 				T = get_turf(user)
-			A.forceMove(get_turf(src))
+			if(T)
+				A.forceMove(T)
 		
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
