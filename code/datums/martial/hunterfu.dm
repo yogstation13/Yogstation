@@ -148,9 +148,8 @@
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/wizard) || (/datum/antagonist/wizard/apprentice))
 		to_chat(D, span_danger("The holy water seems to be muting us somehow!"))
-		var/mob/living/carbon/human/human_D = D // I guess monkey wizards aren't getting affected.
-		if(human_D.silent <= 10)
-			human_D.silent = clamp(human_D.silent + 10, 0, 10)
+		if(D.silent <= 10)
+			D.silent = clamp(D.silent + 10, 0, 10)
 		D.apply_damage(holykick_staminadamage, STAMINA)
 		D.Paralyze(20)
 		return TRUE
@@ -214,6 +213,6 @@
 	to_chat(usr, span_notice("<b>Body Slam</b>: Grab Harm. Slam opponent into the ground, knocking you both down."))
 	to_chat(usr, span_notice("<b>Stake Stab</b>: Harm Harm. Stabs opponent with your bare fist, as strong as a Stake."))
 	to_chat(usr, span_notice("<b>Neck Snap</b>: Grab Disarm Harm. Snaps an opponents neck, knocking them out."))
-	to_chat(usr, span_notice("<b>Holy Kick</b>: Disarm Grab. Splashes the A with Holy Water, removing Cult Spells, while dealing stamina damage."))
+	to_chat(usr, span_notice("<b>Holy Kick</b>: Disarm Grab. Splashes the user with Holy Water, removing Cult Spells, while dealing stamina damage."))
 
 	to_chat(usr, span_notice("<b><i>In addition, by having your throw mode on, you take a defensive position, allowing you to block and sometimes even counter attacks done to you.</i></b>"))
