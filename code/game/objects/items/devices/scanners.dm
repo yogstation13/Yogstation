@@ -422,7 +422,9 @@ GENE SCANNER
 					blood_type = R.name
 				else
 					blood_type = blood_id
-			if(C.blood_volume <= BLOOD_VOLUME_SAFE(C) && C.blood_volume > BLOOD_VOLUME_OKAY(C))
+			if(HAS_TRAIT(M, TRAIT_MASQUERADE)) //bloodsuckers
+				to_chat(user, span_info("Blood level 100%, 560 cl, type: [blood_type]"))
+			else if(C.blood_volume <= BLOOD_VOLUME_SAFE(C) && C.blood_volume > BLOOD_VOLUME_OKAY(C))
 				to_chat(user, "[span_danger("LOW blood level [blood_percent] %, [C.blood_volume] cl,")] [span_info("type: [blood_type]")]")
 			else if(C.blood_volume <= BLOOD_VOLUME_OKAY(C))
 				to_chat(user, "[span_danger("CRITICAL blood level [blood_percent] %, [C.blood_volume] cl,")] [span_info("type: [blood_type]")]")

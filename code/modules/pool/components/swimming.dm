@@ -98,7 +98,11 @@
 	var/obj/item/twohanded/required/pool/helditem = victim.get_active_held_item()
 	if(istype(helditem) && helditem.wielded)
 		return
-	return ((!(victim.mobility_flags & MOBILITY_STAND)) && (!HAS_TRAIT(victim, TRAIT_NOBREATH)))
+	if(iscarbon(victim))
+		var/mob/living/carbon/C = victim
+		if(C.get_breath_from_internal(0)) //check if we have internals on
+			return
+	return (!(victim.mobility_flags & MOBILITY_STAND)) && (!HAS_TRAIT(victim, TRAIT_NOBREATH))
 
 /datum/component/swimming/proc/drown(mob/living/victim)
 	if(victim.losebreath < 1)

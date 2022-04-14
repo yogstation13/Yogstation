@@ -2,6 +2,7 @@
 	name = "Probabilistic Anomaly"
 	typepath = /datum/round_event/prob_anomaly
 	weight = 10
+	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/prob_anomaly
 	announceWhen	= 1

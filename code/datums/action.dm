@@ -531,6 +531,18 @@
 		owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)
 		QDEL_NULL(box)
 
+/datum/action/item_action/visegrip
+	name = "Vise Grip"
+	desc = "Remotely detonate marked targets. People become rooted for 1 second. Nonhumanoids become rooted for 6 seconds and take hefty damage."
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "leghold"
+	
+/datum/action/item_action/reach
+	name = "Reach"
+	desc = "Mark those standing on blood for 10 seconds."
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "rshield"
+
 //Preset for spells
 /datum/action/spell_action
 	check_flags = NONE

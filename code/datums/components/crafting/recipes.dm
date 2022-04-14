@@ -108,6 +108,7 @@
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+	always_availible = FALSE 	//This was such a bad idea
 
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
