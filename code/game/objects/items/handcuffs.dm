@@ -408,7 +408,7 @@
 	item_state = "ebola"
 	hitsound = 'sound/weapons/taserhit.ogg'
 	w_class = WEIGHT_CLASS_SMALL
-	breakouttime = 60
+	breakouttime = 6 SECONDS
 	break_strength = 2
 
 /obj/item/restraints/legcuffs/bola/energy/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

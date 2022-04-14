@@ -64,14 +64,40 @@
 	result = /obj/item/clothing/shoes/cowboy
 	reqs = list(/obj/item/stack/sheet/leather = 2)
 	time = 4.5 SECONDS
-	category = CAT_CLOTHING
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
 
 /datum/crafting_recipe/lizardboots
 	name = "Lizard Skin Boots"
 	result = /obj/effect/spawner/lootdrop/lizardboots
 	reqs = list(/obj/item/stack/sheet/animalhide/lizard = 1, /obj/item/stack/sheet/leather = 1)
 	time = 6 SECONDS
-	category = CAT_CLOTHING
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
+
+/datum/crafting_recipe/footwrapsgoliath
+	name = "Goliath Hide Footwraps"
+	result = /obj/effect/spawner/lootdrop/lizardboots
+	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 1, /obj/item/stack/sheet/leather = 1)
+	time = 6 SECONDS
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
+
+/datum/crafting_recipe/footwrapsdragon
+	name = "Ash Drake Hide Footwraps"
+	result = /obj/effect/spawner/lootdrop/lizardboots
+	reqs = list(/obj/item/stack/sheet/animalhide/ashdrake = 1, /obj/item/stack/sheet/leather = 1)
+	time = 6 SECONDS
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
+
+/datum/crafting_recipe/footwrapscarpdragon
+	name = "Carp Dragon Hide Footwraps"
+	result = /obj/effect/spawner/lootdrop/lizardboots
+	reqs = list(/obj/item/stack/sheet/animalhide/carpdragon = 1, /obj/item/stack/sheet/leather = 1)
+	time = 6 SECONDS
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
 
 /datum/crafting_recipe/mummy
 	name = "Mummification Bandages (Mask)"
@@ -79,7 +105,8 @@
 	time = 1 SECONDS
 	tools = list(/obj/item/nullrod/egyptian)
 	reqs = list(/obj/item/stack/sheet/cloth = 2)
-	category = CAT_CLOTHING
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
 
 /datum/crafting_recipe/mummy/body
 	name = "Mummification Bandages (Body)"
@@ -100,7 +127,7 @@
 /datum/crafting_recipe/heavybonearmor
 	name = "Heavy Bone Armor"
 	result = /obj/item/clothing/suit/hooded/cloak/bone
-	time = 60
+	time = 6 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 8,
 				/obj/item/stack/sheet/sinew = 3)
 	category = CAT_APPAREL
@@ -219,6 +246,15 @@
 	time = 2 SECONDS
 	category = CAT_APPAREL
 	subcategory = CAT_EQUIPMENT
+
+/datum/crafting_recipe/ghettojetpack
+	name = "Improvised Jetpack"
+	result = /obj/item/tank/jetpack/improvised
+	time = 3 SECONDS
+	reqs = list(/obj/item/tank/internals/oxygen = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = MAXCOIL)
+	category = CAT_APPAREL
+	subcategory = CAT_EQUIPMENT
+	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
 
 /datum/crafting_recipe/hudsunmeson
 	name = "Meson Sunglasses"
@@ -344,6 +380,15 @@
 	category = CAT_APPAREL
 	subcategory = CAT_EQUIPMENT
 
+/datum/crafting_recipe/skilt
+	name = "Sinew Kilt"
+	result = /obj/item/clothing/accessory/skilt
+	time = 2 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 1,
+				 /obj/item/stack/sheet/sinew = 2)
+	category = CAT_APPAREL
+	subcategory = CAT_EQUIPMENT
+
 /datum/crafting_recipe/resinband
 	name = "Resin armband"
 	result = /obj/item/clothing/accessory/resinband
@@ -379,7 +424,7 @@
 /datum/crafting_recipe/quiver
 	name = "Quiver"
 	result = /obj/item/storage/belt/quiver
-	time = 80
+	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 3,
 				/obj/item/stack/sheet/sinew = 4)
 	category = CAT_APPAREL

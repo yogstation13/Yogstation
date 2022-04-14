@@ -162,7 +162,7 @@
 /datum/crafting_recipe/watcherbola
 	name = "Watcher Bola"
 	result = /obj/item/restraints/legcuffs/bola/watcher
-	time = 30
+	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 2,
 				/obj/item/restraints/handcuffs/cable/sinew = 1)
 	category = CAT_WEAPONRY
@@ -324,7 +324,7 @@
 	reqs = list(/obj/item/pipe = 5,
 				/obj/item/stack/sheet/plastic = 15,
 				/obj/item/weaponcrafting/silkstring = 10)
-	time = 450
+	time = 45 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -334,7 +334,7 @@
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 8,
 				/obj/item/stack/sheet/metal = 2,
 				/obj/item/weaponcrafting/silkstring = 4)
-	time = 120
+	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -395,7 +395,7 @@
 /datum/crafting_recipe/arrow
 	name = "Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/wood
-	time = 30
+	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1,
 				/obj/item/stack/sheet/silk = 1,
 				/obj/item/stack/rods = 1) //1 metal sheet = 2 rods= 2 arrows
@@ -405,7 +405,7 @@
 /datum/crafting_recipe/bone_arrow
 	name = "Bone Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/bone
-	time = 30
+	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 1,
 				/obj/item/stack/sheet/sinew = 1,
 				/obj/item/ammo_casing/caseless/arrow/ash = 1)
@@ -416,7 +416,7 @@
 	name = "Fire hardened arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/ash
 	tools = list(TOOL_WELDER)
-	time = 30
+	time = 3 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow/wood = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
@@ -424,7 +424,7 @@
 /datum/crafting_recipe/bronze_arrow
 	name = "Bronze arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/bronze
-	time = 30
+	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1,
 				/obj/item/stack/tile/bronze = 1,
 				/obj/item/stack/sheet/silk = 1)
@@ -434,7 +434,7 @@
 /datum/crafting_recipe/bola_arrow
 	name = "Bola arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/bola
-	time = 30
+	time = 3 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
 				/obj/item/stack/sheet/silk = 1,
 				/obj/item/restraints/legcuffs/bola = 1)
@@ -446,7 +446,7 @@
 /datum/crafting_recipe/explosive_arrow
 	name = "Explosive arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/explosive
-	time = 30
+	time = 3 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
 				/obj/item/stack/sheet/silk = 1,
 				/obj/item/grenade = 1)
@@ -458,7 +458,7 @@
 /datum/crafting_recipe/flaming_arrow
 	name = "Flaming arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/flaming
-	time = 30
+	time = 3 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
 				/obj/item/stack/sheet/silk = 1,
 				/datum/reagent/fuel = 10)
@@ -743,7 +743,7 @@
 /datum/crafting_recipe/bonepickaxe
 	name = "Bone Pickaxe"
 	result = /obj/item/pickaxe/bonepickaxe
-	time = 50
+	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/sheet/sinew = 2)
 	category = CAT_PRIMAL
@@ -751,7 +751,7 @@
 /datum/crafting_recipe/bone_bow
 	name = "Bone Bow"
 	result = /obj/item/gun/ballistic/bow/ashen
-	time = 200
+	time = 20 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 8,
 				/obj/item/stack/sheet/sinew = 4)
 	category = CAT_WEAPONRY
@@ -860,7 +860,7 @@
 
 /datum/crafting_recipe/headpikebamboo
 	name = "Spike Head (Bamboo Spear)"
-	time = 65
+	time = 6.5 SECONDS
 	reqs = list(/obj/item/twohanded/bamboospear = 1,
 				/obj/item/bodypart/head = 1)
 	parts = list(/obj/item/bodypart/head = 1,
@@ -924,14 +924,6 @@
 					/obj/item/stack/cable_coil = 5)
 	category = CAT_MISC
 
-/datum/crafting_recipe/ghettojetpack
-	name = "Improvised Jetpack"
-	result = /obj/item/tank/jetpack/improvised
-	time = 3 SECONDS
-	reqs = list(/obj/item/tank/internals/oxygen = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = MAXCOIL)
-	category = CAT_EQUIPMENT
-	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
-
 /datum/crafting_recipe/urinal
 	name = "Urinal"
 	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
@@ -986,6 +978,6 @@
 				/obj/item/stack/rods = 1,
 				/obj/item/stack/cable_coil = 10)
 	result = /obj/item/kitchen/knife/shank
-	time = 10
+	time = 1 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

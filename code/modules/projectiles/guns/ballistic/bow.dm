@@ -16,15 +16,21 @@
 	no_pin_required = TRUE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //so ashwalkers can use it
 
+	var/draw_time = 1 SECONDS
+	var/draw_slowdown = 1 SECONDS
+	var/mutable_appearance/arrow_overlay
+
 /obj/item/gun/ballistic/bow/shoot_with_empty_chamber()
 	return
 
 /obj/item/gun/ballistic/bow/chamber_round()
 	chambered = magazine.get_round(1)
+	update_icon()
 
 /obj/item/gun/ballistic/bow/process_chamber()
 	chambered = null
 	magazine.get_round(0)
+	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/attack_self(mob/living/user)
@@ -35,19 +41,32 @@
 		to_chat(user, span_notice("You gently release the bowstring, removing the arrow."))
 	else if(get_ammo())
 		var/obj/item/I = user.get_active_held_item()
-		if (do_mob(user,I,10))
+		if (do_mob(user, I, draw_time))
 			to_chat(user, span_notice("You draw back the bowstring."))
 			playsound(src, 'sound/weapons/sound_weapons_bowdraw.ogg', 75, 0) //gets way too high pitched if the freq varies
 			chamber_round()
+	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/attackby(obj/item/I, mob/user, params)
 	if (magazine.attackby(I, user, params, 1))
 		to_chat(user, span_notice("You notch the arrow."))
-		update_icon()
+	update_slowdown()
+	update_icon()
 
 /obj/item/gun/ballistic/bow/update_icon()
-	icon_state = "[initial(icon_state)][get_ammo() ? (chambered ? "_firing" : "_loaded") : ""]"
+	cut_overlay(arrow_overlay, TRUE)
+	icon_state = "[initial(icon_state)][chambered ? "_firing" : ""]"
+	if(get_ammo())
+		var/obj/item/ammo_casing/caseless/arrow/energy/E = magazine.get_round(TRUE)
+		arrow_overlay = mutable_appearance(icon, "[initial(E.icon_state)][chambered ? "_firing" : ""]")
+		add_overlay(arrow_overlay, TRUE)
+
+/obj/item/gun/ballistic/bow/proc/update_slowdown()
+	if(chambered)
+		slowdown = draw_slowdown
+	else
+		slowdown = initial(slowdown)
 
 /obj/item/gun/ballistic/bow/can_shoot()
 	return chambered
@@ -71,23 +90,21 @@
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
 	icon_state = "bow_hardlight"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy
-	var/mutable_appearance/arrow_overlay
-	var/recharge_time = 15
+	var/recharge_time = 1.5 SECONDS
 
 /obj/item/gun/ballistic/bow/energy/update_icon()
+	cut_overlay(arrow_overlay, TRUE)
 	if(get_ammo())
-		var/obj/item/ammo_casing/caseless/arrow/energy/E = magazine.get_round(0)
-		arrow_overlay = mutable_appearance(icon, "bow_hardlight_[chambered ? "firing" : "loaded"]_[E.overlay_state]")
+		var/obj/item/ammo_casing/caseless/arrow/energy/E = magazine.get_round(TRUE)
+		arrow_overlay = mutable_appearance(icon, "[initial(E.icon_state)][chambered ? "_firing" : ""]")
 		add_overlay(arrow_overlay, TRUE)
-	else
-		cut_overlay(arrow_overlay, TRUE)
 
 /obj/item/gun/ballistic/bow/energy/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
 	. = ..()
 	if(recharge_time)
 		TIMER_COOLDOWN_START(src, "arrow_recharge", recharge_time)
 
-/obj/item/gun/ballistic/bow/energy/proc/end_cooldown()
+/obj/item/gun/ballistic/bow/energy/proc/end_cooldown(source, index)
 	playsound(src, 'sound/effects/sparks4.ogg', 25, 0)
 
 /obj/item/gun/ballistic/bow/energy/attack_self(mob/living/user)
@@ -97,7 +114,7 @@
 		to_chat(user, span_notice("You disperse the arrow."))
 	else if(magazine.get_round(TRUE))
 		var/obj/item/I = user.get_active_held_item()
-		if (do_mob(user,I,5))
+		if (do_mob(user, I, draw_time))
 			to_chat(user, span_notice("You draw back the bowstring."))
 			playsound(src, 'sound/weapons/sound_weapons_bowdraw.ogg', 75, 0) //gets way too high pitched if the freq varies
 			chamber_round()
@@ -170,8 +187,9 @@
 /obj/item/gun/ballistic/bow/energy/syndicate
 	name = "Syndicate Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy. This one is designed for silent takedowns of targets by the syndicate."
+	icon_state = "bow_syndicate"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/syndicate
-	recharge_time = 20
+	recharge_time = 2 SECONDS
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 5

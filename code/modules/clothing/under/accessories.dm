@@ -367,6 +367,16 @@
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = GROIN
 
+/obj/item/clothing/accessory/skilt
+	name = "Sinew Skirt"
+	desc = "For the last time. IT'S A KILT not a skirt."
+	icon_state = "skilt"
+	item_color = "skilt"
+	above_suit = TRUE
+	minimize_when_attached = FALSE
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
+	attachment_slot = GROIN
+
 /obj/item/clothing/accessory/resinband
 	name = "resin armband"
 	desc = "A smooth amber colored armband made of solid resin, generally worn by tribal aristocracy."
@@ -376,14 +386,18 @@
 	attachment_slot = null
 	above_suit = TRUE
 
+
 /////////////
 //Poppy Pin//
 /////////////
+
 /obj/item/clothing/accessory/poppypin
 	name = "Poppy pins"
 	desc = "A poppy pin that is meant to commemorate the fallen soldiers in wars. It symbolizes the gunshot that killed the soldiers."
 	icon_state = "poppy"
 	item_color = "poppy"
+
+
 //////////////
 //Ooh shiny!//
 //////////////

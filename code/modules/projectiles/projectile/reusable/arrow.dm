@@ -50,7 +50,7 @@
 	. = ..()
 	explosive.forceMove(target)
 	explosive.prime()
-	qdel(src)
+	visible_message("[explosive]")
 
 /obj/item/projectile/bullet/reusable/arrow/flaming
 	name = "Flaming arrow"
@@ -68,14 +68,14 @@
 /obj/item/projectile/energy/arrow
 	name = "energy bolt"
 	icon_state = "arrow_energy"
-	damage = 24
+	damage = 30
 	damage_type = BURN
 
 /obj/item/projectile/energy/arrow/disabler
 	name = "disabler bolt"
 	icon_state = "arrow_disable"
 	light_color = LIGHT_COLOR_BLUE
-	damage = 30
+	damage = 40
 	damage_type = STAMINA
 	nodamage = TRUE
 

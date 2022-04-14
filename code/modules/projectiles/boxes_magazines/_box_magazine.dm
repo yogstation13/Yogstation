@@ -78,9 +78,8 @@
 		return null
 	else
 		var/b = stored_ammo[stored_ammo.len]
-		stored_ammo -= b
-		if (keep)
-			stored_ammo.Insert(1,b)
+		if (!keep)
+			stored_ammo -= b
 		return b
 
 ///puts a round into the magazine
