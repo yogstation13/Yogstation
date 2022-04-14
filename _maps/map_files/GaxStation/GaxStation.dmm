@@ -13980,20 +13980,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical/medbay/lobby)
-"hkC" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/effect/turf_decal/trimline/yellow/filled/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Atmospherics Tanks South";
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "hkF" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
@@ -22493,6 +22479,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"lLn" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/effect/turf_decal/trimline/yellow/filled/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Atmospherics Tanks South";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "lLw" = (
 /obj/machinery/light,
 /obj/structure/table/reinforced,
@@ -22928,6 +22928,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"lUY" = (
+/obj/machinery/button/massdriver{
+	id = "chapelgun";
+	name = "Chapel Mass Driver";
+	pixel_x = -24;
+	pixel_y = 8
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/chapel/office)
 "lVq" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -32933,13 +32949,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"rud" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 10
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line,
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "ruh" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
 /turf/open/floor/plasteel,
@@ -36302,10 +36311,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"tsG" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/hallway/primary/central)
 "tti" = (
 /obj/structure/chair/office/dark{
 	dir = 4
@@ -37468,6 +37473,13 @@
 /obj/machinery/flasher/portable,
 /turf/open/floor/plasteel,
 /area/security/warden)
+"ucz" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 10
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "ucA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -44734,22 +44746,6 @@
 /obj/structure/filingcabinet/employment,
 /turf/open/floor/wood,
 /area/lawoffice)
-"xRk" = (
-/obj/machinery/button/massdriver{
-	id = "chapelgun";
-	name = "Chapel Mass Driver";
-	pixel_x = -24;
-	pixel_y = 8
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating,
-/area/chapel/office)
 "xRo" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
@@ -64337,7 +64333,7 @@ pCr
 rXM
 sLY
 rXM
-rud
+ucz
 eoA
 iNL
 vNA
@@ -64594,7 +64590,7 @@ svz
 cri
 qFv
 rBy
-hkC
+lLn
 acO
 vzR
 hoI
@@ -76618,7 +76614,7 @@ grB
 pfR
 hDW
 cNz
-xRk
+lUY
 qXf
 itL
 mrq
@@ -80253,7 +80249,7 @@ vhl
 vhl
 vhl
 vhl
-tsG
+vhl
 vhl
 vhl
 vhl
