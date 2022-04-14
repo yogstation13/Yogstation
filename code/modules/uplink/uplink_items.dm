@@ -517,6 +517,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/dangerous/pistol/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	if(HAS_TRAIT_FROM(user, TRAIT_PACIFISM, ROUNDSTART_TRAIT))
+		spawn_path = /obj/item/gun/ballistic/automatic/pistol/pacifist
+		to_chat(user, span_notice("Your employer has loaded your purchased weapon with non-lethal ammunition"))
+	..()
+
 /datum/uplink_item/dangerous/bolt_action
 	name = "Surplus Rifle"
 	desc = "A horribly outdated bolt action weapon. You've got to be desperate to use this."
@@ -1528,7 +1534,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/sbeacondrop
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/supermatter_delaminator
@@ -1540,7 +1546,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/supermatter_delaminator
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/powersink
@@ -1592,9 +1598,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/surgerybag
 	name = "Syndicate Surgery Duffel Bag"
 	desc = "The Syndicate surgery duffel bag is a toolkit containing all surgery tools, surgical drapes, \
-			a Syndicate brand MMI, a straitjacket, and a muzzle."
+			a Syndicate brand MMI, an implant case, a straitjacket, and a muzzle."
 	item = /obj/item/storage/backpack/duffelbag/syndie/surgery
-	cost = 3
+	cost = 2
 
 /datum/uplink_item/device_tools/encryptionkey
 	name = "Syndicate Encryption Key"

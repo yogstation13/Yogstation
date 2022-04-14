@@ -79,8 +79,7 @@
 			return FALSE
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
-			if(istype(H.belt, /obj/item/wormhole_jaunter))
-				var/obj/item/wormhole_jaunter/J = H.belt
+			for(var/obj/item/wormhole_jaunter/J in H.GetAllContents())
 				//To freak out any bystanders
 				H.visible_message(span_boldwarning("[H] falls into [parent]!"))
 				J.chasm_react(H)

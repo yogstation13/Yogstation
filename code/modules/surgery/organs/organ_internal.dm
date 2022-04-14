@@ -29,12 +29,15 @@
 	var/high_threshold_cleared
 	var/low_threshold_cleared
 
-/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE,special_zone = null)
 	if(!iscarbon(M) || owner == M)
 		return
 
+	if(special_zone)
+		zone = special_zone
+
 	var/obj/item/organ/replaced = M.getorganslot(slot)
-	if(replaced)
+	if(replaced && !special_zone)
 		replaced.Remove(M, special = 1)
 		if(drop_if_replaced)
 			replaced.forceMove(get_turf(M))
@@ -193,9 +196,9 @@
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.
 
-///returns an organ's efficiency, a percent value (rounded to the 10s) based on its damage and organ_efficiency
+///returns an organ's efficiency, a percent value (rounded to the 10s) based on damage that is multiplied by organ_efficiency
 /obj/item/organ/proc/get_organ_efficiency()
-	return damage < low_threshold ? organ_efficiency : round(organ_efficiency * (damage/maxHealth), 0.1)
+	return damage < low_threshold ? organ_efficiency : round(organ_efficiency * 1-(damage/maxHealth), 0.1)
 
 ///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
 /obj/item/organ/proc/applyOrganDamage(var/d, var/maximum = maxHealth)	//use for damaging effects

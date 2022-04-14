@@ -6,7 +6,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item
 	name = "item"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/misc.dmi'
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	var/item_state = null
 	var/lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'

@@ -158,11 +158,11 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 		return FALSE
 
 	. = FALSE
-	if(!(H.wear_suit?.clothing_flags & SHOWEROKAY))
+	if(H.wear_suit && !(H.wear_suit.clothing_flags & SHOWEROKAY))
 		return TRUE
-	if(!(H.w_uniform?.clothing_flags & SHOWEROKAY))
+	if(H.w_uniform && !(H.w_uniform.clothing_flags & SHOWEROKAY))
 		return TRUE
-	if(!(H.head?.clothing_flags & SHOWEROKAY))
+	if(H.head && !(H.head.clothing_flags & SHOWEROKAY))
 		return TRUE
 
 /obj/effect/turf_decal/pool
@@ -185,6 +185,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	icon_state = "ladder"
 	pixel_y = 12
 	var/reversed = FALSE
+	anchored = TRUE
 
 /obj/structure/pool_ladder/reversed
 	reversed = TRUE
