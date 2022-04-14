@@ -107,7 +107,7 @@
 		COMSIG_LIVING_STATUS_PARALYZE,
 	)
 
-	var/stun_cap_amount = 40
+	var/stun_cap_amount = 4 SECONDS
 
 /obj/item/organ/cyberimp/brain/anti_stun/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
