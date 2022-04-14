@@ -32,7 +32,7 @@
 #define WIRE_TERMINAL_LAYER 2.45
 #define UNDER_CATWALK 2.454
 #define CATWALK_LAYER 2.455
-#define GAS_SCRUBBER_LAYER 2.46 
+#define GAS_SCRUBBER_LAYER 2.46
 #define GAS_PIPE_VISIBLE_LAYER 2.47 //layer = initial(layer) + piping_layer / 1000 in atmospherics/update_icon() to determine order of pipe overlap
 #define GAS_FILTER_LAYER 2.48
 #define GAS_PUMP_LAYER 2.49
@@ -133,6 +133,7 @@
 #define BLIND_LAYER 20.3
 #define CRIT_LAYER 20.4
 #define CURSE_LAYER 20.5
+#define INFECTION_LAYER 20.6
 #define FULLSCREEN_RENDER_TARGET "FULLSCREEN_PLANE"
 
 #define HUD_PLANE 21

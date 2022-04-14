@@ -332,6 +332,14 @@
 	pixel_y = -32
 	duration = 8
 
+/obj/effect/temp_visual/infection
+	name = "infection"
+	icon_state = "infection_attack"
+	alpha = 140
+	randomdir = 0
+	duration = 6
+
+
 /obj/effect/temp_visual/explosion/fast
 	icon_state = "explosionfast"
 	duration = 4
@@ -493,3 +501,9 @@
 	randomdir = FALSE
 	duration = 2 SECONDS
 	icon_state = "summon"
+
+/obj/effect/temp_visual/fading_person
+	name = "fading person"
+	icon = 'icons/mob/infection/crystal_effect.dmi'
+	icon_state = "shadowed_out"
+	duration = 20

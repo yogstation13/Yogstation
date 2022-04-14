@@ -13,6 +13,7 @@ SUBSYSTEM_DEF(events)
 
 	var/list/holidays			//List of all holidays occuring today or null if no holidays
 	var/wizardmode = FALSE
+	var/infectionmode = FALSE
 
 /datum/controller/subsystem/events/Initialize(time, zlevel)
 	for(var/type in typesof(/datum/round_event_control))
@@ -185,3 +186,25 @@ SUBSYSTEM_DEF(events)
 /datum/controller/subsystem/events/proc/resetFrequency()
 	frequency_lower = initial(frequency_lower)
 	frequency_upper = initial(frequency_upper)
+
+/*
+	Toggles the event system to only create events made for infection gamemode
+*/
+
+/datum/controller/subsystem/events/proc/toggleInfectionmode()
+	infectionmode = !infectionmode
+	message_admins("Doom Clock Events have been [infectionmode ? "enabled, events will occur every [SSevents.frequency_lower / 600] to [SSevents.frequency_upper / 600] minutes" : "disabled"]!")
+	log_game("Doom Clock Events Events are [infectionmode ? "enabled" : "disabled"]!")
+
+/*
+	Gives time until the next event, formatted like the shuttle call time
+	Only works below 1 hour and represents the time like MM:SS
+*/
+/datum/controller/subsystem/events/proc/timetonext()
+	var/timeleft = round((scheduled - world.time) / 10)
+	if(timeleft > 1 HOURS)
+		return "--:--"
+	else if(timeleft > 0)
+		return "[add_leading(num2text((timeleft / 60) % 60), 2, "0")]:[add_leading(num2text(timeleft % 60), 2, "0")]"
+	else
+		return "00:00"

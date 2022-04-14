@@ -21,6 +21,7 @@
 #define POLL_IGNORE_SPLITPERSONALITY "split_personality"
 #define POLL_IGNORE_CONTRACTOR_SUPPORT "contractor_support"
 #define POLL_IGNORE_RAGINMAGES "raging_mages"
+#define POLL_IGNORE_CLOWN_STAFF_SUMMON "clown_staff_summon"
 
 
 GLOBAL_LIST_INIT(poll_ignore_desc, list(
@@ -44,6 +45,7 @@ GLOBAL_LIST_INIT(poll_ignore_desc, list(
 	POLL_IGNORE_IMAGINARYFRIEND = "Imaginary Friend",
 	POLL_IGNORE_SPLITPERSONALITY = "Split Personality",
 	POLL_IGNORE_CONTRACTOR_SUPPORT = "Contractor Support Unit",
+	POLL_IGNORE_CLOWN_STAFF_SUMMON = "Clown Staff Summon",
 	POLL_IGNORE_RAGINMAGES = "Raging Mages"
 ))
 GLOBAL_LIST_INIT(poll_ignore, init_poll_ignore())

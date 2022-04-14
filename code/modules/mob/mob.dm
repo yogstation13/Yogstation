@@ -441,7 +441,7 @@
 		if(istype(src, /mob/living/silicon/ai) && istype(A, /mob/living/carbon/human)) //Override for AI's examining humans
 			var/mob/living/carbon/human/H = A
 			result = H.examine_simple(src)
-		else	
+		else
 			LAZYINITLIST(client.recent_examines)
 			if(!(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
 				var/extra_info = A.examine_more(src)
@@ -449,7 +449,7 @@
 			if(!result)
 				client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
 				result = A.examine(src)
-				addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)		
+				addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
 	else
 		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 
@@ -715,6 +715,11 @@
 	if(href_list["refresh"])
 		if(machine && in_range(src, usr))
 			show_inv(machine)
+
+	if(href_list["walk_to"])
+		var/target = locate(href_list["walk_to"])
+		if(target && isatom(target))
+			walk_to(src, target, 0, movement_delay())
 
 
 	if(href_list["item"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
@@ -1230,7 +1235,7 @@
 		if(!mind)
 			to_chat(usr, "This cannot be used on mobs without a mind")
 			return
-		
+
 		var/timer = input("Input AFK length in minutes, 0 to cancel the current timer", text("Input"))  as num|null
 		if(timer == null) // Explicit null check for cancel, rather than generic truthyness, so 0 is handled differently
 			return
@@ -1240,7 +1245,7 @@
 
 		if(!timer)
 			return
-		
+
 		mind.afk_verb_used = TRUE
 		mind.afk_verb_timer = addtimer(VARSET_CALLBACK(mind, afk_verb_used, FALSE), timer MINUTES, TIMER_STOPPABLE);
 
@@ -1280,3 +1285,26 @@
 /mob/setMovetype(newval)
 	. = ..()
 	update_movespeed(FALSE)
+
+/mob/Stat()
+	..()
+	if(statpanel("Status"))
+		if (client)
+			stat(null, "Ping: [round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
+		stat(null, "Map: [SSmapping.config?.map_name || "Loading..."]")
+		var/datum/map_config/cached = SSmapping.next_map_config
+		if(cached)
+			stat(null, "Next Map: [cached.map_name]")
+		stat(null, "Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]")
+		stat(null, "Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]")
+		stat(null, "Round Time: [worldtime2text()]")
+		stat(null, "Station Time: [station_time_timestamp()]")
+		stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
+		if(SSshuttle.emergency)
+			var/ETA = SSshuttle.emergency.getModeStr()
+			if(ETA)
+				stat(null, "[ETA] [SSshuttle.emergency.getTimerStr()]")
+		if(SSevents.infectionmode)
+			var/TILL = SSevents.timetonext()
+			if(TILL)
+				stat(null, "Doom Event: [TILL]")
