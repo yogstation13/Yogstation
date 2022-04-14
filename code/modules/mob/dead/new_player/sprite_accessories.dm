@@ -2203,3 +2203,101 @@
 /datum/sprite_accessory/ethereal_mark/x
 	name = "X"
 	icon_state = "x"
+
+//Phytosian hair
+/datum/sprite_accessory/pod_hair
+	icon = 'icons/mob/pod_hair.dmi'
+	color_src = HAIR
+
+/datum/sprite_accessory/pod_hair/bud
+	name = "Bud"
+	icon_state = "pod_hair_bud"
+
+/datum/sprite_accessory/pod_hair/cabbage
+	name = "Cabbage"
+	icon_state = "pod_hair_cabbage"
+
+/datum/sprite_accessory/pod_hair/fig
+	name = "Fig"
+	icon_state = "pod_hair_fig"
+
+/datum/sprite_accessory/pod_hair/hibiscus
+	name = "Hibiscus"
+	icon_state = "pod_hair_hibiscus"
+
+/datum/sprite_accessory/pod_hair/ivy
+	name = "Ivy"
+	icon_state = "pod_hair_ivy"
+
+/datum/sprite_accessory/pod_hair/orchid
+	name = "Orchid"
+	icon_state = "pod_hair_orchid"
+
+/datum/sprite_accessory/pod_hair/prayer
+	name = "Prayer"
+	icon_state = "pod_hair_prayer"
+
+/datum/sprite_accessory/pod_hair/rose
+	name = "Rose"
+	icon_state = "pod_hair_rose"
+
+/datum/sprite_accessory/pod_hair/shrub
+	name = "Shrub"
+	icon_state = "pod_hair_shrub"
+
+/datum/sprite_accessory/pod_hair/spinach
+	name = "Spinach"
+	icon_state = "pod_hair_spinach"
+
+/datum/sprite_accessory/pod_hair/vine
+	name = "Vine"
+	icon_state = "pod_hair_vine"
+
+//Phytosian hair flower
+/datum/sprite_accessory/pod_flower
+	icon = 'icons/mob/pod_hair.dmi'
+	color_src = FACEHAIR
+
+/datum/sprite_accessory/pod_flower/bud
+	name = "Bud"
+	icon_state = "pod_flower_bud"
+
+/datum/sprite_accessory/pod_flower/cabbage
+	name = "Cabbage"
+	icon_state = "pod_flower_cabbage"
+
+/datum/sprite_accessory/pod_flower/fig
+	name = "Fig"
+	icon_state = "pod_flower_fig"
+
+/datum/sprite_accessory/pod_flower/hibiscus
+	name = "Hibiscus"
+	icon_state = "pod_flower_hibiscus"
+
+/datum/sprite_accessory/pod_flower/ivy
+	name = "Ivy"
+	icon_state = "pod_flower_ivy"
+
+/datum/sprite_accessory/pod_flower/orchid
+	name = "Orchid"
+	icon_state = "pod_flower_orchid"
+
+/datum/sprite_accessory/pod_flower/prayer
+	name = "Prayer"
+	icon_state = "pod_flower_prayer"
+
+/datum/sprite_accessory/pod_flower/rose
+	name = "Rose"
+	icon_state = "pod_flower_rose"
+
+/datum/sprite_accessory/pod_flower/shrub
+	name = "Shrub"
+	icon_state = "pod_flower_shrub"
+
+/datum/sprite_accessory/pod_flower/spinach
+	name = "Spinach"
+	icon_state = "pod_flower_spinach"
+
+/datum/sprite_accessory/pod_flower/vine
+	name = "Vine"
+	icon_state = "pod_flower_vine"
