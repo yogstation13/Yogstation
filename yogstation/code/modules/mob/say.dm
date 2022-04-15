@@ -55,7 +55,7 @@
 	if(isliving(src))
 		var/mob/living/L = src
 		bubble = L.bubble_icon
-	typing_overlay = image('icons/mob/talk.dmi', src, "[bubble]_talking", FLY_LAYER)
+	typing_overlay = image('yogstation/icons/mob/talk.dmi', src, "[bubble]_talking", FLY_LAYER)
 	typing_overlay.appearance_flags = APPEARANCE_UI
 	typing_overlay.invisibility = invisibility
 	typing_overlay.alpha = alpha
