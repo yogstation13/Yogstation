@@ -26,9 +26,9 @@
 
 	light_color = LIGHT_COLOR_BLUE
 
-/obj/machinery/computer/cloning/Initialize()
+/obj/machinery/computer/cloning/Initialize(mapload)
 	. = ..()
-	updatemodules(TRUE)
+	updatemodules(TRUE,mapload)
 
 /obj/machinery/computer/cloning/Destroy()
 	if(pods)
@@ -89,10 +89,10 @@
 			records -= R
 
 
-/obj/machinery/computer/cloning/proc/updatemodules(findfirstcloner)
+/obj/machinery/computer/cloning/proc/updatemodules(findfirstcloner,mapload)
 	scanner = findscanner()
 	if(findfirstcloner && !LAZYLEN(pods))
-		findcloner()
+		findcloner(mapload)
 	if(!autoprocess)
 		STOP_PROCESSING(SSmachines, src)
 	else
@@ -114,14 +114,18 @@
 	// If no scanner was found, it will return null
 	return null
 
-/obj/machinery/computer/cloning/proc/findcloner()
+/obj/machinery/computer/cloning/proc/findcloner(extended_search = FALSE) //extened_search is for things like box where the console is multiple tiles away from the actual pod
 	var/obj/machinery/clonepod/podf = null
 
-	for(var/direction in GLOB.cardinals)
-
-		podf = locate(/obj/machinery/clonepod, get_step(src, direction))
-		if (!isnull(podf) && podf.is_operational())
-			AttachCloner(podf)
+	if(extended_search)
+		for(var/obj/machinery/clonepod/pod in view(3,src))
+			if(!isnull(pod) && pod.is_operational())
+				AttachCloner(pod)
+	else
+		for(var/direction in GLOB.cardinals)
+			podf = locate(/obj/machinery/clonepod, get_step(src, direction))
+			if (!isnull(podf) && podf.is_operational())
+				AttachCloner(podf)
 
 /obj/machinery/computer/cloning/proc/AttachCloner(obj/machinery/clonepod/pod)
 	if(!pod.connected)

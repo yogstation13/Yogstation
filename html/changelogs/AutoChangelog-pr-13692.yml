@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "makes cloners able to scan for pods not directly among them but only on roundstart"
