@@ -102,6 +102,11 @@
 #define TIER_3 6
 #define TIER_ASCEND 7
 
+//Bloodsuckers
+#define IS_BLOODSUCKER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/bloodsucker))
+#define IS_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal))
+#define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))
+
 //Infection
 #define DOOM_CLOCK_EVENT_DELAY 4500 // time between doom events in deciseconds (7 minutes 30 seconds)
 #define CORE_CONVERSION_TIME 600 // time to convert corpses into slimes near the core in deciseconds (60 seconds)
