@@ -1,3 +1,32 @@
+datum/supply_pack/security/armory/hardsuit
+	name = "Security Hardsuit Crate"
+	desc = "Contains a reinforced security hardsuit, a security gasmask and a set of combat magboots for combat in low pressure environments. Requires Armory access to open."
+	cost = 5000
+	contains = list(/obj/item/clothing/suit/space/hardsuit/security,
+					/obj/item/clothing/mask/gas/sechailer,
+					/obj/item/clothing/shoes/magboots/security)
+	crate_name = "security hardsuit crate"
+
+/datum/supply_pack/engineering/hardsuit_engi
+	name = "Engineering Hardsuit Crate"
+	desc = "Contains an engineering hardsuit, a breath mask and a set of magboots for working in irradiated low pressure environments. Requires Construction access to open."
+	cost = 5000
+	access = ACCESS_CONSTRUCTION
+	contains = list(/obj/item/clothing/suit/space/hardsuit/engine,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/shoes/magboots)
+	crate_name = "engineering hardsuit crate"
+
+/datum/supply_pack/engineering/hardsuit_atmos
+	name = "Atmospheric Hardsuit Crate"
+	desc = "Contains an atmospheric hardsuit, a breath mask and a set of magboots for working in high temperature low pressure environments. Requires Atmospheric access to open."
+	cost = 5000
+	access = ACCESS_ATMOSPHERICS
+	contains = list(/obj/item/clothing/suit/space/hardsuit/engine/atmos,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/shoes/magboots)
+	crate_name = "atmospheric hardsuit crate"
+
 /datum/supply_pack/misc/miscclothing
 	name = "Designer clothes"
 	desc = "Contains a variety of overpriced sneakers and clothing items, show your brand loyalty like never before!"
