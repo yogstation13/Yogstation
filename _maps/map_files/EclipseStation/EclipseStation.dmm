@@ -74015,21 +74015,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
-"cWO" = (
-/obj/structure/table/glass,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "cWP" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -84375,6 +84360,22 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
+"jRK" = (
+/obj/structure/table/glass,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "jSj" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/firedoor,
@@ -128125,7 +128126,7 @@ bWj
 aqe
 cWI
 cWL
-cWO
+jRK
 jdw
 myc
 cWP

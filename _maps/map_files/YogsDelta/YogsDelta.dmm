@@ -100418,26 +100418,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"dcu" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/white,
-/obj/item/pen,
-/obj/structure/cable/white{
-	icon_state = "0-8"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/science/xenobiology";
-	dir = 4;
-	name = "Xenobiology Lab APC";
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/item/storage/box/monkeycubes,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "dcv" = (
 /obj/structure/chair{
 	dir = 4
@@ -125979,6 +125959,27 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"rXh" = (
+/obj/structure/table/reinforced,
+/obj/item/folder/white,
+/obj/item/pen,
+/obj/structure/cable/white{
+	icon_state = "0-8"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/science/xenobiology";
+	dir = 4;
+	name = "Xenobiology Lab APC";
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/item/storage/box/monkeycubes,
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "rYf" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -161878,7 +161879,7 @@ cVT
 nWW
 cZb
 iMT
-dcu
+rXh
 ddV
 cMY
 ccw

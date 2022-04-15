@@ -2238,13 +2238,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"bdQ" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "bdW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -25811,6 +25804,14 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"nGE" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "nGY" = (
 /obj/machinery/computer/security{
 	dir = 4
@@ -84432,7 +84433,7 @@ vUO
 vUO
 oBL
 tsz
-bdQ
+nGE
 npU
 gad
 nkO

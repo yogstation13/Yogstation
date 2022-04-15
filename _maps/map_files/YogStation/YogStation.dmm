@@ -35233,6 +35233,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"gio" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel/dark,
+/area/science/xenobiology)
 "giq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -61925,18 +61938,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"uOl" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/monkeycubes{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/item/storage/box/monkeycubes{
-	pixel_x = -1;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/xenobiology)
 "uOs" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 4
@@ -66176,7 +66177,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/science/xenobiology";
 	name = "Xenobiology APC";
-	pixel_y = -32
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel/white,
@@ -112528,7 +112529,7 @@ jXZ
 buu
 yeI
 jaq
-uOl
+gio
 xrN
 pwx
 bDb
