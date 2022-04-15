@@ -76,7 +76,6 @@
 	if(machine)
 		machine.check_eye(src)
 
-
 	if(stat != DEAD)
 		return 1
 
