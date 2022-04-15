@@ -18,6 +18,10 @@
 		if (QDELETED(src))
 			return
 
+		// yogs start -- typing indicators, look in yogstation specific folder for proc
+		handle_typing_indicator()
+		//yogs end
+
 		if(.) //not dead
 			handle_blood()
 
