@@ -92,7 +92,7 @@
 /obj/machinery/computer/cloning/proc/updatemodules(findfirstcloner,mapload)
 	scanner = findscanner()
 	if(findfirstcloner && !LAZYLEN(pods))
-		findcloner(extended_search = mapload)
+		findcloner(mapload)
 	if(!autoprocess)
 		STOP_PROCESSING(SSmachines, src)
 	else
