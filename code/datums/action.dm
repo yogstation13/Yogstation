@@ -366,6 +366,10 @@
 	name = "Press Voice Button"
 	desc = "Engage the voice box on your Hatsky to hear a classic line from the real Officer Beepsky!"
 
+/datum/action/item_action/priest_wololo
+	name = "Wololo"
+	desc = "Convert those damn heretics who aren't your color to the right belief!"
+	
 /datum/action/item_action/nano_picket_sign
 	name = "Retext Nano Picket Sign"
 	var/obj/item/picket_sign/S

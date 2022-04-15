@@ -72,6 +72,8 @@
 		            /obj/item/clothing/under/gimmick/rank/captain/suit/skirt = 2,
 		            /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt = 2,
 		            /obj/item/clothing/suit/hooded/raincoat = 2,
+					/obj/item/clothing/suit/hooded/raincoat/red = 2,
+					/obj/item/clothing/suit/hooded/raincoat/yellow = 2,
 					/obj/item/clothing/suit/jacket = 2,
 		            /obj/item/clothing/suit/jacket/puffer/vest = 2,
 		            /obj/item/clothing/suit/jacket/puffer = 2,
