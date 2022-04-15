@@ -67,7 +67,7 @@
 		/obj/item/assembly/signaler,
 		/obj/item/lightreplacer,
 		/obj/item/construction/rcd,
-		/obj/item/rapid_pipe_dispenser,
+		/obj/item/pipe_dispenser,
 		/obj/item/inducer,
 		/obj/item/holosign_creator/multi/CE,
 		/obj/item/airlock_painter,
@@ -97,7 +97,7 @@
 
 /obj/item/storage/belt/utility/chief/admin/full/PopulateContents()
 	new /obj/item/construction/rcd/combat/admin(src)
-	new /obj/item/rapid_pipe_dispenser(src)
+	new /obj/item/pipe_dispenser(src)
 	new /obj/item/shuttle_creator/admin(src)
 	new /obj/item/handdrill(src)
 	new /obj/item/jawsoflife(src)

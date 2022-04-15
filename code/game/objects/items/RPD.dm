@@ -45,7 +45,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_info/pipe("4-Way Manifold",		/obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w, FALSE),
 		new /datum/pipe_info/pipe("Junction",			/obj/machinery/atmospherics/pipe/heat_exchanging/junction, FALSE),
 		new /datum/pipe_info/pipe("Heat Exchanger",		/obj/machinery/atmospherics/components/unary/heat_exchanger, FALSE),
-
+		
 	)
 ))
 
@@ -201,7 +201,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 /datum/pipe_info/plumbing/multilayer //exists as identifier so we can see the difference between multi_layer and just ducts properly later on
 
 
-/obj/item/rapid_pipe_dispenser
+/obj/item/pipe_dispenser
 	name = "Rapid Pipe Dispenser (RPD)"
 	desc = "A device used to rapidly pipe things."
 	icon = 'icons/obj/tools.dmi'
@@ -240,7 +240,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	var/mode = BUILD_MODE | PAINT_MODE | DESTROY_MODE | WRENCH_MODE
 	var/locked = FALSE //wheter we can change categories. Useful for the plumber
 
-/obj/item/rapid_pipe_dispenser/Initialize()
+/obj/item/pipe_dispenser/Initialize()
 	. = ..()
 	spark_system = new
 	spark_system.set_up(5, 0, src)
@@ -254,38 +254,38 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 	recipe = first_atmos
 
-/obj/item/rapid_pipe_dispenser/Destroy()
+/obj/item/pipe_dispenser/Destroy()
 	qdel(spark_system)
 	spark_system = null
 	return ..()
 
-/obj/item/rapid_pipe_dispenser/examine(mob/user)
+/obj/item/pipe_dispenser/examine(mob/user)
 	. = ..()
 	. += "You can scroll your mouse wheel to change the piping layer."
 
-/obj/item/rapid_pipe_dispenser/equipped(mob/user, slot, initial)
+/obj/item/pipe_dispenser/equipped(mob/user, slot, initial)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOUSE_SCROLL_ON, .proc/mouse_wheeled)
 
-/obj/item/rapid_pipe_dispenser/dropped(mob/user, silent)
+/obj/item/pipe_dispenser/dropped(mob/user, silent)
 	UnregisterSignal(user, COMSIG_MOUSE_SCROLL_ON)
 	return ..()
 
-/obj/item/rapid_pipe_dispenser/attack_self(mob/user)
+/obj/item/pipe_dispenser/attack_self(mob/user)
 	ui_interact(user)
 
-/obj/item/rapid_pipe_dispenser/suicide_act(mob/user)
+/obj/item/pipe_dispenser/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] points the end of the RPD down [user.p_their()] throat and presses a button! It looks like [user.p_theyre()] trying to commit suicide..."))
 	playsound(get_turf(user), 'sound/machines/click.ogg', 50, 1)
 	playsound(get_turf(user), 'sound/items/deconstruct.ogg', 50, 1)
 	return(BRUTELOSS)
 
-/obj/item/rapid_pipe_dispenser/ui_assets(mob/user)
+/obj/item/pipe_dispenser/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/pipes),
 	)
 
-/obj/item/rapid_pipe_dispenser/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/pipe_dispenser/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/pipes)
@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		ui = new(user, src, "RapidPipeDispenser", name)
 		ui.open()
 
-/obj/item/rapid_pipe_dispenser/ui_data(mob/user)
+/obj/item/pipe_dispenser/ui_data(mob/user)
 	var/list/data = list(
 		"category" = category,
 		"piping_layer" = piping_layer,
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 	return data
 
-/obj/item/rapid_pipe_dispenser/ui_act(action, params)
+/obj/item/pipe_dispenser/ui_act(action, params)
 	if(..())
 		return
 	if(!usr.canUseTopic(src, BE_CLOSE))
@@ -377,7 +377,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 50, 0)
 	return TRUE
 
-/obj/item/rapid_pipe_dispenser/pre_attack(atom/A, mob/user)
+/obj/item/pipe_dispenser/pre_attack(atom/A, mob/user)
 	if(!user.IsAdvancedToolUser() || istype(A, /turf/open/space/transit))
 		return ..()
 
@@ -549,10 +549,10 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			else
 				return ..()
 
-/obj/item/rapid_pipe_dispenser/proc/activate()
+/obj/item/pipe_dispenser/proc/activate()
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
 
-/obj/item/rapid_pipe_dispenser/proc/mouse_wheeled(mob/source, atom/A, delta_x, delta_y, params)
+/obj/item/pipe_dispenser/proc/mouse_wheeled(mob/source, atom/A, delta_x, delta_y, params)
 	if(!usr.canUseTopic(src, BE_CLOSE))
 		return
 
@@ -564,14 +564,14 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		return
 	to_chat(source, span_notice("You set the layer to [piping_layer]."))
 
-/obj/item/rapid_pipe_dispenser/plumbing
+/obj/item/pipe_dispenser/plumbing
 	name = "Plumberinator"
 	desc = "A crude device to rapidly plumb things."
 	icon_state = "plumberer"
 	category = PLUMBING_CATEGORY
 	locked = TRUE
 
-/obj/item/rapid_pipe_dispenser/plumbing/Initialize()
+/obj/item/pipe_dispenser/plumbing/Initialize()
 	. = ..()
 	spark_system = new
 	spark_system.set_up(5, 0, src)
