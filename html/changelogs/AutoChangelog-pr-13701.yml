@@ -1,0 +1,4 @@
+author: "Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "People who have died from traumatic brain injury no longer appear happy and healthy on crew monitoring consoles."
