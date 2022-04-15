@@ -40,7 +40,7 @@
 	return base_power_usage * power_multiplier
 
 /obj/item/ai_cpu/proc/get_efficiency()
-	return 1 / power_multiplier * 100
+	return 1 / (power_multiplier / initial(power_multiplier)) * 100
 
 /obj/item/ai_cpu/advanced
 	name = "advanced neural processing unit"
