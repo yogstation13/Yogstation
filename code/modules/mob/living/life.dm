@@ -76,9 +76,6 @@
 	if(machine)
 		machine.check_eye(src)
 
-	// yogs start -- typing indicators, look in yogstation specific folder for proc
-	handle_typing_indicator()
-	//yogs end
 
 	if(stat != DEAD)
 		return 1
