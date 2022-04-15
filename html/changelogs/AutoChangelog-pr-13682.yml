@@ -1,6 +1,0 @@
-author: "Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "It is now possible for the pool in dorms to be closed due to singularity."
-  - tweak: "Mobs which would be electrocuted were they to enter a pool now receive a small warning about that when they examine the pool turfs."
-  - spellcheck: "Having your mood changed by going into a pool no longer reduces your spelling abilities."
