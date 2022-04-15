@@ -3,5 +3,5 @@
 	icon = 'yogstation/icons/obj/library.dmi'
 	icon_state = "xenobook"
 	author = "Dr. S. Lime"
-	title = "CrOssBrEEdIng: a sImpLETOns GuIDE to SLIMEy STufF"
+	title = "Crossbreeding: A simpletons guide to slimey stuff."
 	page_link = "Guide_to_xenobiology"
