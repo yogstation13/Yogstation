@@ -232,7 +232,12 @@
 		light_heal_multiplier = 2
 		dark_damage_multiplier = 3
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
-		//removal is handled in /datum/reagent/sugar/on_mob_delete()
+		//removal is handled in /datum/reagent/sugar/on_mob_delete() //so this was a fucking lie
+		
+		//if there's none left after the removal, the light multiplier needs to go back to the default
+		if(!H.reagents.has_reagent(/datum/reagent/consumable/sugar)) 
+			light_heal_multiplier = 1
+			dark_damage_multiplier = 2
 		return 1
 
 	if(istype(chem, /datum/reagent/consumable/ethanol)) //istype so all alcohols work
