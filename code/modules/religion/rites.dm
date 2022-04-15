@@ -428,7 +428,7 @@
 
 /datum/religion_rites/ruinousknife
 	name = "Ruinous Knife"
-	desc = "Creates a knife that is mostly cosmetic, but is also a weapon."
+	desc = "Creates a knife that is mostly cosmetic, but is also a weapon. It is extra effective as a butchering tool, and can be upgraded with crafting alongside a piece of ruinous metal."
 	ritual_length = 5 SECONDS
 	invoke_msg = "please, old ones, lend us a tool of holy creation."
 	favor_cost = 50
