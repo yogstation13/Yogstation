@@ -776,7 +776,7 @@
 	id = "rpd"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 45000, /datum/material/glass = 37500)
-	build_path = /obj/item/pipe_dispenser
+	build_path = /obj/item/rapid_pipe_dispenser
 	category = list("hacked", "Construction")
 
 /datum/design/electropack
