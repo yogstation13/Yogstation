@@ -285,7 +285,7 @@
 	build_type = PROTOLATHE | MECHFAB
 	materials = list (/datum/material/iron = 2500, /datum/material/glass = 1500, /datum/material/silver = 1500)
 	construction_time = 200
-	build_path = /obj/item/organ/cyberimp/arm/surgery
+	build_path = /obj/item/organ/cyberimp/arm/toolset/surgery
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 

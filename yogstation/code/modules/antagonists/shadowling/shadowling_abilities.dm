@@ -184,6 +184,10 @@
 			S.generation = G.generation
 			G.visible_message(span_warning("[G] suddenly turns dark!"))
 			qdel(G)
+	for(var/turf/open/floor/grass/fairy/F in view(7, user))
+		if(!istype(F, /turf/open/floor/grass/fairy/dark))
+			F.visible_message(span_warning("[F] suddenly turns dark!"))
+			F.ChangeTurf(/turf/open/floor/grass/fairy/dark, flags = CHANGETURF_INHERIT_AIR)
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"

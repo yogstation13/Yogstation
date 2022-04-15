@@ -26,7 +26,7 @@
 	name = "CQC"
 	id = MARTIALART_CQC
 	help_verb = /mob/living/carbon/human/proc/CQC_help
-	block_chance = 75
+	block_chance = 90 //Don't get into melee with someone specifically trained for melee and prepared for your attacks
 	nonlethal = TRUE //all attacks deal solely stamina damage or knock out before dealing lethal amounts of damage
 	///whether the art checks for being inside the kitchen for use
 	var/just_a_cook = FALSE
@@ -318,6 +318,7 @@
 			I.forceMove(get_turf(attacker))
 	attacker.Paralyze(20)
 	attacker.Knockdown(60)
+	user.adjustStaminaLoss(10)	//Can't block forever. Really, if this becomes a problem you're already screwed.
 
 /**
   * CQC help proc
@@ -342,4 +343,4 @@
 	to_chat(usr, "[span_notice("Pressure")]: Disarm Grab. Disables the targetted limb or a random limb if the head or chest are targetted, as well as forcing the target to drop anything they are holding.")
 	to_chat(usr, "[span_notice("Consecutive CQC")]: Harm Harm Harm Harm Harm. Offensive move, deals bonus stamina damage and knocking down on the last hit.")
 
-	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to counter attacks done to you.</i></b>")
+	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to counter attacks done to you. Beware, counter-attacks are tiring and you won't be able to defend yourself forever!</i></b>")

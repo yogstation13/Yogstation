@@ -21,10 +21,12 @@
 		return
 	var/rank_name = holder.rank
 	var/admin_name = key
+	var/follow_link = ""
 	if(holder.fakekey)
 		rank_name = holder.fakekey
 		admin_name = holder.fakename
-	var/rendered = "<span class='game deadsay'>[span_prefix("DEAD:")] [span_name("([rank_name]) [admin_name]")] says, [span_message("\"[emoji_parse(msg)]\"")]</span>"
+		follow_link = "<a href=\"\">(F)</a> "
+	var/rendered = "<span class='game deadsay'>[follow_link][span_prefix("DEAD:")] [span_name("([rank_name]) [admin_name]")] says, [span_message("\"[emoji_parse(msg)]\"")]</span>"
 
 	for (var/mob/M in GLOB.player_list)
 		if(isnewplayer(M) && !(M.client && M.client.holder)) // Yogs -- Allows admins to hear admin deadsay while in the lobby

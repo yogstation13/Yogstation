@@ -1,5 +1,5 @@
 /obj/item/wallframe
-	icon = 'icons/obj/wallframe.dmi'
+	icon = 'icons/obj/frame.dmi'
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT*2)
 	flags_1 = CONDUCT_1
 	item_state = "syringe_kit"
