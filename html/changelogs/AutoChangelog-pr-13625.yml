@@ -1,8 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - tweak: "Removing a brain from an MMI kills the brain (fixable with mannitol), and removes recent memories"
-  - tweak: "Positronic brains can now have all their memories reset"
-  - tweak: "MMIs and Positronic Brains must 'reboot' after their body is deconstructed, preventing them from speaking"
-  - tweak: "Removing the brain from an MMI during the reboot, will make the brain forget the borg death as well"
-  - tweak: "SSD Positronic brains will poll for a new ghost when activated"
