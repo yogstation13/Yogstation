@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "the KA damage aoe no longer disrespects pressure damage reduction"
