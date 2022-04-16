@@ -1,5 +1,0 @@
-author: "TheGamerdk"
-delete-after: true 
-changes: 
-  - tweak: "AI is no longer blinded when their APC goes offline, provided they have another core online"
-  - bugfix: "AI can restore their APC when it is offline"

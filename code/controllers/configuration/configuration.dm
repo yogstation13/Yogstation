@@ -21,8 +21,6 @@
 	var/motd
 	var/policy
 
-	var/load_complete = FALSE
-
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
 		return
@@ -52,8 +50,6 @@
 	LoadMOTD()
 	LoadPolicy()
 	
-	load_complete = TRUE
-
 	if (Master)
 		Master.OnConfigLoad()
 

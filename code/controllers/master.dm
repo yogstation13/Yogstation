@@ -184,11 +184,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	// Sort subsystems by init_order, so they initialize in the correct order.
 	sortTim(subsystems, /proc/cmp_subsystem_init)
-	//yogs -- loading progress stuff; have to initialize this static
-	for(var/s in subsystems)
-		var/datum/controller/subsystem/SS = s
-		SS.total_loading_points += SS.loading_points
-	//yogs end
 
 	var/start_timeofday = REALTIMEOFDAY
 	// Initialize subsystems.

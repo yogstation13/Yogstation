@@ -3,8 +3,6 @@ SUBSYSTEM_DEF(mapping)
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
-	loading_points = 11 SECONDS // Yogs -- loading times
-
 	var/list/nuke_tiles = list()
 	var/list/nuke_threats = list()
 

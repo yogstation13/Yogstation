@@ -2,9 +2,6 @@ SUBSYSTEM_DEF(assets)
 	name = "Assets"
 	init_order = INIT_ORDER_ASSETS
 	flags = SS_NO_FIRE
-
-	loading_points = 3 SECONDS // Yogs -- loading times
-
 	var/list/cache = list()
 	var/list/preload = list()
 	var/datum/asset_transport/transport = new()

@@ -207,15 +207,17 @@
 				if(is_centcom)
 					new_access = get_centcom_access(target)
 				else
-					var/datum/job/job = SSjob.GetJob(target)
+					var/datum/job/job
+					for(var/jobtype in subtypesof(/datum/job))
+						var/datum/job/J = new jobtype
+						if(J.title == target)
+							job = J
+							break
 					if(!job)
 						to_chat(user, span_warning("No class exists for this job: [target]"))
 						return
 					new_access = job.get_access()
-					if(target_id_card.registered_account)
-						target_id_card.registered_account.account_job = job
-
-				target_id_card.access = list()
+				target_id_card.access -= get_all_centcom_access() + get_all_accesses()
 				target_id_card.access |= new_access
 				target_id_card.originalassignment = target
 				target_id_card.assignment = target

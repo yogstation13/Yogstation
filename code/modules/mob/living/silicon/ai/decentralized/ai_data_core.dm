@@ -46,8 +46,6 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
     
 	for(var/mob/living/silicon/ai/AI in all_ais)
-		if(AI.is_dying)
-			continue
 		if(!AI.mind && AI.deployed_shell.mind)
 			to_chat(AI.deployed_shell, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 		else
@@ -113,8 +111,6 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			warning_sent = TRUE
 			var/list/send_to = GLOB.ai_list.Copy()
 			for(var/mob/living/silicon/ai/AI in send_to)
-				if(AI.is_dying)
-					continue
 				if(!AI.mind && AI.deployed_shell.mind)
 					to_chat(AI.deployed_shell, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
 				else

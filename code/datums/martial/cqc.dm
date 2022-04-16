@@ -89,7 +89,7 @@
 						  	span_userdanger("[A] slams you into the ground!"))
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1) //using hit_kick because for some stupid reason slam.ogg is delayed
 		A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
-		D.apply_damage(A.dna.species.punchdamagehigh+5, STAMINA)	//15 damage
+		D.apply_damage(15, STAMINA)
 		D.Paralyze(30)
 		D.Knockdown(80)
 		log_combat(A, D, "slammed (CQC)")
@@ -110,7 +110,7 @@
 							span_userdanger("[A] kicks you back!"))
 		playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 		step(D, A.dir)
-		D.apply_damage(A.dna.species.punchdamagehigh+5, STAMINA)	//15 damage
+		D.apply_damage(15, STAMINA)
 		log_combat(A, D, "kicked (CQC)")
 		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
 		addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), SHOVE_SLOWDOWN_LENGTH)
@@ -119,9 +119,8 @@
 		D.visible_message(span_warning("[A] firmly kicks [D] in the abdomen!"), \
 					  		span_userdanger("[A] kicks you in the abdomen!"))
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
-		var/kickdamage = A.dna.species.punchdamagehigh * 2 + 20	//40 damage
 		D.Paralyze(5)
-		D.apply_damage(kickdamage, STAMINA)
+		D.apply_damage(40, STAMINA)
 		D.silent += 2
 	return TRUE
 
@@ -146,7 +145,7 @@
 	D.visible_message(span_warning("[A] dislocates [D]'s [hit_limb]!"), \
 						"<span class = 'userdanger'>[A] dislocates your [hit_limb]!</span>")
 	D.drop_all_held_items()
-	D.apply_damage(50, STAMINA, selected_zone)	//not based on species damage since this should just disable the limb outright anyways, which caps at 50 damage
+	D.apply_damage(50, STAMINA, selected_zone)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	return TRUE
 
@@ -183,14 +182,13 @@
 		return FALSE
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	if(D.mobility_flags & MOBILITY_STAND)
-		var/consecutivedamage = A.dna.species.punchdamagehigh * 1.5 + 10 //25 damage
 		log_combat(A, D, "consecutive CQC'd (CQC)")
 		D.visible_message(span_warning("[A] delivers a firm blow to [D]'s head, knocking them down!"), \
 							span_userdanger("[A] delivers a firm blow to your head, causing you to fall over!"))
 		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
 		D.Paralyze(50)
 		D.Knockdown(100)
-		D.apply_damage(consecutivedamage, STAMINA)
+		D.apply_damage(25, STAMINA)
 	return TRUE
 
 ///CQC grab, stuns for 1.5 seconds on use
@@ -217,7 +215,7 @@
 	log_combat(A, D, "attacked (CQC)")
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	var/picked_hit_type = pick("CQC'd", "Big Bossed")
-	var/bonus_damage = A.dna.species.punchdamagehigh + 5 //15 damage
+	var/bonus_damage = 15
 	D.apply_damage(bonus_damage, STAMINA)
 	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	D.visible_message(span_danger("[A] [picked_hit_type] [D]!"), \
@@ -253,7 +251,7 @@
 			if(I && D.temporarilyRemoveItemFromInventory(I))
 				A.put_in_hands(I)
 			D.Jitter(2)
-			D.apply_damage(A.dna.species.punchdamagehigh/2, STAMINA) //5 damage
+			D.apply_damage(5, STAMINA)
 		else
 			D.visible_message(span_danger("[A] grabs at [D]'s arm, but misses!"), \
 								span_userdanger("[A] grabs at your arm, but misses!"))

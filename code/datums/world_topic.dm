@@ -223,8 +223,8 @@
 	.["host"] = world.host ? world.host : null
 	.["round_id"] = GLOB.round_id
 	.["players"] = GLOB.clients.len
-	.["revision"] = GLOB.revdata?.commit
-	.["revision_date"] = GLOB.revdata?.date
+	.["revision"] = GLOB.revdata.commit
+	.["revision_date"] = GLOB.revdata.date
 
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
