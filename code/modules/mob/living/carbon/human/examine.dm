@@ -15,6 +15,13 @@
 
 	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
+	var/vampDesc = ReturnVampExamine(user) // Fulpstation Bloodsuckers edit STARTS
+	var/vassDesc = ReturnVassalExamine(user)
+	if(vampDesc != "")
+		. += vampDesc
+	if(vassDesc != "")
+		. += vassDesc // Fulpstation Bloodsucker edit ENDS
+
 	var/list/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
@@ -227,7 +234,15 @@
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
-	switch(get_blood_state())
+
+	var/apparent_blood_volume = blood_volume
+	if(skin_tone == "albino")
+		apparent_blood_volume -= 150 // enough to knock you down one tier
+	// Fulp edit START - Bloodsuckers
+	var/bloodDesc = ShowAsPaleExamine(user, apparent_blood_volume)
+	if(bloodDesc != BLOODSUCKER_HIDE_BLOOD)
+		msg += bloodDesc
+	else switch(get_blood_state())
 		if(BLOOD_OKAY)
 			msg += "[t_He] [t_has] pale skin.\n"
 		if(BLOOD_BAD)

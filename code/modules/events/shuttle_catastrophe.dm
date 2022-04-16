@@ -3,6 +3,7 @@
 	typepath = /datum/round_event/shuttle_catastrophe
 	weight = 10
 	max_occurrences = 1
+	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event_control/shuttle_catastrophe/canSpawnEvent(players, gamemode)
 	if(!is_centcom_level(SSshuttle.emergency.z) || (SSshuttle.emergency.name == "Build Your Own Shuttle") || (SSshuttle.emergency.name == "Build Your Own Shuttle, Jr.") || (SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL || SSshuttle.emergency.mode == SHUTTLE_DOCKED || SSshuttle.emergency.mode == SHUTTLE_STRANDED))
