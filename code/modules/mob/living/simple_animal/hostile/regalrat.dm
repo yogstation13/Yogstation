@@ -24,6 +24,7 @@
 	faction = list("rat")
 	var/datum/action/cooldown/coffer
 	var/datum/action/cooldown/riot
+	var/datum/action/cooldown/domain
 	var/opening_airlock = FALSE
 	///Number assigned to rats and mice, checked when determining infighting.
 
@@ -31,13 +32,23 @@
 	. = ..()
 	coffer = new /datum/action/cooldown/coffer
 	riot = new /datum/action/cooldown/riot
+	domain = new /datum/action/cooldown/domain
 	coffer.Grant(src)
 	riot.Grant(src)
+	domain.Grant(src)
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be his crown?", ROLE_SENTIENCE, null, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
 	if(LAZYLEN(candidates) && !mind)
 		var/mob/dead/observer/C = pick(candidates)
 		key = C.key
 		notify_ghosts("All rise for the rat king, ascendant to the throne in \the [get_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Sentient Rat Created")
+
+
+/mob/living/simple_animal/hostile/regalrat/controlled/Initialize(mapload)
+	. = ..()
+	INVOKE_ASYNC(src, .proc/get_player)
+	var/kingdom = pick("Plague","Miasma","Maintenance","Trash","Garbage","Rat","Vermin","Cheese")
+	var/title = pick("King","Lord","Prince","Emperor","Supreme","Overlord","Master","Shogun","Bojar","Tsar","Hetman")
+	name = "[kingdom] [title]"
 
 /mob/living/simple_animal/hostile/regalrat/handle_automated_action()
 	if(prob(20))
@@ -69,6 +80,14 @@
 			. += "<span class='warning'>This is a false king! Strike him down!</span>"
 	else if(istype(user,/mob/living/simple_animal/hostile/regalrat))
 		. += "<span class='warning'>Who is this foolish false king? This will not stand!</span>"
+
+/mob/living/simple_animal/hostile/regalrat/handle_environment(datum/gas_mixture/environment)
+	. = ..()
+	if(stat == DEAD || !environment || !environment.get_moles(/datum/gas/miasma))
+		return
+	var/miasma_percentage = environment.get_moles(/datum/gas/miasma)/environment.total_moles()
+	if(miasma_percentage>=0.25)
+		heal_bodypart_damage(1)
 
 /**
   *This action creates trash, money, dirt, and cheese.
@@ -126,6 +145,11 @@
 	cooldown_time = 80
 	///Checks to see if there are any nearby mice. Does not count Rats.
 
+
+/**
+ *Increase the rat king's domain
+ */
+
 /datum/action/cooldown/riot/Trigger()
 	. = ..()
 	if(!.)
@@ -149,6 +173,34 @@
 		owner.visible_message("<span class='warning'>[owner] commands a mouse to its side!</span>")
 	else
 		owner.visible_message("<span class='warning'>[owner] commands its army to action, mutating them into rats!</span>")
+	StartCooldown()
+
+/datum/action/cooldown/domain
+	name = "Rat King's Domain"
+	desc = "Corrupts this area to be more suitable for your rat army."
+	check_flags = AB_CHECK_CONSCIOUS
+	cooldown_time = 6 SECONDS
+	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	background_icon_state = "bg_clock"
+	button_icon_state = "smoke"
+
+/datum/action/cooldown/domain/proc/domain()
+	var/turf/T = get_turf(owner)
+	T.atmos_spawn_air("miasma=4;TEMP=[T20C]")
+	switch (rand(1,10))
+		if (8)
+			new /obj/effect/decal/cleanable/vomit(T)
+		if (9)
+			new /obj/effect/decal/cleanable/vomit/old(T)
+		if (10)
+			new /obj/effect/decal/cleanable/oil/slippery(T)
+		else
+			new /obj/effect/decal/cleanable/dirt(T)
+	StartCooldown()
+
+/datum/action/cooldown/domain/Trigger()
+	StartCooldown(10 SECONDS)
+	domain()
 	StartCooldown()
 
 /mob/living/simple_animal/hostile/rat
@@ -363,5 +415,5 @@
 	if(LAZYLEN(candidates) && !mind)
 		var/mob/dead/observer/C = pick(candidates)
 		key = C.key
-		notify_ghosts("All rise for the rat king, ascendant to the throne in \the [wget_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Sentient Rat Created")
+		notify_ghosts("All rise for the rat king, ascendant to the throne in \the [get_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Sentient Rat Created")
 	to_chat(src, span_notice("You are an independent, invasive force on the station! Horde coins, trash, cheese, and the like from the safety of darkness!"))
