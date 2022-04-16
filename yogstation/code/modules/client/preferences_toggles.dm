@@ -23,4 +23,4 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, typing_indicators)()
 	set desc = "Toggle typing indicators"
 	usr.client.prefs.chat_toggles ^= CHAT_TYPING_INDICATOR
 	usr.client.prefs.save_preferences()
-	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_TYPING_INDICATOR) ? "no longer" : "now"] see typing indicators.")
+	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_TYPING_INDICATOR) ? "now" : "no longer"] see typing indicators.")
