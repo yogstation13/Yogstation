@@ -95,6 +95,9 @@
 	var/obj/item/modular_computer/tablet/integrated/modularInterface
 	var/obj/screen/robot/modPC/interfaceButton
 
+	///Flash resistance
+	var/sensor_protection = FALSE
+
 	var/list/upgrades = list()
 
 	var/expansion_count = 0
@@ -897,6 +900,8 @@
 	lawupdate = FALSE
 	scrambledcodes = TRUE // These are rogue borgs.
 	ionpulse = TRUE
+	sensor_protection = TRUE	//Your funny lightbulb won't save you now. Prepare to die!
+
 	var/playstyle_string = "<span class='big bold'>You are a Syndicate assault cyborg!</span><br>\
 							<b>You are armed with powerful offensive tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
 							Your cyborg LMG will slowly produce ammunition from your power supply, and your operative pinpointer will find and locate fellow nuclear operatives. \
@@ -924,6 +929,7 @@
 
 /mob/living/silicon/robot/modules/syndicate/medical
 	icon_state = "synd_medical"
+	sensor_protection = FALSE	//Not a direct combat module like the assault borg (usually)
 	playstyle_string = "<span class='big bold'>You are a Syndicate medical cyborg!</span><br>\
 						<b>You are armed with powerful medical tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
 						Your hypospray will produce Restorative Nanites, a wonder-drug that will heal most types of bodily damages, including clone and brain damage. It also produces morphine for offense. \
@@ -934,6 +940,7 @@
 
 /mob/living/silicon/robot/modules/syndicate/saboteur
 	icon_state = "synd_engi"
+	sensor_protection = FALSE	//DEFINITELY not a direct combat module
 	playstyle_string = "<span class='big bold'>You are a Syndicate saboteur cyborg!</span><br>\
 						<b>You are armed with robust engineering tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
 						Your destination tagger will allow you to stealthily traverse the disposal network across the station \
@@ -1358,3 +1365,6 @@
 	var/datum/computer_file/program/robotact/program = modularInterface.get_robotact()
 	if(program)
 		program.force_full_update()
+
+/mob/living/silicon/robot/get_eye_protection() 
+	return sensor_protection
