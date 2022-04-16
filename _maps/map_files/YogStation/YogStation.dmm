@@ -31633,6 +31633,29 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"dTN" = (
+/obj/machinery/camera{
+	c_tag = "Genetics Research";
+	network = list("ss13","medbay")
+	},
+/obj/structure/table/glass,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 9
+	},
+/obj/item/storage/pill_bottle/mannitol{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/obj/item/storage/pill_bottle/mutadone{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/book/manual/wiki/medical_genetics{
+	pixel_x = -7;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "dTV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -54276,30 +54299,6 @@
 	dir = 4
 	},
 /turf/open/floor/grass,
-/area/medical/genetics)
-"qBr" = (
-/obj/machinery/camera{
-	c_tag = "Genetics Research";
-	dir = 4;
-	network = list("ss13","medbay")
-	},
-/obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 9
-	},
-/obj/item/storage/pill_bottle/mannitol{
-	pixel_x = 8;
-	pixel_y = -4
-	},
-/obj/item/storage/pill_bottle/mutadone{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/book/manual/wiki/medical_genetics{
-	pixel_x = -7;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "qCq" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -110357,7 +110356,7 @@ bfL
 ipN
 iMF
 rrG
-qBr
+dTN
 jRr
 xlF
 wBd
