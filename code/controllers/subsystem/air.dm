@@ -5,6 +5,7 @@ SUBSYSTEM_DEF(air)
 	wait = 0.5 SECONDS
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	loading_points = 4.2 SECONDS // Yogs -- loading times
 
 	var/cost_turfs = 0
 	var/cost_groups = 0
