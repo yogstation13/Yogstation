@@ -205,6 +205,7 @@
 			to_chat(src, span_boldannounce("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
 			ghostize()
 			stack_trace("Borg MMI lacked a brainmob")
+		mmi.beginReboot()
 		mmi = null
 	if(modularInterface)
 		QDEL_NULL(modularInterface)
@@ -508,7 +509,7 @@
 			return
 		else
 			to_chat(user, span_notice("You start to unfasten [src]'s securing bolts..."))
-			if(W.use_tool(src, user, 50, volume=50) && !cell)
+			if(W.use_tool(src, user, 5 SECONDS, volume=50) && !cell)
 				user.visible_message("[user] deconstructs [src]!", span_notice("You unfasten the securing bolts, and [src] falls to pieces!"))
 				deconstruct()
 

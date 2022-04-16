@@ -92,6 +92,9 @@
 	M.lastattacker = user.real_name
 	M.lastattackerckey = user.ckey
 
+	if(force)
+		M.last_damage = name
+
 	user.do_attack_animation(M)
 	M.attacked_by(src, user)
 

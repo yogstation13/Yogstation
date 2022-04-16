@@ -31,6 +31,7 @@
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, span_notice("You don't want to hurt [src]!"))
 				return
+			last_damage = "fist"
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			visible_message(span_danger("[M] [response_harm] [src]!"),\
 			span_userdanger("[M] [response_harm] [src]!"), null, COMBAT_MESSAGE_RANGE)
@@ -122,6 +123,7 @@
 
 /mob/living/simple_animal/bullet_act(obj/item/projectile/Proj)
 	apply_damage(Proj.damage, Proj.damage_type)
+	last_damage = Proj.name
 	Proj.on_hit(src)
 	return BULLET_ACT_HIT
 

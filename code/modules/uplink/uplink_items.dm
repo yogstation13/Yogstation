@@ -1534,7 +1534,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/sbeacondrop
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/supermatter_delaminator
@@ -1546,7 +1546,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/supermatter_delaminator
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/powersink

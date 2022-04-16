@@ -789,7 +789,7 @@
 	desc = "It emits a strange aura, as if there was still life within it..."
 	max_integrity = 50
 	armor = list("melee" = 90, "bullet" = 90, "laser" = 25, "energy" = 80, "bomb" = 50, "bio" = 100, "fire" = -50, "acid" = -50)
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "pile_bandages"
 	resistance_flags = FLAMMABLE
 
@@ -1426,7 +1426,7 @@
 	desc = "It emits a strange aura, as if there was still life within it..."
 	max_integrity = 150
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 25, "energy" = 80, "bomb" = 50, "bio" = 100, "fire" = 95, "acid" = -50)
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "pile_wax"
 
 	var/revive_time = 80 SECONDS

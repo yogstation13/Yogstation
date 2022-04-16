@@ -1,5 +1,4 @@
 #define PERF_BASE_DAMAGE		0.5
-#define REAGENT_REVIVE_MINIMUM_HEALTH (HEALTH_THRESHOLD_CRIT + 20)
 /// Required strange reagent for revival.
 #define REQUIRED_STRANGE_REAGENT_FOR_REVIVAL 2
 
@@ -857,15 +856,15 @@
 	taste_description = "magnets"
 
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/strange_reagent)
+	var/datum/reagent/S = M.reagents?.get_reagent(/datum/reagent/medicine/strange_reagent)
 	if((S?.volume + reac_volume) < REQUIRED_STRANGE_REAGENT_FOR_REVIVAL)
 		M.visible_message(span_warning("[M]'s body shivers slightly, maybe the dose wasn't enough..."))
 		return ..()
 	if(M.stat == DEAD)
-		if(M.suiciding || M.hellbound) //they are never coming back
+		if(M.suiciding || M.hellbound || ismegafauna(M)) //they are never coming back
 			M.visible_message(span_warning("[M]'s body does not react..."))
 			return
-		if(M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived
+		if(iscarbon(M) && (M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK))) //body is too damaged to be revived
 			M.visible_message(span_warning("[M]'s body convulses a bit, and then falls still once more."))
 			M.do_jitter_animation(10)
 			return
@@ -877,15 +876,14 @@
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
 			sleep(100) //so the ghost has time to re-enter
 			if(iscarbon(M))
-				var/mob/living/carbon/H = M
-				for(var/organ in H.internal_organs)
+				var/mob/living/carbon/C = M
+				for(var/organ in C.internal_organs)
 					var/obj/item/organ/O = organ
 					O.setOrganDamage(0)
 			M.adjustBruteLoss(-100)
 			M.adjustFireLoss(-100)
 			M.adjustOxyLoss(-200, 0)
 			M.adjustToxLoss(-200, 0, TRUE)
-			M.adjustCloneLoss(max(REAGENT_REVIVE_MINIMUM_HEALTH - M.getCloneLoss(), 0))
 			M.updatehealth()
 			if(M.revive())
 				M.emote("gasp")
@@ -1758,5 +1756,4 @@
 			movable_content.wash(clean_types)
 
 #undef PERF_BASE_DAMAGE
-#undef REAGENT_REVIVE_MINIMUM_HEALTH
 #undef REQUIRED_STRANGE_REAGENT_FOR_REVIVAL

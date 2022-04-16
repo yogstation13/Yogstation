@@ -1430,7 +1430,12 @@
 
 		var/mob/M = locate(href_list["HeadsetMessage"])
 		usr.client.admin_headset_message(M)
-
+	else if(href_list["accept_custom_name"]) // yogs start
+		if(!check_rights(R_ADMIN))
+			return
+		var/obj/item/station_charter/charter = locate(href_list["accept_custom_name"])
+		if(istype(charter))
+			charter.accept_proposed(usr) // yogs end
 	else if(href_list["reject_custom_name"])
 		if(!check_rights(R_ADMIN))
 			return

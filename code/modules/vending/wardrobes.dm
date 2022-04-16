@@ -8,7 +8,14 @@
 	input_display_header = "Returned Clothing"
 
 /obj/machinery/vending/wardrobe/canLoadItem(obj/item/I,mob/user)
-	return (I.type in products)
+	if(I.type in products)
+		// Yogs -- weird snowflake check to make sure you can't print an endless amount of encryption chips.
+		// In general, vending machines should try to ensure that anything they dare accept as input is in the exact same state that it came out of them with.
+		if(istype(I,/obj/item/radio/headset) && I.type != /obj/item/radio/headset)
+			var/obj/item/radio/headset/HS = I
+			if(HS.keyslot != initial(HS.keyslot)) // Hey, you stole something!
+				return FALSE
+		return TRUE
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper SecDrobe"

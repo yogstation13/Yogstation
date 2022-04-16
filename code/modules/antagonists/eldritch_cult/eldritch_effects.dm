@@ -349,7 +349,7 @@
 	return TRUE
 
 /datum/status_effect/brazil_penance/tick()
-	if(!penance_left)
+	if(penance_left <= 0)
 		apply_effects()
 		qdel(src)
 
