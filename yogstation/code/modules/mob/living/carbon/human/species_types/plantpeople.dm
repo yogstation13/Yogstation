@@ -235,8 +235,8 @@
 		
 		//if there's none left after the removal, the light multiplier needs to go back to the default
 		if(!H.reagents.has_reagent(/datum/reagent/consumable/sugar)) 
-			light_heal_multiplier = 1
-			dark_damage_multiplier = 2
+			light_heal_multiplier = initial(light_heal_multiplier)
+			dark_damage_multiplier = initial(dark_damage_multiplier)
 		return 1
 
 	if(istype(chem, /datum/reagent/consumable/ethanol)) //istype so all alcohols work
