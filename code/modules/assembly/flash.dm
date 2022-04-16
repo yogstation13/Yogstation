@@ -158,6 +158,16 @@
 			R.flash_act(affect_silicon = 1)
 			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
 			return TRUE
+		else
+			R.overlay_fullscreen("reducedflash", /obj/screen/fullscreen/flash/static)
+			R.uneq_all()
+			R.stop_pulling()
+			R.break_all_cyborg_slots(TRUE)
+			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/clear_fullscreen, "reducedflash"), 5 SECONDS)
+			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), 5 SECONDS)
+			to_chat(R, span_danger("Your sensors were momentarily dazzled!"))
+			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
+			return TRUE
 
 	user.visible_message(span_disarm("[user] fails to blind [M] with the flash!"), span_warning("You fail to blind [M] with the flash!"))
 
