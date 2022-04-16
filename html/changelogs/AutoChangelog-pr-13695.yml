@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - imageadd: "Shifts pathfinder cloak down a pixel to look less weird and probably correct"

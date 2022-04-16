@@ -1,4 +1,0 @@
-author: "Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "It is now possible to select more negative quirks for yourself when you have exactly 6 positive ones enabled."
