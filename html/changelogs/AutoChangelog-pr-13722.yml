@@ -1,0 +1,8 @@
+author: "Alagoinha"
+delete-after: true 
+changes: 
+  - imageadd: "hexane canister sprite"
+  - imageadd: "halon canister sprite"
+  - imageadd: "pluonium canister sprite"
+  - imageadd: "zauker canister sprite"
+  - imageadd: "healium canister sprite"
