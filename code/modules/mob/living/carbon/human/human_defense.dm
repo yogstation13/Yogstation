@@ -399,7 +399,7 @@
 			switch(M.damtype)
 				if("brute")
 					if(M.force > 20)
-						Knockdown(15)//the victim could get up before getting hit again
+						Knockdown(1.5 SECONDS)//the victim could get up before getting hit again
 					update |= temp.receive_damage(dmg, 0)
 					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 				if("fire")
