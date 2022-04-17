@@ -5,7 +5,6 @@
 	weight = 8
 	weight = 5
 	earliest_start = 35 MINUTES
-
 /datum/round_event/ghost_role/space_dragon
 	minimum_required = 1
 	role_name = "Space Dragon"
