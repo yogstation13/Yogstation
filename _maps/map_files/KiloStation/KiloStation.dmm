@@ -80386,31 +80386,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"cKC" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/storage/box/monkeycubes{
-	pixel_x = 2;
-	pixel_y = 5
-	},
-/obj/item/storage/box/monkeycubes{
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/xenobiology)
 "cKD" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/disposal/bin,
@@ -80778,6 +80753,32 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel/dark,
 /area/security/processing)
+"cLi" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel/dark,
+/area/science/xenobiology)
 "cLj" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -142438,7 +142439,7 @@ bgA
 bgO
 bVA
 ajX
-cKC
+cLi
 afp
 ads
 anQ

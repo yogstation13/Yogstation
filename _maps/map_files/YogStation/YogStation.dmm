@@ -26664,6 +26664,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"cdX" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel/dark,
+/area/science/xenobiology)
 "ceg" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "misclab";
@@ -62505,18 +62518,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"uOl" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/monkeycubes{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/item/storage/box/monkeycubes{
-	pixel_x = -1;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/xenobiology)
 "uOs" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 4
@@ -113217,7 +113218,7 @@ jXZ
 buu
 yeI
 jaq
-uOl
+cdX
 xrN
 pwx
 bDb

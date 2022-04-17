@@ -2225,13 +2225,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"bdQ" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "bdZ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
@@ -29821,6 +29814,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
+"pKr" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "pKB" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -84901,7 +84902,7 @@ vUO
 vUO
 oBL
 tsz
-bdQ
+pKr
 npU
 gad
 nkO

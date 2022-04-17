@@ -66490,6 +66490,17 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/dark,
 /area/aisat)
+"fDX" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "fEQ" = (
 /turf/closed/wall,
 /area/science/nanite)
@@ -67387,16 +67398,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"gwI" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "gxv" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -118159,7 +118160,7 @@ aaa
 aaf
 cqs
 cRS
-gwI
+fDX
 bXP
 cyn
 ery
