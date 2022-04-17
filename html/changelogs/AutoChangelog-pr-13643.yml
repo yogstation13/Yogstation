@@ -1,5 +1,0 @@
-author: "Chubbygummibear"
-delete-after: true 
-changes: 
-  - rscadd: "New radiation treatment chem: RadAway. A radioactive contamination scrubbing chem that can clean contamination (the green glow) off of items and people that are sprayed or splashed with it"
-  - tweak: "The lavaland ruin that had a bottle of potassium iodide renamed rad-away gets a bottle of this RadAway instead"
