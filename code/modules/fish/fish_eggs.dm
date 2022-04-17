@@ -1,4 +1,3 @@
-
 /obj/item/fish_eggs
 	name = "fish eggs"
 	desc = "Eggs laid by a fish. This cluster seems... empty?"
