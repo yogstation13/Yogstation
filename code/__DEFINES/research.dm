@@ -77,10 +77,6 @@
 	TECHWEB_POINT_TYPE_NANITES = "Nanite Research"\
 	)
 
-#define TECHWEB_BOMB_POINTCAP		50000 //Adjust as needed; Stops toxins from nullifying RND progression mechanics. Current Value Cap Radius: 100
-
-///This is the maximum amount of research points a toxins bomb can get.
-#define TOXINS_RESEARCH_MAX 70000
-
-///This determines how easy it is for a toxins bomb to reach the max research cap.
-#define TOXINS_RESEARCH_LAMBDA 3940
+#define BOMB_TARGET_POINTS			50000 //Adjust as needed. Actual hard cap is double this, but will never be reached due to hyperbolic curve.
+#define BOMB_TARGET_SIZE			175 // The shockwave radius required for a bomb to get TECHWEB_BOMB_MIDPOINT points.
+#define BOMB_SUB_TARGET_EXPONENT	3 // The power of the points curve below the target size. Higher = less points for worse bombs, below target.
