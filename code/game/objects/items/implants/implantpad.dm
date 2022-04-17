@@ -1,7 +1,7 @@
 /obj/item/implantpad
 	name = "implant pad"
 	desc = "Used to modify implants."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/implants.dmi'
 	icon_state = "implantpad-0"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'

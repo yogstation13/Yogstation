@@ -675,43 +675,44 @@
 	set name = "Jump To Network"
 	unset_machine()
 	cameraFollow = null
-	var/cameralist[0]
+	var/list/network_list = list()
 
 	if(incapacitated())
 		return
 
 	var/mob/living/silicon/ai/U = usr
 
-	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
-		var/list/tempnetwork = C.network
-		if(!(is_station_level(C.z) || is_mining_level(C.z) || ("ss13" in tempnetwork)))
-			continue
-		if(!C.can_use())
-			continue
-
-		tempnetwork.Remove("rd", "toxins", "prison")
-		if(tempnetwork.len)
-			for(var/i in C.network)
-				cameralist[i] = i
-	var/old_network = network
-	network = input(U, "Which network would you like to view?") as null|anything in cameralist
-
+	//Yogs -- refactors this fucking decade-old, looney camera code
 	if(!U.eyeobj)
 		U.view_core()
 		return
 
-	if(isnull(network))
-		network = old_network // If nothing is selected
-	else
-		for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
-			if(!C.can_use())
-				continue
-			if(network in C.network)
-				U.eyeobj.setLoc(get_turf(C))
-				break
-	to_chat(src, span_notice("Switched to the \"[uppertext(network)]\" camera network."))
-//End of code by Mord_Sith
+	for (var/x in GLOB.cameranet.cameras)
+		var/obj/machinery/camera/C = x
+		if(!(is_station_level(C.z) || is_mining_level(C.z) || ("ss13" in C.network)))
+			continue
+		if(!C.can_use())
+			continue
+		var/list/tempnetwork = C.network
+		tempnetwork.Remove("rd", "toxins", "prison")
+		if(tempnetwork.len)
+			network_list |= tempnetwork
+	if(network_list.len < 2)
+		return
 
+	var/viewed_network = input(U, "Which network would you like to view?") as null|anything in network_list
+	if(!viewed_network)
+		return
+	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+		if(!C.can_use())
+			continue
+		if(viewed_network in C.network)
+			U.eyeobj.setLoc(get_turf(C))
+			to_chat(src, span_notice("Switched to a camera in the \"[uppertext(viewed_network)]\" camera network."))
+			return
+	to_chat(src, span_warning("Failed to find any camera on the \"[uppertext(viewed_network)]\" camera network!")) // This is a bug, if it happens.
+//End of code by Mord_Sith and others :^)
+//yogs end
 
 /mob/living/silicon/ai/proc/choose_modules()
 	set category = "Malfunction"
@@ -913,7 +914,7 @@
 	return 0
 
 /mob/living/silicon/ai/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
-	if(aiRestorePowerRoutine)
+	if(aiRestorePowerRoutine && !available_ai_cores())
 		return TRUE
 	return ..()
 

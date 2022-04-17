@@ -50,4 +50,5 @@
 		controller.status_flags &= ~GODMODE
 		controller.Knockdown(120)
 		to_chat(controller, span_userdanger("The force of being exiled from your bat form knocks you down!"))
+		qdel()
 	. = ..()

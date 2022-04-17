@@ -5,6 +5,7 @@
 	min_players = 2
 	earliest_start = 10 MINUTES
 	max_occurrences = 6
+	max_alert = SEC_LEVEL_DELTA
 	
 /datum/round_event_control/carp_migration/New()
 	. = ..()

@@ -3,6 +3,7 @@
 	typepath = /datum/round_event/bureaucratic_error
 	max_occurrences = 1
 	weight = 5
+	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/bureaucratic_error
 	announceWhen = 1

@@ -32,13 +32,18 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	. = ..()
 	water_overlay = new /obj/effect/overlay/poolwater(get_turf(src))
 
-/turf/open/indestructible/sound/pool/proc/set_colour(colour)
-	water_overlay.color = colour
-
-/turf/open/indestructible/sound/pool/end/ChangeTurf(path, list/new_baseturfs, flags)
+/turf/open/indestructible/sound/pool/Destroy()
 	if(water_overlay)
 		qdel(water_overlay)
-	. = ..()
+	return ..()
+
+/turf/open/indestructible/sound/pool/examine(mob/user)
+	. = ..() // This is a list
+	if(!HAS_TRAIT(user,TRAIT_CLUMSY) && calculate_zap(user))
+		. += span_warning("It's probably not the best idea to jump in...")
+
+/turf/open/indestructible/sound/pool/proc/set_colour(colour)
+	water_overlay.color = colour
 
 /turf/open/CanPass(atom/movable/mover, turf/target)
 	var/datum/component/swimming/S = mover.GetComponent(/datum/component/swimming) //If you're swimming around, you don't really want to stop swimming just like that do you?
@@ -99,7 +104,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 		splash(dropping)
 
 /datum/mood_event/poolparty
-	description = "<span class='nicegreen'>I love swimming!.</span>\n"
+	description = "<span class='nicegreen'>I love swimming!</span>\n"
 	mood_change = 2
 	timeout = 2 MINUTES
 
@@ -109,14 +114,12 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	timeout = 2 MINUTES
 
 /datum/mood_event/poolwet
-	description = "<span class='warning'>Eugh! my clothes are soaking wet from that swim.</span>\n"
+	description = "<span class='warning'>Eugh! My clothes are soaking wet from that swim.</span>\n"
 	mood_change = -4
 	timeout = 4 MINUTES
 
-/turf/open/indestructible/sound/pool/proc/splash(mob/user)
-	user.forceMove(src)
-	playsound(src, 'sound/effects/splosh.ogg', 100, 1) //Credit to hippiestation for this sound file!
-	user.visible_message("<span class='boldwarning'>SPLASH!</span>")
+//Used to determine how zappy to be to a perhaps-electronic user entering this pool.
+/turf/open/indestructible/sound/pool/proc/calculate_zap(mob/user)
 	var/zap = 0
 	if(issilicon(user)) //Do not throw brick in a pool. Brick begs.
 		zap = 1 //Sorry borgs! Swimming will come at a cost.
@@ -135,6 +138,13 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 				zap --
 		if(zap > 0)
 			zap = 3 - zap // 1 is higher severity emp than 2
+	return zap
+
+/turf/open/indestructible/sound/pool/proc/splash(mob/user)
+	user.forceMove(src)
+	playsound(src, 'sound/effects/splosh.ogg', 100, 1) //Credit to hippiestation for this sound file!
+	user.visible_message("<span class='boldwarning'>SPLASH!</span>")
+	var/zap = calculate_zap(user)
 	if(zap > 0)
 		user.emp_act(zap)
 		user.emote("scream") //Chad coders use M.say("*scream")
@@ -164,6 +174,15 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 		return TRUE
 	if(H.head && !(H.head.clothing_flags & SHOWEROKAY))
 		return TRUE
+
+/turf/open/indestructible/sound/pool/singularity_act() // Pool's closed
+	playsound(src, 'sound/effects/splosh.ogg', 100, 1) // Slourmping up all the pool water is very sploshy.
+	visible_message(span_warning("The pool's water is sucked into the singularity!"))
+	for(var/turf/open/indestructible/sound/pool/water in get_area_turfs(get_area(src))) // Basically, we can just turn into plating or something.
+		if(water != src)
+			if(isnull(id) || id == water.id) // To make sure this is the same pool being drained
+				water.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+	ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 
 /obj/effect/turf_decal/pool
 	name = "Pool siding"

@@ -11,9 +11,9 @@ GLOBAL_LIST_EMPTY(connection_logs)
 /datum/connection_log/proc/logout(mob/C)
 	var/datum/connection_entry/CE = new()
 	CE.disconnected = world.time
-	CE.disconnect_type = C.type
+	CE.disconnect_type = C?.type
 	CE.living = isliving(C)
-	CE.job = C.mind?.assigned_role || "Ghost"
+	CE.job = C?.mind?.assigned_role || "Ghost"
 	last_data_point = CE
 	data_points |= CE
 
@@ -119,6 +119,6 @@ GLOBAL_LIST_EMPTY(connection_logs)
 	. = list()
 	.["disconnect"] = entry.disconnected
 	.["connect"] = entry.connected
-	.["type"] = entry.disconnect_type
+	.["type"] = entry.disconnect_type || "Unknown"
 	.["living"] = entry.living
 	.["job"] = entry.job
