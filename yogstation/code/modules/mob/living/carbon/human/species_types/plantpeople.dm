@@ -86,8 +86,7 @@
 				//low light
 				light_level = 2
 				light_msg = span_warning("The ambient light levels are too low. Your breath is coming more slowly as your insides struggle to keep up on their own.")
-				if(H.nutrition > NUTRITION_LEVEL_STARVING)
-					H.nutrition -= light_amount * 3
+				H.nutrition -= light_amount * 3
 				//not enough to faint but enough to slow you down
 				if(H.getOxyLoss() < 50)
 					H.adjustOxyLoss(min(3 * dark_damage_multiplier, 50 - H.getOxyLoss()), 1)
