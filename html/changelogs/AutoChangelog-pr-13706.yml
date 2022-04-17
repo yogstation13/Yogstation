@@ -1,5 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "fixed admin ghosts being unable to change sec records rank"
-  - tweak: "New id change program now changes bank account job (therefore pay and vendor access)"

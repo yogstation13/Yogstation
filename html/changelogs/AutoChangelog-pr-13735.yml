@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "fixed fingerprints not working properly when gloves aren't gloves"
