@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "mindbreaker toxin no longer causes hallucinations if you have reality dissociation syndrome"
+  - tweak: "made reality dissociation syndrome a brain trauma unique to the quirk"
