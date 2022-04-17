@@ -28,3 +28,11 @@
 /datum/antagonist/king/on_gain()
 	forge_king_objectives()
 	update_king_icons_added(owner.current)
+
+/datum/antagonist/king/greet()
+	. = ..()
+	to_chat(owner.current, span_userdanger("You are the King!."))
+	owner.announce_objectives()
+
+/datum/antagonist/king/farewell()
+	to_chat(owner.current, span_userdanger("<FONT size = 3>Suddenly, you understand that all this time you were just mentally ill. You do not longer consider yourself as a king.</FONT>"))
