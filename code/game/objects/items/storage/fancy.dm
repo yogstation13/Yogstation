@@ -359,6 +359,3 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 8
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/tinychocolate))
-
-
-
