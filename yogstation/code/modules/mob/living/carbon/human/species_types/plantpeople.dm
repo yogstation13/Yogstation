@@ -86,18 +86,18 @@
 				//low light
 				light_level = 2
 				light_msg = span_warning("The ambient light levels are too low. Your breath is coming more slowly as your insides struggle to keep up on their own.")
-					H.nutrition -= light_amount * 3
+				H.nutrition -= light_amount * 3
 				//not enough to faint but enough to slow you down
 				if(H.getOxyLoss() < 50)
 					H.adjustOxyLoss(min(3 * dark_damage_multiplier, 50 - H.getOxyLoss()), 1)
 			if (0.31 to 0.5)
 				//medium, average, doing nothing for now
 				light_level = 3	
-					H.nutrition += light_amount * 2
+				H.nutrition += light_amount * 2
 			if (0.51 to 0.75)
 				//high light, regen here
 				light_level = 4
-					H.nutrition += light_amount * 1.75				
+				H.nutrition += light_amount * 1.75				
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
