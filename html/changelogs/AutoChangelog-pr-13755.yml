@@ -1,7 +1,0 @@
-author: "Readystorm546"
-delete-after: true 
-changes: 
-  - rscadd: "Added more wheelchairs and rolling beds and iv drips in the new storage closet."
-  - rscadd: "Moved Psyc office to where old gift shop used to be. Psyc office is now bigger"
-  - rscdel: "Removed the rolling beds, wheelchairs, and iv drips that were in the hallways of medical."
-  - rscdel: "Removed old shop maintenance area"
