@@ -17,7 +17,3 @@
 	refill_canister = /obj/item/vending_refill/crittercare
 	default_price = 10
 	extra_price = 50
-
-
-
-
