@@ -2024,5 +2024,3 @@
 			wounded_part.heal_damage(0.25, 0.25)
 		M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
 	..()
-
-
