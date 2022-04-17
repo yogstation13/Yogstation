@@ -136,7 +136,7 @@
 
 	if(H.nutrition > NUTRITION_LEVEL_FULL)
 		H.nutrition = NUTRITION_LEVEL_FULL
-		
+
 	if(H.nutrition < NUTRITION_LEVEL_STARVING + 50)
 		if (H.stat != UNCONSCIOUS && H.stat != DEAD)
 			if(light_level != last_light_level)
