@@ -9,12 +9,12 @@
 #define ORE_DIAMOND "diamond"
 #define ORE_EMPTY "empty"
 
-GLOBAL_LIST_INIT(jungle_ores, list(
-	ORE_IRON = /obj/structure/ore_patch/iron,
-	ORE_GOLD = /obj/structure/ore_patch/gold,
-	ORE_SILVER = /obj/structure/ore_patch/silver,
-	ORE_PLASMA = /obj/structure/ore_patch/plasma,
-	ORE_DIAMOND = /obj/structure/ore_patch/diamond,
-	ORE_TITANIUM = /obj/structure/ore_patch/titanium,
-	ORE_URANIUM = /obj/structure/ore_patch/uranium
+GLOBAL_LIST_INIT(jungle_ores, list( \
+		ORE_IRON = /obj/structure/ore_patch/iron, 
+		ORE_GOLD = /obj/structure/ore_patch/gold, 
+		ORE_SILVER = /obj/structure/ore_patch/silver, 
+		ORE_PLASMA = /obj/structure/ore_patch/plasma, 
+		ORE_DIAMOND = /obj/structure/ore_patch/diamond, 
+		ORE_TITANIUM = /obj/structure/ore_patch/titanium, 
+		ORE_URANIUM = /obj/structure/ore_patch/uranium 
 ))

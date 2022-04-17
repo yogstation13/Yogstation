@@ -30,21 +30,21 @@
 		new flora(gen_turf)
 
 /datum/biome/jungleland/barren_rocks
-	turf_type = /turf/open/floor/grass/snow/basalt
+	turf_type = /turf/open/floor/plating/dirt/jungleland/barren_rocks
 	loose_flora = list(/obj/structure/flora/rock = 2,/obj/structure/flora/rock/pile = 2)
 	loose_flora_density = 10
 	cellular_noise_map_id = LOW_DENSITY
 
 /datum/biome/jungleland/dry_swamp
-	turf_type = /turf/open/floor/plating/dirt/dark
-	closed_turf = /turf/open/floor/plating/ironsand
+	turf_type = /turf/open/floor/plating/dirt/jungleland/dry_swamp
+	closed_turf = /turf/open/floor/plating/dirt/jungleland/dry_swamp1
 	dense_flora = list(/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 1,/obj/structure/flora/rock/pile = 2)
 	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1)
 	dense_flora_density = 10
 	loose_flora_density = 10
 
 /datum/biome/jungleland/toxic_pit
-	turf_type = /turf/open/floor/plating/dirt/dark
+	turf_type = /turf/open/floor/plating/dirt/jungleland/toxic_pit
 	closed_turf = /turf/open/water/toxic_pit
 	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1)
 	dense_flora = list(/obj/structure/flora/ausbushes/stalkybush = 1)
@@ -52,15 +52,15 @@
 	dense_flora_density = 10
 
 /datum/biome/jungleland/dying_forest
-	turf_type = /turf/open/floor/plating/asteroid
-	closed_turf = /turf/open/floor/plating/asteroid
+	turf_type = /turf/open/floor/plating/dirt/jungleland/dying_forest
+	closed_turf = /turf/open/floor/plating/dirt/jungleland/dying_forest
 	dense_flora = list(/obj/structure/flora/stump=1,/obj/structure/flora/tree/dead/jungle = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/tree/jungle/small = 1)
 	dense_flora_density = 70
 
 
 /datum/biome/jungleland/jungle
-	turf_type = /turf/open/floor/plating/dirt
-	closed_turf = /turf/open/floor/plating/dirt
+	turf_type = /turf/open/floor/plating/dirt/jungleland/jungle
+	closed_turf = /turf/open/floor/plating/dirt/jungleland/jungle
 	cellular_noise_map_id = HIGH_DENSITY
 	dense_flora = list(/obj/structure/flora/tree/jungle/small = 2,/obj/structure/flora/tree/jungle = 2, /obj/structure/flora/rock/jungle = 1, /obj/structure/flora/junglebush = 1, /obj/structure/flora/junglebush/b = 1, /obj/structure/flora/junglebush/c = 1, /obj/structure/flora/junglebush/large = 1, /obj/structure/flora/rock/pile/largejungle = 1)
 	loose_flora = list(/obj/structure/flora/grass/jungle = 2,/obj/structure/flora/grass/jungle/b = 2,/obj/structure/flora/grass/brown = 1,/obj/structure/flora/bush = 1,/obj/structure/flora/ausbushes = 1,/obj/structure/flora/ausbushes/leafybush = 1,/obj/structure/flora/ausbushes/sparsegrass = 1,/obj/structure/flora/ausbushes/fullgrass = 1)

@@ -4,6 +4,7 @@
 	icon_state = "pregen"
 	map_generator = /datum/map_generator/jungleland
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	has_gravity = TRUE
 
 /turf/open/floor/plating/dirt/jungleland
 	name = "generic jungle land turf"
@@ -19,9 +20,28 @@
 		return
 	can_spawn_ore = FALSE
 	add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
-	var/ore_type = GLOB.jungle_ores[ore_present]
+	var/ore_type = GLOB.jungle_ores[ ore_present ]
 	new ore_type(src)
 
+/turf/open/floor/plating/dirt/jungleland/tool_act(mob/living/user, obj/item/I, tool_type)
+	if(tool_type != TOOL_MINING)
+		return ..()
+	
+	if(ore_present == ORE_EMPTY)
+		return ..()
+
+	if(!can_spawn_ore)
+		return ..()
+
+	I.play_tool_sound(user)	
+	if(!do_after(user,10 SECONDS * I.toolspeed,FALSE, src))
+		return ..()
+
+	spawn_rock()
+	
+/turf/open/floor/plating/dirt/jungleland/ex_act(severity, target)
+	if(can_spawn_ore && prob( (severity/3)*100  ))	
+		spawn_rock()
 /turf/open/floor/plating/dirt/jungleland/barren_rocks
 	icon_state = "barren_rocks"
 
@@ -34,39 +54,11 @@
 /turf/open/floor/plating/dirt/jungleland/toxic_pit
 	icon_state = "toxic_pit"
 
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1
+	icon_state = "dry_swamp1"
+
 /turf/open/floor/plating/dirt/jungleland/dying_forest
 	icon_state = "dying_forest"
-
-/turf/open/floor/plating/dirt/jungleland/jungle
-	icon_state = "jungle"
-
-/turf/open/floor/plating/dirt/jungleland/iron 
-	icon_state = "iron"
-	
-/turf/open/floor/plating/dirt/jungleland/silver
-	icon_state = "silver"
-
-/turf/open/floor/plating/dirt/jungleland/titanium
-	icon_state = "titanium"
-
-/turf/open/floor/plating/dirt/jungleland/gold
-	icon_state = "gold"
-
-/turf/open/floor/plating/dirt/jungleland/uranium
-	icon_state = "uranium"
-
-/turf/open/floor/plating/dirt/jungleland/plasma
-	icon_state = "plasma"
-
-/turf/open/floor/plating/dirt/jungleland/diamond
-	icon_state = "diamond"
-
-/turf/open/floor/plating/dirt/jungleland/bluespace
-	icon_state = "bluespace"
-
-/turf/open/floor/plating/dirt/jungleland/nothing
-	icon_state = "nothing"
-
 /turf/open/water/toxic_pit
 	name = "sulphuric pit"
 	color = "#003a00"

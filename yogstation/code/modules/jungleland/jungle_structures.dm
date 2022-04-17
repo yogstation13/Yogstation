@@ -30,25 +30,21 @@
 	desc = "A patch of rocks and boulders carved from the bedrock below, may contain valuable resources."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	max_integrity = 1000
-	var/ore_type
+	var/ore_type = null
 	var/ore_quantity_upper
 	var/ore_quantity_lower
-	var/ore_color
+	var/ore_color = COLOR_RED_LIGHT
 	var/mutable_appearance/ore_specks
 	anchored = TRUE
 	density = TRUE
 
 /obj/structure/ore_patch/Initialize()
 	. = ..()
-	update_icon()
-
-/obj/structure/ore_patch/update_icon()
-	. = ..()
-	var/index = rand(0,1)
+	var/index = rand(0,3)
 	icon_state = "ore[index]"
-	if(ore_type)
-		ore_specks = mutable_appearance(icon,"ore_ov[index]")
-		ore_specks.color = ore_color ? ore_color : COLOR_RED_LIGHT 
+	if(ore_type != null)
+		ore_specks = mutable_appearance('yogstation/icons/obj/jungle.dmi',"ore_ov[index]")
+		ore_specks.color = ore_color
 		add_overlay(ore_specks)
 
 /obj/structure/ore_patch/Destroy()
@@ -61,7 +57,7 @@
 	
 	I.play_tool_sound(user)
 	to_chat(user,"You start excavating the vein...")
-	if(!do_after(user,5 SECONDS,TRUE,src))
+	if(!do_after(user,5 SECONDS*I.toolspeed,TRUE,src))
 		return
 		
 	if(!ore_type)
