@@ -63,7 +63,7 @@
 ///Uncomment to bypass the max version check. Note: This will likely break the game, only use if you know what you're doing
 //#define IGNORE_MAX_BYOND_VERSION
 #if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)
-#warn WARNING: Your BYOND version is over the recommended version (514.1575)! Stability is not guaranteed.
+#warn WARNING: Your BYOND version is over the recommended version (514.1583)! Stability is not guaranteed.
 #endif
 
 #ifdef TRAVISBUILDING
