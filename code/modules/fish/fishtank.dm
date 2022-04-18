@@ -299,7 +299,7 @@
 	else
 		to_chat(usr, "The eggs disolve in the water. They were duds!")
 
-/obj/machinery/fishtank/proc/harvest_eggs(mob/user, obj/item/storage/bag/fish/fish_bag)
+/obj/machinery/fishtank/proc/harvest_eggs(mob/user)
 	if(!egg_count)									//Can't harvest non-existant eggs
 		return
 
