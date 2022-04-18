@@ -61,17 +61,8 @@
 	var/list/linked_mobs = list()
 
 /mob/living/simple_animal/hostile/eldritch/raw_prophet/wizard
-	name = "Raw Prophet"
-	real_name = "Raw Prophet"
-	desc = "An eye supported by a mass of severed limbs, it has a piercing gaze."
-	icon_state = "raw_prophet"
-	status_flags = CANPUSH
-	icon_living = "raw_prophet"
-	melee_damage_lower = 5
-	melee_damage_upper = 10
 	maxHealth = 55
 	health = 55
-	sight = SEE_MOBS|SEE_OBJS|SEE_TURFS
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/telepathy/eldritch)
 
 /mob/living/simple_animal/hostile/eldritch/raw_prophet/Initialize()
