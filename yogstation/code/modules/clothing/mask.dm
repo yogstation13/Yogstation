@@ -259,3 +259,13 @@
 	icon_state = "foxy"
 	item_state = "foxy"
 	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/chungus
+	name = "rabbit mask"
+	desc = "Ehhhhh what's up doc?"
+	clothing_flags = MASKINTERNALS
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEFACE|HIDEEYES|HIDEFACIALHAIR|HIDEHAIR
+	icon_state = "chungusmask"
+	item_state = "chungusmask"
+	resistance_flags = FLAMMABLE

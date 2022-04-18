@@ -137,6 +137,8 @@
 					/obj/item/clothing/shoes/clown_shoes/clowncrocs = 1,
 					/obj/item/clothing/under/yogs/barber = 4,
 					/obj/item/clothing/head/yogs/boater = 4,
+					/obj/item/clothing/suit/yogs/chungus = 5,
+					/obj/item/clothing/mask/yogs/chungus = 5,
 					/obj/item/clothing/under/yogs/bluecoatuniform = 5,
 					/obj/item/clothing/suit/yogs/bluecoatcoat = 5,
 					/obj/item/clothing/head/yogs/tricornhat = 5,
