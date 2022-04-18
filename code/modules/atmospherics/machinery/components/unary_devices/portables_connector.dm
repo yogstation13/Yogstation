@@ -1,17 +1,16 @@
 /obj/machinery/atmospherics/components/unary/portables_connector
-	icon_state = "connector_map-2"
-
+	icon_state = "connector"
 	name = "connector port"
 	desc = "For connecting portables devices related to atmospherics control."
-
 	can_unwrench = TRUE
-
 	use_power = NO_POWER_USE
 	level = 0
 	layer = GAS_FILTER_LAYER
-
+	shift_underlay_only = FALSE
 	pipe_flags = PIPING_ONE_PER_TURF
 	pipe_state = "connector"
+	piping_layer = 3
+	showpipe = TRUE
 
 	var/obj/machinery/portable_atmospherics/connected_device
 
@@ -28,7 +27,8 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/update_icon_nopipes()
 	icon_state = "connector"
 	if(showpipe)
-		var/image/cap = getpipeimage(icon, "connector_cap", initialize_directions, piping_layer = piping_layer)
+		cut_overlays()
+		var/image/cap = getpipeimage(icon, "connector_cap", initialize_directions)
 		add_overlay(cap)
 
 /obj/machinery/atmospherics/components/unary/portables_connector/process_atmos()
@@ -39,7 +39,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/can_unwrench(mob/user)
 	. = ..()
 	if(. && connected_device)
-		to_chat(user, "<span class='warning'>You cannot unwrench [src], detach [connected_device] first!</span>")
+		to_chat(user, span_warning("You cannot unwrench [src], detach [connected_device] first!"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/portables_connector/portableConnectorReturnAir()
@@ -47,7 +47,6 @@
 
 /obj/proc/portableConnectorReturnAir()
 	return
-
 
 /obj/machinery/atmospherics/components/unary/portables_connector/layer2
 	piping_layer = 2

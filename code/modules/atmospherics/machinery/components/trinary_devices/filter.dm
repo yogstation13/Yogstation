@@ -146,6 +146,7 @@
 				filter_type = gas
 				filter_name	= GLOB.gas_data.names[gas]
 			investigate_log("was set to filter [filter_name] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("was set to filter [filter_name] by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 	update_icon()
 
