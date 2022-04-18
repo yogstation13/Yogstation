@@ -186,10 +186,6 @@
 
 /turf/open/proc/equalize_pressure_in_zone(cyclenum)
 /turf/open/proc/consider_firelocks(turf/T2)
-	for(var/obj/machinery/atmospherics/components/unary/vent_pump/stopped in T2)
-		stopped.on = FALSE
-	for(var/obj/machinery/atmospherics/components/unary/vent_pump/stopped in src)
-		stopped.on = FALSE
 	for(var/obj/machinery/door/firedoor/FD in T2)
 		FD.emergency_pressure_stop()
 	for(var/obj/machinery/door/firedoor/FD in src)
