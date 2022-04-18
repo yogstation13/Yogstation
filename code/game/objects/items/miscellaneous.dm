@@ -134,7 +134,7 @@
 /obj/item/skub
 	desc = "It's skub."
 	name = "skub"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/skub.dmi'
 	icon_state = "skub"
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("skubbed")

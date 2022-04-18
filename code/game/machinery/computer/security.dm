@@ -714,7 +714,7 @@
 							H.sec_hud_set_security_status()
 
 				if("rank")
-					var/list/allowed_ranks = list("Head of Personnel", "Captain", "AI", "Central Command")
+					var/list/allowed_ranks = list("Head of Personnel", "Captain", "AI", "Central Command Officer")
 					var/changed_rank = null
 					if((istype(active_general_record, /datum/data/record) && allowed_ranks.Find(rank)))
 						changed_rank = input("Select a rank", "Rank Selection") as null|anything in get_all_jobs()

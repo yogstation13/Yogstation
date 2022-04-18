@@ -2209,6 +2209,10 @@
 	icon = 'icons/mob/pod_hair.dmi'
 	color_src = HAIR
 
+/datum/sprite_accessory/pod_hair/bud
+	name = "Bud"
+	icon_state = "pod_hair_bud"
+
 /datum/sprite_accessory/pod_hair/cabbage
 	name = "Cabbage"
 	icon_state = "pod_hair_cabbage"
@@ -2253,6 +2257,10 @@
 /datum/sprite_accessory/pod_flower
 	icon = 'icons/mob/pod_hair.dmi'
 	color_src = FACEHAIR
+
+/datum/sprite_accessory/pod_flower/bud
+	name = "Bud"
+	icon_state = "pod_flower_bud"
 
 /datum/sprite_accessory/pod_flower/cabbage
 	name = "Cabbage"
