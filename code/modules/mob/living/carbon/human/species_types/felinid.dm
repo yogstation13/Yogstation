@@ -7,7 +7,7 @@
 	mutant_bodyparts = list("ears", "tail_human")
 	default_features = list("mcolor" = "FFF", "tail_human" = "Cat", "ears" = "Cat", "wings" = "None")
 	rare_say_mod = list("meows"= 10)
-	liked_food = SEAFOOD | DAIRY | MEAT | RAW
+	liked_food = SEAFOOD | DAIRY
 	toxic_food = TOXIC | CHOCOLATE
 	mutantears = /obj/item/organ/ears/cat
 	mutanttail = /obj/item/organ/tail/cat
