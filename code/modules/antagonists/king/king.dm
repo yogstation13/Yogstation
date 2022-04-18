@@ -36,3 +36,19 @@
 
 /datum/antagonist/king/farewell()
 	to_chat(owner.current, span_userdanger("<FONT size = 3>Suddenly, you understand that all this time you were just mentally ill. You do not longer consider yourself as a king.</FONT>"))
+
+/datum/antagonist/king/proc/add_objective(datum/objective/added_objective)
+	objectives += added_objective
+
+/datum/antagonist/bloodsucker/proc/remove_objectives(datum/objective/removed_objective)
+	objectives -= removed_objective
+
+/datum/antagonist/bloodsucker/proc/forge_bloodsucker_objectives()
+
+
+/datum/mind/proc/can_make_king(datum/mind/convertee, datum/mind/converter)
+	var/mob/living/carbon/human/user = convertee.curre
+	if(converter)
+		message_admins("[convertee] has become a King, and was created by [converter].")
+		log_admin("[convertee] has become a King, and was created by [converter].")
+	return TRUE

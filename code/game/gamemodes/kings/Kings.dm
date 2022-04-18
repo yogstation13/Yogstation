@@ -47,7 +47,7 @@
 		antag_candidates -= king// Apparently you can also write antag_candidates -= king
 
 	// Do we have enough kings to continue?
-	return king.len >= required_enemies
+	return kings.len >= required_enemies
 
 /datum/game_mode/kings/post_setup()
 	// kings
