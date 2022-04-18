@@ -9,6 +9,7 @@
 	recommended_enemies = 1
 	reroll_friendly = FALSE
 	title_icon = "ss13"
+	exp_requirements = 300
 
 	announce_span = "danger"
 	announce_text = "The station's Artificial Intelligence is rogue!\n\
@@ -20,6 +21,8 @@
 	var/datum/job/ai/job = SSjob.GetJob("AI")
 	for(var/datum/mind/candidate in .)
 		if(is_banned_from(candidate.current.ckey, "AI") || QDELETED(candidate) || !job.player_old_enough(candidate.current.client) || job.required_playtime_remaining(candidate.current.client))
+			. -= candidate
+		if(candidate.current.client.prefs.exp["AI"] < 600) // Cant play AI unless you are over 10 hours.
 			. -= candidate
 	return .
 
