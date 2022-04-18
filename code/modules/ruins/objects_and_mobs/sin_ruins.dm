@@ -44,6 +44,8 @@
 		if(user)
 			to_chat(user, span_boldwarning("Fucking machine! Must be rigged. Still... one more try couldn't hurt, right?"))
 
+/obj/structure/cursed_slot_machine/betterchance //doubled chance of winnning.
+	win_prob = 10
 
 /obj/structure/cursed_money
 	name = "bag of money"
