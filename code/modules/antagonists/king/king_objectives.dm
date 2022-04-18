@@ -68,3 +68,17 @@
 /datum/objective/royalguard/update_explanation_text()
 	..()
 	explanation_text = "Have at least [target_amount] knights serving you at once."
+
+/datum/objective/royalguard/check_completion()
+	var/counter = 0
+	var/datum/antagonist/king/kingdatum = owner.has_antag_datum(/datum/antagonist/king)
+	if (kingdatum && kingdatum.servants)
+		for (var/datum/antagonist/servant/servantdatum in kingdatum.servants)
+			if(servantdatum.owner.has_antag_datum(/datum/antagonist/servant/knight)
+				if(!servantdatum.master == kingdatum)
+					return
+				var/datum/mind/M = servantdatum.owner
+				if(considered_alive(M))
+					counter++
+		return counter >= target_amount
+	return FALSE
