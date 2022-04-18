@@ -43,8 +43,8 @@
 	icon_state = "seed-holymelon"
 	species = "holymelon"
 	plantname = "Holy Melon Vines"
-	product = /obj/item/reagent_containers/food/snacks/grown/
-	genes = list(/datum/plant_gene/trait/glow/yellow,/datum/plant_gene/trait/repeated_harvest)
+	product = /obj/item/reagent_containers/food/snacks/grown/holymelon
+	genes = list(/datum/plant_gene/trait/glow/yellow ,/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/water/holywater = 0.2, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20

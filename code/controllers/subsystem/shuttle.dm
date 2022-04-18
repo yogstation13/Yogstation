@@ -6,6 +6,8 @@ SUBSYSTEM_DEF(shuttle)
 	init_order = INIT_ORDER_SHUTTLE
 	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
 
+	loading_points = 4.9 SECONDS // Yogs -- loading times
+
 	var/list/mobile = list()
 	var/list/stationary = list()
 	var/list/beacons = list()
