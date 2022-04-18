@@ -489,6 +489,39 @@
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
 	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
+/obj/item/clothing/shoes/xeno_wraps/engineering
+	name = "engineering footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, specially made for the frequent glass treader."
+	icon_state = "footwraps_e"
+	item_state = "footwraps_e"
+	xenoshoe = YES_DIGIT 
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/shoes/xeno_wraps/science
+	name = "science footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, to reduce fatigue when standing at a console all day."
+	icon_state = "footwraps_sc"
+	item_state = "footwraps_sc"
+	xenoshoe = YES_DIGIT 
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/shoes/xeno_wraps/medical
+	name = "medical footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, for when you dont want other people's blood all over your feet."
+	icon_state = "footwraps_m"
+	item_state = "footwraps_m"
+	xenoshoe = YES_DIGIT
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/shoes/xeno_wraps/cargo
+	name = "cargo footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, with reinforcment to protect against falling crates."
+	icon_state = "footwraps_ca"
+	item_state = "footwraps_ca"
+	xenoshoe = YES_DIGIT 
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+
 /obj/item/clothing/shoes/airshoes
 	name = "air shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
