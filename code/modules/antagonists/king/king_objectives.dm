@@ -39,14 +39,32 @@
 	var/datum/antagonist/king/kingdatum = owner.has_antag_datum(/datum/antagonist/king)
 	if (kingdatum && kingdatum.servants)
 		for (var/datum/antagonist/servant/servantdatum in kingdatum.servants)
-			if(!servantdatum.master = kingdatum)
+			if(!servantdatum.master == kingdatum)
 				return
 			var/datum/mind/M = servantdatum.owner
 			if(considered_alive(M))
 				counter++
 		return counter >= target_amount
-
-
-
-
 	return FALSE
+
+
+
+
+
+
+/datum/objective/royalguard
+	name = "Royal guard"
+	explanation_text = "Have at least 3 knights serving you at once."
+	martyr_compatible = 1
+
+
+/datum/objective/royalguard/proc/gen_amount_goal()
+	target_amount = rand(3,5)
+	update_explanation_text()
+	return target_amount
+
+
+
+/datum/objective/royalguard/update_explanation_text()
+	..()
+	explanation_text = "Have at least [target_amount] knights serving you at once."

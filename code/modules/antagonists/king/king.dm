@@ -40,10 +40,11 @@
 /datum/antagonist/king/proc/add_objective(datum/objective/added_objective)
 	objectives += added_objective
 
-/datum/antagonist/bloodsucker/proc/remove_objectives(datum/objective/removed_objective)
+/datum/antagonist/king/proc/remove_objectives(datum/objective/removed_objective)
 	objectives -= removed_objective
 
-/datum/antagonist/bloodsucker/proc/forge_bloodsucker_objectives()
+///datum/antagonist/king/proc/forge_king_objectives()
+
 
 
 /datum/mind/proc/can_make_king(datum/mind/convertee, datum/mind/converter)
