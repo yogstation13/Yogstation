@@ -18,7 +18,7 @@
 /datum/objective/leadership
 	name = "Leadership"
 	explanation_text = "Have at least 10 loyal servants at once."
-	martyr_compatible = 1
+	martyr_compatible = 0
 
 
 /datum/objective/leadership/proc/gen_amount_goal()
@@ -32,15 +32,21 @@
 	..()
 	explanation_text = "Have at least [target_amount] loyal servants at once."
 
-//Unfinished
-
-///datum/objective/leadership/check_completion()
-//	var/datum/antagonist/king/kingdatum = owner.has_antag_datum(/datum/antagonist/king)
-//	if (kingdatum && kingdatum.servants)
-//		for (var/datum/antagonist/servant/servantdatum in kingdatum.servants)
-//			if(servantdatum.master = kingdatum)
 
 
+/datum/objective/leadership/check_completion()
+	var/counter = 0
+	var/datum/antagonist/king/kingdatum = owner.has_antag_datum(/datum/antagonist/king)
+	if (kingdatum && kingdatum.servants)
+		for (var/datum/antagonist/servant/servantdatum in kingdatum.servants)
+			if(!servantdatum.master = kingdatum)
+				return
+			var/datum/mind/M = servantdatum.owner
+			if(considered_alive(M))
+				counter++
+		return counter >= target_amount
 
 
-//	return FALSE
+
+
+	return FALSE
