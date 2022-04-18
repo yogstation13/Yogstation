@@ -73,4 +73,14 @@
 	typing_overlay = null
 	speech_bubble_recipients = list()
 
+/mob/camera/handle_typing_indicator() //RIP in piece camera mobs
+	return
+
+/mob/camera/create_typing_indicator()
+	return
+
+/mob/camera/remove_typing_indicator()
+	return
+	
+
 #undef TYPING_INDICATOR_RANGE
