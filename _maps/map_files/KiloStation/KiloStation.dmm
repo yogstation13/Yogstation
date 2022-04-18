@@ -85607,6 +85607,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"ffC" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/medical/medbay/central)
 "fgf" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/turf_decal/stripes/corner{
@@ -86838,14 +86853,6 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating,
-/area/maintenance/port)
-"gnZ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/space/basic,
 /area/maintenance/port)
 "goI" = (
 /obj/effect/turf_decal/stripes/line{
@@ -98249,6 +98256,15 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/fore)
+"rGc" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/medical/medbay/central)
 "rGm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
@@ -100194,6 +100210,14 @@
 /obj/machinery/vending/gifts,
 /turf/open/floor/plasteel,
 /area/clerk)
+"tHt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/maintenance/port)
 "tIl" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/circuit/green/telecomms,
@@ -122939,7 +122963,7 @@ bcU
 aQN
 gir
 fit
-gnZ
+tHt
 amA
 aSL
 awD
@@ -124209,8 +124233,8 @@ aPj
 aFl
 aFC
 aHG
-aHG
-aHG
+ffC
+rGc
 aRV
 aUY
 aQI
