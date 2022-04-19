@@ -71,7 +71,7 @@
 	RegisterSignal(src,COMSIG_ITEM_DROPPED, .proc/reel_in_forced,TRUE)
 	START_PROCESSING(SSobj,src)
 	playsound(fishing_component, 'sound/effects/splash.ogg', 50, FALSE, -5)
-	to_chat(fisher,"You cast out your fishing rod.")
+	to_chat(fisher, span_italics("You cast out your fishing rod..."))
 
 /obj/item/twohanded/fishingrod/proc/reel_in(var/forced = FALSE)
 	if(!forced && bite) // we got something!!!
@@ -82,7 +82,7 @@
 		if(forced)
 			to_chat(fisher, span_boldnotice("The auto-reel on the fishing rod activates!"))
 		else
-			to_chat(fisher,"You reel in your fishing rod.")
+			to_chat(fisher, span_italics("You reel in your fishing rod."))
 		
 	fishing = FALSE
 	UnregisterSignal(fisher,COMSIG_MOVABLE_MOVED)
@@ -131,7 +131,7 @@
 	if(!user.transferItemToLoc(B,src))
 		return
 	bait = B
-	to_chat(user, "You attach the [bait] to the fishing rod.")
+	to_chat(user, span_notice("You attach the [bait] to the fishing rod."))
 	cut_overlays()
 	add_overlay(bait)
 	recalculate_power()
@@ -139,7 +139,7 @@
 /obj/item/twohanded/fishingrod/AltClick(mob/living/user)
 	if(bait)
 		user.put_in_hands(bait)
-		to_chat(user, "You take the [bait] off the fishing rod.")
+		to_chat(user, span_notice("You take the [bait] off the fishing rod."))
 		bait = null
 		recalculate_power()
 
