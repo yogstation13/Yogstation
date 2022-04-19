@@ -92,7 +92,7 @@
 /datum/mutation/human/dwarfism/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.transform = owner.transform.Scale(1, 0.8)
+	owner.transform = owner.transform.Scale(1, 0.85)
 	passtable_on(owner, GENETIC_MUTATION)
 	owner.visible_message(span_danger("[owner] suddenly shrinks!"), span_notice("Everything around you seems to grow.."))
 
