@@ -29,8 +29,9 @@
 		var/mob/living/carbon/human/kingo = owner.current
 		if(kingo && istype(kingo))
 			kingo.dna.add_mutation(CLOWNMUT)
-	if(owner.dna?.species != /datum/species/human)
-		owner.current.remove_language(/datum/language/english) //No.
+	var/mob/living/carbon/human/user = owner
+	if(!(user.dna.species == /datum/species/human))
+		user.grant_language(/datum/language/english) //Yes.
 
 /datum/antagonist/king/on_gain()
 	forge_king_objectives()
