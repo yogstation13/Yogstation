@@ -3,7 +3,7 @@
 	name = "barrier tape roll"
 	icon = 'icons/obj/barriertape.dmi'
 	icon_state = "rollstart"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/turf/start
 	var/turf/end
 	var/tape_type = /obj/structure/barrier_tape
