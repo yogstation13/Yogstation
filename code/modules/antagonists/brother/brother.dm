@@ -29,7 +29,7 @@
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner
 	if(owner.current)
-		to_chat(owner.current,"<span class='userdanger'>You are no longer the [special_role]!</span>")
+		to_chat(owner.current,span_userdanger("You are no longer the [special_role]!"))
 		owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/brother)
 	owner.special_role = null
 	return ..()
@@ -57,7 +57,7 @@
 
 /datum/antagonist/brother/greet()
 	var/brother_text = get_brother_names()
-	to_chat(owner.current, "<span class='alertsyndie'>You are the [owner.special_role] of [brother_text].</span>")
+	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role] of [brother_text]."))
 	to_chat(owner.current, "The Syndicate only accepts those that have proven themselves. Prove yourself and prove your [team.member_name]s by completing your objectives together!")
 	owner.announce_objectives()
 	give_meeting_area()
@@ -89,6 +89,29 @@
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] and [key_name_admin(bro)] into blood brothers.")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] and [key_name(bro)] into blood brothers.")
 
+/datum/antagonist/brother/get_admin_commands()
+	. = ..()
+	.["Convert To Traitor"] = CALLBACK(src, .proc/make_traitor)
+
+/datum/antagonist/brother/proc/make_traitor()
+	if(alert("Are you sure? This will turn the blood brother into a traitor with the same objectives!",,"Yes","No") != "Yes")
+		return
+
+	var/datum/antagonist/traitor/tot = new()
+	tot.give_objectives = FALSE
+	
+	for(var/datum/objective/obj in objectives)
+		var/obj_type = obj.type
+		var/datum/objective/new_obj = new obj_type()
+		new_obj.owner = owner
+		new_obj.copy_target(obj)
+		tot.add_objective(new_obj)
+		qdel(obj)
+	objectives.Cut()
+	
+	owner.add_antag_datum(tot)
+	owner.remove_antag_datum(/datum/antagonist/brother)
+
 /datum/antagonist/brother/proc/give_pinpointer()
 	if(owner && owner.current)
 		var/datum/status_effect/agent_pinpointer/brother/P = owner.current.apply_status_effect(/datum/status_effect/agent_pinpointer/brother)
@@ -118,22 +141,22 @@
 /datum/team/brother_team/roundend_report()
 	var/list/parts = list()
 
-	parts += "<span class='header'>The blood brothers of [name] were:</span>"
+	parts += span_header("The blood brothers of [name] were:")
 	for(var/datum/mind/M in members)
 		parts += printplayer(M)
 	var/win = TRUE
 	var/objective_count = 1
 	for(var/datum/objective/objective in objectives)
 		if(objective.check_completion())
-			parts += "<B>Objective #[objective_count]</B>: [objective.explanation_text] <span class='greentext'>Success!</span>"
+			parts += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
 		else
-			parts += "<B>Objective #[objective_count]</B>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+			parts += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
 			win = FALSE
 		objective_count++
 	if(win)
-		parts += "<span class='greentext'>The blood brothers were successful!</span>"
+		parts += span_greentext("The blood brothers were successful!")
 	else
-		parts += "<span class='redtext'>The blood brothers have failed!</span>"
+		parts += span_redtext("The blood brothers have failed!")
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
@@ -162,7 +185,8 @@
 		else if(prob(30))
 			add_objective(new/datum/objective/maroon, TRUE)
 		else
-			add_objective(new/datum/objective/assassinate, TRUE)
+			var/A = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+			add_objective(new A, TRUE)
 	else
 		add_objective(new/datum/objective/steal, TRUE)
 

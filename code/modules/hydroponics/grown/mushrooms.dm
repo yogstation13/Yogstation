@@ -163,7 +163,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user)
 	if(GLOB.walkingmushroom.len > MAX_WALKINGMUSHROOM)
-		to_chat(user, "<span class='notice'>There are too many walking mushrooms!</span>") // Someone spammed mushrooms so now this exists :(
+		to_chat(user, span_notice("There are too many walking mushrooms!")) // Someone spammed mushrooms so now this exists :(
 		return
 
 	if(isspaceturf(user.loc))
@@ -176,7 +176,7 @@
 	M.health = M.maxHealth
 	GLOB.walkingmushroom += M
 	qdel(src)
-	to_chat(user, "<span class='notice'>You plant the walking mushroom.</span>")
+	to_chat(user, span_notice("You plant the walking mushroom."))
 
 
 // Chanterelle
@@ -240,7 +240,7 @@
 	if(isspaceturf(user.loc))
 		return FALSE
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You need more space to plant [src].</span>")
+		to_chat(user, span_warning("You need more space to plant [src]."))
 		return FALSE
 	var/count = 0
 	var/maxcount = 1
@@ -251,10 +251,10 @@
 	for(var/obj/structure/glowshroom/G in user.loc)
 		count++
 	if(count >= maxcount)
-		to_chat(user, "<span class='warning'>There are too many shrooms here to plant [src].</span>")
+		to_chat(user, span_warning("There are too many shrooms here to plant [src]."))
 		return FALSE
 	new effect_path(user.loc, seed)
-	to_chat(user, "<span class='notice'>You plant [src].</span>")
+	to_chat(user, span_notice("You plant [src]."))
 	qdel(src)
 	return TRUE
 

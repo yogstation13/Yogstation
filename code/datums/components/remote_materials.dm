@@ -80,7 +80,7 @@ handles linking back and forth.
 		var/obj/item/multitool/M = I
 		if (!QDELETED(M.buffer) && istype(M.buffer, /obj/machinery/ore_silo))
 			if (silo == M.buffer)
-				to_chat(user, "<span class='notice'>[parent] is already connected to [silo].</span>")
+				to_chat(user, span_notice("[parent] is already connected to [silo]."))
 				return COMPONENT_NO_AFTERATTACK
 			if (silo)
 				silo.connected -= src
@@ -92,7 +92,7 @@ handles linking back and forth.
 			silo.connected += src
 			silo.updateUsrDialog()
 			mat_container = silo.GetComponent(/datum/component/material_container)
-			to_chat(user, "<span class='notice'>You connect [parent] to [silo] from the multitool's buffer.</span>")
+			to_chat(user, span_notice("You connect [parent] to [silo] from the multitool's buffer."))
 			return COMPONENT_NO_AFTERATTACK
 
 	else if (silo && istype(I, /obj/item/stack))

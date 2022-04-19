@@ -1,7 +1,7 @@
 /obj/effect/fun_balloon
 	name = "fun balloon"
 	desc = "This is going to be a laugh riot."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
 	var/popped = FALSE
@@ -83,12 +83,12 @@
 		var/turf/T = find_safe_turf()
 		new /obj/effect/temp_visual/gravpush(get_turf(M))
 		M.forceMove(T)
-		to_chat(M, "<span class='notice'>Pop!</span>")
+		to_chat(M, span_notice("Pop!"))
 
 /obj/effect/station_crash
 	name = "station crash"
 	desc = "With no survivors!"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
 

@@ -96,8 +96,13 @@
 	force = 20
 	armour_penetration = 75
 	block_chance = 50
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	max_charges = 4
+
+/obj/item/gun/magic/staff/spellblade/weak
+	name = "ashy spellblade"
+	desc = "A deadly combination of laziness and bloodlust, this blade allows the user to dismember their enemies without all the hard work of actually swinging the sword. This one seems to be covered in ash."
+	ammo_type = /obj/item/ammo_casing/magic/spellblade/weak
 
 /obj/item/gun/magic/staff/spellblade/Initialize()
 	. = ..()

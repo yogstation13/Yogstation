@@ -1,7 +1,7 @@
 /obj/item/armorpolish
 	name = "armor polish"
 	desc = "Some canned tuna... oh wait. That's armor polish."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/traitor.dmi'
 	icon_state = "armor_polish"
 	w_class = WEIGHT_CLASS_TINY
 	var/remaining_uses = 2
@@ -27,19 +27,19 @@ obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 			remaining_uses -= 1
 			to_chat(user, "You apply [src] to the [target.name].")
 			if(remaining_uses <= 0) {
-				to_chat(user, "<span class='warning'>The [src] disintegrates into nothing...</span>")
+				to_chat(user, span_warning("The [src] disintegrates into nothing..."))
 				qdel(src)
 			} else {
-				to_chat(user, "<span class='warning'>The [src] has [remaining_uses] use[remaining_uses > 1 ? "s" : ""] left.</span>")
+				to_chat(user, span_warning("The [src] has [remaining_uses] use[remaining_uses > 1 ? "s" : ""] left."))
 			}
 			
 			
 		else
 			if(istype(target,/obj/item/clothing/suit)) {
-				to_chat(user, "<span class='warning'>This suit is strong enough already! Try it on something weaker.</span>")
+				to_chat(user, span_warning("This suit is strong enough already! Try it on something weaker."))
 			} else {
-				to_chat(user, "<span class='warning'>This headgear is strong enough already! Try it on something weaker.</span>")
+				to_chat(user, span_warning("This headgear is strong enough already! Try it on something weaker."))
 			}
 			
 	else
-		to_chat(user, "<span class='warning'>You can only polish suits and headgear!</span>")
+		to_chat(user, span_warning("You can only polish suits and headgear!"))

@@ -117,7 +117,7 @@ SUBSYSTEM_DEF(ticker)
 	login_music = choose_lobby_music()
 
 	if(!login_music)
-		to_chat(world, "<span class='boldwarning'>Could not load lobby music.</span>") //yogs end
+		to_chat(world, span_boldwarning("Could not load lobby music.")) //yogs end
 
 	if(!GLOB.syndicate_code_phrase)
 		GLOB.syndicate_code_phrase	= generate_code_phrase(return_list=TRUE)
@@ -143,10 +143,14 @@ SUBSYSTEM_DEF(ticker)
 	return ..()
 
 /datum/controller/subsystem/ticker/fire()
-	if(world.time > 30 MINUTES && !GLOB.cryopods_enabled)
+	if(seclevel2num(get_security_level()) < SEC_LEVEL_GAMMA && !GLOB.cryopods_enabled)
 		GLOB.cryopods_enabled = TRUE
 		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
 			pod.PowerOn()
+	else if(seclevel2num(get_security_level()) >= SEC_LEVEL_GAMMA && GLOB.cryopods_enabled)
+		GLOB.cryopods_enabled = FALSE
+		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
+			pod.PowerOff()
 
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
@@ -154,7 +158,7 @@ SUBSYSTEM_DEF(ticker)
 				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
-			to_chat(world, "<span class='boldnotice'>Welcome to [station_name()]!</span>")
+			to_chat(world, span_boldnotice("Welcome to [station_name()]!"))
 			send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game))
 			current_state = GAME_STATE_PREGAME
 			//Everyone who wants to be an observer is now spawned
@@ -212,7 +216,7 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
-	to_chat(world, "<span class='boldannounce'>Starting game...</span>")
+	to_chat(world, span_boldannounce("Starting game..."))
 	var/init_start = world.timeofday
 		//Create and announce mode
 	var/list/datum/game_mode/runnable_modes
@@ -226,14 +230,14 @@ SUBSYSTEM_DEF(ticker)
 				if(runnable_modes.len)
 					smode = config.pick_mode(GLOB.secret_force_mode)
 				if(!smode.can_start())
-					message_admins("<span class='notice'>Unable to force secret [GLOB.secret_force_mode]. [smode.required_players] players and [smode.required_enemies] eligible antagonists needed.</span>")
+					message_admins(span_notice("Unable to force secret [GLOB.secret_force_mode]. [smode.required_players] players and [smode.required_enemies] eligible antagonists needed."))
 				else
 					mode = smode
 
 		if(!mode)
 			if(!runnable_modes.len)
 				mode = new /datum/game_mode/extended()
-				message_admins("<span class='notice'>Unable to choose any non-extended gamemode, running extended.</span>")
+				message_admins(span_notice("Unable to choose any non-extended gamemode, running extended."))
 			else
 				mode = pickweight(runnable_modes)
 			if(!mode)	//too few roundtypes all run too recently
@@ -264,7 +268,7 @@ SUBSYSTEM_DEF(ticker)
 			SSjob.ResetOccupations()
 			return 0
 	else
-		message_admins("<span class='notice'>DEBUG: Bypassing prestart checks...</span>")
+		message_admins(span_notice("DEBUG: Bypassing prestart checks..."))
 
 	CHECK_TICK
 	if(hide_mode)
@@ -297,7 +301,7 @@ SUBSYSTEM_DEF(ticker)
 	round_start_time = world.time
 	SSdbcore.SetRoundStart()
 
-	to_chat(world, "<span class='notice'><B>Welcome to [station_name()], enjoy your stay!</B></span>")
+	to_chat(world, span_notice("<B>Welcome to [station_name()], enjoy your stay!</B>"))
 	SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
 
 	current_state = GAME_STATE_PLAYING
@@ -305,7 +309,7 @@ SUBSYSTEM_DEF(ticker)
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	if(SSevents.holidays)
-		to_chat(world, "<span class='notice'>and...</span>")
+		to_chat(world, span_notice("and..."))
 		for(var/holidayname in SSevents.holidays)
 			var/datum/holiday/holiday = SSevents.holidays[holidayname]
 			to_chat(world, "<h4>[holiday.greet()]</h4>")
@@ -414,7 +418,7 @@ SUBSYSTEM_DEF(ticker)
 			if(N.new_character)
 				to_chat(N, "Captainship not forced on anyone.")
 			CHECK_TICK
-	
+
 	if(no_bartender && !(SSevents.holidays && SSevents.holidays["St. Patrick's Day"]))
 		SSjob.random_bar_init()
 
@@ -452,7 +456,7 @@ SUBSYSTEM_DEF(ticker)
 			m = pick(memetips)
 
 	if(m)
-		to_chat(world, "<span class='purple'><b>Tip of the round: </b>[html_encode(m)]</span>")
+		to_chat(world, span_purple("<b>Tip of the round: </b>[html_encode(m)]"))
 
 /datum/controller/subsystem/ticker/proc/check_queue()
 	if(!queued_players.len)
@@ -465,7 +469,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!hpc)
 		listclearnulls(queued_players)
 		for (var/mob/dead/new_player/NP in queued_players)
-			to_chat(NP, "<span class='userdanger'>The alive players limit has been released!<br><a href='?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a></span>")
+			to_chat(NP, span_userdanger("The alive players limit has been released!<br><a href='?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a>"))
 			SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
 			NP.LateChoices()
 		queued_players.len = 0
@@ -480,14 +484,14 @@ SUBSYSTEM_DEF(ticker)
 			listclearnulls(queued_players)
 			if(living_player_count() < hpc)
 				if(next_in_line && next_in_line.client)
-					to_chat(next_in_line, "<span class='userdanger'>A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];late_join=override'>\>\>Join Game\<\<</a></span>")
+					to_chat(next_in_line, span_userdanger("A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];late_join=override'>\>\>Join Game\<\<</a>"))
 					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg'))
 					next_in_line.LateChoices()
 					return
 				queued_players -= next_in_line //Client disconnected, remove he
 			queue_delay = 0 //No vacancy: restart timer
 		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
-			to_chat(next_in_line, "<span class='danger'>No response received. You have been removed from the line.</span>")
+			to_chat(next_in_line, span_danger("No response received. You have been removed from the line."))
 			queued_players -= next_in_line
 			queue_delay = 0
 
@@ -649,56 +653,53 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE)
 	set waitfor = FALSE
 	if(usr && !force)
-		if(!check_rights(R_SERVER, TRUE))
+		if(!check_rights(R_ADMIN, TRUE))
 			return
 // yogs end
-
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) * 10
 
-	var/skip_delay = check_rights()
+	var/skip_delay = check_rights(show_msg=FALSE)
 	if(delay_end && !skip_delay)
-		to_chat(world, "<span class='boldannounce'>An admin has delayed the round end.</span>")
+		to_chat(world, span_boldannounce("An admin has delayed the round end."))
 		return
 	//yogs start - yogs tickets
 	if(GLOB.ahelp_tickets && GLOB.ahelp_tickets.ticketAmount)
 		var/list/adm = get_admin_counts(R_BAN)
 		var/list/activemins = adm["present"]
-		if(activemins.len > 0)
-			to_chat(world, "<span class='boldannounce'>Not all tickets have been resolved. Server restart delayed.</span>")
+		if(activemins.len > 0 && !force) // Ignore tickets if forced
+			to_chat(world, span_boldannounce("Not all tickets have been resolved. Server restart delayed."))
 			return
 		else
-			to_chat(world, "<span class='boldannounce'>Round ended, but there were still active tickets. Please submit a player complaint if you did not receive a response.</span>")
+			to_chat(world, span_boldannounce("Round ended, but there were still active tickets. Please submit a player complaint if you did not receive a response."))
 	 //yogs end - yogs tickets
-
-	to_chat(world, "<span class='boldannounce'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
+	to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
 	webhook_send_roundstatus("endgame") //yogs - webhook support
-
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2))	//don't wait forever
-	sleep(delay - (world.time - start_wait))
-
+	var/newdelay = (delay - (world.time - start_wait) - 10 SECONDS)
+	if(delay > 10 SECONDS) /// JJJJJJJJJJJJJJJJJJJJAAAAAAAAANNNNNNNNKKKKKKKKK
+		sleep(newdelay)
 	if(delay_end && !skip_delay)
-		to_chat(world, "<span class='boldannounce'>Reboot was cancelled by an admin.</span>")
+		to_chat(world, span_boldannounce("Reboot was cancelled by an admin."))
 		return
+	play_roundend()
+	if(newdelay > 0)
+		sleep(10 SECONDS)
+	else
+		sleep(delay - (world.time - start_wait))
 	if(end_string)
 		end_state = end_string
-
 	var/statspage = CONFIG_GET(string/roundstatsurl)
 	var/gamelogloc = CONFIG_GET(string/gamelogurl)
 	if(statspage)
-		to_chat(world, "<span class='info'>Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a></span>")
+		to_chat(world, span_info("Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a>"))
 	else if(gamelogloc)
-		to_chat(world, "<span class='info'>Round logs can be located <a href=\"[gamelogloc]\">at this website!</a></span>")
-
-	log_game("<span class='boldannounce'>Rebooting World. [reason]</span>")
-
+		to_chat(world, span_info("Round logs can be located <a href=\"[gamelogloc]\">at this website!</a>"))
+	log_game(span_boldannounce("Rebooting World. [reason]"))
 	world.Reboot()
 
-/datum/controller/subsystem/ticker/Shutdown()
-	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
-	save_admin_data()
-	update_everything_flag_in_db()
+/datum/controller/subsystem/ticker/proc/play_roundend()
 	if(!round_end_sound)
 		round_end_sound = pick(\
 		'sound/roundend/newroundsexy.ogg',
@@ -721,4 +722,10 @@ SUBSYSTEM_DEF(ticker)
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))
+	SStitle.fadeout()
 	text2file(login_music, "data/last_round_lobby_music.txt")
+
+/datum/controller/subsystem/ticker/Shutdown()
+	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
+	save_admin_data()
+	update_everything_flag_in_db()

@@ -23,7 +23,7 @@
 	desc = "A first aid kit with the ability to heal common types of injuries."
 
 /obj/item/storage/firstaid/regular/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins giving [user.p_them()]self aids with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins giving [user.p_them()]self aids with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /obj/item/storage/firstaid/regular/PopulateContents()
@@ -35,6 +35,22 @@
 		/obj/item/stack/medical/mesh = 2,
 		/obj/item/reagent_containers/hypospray/medipen = 1,
 		/obj/item/healthanalyzer = 1)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/firstaid/emergency
+	icon_state = "medbriefcase"
+	name = "emergency first-aid kit"
+	desc = "A very simple first aid kit meant to secure and stabilize serious wounds for later treatment."
+
+/obj/item/storage/firstaid/emergency/PopulateContents()
+	if(empty)
+		return
+	var/static/items_inside = list(
+		/obj/item/healthanalyzer/wound = 1,
+		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/suture/emergency = 1,
+		/obj/item/stack/medical/ointment = 1,
+		/obj/item/reagent_containers/hypospray/medipen/ekit = 2,)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/medical
@@ -73,6 +89,7 @@
 		/obj/item/surgical_drapes, //for true paramedics
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
+		/obj/item/bonesetter,
 		/obj/item/surgicaldrill,
 		/obj/item/retractor,
 		/obj/item/cautery,
@@ -100,10 +117,10 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/gauze/twelve = 1,
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/mesh = 2,
-		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/reagent_containers/hypospray/medipen/ekit = 1,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/surgical_drapes = 1,
 		/obj/item/scalpel = 1,
@@ -132,7 +149,7 @@
 	item_state = "firstaid-ointment"
 
 /obj/item/storage/firstaid/fire/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins rubbing \the [src] against [user.p_them()]self! It looks like [user.p_theyre()] trying to start a fire!</span>")
+	user.visible_message(span_suicide("[user] begins rubbing \the [src] against [user.p_them()]self! It looks like [user.p_theyre()] trying to start a fire!"))
 	return FIRELOSS
 
 /obj/item/storage/firstaid/fire/Initialize(mapload)
@@ -156,7 +173,7 @@
 	item_state = "firstaid-toxin"
 
 /obj/item/storage/firstaid/toxin/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins licking the lead paint off \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins licking the lead paint off \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return TOXLOSS
 
 /obj/item/storage/firstaid/toxin/Initialize(mapload)
@@ -179,7 +196,7 @@
 	item_state = "firstaid-o2"
 
 /obj/item/storage/firstaid/o2/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins hitting [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins hitting [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return OXYLOSS
 
 /obj/item/storage/firstaid/o2/PopulateContents()
@@ -198,7 +215,7 @@
 	item_state = "firstaid-brute"
 
 /obj/item/storage/firstaid/brute/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins beating [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins beating [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /obj/item/storage/firstaid/brute/PopulateContents()
@@ -257,7 +274,7 @@
 
 	//Making a medibot!
 	if(contents.len >= 1)
-		to_chat(user, "<span class='warning'>You need to empty [src] out first!</span>")
+		to_chat(user, span_warning("You need to empty [src] out first!"))
 		return
 
 	var/obj/item/bot_assembly/medbot/A = new
@@ -270,7 +287,7 @@
 	else if(istype(src, /obj/item/storage/firstaid/brute))
 		A.skin = "brute"
 	user.put_in_hands(A)
-	to_chat(user, "<span class='notice'>You add [S] to [src].</span>")
+	to_chat(user, span_notice("You add [S] to [src]."))
 	A.robot_arm = S.type
 	A.firstaid = type
 	qdel(S)
@@ -298,7 +315,7 @@
 	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/dice))
 
 /obj/item/storage/pill_bottle/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is trying to get the cap off [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is trying to get the cap off [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (TOXLOSS)
 
 /obj/item/storage/pill_bottle/charcoal
@@ -467,6 +484,6 @@
 	name = "bottle of aiuri pills"
 	desc = "Contains pills to treat burns."
 
-/obj/item/storage/pill_bottle/kelo/PopulateContents()
+/obj/item/storage/pill_bottle/aiur/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/aiur(src)

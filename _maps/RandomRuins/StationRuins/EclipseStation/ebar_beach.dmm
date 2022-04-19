@@ -269,6 +269,31 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"jN" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	dir = 1;
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -9
+	},
+/obj/item/sharpener{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "jS" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -349,14 +374,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"mM" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "nY" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/turf_decal/caution{
@@ -598,6 +615,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"xz" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "xC" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -606,11 +627,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"xK" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "xR" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -662,28 +678,6 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"zm" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -9;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	dir = 1;
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -9
-	},
-/obj/item/sharpener{
-	pixel_x = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "zx" = (
 /turf/open/floor/plating/beach/coastline_t,
 /area/crew_quarters/bar)
@@ -863,6 +857,12 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"GG" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Hb" = (
 /obj/machinery/vending/dinnerware{
 	contraband = list(/obj/item/kitchen/rollingpin = 2, /obj/item/kitchen/knife/butcher = 2, /obj/item/reagent_containers/food/condiment/flour = 4)
@@ -1035,11 +1035,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"LV" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "LZ" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/americandiner{
@@ -1077,6 +1072,12 @@
 /obj/structure/weightmachine/stacklifter,
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
+"MK" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "MR" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /obj/machinery/airalarm{
@@ -1148,6 +1149,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"PF" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "PK" = (
 /obj/effect/overlay/palmtree_r,
@@ -1316,15 +1321,6 @@
 "Yn" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"YD" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "YI" = (
 /obj/machinery/jukebox/disco,
 /turf/open/floor/light/colour_cycle,
@@ -1741,8 +1737,8 @@ Eg
 PP
 Hb
 VM
-xK
-LV
+GG
+xz
 yJ
 aM
 KL
@@ -1761,8 +1757,8 @@ Yn
 PP
 hH
 Fx
-zm
-mM
+jN
+PF
 WE
 aM
 IL
@@ -1781,7 +1777,7 @@ Wr
 PP
 Av
 Fx
-YD
+MK
 rR
 HF
 aM

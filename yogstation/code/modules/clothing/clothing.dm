@@ -86,7 +86,7 @@
 	src.handle_tear(usr)
 
 /obj/item/clothing/under/proc/break_message()
-	return "<span class='warning'>[src] falls apart and breaks!</span>"
+	return span_warning("[src] falls apart and breaks!")
 
 /obj/item/clothing/under/examine(mob/user)
 	.=..()

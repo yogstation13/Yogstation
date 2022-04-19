@@ -11,9 +11,11 @@
 	var/list/jumpto_ports = list() //hashset of ports to jump to and ignore for collision purposes
 	var/obj/docking_port/stationary/my_port //the custom docking port placed by this console
 	var/obj/docking_port/mobile/shuttle_port //the mobile docking port of the connected shuttle
+	var/list/locked_traits = list(ZTRAIT_RESERVED, ZTRAIT_CENTCOM, ZTRAIT_AWAY, ZTRAIT_REEBE) //traits forbided for custom docking
 	var/view_range = 0
 	var/x_offset = 0
 	var/y_offset = 0
+	var/list/whitelist_turfs = list(/turf/open/space, /turf/open/floor/plating/asteroid, /turf/open/lava)
 	var/space_turfs_only = TRUE
 	var/see_hidden = FALSE
 	var/designate_time = 0
@@ -29,6 +31,7 @@
 		var/obj/docking_port/stationary/S = V
 		if(jumpto_ports[S.id])
 			z_lock |= S.z
+	whitelist_turfs = typecacheof(whitelist_turfs)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Destroy()
 	. = ..()
@@ -36,10 +39,10 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/attack_hand(mob/user)
 	if(jammed)
-		to_chat(user, "<span class='warning'>The Syndicate is jamming the console!</span>")
+		to_chat(user, span_warning("The Syndicate is jamming the console!"))
 		return
 	if(!shuttle_port && !SSshuttle.getShuttle(shuttleId))
-		to_chat(user,"<span class='warning'>Warning: Shuttle connection severed!</span>")
+		to_chat(user,span_warning("Warning: Shuttle connection severed!"))
 		return
 	return ..()
 
@@ -115,23 +118,23 @@
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	var/landing_clear = checkLandingSpot()
 	if(designate_time && (landing_clear != SHUTTLE_DOCKER_BLOCKED))
-		to_chat(current_user, "<span class='warning'>Targeting transit location, please wait [DisplayTimeText(designate_time)]...</span>")
+		to_chat(current_user, span_warning("Targeting transit location, please wait [DisplayTimeText(designate_time)]..."))
 		designating_target_loc = the_eye.loc
 		var/wait_completed = do_after(current_user, designate_time, FALSE, designating_target_loc, TRUE, CALLBACK(src, /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget))
 		designating_target_loc = null
 		if(!current_user)
 			return
 		if(!wait_completed)
-			to_chat(current_user, "<span class='warning'>Operation aborted.</span>")
+			to_chat(current_user, span_warning("Operation aborted."))
 			return
 		landing_clear = checkLandingSpot()
 
 	if(landing_clear != SHUTTLE_DOCKER_LANDING_CLEAR)
 		switch(landing_clear)
 			if(SHUTTLE_DOCKER_BLOCKED)
-				to_chat(current_user, "<span class='warning'>Invalid transit location</span>")
+				to_chat(current_user, span_warning("Invalid transit location"))
 			if(SHUTTLE_DOCKER_BLOCKED_BY_HIDDEN_PORT)
-				to_chat(current_user, "<span class='warning'>Unknown object detected in landing zone. Please designate another location.</span>")
+				to_chat(current_user, span_warning("Unknown object detected in landing zone. Please designate another location."))
 		return
 
 	if(!my_port)
@@ -161,8 +164,8 @@
 
 	if(current_user.client)
 		current_user.client.images += the_eye.placed_images
-		to_chat(current_user, "<span class='notice'>Transit location designated</span>")
-	return
+		to_chat(current_user, span_notice("Transit location designated"))
+	return TRUE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget()
 	if(!designating_target_loc || !current_user || (eyeobj.loc != designating_target_loc) || (stat & (NOPOWER|BROKEN)) )
@@ -190,7 +193,7 @@
 	var/turf/eyeturf = get_turf(the_eye)
 	if(!eyeturf)
 		return SHUTTLE_DOCKER_BLOCKED
-	if(z_lock.len && !(eyeturf.z in z_lock))
+	if(!eyeturf.z || SSmapping.level_has_any_trait(eyeturf.z, locked_traits))
 		return SHUTTLE_DOCKER_BLOCKED
 
 	. = SHUTTLE_DOCKER_LANDING_CLEAR
@@ -228,12 +231,17 @@
 		if(hidden_turf_info)
 			. = SHUTTLE_DOCKER_BLOCKED_BY_HIDDEN_PORT
 
+	if(length(whitelist_turfs))
+		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
+		if(!is_type_in_typecache(turf_type, whitelist_turfs))
+			return SHUTTLE_DOCKER_BLOCKED
+/*
 	if(space_turfs_only)
 		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
 		var/area/A = get_area(T)
 		if(!ispath(turf_type, /turf/open/space) && !ispath(A.type, /area/icemoon))
 			return SHUTTLE_DOCKER_BLOCKED
-
+*/
 	// Checking for overlapping dock boundaries
 	for(var/i in 1 to overlappers.len)
 		var/obj/docking_port/port = overlappers[i]
@@ -263,7 +271,7 @@
 
 /mob/camera/aiEye/remote/shuttle_docker
 	visible_icon = FALSE
-	use_static = USE_STATIC_NONE
+	use_static = FALSE
 	var/list/placement_images = list()
 	var/list/placed_images = list()
 
@@ -324,13 +332,25 @@
 	var/list/L = list()
 	for(var/V in SSshuttle.stationary)
 		if(!V)
+			stack_trace("SSshuttle.stationary have null entry!")
 			continue
 		var/obj/docking_port/stationary/S = V
 		if(console.z_lock.len && !(S.z in console.z_lock))
 			continue
 		if(console.jumpto_ports[S.id])
-			L[S.name] = S
+			L["([L.len])[S.name]"] = S
 
+	for(var/V in SSshuttle.beacons)
+		if(!V)
+			stack_trace("SSshuttle.beacons have null entry!")
+			continue
+		var/obj/machinery/spaceship_navigation_beacon/nav_beacon = V
+		if(!nav_beacon.z || SSmapping.level_has_any_trait(nav_beacon.z, console.locked_traits))
+			break
+		if(!nav_beacon.locked)
+			L["([L.len]) [nav_beacon.name] located: [nav_beacon.x] [nav_beacon.y] [nav_beacon.z]"] = nav_beacon
+		else
+			L["([L.len]) [nav_beacon.name] locked"] = null
 	playsound(console, 'sound/machines/terminal_prompt.ogg', 25, 0)
 	var/selected = input("Choose location to jump to", "Locations", null) as null|anything in L
 	if(QDELETED(src) || QDELETED(target) || !isliving(target))
@@ -341,7 +361,7 @@
 		if(T)
 			playsound(console, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0)
 			remote_eye.setLoc(T)
-			to_chat(target, "<span class='notice'>Jumped to [selected]</span>")
+			to_chat(target, span_notice("Jumped to [selected]"))
 			C.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
 			C.clear_fullscreen("flash", 3)
 	else

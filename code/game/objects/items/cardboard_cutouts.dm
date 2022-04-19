@@ -38,7 +38,7 @@
 /obj/item/cardboard_cutout/attack_hand(mob/living/user)
 	if(user.a_intent == INTENT_HELP || pushed_over)
 		return ..()
-	user.visible_message("<span class='warning'>[user] pushes over [src]!</span>", "<span class='danger'>You push over [src]!</span>")
+	user.visible_message(span_warning("[user] pushes over [src]!"), span_danger("You push over [src]!"))
 	playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 	push_over()
 
@@ -54,7 +54,7 @@
 /obj/item/cardboard_cutout/attack_self(mob/living/user)
 	if(!pushed_over)
 		return
-	to_chat(user, "<span class='notice'>You right [src].</span>")
+	to_chat(user, span_notice("You right [src]."))
 	desc = initial(desc)
 	icon = initial(icon)
 	icon_state = initial(icon_state) //This resets a cutout to its blank state - this is intentional to allow for resetting
@@ -86,7 +86,7 @@
 /obj/item/cardboard_cutout/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/bullet/reusable))
 		P.on_hit(src, 0)
-	visible_message("<span class='danger'>[src] has been hit by [P]!</span>")
+	visible_message(span_danger("[src] has been hit by [P]!"))
 	playsound(src, 'sound/weapons/slice.ogg', 50, 1)
 	if(prob(P.damage))
 		push_over()
@@ -104,11 +104,11 @@
 	var/new_appearance = show_radial_menu(user, src, possible_appearances, custom_check = CALLBACK(src, .proc/check_menu, user, crayon), radius = 36, require_near = TRUE)
 	if(!new_appearance)
 		return FALSE
-	if(!do_after(user, 10, FALSE, src, TRUE))
+	if(!do_after(user, 1 SECONDS, FALSE, src, TRUE))
 		return FALSE
 	if(!check_menu(user, crayon))
 		return FALSE
-	user.visible_message("<span class='notice'>[user] gives [src] a new look.</span>", "<span class='notice'>Voila! You give [src] a new look.</span>")
+	user.visible_message(span_notice("[user] gives [src] a new look."), span_notice("Voila! You give [src] a new look."))
 	crayon.use_charges(1)
 	crayon.check_empty(user)
 	alpha = 255
@@ -213,14 +213,14 @@
 	if(user.incapacitated())
 		return FALSE
 	if(pushed_over)
-		to_chat(user, "<span class='warning'>Right [src] first!</span>")
+		to_chat(user, span_warning("Right [src] first!"))
 		return FALSE
 	if(!crayon || !user.is_holding(crayon))
 		return FALSE
 	if(crayon.check_empty(user))
 		return FALSE
 	if(crayon.is_capped)
-		to_chat(user, "<span class='warning'>Take the cap off first!</span>")
+		to_chat(user, span_warning("Take the cap off first!"))
 		return FALSE
 	return TRUE
 

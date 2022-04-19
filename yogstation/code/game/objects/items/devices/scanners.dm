@@ -34,7 +34,7 @@ TRICORDER
 
 
 obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] thinks today IS a good day to die!</span>")
+	user.visible_message(span_suicide("[user] thinks today IS a good day to die!"))
 	return BRUTELOSS
 
 
@@ -79,7 +79,7 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 	// Status Readout
 	// Tricorder can detect damage but can only give estimates in most cases
 	//Temperature
-	to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
+	to_chat(user, span_info("Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)"))
 	//Brute
 	to_chat(user, "\t <font color='red'>*</font> Brute Damage: <font color ='orange'>[brute_damage > 100 ? "<font color='red'>Critical</font>" : brute_damage > 75 ? "Catastrophic" : brute_damage > 50 ? "Extreme" : brute_damage > 25 ? "Severe" : brute_damage > 0 ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
 	//Burn

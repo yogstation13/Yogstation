@@ -35,7 +35,7 @@ code tab of https://github.com/yogstation13/Yogstation
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
-## The Yogstation codebase recommends compiling using version [514.1566](https://www.byond.com/download/build/514/514.1566_byond.exe) and may potentially NOT work on newer or older versions.
+## The Yogstation codebase recommends compiling using version [514.1583](https://www.byond.com/download/build/514/514.1583_byond.exe) and may potentially NOT work on newer or older versions.
 
 ## :exclamation: How to compile :exclamation:
 
@@ -83,7 +83,7 @@ where the admin rank must be properly capitalised.
 This codebase also depends on a native library called rust-g. A precompiled
 Windows DLL is included in this repository, but Linux users will need to build
 and install it themselves. Directions can be found at the [rust-g
-repo](https://github.com/tgstation/rust-g).
+repo](https://github.com/tgstation/rust-g). The `hash` feature is required.
 
 Finally, to start the server, run Dream Daemon and enter the path to your
 compiled yogstation.dmb file. Make sure to set the port to the one you

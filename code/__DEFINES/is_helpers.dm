@@ -6,7 +6,7 @@
 
 #define isweakref(D) (istype(D, /datum/weakref))
 
-#define isappearance(A) (copytext("\ref[A]", 4, 6) == "3a")
+#define isappearance(A) (!isnum(A) && copytext("\ref[A]", 4, 6) == "3a")
 
 #define isnan(x) ( isnum((x)) && ((x) != (x)) )
 
@@ -43,6 +43,10 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define ischasm(A) (istype(A, /turf/open/chasm))
 
 #define isplatingturf(A) (istype(A, /turf/open/floor/plating))
+
+#define isaicore(A) (istype(A, /obj/machinery/ai/data_core))
+
+#define isvalidAIloc(A) ((isturf(A) || isaicore(A)))
 
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
@@ -104,12 +108,16 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
+#define isAIShell(A) (istype(A, /mob/living/silicon/robot/shell))
+
 #define ispAI(A) (istype(A, /mob/living/silicon/pai))
 
 //Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
 
 #define isrevenant(A) (istype(A, /mob/living/simple_animal/revenant))
+
+#define ishorror(A) (istype(A, /mob/living/simple_animal/horror))
 
 #define isbot(A) (istype(A, /mob/living/simple_animal/bot))
 
@@ -211,6 +219,8 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define isitem(A) (istype(A, /obj/item))
 
+#define isidcard(I) (istype(I, /obj/item/card/id))
+
 #define isstructure(A) (istype(A, /obj/structure))
 
 #define ismachinery(A) (istype(A, /obj/machinery))
@@ -224,14 +234,6 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 #define isclothing(A) (istype(A, /obj/item/clothing))
 
 #define iscash(A) (istype(A, /obj/item/coin) || istype(A, /obj/item/stack/spacecash) || istype(A, /obj/item/holochip))
-
-GLOBAL_LIST_INIT(pointed_types, typecacheof(list(
-	/obj/item/pen,
-	/obj/item/screwdriver,
-	/obj/item/reagent_containers/syringe,
-	/obj/item/kitchen/fork)))
-
-#define is_pointed(W) (is_type_in_typecache(W, GLOB.pointed_types))
 
 #define isbodypart(A) (istype(A, /obj/item/bodypart))
 

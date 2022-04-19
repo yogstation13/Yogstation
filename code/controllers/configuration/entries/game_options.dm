@@ -97,6 +97,8 @@
 	integer = FALSE
 	min_val = 1
 
+/datum/config_entry/number/min_security_scaling_coeff	//how much does the amount of players get divided by to determine forced security positions
+
 /datum/config_entry/number/abductor_scaling_coeff	//how many players per abductor team
 	config_entry_value = 15
 	integer = FALSE
@@ -115,6 +117,8 @@
 /datum/config_entry/flag/protect_roles_from_antagonist	//If security and such can be traitor/cult/other
 
 /datum/config_entry/flag/protect_assistant_from_antagonist	//If assistants can be traitor/cult/other
+
+/datum/config_entry/flag/protect_heads_from_antagonist	//If heads can be traitor/cult/other
 
 /datum/config_entry/flag/enforce_human_authority	//If non-human species are barred from joining as a head of staff
 
@@ -315,6 +319,11 @@
 	value_mode = VALUE_MODE_NUM
 	splitter = ","
 
+/datum/config_entry/keyed_list/ion_law_weight
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_NUM
+	splitter = ","
+
 /datum/config_entry/number/max_law_len
 	config_entry_value = 1024
 
@@ -399,3 +408,10 @@
 
 /datum/config_entry/number/engine_type
 	config_entry_value = 3
+
+//Shuttle size limiter
+/datum/config_entry/number/max_shuttle_count
+	config_entry_value = 6
+
+/datum/config_entry/number/max_shuttle_size
+	config_entry_value = 250

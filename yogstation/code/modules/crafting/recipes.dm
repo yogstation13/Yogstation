@@ -87,3 +87,23 @@
 				 /obj/item/stack/sheet/mineral/mythril = 1,
 				 /obj/item/clothing/gloves/bracer = 1)
 	category = CAT_PRIMAL
+
+/datum/crafting_recipe/poppy
+	name = "poppy pin"
+	result = /obj/item/clothing/accessory/poppypin
+	time = 2 SECONDS
+	reqs = list (
+		/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
+		/obj/item/reagent_containers/syringe = 1
+	)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/poppy2
+	name = "poppy pin"
+	result = /obj/item/clothing/accessory/poppypin
+	time = 2 SECONDS
+	reqs = list (
+		/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
+		/obj/item/stack/rods = 1
+	)
+	category = CAT_CLOTHING

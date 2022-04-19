@@ -9,8 +9,8 @@
 	// Default research tech, prevents bricking
 	design_ids = list("basic_matter_bin", "basic_cell", "basic_scanning", "basic_capacitor", "basic_micro_laser", "micro_mani", "desttagger", "handlabel", "packagewrap",
 	"destructive_analyzer", "circuit_imprinter", "experimentor", "rdconsole", "design_disk", "tech_disk", "rdserver", "rdservercontrol", "mechfab", "paystand", "ticket_machine", "ticket_remote",
-	"space_heater", "beaker", "large_beaker", "bucket", "fork", "tray", "bowl", "mixing_bowl", "drinking_glass", "shot_glass", "shaker", "xlarge_beaker", "sec_rshot", "sec_beanbag_slug", "sec_bshot", "sec_slug", "sec_Islug", "sec_Brslug", "sec_dart", "sec_38",
-	"rglass","plasteel","plastitanium","plasmaglass","plasmareinforcedglass","titaniumglass","plastitaniumglass","wallframe/flasher", "rsf")
+	"space_heater", "beaker", "large_beaker", "bucket", "fork", "tray","plate", "bowl", "mixing_bowl", "drinking_glass", "shot_glass", "shaker", "xlarge_beaker", "sec_rshot", "sec_beanbag_slug", "sec_bshot", "sec_slug", "sec_Islug", "sec_Brslug", "sec_dart", "sec_38",
+	"rglass","plasteel","plastitanium","plasmaglass","plasmareinforcedglass","titaniumglass","plastitaniumglass","wallframe/flasher", "rsf", "oven_tray")
 
 /datum/techweb_node/mmi
 	id = "mmi"
@@ -46,7 +46,7 @@
 	starting_node = TRUE
 	display_name = "Basic Tools"
 	description = "Basic mechanical, electronic, surgical and botanical tools."
-	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "scalpel", "circular_saw", "surgicaldrill", "retractor", "cautery", "hemostat", "surgical_drapes", "syringe", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet",  "mop")
+	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "scalpel", "circular_saw", "bonesetter", "surgicaldrill", "retractor", "cautery", "hemostat", "surgical_drapes", "syringe", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet",  "mop")
 
 /////////////////////////Biotech/////////////////////////
 /datum/techweb_node/biotech
@@ -72,7 +72,7 @@
 	display_name = "Biological Processing"
 	description = "From slimes to kitchens."
 	prereq_ids = list("biotech")
-	design_ids = list("smartfridge", "gibber", "deepfryer", "monkey_recycler", "processor", "microwave", "reagentgrinder", "dish_drive", "fat_sucker")
+	design_ids = list("smartfridge", "gibber", "deepfryer", "monkey_recycler", "processor", "microwave", "reagentgrinder", "dish_drive", "fat_sucker","griddle")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -125,7 +125,7 @@
 	display_name = "Alien Surgery"
 	description = "Abductors did nothing wrong."
 	prereq_ids = list("exp_surgery", "alientech")
-	design_ids = list("surgery_zombie","surgery_heal_combo_upgrade_femto")
+	design_ids = list("surgery_zombie","surgery_heal_combo_upgrade_femto", "surgery_brainwashing")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000)
 	export_price = 5000
 
@@ -166,7 +166,7 @@
 	display_name = "Anomaly Research"
 	description = "Unlock the potential of the mysterious anomalies that appear on station."
 	prereq_ids = list("adv_engi", "practical_bluespace")
-	design_ids = list("reactive_armour", "anomaly_neutralizer")
+	design_ids = list("reactive_armor", "anomaly_neutralizer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 
@@ -272,6 +272,43 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
+/////////////////////////shuttle tech/////////////////////////
+/datum/techweb_node/basic_shuttle_tech
+	id = "basic_shuttle"
+	display_name = "Basic Shuttle Research"
+	description = "Research the technology required to create and use basic shuttles."
+	prereq_ids = list("bluespace_travel", "adv_engi")
+	design_ids = list("shuttle_creator", "engine_plasma", "engine_heater", "shuttle_control", "shuttle_docker")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	export_price = 5000
+
+/datum/techweb_node/shuttle_route_upgrade
+	id = "shuttle_route_upgrade"
+	display_name = "Route Optimisation Upgrade"
+	description = "Research into bluespace tunnelling, allowing us to reduce flight times by up to 20%!"
+	prereq_ids = list("basic_shuttle")
+	design_ids = list("disk_shuttle_route")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 2500
+
+/datum/techweb_node/shuttle_route_upgrade_hyper
+	id = "shuttle_route_upgrade_hyper"
+	display_name = "Hyperlane Optimisation Upgrade"
+	description = "Research into bluespace hyperlane, allowing us to reduce flight times by up to 40%!"
+	prereq_ids = list("shuttle_route_upgrade", "micro_bluespace")
+	design_ids = list("disk_shuttle_route_hyper")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	export_price = 5000
+
+/datum/techweb_node/shuttle_route_upgrade_void
+	id = "shuttle_route_upgrade_void"
+	display_name = "Nullspace Breaching Upgrade"
+	description = "Research into voidspace tunnelling, allowing us to significantly reduce flight times."
+	prereq_ids = list("shuttle_route_upgrade_hyper", "alientech")
+	design_ids = list("disk_shuttle_route_void", "engine_void")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 12500)
+	export_price = 5000
+
 /////////////////////////robotics tech/////////////////////////
 /datum/techweb_node/robotics
 	id = "robotics"
@@ -313,7 +350,7 @@
 	display_name = "Cyborg Upgrades: Utility"
 	description = "Utility upgrades for cyborgs."
 	prereq_ids = list("engineering")
-	design_ids = list("borg_upgrade_holding", "borg_upgrade_lavaproof", "borg_upgrade_thrusters", "borg_upgrade_selfrepair", "borg_upgrade_expand", "borg_upgrade_rped")
+	design_ids = list("borg_upgrade_holding", "borg_upgrade_lavaproof", "borg_upgrade_thrusters", "borg_upgrade_selfrepair", "borg_upgrade_expand", "borg_upgrade_rped", "borg_upgrade_language")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 5000
 
@@ -322,16 +359,16 @@
 	display_name = "Cyborg Upgrades: Medical"
 	description = "Medical upgrades for cyborgs."
 	prereq_ids = list("adv_biotech")
-	design_ids = list("borg_upgrade_defibrillator", "borg_upgrade_piercinghypospray", "borg_upgrade_expandedsynthesiser", "borg_upgrade_pinpointer", "borg_upgrade_surgicalprocessor")
+	design_ids = list("borg_upgrade_defibrillator", "borg_upgrade_piercinghypospray", "borg_upgrade_expandedsynthesiser", "borg_upgrade_pinpointer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 5000
 
 /datum/techweb_node/cyborg_upg_surgkit
 	id = "cyborg_upg_surgkit"
-	display_name = "Cyborg Upgrade: Medical Advanced Surgical Kit"
-	description = "Advanced Surgical Kit upgrade design for medical cyborgs."
+	display_name = "Cyborg Upgrade: Medical Advanced Medical Tools"
+	description = "Advanced Surgical Kit and Advanced Health Scanner upgrade design for medical cyborgs."
 	prereq_ids = list("cyborg_upg_med", "exp_tools")
-	design_ids = list("borg_upgrade_surgerykit")
+	design_ids = list("borg_upgrade_surgerykit", "borg_upgrade_analyzer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	export_price = 2000
 
@@ -340,8 +377,7 @@
 	display_name = "Artificial Intelligence"
 	description = "AI unit research."
 	prereq_ids = list("robotics", "posibrain")
-	design_ids = list("aifixer", "aicore", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module",
-"reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
+	design_ids = list("expansion_card_holder", "ai_data_core", "ai_core_display", "ai_control", "ai_server_overview", "ai_resource_distribution", "ai_memory_1", "ai_cpu_1", "aifixer", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -402,8 +438,8 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)  //they are really shitty
 	export_price = 2000
 	design_ids = list("hdd_basic", "hdd_advanced", "hdd_super", "hdd_cluster", "ssd_small", "ssd_micro", "netcard_basic", "netcard_advanced", "netcard_wired",
-	"portadrive_basic", "portadrive_advanced", "portadrive_super", "cardslot", "aislot", "miniprinter", "APClink", "bat_control", "bat_normal", "bat_advanced",
-	"bat_super", "bat_micro", "bat_nano", "cpu_normal", "pcpu_normal", "cpu_small", "pcpu_small")
+	"portadrive_basic", "portadrive_advanced", "portadrive_super", "cardslot", "secondcardslot", "aislot", "miniprinter", "APClink", "bat_control", "bat_normal", "bat_advanced",
+	"bat_super", "bat_micro", "bat_nano", "cpu_normal", "pcpu_normal", "cpu_small", "pcpu_small", "sensorpackage")
 
 /datum/techweb_node/computer_board_gaming
 	id = "computer_board_gaming"
@@ -484,7 +520,7 @@
 	display_name = "Cybernetic Organs"
 	description = "We have the technology to rebuild him."
 	prereq_ids = list("adv_biotech")
-	design_ids = list("cybernetic_heart", "cybernetic_liver", "cybernetic_lungs", "cybernetic_appendix")
+	design_ids = list("cybernetic_heart", "cybernetic_liver", "cybernetic_lungs", "cybernetic_stomach", "cybernetic_ears", "cybernetic_appendix")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	export_price = 5000
 
@@ -493,7 +529,7 @@
 	display_name = "Upgraded Cybernetic Organs"
 	description = "We have the technology to upgrade him."
 	prereq_ids = list("cyber_organs")
-	design_ids = list("cybernetic_heart_u", "cybernetic_liver_u", "cybernetic_lungs_u")
+	design_ids = list("cybernetic_heart_u", "cybernetic_liver_u", "cybernetic_lungs_u", "cybernetic_stomach_u")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 	export_price = 5000
 

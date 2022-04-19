@@ -25,26 +25,26 @@
 
 	if (W.tool_behaviour == TOOL_WELDER)
 		if(get_amount() < 4)
-			to_chat(user, "<span class='warning'>You need at least four tiles to do this!</span>")
+			to_chat(user, span_warning("You need at least four tiles to do this!"))
 			return
 
 		if(!mineralType)
-			to_chat(user, "<span class='warning'>You can not reform this!</span>")
+			to_chat(user, span_warning("You can not reform this!"))
 			return
 
 		if(W.use_tool(src, user, 0, volume=40))
 			if(mineralType == "plasma")
 				atmos_spawn_air("plasma=5;TEMP=1000")
-				user.visible_message("<span class='warning'>[user.name] sets the plasma tiles on fire!</span>", \
-									"<span class='warning'>You set the plasma tiles on fire!</span>")
+				user.visible_message(span_warning("[user.name] sets the plasma tiles on fire!"), \
+									span_warning("You set the plasma tiles on fire!"))
 				qdel(src)
 				return
 
 			if (mineralType == "metal")
 				var/obj/item/stack/sheet/metal/new_item = new(user.loc)
-				user.visible_message("<span class='notice'>[user.name] shaped [src] into metal with the welding tool.</span>", \
-							 "<span class='notice'>You shaped [src] into metal with the welding tool.</span>", \
-							 "<span class='hear'>You hear welding.</span>")
+				user.visible_message(span_notice("[user.name] shaped [src] into metal with the welding tool."), \
+							 span_notice("You shaped [src] into metal with the welding tool."), \
+							 span_hear("You hear welding."))
 				var/obj/item/stack/rods/R = src
 				src = null
 				var/replace = (user.get_inactive_held_item()==R)
@@ -55,9 +55,9 @@
 			else
 				var/sheet_type = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
 				var/obj/item/stack/sheet/mineral/new_item = new sheet_type(user.loc)
-				user.visible_message("<span class='notice'>[user.name] shaped [src] into a sheet with the welding tool.</span>", \
-							 "<span class='notice'>You shaped [src] into a sheet with the welding tool.</span>", \
-							 "<span class='hear'>You hear welding.</span>")
+				user.visible_message(span_notice("[user.name] shaped [src] into a sheet with the welding tool."), \
+							 span_notice("You shaped [src] into a sheet with the welding tool."), \
+							 span_hear("You hear welding."))
 				var/obj/item/stack/rods/R = src
 				src = null
 				var/replace = (user.get_inactive_held_item()==R)
@@ -77,6 +77,71 @@
 	turf_type = /turf/open/floor/grass
 	resistance_flags = FLAMMABLE
 
+//Fairygrass
+/obj/item/stack/tile/fairygrass
+	name = "fairygrass tile"
+	singular_name = "fairygrass floor tile"
+	desc = "A patch of odd, glowing blue grass."
+	icon_state = "tile_fairygrass"
+	item_state = "tile-fairygrass"
+	turf_type = /turf/open/floor/grass/fairy
+	resistance_flags = FLAMMABLE
+	color = "#33CCFF"
+
+/obj/item/stack/tile/fairygrass/white
+	name = "white fairygrass tile"
+	singular_name = "white fairygrass floor tile"
+	desc = "A patch of odd, glowing white grass."
+	turf_type = /turf/open/floor/grass/fairy/white
+	color = "#FFFFFF"
+
+/obj/item/stack/tile/fairygrass/red
+	name = "red fairygrass tile"
+	singular_name = "red fairygrass floor tile"
+	desc = "A patch of odd, glowing red grass."
+	turf_type = /turf/open/floor/grass/fairy/red
+	color = "#FF3333"
+
+/obj/item/stack/tile/fairygrass/yellow
+	name = "yellow fairygrass tile"
+	singular_name = "yellow fairygrass floor tile"
+	desc = "A patch of odd, glowing yellow grass."
+	turf_type = /turf/open/floor/grass/fairy/yellow
+	color = "#FFFF66"
+
+/obj/item/stack/tile/fairygrass/green
+	name = "green fairygrass tile"
+	singular_name = "green fairygrass floor tile"
+	desc = "A patch of odd, glowing green grass."
+	turf_type = /turf/open/floor/grass/fairy/green
+	color = "#99FF99"
+
+/obj/item/stack/tile/fairygrass/blue
+	name = "blue fairygrass tile"
+	singular_name = "blue fairygrass floor tile"
+	desc = "A patch of odd, glowing blue grass."
+	turf_type = /turf/open/floor/grass/fairy/blue
+
+/obj/item/stack/tile/fairygrass/purple
+	name = "purple fairygrass tile"
+	singular_name = "purple fairygrass floor tile"
+	desc = "A patch of odd, glowing purple grass."
+	turf_type = /turf/open/floor/grass/fairy/purple
+	color = "#D966FF"
+
+/obj/item/stack/tile/fairygrass/pink
+	name = "pink fairygrass tile"
+	singular_name = "pink fairygrass floor tile"
+	desc = "A patch of odd, glowing pink grass."
+	turf_type = /turf/open/floor/grass/fairy/pink
+	color = "#FFB3DA"
+
+/obj/item/stack/tile/fairygrass/dark
+	name = "dark fairygrass tile"
+	singular_name = "dark fairygrass floor tile"
+	desc = "A patch of odd, light consuming grass."
+	turf_type = /turf/open/floor/grass/fairy/dark
+	color = "#410096"
 
 //Wood
 /obj/item/stack/tile/wood

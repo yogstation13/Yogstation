@@ -140,11 +140,11 @@
 			if((autoqueue.len + 1) < queue_max_len)
 				add_to_queue(request, multiplier) // Add item to queue for processing
 			else
-				to_chat(usr, "<span class='warning'>The autolathe queue is full!</span>")
+				to_chat(usr, span_warning("The autolathe queue is full!"))
 		if("eject")
 			request = stored_research.isDesignResearchedID(params["item_id"])
 			if(processing_queue)
-				to_chat(usr, "<span class='warning'>The autolathe queue is processing, please stop before ejecting material</span>")
+				to_chat(usr, span_warning("The autolathe queue is processing, please stop before ejecting material"))
 			if(!request)
 				return
 			var/multiplier = text2num(params["multiplier"])
@@ -210,7 +210,7 @@
 			"You begin to load a design from \the [O]...",
 			"You hear the chatter of a floppy drive.")
 		var/obj/item/disk/design_disk/D = O
-		if(do_after(user, 14.4, target = src))
+		if(do_after(user, 1.5 SECONDS, target = src))
 			for(var/B in D.blueprints)
 				if(B)
 					stored_research.add_design(B)

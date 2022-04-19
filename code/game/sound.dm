@@ -1,3 +1,10 @@
+GLOBAL_LIST_INIT(alt_sound_overrides, list(
+	'sound/machines/twobeep_voice1.ogg' = 'sound/machines/twobeep_high.ogg',
+	'sound/machines/twobeep_voice2.ogg' = 'sound/machines/twobeep_high.ogg',
+	'sound/misc/nootnoot.ogg' = 'yogstation/sound/misc/bikehorn_alert.ogg',
+	'sound/items/pshoom_2.ogg' = 'sound/items/pshoom.ogg',
+))
+
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
@@ -36,6 +43,9 @@
 	S.wait = 0 //No queue
 	S.channel = channel || SSsounds.random_available_channel()
 	S.volume = vol
+
+	if (client?.prefs && !(client.prefs.toggles & SOUND_ALT) && (S.file in GLOB.alt_sound_overrides))
+		S.file = GLOB.alt_sound_overrides[S.file]
 
 	if(vary)
 		if(frequency)

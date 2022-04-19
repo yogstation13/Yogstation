@@ -359,6 +359,15 @@
 	category = list("initial","Dinnerware","Service")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/plate
+	name = "Plate"
+	id = "plate"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 1500)
+	build_path = /obj/item/storage/bag/tray
+	category = list("initial","Dinnerware","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/bowl
 	name = "Bowl"
 	id = "bowl"
@@ -481,6 +490,15 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 6000)
 	build_path = /obj/item/circular_saw
+	category = list("initial", "Medical", "Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/bonesetter
+	name = "Bonesetter"
+	id = "bonesetter"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 1000)
+	build_path = /obj/item/bonesetter
 	category = list("initial", "Medical", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
@@ -752,14 +770,6 @@
 	category = list("initial", "Miscellaneous")
 
 //hacked autolathe recipes
-
-/datum/design/rcd
-	name = "Rapid Construction Device (RCD)"
-	id = "rcd"
-	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 30000)
-	build_path = /obj/item/construction/rcd
-	category = list("hacked", "Construction")
 
 /datum/design/rpd
 	name = "Rapid Pipe Dispenser (RPD)"
@@ -1048,3 +1058,11 @@
 	build_path = /obj/item/clothing/neck/stethoscope
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/a762
+	name = "Stripper clip (7.62mm)"
+	id = "a762"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/a762
+	category = list("hacked", "Security")

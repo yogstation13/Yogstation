@@ -59,6 +59,9 @@
 /datum/mutation/human/proc/on_acquiring(mob/living/carbon/human/H)
 	if(!H || !istype(H) || H.stat == DEAD || (src in H.dna.mutations))
 		return TRUE
+	for(var/i in H.dna.mutations)
+		if(is_type_in_list(i, conflicts))
+			return TRUE
 	if(species_allowed.len && !species_allowed.Find(H.dna.species.id))
 		return TRUE
 	if(health_req && H.health < health_req)

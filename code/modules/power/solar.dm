@@ -12,7 +12,6 @@
 	active_power_usage = 0
 	max_integrity = 150
 	integrity_failure = 0.33
-
 	var/id
 	var/obscured = FALSE
 	var/sunfrac = 0 //[0-1] measure of obscuration -- multipllier against power generation
@@ -21,26 +20,30 @@
 	var/obj/machinery/power/solar_control/control
 	var/needs_to_turn = TRUE //do we need to turn next tick?
 	var/needs_to_update_solar_exposure = TRUE //do we need to call update_solar_exposure() next tick?
-	var/obj/effect/overlay/panel
+	var/mutable_appearance/panelstructure
+	var/mutable_appearance/paneloverlay
+	var/multiplier
+	var/panelcolor
+	var/obj/item/stack/sheet/glass_type
 
 /obj/machinery/power/solar/Initialize(mapload, obj/item/solar_assembly/S)
 	. = ..()
-	panel = new()
-#if DM_VERSION >= 513
-	panel.vis_flags = VIS_INHERIT_ID|VIS_INHERIT_ICON|VIS_INHERIT_PLANE
-	vis_contents += panel
-#endif
-	panel.icon = icon
-	panel.icon_state = "solar_panel"
-	panel.layer = FLY_LAYER
 	Make(S)
 	connect_to_network()
 	RegisterSignal(SSsun, COMSIG_SUN_MOVED, .proc/queue_update_solar_exposure)
+	panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
+	paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
+	paneloverlay.color = panelcolor
+	update_icon()
 
 /obj/machinery/power/solar/Destroy()
 	unset_control() //remove from control computer
 	return ..()
 
+/obj/machinery/power/solar/examine(mob/user)
+	. = ..()
+	if(glass_type)
+		. += "It is covered with a sheet of [initial(glass_type.name)]."
 
 //set the control of the panel to a given computer
 /obj/machinery/power/solar/proc/set_control(obj/machinery/power/solar_control/SC)
@@ -62,16 +65,21 @@
 		S.anchored = TRUE
 	else
 		S.forceMove(src)
-	if(S.glass_type == /obj/item/stack/sheet/rglass) //if the panel is in reinforced glass
-		max_integrity *= 2 								 //this need to be placed here, because panels already on the map don't have an assembly linked to
-		obj_integrity = max_integrity
+	
+	S.glass_rating()
+
+	multiplier = S.multiplier
+	max_integrity *= S.integmultiplier
+	obj_integrity = max_integrity
+	panelcolor = S.panelcolor
+	glass_type = S.glass_type
 
 /obj/machinery/power/solar/crowbar_act(mob/user, obj/item/I)
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-	user.visible_message("[user] begins to take the glass off [src].", "<span class='notice'>You begin to take the glass off [src]...</span>")
+	user.visible_message("[user] begins to take the glass off [src].", span_notice("You begin to take the glass off [src]..."))
 	if(I.use_tool(src, user, 50))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
-		user.visible_message("[user] takes the glass off [src].", "<span class='notice'>You take the glass off [src].</span>")
+		user.visible_message("[user] takes the glass off [src].", span_notice("You take the glass off [src]."))
 		deconstruct(TRUE)
 	return TRUE
 
@@ -107,14 +115,12 @@
 
 /obj/machinery/power/solar/update_icon()
 	..()
-
+	cut_overlays()
 	var/matrix/turner = matrix()
 	turner.Turn(azimuth_current)
-	panel.transform = turner
-	if(stat & BROKEN)
-		panel.icon_state = "solar_panel-b"
-	else
-		panel.icon_state = "solar_panel"
+	panelstructure.transform = turner
+	paneloverlay.transform = turner
+	add_overlay(list(paneloverlay, panelstructure))
 
 /obj/machinery/power/solar/proc/queue_turn(azimuth)
 	needs_to_turn = TRUE
@@ -180,7 +186,7 @@
 	if(sunfrac <= 0)
 		return
 
-	var/sgen = SOLAR_GEN_RATE * sunfrac
+	var/sgen = SOLAR_GEN_RATE * sunfrac * multiplier
 	add_avail(sgen)
 	if(control)
 		control.gen += sgen
@@ -210,6 +216,9 @@
 	anchored = FALSE
 	var/tracker = 0
 	var/glass_type = null
+	var/multiplier = 1
+	var/integmultiplier = 1
+	var/panelcolor
 
 // Give back the glass type we were supplied with
 /obj/item/solar_assembly/proc/give_glass(device_broken)
@@ -221,36 +230,65 @@
 		new glass_type(Tsec, 2)
 	glass_type = null
 
+/obj/item/solar_assembly/proc/glass_rating()
+	if(is_glass_sheet(glass_type))
+		var/obj/item/stack/sheet/W = glass_type
+		if(ispath(W, /obj/item/stack/sheet/glass))
+			multiplier = 1
+			panelcolor = "#599ffa"
+		if(ispath(W, /obj/item/stack/sheet/rglass))
+			multiplier = 1.25
+			integmultiplier = 2
+			panelcolor = "#2c6dc2"
+		if(ispath(W, /obj/item/stack/sheet/plasmaglass))
+			multiplier = 1.75
+			integmultiplier = 1.5
+			panelcolor = "#d344d3"
+		if(ispath(W, /obj/item/stack/sheet/plasmarglass))
+			multiplier = 2
+			integmultiplier = 2.5
+			panelcolor = "#a124a1"
+		if(ispath(W, /obj/item/stack/sheet/titaniumglass))
+			multiplier = 2.5
+			integmultiplier = 4
+			panelcolor = "#8a8d8d"
+		if(ispath(W, /obj/item/stack/sheet/plastitaniumglass))
+			multiplier = 3
+			integmultiplier = 5
+			panelcolor = "#494949"
+		return TRUE
+	return FALSE
 
 /obj/item/solar_assembly/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && isturf(loc))
 		if(isinspace())
-			to_chat(user, "<span class='warning'>You can't secure [src] here.</span>")
+			to_chat(user, span_warning("You can't secure [src] here."))
 			return
 		anchored = !anchored
 		if(anchored)
-			user.visible_message("[user] wrenches the solar assembly into place.", "<span class='notice'>You wrench the solar assembly into place.</span>")
+			user.visible_message("[user] wrenches the solar assembly into place.", span_notice("You wrench the solar assembly into place."))
 			W.play_tool_sound(src, 75)
 		else
-			user.visible_message("[user] unwrenches the solar assembly from its place.", "<span class='notice'>You unwrench the solar assembly from its place.</span>")
+			user.visible_message("[user] unwrenches the solar assembly from its place.", span_notice("You unwrench the solar assembly from its place."))
 			W.play_tool_sound(src, 75)
 		return 1
 
-	if(istype(W, /obj/item/stack/sheet/glass) || istype(W, /obj/item/stack/sheet/rglass))
-		if(!anchored)
-			to_chat(user, "<span class='warning'>You need to secure the assembly before you can add glass.</span>")
-			return
+	if(is_glass_sheet(W))
 		var/obj/item/stack/sheet/S = W
+		if(!anchored)
+			to_chat(user, span_warning("You need to secure the assembly before you can add glass."))
+			return
 		if(S.use(2))
 			glass_type = W.type
+			glass_rating()
 			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-			user.visible_message("[user] places the glass on the solar assembly.", "<span class='notice'>You place the glass on the solar assembly.</span>")
+			user.visible_message("[user] places the glass on the solar assembly.", span_notice("You place the glass on the solar assembly."))
 			if(tracker)
 				new /obj/machinery/power/tracker(get_turf(src), src)
 			else
 				new /obj/machinery/power/solar(get_turf(src), src)
 		else
-			to_chat(user, "<span class='warning'>You need two sheets of glass to put them into a solar panel!</span>")
+			to_chat(user, span_warning("You need two sheets of glass to put them into a solar panel!"))
 			return
 		return 1
 
@@ -260,13 +298,13 @@
 				return
 			tracker = 1
 			qdel(W)
-			user.visible_message("[user] inserts the electronics into the solar assembly.", "<span class='notice'>You insert the electronics into the solar assembly.</span>")
+			user.visible_message("[user] inserts the electronics into the solar assembly.", span_notice("You insert the electronics into the solar assembly."))
 			return 1
 	else
 		if(W.tool_behaviour == TOOL_CROWBAR)
 			new /obj/item/electronics/tracker(src.loc)
 			tracker = 0
-			user.visible_message("[user] takes out the electronics from the solar assembly.", "<span class='notice'>You take out the electronics from the solar assembly.</span>")
+			user.visible_message("[user] takes out the electronics from the solar assembly.", span_notice("You take out the electronics from the solar assembly."))
 			return 1
 	return ..()
 
@@ -402,7 +440,7 @@
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(I.use_tool(src, user, 20, volume=50))
 			if (src.stat & BROKEN)
-				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+				to_chat(user, span_notice("The broken glass falls out."))
 				var/obj/structure/frame/computer/A = new /obj/structure/frame/computer( src.loc )
 				new /obj/item/shard( src.loc )
 				var/obj/item/circuitboard/computer/solar_control/M = new /obj/item/circuitboard/computer/solar_control( A )
@@ -414,7 +452,7 @@
 				A.anchored = TRUE
 				qdel(src)
 			else
-				to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+				to_chat(user, span_notice("You disconnect the monitor."))
 				var/obj/structure/frame/computer/A = new /obj/structure/frame/computer( src.loc )
 				var/obj/item/circuitboard/computer/solar_control/M = new /obj/item/circuitboard/computer/solar_control( A )
 				for (var/obj/C in src)

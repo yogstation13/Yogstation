@@ -37,12 +37,12 @@
 				armed = 1
 				if(!user.put_in_hands(gun))
 					armed = 0
-					to_chat(user, "<span class='warning'>You need a free hand to hold the gun!</span>")
+					to_chat(user, span_warning("You need a free hand to hold the gun!"))
 					return
 				update_icon()
 				user.update_inv_back()
 		else
-			to_chat(user, "<span class='warning'>You are already holding the gun!</span>")
+			to_chat(user, span_warning("You are already holding the gun!"))
 	else
 		..()
 
@@ -86,9 +86,9 @@
 	gun.forceMove(src)
 	armed = 0
 	if(user)
-		to_chat(user, "<span class='notice'>You attach the [gun.name] to the [name].</span>")
+		to_chat(user, span_notice("You attach the [gun.name] to the [name]."))
 	else
-		src.visible_message("<span class='warning'>The [gun.name] snaps back onto the [name]!</span>")
+		src.visible_message(span_warning("The [gun.name] snaps back onto the [name]!"))
 	update_icon()
 	user.update_inv_back()
 

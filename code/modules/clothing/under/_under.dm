@@ -4,7 +4,11 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.9
 	slot_flags = ITEM_SLOT_ICLOTHING
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 5)
+	equip_sound = 'sound/items/handling/jumpsuit_equip.ogg'
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
+	limb_integrity = 30
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
 	var/has_sensor = HAS_SENSORS // For the crew computer
 	var/random_sensor = TRUE
@@ -34,18 +38,20 @@
 		var/obj/item/stack/cable_coil/C = I
 		C.use(1)
 		has_sensor = HAS_SENSORS
-		to_chat(user,"<span class='notice'>You repair the suit sensors on [src] with [C].</span>")
+		to_chat(user,span_notice("You repair the suit sensors on [src] with [C]."))
 		return 1
 	if(!attach_accessory(I, user))
 		return ..()
 
-/obj/item/clothing/under/update_clothes_damaged_state(damaging = TRUE)
+/obj/item/clothing/under/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
 	..()
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_w_uniform()
-	if(has_sensor > NO_SENSORS)
+	if(damaged_state == CLOTHING_SHREDDED && has_sensor > NO_SENSORS)
 		has_sensor = BROKEN_SENSORS
+	else if(damaged_state == CLOTHING_PRISTINE && has_sensor == BROKEN_SENSORS)
+		has_sensor = HAS_SENSORS
 
 /obj/item/clothing/under/Initialize()
 	. = ..()
@@ -64,7 +70,7 @@
 		sensor_mode = pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS)
 		if(ismob(loc))
 			var/mob/M = loc
-			to_chat(M,"<span class='warning'>The sensors on the [src] change rapidly!</span>")
+			to_chat(M,span_warning("The sensors on the [src] change rapidly!"))
 
 /obj/item/clothing/under/equipped(mob/user, slot)
 	..()
@@ -98,13 +104,13 @@
 		H.update_inv_w_uniform()
 //Yogs End
 	if(attached_accessory && slot != SLOT_HANDS)
-		attached_accessory.on_uniform_equip(src, user)
+		attached_accessory.on_clothing_equip(src, user)
 		if(attached_accessory.above_suit)
 			H.update_inv_wear_suit()
 
 /obj/item/clothing/under/dropped(mob/user)
 	if(attached_accessory)
-		attached_accessory.on_uniform_dropped(src, user)
+		attached_accessory.on_clothing_dropped(src, user)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(attached_accessory.above_suit)
@@ -117,7 +123,7 @@
 		var/obj/item/clothing/accessory/A = I
 		if(attached_accessory)
 			if(user)
-				to_chat(user, "<span class='warning'>[src] already has an accessory.</span>")
+				to_chat(user, span_warning("[src] already has an accessory."))
 			return
 		else
 
@@ -129,7 +135,7 @@
 				return
 
 			if(user && notifyAttach)
-				to_chat(user, "<span class='notice'>You attach [I] to [src].</span>")
+				to_chat(user, span_notice("You attach [I] to [src]."))
 
 			var/accessory_color = attached_accessory.item_color
 			if(!accessory_color)
@@ -155,10 +161,14 @@
 		var/obj/item/clothing/accessory/A = attached_accessory
 		attached_accessory.detach(src, user)
 		if(user.put_in_hands(A) && !forced)
-			to_chat(user, "<span class='notice'>You detach [A] from [src].</span>")
+			to_chat(user, span_notice("You detach [A] from [src]."))
 		else
-			to_chat(user, "<span class='notice'>You detach [A] from [src] and it falls on the floor.</span>")
-			A.forceMove(get_turf(src))
+			to_chat(user, span_notice("You detach [A] from [src] and it falls on the floor."))
+			var/turf/T = get_turf(src)
+			if(!T)
+				T = get_turf(user)
+			if(T)
+				A.forceMove(T)
 		
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc

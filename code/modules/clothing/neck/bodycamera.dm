@@ -33,11 +33,11 @@
 		AltClick(user)
 		return
 	if(bodcam.status)
-		to_chat(user, "<span class='notice'>You shut off the body camera.</span>")
+		to_chat(user, span_notice("You shut off the body camera."))
 		Disconnect()
 	else
 		bodcam.status = TRUE
-		to_chat(user, "<span class='notice'>You turn on the body camera.</span>")
+		to_chat(user, span_notice("You turn on the body camera."))
 		getMobhook(user)
 	update_icon()
 
@@ -67,16 +67,16 @@
 
 /obj/item/clothing/neck/bodycam/examine(mob/user)
 	.=..()
-	. += "<span class='notice'>The camera is currently [bodcam.status ? "on" : "off"].</span>"
+	. += span_notice("The camera is currently [bodcam.status ? "on" : "off"].")
 	if(setup)
-		. += "<span class='notice'>It is registered under the name \"[bodcam.c_tag]\".</span>"
-		. += "<span class='notice'>It is streaming to the network \"[bodcam.network[1]]\".</span>"
+		. += span_notice("It is registered under the name \"[bodcam.c_tag]\".")
+		. += span_notice("It is streaming to the network \"[bodcam.network[1]]\".")
 		if(!preset)
-			. += "<span class='notice'>Alt-click to configure the camera.</span>"
+			. += span_notice("Alt-click to configure the camera.")
 		else
-			. += "<span class='notice'>This camera is locked and cannot be reconfigured.</span>"
+			. += span_notice("This camera is locked and cannot be reconfigured.")
 	else
-		. += "<span class='warning'>It hasn't been set up yet!</span>"
+		. += span_warning("It hasn't been set up yet!")
 
 /obj/item/clothing/neck/bodycam/verb/toggle_bodycam()
 	set name = "Toggle Bodycam"

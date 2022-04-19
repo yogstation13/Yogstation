@@ -36,8 +36,8 @@
 		if(!istype(GM))
 			return
 		GM.add_zombie(M.mind)
-		usr.visible_message("<span class='danger'>[usr] conjures up a necromanced minion!</span>")
-		to_chat(M, "<span class='userdanger'>You are bound to [usr.name]. If you get too far away from them, you will start dying.</span>")
+		usr.visible_message(span_danger("[usr] conjures up a necromanced minion!"))
+		to_chat(M, span_userdanger("You are bound to [usr.name]. If you get too far away from them, you will start dying."))
 		return TRUE
 
 	return FALSE

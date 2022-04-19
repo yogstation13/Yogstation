@@ -13,6 +13,7 @@
 	var/lit = FALSE
 	var/infinite = FALSE
 	var/start_lit = FALSE
+	var/candle_type = "red"
 
 /obj/item/candle/Initialize()
 	. = ..()
@@ -64,17 +65,37 @@
 	if(!infinite)
 		wax--
 	if(!wax)
-		new /obj/item/trash/candle(loc)
-		qdel(src)
+		if(candle_type == "resin")
+			new /obj/item/trash/candle/resin(loc)
+			qdel(src)
+		else
+			new /obj/item/trash/candle(loc)
+			qdel(src)
 	update_icon()
 	open_flame()
 
 /obj/item/candle/attack_self(mob/user)
 	if(put_out_candle())
-		user.visible_message("<span class='notice'>[user] snuffs [src].</span>")
+		user.visible_message(span_notice("[user] snuffs [src]."))
 
 /obj/item/candle/infinite
 	infinite = TRUE
 	start_lit = TRUE
+
+/obj/item/candle/resin
+	name = "resin candle"
+	desc = "An extra thick candle made of hardened resin to guarantee a \
+			long burn. Smells like a mix of ash and mushrooms."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "resincandle1"
+	item_state = "resincandle1"
+	w_class = WEIGHT_CLASS_TINY
+	light_color = LIGHT_COLOR_FIRE
+	heat = 1000
+	wax = 2000
+	candle_type = "resin"
+
+/obj/item/candle/resin/update_icon()
+	icon_state = "resincandle[(wax > 800) ? ((wax > 1500) ? 1 : 2) : 3][lit ? "_lit" : ""]"
 
 #undef CANDLE_LUMINOSITY

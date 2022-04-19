@@ -40,6 +40,7 @@
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/vanilla = 0.25, /datum/reagent/consumable/nutriment = 0.1)
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/vanillapod
 	seed = /obj/item/seeds/cocoapod/vanillapod

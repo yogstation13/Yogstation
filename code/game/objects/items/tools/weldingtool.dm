@@ -13,6 +13,8 @@
 	throwforce = 5
 	hitsound = "swing_hit"
 	usesound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')
+	drop_sound = 'sound/items/handling/weldingtool_drop.ogg'
+	pickup_sound =  'sound/items/handling/weldingtool_pickup.ogg'
 	var/acti_sound = 'sound/items/welderactivate.ogg'
 	var/deac_sound = 'sound/items/welderdeactivate.ogg'
 	throw_speed = 3
@@ -33,6 +35,8 @@
 	heat = 3800
 	tool_behaviour = TOOL_WELDER
 	toolspeed = 1
+	wound_bonus = 10
+	bare_wound_bonus = 15
 
 /obj/item/weldingtool/Initialize()
 	. = ..()
@@ -82,18 +86,8 @@
 
 
 /obj/item/weldingtool/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (FIRELOSS)
-
-
-/obj/item/weldingtool/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		flamethrower_screwdriver(I, user)
-	else if(istype(I, /obj/item/stack/rods))
-		flamethrower_rods(I, user)
-	else
-		. = ..()
-	update_icon()
 
 /obj/item/weldingtool/proc/explode()
 	var/turf/T = get_turf(loc)
@@ -101,31 +95,13 @@
 	dyn_explosion(T, plasmaAmount/5)//20 plasma in a standard welder has a 4 power explosion. no breaches, but enough to kill/dismember holder
 	qdel(src)
 
-/obj/item/weldingtool/attack(mob/living/carbon/human/H, mob/user)
-	if(!istype(H))
-		return ..()
-
-	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
-
-	if(affecting && affecting.status == BODYPART_ROBOTIC && user.a_intent != INTENT_HARM)
-		if(src.use_tool(H, user, 0, volume=50, amount=1))
-			if(user == H)
-				user.visible_message("<span class='notice'>[user] starts to fix some of the dents on [H]'s [affecting.name].</span>",
-					"<span class='notice'>You start fixing some of the dents on [H == user ? "your" : "[H]'s"] [affecting.name].</span>")
-				if(!do_mob(user, H, 50))
-					return
-			item_heal_robotic(H, user, 15, 0)
-	else
-		return ..()
-
-
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
 	if(!status && O.is_refillable())
 		reagents.trans_to(O, reagents.total_volume, transfered_by = user)
-		to_chat(user, "<span class='notice'>You empty [src]'s fuel tank into [O].</span>")
+		to_chat(user, span_notice("You empty [src]'s fuel tank into [O]."))
 		update_icon()
 	if(isOn())
 		use(1)
@@ -188,12 +164,12 @@
 //Switches the welder on
 /obj/item/weldingtool/proc/switched_on(mob/user)
 	if(!status)
-		to_chat(user, "<span class='warning'>[src] can't be turned on while unsecured!</span>")
+		to_chat(user, span_warning("[src] can't be turned on while unsecured!"))
 		return
 	welding = !welding
 	if(welding)
 		if(get_fuel() >= 1)
-			to_chat(user, "<span class='notice'>You switch [src] on.</span>")
+			to_chat(user, span_notice("You switch [src] on."))
 			playsound(loc, acti_sound, 50, 1)
 			force = 15
 			damtype = "fire"
@@ -201,10 +177,10 @@
 			update_icon()
 			START_PROCESSING(SSobj, src)
 		else
-			to_chat(user, "<span class='warning'>You need more fuel!</span>")
+			to_chat(user, span_warning("You need more fuel!"))
 			switched_off(user)
 	else
-		to_chat(user, "<span class='notice'>You switch [src] off.</span>")
+		to_chat(user, span_notice("You switch [src] off."))
 		playsound(loc, deac_sound, 50, 1)
 		switched_off(user)
 
@@ -249,26 +225,26 @@
 // If welding tool ran out of fuel during a construction task, construction fails.
 /obj/item/weldingtool/tool_use_check(mob/living/user, amount)
 	if(!isOn() || !check_fuel())
-		to_chat(user, "<span class='warning'>[src] has to be on to complete this task!</span>")
+		to_chat(user, span_warning("[src] has to be on to complete this task!"))
 		return FALSE
 
 	if(get_fuel() >= amount)
 		return TRUE
 	else
-		to_chat(user, "<span class='warning'>You need more welding fuel to complete this task!</span>")
+		to_chat(user, span_warning("You need more welding fuel to complete this task!"))
 		return FALSE
 
 
 /obj/item/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)
 	if(welding)
-		to_chat(user, "<span class='warning'>Turn it off first!</span>")
+		to_chat(user, span_warning("Turn it off first!"))
 		return
 	status = !status
 	if(status)
-		to_chat(user, "<span class='notice'>You resecure [src] and close the fuel tank.</span>")
+		to_chat(user, span_notice("You resecure [src] and close the fuel tank."))
 		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
 	else
-		to_chat(user, "<span class='notice'>[src] can now be attached, modified, and refuelled.</span>")
+		to_chat(user, span_notice("[src] can now be attached, modified, and refuelled."))
 		ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
 	add_fingerprint(user)
 
@@ -281,14 +257,14 @@
 				user.transferItemToLoc(src, F, TRUE)
 			F.weldtool = src
 			add_fingerprint(user)
-			to_chat(user, "<span class='notice'>You add a rod to a welder, starting to build a flamethrower.</span>")
+			to_chat(user, span_notice("You add a rod to a welder, starting to build a flamethrower."))
 			user.put_in_hands(F)
 		else
-			to_chat(user, "<span class='warning'>You need one rod to start building a flamethrower!</span>")
+			to_chat(user, span_warning("You need one rod to start building a flamethrower!"))
 
 /obj/item/weldingtool/ignition_effect(atom/A, mob/user)
 	if(use_tool(A, user, 0, amount=1))
-		return "<span class='notice'>[user] casually lights [A] with [src], what a badass.</span>"
+		return span_notice("[user] casually lights [A] with [src], what a badass.")
 	else
 		return ""
 

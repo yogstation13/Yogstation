@@ -36,14 +36,14 @@
 	var/area/A = get_area(loc)
 
 	if(alert_s && A && stat != DEAD)
-		var/msg = "<span class='boldnotice'>DRONE PING: [name]: [alert_s] priority alert in [A.name]!</span>"
+		var/msg = span_boldnotice("DRONE PING: [name]: [alert_s] priority alert in [A.name]!")
 		alert_drones(msg)
 
 /mob/living/simple_animal/drone/verb/cmd_robot_alerts()
 	set category = "Drone"
 	set name = "Show Alerts"
 	if(usr.stat == DEAD)
-		to_chat(src, "<span class='userdanger'>Alert: You are dead.</span>")
+		to_chat(src, span_userdanger("Alert: You are dead."))
 		return //won't work if dead
 	robot_alerts()
 

@@ -259,10 +259,10 @@
 		var/mob/living/carbon/human/H = user
 		if(H.get_num_arms() == 0)
 			if(H.get_num_legs() != 0)
-				message_param = "tries to point at %t with a leg, <span class='userdanger'>falling down</span> in the process!"
+				message_param = "tries to point at %t with a leg, [span_userdanger("falling down")] in the process!"
 				H.Paralyze(20)
 			else
-				message_param = "<span class='userdanger'>bumps [user.p_their()] head on the ground</span> trying to motion towards %t."
+				message_param = "[span_userdanger("bumps [user.p_their()] head on the ground")] trying to motion towards %t."
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 	..()
 
@@ -363,7 +363,7 @@
 /datum/emote/living/surrender
 	key = "surrender"
 	key_third_person = "surrenders"
-	message = "<span class='surrender'>puts their hands on their head and falls to the ground, they surrender!</span>"
+	message = span_surrender("puts their hands on their head and falls to the ground, they surrender!")
 	emote_type = EMOTE_AUDIBLE
 	mob_type_blacklist_typecache = list(/mob/living/simple_animal)
 
@@ -425,7 +425,7 @@
 /datum/emote/living/custom/proc/check_invalid(mob/user, input)
 	var/static/regex/stop_bad_mime = regex(@"says|exclaims|yells|asks")
 	if(stop_bad_mime.Find(input, 1, 1))
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
+		to_chat(user, span_danger("Invalid emote."))
 		return TRUE
 	return FALSE
 
@@ -457,6 +457,15 @@
 		message = params
 		if(type_override)
 			emote_type = type_override
+	if(isnotpretty(message))
+		if(user.client.prefs.muted & MUTE_IC)
+			return
+		user.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+		to_chat(usr, span_notice("You fumble over your action. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
+		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
+		message_admins(log_message)
+		log_emote(log_message)
+		return
 	. = ..()
 	message = null
 	emote_type = EMOTE_VISIBLE
@@ -509,10 +518,10 @@
 	. = ..()
 	var/obj/item/circlegame/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, "<span class='notice'>You make a circle with your hand.</span>")
+		to_chat(user, span_notice("You make a circle with your hand."))
 	else
 		qdel(N)
-		to_chat(user, "<span class='warning'>You don't have any free hands to make a circle with.</span>")
+		to_chat(user, span_warning("You don't have any free hands to make a circle with."))
 
 /datum/emote/living/slap
 	key = "slap"
@@ -525,6 +534,6 @@
 		return
 	var/obj/item/slapper/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, "<span class='notice'>You ready your slapping hand.</span>")
+		to_chat(user, span_notice("You ready your slapping hand."))
 	else
-		to_chat(user, "<span class='warning'>You're incapable of slapping in your current state.</span>")
+		to_chat(user, span_warning("You're incapable of slapping in your current state."))

@@ -2,7 +2,7 @@
 	name = "Epistemania"
 	desc = "Patient suffers from a manic pursuit of knowlewdge."
 	scan_desc = "epistemania"
-	gain_text = "<span class='notice'>Requesting mentor...</span>"
+	gain_text = span_notice("Requesting mentor...")
 	lose_text = ""
 	random_gain = FALSE 
 	resilience = TRAUMA_RESILIENCE_ABSOLUTE
@@ -23,9 +23,9 @@
 		I.Costume()
 					
 		friend_initialized = TRUE
-		to_chat(owner, "<span class='notice'>You have acquired the mentor rat [friend.key], ask them any question you like. They will leave your presence when they are done.</span>")
+		to_chat(owner, span_notice("You have acquired the mentor rat [friend.key], ask them any question you like. They will leave your presence when they are done."))
 	else
-		to_chat(owner, "<span class='warning'>No mentor responded to your request. Try again later.</span>")
+		to_chat(owner, span_warning("No mentor responded to your request. Try again later."))
 		qdel(src)
 
 /mob/camera/imaginary_friend/mrat
@@ -100,10 +100,10 @@
 			SEND_SOUND(src, sound('sound/misc/soggy.ogg', volume = 50))
 
 /mob/camera/imaginary_friend/mrat/greet()
-	to_chat(src, "<span class='notice'><b>You are the mentor rat of [owner]!</b></span>")
-	to_chat(src, "<span class='notice'>Do not give [owner] any OOC information from your time as a ghost.</span>")
-	to_chat(src, "<span class='notice'>Your job is to answer [owner]'s question(s) and you are given this form to assist in that.</span>")
-	to_chat(src, "<span class='notice'>Don't be stupid with this or you will face the consequences.</span>")
+	to_chat(src, span_notice("<b>You are the mentor rat of [owner]!</b>"))
+	to_chat(src, span_notice("Do not give [owner] any OOC information from your time as a ghost."))
+	to_chat(src, span_notice("Your job is to answer [owner]'s question(s) and you are given this form to assist in that."))
+	to_chat(src, span_notice("Don't be stupid with this or you will face the consequences."))
 
 /mob/camera/imaginary_friend/mrat/Initialize(mapload, _trauma)
 	. = ..()
@@ -136,13 +136,13 @@
 
 /datum/action/innate/mrat_leave/Activate()
 	var/mob/camera/imaginary_friend/I = owner
-	to_chat(I, "<span class='warning'>You have ejected yourself from [I.owner].</span>")
-	to_chat(I.owner, "<span class='warning'>Your mentor has left.</span>")
+	to_chat(I, span_warning("You have ejected yourself from [I.owner]."))
+	to_chat(I.owner, span_warning("Your mentor has left."))
 	qdel(I.trauma)
 
 /mob/camera/imaginary_friend/mrat/pointed(atom/A as mob|obj|turf in view())
 	if(!..())
 		return FALSE
 	to_chat(owner, "<b>[src]</b> points at [A].")
-	to_chat(src, "<span class='notice'>You point at [A].</span>")
+	to_chat(src, span_notice("You point at [A]."))
 	return TRUE

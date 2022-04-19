@@ -2,10 +2,8 @@
 # Basically, ckey goes first. Rank goes after the "="                                         #
 # Case is not important for ckey.                                                             #
 # Case IS important for the rank.                                                             #
-# All punctuation (spaces etc) EXCEPT '-', '_' and '@' will be stripped from rank names.      #
 # Ranks can be anything defined in admin_ranks.txt                                            #
 # NOTE: if the rank-name cannot be found in admin_ranks.txt, they will not be adminned! ~Carn #
-# NOTE: syntax was changed to allow hyphenation of ranknames, since spaces are stripped.      #
 # If SQL-based admin loading is enabled, admins listed here will always be loaded first		  #
 # and will override any duplicate entries in the database.									  #
 ###############################################################################################
@@ -13,11 +11,10 @@
 AshCorr	=	Host
 Xantam	=	Host
  
-Lyis	=	Council Member
-Ynot01  =   Council Member
-Rayisken = Council Member
+tehladyk = Council Member
 MenacingManatee = Council Member
 Num1bamf = Council Member
+adamsogm = Council Member
+zxmongoose = Council Member
  
 jamied12	=	Head Developer
-theos		=	Head Developer

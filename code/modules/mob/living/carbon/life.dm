@@ -54,16 +54,11 @@
 /mob/living/carbon/handle_breathing(times_fired)
 	var/next_breath = 4
 	var/obj/item/organ/lungs/L = getorganslot(ORGAN_SLOT_LUNGS)
-	var/obj/item/organ/heart/H = getorganslot(ORGAN_SLOT_HEART)
-	if(L)
-		if(L.damage > L.high_threshold)
-			next_breath--
-	if(H)
-		if(H.damage > H.high_threshold)
-			next_breath--
+	if(L?.damage)
+		next_breath = max(next_breath * L.get_organ_efficiency(), 1)
 
 	if((times_fired % next_breath) == 0 || failed_last_breath)
-		breathe() //Breathe per 4 ticks if healthy, down to 2 if our lungs or heart are damaged, unless suffocating
+		breathe() //Breathe per 4 ticks if healthy, down to 1 based on lung damage, unless suffocating
 		if(failed_last_breath)
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "suffocation", /datum/mood_event/suffocation)
 		else
@@ -239,7 +234,7 @@
 				emote(pick("giggle","laugh"))
 			if(SA_partialpressure > NITROGEN_NARCOSIS_PRESSURE_HIGH) // Hallucinations
 				if(prob(15))
-					to_chat(src, "<span class='userdanger'>You can't think straight!</span>")
+					to_chat(src, span_userdanger("You can't think straight!"))
 					confused = min(SA_partialpressure/10, confused + 12)
 				hallucination += 5
 	//yogs end
@@ -286,22 +281,22 @@
 				// At lower pp, give out a little warning
 				SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "smell")
 				if(prob(5))
-					to_chat(src, "<span class='notice'>There is an unpleasant smell in the air.</span>")
+					to_chat(src, span_notice("There is an unpleasant smell in the air."))
 			if(5 to 20)
 				//At somewhat higher pp, warning becomes more obvious
 				if(prob(15))
-					to_chat(src, "<span class='warning'>You smell something horribly decayed inside this room.</span>")
+					to_chat(src, span_warning("You smell something horribly decayed inside this room."))
 					SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/bad_smell)
 			if(15 to 30)
 				//Small chance to vomit. By now, people have internals on anyway
 				if(prob(5))
-					to_chat(src, "<span class='warning'>The stench of rotting carcasses is unbearable!</span>")
+					to_chat(src, span_warning("The stench of rotting carcasses is unbearable!"))
 					SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/nauseating_stench)
 					vomit()
 			if(30 to INFINITY)
 				//Higher chance to vomit. Let the horror start
 				if(prob(25))
-					to_chat(src, "<span class='warning'>The stench of rotting carcasses is unbearable!</span>")
+					to_chat(src, span_warning("The stench of rotting carcasses is unbearable!"))
 					SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/nauseating_stench)
 					vomit()
 			else
@@ -363,6 +358,12 @@
 
 		if(stat != DEAD || D.process_dead)
 			D.stage_act()
+
+/mob/living/carbon/handle_wounds()
+	for(var/thing in all_wounds)
+		var/datum/wound/W = thing
+		if(W.processes) // meh
+			W.handle_process()
 
 //todo generalize this and move hud out
 /mob/living/carbon/proc/handle_changeling()
@@ -578,16 +579,16 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		if(drunkenness >= 81)
 			adjustToxLoss(1)
 			if(prob(5) && !stat)
-				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
+				to_chat(src, span_warning("Maybe you should lie down for a bit..."))
 
 		if(drunkenness >= 91)
 			adjustToxLoss(1)
 			adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
 			if(prob(20) && !stat)
 				if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
-					to_chat(src, "<span class='warning'>You're so tired... but you can't miss that shuttle...</span>")
+					to_chat(src, span_warning("You're so tired... but you can't miss that shuttle..."))
 				else
-					to_chat(src, "<span class='warning'>Just a quick nap...</span>")
+					to_chat(src, span_warning("Just a quick nap..."))
 					Sleeping(900)
 
 		if(drunkenness >= 101)
@@ -633,7 +634,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		return
 	adjustToxLoss(4, TRUE,  TRUE)
 	if(prob(30))
-		to_chat(src, "<span class='warning'>You feel a stabbing pain in your abdomen!</span>")
+		to_chat(src, span_warning("You feel a stabbing pain in your abdomen!"))
 
 
 ////////////////

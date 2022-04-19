@@ -85,7 +85,7 @@
 			compiled_list |= H
 
 	if(compiled_list.len == 0)
-		to_chat(user, "<span class='warning'>The items don't posses required fingerprints.</span>")
+		to_chat(user, span_warning("The items don't posses required fingerprints."))
 		return FALSE
 
 	var/mob/living/carbon/human/chosen_mob = input("Select the person you wish to curse","Your target") as null|anything in sortList(compiled_list, /proc/cmp_mob_realname_dsc)
@@ -111,7 +111,7 @@
 	message_admins("[summoned.name] is being summoned by [user.real_name] in [loc]")
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [summoned.name]", ROLE_HERETIC, null, FALSE, 100, summoned)
 	if(!LAZYLEN(candidates))
-		to_chat(user,"<span class='warning'>No ghost could be found...</span>")
+		to_chat(user,span_warning("No ghost could be found..."))
 		qdel(summoned)
 		return FALSE
 	var/mob/dead/observer/C = pick(candidates)
@@ -169,9 +169,9 @@
 	for(var/obj/item/living_heart/LH in atoms)
 
 		if(LH.target && LH.target.stat == DEAD)
-			to_chat(carbon_user,"<span class='danger'>Your patrons accepts your offer..</span>")
+			to_chat(carbon_user,span_danger("Your patrons accepts your offer.."))
 			var/mob/living/carbon/human/H = LH.target
-			H.gib()
+			H.apply_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
 			LH.target = null
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 
@@ -187,17 +187,22 @@
 			A.owner = user.mind
 			var/list/targets = list()
 			for(var/i in 0 to 3)
-				var/datum/mind/targeted =  A.find_target()//easy way, i dont feel like copy pasting that entire block of code
+				var/list/BR = list()
+				var/datum/mind/targeted =  A.find_target(blacklist = BR)//easy way, i dont feel like copy pasting that entire block of code
 				if(!targeted)
 					break
+				if(targeted.current?.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)) //stops people from being selected while afk in the shadow realm
+					BR |= targeted
+					i--
+					continue
 				targets[targeted.current.real_name] = targeted.current
 			LH.target = targets[input(user,"Choose your next target","Target") in targets]
 			qdel(A)
 			if(LH.target)
-				to_chat(user,"<span class='warning'>Your new target has been selected, go and sacrifice [LH.target.real_name]!</span>")
+				to_chat(user,span_warning("Your new target has been selected, go and sacrifice [LH.target.real_name]!"))
 
 			else
-				to_chat(user,"<span class='warning'>A target could not be found for the living heart.</span>")
+				to_chat(user,span_warning("A target could not be found for the living heart."))
 
 /datum/eldritch_transmutation/basic/cleanup_atoms(list/atoms)
 	return
@@ -213,24 +218,3 @@
 	required_atoms = list(/obj/item/organ/eyes,/obj/item/stack/sheet/animalhide/human,/obj/item/storage/book/bible,/obj/item/pen)
 	result_atoms = list(/obj/item/forbidden_book)
 	required_shit_list = "A bible, a sheet of human skin, a pen, and a pair of eyes."
-
-/datum/eldritch_transmutation/recall
-	name = "Recall Ritual"
-	required_atoms = list(/obj/item/forbidden_book)
-
-/datum/eldritch_transmutation/recall/on_finished_recipe(mob/living/user,list/atoms,loc)
-	var/list/datum/eldritch_knowledge/recall_list = list()
-	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
-	var/list/transmutations = cultie.get_all_transmutations()
-	for(var/X in transmutations)
-		var/datum/eldritch_transmutation/ET = X
-		if(!ET.required_shit_list)
-			continue
-		recall_list[ET.name] = ET.required_shit_list
-	var/ctrlf = input(user, "Select a ritual to recall its reagents.", "Recall Knowledge") as null | anything in recall_list
-	if(ctrlf)
-		to_chat(user, "<span class='cult'>Transmutation requirements for [ctrlf]: [recall_list[ctrlf]]</span>")
-	return TRUE
-
-/datum/eldritch_transmutation/recall/cleanup_atoms(list/atoms)
-	return

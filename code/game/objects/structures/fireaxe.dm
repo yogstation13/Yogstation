@@ -40,40 +40,40 @@
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=2))
 				return
-			to_chat(user, "<span class='notice'>You begin repairing [src].</span>")
+			to_chat(user, span_notice("You begin repairing [src]."))
 			if(I.use_tool(src, user, 40, volume=50, amount=2))
 				obj_integrity = max_integrity
 				update_icon()
-				to_chat(user, "<span class='notice'>You repair [src].</span>")
+				to_chat(user, span_notice("You repair [src]."))
 		else
-			to_chat(user, "<span class='warning'>[src] is already in good condition!</span>")
+			to_chat(user, span_warning("[src] is already in good condition!"))
 		return
 	else if(istype(I, /obj/item/stack/sheet/rglass) && broken)//yogs - change to reinforced glass
 		//Repairing a heavily damaged fireaxe cabinet with glass
 		var/obj/item/stack/sheet/rglass/G = I//yogs - change to reinforced glass
 		if(G.get_amount() < 2)
-			to_chat(user, "<span class='warning'>You need two reinforced glass sheets to fix [src]!</span>")//yogs - change to reinforced glass
+			to_chat(user, span_warning("You need two reinforced glass sheets to fix [src]!"))//yogs - change to reinforced glass
 			return
-		to_chat(user, "<span class='notice'>You start fixing [src]...</span>")
-		if(do_after(user, 20, target = src) && G.use(2))
+		to_chat(user, span_notice("You start fixing [src]..."))
+		if(do_after(user, 2 SECONDS, target = src) && G.use(2))
 			broken = 0
 			obj_integrity = max_integrity
 			update_icon()
 	//yogs start - warn user if they use the wrong type of glass to repair
 	else if(istype(I, /obj/item/stack/sheet/glass) && broken)
-		to_chat(user, "<span class='warning'>You need reinforced glass sheets to fix [src]!</span>")
+		to_chat(user, span_warning("You need reinforced glass sheets to fix [src]!"))
 	//yogs end
 	else if(open || broken)
 		//Fireaxe cabinet is open or broken, so we can access it's axe slot
 		if(istype(I, /obj/item/twohanded/fireaxe) && !fireaxe && axe)
 			var/obj/item/twohanded/fireaxe/F = I
 			if(F.wielded)
-				to_chat(user, "<span class='warning'>Unwield the [F.name] first.</span>")
+				to_chat(user, span_warning("Unwield the [F.name] first."))
 				return
 			if(!user.transferItemToLoc(F, src))
 				return
 			fireaxe = F
-			to_chat(user, "<span class='caution'>You place the [F.name] back in the [name].</span>")
+			to_chat(user, span_caution("You place the [F.name] back in the [name]."))
 			update_icon()
 			return
 		else if(istype(I, /obj/item/card/id/captains_spare) && !spareid && !axe)
@@ -81,7 +81,7 @@
 			if(!user.transferItemToLoc(S, src))
 				return
 			spareid = S
-			to_chat(user, "<span class='caution'>You place the [S.name] back in the [name].</span>")
+			to_chat(user, span_caution("You place the [S.name] back in the [name]."))
 			update_icon()
 			return
 		else if(!broken)
@@ -90,12 +90,12 @@
 	//yogs start - adds unlock if authorized
 	else if (I.GetID())
 		if(obj_flags & EMAGGED)
-			to_chat(user, "<span class='notice'>The [name]'s locking modules are unresponsive.</span>")
+			to_chat(user, span_notice("The [name]'s locking modules are unresponsive."))
 			return
 		if (allowed(user))
 			toggle_lock(user)
 		else
-			to_chat(user, "<span class='danger'>Access denied.</span>")
+			to_chat(user, span_danger("Access denied."))
 	//yogs end
 	else
 		return ..()
@@ -159,7 +159,7 @@
 			if(spareid)
 				fireaxe = spareid
 			user.put_in_hands(fireaxe)
-			to_chat(user, "<span class='caution'>You take the [fireaxe.name] from the [name].</span>")
+			to_chat(user, span_caution("You take the [fireaxe.name] from the [name]."))
 			fireaxe = null
 			spareid = null
 			src.add_fingerprint(user)
@@ -211,8 +211,8 @@
 /obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)
 	to_chat(user, "<span class = 'caution'> Resetting circuitry...</span>")
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, 1)
-	if(do_after(user, 20, target = src))
-		to_chat(user, "<span class='caution'>You [locked ? "disable" : "re-enable"] the locking modules.</span>")
+	if(do_after(user, 2 SECONDS, target = src))
+		to_chat(user, span_caution("You [locked ? "disable" : "re-enable"] the locking modules."))
 		locked = !locked
 		update_icon()
 
@@ -225,7 +225,7 @@
 		return
 
 	if(locked)
-		to_chat(usr, "<span class='warning'>The [name] won't budge!</span>")
+		to_chat(usr, span_warning("The [name] won't budge!"))
 		return
 	else
 		playsound(loc, 'sound/machines/click.ogg', 15, 1, -3)//yogs - adds open/close sound
@@ -258,14 +258,14 @@
 /obj/structure/fireaxecabinet/bridge/spare/reset_lock(mob/user)
 	//this happens when you hack the lock as a synthetic/AI, or with a multitool.
 	if(obj_flags & EMAGGED)
-		to_chat(user, "<span class='notice'>You try to reset the [name]'s circuits, but they're completely burnt out.</span>")
+		to_chat(user, span_notice("You try to reset the [name]'s circuits, but they're completely burnt out."))
 		return
 	if(!open)
 		to_chat(user, "<span class = 'caution'>Resetting circuitry...</span>")
 		if(alert)
-			to_chat(user, "<span class='danger'>This will trigger the built in burglary alarm!</span>")
+			to_chat(user, span_danger("This will trigger the built in burglary alarm!"))
 		if(do_after(user, 15 SECONDS, target = src))
-			to_chat(user, "<span class='caution'>You [locked ? "disable" : "re-enable"] the locking modules.</span>")
+			to_chat(user, span_caution("You [locked ? "disable" : "re-enable"] the locking modules."))
 			src.add_fingerprint(user)
 			if(locked)
 				trigger_alarm() //already checks for alert var

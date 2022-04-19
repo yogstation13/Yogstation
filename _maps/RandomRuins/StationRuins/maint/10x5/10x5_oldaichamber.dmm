@@ -83,10 +83,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"p" = (
-/obj/structure/AIcore,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
 "q" = (
 /turf/open/floor/circuit,
 /area/template_noop)
@@ -144,6 +140,9 @@
 /obj/machinery/light/small/broken,
 /turf/open/floor/plating,
 /area/template_noop)
+"K" = (
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
 
 (1,1,1) = {"
 a
@@ -162,7 +161,7 @@ x
 (3,1,1) = {"
 c
 k
-p
+K
 q
 y
 "}

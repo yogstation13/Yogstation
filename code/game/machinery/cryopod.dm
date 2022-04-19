@@ -114,14 +114,14 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 
 	else if(href_list["item"])
 		if(!allowed(user))
-			to_chat(user, "<span class='warning'>Access Denied.</span>")
+			to_chat(user, span_warning("Access Denied."))
 			return
 
 		if(!allow_items)
 			return
 
 		if(frozen_items.len == 0)
-			to_chat(user, "<span class='notice'>There is nothing to recover from storage.</span>")
+			to_chat(user, span_notice("There is nothing to recover from storage."))
 			return
 
 		var/obj/item/I = input(user, "Please choose which object to retrieve.","Object recovery",null) as null|anything in frozen_items
@@ -129,24 +129,24 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 			return
 
 		if(!(I in frozen_items))
-			to_chat(user, "<span class='notice'>\The [I] is no longer in storage.</span>")
+			to_chat(user, span_notice("\The [I] is no longer in storage."))
 			return
 
-		visible_message("<span class='notice'>The console beeps happily as it disgorges \the [I].</span>")
+		visible_message(span_notice("The console beeps happily as it disgorges \the [I]."))
 		I.forceMove(drop_location())
 		frozen_items -= I
 
 	else if(href_list["allitems"])
 		if(!allowed(user))
-			to_chat(user, "<span class='warning'>Access Denied.</span>")
+			to_chat(user, span_warning("Access Denied."))
 			return
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			to_chat(user, "<span class='notice'>There is nothing to recover from storage.</span>")
+			to_chat(user, span_notice("There is nothing to recover from storage."))
 			return
 
-		visible_message("<span class='notice'>The console beeps happily as it disgorges the desired objects.</span>")
+		visible_message(span_notice("The console beeps happily as it disgorges the desired objects."))
 
 		for(var/obj/item/I in frozen_items)
 			I.forceMove(drop_location())
@@ -170,6 +170,8 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	var/on_store_message = "has entered long-term storage."
 	var/on_store_name = "Cryogenic Oversight"
+	var/open_sound = 'sound/machines/podopen.ogg'
+	var/close_sound = 'sound/machines/podclose.ogg'
 
 	// 5 minutes-ish safe period before being despawned.
 	var/time_till_despawn = 15 MINUTES // Time if a player gets forced into cryo
@@ -177,6 +179,11 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	var/obj/machinery/computer/cryopod/control_computer
 	var/cooldown = FALSE
+
+	/// If the timer is on hold due to the occupant using the afk verb
+	var/afk_hold = FALSE
+
+	var/despawn_timer
 
 /obj/machinery/cryopod/Initialize()
 	..()
@@ -194,6 +201,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 /obj/machinery/cryopod/proc/PowerOn()
 	if(!occupant)
 		open_machine()
+
+/obj/machinery/cryopod/proc/PowerOff()
+	if(!occupant)
+		icon_state = "cryopod-off"
 
 /obj/machinery/cryopod/proc/find_control_computer(urgent = 0)
 	for(var/M in GLOB.cryopod_computers)
@@ -218,29 +229,41 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		..(user)
 		icon_state = "cryopod"
 		var/mob/living/mob_occupant = occupant
+		if(close_sound)
+			playsound(src, close_sound, 40)
 		if(mob_occupant && mob_occupant.stat != DEAD)
-			to_chat(occupant, "<span class='boldnotice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
+			to_chat(occupant, span_boldnotice("You feel cool air surround you. You go numb as your senses turn inward."))
 		if(!occupant) //Check they still exist
 			return
 		if(mob_occupant.client)//if they're logged in
-			var/offertimer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
+			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
 			if(alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No") == "Yes")
-				deltimer(offertimer) //Player wants to offer, cancel the timer
+				deltimer(despawn_timer) //Player wants to offer, cancel the timer
 				if(!offer_control(occupant))
 					//Player is a jackass that noone wants the body of, restart the timer
-					addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1))
+					despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1), TIMER_STOPPABLE)
 		else
-			addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn)
+			if(mob_occupant.mind.afk_verb_used) // If they used the afk verb, don't start the timer yet
+				afk_hold = TRUE
+				return
+			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn, TIMER_STOPPABLE)
 
 /obj/machinery/cryopod/open_machine()
 	..()
 	icon_state = GLOB.cryopods_enabled ? "cryopod-open" : "cryopod-off"
+	if(open_sound)
+		playsound(src, open_sound, 40)
 	density = TRUE
 	name = initial(name)
 
+	// Clear the afk hold and ready flag/timer
+	afk_hold = FALSE
+	deltimer(despawn_timer)
+	ready = FALSE
+
 /obj/machinery/cryopod/container_resist(mob/living/user)
-	visible_message("<span class='notice'>[occupant] emerges from [src]!</span>",
-		"<span class='notice'>You climb out of [src]!</span>")
+	visible_message(span_notice("[occupant] emerges from [src]!"),
+		span_notice("You climb out of [src]!"))
 	open_machine()
 
 /obj/machinery/cryopod/relaymove(mob/user)
@@ -252,6 +275,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant)
+		if(afk_hold && !mob_occupant.mind.afk_verb_used) // AFK hold ended
+			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn, TIMER_STOPPABLE)
+			afk_hold = FALSE
+			
 		// Eject dead people
 		if(mob_occupant.stat == DEAD)
 			open_machine()
@@ -271,7 +298,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 			O.team.objectives -= O
 			qdel(O)
 			for(var/datum/mind/M in O.team.members)
-				to_chat(M.current, "<BR><span class='userdanger'>Your target is no longer within reach. Objective removed!</span>")
+				to_chat(M.current, "<BR>[span_userdanger("Your target is no longer within reach. Objective removed!")]")
 				M.announce_objectives()
 		else if(O.target == mob_occupant.mind)
 			O.target = null
@@ -285,7 +312,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 			for(var/M in owners)
 				var/datum/mind/own = M
-				to_chat(own.current, "<BR><span class='userdanger'>You get the feeling your target is no longer within reach. Time for Plan [pick("A","B","C","D","X","Y","Z")]. Objectives updated!</span>")
+				to_chat(own.current, "<BR>[span_userdanger("You get the feeling your target is no longer within reach. Time for Plan [pick("A","B","C","D","X","Y","Z")]. Objectives updated!")]")
 				O.owner.announce_objectives()
 
 // This function can not be undone; do not call this unless you are sure
@@ -323,7 +350,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	if(GLOB.announcement_systems.len)
 		var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
 		announcer.announce("CRYOSTORAGE", mob_occupant.real_name, announce_rank, list())
-		visible_message("<span class='notice'>\The [src] hums and hisses as it moves [mob_occupant.real_name] into storage.</span>")
+		visible_message(span_notice("\The [src] hums and hisses as it moves [mob_occupant.real_name] into storage."))
 
 	for(var/obj/item/W in mob_occupant.GetAllContents())
 		if(QDELETED(W))
@@ -362,26 +389,26 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		return
 
 	if(!GLOB.cryopods_enabled)
-		to_chat(user, "<span class='boldnotice'>[src] is currently disabled. It will be enabled in [round(((30 MINUTES) - world.time) / (1 MINUTES))] minutes</span>")
+		to_chat(user, span_boldnotice("NanoTrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
 		return
 
 	if(occupant)
-		to_chat(user, "<span class='boldnotice'>The cryo pod is already occupied!</span>")
+		to_chat(user, span_boldnotice("The cryo pod is already occupied!"))
 		return
 
 	if(target.stat == DEAD)
-		to_chat(user, "<span class='notice'>Dead people can not be put into cryo.</span>")
+		to_chat(user, span_notice("Dead people can not be put into cryo."))
 		return
 
 	if(findtext(target.ckey, "@") || !target.mind)
-		to_chat(user, "<span class='notice'>This person cannot be put in cryogenic storage!</span>")
+		to_chat(user, span_notice("This person cannot be put in cryogenic storage!"))
 		return
 
 	if(target.client && user != target)
 		if(iscyborg(target))
-			to_chat(user, "<span class='danger'>You can't put [target] into [src]. They're online.</span>")
+			to_chat(user, span_danger("You can't put [target] into [src]. They're online."))
 		else
-			to_chat(user, "<span class='danger'>You can't put [target] into [src]. They're conscious.</span>")
+			to_chat(user, span_danger("You can't put [target] into [src]. They're conscious."))
 		return
 	else if(target.client)
 		if(alert(target,"Would you like to enter cryosleep?",,"Yes","No") == "No")
@@ -407,7 +434,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		//rerun the checks in case of shenanigans
 
 	if(occupant)
-		to_chat(user, "<span class='boldnotice'>\The [src] is in use.</span>")
+		to_chat(user, span_boldnotice("\The [src] is in use."))
 		return
 
 	if(target == user)
@@ -415,8 +442,8 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	else
 		visible_message("[user] starts putting [target] into the cryo pod.")
 	close_machine(target)
-	to_chat(target, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
+	to_chat(target, span_boldnotice("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
 	name = "[name] ([occupant.name])"
-	log_admin("<span class='notice'>[key_name(target)] entered a stasis pod.</span>")
+	log_admin(span_notice("[key_name(target)] entered a stasis pod."))
 	message_admins("[key_name_admin(target)] entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	add_fingerprint(target)

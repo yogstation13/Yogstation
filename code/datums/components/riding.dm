@@ -69,7 +69,7 @@
 	var/atom/movable/AM = parent
 	var/mob/AMM = AM
 	if((ride_check_rider_restrained && M.restrained(TRUE)) || (ride_check_rider_incapacitated && M.incapacitated(FALSE, TRUE)) || (ride_check_ridden_incapacitated && istype(AMM) && AMM.incapacitated(FALSE, TRUE)))
-		AM.visible_message("<span class='warning'>[M] falls off of [AM]!</span>")
+		AM.visible_message(span_warning("[M] falls off of [AM]!"))
 		AM.unbuckle_mob(M)
 	return TRUE
 
@@ -192,7 +192,7 @@
 		handle_vehicle_layer(direction)
 		handle_vehicle_offsets()
 	else
-		to_chat(user, "<span class='notice'>You'll need the keys in one of your hands to [drive_verb] [AM].</span>")
+		to_chat(user, span_notice("You'll need the keys in one of your hands to [drive_verb] [AM]."))
 
 /datum/component/riding/proc/Unbuckle(atom/movable/M)
 	addtimer(CALLBACK(parent, /atom/movable/.proc/unbuckle_mob, M), 0, TIMER_UNIQUE)
@@ -263,7 +263,7 @@
 	var/atom/movable/AM = parent
 	AM.unbuckle_mob(user)
 	user.Knockdown(60)
-	user.visible_message("<span class='warning'>[AM] pushes [user] off of [AM.p_them()]!</span>")
+	user.visible_message(span_warning("[AM] pushes [user] off of [AM.p_them()]!"))
 
 /datum/component/riding/cyborg
 	del_on_unbuckle_all = TRUE
@@ -277,14 +277,14 @@
 			if(R.module && R.module.ride_allow_incapacitated)
 				kick = FALSE
 		if(kick)
-			to_chat(user, "<span class='userdanger'>You fall off of [AM]!</span>")
+			to_chat(user, span_userdanger("You fall off of [AM]!"))
 			Unbuckle(user)
 			return
 	if(iscarbon(user))
 		var/mob/living/carbon/carbonuser = user
 		if(!carbonuser.get_num_arms())
 			Unbuckle(user)
-			to_chat(user, "<span class='userdanger'>You can't grab onto [AM] with no hands!</span>")
+			to_chat(user, span_userdanger("You can't grab onto [AM] with no hands!"))
 			return
 
 /datum/component/riding/cyborg/handle_vehicle_layer(dir)
@@ -315,15 +315,30 @@
 
 /datum/component/riding/cyborg/force_dismount(mob/living/M)
 	var/atom/movable/AM = parent
-	AM.unbuckle_mob(M)
 	var/mob/living/silicon/robot/S = AM
 	if(S.throwcooldown)
 		to_chat(S, "You have to wait for your motors to recharge")
 		return
+	M.visible_message(span_warning("[AM] queues their servos to fling [M]!"))
+	playsound(AM,'sound/misc/borg/fling_start.ogg',80,1,-1)
+	if(!do_after(AM, 1 SECONDS, target = M))
+		M.visible_message(span_boldwarning("[AM]'s servos disengage!"))
+		playsound(AM,'sound/misc/borg/fling_cancel.ogg',80,1,-1)
+		return
+	//sanity check after the timer to make sure they're still buckled
+	if(!S.has_buckled_mobs()) 
+		M.visible_message(span_boldwarning("[AM]'s servos pop!"))
+		playsound(AM,'sound/misc/borg/fling_pop.ogg',80,1,-1)
+		//consider adding some damage as a borg if you mess up your timing
+		return;
+	//if we're a borg with a person we're gonna wait until here to spin so it waits until after we charge up the servos
+	S.spin(20, 1)
+	playsound(AM,'sound/misc/borg/fling_throw.ogg',80,1,-1)
+	AM.unbuckle_mob(M)
 	var/turf/target = get_edge_target_turf(AM, AM.dir)
 	var/turf/targetm = get_step(get_turf(AM), AM.dir)
 	M.Move(targetm)
-	M.visible_message("<span class='warning'>[M] is thrown clear of [AM]!</span>")
+	M.visible_message(span_warning("[M] is thrown clear of [AM]!"))
 	M.throw_at(target, 14, 5, AM)
 	M.Paralyze(60)
 	S.throwcooldown = TRUE
@@ -339,6 +354,9 @@
 		else
 			inhand.rider = riding_target_override
 		inhand.parent = AM
+		for(var/obj/item/I in user.held_items) // delete any hand items like slappers that could still totally be used to grab on
+			if((I.obj_flags & HAND_ITEM))
+				qdel(I)
 		if(user.put_in_hands(inhand, TRUE))
 			amount_equipped++
 		else
@@ -362,7 +380,7 @@
 
 /obj/item/riding_offhand
 	name = "offhand"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ABSTRACT | DROPDEL | NOBLUDGEON

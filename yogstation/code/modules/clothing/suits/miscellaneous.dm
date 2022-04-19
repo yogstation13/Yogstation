@@ -173,18 +173,21 @@
 	desc = "Aviators not included. Now in dark blue!"
 	icon_state = "navymiljacket"
 	item_state = "navymiljacket"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/yogs/desertmiljacket
 	name = "desert military jacket"
 	desc = "Aviators not included. Now in dark brown!"
 	icon_state = "desertmiljacket"
 	item_state = "desertmiljacket"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/yogs/denimjacket
 	name = "denim jacket"
 	desc = "A bit scratchy but pretty cool looking."
 	icon_state = "denim_jacket"
 	item_state = "denim_jacket"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/hooded/fiendcowl
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'

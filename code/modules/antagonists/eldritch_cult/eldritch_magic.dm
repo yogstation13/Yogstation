@@ -2,8 +2,6 @@
 	name = "Ashen passage"
 	desc = "Grants a short period of incorporeality, allowing passage through walls and other obstacles."
 	school = "transmutation"
-	invocation = "PASSAGE OF ASH"
-	invocation_type = "whisper"
 	charge_max = 150
 	range = -1
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -46,20 +44,19 @@
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	catchphrase = "FEAR THE BEYOND"
-	
+
 /obj/item/melee/touch_attack/mansus_fist/ignition_effect(atom/A, mob/user)
-	. = "<span class='notice'>[user] effortlessly snaps [user.p_their()] fingers near [A], igniting it with eldritch energies. Fucking badass!</span>"
+	. = span_notice("[user] effortlessly snaps [user.p_their()] fingers near [A], igniting it with eldritch energies. Fucking badass!")
 	qdel(src)
 
 /obj/item/melee/touch_attack/mansus_fist/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 
 	if(!proximity_flag || target == user)
 		return
-	playsound(user, 'sound/items/welder.ogg', 75, TRUE)
 	if(ishuman(target))
 		var/mob/living/carbon/human/tar = target
 		if(tar.anti_magic_check())
-			tar.visible_message("<span class='danger'>Strange energies from [user]'s hand fly at [target] at an impossible velocity, but vanish before making contact!</span>","<span class='danger'>Strange energies from [user]'s hand begin to crash at an impossible speed towards you, but vanish before they make contact!</span>")
+			tar.visible_message(span_danger("Strange energies from [user]'s hand fly at [target] at an impossible velocity, but vanish before making contact!"),span_danger("Strange energies from [user]'s hand begin to crash at an impossible speed towards you, but vanish before they make contact!"))
 			return ..()
 	var/datum/mind/M = user.mind
 	var/datum/antagonist/heretic/cultie = M.has_antag_datum(/datum/antagonist/heretic)
@@ -79,6 +76,7 @@
 		if(EK.on_mansus_grasp(target, user, proximity_flag, click_parameters))
 			use_charge = TRUE
 	if(use_charge)
+		playsound(user, 'sound/items/welder.ogg', 75, TRUE)
 		return ..()
 
 /obj/effect/proc_holder/spell/aoe_turf/rust_conversion
@@ -123,7 +121,7 @@
 
 /obj/item/melee/touch_attack/blood_siphon
 	name = "Blood Siphon"
-	desc = "A sinister looking aura that distorts the flow of reality around it. It looks... <i>hungry</i>..."
+	desc = "A sinister looking aura that distorts the flow of reality around it. It looks <i>hungry</i>..."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	catchphrase = "REGENERATE ME"
@@ -132,21 +130,29 @@
 	if(!proximity_flag)
 		return
 	playsound(user, 'sound/magic/demon_attack1.ogg', 75, TRUE)
-	if(ishuman(target))
-		var/mob/living/carbon/human/tar = target
-		if(tar.anti_magic_check())
-			tar.visible_message("<span class='danger'>The energies from [user]'s hand jump at [target], but are dispersed!</span>","<span class='danger'>Something jumps off of [user]'s hand, but it disperses on contact with you!</span>")
+	if(iscarbon(target))
+		var/mob/living/carbon/C1 = target
+		if(C1.anti_magic_check())
+			C1.visible_message(span_danger("The energies from [user]'s hand jump at [target], but are dispersed!"),span_danger("Something jumps off of [user]'s hand, but it disperses on contact with you!"))
 			return ..()
 		var/mob/living/carbon/C2 = user
+		for(var/obj/item/bodypart/bodypart in C2.bodyparts)
+			for(var/i in bodypart.wounds)
+				var/datum/wound/iter_wound = i
+				if(prob(50))
+					continue
+				var/obj/item/bodypart/target_bodypart = locate(bodypart.type) in C1.bodyparts
+				if(!target_bodypart)
+					continue
+				iter_wound.remove_wound()
+				iter_wound.apply_wound(target_bodypart)
 		if(isliving(target))
 			var/mob/living/L = target
 			L.adjustBruteLoss(20)
 			C2.adjustBruteLoss(-20)
-		if(iscarbon(target))
-			var/mob/living/carbon/C1 = target
-			C1.blood_volume -= 20
-			if(C2.blood_volume < BLOOD_VOLUME_MAXIMUM(C2)) //we dont want to explode after all
-				C2.blood_volume += 20
+		C1.blood_volume -= 20
+		if(C2.blood_volume < BLOOD_VOLUME_MAXIMUM(C2)) //we dont want to explode after all
+			C2.blood_volume += 20
 		return ..()
 
 /obj/effect/proc_holder/spell/targeted/projectile/dumbfire/rust_wave
@@ -214,7 +220,7 @@
 
 /obj/effect/proc_holder/spell/pointed/cleave/cast(list/targets, mob/user)
 	if(!targets.len)
-		to_chat(user, "<span class='warning'>No target found in range!</span>")
+		to_chat(user, span_warning("No target found in range!"))
 		return FALSE
 	if(!can_target(targets[1], user))
 		return FALSE
@@ -228,17 +234,16 @@
 		if(target == user)
 			continue
 		if(target.anti_magic_check())
-			to_chat(user, "<span class='warning'>The spell had no effect!</span>")
-			target.visible_message("<span class='danger'>[target]'s veins emit a dull glow, but their magic protection repulses the blaze!</span>", \
-							"<span class='danger'>You see a dull glow and feel a faint prickling sensation in your veins, but your magic protection prevents ignition!</span>")
+			to_chat(user, span_warning("The spell had no effect!"))
+			target.visible_message(span_danger("[target]'s veins emit a dull glow, but their magic protection repulses the blaze!"), \
+							span_danger("You see a dull glow and feel a faint prickling sensation in your veins, but your magic protection prevents ignition!"))
 			continue
 
-		target.visible_message("<span class='danger'>[target]'s veins are shredded from within as an unholy blaze erupts from their blood!</span>", \
-							"<span class='danger'>You feel your skin scald as superheated blood bursts from your veins!</span>")
-		//var/obj/item/bodypart/bodypart = pick(target.bodyparts)
-		//var/datum/wound/slash/critical/crit_wound = new
-		//crit_wound.apply_wound(bodypart)
-		target.bleed_rate += 15
+		target.visible_message(span_danger("[target]'s veins are shredded from within as an unholy blaze erupts from their blood!"), \
+							span_danger("You feel your skin scald as superheated blood bursts from your veins!"))
+		var/obj/item/bodypart/bodypart = pick(target.bodyparts)
+		var/datum/wound/slash/critical/crit_wound = new
+		crit_wound.apply_wound(bodypart)
 		target.adjustFireLoss(20)
 		new /obj/effect/temp_visual/cleave(target.drop_location())
 
@@ -248,7 +253,7 @@
 		return FALSE
 	if(!istype(target,/mob/living/carbon/human))
 		if(!silent)
-			to_chat(user, "<span class='warning'>You are unable to cleave [target]!</span>")
+			to_chat(user, span_warning("You are unable to cleave [target]!"))
 		return FALSE
 	return TRUE
 
@@ -273,7 +278,7 @@
 		return FALSE
 	if(!istype(target,/mob/living/carbon/human))
 		if(!silent)
-			to_chat(user, "<span class='warning'>You are unable to touch [target]!</span>")
+			to_chat(user, span_warning("You are unable to touch [target]!"))
 		return FALSE
 	return TRUE
 
@@ -283,10 +288,10 @@
 		if(ishuman(targets))
 			var/mob/living/carbon/human/tar = target
 			if(tar.anti_magic_check())
-				tar.visible_message("<span class='danger'>The energies from [user]'s hand slide onto [target], but quickly fall off and vanish!</span>","<span class='danger'>Something slides onto you from [user]'s hand, but it can't maintain contact and vanishes as it falls away!</span>")
+				tar.visible_message(span_danger("The energies from [user]'s hand slide onto [target], but quickly fall off and vanish!"),span_danger("Something slides onto you from [user]'s hand, but it can't maintain contact and vanishes as it falls away!"))
 				return
 		if(target.mind && !target.mind.has_antag_datum(/datum/antagonist/heretic))
-			to_chat(user,"<span class='warning'>[target.name] has been cursed!</span>")
+			to_chat(user,span_warning("[target.name] has been cursed!"))
 			SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "gates_of_mansus", /datum/mood_event/gates_of_mansus)
 
 /obj/effect/proc_holder/spell/pointed/ash_final
@@ -337,13 +342,13 @@
 
 		for(var/mob/living/L in T.contents)
 			if(L.anti_magic_check())
-				L.visible_message("<span class='danger'>The fire parts in front of [L]!</span>","<span class='danger'>As the fire approaches it splits off to avoid contact with you!</span>")
+				L.visible_message(span_danger("The fire parts in front of [L]!"),span_danger("As the fire approaches it splits off to avoid contact with you!"))
 				continue
 			if(L in hit_list || L == source)
 				continue
 			hit_list += L
 			L.adjustFireLoss(20)
-			to_chat(L, "<span class='userdanger'>You're hit by [source]'s fire breath!</span>")
+			to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
 
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)
@@ -471,7 +476,7 @@
 /obj/effect/proc_holder/spell/targeted/worm_contract/cast(list/targets, mob/user)
 	. = ..()
 	if(!istype(user,/mob/living/simple_animal/hostile/eldritch/armsy))
-		to_chat(user, "<span class='userdanger'>You try to contract your muscles but nothing happens...</span>")
+		to_chat(user, span_userdanger("You try to contract your muscles but nothing happens..."))
 		return
 	var/mob/living/simple_animal/hostile/eldritch/armsy/armsy = user
 	armsy.contract_next_chain_into_single_tile()
@@ -541,15 +546,15 @@
 
 	var/mob/living/target = targets[1]
 
-	to_chat(originator, "<span class='notice'>You begin linking [target]'s mind to yours...</span>")
-	to_chat(target, "<span class='warning'>You feel your mind being pulled... connected... to something unreal...</span>")
+	to_chat(originator, span_notice("You begin linking [target]'s mind to yours..."))
+	to_chat(target, span_warning("You feel your mind being pulled... connected... to something unreal..."))
 	if(!do_after(originator, 6 SECONDS, target))
 		return
 	if(!originator.link_mob(target))
-		to_chat(originator, "<span class='warning'>You can't seem to link [target]'s mind...</span>")
-		to_chat(target, "<span class='warning'>The foreign presence leaves your mind.</span>")
+		to_chat(originator, span_warning("You can't seem to link [target]'s mind..."))
+		to_chat(target, span_warning("The foreign presence leaves your mind."))
 		return
-	to_chat(originator, "<span class='notice'>You connect [target]'s mind to your mansus link!</span>")
+	to_chat(originator, span_notice("You connect [target]'s mind to your mansus link!"))
 
 
 /datum/action/innate/mansus_speech
@@ -575,7 +580,7 @@
 		return
 
 	if(!originator?.linked_mobs[living_owner])
-		to_chat(living_owner, "<span class='warning'>The link seems to have been severed...</span>")
+		to_chat(living_owner, span_warning("The link seems to have been severed..."))
 		Remove(living_owner)
 		return
 	if(message)

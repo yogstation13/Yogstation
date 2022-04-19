@@ -1,7 +1,8 @@
 /obj/item/picket_sign
-	icon_state = "picket"
 	name = "blank picket sign"
 	desc = "It's blank."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "picket"
 	force = 5
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bashed","smacked")
@@ -19,7 +20,7 @@
 
 /obj/item/picket_sign/proc/retext(mob/user)
 	if(!user.is_literate())
-		to_chat(user, "<span class='notice'>You scribble illegibly on [src]!</span>")
+		to_chat(user, span_notice("You scribble illegibly on [src]!"))
 		return
 	var/txt = stripped_input(user, "What would you like to write on the sign?", "Sign Label", null , 30)
 	if(txt && user.canUseTopic(src, BE_CLOSE))

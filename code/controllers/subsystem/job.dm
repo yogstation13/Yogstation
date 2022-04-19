@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(job)
 	occupations = list()
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)
-		to_chat(world, "<span class='boldannounce'>Error setting up jobs, no job datums found</span>")
+		to_chat(world, span_boldannounce("Error setting up jobs, no job datums found"))
 		return 0
 
 	for(var/J in all_jobs)
@@ -206,7 +206,7 @@ SUBSYSTEM_DEF(job)
 //This is basically to ensure that there's atleast a few heads in the round
 /datum/controller/subsystem/job/proc/FillHeadPosition()
 	for(var/level in level_order)
-		for(var/command_position in GLOB.command_positions)
+		for(var/command_position in GLOB.original_command_positions)
 			var/datum/job/job = GetJob(command_position)
 			if(!job)
 				continue
@@ -215,7 +215,7 @@ SUBSYSTEM_DEF(job)
 			var/list/candidates = FindOccupationCandidates(job, level)
 			if(!candidates.len)
 				continue
-			var/mob/dead/new_player/candidate = PickCommander(candidates) // Yogs -- makes command jobs weighted towards players of greater experience
+			var/mob/dead/new_player/candidate = PickCommander(candidates,command_position) // Yogs -- makes command jobs weighted towards players of greater experience
 			if(AssignRole(candidate, command_position))
 				return 1
 	return 0
@@ -224,7 +224,7 @@ SUBSYSTEM_DEF(job)
 //This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
 //This is also to ensure we get as many heads as possible
 /datum/controller/subsystem/job/proc/CheckHeadPositions(level)
-	for(var/command_position in GLOB.command_positions)
+	for(var/command_position in GLOB.original_command_positions)
 		var/datum/job/job = GetJob(command_position)
 		if(!job)
 			continue
@@ -256,6 +256,30 @@ SUBSYSTEM_DEF(job)
 		return TRUE
 	return FALSE
 
+/// Rolls a number of security based on the roundstart population
+/datum/controller/subsystem/job/proc/FillSecurityPositions()
+	var/coeff = CONFIG_GET(number/min_security_scaling_coeff)
+	if(!coeff)
+		return
+	var/target_count = initial_players_to_assign / coeff
+	var/current_count = 0
+
+	for(var/level in level_order)
+		for(var/security_position in GLOB.original_security_positions)
+			var/datum/job/job = GetJob(security_position)
+			if(!job)
+				continue
+			if((job.current_positions >= job.total_positions) && job.total_positions != -1)
+				continue
+			var/list/candidates = FindOccupationCandidates(job, level)
+			if(!candidates.len)
+				continue
+			var/mob/dead/new_player/candidate = pick(candidates) // Yogs -- makes command jobs weighted towards players of greater experience
+			if(AssignRole(candidate, security_position))
+				current_count++
+				if(current_count >= target_count)
+					return TRUE
+	return FALSE
 
 /** Proc DivideOccupations
  *  fills var "assigned_role" for all ready players.
@@ -319,6 +343,11 @@ SUBSYSTEM_DEF(job)
 	JobDebug("DO, Running AI Check")
 	FillAIPosition()
 	JobDebug("DO, AI Check end")
+
+	//Check for Security
+	JobDebug("DO, Running Security Check")
+	FillSecurityPositions()
+	JobDebug("DO, Security Check end")
 
 	//Other jobs are now checked
 	JobDebug("DO, Running Standard Check")
@@ -497,7 +526,7 @@ SUBSYSTEM_DEF(job)
 			to_chat(M, "<FONT color='red'><b>Space Law has been updated! </font><a href='https://wiki.yogstation.net/wiki/Space_Law'>Click here to view the updates.</a></b>")
 		//YOGS end
 		if(CONFIG_GET(number/minimal_access_threshold))
-			to_chat(M, "<span class='notice'><B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></span>")
+			to_chat(M, span_notice("<B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B>"))
 	var/related_policy = get_policy(rank)
 	if(related_policy)
 		to_chat(M,related_policy)
@@ -526,32 +555,65 @@ SUBSYSTEM_DEF(job)
 		qdel(B)
 
 /datum/controller/subsystem/job/proc/random_bar_init()
-	var/list/player_box = list()
-	for(var/mob/H in GLOB.player_list)
-		if(H.client)
-			player_box += H.client.prefs.bar_choice
+	try
+		var/list/player_box = list()
+		for(var/mob/H in GLOB.player_list)
+			if(H.client && H.client.prefs) // Prefs was null once and there was no bar
+				player_box += H.client.prefs.bar_choice
 
-	var/choice
-	if(player_box.len == 0)
-		choice = "Random"
-	else
-		choice = pick(player_box)
-
-	if(choice != "Random")
-		var/bar_sanitize = FALSE
-		for(var/A in GLOB.potential_box_bars)
-			if(choice == A)
-				bar_sanitize = TRUE
-				break
-	
-		if(!bar_sanitize)
+		var/choice
+		if(player_box.len == 0)
 			choice = "Random"
-	
-	if(choice == "Random")
-		choice = pick(GLOB.potential_box_bars)
-	
-	var/datum/map_template/template = SSmapping.station_room_templates[choice]
+		else
+			choice = pick(player_box)
 
+		if(choice != "Random")
+			var/bar_sanitize = FALSE
+			for(var/A in GLOB.potential_box_bars)
+				if(choice == A)
+					bar_sanitize = TRUE
+					break
+		
+			if(!bar_sanitize)
+				choice = "Random"
+		
+		if(choice == "Random")
+			choice = pick(GLOB.potential_box_bars)
+
+		var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+		if(isnull(template))
+			message_admins("WARNING: BAR TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			log_game("WARNING: BAR TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			for(var/backup_bar in GLOB.potential_box_bars)
+				template = SSmapping.station_room_templates[backup_bar]
+				if(!isnull(template))
+					break
+				message_admins("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+				log_game("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+
+		if(isnull(template))
+			message_admins("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
+			log_game("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
+			return
+
+		for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+			template.load(B.loc, centered = FALSE)
+			qdel(B)
+	catch(var/exception/e)
+		message_admins("RUNTIME IN RANDOM_BAR_INIT")
+		spawn_bar()
+		throw e
+
+/proc/spawn_bar()
+	var/datum/map_template/template
+	for(var/backup_bar in GLOB.potential_box_bars)
+		template = SSmapping.station_room_templates[backup_bar]
+		if(!isnull(template))
+			break
+	if(isnull(template))
+		message_admins("UNABLE TO SPAWN BAR")
+	
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
@@ -562,6 +624,8 @@ SUBSYSTEM_DEF(job)
 	var/datum/job/job = GetJob(rank)
 	if(!job)
 		return
+	if((job.auto_deadmin_role_flags & DEADMIN_POSITION_CRITICAL) && (CONFIG_GET(flag/auto_deadmin_critical) || (C.prefs?.toggles & DEADMIN_POSITION_CRITICAL)))
+		return C.holder.auto_deadmin()
 	if((job.auto_deadmin_role_flags & DEADMIN_POSITION_HEAD) && (CONFIG_GET(flag/auto_deadmin_heads) || (C.prefs?.toggles & DEADMIN_POSITION_HEAD)))
 		return C.holder.auto_deadmin()
 	else if((job.auto_deadmin_role_flags & DEADMIN_POSITION_SECURITY) && (CONFIG_GET(flag/auto_deadmin_security) || (C.prefs?.toggles & DEADMIN_POSITION_SECURITY)))
@@ -732,7 +796,7 @@ SUBSYSTEM_DEF(job)
 
 ///Lands specified mob at a random spot in the hallways
 /datum/controller/subsystem/job/proc/DropLandAtRandomHallwayPoint(mob/living/living_mob)
-	var/turf/spawn_turf = get_safe_random_station_turf(typesof(/area/hallway))
+	var/turf/spawn_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary))
 	if(!spawn_turf)
 		return FALSE
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = new()

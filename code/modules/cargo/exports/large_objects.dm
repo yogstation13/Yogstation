@@ -1,6 +1,5 @@
 /datum/export/large/crate
 	cost = 500
-	k_elasticity = 0
 	unit_name = "crate"
 	export_types = list(/obj/structure/closet/crate)
 	exclude_types = list(/obj/structure/closet/crate/large, /obj/structure/closet/crate/wooden, /obj/structure/closet/crate/secure/cheap, /obj/structure/closet/crate/secure/owned)
@@ -121,3 +120,42 @@
 	cost = 25
 	unit_name = "security barrier"
 	export_types = list(/obj/item/grenade/barrier, /obj/structure/barricade/security)
+
+//Mecha
+/datum/export/large/mech
+	export_types = list(/obj/mecha)
+	var/sellable
+
+/datum/export/large/mech/applies_to(obj/O)
+	if(!..())
+		return FALSE
+
+	var/obj/mecha/ME = O
+	ME.wreckage = null // So the mech doesn't blow up in the cargo shuttle
+	if(sellable)
+		return TRUE
+
+/datum/export/large/mech/sellable
+	export_types = list()
+	sellable = TRUE
+
+/datum/export/large/mech/sellable/firefighter
+	cost = 9000
+	unit_name = "APLU \"Firefighter\""
+	export_types = list(/obj/mecha/working/ripley/firefighter)
+
+/datum/export/large/mech/sellable/phazon
+	cost = 50000 // 15767 material + anomaly core. Fuck it, if you're willing to try selling one of these you should get BIG FUCKING MONEY
+	unit_name = "phazon"
+	export_types = list(/obj/mecha/combat/phazon)
+	export_limit = 10 //you get half of a bike if you for some reason mass produce these, diversify your holdings
+
+/datum/export/large/mech/sellable/syndiegygax
+	cost = 50000 // You somehow stole a nuke op's gygax and sold it to nanotrasen. Go you.
+	unit_name = "captured syndicate gygax"
+	export_types = list(/obj/mecha/combat/gygax/dark)
+
+/datum/export/large/mech/sellable/mauler
+	cost = 87500 // Whoa, momma.
+	unit_name = "captured mauler"
+	export_types = list(/obj/mecha/combat/marauder/mauler)

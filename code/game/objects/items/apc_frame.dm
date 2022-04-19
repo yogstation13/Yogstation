@@ -1,5 +1,5 @@
 /obj/item/wallframe
-	icon = 'icons/obj/wallframe.dmi'
+	icon = 'icons/obj/frame.dmi'
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT*2)
 	flags_1 = CONDUCT_1
 	item_state = "syringe_kit"
@@ -19,13 +19,13 @@
 	var/turf/T = get_turf(user)
 	var/area/A = get_area(T)
 	if(!isfloorturf(T))
-		to_chat(user, "<span class='warning'>You cannot place [src] on this spot!</span>")
+		to_chat(user, span_warning("You cannot place [src] on this spot!"))
 		return
 	if(A.always_unpowered)
-		to_chat(user, "<span class='warning'>You cannot place [src] in this area!</span>")
+		to_chat(user, span_warning("You cannot place [src] in this area!"))
 		return
 	if(gotwallitem(T, ndir, inverse*2))
-		to_chat(user, "<span class='warning'>There's already an item on this wall!</span>")
+		to_chat(user, span_warning("There's already an item on this wall!"))
 		return
 
 	return TRUE
@@ -34,13 +34,13 @@
 	if(result_path)
 		playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
 		user.visible_message("[user.name] attaches [src] to the wall.",
-			"<span class='notice'>You attach [src] to the wall.</span>",
-			"<span class='italics'>You hear clicking.</span>")
+			span_notice("You attach [src] to the wall."),
+			span_italics("You hear clicking."))
 		var/ndir = get_dir(on_wall,user)
 		if(inverse)
 			ndir = turn(ndir, 180)
 
-		var/obj/O = new result_path(get_turf(user), ndir, TRUE)
+		var/obj/O = new result_path(get_turf(user), ndir, TRUE, user)
 		if(pixel_shift)
 			switch(ndir)
 				if(NORTH)
@@ -70,7 +70,7 @@
 	var/glass_amt = round(materials[/datum/material/glass]/MINERAL_MATERIAL_AMOUNT)
 
 	if(W.tool_behaviour == TOOL_WRENCH && (metal_amt || glass_amt))
-		to_chat(user, "<span class='notice'>You dismantle [src].</span>")
+		to_chat(user, span_notice("You dismantle [src]."))
 		if(metal_amt)
 			new /obj/item/stack/sheet/metal(get_turf(src), metal_amt)
 		if(glass_amt)
@@ -88,24 +88,26 @@
 	inverse = 1
 
 
-/obj/item/wallframe/apc/try_build(turf/on_wall, user)
+/obj/item/wallframe/apc/try_build(turf/on_wall, mob/user)
 	if(!..())
 		return
-	var/turf/T = get_turf(on_wall) //the user is not where it needs to be.
-	var/area/A = get_area(T)
+	var/turf/T = get_turf(on_wall) //we still need T for checks later in this proc
+	var/area/A = get_area(user) //get the turf the user is standing on, not where it's being placed.
+	if(!A)
+		A = get_area(on_wall) //default back to the turf if the user or their loc is null
 	if(A.get_apc())
-		to_chat(user, "<span class='warning'>This area already has an APC!</span>")
+		to_chat(user, span_warning("This area already has an APC!"))
 		return //only one APC per area
 	if(!A.requires_power)
-		to_chat(user, "<span class='warning'>You cannot place [src] in this area!</span>")
+		to_chat(user, span_warning("You cannot place [src] in this area!"))
 		return //can't place apcs in areas with no power requirement
 	for(var/obj/machinery/power/terminal/E in T)
 		if(E.master)
-			to_chat(user, "<span class='warning'>There is another network terminal here!</span>")
+			to_chat(user, span_warning("There is another network terminal here!"))
 			return
 		else
 			new /obj/item/stack/cable_coil(T, 10)
-			to_chat(user, "<span class='notice'>You cut the cables and disassemble the unused power terminal.</span>")
+			to_chat(user, span_notice("You cut the cables and disassemble the unused power terminal."))
 			qdel(E)
 	return TRUE
 

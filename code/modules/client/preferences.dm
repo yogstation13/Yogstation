@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_map = null
 	var/pda_style = MONO
 	var/pda_color = "#808000"
+	var/id_in_pda = FALSE
 	var/show_credits = TRUE
 	var/uses_glasses_colour = 0
 
@@ -63,6 +64,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/undershirt = "Nude"				//undershirt type
 	var/socks = "Nude"					//socks type
 	var/backbag = DBACKPACK				//backpack type
+	var/jumpsuit_style = PREF_SUIT      //suit/skirt
 	var/hair_style = "Bald"				//Hair type
 	var/hair_color = "000"				//Hair color
 	var/facial_hair_style = "Shaved"	//Face hair type
@@ -70,7 +72,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
-	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No")
+	var/list/features = list("mcolor" = "FFF", "gradientstyle" = "None", "gradientcolor" = "000", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No", "ethereal_mark" = "None", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 
@@ -129,6 +131,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/chat_on_map = TRUE
 	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
 	var/see_chat_non_mob = TRUE
+	/// If we have persistent scars enabled
+	var/persistent_scars = TRUE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -168,7 +172,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 
 	if(!SSjob || (SSjob.occupations.len <= 0))
-		to_chat(user, "<span class='notice'>The job SSticker is not yet finished creating jobs, please try again later</span>")
+		to_chat(user, span_notice("The job SSticker is not yet finished creating jobs, please try again later"))
 		return
 
 	update_preview_icon()
@@ -286,7 +290,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<a href ='?_src_=prefs;preference=socks;task=lock'>[random_locks["socks"] ? "Unlock" : "Lock"]</a><BR>"
 
 			dat += "<b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a>"
+			dat += "<b>Jumpsuit:</b><BR><a href ='?_src_=prefs;preference=suit;task=input'>[jumpsuit_style]</a><BR>"
 			dat += "<a href ='?_src_=prefs;preference=bag;task=lock'>[random_locks["bag"] ? "Unlock" : "Lock"]</a><BR>"
+			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
+				dat += "<BR><b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
+				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear scar slots</A><BR>"
 			dat += "<b>Uplink Spawn Location:</b><BR><a href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a><BR></td>"
 
 			var/use_skintones = pref_species.use_skintones
@@ -360,6 +368,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
 				dat += "<a href ='?_src_=prefs;preference=facial_hair_style_color;task=lock'>[random_locks["facial"] ? "Unlock" : "Lock"]</a><BR>"
+
+				dat += "<h3>Hair Gradient</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=hair_gradient_style;task=input'>[features["gradientstyle"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=hair_gradient_style;task=lock'>[random_locks["gradientstyle"] ? "Unlock" : "Lock"]</a><BR>"
+
+				dat += "<a href='?_src_=prefs;preference=previous_hair_gradient_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_gradient_style;task=input'>&gt;</a><BR>"
+
+				dat += "<span style='border:1px solid #161616; background-color: #[features["gradientcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_gradient;task=input'>Change</a>"
+				dat += "<a href ='?_src_=prefs;preference=hair_gradient_color;task=lock'>[random_locks["gradientcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "</td>"
 
@@ -533,7 +551,48 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+			
+			if("ethereal_mark" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
 
+				dat += "<h3>Ethereal Mark</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=ethereal_mark;task=input'>[features["ethereal_mark"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=ethereal_mark;task=lock'>[random_locks["ethereal_mark"] ? "Unlock" : "Lock"]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("pod_hair" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Head Vegitation Style</h3>"
+				dat += "<a href='?_src_=prefs;preference=pod_hair;task=input'>[features["pod_hair"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=pod_hair;task=lock'>[random_locks["pod_hair"] ? "Unlock" : "Lock"]</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pod_hair_color;task=input'>Change</a>"
+				dat += "<a href ='?_src_=prefs;preference=hair_color;task=lock'>[random_locks["hair"] ? "Unlock" : "Lock"]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+			
+			if("pod_flower" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+				dat += "<h3>Head Flowers Color</h3>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pod_flower_color;task=input'>Change</a>"
+				dat += "<a href ='?_src_=prefs;preference=facial_hair_style_color;task=lock'>[random_locks["facial"] ? "Unlock" : "Lock"]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+			
 			if("tail_human" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -600,6 +659,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
+			dat += "<b>PDA Starts in ID Slot:</b> <a href='?_src_=prefs;task=input;preference=id_in_pda'>[id_in_pda ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape_id != "None") ? "[GLOB.skillcapes[skillcape_id]]" : "None"] </a><br>"
 			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Map:</b> <a href='?_src_=prefs;task=input;preference=map'>[map ? "Enabled" : "Disabled"]</a><br>"
@@ -796,6 +856,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						else
 							dat += "<b>As Silicon:</b> FORCED<br>"
 
+						if(!CONFIG_GET(flag/auto_deadmin_critical))
+							dat += "<b>As Critical Roles:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_critical'>[(toggles & DEADMIN_POSITION_CRITICAL)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Critical Roles:</b> FORCED<br>"
+
 				dat += "</td>"
 			dat += "</tr></table>"
 		// yogs start - Donor features
@@ -804,6 +869,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Donator Preferences</h2>"
 			if(is_donator(user.client))
 				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.yogtoggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+				dat += "Wear fancy hat as borg: "
+				dat += "<a href='?_src_=prefs;preference=donor;task=borghat'>[borg_hat ? "Yes" : "No"]</a><br>"
 				dat += "<b>Fancy Hat:</b> "
 				///This is the typepath of the donor's hat that they may choose to spawn with.
 				var/typehat = donor_hat
@@ -984,7 +1051,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(job.alt_titles)
 				rank_display = "<a class='white' href='?_src_=prefs;preference=job;task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
 			else
-				rank_display = "<span class='dark'>[rank]</span>"
+				rank_display = span_dark("[rank]")
 
 			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
 				HTML += "<b>[rank_display]</b>"
@@ -1090,7 +1157,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 
 	if (!isnum(desiredLvl))
-		to_chat(user, "<span class='danger'>UpdateJobPreference - desired level was not a number. Please notify coders!</span>")
+		to_chat(user, span_danger("UpdateJobPreference - desired level was not a number. Please notify coders!"))
 		ShowChoices(user)
 		return
 
@@ -1120,7 +1187,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/SetQuirks(mob/user)
 	if(!SSquirks)
-		to_chat(user, "<span class='danger'>The quirk subsystem is still initializing! Try again in a minute.</span>")
+		to_chat(user, span_danger("The quirk subsystem is still initializing! Try again in a minute."))
 		return
 
 	var/list/dat = list()
@@ -1187,10 +1254,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return bal
 
 /datum/preferences/proc/GetPositiveQuirkCount()
-	. = 0
+	var/sum = 0
 	for(var/q in all_quirks)
 		if(SSquirks.quirk_points[q] > 0)
-			.++
+			sum++
+	return sum
 
 /datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
 	. = ..()
@@ -1205,6 +1273,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(is_donator(user))
 			var/client/C = (istype(user, /client)) ? user : user.client
 			switch(href_list["task"])
+				if("borghat")
+					borg_hat = !borg_hat
 				if("hat")
 					C.custom_donator_item()
 				if("item")
@@ -1232,7 +1302,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/expires = "This is a permanent ban."
 			if(ban_details["expiration_time"])
 				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
-			to_chat(user, "<span class='danger'>You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [href_list["bancheck"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]</span>")
+			to_chat(user, span_danger("You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [href_list["bancheck"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]"))
 			return
 	if(href_list["preference"] == "job")
 		switch(href_list["task"])
@@ -1281,21 +1351,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/list/L = V
 					for(var/Q in all_quirks)
 						if((quirk in L) && (Q in L) && !(Q == quirk)) //two quirks have lined up in the list of the list of quirks that conflict with each other, so return (see quirks.dm for more details)
-							to_chat(user, "<span class='danger'>[quirk] is incompatible with [Q].</span>")
+							to_chat(user, span_danger("[quirk] is incompatible with [Q]."))
 							return
-				var/value = SSquirks.quirk_points[quirk]
+				var/value = SSquirks.quirk_points[quirk] // The value of the chosen quirk.
 				var/balance = GetQuirkBalance()
 				if(quirk in all_quirks)
 					if(balance + value < 0)
-						to_chat(user, "<span class='warning'>Refunding this would cause you to go below your balance!</span>")
+						to_chat(user, span_warning("Refunding this would cause you to go below your balance!"))
 						return
 					all_quirks -= quirk
 				else
-					if(GetPositiveQuirkCount() >= MAX_QUIRKS)
-						to_chat(user, "<span class='warning'>You can't have more than [MAX_QUIRKS] positive quirks!</span>")
+					var/positive_count = GetPositiveQuirkCount() // Yogs -- fixes weird behaviour when at max positive quirks
+					if(positive_count > MAX_QUIRKS || (positive_count == MAX_QUIRKS && value > 0)) // Yogs
+						to_chat(user, span_warning("You can't have more than [MAX_QUIRKS] positive quirks!"))
 						return
 					if(balance - value < 0)
-						to_chat(user, "<span class='warning'>You don't have enough balance to gain this quirk!</span>")
+						to_chat(user, span_warning("You don't have enough balance to gain this quirk!"))
 						return
 					all_quirks += quirk
 				SetQuirks(user)
@@ -1361,6 +1432,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						"teeth" = 1,
 						"dome" = 1,
 						"dorsal_tubes" = 1,
+						"ethereal_mark" = 1,
 					)
 				if("gender")
 					random_locks["random_locks"] = gender
@@ -1483,6 +1555,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						facial_hair_style = previous_list_item(facial_hair_style, GLOB.facial_hair_styles_list)
 
+				if("hair_gradient")
+					var/new_hair_gradient_color = input(user, "Choose your character's hair gradient colour:", "Character Preference","#"+features["gradientcolor"]) as color|null
+					if(new_hair_gradient_color)
+						features["gradientcolor"] = sanitize_hexcolor(new_hair_gradient_color)
+
+				if("hair_gradient_style")
+					var/new_gradient_style
+					new_gradient_style = input(user, "Choose your character's hair gradient style:", "Character Preference")  as null|anything in GLOB.hair_gradients_list
+					if(new_gradient_style)
+						features["gradientstyle"] = new_gradient_style
+
+				if("next_hair_gradient_style")
+					features["gradientstyle"] = next_list_item(features["gradientstyle"], GLOB.hair_gradients_list)
+
+				if("previous_hair_gradient_style")
+					features["gradientstyle"] = previous_list_item(features["gradientstyle"], GLOB.hair_gradients_list)
+
 				if("underwear")
 					var/new_underwear
 					if(gender == MALE)
@@ -1537,7 +1626,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
 							features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 						else
-							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
+							to_chat(user, span_danger("Invalid color. Your color is not bright enough."))
 
 				if("ethcolor")
 					var/new_etherealcolor = input(user, "Choose your ethereal color", "Character Preference") as null|anything in GLOB.color_list_ethereal
@@ -1634,6 +1723,40 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_dorsal_tubes)
 						features["dorsal_tubes"] = new_dorsal_tubes
 
+				if("ethereal_mark")
+					var/new_ethereal_mark
+					new_ethereal_mark = input(user, "Choose if your character has a facial mark", "Character Preference") as null|anything in GLOB.ethereal_mark_list
+					if(new_ethereal_mark)
+						features["ethereal_mark"] = new_ethereal_mark
+				
+				if("pod_hair")
+					var/new_pod_hair
+					new_pod_hair = input(user, "Choose the style of your head vegitation", "Character Preference") as null|anything in GLOB.pod_hair_list
+					if(new_pod_hair)
+						features["pod_hair"] = new_pod_hair
+						features["pod_flower"] = new_pod_hair
+				if("pod_hair_color")
+					var/new_hair = input(user, "Choose your character's \"hair\" colour:", "Character Preference","#"+hair_color) as color|null
+					if(new_hair)
+						var/temp_hsv = RGBtoHSV(new_hair)
+						if(new_hair == "#000000")
+							hair_color = pref_species.default_color
+							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
+						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+							hair_color = sanitize_hexcolor(new_hair)
+						else
+							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
+				if("pod_flower_color")
+					var/new_facial = input(user, "Choose your character's head flower colour:", "Character Preference","#"+facial_hair_color) as color|null
+					if(new_facial)
+						var/temp_hsv = RGBtoHSV(new_facial)
+						if(new_facial == "#000000")
+							facial_hair_color = pref_species.default_color
+							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
+						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+							facial_hair_color = sanitize_hexcolor(new_facial)
+						else
+							to_chat(user, span_danger("Invalid head flower color. Your color is not bright enough."))
 				if("s_tone")
 					var/new_s_tone = input(user, "Choose your character's skin-tone:", "Character Preference")  as null|anything in GLOB.skin_tones
 					if(new_s_tone)
@@ -1653,6 +1776,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference")  as null|anything in GLOB.backbaglist
 					if(new_backbag)
 						backbag = new_backbag
+
+				if("suit")
+					jumpsuit_style = jumpsuit_style == PREF_SUIT ? PREF_SKIRT : PREF_SUIT
 
 				if("uplink_loc")
 					var/new_loc = input(user, "Choose your character's traitor uplink spawn location:", "Character Preference") as null|anything in GLOB.uplink_spawn_loc_list
@@ -1718,6 +1844,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
+				if("id_in_pda")
+					id_in_pda = !id_in_pda
 				if("skillcape")
 					var/list/selectablecapes = list()
 					var/max_eligable = TRUE
@@ -1748,9 +1876,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("map")
 					map = !map
 				if("bar_choice")
-					var/list/selectablebars = GLOB.potential_box_bars
-					selectablebars += "Random"
-					var/pickedbar = input(user, "Choose your bar.", "Character Preference", bar_choice) as null|anything in GLOB.potential_box_bars
+					var/pickedbar = input(user, "Choose your bar.", "Character Preference", bar_choice) as null|anything in (GLOB.potential_box_bars|"Random")
+					if(!pickedbar)
+						return
 					bar_choice = pickedbar
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
@@ -1823,6 +1951,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					toggles ^= DEADMIN_POSITION_SECURITY
 				if("toggle_deadmin_silicon")
 					toggles ^= DEADMIN_POSITION_SILICON
+				if("toggle_deadmin_critical")
+					toggles ^= DEADMIN_POSITION_CRITICAL
 
 
 				if("be_special")
@@ -1837,6 +1967,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("all")
 					be_random_body = !be_random_body
+
+				if("persistent_scars")
+					persistent_scars = !persistent_scars
+
+				if("clear_scars")
+					var/path = "data/player_saves/[user.ckey[1]]/[user.ckey]/scars.sav"
+					fdel(path)
+					to_chat(user, span_notice("All scar slots cleared."))
 
 				if("hear_midis")
 					toggles ^= SOUND_MIDI
@@ -1981,15 +2119,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		organ_eyes.old_eye_color = eye_color
 	character.hair_color = hair_color
 	character.facial_hair_color = facial_hair_color
+	character.grad_color = features["gradientcolor"]
 
 	character.skin_tone = skin_tone
 	character.hair_style = hair_style
 	character.facial_hair_style = facial_hair_style
+	character.grad_style = features["gradientstyle"]
 	character.underwear = underwear
 	character.undershirt = undershirt
 	character.socks = socks
 
 	character.backbag = backbag
+
+	character.jumpsuit_style = jumpsuit_style
+	character.id_in_pda = id_in_pda
 
 	var/datum/species/chosen_species
 	chosen_species = pref_species.type

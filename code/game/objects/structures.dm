@@ -35,7 +35,7 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src)
 		structureclimber.Paralyze(40)
-		structureclimber.visible_message("<span class='warning'>[structureclimber] has been knocked off [src].", "You're knocked off [src]!", "You see [structureclimber] get knocked off [src].</span>")
+		structureclimber.visible_message(span_warning("[structureclimber] has been knocked off [src]."), span_warning("You're knocked off [src]!"), span_warning("You see [structureclimber] get knocked off [src]."))
 
 /obj/structure/ui_act(action, params)
 	add_fingerprint(usr)
@@ -67,8 +67,8 @@
 
 /obj/structure/proc/climb_structure(mob/living/user)
 	src.add_fingerprint(user)
-	user.visible_message("<span class='warning'>[user] starts climbing onto [src].</span>", \
-								"<span class='notice'>You start climbing onto [src]...</span>")
+	user.visible_message(span_warning("[user] starts climbing onto [src]."), \
+								span_notice("You start climbing onto [src]..."))
 	var/adjusted_climb_time = climb_time
 	if(user.restrained()) //climbing takes twice as long when restrained.
 		adjusted_climb_time *= 2
@@ -80,23 +80,29 @@
 	if(do_mob(user, user, adjusted_climb_time))
 		if(src.loc) //Checking if structure has been destroyed
 			if(do_climb(user))
-				user.visible_message("<span class='warning'>[user] climbs onto [src].</span>", \
-									"<span class='notice'>You climb onto [src].</span>")
+				user.visible_message(span_warning("[user] climbs onto [src]."), \
+									span_notice("You climb onto [src]."))
 				log_combat(user, src, "climbed onto")
 				if(climb_stun)
+					var/mob/living/carbon/human/H = user
+					var/wagging = FALSE
+					if(H && H.dna.species.is_wagging_tail())
+						wagging = TRUE
 					user.Stun(climb_stun)
+					if(wagging)
+						H.dna.species.start_wagging_tail(H)
 				. = 1
 			else
-				to_chat(user, "<span class='warning'>You fail to climb onto [src].</span>")
+				to_chat(user, span_warning("You fail to climb onto [src]."))
 	structureclimber = null
 
 /obj/structure/examine(mob/user)
 	. = ..()
 	if(!(resistance_flags & INDESTRUCTIBLE))
 		if(resistance_flags & ON_FIRE)
-			. += "<span class='warning'>It's on fire!</span>"
+			. += span_warning("It's on fire!")
 		if(broken)
-			. += "<span class='notice'>It appears to be broken.</span>"
+			. += span_notice("It appears to be broken.")
 		var/examine_status = examine_status(user)
 		if(examine_status)
 			. += examine_status
@@ -110,7 +116,7 @@
 			return  "It appears heavily damaged."
 		if(0 to 25)
 			if(!broken)
-				return  "<span class='warning'>It's falling apart!</span>"
+				return  span_warning("It's falling apart!")
 
 /obj/structure/rust_heretic_act()
 	take_damage(500, BRUTE, "melee", 1)

@@ -16,6 +16,7 @@
 #define GRILLED		(1<<15)
 #define EGG			(1<<16) // for eggpeople, to nerf egg-cannibalism
 #define CHOCOLATE	(1<<17) //cat
+#define SEAFOOD		(1<<18)
 
 #define DRINK_NICE	1
 #define DRINK_GOOD	2

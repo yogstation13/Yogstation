@@ -314,15 +314,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
-"nd" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "nn" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Kitchen";
@@ -357,6 +348,31 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"oI" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	dir = 1;
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -9
+	},
+/obj/item/sharpener{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "oK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -398,28 +414,6 @@
 	},
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
-"qc" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -9;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	dir = 1;
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -9
-	},
-/obj/item/sharpener{
-	pixel_x = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "qw" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
@@ -451,6 +445,12 @@
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
+"rQ" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "rV" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -565,11 +565,6 @@
 /obj/item/toy/cards/cardhand,
 /turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
-"vb" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "vh" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -783,11 +778,6 @@
 	},
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
-"EE" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "EG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/carpet,
@@ -909,14 +899,6 @@
 /obj/item/clothing/glasses/sunglasses/cheap,
 /turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
-"HJ" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "IE" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -32
@@ -1026,6 +1008,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
+"MG" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Oi" = (
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
@@ -1142,6 +1128,12 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
+"Ta" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Tk" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1247,6 +1239,10 @@
 /area/crew_quarters/bar)
 "Wv" = (
 /turf/closed/wall,
+/area/crew_quarters/kitchen)
+"WI" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "WQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1701,8 +1697,8 @@ rz
 bM
 xE
 Hv
-EE
-vb
+rQ
+WI
 CP
 JP
 Tk
@@ -1721,8 +1717,8 @@ AB
 bM
 jJ
 QG
-qc
-HJ
+oI
+MG
 hw
 JP
 Un
@@ -1741,7 +1737,7 @@ Oi
 Wv
 wk
 BJ
-nd
+Ta
 ui
 sf
 JP

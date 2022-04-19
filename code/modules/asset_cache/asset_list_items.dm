@@ -48,7 +48,10 @@
 		"smmon_4.gif" = 'icons/program_icons/smmon_4.gif',
 		"smmon_5.gif" = 'icons/program_icons/smmon_5.gif',
 		"smmon_6.gif" = 'icons/program_icons/smmon_6.gif',
-		"borg_mon.gif" = 'icons/program_icons/borg_mon.gif'
+		"borg_mon.gif" = 'icons/program_icons/borg_mon.gif',
+		"robotact.gif" = 'icons/program_icons/robotact.gif',
+		"health_green.gif" = 'icons/program_icons/crew_green.gif',
+		"health_red.gif" = 'icons/program_icons/crew_red.gif'
 	)
 
 /datum/asset/simple/radar_assets
@@ -106,6 +109,8 @@
 		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png',
 		"stamp-mime" = 'icons/stamp_icons/large_stamp-mime.png',
 		"stamp-cent" = 'icons/stamp_icons/large_stamp-cent.png',
+		"stamp-syndi" = 'icons/stamp_icons/large_stamp-syndi.png',
+		"stamp-syndiround" = 'icons/stamp_icons/large_stamp-syndiround.png'
 	)
 
 
@@ -382,7 +387,7 @@
 
 	// Special case to handle Bluespace Crystals
 	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
-	
+
 	Insert("dilithium_polycrystal", 'yogstation/icons/obj/telescience.dmi', "dilithium_polycrystal") //yogs: same as above but for dilithium
 	..()
 

@@ -1,6 +1,7 @@
 /datum/computer_file/program/contract_uplink
 	filename = "contractor uplink"
 	filedesc = "Syndicate Contractor Uplink"
+	category = PROGRAM_CATEGORY_MISC
 	program_icon_state = "assign"
 	extended_desc = "A standard, Syndicate issued system for handling important contracts while on the field."
 	size = 10
@@ -9,6 +10,8 @@
 	unsendable = 1
 	undeletable = 1
 	tgui_id = "SyndContractor"
+	program_icon = "tasks"
+	
 	var/error = ""
 	var/info_screen = TRUE
 	var/assigned = FALSE
@@ -23,6 +26,7 @@
 
 	var/mob/living/user = usr
 	var/obj/item/computer_hardware/hard_drive/small/syndicate/hard_drive = computer.all_components[MC_HDD]
+	computer.play_interact_sound()
 
 	switch(action)
 		if("PRG_contract-accept")
@@ -89,9 +93,9 @@
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					if(H.put_in_hands(crystals))
-						to_chat(H, "<span class='notice'>Your payment materializes into your hands!</span>")
+						to_chat(H, span_notice("Your payment materializes into your hands!"))
 					else
-						to_chat(user, "<span class='notice'>Your payment materializes onto the floor.</span>")
+						to_chat(user, span_notice("Your payment materializes onto the floor."))
 
 				hard_drive.traitor_data.contractor_hub.contract_TC_payed_out += hard_drive.traitor_data.contractor_hub.contract_TC_to_redeem
 				hard_drive.traitor_data.contractor_hub.contract_TC_to_redeem = 0

@@ -39,10 +39,11 @@ GLOBAL_LIST_EMPTY(emergencyresponseteamspawn)
 GLOBAL_LIST_EMPTY(servant_spawns) //Servants of Ratvar spawn here
 GLOBAL_LIST_EMPTY(servant_spawns_scarabs) //Servants of Ratvar spawn here
 GLOBAL_LIST_EMPTY(city_of_cogs_spawns) //Anyone entering the City of Cogs spawns here
+GLOBAL_LIST_EMPTY(brazil_reception) //teleport recieve spots for heretic sacrifices
 GLOBAL_LIST_EMPTY(ruin_landmarks)
 GLOBAL_LIST_EMPTY(bar_areas)
 // IF YOU ARE MAKING A NEW BAR TEMPLATE AND WANT IT ROUNDSTART ADD IT TO THIS LIST!
-GLOBAL_LIST_INIT(potential_box_bars, list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Arcade"))
+GLOBAL_LIST_INIT(potential_box_bars, list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Grassy", "Bar Clock", "Bar Arcade"))
 
 	//away missions
 GLOBAL_LIST_EMPTY(awaydestinations)	//a list of landmarks that the warpgate can take you to

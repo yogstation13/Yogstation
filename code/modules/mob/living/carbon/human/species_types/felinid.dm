@@ -6,10 +6,16 @@
 
 	mutant_bodyparts = list("ears", "tail_human")
 	default_features = list("mcolor" = "FFF", "tail_human" = "Cat", "ears" = "Cat", "wings" = "None")
+	rare_say_mod = list("meows"= 10)
+	liked_food = SEAFOOD | DAIRY
 	toxic_food = TOXIC | CHOCOLATE
 	mutantears = /obj/item/organ/ears/cat
 	mutanttail = /obj/item/organ/tail/cat
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
+	swimming_component = /datum/component/swimming/felinid
+	species_language_holder = /datum/language_holder/felinid
+
+	screamsound = list('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg', 'sound/voice/feline/scream3.ogg')
 
 /datum/species/human/felinid/qualifies_for_rank(rank, list/features)
 	return TRUE
@@ -103,3 +109,11 @@
 
 	if(!silent)
 		to_chat(H, "You are no longer a cat.")
+		
+/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+	if(H.reagents.has_reagent(/datum/reagent/consumable/ethanol/catsip))
+		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+
+/datum/species/human/felinid/get_scream_sound(mob/living/carbon/human/H)
+	return pick(screamsound)

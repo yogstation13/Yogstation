@@ -48,6 +48,11 @@
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 
+	/// The degree of thermal insulation that mobs in list/contents have from the external environment, between 0 and 1
+	var/contents_thermal_insulation = 0
+	/// The degree of pressure protection that mobs in list/contents have from the external environment, between 0 and 1
+	var/contents_pressure_protection = 0
+
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -182,7 +187,7 @@
 		var/mob/M = AM
 		log_combat(src, M, "grabbed", addition="passive grab")
 		if(!supress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+			visible_message(span_warning("[src] has grabbed [M] passively!"))
 	return TRUE
 
 /atom/movable/proc/stop_pulling()
@@ -705,12 +710,12 @@
 /atom/movable/proc/force_push(atom/movable/AM, force = move_force, direction, silent = FALSE)
 	. = AM.force_pushed(src, force, direction)
 	if(!silent && .)
-		visible_message("<span class='warning'>[src] forcefully pushes against [AM]!</span>", "<span class='warning'>You forcefully push against [AM]!</span>")
+		visible_message(span_warning("[src] forcefully pushes against [AM]!"), span_warning("You forcefully push against [AM]!"))
 
 /atom/movable/proc/move_crush(atom/movable/AM, force = move_force, direction, silent = FALSE)
 	. = AM.move_crushed(src, force, direction)
 	if(!silent && .)
-		visible_message("<span class='danger'>[src] crushes past [AM]!</span>", "<span class='danger'>You crush [AM]!</span>")
+		visible_message(span_danger("[src] crushes past [AM]!"), span_danger("You crush [AM]!"))
 
 /atom/movable/proc/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	return FALSE
@@ -824,9 +829,8 @@
 
 /atom/movable/vv_get_dropdown()
 	. = ..()
-	. -= "Jump to"
-	.["Follow"] = "?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]"
-	.["Get"] = "?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]"
+	. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Follow</option>"
+	. += "<option value='?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]'>Get</option>"
 
 /atom/movable/proc/ex_check(ex_id)
 	if(!ex_id)

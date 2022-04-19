@@ -19,14 +19,18 @@
 	.=..()
 	var/datum/job/ai/job = SSjob.GetJob("AI")
 	for(var/datum/mind/candidate in .)
-		if(job.required_playtime_remaining(candidate.current.client))
+		if(is_banned_from(candidate.current.ckey, "AI") || QDELETED(candidate) || !job.player_old_enough(candidate.current.client) || job.required_playtime_remaining(candidate.current.client))
 			. -= candidate
 	return .
 
 /datum/game_mode/malf/pre_setup()
-	var/datum/mind/AI = antag_pick(antag_candidates)
-	SSjob.AssignRole(AI.current, "AI")
-	return TRUE
+	var/datum/mind/AI
+	var/did_assign = FALSE
+	while(!did_assign && antag_candidates.len > 0) {
+		AI = antag_pick(antag_candidates)
+		did_assign = SSjob.AssignRole(AI.current, "AI")
+	}
+	return did_assign
 
 /datum/game_mode/malf/post_setup()
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list) //triumvirate AIs ride for free. Oh well, it's basically an event in that case
@@ -58,6 +62,6 @@
 		SSticker.mode_result = "loss - evacuation - AI killed"
 
 /datum/game_mode/malf/generate_report()
-	return "a [pick(list("Huge electrical storm","Photon emitter","Meson generator","Blue swirly thing"))] was recently picked up by a nearby station's sensors in your sector. \
+	return "A [pick(list("huge electrical storm","photon emitter","meson generator","blue swirly thing"))] was recently picked up by a nearby station's sensors in your sector. \
 	If it came into contact with your station or electrical equipment, it may have had hazardarous and unpredictable effect. \
 	Closely observe any non carbon based life forms for signs of unusual behaviour, but keep this information discreet at all times due to this possibly dangerous scenario."

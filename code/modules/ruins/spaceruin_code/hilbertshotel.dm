@@ -33,10 +33,10 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 
 /obj/item/hilbertshotel/attack(mob/living/M, mob/living/user)
     if(M.mind)
-        to_chat(user, "<span class='notice'>You invite [M] to the hotel.</span>")
+        to_chat(user, span_notice("You invite [M] to the hotel."))
         promptAndCheckIn(M)
     else
-        to_chat(user, "<span class='warning'>[M] is not intelligent enough to understand how to use this device!</span>")
+        to_chat(user, span_warning("[M] is not intelligent enough to understand how to use this device!"))
 
 /obj/item/hilbertshotel/attack_self(mob/user)
     . = ..()
@@ -47,10 +47,10 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     if(!chosenRoomNumber)
         return
     if(chosenRoomNumber > SHORT_REAL_LIMIT)
-        to_chat(user, "<span class='warning'>You have to check out the first [SHORT_REAL_LIMIT] rooms before you can go to a higher numbered one!</span>")
+        to_chat(user, span_warning("You have to check out the first [SHORT_REAL_LIMIT] rooms before you can go to a higher numbered one!"))
         return
     if((chosenRoomNumber < 1) || (chosenRoomNumber != round(chosenRoomNumber)))
-        to_chat(user, "<span class='warning'>That is not a valid room number!</span>")
+        to_chat(user, span_warning("That is not a valid room number!"))
         return
     if(ismob(loc))
         if(user == loc) //Not always the same as user
@@ -126,7 +126,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     currentArea.reservation = currentReservation
     for(var/turf/closed/indestructible/hoteldoor/door in currentArea)
         door.parentSphere = src
-        door.desc = "The door to this hotel room. The placard reads 'Room [currentRoomnumber]'. Strange, this door doesnt even seem openable. The doorknob, however, seems to buzz with unusual energy...<br /><span class='info'>Alt-Click to look through the peephole.</span>"
+        door.desc = "The door to this hotel room. The placard reads 'Room [currentRoomnumber]'. Strange, this door doesnt even seem openable. The doorknob, however, seems to buzz with unusual energy...<br />[span_info("Alt-Click to look through the peephole.")]"
     for(var/turf/open/space/bluespace/BSturf in currentArea)
         BSturf.parentSphere = src
 
@@ -140,7 +140,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
                         if(ismob(A))
                             var/mob/M = A
                             if(M.mind)
-                                to_chat(M, "<span class='warning'>As the sphere breaks apart, you're suddenly ejected into the depths of space!</span>")
+                                to_chat(M, span_warning("As the sphere breaks apart, you're suddenly ejected into the depths of space!"))
                         var/max = world.maxx-TRANSITIONEDGE
                         var/min = 1+TRANSITIONEDGE
                         var/list/possible_transtitons = list()
@@ -235,7 +235,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     if(!user.mind)
         return
     if(!parentSphere)
-        to_chat(user, "<span class='warning'>The door seems to be malfunctioned and refuses to operate!</span>")
+        to_chat(user, span_warning("The door seems to be malfunctioned and refuses to operate!"))
         return
     if(alert(user, "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. With that in mind, are you ready to leave?", "Exit", "Leave", "Stay") == "Leave")
         user.forceMove(get_turf(parentSphere))
@@ -272,7 +272,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 /turf/closed/indestructible/hoteldoor/AltClick(mob/user)
     . = ..()
     if(get_dist(get_turf(src), get_turf(user)) <= 1)
-        to_chat(user, "<span class='notice'>You peak through the door's bluespace peephole...</span>")
+        to_chat(user, span_notice("You peak through the door's bluespace peephole..."))
         user.reset_perspective(parentSphere)
         user.set_machine(src)
         var/datum/action/peepholeCancel/PHC = new
@@ -292,7 +292,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 
 /datum/action/peepholeCancel/Trigger()
     . = ..()
-    to_chat(owner, "<span class='warning'>You move away from the peephole.</span>")
+    to_chat(owner, span_warning("You move away from the peephole."))
     owner.reset_perspective()
     owner.clear_fullscreen("remote_view", 0)
     qdel(src)
@@ -336,7 +336,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     log_game("[H] entered itself. Moving it to [loc_name(targetturf)].")
     message_admins("[H] entered itself. Moving it to [ADMIN_VERBOSEJMP(targetturf)].")
     for(var/mob/M in A)
-        to_chat(M, "<span class='danger'>[H] almost implodes in upon itself, but quickly rebounds, shooting off into a random point in space!</span>")
+        to_chat(M, span_danger("[H] almost implodes in upon itself, but quickly rebounds, shooting off into a random point in space!"))
     H.forceMove(targetturf)
 
 /area/hilbertshotel/Exited(atom/movable/AM)
@@ -416,7 +416,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     . = ..()
     if(istype(target, /obj/item/hilbertshotel))
         if(!proximity)
-            to_chat(user, "<span class='warning'>It's to far away to scan!</span>")
+            to_chat(user, span_warning("It's to far away to scan!"))
             return
         var/obj/item/hilbertshotel/sphere = target
         if(sphere.activeRooms.len)

@@ -77,7 +77,7 @@
 		return TRUE
 	var/area/A = get_area(usr)
 	if(!A.outdoors)
-		to_chat(usr, "<span class='warning'>There is already a defined structure here.</span>")
+		to_chat(usr, span_warning("There is already a defined structure here."))
 		return TRUE
 	create_area(usr)
 
@@ -293,49 +293,49 @@
 
 	if(C.internal)
 		C.internal = null
-		to_chat(C, "<span class='notice'>You are no longer running on internals.</span>")
+		to_chat(C, span_notice("You are no longer running on internals."))
 		icon_state = "internal0"
 	else
 		if(!C.getorganslot(ORGAN_SLOT_BREATHING_TUBE))
 			if(!istype(C.wear_mask, /obj/item/clothing/mask))
-				to_chat(C, "<span class='warning'>You are not wearing an internals mask!</span>")
+				to_chat(C, span_warning("You are not wearing an internals mask!"))
 				return 1
 			else
 				var/obj/item/clothing/mask/M = C.wear_mask
 				if(M.mask_adjusted) // if mask on face but pushed down
 					M.adjustmask(C) // adjust it back
 				if( !(M.clothing_flags & MASKINTERNALS) )
-					to_chat(C, "<span class='warning'>You are not wearing an internals mask!</span>")
+					to_chat(C, span_warning("You are not wearing an internals mask!"))
 					return
 
 		var/obj/item/I = C.is_holding_item_of_type(/obj/item/tank)
 		if(I)
-			to_chat(C, "<span class='notice'>You are now running on internals from [I] in your [C.get_held_index_name(C.get_held_index_of_item(I))].</span>")
+			to_chat(C, span_notice("You are now running on internals from [I] in your [C.get_held_index_name(C.get_held_index_of_item(I))]."))
 			C.internal = I
 		else if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			if(istype(H.s_store, /obj/item/tank))
-				to_chat(H, "<span class='notice'>You are now running on internals from [H.s_store] on your [H.wear_suit.name].</span>")
+				to_chat(H, span_notice("You are now running on internals from [H.s_store] on your [H.wear_suit.name]."))
 				H.internal = H.s_store
 			else if(istype(H.belt, /obj/item/tank))
-				to_chat(H, "<span class='notice'>You are now running on internals from [H.belt] on your belt.</span>")
+				to_chat(H, span_notice("You are now running on internals from [H.belt] on your belt."))
 				H.internal = H.belt
 			else if(istype(H.l_store, /obj/item/tank))
-				to_chat(H, "<span class='notice'>You are now running on internals from [H.l_store] in your left pocket.</span>")
+				to_chat(H, span_notice("You are now running on internals from [H.l_store] in your left pocket."))
 				H.internal = H.l_store
 			else if(istype(H.r_store, /obj/item/tank))
-				to_chat(H, "<span class='notice'>You are now running on internals from [H.r_store] in your right pocket.</span>")
+				to_chat(H, span_notice("You are now running on internals from [H.r_store] in your right pocket."))
 				H.internal = H.r_store
 
 		//Separate so CO2 jetpacks are a little less cumbersome.
 		if(!C.internal && istype(C.back, /obj/item/tank))
-			to_chat(C, "<span class='notice'>You are now running on internals from [C.back] on your back.</span>")
+			to_chat(C, span_notice("You are now running on internals from [C.back] on your back."))
 			C.internal = C.back
 
 		if(C.internal)
 			icon_state = "internal1"
 		else
-			to_chat(C, "<span class='warning'>You don't have an oxygen tank!</span>")
+			to_chat(C, span_warning("You don't have an oxygen tank!"))
 			return
 	C.update_action_buttons_icon()
 
@@ -734,3 +734,60 @@
 /obj/screen/component_button/Click(params)
 	if(parent)
 		parent.component_click(src, params)
+
+/obj/screen/cooldown_overlay
+	name = ""
+	icon_state = "cooldown"
+	pixel_y = 4
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	appearance_flags = RESET_COLOR | PIXEL_SCALE | RESET_TRANSFORM | KEEP_TOGETHER | RESET_ALPHA
+	vis_flags = VIS_INHERIT_ID
+	var/end_time = 0
+	var/obj/screen/parent_button
+	var/datum/callback/callback
+	var/timer
+
+/obj/screen/cooldown_overlay/Initialize(mapload, button)
+	. = ..(mapload)
+	parent_button = button
+
+/obj/screen/cooldown_overlay/Destroy()
+	stop_cooldown()
+	deltimer(timer)
+	return ..()
+
+/obj/screen/cooldown_overlay/proc/start_cooldown(end_time, need_timer = TRUE)
+	parent_button.color = "#8000007c"
+	parent_button.vis_contents += src
+	src.end_time = end_time
+	set_maptext("[round((end_time - world.time) / 10, 1)]")
+	if(need_timer)
+		timer = addtimer(CALLBACK(src, .proc/tick), 1 SECONDS, TIMER_STOPPABLE)
+
+/obj/screen/cooldown_overlay/proc/tick()
+	if(world.time >= end_time)
+		stop_cooldown()
+		return
+	set_maptext("[round((end_time - world.time) / 10, 1)]")
+	if(timer)
+		timer = addtimer(CALLBACK(src, .proc/tick), 1 SECONDS, TIMER_STOPPABLE)
+
+/obj/screen/cooldown_overlay/proc/stop_cooldown()
+	parent_button.color = "#ffffffff"
+	parent_button.vis_contents -= src
+	if(callback)
+		callback.Invoke()
+
+/obj/screen/cooldown_overlay/proc/set_maptext(time)
+	maptext = "<div style=\"font-size:6pt;font:'Arial Black';text-align:center;\">[time]</div>"
+
+/proc/start_cooldown(obj/screen/button, time, datum/callback/callback)
+	if(!time)
+		return
+	var/obj/screen/cooldown_overlay/cooldown = new(button, button)
+	if(callback)
+		cooldown.callback = callback
+		cooldown.start_cooldown(time)
+	else
+		cooldown.start_cooldown(time, FALSE)
+	return cooldown

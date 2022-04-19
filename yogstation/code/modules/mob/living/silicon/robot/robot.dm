@@ -2,14 +2,14 @@
 	icon = initial(icon) //Redundancy in case they repick a skin after modulechange
 	if(!GLOB.DonorBorgHolder)
 		message_admins("[client.ckey] just tried to change their borg skin, but there is no borg skin holder datum! (Has the game not started yet?)")
-		to_chat(src, "<span class='warning'>An error occured, if the game has not started yet, please try again after it has. The admins have been notified about this.</span>")
+		to_chat(src, span_warning("An error occured, if the game has not started yet, please try again after it has. The admins have been notified about this."))
 		return FALSE
 	if(forced || is_donator(client))//First off, are we even meant to have this verb? or is an admin bruteforcing it onto a non donator for some reason?
 		if(module.name == "Default")
 			to_chat(src, "Please choose a module first! (Standard works too)")
 			return FALSE
 		if(ROLE_SYNDICATE in faction)
-			to_chat(src, "<span class='warning'>You cannot reskin as a syndicate cyborg!</span>")
+			to_chat(src, span_warning("You cannot reskin as a syndicate cyborg!"))
 			return FALSE
 		var/datum/borg_skin/skins = list("default" = icon(icon = src.icon, icon_state = module.cyborg_base_icon))
 		for(var/T in GLOB.DonorBorgHolder.skins)
@@ -33,7 +33,7 @@
 		eye_lights.icon = A.icon
 		eye_lights.icon_state = "[icon_state]_e[is_servant_of_ratvar(src) ? "_r" : ""]"
 		add_overlay(eye_lights)
-		to_chat(src, "<span class='notice'>You have successfully applied the skin: [A.name]</span>")
+		to_chat(src, span_notice("You have successfully applied the skin: [A.name]"))
 		special_skin = TRUE
 		return TRUE
 
@@ -42,6 +42,12 @@
 	. = ..()
 	var/mob/living/silicon/robot/R = loc
 	R.PickBorgSkin()
+	if(hat)
+		if(R.hat_offset == INFINITY)
+			R.forceMove(get_turf(R))
+		else
+			R.place_on_head(hat)
+		hat = null
 
 /mob/living/silicon/robot/update_icons() //Need to change this, as it's killing donorborgs
 	var/old_icon = icon_state
@@ -73,19 +79,45 @@
 	set category = "Robot Commands"
 	set name = "Self Destruct"
 
-	if(usr.stat == DEAD)
-		return //won't work if dead
+	if(usr.stat == DEAD || usr.incapacitated())
+		return //won't work if dead or incapacitated
 
 	if(alert("WARNING: Are you sure you wish to self-destruct? This action cannot be undone!",,"Yes","No") != "Yes")
 		return
 
-	if(usr.stat == DEAD)
-		to_chat(usr, "<span class='danger'>You are already dead.</span>")
-		return //won't work if dead
+	if(usr.stat == DEAD || usr.incapacitated())
+		to_chat(usr, span_danger("You can't do that right now!"))
+		return //won't work if dead or incapacitated
 
 	var/turf/T = get_turf(usr)
-	message_admins("<span class='notice'>[ADMIN_LOOKUPFLW(usr)] detonated themselves at [ADMIN_VERBOSEJMP(T)]!</span>")
-	log_game("\<span class='notice'>[key_name(usr)] detonated themselves!</span>")
+	message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] detonated themselves at [ADMIN_VERBOSEJMP(T)]!"))
+	log_game("[span_notice("[key_name(usr)] detonated themselves!")]")
 	if(connected_ai)
-		to_chat(connected_ai, "<br><br><span class='alert'>ALERT - Cyborg detonation detected: [usr]</span><br>")
+		to_chat(connected_ai, "<br><br>[span_alert("ALERT - Cyborg detonation detected: [usr]")]<br>")
 	self_destruct()
+
+/mob/living/silicon/robot/verb/eject_hat()
+	set category = "Robot Commands"
+	set name = "Eject Hat"
+
+	if(!hat) //no hat, no ejection
+		to_chat(usr, span_danger("You have no hat to eject!"))
+		return
+
+	if(usr.stat == DEAD || usr.incapacitated())
+		return //won't work if dead or incapacitated
+
+	if(alert("WARNING: Are you sure you wish to eject your hat? You will not be able to equip another without outside help!",,"Yes","No") != "Yes")
+		return
+
+	if(!hat) //no hat, no ejection
+		to_chat(usr, span_danger("You have no hat to eject!"))
+		return
+
+	if(usr.stat == DEAD || usr.incapacitated())
+		to_chat(usr, span_danger("You can't do that right now!"))
+		return //won't work if dead or incapacitated
+
+	hat.forceMove(get_turf(usr))
+	hat = null
+	update_icons()

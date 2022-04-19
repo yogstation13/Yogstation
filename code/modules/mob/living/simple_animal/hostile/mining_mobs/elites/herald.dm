@@ -66,25 +66,25 @@
 /datum/action/innate/elite_attack/herald_trishot
 	name = "Triple Shot"
 	button_icon_state = "herald_trishot"
-	chosen_message = "<span class='boldwarning'>You are now firing three shots in your chosen direction.</span>"
+	chosen_message = span_boldwarning("You are now firing three shots in your chosen direction.")
 	chosen_attack_num = HERALD_TRISHOT
 
 /datum/action/innate/elite_attack/herald_directionalshot
 	name = "Circular Shot"
 	button_icon_state = "herald_directionalshot"
-	chosen_message = "<span class='boldwarning'>You are firing projectiles in all directions.</span>"
+	chosen_message = span_boldwarning("You are firing projectiles in all directions.")
 	chosen_attack_num = HERALD_DIRECTIONALSHOT
 
 /datum/action/innate/elite_attack/herald_teleshot
 	name = "Teleport Shot"
 	button_icon_state = "herald_teleshot"
-	chosen_message = "<span class='boldwarning'>You will now fire a shot which teleports you where it lands.</span>"
+	chosen_message = span_boldwarning("You will now fire a shot which teleports you where it lands.")
 	chosen_attack_num = HERALD_TELESHOT
 
 /datum/action/innate/elite_attack/herald_mirror
 	name = "Summon Mirror"
 	button_icon_state = "herald_mirror"
-	chosen_message = "<span class='boldwarning'>You will spawn a mirror which duplicates your attacks.</span>"
+	chosen_message = span_boldwarning("You will spawn a mirror which duplicates your attacks.")
 	chosen_attack_num = HERALD_MIRROR
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/OpenFire()
@@ -229,7 +229,7 @@
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.gets_drilled()
+		M.attempt_drill()
 		return
 	else if(isliving(target))
 		var/mob/living/L = target
@@ -268,7 +268,7 @@
 /obj/item/clothing/neck/cloak/herald_cloak/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!prob(hit_reaction_chance))
 		return FALSE
-	owner.visible_message("<span class='danger'>[owner]'s [src] emits a loud noise as [owner] is struck!</span>")
+	owner.visible_message(span_danger("[owner]'s [src] emits a loud noise as [owner] is struck!"))
 	var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
 	playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
 	addtimer(CALLBACK(src, .proc/reactionshot, owner), 10)

@@ -14,10 +14,10 @@
 /obj/item/megaphone/examine(mob/user)
 	. = ..()
 	if(last_used > world.time)
-		. += "<span class='warning'>\The [src] is recharging!</span>"
+		. += span_warning("\The [src] is recharging!")
 
 /obj/item/megaphone/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] is uttering [user.p_their()] last words into \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is uttering [user.p_their()] last words into \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	last_used = 0//so they dont have to worry about recharging
 	user.say("AAAAAAAAAAAARGHHHHH", forced="megaphone suicide")//he must have died while coding this
 	return OXYLOSS
@@ -59,7 +59,7 @@
 /obj/item/megaphone/proc/handle_speech(mob/living/carbon/user, list/speech_args)
 	if (user.get_active_held_item() == src)
 		if(!spamcheck())
-			to_chat(user, "<span class='warning'>\The [src] needs to recharge!</span>")
+			to_chat(user, span_warning("\The [src] needs to recharge!"))
 		else
 			playsound(loc, 'sound/items/megaphone.ogg', 100, 0, 1)
 			speech_args[SPEECH_SPANS] |= voicespan
@@ -67,7 +67,7 @@
 /obj/item/megaphone/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>")
+	to_chat(user, span_warning("You overload \the [src]'s voice synthesizer."))
 	obj_flags |= EMAGGED
 	voicespan = list(SPAN_REALLYBIG, "userdanger")
 

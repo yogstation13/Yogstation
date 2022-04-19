@@ -755,12 +755,10 @@ GLOBAL_LIST_INIT(can_embed_types, typecacheof(list(
 
 /proc/can_embed(obj/item/W)
 	if(W.is_sharp())
-		return 1
-	if(is_pointed(W))
-		return 1
+		return TRUE
 
 	if(is_type_in_typecache(W, GLOB.can_embed_types))
-		return 1
+		return TRUE
 
 
 /*
@@ -1233,10 +1231,10 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 #define RANDOM_COLOUR (rgb(rand(0,255),rand(0,255),rand(0,255)))
 
-/proc/random_nukecode()
-	var/val = rand(0, 99999)
+/proc/random_nukecode(max_length = 5)
+	var/val = rand(0, (10 ** max_length - 1))
 	var/str = "[val]"
-	while(length(str) < 5)
+	while(length(str) < max_length)
 		str = "0" + str
 	. = str
 

@@ -35,7 +35,7 @@
 		return
 	var/stun_amount = 200/severity
 	owner.Stun(stun_amount)
-	to_chat(owner, "<span class='warning'>Your body seizes up!</span>")
+	to_chat(owner, span_warning("Your body seizes up!"))
 
 
 /obj/item/organ/cyberimp/brain/anti_drop
@@ -55,17 +55,17 @@
 
 		var/list/L = owner.get_empty_held_indexes()
 		if(LAZYLEN(L) == owner.held_items.len)
-			to_chat(owner, "<span class='notice'>You are not holding any items, your hands relax...</span>")
+			to_chat(owner, span_notice("You are not holding any items, your hands relax..."))
 			active = 0
 			stored_items = list()
 		else
 			for(var/obj/item/I in stored_items)
-				to_chat(owner, "<span class='notice'>Your [owner.get_held_index_name(owner.get_held_index_of_item(I))]'s grip tightens.</span>")
+				to_chat(owner, span_notice("Your [owner.get_held_index_name(owner.get_held_index_of_item(I))]'s grip tightens."))
 				ADD_TRAIT(I, TRAIT_NODROP, ANTI_DROP_IMPLANT_TRAIT)
 
 	else
 		release_items()
-		to_chat(owner, "<span class='notice'>Your hands relax...</span>")
+		to_chat(owner, span_notice("Your hands relax..."))
 
 
 /obj/item/organ/cyberimp/brain/anti_drop/emp_act(severity)
@@ -79,7 +79,7 @@
 	for(var/obj/item/I in stored_items)
 		A = pick(oview(range))
 		I.throw_at(A, range, 2)
-		to_chat(owner, "<span class='warning'>Your [owner.get_held_index_name(owner.get_held_index_of_item(I))] spasms and throws the [I.name]!</span>")
+		to_chat(owner, span_warning("Your [owner.get_held_index_name(owner.get_held_index_of_item(I))] spasms and throws the [I.name]!"))
 	stored_items = list()
 
 
@@ -105,25 +105,30 @@
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
 		COMSIG_LIVING_STATUS_PARALYZE,
-		COMSIG_CARBON_STATUS_STAMCRIT,
 	)
 
-	var/stun_cap_amount = 40
+	var/stun_cap_amount = 4 SECONDS
 
 /obj/item/organ/cyberimp/brain/anti_stun/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
 	UnregisterSignal(M, signalCache)
+	UnregisterSignal(M, COMSIG_CARBON_STATUS_STAMCRIT)
 
 /obj/item/organ/cyberimp/brain/anti_stun/Insert()
 	. = ..()
 	RegisterSignal(owner, signalCache, .proc/on_signal)
+	RegisterSignal(owner, COMSIG_CARBON_STATUS_STAMCRIT, .proc/on_signal_stamina)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal(datum/source, amount)
-	if((organ_flags & ORGAN_FAILING) && amount > 0)
+	if(!(organ_flags & ORGAN_FAILING) && amount > 0)
+		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
+
+/obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal_stamina()
+	if(!(organ_flags & ORGAN_FAILING))
 		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/clear_stuns()
-	if(owner || !(organ_flags & ORGAN_FAILING))
+	if(owner && !(organ_flags & ORGAN_FAILING))
 		owner.remove_CC()
 
 /obj/item/organ/cyberimp/brain/anti_stun/emp_act(severity)
@@ -152,7 +157,7 @@
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
 	if(prob(60/severity))
-		to_chat(owner, "<span class='warning'>Your breathing tube suddenly closes!</span>")
+		to_chat(owner, span_warning("Your breathing tube suddenly closes!"))
 		owner.losebreath += 2
 
 //BOX O' IMPLANTS

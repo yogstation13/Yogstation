@@ -63,7 +63,7 @@
 					return
 				var/obj/item/multitool/M = I
 				M.buffer = src
-				to_chat(user, "<span class='notice'>You save the data in the [I.name]'s buffer.</span>")
+				to_chat(user, span_notice("You save the data in the [I.name]'s buffer."))
 				return 1
 
 		if(default_deconstruction_crowbar(I))
@@ -100,13 +100,13 @@
 
 /obj/machinery/launchpad/proc/doteleport(mob/user, sending)
 	if(teleporting)
-		to_chat(user, "<span class='warning'>ERROR: Launchpad busy.</span>")
+		to_chat(user, span_warning("ERROR: Launchpad busy."))
 		return
 
 	var/turf/dest = get_turf(src)
 
 	if(dest && is_centcom_level(dest.z))
-		to_chat(user, "<span class='warning'>ERROR: Launchpad not operative. Heavy area shielding makes teleporting impossible.</span>")
+		to_chat(user, span_warning("ERROR: Launchpad not operative. Heavy area shielding makes teleporting impossible."))
 		return
 
 	var/target_x = x + x_offset
@@ -158,7 +158,7 @@
 		if(isAI(ROI))
 			var/mob/living/silicon/ai/I = ROI
 			if(I.move_resist > 1000)
-				to_chat(user, "<span class='warning'>ERROR: Launchpad overloaded, unable to operate.</span>")
+				to_chat(user, span_warning("ERROR: Launchpad overloaded, unable to operate."))
 				continue
 		// if it's anchored, don't teleport
 		var/on_chair = ""
@@ -244,8 +244,8 @@
 			return
 		if(!usr.canUseTopic(src, BE_CLOSE, ismonkey(usr)))
 			return
-		usr.visible_message("<span class='notice'>[usr] starts closing [src]...</span>", "<span class='notice'>You start closing [src]...</span>")
-		if(do_after(usr, 30, target = usr))
+		usr.visible_message(span_notice("[usr] starts closing [src]..."), span_notice("You start closing [src]..."))
+		if(do_after(usr, 3 SECONDS, target = usr))
 			usr.put_in_hands(briefcase)
 			moveToNullspace() //hides it from suitcase contents
 			closed = TRUE
@@ -257,7 +257,7 @@
 		if(L.pad == src) //do not attempt to link when already linked
 			return ..()
 		L.pad = src
-		to_chat(user, "<span class='notice'>You link [src] to [L].</span>")
+		to_chat(user, span_notice("You link [src] to [L]."))
 	else
 		return ..()
 
@@ -284,8 +284,8 @@
 	if(!is_syndicate(user)) // You don't know how to use launchpad as non syndicate. 
 		return
 	add_fingerprint(user)
-	user.visible_message("<span class='notice'>[user] starts setting down [src]...", "You start setting up [pad]...</span>")
-	if(do_after(user, 30, target = user))
+	user.visible_message(span_notice("[user] starts setting down [src]..."), span_notice("You start setting up [pad]..."))
+	if(do_after(user, 3 SECONDS, target = user))
 		pad.forceMove(get_turf(src))
 		pad.update_indicator()
 		pad.closed = FALSE
@@ -298,7 +298,7 @@
 		if(L.pad == src.pad) //do not attempt to link when already linked
 			return ..()
 		L.pad = src.pad
-		to_chat(user, "<span class='notice'>You link [pad] to [L].</span>")
+		to_chat(user, span_notice("You link [pad] to [L]."))
 	else
 		return ..()
 
@@ -320,7 +320,7 @@
 	if(!is_syndicate(user)) // you don't know how to use the launchpad stealth remote as a non syndicate
 		return
 	ui_interact(user)
-	to_chat(user, "<span class='notice'>[src] projects a display onto your retina.</span>")
+	to_chat(user, span_notice("[src] projects a display onto your retina."))
 
 
 /obj/item/launchpad_remote/ui_state(mob/user)
@@ -350,10 +350,10 @@
 
 /obj/item/launchpad_remote/proc/teleport(mob/user, obj/machinery/launchpad/pad)
 	if(QDELETED(pad))
-		to_chat(user, "<span class='warning'>ERROR: Launchpad not responding. Check launchpad integrity.</span>")
+		to_chat(user, span_warning("ERROR: Launchpad not responding. Check launchpad integrity."))
 		return
 	if(!pad.isAvailable())
-		to_chat(user, "<span class='warning'>ERROR: Launchpad not operative. Make sure the launchpad is ready and powered.</span>")
+		to_chat(user, span_warning("ERROR: Launchpad not operative. Make sure the launchpad is ready and powered."))
 		return
 	pad.doteleport(user, sending)
 

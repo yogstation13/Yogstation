@@ -23,15 +23,15 @@
 				if(unlink_choice == "Unlink")
 					SSdiscord.unlink_account(returned_ckey)
 			else
-				to_chat(usr, "<span class='warning'>Discord ID <b>[lookup_id]</b> has no associated ckey</span>")
+				to_chat(usr, span_warning("Discord ID <b>[lookup_id]</b> has no associated ckey"))
 		if("Ckey")
 			var/lookup_ckey = input(usr,"Enter Ckey to lookup ID") as text
 			var/returned_id = SSdiscord.lookup_id(lookup_ckey)
 			if(returned_id)
-				to_chat(usr, "<span class='notice'>Ckey <b>[lookup_ckey]</b> is assigned to Discord ID <b>[returned_id]</b></span>")
-				to_chat(usr, "<span class='notice'>Discord mention format: <b>&lt;@[returned_id]&gt;</b></span>") // &lt; and &gt; print < > in HTML without using them as tags
+				to_chat(usr, span_notice("Ckey <b>[lookup_ckey]</b> is assigned to Discord ID <b>[returned_id]</b>"))
+				to_chat(usr, span_notice("Discord mention format: <b>&lt;@[returned_id]&gt;</b>")) // &lt; and &gt; print < > in HTML without using them as tags
 				var/unlink_choice = alert(usr, "Ckey [lookup_ckey] is linked to Discord ID [returned_id]. Do you wish to unlink or cancel?", "Account Found", "Unlink", "Cancel")
 				if(unlink_choice == "Unlink")
 					SSdiscord.unlink_account(lookup_ckey)
 			else
-				to_chat(usr, "<span class='warning'>Ckey <b>[lookup_ckey]</b> has no associated Discord ID!</span>")
+				to_chat(usr, span_warning("Ckey <b>[lookup_ckey]</b> has no associated Discord ID!"))

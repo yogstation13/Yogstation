@@ -4,7 +4,7 @@
 //Simply lists them.
 /datum/team/swarmer/roundend_report()
 	var/list/parts = list()
-	parts += "<span class='header'>The [name] were:</span>"
+	parts += span_header("The [name] were:")
 	parts += printplayerlist(members)
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
@@ -12,6 +12,7 @@
 	name = "Swarmer"
 	job_rank = ROLE_ALIEN
 	show_in_antagpanel = FALSE
+	show_to_ghosts = TRUE
 	prevent_roundtype_conversion = FALSE
 	var/datum/team/swarmer/swarmer_team
 

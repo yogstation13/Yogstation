@@ -1,3 +1,5 @@
+#define NUTRI_STASH_MAX 8 //8 nutriment = 300 nutrition
+
 /obj/item/organ/stomach
 	name = "stomach"
 	icon_state = "stomach"
@@ -8,12 +10,12 @@
 	desc = "Onaka ga suite imasu."
 
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = STANDARD_ORGAN_DECAY
+	decay_factor = STANDARD_ORGAN_DECAY * 1.15 // ~13 minutes, the stomach is one of the first organs to die
 
-	low_threshold_passed = "<span class='info'>Your stomach flashes with pain before subsiding. Food doesn't seem like a good idea right now.</span>"
-	high_threshold_passed = "<span class='warning'>Your stomach flares up with constant pain- you can hardly stomach the idea of food right now!</span>"
-	high_threshold_cleared = "<span class='info'>The pain in your stomach dies down for now, but food still seems unappealing.</span>"
-	low_threshold_cleared = "<span class='info'>The last bouts of pain in your stomach have died out.</span>"
+	low_threshold_passed = span_info("Your stomach flashes with pain before subsiding. Food doesn't seem like a good idea right now.")
+	high_threshold_passed = span_warning("Your stomach flares up with constant pain- you can hardly stomach the idea of food right now!")
+	high_threshold_cleared = span_info("The pain in your stomach dies down for now, but food still seems unappealing.")
+	low_threshold_cleared = span_info("The last bouts of pain in your stomach have died out.")
 
 	var/disgust_metabolism = 1
 
@@ -35,12 +37,12 @@
 	if(Nutri)
 		if(prob((damage/40) * Nutri.volume * Nutri.volume))
 			H.vomit(damage)
-			to_chat(H, "<span class='warning'>Your stomach reels in pain as you're incapable of holding down all that food!</span>")
+			to_chat(H, span_warning("Your stomach reels in pain as you're incapable of holding down all that food!"))
 
 	else if(Nutri && damage > high_threshold)
 		if(prob((damage/10) * Nutri.volume * Nutri.volume))
 			H.vomit(damage)
-			to_chat(H, "<span class='warning'>Your stomach reels in pain as you're incapable of holding down all that food!</span>")
+			to_chat(H, span_warning("Your stomach reels in pain as you're incapable of holding down all that food!"))
 
 /obj/item/organ/stomach/proc/handle_disgust(mob/living/carbon/human/H)
 	if(H.disgust)
@@ -50,7 +52,7 @@
 				H.stuttering += 1
 				H.confused += 2
 			if(prob(10) && !H.stat)
-				to_chat(H, "<span class='warning'>You feel kind of iffy...</span>")
+				to_chat(H, span_warning("You feel kind of iffy..."))
 			H.jitteriness = max(H.jitteriness - 3, 0)
 		if(H.disgust >= DISGUST_LEVEL_VERYGROSS)
 			if(prob(pukeprob)) //iT hAndLeS mOrE ThaN PukInG
@@ -83,6 +85,34 @@
 		H.clear_alert("disgust")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "disgust")
 	..()
+
+/obj/item/organ/stomach/cybernetic
+	name = "cybernetic stomach"
+	desc = "A cybernetic metabolic furnace that can be connected to a digestive system in place of a stomach."
+	icon_state = "stomach-c"
+	maxHealth = 1.2 * STANDARD_ORGAN_THRESHOLD
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC
+
+/obj/item/organ/stomach/cybernetic/upgraded
+	name = "upgraded cybernetic stomach"
+	desc = "An upgraded metabolic furnace that can be connected to a digestive system in place of a stomach. Both hardier and capable of storing excess nutrition if the body is already well sustained."
+	icon_state = "stomach-c-u"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	var/nutriment_stashed = 0
+
+/obj/item/organ/stomach/cybernetic/upgraded/on_life()
+	if(owner.nutrition >= NUTRITION_LEVEL_FULL && nutriment_stashed < NUTRI_STASH_MAX)
+		var/datum/reagent/nutri = locate(/datum/reagent/consumable/nutriment) in owner.reagents.reagent_list
+		if(nutri)
+			var/amt_stored = min(nutri.volume, NUTRI_STASH_MAX - nutriment_stashed)
+			nutriment_stashed += amt_stored
+			owner.reagents.remove_reagent(/datum/reagent/consumable/nutriment, amt_stored)
+	..()
+	if(owner.nutrition <= NUTRITION_LEVEL_HUNGRY && nutriment_stashed)
+		owner.reagents.add_reagent(/datum/reagent/consumable/nutriment, nutriment_stashed)
+		nutriment_stashed = 0
+		to_chat(owner, span_notice("You feel less hungry..."))
 
 /obj/item/organ/stomach/fly
 	name = "insectoid stomach"
@@ -121,11 +151,11 @@
 	if(illusion)
 		return
 	adjust_charge(shock_damage * siemens_coeff * 2)
-	to_chat(owner, "<span class='notice'>You absorb some of the shock into your body!</span>")
+	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
 
 /obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)
 	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_FULL)
-	
+
 /obj/item/organ/stomach/cursed
 	name = "cursed stomach"
 	icon_state = "stomach-cursed"
@@ -135,29 +165,29 @@
 
 /obj/item/organ/stomach/cursed/ui_action_click() //Stomach that allows you to vomit at will, oh the humanity!
 	if(HAS_TRAIT(owner, TRAIT_NOHUNGER))
-		to_chat(owner, "<span class='notice'>You don't hunger, you can't vomit!</span>")
+		to_chat(owner, span_notice("You don't hunger, you can't vomit!"))
 		return
 	if(owner.IsParalyzed())
-		to_chat(owner, "<span class='notice'>You can't bring yourself to vomit while stunned!</span>")
+		to_chat(owner, span_notice("You can't bring yourself to vomit while stunned!"))
 		return
 	if(istype(owner.loc, /obj/effect/dummy/crawling))
-		to_chat(owner, "<span class='notice'>You can't vomit while in vomitform!</span>") //no vomitghosts allowed
+		to_chat(owner, span_notice("You can't vomit while in vomitform!")) //no vomitghosts allowed
 		return
-	to_chat(owner, "<span class='notice'>You force yourself to vomit.</span>")
+	to_chat(owner, span_notice("You force yourself to vomit."))
 	owner.vomit(10, FALSE, TRUE, rand(0,4))  //BLEEEUUUGHHHH!!
 
 /obj/item/organ/stomach/cursed/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)
 		return ..()
-	user.visible_message("<span class='warning'>[user] raises [src] to [user.p_their()] mouth with disgust and tears into it with [user.p_their()] teeth!?</span>", \
-						 "<span class='danger'>An unnatural hunger consumes you. You raise [src] your mouth and unwillingly devour it!</span>")
+	user.visible_message(span_warning("[user] raises [src] to [user.p_their()] mouth with disgust and tears into it with [user.p_their()] teeth!?"), \
+						 span_danger("An unnatural hunger consumes you. You raise [src] your mouth and unwillingly devour it!"))
 	playsound(user, 'sound/magic/demon_consume.ogg', 35, 1)
 	if(user.GetComponent(/datum/component/crawl/vomit))
-		to_chat(user, "<span class='warning'>...and you don't feel any different.</span>")
+		to_chat(user, span_warning("...and you don't feel any different."))
 		qdel(src)
 		return
-	user.visible_message("<span class='warning'>[user] looks extremely sick!</span>", \
-						 "<span class='userdanger'>You feel extremely weird... you have absorbed the demonic vomit-travelling powers?</span>")
+	user.visible_message(span_warning("[user] looks extremely sick!"), \
+						 span_userdanger("You feel extremely weird... you have absorbed the demonic vomit-travelling powers?"))
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	src.Insert(user) //Are you gonna seriously gonna eat THAT?
 

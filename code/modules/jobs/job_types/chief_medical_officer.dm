@@ -39,18 +39,20 @@
 	name = "Chief Medical Officer"
 	jobtype = /datum/job/cmo
 
-	id = /obj/item/card/id/silver
-	belt = /obj/item/pda/heads/cmo
+	id_type = /obj/item/card/id/silver
+	pda_type = /obj/item/pda/heads/cmo
+
 	l_pocket = /obj/item/pinpointer/crew
 	ears = /obj/item/radio/headset/heads/cmo
 	uniform = /obj/item/clothing/under/rank/chief_medical_officer
+	uniform_skirt = /obj/item/clothing/under/rank/chief_medical_officer
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	alt_shoes = /obj/item/clothing/shoes/xeno_wraps/command // Provides Command shoes to digitigrade species
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo
 	l_hand = /obj/item/storage/firstaid/medical
-	suit_store = /obj/item/flashlight/pen
+	suit_store = /obj/item/flashlight/pen/paramedic
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced=1) //yogs - removes med budget
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/phone/preset/advanced/command=1) //yogs - removes med budget
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
@@ -64,4 +66,4 @@
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/hardsuit/medical
 	suit_store = /obj/item/tank/internals/oxygen
-	r_pocket = /obj/item/flashlight/pen
+	r_pocket = /obj/item/flashlight/pen/paramedic

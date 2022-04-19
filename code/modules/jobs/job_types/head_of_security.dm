@@ -1,7 +1,7 @@
 /datum/job/hos
 	title = "Head of Security"
 	flag = HOS
-	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
+	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("Captain")
 	department_flag = ENGSEC
 	head_announce = list(RADIO_CHANNEL_SECURITY)
@@ -43,10 +43,12 @@
 	name = "Head of Security"
 	jobtype = /datum/job/hos
 
-	id = /obj/item/card/id/silver
-	belt = /obj/item/pda/heads/hos
+	id_type = /obj/item/card/id/silver
+	pda_type = /obj/item/pda/heads/hos
+
 	ears = /obj/item/radio/headset/heads/hos/alt
 	uniform = /obj/item/clothing/under/rank/head_of_security
+	uniform_skirt = /obj/item/clothing/under/rank/head_of_security/skirt
 	shoes = /obj/item/clothing/shoes/jackboots
 	alt_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots // Provides Command shoes to digitigrade species
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
@@ -56,7 +58,7 @@
 	suit_store = /obj/item/gun/energy/e_gun
 	r_pocket = /obj/item/assembly/flash/handheld
 	l_pocket = /obj/item/restraints/handcuffs
-	backpack_contents = list(/obj/item/melee/baton/loaded=1, /obj/item/modular_computer/tablet/preset/advanced=1) //yogs - removed departmental budget ID //come here often?
+	backpack_contents = list(/obj/item/melee/baton/loaded=1, /obj/item/modular_computer/tablet/phone/preset/advanced/command=1) //yogs - removed departmental budget ID //come here often?
 
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec

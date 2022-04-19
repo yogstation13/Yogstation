@@ -92,11 +92,11 @@
 	if(is_type_in_list(O, food_items))
 		if(!stat)
 			if(health != maxHealth)
-				user.visible_message("<span class='notice'>[user] feeds [name] with [O].</span>", "<span class='notice'>You feed [src] with [O], and some of its wounds begin to heal!</span>")
+				user.visible_message(span_notice("[user] feeds [name] with [O]."), span_notice("You feed [src] with [O], and some of its wounds begin to heal!"))
 				adjustBruteLoss(-food_items[O.type])
 				qdel(O)
 			else
-				to_chat(user, "<span class='notice'>[src] doesn't look hungry right now.</span>")
+				to_chat(user, span_notice("[src] doesn't look hungry right now."))
 	else
 		..()
 
@@ -116,8 +116,8 @@
 	action_background_icon_state = "bg_demon"
 	panel = "Dragon"
 	active = FALSE
-	var/prepare_message = "<span class='notice'>You prepare %YOUR ULTRA DRAGON ATTACK</span>"
-	var/unprepare_message = "<span class='notice'>You decide to spare the mortals for now...</span>"
+	var/prepare_message = span_notice("You prepare %YOUR ULTRA DRAGON ATTACK")
+	var/unprepare_message = span_notice("You decide to spare the mortals for now...")
 
 /obj/effect/proc_holder/drakeling/Click()
 	if(!isliving(usr))
@@ -178,8 +178,8 @@
 	action_icon = 'icons/obj/wizard.dmi'
 	action_icon_state = "fireball"
 	cooldown = 2 SECONDS
-	prepare_message = "<span class='notice'>You prepare %YOUR fire breath attack</span>"
-	unprepare_message = "<span class='notice'>You decide to refrain from roasting more peasants for the time.</span>"
+	prepare_message = span_notice("You prepare %YOUR fire breath attack")
+	unprepare_message = span_notice("You decide to refrain from roasting more peasants for the time.")
 
 /obj/effect/proc_holder/drakeling/fire_breath/InterceptClickOn(mob/living/L, params, atom/A)
 	if(..())
@@ -221,7 +221,7 @@
 			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
 				L.adjustBruteLoss(damage * 3) //60 damage plus the normal damage against fauna, total of 80 should make it mega competitive vs other weapons
 			L.adjustFireLoss(damage)
-			to_chat(L, "<span class='userdanger'>You're hit by [source]'s fire breath!</span>")
+			to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
 		sleep(1)
 
 ///drakeling wing flap attack: deals relatively minor damage to lavaland fauna and pushes anything it hits away, also breaks rocks on contact like a plasmacutter
@@ -231,8 +231,8 @@
 	action_icon_state = "tornado"
 	action_icon = 'icons/obj/wizard.dmi'
 	cooldown = 2 SECONDS
-	prepare_message = "<span class='notice'>You prepare %YOUR wings.</span>"
-	unprepare_message = "<span class='notice'>You stop the flapping.</span>"
+	prepare_message = span_notice("You prepare %YOUR wings.")
+	unprepare_message = span_notice("You stop the flapping.")
 	var/shootie = /obj/item/projectile/wing
 
 /obj/effect/proc_holder/drakeling/wing_flap/InterceptClickOn(mob/living/L, params, atom/A)
@@ -277,7 +277,7 @@
 			L.adjustBruteLoss(40)
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.gets_drilled(firer)
+		M.attempt_drill(firer)
 		if(mine_range)
 			mine_range--
 			range++

@@ -21,12 +21,12 @@
 
 /obj/item/assembly/flash/suicide_act(mob/living/user)
 	if(burnt_out)
-		user.visible_message("<span class='suicide'>[user] raises \the [src] up to [user.p_their()] eyes and activates it ... but it's burnt out!</span>")
+		user.visible_message(span_suicide("[user] raises \the [src] up to [user.p_their()] eyes and activates it ... but it's burnt out!"))
 		return SHAME
 	else if(user.eye_blind)
-		user.visible_message("<span class='suicide'>[user] raises \the [src] up to [user.p_their()] eyes and activates it ... but [user.p_theyre()] blind!</span>")
+		user.visible_message(span_suicide("[user] raises \the [src] up to [user.p_their()] eyes and activates it ... but [user.p_theyre()] blind!"))
 		return SHAME
-	user.visible_message("<span class='suicide'>[user] raises \the [src] up to [user.p_their()] eyes and activates it! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] raises \the [src] up to [user.p_their()] eyes and activates it! It looks like [user.p_theyre()] trying to commit suicide!"))
 	attack(user,user)
 	return FIRELOSS
 
@@ -55,10 +55,10 @@
 		update_icon()
 	if(ismob(loc))
 		var/mob/M = loc
-		M.visible_message("<span class='danger'>[src] burns out!</span>","<span class='userdanger'>[src] burns out!</span>")
+		M.visible_message(span_danger("[src] burns out!"),span_userdanger("[src] burns out!"))
 	else
 		var/turf/T = get_turf(src)
-		T.visible_message("<span class='danger'>[src] burns out!</span>")
+		T.visible_message(span_danger("[src] burns out!"))
 
 /obj/item/assembly/flash/proc/flash_recharge(interval = 10)
 	var/deciseconds_passed = world.time - last_used
@@ -94,7 +94,7 @@
 
 /obj/item/assembly/flash/proc/try_use_flash(mob/user = null)
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
-		to_chat(user, "<span class='warning'>You can't seem to remember how this works!</span>")
+		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return FALSE
 	if(burnt_out || (world.time < last_trigger + cooldown))
 		return FALSE
@@ -116,7 +116,7 @@
 	else //caused by emp/remote signal
 		M.log_message("was [targeted? "flashed(targeted)" : "flashed(AOE)"]",LOG_ATTACK)
 	if(generic_message && M != user)
-		to_chat(M, "<span class='disarm'>[src] emits a blinding light!</span>")
+		to_chat(M, span_disarm("[src] emits a blinding light!"))
 	if(targeted)
 		if(M.flash_act(1, 1))
 			if(M.confused < power)
@@ -124,18 +124,18 @@
 				M.confused += min(power, diff)
 			if(user)
 				terrible_conversion_proc(M, user)
-				visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
-				to_chat(user, "<span class='danger'>You blind [M] with the flash!</span>")
-				to_chat(M, "<span class='userdanger'>[user] blinds you with the flash!</span>")
+				visible_message(span_disarm("[user] blinds [M] with the flash!"))
+				to_chat(user, span_danger("You blind [M] with the flash!"))
+				to_chat(M, span_userdanger("[user] blinds you with the flash!"))
 			else
-				to_chat(M, "<span class='userdanger'>You are blinded by [src]!</span>")
+				to_chat(M, span_userdanger("You are blinded by [src]!"))
 			M.Paralyze(rand(80,120))
 		else if(user)
-			visible_message("<span class='disarm'>[user] fails to blind [M] with the flash!</span>")
-			to_chat(user, "<span class='warning'>You fail to blind [M] with the flash!</span>")
-			to_chat(M, "<span class='danger'>[user] fails to blind you with the flash!</span>")
+			visible_message(span_disarm("[user] fails to blind [M] with the flash!"))
+			to_chat(user, span_warning("You fail to blind [M] with the flash!"))
+			to_chat(M, span_danger("[user] fails to blind you with the flash!"))
 		else
-			to_chat(M, "<span class='danger'>[src] fails to blind you!</span>")
+			to_chat(M, span_danger("[src] fails to blind you!"))
 	else
 		if(M.flash_act())
 			var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
@@ -149,23 +149,34 @@
 		return TRUE
 	else if(issilicon(M))
 		var/mob/living/silicon/robot/R = M
-		log_combat(user, R, "flashed", src)
-		update_icon(1)
-		R.Paralyze(rand(80,120))
-		var/diff = 5 * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
-		R.confused += min(5, diff)
-		R.flash_act(affect_silicon = 1)
-		user.visible_message("<span class='disarm'>[user] overloads [R]'s sensors with the flash!</span>", "<span class='danger'>You overload [R]'s sensors with the flash!</span>")
-		return TRUE
+		if(!R.sensor_protection)
+			log_combat(user, R, "flashed", src)
+			update_icon(1)
+			R.Paralyze(rand(80,120))
+			var/diff = 5 * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
+			R.confused += min(5, diff)
+			R.flash_act(affect_silicon = 1)
+			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
+			return TRUE
+		else
+			R.overlay_fullscreen("reducedflash", /obj/screen/fullscreen/flash/static)
+			R.uneq_all()
+			R.stop_pulling()
+			R.break_all_cyborg_slots(TRUE)
+			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/clear_fullscreen, "reducedflash"), 5 SECONDS)
+			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), 5 SECONDS)
+			to_chat(R, span_danger("Your sensors were momentarily dazzled!"))
+			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
+			return TRUE
 
-	user.visible_message("<span class='disarm'>[user] fails to blind [M] with the flash!</span>", "<span class='warning'>You fail to blind [M] with the flash!</span>")
+	user.visible_message(span_disarm("[user] fails to blind [M] with the flash!"), span_warning("You fail to blind [M] with the flash!"))
 
 /obj/item/assembly/flash/attack_self(mob/living/carbon/user, flag = 0, emp = 0)
 	if(holder)
 		return FALSE
 	if(!AOE_flash(FALSE, 3, 5, FALSE, user))
 		return FALSE
-	to_chat(user, "<span class='danger'>[src] emits a blinding light!</span>")
+	to_chat(user, span_danger("[src] emits a blinding light!"))
 
 /obj/item/assembly/flash/emp_act(severity)
 	. = ..()
@@ -188,15 +199,15 @@
 			if(!converter)
 				return
 			if(!H.client)
-				to_chat(user, "<span class='warning'>This mind is so vacant that it is not susceptible to influence!</span>")
+				to_chat(user, span_warning("This mind is so vacant that it is not susceptible to influence!"))
 				return
 			if(H.stat != CONSCIOUS)
-				to_chat(user, "<span class='warning'>They must be conscious before you can convert [H.p_them()]!</span>")
+				to_chat(user, span_warning("They must be conscious before you can convert [H.p_them()]!"))
 				return
 			if(converter.add_revolutionary(H.mind))
 				times_used -- //Flashes less likely to burn out for headrevs when used for conversion
 			else
-				to_chat(user, "<span class='warning'>This mind seems resistant to the flash!</span>")
+				to_chat(user, span_warning("This mind seems resistant to the flash!"))
 
 
 /obj/item/assembly/flash/cyborg
@@ -232,18 +243,18 @@
 
 /obj/item/assembly/flash/armimplant/burn_out()
 	if(I && I.owner)
-		to_chat(I.owner, "<span class='warning'>Your photon projector implant overheats and deactivates!</span>")
+		to_chat(I.owner, span_warning("Your photon projector implant overheats and deactivates!"))
 		I.Retract()
 	overheat = TRUE
 	addtimer(CALLBACK(src, .proc/cooldown), flashcd * 2)
 
 /obj/item/assembly/flash/armimplant/try_use_flash(mob/user = null)
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
-		to_chat(user, "<span class='warning'>You can't seem to remember how this works!</span>")
+		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return FALSE
 	if(overheat)
 		if(I && I.owner)
-			to_chat(I.owner, "<span class='warning'>Your photon projector is running too hot to be used again so quickly!</span>")
+			to_chat(I.owner, span_warning("Your photon projector is running too hot to be used again so quickly!"))
 		return FALSE
 	overheat = TRUE
 	addtimer(CALLBACK(src, .proc/cooldown), flashcd)
@@ -272,17 +283,17 @@
 	else //caused by emp/remote signal
 		M.log_message("was [targeted? "hypno-flashed(targeted)" : "hypno-flashed(AOE)"]",LOG_ATTACK)
 	if(generic_message && M != user)
-		to_chat(M, "<span class='disarm'>[src] emits a soothing light...</span>")
+		to_chat(M, span_disarm("[src] emits a soothing light..."))
 	if(targeted)
 		if(M.flash_act(1, 1))
 			var/hypnosis = FALSE
 			if(M.hypnosis_vulnerable())
 				hypnosis = TRUE
 			if(user)
-				user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>", "<span class='danger'>You hypno-flash [M]!</span>")
+				user.visible_message(span_disarm("[user] blinds [M] with the flash!"), span_danger("You hypno-flash [M]!"))
 
 			if(!hypnosis)
-				to_chat(M, "<span class='notice'>The light makes you feel oddly relaxed...</span>")
+				to_chat(M, span_notice("The light makes you feel oddly relaxed..."))
 				M.confused += min(M.confused + 10, 20)
 				M.dizziness += min(M.dizziness + 10, 20)
 				M.drowsyness += min(M.drowsyness + 10, 20)
@@ -291,12 +302,12 @@
 				M.apply_status_effect(/datum/status_effect/trance, 200, TRUE)
 
 		else if(user)
-			user.visible_message("<span class='disarm'>[user] fails to blind [M] with the flash!</span>", "<span class='warning'>You fail to hypno-flash [M]!</span>")
+			user.visible_message(span_disarm("[user] fails to blind [M] with the flash!"), span_warning("You fail to hypno-flash [M]!"))
 		else
-			to_chat(M, "<span class='danger'>[src] fails to blind you!</span>")
+			to_chat(M, span_danger("[src] fails to blind you!"))
 
 	else if(M.flash_act())
-		to_chat(M, "<span class='notice'>Such a pretty light...</span>")
+		to_chat(M, span_notice("Such a pretty light..."))
 		M.confused += min(M.confused + 4, 20)
 		M.dizziness += min(M.dizziness + 4, 20)
 		M.drowsyness += min(M.drowsyness + 4, 20)

@@ -7,7 +7,7 @@
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("poked")
-	var/fail_message = "<span class='warning'>INVALID USER.</span>"
+	var/fail_message = span_warning("INVALID USER.")
 	var/selfdestruct = 0 // Explode when user check is failed.
 	var/force_replace = 0 // Can forcefully replace other pins.
 	var/pin_removeable = 0 // Can be replaced by any pin.
@@ -41,7 +41,7 @@
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='notice'>You override the authentication mechanism.</span>")
+	to_chat(user, span_notice("You override the authentication mechanism."))
 
 ///what do we do when we are being added to a gun
 /obj/item/firing_pin/proc/gun_insert(mob/living/user, obj/item/gun/G)
@@ -65,8 +65,8 @@
 	user?.show_message(fail_message, MSG_VISUAL)
 	if(selfdestruct)
 		if(user)
-			user.show_message("<span class='danger'>SELF-DESTRUCTING...</span><br>", MSG_VISUAL)
-			to_chat(user, "<span class='userdanger'>[gun] explodes!</span>")
+			user.show_message("[span_danger("SELF-DESTRUCTING...")]<br>", MSG_VISUAL)
+			to_chat(user, span_userdanger("[gun] explodes!"))
 		explosion(get_turf(gun), -1, 0, 2, 3)
 		if(gun)
 			qdel(gun)
@@ -82,7 +82,7 @@
 /obj/item/firing_pin/test_range
 	name = "test-range firing pin"
 	desc = "This safety firing pin allows weapons to be fired within proximity to a firing range."
-	fail_message = "<span class='warning'>TEST RANGE CHECK FAILED.</span>"
+	fail_message = span_warning("TEST RANGE CHECK FAILED.")
 	pin_removeable = TRUE
 
 /obj/item/firing_pin/test_range/pin_auth(mob/living/user)
@@ -95,7 +95,7 @@
 /obj/item/firing_pin/implant
 	name = "implant-keyed firing pin"
 	desc = "This is a security firing pin which only authorizes users who are implanted with a certain device."
-	fail_message = "<span class='warning'>IMPLANT CHECK FAILED.</span>"
+	fail_message = span_warning("IMPLANT CHECK FAILED.")
 	var/obj/item/implant/req_implant = null
 
 /obj/item/firing_pin/implant/pin_auth(mob/living/user)
@@ -125,7 +125,7 @@
 	name = "hilarious firing pin"
 	desc = "Advanced clowntech that can convert any firearm into a far more useful object."
 	color = "#FFFF00"
-	fail_message = "<span class='warning'>HONK!</span>"
+	fail_message = span_warning("HONK!")
 	force_replace = TRUE
 
 /obj/item/firing_pin/clown/pin_auth(mob/living/user)
@@ -175,7 +175,7 @@
 	name = "DNA-keyed firing pin"
 	desc = "This is a DNA-locked firing pin which only authorizes one user. Attempt to fire once to DNA-link."
 	icon_state = "firing_pin_dna"
-	fail_message = "<span class='warning'>DNA CHECK FAILED.</span>"
+	fail_message = span_warning("DNA CHECK FAILED.")
 	var/unique_enzymes = null
 
 /obj/item/firing_pin/dna/afterattack(atom/target, mob/user, proximity_flag)
@@ -184,7 +184,7 @@
 		var/mob/living/carbon/M = target
 		if(M.dna && M.dna.unique_enzymes)
 			unique_enzymes = M.dna.unique_enzymes
-			to_chat(user, "<span class='notice'>DNA-LOCK SET.</span>")
+			to_chat(user, span_notice("DNA-LOCK SET."))
 
 /obj/item/firing_pin/dna/pin_auth(mob/living/carbon/user)
 	if(user && user.dna && user.dna.unique_enzymes)
@@ -196,7 +196,7 @@
 	if(!unique_enzymes)
 		if(user && user.dna && user.dna.unique_enzymes)
 			unique_enzymes = user.dna.unique_enzymes
-			to_chat(user, "<span class='notice'>DNA-LOCK SET.</span>")
+			to_chat(user, span_notice("DNA-LOCK SET."))
 	else
 		..()
 
@@ -208,7 +208,7 @@
 /obj/item/firing_pin/tag
 	name = "laser tag firing pin"
 	desc = "A recreational firing pin, used in laser tag units to ensure users have their vests on."
-	fail_message = "<span class='warning'>SUIT CHECK FAILED.</span>"
+	fail_message = span_warning("SUIT CHECK FAILED.")
 	var/obj/item/clothing/suit/suit_requirement = null
 	var/tagcolor = ""
 
@@ -217,7 +217,7 @@
 		var/mob/living/carbon/human/M = user
 		if(istype(M.wear_suit, suit_requirement))
 			return TRUE
-	to_chat(user, "<span class='warning'>You need to be wearing [tagcolor] laser tag armor!</span>")
+	to_chat(user, span_warning("You need to be wearing [tagcolor] laser tag armor!"))
 	return FALSE
 
 /obj/item/firing_pin/tag/red

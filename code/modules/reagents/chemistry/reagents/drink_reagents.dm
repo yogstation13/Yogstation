@@ -169,7 +169,7 @@
 
 /datum/reagent/consumable/superlaughter/on_mob_life(mob/living/carbon/M)
 	if(prob(30))
-		M.visible_message("<span class='danger'>[M] bursts out into a fit of uncontrollable laughter!</span>", "<span class='userdanger'>You burst out in a fit of uncontrollable laughter!</span>")
+		M.visible_message(span_danger("[M] bursts out into a fit of uncontrollable laughter!"), span_userdanger("You burst out in a fit of uncontrollable laughter!"))
 		M.Stun(5)
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "chemical_laughter", /datum/mood_event/chemical_superlaughter)
 	..()
@@ -198,6 +198,20 @@
 	glass_icon_state = "glass_white"
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
+
+/datum/reagent/consumable/cilk
+	name = "Cilk"
+	description = "A mixture of milk and.... cola? Who the fuck would do this?"
+	color = "#EAC7A4"
+	taste_description = "dairy and caffiene"
+	glass_icon_state = "glass_cilk"
+	glass_name = "glass of cilk"
+	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
+
+/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+	if(H.reagents.has_reagent(/datum/reagent/consumable/cilk))
+		H.adjustBruteLoss(-0.2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 /datum/reagent/consumable/milk/goat
 	name = "Goat Milk"
@@ -314,14 +328,14 @@
 	..()
 
 /datum/reagent/consumable/cream/bug
-	name = "Bug Cream"
-	description = "The very fatty, still liquid part of bug milk. It looks pretty gross."
+	name = "Gutlunch Honey"
+	description = "A sweet, creamy substance produced by gutlunches, functioning as a sort of strange honey."
 	color = "#800000"
 	nutriment_factor = 2
-	taste_description = "creamy bug milk"
+	taste_description = "excessively sugary cream"
 	glass_icon_state  = "chocolateglass"
 	glass_name = "glass of bug cream"
-	glass_desc = "Ewwwww!"
+	glass_desc = "This came from a WHAT?!"
 
 /datum/reagent/consumable/coffee
 	name = "Coffee"

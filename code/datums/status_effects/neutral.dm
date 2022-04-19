@@ -97,7 +97,7 @@
 		rewarded = caster
 
 /datum/status_effect/bounty/on_apply()
-	to_chat(owner, "<span class='boldnotice'>You hear something behind you talking...</span> <span class='notice'>You have been marked for death by [rewarded]. If you die, they will be rewarded.</span>")
+	to_chat(owner, "[span_boldnotice("You hear something behind you talking...")] [span_notice("You have been marked for death by [rewarded]. If you die, they will be rewarded.")]")
 	playsound(owner, 'sound/weapons/shotgunpump.ogg', 75, 0)
 	return ..()
 
@@ -108,9 +108,9 @@
 
 /datum/status_effect/bounty/proc/rewards()
 	if(rewarded && rewarded.mind && rewarded.stat != DEAD)
-		to_chat(owner, "<span class='boldnotice'>You hear something behind you talking...</span> <span class='notice'>Bounty claimed.</span>")
+		to_chat(owner, "[span_boldnotice("You hear something behind you talking...")] [span_notice("Bounty claimed.")]")
 		playsound(owner, 'sound/weapons/shotgunshot.ogg', 75, 0)
-		to_chat(rewarded, "<span class='greentext'>You feel a surge of mana flow into you!</span>")
+		to_chat(rewarded, span_greentext("You feel a surge of mana flow into you!"))
 		for(var/obj/effect/proc_holder/spell/spell in rewarded.mind.spell_list)
 			spell.charge_counter = spell.charge_max
 			spell.recharging = FALSE
@@ -162,9 +162,9 @@
 /datum/status_effect/tagalong/on_remove()
 	if(owner.loc == shadowing)
 		owner.forceMove(cached_location ? cached_location : get_turf(owner))
-		shadowing.visible_message("<span class='warning'>[owner] breaks away from [shadowing]'s shadow!</span>", \
-		"<span class='userdanger'>You feel a sense of freezing cold pass through you!</span>")
-		to_chat(owner, "<span class='velvet'>You break away from [shadowing].</span>")
+		shadowing.visible_message(span_warning("[owner] breaks away from [shadowing]'s shadow!"), \
+		span_userdanger("You feel a sense of freezing cold pass through you!"))
+		to_chat(owner, span_velvet("You break away from [shadowing]."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
 	owner.setDir(SOUTH)
 
@@ -176,15 +176,15 @@
 	cached_location = get_turf(shadowing)
 	if(cached_location.get_lumcount() < DARKSPAWN_DIM_LIGHT)
 		owner.forceMove(cached_location)
-		shadowing.visible_message("<span class='warning'>[owner] suddenly appears from the dark!</span>")
-		to_chat(owner, "<span class='warning'>You are forced out of [shadowing]'s shadow!</span>")
+		shadowing.visible_message(span_warning("[owner] suddenly appears from the dark!"))
+		to_chat(owner, span_warning("You are forced out of [shadowing]'s shadow!"))
 		owner.Knockdown(30)
 		qdel(src)
 	var/obj/item/I = owner.get_active_held_item()
 	if(I)
-		to_chat(owner, "<span class='userdanger'>Equipping an item forces you out!</span>")
+		to_chat(owner, span_userdanger("Equipping an item forces you out!"))
 		if(istype(I, /obj/item/dark_bead))
-			to_chat(owner, "<span class='userdanger'>[I] crackles with feedback, briefly disorienting you!</span>")
+			to_chat(owner, span_userdanger("[I] crackles with feedback, briefly disorienting you!"))
 			owner.Stun(5) //short delay so they can't click as soon as they're out
 		qdel(src)
 

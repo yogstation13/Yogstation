@@ -32,13 +32,18 @@
 /obj/item/circuitboard/computer/card/minor/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		target_dept = (target_dept == dept_list.len) ? 1 : (target_dept + 1)
-		to_chat(user, "<span class='notice'>You set the board to \"[dept_list[target_dept]]\".</span>")
+		to_chat(user, span_notice("You set the board to \"[dept_list[target_dept]]\"."))
 	else
 		return ..()
 
 /obj/item/circuitboard/computer/card/minor/examine(user)
 	. = ..()
 	. += "Currently set to \"[dept_list[target_dept]]\"."
+
+/obj/item/circuitboard/computer/ai_ship
+	name = "AI Ship Shuttle (Computer Board)"
+	icon_state = "command"
+	build_path = /obj/machinery/computer/shuttle/ai_ship
 
 
 //obj/item/circuitboard/computer/shield
@@ -200,11 +205,11 @@
 		if(build_path == /obj/machinery/computer/libraryconsole/bookmanagement)
 			name = "Library Visitor Console (Computer Board)"
 			build_path = /obj/machinery/computer/libraryconsole
-			to_chat(user, "<span class='notice'>Defaulting access protocols.</span>")
+			to_chat(user, span_notice("Defaulting access protocols."))
 		else
 			name = "Book Inventory Management Console (Computer Board)"
 			build_path = /obj/machinery/computer/libraryconsole/bookmanagement
-			to_chat(user, "<span class='notice'>Access protocols successfully updated.</span>")
+			to_chat(user, span_notice("Access protocols successfully updated."))
 	else
 		return ..()
 
@@ -350,11 +355,11 @@
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = "R&D Console - Robotics (Computer Board)"
 			build_path = /obj/machinery/computer/rdconsole/robotics
-			to_chat(user, "<span class='notice'>Access protocols successfully updated.</span>")
+			to_chat(user, span_notice("Access protocols successfully updated."))
 		else
 			name = "R&D Console (Computer Board)"
 			build_path = /obj/machinery/computer/rdconsole/core
-			to_chat(user, "<span class='notice'>Defaulting access protocols.</span>")
+			to_chat(user, span_notice("Defaulting access protocols."))
 	else
 		return ..()
 
@@ -377,6 +382,29 @@
 	name = "circuit board (Xenobiology Console)"
 	icon_state = "science"
 	build_path = /obj/machinery/computer/camera_advanced/xenobio
+	
+/obj/item/circuitboard/computer/shuttle/flight_control
+	name = "Shuttle Flight Control (Computer Board)"
+	build_path = /obj/machinery/computer/custom_shuttle
+
+/obj/item/circuitboard/computer/shuttle/docker
+	name = "Shuttle Navigation Computer (Computer Board)"
+	build_path = /obj/machinery/computer/camera_advanced/shuttle_docker/custom
+
+/obj/item/circuitboard/computer/ai_upload_download
+	name = "AI Control Console (Computer Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/computer/ai_control_console
+
+/obj/item/circuitboard/computer/ai_server_overview
+	name = "AI Server Overview Console (Computer Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/computer/ai_server_console
+
+/obj/item/circuitboard/computer/ai_resource_distribution
+	name = "AI Resource Distribution Console (Computer Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/computer/ai_resource_distribution
 
 //Security
 
@@ -448,15 +476,15 @@
 /obj/item/circuitboard/computer/cargo/multitool_act(mob/living/user)
 	if(!(obj_flags & EMAGGED))
 		contraband = !contraband
-		to_chat(user, "<span class='notice'>Receiver spectrum set to [contraband ? "Broad" : "Standard"].</span>")
+		to_chat(user, span_notice("Receiver spectrum set to [contraband ? "Broad" : "Standard"]."))
 	else
-		to_chat(user, "<span class='notice'>The spectrum chip is unresponsive.</span>")
+		to_chat(user, span_notice("The spectrum chip is unresponsive."))
 
 /obj/item/circuitboard/computer/cargo/emag_act(mob/living/user)
 	if(!(obj_flags & EMAGGED))
 		contraband = TRUE
 		obj_flags |= EMAGGED
-		to_chat(user, "<span class='notice'>You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband.</span>")
+		to_chat(user, span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
 
 /obj/item/circuitboard/computer/cargo/express
 	name = "Express Supply Console (Computer Board)"
@@ -464,13 +492,13 @@
 
 /obj/item/circuitboard/computer/cargo/express/multitool_act(mob/living/user)
 	if (!(obj_flags & EMAGGED))
-		to_chat(user, "<span class='notice'>Routing protocols are already set to: \"factory defaults\".</span>")
+		to_chat(user, span_notice("Routing protocols are already set to: \"factory defaults\"."))
 	else
-		to_chat(user, "<span class='notice'>You reset the routing protocols to: \"factory defaults\".</span>")
+		to_chat(user, span_notice("You reset the routing protocols to: \"factory defaults\"."))
 		obj_flags &= ~EMAGGED
 
 /obj/item/circuitboard/computer/cargo/express/emag_act(mob/living/user)
-		to_chat(user, "<span class='notice'>You change the routing protocols, allowing the Drop Pod to land anywhere on the station.</span>")
+		to_chat(user, span_notice("You change the routing protocols, allowing the Drop Pod to land anywhere on the station."))
 		obj_flags |= EMAGGED
 
 /obj/item/circuitboard/computer/cargo/request
@@ -496,3 +524,4 @@
 	name = "Mining Shuttle (Computer Board)"
 	icon_state = "supply"
 	build_path = /obj/machinery/computer/shuttle/mining
+

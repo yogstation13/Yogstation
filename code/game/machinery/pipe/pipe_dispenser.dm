@@ -67,10 +67,10 @@
 		if(istype(W, /obj/item/pipe))
 			var/obj/item/pipe/P = W
 			if(!P.disposable)
-				to_chat(usr, "<span class='warning'>[src] is too valuable to dispose of!</span>")
+				to_chat(usr, span_warning("[src] is too valuable to dispose of!"))
 				return
 // yogs end
-		to_chat(usr, "<span class='notice'>You put [W] back into [src].</span>")
+		to_chat(usr, span_notice("You put [W] back into [src]."))
 		qdel(W)
 		return
 	else
@@ -148,7 +148,7 @@
 			var/obj/structure/disposalconstruct/C = new (loc, p_type)
 
 			if(!C.can_place())
-				to_chat(usr, "<span class='warning'>There's not enough room to build that here!</span>")
+				to_chat(usr, span_warning("There's not enough room to build that here!"))
 				qdel(C)
 				return
 			if(href_list["dir"])

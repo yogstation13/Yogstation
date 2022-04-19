@@ -26,9 +26,10 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	block_chance = 50
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	max_integrity = 200
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	icon = 'icons/obj/weapons/swords.dmi'
 	var/datum/effect_system/spark_spread/spark_system
 	var/datum/action/innate/dash/ninja/jaunt
 	var/dash_toggled = TRUE
@@ -42,7 +43,7 @@
 
 /obj/item/energy_katana/attack_self(mob/user)
 	dash_toggled = !dash_toggled
-	to_chat(user, "<span class='notice'>You [dash_toggled ? "enable" : "disable"] the dash function on [src].</span>")
+	to_chat(user, span_notice("You [dash_toggled ? "enable" : "disable"] the dash function on [src]."))
 
 /obj/item/energy_katana/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
@@ -104,7 +105,7 @@
 			msg = "Your Energy Katana lands at your feet!"
 
 	if(msg)
-		to_chat(user, "<span class='notice'>[msg]</span>")
+		to_chat(user, span_notice("[msg]"))
 
 
 /obj/item/energy_katana/Destroy()

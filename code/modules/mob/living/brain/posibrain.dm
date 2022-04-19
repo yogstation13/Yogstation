@@ -14,17 +14,17 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	braintype = "Android"
 	var/autoping = TRUE //if it pings on creation immediately
-	var/begin_activation_message = "<span class='notice'>You carefully locate the manual activation switch and start the positronic brain's boot process.</span>"
-	var/success_message = "<span class='notice'>The positronic brain pings, and its lights start flashing. Success!</span>"
-	var/fail_message = "<span class='notice'>The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?</span>"
+	var/begin_activation_message = span_notice("You carefully locate the manual activation switch and start the positronic brain's boot process.")
+	var/success_message = span_notice("The positronic brain pings, and its lights start flashing. Success!")
+	var/fail_message = span_notice("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?")
 	var/new_role = "Positronic Brain"
 	var/welcome_message = "<span class='warning'>ALL PAST LIVES ARE FORGOTTEN.</span>\n\
 	<b>You are a positronic brain, brought into existence aboard Space Station 13.\n\
 	As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
 	Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>"
-	var/new_mob_message = "<span class='notice'>The positronic brain chimes quietly.</span>"
-	var/dead_message = "<span class='deadsay'>It appears to be completely inactive. The reset light is blinking.</span>"
-	var/recharge_message = "<span class='warning'>The positronic brain isn't ready to activate again yet! Give it some time to recharge.</span>"
+	var/new_mob_message = span_notice("The positronic brain chimes quietly.")
+	var/dead_message = span_deadsay("It appears to be completely inactive. The reset light is blinking.")
+	var/recharge_message = span_warning("The positronic brain isn't ready to activate again yet! Give it some time to recharge.")
 	var/list/possible_names //If you leave this blank, it will use the global posibrain names
 	var/picked_name
 
@@ -44,7 +44,11 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(!brainmob)
 		brainmob = new(src)
 	if(is_occupied())
-		to_chat(user, "<span class='warning'>This [name] is already active!</span>")
+		user.visible_message(span_danger("[user] begins to reset [src]'s memory banks"), span_danger("You begin to reset [src]'s memory banks"))
+		to_chat(brainmob, span_userdanger("[user] begins to reset your memory banks"))
+		if(do_after(user, remove_time, target = src))
+			user.visible_message(span_danger("[user] resets [src]'s memory banks"), span_danger("You successfully reset [src]'s memory banks"))
+			to_chat(brainmob, span_userdanger("Your memory banks have been cleared, you have no memories of anything before this moment."))
 		return
 	if(next_ask > world.time)
 		to_chat(user, recharge_message)
@@ -73,7 +77,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	activate(user)
 
 /obj/item/mmi/posibrain/proc/is_occupied()
-	if(brainmob.key)
+	if(brainmob.key && brainmob.client)
 		return TRUE
 	if(iscyborg(loc))
 		var/mob/living/silicon/robot/R = loc
@@ -88,10 +92,10 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(is_occupied() || is_banned_from(user.ckey, ROLE_POSIBRAIN) || QDELETED(brainmob) || QDELETED(src) || QDELETED(user))
 		return
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SILICONS))
-		to_chat(user, "<span class='warning'>Central Command has temporarily outlawed posibrain sentience in this sector...</span>")
+		to_chat(user, span_warning("Central Command has temporarily outlawed posibrain sentience in this sector..."))
 		return
 	if(user.suiciding) //if they suicided, they're out forever.
-		to_chat(user, "<span class='warning'>[src] fizzles slightly. Sadly it doesn't take those who suicided!</span>")
+		to_chat(user, span_warning("[src] fizzles slightly. Sadly it doesn't take those who suicided!"))
 		return
 	var/posi_ask = alert("Become a [name]? (Warning, You can no longer be cloned, and all past lives will be forgotten!)","Are you positive?","Yes","No")
 	if(posi_ask == "No" || QDELETED(src))
@@ -118,12 +122,13 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	brainmob.mind.remove_all_antag()
 	brainmob.mind.wipe_memory()
 	update_icon()
+	return ..()
 
 /obj/item/mmi/posibrain/proc/transfer_personality(mob/candidate)
 	if(QDELETED(brainmob))
 		return
 	if(is_occupied()) //Prevents hostile takeover if two ghosts get the prompt or link for the same brain.
-		to_chat(candidate, "<span class='warning'>This [name] was taken over before you could get to it! Perhaps it might be available later?</span>")
+		to_chat(candidate, span_warning("This [name] was taken over before you could get to it! Perhaps it might be available later?"))
 		return FALSE
 	if(candidate.mind && !isobserver(candidate))
 		candidate.mind.transfer_to(brainmob)
@@ -138,6 +143,13 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 	visible_message(new_mob_message)
 	check_success()
+
+	GLOB.poi_list -= src
+	var/list/spawners = GLOB.mob_spawners[initial(name)]
+	LAZYREMOVE(spawners, src)
+	if(!LAZYLEN(spawners))
+		GLOB.mob_spawners -= initial(name)
+
 	return TRUE
 
 
@@ -149,12 +161,13 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 				if(!brainmob.client)
 					. += "It appears to be in stand-by mode." //afk
 			if(DEAD)
-				. += "<span class='deadsay'>It appears to be completely inactive.</span>"
+				. += span_deadsay("It appears to be completely inactive.")
 	else
 		. += "[dead_message]"
 
 /obj/item/mmi/posibrain/Initialize()
 	. = ..()
+	var/area/A = get_area(src)
 	brainmob = new(src)
 	var/new_name
 	if(!LAZYLEN(possible_names))
@@ -165,10 +178,23 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	brainmob.real_name = brainmob.name
 	brainmob.forceMove(src)
 	brainmob.container = src
-	if(autoping)
-		ping_ghosts("created", TRUE)
+	if(autoping && A)
+		notify_ghosts("A positronic brain has been created in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_POSIBRAIN)
+	GLOB.poi_list |= src
+	LAZYADD(GLOB.mob_spawners[initial(name)], src) //Yogs -- Adds positronic brains to Spawner Menu
+
+/obj/item/mmi/posibrain/Destroy()
+	GLOB.poi_list -= src
+	var/list/spawners = GLOB.mob_spawners[initial(name)]
+	LAZYREMOVE(spawners, src)
+	if(!LAZYLEN(spawners))
+		GLOB.mob_spawners -= initial(name)
+	return ..()
 
 /obj/item/mmi/posibrain/attackby(obj/item/O, mob/user)
+	if(istype(O, /obj/item/aiModule))
+		var/obj/item/aiModule/M = O
+		M.install(laws, user)
 	return
 
 

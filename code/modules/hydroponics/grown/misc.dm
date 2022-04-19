@@ -39,6 +39,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	genes = list()
 	mutatelist = list()
+	rarity = 20 //atmospheric anomaly plant gets a little bit better rarity
 
 /obj/item/seeds/starthistle/corpse_flower/pre_attack(obj/machinery/hydroponics/I)
 	if(istype(I, /obj/machinery/hydroponics))
@@ -80,6 +81,7 @@
 	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy)
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05, /datum/reagent/medicine/silibinin = 0.1)
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/galaxythistle
 	seed = /obj/item/seeds/galaxythistle
@@ -171,7 +173,7 @@
 	wine_power = 80
 
 /obj/item/reagent_containers/food/snacks/grown/cherry_bomb/attack_self(mob/living/user)
-	user.visible_message("<span class='warning'>[user] plucks the stem from [src]!</span>", "<span class='userdanger'>You pluck the stem from [src], which begins to hiss loudly!</span>")
+	user.visible_message(span_warning("[user] plucks the stem from [src]!"), span_userdanger("You pluck the stem from [src], which begins to hiss loudly!"))
 	log_bomber(user, "primed a", src, "for detonation")
 	prime()
 
@@ -205,7 +207,7 @@
 	yield = 6
 	growthstages = 5
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
-	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.05, /datum/reagent/consumable/nutriment = 0.05)
+	reagents_add = list(/datum/reagent/medicine/c2/aiuri = 0.05, /datum/reagent/consumable/nutriment = 0.05)
 
 /obj/item/reagent_containers/food/snacks/grown/aloe
 	seed = /obj/item/seeds/aloe

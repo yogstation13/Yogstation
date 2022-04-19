@@ -23,6 +23,7 @@
 				CAT_ROBOT = CAT_NONE,
 				CAT_MISC = CAT_NONE,
 				CAT_PRIMAL = CAT_NONE,
+				CAT_STRUCTURES = CAT_NONE,
 				CAT_FOOD = list(
 					CAT_BREAD,
 					CAT_BURGER,
@@ -157,6 +158,8 @@
 /datum/component/personal_crafting/proc/construct_item(mob/user, datum/crafting_recipe/R)
 	var/list/contents = get_surroundings(user)
 	var/send_feedback = 1
+	if(HAS_TRAIT(user, TRAIT_CRAFTY))
+		R.time *= 0.75
 	if(check_contents(R, contents))
 		if(check_tools(user, R, contents))
 			if(do_after(user, R.time, target = user))
@@ -378,9 +381,9 @@
 			ui_interact(usr)
 			var/fail_msg = construct_item(usr, TR)
 			if(!fail_msg)
-				to_chat(usr, "<span class='notice'>[TR.name] constructed.</span>")
+				to_chat(usr, span_notice("[TR.name] constructed."))
 			else
-				to_chat(usr, "<span class='warning'>Construction failed[fail_msg]</span>")
+				to_chat(usr, span_warning("Construction failed[fail_msg]"))
 			busy = FALSE
 		if("toggle_recipes")
 			display_craftable_only = !display_craftable_only

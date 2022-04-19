@@ -1,0 +1,373 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered)
+"d" = (
+/obj/item/stack/sheet/mineral/abductor,
+/turf/template_noop,
+/area/template_noop)
+"e" = (
+/obj/structure/table_frame/abductor,
+/obj/item/stack/sheet/mineral/abductor,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"g" = (
+/obj/structure/table/abductor,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"j" = (
+/obj/structure/showcase/horrific_experiment,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"k" = (
+/turf/closed/wall/mineral/abductor,
+/area/ruin/unpowered)
+"o" = (
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"p" = (
+/obj/item/circuitboard/machine/chem_dispenser/abductor,
+/turf/closed/mineral,
+/area/ruin/unpowered)
+"s" = (
+/obj/structure/table_frame/abductor,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"t" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"v" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/asteroid/airless,
+/area/template_noop)
+"x" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"B" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	pixel_x = -4;
+	pixel_y = 12
+	},
+/obj/effect/decal/cleanable/blood/gibs/limb{
+	pixel_x = -8;
+	pixel_y = -1
+	},
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"C" = (
+/turf/closed/mineral,
+/area/ruin/unpowered)
+"D" = (
+/turf/template_noop,
+/area/template_noop)
+"I" = (
+/obj/effect/mob_spawn/human/abductor,
+/obj/machinery/abductor/pad{
+	team_number = 100
+	},
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"K" = (
+/obj/item/stack/rods,
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"P" = (
+/obj/structure/closet/abductor,
+/obj/item/screwdriver/abductor,
+/obj/item/crowbar/abductor,
+/obj/item/wirecutters/abductor,
+/obj/item/wrench/abductor,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"R" = (
+/obj/machinery/abductor/gland_dispenser,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+"T" = (
+/turf/open/floor/plating/asteroid/airless,
+/area/template_noop)
+"U" = (
+/obj/structure/table/abductor,
+/obj/item/paper/guides/antag/abductor,
+/turf/open/floor/plating/abductor{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/unpowered)
+
+(1,1,1) = {"
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+C
+C
+D
+D
+D
+D
+D
+"}
+(2,1,1) = {"
+D
+D
+D
+D
+D
+T
+C
+D
+D
+D
+D
+K
+D
+D
+D
+D
+D
+"}
+(3,1,1) = {"
+D
+D
+D
+D
+C
+C
+C
+C
+C
+T
+T
+D
+d
+D
+D
+D
+D
+"}
+(4,1,1) = {"
+D
+D
+D
+C
+C
+C
+C
+k
+k
+k
+k
+D
+D
+D
+C
+D
+D
+"}
+(5,1,1) = {"
+D
+D
+C
+C
+C
+C
+C
+e
+U
+g
+k
+k
+D
+D
+C
+C
+D
+"}
+(6,1,1) = {"
+D
+D
+C
+C
+C
+k
+C
+C
+t
+o
+R
+k
+v
+D
+T
+D
+D
+"}
+(7,1,1) = {"
+D
+D
+D
+C
+C
+k
+C
+C
+s
+o
+B
+C
+C
+D
+D
+D
+D
+"}
+(8,1,1) = {"
+D
+D
+D
+K
+C
+k
+I
+x
+M
+C
+p
+C
+D
+D
+D
+D
+D
+"}
+(9,1,1) = {"
+d
+D
+D
+D
+T
+k
+k
+P
+e
+j
+C
+C
+C
+D
+D
+D
+D
+"}
+(10,1,1) = {"
+D
+K
+D
+D
+T
+T
+k
+k
+k
+C
+C
+c
+D
+D
+D
+D
+D
+"}
+(11,1,1) = {"
+D
+D
+D
+C
+T
+T
+T
+C
+C
+C
+C
+D
+D
+D
+D
+D
+D
+"}
+(12,1,1) = {"
+d
+D
+C
+C
+D
+D
+T
+T
+D
+D
+D
+D
+D
+D
+D
+D
+D
+"}
+(13,1,1) = {"
+D
+D
+C
+D
+D
+d
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+"}

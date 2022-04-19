@@ -44,18 +44,18 @@
 			..()
 			return
 		if(L.get_active_held_item())
-			to_chat(L, "<span class='warning'>Your hands are full!</span>")
+			to_chat(L, span_warning("Your hands are full!"))
 			return
-		visible_message("<span class='warning'>[L] starts picking up [src].</span>", \
-						"<span class='userdanger'>[L] starts picking you up!</span>")
+		visible_message(span_warning("[L] starts picking up [src]."), \
+						span_userdanger("[L] starts picking you up!"))
 		if(!do_after(L, 20, target = src))
 			return
-		visible_message("<span class='warning'>[L] picks up [src]!</span>", \
-						"<span class='userdanger'>[L] picks you up!</span>")
+		visible_message(span_warning("[L] picks up [src]!"), \
+						span_userdanger("[L] picks you up!"))
 		if(buckled)
-			to_chat(L, "<span class='warning'>[src] is buckled to [buckled] and cannot be picked up!</span>")
+			to_chat(L, span_warning("[src] is buckled to [buckled] and cannot be picked up!"))
 			return
-		to_chat(L, "<span class='notice'>You pick [src] up.</span>")
+		to_chat(L, span_notice("You pick [src] up."))
 		drop_all_held_items()
 		var/obj/item/clothing/head/mob_holder/cheese/P = new(get_turf(src), src, null, null, null, null, FALSE)
 		L.put_in_hands(P)

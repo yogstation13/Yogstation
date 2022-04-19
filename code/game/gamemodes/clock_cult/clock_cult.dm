@@ -45,6 +45,8 @@ Credit where due:
 ///////////
 
 /proc/is_servant_of_ratvar(mob/M)
+	if(!istype(M))
+		return FALSE
 	return M?.mind?.has_antag_datum(/datum/antagonist/clockcult)
 
 /proc/is_eligible_servant(mob/M)
@@ -84,7 +86,7 @@ Credit where due:
 		if(R.deployed)
 			var/mob/living/silicon/ai/AI = R.mainframe
 			R.undeploy()
-			to_chat(AI, "<span class='userdanger'>Anomaly Detected. Returned to core!</span>") //The AI needs to be in its core to properly be converted
+			to_chat(AI, span_userdanger("Anomaly Detected. Returned to core!")) //The AI needs to be in its core to properly be converted
 
 	. = L.mind.add_antag_datum(C)
 
@@ -100,7 +102,7 @@ Credit where due:
 			Ratvar, the Clockwork Justiciar, [GLOB.ratvar_awakens ? "has been freed from his eternal prison" : "lies in exile, derelict and forgotten in an unseen realm"].</span>")
 			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 50)
 		else
-			L.visible_message("<span class='boldwarning'>[L] seems to resist an unseen force!</span>", null, null, 7, L)
+			L.visible_message(span_boldwarning("[L] seems to resist an unseen force!"), null, null, 7, L)
 			to_chat(L, "<span class='heavy_brass'>The world before you suddenly glows a brilliant yellow. [issilicon(L) ? "You cannot compute this truth!" : \
 			"Your mind is racing!"] You hear the whooshing steam and cl[pick("ank", "ink", "unk", "ang")]ing cogs of a billion billion machines, and the sound</span> <span class='boldwarning'>\
 			is a meaningless cacophony.</span><br>\
@@ -201,9 +203,9 @@ Credit where due:
 	if(!M)
 		return 0
 	to_chat(M, "<span class='bold large_brass'>You are a servant of Ratvar, the Clockwork Justiciar!</span>")
-	to_chat(M, "<span class='brass'>You have approximately <b>[ark_time]</b> minutes until the Ark activates.</span>")
-	to_chat(M, "<span class='brass'>Unlock <b>Script</b> scripture by converting a new servant.</span>")
-	to_chat(M, "<span class='brass'><b>Application</b> scripture will be unlocked halfway until the Ark's activation.</span>")
+	to_chat(M, span_brass("You have approximately <b>[ark_time]</b> minutes until the Ark activates."))
+	to_chat(M, span_brass("Unlock <b>Script</b> scripture by converting a new servant."))
+	to_chat(M, span_brass("<b>Application</b> scripture will be unlocked halfway until the Ark's activation."))
 	M.playsound_local(get_turf(M), 'sound/ambience/antag/clockcultalr.ogg', 100, FALSE, pressure_affected = FALSE)
 	return 1
 
@@ -294,12 +296,14 @@ Credit where due:
 	var/obj/item/card/id/W = new(H)
 	var/obj/item/pda/PDA = H.wear_id
 	W.assignment = "Assistant"
+	W.originalassignment = "Assistant"
 	W.access += ACCESS_MAINT_TUNNELS
 	W.registered_name = H.real_name
 	W.update_label()
 	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
 		H.internal = H.get_item_for_held_index(2)
 		H.update_internals_hud_icon(1)
+	PDA.hidden = TRUE
 	PDA.owner = H.real_name
 	PDA.ownjob = "Assistant"
 	PDA.update_label()
@@ -354,7 +358,7 @@ Credit where due:
 /obj/item/paper/servant_primer/examine(mob/user)
 	. = ..()
 	if(!is_servant_of_ratvar(user) && !isobserver(user))
-		. += "<span class='danger'>You can't understand any of the words on [src].</span>"
+		. += span_danger("You can't understand any of the words on [src].")
 
 /obj/effect/spawner/lootdrop/clockcult
 	name = "clock tile"

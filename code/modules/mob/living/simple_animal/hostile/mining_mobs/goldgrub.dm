@@ -45,10 +45,10 @@
 	target = new_target
 	if(target != null)
 		if(wanted_objects[target.type] && loot.len < max_loot)
-			visible_message("<span class='notice'>\The [name] looks at \the [target.name] with \his hungry eyes.</span>")
+			visible_message(span_notice("\The [name] looks at \the [target.name] with \his hungry eyes."))
 		else if(iscarbon(target) || issilicon(target))
 			Aggro()
-			visible_message("<span class='danger'>\The [name] tries to flee from \the [target.name]!</span>")
+			visible_message(span_danger("\The [name] tries to flee from \the [target.name]!"))
 			retreat_distance = 10
 			minimum_distance = 10
 			if(will_burrow)
@@ -67,18 +67,18 @@
 		for(var/i in 1 to using)
 			loot += O.type
 		O.use(using)
-		visible_message("<span class='notice'>\The ore was swallowed whole by \the [name]!</span>")
+		visible_message(span_notice("\The ore was swallowed whole by \the [name]!"))
 	else // We are now full! We will consume no more ore ever again.
 		search_objects = 0
-		visible_message("<span class='notice'>\The [name] nibbles some of the ore and then stops. \She seems to be full!</span>")
+		visible_message(span_notice("\The [name] nibbles some of the ore and then stops. \She seems to be full!"))
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/proc/Burrow()//You failed the chase to kill the goldgrub in time!
 	if(stat == CONSCIOUS)
-		visible_message("<span class='danger'>\The [name] buries into the ground, vanishing from sight!</span>")
+		visible_message(span_danger("\The [name] buries into the ground, vanishing from sight!"))
 		qdel(src)
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/bullet_act(obj/item/projectile/P)
-	visible_message("<span class='danger'>\The [P.name] was repelled by [name]'s blubberous girth!</span>")
+	visible_message(span_danger("\The [P.name] was repelled by [name]'s blubberous girth!"))
 	return BULLET_ACT_BLOCK
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/adjustHealth(amount, updating_health = TRUE, forced = FALSE)

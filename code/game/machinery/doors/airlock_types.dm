@@ -378,7 +378,6 @@
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_hatch
-	can_repaint = FALSE
 	//anim_parts = "ul=-9,9;ur=9,9;dl=-9,-9;dr=9,-9"
 	anim_parts = "ul=-15,0,0,5,-90;ur=0,15,0,5,-90;dl=0,-15,0,5,-90;dr=15,0,0,5,-90"
 	note_attachment = "ul"
@@ -394,7 +393,6 @@
 	anim_parts = "ul=-15,0,0,5,-90;ur=0,15,0,5,-90;dl=0,-15,0,5,-90;dr=15,0,0,5,-90"
 	note_attachment = "ul"
 	panel_attachment = "dr"
-	can_repaint = FALSE
 
 //////////////////////////////////
 /*
@@ -460,7 +458,6 @@
 	var/openingoverlaytype = /obj/effect/temp_visual/cult/door
 	var/friendly = FALSE
 	var/stealthy = FALSE
-	can_repaint = FALSE
 
 /obj/machinery/door/airlock/cult/Initialize()
 	. = ..()
@@ -567,7 +564,6 @@
 	damage_deflection = 30
 	normal_integrity = 240
 	var/construction_state = GEAR_SECURE //Pinion airlocks have custom deconstruction
-	can_repaint = FALSE
 
 /obj/machinery/door/airlock/clockwork/Initialize()
 	. = ..()
@@ -584,9 +580,9 @@
 	var/gear_text = "The cogwheel is flickering and twisting wildly. Report this to a coder."
 	switch(construction_state)
 		if(GEAR_SECURE)
-			gear_text = "<span class='brass'>The cogwheel is solidly <b>wrenched</b> to the brass around it.</span>"
+			gear_text = span_brass("The cogwheel is solidly <b>wrenched</b> to the brass around it.")
 		if(GEAR_LOOSE)
-			gear_text = "<span class='alloy'>The cogwheel has been <i>loosened</i>, but remains <b>connected loosely</b> to the door!</span>"
+			gear_text = span_alloy("The cogwheel has been <i>loosened</i>, but remains <b>connected loosely</b> to the door!")
 	. += gear_text
 
 /obj/machinery/door/airlock/clockwork/emp_act(severity)
@@ -638,30 +634,30 @@
 		return 0
 	else if(I.tool_behaviour == TOOL_WRENCH)
 		if(construction_state == GEAR_SECURE)
-			user.visible_message("<span class='notice'>[user] begins loosening [src]'s cogwheel...</span>", "<span class='notice'>You begin loosening [src]'s cogwheel...</span>")
+			user.visible_message(span_notice("[user] begins loosening [src]'s cogwheel..."), span_notice("You begin loosening [src]'s cogwheel..."))
 			if(!I.use_tool(src, user, 75, volume=50) || construction_state != GEAR_SECURE)
 				return 1
-			user.visible_message("<span class='notice'>[user] loosens [src]'s cogwheel!</span>", "<span class='notice'>[src]'s cogwheel pops off and dangles loosely.</span>")
+			user.visible_message(span_notice("[user] loosens [src]'s cogwheel!"), span_notice("[src]'s cogwheel pops off and dangles loosely."))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			construction_state = GEAR_LOOSE
 		else if(construction_state == GEAR_LOOSE)
-			user.visible_message("<span class='notice'>[user] begins tightening [src]'s cogwheel...</span>", "<span class='notice'>You begin tightening [src]'s cogwheel into place...</span>")
+			user.visible_message(span_notice("[user] begins tightening [src]'s cogwheel..."), span_notice("You begin tightening [src]'s cogwheel into place..."))
 			if(!I.use_tool(src, user, 75, volume=50) || construction_state != GEAR_LOOSE)
 				return 1
-			user.visible_message("<span class='notice'>[user] tightens [src]'s cogwheel!</span>", "<span class='notice'>You firmly tighten [src]'s cogwheel into place.</span>")
+			user.visible_message(span_notice("[user] tightens [src]'s cogwheel!"), span_notice("You firmly tighten [src]'s cogwheel into place."))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			construction_state = GEAR_SECURE
 		return 1
 	else if(I.tool_behaviour == TOOL_CROWBAR)
 		if(construction_state == GEAR_SECURE)
-			to_chat(user, "<span class='warning'>[src]'s cogwheel is too tightly secured! Your [I.name] can't reach under it!</span>")
+			to_chat(user, span_warning("[src]'s cogwheel is too tightly secured! Your [I.name] can't reach under it!"))
 			return 1
 		else if(construction_state == GEAR_LOOSE)
-			user.visible_message("<span class='notice'>[user] begins slowly lifting off [src]'s cogwheel...</span>", "<span class='notice'>You slowly begin lifting off [src]'s cogwheel...</span>")
+			user.visible_message(span_notice("[user] begins slowly lifting off [src]'s cogwheel..."), span_notice("You slowly begin lifting off [src]'s cogwheel..."))
 			if(!I.use_tool(src, user, 75, volume=50) || construction_state != GEAR_LOOSE)
 				return 1
-			user.visible_message("<span class='notice'>[user] lifts off [src]'s cogwheel, causing it to fall apart!</span>", \
-			"<span class='notice'>You lift off [src]'s cogwheel, causing it to fall apart!</span>")
+			user.visible_message(span_notice("[user] lifts off [src]'s cogwheel, causing it to fall apart!"), \
+			span_notice("You lift off [src]'s cogwheel, causing it to fall apart!"))
 			deconstruct(TRUE)
 		return 1
 	return 0
@@ -686,7 +682,6 @@
 	assemblytype = null
 	glass = TRUE
 	bound_width = 64 // 2x1
-	can_repaint = FALSE
 
 /obj/machinery/door/airlock/glass_large/narsie_act()
 	return

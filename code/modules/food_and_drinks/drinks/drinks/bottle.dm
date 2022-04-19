@@ -58,6 +58,12 @@
 	var/obj/item/broken_bottle/B = new (loc)
 	if(!ranged && thrower)
 		thrower.put_in_hands(B)
+	else
+		var/matrix/M = matrix(B.transform)
+		M.Turn(rand(-170, 170))
+		B.transform = M
+		B.pixel_x = rand(-12, 12)
+		B.pixel_y = rand(-12, 12)
 	B.icon_state = icon_state
 
 	var/icon/I = new('icons/obj/drinks.dmi', src.icon_state)
@@ -89,7 +95,7 @@
 		return ..()
 
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, "<span class='warning'>You don't want to harm [target]!</span>")
+		to_chat(user, span_warning("You don't want to harm [target]!"))
 		return
 
 	var/obj/item/bodypart/affecting = user.zone_selected //Find what the player is aiming at
@@ -133,11 +139,11 @@
 
 	//Display an attack message.
 	if(target != user)
-		target.visible_message("<span class='danger'>[user] has hit [target][head_attack_message] with a bottle of [src.name]!</span>", \
-				"<span class='userdanger'>[user] has hit [target][head_attack_message] with a bottle of [src.name]!</span>")
+		target.visible_message(span_danger("[user] has hit [target][head_attack_message] with a bottle of [src.name]!"), \
+				span_userdanger("[user] has hit [target][head_attack_message] with a bottle of [src.name]!"))
 	else
-		user.visible_message("<span class='danger'>[target] hits [target.p_them()]self with a bottle of [src.name][head_attack_message]!</span>", \
-				"<span class='userdanger'>[target] hits [target.p_them()]self with a bottle of [src.name][head_attack_message]!</span>")
+		user.visible_message(span_danger("[target] hits [target.p_them()]self with a bottle of [src.name][head_attack_message]!"), \
+				span_userdanger("[target] hits [target.p_them()]self with a bottle of [src.name][head_attack_message]!"))
 
 	//Attack logs
 	log_combat(user, target, "attacked", src)
@@ -164,7 +170,7 @@
 	item_state = "beer"
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("stabbed", "slashed", "attacked")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	var/static/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/broken_bottle/Initialize()
@@ -478,7 +484,7 @@
 	icon_state = "trappistbottle"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
-	
+
 /obj/item/reagent_containers/food/drinks/bottle/nukacola
 	name = "Nuka Cola"
 	desc = "Don't cry, Don't raise your eye, it's only nuclear wasteland."
@@ -523,7 +529,7 @@
 		active = TRUE
 		log_bomber(user, "has primed a", src, "for detonation")
 
-		to_chat(user, "<span class='info'>You light [src] on fire.</span>")
+		to_chat(user, span_info("You light [src] on fire."))
 		add_overlay(GLOB.fire_overlay)
 		if(!isGlass)
 			spawn(50)
@@ -543,12 +549,12 @@
 /obj/item/reagent_containers/food/drinks/bottle/molotov/attack_self(mob/user)
 	if(active)
 		if(!isGlass)
-			to_chat(user, "<span class='danger'>The flame's spread too far on it!</span>")
+			to_chat(user, span_danger("The flame's spread too far on it!"))
 			return
-		to_chat(user, "<span class='info'>You snuff out the flame on [src].</span>")
+		to_chat(user, span_info("You snuff out the flame on [src]."))
 		cut_overlay(GLOB.fire_overlay)
 		active = 0
-		
+
 /obj/item/reagent_containers/food/drinks/bottle/maltliquor
 	name = "\improper Rabid Bear malt liquor"
 	desc = "A 40 full of malt liquor. Kicks stronger than, well, a rabid bear."

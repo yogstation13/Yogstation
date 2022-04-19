@@ -3,7 +3,7 @@
  */
 /obj/item/storage/photo_album
 	name = "photo album"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/artstuff.dmi'
 	icon_state = "album"
 	item_state = "briefcase"
 	lefthand_file = 'icons/mob/inhands/equipment/briefcase_lefthand.dmi'

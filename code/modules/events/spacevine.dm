@@ -92,7 +92,7 @@
 	if(issilicon(crosser))
 		return
 	if(prob(severity) && istype(crosser) && !isvineimmune(crosser))
-		to_chat(crosser, "<span class='alert'>You accidentally touch the vine and feel a strange sensation.</span>")
+		to_chat(crosser, span_alert("You accidentally touch the vine and feel a strange sensation."))
 		crosser.adjustToxLoss(5)
 
 /datum/spacevine_mutation/toxicity/on_eat(obj/structure/spacevine/holder, mob/living/eater)
@@ -224,13 +224,13 @@
 	if(prob(severity) && istype(crosser) && !isvineimmune(crosser))
 		var/mob/living/M = crosser
 		M.adjustBruteLoss(5)
-		to_chat(M, "<span class='alert'>You cut yourself on the thorny vines.</span>")
+		to_chat(M, span_alert("You cut yourself on the thorny vines."))
 
 /datum/spacevine_mutation/thorns/on_hit(obj/structure/spacevine/holder, mob/living/hitter, obj/item/I, expected_damage)
 	if(prob(severity) && istype(hitter) && !isvineimmune(hitter))
 		var/mob/living/M = hitter
 		M.adjustBruteLoss(5)
-		to_chat(M, "<span class='alert'>You cut yourself on the thorny vines.</span>")
+		to_chat(M, span_alert("You cut yourself on the thorny vines."))
 	. =	expected_damage
 
 /datum/spacevine_mutation/woodening
@@ -391,17 +391,14 @@
 
 /datum/spacevine_controller/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Delete Vines"] = "?_src_=[REF(src)];[HrefToken()];purge_vines=1"
+	VV_DROPDOWN_SEPERATOR
+	VV_DROPDOWN_OPTION(VV_HK_SPACEVINE_PURGE, "Delete Vines")
 
-/datum/spacevine_controller/Topic(href, href_list)
-	if(..() || !check_rights(R_ADMIN, FALSE) || !usr.client.holder.CheckAdminHref(href, href_list))
-		return
-
-	if(href_list["purge_vines"])
-		if(alert(usr, "Are you sure you want to delete this spacevine cluster?", "Delete Vines", "Yes", "No") != "Yes")
-			return
-		DeleteVines()
+/datum/spacevine_controller/vv_do_topic(href_list)
+	. = ..()
+	if(href_list[VV_HK_SPACEVINE_PURGE])
+		if(alert(usr, "Are you sure you want to delete this spacevine cluster?", "Delete Vines", "Yes", "No") == "Yes")
+			DeleteVines()
 
 /datum/spacevine_controller/proc/DeleteVines()	//this is kill
 	QDEL_LIST(vines)	//this will also qdel us
@@ -503,7 +500,7 @@
 	for(var/datum/spacevine_mutation/SM in mutations)
 		SM.on_buckle(src, V)
 	if((V.stat != DEAD) && (V.buckled != src)) //not dead or captured
-		to_chat(V, "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>")
+		to_chat(V, span_danger("The vines [pick("wind", "tangle", "tighten")] around you!"))
 		buckle_mob(V, 1)
 
 /obj/structure/spacevine/proc/spread()

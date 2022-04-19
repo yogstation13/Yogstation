@@ -21,11 +21,11 @@
 	owner.special_role = null
 	var/mob/living/M = owner.current
 	if(issilicon(M))
-		M.audible_message("<span class='notice'>[M] lets out a short blip, followed by a low-pitched beep.</span>")
-		to_chat(M,"<span class='userdanger'>You have been turned into a[ iscyborg(M) ? " cyborg" : "n AI" ]! You are no longer a thrall! Though you try, you cannot remember anything about your servitude...</span>")
+		M.audible_message(span_notice("[M] lets out a short blip, followed by a low-pitched beep."))
+		to_chat(M,span_userdanger("You have been turned into a[ iscyborg(M) ? " cyborg" : "n AI" ]! You are no longer a thrall! Though you try, you cannot remember anything about your servitude..."))
 	else
-		M.visible_message("<span class='big'>[M] looks like their mind is their own again!</span>")
-		to_chat(M,"<span class='userdanger'>A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command...</span>")
+		M.visible_message(span_big("[M] looks like their mind is their own again!"))
+		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command..."))
 	M.update_sight()
 	return ..()
 

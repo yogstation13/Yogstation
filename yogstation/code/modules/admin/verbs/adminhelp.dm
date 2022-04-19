@@ -37,7 +37,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh</A><br><br>"
 	for(var/I in tickets_list)
 		var/datum/admin_help/AH = I
-		dat += "<span class='adminnotice'><span class='adminhelp'>Ticket #[AH.id]</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+		dat += "<span class='adminnotice'>[span_adminhelp("Ticket #[AH.id]")]: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 
 	usr << browse(dat.Join(), "window=ahelp_list[state];size=600x480")
 
@@ -87,6 +87,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	src.text = text
 	src.text_admin = generate_admin_info(text)
 
+	var/datum/DBQuery/add_interaction_query = SSdbcore.NewQuery(
+		"INSERT INTO `[format_table_name("admin_ticket_interactions")]` (`ticket_id`,`user`,`text`) VALUES (:ticket_id,:user,:text)",
+		list("ticket_id" = src.parent.db_id, "user" = src.user, "text" = src.text)
+	)
+	add_interaction_query.Execute()
+	qdel(add_interaction_query)
+
 /datum/ticket_log/proc/isAdminComment()
 	return istype(user, /client) && (for_admins && !(compare_ckey(parent.initiator_ckey, user) || compare_ckey(parent.handling_admin, user)) ? 1 : 0)
 
@@ -108,6 +115,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //
 
 /datum/admin_help
+	var/db_id
 	var/id
 	var/name
 	var/state = AHELP_ACTIVE
@@ -151,12 +159,23 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.current_ticket.Close()
 	initiator.current_ticket = src
 
+	var/datum/DBQuery/add_ticket_query = SSdbcore.NewQuery(
+		"INSERT INTO `[format_table_name("admin_tickets")]` (round_id, ticket_id, ckey) VALUES (:round, :ticket, :ckey);",
+		list("round" = GLOB.round_id, "ticket" = id, "ckey" = initiator_ckey)
+	)
+
+	if(!add_ticket_query.Execute())
+		message_admins("Failed insert ticket into ticket DB. Check the SQL error logs for more details.")
+	else
+		db_id = add_ticket_query.last_insert_id
+	qdel(add_ticket_query)
+
 	TimeoutVerb()
 
 	_interactions = list()
 
 	if(is_bwoink)
-		AddInteraction("[usr.client.ckey] PM'd [initiator_key_name]")
+		AddInteraction("[usr.client?.ckey] PM'd [initiator_key_name]") 
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
 	else
 		MessageNoRecipient(msg)
@@ -165,7 +184,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
 		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
-			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent to the admin irc.</span>", confidential=TRUE)
+			to_chat(C, span_notice("No active admins are online, your adminhelp was sent to the admin irc."), confidential=TRUE)
 			heard_by_no_admins = TRUE
 
 	GLOB.ahelp_tickets.tickets_list += src
@@ -189,7 +208,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE, ckey = null)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
-	webhook_send("ticket", list("ticketid" = id, "message" = strip_html_simple(msg), "roundid" = GLOB.round_id, "user" = ckey ? ckey : usr.client.ckey))
+	webhook_send("ticket", list("ticketid" = id, "message" = strip_html_simple(msg), "roundid" = GLOB.round_id, "user" = ckey ? ckey : usr.client?.ckey))
 
 //Removes the ahelp verb and returns it after 2 minutes
 /datum/admin_help/proc/TimeoutVerb()
@@ -232,7 +251,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/MessageNoRecipient(msg)
 	var/ref_src = "[REF(src)]"
 	//Message to be sent to all admins
-	var/admin_msg = "<span class='adminnotice'><span class='adminhelp'>Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:</b> [keywords_lookup(msg)]</span>"
+	var/admin_msg = span_adminnotice("[span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]")]<b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:</b> [keywords_lookup(msg)]")
 
 	AddInteraction(msg)
 
@@ -244,17 +263,17 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		to_chat(X, admin_msg, confidential=TRUE)
 
 	//show it to the person adminhelping too
-	to_chat(initiator, "<span class='adminnotice'>PM to-<b>Admins</b>: [msg]</span>", confidential=TRUE)
+	to_chat(initiator, span_adminnotice("PM to-<b>Admins</b>: [msg]"), confidential=TRUE)
 	GLOB.unclaimed_tickets += src
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen()
 	if(state == AHELP_ACTIVE)
-		to_chat(usr, "<span class='warning'>This ticket is already open.</span>", confidential=TRUE)
+		to_chat(usr, span_warning("This ticket is already open."), confidential=TRUE)
 		return
 
 	if(GLOB.ahelp_tickets.CKey2ActiveTicket(initiator_ckey))
-		to_chat(usr, "<span class='warning'>This user already has an active ticket, cannot reopen this one.</span>", confidential=TRUE)
+		to_chat(usr, span_warning("This user already has an active ticket, cannot reopen this one."), confidential=TRUE)
 		return
 
 	switch(state)
@@ -267,7 +286,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	state = AHELP_ACTIVE
 
 	AddInteraction("Reopened by [usr.ckey]")
-	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].</span>"
+	var/msg = span_adminhelp("Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].")
 	message_admins(msg)
 	log_admin_private(msg)
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "reopened")
@@ -306,7 +325,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	GLOB.ahelp_tickets.ticketAmount -= 1
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
-		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+		if(check_rights(R_ADMIN, FALSE) && alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
 			SSticker.Reboot(delay = 100, force = TRUE)
 		else
 			message_admins("All tickets have been closed, round can be restarted")
@@ -316,7 +335,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/resolved = FALSE
 	if(state == AHELP_RESOLVED)
 		if(initiator.current_ticket)
-			to_chat(initiator, "<span class='warning'>This user already has an open ticket.</span>", confidential=TRUE)
+			to_chat(initiator, span_warning("This user already has an open ticket."), confidential=TRUE)
 			return
 
 		AddActive()
@@ -328,16 +347,16 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		resolved = TRUE
 		GLOB.ahelp_tickets.ticketAmount -= 1
 	else // AHELP_CLOSED
-		to_chat(usr, "<span class='warning'>This ticket has been closed and can't be unresolved.</span>", confidential=TRUE)
+		to_chat(usr, span_warning("This ticket has been closed and can't be unresolved."), confidential=TRUE)
 		return
 
 	if(resolved)
 		AddInteraction("Ticket #[id] marked as resolved by [usr.ckey].")
-		to_chat(initiator, "<span class='adminhelp'>Your ticket has been marked as resolved by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)].</span>", confidential=TRUE)
+		to_chat(initiator, span_adminhelp("Your ticket has been marked as resolved by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)]."), confidential=TRUE)
 		addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
 	else // AHELP_ACTIVE
 		AddInteraction("Ticket #[id] marked as unresolved by [usr.ckey].")
-		to_chat(initiator, "<span class='adminhelp'>Your ticket has been marked as unresolved by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)].</span>", confidential=TRUE)
+		to_chat(initiator, span_adminhelp("Your ticket has been marked as unresolved by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)]."), confidential=TRUE)
 		TimeoutVerb()
 
 	if(!silent)
@@ -349,8 +368,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		log_admin_private(msg)
 
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
-		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
-			SSticker.Reboot(delay = 100, force = TRUE)
+		if(check_rights(R_ADMIN, FALSE) && alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+			SSticker.Reboot(delay = 100)
 		else
 			message_admins("All tickets have been closed, round can be restarted")
 
@@ -550,14 +569,27 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	usr << browse(html, "window=ViewTicketLog[id]")
 
 // Admin claims a ticket
-/datum/admin_help/proc/Administer(key_name = key_name_admin(usr))
+/datum/admin_help/proc/Administer(announce = FALSE)
 	if(!usr.client)
 		return FALSE
 	handling_admin = usr.client
 
+	var/datum/DBQuery/set_admin_query = SSdbcore.NewQuery(
+		"UPDATE `[format_table_name("admin_tickets")]` SET `a_ckey` = :ckey WHERE `id` = :id;",
+		list("ckey" = usr.ckey, "id" = db_id)
+	)
+	set_admin_query.Execute();
+	qdel(set_admin_query);
+
 	var/msg = "[usr.ckey]/([usr]) has been assigned to [TicketHref("ticket #[id]")] as primary admin."
 	message_admins(msg)
 	log_admin_private(msg)
+
+	if(announce && initiator)
+		to_chat(initiator,
+			type = MESSAGE_TYPE_ADMINPM,
+			html = span_notice("[key_name(usr, TRUE, FALSE)] has taken your ticket and will respond shortly."),
+			confidential = TRUE)
 
 //Admin activates the pop-ups
 /datum/admin_help/proc/PopUps(key_name = key_name_admin(usr))
@@ -587,7 +619,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if("reopen")
 			Reopen()
 		if("administer")
-			Administer()
+			Administer(TRUE)
 		if("wiki")
 			WikiIssue()
 		if("bug")
@@ -692,7 +724,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				if(!T.initiator)
 					content += {"<p class='ticket-bar'>
 						<span class='ticket-number'>#[T.id]</span>
-						<b>[T.handling_admin ? "" : "<span class='unclaimed'>Unclaimed</span>!"] [T.name]</b><br />
+						<b>[T.handling_admin ? "" : "[span_unclaimed("Unclaimed")]!"] [T.name]</b><br />
 						<b>Owner:</b> <b>[T.initiator_ckey] (DC)</b>
 						[T.TicketHref("<img border='0' width='16' height='16' class='uiIcon16 icon-search' /> View")]
 						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[T.state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
@@ -704,7 +736,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 					var/ai_found = (T.initiator && isAI(T.initiator_ckey))
 					content += {"<p class='ticket-bar'>
 						<span class='ticket-number'>#[T.id]</span>
-						<b>[T.handling_admin ? "" : "<span class='unclaimed'>Unclaimed</span>"] [T.name]</b><br />
+						<b>[T.handling_admin ? "" : span_unclaimed("Unclaimed")] [T.name]</b><br />
 						<b>Owner:</b> <b>[key_name(T.initiator, 1)]</b><br />
 						[T.handling_admin ? " <b>Admin:</b> [T.handling_admin]<br />" : ""]
 						[T.TicketHref("<img border='0' width='16' height='16' class='uiIcon16 icon-search' /> View")]
@@ -807,12 +839,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	set name = "Adminhelp"
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Speech is currently admin-disabled."), confidential=TRUE)
 		return
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<span class='danger'>Error: Admin-PM: You cannot send adminhelps (Muted).</span>", confidential=TRUE)
+		to_chat(src, span_danger("Error: Admin-PM: You cannot send adminhelps (Muted)."), confidential=TRUE)
 		return
 	if(handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
@@ -830,7 +862,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				current_ticket.TimeoutVerb()
 				return
 			else
-				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>", confidential=TRUE)
+				to_chat(usr, span_warning("Ticket not found, creating new one..."), confidential=TRUE)
 		else
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
 			current_ticket.Close()

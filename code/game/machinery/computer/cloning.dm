@@ -26,9 +26,9 @@
 
 	light_color = LIGHT_COLOR_BLUE
 
-/obj/machinery/computer/cloning/Initialize()
+/obj/machinery/computer/cloning/Initialize(mapload)
 	. = ..()
-	updatemodules(TRUE)
+	updatemodules(TRUE,mapload)
 
 /obj/machinery/computer/cloning/Destroy()
 	if(pods)
@@ -89,10 +89,10 @@
 			records -= R
 
 
-/obj/machinery/computer/cloning/proc/updatemodules(findfirstcloner)
+/obj/machinery/computer/cloning/proc/updatemodules(findfirstcloner,mapload)
 	scanner = findscanner()
 	if(findfirstcloner && !LAZYLEN(pods))
-		findcloner()
+		findcloner(mapload)
 	if(!autoprocess)
 		STOP_PROCESSING(SSmachines, src)
 	else
@@ -114,14 +114,18 @@
 	// If no scanner was found, it will return null
 	return null
 
-/obj/machinery/computer/cloning/proc/findcloner()
+/obj/machinery/computer/cloning/proc/findcloner(extended_search = FALSE) //extened_search is for things like box where the console is multiple tiles away from the actual pod
 	var/obj/machinery/clonepod/podf = null
 
-	for(var/direction in GLOB.cardinals)
-
-		podf = locate(/obj/machinery/clonepod, get_step(src, direction))
-		if (!isnull(podf) && podf.is_operational())
-			AttachCloner(podf)
+	if(extended_search)
+		for(var/obj/machinery/clonepod/pod in view(3,src))
+			if(!isnull(pod) && pod.is_operational())
+				AttachCloner(pod)
+	else
+		for(var/direction in GLOB.cardinals)
+			podf = locate(/obj/machinery/clonepod, get_step(src, direction))
+			if (!isnull(podf) && podf.is_operational())
+				AttachCloner(podf)
 
 /obj/machinery/computer/cloning/proc/AttachCloner(obj/machinery/clonepod/pod)
 	if(!pod.connected)
@@ -138,7 +142,7 @@
 			if (!user.transferItemToLoc(W,src))
 				return
 			diskette = W
-			to_chat(user, "<span class='notice'>You insert [W].</span>")
+			to_chat(user, span_notice("You insert [W]."))
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 			updateUsrDialog()
 	else if(W.tool_behaviour == TOOL_MULTITOOL)
@@ -177,7 +181,7 @@
 		else
 			dat += "<a href='byond://?src=[REF(src)];task=stopautoprocess'>Stop autoprocess</a>"
 	else
-		dat += "<span class='linkOff'>Autoprocess</span>"
+		dat += span_linkOff("Autoprocess")
 	dat += "<h3>Cloning Pod Status</h3>"
 	dat += "<div class='statusDisplay'>[temp]&nbsp;</div>"
 	switch(menu)
@@ -214,14 +218,14 @@
 					dat += "<a href='byond://?src=[REF(src)];scan=1;body_only=1'>Body-Only Scan</a>"
 					dat += "<br><a href='byond://?src=[REF(src)];lock=1'>[scanner.locked ? "Unlock Scanner" : "Lock Scanner"]</a>"
 				else
-					dat += "<span class='linkOff'>Start Scan</span>"
+					dat += span_linkOff("Start Scan")
 
 			// Database
 			dat += "<h3>Database Functions</h3>"
 			if (records.len && records.len > 0)
 				dat += "<a href='byond://?src=[REF(src)];menu=2'>View Records ([records.len])</a><br>"
 			else
-				dat += "<span class='linkOff'>View Records (0)</span><br>"
+				dat += "[span_linkOff("View Records (0)")]<br>"
 			if (diskette)
 				dat += "<a href='byond://?src=[REF(src)];disk=eject'>Eject Disk</a><br>"
 
@@ -252,7 +256,7 @@
 				else
 					dat += "<font class='bad'>Unable to locate Health Implant.</font><br /><br />"
 
-				dat += "<b>Unique Identifier:</b><br /><span class='highlight'>[active_record.fields["UI"]]</span><br>"
+				dat += "<b>Unique Identifier:</b><br />[span_highlight("[active_record.fields["UI"]]")]<br>"
 				dat += "<b>Structural Enzymes:</b><br /><span class='highlight'>"
 				for(var/key in active_record.fields["SE"])
 					if(key != RACEMUT)
@@ -282,7 +286,7 @@
 					if(can_load)
 						dat += "<br /><a href='byond://?src=[REF(src)];disk=load'>Load From Disk</a>"
 					else
-						dat += "<span class='linkOff'>Cannot Load From Disk: Access Denied</span>"
+						dat += span_linkOff("Cannot Load From Disk: Access Denied")
 					if(diskette.fields["SE"])
 						if(!include_se)
 							dat += "<br /><a href='byond://?src=[REF(src)];task=include_se'>Currently Excluding SE</a>"

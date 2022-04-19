@@ -55,14 +55,14 @@ Difficulty: Medium
 	name = "Create Legion Skull"
 	icon_icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "legion_head"
-	chosen_message = "<span class='colossus'>You are now creating legion skulls.</span>"
+	chosen_message = span_colossus("You are now creating legion skulls.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/charge_target
 	name = "Charge Target"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	chosen_message = "<span class='colossus'>You are now charging at your target.</span>"
+	chosen_message = span_colossus("You are now charging at your target.")
 	chosen_attack_num = 2
 
 /mob/living/simple_animal/hostile/megafauna/legion/OpenFire(the_target)
@@ -90,7 +90,7 @@ Difficulty: Medium
 	A.faction = faction
 
 /mob/living/simple_animal/hostile/megafauna/legion/proc/charge_target()
-	visible_message("<span class='warning'><b>[src] charges!</b></span>")
+	visible_message(span_warning("<b>[src] charges!</b>"))
 	SpinAnimation(speed = 20, loops = 5)
 	ranged = FALSE
 	retreat_distance = 0
@@ -158,7 +158,7 @@ Difficulty: Medium
 
 		L.GiveTarget(target)
 
-		visible_message("<span class='boldannounce'>[src] splits in twain!</span>")
+		visible_message(span_boldannounce("[src] splits in twain!"))
 	else
 		var/last_legion = TRUE
 		for(var/mob/living/simple_animal/hostile/megafauna/legion/other in GLOB.mob_living_list)
@@ -167,8 +167,11 @@ Difficulty: Medium
 				break
 		if(last_legion)
 			loot = list(/obj/item/staff/storm,
-			/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker,
+			/obj/item/organ/grandcore,
 			/obj/item/keycard/necropolis)
+			crusher_loot = list(/obj/item/crusher_trophy/malformed_bone,/obj/item/staff/storm,
+			/obj/item/organ/grandcore,
+			/obj/item/keycard/necropolis) //the way it is now you can get this if you just whip out the crusher towards the end but nobody's gonna do that probably
 			elimination = FALSE
 		else if(prob(10))
 			loot = list(/obj/structure/closet/crate/necropolis/tendril)
@@ -194,6 +197,8 @@ Difficulty: Medium
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 25
+	wound_bonus = -40
+	bare_wound_bonus = 20
 	damtype = BURN
 	hitsound = 'sound/weapons/sear.ogg'
 	var/storm_type = /datum/weather/ash_storm
@@ -202,23 +207,23 @@ Difficulty: Medium
 
 /obj/item/staff/storm/attack_self(mob/user)
 	if(storm_cooldown > world.time)
-		to_chat(user, "<span class='warning'>The staff is still recharging!</span>")
+		to_chat(user, span_warning("The staff is still recharging!"))
 		return
 
 	var/area/user_area = get_area(user)
 	var/turf/user_turf = get_turf(user)
 	if(!user_area || !user_turf || (user_area.type in excluded_areas))
-		to_chat(user, "<span class='warning'>Something is preventing you from using the staff here.</span>")
+		to_chat(user, span_warning("Something is preventing you from using the staff here."))
 		return
 	var/datum/weather/A = SSweather.get_weather(user_turf.z, user_area)
 
 	if(A)
 		if(A.stage != END_STAGE)
 			if(A.stage == WIND_DOWN_STAGE)
-				to_chat(user, "<span class='warning'>The storm is already ending! It would be a waste to use the staff now.</span>")
+				to_chat(user, span_warning("The storm is already ending! It would be a waste to use the staff now."))
 				return
-			user.visible_message("<span class='warning'>[user] holds [src] skywards as an orange beam travels into the sky!</span>", \
-			"<span class='notice'>You hold [src] skyward, dispelling the storm!</span>")
+			user.visible_message(span_warning("[user] holds [src] skywards as an orange beam travels into the sky!"), \
+			span_notice("You hold [src] skyward, dispelling the storm!"))
 			playsound(user, 'sound/magic/staff_change.ogg', 200, 0)
 			A.wind_down()
 			log_game("[user] ([key_name(user)]) has dispelled a storm at [AREACOORD(user_turf)]")
@@ -232,8 +237,8 @@ Difficulty: Medium
 		A.telegraph_duration = 100
 		A.end_duration = 100
 
-	user.visible_message("<span class='warning'>[user] holds [src] skywards as red lightning crackles into the sky!</span>", \
-	"<span class='notice'>You hold [src] skyward, calling down a terrible storm!</span>")
+	user.visible_message(span_warning("[user] holds [src] skywards as red lightning crackles into the sky!"), \
+	span_notice("You hold [src] skyward, calling down a terrible storm!"))
 	playsound(user, 'sound/magic/staff_change.ogg', 200, 0)
 	A.telegraph()
 	storm_cooldown = world.time + 200

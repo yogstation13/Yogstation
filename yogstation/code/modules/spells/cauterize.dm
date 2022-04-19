@@ -24,7 +24,7 @@
 	target.adjustFireLoss(-500)
 	var/damage_per_tick=total_dam/real_duration
 	if(total_dam>=100)
-		to_chat(target, "<span class='warning'>You really feel like you should heal your burns!</span>")
+		to_chat(target, span_warning("You really feel like you should heal your burns!"))
 	for(var/i in 1 to real_duration)
 		sleep(10)
 		target.adjustFireLoss(damage_per_tick)

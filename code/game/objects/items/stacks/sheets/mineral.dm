@@ -61,6 +61,7 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/sandbags
 	name = "sandbags"
+	icon = 'icons/obj/frame.dmi'
 	icon_state = "sandbags"
 	singular_name = "sandbag"
 	layer = LOW_ITEM_LAYER
@@ -78,14 +79,14 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 /obj/item/emptysandbag
 	name = "empty sandbag"
 	desc = "A bag to be filled with sand."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/frame.dmi'
 	icon_state = "sandbag"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/emptysandbag/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stack/ore/glass))
 		var/obj/item/stack/ore/glass/G = W
-		to_chat(user, "<span class='notice'>You fill the sandbag.</span>")
+		to_chat(user, span_notice("You fill the sandbag."))
 		var/obj/item/stack/sheet/mineral/sandbags/I = new /obj/item/stack/sheet/mineral/sandbags(drop_location())
 		qdel(src)
 		if (Adjacent(user) && !issilicon(user))
@@ -173,7 +174,7 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	amount = 50
 
 /obj/item/stack/sheet/mineral/plasma/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins licking \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins licking \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return TOXLOSS//dont you kids know that stuff is toxic?
 
 GLOBAL_LIST_INIT(plasma_recipes, list ( \

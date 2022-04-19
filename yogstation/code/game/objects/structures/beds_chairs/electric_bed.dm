@@ -40,10 +40,10 @@
 		for(var/m in buckled_mobs)
 			var/mob/living/buckled_mob = m
 			buckled_mob.electrocute_act(170, src, 1)
-			to_chat(buckled_mob, "<span class='userdanger'>You feel a deep shock course through your body!</span>")
+			to_chat(buckled_mob, span_userdanger("You feel a deep shock course through your body!"))
 		addtimer(CALLBACK(src, /obj/structure/bed/roller/e_roller.proc/after_shock), 10)
 		addtimer(CALLBACK(src, /obj/structure/bed/roller/e_roller.proc/correct_mobs), 30)
-	visible_message("<span class='danger'>The electric roller bed went off!</span>", "<span class='italics'>You hear a deep sharp shock!</span>")
+	visible_message(span_danger("The electric roller bed went off!"), span_italics("You hear a deep sharp shock!"))
 
 /obj/structure/bed/roller/e_roller/proc/after_shock()
 	cut_overlay(elec_cables)

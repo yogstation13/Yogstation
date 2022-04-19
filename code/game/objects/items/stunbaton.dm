@@ -2,6 +2,7 @@
 /obj/item/melee/baton
 	name = "stun baton"
 	desc = "A stun baton for incapacitating people with."
+	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "stunbaton"
 	item_state = "baton"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -17,6 +18,7 @@
 
 	var/cooldown = 2 SECONDS
 	var/stunforce = 100
+	var/stamina_damage = 70
 	var/status = 0
 	var/obj/item/stock_parts/cell/cell
 	var/hitcost = 1000
@@ -28,7 +30,7 @@
 	return cell
 
 /obj/item/melee/baton/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (FIRELOSS)
 
 /obj/item/melee/baton/Initialize()
@@ -81,23 +83,23 @@
 /obj/item/melee/baton/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += "<span class='notice'>\The [src] is [round(cell.percent())]% charged.</span>"
+		. += span_notice("\The [src] is [round(cell.percent())]% charged.")
 	else
-		. += "<span class='warning'>\The [src] does not have a power source installed.</span>"
+		. += span_warning("\The [src] does not have a power source installed.")
 
 /obj/item/melee/baton/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stock_parts/cell))
 		var/obj/item/stock_parts/cell/C = W
 		if(cell)
-			to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
+			to_chat(user, span_notice("[src] already has a cell."))
 		else
 			if(C.maxcharge < hitcost)
-				to_chat(user, "<span class='notice'>[src] requires a higher capacity cell.</span>")
+				to_chat(user, span_notice("[src] requires a higher capacity cell."))
 				return
 			if(!user.transferItemToLoc(W, src))
 				return
 			cell = W
-			to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
+			to_chat(user, span_notice("You install a cell in [src]."))
 			update_icon()
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
@@ -105,7 +107,7 @@
 			cell.update_icon()
 			cell.forceMove(get_turf(src))
 			cell = null
-			to_chat(user, "<span class='notice'>You remove the cell from [src].</span>")
+			to_chat(user, span_notice("You remove the cell from [src]."))
 			status = 0
 			update_icon()
 			STOP_PROCESSING(SSobj, src) // no cell, no charge; stop processing for on because it cant be on
@@ -115,7 +117,7 @@
 /obj/item/melee/baton/attack_self(mob/user)
 	if(cell && cell.charge > hitcost)
 		status = !status
-		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
+		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 75, 1, -1)
 		cell_last_used = 0
 		if(status)
@@ -125,21 +127,21 @@
 	else
 		status = 0
 		if(!cell)
-			to_chat(user, "<span class='warning'>[src] does not have a power source!</span>")
+			to_chat(user, span_warning("[src] does not have a power source!"))
 		else
-			to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
+			to_chat(user, span_warning("[src] is out of charge."))
 	update_icon()
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
 	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
-		user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src]!</span>", \
-							"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
+		user.visible_message(span_danger("[user] accidentally hits [user.p_them()]self with [src]!"), \
+							span_userdanger("You accidentally hit yourself with [src]!"))
 		user.Paralyze(stunforce*3)
 		deductcharge(hitcost)
 		return
 	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
-		to_chat(user, "<span class='warning'>You can't seem to remember how this works!</span>")
+		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return
 	//yogs edit begin ---------------------------------
 	if(status && ishuman(M))
@@ -147,7 +149,7 @@
 		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
 			stomach.adjust_charge(20)
-			to_chat(M,"<span class='notice'>You get charged by [src].</span>")
+			to_chat(M,span_notice("You get charged by [src]."))
 	//yogs edit end  ----------------------------------
 	if(iscyborg(M))
 		..()
@@ -168,10 +170,10 @@
 					user.do_attack_animation(M)
 					return
 			else
-				to_chat(user, "<span class='danger'>The baton is still charging!</span>")
+				to_chat(user, span_danger("The baton is still charging!"))
 		else
-			M.visible_message("<span class='warning'>[user] has prodded [M] with [src]. Luckily it was off.</span>", \
-							"<span class='warning'>[user] has prodded you with [src]. Luckily it was off.</span>")
+			M.visible_message(span_warning("[user] has prodded [M] with [src]. Luckily it was off."), \
+							span_warning("[user] has prodded you with [src]. Luckily it was off."))
 	else
 		if(status)
 			if(cooldown_check <= world.time)
@@ -193,20 +195,37 @@
 		if(!deductcharge(hitcost))
 			return 0
 
-	/// After a target is hit, we do a chunk of stamina damage, along with other effects.
-	/// After a period of time, we then check to see what stun duration we give.
-	L.Jitter(20)
-	L.confused = max(8, L.confused)
-	L.apply_effect(EFFECT_STUTTER, stunforce)
-	L.adjustStaminaLoss(60)
+	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
+
+	var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
+	var/armor_block = L.run_armor_check(affecting, "energy")
+	L.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
-	addtimer(CALLBACK(src, .proc/apply_stun_effect_end, L), 2.5 SECONDS)
+	var/current_stamina_damage = L.getStaminaLoss()
+
+	if(current_stamina_damage >= 90)
+		if(!L.IsParalyzed())
+			to_chat(L, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
+		if(trait_check)
+			L.Paralyze(stunforce * 0.1)
+		else
+			L.Paralyze(stunforce)
+		L.Jitter(20)
+		L.confused = max(8, L.confused)
+		L.apply_effect(EFFECT_STUTTER, stunforce)
+	else if(current_stamina_damage > 70)
+		L.Jitter(10)
+		L.confused = max(8, L.confused)
+		L.apply_effect(EFFECT_STUTTER, stunforce)
+	else if(current_stamina_damage >= 20)
+		L.Jitter(5)
+		L.apply_effect(EFFECT_STUTTER, stunforce)
 
 	if(user)
 		L.lastattacker = user.real_name
 		L.lastattackerckey = user.ckey
-		L.visible_message("<span class='danger'>[user] has stunned [L] with [src]!</span>", \
-								"<span class='userdanger'>[user] has stunned you with [src]!</span>")
+		L.visible_message(span_danger("[user] has stunned [L] with [src]!"), \
+								span_userdanger("[user] has stunned you with [src]!"))
 		log_combat(user, L, "stunned")
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
@@ -218,16 +237,6 @@
 	cooldown_check = world.time + cooldown
 
 	return 1
-
-/// After the initial stun period, we check to see if the target needs to have the stun applied.
-/obj/item/melee/baton/proc/apply_stun_effect_end(mob/living/target)
-	var/trait_check = HAS_TRAIT(target, TRAIT_STUNRESISTANCE) //var since we check it in out to_chat as well as determine stun duration
-	if(!target.IsParalyzed())
-		to_chat(target, "<span class='warning'>You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]</span>")
-	if(trait_check)
-		target.Paralyze(stunforce * 0.1)
-	else
-		target.Paralyze(stunforce)
 
 /obj/item/melee/baton/emp_act(severity)
 	. = ..()
@@ -246,6 +255,7 @@
 	force = 3
 	throwforce = 5
 	stunforce = 100
+	stamina_damage = 45
 	hitcost = 2000
 	throw_hit_chance = 10
 	slot_flags = ITEM_SLOT_BACK

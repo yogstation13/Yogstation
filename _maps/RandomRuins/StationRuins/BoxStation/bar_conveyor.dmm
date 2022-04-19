@@ -627,15 +627,6 @@
 	},
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
-"ca" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/kitchen)
 "cc" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/vaporwave,
@@ -993,6 +984,10 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"hd" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/kitchen)
 "ht" = (
 /obj/effect/landmark/event_spawn,
 /turf/closed/wall,
@@ -1040,6 +1035,17 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"ms" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/kitchen)
 "nE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only{
@@ -1119,6 +1125,15 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"tZ" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/kitchen)
 "up" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -1147,11 +1162,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"wu" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/kitchen)
 "wy" = (
 /obj/item/storage/secure/safe{
 	pixel_x = -2;
@@ -1181,6 +1191,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"Ha" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/kitchen)
 "Hq" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/mask/cigarette/rollie/cannabis,
@@ -1222,14 +1236,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"Mi" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/kitchen)
 "MC" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1276,27 +1282,17 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"RU" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/kitchen)
 "SA" = (
 /obj/effect/landmark/blobstart,
 /obj/item/clothing/mask/cigarette/rollie/cannabis,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"VM" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/kitchen)
-"Wr" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/kitchen)
 "Yu" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/structure/table/wood,
@@ -1608,8 +1604,8 @@ bn
 al
 bl
 bO
-wu
-Wr
+tZ
+Ha
 bN
 bN
 yR
@@ -1624,8 +1620,8 @@ bo
 bD
 br
 bP
-VM
-Mi
+ms
+hd
 cf
 bN
 MC
@@ -1656,7 +1652,7 @@ ba
 al
 bC
 bR
-ca
+RU
 bU
 bN
 bN

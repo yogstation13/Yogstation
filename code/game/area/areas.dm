@@ -43,7 +43,7 @@
 	/// Bonus mood for being in this area
 	var/mood_bonus = 0
 	/// Mood message for being here, only shows up if mood_bonus != 0
-	var/mood_message = "<span class='nicegreen'>This area is pretty nice!\n</span>"
+	var/mood_message = span_nicegreen("This area is pretty nice!\n")
 
 	var/power_equip = TRUE
 	var/power_light = TRUE
@@ -64,6 +64,8 @@
 	var/safe = FALSE
 	/// If false, loading multiple maps with this area type will create multiple instances.
 	var/unique = TRUE
+	/// If false, then this area will show up as gibberish on suit sensors.
+	var/show_on_sensors = TRUE
 
 	var/no_air = null
 

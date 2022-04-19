@@ -38,7 +38,7 @@
 	if(prob(90))
 		playsound(src, 'yogstation/sound/misc/quack.ogg', 50, 1)
 		if(prob(50))
-			audible_message("<span class='danger'>You hear a QUACK!</span>")
+			audible_message(span_danger("You hear a QUACK!"))
 
 	if(clong && prob(25))
 		x = clong.x
@@ -64,7 +64,7 @@
 		qdel(other)
 
 /obj/effect/immovablerod/duck/penetrate(mob/living/L)
-	L.visible_message("<span class='danger'>[L] is QUACKED by an immovable duck!</span>" , "<span class='userdanger'>You get QUACKED!!!</span>" , "<span class ='danger'>You hear a QUACK!</span>")
+	L.visible_message(span_danger("[L] is QUACKED by an immovable duck!") , span_userdanger("You get QUACKED!!!") , "<span class ='danger'>You hear a QUACK!</span>")
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.adjustBruteLoss(160)

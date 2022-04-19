@@ -11,7 +11,8 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
-	var/icon_regular_floor = "floor" //used to remember what icon the tile should have by default
+	var/icon_state_regular_floor = "floor" //used to remember what icon state the tile should have by default
+	var/icon_regular_floor = 'icons/turf/floors.dmi' //used to remember what icon the tile should have by default
 	var/icon_plating = "plating"
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
@@ -51,9 +52,11 @@
 					"ironsand6", "ironsand7", "ironsand8", "ironsand9", "ironsand10", "ironsand11",
 					"ironsand12", "ironsand13", "ironsand14", "ironsand15")
 	if(broken || burnt || (icon_state in icons_to_ignore_at_floor_init)) //so damaged/burned tiles or plating icons aren't saved as the default
-		icon_regular_floor = "floor"
+		icon_state_regular_floor = "floor"
+		icon_regular_floor = 'icons/turf/floors.dmi'
 	else
-		icon_regular_floor = icon_state
+		icon_state_regular_floor = icon_state
+		icon_regular_floor = icon
 	if(mapload && prob(33))
 		MakeDirty()
 	if(is_station_level(z))
@@ -122,6 +125,9 @@
 /turf/open/floor/proc/gets_drilled()
 	return
 
+/turf/open/floor/proc/attempt_drilled()
+	return
+
 /turf/open/floor/proc/break_tile_to_plating()
 	var/turf/open/floor/plating/T = make_plating()
 	if(!istype(T))
@@ -152,9 +158,11 @@
 	if(!ispath(path, /turf/open/floor))
 		return ..()
 	var/old_icon = icon_regular_floor
+	var/old_icon_state = icon_state_regular_floor
 	var/old_dir = dir
 	var/turf/open/floor/W = ..()
 	W.icon_regular_floor = old_icon
+	W.icon_state_regular_floor = old_icon_state
 	W.setDir(old_dir)
 	W.update_icon()
 	return W
@@ -194,10 +202,10 @@
 		broken = 0
 		burnt = 0
 		if(user && !silent)
-			to_chat(user, "<span class='notice'>You remove the broken plating.</span>")
+			to_chat(user, span_notice("You remove the broken plating."))
 	else
 		if(user && !silent)
-			to_chat(user, "<span class='notice'>You remove the floor tile.</span>")
+			to_chat(user, span_notice("You remove the floor tile."))
 		if(floor_tile && make_tile)
 			new floor_tile(src)
 	return make_plating()
@@ -262,15 +270,15 @@
 /turf/open/floor/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
-			to_chat(user, "<span class='notice'>You build a wall.</span>")
+			to_chat(user, span_notice("You build a wall."))
 			PlaceOnTop(/turf/closed/wall)
 			return TRUE
 		if(RCD_AIRLOCK)
 			if((locate(/obj/machinery/door/airlock) in src) || (locate(/obj/machinery/door/window) in src)) // Have to ignore firelocks
-				to_chat(user, "<span class='notice'>There is already a door here</span>")
+				to_chat(user, span_notice("There is already a door here"))
 				return FALSE
 			if(ispath(the_rcd.airlock_type, /obj/machinery/door/window))
-				to_chat(user, "<span class='notice'>You build a windoor.</span>")
+				to_chat(user, span_notice("You build a windoor."))
 				var/obj/machinery/door/window/new_window = new the_rcd.airlock_type(src, user.dir)
 				if(the_rcd.airlock_electronics)
 					new_window.req_access = the_rcd.airlock_electronics.accesses.Copy()
@@ -279,7 +287,7 @@
 				new_window.autoclose = TRUE
 				new_window.update_icon()
 				return TRUE
-			to_chat(user, "<span class='notice'>You build an airlock.</span>")
+			to_chat(user, span_notice("You build an airlock."))
 			var/obj/machinery/door/airlock/new_airlock = new the_rcd.airlock_type(src)
 			new_airlock.electronics = new /obj/item/electronics/airlock(new_airlock)
 			if(the_rcd.airlock_electronics)
@@ -302,12 +310,12 @@
 		if(RCD_DECONSTRUCT)
 			if(ScrapeAway(flags = CHANGETURF_INHERIT_AIR) == src)
 				return FALSE
-			to_chat(user, "<span class='notice'>You deconstruct [src].</span>")
+			to_chat(user, span_notice("You deconstruct [src]."))
 			return TRUE
 		if(RCD_WINDOWGRILLE)
 			if(locate(/obj/structure/grille) in src)
 				return FALSE
-			to_chat(user, "<span class='notice'>You construct the grille.</span>")
+			to_chat(user, span_notice("You construct the grille."))
 			var/obj/structure/grille/new_grille = new(src)
 			new_grille.anchored = TRUE
 			return TRUE

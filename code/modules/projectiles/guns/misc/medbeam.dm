@@ -76,7 +76,7 @@
 	if(get_dist(source, current_target)>max_range || !los_check(source, current_target))
 		LoseTarget()
 		if(isliving(source))
-			to_chat(source, "<span class='warning'>You lose control of the beam!</span>")
+			to_chat(source, span_warning("You lose control of the beam!"))
 		return
 
 	if(current_target)
@@ -155,9 +155,9 @@
 /obj/item/gun/medbeam/uber/examine(mob/user)
 	. = ..()
 	if(ubercharge == 100)
-		. += "<span class='notice'>[src] is fully charged!</span>"
+		. += span_notice("[src] is fully charged!")
 	else
-		. += "<span class='notice'>[src] is [ubercharge]% charged.</span>"
+		. += span_notice("[src] is [ubercharge]% charged.")
 
 /// Handles ubercharge ticks and icon changes
 /obj/item/gun/medbeam/uber/process(delta_time)
@@ -246,8 +246,12 @@
 	if(!IsAvailable())
 		return
 
+	if(gun.ubering)
+		to_chat(owner, span_warning("You are already using übercharge!"))
+		return
+
 	if(gun.ubercharge < 100)
-		to_chat(owner, "<span class='warning'>[gun] is only [gun.ubercharge]% charged!</span>")
+		to_chat(owner, span_warning("[gun] is only [gun.ubercharge]% charged!"))
 		return
 
 	gun.uber_act()

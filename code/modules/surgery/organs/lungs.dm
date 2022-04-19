@@ -9,11 +9,11 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = STANDARD_ORGAN_DECAY
+	decay_factor = STANDARD_ORGAN_DECAY * 0.9 // fails around 16.5 minutes, lungs are one of the last organs to die (of the ones we have)
 
-	high_threshold_passed = "<span class='warning'>You feel some sort of constriction around your chest as your breathing becomes shallow and rapid.</span>"
-	now_fixed = "<span class='warning'>Your lungs seem to once again be able to hold air.</span>"
-	high_threshold_cleared = "<span class='info'>The constriction around your chest loosens as your breathing calms down.</span>"
+	high_threshold_passed = span_warning("You feel some sort of constriction around your chest as your breathing becomes shallow and rapid.")
+	now_fixed = span_warning("Your lungs seem to once again be able to hold air.")
+	high_threshold_cleared = span_info("The constriction around your chest loosens as your breathing calms down.")
 
 	//Breath damage
 
@@ -92,6 +92,7 @@
 		return FALSE
 
 	var/gas_breathed = 0
+	var/eff = get_organ_efficiency()
 
 	//Partial pressures in our breath
 	var/O2_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/oxygen))
@@ -121,7 +122,7 @@
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
-				H.adjustOxyLoss(-5)
+				H.adjustOxyLoss(-5 * eff)
 			gas_breathed = breath.get_moles(/datum/gas/oxygen)
 			H.clear_alert("not_enough_oxy")
 
@@ -149,7 +150,7 @@
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
-				H.adjustOxyLoss(-5)
+				H.adjustOxyLoss(-5 * eff)
 			gas_breathed = breath.get_moles(/datum/gas/nitrogen)
 			H.clear_alert("nitro")
 
@@ -186,7 +187,7 @@
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
-				H.adjustOxyLoss(-5)
+				H.adjustOxyLoss(-5 * organ_efficiency)
 			gas_breathed = breath.get_moles(/datum/gas/carbon_dioxide)
 			H.clear_alert("not_enough_co2")
 
@@ -216,7 +217,7 @@
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
-				H.adjustOxyLoss(-5)
+				H.adjustOxyLoss(-5 * eff)
 			gas_breathed = breath.get_moles(/datum/gas/plasma)
 			H.clear_alert("not_enough_tox")
 
@@ -270,36 +271,36 @@
 	// Nitryl
 		var/nitryl_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/nitryl))
 		if (prob(nitryl_pp))
-			to_chat(H, "<span class='alert'>Your mouth feels like it's burning!</span>")
+			to_chat(H, span_alert("Your mouth feels like it's burning!"))
 		if (nitryl_pp >40)
 			H.emote("gasp")
 			H.adjustFireLoss(10)
 			if (prob(nitryl_pp/2))
-				to_chat(H, "<span class='alert'>Your throat closes up!</span>")
+				to_chat(H, span_alert("Your throat closes up!"))
 				H.silent = max(H.silent, 3)
 		else
 			H.adjustFireLoss(nitryl_pp/4)
 		gas_breathed = breath.get_moles(/datum/gas/nitryl)
 		if (gas_breathed > gas_stimulation_min)
-			H.reagents.add_reagent(/datum/reagent/nitryl,1)
+			H.reagents.add_reagent(/datum/reagent/nitryl,1*eff)
 
 		breath.adjust_moles(/datum/gas/nitryl, -gas_breathed)
 
 // Freon
 		var/freon_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/freon))
 		if (prob(freon_pp))
-			to_chat(H, "<span class='alert'>Your mouth feels like it's burning!</span>")
+			to_chat(H, span_alert("Your mouth feels like it's burning!"))
 		if (freon_pp >40)
 			H.emote("gasp")
 			H.adjustFireLoss(15)
 			if (prob(freon_pp/2))
-				to_chat(H, "<span class='alert'>Your throat closes up!</span>")
+				to_chat(H, span_alert("Your throat closes up!"))
 				H.silent = max(H.silent, 3)
 		else
 			H.adjustFireLoss(freon_pp/4)
 		gas_breathed = breath.get_moles(/datum/gas/freon)
 		if (gas_breathed > gas_stimulation_min)
-			H.reagents.add_reagent(/datum/reagent/freon,1)
+			H.reagents.add_reagent(/datum/reagent/freon,1*eff)
 
 		breath.adjust_moles(/datum/gas/freon, -gas_breathed)
 
@@ -309,7 +310,7 @@
 		if(healium_pp > SA_sleep_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
 			ADD_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
-			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1 - existing))
+			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1*eff - existing))
 			H.adjustFireLoss(-7)
 			H.adjustToxLoss(-5)
 			H.adjustBruteLoss(-5)
@@ -350,7 +351,7 @@
 		gas_breathed = breath.get_moles(/datum/gas/stimulum)
 		if (gas_breathed > gas_stimulation_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/stimulum)
-			H.reagents.add_reagent(/datum/reagent/stimulum,max(0, 1 - existing))
+			H.reagents.add_reagent(/datum/reagent/stimulum,max(0, 1*eff - existing))
 		breath.adjust_moles(/datum/gas/stimulum, -gas_breathed)
 
 	// Miasma
@@ -371,22 +372,22 @@
 					// At lower pp, give out a little warning
 					SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "smell")
 					if(prob(5))
-						to_chat(owner, "<span class='notice'>There is an unpleasant smell in the air.</span>")
+						to_chat(owner, span_notice("There is an unpleasant smell in the air."))
 				if(5 to 15)
 					//At somewhat higher pp, warning becomes more obvious
 					if(prob(15))
-						to_chat(owner, "<span class='warning'>You smell something horribly decayed inside this room.</span>")
+						to_chat(owner, span_warning("You smell something horribly decayed inside this room."))
 						SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/bad_smell)
 				if(15 to 30)
 					//Small chance to vomit. By now, people have internals on anyway
 					if(prob(5))
-						to_chat(owner, "<span class='warning'>The stench of rotting carcasses is unbearable!</span>")
+						to_chat(owner, span_warning("The stench of rotting carcasses is unbearable!"))
 						SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/nauseating_stench)
 						owner.vomit()
 				if(30 to INFINITY)
 					//Higher chance to vomit. Let the horror start
 					if(prob(15))
-						to_chat(owner, "<span class='warning'>The stench of rotting carcasses is unbearable!</span>")
+						to_chat(owner, span_warning("The stench of rotting carcasses is unbearable!"))
 						SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/nauseating_stench)
 						owner.vomit()
 				else
@@ -436,7 +437,7 @@
 			H.apply_damage_type(cold_level_1_damage*cold_modifier, cold_damage_type)
 		if(breath_temperature < cold_level_1_threshold)
 			if(prob(20))
-				to_chat(H, "<span class='warning'>You feel [cold_message] in your [name]!</span>")
+				to_chat(H, span_warning("You feel [cold_message] in your [name]!"))
 
 	if(!HAS_TRAIT(H, TRAIT_RESISTHEAT)) // HEAT DAMAGE
 		var/heat_modifier = H.dna.species.heatmod
@@ -448,17 +449,29 @@
 			H.apply_damage_type(heat_level_3_damage*heat_modifier, heat_damage_type)
 		if(breath_temperature > heat_level_1_threshold)
 			if(prob(20))
-				to_chat(H, "<span class='warning'>You feel [hot_message] in your [name]!</span>")
+				to_chat(H, span_warning("You feel [hot_message] in your [name]!"))
 
 /obj/item/organ/lungs/on_life()
 	..()
 	if((!failed) && ((organ_flags & ORGAN_FAILING)))
 		if(owner.stat == CONSCIOUS)
-			owner.visible_message("<span class='userdanger'>[owner] grabs [owner.p_their()] throat, struggling for breath!</span>")
+			owner.visible_message(span_userdanger("[owner] grabs [owner.p_their()] throat, struggling for breath!"))
 		failed = TRUE
 	else if(!(organ_flags & ORGAN_FAILING))
 		failed = FALSE
 	return
+
+/obj/item/organ/lungs/attackby(obj/item/W, mob/user, params)
+	if(!(organ_flags & ORGAN_SYNTHETIC) && organ_efficiency == 1 && W.tool_behaviour == TOOL_CROWBAR)
+		user.visible_message(span_notice("[user] extends [src] with [W]!"), span_notice("You use [W] to extend [src]!"), "You hear something stretching.")
+		name = "extended [name]"
+		icon_state += "-crobar" //shh! don't tell anyone i handed you this card
+		safe_oxygen_min *= 2 //SCREAM LOUDER i dont know maybe eventually
+		safe_toxins_min *= 2
+		safe_nitro_min *= 2 //BREATHE HARDER
+		safe_co2_min *= 2
+		organ_efficiency = 2 //HOLD YOUR BREATH FOR REALLY LONG
+		maxHealth *= 0.5 //This procedure is not legal but i will do it for you
 
 /obj/item/organ/lungs/prepare_eat()
 	var/obj/S = ..()
@@ -487,11 +500,10 @@
 
 /obj/item/organ/lungs/xeno/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H) //handling this externally so I don't have to nerf pluoxium, can't handle it internally without removing perpetual pluox or requiring plasma for breathing
 	. = ..()
-	if(!breath.total_moles())
-		return .
-	var/breath_amt = breath.get_moles(/datum/gas/plasma)
-	breath.adjust_moles(/datum/gas/plasma, -breath_amt)
-	breath.adjust_moles(/datum/gas/oxygen, breath_amt)
+	if(breath)
+		var/breath_amt = breath.get_moles(/datum/gas/plasma)
+		breath.adjust_moles(/datum/gas/plasma, -breath_amt)
+		breath.adjust_moles(/datum/gas/oxygen, breath_amt)
 
 /obj/item/organ/lungs/slime
 	name = "vacuole"
@@ -504,6 +516,13 @@
 	if (breath)
 		var/plasma_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/plasma))
 		owner.blood_volume += (0.2 * plasma_pp) // 10/s when breathing literally nothing but plasma, which will suffocate you.
+
+/obj/item/organ/lungs/ghetto
+	name = "oxygen tanks welded to a modular reciever"
+	desc = "A pair of oxygen tanks which have been attached to a modular (oxygen) receiver. They are incapable of supplying air, but can work as a replacement for lungs."
+	icon_state = "lungs-g"
+	organ_efficiency = 0.5
+	organ_flags = ORGAN_SYNTHETIC //the moment i understood the weakness of flesh, it disgusted me, and i yearned for the certainty, of steel
 
 /obj/item/organ/lungs/cybernetic
 	name = "cybernetic lungs"
@@ -521,9 +540,10 @@
 
 /obj/item/organ/lungs/cybernetic/upgraded
 	name = "upgraded cybernetic lungs"
-	desc = "A more advanced version of the stock cybernetic lungs, for use in hazardous environments. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
+	desc = "A more advanced version of the stock cybernetic lungs, more efficient at, well, breathing. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
 	icon_state = "lungs-c-u"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 1.5
 	safe_oxygen_min = 10
 	safe_co2_max = 20
 	safe_toxins_max = 20 //Higher resistance to most harmful gasses

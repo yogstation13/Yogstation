@@ -7,8 +7,8 @@
 	say_mod = "moans"
 	sexes = 0
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
-	species_traits = list(NOBLOOD,NOZOMBIE,NOTRANSSTING)
-	inherent_traits = list(TRAIT_STABLELIVER, TRAIT_STABLEHEART, TRAIT_RESISTCOLD ,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASYDISMEMBER,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH)
+	species_traits = list(NOBLOOD,NOZOMBIE,NOTRANSSTING,HAS_FLESH,HAS_BONE)
+	inherent_traits = list(TRAIT_STABLELIVER, TRAIT_STABLEHEART, TRAIT_RESISTCOLD ,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASYDISMEMBER,TRAIT_EASILY_WOUNDED,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH)
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	mutanttongue = /obj/item/organ/tongue/zombie
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
@@ -25,7 +25,7 @@
 	name = "Infectious Zombie"
 	id = "memezombies"
 	limbs_id = "zombie"
-	inherent_traits = list(TRAIT_STABLELIVER, TRAIT_STABLEHEART, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASYDISMEMBER,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH,TRAIT_STUNIMMUNE)
+	inherent_traits = list(TRAIT_STABLELIVER, TRAIT_STABLEHEART, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH,TRAIT_STUNIMMUNE)
 	mutanthands = /obj/item/zombie_hand
 	armor = 20 // 120 damage to KO a zombie, which kills it
 	speedmod = 1.6
@@ -41,7 +41,7 @@
 /datum/species/zombie/infectious/spec_stun(mob/living/carbon/human/H,amount)
 	. = min(20, amount)
 
-/datum/species/zombie/infectious/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
+/datum/species/zombie/infectious/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
 	. = ..()
 	if(.)
 		regen_cooldown = world.time + REGENERATION_DELAY
@@ -58,6 +58,10 @@
 			heal_amt *= 2
 		C.heal_overall_damage(heal_amt,heal_amt)
 		C.adjustToxLoss(-heal_amt)
+		for(var/i in C.all_wounds)
+			var/datum/wound/iter_wound = i
+			if(prob(4-iter_wound.severity))
+				iter_wound.remove_wound()
 	if(!C.InCritical() && prob(4))
 		playsound(C, pick(spooks), 50, TRUE, 10)
 
@@ -100,7 +104,7 @@
 	speedmod = 1.45
 	mutanthands = /obj/item/zombie_hand/gamemode
 	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTDAMAGESLOWDOWN, TRAIT_STABLELIVER, TRAIT_STABLEHEART,
-	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA)
+	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA, TRAIT_EASILY_WOUNDED, TRAIT_EASYDISMEMBER)
 	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_HEAD)
 
 /datum/species/zombie/infectious/gamemode/runner
@@ -124,7 +128,7 @@
 /datum/species/zombie/infectious/gamemode/spec_stun(mob/living/carbon/human/H,amount)
 	. = 0
 
-/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
+/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE)
 	if(damagetype == STAMINA)
 		return
 	. = ..()
@@ -147,20 +151,20 @@
 	armor = 10
 	brutemod = 1.05
 	burnmod = 1.05
-	species_traits = list(NO_UNDERWEAR, NOBLOOD, NOZOMBIE, NOTRANSSTING)
+	species_traits = list(NO_UNDERWEAR, NOBLOOD, NOZOMBIE, NOTRANSSTING, HAS_FLESH, HAS_BONE)
 	inherent_traits = list(TRAIT_EASYDISMEMBER, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE,
-	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA)
+	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA, TRAIT_EASILY_WOUNDED)
 
 /datum/species/zombie/infectious/gamemode/necromanced_minion/spec_life(mob/living/carbon/human/H)
 	. = ..()
 	if(prob(50) && !H.stat)
 		if(get_dist(get_turf(master), get_turf(H)) > max_distance)
 			if(prob(20))
-				to_chat(H, "<span class='userdanger'>You are too far away from your master! You are taking damage!</span>")
+				to_chat(H, span_userdanger("You are too far away from your master! You are taking damage!"))
 			apply_damage(7.5, BRUTE, null, FALSE, H)
 
 		if(master.stat == DEAD || QDELETED(master))
-			to_chat(H, "<span class='userdanger'>Your master is dead. And with his death, comes yours!</span>")
+			to_chat(H, span_userdanger("Your master is dead. And with his death, comes yours!"))
 			H.dust()
 
 #undef REGENERATION_DELAY

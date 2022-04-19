@@ -10,6 +10,8 @@
 	canmove = TRUE
 	density = FALSE		//Thought I couldn't fix this one easily, phew
 	movedelay = 4
+	///Determines the typepath of what the object folds into
+	var/foldabletype = /obj/item/wheelchair
 
 /obj/vehicle/ridden/wheelchair/Initialize()
 	. = ..()
@@ -38,7 +40,7 @@
 /obj/vehicle/ridden/wheelchair/driver_move(mob/living/user, direction)
 	if(istype(user))
 		if(canmove && (user.get_num_arms() < arms_required))
-			to_chat(user, "<span class='warning'>You don't have enough arms to operate the wheels!</span>")
+			to_chat(user, span_warning("You don't have enough arms to operate the wheels!"))
 			canmove = FALSE
 			addtimer(VARSET_CALLBACK(src, canmove, TRUE), 20)
 			return FALSE
@@ -75,9 +77,9 @@
 	handle_rotation(newdir)
 
 /obj/vehicle/ridden/wheelchair/wrench_act(mob/living/user, obj/item/I)	//Attackby should stop it attacking the wheelchair after moving away during decon
-	to_chat(user, "<span class='notice'>You begin to detach the wheels...</span>")
+	to_chat(user, span_notice("You begin to detach the wheels..."))
 	if(I.use_tool(src, user, 40, volume=50))
-		to_chat(user, "<span class='notice'>You detach the wheels and deconstruct the chair.</span>")
+		to_chat(user, span_notice("You detach the wheels and deconstruct the chair."))
 		new /obj/item/stack/rods(drop_location(), 6)
 		new /obj/item/stack/sheet/metal(drop_location(), 4)
 		qdel(src)
@@ -114,3 +116,36 @@
 		var/datum/component/riding/D = GetComponent(/datum/component/riding)
 		D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * 6.7) / user.get_num_arms()
 	return ..()
+
+/obj/item/wheelchair
+	name = "wheelchair"
+	desc = "A collapsed wheelchair that can be carried around."
+	icon = 'icons/obj/vehicles.dmi'
+	icon_state = "wheelchair_folded"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	force = 8 //Force is same as a chair
+	custom_materials = list(/datum/material/iron = 10000)
+	var/unfolded_type = /obj/vehicle/ridden/wheelchair
+
+/obj/vehicle/ridden/wheelchair/MouseDrop(over_object, src_location, over_location)  //Lets you collapse wheelchair
+	. = ..()
+	if(over_object != usr || !Adjacent(usr) || !foldabletype)
+		return FALSE
+	if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
+		return FALSE
+	if(has_buckled_mobs())
+		return FALSE
+	usr.visible_message("<span class='notice'>[usr] collapses [src].</span>", "<span class='notice'>You collapse [src].</span>")
+	var/obj/vehicle/ridden/wheelchair/wheelchair_folded = new foldabletype(get_turf(src))
+	usr.put_in_hands(wheelchair_folded)
+	qdel(src)
+
+/obj/item/wheelchair/attack_self(mob/user)  //Deploys wheelchair on in-hand use
+	deploy_wheelchair(user, user.loc)
+
+/obj/item/wheelchair/proc/deploy_wheelchair(mob/user, atom/location)
+	var/obj/vehicle/ridden/wheelchair/wheelchair_unfolded = new unfolded_type(location)
+	wheelchair_unfolded.add_fingerprint(user)
+	qdel(src)

@@ -32,7 +32,7 @@
 			if(!I.tool_start_check(user, amount=0))
 				return
 
-			to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
+			to_chat(user, span_notice("You begin repairing [src]..."))
 			if(I.use_tool(src, user, 40, volume=40))
 				obj_integrity = clamp(obj_integrity + 20, 0, max_integrity)
 	else
@@ -68,20 +68,20 @@
 	if(istype(I,/obj/item/stack/sheet/mineral/wood))
 		var/obj/item/stack/sheet/mineral/wood/W = I
 		if(W.amount < 5)
-			to_chat(user, "<span class='warning'>You need at least five wooden planks to make a wall!</span>")
+			to_chat(user, span_warning("You need at least five wooden planks to make a wall!"))
 			return
 		else
-			to_chat(user, "<span class='notice'>You start adding [I] to [src]...</span>")
-			if(do_after(user, 50, target=src))
+			to_chat(user, span_notice("You start adding [I] to [src]..."))
+			if(do_after(user, 5 SECONDS, target=src))
 				W.use(5)
 				new /turf/closed/wall/mineral/wood/nonmetal(get_turf(src))
 				qdel(src)
 				return
 	else if(I.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HARM)
 		user.visible_message("[user.name] starts prying [src.name] apart.", \
-							"<span class='notice'>You start prying the barricade apart</span>")
+							span_notice("You start prying the barricade apart"))
 		if(I.use_tool(src, user, 190, volume=50))
-			to_chat(user, "<span class='notice'>You disassemble the barricade.</span>")
+			to_chat(user, span_notice("You disassemble the barricade."))
 			new /obj/item/stack/sheet/mineral/wood(user.loc, 5)
 			qdel(src)
 	else
@@ -99,9 +99,9 @@
 /obj/structure/barricade/wooden/crude/attackby(obj/item/I, mob/user) // Make it so you cant turn crude planks into walls
 	if(I.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HARM)
 		user.visible_message("[user.name] starts prying [src.name] apart.", \
-							"<span class='notice'>You start prying the barricade apart</span>")
+							span_notice("You start prying the barricade apart"))
 		if(I.use_tool(src, user, 190, volume=50))
-			to_chat(user, "<span class='notice'>You disassemble the barricade.</span>")
+			to_chat(user, span_notice("You disassemble the barricade."))
 			new /obj/item/stack/sheet/mineral/wood(user.loc, 5)
 			qdel(src)
 
@@ -151,7 +151,7 @@
 	density = TRUE
 	anchored = TRUE
 	if(deploy_message)
-		visible_message("<span class='warning'>[src] deploys!</span>")
+		visible_message(span_warning("[src] deploys!"))
 
 
 /obj/item/grenade/barrier
@@ -165,7 +165,7 @@
 
 /obj/item/grenade/barrier/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click to toggle modes.</span>"
+	. += span_notice("Alt-click to toggle modes.")
 
 /obj/item/grenade/barrier/AltClick(mob/living/carbon/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))

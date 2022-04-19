@@ -25,8 +25,11 @@
 	var/armored = FALSE
 
 	obj_damage = 60
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_lower = 15 // i know it's like half what it used to be, but bears cause bleeding like crazy now so it works out
+	melee_damage_upper = 15
+	wound_bonus = -5
+	bare_wound_bonus = 10 // BEAR wound bonus am i right
+	sharpness = SHARP_EDGED
 	attacktext = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	friendly = "bear hugs"
@@ -53,7 +56,7 @@
 	icon_living = "snowbear"
 	icon_dead = "snowbear_dead"
 	desc = "It's a polar bear, in space, but not actually in space."
-	weather_immunities = list("snow")
+	weather_immunities = list(WEATHER_SNOW)
 
 /mob/living/simple_animal/hostile/bear/russian
 	name = "combat bear"
@@ -63,8 +66,9 @@
 	icon_dead = "combatbear_dead"
 	faction = list("russian")
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/bear = 5, /obj/item/clothing/head/bearpelt = 1, /obj/item/bear_armor = 1)
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage_lower = 18
+	melee_damage_upper = 20
+	wound_bonus = 0
 	armour_penetration = 20
 	health = 120
 	maxHealth = 120
@@ -82,7 +86,6 @@
 	name = "pile of bear armor"
 	desc = "A scattered pile of various shaped armor pieces fitted for a bear, some duct tape, and a nail filer. Crude instructions \
 		are written on the back of one of the plates in russian. This seems like an awful idea."
-	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "bear_armor_upgrade"
 
 /obj/item/bear_armor/afterattack(atom/target, mob/user, proximity_flag)
@@ -90,16 +93,17 @@
 	if(istype(target, /mob/living/simple_animal/hostile/bear) && proximity_flag)
 		var/mob/living/simple_animal/hostile/bear/A = target
 		if(A.armored)
-			to_chat(user, "<span class='warning'>[A] has already been armored up!</span>")
+			to_chat(user, span_warning("[A] has already been armored up!"))
 			return
 		A.armored = TRUE
 		A.maxHealth += 60
 		A.health += 60
 		A.armour_penetration += 20
-		A.melee_damage_lower += 5
+		A.melee_damage_lower += 3
 		A.melee_damage_upper += 5
+		A.wound_bonus += 5
 		A.update_icons()
-		to_chat(user, "<span class='info'>You strap the armor plating to [A] and sharpen [A.p_their()] claws with the nail filer. This was a great idea.</span>")
+		to_chat(user, span_info("You strap the armor plating to [A] and sharpen [A.p_their()] claws with the nail filer. This was a great idea."))
 		qdel(src)
 
 

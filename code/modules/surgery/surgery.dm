@@ -12,6 +12,8 @@
 	var/ignore_clothes = 0									//This surgery ignores clothes
 	var/mob/living/carbon/target							//Operation target mob
 	var/obj/item/bodypart/operated_bodypart					//Operable body part
+	var/datum/wound/operated_wound							//The actual wound datum instance we're targeting
+	var/datum/wound/targetable_wound						//The wound type this surgery targets
 	var/requires_bodypart = TRUE							//Surgery available only when a bodypart is present, or only when it is missing.
 	var/success_multiplier = 0								//Step success propability multiplier
 	var/requires_real_bodypart = 0							//Some surgeries don't work on limbs that don't really exist
@@ -29,8 +31,13 @@
 			location = surgery_location
 		if(surgery_bodypart)
 			operated_bodypart = surgery_bodypart
+			if(targetable_wound)
+				operated_wound = operated_bodypart.get_wound_type(targetable_wound)
+				operated_wound.attached_surgery = src
 
 /datum/surgery/Destroy()
+	if(operated_wound)
+		operated_wound.attached_surgery = null
 	if(target)
 		target.surgeries -= src
 	target = null
@@ -55,12 +62,12 @@
 
 	if(requires_tech)
 		. = FALSE
-		
+
 	var/obj/item/healthanalyzer/advanced/adv = locate() in user.GetAllContents()
 
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/R = user
-		var/obj/item/surgical_processor/SP = locate() in R.module.modules
+		var/obj/item/healthanalyzer/advanced/SP = locate() in R.module.modules
 		if(!SP || (replaced_by in SP.advanced_surgeries))
 			return FALSE
 		if(type in SP.advanced_surgeries)
@@ -108,7 +115,7 @@
 		if(S.try_op(user, target, user.zone_selected, tool, src, try_to_fail))
 			return TRUE
 		if(tool.item_flags & SURGICAL_TOOL) //Just because you used the wrong tool it doesn't mean you meant to whack the patient with it
-			to_chat(user, "<span class='warning'>This step requires a different tool!</span>")
+			to_chat(user, span_warning("This step requires a different tool!"))
 			return TRUE
 	return FALSE
 

@@ -3,6 +3,8 @@ SUBSYSTEM_DEF(mapping)
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
+	loading_points = 11 SECONDS // Yogs -- loading times
+
 	var/list/nuke_tiles = list()
 	var/list/nuke_threats = list()
 
@@ -58,7 +60,7 @@ SUBSYSTEM_DEF(mapping)
 		var/old_config = config
 		config = global.config.defaultmap
 		if(!config || config.defaulted)
-			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to Box Station</span>")
+			to_chat(world, span_boldannounce("Unable to load next or default map config, defaulting to Box Station"))
 			config = old_config
 	loadWorld()
 	repopulate_sorted_areas()
@@ -80,9 +82,9 @@ SUBSYSTEM_DEF(mapping)
 
 	// Load the virtual reality hub
 	if(CONFIG_GET(flag/virtual_reality))
-		to_chat(world, "<span class='boldannounce'>Loading virtual reality...</span>")
+		to_chat(world, span_boldannounce("Loading virtual reality..."))
 		load_new_z_level("_maps/RandomZLevels/VR/vrhub.dmm", "Virtual Reality Hub")
-		to_chat(world, "<span class='boldannounce'>Virtual reality loaded.</span>")
+		to_chat(world, span_boldannounce("Virtual reality loaded."))
 
 	// Generate mining ruins
 	loading_ruins = TRUE
@@ -212,7 +214,7 @@ SUBSYSTEM_DEF(mapping)
 
 	z_list = SSmapping.z_list
 
-#define INIT_ANNOUNCE(X) to_chat(world, "<span class='boldannounce'>[X]</span>"); log_world(X)
+#define INIT_ANNOUNCE(X) to_chat(world, span_boldannounce("[X]")); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
 	. = list()
 	var/start_time = REALTIMEOFDAY
@@ -371,7 +373,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	message_admins("Randomly rotating map to [VM.map_name].")
 	. = changemap(VM)
 	if (. && VM.map_name != config.map_name)
-		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
+		to_chat(world, span_boldannounce("Map rotation has chosen [VM.map_name] for next round!"))
 
 /datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
 	if(!VM.MakeNextMap())
@@ -471,13 +473,13 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			if(!mapfile)
 				return
 			away_name = "[mapfile] custom"
-			to_chat(usr,"<span class='notice'>Loading [away_name]...</span>")
+			to_chat(usr,span_notice("Loading [away_name]..."))
 			var/datum/map_template/template = new(mapfile, "Away Mission")
 			away_level = template.load_new_z()
 		else
 			if(answer in GLOB.potentialRandomZlevels)
 				away_name = answer
-				to_chat(usr,"<span class='notice'>Loading [away_name]...</span>")
+				to_chat(usr,span_notice("Loading [away_name]..."))
 				var/datum/map_template/template = new(away_name, "Away Mission")
 				away_level = template.load_new_z()
 			else
@@ -569,7 +571,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	reserve_turfs(clearing)
 
 /datum/controller/subsystem/mapping/proc/build_minimaps()
-	to_chat(world, "<span class='boldannounce'>Building minimaps...</span>")
+	to_chat(world, span_boldannounce("Building minimaps..."))
 	for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION))
 		station_minimaps += new /datum/minimap(z)
 

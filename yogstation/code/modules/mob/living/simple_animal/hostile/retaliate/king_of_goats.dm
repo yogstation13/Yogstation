@@ -180,7 +180,7 @@ Difficulty: Insanely Hard
 /mob/living/simple_animal/hostile/retaliate/goat/king/Retaliate()
 	..()
 	if(stat == CONSCIOUS && prob(5))
-		visible_message("<span class='warning'>\The [src] bellows indignantly, with a judgemental gleam in his eye.</span>")
+		visible_message(span_warning("\The [src] bellows indignantly, with a judgemental gleam in his eye."))
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Retaliate()
 	set waitfor = FALSE
@@ -188,17 +188,17 @@ Difficulty: Insanely Hard
 	if(spellscast < 5)
 		if(prob(5) && move_to_delay >= 3) //speed buff
 			spellscast++
-			visible_message("<span class='cult'>\The [src] shimmers and seems to phase in and out of reality itself!</span>")
+			visible_message(span_cult("\The [src] shimmers and seems to phase in and out of reality itself!"))
 			move_to_delay = 1
 
 		else if(prob(5) && melee_damage_lower != 50) //damage buff
 			spellscast++
-			visible_message("<span class='cult'>\The [src]' horns grow larger and more menacing!</span>")
+			visible_message(span_cult("\The [src]' horns grow larger and more menacing!"))
 			melee_damage_lower = 50
 
 		else if(prob(5)) //spawn adds
 			spellscast++
-			visible_message("<span class='cult'>\The [src] summons the imperial guard to his aid, and they appear in a flash!</span>")
+			visible_message(span_cult("\The [src] summons the imperial guard to his aid, and they appear in a flash!"))
 			var/mob/living/simple_animal/hostile/retaliate/goat/guard/master/M = new(get_step(src,pick(GLOB.cardinals)))
 			M.enemies |= enemies
 			var/mob/living/simple_animal/hostile/retaliate/goat/guard/G = new(get_step(src,pick(GLOB.cardinals)))
@@ -208,24 +208,24 @@ Difficulty: Insanely Hard
 
 		else if(prob(5)) //EMP blast
 			spellscast++
-			visible_message("<span class='cult'>\The [src] disrupts nearby electrical equipment!</span>")
+			visible_message(span_cult("\The [src] disrupts nearby electrical equipment!"))
 			empulse(get_turf(src), 5, 2, 0)
 
 		else if(prob(5) && melee_damage_type == BRUTE && !special_attacks) //elemental attacks
 			spellscast++
 			//if(prob(50))
-			visible_message("<span class='cult'>\The [src]' horns flicker with holy white flames!</span>")
+			visible_message(span_cult("\The [src]' horns flicker with holy white flames!"))
 			melee_damage_type = BURN
 			//else
-			//	visible_message("<span class='cult'>\The [src]' horns glimmer, electricity arcing between them!</span>")
+			//	visible_message(span_cult("\The [src]' horns glimmer, electricity arcing between them!"))
 			//	melee_damage_type = BURN // meh too lazy
 
 		else if(prob(5)) //earthquake spell
-			visible_message("<B><span class='danger'>\The [src]' eyes begin to glow ominously as dust and debris in the area is kicked up in a light breeze!!</span></B>")
+			visible_message("<B>[span_danger("\The [src]' eyes begin to glow ominously as dust and debris in the area is kicked up in a light breeze!!")]</B>")
 			stop_automated_movement = TRUE
 			if(do_after(src, 6 SECONDS, src))
 				var/health_holder = getBruteLoss()
-				visible_message("<B><span class='cult'>\The [src] raises its fore-hooves and stomps them into the ground with incredible force!!</span></B>")
+				visible_message("<B>[span_cult("\The [src] raises its fore-hooves and stomps them into the ground with incredible force!!")]</B>")
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 2, 2, 3, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 1, 4, 4, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 3, 4, 3, 6)
@@ -234,7 +234,7 @@ Difficulty: Insanely Hard
 				if(!getBruteLoss() > health_holder)
 					adjustBruteLoss(health_holder - getBruteLoss()) //our own magicks cannot harm us
 			else
-				visible_message("<span class='notice'>\The [src] loses concentration and huffs haughtily.</span>")
+				visible_message(span_notice("\The [src] loses concentration and huffs haughtily."))
 				stop_automated_movement = FALSE
 
 		else return
@@ -252,7 +252,7 @@ Difficulty: Insanely Hard
 	player.do_range_check(0)
 	stun_chance = 10
 	update_icon()
-	visible_message("<span class='cult'>\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!</span>")
+	visible_message(span_cult("\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!"))
 
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/proc/update_icon()
@@ -275,18 +275,18 @@ Difficulty: Insanely Hard
 	if(!.)
 		return FALSE
 	if(special_attacks >= 6 && melee_damage_type != BRUTE)
-		visible_message("<span class='cult'>The energy surrounding \the [src]'s horns dissipates.</span>")
+		visible_message(span_cult("The energy surrounding \the [src]'s horns dissipates."))
 		melee_damage_type = BRUTE
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/proc/OnDeath()
-	visible_message("<span class='cult'>\The [src] lets loose a terrific wail as its wounds close shut with a flash of light, and its eyes glow even brighter than before!</span>")
+	visible_message(span_cult("\The [src] lets loose a terrific wail as its wounds close shut with a flash of light, and its eyes glow even brighter than before!"))
 	var/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/nextgoat = new(src.loc)
 	nextgoat.enemies |= enemies
 	qdel(src);
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/OnDeath()
 	if(phase3)
-		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
+		visible_message(span_cult("\The [src] shrieks as the seal on his power breaks and he starts to break apart!"))
 		new /obj/structure/ladder/unbreakable/goat(loc)
 		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
 
@@ -303,7 +303,7 @@ Difficulty: Insanely Hard
 		if(prob(stun_chance))
 			L.Paralyze(5)
 			L.confused += 1
-			visible_message("<span class='warning'>\The [L] is bowled over by the impact of [src]'s attack!</span>")
+			visible_message(span_warning("\The [L] is bowled over by the impact of [src]'s attack!"))
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()
 	. = ..()

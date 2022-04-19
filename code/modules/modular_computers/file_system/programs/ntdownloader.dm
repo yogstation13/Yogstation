@@ -11,43 +11,66 @@
 	available_on_ntnet = 0
 	ui_header = "downloader_finished.gif"
 	tgui_id = "NtosNetDownloader"
+	program_icon = "download"
 
 	var/datum/computer_file/program/downloaded_file = null
-	var/hacked_download = 0
+	var/hacked_download = FALSE
 	var/download_completion = 0 //GQ of downloaded data.
 	var/download_netspeed = 0
 	var/downloaderror = ""
 	var/obj/item/modular_computer/my_computer = null
+	var/emagged = FALSE
+	var/list/main_repo
+	var/list/antag_repo
 
+	var/list/show_categories = list(
+		PROGRAM_CATEGORY_CREW,
+		PROGRAM_CATEGORY_ENGI,
+		PROGRAM_CATEGORY_ROBO,
+		PROGRAM_CATEGORY_SUPL,
+		PROGRAM_CATEGORY_MISC,
+	)
+
+
+/datum/computer_file/program/ntnetdownload/run_program()
+	. = ..()
+	main_repo = SSnetworks.station_network.available_station_software
+	antag_repo = SSnetworks.station_network.available_antag_software
+
+/datum/computer_file/program/ntnetdownload/run_emag()
+	if(emagged)
+		return FALSE
+	emagged = TRUE
+	return TRUE
 /datum/computer_file/program/ntnetdownload/proc/begin_file_download(filename)
 	if(downloaded_file)
-		return 0
+		return FALSE
 
 	var/datum/computer_file/program/PRG = SSnetworks.station_network.find_ntnet_file_by_name(filename)
 
 	if(!PRG || !istype(PRG))
-		return 0
+		return FALSE
 
-	// Attempting to download antag only program, but without having emagged computer. No.
-	if(PRG.available_on_syndinet && !(computer.obj_flags & EMAGGED))
-		return 0
+	// Attempting to download antag only program, but without having emagged/syndicate computer. No.
+	if(PRG.available_on_syndinet && !emagged)
+		return FALSE
 
 	var/obj/item/computer_hardware/hard_drive/hard_drive = computer.all_components[MC_HDD]
 
 	if(!computer || !hard_drive || !hard_drive.can_store_file(PRG))
-		return 0
+		return FALSE
 
 	ui_header = "downloader_running.gif"
 
-	if(PRG in SSnetworks.station_network.available_station_software)
+	if(PRG in main_repo)
 		generate_network_log("Began downloading file [PRG.filename].[PRG.filetype] from NTNet Software Repository.")
-		hacked_download = 0
-	else if(PRG in SSnetworks.station_network.available_antag_software)
+		hacked_download = FALSE
+	else if(PRG in antag_repo)
 		generate_network_log("Began downloading file **ENCRYPTED**.[PRG.filetype] from unspecified server.")
-		hacked_download = 1
+		hacked_download = TRUE
 	else
 		generate_network_log("Began downloading file [PRG.filename].[PRG.filetype] from unspecified server.")
-		hacked_download = 0
+		hacked_download = FALSE
 
 	downloaded_file = PRG.clone()
 
@@ -90,26 +113,29 @@
 
 /datum/computer_file/program/ntnetdownload/ui_act(action, params)
 	if(..())
-		return 1
+		return TRUE
+	computer.play_interact_sound()
 	switch(action)
 		if("PRG_downloadfile")
 			if(!downloaded_file)
 				begin_file_download(params["filename"])
-			return 1
+			return TRUE
 		if("PRG_reseterror")
 			if(downloaderror)
 				download_completion = 0
 				download_netspeed = 0
 				downloaded_file = null
 				downloaderror = ""
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /datum/computer_file/program/ntnetdownload/ui_data(mob/user)
 	my_computer = computer
 
 	if(!istype(my_computer))
 		return
+	var/obj/item/computer_hardware/card_slot/card_slot = computer.all_components[MC_CARD]
+	var/list/access = card_slot?.GetAccess()
 
 	var/list/data = get_header_data()
 
@@ -127,36 +153,29 @@
 	var/obj/item/computer_hardware/hard_drive/hard_drive = my_computer.all_components[MC_HDD]
 	data["disk_size"] = hard_drive.max_capacity
 	data["disk_used"] = hard_drive.used_capacity
-	var/list/all_entries[0]
-	for(var/A in SSnetworks.station_network.available_station_software)
-		var/datum/computer_file/program/P = A
-		// Only those programs our user can run will show in the list
-		if(!P.can_run(user,transfer = 1) || hard_drive.find_file_by_name(P.filename))
-			continue
-		all_entries.Add(list(list(
+	data["emagged"] = emagged
+
+	var/list/repo = antag_repo | main_repo
+	var/list/program_categories = list()
+
+	for(var/I in repo)
+		var/datum/computer_file/program/P = I
+		if(!(P.category in program_categories))
+			program_categories.Add(P.category)
+		data["programs"] += list(list(
+			"icon" = P.program_icon,
 			"filename" = P.filename,
 			"filedesc" = P.filedesc,
 			"fileinfo" = P.extended_desc,
-			"compatibility" = check_compatibility(P),
+			"category" = P.category,
+			"installed" = !!hard_drive.find_file_by_name(P.filename),
+			"compatible" = check_compatibility(P),
 			"size" = P.size,
-			)))
-	data["hackedavailable"] = 0
-	if(computer.obj_flags & EMAGGED) // If we are running on emagged computer we have access to some "bonus" software
-		var/list/hacked_programs[0]
-		for(var/S in SSnetworks.station_network.available_antag_software)
-			var/datum/computer_file/program/P = S
-			if(hard_drive.find_file_by_name(P.filename))
-				continue
-			data["hackedavailable"] = 1
-			hacked_programs.Add(list(list(
-				"filename" = P.filename,
-				"filedesc" = P.filedesc,
-				"fileinfo" = P.extended_desc,
-				"size" = P.size,
-			)))
-		data["hacked_programs"] = hacked_programs
+			"access" = emagged && P.available_on_syndinet ? TRUE : P.can_run(user,transfer = 1, access = access),
+			"verifiedsource" = P.available_on_ntnet,
+		))
 
-	data["downloadable_programs"] = all_entries
+	data["categories"] = show_categories & program_categories
 
 	return data
 
@@ -164,9 +183,34 @@
 	var/hardflag = computer.hardware_flag
 
 	if(P && P.is_supported_by_hardware(hardflag,0))
-		return "Compatible"
-	return "Incompatible!"
+		return TRUE
+	return FALSE
 
 /datum/computer_file/program/ntnetdownload/kill_program(forced)
 	abort_file_download()
 	return ..(forced)
+
+/// A simple pre-emagged version
+/datum/computer_file/program/ntnetdownload/emagged
+	emagged = TRUE
+
+////////////////////////
+//Syndicate Downloader//
+////////////////////////
+
+/// This app only lists programs normally found in the emagged section of the normal downloader app
+
+/datum/computer_file/program/ntnetdownload/syndicate
+	filename = "syndownloader"
+	filedesc = "Software Download Tool"
+	program_icon_state = "generic"
+	extended_desc = "This program allows downloads of software from shared Syndicate repositories"
+	requires_ntnet = 0
+	ui_header = "downloader_finished.gif"
+	tgui_id = "NtosNetDownloader"
+	emagged = TRUE
+
+/datum/computer_file/program/ntnetdownload/syndicate/run_program()
+	. = ..()
+	main_repo = SSnetworks.station_network.available_antag_software
+	antag_repo = null

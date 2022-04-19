@@ -10,9 +10,11 @@
 	// Computer that holds this hardware, if any.
 
 	var/power_usage = 0 			// If the hardware uses extra power, change this.
-	var/enabled = 1					// If the hardware is turned off set this to 0.
-	var/critical = 0				// Prevent disabling for important component, like the CPU.
-	var/can_install = 1				// Prevents direct installation of removable media.
+	var/enabled = TRUE				// If the hardware is turned off set this to 0.
+	var/critical = FALSE			// Prevent disabling for important component, like the CPU.
+	var/can_install = TRUE			// Prevents direct installation of removable media.
+	var/expansion_hw = FALSE		// Hardware that fits into expansion bays.
+	var/removable = TRUE			// Whether the hardware is removable or not.
 	var/damage = 0					// Current damage level
 	var/max_damage = 100			// Maximal damage level.
 	var/damage_malfunction = 20		// "Malfunction" threshold. When damage exceeds this value the hardware piece will semi-randomly fail and do !!FUN!! things
@@ -36,10 +38,10 @@
 	if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/S = I
 		if(obj_integrity == max_integrity)
-			to_chat(user, "<span class='warning'>\The [src] doesn't seem to require repairs.</span>")
+			to_chat(user, span_warning("\The [src] doesn't seem to require repairs."))
 			return 1
 		if(S.use(1))
-			to_chat(user, "<span class='notice'>You patch up \the [src] with a bit of \the [I].</span>")
+			to_chat(user, span_notice("You patch up \the [src] with a bit of \the [I]."))
 			obj_integrity = min(obj_integrity + 10, max_integrity)
 		return 1
 
@@ -75,11 +77,11 @@
 /obj/item/computer_hardware/examine(var/mob/user)
 	. = ..()
 	if(damage > damage_failure)
-		. += "<span class='danger'>It seems to be severely damaged!</span>"
+		. += span_danger("It seems to be severely damaged!")
 	else if(damage > damage_malfunction)
-		. += "<span class='warning'>It seems to be damaged!</span>"
+		. += span_warning("It seems to be damaged!")
 	else if(damage)
-		. += "<span class='notice'>It seems to be slightly damaged.</span>"
+		. += span_notice("It seems to be slightly damaged.")
 
 // Component-side compatibility check.
 /obj/item/computer_hardware/proc/can_install(obj/item/modular_computer/M, mob/living/user = null)

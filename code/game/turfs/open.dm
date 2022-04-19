@@ -102,7 +102,7 @@
 /turf/open/indestructible/carpet
 	name = "carpet"
 	desc = "Soft velvet carpeting. Feels good between your toes."
-	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet"
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/turf/open/indestructible/carpet)
@@ -113,6 +113,61 @@
 	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+
+/turf/open/indestructible/carpet/black
+	icon = 'icons/turf/floors/carpet_black.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/blue
+	icon = 'goon/icons/turfs/carpet_blue.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/green
+	icon = 'goon/icons/turfs/carpet_green.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/cyan
+	icon = 'icons/turf/floors/carpet_cyan.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/orange
+	icon = 'icons/turf/floors/carpet_orange.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/purple
+	icon = 'goon/icons/turfs/carpet_purple.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/red
+	icon = 'icons/turf/floors/carpet_red.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal
+	name = "carpet"
+	desc = "Soft velvet carpeting. Feels good between your toes."
+	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon_state = "carpet"
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/indestructible/carpet/royal)
+	flags_1 = NONE
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET_BAREFOOT
+	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/indestructible/carpet/royal/black
+	icon = 'icons/turf/floors/carpet_royalblack.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal/green
+	icon = 'icons/turf/floors/carpet_exoticgreen.dmi'
+	icon_state = "carpet"
+
+/turf/open/indestructible/carpet/royal/purple
+	icon = 'icons/turf/floors/carpet_exoticpurple.dmi'
+	icon_state = "carpet"
 
 /turf/open/indestructible/grass
 	name = "grass patch"
@@ -207,6 +262,64 @@
 	clawfootstep = FOOTSTEP_WATER
 	heavyfootstep = FOOTSTEP_WATER
 
+/turf/open/floor/grass/fairy //like grass but fae-er
+	name = "fairygrass patch"
+	desc = "Something about this grass makes you want to frolic. Or get high."
+	icon_state = "fairygrass"
+	floor_tile = /obj/item/stack/tile/fairygrass
+	light_range = 2
+	light_power = 0.80
+	light_color = "#33CCFF"
+	color = "#33CCFF"
+
+/turf/open/floor/grass/fairy/white
+	name = "white fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/white
+	light_color = "#FFFFFF"
+	color = "#FFFFFF"
+
+/turf/open/floor/grass/fairy/red
+	name = "red fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/red
+	light_color = "#FF3333"
+	color = "#FF3333"
+
+/turf/open/floor/grass/fairy/yellow
+	name = "yellow fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/yellow
+	light_color = "#FFFF66"
+	color = "#FFFF66"
+
+/turf/open/floor/grass/fairy/green
+	name = "green fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/green
+	light_color = "#99FF99"
+	color = "#99FF99"
+
+/turf/open/floor/grass/fairy/blue
+	floor_tile = /obj/item/stack/tile/fairygrass/blue
+	name = "blue fairygrass patch"
+
+/turf/open/floor/grass/fairy/purple
+	name = "purple fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/purple
+	light_color = "#D966FF"
+	color = "#D966FF"
+
+/turf/open/floor/grass/fairy/pink
+	name = "pink fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/pink
+	light_color = "#FFB3DA"
+	color = "#FFB3DA"
+
+/turf/open/floor/grass/fairy/dark
+	name = "dark fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/dark
+	light_power = -0.15
+	light_range = 2
+	light_color = "#AAD84B"
+	color = "#53003f"
+	
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
 	icon = 'icons/turf/boss_floors.dmi'
@@ -282,12 +395,65 @@
 		if(is_servant_of_ratvar(L) && L.stat != DEAD)
 			. = TRUE
 			L.forceMove(get_turf(pick(GLOB.servant_spawns)))
-			visible_message("<span class='warning'>[L] vanishes in a flash of red!</span>")
-			L.visible_message("<span class='warning'>[L] appears in a flash of red!</span>", \
-			"<span class='bold cult'>sas'so c'arta forbici</span><br><span class='danger'>You're yanked away from [src]!</span>")
+			visible_message(span_warning("[L] vanishes in a flash of red!"))
+			L.visible_message(span_warning("[L] appears in a flash of red!"), \
+			"<span class='bold cult'>sas'so c'arta forbici</span><br>[span_danger("You're yanked away from [src]!")]")
 			playsound(src, 'sound/magic/enter_blood.ogg', 50, TRUE)
 			playsound(L, 'sound/magic/exit_blood.ogg', 50, TRUE)
 			flash_color(L, flash_color = "#C80000", flash_time = 10)
+
+/turf/open/indestructible/brazil
+	name = ".."
+	desc = "..."
+
+/turf/open/indestructible/brazil/Entered()
+	..()
+	START_PROCESSING(SSfastprocess, src)
+
+/turf/open/indestructible/brazil/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
+	. = ..()
+
+/turf/open/indestructible/brazil/process()
+	if(!gtfo())
+		STOP_PROCESSING(SSfastprocess, src)
+
+///teleports people back to a safe station turf in case they somehow manage to end up here without the status effect
+/turf/open/indestructible/brazil/proc/gtfo()
+	. = FALSE
+	for(var/mob/living/L in src)
+		if(!L.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE))
+			. = TRUE
+			to_chat(L, span_velvet("Get out of here, stalker."))
+			var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
+			if(safe_turf)
+				L.forceMove(safe_turf)
+				flash_color(L, flash_color = "#000000", flash_time = 10)
+
+/turf/open/indestructible/brazil/space
+	icon = 'icons/turf/space.dmi'
+
+/turf/open/indestructible/brazil/space/Initialize(mapload)
+	. = ..()
+	icon_state = "[rand(1,25)]"
+	add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), FIXED_COLOUR_PRIORITY)
+
+/turf/open/indestructible/brazil/narsie
+	icon_state = "cult"
+
+/turf/open/indestructible/brazil/necropolis
+	icon_state = "necro1"
+
+/turf/open/indestructible/brazil/necropolis/Initialize()
+	. = ..()
+	if(prob(12))
+		icon_state = "necro[rand(2,3)]"
+
+/turf/open/indestructible/brazil/lostit
+	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
+	canSmoothWith = list(/turf/open/indestructible/brazil/lostit)
+	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
+	icon_state = "smooth"
 
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)
@@ -339,7 +505,7 @@
 		movable_content.wash(CLEAN_WASH)
 	return TRUE
 
-/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
+/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, stun_amount, force_drop)
 	if(C.movement_type & FLYING)
 		return 0
 	if(has_gravity(src))
@@ -354,7 +520,7 @@
 			if(C.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
 				return 0
 		if(!(lube&SLIDE_ICE))
-			to_chat(C, "<span class='notice'>You slipped[ O ? " on the [O.name]" : ""]!</span>")
+			to_chat(C, span_notice("You slipped[ O ? " on the [O.name]" : ""]!"))
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
@@ -364,13 +530,17 @@
 
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
+		var/wagging = FALSE
+		if(C.dna.species.is_wagging_tail())
+			wagging = TRUE
 		if(!(lube & SLIDE_ICE))
 			C.Knockdown(knockdown_amount)
-			C.Paralyze(paralyze_amount)
+			C.Stun(stun_amount)
 			C.stop_pulling()
 		else
 			C.Knockdown(20)
-
+		if(wagging)
+			C.dna.species.start_wagging_tail(src)
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE

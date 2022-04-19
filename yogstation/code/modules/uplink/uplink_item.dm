@@ -26,7 +26,7 @@
 
 /datum/uplink_item/stealthy_weapons/romerol_kit
 	category = "Conspicuous Weapons"
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
 
 /datum/uplink_item/stealthy_weapons/soap_clusterbang
 	category = "Conspicuous Weapons"
@@ -71,19 +71,30 @@
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/device_tools/arm/nuke
-	cost = 15
-	exclude_modes = list()
-	include_modes = list(/datum/game_mode/nuclear)
-
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
 	var/limbs = user.held_items.len
 	user.change_number_of_hands(limbs+1)
 	to_chat(user, "You feel more dexterous")
 
+/datum/uplink_item/explosives/trap_disk
+	name = "Syndicate Trapped Disk"
+	desc = "A bomb disguised as a syndicate disk that triggers on removal or when tampered with. Nanotrasen IT staff will likely be able to identify its true nature at a glance."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/trap
+	cost = 5
+	surplus = 10
+
+/datum/uplink_item/device_tools/ntnet_dos
+	name = "DoS Traffic Generator Disk"
+	desc = "An advanced script in a portable disk that can perform denial of service attacks against NTNet quantum relays. \
+			The system administrator will probably notice this. \
+			Multiple devices can run this program together against the same relay for increased effect."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/ntnet_dos
+	cost = 2
+	surplus = 10
+
 /datum/uplink_item/race_restricted/xeno_organ_kit
 	name = "Xenomorph Organ Kit"
-	desc = "A kit containing the some organs that were... \"donated\" by your ancestors. Contains a autosurgen, plasma vessel, resin spinner, an acid gland, and a neurotoxin gland."
+	desc = "A kit containing some organs that were... \"donated\" by your ancestors. Contains an autosurgeon, a plasma vessel, a resin spinner, and an acid gland."
 	cost = 15
 	item = /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	restricted_species = list("polysmorph")
@@ -116,6 +127,7 @@
 	cost = 7
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 20
+	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/implants/greytide
 	name = "Greytide Implant"
@@ -131,10 +143,3 @@
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
 	cant_discount = TRUE
-
-/datum/uplink_item/implants/mantis_kit
-	name = "G.O.R.L.E.X.  Mantis Blades Kit"
-	desc = "Comes with 2 G.O.R.L.E.X.  Mantis blades. All packaged with autosurgeons."
-	item = /obj/item/storage/briefcase/syndie_mantis
-	cost = 18
-	surplus = 0

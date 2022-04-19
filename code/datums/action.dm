@@ -362,6 +362,10 @@
 /datum/action/item_action/change
 	name = "Change"
 
+/datum/action/item_action/hatsky_voiceline
+	name = "Press Voice Button"
+	desc = "Engage the voice box on your Hatsky to hear a classic line from the real Officer Beepsky!"
+
 /datum/action/item_action/nano_picket_sign
 	name = "Retext Nano Picket Sign"
 	var/obj/item/picket_sign/S
@@ -432,7 +436,7 @@
 			owner.research_scanner++
 		else
 			owner.research_scanner--
-		to_chat(owner, "<span class='notice'>[target] research scanner has been [active ? "activated" : "deactivated"].</span>")
+		to_chat(owner, span_notice("[target] research scanner has been [active ? "activated" : "deactivated"]."))
 		return 1
 
 /datum/action/item_action/toggle_research_scanner/Remove(mob/M)
@@ -499,9 +503,9 @@
 		I.attack_self(owner)
 	else
 		if (owner.get_num_arms() <= 0)
-			to_chat(owner, "<span class='warning'>You dont have any usable hands!</span>")
+			to_chat(owner, span_warning("You dont have any usable hands!"))
 		else
-			to_chat(owner, "<span class='warning'>Your hands are full!</span>")
+			to_chat(owner, span_warning("Your hands are full!"))
 
 /datum/action/item_action/agent_box
 	name = "Deploy Box"
@@ -526,6 +530,18 @@
 		owner.forceMove(box.drop_location())
 		owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)
 		QDEL_NULL(box)
+
+/datum/action/item_action/visegrip
+	name = "Vise Grip"
+	desc = "Remotely detonate marked targets. People become rooted for 1 second. Nonhumanoids become rooted for 6 seconds and take hefty damage."
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "leghold"
+	
+/datum/action/item_action/reach
+	name = "Reach"
+	desc = "Mark those standing on blood for 10 seconds."
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "rshield"
 
 //Preset for spells
 /datum/action/spell_action
@@ -662,6 +678,12 @@
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
 
+/datum/action/item_action/dash
+	name = "Dash"
+	desc = "Momentarily maximizes the jets of the shoes, allowing the user to dash a short distance."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "thrust"
+
 /datum/action/language_menu
 	name = "Language Menu"
 	desc = "Open the language menu to review your languages, their keys, and select your default language."
@@ -682,6 +704,13 @@
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
 
+/datum/action/item_action/airshoes
+	name = "Toggle thrust on air shoes."
+	desc = "Switch between walking and hovering."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "airshoes_a"
+
+	
 /datum/action/item_action/kindleKicks
 	name = "Activate Kindle Kicks"
 	desc = "Kick you feet together, activating the lights in your Kindle Kicks."

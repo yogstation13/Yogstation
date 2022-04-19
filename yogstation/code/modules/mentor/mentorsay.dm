@@ -2,7 +2,7 @@
 	set category = "Mentor"
 	set name = "Msay" //Gave this shit a shorter name so you only have to time out "msay" rather than "mentor say" to use it --NeoFite
 	if(prefs.muted & MUTE_MENTORHELP)
-		to_chat(src,"<span class='danger'>Error: MSAY: You are unable to use MSAY (muted).</span>", confidential = TRUE)
+		to_chat(src,span_danger("Error: MSAY: You are unable to use MSAY (muted)."), confidential = TRUE)
 		return
 	if(!is_mentor())
 		return
@@ -26,5 +26,5 @@
 	to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, msg, confidential=TRUE)
 
 /client/proc/get_mentor_say()
-	var/msg = input(src, null, "msay \"text\"") as text
+	var/msg = input(src, null, "msay \"text\"") as text|null
 	cmd_mentor_say(msg)

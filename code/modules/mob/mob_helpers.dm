@@ -391,7 +391,7 @@
 			var/orbit_link
 			if (source && (action == NOTIFY_ORBIT || action == NOTIFY_ATTACKORBIT))
 				orbit_link = " <a href='?src=[REF(O)];follow=[REF(source)]'>(Orbit)</a>"
-			to_chat(O, "<span class='ghostalert'>[message][(enter_link) ? " [enter_link]" : ""][orbit_link]</span>")
+			to_chat(O, span_ghostalert("[message][(enter_link) ? " [enter_link]" : ""][orbit_link]"))
 			if(ghost_sound)
 				SEND_SOUND(O, sound(ghost_sound, volume = notify_volume))
 			if(flashwindow)
@@ -427,10 +427,10 @@
 			if(affecting.heal_damage(brute_heal, burn_heal, 0, BODYPART_ROBOTIC))
 				H.update_damage_overlays()
 			user.visible_message("[user] has fixed some of the [dam ? "dents on" : "burnt wires in"] [H]'s [affecting.name].", \
-			"<span class='notice'>You fix some of the [dam ? "dents on" : "burnt wires in"] [H == user ? "your" : "[H]'s"] [affecting.name].</span>")
+			span_notice("You fix some of the [dam ? "dents on" : "burnt wires in"] [H == user ? "your" : "[H]'s"] [affecting.name]."))
 			return 1 //successful heal
 		else
-			to_chat(user, "<span class='warning'>[affecting] is already in good condition!</span>")
+			to_chat(user, span_warning("[affecting] is already in good condition!"))
 
 ///Is the passed in mob an admin ghost
 /proc/IsAdminGhost(var/mob/user)
@@ -556,7 +556,7 @@
   */
 /mob/proc/common_trait_examine()
 	if(HAS_TRAIT(src, TRAIT_DISSECTED))
-		. += "<span class='notice'>This body has been dissected and analyzed. It is no longer worth experimenting on.</span><br>"
+		. += "[span_notice("This body has been dissected and analyzed. It is no longer worth experimenting on.")]<br>"
 
 /**
   * Get the list of keywords for policy config
@@ -576,3 +576,23 @@
 ///Can the mob see reagents inside of containers?
 /mob/proc/can_see_reagents()
 	return stat == DEAD || has_unlimited_silicon_privilege //Dead guys and silicons can always see reagents
+
+/mob/living/proc/getBruteLoss_nonProsthetic()
+	return getBruteLoss()
+
+/mob/living/proc/getFireLoss_nonProsthetic()
+	return getFireLoss()
+
+/mob/living/carbon/getBruteLoss_nonProsthetic()
+	var/amount = 0
+	for(var/obj/item/bodypart/chosen_bodypart in bodyparts)
+		if(chosen_bodypart.status < BODYPART_ROBOTIC)
+			amount += chosen_bodypart.brute_dam
+	return amount
+
+/mob/living/carbon/getFireLoss_nonProsthetic()
+	var/amount = 0
+	for(var/obj/item/bodypart/chosen_bodypart in bodyparts)
+		if(chosen_bodypart.status < BODYPART_ROBOTIC)
+			amount += chosen_bodypart.burn_dam
+	return amount

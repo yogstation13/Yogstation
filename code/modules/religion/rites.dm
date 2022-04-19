@@ -22,9 +22,9 @@
 ///Called to perform the invocation of the rite, with args being the performer and the altar where it's being performed. Maybe you want it to check for something else?
 /datum/religion_rites/proc/perform_rite(mob/living/user, atom/religious_tool)
 	if(GLOB.religious_sect?.favor < favor_cost)
-		to_chat(user, "<span class='warning'>This rite requires more favor!</span>")
+		to_chat(user, span_warning("This rite requires more favor!"))
 		return FALSE
-	to_chat(user, "<span class='notice'>You begin to perform the rite of [name]...</span>")
+	to_chat(user, span_notice("You begin to perform the rite of [name]..."))
 	if(!ritual_invocations)
 		if(do_after(user, target = user, delay = ritual_length))
 			if(invoke_msg)
@@ -71,7 +71,7 @@
 
 /datum/religion_rites/synthconversion/perform_rite(mob/living/user, atom/religious_tool)
 	if(!ismovable(religious_tool))
-		to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
 		return FALSE
 	var/atom/movable/movable_reltool = religious_tool
 	if(!movable_reltool)
@@ -79,9 +79,9 @@
 	if(!LAZYLEN(movable_reltool.buckled_mobs))
 		. = FALSE
 		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
-			to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
 			return
-		to_chat(user, "<span class='warning'>This rite requires an individual to be buckled to [movable_reltool].</span>")
+		to_chat(user, span_warning("This rite requires an individual to be buckled to [movable_reltool]."))
 		return
 	return ..()
 
@@ -99,7 +99,7 @@
 	if(!human2borg)
 		return FALSE
 	human2borg.set_species(/datum/species/android)
-	human2borg.visible_message("<span class='notice'>[human2borg] has been converted by the rite of [name]!</span>")
+	human2borg.visible_message(span_notice("[human2borg] has been converted by the rite of [name]!"))
 	return TRUE
 
 /datum/religion_rites/machine_blessing
@@ -109,13 +109,13 @@
 	ritual_invocations =list( "Let your will power our forges.",
 							"...Help us in our great conquest!")
 	invoke_msg = "The end of flesh is near!"
-	favor_cost = 200	
+	favor_cost = 200
 
 /datum/religion_rites/machine_blessing/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	..()
 	var/altar_turf = get_turf(religious_tool)
 	var/blessing = pick(
-					/obj/item/organ/cyberimp/arm/surgery,
+					/obj/item/organ/cyberimp/arm/toolset/surgery,
 					/obj/item/organ/cyberimp/eyes/hud/diagnostic,
 					/obj/item/organ/cyberimp/eyes/hud/medical,
 					/obj/item/organ/cyberimp/mouth/breathing_tube,
@@ -174,7 +174,7 @@
 
 /datum/religion_rites/toppercent/perform_rite(mob/living/user, atom/religious_tool)
 	if(!ismovable(religious_tool))
-		to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
 		return FALSE
 	var/atom/movable/movable_reltool = religious_tool
 	if(!movable_reltool)
@@ -182,9 +182,9 @@
 	if(!LAZYLEN(movable_reltool.buckled_mobs))
 		. = FALSE
 		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
-			to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
 			return
-		to_chat(user, "<span class='warning'>This rite requires an individual to be buckled to [movable_reltool].</span>")
+		to_chat(user, span_warning("This rite requires an individual to be buckled to [movable_reltool]."))
 		return
 	return ..()
 
@@ -202,7 +202,7 @@
 	if(!mantomoney)
 		return FALSE
 	mantomoney.set_species(/datum/species/golem/church_capitalist)
-	mantomoney.visible_message("<span class='notice'>[mantomoney] has ascended to the top of society!</span>")
+	mantomoney.visible_message(span_notice("[mantomoney] has ascended to the top of society!"))
 	return TRUE
 
 /*********Ever-Burning Candle**********/
@@ -244,7 +244,7 @@
 		chosen_clothing = null //our lord and savior no longer cares about this apparel
 		return TRUE
 	chosen_clothing = null
-	to_chat(user, "<span class='warning'>The clothing that was chosen for the rite is no longer on the altar!</span>")
+	to_chat(user, span_warning("The clothing that was chosen for the rite is no longer on the altar!"))
 	return FALSE
 
 
@@ -262,43 +262,43 @@
 
 /datum/religion_rites/burning_sacrifice/perform_rite(mob/living/user, atom/religious_tool)
 	if(!ismovable(religious_tool))
-		to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
 		return FALSE
 	var/atom/movable/movable_reltool = religious_tool
 	if(!movable_reltool)
 		return FALSE
 	if(!LAZYLEN(movable_reltool.buckled_mobs))
-		to_chat(user, "<span class='warning'>Nothing is buckled to the altar!</span>")
+		to_chat(user, span_warning("Nothing is buckled to the altar!"))
 		return FALSE
 	for(var/corpse in movable_reltool.buckled_mobs)
 		if(!iscarbon(corpse))// only works with carbon corpse since most normal mobs can't be set on fire.
-			to_chat(user, "<span class='warning'>Only carbon lifeforms can be properly burned for the sacrifice!</span>")
+			to_chat(user, span_warning("Only carbon lifeforms can be properly burned for the sacrifice!"))
 			return FALSE
 		chosen_sacrifice = corpse
 		if(chosen_sacrifice.stat != DEAD)
-			to_chat(user, "<span class='warning'>You can only sacrifice dead bodies, this one is still alive!</span>")
+			to_chat(user, span_warning("You can only sacrifice dead bodies, this one is still alive!"))
 			return FALSE
 		if(!chosen_sacrifice.on_fire)
-			to_chat(user, "<span class='warning'>This corpse needs to be on fire to be sacrificed!</span>")
+			to_chat(user, span_warning("This corpse needs to be on fire to be sacrificed!"))
 			return FALSE
 		return ..()
 
 /datum/religion_rites/burning_sacrifice/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	if(!(chosen_sacrifice in religious_tool.buckled_mobs)) //checks one last time if the right corpse is still buckled
-		to_chat(user, "<span class='warning'>The right sacrifice is no longer on the altar!</span>")
+		to_chat(user, span_warning("The right sacrifice is no longer on the altar!"))
 		chosen_sacrifice = null
 		return FALSE
 	if(!chosen_sacrifice.on_fire)
-		to_chat(user, "<span class='warning'>The sacrifice is no longer on fire, it needs to burn until the end of the rite!</span>")
+		to_chat(user, span_warning("The sacrifice is no longer on fire, it needs to burn until the end of the rite!"))
 		chosen_sacrifice = null
 		return FALSE
 	if(chosen_sacrifice.stat != DEAD)
-		to_chat(user, "<span class='warning'>The sacrifice has to stay dead for the rite to work!</span>")
+		to_chat(user, span_warning("The sacrifice has to stay dead for the rite to work!"))
 		chosen_sacrifice = null
 		return FALSE
 	var/favor_gained = 100 + round(chosen_sacrifice.getFireLoss())
 	GLOB.religious_sect?.adjust_favor(favor_gained, user)
-	to_chat(user, "<span class='notice'>[GLOB.deity] absorb the burning corpse and any trace of fire with it. [GLOB.deity] rewards you with [favor_gained] favor.</span>")
+	to_chat(user, span_notice("[GLOB.deity] absorb the burning corpse and any trace of fire with it. [GLOB.deity] rewards you with [favor_gained] favor."))
 	chosen_sacrifice.dust(force = TRUE)
 	playsound(get_turf(religious_tool), 'sound/effects/supermatter.ogg', 50, TRUE)
 	chosen_sacrifice = null
@@ -320,6 +320,51 @@
 	playsound(altar_turf, 'sound/magic/fireball.ogg', 50, TRUE)
 	return TRUE
 
+/datum/religion_rites/candletransformation //in case you'd rather look like your lord than be flameproof
+	name = "Wax Conversion"
+	desc = "Convert a human-esque individual into a being of wax."
+	ritual_length = 30 SECONDS
+	ritual_invocations = list(
+	"Let us offer this unworthy being...",
+	"... Offered in hope to become something much more...",
+	"... And in hope to better suit your great image..."
+	)
+	invoke_msg = "... Rise, rise! Rise in your new form!!"
+	favor_cost = 2000
+
+/datum/religion_rites/candletransformation/perform_rite(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+		return FALSE
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool)
+		return FALSE
+	if(!LAZYLEN(movable_reltool.buckled_mobs))
+		. = FALSE
+		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
+			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+			return
+		to_chat(user, span_warning("This rite requires an individual to be buckled to [movable_reltool]."))
+		return
+	return ..()
+
+/datum/religion_rites/candletransformation/invoke_effect(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		CRASH("[name]'s perform_rite had a movable atom that has somehow turned into a non-movable!")
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool?.buckled_mobs?.len)
+		return FALSE
+	var/mob/living/carbon/human/human2wax
+	for(var/i in movable_reltool.buckled_mobs)
+		if(istype(i,/mob/living/carbon/human))
+			human2wax = i
+			break
+	if(!human2wax)
+		return FALSE
+	human2wax.set_species(/datum/species/golem/wax)
+	human2wax.visible_message(span_notice("[human2wax] has been converted by the rite of [name]!"))
+
+
 /*********Plant people**********/
 
 /datum/religion_rites/plantconversion
@@ -336,7 +381,7 @@
 
 /datum/religion_rites/plantconversion/perform_rite(mob/living/user, atom/religious_tool)
 	if(!ismovable(religious_tool))
-		to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
 		return FALSE
 	var/atom/movable/movable_reltool = religious_tool
 	if(!movable_reltool)
@@ -344,9 +389,9 @@
 	if(!LAZYLEN(movable_reltool.buckled_mobs))
 		. = FALSE
 		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
-			to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
 			return
-		to_chat(user, "<span class='warning'>This rite requires an individual to be buckled to [movable_reltool].</span>")
+		to_chat(user, span_warning("This rite requires an individual to be buckled to [movable_reltool]."))
 		return
 	return ..()
 
@@ -364,7 +409,7 @@
 	if(!human2plant)
 		return FALSE
 	human2plant.set_species(/datum/species/golem/wood/holy)
-	human2plant.visible_message("<span class='notice'>[human2plant] has been converted by the rite of [name]!</span>")
+	human2plant.visible_message(span_notice("[human2plant] has been converted by the rite of [name]!"))
 	return TRUE
 
 /datum/religion_rites/photogeist
@@ -383,7 +428,7 @@
 
 /datum/religion_rites/ruinousknife
 	name = "Ruinous Knife"
-	desc = "Creates a knife that is mostly cosmetic, but is also a weapon."
+	desc = "Creates a knife that is mostly cosmetic, but is also a weapon. It is extra effective as a butchering tool, and can be upgraded with crafting alongside a piece of ruinous metal."
 	ritual_length = 5 SECONDS
 	invoke_msg = "please, old ones, lend us a tool of holy creation."
 	favor_cost = 50
@@ -424,7 +469,7 @@
 		user.say(mb_message, forced = "ritual") //chooses one of three invoke messages to say in order to avoid auto mute and add variety.
 		return TRUE
 	chosen_meat = null
-	to_chat(user, "<span class='warning'>The meat that was chosen for the rite is no longer on the altar!</span>")
+	to_chat(user, span_warning("The meat that was chosen for the rite is no longer on the altar!"))
 	return FALSE
 
 /datum/religion_rites/ruinousmetal
@@ -454,7 +499,7 @@
 
 /datum/religion_rites/bodybless/perform_rite(mob/living/user, atom/religious_tool)
 	if(!ismovable(religious_tool))
-		to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
 		return FALSE
 	var/atom/movable/movable_reltool = religious_tool
 	if(!movable_reltool)
@@ -462,9 +507,9 @@
 	if(!LAZYLEN(movable_reltool.buckled_mobs))
 		. = FALSE
 		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
-			to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
 			return
-		to_chat(user, "<span class='warning'>This rite requires an individual to be buckled to [movable_reltool].</span>")
+		to_chat(user, span_warning("This rite requires an individual to be buckled to [movable_reltool]."))
 		return
 	return ..()
 
@@ -482,4 +527,4 @@
 	if(!human2ruinous)
 		return FALSE
 	human2ruinous.set_species(/datum/species/golem/ruinous)
-	human2ruinous.visible_message("<span class='notice'>[human2ruinous] has been converted by the rite of [name]!</span>")
+	human2ruinous.visible_message(span_notice("[human2ruinous] has been converted by the rite of [name]!"))

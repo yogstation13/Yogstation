@@ -4,6 +4,7 @@
 /obj/item/melee/chainofcommand
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "chain"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -18,13 +19,13 @@
 	materials = list(/datum/material/iron = 1000)
 
 /obj/item/melee/chainofcommand/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (OXYLOSS)
 
 /obj/item/melee/synthetic_arm_blade
 	name = "synthetic arm blade"
 	desc = "A grotesque blade that on closer inspection seems made of synthetic flesh, it still feels like it would hurt very badly as a weapon."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/changeling.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
@@ -34,7 +35,7 @@
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/melee/synthetic_arm_blade/Initialize()
 	. = ..()
@@ -43,6 +44,7 @@
 /obj/item/melee/sabre
 	name = "officer's sabre"
 	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "sabre"
 	item_state = "sabre"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -51,10 +53,11 @@
 	obj_flags = UNIQUE_RENAME
 	force = 15
 	throwforce = 10
+	wound_bonus = 10
 	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 50
 	armour_penetration = 75
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	attack_verb = list("slashed", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	materials = list(/datum/material/iron = 1000)
@@ -62,6 +65,7 @@
 /obj/item/melee/cutlass
 	name = "cutlass"
 	desc = "A true pirates weapon, seems somewhat dull though"
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "metalcutlass"
 	item_state = "metalcutlass"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -93,7 +97,7 @@
 		playsound(B, 'sound/items/sheath.ogg', 25, TRUE)
 
 /obj/item/melee/sabre/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] is trying to cut off all [user.p_their()] limbs with [src]! it looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is trying to cut off all [user.p_their()] limbs with [src]! it looks like [user.p_theyre()] trying to commit suicide!"))
 	var/i = 0
 	ADD_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 	if(iscarbon(user))
@@ -138,14 +142,14 @@
 /obj/item/melee/beesword
 	name = "The Stinger"
 	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "beesword"
 	item_state = "stinger"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	force = 7
 	throwforce = 10
 	block_chance = 20
@@ -161,14 +165,14 @@
 		H.reagents.add_reagent(/datum/reagent/toxin/histamine, 4)
 
 /obj/item/melee/beesword/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] is stabbing [user.p_them()]self in the throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is stabbing [user.p_them()]self in the throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(get_turf(src), hitsound, 75, 1, -1)
 	return TOXLOSS
 
 /obj/item/melee/classic_baton
 	name = "police baton"
 	desc = "A wooden truncheon for beating criminal scum."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "baton"
 	item_state = "classic_baton"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -196,6 +200,8 @@
 	var/force_off // Damage when off - not stunning
 	var/weight_class_on // What is the new size class when turned on
 
+	wound_bonus = 15
+
 // Description for trying to stun when still on cooldown.
 /obj/item/melee/classic_baton/proc/get_wait_description()
 	return
@@ -222,8 +228,8 @@
 /obj/item/melee/classic_baton/proc/get_silicon_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["visible"] = "<span class='danger'>[user] pulses [target]'s sensors with the baton!</span>"
-	.["local"] = "<span class='danger'>You pulse [target]'s sensors with the baton!</span>"
+	.["visible"] = span_danger("[user] pulses [target]'s sensors with the baton!")
+	.["local"] = span_danger("You pulse [target]'s sensors with the baton!")
 
 	return .
 
@@ -240,7 +246,7 @@
 		return ..()
 
 	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
-		to_chat(user, "<span class='warning'>You can't seem to remember how this works!</span>")
+		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
@@ -320,7 +326,6 @@
 /obj/item/melee/classic_baton/telescopic
 	name = "telescopic baton"
 	desc = "A compact yet robust personal defense weapon. Can be concealed when folded."
-	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "telebaton_0"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
@@ -338,12 +343,13 @@
 	force_on = 10
 	force_off = 0
 	weight_class_on = WEIGHT_CLASS_BULKY
+	bare_wound_bonus = 5
 
 /obj/item/melee/classic_baton/telescopic/suicide_act(mob/user)
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/brain/B = H.getorgan(/obj/item/organ/brain)
 
-	user.visible_message("<span class='suicide'>[user] stuffs [src] up [user.p_their()] nose and presses the 'extend' button! It looks like [user.p_theyre()] trying to clear [user.p_their()] mind.</span>")
+	user.visible_message(span_suicide("[user] stuffs [src] up [user.p_their()] nose and presses the 'extend' button! It looks like [user.p_theyre()] trying to clear [user.p_their()] mind."))
 	if(!on)
 		src.attack_self(user)
 	else
@@ -383,7 +389,6 @@
 /obj/item/melee/classic_baton/telescopic/contractor_baton
 	name = "contractor baton"
 	desc = "A compact, specialised baton assigned to Syndicate contractors. Applies light electrical shocks to targets."
-	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "contractor_baton_0"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
@@ -408,7 +413,7 @@
 	weight_class_on = WEIGHT_CLASS_NORMAL
 
 /obj/item/melee/classic_baton/telescopic/contractor_baton/get_wait_description()
-	return "<span class='danger'>The baton is still charging!</span>"
+	return span_danger("The baton is still charging!")
 
 /obj/item/melee/classic_baton/telescopic/contractor_baton/additional_effects_carbon(mob/living/target, mob/living/user)
 	target.Jitter(20)
@@ -417,7 +422,7 @@
 /obj/item/melee/supermatter_sword
 	name = "supermatter sword"
 	desc = "In a station full of bad ideas, this might just be the worst."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "supermatter_sword"
 	item_state = "supermatter_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -436,7 +441,7 @@
 	qdel(shard.countdown)
 	shard.countdown = null
 	START_PROCESSING(SSobj, src)
-	visible_message("<span class='warning'>[src] appears, balanced ever so perfectly on its hilt. This isn't ominous at all.</span>")
+	visible_message(span_warning("[src] appears, balanced ever so perfectly on its hilt. This isn't ominous at all."))
 
 /obj/item/melee/supermatter_sword/process()
 	if(balanced || throwing || ismob(src.loc) || isnull(src.loc))
@@ -470,23 +475,23 @@
 	balanced = 0
 
 /obj/item/melee/supermatter_sword/ex_act(severity, target)
-	visible_message("<span class='danger'>The blast wave smacks into [src] and rapidly flashes to ash.</span>",\
-	"<span class='italics'>You hear a loud crack as you are washed with a wave of heat.</span>")
+	visible_message(span_danger("The blast wave smacks into [src] and rapidly flashes to ash."),\
+	span_italics("You hear a loud crack as you are washed with a wave of heat."))
 	consume_everything()
 
 /obj/item/melee/supermatter_sword/acid_act()
-	visible_message("<span class='danger'>The acid smacks into [src] and rapidly flashes to ash.</span>",\
-	"<span class='italics'>You hear a loud crack as you are washed with a wave of heat.</span>")
+	visible_message(span_danger("The acid smacks into [src] and rapidly flashes to ash."),\
+	span_italics("You hear a loud crack as you are washed with a wave of heat."))
 	consume_everything()
 
 /obj/item/melee/supermatter_sword/bullet_act(obj/item/projectile/P)
-	visible_message("<span class='danger'>[P] smacks into [src] and rapidly flashes to ash.</span>",\
-	"<span class='italics'>You hear a loud crack as you are washed with a wave of heat.</span>")
+	visible_message(span_danger("[P] smacks into [src] and rapidly flashes to ash."),\
+	span_italics("You hear a loud crack as you are washed with a wave of heat."))
 	consume_everything(P)
 	return BULLET_ACT_HIT
 
 /obj/item/melee/supermatter_sword/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] touches [src]'s blade. It looks like [user.p_theyre()] tired of waiting for the radiation to kill [user.p_them()]!</span>")
+	user.visible_message(span_suicide("[user] touches [src]'s blade. It looks like [user.p_theyre()] tired of waiting for the radiation to kill [user.p_them()]!"))
 	user.dropItemToGround(src, TRUE)
 	shard.Bumped(user)
 
@@ -504,8 +509,8 @@
 	if(newT.type == oldtype)
 		return
 	playsound(T, 'sound/effects/supermatter.ogg', 50, 1)
-	T.visible_message("<span class='danger'>[T] smacks into [src] and rapidly flashes to ash.</span>",\
-	"<span class='italics'>You hear a loud crack as you are washed with a wave of heat.</span>")
+	T.visible_message(span_danger("[T] smacks into [src] and rapidly flashes to ash."),\
+	span_italics("You hear a loud crack as you are washed with a wave of heat."))
 	shard.Consume()
 	CALCULATE_ADJACENT_TURFS(T)
 
@@ -515,7 +520,7 @@
 /obj/item/melee/singularity_sword
 	name = "singularity sword"
 	desc = "Spins so hard that it turns any struck foe into mincemeat instantaneously. Make sure not to stick around when you swing it at someone."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "singularity_sword"
 	item_state = "singularity_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -531,7 +536,7 @@
 	if(proximity_flag && istype(target, /mob))
 		var/mob/M = target
 		var/turf/T = get_turf(M)
-		M.visible_message("<span class='danger'>[target] is consumed by the singularity!</span>")
+		M.visible_message(span_danger("[target] is consumed by the singularity!"))
 		new /obj/singularity(T)
 		M.gib()
 	else
@@ -541,6 +546,7 @@
 /obj/item/melee/curator_whip
 	name = "curator's whip"
 	desc = "Somewhat eccentric and outdated, it still stings like hell to be hit by."
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "whip"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -560,6 +566,7 @@
 /obj/item/melee/roastingstick
 	name = "advanced roasting stick"
 	desc = "A telescopic roasting stick with a miniature shield generator designed to ensure entry into various high-tech shielded cooking ovens and firepits."
+	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "roastingstick_0"
 	item_state = "null"
 	slot_flags = ITEM_SLOT_BELT
@@ -583,7 +590,7 @@
 		extend(user)
 	else
 		if (held_sausage)
-			to_chat(user, "<span class='warning'>You can't retract [src] while [held_sausage] is attached!</span>")
+			to_chat(user, span_warning("You can't retract [src] while [held_sausage] is attached!"))
 			return
 		retract(user)
 
@@ -594,15 +601,15 @@
 	..()
 	if (istype(target, /obj/item/reagent_containers/food/snacks/sausage))
 		if (!on)
-			to_chat(user, "<span class='warning'>You must extend [src] to attach anything to it!</span>")
+			to_chat(user, span_warning("You must extend [src] to attach anything to it!"))
 			return
 		if (held_sausage)
-			to_chat(user, "<span class='warning'>[held_sausage] is already attached to [src]!</span>")
+			to_chat(user, span_warning("[held_sausage] is already attached to [src]!"))
 			return
 		if (user.transferItemToLoc(target, src))
 			held_sausage = target
 		else
-			to_chat(user, "<span class='warning'>[target] doesn't seem to want to get on [src]!</span>")
+			to_chat(user, span_warning("[target] doesn't seem to want to get on [src]!"))
 	update_icon()
 
 /obj/item/melee/roastingstick/attack_hand(mob/user)
@@ -653,7 +660,7 @@
 			playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
 		else
 			return
-		if(do_after(user, 100, target = user))
+		if(do_after(user, 10 SECONDS, target = user))
 			finish_roasting(user, target)
 		else
 			QDEL_NULL(beam)

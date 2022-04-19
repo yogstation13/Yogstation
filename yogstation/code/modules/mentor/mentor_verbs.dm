@@ -22,7 +22,7 @@ GLOBAL_PROTECT(mentor_verbs)
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(src, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 
 	var/msg = "<b>Current Mentors:</b>\n"
@@ -45,6 +45,7 @@ GLOBAL_PROTECT(mentor_verbs)
 	var/msg = "<b>Current Mentors & Wiki:</b>\n"
 	if(holder)
 		for(var/client/C in GLOB.mentors)
+			if(C.holder) continue
 			if(C.mentor_datum.position)
 				position = C.mentor_datum.position
 			msg += "\t[C] is a [position]"
@@ -64,6 +65,7 @@ GLOBAL_PROTECT(mentor_verbs)
 			msg += "\n"
 	else
 		for(var/client/C in GLOB.mentors)
+			if(C.holder) continue
 			if(C.mentor_datum.position)	
 				position = C.mentor_datum.position
 			if(C.holder && C.holder.fakekey)
@@ -71,7 +73,7 @@ GLOBAL_PROTECT(mentor_verbs)
 			else
 				msg += "\t[C] is a [position]"
 			msg += "\n"
-		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
+		msg += span_info("Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.")
 	to_chat(src, msg, confidential=TRUE)
 
 /client/verb/mrat()
@@ -79,17 +81,17 @@ GLOBAL_PROTECT(mentor_verbs)
 	set category = "Mentor"
 
 	if(!istype(src.mob, /mob/living/carbon/human))
-		to_chat(src, "<span class='notice'>You must be humanoid to use this!</span>")
+		to_chat(src, span_notice("You must be humanoid to use this!"))
 		return
 
 	var/mob/living/carbon/human/M = src.mob
 
 	if(M.stat == DEAD)
-		to_chat(src, "<span class='notice'>You must be alive to use this!</span>")
+		to_chat(src, span_notice("You must be alive to use this!"))
 		return
 
 	if(M.has_trauma_type(/datum/brain_trauma/special/imaginary_friend/mrat))
-		to_chat(src, "<span class='notice'>You already have or are requesting a mentor!</span>")
+		to_chat(src, span_notice("You already have or are requesting a mentor!"))
 		return
 	
 	var/alertresult = alert(M, "This will create a physical avatar that a mentor can possess and guide you in person. Do you wish to continue?",,"Yes", "No")
@@ -104,14 +106,14 @@ GLOBAL_PROTECT(mentor_verbs)
 	set desc = "Shed your mentor powers."
 	if(mentor_datum.position == "Mentor")
 		if(GLOB.mentors.len <= 2)
-			to_chat(src, "<span class='notice'>There are not enough mentors on for you to De-Mentor yourself!</span>", confidential=TRUE)
+			to_chat(src, span_notice("There are not enough mentors on for you to De-Mentor yourself!"), confidential=TRUE)
 			return
 	mentor_position = mentor_datum.position
 	remove_mentor_verbs()
 	mentor_datum = null
 	GLOB.mentors -= src
 	add_verb(src, /client/proc/rementor)
-	to_chat(src, "<span class='interface'>You are now a normal player.</span>", confidential=TRUE)
+	to_chat(src, span_interface("You are now a normal player."), confidential=TRUE)
 	log_admin("[src] dementored themself.")
 	message_admins("[src] dementored themself.")
 
@@ -122,6 +124,6 @@ GLOBAL_PROTECT(mentor_verbs)
 	remove_verb(src, /client/proc/rementor)
 	spawn(20) // Now UselessTheremin being a shit too.
 		new /datum/mentors(ckey, mentor_position)
-		to_chat(src, "<span class='interface'>You are now a Mentor again.</span>", confidential=TRUE)
+		to_chat(src, span_interface("You are now a Mentor again."), confidential=TRUE)
 		log_admin("[src] rementored themself.")
 		message_admins("[src] rementored themself.")

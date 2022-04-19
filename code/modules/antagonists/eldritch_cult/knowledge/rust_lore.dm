@@ -11,18 +11,21 @@
 /datum/eldritch_knowledge/base_rust/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(ishuman(target))
+		. = TRUE
+		target.rust_heretic_act()
 		var/mob/living/carbon/human/H = target
 		var/datum/status_effect/eldritch/E = H.has_status_effect(/datum/status_effect/eldritch/rust) || H.has_status_effect(/datum/status_effect/eldritch/ash) || H.has_status_effect(/datum/status_effect/eldritch/flesh)
 		if(E)
 			E.on_effect()
 			H.adjustOrganLoss(pick(ORGAN_SLOT_BRAIN,ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART),25)
-	target.rust_heretic_act()
-	return TRUE
+	else if(user.a_intent == INTENT_HARM)
+		. = TRUE
+		target.rust_heretic_act()
 
 /datum/eldritch_knowledge/rust_regen
 	name = "Leeching Walk"
 	desc = "Passively heals you when you are on rusted tiles."
-	gain_text = "His strength was unparallel, it was unnatural. The Blacksmith was smiling."
+	gain_text = "His strength was unparalleled, it was unnatural. The Blacksmith was smiling."
 	cost = 1
 	route = PATH_RUST
 	tier = TIER_1
@@ -50,7 +53,7 @@
 /datum/eldritch_knowledge/essence
 	name = "Priest's ritual"
 	desc = "You can now transmute a tank of water into a bottle of eldritch water."
-	gain_text = "I learned an old recipe, tought by an Owl in my dreams."
+	gain_text = "I learned an old recipe, taught by an Owl in my dreams."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/water)
 	tier = TIER_1

@@ -27,9 +27,11 @@
 	name = "Mime"
 	jobtype = /datum/job/mime
 
-	belt = /obj/item/pda/mime
+	pda_type = /obj/item/pda/mime
+
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/mime
+	uniform_skirt = /obj/item/clothing/under/rank/mime/skirt
 	mask = /obj/item/clothing/mask/gas/mime
 	gloves = /obj/item/clothing/gloves/color/white
 	head = /obj/item/clothing/head/frenchberet
@@ -88,5 +90,5 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair(null))
 		if (href_list["invisible_box"])
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box(null))
-	to_chat(usr, "<span class='notice'>The book disappears into thin air.</span>")
+	to_chat(usr, span_notice("The book disappears into thin air."))
 	qdel(src)

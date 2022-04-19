@@ -1,7 +1,7 @@
 /obj/item/banner
 	name = "banner"
 	desc = "A banner with Nanotrasen's logo on it."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/banners.dmi'
 	icon_state = "banner"
 	item_state = "banner"
 	force = 8
@@ -18,16 +18,16 @@
 /obj/item/banner/examine(mob/user)
 	. = ..()
 	if(inspiration_available)
-		. += "<span class='notice'>Activate it in your hand to inspire nearby allies of this banner's allegiance!</span>"
+		. += span_notice("Activate it in your hand to inspire nearby allies of this banner's allegiance!")
 
 /obj/item/banner/attack_self(mob/living/carbon/human/user)
 	if(!inspiration_available)
 		return
 	if(morale_time > world.time)
-		to_chat(user, "<span class='warning'>You aren't feeling inspired enough to flourish [src] again yet.</span>")
+		to_chat(user, span_warning("You aren't feeling inspired enough to flourish [src] again yet."))
 		return
 	user.visible_message("<span class='big notice'>[user] flourishes [src]!</span>", \
-	"<span class='notice'>You raise [src] skywards, inspiring your allies!</span>")
+	span_notice("You raise [src] skywards, inspiring your allies!"))
 	playsound(src, "rustle", 100, FALSE)
 	if(warcry)
 		user.say("[warcry]", forced="banner")
@@ -54,7 +54,7 @@
 	for(var/V in inspired)
 		var/mob/living/carbon/human/H = V
 		if(H != user)
-			to_chat(H, "<span class='notice'>Your confidence surges as [user] flourishes [user.p_their()] [name]!</span>")
+			to_chat(H, span_notice("Your confidence surges as [user] flourishes [user.p_their()] [name]!"))
 		inspiration(H)
 		special_inspiration(H)
 
@@ -309,7 +309,7 @@
 	if(staffcooldown + staffwait > world.time)
 		return
 	user.visible_message("[user] chants deeply and waves [user.p_their()] staff!")
-	if(do_after(user, 20,1,src))
+	if(do_after(user, 2 SECONDS,1,src))
 		target.add_atom_colour(conversion_color, WASHABLE_COLOUR_PRIORITY) //wololo
 	staffcooldown = world.time
 

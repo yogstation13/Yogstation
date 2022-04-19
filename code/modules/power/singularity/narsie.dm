@@ -15,6 +15,7 @@
 	light_range = 15
 	light_color = rgb(255, 0, 0)
 	gender = FEMALE
+	does_targeting = FALSE
 	var/clashing = FALSE //If Nar-Sie is fighting Ratvar
 
 /obj/singularity/narsie/large
@@ -29,7 +30,7 @@
 
 /obj/singularity/narsie/large/Initialize()
 	. = ..()
-	send_to_playing_players("<span class='narsie'>NAR-SIE HAS RISEN</span>")
+	send_to_playing_players(span_narsie("NAR-SIE HAS RISEN"))
 	sound_to_playing_players('sound/creatures/narsie_rises.ogg')
 
 	var/area/A = get_area(src)
@@ -136,7 +137,7 @@
 	for(var/mob/living/carbon/M in viewers(consume_range, src))
 		if(M.stat == CONSCIOUS)
 			if(!iscultist(M))
-				to_chat(M, "<span class='cultsmall'>You feel conscious thought crumble away in an instant as you gaze upon [src.name]...</span>")
+				to_chat(M, span_cultsmall("You feel conscious thought crumble away in an instant as you gaze upon [src.name]..."))
 				M.apply_effect(60, EFFECT_STUN)
 
 
@@ -192,7 +193,7 @@
 /obj/singularity/narsie/proc/acquire(atom/food)
 	if(food == target)
 		return
-	to_chat(target, "<span class='cultsmall'>NAR-SIE HAS LOST INTEREST IN YOU.</span>")
+	to_chat(target, span_cultsmall("NAR-SIE HAS LOST INTEREST IN YOU."))
 	target = food
 	if(ishuman(target))
 		to_chat(target, "<span class ='cult'>NAR-SIE HUNGERS FOR YOUR SOUL.</span>")
