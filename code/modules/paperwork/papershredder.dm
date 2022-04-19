@@ -88,9 +88,9 @@
 /obj/machinery/papershredder/verb/empty()
 	set name = "Empty bin"
 	set category = "Object"
-	empty()
+	emptypaper()
 
-/obj/machinery/papershredder/proc/empty()
+/obj/machinery/papershredder/proc/emptypaper()
 	set src in oview(1)
 	if(paperamount != 0)
 		var/i
@@ -110,7 +110,7 @@
 		update_icon()
 
 /obj/machinery/papershredder/AltClick(mob/living/user)
-	empty()
+	emptypaper()
 
 /obj/machinery/papershredder/update_icon()
 	if(paperamount == 0)
@@ -132,7 +132,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "shredp"
 	throwforce = 0
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_range = 3
 	throw_speed = 1
 	layer = 4
