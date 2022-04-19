@@ -20,8 +20,9 @@
 			if(!silent)
 				to_chat(kingo, "Your will to rule allows you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			kingo.dna.remove_mutation(CLOWNMUT)
-	if(owner.dna?.species != /datum/species/human)
-		owner.current.grant_language(/datum/language/english) //Yes.
+	var/mob/living/carbon/human/user = owner
+	if(!(user.dna.species == /datum/species/human))
+		user.grant_language(/datum/language/english) //Yes.
 
 /datum/antagonist/king/remove_innate_effects(mob/living/mob_override)
 	if(owner.assigned_role == "Clown")
