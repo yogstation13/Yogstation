@@ -54,3 +54,15 @@
 		message_admins("[convertee] has become a King, and was created by [converter].")
 		log_admin("[convertee] has become a King, and was created by [converter].")
 	return TRUE
+
+/datum/mind/proc/make_king(datum/mind/king)
+	if(!can_make_king(king))
+		return FALSE
+	add_antag_datum(/datum/antagonist/king)
+	return TRUE
+
+/datum/mind/proc/remove_king()
+	var/datum/antagonist/king/removed_king = has_antag_datum(/datum/antagonist/king)
+	if(removed_king)
+		remove_antag_datum(/datum/antagonist/king)
+		special_role = null
