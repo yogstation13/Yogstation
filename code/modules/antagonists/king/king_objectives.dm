@@ -129,3 +129,16 @@
 
 
 
+
+//Servant shit
+/datum/objective/servetheking
+
+/datum/objective/servetheking/update_explanation_text()
+	. = ..()
+	explanation_text = "Serve your King!"
+
+
+/datum/objective/servetheking/check_completion()
+	var/datum/antagonist/servant/antag_datum = owner.has_antag_datum(/datum/antagonist/servant)
+	return antag_datum.master?.owner?.current?.stat != DEAD
+

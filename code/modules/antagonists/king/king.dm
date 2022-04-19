@@ -20,12 +20,16 @@
 			if(!silent)
 				to_chat(kingo, "Your will to rule allows you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			kingo.dna.remove_mutation(CLOWNMUT)
+	if(owner.dna.species != /datum/species/human)
+		owner.current.grant_language(/datum/language/english) //Yes.
 
 /datum/antagonist/king/remove_innate_effects(mob/living/mob_override)
 	if(owner.assigned_role == "Clown")
 		var/mob/living/carbon/human/kingo = owner.current
 		if(kingo && istype(kingo))
 			kingo.dna.add_mutation(CLOWNMUT)
+	if(owner.dna.species != /datum/species/human)
+		owner.current.remove_language(/datum/language/english) //No.
 
 /datum/antagonist/king/on_gain()
 	forge_king_objectives()
@@ -39,6 +43,7 @@
 /datum/antagonist/king/farewell()
 	to_chat(owner.current, span_userdanger("<FONT size = 3>Suddenly, you understand that all this time you were just mentally ill. You do not longer consider yourself as a king.</FONT>"))
 
+//Procs
 /datum/antagonist/king/proc/add_objective(datum/objective/added_objective)
 	objectives += added_objective
 
@@ -71,15 +76,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 /datum/mind/proc/can_make_king(datum/mind/convertee, datum/mind/converter)
 	var/mob/living/carbon/human/user = convertee.current
 	if(converter)
@@ -98,3 +94,16 @@
 	if(removed_king)
 		remove_antag_datum(/datum/antagonist/king)
 		special_role = null
+
+/**
+ * # HUD
+ */
+/datum/antagonist/king/proc/update_king_icons_added(datum/mind/m)
+	var/datum/atom_hud/antag/kinghud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
+	vamphud.join_hud(owner.current)
+	set_antag_hud(owner.current, "king")
+
+/datum/antagonist/king/proc/update_king_icons_removed(datum/mind/m)
+	var/datum/atom_hud/antag/kinghud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
+	kinghud.leave_hud(owner.current)
+	set_antag_hud(owner.current, null)

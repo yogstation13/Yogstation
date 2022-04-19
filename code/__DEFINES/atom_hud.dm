@@ -87,6 +87,7 @@
 #define ANTAG_HUD_BLOODSUCKER   32
 #define ANTAG_HUD_MHUNTER       33
 #define ANTAG_HUD_BRAINWASHED	34
+#define ANTAG_HUD_KING          35
 
 // Notification action types
 #define NOTIFY_JUMP "jump"
