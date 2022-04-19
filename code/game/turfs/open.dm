@@ -522,7 +522,9 @@
 		if(!(lube&SLIDE_ICE))
 			to_chat(C, span_notice("You slipped[ O ? " on the [O.name]" : ""]!"))
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-
+		var/wagging = FALSE
+		if(C.dna.species.is_wagging_tail())
+			wagging = TRUE
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
 		if(force_drop)
 			for(var/obj/item/I in C.held_items)
@@ -530,17 +532,13 @@
 
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
-		var/wagging = FALSE
-		if(C.dna.species.is_wagging_tail())
-			wagging = TRUE
 		if(!(lube & SLIDE_ICE))
 			C.Knockdown(knockdown_amount)
 			C.Stun(stun_amount)
 			C.stop_pulling()
 		else
 			C.Knockdown(20)
-		if(wagging)
-			C.dna.species.start_wagging_tail(src)
+
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE
@@ -551,6 +549,8 @@
 			if(C.force_moving) //If we're already slipping extend it
 				qdel(C.force_moving)
 			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
+		if(wagging)
+			C.dna.species.start_wagging_tail(src)
 		return 1
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)
