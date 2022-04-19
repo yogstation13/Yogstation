@@ -197,12 +197,13 @@
 	add_fingerprint(usr)
 	return
 
-
-/obj/item/paper_bundle/verb/remove_all()
-	set name = "Loose bundle"
+/obj/item/paper_bundle/verb/unbundle_paper()
+	set name = "Loosen bundle"
 	set category = "Object"
-	set src in usr
+	unbundle()
 
+/obj/item/paper_bundle/proc/unbundle()
+	set src in usr
 	to_chat(usr, span_notice("You loosen the bundle."))
 	for(var/obj/O in src)
 		O.loc = usr.loc
@@ -212,6 +213,8 @@
 	qdel(src)
 	return
 
+/obj/item/paper_bundle/AltClick(mob/living/user)
+	unbundle()
 
 /obj/item/paper_bundle/update_icon()
 	cut_overlays()
