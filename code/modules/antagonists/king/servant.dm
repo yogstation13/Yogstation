@@ -25,7 +25,9 @@
 		master.servants -= src
 		owner.enslaved_to = null
 	/// Remove Language & Hud
-	if(owner.dna?.species != /datum/species/human)
+	var/mob/living/carbon/human/user = owner
+	if(!(user.dna.species == /datum/species/human))
+		user.grant_language(/datum/language/english) //Yes.
 		owner.current.remove_language(/datum/language/english)
 	update_servant_icons_removed(owner.current)
 	return ..()
