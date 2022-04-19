@@ -25,7 +25,7 @@
 	name = "chitin helm"
 	desc = "A helmet-like enclosure of the head."
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
-	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	icon = 'yogstation/icons/obj/clothing/hat.dmi'
 	icon_state = "sl_head"
 	item_state = "sl_head"
 	cold_protection = HEAD
