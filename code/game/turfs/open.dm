@@ -506,12 +506,12 @@
 	return TRUE
 
 /turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, stun_amount, force_drop)
+	var/wagging = FALSE
+	if(C.dna.species.is_wagging_tail())
+		wagging = TRUE
 	if(C.movement_type & FLYING)
 		return 0
 	if(has_gravity(src))
-		var/wagging = FALSE
-		if(C.dna.species.is_wagging_tail())
-			wagging = TRUE
 		var/obj/buckled_obj
 		if(C.buckled)
 			buckled_obj = C.buckled
@@ -550,9 +550,10 @@
 			if(C.force_moving) //If we're already slipping extend it
 				qdel(C.force_moving)
 			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
-		if(wagging)
-			C.dna.species.start_wagging_tail(src)
 		return 1
+	if(wagging)
+		C.dna.species.start_wagging_tail(src)
+	return
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)
 	AddComponent(/datum/component/wet_floor, wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
