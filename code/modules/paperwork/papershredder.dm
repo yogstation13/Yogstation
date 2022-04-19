@@ -19,7 +19,7 @@
 			var/i
 			var/curpaper = paperamount
 			for(i=1; i<=curpaper; i++)
-				var/obj/item/shreddedp/SP = new /obj/item/shreddedp(usr.loc)
+				var/obj/item/shreddedpaper/SP = new /obj/item/shreddedpaper(usr.loc)
 				SP.pixel_x = rand(-5,5)
 				SP.pixel_y = rand(-5,5)
 				var/ran = rand(1,3)
@@ -56,7 +56,7 @@
 		var/i
 		for(i=1; i<=curpaper; i++)
 			if(W.contents.len < 21)
-				var/obj/item/shreddedp/SP = new /obj/item/shreddedp
+				var/obj/item/shreddedpaper/SP = new /obj/item/shreddedpaper
 				var/ran = rand(1,3)
 				if(ran == 1)
 					SP.color = "#BABABA"
@@ -70,7 +70,7 @@
 			else
 				to_chat(user, "<span class='warning'>The [W] is full.</span>")
 				return
-	else if(istype(W, /obj/item/shreddedp))
+	else if(istype(W, /obj/item/shreddedpaper))
 		if(paperamount == max_paper)
 			to_chat(user, "<span class='warning'>The [src] is full please empty it before you continue.</span>")
 			return
@@ -96,7 +96,7 @@
 		var/i
 		var/curpaper = paperamount
 		for(i=1; i<=curpaper; i++)
-			var/obj/item/shreddedp/SP = new /obj/item/shreddedp(usr.loc)
+			var/obj/item/shreddedpaper/SP = new /obj/item/shreddedpaper(usr.loc)
 			SP.pixel_x = rand(-5,5)
 			SP.pixel_y = rand(-5,5)
 			var/ran = rand(1,3)
