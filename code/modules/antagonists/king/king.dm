@@ -101,7 +101,7 @@
  * # HUD
  */
 /datum/antagonist/king/proc/update_king_icons_added(datum/mind/m)
-	var/datum/atom_hud/antag/kinghud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
+	var/datum/atom_hud/antag/kinghud = GLOB.huds[ANTAG_HUD_KING]
 	kinghud.join_hud(owner.current)
 	set_antag_hud(owner.current, "king")
 
