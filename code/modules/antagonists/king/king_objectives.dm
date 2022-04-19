@@ -120,10 +120,10 @@
 		other_targets += H.mind
 		if(H.mind.assigned_role in GLOB.command_positions)
 			continue
-		viable_targets += H.mind
+		viable_heads += H.mind
 	if(viable_heads.len > 0)//find in command positions
 		target = pick(viable_heads)
-	else if(all_coworkers.len > 0)//find someone else...
+	else if(other_targets.len > 0)//find someone else...
 		target = pick(other_targets)
 	return target
 
