@@ -1,3 +1,4 @@
+#define MARTYR_OBJECTIVE 2
 /datum/antagonist/king
 	name = "\improper King"
 	show_in_antagpanel = TRUE
@@ -44,7 +45,36 @@
 /datum/antagonist/king/proc/remove_objectives(datum/objective/removed_objective)
 	objectives -= removed_objective
 
-///datum/antagonist/king/proc/forge_king_objectives()
+/datum/antagonist/king/proc/forge_king_objectives()   //Many shitcode
+	var/list/possible_objectives = list(/datum/objective/assassinate/kingtoking, /datum/objective/leadership, /datum/objective/royalguard, /datum/objective/empire, /datum/objective/assassinate/head)
+	var/list/possible_roundend = list(/datum/objective/hijack/king, /datum/objective/survive, /datum/objective/escape)
+	var/datum/objective/roundend_obj = /datum/objective/hijack/king
+	var/rolledobjective
+	var/list/rolled_objectives = list()
+	if(random(1,5) == MARTYR_OBJECTIVE)
+		roundend_obj = /datum/objective/martyr
+		for(var/datum/objective/O in possible_objectives)
+			if(O.martyr_compatible = 0)
+				possible_objectives -= O
+	else roundend_obj = pick(possible_roundend)
+	rolledobjective = pick(possible_objectives)
+	possible_objectives -= rolledobjective
+	objectives += rolledobjective
+	rolledobjective = pick(possible_objectives)
+	possible_objectives -= rolledobjective
+	objectives += rolledobjective
+	for(var/datum/objective/obj in rolled_objectives)
+		obj.owner = owner
+		objectives += obj
+
+
+
+
+
+
+
+
+
 
 
 
