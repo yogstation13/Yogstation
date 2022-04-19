@@ -74,7 +74,7 @@
 	var/datum/antagonist/king/kingdatum = owner.has_antag_datum(/datum/antagonist/king)
 	if (kingdatum && kingdatum.servants)
 		for (var/datum/antagonist/servant/servantdatum in kingdatum.servants)
-			if(servantdatum.owner.has_antag_datum(/datum/antagonist/servant/knight)
+			if(servantdatum.owner.has_antag_datum(/datum/antagonist/servant/knight))
 				if(!servantdatum.master == kingdatum)
 					return
 				var/datum/mind/M = servantdatum.owner

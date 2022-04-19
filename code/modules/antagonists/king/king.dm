@@ -9,6 +9,7 @@
 	can_hijack = HIJACK_HIJACKER
 	show_to_ghosts = TRUE
 	var/list/datum/antagonist/servant/servants = list()
+	var/list/obj/structure/flag/flags_owned = list()
 
 
 /datum/antagonist/king/apply_innate_effects(mob/living/mob_override)
