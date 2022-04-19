@@ -49,7 +49,7 @@
 
 
 /datum/mind/proc/can_make_king(datum/mind/convertee, datum/mind/converter)
-	var/mob/living/carbon/human/user = convertee.curre
+	var/mob/living/carbon/human/user = convertee.current
 	if(converter)
 		message_admins("[convertee] has become a King, and was created by [converter].")
 		log_admin("[convertee] has become a King, and was created by [converter].")
