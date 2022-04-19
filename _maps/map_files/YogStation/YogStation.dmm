@@ -30648,6 +30648,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
+/obj/structure/window/reinforced/tinted,
 /turf/open/floor/carpet,
 /area/medical/psych)
 "dpw" = (
@@ -31296,9 +31297,6 @@
 "dJr" = (
 /obj/machinery/light{
 	dir = 8
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 1
 	},
 /turf/open/floor/wood,
 /area/medical/psych)
@@ -47745,6 +47743,7 @@
 	pixel_x = -6;
 	pixel_y = 3
 	},
+/obj/structure/window/reinforced/tinted,
 /turf/open/floor/wood,
 /area/medical/psych)
 "nam" = (
@@ -64486,6 +64485,7 @@
 /obj/structure/chair/comfy/brown{
 	dir = 1
 	},
+/obj/structure/window/reinforced/tinted,
 /turf/open/floor/carpet,
 /area/medical/psych)
 "vYi" = (
@@ -65356,12 +65356,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"wAi" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
 "wAw" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -65783,11 +65777,6 @@
 /obj/item/storage/pill_bottle/happiness,
 /obj/item/clothing/suit/straight_jacket,
 /obj/item/clothing/mask/muzzle,
-/obj/machinery/camera{
-	c_tag = "Prison Common Room South";
-	dir = 1;
-	network = list("ss13","prison")
-	},
 /turf/open/floor/wood,
 /area/medical/psych)
 "wKP" = (
@@ -92352,7 +92341,7 @@ aDR
 oHO
 thy
 vXV
-wAi
+ayH
 igF
 mOQ
 gdF
@@ -92609,7 +92598,7 @@ aDR
 ong
 thy
 dph
-wAi
+ayH
 pHX
 pHX
 lTC
