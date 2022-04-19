@@ -104,7 +104,7 @@
 	if(istype(src[page], /obj/item/paper))
 		var/obj/item/paper/P = W
 		var/dist = get_dist(src, user)
-		if(dist < 2 || !(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/dead/observer) || istype(usr, /mob/living/silicon)))
+		if(dist < 2 || istype(usr, /mob/dead/observer) || istype(usr, /mob/living/silicon))
 			dat += "[P.render_body(user)]<HR>[P.stamps]"
 		else 
 			dat += "[stars(P.render_body(user))]<HR>[P.stamps]"
@@ -139,11 +139,11 @@
 	if((src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)) || IsAdminGhost(usr))
 		usr.set_machine(src)
 		if(href_list["next_page"])
-			if(page == amount)
+			if(page+1 == amount)
 				screen = 2
 			else if(page == 1)
 				screen = 1
-			else if(page == amount+1)
+			else if(page == amount)
 				return
 			page++
 			playsound(src.loc, "pageturn", 50, 1)
