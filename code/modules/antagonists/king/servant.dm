@@ -32,34 +32,6 @@
 	update_servant_icons_removed(owner.current)
 	return ..()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /datum/antagonist/servant/knight
 	name = "\improper Knight"
 	roundend_category = "Knight"
