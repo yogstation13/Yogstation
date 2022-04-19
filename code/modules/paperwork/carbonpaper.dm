@@ -25,7 +25,7 @@
 		icon_state = "paper_stack"
 
 /obj/item/paper/carbon/verb/removecopy()
-	set name = "Remove carbon-copy"
+	set name = "Remove carbon copy"
 	set category = "Object"
 	set src in usr
 

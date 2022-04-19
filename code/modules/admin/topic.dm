@@ -2310,7 +2310,7 @@
 						P.overlays += stampoverlay
 						P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
-				to_chat(owner, "Message reply to transmitted successfully.")
+				to_chat(owner, "Message reply to Station transmitted successfully.")
 				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [input]")
 				message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(H)]", 1)
 				return

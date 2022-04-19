@@ -75,8 +75,8 @@
 		bin_pen = null
 		update_icon()
 	else if(total_paper >= 1)
-		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon-Copy", "Cancel")
-		if (response != "Regular" && response != "Carbon-Copy")
+		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon Copy", "Cancel")
+		if (response != "Regular" && response != "Carbon Copy")
 			add_fingerprint(user)
 			return
 		total_paper--
@@ -93,7 +93,7 @@
 					if(prob(30))
 						P.info = "<font face=\"[CRAYON_FONT]\" color=\"red\"><b>HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</b></font>"
 						P.rigged = 1
-			else if (response == "Carbon-Copy")
+			else if (response == "Carbon Copy")
 				P = new /obj/item/paper/carbon(src)
 
 		P.add_fingerprint(user)

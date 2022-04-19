@@ -1,6 +1,6 @@
 /obj/machinery/papershredder
 	name = "Paper Shredder"
-	desc = "For those documents you don't want seen."
+	desc = "Disposes of papers you don't want seen, as well as IDs that are no longer needed."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "papershredder0"
 	density = 1
