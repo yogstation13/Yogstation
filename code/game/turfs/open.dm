@@ -509,6 +509,7 @@
 	if(C.movement_type & FLYING)
 		return 0
 	if(has_gravity(src))
+		var/wagging = FALSE
 		if(C.dna.species.is_wagging_tail())
 			wagging = TRUE
 		var/obj/buckled_obj
@@ -524,7 +525,7 @@
 		if(!(lube&SLIDE_ICE))
 			to_chat(C, span_notice("You slipped[ O ? " on the [O.name]" : ""]!"))
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-		var/wagging = FALSE
+
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
 		if(force_drop)
 			for(var/obj/item/I in C.held_items)
