@@ -271,22 +271,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"aW" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"aX" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Cargo"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
 "aZ" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Emergency Shuttle Infirmary"
@@ -296,40 +280,6 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"bb" = (
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
-"bc" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
-"be" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/crowbar,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"bf" = (
-/obj/structure/closet,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
-"bg" = (
-/obj/structure/closet/crate,
-/turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "bi" = (
 /obj/structure/window/reinforced{
@@ -369,34 +319,12 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"bo" = (
-/obj/machinery/light/small,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"bp" = (
-/obj/machinery/light,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"bq" = (
+"bu" = (
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
-"br" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
-"bs" = (
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/white,
+/turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
 "cN" = (
 /obj/structure/table,
@@ -407,6 +335,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"fV" = (
+/obj/machinery/pool_filter,
+/turf/open/indestructible/sound/pool,
+/area/shuttle/escape)
 "ga" = (
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
@@ -416,6 +348,10 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"in" = (
+/obj/effect/turf_decal/pool,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "iq" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
@@ -424,6 +360,10 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"mU" = (
+/obj/structure/pool_ladder,
+/turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
 "pf" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -441,6 +381,19 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"rg" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/item/twohanded/required/pool/rubber_ring,
+/obj/item/twohanded/required/pool/rubber_ring,
+/obj/item/twohanded/required/pool/rubber_ring,
+/obj/structure/closet/athletic_mixed{
+	name = "pool floaties"
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -476,18 +429,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"Dv" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
 "Eu" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"FQ" = (
+/obj/item/twohanded/required/pool/rubber_ring,
+/turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
 "Io" = (
 /obj/structure/chair/comfy/shuttle{
@@ -508,6 +458,29 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"JL" = (
+/obj/item/twohanded/required/pool/pool_noodle,
+/obj/item/twohanded/required/pool/pool_noodle,
+/obj/item/twohanded/required/pool/pool_noodle,
+/obj/structure/closet/athletic_mixed{
+	name = "pool noodles"
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"OA" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/pool/corner{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"OY" = (
+/obj/item/twohanded/required/pool/pool_noodle,
+/turf/open/indestructible/sound/pool,
+/area/shuttle/escape)
 "Ri" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -520,6 +493,22 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"VD" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/crowbar,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Wn" = (
 /obj/machinery/door/firedoor/border_only{
@@ -537,9 +526,8 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"XC" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/mineral/titanium/white,
+"Xd" = (
+/turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
 "XX" = (
 /obj/structure/table,
@@ -568,7 +556,7 @@ pf
 ad
 aV
 ad
-aV
+ad
 ad
 ad
 ad
@@ -588,13 +576,13 @@ bn
 yw
 ao
 ao
-ao
-Dv
-bo
-ad
-bb
-bq
-bf
+JL
+rg
+in
+Xd
+Xd
+bu
+FQ
 ad
 ad
 "}
@@ -614,11 +602,11 @@ aC
 aC
 aC
 dz
-aW
-ad
-bb
-bb
-bf
+in
+mU
+OY
+Xd
+Xd
 bi
 bk
 "}
@@ -638,11 +626,11 @@ aS
 aS
 aS
 yP
-aC
-aX
-bb
-bb
-bg
+in
+fV
+Xd
+Xd
+Xd
 bi
 bk
 "}
@@ -662,11 +650,11 @@ aT
 aT
 aT
 WU
-Wn
-ad
-bc
-br
-bg
+in
+mU
+Xd
+OY
+Xd
 bi
 bk
 "}
@@ -686,11 +674,11 @@ aC
 aC
 aC
 dz
-bp
-az
-ad
-ad
-ad
+in
+FQ
+Xd
+Xd
+Xd
 bi
 bk
 "}
@@ -710,11 +698,11 @@ aS
 aS
 aS
 yP
-tt
+OA
+ad
 ac
-XC
-bs
-XC
+ac
+ac
 bi
 bk
 "}
@@ -785,7 +773,7 @@ Ir
 aR
 ac
 gh
-be
+VD
 gh
 ad
 ad
