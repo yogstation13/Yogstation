@@ -51,7 +51,7 @@
 	var/datum/objective/roundend_obj = /datum/objective/hijack/king
 	var/rolledobjective
 	var/list/rolled_objectives = list()
-	if(random(1,5) == MARTYR_OBJECTIVE)
+	if(rand(1,5) == MARTYR_OBJECTIVE)
 		roundend_obj = /datum/objective/martyr
 		for(var/datum/objective/O in possible_objectives)
 			if(O.martyr_compatible = 0)
@@ -66,6 +66,8 @@
 	for(var/datum/objective/obj in rolled_objectives)
 		obj.owner = owner
 		objectives += obj
+	roundend_obj.owner = owner
+	objectives += roundend_obj
 
 
 
