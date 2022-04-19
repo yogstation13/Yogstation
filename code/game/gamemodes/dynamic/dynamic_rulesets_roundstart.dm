@@ -980,7 +980,7 @@
 	var/ion_announce = 33
 	var/removeDontImproveChance = 10
 
-/datum/dynamic_ruleset/midround/malf/trim_candidates()
+/datum/dynamic_ruleset/roundstart/malf/trim_candidates()
 	..()
 	candidates = living_players
 	for(var/mob/living/player in candidates)
@@ -996,7 +996,7 @@
 		if(!(ROLE_MALF in player.client.prefs.be_special))
 			living_players -= player
 
-/datum/dynamic_ruleset/midround/malf/execute()
+/datum/dynamic_ruleset/roundstart/malf/execute()
 	if(!candidates || !candidates.len)
 		return FALSE
 	var/mob/living/silicon/ai/M = pick_n_take(candidates)
