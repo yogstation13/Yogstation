@@ -3,7 +3,7 @@
 	desc = "A dark, semi-transparent shell. Protects against vacuum, but not against the light of the stars." //Still takes damage from spacewalking but is immune to space itself
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'icons/obj/clothing/suits.dmi'
-	icon_state = "shadowling"
+	icon_state = "sl_shell"
 	item_state = "shadowling"
 	body_parts_covered = FULL_BODY //Shadowlings are immune to space
 	cold_protection = FULL_BODY
@@ -26,7 +26,7 @@
 	desc = "A helmet-like enclosure of the head."
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'icons/obj/clothing/hats.dmi'
-	icon_state = "shadowling"
+	icon_state = "sl_head"
 	item_state = "shadowling"
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
