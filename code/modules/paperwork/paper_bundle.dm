@@ -27,7 +27,6 @@
 				user << "<span class='notice'>Take off the carbon copy first.</span>"
 				add_fingerprint(user)
 				return
-
 		amount++
 		if(screen == 2)
 			screen = 1
@@ -99,16 +98,17 @@
 /obj/item/paper_bundle/proc/show_content(mob/user as mob)
 	var/dat
 	var/obj/item/W = src[page]
-	dat += "<DIV STYLE='float:left; text-align:left; width:33.33333%'>[screen != 0 ? "Previous Page" : ""]</DIV>"
+	dat += "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>[screen != 0 ? "Previous Page" : ""]</DIV>"
 	dat += "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(W, /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
 	dat += "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>[screen != 2 ? "Next Page" : ""]</A></DIV><BR><HR>"
 	if(istype(src[page], /obj/item/paper))
 		var/obj/item/paper/P = W
 		var/dist = get_dist(src, user)
-		if(dist < 2)
+		if(dist < 2 || !(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/dead/observer) || istype(usr, /mob/living/silicon)))
 			dat += "[P.render_body(user)]<HR>[P.stamps]"
-		else
+		else 
 			dat += "[stars(P.render_body(user))]<HR>[P.stamps]"
+			log_admin("EEEEEEEEEEEEEEEEEEEEEEEEEE")
 		user << browse(dat, "window=[name]")
 	else if(istype(src[page], /obj/item/photo))
 		var/obj/item/photo/P = W
@@ -130,24 +130,31 @@
 	if(page == amount)
 		screen = 2
 	else if(page == 1)
-		screen = 0
-	else
 		screen = 1
+	else if(page == amount+1)
+		return
 
 /obj/item/paper_bundle/Topic(href, href_list)
 	..()
-	if((src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)))
+	if((src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)) || IsAdminGhost(usr))
 		usr.set_machine(src)
 		if(href_list["next_page"])
+			if(page == amount)
+				screen = 2
+			else if(page == 1)
+				screen = 1
+			else if(page == amount+1)
+				return
 			page++
-			if(page > amount)
-				page = amount
-			update_screen()
 			playsound(src.loc, "pageturn", 50, 1)
 		if(href_list["prev_page"])
+			if(page == 1)
+				return
+			else if(page == 2)
+				screen = 0
+			else if(page == amount+1)
+				screen = 1
 			page--
-			if(page < 1)
-				page = 0
 			playsound(src.loc, "pageturn", 50, 1)
 		if(href_list["remove"])
 			var/obj/item/W = src[page]
@@ -166,9 +173,9 @@
 			amount--
 			update_icon()
 	else
-		usr << "<span class='notice'>You need to hold it in hands!</span>"
-	if (istype(src.loc, /mob) ||istype(src.loc.loc, /mob))
-		src.attack_self(src.loc)
+		usr << "<span class='notice'>You need to hold it in hand!</span>"
+	if (istype(src.loc, /mob) || istype(src.loc.loc, /mob))
+		src.attack_self(src?.loc)
 		updateUsrDialog()
 
 
@@ -201,6 +208,7 @@
 
 
 /obj/item/paper_bundle/update_icon()
+	cut_overlays()
 	var/obj/item/paper/P = src[1]
 	icon_state = P.icon_state
 	overlays = P.overlays
@@ -222,12 +230,12 @@
 			var/datum/picture/picture2 = PR.picture
 			img = picture2.picture_icon
 			photo = 1
-			overlays += img
+			add_overlay(img)
 	if(i>1)
 		desc =  "[i] papers clipped to each other."
 	else
 		desc = "A single sheet of paper."
 	if(photo)
 		desc += "\nThere is a photo attached to it."
-	overlays += image('icons/obj/bureaucracy.dmi', "clip")
+	add_overlay(image('icons/obj/bureaucracy.dmi', icon_state= "clip"))
 	return
