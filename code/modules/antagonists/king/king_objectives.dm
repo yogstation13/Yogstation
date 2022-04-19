@@ -82,3 +82,22 @@
 					counter++
 		return counter >= target_amount
 	return FALSE
+
+/datum/objective/empire
+	name = "Empire"
+	explanation_text = "Have at least 3 flags captured by you at once."
+	martyr_compatible = 0
+
+/datum/objective/empire/proc/gen_amount_goal()
+	target_amount = rand(3,6)
+	update_explanation_text()
+	return target_amount
+
+/datum/objective/empire/update_explanation_text()
+	..()
+	explanation_text = "Have at least [target_amount] flags captured by you at once."
+
+
+
+
+
