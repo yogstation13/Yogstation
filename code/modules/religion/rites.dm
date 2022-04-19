@@ -109,13 +109,13 @@
 	ritual_invocations =list( "Let your will power our forges.",
 							"...Help us in our great conquest!")
 	invoke_msg = "The end of flesh is near!"
-	favor_cost = 200	
+	favor_cost = 200
 
 /datum/religion_rites/machine_blessing/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	..()
 	var/altar_turf = get_turf(religious_tool)
 	var/blessing = pick(
-					/obj/item/organ/cyberimp/arm/surgery,
+					/obj/item/organ/cyberimp/arm/toolset/surgery,
 					/obj/item/organ/cyberimp/eyes/hud/diagnostic,
 					/obj/item/organ/cyberimp/eyes/hud/medical,
 					/obj/item/organ/cyberimp/mouth/breathing_tube,
@@ -428,7 +428,7 @@
 
 /datum/religion_rites/ruinousknife
 	name = "Ruinous Knife"
-	desc = "Creates a knife that is mostly cosmetic, but is also a weapon."
+	desc = "Creates a knife that is mostly cosmetic, but is also a weapon. It is extra effective as a butchering tool, and can be upgraded with crafting alongside a piece of ruinous metal."
 	ritual_length = 5 SECONDS
 	invoke_msg = "please, old ones, lend us a tool of holy creation."
 	favor_cost = 50

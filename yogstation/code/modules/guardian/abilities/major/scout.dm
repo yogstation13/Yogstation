@@ -8,7 +8,7 @@
 	mode_off_msg = span_bolddanger("You switch to combat mode.")
 
 /datum/guardian_ability/major/scout/Mode()
-	if(mode)
+	if (mode)
 		guardian.ranged = 0
 		guardian.melee_damage_lower = 0
 		guardian.melee_damage_upper = 0
@@ -33,14 +33,14 @@
 		guardian.stats.Apply(guardian)
 
 /datum/guardian_ability/major/scout/Manifest()
-	if(mode)
+	if (mode)
 		guardian.incorporeal_move = INCORPOREAL_MOVE_BASIC
 		var/datum/component/walk/incorp = guardian.LoadComponent(/datum/component/walk)
-		if(incorp)
+		if (incorp)
 			incorp.signal_enabled = TRUE
 
 /datum/guardian_ability/major/scout/Recall()
 	guardian.incorporeal_move = FALSE
 	var/datum/component/walk/incorp = guardian.LoadComponent(/datum/component/walk)
-	if(incorp)
+	if (incorp)
 		incorp.signal_enabled = FALSE

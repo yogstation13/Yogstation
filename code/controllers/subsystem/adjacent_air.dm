@@ -4,6 +4,9 @@ SUBSYSTEM_DEF(adjacent_air)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	wait = 10
 	priority = FIRE_PRIORITY_ATMOS_ADJACENCY
+
+	loading_points = 0.7 SECONDS // Yogs -- loading times
+
 	var/list/queue = list()
 
 /datum/controller/subsystem/adjacent_air/stat_entry(msg)

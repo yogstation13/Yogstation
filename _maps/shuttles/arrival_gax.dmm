@@ -1,0 +1,286 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"d" = (
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"g" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"h" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -5;
+	pixel_y = 30
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"k" = (
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_y = 32;
+	use_power = 0
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"m" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/crate/internals,
+/obj/item/storage/firstaid/o2,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"o" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/arrival)
+"p" = (
+/turf/template_noop,
+/area/template_noop)
+"q" = (
+/obj/structure/shuttle/engine/propulsion/burst/right{
+	dir = 8
+	},
+/obj/docking_port/mobile/arrivals{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
+"r" = (
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"s" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
+"t" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
+"w" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"C" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/machinery/status_display/ai{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"D" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Arrivals Shuttle Airlock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/arrival)
+"E" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"H" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/arrival)
+"I" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/status_display/ai{
+	pixel_y = -32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"K" = (
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/arrival)
+"L" = (
+/obj/machinery/door/firedoor/window,
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
+"M" = (
+/obj/machinery/holopad,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/arrival)
+"R" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"T" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"U" = (
+/obj/structure/shuttle/engine/propulsion/burst/right{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
+"Z" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_y = 5
+	},
+/obj/item/storage/toolbox/emergency,
+/obj/structure/table/reinforced,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+
+(1,1,1) = {"
+p
+o
+U
+q
+U
+o
+p
+"}
+(2,1,1) = {"
+o
+o
+t
+t
+t
+o
+o
+"}
+(3,1,1) = {"
+o
+Z
+w
+K
+w
+m
+o
+"}
+(4,1,1) = {"
+o
+k
+b
+K
+b
+w
+s
+"}
+(5,1,1) = {"
+D
+K
+K
+K
+K
+w
+s
+"}
+(6,1,1) = {"
+o
+d
+b
+M
+b
+w
+s
+"}
+(7,1,1) = {"
+D
+K
+K
+K
+K
+w
+s
+"}
+(8,1,1) = {"
+o
+h
+b
+K
+b
+w
+s
+"}
+(9,1,1) = {"
+o
+g
+w
+K
+w
+E
+o
+"}
+(10,1,1) = {"
+o
+o
+C
+K
+I
+o
+o
+"}
+(11,1,1) = {"
+p
+o
+r
+K
+T
+o
+p
+"}
+(12,1,1) = {"
+p
+H
+r
+K
+R
+H
+p
+"}
+(13,1,1) = {"
+p
+o
+L
+L
+L
+o
+p
+"}

@@ -10,7 +10,7 @@
 
 /datum/guardian_stats/proc/Apply(mob/living/simple_animal/hostile/guardian/guardian)
 	guardian.range = range * 2
-	if(ranged)
+	if (ranged)
 		guardian.ranged = TRUE
 		guardian.ranged_cooldown_time = 20 / speed
 	else
@@ -19,13 +19,13 @@
 		guardian.obj_damage = damage * 16
 	var/armor = clamp((max(6 - defense, 1)/2.5)/2, 0.25, 1)
 	guardian.damage_coeff = list(BRUTE = armor, BURN = armor, TOX = armor, CLONE = armor, STAMINA = 0, OXY = armor)
-	if(damage == 5)
+	if (damage == 5)
 		guardian.environment_smash = ENVIRONMENT_SMASH_WALLS
 	guardian.atk_cooldown = (15 / speed) * 1.5
-	if(ability)
+	if (ability)
 		ability.guardian = guardian
 		ability.Apply()
-	for(var/datum/guardian_ability/minor/minor in minor_abilities)
+	for (var/datum/guardian_ability/minor/minor in minor_abilities)
 		minor.guardian = guardian
 		minor.Apply()
 
@@ -39,14 +39,14 @@
 	guardian.damage_coeff = initial(guardian.damage_coeff)
 	guardian.environment_smash = initial(guardian.environment_smash)
 	guardian.atk_cooldown = initial(guardian.atk_cooldown)
-	if(ability)
+	if (ability)
 		ability.Remove()
-	for(var/datum/guardian_ability/minor/minor in minor_abilities)
+	for (var/datum/guardian_ability/minor/minor in minor_abilities)
 		minor.Remove()
 
 /datum/guardian_stats/proc/HasMinorAbility(typepath)
-	for(var/datum/guardian_ability/minor/minor in minor_abilities)
-		if(istype(minor, typepath))
+	for (var/datum/guardian_ability/minor/minor in minor_abilities)
+		if (istype(minor, typepath))
 			return TRUE
 	return FALSE
 
@@ -56,8 +56,8 @@
 	minor_abilities += minor_ability
 
 /datum/guardian_stats/proc/TakeMinorAbility(typepath)
-	for(var/datum/guardian_ability/minor/minor in minor_abilities)
-		if(istype(minor, typepath))
+	for (var/datum/guardian_ability/minor/minor in minor_abilities)
+		if (istype(minor, typepath))
 			minor_abilities -= minor
 			qdel(minor)
 
