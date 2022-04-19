@@ -54,7 +54,7 @@
 	if(rand(1,5) == MARTYR_OBJECTIVE)
 		roundend_obj = /datum/objective/martyr
 		for(var/datum/objective/O in possible_objectives)
-			if(O.martyr_compatible = 0)
+			if(O.martyr_compatible == 0)
 				possible_objectives -= O
 	else roundend_obj = pick(possible_roundend)
 	rolledobjective = pick(possible_objectives)
