@@ -106,6 +106,6 @@
 	set_antag_hud(owner.current, "king")
 
 /datum/antagonist/king/proc/update_king_icons_removed(datum/mind/m)
-	var/datum/atom_hud/antag/kinghud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
+	var/datum/atom_hud/antag/kinghud = GLOB.huds[ANTAG_HUD_KING]
 	kinghud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
