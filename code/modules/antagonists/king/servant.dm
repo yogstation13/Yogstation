@@ -13,7 +13,9 @@
 			kingdatum.servants |= src
 		owner.enslave_mind_to_creator(master.owner.current)
 	owner.current.log_message("has become a servant of [master.owner.current]!", LOG_ATTACK, color="#960000")
-	if(owner.dna?.species != /datum/species/human)
+	var/mob/living/carbon/human/user = owner
+	if(!(user.dna.species == /datum/species/human))
+		user.grant_language(/datum/language/english) //Yes.
 		owner.current.grant_language(/datum/language/english) //Yes.
 	update_servant_icons_added(owner.current)
 	. = ..()
