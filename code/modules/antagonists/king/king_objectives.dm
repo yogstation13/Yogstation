@@ -98,6 +98,34 @@
 	explanation_text = "Have at least [target_amount] flags captured by you at once."
 
 
+/datum/objective/assassinate/head
+	name = "Assasinate a Head of Departament"
+	martyr_compatible = 1
+
+/datum/objective/assassinate/head/update_explanation_text()
+	..()
+	if(target && target.current)
+		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role] to prove that only you deserve to rule!."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/assassinate/head/find_target()
+	var/list/viable_heads = list()
+	var/list/other_targets = list()
+	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+		if(!H.mind)
+			continue
+		if(!SSjob.GetJob(H.mind.assigned_role))
+			continue
+		other_targets += H.mind
+		if(H.mind.assigned_role in GLOB.command_positions)
+			continue
+		viable_targets += H.mind
+	if(viable_heads.len > 0)//find in command positions
+		target = pick(viable_heads)
+	else if(all_coworkers.len > 0)//find someone else...
+		target = pick(other_targets)
+	return target
 
 
 
