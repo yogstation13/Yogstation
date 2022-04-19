@@ -82,7 +82,7 @@
 	for(var/datum/mind/king in kings)
 		round_credits += "<center><h2>[king.name] as a King</h2>"
 	if(len_before_addition == round_credits.len)
-		round_credits += list("<center><h2>The Kings have gone far away into they home kingdom!</h2>", "<center><h2>We couldn't locate them!</h2>")
+		round_credits += list("<center><h2>The Kings have gone far away into their home kingdom!</h2>", "<center><h2>We couldn't locate them!</h2>")
 	round_credits += "<br>"
 
 	round_credits += ..()
