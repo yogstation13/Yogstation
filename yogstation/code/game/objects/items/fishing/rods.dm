@@ -34,12 +34,12 @@
 		return ..()
 	if(!fishing)
 		if(!wielded)
-			to_chat(user,"You need to wield the rod in both hands before you can cast it!")
+			to_chat(user, span_warning("You need to wield the rod in both hands before you can cast it!"))
 			return
 		cast(fc,user)
 	else
 		if(fc != fishing_component)
-			to_chat(user,"You are not fishing here!")
+			to_chat(user, span_warning("You are not fishing here!"))
 			return
 		reel_in() //intentionally able to reel in with one hand
 
@@ -47,12 +47,12 @@
 	if(!fishing)
 		return PROCESS_KILL
 	if(bite)
-		to_chat(fisher,"Whatever was on the line drifts back into the deep...")
+		to_chat(fisher, span_warning("Whatever was on the line drifts back into the deep..."))
 		bite = FALSE
 		return
 
 	if(prob(50))
-		to_chat(fisher,"Something bites! Reel it in!")
+		to_chat(fisher, span_boldnotice("Something bites! Reel it in!"))
 		bite = TRUE
 		do_fishing_alert(fisher)
 
@@ -80,7 +80,7 @@
 	else
 		playsound(fishing_component, 'sound/effects/splash.ogg', 50, FALSE, -5)
 		if(forced)
-			to_chat(fisher,"The auto-reel on the fishing rod activates!")
+			to_chat(fisher, span_boldnotice("The auto-reel on the fishing rod activates!"))
 		else
 			to_chat(fisher,"You reel in your fishing rod.")
 		
@@ -113,7 +113,7 @@
 	animate(reward_item,time = 0.25 SECONDS,pixel_y = 0,alpha = 255,easing = SINE_EASING)
 	if(!fisher) //uh oh
 		return
-	visible_message("[fisher] reels in a [reward_item]!","You reel in a [reward_item]!")
+	fisher.visible_message(span_notice("[fisher] reels in a [reward_item]!"), span_notice("You reel in a [reward_item]!"))
 	if(fisher.Adjacent(fishing_component.parent))
 		unwield(fisher,show_message = FALSE)
 		if(fisher.put_in_hands(reward_item))
