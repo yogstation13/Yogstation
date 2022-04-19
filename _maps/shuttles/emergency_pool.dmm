@@ -319,13 +319,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"bu" = (
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/turf/open/indestructible/sound/pool,
-/area/shuttle/escape)
 "cN" = (
 /obj/structure/table,
 /obj/machinery/door/firedoor/border_only,
@@ -335,9 +328,8 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"fV" = (
-/obj/machinery/pool_filter,
-/turf/open/indestructible/sound/pool,
+"fd" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "ga" = (
 /turf/open/floor/mineral/titanium/white,
@@ -348,8 +340,14 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"in" = (
-/obj/effect/turf_decal/pool,
+"gt" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/pool/corner{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "iq" = (
@@ -360,10 +358,6 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"mU" = (
-/obj/structure/pool_ladder,
-/turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
 "pf" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -384,7 +378,17 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"rg" = (
+"rf" = (
+/obj/item/twohanded/required/pool/rubber_ring,
+/turf/open/indestructible/sound/pool,
+/area/shuttle/escape)
+"tt" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"wx" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/item/twohanded/required/pool/rubber_ring,
 /obj/item/twohanded/required/pool/rubber_ring,
@@ -397,11 +401,21 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"tt" = (
-/obj/machinery/door/firedoor/border_only{
+"wI" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/crowbar,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "xy" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -435,10 +449,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"FQ" = (
-/obj/item/twohanded/required/pool/rubber_ring,
-/turf/open/indestructible/sound/pool,
-/area/shuttle/escape)
 "Io" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -458,27 +468,19 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"JL" = (
-/obj/item/twohanded/required/pool/pool_noodle,
-/obj/item/twohanded/required/pool/pool_noodle,
-/obj/item/twohanded/required/pool/pool_noodle,
-/obj/structure/closet/athletic_mixed{
-	name = "pool noodles"
+"Kv" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
 	},
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
-"OA" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/light,
-/obj/effect/turf_decal/pool/corner{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium,
+"LM" = (
+/obj/structure/pool_ladder,
+/turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
-"OY" = (
-/obj/item/twohanded/required/pool/pool_noodle,
+"Mh" = (
+/obj/machinery/pool_filter,
 /turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
 "Ri" = (
@@ -494,26 +496,18 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"VD" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/crowbar,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/white,
+"Ut" = (
+/obj/item/twohanded/required/pool/pool_noodle,
+/turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
 "Wn" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"WJ" = (
+/obj/effect/turf_decal/pool,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "WU" = (
@@ -526,7 +520,7 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"Xd" = (
+"WW" = (
 /turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
 "XX" = (
@@ -534,6 +528,15 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"Yy" = (
+/obj/item/twohanded/required/pool/pool_noodle,
+/obj/item/twohanded/required/pool/pool_noodle,
+/obj/item/twohanded/required/pool/pool_noodle,
+/obj/structure/closet/athletic_mixed{
+	name = "pool noodles"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -576,13 +579,13 @@ bn
 yw
 ao
 ao
-JL
-rg
-in
-Xd
-Xd
-bu
-FQ
+Yy
+wx
+WJ
+WW
+WW
+Kv
+rf
 ad
 ad
 "}
@@ -602,11 +605,11 @@ aC
 aC
 aC
 dz
-in
-mU
-OY
-Xd
-Xd
+WJ
+LM
+Ut
+WW
+WW
 bi
 bk
 "}
@@ -626,11 +629,11 @@ aS
 aS
 aS
 yP
-in
-fV
-Xd
-Xd
-Xd
+WJ
+Mh
+WW
+WW
+WW
 bi
 bk
 "}
@@ -650,11 +653,11 @@ aT
 aT
 aT
 WU
-in
-mU
-Xd
-OY
-Xd
+WJ
+LM
+WW
+Ut
+WW
 bi
 bk
 "}
@@ -674,11 +677,11 @@ aC
 aC
 aC
 dz
-in
-FQ
-Xd
-Xd
-Xd
+WJ
+rf
+WW
+WW
+WW
 bi
 bk
 "}
@@ -698,8 +701,8 @@ aS
 aS
 aS
 yP
-OA
-ad
+gt
+fd
 ac
 ac
 ac
@@ -773,7 +776,7 @@ Ir
 aR
 ac
 gh
-VD
+wI
 gh
 ad
 ad
