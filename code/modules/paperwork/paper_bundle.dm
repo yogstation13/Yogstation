@@ -18,7 +18,7 @@
 	var/admin_faxed = FALSE
 
 
-/obj/item/paper_bundle/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/paper_bundle/attackby(var/obj/item/W, var/mob/user)
 	..()
 	var/obj/item/paper/P
 	if(istype(W, /obj/item/paper))
@@ -110,7 +110,6 @@
 			dat += "[P.render_body(user)]<HR>[P.stamps]"
 		else 
 			dat += "[stars(P.render_body(user))]<HR>[P.stamps]"
-			log_admin("EEEEEEEEEEEEEEEEEEEEEEEEEE")
 		user << browse(dat, "window=[name]")
 	else if(istype(src[page], /obj/item/photo))
 		var/obj/item/photo/P = W

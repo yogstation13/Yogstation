@@ -1,4 +1,3 @@
-//Define all tape types in policetape.dm
 /obj/item/barrier_taperoll
 	name = "barrier tape roll"
 	icon = 'icons/obj/barriertape.dmi'
@@ -47,7 +46,7 @@
 	req_access = list(ACCESS_CONSTRUCTION)
 	icon_base = "engineering"
 
-/obj/item/barrier_taperoll/attack_self(mob/user as mob)
+/obj/item/barrier_taperoll/attack_self(var/mob/user)
 	if(!placing)
 		start = get_turf(src)
 		to_chat(usr, "<span class='notice'>You place the first end of the [src].</span>")
@@ -102,7 +101,7 @@
 	//is_blocked_turf(var/turf/T)
 		to_chat(usr, "<span class='notice'>You finish placing the [src].</span>")	//Git Test
 
-/obj/item/barrier_taperoll/afterattack(var/atom/A, mob/user as mob, proximity)
+/obj/item/barrier_taperoll/afterattack(var/atom/A, var/mob/user, proximity)
 	if (proximity && istype(A, /obj/machinery/door/airlock))
 		var/turf/T = get_turf(A)
 		var/obj/structure/barrier_tape/P = new tape_type(T.x,T.y,T.z)
@@ -139,10 +138,10 @@
 		if(lifted == FALSE)
 			to_chat(AM, "<span class='warning'>You are not supposed to go past [src]... (You can break the tape with something sharp or lift the tape with HELP intent)</span>")
 
-/obj/structure/barrier_tape/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/barrier_tape/attackby(var/obj/item/W, var/mob/user)
 	breaktape(W, user)
 
-/obj/structure/barrier_tape/attack_hand(mob/user as mob)
+/obj/structure/barrier_tape/attack_hand(var/mob/user)
 	if (user.a_intent == "help" )
 		user.visible_message("<span class='notice'>[user] lifts [src], allowing passage.</span>")
 		crumple()
@@ -151,7 +150,7 @@
 	else
 		breaktape(null, user)
 
-/obj/structure/barrier_tape/proc/breaktape(obj/item/W as obj, mob/user as mob)
+/obj/structure/barrier_tape/proc/breaktape(var/obj/item/W, var/mob/user)
 	if(user.a_intent == INTENT_HELP && W && !W.is_sharp() && allowed(user))
 		to_chat(user, "<span class='warning'>You can't break the [src] with that!</span>")
 		return

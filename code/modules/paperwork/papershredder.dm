@@ -85,7 +85,7 @@
 
 
 
-/obj/machinery/papershredder/verb/emtpy()
+/obj/machinery/papershredder/verb/empty()
 	set name = "Empty bin"
 	set category = "Object"
 	empty()
@@ -127,7 +127,7 @@
 		icon_state = "papershredder5"
 	return
 
-/obj/item/shreddedp
+/obj/item/shreddedpaper
 	name = "shredded paper"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "shredp"
@@ -138,14 +138,14 @@
 	layer = 4
 	pressure_resistance = 1
 
-/obj/item/shreddedp/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shreddedpaper/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_hot())
 		burnpaper(W, user)
 	else
 		..()
 
 
-/obj/item/shreddedp/proc/burnpaper(obj/item/P, mob/user)
+/obj/item/shreddedpaper/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
 
 	if(P.is_hot() && !user.restrained())
@@ -167,7 +167,3 @@
 
 		else
 			to_chat(user, "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>")
-
-/obj/item/shreddedp/proc/FireBurn()
-	new /obj/effect/decal/cleanable/ash(src.loc)
-	qdel(src)
