@@ -13,7 +13,7 @@
 			kingdatum.servants |= src
 		owner.enslave_mind_to_creator(master.owner.current)
 	owner.current.log_message("has become a servant of [master.owner.current]!", LOG_ATTACK, color="#960000")
-	if(owner.dna.species != /datum/species/human)
+	if(owner.dna?.species != /datum/species/human)
 		owner.current.grant_language(/datum/language/english) //Yes.
 	update_servant_icons_added(owner.current)
 	. = ..()
@@ -23,7 +23,7 @@
 		master.servants -= src
 		owner.enslaved_to = null
 	/// Remove Language & Hud
-	if(owner.dna.species != /datum/species/human)
+	if(owner.dna?.species != /datum/species/human)
 		owner.current.remove_language(/datum/language/english)
 	update_servant_icons_removed(owner.current)
 	return ..()
