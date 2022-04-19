@@ -19,7 +19,6 @@
 	var/icon_base
 	var/tape_dir
 
-
 /obj/item/barrier_taperoll/police
 	name = "police tape"
 	desc = "A roll of police tape used to block off crime scenes from the public."
@@ -178,5 +177,3 @@
 
 	qdel(src)
 	return
-
-

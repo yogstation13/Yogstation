@@ -131,7 +131,6 @@
 	else
 		. += "It doesn't contain anything."
 
-
 /obj/item/paper_bin/update_icon()
 	if(total_paper < 1)
 		icon_state = "paper_bin0"

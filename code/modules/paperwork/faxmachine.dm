@@ -8,18 +8,14 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	icon = 'icons/obj/library.dmi'
 	icon_state = "fax"
 	insert_anim = "faxsend"
-	req_one_access = list(ACCESS_LAWYER, ACCESS_HEADS, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS) //Warden needs to be able to Fax Centcom too.
-
+	req_one_access = list(ACCESS_LAWYER, ACCESS_HEADS, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_QM)
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 200
-
 	var/authenticated = FALSE
 	var/auth_name
 	var/sendcooldown = 0 // to avoid spamming fax messages
-
 	var/department = "Unknown" // our department
-
 	var/destination = "Central Command" // the department we're sending to
 
 /obj/machinery/photocopier/faxmachine/Initialize()

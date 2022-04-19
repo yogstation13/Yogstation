@@ -17,7 +17,6 @@
 	/// If this was sent via admin fax, allows anyone to see/interact with it
 	var/admin_faxed = FALSE
 
-
 /obj/item/paper_bundle/attackby(var/obj/item/W, var/mob/user)
 	..()
 	var/obj/item/paper/P
@@ -59,34 +58,25 @@
 			usr << browse("", "window=[name]") //Closes the dialog
 		P = src[page]
 		P.attackby(W, user)
-
-
 	update_icon()
 	attack_self(usr) //Update the browsed page.
 	add_fingerprint(usr)
 	return
 
-
 /obj/item/paper_bundle/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
-
 	if(P.is_hot() && !user.restrained())
 		if(istype(P, /obj/item/lighter))
 			class = "<span class='rose'>"
-
 		user.visible_message("[class][user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!</span>", \
 		"[class]You hold \the [P] up to \the [src], burning it slowly.</span>")
-
 		if(do_after(user, 2 SECONDS, TRUE, src))
 			user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 			"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
-
 			if(user.get_inactive_hand_index() == src)
 				user.dropItemToGround(src)
-
 			new /obj/effect/decal/cleanable/ash(src.loc)
 			qdel(src)
-
 		else
 			to_chat(user, span_warning("You must hold \the [P] steady to burn \the [src]."))
 

@@ -83,8 +83,6 @@
 	if(shred_amount && try_insert(user, shred_amount))
 		qdel(W)
 
-
-
 /obj/machinery/papershredder/verb/empty()
 	set name = "Empty bin"
 	set category = "Object"
@@ -143,7 +141,6 @@
 		burnpaper(W, user)
 	else
 		..()
-
 
 /obj/item/shreddedpaper/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
