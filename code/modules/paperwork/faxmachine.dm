@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 					to_chat(usr, "<span class='warning'>Transmitter recharging</span>")
 					return
 				if (destination in GLOB.admin_departments)
-					send_admin_fax(usr, destination)
+					INVOKE_ASYNC(src, .proc/send_admin_fax, usr, destination)
 				else
 					INVOKE_ASYNC(src, .proc/sendfax, destination)
 			return
@@ -153,7 +153,9 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 
 	var/obj/item/rcvdcopy
 	if (istype(copy, /obj/item/paper_bundle))
-		rcvdcopy = bundlecopy(copy)
+		var/obj/item/paper_bundle/rcvdbundle = bundlecopy(copy)
+		rcvdbundle.admin_faxed = TRUE
+		rcvdcopy = rcvdbundle
 	else if (copy)
 		rcvdcopy = copy(copy)
 	else if (photocopy)
@@ -162,8 +164,12 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 		return
 
-	rcvdcopy.loc = null //hopefully this shouldn't cause trouble
+	rcvdcopy.moveToNullspace() //hopefully this shouldn't cause trouble
 	GLOB.adminfaxes += rcvdcopy
+
+	for(var/obj/machinery/photocopier/faxmachine/F in GLOB.allfaxes)
+		if(is_centcom_level(F.z))
+			F.recievefax(rcvdcopy)
 	
 	//message badmins that a fax has arrived
 	switch(destination)
@@ -175,8 +181,8 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	
 
 /obj/machinery/photocopier/faxmachine/proc/send_adminmessage(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
-	var/msg = "<font color='admin'><b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=\ref[sender]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=\ref[sender]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=\ref[sender]'>SM</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservefollow=\ref[sender]'>JMP</A>) (<a href='?_src_=holder;[HrefToken()];[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken()];AdminFaxView=\ref[sent]'>view message</a></font>"
-
+	var/msg = "<b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=\ref[sender]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=\ref[sender]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=\ref[sender]'>SM</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservefollow=\ref[sender]'>JMP</A>) (<a href='?_src_=holder;[HrefToken()];[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken()];AdminFaxView=\ref[sent]'>view message</a>"
+	msg = span_admin("<span class=\"message linkify\">[msg]</span>")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
