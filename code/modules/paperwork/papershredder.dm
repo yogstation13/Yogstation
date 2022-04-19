@@ -88,6 +88,9 @@
 /obj/machinery/papershredder/verb/emtpy()
 	set name = "Empty bin"
 	set category = "Object"
+	empty()
+
+/obj/machinery/papershredder/proc/empty()
 	set src in oview(1)
 	if(paperamount != 0)
 		var/i
@@ -105,6 +108,9 @@
 				SP.color = null
 			paperamount -=1
 		update_icon()
+
+/obj/machinery/papershredder/AltClick(mob/living/user)
+	empty()
 
 /obj/machinery/papershredder/update_icon()
 	if(paperamount == 0)
