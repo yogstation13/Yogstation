@@ -37,7 +37,7 @@
 
 /datum/antagonist/king/greet()
 	. = ..()
-	to_chat(owner.current, span_userdanger("You are the King!."))
+	to_chat(owner.current, span_userdanger("You are the King!"))
 	owner.announce_objectives()
 
 /datum/antagonist/king/farewell()
