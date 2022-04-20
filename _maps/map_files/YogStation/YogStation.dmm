@@ -33686,6 +33686,26 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard/fore)
+"fiY" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_y = 4
+	},
+/obj/item/pen{
+	pixel_x = -4
+	},
+/obj/machinery/button/door{
+	id = "xenodesk";
+	name = "Xenobiology Desk Shutters Control";
+	pixel_x = -28;
+	req_access_txt = "55"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "fjK" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -36401,6 +36421,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"gOK" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Southeast";
+	dir = 8;
+	network = list("ss13","rd")
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "gOU" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
@@ -41381,26 +41412,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"jry" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/table/reinforced,
-/obj/item/paper_bin{
-	pixel_y = 4
-	},
-/obj/item/pen{
-	pixel_x = -4
-	},
-/obj/machinery/button/door{
-	id = "xenodesk";
-	name = "Xenobiology Desk Shutters Control";
-	pixel_x = -28;
-	req_access_txt = "9"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "jrC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/darkblue{
@@ -49981,16 +49992,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"odR" = (
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/box/corners,
-/obj/machinery/camera{
-	c_tag = "Xenobiology Southeast";
-	dir = 8;
-	network = list("ss13","rd")
-	},
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "odT" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -111663,7 +111664,7 @@ idJ
 jnH
 uvW
 bfP
-jry
+fiY
 aYB
 yef
 gGM
@@ -115525,9 +115526,9 @@ ijm
 jCF
 cDr
 ijm
-odR
+jCF
 cDr
-ijm
+gOK
 jCF
 cDr
 ijm
