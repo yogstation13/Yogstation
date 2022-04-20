@@ -2271,7 +2271,7 @@
 
 	else if(href_list["CentcomFaxReply"])
 		var/mob/living/carbon/human/H = locate(href_list["CentcomFaxReply"])
-		var/obj/machinery/photocopier/faxmachine/fax = locate(href_list["originfax"])
+		var/obj/machinery/photocopier/faxmachine/fax = locate(href_list["originfax"]) in GLOB.allfaxes
 
 		var/inputsubject = input(src.owner, "Please enter a Subject", "Outgoing message from Centcom", "") as text|null
 		if(!inputsubject)	return
