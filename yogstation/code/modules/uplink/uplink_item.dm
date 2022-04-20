@@ -71,6 +71,9 @@
 
 /datum/uplink_item/device_tools/surgerybag
 	cost = 1
+
+/datum/uplink_item/stealthy_tools/jammer
+	cost = 3
 //////////////////////////
 /////////New Items////////
 //////////////////////////
