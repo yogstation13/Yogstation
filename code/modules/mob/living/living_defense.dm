@@ -95,7 +95,8 @@
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
-			step_away(src,M,15)
+			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
+			src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 		switch(M.damtype)
 			if(BRUTE)
 				Unconscious(20)

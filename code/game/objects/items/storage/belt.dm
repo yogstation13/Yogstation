@@ -149,6 +149,7 @@
 	desc = "Can hold various medical equipment."
 	icon_state = "medicalbelt"
 	item_state = "medical"
+	content_overlays = TRUE
 
 /obj/item/storage/belt/medical/ComponentInitialize()
 	. = ..()
@@ -204,6 +205,21 @@
 		/obj/item/stack/medical/bone_gel,
 		/obj/item/holosign_creator/medical
 		))
+
+/obj/item/storage/belt/medical/chief
+	name = "\improper Chief Medical Officer's toolbelt"
+	desc = "Holds tools, looks snazzy."
+	icon_state = "medicalbelt_cmo"
+	item_state = "medical_cmo"
+
+/obj/item/storage/belt/medical/chief/full/PopulateContents()
+	new /obj/item/surgical_drapes(src)
+	new /obj/item/scalpel/advanced(src)
+	new /obj/item/retractor/advanced(src)
+	new /obj/item/cautery/advanced(src)
+	new /obj/item/pinpointer/crew(src)
+	new /obj/item/sensor_device(src)
+	new /obj/item/healthanalyzer/advanced(src)
 
 /obj/item/storage/belt/security
 	name = "security belt"
