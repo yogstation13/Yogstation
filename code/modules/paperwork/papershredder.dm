@@ -31,9 +31,9 @@
 					SP.color = null
 				paperamount -=1
 			update_icon()
-			to_chat(user, "<span class='warning'>The [src] was too full and shredded paper goes everywhere!</span>")
+			to_chat(user, span_warning("The [src] was too full and shredded paper goes everywhere!"))
 		else
-			to_chat(user, "<span class='warning'>The [src] is full please empty it before you continue.</span>")
+			to_chat(user, span_warning("The [src] is full please empty it before you continue."))
 		return FALSE
 
 /obj/machinery/papershredder/attackby(obj/item/W, mob/user)
@@ -68,11 +68,11 @@
 				paperamount -=1
 				update_icon()
 			else
-				to_chat(user, "<span class='warning'>The [W] is full.</span>")
+				to_chat(user, span_warning("The [W] is full."))
 				return
 	else if(istype(W, /obj/item/shreddedpaper))
 		if(paperamount == max_paper)
-			to_chat(user, "<span class='warning'>The [src] is full please empty it before you continue.</span>")
+			to_chat(user, span_warning("The [src] is full please empty it before you continue."))
 			return
 		if(paperamount < max_paper)
 			qdel(W)
@@ -154,7 +154,7 @@
 
 		if(do_after(user, 2 SECONDS, TRUE, src))
 			user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
-			"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
+			"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap."))
 
 			if(user.get_inactive_hand_index() == src)
 				user.dropItemToGround(src)
@@ -163,4 +163,4 @@
 			qdel(src)
 
 		else
-			to_chat(user, "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>")
+			to_chat(user, span_warning("You must hold \the [P] steady to burn \the [src]."))

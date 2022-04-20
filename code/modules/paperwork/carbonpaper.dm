@@ -56,7 +56,7 @@
 		copy.update_icon()
 		usr.put_in_hands(copy)
 	else
-		to_chat(usr, "<span class='warning'>There are no more carbon copies attached to this paper!</span>")
+		to_chat(usr, span_warning("There are no more carbon copies attached to this paper!"))
 
 /obj/item/paper/carbon/proc/clearcolor(text) // Breaks all font color spans in the HTML text.
 	return replacetext(replacetext(text, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor="), "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=") //This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.

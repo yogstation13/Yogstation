@@ -48,7 +48,7 @@
 /obj/item/barrier_taperoll/attack_self(var/mob/user)
 	if(!placing)
 		start = get_turf(src)
-		to_chat(usr, "<span class='notice'>You place the first end of the [src].</span>")
+		to_chat(usr, span_notice("You place the first end of the [src]."))
 		icon_state = "[icon_base]_stop"
 		placing = TRUE
 	else
@@ -56,7 +56,7 @@
 		icon_state = "[icon_base]_start"
 		end = get_turf(src)
 		if(start.y != end.y && start.x != end.x || start.z != end.z)
-			to_chat(usr, "<span class='notice'>[src] can only be laid horizontally or vertically.</span>")
+			to_chat(usr, span_notice("[src] can only be laid horizontally or vertically."))
 			return
 
 		var/turf/cur = start
@@ -83,7 +83,7 @@
 						break
 			cur = get_step_towards(cur,end)
 		if (!can_place)
-			to_chat(usr, "<span class='warning'>You can't run \the [src] through that!</notice>")
+			to_chat(usr, span_warning("You can't run \the [src] through that!</notice>")
 			return
 
 		cur = start
@@ -98,7 +98,7 @@
 				P.tape_dir = dir
 			cur = get_step_towards(cur,end)
 	//is_blocked_turf(var/turf/T)
-		to_chat(usr, "<span class='notice'>You finish placing the [src].</span>")	//Git Test
+		to_chat(usr, span_notice("You finish placing the [src]."))	//Git Test
 
 /obj/item/barrier_taperoll/afterattack(var/atom/A, var/mob/user, proximity)
 	if (proximity && istype(A, /obj/machinery/door/airlock))
@@ -107,7 +107,7 @@
 		P.loc = locate(T.x,T.y,T.z)
 		P.icon_state = "[icon_base]_door"
 		P.layer = 3.2
-		to_chat(user, "<span class='notice'>You finish placing the [src].</span>")
+		to_chat(user, span_notice("You finish placing the [src]."))
 
 /obj/structure/barrier_tape/proc/crumple()
 	if(!crumpled)
@@ -135,14 +135,14 @@
 	if(iscarbon(AM))
 		add_fingerprint(AM)
 		if(lifted == FALSE)
-			to_chat(AM, "<span class='warning'>You are not supposed to go past [src]... (You can break the tape with something sharp or lift the tape with HELP intent)</span>")
+			to_chat(AM, span_warning("You are not supposed to go past [src]... (You can break the tape with something sharp or lift the tape with HELP intent)"))
 
 /obj/structure/barrier_tape/attackby(var/obj/item/W, var/mob/user)
 	breaktape(W, user)
 
 /obj/structure/barrier_tape/attack_hand(var/mob/user)
 	if (user.a_intent == "help" )
-		user.visible_message("<span class='notice'>[user] lifts [src], allowing passage.</span>")
+		user.visible_message(span_notice("[user] lifts [src], allowing passage."))
 		crumple()
 		lifted = TRUE
 		addtimer(VARSET_CALLBACK(src, lifted, FALSE), 20)
@@ -151,9 +151,9 @@
 
 /obj/structure/barrier_tape/proc/breaktape(var/obj/item/W, var/mob/user)
 	if(user.a_intent == INTENT_HELP && W && !W.is_sharp() && allowed(user))
-		to_chat(user, "<span class='warning'>You can't break the [src] with that!</span>")
+		to_chat(user, span_warning("You can't break the [src] with that!"))
 		return
-	user.visible_message("<span class='notice'>[user] breaks the [src]!</span>")
+	user.visible_message(span_notice("[user] breaks the [src]!"))
 	playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
 
 	var/dir[2]
