@@ -83,7 +83,7 @@
 		CHECK_TICK
 
 /proc/purrbation_toggle(mob/living/carbon/human/H, silent = FALSE)
-	if(!ishumanbasic(H))
+	if(!ishumanbasic(H) && !iscatperson(H))
 		purrbation_apply_mutant(H, silent)
 		return TRUE
 	if(!iscatperson(H))
