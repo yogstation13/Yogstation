@@ -1,15 +1,18 @@
 import { Fragment } from 'inferno';
-import { useBackend, useLocalState, useSharedState } from '../backend';
-import { Box, Button, Tabs, ProgressBar, Section, Divider, LabeledControls, NumberInput } from '../components';
+import { useBackend, useSharedState } from '../backend';
+import { Box, Button, Tabs, ProgressBar, Section, Divider, LabeledControls, NumberInput, Input } from '../components';
 import { Window } from '../layouts';
 
 export const AiDashboard = (props, context) => {
   const { act, data } = useBackend(context);
 
-
+  const [search, setSearch] = useSharedState(context, 'search', null);
+  const [searchCompleted, setSearchCompleted] = useSharedState(context, 'searchCompleted', null);
   const [tab, setTab] = useSharedState(context, 'tab', 1);
   const [selectedCategory, setCategory] = useSharedState(context, 'selectedCategory', data.categories[0]);
-  const [activeProjectsOnly, setActiveProjectsOnly] = useSharedState(context, 'activeProjectsOnly', false);
+  const [activeProjectsOnly, setActiveProjectsOnly] = useSharedState(context, 'activeProjectsOnly', true);
+
+  let remaining_cpu = (1 - data.used_cpu) * 100
 
   return (
     <Window
@@ -18,7 +21,9 @@ export const AiDashboard = (props, context) => {
       resizable
       title="Dashboard">
       <Window.Content scrollable>
-        <Section title={"Status"}>
+        <Section title={"Status"} buttons={(
+          <Button onClick={(e, value) => act('toggle_contribute_cpu')} color={data.contribute_spare_cpu ? "good" : "bad"} icon={data.contribute_spare_cpu ? "toggle-on" : "toggle-off"}>{!data.contribute_spare_cpu ? "NOT " : null}Contributing Spare CPU to Research</Button>
+        )}>
           <LabeledControls>
             <LabeledControls.Item>
               <ProgressBar
@@ -67,9 +72,9 @@ export const AiDashboard = (props, context) => {
                   average: [data.current_cpu * 0.3, data.current_cpu * 0.7],
                   bad: [0, data.current_cpu * 0.3],
                 }}
-                value={data.used_cpu}
+                value={data.used_cpu * data.current_cpu}
                 maxValue={data.current_cpu}>
-                {data.used_cpu ? data.used_cpu : 0}/{data.current_cpu} THz
+                {data.used_cpu ? data.used_cpu * 100 : 0}% ({data.used_cpu ? data.used_cpu * data.current_cpu : 0}/{data.current_cpu} THz)
               </ProgressBar>
               Utilized CPU Power
             </LabeledControls.Item>
@@ -114,27 +119,39 @@ export const AiDashboard = (props, context) => {
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && (
-          <Section title="Available Projects">
+          <Section title="Available Projects" buttons={(
+              <Input
+                value={search}
+                placeholder="Search.."
+                onInput={(e, value) => setSearch(value)}/>
+              )}>
             <Tabs>
               {data.categories.map((category, index) => (
                 <Tabs.Tab key={index}
-                  selected={selectedCategory === category}
+                  selected={!search ? selectedCategory === category : null}
                   onClick={(() => setCategory(category))}>
                   {category}
                 </Tabs.Tab>
               ))}
             </Tabs>
             {data.available_projects.filter(project => {
+              if(search) {
+                const searchableString = String(project.name).toLowerCase();
+                return searchableString.match(new RegExp(search, "i"))
+              }
               return project.category === selectedCategory;
             }).map((project, index) => (
               <Section key={index} title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.available ? "Available" : "Unavailable"}</Box>)} buttons={(
                 <Fragment>
                   <Box inline bold>Assigned CPU:&nbsp;</Box>
-                  <NumberInput value={project.assigned_cpu} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_cpu', {
+                  <NumberInput value={project.assigned_cpu*100} minValue={0} maxValue={remaining_cpu + (project.assigned_cpu * 100)} onChange={(e, value) => act('allocate_cpu', {
                     project_name: project.name,
-                    amount: value,
+                    amount: Math.round((value / 100) * 100) / 100,
                   })} />
-                  <Box inline bold>&nbsp;THz</Box>
+                  <Box inline bold>%&nbsp;</Box>
+                  <Button icon="arrow-up" disabled={data.current_cpu == data.used_cpu} onClick={(e, value) => act('max_cpu', {
+                    project_name: project.name,
+                  })}>Max</Button>
                 </Fragment>
               )}>
                 <Box inline bold>Research Cost:&nbsp;</Box>
@@ -148,23 +165,34 @@ export const AiDashboard = (props, context) => {
                 <Box mb={1}>
                   {project.description}
                 </Box>
-                <ProgressBar value={project.research_progress / project.research_cost} />
+                <ProgressBar value={project.research_progress / project.research_cost}>
+                  {Math.round((project.research_progress / project.research_cost * 100) * 100) /100}% ({Math.round(project.research_progress * 100) / 100}/{project.research_cost} THz)
+                </ProgressBar>
               </Section>
             ))}
           </Section>
         )}
         {tab === 2 && (
-          <Section title="Completed Projects" buttons={(<Button.Checkbox checked={activeProjectsOnly} onClick={() => setActiveProjectsOnly(!activeProjectsOnly)}>See Runnable Projects Only</Button.Checkbox>)}>
+          <Section title="Completed Projects" buttons={(
+            <Fragment>
+              <Button.Checkbox checked={activeProjectsOnly} onClick={() => setActiveProjectsOnly(!activeProjectsOnly)}>See Runnable Projects Only</Button.Checkbox>
+              <Input value={searchCompleted} placeholder="Search.." onInput={(e, value) => setSearchCompleted(value)}/>
+            </Fragment>
+          )}>
             <Tabs>
               {data.categories.map((category, index) => (
                 <Tabs.Tab key={index}
-                  selected={selectedCategory === category}
+                  selected={!searchCompleted ? selectedCategory === category : null}
                   onClick={(() => setCategory(category))}>
                   {category}
                 </Tabs.Tab>
               ))}
             </Tabs>
             {data.completed_projects.filter(project => {
+              if(searchCompleted) {
+                const searchableString = String(project.name).toLowerCase();
+                return searchableString.match(new RegExp(searchCompleted, "i"))
+              }
               if (activeProjectsOnly && !project.can_be_run) {
                 return false;
               }
