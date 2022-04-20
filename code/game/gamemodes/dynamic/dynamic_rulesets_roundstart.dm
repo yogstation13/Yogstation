@@ -959,7 +959,7 @@
 		M.mind.restricted_roles = restricted_roles
 		log_game("[key_name(M)] has been selected as a Darkspawn")
 	return TRUE
-  
+
 //////////////////////////////////////////////
 //                                          //
 //               BLOODSUCKER                //
