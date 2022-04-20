@@ -2265,7 +2265,7 @@
 		beaker_panel_act(href_list)
 
 	else if(href_list["AdminFaxView"])
-		var/obj/info = locate(href_list["AdminFaxView"])
+		var/obj/info = locate(href_list["AdminFaxView"]) in GLOB.adminfaxes
 		if(info)
 			info.examine(usr, TRUE)
 
