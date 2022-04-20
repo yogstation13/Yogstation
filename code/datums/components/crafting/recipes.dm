@@ -237,8 +237,7 @@
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	result = /obj/item/gun/energy/beam_rifle
 	reqs = list(/obj/item/gun/energy/e_gun = 1,
-				/obj/item/assembly/signaler/anomaly/flux = 1,
-				/obj/item/assembly/signaler/anomaly/grav = 1,
+				/obj/item/assembly/signaler/anomaly = 2,
 				/obj/item/stack/cable_coil = 5,
 				/obj/item/weaponcrafting/gunkit/beam_rifle = 1)
 	time = 200
@@ -317,7 +316,6 @@
 	reqs = list(/obj/item/gun/energy/laser = 1,
 				/obj/item/stack/cable_coil = 5,
 				/obj/item/weaponcrafting/gunkit/decloner = 1,
-				/datum/reagent/baldium = 30,
 				/datum/reagent/toxin/mutagen = 40)
 	time = 200
 	category = CAT_WEAPONRY
@@ -331,7 +329,7 @@
 	name = "Tesla Revolver"
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	result = /obj/item/gun/energy/tesla_revolver
-	reqs = list(/obj/item/assembly/signaler/anomaly/flux = 1,
+	reqs = list(/obj/item/assembly/signaler/anomaly = 1,
 				/obj/item/stack/cable_coil = 5,
 				/obj/item/weaponcrafting/gunkit/tesla = 1)
 	time = 200
