@@ -74,6 +74,12 @@
 
 /datum/uplink_item/stealthy_tools/jammer
 	cost = 3
+
+/datum/uplink_item/stealthy_weapons/combatglovesplus
+	cost = 2
+
+/datum/uplink_item/dangerous/throwingweapons
+	cost = 2
 //////////////////////////
 /////////New Items////////
 //////////////////////////
