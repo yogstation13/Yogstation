@@ -10,5 +10,6 @@
 	if (.)
 		var/area_of_gun = get_area(src)
 		if (!istype(area_of_gun, /area/security))
-			return FALSE
+			if (!istype(area_of_gun, /area/ai_monitored/security/armory))
+				return FALSE
 	return .
