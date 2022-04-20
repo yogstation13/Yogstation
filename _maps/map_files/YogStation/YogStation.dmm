@@ -18725,19 +18725,6 @@
 /obj/item/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"bnx" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "bny" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -23511,6 +23498,20 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
+"bHb" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "bHc" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -51700,12 +51701,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"oTW" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/closed/wall/r_wall,
-/area/science/research)
 "oUe" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -112420,7 +112415,7 @@ bpS
 wRN
 bfV
 vCt
-bnx
+bHb
 byf
 byf
 byf
@@ -112933,7 +112928,7 @@ cHX
 buj
 mZk
 bfV
-oTW
+bvx
 bnE
 byf
 bzt
