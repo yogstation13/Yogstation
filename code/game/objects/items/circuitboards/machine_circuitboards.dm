@@ -829,6 +829,11 @@
 	icon_state = "science"
 	build_path = /obj/machinery/rnd/production/circuit_imprinter/department/science
 
+/obj/item/circuitboard/machine/circuit_imprinter/department/netmin
+	name = "Departmental Circuit Imprinter - Netmin (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/rnd/production/circuit_imprinter/department/netmin
+
 /obj/item/circuitboard/machine/cyborgrecharger
 	name = "Cyborg Recharger (Machine Board)"
 	icon_state = "science"

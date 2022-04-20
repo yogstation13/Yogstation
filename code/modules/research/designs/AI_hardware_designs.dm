@@ -51,7 +51,7 @@
 	materials = list(/datum/material/glass = 8000, /datum/material/iron = 2000)
 	build_path = /obj/item/ai_cpu
 	category = list("Computer Parts")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_NETMIN
 
 /datum/design/cpu_advanced
 	name = "advanced neural processing unit"
@@ -60,7 +60,7 @@
 	materials = list(/datum/material/glass = 10000, /datum/material/iron = 4000, /datum/material/gold = 2000)
 	build_path = /obj/item/ai_cpu/advanced
 	category = list("Computer Parts")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_NETMIN
 
 /datum/design/cpu_bluespace
 	name = "bluespace neural processing unit"
@@ -69,7 +69,7 @@
 	materials = list(/datum/material/glass = 14000, /datum/material/iron = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 2000)
 	build_path = /obj/item/ai_cpu/bluespace
 	category = list("Computer Parts")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_NETMIN
 
 /datum/design/cpu_experimental
 	name = "experimental neural processing unit"
@@ -78,4 +78,4 @@
 	materials = list(/datum/material/glass = 12000, /datum/material/iron = 4000, /datum/material/gold = 6000)
 	build_path = /obj/item/ai_cpu/experimental
 	category = list("Computer Parts")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_NETMIN
