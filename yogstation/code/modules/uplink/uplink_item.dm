@@ -80,6 +80,11 @@
 
 /datum/uplink_item/dangerous/throwingweapons
 	cost = 2
+
+/datum/uplink_item/dangerous/doublesword
+	cost = 18
+
+
 //////////////////////////
 /////////New Items////////
 //////////////////////////
