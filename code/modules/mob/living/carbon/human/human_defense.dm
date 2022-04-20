@@ -327,6 +327,7 @@
 					Knockdown(50 + armour)
 				else
 					Knockdown(50)
+				adjustStaminaLoss(35) //3 hits until they are stunned.	
 				//yogs end
 				log_combat(M, src, "tackled")
 				visible_message(span_danger("[M] has tackled down [src]!"), \
