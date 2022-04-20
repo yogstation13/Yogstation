@@ -458,7 +458,7 @@
 					L.adjustBruteLoss(30)
 			else if(cult.cult_risen)
 				to_chat(user, span_cultitalic("In a dull flash of red, [L] falls to the ground!"))
-				L.Paralyze(80)
+				L.Paralyze(40) //YOGS: 80 to 40
 				L.flash_act(1,1)
 				if(issilicon(target))
 					var/mob/living/silicon/S = L
@@ -473,7 +473,7 @@
 					L.adjustBruteLoss(20)
 			else
 				to_chat(user, span_cultitalic("In a brilliant flash of red, [L] falls to the ground!"))
-				L.Paralyze(160)
+				L.Paralyze(80) //YOGS: 160 to 80
 				L.flash_act(1,1)
 				if(issilicon(target))
 					var/mob/living/silicon/S = L
