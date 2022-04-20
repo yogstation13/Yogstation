@@ -26,5 +26,5 @@
 	to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, msg, confidential=TRUE)
 
 /client/proc/get_mentor_say()
-	var/msg = input(src, null, "msay \"text\"") as text
+	var/msg = input(src, null, "msay \"text\"") as text|null
 	cmd_mentor_say(msg)

@@ -963,7 +963,7 @@
 //////////////////////////////////////////////
 //                                          //
 //         Malfunctioning AI                //
-//                              		    //
+//                              		        //
 //////////////////////////////////////////////
 
 /datum/dynamic_ruleset/roundstart/malf
@@ -1002,4 +1002,47 @@
 	var/datum/antagonist/traitor/malf/AI = new
 	M.mind.special_role = antag_flag
 	M.mind.add_antag_datum(AI)
+	return TRUE
+  
+//////////////////////////////////////////////
+//                                          //
+//               BLOODSUCKER                //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/bloodsucker
+	name = "Bloodsuckers"
+	antag_flag = ROLE_BLOODSUCKER
+	antag_datum = /datum/antagonist/bloodsucker
+	protected_roles = list(
+		"Captain", "Head of Personnel", "Head of Security",
+		"Warden", "Security Officer", "Detective", "Brig Physician",
+		"Curator"
+	)
+	restricted_roles = list("AI", "Cyborg")
+	required_candidates = 1
+	weight = 5
+	cost = 10
+	scaling_cost = 9
+	requirements = list(10,10,10,10,10,10,10,10,10,10)
+	antag_cap = list("denominator" = 24)
+
+/datum/dynamic_ruleset/roundstart/bloodsucker/pre_execute(population)
+	. = ..()
+	var/num_bloodsuckers = get_antag_cap(population) * (scaled_times + 1)
+
+	for(var/i = 1 to num_bloodsuckers)
+		if(candidates.len <= 0)
+			break
+		var/mob/selected_mobs = pick_n_take(candidates)
+		assigned += selected_mobs.mind
+		selected_mobs.mind.restricted_roles = restricted_roles
+		selected_mobs.mind.special_role = ROLE_BLOODSUCKER
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/bloodsucker/execute()
+	for(var/assigned_bloodsuckers in assigned)
+		var/datum/mind/bloodsuckermind = assigned_bloodsuckers
+		if(!bloodsuckermind.make_bloodsucker(assigned_bloodsuckers))
+			assigned -= assigned_bloodsuckers
 	return TRUE

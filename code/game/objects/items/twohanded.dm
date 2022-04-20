@@ -291,6 +291,7 @@
  * Double-Bladed Energy Swords - Cheridan
  */
 /obj/item/twohanded/dualsaber
+	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "dualsaber0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -481,6 +482,7 @@
 
 //spears
 /obj/item/twohanded/spear
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "spearglass0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -704,6 +706,7 @@
 			M.GiveTarget(L)
 
 /obj/item/twohanded/pitchfork
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "pitchfork0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -789,6 +792,7 @@
 //HF blade
 
 /obj/item/twohanded/vibro_weapon
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "hfrequency0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -843,6 +847,7 @@
  * Bone Spear
  */
 /obj/item/twohanded/bonespear	//Blatant imitation of spear, but made out of bone. Not valid for explosive modification.
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "bone_spear0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -867,6 +872,7 @@
 	icon_state = "bone_spear[wielded]"
 
 /obj/item/twohanded/bonespear/chitinspear //like a mix of a bone spear and bone axe, but more like a bone spear. And better.
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "chitin_spear0"
 	name = "chitin spear"
 	desc = "A well constructed spear with a sharpened edge akin to a naginata, making it equally great for slicing and throwing."
@@ -924,6 +930,7 @@
 		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
 
 /obj/item/twohanded/bamboospear
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "bamboo_spear0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'

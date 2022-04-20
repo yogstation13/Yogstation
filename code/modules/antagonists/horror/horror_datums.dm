@@ -115,7 +115,7 @@
 /obj/item/horrorsummonhorn
 	name = "old horn"
 	desc = "A very old horn. You feel an incredible urge to blow into it."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/horror.dmi'
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	item_state = "horn"
@@ -171,7 +171,7 @@
 /obj/item/horrortentacle
 	name = "tentacle"
 	desc = "A long, slimy, arm-like appendage."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/horror.dmi'
 	icon_state = "horrortentacle"
 	item_state = "tentacle"
 	lefthand_file = 'icons/mob/inhands/antag/horror_lefthand.dmi'
