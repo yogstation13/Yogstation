@@ -898,7 +898,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 
 	var/mob/living/carbon/human/H = user
-	var/random = rand(1,4)
+	var/random = rand(1,3)
 
 	switch(random)
 		if(1)
@@ -912,11 +912,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
 			H.set_species(/datum/species/skeleton)
 		if(3)
-			to_chat(user, span_danger("Power courses through you! You can now shift your form at will."))
-			if(user.mind)
-				var/obj/effect/proc_holder/spell/targeted/shapeshift/dragon/D = new
-				user.mind.AddSpell(D)
-		if(4)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
 			H.weather_immunities |= "lava"
 
