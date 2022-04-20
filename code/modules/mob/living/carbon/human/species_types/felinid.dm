@@ -84,7 +84,8 @@
 
 /proc/purrbation_toggle(mob/living/carbon/human/H, silent = FALSE)
 	if(!ishumanbasic(H))
-		return
+		purrbation_apply_mutant(H, silent)
+		return TRUE
 	if(!iscatperson(H))
 		purrbation_apply(H, silent)
 		. = TRUE
@@ -100,6 +101,17 @@
 	if(!silent)
 		to_chat(H, "Something is nya~t right.")
 		playsound(get_turf(H), 'sound/effects/meow1.ogg', 50, 1, -1)
+
+/proc/purrbation_apply_mutant(mob/living/carbon/human/H, silent = FALSE)
+	var/obj/organ/cattification = new /obj/organ/tail()
+	var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
+	cattification.Insert(H)
+	qdel(old_part)
+	cattification = new /obj/organ/ears/cat()
+	old_part = H.getorganslot(ORGAN_SLOT_EARS)
+	cattification.Insert(H)
+	qdel(old_part)
+	H.regenerate_icons()
 
 /proc/purrbation_remove(mob/living/carbon/human/H, silent = FALSE)
 	if(!ishuman(H) || !iscatperson(H))
