@@ -43,3 +43,6 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 #define AI_MAX_CPUS_PER_RACK 4
 //Needs UI change to properly work!
 #define AI_MAX_RAM_PER_RACK 4
+
+///How many AI research points does 1 THz generate?
+#define AI_RESEARCH_PER_CPU 5
