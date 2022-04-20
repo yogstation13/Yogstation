@@ -175,17 +175,7 @@
 	return 0
 
 /mob/living/proc/Paralyze(amount, updating = TRUE, ignore_canstun = FALSE) //Can't go below remaining duration
-	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, updating, ignore_canstun) & COMPONENT_NO_STUN)
-		return
-	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
-		if(absorb_stun(amount, ignore_canstun))
-			return
-		var/datum/status_effect/incapacitating/paralyzed/P = IsParalyzed(FALSE)
-		if(P)
-			P.duration = max(world.time + amount, P.duration)
-		else if(amount > 0)
-			P = apply_status_effect(STATUS_EFFECT_PARALYZED, amount, updating)
-		return P
+	return
 
 /mob/living/proc/SetParalyzed(amount, updating = TRUE, ignore_canstun = FALSE) //Sets remaining duration
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, updating, ignore_canstun) & COMPONENT_NO_STUN)
