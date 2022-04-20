@@ -27,6 +27,16 @@
 		M.Paralyze(200)
 		M.soundbang_act(1, 20, 10, 15)
 		return
+	if(iscyborg(M))
+		var/mob/living/silicon/robot/C = M
+		if(C.sensor_protection)					//Do other annoying stuff that isnt a hard stun if they're protected
+			C.overlay_fullscreen("reducedbang", /obj/screen/fullscreen/flash/static)
+			C.uneq_all()
+			C.stop_pulling()
+			C.break_all_cyborg_slots(TRUE)
+			addtimer(CALLBACK(C, /mob/living/silicon/robot/.proc/clear_fullscreen, "reducedbang"), 3 SECONDS)
+			addtimer(CALLBACK(C, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), 3 SECONDS)
+			return
 
 	var/flashed = M.flash_act(affect_silicon = 1)
 	var/banged = M.soundbang_act(1, 20/max(1,distance), rand(0, 5))

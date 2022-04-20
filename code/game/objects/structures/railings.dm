@@ -1,11 +1,12 @@
 /obj/structure/railing
 	name = "railing"
 	desc = "Basic railing meant to protect idiots like you from falling."
-	icon = 'icons/obj/fluff.dmi'
+	icon = 'icons/obj/railing.dmi'
 	icon_state = "railing"
 	density = TRUE
 	anchored = TRUE
 	climbable = TRUE
+	pixel_y = -16
 	climb_time = 10 // not that hard to jump a rail
 	climb_stun = 0 // if you dont fall
 	///Initial direction of the railing.

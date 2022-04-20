@@ -204,10 +204,6 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"bm" = (
-/obj/structure/table/wood/bar,
-/turf/open/floor/grass,
-/area/crew_quarters/bar)
 "bq" = (
 /obj/machinery/vending/boozeomat,
 /obj/machinery/light{
@@ -278,19 +274,6 @@
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"cj" = (
-/obj/machinery/chem_dispenser/drinks{
-	dir = 4;
-	icon_state = "soda_dispenser"
-	},
-/obj/machinery/door/window/westright,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
-	},
-/obj/structure/table/wood/bar,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "cm" = (
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -303,15 +286,6 @@
 "dg" = (
 /obj/structure/sign/barsign,
 /turf/closed/wall,
-/area/crew_quarters/bar)
-"dk" = (
-/obj/item/clothing/head/that,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
-	},
-/obj/structure/table/wood/bar,
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "dU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -329,6 +303,15 @@
 	dir = 5
 	},
 /turf/open/floor/grass,
+/area/crew_quarters/bar)
+"eE" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/item/reagent_containers/food/snacks/poppypretzel,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "eK" = (
 /obj/structure/flora/junglebush/b,
@@ -379,6 +362,20 @@
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"hm" = (
+/obj/machinery/requests_console{
+	department = "Bar";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/camera{
+	c_tag = "Bar";
+	dir = 8;
+	network = list("SS13")
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "ht" = (
 /obj/effect/landmark/start/cook,
 /turf/open/floor/wood,
@@ -392,6 +389,13 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"iN" = (
+/obj/item/toy/cards/deck{
+	pixel_x = 2
+	},
+/obj/structure/table/wood,
+/turf/open/floor/grass,
+/area/crew_quarters/bar)
 "jt" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -32
@@ -399,18 +403,18 @@
 /obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
-"jO" = (
-/obj/item/clothing/head/hardhat/cakehat,
-/obj/structure/table/wood/bar,
-/turf/open/floor/grass,
-/area/crew_quarters/bar)
 "kb" = (
-/obj/structure/table/wood/bar,
-/obj/effect/overlay/palmtree_l{
-	pixel_x = 14;
-	pixel_y = 30
+/obj/machinery/chem_dispenser/drinks{
+	dir = 4;
+	icon_state = "soda_dispenser"
 	},
-/turf/open/floor/grass,
+/obj/machinery/door/window/westright,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "kW" = (
 /obj/structure/disposalpipe/segment,
@@ -472,6 +476,12 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"pg" = (
+/obj/machinery/light/small,
+/obj/item/grown/sunflower,
+/obj/structure/table/wood,
+/turf/open/floor/grass,
+/area/crew_quarters/bar)
 "pk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -488,12 +498,27 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"pB" = (
+/obj/item/reagent_containers/food/snacks/grown/banana,
+/obj/structure/table/wood,
+/turf/open/floor/grass,
+/area/crew_quarters/bar)
 "pG" = (
 /obj/structure/fence{
 	dir = 1;
 	icon_state = "straight"
 	},
 /turf/open/floor/grass,
+/area/crew_quarters/bar)
+"pN" = (
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "qs" = (
 /obj/machinery/camera{
@@ -510,13 +535,6 @@
 /obj/structure/flora/ausbushes/reedbush{
 	pixel_y = 5
 	},
-/turf/open/floor/grass,
-/area/crew_quarters/bar)
-"qz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	icon_state = "vent_map_on-1"
-	},
-/obj/structure/table/wood/bar,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
 "qA" = (
@@ -544,6 +562,11 @@
 /obj/item/flashlight/lamp/green,
 /obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"se" = (
+/obj/item/reagent_containers/food/snacks/grown/poppy,
+/obj/structure/table/wood,
+/turf/open/floor/grass,
 /area/crew_quarters/bar)
 "sr" = (
 /obj/machinery/reagentgrinder,
@@ -626,6 +649,15 @@
 	dir = 9
 	},
 /area/crew_quarters/bar)
+"ue" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/item/grown/sunflower,
+/obj/structure/table/wood,
+/turf/open/floor/grass,
+/area/crew_quarters/bar)
 "uD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8;
@@ -678,25 +710,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"xg" = (
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
-	},
-/obj/structure/table/wood/bar,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "xt" = (
 /obj/structure/flora/junglebush/large,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
-"yD" = (
-/obj/machinery/light/small,
-/obj/structure/table/wood/bar,
-/obj/item/grown/sunflower,
-/turf/open/floor/grass,
+"yj" = (
+/obj/item/clothing/head/that,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "zb" = (
 /obj/item/reagent_containers/food/snacks/mint,
@@ -745,6 +770,14 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
+"AD" = (
+/obj/effect/overlay/palmtree_l{
+	pixel_x = 14;
+	pixel_y = 30
+	},
+/obj/structure/table/wood,
+/turf/open/floor/grass,
+/area/crew_quarters/bar)
 "AP" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 28
@@ -770,14 +803,6 @@
 "Bb" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"BQ" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
-	},
-/obj/structure/table/wood/bar,
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "BT" = (
 /obj/machinery/door/airlock/public/glass{
@@ -878,15 +903,6 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
-"Fj" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "bar shutters"
-	},
-/obj/structure/table/wood/bar,
-/obj/item/reagent_containers/food/snacks/poppypretzel,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Fp" = (
 /obj/machinery/airalarm{
 	dir = 2;
@@ -906,6 +922,10 @@
 	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Hf" = (
+/obj/structure/table/wood,
+/turf/open/floor/grass,
 /area/crew_quarters/bar)
 "Hv" = (
 /turf/open/floor/wood,
@@ -990,6 +1010,11 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
+"OC" = (
+/obj/item/clothing/head/hardhat/cakehat,
+/obj/structure/table/wood,
+/turf/open/floor/grass,
+/area/crew_quarters/bar)
 "Pu" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -1023,6 +1048,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"Rh" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "RH" = (
 /obj/structure/sign/plaques/deempisi{
 	pixel_x = 6;
@@ -1092,11 +1125,11 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"TU" = (
-/obj/item/toy/cards/deck{
-	pixel_x = 2
+"TD" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	icon_state = "vent_map_on-1"
 	},
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
 "Uc" = (
@@ -1141,32 +1174,9 @@
 /obj/structure/railing,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"UB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/table/wood/bar,
-/obj/item/grown/sunflower,
-/turf/open/floor/grass,
-/area/crew_quarters/bar)
 "UE" = (
 /obj/structure/flora/rock,
 /turf/open/floor/grass,
-/area/crew_quarters/bar)
-"Vn" = (
-/obj/machinery/requests_console{
-	department = "Bar";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/obj/machinery/camera{
-	c_tag = "Bar";
-	dir = 8;
-	network = list("SS13")
-	},
-/obj/structure/table/wood/bar,
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "VD" = (
 /obj/structure/musician/piano,
@@ -1180,6 +1190,11 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"WD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/table/wood,
+/turf/open/floor/grass,
+/area/crew_quarters/bar)
 "WF" = (
 /obj/machinery/light{
 	dir = 4;
@@ -1211,11 +1226,6 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
-"XQ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/table/wood/bar,
-/turf/open/floor/grass,
-/area/crew_quarters/bar)
 "Ye" = (
 /obj/structure/closet/secure_closet/bar{
 	req_access_txt = "25"
@@ -1226,11 +1236,6 @@
 "Yq" = (
 /obj/machinery/holopad,
 /obj/structure/chair/stool/bar,
-/turf/open/floor/grass,
-/area/crew_quarters/bar)
-"YR" = (
-/obj/structure/table/wood/bar,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
 "Zf" = (
@@ -1248,11 +1253,6 @@
 	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"ZO" = (
-/obj/structure/table/wood/bar,
-/obj/item/reagent_containers/food/snacks/grown/banana,
-/turf/open/floor/grass,
 /area/crew_quarters/bar)
 "ZU" = (
 /obj/structure/disposalpipe/segment,
@@ -1354,11 +1354,11 @@ Hb
 at
 dY
 Ia
-jO
-bm
+OC
+Hf
 Ia
 uI
-TU
+iN
 dY
 qA
 ac
@@ -1370,8 +1370,8 @@ th
 sT
 sQ
 Ia
-ZO
-kb
+pB
+AD
 Yq
 AV
 Ia
@@ -1386,8 +1386,8 @@ tO
 JW
 JW
 Ia
-qz
-YR
+TD
+se
 Oe
 dY
 Ia
@@ -1402,11 +1402,11 @@ Av
 aD
 aD
 fo
-UB
-XQ
+ue
+WD
 we
 uI
-YR
+se
 dY
 dY
 BT
@@ -1450,11 +1450,11 @@ ag
 ag
 RH
 CC
-cj
-Fj
-dk
-BQ
-Fj
+kb
+eE
+yj
+Rh
+eE
 dY
 lA
 Nq
@@ -1470,7 +1470,7 @@ cm
 cm
 bZ
 cm
-xg
+pN
 AV
 Oe
 ac
@@ -1488,7 +1488,7 @@ cm
 cm
 bb
 dY
-yD
+pg
 ac
 "}
 (15,1,1) = {"
@@ -1500,7 +1500,7 @@ ag
 aR
 bq
 cm
-Vn
+hm
 cm
 Dp
 dY
