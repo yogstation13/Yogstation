@@ -184,7 +184,10 @@
 
 	if(!sterile)
 		M.take_bodypart_damage(strength,0) //done here so that humans in helmets take damage
-		M.Unconscious(MAX_IMPREGNATION_TIME/0.3) //something like 25 ticks = 20 seconds with the default settings
+		/*YOGS START*/
+		M.Knockdown(MAX_IMPREGNATION_TIME/0.3) //something like 25 ticks = 20 seconds with the default settings 
+		M.Stun(30) //So you get a chance to disarm them and drag them back to your nest
+		/*YOGS END*/
 
 	GoIdle() //so it doesn't jump the people that tear it off
 
