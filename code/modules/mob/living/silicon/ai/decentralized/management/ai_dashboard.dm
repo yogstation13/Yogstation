@@ -284,7 +284,7 @@
 		remaining_cpu -= cpu_usage[I]
 
 	if(remaining_cpu > 0)
-		var/points = round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu))
+		var/points = round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu) * owner.research_point_booster)
 		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = points))
 
 	for(var/project_being_researched in cpu_usage)
