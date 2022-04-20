@@ -57,6 +57,9 @@
 /datum/uplink_item/explosives/pizza_bomb
 	cost = 2
 
+/datum/uplink_item/stealthy_tools/chameleon
+	cost = 1
+
 //////////////////////////
 /////////New Items////////
 //////////////////////////
