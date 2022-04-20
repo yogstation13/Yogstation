@@ -48,6 +48,12 @@
 /datum/uplink_item/device_tools/fakenucleardisk
 	surplus_nullcrates = 0
 
+/datum/uplink_item/suits/space_suit
+	cost = 1
+
+/datum/uplink_item/stealthy_weapons/dart_pistol
+	cost = 2
+
 //////////////////////////
 /////////New Items////////
 //////////////////////////
