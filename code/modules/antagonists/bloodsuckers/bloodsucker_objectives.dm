@@ -94,7 +94,7 @@
 // GENERATE!
 /datum/objective/bloodsucker/protege/New()
 
-	var/list/departments = list(
+	var/list/departments_to_list = list(
 		"Security" = GLOB.security_positions,
 		"Engineering" = GLOB.engineering_positions,
 		"Medical" = GLOB.medical_positions,
@@ -110,7 +110,7 @@
 		// Vassalize a certain department
 		else
 			target_department = pick(departments)
-			target_amount = clamp(rand(2,3), 0, LAZYLEN(departments[target_department]))
+			target_amount = clamp(rand(2,3), 0, LAZYLEN(departments_to_list[target_department]))
 	..()
 
 // EXPLANATION
