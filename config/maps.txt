@@ -37,6 +37,10 @@ map kilostation
 	votable
 endmap
 
+map gaxstation
+	maxplayers 30
+endmap
+
 map icebox
 	minplayers 25
 	disabled 

@@ -541,6 +541,8 @@
 			return FALSE
 		if(ismecha(M.loc)) // stops inventory actions in a mech
 			return FALSE
+		if(ismouse(M) && (locate(/obj/structure/table) in get_turf(parent))) // Prevents mice using storages on tables
+			return FALSE
 		// this must come before the screen objects only block, dunno why it wasn't before
 		if(over_object == M)
 			user_show_to_mob(M)

@@ -61,6 +61,7 @@
 	M.adjustToxLoss(0.1*REM, 0)
 	M.adjustOxyLoss(1.1*REM, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 2*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_HEART, 1.25*REM)
 	..()
 	. = 1
 

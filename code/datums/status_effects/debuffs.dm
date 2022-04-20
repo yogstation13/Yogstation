@@ -1065,3 +1065,28 @@
 		var/mob/living/simple_animal/S = owner
 		for(var/i in S.damage_coeff)
 			S.damage_coeff[i] /= power
+
+/datum/status_effect/knuckled
+    id = "knuckle_wound"
+    duration = 10 SECONDS
+    status_type = STATUS_EFFECT_REPLACE
+    alert_type = null
+    var/mutable_appearance/bruise
+    var/obj/item/melee/knuckles
+
+/datum/status_effect/knuckled/on_apply()
+    bruise = mutable_appearance('icons/effects/effects.dmi', "rshield")
+    bruise.pixel_x = -owner.pixel_x
+    bruise.pixel_y = -owner.pixel_y
+    owner.underlays += bruise
+    return TRUE
+
+/datum/status_effect/knuckled/Destroy()
+    if(owner)
+        owner.underlays -= bruise
+    QDEL_NULL(bruise)
+    return ..()
+
+/datum/status_effect/knuckled/be_replaced()
+    owner.underlays -= bruise 
+    ..()
