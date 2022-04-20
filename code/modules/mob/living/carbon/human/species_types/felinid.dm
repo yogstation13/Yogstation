@@ -103,11 +103,11 @@
 		playsound(get_turf(H), 'sound/effects/meow1.ogg', 50, 1, -1)
 
 /proc/purrbation_apply_mutant(mob/living/carbon/human/H, silent = FALSE)
-	var/obj/item/organ/cattification = new /obj/organ/tail()
+	var/obj/item/organ/cattification = new /obj/item/organ/tail()
 	var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
 	cattification.Insert(H)
 	qdel(old_part)
-	cattification = new /obj/organ/ears/cat()
+	cattification = new /obj/item/organ/ears/cat()
 	old_part = H.getorganslot(ORGAN_SLOT_EARS)
 	cattification.Insert(H)
 	qdel(old_part)
