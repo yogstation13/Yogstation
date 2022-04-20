@@ -24,7 +24,7 @@
 		var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
 		if(eyes)
 			to_chat(H, span_userdanger("You are blinded by a shower of blood!"))
-			H.Stun(20)
+			H.Knockdown(20) //YOGS: Stun to Knockdown
 			H.blur_eyes(20)
 			eyes.applyOrganDamage(5)
 			H.confused += 3
