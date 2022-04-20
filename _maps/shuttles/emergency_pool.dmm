@@ -340,16 +340,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"gt" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/light,
-/obj/effect/turf_decal/pool/corner{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "iq" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
@@ -483,6 +473,11 @@
 /obj/machinery/pool_filter,
 /turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
+"Nx" = (
+/obj/effect/turf_decal/pool,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "Ri" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -506,10 +501,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"WJ" = (
-/obj/effect/turf_decal/pool,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "WU" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -522,6 +513,19 @@
 /area/shuttle/escape)
 "WW" = (
 /turf/open/indestructible/sound/pool,
+/area/shuttle/escape)
+"XJ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/pool/corner{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "XX" = (
 /obj/structure/table,
@@ -581,7 +585,7 @@ ao
 ao
 Yy
 wx
-WJ
+Nx
 WW
 WW
 Kv
@@ -605,7 +609,7 @@ aC
 aC
 aC
 dz
-WJ
+Nx
 LM
 Ut
 WW
@@ -629,7 +633,7 @@ aS
 aS
 aS
 yP
-WJ
+Nx
 Mh
 WW
 WW
@@ -653,7 +657,7 @@ aT
 aT
 aT
 WU
-WJ
+Nx
 LM
 WW
 Ut
@@ -677,7 +681,7 @@ aC
 aC
 aC
 dz
-WJ
+Nx
 rf
 WW
 WW
@@ -701,7 +705,7 @@ aS
 aS
 aS
 yP
-gt
+XJ
 fd
 ac
 ac
