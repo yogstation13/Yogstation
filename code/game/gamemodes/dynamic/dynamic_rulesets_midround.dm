@@ -226,7 +226,7 @@
 
 /datum/dynamic_ruleset/midround/malf
 	name = "Malfunctioning AI"
-	antag_datum = /datum/antagonist/traitor/malf
+	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_MALF
 	enemy_roles = list("Security Officer", "Warden","Detective","Head of Security", "Captain", "Scientist", "Chemist", "Research Director", "Chief Engineer")
 	exclusive_roles = list("AI")
@@ -260,7 +260,7 @@
 		return FALSE
 	var/mob/living/silicon/ai/M = pick_n_take(candidates)
 	assigned += M.mind
-	var/datum/antagonist/traitor/malf/AI = new
+	var/datum/antagonist/traitor/AI = new
 	M.mind.special_role = antag_flag
 	M.mind.add_antag_datum(AI)
 	if(prob(ion_announce))

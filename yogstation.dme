@@ -3283,6 +3283,8 @@
 #include "yogstation\code\game\gamemodes\darkspawn\darkspawn.dm"
 #include "yogstation\code\game\gamemodes\darkspawn\darkspawn_hud.dm"
 #include "yogstation\code\game\gamemodes\darkspawn\veil.dm"
+#include "yogstation\code\game\gamemodes\dynamic\dynamic_rulesets_midround.dm"
+#include "yogstation\code\game\gamemodes\dynamic\dynamic_rulesets_roundstart.dm"
 #include "yogstation\code\game\gamemodes\gangs\dominator.dm"
 #include "yogstation\code\game\gamemodes\gangs\gang_items.dm"
 #include "yogstation\code\game\gamemodes\gangs\gang_pen.dm"
