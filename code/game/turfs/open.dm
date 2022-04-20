@@ -530,17 +530,13 @@
 
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
-		var/wagging = FALSE
-		if(C.dna.species.is_wagging_tail())
-			wagging = TRUE
 		if(!(lube & SLIDE_ICE))
 			C.Knockdown(knockdown_amount)
 			C.Stun(stun_amount)
 			C.stop_pulling()
 		else
 			C.Knockdown(20)
-		if(wagging)
-			C.dna.species.start_wagging_tail(src)
+
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE
