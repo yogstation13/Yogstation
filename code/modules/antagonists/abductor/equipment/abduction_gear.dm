@@ -498,7 +498,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	L.lastattacker = user.real_name
 	L.lastattackerckey = user.ckey
 
-	L.Paralyze(140)
+	L.Knockdown(140) //YOGS: Paralyze to Knockdown
 	L.apply_effect(EFFECT_STUTTER, 7)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 
@@ -513,7 +513,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	log_combat(user, L, "stunned")
 
 /obj/item/abductor/baton/proc/SleepAttack(mob/living/L,mob/living/user)
-	if(L.incapacitated(TRUE, TRUE))
+	if(L.incapacitated(TRUE, TRUE) || L.IsKnockdown()) //YOGS: Add || L.IsKnockdown, replacing hard stun with knockdown.
 		if(L.anti_magic_check(FALSE, FALSE, TRUE))
 			to_chat(user, span_warning("The specimen's tinfoil protection is interfering with the sleep inducement!"))
 			L.visible_message(span_danger("[user] tried to induced sleep in [L] with [src], but [L.p_their()] tinfoil protection [L.p_them()]!"), \
