@@ -196,7 +196,7 @@
 				L.visible_message(span_warning("Strange energy flows into [L]'s [I.name]!"), \
 				span_userdanger("Your [I.name] shields you from [src]!"))
 			continue
-		L.Paralyze(15) //knocks down briefly when exploding
+		L.Knockdown(50) //knocks down briefly when exploding
 		if(!iscultist(L))
 			L.visible_message(span_warning("[L] is struck by a judicial explosion!"), \
 			span_userdanger("[!issilicon(L) ? "An unseen force slams you into the ground!" : "ERROR: Motor servos disabled by external source!"]"))
