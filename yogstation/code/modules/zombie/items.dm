@@ -1,2 +1,2 @@
 /obj/item/zombie_hand
-	infect_chance = 50
+	infect_chance = 60
