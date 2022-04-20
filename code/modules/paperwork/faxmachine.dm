@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	. = ..()
 	GLOB.allfaxes += src
 
-	if( !(("[department]" in GLOB.alldepartments) || ("[department]" in GLOB.admin_departments)) )
+	if( !((department in GLOB.alldepartments) || (department in GLOB.admin_departments)) )
 		GLOB.alldepartments |= department
 
 /obj/machinery/photocopier/faxmachine/ui_interact(mob/user, datum/tgui/ui)
