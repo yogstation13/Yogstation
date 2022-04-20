@@ -83,7 +83,7 @@
 						break
 			cur = get_step_towards(cur,end)
 		if (!can_place)
-			to_chat(usr, span_warning("You can't run \the [src] through that!</notice>")
+			to_chat(usr, span_notice("You can't run \the [src] through that!"))
 			return
 
 		cur = start

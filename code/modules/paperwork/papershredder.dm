@@ -154,7 +154,7 @@
 
 		if(do_after(user, 2 SECONDS, TRUE, src))
 			user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
-			"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap."))
+			"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
 			if(user.get_inactive_hand_index() == src)
 				user.dropItemToGround(src)
