@@ -69,7 +69,6 @@
 		dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territories.len] territories under control.</B> | Influence: <B>[gang.influence]</B> | Supply: <B>[gang.uniform_influence]</B><br>"
 		dat += "Time until Influence grows: <B>[time2text(gang.next_point_time - world.time, "mm:ss")]</B><br>"
 		dat += "<a href='?src=[REF(src)];commute=1'>Send message to Gang</a><br>"
-		dat += "<a href='?src=[REF(src)];recall=1'>Recall shuttle</a><br>"
 		dat += "<hr>"
 		for(var/cat in buyable_items)
 			dat += "<b>[cat]</b><br>"
@@ -134,8 +133,6 @@
 				G.weapon_purchase(usr, gang, src, FALSE)
 	if(href_list["commute"])
 		ping_gang(usr)
-	if(href_list["recall"])
-		recall(usr)
 	attack_self(usr)
 
 /obj/item/gangtool/update_icon()
@@ -183,73 +180,6 @@
 			to_chat(user, "Unlike regular gangsters, you may use <b>recruitment pens</b> to add recruits to your gang. Use them on unsuspecting crew members to recruit them. Don't forget to get your one free pen from the gangtool.")
 	else
 		to_chat(user, span_warning("ACCESS DENIED: Unauthorized user."))
-
-/obj/item/gangtool/proc/recall(mob/user)
-	if(!recallchecks(user))
-		return
-	if(recalling)
-		to_chat(user, span_warning("Error: Recall already in progress."))
-		return
-	gang.message_gangtools("[user] is attempting to recall the emergency shuttle.")
-	recalling = TRUE
-	to_chat(user, span_info("[icon2html(src, loc)]Generating shuttle recall order with codes retrieved from last call signal..."))
-	addtimer(CALLBACK(src, .proc/recall2, user), rand(100,300))
-
-/obj/item/gangtool/proc/recall2(mob/user)
-	if(!recallchecks(user))
-		return
-	to_chat(user, span_info("[icon2html(src, loc)]Shuttle recall order generated. Accessing station long-range communication arrays..."))
-	addtimer(CALLBACK(src, .proc/recall3, user), rand(100,300))
-
-/obj/item/gangtool/proc/recall3(mob/user)
-	if(!recallchecks(user))
-		return
-	var/list/living_crew = list()//shamelessly copied from mulligan code, there should be a helper for this
-	for(var/mob/Player in GLOB.player_list)
-		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client)
-			living_crew += Player
-	var/malc = CONFIG_GET(number/midround_antag_life_check)
-	if(living_crew.len / GLOB.joined_player_list.len <= malc) //Shuttle cannot be recalled if too many people died
-		to_chat(user, span_warning("[icon2html(src, user)]Error: Station communication systems compromised. Unable to establish connection."))
-		recalling = FALSE
-		return
-	to_chat(user, span_info("[icon2html(src, loc)]Comm arrays accessed. Broadcasting recall signal..."))
-	addtimer(CALLBACK(src, .proc/recallfinal, user), rand(100,300))
-
-/obj/item/gangtool/proc/recallfinal(mob/user)
-	if(!recallchecks(user))
-		return
-	recalling = FALSE
-	log_game("[key_name(user)] has tried to recall the shuttle with a gangtool.")
-	message_admins("[key_name_admin(user)] has tried to recall the shuttle with a gangtool.", 1)
-	if(SSshuttle.cancelEvac(user))
-		gang.recalls--
-		return TRUE
-
-	to_chat(user, span_info("[icon2html(src, loc)]No response recieved. Emergency shuttle cannot be recalled at this time."))
-	return
-
-/obj/item/gangtool/proc/recallchecks(mob/user)
-	if(!can_use(user))
-		return
-	if(SSshuttle.emergencyNoRecall)
-		return
-	if(!is_station_level(user.z)) //Shuttle can only be recalled while on station
-		to_chat(user, span_warning("[icon2html(src, user)]Error: Device out of range of station communication arrays."))
-		recalling = FALSE
-		return
-	if(!gang.recalls)
-		to_chat(user, span_warning("Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts."))
-		return
-	if(SSshuttle.emergency.mode != SHUTTLE_CALL) //Shuttle can only be recalled when it's moving to the station
-		to_chat(user, span_warning("[icon2html(src, user)]Emergency shuttle cannot be recalled at this time."))
-		recalling = FALSE
-		return
-	if(!gang.dom_attempts)
-		to_chat(user, span_warning("[icon2html(src, user)]Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts."))
-		recalling = FALSE
-		return
-	return TRUE
 
 /obj/item/gangtool/proc/can_use(mob/living/carbon/human/user)
 	if(!istype(user))
