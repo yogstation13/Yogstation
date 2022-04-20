@@ -50,7 +50,7 @@
 	channels = list(RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_ENGINEERING = 1)
 
 /obj/item/encryptionkey/headset_net
-	name = "networki admin radio encryption key"
+	name = "network admin's radio encryption key"
 	icon_state = "eng_cypherkey"
 	channels = list(RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_ENGINEERING = 1)
 
