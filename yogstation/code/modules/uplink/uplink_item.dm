@@ -63,6 +63,8 @@
 /datum/uplink_item/device_tools/rad_laser
 	cost = 3
 
+/datum/uplink_item/implants/stealthimplant
+	cost = 5
 //////////////////////////
 /////////New Items////////
 //////////////////////////
