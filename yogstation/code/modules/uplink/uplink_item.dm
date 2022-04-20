@@ -60,6 +60,9 @@
 /datum/uplink_item/stealthy_tools/chameleon
 	cost = 1
 
+/datum/uplink_item/device_tools/rad_laser
+	cost = 3
+
 //////////////////////////
 /////////New Items////////
 //////////////////////////
