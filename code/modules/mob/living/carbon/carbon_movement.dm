@@ -24,7 +24,7 @@
 		src.dna.species.start_wagging_tail(src)
 	return
 	
-	/mob/living/carbon/Process_Spacemove(movement_dir = 0)
+/mob/living/carbon/Process_Spacemove(movement_dir = 0)
 	if(..())
 		return 1
 	if(!isturf(loc))
