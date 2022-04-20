@@ -68,6 +68,9 @@
 
 /datum/uplink_item/race_restricted/flyingfang
 	cost = 16
+
+/datum/uplink_item/device_tools/surgerybag
+	cost = 1
 //////////////////////////
 /////////New Items////////
 //////////////////////////
