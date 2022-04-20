@@ -281,7 +281,7 @@
 
 	var/remaining_cpu = 1
 	for(var/I in cpu_usage)
-		total_cpu_used -= cpu_usage[I]
+		remaining_cpu -= cpu_usage[I]
 
 	if(remaining_cpu > 0)
 		var/points = round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu))

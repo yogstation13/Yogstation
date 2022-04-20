@@ -145,9 +145,9 @@ export const AiRackCreator = (props, context) => {
             ) || (
               <Fragment>
                 <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", { ram_index: 1 })} />
-                <Box inline bold position="absolute" bottom="25px" left="150px">{upperCaseWords(data.ram[0].name)}</Box>
+                <Box inline bold position="absolute" bottom="25px" left="125px">{upperCaseWords(data.ram[0].name)}</Box>
                 <Box inline position="absolute" bottom="25px" right="250px">{data.ram[0].capacity}TB</Box>
-                <Box inline position="absolute" bottom="10px">{data.ram[0].cost.charAt(0).toUpperCase() + data.ram[0].cost.slice(1)}</Box>
+                <Box inline position="absolute" bottom="0px" left="0" right="0">{data.ram[0].cost.charAt(0).toUpperCase() + data.ram[0].cost.slice(1)}</Box>
               </Fragment>
             )}
           </Section>
@@ -157,9 +157,9 @@ export const AiRackCreator = (props, context) => {
             ) || (
               <Fragment>
                 <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", { ram_index: 2 })} />
-                <Box inline bold position="absolute" bottom="25px" left="150px">{ upperCaseWords(data.ram[1].name) }</Box>
+                <Box inline bold position="absolute" bottom="25px" left="125px">{ upperCaseWords(data.ram[1].name) }</Box>
                 <Box inline position="absolute" bottom="25px" right="250px">{ data.ram[1].capacity }TB</Box>
-                <Box inline position="absolute" bottom="10px">{ data.ram[1].cost.charAt(0).toUpperCase() + data.ram[1].cost.slice(1) }</Box>
+                <Box inline position="absolute" bottom="0px" left="0" right="0">{ data.ram[1].cost.charAt(0).toUpperCase() + data.ram[1].cost.slice(1) }</Box>
               </Fragment>
             )}
             {data.unlocked_ram < 2 && (
@@ -172,9 +172,9 @@ export const AiRackCreator = (props, context) => {
             ) || (
               <Fragment>
                 <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", { ram_index: 3 })} />
-                <Box inline bold position="absolute" bottom="25px" left="150px">{ upperCaseWords(data.ram[2].name) }</Box>
+                <Box inline bold position="absolute" bottom="25px" left="125px">{ upperCaseWords(data.ram[2].name) }</Box>
                 <Box inline position="absolute" bottom="25px" right="250px">{ data.ram[2].capacity }TB</Box>
-                <Box inline position="absolute" bottom="10px">{ data.ram[2].cost.charAt(0).toUpperCase() + data.ram[2].cost.slice(1) }</Box>
+                <Box inline position="absolute" bottom="0px" left="0" right="0">{ data.ram[2].cost.charAt(0).toUpperCase() + data.ram[2].cost.slice(1) }</Box>
               </Fragment>
             )}
             {data.unlocked_ram < 3 && (
@@ -187,9 +187,9 @@ export const AiRackCreator = (props, context) => {
             ) || (
               <Fragment>
                 <Button width="100%" icon="memory" iconSize="3" color="transparent" onClick={() => act("remove_ram", { ram_index: 4 })} />
-                <Box inline bold position="absolute" bottom="25px" left="150px">{ upperCaseWords(data.ram[3].name) }</Box>
+                <Box inline bold position="absolute" bottom="25px" left="125px">{ upperCaseWords(data.ram[3].name) }</Box>
                 <Box inline position="absolute" bottom="25px" right="250px">{ data.ram[3].capacity }TB</Box>
-                <Box inline position="absolute" bottom="10px">{ data.ram[3].cost.charAt(0).toUpperCase() + data.ram[3].cost.slice(1) }</Box>
+                <Box inline position="absolute" bottom="0px" left="0" right="0">{ data.ram[3].cost.charAt(0).toUpperCase() + data.ram[3].cost.slice(1) }</Box>
               </Fragment>
             )}
             {data.unlocked_ram < 4 && (

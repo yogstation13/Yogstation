@@ -12,7 +12,7 @@ export const AiDashboard = (props, context) => {
   const [selectedCategory, setCategory] = useSharedState(context, 'selectedCategory', data.categories[0]);
   const [activeProjectsOnly, setActiveProjectsOnly] = useSharedState(context, 'activeProjectsOnly', true);
 
-  let remaining_cpu = (1 - data.used_cpu) * 100
+  let remaining_cpu = (1 - data.used_cpu) * 100;
 
   return (
     <Window
@@ -74,7 +74,8 @@ export const AiDashboard = (props, context) => {
                 }}
                 value={data.used_cpu * data.current_cpu}
                 maxValue={data.current_cpu}>
-                {data.used_cpu ? data.used_cpu * 100 : 0}% ({data.used_cpu ? data.used_cpu * data.current_cpu : 0}/{data.current_cpu} THz)
+                {data.used_cpu ? data.used_cpu * 100 : 0}%
+                ({data.used_cpu ? data.used_cpu * data.current_cpu : 0}/{data.current_cpu} THz)
               </ProgressBar>
               Utilized CPU Power
             </LabeledControls.Item>
@@ -120,11 +121,11 @@ export const AiDashboard = (props, context) => {
         </Tabs>
         {tab === 1 && (
           <Section title="Available Projects" buttons={(
-              <Input
-                value={search}
-                placeholder="Search.."
-                onInput={(e, value) => setSearch(value)}/>
-              )}>
+            <Input
+              value={search}
+              placeholder="Search.."
+              onInput={(e, value) => setSearch(value)} />
+          )}>
             <Tabs>
               {data.categories.map((category, index) => (
                 <Tabs.Tab key={index}
@@ -135,9 +136,9 @@ export const AiDashboard = (props, context) => {
               ))}
             </Tabs>
             {data.available_projects.filter(project => {
-              if(search) {
+              if (search) {
                 const searchableString = String(project.name).toLowerCase();
-                return searchableString.match(new RegExp(search, "i"))
+                return searchableString.match(new RegExp(search, "i"));
               }
               return project.category === selectedCategory;
             }).map((project, index) => (
@@ -149,9 +150,10 @@ export const AiDashboard = (props, context) => {
                     amount: Math.round((value / 100) * 100) / 100,
                   })} />
                   <Box inline bold>%&nbsp;</Box>
-                  <Button icon="arrow-up" disabled={data.current_cpu == data.used_cpu} onClick={(e, value) => act('max_cpu', {
+                  <Button icon="arrow-up" disabled={data.current_cpu === data.used_cpu} onClick={(e, value) => act('max_cpu', {
                     project_name: project.name,
-                  })}>Max</Button>
+                  })}>Max
+                  </Button>
                 </Fragment>
               )}>
                 <Box inline bold>Research Cost:&nbsp;</Box>
@@ -166,7 +168,9 @@ export const AiDashboard = (props, context) => {
                   {project.description}
                 </Box>
                 <ProgressBar value={project.research_progress / project.research_cost}>
-                  {Math.round((project.research_progress / project.research_cost * 100) * 100) /100}% ({Math.round(project.research_progress * 100) / 100}/{project.research_cost} THz)
+                  {Math.round((project.research_progress / project.research_cost * 100)* 100)
+                    / 100}%
+                  ({Math.round(project.research_progress * 100) / 100}/{project.research_cost} THz)
                 </ProgressBar>
               </Section>
             ))}
@@ -175,8 +179,11 @@ export const AiDashboard = (props, context) => {
         {tab === 2 && (
           <Section title="Completed Projects" buttons={(
             <Fragment>
-              <Button.Checkbox checked={activeProjectsOnly} onClick={() => setActiveProjectsOnly(!activeProjectsOnly)}>See Runnable Projects Only</Button.Checkbox>
-              <Input value={searchCompleted} placeholder="Search.." onInput={(e, value) => setSearchCompleted(value)}/>
+              <Button.Checkbox checked={activeProjectsOnly}
+                onClick={() => setActiveProjectsOnly(!activeProjectsOnly)}>
+                See Runnable Projects Only
+              </Button.Checkbox>
+              <Input value={searchCompleted} placeholder="Search.." onInput={(e, value) => setSearchCompleted(value)} />
             </Fragment>
           )}>
             <Tabs>
@@ -189,9 +196,9 @@ export const AiDashboard = (props, context) => {
               ))}
             </Tabs>
             {data.completed_projects.filter(project => {
-              if(searchCompleted) {
+              if (searchCompleted) {
                 const searchableString = String(project.name).toLowerCase();
-                return searchableString.match(new RegExp(searchCompleted, "i"))
+                return searchableString.match(new RegExp(searchCompleted, "i"));
               }
               if (activeProjectsOnly && !project.can_be_run) {
                 return false;
