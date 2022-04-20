@@ -425,13 +425,13 @@
 
 
 /obj/effect/proc_holder/spell/targeted/vampirize
-	name = "Lilith's Pact (300)"
+	name = "Lilith's Pact (200)"
 	desc = "You drain a victim's blood, and fill them with new blood, blessed by Lilith, turning them into a new vampire."
 	gain_desc = "You have gained the ability to force someone, given time, to become a vampire."
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
 	action_icon_state = "oath"
-	blood_used = 300
+	blood_used = 200
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/vampirize/cast(list/targets, mob/user = usr)
