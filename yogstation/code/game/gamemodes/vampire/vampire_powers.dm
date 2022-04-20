@@ -373,7 +373,6 @@
 				C.Knockdown(40)
 				C.adjustEarDamage(0, 30)
 				C.stuttering = 30
-				C.Paralyze(40)
 				C.Jitter(150)
 	for(var/obj/structure/window/W in view(4))
 		W.take_damage(75)
