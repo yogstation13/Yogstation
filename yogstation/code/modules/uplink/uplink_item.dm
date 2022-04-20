@@ -54,6 +54,9 @@
 /datum/uplink_item/stealthy_weapons/dart_pistol
 	cost = 2
 
+/datum/uplink_item/explosives/pizza_bomb
+	cost = 2
+
 //////////////////////////
 /////////New Items////////
 //////////////////////////
