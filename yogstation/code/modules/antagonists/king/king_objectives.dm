@@ -141,4 +141,3 @@
 /datum/objective/servetheking/check_completion()
 	var/datum/antagonist/servant/antag_datum = owner.has_antag_datum(/datum/antagonist/servant)
 	return antag_datum.master?.owner?.current?.stat != DEAD
-

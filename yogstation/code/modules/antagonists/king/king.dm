@@ -20,16 +20,18 @@
 			if(!silent)
 				to_chat(kingo, "Your will to rule allows you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			kingo.dna.remove_mutation(CLOWNMUT)
-	if(owner.dna?.species != /datum/species/human)
-		owner.current.grant_language(/datum/language/english) //Yes.
+	var/mob/living/carbon/human/user = owner
+	if(!(user.dna.species == /datum/species/human))
+		user.grant_language(/datum/language/english) //Yes.
 
 /datum/antagonist/king/remove_innate_effects(mob/living/mob_override)
 	if(owner.assigned_role == "Clown")
 		var/mob/living/carbon/human/kingo = owner.current
 		if(kingo && istype(kingo))
 			kingo.dna.add_mutation(CLOWNMUT)
-	if(owner.dna?.species != /datum/species/human)
-		owner.current.remove_language(/datum/language/english) //No.
+	var/mob/living/carbon/human/user = owner
+	if(!(user.dna.species == /datum/species/human))
+		user.grant_language(/datum/language/english) //Yes.
 
 /datum/antagonist/king/on_gain()
 	forge_king_objectives()
@@ -37,7 +39,7 @@
 
 /datum/antagonist/king/greet()
 	. = ..()
-	to_chat(owner.current, span_userdanger("You are the King!."))
+	to_chat(owner.current, span_userdanger("You are the King!"))
 	owner.announce_objectives()
 
 /datum/antagonist/king/farewell()
@@ -83,6 +85,7 @@
 		log_admin("[convertee] has become a King, and was created by [converter].")
 	return TRUE
 
+
 /datum/mind/proc/make_king(datum/mind/king)
 	if(!can_make_king(king))
 		return FALSE
@@ -99,11 +102,11 @@
  * # HUD
  */
 /datum/antagonist/king/proc/update_king_icons_added(datum/mind/m)
-	var/datum/atom_hud/antag/kinghud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
+	var/datum/atom_hud/antag/kinghud = GLOB.huds[ANTAG_HUD_KING]
 	kinghud.join_hud(owner.current)
 	set_antag_hud(owner.current, "king")
 
 /datum/antagonist/king/proc/update_king_icons_removed(datum/mind/m)
-	var/datum/atom_hud/antag/kinghud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
+	var/datum/atom_hud/antag/kinghud = GLOB.huds[ANTAG_HUD_KING]
 	kinghud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)

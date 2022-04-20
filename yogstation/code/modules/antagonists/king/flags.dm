@@ -4,9 +4,15 @@
 	desc = "A flag of a departament..."
 	anchored = TRUE
 	density = TRUE
-	var/list/jobs = list()
+	var/list/converted_jobs = list()
 	var/datum/antagonist/king/owner
 	var/is_ownered = FALSE
 	max_integrity = 99999999999 //Honk
 	can_be_unanchored = FALSE
 	flags_1 = RAD_NO_CONTAMINATE_1
+
+/obj/structure/flag/attack_hand(mob/user)
+	if (!user.is_human || !IS_COMMAND(user.mind) || !user.mind || !IS_SECURITY(user.mind) || !)
+		return
+
+
