@@ -69,7 +69,7 @@
 				if(name == cameraMemoryTarget)
 					target += src
 				if(target.len)
-					to_chat(src, span_notice("Tracked target [cameraMemoryTarget] found visible on cameras. Tracking disabled."))
+					to_chat(src, span_userdanger("Tracked target [cameraMemoryTarget] found visible on cameras. Tracking disabled."))
 					cameraMemoryTarget = 0
 				
 			cameraMemoryTickCount++
