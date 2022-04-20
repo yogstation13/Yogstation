@@ -461,7 +461,7 @@
 			if(!do_mob(user, target, 70))
 				to_chat(user, span_danger("The pact has failed! [target] has not became a vampire."))
 				to_chat(target, span_notice("The visions stop, and you relax."))
-				vamp.usable_blood += blood_used / 2	// Refund half the cost
+				vamp.usable_blood += blood_used	// Refund half the cost
 				return
 		if(!QDELETED(user) && !QDELETED(target))
 			to_chat(user, span_notice(". . ."))
