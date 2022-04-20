@@ -3775,5 +3775,6 @@
 #include "yogstation\code\modules\webhook\webhook.dm"
 #include "yogstation\code\modules\xenoarch\loot\gigadrill.dm"
 #include "yogstation\code\modules\xenoarch\loot\guns.dm"
+#include "yogstation\code\modules\zombie\items.dm"
 #include "yogstation\interface\interface.dm"
 // END_INCLUDE
