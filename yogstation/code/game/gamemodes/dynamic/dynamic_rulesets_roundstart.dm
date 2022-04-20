@@ -15,6 +15,7 @@
 	weight = 3
 	cost = 20
 	requirements = list(80,80,70,60,50,45,40,40,40,40)
+	flags = HIGH_IMPACT_RULESET
 
 /datum/dynamic_ruleset/roundstart/malf/trim_candidates()
 	..()
