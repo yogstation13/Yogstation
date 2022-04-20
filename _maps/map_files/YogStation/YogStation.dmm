@@ -31799,11 +31799,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"eee" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/ai/expansion_card_holder/prefilled,
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "eeK" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable/yellow,
@@ -42586,6 +42581,11 @@
 	},
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
+"kdJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/ai/server_cabinet,
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "keM" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -43117,10 +43117,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
-"kvI" = (
-/obj/machinery/ai/expansion_card_holder,
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/ai_monitored/secondarydatacore)
 "kvX" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -51653,6 +51649,27 @@
 /obj/item/stack/cable_coil,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"oSh" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/machinery/computer/security/telescreen{
+	dir = 1;
+	name = "Telecomms Camera Monitor";
+	network = list("tcomms");
+	pixel_x = 30;
+	pixel_y = -37
+	},
+/obj/item/radio/intercom{
+	dir = 1;
+	freerange = 1;
+	name = "Station Intercom (Telecomms)";
+	pixel_x = 28;
+	pixel_y = -26
+	},
+/obj/effect/landmark/start/yogs/network_admin,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "oSn" = (
 /obj/machinery/door/airlock/hatch{
 	autoclose = 0;
@@ -54582,27 +54599,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"qHe" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/obj/effect/landmark/start/yogs/signal_technician,
-/obj/machinery/computer/security/telescreen{
-	dir = 1;
-	name = "Telecomms Camera Monitor";
-	network = list("tcomms");
-	pixel_x = 30;
-	pixel_y = -37
-	},
-/obj/item/radio/intercom{
-	dir = 1;
-	freerange = 1;
-	name = "Station Intercom (Telecomms)";
-	pixel_x = 28;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "qHy" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/dark,
@@ -62487,6 +62483,10 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"uNS" = (
+/obj/machinery/ai/server_cabinet,
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "uOe" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/techstorage/security,
@@ -63848,6 +63848,10 @@
 /obj/structure/table_frame,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"vCk" = (
+/obj/machinery/ai/server_cabinet,
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/ai_monitored/secondarydatacore)
 "vCt" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/shower{
@@ -66353,10 +66357,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"xgY" = (
-/obj/machinery/ai/expansion_card_holder/prefilled,
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "xhl" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -98539,7 +98539,7 @@ kGr
 nao
 bVJ
 eQZ
-qHe
+oSh
 caD
 vme
 aJw
@@ -110422,7 +110422,7 @@ pEf
 pEf
 cva
 cva
-eee
+kdJ
 eKo
 gQa
 xlV
@@ -110944,7 +110944,7 @@ nVK
 jaw
 jnI
 pyn
-xgY
+uNS
 cva
 cva
 pEf
@@ -119132,7 +119132,7 @@ wQd
 hOU
 oxg
 tQv
-kvI
+vCk
 oGM
 oGM
 vJS
