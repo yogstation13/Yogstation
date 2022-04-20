@@ -2413,6 +2413,7 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\induction.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\rgb.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\surveillance.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\projects\vending_machine.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\cameranet.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\chunk.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\eye.dm"
