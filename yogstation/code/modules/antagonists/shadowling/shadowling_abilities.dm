@@ -216,12 +216,10 @@
 					to_chat(M, span_danger("You feel a blast of paralyzingly cold air wrap around you and flow past, but you are unaffected!"))
 					continue
 			to_chat(M, span_userdanger("A wave of shockingly cold air engulfs you!"))
-			M.Stun(2)
+			M.Knockdown(2)
 			M.apply_damage(10, BURN)
-			if(M.bodytemperature)
-				M.adjust_bodytemperature(-200, 50)
 			if(M.reagents)
-				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 15) //Half of a cryosting
+				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 7.5) //Quarter of a cryosting
 			extinguishMob(M, TRUE)
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F, TRUE)
