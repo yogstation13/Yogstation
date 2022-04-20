@@ -65,6 +65,9 @@
 
 /datum/uplink_item/implants/stealthimplant
 	cost = 5
+
+/datum/uplink_item/race_restricted/flyingfang
+	cost = 16
 //////////////////////////
 /////////New Items////////
 //////////////////////////
