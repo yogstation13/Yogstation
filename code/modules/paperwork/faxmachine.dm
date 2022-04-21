@@ -187,12 +187,12 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 /obj/machinery/photocopier/faxmachine/check_ass()
 	return FALSE // No ass here
 
-/obj/machinery/faxmachine/proc/sendFax(var/obj/machinery/faxmachine/fax as obj in GLOB.allfaxes)
+/obj/machinery/photocopier/faxmachine/proc/sendFax(var/obj/machinery/faxmachine/fax as obj in GLOB.allfaxes)
 	set name = "Send Fax"
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN)) return
-	usr.client.holder.send_admin_fax(src)
+	usr.client.send_admin_fax(src)
 
 /obj/machinery/photocopier/faxmachine/proc/recieve_admin_fax(customname, input)
 	if(! (stat & (BROKEN|NOPOWER) ) )
