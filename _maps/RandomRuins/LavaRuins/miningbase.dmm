@@ -958,6 +958,13 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance)
+"iP" = (
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/machinery/papershredder,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "iQ" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -2392,13 +2399,6 @@
 	},
 /obj/machinery/light/small,
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"Eg" = (
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/machinery/papershredder,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "Em" = (
@@ -4799,7 +4799,7 @@ Yj
 kD
 iC
 vS
-Eg
+iP
 zW
 kD
 mr

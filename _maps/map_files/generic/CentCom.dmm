@@ -26114,25 +26114,7 @@
 /obj/item/reagent_containers/medspray/sterilizine,
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
-"itG" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/photocopier/faxmachine{
-	department = "Central Command";
-	destination = "Bridge"
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/control)
-"mGV" = (
+"jJm" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -26154,6 +26136,24 @@
 	},
 /obj/item/lighter,
 /obj/item/flashlight/lamp,
+/turf/open/floor/plasteel/dark,
+/area/centcom/control)
+"krq" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Central Command";
+	destination = "Bridge"
+	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "uDo" = (
@@ -69281,7 +69281,7 @@ atK
 anq
 aiu
 avK
-itG
+krq
 akm
 anN
 ayv
@@ -69537,7 +69537,7 @@ aNU
 atM
 anq
 aiu
-mGV
+jJm
 awE
 akm
 akm
