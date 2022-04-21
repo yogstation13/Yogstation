@@ -56,7 +56,7 @@
 	return
 
 
-/obj/structure/flag/proc/convert_workers() //Same as convert_workers(), but used when security forces or command stuff re-capture the flag
+/obj/structure/flag/proc/deconvert_workers() //Same as convert_workers(), but used when security forces or command stuff re-capture the flag
 	if(!src.current_owner || !src.is_ownered || (converted_jobs.len <= 0))
 		return
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list) //We do a little trolling(again)
@@ -71,7 +71,7 @@
 		if(!H.mind.assigned_role in src.converted_jobs)
 			continue
 		var/datum/antagonist/servant/ex_serv = H.mind.has_antag_datum(/datum/antagonist/servant)
-		src.current_owner.servants -= serv
+		src.current_owner.servants -= ex_serv
 		H.mind.remove_antag_datum(/datum/antagonist/servant)
 	return
 
