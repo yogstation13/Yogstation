@@ -26100,6 +26100,24 @@
 /obj/effect/penance_giver/eldritch,
 /turf/open/indestructible/brazil/necropolis,
 /area/brazil)
+"ehe" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Central Command";
+	destination = "Bridge"
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/control)
 "gDu" = (
 /obj/item/clothing/gloves/color/latex,
 /obj/item/clothing/mask/surgical,
@@ -26114,7 +26132,7 @@
 /obj/item/reagent_containers/medspray/sterilizine,
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
-"rEa" = (
+"lUj" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -26170,24 +26188,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"wGo" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/photocopier/faxmachine{
-	department = "Central Command";
-	destination = "Bridge"
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/control)
 
 (1,1,1) = {"
 azH
@@ -69281,7 +69281,7 @@ atK
 anq
 aiu
 avK
-wGo
+ehe
 akm
 anN
 ayv
@@ -69537,7 +69537,7 @@ aNU
 atM
 anq
 aiu
-rEa
+lUj
 awE
 akm
 akm

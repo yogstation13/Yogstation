@@ -1942,13 +1942,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/storage)
-"yT" = (
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/machinery/papershredder,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "yZ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2262,6 +2255,13 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
+"CG" = (
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/machinery/papershredder,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "CH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -4799,7 +4799,7 @@ Yj
 kD
 iC
 vS
-yT
+CG
 zW
 kD
 mr
