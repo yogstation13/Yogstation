@@ -1757,7 +1757,7 @@
 
 /datum/reagent/medicine/radscrub
 	name = "Rad Scrub Plus"
-	description = "Are your chairs, tables, bottles and assitants glowing green? Spray em down Donk Co's new patented cleaner, Rad Scrub Plus! WARNING: SWALLOWING OR INGESTING RAD SCRUB PLUS MAY RESULT IN LOSS OF BREATH, CANCER, OR MESOTHELIOMA"
+	description = "Are your chairs, tables, bottles and assitants glowing green? Spray em down Donk Co's new patented cleaner, Rad Scrub Plus! WARNING: SWALLOWING OR INGESTING RAD SCRUB PLUS MAY RESULT NAUSUA, POISONING, OR MESOTHELIOMA"
 	color = "#9f5a2f"
 	var/old_insulation = RAD_NO_INSULATION
 	taste_description = "metallic dust"
