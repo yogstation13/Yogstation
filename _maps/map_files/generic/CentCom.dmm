@@ -26139,7 +26139,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"qFF" = (
+"mKf" = (
 /obj/machinery/light{
 	dir = 1
 	},
@@ -70051,7 +70051,7 @@ ain
 atN
 anq
 aio
-qFF
+mKf
 aiC
 akl
 axW
