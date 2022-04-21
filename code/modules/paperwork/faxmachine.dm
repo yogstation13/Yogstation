@@ -55,6 +55,8 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 				if(sendcooldown - world.time > 0)
 					to_chat(usr, "<span class='warning'>Transmitter recharging</span>")
 					return
+				
+				sendcooldown = world.time + 1 MINUTES
 				if (destination in GLOB.admin_departments)
 					INVOKE_ASYNC(src, .proc/send_admin_fax, usr, destination)
 				else
@@ -112,7 +114,6 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	
 	if (success)
 		visible_message("[src] beeps, \"Message transmitted successfully.\"")
-		sendcooldown = world.time + 1 MINUTES
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 
@@ -171,13 +172,12 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	switch(destination)
 		if ("Central Command")
 			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
-	sendcooldown = world.time + 1 MINUTES
 	sleep(50)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
 	
 
 /obj/machinery/photocopier/faxmachine/proc/send_adminmessage(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
-	var/msg = "<b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=\ref[sender]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=\ref[sender]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=\ref[sender]'>SM</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservefollow=\ref[sender]'>JMP</A>) (<a href='?_src_=holder;[HrefToken()];[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken()];AdminFaxView=\ref[sent]'>view message</a>"
+	var/msg = "<b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=\ref[sender]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=\ref[sender]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=\ref[sender]'>SM</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservefollow=\ref[sender]'>JMP</A>) (<a href='?_src_=holder;[HrefToken()];[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken(TRUE)];AdminFaxView=\ref[sent]'>view message</a>"
 	msg = span_admin("<span class=\"message linkify\">[msg]</span>")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
@@ -187,65 +187,35 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 /obj/machinery/photocopier/faxmachine/check_ass()
 	return FALSE // No ass here
 
-/proc/get_fax_machines()
-	var/list/faxes = new()
-	for(var/obj/machinery/faxmachine/F in machines)
-		faxes += F
-	return faxes
-
-/obj/machinery/faxmachine/proc/sendFax(var/obj/machinery/faxmachine/fax as obj in get_fax_machines())
+/obj/machinery/faxmachine/proc/sendFax(var/obj/machinery/faxmachine/fax as obj in GLOB.allfaxes)
 	set name = "Send Fax"
 	set category = "Admin"
 
+	if(!check_rights(R_ADMIN)) return
+	usr.client.holder.send_admin_fax(src)
 
-	var/who = input("Who is sending this?") in list("NanoTrasen","Syndicate","Cancel")
-	if (who == "Cancel")
-		return
-
-	var/inputsubject = input(src, "Please enter a Subject", "Outgoing message from [who]", "") as text|null
-	if (!inputsubject)
-		return
-
-	var/inputmessage = input(src, "Please enter a message to send to [fax] via secure connection. Use <br> for line breaks.", "Outgoing message from [who]", "") as message|null
-	if (!inputmessage)
-		return
-
-	var/inputsigned = input(src, "Please enter Centcom Offical name.", "Outgoing message from Centcomm", "") as text|null
-	if (!inputsigned)
-		return
-
-
-	var/customname = input(src, "Pick a title for the report", "Title") as text|null
-	var/input = "<center><b>[who] Fax Network</b></center><hr><center>[inputsubject]</center><hr>[inputmessage]<hr><b>Signed:</b> <i>[inputsigned]</i>"
-
-	if(! (fax.stat & (BROKEN|NOPOWER) ) )
-
+/obj/machinery/photocopier/faxmachine/proc/recieve_admin_fax(customname, input)
+	if(! (stat & (BROKEN|NOPOWER) ) )
 		// animate! it's alive!
-		flick("faxreceive", fax)
+		flick("faxreceive", src)
 
 		// give the sprite some time to flick
 		spawn(20)
-			var/obj/item/paper/P = new /obj/item/paper( fax.loc )
-			P.name = "[who=="NanoTrasen" ? "Central Command":"Syndicate"] - [customname]"
+			var/obj/item/paper/P = new /obj/item/paper( loc )
+			P.name = "[command_name()]- [customname]"
 			P.info = input
 			P.update_icon()
 
-			playsound(fax.loc, "sound/items/polaroid1.ogg", 50, 1)
+			playsound(loc, "sound/items/polaroid1.ogg", 50, 1)
+
 			// Stamps
 			var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-			if(who == "NanoTrasen")
-				stampoverlay.icon_state = "paper_stamp-cent"
-			if(who == "Syndicate")
-				stampoverlay.icon_state = "paper_stamp-syndi"
+			stampoverlay.icon_state = "paper_stamp-cent"
 			if(!P.stamped)
 				P.stamped = new
 			P.stamped += /obj/item/stamp
 			P.overlays += stampoverlay
-			P.stamps += "<HR><i>This paper has been stamped[who=="NanoTrasen" ? "": " and encrypted"] by the [ who=="NanoTrasen" ? "Central Command":"Syndicate"] Quantum Relay.</i>"
+			P.stamps += "<i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
-			usr << "Message reply to transmitted successfully."
-			log_admin("[key_name(usr)] sent a fax to [fax], as [who].")
-			message_admins("[key_name_admin(usr)] sent a fax to [fax], as [who=="NanoTrasen" ? "Central Command":"Syndicate"].", 1)
-			return
-	else
-		usr<< "\red The fax is broken or has no power!"
+		
+
