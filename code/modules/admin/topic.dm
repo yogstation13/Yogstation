@@ -2276,12 +2276,14 @@
 			return
 
 		owner.send_admin_fax(F)
+		
 
 /client/proc/send_global_fax()
 	set category = "Admin.Round Interaction"
 	set name = "Send Global Fax"
 
-	if(!check_rights(R_ADMIN)) return
+	if(!check_rights(R_ADMIN)) 
+		return
 	send_admin_fax(null)
 
 /client/proc/send_admin_fax(obj/machinery/photocopier/faxmachine/F)
@@ -2299,6 +2301,7 @@
 
 	log_admin("[key_name(src)] sent a fax message to [istype(F) ? F : "all fax machines"]: [input]")
 	message_admins("[key_name_admin(src)] sent a fax message to [istype(F) ? F : "all fax machines"]")
+	minor_announce("Central command has sent a Fax message, this will be printed out at [istype(F) ? F : "all fax machines"]")
 
 	if(istype(F))
 		INVOKE_ASYNC(F, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, input)
@@ -2307,7 +2310,6 @@
 	for(var/obj/machinery/photocopier/faxmachine/fax in GLOB.allfaxes)
 		INVOKE_ASYNC(fax, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, input)
 	
-		
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))
