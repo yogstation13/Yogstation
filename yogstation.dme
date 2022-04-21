@@ -3391,6 +3391,7 @@
 #include "yogstation\code\game\objects\items\devices\radio\encryptionkey.dm"
 #include "yogstation\code\game\objects\items\devices\radio\headset.dm"
 #include "yogstation\code\game\objects\items\devices\radio\radio.dm"
+#include "yogstation\code\game\objects\items\grenades\flashbang.dm"
 #include "yogstation\code\game\objects\items\grenades\glitterbombs.dm"
 #include "yogstation\code\game\objects\items\holotool\holotool.dm"
 #include "yogstation\code\game\objects\items\holotool\modes.dm"
