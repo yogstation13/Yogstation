@@ -1,0 +1,4 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - bugfix: "Slips no longer stop tails wagging"
