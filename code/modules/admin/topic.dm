@@ -2281,7 +2281,8 @@
 	set category = "Admin.Round Interaction"
 	set name = "Send Global Fax"
 
-	if(!check_rights(R_ADMIN)) return
+	if(!check_rights(R_ADMIN)) 
+		return
 	send_admin_fax(null)
 
 /client/proc/send_admin_fax(obj/machinery/photocopier/faxmachine/F)
