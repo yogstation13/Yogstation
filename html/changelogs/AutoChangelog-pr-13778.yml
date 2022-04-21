@@ -1,4 +1,0 @@
-author: "Sniblet"
-delete-after: true 
-changes: 
-  - imageadd: "sling chitin now actually uses its sprites"
