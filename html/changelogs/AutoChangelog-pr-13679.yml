@@ -1,7 +1,0 @@
-author: " SomeAngryMiner, ImSynthex, Ebb-Real, KathyRyals"
-delete-after: true 
-changes: 
-  - rscadd: "Added Chief Medical Officer belt, which the CMO starts equipped with and uses soulless codersprites"
-  - imageadd: "added new soulless sprites for the utility belt, CE's belt, and medical belt"
-  - imageadd: "added belt overlays for abductor tools and surgical tools"
-  - bugfix: "CMO now starts with a skirt if their player chooses to start with one"
