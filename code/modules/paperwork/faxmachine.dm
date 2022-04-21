@@ -209,13 +209,16 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 			playsound(loc, "sound/items/polaroid1.ogg", 50, 1)
 
 			// Stamps
-			var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-			stampoverlay.icon_state = "paper_stamp-cent"
-			if(!P.stamped)
-				P.stamped = new
-			P.stamped += /obj/item/stamp
-			P.overlays += stampoverlay
-			P.stamps += "<i>This paper has been stamped by the Central Command Quantum Relay.</i>"
+			var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/simple/paper)
+			if (isnull(P.stamps))
+				P.stamps = sheet.css_tag()
+			P.stamps += sheet.icon_tag("stamp-cent")
+			P.stamps += "<br><i>This paper has been stamped by the Central Command Quantum Relay.</i><br>"
+			var/mutable_appearance/stampoverlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_stamp-cent")
+			stampoverlay.pixel_x = rand(-2, 2)
+			stampoverlay.pixel_y = rand(-3, 2)
 
+			LAZYADD(P.stamped, "stamp-cent")
+			P.add_overlay(stampoverlay)
 		
 
