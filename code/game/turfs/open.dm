@@ -536,7 +536,6 @@
 			C.stop_pulling()
 		else
 			C.Knockdown(20)
-
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE
