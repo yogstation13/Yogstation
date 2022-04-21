@@ -10372,21 +10372,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"avL" = (
-/obj/item/flashlight/lamp,
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/control)
 "avM" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
@@ -10817,29 +10802,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/centcom/control)
-"awD" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/red{
-	pixel_x = -2;
-	pixel_y = -2
-	},
-/obj/item/folder/blue{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/lighter,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "awE" = (
 /obj/structure/chair/comfy/brown{
@@ -26152,6 +26114,30 @@
 /obj/item/reagent_containers/medspray/sterilizine,
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
+"rEa" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/folder/blue{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/folder/red{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/lighter,
+/obj/item/flashlight/lamp,
+/turf/open/floor/plasteel/dark,
+/area/centcom/control)
 "uDo" = (
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/o2{
@@ -26184,6 +26170,24 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"wGo" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Central Command";
+	destination = "Bridge"
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/control)
 
 (1,1,1) = {"
 azH
@@ -69277,7 +69281,7 @@ atK
 anq
 aiu
 avK
-awD
+wGo
 akm
 anN
 ayv
@@ -69533,7 +69537,7 @@ aNU
 atM
 anq
 aiu
-avL
+rEa
 awE
 akm
 akm
