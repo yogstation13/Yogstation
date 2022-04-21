@@ -3493,6 +3493,7 @@
 #include "yogstation\code\modules\antagonists\infiltrator\items\ai_hijack.dm"
 #include "yogstation\code\modules\antagonists\infiltrator\items\hardsuit.dm"
 #include "yogstation\code\modules\antagonists\infiltrator\items\services.dm"
+#include "yogstation\code\modules\antagonists\king\flag_subtypes.dm"
 #include "yogstation\code\modules\antagonists\king\flags.dm"
 #include "yogstation\code\modules\antagonists\king\king.dm"
 #include "yogstation\code\modules\antagonists\king\king_objectives.dm"
