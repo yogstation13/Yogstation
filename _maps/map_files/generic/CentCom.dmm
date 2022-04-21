@@ -26100,7 +26100,21 @@
 /obj/effect/penance_giver/eldritch,
 /turf/open/indestructible/brazil/necropolis,
 /area/brazil)
-"ehe" = (
+"gDu" = (
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/mask/surgical,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/reagent_containers/medspray/sterilizine,
+/turf/open/floor/plasteel/white,
+/area/centcom/control)
+"itG" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -26118,21 +26132,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"gDu" = (
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/item/reagent_containers/medspray/sterilizine,
-/turf/open/floor/plasteel/white,
-/area/centcom/control)
-"lUj" = (
+"mGV" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -69281,7 +69281,7 @@ atK
 anq
 aiu
 avK
-ehe
+itG
 akm
 anN
 ayv
@@ -69537,7 +69537,7 @@ aNU
 atM
 anq
 aiu
-lUj
+mGV
 awE
 akm
 akm

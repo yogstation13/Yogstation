@@ -2255,13 +2255,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
-"CG" = (
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/machinery/papershredder,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "CH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2399,6 +2392,13 @@
 	},
 /obj/machinery/light/small,
 /obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"Eg" = (
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/machinery/papershredder,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "Em" = (
@@ -4799,7 +4799,7 @@ Yj
 kD
 iC
 vS
-CG
+Eg
 zW
 kD
 mr
