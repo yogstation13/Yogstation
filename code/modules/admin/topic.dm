@@ -2291,7 +2291,7 @@
 	var/inputmessage = input(src, "Please enter a message send to [istype(F) ? F : "all fax machines"] via secure connection. Use <br> for line breaks.", "Outgoing message from Centcom", "") as message|null
 	if(!inputmessage)	return
 
-	var/inputsigned = input(src, "Please enter Centcom Offical name.", "Outgoing message from Centcom", "") as text|null
+	var/inputsigned = input(src, "Please enter Centcom Offical name.", "Outgoing message from Centcom", usr?.client?.holder?.admin_signature || "") as text|null
 	if(!inputsigned)	return
 
 	var/customname = input(src, "Pick a title for the report", "Title") as text|null
