@@ -11,7 +11,7 @@
 	can_be_unanchored = FALSE
 	flags_1 = RAD_NO_CONTAMINATE_1
 
-/obj/structure/flag/attack_hand(mob/user)
+/obj/structure/flag/attack_hand(mob/user) //When someone tries to capture the flag.
 	if (!ishuman(user) || !IS_COMMAND(user.mind) || !user.mind || !IS_SECURITY(user.mind) || !user.mind.has_antag_datum(/datum/antagonist/king) || !user.mind.has_antag_datum(/datum/antagonist/servant/knight))
 		return
 	var/obj/structure/flag/target = src
@@ -30,12 +30,12 @@
 		if(!target.is_ownered || !target.current_owner)
 			return
 		if(do_after(src, 15, target))
+			deconvert_workers()
 			target.current_owner = 0
 			target.is_ownered = FALSE
-			deconvert_workers()
 
 
-/obj/structure/flag/proc/convert_workers()
+/obj/structure/flag/proc/convert_workers() //It picks every human, and checks, is his job in the flag joblist. Yeah.
 	if(!src.current_owner || !src.is_ownered || (converted_jobs.len <= 0))
 		return
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list) //We do a little trolling
@@ -56,7 +56,24 @@
 	return
 
 
-
+/obj/structure/flag/proc/convert_workers() //Same as convert_workers(), but used when security forces or command stuff re-capture the flag
+	if(!src.current_owner || !src.is_ownered || (converted_jobs.len <= 0))
+		return
+	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list) //We do a little trolling(again)
+		if(!H.mind)
+			continue
+		if(H.mind.has_antag_datum(/datum/antagonist/servant/knight))
+			continue
+		if(H.mind.has_antag_datum(/datum/antagonist/king))
+			continue
+		if(!SSjob.GetJob(H.mind.assigned_role))
+			continue
+		if(!H.mind.assigned_role in src.converted_jobs)
+			continue
+		var/datum/antagonist/servant/ex_serv = H.mind.has_antag_datum(/datum/antagonist/servant)
+		src.current_owner.servants -= serv
+		H.mind.remove_antag_datum(/datum/antagonist/servant)
+	return
 
 
 
