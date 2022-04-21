@@ -23,7 +23,9 @@
 			if(!target.current_owner)
 				return
 			target.is_ownered = TRUE
+			current_owner.flags_owned += target
 			convert_workers()
+			return
 	if(IS_COMMAND(user.mind) || IS_SECURITY(user.mind))
 		if(!target.is_ownered || !target.current_owner)
 			return
@@ -31,6 +33,31 @@
 			target.current_owner = 0
 			target.is_ownered = FALSE
 			deconvert_workers()
+
+
+/obj/structure/flag/proc/convert_workers()
+	if(!src.current_owner || !src.is_ownered || (converted_jobs.len <= 0))
+		return
+	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list) //We do a little trolling
+		if(!H.mind)
+			continue
+		if(H.mind.has_antag_datum(/datum/antagonist/servant/knight))
+			continue
+		if(H.mind.has_antag_datum(/datum/antagonist/king))
+			continue
+		if(!SSjob.GetJob(H.mind.assigned_role))
+			continue
+		if(!H.mind.assigned_role in src.converted_jobs)
+			continue
+		H.mind.add_antag_datum(/datum/antagonist/servant)
+		var/datum/antagonist/servant/serv = H.mind.has_antag_datum(/datum/antagonist/servant)
+		serv.master = src.current_owner
+		src.current_owner.servants += serv
+	return
+
+
+
+
 
 
 

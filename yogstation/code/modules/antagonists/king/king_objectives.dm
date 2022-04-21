@@ -118,7 +118,7 @@
 		if(!SSjob.GetJob(H.mind.assigned_role))
 			continue
 		other_targets += H.mind
-		if(H.mind.assigned_role in GLOB.command_positions)
+		if(!H.mind.assigned_role in GLOB.command_positions)
 			continue
 		viable_heads += H.mind
 	if(viable_heads.len > 0)//find in command positions
