@@ -1,0 +1,6 @@
+author: "Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Admins are no longer informed that you have no laws as an AI just because you have an AI shell or enslaved cyborg."
+  - bugfix: "Admins are no longer convinced that you, as a cyborg, are entirely synced and enslaved to an AI when you are not."
+  - spellcheck: "Admins will now have a more enjoyable UX when determining that you should be a better doorknob as an AI."
