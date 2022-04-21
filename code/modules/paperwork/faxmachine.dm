@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 /obj/machinery/photocopier/faxmachine/check_ass()
 	return FALSE // No ass here
 
-/obj/machinery/photocopier/faxmachine/proc/sendFax(var/obj/machinery/faxmachine/fax as obj in GLOB.allfaxes)
+/obj/machinery/photocopier/faxmachine/proc/sendFax(var/obj/machinery/photocopier/faxmachine/fax as obj in GLOB.allfaxes)
 	set name = "Send Fax"
 	set category = "Admin"
 
