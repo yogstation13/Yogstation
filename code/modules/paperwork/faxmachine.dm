@@ -245,11 +245,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 
 			usr << "Message reply to transmitted successfully."
 			log_admin("[key_name(usr)] sent a fax to [fax], as [who].")
-			log_admin_single("[key_name(usr)] sent a fax to [fax], as [who].")
-			send_investigate_log("[key_name(usr)] sent to a fax to [fax], as [who=="NanoTrasen" ? "Central Command":"Syndicate"]. : <a href='?_src_=holder;CentcommFaxView=\ref[input]'>view message</a>","fax")
 			message_admins("[key_name_admin(usr)] sent a fax to [fax], as [who=="NanoTrasen" ? "Central Command":"Syndicate"].", 1)
 			return
 	else
 		usr<< "\red The fax is broken or has no power!"
-	feedback_add_details("admin_verb","SF") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
