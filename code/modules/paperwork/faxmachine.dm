@@ -187,9 +187,9 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 /obj/machinery/photocopier/faxmachine/check_ass()
 	return FALSE // No ass here
 
-/obj/machinery/photocopier/faxmachine/proc/sendFax(var/obj/machinery/photocopier/faxmachine/fax as obj in GLOB.allfaxes)
+/obj/machinery/photocopier/faxmachine/proc/sendFax(var/obj/machinery/photocopier/faxmachine/fax in GLOB.allfaxes)
 	set name = "Send Fax"
-	set category = "Admin"
+	set category = "Admin.RoundInteraction"
 
 	if(!check_rights(R_ADMIN)) return
 	usr.client.send_admin_fax(src)
@@ -217,5 +217,12 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 			P.overlays += stampoverlay
 			P.stamps += "<i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
-		
+/obj/machinery/photocopier/faxmachine/AltClick(mob/user)
+	. = ..()
+	if(IsAdminGhost(user))
+		send_admin_fax(src)
 
+/obj/machinery/photocopier/faxmachine/examine(mob/user)
+	. = ..()
+	if(IsAdminGhost(user))
+		.+= "You can send admin faxes via AltClick to this specific Fax Machine."
