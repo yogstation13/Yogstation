@@ -37,10 +37,7 @@
 		if(!antag_candidates.len)
 			break
 		var/datum/mind/king = pick(antag_candidates)
-		// Can we even BE a king?
-		if(!king.can_make_king(king))
-			antag_candidates -= king
-			continue
+		antag_candidates -= king
 		kings += king
 		king.restricted_roles = restricted_jobs
 		log_game("[king.key] (ckey) has been selected as a King.")

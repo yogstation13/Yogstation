@@ -77,18 +77,7 @@
 	objectives += roundend_obj
 
 
-
-/datum/mind/proc/can_make_king(datum/mind/convertee, datum/mind/converter)
-	var/mob/living/carbon/human/user = convertee.current
-	if(converter)
-		message_admins("[convertee] has become a King, and was created by [converter].")
-		log_admin("[convertee] has become a King, and was created by [converter].")
-	return TRUE
-
-
 /datum/mind/proc/make_king(datum/mind/king)
-	if(!can_make_king(king))
-		return FALSE
 	add_antag_datum(/datum/antagonist/king)
 	return TRUE
 

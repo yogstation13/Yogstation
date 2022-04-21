@@ -12,7 +12,7 @@
 	flags_1 = RAD_NO_CONTAMINATE_1
 
 /obj/structure/flag/attack_hand(mob/user)
-	if (!is_human(user) || !IS_COMMAND(user.mind) || !user.mind || !IS_SECURITY(user.mind) || !user.mind.has_antag_datum(/datum/antagonist/king) || !user.mind.has_antag_datum(/datum/antagonist/servant/knight))
+	if (!ishuman(user) || !IS_COMMAND(user.mind) || !user.mind || !IS_SECURITY(user.mind) || !user.mind.has_antag_datum(/datum/antagonist/king) || !user.mind.has_antag_datum(/datum/antagonist/servant/knight))
 		return
 	var/obj/structure/flag/target = src
 	if(user.mind.has_antag_datum(/datum/antagonist/king))
