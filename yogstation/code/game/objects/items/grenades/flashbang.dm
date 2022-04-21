@@ -1,4 +1,4 @@
-/obj/item/grenade/flashbang/proc/bang(turf/T , mob/living/M)
+/obj/item/grenade/flashbang/bang(turf/T , mob/living/M)
 	if (M.stat == DEAD) // They're dead!
 		return
 	if (istype(M.loc, /obj/vehicle/sealed))
