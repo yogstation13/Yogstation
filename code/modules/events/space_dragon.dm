@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/ghost_role/space_dragon
 	max_occurrences = 1
 	weight = 5
-	earliest_start = 35 MINUTES
+	earliest_start = 60 MINUTES
 	min_players = 30
 
 /datum/round_event/ghost_role/space_dragon
