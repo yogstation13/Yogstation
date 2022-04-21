@@ -75,6 +75,39 @@
 		H.mind.remove_antag_datum(/datum/antagonist/servant)
 	return
 
+/obj/structure/flag/botany
+	name = "Botany flag"
+	icon_state = "flag"
+	desc = "The flag of the botany"
+	converted_jobs = list(/datum/job/hydro)
+
+/obj/structure/flag/cargonia
+	name = "Cargo flag"
+	icon_state = "flag"
+	desc = "The flag of cargo"
+	converted_jobs = list(/datum/job/cargo_tech, /datum/job/qm)
+
+/obj/structure/flag/miners
+	name = "Lavaland outpost flag"
+	icon_state = "flag"
+	desc = "The flag of the Lavaland outpost"
+	converted_jobs = list(/datum/job/mining, /datum/job/miningmedic)
+
+/obj/structure/flag/theater
+	name = "Theater flag"
+	icon_state = "flag"
+	desc = "The flag of the theater"
+	converted_jobs = list(/datum/job/mime, /datum/job/clown)
+
+/obj/structure/flag/kithchen
+	name = "Kitchen flag"
+	icon_state = "flag"
+	desc = "The flag of the kitchen"
+	converted_jobs = list(/datum/job/cook)
+
+
+
+
 
 
 
