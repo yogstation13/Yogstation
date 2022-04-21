@@ -10,8 +10,8 @@
 		"Research Director", "Chief Engineer", "Chief Medical Officer", "Curator", 
 		"Warden", "Security Officer", "Detective", "Brig Physician",
 	)
-	required_players = 15
-	required_enemies = 1
+	required_players = 25
+	required_enemies = 2
 	recommended_enemies = 4
 	reroll_friendly = 1
 	round_ends_with_antag_death = FALSE

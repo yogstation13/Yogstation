@@ -1,5 +1,0 @@
-author: "Readystorm546"
-delete-after: true 
-changes: 
-  - rscdel: "Removed duplicate camera on Yogbox"
-  - rscdel: "Removed tinted windows on one side and moved them to the other on Yogbox."

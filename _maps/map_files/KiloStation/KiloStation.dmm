@@ -9148,6 +9148,9 @@
 /obj/structure/table,
 /obj/item/paper_bin,
 /obj/item/pen,
+/obj/item/flashlight/seclite{
+	pixel_y = 9
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
 "ars" = (
@@ -10079,7 +10082,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
@@ -10090,6 +10092,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral,
+/obj/structure/table,
+/obj/machinery/photocopier/faxmachine{
+	department = "Head of Personnel's Office"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hop)
 "asV" = (
@@ -10175,12 +10181,19 @@
 /area/security/courtroom)
 "atd" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/hand_tele,
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = -6
+	},
+/obj/item/hand_tele{
+	pixel_x = -8
+	},
 /obj/structure/mirror{
 	pixel_x = -26
 	},
 /obj/machinery/light,
+/obj/machinery/recharger{
+	pixel_x = 7
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "atf" = (
@@ -16711,6 +16724,10 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/item/taperecorder{
+	pixel_x = 4;
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
@@ -47306,6 +47323,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/item/folder/red,
+/obj/item/folder/blue{
+	pixel_x = 4;
+	pixel_y = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/lawoffice)
 "bCt" = (
@@ -47380,7 +47402,6 @@
 	dir = 8
 	},
 /obj/structure/table/wood,
-/obj/machinery/recharger,
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/captain";
 	dir = 4;
@@ -47389,6 +47410,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Captain's Office"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
@@ -69821,12 +69845,6 @@
 /area/security/warden)
 "coV" = (
 /obj/structure/table,
-/obj/item/paper_bin,
-/obj/item/taperecorder{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/item/pen,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
@@ -69835,6 +69853,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Brig Control"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
@@ -72836,6 +72857,10 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine{
+	department = "Security"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
@@ -78958,6 +78983,8 @@
 	pixel_y = 1
 	},
 /obj/item/toy/figure/lawyer,
+/obj/item/clothing/glasses/sunglasses/cheap,
+/obj/item/clothing/glasses/sunglasses/cheap,
 /turf/open/floor/carpet/green,
 /area/lawoffice)
 "cIE" = (
@@ -88579,6 +88606,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/item/paper_bin,
 /turf/open/floor/plating,
 /area/security/warden)
 "ign" = (
@@ -97061,7 +97089,9 @@
 	pixel_x = -24
 	},
 /obj/structure/table,
-/obj/item/flashlight/seclite,
+/obj/machinery/photocopier/faxmachine{
+	department = "Detective's Office"
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
 "qqL" = (
@@ -97290,13 +97320,9 @@
 /area/hallway/primary/central)
 "qyD" = (
 /obj/structure/table/wood,
-/obj/item/folder/blue{
-	pixel_x = 4;
-	pixel_y = 4
+/obj/machinery/photocopier/faxmachine{
+	department = "Law office"
 	},
-/obj/item/folder/red,
-/obj/item/clothing/glasses/sunglasses/cheap,
-/obj/item/clothing/glasses/sunglasses/cheap,
 /turf/open/floor/carpet/green,
 /area/lawoffice)
 "qyX" = (
