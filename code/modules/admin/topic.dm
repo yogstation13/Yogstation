@@ -2264,6 +2264,58 @@
 	else if(href_list["beakerpanel"])
 		beaker_panel_act(href_list)
 
+	else if(href_list["AdminFaxView"])
+		var/obj/info = locate(href_list["AdminFaxView"]) in GLOB.adminfaxes
+		if(info)
+			info.examine(usr, TRUE)
+
+	else if(href_list["CentcomFaxReply"])
+		var/mob/living/carbon/human/H = locate(href_list["CentcomFaxReply"])
+		var/obj/machinery/photocopier/faxmachine/fax = locate(href_list["originfax"]) in GLOB.allfaxes
+
+		var/inputsubject = input(src.owner, "Please enter a Subject", "Outgoing message from Centcom", "") as text|null
+		if(!inputsubject)	return
+
+		var/inputmessage = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. Use <br> for line breaks.", "Outgoing message from Centcom", "") as message|null
+		if(!inputmessage)	return
+
+		var/inputsigned = input(src.owner, "Please enter Centcom Offical name.", "Outgoing message from Centcom", "") as text|null
+		if(!inputsigned)	return
+
+		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
+		var/input = "<center><b>NanoTrasen Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>[inputmessage]<hr><b>Signed:</b> <i>[inputsigned]</i>"
+
+		for(var/obj/machinery/photocopier/faxmachine/F in GLOB.allfaxes)
+			if(F == fax)
+				if(! (F.stat & (BROKEN|NOPOWER) ) )
+
+					// animate! it's alive!
+					flick("faxreceive", F)
+
+					// give the sprite some time to flick
+					spawn(20)
+						var/obj/item/paper/P = new /obj/item/paper( F.loc )
+						P.name = "[command_name()]- [customname]"
+						P.info = input
+						P.update_icon()
+
+						playsound(F.loc, "sound/items/polaroid1.ogg", 50, 1)
+
+						// Stamps
+						var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
+						stampoverlay.icon_state = "paper_stamp-cent"
+						if(!P.stamped)
+							P.stamped = new
+						P.stamped += /obj/item/stamp
+						P.overlays += stampoverlay
+						P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
+
+				to_chat(owner, "Message reply to Station transmitted successfully.")
+				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [input]")
+				message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(H)]", 1)
+				return
+		to_chat(src.owner, span_danger("Unable to locate fax!"))
+
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))
 		return
