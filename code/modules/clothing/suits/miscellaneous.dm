@@ -691,15 +691,15 @@
 	flags_inv = HIDEGLOVES|HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	alternate_worn_layer = UNDER_HEAD_LAYER
 
-/obj/item/clothing/suit/hunter_cloak
-	name = "hunter's cloak"
+/obj/item/clothing/suit/hunter_coat
+	name = "hunter's coat"
 	desc = "Just go out and kill a few beasts. It's for your own good."
 	icon_state = "hunter_coat"
 	item_state = "hunter_coat"
 
 /obj/item/clothing/suit/priest_robe
 	name = "priest robes"
-	desc = ""
+	desc = "The robes of a priest who has yet to determine their faith. It would be wise to find your conviction, before it's chosen for you."
 	icon_state = "priest_robe"
 	item_state = "priest_robe"
 	var/religious_color = FALSE

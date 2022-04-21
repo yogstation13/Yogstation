@@ -167,7 +167,7 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	new/datum/stack_recipe("leather jacket", /obj/item/clothing/suit/jacket/leather, 7), \
 	new/datum/stack_recipe("leather coat", 	/obj/item/clothing/suit/leather_coat, 5), \
 	new/datum/stack_recipe("leather shoes", /obj/item/clothing/shoes/laceup, 2), \
-	new/datum/stack_recipe("footwraps", /obj/item/clothing/shoes/xeno_wraps, 2), \	
+	new/datum/stack_recipe("footwraps", /obj/item/clothing/shoes/xeno_wraps, 2), \
 	new/datum/stack_recipe("leather cloak", /obj/item/clothing/neck/cloak, 5), \
 ))
 
