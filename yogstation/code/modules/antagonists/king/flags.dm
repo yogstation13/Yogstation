@@ -141,6 +141,29 @@
 	desc = "The flag of the enginering departament"
 	converted_jobs = list(/datum/job/engineer)
 
+/obj/structure/flag/atmosia
+	name = "Atmospherics flag"
+	icon_state = "flag"
+	desc = "The flag of the atmospherics"
+	converted_jobs = list(/datum/job/atmos)
+
+/obj/structure/flag/sigtech
+	name = "Telecoms flag"
+	icon_state = "flag"
+	desc = "The flag of the telecomunications"
+	converted_jobs = list(/datum/job/signal_tech)
+
+/obj/structure/flag/shop
+	name = "Shop flag"
+	icon_state = "flag"
+	desc = "The flag of the shop"
+	converted_jobs = list(/datum/job/clerk)
+
+/obj/structure/flag/attorney
+	name = "Court flag"
+	icon_state = "flag"
+	desc = "The flag of the court"
+	converted_jobs = list(/datum/job/lawyer)
 
 
 
