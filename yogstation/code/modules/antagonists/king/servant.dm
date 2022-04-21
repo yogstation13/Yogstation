@@ -37,4 +37,3 @@
 	roundend_category = "Knight"
 	antagpanel_category = "King"
 	can_hijack = HIJACK_HIJACKER
-
