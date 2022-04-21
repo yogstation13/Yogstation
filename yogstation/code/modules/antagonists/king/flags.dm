@@ -105,6 +105,45 @@
 	desc = "The flag of the kitchen"
 	converted_jobs = list(/datum/job/cook)
 
+/obj/structure/flag/bar
+	name = "Bar flag"
+	icon_state = "flag"
+	desc = "The flag of the bar"
+	converted_jobs = list(/datum/job/bartender)
+
+/obj/structure/flag/robo
+	name = "Robotics flag"
+	icon_state = "flag"
+	desc = "The flag of the robotics"
+	converted_jobs = list(/datum/job/roboticist)
+
+/obj/structure/flag/science
+	name = "Sciense flag"
+	icon_state = "flag"
+	desc = "The flag of the science departament"
+	converted_jobs = list(/datum/job/scientist)
+
+/obj/structure/flag/medbay
+	name = "Medbay flag"
+	icon_state = "flag"
+	desc = "The flag of the medbay"
+	converted_jobs = list(/datum/job/doctor, /datum/job/paramedic)
+
+/obj/structure/flag/genetics
+	name = "Genetics flag"
+	icon_state = "flag"
+	desc = "The flag of the genetics"
+	converted_jobs = list(/datum/job/geneticist)
+
+/obj/structure/flag/engineering
+	name = "Enginering flag"
+	icon_state = "flag"
+	desc = "The flag of the enginering departament"
+	converted_jobs = list(/datum/job/engineer)
+
+
+
+
 
 
 
