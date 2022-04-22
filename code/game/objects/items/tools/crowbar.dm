@@ -42,7 +42,6 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "crowbar_alien"
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
-	icon_state = "crowbar"
 	toolspeed = 0.1
 
 
