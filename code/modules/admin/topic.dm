@@ -2290,25 +2290,33 @@
 	var/inputsubject = input(src, "Please enter a Subject", "Outgoing message from Centcom", "") as text|null
 	if(!inputsubject)	return
 
-	var/inputmessage = input(src, "Please enter a message send to [istype(F) ? F : "all fax machines"] via secure connection. Use <br> for line breaks.", "Outgoing message from Centcom", "") as message|null
+	var/inputmessage = input(src, "Please enter a message send to [istype(F) ? F : "all fax machines"] via secure connection. Supports pen markdown.", "Outgoing message from Centcom", "") as message|null
 	if(!inputmessage)	return
 
 	var/inputsigned = input(src, "Please enter Centcom Offical name.", "Outgoing message from Centcom", usr?.client?.holder?.admin_signature || "") as text|null
 	if(!inputsigned)	return
 
 	var/customname = input(src, "Pick a title for the report", "Title") as text|null
-	var/input = "<center><b>NanoTrasen Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>[inputmessage]<hr><b>Signed:</b> <i>[inputsigned]</i>"
+	var/prefix = "<center><b>NanoTrasen Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>"
+	var/suffix = "<hr><b>Signed:</b> <font face=\"[SIGNFONT]\"><i>[inputsigned]</i></font>"
 
-	log_admin("[key_name(src)] sent a fax message to [istype(F) ? F : "all fax machines"]: [input]")
+	inputmessage = parsemarkdown(inputmessage)
+	inputmessage = "[prefix]<font face=\"Verdana\" color=black>[inputmessage]</font>[suffix]"
+
+	var/list/T = splittext(inputmessage,PAPER_FIELD,1,0,TRUE) // The list of subsections.. Splits the text on where paper fields have been created.
+	//The TRUE marks that we're keeping these "seperator" paper fields; they're included in this list.
+
+	log_admin("[key_name(src)] sent a fax message to [istype(F) ? F : "all fax machines"]: [inputmessage]")
 	message_admins("[key_name_admin(src)] sent a fax message to [istype(F) ? F : "all fax machines"]")
-	minor_announce("Central command has sent a Fax message, this will be printed out at [istype(F) ? F : "all fax machines"]")
+	if(!istype(F))
+		minor_announce("Central command has sent a fax message, this will be printed out at all fax machines")
 
 	if(istype(F))
-		INVOKE_ASYNC(F, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, input)
+		INVOKE_ASYNC(F, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, T)
 		return
 	
 	for(var/obj/machinery/photocopier/faxmachine/fax in GLOB.allfaxes)
-		INVOKE_ASYNC(fax, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, input)
+		INVOKE_ASYNC(fax, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, T)
 	
 
 /datum/admins/proc/HandleCMode()

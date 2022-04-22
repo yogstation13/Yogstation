@@ -194,7 +194,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	if(!check_rights(R_ADMIN)) return
 	usr.client.send_admin_fax(src)
 
-/obj/machinery/photocopier/faxmachine/proc/recieve_admin_fax(customname, input)
+/obj/machinery/photocopier/faxmachine/proc/recieve_admin_fax(customname, list/T)
 	if(! (stat & (BROKEN|NOPOWER) ) )
 		// animate! it's alive!
 		flick("faxreceive", src)
@@ -203,7 +203,16 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 		spawn(20)
 			var/obj/item/paper/P = new /obj/item/paper( loc )
 			P.name = "[command_name()]- [customname]"
-			P.info = input
+			
+			var/list/templist = list() // All the stuff we're adding to $written
+			for(var/text in T)
+				if(text == PAPER_FIELD)
+					templist += text
+				else
+					var/datum/langtext/L = new(text,/datum/language/common)
+					templist += L
+
+			P.written += templist
 			P.update_icon()
 
 			playsound(loc, "sound/items/polaroid1.ogg", 50, 1)
