@@ -120,17 +120,17 @@
 	if(.)
 		return
 	if(mover.pass_flags & (PASSGLASS|PASSTABLE|PASSGRILLE))
-		return 1
+		return TRUE
 	if(issilicon(mover))
-		return 1
+		return TRUE
 	if(iscarbon(mover))
 		var/mob/living/carbon/C = mover
 		if(C.stat)	// Lets not prevent dragging unconscious/dead people.
 			return TRUE
 		if(lifted == TRUE)
-			return 1
+			return TRUE
 		if(allowed(mover))
-			return 1
+			return TRUE
 
 /obj/structure/barrier_tape/Bumped(atom/movable/AM)
 	. = ..()
