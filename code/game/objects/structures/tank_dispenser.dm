@@ -50,6 +50,17 @@
 			oxygentanks++
 		else
 			full = TRUE
+	else if(I.tool_behaviour == TOOL_CROWBAR)
+		var/obj/item/tank/internals/plasma/tank = locate() in src
+		if(tank && Adjacent(usr))
+			plasmatanks--
+		user.dropItemToGround(tank)
+		var/obj/item/tank/internals/oxygen/tank2 = locate() in src
+		if(tank && Adjacent(usr))
+			oxygentanks--
+		user.dropItemToGround(tank2)
+		to_chat(user, "You crowbar out an oxygen tank and a plasma tank.")
+		return
 	else if(I.tool_behaviour == TOOL_WRENCH)
 		default_unfasten_wrench(user, I, time = 20)
 		return
