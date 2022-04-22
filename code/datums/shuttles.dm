@@ -220,6 +220,13 @@
 	description = "We did not expect an evacuation this quickly. All we have available is two escape pods."
 	admin_notes = "For player punishment."
 
+/datum/map_template/shuttle/emergency/pool
+	suffix = "pool"
+	name = "Pool Party!"
+	description = "A modified version of the Box escape shuttle that comes with a preinstalled pool. Fun for the whole family!"
+	admin_notes = "Pool filter can be very easily filled with acid or other harmful chemicals."
+	credit_cost = 15000
+	
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
 	name = "Mother Russia Bleeds"
