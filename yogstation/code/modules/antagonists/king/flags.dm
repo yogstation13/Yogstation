@@ -12,10 +12,10 @@
 	flags_1 = RAD_NO_CONTAMINATE_1
 
 /obj/structure/flag/attack_hand(mob/user) //When someone tries to capture the flag.
-	if (!ishuman(user) || !IS_COMMAND(user.mind) || !user.mind || !IS_SECURITY(user.mind) || !user.mind.has_antag_datum(/datum/antagonist/king) || !user.mind.has_antag_datum(/datum/antagonist/servant/knight))
+	if (!ishuman(user) || !IS_COMMAND(user.mind) || !user.mind || !IS_SECURITY(user.mind) || !IS_KING(user) || !IS_KNIGHT(user))
 		return
 	var/obj/structure/flag/target = src
-	if(user.mind.has_antag_datum(/datum/antagonist/king))
+	if(IS_KING(user))
 		if(do_after(src, 15, target))
 			if(target.is_ownered)
 				current_owner = 0
@@ -41,14 +41,18 @@
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list) //We do a little trolling
 		if(!H.mind)
 			continue
-		if(H.mind.has_antag_datum(/datum/antagonist/servant/knight))
+		if(IS_KNIGHT(H))
 			continue
-		if(H.mind.has_antag_datum(/datum/antagonist/king))
+		if(IS_KING(H))
 			continue
 		if(!SSjob.GetJob(H.mind.assigned_role))
 			continue
 		if(!H.mind.assigned_role in src.converted_jobs)
 			continue
+		if(IS_SERVANT(H))
+			var/datum/antagonist/servant/ex_serv = H.mind.has_antag_datum(/datum/antagonist/servant)
+			ex_serv.master.servants -= ex_serv
+			H.mind.remove_antag_datum(/datum/antagonist/servant)
 		H.mind.add_antag_datum(/datum/antagonist/servant)
 		var/datum/antagonist/servant/serv = H.mind.has_antag_datum(/datum/antagonist/servant)
 		serv.master = src.current_owner
@@ -62,13 +66,15 @@
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list) //We do a little trolling(again)
 		if(!H.mind)
 			continue
-		if(H.mind.has_antag_datum(/datum/antagonist/servant/knight))
+		if(IS_KNIGHT(H))
 			continue
-		if(H.mind.has_antag_datum(/datum/antagonist/king))
+		if(IS_KING(H))
 			continue
 		if(!SSjob.GetJob(H.mind.assigned_role))
 			continue
 		if(!H.mind.assigned_role in src.converted_jobs)
+			continue
+		if(!IS_SERVANT(H))
 			continue
 		var/datum/antagonist/servant/ex_serv = H.mind.has_antag_datum(/datum/antagonist/servant)
 		src.current_owner.servants -= ex_serv

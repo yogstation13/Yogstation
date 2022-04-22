@@ -9,3 +9,8 @@
 #define NOT_DOMINATING			-1
 #define MAX_LEADERS_GANG		3
 #define INITIAL_DOM_ATTEMPTS	3
+
+//king staff
+#define IS_KING(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/king))
+#define IS_SERVANT(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/servant))
+#define IS_KNIGHT(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/servant/knight))

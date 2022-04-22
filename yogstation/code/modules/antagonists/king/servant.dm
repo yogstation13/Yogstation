@@ -32,6 +32,35 @@
 	update_servant_icons_removed(owner.current)
 	return ..()
 
+/datum/antagonist/servant/greet()
+	. = ..()
+	to_chat(owner, span_userdanger("You are now the servant of [master.owner.current], the King"))
+	to_chat(owner, span_boldannounce("[master.owner.current] is the only true King, the other kings and the chain of command are the false rulers, so your king's will has the greatest priority for you."))
+	antag_memory += "You are the servant of <b>[master.owner.current]</b>, the King!<br>"
+	/// Message told to your King.
+	to_chat(master.owner, span_userdanger("[owner.current] has become your servant."))
+
+/datum/antagonist/servant/farewell()
+	to_chat(owner, span_deconversion_message("You no longer feel a need to serve [master.owner], and you are now free from this medieval shit."))
+	/// Message told to your ex-king
+	if(master && master.owner)
+		to_chat(master.owner, span_cultbold("You feel that [owner.current] has betrayed you, and no longer is your servant!"))
+
+/**
+ * # HUD
+ */
+/datum/antagonist/servant/proc/update_servant_icons_added(mob/living/servant, icontype = "servant")
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_KING]
+	hud.join_hud(servant)
+	/// Located in icons/mob/hud.dmi
+	set_antag_hud(servant, icontype)
+
+
+/datum/antagonist/servant/proc/update_servant_icons_removed(mob/living/servant)
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_KING]
+	hud.leave_hud(servant)
+	set_antag_hud(servant, null)
+
 /datum/antagonist/servant/knight
 	name = "\improper Knight"
 	roundend_category = "Knight"
