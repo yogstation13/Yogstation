@@ -25392,14 +25392,6 @@
 /obj/machinery/vending/clothing,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aYM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/closed/indestructible/fakedoor{
-	name = "Primary Hallway"
-	},
-/area/yogs/infiltrator_base)
 "aYN" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -26156,6 +26148,15 @@
 /obj/machinery/papershredder,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"tzM" = (
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4;
+	level = 2
+	},
+/turf/closed/indestructible/fakedoor{
+	name = "Primary Hallway"
+	},
+/area/yogs/infiltrator_base)
 "uDo" = (
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/o2{
@@ -41711,7 +41712,7 @@ aSX
 aSX
 aSA
 aSA
-aYM
+tzM
 ayN
 ayN
 aVR
