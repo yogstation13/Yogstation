@@ -38,10 +38,11 @@
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(A.zone_selected))
 	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 50)
+	var/slam_staminadamage = A.dna.species.punchdamagehigh * 1.5 + 10	//25 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	playsound(D, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
-	D.apply_damage(25, STAMINA, selected_zone, armor_block)
-	D.apply_damage(15, A.dna.species.attack_type, selected_zone, armor_block)
+	D.apply_damage(slam_staminadamage, STAMINA, selected_zone, armor_block)														
+	D.apply_damage(A.dna.species.punchdamagehigh + 5, A.dna.species.attack_type, selected_zone, armor_block)	//15 damage
 	D.visible_message(span_danger("[A] slams into [D], knocking them off balance!"), \
 					  span_userdanger("[A] slams into you, knocking you off  balance!"))
 	D.add_movespeed_modifier("tail slap", update=TRUE, priority=101, multiplicative_slowdown=0.9)
@@ -70,9 +71,10 @@
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(A.zone_selected))
 	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 50)
+	var/slap_staminadamage = A.dna.species.punchdamagehigh * 1.5 + 10	//25 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
-	D.apply_damage(25, STAMINA, selected_zone, armor_block)
-	D.apply_damage(10, A.dna.species.attack_type, selected_zone, armor_block)
+	D.apply_damage(slap_staminadamage, STAMINA, selected_zone, armor_block)
+	D.apply_damage(A.dna.species.punchdamagehigh, A.dna.species.attack_type, selected_zone, armor_block)	//10 damage
 	D.Knockdown(5 SECONDS)
 	D.Paralyze(2 SECONDS)
 	D.visible_message(span_danger("[A] tail slaps [D]!"), \
@@ -88,10 +90,11 @@
 	if((D.mobility_flags & MOBILITY_STAND))
 		return harm_act(A,D)
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(BODY_ZONE_HEAD))
-	var/armor_block = D.run_armor_check(affecting, "melee", 30)
+	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 30)
+	var/chomp_damage = A.dna.species.punchdamagehigh * 2 + 10	//30 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_BITE)
 	playsound(D, 'sound/weapons/bite.ogg', 50, TRUE, -1)
-	D.apply_damage(30, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block, sharpness = SHARP_EDGED)
+	D.apply_damage(chomp_damage, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block, sharpness = SHARP_EDGED)
 	// D.bleed_rate += 10
 	D.visible_message(span_danger("[A] takes a large bite out of [D]'s neck!"), \
 					  span_userdanger("[A] takes a large bite out of your neck!"))
@@ -114,10 +117,11 @@
 		return
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(BODY_ZONE_HEAD))
 	var/armor_block = D.run_armor_check(affecting, "melee")
+	var/disarm_damage = A.dna.species.punchdamagehigh / 2 	//5 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 	playsound(D, 'sound/weapons/genhit1.ogg', 50, TRUE, -1)
-	D.apply_damage(5, STAMINA, BODY_ZONE_HEAD, armor_block)
-	D.apply_damage(5, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block)
+	D.apply_damage(disarm_damage, STAMINA, BODY_ZONE_HEAD, armor_block)
+	D.apply_damage(disarm_damage, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block)
 	D.blur_eyes(4)
 	if(!istype(D.head, /obj/item/clothing/head/helmet))
 		ADD_TRAIT(D, TRAIT_POOR_AIM, "martial")
@@ -140,10 +144,10 @@
 		return TRUE
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
-	var/armor_block = D.run_armor_check(affecting, "melee", 10)
+	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 10)
 	A.do_attack_animation(D, ATTACK_EFFECT_CLAW)
 	playsound(D, 'sound/weapons/slash.ogg', 50, TRUE, -1)
-	D.apply_damage(12, A.dna.species.attack_type, selected_zone, armor_block) //need wounds for sharpness to actually matter here
+	D.apply_damage(A.dna.species.punchdamagehigh + 2, A.dna.species.attack_type, selected_zone, armor_block, sharpness = SHARP_EDGED) //+2 unarmed damage and sharp
 	var/atk_verb = pick("rends", "claws", "slices", "tears at")
 	D.visible_message(span_danger("[A] [atk_verb] [D]!"), \
 					  span_userdanger("[A] [atk_verb] you!"))

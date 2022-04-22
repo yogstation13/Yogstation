@@ -1755,5 +1755,43 @@
 				continue
 			movable_content.wash(clean_types)
 
+/datum/reagent/medicine/radaway
+	name = "RadAway"
+	description = "A potent but toxic chemical solution that binds with radioactive particles and render them inert. Applying this through spray or smoke will cleanse contaminanted surfaces."
+	color = "#9f5a2f"
+	var/old_insulation = RAD_NO_INSULATION
+	taste_description = "metallic dust"
+	self_consuming = TRUE
+
+/datum/reagent/medicine/radaway/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+	if(method == TOUCH || method == VAPOR)
+		M.wash(CLEAN_RAD) //you only get decontaminated if it's spray based, can't spam out 100 1u pills
+	
+/datum/reagent/medicine/radaway/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(1*REM, 0)
+	..()
+
+/datum/reagent/medicine/radaway/on_mob_add(mob/living/L)
+	..()
+	//store the person's original insulation so they're only extra protected while it's in their system
+	old_insulation = L.rad_insulation
+	L.rad_insulation = RAD_LIGHT_INSULATION
+
+/datum/reagent/medicine/radaway/on_mob_end_metabolize(mob/living/L)
+	L.rad_insulation = old_insulation
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.vomit(stun = FALSE) //it binds with the radioactive particles inside you, and they have to come out somehow
+	..()
+	
+/datum/reagent/medicine/radaway/reaction_obj(obj/O, reac_volume)
+	//scrubs the contamination and applies a light treatment to it to mitigate immediate recontamination
+	var/datum/component/radioactive/radiation = O.GetComponent(/datum/component/radioactive)
+	if(radiation)
+		radiation.strength -= max(0, reac_volume * (RAD_BACKGROUND_RADIATION * 5))
+	O.wash(CLEAN_RAD | CLEAN_TYPE_WEAK)
+	if(O.rad_insulation < RAD_LIGHT_INSULATION)
+		O.rad_insulation = RAD_LIGHT_INSULATION
+
 #undef PERF_BASE_DAMAGE
 #undef REQUIRED_STRANGE_REAGENT_FOR_REVIVAL

@@ -73,6 +73,7 @@
 	new /obj/item/clipboard/yog/paperwork/hos(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/head(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
@@ -97,6 +98,7 @@
 	new /obj/item/clipboard/yog/paperwork/warden(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/warden(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
@@ -113,6 +115,7 @@
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/clipboard/yog/paperwork/security(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/security/sec
 
@@ -176,6 +179,7 @@
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/twohanded/binoculars(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/detective(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections"
