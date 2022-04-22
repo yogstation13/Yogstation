@@ -99,7 +99,7 @@
 	name = "Veil"
 	desc = "Extinguishes most nearby light sources."
 	panel = "Shadowling Abilities"
-	charge_max = 150 //Short cooldown because people can just turn the lights back on
+	charge_max = 120 //Short cooldown because people can just turn the lights back on
 	human_req = TRUE
 	clothes_req = FALSE
 	range = 5
@@ -191,7 +191,7 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
-	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage."
+	desc = "Instantly freezes the blood of nearby people, along with stunning them."
 	panel = "Shadowling Abilities"
 	range = 3
 	charge_max = 250
@@ -217,11 +217,10 @@
 					continue
 			to_chat(M, span_userdanger("A wave of shockingly cold air engulfs you!"))
 			M.Stun(2)
-			M.apply_damage(10, BURN)
 			if(M.bodytemperature)
 				M.adjust_bodytemperature(-200, 50)
 			if(M.reagents)
-				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 15) //Half of a cryosting
+				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 10) //third of a cryosting
 			extinguishMob(M, TRUE)
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F, TRUE)
@@ -466,7 +465,7 @@
 	target_apc.visible_message(span_warning("The [target_apc] flickers and begins to grow dark."))
 
 	to_chat(user, span_shadowling("You dim the APC's screen and carefully begin siphoning its power into the void."))
-	if(!do_after(user, 20 SECONDS, target=target_apc))
+	if(!do_after(user, 15 SECONDS, target=target_apc))
 		//Whoops!  The APC's light turns back on
 		to_chat(user, span_shadowling("Your concentration breaks and the APC suddenly repowers!"))
 		target_apc.set_light(2)
@@ -544,7 +543,7 @@
 				var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 				sp.set_up(5, 1, S)
 				sp.start()
-				S.Paralyze(6)
+				S.Paralyze(30)
 		for(var/obj/structure/window/W in T.contents)
 			W.take_damage(rand(80, 100))
 
@@ -613,11 +612,12 @@
 					return
 				thrallToRevive.visible_message(span_warning("[thrallToRevive] slowly rises, no longer recognizable as human."), \
 											   "<span class='shadowling'><b>You feel new power flow into you. You have been gifted by your masters. You now closely resemble them. You are empowered in \
-											    darkness but wither slowly in light. In addition, Lesser Glare has been upgraded into it's true form, and you've been given the ability to turn off nearby lights.</b></span>")
+											    darkness but wither slowly in light. In addition, Lesser Glare has been upgraded into it's true form, you can fully jaunt, and you've been given the ability to turn off nearby lights.</b></span>")
 				thrallToRevive.set_species(/datum/species/shadow/ling/lesser)
 				thrallToRevive.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/lesser_glare)
 				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
 				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
+				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt(null))
 			if("Revive")
 				if(!is_thrall(thrallToRevive))
 					to_chat(user, span_warning("[thrallToRevive] is not a thrall."))
