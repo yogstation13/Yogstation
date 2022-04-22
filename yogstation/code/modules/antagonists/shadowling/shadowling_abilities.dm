@@ -543,7 +543,7 @@
 				var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 				sp.set_up(5, 1, S)
 				sp.start()
-				S.Paralyze(30)
+				S.Paralyze(50)
 		for(var/obj/structure/window/W in T.contents)
 			W.take_damage(rand(80, 100))
 
