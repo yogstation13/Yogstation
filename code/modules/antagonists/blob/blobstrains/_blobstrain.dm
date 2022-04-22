@@ -47,6 +47,7 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 /datum/blobstrain/proc/core_process()
 	if(resource_delay <= world.time)
 		resource_delay = world.time + 10 // 1 second
+		point_rate = point_rate * overmind.basemodifier
 		overmind.add_points(point_rate)
 	overmind.blob_core.obj_integrity = min(overmind.blob_core.max_integrity, overmind.blob_core.obj_integrity+core_regen)
 
