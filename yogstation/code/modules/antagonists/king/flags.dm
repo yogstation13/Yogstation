@@ -7,9 +7,11 @@
 	var/list/converted_jobs = list()
 	var/datum/antagonist/king/current_owner
 	var/is_ownered = FALSE
+	var/departament_icon
 	max_integrity = 99999999999 //Honk
 	can_be_unanchored = FALSE
 	flags_1 = RAD_NO_CONTAMINATE_1
+	icon = 'yogstation/icons/obj/king_flags.dmi'
 
 /obj/structure/flag/attack_hand(mob/user) //When someone tries to capture the flag.
 	if (!ishuman(user) || !IS_COMMAND(user.mind) || !user.mind || !IS_SECURITY(user.mind) || !IS_KING(user) || !IS_KNIGHT(user))
@@ -94,6 +96,11 @@
 		H.mind.remove_antag_datum(/datum/antagonist/servant)
 	return
 
+/obj/structure/flag/regenerate_icons()
+	if(!departament_icon)
+		return
+	cut_overlays()
+	add_overlay(departament_icon)
 
 
 

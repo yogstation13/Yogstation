@@ -3498,6 +3498,7 @@
 #include "yogstation\code\modules\antagonists\king\king.dm"
 #include "yogstation\code\modules\antagonists\king\king_objectives.dm"
 #include "yogstation\code\modules\antagonists\king\servant.dm"
+#include "yogstation\code\modules\antagonists\king\items\kingsword.dm"
 #include "yogstation\code\modules\antagonists\nukeop\clownop.dm"
 #include "yogstation\code\modules\antagonists\nukeop\nukeop.dm"
 #include "yogstation\code\modules\antagonists\nukeop\equipment\nuclearbomb.dm"

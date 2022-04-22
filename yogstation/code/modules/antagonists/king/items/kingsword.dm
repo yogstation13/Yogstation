@@ -22,7 +22,7 @@
 
 /obj/item/claymore/highlander/pickup(mob/living/user)
 	. = ..()
-	if((IS_KING(user) || IS KNIGHT(user)) && is_disguised)
+	if((IS_KING(user) || IS_KNIGHT(user)) && is_disguised)
 		name = "King's sword"
 		desc = "Sword of a glorious king!"
 		force = 20
