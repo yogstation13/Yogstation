@@ -37,6 +37,9 @@
 		structureclimber.Paralyze(40)
 		structureclimber.visible_message(span_warning("[structureclimber] has been knocked off [src]."), span_warning("You're knocked off [src]!"), span_warning("You see [structureclimber] get knocked off [src]."))
 
+/obj/structure/attack_ai(mob/user)
+	return _try_interact(user)
+
 /obj/structure/ui_act(action, params)
 	add_fingerprint(usr)
 	return ..()
