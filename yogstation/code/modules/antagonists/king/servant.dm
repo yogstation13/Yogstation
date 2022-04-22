@@ -46,6 +46,26 @@
 	if(master && master.owner)
 		to_chat(master.owner, span_cultbold("You feel that [owner.current] has betrayed you, and no longer is your servant!"))
 
+
+/datum/antagonist/servant/knight
+	name = "\improper Knight"
+	roundend_category = "Knight"
+	antagpanel_category = "King"
+	can_hijack = HIJACK_HIJACKER
+
+/datum/antagonist/servant/greet()
+	. = ..()
+	to_chat(owner, span_userdanger("You are now the knight of [master.owner.current], the King"))
+	to_chat(owner, span_boldannounce("You may serve the [master.owner.current] with honour, because only he is the true King!"))
+	antag_memory += "You are the servant of <b>[master.owner.current]</b>, the King!<br>"
+	/// Message told to your King.
+	to_chat(master.owner, span_userdanger("[owner.current] has become your knight."))
+
+
+
+
+
+
 /**
  * # HUD
  */
@@ -60,9 +80,3 @@
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_KING]
 	hud.leave_hud(servant)
 	set_antag_hud(servant, null)
-
-/datum/antagonist/servant/knight
-	name = "\improper Knight"
-	roundend_category = "Knight"
-	antagpanel_category = "King"
-	can_hijack = HIJACK_HIJACKER
