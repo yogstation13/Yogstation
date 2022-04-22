@@ -21050,16 +21050,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"aPZ" = (
-/obj/structure/flora/grass/both,
-/obj/effect/light_emitter{
-	set_cap = 1;
-	set_luminosity = 4
-	},
-/obj/structure/table,
-/obj/item/soap/deluxe,
-/turf/open/floor/plasteel/cafeteria,
-/area/centcom/holding)
 "aQa" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -45324,7 +45314,7 @@ aSX
 aSX
 aSX
 aSX
-aPZ
+aSX
 aSs
 aSX
 aSX
