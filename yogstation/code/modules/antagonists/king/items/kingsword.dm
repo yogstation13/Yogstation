@@ -29,15 +29,15 @@
 		throwforce = 25
 		is_disguised = FALSE
 		return
-	if(!IS_KING(user) && !IS_KNIGHT(user) && !IS_SERVANT && !is_disguised)
+	if(!IS_KING(user) && !IS_KNIGHT(user) && !IS_SERVANT(user) && !src.is_disguised)
 		name = "Toy sword"
 		desc = "A useless plastic sword. Perhaps it looks very realistic! "
 		force = 4
 		throwforce = 4
 		is_disguised = TRUE
 		return
-	if(IS_SERVANT)
-		if(is_disguised)
+	if(IS_SERVANT(user))
+		if(src.is_disguised)
 			name = "King's sword"
 			desc = "Sword of a glorious king!"
 			force = 20

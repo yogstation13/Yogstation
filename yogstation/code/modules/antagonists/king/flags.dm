@@ -96,7 +96,7 @@
 		H.mind.remove_antag_datum(/datum/antagonist/servant)
 	return
 
-/obj/structure/flag/regenerate_icons()
+/obj/structure/flag/proc/regenerate_icons()
 	if(!departament_icon)
 		return
 	cut_overlays()
