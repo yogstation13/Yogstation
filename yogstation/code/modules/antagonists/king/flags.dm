@@ -15,6 +15,7 @@
 	if (!ishuman(user) || !IS_COMMAND(user.mind) || !user.mind || !IS_SECURITY(user.mind) || !IS_KING(user) || !IS_KNIGHT(user))
 		return
 	var/obj/structure/flag/target = src
+
 	if(IS_KING(user))
 		if(do_after(src, 15, target))
 			if(target.is_ownered)
@@ -26,10 +27,22 @@
 			current_owner.flags_owned += target
 			convert_workers()
 			return
+	if(IS_KNIGHT(user))
+		if(do_after(src, 30, target))
+			if(target.is_ownered)
+				current_owner = 0
+
+			target.current_owner = user.mind.has_antag_datum(/datum/antagonist/servant/knight).master
+			if(!target.current_owner)
+				return
+			target.is_ownered = TRUE
+			current_owner.flags_owned += target
+			convert_workers()
+			return
 	if(IS_COMMAND(user.mind) || IS_SECURITY(user.mind))
 		if(!target.is_ownered || !target.current_owner)
 			return
-		if(do_after(src, 15, target))
+		if(do_after(src, 20, target))
 			deconvert_workers()
 			target.current_owner = 0
 			target.is_ownered = FALSE
