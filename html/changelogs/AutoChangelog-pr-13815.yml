@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - tweak: "Camera memory tracker shows bigger text when alerting you now"
