@@ -115,7 +115,7 @@
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
 	if(full_vampire == FALSE)
-		if(prob(10))
+		if(prob(50))
 			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/lilithspact_alt.ogg',80,0)
 		else
 			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/lilithspact.ogg',80,0)
