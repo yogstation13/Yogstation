@@ -555,7 +555,7 @@
 			W.take_damage(rand(80, 100))
 
 /obj/effect/proc_holder/spell/targeted/empower_thrall //turns a thrall into a lesser shadowling
-	name = "Black Acceleration"
+	name = "Dark Acceleration"
 	desc = "Empowers a thrall. You can only have [EMPOWERED_THRALL_LIMIT] empowered thralls at a time. Empowered thralls become lesser versions of yourself, gaining a small selection of your abilities as well as your healing in the dark and aversion to light."
 	panel = "Shadowling Abilities"
 	range = 1
