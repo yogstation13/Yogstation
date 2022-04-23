@@ -26127,10 +26127,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
-"cYM" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "cZu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -27205,6 +27201,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"dKq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "dKN" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -56810,6 +56813,13 @@
 /obj/item/hand_labeler_refill,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"sUu" = (
+/obj/machinery/camera{
+	c_tag = "Engineering West";
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space)
 "sUL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -90916,7 +90926,7 @@ uFW
 cgC
 bPr
 gXs
-aaa
+sUu
 cjJ
 fTk
 fjK
@@ -108655,7 +108665,7 @@ ldW
 ldW
 ldW
 cmd
-cYM
+dKq
 mHc
 cmd
 frM
