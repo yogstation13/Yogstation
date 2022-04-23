@@ -14,7 +14,7 @@
 	var/pointmodifier = 1
 
 /datum/round_event/ghost_role/blob/New(pointrate)
-	.=..()
+	. = ..()
 	pointmodifier = pointrate
 	
 /datum/round_event/ghost_role/blob/announce(fake)
