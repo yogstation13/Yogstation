@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "The admin secret button found in the admin secrets window from using the \"secrets\" verb which turns everyone into a catgirl will now function on non-human races such as but not limited to: lizards, podpeople, and preternis"
