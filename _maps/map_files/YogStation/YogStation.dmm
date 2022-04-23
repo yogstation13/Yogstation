@@ -34320,6 +34320,21 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"hBd" = (
+/obj/structure/plasticflaps{
+	density = 1;
+	opacity = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/window/brigdoor{
+	dir = 1;
+	name = "SMES Access";
+	req_access_txt = "11"
+	},
+/turf/open/floor/plating,
+/area/engine/engine_smes)
 "hBg" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -38652,21 +38667,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"jGg" = (
-/obj/structure/plasticflaps{
-	density = 1;
-	opacity = 1
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/window/brigdoor{
-	dir = 1;
-	name = "Armory Desk";
-	req_access_txt = "11"
-	},
-/turf/open/floor/plating,
-/area/engine/engine_smes)
 "jGt" = (
 /obj/machinery/light_switch{
 	pixel_x = -23
@@ -90668,7 +90668,7 @@ ejx
 cRM
 aWK
 aWK
-jGg
+hBd
 idQ
 ccd
 eQL
