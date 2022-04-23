@@ -48588,6 +48588,11 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"oGk" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "oGy" = (
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/mask/breath,
@@ -59602,11 +59607,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"ujk" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "ujq" = (
 /obj/machinery/vending/cart,
 /obj/structure/cable{
@@ -60611,16 +60611,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"uKX" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "uLz" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -61697,16 +61687,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"vrJ" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "vrW" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -105562,7 +105542,7 @@ pYm
 pYm
 ijr
 vOo
-bAw
+hEv
 avy
 avy
 aaf
@@ -105820,7 +105800,7 @@ bAw
 bzs
 hhd
 bAw
-bAw
+bHX
 xDQ
 xDQ
 xDQ
@@ -106333,8 +106313,8 @@ bNd
 wdb
 rxM
 hxJ
-uKX
-vrJ
+pYm
+pYm
 pYm
 nuJ
 dkq
@@ -106592,7 +106572,7 @@ bNd
 bNd
 bNd
 bNd
-ujk
+oGk
 liS
 bzs
 bzs
