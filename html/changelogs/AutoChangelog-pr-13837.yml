@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "blood splatters/droplets are now created to the correct severity of the amount of bleeding present"

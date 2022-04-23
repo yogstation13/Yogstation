@@ -1,8 +1,0 @@
-author: "JamieD1"
-delete-after: true 
-changes: 
-  - rscadd: "Replaced all pipes on the map,"
-  - rscadd: "Replaced all Disposals,"
-  - rscadd: "Replaced all Wiring and moved APCS INTO Departments ( Patch for Clockies/Sling coming very soon)"
-  - rscadd: "Added Papershredders, fax machines to Heads offices including Warden, laywers, detective, QM."
-  - bugfix: "Gaminada: fixed xenobiology camera not seeing the entire lower-righthand cell + xenobio shutter button access, and a rogue wall light under robotics"
