@@ -564,7 +564,7 @@
 	clothes_req = FALSE
 	include_user = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
-	action_icon_state = "revive_thrall"
+	action_icon_state = "darksight"
 
 /obj/effect/proc_holder/spell/targeted/empower_thrall/cast(list/targets,mob/user = usr)
 	if(!shadowling_check(user))
