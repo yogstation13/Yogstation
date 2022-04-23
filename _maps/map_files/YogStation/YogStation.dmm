@@ -26879,6 +26879,16 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
+"dAx" = (
+/obj/structure/plasticflaps{
+	density = 0;
+	opacity = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "dAA" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -29439,12 +29449,6 @@
 /obj/machinery/atmospherics/miner/n2o,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos_distro)
-"eXf" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/space)
 "eXq" = (
 /obj/effect/turf_decal/stripes{
 	dir = 1
@@ -29887,6 +29891,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"fjZ" = (
+/obj/structure/plasticflaps{
+	density = 0;
+	opacity = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/window/brigdoor{
+	dir = 1;
+	name = "SMES Access";
+	req_access_txt = "11"
+	},
+/turf/open/floor/plating,
+/area/engine/engine_smes)
 "fkk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -38409,6 +38428,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"jxk" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "jxp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -41623,16 +41649,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"liJ" = (
-/obj/structure/plasticflaps{
-	density = 0;
-	opacity = 1
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "liS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -59762,13 +59778,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"uop" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "uoF" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel,
@@ -63816,21 +63825,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"wDr" = (
-/obj/structure/plasticflaps{
-	density = 0;
-	opacity = 1
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/window/brigdoor{
-	dir = 1;
-	name = "SMES Access";
-	req_access_txt = "11"
-	},
-/turf/open/floor/plating,
-/area/engine/engine_smes)
 "wDK" = (
 /obj/machinery/door/window/northleft{
 	dir = 4;
@@ -80858,7 +80852,7 @@ beO
 beO
 beO
 beO
-gXs
+oTV
 oTV
 oTV
 aaa
@@ -81372,7 +81366,7 @@ kYN
 beO
 kYN
 ocv
-eXf
+oUp
 oUp
 oUp
 aaa
@@ -90663,10 +90657,10 @@ fvL
 bHE
 bHE
 ejx
-liJ
-uop
-uop
-wDr
+dAx
+jxk
+jxk
+fjZ
 idQ
 ccd
 eQL
