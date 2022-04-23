@@ -1101,7 +1101,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 									ADMIN_PUNISHMENT_BLEED,
 									ADMIN_PUNISHMENT_PERFORATE,
 									ADMIN_PUNISHMENT_SCARIFY,
-									ADMIN_PUNISHMENT_SMSPIDER
+									ADMIN_PUNISHMENT_SMSPIDER,
+									ADMIN_PUNISHMENT_FLASHBANG
 									)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1274,6 +1275,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/mob/living/carbon/C = target
 			C.generate_fake_scars(rand(1, 4))
 			to_chat(C, span_warning("You feel your body grow jaded and torn..."))
+
+		if(ADMIN_PUNISHMENT_FLASHBANG)
+		playsound(T,'sound/magic/thinkfast.ogg',2 , 1)
+		to_chat(C, span_warning("Think Fast!"))
+		sleep(2)
+		var/obj/item/grenade/flashbang/CB = new/obj/item/grenade/flashbang(user.loc)
+		CB.prime()
+
 	punish_log(target, punishment)
 
 /**
