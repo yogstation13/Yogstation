@@ -1277,11 +1277,16 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			to_chat(C, span_warning("You feel your body grow jaded and torn..."))
 
 		if(ADMIN_PUNISHMENT_FLASHBANG)
-		playsound(T,'sound/magic/thinkfast.ogg',2 , 1)
-		to_chat(C, span_warning("Think Fast!"))
-		sleep(2)
-		var/obj/item/grenade/flashbang/CB = new/obj/item/grenade/flashbang(user.loc)
-		CB.prime()
+			if(!iscarbon(target))
+				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
+				return
+			var/mob/living/carbon/chucklenuts = target
+			chucklenuts.Immobilize(2 SECONDS)
+			playsound(chucklenuts,'sound/magic/thinkfast.ogg',200 , 1)
+			to_chat(chucklenuts, span_warning("Think Fast!"))
+			sleep(15)
+			var/obj/item/grenade/flashbang/CB = new/obj/item/grenade/flashbang(target.loc)
+			CB.prime()
 
 	punish_log(target, punishment)
 
