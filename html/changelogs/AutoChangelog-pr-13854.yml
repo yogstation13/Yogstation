@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "adds missing wire to tesla/singularity emitters so it doesn't explode the station"
