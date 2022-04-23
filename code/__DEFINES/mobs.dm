@@ -33,6 +33,8 @@
 #define BLOOD_BAD_MULTI 0.4		// 40%
 #define BLOOD_SURVIVE_MULTI 0.2	// 20%
 
+#define BLOOD_HEALTH_MULTI 0.5	// 50%
+
 //Blood state enums, again used by get_blood_state()
 #define BLOOD_MAXIMUM 5
 #define BLOOD_SAFE 4
@@ -48,6 +50,11 @@
 #define BLOOD_VOLUME_OKAY(L)		(initial(##L.blood_volume) * BLOOD_OKAY_MULTI)
 #define BLOOD_VOLUME_BAD(L)			(initial(##L.blood_volume) * BLOOD_BAD_MULTI)
 #define BLOOD_VOLUME_SURVIVE(L)		(initial(##L.blood_volume) * BLOOD_SURVIVE_MULTI)
+
+#define BLOOD_VOLUME_HEALTH_CAP(L)	(initial(##L.blood_volume) * BLOOD_HEALTH_MULTI
+
+//misc blood defines
+#define BLOOD_HEALTH_CAP 30 //amount of health lost at BLOOD_VOLUME_HEALTH_CAP
 
 //Sizes of mobs, used by mob/living/var/mob_size
 #define MOB_SIZE_TINY 0

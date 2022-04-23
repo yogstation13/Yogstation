@@ -56,20 +56,27 @@
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")
+		var/current_oxy = getOxyLoss()
 		switch(get_blood_state())
 			if(BLOOD_OKAY)
+				adjustOxyLoss(clamp(round(((BLOOD_VOLUME_NORMAL(src) - blood_volume) / BLOOD_VOLUME_HEALTH_CAP(src)) * BLOOD_HEALTH_CAP) - current_oxy, 1), 0, BLOOD_HEALTH_CAP)) //deal up to 30 damage at 50% blood
 				if(prob(5))
 					to_chat(src, span_warning("You feel [word]."))
-				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.01, 1))
 			if(BLOOD_BAD)
-				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.02, 1))
+				adjustOxyLoss(clamp(round(((BLOOD_VOLUME_NORMAL(src) - blood_volume) / BLOOD_VOLUME_HEALTH_CAP(src)) * BLOOD_HEALTH_CAP) - current_oxy, 1), 0, BLOOD_HEALTH_CAP)) //deal up to 30 damage at 50% blood
 				if(prob(5))
-					blur_eyes(6)
 					to_chat(src, span_warning("You feel very [word]."))
+					switch(rand(1,2))
+						if(1)
+							adjustStaminaLoss(max(50 - getStaminaLoss(), 0)) //barely enough to get slowed
+							blur_eyes(6)
+						if(2)
+							Unconscious(rand(1 SECONDS,3 SECONDS))
 			if(BLOOD_SURVIVE)
-				adjustOxyLoss(5)
+				adjustOxyLoss(clamp(30 - current_oxy, 0, BLOOD_HEALTH_CAP)) //we're below 50% here so we can safely assume we'll be taking full damage
+				adjustOxyLoss(1.5) //we'll already be extremely close to passing out from oxyloss and this triggers fast enough to deal damage through breathing
 				if(prob(15))
-					Unconscious(rand(20,60))
+					Unconscious(rand(2 SECONDS,6 SECONDS))
 					to_chat(src, span_warning("You feel extremely [word]."))
 			if(BLOOD_DEAD) // This little bit of code here is pretty much the only reason why BLOOD_DEAD exists at all
 				if(!HAS_TRAIT(src, TRAIT_NODEATH))
