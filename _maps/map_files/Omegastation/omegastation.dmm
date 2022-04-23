@@ -22566,22 +22566,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/main)
-"bjQ" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/monkeycubes,
-/obj/machinery/status_display/evac{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Xenobiology South";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "bjR" = (
 /obj/machinery/computer/camera_advanced/xenobio{
 	dir = 1
@@ -28398,6 +28382,23 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"gRf" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes,
+/obj/machinery/status_display/evac{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology South";
+	dir = 1
+	},
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "gRr" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Security Maintenance";
@@ -91861,7 +91862,7 @@ aWb
 xJG
 aZQ
 gZr
-bjQ
+gRf
 bfP
 aad
 aad

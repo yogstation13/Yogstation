@@ -67387,16 +67387,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"gwI" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "gxv" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -80992,6 +80982,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"vcg" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "vdv" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "O2 to Pure"
@@ -118159,7 +118160,7 @@ aaa
 aaf
 cqs
 cRS
-gwI
+vcg
 bXP
 cyn
 ery

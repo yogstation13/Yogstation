@@ -121917,6 +121917,16 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"jeO" = (
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/obj/structure/table/reinforced,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/circuit/green,
+/area/science/xenobiology)
 "jmc" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/tile/neutral{
@@ -124026,15 +124036,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/medical/storage/locker)
-"nWW" = (
-/obj/machinery/status_display/evac{
-	pixel_x = 32
-	},
-/obj/structure/table/reinforced,
-/obj/item/extinguisher,
-/obj/item/extinguisher,
-/turf/open/floor/circuit/green,
-/area/science/xenobiology)
 "nYG" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -161912,7 +161913,7 @@ cMY
 cMY
 cTV
 cVT
-nWW
+jeO
 cZb
 iMT
 dcu
