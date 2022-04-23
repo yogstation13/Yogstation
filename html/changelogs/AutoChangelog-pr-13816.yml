@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "hulk smash cooldown now 30 seconds from 15"
+  - tweak: "hulk smash stun now 0 seconds from 4"
