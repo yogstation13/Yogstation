@@ -3,7 +3,7 @@
 	desc = "These nanites send a signal code when a certain condition is met."
 	unique = FALSE
 	extra_settings = list("Sent Code")
-
+	use_rate = 0.2
 	var/sent_code = 0
 
 /datum/nanite_program/sensor/set_extra_setting(user, setting)
