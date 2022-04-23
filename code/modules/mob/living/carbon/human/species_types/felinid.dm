@@ -92,7 +92,7 @@
 			purrbation_remove(H, silent)
 			return FALSE
 		else
-			purrbation_apply_mutant(H, silent)
+			purrbation_apply(H, silent)
 			return TRUE
 	if(!iscatperson(H))
 		purrbation_apply(H, silent)
