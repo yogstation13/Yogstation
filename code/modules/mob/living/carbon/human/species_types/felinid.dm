@@ -132,13 +132,13 @@
 		var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
 		if(decattification)
 			decattification = new decattification
-			cattification.Insert(H)
+			decattification.Insert(H)
 			qdel(old_part)
 		decattification = H.dna?.species.mutanttail
 		if(decattification)
 			decattification = new decattification
 			old_part = H.getorganslot(ORGAN_SLOT_EARS)
-			cattification.Insert(H)
+			decattification.Insert(H)
 			qdel(old_part)
 		return
 
