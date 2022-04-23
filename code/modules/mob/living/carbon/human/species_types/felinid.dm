@@ -128,18 +128,18 @@
 	if(!silent)
 		to_chat(H, "You are no longer a cat.")
 	if(!ishumanbasic(H)) //not a basic human, nonhumans tend to have different appearances so turning them into humans would be lazy. Give them their normal ears and shit back
-		var/obj/item/organ/decattification = H.dna?.species.mutantears
+		var/obj/item/organ/decattification = H.dna?.species.mutanttail
 		var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
+		qdel(old_part) //do this here since they potentially don't normally have a tail
 		if(decattification)
 			decattification = new decattification
 			decattification.Insert(H)
-			qdel(old_part)
-		decattification = H.dna?.species.mutanttail
+		decattification = H.dna?.species.mutantears
+		old_part = H.getorganslot(ORGAN_SLOT_EARS)
+		qdel(old_part) //do this here since they potentially don't normally have ears which would SUCK
 		if(decattification)
 			decattification = new decattification
-			old_part = H.getorganslot(ORGAN_SLOT_EARS)
 			decattification.Insert(H)
-			qdel(old_part)
 		return
 
 	H.set_species(/datum/species/human)
