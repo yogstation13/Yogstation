@@ -74015,21 +74015,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
-"cWO" = (
-/obj/structure/table/glass,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "cWP" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -87851,6 +87836,22 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/plasteel/grimy,
 /area/maintenance/department/bridge)
+"qwu" = (
+/obj/structure/table/glass,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "qxm" = (
 /obj/effect/turf_decal/bot{
 	dir = 1
@@ -128125,7 +128126,7 @@ bWj
 aqe
 cWI
 cWL
-cWO
+qwu
 jdw
 myc
 cWP

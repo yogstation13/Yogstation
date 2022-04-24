@@ -7,6 +7,7 @@
 	dna_cost = 1
 	req_human = 1
 	ignores_fakedeath = TRUE
+	req_stat = DEAD
 
 /datum/action/changeling/headcrab/sting_action(mob/user)
 	set waitfor = FALSE

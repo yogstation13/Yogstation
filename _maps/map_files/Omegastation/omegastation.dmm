@@ -22566,22 +22566,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/main)
-"bjQ" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/monkeycubes,
-/obj/machinery/status_display/evac{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Xenobiology South";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "bjR" = (
 /obj/machinery/computer/camera_advanced/xenobio{
 	dir = 1
@@ -35647,6 +35631,23 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"oat" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes,
+/obj/machinery/status_display/evac{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology South";
+	dir = 1
+	},
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "oaV" = (
 /obj/structure/grille,
 /obj/machinery/meter,
@@ -91861,7 +91862,7 @@ aWb
 xJG
 aZQ
 gZr
-bjQ
+oat
 bfP
 aad
 aad

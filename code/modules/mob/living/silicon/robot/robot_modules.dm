@@ -346,7 +346,8 @@
 		/obj/item/stack/sheet/rglass/cyborg,
 		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/tile/plasteel/cyborg,
-		/obj/item/stack/cable_coil/cyborg)
+		/obj/item/stack/cable_coil/cyborg,
+		/obj/item/barrier_taperoll/engineering)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(/obj/item/borg/stun)
 	ratvar_modules = list(
@@ -366,7 +367,8 @@
 		/obj/item/gun/energy/disabler/cyborg,
 		/obj/item/clothing/mask/gas/sechailer/cyborg,
 		/obj/item/wantedposterposter,
-		/obj/item/donutsynth)
+		/obj/item/donutsynth,
+		/obj/item/barrier_taperoll/police)
 	radio_channels = list(RADIO_CHANNEL_SECURITY)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/security,

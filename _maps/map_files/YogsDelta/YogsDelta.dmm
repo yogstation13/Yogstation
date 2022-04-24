@@ -31561,6 +31561,10 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
+/obj/structure/table/reinforced,
+/obj/machinery/photocopier/faxmachine{
+	department = "Supply"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aZh" = (
@@ -36114,7 +36118,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -9
+	},
 /obj/machinery/camera{
 	c_tag = "Bridge - Captain's Office";
 	dir = 4;
@@ -36124,6 +36130,7 @@
 	dir = 1;
 	layer = 2.9
 	},
+/obj/item/paper_bin,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "bgb" = (
@@ -39768,7 +39775,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "blp" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/hos";
 	dir = 2;
@@ -39790,6 +39796,10 @@
 	dir = 4;
 	pixel_x = -26
 	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Security"
+	},
+/obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "blq" = (
@@ -41206,6 +41216,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/clipboard,
+/obj/item/toy/figure/warden,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "bnB" = (
@@ -44799,9 +44811,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bsO" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/structure/sign/poster/official/report_crimes{
 	pixel_y = -32
+	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine{
+	department = "Law office"
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -53368,6 +53383,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/table/reinforced,
+/obj/machinery/photocopier/faxmachine{
+	department = "Engineering"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "bEX" = (
@@ -58781,6 +58800,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine{
+	department = "Detective's Office"
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
 "bMY" = (
@@ -60439,6 +60462,7 @@
 	},
 /obj/item/folder/red,
 /obj/item/pen,
+/obj/item/paper_bin,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -60446,6 +60470,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/item/pen,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "bPt" = (
@@ -61630,6 +61655,7 @@
 	},
 /obj/machinery/paystand,
 /obj/item/paper/guides/jobs/security/paystand_setup,
+/obj/item/pen,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "bRr" = (
@@ -62484,10 +62510,12 @@
 /area/ai_monitored/storage/eva)
 "bSN" = (
 /obj/structure/table/wood,
-/obj/item/paper_bin,
 /obj/structure/window/reinforced{
 	dir = 1;
 	layer = 2.9
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Captain's Office"
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
@@ -62669,7 +62697,6 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/obj/item/clipboard,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -62679,9 +62706,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/item/toy/figure/warden,
+/obj/machinery/photocopier/faxmachine{
+	department = "Brig Control"
+	},
 /turf/open/floor/plasteel,
 /area/security/warden)
 "bTg" = (
@@ -70335,7 +70362,6 @@
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -70345,6 +70371,10 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine{
+	department = "Head of Personnel's Office"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hop)
@@ -109244,6 +109274,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/structure/table/reinforced,
+/obj/machinery/photocopier/faxmachine{
+	department = "Research and Development"
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hor)
 "dqD" = (
@@ -111402,17 +111436,20 @@
 /area/crew_quarters/heads/cmo)
 "dvv" = (
 /obj/structure/table/glass,
-/obj/item/storage/firstaid/regular,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Medical"
+	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/cmo)
 "dvw" = (
 /obj/structure/table/glass,
+/obj/item/storage/firstaid/regular,
 /obj/item/folder/blue,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/radio/intercom{
@@ -123989,15 +124026,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/medical/storage/locker)
-"nWW" = (
-/obj/machinery/status_display/evac{
-	pixel_x = 32
-	},
-/obj/structure/table/reinforced,
-/obj/item/extinguisher,
-/obj/item/extinguisher,
-/turf/open/floor/circuit/green,
-/area/science/xenobiology)
 "nYG" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -124195,6 +124223,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"orV" = (
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/obj/structure/table/reinforced,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/circuit/green,
+/area/science/xenobiology)
 "oub" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -161875,7 +161913,7 @@ cMY
 cMY
 cTV
 cVT
-nWW
+orV
 cZb
 iMT
 dcu
