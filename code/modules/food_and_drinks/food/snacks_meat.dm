@@ -434,6 +434,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("\"chicken\"" = 1)
 	foodtype = MEAT
+	var/mob/living/nugget_man
 
 /obj/item/reagent_containers/food/snacks/nugget/Initialize()
 	. = ..()
