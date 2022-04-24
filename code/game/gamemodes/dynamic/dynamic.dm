@@ -754,6 +754,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			if (drafted_rules.len > 0 && pick_latejoin_rule(drafted_rules))
 				var/latejoin_injection_cooldown_middle = 0.5*(latejoin_delay_max + latejoin_delay_min)
 				latejoin_injection_cooldown = round(clamp(EXP_DISTRIBUTION(latejoin_injection_cooldown_middle), latejoin_delay_min, latejoin_delay_max)) + world.time
+				return
 				
 /// Apply configurations to rule.
 /datum/game_mode/dynamic/proc/configure_ruleset(datum/dynamic_ruleset/ruleset)
