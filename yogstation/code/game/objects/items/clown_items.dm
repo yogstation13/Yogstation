@@ -19,3 +19,12 @@
 /obj/item/bikehorn/rubber_pigeon/Initialize()
 	. = ..()
 	AddComponent(/datum/component/squeak, list('yogstation/sound/items/rubber_pigeon.ogg'=1), 50)
+
+/obj/item/bikehorn/sad
+	name = "sad horn"
+	desc = "Thank you, Doktor."
+	attack_verb = list("Boowomped")
+
+/obj/item/bikehorn/sad/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, list('yogstation/sound/items/boowomp.ogg'=1), 50)

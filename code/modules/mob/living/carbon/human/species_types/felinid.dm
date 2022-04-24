@@ -83,8 +83,9 @@
 		CHECK_TICK
 
 /proc/purrbation_toggle(mob/living/carbon/human/H, silent = FALSE)
-	if(!ishumanbasic(H))
-		return
+	if(!ishumanbasic(H) && !iscatperson(H))
+		purrbation_apply_mutant(H, silent)
+		return TRUE
 	if(!iscatperson(H))
 		purrbation_apply(H, silent)
 		. = TRUE
@@ -96,6 +97,21 @@
 	if(!ishuman(H) || iscatperson(H))
 		return
 	H.set_species(/datum/species/human/felinid)
+
+	if(!silent)
+		to_chat(H, "Something is nya~t right.")
+		playsound(get_turf(H), 'sound/effects/meow1.ogg', 50, 1, -1)
+
+/proc/purrbation_apply_mutant(mob/living/carbon/human/H, silent = FALSE)
+	var/obj/item/organ/cattification = new /obj/item/organ/tail()
+	var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
+	cattification.Insert(H)
+	qdel(old_part)
+	cattification = new /obj/item/organ/ears/cat()
+	old_part = H.getorganslot(ORGAN_SLOT_EARS)
+	cattification.Insert(H)
+	qdel(old_part)
+	H.regenerate_icons()
 
 	if(!silent)
 		to_chat(H, "Something is nya~t right.")

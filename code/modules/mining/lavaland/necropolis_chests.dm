@@ -1044,7 +1044,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(2)
 			new /obj/item/blood_contract(src)
 		if(3)
-			new /obj/item/gun/magic/staff/spellblade/weak(src)
+			new /obj/item/melee/knuckles(src)
 		if(4)
 			new /obj/item/organ/stomach/cursed(src)
 
@@ -1115,6 +1115,73 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	log_combat(user, L, "took out a blood contract on", src)
 	qdel(src)
 
+#define COOLDOWN 150
+#define COOLDOWN_HUMAN 100
+#define COOLDOWN_ANIMAL 60
+/obj/item/melee/knuckles
+	name = "bloody knuckles"
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "bloodyknuckle"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	item_state = "knuckles"
+	w_class = WEIGHT_CLASS_SMALL
+	force = 18
+	var/next_reach = 0
+	var/next_grip = 0
+	var/next_knuckle = 0
+	attack_verb = list("thrashed", "pummeled", "walloped")
+	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
+
+/obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
+	var/mob/living/L = target
+	if (proximity)
+		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+			L.apply_status_effect(/datum/status_effect/roots)
+			return
+		if(next_knuckle > world.time)
+			to_chat(user, span_warning("The knuckles aren't ready to mark yet."))
+			return
+		else
+			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+			if(ishuman(L))
+				next_knuckle = world.time + COOLDOWN_HUMAN
+				return
+			next_knuckle = world.time + COOLDOWN_ANIMAL
+
+/obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
+	var/mob/living/U = user
+	if(istype(action, /datum/action/item_action/reach))
+		if(next_reach > world.time)
+			to_chat(U, span_warning("You can't do that yet!"))
+			return
+		var/valid_reaching = FALSE
+		for(var/mob/living/L in view(7, U))
+			for(var/obj/effect/decal/cleanable/B in range(0,L))
+				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
+					valid_reaching = TRUE
+					L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+		if(!valid_reaching)
+			to_chat(U, span_warning("There's nobody to use this on!"))
+			return
+		next_reach = world.time + COOLDOWN
+	else if(istype(action, /datum/action/item_action/visegrip))
+		if(next_grip > world.time)
+			to_chat(U, span_warning("You can't do that yet!"))
+			return
+		var/valid_casting = FALSE
+		for(var/mob/living/L in view(8, U))
+			if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+				valid_casting = TRUE
+				L.apply_status_effect(/datum/status_effect/roots)
+		if(!valid_casting)
+			to_chat(U, span_warning("There's nobody to use this on!"))
+			return
+		next_grip = world.time + COOLDOWN
+		#undef COOLDOWN
+		#undef COOLDOWN_HUMAN
+		#undef COOLDOWN_ANIMAL
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
