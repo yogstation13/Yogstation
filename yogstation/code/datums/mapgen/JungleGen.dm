@@ -54,50 +54,42 @@
 		ORE_IRON = list(
 			WORLEY_REG_SIZE = 5,
 			WORLEY_THRESHOLD = 1.5,
-			WORLEY_NODE_PER_REG = 50,
-			ORE_TURF = /turf/open/floor/plating/dirt/jungleland/iron),
+			WORLEY_NODE_PER_REG = 50),
 
 		ORE_URANIUM = list(
 			WORLEY_REG_SIZE = 5,
 			WORLEY_THRESHOLD = 1,
-			WORLEY_NODE_PER_REG = 50,
-			ORE_TURF = /turf/open/floor/plating/dirt/jungleland/uranium),
+			WORLEY_NODE_PER_REG = 50),
 
 		ORE_TITANIUM = list(
 			WORLEY_REG_SIZE = 5,
 			WORLEY_THRESHOLD = 1.5,
-			WORLEY_NODE_PER_REG = 50,
-			ORE_TURF = /turf/open/floor/plating/dirt/jungleland/titanium),
+			WORLEY_NODE_PER_REG = 50),
 
 		ORE_BLUESPACE = list(
 			WORLEY_REG_SIZE = 15,
 			WORLEY_THRESHOLD = 10,
-			WORLEY_NODE_PER_REG = 50,
-			ORE_TURF = /turf/open/floor/plating/dirt/jungleland/bluespace),
+			WORLEY_NODE_PER_REG = 50),
 
 		ORE_PLASMA = list(
 			WORLEY_REG_SIZE = 15,
 			WORLEY_THRESHOLD = 8,
-			WORLEY_NODE_PER_REG = 50,
-			ORE_TURF = /turf/open/floor/plating/dirt/jungleland/plasma),
+			WORLEY_NODE_PER_REG = 50),
 
 		ORE_GOLD = list(
 			WORLEY_REG_SIZE = 5,
 			WORLEY_THRESHOLD = 1,
-			WORLEY_NODE_PER_REG = 50,
-			ORE_TURF = /turf/open/floor/plating/dirt/jungleland/gold),
+			WORLEY_NODE_PER_REG = 50),
 
 		ORE_SILVER = list(
 			WORLEY_REG_SIZE = 5,
 			WORLEY_THRESHOLD = 1.5,
-			WORLEY_NODE_PER_REG = 50,
-			ORE_TURF = /turf/open/floor/plating/dirt/jungleland/silver),
+			WORLEY_NODE_PER_REG = 50),
 
 		ORE_DIAMOND = list(
 			WORLEY_REG_SIZE = 15,
 			WORLEY_THRESHOLD = 9,
-			WORLEY_NODE_PER_REG = 50,
-			ORE_TURF = /turf/open/floor/plating/dirt/jungleland/diamond)
+			WORLEY_NODE_PER_REG = 50)
 		)
 //creates a 2d map of every single ore vein on the map
 /datum/map_generator/jungleland/proc/generate_ores(list/turfs)

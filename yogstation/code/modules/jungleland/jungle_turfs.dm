@@ -16,7 +16,7 @@
 	var/ore_present = ORE_EMPTY
 
 /turf/open/floor/plating/dirt/jungleland/proc/spawn_rock()
-	if(ore_present == ORE_EMPTY && !can_spawn_ore)
+	if(ore_present == ORE_EMPTY || !can_spawn_ore)
 		return
 	can_spawn_ore = FALSE
 	add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
@@ -59,8 +59,19 @@
 
 /turf/open/floor/plating/dirt/jungleland/dying_forest
 	icon_state = "dying_forest"
+
+/turf/open/floor/plating/dirt/jungleland/jungle
+	icon_state = "jungle"
+
 /turf/open/water/toxic_pit
 	name = "sulphuric pit"
 	color = "#003a00"
 
-
+/turf/open/water/toxic_pit/Entered(atom/movable/AM)
+	. = ..()
+	if(!ishuman(AM))
+		return
+	var/mob/living/carbon/human/humie = AM 
+	var/chance = ((humie.wear_suit ? 100 - humie.wear_suit.armor.bio : 100)  +  (humie.head ? 100 - humie.head.armor.bio : 100) )/2
+	if(prob(chance * 0.33))
+		humie.apply_status_effect(/datum/status_effect/toxic_buildup)
