@@ -17,4 +17,10 @@
 #include "subsystem_init.dm"
 #include "timer_sanity.dm"
 #include "unit_test.dm"
+
+
+#define UNIT_TEST_PASSED 0
+#define UNIT_TEST_FAILED 1
+#define UNIT_TEST_SKIPPED 2
+
 #endif

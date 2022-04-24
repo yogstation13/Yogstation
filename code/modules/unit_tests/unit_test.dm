@@ -84,11 +84,12 @@ GLOBAL_VAR(test_log)
 	CHECK_TICK
 
 	var/list/tests_to_run = subtypesof(/datum/unit_test)
+	/*
 	for (var/_test_to_run in tests_to_run)
 		var/datum/unit_test/test_to_run = _test_to_run
 		if (initial(test_to_run.focus))
 			tests_to_run = list(test_to_run)
-			break
+			break */
 
 	tests_to_run = sortTim(tests_to_run, /proc/cmp_unit_test_priority)
 
