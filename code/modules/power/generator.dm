@@ -91,7 +91,7 @@
 				var/energy_transfer = (hot_subsection_temp - cold_subsection_temp)*internal_heat_cap
 
 				//produce electricity
-				lastgen += energy_transfer*efficiency
+				lastgen += (energy_transfer*efficiency) / 3
 
 				//transfer rest of energy into waste heat/chill
 				internal_temp = cold_subsection_temp + energy_transfer * (1 - efficiency) / (internal_heat_cap * 2)
