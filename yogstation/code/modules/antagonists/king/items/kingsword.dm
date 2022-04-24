@@ -20,9 +20,9 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/is_disguised = FALSE
 
-/obj/item/claymore/highlander/pickup(mob/living/user)
+/obj/item/kingsword/pickup(mob/living/user)
 	. = ..()
-	if((IS_KING(user) || IS_KNIGHT(user)) && is_disguised)
+	if((IS_KING(user) || IS_KNIGHT(user)) && src.is_disguised)
 		name = "King's sword"
 		desc = "Sword of a glorious king!"
 		force = 20

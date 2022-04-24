@@ -44,7 +44,7 @@
 	converted_jobs = list(/datum/job/roboticist)
 
 /obj/structure/flag/science
-	name = "Sciense flag"
+	name = "Science flag"
 	icon_state = "flag"
 	desc = "The flag of the science departament"
 	converted_jobs = list(/datum/job/scientist)
