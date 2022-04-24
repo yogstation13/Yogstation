@@ -99,7 +99,7 @@
 	name = "Veil"
 	desc = "Extinguishes most nearby light sources."
 	panel = "Shadowling Abilities"
-	charge_max = 150 //Short cooldown because people can just turn the lights back on
+	charge_max = 120 //Short cooldown because people can just turn the lights back on
 	human_req = TRUE
 	clothes_req = FALSE
 	range = 5
@@ -472,7 +472,7 @@
 	target_apc.visible_message(span_warning("The [target_apc] flickers and begins to grow dark."))
 
 	to_chat(user, span_shadowling("You dim the APC's screen and carefully begin siphoning its power into the void."))
-	if(!do_after(user, 20 SECONDS, target=target_apc))
+	if(!do_after(user, 15 SECONDS, target=target_apc))
 		//Whoops!  The APC's light turns back on
 		to_chat(user, span_shadowling("Your concentration breaks and the APC suddenly repowers!"))
 		target_apc.set_light(2)
@@ -550,7 +550,7 @@
 				var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 				sp.set_up(5, 1, S)
 				sp.start()
-				S.Paralyze(6)
+				S.Paralyze(50)
 		for(var/obj/structure/window/W in T.contents)
 			W.take_damage(rand(80, 100))
 
@@ -621,6 +621,7 @@
 		thrallToEmpower.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/lesser_glare)
 		thrallToEmpower.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
 		thrallToEmpower.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
+    thrallToEmpower.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt(null))
 
 /obj/effect/proc_holder/spell/targeted/revive_thrall //Completely revives a dead thrall
 	name = "Black Recuperation"
