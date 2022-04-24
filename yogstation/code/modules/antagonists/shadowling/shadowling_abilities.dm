@@ -621,7 +621,7 @@
 		thrallToEmpower.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/lesser_glare)
 		thrallToEmpower.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
 		thrallToEmpower.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
-    thrallToEmpower.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt(null))
+		thrallToEmpower.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt(null))
 
 /obj/effect/proc_holder/spell/targeted/revive_thrall //Completely revives a dead thrall
 	name = "Black Recuperation"
