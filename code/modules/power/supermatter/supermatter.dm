@@ -128,6 +128,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/temp_factor = 30
 	var/power = 0
 
+	/// Rad Modifier - Also Increases Power
+	var/radmodifier = 1.1
+
 	/// Time in deciseconds since the last sent warning
 	var/lastwarning = 0
 
@@ -496,7 +499,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		if(prob(50))
 			//1 + (tritRad + pluoxDampen * bzDampen * o2Rad * plasmaRad / (10 - bzrads))
-			radiation_pulse(src, max(power * (1 + (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER))))))
+			radiation_pulse(src, max((power * (1 + (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER))))) * radmodifier))
 
 		if(bzcomp >= 0.4 && prob(50 * bzcomp))
 			src.fire_nuclear_particle()			// Start to emit radballs at a maximum of 50% chance per tick
