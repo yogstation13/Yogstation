@@ -1,0 +1,5 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - rscadd: "Empowered thralls get void jaunt"
+  - tweak: "Icy veins nerfed. Veil, null charge, and sonic screech buffed."
