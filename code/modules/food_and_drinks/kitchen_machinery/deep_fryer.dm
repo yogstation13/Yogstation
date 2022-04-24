@@ -191,8 +191,15 @@ God bless America.
 			frying = new /obj/item/reagent_containers/food/snacks/deepfryholder(src, the_guy)
 			fry_loop.start()
 			icon_state = "fryer_on"
+			var /obj/item/reagent_containers/food/snacks/nugget/the_nugget = new /obj/item/reagent_containers/food/snacks/nugget(drop_location(src))
+			if(istype(the_guy) && the_guy.mind)
+				the_nugget.nugget_man = new(the_nugget)
+				the_nugget.nugget_man.real_name = the_nugget.name
+				the_nugget.nugget_man.name = the_nugget.name
+				the_nugget.nugget_man.stat = CONSCIOUS
+				the_guy.mind.transfer_to(the_nugget.nugget_man)
 			
-			new /obj/item/reagent_containers/food/snacks/nugget(drop_location(src))
+			
 			qdel(the_guy)
 			return
 		else
