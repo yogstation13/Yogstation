@@ -187,8 +187,8 @@ God bless America.
 		var/mob/living/carbon/human/the_guy = user.pulling
 		var/list/missing_limbs = the_guy.get_missing_limbs()
 		if(missing_limbs.len <= 2)
-			to_chat(user, "<span class ='notice'>You dunk [H] into [src],</span>")
-			frying = new /obj/item/reagent_containers/food/snacks/deepfryholder(src, H)
+			to_chat(user, "<span class ='notice'>You dunk [the_guy] into [src],</span>")
+			frying = new /obj/item/reagent_containers/food/snacks/deepfryholder(src, the_guy)
 			fry_loop.start()
 			icon_state = "fryer_on"
 			
