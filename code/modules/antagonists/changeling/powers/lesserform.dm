@@ -6,6 +6,7 @@
 	chemical_cost = 5
 	dna_cost = 1
 	req_human = 1
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUNNED
 
 //Transform into a monkey.
 /datum/action/changeling/lesserform/sting_action(mob/living/carbon/human/user)
