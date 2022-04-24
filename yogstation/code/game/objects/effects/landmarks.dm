@@ -191,3 +191,60 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 /obj/effect/landmark/kingflag/cargo
 	name = "Cargo flag"
 	objectspawned = /obj/structure/flag/cargonia
+
+/obj/effect/landmark/kingflag/miner
+	name = "Miners flag"
+	objectspawned = /obj/structure/flag/miners
+
+/obj/effect/landmark/kingflag/theater
+	name = "Honk flag"
+	objectspawned = /obj/structure/flag/theater
+
+/obj/effect/landmark/kingflag/kitchen
+	name = "Kitchen flag"
+	objectspawned = /obj/structure/flag/kithchen
+
+/obj/effect/landmark/kingflag/bar
+	name = "Bar flag"
+	objectspawned = /obj/structure/flag/bar
+
+/obj/effect/landmark/kingflag/robo
+	name = "Robotics flag"
+	objectspawned = /obj/structure/flag/robo
+
+/obj/effect/landmark/kingflag/science
+	name = "Science flag"
+	objectspawned = /obj/structure/flag/science
+
+/obj/effect/landmark/kingflag/medbay
+	name = "Medbay flag"
+	objectspawned = /obj/structure/flag/medbay
+
+/obj/effect/landmark/kingflag/genetics
+	name = "Genetics flag"
+	objectspawned = /obj/structure/flag/genetics
+
+/obj/effect/landmark/kingflag/engineering
+	name = "Engineering flag"
+	objectspawned = /obj/structure/flag/engineering
+
+/obj/effect/landmark/kingflag/atmos
+	name = "Atmos flag"
+	objectspawned = /obj/structure/flag/atmosia
+
+/obj/effect/landmark/kingflag/sigtech
+	name = "Telecoms flag"
+	objectspawned = /obj/structure/flag/sigtech
+
+/obj/effect/landmark/kingflag/shop
+	name = "Shop flag"
+	objectspawned = /obj/structure/flag/shop
+
+/obj/effect/landmark/kingflag/court
+	name = "Court flag"
+	objectspawned = /obj/structure/flag/attorney
+
+
+
+
+

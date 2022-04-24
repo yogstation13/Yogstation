@@ -44,6 +44,6 @@
 			throwforce = 25
 			is_disguised = FALSE
 		to_chat(user, span_notice("You feel unworthy to carry such a magnificent weapon!"))
-		human_user.AdjustParalyzed(1 SECONDS)
+		user.AdjustParalyzed(1 SECONDS)
 
 
