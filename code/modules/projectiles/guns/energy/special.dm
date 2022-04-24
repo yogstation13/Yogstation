@@ -116,6 +116,7 @@
 	suppressed = null
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/large)
 	pin = null
+	holds_charge = FALSE
 	weapon_weight = WEIGHT_CLASS_HUGE
 	overheat_time = 10 SECONDS
 
