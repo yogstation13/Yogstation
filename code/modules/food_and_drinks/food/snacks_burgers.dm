@@ -265,7 +265,7 @@
 	desc = "Pretty much what you'd expect..."
 	icon_state = "ratburger"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	foodtype = GRAIN | MEAT | GROSS
+	foodtype = GRAIN | MICE
 
 /obj/item/reagent_containers/food/snacks/burger/baseball
 	name = "home run baseball burger"

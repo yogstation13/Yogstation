@@ -177,7 +177,7 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/mouse
 	name = "mouse meat"
 	desc = "A slab of mouse meat. Best not eat it raw."
-	foodtype = RAW | MEAT | GROSS
+	foodtype = MICE
 
 /obj/item/reagent_containers/food/snacks/meat/slab/corgi
 	name = "corgi meat"
