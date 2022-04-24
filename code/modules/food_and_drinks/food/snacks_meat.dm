@@ -442,6 +442,10 @@
 	desc = "A 'chicken' nugget vaguely shaped like a [shape]."
 	icon_state = "nugget_[shape]"
 
+/obj/item/reagent_containers/food/snacks/nugget/Destroy()
+	qdel(nugget_man)
+	. = ..()
+
 /obj/item/reagent_containers/food/snacks/pigblanket
 	name = "pig in a blanket"
 	desc = "A tiny sausage wrapped in a flakey, buttery roll. Free this pig from its blanket prison by eating it."
