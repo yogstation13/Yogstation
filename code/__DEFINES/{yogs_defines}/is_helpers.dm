@@ -8,6 +8,8 @@
 
 #define is_clockcult(M) (istype(M, /mob/living) && M.mind && M.mind.has_antag_datum(/datum/antagonist/clockcult))
 
+#define is_sinfuldemon(M) (M.mind && M.mind.has_antag_datum(/datum/antagonist/sinfuldemon))
+
 #define is_mindslaved(M) (istype(M, /mob/living) && M.mind && M.mind.has_antag_datum(/datum/antagonist/mindslave))
 #define is_traitor(M) (istype(M, /mob/living) && M.mind && M.mind.has_antag_datum(/datum/antagonist/traitor) || is_mindslaved(M))
 #define is_blood_brother(M) (istype(M, /mob/living) && M.mind && M.mind.has_antag_datum(/datum/antagonist/brother))
