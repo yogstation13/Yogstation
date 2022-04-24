@@ -2218,13 +2218,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"bdQ" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "bdZ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
@@ -9739,6 +9732,14 @@
 /obj/item/stamp/hos,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+"faR" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "faT" = (
 /obj/structure/rack,
 /obj/item/circuitboard/machine/telecomms/broadcaster,
@@ -84896,7 +84897,7 @@ vUO
 vUO
 oBL
 tsz
-bdQ
+faR
 npU
 gad
 nkO
