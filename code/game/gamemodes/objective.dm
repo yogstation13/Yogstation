@@ -232,9 +232,9 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(target && target.current)
 		if(ishuman(target.current))
 			var/mob/living/carbon/human/H = target.current
-			explanation_text = "Ensure [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role][!target_role_type ? target.assigned_role : target.special_role] has died at least once."
+			explanation_text = "Ensure [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role] has died at least once."
 		else
-			explanation_text = "Ensure [target.name], the [!target_role_type ? target.assigned_role : target.special_role][!target_role_type ? target.assigned_role : target.special_role] has died at least once."
+			explanation_text = "Ensure [target.name], the [!target_role_type ? target.assigned_role : target.special_role] has died at least once."
 	else
 		explanation_text = "Free Objective"
 
