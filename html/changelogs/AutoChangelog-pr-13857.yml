@@ -1,0 +1,5 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new admin smite"
+  - soundadd: "Adds a new sound for said smite, Think fast!"

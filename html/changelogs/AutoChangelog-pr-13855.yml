@@ -1,0 +1,6 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Add pod signage to fitness room"
+  - tweak: "removes maint access requirement to get into the maints most near the arrivals and fitness room pods"
+  - bugfix: "removes line of duplicated things (oh my)"

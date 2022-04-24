@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Bluespace RPED no longer will remotely exchange beakers if the replacement beakers have reagents in them"

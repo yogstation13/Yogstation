@@ -50,6 +50,8 @@
 		shred_amount = 3
 	else if(istype(W, /obj/item/paper_bundle))
 		shred_amount = 3
+	else if(istype(W, /obj/item/book))
+		shred_amount = 5
 	else if(istype(W, /obj/item/storage/bag/trash))
 		var/datum/component/storage/STR = W.GetComponent(/datum/component/storage)
 		var/curpaper = paperamount

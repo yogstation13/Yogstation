@@ -1755,36 +1755,36 @@
 				continue
 			movable_content.wash(clean_types)
 
-/datum/reagent/medicine/radaway
-	name = "RadAway"
-	description = "A potent but toxic chemical solution that binds with radioactive particles and render them inert. Applying this through spray or smoke will cleanse contaminanted surfaces."
+/datum/reagent/medicine/radscrub
+	name = "Rad Scrub Plus"
+	description = "Are your chairs, tables, bottles and assitants glowing green? Spray em down Donk Co's new patented cleaner, Rad Scrub Plus! WARNING: SWALLOWING OR INGESTING RAD SCRUB PLUS MAY RESULT NAUSUA, POISONING, OR MESOTHELIOMA"
 	color = "#9f5a2f"
 	var/old_insulation = RAD_NO_INSULATION
 	taste_description = "metallic dust"
 	self_consuming = TRUE
 
-/datum/reagent/medicine/radaway/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/medicine/radscrub/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
 		M.wash(CLEAN_RAD) //you only get decontaminated if it's spray based, can't spam out 100 1u pills
 	
-/datum/reagent/medicine/radaway/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/radscrub/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(1*REM, 0)
 	..()
 
-/datum/reagent/medicine/radaway/on_mob_add(mob/living/L)
+/datum/reagent/medicine/radscrub/on_mob_add(mob/living/L)
 	..()
 	//store the person's original insulation so they're only extra protected while it's in their system
 	old_insulation = L.rad_insulation
 	L.rad_insulation = RAD_LIGHT_INSULATION
 
-/datum/reagent/medicine/radaway/on_mob_end_metabolize(mob/living/L)
+/datum/reagent/medicine/radscrub/on_mob_end_metabolize(mob/living/L)
 	L.rad_insulation = old_insulation
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.vomit(stun = FALSE) //it binds with the radioactive particles inside you, and they have to come out somehow
 	..()
 	
-/datum/reagent/medicine/radaway/reaction_obj(obj/O, reac_volume)
+/datum/reagent/medicine/radscrub/reaction_obj(obj/O, reac_volume)
 	//scrubs the contamination and applies a light treatment to it to mitigate immediate recontamination
 	var/datum/component/radioactive/radiation = O.GetComponent(/datum/component/radioactive)
 	if(radiation)

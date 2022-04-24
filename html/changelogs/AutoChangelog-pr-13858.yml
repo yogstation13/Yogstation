@@ -1,0 +1,6 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "admins can now use toggle purrbation on nonhumans in their vv menu"
+  - bugfix: "nonhumans now get the correct cat tail"
+  - bugfix: "adds support for removing purrbation from nonhumans"
