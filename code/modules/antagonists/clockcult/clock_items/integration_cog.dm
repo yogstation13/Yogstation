@@ -33,7 +33,7 @@
 		var/power_adjust = watts_per_second / 5
 		var/obj/item/stock_parts/cell/cell = apc.cell
 		if(cell && (cell.charge / cell.maxcharge > COG_MAX_SIPHON_THRESHOLD))
-			cell.use(1)
+			cell.use(2)
 			adjust_clockwork_power(power_adjust) //Power is shared, so only do it once; this runs very quickly so it's about 10 W/second
 			
 		else
