@@ -183,6 +183,21 @@ God bless America.
 				qdel(H)
 				fry_loop.start()
 				return
+	if(user.pulling && user.a_intent == INTENT_GRAB && ishuman(user.pulling))
+		var/mob/living/carbon/human/the_guy = user.pulling
+		var/list/missing_limbs = the_guy.get_missing_limbs()
+		if(missing_limbs.len <= 2)
+			to_chat(user, "<span class ='notice'>You dunk [H] into [src],</span>")
+			frying = new /obj/item/reagent_containers/food/snacks/deepfryholder(src, H)
+			fry_loop.start()
+			icon_state = "fryer_on"
+			
+			new /obj/item/reagent_containers/food/snacks/nugget(drop_location(src))
+			qdel(the_guy)
+			return
+		else
+			to_chat(user, span_warning("They still have limbs!"))
+			return
 				
 	if(user.pulling && user.a_intent == INTENT_GRAB && iscarbon(user.pulling) && reagents.total_volume && isliving(user.pulling))
 		var/mob/living/carbon/C = user.pulling
@@ -197,6 +212,7 @@ God bless America.
 		C.Paralyze(60)
 		user.changeNext_move(CLICK_CD_MELEE)
 	return ..()
+
 
 /obj/item/syndicate_basket
 	name = "syndicate frying basket"
