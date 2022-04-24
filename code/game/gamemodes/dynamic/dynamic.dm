@@ -748,6 +748,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 				rule.candidates = list(newPlayer)
 				rule.trim_candidates()
+				if(!rule.candidates || isemptylist(rule.candidates))
+					continue
 				if (rule.ready())
 					drafted_rules[rule] = rule.get_weight()
 
