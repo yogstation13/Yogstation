@@ -484,8 +484,6 @@ Class Procs:
 								checked_cell.charge = checked_cell.maxcharge
 								checked_cell.explode()
 						if(B.get_part_rating() > A.get_part_rating())
-							if(istype(B,/obj/item/reagent_containers) && !isemptylist(B.reagents?.reagent_list)) 
-								continue
 							if(istype(B,/obj/item/stack)) //conveniently this will mean A is also a stack and I will kill the first person to prove me wrong
 								var/obj/item/stack/SA = A
 								var/obj/item/stack/SB = B
