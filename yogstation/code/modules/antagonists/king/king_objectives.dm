@@ -47,11 +47,6 @@
 		return counter >= target_amount
 	return FALSE
 
-
-
-
-
-
 /datum/objective/royalguard
 	name = "Royal guard"
 	explanation_text = "Have at least 3 knights serving you at once."
