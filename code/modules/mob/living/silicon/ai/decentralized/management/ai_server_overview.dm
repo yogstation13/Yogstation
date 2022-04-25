@@ -2,7 +2,7 @@
 	name = "\improper AI server overview console"
 	desc = "Used for monitoring the various servers assigned to the AI network."
 	req_access = list(ACCESS_RD)
-	circuit = /obj/item/circuitboard/computer/aifixer
+
 	icon_keyboard = "tech_key"
 	icon_screen = "ai-fixer"
 	light_color = LIGHT_COLOR_PINK

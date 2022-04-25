@@ -14,7 +14,7 @@
 
 	var/list/ram_expansions = list() //List containing numbers corresponding to the amount of RAM that stick adds. 
 
-
+	//TODO
 	//circuit = /obj/item/circuitboard/machine/circuit_imprinter
 
 	var/datum/component/remote_materials/rmat

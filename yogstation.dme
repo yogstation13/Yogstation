@@ -2424,6 +2424,7 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\rgb.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\surveillance.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\cpu.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\systech\overclocking.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\rack.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\rack_creator.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\cameranet.dm"

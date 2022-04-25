@@ -23,7 +23,6 @@
 	var/total = get_cpu()
 	for(var/obj/item/ai_cpu/CPU in contained_cpus)
 		. += span_notice("It has [CPU] installed. Running at [CPU.speed]THz and consuming [CPU.get_power_usage()]W.")
-		usage += CPU.get_power_usage()
 	. += span_notice("For a total CPU speed of [total]THz")
 	. += span_notice("----------------------")
 	. += span_notice("It currently has [get_ram()]TB's of RAM installed.")

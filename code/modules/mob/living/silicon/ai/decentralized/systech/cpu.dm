@@ -1,3 +1,6 @@
+#define OVERCLOCK_MIN_POWER_MULT -0.5
+
+
 /obj/item/ai_cpu
 	name = "neural processing unit"
 	desc = "A processor specialized in the tasks that a neural network such as the AI might perform. For usage in server racks only."
@@ -23,18 +26,29 @@
 	//High values means its easier to get a high overclock at low power
 	var/maximum_growth = 3.5
 
+	var/list/last_overclocking_values = list()
+
 
 
 /obj/item/ai_cpu/Initialize()
 	growth_scale = rand(minimum_growth * 100, maximum_growth * 100) / 100
 	max_power_multiplier = (rand(minimum_max_power * 100, maximum_max_power * 100) / 100) * power_multiplier
 
+	return ..() 
+
+/obj/item/ai_cpu/proc/valid_overclock()
+	if((power_multiplier - 1) < OVERCLOCK_MIN_POWER_MULT)
+		return FALSE
+
 	//logistic formula:
 	//y = 2/1+e^(-growth_scale*x) where x = power_multiplier - 1. Maximum of 94% faster at 200% power multiplier. Minimum of 34% faster at 200% power multiplier
 	//9% faster at 25% power multiplier, growth = 0.7.
 	//41% faster at 25% power multiplier, growth = 3.5
+	var/optimal_speed_mult = 2 / (1 + NUM_E ** (-growth_scale*(power_multiplier - 1)))
 
-	return ..() 
+	if(speed >= initial(speed) * optimal_speed_mult)
+		return FALSE
+	return TRUE
 
 /obj/item/ai_cpu/proc/get_power_usage()
 	return base_power_usage * power_multiplier
@@ -72,4 +86,3 @@
 
 	minimum_growth = 0.5 //Basically linear at this point
 	maximum_growth = 4.5 //max speed achievable at 2.2x power consumption.
-
