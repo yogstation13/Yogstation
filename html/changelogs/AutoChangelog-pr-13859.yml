@@ -1,0 +1,9 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "thralling someone now removes frost oil and stabilizes their body temperature as intended"
+  - tweak: "marker beacons now extinguished by veil"
+  - tweak: "icy veins now injects 5 frost oil (down from 15) and reduces temperature by 100 (down from 200) and has had its cooldown increased from 25 seconds to 1 minute"
+  - tweak: "icy veins now injects shadowfrost, a new reagent that reduces the speed of whoever it is effecting"
+  - tweak: "empowered thralls are no longer created with the dark recuperation ability, instead from a new ability, dark acceleration, unlocked at 5 thralls"
+  - tweak: "collective hivemind's cooldown has been reduced to 10 seconds since 30 is limiting for an ability you can fail to cast and that is vital for progression"
