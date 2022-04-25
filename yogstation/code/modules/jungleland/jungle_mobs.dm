@@ -108,7 +108,7 @@
 /mob/living/simple_animal/hostile/yog_jungle/meduracha/Initialize()
 	. = ..()
 	RegisterSignal(src,COMSIG_MOVABLE_MOVED,.proc/on_sulking)
-
+z
 /mob/living/simple_animal/hostile/yog_jungle/meduracha/AttackingTarget()
 	. = ..()
 	update_sulking(FALSE)
@@ -202,8 +202,9 @@
 	return pick(list("Help me!", "I'm stuck!", "Come quickly, I'm close to death!", "I'm dying!", "I won't make it unless someone comes here!", "Please don't leave me!", 
 				"I'm so close to base!", "These fucking beasts got me", "I'm out of pens", "I'm running out of blood", "Please, I beg you", "I walked into the fucking water", 
 				"[initial(pick(subtypesof(/mob/living/simple_animal/hostile/yog_jungle)).name)] nearly killed me, but I'm gonna bleed out", "Damned fauna", "Why fucking again?", "I have so many mats", 
-				"This is fucking insane", "I cannot believe this is happening to me", "Out of meds, out of supplies, out of fucking everything", "I'm running out of air", 
-				"If someone finds my body take the loot, []", "HELP [pick(generate_code_phrase(TRUE))]"))
+				"This is fucking insane", "I cannot believe this is happening to me", "Out of meds, out of supplies, out of fucking everything", "I'm running out of air",
+				"HELP", "MINING", "MINING BASE",
+				"If someone finds my body take the loot [pick("mango", "alpha", "delta", "beta", "omega" , "olive", "tango", "fiesta", "carp")] [rand(0,9)][rand(0,9)][rand(0,9)]", "HELP [pick(generate_code_phrase(TRUE))]"))
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/lure()
 	if(!human_lure)
