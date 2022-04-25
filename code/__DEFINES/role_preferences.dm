@@ -51,9 +51,9 @@
 #define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
 #define ROLE_BLOODSUCKERBREAKOUT	"Bloodsucker Breakout"
 #define ROLE_MONSTERHUNTER		"Monster Hunter"
-#define ROLE_KING				"King"
 #define ROLE_GOLEM				"Golem"
 #define ROLE_SINFULDEMON		"Demon of Sin"
+#define ROLE_KING				"King"
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
