@@ -1,6 +1,6 @@
 /datum/outfit/job/plasmaman/bartender
 	name = "Plasmaman Bartender"
-	
+
 	jobtype = /datum/job/bartender
 
 	pda_type = /obj/item/pda/bar
@@ -17,7 +17,7 @@
 
 /datum/outfit/job/plasmaman/cook
 	name = "Plasmaman Cook"
-	
+
 	jobtype = /datum/job/cook
 
 	pda_type = /obj/item/pda/cook
@@ -32,7 +32,7 @@
 
 /datum/outfit/job/plasmaman/botanist
 	name = "Plasmaman Botanist"
-	
+
 	jobtype = /datum/job/hydro
 
 	pda_type = /obj/item/pda/botanist
@@ -51,7 +51,7 @@
 
 /datum/outfit/job/plasmaman/curator
 	name = "Plasmaman Curator"
-	
+
 	jobtype = /datum/job/curator
 
 	pda_type = /obj/item/pda/curator
@@ -67,9 +67,15 @@
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
+/datum/outfit/plasmaman/prisoner
+	name = "Prisoner Plasmaman"
+
+	head = /obj/item/clothing/head/helmet/space/plasmaman/prisoner
+	uniform = /obj/item/clothing/under/plasmaman/prisoner
+
 /datum/outfit/job/plasmaman/chaplain
 	name = "Plasmaman Chaplain"
-	
+
 	jobtype = /datum/job/chaplain
 
 	pda_type = /obj/item/pda/chaplain
@@ -85,7 +91,7 @@
 
 /datum/outfit/job/plasmaman/janitor
 	name = "Plasmaman Janitor"
-	
+
 	jobtype = /datum/job/janitor
 
 	pda_type = /obj/item/pda/janitor
@@ -100,7 +106,7 @@
 
 /datum/outfit/job/plasmaman/security
 	name = "Plasmaman Security Officer"
-	
+
 	jobtype = /datum/job/officer
 
 	pda_type = /obj/item/pda/security
@@ -123,7 +129,7 @@
 
 /datum/outfit/job/plasmaman/detective
 	name = "Plasmaman Detective"
-	
+
 	jobtype = /datum/job/detective
 
 	pda_type = /obj/item/pda/detective
@@ -142,7 +148,7 @@
 
 /datum/outfit/job/plasmaman/warden
 	name = "Plasmaman Warden"
-	
+
 	jobtype = /datum/job/warden
 
 	pda_type = /obj/item/pda/warden
@@ -167,7 +173,7 @@
 
 /datum/outfit/job/plasmaman/cargo_tech
 	name = "Plasmaman Cargo Technician"
-	
+
 	jobtype = /datum/job/cargo_tech
 
 	pda_type = /obj/item/pda/cargo
@@ -182,7 +188,7 @@
 
 /datum/outfit/job/plasmaman/quartermaster
 	name = "Plasmaman Quartermaster"
-	
+
 	jobtype = /datum/job/qm
 
 	pda_type = /obj/item/pda/quartermaster
@@ -199,7 +205,7 @@
 
 /datum/outfit/job/plasmaman/miner
 	name = "Plasmaman Shaft Miner"
-	
+
 	jobtype = /datum/job/mining
 
 	pda_type = /obj/item/pda/shaftminer
@@ -221,7 +227,7 @@
 
 /datum/outfit/job/plasmaman/lawyer
 	name = "Plasmaman Laywer"
-	
+
 	jobtype = /datum/job/lawyer
 
 	pda_type = /obj/item/pda/lawyer
@@ -243,7 +249,7 @@
 
 /datum/outfit/job/plasmaman/doctor
 	name = "Plasmaman Medical Doctor"
-	
+
 	jobtype = /datum/job/doctor
 
 	pda_type = /obj/item/pda/medical
@@ -263,7 +269,7 @@
 
 /datum/outfit/job/plasmaman/virologist
 	name = "Plasmaman Virologist"
-	
+
 	jobtype = /datum/job/virologist
 
 	pda_type = /obj/item/pda/viro
@@ -283,7 +289,7 @@
 
 /datum/outfit/job/plasmaman/chemist
 	name = "Plasmaman Chemist"
-	
+
 	jobtype = /datum/job/chemist
 
 	pda_type = /obj/item/pda/chemist
@@ -303,7 +309,7 @@
 
 /datum/outfit/job/plasmaman/geneticist
 	name = "Plasmaman Geneticist"
-	
+
 	jobtype = /datum/job/geneticist
 
 	pda_type = /obj/item/pda/geneticist
@@ -325,7 +331,7 @@
 
 /datum/outfit/job/plasmaman/scientist
 	name = "Plasmaman Scientist"
-	
+
 	jobtype = /datum/job/scientist
 
 	pda_type = /obj/item/pda/toxins
@@ -343,7 +349,7 @@
 
 /datum/outfit/job/plasmaman/roboticist
 	name = "Plasmaman Roboticist"
-	
+
 	jobtype = /datum/job/roboticist
 
 	pda_type = /obj/item/pda/roboticist
@@ -363,7 +369,7 @@
 
 /datum/outfit/job/plasmaman/engineer
 	name = "Plasmaman Station Engineer"
-	
+
 	jobtype = /datum/job/engineer
 
 	pda_type = /obj/item/pda/engineering
@@ -385,7 +391,7 @@
 
 /datum/outfit/job/plasmaman/atmos
 	name = "Plasmaman Atmospheric Technician"
-	
+
 	jobtype = /datum/job/atmos
 
 	pda_type = /obj/item/pda/atmos
@@ -406,7 +412,7 @@
 
 /datum/outfit/job/plasmaman/mime
 	name = "Plasmaman Mime"
-	
+
 	jobtype = /datum/job/mime
 
 	pda_type = /obj/item/pda/mime
@@ -424,7 +430,7 @@
 
 /datum/outfit/job/plasmaman/clown
 	name = "Plasmaman Clown"
-	
+
 	jobtype = /datum/job/clown
 
 	pda_type = /obj/item/pda/clown
@@ -443,7 +449,7 @@
 
 /datum/outfit/job/plasmaman/sigtech
 	name = "Plasmaman Signal Technician"
-	
+
 	jobtype = /datum/job/signal_tech
 
 	pda_type = /obj/item/pda/signaltech
@@ -466,7 +472,7 @@
 
 /datum/outfit/job/plasmaman/miningmedic
 	name = "Plasmaman Mining Medic"
-	
+
 	jobtype = /datum/job/miningmedic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
@@ -492,7 +498,7 @@
 
 /datum/outfit/job/plasmaman/paramedic
 	name = "Plasmaman Paramedic"
-	
+
 	jobtype = /datum/job/paramedic
 
 	pda_type = /obj/item/pda/para
@@ -516,7 +522,7 @@
 
 /datum/outfit/job/plasmaman/psych
 	name = "Plasmaman Psych"
-	
+
 	jobtype = /datum/job/psych
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
@@ -531,7 +537,7 @@
 
 /datum/outfit/job/plasmaman/brigphysician
 	name = "Plasmaman Brig Physician"
-	
+
 	jobtype = /datum/job/brigphysician
 
 	pda_type = /obj/item/pda/physician
@@ -554,7 +560,7 @@
 
 /datum/outfit/job/plasmaman/clerk
 	name = "Plasmaman Clerk"
-	
+
 	jobtype = /datum/job/clerk
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
@@ -568,7 +574,7 @@
 
 /datum/outfit/job/plasmaman/tourist
 	name = "Plasmaman Tourist"
-	
+
 	jobtype = /datum/job/tourist
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
@@ -585,7 +591,7 @@
 
 /datum/outfit/job/plasmaman/assistant
 	name = "Plasmaman Assistant"
-	
+
 	jobtype = /datum/job/assistant
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
@@ -598,7 +604,7 @@
 
 /datum/outfit/job/plasmaman/artist
 	name = "Plasmaman Artist"
-	
+
 	jobtype = /datum/job/artist
 
 	id_type = /obj/item/card/id/silver
@@ -617,7 +623,7 @@
 
 /datum/outfit/job/plasmaman/ce
 	name = "Plasmaman Chief Engineer"
-	
+
 	jobtype = /datum/job/chief_engineer
 
 	id_type = /obj/item/card/id/silver
@@ -638,7 +644,7 @@
 
 /datum/outfit/job/plasmaman/rd
 	name = "Plasmaman Research Director"
-	
+
 	jobtype = /datum/job/rd
 
 	id_type = /obj/item/card/id/silver

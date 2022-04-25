@@ -476,31 +476,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/education)
-"abh" = (
-/obj/item/soap/nanotrasen,
-/obj/item/bikehorn/rubberducky,
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
-"abi" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/sink/kitchen{
-	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
-	name = "old sink";
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "abj" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -642,22 +617,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
-"abA" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
-"abB" = (
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 4;
-	icon_state = "right";
-	name = "Unisex Showers"
-	},
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "abC" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -840,16 +799,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abY" = (
-/obj/machinery/door/airlock{
-	name = "Unisex Restroom"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "abZ" = (
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes{
@@ -955,15 +904,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/security/prison)
-"acp" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/toilet{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
 /area/security/prison)
 "acq" = (
 /obj/structure/table,
@@ -69427,6 +69367,16 @@
 	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
+"iRt" = (
+/obj/machinery/door/airlock{
+	name = "Unisex Restroom"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "iRO" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -69498,6 +69448,20 @@
 	dir = 1
 	},
 /area/science/mixing)
+"iST" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/sink/kitchen{
+	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
+	name = "old sink";
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "iTV" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/hazardvest,
@@ -72404,6 +72368,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"lQh" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "lQk" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -72438,6 +72408,16 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /turf/open/space/basic,
 /area/engine/atmos_distro)
+"lTG" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "lTW" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/hallway/secondary/exit/departure_lounge";
@@ -73106,6 +73086,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
+"mFS" = (
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	name = "Unisex Showers"
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "mGy" = (
 /obj/machinery/light{
 	dir = 1
@@ -74766,6 +74756,11 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/aisat)
+"ozI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "oBN" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -79119,6 +79114,15 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"tgq" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "tgV" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -80460,6 +80464,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"uEC" = (
+/obj/item/soap/nanotrasen,
+/obj/item/bikehorn/rubberducky,
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "uGb" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -105441,10 +105456,10 @@ aaa
 aaa
 aaf
 aay
-abh
-abA
-abY
-acp
+uEC
+lQh
+iRt
+tgq
 aax
 jLt
 adp
@@ -105698,8 +105713,8 @@ aaf
 aaf
 aaf
 aax
-abi
-abB
+iST
+mFS
 abe
 abe
 aax
@@ -106218,7 +106233,7 @@ abC
 acr
 acE
 adb
-abE
+ozI
 adV
 aeo
 aeL
@@ -107246,7 +107261,7 @@ aco
 acC
 acK
 acY
-acK
+lTG
 adW
 aep
 aeM
@@ -108274,7 +108289,7 @@ abE
 abE
 abE
 ade
-abE
+ozI
 ael
 aeC
 aeL

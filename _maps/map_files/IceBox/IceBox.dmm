@@ -25922,17 +25922,6 @@
 "bbw" = (
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"bbx" = (
-/obj/machinery/door/airlock{
-	name = "Unisex Restroom"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "bby" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -26085,18 +26074,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/locker)
-"bbQ" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "bbR" = (
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
@@ -26754,13 +26731,6 @@
 /obj/machinery/vending/autodrobe/capdrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"bdj" = (
-/obj/structure/toilet{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "bdk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -56756,6 +56726,11 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"dIt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "dKV" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -59669,6 +59644,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"lPt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "lQG" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -60512,6 +60494,18 @@
 /obj/structure/sign/warning/pods,
 /turf/closed/wall,
 /area/engine/engineering)
+"otu" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "otT" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
@@ -63715,6 +63709,13 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
+"wNR" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "wPB" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -63844,6 +63845,17 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"xql" = (
+/obj/machinery/door/airlock{
+	name = "Unisex Restroom"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "xsx" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -63950,6 +63962,14 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"xJC" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xLr" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
@@ -91005,7 +91025,7 @@ aat
 aat
 aat
 ace
-aat
+dIt
 abD
 adH
 aei
@@ -92033,7 +92053,7 @@ lzz
 baa
 baB
 acf
-abB
+lPt
 acv
 adI
 aei
@@ -93061,7 +93081,7 @@ iSx
 mxZ
 aav
 acg
-aav
+xJC
 adp
 adJ
 aep
@@ -93831,9 +93851,9 @@ kii
 eQr
 qBU
 bbs
-bbx
-bbQ
-bdj
+xql
+otu
+wNR
 acd
 abb
 afB

@@ -2884,20 +2884,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aep" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/white{
-	icon_state = "2-8"
-	},
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 8;
-	icon_state = "right";
-	name = "Unisex Shower"
-	},
-/obj/structure/window/reinforced/tinted,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aeq" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "secexterior";
@@ -3485,18 +3471,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"afb" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/soap/nanotrasen,
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/structure/window/reinforced/tinted,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "afc" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -27077,6 +27051,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"fwd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "fDj" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -32607,6 +32592,18 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall,
 /area/quartermaster/storage)
+"kVe" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/soap/nanotrasen,
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison/toilet)
 "kVk" = (
 /obj/machinery/griddle,
 /turf/open/floor/plasteel/cafeteria{
@@ -33770,14 +33767,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"mba" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "mbW" = (
 /obj/machinery/light{
 	dir = 8
@@ -38221,6 +38210,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"qEp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	dir = 8;
+	icon_state = "right";
+	name = "Unisex Shower"
+	},
+/obj/structure/window/reinforced/tinted,
+/turf/open/floor/plasteel,
+/area/security/prison/toilet)
 "qFw" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -45608,16 +45611,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"wEU" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "wFY" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/yellow,
@@ -46175,6 +46168,15 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall/rust,
 /area/ai_monitored/turret_protected/ai)
+"xoI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xqK" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -81768,7 +81770,7 @@ aem
 ahv
 ajZ
 uDy
-mba
+xoI
 ttC
 paT
 hsC
@@ -82791,12 +82793,12 @@ aac
 aac
 aad
 abO
-aep
+qEp
 aFo
 rYR
 hiR
 juZ
-wEU
+fwd
 uqn
 ful
 lWc
@@ -83048,7 +83050,7 @@ aac
 aad
 aad
 abO
-afb
+kVe
 ahA
 aiq
 aCp

@@ -81,6 +81,9 @@
 		if("Janitor")
 			O = new /datum/outfit/job/plasmaman/janitor
 
+		if("Prisoner")
+			O = new /datum/outfit/plasmaman/prisoner
+
 		if("Security Officer")
 			O = new /datum/outfit/job/plasmaman/security
 

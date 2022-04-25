@@ -867,6 +867,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "sec_prison"
 	minimap_color = "#530505"
 
+/area/security/prison/toilet
+	name = "Prison Toilet"
+	icon_state = "sec_prison"
+
 /area/security/processing
 	name = "Labor Shuttle Dock"
 	icon_state = "sec_prison"

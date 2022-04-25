@@ -1951,17 +1951,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
-"agJ" = (
-/obj/machinery/door/airlock{
-	name = "Unisex Restroom"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "agK" = (
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -18855,15 +18844,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"bAL" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 1;
-	open = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "bAO" = (
 /obj/vehicle/ridden/janicart,
 /obj/item/key/janitor,
@@ -26687,6 +26667,13 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"duR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "dvd" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -43235,6 +43222,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"mcJ" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1;
+	open = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "mcQ" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -44245,6 +44241,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"mAe" = (
+/obj/machinery/door/airlock{
+	name = "Unisex Restroom"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "mAh" = (
 /obj/machinery/computer/rdconsole/robotics,
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -52838,18 +52845,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"qZY" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "raa" = (
 /obj/machinery/light{
 	dir = 4
@@ -53134,6 +53129,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"rit" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "riv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -57592,6 +57593,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"tma" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "tmk" = (
 /obj/effect/landmark/blobstart,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -62739,6 +62752,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"vVF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "vWd" = (
 /obj/machinery/camera{
 	c_tag = "Aft Primary Hallway 2";
@@ -92860,7 +92879,7 @@ adp
 adp
 adp
 agE
-adp
+duR
 abD
 alp
 aei
@@ -93888,7 +93907,7 @@ aef
 jhc
 ijq
 ace
-ijq
+rit
 nBq
 adH
 aei
@@ -94916,7 +94935,7 @@ aat
 aeL
 baB
 acf
-baB
+vVF
 acv
 adI
 aei
@@ -95686,9 +95705,9 @@ ads
 aev
 afc
 aga
-agJ
-qZY
-bAL
+mAe
+tma
+mcJ
 acd
 eig
 aou

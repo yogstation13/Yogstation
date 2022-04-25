@@ -5,7 +5,7 @@
 	antag_flag = ROLE_HERETIC
 	false_report_weight = 5
 	protected_jobs = list("Chaplain","Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Yogs: Added Brig Physician
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list("Prisoner","AI", "Cyborg")
 	required_players = 35
 	required_enemies = 1
 	recommended_enemies = 4

@@ -107,3 +107,9 @@
 	desc = "The make-up is painted on, it's a miracle it doesn't chip. <i>'HONK!'</i>"
 	icon_state = "clown_envirohelm"
 	item_state = "clown_envirohelm"
+
+/obj/item/clothing/head/helmet/space/plasmaman/prisoner
+	name = "prisoner's plasma envirosuit helmet"
+	desc = "A plasmaman containment helmet for prisoners."
+	icon_state = "prisoner_envirohelm"
+	item_state = "prisoner_envirohelm"

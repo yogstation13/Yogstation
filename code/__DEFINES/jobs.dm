@@ -43,6 +43,7 @@
 #define MIME			(1<<12)
 #define ARTIST			(1<<13)
 #define ASSISTANT		(1<<14)
+#define PRISONER		(1<<15)
 
 #define JOB_AVAILABLE 0
 #define JOB_UNAVAILABLE_GENERIC 1
@@ -96,6 +97,7 @@
 #define JOB_DISPLAY_ORDER_TOURIST 38
 #define JOB_DISPLAY_ORDER_CLERK 39
 #define JOB_DISPLAY_ORDER_CHAPLAIN 40
+#define JOB_DISPLAY_ORDER_PRISONER 41
 
 
 /proc/find_job(target)
