@@ -365,7 +365,7 @@
 /datum/action/item_action/hatsky_voiceline
 	name = "Press Voice Button"
 	desc = "Engage the voice box on your Hatsky to hear a classic line from the real Officer Beepsky!"
-	
+
 /datum/action/item_action/nano_picket_sign
 	name = "Retext Nano Picket Sign"
 	var/obj/item/picket_sign/S
