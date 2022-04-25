@@ -18,6 +18,17 @@
 	var/list/contained_cpus = list()
 	var/contained_ram = 0
 
+/obj/item/server_rack/examine(mob/user)
+	. = ..()
+	var/total = get_cpu()
+	for(var/obj/item/ai_cpu/CPU in contained_cpus)
+		. += span_notice("It has [CPU] installed. Running at [CPU.speed]THz and consuming [CPU.get_power_usage()]W.")
+		usage += CPU.get_power_usage()
+	. += span_notice("For a total CPU speed of [total]THz")
+	. += span_notice("----------------------")
+	. += span_notice("It currently has [get_ram()]TB's of RAM installed.")
+	. += span_notice("It consumes [get_power_usage()]W's of electricity.")
+
 /obj/item/server_rack/proc/get_cpu()
 	var/amount = 0
 	for(var/obj/item/ai_cpu/CPU in contained_cpus)
