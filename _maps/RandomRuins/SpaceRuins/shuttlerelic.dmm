@@ -54,15 +54,15 @@
 /area/ruin/powered)
 "m" = (
 /obj/structure/chair/old{
-	icon_state = "chairold";
-	dir = 1
+	dir = 1;
+	icon_state = "chairold"
 	},
 /turf/open/floor/oldshuttle,
 /area/ruin/powered)
 "n" = (
 /obj/structure/chair/old{
-	icon_state = "chairold";
-	dir = 1
+	dir = 1;
+	icon_state = "chairold"
 	},
 /obj/item/crowbar/large{
 	desc = "It's a big crowbar. It doesn't fit in your pockets, because it's big. It feels oddly heavy..";
@@ -73,8 +73,8 @@
 /area/ruin/powered)
 "o" = (
 /obj/structure/chair/old{
-	icon_state = "chairold";
-	dir = 1
+	dir = 1;
+	icon_state = "chairold"
 	},
 /mob/living/simple_animal/hostile/retaliate/spaceman,
 /turf/open/floor/oldshuttle,

@@ -3,7 +3,7 @@
 	set category = "OOC"
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 
 	if(QDELETED(src))
@@ -14,19 +14,19 @@
 
 	if(!holder)
 		if(!GLOB.looc_allowed)
-			to_chat(src, "<span class='danger'>LOOC is globally muted.</span>")
+			to_chat(src, span_danger("LOOC is globally muted."))
 			return
 
 		if(!GLOB.dlooc_allowed && (mob.stat == DEAD || isobserver(mob)))
-			to_chat(usr, "<span class='danger'>LOOC for dead mobs has been turned off.</span>")
+			to_chat(usr, span_danger("LOOC for dead mobs has been turned off."))
 			return
 
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='danger'>You cannot use LOOC (muted).</span>")
+			to_chat(src, span_danger("You cannot use LOOC (muted)."))
 			return
 
 	if(is_banned_from(ckey, "OOC"))
-		to_chat(src, "<span class='danger'>You have been banned from LOOC.</span>")
+		to_chat(src, span_danger("You have been banned from LOOC."))
 		return
 
 	msg = copytext(sanitize(to_utf8(msg)), 1, MAX_MESSAGE_LEN)
@@ -43,16 +43,16 @@
 			return
 
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<span class='bold'>Advertising other servers is not allowed.</span>")
+			to_chat(src, span_bold("Advertising other servers is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise in LOOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in LOOC: [msg]")
 			return
 
 	if(!(prefs.chat_toggles & CHAT_LOOC))
-		to_chat(src, "<span class='danger'>You have LOOC muted.</span>")
+		to_chat(src, span_danger("You have LOOC muted."))
 		return
 
-	mob.log_talk(raw_msg, LOG_LOOC)
+	mob.log_talk(raw_msg, LOG_LOOC, "LOOC")
 
 	var/list/clients_to_hear = list()
 	var/turf/looc_source = get_turf(mob.get_looc_source())
@@ -71,17 +71,17 @@
 			if(mob.client && mob.client.prefs && mob.client.prefs.chat_toggles & CHAT_LOOC)
 				clients_to_hear += mob.client
 
-	var/message_admin = "<span class='looc'>LOOC: [ADMIN_LOOKUPFLW(mob)]: [msg]</span>"
-	var/message_admin_remote = "<span class='looc'><font color='black'>(R)</font>LOOC: [ADMIN_LOOKUPFLW(mob)]: [msg]</span>"
+	var/message_admin = span_looc("LOOC: [ADMIN_LOOKUPFLW(mob)]: [msg]")
+	var/message_admin_remote = span_looc("<font color='black'>(R)</font>LOOC: [ADMIN_LOOKUPFLW(mob)]: [msg]")
 	var/message_regular
 	if(isobserver(mob)) //if you're a spooky ghost
 		var/key_to_print = mob.key
 		if(holder && holder.fakekey)
 			key_to_print = holder.fakekey //stealthminning
 
-		message_regular = "<span class='looc'>LOOC: [key_to_print]: [msg]</span>"
+		message_regular = span_looc("LOOC: [key_to_print]: [msg]")
 	else
-		message_regular = "<span class='looc'>LOOC: [mob.name]: [msg]</span>"
+		message_regular = span_looc("LOOC: [mob.name]: [msg]")
 
 	for(var/T in GLOB.clients)
 		var/client/C = T

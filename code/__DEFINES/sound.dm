@@ -8,12 +8,14 @@
 #define CHANNEL_AMBIENCE 1018
 #define CHANNEL_BUZZ 1017
 #define CHANNEL_BICYCLE 1016
+#define CHANNEL_VOICE_ANNOUNCE 1015
 
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 
-#define CHANNEL_HIGHEST_AVAILABLE 1015
+#define CHANNEL_HIGHEST_AVAILABLE 1014
 
+#define MAX_INSTRUMENT_CHANNELS (128 * 6)
 
 #define SOUND_MINIMUM_PRESSURE 10
 #define FALLOFF_SOUNDS 1
@@ -74,3 +76,27 @@
 	'sound/hallucinations/growl3.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg', 'sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg',\
 	'sound/hallucinations/look_up1.ogg', 'sound/hallucinations/look_up2.ogg', 'sound/hallucinations/over_here1.ogg', 'sound/hallucinations/over_here2.ogg', 'sound/hallucinations/over_here3.ogg',\
 	'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg', 'sound/hallucinations/veryfar_noise.ogg', 'sound/hallucinations/wail.ogg')
+
+#define INTERACTION_SOUND_RANGE_MODIFIER -3
+#define EQUIP_SOUND_VOLUME 30
+#define PICKUP_SOUND_VOLUME 40
+#define DROP_SOUND_VOLUME 50
+#define YEET_SOUND_VOLUME 90
+
+///Announcer audio keys
+#define ANNOUNCER_AIMALF 			"announcer_aimalf"
+#define ANNOUNCER_ALIENS			"announcer_aliens"
+#define ANNOUNCER_ANIMES 			"announcer_animes"
+#define ANNOUNCER_GRANOMALIES 		"announcer_granomalies"
+#define ANNOUNCER_INTERCEPT 		"announcer_intercept"
+#define ANNOUNCER_IONSTORM 			"announcer_ionstorm"
+#define ANNOUNCER_METEORS			"announcer_meteors"
+#define ANNOUNCER_OUTBREAK5			"announcer_outbreak5"
+#define ANNOUNCER_OUTBREAK7			"announcer_outbreak7"
+#define ANNOUNCER_POWEROFF			"announcer_poweroff"
+#define ANNOUNCER_POWERON			"announcer_poweron"
+#define ANNOUNCER_RADIATION			"announcer_radiation"
+#define ANNOUNCER_SHUTTLECALLED		"announcer_shuttlecalled"
+#define ANNOUNCER_SHUTTLEDOCK		"announcer_shuttledock"
+#define ANNOUNCER_SHUTTLERECALLED	"announcer_shuttlerecalled"
+#define ANNOUNCER_SPANOMALIES		"announcer_spanomalies"

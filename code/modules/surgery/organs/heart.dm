@@ -1,16 +1,16 @@
 /obj/item/organ/heart
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
-	icon_state = "heart-on"
+	icon_state = "heart"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_HEART
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = 3 * STANDARD_ORGAN_DECAY		//designed to fail about 5 minutes after death
+	decay_factor = 2.5 * STANDARD_ORGAN_DECAY		//designed to fail about 6 minutes after death
 
-	low_threshold_passed = "<span class='info'>Prickles of pain appear then die out from within your chest...</span>"
-	high_threshold_passed = "<span class='warning'>Something inside your chest hurts, and the pain isn't subsiding. You notice yourself breathing far faster than before.</span>"
-	now_fixed = "<span class='info'>Your heart begins to beat again.</span>"
-	high_threshold_cleared = "<span class='info'>The pain in your chest has died down, and your breathing becomes more relaxed.</span>"
+	low_threshold_passed = span_info("Prickles of pain appear then die out from within your chest...")
+	high_threshold_passed = span_warning("Something inside your chest hurts, and the pain isn't subsiding. You notice yourself breathing far faster than before.")
+	now_fixed = span_info("Your heart begins to beat again.")
+	high_threshold_cleared = span_info("The pain in your chest has died down, and your breathing becomes more relaxed.")
 
 	// Heart attack code is in code/modules/mob/living/carbon/human/life.dm
 	var/beating = 1
@@ -19,6 +19,11 @@
 	var/beat = BEAT_NONE//is this mob having a heatbeat sound played? if so, which?
 	var/failed = FALSE		//to prevent constantly running failing code
 	var/operated = FALSE	//whether the heart's been operated on to fix some of its damages
+
+/obj/item/organ/heart/Initialize()
+	. = ..()
+	icon_base = icon_state
+	update_icon()
 
 /obj/item/organ/heart/update_icon()
 	if(beating)
@@ -39,19 +44,19 @@
 	..()
 	if(!beating)
 		user.visible_message("<span class='notice'>[user] squeezes [src] to \
-			make it beat again!</span>","<span class='notice'>You squeeze [src] to make it beat again!</span>")
+			make it beat again!</span>",span_notice("You squeeze [src] to make it beat again!"))
 		Restart()
 		addtimer(CALLBACK(src, .proc/stop_if_unowned), 80)
 
 /obj/item/organ/heart/proc/Stop()
 	beating = 0
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/organ/heart/proc/Restart()
 	beating = 1
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/organ/heart/prepare_eat()
 	var/obj/S = ..()
@@ -87,18 +92,18 @@
 		if(damage >= 80 && beating)
 			if(prob(1))
 				if(owner.stat == CONSCIOUS)
-					owner.visible_message("<span class='userdanger'>[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!</span>")
+					owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
 				owner.set_heartattack(TRUE) //yogs end
 	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
 		if(owner.stat == CONSCIOUS)
-			owner.visible_message("<span class='userdanger'>[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!</span>")
+			owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
 		owner.set_heartattack(TRUE)
 		failed = TRUE
 
 /obj/item/organ/heart/cursed
 	name = "cursed heart"
 	desc = "A heart that, when inserted, will force you to pump it manually."
-	icon_state = "cursedheart-off"
+	icon_state = "cursedheart"
 	icon_base = "cursedheart"
 	decay_factor = 0
 	actions_types = list(/datum/action/item_action/organ_action/cursed_heart)
@@ -153,7 +158,7 @@
 		var/obj/item/organ/heart/cursed/cursed_heart = target
 
 		if(world.time < (cursed_heart.last_pump + (cursed_heart.pump_delay-10))) //no spam
-			to_chat(owner, "<span class='userdanger'>Too soon!</span>")
+			to_chat(owner, span_userdanger("Too soon!"))
 			return
 
 		cursed_heart.last_pump = world.time
@@ -175,6 +180,42 @@
 	priority = 100 //it's an indicator you're dying, so it's very high priority
 	colour = "red"
 
+/obj/item/organ/heart/vampheart
+	beating = 0
+	///If a heartbeat is being faked.
+	var/fakingit = FALSE
+
+/obj/item/organ/heart/vampheart/Restart()
+	beating = FALSE
+	return FALSE
+
+/obj/item/organ/heart/vampheart/Stop()
+	fakingit = FALSE
+	return ..()
+
+/obj/item/organ/heart/vampheart/proc/FakeStart()
+	fakingit = TRUE // We're pretending to beat, to fool people.
+
+/// Bloodsuckers don't have a heartbeat at all when stopped (default is "an unstable")
+/obj/item/organ/heart/vampheart/HeartStrengthMessage()
+	if(fakingit)
+		return "a healthy"
+	return span_danger("no")
+
+/// Proc for the default (Non-Bloodsucker) Heart!
+/obj/item/organ/heart/proc/HeartStrengthMessage()
+	if(beating)
+		return "a healthy"
+	return span_danger("an unstable")
+
+/obj/item/organ/heart/ghetto
+	name = "so called 'maintenance heart'"
+	desc = "A haphazardly constructed device that can supposedly pump blood. Used by the desperate or insane."
+	icon_state = "heart-g"
+	maxHealth = 0.5 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 0.5
+	organ_flags = ORGAN_SYNTHETIC
+
 /obj/item/organ/heart/cybernetic
 	name = "cybernetic heart"
 	desc = "An electronic device designed to mimic the functions of an organic human heart."
@@ -189,8 +230,9 @@
 
 /obj/item/organ/heart/cybernetic/upgraded
 	name = "upgraded cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma, regenerates after use."
+	desc = "An electronic device designed to mimic the functions of an organic human heart. Fitted with a blood synthesizer, it also holds an emergency epinephrine synthesizer that supplies a dosage if the body is critically damaged."
 	icon_state = "heart-c-u"
+	organ_efficiency = 1.5
 	var/dose_available = TRUE
 	var/rid = /datum/reagent/medicine/epinephrine
 	var/ramount = 10
@@ -207,7 +249,7 @@
 
 /obj/item/organ/heart/cybernetic/upgraded/emp_act()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/Restart), 80) //Can restart itself after an EMP so it isnt an insta death
+	addtimer(CALLBACK(src, .proc/Restart), 8 SECONDS) //Can restart itself after an EMP so it isnt an insta death
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"
@@ -219,7 +261,7 @@
 	. = ..()
 	if(owner.health < 5 && world.time > min_next_adrenaline)
 		min_next_adrenaline = world.time + rand(250, 600) //anywhere from 4.5 to 10 minutes
-		to_chat(owner, "<span class='userdanger'>You feel yourself dying, but you refuse to give up!</span>")
+		to_chat(owner, span_userdanger("You feel yourself dying, but you refuse to give up!"))
 		owner.heal_overall_damage(15, 15, 0, BODYPART_ORGANIC)
 		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
 			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)

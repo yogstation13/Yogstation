@@ -3,7 +3,8 @@
 	id = "moth"
 	say_mod = "flutters"
 	default_color = "00FF00"
-	species_traits = list(LIPS, NOEYESPRITES)
+	species_traits = list(LIPS, NOEYESPRITES,HAS_FLESH,HAS_BONE)
+	payday_modifier = 0.8 //Useful to NT for biomedical advancements
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_BUG)
 	mutant_bodyparts = list("moth_wings")
 	default_features = list("moth_wings" = "Plain")
@@ -13,9 +14,16 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
 	liked_food = VEGETABLES | DAIRY | CLOTH
 	disliked_food = FRUIT | GROSS
-	toxic_food = MEAT | RAW
+	toxic_food = MEAT | RAW | SEAFOOD | MICE
+	burnmod = 1.25 //Fluffy and flammable
+	brutemod = 0.9 //Evasive buggers
+	punchdamagehigh = 9 //Weird fluffy bug fist
+	punchstunthreshold = 10 //No stun punches
 	mutanteyes = /obj/item/organ/eyes/moth
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	species_language_holder = /datum/language_holder/mothmen
+
+	screamsound = 'sound/voice/moth/scream_moth.ogg'
 
 /datum/species/moth/regenerate_organs(mob/living/carbon/C,datum/species/old_species,replace_current=TRUE)
 	. = ..()
@@ -39,7 +47,7 @@
 	if(.) //if the mob is immune to fire, don't burn wings off.
 		return
 	if(H.dna.features["moth_wings"] != "Burnt Off" && H.bodytemperature >= 800 && H.fire_stacks > 0) //do not go into the extremely hot light. you will not survive
-		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
+		to_chat(H, span_danger("Your precious wings burn to a crisp!"))
 		H.dna.features["moth_wings"] = "Burnt Off"
 		handle_mutant_bodyparts(H)
 

@@ -90,10 +90,10 @@
 	if(I.tool_behaviour == TOOL_WIRECUTTER)
 		I.play_tool_sound(src, 100)
 		if(ruined)
-			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")
+			to_chat(user, span_notice("You remove the remnants of the poster."))
 			qdel(src)
 		else
-			to_chat(user, "<span class='notice'>You carefully remove the poster from the wall.</span>")
+			to_chat(user, span_notice("You carefully remove the poster from the wall."))
 			roll_and_drop(user.loc)
 
 /obj/structure/sign/poster/attack_hand(mob/user)
@@ -121,7 +121,7 @@
 //separated to reduce code duplication. Moved here for ease of reference and to unclutter r_wall/attackby()
 /turf/closed/wall/proc/place_poster(obj/item/poster/P, mob/user)
 	if(!P.poster_structure)
-		to_chat(user, "<span class='warning'>[P] has no poster... inside it? Inform a coder!</span>")
+		to_chat(user, span_warning("[P] has no poster... inside it? Inform a coder!"))
 		return
 
 	// Deny placing posters on currently-diagonal walls, although the wall may change in the future.
@@ -134,14 +134,14 @@
 	var/stuff_on_wall = 0
 	for(var/obj/O in contents) //Let's see if it already has a poster on it or too much stuff
 		if(istype(O, /obj/structure/sign/poster))
-			to_chat(user, "<span class='warning'>The wall is far too cluttered to place a poster!</span>")
+			to_chat(user, span_warning("The wall is far too cluttered to place a poster!"))
 			return
 		stuff_on_wall++
 		if(stuff_on_wall == 3)
-			to_chat(user, "<span class='warning'>The wall is far too cluttered to place a poster!</span>")
+			to_chat(user, span_warning("The wall is far too cluttered to place a poster!"))
 			return
 
-	to_chat(user, "<span class='notice'>You start placing the poster on the wall...</span>"	)
+	to_chat(user, span_notice("You start placing the poster on the wall...")	)
 
 	var/obj/structure/sign/poster/D = P.poster_structure
 
@@ -156,10 +156,10 @@
 			return
 
 		if(iswallturf(src) && user && user.loc == temp_loc)	//Let's check if everything is still there
-			to_chat(user, "<span class='notice'>You place the poster!</span>")
+			to_chat(user, span_notice("You place the poster!"))
 			return
 
-	to_chat(user, "<span class='notice'>The poster falls down!</span>")
+	to_chat(user, span_notice("The poster falls down!"))
 	D.roll_and_drop(temp_loc)
 
 /turf/closed/wall/proc/place_borg_poster(obj/item/wantedposterposter/P, mob/user)
@@ -173,35 +173,28 @@
 	var/stuff_on_wall = 0
 	for(var/obj/O in contents) //Let's see if it already has a poster on it or too much stuff
 		if(istype(O, /obj/structure/sign/poster))
-			to_chat(user, "<span class='warning'>The wall is far too cluttered to place a poster!</span>")
+			to_chat(user, span_warning("The wall is far too cluttered to place a poster!"))
 			return
 		stuff_on_wall++
 		if(stuff_on_wall >= 3)
-			to_chat(user, "<span class='warning'>The wall is far too cluttered to place a poster!</span>")
+			to_chat(user, span_warning("The wall is far too cluttered to place a poster!"))
 			return
 
-	to_chat(user, "<span class='notice'>You start placing the poster on the wall...</span>"	)
+	to_chat(user, span_notice("You start placing the poster on the wall...")	)
 
 	var/datum/data/record/R = P.chosen
 	var/datum/data/record/S = find_record("name", R.fields["name"], GLOB.data_core.security) //Curse old coders
 	if(!R)
-		to_chat(user, "<span class='notice'>The criminal record seems to be missing!</span>")
+		to_chat(user, span_notice("The criminal record seems to be missing!"))
 		return
 	var/obj/item/photo/photo = R.fields["photo_front"]
 	var/wanted_name = R.fields["name"]
 	var/description = "A poster declaring [wanted_name] to be a dangerous individual, wanted by Nanotrasen. Report any sightings to security immediately."
-	var/list/major_crimes = S.fields["ma_crim"]
-	var/list/minor_crimes = S.fields["mi_crim"]
-	if(major_crimes.len || minor_crimes.len)
+	var/list/crimes = S.fields["crimes"]
+	if(crimes.len)
 		description += "\n[wanted_name] is wanted for the following crimes:\n"
-	if(minor_crimes.len)
 		description += "\nMinor Crimes:"
-		for(var/datum/data/crime/c in S.fields["mi_crim"])
-			description += "\n[c.crimeName]\n"
-			description += "[c.crimeDetails]\n"
-	if(major_crimes.len)
-		description += "\nMajor Crimes:"
-		for(var/datum/data/crime/c in S.fields["ma_crim"])
+		for(var/datum/data/crime/c in S.fields["crimes"])
 			description += "\n[c.crimeName]\n"
 			description += "[c.crimeDetails]\n"
 	var/obj/structure/sign/poster/wanted/D = new(P, photo.picture.picture_image, wanted_name, description, "WANTED", "#FF0000", "wanted_background", "wanted poster", "A wanted poster for")
@@ -217,10 +210,10 @@
 			return
 
 		if(iswallturf(src) && user && user.loc == temp_loc)	//Let's check if everything is still there
-			to_chat(user, "<span class='notice'>You place the poster!</span>")
+			to_chat(user, span_notice("You place the poster!"))
 			return
 
-	to_chat(user, "<span class='notice'>The poster falls down!</span>")
+	to_chat(user, span_notice("The poster falls down!"))
 	qdel(D)
 
 // Various possible posters follow
@@ -669,6 +662,11 @@
 	name = "Carbon Dioxide"
 	desc = "This informational poster teaches the viewer what carbon dioxide is."
 	icon_state = "poster35_legit"
+
+/obj/structure/sign/poster/official/keep_calm
+	name = "Keep Calm"
+	desc = "This poster reminds employees to not panic in the unlikely event of an emergency."
+	icon_state = "poster37_legit" //36 is taken
 
 /obj/item/wantedposterposter
 	name = "Wanted Poster Poster"

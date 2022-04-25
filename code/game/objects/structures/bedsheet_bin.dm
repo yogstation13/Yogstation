@@ -20,6 +20,7 @@ LINEN BINS
 	w_class = WEIGHT_CLASS_TINY
 	item_color = "white"
 	resistance_flags = FLAMMABLE
+	var/newbedpath = null
 
 	dog_fashion = /datum/dog_fashion/head/ghost
 	var/list/dream_messages = list("white")
@@ -29,23 +30,38 @@ LINEN BINS
 		..()
 
 /obj/item/bedsheet/attack_self(mob/user)
+	if(newbedpath)
+		var/obj/item/bedsheet/sheet = new newbedpath(drop_location())
+		if(sheet)
+			sheet.name = name
+			sheet.icon_state = icon_state
+			sheet.item_state = item_state
+			sheet.item_color = item_color
+			sheet.dream_messages = dream_messages
+			qdel(src)
+			user.put_in_active_hand(sheet)
+			to_chat(user, span_notice("You adjust the bedsheet to be worn on your head!"))
+	else
+		to_chat(user, span_notice("You cannot adjust this bedsheet!"))
+
+/obj/item/bedsheet/AltClick(mob/user)
 	if(!user.CanReach(src))		//No telekenetic grabbing.
 		return
 	if(!user.dropItemToGround(src))
 		return
 	if(layer == initial(layer))
 		layer = ABOVE_MOB_LAYER
-		to_chat(user, "<span class='notice'>You cover yourself with [src].</span>")
+		to_chat(user, span_notice("You cover yourself with [src]."))
 	else
 		layer = initial(layer)
-		to_chat(user, "<span class='notice'>You smooth [src] out beneath you.</span>")
+		to_chat(user, span_notice("You smooth [src] out beneath you."))
 	add_fingerprint(user)
 	return
 
 /obj/item/bedsheet/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WIRECUTTER || I.is_sharp())
 		// yogs start - disable infinite holocloth
-		to_chat(user, "<span class='notice'>You tear [src] up.</span>")
+		to_chat(user, span_notice("You tear [src] up."))
 		if(flags_1 & HOLOGRAM_1)
 			qdel(src)
 			return
@@ -62,12 +78,14 @@ LINEN BINS
 	item_state = "sheetblue"
 	item_color = "blue"
 	dream_messages = list("blue")
+	newbedpath = /obj/item/bedsheet/adjusted/blue
 
 /obj/item/bedsheet/green
 	icon_state = "sheetgreen"
 	item_state = "sheetgreen"
 	item_color = "green"
 	dream_messages = list("green")
+	newbedpath = /obj/item/bedsheet/adjusted/green
 
 /obj/item/bedsheet/grey
 	icon_state = "sheetgrey"
@@ -80,12 +98,14 @@ LINEN BINS
 	item_state = "sheetorange"
 	item_color = "orange"
 	dream_messages = list("orange")
+	newbedpath = /obj/item/bedsheet/adjusted/orange
 
 /obj/item/bedsheet/purple
 	icon_state = "sheetpurple"
 	item_state = "sheetpurple"
 	item_color = "purple"
 	dream_messages = list("purple")
+	newbedpath = /obj/item/bedsheet/adjusted/purple
 
 /obj/item/bedsheet/patriot
 	name = "patriotic bedsheet"
@@ -102,18 +122,21 @@ LINEN BINS
 	item_state = "sheetrainbow"
 	item_color = "rainbow"
 	dream_messages = list("red", "orange", "yellow", "green", "blue", "purple", "a rainbow")
+	newbedpath = /obj/item/bedsheet/adjusted/rainbow
 
 /obj/item/bedsheet/red
 	icon_state = "sheetred"
 	item_state = "sheetred"
 	item_color = "red"
 	dream_messages = list("red")
+	newbedpath = /obj/item/bedsheet/adjusted/red
 
 /obj/item/bedsheet/yellow
 	icon_state = "sheetyellow"
 	item_state = "sheetyellow"
 	item_color = "yellow"
 	dream_messages = list("yellow")
+	newbedpath = /obj/item/bedsheet/adjusted/yellow
 
 /obj/item/bedsheet/mime
 	name = "mime's blanket"
@@ -122,6 +145,7 @@ LINEN BINS
 	item_state = "sheetmime"
 	item_color = "mime"
 	dream_messages = list("silence", "gestures", "a pale face", "a gaping mouth", "the mime")
+	newbedpath = /obj/item/bedsheet/adjusted/mime
 
 /obj/item/bedsheet/clown
 	name = "clown's blanket"
@@ -130,6 +154,7 @@ LINEN BINS
 	item_state = "sheetrainbow"
 	item_color = "clown"
 	dream_messages = list("honk", "laughter", "a prank", "a joke", "a smiling face", "the clown")
+	newbedpath = /obj/item/bedsheet/adjusted/clown
 
 /obj/item/bedsheet/captain
 	name = "captain's bedsheet"
@@ -138,6 +163,7 @@ LINEN BINS
 	item_state = "sheetcaptain"
 	item_color = "captain"
 	dream_messages = list("authority", "a golden ID", "sunglasses", "a green disc", "an antique gun", "the captain")
+	newbedpath = /obj/item/bedsheet/adjusted/captain
 
 /obj/item/bedsheet/rd
 	name = "research director's bedsheet"
@@ -146,6 +172,7 @@ LINEN BINS
 	item_state = "sheetrd"
 	item_color = "director"
 	dream_messages = list("authority", "a silvery ID", "a bomb", "a mech", "a facehugger", "maniacal laughter", "the research director")
+	newbedpath = /obj/item/bedsheet/adjusted/rd
 
 // for Free Golems.
 /obj/item/bedsheet/rd/royal_cape
@@ -160,6 +187,7 @@ LINEN BINS
 	item_state = "sheetmedical"
 	item_color = "medical"
 	dream_messages = list("healing", "life", "surgery", "a doctor")
+	newbedpath = /obj/item/bedsheet/adjusted/medical
 
 /obj/item/bedsheet/cmo
 	name = "chief medical officer's bedsheet"
@@ -176,6 +204,7 @@ LINEN BINS
 	item_state = "sheethos"
 	item_color = "hosred"
 	dream_messages = list("authority", "a silvery ID", "handcuffs", "a baton", "a flashbang", "sunglasses", "the head of security")
+	newbedpath = /obj/item/bedsheet/adjusted/hos
 
 /obj/item/bedsheet/hop
 	name = "head of personnel's bedsheet"
@@ -184,6 +213,7 @@ LINEN BINS
 	item_state = "sheethop"
 	item_color = "hop"
 	dream_messages = list("authority", "a silvery ID", "obligation", "a computer", "an ID", "a corgi", "the head of personnel")
+	newbedpath = /obj/item/bedsheet/adjusted/hop
 
 /obj/item/bedsheet/ce
 	name = "chief engineer's bedsheet"
@@ -192,6 +222,7 @@ LINEN BINS
 	item_state = "sheetce"
 	item_color = "chief"
 	dream_messages = list("authority", "a silvery ID", "the engine", "power tools", "an APC", "a parrot", "the chief engineer")
+	newbedpath = /obj/item/bedsheet/adjusted/ce
 
 /obj/item/bedsheet/qm
 	name = "quartermaster's bedsheet"
@@ -206,6 +237,7 @@ LINEN BINS
 	item_state = "sheetbrown"
 	item_color = "cargo"
 	dream_messages = list("brown")
+	newbedpath = /obj/item/bedsheet/adjusted/brown
 
 /obj/item/bedsheet/black
 	icon_state = "sheetblack"
@@ -360,7 +392,7 @@ LINEN BINS
 			return
 		sheets.Add(I)
 		amount++
-		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		to_chat(user, span_notice("You put [I] in [src]."))
 		update_icon()
 
 	else if(default_unfasten_wrench(user, I, 5))
@@ -379,10 +411,10 @@ LINEN BINS
 
 	else if(amount && !hidden && I.w_class < WEIGHT_CLASS_BULKY)	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
 		if(!user.transferItemToLoc(I, src))
-			to_chat(user, "<span class='warning'>\The [I] is stuck to your hand, you cannot hide it among the sheets!</span>")
+			to_chat(user, span_warning("\The [I] is stuck to your hand, you cannot hide it among the sheets!"))
 			return
 		hidden = I
-		to_chat(user, "<span class='notice'>You hide [I] among the sheets.</span>")
+		to_chat(user, span_notice("You hide [I] among the sheets."))
 
 
 /obj/structure/bedsheetbin/attack_paw(mob/user)
@@ -409,12 +441,12 @@ LINEN BINS
 
 		B.forceMove(drop_location())
 		user.put_in_hands(B)
-		to_chat(user, "<span class='notice'>You take [B] out of [src].</span>")
+		to_chat(user, span_notice("You take [B] out of [src]."))
 		update_icon()
 
 		if(hidden)
 			hidden.forceMove(drop_location())
-			to_chat(user, "<span class='notice'>[hidden] falls out of [B]!</span>")
+			to_chat(user, span_notice("[hidden] falls out of [B]!"))
 			hidden = null
 
 
@@ -432,7 +464,7 @@ LINEN BINS
 			B = new /obj/item/bedsheet(loc)
 
 		B.forceMove(drop_location())
-		to_chat(user, "<span class='notice'>You telekinetically remove [B] from [src].</span>")
+		to_chat(user, span_notice("You telekinetically remove [B] from [src]."))
 		update_icon()
 
 		if(hidden)
@@ -441,3 +473,71 @@ LINEN BINS
 
 
 	add_fingerprint(user)
+
+/obj/item/bedsheet/adjusted
+	slot_flags = ITEM_SLOT_HEAD
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEGLOVES|HIDEJUMPSUIT|HIDENECK|HIDEFACIALHAIR|HIDESUITSTORAGE
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS|HEAD
+	flags_cover = MASKCOVERSEYES|MASKCOVERSMOUTH|HEADCOVERSMOUTH
+	var/oldbedpath = null
+
+/obj/item/bedsheet/adjusted/attack_self(mob/user)
+	if(oldbedpath)
+		var/obj/item/bedsheet/sheet = new oldbedpath(drop_location())
+		if(sheet)
+			qdel(src)
+			user.put_in_active_hand(sheet)
+			to_chat(user, span_notice("You adjust the bedsheet to be worn on your neck!"))
+	else
+		to_chat(user, span_notice("You cannot adjust this bedsheet!"))
+
+/obj/item/bedsheet/adjusted/blue
+	oldbedpath = /obj/item/bedsheet/blue
+
+/obj/item/bedsheet/adjusted/green
+	oldbedpath = /obj/item/bedsheet/green
+
+/obj/item/bedsheet/adjusted/grey
+	oldbedpath = /obj/item/bedsheet/grey
+
+/obj/item/bedsheet/adjusted/orange
+	oldbedpath = /obj/item/bedsheet/orange
+
+/obj/item/bedsheet/adjusted/purple
+	oldbedpath = /obj/item/bedsheet/purple
+
+/obj/item/bedsheet/adjusted/rainbow
+	oldbedpath = /obj/item/bedsheet/rainbow
+
+/obj/item/bedsheet/adjusted/red
+	oldbedpath = /obj/item/bedsheet/red
+
+/obj/item/bedsheet/adjusted/yellow
+	oldbedpath = /obj/item/bedsheet/yellow
+
+/obj/item/bedsheet/adjusted/mime
+	oldbedpath = /obj/item/bedsheet/mime
+
+/obj/item/bedsheet/adjusted/clown
+	oldbedpath = /obj/item/bedsheet/clown
+
+/obj/item/bedsheet/adjusted/captain
+	oldbedpath = /obj/item/bedsheet/captain
+
+/obj/item/bedsheet/adjusted/rd
+	oldbedpath = /obj/item/bedsheet/rd
+
+/obj/item/bedsheet/adjusted/medical
+	oldbedpath = /obj/item/bedsheet/medical
+
+/obj/item/bedsheet/adjusted/hos
+	oldbedpath = /obj/item/bedsheet/hos
+
+/obj/item/bedsheet/adjusted/hop
+	oldbedpath = /obj/item/bedsheet/hop
+
+/obj/item/bedsheet/adjusted/ce
+	oldbedpath = /obj/item/bedsheet/ce
+
+/obj/item/bedsheet/adjusted/brown
+	oldbedpath = /obj/item/bedsheet/brown

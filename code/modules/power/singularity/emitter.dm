@@ -22,10 +22,12 @@
 	var/icon_state_underpowered = "emitter_+u"
 	var/active = FALSE
 	var/powered = FALSE
-	var/fire_delay = 100
-	var/maximum_fire_delay = 100
-	var/minimum_fire_delay = 20
-	var/last_shot = 0
+	var/fire_delay = 10 SECONDS //emitters always start with a 10 second starting time
+	var/maximum_reload_time = 10 SECONDS
+	var/minimum_reload_time = 2 SECONDS
+	var/shots_before_reload = 4 //how many times we shoot before "reloading"
+	var/delay_between_shots = 2 SECONDS //the time in seconds between regular shots, ie not "reloading"
+	var/last_shot = 0 
 	var/shot_number = 0
 	var/state = EMITTER_UNWRENCHED
 	var/locked = FALSE
@@ -43,6 +45,9 @@
 	var/manual = FALSE
 	var/charge = 0
 	var/last_projectile_params
+
+	var/throwing_range = 5
+	var/throwing_speed = 3
 
 
 /obj/machinery/power/emitter/anchored
@@ -74,17 +79,22 @@
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
 /obj/machinery/power/emitter/RefreshParts()
-	var/max_firedelay = 120
-	var/firedelay = 120
-	var/min_firedelay = 24
-	var/power_usage = 350
+	var/max_reload = initial(maximum_reload_time) + 20
+	var/min_reload = initial(minimum_reload_time) + 4
+	var/power_usage = initial(active_power_usage) + 50
+	var/shot_delay = initial(delay_between_shots) + 2
+	var/shot_reload = initial(shots_before_reload) - 1
 	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
-		max_firedelay -= 20 * L.rating
-		min_firedelay -= 4 * L.rating
-		firedelay -= 20 * L.rating
-	maximum_fire_delay = max_firedelay
-	minimum_fire_delay = min_firedelay
-	fire_delay = firedelay
+		max_reload -= 20 * L.rating
+		min_reload -= 4 * L.rating
+	maximum_reload_time = max_reload
+	minimum_reload_time = min_reload
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
+		shot_delay  -= 2 * C.rating
+		shot_reload += C.rating
+	fire_delay = maximum_reload_time
+	delay_between_shots = shot_delay
+	shots_before_reload = shot_reload
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		power_usage -= 50 * M.rating
 	active_power_usage = power_usage
@@ -92,7 +102,7 @@
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Emitting one beam each <b>[fire_delay*0.1]</b> seconds.<br>Power consumption at <b>[active_power_usage]W</b>.<span>"
+		. += "<span class='notice'>The status display reads: Emitting one beam each <b>[fire_delay*0.1]</b> seconds, shooting [shots_before_reload] times before recharging. <br>Power consumption at <b>[active_power_usage]W</b>.<span>"
 
 /obj/machinery/power/emitter/ComponentInitialize()
 	. = ..()
@@ -100,7 +110,7 @@
 
 /obj/machinery/power/emitter/proc/can_be_rotated(mob/user,rotation_type)
 	if (anchored)
-		to_chat(user, "<span class='warning'>It is fastened to the floor!</span>")
+		to_chat(user, span_warning("It is fastened to the floor!"))
 		return FALSE
 	return TRUE
 
@@ -124,17 +134,17 @@
 	add_fingerprint(user)
 	if(state == EMITTER_WELDED)
 		if(!powernet)
-			to_chat(user, "<span class='warning'>\The [src] isn't connected to a wire!</span>")
+			to_chat(user, span_warning("\The [src] isn't connected to a wire!"))
 			return TRUE
 		if(!locked && allow_switch_interact)
 			if(active == TRUE)
 				active = FALSE
-				to_chat(user, "<span class='notice'>You turn off [src].</span>")
+				to_chat(user, span_notice("You turn off [src]."))
 			else
 				active = TRUE
-				to_chat(user, "<span class='notice'>You turn on [src].</span>")
+				to_chat(user, span_notice("You turn on [src]."))
 				shot_number = 0
-				fire_delay = maximum_fire_delay
+				fire_delay = maximum_reload_time
 
 			message_admins("Emitter turned [active ? "ON" : "OFF"] by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
 			log_game("Emitter turned [active ? "ON" : "OFF"] by [key_name(user)] in [AREACOORD(src)]")
@@ -143,16 +153,16 @@
 			update_icon()
 
 		else
-			to_chat(user, "<span class='warning'>The controls are locked!</span>")
+			to_chat(user, span_warning("The controls are locked!"))
 	else
-		to_chat(user, "<span class='warning'>[src] needs to be firmly secured to the floor first!</span>")
+		to_chat(user, span_warning("[src] needs to be firmly secured to the floor first!"))
 		return TRUE
 
 /obj/machinery/power/emitter/attack_animal(mob/living/simple_animal/M)
 	if(ismegafauna(M) && anchored)
 		state = EMITTER_UNWRENCHED
 		anchored = FALSE
-		M.visible_message("<span class='warning'>[M] rips [src] free from its moorings!</span>")
+		M.visible_message(span_warning("[M] rips [src] free from its moorings!"))
 	else
 		..()
 	if(!anchored)
@@ -202,7 +212,20 @@
 		fire_beam()
 
 /obj/machinery/power/emitter/proc/fire_beam(mob/user)
-	var/obj/item/projectile/P = new projectile_type(get_turf(src))
+	var/obj/item/K = new projectile_type(get_turf(src))
+
+	/// If it isn't a projectile, throw it
+	if(!istype(K, /obj/item/projectile))
+		if(istype(K, /obj/item/grenade))
+			var/obj/item/grenade/I = K
+			I.preprime()
+		K.throw_at(get_edge_target_turf(src, dir), throwing_range, throwing_speed)
+		playsound(get_turf(src), projectile_sound, 50, TRUE)
+		if(prob(35))
+			sparks.start()
+		return K
+
+	var/obj/item/projectile/P = K
 	playsound(get_turf(src), projectile_sound, 50, TRUE)
 	if(prob(35))
 		sparks.start()
@@ -216,23 +239,23 @@
 		P.fire(dir2angle(dir))
 	if(!manual)
 		last_shot = world.time
-		if(shot_number < 3)
-			fire_delay = 20
-			shot_number ++
+		shot_number++
+		if(shot_number < shots_before_reload)
+			fire_delay = delay_between_shots
 		else
-			fire_delay = rand(minimum_fire_delay,maximum_fire_delay)
+			fire_delay = rand(minimum_reload_time,maximum_reload_time)
 			shot_number = 0
 	return P
 
 /obj/machinery/power/emitter/can_be_unfasten_wrench(mob/user, silent)
 	if(active)
 		if(!silent)
-			to_chat(user, "<span class='warning'>Turn \the [src] off first!</span>")
+			to_chat(user, span_warning("Turn \the [src] off first!"))
 		return FAILED_UNFASTEN
 
 	else if(state == EMITTER_WELDED)
 		if(!silent)
-			to_chat(user, "<span class='warning'>[src] is welded to the floor!</span>")
+			to_chat(user, span_warning("[src] is welded to the floor!"))
 		return FAILED_UNFASTEN
 
 	return ..()
@@ -256,26 +279,26 @@
 
 	switch(state)
 		if(EMITTER_UNWRENCHED)
-			to_chat(user, "<span class='warning'>The [src.name] needs to be wrenched to the floor!</span>")
+			to_chat(user, span_warning("The [src.name] needs to be wrenched to the floor!"))
 		if(EMITTER_WRENCHED)
 			if(!I.tool_start_check(user, amount=0))
 				return TRUE
 			user.visible_message("[user.name] starts to weld the [name] to the floor.", \
-				"<span class='notice'>You start to weld \the [src] to the floor...</span>", \
-				"<span class='italics'>You hear welding.</span>")
+				span_notice("You start to weld \the [src] to the floor..."), \
+				span_italics("You hear welding."))
 			if(I.use_tool(src, user, 20, volume=50) && state == EMITTER_WRENCHED)
 				state = EMITTER_WELDED
-				to_chat(user, "<span class='notice'>You weld \the [src] to the floor.</span>")
+				to_chat(user, span_notice("You weld \the [src] to the floor."))
 				connect_to_network()
 		if(EMITTER_WELDED)
 			if(!I.tool_start_check(user, amount=0))
 				return TRUE
 			user.visible_message("[user.name] starts to cut the [name] free from the floor.", \
-				"<span class='notice'>You start to cut \the [src] free from the floor...</span>", \
-				"<span class='italics'>You hear welding.</span>")
+				span_notice("You start to cut \the [src] free from the floor..."), \
+				span_italics("You hear welding."))
 			if(I.use_tool(src, user, 20, volume=50) && state == EMITTER_WELDED)
 				state = EMITTER_WRENCHED
-				to_chat(user, "<span class='notice'>You cut \the [src] free from the floor.</span>")
+				to_chat(user, span_notice("You cut \the [src] free from the floor."))
 				disconnect_from_network()
 
 	return TRUE
@@ -309,16 +332,16 @@
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if(obj_flags & EMAGGED)
-		to_chat(user, "<span class='warning'>The lock seems to be broken!</span>")
+		to_chat(user, span_warning("The lock seems to be broken!"))
 		return
 	if(allowed(user))
 		if(active)
 			locked = !locked
-			to_chat(user, "<span class='notice'>You [src.locked ? "lock" : "unlock"] the controls.</span>")
+			to_chat(user, span_notice("You [src.locked ? "lock" : "unlock"] the controls."))
 		else
-			to_chat(user, "<span class='warning'>The controls can only be locked when \the [src] is online!</span>")
+			to_chat(user, span_warning("The controls can only be locked when \the [src] is online!"))
 	else
-		to_chat(user, "<span class='danger'>Access denied.</span>")
+		to_chat(user, span_danger("Access denied."))
 	return
 
 /obj/machinery/power/emitter/proc/integrate(obj/item/gun/energy/E,mob/user)
@@ -358,7 +381,7 @@
 	locked = FALSE
 	obj_flags |= EMAGGED
 	if(user)
-		user.visible_message("[user.name] emags [src].","<span class='notice'>You short out the lock.</span>")
+		user.visible_message("[user.name] emags [src].",span_notice("You short out the lock."))
 
 
 /obj/machinery/power/emitter/prototype

@@ -36,7 +36,8 @@
 
 /mob/living/simple_animal/pet/cat/Initialize()
 	. = ..()
-	verbs += /mob/living/proc/lay_down
+	add_verb(src, /mob/living/proc/lay_down)
+
 
 /mob/living/simple_animal/pet/cat/update_mobility()
 	..()
@@ -79,6 +80,15 @@
 	pass_flags = PASSMOB
 	mob_size = MOB_SIZE_SMALL
 	collar_type = "kitten"
+	var/list/pet_kitten_names = list("Fajita", "Pumpkin", "Meowchael", "Catrick", "Genghis Kat", "Sir Isaac Mewton", "Nugget", "Meowchelangelo", "Meowgaret", "Lemon", "Meowria", "Todd Meoward", "Dolly Purrton", "Pickle", "Runt", "Claws", "Patches", "Skippy", "Teddy", "Frank", "Quilt", "Lenny", "Benny", "Hubert", "Scrungemuffin", "Pizza", "Pawl Meowcartney")
+	var/list/rare_pet_kitten_names = list("Fuckface", "Chief Meowdical Officer", "Mewcular Opurrative", "Dumbass Cat", "Backup Ian")
+
+/mob/living/simple_animal/pet/cat/kitten/Initialize()
+	. = ..()
+	if(prob(5))
+		name = pick(rare_pet_kitten_names)
+	else
+		name = pick(pet_kitten_names)
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~
 /mob/living/simple_animal/pet/cat/Runtime
@@ -168,37 +178,37 @@
 /mob/living/simple_animal/pet/cat/Life()
 	if(!stat && !buckled && !client)
 		if(prob(1))
-			emote("me", 1, pick("stretches out for a belly rub.", "wags its tail.", "lies down."))
+			emote("me", 1, pick("stretches out for a belly rub.", "wags its tail.", "lies down."), TRUE)
 			icon_state = "[icon_living]_rest"
 			collar_type = "[initial(collar_type)]_rest"
 			set_resting(TRUE)
 		else if (prob(1))
-			emote("me", 1, pick("sits down.", "crouches on its hind legs.", "looks alert."))
+			emote("me", 1, pick("sits down.", "crouches on its hind legs.", "looks alert."), TRUE)
 			icon_state = "[icon_living]_sit"
 			collar_type = "[initial(collar_type)]_sit"
 			set_resting(TRUE)
 		else if (prob(1))
 			if (resting)
-				emote("me", 1, pick("gets up and meows.", "walks around.", "stops resting."))
+				emote("me", 1, pick("gets up and meows.", "walks around.", "stops resting."), TRUE)
 				icon_state = "[icon_living]"
 				collar_type = "[initial(collar_type)]"
 				set_resting(FALSE)
 			else
-				emote("me", 1, pick("grooms its fur.", "twitches its whiskers.", "shakes out its coat."))
+				emote("me", 1, pick("grooms its fur.", "twitches its whiskers.", "shakes out its coat."), TRUE)
 
 	//MICE!
 	if((src.loc) && isturf(src.loc))
 		if(!stat && !resting && !buckled)
 			for(var/mob/living/simple_animal/mouse/M in view(1,src))
 				if(!M.stat && Adjacent(M))
-					emote("me", 1, "splats \the [M]!")
+					emote("me", 1, "splats \the [M]!", TRUE)
 					M.splat()
 					movement_target = null
 					stop_automated_movement = 0
 					break
 			for(var/obj/item/toy/cattoy/T in view(1,src))
 				if (T.cooldown < (world.time - 400))
-					emote("me", 1, "bats \the [T] around with its paw!")
+					emote("me", 1, "bats \the [T] around with its paw!", TRUE)
 					T.cooldown = world.time
 
 	..()
@@ -227,9 +237,9 @@
 /mob/living/simple_animal/pet/cat/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			wuv(1, M)
-		if("harm")
+		if(INTENT_HARM)
 			wuv(-1, M)
 
 /mob/living/simple_animal/pet/cat/proc/wuv(change, mob/M)
@@ -237,13 +247,13 @@
 		if(change > 0)
 			if(M && stat != DEAD)
 				new /obj/effect/temp_visual/heart(loc)
-				emote("me", 1, "purrs!")
+				emote("me", 1, "purrs!", TRUE)
 				if(flags_1 & HOLOGRAM_1)
 					return
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
 		else
 			if(M && stat != DEAD)
-				emote("me", 1, "hisses!")
+				emote("me", 1, "hisses!", TRUE)
 
 /mob/living/simple_animal/pet/cat/cak //I told you I'd do it, Remie
 	name = "Keeki"
@@ -273,7 +283,7 @@
 	free cake to the station!</b>")
 	var/new_name = stripped_input(src, "Enter your name, or press \"Cancel\" to stick with Keeki.", "Name Change")
 	if(new_name)
-		to_chat(src, "<span class='notice'>Your name is now <b>\"new_name\"</b>!</span>")
+		to_chat(src, span_notice("Your name is now <b>\"new_name\"</b>!"))
 		name = new_name
 
 /mob/living/simple_animal/pet/cat/cak/Life()

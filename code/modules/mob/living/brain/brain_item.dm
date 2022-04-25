@@ -10,7 +10,7 @@
 	organ_flags = ORGAN_VITAL
 	attack_verb = list("attacked", "slapped", "whacked")
 	///The brain's organ variables are significantly more different than the other organs, with half the decay rate for balance reasons, and twice the maxHealth
-	decay_factor = STANDARD_ORGAN_DECAY	/ 2		//30 minutes of decaying to result in a fully damaged brain, since a fast decay rate would be unfun gameplay-wise
+	decay_factor = STANDARD_ORGAN_DECAY	* 0.5			//30 minutes of decaying to result in a fully damaged brain, since a fast decay rate would be unfun gameplay-wise
 	maxHealth = BRAIN_DAMAGE_DEATH
 	low_threshold = 45
 	high_threshold = 120
@@ -56,6 +56,17 @@
 
 /obj/item/organ/brain/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
 	..()
+	if(!special)
+		if(C.has_horror_inside())
+			var/mob/living/simple_animal/horror/B = C.has_horror_inside()
+			B.leave_victim()
+	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
+		var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
+		for(var/d in bruh.purchasedpowers)
+			if(istype(d, /datum/action/changeling/fakedeath))
+				var/datum/action/changeling/fakedeath/ack = d
+				ack.sting_action(C)
+
 	for(var/X in traumas)
 		var/datum/brain_trauma/BT = X
 		BT.on_lose(TRUE)
@@ -92,7 +103,7 @@
 			brainmob.set_species(ZI.old_species)	//For if the brain is cloned
 	if(L.mind && L.mind.current)
 		L.mind.transfer_to(brainmob)
-	to_chat(brainmob, "<span class='notice'>You feel slightly disoriented. That's normal when you're just a brain.</span>")
+	to_chat(brainmob, span_notice("You feel slightly disoriented. That's normal when you're just a brain."))
 
 /obj/item/organ/brain/attackby(obj/item/O, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -103,19 +114,19 @@
 	if((organ_flags & ORGAN_FAILING) && O.is_drainable() && O.reagents.has_reagent(/datum/reagent/medicine/mannitol)) //attempt to heal the brain
 		. = TRUE //don't do attack animation.
 		if(brain_death || brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
-			to_chat(user, "<span class='warning'>[src] is far too damaged, there's nothing else we can do for it!</span>")
+			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
 			return
 
 		if(!O.reagents.has_reagent(/datum/reagent/medicine/mannitol, 10))
-			to_chat(user, "<span class='warning'>There's not enough mannitol in [O] to restore [src]!</span>")
+			to_chat(user, span_warning("There's not enough mannitol in [O] to restore [src]!"))
 			return
 
-		user.visible_message("[user] starts to pour the contents of [O] onto [src].", "<span class='notice'>You start to slowly pour the contents of [O] onto [src].</span>")
-		if(!do_after(user, 60, TRUE, src))
-			to_chat(user, "<span class='warning'>You failed to pour [O] onto [src]!</span>")
+		user.visible_message("[user] starts to pour the contents of [O] onto [src].", span_notice("You start to slowly pour the contents of [O] onto [src]."))
+		if(!do_after(user, 6 SECONDS, TRUE, src))
+			to_chat(user, span_warning("You failed to pour [O] onto [src]!"))
 			return
 
-		user.visible_message("[user] pours the contents of [O] onto [src], causing it to reform its original shape and turn a slightly brighter shade of pink.", "<span class='notice'>You pour the contents of [O] onto [src], causing it to reform its original shape and turn a slightly brighter shade of pink.</span>")
+		user.visible_message("[user] pours the contents of [O] onto [src], causing it to reform its original shape and turn a slightly brighter shade of pink.", span_notice("You pour the contents of [O] onto [src], causing it to reform its original shape and turn a slightly brighter shade of pink."))
 		setOrganDamage(damage - (0.05 * maxHealth))	//heals a small amount, and by using "setorgandamage", we clear the failing variable if that was up
 
 		O.reagents.clear_reagents()
@@ -131,27 +142,27 @@
 	. = ..()
 
 	if(suicided)
-		. += "<span class='info'>It's started turning slightly grey. They must not have been able to handle the stress of it all.</span>"
+		. += span_info("It's started turning slightly grey. They must not have been able to handle the stress of it all.")
 	else if(brainmob)
 		if(brainmob.get_ghost(FALSE, TRUE))
 			if(brain_death || brainmob.health <= HEALTH_THRESHOLD_DEAD)
-				. += "<span class='info'>It's lifeless and severely damaged.</span>"
+				. += span_info("It's lifeless and severely damaged.")
 			else if(organ_flags & ORGAN_FAILING)
-				. += "<span class='info'>It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>.</span>"
+				. += span_info("It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>.")
 			else
-				. += "<span class='info'>You can feel the small spark of life still left in this one.</span>"
+				. += span_info("You can feel the small spark of life still left in this one.")
 		else if(organ_flags & ORGAN_FAILING)
-			. += "<span class='info'>It seems particularly lifeless and is rather damaged... You may be able to restore it with some <b>mannitol</b> incase it becomes functional again later.</span>"
+			. += span_info("It seems particularly lifeless and is rather damaged... You may be able to restore it with some <b>mannitol</b> incase it becomes functional again later.")
 		else
-			. += "<span class='info'>This one seems particularly lifeless. Perhaps it will regain some of its luster later.</span>"
+			. += span_info("This one seems particularly lifeless. Perhaps it will regain some of its luster later.")
 	else
 		if(decoy_override)
 			if(organ_flags & ORGAN_FAILING)
-				. += "<span class='info'>It seems particularly lifeless and is rather damaged... You may be able to restore it with some <b>mannitol</b> incase it becomes functional again later.</span>"
+				. += span_info("It seems particularly lifeless and is rather damaged... You may be able to restore it with some <b>mannitol</b> incase it becomes functional again later.")
 			else
-				. += "<span class='info'>This one seems particularly lifeless. Perhaps it will regain some of its luster later.</span>"
+				. += span_info("This one seems particularly lifeless. Perhaps it will regain some of its luster later.")
 		else
-			. += "<span class='info'>This one is completely devoid of life.</span>"
+			. += span_info("This one is completely devoid of life.")
 
 /obj/item/organ/brain/attack(mob/living/carbon/C, mob/user)
 	if(!istype(C))
@@ -165,7 +176,7 @@
 	var/target_has_brain = C.getorgan(/obj/item/organ/brain)
 
 	if(!target_has_brain && C.is_eyes_covered())
-		to_chat(user, "<span class='warning'>You're going to need to remove [C.p_their()] head cover first!</span>")
+		to_chat(user, span_warning("You're going to need to remove [C.p_their()] head cover first!"))
 		return
 
 //since these people will be dead M != usr
@@ -177,14 +188,14 @@
 		if(C == user)
 			msg = "[user] inserts [src] into [user.p_their()] head!"
 
-		C.visible_message("<span class='danger'>[msg]</span>",
-						"<span class='userdanger'>[msg]</span>")
+		C.visible_message(span_danger("[msg]"),
+						span_userdanger("[msg]"))
 
 		if(C != user)
-			to_chat(C, "<span class='notice'>[user] inserts [src] into your head.</span>")
-			to_chat(user, "<span class='notice'>You insert [src] into [C]'s head.</span>")
+			to_chat(C, span_notice("[user] inserts [src] into your head."))
+			to_chat(user, span_notice("You insert [src] into [C]'s head."))
 		else
-			to_chat(user, "<span class='notice'>You insert [src] into your head.</span>"	)
+			to_chat(user, span_notice("You insert [src] into your head.")	)
 
 		Insert(C)
 	else
@@ -198,7 +209,7 @@
 
 /obj/item/organ/brain/on_life()
 	if(damage >= BRAIN_DAMAGE_DEATH) //rip
-		to_chat(owner, "<span class='userdanger'>The last spark of life in your brain fizzles out...</span>")
+		to_chat(owner, span_userdanger("The last spark of life in your brain fizzles out..."))
 		owner.death()
 		brain_death = TRUE
 
@@ -222,11 +233,11 @@
 	if(owner)
 		if(owner.stat < UNCONSCIOUS) //conscious or soft-crit
 			if(prev_damage < BRAIN_DAMAGE_MILD && damage >= BRAIN_DAMAGE_MILD)
-				to_chat(owner, "<span class='warning'>You feel lightheaded.</span>")
+				to_chat(owner, span_warning("You feel lightheaded."))
 			else if(prev_damage < BRAIN_DAMAGE_SEVERE && damage >= BRAIN_DAMAGE_SEVERE)
-				to_chat(owner, "<span class='warning'>You feel less in control of your thoughts.</span>")
+				to_chat(owner, span_danger("You feel less in control of your thoughts."))
 			else if(prev_damage < (BRAIN_DAMAGE_DEATH - 20) && damage >= (BRAIN_DAMAGE_DEATH - 20))
-				to_chat(owner, "<span class='warning'>You can feel your mind flickering on and off...</span>")
+				to_chat(owner, span_userdanger("You can feel your mind flickering on and off..."))
 	//update our previous damage holder after we've checked our boundaries
 	prev_damage = damage
 	return
@@ -276,6 +287,8 @@
 			max_traumas = TRAUMA_LIMIT_BASIC
 		if(TRAUMA_RESILIENCE_SURGERY)
 			max_traumas = TRAUMA_LIMIT_SURGERY
+		if(TRAUMA_RESILIENCE_WOUND)
+			max_traumas = TRAUMA_LIMIT_WOUND
 		if(TRAUMA_RESILIENCE_LOBOTOMY)
 			max_traumas = TRAUMA_LIMIT_LOBOTOMY
 		if(TRAUMA_RESILIENCE_MAGIC)
@@ -334,7 +347,7 @@
 		return
 
 	var/trauma_type = pick(possible_traumas)
-	gain_trauma(trauma_type, resilience)
+	return gain_trauma(trauma_type, resilience)
 
 //Cure a random trauma of a certain resilience level
 /obj/item/organ/brain/proc/cure_trauma_type(brain_trauma_type = /datum/brain_trauma, resilience = TRAUMA_RESILIENCE_BASIC)

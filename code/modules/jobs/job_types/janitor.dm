@@ -11,6 +11,8 @@
 
 	outfit = /datum/outfit/job/janitor
 
+	alt_titles = list("Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid")
+
 	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY
@@ -33,7 +35,8 @@
 	name = "Janitor"
 	jobtype = /datum/job/janitor
 
-	belt = /obj/item/pda/janitor
+	pda_type = /obj/item/pda/janitor
+
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/janitor
-	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1)
+	uniform_skirt = /obj/item/clothing/under/rank/janitor/skirt

@@ -3,6 +3,17 @@
 [![Build Status](https://github.com/yogstation13/Yogstation/workflows/Turdis/badge.svg?branch=master)](https://github.com/yogstation13/Yogstation/actions?query=workflow%3ATurdis+branch%3Amaster)
 [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
+![badge?](https://forthebadge.com/images/badges/0-percent-optimized.svg)
+![badge????](https://forthebadge.com/images/badges/built-with-resentment.svg)
+![badge.](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)
+![badge!!!!](https://forthebadge.com/images/badges/contains-technical-debt.svg)
+![badge.....](https://forthebadge.com/images/badges/designed-in-ms-paint.svg)
+![badge:((](https://forthebadge.com/images/badges/made-with-out-pants.svg)
+![badge:D](https://forthebadge.com/images/badges/powered-by-black-magic.svg)
+![badge!](https://forthebadge.com/images/badges/uses-badges.svg)
+![b-a-d-g-e](https://forthebadge.com/images/badges/uses-git.svg)
+![B.A.D.G.E.](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)
+
 [**Website**](https://yogstation.net)
 
 [**Code**](https://github.com/yogstation13/yogstation)
@@ -24,24 +35,29 @@ code tab of https://github.com/yogstation13/Yogstation
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
+## The Yogstation codebase recommends compiling using version [514.1583](https://www.byond.com/download/build/514/514.1583_byond.exe) and may potentially NOT work on newer or older versions.
+
+## :exclamation: How to compile :exclamation:
+
+Recently we have changed the way to compile the codebase.
+
+Find `BUILD.bat` here in the root folder of yogstation, and double click it to initiate the build. It consists of multiple steps and might take around 1-5 minutes to compile.
+
+After it finishes, you can then setup the server normally by opening `yogstation.dmb` in DreamDaemon. See further down for instructions
+
+**Building yogstation in DreamMaker directly is now deprecated and might produce errors**, such as `'tgui.bundle.js': cannot find file`.
+
 ## INSTALLATION
 
 First-time installation should be fairly straightforward. First, you'll need
 BYOND installed. You can get it from https://www.byond.com/download. Once you've done
 that, extract the game files to wherever you want to keep them. This is a
 sourcecode-only release, so the next step is to compile the server files.
-Open yogstation.dme by double-clicking it, open the Build menu, and click
-compile. This'll take a little while, and if everything's done right you'll get
-a message like this:
-
-```
-saving yogstation.dmb (DEBUG mode)
-yogstation.dmb - 0 errors, 0 warnings
-```
+Follow the above steps to do this.
 
 If you see any errors or warnings, something has gone wrong - possibly a corrupt
 download or the files extracted wrong. If problems persist, ask for assistance
-in irc://irc.rizon.net/coderbus or in #development-public on discord.
+in #development-public on discord.
 
 Once that's done, open up the config folder. You'll want to edit config.txt to
 set the probabilities for different gamemodes in Secret and to set your server
@@ -67,11 +83,11 @@ where the admin rank must be properly capitalised.
 This codebase also depends on a native library called rust-g. A precompiled
 Windows DLL is included in this repository, but Linux users will need to build
 and install it themselves. Directions can be found at the [rust-g
-repo](https://github.com/tgstation/rust-g).
+repo](https://github.com/tgstation/rust-g). The `hash` feature is required.
 
 Finally, to start the server, run Dream Daemon and enter the path to your
 compiled yogstation.dmb file. Make sure to set the port to the one you
-specified in the config.txt, and set the Security box to 'Safe'. Then press GO
+specified in the config.txt, and set the Security box to 'Trusted'. Then press GO
 and the server should start up and be ready to join. It is also recommended that
 you set up the SQL backend (see below).
 

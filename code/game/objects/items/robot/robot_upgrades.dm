@@ -1,5 +1,7 @@
 // robot_upgrades.dm
 // Contains various borg upgrades.
+#define EXPANDER_MAXIMUM_STACK 2
+
 
 /obj/item/borg/upgrade
 	name = "borg upgrade module."
@@ -13,10 +15,12 @@
 	// if true, is not stored in the robot to be ejected
 	// if module is reset
 	var/one_use = FALSE
+	///	Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.
+	var/list/module_flags = NONE
 
 /obj/item/borg/upgrade/proc/action(mob/living/silicon/robot/R, user = usr)
 	if(R.stat == DEAD)
-		to_chat(user, "<span class='notice'>[src] will not function on a deceased cyborg.</span>")
+		to_chat(user, span_notice("[src] will not function on a deceased cyborg."))
 		return FALSE
 	if(module_type && !istype(R.module, module_type))
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
@@ -57,7 +61,7 @@
 
 /obj/item/borg/upgrade/restart/action(mob/living/silicon/robot/R, user = usr)
 	if(R.health < 0)
-		to_chat(user, "<span class='warning'>You have to repair the cyborg before using this module!</span>")
+		to_chat(user, span_warning("You have to repair the cyborg before using this module!"))
 		return FALSE
 
 	if(R.mind)
@@ -65,6 +69,29 @@
 		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 
 	R.revive()
+	R.logevent("WARN -- System recovered from unexpected shutdown.")
+	R.logevent("System brought online.")
+
+/obj/item/borg/upgrade/panel_access_remover
+	name = "cyborg firmware hack"
+	desc = "Used to override the default firmware of a cyborg and disable panel access restrictions."
+	icon_state = "cyborg_upgrade2"
+	one_use = TRUE
+
+/obj/item/borg/upgrade/panel_access_remover/action(mob/living/silicon/robot/R, user = usr)
+	R.req_access = list()
+	return TRUE //Makes sure we delete the upgrade since it's one_use
+
+/obj/item/borg/upgrade/panel_access_remover/freeminer
+	name = "free miner cyborg firmware hack"
+	desc = "Used to override the default firmware of a cyborg with the freeminer version."
+	icon_state = "cyborg_upgrade2"
+
+/obj/item/borg/upgrade/panel_access_remover/freeminer/action(mob/living/silicon/robot/R, user = usr)
+	R.req_access = list(ACCESS_FREEMINER_ENGINEER)
+	new /obj/item/borg/upgrade/panel_access_remover/freeminer(R.drop_location())
+	//This deletes the upgrade which is why we create a new one. This prevents the message "Upgrade Error" without a adding a once-used variable to every board
+	return TRUE
 
 /obj/item/borg/upgrade/vtec
 	name = "cyborg VTEC module"
@@ -77,8 +104,8 @@
 	. = ..()
 	if(.)
 		if(R.has_movespeed_modifier("VTEC"))
-			to_chat(R, "<span class='notice'>A VTEC unit is already installed!</span>")
-			to_chat(user, "<span class='notice'>There's no room for another VTEC unit!</span>")
+			to_chat(R, span_notice("A VTEC unit is already installed!"))
+			to_chat(user, span_notice("There's no room for another VTEC unit!"))
 			return FALSE
 
 		R.add_movespeed_modifier("VTEC", update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
@@ -95,17 +122,18 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = /obj/item/robot_module/security
+	module_flags = BORG_MODULE_SECURITY
 
 /obj/item/borg/upgrade/disablercooler/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 		var/obj/item/gun/energy/disabler/cyborg/T = locate() in R.module.modules
 		if(!T)
-			to_chat(user, "<span class='notice'>There's no disabler in this unit!</span>")
+			to_chat(user, span_notice("There's no disabler in this unit!"))
 			return FALSE
 		if(T.charge_delay <= 2)
-			to_chat(R, "<span class='notice'>A cooling unit is already installed!</span>")
-			to_chat(user, "<span class='notice'>There's no room for another cooling unit!</span>")
+			to_chat(R, span_notice("A cooling unit is already installed!"))
+			to_chat(user, span_notice("There's no room for another cooling unit!"))
 			return FALSE
 
 		T.charge_delay = max(2 , T.charge_delay - 4)
@@ -127,15 +155,72 @@
 	. = ..()
 	if(.)
 		if(R.ionpulse)
-			to_chat(user, "<span class='notice'>This unit already has ion thrusters installed!</span>")
+			to_chat(user, span_notice("This unit already has ion thrusters installed!"))
 			return FALSE
 
 		R.ionpulse = TRUE
+		R.toggle_ionpulse() //Enabled by default
 
 /obj/item/borg/upgrade/thrusters/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
 		R.ionpulse = FALSE
+
+/obj/item/borg/upgrade/language
+	name = "translation matrix upgrade"
+	desc = "Increases the translation matrix to include all xeno languages"
+	icon_state = "cyborg_upgrade2"
+	var/list/languages = list(
+		/datum/language/bonespeak,
+		/datum/language/draconic,
+		/datum/language/english,
+		/datum/language/etherean,
+		/datum/language/felinid,
+		/datum/language/mothian,
+		/datum/language/polysmorph,
+		/datum/language/sylvan
+	)
+
+/obj/item/borg/upgrade/language/expanded
+	name = "advanced translation matrix upgrade"
+	desc = "Increases the translation matrix to include an even wider variety in langauges"
+	languages = list(
+		/datum/language/bonespeak,
+		/datum/language/draconic,
+		/datum/language/english,
+		/datum/language/etherean,
+		/datum/language/felinid,
+		/datum/language/mothian,
+		/datum/language/polysmorph,
+		/datum/language/sylvan,
+		/datum/language/aphasia,
+		/datum/language/beachbum,
+		/datum/language/egg,
+		/datum/language/monkey,
+		/datum/language/mouse,
+		/datum/language/mushroom,
+		/datum/language/slime
+	)
+
+/obj/item/borg/upgrade/language/omni
+	name = "universal translation matrix upgrade"
+	desc = "Allow the translation matrix to handle any language"
+	languages = list()
+
+/obj/item/borg/upgrade/language/omni/Initialize(mapload)
+	. = ..()
+	languages = subtypesof(/datum/language)
+
+/obj/item/borg/upgrade/language/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		for(var/datum/language/lang as anything in languages)
+			R.grant_language(lang, TRUE, TRUE, LANGUAGE_SOFTWARE)
+
+/obj/item/borg/upgrade/language/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		R.remove_all_languages(LANGUAGE_SOFTWARE)
 
 /obj/item/borg/upgrade/ddrill
 	name = "mining cyborg diamond drill"
@@ -143,6 +228,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = /obj/item/robot_module/miner
+	module_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/ddrill/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -175,6 +261,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = /obj/item/robot_module/miner
+	module_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/soh/action(mob/living/silicon/robot/R , user = usr) //yogs single line
 	. = ..()
@@ -184,7 +271,7 @@
 
 		var/obj/item/storage/bag/ore/holding/H = locate() in R.module.modules  //yogs start
 		if(H)
-			to_chat(user, "<span class='warning'>This unit is already equipped with a satchel of holding.</span>")
+			to_chat(user, span_warning("This unit is already equipped with a satchel of holding."))
 			return FALSE
 
 		H = new /obj/item/storage/bag/ore/holding(R.module)  //yogs end
@@ -207,6 +294,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = /obj/item/robot_module/janitor
+	module_flags = BORG_MODULE_JANITOR
 
 /obj/item/borg/upgrade/tboh/action(mob/living/silicon/robot/R, user = usr)//yogs single line
 	. = ..()
@@ -216,7 +304,7 @@
 
 		var/obj/item/storage/bag/trash/bluespace/cyborg/B = locate() in R.module.modules //yogs start
 		if(B)
-			to_chat(user, "<span class='warning'>This unit is already equipped with a trash bag of holding.</span>")
+			to_chat(user, span_warning("This unit is already equipped with a trash bag of holding."))
 			return FALSE
 
 		B = new /obj/item/storage/bag/trash/bluespace/cyborg(R.module) //yogs end
@@ -239,6 +327,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = /obj/item/robot_module/janitor
+	module_flags = BORG_MODULE_JANITOR
 
 /obj/item/borg/upgrade/amop/action(mob/living/silicon/robot/R, user = usr)//yogs single line
 	. = ..()
@@ -248,7 +337,7 @@
 
 		var/obj/item/mop/advanced/cyborg/A = locate() in R.module.modules  //yogs start
 		if(A)
-			to_chat(user, "<span class='warning'>This unit is already equipped with a advanced mop module.</span>")
+			to_chat(user, span_warning("This unit is already equipped with a advanced mop module."))
 			return FALSE
 
 		A = new /obj/item/mop/advanced/cyborg(R.module)  //yogs end
@@ -278,6 +367,8 @@
 			return FALSE
 
 		R.SetEmagged(1)
+		R.logevent("WARN: hardware installed with missing security certificate!") //A bit of fluff to hint it was an illegal tech item
+		R.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 
 		return TRUE
 
@@ -293,17 +384,18 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	require_module = 1
 	module_type = /obj/item/robot_module/miner
+	module_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/lavaproof/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 
-		R.weather_immunities += "lava"
+		R.weather_immunities += WEATHER_LAVA
 
 /obj/item/borg/upgrade/lavaproof/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		R.weather_immunities -= "lava"
+		R.weather_immunities -= WEATHER_LAVA
 
 /obj/item/borg/upgrade/selfrepair
 	name = "self-repair module"
@@ -323,7 +415,7 @@
 	if(.)
 		var/obj/item/borg/upgrade/selfrepair/U = locate() in R
 		if(U)
-			to_chat(user, "<span class='warning'>This unit is already equipped with a self-repair module.</span>")
+			to_chat(user, span_warning("This unit is already equipped with a self-repair module."))
 			return FALSE
 
 		cyborg = R
@@ -353,10 +445,10 @@
 /obj/item/borg/upgrade/selfrepair/ui_action_click()
 	on = !on
 	if(on)
-		to_chat(cyborg, "<span class='notice'>You activate the self-repair module.</span>")
+		to_chat(cyborg, span_notice("You activate the self-repair module."))
 		START_PROCESSING(SSobj, src)
 	else
-		to_chat(cyborg, "<span class='notice'>You deactivate the self-repair module.</span>")
+		to_chat(cyborg, span_notice("You deactivate the self-repair module."))
 		STOP_PROCESSING(SSobj, src)
 	update_icon()
 
@@ -381,12 +473,12 @@
 
 	if(cyborg && (cyborg.stat != DEAD) && on)
 		if(!cyborg.cell)
-			to_chat(cyborg, "<span class='warning'>Self-repair module deactivated. Please, insert the power cell.</span>")
+			to_chat(cyborg, span_warning("Self-repair module deactivated. Please, insert the power cell."))
 			deactivate_sr()
 			return
 
 		if(cyborg.cell.charge < powercost * 2)
-			to_chat(cyborg, "<span class='warning'>Self-repair module deactivated. Please recharge.</span>")
+			to_chat(cyborg, span_warning("Self-repair module deactivated. Please recharge."))
 			deactivate_sr()
 			return
 
@@ -411,7 +503,7 @@
 				msgmode = "critical"
 			else if(cyborg.health < cyborg.maxHealth)
 				msgmode = "normal"
-			to_chat(cyborg, "<span class='notice'>Self-repair is active in <span class='boldnotice'>[msgmode]</span> mode.</span>")
+			to_chat(cyborg, span_notice("Self-repair is active in [span_boldnotice("[msgmode]")] mode."))
 			msg_cooldown = world.time
 	else
 		deactivate_sr()
@@ -424,6 +516,7 @@
 	require_module = 1
 	module_type = /obj/item/robot_module/medical
 	var/list/additional_reagents = list()
+	module_flags = BORG_MODULE_MEDICAL
 
 /obj/item/borg/upgrade/hypospray/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -461,7 +554,7 @@
 		var/found_hypo = FALSE
 		for(var/obj/item/reagent_containers/borghypo/H in R.module.modules)
 			if(H.bypass_protection == TRUE) //yogs start
-				to_chat(user, "<span class='warning'>This unit is already equipped with a piercing hypospray module.</span>")
+				to_chat(user, span_warning("This unit is already equipped with a piercing hypospray module."))
 				return FALSE  //yogs end
 
 			H.bypass_protection = TRUE
@@ -483,13 +576,14 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = /obj/item/robot_module/medical
+	module_flags = BORG_MODULE_MEDICAL
 
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 		var/obj/item/twohanded/shockpaddles/cyborg/S = locate() in R.module.modules //yogs start
 		if(S)
-			to_chat(user, "<span class='warning'>This unit is already equipped with a defibrillator module.</span>")
+			to_chat(user, span_warning("This unit is already equipped with a defibrillator module."))
 			return FALSE
 
 		S = new(R.module) //yogs end
@@ -502,32 +596,142 @@
 		for(var/obj/item/twohanded/shockpaddles/cyborg/S in R.module.modules)
 			R.module.remove_module(S, TRUE)
 
-/obj/item/borg/upgrade/processor
-	name = "medical cyborg surgical processor"
-	desc = "An upgrade to the Medical module, installing a processor \
-		capable of scanning surgery disks and carrying \
-		out procedures"
-	icon_state = "cyborg_upgrade3"
-	require_module = 1
+/obj/item/borg/upgrade/adv_analyzer
+	name = "medical cyborg advanced health analyzer"
+	desc = "An upgrade to the Medical module, loading a more advanced \
+		health analyzer into the holder's module, \
+		replacing the old one."
+	icon_state = "cyborg_upgrade5"
+	require_module = TRUE
 	module_type = /obj/item/robot_module/medical
+	module_flags = BORG_MODULE_MEDICAL
 
-/obj/item/borg/upgrade/processor/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/adv_analyzer/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/surgical_processor/SP = locate() in R.module.modules  //yogs start
-		if(SP)
-			to_chat(user, "<span class='warning'>This unit is already equipped with a surgical processor module.</span>")
+		/// Removes old analyzer
+		for(var/obj/item/healthanalyzer/healthanalyzer in R.module.modules)
+			R.module.remove_module(healthanalyzer, TRUE)
+
+		var/obj/item/healthanalyzer/advanced/advancedanal = locate() in R.module.modules
+
+		if(advancedanal)
+			to_chat(user, span_warning("This unit is already equipped with an advanced health analyzer."))
 			return FALSE
 
-		SP = new(R.module) //yogs end
-		R.module.basic_modules += SP
-		R.module.add_module(SP, FALSE, TRUE)
+		/// Puts in new advanced analyzer
+		advancedanal = new(R.module)
+		R.module.basic_modules += advancedanal
+		R.module.add_module(advancedanal, FALSE, TRUE)
 
-/obj/item/borg/upgrade/processor/deactivate(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/adv_analyzer/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
-	if (.)
-		for(var/obj/item/surgical_processor/SP in R.module.modules)
-			R.module.remove_module(SP, TRUE)
+	if(.)
+		/// Removes new advanced analyzer
+		for(var/obj/item/healthanalyzer/advanced/advancedanal in R.module.modules)
+			R.module.remove_module(advancedanal, TRUE)
+
+		/// Puts in old analyzer
+		var/obj/item/healthanalyzer/healthanalyzer = locate() in R.module.modules
+		healthanalyzer = new(R.module)
+		R.module.basic_modules += healthanalyzer
+		R.module.add_module(healthanalyzer, FALSE, TRUE)
+
+/obj/item/borg/upgrade/surgerykit
+	name = "medical cyborg advanced surgical kit"
+	desc = "An upgrade to the Medical module, loading a more advanced \
+		array of surgical tools into the holder's module, \
+		replacing the old ones."
+	icon_state = "cyborg_upgrade5"
+	require_module = TRUE
+	module_type = /obj/item/robot_module/medical
+	module_flags = BORG_MODULE_MEDICAL
+
+/obj/item/borg/upgrade/surgerykit/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		/// Removes old surgery tools
+		for(var/obj/item/retractor/RT in R.module.modules) // the SC stands for shitcode
+			R.module.remove_module(RT, TRUE)
+
+		for(var/obj/item/hemostat/HS in R.module.modules)
+			R.module.remove_module(HS, TRUE)
+
+		for(var/obj/item/cautery/CT in R.module.modules)
+			R.module.remove_module(CT, TRUE)
+
+		for(var/obj/item/surgicaldrill/SD in R.module.modules)
+			R.module.remove_module(SD, TRUE)
+
+		for(var/obj/item/scalpel/SL in R.module.modules)
+			R.module.remove_module(SL, TRUE)
+
+		for(var/obj/item/circular_saw/CS in R.module.modules)
+			R.module.remove_module(CS, TRUE)
+
+		var/obj/item/scalpel/advanced/LS = locate() in R.module.modules
+		var/obj/item/retractor/advanced/MP = locate() in R.module.modules
+		var/obj/item/cautery/advanced/ST = locate() in R.module.modules
+		if(LS || MP || ST)
+			to_chat(user, span_warning("This unit is already equipped with an advanced surgical kit."))
+			return FALSE
+
+		/// Puts in new surgery tools
+		LS = new(R.module)
+		R.module.basic_modules += LS
+		R.module.add_module(LS, FALSE, TRUE)
+
+		MP = new(R.module)
+		R.module.basic_modules += MP
+		R.module.add_module(MP, FALSE, TRUE)
+
+		ST = new(R.module)
+		R.module.basic_modules += ST
+		R.module.add_module(ST, FALSE, TRUE)
+
+/obj/item/borg/upgrade/surgerykit/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		/// Removes new surgery tools
+		for(var/obj/item/scalpel/advanced/SE in R.module.modules)
+			R.module.remove_module(SE, TRUE)
+
+		for(var/obj/item/retractor/advanced/RE in R.module.modules)
+			R.module.remove_module(RE, TRUE)
+
+		for(var/obj/item/cautery/advanced/CE in R.module.modules)
+			R.module.remove_module(CE, TRUE)
+
+		/// Puts in old surgery tools
+		var/obj/item/retractor/RT = locate() in R.module.modules
+		RT = new(R.module)
+		R.module.basic_modules += RT
+		R.module.add_module(RT, FALSE, TRUE)
+
+		var/obj/item/hemostat/HS = locate() in R.module.modules
+		HS = new(R.module)
+		R.module.basic_modules += HS
+		R.module.add_module(HS, FALSE, TRUE)
+
+		var/obj/item/cautery/CT = locate() in R.module.modules
+		CT = new(R.module)
+		R.module.basic_modules += CT
+		R.module.add_module(CT, FALSE, TRUE)
+
+		var/obj/item/surgicaldrill/SD = locate() in R.module.modules
+		SD = new(R.module)
+		R.module.basic_modules += SD
+		R.module.add_module(SD, FALSE, TRUE)
+
+		var/obj/item/scalpel/SL = locate() in R.module.modules
+		SL = new(R.module)
+		R.module.basic_modules += SL
+		R.module.add_module(SL, FALSE, TRUE)
+
+		var/obj/item/circular_saw/CS = locate() in R.module.modules
+		CS = new(R.module)
+		R.module.basic_modules += CS
+		R.module.add_module(CS, FALSE, TRUE)
 
 /obj/item/borg/upgrade/ai
 	name = "B.O.R.I.S. module"
@@ -538,10 +742,10 @@
 	. = ..()
 	if(.)
 		if(R.shell)
-			to_chat(user, "<span class='warning'>This unit is already an AI shell!</span>")
+			to_chat(user, span_warning("This unit is already an AI shell!"))
 			return FALSE
 		if(R.key) //You cannot replace a player unless the key is completely removed.
-			to_chat(user, "<span class='warning'>Intelligence patterns detected in this [R.braintype]. Aborting.</span>")
+			to_chat(user, span_warning("Intelligence patterns detected in this [R.braintype]. Aborting."))
 			return FALSE
 
 		R.make_shell(src)
@@ -562,14 +766,15 @@
 	. = ..()
 	if(.)
 
-		if(R.hasExpanded)
-			to_chat(usr, "<span class='notice'>This unit already has an expand module installed!</span>")
+		if(R.expansion_count >= EXPANDER_MAXIMUM_STACK)
+			to_chat(usr, span_notice("This unit has already expanded as much as it can!"))
 			return FALSE
 
 		R.notransform = TRUE
 		var/prev_lockcharge = R.lockcharge
 		R.SetLockdown(1)
 		R.anchored = TRUE
+		R.expansion_count++
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(1, R.loc)
 		smoke.start()
@@ -582,15 +787,14 @@
 		R.anchored = FALSE
 		R.notransform = FALSE
 		R.resize = 2
-		R.hasExpanded = TRUE
 		R.update_transform()
 
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		if (R.hasExpanded)
-			R.hasExpanded = FALSE
+		while(R.expansion_count)
 			R.resize = 0.5
+			R.expansion_count--
 			R.update_transform()
 
 /obj/item/borg/upgrade/rped
@@ -600,6 +804,7 @@
 	icon_state = "borgrped"
 	require_module = TRUE
 	module_type = /obj/item/robot_module/engineering
+	module_flags = BORG_MODULE_ENGINEERING
 
 /obj/item/borg/upgrade/rped/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -607,7 +812,7 @@
 
 		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.module.modules
 		if(RPED)
-			to_chat(user, "<span class='warning'>This unit is already equipped with a RPED module.</span>")
+			to_chat(user, span_warning("This unit is already equipped with a RPED module."))
 			return FALSE
 
 		RPED = new(R.module)
@@ -627,6 +832,7 @@
 	icon_state = "adv_plasmacutter"
 	require_module = TRUE
 	module_type = /obj/item/robot_module/miner
+	module_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/plasmacutter/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -634,7 +840,7 @@
 
 		var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC = locate() in R.module.modules
 		if(PC)
-			to_chat(user, "<span class='warning'>This unit is already equipped with a plasma cutter module.</span>")
+			to_chat(user, span_warning("This unit is already equipped with a plasma cutter module."))
 			return FALSE
 
 		PC = new(R.module)
@@ -654,6 +860,7 @@
 	icon_state = "pinpointer_crew"
 	require_module = TRUE
 	module_type = /obj/item/robot_module/medical
+	module_flags = BORG_MODULE_MEDICAL
 
 /obj/item/borg/upgrade/pinpointer/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -661,7 +868,7 @@
 
 		var/obj/item/pinpointer/crew/PP = locate() in R.module.modules
 		if(PP)
-			to_chat(user, "<span class='warning'>This unit is already equipped with a pinpointer module.</span>")
+			to_chat(user, span_warning("This unit is already equipped with a pinpointer module."))
 			return FALSE
 
 		PP = new(R.module)
@@ -699,6 +906,9 @@
 
 /obj/item/borg/upgrade/transform/security/action(mob/living/silicon/robot/R, user = usr)
 	if(CONFIG_GET(flag/disable_secborg))
-		to_chat(user, "<span class='warning'>Nanotrasen policy disallows the use of weapons of mass destruction.</span>")
+		to_chat(user, span_warning("Nanotrasen policy disallows the use of weapons of mass destruction."))
+		return FALSE
+	if(is_banned_from(R.ckey, "Security Officer"))
+		to_chat(user, span_warning("Nanotrasen has disallowed this unit from becoming this type of module."))
 		return FALSE
 	return ..()

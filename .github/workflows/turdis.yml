@@ -6,15 +6,15 @@ name: Turdis
 # events but only for the master branch
 on:
   pull_request:
-    branches: master
+    branches: [master, beta]
   push:
-    branches: master
+    branches: [master, beta]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   lint:
     name: Lints
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
         
@@ -26,7 +26,7 @@ jobs:
           restore-keys: ${{ runner.os }}-dreamchecker
 
       - name: Setup Python
-        uses: actions/setup-python@v1.2.0
+        uses: actions/setup-python@v2
       
       - name: Setup Rust
         uses: hecrj/setup-rust-action@v1.3.2
@@ -43,7 +43,7 @@ jobs:
           tools/travis/check_filedirs.sh yogstation.dme
           tools/travis/check_changelogs.sh
           find . -name "*.json" -not -path "./tgui/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
-          tools/travis/build_tgui.sh
+          tgui/bin/tgui --lint
           tools/travis/check_grep.sh
 
       - name: Run Linter
@@ -59,13 +59,12 @@ jobs:
         
   compile:
     name: Compile All Maps
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
         
       - name: Install Dependencies
         run: |
-          curl https://raw.githubusercontent.com/yogstation13/Yogstation/master/.github/sources.list | sudo tee /etc/apt/sources.list
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt install libstdc++6:i386
@@ -90,10 +89,11 @@ jobs:
       - name: Compile All Maps
         run: |
           tools/travis/template_dm_generator.py
+          tgui/bin/tgui --build
           tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme  
   test:
     name: Compile and Run Tests
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     services:
       mariadb:
        image: mariadb/server
@@ -107,11 +107,9 @@ jobs:
         
       - name: Install Dependencies
         run: |
-          curl https://raw.githubusercontent.com/yogstation13/Yogstation/master/.github/sources.list | sudo tee /etc/apt/sources.list
-          sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo dpkg --add-architecture i386
           sudo apt-get update
-          sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libssl1.1:i386 zlib1g:i386
+          sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib zlib1g:i386 libssl1.1 libssl1.1:i386
           
       - name: Cache BYOND
         uses: actions/cache@v1
@@ -129,6 +127,7 @@ jobs:
           echo "MANPATH=/home/runner/BYOND/byond/man:$MANPATH" >> $GITHUB_ENV
           cd $GITHUB_WORKSPACE
           tools/travis/install_rust_g.sh
+          #tools/travis/install_extools.sh
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis;'
           mysql -u root -h 127.0.0.1 tg_travis < SQL/tgstation_schema.sql
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis_prefixed;'
@@ -136,6 +135,7 @@ jobs:
           
       - name: Compile
         run: |
+          tgui/bin/tgui --build
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           
       - name: Prepare Artifacts

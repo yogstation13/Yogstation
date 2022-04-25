@@ -70,7 +70,7 @@
 		if(PRcounts[id] > PR_ANNOUNCEMENTS_PER_ROUND)
 			return
 
-	var/final_composed = "<span class='announce'>PR: [input[keyword]]</span>"
+	var/final_composed = span_announce("PR: [input[keyword]]")
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
 
@@ -79,7 +79,7 @@
 	require_comms_key = TRUE
 
 /datum/world_topic/ahelp_relay/Run(list/input)
-	relay_msg_admins("<span class='adminnotice'><b><font color=red>HELP: </font> [input["source"]] [input["message_sender"]]: [input["message"]]</b></span>")
+	relay_msg_admins(span_adminnotice("<b><font color=red>HELP: </font> [input["source"]] [input["message_sender"]]: [input["message"]]</b>"))
 
 /datum/world_topic/comms_console
 	keyword = "Comms_Console"
@@ -88,7 +88,7 @@
 /datum/world_topic/comms_console/Run(list/input)
 	minor_announce(input["message"], "Incoming message from [input["message_sender"]]")
 	for(var/obj/machinery/computer/communications/CM in GLOB.machines)
-		CM.overrideCooldown()
+		CM.override_cooldown()
 
 /datum/world_topic/news_report
 	keyword = "News_Report"
@@ -119,7 +119,7 @@
 				sentmsg = oocmsg_toadmins // Get the admin one
 			else
 				sentmsg = oocmsg
-			sentmsg = "<span class='prefix'>RELAY: [input["source"]]</span> " + sentmsg
+			sentmsg = "[span_prefix("RELAY: [input["source"]]")] " + sentmsg
 			//no pinging across servers, thats intentional
 			to_chat(C,sentmsg)
 
@@ -174,6 +174,41 @@
 
 	return jointext(message, "")
 
+// Plays a voice announcement, given the ID of a voice annoucnement datum and a filename of a file in the shared folder, among other things
+/datum/world_topic/voice_announce
+	keyword = "voice_announce"
+	require_comms_key = TRUE
+
+/datum/world_topic/voice_announce/Run(list/input)
+	var/datum/voice_announce/A = GLOB.voice_announce_list[input["voice_announce"]]
+	if(istype(A))
+		A.handle_announce(input["ogg_file"], input["uploaded_file"], input["ip"], text2num(input["duration"]))
+
+// Cancels a voice announcement, given the ID of voice announcement datum, used if the user closes their browser window instead of uploading
+/datum/world_topic/voice_announce_cancel
+	keyword = "voice_announce_cancel"
+	require_comms_key = TRUE
+
+/datum/world_topic/voice_announce_cancel/Run(list/input)
+	var/datum/voice_announce/A = GLOB.voice_announce_list[input["voice_announce_cancel"]]
+	if(istype(A))
+		qdel(A)
+		
+// Queries information about a voice announcement.
+/datum/world_topic/voice_announce_query
+	keyword = "voice_announce_query"
+	require_comms_key = TRUE
+
+/datum/world_topic/voice_announce_query/Run(list/input)
+	. = list()
+	var/datum/voice_announce/A = GLOB.voice_announce_list[input["voice_announce_query"]]
+	if(istype(A))
+		A.was_queried = TRUE
+		.["exists"] = TRUE
+		.["is_ai"] = A.is_ai
+	else
+		.["exists"] = FALSE
+
 /datum/world_topic/status
 	keyword = "status"
 
@@ -188,8 +223,8 @@
 	.["host"] = world.host ? world.host : null
 	.["round_id"] = GLOB.round_id
 	.["players"] = GLOB.clients.len
-	.["revision"] = GLOB.revdata.commit
-	.["revision_date"] = GLOB.revdata.date
+	.["revision"] = GLOB.revdata?.commit
+	.["revision_date"] = GLOB.revdata?.date
 
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
@@ -226,4 +261,11 @@
 		// Shuttle status, see /__DEFINES/stat.dm
 		.["shuttle_timer"] = SSshuttle.emergency.timeLeft()
 		// Shuttle timer, in seconds
-	
+
+/datum/world_topic/systemmsg
+	keyword = "systemmsg"
+	require_comms_key = TRUE
+
+/datum/world_topic/systemmsg/Run(list/input)
+	to_chat(world, span_boldannounce(input["message"]))
+

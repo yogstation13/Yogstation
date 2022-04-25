@@ -8,6 +8,7 @@
 	spawn_positions = 3
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#dcba97"
+	alt_titles = list("Lavaland Scout", "Prospector", "Junior Miner", "Major Miner")
 
 	outfit = /datum/outfit/job/miner
 
@@ -36,7 +37,8 @@
 	name = "Shaft Miner"
 	jobtype = /datum/job/mining
 
-	belt = /obj/item/pda/shaftminer
+	pda_type = /obj/item/pda/shaftminer
+
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	gloves = /obj/item/clothing/gloves/color/black

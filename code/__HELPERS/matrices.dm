@@ -52,7 +52,10 @@
 	if(hold_seconds > 0)
 		sleep(hold_seconds) // time to hold the dab before going back
 	if(!stay) // if stay param is true dab doesn't return
-		animate(src, transform = DAB_RETURN, time = speed * 1.5, loops ) // reverse dab to starting position , slower
+		animate(transform = DAB_RETURN, time = speed * 1.5, loops ) // reverse dab to starting position , slower
+		//doesn't have an object argument because this is "Stacking" with the animate call above
+		//3 billion% intentional
+
 //Dumps the matrix data in format a-f
 /matrix/proc/tolist()
 	. = list()

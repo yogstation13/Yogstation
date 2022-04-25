@@ -1,6 +1,6 @@
 /**
-  * # area 
-  * 
+  * # area
+  *
   * A grouping of tiles into a logical space, mostly used by map editors
   */
 /area
@@ -43,7 +43,7 @@
 	/// Bonus mood for being in this area
 	var/mood_bonus = 0
 	/// Mood message for being here, only shows up if mood_bonus != 0
-	var/mood_message = "<span class='nicegreen'>This area is pretty nice!\n</span>"
+	var/mood_message = span_nicegreen("This area is pretty nice!\n")
 
 	var/power_equip = TRUE
 	var/power_light = TRUE
@@ -57,13 +57,15 @@
 
 	var/has_gravity = 0
 	///Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
-	var/noteleport = FALSE			
+	var/noteleport = FALSE
 	///Hides area from player Teleport function.
 	var/hidden = FALSE
 	///Is the area teleport-safe: no space / radiation / aggresive mobs / other dangers
 	var/safe = FALSE
 	/// If false, loading multiple maps with this area type will create multiple instances.
 	var/unique = TRUE
+	/// If false, then this area will show up as gibberish on suit sensors.
+	var/show_on_sensors = TRUE
 
 	var/no_air = null
 
@@ -88,6 +90,7 @@
 	/// Wire assignment for airlocks in this area
 	var/airlock_wires = /datum/wires/airlock
 
+	var/turf/teleport_anchors = list()	//ist of tiles we prefer to teleport to. this is for areas that are partially hazardous like for instance atmos_distro
 /**
   * A list of teleport locations
   *
@@ -192,7 +195,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Register this area as belonging to a z level
   *
   * Ensures the item is added to the SSmapping.areas_in_z list for this z
-  * 
+  *
   * It also goes through every item in this areas contents and sets the area level z to it
   * breaking the exat first time it does this, this seems crazy but what would I know, maybe
   * areas don't have a valid z themself or something
@@ -217,7 +220,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 
 /**
   * Destroy an area and clean it up
-  * 
+  *
   * Removes the area from GLOB.areas_by_type and also stops it processing on SSobj
   *
   * This is despite the fact that no code appears to put it on SSobj, but
@@ -330,7 +333,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Generate an firealarm alert for this area
   *
   * Sends to all ai players, alert consoles, drones and alarm monitor programs in the world
-  * 
+  *
   * Also starts the area processing on SSobj
   */
 /area/proc/firealert(obj/source)
@@ -364,7 +367,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * resets the alert sent to all ai players, alert consoles, drones and alarm monitor programs
   * in the world
-  * 
+  *
   * Also cycles the icons of all firealarms and deregisters the area from processing on SSOBJ
   */
 /area/proc/firereset(obj/source)
@@ -431,6 +434,14 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			//Cancel silicon alert after 1 minute
 			addtimer(CALLBACK(SILICON, /mob/living/silicon.proc/cancelAlarm,"Burglar",src,trigger), 600)
 
+	var/obj/item/radio/radio = new /obj/item/radio(trigger)
+	radio.set_frequency(FREQ_SECURITY)
+	radio.use_command = TRUE
+	radio.independent = TRUE
+	radio.name = "burglar alarm"
+	radio.talk_into(radio, "Warning: Burglar alarm triggered in [src]!! Break in of [trigger]!!")
+	qdel(radio)
+
 /**
   * Trigger the fire alarm visual affects in an area
   *
@@ -496,7 +507,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 
 /**
   * Returns int 1 or 0 if the area has power for the given channel
-  * 
+  *
   * evalutes a mixture of variables mappers can set, requires_power, always_unpowered and then
   * per channel power_equip, power_light, power_environ
   */
@@ -596,7 +607,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 
 /**
   * Call back when an atom enters an area
-  * 
+  *
   * Sends signals COMSIG_AREA_ENTERED and COMSIG_ENTER_AREA (to the atom)
   *
   * If the area has ambience, then it plays some ambience music to the ambience channel
@@ -657,12 +668,19 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * * Gravity if the Z level has an SSMappingTrait for ZTRAIT_GRAVITY
   * * otherwise no gravity
   */
-/atom/proc/has_gravity(turf/T)
-	if(!T || !isturf(T))
+/atom/proc/has_gravity(turf/target)
+	SHOULD_BE_PURE(TRUE)
+
+	//This is a bit weird but proc arguments are considered non local variables
+	// so it gets mad if you try to reassign it see https://github.com/SpaceManiac/SpacemanDMM/issues/235
+	var/turf/T
+	if(!target || !isturf(target))
 		T = get_turf(src)
+	else
+		T = target
 
 	if(!T)
-		return 0
+		return FALSE
 
 	var/list/forced_gravity = list()
 	SEND_SIGNAL(src, COMSIG_ATOM_HAS_GRAVITY, T, forced_gravity)
@@ -675,7 +693,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		return max_grav
 
 	if(isspaceturf(T)) // Turf never has gravity
-		return 0
+		return FALSE
 
 	var/area/A = get_area(T)
 	if(A.has_gravity) // Areas which always has gravity

@@ -17,7 +17,7 @@ Difficulty: Extremely Hard
 	mob_biotypes = list(MOB_ORGANIC,MOB_HUMANOID)
 	light_color = "#E4C7C5"
 	movement_type = GROUND
-	weather_immunities = list("snow")
+	weather_immunities = list(WEATHER_SNOW)
 	speak_emote = list("roars")
 	armour_penetration = 100
 	melee_damage_lower = 10
@@ -50,21 +50,21 @@ Difficulty: Extremely Hard
 	name = "Fire Frost Orbs"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	chosen_message = "<span class='colossus'>You are now sending out frost orbs to track in on a target.</span>"
+	chosen_message = span_colossus("You are now sending out frost orbs to track in on a target.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/snowball_machine_gun
 	name = "Fire Snowball Machine Gun"
 	icon_icon = 'icons/obj/guns/energy.dmi'
 	button_icon_state = "kineticgun"
-	chosen_message = "<span class='colossus'>You are now firing a snowball machine gun at a target.</span>"
+	chosen_message = span_colossus("You are now firing a snowball machine gun at a target.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/ice_shotgun
 	name = "Fire Ice Shotgun"
 	icon_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "shotgun"
-	chosen_message = "<span class='colossus'>You are now firing shotgun ice blasts.</span>"
+	chosen_message = span_colossus("You are now firing shotgun ice blasts.")
 	chosen_attack_num = 3
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/OpenFire()
@@ -142,7 +142,7 @@ Difficulty: Extremely Hard
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/ex_act(severity, target)
 	adjustBruteLoss(30 * severity - 120)
-	visible_message("<span class='danger'>[src] absorbs the explosion!</span>", "<span class='userdanger'>You absorb the explosion!</span>")
+	visible_message(span_danger("[src] absorbs the explosion!"), span_userdanger("You absorb the explosion!"))
 	return
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/Goto(target, delay, minimum_distance)
@@ -323,7 +323,7 @@ Difficulty: Extremely Hard
 /datum/status_effect/ice_block_talisman/on_apply()
 	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/owner_moved)
 	if(!owner.stat)
-		to_chat(owner, "<span class='userdanger'>You become frozen in a cube!</span>")
+		to_chat(owner, span_userdanger("You become frozen in a cube!"))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")
 	var/icon/size_check = icon(owner.icon, owner.icon_state)
 	cube.Scale(size_check.Width(), size_check.Height())
@@ -335,6 +335,6 @@ Difficulty: Extremely Hard
 
 /datum/status_effect/ice_block_talisman/on_remove()
 	if(!owner.stat)
-		to_chat(owner, "<span class='notice'>The cube melts!</span>")
+		to_chat(owner, span_notice("The cube melts!"))
 	owner.cut_overlay(cube)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)

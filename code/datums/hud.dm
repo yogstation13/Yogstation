@@ -36,7 +36,11 @@ GLOBAL_LIST_INIT(huds, list(
 	ANTAG_HUD_CAPITALIST = new/datum/atom_hud/antag(),
 	ANTAG_HUD_COMMUNIST = new/datum/atom_hud/antag(),
 	ANTAG_HUD_HERETIC = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_MINDSLAVE = new/datum/atom_hud/antag/hidden()
+	ANTAG_HUD_MINDSLAVE = new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_ZOMBIE = new/datum/atom_hud/antag(),
+	ANTAG_HUD_INFILTRATOR = new/datum/atom_hud/antag(), // Yogs
+	ANTAG_HUD_BLOODSUCKER = new/datum/atom_hud/antag(),
+	ANTAG_HUD_MHUNTER = new/datum/atom_hud/antag/hidden()
 	))
 
 /datum/atom_hud
@@ -46,6 +50,8 @@ GLOBAL_LIST_INIT(huds, list(
 
 	var/list/next_time_allowed = list() //mobs associated with the next time this hud can be added to them
 	var/list/queued_to_see = list() //mobs that have triggered the cooldown and are queued to see the hud, but do not yet
+
+	var/do_silicon_check = FALSE // true for medical and sec advanced and diagnostic basic HUDs
 
 /datum/atom_hud/New()
 	GLOB.all_huds += src
@@ -58,64 +64,101 @@ GLOBAL_LIST_INIT(huds, list(
 	GLOB.all_huds -= src
 	return ..()
 
-/datum/atom_hud/proc/remove_hud_from(mob/M)
+/datum/atom_hud/proc/remove_hud_from(mob/M)	// this is called when something disables HUD
 	if(!M || !hudusers[M])
 		return
 	if (!--hudusers[M])
+		var/M_is_silicon = FALSE
+		if(do_silicon_check && istype(M, /mob/living/silicon))
+			M_is_silicon = TRUE
 		hudusers -= M
 		if(queued_to_see[M])
 			queued_to_see -= M
 		else
 			for(var/atom/A in hudatoms)
+				if(M_is_silicon)
+					if (istype(A, /mob))
+						var/mob/B = A
+						if(B.digitalcamo)
+							continue
 				remove_from_single_hud(M, A)
 
-/datum/atom_hud/proc/remove_from_hud(atom/A)
+/datum/atom_hud/proc/remove_from_hud(atom/A)	//this is called when some stops existing or needs HUD removed
 	if(!A)
 		return FALSE
+	var/has_camo = FALSE
+	if(do_silicon_check && istype(A, /mob))
+		var/mob/B = A
+		if(B.digitalcamo)
+			has_camo = TRUE
 	for(var/mob/M in hudusers)
+		if(has_camo)
+			if(istype(M, /mob/living/silicon))
+				continue
 		remove_from_single_hud(M, A)
 	hudatoms -= A
 	return TRUE
 
-/datum/atom_hud/proc/remove_from_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client
+/datum/atom_hud/proc/remove_from_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client	this is used to Hide HUD A from mob M
 	if(!M || !M.client || !A)
 		return
 	for(var/i in hud_icons)
 		M.client.images -= A.hud_list[i]
 
-/datum/atom_hud/proc/add_hud_to(mob/M)
+/datum/atom_hud/proc/add_hud_to(mob/M)	// this is called when something activates HUD
 	if(!M)
 		return
 	if(!hudusers[M])
 		hudusers[M] = 1
+		var/M_is_silicon = FALSE
+		if(do_silicon_check && istype(M, /mob/living/silicon))
+			M_is_silicon = TRUE
 		if(next_time_allowed[M] > world.time)
 			if(!queued_to_see[M])
-				addtimer(CALLBACK(src, .proc/show_hud_images_after_cooldown, M), next_time_allowed[M] - world.time)
+				addtimer(CALLBACK(src, .proc/show_hud_images_after_cooldown, M, M_is_silicon), next_time_allowed[M] - world.time)
 				queued_to_see[M] = TRUE
 		else
 			next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN
 			for(var/atom/A in hudatoms)
+				if(M_is_silicon)
+					if(istype(A, /mob))
+						var/mob/B = A
+						if(B.digitalcamo)
+							continue
 				add_to_single_hud(M, A)
 	else
-		hudusers[M]++
+		hudusers[M]++		// the hell does this do?
 
-/datum/atom_hud/proc/show_hud_images_after_cooldown(M)
+/datum/atom_hud/proc/show_hud_images_after_cooldown(M, M_is_silicon)
 	if(queued_to_see[M])
 		queued_to_see -= M
 		next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN
 		for(var/atom/A in hudatoms)
+			if(M_is_silicon)
+				if(istype(A, /mob))
+					var/mob/B = A
+					if(B.digitalcamo)
+						continue
 			add_to_single_hud(M, A)
 
-/datum/atom_hud/proc/add_to_hud(atom/A)
+/datum/atom_hud/proc/add_to_hud(atom/A)	// something new starts existing or is in a need of a HUD
 	if(!A)
 		return FALSE
 	hudatoms |= A
+	var/has_camo = FALSE
+	if(do_silicon_check && istype(A, /mob))
+		var/mob/B = A
+		if(B.digitalcamo)
+			has_camo = TRUE
 	for(var/mob/M in hudusers)
+		if(has_camo)
+			if(istype(M, /mob/living/silicon))
+				continue
 		if(!queued_to_see[M])
 			add_to_single_hud(M, A)
 	return TRUE
 
-/datum/atom_hud/proc/add_to_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client
+/datum/atom_hud/proc/add_to_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client		this is used to show hud A to mob M
 	if(!M || !M.client || !A)
 		return
 	for(var/i in hud_icons)
@@ -123,7 +166,7 @@ GLOBAL_LIST_INIT(huds, list(
 			M.client.images |= A.hud_list[i]
 
 //MOB PROCS
-/mob/proc/reload_huds()
+/mob/proc/reload_huds()		// used when you need to readd all aplicable huds to user (for instance on reconnect)
 	for(var/datum/atom_hud/hud in GLOB.all_huds)
 		if(hud && hud.hudusers[src])
 			for(var/atom/A in hud.hudatoms)

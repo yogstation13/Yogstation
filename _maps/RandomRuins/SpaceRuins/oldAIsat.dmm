@@ -46,7 +46,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Worn-out APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -603,11 +603,6 @@
 /obj/item/cigbutt,
 /turf/open/floor/plating/airless,
 /area/tcommsat/oldaisat)
-"ca" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/assembly/signaler,
-/turf/open/floor/plasteel/airless/dark,
-/area/tcommsat/oldaisat)
 "cb" = (
 /obj/structure/table,
 /obj/item/reagent_containers/syringe/lethal/choral,
@@ -625,11 +620,6 @@
 "cd" = (
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/plasteel/airless,
-/area/tcommsat/oldaisat)
-"ce" = (
-/obj/structure/table,
-/obj/item/electropack,
-/turf/open/floor/plating/airless,
 /area/tcommsat/oldaisat)
 "cf" = (
 /obj/structure/table,
@@ -767,8 +757,8 @@
 /area/space/nearstation)
 "cA" = (
 /obj/structure/frame/computer{
-	icon_state = "0";
-	dir = 8
+	dir = 8;
+	icon_state = "0"
 	},
 /turf/open/floor/plasteel/airless,
 /area/tcommsat/oldaisat)
@@ -910,6 +900,20 @@
 "da" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating,
+/area/tcommsat/oldaisat)
+"pZ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/assembly/signaler{
+	frequency = 1449
+	},
+/turf/open/floor/plasteel/airless/dark,
+/area/tcommsat/oldaisat)
+"Pu" = (
+/obj/structure/table,
+/obj/item/electropack{
+	code = 30
+	},
+/turf/open/floor/plating/airless,
 /area/tcommsat/oldaisat)
 
 (1,1,1) = {"
@@ -2651,7 +2655,7 @@ ac
 ac
 bU
 bZ
-ce
+Pu
 bw
 ac
 ag
@@ -2709,7 +2713,7 @@ bw
 bw
 bw
 ac
-ca
+pZ
 cf
 bw
 ac

@@ -1,7 +1,7 @@
 /obj/item/implantcase
 	name = "implant case"
 	desc = "A glass case containing an implant."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/implants.dmi'
 	icon_state = "implantcase-0"
 	item_state = "implantcase"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -9,7 +9,7 @@
 	throw_speed = 2
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
-	materials = list(MAT_GLASS=500)
+	materials = list(/datum/material/glass=500)
 	var/obj/item/implant/imp = null
 	var/imp_type
 
@@ -26,7 +26,7 @@
 /obj/item/implantcase/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pen))
 		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on the side of [src]!</span>")
+			to_chat(user, span_notice("You scribble illegibly on the side of [src]!"))
 			return
 		var/t = stripped_input(user, "What would you like the label to be?", name, null)
 		if(user.get_active_held_item() != W)

@@ -74,7 +74,7 @@
 
 /obj/item/gun/ballistic/rocketlauncher/suicide_act(mob/living/user)
 	user.visible_message("<span class='warning'>[user] aims [src] at the ground! It looks like [user.p_theyre()] performing a sick rocket jump!<span>", \
-		"<span class='userdanger'>You aim [src] at the ground to perform a bisnasty rocket jump...</span>")
+		span_userdanger("You aim [src] at the ground to perform a bisnasty rocket jump..."))
 	if(can_shoot())
 		user.notransform = TRUE
 		playsound(src, 'sound/vehicles/rocketlaunch.ogg', 80, 1, 5)
@@ -91,12 +91,27 @@
 		sleep(5)
 		shoot_with_empty_chamber(user)
 		sleep(20)
-		user.visible_message("<span class='warning'>[user] looks about the room realizing [user.p_theyre()] still there. [user.p_they(TRUE)] proceed to shove [src] down their throat and choke [user.p_them()]self with it!</span>", \
-			"<span class='userdanger'>You look around after realizing you're still here, then proceed to choke yourself to death with [src]!</span>")
+		user.visible_message(span_warning("[user] looks about the room realizing [user.p_theyre()] still there. [user.p_they(TRUE)] proceed to shove [src] down their throat and choke [user.p_them()]self with it!"), \
+			span_userdanger("You look around after realizing you're still here, then proceed to choke yourself to death with [src]!"))
 		sleep(20)
 		return OXYLOSS
-
-
-
-
-
+		
+/obj/item/gun/ballistic/handcannon
+	name = "hand cannon"
+	desc = "Since the times of shooting cannonballs from ships has long passed, pirate culture has moved onto making these ship-piercing weapons handheld."
+	icon = 'icons/obj/guns/projectile.dmi'
+	icon_state = "handcannon"
+	item_state = "handycannon"
+	mag_type = /obj/item/ammo_box/magazine/internal/cannonball
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
+	casing_ejector = FALSE
+	bolt_type = BOLT_TYPE_NO_BOLT
+	internal_magazine = TRUE
+	empty_indicator = TRUE
+	tac_reloads = FALSE
+	can_suppress = FALSE
+	force = 10
+	cartridge_wording = "cannonball"
+	fire_sound = 'sound/effects/bang.ogg'
+	pin = /obj/item/firing_pin

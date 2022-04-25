@@ -30,7 +30,7 @@
 /obj/structure/destructible/clockwork/trap/wrench_act(mob/living/user, obj/item/I)
 	if(!is_servant_of_ratvar(user))
 		return ..()
-	to_chat(user, "<span class='notice'>You break down the delicate components of [src] into brass.</span>")
+	to_chat(user, span_notice("You break down the delicate components of [src] into brass."))
 	I.play_tool_sound(src)
 	new/obj/item/stack/tile/brass(get_turf(src))
 	qdel(src)
@@ -40,16 +40,16 @@
 	if(istype(I, /obj/item/clockwork/slab) && is_servant_of_ratvar(user))
 		var/obj/item/clockwork/slab/F = I
 		if(!F.linking)
-			to_chat(user, "<span class='notice'>Beginning link. Alt-click the slab to cancel, or use it on another trap object to link the two.</span>")
+			to_chat(user, span_notice("Beginning link. Alt-click the slab to cancel, or use it on another trap object to link the two."))
 			F.linking = src
 		else
 			if(F.linking in wired_to)
-				to_chat(user, "<span class='warning'>These two objects are already connected!</span>")
+				to_chat(user, span_warning("These two objects are already connected!"))
 				return
 			if(F.linking.z != z)
-				to_chat(user, "<span class='warning'>You'd need a <b>much</b> tougher slab to link two objects in different sectors.</span>")
+				to_chat(user, span_warning("You'd need a <b>much</b> tougher slab to link two objects in different sectors."))
 				return
-			to_chat(user, "<span class='notice'>You link [F.linking] with [src].</span>")
+			to_chat(user, span_notice("You link [F.linking] with [src]."))
 			wired_to += F.linking
 			F.linking.wired_to += src
 			F.linking = null
@@ -60,9 +60,9 @@
 	if(!is_servant_of_ratvar(user))
 		return
 	if(!wired_to.len)
-		to_chat(user, "<span class='warning'>[src] has no connections!</span>")
+		to_chat(user, span_warning("[src] has no connections!"))
 		return
-	to_chat(user, "<span class='notice'>You sever all connections to [src].</span>")
+	to_chat(user, span_notice("You sever all connections to [src]."))
 	I.play_tool_sound(src)
 	for(var/V in wired_to)
 		var/obj/structure/destructible/clockwork/trap/T = V
@@ -76,7 +76,7 @@
 /obj/structure/destructible/clockwork/trap/trigger
 	name = "base trap trigger"
 	max_integrity = 5
-	break_message = "<span class='warning'>The trigger breaks apart!</span>"
+	break_message = span_warning("The trigger breaks apart!")
 	density = FALSE
 
 /obj/structure/destructible/clockwork/trap/trigger/activate()

@@ -37,12 +37,12 @@
 				armed = TRUE
 				if(!user.put_in_hands(gun))
 					armed = FALSE
-					to_chat(user, "<span class='warning'>You need a free hand to hold the gun!</span>")
+					to_chat(user, span_warning("You need a free hand to hold the gun!"))
 					return
 				update_icon()
 				user.update_inv_back()
 		else
-			to_chat(user, "<span class='warning'>You are already holding the gun!</span>")
+			to_chat(user, span_warning("You are already holding the gun!"))
 	else
 		..()
 
@@ -86,16 +86,16 @@
 	gun.forceMove(src)
 	armed = FALSE
 	if(user)
-		to_chat(user, "<span class='notice'>You attach the [gun.name] to the [name].</span>")
+		to_chat(user, span_notice("You attach the [gun.name] to the [name]."))
 	else
-		visible_message("<span class='warning'>The [gun.name] snaps back onto the [name]!</span>")
+		visible_message(span_warning("The [gun.name] snaps back onto the [name]!"))
 	update_icon()
 	user.update_inv_back()
 
 
 /obj/item/gun/ballistic/minigunosprey
 	name = "M-546 Osprey"
-	desc = "An advanced minigun with an incredible rate of fire. Requires a bulky backpack to store all that ammo."
+	desc = "An advanced minigun with an incredible rate of fire and safety overheating lock mechanism. Requires a bulky backpack to store all that ammo."
 	icon = 'yogstation/icons/obj/guns/minigunosprey.dmi'
 	icon_state = "minigun_spin"
 	item_state = "minigunosprey"

@@ -53,14 +53,14 @@
 /datum/bounty/item/assistant/clown_box
 	name = "Clown Box"
 	description = "The universe needs laughter. Stamp cardboard with a clown stamp and ship it out."
-	reward = 1500
+	reward = 1250
 	wanted_types = list(/obj/item/storage/box/clown)
 
 /datum/bounty/item/assistant/cheesiehonkers
 	name = "Cheesie Honkers"
 	description = "Apparently the company that makes Cheesie Honkers is going out of business soon. CentCom wants to stock up before it happens!"
-	reward = 1200
-	required_count = 3
+	reward = 750
+	required_count = 5
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/cheesiehonkers)
 
 /*/datum/bounty/item/assistant/baseball_bat //yogs: we don't even have these
@@ -188,7 +188,7 @@
 /datum/bounty/item/assistant/bonfire
 	name = "Lit Bonfire"
 	description = "Space heaters are malfunctioning and the cargo crew of Central Command is starting to feel cold. Ship a lit bonfire to warm them up."
-	reward = 5000
+	reward = 4500
 	wanted_types = list(/obj/structure/bonfire)
 
 /datum/bounty/item/assistant/bonfire/applies_to(obj/O)
@@ -229,3 +229,23 @@
 	reward = 5000
 	required_count = 5
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/deadmouse)
+
+/datum/bounty/item/assistant/pumpup
+	name = "Pump-up"
+	description = "We are attempting to make a combat drug to increase the effectiveness of our soldiers, and we would like to examine pump-up's effects for our drug. Ship one of the syringes over for us to look at."
+	reward = 900
+	wanted_types = list(/obj/item/reagent_containers/hypospray/medipen/pumpup)
+
+/datum/bounty/item/assistant/candy
+	name = "Candy Bars"
+	description = "Our snack vending machines have run out of candybars and our employees are getting antsy, send some candy over would ya?"
+	reward = 750
+	required_count = 5
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/candy)
+
+/datum/bounty/item/assistant/twinkies
+	name = "Twinkies"
+	description = "We need some more twinkies to put into our military rations, ship some over so we can continue production."
+	reward = 750
+	required_count = 5
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/spacetwinkie)

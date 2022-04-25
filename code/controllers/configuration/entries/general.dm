@@ -20,6 +20,11 @@
 /datum/config_entry/flag/auto_deadmin_security
 	protection = CONFIG_ENTRY_LOCKED
 
+/datum/config_entry/flag/auto_deadmin_critical
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/number/auto_deadmin_threshold
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/string/servername	// server name (the name of the game window)
 
@@ -204,13 +209,19 @@
 	config_entry_value = "https://wiki.yogstation.net/" // yogs - Old Tickets
 
 /datum/config_entry/string/forumurl
-	config_entry_value = "https://forums.yogstation.net/index.php" // yogs - Old Tickets
+	config_entry_value = "https://forums.yogstation.net" // yogs - Old Tickets
 
 /datum/config_entry/string/rulesurl
-	config_entry_value = "https://forums.yogstation.net/index.php?pages/rules/" // yogs - Old Tickets
+	config_entry_value = "https://forums.yogstation.net/help/rules/" // yogs - Old Tickets
 
 /datum/config_entry/string/githuburl
 	config_entry_value = "https://github.com/yogstation13/Yogstation" // yogs - Old Tickets
+
+/datum/config_entry/string/apiurl
+	config_entry_value = "https://forums.yogstation.net/api"
+
+/datum/config_entry/string/demourl
+	config_entry_value = "https://yogstation13.github.io/demo-viewer/?roundid="
 
 /datum/config_entry/string/roundstatsurl
 
@@ -267,6 +278,10 @@
 
 /datum/config_entry/string/invoke_youtubedl
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
+/datum/config_entry/string/voice_announce_url_base
+
+/datum/config_entry/string/voice_announce_dir
 
 /datum/config_entry/flag/show_irc_name
 
@@ -492,3 +507,9 @@
 /datum/config_entry/flag/everyone_is_donator
 
 /datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API
+
+/datum/config_entry/flag/auto_profile
+
+/datum/config_entry/flag/disable_gc_failure_hard_deletes
+
+/datum/config_entry/flag/disable_all_hard_deletes

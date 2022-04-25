@@ -1,4 +1,7 @@
-
+#define SINGULARITY_QUADRANT_SIZE 3
+#define SINGULARITY_QUADRANT_DISTANCE 15
+#define SINGULARITY_INTEREST_OBJECT 7.5
+#define SINGULARITY_INTEREST_NONSPACE 2
 
 /obj/singularity
 	name = "gravitational singularity"
@@ -23,10 +26,13 @@
 	var/grav_pull = 4 //How many tiles out do we pull?
 	var/consume_range = 0 //How many tiles out do we eat
 	var/event_chance = 10 //Prob for event each tick
+	var/turf/random_target = null // a randomly chosen target.
 	var/target = null //its target. moves towards the target if it has one
 	var/last_failed_movement = 0//Will not move in the same dir if it couldnt before, will help with the getting stuck on fields thing
 	var/last_warning
 	var/consumedSupermatter = 0 //If the singularity has eaten a supermatter shard and can go to stage six
+	var/maxStage = 0 //The largest stage this singularity has been
+	var/does_targeting = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
@@ -46,6 +52,10 @@
 	return
 
 /obj/singularity/Destroy()
+	if(maxStage)
+		var/shardstage = text2path("/obj/item/singularity_shard/stage[maxStage]")
+		var/turf/T = get_turf(src)
+		new shardstage(T, src)
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list.Remove(src)
 	GLOB.singularities.Remove(src)
@@ -85,7 +95,7 @@
 /obj/singularity/attack_tk(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		C.visible_message("<span class='danger'>[C]'s head begins to collapse in on itself!</span>", "<span class='userdanger'>Your head feels like it's collapsing in on itself! This was really not a good idea!</span>", "<span class='italics'>You hear something crack and explode in gore.</span>")
+		C.visible_message(span_danger("[C]'s head begins to collapse in on itself!"), span_userdanger("Your head feels like it's collapsing in on itself! This was really not a good idea!"), span_italics("You hear something crack and explode in gore."))
 		var/turf/T = get_turf(C)
 		for(var/i in 1 to 3)
 			C.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
@@ -140,7 +150,7 @@
 /obj/singularity/process()
 	if(current_size >= STAGE_TWO)
 		move()
-		radiation_pulse(src, min(5000, (energy*4.5)+1000), RAD_DISTANCE_COEFFICIENT*0.5)
+		radiation_pulse(src, min(9000, (energy*4.5)+1000), RAD_DISTANCE_COEFFICIENT*0.5)
 		if(prob(event_chance))//Chance for it to run a special event TODO:Come up with one or two more that fit
 			event()
 	eat()
@@ -190,6 +200,8 @@
 			dissipate_delay = 10
 			dissipate_track = 0
 			dissipate_strength = 1
+			if(maxStage < 1)
+				maxStage = 1
 		if(STAGE_TWO)
 			if(check_cardinals_range(1, TRUE))
 				current_size = STAGE_TWO
@@ -202,6 +214,8 @@
 				dissipate_delay = 5
 				dissipate_track = 0
 				dissipate_strength = 5
+				if(maxStage < 2)
+					maxStage = 2
 		if(STAGE_THREE)
 			if(check_cardinals_range(2, TRUE))
 				current_size = STAGE_THREE
@@ -214,6 +228,8 @@
 				dissipate_delay = 4
 				dissipate_track = 0
 				dissipate_strength = 20
+				if(maxStage < 3)
+					maxStage = 3
 		if(STAGE_FOUR)
 			if(check_cardinals_range(3, TRUE))
 				current_size = STAGE_FOUR
@@ -226,6 +242,8 @@
 				dissipate_delay = 10
 				dissipate_track = 0
 				dissipate_strength = 10
+				if(maxStage < 4)
+					maxStage = 4
 		if(STAGE_FIVE)//this one also lacks a check for gens because it eats everything
 			current_size = STAGE_FIVE
 			icon = 'icons/effects/288x288.dmi'
@@ -235,6 +253,8 @@
 			grav_pull = 10
 			consume_range = 4
 			dissipate = 0 //It cant go smaller due to e loss
+			if(maxStage < 5)
+				maxStage = 5
 		if(STAGE_SIX) //This only happens if a stage 5 singulo consumes a supermatter shard.
 			current_size = STAGE_SIX
 			icon = 'icons/effects/352x352.dmi'
@@ -244,6 +264,8 @@
 			grav_pull = 15
 			consume_range = 5
 			dissipate = 0
+			if(maxStage < 6)
+				maxStage = 6
 	if(current_size == allowed_size)
 		investigate_log("<font color='red'>grew to size [current_size]</font>", INVESTIGATE_SINGULO)
 		return 1
@@ -317,10 +339,23 @@
 	if(force_move)
 		movement_dir = force_move
 
-	if(target && prob(60))
+
+	if (target && prob(60))
 		movement_dir = get_dir(src,target) //moves to a singulo beacon, if there is one
+	else if (!target && random_target && prob(55))
+		var/new_movement_dir = get_dir(src, random_target)
+		if (last_failed_movement == movement_dir)
+			random_target = null
+		else
+			movement_dir = new_movement_dir
 
 	step(src, movement_dir)
+
+	if (random_target && (random_target.z != z || get_dist(src, random_target) <= 2))
+		random_target = null
+
+	if (does_targeting && !random_target && prob(50))
+		pick_random_target()
 
 /obj/singularity/proc/check_cardinals_range(steps, retry_with_move = FALSE)
 	. = length(GLOB.cardinals)			//Should be 4.
@@ -332,6 +367,29 @@
 				if(check_cardinals_range(steps, FALSE))		//New location passes, return true.
 					return TRUE
 	. = !.
+
+/obj/singularity/proc/pick_random_target()
+	var/list/sections = list()
+	for (var/section_x = -SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_x < SINGULARITY_QUADRANT_DISTANCE + SINGULARITY_QUADRANT_SIZE; section_x += SINGULARITY_QUADRANT_SIZE)
+		for (var/section_y = -SINGULARITY_QUADRANT_DISTANCE - SINGULARITY_QUADRANT_SIZE; section_y < SINGULARITY_QUADRANT_DISTANCE + SINGULARITY_QUADRANT_SIZE; section_y += SINGULARITY_QUADRANT_SIZE)
+			var/turf/section_loc = locate(x + section_x, y + section_y, z)
+			var/turf/bottom_corner = locate(x + section_x + SINGULARITY_QUADRANT_SIZE - 1, y + section_y + SINGULARITY_QUADRANT_SIZE - 1, z)
+			if (!section_loc || !istype(section_loc) || !bottom_corner || !istype(bottom_corner))
+				continue
+			var/list/box = block(section_loc, bottom_corner)
+			var/interest = 0
+			for (var/turf/T in box)
+				if (!isspaceturf(T))
+					interest += SINGULARITY_INTEREST_NONSPACE
+				var/objs = 0
+				for (var/A in T.contents)
+					if (istype(A, /atom/movable))
+						objs += 1
+				interest += CEILING(objs / SINGULARITY_INTEREST_OBJECT, 0.5)
+			sections[section_loc] = interest
+	var/turf/section = pickweight(sections)
+	if (section && istype(section))
+		random_target = section
 
 /obj/singularity/proc/check_turfs_in(direction = 0, step = 0)
 	if(!direction)
@@ -361,10 +419,10 @@
 	var/dir2 = 0
 	var/dir3 = 0
 	switch(direction)
-		if(NORTH||SOUTH)
+		if(NORTH, SOUTH)
 			dir2 = 4
 			dir3 = 8
-		if(EAST||WEST)
+		if(EAST, WEST)
 			dir2 = 1
 			dir3 = 2
 	var/turf/T2 = T
@@ -420,8 +478,8 @@
 
 /obj/singularity/proc/combust_mobs()
 	for(var/mob/living/carbon/C in urange(20, src, 1))
-		C.visible_message("<span class='warning'>[C]'s skin bursts into flame!</span>", \
-						  "<span class='userdanger'>You feel an inner fire as your skin bursts into flames!</span>")
+		C.visible_message(span_warning("[C]'s skin bursts into flame!"), \
+						  span_userdanger("You feel an inner fire as your skin bursts into flames!"))
 		C.adjust_fire_stacks(5)
 		C.IgniteMob()
 	return
@@ -438,12 +496,12 @@
 				if(istype(H.glasses, /obj/item/clothing/glasses/meson))
 					var/obj/item/clothing/glasses/meson/MS = H.glasses
 					if(MS.vision_flags == SEE_TURFS)
-						to_chat(H, "<span class='notice'>You look directly into the [src.name], good thing you had your protective eyewear on!</span>")
+						to_chat(H, span_notice("You look directly into the [src.name], good thing you had your protective eyewear on!"))
 						return
 
 		M.apply_effect(60, EFFECT_STUN)
-		M.visible_message("<span class='danger'>[M] stares blankly at the [src.name]!</span>", \
-						"<span class='userdanger'>You look directly into the [src.name] and feel weak.</span>")
+		M.visible_message(span_danger("[M] stares blankly at the [src.name]!"), \
+						span_userdanger("You look directly into the [src.name] and feel weak."))
 	return
 
 
@@ -457,3 +515,49 @@
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	qdel(src)
 	return(gain)
+
+/obj/item/singularity_shard
+	name = "singularity shard"
+	desc = "THIS SHOULDN'T EXIST. TELL A CODER HOW YOU GOT THIS."
+	icon_state = "singularity_shard_s1"
+	resistance_flags = INDESTRUCTIBLE
+	var/all_powerful = FALSE /// will it spawn an actual singularity when someone suicides with it
+
+/obj/item/singularity_shard/suicide_act(mob/living/carbon/user)
+	user.visible_message(span_suicide("[user] is trying to break open the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	addtimer(CALLBACK(user, /mob/.proc/gib), 99)
+	addtimer(CALLBACK(src, .proc/spawnsing), 100)
+	return MANUAL_SUICIDE
+
+/obj/item/singularity_shard/proc/spawnsing()
+	var/turf/T = get_turf(src)
+	if(all_powerful)
+		new /obj/singularity(T, src)
+		qdel(src)
+	else
+		new /obj/item/toy/spinningtoy(T, src)
+
+/obj/item/singularity_shard/stage1
+	icon_state = "singularity_shard_s1"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 1."
+
+/obj/item/singularity_shard/stage2
+	icon_state = "singularity_shard_s2"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 2."
+
+/obj/item/singularity_shard/stage3
+	icon_state = "singularity_shard_s3"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 3."
+
+/obj/item/singularity_shard/stage4
+	icon_state = "singularity_shard_s4"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 4."
+
+/obj/item/singularity_shard/stage5
+	icon_state = "singularity_shard_s5"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 5."
+
+/obj/item/singularity_shard/stage6
+	icon_state = "singularity_shard_s6"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 6 and looks particularly unstable."
+	all_powerful = TRUE

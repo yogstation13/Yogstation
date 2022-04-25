@@ -6,21 +6,22 @@
 	stage_speed = 2
 	transmittable = -2
 	level = 6
-	passive_message = "<span class='notice'>You feel tough.</span>"
-	var/Toxin_damage = FALSE
-	var/Hunger_reduction = 8
+	passive_message = span_notice("You feel tough.")
+	var/toxin_damage = FALSE
+	var/hunger_reduction = 8
 	threshold_descs = list(
 		"Resistance 9" = "No blood loss.",
 		"Stage Speed 7" = "Reduces nutrients used."
 	)
 
 /datum/symptom/heal/conversion/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["stage_rate"] >= 7)
-		Hunger_reduction = 4
-	if(A.properties["resistance"] >= 9)
-		Toxin_damage = TRUE
+	if(A.totalStageSpeed() >= 7)
+		hunger_reduction = 4
+	if(A.totalResistance() >= 9)
+		toxin_damage = TRUE
 		
 /datum/symptom/heal/conversion/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob
@@ -42,27 +43,25 @@
 		
 /datum/symptom/heal/conversion/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
 	var/heal_amt = actual_power
-	var/Hunger_multi = actual_power
-	
 	var/list/parts = M.get_damaged_bodyparts(1,1)
 
 	if(!parts.len)
 		return
 		
-	M.adjust_nutrition(-(Hunger_reduction * Hunger_multi)) // So heal to nutrient ratio doesnt change
+	M.adjust_nutrition(-(hunger_reduction * heal_amt)) // So heal to nutrient ratio doesnt change
 	
-	if(M.nutrition <= NUTRITION_LEVEL_STARVING && !Toxin_damage)
+	if(M.nutrition <= NUTRITION_LEVEL_STARVING && !toxin_damage)
 		M.blood_volume -= 10
 		if(prob(45))
-			to_chat(M, "<span class='warning'>You feel like you are wasting away!</span>")
+			to_chat(M, span_warning("You feel like you are wasting away!"))
 	
-	if(Toxin_damage)
+	else if(M.nutrition <= NUTRITION_LEVEL_STARVING && toxin_damage)
 		M.adjustToxLoss(2)
 		if(prob(45))
-			to_chat(M, "<span class='warning'>You dont feel so well.</span>")
+			to_chat(M, span_warning("You dont feel so well."))
 	
 	if(prob(25))
-		to_chat(M, "<span class='notice'>You feel your wounds getting warm.</span>")
+		to_chat(M, span_notice("You feel your wounds getting warm."))
 
 	for(var/obj/item/bodypart/L in parts)
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len))

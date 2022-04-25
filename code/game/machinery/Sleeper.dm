@@ -1,3 +1,8 @@
+#define SLEEPER_TEND		"Treat Injuries"
+#define SLEEPER_ORGANS		"Repair Organs"
+#define SLEEPER_CHEMPURGE	"Purge Toxins"
+#define SLEEPER_HEAL_RATE 2
+
 /obj/machinery/sleep_console
 	name = "sleeper console"
 	icon = 'icons/obj/machines/sleeper.dmi'
@@ -12,27 +17,34 @@
 	density = FALSE
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
+
+	///efficiency, used to increase the effect of some healing methods
 	var/efficiency = 1
-	var/min_health = -25
-	var/list/available_chems
+	///treatments currently available for use
+	var/list/available_treatments
+	///if the patient is able to use the sleeper's controls
 	var/controls_inside = FALSE
-	var/list/possible_chems = list(
-		list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/morphine, /datum/reagent/medicine/perfluorodecalin, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane),
-		list(/datum/reagent/medicine/oculine,/datum/reagent/medicine/inacusiate),
-		list(/datum/reagent/medicine/antitoxin, /datum/reagent/medicine/mutadone, /datum/reagent/medicine/mannitol, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/pen_acid),
-		list(/datum/reagent/medicine/omnizine)
+	///treatments unlocked by manipulator by tier
+	var/list/treatments = list(
+		list(SLEEPER_TEND),
+		list(SLEEPER_ORGANS),
+		list(SLEEPER_CHEMPURGE),
+		list()
 	)
-	var/list/chem_buttons	//Used when emagged to scramble which chem is used, eg: antitoxin -> morphine
-	var/scrambled_chems = FALSE //Are chem buttons scrambled? used as a warning
+	///the current active treatment
+	var/active_treatment = null
+	///if the sleeper puts its patient into stasis
+	var/stasis = FALSE
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
+	var/open_sound = 'sound/machines/podopen.ogg'
+	var/close_sound = 'sound/machines/podclose.ogg'
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
-	var/static/UIbackup = FALSE  // yogs use html instead of tgui    set this to 1/TRUE when tgui breaks //Remember to disable this when we fix it for real
-/obj/machinery/sleeper/Initialize() //yogs: doesn't port sleeper deletion because fuck that
+
+/obj/machinery/sleeper/Initialize()
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
 	update_icon()
-	reset_chem_buttons()
 
 /obj/machinery/sleeper/RefreshParts()
 	var/E
@@ -43,20 +55,22 @@
 		I += M.rating
 
 	efficiency = initial(efficiency)* E
-	min_health = initial(min_health) * E
-	available_chems = list()
+	available_treatments = list()
 	for(var/i in 1 to I)
-		available_chems |= possible_chems[i]
-	reset_chem_buttons()
+		if(!length(treatments[i]))
+			continue
+		available_treatments |= treatments[i]
+	stasis = (I >= 4)
 
 /obj/machinery/sleeper/update_icon()
-	icon_state = initial(icon_state)
 	if(state_open)
-		icon_state += "-open"
+		icon_state = "[initial(icon_state)]-open"
+	else
+		icon_state = initial(icon_state)
 
 /obj/machinery/sleeper/container_resist(mob/living/user)
-	visible_message("<span class='notice'>[occupant] emerges from [src]!</span>",
-		"<span class='notice'>You climb out of [src]!</span>")
+	visible_message(span_notice("[occupant] emerges from [src]!"),
+		span_notice("You climb out of [src]!"))
 	open_machine()
 
 /obj/machinery/sleeper/Exited(atom/movable/user)
@@ -69,14 +83,26 @@
 
 /obj/machinery/sleeper/open_machine()
 	if(!state_open && !panel_open)
+		active_treatment = null
+		var/mob/living/mob_occupant = occupant
+		if(mob_occupant)
+			mob_occupant.remove_status_effect(STATUS_EFFECT_STASIS)
+		flick("[initial(icon_state)]-anim", src)
+		if(open_sound)
+			playsound(src, open_sound, 40)
 		..()
 
 /obj/machinery/sleeper/close_machine(mob/user)
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
+		flick("[initial(icon_state)]-anim", src)
 		..(user)
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, "[enter_message]")
+		if(mob_occupant && stasis)
+			mob_occupant.ExtinguishMob()
+		if(close_sound)
+			playsound(src, close_sound, 40)
 
 /obj/machinery/sleeper/emp_act(severity)
 	. = ..()
@@ -84,6 +110,12 @@
 		return
 	if(is_operational() && occupant)
 		open_machine()
+
+/obj/machinery/sleeper/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		return
+	to_chat(user, span_danger("You disable the chemical injection inhibitors on the sleeper..."))
+	obj_flags |= EMAGGED
 
 /obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
@@ -99,20 +131,22 @@
 	if(..())
 		return
 	if(occupant)
-		to_chat(user, "<span class='warning'>[src] is currently occupied!</span>")
+		to_chat(user, span_warning("[src] is currently occupied!"))
 		return
 	if(state_open)
-		to_chat(user, "<span class='warning'>[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!</span>")
+		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
 		return
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
 		return
 	return FALSE
 
 /obj/machinery/sleeper/wrench_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(default_change_direction_wrench(user, I))
 		return TRUE
 
 /obj/machinery/sleeper/crowbar_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(default_pry_open(I))
 		return TRUE
 	if(default_deconstruction_crowbar(I))
@@ -122,151 +156,19 @@
 	. = !(state_open || panel_open || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR
 	if(.)
 		I.play_tool_sound(src, 50)
-		visible_message("<span class='notice'>[usr] pries open [src].</span>", "<span class='notice'>You pry open [src].</span>")
+		visible_message(span_notice("[usr] pries open [src]."), span_notice("You pry open [src]."))
 		open_machine()
 
-/obj/machinery/sleeper/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
-	if(!UIbackup) //yogs
-		if(controls_inside && state == GLOB.notcontained_state)
-			state = GLOB.default_state // If it has a set of controls on the inside, make it actually controllable by the mob in it.
-
-		ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-		if(!ui)
-			ui = new(user, src, ui_key, "Sleeper", name, 375, 550, master_ui, state)
-			ui.open()
-	else //yogs start   aplly backup UI
-		var/mob/living/mob_occupant = occupant
-		if(isOperable(user, mob_occupant))
-			return
-		var/dat
-		dat += "<H2>Ocupant: "
-		if(mob_occupant)
-			dat += "[mob_occupant.name]"
-			switch(mob_occupant.stat)
-				if(CONSCIOUS)
-					dat += "  <font color = #32E632>Conscious</font>"
-				if(SOFT_CRIT)
-					dat += "  <font color = #DAE632>Conscious</font>"
-				if(UNCONSCIOUS)
-					dat += "  <font color = #DAE632>Unconscious</font>"
-				if(DEAD)
-					dat += "  <font color = #C13131>Dead</font>"
-		else
-			dat += "No Occupant"
-
-		dat += "</H2>"
-
-		dat += "Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
-
-		if(mob_occupant)
-			dat += "<H3>Status  <a href='?src=[REF(src)];refresh=1'>(refresh)</a></H3>"
-			dat += 	   "	Health:			[mob_occupant.health] / [mob_occupant.maxHealth]"
-			dat += "<br>	Brute:			[mob_occupant.getBruteLoss()]"
-			dat += "<br>	Sufocation:		[mob_occupant.getOxyLoss()]"
-			dat += "<br>	Toxin:			[mob_occupant.getToxLoss()]"
-			dat += "<br>	Burn:			[mob_occupant.getFireLoss()]"
-			dat += "<br>	Brain:			"
-			if(mob_occupant.getOrganLoss(ORGAN_SLOT_BRAIN))
-				dat += "abnormal"
-			else
-				dat += "normal"
-
-			dat += "<br>	Cells:			"
-			if(mob_occupant.getCloneLoss())
-				dat += "abnormal"
-			else
-				dat += "normal"
-
-			var/table = ""
-			table += "<table style='width:100%'>"
-			table += "<tr>"
-			table += "<td style='width:50%'><H2>Reagents</H2></td>"
-			table += "<td style='width:50%'><H2>Inject</H2></td>"
-			table += "</tr>"
-			for(var/chem in available_chems)
-				table += "<tr><td style='width:50%' valign='top'>"
-				var/datum/reagent/R = mob_occupant.reagents.has_reagent(chem)
-				if(R)
-					table += "[R.name]	[R.volume] units"
-				table += "</td>"
-
-				table += "<td style='width:50%' valign='top'>"
-				table += "<a href='?src=[REF(src)];inject=[chem]'>"
-				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
-					table += "<font color=\"red\">"
-				var/datum/reagent/thing = GLOB.chemical_reagents_list[chem]
-				table += "[thing.name]</a>"
-				table += "</td></tr>"
-
-			if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
-				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
-					var/found = FALSE
-					for(var/chem in available_chems)
-						var/datum/reagent/thing = GLOB.chemical_reagents_list[chem]
-						if(R.name == thing.name)  // Shit code, i know that please make it better if know how
-							found = TRUE
-					if(!found)
-						table += "<tr><td style='width:50%' valign='top'>"
-						table += "[R.name]	[R.volume] units"
-						table += "</td></tr>"
-
-			table += "</table>"
-			dat += "<tt>[table]</tt>"
-
-		dat += "</font>"
-		var/datum/browser/popup = new(user, "Sleeper", "Sleeper Control", 400, 500)
-		popup.set_content(dat)
-		popup.open()
-		onclose(user, "Sleeper")
-
-/obj/machinery/sleeper/Topic(href, href_list)
-	if(..())
-		return
-	var/mob/living/mob_occupant = occupant
-	if(isOperable(usr, mob_occupant))
-		return
-	if(href_list["input"])
-		if(state_open)
-			close_machine()
-		else
-			open_machine()
-
-	if(href_list["inject"])
-		if(!is_operational() || !mob_occupant)
-			return
-		else
-			for(var/chem in available_chems)
-				if("[chem]" == href_list["inject"])
-					if(inject_chem(chem, usr))
-						. = TRUE
-						if(scrambled_chems && prob(5))
-							to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-					break
-
-	usr.set_machine(src)
-	ui_interact(usr)
-
-/obj/machinery/sleeper/proc/isOperable(mob/user, mob/living/mob_inside)// returns false if it is
-	if(!is_operational())
-		return TRUE
-	if(issilicon(user))
-		return FALSE
-	if(!in_range(user, src))
-		return TRUE
-	if(mob_inside != usr)
-		return FALSE
+/obj/machinery/sleeper/ui_state(mob/user)
 	if(controls_inside)
-		return FALSE
-	if(!istype(mob_inside,/mob/living/carbon/human))
-		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
-		return TRUE
-	var/mob/living/carbon/human/HU = mob_inside
-	if(!HU.dna.check_mutation(TK))
-		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
-		return TRUE
-	return FALSE
-	 // yogs end
+		return GLOB.default_state
+	return GLOB.notcontained_state
+
+/obj/machinery/sleeper/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Sleeper", name)
+		ui.open()
 
 /obj/machinery/sleeper/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
@@ -277,25 +179,69 @@
 		open_machine()
 
 /obj/machinery/sleeper/examine(mob/user)
-	.=..()
-	. += "<span class='notice'>Alt-click [src] to [state_open ? "close" : "open"] it.</span>"
+	. = ..()
+	. += span_notice("Alt-click [src] to [state_open ? "close" : "open"] it.")
 
 /obj/machinery/sleeper/process()
 	..()
 	check_nap_violations()
+	var/mob/living/carbon/C = occupant
+	if(C)
+		if(stasis && (C.stat == DEAD || C.health < 0))
+			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
+		else
+			C.remove_status_effect(STATUS_EFFECT_STASIS)
+		if(obj_flags & EMAGGED)
+			var/existing = C.reagents.get_reagent_amount(/datum/reagent/toxin/amanitin)
+			C.reagents.add_reagent(/datum/reagent/toxin/amanitin, max(0, 1.5 - existing)) //this should be enough that you immediately eat shit on exiting but not before
+		switch(active_treatment)
+			if(SLEEPER_TEND)
+				C.heal_bodypart_damage(SLEEPER_HEAL_RATE,SLEEPER_HEAL_RATE) //this is slow as hell, use the rest of medbay you chumps
+			if(SLEEPER_ORGANS)
+				var/heal_reps = efficiency * 2
+				var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
+				for(var/i in 1 to heal_reps)
+					organs = shuffle(organs)
+					for(var/o in organs)
+						var/healed = FALSE
+						var/obj/item/organ/heal_target = C.getorganslot(o)
+						if(heal_target?.damage >= 1)
+							var/organ_healing = C.stat == DEAD ? 0.05 : 0.2
+							heal_target.applyOrganDamage(-organ_healing)
+							healed = TRUE
+						if(healed)
+							break
+			if(SLEEPER_CHEMPURGE)
+				C.adjustToxLoss(-SLEEPER_HEAL_RATE)
+				if(obj_flags & EMAGGED)
+					return
+				var/purge_rate = 0.5 * efficiency
+				for(var/datum/reagent/R in C.reagents.reagent_list)
+					if(istype(R, /datum/reagent/toxin))
+						C.reagents.remove_reagent(R.type,purge_rate)
+					if(R.overdosed)
+						C.reagents.remove_reagent(R.type,purge_rate)
+			else
+				active_treatment = null
 
 /obj/machinery/sleeper/nap_violation(mob/violator)
 	open_machine()
 
-/obj/machinery/sleeper/ui_data()
+/obj/machinery/sleeper/ui_data(mob/user)
 	var/list/data = list()
+	data["knowledge"] = IS_MEDICAL(user)
 	data["occupied"] = occupant ? 1 : 0
 	data["open"] = state_open
+	data["active_treatment"] = active_treatment
+	data["can_sedate"] = can_sedate()
 
-	data["chems"] = list()
+	data["treatments"] = list()
+	for(var/T in available_treatments)
+		data["treatments"] += T
+	/*data["chems"] = list()
 	for(var/chem in available_chems)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-		data["chems"] += list(list("name" = R.name, "id" = "[chem]", "allowed" = chem_allowed(chem)))   //yogs modifies id
+		data["chems"] += list(list("name" = R.name, "id" = R.type, "allowed" = chem_allowed(chem), "desc" = R.description))*/
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
@@ -341,49 +287,24 @@
 			else
 				open_machine()
 			. = TRUE
-		if("inject")
-			if(!is_operational() || !mob_occupant)				//yogs start
+		if("set")
+			var/treatment = params["treatment"]
+			if(!is_operational() || !mob_occupant || isnull(treatment))
 				return
-			for(var/chem in available_chems)
-				if("[chem]" == params["chem"])
-					if(inject_chem(chem, usr))
-						. = TRUE
-						if(scrambled_chems && prob(5))
-							to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-					break				//yogs end
+			active_treatment = treatment
+			. = TRUE
+		if("sedate")
+			if(can_sedate())
+				mob_occupant.reagents.add_reagent(/datum/reagent/medicine/morphine, 10)
+				if(usr)
+					log_combat(usr,occupant, "injected morphine into", addition = "via [src]")
+				. = TRUE
 
-/obj/machinery/sleeper/emag_act(mob/user)
-	scramble_chem_buttons()
-	to_chat(user, "<span class='warning'>You scramble the sleeper's user interface!</span>")
-
-/obj/machinery/sleeper/proc/inject_chem(chem, mob/user)
-	if((chem in available_chems) && chem_allowed(chem))
-		occupant.reagents.add_reagent(chem_buttons[chem], 10) //emag effect kicks in here so that the "intended" chem is used for all checks, for extra FUUU
-		if(user)
-			log_combat(user, occupant, "injected [chem] into", addition = "via [src]")
-		return TRUE
-
-/obj/machinery/sleeper/proc/chem_allowed(chem)
+/obj/machinery/sleeper/proc/can_sedate()
 	var/mob/living/mob_occupant = occupant
 	if(!mob_occupant || !mob_occupant.reagents)
 		return
-	if(mob_occupant.reagents.get_reagent_amount(chem) + 10 <= 20 * efficiency)			//yogs start
-		if(mob_occupant.health > min_health || chem == /datum/reagent/medicine/epinephrine)
-			return TRUE
-	return FALSE				//yogs end
-
-/obj/machinery/sleeper/proc/reset_chem_buttons()
-	scrambled_chems = FALSE
-	LAZYINITLIST(chem_buttons)
-	for(var/chem in available_chems)
-		chem_buttons[chem] = chem
-
-/obj/machinery/sleeper/proc/scramble_chem_buttons()
-	scrambled_chems = TRUE
-	var/list/av_chem = available_chems.Copy()
-	for(var/chem in av_chem)
-		chem_buttons[chem] = pick_n_take(av_chem) //no dupes, allow for random buttons to still be correct
-
+	return mob_occupant.reagents.get_reagent_amount(/datum/reagent/medicine/morphine) + 10 <= 20
 
 /obj/machinery/sleeper/syndie
 	icon_state = "sleeper_s"
@@ -392,7 +313,6 @@
 /obj/machinery/sleeper/syndie/fullupgrade/Initialize()
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/sleeper(null) //yogs: no deletion :>)
 	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
 	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
@@ -405,7 +325,9 @@
 	desc = "A large cryogenics unit built from brass. Its surface is pleasantly cool the touch."
 	icon_state = "sleeper_clockwork"
 	enter_message = "<span class='bold inathneq_small'>You hear the gentle hum and click of machinery, and are lulled into a sense of peace.</span>"
-	possible_chems = list(list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane, /datum/reagent/medicine/oculine, /datum/reagent/medicine/inacusiate, /datum/reagent/medicine/mannitol))
+	efficiency = 3
+	available_treatments = list(SLEEPER_TEND, SLEEPER_ORGANS, SLEEPER_CHEMPURGE)
+	stasis = TRUE
 
 /obj/machinery/sleeper/clockwork/process()
 	if(occupant && isliving(occupant))
@@ -416,5 +338,13 @@
 			L.adjustFireLoss(-1)
 			L.adjustOxyLoss(-5)
 
+/obj/machinery/sleeper/clockwork/RefreshParts()
+	return
+
 /obj/machinery/sleeper/old
 	icon_state = "oldpod"
+
+#undef SLEEPER_TEND
+#undef SLEEPER_ORGANS
+#undef SLEEPER_CHEMPURGE
+#undef SLEEPER_HEAL_RATE

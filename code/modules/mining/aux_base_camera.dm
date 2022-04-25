@@ -14,7 +14,7 @@
 
 /mob/camera/aiEye/remote/base_construction/setLoc(var/t)
 	var/area/curr_area = get_area(t)
-	if(curr_area == starting_area || istype(curr_area, /area/shuttle/auxillary_base))
+	if(curr_area == starting_area || istype(curr_area, /area/shuttle/auxiliary_base))
 		return ..()
 	//While players are only allowed to build in the base area, but consoles starting outside the base can move into the base area to begin work.
 
@@ -25,7 +25,7 @@
 /obj/item/construction/rcd/internal //Base console's internal RCD. Roundstart consoles are filled, rebuilt cosoles start empty.
 	name = "internal RCD"
 	max_matter = 600 //Bigger container and faster speeds due to being specialized and stationary.
-	no_ammo_message = "<span class='warning'>Internal matter exhausted. Please add additional materials.</span>"
+	no_ammo_message = span_warning("Internal matter exhausted. Please add additional materials.")
 	delay_mod = 0.5
 
 /obj/machinery/computer/camera_advanced/base_construction
@@ -44,7 +44,7 @@
 	var/fans_remaining = 0 //Number of fans in stock.
 	var/datum/action/innate/aux_base/install_turret/turret_action = new //Action for spawning turrets
 	var/turret_stock = 0 //Turrets in stock
-	var/obj/machinery/computer/auxillary_base/found_aux_console //Tracker for the Aux base console, so the eye can always find it.
+	var/obj/machinery/computer/auxiliary_base/found_aux_console //Tracker for the Aux base console, so the eye can always find it.
 
 	icon_screen = "mining"
 	icon_keyboard = "rd_key"
@@ -65,8 +65,8 @@
 /obj/machinery/computer/camera_advanced/base_construction/CreateEye()
 
 	var/spawn_spot
-	for(var/obj/machinery/computer/auxillary_base/ABC in GLOB.machines)
-		if(istype(get_area(ABC), /area/shuttle/auxillary_base))
+	for(var/obj/machinery/computer/auxiliary_base/ABC in GLOB.machines)
+		if(istype(get_area(ABC), /area/shuttle/auxiliary_base))
 			found_aux_console = ABC
 			break
 
@@ -149,12 +149,12 @@
 	var/turf/build_target = get_turf(remote_eye)
 	var/area/build_area = get_area(build_target)
 
-	if(!istype(build_area, /area/shuttle/auxillary_base))
-		to_chat(owner, "<span class='warning'>You can only build within the mining base!</span>")
+	if(!istype(build_area, /area/shuttle/auxiliary_base))
+		to_chat(owner, span_warning("You can only build within the mining base!"))
 		return FALSE
 
 	if(!is_station_level(build_target.z))
-		to_chat(owner, "<span class='warning'>The mining base has launched and can no longer be modified.</span>")
+		to_chat(owner, span_warning("The mining base has launched and can no longer be modified."))
 		return FALSE
 
 	return TRUE
@@ -195,8 +195,8 @@
 	if(..())
 		return
 
-	var/list/buildlist = list("Walls and Floors" = 1,"Airlocks" = 2,"Deconstruction" = 3,"Windows and Grilles" = 4)
-	var/buildmode = input("Set construction mode.", "Base Console", null) in buildlist
+	var/list/buildlist = list("Walls and Floors" = RCD_FLOORWALL,"Airlocks" = RCD_AIRLOCK,"Deconstruction" = RCD_DECONSTRUCT,"Windows and Grilles" = RCD_WINDOWGRILLE)
+	var/buildmode = input(owner, "Set construction mode.", "Base Console", null) in buildlist
 	B.RCD.mode = buildlist[buildmode]
 	to_chat(owner, "Build mode is now [buildmode].")
 
@@ -208,17 +208,17 @@ datum/action/innate/aux_base/airlock_type/Activate()
 	if(..())
 		return
 
-	B.RCD.change_airlock_setting()
+	B.RCD.change_airlock_setting(owner, remote_eye)
 
 
 datum/action/innate/aux_base/window_type
-	name = "Select Window Type"
+	name = "Select Window Glass"
 	button_icon_state = "window_select"
 
 datum/action/innate/aux_base/window_type/Activate()
 	if(..())
 		return
-	B.RCD.toggle_window_type()
+	B.RCD.toggle_window_glass(owner)
 
 datum/action/innate/aux_base/place_fan
 	name = "Place Tiny Fan"
@@ -231,19 +231,19 @@ datum/action/innate/aux_base/place_fan/Activate()
 	var/turf/fan_turf = get_turf(remote_eye)
 
 	if(!B.fans_remaining)
-		to_chat(owner, "<span class='warning'>[B] is out of fans!</span>")
+		to_chat(owner, span_warning("[B] is out of fans!"))
 		return
 
 	if(!check_spot())
 		return
 
 	if(fan_turf.density)
-		to_chat(owner, "<span class='warning'>Fans may only be placed on a floor.</span>")
+		to_chat(owner, span_warning("Fans may only be placed on a floor."))
 		return
 
 	new /obj/structure/fans/tiny(fan_turf)
 	B.fans_remaining--
-	to_chat(owner, "<span class='notice'>Tiny fan placed. [B.fans_remaining] remaining.</span>")
+	to_chat(owner, span_notice("Tiny fan placed. [B.fans_remaining] remaining."))
 	playsound(fan_turf, 'sound/machines/click.ogg', 50, 1)
 
 datum/action/innate/aux_base/install_turret
@@ -258,13 +258,13 @@ datum/action/innate/aux_base/install_turret/Activate()
 		return
 
 	if(!B.turret_stock)
-		to_chat(owner, "<span class='warning'>Unable to construct additional turrets.</span>")
+		to_chat(owner, span_warning("Unable to construct additional turrets."))
 		return
 
 	var/turf/turret_turf = get_turf(remote_eye)
 
 	if(is_blocked_turf(turret_turf))
-		to_chat(owner, "<span class='warning'>Location is obstructed by something. Please clear the location and try again.</span>")
+		to_chat(owner, span_warning("Location is obstructed by something. Please clear the location and try again."))
 		return
 
 	var/obj/machinery/porta_turret/aux_base/T = new /obj/machinery/porta_turret/aux_base(turret_turf)
@@ -272,5 +272,5 @@ datum/action/innate/aux_base/install_turret/Activate()
 		B.found_aux_console.turrets += T //Add new turret to the console's control
 
 	B.turret_stock--
-	to_chat(owner, "<span class='notice'>Turret installation complete!</span>")
+	to_chat(owner, span_notice("Turret installation complete!"))
 	playsound(turret_turf, 'sound/items/drill_use.ogg', 65, 1)

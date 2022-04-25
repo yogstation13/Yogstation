@@ -50,7 +50,9 @@
 	name = "Bridge"
 	icon_state = "bridge"
 
-
+/area/ruin/space/has_grav/powered/spacebar //yogs start
+	name = "Space Bar"
+	icon_state = "dk_yellow" //yogs end
 
 /area/ruin/space/has_grav/powered/dinner_for_two
 	name = "Dinner for Two"
@@ -245,7 +247,6 @@
 /area/ruin/space/has_grav/ancientstation/atmo
 	name = "Beta Station Atmospherics"
 	icon_state = "red"
-	has_gravity = FALSE
 
 /area/ruin/space/has_grav/ancientstation/betanorth
 	name = "Beta Station North Corridor"

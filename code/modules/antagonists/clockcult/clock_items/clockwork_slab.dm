@@ -74,7 +74,7 @@
 
 /obj/item/clockwork/slab/cyborg/access_display(mob/living/user)
 	if(!GLOB.ratvar_awakens)
-		to_chat(user, "<span class='warning'>Use the action buttons to recite your limited set of scripture!</span>")
+		to_chat(user, span_warning("Use the action buttons to recite your limited set of scripture!"))
 	else
 		..()
 
@@ -139,8 +139,8 @@
 //Scripture Recital
 /obj/item/clockwork/slab/attack_self(mob/living/user)
 	if(iscultist(user))
-		to_chat(user, "<span class='heavy_brass'>\"You reek of blood. You've got a lot of nerve to even look at that slab.\"</span>")
-		user.visible_message("<span class='warning'>A sizzling sound comes from [user]'s hands!</span>", "<span class='userdanger'>[src] suddenly grows extremely hot in your hands!</span>")
+		to_chat(user, "[span_heavy_brass("\"You reek of blood. You've got a lot of nerve to even look at that slab.\"")]")
+		user.visible_message(span_warning("A sizzling sound comes from [user]'s hands!"), span_userdanger("[src] suddenly grows extremely hot in your hands!"))
 		playsound(get_turf(user), 'sound/weapons/sear.ogg', 50, 1)
 		user.dropItemToGround(src)
 		user.emote("scream")
@@ -148,22 +148,22 @@
 		user.apply_damage(5, BURN, BODY_ZONE_R_ARM)
 		return 0
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='warning'>The information on [src]'s display shifts rapidly. After a moment, your head begins to pound, and you tear your eyes away.</span>")
+		to_chat(user, span_warning("The information on [src]'s display shifts rapidly. After a moment, your head begins to pound, and you tear your eyes away."))
 		user.confused += 5
 		user.dizziness += 5
 		return 0
 	if(busy)
-		to_chat(user, "<span class='warning'>[src] refuses to work, displaying the message: \"[busy]!\"</span>")
+		to_chat(user, span_warning("[src] refuses to work, displaying the message: \"[busy]!\""))
 		return 0
 	if(!no_cost && !can_recite_scripture(user))
-		to_chat(user, "<span class='nezbere'>[src] hums fitfully in your hands, but doesn't seem to do anything...</span>")
+		to_chat(user, span_nezbere("[src] hums fitfully in your hands, but doesn't seem to do anything..."))
 		return 0
 	access_display(user)
 
 /obj/item/clockwork/slab/AltClick(mob/living/user)
 	if(is_servant_of_ratvar(user) && linking && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		linking = null
-		to_chat(user, "<span class='notice'>Object link canceled.</span>")
+		to_chat(user, span_notice("Object link canceled."))
 
 /obj/item/clockwork/slab/proc/access_display(mob/living/user)
 	if(!is_servant_of_ratvar(user))
@@ -171,10 +171,10 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/item/clockwork/slab/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/clockwork/slab/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ClockworkSlab", name, 800, 420, master_ui, state)
+		ui = new(user, src, "ClockworkSlab", name)
 		ui.set_autoupdate(FALSE) //we'll update this occasionally, but not as often as possible
 		ui.open()
 
@@ -182,12 +182,12 @@
 	if(!scripture || !user || !user.canUseTopic(src) || (!no_cost && !can_recite_scripture(user)))
 		return FALSE
 	if(user.get_active_held_item() != src)
-		to_chat(user, "<span class='warning'>You need to hold the slab in your active hand to recite scripture!</span>")
+		to_chat(user, span_warning("You need to hold the slab in your active hand to recite scripture!"))
 		return FALSE
 	var/initial_tier = initial(scripture.tier)
 	if(initial_tier != SCRIPTURE_PERIPHERAL)
 		if(!GLOB.ratvar_awakens && !no_cost && !GLOB.scripture_states[initial_tier])
-			to_chat(user, "<span class='warning'>That scripture is not unlocked, and cannot be recited!</span>")
+			to_chat(user, span_warning("That scripture is not unlocked, and cannot be recited!"))
 			return FALSE
 	var/datum/clockwork_scripture/scripture_to_recite = new scripture
 	scripture_to_recite.slab = src

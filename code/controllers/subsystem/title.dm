@@ -51,16 +51,17 @@ SUBSYSTEM_DEF(title)
 				if(splash_turf)
 					splash_turf.icon = icon
 
-/datum/controller/subsystem/title/Shutdown()
-	if(file_path)
-		var/F = file("data/previous_title.dat")
-		WRITE_FILE(F, file_path)
-
+/datum/controller/subsystem/title/proc/fadeout()
 	for(var/thing in GLOB.clients)
 		if(!thing)
 			continue
 		var/obj/screen/splash/S = new(thing, FALSE)
 		S.Fade(FALSE,FALSE)
+
+/datum/controller/subsystem/title/Shutdown()
+	if(file_path)
+		var/F = file("data/previous_title.dat")
+		WRITE_FILE(F, file_path)
 
 /datum/controller/subsystem/title/Recover()
 	icon = SStitle.icon

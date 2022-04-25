@@ -7,7 +7,7 @@
 
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
 	if( !cracked && ishuman(target) && (target.stat == CONSCIOUS) && !target.get_active_held_item() )
-		target.visible_message("[user] and [target] pop \an [src]! *pop*", "<span class='notice'>You pull \an [src] with [target]! *pop*</span>", "<span class='italics'>You hear a pop.</span>")
+		target.visible_message("[user] and [target] pop \an [src]! *pop*", span_notice("You pull \an [src] with [target]! *pop*"), span_italics("You hear a pop."))
 		var/obj/item/paper/Joke = new /obj/item/paper(user.loc)
 		Joke.name = "[pick("awful","terrible","unfunny")] joke"
 		Joke.info = pick("What did one snowman say to the other?\n\n<i>'Is it me or can you smell carrots?'</i>",
@@ -62,7 +62,7 @@
 	christmas_tree = null
 
 /datum/round_event_control/santa
-	name = "Vist by Santa"
+	name = "Visit by Santa"
 	holidayID = CHRISTMAS
 	typepath = /datum/round_event/santa
 	weight = 20
@@ -85,3 +85,8 @@
 		var/datum/antagonist/santa/A = new
 		santa.mind.add_antag_datum(A)
 
+/datum/recipe/snowman
+	items = list(
+		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,
+    /obj/item/stack/sheet/mineral/snow = 10)
+	result = /mob/living/simple_animal/snowman

@@ -73,18 +73,18 @@
 		//okay, so the closet is either welded or locked... resist!!!
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
-		other.visible_message("<span class='warning'>[other] begins to shake violently!</span>")
-		to_chat(user, "<span class='notice'>You start pushing the door open... (this will take about [DisplayTimeText(other.breakout_time)].)</span>")
+		other.visible_message(span_warning("[other] begins to shake violently!"))
+		to_chat(user, span_notice("You start pushing the door open... (this will take about [DisplayTimeText(other.breakout_time)].)"))
 		if(do_after(user,(other.breakout_time), target = src))
 			if(!user || user.stat != CONSCIOUS || other.opened || (!other.locked && !other.welded))
 				return
 			//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting
 			other.bust_open()
-			user.visible_message("<span class='danger'>[user] successfully broke out of [other]!</span>",
-								"<span class='notice'>You successfully break out of [other]!</span>")
+			user.visible_message(span_danger("[user] successfully broke out of [other]!"),
+								span_notice("You successfully break out of [other]!"))
 		else
 			if(!other.opened) //so we don't get the message if we resisted multiple times and succeeded.
-				to_chat(user, "<span class='warning'>You fail to break out of [other]!</span>")
+				to_chat(user, span_warning("You fail to break out of [other]!"))
 	else
 		return ..()
 

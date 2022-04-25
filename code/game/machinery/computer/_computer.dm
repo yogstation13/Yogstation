@@ -14,9 +14,12 @@
 	var/icon_screen = "generic"
 	var/clockwork = FALSE
 	var/time_to_scewdrive = 20
+	var/authenticated = FALSE
 
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
+	if(mapload)
+		update_icon()
 	power_change()
 	if(!QDELETED(C))
 		qdel(circuit)
@@ -51,6 +54,33 @@
 /obj/machinery/computer/update_icon()
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+
+	//Prevents fuckery with subtypes that are meant to be pixel shifted or map shifted shit
+	if(pixel_x == 0 && pixel_y == 0)
+		// this bit of code makes the computer hug the wall its next to
+		var/turf/T = get_turf(src)
+		var/list/offet_matrix = list(0, 0)		// stores offset to be added to the console in following order (pixel_x, pixel_y)
+		var/dirlook
+		switch(dir)
+			if(NORTH)
+				offet_matrix[2] = -3
+				dirlook = SOUTH
+			if(SOUTH)
+				offet_matrix[2] = 1
+				dirlook = NORTH
+			if(EAST)
+				offet_matrix[1] = -5
+				dirlook = WEST
+			if(WEST)
+				offet_matrix[1] = 5
+				dirlook = EAST
+		if(dirlook)
+			T = get_step(T, dirlook)
+			var/obj/structure/window/W = locate() in T
+			if(istype(T, /turf/closed/wall) || W)
+				pixel_x = offet_matrix[1]
+				pixel_y = offet_matrix[2]
+		
 	if(stat & NOPOWER)
 		add_overlay("[icon_keyboard]_off")
 		return
@@ -76,7 +106,7 @@
 	if(..())
 		return TRUE
 	if(circuit && !(flags_1&NODECONSTRUCT_1))
-		to_chat(user, "<span class='notice'>You start to disconnect the monitor...</span>")
+		to_chat(user, span_notice("You start to disconnect the monitor..."))
 		if(I.use_tool(src, user, time_to_scewdrive, volume=50))
 			deconstruct(TRUE, user)
 	return TRUE
@@ -121,7 +151,7 @@
 			A.setAnchored(TRUE)
 			if(stat & BROKEN)
 				if(user)
-					to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+					to_chat(user, span_notice("The broken glass falls out."))
 				else
 					playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 				new /obj/item/shard(drop_location())
@@ -130,7 +160,7 @@
 				A.icon_state = "3"
 			else
 				if(user)
-					to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+					to_chat(user, span_notice("You disconnect the monitor."))
 				A.state = 4
 				A.icon_state = "4"
 			circuit = null
@@ -138,7 +168,7 @@
 			C.forceMove(loc)
 	qdel(src)
 
-/obj/machinery/computer/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/computer/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSCOMPUTER))
 		return TRUE

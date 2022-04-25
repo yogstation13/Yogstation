@@ -2,7 +2,6 @@ GLOBAL_LIST_EMPTY(discoveredPlants)
 
 /datum/export/seed
 	cost = 50 // Gets multiplied by potency
-	k_elasticity = 1	//price inelastic/quantity elastic, only need to export a few samples
 	unit_name = "new plant species sample"
 	export_types = list(/obj/item/seeds)
 	var/needs_discovery = FALSE // Only for undiscovered species
@@ -15,9 +14,9 @@ GLOBAL_LIST_EMPTY(discoveredPlants)
 		return 0
 	return ..() * S.rarity // That's right, no bonus for potency. Send a crappy sample first to "show improvement" later.
 
-/datum/export/seed/sell_object(obj/O)
+/datum/export/seed/sell_object(obj/O, datum/export_report/report, dry_run, apply_elastic)
 	. = ..()
-	if(.)
+	if(. && !dry_run)
 		var/obj/item/seeds/S = O
 		GLOB.discoveredPlants[S.type] = S.potency
 

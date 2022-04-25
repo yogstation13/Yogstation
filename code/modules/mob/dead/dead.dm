@@ -13,12 +13,12 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
 	tag = "mob_[next_mob_id++]"
-	GLOB.mob_list += src
+	add_to_mob_list()
 
 	prepare_huds()
 
 	if(length(CONFIG_GET(keyed_list/cross_server)))
-		verbs += /mob/dead/proc/server_hop
+		add_verb(src, /mob/dead/proc/server_hop)
 	set_focus(src)
 	return INITIALIZE_HINT_NORMAL
 
@@ -29,9 +29,6 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	return
 
 /mob/dead/gib()		//ghosts can't be gibbed.
-	return
-
-/mob/dead/ConveyorMove()	//lol
 	return
 
 /mob/dead/forceMove(atom/destination)
@@ -73,8 +70,8 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	var/pick
 	switch(csa.len)
 		if(0)
-			verbs -= /mob/dead/proc/server_hop
-			to_chat(src, "<span class='notice'>Server Hop has been disabled.</span>")
+			remove_verb(src, /mob/dead/proc/server_hop)
+			to_chat(src, span_notice("Server Hop has been disabled."))
 		if(1)
 			pick = csa[1]
 		else
@@ -89,7 +86,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		return
 
 	var/client/C = client
-	to_chat(C, "<span class='notice'>Sending you to [pick].</span>")
+	to_chat(C, span_notice("Sending you to [pick]."))
 	new /obj/screen/splash(C)
 
 	notransform = TRUE

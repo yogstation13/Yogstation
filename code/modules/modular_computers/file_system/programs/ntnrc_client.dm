@@ -1,6 +1,7 @@
 /datum/computer_file/program/chatclient
 	filename = "ntnrc_client"
 	filedesc = "Chat Client"
+	category = PROGRAM_CATEGORY_MISC
 	program_icon_state = "command"
 	extended_desc = "This program allows communication over NTNRC network"
 	size = 8
@@ -10,8 +11,7 @@
 	ui_header = "ntnrc_idle.gif"
 	available_on_ntnet = 1
 	tgui_id = "NtosNetChat"
-	ui_x = 900
-	ui_y = 675
+	program_icon = "comment-alt"
 
 	var/last_message				// Used to generate the toolbar icon
 	var/username
@@ -29,6 +29,7 @@
 
 	var/datum/ntnet_conversation/channel = SSnetworks.station_network.get_chat_channel_by_id(active_channel)
 	var/authed = FALSE
+	computer.play_interact_sound()
 	if(channel && ((channel.operator == src) || netadmin_mode))
 		authed = TRUE
 	switch(action)
@@ -38,6 +39,17 @@
 			var/message = reject_bad_text(params["message"])
 			if(!message)
 				return
+			//yogs start
+			if(isnotpretty(message))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
+				message_admins(log_message)
+				log_say(log_message)
+				return
+			//yogs end
 			if(channel.password && !(src in channel.clients))
 				if(channel.password == message)
 					channel.add_client(src)
@@ -70,6 +82,17 @@
 			var/channel_title = reject_bad_text(params["new_channel_name"])
 			if(!channel_title)
 				return
+			//yogs start
+			if(isnotpretty(channel_title))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[channel_title]'."
+				message_admins(log_message)
+				log_say(log_message)
+				return
+			//yogs end
 			var/datum/ntnet_conversation/C = new /datum/ntnet_conversation()
 			C.add_client(src)
 			C.operator = src
@@ -93,6 +116,17 @@
 			var/newname = sanitize(params["new_name"])
 			if(!newname)
 				return
+			//yogs start
+			if(isnotpretty(newname))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[newname]'."
+				message_admins(log_message)
+				log_say(log_message)
+				return
+			//yogs end
 			for(var/C in SSnetworks.station_network.chat_channels)
 				var/datum/ntnet_conversation/chan = C
 				if(src in chan.clients)
@@ -119,9 +153,9 @@
 					// This program shouldn't even be runnable without computer.
 					CRASH("Var computer is null!")
 				if(!hard_drive)
-					computer.visible_message("<span class='warning'>\The [computer] shows an \"I/O Error - Hard drive connection error\" warning.</span>")
+					computer.visible_message(span_warning("\The [computer] shows an \"I/O Error - Hard drive connection error\" warning."))
 				else	// In 99.9% cases this will mean our HDD is full
-					computer.visible_message("<span class='warning'>\The [computer] shows an \"I/O Error - Hard drive may be full. Please free some space and try again. Required space: [logfile.size]GQ\" warning.</span>")
+					computer.visible_message(span_warning("\The [computer] shows an \"I/O Error - Hard drive may be full. Please free some space and try again. Required space: [logfile.size]GQ\" warning."))
 			return TRUE
 		if("PRG_renamechannel")
 			if(!authed)
@@ -129,6 +163,17 @@
 			var/newname = reject_bad_text(params["new_name"])
 			if(!newname || !channel)
 				return
+			//yogs start
+			if(isnotpretty(newname))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[newname]'."
+				message_admins(log_message)
+				log_say(log_message)
+				return
+			//yogs end
 			channel.add_status_message("Channel renamed from [channel.title] to [newname] by operator.")
 			channel.title = newname
 			return TRUE
@@ -145,6 +190,17 @@
 			if(!authed)
 				return
 
+			//yogs start
+			if(isnotpretty(new_password))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[new_password]'."
+				message_admins(log_message)
+				log_say(log_message)
+				return
+			//yogs end
 			channel.password = new_password
 			return TRUE
 

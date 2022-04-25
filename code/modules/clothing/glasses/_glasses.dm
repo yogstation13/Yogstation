@@ -8,7 +8,7 @@
 	strip_delay = 20
 	equip_delay_other = 25
 	resistance_flags = NONE
-	materials = list(MAT_GLASS = 250)
+	materials = list(/datum/material/glass = 250)
 	var/vision_flags = 0
 	var/darkness_view = 2//Base human is 2
 	var/invis_view = SEE_INVISIBLE_LIVING	//admin only for now
@@ -19,13 +19,13 @@
 	var/glass_colour_type //colors your vision when worn
 
 /obj/item/clothing/glasses/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] is stabbing \the [src] into [user.p_their()] eyes! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is stabbing \the [src] into [user.p_their()] eyes! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/examine(mob/user)
 	. = ..()
 	if(glass_colour_type && ishuman(user))
-		. += "<span class='notice'>Alt-click to toggle its colors.</span>"
+		. += span_notice("Alt-click to toggle its colors.")
 
 /obj/item/clothing/glasses/visor_toggling()
 	..()
@@ -48,7 +48,7 @@
 		var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
 		if(!(HAS_TRAIT(H, TRAIT_BLIND)))
 			if(H.glasses == src)
-				to_chat(H, "<span class='danger'>[src] overloads and blinds you!</span>")
+				to_chat(H, span_danger("[src] overloads and blinds you!"))
 				H.flash_act(visual = 1)
 				H.blind_eyes(3)
 				H.blur_eyes(5)
@@ -65,7 +65,7 @@
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
 /obj/item/clothing/glasses/meson/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] is putting \the [src] to [user.p_their()] eyes and overloading the brightness! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is putting \the [src] to [user.p_their()] eyes and overloading the brightness! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/meson/night
@@ -88,7 +88,15 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
+
+/obj/item/clothing/glasses/meson/sunglasses
+	name= "meson sunglasses"
+	desc = "Sunglasses that also function as a meson scanner."
+	icon_state = "sunhudmeson"
+	item_state = "sunhudmeson"
+	flash_protect = 1
+	tint = 1
 
 /obj/item/clothing/glasses/science
 	name = "science goggles"
@@ -116,7 +124,7 @@
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/science/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] is tightening \the [src]'s straps around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is tightening \the [src]'s straps around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return OXYLOSS
 
 /obj/item/clothing/glasses/eyepatch
@@ -130,6 +138,9 @@
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
+	vision_correction = 1
+
+
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"
@@ -156,7 +167,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
 /obj/item/clothing/glasses/regular
@@ -221,7 +232,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/clothing/glasses/sunglasses/garb/supergarb
 	name = "black giga gar glasses"
@@ -241,7 +252,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	glass_colour_type = /datum/client_colour/glass_colour/orange
 
 /obj/item/clothing/glasses/sunglasses/gar/supergar
@@ -259,7 +270,7 @@
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
-	materials = list(MAT_METAL = 250)
+	materials = list(/datum/material/iron = 250)
 	flash_protect = 2
 	tint = 2
 	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT
@@ -345,12 +356,15 @@
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "chameleon thermals"
 	desc = "A pair of thermal optic goggles with an onboard chameleon generator."
+	syndicate = TRUE
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
 /obj/item/clothing/glasses/thermal/syndi/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/glasses
 	chameleon_action.chameleon_name = "Glasses"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/glasses/changeling, only_root_path = TRUE)
@@ -413,15 +427,29 @@
 	desc = "A strange eye, said to have been torn from an omniscient creature that used to roam the wastes."
 	icon_state = "godeye"
 	item_state = "godeye"
-	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
+	vision_flags = SEE_TURFS
 	darkness_view = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	clothing_flags = SCAN_REAGENTS
+	var/obj/effect/proc_holder/expose/expose_ability
 
 /obj/item/clothing/glasses/godeye/Initialize()
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
+	expose_ability = new(expose_ability)
+
+/obj/item/clothing/glasses/godeye/equipped(mob/living/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_EYES)
+		ADD_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
+		user.AddAbility(expose_ability)
+
+/obj/item/clothing/glasses/godeye/dropped(mob/living/user)
+	. = ..()
+	// Behead someone, their "glasses" drop on the floor
+	// and thus, the god eye should no longer be sticky
+	REMOVE_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
+	user.RemoveAbility(expose_ability)
 
 /obj/item/clothing/glasses/godeye/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(istype(W, src) && W != src && W.loc == user)
@@ -432,10 +460,61 @@
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.update_inv_wear_mask()
-		else
-			to_chat(user, "<span class='notice'>The eye winks at you and vanishes into the abyss, you feel really unlucky.</span>")
-		qdel(src)
+			qdel(src)
 	..()
+
+/obj/effect/proc_holder/expose
+	name = "Expose"
+	desc = "Expose an enemy, increasing all damage dealt to them by 15% for 10 seconds, effect is magnified on megafauna."
+	action_background_icon_state = "bg_demon"
+	action_icon = 'icons/mob/actions/actions_items.dmi'
+	action_icon_state = "expose"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/expose_target.dmi'
+	var/cooldown_time = 1 MINUTES
+	COOLDOWN_DECLARE(scan_cooldown)
+
+/obj/effect/proc_holder/expose/on_lose(mob/living/user)
+	remove_ranged_ability()
+
+/obj/effect/proc_holder/expose/Click(location, control, params)
+	. = ..()
+	if(!isliving(usr))
+		return TRUE
+	var/mob/living/user = usr
+	fire(user)
+
+/obj/effect/proc_holder/expose/fire(mob/living/carbon/user)
+	if(active)
+		remove_ranged_ability(span_notice("You relax your god eye."))
+	else
+		add_ranged_ability(user, span_notice("You squint your god eye. <B>Left-click a creature to expose it!</B>"), TRUE)
+
+/obj/effect/proc_holder/expose/InterceptClickOn(mob/living/caller, params, atom/target)
+	. = ..()
+	if(.)
+		return
+	if(ranged_ability_user.stat)
+		remove_ranged_ability()
+		return
+	if(!COOLDOWN_FINISHED(src, scan_cooldown))
+		to_chat(ranged_ability_user, span_warning("You try to focus your god eye, but it's too tired. Give it some time to recharge!"))
+		return
+	if(!isliving(target) || target == ranged_ability_user)
+		return
+	var/mob/living/living_target = target
+	living_target.apply_status_effect(STATUS_EFFECT_EXPOSED)
+	living_target.Jitter(5)
+	to_chat(living_target, span_warning("You feel the gaze of a malevolent presence focus on you!"))
+	ranged_ability_user.playsound_local(get_turf(ranged_ability_user), 'sound/magic/smoke.ogg', 50, TRUE)
+	living_target.playsound_local(get_turf(living_target), 'sound/hallucinations/i_see_you1.ogg', 50, TRUE)
+	to_chat(ranged_ability_user, "You glare at [living_target], exposing them!")
+	COOLDOWN_START(src, scan_cooldown, cooldown_time)
+	addtimer(CALLBACK(src, .proc/cooldown_over, ranged_ability_user), cooldown_time)
+	remove_ranged_ability()
+	return TRUE
+
+/obj/effect/proc_holder/expose/proc/cooldown_over()
+	to_chat(usr, (span_notice("Your god eye is focused enough to expose again!")))
 
 /obj/item/clothing/glasses/AltClick(mob/user)
 	if(glass_colour_type && ishuman(user))

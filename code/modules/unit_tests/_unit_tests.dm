@@ -1,9 +1,10 @@
 //include unit test files in this module in this ifdef
 //Keep this sorted alphabetically
 
-#ifdef UNIT_TESTS
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 #include "anchored_mobs.dm"
 #include "component_tests.dm"
+#include "dynamic_ruleset_sanity.dm"
 #include "reagent_id_typos.dm"
 #include "reagent_recipe_collisions.dm"
 #include "spawn_humans.dm"

@@ -4,22 +4,28 @@
 	say_mod = "rattles"
 	sexes = 0
 	meat = /obj/item/stack/sheet/mineral/plasma
-	species_traits = list(NOBLOOD,NOTRANSSTING)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOHUNGER,TRAIT_CALCIUM_HEALER,TRAIT_ALWAYS_CLEAN)
+	species_traits = list(NOBLOOD,NOTRANSSTING,HAS_BONE)
+	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into p
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_CALCIUM_HEALER,TRAIT_ALWAYS_CLEAN,TRAIT_HARDLY_WOUNDED)
 	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
 	mutantlungs = /obj/item/organ/lungs/plasmaman
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman
 	mutantstomach = /obj/item/organ/stomach/plasmaman
-	burnmod = 1.5
-	heatmod = 1.5
-	brutemod = 1.5
+	burnmod = 1.5 //Lives in suits and burns easy. Lasers are bad for this
+	heatmod = 1.5 //Same goes for hot hot hot
+	brutemod = 1.2 //Rattle me bones, but less because plasma bones are very hard
+	siemens_coeff = 1.5 //Sparks are bad for the combustable race, mkay?
+	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
+	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
+	payday_modifier = 0.8 //Useful to NT for plasma research
 	breathid = "tox"
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
 	var/internal_fire = FALSE //If the bones themselves are burning clothes won't help you much
 	disliked_food = FRUIT
-	liked_food = VEGETABLES
+	liked_food = VEGETABLES | GRILLED
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
+	species_language_holder = /datum/language_holder/plasmaman
 
 /datum/species/plasmaman/spec_life(mob/living/carbon/human/H)
 	var/datum/gas_mixture/environment = H.loc.return_air()
@@ -35,7 +41,7 @@
 				if(environment.get_moles(/datum/gas/oxygen) >= 1) //Same threshhold that extinguishes fire
 					H.adjust_fire_stacks(0.5)
 					if(!H.on_fire && H.fire_stacks > 0)
-						H.visible_message("<span class='danger'>[H]'s body reacts with the atmosphere and bursts into flames!</span>","<span class='userdanger'>Your body reacts with the atmosphere and bursts into flame!</span>")
+						H.visible_message(span_danger("[H]'s body reacts with the atmosphere and bursts into flames!"),span_userdanger("Your body reacts with the atmosphere and bursts into flame!"))
 					H.IgniteMob()
 					internal_fire = TRUE
 	else
@@ -138,6 +144,9 @@
 		if("Psychiatrist")
 			O = new /datum/outfit/job/plasmaman/psych
 
+		if("Brig Physician")
+			O = new /datum/outfit/job/plasmaman/brigphysician
+
 		if("Clerk")
 			O = new /datum/outfit/job/plasmaman/clerk
 
@@ -146,6 +155,15 @@
 
 		if("Assistant")
 			O = new /datum/outfit/job/plasmaman/assistant
+
+		if("Artist")
+			O = new /datum/outfit/job/plasmaman/artist
+
+		if("Chief Engineer")
+			O = new /datum/outfit/job/plasmaman/ce
+
+		if("Research Director")
+			O = new /datum/outfit/job/plasmaman/rd
 
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)

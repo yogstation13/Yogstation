@@ -4,14 +4,18 @@ SUBSYSTEM_DEF(adjacent_air)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	wait = 10
 	priority = FIRE_PRIORITY_ATMOS_ADJACENCY
+
+	loading_points = 0.7 SECONDS // Yogs -- loading times
+
 	var/list/queue = list()
 
-/datum/controller/subsystem/adjacent_air/stat_entry()
+/datum/controller/subsystem/adjacent_air/stat_entry(msg)
 #ifdef TESTING
-	return ..("P:[length(queue)], S:[GLOB.atmos_adjacent_savings[1]], T:[GLOB.atmos_adjacent_savings[2]]")
+	msg = "P:[length(queue)], S:[GLOB.atmos_adjacent_savings[1]], T:[GLOB.atmos_adjacent_savings[2]]"
 #else
-	return ..("P:[length(queue)]")
+	msg = "P:[length(queue)]"
 #endif
+	return ..()
 
 /datum/controller/subsystem/adjacent_air/Initialize()
 	while(length(queue))

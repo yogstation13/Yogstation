@@ -1,76 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/open/space,
-/area/space)
 "b" = (
-/turf/closed/wall/mineral/titanium,
-/area/ruin/powered)
-"c" = (
-/obj/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/ruin/powered)
-"d" = (
-/obj/machinery/door/airlock/shuttle,
-/turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered)
-"e" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "HippieVan"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"f" = (
-/obj/structure/chair/comfy{
-	dir = 1;
-	icon_state = "comfychair";
-	tag = ""
-	},
-/obj/effect/decal/remains/human,
-/turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered)
-"g" = (
-/obj/machinery/computer/shuttle,
-/turf/open/floor/mineral/titanium/white,
-/area/ruin/powered)
-"h" = (
-/obj/structure/table,
-/obj/item/key,
-/turf/open/floor/mineral/titanium/white,
-/area/ruin/powered)
-"i" = (
-/obj/structure/chair/comfy{
-	dir = 1;
-	icon_state = "comfychair";
-	tag = ""
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered)
-"k" = (
-/obj/structure/light_construct{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered)
-"l" = (
-/turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered)
-"m" = (
-/obj/item/reagent_containers/food/drinks/beer,
-/turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered)
-"n" = (
-/obj/structure/light_construct{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered)
-"q" = (
-/turf/open/floor/plasteel/stairs/left,
-/area/ruin/powered)
-"r" = (
-/turf/open/floor/plasteel/stairs/right,
-/area/ruin/powered)
-"u" = (
+/area/ruin/space/has_grav/powered)
+"d" = (
 /obj/effect/mob_spawn/human/corpse/damaged,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs/body,
@@ -80,297 +16,387 @@
 	name = "External Shutters";
 	pixel_y = 25
 	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"v" = (
+/area/ruin/space/has_grav/powered)
+"e" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/space/has_grav/powered)
+"g" = (
+/obj/structure/chair/comfy{
+	dir = 1;
+	icon_state = "comfychair";
+	tag = ""
+	},
+/obj/machinery/light/built{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/space/has_grav/powered)
+"h" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/powered)
+"j" = (
+/obj/item/reagent_containers/glass/bottle,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"w" = (
-/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris,
-/obj/item/lighter,
+/area/ruin/space/has_grav/powered)
+"k" = (
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"x" = (
+/area/ruin/space/has_grav/powered)
+"l" = (
+/obj/structure/table,
+/obj/item/key,
+/turf/open/floor/mineral/titanium/white,
+/area/ruin/space/has_grav/powered)
+"m" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"n" = (
 /obj/item/reagent_containers/glass/bottle/drugs,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/bed,
+/obj/machinery/light/broken{
+	dir = 1
+	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"y" = (
-/obj/item/clothing/mask/cigarette/rollie/trippy,
-/obj/effect/decal/cleanable/blood/tracks,
+/area/ruin/space/has_grav/powered)
+"o" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/space/has_grav/powered)
+"p" = (
+/turf/template_noop,
+/area/template_noop)
+"r" = (
+/obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"z" = (
-/obj/item/reagent_containers/syringe,
-/turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"A" = (
+/area/ruin/space/has_grav/powered)
+"s" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/powered)
+"t" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/shuttle/engine/heater,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/powered)
+"u" = (
+/obj/structure/shuttle/engine/large,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/powered)
+"v" = (
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/space/has_grav/powered)
+"w" = (
 /obj/item/paper/crumpled/bloody/hippie,
 /obj/item/cigbutt/roach,
 /obj/structure/light_construct{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"B" = (
-/obj/item/reagent_containers/glass/bottle,
-/turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"C" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"D" = (
-/obj/structure/bed,
-/turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"E" = (
-/obj/structure/closet/wardrobe/mixed,
-/turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"F" = (
-/obj/item/reagent_containers/food/drinks/beer,
-/turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"G" = (
+/area/ruin/space/has_grav/powered)
+"x" = (
+/turf/open/floor/plasteel/stairs/left,
+/area/ruin/space/has_grav/powered)
+"y" = (
 /obj/item/reagent_containers/syringe,
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"I" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_l"
-	},
-/turf/open/space,
-/area/ruin/powered)
+/area/ruin/space/has_grav/powered)
+"z" = (
+/obj/machinery/computer/shuttle,
+/turf/open/floor/mineral/titanium/white,
+/area/ruin/space/has_grav/powered)
+"A" = (
+/turf/open/floor/plasteel/stairs/right,
+/area/ruin/space/has_grav/powered)
+"D" = (
+/obj/item/reagent_containers/syringe,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/space/has_grav/powered)
 "J" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_r"
+/obj/machinery/door/airlock/shuttle,
+/obj/structure/fans/tiny,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/space/has_grav/powered)
+"L" = (
+/obj/structure/closet/wardrobe/mixed,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/space/has_grav/powered)
+"O" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/space/has_grav/powered)
+"P" = (
+/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris,
+/obj/item/lighter,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/space/has_grav/powered)
+"R" = (
+/obj/item/clothing/mask/cigarette/rollie/trippy,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/space/has_grav/powered)
+"S" = (
+/obj/item/reagent_containers/syringe{
+	desc = "A syringe, looks like someone used it to inject weed into themselves.";
+	name = "weed syringe"
 	},
-/turf/open/space,
-/area/ruin/powered)
+/obj/item/stack/cable_coil,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/space/has_grav/powered)
+"U" = (
+/obj/structure/chair/comfy{
+	dir = 1;
+	icon_state = "comfychair";
+	tag = ""
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/space/has_grav/powered)
+"V" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/space/has_grav/powered)
+"Y" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/powered)
+"Z" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/space/has_grav/powered)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
 "}
 (2,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
 "}
 (3,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
 "}
 (4,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
 "}
 (5,1,1) = {"
-a
-b
-d
-b
-b
+p
+o
+o
+J
 e
-e
-e
-c
 b
-I
-a
-a
-a
+b
+b
+o
+o
+p
+p
+p
+p
 "}
 (6,1,1) = {"
-a
-c
-f
+p
+m
+g
+O
+o
+d
+R
 k
-b
-u
-y
-v
-D
-b
-a
-a
-a
-a
+L
+Y
+h
+p
+p
+p
 "}
 (7,1,1) = {"
-a
-c
-g
-l
-q
-v
-v
+p
+m
 z
-E
-c
-a
-a
-a
-a
+V
+x
+k
+k
+D
+k
+t
+s
+u
+p
+p
 "}
 (8,1,1) = {"
-a
-c
-h
+p
 m
+l
+v
+A
+P
+S
+j
 r
-w
-z
-B
-F
-c
-a
-a
-a
-a
+t
+s
+s
+p
+p
 "}
 (9,1,1) = {"
-a
-c
-i
+p
+m
+U
+V
+o
 n
-b
-x
-A
-C
-G
-b
-a
-a
-a
-a
+w
+Z
+y
+Y
+h
+p
+p
+p
 "}
 (10,1,1) = {"
-a
-b
-d
-b
-b
-b
-b
-b
-c
-b
+p
+o
+o
 J
-a
-a
-a
+o
+o
+m
+m
+o
+o
+p
+p
+p
+p
 "}
 (11,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
 "}
 (12,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
 "}
 (13,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
 "}
 (14,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
 "}

@@ -85,7 +85,7 @@
 
 	return not_handled
 
-/mob/living/carbon/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE)
+/mob/living/carbon/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE, silent = FALSE)
 	. = ..() //Sets the default return value to what the parent returns.
 	if(!. || !I) //We don't want to set anything to null if the parent returned 0.
 		return
@@ -147,13 +147,14 @@
   
   This handles creating an alert and adding an overlay to it
   */
-/mob/living/carbon/proc/give()
+/mob/living/carbon/give()
+	. = ..()
 	var/obj/item/receiving = get_active_held_item()
 	if(!receiving)
-		to_chat(src, "<span class='warning'>You're not holding anything to give!</span>")
+		to_chat(src, span_warning("You're not holding anything to give!"))
 		return
-	visible_message("<span class='notice'>[src] is offering [receiving].</span>", \
-					"<span class='notice'>You offer [receiving].</span>", null, 2)
+	visible_message(span_notice("[src] is offering [receiving]."), \
+					span_notice("You offer [receiving]."), null, 2)
 	for(var/mob/living/carbon/C in orange(1, src))
 		if(!CanReach(C))
 			return
@@ -174,13 +175,13 @@
 /mob/living/carbon/proc/take(mob/living/carbon/giver, obj/item/I)
 	clear_alert("[giver]")
 	if(get_dist(src, giver) > 1)
-		to_chat(src, "<span class='warning'>[giver] is out of range! </span>")
+		to_chat(src, span_warning("[giver] is out of range! "))
 		return
 	if(!I || giver.get_active_held_item() != I)
-		to_chat(src, "<span class='warning'>[giver] is no longer holding the item they were offering! </span>")
+		to_chat(src, span_warning("[giver] is no longer holding the item they were offering! "))
 		return
 	if(!get_empty_held_indexes())
-		to_chat(src, "<span class='warning'>You have no empty hands!</span>")
+		to_chat(src, span_warning("You have no empty hands!"))
 		return
 	if(!giver.temporarilyRemoveItemFromInventory(I))
 		visible_message("<span class='notice'>[src] tries to hand over [I] but it's stuck to them....", \

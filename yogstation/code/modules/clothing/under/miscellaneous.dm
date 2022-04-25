@@ -1,9 +1,9 @@
-/obj/item/clothing/under/rank/psyche
+/obj/item/clothing/under/yogs/psyche
 	name = "psychedelic jumpsuit"
 	desc = "Groovy!"
-	icon_state = "psyche"
+	icon_state = "psyche_s"
 	item_state = "rainbow"
-	item_color = "psyche"
+	item_color = "psyche_s"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/scaryclown
@@ -104,14 +104,6 @@
 	icon_state = "doomsday_s"
 	item_state = "doomsday"
 	item_color = "doomsday_s"
-	can_adjust = FALSE
-
-/obj/item/clothing/under/yogs/enclaveo
-	name = "enclave suit"
-	desc = "Here to protect what makes this station great."
-	icon_state = "enclaveo_s"
-	item_state = "enclaveo"
-	item_color = "enclaveo_s"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/rycliesuni

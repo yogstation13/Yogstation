@@ -11,6 +11,8 @@
 
 	outfit = /datum/outfit/job/chaplain
 
+	alt_titles = list("Priest", "Preacher", "Cleric", "Exorcist")
+
 	access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE)
 	minimal_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE)
 	paycheck = PAYCHECK_EASY
@@ -35,6 +37,8 @@
 		H.equip_to_slot_or_del(B, SLOT_IN_BACKPACK)
 		var/nrt = GLOB.holy_weapon_type || /obj/item/nullrod
 		var/obj/item/nullrod/N = new nrt(H)
+		if(GLOB.holy_weapon_type)
+			N.reskinned = TRUE
 		H.put_in_hands(N)
 		if(GLOB.religious_sect)
 			GLOB.religious_sect.on_conversion(H)
@@ -152,9 +156,11 @@
 	name = "Chaplain"
 	jobtype = /datum/job/chaplain
 
-	belt = /obj/item/pda/chaplain
+	pda_type = /obj/item/pda/chaplain
+
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/chaplain
+	uniform_skirt = /obj/item/clothing/under/rank/chaplain/skirt
 	backpack_contents = list(/obj/item/camera/spooky = 1)
 	backpack = /obj/item/storage/backpack/cultpack
 	satchel = /obj/item/storage/backpack/cultpack

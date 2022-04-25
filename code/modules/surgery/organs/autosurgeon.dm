@@ -24,13 +24,13 @@
 
 /obj/item/autosurgeon/attack_self(mob/user)//when the object it used...
 	if(!uses)
-		to_chat(user, "<span class='warning'>[src] has already been used. The tools are dull and won't reactivate.</span>")
+		to_chat(user, span_warning("[src] has already been used. The tools are dull and won't reactivate."))
 		return
 	else if(!storedorgan)
-		to_chat(user, "<span class='notice'>[src] currently has no implant stored.</span>")
+		to_chat(user, span_notice("[src] currently has no implant stored."))
 		return
 	storedorgan.Insert(user)//insert stored organ into the user
-	user.visible_message("<span class='notice'>[user] presses a button on [src], and you hear a short mechanical noise.</span>", "<span class='notice'>You feel a sharp sting as [src] plunges into your body.</span>")
+	user.visible_message(span_notice("[user] presses a button on [src], and you hear a short mechanical noise."), span_notice("You feel a sharp sting as [src] plunges into your body."))
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, 1)
 	storedorgan = null
 	name = initial(name)
@@ -45,15 +45,15 @@
 /obj/item/autosurgeon/attackby(obj/item/I, mob/user, params)
 	if(istype(I, organ_type))
 		if(storedorgan)
-			to_chat(user, "<span class='notice'>[src] already has an implant stored.</span>")
+			to_chat(user, span_notice("[src] already has an implant stored."))
 			return
 		else if(!uses)
-			to_chat(user, "<span class='notice'>[src] has already been used up.</span>")
+			to_chat(user, span_notice("[src] has already been used up."))
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		storedorgan = I
-		to_chat(user, "<span class='notice'>You insert the [I] into [src].</span>")
+		to_chat(user, span_notice("You insert the [I] into [src]."))
 	else
 		return ..()
 
@@ -61,14 +61,14 @@
 	if(..())
 		return TRUE
 	if(!storedorgan)
-		to_chat(user, "<span class='notice'>There's no implant in [src] for you to remove.</span>")
+		to_chat(user, span_notice("There's no implant in [src] for you to remove."))
 	else
 		var/atom/drop_loc = user.drop_location()
 		for(var/J in src)
 			var/atom/movable/AM = J
 			AM.forceMove(drop_loc)
 
-		to_chat(user, "<span class='notice'>You remove the [storedorgan] from [src].</span>")
+		to_chat(user, span_notice("You remove the [storedorgan] from [src]."))
 		I.play_tool_sound(src)
 		storedorgan = null
 		if(uses != INFINITE)
@@ -94,6 +94,19 @@
 
 /obj/item/autosurgeon/reviver
 	starting_organ = /obj/item/organ/cyberimp/chest/reviver
-	
+
 /obj/item/autosurgeon/medibeam
+	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam
+
+/obj/item/autosurgeon/organ/syndicate/syndie_mantis
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis
+
+/obj/item/autosurgeon/organ/syndicate/syndie_mantis/l
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis/l
+
+/obj/item/autosurgeon/plasmavessel //Yogs Start: Just an autosurgeon with a plasma vessel in it, used in /obj/item/storage/box/syndie_kit/xeno_organ_kit
+	uses = 3
+	starting_organ = /obj/item/organ/alien/plasmavessel //Yogs End

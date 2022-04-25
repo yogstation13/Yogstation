@@ -34,12 +34,12 @@
 	. = ..()
 	if(isobserver(user) || isdarkspawn(user))
 		to_chat(user, "<span class='velvet bold'>Functions:<span>")
-		to_chat(user, "<span class='velvet'><b>Help intent:</b> Click on an open tile within seven tiles to jump to it for 10 Psi.</span>")
-		to_chat(user, "<span class='velvet'><b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)</span>")
-		to_chat(user, "<span class='velvet'><b>Harm intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck.</span>")
-		to_chat(user, "<span class='velvet'>The tendrils will break any lights hit in melee,</span>")
-		to_chat(user, "<span class='velvet'>The tendrils will shatter light fixtures instantly, as opposed to in several attacks.</span>")
-		to_chat(user, "<span class='velvet'>Also functions to pry open depowered airlocks on any intent other than harm.</span>")
+		to_chat(user, span_velvet("<b>Help intent:</b> Click on an open tile within seven tiles to jump to it for 10 Psi."))
+		to_chat(user, span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
+		to_chat(user, span_velvet("<b>Harm intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
+		to_chat(user, span_velvet("The tendrils will break any lights hit in melee,"))
+		to_chat(user, span_velvet("The tendrils will shatter light fixtures instantly, as opposed to in several attacks."))
+		to_chat(user, span_velvet("Also functions to pry open depowered airlocks on any intent other than harm."))
 
 /obj/item/umbral_tendrils/attack(mob/living/target, mob/living/user, twinned_attack = TRUE)
 	set waitfor = FALSE
@@ -53,7 +53,7 @@
 		return
 	if(proximity)
 		if(istype(target, /obj/structure/glowshroom))
-			visible_message("<span class='warning'>[src] tears [target] to shreds!</span>")
+			visible_message(span_warning("[src] tears [target] to shreds!"))
 			qdel(target)
 		if(isliving(target))
 			var/mob/living/L = target
@@ -82,30 +82,30 @@
 		PDA.fon = FALSE
 		PDA.f_lum = 0
 		PDA.update_icon()
-		visible_message("<span class='danger'>The light in [PDA] shorts out!</span>")
+		visible_message(span_danger("The light in [PDA] shorts out!"))
 	else
-		visible_message("<span class='danger'>[O] is disintegrated by [src]!</span>")
+		visible_message(span_danger("[O] is disintegrated by [src]!"))
 		O.burn()
 	playsound(src, 'sound/items/welder.ogg', 50, 1)
 
 /obj/item/umbral_tendrils/proc/tendril_jump(mob/living/user, turf/open/target) //throws the user towards the target turf
 	if(!darkspawn.has_psi(10))
-		to_chat(user, "<span class='warning'>You need at least 10 Psi to jump!</span>")
+		to_chat(user, span_warning("You need at least 10 Psi to jump!"))
 		return
 	if(!(target in view(7, user)))
-		to_chat(user, "<span class='warning'>You can't access that area, or it's too far away!</span>")
+		to_chat(user, span_warning("You can't access that area, or it's too far away!"))
 		return
-	to_chat(user, "<span class='velvet'>You pull yourself towards [target].</span>")
+	to_chat(user, span_velvet("You pull yourself towards [target]."))
 	playsound(user, 'sound/magic/tail_swing.ogg', 10, TRUE)
 	user.throw_at(target, 5, 3)
 	darkspawn.use_psi(10)
 
 /obj/item/umbral_tendrils/proc/tendril_swing(mob/living/user, mob/living/target) //swing the tendrils to knock someone down
 	if(isliving(target) && target.lying)
-		to_chat(user, "<span class='warning'>[target] is already knocked down!</span>")
+		to_chat(user, span_warning("[target] is already knocked down!"))
 		return
-	user.visible_message("<span class='warning'>[user] draws back [src] and swings them towards [target]!</span>", \
-	"<span class='velvet'><b>opehhjaoo</b><br>You swing your tendrils towards [target]!</span>")
+	user.visible_message(span_warning("[user] draws back [src] and swings them towards [target]!"), \
+	span_velvet("<b>opehhjaoo</b><br>You swing your tendrils towards [target]!"))
 	playsound(user, 'sound/magic/tail_swing.ogg', 50, TRUE)
 	var/obj/item/projectile/umbral_tendrils/T = new(get_turf(user))
 	T.preparePixelProjectile(target, user)
@@ -144,22 +144,22 @@
 		if(!iscyborg(target))
 			playsound(target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE)
 			if(!twinned)
-				target.visible_message("<span class='warning'>[firer]'s [name] slam into [target], knocking them off their feet!</span>", \
-				"<span class='userdanger'>You're knocked off your feet!</span>")
+				target.visible_message(span_warning("[firer]'s [name] slam into [target], knocking them off their feet!"), \
+				span_userdanger("You're knocked off your feet!"))
 				L.Paralyze(20)
 				L.Knockdown(60)
 			else
 				target.throw_at(get_step_towards(firer, target), 7, 2) //pull them towards us!
-				target.visible_message("<span class='warning'>[firer]'s [name] slam into [target] and drag them across the ground!</span>", \
-				"<span class='userdanger'>You're suddenly dragged across the floor!</span>")
+				target.visible_message(span_warning("[firer]'s [name] slam into [target] and drag them across the ground!"), \
+				span_userdanger("You're suddenly dragged across the floor!"))
 				L.Paralyze(30) //these can't hit people who are already on the ground but they can be spammed to all shit
 				L.Knockdown(80)
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
 		else
 			var/mob/living/silicon/robot/R = target
-			R.update_headlamp(TRUE) //disable headlamps
-			target.visible_message("<span class='warning'>[firer]'s [name] smashes into [target]'s chassis!</span>", \
-			"<span class='userdanger'>Heavy percussive impact detected. Recalibrating motor input.</span>")
+			R.toggle_headlamp(TRUE) //disable headlamps
+			target.visible_message(span_warning("[firer]'s [name] smashes into [target]'s chassis!"), \
+			span_userdanger("Heavy percussive impact detected. Recalibrating motor input."))
 			R.playsound_local(target, 'sound/misc/interference.ogg', 25, FALSE)
 			playsound(R, 'sound/effects/bang.ogg', 50, TRUE)
 			R.Paralyze(40) //this is the only real anti-borg spell  get

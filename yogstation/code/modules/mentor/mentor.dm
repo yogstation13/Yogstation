@@ -10,8 +10,9 @@ GLOBAL_PROTECT(mentor_href_token)
 	var/target // the mentor's ckey
 	var/href_token // href token for mentor commands, uses the same token used by admins.
 	var/mob/following
+	var/position = "Mentor"
 
-/datum/mentors/New(ckey)
+/datum/mentors/New(ckey, mentorposition)
 	if(!ckey)
 		QDEL_IN(src, 0)
 		throw EXCEPTION("Mentor datum created without a ckey")
@@ -28,6 +29,7 @@ GLOBAL_PROTECT(mentor_href_token)
 		owner.add_mentor_verbs()
 		if(!check_rights_for(owner, R_ADMIN,0)) // don't add admins to mentor list.
 			GLOB.mentors += owner
+	position = mentorposition
 
 /datum/mentors/proc/CheckMentorHREF(href, href_list)
 	var/auth = href_list["mentor_token"]
@@ -87,21 +89,22 @@ GLOBAL_PROTECT(mentor_href_token)
 			load_mentors()
 			return
 
-		var/datum/DBQuery/query_load_mentors = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("mentor")]")
+		var/datum/DBQuery/query_load_mentors = SSdbcore.NewQuery("SELECT ckey, position FROM [format_table_name("mentor")]")
 		if(!query_load_mentors.Execute())
 			qdel(query_load_mentors)
 			return
 
 		while(query_load_mentors.NextRow())
 			var/ckey = ckey(query_load_mentors.item[1])
-			new /datum/mentors(ckey)
+			var/position = query_load_mentors.item[2]
+			new /datum/mentors(ckey, position)
 
 		qdel(query_load_mentors)
 
 /proc/send_mentor_sound(client/C)
 	var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
 	pingsound.volume = 90
-	if(GLOB.mentornoot)
+	if((C.prefs.toggles & SOUND_ALT) && (GLOB.mentornoot || prob(10)))
 		pingsound = sound('sound/misc/nootnoot.ogg')
 		pingsound.volume = 100
 	pingsound.pan = 80

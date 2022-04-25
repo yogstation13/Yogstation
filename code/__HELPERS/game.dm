@@ -8,11 +8,14 @@
 #define Z_TURFS(ZLEVEL) block(locate(1,1,ZLEVEL), locate(world.maxx, world.maxy, ZLEVEL))
 #define CULT_POLL_WAIT 2400
 
-/proc/get_area_name(atom/X, format_text = FALSE)
+/proc/get_area_name(atom/X, format_text = FALSE, is_sensor = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
 		return null
-	return format_text ? format_text(A.name) : A.name
+	var/name = A.name
+	if (is_sensor && !A.show_on_sensors)
+		name = Gibberish(name, TRUE, 90)
+	return format_text ? format_text(name) : name
 
 /proc/get_areas_in_range(dist=0, atom/center=usr)
 	if(!dist)
@@ -174,11 +177,11 @@
 /proc/recursive_hear_check(O)
 	var/list/processing_list = list(O)
 	. = list()
-	while(processing_list.len)
-		var/atom/A = processing_list[1]
+	var/i = 0
+	while(i < length(processing_list))
+		var/atom/A = processing_list[++i]
 		if(A.flags_1 & HEAR_1)
 			. += A
-		processing_list.Cut(1, 2)
 		processing_list += A.contents
 
 /** recursive_organ_check
@@ -264,10 +267,8 @@
 	// Returns a list of hearers in view(R) from source (ignoring luminosity). Used in saycode.
 	var/turf/T = get_turf(source)
 	. = list()
-
 	if(!T)
 		return
-
 	var/list/processing_list = list()
 	if (R == 0) // if the range is zero, we know exactly where to look for, we can skip view
 		processing_list += T.contents // We can shave off one iteration by assuming turfs cannot hear
@@ -280,11 +281,11 @@
 			processing_list += O
 		T.luminosity = lum
 
-	while(processing_list.len) // recursive_hear_check inlined here
-		var/atom/A = processing_list[1]
+	var/i = 0
+	while(i < length(processing_list)) // recursive_hear_check inlined here
+		var/atom/A = processing_list[++i]
 		if(A.flags_1 & HEAR_1)
 			. += A
-		processing_list.Cut(1, 2)
 		processing_list += A.contents
 
 /proc/get_mobs_in_radio_ranges(list/obj/item/radio/radios)
@@ -442,34 +443,90 @@
 		window_flash(M.client)
 	switch(ignore_category ? askuser(M,Question,"Please answer in [DisplayTimeText(poll_time)]!","Yes","No","Never for this round", StealFocus=0, Timeout=poll_time) : askuser(M,Question,"Please answer in [DisplayTimeText(poll_time)]!","Yes","No", StealFocus=0, Timeout=poll_time))
 		if(1)
-			to_chat(M, "<span class='notice'>Choice registered: Yes.</span>")
+			to_chat(M, span_notice("Choice registered: Yes."))
 			if(time_passed + poll_time <= world.time)
-				to_chat(M, "<span class='danger'>Sorry, you answered too late to be considered!</span>")
+				to_chat(M, span_danger("Sorry, you answered too late to be considered!"))
 				SEND_SOUND(M, 'sound/machines/buzz-sigh.ogg')
 				candidates -= M
 			else
 				candidates += M
 		if(2)
-			to_chat(M, "<span class='danger'>Choice registered: No.</span>")
+			to_chat(M, span_danger("Choice registered: No."))
 			candidates -= M
 		if(3)
 			var/list/L = GLOB.poll_ignore[ignore_category]
 			if(!L)
 				GLOB.poll_ignore[ignore_category] = list()
 			GLOB.poll_ignore[ignore_category] += M.ckey
-			to_chat(M, "<span class='danger'>Choice registered: Never for this round.</span>")
+			to_chat(M, span_danger("Choice registered: Never for this round."))
 			candidates -= M
 		else
 			candidates -= M
 
+/**
+  * Poll all ghosts for looking for a candidate
+  *
+  * Poll all ghosts a question
+  * returns people who voted yes in a list
+  * Arguments:
+  * * Question: String, what do you want to ask them
+  * * jobbanType: List, Which roles/jobs to exclude from being asked
+  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * be_special_flag: Bool, Only notify ghosts with special antag on
+  * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
+  * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
+  * * flashwindow: Bool, Flash their window to grab their attention
+  */
 /proc/pollGhostCandidates(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE)
 	var/list/candidates = list()
+	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
+		return candidates
 
 	for(var/mob/dead/observer/G in GLOB.player_list)
 		candidates += G
 
 	return pollCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category, flashwindow, candidates)
 
+/**
+  * Poll all mentor ghosts for looking for a candidate
+  *
+  * Poll all mentor ghosts a question
+  * returns people who voted yes in a list
+  * Arguments:
+  * * Question: String, what do you want to ask them
+  * * jobbanType: List, Which roles/jobs to exclude from being asked
+  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * be_special_flag: Bool, Only notify ghosts with special antag on
+  * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
+  * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
+  * * flashwindow: Bool, Flash their window to grab their attention
+  */
+/proc/pollMentorGhostCandidates(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE)
+	var/list/candidates = list()
+	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
+		return candidates
+
+	for(var/mob/dead/observer/G in GLOB.player_list)
+		if(is_mentor(G))
+			candidates += G
+
+	return pollCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category, flashwindow, candidates)
+
+/**
+  * Poll all in the group for a candidate
+  *
+  * Poll group for question
+  * returns people who voted yes in a list
+  * Arguments:
+  * * Question: String, what do you want to ask them
+  * * jobbanType: List, Which roles/jobs to exclude from being asked
+  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * be_special_flag: Bool, Only notify ghosts with special antag on
+  * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
+  * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
+  * * flashwindow: Bool, Flash their window to grab their attention
+  * * group: List, Group of people to poll. list of datum/minds
+  */
 /proc/pollCandidates(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE, list/group = null)
 	var/time_passed = world.time
 	if (!Question)
@@ -501,12 +558,60 @@
 
 	return result
 
+/**
+  * Poll ghosts to take control of a mob
+  *
+  * Poll ghosts for mob control
+  * returns people who voted yes in a list
+  * Arguments:
+  * * Question: String, what do you want to ask them
+  * * jobbanType: List, Which roles/jobs to exclude from being asked
+  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * be_special_flag: Bool, Only notify ghosts with special antag on
+  * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
+  * * M: Mob, /mob to offer
+  * * ignore_category: Unknown
+  */
 /proc/pollCandidatesForMob(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, mob/M, ignore_category = null)
 	var/list/L = pollGhostCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category)
 	if(!M || QDELETED(M) || !M.loc)
 		return list()
 	return L
 
+/**
+  * Poll mentor ghosts to take control of a mob
+  *
+  * Poll mentor ghosts for mob control
+  * returns people who voted yes in a list
+  * Arguments:
+  * * Question: String, what do you want to ask them
+  * * jobbanType: List, Which roles/jobs to exclude from being asked
+  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * be_special_flag: Bool, Only notify ghosts with special antag on
+  * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
+  * * M: Mob, /mob to offer
+  * * ignore_category: Unknown
+  */
+/proc/pollMentorCandidatesForMob(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, mob/M, ignore_category = null)
+	var/list/L = pollMentorGhostCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category)
+	if(!M || QDELETED(M) || !M.loc)
+		return list()
+	return L
+
+/**
+  * Poll ghosts to take control of a mob
+  *
+  * Poll ghosts for mob control
+  * returns people who voted yes in a list
+  * Arguments:
+  * * Question: String, what do you want to ask them
+  * * jobbanType: List, Which roles/jobs to exclude from being asked
+  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * be_special_flag: Bool, Only notify ghosts with special antag on
+  * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
+  * * mobs: List, list of mobs to offer up
+  * * ignore_category: Unknown
+  */
 /proc/pollCandidatesForMobs(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, list/mobs, ignore_category = null)
 	var/list/L = pollGhostCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category)
 	var/i=1
@@ -565,7 +670,9 @@
 	if(!SSticker.IsRoundInProgress() || QDELETED(character))
 		return
 	var/area/A = get_area(character)
-	deadchat_broadcast(" has arrived at the station at <span class='name'>[A.name]</span>.", "<span class='game'><span class='name'>[character.real_name]</span> ([rank])", follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
+	if(character.mind.role_alt_title)
+		rank = character.mind.role_alt_title
+	deadchat_broadcast(" has arrived at the station at [span_name("[A.name]")].", "<span class='game'>[span_name("[character.real_name]")] ([rank])", follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
 	if((!GLOB.announcement_systems.len) || (!character.mind))
 		return
 	if((character.mind.assigned_role == "Cyborg") || (character.mind.assigned_role == character.mind.special_role))
@@ -573,15 +680,6 @@
 
 	var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
 	announcer.announce("ARRIVAL", character.real_name, rank, list()) //make the list empty to make it announce it in common
-
-/proc/GetRedPart(const/hexa)
-	return hex2num(copytext(hexa, 2, 4))
-
-/proc/GetGreenPart(const/hexa)
-	return hex2num(copytext(hexa, 4, 6))
-
-/proc/GetBluePart(const/hexa)
-	return hex2num(copytext(hexa, 6, 8))
 
 /proc/lavaland_equipment_pressure_check(turf/T)
 	. = FALSE
@@ -610,7 +708,7 @@
 	for(var/turf/found_turf in turfs)
 		var/area/turf_area = get_area(found_turf)
 
-		// We check if both the turf is a floor, and that it's actually in the area. 
+		// We check if both the turf is a floor, and that it's actually in the area.
 		// We also want a location that's clear of any obstructions.
 		if (specific_area)
 			if (!istype(turf_area, specific_area))

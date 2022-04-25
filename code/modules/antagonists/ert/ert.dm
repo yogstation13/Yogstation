@@ -136,6 +136,21 @@
 	outfit = /datum/outfit/amber/commander
 	role = "Commander"
 
+/datum/antagonist/ert/occupying
+	name = "Occupying Officer"
+	outfit = /datum/outfit/occupying
+	role = "Officer"
+
+/datum/antagonist/ert/occupying/heavy
+	name = "Occupying Riot Officer"
+	outfit = /datum/outfit/occupying/heavy
+	role = "Riot Officer"
+	
+/datum/antagonist/ert/occupying/commander
+	name = "Occupying Commander"
+	outfit = /datum/outfit/occupying/commander
+	role = "Commander"
+
 /datum/antagonist/ert/clown
 	name = "Comedy Response Officer"
 	outfit = /datum/outfit/centcom_clown

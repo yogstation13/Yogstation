@@ -12,26 +12,26 @@
 	if(!IS_HERETIC(user))
 		return
 	if(!target)
-		to_chat(user,"<span class='warning'>No target could be found. Put the living heart on the rune and use the rune to recieve a target.</span>")
+		to_chat(user,span_warning("No target could be found. Put the living heart on the rune and use the rune to recieve a target."))
 		return
-	var/dist = get_dist(user.loc,target.loc)
-	var/dir = get_dir(user.loc,target.loc)
+	var/dist = get_dist(get_turf(user),get_turf(target))
+	var/dir = get_dir(get_turf(user),get_turf(target))
 
 	if(user.z != target.z)
-		to_chat(user,"<span class='warning>[target.real_name] is ... vertical to you?</span>")
+		to_chat(user,span_warning("[target.real_name] is ... vertical to you?"))
 	else
 		switch(dist)
 			if(0 to 15)
-				to_chat(user,"<span class='warning'>[target.real_name] is near you. They are to the [dir2text(dir)] of you!</span>")
+				to_chat(user,span_warning("[target.real_name] is near you. They are to the [dir2text(dir)] of you!"))
 			if(16 to 31)
-				to_chat(user,"<span class='warning'>[target.real_name] is somewhere in your vicinty. They are to the [dir2text(dir)] of you!</span>")
+				to_chat(user,span_warning("[target.real_name] is somewhere in your vicinty. They are to the [dir2text(dir)] of you!"))
 			if(32 to 127)
-				to_chat(user,"<span class='warning'>[target.real_name] is far away from you. They are to the [dir2text(dir)] of you!</span>")
+				to_chat(user,span_warning("[target.real_name] is far away from you. They are to the [dir2text(dir)] of you!"))
 			else
-				to_chat(user,"<span class='warning'>[target.real_name] is beyond our reach.</span>")
+				to_chat(user,span_warning("[target.real_name] is beyond our reach."))
 
 	if(target.stat == DEAD)
-		to_chat(user,"<span class='warning'>[target.real_name] is dead. Bring them onto a transmutation rune!</span>")
+		to_chat(user,span_warning("[target.real_name] is dead. Bring them to a transmutation rune!"))
 
 /datum/action/innate/heretic_shatter
 	name = "Shattering Offer"
@@ -57,7 +57,7 @@
 
 /datum/action/innate/heretic_shatter/Activate()
 	var/turf/safe_turf = find_safe_turf(zlevels = sword.z, extended_safety_checks = TRUE)
-	holder.visible_message("<span class ='boldwarning'>Light bends around [holder] as they smash [sword], and in a moment they are gone.</span>", "<span class='notice'>You feel yourself begin to descend as [sword] breaks, before the darkness suddenly receeds and you find yourself somewhere else.</span>")
+	holder.visible_message("<span class ='boldwarning'>Light bends around [holder] as they smash [sword], and in a moment they are gone.</span>", span_notice("You feel yourself begin to descend as [sword] breaks, before the darkness suddenly receeds and you find yourself somewhere else."))
 	playsound(holder, "shatter", 70, pressure_affected = FALSE)
 	playsound(holder, "forcewall", 70, pressure_affected = FALSE)
 	flash_color(holder, flash_color = "#000000", flash_time = 10)
@@ -75,7 +75,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	flags_1 = CONDUCT_1
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 17
 	throwforce = 10
@@ -97,7 +97,7 @@
 
 /obj/item/melee/sickly_blade/attack(mob/living/M, mob/living/user)
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
-		to_chat(user,"<span class='danger'>You feel a pulse of some alien intellect lash out at your mind!</span>")
+		to_chat(user,span_danger("You feel a pulse of some alien intellect lash out at your mind!"))
 		var/mob/living/carbon/human/human_user = user
 		human_user.AdjustParalyzed(5 SECONDS)
 		return FALSE
@@ -106,7 +106,7 @@
 /obj/item/melee/sickly_blade/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
-	if(!cultie || !proximity_flag)
+	if(!cultie || !proximity_flag || target == user)
 		return
 	var/list/knowledge = cultie.get_all_knowledge()
 	for(var/X in knowledge)

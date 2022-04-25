@@ -9,39 +9,31 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#Teams
+#HeadDev
 
 /.github/ @yogstation13/head-coders
 /SQL/ @yogstation13/head-coders
-/_maps/ @yogstation13/map
 /config/ @yogstation13/head-coders
+/yogstation/SQL/ @yogstation13/head-coders
+/code/modules/client/preferences.dm @yogstation13/head-coders
+/code/modules/client/preferences_savefile.dm @yogstation13/head-coders
+/html/templates/ @yogstation13/head-coders
+/sound/ @yogstation13/head-coders
+/yogstation/sound/ @yogstation13/head-coders
+
+#Teams
+
+/_maps/ @yogstation13/map
 /goon/ @yogstation13/art
 /icons/ @yogstation13/art
-/sound/ @yogstation13/art
-/yogstation/SQL/ @yogstation13/head-coders
 /yogstation/icons/ @yogstation13/art
-/yogstation/sound/ @yogstation13/art
-
-#AsV9
-
-/code/__DEFINES/MC.dm @AsV9
-/code/__DEFINES/tick.dm @AsV9
-/code/controllers/master.dm @AsV9
-/SQL/database_changelog.txt @AsV9
-/code/controllers/admin.dm @AsV9
-/code/controllers/failsafe.dm @AsV9
-/code/controllers/subsystem.dm @AsV9
-/code/controllers/subsystem/timer.dm @AsV9
 
 #monster860
 
 /code/modules/atmospherics/ @monster860
 /yogstation/code/modules/atmospherics/ @monster860
 
-#Art stuff
+#thegamerdk
 
-/code/controllers/subsystem/ticker.dm @yogstation13/art
-/yogstation/code/controllers/subsystem/ticker.dm @yogstation13/art
-/code/modules/holidays/holidays.dm @yogstation13/art
-/yogstation/code/modules/holidays/holidays.dm @yogstation13/art
-
+/code/modules/mob/living/silicon/ai/decentralized @TheGamerdk
+/code/modules/mob/living/silicon/ai/decentralized_ai.dm @TheGamerdk

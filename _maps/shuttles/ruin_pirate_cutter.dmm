@@ -818,7 +818,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Pirate Cutter APC";
-	pixel_x = -24;
+	pixel_x = -25;
 	req_access = null
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -1051,9 +1051,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
 "RK" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},

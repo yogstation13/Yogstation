@@ -3,44 +3,9 @@
 //Oh god what the fuck I am not good at computer
 /obj/item/book/manual
 	icon = 'icons/obj/library.dmi'
+	w_class = WEIGHT_CLASS_SMALL
 	due_date = 0 // Game time in 1/10th seconds
 	unique = TRUE   // FALSE - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
-
-/obj/item/book/manual/hydroponics_pod_people
-	name = "The Human Harvest - From seed to market"
-	icon_state ="bookHydroponicsPodPeople"
-	author = "Farmer John" // Whoever wrote the paper or book, can be changed by pen or PC. It is not automatically assigned.
-	title = "The Human Harvest - From seed to market"
-	//book contents below
-	dat = {"<html>
-				<head>
-				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {list-style: none; margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
-				</style>
-				</head>
-				<body>
-				<h3>Growing Humans</h3>
-
-				Why would you want to grow humans? Well I'm expecting most readers to be in the slave trade, but a few might actually
-				want to revive fallen comrades. Growing pod people is easy, but prone to disaster.
-				<p>
-				<ol>
-				<li>Find a dead person who is in need of cloning. </li>
-				<li>Take a blood sample with a syringe. </li>
-				<li>Inject a seed pack with the blood sample. </li>
-				<li>Plant the seeds. </li>
-				<li>Tend to the plants water and nutrition levels until it is time to harvest the cloned human.</li>
-				</ol>
-				<p>
-				It really is that easy! Good luck!
-
-				</body>
-				</html>
-				"}
 
 /obj/item/book/manual/ripley_build_and_repair
 	name = "APLU \"Ripley\" Construction and Operation Manual"
@@ -196,6 +161,104 @@
 				</html>
 			"}
 
+/obj/item/book/manual/ashwalker
+	name = "Tome of Herbal Knowledge"
+	icon_state = "book1"
+	author = "Ma'sha Alazee the Shaman"
+	title = "Tome of Herbal Knowledge"
+	dat = {"<html>
+				<head>
+				<style>
+				h1 {font-size: 18px; margin: 15px 0px 5px;}
+				h2 {font-size: 15px; margin: 15px 0px 5px;}
+				li {margin: 2px 0px 2px 15px;}
+				ul {list-style: none; margin: 5px; padding: 0px;}
+				ol {margin: 5px; padding: 0px 15px;}
+				</style>
+				</head>
+				<body>
+
+				<h1>Ancient Ashwalker Recipes</h1>
+				I pass down my knowledge to my kin, all that I know shall forever be preserved in this book.
+				Inside, I shall teach you various important healing recipes and crafting techniques.
+
+
+				<h2>Poultice:</h2>
+
+				To prepare, first gather mushroom stems, cacti or porcini leaves, ashes from a burnt item, and a heat source such as a welder/lit candle.
+				Next, mash together 4 mushroom stems and 3 cacti fruit.
+				Porcini can be used instead of cacti fruit, but due to having less concentration it may be harder to fit enough leaves required to make the product.
+				Afterwards, scoop up ashes with the mortar. If the ashes are warm enough, it may mix without extra heat needed.
+				If it has yet to mix, heat up the bowl by using the welder on it until it has done so.
+				Apply product to wounded parts to heal them. May cause loss of breath.
+
+				<h2>Bone Gel:</h2>
+
+				To prepare, first mash up either 3 of any plant or 1 polypore mushroom shaving.
+				Next, milk a gutlunch, one of which should be near the tendril.
+				Afterwards, once enough honey is gathered, mix the two together and heat.
+				Once heated enough it will solidify into a usable product.
+				Apply product to broken bones in order to mend them.
+
+				<h2>Capmix:</h2>
+
+				To prepare, first gather a mushroom cap, ashes from a burnt item, and a heat source such as a welder/lit candle.
+				Next, mash together one mushroom cap.
+				Afterwards, scoop up ashes with the mortar. If the ashes are warm enough, it may mix without extra heat needed.
+				If it has yet to mix, heat up the bowl by using the welder on it until it has done so.
+				Consume in moderation in order to detox the body. Note, this may induce vomiting.
+
+				<h2>Resin:</h2>
+
+				All the plants here contain a small amount of resin, likely to deter consumption of them, or perhaps to retain water.
+				Either way, it is known to cause belly aches and toxicity within our bodies when consumed in large amounts.
+				However there is several methods for avoiding this:
+				Consuming plants in small quantities, or not consuming them at all.
+				Mashing the plants up and adding water to the bowl to solidify and remove most of the resin.
+				Ingesting capmix in order to expel the resin.
+
+				Resin is also useful for ensuring things stick together, and is a stronger binder than watcher sinew.
+				To use it for this purpose you'll have to solidify it by adding water.
+
+				<h2>Mushroom Paste:</h2>
+
+				To prepare, first gather mushroom stems, cacti or porcini leaves, and a bowl of gutlunch honey/milk.
+				Next, mash together a stem and a cacti fruit/porcini leaf within a mortar with the help of a pestle.
+				Afterwards, the mix should congeal into a odorous paste.
+				This paste can then be applied to crops in order to fertilize them to nurtur and stabilize them.
+
+				<h2>Bug Cheese:</h2>
+
+				A recipe passed down from generation to generation, far before we even discovered the healing properties of mushrooms and such.
+				Although I am not an avid chef, I found it important to ensure the knowledge of making this is never lost either.
+				Creating this delicious food is rather easy.
+				All you must do is use a mortar and pestle to crush a cacti fruit or porcini leaf and then mix it with gutlunch honey.
+				The resulting creation is a ball of healthy bug cheese, ready to eat.
+
+				<h2>Flora:</h2>
+
+				Every plant we are blessed with can be used in some way. 
+				All are not dangerous when consumed in moderation, save for mushroom caps.
+				All may be fermented and brewed into substances that induce a woozy and feel-good high.
+				Cacti fruit is rich in juices that will nurtur and heal your body.
+				Polypore shavings are tough and can be used for crafts such as bowls and wood substitute, and contain a higher than average resin content.
+				Porcini leaves contain a similar content to cacti fruit along with a substance that increases brain focus.
+				Inocybe caps contain deadly toxins in their raw state, but with ash and heat can be neutralized to instead detox the body.
+				Embershroom stems contain a bioluminescient substance that manages to even light up the body when consumed.
+
+				<h2>Leather:</h2>
+
+				Leather does not need to be interacted with much as a shaman,
+				especially if you are prioritizing medicine.
+				However, it can still be useful to know how to make it,
+				Especially since you can use it, or cloth, to create a medicinal pouch useful for holding plants and medicines.
+				To create it, acquire some hide, the most available of which will be goliath hide.
+				Next, skin it well with a sharp tool.
+				Afterwards, wash with water thoroughly, and then dry by placing it over a grill atop a lit bonfire.
+				</body>
+				</html>
+			"}
+
 /obj/item/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
 	icon_state ="bookNuclear"
@@ -233,7 +296,6 @@
 
 // Wiki books that are linked to the configured wiki link.
 
-// A book that links to the wiki
 /obj/item/book/manual/wiki
 	var/page_link = ""
 	window_size = "970x710"
@@ -247,27 +309,27 @@
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
 		dat = {"
-
-			<html><head>
+			<iframe
+				id='ext_frame'
+				src='[wikiurl]/frame.html'
+				style='border: none; width: 100vw; height: 100vh;'>
+			</iframe>
 			<style>
-				iframe {
-					display: none;
+			html, body {
+				height: 100vh;
+				width: 100vw;
+				margin: 0;
+				overflow: hidden;
+			}
+			body > :not(iframe) {
+				display: none;
 				}
 			</style>
-			</head>
-			<body>
-			<script type="text/javascript">
-				function pageloaded(myframe) {
-					document.getElementById("loading").style.display = "none";
-					myframe.style.display = "inline";
-    			}
+			<script>
+				window.onmessage = function() {
+					document.getElementById('ext_frame').contentWindow.postMessage('[page_link]', '*')
+				}
 			</script>
-			<p id='loading'>You start skimming through the manual...</p>
-			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[wikiurl]/[page_link]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
-			</body>
-
-			</html>
-
 			"}
 
 /obj/item/book/manual/wiki/chemistry
@@ -275,21 +337,21 @@
 	icon_state ="chemistrybook"
 	author = "Nanotrasen"
 	title = "Chemistry Textbook"
-	page_link = "Guide_to_chemistry"
+	page_link = "Guide_to_Chemistry"
 
 /obj/item/book/manual/wiki/engineering_construction
 	name = "Station Repairs and Construction"
 	icon_state ="bookEngineering"
 	author = "Engineering Encyclopedia"
 	title = "Station Repairs and Construction"
-	page_link = "Guide_to_construction"
+	page_link = "Guide_to_Construction"
 
 /obj/item/book/manual/wiki/engineering_guide
 	name = "Engineering Textbook"
 	icon_state ="bookEngineering2"
 	author = "Engineering Encyclopedia"
 	title = "Engineering Textbook"
-	page_link = "Guide_to_engineering"
+	page_link = "Guide_to_Engineering"
 
 /obj/item/book/manual/wiki/engineering_singulo_tesla
 	name = "Singularity and Tesla for Dummies"
@@ -307,7 +369,7 @@
 	page_link = "Space_Law"
 
 /obj/item/book/manual/wiki/security_space_law/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] pretends to read \the [src] intently... then promptly dies of laughter!</span>")
+	user.visible_message(span_suicide("[user] pretends to read \the [src] intently... then promptly dies of laughter!"))
 	return OXYLOSS
 
 /obj/item/book/manual/wiki/infections
@@ -343,7 +405,21 @@
 	icon_state = "barbook"
 	author = "Sir John Rose"
 	title = "Barman Recipes: Mixing Drinks and Changing Lives"
-	page_link = "Guide_to_drinks"
+	page_link = "Guide_to_Drinks"
+
+/obj/item/book/manual/wiki/hydroponicsguide
+	name = "Botany: An Introduction"
+	icon_state = "hydrobucket"
+	author = "Farmer John"
+	title = "Botany: An Introduction"
+	page_link = "Guide_to_hydroponics"
+
+/obj/item/book/manual/wiki/hydroponicsplants
+	name = "Plants of the Galaxy"
+	icon_state = "hydroplant"
+	author = "Gose Jarcia"
+	title = "Plants of the Galaxy"
+	page_link = "Guide_to_plants"
 
 /obj/item/book/manual/wiki/robotics_cyborgs
 	name = "Robotics for Dummies"
@@ -364,21 +440,21 @@
 	icon_state = "rdbook"
 	author = "Dr. H.P. Kritz"
 	title = "Mentoring your Experiments"
-	page_link = "Experimentor"
+	page_link = "E.X.P.E.R.I-MENTOR"
 
 /obj/item/book/manual/wiki/medical_cloning
 	name = "Cloning techniques of the 26th century"
 	icon_state ="bookCloning"
 	author = "Medical Journal, volume 3"
 	title = "Cloning techniques of the 26th century"
-	page_link = "Guide_to_genetics#Cloning"
+	page_link = "Guide_to_Genetics"
 
 /obj/item/book/manual/wiki/medical_genetics
 	name = "Genetics of the 26th century"
 	icon_state ="bookCloning"
 	author = "Dr. Likes-The-Powers "
 	title = "Genetics of the 26th century"
-	page_link = "Guide_to_genetics"
+	page_link = "Guide_to_Genetics"
 
 /obj/item/book/manual/wiki/cooking_to_serve_man
 	name = "To Serve Man"
@@ -432,7 +508,7 @@
 
 /obj/item/book/manual/wiki/toxins/suicide_act(mob/user)
 	var/mob/living/carbon/human/H = user
-	user.visible_message("<span class='suicide'>[user] starts dancing to the Rhumba Beat! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] starts dancing to the Rhumba Beat! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/effects/spray.ogg', 10, 1, -3)
 	if (!QDELETED(H))
 		H.emote("spin")
@@ -442,7 +518,9 @@
 			if(prob(50))
 				step(W, pick(GLOB.alldirs))
 		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		H.bleed_rate = 5
+		for(var/i in H.bodyparts)
+			var/obj/item/bodypart/BP = i
+			BP.generic_bleedstacks += 5
 		H.gib_animation()
 		sleep(3)
 		H.adjustBruteLoss(1000) //to make the body super-bloody

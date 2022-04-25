@@ -32,7 +32,7 @@
 	req_access = list()
 	req_one_access = list()
 	playsound(src, "sparks", 100, 1)
-	to_chat(user, "<span class='warning'>You short out the access controller.</span>")
+	to_chat(user, span_warning("You short out the access controller."))
 
 /obj/machinery/doorButtons/proc/removeMe()
 	return
@@ -61,7 +61,7 @@
 	if(busy)
 		return
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 		return
 	if(controller && !controller.busy && door)
 		if(controller.stat & NOPOWER)
@@ -78,9 +78,11 @@
 					controller.cycleClose(door)
 		else
 			controller.onlyClose(door)
-		sleep(20)
-		busy = FALSE
-		update_icon()
+		addtimer(CALLBACK(src, .proc/not_busy), 2 SECONDS)
+
+/obj/machinery/doorButtons/access_button/proc/not_busy()
+	busy = FALSE
+	update_icon()
 
 /obj/machinery/doorButtons/access_button/update_icon()
 	if(stat & NOPOWER)
@@ -127,7 +129,7 @@
 	if(busy)
 		return
 	if(!allowed(usr))
-		to_chat(usr, "<span class='warning'>Access denied.</span>")
+		to_chat(usr, span_warning("Access denied."))
 		return
 	switch(href_list["command"])
 		if("close_exterior")
@@ -252,7 +254,6 @@
 
 /obj/machinery/doorButtons/airlock_controller/ui_interact(mob/user)
 	var/datum/browser/popup = new(user, "computer", name)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.set_content(returnText())
 	popup.open()
 

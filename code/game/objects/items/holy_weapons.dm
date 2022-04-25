@@ -11,7 +11,7 @@
 	max_heat_protection_temperature = null
 	clothing_flags = null
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
-	slowdown = 0.8
+	slowdown = 0.5
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
 
 /obj/item/clothing/suit/space/hardsuit/darktemplarfollowerchap
@@ -25,7 +25,7 @@
 	max_heat_protection_temperature = null
 	clothing_flags = null
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
-	slowdown = 0.8
+	slowdown = 0.33
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
 
 /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
@@ -61,7 +61,7 @@
 	desc = "Deus Vult."
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
-	armor = list("melee" = 41, "bullet" = 15, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	strip_delay = 80
@@ -72,6 +72,7 @@
 	desc = "God wills it!"
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 	slowdown = 0
 	blocks_shove_knockdown = FALSE
@@ -104,7 +105,7 @@
 		SSblackbox.record_feedback("tally", "chaplain_armor", 1, "[choice]")
 		GLOB.holy_armor_type = choice
 	else
-		to_chat(M, "<span class='warning'>A selection has already been made. Self-Destructing...</span>")
+		to_chat(M, span_warning("A selection has already been made. Self-Destructing..."))
 		return
 
 
@@ -211,12 +212,14 @@
 	desc = "Now you're ready for some 50 dollar bling water."
 	icon_state = "chaplain_hoodie_leader"
 	item_state = "chaplain_hoodie_leader"
+	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 25)
 	hoodtype = /obj/item/clothing/head/hooded/chaplain_hood/leader
 
 /obj/item/clothing/head/hooded/chaplain_hood/leader
 	name = "leader hood"
 	desc = "I mean, you don't /have/ to seek bling water. I just think you should."
 	icon_state = "chaplain_hood_leader"
+	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 25)
 
 /obj/item/storage/box/holy/darktemplar
 	name = "Founder Kit of the Black Templars"
@@ -240,8 +243,10 @@
 	throw_speed = 3
 	throw_range = 4
 	throwforce = 10
-	w_class = WEIGHT_CLASS_TINY
+	slot_flags = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = UNIQUE_RENAME
+	wound_bonus = -10
 	var/reskinned = FALSE
 	var/chaplain_spawnable = TRUE
 
@@ -250,7 +255,7 @@
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
 /obj/item/nullrod/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is killing [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to get closer to god!</span>")
+	user.visible_message(span_suicide("[user] is killing [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to get closer to god!"))
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/nullrod/attack_self(mob/user)
@@ -264,8 +269,6 @@
   M : The mob choosing a nullrod reskin
   */
 /obj/item/nullrod/proc/reskin_holy_weapon(mob/M)
-	if(GLOB.holy_weapon_type)
-		return
 	var/list/display_names = list()
 	var/list/nullrod_icons = list()
 	for(var/V in typesof(/obj/item/nullrod))
@@ -307,6 +310,7 @@
 	return TRUE
 
 /obj/item/nullrod/godhand
+	icon = 'icons/obj/wizard.dmi'
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
@@ -315,6 +319,7 @@
 	desc = "This hand of yours glows with an awesome power!"
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = null
 	hitsound = 'sound/weapons/sear.ogg'
 	damtype = BURN
 	attack_verb = list("punched", "cross countered", "pummeled")
@@ -323,8 +328,12 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
+/obj/item/nullrod/godhand/ignition_effect(atom/A, mob/user)
+	. = span_notice("[user] grasps [A] with [user.p_their()] flaming hand, igniting it in a burst of holy flame. Holy hot damn, that is badass. ")
+
 /obj/item/nullrod/staff
-	icon_state = "godstaff-red"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "staff-red"
 	item_state = "godstaff-red"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
@@ -342,12 +351,14 @@
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_LAYER + 0.01)
 
 /obj/item/nullrod/staff/blue
+	icon = 'icons/obj/wizard.dmi'
 	name = "blue holy staff"
-	icon_state = "godstaff-blue"
+	icon_state = "staff-blue"
 	item_state = "godstaff-blue"
 	shield_icon = "shield-old"
 
 /obj/item/nullrod/claymore
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "holyblade"
 	item_state = "holyblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -357,7 +368,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	block_chance = 30
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
@@ -413,6 +424,7 @@
 /obj/item/nullrod/claymore/saber
 	name = "light energy sword"
 	hitsound = 'sound/weapons/blade1.ogg'
+	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "swordblue"
 	item_state = "swordblue"
 	desc = "If you strike me down, I shall become more robust than you can possibly imagine."
@@ -430,9 +442,44 @@
 	item_state = "cutlass1"
 	desc = "Convincing HR that your religion involved piracy was no mean feat."
 
+/obj/item/nullrod/claymore/corvo
+	name = "folding blade"
+	desc = "A relic of a fallen empire. Touch of the outsider not included."
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	icon_state = "corvo_0"
+	item_state = "corvo_0"
+	slot_flags = ITEM_SLOT_BELT
+	var/on = FALSE
+	var/on_sound = 'sound/weapons/batonextend.ogg'
+
+/obj/item/nullrod/claymore/corvo/attack_self(mob/user)
+	on = !on
+
+	if(on)
+		to_chat(user, "<span class ='warning'>You unfold the sword.</span>")
+		icon_state = "corvo_1"
+		item_state = "nullrod"
+		w_class = WEIGHT_CLASS_NORMAL
+		force = 18
+		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	else
+		to_chat(user, "<span class ='notice'>You fold the sword.</span>")
+		icon_state = "corvo_0"
+		item_state = "corvo_0"
+		item_state = null //no sprite for concealment even when in hand
+		w_class = WEIGHT_CLASS_SMALL
+		force = 0
+		attack_verb = list("hit", "poked")
+
+	playsound(src.loc, on_sound, 50, 1)
+	add_fingerprint(user)
+
+
 /obj/item/nullrod/sord
 	name = "\improper UNREAL SORD"
 	desc = "This thing is so unspeakably HOLY you are having a hard time even holding it."
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "sord"
 	item_state = "sord"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -444,6 +491,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/nullrod/scythe
+	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "scythe1"
 	item_state = "scythe1"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
@@ -453,7 +501,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	armour_penetration = 35
 	slot_flags = ITEM_SLOT_BACK
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
 /obj/item/nullrod/scythe/Initialize()
@@ -461,6 +509,7 @@
 	AddComponent(/datum/component/butchering, 70, 110) //the harvest gives a high bonus chance
 
 /obj/item/nullrod/scythe/vibro
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "hfrequency0"
 	item_state = "hfrequency1"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -485,6 +534,7 @@
 	hitsound = 'sound/effects/sparks4.ogg'
 
 /obj/item/nullrod/scythe/spellblade
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "spellblade"
 	item_state = "spellblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -495,6 +545,7 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
 /obj/item/nullrod/scythe/talking
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "talking_sword"
 	item_state = "talking_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -510,6 +561,9 @@
 
 /obj/item/nullrod/scythe/talking/attack_self(mob/living/user)
 	if(possessed)
+		return
+	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
+		to_chat(user, span_notice("Anomalous otherworldly energies block you from awakening the blade!"))
 		return
 
 	to_chat(user, "You attempt to wake the spirit of the blade...")
@@ -543,6 +597,7 @@
 	return ..()
 
 /obj/item/nullrod/scythe/talking/chainsword
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "chainswordon"
 	item_state = "chainswordon"
 	name = "possessed chainsaw sword"
@@ -555,6 +610,7 @@
 
 
 /obj/item/nullrod/hammmer
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "hammeron"
 	item_state = "hammeron"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
@@ -568,13 +624,15 @@
 /obj/item/nullrod/chainsaw
 	name = "chainsaw hand"
 	desc = "Good? Bad? You're the guy with the chainsaw hand."
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "chainsaw_on"
 	item_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ABSTRACT
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
+	slot_flags = null
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
 
@@ -590,10 +648,11 @@
 	name = "clown dagger"
 	desc = "Used for absolutely hilarious sacrifices."
 	hitsound = 'sound/items/bikehorn.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/nullrod/pride_hammer
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "pride"
 	name = "Pride-struck Hammer"
 	desc = "It resonates an aura of Pride."
@@ -611,12 +670,13 @@
 	if(prob(30) && ishuman(A))
 		var/mob/living/carbon/human/H = A
 		user.reagents.trans_to(H, user.reagents.total_volume, 1, 1, 0, transfered_by = user)
-		to_chat(user, "<span class='notice'>Your pride reflects on [H].</span>")
-		to_chat(H, "<span class='userdanger'>You feel insecure, taking on [user]'s burden.</span>")
+		to_chat(user, span_notice("Your pride reflects on [H]."))
+		to_chat(H, span_userdanger("You feel insecure, taking on [user]'s burden."))
 
 /obj/item/nullrod/whip
 	name = "holy whip"
 	desc = "What a terrible night to be on Space Station 13."
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "chain"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -636,19 +696,24 @@
 	throw_speed = 4
 	throw_range = 7
 	throwforce = 30
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	attack_verb = list("enlightened", "redpilled")
 
 /obj/item/nullrod/armblade
 	name = "dark blessing"
 	desc = "Particularly twisted deities grant gifts of dubious value."
+	icon = 'icons/obj/changeling.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
+	tool_behaviour = TOOL_MINING
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
+	slot_flags = null
 	item_flags = ABSTRACT
 	w_class = WEIGHT_CLASS_HUGE
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
+	wound_bonus = -20
+	bare_wound_bonus = 25
 
 /obj/item/nullrod/armblade/Initialize()
 	. = ..()
@@ -680,25 +745,25 @@
 		user.faction |= "carp"
 		used_blessing = TRUE
 
-
-
 /obj/item/nullrod/claymore/bostaff //May as well make it a "claymore" and inherit the blocking
+	icon = 'icons/obj/weapons/misc.dmi'
 	name = "monk's staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts, it is now used to harass the clown."
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	block_chance = 40
 	slot_flags = ITEM_SLOT_BACK
-	sharpness = IS_BLUNT
+	sharpness = SHARP_NONE
 	hitsound = "swing_hit"
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "bostaff0"
 	item_state = "bostaff0"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 
 /obj/item/nullrod/tribal_knife
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "crysknife"
 	item_state = "crysknife"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -706,7 +771,7 @@
 	name = "arrhythmic knife"
 	w_class = WEIGHT_CLASS_HUGE
 	desc = "They say fear is the true mind killer, but stabbing them in the head works too. Honour compels you to not sheathe it once drawn."
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	slot_flags = null
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -726,6 +791,7 @@
 
 
 /obj/item/nullrod/pitchfork
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "pitchfork0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -734,7 +800,7 @@
 	desc = "Holding this makes you look absolutely devilish."
 	attack_verb = list("poked", "impaled", "pierced", "jabbed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 
 /obj/item/nullrod/egyptian
 	name = "egyptian staff"
@@ -747,66 +813,44 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("bashes", "smacks", "whacks")
 
-/obj/item/nullrod/holypara
-	name = "deck of holy tarot cards"
-	desc = "A holy deck of tarot cards, harboring a healing spirit."
+/obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(hud_type && slot == SLOT_GLASSES)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.add_hud_to(user)
+
+/obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
+	..()
+	if(hud_type && istype(user) && user.glasses == src)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.remove_hud_from(user)
+/obj/item/nullrod/servoskull
+	name = "servitor skull"
+	desc = "Even in death, i still serve"
+	icon = 'icons/obj/clothing/neck.dmi'
+	slot_flags = ITEM_SLOT_NECK
+	icon_state = "servoskull"
+	item_state = "servoskull"
 	w_class = WEIGHT_CLASS_SMALL
-	var/mob_name = "Holyparasite"
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "deck_caswhite_full"
-	var/used = FALSE
-	var/datum/guardian_stats/holypara/stats = new
+	force = 7
+	throwforce = 15
+	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
+	var/hud_type = DATA_HUD_DIAGNOSTIC_ADVANCED
+	var/hud_type2 = DATA_HUD_MEDICAL_ADVANCED
+	
+/obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(hud_type && slot == SLOT_NECK)
+		to_chat(user, "Sensory augmentation initiated")
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.add_hud_to(user)
+		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
+		H2.add_hud_to(user)
 
-/obj/item/nullrod/holypara/attack_self(mob/living/carbon/user)
-	if(isguardian(user))
-		to_chat(user, "<span class='holoparasite'>[mob_name] chains are not allowed.</span>")
-		return
-	var/list/guardians = user.hasparasites()
-	if(LAZYLEN(guardians))
-		to_chat(user, "<span class='holoparasite'>You already have a [mob_name]!</span>")
-		return
-	if(used == TRUE)
-		to_chat(user, "<span class='holoparasite'>All the cards appear to be blank..?</span>")
-		return
-	get_stand(user, stats)
-
-/obj/item/nullrod/holypara/proc/get_stand(mob/living/carbon/H, datum/guardian_stats/stats)
-	used = TRUE
-	to_chat(H, "<span class='holoparasite'>You pull a card from the deck...</span>")
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Holyparasite of [H.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
-	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		var/mob/living/simple_animal/hostile/guardian/G = new(H, "holy")
-		G.summoner = H.mind
-		G.key = C.key
-		G.mind.enslave_mind_to_creator(H)
-		G.RegisterSignal(H, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
-		var/datum/antagonist/guardian/S = new
-		S.stats = stats
-		S.summoner = H.mind
-		G.mind.add_antag_datum(S)
-		G.stats = stats
-		G.stats.Apply(G)
-		stats.ability.master_stats = stats
-		G.show_detail()
-		ADD_TRAIT(G, TRAIT_ANTIMAGIC, SPECIES_TRAIT)
-		ADD_TRAIT(G, TRAIT_HOLY, SPECIES_TRAIT)
-		log_game("[key_name(H)] has summoned [key_name(G)], a holoparasite, with a holy tarot deck.")
-		to_chat(H, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
-		H.verbs += /mob/living/proc/guardian_comm
-		H.verbs += /mob/living/proc/guardian_recall
-		H.verbs += /mob/living/proc/guardian_reset
-		force = 0
-		throwforce = 0
-		to_chat(H, "<span class='warning'>The [src]'s rigid ends become dull from summoning <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>!</span>")
-	else
-		to_chat(H, "<span class='holoparasite'>And it's blank? Perhaps you should try again later.</span>")
-		used = FALSE
-
-/datum/guardian_stats/holypara
-	damage = 2
-	defense = 2
-	speed = 3
-	potential = 2
-	range = 3
-	ability = new /datum/guardian_ability/major/healing/limited
+/obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
+	..()
+	if(hud_type && istype(user) && user.wear_neck == src)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.remove_hud_from(user)
+		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
+		H2.remove_hud_from(user)

@@ -8,8 +8,11 @@ SUBSYSTEM_DEF(lighting)
 	init_order = INIT_ORDER_LIGHTING
 	flags = SS_TICKER
 
-/datum/controller/subsystem/lighting/stat_entry()
-	return ..("L:[GLOB.lighting_update_lights.len]|C:[GLOB.lighting_update_corners.len]|O:[GLOB.lighting_update_objects.len]")
+	loading_points = 6 SECONDS // Yogs -- loading times
+
+/datum/controller/subsystem/lighting/stat_entry(msg)
+	msg = "L:[GLOB.lighting_update_lights.len]|C:[GLOB.lighting_update_corners.len]|O:[GLOB.lighting_update_objects.len]"
+	return ..()
 
 
 /datum/controller/subsystem/lighting/Initialize(timeofday)

@@ -74,6 +74,8 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 /datum/gas_mixture/proc/clear()
 
 /datum/gas_mixture/proc/adjust_moles(gas_type, amt = 0)
+	if((get_moles(gas_type) + amt) < 0)
+		amt = 0
 	set_moles(gas_type, get_moles(gas_type) + amt)
 
 /datum/gas_mixture/proc/return_volume() //liters
@@ -192,12 +194,14 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 			var/datum/gas_reaction/reaction = r
 
 			var/list/min_reqs = reaction.min_requirements
-			if((min_reqs["TEMP"] && temp < min_reqs["TEMP"]) \
-			|| (min_reqs["ENER"] && ener < min_reqs["ENER"]))
+			if(	(min_reqs["TEMP"] && temp < min_reqs["TEMP"]) || \
+				(min_reqs["ENER"] && ener < min_reqs["ENER"]) || \
+				(min_reqs["MAX_TEMP"] && temp > min_reqs["MAX_TEMP"])
+			)
 				continue
 
 			for(var/id in min_reqs)
-				if (id == "TEMP" || id == "ENER")
+				if (id == "TEMP" || id == "ENER" || id == "MAX_TEMP")
 					continue
 				if(get_moles(id) < min_reqs[id])
 					continue reaction_loop
@@ -263,3 +267,47 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 	to_chat(src, "Total time (new gas mixture): [total_time]ms")
 	to_chat(src, "Operations per second: [100000 / (total_time/1000)]")
 */
+
+
+/// Pumps gas from src to output_air. The amount depends on target_pressure
+/datum/gas_mixture/proc/pump_gas_to(datum/gas_mixture/output_air, target_pressure)
+	var/output_starting_pressure = output_air.return_pressure()
+
+	if((target_pressure - output_starting_pressure) < 0.01)
+		//No need to pump gas if target is already reached!
+		return FALSE
+
+	//Calculate necessary moles to transfer using PV=nRT
+	if((total_moles() > 0) && (return_temperature()>0))
+		var/pressure_delta = target_pressure - output_starting_pressure
+		var/transfer_moles = pressure_delta*output_air.return_volume()/(return_temperature() * R_IDEAL_GAS_EQUATION)
+
+		//Actually transfer the gas
+		var/datum/gas_mixture/removed = remove(transfer_moles)
+		output_air.merge(removed)
+		return TRUE
+	return FALSE
+
+/// Releases gas from src to output air. This means that it can not transfer air to gas mixture with higher pressure.
+/datum/gas_mixture/proc/release_gas_to(datum/gas_mixture/output_air, target_pressure)
+	var/output_starting_pressure = output_air.return_pressure()
+	var/input_starting_pressure = return_pressure()
+
+	if(output_starting_pressure >= min(target_pressure,input_starting_pressure-10))
+		//No need to pump gas if target is already reached or input pressure is too low
+		//Need at least 10 KPa difference to overcome friction in the mechanism
+		return FALSE
+
+	//Calculate necessary moles to transfer using PV = nRT
+	if((total_moles() > 0) && (return_temperature()>0))
+		var/pressure_delta = min(target_pressure - output_starting_pressure, (input_starting_pressure - output_starting_pressure)/2)
+		//Can not have a pressure delta that would cause output_pressure > input_pressure
+
+		var/transfer_moles = pressure_delta*output_air.return_volume()/(return_temperature() * R_IDEAL_GAS_EQUATION)
+
+		//Actually transfer the gas
+		var/datum/gas_mixture/removed = remove(transfer_moles)
+		output_air.merge(removed)
+
+		return TRUE
+	return FALSE

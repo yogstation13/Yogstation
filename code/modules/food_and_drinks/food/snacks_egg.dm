@@ -9,7 +9,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 4, "sweetness" = 1)
-	foodtype = JUNKFOOD | SUGAR | EGG
+	foodtype = JUNKFOOD | SUGAR | EGG | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/egg
 	name = "egg"
@@ -23,7 +23,7 @@
 	var/mob/living/egg_rper
 
 /obj/item/reagent_containers/food/snacks/egg/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] RPs as [src]!</span>")
+	user.visible_message(span_suicide("[user] RPs as [src]!"))
 	if(istype(user) && user.mind)
 		egg_rper = new(src)
 		egg_rper.real_name = name
@@ -59,17 +59,17 @@
 		var/clr = C.item_color
 
 		if(!(clr in list("blue", "green", "mime", "orange", "purple", "rainbow", "red", "yellow")))
-			to_chat(usr, "<span class='notice'>[src] refuses to take on this colour!</span>")
+			to_chat(usr, span_notice("[src] refuses to take on this colour!"))
 			return
 
-		to_chat(usr, "<span class='notice'>You colour [src] with [W].</span>")
+		to_chat(usr, span_notice("You colour [src] with [W]."))
 		icon_state = "egg-[clr]"
 		item_color = clr
 	else if(istype(W, /obj/item/stamp/clown))
 		var/clowntype = pick("grock", "grimaldi", "rainbow", "chaos", "joker", "sexy", "standard", "bobble", "krusty", "bozo", "pennywise", "ronald", "jacobs", "kelly", "popov", "cluwne")
 		icon_state = "egg-clown-[clowntype]"
 		desc = "An egg that has been decorated with the grotesque, robustable likeness of a clown's face. "
-		to_chat(usr, "<span class='notice'>You stamp [src] with [W], creating an artistic and not remotely horrifying likeness of clown makeup.</span>")
+		to_chat(usr, span_notice("You stamp [src] with [W], creating an artistic and not remotely horrifying likeness of clown makeup."))
 	else
 		..()
 
@@ -130,7 +130,6 @@
 	name = "omelette du fromage"
 	desc = "That's all you can say!"
 	icon_state = "omelette"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 1)
 	bitesize = 1
@@ -142,15 +141,16 @@
 	if(istype(W, /obj/item/kitchen/fork))
 		var/obj/item/kitchen/fork/F = W
 		if(F.forkload)
-			to_chat(user, "<span class='warning'>You already have omelette on your fork!</span>")
+			to_chat(user, span_warning("You already have [F.loaded_food] on your fork!"))
 		else
-			F.icon_state = "forkloaded"
+			F.icon_state = "forkloaded_egg"
 			user.visible_message("[user] takes a piece of omelette with [user.p_their()] fork!", \
-				"<span class='notice'>You take a piece of omelette with your fork.</span>")
+				span_notice("You take a piece of omelette with your fork."))
 
 			var/datum/reagent/R = pick(reagents.reagent_list)
 			reagents.remove_reagent(R.type, 1)
 			F.forkload = R
+			F.loaded_food = "omeletee"
 			if(reagents.total_volume <= 0)
 				qdel(src)
 		return
@@ -161,7 +161,6 @@
 	desc = "There is only one egg on this, how rude."
 	icon_state = "benedict"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4)
-	trash = /obj/item/trash/plate
 	w_class = WEIGHT_CLASS_NORMAL
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("egg" = 1, "bacon" = 1, "bun" = 1)
@@ -172,7 +171,6 @@
 	name = "green eggs and ham"
 	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate deathtrap floating through space?"
 	icon_state = "spidereggsham"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	bitesize = 4

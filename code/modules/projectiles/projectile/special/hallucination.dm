@@ -48,10 +48,10 @@
 
 /obj/item/projectile/hallucination/proc/target_on_hit(mob/M)
 	if(M == hal_target)
-		to_chat(hal_target, "<span class='userdanger'>[M] is hit by \a [src] in the chest!</span>")
+		to_chat(hal_target, span_userdanger("[M] is hit by \a [src] in the chest!"))
 		hal_apply_effect()
 	else if(M in view(hal_target))
-		to_chat(hal_target, "<span class='danger'>[M] is hit by \a [src] in the chest!!</span>")
+		to_chat(hal_target, span_danger("[M] is hit by \a [src] in the chest!!"))
 	if(damage_type == BRUTE)
 		var/splatter_dir = dir
 		if(starting)
@@ -168,7 +168,7 @@
 /obj/item/projectile/hallucination/taser/hal_apply_effect()
 	hal_target.Paralyze(100)
 	hal_target.stuttering += 20
-	if(hal_target.dna && hal_target.dna.check_mutation(HULK))
+	if(hal_target.dna && (hal_target.dna.check_mutation(HULK)|| hal_target.dna.check_mutation(ACTIVE_HULK)))
 		hal_target.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 	else if((hal_target.status_flags & CANKNOCKDOWN) && !HAS_TRAIT(hal_target, TRAIT_STUNIMMUNE))
 		addtimer(CALLBACK(hal_target, /mob/living/carbon.proc/do_jitter_animation, 20), 5)

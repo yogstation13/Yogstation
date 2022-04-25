@@ -7,7 +7,7 @@
 	permanently empowering many clockwork objects and reducing all power costs by 50%, but alerting the crew to your presence. It doesn't have enough \
 	energy to sustain itself for long, and if not activated within five minutes, it will permanently shut down."
 	icon_state = "interdiction_lens"
-	break_message = "<span class='warning'>The beacon crackles with power before collapsing into pieces!</span>"
+	break_message = span_warning("The beacon crackles with power before collapsing into pieces!")
 	max_integrity = 250
 	light_color = "#EF078E"
 	var/time_remaining = 300 //Amount of seconds left to vote on whether or not to activate the beacon
@@ -55,7 +55,7 @@
 			else
 				. += "<span class='bold neovgre_small'>It has been activated!</span>"
 		else
-			. += "<span class='brass'>There are <b>[time_remaining]</b> second[time_remaining != 1 ? "s" : ""] remaining to vote.</span>"
+			. += span_brass("There are <b>[time_remaining]</b> second[time_remaining != 1 ? "s" : ""] remaining to vote.")
 			. += "<span class='big brass'>There are <b>[voters.len]/[votes_needed]</b> votes to activate the beacon!</span>"
 
 /obj/structure/destructible/clockwork/heralds_beacon/attack_hand(mob/living/user)
@@ -63,11 +63,15 @@
 	if(.)
 		return
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='notice'>You can tell how powerful [src] is; you know better than to touch it.</span>")
+		to_chat(user, span_notice("You can tell how powerful [src] is; you know better than to touch it."))
 		return
 	if(!available)
-		to_chat(user, "<span class='danger'>You can no longer vote with [src].</span>")
+		to_chat(user, span_danger("You can no longer vote with [src]."))
 		return
+	if(istype(user, /mob/living/simple_animal/drone/cogscarab))
+		to_chat(user, span_danger("You are unable to activate [src]."))
+		return
+
 	var/voting = !(user.key in voters)
 	if(alert(user, "[voting ? "Cast a" : "Undo your"] vote to activate the beacon?", "Herald's Beacon", "Change Vote", "Cancel") == "Cancel")
 		return
@@ -83,7 +87,7 @@
 		voters -= user.key
 	var/votes_left = votes_needed - voters.len
 	message_admins("[ADMIN_LOOKUPFLW(user)] has [voting ? "voted" : "undone their vote"] to activate [src]! [ADMIN_JMP(user)]")
-	hierophant_message("<span class='brass'><b>[user.real_name]</b> has [voting ? "voted" : "undone their vote"] to activate [src]! The beacon needs [votes_left] more votes to activate.</span>")
+	hierophant_message(span_brass("<b>[user.real_name]</b> has [voting ? "voted" : "undone their vote"] to activate [src]! The beacon needs [votes_left] more votes to activate."))
 	for(var/mob/M in GLOB.player_list)
 		if(isobserver(M) || is_servant_of_ratvar(M))
 			M.playsound_local(M, 'sound/magic/clockwork/fellowship_armory.ogg', 50, FALSE)
@@ -93,6 +97,7 @@
 /obj/structure/destructible/clockwork/heralds_beacon/proc/herald_the_justiciar()
 	priority_announce("A powerful group of fanatical zealots following the cause of Ratvar have brazenly sacrificed stealth for power, and dare anyone \
 	to try and stop them.", title = "The Justiciar Comes", sound = 'sound/magic/clockwork/ark_activation.ogg')
+	set_security_level(SEC_LEVEL_GAMMA)
 	GLOB.ratvar_approaches = TRUE
 	available = FALSE
 	STOP_PROCESSING(SSprocessing, src)

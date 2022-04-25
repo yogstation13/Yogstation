@@ -32,24 +32,24 @@
 		return FALSE
 
 	if(M == user)
-		M.visible_message("<span class='notice'>[user] attempts to [apply_method] [src].</span>")
+		M.visible_message(span_notice("[user] attempts to [apply_method] [src]."))
 		if(self_delay)
 			if(!do_mob(user, M, self_delay))
 				return FALSE
-		to_chat(M, "<span class='notice'>You [apply_method] [src].</span>")
+		to_chat(M, span_notice("You [apply_method] [src]."))
 
 	else
-		M.visible_message("<span class='danger'>[user] attempts to force [M] to [apply_method] [src].</span>", \
-							"<span class='userdanger'>[user] attempts to force [M] to [apply_method] [src].</span>")
+		M.visible_message(span_danger("[user] attempts to force [M] to [apply_method] [src]."), \
+							span_userdanger("[user] attempts to force [M] to [apply_method] [src]."))
 		if(!do_mob(user, M))
 			return FALSE
-		M.visible_message("<span class='danger'>[user] forces [M] to [apply_method] [src].</span>", \
-							"<span class='userdanger'>[user] forces [M] to [apply_method] [src].</span>")
+		M.visible_message(span_danger("[user] forces [M] to [apply_method] [src]."), \
+							span_userdanger("[user] forces [M] to [apply_method] [src]."))
 
 	var/makes_me_think = pick(strings(REDPILL_FILE, "redpill_questions"))
 	if(icon_state == "pill4" && prob(5)) //you take the red pill - you stay in Wonderland, and I show you how deep the rabbit hole goes
 		sleep(50)
-		to_chat(M, "<span class='notice'>[makes_me_think]</span>")
+		to_chat(M, span_notice("[makes_me_think]"))
 
 	if(reagents.total_volume)
 		reagents.reaction(M, apply_type)
@@ -65,14 +65,14 @@
 	if(!dissolvable || !target.is_refillable())
 		return
 	if(target.is_drainable() && !target.reagents.total_volume)
-		to_chat(user, "<span class='warning'>[target] is empty! There's nothing to dissolve [src] in.</span>")
+		to_chat(user, span_warning("[target] is empty! There's nothing to dissolve [src] in."))
 		return
 
 	if(target.reagents.holder_full())
-		to_chat(user, "<span class='warning'>[target] is full.</span>")
+		to_chat(user, span_warning("[target] is full."))
 		return
 
-	user.visible_message("<span class='warning'>[user] slips something into [target]!</span>", "<span class='notice'>You dissolve [src] in [target].</span>", null, 2)
+	user.visible_message(span_warning("[user] slips something into [target]!"), span_notice("You dissolve [src] in [target]."), null, 2)
 	reagents.trans_to(target, reagents.total_volume, transfered_by = user)
 	qdel(src)
 
@@ -88,6 +88,12 @@
 	desc = "Don't swallow this."
 	icon_state = "pill5"
 	list_reagents = list(/datum/reagent/toxin/cyanide = 50)
+
+/obj/item/reagent_containers/pill/iaa
+	name = "death pill"
+	desc = "Don't swallow this."
+	icon_state = "pill5"
+	list_reagents = list(/datum/reagent/toxin/cyanide = 20, /datum/reagent/toxin/initropidril = 15, /datum/reagent/toxin/coniine = 15)
 
 /obj/item/reagent_containers/pill/adminordrazine
 	name = "adminordrazine pill"
@@ -136,12 +142,18 @@
 	list_reagents = list(/datum/reagent/medicine/mannitol = 50)
 	rename_with_volume = TRUE
 
+/obj/item/reagent_containers/pill/mannitol/braintumor
+	list_reagents = list(/datum/reagent/medicine/mannitol = 20)
+
 /obj/item/reagent_containers/pill/mutadone
 	name = "mutadone pill"
 	desc = "Used to treat genetic damage."
 	icon_state = "pill20"
 	list_reagents = list(/datum/reagent/medicine/mutadone = 50)
 	rename_with_volume = TRUE
+
+/obj/item/reagent_containers/pill/mutadone/five
+	list_reagents = list(/datum/reagent/medicine/mutadone = 5)
 
 /obj/item/reagent_containers/pill/salicyclic
 	name = "salicylic acid pill"
@@ -244,7 +256,7 @@
 
 /obj/item/reagent_containers/pill/bica
 	name = "bicaridine pill"
-	desc = "Used to stimulate burn healing."
+	desc = "Used heal bruises and cuts."
 	icon_state = "pill10"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 14)
 
@@ -253,3 +265,15 @@
 	desc = "Used to heal burns."
 	icon_state = "pill12"
 	list_reagents = list(/datum/reagent/medicine/kelotane = 14)
+
+/obj/item/reagent_containers/pill/libi
+	name = "libital pill"
+	desc = "Used heal bruises and cuts."
+	icon_state = "pill10"
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 14)
+
+/obj/item/reagent_containers/pill/aiur
+	name = "aiuri pill"
+	desc = "Used to heal burns."
+	icon_state = "pill12"
+	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 14)

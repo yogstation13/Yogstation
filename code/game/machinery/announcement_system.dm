@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	name = "\improper Automated Announcement System"
 	desc = "An automated announcement system that handles minor announcements over the radio."
 	icon = 'icons/obj/machines/telecomms.dmi'
-	icon_state = "AAS_On"
+	icon_state = "AAS"
 
 	verb_say = "coldly states"
 	verb_ask = "queries"
@@ -22,9 +22,9 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	var/newhead = "%PERSON, %RANK, is the department head."
 	var/newheadToggle = 1
 
-	var/greenlight = "Light_Green"
-	var/pinklight = "Light_Pink"
-	var/errorlight = "Error_Red"
+	var/greenlight = "arrivals"
+	var/pinklight = "heads"
+	var/errorlight = "broke"
 
 /obj/machinery/announcement_system/Initialize()
 	. = ..()
@@ -33,21 +33,22 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	update_icon()
 
 /obj/machinery/announcement_system/update_icon()
-	if(is_operational())
-		icon_state = (panel_open ? "AAS_On_Open" : "AAS_On")
-	else
-		icon_state = (panel_open ? "AAS_Off_Open" : "AAS_Off")
-
-
 	cut_overlays()
+	if(is_operational())
+		var/mutable_appearance/on_app = mutable_appearance(icon, "AAS_on")
+		add_overlay(on_app)
+
 	if(arrivalToggle)
-		add_overlay(greenlight)
+		var/mutable_appearance/arriving = mutable_appearance(icon, greenlight)
+		add_overlay(arriving)
 
 	if(newheadToggle)
-		add_overlay(pinklight)
+		var/mutable_appearance/newhead = mutable_appearance(icon, pinklight)
+		add_overlay(newhead)
 
 	if(stat & BROKEN)
-		add_overlay(errorlight)
+		var/mutable_appearance/icecream = mutable_appearance(icon, errorlight)
+		add_overlay(icecream)
 
 /obj/machinery/announcement_system/Destroy()
 	QDEL_NULL(radio)
@@ -58,12 +59,12 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(P.tool_behaviour == TOOL_SCREWDRIVER)
 		P.play_tool_sound(src)
 		panel_open = !panel_open
-		to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
+		to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
 		update_icon()
 	else if(default_deconstruction_crowbar(P))
 		return
 	else if(P.tool_behaviour == TOOL_MULTITOOL && panel_open && (stat & BROKEN))
-		to_chat(user, "<span class='notice'>You reset [src]'s firmware.</span>")
+		to_chat(user, span_notice("You reset [src]'s firmware."))
 		stat &= ~BROKEN
 		update_icon()
 	else
@@ -86,6 +87,10 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		message = CompileText(newhead, user, rank)
 	else if(message_type == "ARRIVALS_BROKEN")
 		message = "The arrivals shuttle has been damaged. Docking for repairs..."
+	else if(message_type == "AICRYO" && newheadToggle)
+		message = CompileText("%PERSON has been moved to intelligence storage.", user, rank)
+	else if(message_type == "CRYOSTORAGE")
+		message = CompileText("%PERSON, %RANK has been moved to cryogenic storage.", user, rank)
 
 	if(channels.len == 0)
 		radio.talk_into(src, message, null)
@@ -95,11 +100,10 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 //config stuff
 
-/obj/machinery/announcement_system/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	. = ..()
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/announcement_system/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "AutomatedAnnouncement", "Automated Announcement System", 500, 225, master_ui, state)
+		ui = new(user, src, "AutomatedAnnouncement")
 		ui.open()
 
 /obj/machinery/announcement_system/ui_data()
@@ -117,7 +121,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(!usr.canUseTopic(src, !issilicon(usr)))
 		return
 	if(stat & BROKEN)
-		visible_message("<span class='warning'>[src] buzzes.</span>", "<span class='italics'>You hear a faint buzz.</span>")
+		visible_message(span_warning("[src] buzzes."), span_italics("You hear a faint buzz."))
 		playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1)
 		return
 	switch(action)
@@ -150,7 +154,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if(stat & BROKEN)
-		to_chat(user, "<span class='warning'>[src]'s firmware appears to be malfunctioning!</span>")
+		to_chat(user, span_warning("[src]'s firmware appears to be malfunctioning!"))
 		return
 	interact(user)
 

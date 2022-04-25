@@ -21,7 +21,7 @@
 		painting = C
 		C.forceMove(get_turf(src))
 		C.layer = layer+0.1
-		user.visible_message("<span class='notice'>[user] puts \the [C] on \the [src].</span>","<span class='notice'>You place \the [C] on \the [src].</span>")
+		user.visible_message(span_notice("[user] puts \the [C] on \the [src]."),span_notice("You place \the [C] on \the [src]."))
 	else
 		return ..()
 
@@ -45,14 +45,14 @@
 	var/height = 11
 	var/list/grid
 	var/canvas_color = "#ffffff" //empty canvas color
-	var/ui_x = 400
-	var/ui_y = 400
 	var/used = FALSE
-	var/painting_name //Painting name, this is set after framing.
+	var/painting_name = "Untitled Artwork" //Painting name, this is set after framing.
 	var/finalized = FALSE //Blocks edits
 	var/author_ckey
 	var/icon_generated = FALSE
 	var/icon/generated_icon
+	///boolean that blocks persistence from saving it. enabled from printing copies, because we do not want to save copies.
+	var/no_save = FALSE
 
 	// Painting overlay offset when framed
 	var/framed_offset_x = 11
@@ -75,12 +75,16 @@
 	. = ..()
 	ui_interact(user)
 
-/obj/item/canvas/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+/obj/item/canvas/ui_state(mob/user)
+	if(finalized)
+		return GLOB.physical_obscured_state
+	else
+		return GLOB.default_state
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/canvas/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Canvas", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Canvas", name)
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
@@ -182,7 +186,7 @@
 
 /obj/item/canvas/proc/try_rename(mob/user)
 	var/new_name = stripped_input(user,"What do you want to name the painting?")
-	if(!painting_name && new_name && user.canUseTopic(src,BE_CLOSE))
+	if(new_name != painting_name && new_name && user.canUseTopic(src,BE_CLOSE))
 		painting_name = new_name
 		SStgui.update_uis(src)
 
@@ -190,8 +194,6 @@
 	icon_state = "19x19"
 	width = 19
 	height = 19
-	ui_x = 600
-	ui_y = 600
 	pixel_x = 6
 	pixel_y = 9
 	framed_offset_x = 8
@@ -201,8 +203,6 @@
 	icon_state = "23x19"
 	width = 23
 	height = 19
-	ui_x = 800
-	ui_y = 600
 	pixel_x = 4
 	pixel_y = 10
 	framed_offset_x = 6
@@ -212,12 +212,21 @@
 	icon_state = "23x23"
 	width = 23
 	height = 23
-	ui_x = 800
-	ui_y = 800
 	pixel_x = 5
 	pixel_y = 9
 	framed_offset_x = 5
 	framed_offset_y = 6
+
+/obj/item/canvas/twentyfour_twentyfour
+	name = "ai universal standard canvas"
+	desc = "Besides being very large, the AI can accept these as a display from their internal database after you've hung it up."
+	icon_state = "24x24"
+	width = 24
+	height = 24
+	pixel_x = 2
+	pixel_y = 1
+	framed_offset_x = 4
+	framed_offset_y = 5
 
 /obj/item/wallframe/painting
 	name = "painting frame"
@@ -253,22 +262,25 @@
 /obj/structure/sign/painting/attackby(obj/item/I, mob/user, params)
 	if(!C && istype(I, /obj/item/canvas))
 		frame_canvas(user,I)
-	else if(C && !C.painting_name && istype(I,/obj/item/pen))
+	else if(C && C.painting_name == initial(C.painting_name) && istype(I,/obj/item/pen))
 		try_rename(user)
 	else
 		return ..()
 
 /obj/structure/sign/painting/examine(mob/user)
 	. = ..()
+	if(persistence_id)
+		. += span_notice("Any painting placed here will be archived at the end of the shift.")
 	if(C)
-		C.ui_interact(user,state = GLOB.physical_obscured_state)
+		C.ui_interact(user)
+		. += span_notice("Use wirecutters to remove the painting.")
 
 /obj/structure/sign/painting/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(C)
 		C.forceMove(drop_location())
 		C = null
-		to_chat(user, "<span class='notice'>You remove the painting from the frame.</span>")
+		to_chat(user, span_notice("You remove the painting from the frame."))
 		update_icon()
 		return TRUE
 
@@ -277,11 +289,11 @@
 		C = new_canvas
 		if(!C.finalized)
 			C.finalize(user)
-		to_chat(user,"<span class='notice'>You frame [C].</span>")
+		to_chat(user,span_notice("You frame [C]."))
 	update_icon()
 
 /obj/structure/sign/painting/proc/try_rename(mob/user)
-	if(!C.painting_name)
+	if(C.painting_name == initial(C.painting_name))
 		C.try_rename(user)
 
 /obj/structure/sign/painting/update_icon()
@@ -303,18 +315,30 @@
 		frame.pixel_y = C.framed_offset_y - 1
 		add_overlay(frame)
 
+/**
+ * Loads a painting from SSpersistence. Called globally by said subsystem when it inits
+ *
+ * Deleting paintings leaves their json, so this proc will remove the json and try again if it finds one of those.
+ */
 /obj/structure/sign/painting/proc/load_persistent()
-	if(!persistence_id)
+	if(!persistence_id || !SSpersistence.paintings || !SSpersistence.paintings[persistence_id])
 		return
-	if(!SSpersistence.paintings || !SSpersistence.paintings[persistence_id] || !length(SSpersistence.paintings[persistence_id]))
-		return
-	var/list/chosen = pick(SSpersistence.paintings[persistence_id])
-	var/title = chosen["title"]
-	var/author = chosen["ckey"]
-	var/png = "data/paintings/[persistence_id]/[chosen["md5"]].png"
-	if(!fexists(png))
-		stack_trace("Persistent painting [chosen["md5"]].png was not found in [persistence_id] directory.")
-		return
+	var/list/painting_category = SSpersistence.paintings[persistence_id]
+	var/list/painting
+	while(!painting)
+		if(!length(SSpersistence.paintings[persistence_id]))
+			return //aborts loading anything this category has no usable paintings
+		var/list/chosen = pick(painting_category)
+		if(!fexists("data/paintings/[persistence_id]/[chosen["md5"]].png")) //shitmin deleted this art, lets remove json entry to avoid errors
+			painting_category -= list(chosen)
+			continue //and try again
+		painting = chosen
+	var/title = painting["title"]
+	var/author = painting["ckey"]
+	var/png = "data/paintings/[persistence_id]/[painting["md5"]].png"
+	if(!title)
+		title = "Untitled Artwork" //legacy artwork allowed null names which was bad for the json, lets fix that
+		painting["title"] = title
 	var/icon/I = new(png)
 	var/obj/item/canvas/new_canvas
 	var/w = I.Width()
@@ -330,17 +354,20 @@
 	new_canvas.finalized = TRUE
 	new_canvas.painting_name = title
 	new_canvas.author_ckey = author
+	new_canvas.name = "painting - [title]"
 	C = new_canvas
 	update_icon()
 
 /obj/structure/sign/painting/proc/save_persistent()
-	if(!persistence_id || !C)
+	if(!persistence_id || !C || C.no_save)
 		return
 	if(sanitize_filename(persistence_id) != persistence_id)
 		stack_trace("Invalid persistence_id - [persistence_id]")
 		return
+	if(!C.painting_name)
+		C.painting_name = "Untitled Artwork"
 	var/data = C.get_data_string()
-	var/md5 = md5(data)
+	var/md5 = md5(lowertext(data))
 	var/list/current = SSpersistence.paintings[persistence_id]
 	if(!current)
 		current = list()
@@ -373,4 +400,25 @@
 
 /obj/structure/sign/painting/vv_get_dropdown()
 	. = ..()
-	.["Remove Persistent Painting"] = "?_src_=vars;[HrefToken()];delete_paint=[REF(src)]"
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_PAINTING, "Remove Persistent Painting")
+
+/obj/structure/sign/painting/vv_do_topic(list/href_list)
+	. = ..()
+	var/mob/user = usr
+	if(!persistence_id || !C)
+		to_chat(user,span_warning("This is not a persistent painting."))
+		return
+	var/md5 = md5(C.get_data_string())
+	var/author = C.author_ckey
+	var/list/current = SSpersistence.paintings[persistence_id]
+	if(current)
+		for(var/list/entry in current)
+			if(entry["md5"] == md5)
+				current -= entry
+		var/png = "data/paintings/[persistence_id]/[md5].png"
+		fdel(png)
+	for(var/obj/structure/sign/painting/PA in SSpersistence.painting_frames)
+		if(PA.C && md5(PA.C.get_data_string()) == md5)
+			QDEL_NULL(PA.C)
+	log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
+	message_admins(span_notice("[key_name_admin(user)] has deleted persistent painting made by [author]."))

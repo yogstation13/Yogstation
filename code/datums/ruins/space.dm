@@ -202,6 +202,13 @@
 	name = "Crashed Ship"
 	description = "Among civilian vessels the most common cause of tragedy is lack of food. \
 	This ship was outfitted with a multitude of food-generating features, then summarily ran into an asteroid shortly after takeoff."
+	
+/datum/map_template/ruin/space/crashedufo
+	id = "crashedufo"
+	suffix = "crashedufo.dmm"
+	name = "Crashed UFO"
+	description = "Turns out even high-tech ships of abductors happen to crash into stray asteroids. \
+	Who knows what secrets might be unearthed from the wreckage?"
 
 /datum/map_template/ruin/space/listeningstation
 	id = "listeningstation"
@@ -269,7 +276,6 @@
 	suffix = "whiteshipdock.dmm"
 	name = "Whiteship Dock"
 	description = "An abandoned but functional vessel parked in deep space, ripe for the taking."
-	// always_place = TRUE - For debugging, remove JUST before merge
 
 /datum/map_template/ruin/space/cat_experiments
 	id = "meow"
@@ -311,10 +317,8 @@
 /datum/map_template/ruin/space/spacebar
 	id = "spacebar"
 	suffix = "spacebar.dmm"
-	name = "The Rampant Golem and Yellow Hound"
-	description = "No questions asked. No shoes/foot protection, no service. \
-		No tabs. No violence in the inside areas. That's it. Welcome to the \
-		Rampant Golem and Yellow Hound. Can I take your order?"
+	name = "The Space Bar"
+	description = "Technically a Space Bar & Grill, but do you really care about that? No, just about getting drunk and a good (enough) meal."
 
 /datum/map_template/ruin/space/goat_transport
 	id = "goatresearch"
@@ -342,8 +346,8 @@
 	name = "Game Room"
 	description = "A room in space in which you can play card games and munch on some snacks."
 
-/datum/map_template/ruin/space/gaming
-	id = "puby"
+/datum/map_template/ruin/space/pubby
+	id = "pubby"
 	suffix = "pubby_monastery.dmm"
 	name = "Pubby Monastery"
 	description = "A beautiful monastery that used to have a station attached to it"
@@ -353,4 +357,10 @@
 	suffix = "bigape.dmm"
 	name = "Big Ape"
 	description = "A gorilla? Out here? But why."
+
+/datum/map_template/ruin/space/cozy_apartment
+	id = "nicelittlenest"
+	suffix = "nicelittlenest.dmm"
+	name = "Cozy Home"
+	description = "A nice little place for travellers to rest. There is even a mint under the pillow!"
 	

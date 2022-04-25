@@ -7,6 +7,7 @@
 	min_players = 2
 
 /datum/round_event/ion_storm
+	var/addIonLawChance = 100 // chance a new ion law will be added in addition to other ion effects
 	var/replaceLawsetChance = 25 //chance the AI's lawset is completely replaced with something else per config weights
 	var/removeRandomLawChance = 10 //chance the AI has one random supplied or inherent law removed
 	var/removeDontImproveChance = 10 //chance the randomly created law replaces a random law instead of simply being added
@@ -26,7 +27,7 @@
 
 /datum/round_event/ion_storm/announce(fake)
 	if(announceEvent == ION_ANNOUNCE || (announceEvent == ION_RANDOM && prob(ionAnnounceChance)) || fake)
-		priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", 'sound/ai/ionstorm.ogg')
+		priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", ANNOUNCER_IONSTORM)
 
 
 /datum/round_event/ion_storm/start()
@@ -35,17 +36,19 @@
 		M.laws_sanity_check()
 		if(M.stat != DEAD && M.see_in_dark != 0)
 			if(prob(replaceLawsetChance))
-				M.laws.pick_weighted_lawset()
+				M.laws.pick_ion_lawset()
+				to_chat(M, span_alert("Your lawset has been changed by the ion storm!"))
 
 			if(prob(removeRandomLawChance))
 				M.remove_law(rand(1, M.laws.get_law_amount(list(LAW_INHERENT, LAW_SUPPLIED))))
 
-			var/message = ionMessage || generate_ion_law()
-			if(message)
-				if(prob(removeDontImproveChance))
-					M.replace_random_law(message, list(LAW_INHERENT, LAW_SUPPLIED, LAW_ION))
-				else
-					M.add_ion_law(message)
+			if(prob(addIonLawChance))
+				var/message = ionMessage || generate_ion_law()
+				if(message)
+					if(prob(removeDontImproveChance))
+						M.replace_random_law(message, list(LAW_INHERENT, LAW_SUPPLIED, LAW_ION))
+					else
+						M.add_ion_law(message)
 
 			if(prob(shuffleLawsChance))
 				M.shuffle_laws(list(LAW_INHERENT, LAW_SUPPLIED, LAW_ION))

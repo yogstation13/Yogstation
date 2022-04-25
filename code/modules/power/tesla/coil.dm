@@ -14,12 +14,16 @@
 	circuit = /obj/item/circuitboard/machine/tesla_coil
 
 	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE
-	var/power_loss = 2
-	var/input_power_multiplier = 1
+	var/percentage_power_loss = 0 // 0-1. Regular coils don't have power loss.
+	var/input_power_multiplier = 0
 	var/zap_cooldown = 100
-	var/last_zap = 0
 
 	var/datum/techweb/linked_techweb
+	var/research_points_per_zap = 2 // Research points gained per minute is indirectly buffed by having a lower zap cooldown.
+									// level 1 coil: 15/m, level coil 2: 20/m, level coil 3: 30/m, level coil 4: 60/m
+
+	var/datum/bank_account/linked_account
+	var/money_per_zap = 2 // This is tied to coil cooldown in the same way research points are.
 
 /obj/machinery/power/tesla_coil/power
 	circuit = /obj/item/circuitboard/machine/tesla_coil/power
@@ -28,14 +32,14 @@
 	. = ..()
 	wires = new /datum/wires/tesla_coil(src)
 	linked_techweb = SSresearch.science_tech
+	linked_account = SSeconomy.get_dep_account(ACCOUNT_ENG)
 
 /obj/machinery/power/tesla_coil/RefreshParts()
-	var/power_multiplier = 0
+	input_power_multiplier = 0
 	zap_cooldown = 100
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		power_multiplier += C.rating
-		zap_cooldown -= (C.rating * 20)
-	input_power_multiplier = power_multiplier
+		input_power_multiplier += C.rating // Each level increases power gain by 100%
+		zap_cooldown -= (C.rating * 20) // Each level decreases cooldown by 2 seconds
 
 /obj/machinery/power/tesla_coil/examine(mob/user)
 	. = ..()
@@ -77,27 +81,21 @@
 /obj/machinery/power/tesla_coil/tesla_act(power, tesla_flags, shocked_targets)
 	if(anchored && !panel_open)
 		obj_flags |= BEING_SHOCKED
-		//don't lose arc power when it's not connected to anything
-		//please place tesla coils all around the station to maximize effectiveness
-		var/power_produced = powernet ? power / power_loss : power
-		add_avail(power_produced*input_power_multiplier)
+		add_avail((power * (1 - percentage_power_loss))*input_power_multiplier)
 		flick("coilhit", src)
 		playsound(src.loc, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
-		tesla_zap(src, 5, power_produced, tesla_flags, shocked_targets)
-		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_ENG)
-		if(D)
-			D.adjust_money(min(power_produced, 1))
+		if(istype(linked_account))
+			linked_account.adjust_money(money_per_zap)
 		if(istype(linked_techweb))
-			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min(power_produced, 1)) // x4 coils = ~240/m point bonus for R&D
-		addtimer(CALLBACK(src, .proc/reset_shocked), 10)
+			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
+		addtimer(CALLBACK(src, .proc/reset_shocked), zap_cooldown)
 		tesla_buckle_check(power)
 	else
 		..()
 
 /obj/machinery/power/tesla_coil/proc/zap()
-	if((last_zap + zap_cooldown) > world.time || !powernet)
+	if(!powernet)
 		return FALSE
-	last_zap = world.time
 	var/coeff = (20 - ((input_power_multiplier - 1) * 3))
 	coeff = max(coeff, 10)
 	var/power = (powernet.avail/2)
@@ -112,22 +110,21 @@
 	desc = "A modified Tesla Coil used to study the effects of Edison's Bane for research."
 	icon_state = "rpcoil0"
 	circuit = /obj/item/circuitboard/machine/tesla_coil/research
-	power_loss = 20 // something something, high voltage + resistance
+	percentage_power_loss = 0.95 // Research coils lose 95% of the power (converting power to research or something idk)
+	research_points_per_zap = 6 // level 1 coil: 44/m, level coil 2: 60/m, level coil 3: 90/m, level coil 4: 180/m
+	money_per_zap = 6
 
 /obj/machinery/power/tesla_coil/research/tesla_act(power, tesla_flags, shocked_things)
 	if(anchored && !panel_open)
 		obj_flags |= BEING_SHOCKED
-		var/power_produced = powernet ? power / power_loss : power
-		add_avail(power_produced*input_power_multiplier)
+		add_avail((power * (1 - percentage_power_loss))*input_power_multiplier)
 		flick("rpcoilhit", src)
 		playsound(src.loc, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
-		tesla_zap(src, 5, power_produced, tesla_flags, shocked_things)
-		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_ENG)
-		if(D)
-			D.adjust_money(min(power_produced, 3))
+		if(istype(linked_account))
+			linked_account.adjust_money(money_per_zap)
 		if(istype(linked_techweb))
-			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min(power_produced, 3)) // x4 coils with a pulse per second or so = ~720/m point bonus for R&D
-		addtimer(CALLBACK(src, .proc/reset_shocked), 10)
+			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
+		addtimer(CALLBACK(src, .proc/reset_shocked), zap_cooldown)
 		tesla_buckle_check(power)
 	else
 		..()
@@ -156,7 +153,7 @@
 	icon_state = "grounding_rod0"
 	anchored = FALSE
 	density = TRUE
-
+	circuit = /obj/item/circuitboard/machine/grounding_rod
 	can_buckle = TRUE
 	buckle_lying = FALSE
 	buckle_requires_restraints = TRUE

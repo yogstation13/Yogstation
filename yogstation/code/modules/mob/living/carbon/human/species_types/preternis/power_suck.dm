@@ -6,11 +6,15 @@
 	return drain_power_from(H, A)
 
 /datum/species/preternis/proc/drain_power_from(mob/living/carbon/human/H, atom/A)
+	if(get_dist(H, A) > 1)
+		to_chat(H, span_warning("[A] is too far away!"))
+		return FALSE
+
 	if(!istype(H) || !A)
 		return FALSE
 
 	if(draining)
-		to_chat(H,"<span class='info'>CONSUME protocols can only be used on one object at any single time.</span>")
+		to_chat(H,span_info("CONSUME protocols can only be used on one object at any single time."))
 		return FALSE
 	if(!A.can_consume_power_from())
 		return FALSE //if it returns text, we want it to continue so we can get the error message later.
@@ -23,28 +27,28 @@
 		siemens_coefficient *= 1.5
 
 	if (charge >= PRETERNIS_LEVEL_FULL - 25) //just to prevent spam a bit
-		to_chat(H,"<span class='notice'>CONSUME protocol reports no need for additional power at this time.</span>")
+		to_chat(H,span_notice("CONSUME protocol reports no need for additional power at this time."))
 		draining = FALSE
 		return TRUE
 
 	if(H.gloves)
 		if(!H.gloves.siemens_coefficient)
-			to_chat(H,"<span class='info'>NOTICE: [H.gloves] prevent electrical contact - CONSUME protocol aborted.</span>")
+			to_chat(H,span_info("NOTICE: [H.gloves] prevent electrical contact - CONSUME protocol aborted."))
 			draining = FALSE
 			return TRUE
 		else
 			if(H.gloves.siemens_coefficient < 1)
-				to_chat(H,"<span class='info'>NOTICE: [H.gloves] are interfering with electrical contact - advise removal before activating CONSUME protocol.</span>")
+				to_chat(H,span_info("NOTICE: [H.gloves] are interfering with electrical contact - advise removal before activating CONSUME protocol."))
 			siemens_coefficient *= H.gloves.siemens_coefficient
 
 	H.face_atom(A)
-	H.visible_message("<span class='warning'>[H] starts placing their hands on [A]...</span>", "<span class='warning'>You start placing your hands on [A]...</span>")
-	if(!do_after(H, 20, target = A))
-		to_chat(H,"<span class='info'>CONSUME protocol aborted.</span>")
+	H.visible_message(span_warning("[H] starts placing their hands on [A]..."), span_warning("You start placing your hands on [A]..."))
+	if(!do_after(H, 2 SECONDS, target = A))
+		to_chat(H,span_info("CONSUME protocol aborted."))
 		draining = FALSE
 		return TRUE
 
-	to_chat(H,"<span class='info'>Extracutaneous implants detect viable power source. Initiating CONSUME protocol.</span>")
+	to_chat(H,span_info("Extracutaneous implants detect viable power source. Initiating CONSUME protocol."))
 
 	var/done = FALSE
 	var/drain = 150 * siemens_coefficient
@@ -64,7 +68,7 @@
 			nutritionIncrease = clamp(PRETERNIS_LEVEL_FULL - charge, PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL) //if their nutrition goes up from some other source, this could be negative, which would cause bad things to happen.
 			drain = nutritionIncrease/ELECTRICITY_TO_NUTRIMENT_FACTOR
 
-		if (do_after(H,5, target = A))
+		if (do_after(H, 0.5 SECONDS, target = A))
 			var/can_drain = A.can_consume_power_from()
 			if(!can_drain || istext(can_drain))
 				if(istext(can_drain))
@@ -76,17 +80,17 @@
 					spark_system.start()
 				var/drained = A.consume_power_from(drain)
 				if(drained < drain)
-					to_chat(H,"<span class='info'>[A]'s power has been depleted, CONSUME protocol halted.</span>")
+					to_chat(H,span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
 				charge = clamp(charge + (drained * ELECTRICITY_TO_NUTRIMENT_FACTOR),PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
 
 				if(!done)
 					if(charge > (PRETERNIS_LEVEL_FULL - 25))
-						to_chat(H,"<span class='info'>CONSUME protocol complete. Physical nourishment refreshed.</span>")
+						to_chat(H,span_info("CONSUME protocol complete. Physical nourishment refreshed."))
 						done = TRUE
 					else if(!(cycle % 4))
 						var/nutperc = round((charge / PRETERNIS_LEVEL_FULL) * 100)
-						to_chat(H,"<span class='info'>CONSUME protocol continues. Current satiety level: [nutperc]%.</span>")
+						to_chat(H,span_info("CONSUME protocol continues. Current satiety level: [nutperc]%."))
 		else
 			done = TRUE
 	qdel(spark_system)
@@ -104,7 +108,7 @@
 //CELL//
 /obj/item/stock_parts/cell/can_consume_power_from()
 	if(charge < MIN_DRAINABLE_POWER)
-		return "<span class='info'>Power cell depleted, cannot consume power.</span>"
+		return span_info("Power cell depleted, cannot consume power.")
 	return TRUE
 
 /obj/item/stock_parts/cell/consume_power_from(amount)
@@ -116,13 +120,13 @@
 //APC//
 /obj/machinery/power/apc/can_consume_power_from()
 	if(!cell)
-		return "<span class='info'>APC cell absent, cannot consume power.</span>"
+		return span_info("APC cell absent, cannot consume power.")
 	if(stat & BROKEN)
-		return "<span class='info'>APC is damaged, cannot consume power.</span>"
+		return span_info("APC is damaged, cannot consume power.")
 	if(!operating || shorted)
-		return "<span class='info'>APC main breaker is off, cannot consume power.</span>"
+		return span_info("APC main breaker is off, cannot consume power.")
 	if(cell.charge < MIN_DRAINABLE_POWER)
-		return "<span class='info'>APC cell depleted, cannot consume power.</span>"
+		return span_info("APC cell depleted, cannot consume power.")
 	return TRUE
 
 /obj/machinery/power/apc/consume_power_from(amount)
@@ -137,11 +141,11 @@
 //SMES//
 /obj/machinery/power/smes/can_consume_power_from()
 	if(stat & BROKEN)
-		return "<span class='info'>SMES is damaged, cannot consume power.</span>"
+		return span_info("SMES is damaged, cannot consume power.")
 	if(!output_attempt)
-		return "<span class='info'>SMES is not outputting power, cannot consume power.</span>"
+		return span_info("SMES is not outputting power, cannot consume power.")
 	if(charge < MIN_DRAINABLE_POWER)
-		return "<span class='info'>SMES cells depleted, cannot consume power.</span>"
+		return span_info("SMES cells depleted, cannot consume power.")
 	return TRUE
 
 /obj/machinery/power/smes/consume_power_from(amount)
@@ -153,13 +157,13 @@
 //MECH//
 /obj/mecha/can_consume_power_from()
 	if(!cell)
-		return "<span class='info'>Mech power cell absent, cannot consume power.</span>"
+		return span_info("Mech power cell absent, cannot consume power.")
 	if(cell.charge < MIN_DRAINABLE_POWER)
-		return "<span class='info'>Mech power cell depleted, cannot consume power.</span>"
+		return span_info("Mech power cell depleted, cannot consume power.")
 	return TRUE
 
 /obj/mecha/consume_power_from(amount)
-	occupant_message("<span class='danger'>Warning: Unauthorized access through sub-route 4, block H, detected.</span>")
+	occupant_message(span_danger("Warning: Unauthorized access through sub-route 4, block H, detected."))
 	if((cell.charge - amount) < MIN_DRAINABLE_POWER)
 		amount = max(cell.charge - MIN_DRAINABLE_POWER, 0)
 	cell.use(amount)
@@ -168,13 +172,13 @@
 //BORG//
 /mob/living/silicon/robot/can_consume_power_from()
 	if(!cell)
-		return "<span class='info'>Cyborg power cell absent, cannot consume power.</span>"
+		return span_info("Cyborg power cell absent, cannot consume power.")
 	if(cell.charge < MIN_DRAINABLE_POWER)
-		return "<span class='info'>Cyborg power cell depleted, cannot consume power.</span>"
+		return span_info("Cyborg power cell depleted, cannot consume power.")
 	return TRUE
 
 /mob/living/silicon/robot/consume_power_from(amount)
-	src << "<span class='danger'>Warning: Unauthorized access through sub-route 12, block C, detected.</span>"
+	src << span_danger("Warning: Unauthorized access through sub-route 12, block C, detected.")
 	if((cell.charge - amount) < MIN_DRAINABLE_POWER)
 		amount = max(cell.charge - MIN_DRAINABLE_POWER, 0)
 	cell.use(amount)

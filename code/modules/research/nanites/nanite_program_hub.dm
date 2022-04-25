@@ -13,13 +13,14 @@
 	var/current_category = "Main"
 	var/detail_view = FALSE
 	var/categories = list(
-						list(name = "Utility Nanites"),
-						list(name = "Medical Nanites"),
-						list(name = "Sensor Nanites"),
-						list(name = "Augmentation Nanites"),
-						list(name = "Suppression Nanites"),
-						list(name = "Weaponized Nanites")
-						)
+		list(name = "Utility Nanites"),
+		list(name = "Medical Nanites"),
+		list(name = "Sensor Nanites"),
+		list(name = "Augmentation Nanites"),
+		list(name = "Suppression Nanites"),
+		list(name = "Weaponized Nanites"),
+		list(name = "Protocols"),
+	)
 
 /obj/machinery/nanite_program_hub/Initialize()
 	. = ..()
@@ -31,7 +32,7 @@
 		if(disk)
 			eject(user)
 		if(user.transferItemToLoc(N, src))
-			to_chat(user, "<span class='notice'>You insert [N] into [src]</span>")
+			to_chat(user, span_notice("You insert [N] into [src]"))
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 			disk = N
 	else
@@ -46,15 +47,14 @@
 
 /obj/machinery/nanite_program_hub/AltClick(mob/user)
 	if(disk && user.canUseTopic(src, !issilicon(user)))
-		to_chat(user, "<span class='notice'>You take out [disk] from [src].</span>")
+		to_chat(user, span_notice("You take out [disk] from [src]."))
 		eject(user)
 	return
 
-/obj/machinery/nanite_program_hub/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/nanite_program_hub/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "NaniteProgramHub", name, 500, 700, master_ui, state)
-		ui.set_autoupdate(FALSE) //to avoid making the whole program list every second
+		ui = new(user, src, "NaniteProgramHub", name)
 		ui.open()
 
 /obj/machinery/nanite_program_hub/ui_data()

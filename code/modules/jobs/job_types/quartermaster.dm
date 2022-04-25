@@ -11,6 +11,8 @@
 
 	outfit = /datum/outfit/job/quartermaster
 
+	alt_titles = list("Stock Controller", "Cargo Coordinator", "Shipping Overseer")
+
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)
 	paycheck = PAYCHECK_MEDIUM
@@ -27,9 +29,11 @@
 	name = "Quartermaster"
 	jobtype = /datum/job/qm
 
-	belt = /obj/item/pda/quartermaster
+	pda_type = /obj/item/pda/quartermaster
+
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargo
+	uniform_skirt = /obj/item/clothing/under/rank/cargo/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard

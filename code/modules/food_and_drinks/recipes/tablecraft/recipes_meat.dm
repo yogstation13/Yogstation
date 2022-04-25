@@ -166,12 +166,12 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/sausage
-	name = "Sausage"
+	name = "Raw Sausage"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meatball = 1,
-		/obj/item/reagent_containers/food/snacks/meat/cutlet = 2
+		/obj/item/reagent_containers/food/snacks/raw_meatball = 1,
+		/obj/item/reagent_containers/food/snacks/meat/raw_cutlet = 2
 	)
-	result = /obj/item/reagent_containers/food/snacks/sausage
+	result = /obj/item/reagent_containers/food/snacks/raw_sausage
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/stewedsoymeat
@@ -191,4 +191,25 @@
 		/obj/item/reagent_containers/food/snacks/grown/banana = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/meatclown
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/gumbo
+	name = "Black eyed gumbo"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/grown/peas = 1,
+		/obj/item/reagent_containers/food/snacks/grown/chili = 1,
+		/obj/item/reagent_containers/food/snacks/meat/cutlet = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/salad/gumbo
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/fishfry
+	name = "Fish fry"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/grown/corn = 1,
+		/obj/item/reagent_containers/food/snacks/grown/peas =1,
+		/obj/item/reagent_containers/food/snacks/carpmeat = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/fishfry
 	subcategory = CAT_MEAT

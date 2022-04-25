@@ -4,14 +4,13 @@
 	icon_state = "control"
 	attachable = TRUE
 	var/id = null
-	var/can_change_id = 0
 	var/cooldown = FALSE //Door cooldowns
 	var/sync_doors = TRUE
 
 /obj/item/assembly/control/examine(mob/user)
 	. = ..()
 	if(id)
-		. += "<span class='notice'>Its channel ID is '[id]'.</span>"
+		. += span_notice("Its channel ID is '[id]'.")
 
 /obj/item/assembly/control/activate()
 	var/openclose

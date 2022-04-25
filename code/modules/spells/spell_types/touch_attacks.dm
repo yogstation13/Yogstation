@@ -23,7 +23,7 @@
 /obj/effect/proc_holder/spell/targeted/touch/cast(list/targets,mob/user = usr)
 	if(!QDELETED(attached_hand))
 		remove_hand(TRUE)
-		to_chat(user, "<span class='notice'>[dropmessage]</span>")
+		to_chat(user, span_notice("[dropmessage]"))
 		return
 
 	for(var/mob/living/carbon/C in targets)
@@ -44,11 +44,11 @@
 	if(!user.put_in_hands(attached_hand))
 		remove_hand(TRUE)
 		if (user.get_num_arms() <= 0)
-			to_chat(user, "<span class='warning'>You dont have any usable hands!</span>")
+			to_chat(user, span_warning("You dont have any usable hands!"))
 		else
-			to_chat(user, "<span class='warning'>Your hands are full!</span>")
+			to_chat(user, span_warning("Your hands are full!"))
 		return FALSE
-	to_chat(user, "<span class='notice'>[drawmessage]</span>")
+	to_chat(user, span_notice("[drawmessage]"))
 	return TRUE
 
 
@@ -76,3 +76,24 @@
 
 	action_icon_state = "statue"
 	sound = 'sound/magic/fleshtostone.ogg'
+
+/obj/effect/proc_holder/spell/targeted/touch/flagellate //doesn't do much, mostly cosmetic punishment tool for chaplains
+	name = "Flagellate"
+	desc = "This spell charges your hand with the power of the old gods, allowing you to flagellate heathens."
+	hand_path = /obj/item/melee/touch_attack/flagellate
+	clothes_req = FALSE
+
+	charge_max = 300 //its very weak so it doesn't need a super long cooldown. 30 second cooldown
+
+	action_icon = 'icons/mob/actions/actions_cult.dmi'
+	action_icon_state = "horror"
+	action_background_icon_state = "bg_ecult"
+	sound = 'sound/magic/fleshtostone.ogg'
+
+/obj/effect/proc_holder/spell/targeted/touch/raise
+	name = "Raise bloodman"
+	desc = "Turn a corpse into a bloodman at the cost of 9% blood (5 brain damage for those without blood)."
+	action_icon = 'icons/mob/actions/actions_cult.dmi'
+	action_icon_state = "raise"
+	hand_path = /obj/item/melee/touch_attack/raisehand
+	clothes_req = FALSE

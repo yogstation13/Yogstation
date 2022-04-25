@@ -11,7 +11,7 @@
 	obj_damage = 400
 	light_range = 3
 	faction = list("mining", "boss")
-	weather_immunities = list("lava","ash")
+	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
 	movement_type = FLYING
 	robust_searching = TRUE
 	ranged_ignores_vision = TRUE
@@ -28,6 +28,7 @@
 	mob_size = MOB_SIZE_HUGE
 	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
+	flags_1 = HEAR_1 | PREVENT_CONTENTS_EXPLOSION_1
 	var/list/crusher_loot
 	var/elimination = FALSE
 	var/anger_modifier = 0
@@ -44,7 +45,6 @@
 	. = ..()
 	if(internal_type && true_spawn)
 		internal = new internal_type(src)
-	apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	ADD_TRAIT(src, TRAIT_NO_TELEPORT, MEGAFAUNA_TRAIT)
 	for(var/action_type in attack_action_types)
 		var/datum/action/innate/megafauna_attack/attack_action = new action_type()
@@ -66,9 +66,6 @@
 		target = null
 		return
 	return ..()
-
-/mob/living/simple_animal/hostile/megafauna/prevent_content_explosion()
-	return TRUE
 
 /mob/living/simple_animal/hostile/megafauna/death(gibbed, var/list/force_grant)
 	if(health > 0)
@@ -118,8 +115,8 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+		span_danger("[src] devours [L]!"),
+		span_userdanger("You feast on [L], restoring your health!"))
 	if(!is_station_level(z) || client) //NPC monsters won't heal while on station
 		adjustBruteLoss(-L.maxHealth/2)
 	L.gib()

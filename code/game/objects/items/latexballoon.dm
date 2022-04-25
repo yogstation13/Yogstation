@@ -1,6 +1,7 @@
 /obj/item/latexballon
 	name = "latex glove"
 	desc = "Sterile and airtight."
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "latexballon"
 	item_state = "lgloves"
 	force = 0
@@ -17,7 +18,7 @@
 	icon_state = "latexballon_blow"
 	item_state = "latexballon"
 	user.update_inv_hands()
-	to_chat(user, "<span class='notice'>You blow up [src] with [tank].</span>")
+	to_chat(user, span_notice("You blow up [src] with [tank]."))
 	air_contents = tank.remove_air_volume(3)
 
 /obj/item/latexballon/proc/burst()
@@ -54,5 +55,5 @@
 		var/obj/item/tank/T = W
 		blow(T, user)
 		return
-	if (W.is_sharp() || W.is_hot() || is_pointed(W))
+	if (W.is_sharp() || W.is_hot())
 		burst()

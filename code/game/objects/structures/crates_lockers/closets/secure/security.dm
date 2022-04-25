@@ -9,12 +9,12 @@
 	new /obj/item/pet_carrier(src)
 	new /obj/item/cartridge/captain(src)
 	new /obj/item/storage/box/silver_ids(src)
+	new /obj/item/clothing/neck/cloak/cap(src)
 	new /obj/item/radio/headset/heads/captain/alt(src)
 	new /obj/item/radio/headset/heads/captain(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/storage/belt/sabre(src)
 	new /obj/item/door_remote/captain(src)
-	new /obj/item/card/id/captains_spare(src)
 	new /obj/item/storage/photo_album/Captain(src)
 	new /obj/item/clipboard/yog/paperwork/captain(src)
 	new /obj/item/radio/security(src)
@@ -31,6 +31,7 @@
 	new /obj/item/radio/headset/heads/hop(src)
 	new /obj/item/storage/box/ids(src)
 	new /obj/item/storage/box/ids(src)
+	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/clothing/suit/armor/vest/alt(src)
 	new /obj/item/assembly/flash/handheld(src)
@@ -43,7 +44,7 @@
 	new /obj/item/storage/photo_album/HoP(src)
 	new /obj/item/clipboard/yog/paperwork/hop(src)
 	new /obj/item/gun/energy/e_gun/mini(src) //hop doesn't get a proper gun
-	new /obj/item/storage/backpack/duffelbag/hop/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/hop(src)
 
 /obj/structure/closet/secure_closet/hos
 	name = "\proper head of security's locker"
@@ -56,6 +57,7 @@
 	new /obj/item/radio/headset/heads/hos/alt(src)
 	new /obj/item/radio/headset/heads/hos(src)
 	new /obj/item/storage/lockbox/medal/sec(src)
+	new /obj/item/clothing/neck/cloak/hos(src)
 	new /obj/item/megaphone/sec(src)
 	new /obj/item/holosign_creator/security(src)
 	new /obj/item/storage/lockbox/loyalty(src)
@@ -66,11 +68,12 @@
 	new /obj/item/gun/energy/e_gun/hos(src)
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/pinpointer/nuke(src)
-	new /obj/item/circuitboard/machine/techfab/department/security(src)
+	new /obj/item/circuitboard/machine/techfab/department/armory(src)
 	new /obj/item/storage/photo_album/HoS(src)
 	new /obj/item/clipboard/yog/paperwork/hos(src)
 	new /obj/item/radio/security(src)
-	new /obj/item/storage/backpack/duffelbag/sec/head/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/sec/head(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
@@ -94,7 +97,8 @@
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 	new /obj/item/clipboard/yog/paperwork/warden(src)
 	new /obj/item/radio/security(src)
-	new /obj/item/storage/backpack/duffelbag/sec/warden/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/sec/warden(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
@@ -111,6 +115,7 @@
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/clipboard/yog/paperwork/security(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/security/sec
 
@@ -173,7 +178,8 @@
 	new /obj/item/storage/belt/holster/full(src)
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/twohanded/binoculars(src)
-	new /obj/item/storage/backpack/duffelbag/sec/detective/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/sec/detective(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections"
@@ -200,6 +206,9 @@
 	..()
 	new /obj/item/clothing/under/rank/prisoner( src )
 	new /obj/item/clothing/shoes/sneakers/orange( src )
+
+/obj/structure/closet/secure_closet/brig/cell
+	name = "cell locker"
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
@@ -288,3 +297,26 @@
 	..()
 	for(var/i in 1 to 3)
 		new /obj/item/storage/box/lethalshot(src)
+
+//Yogs Start: Brig Pysh Closet
+/obj/structure/closet/secure_closet/physician
+	name = "\improper brig physician's cabinet"
+	req_access = list(ACCESS_BRIG_PHYS)
+	icon = 'yogstation/icons/obj/closet.dmi'
+	icon_state = "physician"
+	resistance_flags = FLAMMABLE
+	max_integrity = 70
+	door_anim_time = 0
+
+/obj/structure/closet/secure_closet/physician/PopulateContents()
+	..()
+	new /obj/item/storage/backpack/duffelbag/clothing/sec/physician(src)
+	new /obj/item/cartridge/medical(src)
+	new /obj/item/radio/headset/headset_medsec(src)
+	new /obj/item/storage/belt/medical(src)
+	new /obj/item/pinpointer/crew(src)
+	new /obj/item/sensor_device(src)
+	new /obj/item/storage/box/bodybags(src)
+	new /obj/item/tank/internals/anesthetic(src)
+	new /obj/item/clothing/mask/breath/medical(src)
+	new /obj/item/defibrillator/loaded(src)

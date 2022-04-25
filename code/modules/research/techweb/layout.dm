@@ -67,9 +67,9 @@
 	ui_x = 352
 	ui_y = -384
 
-/datum/techweb_node/spacepod_basic
-	ui_x = -160
-	ui_y = -448
+/datum/techweb_node/spacevehicle_basic
+	ui_x = -32
+	ui_y = -736
 
 /datum/techweb_node/adv_biotech
 	ui_x = 288
@@ -164,8 +164,8 @@
 	ui_y = -288
 
 /datum/techweb_node/spacepod_lock
-	ui_x = -224
-	ui_y = -448
+	ui_x = 32
+	ui_y = -768
 
 /datum/techweb_node/telecomms
 	ui_x = 256
@@ -191,17 +191,29 @@
 	ui_x = -480
 	ui_y = -480
 
+/datum/techweb_node/camera_theory
+	ui_x = 96
+	ui_y = -320
+
 /datum/techweb_node/landmine
 	ui_x = -512
 	ui_y = -736
 
+/datum/techweb_node/basic_shuttle_tech
+	ui_x = -96
+	ui_y = -736
+
+/datum/techweb_node/shuttle_route_upgrade
+	ui_x = -160
+	ui_y = -736
+
 /datum/techweb_node/spacepod_disabler
-	ui_x = -64
-	ui_y = -576
+	ui_x = 32
+	ui_y = -704
 
 /datum/techweb_node/spacepod_pseat
-	ui_x = -160
-	ui_y = -512
+	ui_x = 32
+	ui_y = -832
 
 /datum/techweb_node/cyborg_upg_med
 	ui_x = 352
@@ -251,6 +263,10 @@
 	ui_x = 352
 	ui_y = 256
 
+/datum/techweb_node/shuttle_route_upgrade_void
+	ui_x = 352
+	ui_y = 320
+
 /datum/techweb_node/nanite_hazard
 	ui_x = 288
 	ui_y = 256
@@ -268,16 +284,16 @@
 	ui_y = -32
 
 /datum/techweb_node/spacepod_storage
-	ui_x = -160
-	ui_y = -576
+	ui_x = 96
+	ui_y = -832
 
 /datum/techweb_node/spacepod_lockbuster
-	ui_x = -224
-	ui_y = -512
+	ui_x = 96
+	ui_y = -768
 
 /datum/techweb_node/spacepod_iarmor
-	ui_x = -224
-	ui_y = -576
+	ui_x = 160
+	ui_y = -832
 
 /datum/techweb_node/computer_hardware_basic
 	ui_x = 256
@@ -352,8 +368,8 @@
 	ui_y = -384
 
 /datum/techweb_node/spacepod_ka
-	ui_x = -64
-	ui_y = -512
+	ui_x = 32
+	ui_y = -640
 
 /datum/techweb_node/ballistic_weapons
 	ui_x = -736
@@ -380,8 +396,16 @@
 	ui_y = -256
 
 /datum/techweb_node/spacepod_lasers
-	ui_x = 0
-	ui_y = -576
+	ui_x = 96
+	ui_y = -704
+
+/datum/techweb_node/shuttle_route_upgrade_hyper
+	ui_x = -224
+	ui_y = -736
+
+/datum/techweb_node/cyborg_upg_surgkit
+	ui_x = 416
+	ui_y = -160
 
 /datum/techweb_node/cyber_organs_upgraded
 	ui_x = 416
@@ -404,12 +428,16 @@
 	ui_y = -256
 
 /datum/techweb_node/mech_diamond_drill
-	ui_x = 128
+	ui_x = 96
 	ui_y = -512
 
 /datum/techweb_node/spacepod_advmining
-	ui_x = 0
-	ui_y = -512
+	ui_x = 96
+	ui_y = -640
+
+/datum/techweb_node/adv_rcd_upgrade
+	ui_x = 32
+	ui_y = -448
 
 /datum/techweb_node/beam_weapons
 	ui_x = -640
@@ -435,10 +463,6 @@
 	ui_x = -384
 	ui_y = -608
 
-/datum/techweb_node/syndicate_surgery
-	ui_x = -320
-	ui_y = -608
-
 /datum/techweb_node/mech_modules
 	ui_x = -640
 	ui_y = -32
@@ -448,8 +472,8 @@
 	ui_y = -320
 
 /datum/techweb_node/spacepod_advplasmacutter
-	ui_x = 64
-	ui_y = -512
+	ui_x = 160
+	ui_y = -640
 
 /datum/techweb_node/mech_scattershot
 	ui_x = -800
@@ -466,6 +490,10 @@
 /datum/techweb_node/adv_mecha_tools
 	ui_x = -576
 	ui_y = -32
+
+/datum/techweb_node/xenology
+	ui_x = 480
+	ui_y = -96
 
 /datum/techweb_node/adv_beam_weapons
 	ui_x = -640

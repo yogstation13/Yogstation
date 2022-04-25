@@ -10,6 +10,18 @@
 	icon_state = "pda-medical"
 	light_color = LIGHT_COLOR_LIGHT_CYAN
 
+/obj/item/pda/miningmed
+	name = "mining medic PDA"
+	default_cartridge = /obj/item/cartridge/medical
+	icon_state = "pda-miningmed"
+	light_color = LIGHT_COLOR_LIGHT_CYAN
+
+/obj/item/pda/physician
+	name = "brig physician PDA"
+	default_cartridge = /obj/item/cartridge/medical
+	icon_state = "pda-physician"
+	light_color = LIGHT_COLOR_RED
+
 /obj/item/pda/clown
 	light_color = LIGHT_COLOR_PINK
 

@@ -178,7 +178,7 @@
 	// Also splashes everything in target turf with reagents and applies other trait effects (teleporting, etc) to the target by on_squash.
 	// For code, see grown.dm
 	name = "Liquid Contents"
-	examine_line = "<span class='info'>It has a lot of liquid contents inside.</span>"
+	examine_line = span_info("It has a lot of liquid contents inside.")
 
 /datum/plant_gene/trait/squash/on_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/C)
 	// Squash the plant on slip.
@@ -189,7 +189,7 @@
 	// Applies other trait effects (teleporting, etc) to the target by on_slip.
 	name = "Slippery Skin"
 	rate = 1.6
-	examine_line = "<span class='info'>It has a very slippery skin.</span>"
+	examine_line = span_info("It has a very slippery skin.")
 
 /datum/plant_gene/trait/slip/on_new(obj/item/reagent_containers/food/snacks/grown/G, newloc)
 	..()
@@ -240,7 +240,7 @@
 				C.update_icon()
 				batteries_recharged = 1
 		if(batteries_recharged)
-			to_chat(target, "<span class='notice'>Your batteries are recharged!</span>")
+			to_chat(target, span_notice("Your batteries are recharged!"))
 
 
 
@@ -249,7 +249,7 @@
 	// Adds 1 + potency*rate light range and potency*(rate + 0.01) light_power to products.
 	name = "Bioluminescence"
 	rate = 0.03
-	examine_line = "<span class='info'>It emits a soft glow.</span>"
+	examine_line = span_info("It emits a soft glow.")
 	trait_id = "glow"
 	var/glow_color = "#C3E381"
 
@@ -273,15 +273,39 @@
 /datum/plant_gene/trait/glow/shadow/glow_power(obj/item/seeds/S)
 	return -max(S.potency*(rate*0.2), 0.2)
 
+/datum/plant_gene/trait/glow/white
+	name = "White Bioluminescence"
+	glow_color = "#FFFFFF"
+
 /datum/plant_gene/trait/glow/red
-	name = "Red Electrical Glow"
-	glow_color = LIGHT_COLOR_RED
+	//Colored versions of bioluminescence.
+	name = "Red Bioluminescence"
+	glow_color = "#FF3333"
 
-/datum/plant_gene/trait/glow/berry
-	name = "Strong Bioluminescence"
-	rate = 0.05
-	glow_color = null
+/datum/plant_gene/trait/glow/yellow
+	//not the disgusting glowshroom yellow hopefully
+	name = "Yellow Bioluminescence"
+	glow_color = "#FFFF66"
 
+/datum/plant_gene/trait/glow/green
+	//oh no, now I'm radioactive
+	name = "Green Bioluminescence"
+	glow_color = "#99FF99"
+
+/datum/plant_gene/trait/glow/blue
+	//the best one
+	name = "Blue Bioluminescence"
+	glow_color = "#6699FF"
+
+/datum/plant_gene/trait/glow/purple
+	//did you know that Notepad++ doesnt think bioluminescence is a word
+	name = "Purple Bioluminescence"
+	glow_color = "#D966FF"
+
+/datum/plant_gene/trait/glow/pink
+	//gay tide station pride
+	name = "Pink Bioluminescence"
+	glow_color = "#FFB3DA"
 
 /datum/plant_gene/trait/teleport
 	// Makes plant teleport people when squashed or slipped on.
@@ -299,7 +323,7 @@
 /datum/plant_gene/trait/teleport/on_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/C)
 	var/teleport_radius = max(round(G.seed.potency / 10), 1)
 	var/turf/T = get_turf(C)
-	to_chat(C, "<span class='warning'>You slip through spacetime!</span>")
+	to_chat(C, span_warning("You slip through spacetime!"))
 	do_teleport(C, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
 	if(prob(50))
 		do_teleport(G, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
@@ -334,7 +358,7 @@
 	if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = I
 		if(C.use(5))
-			to_chat(user, "<span class='notice'>You add some cable to [G] and slide it inside the battery encasing.</span>")
+			to_chat(user, span_notice("You add some cable to [G] and slide it inside the battery encasing."))
 			var/obj/item/stock_parts/cell/potato/pocell = new /obj/item/stock_parts/cell/potato(user.loc)
 			pocell.icon_state = G.icon_state
 			pocell.maxcharge = G.seed.potency * 20
@@ -343,6 +367,7 @@
 			var/datum/plant_gene/trait/cell_charge/CG = G.seed.get_gene(/datum/plant_gene/trait/cell_charge)
 			if(CG) // Cell charge max is now 40MJ or otherwise known as 400KJ (Same as bluespace powercells)
 				pocell.maxcharge *= CG.rate*100
+				pocell.chargerate = G.seed.potency * 40
 			pocell.charge = pocell.maxcharge
 			pocell.name = "[G.name] battery"
 			pocell.desc = "A rechargeable plant-based power cell. This one has a rating of [DisplayEnergy(pocell.maxcharge)], and you should not swallow it."
@@ -352,7 +377,7 @@
 
 			qdel(G)
 		else
-			to_chat(user, "<span class='warning'>You need five lengths of cable to make a [G] battery!</span>")
+			to_chat(user, span_warning("You need five lengths of cable to make a [G] battery!"))
 
 
 /datum/plant_gene/trait/stinging
@@ -369,7 +394,7 @@
 			var/fraction = min(injecting_amount/G.reagents.total_volume, 1)
 			G.reagents.reaction(L, INJECT, fraction)
 			G.reagents.trans_to(L, injecting_amount)
-			to_chat(target, "<span class='danger'>You are pricked by [G]!</span>")
+			to_chat(target, span_danger("You are pricked by [G]!"))
 
 /datum/plant_gene/trait/smoke
 	name = "gaseous decomposition"

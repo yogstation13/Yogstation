@@ -93,6 +93,7 @@
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
 	belt = /obj/item/storage/belt/utility/full
+	id = /obj/item/card/id/freeminer/engi
 
 /obj/effect/mob_spawn/human/free_miner/captain
 	name = "Free Miner Captain"
@@ -117,11 +118,15 @@
 
 /obj/item/card/id/freeminer
 	name = "Free Miner Crewman ID"
-	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER)
+	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_MECH_FREEMINER)
+
+/obj/item/card/id/freeminer/engi
+	name = "Free Miner Engineer ID"
+	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_MECH_FREEMINER, ACCESS_FREEMINER_ENGINEER)
 
 /obj/item/card/id/freeminer/captain
 	name = "Free Miner Ship Pilot ID"
-	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_FREEMINER_CAPTAIN)
+	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_MECH_FREEMINER, ACCESS_FREEMINER_ENGINEER, ACCESS_FREEMINER_CAPTAIN)
 
 /obj/item/storage/box/ids/free_miners
 	name = "box of spare IDs"

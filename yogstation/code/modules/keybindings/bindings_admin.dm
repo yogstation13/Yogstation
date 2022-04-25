@@ -3,9 +3,6 @@
 		if(ACTION_ASAY)
 			user.get_admin_say()
 			return
-		if(ACTION_MENTORCHAT)
-			user.get_mentor_say()
-			return
 		if(ACTION_AGHOST)
 			user.admin_ghost()
 			return

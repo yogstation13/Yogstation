@@ -8,6 +8,7 @@
 	icon_state_unpowered = null
 	icon_state_menu = null
 	hardware_flag = 0
+	max_bays = 5
 
 	var/obj/machinery/modular_computer/machinery_computer = null
 
@@ -18,9 +19,6 @@
 	machinery_computer = null
 
 /obj/item/modular_computer/processor/New(comp)
-	..()
-	STOP_PROCESSING(SSobj, src) // Processed by its machine
-
 	if(!comp || !istype(comp, /obj/machinery/modular_computer))
 		CRASH("Inapropriate type passed to obj/item/modular_computer/processor/New()! Aborting.")
 	// Obtain reference to machinery computer
@@ -28,6 +26,9 @@
 	idle_threads = list()
 	machinery_computer = comp
 	machinery_computer.cpu = src
+	icon_state_menu = machinery_computer.screen_icon_state_menu
+	icon_state_screensaver = machinery_computer.screen_icon_screensaver
+	overlay_skin = machinery_computer.overlay_skin
 	hardware_flag = machinery_computer.hardware_flag
 	max_hardware_size = machinery_computer.max_hardware_size
 	steel_sheet_cost = machinery_computer.steel_sheet_cost
@@ -36,13 +37,19 @@
 	integrity_failure = machinery_computer.integrity_failure
 	base_active_power_usage = machinery_computer.base_active_power_usage
 	base_idle_power_usage = machinery_computer.base_idle_power_usage
+	starting_components = machinery_computer.starting_components
+	starting_files = machinery_computer.starting_files
+	initial_program = machinery_computer.initial_program
+	startup_sound = machinery_computer.startup_sound
+	shutdown_sound = machinery_computer.shutdown_sound
+	interact_sounds = machinery_computer.interact_sounds
+
+	..()
+
+	STOP_PROCESSING(SSobj, src) // Processed by its machine
 
 /obj/item/modular_computer/processor/relay_qdel()
 	qdel(machinery_computer)
-
-/obj/item/modular_computer/processor/update_icon()
-	if(machinery_computer)
-		return machinery_computer.update_icon()
 
 // This thing is not meant to be used on it's own, get topic data from our machinery owner.
 //obj/item/modular_computer/processor/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
@@ -58,23 +65,11 @@
 	machinery_computer.update_icon()
 	return
 
-/obj/item/modular_computer/processor/add_verb(path)
-	switch(path)
-		if(MC_CARD)
-			machinery_computer.verbs += /obj/machinery/modular_computer/proc/eject_id
-		if(MC_SDD)
-			machinery_computer.verbs += /obj/machinery/modular_computer/proc/eject_disk
-		if(MC_AI)
-			machinery_computer.verbs += /obj/machinery/modular_computer/proc/eject_card
-
-/obj/item/modular_computer/processor/remove_verb(path)
-	switch(path)
-		if(MC_CARD)
-			machinery_computer.verbs -= /obj/machinery/modular_computer/proc/eject_id
-		if(MC_SDD)
-			machinery_computer.verbs -= /obj/machinery/modular_computer/proc/eject_disk
-		if(MC_AI)
-			machinery_computer.verbs -= /obj/machinery/modular_computer/proc/eject_card
-
 /obj/item/modular_computer/processor/attack_ghost(mob/user)
 	ui_interact(user)
+
+/obj/item/modular_computer/processor/alert_call(datum/computer_file/program/caller, alerttext)
+	if(!caller || !caller.alert_able || caller.alert_silenced || !alerttext)
+		return
+	playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
+	machinery_computer.visible_message("<span class='notice'>The [src] displays a [caller.filedesc] notification: [alerttext]</span>")

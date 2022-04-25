@@ -9,7 +9,8 @@ SUBSYSTEM_DEF(augury)
 	var/list/observers_given_action = list()
 
 /datum/controller/subsystem/augury/stat_entry(msg)
-	return ..("W:[watchers.len]|D:[doombringers.len]")
+	msg = "W:[watchers.len]|D:[length(doombringers)]"
+	return ..()
 
 /datum/controller/subsystem/augury/proc/register_doom(atom/A, severity)
 	doombringers[A] = severity
@@ -66,13 +67,13 @@ SUBSYSTEM_DEF(augury)
 
 /datum/action/innate/augury/Activate()
 	SSaugury.watchers += owner
-	to_chat(owner, "<span class='notice'>You are now auto-following debris.</span>")
+	to_chat(owner, span_notice("You are now auto-following debris."))
 	active = TRUE
 	UpdateButtonIcon()
 
 /datum/action/innate/augury/Deactivate()
 	SSaugury.watchers -= owner
-	to_chat(owner, "<span class='notice'>You are no longer auto-following debris.</span>")
+	to_chat(owner, span_notice("You are no longer auto-following debris."))
 	active = FALSE
 	UpdateButtonIcon()
 

@@ -8,7 +8,9 @@
 	var/list/languages_possible
 	var/say_mod = null
 	var/taste_sensitivity = 15 // lower is more sensitive.
-	var/modifies_speech = FALSE
+	var/modifies_speech = TRUE // set to TRUE now because otherwise default tongues can't be honked. Not even sure why this would ever be set to false since it doesn't do anything.
+	var/honked = FALSE // This tongue has a bike horn jammed inside of it and will honk every time something is spoken.
+	var/honkednoise = 'sound/items/bikehorn.ogg'
 	var/static/list/languages_possible_base = typecacheof(list(
 		/datum/language/common,
 		/datum/language/draconic,
@@ -20,34 +22,63 @@
 		/datum/language/aphasia,
 		/datum/language/piratespeak,
 		/datum/language/sylvan,
+		/datum/language/bonespeak,
+		/datum/language/mothian,
+		/datum/language/etherean,
 		/datum/language/japanese,
 		/datum/language/machine, //yogs
-		/datum/language/darkspawn //also yogs
+		/datum/language/darkspawn, //also yogs
+		/datum/language/encrypted,
+		/datum/language/felinid,
+		/datum/language/english
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)
 	. = ..()
 	languages_possible = languages_possible_base
 
+/obj/item/organ/tongue/update_icon()
+	. = ..()
+	if(honked) // This tongue has a bike horn inside of it. Let's draw it
+		add_overlay("honked")
+
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
+	if(honked) // you have a bike horn inside of your tongue. Time to honk
+		playsound(source, honkednoise, 50, TRUE)
+		say_mod = "honks" // overrides original tongue here 
 
 /obj/item/organ/tongue/Insert(mob/living/carbon/M, special = 0)
 	..()
 	if(say_mod && M.dna && M.dna.species)
 		M.dna.species.say_mod = say_mod
 	if (modifies_speech)
-		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech, override = TRUE)
 	M.UnregisterSignal(M, COMSIG_MOB_SAY)
 
 /obj/item/organ/tongue/Remove(mob/living/carbon/M, special = 0)
 	..()
 	if(say_mod && M.dna && M.dna.species)
 		M.dna.species.say_mod = initial(M.dna.species.say_mod)
-	UnregisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	UnregisterSignal(M, COMSIG_MOB_SAY)
 	M.RegisterSignal(M, COMSIG_MOB_SAY, /mob/living/carbon/.proc/handle_tongueless_speech)
 
 /obj/item/organ/tongue/could_speak_language(language)
 	return is_type_in_typecache(language, languages_possible)
+
+/obj/item/organ/tongue/honked // allows admins to spawn honked tongues from the item menu vs having to change the variable.
+	honked = TRUE
+
+/obj/item/organ/tongue/honked/boowomp
+	honkednoise = 'yogstation/sound/items/boowomp.ogg'
+
+/obj/item/organ/tongue/Initialize() // this only exists to make sure the spawned tongue has a horn inside of it visually
+	. = ..()
+	update_icon()
+
+/obj/item/organ/tongue/examine(mob/user)
+	. = ..()
+	if(honked)
+		. += "It seems to have a bikehorn shoved inside, HONK!"
 
 /obj/item/organ/tongue/lizard
 	name = "forked tongue"
@@ -58,6 +89,7 @@
 	modifies_speech = TRUE
 
 /obj/item/organ/tongue/lizard/handle_speech(datum/source, list/speech_args)
+	..()
 	var/static/regex/lizard_hiss = new("s+", "g")
 	var/static/regex/lizard_hiSS = new("S+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
@@ -75,6 +107,7 @@
 	modifies_speech = TRUE
 
 /obj/item/organ/tongue/fly/handle_speech(datum/source, list/speech_args)
+	..()
 	var/static/regex/fly_buzz = new("z+", "g")
 	var/static/regex/fly_buZZ = new("Z+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
@@ -101,26 +134,27 @@
 		return
 
 	if(T.mothership == mothership)
-		to_chat(H, "<span class='notice'>[src] is already attuned to the same channel as your own.</span>")
+		to_chat(H, span_notice("[src] is already attuned to the same channel as your own."))
 
-	H.visible_message("<span class='notice'>[H] holds [src] in their hands, and concentrates for a moment.</span>", "<span class='notice'>You attempt to modify the attunation of [src].</span>")
-	if(do_after(H, delay=15, target=src))
-		to_chat(H, "<span class='notice'>You attune [src] to your own channel.</span>")
+	H.visible_message(span_notice("[H] holds [src] in their hands, and concentrates for a moment."), span_notice("You attempt to modify the attunation of [src]."))
+	if(do_after(H, 1.5 SECONDS, target=src))
+		to_chat(H, span_notice("You attune [src] to your own channel."))
 		mothership = T.mothership
 
 /obj/item/organ/tongue/abductor/examine(mob/M)
 	. = ..()
 	if(HAS_TRAIT(M, TRAIT_ABDUCTOR_TRAINING) || isobserver(M))
 		if(!mothership)
-			. += "<span class='notice'>It is not attuned to a specific mothership.</span>"
+			. += span_notice("It is not attuned to a specific mothership.")
 		else
-			. += "<span class='notice'>It is attuned to [mothership].</span>"
+			. += span_notice("It is attuned to [mothership].")
 
 /obj/item/organ/tongue/abductor/handle_speech(datum/source, list/speech_args)
+	..()
 	//Hacks
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/mob/living/carbon/human/user = usr
-	var/rendered = "<span class='abductor'><b>[user.real_name]:</b> [message]</span>"
+	var/rendered = span_abductor("<b>[user.real_name]:</b> [message]")
 	user.log_talk(message, LOG_SAY, tag="abductor")
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		var/obj/item/organ/tongue/abductor/T = H.getorganslot(ORGAN_SLOT_TONGUE)
@@ -144,6 +178,7 @@
 	taste_sensitivity = 32
 
 /obj/item/organ/tongue/zombie/handle_speech(datum/source, list/speech_args)
+	..()
 	var/list/message_list = splittext(speech_args[SPEECH_MESSAGE], " ")
 	var/maxchanges = max(round(message_list.len / 1.5), 2)
 
@@ -178,6 +213,7 @@
 	languages_possible = languages_possible_alien
 
 /obj/item/organ/tongue/alien/handle_speech(datum/source, list/speech_args)
+	..()
 	playsound(owner, "hiss", 25, 1, 1)
 
 /obj/item/organ/tongue/bone
@@ -197,6 +233,7 @@
 	phomeme_type = pick(phomeme_types)
 
 /obj/item/organ/tongue/bone/handle_speech(datum/source, list/speech_args)
+	..()
 	if (chattering)
 		chatter(speech_args[SPEECH_MESSAGE], phomeme_type, source)
 	switch(phomeme_type)
@@ -225,6 +262,7 @@
 	return TRUE // THE MAGIC OF ELECTRONICS
 
 /obj/item/organ/tongue/robot/handle_speech(datum/source, list/speech_args)
+	..()
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
 /obj/item/organ/tongue/snail
@@ -232,6 +270,7 @@
 	modifies_speech = TRUE
 
 /obj/item/organ/tongue/snail/handle_speech(datum/source, list/speech_args)
+	..()
 	var/new_message
 	var/message = speech_args[SPEECH_MESSAGE]
 	for(var/i in 1 to length(message))
@@ -242,14 +281,17 @@
 	speech_args[SPEECH_MESSAGE] = new_message
 
 /obj/item/organ/tongue/polysmorph
-	name = "polysmorphtongue"
-	desc = "A polysmorph tongue."
+	name = "polysmorph tongue"
+	desc = "Similar to that of a true xenomorph, but less bitey."
+	icon_state = "tonguexeno"
 	say_mod = "hisses"
 	modifies_speech = TRUE
 	var/static/list/languages_possible_polysmorph = typecacheof(list(
-		/datum/language/xenocommon))
+		/datum/language/common,
+		/datum/language/polysmorph))
 
 /obj/item/organ/tongue/polysmorph/handle_speech(datum/source, list/speech_args)
+	..()
 	var/static/regex/polysmorph_hiss = new("s+", "g")
 	var/static/regex/polysmorph_hiSS = new("S+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]

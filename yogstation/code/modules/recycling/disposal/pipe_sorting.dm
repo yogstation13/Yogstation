@@ -36,7 +36,7 @@
 /obj/structure/disposalpipe/sorting/screwdriver_act(mob/living/user, obj/item/I)
 	panel_open = !panel_open
 	I.play_tool_sound(src)
-	to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the wire panel.</span>")
+	to_chat(user, span_notice("You [panel_open ? "open" : "close"] the wire panel."))
 	update_icon()
 	return TRUE
 

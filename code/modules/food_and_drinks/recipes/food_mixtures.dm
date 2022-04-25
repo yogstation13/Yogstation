@@ -93,6 +93,13 @@
 	required_temp = 483.15
 	mob_react = FALSE
 
+/datum/chemical_reaction/nutriconversion
+	name = "Peptide conversion"
+	id = "peptide_conversion"
+	results = list(/datum/reagent/consumable/nutriment/peptides = 0.5)
+	required_reagents = list(/datum/reagent/consumable/nutriment = 0.5)
+	required_catalysts = list(/datum/reagent/medicine/metafactor = 0.5)
+
 /datum/chemical_reaction/synthmeat
 	name = "synthmeat"
 	id = "synthmeat"
@@ -198,25 +205,25 @@
 	id = "goatmilk"
 	required_reagents = list(/datum/reagent/consumable/milk/goat = 30, /datum/reagent/consumable/mesophilicculture = 1)
 	results = list(/datum/reagent/consumable/milk/goatcheese = 30)
-	
+
 /datum/chemical_reaction/shoatmilk
 	name = "Shoat Milk"
 	id = "shoatmilk"
 	required_reagents = list(/datum/reagent/consumable/milk/goat = 15, /datum/reagent/consumable/milk/sheep = 15)
 	results = list(/datum/reagent/consumable/milk/shoat = 30)
-	
+
 /datum/chemical_reaction/halloumimilk
 	name = "Halloumi Cheese Milk"
 	id = "halloumimilk"
 	required_reagents = list(/datum/reagent/consumable/milk/shoat = 30, /datum/reagent/consumable/mesophilicculture = 1)
 	results = list(/datum/reagent/consumable/milk/halloumi = 30)
-	
+
 /datum/chemical_reaction/mozzarellamilk
 	name = "Mozzarella Cheese Milk"
 	id = "mozzarellamilk"
 	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/lemonjuice = 5)
 	results = list(/datum/reagent/consumable/milk/mozzarella = 30)
-	
+
 /datum/chemical_reaction/parmesanmilk
 	name = "Parmesan Cheese Milk"
 	id = "parmesanmilk"
@@ -230,7 +237,7 @@
 	results = list(/datum/reagent/consumable/milk/swiss = 30)
 
 ////////////////////////////////////////////CHEESE////////////////////////////////////////////
-datum/chemical_reaction/american
+/datum/chemical_reaction/american
 	name = "American Cheese Block"
 	id = "americancheeseblock"
 	required_reagents = list(/datum/reagent/consumable/milk = 40)
@@ -346,3 +353,15 @@ datum/chemical_reaction/american
 	results = list(/datum/reagent/consumable/gravy = 2)
 	required_reagents = list(/datum/reagent/consumable/drippings = 1, /datum/reagent/consumable/flour = 1)
 	mix_message = "The solution begins to thicken."
+
+datum/chemical_reaction/bugmix
+	name = "Bug Cheese Mix"
+	id = "bugmix"
+	required_reagents = list(/datum/reagent/consumable/cream/bug = 25)
+	required_catalysts = list(/datum/reagent/consumable/vitfro = 5)
+
+/datum/chemical_reaction/bugmix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/store/cheesewheel/bug(location)
+

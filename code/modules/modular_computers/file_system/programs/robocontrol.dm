@@ -2,6 +2,7 @@
 /datum/computer_file/program/robocontrol
 	filename = "robocontrol"
 	filedesc = "Bot Remote Controller"
+	category = PROGRAM_CATEGORY_ROBO
 	program_icon_state = "robot"
 	extended_desc = "A remote controller used for giving basic commands to non-sentient robots."
 	transfer_access = ACCESS_ROBOTICS
@@ -9,8 +10,8 @@
 	network_destination = "robotics control network"
 	size = 12
 	tgui_id = "NtosRoboControl"
-	ui_x = 550
-	ui_y = 550
+	program_icon = "robot"
+
 	///Number of simple robots on-station.
 	var/botcount = 0
 	///Used to find the location of the user for the purposes of summoning robots.
@@ -61,6 +62,7 @@
 	var/obj/item/computer_hardware/card_slot/card_slot
 	var/obj/item/card/id/id_card
 	if(computer)
+		computer.play_interact_sound()
 		card_slot = computer.all_components[MC_CARD]
 		if(card_slot)
 			id_card = card_slot.stored_card
@@ -80,7 +82,7 @@
 				return
 			if(id_card)
 				GLOB.data_core.manifest_modify(id_card.registered_name, id_card.assignment)
-				card_slot.try_eject(TRUE, current_user)
+				card_slot.try_eject(current_user)
 			else
 				playsound(get_turf(ui_host()) , 'sound/machines/buzz-sigh.ogg', 25, FALSE)
 	return

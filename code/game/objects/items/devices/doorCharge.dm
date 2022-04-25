@@ -12,12 +12,12 @@
 	item_flags = NOBLUDGEON
 	force = 3
 	attack_verb = list("blown up", "exploded", "detonated")
-	materials = list(MAT_METAL=50, MAT_GLASS=30)
+	materials = list(/datum/material/iron=50, /datum/material/glass=30)
 
 /obj/item/doorCharge/ex_act(severity, target)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			visible_message("<span class='warning'>[src] detonates!</span>")
+			visible_message(span_warning("[src] detonates!"))
 			explosion(src.loc,0,2,1,flame_range = 4)
 			qdel(src)
 		if(EXPLODE_HEAVY)

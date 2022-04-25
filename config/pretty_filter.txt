@@ -18,8 +18,8 @@
 
 #prettyfiltertest=SUCCESS
 
-\bf[4a]+g+=BAN ME ADMINS! 
-f[4a]gg+[0o]t=BAN ME ADMINS!
+\bf[4a]*g+=BAN ME ADMINS! 
+f[4a]*gg+[0o]*t=BAN ME ADMINS!
 
 #Regex for le epic nword that if i type out will get the repo yeeted, in multiple variations, even capturing against simple replacement tricks (like "n.w.o.r.d" or "n!ord") 
 #Case sensitivity precautions added due to known regex bug in 512.14XX. Feel free to remove when Lummox fixes it.
@@ -43,4 +43,5 @@ n[i1!\\\/]+g(?:g|l+[e3]+t)=BAN ME ADMINS!
 One day while Andy was masturbating=BAN ME ADMINS!
 XEzwgBD=BAN ME ADMINS!
 
-(\b|^)(https?:\/\/)?(?!\w*\.?yogstation.net)[-a-zA-Z0-9@:%._\+~#]{5,256}\.(com|net|gg|org|ly|at|co|ink|im|nl)\b([-a-zA-Z0-9()@:%_\+.~#?&//]*)=$1[Link Censored]
+\b(?:https?:\/\/)?(?:www|i)?\.?(?!yogstation\.net|github\.com)\w{4,128}\.\w{2}\.?\w{0,2}\b\S*=[Link Removed]
+[^ -ÿ]+=​

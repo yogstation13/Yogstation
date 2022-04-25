@@ -98,7 +98,41 @@
 	icon_state = "energybar"
 	desc = "An energy bar with a lot of punch, you probably shouldn't eat this if you're not an Ethereal."
 	trash = /obj/item/trash/energybar
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/liquidelectricity = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/liquidelectricity = 4)
 	filling_color = "#97ee63"
 	tastes = list("pure electricity" = 3, "fitness" = 2)
 	foodtype = TOXIC
+
+/obj/item/reagent_containers/food/snacks/toritose
+	name = "toritose"
+	desc = "An excellent snack when you need it, however they become salty real fast. Hopefully stands on it's own in the market."
+	icon_state = "toritose"
+	trash = /obj/item/trash/toritose
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/sodiumchloride = 5)
+	junkiness = 21
+	filling_color = "#FF0000"
+	tastes = list("salt" = 3, "crunchiness" = 1)
+	foodtype = JUNKFOOD | GRAIN | FRIED
+	custom_price = 15
+
+/obj/item/reagent_containers/food/snacks/borer
+	name = "borer yummies"
+	desc = "So good they'll squeeze your brains out!"
+	icon_state = "blueyum"
+	bitesize = 2
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 2)
+	junkiness = 12
+	tastes = list("a squirming sensation down your throat" = 3, "sweetness" = 1)
+	foodtype = JUNKFOOD | FRUIT | SUGAR
+	custom_price = 5
+
+/obj/item/reagent_containers/food/snacks/kakes
+	name = "top kakes"
+	desc = "Sugary bitsized cake delights guaranteed to keep you up all night!"
+	trash = /obj/item/trash/topkakes
+	icon_state = "topkakes"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 6)
+	filling_color = "#F5F5DC"
+	tastes = list("sweetness" = 3, "cake" = 1)
+	foodtype = JUNKFOOD | GRAIN | SUGAR
+	custom_price = 20

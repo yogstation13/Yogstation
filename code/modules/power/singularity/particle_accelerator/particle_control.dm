@@ -10,8 +10,6 @@
 	active_power_usage = 10000
 	dir = NORTH
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
-	ui_x = 350
-	ui_y = 185
 	var/strength_upper_limit = 2
 	var/interface_control = TRUE
 	var/list/obj/structure/particle_accelerator/connected_parts
@@ -21,6 +19,10 @@
 	var/strength = 0
 	var/powered = FALSE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
+	var/area_restricted = TRUE //is this PA locked to area/engine or not?
+	var/locked = TRUE //can are_restricted be toggled?
+	req_access = list(ACCESS_CE)
+	var/mob/living/operator
 
 /obj/machinery/particle_accelerator/control_box/Initialize()
 	. = ..()
@@ -120,6 +122,11 @@
 			toggle_power()
 			update_icon()
 			return
+		if(area_restricted && !istype(get_area(src),/area/engine))
+			investigate_log("had its area restriction turned on while in an invalid area; It <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
+			toggle_power()
+			update_icon()
+			return
 		//emit some particles
 		for(var/obj/structure/particle_accelerator/particle_emitter/PE in connected_parts)
 			PE.emit_particle(strength)
@@ -175,6 +182,11 @@
 
 
 /obj/machinery/particle_accelerator/control_box/proc/toggle_power()
+	if(!active && area_restricted)
+		var/area/A = get_area(src)
+		if(!istype(A,/area/engine))
+			src.visible_message("Restricted area detected! Aborting.")
+			return
 	active = !active
 	investigate_log("turned [active?"<font color='green'>ON</font>":"<font color='red'>OFF</font>"] by [usr ? key_name(usr) : "outside forces"] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
 	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [usr ? ADMIN_LOOKUPFLW(usr) : "outside forces"] in [ADMIN_VERBOSEJMP(src)]")
@@ -274,7 +286,7 @@
 
 /obj/machinery/particle_accelerator/control_box/proc/is_interactive(mob/user)
 	if(!interface_control)
-		to_chat(user, "<span class='alert'>ERROR: Request timed out. Check wire contacts.</span>")
+		to_chat(user, span_alert("ERROR: Request timed out. Check wire contacts."))
 		return FALSE
 	if(construction_state != PA_CONSTRUCTION_COMPLETE)
 		return FALSE
@@ -283,13 +295,15 @@
 /obj/machinery/particle_accelerator/control_box/ui_status(mob/user)
 	if(is_interactive(user))
 		return ..()
+	if(operator == user)
+		operator = null
 	return UI_CLOSE
 
-/obj/machinery/particle_accelerator/control_box/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/particle_accelerator/control_box/ui_interact(mob/user, datum/tgui/ui)
+	operator = user
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ParticleAccelerator", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "ParticleAccelerator", name)
 		ui.open()
 
 /obj/machinery/particle_accelerator/control_box/ui_data(mob/user)
@@ -297,6 +311,8 @@
 	data["assembled"] = assembled
 	data["power"] = active
 	data["strength"] = strength
+	data["locked"] = locked
+	data["area_restricted"] = area_restricted
 	return data
 
 /obj/machinery/particle_accelerator/control_box/ui_act(action, params)
@@ -322,8 +338,38 @@
 				return
 			remove_strength()
 			. = TRUE
+		if("toggle_lock")
+			if(!operator)
+				return
+			if(!allowed(operator))
+				to_chat(operator, span_danger("Access denied."))
+				return
+			if(obj_flags & EMAGGED)
+				to_chat(operator,"The locking mechanism glitches out.")
+				locked = FALSE //sanity check
+				return
+			locked = !locked
+			to_chat(operator, "You [locked ? "enable" : "disable"] the toggle lock.")
+			. = TRUE
+		if("toggle_arearestriction")
+			if(!operator) 
+				return
+			if(obj_flags & EMAGGED)
+				to_chat(operator,"The area restriction mechanism glitches out.")
+				area_restricted = FALSE //sanity check
+				return
+			if(locked)
+				to_chat(operator, "The toggle is locked!")
+				return
+			area_restricted = !area_restricted
+			to_chat(operator, "You [locked ? "enable" : "disable"] the area restriction.");
+			. = TRUE
 
 	update_icon()
+
+/obj/machinery/particle_accelerator/control_box/charlie //for charlie station
+	locked = FALSE
+	area_restricted = FALSE
 
 #undef PA_CONSTRUCTION_UNSECURED
 #undef PA_CONSTRUCTION_UNWIRED

@@ -10,7 +10,7 @@
 	if(user != owner || owner.incapacitated())
 		return FALSE
 	if(owner.control_disabled)
-		to_chat(user, "<span class='warning'>Wireless control is disabled.</span>")
+		to_chat(user, span_warning("Wireless control is disabled."))
 		return FALSE
 	return TRUE
 
@@ -19,11 +19,13 @@
 		return ..()
 	return UI_CLOSE
 
-/datum/robot_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/robot_control/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/robot_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "RemoteRobotControl", "Remote Robot Control", 500, 500, master_ui, state)
+		ui = new(user, src, "RemoteRobotControl")
 		ui.open()
 
 /datum/robot_control/ui_data(mob/user)
@@ -58,13 +60,13 @@
 	switch(action)
 		if("callbot") //Command a bot to move to a selected location.
 			if(owner.call_bot_cooldown > world.time)
-				to_chat(usr, "<span class='danger'>Error: Your last call bot command is still processing, please wait for the bot to finish calculating a route.</span>")
+				to_chat(usr, span_danger("Error: Your last call bot command is still processing, please wait for the bot to finish calculating a route."))
 				return
 			owner.Bot = locate(params["ref"]) in GLOB.bots_list
 			if(!owner.Bot || owner.Bot.remote_disabled || owner.control_disabled)
 				return
 			owner.waypoint_mode = TRUE
-			to_chat(usr, "<span class='notice'>Set your waypoint by clicking on a valid location free of obstructions.</span>")
+			to_chat(usr, span_notice("Set your waypoint by clicking on a valid location free of obstructions."))
 			. = TRUE
 		if("interface") //Remotely connect to a bot!
 			owner.Bot = locate(params["ref"]) in GLOB.bots_list

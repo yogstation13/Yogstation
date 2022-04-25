@@ -94,14 +94,13 @@ Difficulty: Insanely Hard
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	pixel_y = 5//default_pixel_y = 5
 	//break_stuff_probability = 40
+	music_component = /datum/component/music_player/battle
+	music_path = /datum/music/sourced/battle/king_goat
 
 	var/spellscast = 0
 	var/phase3 = FALSE
 	var/sound_id = "goat"
 	var/special_attacks = 0
-	var/list/rangers = list()
-	var/current_song = 'yogstation/sound/ambience/Visager-Battle.ogg'
-	var/current_song_length = 1200
 	stun_chance = 7
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Initialize()
@@ -181,7 +180,7 @@ Difficulty: Insanely Hard
 /mob/living/simple_animal/hostile/retaliate/goat/king/Retaliate()
 	..()
 	if(stat == CONSCIOUS && prob(5))
-		visible_message("<span class='warning'>\The [src] bellows indignantly, with a judgemental gleam in his eye.</span>")
+		visible_message(span_warning("\The [src] bellows indignantly, with a judgemental gleam in his eye."))
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Retaliate()
 	set waitfor = FALSE
@@ -189,17 +188,17 @@ Difficulty: Insanely Hard
 	if(spellscast < 5)
 		if(prob(5) && move_to_delay >= 3) //speed buff
 			spellscast++
-			visible_message("<span class='cult'>\The [src] shimmers and seems to phase in and out of reality itself!</span>")
+			visible_message(span_cult("\The [src] shimmers and seems to phase in and out of reality itself!"))
 			move_to_delay = 1
 
 		else if(prob(5) && melee_damage_lower != 50) //damage buff
 			spellscast++
-			visible_message("<span class='cult'>\The [src]' horns grow larger and more menacing!</span>")
+			visible_message(span_cult("\The [src]' horns grow larger and more menacing!"))
 			melee_damage_lower = 50
 
 		else if(prob(5)) //spawn adds
 			spellscast++
-			visible_message("<span class='cult'>\The [src] summons the imperial guard to his aid, and they appear in a flash!</span>")
+			visible_message(span_cult("\The [src] summons the imperial guard to his aid, and they appear in a flash!"))
 			var/mob/living/simple_animal/hostile/retaliate/goat/guard/master/M = new(get_step(src,pick(GLOB.cardinals)))
 			M.enemies |= enemies
 			var/mob/living/simple_animal/hostile/retaliate/goat/guard/G = new(get_step(src,pick(GLOB.cardinals)))
@@ -209,24 +208,24 @@ Difficulty: Insanely Hard
 
 		else if(prob(5)) //EMP blast
 			spellscast++
-			visible_message("<span class='cult'>\The [src] disrupts nearby electrical equipment!</span>")
+			visible_message(span_cult("\The [src] disrupts nearby electrical equipment!"))
 			empulse(get_turf(src), 5, 2, 0)
 
 		else if(prob(5) && melee_damage_type == BRUTE && !special_attacks) //elemental attacks
 			spellscast++
 			//if(prob(50))
-			visible_message("<span class='cult'>\The [src]' horns flicker with holy white flames!</span>")
+			visible_message(span_cult("\The [src]' horns flicker with holy white flames!"))
 			melee_damage_type = BURN
 			//else
-			//	visible_message("<span class='cult'>\The [src]' horns glimmer, electricity arcing between them!</span>")
+			//	visible_message(span_cult("\The [src]' horns glimmer, electricity arcing between them!"))
 			//	melee_damage_type = BURN // meh too lazy
 
 		else if(prob(5)) //earthquake spell
-			visible_message("<B><span class='danger'>\The [src]' eyes begin to glow ominously as dust and debris in the area is kicked up in a light breeze!!</span></B>")
+			visible_message("<B>[span_danger("\The [src]' eyes begin to glow ominously as dust and debris in the area is kicked up in a light breeze!!")]</B>")
 			stop_automated_movement = TRUE
 			if(do_after(src, 6 SECONDS, src))
 				var/health_holder = getBruteLoss()
-				visible_message("<B><span class='cult'>\The [src] raises its fore-hooves and stomps them into the ground with incredible force!!</span></B>")
+				visible_message("<B>[span_cult("\The [src] raises its fore-hooves and stomps them into the ground with incredible force!!")]</B>")
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 2, 2, 3, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 1, 4, 4, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 3, 4, 3, 6)
@@ -235,7 +234,7 @@ Difficulty: Insanely Hard
 				if(!getBruteLoss() > health_holder)
 					adjustBruteLoss(health_holder - getBruteLoss()) //our own magicks cannot harm us
 			else
-				visible_message("<span class='notice'>\The [src] loses concentration and huffs haughtily.</span>")
+				visible_message(span_notice("\The [src] loses concentration and huffs haughtily."))
 				stop_automated_movement = FALSE
 
 		else return
@@ -245,18 +244,15 @@ Difficulty: Insanely Hard
 	spellscast = 0
 	maxHealth = 750
 	revive(TRUE)
-	current_song = 'yogstation/sound/ambience/Visager-Miniboss_Fight.ogg'
-	current_song_length = 1759
-	var/sound/song_played = sound(current_song)
-	for(var/mob/M in rangers)
-		if(!M.client || !(M.client.prefs.toggles & SOUND_JUKEBOX))
-			continue
-		M.stop_sound_channel(CHANNEL_JUKEBOX)
-		rangers[M] = world.time + current_song_length
-		M.playsound_local(null, null, 30, channel = CHANNEL_JUKEBOX, S = song_played)
+	var/datum/component/music_player/player = GetComponent(/datum/component/music_player)
+	// Do a sudden transition of music
+	player.stop_all(0)
+	player.remove_all()
+	player.music_path = /datum/music/sourced/battle/king_goat_2
+	player.do_range_check(0)
 	stun_chance = 10
 	update_icon()
-	visible_message("<span class='cult'>\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!</span>")
+	visible_message(span_cult("\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!"))
 
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/proc/update_icon()
@@ -272,28 +268,6 @@ Difficulty: Insanely Hard
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Life()
 	. = ..()
-	if(stat != DEAD)
-		var/sound/song_played = sound(current_song)
-
-		for(var/mob/M in range(10, src))
-			if(!M.client || !(M.client.prefs.toggles & SOUND_JUKEBOX))
-				continue
-			if(!(M in rangers) || world.time > rangers[M])
-				M.stop_sound_channel(CHANNEL_JUKEBOX)
-				rangers[M] = world.time + current_song_length
-				M.playsound_local(null, null, 30, channel = CHANNEL_JUKEBOX, S = song_played)
-		for(var/mob/L in rangers)
-			if(get_dist(src, L) > 10)
-				rangers -= L
-				if(!L || !L.client)
-					continue
-				L.stop_sound_channel(CHANNEL_JUKEBOX)
-	else
-		for(var/mob/L in rangers)
-			rangers -= L
-			if(!L || !L.client)
-				continue
-			L.stop_sound_channel(CHANNEL_JUKEBOX)
 	if(move_to_delay < 3)
 		move_to_delay += 0.1
 	if((health <= 150 && !phase3 && spellscast == 5) || (stat == DEAD && !phase3)) //begin phase 3, reset spell limit and heal
@@ -301,37 +275,24 @@ Difficulty: Insanely Hard
 	if(!.)
 		return FALSE
 	if(special_attacks >= 6 && melee_damage_type != BRUTE)
-		visible_message("<span class='cult'>The energy surrounding \the [src]'s horns dissipates.</span>")
+		visible_message(span_cult("The energy surrounding \the [src]'s horns dissipates."))
 		melee_damage_type = BRUTE
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/proc/OnDeath()
-	visible_message("<span class='cult'>\The [src] lets loose a terrific wail as its wounds close shut with a flash of light, and its eyes glow even brighter than before!</span>")
+	visible_message(span_cult("\The [src] lets loose a terrific wail as its wounds close shut with a flash of light, and its eyes glow even brighter than before!"))
 	var/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/nextgoat = new(src.loc)
 	nextgoat.enemies |= enemies
 	qdel(src);
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/OnDeath()
-	for(var/mob/L in rangers)
-		rangers -= L
-		if(!L || !L.client)
-			continue
-		L.stop_sound_channel(CHANNEL_JUKEBOX)
 	if(phase3)
-		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
+		visible_message(span_cult("\The [src] shrieks as the seal on his power breaks and he starts to break apart!"))
 		new /obj/structure/ladder/unbreakable/goat(loc)
 		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
 	OnDeath()
-
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Destroy()
-	for(var/mob/L in rangers)
-		rangers -= L
-		if(!L || !L.client)
-			continue
-		L.stop_sound_channel(CHANNEL_JUKEBOX)
-	. = ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/AttackingTarget()
 	. = ..()
@@ -342,7 +303,7 @@ Difficulty: Insanely Hard
 		if(prob(stun_chance))
 			L.Paralyze(5)
 			L.confused += 1
-			visible_message("<span class='warning'>\The [L] is bowled over by the impact of [src]'s attack!</span>")
+			visible_message(span_warning("\The [L] is bowled over by the impact of [src]'s attack!"))
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()
 	. = ..()

@@ -5,7 +5,7 @@
 /datum/team/kudzu/roundend_report()
 	var/list/parts = list()
 	//is kudzu alive? if yes, greentext
-	parts += "The [name] [locate(/obj/structure/spacevine) in world ? "were <span class='greentext'>successful</span>" : "have <span class='redtext'>failed</span>"] in protecting the kudzu!</span>\n"
+	parts += "The [name] [locate(/obj/structure/spacevine) in world ? "were [span_greentext("successful")]" : "have [span_redtext("failed")]"] in protecting the kudzu!</span>\n"
 	parts += "The [name] were:"
 	parts += printplayerlist(members)
 	return "<div class='player redborder'>[parts.Join("<br>")]</div>"

@@ -1,7 +1,7 @@
 /obj/effect/fun_balloon
 	name = "fun balloon"
 	desc = "This is going to be a laugh riot."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
 	var/popped = FALSE
@@ -83,12 +83,12 @@
 		var/turf/T = find_safe_turf()
 		new /obj/effect/temp_visual/gravpush(get_turf(M))
 		M.forceMove(T)
-		to_chat(M, "<span class='notice'>Pop!</span>")
+		to_chat(M, span_notice("Pop!"))
 
 /obj/effect/station_crash
 	name = "station crash"
 	desc = "With no survivors!"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
 
@@ -108,16 +108,15 @@
 /obj/effect/forcefield/arena_shuttle
 	name = "portal"
 	timeleft = 0
-	var/list/warp_points
-
-/obj/effect/forcefield/arena_shuttle/Initialize()
-	. = ..()
-	for(var/obj/effect/landmark/shuttle_arena_safe/exit in GLOB.landmarks_list)
-		warp_points += exit
+	var/list/warp_points = list()
 
 /obj/effect/forcefield/arena_shuttle/Bumped(atom/movable/AM)
 	if(!isliving(AM))
 		return
+
+	if(!warp_points.len)
+		for(var/obj/effect/landmark/shuttle_arena_safe/S in GLOB.landmarks_list)
+			warp_points |= S
 
 	var/mob/living/L = AM
 	if(L.pulling && istype(L.pulling, /obj/item/bodypart/head))
@@ -164,6 +163,6 @@
 
 
 /area/shuttle_arena
-	name = "arena"
+	name = "The Arena"
 	has_gravity = STANDARD_GRAVITY
 	requires_power = FALSE

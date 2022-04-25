@@ -35,6 +35,12 @@
 
 	var/static/list/failure_strikes //How many times we suspect a subsystem type has crashed the MC, 3 strikes and you're out!
 
+	//yogs start -- loading time stuff
+	var/static/total_loading_points_progress = 0 //! How much progress we've made in loading all the subsystems so far.
+	var/static/total_loading_points = 0 //! The total amount of loading points among all subsystems. Should be defined by MC before subsystem inits.
+	var/loading_points = 0 //! The amount of loading points this subsystem has, measured in deciseconds of approximate load time. This being 0 is fine.
+//yogs end
+
 //Do not override
 ///datum/controller/subsystem/New()
 
@@ -45,9 +51,9 @@
 	return
 
 //This is used so the mc knows when the subsystem sleeps. do not override.
-/datum/controller/subsystem/proc/ignite(resumed = 0)
+/datum/controller/subsystem/proc/ignite(resumed = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	set waitfor = 0
+	set waitfor = FALSE
 	. = SS_SLEEPING
 	fire(resumed)
 	. = state
@@ -62,7 +68,7 @@
 //previously, this would have been named 'process()' but that name is used everywhere for different things!
 //fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
 //Sleeping in here prevents future fires until returned.
-/datum/controller/subsystem/proc/fire(resumed = 0)
+/datum/controller/subsystem/proc/fire(resumed = FALSE)
 	flags |= SS_NO_FIRE
 	CRASH("Subsystem [src]([type]) does not fire() but did not set the SS_NO_FIRE flag. Please add the SS_NO_FIRE flag to any subsystem that doesn't fire so it doesn't get added to the processing list and waste cpu.")
 
@@ -156,28 +162,35 @@
 		if(SS_SLEEPING)
 			state = SS_PAUSING
 
+/// Called after the config has been loaded or reloaded.
+/datum/controller/subsystem/proc/OnConfigLoad()
 
-//used to initialize the subsystem AFTER the map has loaded
+///used to initialize the subsystem AFTER the map has loaded
+///This should be called by the derived subsystem class AFTER it has done its own initialization.
 /datum/controller/subsystem/Initialize(start_timeofday)
 	initialized = TRUE
-	var/time = (REALTIMEOFDAY - start_timeofday) / 10
-	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, "<span class='boldannounce'>[msg]</span>")
+	SEND_SIGNAL(src, COMSIG_SUBSYSTEM_POST_INITIALIZE, start_timeofday)
+	var/time = (REALTIMEOFDAY - start_timeofday)/10
+	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!" // Yogs -- quieter subsystem initialization
+	to_chat(GLOB.admins,
+		type = MESSAGE_TYPE_DEBUG,
+		html = span_notice(msg),
+		confidential = FALSE) 
 	log_world(msg)
-	return time
+	if(!loading_points) // We're probably one of those crappy subsystems that take 0 seconds, so return
+		return time
+	total_loading_points_progress += loading_points
+	var/percent = round(total_loading_points_progress / total_loading_points * 100)
+	to_chat(world,span_boldnotice("Subsystem initialization at [percent]%..."))
+	return time // Yogs end
 
-//hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
-/datum/controller/subsystem/proc/stat_entry_legacy()
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
-	var/msg = stat_entry()
-
-	var/title = name
-	if (can_fire)
-		title = "\[[state_letter()]][title]"
-
-	stat(title, statclick.update(msg))
+/datum/controller/subsystem/stat_entry(msg)
+	if(can_fire && !(SS_NO_FIRE & flags))
+		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
+	else
+		msg = "OFFLINE\t[msg]"
+	return msg
 
 /datum/controller/subsystem/stat_entry(msg)
 	if(can_fire && !(SS_NO_FIRE & flags))

@@ -5,6 +5,8 @@ SUBSYSTEM_DEF(overlays)
 	priority = FIRE_PRIORITY_OVERLAYS
 	init_order = INIT_ORDER_OVERLAY
 
+	loading_points = 2.3 SECONDS // Yogs -- loading times
+
 	var/list/queue
 	var/list/stats
 	var/list/overlay_icon_state_caches
@@ -22,8 +24,9 @@ SUBSYSTEM_DEF(overlays)
 	return ..()
 
 
-/datum/controller/subsystem/overlays/stat_entry()
-	return ..("Ov:[length(queue)]")
+/datum/controller/subsystem/overlays/stat_entry(msg)
+	msg = "Ov:[length(queue)]"
+	return ..()
 
 
 /datum/controller/subsystem/overlays/Shutdown()

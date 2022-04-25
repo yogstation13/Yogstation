@@ -3,7 +3,7 @@
 	opacity = 1
 	density = TRUE
 	blocks_air = TRUE
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
 
 /turf/closed/Initialize()
@@ -152,11 +152,23 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "icerock"
 
+/turf/closed/indestructible/rock/wood
+	name = "wooden wall"
+	desc = "A wall with wooden plating. Stiff."
+	icon = 'icons/turf/walls/wood_wall.dmi'
+	icon_state = "wood"
+
 /turf/closed/indestructible/paper
 	name = "thick paper wall"
 	desc = "A wall layered with impenetrable sheets of paper."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "paperwall"
+
+/turf/closed/indestructible/vault
+	name = "sturdy wall"
+	desc = "A huge chunk of metal used to separate rooms."
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rockvault"
 
 /turf/closed/indestructible/necropolis
 	name = "necropolis wall"

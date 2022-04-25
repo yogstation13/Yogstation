@@ -41,20 +41,18 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	if(delete_after_roundstart)
 		qdel(src)
 
-/obj/effect/landmark/start/New()
+/obj/effect/landmark/start/Initialize()
+	. = ..()
 	GLOB.start_landmarks_list += src
 	if(jobspawn_override)
-		if(!GLOB.jobspawn_overrides[name])
-			GLOB.jobspawn_overrides[name] = list()
-		GLOB.jobspawn_overrides[name] += src
-	..()
+		LAZYADDASSOC(GLOB.jobspawn_overrides, name, src)
 	if(name != "start")
 		tag = "start*[name]"
 
 /obj/effect/landmark/start/Destroy()
 	GLOB.start_landmarks_list -= src
 	if(jobspawn_override)
-		GLOB.jobspawn_overrides[name] -= src
+		LAZYREMOVEASSOC(GLOB.jobspawn_overrides, name, src)
 	return ..()
 
 // START LANDMARKS FOLLOW. Don't change the names unless
@@ -182,6 +180,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 /obj/effect/landmark/start/chaplain
 	name = "Chaplain"
 	icon_state = "Chaplain"
+
+/obj/effect/landmark/start/artist
+	name = "Artist"
+	icon_state = "Artist"
 
 /obj/effect/landmark/start/cyborg
 	name = "Cyborg"
@@ -430,13 +432,25 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	icon_state = "generic_event"
 	layer = HIGH_LANDMARK_LAYER
 
-
 /obj/effect/landmark/event_spawn/New()
 	..()
 	GLOB.generic_event_spawns += src
 
 /obj/effect/landmark/event_spawn/Destroy()
 	GLOB.generic_event_spawns -= src
+	return ..()
+
+/obj/effect/landmark/brazil
+	name = "brazilian reception marker"
+	icon_state = "x"
+	layer = HIGH_LANDMARK_LAYER
+
+/obj/effect/landmark/brazil/New()
+	..()
+	GLOB.brazil_reception += src
+
+/obj/effect/landmark/brazil/Destroy()
+	GLOB.brazil_reception -= src
 	return ..()
 
 /obj/effect/landmark/ruin

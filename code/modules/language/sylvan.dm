@@ -7,6 +7,7 @@
 	exclaim_verb = "declares"
 	key = "h"
 	space_chance = 20
+	sing_verb = "serenades"
 	syllables = list(
 		"fii", "sii", "rii", "rel", "maa", "ala", "san", "tol", "tok", "dia", "eres",
     	"fal", "tis", "bis", "qel", "aras", "losk", "rasa", "eob", "hil", "tanl", "aere",
@@ -14,5 +15,5 @@
     	"incas", "int", "elc", "ent", "aws", "qip", "nas", "vil", "jens", "dila", "fa",
     	"la", "re", "do", "ji", "ae", "so", "qe", "ce", "na", "mo", "ha", "yu"
 	)
-	icon_state = "plant"
+	icon_state = "sylvan"
 	default_priority = 90

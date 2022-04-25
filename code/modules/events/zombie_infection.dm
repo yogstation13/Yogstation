@@ -4,13 +4,14 @@
 	max_occurrences = 1
 	min_players = 20
 	weight = 4
+	dynamic_should_hijack = TRUE
 /datum/round_event/ghost_role/zombie
 	minimum_required = 1
 	role_name = "zombie"
 	fakeable = TRUE
 
 /datum/round_event/ghost_role/zombie/announce(fake)
-	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", 'sound/ai/aliens.ogg', 'sound/hallucinations/growl1.ogg')
+	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", ANNOUNCER_ALIENS, 'sound/hallucinations/growl1.ogg')
 
 /datum/round_event/ghost_role/zombie/spawn_role()
 	var/list/candidates = get_candidates(ROLE_ALIEN, null, ROLE_ALIEN)

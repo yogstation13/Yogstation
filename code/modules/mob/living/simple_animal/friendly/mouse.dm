@@ -88,7 +88,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			to_chat(M, "<span class='notice'>[icon2html(src, M)] Squeak!</span>")
+			to_chat(M, span_notice("[icon2html(src, M)] Squeak!"))
 	..()
 
 /mob/living/simple_animal/mouse/handle_automated_action()
@@ -98,13 +98,13 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 			var/obj/structure/cable/C = locate() in F
 			if(C && prob(15))
 				if(C.avail())
-					visible_message("<span class='warning'>[src] chews through the [C]. It's toast!</span>")
+					visible_message(span_warning("[src] chews through the [C]. It's toast!"))
 					playsound(src, 'sound/effects/sparks2.ogg', 100, 1)
 					C.deconstruct()
 					death(toast=1)
 				else
 					C.deconstruct()
-					visible_message("<span class='warning'>[src] chews through the [C].</span>")
+					visible_message(span_warning("[src] chews through the [C]."))
 
 /mob/living/simple_animal/mouse/Move()
 	. = ..()
@@ -125,14 +125,14 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/obj/item/reagent_containers/food/snacks/cheesewedge/CW = locate(/obj/item/reagent_containers/food/snacks/cheesewedge) in loc
 	if(!QDELETED(CW) && full == FALSE)
 		say("Burp!")
-		visible_message("<span class='warning'>[src] gobbles up the [CW].</span>")
+		visible_message(span_warning("[src] gobbles up the [CW]."))
 		qdel(CW)
 		full = TRUE
 		addtimer(VARSET_CALLBACK(src, full, FALSE), 3 MINUTES)
 
 /mob/living/simple_animal/mouse/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/cheesewedge))
-		to_chat(user, "<span class='notice'>You feed [O] to [src].</span>")
+		to_chat(user, span_notice("You feed [O] to [src]."))
 		visible_message("[src] squeaks happily!")
 		qdel(O)
 	else
@@ -155,14 +155,15 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 	eating = TRUE
 	layer = MOB_LAYER
-	visible_message("<span class='danger'>[src] starts eating away [A]...</span>",
-						 "<span class='notice'>You start eating the [A]...</span>")
-	if(do_after(src, 30, FALSE, A))
+	visible_message(span_danger("[src] starts eating away [A]..."),
+						 span_notice("You start eating the [A]..."))
+	if(do_after(src, 3 SECONDS, FALSE, A))
 		if(QDELETED(A))
 			return
-		visible_message("<span class='danger'>[src] finishes eating up [A]!</span>",
-						 "<span class='notice'>You finish up eating [A].</span>")
+		visible_message(span_danger("[src] finishes eating up [A]!"),
+						 span_notice("You finish up eating [A]."))
 		A.mouse_eat(src)
+		playsound(A.loc,'sound/effects/mousesqueek.ogg', 100) // i have no idea how loud this is, 100 seems to be used for the squeak component
 		GLOB.mouse_food_eaten++
 
 	eating = FALSE
@@ -200,7 +201,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	add_movespeed_modifier(MOVESPEED_ID_MOUSE_CHEESE, TRUE, 100, multiplicative_slowdown = -1)
 	maxHealth = 30
 	health = maxHealth
-	to_chat(src, "<span class='userdanger'>You ate cheese! You are now stronger, bigger and faster!</span>")
+	to_chat(src, span_userdanger("You ate cheese! You are now stronger, bigger and faster!"))
 	addtimer(CALLBACK(src, .proc/cheese_down), 3 MINUTES)
 
 /mob/living/simple_animal/mouse/proc/cheese_down()
@@ -210,7 +211,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	resize = 0.5
 	update_transform()
 	remove_movespeed_modifier(MOVESPEED_ID_MOUSE_CHEESE, TRUE)
-	to_chat(src, "<span class='userdanger'>A feeling of sadness comes over you as the effects of the cheese wears off. You. Must. Get. More.</span>")
+	to_chat(src, span_userdanger("A feeling of sadness comes over you as the effects of the cheese wears off. You. Must. Get. More."))
 
 /atom/proc/mouse_eat(mob/living/simple_animal/mouse/M)
 	M.regen_health()
@@ -231,6 +232,10 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /obj/item/reagent_containers/food/snacks/customizable/cheesewheel/mouse_eat(mob/living/simple_animal/mouse/M)
 	M.cheese_up()
 	qdel(src)
+
+/obj/item/reagent_containers/food/snacks/cheesiehonkers/mouse_eat(mob/living/simple_animal/mouse/M)
+	M.cheese_up()
+	qdel(src)	
 
 /obj/item/grown/bananapeel/bluespace/mouse_eat(mob/living/simple_animal/mouse/M)
 	var/teleport_radius = max(round(seed.potency / 10), 1)
@@ -271,17 +276,17 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	bitesize = 3
 	eatverb = "devour"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
-	foodtype = GROSS | MEAT | RAW
+	foodtype = MICE
 	grind_results = list(/datum/reagent/blood = 20, /datum/reagent/liquidgibs = 5)
 
 /obj/item/reagent_containers/food/snacks/deadmouse/attackby(obj/item/I, mob/user, params)
 	if(I.is_sharp() && user.a_intent == INTENT_HARM)
 		if(isturf(loc))
 			new /obj/item/reagent_containers/food/snacks/meat/slab/mouse(loc)
-			to_chat(user, "<span class='notice'>You butcher [src].</span>")
+			to_chat(user, span_notice("You butcher [src]."))
 			qdel(src)
 		else
-			to_chat(user, "<span class='warning'>You need to put [src] on a surface to butcher it!</span>")
+			to_chat(user, span_warning("You need to put [src] on a surface to butcher it!"))
 	else
 		return ..()
 

@@ -1,23 +1,27 @@
-########################################
-########################################
-# If this is your first PR, or not, take the time to read our CONTRIBUTING.md file! This will ensure your PR is up to standards and get it merged more quickly! You can see it here: https://github.com/yogstation13/Yogstation/blob/master/.github/CONTRIBUTING.md
-########################################
-########################################
+# If this is your first PR, or not, take the time to read our CONTRIBUTING.md file! You can see it here: https://github.com/yogstation13/Yogstation/blob/master/.github/CONTRIBUTING.md
 
-### Intent of your Pull Request
 
-Explain what the purpose of your PR is.
-Mention if you tested your changes. If you changed a map, make sure you used the mapmerge tool.
+# Document the changes in your pull request
 
-Mention if your PR is related to an issue.
-You can type "Fixes issue #6" and issue 6 will be automatically closed when your pull request is merged. This is much easier for everyone.
+Remove this text and explain what the purpose of your PR is.
 
-Edit the changelog at the bottom for changes that are noticeable by the players. Remove it if this isn't the case.
+Mention if you have tested your changes. If you changed a map, make sure you used the mapmerge tool.
+If this is an Issue Correction, you can type "Fixes Issue #6" to link the PR to the corresponding Issue number #6.
+
+Prefix the PR title with [admin] if it involves something admin related. 
+Prefix the PR title with [s] if you are fixing an exploit, so that it is not announced on the Yogstation Discord and the server.
+
+Remember: something that is self-evident to you might not be to others. Explain your rationale fully, even if you feel it goes without saying.
+
+# Wiki Documentation
+
+Remove this text and write all information regarding your changes that should be known and documented through the Yogstation Wiki. 
+Important documentation information includes, but is not limited to: any numerical values that have been changed, any images that have to be updated, names of specific pages that will be impacted by your changes. 
+
+# Changelog
+
+Edit the changelog below to reflect the changes made by this PR, even if the changes are minor - required for every PR.
 If you add a name after the ':cl', that name will be used in the changelog. Leave it empty to use your GitHub name.
-Prefix the PR title with [admin] if it's something admin related.
-Prefix the PR title with [s] if you are fixing an exploit so it is not announced on discord and the server.
-
-#### Changelog
 
 :cl:  
 rscadd: Added new things  

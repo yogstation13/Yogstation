@@ -23,7 +23,7 @@
 
 /obj/item/radio/intercom/ratvar/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		to_chat(user, "<span class='danger'>[src] is fastened to the wall with [is_servant_of_ratvar(user) ? "replicant alloy" : "some material you've never seen"], and can't be removed.</span>")
+		to_chat(user, span_danger("[src] is fastened to the wall with [is_servant_of_ratvar(user) ? "replicant alloy" : "some material you've never seen"], and can't be removed."))
 		return //no unfastening!
 	. = ..()
 
@@ -51,31 +51,31 @@
 /obj/item/radio/intercom/examine(mob/user)
 	. = ..()
 	if(!unfastened)
-		. += "<span class='notice'>It's <b>screwed</b> and secured to the wall.</span>"
+		. += span_notice("It's <b>screwed</b> and secured to the wall.")
 	else
-		. += "<span class='notice'>It's <i>unscrewed</i> from the wall, and can be <b>detached</b>.</span>"
+		. += span_notice("It's <i>unscrewed</i> from the wall, and can be <b>detached</b>.")
 
 /obj/item/radio/intercom/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(unfastened)
-			user.visible_message("<span class='notice'>[user] starts tightening [src]'s screws...</span>", "<span class='notice'>You start screwing in [src]...</span>")
+			user.visible_message(span_notice("[user] starts tightening [src]'s screws..."), span_notice("You start screwing in [src]..."))
 			if(I.use_tool(src, user, 30, volume=50))
-				user.visible_message("<span class='notice'>[user] tightens [src]'s screws!</span>", "<span class='notice'>You tighten [src]'s screws.</span>")
+				user.visible_message(span_notice("[user] tightens [src]'s screws!"), span_notice("You tighten [src]'s screws."))
 				unfastened = FALSE
 		else
-			user.visible_message("<span class='notice'>[user] starts loosening [src]'s screws...</span>", "<span class='notice'>You start unscrewing [src]...</span>")
+			user.visible_message(span_notice("[user] starts loosening [src]'s screws..."), span_notice("You start unscrewing [src]..."))
 			if(I.use_tool(src, user, 40, volume=50))
-				user.visible_message("<span class='notice'>[user] loosens [src]'s screws!</span>", "<span class='notice'>You unscrew [src], loosening it from the wall.</span>")
+				user.visible_message(span_notice("[user] loosens [src]'s screws!"), span_notice("You unscrew [src], loosening it from the wall."))
 				unfastened = TRUE
 		return
 	else if(I.tool_behaviour == TOOL_WRENCH)
 		if(!unfastened)
-			to_chat(user, "<span class='warning'>You need to unscrew [src] from the wall first!</span>")
+			to_chat(user, span_warning("You need to unscrew [src] from the wall first!"))
 			return
-		user.visible_message("<span class='notice'>[user] starts unsecuring [src]...</span>", "<span class='notice'>You start unsecuring [src]...</span>")
+		user.visible_message(span_notice("[user] starts unsecuring [src]..."), span_notice("You start unsecuring [src]..."))
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 80))
-			user.visible_message("<span class='notice'>[user] unsecures [src]!</span>", "<span class='notice'>You detach [src] from the wall.</span>")
+			user.visible_message(span_notice("[user] unsecures [src]!"), span_notice("You detach [src] from the wall."))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			new/obj/item/wallframe/intercom(get_turf(src))
 			qdel(src)
@@ -91,9 +91,8 @@
 		return
 	interact(user)
 
-/obj/item/radio/intercom/interact(mob/user)
-	..()
-	ui_interact(user, state = GLOB.default_state)
+/obj/item/radio/intercom/ui_state(mob/user)
+	return GLOB.default_state
 
 /obj/item/radio/intercom/can_receive(freq, level)
 	if(!on)
@@ -113,8 +112,8 @@
 	return TRUE
 
 
-/obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
-	if (message_mode == MODE_INTERCOM)
+/obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, list/message_mods = list())
+	if(message_mods[RADIO_EXTENSION] == MODE_INTERCOM)
 		return  // Avoid hearing the same thing twice
 	if(!anyai && !(speaker in ai)) // set the intercomms in AI cores to 0 when this gets implemented
 		return
@@ -137,7 +136,7 @@
 
 /obj/item/radio/intercom/add_blood_DNA(list/blood_dna)
 	return FALSE
-	
+
 /obj/item/radio/intercom/end_emp_effect(curremp)
 	. = ..()
 	if(!.)
@@ -152,4 +151,4 @@
 	result_path = /obj/item/radio/intercom/unscrewed
 	pixel_shift = 29
 	inverse = TRUE
-	materials = list(MAT_METAL = 75, MAT_GLASS = 25)
+	materials = list(/datum/material/iron = 75, /datum/material/glass = 25)

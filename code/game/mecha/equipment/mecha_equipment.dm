@@ -16,6 +16,8 @@
 	var/selectable = 1	// Set to 0 for passive equipment such as mining scanner or armor plates
 	var/harmful = FALSE //Controls if equipment can be used to attack by a pacifist.
 	var/destroy_sound = 'sound/mecha/critdestr.ogg'
+	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
+	var/mech_flags = NONE
 
 /obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
 	if(chassis)
@@ -38,7 +40,7 @@
 		src.update_chassis_page()
 		log_message("[src] is destroyed.", LOG_MECHA)
 		if(chassis.occupant)
-			chassis.occupant_message("<span class='danger'>[src] is destroyed!</span>")
+			chassis.occupant_message(span_danger("[src] is destroyed!"))
 			chassis.occupant.playsound_local(chassis, destroy_sound, 50)
 		chassis = null
 	return ..()
@@ -48,9 +50,9 @@
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return FALSE
 		attach(M)
-		user.visible_message("[user] attaches [src] to [M].", "<span class='notice'>You attach [src] to [M].</span>")
+		user.visible_message("[user] attaches [src] to [M].", span_notice("You attach [src] to [M]."))
 		return TRUE
-	to_chat(user, "<span class='warning'>You are unable to attach [src] to [M]!</span>")
+	to_chat(user, span_warning("You are unable to attach [src] to [M]!"))
 	return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/proc/get_equip_info()

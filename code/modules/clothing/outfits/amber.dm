@@ -24,7 +24,7 @@
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	new /obj/item/jawsoflife(src)
+	new /obj/item/jawsoflife/jimmy(src)
 
 
 /obj/item/storage/belt/military/amber_commander/ComponentInitialize() // Amber Commander
@@ -35,7 +35,7 @@
 	new /obj/item/melee/classic_baton/telescopic(src)
 	new /obj/item/megaphone(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	new /obj/item/jawsoflife(src)
+	new /obj/item/jawsoflife/jimmy(src)
 
 /obj/item/storage/belt/military/amber_medic/ComponentInitialize() // Amber Medic
 	. = ..()
@@ -45,7 +45,7 @@
 	new /obj/item/reagent_containers/hypospray/medipen/survival(src)
 	new /obj/item/reagent_containers/hypospray/medipen/survival(src)
 	new /obj/item/reagent_containers/hypospray/combat(src)
-	new /obj/item/jawsoflife(src)
+	new /obj/item/jawsoflife/jimmy(src)
 
 
 /datum/outfit/amber
@@ -85,6 +85,7 @@
 	W.icon_state = "centcom"
 	W.registered_name = "Unknown"
 	W.assignment = "Amber Task Force"
+	W.originalassignment = "Amber Task Force"
 	W.update_label(W.registered_name, W.assignment)
 
 	H.ignores_capitalism = TRUE // Yogs -- Lets the Amber force buy a damned smoke for christ's sake

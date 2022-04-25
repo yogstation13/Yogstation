@@ -36,7 +36,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(HAS_TRAIT(H.mind, TRAIT_LAW_ENFORCEMENT_METABOLISM) && !HAS_TRAIT(H, TRAIT_AGEUSIA))
-				to_chat(H,"<span class='notice'>I love this taste!</span>")
+				to_chat(H,span_notice("I love this taste!"))
 				H.adjust_disgust(-5 + -2.5 * fraction)
 				var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 				if(mood)
@@ -56,6 +56,14 @@
 	. = ..()
 	extra_reagent = pick(/datum/reagent/consumable/nutriment, /datum/reagent/consumable/capsaicin, /datum/reagent/consumable/frostoil, /datum/reagent/drug/krokodil, /datum/reagent/toxin/plasma, /datum/reagent/consumable/coco, /datum/reagent/toxin/slimejelly, /datum/reagent/consumable/banana, /datum/reagent/consumable/berryjuice, /datum/reagent/medicine/omnizine)
 	reagents.add_reagent(extra_reagent, 3)
+
+/obj/item/reagent_containers/food/snacks/donut/laugh
+	name = "sweet pea donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "donut_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("donut" = 3, "fizzy tutti frutti" = 1,)
+	filling_color = "#803280"
 
 /obj/item/reagent_containers/food/snacks/donut/jelly
 	name = "jelly donut"
@@ -86,6 +94,14 @@
 	extra_reagent = /datum/reagent/consumable/cherryjelly
 	foodtype = JUNKFOOD | GRAIN | FRIED | FRUIT | BREAKFAST
 
+/obj/item/reagent_containers/food/snacks/donut/jelly/laugh
+	name = "sweet pea jelly donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "jelly_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
+	filling_color = "#803280"
+
 /obj/item/reagent_containers/food/snacks/donut/meat
 	name = "meat donut"
 	desc = "Tastes as gross as it looks."
@@ -95,6 +111,27 @@
 	tastes = list("meat" = 1)
 	foodtype = JUNKFOOD | MEAT | GROSS | FRIED | BREAKFAST
 
+/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh
+	name = "sweet pea jelly donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "jelly_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
+	filling_color = "#803280"
+
+/obj/item/reagent_containers/food/snacks/donut/spaghetti
+	name = "Spagh-o-nut"
+	desc = "An unholy mixture of carbs. It's a donut made out of spaghetti."
+	icon_state = "donut_spaghetti"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("Spaghetti"= 3, "Carbs" = 2, "Bewilderment" = 1)
+
+/obj/item/reagent_containers/food/snacks/donut/spaghetti/jelly
+	name = "'Jelly' Spagh-o-nut"
+	desc = "A Spaghetti Donut stuffed with ketchup."
+	icon_state = "jdonut_spaghetti"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/ketchup = 2)
+	tastes = list("Spaghetti"= 3, "Carbs" = 2, "Ketchup" = 1)
 
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
 
@@ -203,6 +240,10 @@
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtype = GRAIN
 
+//donk pockets cook quick... try not to burn them for using an unoptimal tool
+/obj/item/reagent_containers/food/snacks/donkpocket/MakeBakeable()
+	AddComponent(/datum/component/bakeable, cooked_type, rand(25 SECONDS, 30 SECONDS), TRUE, TRUE)
+
 /obj/item/reagent_containers/food/snacks/donkpocket/warm
 	name = "warm donkpocket"
 	desc = "The heated food of choice for the seasoned traitor."
@@ -211,6 +252,10 @@
 	cooked_type = null
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtype = GRAIN
+
+///Override for fast-burning food
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/badrecipe, rand(10 SECONDS, 15 SECONDS), FALSE)
 
 /obj/item/reagent_containers/food/snacks/dankpocket
 	name = "dankpocket"
@@ -324,7 +369,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#FFE4C4"
 	tastes = list("biscuit" = 3, "chocolate" = 1)
-	foodtype = GRAIN | JUNKFOOD
+	foodtype = GRAIN | JUNKFOOD | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/oatmealcookie
 	name = "oatmeal cookie"
@@ -415,12 +460,13 @@
 	item_state = "ccpancakes"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
+	foodtype = GRAIN | SUGAR | BREAKFAST | CHOCOLATE
 	tastes = list("pancakes" = 1, "chocolate" = 1)
 
 /obj/item/reagent_containers/food/snacks/pancakes/cinnamon
 	name = "cinnamon pancake"
 	desc = "A fluffy and delicious cinnamon pancake."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "cinpancakes_1"
 	item_state = "cinpancakes"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
@@ -430,7 +476,7 @@
 /obj/item/reagent_containers/food/snacks/cinnamonroll
 	name = "cinnamon roll"
 	desc = "Too perfect for this world, too pure."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "cinnamonroll"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
@@ -439,7 +485,7 @@
 /obj/item/reagent_containers/food/snacks/churro
 	name = "churro"
 	desc = "If you're having food troubles, I feel for you son. I got 99 churros 'cus the clown ate one."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "churro"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
@@ -486,11 +532,11 @@
 	if(istype(I, /obj/item/reagent_containers/food/snacks/pancakes/))
 		var/obj/item/reagent_containers/food/snacks/pancakes/P = I
 		if((contents.len >= PANCAKE_MAX_STACK) || ((P.contents.len + contents.len) > PANCAKE_MAX_STACK) || (reagents.total_volume >= volume))
-			to_chat(user, "<span class='warning'>You can't add that many pancakes to [src]!</span>")
+			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
 		else
 			if(!user.transferItemToLoc(I, src))
 				return
-			to_chat(user, "<span class='notice'>You add the [I] to the [name].</span>")
+			to_chat(user, span_notice("You add the [I] to the [name]."))
 			P.name = initial(P.name)
 			contents += P
 			update_overlays(P)

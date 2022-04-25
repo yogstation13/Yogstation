@@ -9,6 +9,7 @@
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	var/lawyers = 0 //Counts lawyer amount
+	alt_titles = list("Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney")
 
 	outfit = /datum/outfit/job/lawyer
 
@@ -29,9 +30,11 @@
 	name = "Lawyer"
 	jobtype = /datum/job/lawyer
 
-	belt = /obj/item/pda/lawyer
+	pda_type = /obj/item/pda/lawyer
+
 	ears = /obj/item/radio/headset/headset_srvsec
 	uniform = /obj/item/clothing/under/lawyer/bluesuit
+	uniform_skirt = /obj/item/clothing/under/lawyer/bluesuit/skirt
 	suit = /obj/item/clothing/suit/toggle/lawyer
 	shoes = /obj/item/clothing/shoes/laceup
 	l_hand = /obj/item/storage/briefcase/lawyer

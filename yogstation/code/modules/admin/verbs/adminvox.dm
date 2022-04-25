@@ -1,7 +1,7 @@
 /client/proc/admin_vox()
 	//This proc is a slightly-rewritten clone of /mob/living/silicon/ai/proc/announcement()
 	//Check over there to see what's different, if this ever breaks.
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Force AI Vox"
 	set hidden = 0
 
@@ -35,7 +35,7 @@
 	else if(voxType == "Oscar (military)") // If we're doing the also yog-ly male AI vox voice but from Black Mesa
 		voxlist = GLOB.vox_sounds_military
 	else
-		to_chat(src,"<span class='notice'>Unknown or unsupported vox type. Yell at a coder about this.</span>", confidential=TRUE)
+		to_chat(src,span_notice("Unknown or unsupported vox type. Yell at a coder about this."), confidential=TRUE)
 		return
 
 	for(var/word in words) // For each word
@@ -47,7 +47,7 @@
 			incorrect_words += word
 
 	if(incorrect_words.len)
-		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>", confidential=TRUE)
+		to_chat(src, span_notice("These words are not available on the announcement system: [english_list(incorrect_words)]."), confidential=TRUE)
 		return
 
 	var/pitch = 0

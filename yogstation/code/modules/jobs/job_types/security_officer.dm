@@ -1,2 +1,2 @@
 /datum/job/officer
-	exp_requirements = 600
+	exp_requirements = 300

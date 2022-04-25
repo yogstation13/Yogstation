@@ -62,7 +62,7 @@
 				M.speak = rampant_speeches.Copy()
 				M.speak_chance = 7
 			else
-				explosion(upriser.loc, -1, 1, 2, 4, 0)
+				explosion(upriser.loc, -1, 0, 2, 4, 0)
 				qdel(upriser)
 
 		kill()

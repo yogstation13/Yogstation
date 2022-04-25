@@ -1,5 +1,5 @@
 
-//returns TRUE if this mob has sufficient access to use this object
+/// returns TRUE if this mob has sufficient access to use this object
 /obj/proc/allowed(mob/M)
 	//check if it doesn't require any access at all
 	if(src.check_access(null))
@@ -29,12 +29,21 @@
 			return TRUE
 	return FALSE
 
+/// Get the accesses on the item
 /obj/item/proc/GetAccess()
 	return list()
 
+/// Get the ID in the object, used for PDAs
 /obj/item/proc/GetID()
 	return null
 
+/obj/item/proc/RemoveID()
+	return null
+
+/obj/item/proc/InsertID()
+	return FALSE
+
+/// Convert a text string to a list of accesses
 /obj/proc/text2access(access_text)
 	. = list()
 	if(!access_text)
@@ -45,7 +54,7 @@
 		if(n)
 			. += n
 
-//Call this before using req_access or req_one_access directly
+/// Generates access from strings, Call this before using req_access or req_one_access directly
 /obj/proc/gen_access()
 	//These generations have been moved out of /obj/New() because they were slowing down the creation of objects that never even used the access system.
 	if(!req_access)
@@ -57,10 +66,11 @@
 		for(var/b in text2access(req_one_access_txt))
 			req_one_access += b
 
-// Check if an item has access to this object
+/// Check if an item has access to this object
 /obj/proc/check_access(obj/item/I)
 	return check_access_list(I ? I.GetAccess() : null)
 
+/// Check if an access list has sufficient access
 /obj/proc/check_access_list(list/access_list)
 	gen_access()
 
@@ -84,9 +94,11 @@
 		return FALSE
 	return TRUE
 
+/// Checks ntnet access
 /obj/proc/check_access_ntnet(datum/netdata/data)
 	return check_access_list(data.passkey)
 
+/// Get access for centcom job
 /proc/get_centcom_access(job)
 	switch(job)
 		if("VIP Guest")
@@ -124,6 +136,7 @@
 		if("HONK Squad Trooper")
 			return list(ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_LIVING, ACCESS_CENT_STORAGE)
 
+/// Gets all station access
 /proc/get_all_accesses()
 	return list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_COURT,
 	            ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_MORGUE, ACCESS_RD,
@@ -136,11 +149,19 @@
 	            ACCESS_THEATRE, ACCESS_RESEARCH, ACCESS_MINING, ACCESS_MAILSORTING, ACCESS_WEAPONS,
 				ACCESS_MECH_MINING, ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_SECURITY, ACCESS_MECH_MEDICAL,
 	            ACCESS_VAULT, ACCESS_MINING_STATION, ACCESS_XENOBIOLOGY, ACCESS_CE, ACCESS_HOP, ACCESS_HOS, ACCESS_RC_ANNOUNCE,
-	            ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM, ACCESS_MINISAT, ACCESS_NETWORK, ACCESS_CLONING, ACCESS_TCOM_ADMIN, ACCESS_PARAMEDIC, ACCESS_MANUFACTURING) //YOGS - yogs jobs
+	            ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM, ACCESS_MINISAT, ACCESS_NETWORK, ACCESS_CLONING, ACCESS_TCOM_ADMIN, ACCESS_PARAMEDIC, ACCESS_MANUFACTURING, ACCESS_BRIG_PHYS) //YOGS - yogs jobs
 
+/// Gets all centcom accesses
 /proc/get_all_centcom_access()
 	return list(ACCESS_CENT_GENERAL, ACCESS_CENT_THUNDER, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_LIVING, ACCESS_CENT_STORAGE, ACCESS_CENT_TELEPORTER, ACCESS_CENT_CAPTAIN)
 
+/// Gets all accesses between 1 and 500
+/proc/get_debug_access()
+	. = list()
+	for(var/i = 1; i <= 500; i++)
+		. += i
+
+/// Gets access for ERT
 /proc/get_ert_access(class)
 	switch(class)
 		if("commander")
@@ -152,9 +173,11 @@
 		if("med")
 			return list(ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_LIVING)
 
+/// Gets all syndicate access
 /proc/get_all_syndicate_access()
 	return list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
 
+/// Gets access from region ID
 /proc/get_region_accesses(code)
 	switch(code)
 		if(0)
@@ -164,7 +187,7 @@
 		if(2) //security
 			return list(ACCESS_SEC_DOORS, ACCESS_WEAPONS, ACCESS_SECURITY, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_COURT, ACCESS_MECH_SECURITY, ACCESS_HOS)
 		if(3) //medbay
-			return list(ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_SURGERY, ACCESS_MECH_MEDICAL, ACCESS_CMO, ACCESS_PARAMEDIC) // yogs - Yog jobs
+			return list(ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_SURGERY, ACCESS_MECH_MEDICAL, ACCESS_CMO, ACCESS_PARAMEDIC, ACCESS_BRIG_PHYS) // yogs - Yog jobs
 		if(4) //research
 			return list(ACCESS_RESEARCH, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_GENETICS, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINISAT, ACCESS_RD, ACCESS_NETWORK, ACCESS_AI_UPLOAD)
 		if(5) //engineering and maintenance
@@ -174,6 +197,7 @@
 		if(7) //command
 			return list(ACCESS_HEADS, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_GATEWAY, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_HOP, ACCESS_CAPTAIN, ACCESS_VAULT)
 
+/// Gets the name from region ID
 /proc/get_region_accesses_name(code)
 	switch(code)
 		if(0)
@@ -193,6 +217,7 @@
 		if(7) //command
 			return "Command"
 
+/// Gets teh description for an access
 /proc/get_access_desc(A)
 	switch(A)
 		if(ACCESS_CARGO)
@@ -332,8 +357,19 @@
 			return "Tcomms Admin"
 		if(ACCESS_MANUFACTURING)
 			return "Clerk"
+		if(ACCESS_BRIG_PHYS)
+			return "Brig Physician"
+		if(ACCESS_MECH_FREEMINER)
+			return "Freeminer Mech"
+		if(ACCESS_FREEMINER)
+			return "Freeminer"
+		if(ACCESS_FREEMINER_ENGINEER)
+			return "Freeminer Engineer"
+		if(ACCESS_FREEMINER_CAPTAIN)
+			return "Freeminer Captain"
 		// yogs end
 
+/// Get descriptions for centcom accesses
 /proc/get_centcom_access_desc(A)
 	switch(A)
 		if(ACCESS_CENT_GENERAL)
@@ -355,29 +391,36 @@
 		if(ACCESS_CENT_BAR)
 			return "Code Scotch"
 
+/// Gets all jobs
 /proc/get_all_jobs()
 	return list("Assistant", "Captain", "Head of Personnel", "Bartender", "Cook", "Botanist", "Quartermaster", "Cargo Technician",
 				"Shaft Miner", "Clown", "Mime", "Janitor", "Curator", "Lawyer", "Chaplain", "Chief Engineer", "Station Engineer",
 				"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Chemist", "Geneticist", "Virologist",
 				// yogs start - Yog jobs
 				"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer",
-				"Signal Technician", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender")
+				"Signal Technician", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender", "Artist", "Brig Physician")
 				// yogs end
 
+/// Gets all jobs with hud icons
 /proc/get_all_job_icons() //For all existing HUD icons
 	return get_all_jobs() + list("Prisoner")
 
+/// Gets all centcom jobs
 /proc/get_all_centcom_jobs()
 	return list("VIP Guest","Custodian","Thunderdome Overseer","CentCom Official","Medical Officer","Research Officer","Special Ops Officer","Admiral","CentCom Commander","Emergency Response Team Commander","Security Response Officer","Engineer Response Officer", "Medical Response Officer","CentCom Bartender", "Janitorial Response Officer", "Religious Response Officer", "CentCom Captain", "CentCom Major", "CentCom Commodore", "CentCom Colonel", "CentCom Rear-Admiral", "CentCom Admiral", "CentCom Grand Admiral", "Comedy Response Officer", "HONK Squad Trooper")
 
+/// Gets all task for jobs
 /proc/get_all_task_force_jobs()
 	return list("Amber Soldier","Amber Commander","Amber Medic","Amber Task Force")
 
+/// Gets the name of a job from the ID
 /obj/item/proc/GetJobName() //Used in secHUD icon generation
 	var/obj/item/card/id/I = GetID()
 	if(!I)
 		return
 	var/jobName = I.assignment
+	if(I.originalassignment)
+		jobName = I.originalassignment
 	if(jobName in get_all_job_icons()) //Check if the job has a hud icon
 		return jobName
 	if(jobName in get_all_centcom_jobs()) //Return with the NT logo if it is a CentCom job

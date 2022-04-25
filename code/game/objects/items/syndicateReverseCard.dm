@@ -18,7 +18,7 @@
 	..()
 	if (used)
 		cut_overlays()
-		add_overlay(image('icons/obj/items_and_weapons.dmi', icon_state = "reverse_overlay"))
+		add_overlay(image('icons/obj/toy.dmi', icon_state = "reverse_overlay"))
 
 /obj/item/syndicateReverseCard/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!(attack_type == PROJECTILE_ATTACK))
@@ -41,7 +41,7 @@
 	p.start()
 	//next, we move the gun to the user and the card to the firer
 	to_chat(user, "The [src] vanishes from your hands, and [target_gun] appears in them!")
-	to_chat(firer, "<span class='warning'>[target_gun] vanishes from your hands, and a [src] appears in them!</span>")
+	to_chat(firer, span_warning("[target_gun] vanishes from your hands, and a [src] appears in them!"))
 	user.put_in_hands(target_gun)
 	firer.put_in_hands(src)
 	used = TRUE
@@ -50,8 +50,8 @@
 /obj/item/syndicateReverseCard/examine(mob/user)
 	. = ..()
 	if(is_special_character(user))
-		. += "<span class='info'>Hold this in your hand when you are getting shot at to steal your opponent's gun. You'll lose this, so be careful!</span>"
+		. += span_info("Hold this in your hand when you are getting shot at to steal your opponent's gun. You'll lose this, so be careful!")
 		return
 	if(used)
-		. += "<span class='warning'>Something sinister is strapped to this card. It looks like it was once masked with some sort of cloaking field, which is now nonfunctional.</span>"
+		. += span_warning("Something sinister is strapped to this card. It looks like it was once masked with some sort of cloaking field, which is now nonfunctional.")
 		return

@@ -3,6 +3,9 @@
 /mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
 	if (notransform || transformation_timer)
 		return
+	if(has_horror_inside())
+		to_chat(src, "<span class='warning'>You feel something strongly clinging to your humanity!</span>")
+		return
 	//Handle items on mob
 
 	if(tr_flags & TR_KEEPITEMS)
@@ -166,6 +169,8 @@
 	transfer_observers_to(O)
 
 	. = O
+
+	transfer_trait_datums(O)
 
 	qdel(src)
 
@@ -340,6 +345,8 @@
 		if(loc.vars[A] == src)
 			loc.vars[A] = O
 
+	transfer_trait_datums(O)
+
 	qdel(src)
 
 /mob/living/carbon/human/AIize(transfer_after = TRUE, client/preference_source)
@@ -388,6 +395,7 @@
 		mind.active = FALSE
 
 	. = new /mob/living/silicon/ai(pick(landmark_loc), null, src)
+
 
 	if(preference_source)
 		apply_pref_name("ai",preference_source)
@@ -438,7 +446,19 @@
 	R.notify_ai(NEW_BORG)
 
 	. = R
+	if(R.ckey && is_banned_from(R.ckey, "Cyborg"))
+		INVOKE_ASYNC(R, /mob/living/silicon/robot.proc/replace_banned_cyborg)
 	qdel(src)
+
+/mob/living/silicon/robot/proc/replace_banned_cyborg()
+	to_chat(src, "<b>You are job banned from cyborg! Appeal your job ban if you want to avoid this in the future!</b>")
+	ghostize(FALSE)
+
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [src]?", "[src]", null, "Cyborg", 50, src)
+	if(LAZYLEN(candidates))
+		var/mob/dead/observer/chosen_candidate = pick(candidates)
+		message_admins("[key_name_admin(chosen_candidate)] has taken control of ([key_name_admin(src)]) to replace a jobbanned player.")
+		key = chosen_candidate.key
 
 //human -> alien
 /mob/living/carbon/human/proc/Alienize()
@@ -504,8 +524,8 @@
 	. = new_slime
 	qdel(src)
 
-/mob/proc/become_overmind(starting_points = 60)
-	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points)
+/mob/proc/become_overmind(starting_points = 60, pointmodifier)
+	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points, pointmodifier)
 	B.key = key
 	. = B
 	qdel(src)
@@ -585,7 +605,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "<span class='danger'>Sorry but this mob type is currently unavailable.</span>")
+		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))
 		return
 
 	if(notransform)
@@ -619,7 +639,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "<span class='danger'>Sorry but this mob type is currently unavailable.</span>")
+		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)
@@ -641,33 +661,10 @@
 //Bad mobs! - Remember to add a comment explaining what's wrong with the mob
 	if(!MP)
 		return 0	//Sanity, this should never happen.
+//	if(ispath(MP, /mob/living/simple_animal/pet/cat))
+//		return 0	//Template
 
-	if(ispath(MP, /mob/living/simple_animal/hostile/construct))
-		return 0 //Verbs do not appear for players.
-
-//Good mobs!
-	if(ispath(MP, /mob/living/simple_animal/pet/cat))
-		return 1
-	if(ispath(MP, /mob/living/simple_animal/pet/dog/corgi))
-		return 1
-	if(ispath(MP, /mob/living/simple_animal/crab))
-		return 1
-	if(ispath(MP, /mob/living/simple_animal/hostile/carp))
-		return 1
-	if(ispath(MP, /mob/living/simple_animal/hostile/mushroom))
-		return 1
-	if(ispath(MP, /mob/living/simple_animal/shade))
-		return 1
-	if(ispath(MP, /mob/living/simple_animal/hostile/killertomato))
-		return 1
-	if(ispath(MP, /mob/living/simple_animal/mouse))
-		return 1 //It is impossible to pull up the player panel for mice (Fixed! - Nodrak)
-	if(ispath(MP, /mob/living/simple_animal/hostile/bear))
-		return 1 //Bears will auto-attack mobs, even if they're player controlled (Fixed! - Nodrak)
-	if(ispath(MP, /mob/living/simple_animal/parrot))
-		return 1 //Parrots are no longer unfinished! -Nodrak
-
-	//Not in here? Must be untested!
-	return 0
+	//Not in here? Must be good!
+	return 1
 
 #undef TRANSFORMATION_DURATION

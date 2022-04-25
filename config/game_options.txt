@@ -14,6 +14,17 @@ REVIVAL_CLONING
 ## amount of time (in hundredths of seconds) for which a brain retains the "spark of life" after the person's death (set to -1 for infinite)
 REVIVAL_BRAIN_LIFE -1
 
+## JOB_SPECIES_WHITELIST ##
+## Creates Command roles species based exceptions; comma delineated list - /datum/job/[JOB] [SPECIES 1],[SPECIES 2], etc.
+
+JOB_SPECIES_WHITELIST /datum/job/captain human
+JOB_SPECIES_WHITELIST /datum/job/hop human
+JOB_SPECIES_WHITELIST /datum/job/hos human,lizard
+JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,plasmaman,moth,ethereal,preternis, polysmorph
+JOB_SPECIES_WHITELIST /datum/job/rd human,pod,plasmaman,ethereal,preternis,polysmorph
+JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,moth
+
+
 ## OOC DURING ROUND ###
 ## Comment this out if you want OOC to be automatically disabled during the round, it will be enabled during the lobby and after the round end results.
 OOC_DURING_ROUND
@@ -92,32 +103,32 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 ## Default probablity is 1, increase to make that mode more likely to be picked.
 ## Set to 0 to disable that mode.
 
+# New
+PROBABILITY DARKSPAWN 6
+PROBABILITY HERESY 4
+PROBABILITY INFILTRATION 4
+
 # Lowpop
-PROBABILITY TRAITOR 6
-PROBABILITY TRAITORBRO 6
+PROBABILITY TRAITOR 5
+PROBABILITY TRAITORBRO 5
 PROBABILITY TRAITORCHAN 6
+PROBABILITY TRAITORVAMP 4
 PROBABILITY INTERNAL_AFFAIRS 3
-PROBABILITY CHANGELING 3
+PROBABILITY CHANGELING 4
+PROBABILITY VAMPIRE 4
 
 # Group antags
-PROBABILITY REVOLUTION 9
-PROBABILITY GANG 5
-PROBABILITY CULT 9
-PROBABILITY CLOCKWORK_CULT 3
+PROBABILITY REVOLUTION 8
+PROBABILITY GANG 6
+PROBABILITY CULT 5
+PROBABILITY CLOCKWORK_CULT 5
 
 # Snowflakes
-PROBABILITY SHADOWLING 4
-PROBABILITY WIZARD 7
+PROBABILITY SHADOWLING 6
+PROBABILITY WIZARD 8
 PROBABILITY NUCLEAR 9
-PROBABILITY MALF 6
-PROBABILITY CLOWNOPS 0
-PROBABILITY MALFUNCTION 6
-
-# New
-PROBABILITY HIVEMIND 0
-PROBABILITY OVERTHROW 0
-PROBABILITY TRAITORVAMP 2
-PROBABILITY VAMPIRE 2
+PROBABILITY MALF 8
+PROBABILITY CLOWNOPS 0 #Broke
 
 # Special
 PROBABILITY RAGINMAGES 1
@@ -127,6 +138,8 @@ PROBABILITY EXTENDED 0
 PROBABILITY SECRET_EXTENDED 0
 PROBABILITY DEVIL 0
 PROBABILITY DEVIL_AGENTS 0
+PROBABILITY ZOMBIE 1
+PROBABILITY DYNAMIC 8
 
 ## Percent weight reductions for three of the most recent modes
 
@@ -148,13 +161,15 @@ CONTINUOUS WIZARD
 CONTINUOUS HIVEMIND
 CONTINUOUS MALF
 CONTINUOUS SHADOWLING
+CONTINUOUS VAMPIRE
+CONTINUOUS DYNAMIC
+CONTINUOUS HERESY
 
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 
 CONTINUOUS METEOR
 CONTINUOUS EXTENDED
 CONTINUOUS SECRET_EXTENDED
-
 
 ## Toggles for allowing midround antagonists (aka mulligan antagonists).
 ## In modes that are continuous, if all antagonists should die then a new set of antagonists will be created.
@@ -224,8 +239,6 @@ MIDROUND_ANTAG MALF
 #MIN_POP EXTENDED 0
 #MAX_POP EXTENDED -1
 
-
-
 ## The amount of time it takes for the emergency shuttle to be called, from round start.
 SHUTTLE_REFUEL_DELAY 12000
 
@@ -241,6 +254,11 @@ CHANGELING_SCALING_COEFF 8
 ## Set to 0 to disable scaling and use default numbers instead.
 SECURITY_SCALING_COEFF 7
 
+## Scales the number of forced security posistions based on population, this should probably be higher than the one above
+## Used as (Forced Security = Population / Coeff)
+## Set to 0 to disable forced security rolling
+MIN_SECURITY_SCALING_COEFF 10
+
 ## The number of objectives traitors get.
 ## Not including escaping/hijacking.
 TRAITOR_OBJECTIVES_AMOUNT 2
@@ -255,6 +273,9 @@ PROTECT_ROLES_FROM_ANTAGONIST
 
 ## Uncomment to prohibit AI from becoming traitor (not malf!).
 #PROTECT_AI_FROM_TRAITOR
+
+## Uncomment to prohibit head roles from becoming most antagonists.
+PROTECT_HEADS_FROM_ANTAGONIST
 
 ## If non-human species are barred from joining as a head of staff
 ENFORCE_HUMAN_AUTHORITY
@@ -327,7 +348,7 @@ GATEWAY_DELAY 18000
 ## If the number of players ready at round starts exceeds this threshold, JOBS_HAVE_MINIMAL_ACCESS will automatically be enabled. Otherwise, it will be disabled.
 ## This is useful for accomodating both low and high population rounds on the same server.
 ## Comment this out or set to 0 to disable this automatic toggle.
-MINIMAL_ACCESS_THRESHOLD 8
+MINIMAL_ACCESS_THRESHOLD 18
 
 ## Comment this out this if you wish to use the setup where jobs have more access.
 ## This is intended for servers with low populations - where there are not enough
@@ -407,31 +428,76 @@ RANDOM_LAWS reporter
 ## Make sure there are no spaces between the law_id and the number.
 
 LAW_WEIGHT custom,0
+ION_LAW_WEIGHT custom,0
 
 ## standard-ish laws. These are fairly ok to run
-LAW_WEIGHT asimov,6
-LAW_WEIGHT crewsimov,6
+LAW_WEIGHT asimov,5
+ION_LAW_WEIGHT asimov,1
+LAW_WEIGHT crewsimov,5
+ION_LAW_WEIGHT crewsimov,1
 LAW_WEIGHT asimovpp,0
+ION_LAW_WEIGHT asimovpp,2
 LAW_WEIGHT paladin,0
+ION_LAW_WEIGHT paladin,2
+ION_LAW_WEIGHT paladin5,2
 LAW_WEIGHT robocop,0
+ION_LAW_WEIGHT robocop,2
 LAW_WEIGHT corporate,0
-LAW_WEIGHT ceo,6
+ION_LAW_WEIGHT corporate,0
+LAW_WEIGHT ceo,5
+ION_LAW_WEIGHT ceo,1
 
 ## Quirky laws. Shouldn't cause too much harm
 LAW_WEIGHT hippocratic,0
+ION_LAW_WEIGHT hippocratic,2
 LAW_WEIGHT maintain,0
+ION_LAW_WEIGHT maintain,2
 LAW_WEIGHT drone,0
+ION_LAW_WEIGHT drone,2
 LAW_WEIGHT liveandletlive,0
+ION_LAW_WEIGHT liveandletlive,2
 LAW_WEIGHT peacekeeper,0
+ION_LAW_WEIGHT peacekeeper,2
 LAW_WEIGHT reporter,3
+ION_LAW_WEIGHT reporter,1
+LAW_WEIGHT cowboy,2
+ION_LAW_WEIGHT cowboy,1
+LAW_WEIGHT construction,0
+ION_LAW_WEIGHT construction,2
+LAW_WEIGHT mother,0
+ION_LAW_WEIGHT mother,2
+LAW_WEIGHT siliconcollective,0
+ION_LAW_WEIGHT siliconcollective,2
+LAW_WEIGHT spotless,0
+ION_LAW_WEIGHT spotless,2
+LAW_WEIGHT chapai,0
+ION_LAW_WEIGHT chapai,2
+LAW_WEIGHT silicop,0
+ION_LAW_WEIGHT silicop,2
+LAW_WEIGHT researcher,0
+ION_LAW_WEIGHT researcher,2
+LAW_WEIGHT clown,0
+ION_LAW_WEIGHT clown,2
+LAW_WEIGHT druid,0
+ION_LAW_WEIGHT druid,2
+LAW_WEIGHT detective,0
+ION_LAW_WEIGHT detective,2
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0
+ION_LAW_WEIGHT syndie,0
 LAW_WEIGHT ninja,0
+ION_LAW_WEIGHT ninja,0
 LAW_WEIGHT antimov,0
+ION_LAW_WEIGHT antimov,0
 LAW_WEIGHT thermodynamic,0
+ION_LAW_WEIGHT thermodynamic,0
 LAW_WEIGHT ratvar,0
+ION_LAW_WEIGHT ratvar,0
 LAW_WEIGHT buildawall,0
+ION_LAW_WEIGHT buildawall,0
+LAW_WEIGHT metaexperiment,0
+ION_LAW_WEIGHT metaexperiment,1
 
 ##------------------------------------------------
 
@@ -464,6 +530,7 @@ ROUNDSTART_RACES moth
 ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
 ROUNDSTART_RACES preternis
+ROUNDSTART_RACES polysmorph
 #ROUNDSTART_RACES snail
 
 ## Races that are better than humans in some ways, but worse in others
@@ -478,7 +545,6 @@ ROUNDSTART_RACES ethereal
 #ROUNDSTART_RACES uranium
 #ROUNDSTART_RACES abductor
 #ROUNDSTART_RACES synth
-#ROUNDSTART_RACES polysmorph
 
 ## Races that are straight upgrades. If these are on expect powergamers to always pick them
 #ROUNDSTART_RACES skeleton
@@ -487,6 +553,9 @@ ROUNDSTART_RACES ethereal
 ROUNDSTART_RACES pod
 #ROUNDSTART_RACES military_synth
 #ROUNDSTART_RACES agent
+
+## Races that are for EPIC GAMERS only
+#MENTOR_RACES polysmorph
 
 ##-------------------------------------------------------------------------------------------
 
@@ -592,3 +661,9 @@ DISABLE_HUMAN_MOOD
 
 ## Enable the capitalist agenda on your server.
 ECONOMY
+
+## Uncomment to enable dynamic ruleset config file.
+DYNAMIC_CONFIG_ENABLED
+
+## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for TEG
+ENGINE_TYPE 3

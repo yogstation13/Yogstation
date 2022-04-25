@@ -10,7 +10,7 @@
 	///the name of the martial art
 	var/name = "Martial Art"
 	///ID, used by mind/has_martialart
-	var/id = "" 
+	var/id = ""
 	///current streak, successful attacks add to this
 	var/streak = ""
 	///longest a streak can be before the oldest attack is forgotten
@@ -116,8 +116,8 @@
 
 	if(!damage)
 		playsound(D.loc, A.dna.species.miss_sound, 25, 1, -1)
-		D.visible_message("<span class='warning'>[A] has attempted to [atk_verb] [D]!</span>", \
-			"<span class='userdanger'>[A] has attempted to [atk_verb] [D]!</span>", null, COMBAT_MESSAGE_RANGE)
+		D.visible_message(span_warning("[A] has attempted to [atk_verb] [D]!"), \
+			span_userdanger("[A] has attempted to [atk_verb] [D]!"), null, COMBAT_MESSAGE_RANGE)
 		log_combat(A, D, "attempted to [atk_verb]")
 		return FALSE
 
@@ -125,21 +125,32 @@
 	var/armor_block = D.run_armor_check(affecting, "melee")
 
 	playsound(D.loc, A.dna.species.attack_sound, 25, 1, -1)
-	D.visible_message("<span class='danger'>[A] has [atk_verb]ed [D]!</span>", \
-			"<span class='userdanger'>[A] has [atk_verb]ed [D]!</span>", null, COMBAT_MESSAGE_RANGE)
+	D.visible_message(span_danger("[A] has [atk_verb]ed [D]!"), \
+			span_userdanger("[A] has [atk_verb]ed [D]!"), null, COMBAT_MESSAGE_RANGE)
 
+	D.last_damage = "masterful fist"
 	D.apply_damage(damage, A.dna.species.attack_type, affecting, armor_block)
 
 	log_combat(A, D, "punched")
 
 	if((D.stat != DEAD) && damage >= A.dna.species.punchstunthreshold)
-		D.visible_message("<span class='danger'>[A] has knocked [D] down!!</span>", \
-								"<span class='userdanger'>[A] has knocked [D] down!</span>")
+		D.visible_message(span_danger("[A] has knocked [D] down!!"), \
+								span_userdanger("[A] has knocked [D] down!"))
 		D.apply_effect(40, EFFECT_KNOCKDOWN, armor_block)
 		D.forcesay(GLOB.hit_appends)
 	else if(!(D.mobility_flags & MOBILITY_STAND))
 		D.forcesay(GLOB.hit_appends)
 	return TRUE
+
+/**
+  *martial arts handle_throw proc
+  *
+  *does stuff for hitting people while thrown
+  *returns TRUE if the default throw impact shouldn't do anything, FALSE if you still slam into something at mach 20 and eat a stun
+  */
+
+/datum/martial_art/proc/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+	return FALSE
 
 /**
   * martial art learn proc
@@ -160,7 +171,7 @@
 	else if(make_temporary)
 		base = H.mind.default_martial_art
 	if(help_verb)
-		H.verbs += help_verb
+		add_verb(H, help_verb)
 	H.mind.martial_art = src
 	return TRUE
 
@@ -197,5 +208,5 @@
   */
 /datum/martial_art/proc/on_remove(mob/living/carbon/human/H)
 	if(help_verb)
-		H.verbs -= help_verb
+		remove_verb(H, help_verb)
 	return

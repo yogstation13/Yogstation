@@ -13,14 +13,16 @@
 /datum/techweb_node/basic_tools
 	prereq_ids = list("base")
 
-/datum/techweb_node/spacepod_basic
-	id = "spacepod_basic"
+
+/////////////////////////space vehicle tech/////////////////////////
+/datum/techweb_node/spacevehicle_basic
+	id = "spacevehicle_basic"
 	display_name = "Spacepod Construction"
 	description = "Basic stuff to construct Spacepods. Don't crash your first spacepod into the station, especially while going more than 10 m/s."
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 2500
 	prereq_ids = list("base")
-	design_ids = list("podcore", "podarmor_civ", "podarmor_dark", "spacepod_main")
+	design_ids = list("podcore", "podarmor_civ", "podarmor_dark", "spacepod_main", "spaceship_navigation_beacon")
 
 /datum/techweb_node/spacepod_lock
 	id = "spacepod_lock"
@@ -28,7 +30,7 @@
 	description = "Keeps greytiders out of your spacepods."
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2750)
 	export_price = 2750
-	prereq_ids = list("spacepod_basic", "engineering")
+	prereq_ids = list("spacevehicle_basic", "engineering")
 	design_ids = list("podlock_keyed", "podkey", "podmisc_tracker")
 
 /datum/techweb_node/spacepod_disabler
@@ -37,7 +39,7 @@
 	description = "For a bit of pew pew space battles"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3500)
 	export_price = 3500
-	prereq_ids = list("spacepod_basic", "weaponry")
+	prereq_ids = list("spacevehicle_basic", "weaponry")
 	design_ids = list("podgun_disabler")
 
 /datum/techweb_node/spacepod_lasers
@@ -82,7 +84,7 @@
 	description = "For bringing along victims as you fly off into the far reaches of space"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3750)
 	export_price = 3750
-	prereq_ids = list("spacepod_basic", "adv_engi")
+	prereq_ids = list("spacevehicle_basic", "adv_engi")
 	design_ids = list("podcargo_seat")
 
 /datum/techweb_node/spacepod_storage
@@ -112,14 +114,42 @@
 	prereq_ids = list("spacepod_storage", "high_efficiency")
 	design_ids = list("podarmor_industiral", "podarmor_sec", "podarmor_gold")
 
-/datum/techweb_node/syndicate_surgery
-	id = "syndicate_surgery"
-	display_name = "Syndicate Surgery"
-	description = "The Syndicate did nothing wrong."
-	prereq_ids = list("exp_surgery", "syndicate_basic")
-	design_ids = list("surgery_brainwashing")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000)
-	export_price = 7000
+/datum/techweb_node/basic_shuttle_tech
+	id = "basic_shuttle_tech"
+	display_name = "Basic Shuttle Research"
+	description = "Research the technology required to create and use basic shuttles."
+	prereq_ids = list("bluespace_travel", "adv_engi", "spacevehicle_basic")
+	design_ids = list("shuttle_creator", "engine_plasma", "engine_heater", "shuttle_control", "shuttle_docker")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	export_price = 5000
+
+/datum/techweb_node/shuttle_route_upgrade
+	id = "shuttle_route_upgrade"
+	display_name = "Route Optimisation Upgrade"
+	description = "Research into bluespace tunnelling, allowing us to reduce flight times by up to 20%!"
+	prereq_ids = list("spacevehicle_basic")
+	design_ids = list("disk_shuttle_route")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 2500
+
+/datum/techweb_node/shuttle_route_upgrade_hyper
+	id = "shuttle_route_upgrade_hyper"
+	display_name = "Hyperlane Optimisation Upgrade"
+	description = "Research into bluespace hyperlane, allowing us to reduce flight times by up to 40%!"
+	prereq_ids = list("shuttle_route_upgrade", "micro_bluespace")
+	design_ids = list("disk_shuttle_route_hyper")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	export_price = 5000
+
+/datum/techweb_node/shuttle_route_upgrade_void
+	id = "shuttle_route_upgrade_void"
+	display_name = "Nullspace Breaching Upgrade"
+	description = "Research into voidspace tunnelling, allowing us to significantly reduce flight times."
+	prereq_ids = list("shuttle_route_upgrade_hyper", "alientech")
+	design_ids = list("engine_void", "disk_shuttle_route_void")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 2500
+
 
 /datum/techweb_node/nanite_harmonic
-	design_ids = list("fakedeath_nanites","aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites","adrenaline_nanites","nanite_heart")
+	design_ids = list("fakedeath_nanites","aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites","nanite_heart")

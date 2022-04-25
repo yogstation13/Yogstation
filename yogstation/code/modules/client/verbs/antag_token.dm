@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 	var/client/C = usr.client
 
 	if(world.time < C.last_antag_token_check)
-		to_chat(usr, "<span class='userdanger'>You cannot use this verb yet! Please wait.</span>")
+		to_chat(usr, span_userdanger("You cannot use this verb yet! Please wait."))
 		return
 
 	var/datum/DBQuery/query_antag_token_existing = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE ckey = :ckey AND redeemed = 0"}, list("ckey" = ckey(ckey)))
@@ -24,14 +24,14 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 
 	if(query_antag_token_existing.NextRow())
 		if(SSticker.current_state > GAME_STATE_PREGAME)
-			to_chat(usr, "<span class='userdanger'>You have an antag token. You can use this button in the pre-game lobby to use it!</span>")
+			to_chat(usr, span_userdanger("You have an antag token. You can use this button in the pre-game lobby to use it!"))
 			return
 		if(alert("You have an antag token! Do you want to use it? YOU CAN GET ANTAG'S THAT YOU HAVE DISABLED IN YOUR PREFERENCES",, "Yes", "No") != "Yes")
 			qdel(query_antag_token_existing)
 			return
-		to_chat(src, "<span class='userdanger'>You will be notified if your antag token is used</span>")
+		to_chat(src, span_userdanger("You will be notified if your antag token is used"))
 		C.antag_token_timer = addtimer(CALLBACK(src, .proc/deny_antag_token_request), 45 SECONDS, TIMER_STOPPABLE)
-		to_chat(GLOB.admins, "<span class='adminnotice'><b><font color=orange>ANTAG TOKEN REQUEST:</font></b>[ADMIN_LOOKUPFLW(usr)] wants to use their antag token! (will auto-DENY in [DisplayTimeText(45 SECONDS)]). (<A HREF='?_src_=holder;[HrefToken(TRUE)];approve_antag_token=[REF(C)]'>APPROVE</A>)</span>")
+		to_chat(GLOB.admins, span_adminnotice("<b><font color=orange>ANTAG TOKEN REQUEST:</font></b>[ADMIN_LOOKUPFLW(usr)] wants to use their antag token! (will auto-DENY in [DisplayTimeText(45 SECONDS)]). (<A HREF='?_src_=holder;[HrefToken(TRUE)];approve_antag_token=[REF(C)]'>APPROVE</A>)"))
 		for(var/client/A in GLOB.admins)
 			if(check_rights_for(A, R_ADMIN) && (A.prefs.toggles & SOUND_ADMINHELP)) // Can't use check_rights here since it's dependent on $usr
 				SEND_SOUND(A, sound('sound/effects/adminhelp.ogg'))
@@ -42,9 +42,10 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 /client/proc/deny_antag_token_request()
 	if(usr in GLOB.antag_token_users)
 		return
-	to_chat(usr, "<span class='userdanger'>Your request has been denied! Your antag token has NOT been used.</span>")
+	to_chat(usr, span_userdanger("Your request has been denied! Your antag token has NOT been used."))
 
 /datum/admins/proc/accept_antag_token_usage(client/C)
+	var/token = FALSE // Weather or not the token was used, changed slightly later in the code
 	if(SSticker.current_state > GAME_STATE_PREGAME)
 		return
 
@@ -54,18 +55,31 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 	if(!istype(C))
 		return
 
-	GLOB.antag_token_users += C
-	to_chat(C.mob, "<span class='userdanger'>An admin has approved your antag token request! Ready up!</span>")
-	message_admins("[C.ckey]'s antag token request has been approved by [usr.ckey]")
+	
+	if(C in GLOB.antag_token_users) // If they're in the list take them out
+		if(alert("Someone already approved this antag token. Are you sure you want to reject it?", "Confirm", "Yes", "No") != "Yes")
+			return
+		GLOB.antag_token_users -= C
+		token = FALSE // Redundency if you clowns figure out how to break it
+	else
+		GLOB.antag_token_users += C // Put person into list upon accepting
+		token = TRUE
+
+	message_admins("[C.ckey]'s antag token request has been [token ? "approved" : "rejected"] by [usr.ckey]")
+	to_chat(C.mob, span_userdanger("An admin has [token ? "approved" : "rejected"] your antag token request! [token ? "Ready up!" : ""]"))
 	deltimer(C.antag_token_timer)
 
 /proc/antag_token_used(ckey, client/C)
 	var/mob/player = C.mob
+
+	// Mark the mind as having not been picked by a token
+	player.mind.token_picked = FALSE
+
 	if(!is_special_character(player))
 		message_admins("Failed to make player [ckey] an antag. Their token has NOT been used!")
 		return
 
-	to_chat(C, "<span class='userdanger'>Your antag token has been used!</span>")
+	to_chat(C, span_userdanger("Your antag token has been used!"))
 	var/datum/DBQuery/query_antag_token = SSdbcore.NewQuery({"SELECT id
 		FROM [format_table_name("antag_tokens")] WHERE ckey = :ckey AND redeemed = 0
 		ORDER BY granted_time DESC"}, list("ckey" = ckey(ckey)))

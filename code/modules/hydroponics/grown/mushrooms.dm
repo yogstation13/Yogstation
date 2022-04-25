@@ -126,7 +126,7 @@
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	mutatelist = list(/obj/item/seeds/plump/walkingmushroom)
-	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet
 	seed = /obj/item/seeds/plump
@@ -150,7 +150,7 @@
 	yield = 1
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.05, /datum/reagent/consumable/nutriment = 0.15)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.15)
 	rarity = 30
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom
@@ -162,6 +162,10 @@
 	can_distill = FALSE
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user)
+	if(GLOB.walkingmushroom.len > MAX_WALKINGMUSHROOM)
+		to_chat(user, span_notice("There are too many walking mushrooms!")) // Someone spammed mushrooms so now this exists :(
+		return
+
 	if(isspaceturf(user.loc))
 		return
 	var/mob/living/simple_animal/hostile/mushroom/M = new /mob/living/simple_animal/hostile/mushroom(user.loc)
@@ -170,8 +174,9 @@
 	M.melee_damage_upper += round(seed.potency / 20)
 	M.move_to_delay -= round(seed.production / 50)
 	M.health = M.maxHealth
+	GLOB.walkingmushroom += M
 	qdel(src)
-	to_chat(user, "<span class='notice'>You plant the walking mushroom.</span>")
+	to_chat(user, span_notice("You plant the walking mushroom."))
 
 
 // Chanterelle
@@ -235,7 +240,7 @@
 	if(isspaceturf(user.loc))
 		return FALSE
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You need more space to plant [src].</span>")
+		to_chat(user, span_warning("You need more space to plant [src]."))
 		return FALSE
 	var/count = 0
 	var/maxcount = 1
@@ -246,10 +251,10 @@
 	for(var/obj/structure/glowshroom/G in user.loc)
 		count++
 	if(count >= maxcount)
-		to_chat(user, "<span class='warning'>There are too many shrooms here to plant [src].</span>")
+		to_chat(user, span_warning("There are too many shrooms here to plant [src]."))
 		return FALSE
 	new effect_path(user.loc, seed)
-	to_chat(user, "<span class='notice'>You plant [src].</span>")
+	to_chat(user, span_notice("You plant [src]."))
 	qdel(src)
 	return TRUE
 
@@ -306,10 +311,10 @@
 	. = ..()
 	if(.)
 		investigate_log("was planted by [key_name(user)] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
-		
+
 /obj/item/seeds/fungus
 	name = "pack of cave fungus mycelium"
-	desc = "This mycelium grows into cave fungi, an edible variety of mushroom with anti-toxic properties. The anti-toxic properties don't appear until fully grown."
+	desc = "This mycelium grows into cave fungi, an edible variety of mushroom with anti-toxic properties."
 	icon_state = "seed-fungus"
 	species = "cave fungus"
 	plantname = "cave fungi"
@@ -325,6 +330,8 @@
 	yield = 6
 	potency = 20
 	growthstages = 2
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
+	reagents_add = list(/datum/reagent/medicine/charcoal = 0.25, /datum/reagent/medicine/mutadone = 0.04, /datum/reagent/consumable/nutriment = 0.02)
 
 /obj/item/reagent_containers/food/snacks/grown/fungus
 	seed = /obj/item/seeds/fungus
@@ -332,9 +339,3 @@
 	desc = "Cave fungus is an edible mushroom which has the ability to purge bodily toxins."
 	icon_state = "fungus"
 	filling_color = "#FF6347"
-
-/obj/item/reagent_containers/food/snacks/grown/fungus/add_juice()
-	if(..())
-		reagents.add_reagent("charcoal", 1 + round((seed.potency / 20), 1))
-		reagents.add_reagent("mutadone", 1 + round((seed.potency / 20), 1))
-		bitesize = 1 + round(reagents.total_volume / 3, 1)

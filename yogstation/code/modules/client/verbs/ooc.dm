@@ -21,6 +21,15 @@
 		if("RetiredAdmin")
 			return "\[Retmin\]"
 
+		if("Administrator-Mainterino")
+			return "\[Admin-tainer\]"
+
+		if("Moderator-Mainterino")
+			return "\[Mod-tainer\]"
+			
+		if("Retmin-Maintainerino")
+			return "\[Retmin-tainer\]"
+
 		else
 			return "\[[C.holder.rank.name]\]"
 
@@ -48,10 +57,10 @@
 	set category = "OOC"
 	set desc = "Lists all the emojis available for use!"
 	if(!CONFIG_GET(flag/emojis))
-		to_chat(src,"<span class='warning'>This server has emojis disabled!</span>")
+		to_chat(src,span_warning("This server has emojis disabled!"))
 		return
 	var/static/list/yogemojis = icon_states(icon('yogstation/icons/emoji.dmi'))
 	var/static/list/tgemojis = icon_states(icon('icons/emoji.dmi')) - yogemojis // If we have emojis of the same name, they override the TG ones. (https://github.com/yogstation13/Yogstation/pull/5788)
 	
-	to_chat(src,"<b><span class='notice'>List of Emojis:</span></b>")
-	to_chat(src,"<span class='notice'>[jointext(sortList(yogemojis + tgemojis),", ")]</span>")
+	to_chat(src,"<b>[span_notice("List of Emojis:")]</b>")
+	to_chat(src,span_notice("[jointext(sortList(yogemojis + tgemojis),", ")]"))

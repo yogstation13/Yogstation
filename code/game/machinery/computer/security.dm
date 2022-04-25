@@ -24,9 +24,6 @@
 
 	var/special_message
 
-	ui_x = 775
-	ui_y = 500
-
 	light_color = LIGHT_COLOR_RED
 
 /obj/machinery/computer/secure_data/syndie
@@ -41,11 +38,10 @@
 	clockwork = TRUE //it'd look weird
 	pass_flags = PASSTABLE
 
-/obj/machinery/computer/secure_data/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/secure_data/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "SecurityConsole", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "SecurityConsole", name)
 		ui.open()
 
 /obj/machinery/computer/secure_data/ui_data(mob/living/carbon/human/user)
@@ -86,13 +82,13 @@
 					var/md5 = md5(fcopy_rsc(picture))
 
 					if(!SSassets.cache["photo_[md5]_cropped.png"])
-						register_asset("photo_[md5]_cropped.png", picture)
-					send_asset_list(user, list("photo_[md5]_cropped.png" = picture))
+						SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
+					SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
 
-					data["user_image"] = md5
+					data["user_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
 		data["has_access"] = check_access(user.get_idcard())
 
-	
+
 
 	if(!logged_in)
 		return data
@@ -137,7 +133,7 @@
 					record["recordColor"] = "#4F7529"
 				if("")
 					crime_status = "No Record."
-			
+
 			record["name"] = R.fields["name"]
 			record["id"] = R.fields["id"]
 			record["rank"] = R.fields["rank"]
@@ -146,36 +142,39 @@
 			record["reference"] = REF(R)
 
 			data["records"] += list(record)
-	
+
 	if(screen == RECORD_VIEW)
 		var/list/record = list()
 
 		if(!istype(active_general_record, /datum/data/record) || !GLOB.data_core.general.Find(active_general_record))
 			screen = MAIN_SCREEN
-			return 
+			return
 		var/list/assets = list()
 		data["active_general_record"] = TRUE
 		if(istype(active_general_record.fields["photo_front"], /obj/item/photo))
 			var/obj/item/photo/P1 = active_general_record.fields["photo_front"]
 			if(!SSassets.cache["photo_front_[active_general_record.fields["id"]].png"])
-				register_asset("photo_front_[active_general_record.fields["id"]].png", P1.picture.picture_image)
+				SSassets.transport.register_asset("photo_front_[active_general_record.fields["id"]].png", P1.picture.picture_image)
 			assets["photo_front_[active_general_record.fields["id"]].png"] = P1.picture.picture_image
 
 		if(istype(active_general_record.fields["photo_side"], /obj/item/photo))
 			var/obj/item/photo/P2 = active_general_record.fields["photo_side"]
 			if(!SSassets.cache["photo_side_[active_general_record.fields["id"]].png"])
-				register_asset("photo_side_[active_general_record.fields["id"]].png", P2.picture.picture_image)
+				SSassets.transport.register_asset("photo_side_[active_general_record.fields["id"]].png", P2.picture.picture_image)
 			assets["photo_side_[active_general_record.fields["id"]].png"] = P2.picture.picture_image
-			
-		send_asset_list(user, assets)
+
+		SSassets.transport.send_assets(user, assets)
 		
+		record["front_image"] = SSassets.transport.get_asset_url("photo_front_[active_general_record.fields["id"]].png")
+		record["side_image"] = SSassets.transport.get_asset_url("photo_side_[active_general_record.fields["id"]].png")
+
 
 		record["name"] = active_general_record.fields["name"]
 		record["id"] = active_general_record.fields["id"]
 		record["gender"] = active_general_record.fields["gender"]
 		record["age"] = active_general_record.fields["age"]
 
-		
+
 
 		record["species"] = active_general_record.fields["species"]
 		record["rank"] = active_general_record.fields["rank"]
@@ -218,30 +217,29 @@
 
 				record["citations"] += list(citation)
 
-			record["minor_crimes"] = list()
+			record["crimes"] = list()
 
-			for(var/datum/data/crime/C in active_security_record.fields["mi_crim"])
-				var/list/minor_crime = list()
-				minor_crime["name"] = C.crimeName
-				minor_crime["details"] = C.crimeDetails
-				minor_crime["author"] = C.author 
-				minor_crime["time"] = C.time
-				minor_crime["id"] = C.dataId
+			for(var/datum/data/crime/C in active_security_record.fields["crimes"])
+				var/list/crime = list()
+				crime["name"] = C.crimeName
+				crime["details"] = C.crimeDetails
+				crime["author"] = C.author
+				crime["time"] = C.time
+				crime["id"] = C.dataId
 
-				record["minor_crimes"] += list(minor_crime)
+				record["crimes"] += list(crime)
 
-			record["major_crimes"] = list()
+			record["comments"] = list()
 
-			for(var/datum/data/crime/C in active_security_record.fields["ma_crim"])
-				var/list/major_crime = list()
-				major_crime["name"] = C.crimeName
-				major_crime["details"] = C.crimeDetails
-				major_crime["author"] = C.author 
-				major_crime["time"] = C.time
-				major_crime["id"] = C.dataId
+			for(var/datum/data/comment/C in active_security_record.fields["comments"])
+				var/list/comment = list()
+				comment["content"] = C.commentText
+				comment["author"] = C.author
+				comment["time"] = C.time
+				comment["id"] = C.dataId
 
-				record["major_crimes"] += list(major_crime)
-			
+				record["comments"] += list(comment)
+
 			record["notes"] = active_security_record.fields["notes"]
 
 		data["active_record"] = record
@@ -260,7 +258,7 @@
 /obj/machinery/computer/secure_data/ui_act(action, list/params)
 	if(..())
 		return
-	
+
 	switch(action)
 		if("back")
 			if(!logged_in)
@@ -284,7 +282,7 @@
 				logged_in = usr.client.holder.admin_signature
 				rank = "Central Command Officer"
 
-			
+
 
 
 			var/mob/living/carbon/human/H = usr
@@ -302,7 +300,7 @@
 			screen = MAIN_SCREEN
 			active_general_record = null
 			active_security_record = null
-		
+
 		if("record_maint")
 			if(!logged_in)
 				return
@@ -322,7 +320,7 @@
 					if((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 						active_security_record = E
 				screen = RECORD_VIEW
-			
+
 		if("print_record")
 			if(!logged_in)
 				return
@@ -343,7 +341,7 @@
 				if((istype(active_security_record, /datum/data/record) && GLOB.data_core.security.Find(active_security_record)))
 					P.info += text("<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: []", active_security_record.fields["criminal"])
 
-					P.info += "<BR>\n<BR>\nMinor Crimes:<BR>\n"
+					P.info += "<BR>\n<BR>\nCrimes:<BR>\n"
 					P.info +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 					<tr>
 						<th>Crime</th>
@@ -352,7 +350,7 @@
 						<th>Time Added</th>
 					</tr>"}
 
-					for(var/datum/data/crime/C in active_security_record.fields["mi_crim"])
+					for(var/datum/data/crime/C in active_security_record.fields["crimes"])
 						P.info += "<tr><td>[C.crimeName]</td>"
 						P.info += "<td>[C.crimeDetails]</td>"
 						P.info += "<td>[C.author]</td>"
@@ -360,18 +358,16 @@
 						P.info += "</tr>"
 					P.info += "</table>"
 
-					P.info += "<BR>\nMajor Crimes: <BR>\n"
+					P.info += "<BR>\nComments: <BR>\n"
 					P.info +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 					<tr>
-						<th>Crime</th>
-						<th>Details</th>
+						<th>Comment</th>
 						<th>Author</th>
 						<th>Time Added</th>
 					</tr>"}
 
-					for(var/datum/data/crime/C in active_security_record.fields["ma_crim"])
-						P.info += "<tr><td>[C.crimeName]</td>"
-						P.info += "<td>[C.crimeDetails]</td>"
+					for(var/datum/data/comment/C in active_security_record.fields["comments"])
+						P.info += "<tr><td>[C.commentText]</td>"
 						P.info += "<td>[C.author]</td>"
 						P.info += "<td>[C.time]</td>"
 						P.info += "</tr>"
@@ -397,18 +393,11 @@
 				var/wanted_name = stripped_input(usr, "Please enter an alias for the criminal:", "Print Wanted Poster", active_general_record.fields["name"])
 				if(wanted_name)
 					var/default_description = "A poster declaring [wanted_name] to be a dangerous individual, wanted by Nanotrasen. Report any sightings to security immediately."
-					var/list/major_crimes = active_security_record.fields["ma_crim"]
-					var/list/minor_crimes = active_security_record.fields["mi_crim"]
-					if(major_crimes.len + minor_crimes.len)
+					var/list/crimes = active_security_record.fields["crimes"]
+					if(crimes.len)
 						default_description += "\n[wanted_name] is wanted for the following crimes:\n"
-					if(minor_crimes.len)
-						default_description += "\nMinor Crimes:"
-						for(var/datum/data/crime/C in active_security_record.fields["mi_crim"])
-							default_description += "\n[C.crimeName]\n"
-							default_description += "[C.crimeDetails]\n"
-					if(major_crimes.len)
-						default_description += "\nMajor Crimes:"
-						for(var/datum/data/crime/C in active_security_record.fields["ma_crim"])
+					if(crimes.len)
+						for(var/datum/data/crime/C in active_security_record.fields["crimes"])
 							default_description += "\n[C.crimeName]\n"
 							default_description += "[C.crimeDetails]\n"
 
@@ -423,7 +412,7 @@
 							var/obj/item/photo/photo = active_general_record.fields["photo_front"]
 							new /obj/item/poster/wanted(loc, photo.picture.picture_image, wanted_name, info, headerText)
 						printing = FALSE
-		
+
 		if("print_missing")
 			if(!logged_in)
 				return
@@ -456,7 +445,7 @@
 			GLOB.data_core.security.Cut()
 			special_message = "All Security Records Deleted."
 			screen = MAIN_SCREEN
-		
+
 		if("new_record")
 			if(!logged_in)
 				return
@@ -466,8 +455,8 @@
 				R.fields["id"] = active_general_record.fields["id"]
 				R.name = text("Security Record #[]", R.fields["id"])
 				R.fields["criminal"] = "None"
-				R.fields["mi_crim"] = list()
-				R.fields["ma_crim"] = list()
+				R.fields["crimes"] = list()
+				R.fields["comments"] = list()
 				R.fields["notes"] = "No notes."
 				GLOB.data_core.security += R
 				active_security_record = R
@@ -497,8 +486,8 @@
 			R.fields["id"] = active_general_record.fields["id"]
 			R.name = text("Security Record #[]", R.fields["id"])
 			R.fields["criminal"] = "None"
-			R.fields["mi_crim"] = list()
-			R.fields["ma_crim"] = list()
+			R.fields["crimes"] = list()
+			R.fields["comments"] = list()
 			R.fields["notes"] = "No notes."
 			GLOB.data_core.security += R
 			active_security_record = R
@@ -518,7 +507,7 @@
 			M.fields["cdi"]			= "None"
 			M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 			M.fields["notes"]		= "No notes."
-			GLOB.data_core.medical += M		
+			GLOB.data_core.medical += M
 
 		if("delete_general_record_and_security")
 			if(!logged_in)
@@ -539,7 +528,7 @@
 					active_security_record = null
 				screen = MAIN_SCREEN
 				ui_interact(usr)
-			
+
 
 		if("delete_security_record")
 			if(!logged_in)
@@ -554,7 +543,7 @@
 				active_security_record = null
 				special_message = "Record Deleted"
 				ui_interact(usr)
-				
+
 
 
 		if("edit_field")
@@ -562,7 +551,7 @@
 				return
 			var/general_record = active_general_record
 			var/security_record = active_security_record
-			
+
 			switch(params["field"])
 				if("name")
 					if(istype(general_record, /datum/data/record) || istype(security_record, /datum/data/record))
@@ -576,7 +565,7 @@
 
 				if("id")
 					if(istype(active_security_record, /datum/data/record) || istype(active_general_record, /datum/data/record))
-						var/id = stripped_input(usr, "Please input ID:", "Security Records", active_general_record.fields["id"], null)
+						var/id = stripped_input(usr, "Please input ID:", "Security Records", active_general_record.fields["id"])
 						if(!valid_record_change(usr, id, general_record))
 							return
 						if(istype(active_general_record, /datum/data/record))
@@ -586,7 +575,7 @@
 
 				if("fingerprint")
 					if(istype(active_general_record, /datum/data/record))
-						var/fingerprint = stripped_input(usr, "Please input fingerprint hash:", "Security Records", active_general_record.fields["fingerprint"], null)
+						var/fingerprint = stripped_input(usr, "Please input fingerprint hash:", "Security Records", active_general_record.fields["fingerprint"])
 						if(!valid_record_change(usr, fingerprint, general_record))
 							return
 						active_general_record.fields["fingerprint"] = fingerprint
@@ -628,46 +617,46 @@
 							var/obj/item/photo/P = active_general_record.fields["photo_side"]
 							print_photo(P.picture.picture_image, active_general_record.fields["name"])
 
-				if("minor_crime_add")
-					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input minor crime names:", "Security Records", "", null)
-						var/details = stripped_input(usr, "Please input minor crime details:", "Security Records", "", null)
-						if(!valid_record_change(usr, name, null, active_security_record))
-							return
-						var/crime = GLOB.data_core.createCrimeEntry(name, details, logged_in, station_time_timestamp())
-						GLOB.data_core.addMinorCrime(active_general_record.fields["id"], crime)
-						investigate_log("New Minor Crime: <strong>[name]</strong>: [details] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
-
-				if("minor_crime_delete")
+				if("crime_delete")
 					if(istype(active_general_record, /datum/data/record))
 						if(params["id"])
 							if(!valid_record_change(usr, "delete", null, active_security_record))
 								return
-							GLOB.data_core.removeMinorCrime(active_general_record.fields["id"], params["id"])
-				
-				if("major_crime_add")
+							GLOB.data_core.removeCrime(active_general_record.fields["id"], params["id"])
+
+				if("crime_add")
 					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input major crime names:", "Security Records", "", null)
-						var/details = stripped_input(usr, "Please input major crime details:", "Security Records", "", null)
+						var/name = stripped_input(usr, "Please input crime name:", "Security Records", "")
+						var/details = stripped_input(usr, "Please input crime details:", "Security Records", "")
 						if(!valid_record_change(usr, name, null, active_security_record))
 							return
 						var/crime = GLOB.data_core.createCrimeEntry(name, details, logged_in, station_time_timestamp())
-						GLOB.data_core.addMajorCrime(active_general_record.fields["id"], crime)
-						investigate_log("New Major Crime: <strong>[name]</strong>: [details] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
+						GLOB.data_core.addCrime(active_general_record.fields["id"], crime)
+						investigate_log("New Crime: <strong>[name]</strong>: [details] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
 
-				if("major_crime_delete")
+				if("comment_delete")
 					if(istype(active_general_record, /datum/data/record))
 						if(params["id"])
 							if(!valid_record_change(usr, "delete", null, active_security_record))
 								return
-							GLOB.data_core.removeMajorCrime(active_general_record.fields["id"], params["id"])
+							GLOB.data_core.removeComment(active_general_record.fields["id"], params["id"])
+
+				if("comment_add")
+					if(istype(active_general_record, /datum/data/record))
+						var/t1 = stripped_multiline_input(usr, "Add Comment:", "Security records")
+						if(!valid_record_change(usr, name, null, active_security_record))
+							return
+						var/comment = GLOB.data_core.createCommentEntry(t1, logged_in)
+						GLOB.data_core.addComment(active_general_record.fields["id"], comment)
+						investigate_log("New Comment: [t1] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
+
 
 				if("citation_add")
 					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input citation crime:", "Security Records", "", null)
+						var/name = stripped_input(usr, "Please input citation crime:", "Security Records", "")
 						var/fine = FLOOR(input(usr, "Please input citation fine:", "Security Records", 50) as num, 1)
 						if(!fine || fine < 0)
-							to_chat(usr, "<span class='warning'>You're pretty sure that's not how money works.</span>")
+							to_chat(usr, span_warning("You're pretty sure that's not how money works."))
 							return
 						fine = min(fine, maxFine)
 						if(!valid_record_change(usr, name, null, active_security_record))
@@ -696,7 +685,7 @@
 
 				if("edit_note")
 					if(istype(active_security_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please summarize notes:", "Security Records", active_security_record.fields["notes"], null)
+						var/name = stripped_input(usr, "Please summarize notes:", "Security Records", active_security_record.fields["notes"])
 						if(!valid_record_change(usr, name, null, active_security_record))
 							return
 						active_security_record.fields["notes"] = name
@@ -725,7 +714,7 @@
 							H.sec_hud_set_security_status()
 
 				if("rank")
-					var/list/allowed_ranks = list("Head of Personnel", "Captain", "AI", "Central Command")
+					var/list/allowed_ranks = list("Head of Personnel", "Captain", "AI", "Central Command Officer")
 					var/changed_rank = null
 					if((istype(active_general_record, /datum/data/record) && allowed_ranks.Find(rank)))
 						changed_rank = input("Select a rank", "Rank Selection") as null|anything in get_all_jobs()
@@ -747,8 +736,8 @@
 			if(!record1 || record1 == active_general_record)
 				if(!record2 || record2 == active_security_record)
 					return TRUE
-	return FALSE			
-		
+	return FALSE
+
 /obj/machinery/computer/secure_data/proc/get_photo(mob/user)
 	var/obj/item/photo/P = null
 	if(issilicon(user))

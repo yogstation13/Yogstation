@@ -55,7 +55,7 @@
 
 	/**
 	  * Magic var that stops you moving and interacting with anything
-	  * 
+	  *
 	  * Set when you're being turned into something else and also used in a bunch of places
 	  * it probably shouldn't really be
 	  */
@@ -74,7 +74,7 @@
 
 	/**
 	  * back up of the real name during admin possession
-	  * 
+	  *
 	  * If an admin possesses an object it's real name is set to the admin name and this
 	  * stores whatever the real name was previously. When possession ends, the real name
 	  * is reset to this value
@@ -117,12 +117,12 @@
 	var/active_hand_index = 1
 	/**
 	  * list of items held in hands
-	  * 
+	  *
 	  * len = number of hands, eg: 2 nulls is 2 empty hands, 1 item and 1 null is 1 full hand
 	  * and 1 empty hand.
-	  * 
+	  *
 	  * NB: contains nulls!
-	  * 
+	  *
 	  * held_items[active_hand_index] is the actively held item, but please use
 	  * get_active_held_item() instead, because OOP
 	  */
@@ -160,7 +160,7 @@
 	  */
 	var/list/mob_spell_list = list()
 
-	
+
 	/// bitflags defining which status effects can be inflicted (replaces canknockdown, canstun, etc)
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANUNCONSCIOUS|CANPUSH
 
@@ -202,9 +202,12 @@
 	///Allows a datum to intercept all click calls this mob is the so
 	var/datum/click_intercept
 
+	///For storing what do_after's someone has, in case we want to restrict them to only one of a certain do_after at a time
+	var/list/do_afters	
+
 	///THe z level this mob is currently registered in
 	var/registered_z = null
-	
+
 	///Size of the user's memory(IC notes)
 	var/memory_amt = 0
 
@@ -213,3 +216,8 @@
 
 	///Whether the mob is updating glide size when movespeed updates or not
 	var/updating_glide_size = TRUE
+
+	/// A mock client, provided by tests and friends
+	var/datum/client_interface/mock_client
+
+	var/create_area_cooldown

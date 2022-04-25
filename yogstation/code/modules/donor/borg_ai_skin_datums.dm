@@ -74,10 +74,10 @@
 	name = "Bipedal GlaDos"
 	icon_state = "glados"
 
-/datum/borg_skin/dio
+/datum/borg_skin/dio // originally made for atrealdonaldtrump, left
 	name = "DIO L.I.T.E"
 	icon_state = "diosecborg"
-	owner = "atrealdonaldtrump"
+	owner = null
 	module_locked = "Security"
 
 /datum/borg_skin/brainjar
@@ -108,11 +108,6 @@
 	icon_state = "rainbow_peace"
 	owner = null
 	module_locked = "Peacekeeper"
-
-/datum/borg_skin/mrsparako
-	name = "Mr. Sparako"
-	icon_state = "mrsparako"
-	owner = "nickvr628"
 
 /datum/borg_skin/paladin_engi
 	name = "Paladin (engineering)"
@@ -165,6 +160,12 @@
 /datum/borg_skin/abductor_peacekeeper
 	name = "Alien E.G.G"
 	icon_state = "abductor_peacekeeper"
+	owner = null
+	module_locked = "Peacekeeper"
+
+/datum/borg_skin/abductor_peacekeeper
+	name = "Fazzkeeper"
+	icon_state = "fazzkeeper"
 	owner = null
 	module_locked = "Peacekeeper"
 
@@ -258,6 +259,18 @@
 	owner = "reddsnotdead"
 	module_locked = "Engineering"
 
+/datum/borg_skin/argus
+	name = "Argus"
+	icon_state = "argus"
+	owner = "slicerv"
+	module_locked = "Engineering"
+
+/datum/borg_skin/butterfly
+	name = "Butterfly"
+	icon_state = "butterfly"
+	owner = "baiomu"
+	module_locked = "Engineering"
+
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 
@@ -277,10 +290,10 @@
 	icon_state = "sneaker_database"
 	owner = "kmc2000"
 
-/datum/ai_skin/dio
+/datum/ai_skin/dio // originally made for atrealdonaldtrump, left
 	name = "D.I.O"
 	icon_state = "dioAI"
-	owner = "atrealdonaldtrump"
+	owner = null
 
 /datum/ai_skin/englandismycity
 	name = "Nick Crompton"
@@ -318,7 +331,12 @@
 	icon_state = "wardoge"
 	owner = "fluffe9911"
 
-datum/ai_skin/carrion
+/datum/ai_skin/carrion
 	name = "Carrion"
 	icon_state = "carrion"
 	owner = "xoxeyos"
+
+/datum/ai_skin/flukie
+	name = "Flukie"
+	icon_state = "flukie"
+	owner = "uselesstheremin"

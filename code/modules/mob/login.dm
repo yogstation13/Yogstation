@@ -24,7 +24,7 @@
 /mob/Login()
 	if(!client)
 		return FALSE
-	GLOB.player_list |= src
+	add_to_player_list()
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
 	log_access("Mob Login: [key_name(src)] was assigned to a [type]")

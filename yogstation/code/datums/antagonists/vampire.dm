@@ -25,12 +25,14 @@
 	var/list/upgrade_tiers = list(
 		/obj/effect/proc_holder/spell/self/vampire_help = 0,
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
-		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
+		/obj/effect/proc_holder/spell/pointed/gaze = 0,
+		/obj/effect/proc_holder/spell/pointed/hypno = 0,
 		/datum/vampire_passive/vision = 75,
 		/obj/effect/proc_holder/spell/self/shapeshift = 75,
+		/datum/vampire_passive/nostealth = 100,
 		/obj/effect/proc_holder/spell/self/cloak = 100,
 		/obj/effect/proc_holder/spell/self/revive = 100,
-		/obj/effect/proc_holder/spell/targeted/disease = 200,//why is spell-that-kills-people unlocked so early what the fuck
+		/obj/effect/proc_holder/spell/targeted/disease = 200,
 		/obj/effect/proc_holder/spell/self/batform = 200,
 		/obj/effect/proc_holder/spell/self/screech = 215,
 		/obj/effect/proc_holder/spell/bats = 250,
@@ -93,7 +95,7 @@
 		objectives -= O
 	LAZYCLEARLIST(objectives_given)
 	if(owner.current)
-		to_chat(owner.current,"<span class='userdanger'>Your powers have been quenched! You are no longer a vampire</span>")
+		to_chat(owner.current,span_userdanger("Your powers have been quenched! You are no longer a vampire"))
 	owner.special_role = null
 	var/mob/living/carbon/human/C = owner.current
 	if(istype(C))
@@ -104,15 +106,24 @@
 	..()
 
 /datum/antagonist/vampire/greet()
-	to_chat(owner, "<span class='userdanger'>You are a Vampire!</span>")
+	to_chat(owner, span_userdanger("You are a Vampire!"))
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
-	to_chat(owner, "<span class='userdanger'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!</span>")
+	to_chat(owner, span_userdanger("Hit someone in the head with harm intent to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!"))
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
 	if(full_vampire == FALSE)
 		to_chat(owner, "<span class='notice bold'>You are not required to obey other vampires, however, you have gained a respect for them.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
-	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/vampire.ogg',80,0)
+	if(full_vampire == FALSE)
+		if(prob(10))
+			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/lilithspact_alt.ogg',80,0)
+		else
+			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/lilithspact.ogg',80,0)
+	else
+		if(prob(10))
+			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/newvampire_alt.ogg',80,0)
+		else
+			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/newvampire.ogg',80,0)
 
 /datum/antagonist/vampire/proc/give_objectives()
 	if(full_vampire)
@@ -177,16 +188,16 @@
 	if(prob(burn_chance) && L.health >= 50)
 		switch(L.health)
 			if(75 to 100)
-				L.visible_message("<span class='warning'>[L]'s skin begins to flake!</span>", "<span class='danger'>Your skin flakes away...</span>")
+				L.visible_message(span_warning("[L]'s skin begins to flake!"), span_danger("Your skin flakes away..."))
 			if(50 to 75)
-				L.visible_message("<span class='warning'>[L]'s skin sizzles loudly!</span>", "<span class='danger'>Your skin sizzles!</span>", "You hear sizzling.")
+				L.visible_message(span_warning("[L]'s skin sizzles loudly!"), span_danger("Your skin sizzles!"), "You hear sizzling.")
 		L.adjustFireLoss(3)
 	else if(L.health < 50)
 		if(!L.on_fire)
-			L.visible_message("<span class='warning'>[L] catches fire!</span>", "<span class='danger'>Your skin catches fire!</span>")
+			L.visible_message(span_warning("[L] catches fire!"), span_danger("Your skin catches fire!"))
 			L.emote("scream")
 		else
-			L.visible_message("<span class='warning'>[L] continues to burn!</span>", "<span class='danger'>Your continue to burn!</span>")
+			L.visible_message(span_warning("[L] continues to burn!"), span_danger("Your continue to burn!"))
 		L.adjust_fire_stacks(5)
 		L.IgniteMob()
 	return
@@ -243,16 +254,16 @@
 	var/warned = FALSE //has the vampire been warned they're about to alert a target while stealth sucking?
 	var/blood_to_take = BLOOD_SUCK_BASE //how much blood should be removed per succ? changes depending on grab state
 	log_attack("[O] ([O.ckey]) bit [H] ([H.ckey]) in the neck")
-	if(!(O.pulling == H))
+	if(!(O.pulling == H) && !get_ability(/datum/vampire_passive/nostealth))
 		silent = TRUE
 		blood_to_take *= 0.5 //half blood from targets that aren't being pulled, but they also don't get warned until it starts to cause damage
 	else if(O.grab_state >= GRAB_NECK)
 		blood_to_take *= 1.5 //50% more blood from targets that are being neck grabbed or above
 	if(!silent)
-		O.visible_message("<span class='danger'>[O] grabs [H]'s neck harshly and sinks in their fangs!</span>", "<span class='danger'>You sink your fangs into [H] and begin to [blood_to_take > BLOOD_SUCK_BASE ? "quickly" : ""] drain their blood.</span>", "<span class='notice'>You hear a soft puncture and a wet sucking noise.</span>")
+		O.visible_message(span_danger("[O] grabs [H]'s neck harshly and sinks in their fangs!"), span_danger("You sink your fangs into [H] and begin to [blood_to_take > BLOOD_SUCK_BASE ? "quickly" : ""] drain their blood."), span_notice("You hear a soft puncture and a wet sucking noise."))
 		playsound(O.loc, 'sound/weapons/bite.ogg', 50, 1)
 	else
-		to_chat(O, "<span class='notice'>You stealthily begin to drain blood from [H], be careful, as they will notice if their blood gets too low.</span>")
+		to_chat(O, span_notice("You stealthily begin to drain blood from [H], be careful, as they will notice if their blood gets too low."))
 		O.playsound_local(O, 'sound/weapons/bite.ogg', 50, 1)
 	if(!iscarbon(owner))
 		H.LAssailant = null
@@ -260,46 +271,49 @@
 		H.LAssailant = O
 	while(do_mob(O, H, 50))
 		if(!is_vampire(O))
-			to_chat(O, "<span class='warning'>Your fangs have disappeared!</span>")
+			to_chat(O, span_warning("Your fangs have disappeared!"))
 			return
 		if(blood_to_take > BLOOD_SUCK_BASE && (!(O.pulling == H) || O.grab_state < GRAB_NECK))//smooth movement from aggressive suck to normal suck
 			blood_to_take = BLOOD_SUCK_BASE
-			to_chat(O, "<span class='warning'>You lose your grip on [H], reducing your bloodsucking speed.</span>")
+			to_chat(O, span_warning("You lose your grip on [H], reducing your bloodsucking speed."))
 		if(blood_to_take == BLOOD_SUCK_BASE && (O.pulling == H && O.grab_state >= GRAB_NECK))//smooth movement from normal suck to aggressive suck
 			blood_to_take *= 1.5
-			to_chat(O, "<span class='warning'>Your enchanced grip on [H] allows you to extract blood faster.</span>")
+			to_chat(O, span_warning("Your enhanced grip on [H] allows you to extract blood faster."))
 		if(silent && O.pulling == H) //smooth movement from stealth suck to normal suck
 			silent = FALSE
 			blood_to_take = BLOOD_SUCK_BASE
-			O.visible_message("<span class='danger'>[O] grabs [H]'s neck harshly and sinks in their fangs!</span>", "<span class='danger'>You sink your fangs into [H] and begin to drain their blood.</span>", "<span class='notice'>You hear a soft puncture and a wet sucking noise.</span>")
+			O.visible_message(span_danger("[O] grabs [H]'s neck harshly and sinks in their fangs!"), span_danger("You sink your fangs into [H] and begin to drain their blood."), span_notice("You hear a soft puncture and a wet sucking noise."))
 			playsound(O.loc, 'sound/weapons/bite.ogg', 50, 1)
 		old_bloodtotal = total_blood
 		old_bloodusable = usable_blood
 		if(!H.blood_volume)
-			to_chat(O, "<span class='warning'>They've got no blood left to give.</span>")
+			to_chat(O, span_warning("They've got no blood left to give."))
 			break
 		blood_coeff = 0.8 //20 blood gain at base for living, 30 with aggressive grab, 10 with stealth
-		if(H.stat == DEAD)
-			blood_coeff = 0.2 //5 blood gain at base for dead, 7 with aggressive grab, 2 with stealth
+		if(H.stat == DEAD || !H.client)
+			blood_coeff = 0.2 //5 blood gain at base for dead or uninhabited, 7 with aggressive grab, 2 with stealth
 		blood = round(min(blood_to_take * blood_coeff, H.blood_volume))	//if the victim has less than the amount of blood left to take, just take all of it.
 		total_blood += blood			//get total blood 100% efficiency because fuck waiting out 5 fucking minutes and 1500 actual blood to get your 600 blood for the objective
 		usable_blood += blood * 0.75	//75% usable blood since it's actually used for stuff
 		check_vampire_upgrade()
 		if(old_bloodtotal != total_blood)
-			to_chat(O, "<span class='notice'><b>You have accumulated [total_blood] [total_blood > 1 ? "units" : "unit"] of blood[usable_blood != old_bloodusable ? ", and have [usable_blood] left to use" : ""].</b></span>")
+			to_chat(O, span_notice("<b>You have accumulated [total_blood] [total_blood > 1 ? "units" : "unit"] of blood[usable_blood != old_bloodusable ? ", and have [usable_blood] left to use" : ""].</b>"))
 		H.blood_volume = max(H.blood_volume - blood_to_take, 0)
 		if(silent && !warned && (H.blood_volume <= (BLOOD_VOLUME_SAFE(H) + 20)))
-			to_chat(O, "<span class='boldwarning'>Their blood is at a dangerously low level, they will likely begin to feel the effects if you continue...</span>")
+			to_chat(O, span_boldwarning("Their blood is at a dangerously low level, they will likely begin to feel the effects if you continue..."))
 			warned = TRUE
 		if(ishuman(O))
 			O.nutrition = min(O.nutrition + (blood * 0.5), NUTRITION_LEVEL_WELL_FED)
 		if(!silent)
 			playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1, extrarange = -4)//have to be within 3 tiles to hear the sucking
 		else if(H.get_blood_state() <= BLOOD_OKAY)
-			to_chat(H, "<span class='warning'>You feel oddly faint...</span>")
+			to_chat(H, span_warning("You notice [O] standing oddly close..."))
+		if(get_ability(/datum/vampire_passive/nostealth) && silent)
+			to_chat(O, span_boldwarning("You can no longer suck blood silently!"))
+			break
 
 	draining = null
-	to_chat(owner, "<span class='notice'>You stop draining [H.name] of blood.</span>")
+	to_chat(owner, span_notice("You stop draining [H.name] of blood."))
 
 /datum/antagonist/vampire/proc/force_add_ability(path)
 	var/spell = new path(owner)
@@ -345,10 +359,10 @@
 		if(!(p in old_powers))
 			if(istype(p, /obj/effect/proc_holder/spell))
 				var/obj/effect/proc_holder/spell/power = p
-				to_chat(owner.current, "<span class='notice'>[power.gain_desc]</span>")
+				to_chat(owner.current, span_notice("[power.gain_desc]"))
 			else if(istype(p, /datum/vampire_passive))
 				var/datum/vampire_passive/power = p
-				to_chat(owner, "<span class='notice'>[power.gain_desc]</span>")
+				to_chat(owner, span_notice("[power.gain_desc]"))
 
 /datum/antagonist/vampire/proc/handle_vampire_cloak()
 	if(!ishuman(owner.current))
@@ -383,19 +397,19 @@
 		var/count = 1
 		for(var/datum/objective/objective in objectives_given)
 			if(objective.check_completion())
-				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <span class='greentext'>Success!</span>"
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
 			else
-				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
 				vampwin = FALSE
 			count++
 
 	result += objectives_text
 
 	if(vampwin)
-		result += "<span class='greentext'>The vampire was successful!</span>"
+		result += span_greentext("The vampire was successful!")
 		SSachievements.unlock_achievement(/datum/achievement/greentext/vampire, owner.current.client)
 	else
-		result += "<span class='redtext'>The vampire has failed!</span>"
+		result += span_redtext("The vampire has failed!")
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
 
 	return result.Join("<br>")

@@ -3,6 +3,7 @@
 	typepath = /datum/round_event/grey_tide
 	max_occurrences = 2
 	min_players = 5
+	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/grey_tide
 	announceWhen = 50
@@ -89,7 +90,7 @@
 					continue
 				if(!GLOB.emergency_access)
 					make_maint_all_access()
-				else if(GLOB.security_level != SEC_LEVEL_DELTA)
+				else if(GLOB.security_level < SEC_LEVEL_RED)
 					set_security_level(SEC_LEVEL_RED)
 
 

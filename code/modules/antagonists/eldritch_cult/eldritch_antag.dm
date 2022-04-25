@@ -7,8 +7,22 @@
 	can_hijack = HIJACK_HIJACKER
 	var/give_equipment = TRUE
 	var/list/researched_knowledge = list()
+	var/list/transmutations = list()
 	var/total_sacrifices = 0
 	var/ascended = FALSE
+	var/charge = 1
+///current tier of knowledge this heretic is on, each level unlocks new knowledge bits
+	var/knowledge_tier = TIER_PATH //oh boy this is going to be fun
+///tracks the number of knowledges to next tier, currently 3
+	var/tier_counter = 0
+///list of knowledges available, by path. every odd tier is an exclusive upgrade, and every even one is a set of upgrades of which 3 need to be picked to move on.
+	var/list/knowledges = list(	TIER_PATH = list(/datum/eldritch_knowledge/base_ash, /datum/eldritch_knowledge/base_flesh, /datum/eldritch_knowledge/base_rust),
+	 							TIER_1 = list(/datum/eldritch_knowledge/ashen_shift, /datum/eldritch_knowledge/ashen_eyes, /datum/eldritch_knowledge/flesh_ghoul, /datum/eldritch_knowledge/rust_regen, /datum/eldritch_knowledge/armor, /datum/eldritch_knowledge/essence),
+	 							TIER_MARK = list(/datum/eldritch_knowledge/ash_mark, /datum/eldritch_knowledge/flesh_mark, /datum/eldritch_knowledge/rust_mark),
+	 							TIER_2 = list(/datum/eldritch_knowledge/blindness, /datum/eldritch_knowledge/corrosion, /datum/eldritch_knowledge/paralysis, /datum/eldritch_knowledge/raw_prophet, /datum/eldritch_knowledge/blood_siphon, /datum/eldritch_knowledge/area_conversion),
+	 							TIER_BLADE = list(/datum/eldritch_knowledge/ash_blade_upgrade, /datum/eldritch_knowledge/flesh_blade_upgrade, /datum/eldritch_knowledge/rust_blade_upgrade),
+	 							TIER_3 = list(/datum/eldritch_knowledge/flame_birth, /datum/eldritch_knowledge/cleave, /datum/eldritch_knowledge/stalker, /datum/eldritch_knowledge/ashy, /datum/eldritch_knowledge/rusty, /datum/eldritch_knowledge/entropic_plume),
+	 							TIER_ASCEND = list(/datum/eldritch_knowledge/ash_final, /datum/eldritch_knowledge/flesh_final, /datum/eldritch_knowledge/rust_final))
 
 /datum/antagonist/heretic/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
@@ -18,21 +32,20 @@
 
 /datum/antagonist/heretic/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ecult_op.ogg', 100, FALSE, pressure_affected = FALSE)//subject to change
-	to_chat(owner, "<span class='boldannounce'>You are the Heretic!</span><br>\
+	to_chat(owner, "[span_boldannounce("You are the Heretic!")]<br>\
 	<B>The old ones gave you these tasks to fulfill:</B>")
 	owner.announce_objectives()
 	to_chat(owner, "<span class='cult'>The book whispers, the forbidden knowledge walks once again!<br>\
 	Your book allows you to research abilities, read it very carefully! you cannot undo what has been done!<br>\
-	You gain charges by either collecitng influences or sacrifcing people tracked by the living heart<br> \
-	You can find a basic guide at : https://tgstation13.org/wiki/Heresy_101 </span>")
+	You gain charges by either collecting influences or sacrificing people tracked by the living heart<br> \
+	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span><br>\
+	If you need to quickly check your unlocked transmutation recipes, alt+click your Codex Cicatrix.")
 
 /datum/antagonist/heretic/on_gain()
 	var/mob/living/current = owner.current
 	if(ishuman(current))
 		forge_primary_objectives()
-		gain_knowledge(/datum/eldritch_knowledge/spell/basic)
-		gain_knowledge(/datum/eldritch_knowledge/living_heart)
-		gain_knowledge(/datum/eldritch_knowledge/codex_cicatrix)
+		gain_knowledge(/datum/eldritch_knowledge/basic)
 	current.log_message("has been converted to the cult of the forgotten ones!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
@@ -48,7 +61,7 @@
 		EK.on_lose(owner.current)
 
 	if(!silent)
-		to_chat(owner.current, "<span class='userdanger'>Your mind begins to flare as the otherwordly knowledge escapes your grasp!</span>")
+		to_chat(owner.current, span_userdanger("Your mind begins to flare as the otherwordly knowledge escapes your grasp!"))
 		owner.current.log_message("has renounced the cult of the old ones!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.RemoveMind(owner)
 	STOP_PROCESSING(SSprocessing,src)
@@ -76,10 +89,10 @@
 	var/item_name = initial(item_path.name)
 	var/where = H.equip_in_one_of_slots(T, slots)
 	if(!where)
-		to_chat(H, "<span class='userdanger'>Unfortunately, you weren't able to get a [item_name]. This is very bad and you should adminhelp immediately (press F1).</span>")
+		to_chat(H, span_userdanger("Unfortunately, you weren't able to get a [item_name]. This is very bad and you should adminhelp immediately (press F1)."))
 		return FALSE
 	else
-		to_chat(H, "<span class='danger'>You have a [item_name] in your [where].</span>")
+		to_chat(H, span_danger("You have a [item_name] in your [where]."))
 		if(where == "backpack")
 			SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
 		return TRUE
@@ -89,30 +102,29 @@
 	for(var/X in researched_knowledge)
 		var/datum/eldritch_knowledge/EK = researched_knowledge[X]
 		EK.on_life(owner.current)
+	for(var/Y in transmutations)
+		var/datum/eldritch_transmutation/ET = Y
+		ET.on_life(owner.current)
 
 /datum/antagonist/heretic/proc/forge_primary_objectives()
-	var/list/assasination = list()
+	var/list/assassination = list()
 	var/list/protection = list()
 	for(var/i in 1 to 2)
-		var/pck = pick("assasinate","stalk","protect")
+		var/pck = pick("assassinate","protect")
 		switch(pck)
 			if("assasinate")
-				var/datum/objective/assassinate/A = new
+				var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+				var/datum/objective/assassinate/A = new N
 				A.owner = owner
 				var/list/owners = A.get_owners()
 				A.find_target(owners,protection)
-				assasination += A.target
+				assassination += A.target
 				objectives += A
-			if("stalk")
-				var/datum/objective/stalk/S = new
-				S.owner = owner
-				S.find_target()
-				objectives += S
 			if("protect")
 				var/datum/objective/protect/P = new
 				P.owner = owner
 				var/list/owners = P.get_owners()
-				P.find_target(owners,assasination)
+				P.find_target(owners,assassination)
 				protection += P.target
 				objectives += P
 
@@ -130,7 +142,7 @@
 		var/mob/living/carbon/human/traitor_mob = owner.current
 		if(traitor_mob && istype(traitor_mob))
 			if(!silent)
-				to_chat(traitor_mob, "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
+				to_chat(traitor_mob, "Your knowledge allow you to overcome your clownish nature, allowing you to wield weapons with impunity.")
 			traitor_mob.dna.remove_mutation(CLOWNMUT)
 	current.faction |= "heretics"
 
@@ -147,6 +159,20 @@
 /datum/antagonist/heretic/get_admin_commands()
 	. = ..()
 	.["Equip"] = CALLBACK(src,.proc/equip_cultist)
+	.["Edit Research Points (Current: [charge])"] = CALLBACK(src, .proc/admin_edit_research)
+	.["Give Knowledge"] = CALLBACK(src, .proc/admin_give_knowledge)
+
+/datum/antagonist/heretic/proc/admin_edit_research(mob/admin)
+	var/research2add = input(admin, "Enter an amount to change research by (Negative numbers remove research)", "Research Grant") as null|num
+	if(!research2add)
+		return
+	charge += research2add
+
+/datum/antagonist/heretic/proc/admin_give_knowledge(mob/admin)
+	var/knowledge2add = input(admin, "Select a knowledge to grant", "Scholarship") as null | anything in get_researchable_knowledge()
+	if(!knowledge2add)
+		return
+	gain_knowledge(knowledge2add, TRUE)
 
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
@@ -163,16 +189,16 @@
 			if(objective.check_completion())
 				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</b></span>"
 			else
-				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+				parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
 				cultiewin = FALSE
 			count++
 	if(ascended)
-		parts += "<span class='greentext big'>HERETIC HAS ASCENDED!</span>"
+		parts += "<span class='greentext big'>THE HERETIC HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
-			parts += "<span class='greentext'>The heretic was successful!</span>"
+			parts += span_greentext("The heretic was successful!")
 		else
-			parts += "<span class='redtext'>The heretic has failed.</span>"
+			parts += span_redtext("The heretic has failed.")
 
 	parts += "<b>Knowledge Researched:</b> "
 
@@ -188,12 +214,21 @@
 // Knowledge //
 ////////////////
 
-/datum/antagonist/heretic/proc/gain_knowledge(datum/eldritch_knowledge/EK)
+/datum/antagonist/heretic/proc/gain_knowledge(datum/eldritch_knowledge/EK, forced = FALSE)
 	if(get_knowledge(EK))
 		return FALSE
 	var/datum/eldritch_knowledge/initialized_knowledge = new EK
 	researched_knowledge[initialized_knowledge.type] = initialized_knowledge
 	initialized_knowledge.on_gain(owner.current)
+	charge -= initialized_knowledge.cost
+	if(!initialized_knowledge.tier == TIER_NONE && knowledge_tier != TIER_ASCEND)
+		if(IS_EXCLUSIVE_KNOWLEDGE(initialized_knowledge))
+			knowledge_tier++
+			to_chat(owner, span_cultbold("Your new knowledge brings you a breakthrough! you are now able to research a new group of subjects."))
+		else if(initialized_knowledge.tier == knowledge_tier && ++tier_counter == 3)
+			knowledge_tier++
+			tier_counter = 0
+			to_chat(owner, span_cultbold("Your studies are bearing fruit, you are on the edge of a breakthrough..."))
 	return TRUE
 
 /datum/antagonist/heretic/proc/get_researchable_knowledge()
@@ -201,9 +236,11 @@
 	var/list/banned_knowledge = list()
 	for(var/X in researched_knowledge)
 		var/datum/eldritch_knowledge/EK = researched_knowledge[X]
-		researchable_knowledge |= EK.next_knowledge
 		banned_knowledge |= EK.banned_knowledge
 		banned_knowledge |= EK.type
+	for(var/i in TIER_PATH to knowledge_tier)
+		for(var/knowledge in knowledges[i])
+			researchable_knowledge += knowledge
 	researchable_knowledge -= banned_knowledge
 	return researchable_knowledge
 
@@ -213,37 +250,16 @@
 /datum/antagonist/heretic/proc/get_all_knowledge()
 	return researched_knowledge
 
+/datum/antagonist/heretic/proc/get_transmutation(wanted)
+	return transmutations[wanted]
+
+/datum/antagonist/heretic/proc/get_all_transmutations()
+	return transmutations
+
+
 ////////////////
 // Objectives //
 ////////////////
-
-/datum/objective/stalk
-	name = "spendtime"
-	var/timer = 5 MINUTES
-
-/datum/objective/stalk/process()
-	if(owner?.current.stat != DEAD && target?.current.stat != DEAD && (target.current in view(5,owner.current)))
-		timer -= 1 SECONDS
-	///we don't want to process after the counter reaches 0, otherwise it is wasted processing
-	if(timer <= 0)
-		STOP_PROCESSING(SSprocessing,src)
-
-/datum/objective/stalk/Destroy(force, ...)
-	STOP_PROCESSING(SSprocessing,src)
-	return ..()
-
-/datum/objective/stalk/update_explanation_text()
-	//we want to start processing after we set the timer
-	timer += rand(-3 MINUTES, 3 MINUTES)
-	START_PROCESSING(SSprocessing,src)
-	if(target?.current)
-		explanation_text = "Stalk [target.name] for at least [DisplayTimeText(timer)] while they're alive."
-	else
-		explanation_text = "Free Objective"
-
-/datum/objective/stalk/check_completion()
-	return timer <= 0 || explanation_text == "Free Objective"
-
 /datum/objective/sacrifice_ecult
 	name = "sacrifice"
 
@@ -253,6 +269,8 @@
 	explanation_text = "Sacrifice at least [target_amount] people."
 
 /datum/objective/sacrifice_ecult/check_completion()
+	if(..())
+		return TRUE
 	if(!owner)
 		return FALSE
 	var/datum/antagonist/heretic/cultie = owner.has_antag_datum(/datum/antagonist/heretic)

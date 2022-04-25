@@ -1,0 +1,585 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plasteel/stairs/goon/stairs2_wide{
+	dir = 1
+	},
+/area/ruin/unpowered)
+"b" = (
+/obj/structure/closet/crate/large,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 4;
+	name = "4maintenance loot spawner"
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/unpowered)
+"e" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"g" = (
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2,
+/area/ruin/unpowered)
+"j" = (
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/unpowered)
+"l" = (
+/obj/effect/decal/remains/human{
+	layer = 3.01
+	},
+/obj/item/kitchen/knife/combat,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/unpowered)
+"m" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered)
+"o" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/template_noop,
+/area/template_noop)
+"p" = (
+/turf/template_noop,
+/area/template_noop)
+"t" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"u" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"v" = (
+/turf/closed/wall/rust,
+/area/ruin/unpowered)
+"w" = (
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide,
+/area/ruin/unpowered)
+"x" = (
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"y" = (
+/turf/open/floor/plasteel/stairs/goon/stairs_middle,
+/area/ruin/unpowered)
+"B" = (
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/ruin/unpowered)
+"D" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/unpowered)
+"E" = (
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"F" = (
+/obj/item/ammo_casing/a546,
+/obj/machinery/door/airlock/command{
+	desc = "Appears to be stuck.";
+	locked = 1;
+	name = "door"
+	},
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered)
+"G" = (
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/unpowered)
+"H" = (
+/turf/closed/wall,
+/area/ruin/unpowered)
+"I" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/template_noop)
+"J" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/template_noop)
+"K" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/unpowered)
+"L" = (
+/turf/closed/indestructible/rock,
+/area/template_noop)
+"M" = (
+/obj/effect/turf_decal/trimline/red,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"N" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered)
+"O" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"P" = (
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered)
+"S" = (
+/mob/living/simple_animal/hostile/syndicate/ranged,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"W" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+
+(1,1,1) = {"
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+"}
+(2,1,1) = {"
+p
+p
+p
+p
+p
+v
+v
+v
+H
+p
+p
+J
+p
+p
+p
+p
+p
+p
+p
+p
+"}
+(3,1,1) = {"
+p
+p
+p
+p
+p
+v
+W
+j
+H
+p
+p
+J
+J
+J
+J
+p
+p
+p
+p
+p
+"}
+(4,1,1) = {"
+p
+p
+H
+v
+H
+H
+E
+D
+H
+H
+J
+J
+J
+J
+J
+p
+p
+p
+p
+p
+"}
+(5,1,1) = {"
+p
+p
+v
+E
+E
+w
+W
+W
+w
+w
+J
+J
+J
+x
+J
+J
+p
+p
+p
+p
+"}
+(6,1,1) = {"
+p
+p
+v
+E
+W
+g
+E
+E
+g
+g
+P
+P
+J
+J
+J
+I
+p
+p
+p
+p
+"}
+(7,1,1) = {"
+p
+p
+v
+E
+E
+H
+v
+G
+v
+H
+H
+P
+J
+J
+I
+I
+I
+p
+p
+p
+"}
+(8,1,1) = {"
+p
+J
+v
+W
+E
+H
+L
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+p
+p
+"}
+(9,1,1) = {"
+p
+J
+J
+E
+t
+H
+L
+L
+H
+H
+v
+G
+v
+H
+H
+H
+v
+I
+L
+p
+"}
+(10,1,1) = {"
+p
+p
+H
+l
+m
+v
+L
+B
+B
+B
+W
+E
+E
+y
+y
+E
+I
+I
+L
+p
+"}
+(11,1,1) = {"
+H
+H
+H
+H
+F
+v
+v
+B
+B
+b
+W
+K
+j
+a
+a
+G
+I
+E
+L
+p
+"}
+(12,1,1) = {"
+v
+E
+B
+E
+E
+E
+B
+E
+B
+E
+E
+W
+W
+e
+e
+H
+I
+G
+L
+p
+"}
+(13,1,1) = {"
+G
+W
+E
+E
+W
+W
+E
+W
+W
+E
+O
+G
+N
+E
+W
+v
+J
+L
+p
+p
+"}
+(14,1,1) = {"
+v
+B
+B
+E
+K
+E
+N
+P
+P
+M
+E
+O
+u
+W
+E
+v
+L
+L
+p
+p
+"}
+(15,1,1) = {"
+v
+B
+B
+K
+K
+E
+O
+u
+N
+B
+j
+N
+E
+B
+B
+H
+L
+p
+p
+p
+"}
+(16,1,1) = {"
+H
+B
+B
+K
+E
+E
+E
+P
+W
+E
+K
+K
+W
+B
+B
+H
+L
+p
+p
+p
+"}
+(17,1,1) = {"
+v
+N
+N
+m
+S
+B
+B
+E
+W
+O
+j
+j
+W
+W
+E
+I
+p
+p
+p
+p
+"}
+(18,1,1) = {"
+I
+I
+J
+N
+I
+B
+B
+B
+E
+W
+W
+u
+I
+j
+E
+G
+p
+p
+p
+p
+"}
+(19,1,1) = {"
+p
+J
+P
+p
+I
+p
+p
+p
+I
+G
+I
+o
+E
+E
+p
+p
+p
+p
+p
+p
+"}
+(20,1,1) = {"
+p
+p
+p
+p
+p
+p
+I
+p
+p
+W
+W
+o
+I
+I
+p
+p
+p
+p
+p
+p
+"}

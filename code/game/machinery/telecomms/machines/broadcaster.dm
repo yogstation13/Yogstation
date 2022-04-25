@@ -10,12 +10,13 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 /obj/machinery/telecomms/broadcaster
 	name = "subspace broadcaster"
-	icon_state = "broadcaster"
+	icon_state = "caster"
 	desc = "A dish-shaped machine used to broadcast processed subspace signals."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 25
 	circuit = /obj/item/circuitboard/machine/telecomms/broadcaster
+	on_icon = "broadcaster_on"
 
 /obj/machinery/telecomms/broadcaster/receive_information(datum/signal/subspace/signal, obj/machinery/telecomms/machine_from)
 	// Don't broadcast rejected signals
@@ -53,7 +54,20 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 			GLOB.recentmessages = list()
 
 	/* --- Do a snazzy animation! --- */
-	flick("broadcaster_send", src)
+	var/mutable_appearance/sending = mutable_appearance(icon, "broadcaster_send", 1)
+	flick(sending, src)
+
+/obj/machinery/telecomms/broadcaster/update_icon() // Special fuckery
+	cut_overlays()
+	if(on)
+		var/mutable_appearance/on_overlay = mutable_appearance(icon, on_icon, 0)
+		add_overlay(on_overlay)
+	var/mutable_appearance/base_overlay
+	if(panel_open)
+		base_overlay = mutable_appearance(icon, "[initial(icon_state)]_o")
+	else
+		base_overlay = mutable_appearance(icon, initial(icon_state))
+	add_overlay(base_overlay)
 
 /obj/machinery/telecomms/broadcaster/Destroy()
 	// In case message_delay is left on 1, otherwise it won't reset the list and people can't say the same thing twice anymore.

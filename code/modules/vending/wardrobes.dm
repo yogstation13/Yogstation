@@ -8,7 +8,14 @@
 	input_display_header = "Returned Clothing"
 
 /obj/machinery/vending/wardrobe/canLoadItem(obj/item/I,mob/user)
-	return (I.type in products)
+	if(I.type in products)
+		// Yogs -- weird snowflake check to make sure you can't print an endless amount of encryption chips.
+		// In general, vending machines should try to ensure that anything they dare accept as input is in the exact same state that it came out of them with.
+		if(istype(I,/obj/item/radio/headset) && I.type != /obj/item/radio/headset)
+			var/obj/item/radio/headset/HS = I
+			if(HS.keyslot != initial(HS.keyslot)) // Hey, you stole something!
+				return FALSE
+		return TRUE
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper SecDrobe"
@@ -23,6 +30,7 @@
 					/obj/item/clothing/under/rank/security = 3,
 					/obj/item/clothing/under/yogs/armyuniform = 3,
 					/obj/item/clothing/shoes/jackboots = 3,
+					/obj/item/clothing/shoes/xeno_wraps/jackboots = 3,
 					/obj/item/clothing/head/beret/sec = 3,
 					/obj/item/clothing/head/beret/corpsec = 3,
 					/obj/item/clothing/head/soft/sec = 3,
@@ -70,9 +78,10 @@
 					/obj/item/clothing/under/rank/medical/green = 4,
 					/obj/item/clothing/under/rank/medical/purple = 4,
 					/obj/item/clothing/under/rank/medical = 4,
-					/obj/item/clothing/suit/toggle/labcoat = 4,
+					/obj/item/clothing/suit/toggle/labcoat/md = 4,
 					/obj/item/clothing/suit/toggle/labcoat/emt = 4,
 					/obj/item/clothing/shoes/sneakers/white = 4,
+					/obj/item/clothing/shoes/xeno_wraps/medical = 4,
 					/obj/item/clothing/head/soft/emt = 4,
 					/obj/item/clothing/suit/apron/surgical = 4,
 					/obj/item/clothing/mask/surgical = 4,
@@ -98,6 +107,7 @@
 					/obj/item/clothing/under/rank/engineer/hazard = 3,
 					/obj/item/clothing/suit/hazardvest = 3,
 					/obj/item/clothing/shoes/workboots = 3,
+					/obj/item/clothing/shoes/xeno_wraps/engineering = 3,
 					/obj/item/clothing/head/beret/eng = 3,
 					/obj/item/clothing/head/hardhat = 3,
 					/obj/item/clothing/head/welding/demon = 1,
@@ -157,6 +167,7 @@
 					/obj/item/clothing/under/rank/cargotech = 3,
 					/obj/item/clothing/under/rank/cargotech/skirt = 3,
 					/obj/item/clothing/shoes/sneakers/black = 3,
+					/obj/item/clothing/shoes/xeno_wraps/cargo = 3,
 					/obj/item/clothing/gloves/fingerless = 3,
 					/obj/item/clothing/head/soft = 3,
 					/obj/item/radio/headset/headset_cargo = 3,
@@ -185,7 +196,8 @@
 					/obj/item/clothing/shoes/sneakers/black = 2,
 					/obj/item/clothing/gloves/fingerless = 2,
 					/obj/item/clothing/head/soft/black = 2,
-					/obj/item/clothing/mask/bandana/skull = 2)
+					/obj/item/clothing/mask/bandana/skull = 2,
+					/obj/item/clothing/suit/hooded/amech = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/robo_wardrobe
 	payment_department = ACCOUNT_SCI
 /obj/item/vending_refill/wardrobe/robo_wardrobe
@@ -206,6 +218,7 @@
 					/obj/item/clothing/under/rank/scientist/skirt = 3,
 					/obj/item/clothing/suit/toggle/labcoat/science = 3,
 					/obj/item/clothing/shoes/sneakers/white = 3,
+					/obj/item/clothing/shoes/xeno_wraps/science = 3,
 					/obj/item/radio/headset/headset_sci = 3,
 					/obj/item/clothing/mask/gas = 3,
 					/obj/item/clothing/accessory/armband/science = 2)
@@ -404,11 +417,13 @@
 					/obj/item/clothing/under/yogs/caretaker = 1,
 					/obj/item/clothing/suit/hooded/caretakercloak = 1,
 					/obj/item/clothing/suit/yogs/monkrobes = 1,
+					/obj/item/clothing/suit/hooded/amech = 2,
 					/obj/item/storage/box/fancy/candle_box = 2,
 					/obj/item/clothing/head/kippah = 3,
 					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
 					/obj/item/clothing/head/taqiyahwhite = 1,
-					/obj/item/clothing/head/taqiyahred = 3)
+					/obj/item/clothing/head/taqiyahred = 3,
+					/obj/item/clothing/suit/hooded/techpriest = 2)
 	contraband = list(/obj/item/toy/plush/plushvar = 1,
 					/obj/item/toy/plush/narplush = 1,
 					/obj/item/clothing/head/medievaljewhat = 3,

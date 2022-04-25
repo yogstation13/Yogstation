@@ -125,44 +125,44 @@
 	if(!id)
 		return
 	if(has_ability(id))
-		to_chat(admin, "<span class='warning'>[owner.current] already has this ability!</span>")
+		to_chat(admin, span_warning("[owner.current] already has this ability!"))
 		return
 	if(id != "all")
 		add_ability(id)
-		to_chat(admin, "<span class='notice'>Gave [owner.current] the ability \"[id]\".</span>")
+		to_chat(admin, span_notice("Gave [owner.current] the ability \"[id]\"."))
 	else
 		for(var/V in subtypesof(/datum/action/innate/darkspawn))
 			var/datum/action/innate/darkspawn/D = V
 			if(!has_ability(initial(D.id)) && !initial(D.blacklisted))
 				add_ability(initial(D.id))
-		to_chat(admin, "<span class='notice'>Gave [owner.current] all abilities.</span>")
+		to_chat(admin, span_notice("Gave [owner.current] all abilities."))
 
 /datum/antagonist/darkspawn/proc/admin_take_ability(mob/admin)
 	var/id = stripped_input(admin, "Enter an ability ID.", "Take Ability")
 	if(!id)
 		return
 	if(!has_ability(id))
-		to_chat(admin, "<span class='warning'>[owner.current] does not have this ability!</span>")
+		to_chat(admin, span_warning("[owner.current] does not have this ability!"))
 		return
 	remove_ability(id)
-	to_chat(admin, "<span class='danger'>Took from [owner.current] the ability \"[id]\".</span>")
+	to_chat(admin, span_danger("Took from [owner.current] the ability \"[id]\"."))
 
 /datum/antagonist/darkspawn/proc/admin_give_upgrade(mob/admin)
 	var/id = stripped_input(admin, "Enter an upgrade ID, for \"all\" to give all of them.", "Give Upgrade")
 	if(!id)
 		return
 	if(has_upgrade(id))
-		to_chat(admin, "<span class='warning'>[owner.current] already has this upgrade!</span>")
+		to_chat(admin, span_warning("[owner.current] already has this upgrade!"))
 		return
 	if(id != "all")
 		add_upgrade(id)
-		to_chat(admin, "<span class='notice'>Gave [owner.current] the upgrade \"[id]\".</span>")
+		to_chat(admin, span_notice("Gave [owner.current] the upgrade \"[id]\"."))
 	else
 		for(var/V in subtypesof(/datum/darkspawn_upgrade))
 			var/datum/darkspawn_upgrade/D = V
 			if(!has_upgrade(initial(D.id)))
 				add_upgrade(initial(D.id))
-		to_chat(admin, "<span class='notice'>Gave [owner.current] all upgrades.</span>")
+		to_chat(admin, span_notice("Gave [owner.current] all upgrades."))
 
 /datum/antagonist/darkspawn/proc/admin_edit_psi(mob/admin)
 	var/new_psi = input(admin, "Enter a new psi amount. (Current: [psi]/[psi_cap])", "Change Psi", psi) as null|num
@@ -187,9 +187,9 @@
 
 /datum/antagonist/darkspawn/greet()
 	to_chat(owner.current, "<span class='velvet bold big'>You are a darkspawn!</span>")
-	to_chat(owner.current, "<i>Append :k or .k before your message to silently speak with any other darkspawn.</i>")
+	to_chat(owner.current, "<i>Append :[MODE_KEY_DARKSPAWN] or .[MODE_KEY_DARKSPAWN] before your message to silently speak with any other darkspawn.</i>")
 	to_chat(owner.current, "<i>When you're ready, retreat to a hidden location and Divulge to shed your human skin.</i>")
-	to_chat(owner.current, "<span class='boldwarning'>If you do not do this within twenty five minutes, this will happen involuntarily. Prepare quickly.</span>")
+	to_chat(owner.current, span_boldwarning("If you do not do this within twenty five minutes, this will happen involuntarily. Prepare quickly."))
 	to_chat(owner.current, "<i>Remember that this will make you die in the light and heal in the dark - keep to the shadows.</i>")
 	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/darkspawn.ogg', 50, FALSE)
 
@@ -200,6 +200,8 @@
 	explanation_text = "Become lucid and perform the Sacrament. You will need to devour [SSticker.mode.required_succs] different people's wills and purchase all passive upgrades to do so."
 
 /datum/objective/darkspawn/check_completion()
+	if(..())
+		return TRUE
 	return (SSticker.mode.sacrament_done)
 
 /datum/antagonist/darkspawn/proc/adjust_darkspawn_hud(add_hud)
@@ -278,7 +280,7 @@
 			action.darkspawn = src
 			abilities[id] = action
 			if(!silent)
-				to_chat(owner.current, "<span class='velvet'>You have learned the <b>[action.name]</b> ability.</span>")
+				to_chat(owner.current, span_velvet("You have learned the <b>[action.name]</b> ability."))
 			if(!no_cost)
 				lucidity = max(0, lucidity - action.lucidity_price)
 			return TRUE
@@ -288,7 +290,7 @@
 		return
 	var/datum/action/innate/darkspawn/D = abilities[id]
 	if(!silent)
-		to_chat(owner.current, "<span class='velvet'>You have lost the <b>[D.name]</b> ability.</span>")
+		to_chat(owner.current, span_velvet("You have lost the <b>[D.name]</b> ability."))
 	QDEL_NULL(abilities[id])
 	abilities -= abilities[id]
 	return TRUE
@@ -313,7 +315,7 @@
 /datum/antagonist/darkspawn/proc/begin_force_divulge()
 	if(darkspawn_state != MUNDANE)
 		return
-	to_chat(owner.current, "<span class='userdanger'>You feel the skin you're wearing crackling like paper - you will forcefully divulge soon! Get somewhere hidden and dark!</span>")
+	to_chat(owner.current, span_userdanger("You feel the skin you're wearing crackling like paper - you will forcefully divulge soon! Get somewhere hidden and dark!"))
 	owner.current.playsound_local(owner.current, 'yogstation/sound/magic/divulge_01.ogg', 50, FALSE, pressure_affected = FALSE)
 	addtimer(CALLBACK(src, .proc/force_divulge), 1200)
 
@@ -326,11 +328,11 @@
 	var/mob/living/carbon/human/H = owner.current
 	if(!H)
 		owner.current.gib(TRUE)
-	H.visible_message("<span class='boldwarning'>[H]'s skin begins to slough off in sheets!</span>", \
-	"<span class='userdanger'>You can't maintain your disguise any more! It begins sloughing off!</span>")
+	H.visible_message(span_boldwarning("[H]'s skin begins to slough off in sheets!"), \
+	span_userdanger("You can't maintain your disguise any more! It begins sloughing off!"))
 	playsound(H, 'yogstation/sound/creatures/darkspawn_force_divulge.ogg', 50, FALSE)
 	H.do_jitter_animation(1000)
-	var/processed_message = "<span class='velvet'><b>\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.</b></span>"
+	var/processed_message = span_velvet("<b>\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.</b>")
 	for(var/mob/M in GLOB.player_list)
 		if(M.stat == DEAD)
 			var/link = FOLLOW_LINK(M, H)
@@ -338,8 +340,8 @@
 		else if(isdarkspawn(M))
 			to_chat(M, processed_message)
 	addtimer(CALLBACK(src, .proc/divulge), 25)
-	addtimer(CALLBACK(/atom/.proc/visible_message, H, "<span class='boldwarning'>[H]'s skin sloughs off, revealing black flesh covered in symbols!</span>", \
-	"<span class='userdanger'>You have forcefully divulged!</span>"), 25)
+	addtimer(CALLBACK(/atom/.proc/visible_message, H, span_boldwarning("[H]'s skin sloughs off, revealing black flesh covered in symbols!"), \
+	span_userdanger("You have forcefully divulged!")), 25)
 
 /datum/antagonist/darkspawn/proc/divulge()
 	if(darkspawn_state >= DIVULGED)
@@ -348,6 +350,7 @@
 	to_chat(user, "<span class='velvet bold'>Your mind has expanded. The Psi Web is now available. Avoid the light. Keep to the shadows. Your time will come.</span>")
 	user.fully_heal()
 	user.set_species(/datum/species/darkspawn)
+	show_to_ghosts = TRUE
 	add_ability("psi_web", TRUE)
 	add_ability("sacrament", TRUE)
 	add_ability("devour_will", TRUE)
@@ -362,6 +365,7 @@
 	user.mind.transfer_to(progenitor)
 	progenitor.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/progenitor_curse(null))
 	if(!SSticker.mode.sacrament_done)
+		set_security_level(SEC_LEVEL_GAMMA)
 		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
 	for(var/V in abilities)
 		remove_ability(abilities[V], TRUE)
@@ -381,10 +385,13 @@
 
 // Psi Web code //
 
-/datum/antagonist/darkspawn/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.not_incapacitated_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/antagonist/darkspawn/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/antagonist/darkspawn/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "PsiWeb", "Psi Web", 900, 480, master_ui, state)
+		ui = new(user, src, "PsiWeb", "Psi Web")
 		ui.open()
 
 /datum/antagonist/darkspawn/ui_data(mob/user)

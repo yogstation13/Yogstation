@@ -135,8 +135,18 @@
 /datum/map_template/shuttle/aux_base
 	port_id = "aux_base"
 
-/datum/map_template/shuttle/escape_pod
+/datum/map_template/shuttle/escape_pod/
 	port_id = "escape_pod"
+	suffix = "1"
+
+/datum/map_template/shuttle/escape_pod/two
+	suffix = "2"
+
+/datum/map_template/shuttle/escape_pod/three
+	suffix = "3"
+
+/datum/map_template/shuttle/escape_pod/four
+	suffix = "4"
 
 /datum/map_template/shuttle/assault_pod
 	port_id = "assault_pod"
@@ -166,18 +176,18 @@
 	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 5000
 
-/datum/map_template/shuttle/emergency/construction_small
+/datum/map_template/shuttle/emergency/construction/small
 	suffix = "construction_small"
 	name = "Build Your Own Shuttle, Jr."
 	description = "The full-size BYOS too big for your taste? Aside from the reduced size and cost, this has the all same (lack of) amenities as its full-sized sibling."
 	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 2000
 
-/datum/map_template/shuttle/emergency/airless/prerequisites_met()
+/datum/map_template/shuttle/emergency/construction/prerequisites_met()
 	// first 10 minutes only
-	return world.time - SSticker.round_start_time < 6000
+	return world.time - SSticker.round_start_time < 12000
 
-/datum/map_template/shuttle/emergency/airless/post_load()
+/datum/map_template/shuttle/emergency/construction/post_load()
 	. = ..()
 	//enable buying engines from cargo
 	var/datum/supply_pack/P = SSshuttle.supply_packs[/datum/supply_pack/engineering/shuttle_engine]
@@ -210,6 +220,13 @@
 	description = "We did not expect an evacuation this quickly. All we have available is two escape pods."
 	admin_notes = "For player punishment."
 
+/datum/map_template/shuttle/emergency/pool
+	suffix = "pool"
+	name = "Pool Party!"
+	description = "A modified version of the Box escape shuttle that comes with a preinstalled pool. Fun for the whole family!"
+	admin_notes = "Pool filter can be very easily filled with acid or other harmful chemicals."
+	credit_cost = 15000
+	
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
 	name = "Mother Russia Bleeds"
@@ -233,7 +250,7 @@
 	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 credits, payable in cash and mineral coin."
 	extra_desc = "This shuttle costs 500 credits to board."
 	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
-	credit_cost = 50000
+	credit_cost = 125000
 
 /datum/map_template/shuttle/emergency/discoinferno
 	suffix = "discoinferno"
@@ -252,7 +269,7 @@
 	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/arena/prerequisites_met()
-	return SSachievements.has_achievement(/datum/achievement/bubblegum, usr.client)
+	return GLOB.bubblegum_dead
 
 /datum/map_template/shuttle/emergency/birdboat
 	suffix = "birdboat"
@@ -366,6 +383,20 @@
 	description = "The Nanotrasen Emergency Shuttle Port(NES Port for short) is a shuttle used at other less known Nanotrasen facilities and has a more open inside for larger crowds, but fewer onboard shuttle facilities."
 	credit_cost = 500
 
+/datum/map_template/shuttle/emergency/kilo
+	suffix = "kilo"
+	name = "Kilo Station Emergency Shuttle"
+	credit_cost = 5000
+	description = "A fully functional shuttle including a complete infirmary, storage facilities, and regular amenities."
+
+/datum/map_template/shuttle/emergency/rollerdome
+	suffix = "rollerdome"
+	name = "Uncle Pete's Rollerdome"
+	description = "Created by a freak accident in which a member of the NT Temporal Discovery Division accidently warped a building from the past into our second Disco Inferno shuttle. \
+	It resembles a 1990s era rollerdome all the way down to the carpet texture."
+	admin_notes = "ONLY NINETIES KIDS REMEMBER. Uses the fun balloon and drone from the Emergency Bar."
+	credit_cost = 2500
+
 /datum/map_template/shuttle/emergency/wabbajack
 	suffix = "wabbajack"
 	name = "NT Lepton Violet"
@@ -408,26 +439,35 @@
 	suffix = "fancy"
 	name = "fancy transport ferry"
 	description = "At some point, someone upgraded the ferry to have fancier flooring... and fewer seats."
+	
+/datum/map_template/shuttle/ferry/kilo
+	suffix = "kilo"
+	name = "kilo transport ferry"
+	description = "Standard issue CentCom Ferry for Kilo pattern stations. Includes additional equipment and rechargers."
 
-/datum/map_template/shuttle/whiteship/hospital
-	suffix = "hospital"
+/datum/map_template/shuttle/whiteship/box
+	suffix = "box"
 	name = "Hospital Ship"
 
-/datum/map_template/shuttle/whiteship/salvage
-	suffix = "salvage"
+/datum/map_template/shuttle/whiteship/meta
+	suffix = "meta"
 	name = "Salvage Ship"
 
-/datum/map_template/shuttle/whiteship/ufo
-	suffix = "ufo"
+/datum/map_template/shuttle/whiteship/pubby
+	suffix = "pubby"
 	name = "NT White UFO"
 
-/datum/map_template/shuttle/whiteship/construction
-	suffix = "construction"
+/datum/map_template/shuttle/whiteship/cere
+	suffix = "cere"
 	name = "NT Construction Vessel"
 
-/datum/map_template/shuttle/whiteship/frigate
-	suffix = "frigate"
+/datum/map_template/shuttle/whiteship/delta
+	suffix = "delta"
 	name = "NT Frigate"
+
+/datum/map_template/shuttle/whiteship/pod
+	suffix = "whiteship_pod"
+	name = "Salvage Pod"
 
 /datum/map_template/shuttle/cargo/box
 	suffix = "box"
@@ -436,6 +476,14 @@
 /datum/map_template/shuttle/cargo/birdboat
 	suffix = "birdboat"
 	name = "supply shuttle (Birdboat)"
+	
+/datum/map_template/shuttle/cargo/kilo
+	suffix = "kilo"
+	name = "supply shuttle (Kilo)"
+
+/datum/map_template/shuttle/cargo/gax
+	suffix = "gax"
+	name = "supply shuttle (Gax)"
 
 /datum/map_template/shuttle/emergency/delta
 	suffix = "delta"
@@ -464,10 +512,22 @@
 /datum/map_template/shuttle/mining/box
 	suffix = "box"
 	name = "mining shuttle (Box)"
+	
+/datum/map_template/shuttle/mining/kilo
+	suffix = "kilo"
+	name = "mining shuttle (Kilo)"
 
 /datum/map_template/shuttle/labour/box
 	suffix = "box"
 	name = "labour shuttle (Box)"
+	
+/datum/map_template/shuttle/labour/kilo
+	suffix = "kilo"
+	name = "labour shuttle (Kilo)"
+
+/datum/map_template/shuttle/labour/gax
+	suffix = "gax"
+	name = "labour shuttle (Gax)"
 
 /datum/map_template/shuttle/infiltrator/basic
 	suffix = "basic"
@@ -492,6 +552,10 @@
 /datum/map_template/shuttle/arrival/omega
 	suffix = "omega"
 	name = "arrival shuttle (Omega)"
+	
+/datum/map_template/shuttle/arrival/kilo
+	suffix = "kilo"
+	name = "arrival shuttle (Kilo)"
 
 /datum/map_template/shuttle/aux_base/default
 	suffix = "default"
@@ -548,3 +612,13 @@
 /datum/map_template/shuttle/snowdin/excavation
 	suffix = "excavation"
 	name = "Snowdin Excavation Elevator"
+
+/datum/map_template/shuttle/arrival/gax
+	suffix = "gax"
+	name = "arrival shuttle (Gax)"
+
+/datum/map_template/shuttle/ai/gax
+	port_id = "ai"
+	suffix = "gax"
+	name = "ai ship shuttle (Gax)"
+

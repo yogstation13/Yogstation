@@ -7,7 +7,7 @@
 	ID_fluff()
 
 /obj/item/card/id/proc/ID_fluff()
-	var/job = assignment
+	var/job = originalassignment
 	var/list/idfluff = list(
 	"Assistant" = list("civillian","green"),
 	"Captain" = list("captain","gold"),
@@ -39,11 +39,13 @@
 	"Chaplain" = list("civillian","black"),
 	"Clown" = list("clown","rainbow"),
 	"Mime" = list("mime","white"),
+	"Artist" = list("civillian","yellow"),
 	"Clerk" = list("civillian","blue"),
 	"Tourist" = list("civillian","yellow"),
 	"Warden" = list("security","black"),
 	"Security Officer" = list("security","red"),
 	"Detective" = list("security","brown"),
+	"Brig Physician" = list("security","blue"),
 	"Lawyer" = list("security","purple")
 	)
 	if(job in idfluff)
@@ -71,13 +73,13 @@
 	if(!otherEmag)
 		return
 	if(prob(10))
-		to_chat(user, "<span class='notice'>By some ungodly miracle, the emag gains new functionality instead of being destroyed.</span>")
+		to_chat(user, span_notice("By some ungodly miracle, the emag gains new functionality instead of being destroyed."))
 		playsound(src.loc, "sparks", 50, 1)
 		qdel(otherEmag)
 		color = rgb(40, 130, 255)
 		prox_check = FALSE
 		return
-	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other before destroying themselves.</span>")
+	to_chat(user, span_notice("The cyptographic sequencers attempt to override each other before destroying themselves."))
 	playsound(src.loc, "sparks", 50, 1)
 	qdel(otherEmag)
 	qdel(src)

@@ -5,6 +5,7 @@
 	item_color = "red_pyjamas"
 	item_state = "w_suit"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/pj/blue
 	name = "blue pj's"
@@ -13,6 +14,7 @@
 	item_color = "blue_pyjamas"
 	item_state = "w_suit"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/patriotsuit
 	name = "Patriotic Suit"
@@ -21,6 +23,7 @@
 	item_state = "ek"
 	item_color = "ek"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/scratch
 	name = "white suit"
@@ -29,6 +32,7 @@
 	item_state = "scratch"
 	item_color = "scratch"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/scratch/skirt
 	name = "white suitskirt"
@@ -39,6 +43,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/sl_suit
 	desc = "It's a very amish looking suit."
@@ -46,6 +51,7 @@
 	icon_state = "sl_suit"
 	item_color = "sl_suit"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/roman
 	name = "\improper Roman armor"
@@ -64,6 +70,7 @@
 	item_state = "waiter"
 	item_color = "waiter"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/prisoner
 	name = "prison jumpsuit"
@@ -74,6 +81,7 @@
 	has_sensor = LOCKED_SENSORS
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/prisoner/skirt
 	name = "prison jumpskirt"
@@ -84,6 +92,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
@@ -91,14 +100,16 @@
 	icon_state = "mailman"
 	item_state = "b_suit"
 	item_color = "mailman"
-
+	mutantrace_variation = MUTANTRACE_VARIATION
+/* Commented out in favor of yogstation custom content
 /obj/item/clothing/under/rank/psyche
 	name = "psychedelic jumpsuit"
 	desc = "Groovy!"
 	icon_state = "psyche"
 	item_state = "p_suit"
 	item_color = "psyche"
-
+	mutantrace_variation = MUTANTRACE_VARIATION
+*/
 /obj/item/clothing/under/rank/clown/sexy
 	name = "sexy-clown suit"
 	desc = "It makes you look HONKable!"
@@ -106,6 +117,7 @@
 	item_state = "sexyclown"
 	item_color = "sexyclown"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/jabroni
 	name = "Jabroni Outfit"
@@ -114,6 +126,7 @@
 	item_state = "darkholme"
 	item_color = "darkholme"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/vice
 	name = "vice officer's jumpsuit"
@@ -122,6 +135,7 @@
 	item_state = "gy_suit"
 	item_color = "vice"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/centcom_officer
 	desc = "It's a jumpsuit worn by CentCom Officers."
@@ -138,6 +152,8 @@
 	item_state = "dg_suit"
 	item_color = "centcom"
 	alt_covers_chest = TRUE
+	mutantrace_variation = MUTANTRACE_VARIATION
+	can_adjust = TRUE //too important to look unimportant.
 
 /obj/item/clothing/under/rank/centcom_admiral
 	desc = "It's a jumpsuit with gold markings worn by CentCom High Command."
@@ -168,6 +184,7 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	can_adjust = FALSE
 	resistance_flags = NONE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/acj
 	name = "administrative cybernetic jumpsuit"
@@ -185,6 +202,7 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	can_adjust = FALSE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/owl
 	name = "owl uniform"
@@ -192,6 +210,7 @@
 	icon_state = "owl"
 	item_color = "owl"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/griffin
 	name = "griffon uniform"
@@ -199,6 +218,7 @@
 	icon_state = "griffin"
 	item_color = "griffin"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/cloud
 	name = "cloud"
@@ -214,6 +234,7 @@
 	item_state = "dg_suit"
 	item_color = "green_suit"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/gimmick/rank/captain/suit/skirt
 	name = "green suitskirt"
@@ -224,6 +245,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
 	name = "head of personnel's suit"
@@ -232,6 +254,7 @@
 	item_state = "g_suit"
 	item_color = "teal_suit"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt
 	name = "teal suitskirt"
@@ -242,6 +265,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/suit_jacket
 	name = "black suit"
@@ -250,6 +274,7 @@
 	item_state = "bl_suit"
 	item_color = "black_suit"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/suit_jacket/really_black
 	name = "executive suit"
@@ -329,6 +354,7 @@
 	item_state = "burial"
 	item_color = "burial"
 	has_sensor = NO_SENSORS
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/skirt/black
 	name = "black skirt"
@@ -409,6 +435,7 @@
 	item_color = "overalls"
 	can_adjust = FALSE
 	custom_price = 20
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
@@ -417,6 +444,7 @@
 	item_state = "pirate"
 	item_color = "pirate"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/soviet
 	name = "soviet uniform"
@@ -425,6 +453,7 @@
 	item_state = "soviet"
 	item_color = "soviet"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/redcoat
 	name = "redcoat uniform"
@@ -433,6 +462,7 @@
 	item_state = "redcoat"
 	item_color = "redcoat"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/kilt
 	name = "kilt"
@@ -443,6 +473,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/kilt/highlander
 	desc = "You're the only one worthy of this kilt."
@@ -460,6 +491,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
@@ -493,6 +525,7 @@
 	item_state = "by_suit"
 	item_color = "captain_parade"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/hosparademale
 	name = "head of security's parade uniform"
@@ -501,6 +534,7 @@
 	item_state = "r_suit"
 	item_color = "hos_parade_male"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/hosparadefem
 	name = "head of security's parade uniform"
@@ -510,6 +544,7 @@
 	item_color = "hos_parade_fem"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/assistantformal
 	name = "assistant's formal uniform"
@@ -518,6 +553,7 @@
 	item_state = "gy_suit"
 	item_color = "assistant_formal"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/blacktango
 	name = "black tango dress"
@@ -578,7 +614,7 @@
 	icon_state = "janimaid"
 	item_state = "janimaid"
 	item_color = "janimaid"
-	body_parts_covered = CHEST|GROIN
+	body_parts_covered = CHEST|GROIN|FEET|LEGS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
@@ -623,6 +659,7 @@
 	fitted = NO_FEMALE_UNIFORM
 	alternate_worn_layer = ABOVE_SHOES_LAYER
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/singerb
 	name = "blue performer's outfit"
@@ -634,6 +671,7 @@
 	alternate_worn_layer = ABOVE_SHOES_LAYER
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/plaid_skirt/green
 	name = "green plaid skirt"
@@ -666,6 +704,7 @@
 	icon_state = "villain"
 	item_color = "villain"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/sailor
 	name = "sailor suit"
@@ -674,6 +713,7 @@
 	item_state = "b_suit"
 	item_color = "sailor"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/plasmaman
 	name = "envirosuit"
@@ -692,7 +732,7 @@
 
 /obj/item/clothing/under/plasmaman/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>There are [extinguishes_left] extinguisher charges left in this suit.</span>"
+	. += span_notice("There are [extinguishes_left] extinguisher charges left in this suit.")
 
 /obj/item/clothing/under/plasmaman/proc/Extinguish(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -704,7 +744,7 @@
 				return
 			next_extinguish = world.time + extinguish_cooldown
 			extinguishes_left--
-			H.visible_message("<span class='warning'>[H]'s suit automatically extinguishes [H.p_them()]!</span>","<span class='warning'>Your suit automatically extinguishes you.</span>")
+			H.visible_message(span_warning("[H]'s suit automatically extinguishes [H.p_them()]!"),span_warning("Your suit automatically extinguishes you."))
 			H.ExtinguishMob()
 			new /obj/effect/particle_effect/water(get_turf(H))
 	return 0
@@ -713,10 +753,10 @@
 	..()
 	if (istype(E, /obj/item/extinguisher_refill))
 		if (extinguishes_left == 5)
-			to_chat(user, "<span class='notice'>The inbuilt extinguisher is full.</span>")
+			to_chat(user, span_notice("The inbuilt extinguisher is full."))
 		else
 			extinguishes_left = 5
-			to_chat(user, "<span class='notice'>You refill the suit's built-in extinguisher, using up the cartridge.</span>")
+			to_chat(user, span_notice("You refill the suit's built-in extinguisher, using up the cartridge."))
 			qdel(E)
 
 /obj/item/extinguisher_refill
@@ -731,6 +771,7 @@
 	icon_state = "hostanclothes"
 	item_state = "hostanclothes"
 	item_color = "hostanclothes"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/mummy
 	name = "mummy wrapping"
@@ -742,6 +783,7 @@
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 	resistance_flags = NONE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/scarecrow
 	name = "scarecrow clothes"
@@ -753,6 +795,7 @@
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 	resistance_flags = NONE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/draculass
 	name = "draculass coat"
@@ -788,6 +831,7 @@
 	item_state = "lb_suit"
 	item_color = "gondola"
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/skeleton
 	name = "skeleton jumpsuit"
@@ -799,6 +843,7 @@
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 	resistance_flags = NONE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/durathread
 	name = "durathread jumpsuit"
@@ -808,6 +853,7 @@
 	item_color = "durathread"
 	can_adjust = FALSE
 	armor = list("melee" = 10, "laser" = 10, "fire" = 40, "acid" = 10, "bomb" = 5)
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/mech_suit
 	name = "red mech pilot's suit"
@@ -825,12 +871,14 @@
 	desc = "A white mech pilot's suit. Very fetching."
 	icon_state = "white_mech_suit"
 	item_state = "white_mech_suit"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/mech_suit/blue
 	name = "blue mech pilot's suit"
 	desc = "A blue mech pilot's suit. For the more reluctant mech pilots."
 	icon_state = "blue_mech_suit"
 	item_state = "blue_mech_suit"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/lampskirt
 	name = "lamp dress"
@@ -852,7 +900,7 @@
 
 	if(on)
 		set_light(brightness_on)
-		user.visible_message("<span class='notice'>[user] discreetly pulls a cord for the bulbs under [user.p_their()] skirt, turning [user.p_them()] on.</span>")
+		user.visible_message(span_notice("[user] discreetly pulls a cord for the bulbs under [user.p_their()] skirt, turning [user.p_them()] on."))
 	else
 		set_light(0)
 
@@ -867,3 +915,11 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+
+/obj/item/clothing/under/weiner
+	name = "weiner outfit"
+	desc = "The meat part of a hot dog costume. People may think you're trying to compensate for something."
+	icon_state = "weiner"
+	item_state = "weiner"
+	item_color = "weiner"
+	can_adjust = FALSE

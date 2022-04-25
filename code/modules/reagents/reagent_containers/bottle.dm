@@ -215,6 +215,11 @@
 	desc = "A small bottle of potassium iodide."
 	list_reagents = list(/datum/reagent/medicine/potass_iodide = 30)
 
+/obj/item/reagent_containers/glass/bottle/radscrub
+	name = "Rad Scrub Plus bottle"
+	desc = "A small bottle of Donk Co's Rad Scrub Plus."
+	list_reagents = list(/datum/reagent/medicine/radscrub = 30)
+
 /obj/item/reagent_containers/glass/bottle/salglu_solution
 	name = "saline-glucose solution bottle"
 	desc = "A small bottle of saline-glucose solution."
@@ -251,6 +256,11 @@
 	desc = "A small bottle. Contains H13N1 flu virion culture in synthblood medium."
 	spawned_disease = /datum/disease/advance/flu
 
+/obj/item/reagent_containers/glass/bottle/tumor
+	name = "tumor culture bottle"
+	desc = "A small bottle. Contains tumor culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/tumor
+
 /obj/item/reagent_containers/glass/bottle/retrovirus
 	name = "Retrovirus culture bottle"
 	desc = "A small bottle. Contains a retrovirus culture in a synthblood medium."
@@ -272,6 +282,11 @@
 	desc = "A small bottle. Contains Cryptococcus Cosmosis culture in synthblood medium."
 	icon_state = "bottle3"
 	spawned_disease = /datum/disease/brainrot
+
+/obj/item/reagent_containers/glass/bottle/sleepy
+	name = "Sleepy virus culture bottle"
+	desc = "A small bottle. Contains a sample of the SLPY Virus."
+	spawned_disease = /datum/disease/sleepy
 
 /obj/item/reagent_containers/glass/bottle/magnitis
 	name = "Magnitis culture bottle"
@@ -427,3 +442,28 @@
 	icon_state = "woodenmug"
 	icon = 'icons/obj/drinks.dmi'
 	volume = 30
+
+//Yogs: Vials
+/obj/item/reagent_containers/glass/bottle/vial
+	name = "vial"
+	desc = "A small vial for holding small amounts of reagents."
+	icon_state = "vial"
+	item_state = "atoxinbottle"
+	possible_transfer_amounts = list(5,10,15)
+	volume = 15
+	disease_amount = 15
+
+/obj/item/reagent_containers/glass/bottle/vial/random_virus
+	name = "Experimental disease culture vial"
+	desc = "A small vial for holding small amounts of reagents. Contains an untested viral culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/random
+
+/obj/item/reagent_containers/glass/bottle/vial/cold
+	name = "Rhinovirus culture vial"
+	desc = "A small vial for holding small amounts of reagents. Contains XY-rhinovirus culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/cold
+
+/obj/item/reagent_containers/glass/bottle/vial/flu_virion
+	name = "Flu virion culture vial"
+	desc = "A small vial for holding small amounts of reagents. Contains H13N1 flu virion culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/flu

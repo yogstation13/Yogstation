@@ -13,44 +13,50 @@ Format:
 	votable (is this map votable)
 
 map yogstation
-	voteweight 0.9
+	voteweight 0.7
 	votable
 endmap
 
 map omegastation
 	maxplayers 35
-	votable
+	disabled
 endmap
 
 map yogsmeta
 	minplayers 25
-	voteweight 1.3
 	votable
 endmap
 
 map yogsdelta
 	minplayers 50
+	disabled
+endmap
+
+map kilostation
+	maxplayers 40
 	votable
+endmap
+
+map gaxstation
+	maxplayers 30
 endmap
 
 map icebox
 	minplayers 25
+	disabled 
 endmap
 
 map eclipsestation
 	minplayers 60
+	disabled 
 endmap
 
 map runtimestation
-endmap
-
-map monsterstation
-endmap
-
-map redoubt
+	disabled 
 endmap
 
 map multiz_debug
+	disabled 
 endmap
 
 

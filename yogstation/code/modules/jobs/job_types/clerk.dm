@@ -10,7 +10,7 @@
 	selection_color = "#dddddd"
 	access = list(ACCESS_MANUFACTURING)
 	minimal_access = list(ACCESS_MANUFACTURING)
-
+	alt_titles = list("Salesman", "Gift Shop Attendent", "Retail Worker")
 	outfit = /datum/outfit/job/clerk
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
@@ -29,7 +29,6 @@
 	name = "Clerk"
 	jobtype = /datum/job/clerk
 
-	belt = /obj/item/pda
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/yogs/rank/clerk
 	shoes = /obj/item/clothing/shoes/sneakers/black

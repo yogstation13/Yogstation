@@ -5,7 +5,7 @@
 		return "[pick(GLOB.lizard_names_female)]-[pick(GLOB.lizard_names_female)]"
 
 /proc/polysmorph_name()
-	return "[pick(GLOB.polysmorph_names)]]"
+	return pick(GLOB.polysmorph_names)
 
 /proc/ethereal_name()
 	var/tempname = "[pick(GLOB.ethereal_names)] [random_capital_letter()]"

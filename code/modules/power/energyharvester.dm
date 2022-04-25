@@ -18,7 +18,7 @@
 	throwforce = 1
 	throw_speed = 1
 	throw_range = 1
-	materials = list(MAT_METAL=750)
+	materials = list(/datum/material/iron=750)
 	///amount of power consumed by the harvester, incremented every tick and reset every budget cycle
 	var/accumulated_power = 0
 	///stores last REALTIMEOFDAY tick. SSEconomy runs off of that, don't see why this one shouldn't too
@@ -37,11 +37,6 @@
 	var/last_payout = 0
 	///last amount of energy transmitted before being reset by budget cycle, so CE can check if his engine modifications are making more power
 	var/last_accumulated_power = 0
-
-	///tgui width
-	var/ui_x = 300
-	///tgui height
-	var/ui_y = 270
 
 obj/item/energy_harvester/Initialize()
 	. = ..()
@@ -95,18 +90,18 @@ obj/item/energy_harvester/Initialize()
 				density = 1
 				user.visible_message( \
 					"[user] attaches \the [src] to the cable.", \
-					"<span class='notice'>You attach \the [src] to the cable.</span>",
-					"<span class='italics'>You hear some wires being connected to something.</span>")
+					span_notice("You attach \the [src] to the cable."),
+					span_italics("You hear some wires being connected to something."))
 			else
-				to_chat(user, "<span class='warning'>This device must be placed over an exposed, powered cable node!</span>")
+				to_chat(user, span_warning("This device must be placed over an exposed, powered cable node!"))
 		else
 			anchored = 0
 			density = 0
 			disconnect_from_network()
 			user.visible_message( \
 				"[user] detaches \the [src] from the cable.", \
-				"<span class='notice'>You detach \the [src] from the cable.</span>",
-				"<span class='italics'>You hear some wires being disconnected from something.</span>")
+				span_notice("You detach \the [src] from the cable."),
+				span_italics("You hear some wires being disconnected from something."))
 
 /** Checks if machine works or is still attached to a power node, shuts itself down if nonfunctional and takes itself out of processing queue
   * If functional, sucks up all the excess power from the powernet and adds it to the accumulated_power var
@@ -126,7 +121,7 @@ obj/item/energy_harvester/Initialize()
 	accumulated_power += input_energy
 
 /** Computes money reward for power transmitted. Balancing goes here.
-  * Uses a piecewise function with three defined thresholds and three separate formulas. First linear formula instead of logarithmic so that you don't make 
+  * Uses a piecewise function with three defined thresholds and three separate formulas. First linear formula instead of logarithmic so that you don't make
   * a not insignificant amount of money by charging it with 300W. The other two formulas scale logarithmically and are designed to be balanced against extreme
   * engine setups such as rad-dupe SMs and fusion TEGs.
   */
@@ -134,8 +129,8 @@ obj/item/energy_harvester/Initialize()
 	if(accumulated_power == 0 || !accumulated_power)
 		return 0
 	var/softcap_1_payout = clamp(SOFTCAP_BUDGET_1 * (accumulated_power/POWER_SOFTCAP_1), 0, SOFTCAP_BUDGET_1)
-	var/softcap_2_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_1)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*SOFTCAP_BUDGET_2, 0, SOFTCAP_BUDGET_2) 
-	var/hardcap_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_2)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*SOFTCAP_BUDGET_2, 0, SOFTCAP_BUDGET_2) 
+	var/softcap_2_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_1)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*SOFTCAP_BUDGET_2, 0, SOFTCAP_BUDGET_2)
+	var/hardcap_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_2)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*SOFTCAP_BUDGET_2, 0, SOFTCAP_BUDGET_2)
 	var/potential_payout = softcap_1_payout + softcap_2_payout + hardcap_payout
 	return potential_payout
 
@@ -152,11 +147,10 @@ obj/item/energy_harvester/Initialize()
 	say("Payout for energy exports received! Payout valued at [payout]!")
 	return payout
 
-/obj/item/energy_harvester/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, 
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/energy_harvester/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "EnergyHarvester", name, 300, 300, master_ui, state)
+		ui = new(user, src, "EnergyHarvester", name)
 		ui.open()
 
 /obj/item/energy_harvester/ui_data(mob/user)

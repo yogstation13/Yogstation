@@ -35,32 +35,32 @@
 	if(iscarbon(target) && target.Adjacent(ranged_ability_user))
 		var/mob/living/carbon/L = target
 		if(is_servant_of_ratvar(L))
-			to_chat(ranged_ability_user, "<span class='neovgre'>\"[L.p_theyre(TRUE)] a servant.\"</span>")
+			to_chat(ranged_ability_user, span_neovgre("\"[L.p_theyre(TRUE)] a servant.\""))
 			return TRUE
 		else if(L.stat)
-			to_chat(ranged_ability_user, "<span class='neovgre'>\"There is use in shackling the dead, but for examples.\"</span>")
+			to_chat(ranged_ability_user, span_neovgre("\"There is use in shackling the dead, but for examples.\""))
 			return TRUE
 		else if (istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork))
-			to_chat(ranged_ability_user, "<span class='neovgre'>\"[L.p_theyre(TRUE)] already helpless, no?\"</span>")
+			to_chat(ranged_ability_user, span_neovgre("\"[L.p_theyre(TRUE)] already helpless, no?\""))
 			return TRUE
 		//yogs start -- shackling people with just one arm is right-out
 		else if(L.get_num_arms(FALSE) < 2 && !L.get_arm_ignore())
-			to_chat(ranged_ability_user, "<span class='neovgre'>\"[L.p_theyre(TRUE)] lacking in arms necessary for shackling.\"</span>")
+			to_chat(ranged_ability_user, span_neovgre("\"[L.p_theyre(TRUE)] lacking in arms necessary for shackling.\""))
 			return TRUE
 		//yogs end
 		
 		playsound(loc, 'sound/weapons/handcuffs.ogg', 30, TRUE)
-		ranged_ability_user.visible_message("<span class='danger'>[ranged_ability_user] begins forming manacles around [L]'s wrists!</span>", \
-		"<span class='neovgre_small'>You begin shaping replicant alloy into manacles around [L]'s wrists...</span>")
-		to_chat(L, "<span class='userdanger'>[ranged_ability_user] begins forming manacles around your wrists!</span>")
+		ranged_ability_user.visible_message(span_danger("[ranged_ability_user] begins forming manacles around [L]'s wrists!"), \
+		"[span_neovgre_small("You begin shaping replicant alloy into manacles around [L]'s wrists...")]")
+		to_chat(L, span_userdanger("[ranged_ability_user] begins forming manacles around your wrists!"))
 		if(do_mob(ranged_ability_user, L, 30))
 			if(!(istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork)))
 				L.handcuffed = new/obj/item/restraints/handcuffs/clockwork(L)
 				L.update_handcuffed()
-				to_chat(ranged_ability_user, "<span class='neovgre_small'>You shackle [L].</span>")
+				to_chat(ranged_ability_user, "[span_neovgre_small("You shackle [L].")]")
 				log_combat(ranged_ability_user, L, "handcuffed")
 		else
-			to_chat(ranged_ability_user, "<span class='warning'>You fail to shackle [L].</span>")
+			to_chat(ranged_ability_user, span_warning("You fail to shackle [L]."))
 
 		successful = TRUE
 
@@ -75,8 +75,8 @@
 	item_flags = DROPDEL
 
 /obj/item/restraints/handcuffs/clockwork/dropped(mob/user)
-	user.visible_message("<span class='danger'>[user]'s [name] come apart at the seams!</span>", \
-	"<span class='userdanger'>Your [name] break apart as they're removed!</span>")
+	user.visible_message(span_danger("[user]'s [name] come apart at the seams!"), \
+	span_userdanger("Your [name] break apart as they're removed!"))
 	. = ..()
 
 //For the Sentinel's Compromise scripture; heals a target servant.
@@ -94,10 +94,10 @@
 	if(isliving(target) && (target in view(7, get_turf(ranged_ability_user))))
 		var/mob/living/L = target
 		if(!is_servant_of_ratvar(L))
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] does not yet serve Ratvar.\"</span>")
+			to_chat(ranged_ability_user, span_inathneq("\"[L] does not yet serve Ratvar.\""))
 			return TRUE
 		if(L.stat == DEAD)
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_theyre(TRUE)] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>")
+			to_chat(ranged_ability_user, span_inathneq("\"[L.p_theyre(TRUE)] dead. [text2ratvar("Oh, child. To have your life cut short...")]\""))
 			return TRUE
 
 		var/brutedamage = L.getBruteLoss()
@@ -105,12 +105,12 @@
 		var/oxydamage = L.getOxyLoss()
 		var/totaldamage = brutedamage + burndamage + oxydamage
 		if(!totaldamage && (!L.reagents || !L.reagents.has_reagent(/datum/reagent/water/holywater)))
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] is unhurt and untainted.\"</span>")
+			to_chat(ranged_ability_user, span_inathneq("\"[L] is unhurt and untainted.\""))
 			return TRUE
 
 		successful = TRUE
 
-		to_chat(ranged_ability_user, "<span class='brass'>You bathe [L == ranged_ability_user ? "yourself":"[L]"] in Inath-neq's power!</span>")
+		to_chat(ranged_ability_user, span_brass("You bathe [L == ranged_ability_user ? "yourself":"[L]"] in Inath-neq's power!"))
 		var/targetturf = get_turf(L)
 		var/has_holy_water = (L.reagents && L.reagents.has_reagent(/datum/reagent/water/holywater))
 		var/healseverity = max(round(totaldamage*0.05, 1), 1) //shows the general severity of the damage you just healed, 1 glow per 20
@@ -123,13 +123,13 @@
 			L.adjustToxLoss(totaldamage * 0.5, TRUE, TRUE)
 			clockwork_say(ranged_ability_user, text2ratvar("[has_holy_water ? "Heal tainted" : "Mend wounded"] flesh!"))
 			log_combat(ranged_ability_user, L, "healed with Sentinel's Compromise")
-			L.visible_message("<span class='warning'>A blue light washes over [L], [has_holy_water ? "causing [L.p_them()] to briefly glow as it mends" : " mending"] [L.p_their()] bruises and burns!</span>", \
-			"<span class='heavy_brass'>You feel Inath-neq's power healing your wounds[has_holy_water ? " and purging the darkness within you" : ""], but a deep nausea overcomes you!</span>")
+			L.visible_message(span_warning("A blue light washes over [L], [has_holy_water ? "causing [L.p_them()] to briefly glow as it mends" : " mending"] [L.p_their()] bruises and burns!"), \
+			"[span_heavy_brass("You feel Inath-neq's power healing your wounds[has_holy_water ? " and purging the darkness within you" : ""], but a deep nausea overcomes you!")]")
 		else
 			clockwork_say(ranged_ability_user, text2ratvar("Purge foul darkness!"))
 			log_combat(ranged_ability_user, L, "purged of holy water with Sentinel's Compromise")
-			L.visible_message("<span class='warning'>A blue light washes over [L], causing [L.p_them()] to briefly glow!</span>", \
-			"<span class='heavy_brass'>You feel Inath-neq's power purging the darkness within you!</span>")
+			L.visible_message(span_warning("A blue light washes over [L], causing [L.p_them()] to briefly glow!"), \
+			"[span_heavy_brass("You feel Inath-neq's power purging the darkness within you!")]")
 		playsound(targetturf, 'sound/magic/staff_healing.ogg', 50, 1)
 
 		if(has_holy_water)
@@ -156,7 +156,7 @@
 		successful = TRUE
 
 		var/turf/U = get_turf(target)
-		to_chat(ranged_ability_user, "<span class='brass'>You release the light of Ratvar!</span>")
+		to_chat(ranged_ability_user, span_brass("You release the light of Ratvar!"))
 		clockwork_say(ranged_ability_user, text2ratvar("Purge all untruths and honor Engine!"))
 		log_combat(ranged_ability_user, U, "fired at with Kindle")
 		playsound(ranged_ability_user, 'sound/magic/blink.ogg', 50, TRUE, frequency = 0.5)
@@ -179,7 +179,7 @@
 	log_override = TRUE
 
 /obj/item/projectile/kindle/Destroy()
-	visible_message("<span class='warning'>[src] flickers out!</span>")
+	visible_message(span_warning("[src] flickers out!"))
 	. = ..()
 
 /obj/item/projectile/kindle/on_hit(atom/target, blocked = FALSE)
@@ -191,14 +191,14 @@
 		playsound(L, 'sound/magic/fireball.ogg', 50, TRUE, frequency = 1.25)
 		if(O)
 			if(isitem(O))
-				L.visible_message("<span class='warning'>[L]'s eyes flare with dim light!</span>", \
-				"<span class='userdanger'>Your [O] glows white-hot against you as it absorbs [src]'s power!</span>")
+				L.visible_message(span_warning("[L]'s eyes flare with dim light!"), \
+				span_userdanger("Your [O] glows white-hot against you as it absorbs [src]'s power!"))
 			else if(ismob(O))
-				L.visible_message("<span class='warning'>[L]'s eyes flare with dim light!</span>")
+				L.visible_message(span_warning("[L]'s eyes flare with dim light!"))
 			playsound(L, 'sound/weapons/sear.ogg', 50, TRUE)
 		else
-			L.visible_message("<span class='warning'>[L]'s eyes blaze with brilliant light!</span>", \
-			"<span class='userdanger'>Your vision suddenly screams with white-hot light!</span>")
+			L.visible_message(span_warning("[L]'s eyes blaze with brilliant light!"), \
+			span_userdanger("Your vision suddenly screams with white-hot light!"))
 			L.Paralyze(15)
 			L.apply_status_effect(STATUS_EFFECT_KINDLE)
 			L.flash_act(1, 1)
@@ -222,13 +222,13 @@
 	if(isliving(target) && (target in view(7, get_turf(ranged_ability_user))))
 		var/mob/living/L = target
 		if(!is_servant_of_ratvar(L))
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] does not yet serve Ratvar.\"</span>")
+			to_chat(ranged_ability_user, span_inathneq("\"[L] does not yet serve Ratvar.\""))
 			return TRUE
 		if(L.stat == DEAD)
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_theyre(TRUE)] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>")
+			to_chat(ranged_ability_user, span_inathneq("\"[L.p_theyre(TRUE)] dead. [text2ratvar("Oh, child. To have your life cut short...")]\""))
 			return TRUE
 		if(islist(L.stun_absorption) && L.stun_absorption["vanguard"] && L.stun_absorption["vanguard"]["end_time"] > world.time)
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_theyre(TRUE)] already shielded by a Vanguard.\"</span>")
+			to_chat(ranged_ability_user, span_inathneq("\"[L.p_theyre(TRUE)] already shielded by a Vanguard.\""))
 			return TRUE
 
 		successful = TRUE
@@ -266,8 +266,8 @@
 		successful = TRUE
 
 		clockwork_say(ranged_ability_user, text2ratvar("Kneel, heathens!"))
-		ranged_ability_user.visible_message("<span class='warning'>[ranged_ability_user]'s eyes fire a stream of energy at [target], creating a strange mark!</span>", \
-		"<span class='heavy_brass'>You direct the judicial force to [target].</span>")
+		ranged_ability_user.visible_message(span_warning("[ranged_ability_user]'s eyes fire a stream of energy at [target], creating a strange mark!"), \
+		"[span_heavy_brass("You direct the judicial force to [target].")]")
 		var/turf/targetturf = get_turf(target)
 		new/obj/effect/clockwork/judicial_marker(targetturf, ranged_ability_user)
 		log_combat(ranged_ability_user, targetturf, "created a judicial marker")

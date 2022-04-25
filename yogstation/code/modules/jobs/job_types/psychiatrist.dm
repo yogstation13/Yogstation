@@ -8,8 +8,11 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
+	alt_titles = list("Counsellor", "Therapist", "Mentalist")
 
 	outfit = /datum/outfit/job/psych
+
+	minimal_character_age = 24 // "According to age statistics published by the Association of American Medical Colleges, the average age among medical students who matriculated at U.S. medical schools in the 2017-2018 school year was 24"
 
 	access = list(ACCESS_MEDICAL)
 	minimal_access = list(ACCESS_MEDICAL)
@@ -30,5 +33,4 @@
 	uniform = /obj/item/clothing/under/suit_jacket/burgundy
 	l_hand = /obj/item/storage/briefcase
 	glasses = /obj/item/clothing/glasses/regular
-	belt = /obj/item/pda
 	ears = /obj/item/radio/headset/headset_med

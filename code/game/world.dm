@@ -2,11 +2,6 @@
 
 GLOBAL_VAR(restart_counter)
 
-/world/proc/enable_debugger()
-    var/dll = (fexists(EXTOOLS) && EXTOOLS)
-    if (dll)
-        call(dll, "debug_initialize")()
-
 /**
   * World creation
   *
@@ -19,15 +14,17 @@ GLOBAL_VAR(restart_counter)
   *
   * Note this happens after the Master subsystem is created (as that is a global datum), this means all the subsystems exist,
   * but they have not been Initialized at this point, only their New proc has run
-  * 
-  * Nothing happens until something moves. ~Albert Einstein 
-  * 
+  *
+  * Nothing happens until something moves. ~Albert Einstein
+  *
   */
 /world/New()
-	enable_debugger() //This does nothing if you aren't trying to debug
-	log_world("World loaded at [time_stamp()]!")
+	//Early profile for auto-profiler - will be stopped on profiler init if necessary.
+#if DM_VERSION >= 513 && DM_BUILD >= 1506
+	world.Profile(PROFILE_START)
+#endif
 
-	SetupExternalRSC()
+	log_world("World loaded at [time_stamp()]!")
 
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
 
@@ -90,16 +87,6 @@ GLOBAL_VAR(restart_counter)
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
 
-/world/proc/SetupExternalRSC()
-#if (PRELOAD_RSC == 0)
-	GLOB.external_rsc_urls = world.file2list("[global.config.directory]/external_rsc_urls.txt","\n")
-	var/i=1
-	while(i<=GLOB.external_rsc_urls.len)
-		if(GLOB.external_rsc_urls[i])
-			i++
-		else
-			GLOB.external_rsc_urls.Cut(i,i+1)
-#endif
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
@@ -185,7 +172,7 @@ GLOBAL_VAR(restart_counter)
 			handler = topic_handlers[I]
 			break
 
-	if((!handler || initial(handler.log)) && config && CONFIG_GET(flag/log_world_topic))
+	if((!handler || initial(handler.log)) && config && CONFIG_LOADED && CONFIG_GET(flag/log_world_topic))
 		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
 	if(!handler)
@@ -204,7 +191,7 @@ GLOBAL_VAR(restart_counter)
 		if(PRcounts[id] > PR_ANNOUNCEMENTS_PER_ROUND)
 			return
 
-	var/final_composed = "<span class='announce'>PR: [announcement]</span>"
+	var/final_composed = span_announce("PR: [announcement]")
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
 
@@ -234,15 +221,16 @@ GLOBAL_VAR(restart_counter)
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
-		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request</span>")
+		to_chat(world, span_boldannounce("Rebooting World immediately due to host request"))
 	else
-		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
+		to_chat(world, span_boldannounce("Rebooting world..."))
 		Master.Shutdown()	//run SS shutdowns
 
 	for(var/boi in GLOB.clients)
 		var/client/C = boi
-		if(!istype(C)) continue //yes so this is useful to prevent nulls from preventing the server from rebooting...
+		if(isnull(C)) continue //yes so this is useful to prevent nulls from preventing the server from rebooting...
 		sync_logout_with_db(C.connection_number)
+		C?.tgui_panel?.send_roundrestart()
 
 	TgsReboot()
 

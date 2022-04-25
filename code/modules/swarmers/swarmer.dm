@@ -70,7 +70,7 @@
 
 /mob/living/simple_animal/hostile/swarmer/Initialize()
 	. = ..()
-	verbs -= /mob/living/verb/pulled
+	remove_verb(src, /mob/living/verb/pulled)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.add_to_hud(src)
 
@@ -86,10 +86,9 @@
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = "hudstat"
 
-/mob/living/simple_animal/hostile/swarmer/Stat()
-	..()
-	if(statpanel("Status"))
-		stat("Resources:",resources)
+/mob/living/simple_animal/hostile/swarmer/get_status_tab_items()
+	. = ..()
+	. += "Resources: [resources]"
 
 /mob/living/simple_animal/hostile/swarmer/emp_act()
 	. = ..()
@@ -115,7 +114,7 @@
 		var/mob/living/silicon/borg = target
 		borg.adjustBruteLoss(melee_damage_lower)
 	return ..()
-		
+
 /mob/living/simple_animal/hostile/swarmer/MiddleClickOn(atom/A)
 	. = ..()
 	if(!LAZYLEN(dronelist))
@@ -136,7 +135,8 @@
 		return
 	if(!A.Adjacent(src))
 		return
-	prepare_target(src)
+	if(isliving(A))
+		prepare_target(A)
 
 ////END CTRL CLICK FOR SWARMERS////
 
@@ -150,10 +150,10 @@
   */
 /mob/living/simple_animal/hostile/swarmer/proc/Fabricate(atom/fabrication_object,fabrication_cost = 0)
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>This is not a suitable location for fabrication. We need more space.</span>")
+		to_chat(src, span_warning("This is not a suitable location for fabrication. We need more space."))
 		return
 	if(resources < fabrication_cost)
-		to_chat(src, "<span class='warning'>You do not have the necessary resources to fabricate this object.</span>")
+		to_chat(src, span_warning("You do not have the necessary resources to fabricate this object."))
 		return
 	resources -= fabrication_cost
 	return new fabrication_object(drop_location())
@@ -168,10 +168,10 @@
 /mob/living/simple_animal/hostile/swarmer/proc/Integrate(obj/target)
 	var/resource_gain = target.integrate_amount()
 	if(resources + resource_gain > max_resources)
-		to_chat(src, "<span class='warning'>We cannot hold more materials!</span>")
+		to_chat(src, span_warning("We cannot hold more materials!"))
 		return TRUE
 	if(!resource_gain)
-		to_chat(src, "<span class='warning'>[target] is incompatible with our internal matter recycler.</span>")
+		to_chat(src, span_warning("[target] is incompatible with our internal matter recycler."))
 		return FALSE
 	resources += resource_gain
 	do_attack_animation(target)
@@ -199,7 +199,7 @@
 	new /obj/effect/temp_visual/swarmer/disintegration(get_turf(target))
 	do_attack_animation(target)
 	changeNext_move(CLICK_CD_MELEE)
-	target.ex_act(EXPLODE_LIGHT)
+	SSexplosions.med_mov_atom += target
 
 /**
   * Called when a swarmer attempts to teleport a living entity away
@@ -213,20 +213,20 @@
 		return
 
 	if(!is_station_level(z) && !is_mining_level(z))
-		to_chat(src, "<span class='warning'>Our bluespace transceiver cannot locate a viable bluespace link, our teleportation abilities are useless in this area.</span>")
+		to_chat(src, span_warning("Our bluespace transceiver cannot locate a viable bluespace link, our teleportation abilities are useless in this area."))
 		return
 
-	to_chat(src, "<span class='info'>Attempting to remove this being from our presence.</span>")
+	to_chat(src, span_info("Attempting to remove this being from our presence."))
 
 	if(!do_mob(src, target, 30))
 		return
-		
+
 	teleport_target(target)
-		
+
 /mob/living/simple_animal/hostile/swarmer/proc/teleport_target(mob/living/target)
 	var/turf/open/floor/safe_turf = find_safe_turf(zlevels = z, extended_safety_checks = TRUE)
 
-	if(!safe_turf )
+	if(!safe_turf)
 		return
 	// If we're getting rid of a human, slap some energy cuffs on
 	// them to keep them away from us a little longer
@@ -258,13 +258,13 @@
   */
 /mob/living/simple_animal/hostile/swarmer/proc/dismantle_machine(obj/machinery/target)
 	do_attack_animation(target)
-	to_chat(src, "<span class='info'>We begin to dismantle this machine. We will need to be uninterrupted.</span>")
+	to_chat(src, span_info("We begin to dismantle this machine. We will need to be uninterrupted."))
 	var/obj/effect/temp_visual/swarmer/dismantle/dismantle_effect = new /obj/effect/temp_visual/swarmer/dismantle(get_turf(target))
 	dismantle_effect.pixel_x = target.pixel_x
 	dismantle_effect.pixel_y = target.pixel_y
 	dismantle_effect.pixel_z = target.pixel_z
 	if(do_mob(src, target, 100))
-		to_chat(src, "<span class='info'>Dismantling complete.</span>")
+		to_chat(src, span_info("Dismantling complete."))
 		var/atom/target_loc = target.drop_location()
 		new /obj/item/stack/sheet/metal(target_loc, 5)
 		for(var/p in target.component_parts)
@@ -291,10 +291,10 @@
 	set category = "Swarmer"
 	set desc = "Creates a simple trap that will non-lethally electrocute anything that steps on it. Costs 4 resources."
 	if(locate(/obj/structure/swarmer/trap) in loc)
-		to_chat(src, "<span class='warning'>There is already a trap here. Aborting.</span>")
+		to_chat(src, span_warning("There is already a trap here. Aborting."))
 		return
 	if(resources < 4)
-		to_chat(src, "<span class='warning'>We do not have the resources for this!</span>")
+		to_chat(src, span_warning("We do not have the resources for this!"))
 		return
 	Fabricate(/obj/structure/swarmer/trap, 4)
 
@@ -308,10 +308,10 @@
 	set category = "Swarmer"
 	set desc = "Creates a barricade that will stop anything but swarmers and disabler beams from passing through.  Costs 4 resources."
 	if(locate(/obj/structure/swarmer/blockade) in loc)
-		to_chat(src, "<span class='warning'>There is already a blockade here. Aborting.</span>")
+		to_chat(src, span_warning("There is already a blockade here. Aborting."))
 		return
 	if(resources < 4)
-		to_chat(src, "<span class='warning'>We do not have the resources for this!</span>")
+		to_chat(src, span_warning("We do not have the resources for this!"))
 		return
 	if(!do_mob(src, src, 1 SECONDS))
 		return
@@ -326,12 +326,12 @@
 	set name = "Replicate"
 	set category = "Swarmer"
 	set desc = "Creates a duplicate of ourselves, capable of protecting us while we complete our objectives."
-	to_chat(src, "<span class='info'>We are attempting to replicate ourselves. We will need to stand still until the process is complete.</span>")
+	to_chat(src, span_info("We are attempting to replicate ourselves. We will need to stand still until the process is complete."))
 	if(resources < 20)
-		to_chat(src, "<span class='warning'>We do not have the resources for this!</span>")
+		to_chat(src, span_warning("We do not have the resources for this!"))
 		return
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>This is not a suitable location for replicating ourselves. We need more room.</span>")
+		to_chat(src, span_warning("This is not a suitable location for replicating ourselves. We need more room."))
 		return
 	if(!do_mob(src, src, 5 SECONDS))
 		return
@@ -362,11 +362,11 @@
 	set desc = "Attempts to repair damage to our body. You will have to remain motionless until repairs are complete."
 	if(!isturf(loc))
 		return
-	to_chat(src, "<span class='info'>Attempting to repair damage to our body, stand by...</span>")
+	to_chat(src, span_info("Attempting to repair damage to our body, stand by..."))
 	if(!do_mob(src, src, 10 SECONDS))
 		return
 	adjustHealth(-maxHealth)
-	to_chat(src, "<span class='info'>We successfully repaired ourselves.</span>")
+	to_chat(src, span_info("We successfully repaired ourselves."))
 
 /**
   * Called when a swarmer toggles its light
@@ -416,7 +416,7 @@
 	// TODO get swarmers their own colour rather than just boldtext
 	if(message)
 		swarmer_chat(message)
-		
+
 /**
   * Removes a drone from the swarmer's list.
   *
@@ -440,12 +440,12 @@ mob/living/simple_animal/hostile/swarmer/proc/remove_drone(mob/drone, force)
 	AIStatus = AI_ON
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	
+
 /obj/item/projectile/beam/disabler/swarmer/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(!.)
 		return
-	if(!istype(target, /mob/living/simple_animal) || !istype(firer, /mob/living/simple_animal/hostile/swarmer))
+	if(!istype(target, /mob/living/simple_animal) || istype(target, /mob/living/simple_animal/hostile/swarmer))
 		return
 	var/mob/living/simple_animal/hostile/swarmer/swarmer = firer
 	swarmer.teleport_target(target)

@@ -10,7 +10,6 @@ export const NaniteDiskBox = (props, context) => {
     has_program,
     disk,
   } = data;
-
   if (!has_disk) {
     return (
       <NoticeBox>
@@ -18,7 +17,6 @@ export const NaniteDiskBox = (props, context) => {
       </NoticeBox>
     );
   }
-
   if (!has_program) {
     return (
       <NoticeBox>
@@ -26,7 +24,6 @@ export const NaniteDiskBox = (props, context) => {
       </NoticeBox>
     );
   }
-
   return (
     <NaniteInfoBox program={disk} />
   );
@@ -34,7 +31,6 @@ export const NaniteDiskBox = (props, context) => {
 
 export const NaniteInfoBox = (props, context) => {
   const { program } = props;
-
   const {
     name,
     desc,
@@ -47,14 +43,10 @@ export const NaniteInfoBox = (props, context) => {
     deactivation_code,
     kill_code,
     trigger_code,
-    timer_restart,
-    timer_shutdown,
-    timer_trigger,
-    timer_trigger_delay,
+    timer,
+    timer_type,
   } = program;
-
   const extra_settings = program.extra_settings || [];
-
   return (
     <Section
       title={name}
@@ -119,22 +111,12 @@ export const NaniteInfoBox = (props, context) => {
             level={3}
             mr={1}>
             <LabeledList>
-              <LabeledList.Item label="Restart">
-                {timer_restart} s
+              <LabeledList.Item label="Set Timer">
+                {timer_type}
               </LabeledList.Item>
-              <LabeledList.Item label="Shutdown">
-                {timer_shutdown} s
+              <LabeledList.Item label="Timer">
+                {timer} s
               </LabeledList.Item>
-              {!!can_trigger && (
-                <Fragment>
-                  <LabeledList.Item label="Trigger">
-                    {timer_trigger} s
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Trigger Delay">
-                    {timer_trigger_delay} s
-                  </LabeledList.Item>
-                </Fragment>
-              )}
             </LabeledList>
           </Section>
         </Grid.Column>
@@ -159,18 +141,16 @@ export const NaniteInfoBox = (props, context) => {
 export const NaniteCloudBackupList = (props, context) => {
   const { act, data } = useBackend(context);
   const cloud_backups = data.cloud_backups || [];
-  return (
-    cloud_backups.map(backup => (
-      <Button
-        fluid
-        key={backup.cloud_id}
-        content={"Backup #" + backup.cloud_id}
-        textAlign="center"
-        onClick={() => act('set_view', {
-          view: backup.cloud_id,
-        })} />
-    ))
-  );
+  return cloud_backups.map(backup => (
+    <Button
+      fluid
+      key={backup.cloud_id}
+      content={"Backup #" + backup.cloud_id}
+      textAlign="center"
+      onClick={() => act('set_view', {
+        view: backup.cloud_id,
+      })} />
+  ));
 };
 
 export const NaniteCloudBackupDetails = (props, context) => {
@@ -181,9 +161,7 @@ export const NaniteCloudBackupDetails = (props, context) => {
     has_program,
     cloud_backup,
   } = data;
-
   const can_rule = (disk && disk.can_rule) || false;
-
   if (!cloud_backup) {
     return (
       <NoticeBox>
@@ -191,9 +169,7 @@ export const NaniteCloudBackupDetails = (props, context) => {
       </NoticeBox>
     );
   }
-
   const cloud_programs = data.cloud_programs || [];
-
   return (
     <Section
       title={"Backup #" + current_view}
@@ -272,9 +248,11 @@ export const NaniteCloudControl = (props, context) => {
     current_view,
     new_backup_id,
   } = data;
-
   return (
-    <Window resizable>
+    <Window
+      width={375}
+      height={700}
+      resizable>
       <Window.Content scrollable>
         <Section
           title="Program Disk"
@@ -301,15 +279,14 @@ export const NaniteCloudControl = (props, context) => {
               <Fragment>
                 {"New Backup: "}
                 <NumberInput
-                  value={data.new_backup_id}
+                  value={new_backup_id}
                   minValue={1}
                   maxValue={100}
                   stepPixelSize={4}
                   width="39px"
                   onChange={(e, value) => act('update_new_backup_value', {
                     value: value,
-                  })}
-                />
+                  })} />
                 <Button
                   icon="plus"
                   onClick={() => act('create_backup')} />

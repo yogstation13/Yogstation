@@ -1,7 +1,7 @@
 /obj/item/suspiciousphone
 	name = "suspicious phone"
 	desc = "This device raises pink levels to unknown highs."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/traitor.dmi'
 	icon_state = "suspiciousphone"
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("dumped")
@@ -9,10 +9,10 @@
 
 /obj/item/suspiciousphone/attack_self(mob/user)
 	if(!ishuman(user))
-		to_chat(user, "<span class='warning'>This device is too advanced for you!</span>")
+		to_chat(user, span_warning("This device is too advanced for you!"))
 		return
 	if(dumped)
-		to_chat(user, "<span class='warning'>You already activated Protocol CRAB-17.</span>")
+		to_chat(user, span_warning("You already activated Protocol CRAB-17."))
 		return FALSE
 	if(alert(user, "Are you sure you want to crash this market with no survivors?", "Protocol CRAB-17", "Yes", "No") == "Yes")
 		if(dumped || QDELETED(src)) //Prevents fuckers from cheesing alert
@@ -40,8 +40,8 @@
 	var/canwalk = FALSE
 
 /obj/structure/checkoutmachine/examine(mob/living/user)
-	..()
-	. += "<span class='info'>It's integrated integrity meter reads: <b>HEALTH: [obj_integrity]</b>.</span>"
+	. = ..()
+	. += span_info("Its integrated integrity meter reads: <b>HEALTH: [obj_integrity]</b>.")
 
 /obj/structure/checkoutmachine/proc/check_if_finished()
 	for(var/i in accounts_to_rob)
@@ -57,15 +57,15 @@
 	if(istype(W, /obj/item/card/id))
 		var/obj/item/card/id/card = W
 		if(!card.registered_account)
-			to_chat(user, "<span class='warning'>This card does not have a registered account!</span>")
+			to_chat(user, span_warning("This card does not have a registered account!"))
 			return
 		if(!card.registered_account.being_dumped)
-			to_chat(user, "<span class='warning'>It appears that your funds are safe from draining!</span>")
+			to_chat(user, span_warning("It appears that your funds are safe from draining!"))
 			return
-		if(do_after(user, 40, target = src))
+		if(do_after(user, 4 SECONDS, target = src))
 			if(!card.registered_account.being_dumped)
 				return
-			to_chat(user, "<span class='warning'>You quickly cash out your funds to a more secure banking location. Funds are safu.</span>")
+			to_chat(user, span_warning("You quickly cash out your funds to a more secure banking location. Funds are safu."))
 			card.registered_account.being_dumped = FALSE
 			card.registered_account.withdrawDelay = 0
 			if(check_if_finished())
@@ -155,7 +155,8 @@
 
 /obj/structure/checkoutmachine/proc/start_dumping()
 	accounts_to_rob = SSeconomy.bank_accounts.Copy()
-	accounts_to_rob -= bogdanoff.get_bank_account()
+	if(bogdanoff)
+		accounts_to_rob -= bogdanoff.get_bank_account()
 	for(var/i in accounts_to_rob)
 		var/datum/bank_account/B = i
 		B.dumpeet()
@@ -168,7 +169,9 @@
 		if(!B.being_dumped)
 			continue
 		var/amount = B.account_balance * percentage_lost
-		var/datum/bank_account/account = bogdanoff.get_bank_account()
+		var/datum/bank_account/account
+		if(bogdanoff)
+			account = bogdanoff.get_bank_account()
 		if (account) // get_bank_account() may return FALSE
 			account.transfer_money(B, amount)
 			B.bank_card_talk("You have lost [percentage_lost * 100]% of your funds! A spacecoin credit deposit machine is located at: [get_area(src)].")
@@ -211,7 +214,7 @@
 	bogdanoff = user
 	addtimer(CALLBACK(src, .proc/startLaunch), 100)
 	sound_to_playing_players('sound/items/dump_it.ogg', 20)
-	deadchat_broadcast("Protocol CRAB-17 has been activated. A space-coin market has been launched at the station!", turf_target = get_turf(src))
+	deadchat_broadcast("Protocol CRAB-17 has been activated. A spacecoin market has been launched at the station!", turf_target = get_turf(src))
 
 /obj/effect/dumpeetTarget/proc/startLaunch()
 	DF = new /obj/effect/dumpeetFall(drop_location())

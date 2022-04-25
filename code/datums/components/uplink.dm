@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 
 /datum/component/uplink/proc/LoadTC(mob/user, obj/item/stack/telecrystal/TC, silent = FALSE)
 	if(!silent)
-		to_chat(user, "<span class='notice'>You slot [TC] into [parent] and charge its internal uplink.</span>")
+		to_chat(user, span_notice("You slot [TC] into [parent] and charge its internal uplink."))
 	var/amt = TC.amount
 	telecrystals += amt
 	TC.use(amt)
@@ -102,23 +102,14 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return	//no hitting everyone/everything just to try to slot tcs in!
 	if(istype(I, /obj/item/stack/telecrystal))
 		LoadTC(user, I)
-	for(var/category in uplink_items)
-		for(var/item in uplink_items[category])
-			var/datum/uplink_item/UI = uplink_items[category][item]
-			var/path = UI.refund_path || UI.item
-			var/cost = UI.refund_amount || UI.cost
-			if(I.type == path && UI.refundable && I.check_uplink_validity())
-				var/obj/item/antag_spawner/S = I
-				refundAntagSpawner(cost, S, user)
-				return
-
-/datum/component/uplink/proc/refundAntagSpawner(cost, obj/item/antag_spawner/I, mob/user)
-	if (I.discountPrice)
-		cost = I.discountPrice
-	telecrystals += cost
+		return
+	var/datum/component/refundable/R = I.GetComponent(/datum/component/refundable)
+	if (!R || R.buyer != user.mind || !SEND_SIGNAL(I, COMSIG_ITEM_REFUND, user))
+		return
+	telecrystals += R.tc_cost
 	if(purchase_log)
-		purchase_log.total_spent -= cost
-		to_chat(user, "<span class='notice'>[I] refunded.</span>")
+		purchase_log.total_spent -= R.tc_cost
+		to_chat(user, span_notice("[I] was refunded for [span_bold("[R.tc_cost] TC")]."))
 	qdel(I)
 
 /datum/component/uplink/proc/interact(datum/source, mob/user)
@@ -130,12 +121,14 @@ GLOBAL_LIST_EMPTY(uplinks)
 	// an unlocked uplink blocks also opening the PDA or headset menu
 	return COMPONENT_NO_INTERACT
 
-/datum/component/uplink/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
+/datum/component/uplink/ui_state(mob/user)
+	return GLOB.inventory_state
+
+/datum/component/uplink/ui_interact(mob/user, datum/tgui/ui)
 	active = TRUE
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Uplink", name, 620, 580, master_ui, state)
+		ui = new(user, src, "Uplink", name)
 		// This UI is only ever opened by one person,
 		// and never is updated outside of user input.
 		ui.set_autoupdate(FALSE)
@@ -180,13 +173,17 @@ GLOBAL_LIST_EMPTY(uplinks)
 						continue
 			cat["items"] += list(list(
 				"name" = I.name,
-				"cost" = I.cost,
+				"cost" = I.manufacturer && user.mind.is_employee(I.manufacturer) ? CEILING(I.cost * 0.8, 1) : I.cost,
 				"desc" = I.desc,
+				"manufacturer" = I.manufacturer ? initial(I.manufacturer.name) : null,
 			))
 		data["categories"] += list(cat)
 	return data
 
 /datum/component/uplink/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
 	if(!active)
 		return
 	switch(action)
@@ -217,10 +214,14 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return
 	if (!user || user.incapacitated())
 		return
-
-	if(telecrystals < U.cost || U.limited_stock == 0)
-		return
-	telecrystals -= U.cost
+	if(U.manufacturer && user.mind.is_employee(U.manufacturer))
+		if(telecrystals < CEILING(U.cost*0.8, 1) || U.limited_stock == 0)
+			return
+		telecrystals -= CEILING(U.cost*0.8, 1)
+	else 
+		if(telecrystals < U.cost || U.limited_stock == 0)
+			return
+		telecrystals -= U.cost
 
 	U.purchase(user, src)
 
@@ -238,8 +239,9 @@ GLOBAL_LIST_EMPTY(uplinks)
 	interact(null, implant.imp_in)
 
 /datum/component/uplink/proc/implanting(datum/source, list/arguments)
-	var/mob/user = arguments[2]
-	owner = "[user.key]"
+	var/mob/target = arguments[1]
+	var/mob/user = arguments[2] // YOGS START -- Fix runtime when implanting infiltrators
+	owner = "[user ? user.key : target.key]" // YOGS END
 
 /datum/component/uplink/proc/old_implant(datum/source, list/arguments, obj/item/implant/new_implant)
 	// It kinda has to be weird like this until implants are components
@@ -294,7 +296,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		previous_attempts.Cut()
 		master.degrees = 0
 		interact(null, user)
-		to_chat(user, "<span class='warning'>Your pen makes a clicking noise, before quickly rotating back to 0 degrees!</span>")
+		to_chat(user, span_warning("Your pen makes a clicking noise, before quickly rotating back to 0 degrees!"))
 
 	else if(compare_list(previous_attempts, failsafe_code))
 		failsafe()

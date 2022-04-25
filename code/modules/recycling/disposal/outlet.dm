@@ -6,7 +6,7 @@
 	icon_state = "outlet"
 	density = TRUE
 	anchored = TRUE
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	var/active = FALSE
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	var/obj/structure/disposalpipe/trunk/trunk // the attached pipe trunk
@@ -71,9 +71,9 @@
 		return TRUE
 
 	playsound(src, 'sound/items/welder2.ogg', 100, 1)
-	to_chat(user, "<span class='notice'>You start slicing the floorweld off [src]...</span>")
+	to_chat(user, span_notice("You start slicing the floorweld off [src]..."))
 	if(I.use_tool(src, user, 20))
-		to_chat(user, "<span class='notice'>You slice the floorweld off [src].</span>")
+		to_chat(user, span_notice("You slice the floorweld off [src]."))
 		stored.forceMove(loc)
 		transfer_fingerprints_to(stored)
 		stored = null

@@ -111,7 +111,7 @@
 
 /obj/structure/speaking_tile/proc/SpeakPeace(list/statements)
 	for(var/i in 1 to statements.len)
-		say("<span class='deadsay'>[statements[i]]</span>")
+		say(span_deadsay("[statements[i]]"))
 		if(i != statements.len)
 			sleep(30)
 
@@ -121,7 +121,7 @@
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "rupee"
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(MAT_GLASS = 500)
+	materials = list(/datum/material/glass = 500)
 
 /obj/item/rupee/Initialize()
 	. = ..()

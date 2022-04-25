@@ -23,7 +23,7 @@
 	icon_state = "aispook"
 
 /obj/item/aicard/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] is trying to upload [user.p_them()]self into [src]! That's not going to work out well!</span>")
+	user.visible_message(span_suicide("[user] is trying to upload [user.p_them()]self into [src]! That's not going to work out well!"))
 	return BRUTELOSS
 
 /obj/item/aicard/afterattack(atom/target, mob/user, proximity)
@@ -54,11 +54,13 @@
 		name = initial(name)
 		icon_state = initial(icon_state)
 
-/obj/item/aicard/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/aicard/ui_state(mob/user)
+	return GLOB.hands_state
+
+/obj/item/aicard/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Intellicard", name, 500, 500, master_ui, state)
+		ui = new(user, src, "Intellicard", name)
 		ui.open()
 
 /obj/item/aicard/ui_data()

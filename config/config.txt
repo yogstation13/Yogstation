@@ -49,7 +49,7 @@ USE_EXP_RESTRICTIONS_HEADS
 ## Unhash this to change head jobs' playtime requirements so that they're based on department playtime, rather than crew playtime.
 USE_EXP_RESTRICTIONS_HEADS_DEPARTMENT
 ## Unhash this to enable playtime requirements for certain non-head jobs, like Engineer and Scientist.
-#USE_EXP_RESTRICTIONS_OTHER
+USE_EXP_RESTRICTIONS_OTHER
 ## Allows admins to bypass job playtime requirements.
 USE_EXP_RESTRICTIONS_ADMIN_BYPASS
 
@@ -95,12 +95,6 @@ LOG_ATTACK
 ## log pda messages
 LOG_PDA
 
-## log telecomms messages
-LOG_TELECOMMS
-
-## log ntsl compilations
-LOG_NTSL
-
 ## log prayers
 LOG_PRAYER
 
@@ -111,7 +105,7 @@ LOG_LAW
 LOG_MANIFEST
 
 ## log job divide debugging information
-#LOG_JOB_DEBUG
+LOG_JOB_DEBUG
 
 ## log all world.Topic() calls
 # LOG_WORLD_TOPIC
@@ -229,7 +223,7 @@ FPS 20
 AUTOMUTE_ON
 
 ## Uncomment this to let players see their own notes (they can still be set by admins only)
-#SEE_OWN_NOTES
+SEE_OWN_NOTES
 
 ### Comment these two out to prevent notes fading out over time for admins.
 ## Notes older then this will start fading out.
@@ -284,7 +278,7 @@ NOTIFY_NEW_PLAYER_ACCOUNT_AGE 1
 #PANIC_SERVER_NAME [Put the name here]
 
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
-#AGGRESSIVE_CHANGELOG
+AGGRESSIVE_CHANGELOG
 
 ## Comment this out if you've used the mass conversion sql proc for notes or want to stop converting notes
 AUTOCONVERT_NOTES
@@ -308,7 +302,7 @@ PREFERENCE_MAP_VOTING 1
 ## This is the chance of map rotation factored to the round length.
 ## A value of 1 would mean the map rotation chance is the round length in minutes (hour long round == 60% rotation chance)
 ## A value of 0.5 would mean the map rotation chance is half of the round length in minutes (hour long round == 30% rotation chance)
-MAPROTATIONCHANCEDELTA 0
+MAPROTATIONCHANCEDELTA 1
 
 ## AUTOADMIN
 ## The default admin rank
@@ -328,7 +322,10 @@ MAPROTATIONCHANCEDELTA 0
 #AUTO_DEADMIN_HEADS
 #AUTO_DEADMIN_SECURITY
 #AUTO_DEADMIN_SILICONS
+#AUTO_DEADMIN_CRITICAL
 
+## The minimum nubmer of admins to allow for auto deadminning, includes the deadminning admin
+AUTO_DEADMIN_THRESHOLD 4
 
 ## CLIENT VERSION CONTROL
 ## This allows you to configure the minimum required client version, as well as a warning version, and message for both.
@@ -338,10 +335,10 @@ MAPROTATIONCHANCEDELTA 0
 #CLIENT_WARN_VERSION 511
 #CLIENT_WARN_POPUP
 #CLIENT_WARN_MESSAGE Byond released 511 as the stable release. You can set the framerate your client runs at, which makes the game feel very different and cool. Shortly after its release we will end up using 511 client features and you will be forced to update.
-CLIENT_ERROR_VERSION 511
+CLIENT_ERROR_VERSION 513
 CLIENT_ERROR_MESSAGE Your version of byond is not supported. Please upgrade.
 ## The minimum build needed for joining the server, if using 512, a good minimum build would be 1421 as that disables the Middle Mouse Button exploit.
-CLIENT_ERROR_BUILD 1421
+CLIENT_ERROR_BUILD 1542
 
 ## TOPIC RATE LIMITING
 ## This allows you to limit how many topic calls (clicking on an interface window) the client can do in any given game second and/or game minute.
@@ -350,7 +347,7 @@ CLIENT_ERROR_BUILD 1421
 ## Set to 0 or comment out to disable.
 SECOND_TOPIC_LIMIT 10
 
-MINUTE_TOPIC_LIMIT 100
+MINUTE_TOPIC_LIMIT 200
 
 
 ## CLICK RATE LIMITING
@@ -440,3 +437,18 @@ DEFAULT_VIEW_SQUARE 15x15
 ## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
 ## More API details can be found here: https://centcom.melonmesa.com
 CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
+
+#AUTO_PROFILE
+
+## Uncomment to disable hard deleting garbage collection failures. (Hard deleting GC failures causes lag in order to bring memory usage down and keep bugged objects from hanging around and causing bugs in other things.) You can safely enable this for performance on production if the lag spikes are too disruptive)
+#DISABLE_GC_FAILURE_HARD_DELETES
+
+## Uncomment to disable hard deletes entirely, even things that explicitly request. This is not recommended unless you have a need for it during events or other high pop times where performance is key.
+#DISABLE_ALL_HARD_DELETES
+
+## Custom shuttle spam prevention. Changine these numbers allows you to change the maxsize and amount of custom shuttles.
+MAX_SHUTTLE_COUNT 6
+MAX_SHUTTLE_SIZE 300
+
+## Enable/disable roundstart station traits
+#STATION_TRAITS

@@ -20,7 +20,7 @@ export const SecurityConsole = (props, context) => {
 
   if (data.z > 6) {
     return (
-      <Window resizable theme={theme}>
+      <Window width={775} height={500} resizable theme={theme}>
         <Window.Content scrollable>
           <NoticeBox>
             Unable to establish connection. You are too far away from the station!
@@ -32,7 +32,7 @@ export const SecurityConsole = (props, context) => {
 
   if (!logged_in) {
     return (
-      <Window resizable theme={theme}>
+      <Window width={775} height={500} resizable theme={theme}>
         <Window.Content scrollable>
           <Section title="Welcome">
             <Flex align="center" justify="center" mt="0.5rem">
@@ -40,7 +40,7 @@ export const SecurityConsole = (props, context) => {
                 <Fragment>
                   {data.user_image && (
                     <Fragment style={`position:relative`}>
-                      <img src={"photo_" + data.user_image +"_cropped.png"}
+                      <img src={data.user_image}
                         width="125px" height="125px"
                         style={`-ms-interpolation-mode: nearest-neighbor;
                         border-radius: 50%; border: 3px solid white;
@@ -79,7 +79,7 @@ export const SecurityConsole = (props, context) => {
 
   if (screen === "maint") {
     return (
-      <Window resizable theme={theme}>
+      <Window resizable width={775} height={500} theme={theme}>
         <Window.Content scrollable>
           <Section title="Records Maintenance" buttons={(
             <Button icon="backward" onClick={() => act("back")}>
@@ -97,7 +97,7 @@ export const SecurityConsole = (props, context) => {
 
   if (screen === "record_view") {
     return (
-      <Window resizable theme={theme}>
+      <Window resizable width={775} height={500} theme={theme}>
         <Window.Content scrollable>
           {data.special_message && (
             <NoticeBox>
@@ -178,7 +178,7 @@ export const SecurityConsole = (props, context) => {
                   </LabeledList.Item>
                 </LabeledList>
                 <Box>
-                  <img src={"photo_front_" + data.active_record.id +".png"}
+                  <img src={data.active_record.front_image}
                     width="180px" height="200px"
                     style={`-ms-interpolation-mode: nearest-neighbor`} />
                   <Button icon="print" mr="2px" fluid onClick={() => act("edit_field", {
@@ -188,7 +188,7 @@ export const SecurityConsole = (props, context) => {
                   </Button>
                 </Box>
                 <Box>
-                  <img src={"photo_side_" + data.active_record.id +".png"}
+                  <img src={data.active_record.side_image}
                     width="180px" height="200px"
                     style={`-ms-interpolation-mode: nearest-neighbor`} />
                   <Button icon="print" ml="2px" fluid onClick={() => act("edit_field", {
@@ -286,9 +286,9 @@ export const SecurityConsole = (props, context) => {
                     ))}
                   </Table>
                 </Section>
-                <Section title="Major Crimes" buttons={(
+                <Section title="Crimes" buttons={(
                   <Button color="good" icon="plus" onClick={() => act("edit_field", {
-                    field: "major_crime_add",
+                    field: "crime_add",
                   })}>
                     Add Crime
                   </Button>
@@ -311,8 +311,8 @@ export const SecurityConsole = (props, context) => {
                         Delete
                       </TableCell>
                     </TableRow>
-                    {data.active_record.major_crimes
-                    && data.active_record.major_crimes.map(crime => (
+                    {data.active_record.crimes
+                    && data.active_record.crimes.map(crime => (
                       <TableRow key={crime.id}>
                         <TableCell>
                           {crime.name}
@@ -328,7 +328,7 @@ export const SecurityConsole = (props, context) => {
                         </TableCell>
                         <TableCell collapsing>
                           <Button color="bad" onClick={() => act("edit_field", {
-                            field: "major_crime_delete",
+                            field: "crime_delete",
                             id: crime.id,
                           })}>Delete
                           </Button>
@@ -337,20 +337,17 @@ export const SecurityConsole = (props, context) => {
                     ))}
                   </Table>
                 </Section>
-                <Section title="Minor Crimes" buttons={(
+                <Section title="Comments" buttons={(
                   <Button color="good" icon="plus" onClick={() => act("edit_field", {
-                    field: "minor_crime_add",
+                    field: "comment_add",
                   })}>
-                    Add Crime
+                    Add Comment
                   </Button>
                 )}>
                   <Table>
                     <TableRow color="label">
                       <TableCell>
-                        Crime
-                      </TableCell>
-                      <TableCell>
-                        Details
+                        Comment
                       </TableCell>
                       <TableCell>
                         Author
@@ -362,25 +359,22 @@ export const SecurityConsole = (props, context) => {
                         Delete
                       </TableCell>
                     </TableRow>
-                    {data.active_record.minor_crimes
-                    && data.active_record.minor_crimes.map(crime => (
-                      <TableRow key={crime.id}>
+                    {data.active_record.comments
+                    && data.active_record.comments.map(comment => (
+                      <TableRow key={comment.id}>
                         <TableCell>
-                          {crime.name}
+                          {comment.content}
                         </TableCell>
                         <TableCell>
-                          {crime.details}
+                          {comment.author}
                         </TableCell>
                         <TableCell>
-                          {crime.author}
-                        </TableCell>
-                        <TableCell>
-                          {crime.time}
+                          {comment.time}
                         </TableCell>
                         <TableCell collapsing>
                           <Button color="bad" onClick={() => act("edit_field", {
-                            field: "minor_crime_delete",
-                            id: crime.id,
+                            field: "comment_delete",
+                            id: comment.id,
                           })}>Delete
                           </Button>
                         </TableCell>
@@ -388,6 +382,7 @@ export const SecurityConsole = (props, context) => {
                     ))}
                   </Table>
                 </Section>
+
 
                 <LabeledList>
                   <LabeledList.Item label="Important Notes">
@@ -414,7 +409,7 @@ export const SecurityConsole = (props, context) => {
   }
 
   return (
-    <Window resizable theme={theme}>
+    <Window resizable width={775} height={500} theme={theme}>
       <Window.Content scrollable>
         {data.special_message && (
           <NoticeBox>

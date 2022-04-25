@@ -29,9 +29,9 @@
 		var/obj/target_obj = target
 		if(target_obj.resistance_flags & UNACIDABLE)
 			return
-	target.visible_message("<span class='warning'>[chassis] starts to drill [target].</span>", \
-					"<span class='userdanger'>[chassis] starts to drill [target]...</span>", \
-					 "<span class='italics'>You hear drilling.</span>")
+	target.visible_message(span_warning("[chassis] starts to drill [target]."), \
+					span_userdanger("[chassis] starts to drill [target]..."), \
+					 span_italics("You hear drilling."))
 
 	if(do_after_cooldown(target))
 		set_ready_state(FALSE)
@@ -68,12 +68,12 @@
 			drill.log_message("Drilled through [src]", LOG_MECHA)
 			dismantle_wall(TRUE, FALSE)
 	else
-		drill.occupant_message("<span class='danger'>[src] is too durable to drill through.</span>")
+		drill.occupant_message(span_danger("[src] is too durable to drill through."))
 
 /turf/closed/mineral/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
 	for(var/turf/closed/mineral/M in range(drill.chassis,1))
 		if(get_dir(drill.chassis,M)&drill.chassis.dir)
-			M.gets_drilled()
+			M.attempt_drill()
 	drill.log_message("Drilled through [src]", LOG_MECHA)
 	drill.move_ores()
 
@@ -107,8 +107,8 @@
 	butchering.butchering_enabled = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/drill/proc/drill_mob(mob/living/target, mob/user)
-	target.visible_message("<span class='danger'>[chassis] is drilling [target] with [src]!</span>", \
-						"<span class='userdanger'>[chassis] is drilling you with [src]!</span>")
+	target.visible_message(span_danger("[chassis] is drilling [target] with [src]!"), \
+						span_userdanger("[chassis] is drilling you with [src]!"))
 	log_combat(user, target, "drilled", "[name]", "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	if(target.stat == DEAD && target.getBruteLoss() >= 200)
 		log_combat(user, target, "gibbed", name)

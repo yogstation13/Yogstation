@@ -107,6 +107,7 @@
 
 //the define for visible message range in combat
 #define COMBAT_MESSAGE_RANGE 3
+#define DEFAULT_MESSAGE_RANGE 7
 
 //Shove knockdown lengths (deciseconds)
 #define SHOVE_KNOCKDOWN_HUMAN 10
@@ -117,8 +118,6 @@
 //Shove disarming item list
 GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 	/obj/item/gun)))
-
-//Combat object defines
 
 //Embedded objects
 #define EMBEDDED_PAIN_CHANCE 					15	//Chance for embedded objects to cause pain (damage user)
@@ -171,9 +170,9 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define REFLECT_FAKEPROJECTILE		(1<<1)
 
 //Object/Item sharpness
-#define IS_BLUNT			0
-#define IS_SHARP			1
-#define IS_SHARP_ACCURATE	2
+#define SHARP_NONE			0
+#define SHARP_EDGED			1
+#define SHARP_POINTY		2
 
 //His Grace.
 #define HIS_GRACE_SATIATED 0 //He hungers not. If bloodthirst is set to this, His Grace is asleep.
@@ -218,7 +217,22 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define DAMAGE_PRECISION 0.1
 
 //bullet_act() return values
+/// It's a successful hit, whatever that means in the context of the thing it's hitting.
 #define BULLET_ACT_HIT				"HIT"		//It's a successful hit, whatever that means in the context of the thing it's hitting.
-#define BULLET_ACT_BLOCK			"BLOCK"		//It's a blocked hit, whatever that means in the context of the thing it's hitting.
-#define BULLET_ACT_FORCE_PIERCE		"PIERCE"	//It pierces through the object regardless of the bullet being piercing by default.
-#define BULLET_ACT_TURF				"TURF"		//It hit us but it should hit something on the same turf too. Usually used for turfs.
+/// It's a blocked hit, whatever that means in the context of the thing it's hitting.
+#define BULLET_ACT_BLOCK			"BLOCK"
+/// It pierces through the object regardless of the bullet being piercing by default.
+#define BULLET_ACT_FORCE_PIERCE		"PIERCE"
+/// It hit us but it should hit something on the same turf too. Usually used for turfs.
+#define BULLET_ACT_TURF				"TURF"
+/// It hit something, but it should just keep going until it hit something else
+#define BULLET_ACT_PENETRATE		"PENETRATE"
+
+// Weather immunities //
+#define WEATHER_STORM "storm"
+#define WEATHER_ACID "acid"
+#define WEATHER_ASH "ash"
+#define WEATHER_LAVA "lava"
+#define WEATHER_RAD "rad"
+#define WEATHER_SNOW "snow"
+#define WEATHER_ALL "all"

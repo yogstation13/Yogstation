@@ -13,6 +13,9 @@
 	var/lastgen = 0
 	var/lastgenlev = -1
 
+	var/internal_heat_cap = 1000 //needs experimantal data
+	var/internal_temp = T0C
+
 /obj/machinery/power/generator/Initialize(mapload)
 	. = ..()
 	find_circs()
@@ -45,6 +48,8 @@
 			add_overlay("teg-panel")
 		return
 		
+	if(!powernet)
+		add_overlay("teg-nogrid")
 	if(stat & (NOPOWER))
 		return 
 	else
@@ -60,27 +65,36 @@
 		return
 
 	if(powernet)
-		var/datum/gas_mixture/cold_air = cold_circ.return_transfer_air()
+		var/datum/gas_mixture/cold_air = cold_circ.return_transfer_air()		//circulators give us air that is moving through
 		var/datum/gas_mixture/hot_air = hot_circ.return_transfer_air()
 
 		if(cold_air && hot_air)
 
-			var/cold_air_heat_capacity = cold_air.heat_capacity()
-			var/hot_air_heat_capacity = hot_air.heat_capacity()
+			var/cold_air_heat_cap = cold_air.heat_capacity()	// not sure if this isnt pointless
+			var/hot_air_heat_cap = hot_air.heat_capacity()
 
-			var/delta_temperature = hot_air.return_temperature() - cold_air.return_temperature()
+			var/cold_temp = cold_air.return_temperature()
+			var/hot_temp = hot_air.return_temperature()
 
+			if((hot_temp - cold_temp) > 0 && cold_air_heat_cap > 0 && hot_air_heat_cap > 0)
 
-			if(delta_temperature > 0 && cold_air_heat_capacity > 0 && hot_air_heat_capacity > 0)
+				//air moving trough equalises temperature with it subsection
+				var/cold_subsection_temp = (cold_air_heat_cap * cold_temp + internal_heat_cap * internal_temp) / (internal_heat_cap + cold_air_heat_cap)	
+				var/hot_subsection_temp = (hot_air_heat_cap * hot_temp + internal_heat_cap * internal_temp) / (internal_heat_cap + hot_air_heat_cap)
+
+				hot_air.set_temperature(hot_subsection_temp)	// cooled / heated air gets spit back out
+				cold_air.set_temperature(cold_subsection_temp)
+
 				var/efficiency = 0.65
 
-				var/energy_transfer = delta_temperature*hot_air_heat_capacity*cold_air_heat_capacity/(hot_air_heat_capacity+cold_air_heat_capacity)
+				//how much energy do we have stored in temperature differetial
+				var/energy_transfer = (hot_subsection_temp - cold_subsection_temp)*internal_heat_cap
 
-				var/heat = energy_transfer*(1-efficiency)
+				//produce electricity
 				lastgen += energy_transfer*efficiency
 
-				hot_air.set_temperature(hot_air.return_temperature() - energy_transfer/hot_air_heat_capacity)
-				cold_air.set_temperature(cold_air.return_temperature() + heat/cold_air_heat_capacity)
+				//transfer rest of energy into waste heat/chill
+				internal_temp = cold_subsection_temp + energy_transfer * (1 - efficiency) / (internal_heat_cap * 2)
 
 				//add_avail(lastgen) This is done in process now
 		// update icon overlays only if displayed level has changed
@@ -93,7 +107,7 @@
 			var/datum/gas_mixture/cold_circ_air1 = cold_circ.airs[1]
 			cold_circ_air1.merge(cold_air)
 
-		update_icon()
+	update_icon()
 
 	src.updateDialog()
 
@@ -108,7 +122,7 @@
 /obj/machinery/power/generator/proc/get_menu(include_link = TRUE)
 	var/t = ""
 	if(!powernet)
-		t += "<span class='bad'>Unable to connect to the power network!</span>"
+		t += span_bad("Unable to connect to the power network!")
 	else if(cold_circ && hot_circ)
 		var/datum/gas_mixture/cold_circ_air1 = cold_circ.airs[1]
 		var/datum/gas_mixture/cold_circ_air2 = cold_circ.airs[2]
@@ -131,11 +145,11 @@
 
 		t += "</div>"
 	else if(!hot_circ && cold_circ)
-		t += "<span class='bad'>Unable to locate hot circulator!</span>"
+		t += span_bad("Unable to locate hot circulator!")
 	else if(hot_circ && !cold_circ)
-		t += "<span class='bad'>Unable to locate cold circulator!</span>"
+		t += span_bad("Unable to locate cold circulator!")
 	else
-		t += "<span class='bad'>Unable to locate any parts!</span>"
+		t += span_bad("Unable to locate any parts!")
 	if(include_link)
 		t += "<BR><A href='?src=[REF(src)];close=1'>Close</A>"
 
@@ -145,7 +159,6 @@
 	. = ..()
 	var/datum/browser/popup = new(user, "teg", "Thermo-Electric Generator", 460, 300)
 	popup.set_content(get_menu())
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/power/generator/Topic(href, href_list)
@@ -199,31 +212,31 @@
 
 	if(!panel_open) //connect/disconnect circulators
 		if(!anchored)
-			to_chat(user, "<span class='warning'>Anchor [src] before trying to connect the circulators!</span>")
+			to_chat(user, span_warning("Anchor [src] before trying to connect the circulators!"))
 			return TRUE
 		else
 			if(hot_circ && cold_circ)
-				to_chat(user, "<span class='notice'>You start removing the circulators...</span>")
+				to_chat(user, span_notice("You start removing the circulators..."))
 				if(I.use_tool(src, user, 30, volume=50))
 					kill_circs()
 					update_icon()
-					to_chat(user, "<span class='notice'>You disconnect [src]'s circulator links.</span>")
+					to_chat(user, span_notice("You disconnect [src]'s circulator links."))
 					playsound(src, 'sound/misc/box_deploy.ogg', 50)
 				return TRUE
 
-			to_chat(user, "<span class='notice'>You attempt to attach the circulators...</span>")
+			to_chat(user, span_notice("You attempt to attach the circulators..."))
 			if(I.use_tool(src, user, 30, volume=50))
 				switch(find_circs())
 					if(0)
-						to_chat(user, "<span class='warning'>No circulators found!</span>")
+						to_chat(user, span_warning("No circulators found!"))
 					if(1)
-						to_chat(user, "<span class='warning'>Only one circulator found!</span>")
+						to_chat(user, span_warning("Only one circulator found!"))
 					if(2)
-						to_chat(user, "<span class='notice'>You connect [src]'s circulator links.</span>")
+						to_chat(user, span_notice("You connect [src]'s circulator links."))
 						playsound(src, 'sound/misc/box_deploy.ogg', 50)
 						return TRUE
 					if(3)
-						to_chat(user, "<span class='warning'>Both circulators are the same mode!</span>")
+						to_chat(user, span_warning("Both circulators are the same mode!"))
 				return TRUE
 
 	anchored = !anchored
@@ -231,7 +244,7 @@
 	if(!anchored)
 		kill_circs()
 	connect_to_network()
-	to_chat(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
+	to_chat(user, span_notice("You [anchored?"secure":"unsecure"] [src]."))
 	update_icon()
 	return TRUE
 
@@ -242,11 +255,11 @@
 		return
 
 	if(hot_circ && cold_circ)
-		to_chat(user, "<span class='warning'>Disconnect the circulators first!</span>")
+		to_chat(user, span_warning("Disconnect the circulators first!"))
 		return TRUE
 	panel_open = !panel_open
 	I.play_tool_sound(src)
-	to_chat(user, "<span class='notice'>You [panel_open?"open":"close"] the panel on [src].</span>")
+	to_chat(user, span_notice("You [panel_open?"open":"close"] the panel on [src]."))
 	update_icon()
 	return TRUE
 
@@ -255,10 +268,10 @@
 		return
 
 	if(anchored)
-		to_chat(user, "<span class='warning'>[src] is anchored!</span>")
+		to_chat(user, span_warning("[src] is anchored!"))
 		return TRUE
 	else if(!panel_open)
-		to_chat(user, "<span class='warning'>Open the panel first!</span>")
+		to_chat(user, span_warning("Open the panel first!"))
 		return TRUE
 	else
 		default_deconstruction_crowbar(I)

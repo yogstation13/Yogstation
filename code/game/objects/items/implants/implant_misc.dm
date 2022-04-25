@@ -33,7 +33,7 @@
 /obj/item/implant/adrenalin/activate()
 	. = ..()
 	uses--
-	to_chat(imp_in, "<span class='notice'>You feel a sudden surge of energy!</span>")
+	to_chat(imp_in, span_notice("You feel a sudden surge of energy!"))
 	imp_in.SetStun(0)
 	imp_in.SetKnockdown(0)
 	imp_in.SetUnconscious(0)
@@ -102,7 +102,7 @@
 /obj/item/implant/radio/activate()
 	. = ..()
 	// needs to be GLOB.deep_inventory_state otherwise it won't open
-	radio.ui_interact(usr, "main", null, FALSE, null, GLOB.deep_inventory_state)
+	radio.ui_interact(usr, state = GLOB.deep_inventory_state)
 
 /obj/item/implant/radio/Initialize(mapload)
 	. = ..()
@@ -123,6 +123,12 @@
 /obj/item/implant/radio/syndicate
 	desc = "Are you there God? It's me, Syndicate Comms Agent."
 	radio_key = /obj/item/encryptionkey/syndicate
+	subspace_transmission = TRUE
+
+/obj/item/implant/radio/antenna
+	name = "internal antenna"
+	desc = "The internal organ part of the antenna. Science has not yet given it a good name."
+	radio_key = /obj/item/encryptionkey/antenna
 	subspace_transmission = TRUE
 
 /obj/item/implant/radio/slime

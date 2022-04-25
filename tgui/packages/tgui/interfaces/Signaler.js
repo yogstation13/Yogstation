@@ -14,7 +14,9 @@ export const Signaler = (props, context) => {
   } = data;
 
   return (
-    <Window>
+    <Window
+      width={280}
+      height={150}>
       <Window.Content>
         <Section>
           <Grid>
@@ -80,7 +82,7 @@ export const Signaler = (props, context) => {
             <Grid.Column>
               <Button
                 icon="sync"
-                width={25.75}
+                width={13.1}
                 color={color}
                 content={color}
                 onClick={() => act('color')} />

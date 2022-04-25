@@ -1,0 +1,52 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/structure/foamedmetal,
+/turf/open/floor/plating/foam,
+/area/template_noop)
+"e" = (
+/obj/item/grenade/chem_grenade/smart_metal_foam,
+/turf/open/floor/plating/foam,
+/area/template_noop)
+"o" = (
+/obj/item/grenade,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"u" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"Q" = (
+/turf/open/floor/plating/foam,
+/area/template_noop)
+"W" = (
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+c
+c
+c
+"}
+(2,1,1) = {"
+Q
+c
+W
+"}
+(3,1,1) = {"
+Q
+e
+u
+"}
+(4,1,1) = {"
+o
+Q
+c
+"}
+(5,1,1) = {"
+c
+c
+c
+"}

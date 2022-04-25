@@ -1,14 +1,14 @@
 /client/proc/dsay(msg as text)
-	set category = "Special Verbs"
+	set category = "Misc.Unused"
 	set name = "Dsay"
-	set hidden = 1
+	set hidden = TRUE
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
 	if(!mob)
 		return
 	if(prefs.muted & MUTE_DEADCHAT)
-		to_chat(src, "<span class='danger'>You cannot send DSAY messages (muted).</span>", confidential=TRUE)
+		to_chat(src, span_danger("You cannot send DSAY messages (muted)."), confidential=TRUE)
 		return
 
 	if (handle_spam_prevention(msg,MUTE_DEADCHAT))
@@ -21,10 +21,12 @@
 		return
 	var/rank_name = holder.rank
 	var/admin_name = key
+	var/follow_link = ""
 	if(holder.fakekey)
-		rank_name = pick(strings("admin_nicknames.json", "ranks", "config"))
-		admin_name = pick(strings("admin_nicknames.json", "names", "config"))
-	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[rank_name]([admin_name])</span> says, <span class='message'>\"[emoji_parse(msg)]\"</span></span>"
+		rank_name = holder.fakekey
+		admin_name = holder.fakename
+		follow_link = "<a href=\"\">(F)</a> "
+	var/rendered = "<span class='game deadsay'>[follow_link][span_prefix("DEAD:")] [span_name("([rank_name]) [admin_name]")] says, [span_message("\"[emoji_parse(msg)]\"")]</span>"
 
 	for (var/mob/M in GLOB.player_list)
 		if(isnewplayer(M) && !(M.client && M.client.holder)) // Yogs -- Allows admins to hear admin deadsay while in the lobby

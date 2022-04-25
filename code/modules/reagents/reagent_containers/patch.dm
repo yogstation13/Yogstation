@@ -13,14 +13,16 @@
 
 /obj/item/reagent_containers/pill/patch/attack(mob/living/L, mob/user)
 	if(ishuman(L))
-		if(!L.can_inject(user, TRUE, check_zone(user.zone_selected)))
+		var/mob/living/carbon/human/H = L
+		if(H.wear_suit?.item_flags & MEDRESIST && !get_location_accessible(H, H.zone_selected))
+			to_chat(user, span_warning("[src] cannot be applied through [H.wear_suit]!"))
 			return
 		var/obj/item/bodypart/affecting = L.get_bodypart(check_zone(user.zone_selected))
 		if(!affecting)
-			to_chat(user, "<span class='warning'>The limb is missing!</span>")
+			to_chat(user, span_warning("The limb is missing!"))
 			return
 		if(affecting.status != BODYPART_ORGANIC)
-			to_chat(user, "<span class='notice'>Medicine won't work on a robotic limb!</span>")
+			to_chat(user, span_notice("Medicine won't work on a robotic limb!"))
 			return
 	..()
 
