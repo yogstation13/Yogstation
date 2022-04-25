@@ -323,33 +323,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
-"aP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
-/obj/item/mecha_parts/mecha_equipment/mining_scanner,
-/obj/item/mecha_parts/mecha_equipment/drill,
-/obj/structure/closet/crate{
-	moving_diagonally = 0;
-	name = "mech equipment crate"
-	},
-/obj/item/stack/sheet/metal{
-	alternate_worn_layer = null;
-	amount = 5
-	},
-/obj/item/stack/cable_coil,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/stock_parts/cell/hyper/empty,
-/obj/item/stock_parts/capacitor/adv,
-/obj/item/stock_parts/scanning_module/adv,
-/obj/item/stack/rods{
-	amount = 10
-	},
-/obj/item/mecha_parts/mecha_equipment/ripleyupgrade,
-/obj/item/borg/upgrade/freeminer,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "bd" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "bathroom"
@@ -575,12 +548,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"cp" = (
-/obj/structure/kitchenspike,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "cq" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -681,6 +648,13 @@
 /obj/item/healthanalyzer,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"eH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/kitchenspike,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "eT" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/ore_box,
@@ -755,37 +729,31 @@
 /obj/machinery/computer/mech_bay_power_console,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"jA" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife,
+"jc" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/paper/crumpled{
-	info = "WHO THE FUCK ORDERED SO MUCH SALT?<br><br>-K";
-	pixel_x = 4;
-	pixel_y = 6
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/obj/item/mecha_parts/mecha_equipment/mining_scanner,
+/obj/item/mecha_parts/mecha_equipment/drill,
+/obj/structure/closet/crate{
+	moving_diagonally = 0;
+	name = "mech equipment crate"
 	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -10;
-	pixel_y = 12
+/obj/item/stack/sheet/metal{
+	alternate_worn_layer = null;
+	amount = 5
 	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -5;
-	pixel_y = 12
+/obj/item/stack/cable_coil,
+/obj/machinery/light{
+	dir = 8
 	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -10;
-	pixel_y = 4
+/obj/item/stock_parts/cell/hyper/empty,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/scanning_module/adv,
+/obj/item/stack/rods{
+	amount = 10
 	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -10;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -10;
-	pixel_y = 4
-	},
-/obj/effect/decal/cleanable/dirt,
+/obj/item/mecha_parts/mecha_equipment/ripleyupgrade,
+/obj/item/borg/upgrade/panel_access_remover/freeminer,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "kL" = (
@@ -819,6 +787,22 @@
 /obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"lq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/storage/box/monkeycubes{
+	pixel_y = 4
+	},
+/obj/item/kitchen/knife,
+/obj/item/storage/box/fancy/egg_box{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "lL" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/titanium,
@@ -836,21 +820,6 @@
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/glasses/meson,
 /obj/item/pickaxe,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
-"mR" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/fancy/egg_box{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/obj/item/storage/box/monkeycubes{
-	pixel_y = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ov" = (
@@ -1044,6 +1013,22 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
+"CQ" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/reagent_containers/dropper,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 12
+	},
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "Di" = (
 /obj/effect/decal/cleanable/xenoblood,
 /turf/open/floor/mineral/titanium,
@@ -1134,6 +1119,11 @@
 /obj/effect/decal/cleanable/xenoblood/xgibs/limb,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
+"Nw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/griddle,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "Oj" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal{
@@ -1182,21 +1172,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/wrench,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
-"Xh" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/reagent_containers/dropper,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 12
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Xq" = (
@@ -1424,7 +1399,7 @@ aL
 bk
 aI
 mu
-mR
+Nw
 ae
 "}
 (12,1,1) = {"
@@ -1439,9 +1414,9 @@ bI
 bk
 bk
 bk
-cp
+lq
 cz
-Xh
+CQ
 ae
 "}
 (13,1,1) = {"
@@ -1457,7 +1432,7 @@ JR
 JR
 bk
 cq
-jA
+eH
 ry
 bk
 "}
@@ -1491,7 +1466,7 @@ bx
 aE
 bk
 hs
-aP
+jc
 lo
 bk
 "}

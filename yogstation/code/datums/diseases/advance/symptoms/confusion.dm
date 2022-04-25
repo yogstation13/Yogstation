@@ -27,7 +27,7 @@
 		suppress_warning = TRUE
 	if(A.totalResistance() >= 8)
 		stun_reduce = -25
-	if(A.totalTransmittable() >= 7)
+	if(A.totalTransmittable() >= 6)
 		stamina_regen = TRUE
 		
 /datum/symptom/numb/Activate(datum/disease/advance/A)

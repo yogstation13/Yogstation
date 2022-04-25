@@ -48,10 +48,10 @@
 	else
 		return ..()
 
-/obj/machinery/shower/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/shower/AltClick(mob/living/user)
 	..()
-	to_chat(user, span_notice("You begin to adjust the temperature valve with \the [I]..."))
-	if(I.use_tool(src, user, 50))
+	to_chat(user, span_notice("You begin to adjust the temperature..."))
+	if(do_after(user, 50, target = src))
 		switch(current_temperature)
 			if(SHOWER_NORMAL)
 				current_temperature = SHOWER_FREEZING
@@ -59,9 +59,9 @@
 				current_temperature = SHOWER_BOILING
 			if(SHOWER_BOILING)
 				current_temperature = SHOWER_NORMAL
-		user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I] to [current_temperature] temperature."))
-		user.log_message("has wrenched a shower at [AREACOORD(src)] to [current_temperature].", LOG_ATTACK)
-		add_hiddenprint(user)
+		user.visible_message(span_notice("[user] adjusts the shower."), span_notice("You adjust the shower to [current_temperature] temperature."))
+		user.log_message("has adjusted a shower at [AREACOORD(src)] to [current_temperature].", LOG_ATTACK)
+		add_fingerprint(user)
 	handle_mist()
 	return TRUE
 

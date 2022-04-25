@@ -46,7 +46,7 @@
 	if(!istype(H) || H.shoes || !(H.mobility_flags & MOBILITY_STAND) || !H.dna.species.has_toes())
 		return
 	var/speed_multiplier = 2/H.cached_multiplicative_slowdown
-	var/blindness_multiplier = 0
+	var/blindness_multiplier = 1
 	if(H.eye_blurry)
 		blindness_multiplier = 4
 	if(H.eye_blind)
@@ -652,7 +652,7 @@
 /obj/item/rack_parts
 	name = "rack parts"
 	desc = "Parts of a rack."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/frame.dmi'
 	icon_state = "rack_parts"
 	flags_1 = CONDUCT_1
 	materials = list(/datum/material/iron=2000)

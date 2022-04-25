@@ -1,6 +1,7 @@
 /obj/item/restraints
 	icon = 'icons/obj/handcuffs.dmi'
 	breakouttime = 600
+	var/break_strength = 2 // Minimum strength required for a holopara to break it
 
 /obj/item/restraints/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -37,6 +38,7 @@
 	materials = list(/datum/material/iron=500)
 	breakouttime = 600 //Deciseconds = 60s = 1 minute
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	break_strength = 4
 	var/cuffsound = 'sound/weapons/handcuffs.ogg'
 	var/trashtype = null //for disposable cuffs
 
@@ -118,6 +120,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	materials = list(/datum/material/iron=150, /datum/material/glass=75)
 	breakouttime = 300 //Deciseconds = 30s
+	break_strength = 2
 	cuffsound = 'sound/weapons/cablecuff.ogg'
 
 /obj/item/restraints/handcuffs/cable/Initialize(mapload, param_color)
@@ -171,6 +174,7 @@
 	name = "fake handcuffs"
 	desc = "Fake handcuffs meant for gag purposes."
 	breakouttime = 10 //Deciseconds = 1s
+	break_strength = 1
 
 /obj/item/restraints/handcuffs/cable/attackby(obj/item/I, mob/user, params)
 	..()
@@ -213,6 +217,7 @@
 	breakouttime = 450 //Deciseconds = 45s
 	trashtype = /obj/item/restraints/handcuffs/cable/zipties/used
 	item_color = "white"
+	break_strength = 3
 
 /obj/item/restraints/handcuffs/cable/zipties/used
 	desc = "A pair of broken zipties."
@@ -236,6 +241,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	slowdown = 7
 	breakouttime = 300	//Deciseconds = 30s = 0.5 minute
+	break_strength = 4
 
 /obj/item/restraints/legcuffs/beartrap
 	name = "bear trap"
@@ -243,6 +249,7 @@
 	throw_range = 1
 	icon_state = "beartrap"
 	desc = "A trap used to catch bears and other legged creatures."
+	break_strength = 4
 	var/armed = 0
 	var/trap_damage = 20
 
@@ -314,6 +321,7 @@
 	breakouttime = 30
 	item_flags = DROPDEL
 	flags_1 = NONE
+	break_strength = 2
 
 /obj/item/restraints/legcuffs/beartrap/energy/Initialize()
 	. = ..()
@@ -336,6 +344,7 @@
 	icon_state = "bola"
 	breakouttime = 35//easy to apply, easy to break out of
 	gender = NEUTER
+	break_strength = 3
 	var/immobilize = 0
 
 /obj/item/restraints/legcuffs/bola/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, quickstart = TRUE)
@@ -363,6 +372,7 @@
 	icon_state = "bola_r"
 	breakouttime = 70
 	immobilize = 20
+	break_strength = 4
 
 /obj/item/restraints/legcuffs/bola/energy //For Security
 	name = "energy bola"
@@ -371,6 +381,7 @@
 	hitsound = 'sound/weapons/taserhit.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	breakouttime = 60
+	break_strength = 2
 
 /obj/item/restraints/legcuffs/bola/energy/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(hit_atom))

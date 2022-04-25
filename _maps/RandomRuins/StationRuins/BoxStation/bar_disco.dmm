@@ -2,20 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ac" = (
-/obj/machinery/door/airlock{
-	name = "Theatre Backstage";
-	req_access_txt = "46"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/theatre)
 "ae" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
@@ -433,15 +419,6 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"bn" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "bq" = (
 /obj/machinery/door/airlock{
 	name = "Bar Storage";
@@ -688,14 +665,6 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"cp" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "ct" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
@@ -736,6 +705,15 @@
 /area/crew_quarters/kitchen)
 "cU" = (
 /obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"cV" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "cX" = (
@@ -788,6 +766,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"dS" = (
+/obj/machinery/door/airlock{
+	name = "Theatre Backstage";
+	req_access_txt = "46"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/theatre)
 "fj" = (
 /obj/structure/chair/americandiner/black{
 	dir = 8;
@@ -827,6 +818,12 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
+"nk" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "nK" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -862,6 +859,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"qv" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "vH" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -879,19 +880,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"xw" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"BD" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "Cr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1042,6 +1030,21 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"Ro" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"Sy" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "SI" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen";
@@ -1076,14 +1079,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"Zg" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1150,7 +1145,7 @@ cZ
 ai
 "}
 (5,1,1) = {"
-ac
+dS
 ao
 VS
 an
@@ -1382,8 +1377,8 @@ bj
 ak
 bG
 bZ
-xw
-Zg
+cV
+qv
 cy
 cy
 li
@@ -1398,8 +1393,8 @@ bk
 bv
 bH
 aX
-cp
-BD
+Sy
+Ro
 cA
 cy
 pp
@@ -1430,7 +1425,7 @@ ba
 ak
 bJ
 cc
-bn
+nk
 co
 cy
 cy

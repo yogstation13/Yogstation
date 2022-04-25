@@ -300,14 +300,6 @@
 	results = list(/datum/reagent/medicine/burnmix = 3) // fuel and most ethenol burns away to form BurnMix from remaining ethenol and ash
 	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/consumable/ethanol/beer = 3, /datum/reagent/ash = 2) // Take a booze bottle, drink some , add welding fuel and ash. Heat up with lighter
 
-/datum/chemical_reaction/tribalordrazine // Mushroom stem + ash from an ash pile + cactus fruit + heat the bowl with a welder
-	name = "Tribalordrazine"
-	id = /datum/reagent/medicine/tribalordrazine
-	required_temp = 420
-	mix_message = "The mixture binds together from the heat, releasing a pleasant smelling smoke."
-	results = list(/datum/reagent/medicine/tribalordrazine = 10) // Pretty intensive to get this, so this amount is fair. That and this chem isn't very good.
-	required_reagents = list(/datum/reagent/ash = 5, /datum/reagent/consumable/vitfro = 2, /datum/reagent/consumable/tinlux = 1)
-
 /datum/chemical_reaction/tribaldetox // Mushroom cap + ash from an ash pile + heat the bowl with a welder
 	name = "Cap Mix"
 	id = /datum/reagent/medicine/tribaldetox
@@ -321,7 +313,13 @@
 /datum/chemical_reaction/medsuture
 	name = "Medicated Suture"
 	id = "med_suture"
+	mix_message = "The solution solidifies into a thin purple string."
 	required_reagents = list(/datum/reagent/cellulose = 10, /datum/reagent/toxin/formaldehyde = 20, /datum/reagent/medicine/polypyr = 15)
+
+/datum/chemical_reaction/medsuture/alt
+	name = "Trek Suture"
+	id = "med_suture_alt"
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 10, /datum/reagent/medicine/c2/probital = 20, /datum/reagent/medicine/spaceacillin  = 10)
 
 /datum/chemical_reaction/medsuture/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -331,7 +329,13 @@
 /datum/chemical_reaction/medmesh
 	name = "Advanced Mesh"
 	id = "adv_mesh"
+	mix_message = "The solution congeals into a small supply of easily portioned green gelatin."
 	required_reagents = list(/datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20, /datum/reagent/space_cleaner/sterilizine = 10)
+
+/datum/chemical_reaction/medmesh/alt
+	name = "Trek Mesh"
+	id = "adv_mesh_alt"
+	required_reagents = list(/datum/reagent/medicine/kelotane = 10, /datum/reagent/medicine/c2/lenturi = 20, /datum/reagent/space_cleaner/sterilizine = 10)
 
 /datum/chemical_reaction/medmesh/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -341,14 +345,40 @@
 /datum/chemical_reaction/poultice
 	name = "poultice"
 	id = "poultice"
+	mix_message = "The mixture produces an eerie green liquid."
 	required_reagents = list(/datum/reagent/toxin/amanitin = 10, /datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20)
 
 /datum/chemical_reaction/poultice/alt
-	name = "poultice"
+	name = "tribal poultice"
 	id = "poultice_alt"
-	required_reagents = list(/datum/reagent/consumable/entpoly = 15, /datum/reagent/cellulose = 20, /datum/reagent/consumable/tinlux = 12)
+	required_temp = 420
+	required_reagents = list(/datum/reagent/consumable/vitfro = 15, /datum/reagent/ash = 15, /datum/reagent/consumable/tinlux = 8)
 
 /datum/chemical_reaction/poultice/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/medical/poultice(location)
+
+/datum/chemical_reaction/bone_gel
+	id = "bone_gel"
+	required_reagents = list(/datum/reagent/consumable/milk = 10, /datum/reagent/carbon = 10) //good for bones and calcium
+	required_temp = 630
+	mob_react = FALSE
+	mix_message = "The solution congeals into a blue gel."
+
+/datum/chemical_reaction/bone_gel/alt
+	id = "bone_gel_alt"
+	required_reagents = list(/datum/reagent/consumable/cream/bug = 15, /datum/reagent/consumable/ashresin = 5)
+
+/datum/chemical_reaction/bone_gel/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/medical/bone_gel(location)
+
+/datum/chemical_reaction/radscrub
+	name = "Rad Scrub Plus"
+	id = /datum/reagent/medicine/radscrub
+	results = list(/datum/reagent/medicine/radscrub = 3)
+	required_reagents = list(/datum/reagent/medicine/potass_iodide = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/medicine/c2/seiver = 1)
+	required_temp = 200
+	is_cold_recipe = 1

@@ -20,6 +20,7 @@ GLOBAL_LIST_INIT(plasmaman_names, world.file2list("strings/names/plasmaman.txt")
 GLOBAL_LIST_INIT(ethereal_names, world.file2list("strings/names/ethereal.txt"))
 GLOBAL_LIST_INIT(posibrain_names, world.file2list("strings/names/posibrain.txt"))
 GLOBAL_LIST_INIT(nightmare_names, world.file2list("strings/names/nightmare.txt"))
+GLOBAL_LIST_INIT(horror_names, world.file2list("strings/names/horror.txt"))
 GLOBAL_LIST_INIT(megacarp_first_names, world.file2list("strings/names/megacarp1.txt"))
 GLOBAL_LIST_INIT(megacarp_last_names, world.file2list("strings/names/megacarp2.txt"))
 

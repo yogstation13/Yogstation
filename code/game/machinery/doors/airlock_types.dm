@@ -378,7 +378,6 @@
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_hatch
-	can_repaint = FALSE
 	//anim_parts = "ul=-9,9;ur=9,9;dl=-9,-9;dr=9,-9"
 	anim_parts = "ul=-15,0,0,5,-90;ur=0,15,0,5,-90;dl=0,-15,0,5,-90;dr=15,0,0,5,-90"
 	note_attachment = "ul"
@@ -394,7 +393,6 @@
 	anim_parts = "ul=-15,0,0,5,-90;ur=0,15,0,5,-90;dl=0,-15,0,5,-90;dr=15,0,0,5,-90"
 	note_attachment = "ul"
 	panel_attachment = "dr"
-	can_repaint = FALSE
 
 //////////////////////////////////
 /*
@@ -460,7 +458,6 @@
 	var/openingoverlaytype = /obj/effect/temp_visual/cult/door
 	var/friendly = FALSE
 	var/stealthy = FALSE
-	can_repaint = FALSE
 
 /obj/machinery/door/airlock/cult/Initialize()
 	. = ..()
@@ -567,7 +564,6 @@
 	damage_deflection = 30
 	normal_integrity = 240
 	var/construction_state = GEAR_SECURE //Pinion airlocks have custom deconstruction
-	can_repaint = FALSE
 
 /obj/machinery/door/airlock/clockwork/Initialize()
 	. = ..()
@@ -686,7 +682,6 @@
 	assemblytype = null
 	glass = TRUE
 	bound_width = 64 // 2x1
-	can_repaint = FALSE
 
 /obj/machinery/door/airlock/glass_large/narsie_act()
 	return

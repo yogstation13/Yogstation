@@ -11,6 +11,7 @@
 	// The actual laptop/tablet
 	var/obj/item/modular_computer/laptop/fabricated_laptop = null
 	var/obj/item/modular_computer/tablet/fabricated_tablet = null
+	var/obj/item/modular_computer/tablet/phone/fabricated_phone = null
 
 	// Utility vars
 	var/state = 0 							// 0: Select device type, 1: Select loadout, 2: Payment, 3: Thankyou screen
@@ -52,6 +53,7 @@
 		var/obj/item/computer_hardware/battery/battery_module = null
 		if(fabricate)
 			fabricated_laptop = new /obj/item/modular_computer/laptop/buildable(src)
+			fabricated_laptop.install_component(new /obj/item/computer_hardware/card_slot)
 			fabricated_laptop.install_component(new /obj/item/computer_hardware/battery)
 			battery_module = fabricated_laptop.all_components[MC_CELL]
 		total_price = 49
@@ -107,15 +109,17 @@
 		if(dev_card)
 			total_price += 99
 			if(fabricate)
-				fabricated_laptop.install_component(new /obj/item/computer_hardware/card_slot)
+				fabricated_laptop.install_component(new /obj/item/computer_hardware/card_slot/secondary)
 
 		return total_price
+
 	else if(devtype == 2) 	// Tablet, more expensive, not everyone could probably afford this.
 		var/obj/item/computer_hardware/battery/battery_module = null
 		if(fabricate)
 			fabricated_tablet = new(src)
 			fabricated_tablet.install_component(new /obj/item/computer_hardware/battery)
 			fabricated_tablet.install_component(new /obj/item/computer_hardware/processor_unit/small)
+			fabricated_tablet.install_component(new/obj/item/computer_hardware/card_slot)
 			battery_module = fabricated_tablet.all_components[MC_CELL]
 		total_price = 99
 		switch(dev_battery)
@@ -154,11 +158,61 @@
 		if(dev_printer)
 			total_price += 49
 			if(fabricate)
-				fabricated_tablet.install_component(new/obj/item/computer_hardware/printer)
+				fabricated_tablet.install_component(new/obj/item/computer_hardware/printer/mini)
 		if(dev_card)
-			total_price += 99
+			total_price += 199
 			if(fabricate)
-				fabricated_tablet.install_component(new/obj/item/computer_hardware/card_slot)
+				fabricated_tablet.install_component(new/obj/item/computer_hardware/card_slot/secondary)
+		return total_price
+
+	else if(devtype == 3) 	// Phone, very portable and can function similar to the PDA, though it is even more expensive than a tablet.
+		var/obj/item/computer_hardware/battery/battery_module = null
+		if(fabricate)
+			fabricated_phone = new(src)
+			fabricated_phone.install_component(new /obj/item/computer_hardware/battery)
+			fabricated_phone.install_component(new /obj/item/computer_hardware/card_slot)
+			fabricated_phone.install_component(new /obj/item/computer_hardware/processor_unit/small)
+			battery_module = fabricated_phone.all_components[MC_CELL]
+		total_price = 149
+		switch(dev_battery)
+			if(1) // Basic(300C)
+				if(fabricate)
+					battery_module.try_insert(new /obj/item/stock_parts/cell/computer/nano)
+			if(2) // Upgraded(500C)
+				if(fabricate)
+					battery_module.try_insert(new /obj/item/stock_parts/cell/computer/micro)
+				total_price += 99
+			if(3) // Advanced(750C)
+				if(fabricate)
+					battery_module.try_insert(new /obj/item/stock_parts/cell/computer)
+				total_price += 249
+		switch(dev_disk)
+			if(1) // Basic(32GQ)
+				if(fabricate)
+					fabricated_phone.install_component(new /obj/item/computer_hardware/hard_drive/micro)
+			if(2) // Upgraded(64GQ)
+				if(fabricate)
+					fabricated_phone.install_component(new /obj/item/computer_hardware/hard_drive/small)
+				total_price += 49
+			if(3) // Advanced(128GQ)
+				if(fabricate)
+					fabricated_phone.install_component(new /obj/item/computer_hardware/hard_drive)
+				total_price += 149
+		switch(dev_netcard)
+			if(1) // Basic(Short-Range)
+				if(fabricate)
+					fabricated_phone.install_component(new/obj/item/computer_hardware/network_card)
+				total_price += 49
+			if(2) // Advanced (Long Range)
+				if(fabricate)
+					fabricated_phone.install_component(new/obj/item/computer_hardware/network_card/advanced)
+				total_price += 149
+		if(dev_printer)
+			fabricated_phone.install_component(new/obj/item/computer_hardware/printer/mini)
+		if(dev_card)
+			total_price += 199
+			if(fabricate)
+				fabricated_phone.install_component(new/obj/item/computer_hardware/card_slot/secondary)
 		return total_price
 	return 0
 
@@ -258,7 +312,7 @@
 			say("Insufficient money on card to purchase!")
 			return
 		credits += target_credits
-		say("$[target_credits] has been desposited from your account.")
+		say("[target_credits] cr have been withdrawn from your account.")
 		return
 	return ..()
 
@@ -301,6 +355,9 @@
 			else if((devtype == 2) && fabricated_tablet)
 				fabricated_tablet.forceMove(src.loc)
 				fabricated_tablet = null
+			else if((devtype == 3) && fabricated_phone)
+				fabricated_phone.forceMove(src.loc)
+				fabricated_phone = null
 			credits -= total_price
 			say("Enjoy your new product!")
 			state = 3

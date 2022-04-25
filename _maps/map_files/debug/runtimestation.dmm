@@ -94,9 +94,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "as" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/machinery/airalarm/unlocked{
 	pixel_y = 24
 	},

@@ -88,9 +88,6 @@
 	action_icon_state = "veil_mind"
 	action_background_icon_state = "bg_alien"
 
-/obj/effect/proc_holder/spell/aimed/update_icon()
-	return
-
 /obj/effect/proc_holder/spell/targeted/progenitor_curse/cast(list/targets, mob/user = usr)
 	if(!targets.len)
 		to_chat(user, span_notice("You can't reach anyone's minds."))

@@ -78,10 +78,18 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/dome, GLOB.dome_list)
 	if(!GLOB.dorsal_tubes_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
+	if(!GLOB.ethereal_mark_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ethereal_mark, GLOB.ethereal_mark_list)
+	if(!GLOB.pod_hair_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list)
+	if(!GLOB.pod_flower_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_flower, GLOB.pod_flower_list)
 
 	//For now we will always return none for tail_human and ears.		this shit was unreadable if you do somethign like this make it at least readable
 	return(list(
 		"mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
+		"gradientstyle" = random_hair_gradient_style(10),
+		"gradientcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
 		"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)],
 		"tail_lizard" = pick(GLOB.tails_list_lizard),
 		"tail_human" = "None",
@@ -98,7 +106,9 @@
 		"tail_polysmorph" = "Polys",
 		"teeth" = pick(GLOB.teeth_list),
 		"dome" = pick(GLOB.dome_list),
-		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list)
+		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list),
+		"ethereal_mark" = pick(GLOB.ethereal_mark_list),
+		"pod_hair" = pick(GLOB.pod_hair_list)
 	))
 
 /proc/random_hair_style(gender)
@@ -118,6 +128,12 @@
 			return pick(GLOB.facial_hair_styles_female_list)
 		else
 			return pick(GLOB.facial_hair_styles_list)
+
+/proc/random_hair_gradient_style(weight)
+	if(rand(0, 100) <= weight)
+		return pick(GLOB.hair_gradients_list)
+	else
+		return "None"
 
 /proc/random_unique_name(gender, attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)

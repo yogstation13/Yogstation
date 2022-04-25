@@ -15,6 +15,7 @@
 #define BONE 256
 #define MOTH 512
 #define CAT 1024
+#define ENGLISH 2048
 
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
 //this is fucking broken
@@ -173,6 +174,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		oldlang = MOTH
 	else if(oldlang == /datum/language/felinid) 
 		oldlang  = CAT
+	else if(oldlang == /datum/language/english) 
+		oldlang  = ENGLISH
 	// Signal data
 
 	var/datum/n_struct/signal/script_signal = new(list(
@@ -311,6 +314,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 			return /datum/language/mothian
 		if(CAT)
 			return /datum/language/felinid
+		if(ENGLISH)
+			return /datum/language/english
 
 /datum/n_function/default/mem
 	name = "mem"
@@ -485,3 +490,4 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #undef BONE
 #undef MOTH
 #undef CAT
+#undef ENGLISH

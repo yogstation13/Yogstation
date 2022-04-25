@@ -11,13 +11,13 @@
 	. = ..()
 	if(.)
 		return
-	if(can_buckle && has_buckled_mobs())
+	if(Adjacent(user) && can_buckle && has_buckled_mobs())
 		if(buckled_mobs.len > 1)
 			var/unbuckled = input(user, "Who do you wish to unbuckle?","Unbuckle Who?") as null|mob in buckled_mobs
-			if(user_unbuckle_mob(unbuckled,user))
+			if(user_unbuckle_mob(unbuckled, user))
 				return 1
 		else
-			if(user_unbuckle_mob(buckled_mobs[1],user))
+			if(user_unbuckle_mob(buckled_mobs[1], user))
 				return 1
 
 /atom/movable/attack_hand(mob/living/user)

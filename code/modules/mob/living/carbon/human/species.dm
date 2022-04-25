@@ -22,6 +22,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/hair_color
 	/// the alpha used by the hair. 255 is completely solid, 0 is transparent.
 	var/hair_alpha = 255
+	///The gradient style used for the mob's hair.
+	var/grad_style
+	///The gradient color used to color the gradient.
+	var/grad_color
 
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/use_skintones = FALSE
@@ -48,6 +52,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/nojumpsuit = FALSE
 	/// affects the speech message
 	var/say_mod = "says"
+	/// Weighted list. NOTE: Picks one of the list component and then does a prob() on it, since we can't do a proper weighted pick, since we need to take into account the regular say_mod.
+	//TL;DR "meows" = 75 and "rawr" = 25 isn't actually 75% and 25%. It's 75% * 50% = 37.5% and 25% * 50% = 12.5%. Chance is divided by number of elements
+	var/list/rare_say_mod = list()
 	///Used if you want to give your species thier own language
 	var/species_language_holder = /datum/language_holder
 	/// Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
@@ -149,6 +156,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	///Bitflag that controls what in game ways can select this species as a spawnable source. Think magic mirror and pride mirror, slime extract, ERT etc, see defines in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
 	var/changesource_flags = NONE
+
+	//The component to add when swimming
+	var/swimming_component = /datum/component/swimming
+	
 ///////////
 // PROCS //
 ///////////
@@ -503,6 +514,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if(hair_color)
 					if(hair_color == "mutcolor")
 						facial_overlay.color = "#" + H.dna.features["mcolor"]
+					else if(hair_color == "fixedmutcolor")
+						facial_overlay.color = "#[fixed_mut_color]"
 					else
 						facial_overlay.color = "#" + hair_color
 				else
@@ -531,6 +544,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	if(!hair_hidden || dynamic_hair_suffix)
 		var/mutable_appearance/hair_overlay = mutable_appearance(layer = -HAIR_LAYER)
+		var/mutable_appearance/gradient_overlay = mutable_appearance(layer = -HAIR_LAYER)
 		if(!hair_hidden && !H.getorgan(/obj/item/organ/brain)) //Applies the debrained overlay if there is no brain
 			if(!(NOBLOOD in species_traits))
 				hair_overlay.icon = 'icons/mob/human_face.dmi'
@@ -563,19 +577,82 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					if(hair_color)
 						if(hair_color == "mutcolor")
 							hair_overlay.color = "#" + H.dna.features["mcolor"]
+						else if(hair_color == "fixedmutcolor")
+							hair_overlay.color = "#[fixed_mut_color]"
 						else
 							hair_overlay.color = "#" + hair_color
 					else
 						hair_overlay.color = "#" + H.hair_color
+
+					//Gradients
+					grad_style = H.grad_style
+					grad_color = H.grad_color
+					if(grad_style)
+						var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[grad_style]
+						var/icon/temp = icon(gradient.icon, gradient.icon_state)
+						var/icon/temp_hair = icon(hair_file, hair_state)
+						temp.Blend(temp_hair, ICON_ADD)
+						gradient_overlay.icon = temp
+						gradient_overlay.color = "#" + grad_color
+
 				else
 					hair_overlay.color = forced_colour
+
 				hair_overlay.alpha = hair_alpha
 				if(OFFSET_FACE in H.dna.species.offset_features)
 					hair_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
 					hair_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
 		if(hair_overlay.icon)
 			standing += hair_overlay
-
+			standing += gradient_overlay
+		if("pod_hair" in H.dna.species.mutant_bodyparts)
+		//alright bear with me for a second while i explain this awful code since it was literally 3 days of me bumbling through blind
+		//for hair code to work, you need to start by removing the layer, as in the beginning with remove_overlay(head), then you need to use a mutable appearance variable
+		//the mutable appearance will store the sprite file dmi, the name of the sprite (icon_state), and the layer this will go on (in this case HAIR_LAYER)
+		//those are the basic variables, then you color the sprite with whatever source color you're using and set the alpha. from there it's added to the "standing" list
+		//which is storing all the individual mutable_appearance variables (each one is a sprite), and then standing is loaded into the H.overlays_standing and finalized
+		//with apply_overlays.
+		//if you're working with sprite code i hope this helps because i wish i was dead now.
+			S = GLOB.pod_hair_list[H.dna.features["pod_hair"]]
+			if(S)
+				if(ReadHSV(RGBtoHSV(H.hair_color))[3] <= ReadHSV("#7F7F7F")[3])
+					H.hair_color = H.dna.species.default_color
+				var/hair_state = S.icon_state
+				var/hair_file = S.icon
+				hair_overlay.icon = hair_file
+				hair_overlay.icon_state = hair_state
+				if(!forced_colour)
+					if(hair_color)
+						if(hair_color == "mutcolor")
+							hair_overlay.color = "#" + H.dna.features["mcolor"]
+						else if(hair_color == "fixedmutcolor")
+							hair_overlay.color = "#[fixed_mut_color]"
+						else
+							hair_overlay.color = "#" + hair_color
+					else
+						hair_overlay.color = "#" + H.hair_color
+				hair_overlay.alpha = hair_alpha
+				standing+=hair_overlay
+				//var/mutable_appearance/pod_flower = mutable_appearance(GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon, GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon_state, -HAIR_LAYER)
+				S = GLOB.pod_flower_list[H.dna.features["pod_flower"]]
+				if(S)					
+					var/flower_state = S.icon_state
+					var/flower_file = S.icon
+					// flower_overlay.icon = flower_file
+					// flower_overlay.icon_state = flower_state
+					var/mutable_appearance/flower_overlay = mutable_appearance(flower_file, flower_state, -HAIR_LAYER)
+					if(!forced_colour)
+						if(hair_color)
+							if(hair_color == "mutcolor")
+								flower_overlay.color = "#" + H.dna.features["mcolor"]
+							else if(hair_color == "fixedmutcolor")
+								flower_overlay.color = "#[fixed_mut_color]"
+							else
+								flower_overlay.color = "#" + hair_color
+						else		
+							flower_overlay.color = "#" + H.facial_hair_color
+					flower_overlay.alpha = hair_alpha
+					standing += flower_overlay			
 	if(standing.len)
 		H.overlays_standing[HAIR_LAYER] = standing
 
@@ -726,6 +803,20 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if("dome" in mutant_bodyparts)
 		if(!H.dna.features["dome"] || H.dna.features["dome"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "dome"
+	
+	if("ethereal_mark" in mutant_bodyparts)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "ethereal_mark"
+
+	if("pod_hair" in mutant_bodyparts)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "pod_hair"
+	
+	if("pod_flower" in mutant_bodyparts)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "pod_flower"
+		if(H.dna.features["pod_flower"] != H.dna.features["pod_hair"])
+			H.dna.features["pod_flower"] = H.dna.features["pod_hair"]
 
 	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
 	var/update_needed = FALSE
@@ -819,6 +910,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					S = GLOB.dome_list[H.dna.features["dome"]]
 				if("dorsal_tubes")
 					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
+				if("ethereal_mark")
+					S = GLOB.ethereal_mark_list[H.dna.features["ethereal_mark"]]
 			if(!S || S.icon_state == "none")
 				continue
 
@@ -842,13 +935,17 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if(!forced_colour)
 					switch(S.color_src)
 						if(MUTCOLORS)
-							if(fixed_mut_color)
+							if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))			//HULK GO FIRST
+								accessory_overlay.color = "#00aa00"
+							else if(fixed_mut_color)													//Then fixed color if applicable
 								accessory_overlay.color = "#[fixed_mut_color]"
-							else
+							else																		//Then snowflake color
 								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
 						if(HAIR)
 							if(hair_color == "mutcolor")
 								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+							else if(hair_color == "fixedmutcolor")
+								accessory_overlay.color = "#[fixed_mut_color]"
 							else
 								accessory_overlay.color = "#[H.hair_color]"
 						if(FACEHAIR)
@@ -888,8 +985,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(BODY_ADJ_LAYER)
 			return "ADJ"
 		if(BODY_FRONT_LAYER)
-			return "FRONT"
-
+			return "FRONT"	
 
 /datum/species/proc/spec_life(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOBREATH))
@@ -1152,6 +1248,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 		if(mood && mood.sanity > SANITY_DISTURBED)
 			hunger_rate *= max(0.5, 1 - 0.002 * mood.sanity) //0.85 to 0.75
+		if(HAS_TRAIT(H, TRAIT_EAT_LESS))
+			hunger_rate *= 0.75 //hunger rate reduced by about 25%
 		// Whether we cap off our satiety or move it towards 0
 		if(H.satiety > MAX_SATIETY)
 			H.satiety = MAX_SATIETY
@@ -1362,7 +1460,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		switch(atk_verb)//this code is really stupid but some genius apparently made "claw" and "slash" two attack types but also the same one so it's needed i guess
 			if(ATTACK_EFFECT_KICK)
 				user.do_attack_animation(target, ATTACK_EFFECT_KICK)
-			if(ATTACK_EFFECT_SLASH || ATTACK_EFFECT_CLAW)//smh
+			if(ATTACK_EFFECT_SLASH, ATTACK_EFFECT_CLAW)//smh
 				user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
 			if(ATTACK_EFFECT_SMASH)
 				user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
@@ -1732,7 +1830,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
 	if(!environment)
 		return
-	if(istype(H.loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
+
+	var/human_loc = H.loc
+
+	if(istype(human_loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 		return
 
 	var/loc_temp = H.get_temperature(environment)
@@ -1748,6 +1849,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(loc_temp < H.bodytemperature) //Place is colder than we are
 			thermal_protection -= H.get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			thermal_protection *= heat_capacity_factor
+			if(ismovable(human_loc))
+				var/atom/movable/occupied_space = human_loc
+				thermal_protection *= (1 - occupied_space.contents_thermal_insulation)
 			if(!HAS_TRAIT(H, TRAIT_NO_PASSIVE_COOLING))
 				if(H.bodytemperature < BODYTEMP_NORMAL) //we're cold, insulation helps us retain body heat and will reduce the heat we lose to the environment
 					H.adjust_bodytemperature((thermal_protection+1)*natural + max(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
@@ -1760,6 +1864,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		var/thermal_protection = 1
 		thermal_protection -= H.get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 		thermal_protection *= heat_capacity_factor
+		if(ismovable(human_loc))
+			var/atom/movable/occupied_space = human_loc
+			thermal_protection *= (1 - occupied_space.contents_thermal_insulation)
 		if(!HAS_TRAIT(H, TRAIT_NO_PASSIVE_HEATING))
 			if(H.bodytemperature < BODYTEMP_NORMAL) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
 				H.adjust_bodytemperature((thermal_protection+1)*natural + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
@@ -1939,6 +2046,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 ////////////////
 
 /datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
+	if(H.IsParalyzed() || H.IsStun())
+		return FALSE
 	return (H.getorganslot(ORGAN_SLOT_TAIL))
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
@@ -2082,3 +2191,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		. |= BIO_JUST_FLESH
 	if(HAS_BONE in species_traits)
 		. |= BIO_JUST_BONE
+
+/datum/species/proc/get_scream_sound(mob/living/carbon/human/H)
+	if(islist(screamsound))
+		return pick(screamsound)
+	return screamsound

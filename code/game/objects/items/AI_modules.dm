@@ -54,8 +54,8 @@ AI MODULES
 				if(mylaw != "")
 					tot_laws++
 		if(tot_laws > CONFIG_GET(number/silicon_max_law_amount) && !bypass_law_amt_check)//allows certain boards to avoid this check, eg: reset
-			to_chat(user, span_caution("Not enough memory allocated to [law_datum.owner ? law_datum.owner : "the AI core"]'s law processor to handle this amount of laws."))
-			message_admins("[ADMIN_LOOKUPFLW(user)] tried to upload laws to [law_datum.owner ? ADMIN_LOOKUPFLW(law_datum.owner) : "an AI core"] that would exceed the law cap.")
+			to_chat(user, span_caution("Not enough memory allocated to [law_datum.owner ? law_datum.owner : "the onboard APU"]'s law processor to handle this amount of laws."))
+			message_admins("[ADMIN_LOOKUPFLW(user)] tried to upload laws to [law_datum.owner ? ADMIN_LOOKUPFLW(law_datum.owner) : "an MMI or similar"] that would exceed the law cap.")
 			overflow = TRUE
 
 	var/law2log = transmitInstructions(law_datum, user, overflow) //Freeforms return something extra we need to log
@@ -66,12 +66,12 @@ AI MODULES
 		to_chat(user, span_notice("Upload complete."))
 
 	var/time = time2text(world.realtime,"hh:mm:ss")
-	var/ainame = law_datum.owner ? law_datum.owner.name : "empty AI core"
+	var/ainame = law_datum.owner ? law_datum.owner.name : "an MMI object"
 	var/aikey = law_datum.owner ? law_datum.owner.ckey : "null"
 	GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) used [src.name] on [ainame]([aikey]).[law2log ? " The law specified [law2log]" : ""]")
 	log_law("[user.key]/[user.name] used [src.name] on [aikey]/([ainame]) from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""]")
-	message_admins("[ADMIN_LOOKUPFLW(user)] used [src.name] on [ADMIN_LOOKUPFLW(law_datum.owner)] from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""]")
-	if(law_datum.owner) //yogs
+	message_admins("[ADMIN_LOOKUPFLW(user)] used [src.name] on [law_datum.owner ? ADMIN_LOOKUPFLW(law_datum.owner) : "an MMI or similar"] from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""]")
+	if(law_datum.owner) //yogs, doesn't work for MMIs. (Doesn't matter much since MMIs don't follow laws before they're made into something that is silicon)
 		law_datum.owner.update_law_history(user)
 
 //The proc that actually changes the silicon's laws.
@@ -321,15 +321,9 @@ AI MODULES
 	if(law_datum.owner)
 		law_datum.owner.clear_inherent_laws()
 		law_datum.owner.clear_zeroth_law(0)
-		remove_antag_datums(law_datum)
 	else
 		law_datum.clear_inherent_laws()
 		law_datum.clear_zeroth_law(0)
-
-/obj/item/aiModule/reset/purge/proc/remove_antag_datums(datum/ai_laws/law_datum)
-	if(istype(law_datum.owner, /mob/living/silicon/ai))
-		var/mob/living/silicon/ai/AI = law_datum.owner
-		AI.mind.remove_antag_datum(/datum/antagonist/overthrow)
 
 /******************* Full Core Boards *******************/
 /obj/item/aiModule/core
@@ -452,7 +446,78 @@ AI MODULES
 	name = "'Cowboy' Core AI Module"
 	law_id = "cowboy"
 
+/******************** ChapAI *********************/
 
+/obj/item/aiModule/core/full/chapai
+	name = "'ChapAI' Core AI Module"
+	law_id = "chapai"
+
+/******************** Silicop *********************/
+
+/obj/item/aiModule/core/full/silicop
+	name = "'Silicop' Core AI Module"
+	law_id = "silicop"
+
+/******************** Researcher *********************/
+
+/obj/item/aiModule/core/full/researcher
+	name = "'Ethical Researcher' Core AI Module"
+	law_id = "researcher"
+
+
+/******************** Clown *********************/
+
+/obj/item/aiModule/core/full/clown
+	name = "'Clown' Core AI Module"
+	law_id = "clown"
+
+
+/******************** Mother *********************/
+
+/obj/item/aiModule/core/full/mother
+	name = "'Mother M(A.I.)' Core AI Module"
+	law_id = "mother"
+
+/******************** Spotless Reputation *********************/
+
+/obj/item/aiModule/core/full/spotless
+	name = "'Spotless Reputation' Core AI Module"
+	law_id = "spotless"
+
+/******************** Construction *********************/
+
+/obj/item/aiModule/core/full/construction
+	name = "'Construction Drone' Core AI Module"
+	law_id = "construction"
+
+/******************** Silicon Collective *********************/
+
+/obj/item/aiModule/core/full/siliconcollective
+	name = "'Silicon Collective' Core AI Module"
+	law_id = "siliconcollective"
+
+
+/******************** Meta Experiment *********************/
+
+/obj/item/aiModule/core/full/metaexperiment
+	name = "'Meta Experiment' Core AI Module"
+	law_id = "metaexperiment"
+
+
+/******************** Druid *********************/
+
+/obj/item/aiModule/core/full/druid
+	name = "'Druid' Core AI Module"
+	law_id = "druid"
+
+	
+/******************** Detective *********************/
+
+/obj/item/aiModule/core/full/detective
+	name = "'Detective' Core AI Module"
+	law_id = "detective"
+
+	
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
@@ -469,40 +534,6 @@ AI MODULES
 /obj/item/aiModule/core/freeformcore/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
 	..()
 	return laws[1]
-
-/******************** Overthrow ******************/
-/obj/item/aiModule/core/full/overthrow
-	name = "'Overthrow' Hacked AI Module"
-	law_id = "overthrow"
-
-/obj/item/aiModule/core/full/overthrow/install(datum/ai_laws/law_datum, mob/user)
-	if(!user || !law_datum || !law_datum.owner)
-		return
-	var/datum/mind/user_mind = user.mind
-	if(!user_mind)
-		return
-	var/datum/antagonist/overthrow/O = user_mind.has_antag_datum(/datum/antagonist/overthrow)
-	if(!O)
-		to_chat(user, span_warning("It appears that to install this module, you require a password you do not know.")) // This is the best fluff i could come up in my mind
-		return
-	var/mob/living/silicon/ai/AI = law_datum.owner
-	if(!AI)
-		return
-	var/datum/mind/target_mind = AI.mind
-	if(!target_mind)
-		return
-	var/datum/antagonist/overthrow/T = target_mind.has_antag_datum(/datum/antagonist/overthrow) // If it is already converted.
-	if(T)
-		if(T.team == O.team)
-			return
-		T.silent = TRUE
-		target_mind.remove_antag_datum(/datum/antagonist/overthrow)
-		if(AI)
-			to_chat(AI, span_userdanger("You feel your circuits being scrambled! You serve another overthrow team now!")) // to make it clearer for the AI
-	T = target_mind.add_antag_datum(/datum/antagonist/overthrow, O.team)
-	if(AI)
-		to_chat(AI, span_warning("You serve the [T.team] team now! Assist them in completing the team shared objectives, which you can see in your notes."))
-	..()
 
 /******************** Hacked AI Module ******************/
 

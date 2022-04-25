@@ -202,6 +202,13 @@
 	name = "Crashed Ship"
 	description = "Among civilian vessels the most common cause of tragedy is lack of food. \
 	This ship was outfitted with a multitude of food-generating features, then summarily ran into an asteroid shortly after takeoff."
+	
+/datum/map_template/ruin/space/crashedufo
+	id = "crashedufo"
+	suffix = "crashedufo.dmm"
+	name = "Crashed UFO"
+	description = "Turns out even high-tech ships of abductors happen to crash into stray asteroids. \
+	Who knows what secrets might be unearthed from the wreckage?"
 
 /datum/map_template/ruin/space/listeningstation
 	id = "listeningstation"
@@ -306,7 +313,6 @@
 		of the area exists in any records. After all, it's not like \
 		some doofus with an EVA suit and jetpack can just waltz around \
 		in space and find it..."
-	unpickable = TRUE
 
 /datum/map_template/ruin/space/spacebar
 	id = "spacebar"
@@ -340,8 +346,8 @@
 	name = "Game Room"
 	description = "A room in space in which you can play card games and munch on some snacks."
 
-/datum/map_template/ruin/space/gaming
-	id = "puby"
+/datum/map_template/ruin/space/pubby
+	id = "pubby"
 	suffix = "pubby_monastery.dmm"
 	name = "Pubby Monastery"
 	description = "A beautiful monastery that used to have a station attached to it"

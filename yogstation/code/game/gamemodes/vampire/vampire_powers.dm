@@ -63,8 +63,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/datum/vampire_passive/nostealth
+	gain_desc = "You are no longer able to conceal yourself while sucking blood."
+
 /datum/vampire_passive/regen
-	gain_desc = "Your rejuvination abilities have improved and will now heal you over time when used."
+	gain_desc = "Your rejuvenation abilities have improved and will now heal you over time when used."
 
 /datum/vampire_passive/vision
 	gain_desc = "Your vampiric vision has improved."
@@ -110,7 +113,7 @@
 		if(V.get_ability(/datum/vampire_passive/regen))
 			U.adjustBruteLoss(-1)
 			U.adjustOxyLoss(-2.5)
-			U.adjustToxLoss(-1)
+			U.adjustToxLoss(-1, TRUE, TRUE)
 			U.adjustFireLoss(-1)
 		sleep(7.5)
 
@@ -173,7 +176,7 @@
 
 
 /obj/effect/proc_holder/spell/pointed/hypno
-	name = "Hypnotize"
+	name = "Hypnotize (20)"
 	desc = "Knock out your target."
 	charge_max = 300
 	blood_used = 20
@@ -369,7 +372,7 @@
 				to_chat(C, span_warning("<font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b>"))
 				C.Knockdown(40)
 				C.adjustEarDamage(0, 30)
-				C.stuttering = 250
+				C.stuttering = 30
 				C.Paralyze(40)
 				C.Jitter(150)
 	for(var/obj/structure/window/W in view(4))

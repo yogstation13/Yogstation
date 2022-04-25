@@ -38,8 +38,11 @@
 
 /obj/item/drone_shell/Destroy()
 	GLOB.poi_list -= src
-	LAZYREMOVE(GLOB.mob_spawners[initial(name)], src)//Yogs -- Adds drone shells to Spawner Menu
-	. = ..()
+	var/list/spawners = GLOB.mob_spawners[name]
+	LAZYREMOVE(spawners, src)
+	if(!LAZYLEN(spawners))
+		GLOB.mob_spawners -= name
+	return ..()
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/item/drone_shell/attack_ghost(mob/user)

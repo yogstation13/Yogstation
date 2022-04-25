@@ -50,8 +50,6 @@
 /datum/emote/spin/run_emote(mob/user, params ,  type_override, intentional)
 	. = ..()
 	if(.)
-		user.spin(20, 1)
-
 		if(iscyborg(user) && user.has_buckled_mobs())
 			var/mob/living/silicon/robot/R = user
 			var/datum/component/riding/riding_datum = R.GetComponent(/datum/component/riding)
@@ -60,3 +58,6 @@
 					riding_datum.force_dismount(M)
 			else
 				R.unbuckle_all_mobs()
+		else
+			//we want to hold off on doing the spin if they are a cyborg and have someone buckled to them
+			user.spin(20,1)

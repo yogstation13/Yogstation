@@ -2562,7 +2562,7 @@
 /area/awaymission/research/interior/security)
 "fw" = (
 /obj/machinery/power/smes{
-	capacity = 9e+006;
+	capacity = 1.8e+008;
 	charge = 10000
 	},
 /turf/open/floor/plasteel/dark,

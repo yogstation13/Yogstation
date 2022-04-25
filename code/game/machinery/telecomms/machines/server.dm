@@ -28,7 +28,7 @@
 		totaltraffic += traffic // add current traffic to total traffic
 
 	// Delete particularly old logs
-	if (log_entries.len >= 400)
+	if (log_entries.len >= SERVER_LOG_STORAGE_MAX)
 		log_entries.Cut(1, 2)
 
 	signal.data["server"] = src; //Yogs

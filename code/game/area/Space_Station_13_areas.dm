@@ -18,8 +18,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/ai_monitored	//stub defined ai_monitored.dm
 
-/area/ai_monitored/turret_protected
-
 /area/space
 	icon_state = "space"
 	requires_power = TRUE
@@ -263,6 +261,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/hallway/primary/central
 	name = "Central Primary Hallway"
 	icon_state = "hallC"
+
+/area/hallway/primary/aft_starboard
+	name="Aft Starboard Primary Hallway"
+	icon_state = "hallAS"
 
 /area/hallway/secondary/command
 	name = "Command Hallway"
@@ -774,6 +776,14 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Medbay Storage"
 	icon_state = "medbay2"
 
+/area/medical/storage/locker
+	name = "Medbay Locker Room"
+	icon_state = "medbay2"
+
+/area/medical/storage/backroom
+	name = "Medbay Backroom"
+	icon_state = "medbay2"
+
 /area/medical/patients_rooms
 	name = "Patients' Rooms"
 	icon_state = "patients"
@@ -784,6 +794,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/medical/patients_rooms/room_b
 	name = "Patient Room B"
+	icon_state = "patients"
+
+/area/medical/patients_rooms/room_c
+	name = "Patient Room C"
 	icon_state = "patients"
 
 /area/medical/virology
@@ -1192,6 +1206,15 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambientsounds = HIGHSEC
 	minimap_color = "#4f4e3a"
 	airlock_wires = /datum/wires/airlock/ai
+/area/ai_monitored/secondarydatacore
+	name = "AI Secondary Datacore Monitoring"
+	icon_state =  "ai"
+	minimap_color = "#00fff6"
+
+/area/ai_monitored/secondarydatacoreserver
+	name = "AI Secondary Datacore Servers"
+	icon_state = "ai"
+	minimap_color = "#00fff6"
 
 	//Turret_protected
 

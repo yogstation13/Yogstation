@@ -10,6 +10,7 @@
 	network_destination = "energy harvester controller"
 	size = 1
 	tgui_id = "NtosEnergyHarvesterController"
+	program_icon = "charging-station"
 
 	var/status
 	var/obj/item/energy_harvester/moneysink
@@ -76,6 +77,7 @@
 		return
 	switch(action)
 		if("switch")
+			computer.play_interact_sound()
 			moneysink.manual_switch = !moneysink.manual_switch
 			if(moneysink.manual_switch)
 				START_PROCESSING(SSobj, moneysink)
@@ -84,8 +86,10 @@
 			. = TRUE
 		if("setinput")
 			var/target = params["target"]
+			computer.play_interact_sound()
 			if(target == "input")
 				target = input("New input target (0-[MAXIMUM_POWER_LIMIT]):", moneysink.name, moneysink.manual_power_setting) as num|null
+				computer.play_interact_sound()
 				if(!isnull(target) && !..())
 					. = TRUE
 			else if(target == "min")

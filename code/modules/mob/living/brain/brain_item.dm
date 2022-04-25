@@ -56,6 +56,10 @@
 
 /obj/item/organ/brain/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
 	..()
+	if(!special)
+		if(C.has_horror_inside())
+			var/mob/living/simple_animal/horror/B = C.has_horror_inside()
+			B.leave_victim()
 	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
 		var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
 		for(var/d in bruh.purchasedpowers)

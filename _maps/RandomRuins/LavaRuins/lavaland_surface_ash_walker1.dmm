@@ -323,19 +323,6 @@
 	},
 /turf/open/indestructible/boss/air,
 /area/ruin/unpowered/ash_walkers)
-"aY" = (
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/ash_walkers)
 "aZ" = (
 /obj/structure/stone_tile/cracked{
 	dir = 4
@@ -1361,6 +1348,20 @@
 	},
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"ue" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/item/book/manual/ashwalker,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/ash_walkers)
 "uD" = (
 /obj/structure/stone_tile/block,
 /obj/effect/mapping_helpers/no_lava,
@@ -1492,7 +1493,7 @@ ac
 as
 aB
 aN
-aY
+ue
 bk
 bw
 ak

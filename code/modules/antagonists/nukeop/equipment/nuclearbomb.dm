@@ -477,7 +477,7 @@
 		var/area/fabric_of_reality/fabric = A
 		new /obj/singularity(fabric.origin, 2000) // Stage five singulo back on the station, as a gift
 	else if(bomb_location && is_station_level(bomb_location.z))
-		if(istype(A, /area/space))
+		if(istype(A, /area/space) || istype(A, /area/shuttle/syndicate))
 			off_station = NUKE_NEAR_MISS
 		if((bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)))
 			off_station = NUKE_NEAR_MISS
@@ -622,6 +622,8 @@ This is here to make the tiles around the station mininuke change when it's arme
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	icon_state = "datadisk0"
+	drop_sound = 'sound/items/handling/disk_drop.ogg'
+	pickup_sound =  'sound/items/handling/disk_pickup.ogg'
 
 /obj/item/disk/nuclear
 	name = "nuclear authentication disk"

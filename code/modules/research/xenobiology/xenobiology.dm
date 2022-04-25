@@ -738,6 +738,10 @@
 	SM.access_card = new /obj/item/card/id/syndicate(SM)
 	ADD_TRAIT(SM.access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
+/obj/item/slimepotion/slime/sentience/traitor
+	name = "lesser syndicate intelligence potion"
+	desc = "A miraculous chemical mix that grants human like intelligence to living beings. The Syndicate have gone to great lengths to secure this, don't waste it!"
+
 /obj/item/slimepotion/transference
 	name = "consciousness transference potion"
 	desc = "A strange slime-based chemical that, when used, allows the user to transfer their consciousness to a lesser being."

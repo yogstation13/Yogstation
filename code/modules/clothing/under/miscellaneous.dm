@@ -43,6 +43,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/sl_suit
 	desc = "It's a very amish looking suit."
@@ -91,6 +92,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
@@ -243,6 +245,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
 	name = "head of personnel's suit"
@@ -262,6 +265,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/suit_jacket
 	name = "black suit"
@@ -610,7 +614,7 @@
 	icon_state = "janimaid"
 	item_state = "janimaid"
 	item_color = "janimaid"
-	body_parts_covered = CHEST|GROIN
+	body_parts_covered = CHEST|GROIN|FEET|LEGS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
@@ -911,3 +915,11 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+
+/obj/item/clothing/under/weiner
+	name = "weiner outfit"
+	desc = "The meat part of a hot dog costume. People may think you're trying to compensate for something."
+	icon_state = "weiner"
+	item_state = "weiner"
+	item_color = "weiner"
+	can_adjust = FALSE

@@ -9,7 +9,7 @@
 	else if(is_shadow(usr)) to_chat(usr, span_warning("Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first."))
 	return 0
 
-/obj/effect/proc_holder/spell/targeted/sling //Stuns and mutes a human target for 10 seconds
+/obj/effect/proc_holder/spell/targeted/sling
 	ranged_mousepointer = 'icons/effects/cult_target.dmi'
 	var/mob/living/user
 	var/mob/living/target
@@ -52,7 +52,7 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/glare //Stuns and mutes a human target for 10 seconds
 	name = "Glare"
-	desc = "Disrupts the target's motor and speech abilities."
+	desc = "Disrupts the target's motor and speech abilities. Much more effective within two meters."
 	panel = "Shadowling Abilities"
 	charge_max = 300
 	human_req = TRUE
@@ -83,7 +83,10 @@
 	else //Distant glare
 		var/loss = 100 - (distance * 10)
 		target.adjustStaminaLoss(loss)
-		target.stuttering = loss
+		if(iscarbon(target))
+			target.stuttering = loss
+		else if(issilicon(target))
+			target.stuttering = distance
 		to_chat(target, span_userdanger("A purple light flashes across your vision, and exhaustion floods your body..."))
 		target.visible_message(span_danger("[target] looks very tired..."))
 	charge_counter = 0
@@ -96,7 +99,7 @@
 	name = "Veil"
 	desc = "Extinguishes most nearby light sources."
 	panel = "Shadowling Abilities"
-	charge_max = 150 //Short cooldown because people can just turn the lights back on
+	charge_max = 120 //Short cooldown because people can just turn the lights back on
 	human_req = TRUE
 	clothes_req = FALSE
 	range = 5
@@ -159,8 +162,7 @@
 		if(istype(LO, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/borg = LO
 			if(!borg.lamp_cooldown)
-				borg.update_headlamp(TRUE, INFINITY)
-				to_chat(borg, span_userdanger("The lightbulb in your headlamp is fried! You'll need a human to help replace it."))
+				borg.smash_headlamp()
 		if(istype(LO, /obj/machinery/camera))
 			LO.set_light(0)
 			if(prob(10))
@@ -173,6 +175,8 @@
 		if(istype(LO, /obj/machinery/power/floodlight))
 			var/obj/machinery/power/floodlight/FL = LO
 			FL.change_setting(2) // Set floodlight to lowest setting
+		if(istype(LO, /obj/structure/light_prism))
+			qdel(LO)
 
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
 		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
@@ -180,10 +184,14 @@
 			S.generation = G.generation
 			G.visible_message(span_warning("[G] suddenly turns dark!"))
 			qdel(G)
+	for(var/turf/open/floor/grass/fairy/F in view(7, user))
+		if(!istype(F, /turf/open/floor/grass/fairy/dark))
+			F.visible_message(span_warning("[F] suddenly turns dark!"))
+			F.ChangeTurf(/turf/open/floor/grass/fairy/dark, flags = CHANGETURF_INHERIT_AIR)
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
-	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage."
+	desc = "Instantly freezes the blood of nearby people, along with stunning them."
 	panel = "Shadowling Abilities"
 	range = 3
 	charge_max = 250
@@ -209,11 +217,10 @@
 					continue
 			to_chat(M, span_userdanger("A wave of shockingly cold air engulfs you!"))
 			M.Stun(2)
-			M.apply_damage(10, BURN)
 			if(M.bodytemperature)
 				M.adjust_bodytemperature(-200, 50)
 			if(M.reagents)
-				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 15) //Half of a cryosting
+				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 10) //third of a cryosting
 			extinguishMob(M, TRUE)
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F, TRUE)
@@ -458,7 +465,7 @@
 	target_apc.visible_message(span_warning("The [target_apc] flickers and begins to grow dark."))
 
 	to_chat(user, span_shadowling("You dim the APC's screen and carefully begin siphoning its power into the void."))
-	if(!do_after(user, 20 SECONDS, target=target_apc))
+	if(!do_after(user, 15 SECONDS, target=target_apc))
 		//Whoops!  The APC's light turns back on
 		to_chat(user, span_shadowling("Your concentration breaks and the APC suddenly repowers!"))
 		target_apc.set_light(2)
@@ -536,7 +543,7 @@
 				var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 				sp.set_up(5, 1, S)
 				sp.start()
-				S.Paralyze(6)
+				S.Paralyze(50)
 		for(var/obj/structure/window/W in T.contents)
 			W.take_damage(rand(80, 100))
 
@@ -605,11 +612,12 @@
 					return
 				thrallToRevive.visible_message(span_warning("[thrallToRevive] slowly rises, no longer recognizable as human."), \
 											   "<span class='shadowling'><b>You feel new power flow into you. You have been gifted by your masters. You now closely resemble them. You are empowered in \
-											    darkness but wither slowly in light. In addition, Lesser Glare has been upgraded into it's true form, and you've been given the ability to turn off nearby lights.</b></span>")
+											    darkness but wither slowly in light. In addition, Lesser Glare has been upgraded into it's true form, you can fully jaunt, and you've been given the ability to turn off nearby lights.</b></span>")
 				thrallToRevive.set_species(/datum/species/shadow/ling/lesser)
 				thrallToRevive.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/lesser_glare)
 				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
 				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
+				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt(null))
 			if("Revive")
 				if(!is_thrall(thrallToRevive))
 					to_chat(user, span_warning("[thrallToRevive] is not a thrall."))

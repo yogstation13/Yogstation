@@ -56,6 +56,8 @@
 	/// Associative list of current players, in order: living players, living antagonists, dead players and observers.
 	var/list/list/current_players = list(CURRENT_LIVING_PLAYERS = list(), CURRENT_LIVING_ANTAGS = list(), CURRENT_DEAD_PLAYERS = list(), CURRENT_OBSERVERS = list())
 
+	var/time_required = 0 // Framework for future setting of required time for antag roles
+
 /datum/game_mode/proc/announce() //Shows the gamemode's name and a fast description.
 	to_chat(world, "<b>The gamemode is: <span class='[announce_span]'>[name]</span>!</b>")
 	to_chat(world, "<b>[announce_text]</b>")
@@ -306,7 +308,6 @@
 		intercepttext += report
 
 	intercepttext += generate_station_goal_report()
-	intercepttext += generate_station_trait_report()
 
 	print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
 	priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_announcement()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
@@ -325,21 +326,6 @@
 	for(var/datum/station_goal/station_goal in station_goals)
 		station_goal.on_report()
 		. += station_goal.get_report()
-	return
-	
-/*
- * Generate a list of active station traits to report to the crew.
- *
- * Returns a formatted string of all station traits (that are shown) affecting the station.
- */
-/datum/game_mode/proc/generate_station_trait_report()
-	if(!SSstation.station_traits.len)
-		return
-	. = "<hr><b>Identified shift divergencies:</b><BR>"
-	for(var/datum/station_trait/station_trait as anything in SSstation.station_traits)
-		if(!station_trait.show_in_report)
-			continue
-		. += "[station_trait.get_report()]<BR>"
 	return
 	
 /datum/game_mode/proc/generate_station_trait_announcement()
@@ -372,7 +358,8 @@
 			var/mob/dead/new_player/player = M
 			if(player.ready == PLAYER_READY_TO_PLAY)
 				if(!is_banned_from(player.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(player))
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/antag_token_used, C.ckey, C), 30 SECONDS)
+					addtimer(CALLBACK(GLOBAL_PROC, .proc/antag_token_used, C.ckey, C), 5 MINUTES + 10 SECONDS)
+					player.mind.token_picked = TRUE
 					return player.mind
 
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
@@ -636,8 +623,8 @@
 		return 0
 	if(!CONFIG_GET(flag/use_age_restriction_for_jobs))
 		return 0
-	if(!isnum(C.player_age))
-		return 0 //This is only a number if the db connection is established, otherwise it is text: "Requires database", meaning these restrictions cannot be enforced
+	if(C.player_age < 0)
+		return 0
 	if(!isnum(enemy_minimum_age))
 		return 0
 

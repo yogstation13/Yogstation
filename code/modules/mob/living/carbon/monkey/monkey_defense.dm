@@ -39,6 +39,7 @@
 		if(INTENT_HARM)
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			if (prob(75))
+				last_damage = "fist"
 				visible_message(span_danger("[M] has punched [name]!"), \
 						span_userdanger("[M] has punched [name]!"), null, COMBAT_MESSAGE_RANGE)
 

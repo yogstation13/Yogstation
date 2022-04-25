@@ -643,6 +643,25 @@
 /datum/chemical_reaction/cellulose_carbonization
 	name = "Cellulose_Carbonization"
 	id = /datum/reagent/carbon
+	mix_message = "The fibers char, producing a soft black powder."
 	results = list(/datum/reagent/carbon = 1)
 	required_reagents = list(/datum/reagent/cellulose = 1)
 	required_temp = 512
+
+/datum/chemical_reaction/tribalnutriment
+	name = "Mushroom Paste Congealation"
+	id = "mushroom_paste"
+	mix_message = "The mixture congeals into a foul smelling paste."
+	results = list(/datum/reagent/plantnutriment/tribalnutriment = 6)
+	required_reagents = list(/datum/reagent/consumable/cream/bug = 2, /datum/reagent/consumable/vitfro = 2, /datum/reagent/consumable/entpoly = 2)
+
+/datum/chemical_reaction/resinsolidification
+	name = "Ash Resin Solidification"
+	id = "resin_solid"
+	mix_message = "The resin mixes with the water and solidifies."
+	required_reagents = list(/datum/reagent/consumable/ashresin = 5, /datum/reagent/water = 10)
+
+/datum/chemical_reaction/resinsolidification/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/sheet/ashresin(location)

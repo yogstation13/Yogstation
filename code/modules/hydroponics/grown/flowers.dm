@@ -175,6 +175,7 @@
 	icon_grow = "moonflower-grow"
 	icon_dead = "sunflower-dead"
 	product = /obj/item/reagent_containers/food/snacks/grown/moonflower
+	genes = list(/datum/plant_gene/trait/glow/purple)
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/ethanol/moonshine = 0.2, /datum/reagent/consumable/nutriment = 0.02)
 	rarity = 15
@@ -225,7 +226,9 @@
 	force = round((5 + seed.potency / 5), 1)
 
 /obj/item/grown/novaflower/attack(mob/living/carbon/M, mob/user)
-	if(!..())
+	if(..())
+		return
+	if(user.a_intent != INTENT_HARM)
 		return
 	if(isliving(M))
 		to_chat(M, span_danger("You are lit on fire from the intense heat of the [name]!"))

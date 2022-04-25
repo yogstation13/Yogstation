@@ -286,10 +286,10 @@
 	dat = replacetext(dat, "\t", "")
 	return dat
 
-/datum/datacore/proc/manifest_inject(mob/living/carbon/human/H, client/C)
+/datum/datacore/proc/manifest_inject(mob/living/carbon/human/H, client/C, force = FALSE, use_real_name = TRUE)
 	set waitfor = FALSE
 	var/static/list/show_directions = list(SOUTH, WEST)
-	if(H.mind && (H.mind.assigned_role != H.mind.special_role))
+	if(H.mind && (H.mind.assigned_role != H.mind.special_role) || force)
 		var/assignment
 		if(H.mind.role_alt_title)
 			assignment = H.mind.role_alt_title
@@ -299,6 +299,8 @@
 			assignment = H.job
 		else
 			assignment = "Unassigned"
+
+		var/record_name = use_real_name ? H.real_name : H.name
 
 		var/static/record_id_num = 1001
 		var/id = num2hex(record_id_num++,6)
@@ -320,7 +322,7 @@
 		//General Record
 		var/datum/data/record/G = new()
 		G.fields["id"]			= id
-		G.fields["name"]		= H.real_name
+		G.fields["name"]		= record_name
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
 		G.fields["species"]	= H.dna.species.name
@@ -341,7 +343,7 @@
 		//Medical Record
 		var/datum/data/record/M = new()
 		M.fields["id"]			= id
-		M.fields["name"]		= H.real_name
+		M.fields["name"]		= record_name
 		M.fields["blood_type"]	= H.dna.blood_type
 		M.fields["b_dna"]		= H.dna.unique_enzymes
 		M.fields["mi_dis"]		= "None"
@@ -358,7 +360,7 @@
 		//Security Record
 		var/datum/data/record/S = new()
 		S.fields["id"]			= id
-		S.fields["name"]		= H.real_name
+		S.fields["name"]		= record_name
 		S.fields["criminal"]	= "None"
 		S.fields["citation"]	= list()
 		S.fields["crimes"]		= list()
@@ -368,9 +370,9 @@
 
 		//Locked Record
 		var/datum/data/record/L = new()
-		L.fields["id"]			= md5("[H.real_name][H.mind.assigned_role]")	//surely this should just be id, like the others?
-		L.fields["name"]		= H.real_name
-		L.fields["rank"] 		= H.mind.assigned_role
+		L.fields["id"]			= md5("[record_name][assignment]")	//surely this should just be id, like the others?
+		L.fields["name"]		= record_name
+		L.fields["rank"] 		= assignment
 		L.fields["age"]			= H.age
 		L.fields["gender"]			= H.gender
 		if(H.gender == "male")

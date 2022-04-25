@@ -308,16 +308,18 @@
 //bug cheese
 /obj/item/reagent_containers/food/snacks/store/cheesewheel/bug
 	name = "bug cheese ball"
-	desc = "A big ball of nasty looking bug cheese."
+	desc = "A big ball of gutlunch \"honey\", with a similar consistency to cheese."
 	icon_state = "bug_ball"
+	foodtype = SUGAR | MEAT //honey made by a carnivorous scavenging bug
 	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/bug
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("bug" = 1,"cheese" = 1)
+	tastes = list("a rather large serving of sugar" = 1, "meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/cheesewedge/bug
 	name = "bug cheese piece"
-	desc = "A piece of bug cheese."
+	desc = "A piece of gutlunch \"honey\"."
 	icon_state = "bug_piece"
 	filling_color = "#ddedd5"
+	foodtype = SUGAR | MEAT
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("bug" = 1,"cheese" = 1)
+	tastes = list("a rather large serving of sugar" = 1, "meat" = 1)

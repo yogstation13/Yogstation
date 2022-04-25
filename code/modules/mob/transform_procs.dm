@@ -3,6 +3,9 @@
 /mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
 	if (notransform || transformation_timer)
 		return
+	if(has_horror_inside())
+		to_chat(src, "<span class='warning'>You feel something strongly clinging to your humanity!</span>")
+		return
 	//Handle items on mob
 
 	if(tr_flags & TR_KEEPITEMS)
@@ -393,6 +396,7 @@
 
 	. = new /mob/living/silicon/ai(pick(landmark_loc), null, src)
 
+
 	if(preference_source)
 		apply_pref_name("ai",preference_source)
 
@@ -520,8 +524,8 @@
 	. = new_slime
 	qdel(src)
 
-/mob/proc/become_overmind(starting_points = 60)
-	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points)
+/mob/proc/become_overmind(starting_points = 60, pointmodifier)
+	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points, pointmodifier)
 	B.key = key
 	. = B
 	qdel(src)

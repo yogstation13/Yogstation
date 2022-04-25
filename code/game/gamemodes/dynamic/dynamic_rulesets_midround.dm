@@ -57,6 +57,9 @@
 			if ((exclusive_roles.len > 0) && !(M.mind.assigned_role in exclusive_roles)) // Is the rule exclusive to their job?
 				trimmed_list.Remove(M)
 				continue
+			if(M.mind.quiet_round)
+				trimmed_list.Remove(M)
+				continue
 	return trimmed_list
 
 // You can then for example prompt dead players in execute() to join as strike teams or whatever
@@ -164,7 +167,7 @@
 	name = "Syndicate Sleeper Agent"
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_TRAITOR
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
 	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
 	required_candidates = 1
 	weight = 7
@@ -469,7 +472,7 @@
 	name = "Vampire"
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
+	protected_roles = list("Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Security Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 1
 	weight = 5
@@ -602,3 +605,51 @@
 		new_character.mind.add_antag_datum(new_role, new_team)
 
 #undef ABDUCTOR_MAX_TEAMS
+
+//////////////////////////////////////////////
+//                                          //
+//               BLOODSUCKER                //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/bloodsucker
+	name = "Vampiric Accident"
+	antag_datum = /datum/antagonist/bloodsucker
+	antag_flag = ROLE_VAMPIRICACCIDENT
+	antag_flag_override = ROLE_BLOODSUCKER
+	protected_roles = list(
+		"Captain", "Head of Personnel", "Head of Security",
+		"Warden", "Security Officer", "Detective", "Brig Physician",
+		"Curator"
+	)
+	restricted_roles = list("AI","Cyborg", "Positronic Brain")
+	required_candidates = 1
+	weight = 5
+	cost = 10
+	requirements = list(40,30,20,10,10,10,10,10,10,10)
+	repeatable = FALSE
+
+/datum/dynamic_ruleset/midround/bloodsucker/trim_candidates()
+	. = ..()
+	for(var/mob/living/player in living_players)
+		if(issilicon(player)) // Your assigned role doesn't change when you are turned into a silicon.
+			living_players -= player
+		else if(is_centcom_level(player.z))
+			living_players -= player // We don't allow people in CentCom
+		else if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
+			living_players -= player // We don't allow people with roles already
+
+/datum/dynamic_ruleset/midround/bloodsucker/execute()
+	var/mob/selected_mobs = pick(living_players)
+	assigned += selected_mobs
+	living_players -= selected_mobs
+	var/datum/mind/bloodsuckermind = selected_mobs
+	var/datum/antagonist/bloodsucker/sucker = new
+	if(!bloodsuckermind.make_bloodsucker(selected_mobs))
+		assigned -= selected_mobs
+		message_admins("[ADMIN_LOOKUPFLW(selected_mobs)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
+		return FALSE
+	sucker.bloodsucker_level_unspent = rand(2,3)
+	message_admins("[ADMIN_LOOKUPFLW(selected_mobs)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
+	log_game("DYNAMIC: [key_name(selected_mobs)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
+	return TRUE

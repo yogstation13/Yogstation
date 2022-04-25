@@ -121,6 +121,7 @@
 	sting_icon = "sting_armblade"
 	chemical_cost = 20
 	dna_cost = 1
+	xenoling_available = FALSE
 
 /obj/item/melee/arm_blade/false
 	desc = "A grotesque mass of flesh that used to be your arm. On the bright side, at least you can cut wood with this."
@@ -243,6 +244,7 @@
 	sting_icon = "sting_cryo"
 	chemical_cost = 15
 	dna_cost = 2
+	xenoling_available = FALSE
 
 /datum/action/changeling/sting/cryo/sting_action(mob/user, mob/target)
 	log_combat(user, target, "stung", "cryo sting")

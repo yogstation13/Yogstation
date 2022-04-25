@@ -648,7 +648,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 
-	reach = 3
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	min_reach = -1
 	item_flags = ABSTRACT | DROPDEL
 

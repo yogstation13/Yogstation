@@ -44,7 +44,11 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(!brainmob)
 		brainmob = new(src)
 	if(is_occupied())
-		to_chat(user, span_warning("This [name] is already active!"))
+		user.visible_message(span_danger("[user] begins to reset [src]'s memory banks"), span_danger("You begin to reset [src]'s memory banks"))
+		to_chat(brainmob, span_userdanger("[user] begins to reset your memory banks"))
+		if(do_after(user, remove_time, target = src))
+			user.visible_message(span_danger("[user] resets [src]'s memory banks"), span_danger("You successfully reset [src]'s memory banks"))
+			to_chat(brainmob, span_userdanger("Your memory banks have been cleared, you have no memories of anything before this moment."))
 		return
 	if(next_ask > world.time)
 		to_chat(user, recharge_message)
@@ -73,7 +77,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	activate(user)
 
 /obj/item/mmi/posibrain/proc/is_occupied()
-	if(brainmob.key)
+	if(brainmob.key && brainmob.client)
 		return TRUE
 	if(iscyborg(loc))
 		var/mob/living/silicon/robot/R = loc
@@ -118,6 +122,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	brainmob.mind.remove_all_antag()
 	brainmob.mind.wipe_memory()
 	update_icon()
+	return ..()
 
 /obj/item/mmi/posibrain/proc/transfer_personality(mob/candidate)
 	if(QDELETED(brainmob))
@@ -138,6 +143,13 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 	visible_message(new_mob_message)
 	check_success()
+
+	GLOB.poi_list -= src
+	var/list/spawners = GLOB.mob_spawners[initial(name)]
+	LAZYREMOVE(spawners, src)
+	if(!LAZYLEN(spawners))
+		GLOB.mob_spawners -= initial(name)
+
 	return TRUE
 
 
@@ -155,6 +167,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 /obj/item/mmi/posibrain/Initialize()
 	. = ..()
+	var/area/A = get_area(src)
 	brainmob = new(src)
 	var/new_name
 	if(!LAZYLEN(possible_names))
@@ -165,10 +178,23 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	brainmob.real_name = brainmob.name
 	brainmob.forceMove(src)
 	brainmob.container = src
-	if(autoping)
-		ping_ghosts("created", TRUE)
+	if(autoping && A)
+		notify_ghosts("A positronic brain has been created in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_POSIBRAIN)
+	GLOB.poi_list |= src
+	LAZYADD(GLOB.mob_spawners[initial(name)], src) //Yogs -- Adds positronic brains to Spawner Menu
+
+/obj/item/mmi/posibrain/Destroy()
+	GLOB.poi_list -= src
+	var/list/spawners = GLOB.mob_spawners[initial(name)]
+	LAZYREMOVE(spawners, src)
+	if(!LAZYLEN(spawners))
+		GLOB.mob_spawners -= initial(name)
+	return ..()
 
 /obj/item/mmi/posibrain/attackby(obj/item/O, mob/user)
+	if(istype(O, /obj/item/aiModule))
+		var/obj/item/aiModule/M = O
+		M.install(laws, user)
 	return
 
 

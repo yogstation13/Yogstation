@@ -484,6 +484,6 @@
 	name = "bottle of aiuri pills"
 	desc = "Contains pills to treat burns."
 
-/obj/item/storage/pill_bottle/kelo/PopulateContents()
+/obj/item/storage/pill_bottle/aiur/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/aiur(src)

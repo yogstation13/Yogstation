@@ -16,6 +16,8 @@
 	attack_verb = list("pinched", "nipped")
 	hitsound = 'sound/items/wirecutter.ogg'
 	usesound = 'sound/items/wirecutter.ogg'
+	drop_sound = 'sound/items/handling/wirecutter_drop.ogg'
+	pickup_sound =  'sound/items/handling/wirecutter_pickup.ogg'
 
 	tool_behaviour = TOOL_WIRECUTTER
 	toolspeed = 1
@@ -78,7 +80,7 @@
 	name = "alien wirecutters"
 	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "cutters"
+	icon_state = "cutters_alien"
 	toolspeed = 0.1
 
 	random_color = FALSE

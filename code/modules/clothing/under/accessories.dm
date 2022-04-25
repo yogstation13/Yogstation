@@ -44,7 +44,7 @@
 	U.armor = U.armor.attachArmor(armor)
 
 	if(isliving(user))
-		on_uniform_equip(U, user)
+		on_clothing_equip(U, user)
 
 	return TRUE
 
@@ -55,7 +55,7 @@
 	U.armor = U.armor.detachArmor(armor)
 
 	if(isliving(user))
-		on_uniform_dropped(U, user)
+		on_clothing_dropped(U, user)
 
 	if(minimize_when_attached)
 		transform *= 2
@@ -67,10 +67,10 @@
 	U.attached_accessory = null
 	U.accessory_overlay = null
 
-/obj/item/clothing/accessory/proc/on_uniform_equip(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/proc/on_clothing_equip(obj/item/clothing/U, user)
 	return
 
-/obj/item/clothing/accessory/proc/on_uniform_dropped(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/proc/on_clothing_dropped(obj/item/clothing/U, user)
 	return
 
 /obj/item/clothing/accessory/AltClick(mob/user)
@@ -197,6 +197,14 @@
 	name = "head of personnel award for outstanding achievement in the field of excellence"
 	desc = "Nanotrasen's dictionary defines excellence as \"the quality or condition of being excellent\". This is awarded to those rare crewmembers who fit that definition."
 
+/obj/item/clothing/accessory/medal/silver/medical
+	name = "award for medical excellence"
+	desc = "An award for an exceptional application of medical service. Can be awarded to any crewmember who provides an outstanding benefit to the station through their medical knowledge."
+
+/obj/item/clothing/accessory/medal/silver/engineering
+	name = "medal of engineering integrity"
+	desc = "A medal made of silver portraying the bearer as a crewmember who demonstrates notable engineering prowess. The merits of those who earn this award can range from atmospheric wizardry to simply rebuilding half the station after a toxins explosion."
+
 /obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
 	desc = "A prestigious golden medal."
@@ -231,9 +239,7 @@
 
 /obj/item/clothing/accessory/medal/plasma/nobel_science
 	name = "nobel sciences award"
-	desc = "A plasma medal which represents significant contributions to the field of science or engineering."
-
-
+	desc = "A plasma medal which represents significant contributions to the field of science or robotics."
 
 ////////////
 //Armbands//
@@ -308,12 +314,12 @@
 		user.say("The testimony contradicts the evidence!", forced = "attorney's badge")
 	user.visible_message("[user] shows [user.p_their()] attorney's badge.", span_notice("You show your attorney's badge."))
 
-/obj/item/clothing/accessory/lawyers_badge/on_uniform_equip(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/lawyers_badge/on_clothing_equip(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
 		L.bubble_icon = "lawyer"
 
-/obj/item/clothing/accessory/lawyers_badge/on_uniform_dropped(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/lawyers_badge/on_clothing_dropped(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
 		L.bubble_icon = initial(L.bubble_icon)
@@ -361,6 +367,23 @@
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = GROIN
 
+/obj/item/clothing/accessory/resinband
+	name = "resin armband"
+	desc = "A smooth amber colored armband made of solid resin, generally worn by tribal aristocracy."
+	icon_state = "resinband"
+	item_color = "resinband"
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
+	attachment_slot = null
+	above_suit = TRUE
+
+/////////////
+//Poppy Pin//
+/////////////
+/obj/item/clothing/accessory/poppypin
+	name = "Poppy pins"
+	desc = "A poppy pin that is meant to commemorate the fallen soldiers in wars. It symbolizes the gunshot that killed the soldiers."
+	icon_state = "poppy"
+	item_color = "poppy"
 //////////////
 //Ooh shiny!//
 //////////////
@@ -377,4 +400,4 @@
 	light_range = 1.4 //Same as cosmic bedsheet
 	light_color = "#9E1F1F" //dim red
 	w_class = WEIGHT_CLASS_TINY
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // Good luck destroying a singularity 
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // Good luck destroying a singularity

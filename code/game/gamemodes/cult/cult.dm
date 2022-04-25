@@ -178,13 +178,18 @@
 			altogether."
 
 /datum/game_mode/proc/begin_bloodstone_phase()
-	for(var/i = 0, i < 4, i++) //four bloodstones
-		var/spawnpoint = get_turf(pick(GLOB.generic_event_spawns))
-		new /obj/structure/destructible/cult/bloodstone(spawnpoint)
+	var/list/stone_spawns = GLOB.generic_event_spawns.Copy()
 	var/list/bloodstone_areas = list()
-	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
-		var/area/A = get_area(B)
+	for(var/i = 0, i < 4, i++) //four bloodstones
+		var/stone_spawn = pick_n_take(stone_spawns)
+		if(!stone_spawn)
+			stone_spawn = pick(GLOB.generic_event_spawns) // Fallback on all spawns
+		var/spawnpoint = get_turf(stone_spawn)
+		var/stone = new /obj/structure/destructible/cult/bloodstone(spawnpoint)
+		notify_ghosts("Bloodcult has an object of interest: [stone]!", source=stone, action=NOTIFY_ORBIT, header="Praise the Geometer!")
+		var/area/A = get_area(stone)
 		bloodstone_areas.Add(A.map_name)
+
 	priority_announce("Figments of an eldritch god are being pulled through the veil anomaly in [bloodstone_areas[1]], [bloodstone_areas[2]], [bloodstone_areas[3]], and [bloodstone_areas[4]]! Destroy any occult structures located in those areas!","Central Command Higher Dimensional Affairs")
 	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 30 SECONDS)
 	set_security_level(SEC_LEVEL_GAMMA)

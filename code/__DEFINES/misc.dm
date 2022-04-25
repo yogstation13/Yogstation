@@ -28,8 +28,8 @@
 #define GLASSES_LAYER			14
 #define BELT_LAYER				13		//Possible make this an overlay of somethign required to wear a belt?
 #define SUIT_STORE_LAYER		12
-#define NECK_LAYER				11
-#define BACK_LAYER				10
+#define BACK_LAYER				11
+#define NECK_LAYER				10
 #define HAIR_LAYER				9		//TODO: make part of head layer?
 #define FACEMASK_LAYER			8
 #define HEAD_LAYER				7
@@ -488,3 +488,12 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define ALIGNMENT_GOOD "good"
 #define ALIGNMENT_NEUT "neutral"
 #define ALIGNMENT_EVIL "evil"
+
+/// Whether we have succesfully hidden out blood level
+#define BLOODSUCKER_HIDE_BLOOD "hide_blood_volume"
+/// 1 tile down
+#define ui_blood_display "WEST:6,CENTER-1:0"
+/// 2 tiles down
+#define ui_vamprank_display "WEST:6,CENTER-2:-5"
+/// 6 pixels to the right, zero tiles & 5 pixels DOWN.
+#define ui_sunlight_display "WEST:6,CENTER-0:0"

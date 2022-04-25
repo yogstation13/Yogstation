@@ -449,3 +449,6 @@ CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
 ## Custom shuttle spam prevention. Changine these numbers allows you to change the maxsize and amount of custom shuttles.
 MAX_SHUTTLE_COUNT 6
 MAX_SHUTTLE_SIZE 300
+
+## Enable/disable roundstart station traits
+#STATION_TRAITS

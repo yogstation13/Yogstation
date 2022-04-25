@@ -13,6 +13,8 @@
 	throwforce = 5
 	hitsound = "swing_hit"
 	usesound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')
+	drop_sound = 'sound/items/handling/weldingtool_drop.ogg'
+	pickup_sound =  'sound/items/handling/weldingtool_pickup.ogg'
 	var/acti_sound = 'sound/items/welderactivate.ogg'
 	var/deac_sound = 'sound/items/welderdeactivate.ogg'
 	throw_speed = 3
@@ -87,39 +89,11 @@
 	user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (FIRELOSS)
 
-
-/obj/item/weldingtool/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		flamethrower_screwdriver(I, user)
-	else if(istype(I, /obj/item/stack/rods))
-		flamethrower_rods(I, user)
-	else
-		. = ..()
-	update_icon()
-
 /obj/item/weldingtool/proc/explode()
 	var/turf/T = get_turf(loc)
 	var/plasmaAmount = reagents.get_reagent_amount(/datum/reagent/toxin/plasma)
 	dyn_explosion(T, plasmaAmount/5)//20 plasma in a standard welder has a 4 power explosion. no breaches, but enough to kill/dismember holder
 	qdel(src)
-
-/obj/item/weldingtool/attack(mob/living/carbon/human/H, mob/user)
-	if(!istype(H))
-		return ..()
-
-	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
-
-	if(affecting && affecting.status == BODYPART_ROBOTIC && user.a_intent != INTENT_HARM)
-		if(src.use_tool(H, user, 0, volume=50, amount=1))
-			if(user == H)
-				user.visible_message(span_notice("[user] starts to fix some of the dents on [H]'s [affecting.name]."),
-					span_notice("You start fixing some of the dents on [H == user ? "your" : "[H]'s"] [affecting.name]."))
-				if(!do_mob(user, H, 50))
-					return
-			item_heal_robotic(H, user, 15, 0)
-	else
-		return ..()
-
 
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
@@ -331,7 +305,7 @@
 	name = "alien welding tool"
 	desc = "An alien welding tool. Whatever fuel it uses, it never runs out."
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "welder"
+	icon_state = "welder_alien"
 	toolspeed = 0.1
 	light_intensity = 0
 	change_icons = 0

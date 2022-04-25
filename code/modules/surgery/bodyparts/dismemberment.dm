@@ -321,7 +321,7 @@
 
 /obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special)
 	moveToNullspace()
-	owner = C
+	set_owner(C)
 	C.bodyparts += src
 	if(held_index)
 		if(held_index > C.hand_bodyparts.len)

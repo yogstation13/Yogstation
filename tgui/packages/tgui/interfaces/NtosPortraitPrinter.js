@@ -20,6 +20,7 @@ export const NtosPortraitPrinter = (props, context) => {
     },
   ];
 
+
   const tab2list = TABS[0].list;
   const current_portrait_title = tab2list[listIndex]["title"];
   const current_portrait_asset_name = TABS[0].asset_prefix + "_" + tab2list[listIndex]["md5"];
@@ -137,11 +138,10 @@ export const NtosPortraitPrinter = (props, context) => {
             </Fragment>
           ) || (
             <Flex.Item grow={2}>
-              <Section fill>
+              <Section>
                 <Flex
-                  height="100%"
                   direction="column">
-                  <Flex.Item align="center" basis="10%">
+                  <Flex.Item align="center" mb={1}>
                     <Input
                       value={searchterms}
                       width="300px"

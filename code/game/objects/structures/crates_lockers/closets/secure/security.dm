@@ -9,6 +9,7 @@
 	new /obj/item/pet_carrier(src)
 	new /obj/item/cartridge/captain(src)
 	new /obj/item/storage/box/silver_ids(src)
+	new /obj/item/clothing/neck/cloak/cap(src)
 	new /obj/item/radio/headset/heads/captain/alt(src)
 	new /obj/item/radio/headset/heads/captain(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
@@ -30,6 +31,7 @@
 	new /obj/item/radio/headset/heads/hop(src)
 	new /obj/item/storage/box/ids(src)
 	new /obj/item/storage/box/ids(src)
+	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/clothing/suit/armor/vest/alt(src)
 	new /obj/item/assembly/flash/handheld(src)
@@ -55,6 +57,7 @@
 	new /obj/item/radio/headset/heads/hos/alt(src)
 	new /obj/item/radio/headset/heads/hos(src)
 	new /obj/item/storage/lockbox/medal/sec(src)
+	new /obj/item/clothing/neck/cloak/hos(src)
 	new /obj/item/megaphone/sec(src)
 	new /obj/item/holosign_creator/security(src)
 	new /obj/item/storage/lockbox/loyalty(src)
@@ -70,6 +73,7 @@
 	new /obj/item/clipboard/yog/paperwork/hos(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/head(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
@@ -94,6 +98,7 @@
 	new /obj/item/clipboard/yog/paperwork/warden(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/warden(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
@@ -110,6 +115,7 @@
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/clipboard/yog/paperwork/security(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/security/sec
 
@@ -173,6 +179,7 @@
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/twohanded/binoculars(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/detective(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections"

@@ -36,16 +36,24 @@
 	key_third_person = "hisses"
 	message = "hisses."
 	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/voice/lizard/hiss.ogg'
+	var/list/viable_tongues = list(/obj/item/organ/tongue/lizard, /obj/item/organ/tongue/polysmorph)
+
+/datum/emote/living/carbon/hiss/get_sound(mob/living/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+	if(istype(T, /obj/item/organ/tongue/lizard))
+		return 'sound/voice/lizard/hiss.ogg'
+	if(istype(T, /obj/item/organ/tongue/polysmorph))
+		return pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
 
 /datum/emote/living/carbon/hiss/can_run_emote(mob/living/user, status_check = TRUE, intentional)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(/obj/item/organ/tongue/lizard == H.dna.species.mutanttongue)
-		return TRUE
-	else
-		return FALSE
+	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+	return is_type_in_list(T, viable_tongues)
 
 /datum/emote/living/carbon/human/hug
 	key = "hug"
@@ -75,19 +83,8 @@
 	var/mob/living/carbon/human/H = user
 	if(H.mind?.miming)
 		return
-	if(iscatperson(H))
-		return pick('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg', 'sound/voice/feline/scream3.ogg')
-	else if(ishumanbasic(H))
-		if(user.gender == FEMALE)
-			return pick('sound/voice/human/femalescream_1.ogg', 'sound/voice/human/femalescream_2.ogg', 'sound/voice/human/femalescream_3.ogg', 'sound/voice/human/femalescream_4.ogg', 'sound/voice/human/femalescream_5.ogg')
-		else
-			if(prob(1))
-				return 'sound/voice/human/wilhelm_scream.ogg'
-			return pick('sound/voice/human/malescream_1.ogg', 'sound/voice/human/malescream_2.ogg', 'sound/voice/human/malescream_3.ogg', 'sound/voice/human/malescream_4.ogg', 'sound/voice/human/malescream_5.ogg')
-	else if(ismoth(H))
-		return 'sound/voice/moth/scream_moth.ogg'
-	else if(H.dna?.species?.screamsound) //yogs start: grabs scream from screamsound located in the appropriate species file.
-		return H.dna.species.screamsound //yogs end - current added screams: lizard, preternis.
+	if(H.dna?.species) //yogs start: grabs scream from screamsound located in the appropriate species file.
+		return H.dna.species.get_scream_sound(H) //yogs end - current added screams: basic human, moth, lizard, preternis, felinid.
 
 /datum/emote/living/carbon/meow
 	key = "meow"

@@ -4,7 +4,7 @@
 	icon_state = "engine"
 	thermal_conductivity = 0.025
 	heat_capacity = INFINITY
-	floor_tile = /obj/item/stack/rods
+	floor_tile = /obj/item/stack/sheet/metal
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
@@ -13,7 +13,7 @@
 
 /turf/open/floor/engine/examine(mob/user)
 	. += ..()
-	. += span_notice("The reinforcement rods are <b>wrenched</b> firmly in place.")
+	. += span_notice("The reinforcement plates are <b>wrenched</b> firmly in place.")
 
 /turf/open/floor/engine/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -43,12 +43,12 @@
 	return
 
 /turf/open/floor/engine/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, span_notice("You begin removing rods..."))
+	to_chat(user, span_notice("You begin removing plates..."))
 	if(I.use_tool(src, user, 30, volume=80))
 		if(!istype(src, /turf/open/floor/engine))
 			return TRUE
 		if(floor_tile)
-			new floor_tile(src, 2)
+			new floor_tile(src, 1)
 		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	return TRUE
 

@@ -271,8 +271,12 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 		return FALSE
 //Yogs Start: Runs the name through the petty filter. If they trip it, it will cause the shuttle creation to fail, messages the admins, and put the RSD on cooldown.
 	if(isnotpretty(str))
+		if(user.client.prefs.muted & MUTE_IC)
+			return
+		user.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 		to_chat(user, "<span class='warning'>Nanotrasen prohibited words are in use in this shuttle name, blares the [src] in a slightly offended tone.</span>")
 		message_admins("[ADMIN_LOOKUPFLW(user)] attempted to created a new shuttle with a [src] at [ADMIN_VERBOSEJMP(user)], but failed because of not passing the pretty filter")
+		log_say("[key_name(usr)] just tripped a pretty filter: '[str]'.")
 		user.create_area_cooldown = world.time + 10
 		return FALSE
 //Yogs End

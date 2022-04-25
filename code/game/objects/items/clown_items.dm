@@ -14,7 +14,7 @@
 	name = "soap"
 	desc = "A cheap bar of soap. Doesn't smell."
 	gender = PLURAL
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/janitor.dmi'
 	icon_state = "soap"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
@@ -141,7 +141,7 @@
 /obj/item/bikehorn
 	name = "bike horn"
 	desc = "A horn off of a bicycle."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
 	lefthand_file = 'icons/mob/inhands/equipment/horns_lefthand.dmi'
@@ -153,6 +153,16 @@
 	throw_speed = 3
 	throw_range = 7
 	attack_verb = list("HONKED")
+
+/obj/item/bikehorn/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(istype(target, /obj/item/organ/tongue))
+		var/obj/item/organ/tongue/T = target
+		if(T) // this would be awkward if there wasn't a tongue here at this point
+			user.visible_message(span_alert("[user] shoves [src] inside of [T]!"))
+			T.honked = TRUE
+			T.update_icon()
+			qdel(src)
 
 /obj/item/bikehorn/Initialize()
 	. = ..()

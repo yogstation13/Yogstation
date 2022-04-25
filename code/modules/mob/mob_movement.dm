@@ -337,7 +337,7 @@
 	return FALSE
 
 /// Called when this mob slips over, override as needed
-/mob/proc/slip(knockdown_amount, obj/O, lube, paralyze, force_drop)
+/mob/proc/slip(knockdown_amount, obj/O, lube, stun, force_drop)
 	return
 
 /// Update the gravity status of this mob

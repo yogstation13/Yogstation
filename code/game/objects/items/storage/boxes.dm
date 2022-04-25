@@ -29,6 +29,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	resistance_flags = FLAMMABLE
+	drop_sound = 'sound/items/handling/cardboardbox_drop.ogg'
+	pickup_sound =  'sound/items/handling/cardboardbox_pickup.ogg'
 	var/foldable = /obj/item/stack/sheet/cardboard
 	var/illustration = "writing"
 
@@ -350,10 +352,9 @@
 
 /obj/item/storage/box/minertracker/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/implantcase/tracking = 3,
+		/obj/item/implantcase/tracking = 4,
 		/obj/item/implanter = 1,
-		/obj/item/implantpad = 1,
-		/obj/item/locator = 1)
+		/obj/item/computer_hardware/hard_drive/portable/implant_tracker = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/chemimp
@@ -388,6 +389,16 @@
 	..()
 	for(var/i in 1 to 7)
 		new /obj/item/bodybag(src)
+
+/obj/item/storage/box/envirobags
+	name = "environment protection bags"
+	desc = "The label indicates that it contains environment protection bags."
+	illustration = "bodybags"
+
+/obj/item/storage/box/envirobags/PopulateContents()
+	..()
+	for(var/i in 1 to 7)
+		new /obj/item/bodybag/environmental(src)
 
 /obj/item/storage/box/rxglasses
 	name = "box of prescription glasses"
@@ -652,6 +663,8 @@
 	item_state = "zippo"
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = ITEM_SLOT_BELT
+	drop_sound = 'sound/items/handling/matchbox_drop.ogg'
+	pickup_sound =  'sound/items/handling/matchbox_pickup.ogg'
 
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
@@ -1157,6 +1170,7 @@
 /obj/item/storage/box/materials/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/stack/sheet/metal/fifty = 2,
+		/obj/item/stack/sheet/glass/fifty = 2,
 		/obj/item/stack/rods/fifty = 2,
 		/obj/item/stack/sheet/plasteel/fifty = 2,
 		/obj/item/stack/sheet/plastic/fifty = 2,
@@ -1174,3 +1188,10 @@
 		/obj/item/stack/sheet/mineral/silver/fifty = 1,
 		/obj/item/stack/sheet/mineral/bananium/fifty = 1)
 	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/materials/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 200
+	STR.max_items = 30
+	STR.max_w_class = WEIGHT_CLASS_GIGANTIC

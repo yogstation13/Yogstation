@@ -283,7 +283,7 @@ const PageMain = (props, context) => {
     shuttleCalledPreviously,
     shuttleCanEvacOrFailReason,
     shuttleLastCalled,
-    canPrintId,
+    canPrintIdAndCode,
     shuttleRecallable,
   } = data;
 
@@ -388,10 +388,19 @@ const PageMain = (props, context) => {
             onClick={() => act("makeVoiceAnnouncement")}
           />}
 
-          {!!canPrintId && <Button
+          {!!canPrintIdAndCode && <Button
             icon="id-card"
+            disabled={!importantActionReady}
             content="Print Emergency ID"
             onClick={() => act("printSpare")}
+          />}
+
+          {!!canPrintIdAndCode && <Button
+            icon="key"
+            disabled={!importantActionReady}
+            content="Print AI Control Code"
+            tooltip={"Prints a password for making new AI control consoles. Will cancel all previous passwords."}
+            onClick={() => act("printAIControlCode")}
           />}
 
           {!!canToggleEmergencyAccess && <Button.Confirm

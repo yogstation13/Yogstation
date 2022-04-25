@@ -1,5 +1,5 @@
 //The chests dropped by mob spawner tendrils. Also contains associated loot.
-
+GLOBAL_LIST_EMPTY(bloodmen_list)
 #define HIEROPHANT_CLUB_CARDINAL_DAMAGE 30
 
 
@@ -13,7 +13,7 @@
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,25)
+	var/loot = rand(1,24)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -24,54 +24,52 @@
 		if(4)
 			new /obj/item/katana/cursed(src)
 		if(5)
-			new /obj/item/clothing/glasses/godeye(src)
-		if(6)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
-		if(7)
+		if(6)
 			new /obj/item/stack/sheet/mineral/mythril(src)
-		if(8)
+		if(7)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
-		if(9)
+		if(8)
 			new /obj/item/rod_of_asclepius(src)
-		if(10)
+		if(9)
 			new /obj/item/organ/heart/cursed/wizard(src)
-		if(11)
+		if(10)
 			new /obj/item/ship_in_a_bottle(src)
-		if(12)
+		if(11)
 			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
-		if(13)
+		if(12)
 			new /obj/item/jacobs_ladder(src)
-		if(14)
+		if(13)
 			new /obj/item/nullrod/scythe/talking(src)
-		if(15)
+		if(14)
 			new /obj/item/nullrod/armblade(src)
-		if(16)
+		if(15)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-		if(17)
+		if(16)
 			new /obj/item/warp_cube/red(src)
-		if(18)
+		if(17)
 			new /obj/item/organ/heart/gland/heals(src)
-		if(19)
+		if(18)
 			new /obj/item/immortality_talisman(src)
-		if(20)
+		if(19)
 			new /obj/item/voodoo(src)
-		if(21)
+		if(20)
 			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
 			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor(src)
-		if(22)
+		if(21)
 			new /obj/item/book_of_babel(src)
-		if(23)
+		if(22)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(24)
+		if(23)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(25)
+		if(24)
 			new /obj/item/rune_scimmy(src)
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -141,6 +139,8 @@
 	name = "\improper Rod of Asclepius"
 	desc = "A wooden rod about the size of your forearm with a snake carved around it, winding its way up the sides of the rod. Something about it seems to inspire in you the responsibilty and duty to help others."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	icon_state = "asclepius_dormant"
 	var/activated = FALSE
 	var/usedHand
@@ -218,6 +218,9 @@
 	var/list/hasholos = user.hasparasites()
 	if(hasholos.len)
 		to_chat(user, span_warning("The pendant refuses to work with a guardian spirit..."))
+		return
+	if(IS_BLOODSUCKER(user))
+		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))
 		return
 	to_chat(user, span_warning("You feel your life being drained by the pendant..."))
 	if(do_after(user, 4 SECONDS, target = user))
@@ -899,9 +902,9 @@
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities."))
-			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard)
+			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
+			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+			H.set_species(/datum/species/lizard/draconid)
 			H.eye_color = "fee5a3"
 			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 			H.updateappearance()
@@ -1041,7 +1044,7 @@
 		if(2)
 			new /obj/item/blood_contract(src)
 		if(3)
-			new /obj/item/gun/magic/staff/spellblade(src)
+			new /obj/item/melee/knuckles(src)
 		if(4)
 			new /obj/item/organ/stomach/cursed(src)
 
@@ -1112,6 +1115,73 @@
 	log_combat(user, L, "took out a blood contract on", src)
 	qdel(src)
 
+#define COOLDOWN 150
+#define COOLDOWN_HUMAN 100
+#define COOLDOWN_ANIMAL 60
+/obj/item/melee/knuckles
+	name = "bloody knuckles"
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "bloodyknuckle"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	item_state = "knuckles"
+	w_class = WEIGHT_CLASS_SMALL
+	force = 18
+	var/next_reach = 0
+	var/next_grip = 0
+	var/next_knuckle = 0
+	attack_verb = list("thrashed", "pummeled", "walloped")
+	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
+
+/obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
+	var/mob/living/L = target
+	if (proximity)
+		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+			L.apply_status_effect(/datum/status_effect/roots)
+			return
+		if(next_knuckle > world.time)
+			to_chat(user, span_warning("The knuckles aren't ready to mark yet."))
+			return
+		else
+			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+			if(ishuman(L))
+				next_knuckle = world.time + COOLDOWN_HUMAN
+				return
+			next_knuckle = world.time + COOLDOWN_ANIMAL
+
+/obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
+	var/mob/living/U = user
+	if(istype(action, /datum/action/item_action/reach))
+		if(next_reach > world.time)
+			to_chat(U, span_warning("You can't do that yet!"))
+			return
+		var/valid_reaching = FALSE
+		for(var/mob/living/L in view(7, U))
+			for(var/obj/effect/decal/cleanable/B in range(0,L))
+				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
+					valid_reaching = TRUE
+					L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+		if(!valid_reaching)
+			to_chat(U, span_warning("There's nobody to use this on!"))
+			return
+		next_reach = world.time + COOLDOWN
+	else if(istype(action, /datum/action/item_action/visegrip))
+		if(next_grip > world.time)
+			to_chat(U, span_warning("You can't do that yet!"))
+			return
+		var/valid_casting = FALSE
+		for(var/mob/living/L in view(8, U))
+			if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+				valid_casting = TRUE
+				L.apply_status_effect(/datum/status_effect/roots)
+		if(!valid_casting)
+			to_chat(U, span_warning("There's nobody to use this on!"))
+			return
+		next_grip = world.time + COOLDOWN
+		#undef COOLDOWN
+		#undef COOLDOWN_HUMAN
+		#undef COOLDOWN_ANIMAL
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
@@ -1126,6 +1196,7 @@
 	var/random_crystal = pick(choices)
 	new random_crystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
+	new /obj/item/clothing/glasses/godeye(src)
 
 /obj/structure/closet/crate/necropolis/colossus/crusher
 	name = "angelic colossus chest"
@@ -1456,3 +1527,57 @@
 			new /obj/item/wisp_lantern(src)
 		if(3)
 			new /obj/item/prisoncube(src)
+
+//Legion
+/obj/item/organ/grandcore
+	name = "grand core"
+	desc = "The source of the Legion's powers. Though mostly expended, you might be able to get some use out of it."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "grandcore"
+	slot = "hivecore"
+	w_class = WEIGHT_CLASS_SMALL 
+	decay_factor = 0
+	actions_types = list(/datum/action/item_action/organ_action/threebloodlings)
+
+/obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
+	if(H == user && istype(H))
+		playsound(user,'sound/effects/singlebeat.ogg',40,1)
+		user.temporarilyRemoveItemFromInventory(src, TRUE)
+		Insert(user)
+
+/obj/item/organ/grandcore/Insert(mob/living/carbon/H, special = 0)
+	..()
+	H.faction |= "blooded"
+	H.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/raise)
+	H.AddSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
+	if(NOBLOOD in H.dna.species.species_traits)
+		to_chat(owner, "<span class ='userdanger'>Despite lacking blood, you were able to take in the grand core. You will pay for your power in killer headaches!</span>")
+	else
+		to_chat(owner, "<span class ='userdanger'>You've taken in the grand core, allowing you to control minions at the cost of your blood!</span>")
+
+/obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
+	H.faction -= "blooded"
+	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise, /obj/effect/proc_holder/spell/aoe_turf/horde)
+	H.RemoveSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
+	..()
+
+/datum/action/item_action/organ_action/threebloodlings
+	name = "Summon bloodlings"
+	desc = "Summon a conjure a few bloodlings at the cost of 13% blood (8 brain damage for those without blood)."
+	var/next_expulsion = 0
+	var/cooldown = 10 //wheres the risk if it has a reasonable cooldown?
+	
+/datum/action/item_action/organ_action/threebloodlings/Trigger()
+	var/mob/living/carbon/H = owner
+	. = ..() 
+	if(next_expulsion > world.time)
+		to_chat(owner, span_warning("Don't spill your blood so haphazardly!"))
+		return
+	if(NOBLOOD in H.dna.species.species_traits)
+		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 8) //brain damage wont stop you from running away so opting for that instead of poison or breath damage 
+		to_chat(H, "<span class ='userdanger'>Your head pounds as you produce bloodlings!</span>")
+	else
+		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")
+		H.blood_volume -= 70 //like 13% of your blood taken
+	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
+	next_expulsion = world.time + cooldown

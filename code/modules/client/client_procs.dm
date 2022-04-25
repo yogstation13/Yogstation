@@ -160,59 +160,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	..()	//redirect to hsrc.Topic()
 
-/client/proc/do_discord_link(hash)
-	if(!CONFIG_GET(flag/sql_enabled))
-		alert(src, "Discord account linking requires the SQL backend to be running.")
-		winset(src, null, "command=.reconnect")
-		return
-
-	if(!SSdiscord)
-		alert(src, "The server is still starting, please try again later.")
-		winset(src, null, "command=.reconnect")
-		return
-
-	var/stored_id = SSdiscord.lookup_id(ckey)
-	if(stored_id)
-		alert(src, "You already have the Discord Account [stored_id] linked to [ckey]. If you need to have this reset, please contact an admin!","Already Linked")
-		winset(src, null, "command=.reconnect")
-		return
-
-	//The hash is directly appended to the request URL, this is to prevent exploits in URL parsing with funny urls
-	// such as http://localhost/stuff:user@google.com/ so we restrict the valid characters to all numbers and the letters from a to f
-	if(regex(@"[^\da-fA-F]").Find(hash))
-		alert(src, "Invalid hash \"[hash]\"")
-		winset(src, null, "command=.reconnect")
-		return
-
-	//Since this action is passive as in its executed as you login, we need to make sure the user didnt just click on some random link and he actually wants to link
-	var/res = input(src, "You are about to link your BYOND and Discord account. Do not proceed if you did not initiate the linking process. Input 'proceed' and press ok to proceed") as text|null
-	if(lowertext(res) != "proceed")
-		alert(src, "Linking process aborted")
-		//Reconnecting clears out the connection parameters, this is so the user doesn't get the prompt to link their account if they later click replay
-		winset(src, null, "command=.reconnect")
-		return
-
-	var/datum/http_request/request = new()
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=verify&data=[json_encode(list("ckey" = ckey, "hash" = hash))]")
-	request.begin_async()
-	UNTIL(request.is_complete() || !src)
-	if(!src)
-		return
-	var/datum/http_response/response = request.into_response()
-	var/data = json_decode(response.body)
-	if(istext(data["response"]))
-		alert(src,"Internal Server Error")
-		winset(src, null, "command=.reconnect")
-		return
-
-	if(data["response"]["status"] == "err")
-		alert(src, "Could not link account: [data["response"]["message"]]")
-	else
-		SSdiscord.link_account(ckey, data["response"]["message"])
-		alert(src, "Linked to account [data["response"]["message"]]")
-	winset(src, null, "command=.reconnect")
-
-
 /client/proc/is_content_unlocked()
 	if(!is_donator(src)) // yogs - changed this to is_donator so admins get donor perks
 		to_chat(src, "Become a BYOND member to access member-perks and features, as well as support the engine that makes this game possible. Only 10 bucks for 3 months! <a href=\"https://secure.byond.com/membership\">Click Here to find out more</a>.")
@@ -298,8 +245,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//Admin Authorisation
 	holder = GLOB.admin_datums[ckey]
 	if(holder)
-		GLOB.admins |= src
-		holder.owner = src
+		if(!holder.associate(src, FALSE)) // Prevent asking for MFA at this point, it likely won't work
+			holder = null
 		connecting_admin = TRUE
 	else if(GLOB.deadmins[ckey])
 		add_verb(src, /client/proc/readmin)
@@ -553,11 +500,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	//Client needs to exists for what follows
 	. = ..()
-
-	//Linking process
-	var/list/params = params2list(tdata)
-	if(params["discordlink"])
-		do_discord_link(params["discordlink"])
 
 	var/datum/connection_log/CL = GLOB.connection_logs[ckey]
 	if(CL)
@@ -1059,6 +1001,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	view = new_size
 	apply_clickcatcher()
 	mob.reload_fullscreen()
+
+	if(mob && istype(mob.hud_used, /datum/hud/ai))
+		if(new_size == CONFIG_GET(string/default_view) || new_size == CONFIG_GET(string/default_view_square))
+			QDEL_NULL(mob.hud_used)
+			mob.create_mob_hud()
+			mob.hud_used.show_hud(mob.hud_used.hud_version)
+			mob.hud_used.update_ui_style(ui_style2icon(prefs.UI_style))
+
 	if (isliving(mob))
 		var/mob/living/M = mob
 		M.update_damage_hud()

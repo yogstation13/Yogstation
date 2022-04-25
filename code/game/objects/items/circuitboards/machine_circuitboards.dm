@@ -212,7 +212,8 @@
 	build_path = /obj/machinery/power/emitter
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 1,
-		/obj/item/stock_parts/manipulator = 1)
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/capacitor = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/generator
@@ -345,6 +346,7 @@
 	name = "Thermomachine (Machine Board)"
 	icon_state = "engineering"
 	desc = "You can use a screwdriver to switch between heater and freezer."
+	var/pipe_layer = PIPING_LAYER_DEFAULT
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stock_parts/micro_laser = 2,
@@ -379,8 +381,19 @@
 		build_path = initial(new_type.build_path)
 		I.play_tool_sound(src)
 		to_chat(user, span_notice("You change the circuitboard setting to \"[new_setting]\"."))
-	else
-		return ..()
+		return
+
+	if(I.tool_behaviour == TOOL_MULTITOOL)
+		pipe_layer = (pipe_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (pipe_layer + 1)
+		to_chat(user, "<span class='notice'>You change the circuitboard to layer [pipe_layer].</span>")
+		return
+
+	. = ..()
+
+/obj/item/circuitboard/machine/thermomachine/examine()
+	. = ..()
+	. += "<span class='notice'>It is set to layer [pipe_layer].</span>"
+
 
 /obj/item/circuitboard/machine/thermomachine/heater
 	name = "Heater (Machine Board)"
@@ -952,6 +965,31 @@
 	icon_state = "science"
 	build_path = /obj/machinery/rnd/production/techfab/department/science
 
+/obj/item/circuitboard/machine/expansion_card_holder
+	name = "Expansion Card Bus (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/ai/expansion_card_holder
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 4,
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stack/sheet/glass = 2)
+		
+/obj/item/circuitboard/machine/ai_core_display
+	name = "AI Core Display (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/status_display/ai_core
+
+/obj/item/circuitboard/machine/ai_data_core
+	name = "AI Data Core (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/ai/data_core
+	req_components = list(
+		/obj/item/stock_parts/capacitor = 4,
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stack/sheet/glass = 2,
+		/obj/item/stack/cable_coil = 2)
+
+
 //Security
 
 /obj/item/circuitboard/machine/protolathe/department/security
@@ -1004,12 +1042,25 @@
 	build_path = /obj/machinery/chem_master/condimaster
 
 /obj/item/circuitboard/machine/deep_fryer
-	name = "circuit board (Deep Fryer)"
+	name = "Deep Fryer (Machine Board)"
 	icon_state = "service"
 	build_path = /obj/machinery/deepfryer
 	req_components = list(/obj/item/stock_parts/micro_laser = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/griddle
+	name = "Griddle (Machine Board)"
+	icon_state = "service"
+	build_path = /obj/machinery/griddle
+	req_components = list(/obj/item/stock_parts/micro_laser = 1)
+	needs_anchored = FALSE
+
+/obj/item/circuitboard/machine/oven
+	name = "Oven (Machine Board)"
+	icon_state = "service"
+	build_path = /obj/machinery/oven
+	req_components = list(/obj/item/stock_parts/micro_laser = 1)
+	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/dish_drive
 	name = "Dish Drive (Machine Board)"

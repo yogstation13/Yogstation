@@ -32,7 +32,7 @@
 	seed = /obj/item/seeds/nettle
 	name = "nettle"
 	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "nettle"
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/plants_righthand.dmi'
@@ -103,14 +103,12 @@
 			to_chat(user, span_userdanger("You are stunned by the Deathnettle as you try picking it up!"))
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/death/attack(mob/living/carbon/M, mob/user)
-	if(!..())
+	if(..())
+		return
+	if(user.a_intent != INTENT_HARM)
 		return
 	if(isliving(M))
-		to_chat(M, span_danger("You are stunned by the powerful acid of the Deathnettle!"))
+		to_chat(M, span_danger("You are blinded by the powerful acid of [src]!"))
 		log_combat(user, M, "attacked", src)
 
 		M.adjust_blurriness(force/7)
-		if(prob(20))
-			M.Unconscious(force / 0.3)
-			M.Paralyze(force / 0.75)
-		M.drop_all_held_items()

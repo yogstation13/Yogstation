@@ -43,8 +43,8 @@
 			else
 				. += span_notice("Use screwdriver to unlock the rotation.")
 
-/obj/structure/reflector/proc/setAngle(new_angle)
-	if(can_rotate)
+/obj/structure/reflector/proc/setAngle(new_angle, override_rotate = FALSE)
+	if(can_rotate || override_rotate)
 		rotation_angle = new_angle
 		if(deflector_overlay)
 			cut_overlay(deflector_overlay)

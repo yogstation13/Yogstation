@@ -96,7 +96,7 @@
 			close_tool_type = /obj/item/screwdriver
 		if(istype(close_tool, close_tool_type) || iscyborg(user))
 			if(S.operated_bodypart)
-				S.operated_bodypart.generic_bleedstacks -= 5
+				S.operated_bodypart.generic_bleedstacks -= 10
 			M.surgeries -= S
 			user.visible_message("[user] closes [M]'s [parse_zone(selected_zone)] with [close_tool] and removes [I].", \
 				span_notice("You close [M]'s [parse_zone(selected_zone)] with [close_tool] and remove [I]."))

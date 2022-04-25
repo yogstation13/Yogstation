@@ -223,8 +223,8 @@
 	.["host"] = world.host ? world.host : null
 	.["round_id"] = GLOB.round_id
 	.["players"] = GLOB.clients.len
-	.["revision"] = GLOB.revdata.commit
-	.["revision_date"] = GLOB.revdata.date
+	.["revision"] = GLOB.revdata?.commit
+	.["revision_date"] = GLOB.revdata?.date
 
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
@@ -261,4 +261,11 @@
 		// Shuttle status, see /__DEFINES/stat.dm
 		.["shuttle_timer"] = SSshuttle.emergency.timeLeft()
 		// Shuttle timer, in seconds
-	
+
+/datum/world_topic/systemmsg
+	keyword = "systemmsg"
+	require_comms_key = TRUE
+
+/datum/world_topic/systemmsg/Run(list/input)
+	to_chat(world, span_boldannounce(input["message"]))
+

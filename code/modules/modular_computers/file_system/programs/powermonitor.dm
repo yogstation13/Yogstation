@@ -3,15 +3,17 @@
 /datum/computer_file/program/power_monitor
 	filename = "powermonitor"
 	filedesc = "Power Monitor"
+	category = PROGRAM_CATEGORY_ENGI
 	program_icon_state = "power_monitor"
 	extended_desc = "This program connects to sensors around the station to provide information about electrical systems"
 	ui_header = "power_norm.gif"
 	transfer_access = ACCESS_ENGINE
-	usage_flags = PROGRAM_CONSOLE
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_TELESCREEN
 	requires_ntnet = 0
 	network_destination = "power monitoring system"
 	size = 9
 	tgui_id = "NtosPowerMonitor"
+	program_icon = "plug"
 
 	var/has_alert = 0
 	var/obj/structure/cable/attached_wire
@@ -57,6 +59,10 @@
 /datum/computer_file/program/power_monitor/proc/record() //keep in sync with /obj/machinery/computer/monitor's version
 	if(world.time >= next_record)
 		next_record = world.time + record_interval
+
+		if(history.len < 1)
+			history["supply"] = list()
+			history["demand"] = list()
 
 		var/datum/powernet/connected_powernet = get_powernet()
 

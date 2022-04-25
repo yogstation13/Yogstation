@@ -2595,3 +2595,65 @@
 					/obj/item/toner,
 					/obj/item/toner)
 	crate_name = "toner crate"
+
+/datum/supply_pack/misc/jukebox
+	name = "Jukebox Crate"
+	desc = "Did the bartender not bring his jukebox? Your problem is solved with this ancient jukebox found in a junk pile."
+	cost = 5000
+	contains = list(/obj/machinery/jukebox)
+	crate_name = "jukebox crate"
+	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/misc/pda
+	name = "Modular Personal Digital Assistant Crate"
+	desc = "A create containing five modular PDAs, enough for an entire department."
+	cost = 500
+	contains = list(/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic)
+	crate_name = "pda crate"
+
+/datum/supply_pack/misc/laptop
+	name = "Modular Laptop Crate"
+	desc = "A create containing five modular laptop computers, enough for an entire department."
+	cost = 1000
+	contains = list(/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset)
+	crate_name = "laptop crate"
+
+/datum/supply_pack/misc/tablet
+	name = "Modular Tablet Crate"
+	desc = "A create containing five modular tablet computers, enough for an entire department."
+	cost = 3000
+	contains = list(/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap)
+	crate_name = "tablet crate"
+
+/datum/supply_pack/misc/phone
+	name = "Modular Phone Crate"
+	desc = "A create containing five modular phone computers, enough for an entire department. Does not include games."
+	cost = 4000
+	contains = list(/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap)
+	crate_name = "phone crate"
+
+/datum/supply_pack/misc/telescreen
+	name = "Modular Telescreen Crate"
+	desc = "A create containing four modular telescreens, featuring the latest in Nanotrasen digital displaying technology."
+	cost = 1000
+	contains = list(/obj/item/wallframe/telescreen/preset,
+					/obj/item/wallframe/telescreen/preset,
+					/obj/item/wallframe/telescreen/preset,
+					/obj/item/wallframe/telescreen/preset)
+	crate_name = "telescreen crate"

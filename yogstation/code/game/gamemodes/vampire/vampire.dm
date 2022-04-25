@@ -55,7 +55,7 @@
 	for(var/j = 0, j < num_vamps, j++)
 		if (!antag_candidates.len)
 			break
-		var/datum/mind/vamp = pick(antag_candidates)
+		var/datum/mind/vamp = antag_pick(antag_candidates)
 		pre_vamps += vamp
 		vamp.special_role = "Vampire"
 		vamp.restricted_roles = restricted_jobs

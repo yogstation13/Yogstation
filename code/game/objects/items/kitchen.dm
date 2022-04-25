@@ -128,9 +128,22 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/kitchen/knife/ritual/holy
-	name = "ruinous knife"
-	desc = "The runes inscribed on the knife radiate a strange power."
-	force = 12
+	name = "ruinous knife" 
+	desc = "The runes inscribed on the knife radiate a strange power. It looks like it could have more runes inscribed upon it..."
+
+/obj/item/kitchen/knife/ritual/holy/strong
+	name = "great ruinous knife" 
+	desc = "A heavy knife inscribed with dozens of runes."
+	force = 15
+
+/obj/item/kitchen/knife/ritual/holy/strong/blood
+	name = "blood-soaked ruinous knife" 
+	desc = "Runes stretch across the surface of the knife, seemingly endless."
+	wound_bonus = 20 //a bit better than a butcher cleaver, you've earned it for finding blood cult metal and doing the previous steps
+
+/obj/item/kitchen/knife/ritual/holy/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 70, 110) //the old gods demandeth more flesh output
 
 /obj/item/kitchen/knife/bloodletter
 	name = "bloodletter"
@@ -211,6 +224,9 @@
 	desc = "Unlike other carrots, you should probably keep this far away from your eyes."
 	force = 8
 	throwforce = 12//fuck git
+	max_integrity = 100
+	weapon_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 5, DAMAGE_HIGH = 7)
+	break_message = "%SRC snaps into unusable carrot-bits"
 	materials = list()
 	attack_verb = list("shanked", "shivved")
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -221,9 +237,9 @@
 
 // Shank - Makeshift weapon that can embed on throw
 /obj/item/kitchen/knife/shank
-	name = "Shank"
+	name = "shank"
 	desc = "A crude knife fashioned by securing a glass shard and a rod together with cables, and welding them together."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "shank"
 	item_state = "shank"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_EARS
@@ -233,8 +249,11 @@
 	throwforce = 8
 	throw_speed = 5 //yeets
 	armour_penetration = 5
+	max_integrity = 100
+	weapon_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 5, DAMAGE_HIGH = 7)
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 20, "embedded_fall_chance" = 10) // Incentive to disengage/stop chasing when stuck
 	attack_verb = list("stuck", "shanked", "stabbed", "shivved")
+	materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 
 /obj/item/kitchen/rollingpin
 	name = "rolling pin"

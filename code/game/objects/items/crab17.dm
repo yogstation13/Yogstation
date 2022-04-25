@@ -1,7 +1,7 @@
 /obj/item/suspiciousphone
 	name = "suspicious phone"
 	desc = "This device raises pink levels to unknown highs."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/traitor.dmi'
 	icon_state = "suspiciousphone"
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("dumped")
@@ -41,7 +41,7 @@
 
 /obj/structure/checkoutmachine/examine(mob/living/user)
 	. = ..()
-	. += span_info("It's integrated integrity meter reads: <b>HEALTH: [obj_integrity]</b>.")
+	. += span_info("Its integrated integrity meter reads: <b>HEALTH: [obj_integrity]</b>.")
 
 /obj/structure/checkoutmachine/proc/check_if_finished()
 	for(var/i in accounts_to_rob)
@@ -214,7 +214,7 @@
 	bogdanoff = user
 	addtimer(CALLBACK(src, .proc/startLaunch), 100)
 	sound_to_playing_players('sound/items/dump_it.ogg', 20)
-	deadchat_broadcast("Protocol CRAB-17 has been activated. A space-coin market has been launched at the station!", turf_target = get_turf(src))
+	deadchat_broadcast("Protocol CRAB-17 has been activated. A spacecoin market has been launched at the station!", turf_target = get_turf(src))
 
 /obj/effect/dumpeetTarget/proc/startLaunch()
 	DF = new /obj/effect/dumpeetFall(drop_location())

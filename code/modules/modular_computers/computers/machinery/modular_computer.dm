@@ -19,11 +19,22 @@
 	var/icon_state_powered = null						// Icon state when the computer is turned on.
 	var/screen_icon_state_menu = "menu"					// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
 	var/screen_icon_screensaver = "standby"				// Icon state overlay when the computer is powered, but not 'switched on'.
+	var/overlay_skin = null		
 	var/max_hardware_size = 0							// Maximal hardware size. Currently, tablets have 1, laptops 2 and consoles 3. Limits what hardware types can be installed.
 	var/steel_sheet_cost = 10							// Amount of steel sheets refunded when disassembling an empty frame of this computer.
 	var/light_strength = 0								// Light luminosity when turned on
 	var/base_active_power_usage = 100					// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_idle_power_usage = 10						// Power usage when the computer is idle and screen is off (currently only applies to laptops)
+	
+	// Stuff for presets
+	var/list/starting_components = list()
+	var/list/starting_files = list()
+	var/datum/computer_file/program/initial_program
+
+	// Interaction Sounds
+	var/sound/startup_sound = 'sound/machines/computers/computer_start.ogg'
+	var/sound/shutdown_sound = 'sound/machines/computers/computer_end.ogg'
+	var/list/interact_sounds = list('sound/machines/computers/keypress1.ogg', 'sound/machines/computers/keypress2.ogg', 'sound/machines/computers/keypress3.ogg', 'sound/machines/computers/keypress4.ogg', 'sound/machines/computers/keystroke1.ogg', 'sound/machines/computers/keystroke2.ogg', 'sound/machines/computers/keystroke3.ogg', 'sound/machines/computers/keystroke4.ogg')
 
 	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 
@@ -48,52 +59,13 @@
 		cpu.attack_ghost(user)
 
 /obj/machinery/modular_computer/emag_act(mob/user)
-	return cpu ? cpu.emag_act(user) : 1
+	if(!cpu)
+		to_chat(user, "<span class='warning'>You'd need to turn the [src] on first.</span>")
+		return FALSE
+	return (cpu.emag_act(user))
 
 /obj/machinery/modular_computer/update_icon()
-	cut_overlays()
-	icon_state = icon_state_powered
-
-	if(!cpu || !cpu.enabled)
-		if (!(stat & NOPOWER) && (cpu && cpu.use_power()))
-			add_overlay(screen_icon_screensaver)
-		else
-			icon_state = icon_state_unpowered
-		set_light(0)
-	else
-		set_light(light_strength)
-		if(cpu.active_program)
-			add_overlay(cpu.active_program.program_icon_state ? cpu.active_program.program_icon_state : screen_icon_state_menu)
-		else
-			add_overlay(screen_icon_state_menu)
-
-	if(cpu && cpu.obj_integrity <= cpu.integrity_failure)
-		add_overlay("bsod")
-		add_overlay("broken")
-
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/machinery/modular_computer/proc/eject_id()
-	set name = "Eject ID"
-	set category = "Object"
-
-	if(cpu)
-		cpu.eject_id()
-
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/machinery/modular_computer/proc/eject_disk()
-	set name = "Eject Data Disk"
-	set category = "Object"
-
-	if(cpu)
-		cpu.eject_disk()
-
-/obj/machinery/modular_computer/proc/eject_card()
-	set name = "Eject Intellicard"
-	set category = "Object"
-	set src in view(1)
-
-	if(cpu)
-		cpu.eject_card()
+	cpu.update_icon()
 
 /obj/machinery/modular_computer/AltClick(mob/user)
 	if(cpu)
@@ -132,8 +104,12 @@
 		return
 	. = ..()
 
+/obj/machinery/modular_computer/screwdriver_act(mob/user, obj/item/tool)
+	if(cpu)
+		return cpu.screwdriver_act(user, tool)
+
 /obj/machinery/modular_computer/attackby(var/obj/item/W as obj, mob/user)
-	if(cpu && !(flags_1 & NODECONSTRUCT_1))
+	if(user.a_intent == INTENT_HELP && cpu && !(flags_1 & NODECONSTRUCT_1))
 		return cpu.attackby(W, user)
 	return ..()
 

@@ -338,6 +338,8 @@
 	addtimer(CALLBACK(src, .proc/preReturn, holder), departureDelay * 0.2) //Start to leave a bit after closing for cinematic effect
 
 /obj/structure/closet/supplypod/take_contents(atom/movable/holder)
+	if(!holder)
+		return
 	var/turf/turf_underneath = holder.drop_location()
 	for(var/atom_to_check in turf_underneath)
 		if(atom_to_check != src && !insert(atom_to_check, holder)) // Can't insert that

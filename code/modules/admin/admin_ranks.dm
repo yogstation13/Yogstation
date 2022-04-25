@@ -272,7 +272,9 @@ GLOBAL_PROTECT(protected_ranks)
 					skip = TRUE
 			if(skip)
 				continue
-			new /datum/admins(trim(rank_names[backup_file_json["admins"]["[J]"]]), ckey("[J]"))
+			var/datum/admins/A = new /datum/admins(trim(rank_names[backup_file_json["admins"]["[J]"]["rank"]]), ckey("[J]"))
+			A.ip_cache = backup_file_json["admins"]["[J]"]["ip_cache"]
+			A.cid_cache = backup_file_json["admins"]["[J]"]["cid_cache"]
 	#ifdef TESTING
 	var/msg = "Admins Built:\n"
 	for(var/ckey in GLOB.admin_datums)

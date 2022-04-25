@@ -13,7 +13,7 @@
 	var/list/visibleCameraChunks = list()
 	var/mob/living/silicon/ai/ai = null
 	var/relay_speech = FALSE
-	var/use_static = USE_STATIC_OPAQUE
+	var/use_static = TRUE
 	var/static_visibility_range = 16
 	var/ai_detector_visible = TRUE
 	var/ai_detector_color = COLOR_RED
@@ -33,17 +33,18 @@
 		QDEL_LIST(old_images)
 		return
 
-	if(!hud.hudusers.len)
-		//no one is watching, do not bother updating anything
-		return
+	if(!length(hud.hudusers))
+		return //no one is watching, do not bother updating anything
+
 	hud.remove_from_hud(src)
 
-	var/static/list/vis_contents_objects = list()
-	var/obj/effect/overlay/ai_detect_hud/hud_obj = vis_contents_objects[ai_detector_color]
+	var/static/list/vis_contents_opaque = list()
+	var/obj/effect/overlay/ai_detect_hud/hud_obj = vis_contents_opaque[ai_detector_color]
+
 	if(!hud_obj)
 		hud_obj = new /obj/effect/overlay/ai_detect_hud()
 		hud_obj.color = ai_detector_color
-		vis_contents_objects[ai_detector_color] = hud_obj
+		vis_contents_opaque[ai_detector_color] = hud_obj
 
 	var/list/new_images = list()
 	var/list/turfs = get_visible_turfs()
@@ -71,7 +72,7 @@
 
 /mob/camera/aiEye/proc/setLoc(T, force_update = FALSE)
 	if(ai)
-		if(!isturf(ai.loc))
+		if(!(isturf(ai.loc) || istype(ai.loc, /obj/machinery/ai/data_core)))
 			return
 		T = get_turf(T)
 		if(!force_update && (T == get_turf(src)) )
@@ -80,7 +81,7 @@
 			forceMove(T)
 		else
 			moveToNullspace()
-		if(use_static != USE_STATIC_NONE)
+		if(use_static)
 			ai.camera_visibility(src)
 		if(ai.client && !ai.multicam_on)
 			ai.client.eye = src
@@ -132,7 +133,7 @@
 /client/proc/AIMove(n, direct, mob/living/silicon/ai/user)
 
 	var/initial = initial(user.sprint)
-	var/max_sprint = 50
+	var/max_sprint = user.max_camera_sprint
 
 	if(user.cooldown && user.cooldown < world.timeofday) // 3 seconds
 		user.sprint = initial
@@ -161,7 +162,7 @@
 	cameraFollow = null
 	unset_machine()
 
-	if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
+	if(isvalidAIloc(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
 		to_chat(src, "ERROR: Eyeobj not found. Creating new eye...")
 		create_eye()
 

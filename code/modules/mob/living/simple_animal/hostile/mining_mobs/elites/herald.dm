@@ -229,7 +229,7 @@
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.gets_drilled()
+		M.attempt_drill()
 		return
 	else if(isliving(target))
 		var/mob/living/L = target

@@ -90,6 +90,14 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 
+/obj/item/clothing/glasses/meson/sunglasses
+	name= "meson sunglasses"
+	desc = "Sunglasses that also function as a meson scanner."
+	icon_state = "sunhudmeson"
+	item_state = "sunhudmeson"
+	flash_protect = 1
+	tint = 1
+
 /obj/item/clothing/glasses/science
 	name = "science goggles"
 	desc = "A pair of snazzy goggles used to protect against chemical spills. Fitted with an analyzer for scanning items and reagents."
@@ -419,15 +427,29 @@
 	desc = "A strange eye, said to have been torn from an omniscient creature that used to roam the wastes."
 	icon_state = "godeye"
 	item_state = "godeye"
-	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
+	vision_flags = SEE_TURFS
 	darkness_view = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	clothing_flags = SCAN_REAGENTS
+	var/obj/effect/proc_holder/expose/expose_ability
 
 /obj/item/clothing/glasses/godeye/Initialize()
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
+	expose_ability = new(expose_ability)
+
+/obj/item/clothing/glasses/godeye/equipped(mob/living/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_EYES)
+		ADD_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
+		user.AddAbility(expose_ability)
+
+/obj/item/clothing/glasses/godeye/dropped(mob/living/user)
+	. = ..()
+	// Behead someone, their "glasses" drop on the floor
+	// and thus, the god eye should no longer be sticky
+	REMOVE_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
+	user.RemoveAbility(expose_ability)
 
 /obj/item/clothing/glasses/godeye/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(istype(W, src) && W != src && W.loc == user)
@@ -438,10 +460,61 @@
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.update_inv_wear_mask()
-		else
-			to_chat(user, span_notice("The eye winks at you and vanishes into the abyss, you feel really unlucky."))
-		qdel(src)
+			qdel(src)
 	..()
+
+/obj/effect/proc_holder/expose
+	name = "Expose"
+	desc = "Expose an enemy, increasing all damage dealt to them by 15% for 10 seconds, effect is magnified on megafauna."
+	action_background_icon_state = "bg_demon"
+	action_icon = 'icons/mob/actions/actions_items.dmi'
+	action_icon_state = "expose"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/expose_target.dmi'
+	var/cooldown_time = 1 MINUTES
+	COOLDOWN_DECLARE(scan_cooldown)
+
+/obj/effect/proc_holder/expose/on_lose(mob/living/user)
+	remove_ranged_ability()
+
+/obj/effect/proc_holder/expose/Click(location, control, params)
+	. = ..()
+	if(!isliving(usr))
+		return TRUE
+	var/mob/living/user = usr
+	fire(user)
+
+/obj/effect/proc_holder/expose/fire(mob/living/carbon/user)
+	if(active)
+		remove_ranged_ability(span_notice("You relax your god eye."))
+	else
+		add_ranged_ability(user, span_notice("You squint your god eye. <B>Left-click a creature to expose it!</B>"), TRUE)
+
+/obj/effect/proc_holder/expose/InterceptClickOn(mob/living/caller, params, atom/target)
+	. = ..()
+	if(.)
+		return
+	if(ranged_ability_user.stat)
+		remove_ranged_ability()
+		return
+	if(!COOLDOWN_FINISHED(src, scan_cooldown))
+		to_chat(ranged_ability_user, span_warning("You try to focus your god eye, but it's too tired. Give it some time to recharge!"))
+		return
+	if(!isliving(target) || target == ranged_ability_user)
+		return
+	var/mob/living/living_target = target
+	living_target.apply_status_effect(STATUS_EFFECT_EXPOSED)
+	living_target.Jitter(5)
+	to_chat(living_target, span_warning("You feel the gaze of a malevolent presence focus on you!"))
+	ranged_ability_user.playsound_local(get_turf(ranged_ability_user), 'sound/magic/smoke.ogg', 50, TRUE)
+	living_target.playsound_local(get_turf(living_target), 'sound/hallucinations/i_see_you1.ogg', 50, TRUE)
+	to_chat(ranged_ability_user, "You glare at [living_target], exposing them!")
+	COOLDOWN_START(src, scan_cooldown, cooldown_time)
+	addtimer(CALLBACK(src, .proc/cooldown_over, ranged_ability_user), cooldown_time)
+	remove_ranged_ability()
+	return TRUE
+
+/obj/effect/proc_holder/expose/proc/cooldown_over()
+	to_chat(usr, (span_notice("Your god eye is focused enough to expose again!")))
 
 /obj/item/clothing/glasses/AltClick(mob/user)
 	if(glass_colour_type && ishuman(user))

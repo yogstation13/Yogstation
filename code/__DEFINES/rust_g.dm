@@ -102,14 +102,30 @@
 #define rustg_sql_disconnect_pool(handle) call(RUST_G, "sql_disconnect_pool")(handle)
 #define rustg_sql_check_query(job_id) call(RUST_G, "sql_check_query")("[job_id]")
 
+#define rustg_http_request_blocking(method, url, body, headers) call(RUST_G, "http_request_blocking")(method, url, body, headers)
+#define rustg_http_request_async(method, url, body, headers) call(RUST_G, "http_request_async")(method, url, body, headers)
+#define rustg_http_check_request(req_id) call(RUST_G, "http_check_request")(req_id)
+
+#define rustg_hash_string(algorithm, text) call(RUST_G, "hash_string")(algorithm, text)
+#define rustg_hash_file(algorithm, fname) call(RUST_G, "hash_file")(algorithm, fname)
+#define rustg_hash_generate_totp(seed) call(RUST_G, "generate_totp")(seed)
+#define rustg_hash_generate_totp_tolerance(seed, tolerance) call(RUST_G, "generate_totp_tolerance")(seed, "[tolerance]")
+
 #define rustg_url_encode(text) call(RUST_G, "url_encode")("[text]")
 #define rustg_url_decode(text) call(RUST_G, "url_decode")(text)
-
-#ifdef RUSTG_OVERRIDE_BUILTINS
-	#define url_encode(text) rustg_url_encode(text)
-	#define url_decode(text) rustg_url_decode(text)
-#endif
 
 #define rustg_worley_generate(region_size, threshold, node_per_region_chance, width, height) \
 	call(RUST_G, "worley_generate")(region_size, threshold, node_per_region_chance, width, height)
 
+#define RUSTG_HASH_MD5 "md5"
+#define RUSTG_HASH_SHA1 "sha1"
+#define RUSTG_HASH_SHA256 "sha256"
+#define RUSTG_HASH_SHA512 "sha512"
+#define RUSTG_HASH_XXH64 "xxh64"
+#define RUSTG_HASH_BASE64 "base64"
+
+#ifdef RUSTG_OVERRIDE_BUILTINS
+	#define md5(thing) (isfile(thing) ? rustg_hash_file(RUSTG_HASH_MD5, "[thing]") : rustg_hash_string(RUSTG_HASH_MD5, thing))
+	#define url_encode(text) rustg_url_encode(text)
+	#define url_decode(text) rustg_url_decode(text)
+#endif

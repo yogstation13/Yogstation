@@ -1,12 +1,3 @@
-/datum/admins/proc/hippie_makeVampire(datum/admins/sr)
-	if(sr.makeVampire())
-		message_admins("[key_name(usr)] created a vampire.")
-		log_admin("[key_name(usr)] created a vampire.")
-	else
-		message_admins("[key_name_admin(usr)] tried to create a vampire. Unfortunately, there were no candidates available.")
-		log_admin("[key_name(usr)] failed to create a vampire.")
-//why is this called hippie stop it thats bad
-
 /datum/admins/proc/checkMentorEditList(ckey)
 	var/datum/DBQuery/query_memoedits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("mentor_memo")] WHERE (ckey = :key)", list("key" = ckey))
 	if(!query_memoedits.warn_execute())

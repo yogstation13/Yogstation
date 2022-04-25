@@ -94,6 +94,7 @@
 	W.icon_state = "centcom"
 	W.registered_name = "Unknown" // continuing the tradition of these ID's not being assigned to a particular person
 	W.assignment = "Peacekeeping Force"
+	W.originalassignment = "Peacekeeping Force"
 	W.update_label(W.registered_name, W.assignment)
 
 	H.ignores_capitalism = TRUE // Yogs -- Lets the Peacekeeping force buy a damned smoke for christ's sake

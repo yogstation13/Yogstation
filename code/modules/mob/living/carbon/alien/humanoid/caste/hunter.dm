@@ -45,13 +45,13 @@
 
 	else //Maybe uses plasma in the future, although that wouldn't make any sense...
 		leaping = 1
-		weather_immunities += "lava"
+		weather_immunities += WEATHER_LAVA
 		update_icons()
 		throw_at(A, MAX_ALIEN_LEAP_DIST, 1, src, FALSE, TRUE, callback = CALLBACK(src, .proc/leap_end))
 
 /mob/living/carbon/alien/humanoid/hunter/proc/leap_end()
 	leaping = 0
-	weather_immunities -= "lava"
+	weather_immunities -= WEATHER_LAVA
 	update_icons()
 
 /mob/living/carbon/alien/humanoid/hunter/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

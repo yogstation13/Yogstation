@@ -79,7 +79,9 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	if(istext(x) && compare && x != compare) // Was changed
 		x = sanitize(x)
 		if(isnotpretty(x)) // Pretty filter stuff
-			message_admins("An NTSL script just tripped the pretty filter, setting variable [name] to value [x]!")
+			var/log_message = "An NTSL script just tripped the pretty filter, setting variable [name] from [compare] to value [x]!"
+			message_admins(log_message)
+			log_ntsl(log_message)
 			return FALSE
 	return x
 /datum/n_struct/ntsl_get(key)

@@ -29,9 +29,10 @@
 		/obj/effect/proc_holder/spell/pointed/hypno = 0,
 		/datum/vampire_passive/vision = 75,
 		/obj/effect/proc_holder/spell/self/shapeshift = 75,
+		/datum/vampire_passive/nostealth = 100,
 		/obj/effect/proc_holder/spell/self/cloak = 100,
 		/obj/effect/proc_holder/spell/self/revive = 100,
-		/obj/effect/proc_holder/spell/targeted/disease = 200,//why is spell-that-kills-people unlocked so early what the fuck
+		/obj/effect/proc_holder/spell/targeted/disease = 200,
 		/obj/effect/proc_holder/spell/self/batform = 200,
 		/obj/effect/proc_holder/spell/self/screech = 215,
 		/obj/effect/proc_holder/spell/bats = 250,
@@ -113,7 +114,16 @@
 		to_chat(owner, "<span class='notice bold'>You are not required to obey other vampires, however, you have gained a respect for them.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
-	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/vampire.ogg',80,0)
+	if(full_vampire == FALSE)
+		if(prob(10))
+			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/lilithspact_alt.ogg',80,0)
+		else
+			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/lilithspact.ogg',80,0)
+	else
+		if(prob(10))
+			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/newvampire_alt.ogg',80,0)
+		else
+			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/newvampire.ogg',80,0)
 
 /datum/antagonist/vampire/proc/give_objectives()
 	if(full_vampire)
@@ -244,7 +254,7 @@
 	var/warned = FALSE //has the vampire been warned they're about to alert a target while stealth sucking?
 	var/blood_to_take = BLOOD_SUCK_BASE //how much blood should be removed per succ? changes depending on grab state
 	log_attack("[O] ([O.ckey]) bit [H] ([H.ckey]) in the neck")
-	if(!(O.pulling == H))
+	if(!(O.pulling == H) && !get_ability(/datum/vampire_passive/nostealth))
 		silent = TRUE
 		blood_to_take *= 0.5 //half blood from targets that aren't being pulled, but they also don't get warned until it starts to cause damage
 	else if(O.grab_state >= GRAB_NECK)
@@ -268,7 +278,7 @@
 			to_chat(O, span_warning("You lose your grip on [H], reducing your bloodsucking speed."))
 		if(blood_to_take == BLOOD_SUCK_BASE && (O.pulling == H && O.grab_state >= GRAB_NECK))//smooth movement from normal suck to aggressive suck
 			blood_to_take *= 1.5
-			to_chat(O, span_warning("Your enchanced grip on [H] allows you to extract blood faster."))
+			to_chat(O, span_warning("Your enhanced grip on [H] allows you to extract blood faster."))
 		if(silent && O.pulling == H) //smooth movement from stealth suck to normal suck
 			silent = FALSE
 			blood_to_take = BLOOD_SUCK_BASE
@@ -280,8 +290,8 @@
 			to_chat(O, span_warning("They've got no blood left to give."))
 			break
 		blood_coeff = 0.8 //20 blood gain at base for living, 30 with aggressive grab, 10 with stealth
-		if(H.stat == DEAD)
-			blood_coeff = 0.2 //5 blood gain at base for dead, 7 with aggressive grab, 2 with stealth
+		if(H.stat == DEAD || !H.client)
+			blood_coeff = 0.2 //5 blood gain at base for dead or uninhabited, 7 with aggressive grab, 2 with stealth
 		blood = round(min(blood_to_take * blood_coeff, H.blood_volume))	//if the victim has less than the amount of blood left to take, just take all of it.
 		total_blood += blood			//get total blood 100% efficiency because fuck waiting out 5 fucking minutes and 1500 actual blood to get your 600 blood for the objective
 		usable_blood += blood * 0.75	//75% usable blood since it's actually used for stuff
@@ -297,7 +307,10 @@
 		if(!silent)
 			playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1, extrarange = -4)//have to be within 3 tiles to hear the sucking
 		else if(H.get_blood_state() <= BLOOD_OKAY)
-			to_chat(H, span_warning("You feel oddly faint..."))
+			to_chat(H, span_warning("You notice [O] standing oddly close..."))
+		if(get_ability(/datum/vampire_passive/nostealth) && silent)
+			to_chat(O, span_boldwarning("You can no longer suck blood silently!"))
+			break
 
 	draining = null
 	to_chat(owner, span_notice("You stop draining [H.name] of blood."))

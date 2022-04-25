@@ -412,6 +412,7 @@
 			owner.visible_message("[owner]'s soul is absorbed into the rod, relieving the previous snake of its duty.")
 			var/mob/living/simple_animal/hostile/retaliate/poison/snake/healSnake = new(owner.loc)
 			healSnake.poison_type = /datum/reagent/medicine/omnizine/godblood
+			healSnake.poison_per_bite = 5
 			healSnake.name = "Asclepius's Snake"
 			healSnake.real_name = "Asclepius's Snake"
 			healSnake.desc = "A mystical snake previously trapped upon the Rod of Asclepius, now freed of its burden. Unlike the average snake, its bites contain chemicals with minor healing properties."
@@ -419,6 +420,7 @@
 			new /obj/item/rod_of_asclepius(owner.loc)
 			if(owner.mind)
 				owner.mind.transfer_to(healSnake)
+			healSnake.grab_ghost()
 			qdel(owner)
 	else
 		if(iscarbon(owner))

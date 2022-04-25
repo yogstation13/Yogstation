@@ -332,7 +332,8 @@
 	. = span_notice("[user] grasps [A] with [user.p_their()] flaming hand, igniting it in a burst of holy flame. Holy hot damn, that is badass. ")
 
 /obj/item/nullrod/staff
-	icon_state = "godstaff-red"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "staff-red"
 	item_state = "godstaff-red"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
@@ -350,12 +351,14 @@
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_LAYER + 0.01)
 
 /obj/item/nullrod/staff/blue
+	icon = 'icons/obj/wizard.dmi'
 	name = "blue holy staff"
-	icon_state = "godstaff-blue"
+	icon_state = "staff-blue"
 	item_state = "godstaff-blue"
 	shield_icon = "shield-old"
 
 /obj/item/nullrod/claymore
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "holyblade"
 	item_state = "holyblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -421,6 +424,7 @@
 /obj/item/nullrod/claymore/saber
 	name = "light energy sword"
 	hitsound = 'sound/weapons/blade1.ogg'
+	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "swordblue"
 	item_state = "swordblue"
 	desc = "If you strike me down, I shall become more robust than you can possibly imagine."
@@ -475,6 +479,7 @@
 /obj/item/nullrod/sord
 	name = "\improper UNREAL SORD"
 	desc = "This thing is so unspeakably HOLY you are having a hard time even holding it."
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "sord"
 	item_state = "sord"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -486,6 +491,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/nullrod/scythe
+	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "scythe1"
 	item_state = "scythe1"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
@@ -503,6 +509,7 @@
 	AddComponent(/datum/component/butchering, 70, 110) //the harvest gives a high bonus chance
 
 /obj/item/nullrod/scythe/vibro
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "hfrequency0"
 	item_state = "hfrequency1"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -527,6 +534,7 @@
 	hitsound = 'sound/effects/sparks4.ogg'
 
 /obj/item/nullrod/scythe/spellblade
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "spellblade"
 	item_state = "spellblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -537,6 +545,7 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
 /obj/item/nullrod/scythe/talking
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "talking_sword"
 	item_state = "talking_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -588,6 +597,7 @@
 	return ..()
 
 /obj/item/nullrod/scythe/talking/chainsword
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "chainswordon"
 	item_state = "chainswordon"
 	name = "possessed chainsaw sword"
@@ -600,6 +610,7 @@
 
 
 /obj/item/nullrod/hammmer
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "hammeron"
 	item_state = "hammeron"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
@@ -613,6 +624,7 @@
 /obj/item/nullrod/chainsaw
 	name = "chainsaw hand"
 	desc = "Good? Bad? You're the guy with the chainsaw hand."
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "chainsaw_on"
 	item_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
@@ -640,6 +652,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/nullrod/pride_hammer
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "pride"
 	name = "Pride-struck Hammer"
 	desc = "It resonates an aura of Pride."
@@ -663,6 +676,7 @@
 /obj/item/nullrod/whip
 	name = "holy whip"
 	desc = "What a terrible night to be on Space Station 13."
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "chain"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -732,6 +746,7 @@
 		used_blessing = TRUE
 
 /obj/item/nullrod/claymore/bostaff //May as well make it a "claymore" and inherit the blocking
+	icon = 'icons/obj/weapons/misc.dmi'
 	name = "monk's staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts, it is now used to harass the clown."
 	w_class = WEIGHT_CLASS_BULKY
@@ -741,13 +756,14 @@
 	sharpness = SHARP_NONE
 	hitsound = "swing_hit"
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "bostaff0"
 	item_state = "bostaff0"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 
 /obj/item/nullrod/tribal_knife
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "crysknife"
 	item_state = "crysknife"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -775,6 +791,7 @@
 
 
 /obj/item/nullrod/pitchfork
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "pitchfork0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -795,3 +812,45 @@
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("bashes", "smacks", "whacks")
+
+/obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(hud_type && slot == SLOT_GLASSES)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.add_hud_to(user)
+
+/obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
+	..()
+	if(hud_type && istype(user) && user.glasses == src)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.remove_hud_from(user)
+/obj/item/nullrod/servoskull
+	name = "servitor skull"
+	desc = "Even in death, i still serve"
+	icon = 'icons/obj/clothing/neck.dmi'
+	slot_flags = ITEM_SLOT_NECK
+	icon_state = "servoskull"
+	item_state = "servoskull"
+	w_class = WEIGHT_CLASS_SMALL
+	force = 7
+	throwforce = 15
+	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
+	var/hud_type = DATA_HUD_DIAGNOSTIC_ADVANCED
+	var/hud_type2 = DATA_HUD_MEDICAL_ADVANCED
+	
+/obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(hud_type && slot == SLOT_NECK)
+		to_chat(user, "Sensory augmentation initiated")
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.add_hud_to(user)
+		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
+		H2.add_hud_to(user)
+
+/obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
+	..()
+	if(hud_type && istype(user) && user.wear_neck == src)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.remove_hud_from(user)
+		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
+		H2.remove_hud_from(user)

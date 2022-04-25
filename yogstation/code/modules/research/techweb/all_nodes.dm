@@ -150,15 +150,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 2500
 
-	
-/datum/techweb_node/syndicate_surgery
-	id = "syndicate_surgery"
-	display_name = "Syndicate Surgery"
-	description = "The Syndicate did nothing wrong."
-	prereq_ids = list("exp_surgery", "syndicate_basic")
-	design_ids = list("surgery_brainwashing")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000)
-	export_price = 7000
 
 /datum/techweb_node/nanite_harmonic
 	design_ids = list("fakedeath_nanites","aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites","nanite_heart")

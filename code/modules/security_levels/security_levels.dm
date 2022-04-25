@@ -72,7 +72,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					modTimer = 1
 
 			if(SEC_LEVEL_DELTA)
-				minor_announce(CONFIG_GET(string/alert_delta), "Attention! Delta security level reached!", TRUE)
+				minor_announce(CONFIG_GET(string/alert_delta), "Attention! Delta security level reached!", TRUE, 'sound/misc/delta_alert.ogg')
 				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 					if(GLOB.security_level == SEC_LEVEL_GREEN)
 						modTimer = 0.25

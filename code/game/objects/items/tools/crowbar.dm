@@ -12,6 +12,8 @@
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=50)
+	drop_sound = 'sound/items/handling/crowbar_drop.ogg'
+	pickup_sound =  'sound/items/handling/crowbar_pickup.ogg'
 
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	tool_behaviour = TOOL_CROWBAR
@@ -38,8 +40,8 @@
 	name = "alien crowbar"
 	desc = "A hard-light crowbar. It appears to pry by itself, without any effort required."
 	icon = 'icons/obj/abductor.dmi'
+	icon_state = "crowbar_alien"
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
-	icon_state = "crowbar"
 	toolspeed = 0.1
 
 

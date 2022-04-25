@@ -9,17 +9,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/eva_secondary)
-"aj" = (
-/obj/machinery/computer/crew{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "mining1";
-	name = "Mining Emergency Lockdown";
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
 "ak" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -48,6 +37,15 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/mine/vacant)
+"aD" = (
+/obj/vehicle/ridden/atv,
+/obj/effect/turf_decal/delivery,
+/obj/structure/window/spawner/east,
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
 "aJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
@@ -82,15 +80,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
-"aP" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
 "aW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plating,
@@ -148,18 +137,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
-"bl" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -32
-	},
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/break_room)
 "bs" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -202,6 +179,40 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance)
+"bG" = (
+/obj/structure/closet/crate/freezer{
+	anchored = 1
+	},
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/APlus,
+/obj/item/reagent_containers/blood/BMinus{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/OPlus{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/BPlus{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/blood/AMinus,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/obj/machinery/iv_drip,
+/obj/effect/turf_decal/bot,
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
 "bH" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/hooded/wintercoat,
@@ -531,18 +542,18 @@
 /turf/open/floor/plating,
 /area/mine/storage)
 "en" = (
-/obj/structure/table/optable{
-	name = "Robotics Operating Table"
-	},
-/obj/machinery/airalarm{
+/obj/structure/mopbucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/structure/sink/kitchen{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 11
 	},
-/obj/machinery/light{
-	dir = 4
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
 	},
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
+/turf/open/floor/plasteel/cafeteria,
+/area/mine/break_room)
 "eo" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/manifold/violet/visible{
@@ -711,12 +722,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"fG" = (
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "fJ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -790,39 +795,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"gA" = (
-/obj/structure/closet/crate/freezer{
-	anchored = 1
-	},
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/APlus,
-/obj/item/reagent_containers/blood/BMinus{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/OPlus{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/BPlus{
-	pixel_x = 1;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/blood/AMinus,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/machinery/iv_drip,
-/obj/machinery/light_switch{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/bot,
-/obj/item/tank/internals/anesthetic,
-/obj/item/clothing/mask/breath/medical,
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
 "gV" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -986,6 +958,13 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance)
+"iP" = (
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/machinery/papershredder,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "iQ" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -1008,18 +987,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"iW" = (
-/obj/machinery/computer/operating{
-	dir = 8
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 32
-	},
-/obj/machinery/firealarm{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
 "iZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1;
@@ -1100,22 +1067,6 @@
 	icon_state = "panelscorched"
 	},
 /area/mine/storage)
-"kj" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "kA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
@@ -1225,6 +1176,15 @@
 "lN" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"lO" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/railing/corner,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "lP" = (
@@ -1344,12 +1304,6 @@
 /obj/structure/curtain,
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
-"ob" = (
-/obj/machinery/computer/security/mining{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
 "og" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
@@ -1373,6 +1327,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"oU" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
 "pc" = (
 /obj/machinery/space_heater,
 /obj/structure/window/spawner/east,
@@ -1575,6 +1542,30 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
+"rB" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = 20
+	},
+/obj/machinery/modular_computer/console/preset/mining,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"rL" = (
+/obj/machinery/computer/crew{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "mining1";
+	name = "Mining Emergency Lockdown";
+	pixel_x = -24;
+	pixel_y = -5
+	},
+/obj/machinery/light_switch{
+	pixel_x = -24;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
 "sp" = (
 /obj/structure/ore_box,
 /obj/machinery/light/small{
@@ -1595,10 +1586,11 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
-"sO" = (
-/obj/structure/sign/departments/minsky/medical/medical2{
-	pixel_y = 32
+"sC" = (
+/obj/machinery/light{
+	dir = 4
 	},
+/obj/structure/table/optable,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "sU" = (
@@ -1636,6 +1628,20 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
+"tM" = (
+/obj/structure/table,
+/obj/item/storage/lockbox/vialbox/blood{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/obj/item/book/random{
+	pixel_x = -4
+	},
+/obj/machinery/light_switch{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
 "tQ" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -1678,14 +1684,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"ur" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "us" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	name = "Waste to Filters";
@@ -1737,16 +1735,6 @@
 "vl" = (
 /turf/closed/wall,
 /area/mine/eva)
-"vn" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "vC" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 30
@@ -1870,6 +1858,37 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"xv" = (
+/obj/machinery/computer/operating{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 32
+	},
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
+"xx" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "xD" = (
 /obj/machinery/atmospherics/components/trinary/mixer/on{
 	dir = 4;
@@ -1989,6 +2008,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
+"Aa" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/mine/break_room)
 "Ad" = (
 /obj/structure/table,
 /obj/item/storage/box/bodybags,
@@ -2013,13 +2036,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
-"Av" = (
-/obj/structure/table,
-/obj/machinery/microwave,
-/obj/item/kitchen/knife,
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
 "Ax" = (
 /obj/structure/sign/poster/random{
 	pixel_y = -32
@@ -2060,11 +2076,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"AL" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
 "AP" = (
 /obj/structure/closet/secure_closet/miner{
 	anchored = 1
@@ -2218,6 +2229,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"Ch" = (
+/obj/structure/closet/wardrobe/pjs{
+	anchored = 1
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
+"Cl" = (
+/obj/machinery/modular_computer/console/preset/mining{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_x = 29
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
 "Cs" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2448,17 +2476,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"EQ" = (
-/obj/structure/table,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -32
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/item/storage/box/drinkingglasses,
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
 "ET" = (
 /obj/machinery/mineral/mint{
 	input_dir = 4
@@ -2650,26 +2667,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"Hx" = (
-/obj/structure/bed/roller,
-/obj/machinery/camera{
-	c_tag = "Infirmary";
-	dir = 1;
-	network = list("mine")
-	},
-/obj/machinery/power/apc{
-	name = "Mining Infirmary APC";
-	pixel_y = -23
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_x = 29
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
 "Hy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2771,14 +2768,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"Jq" = (
-/obj/machinery/computer/security/mining,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = 20
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "Jt" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -2942,14 +2931,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"Mi" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
 "Mq" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -3014,20 +2995,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/eva)
-"NN" = (
-/obj/structure/table,
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/obj/item/storage/lockbox/vialbox/blood{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/obj/item/book/random{
-	pixel_x = -4
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
 "NP" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -3275,16 +3242,7 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"QP" = (
-/obj/structure/table,
-/obj/item/book/random,
-/turf/open/floor/plasteel/freezer,
-/area/mine/living_quarters)
-"QQ" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
-"QU" = (
+"QH" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
@@ -3300,8 +3258,20 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+/obj/structure/railing/corner{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"QP" = (
+/obj/structure/table,
+/obj/item/book/random,
+/turf/open/floor/plasteel/freezer,
+/area/mine/living_quarters)
+"QQ" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
 "Rl" = (
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
@@ -3316,16 +3286,6 @@
 /obj/effect/turf_decal/stripes/box,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"Ru" = (
-/obj/structure/mopbucket,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/mop,
-/obj/structure/sink/kitchen{
-	dir = 8;
-	pixel_x = 11
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
 "RH" = (
 /obj/machinery/light_switch{
 	pixel_y = 32
@@ -3365,12 +3325,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/eva_secondary)
-"RZ" = (
-/obj/vehicle/ridden/atv,
-/obj/effect/turf_decal/delivery,
-/obj/structure/window/spawner/east,
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
 "Se" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 9
@@ -3416,6 +3370,15 @@
 	},
 /turf/open/floor/plating,
 /area/mine/storage)
+"SV" = (
+/obj/structure/table,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/storage/box/drinkingglasses,
+/obj/machinery/reagentgrinder,
+/turf/open/floor/plasteel/cafeteria,
+/area/mine/break_room)
 "Tf" = (
 /obj/machinery/door/airlock/atmos/glass{
 	name = "Mining Station Atmospherics";
@@ -3466,6 +3429,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
+"TQ" = (
+/obj/structure/bed/roller,
+/obj/machinery/camera{
+	c_tag = "Infirmary";
+	dir = 1;
+	network = list("mine")
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "Mining Infirmary APC";
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
 "TS" = (
 /obj/structure/toilet,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -3496,6 +3476,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"Ux" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "Uy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -3508,6 +3501,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"UI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/break_room)
 "UP" = (
 /obj/structure/table,
 /obj/structure/cable,
@@ -3548,16 +3547,6 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"Vk" = (
-/obj/structure/closet/wardrobe/pjs{
-	anchored = 1
-	},
-/obj/machinery/light_switch{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
 "Vp" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -3623,10 +3612,31 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
+"Wp" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/item/storage/box/donkpockets,
+/obj/item/kitchen/knife,
+/obj/machinery/firealarm{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/mine/break_room)
 "WJ" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"WO" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
 "WT" = (
 /obj/machinery/power/apc{
 	name = "Mining Docking Foyer APC";
@@ -4444,7 +4454,7 @@ wV
 fD
 iy
 ft
-ur
+lO
 ba
 ba
 ba
@@ -4452,7 +4462,7 @@ Qc
 cr
 ba
 ba
-kj
+xx
 Vp
 zW
 VP
@@ -4565,7 +4575,7 @@ qf
 Dv
 jA
 zW
-Jq
+rB
 OF
 hd
 iz
@@ -4696,7 +4706,7 @@ tQ
 Xo
 sU
 zK
-vn
+Ux
 OU
 OU
 pk
@@ -4704,7 +4714,7 @@ fC
 OU
 OU
 OU
-QU
+QH
 WT
 zW
 VP
@@ -4789,7 +4799,7 @@ Yj
 kD
 iC
 vS
-fG
+iP
 zW
 kD
 mr
@@ -4823,7 +4833,7 @@ zW
 jp
 zW
 zW
-EQ
+SV
 pl
 NP
 By
@@ -4837,7 +4847,7 @@ Wb
 fA
 Dy
 hO
-gA
+bG
 kD
 ez
 ak
@@ -4869,18 +4879,18 @@ Ar
 Oe
 YH
 wu
-bl
+UI
 kD
-NN
+tM
 Er
-Vk
+Ch
 kD
-RZ
+aD
 fA
 Dy
 fA
 fA
-aj
+rL
 ez
 ez
 ak
@@ -4907,7 +4917,7 @@ qr
 At
 Jx
 zW
-Av
+Aa
 Oe
 YL
 DS
@@ -4949,22 +4959,22 @@ gm
 AG
 qe
 zW
-AL
+Wp
 Oe
 YV
 aZ
 FS
 kD
-Mi
+WO
 Er
 Yy
 kD
-sO
+fA
 fA
 fA
 fA
 Cs
-ob
+Cl
 ez
 ez
 ak
@@ -4991,7 +5001,7 @@ zW
 ld
 zW
 zW
-Ru
+en
 CE
 Sg
 Ey
@@ -5001,11 +5011,11 @@ kD
 RO
 kD
 kD
-iW
-en
+xv
+sC
 ML
-aP
-Hx
+oU
+TQ
 kD
 ez
 Ap

@@ -6,6 +6,9 @@
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH,HAS_BONE)
+	mutant_bodyparts = list("pod_hair", "pod_flower")
+	default_features = list("mcolor" = "0F0", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
+	rare_say_mod = list("rustles" = 10)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -14,8 +17,12 @@
 	coldmod = 1.5
 	acidmod = 2
 	speedmod = 0.33
+	siemens_coeff = 0.75 //I wouldn't make semiconductors out of plant material
+	punchdamagehigh = 8 //I am being attacked by a dandelion
+	punchstunthreshold = 9 //TF2 no-crits special
+	payday_modifier = 0.7 //Neutrally viewed by NT
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
-	disliked_food = MEAT | DAIRY
+	disliked_food = MEAT | DAIRY | MICE
 	liked_food = VEGETABLES | FRUIT | GRAIN
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/pod
@@ -46,6 +53,8 @@
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_THRALL)))
+		return
+	if(IS_BLOODSUCKER(H) && !HAS_TRAIT(H, TRAIT_MASQUERADE))
 		return
 	var/turf/T = get_turf(H)
 	if(!T)
@@ -84,28 +93,36 @@
 			if (0.31 to 0.5)
 				//medium, average, doing nothing for now
 				light_level = 3
-				H.nutrition += light_amount * 2
+				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)	
+					//just enough to function			
+					H.nutrition += light_amount * 2
 			if (0.51 to 0.75)
 				//high light, regen here
 				light_level = 4
-				H.nutrition += light_amount * 1.75
+				if(H.nutrition < NUTRITION_LEVEL_FED)
+					H.nutrition += light_amount * 1.75				
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
-					H.adjustToxLoss(-0.5 * light_heal_multiplier, 1)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
+					//podpeople shouldn't be able to outheal radiation damage, making them functionally immune
+					if(H.radiation < 500)
+						H.adjustToxLoss(-0.5 * light_heal_multiplier, 1)
 			if (0.76 to 1)
 				//super high light
 				light_level = 5
-				H.nutrition += light_amount * 1.5
+				if(H.nutrition < NUTRITION_LEVEL_FED)
+					//this will give the positive fed moodlet instead of being stuck on "i'm so fat" for existing
+					H.nutrition += light_amount * 1.5
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
-					H.adjustToxLoss(-1 * light_heal_multiplier, 1)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1.5 * light_heal_multiplier, 1.5 * light_heal_multiplier)
+					if(H.radiation < 500)
+						H.adjustToxLoss(-1 * light_heal_multiplier, 1)
 	else
 		//no light, this is baaaaaad
 		light_level = 0
 		light_msg = span_userdanger("Darkness! Your insides churn and your skin screams in pain!")
-		H.nutrition -= 3
+		H.nutrition -= 10
 		//enough to make you faint for good, and eventually die
 		if(H.getOxyLoss() < 60)
 			H.adjustOxyLoss(min(5 * dark_damage_multiplier, 60 - H.getOxyLoss()), 1)
@@ -219,7 +236,12 @@
 		light_heal_multiplier = 2
 		dark_damage_multiplier = 3
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
-		//removal is handled in /datum/reagent/sugar/on_mob_delete()
+		//removal is handled in /datum/reagent/sugar/on_mob_delete() //so that was a lie
+		
+		//if there's none left after the removal, the light multiplier needs to go back to the default
+		if(!H.reagents.has_reagent(/datum/reagent/consumable/sugar)) 
+			light_heal_multiplier = initial(light_heal_multiplier)
+			dark_damage_multiplier = initial(dark_damage_multiplier)
 		return 1
 
 	if(istype(chem, /datum/reagent/consumable/ethanol)) //istype so all alcohols work
@@ -231,7 +253,6 @@
 			if(chem.current_cycle > 50)
 				H.IsSleeping(3)
 			H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
-		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 0 // still get all the normal effects.
 
 /datum/species/pod/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)

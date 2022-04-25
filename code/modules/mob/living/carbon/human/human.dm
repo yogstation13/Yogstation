@@ -73,6 +73,10 @@
 		. += ""
 		. += "Hivemind Vessels: [hivemind.hive_size] (+[hivemind.size_mod])"
 		. += "Psychic Link Duration: [(hivemind.track_bonus + TRACKER_DEFAULT_TIME)/10] seconds"
+	var/mob/living/simple_animal/horror/H = has_horror_inside()
+	if(H && H.controlling)
+		. += ""
+		. += "Horror chemicals: [H.chemicals]"
 
 	if(mind)
 		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
@@ -686,6 +690,10 @@
   * Called on the COMSIG_COMPONENT_CLEAN_FACE_ACT signal
   */
 /mob/living/carbon/human/proc/clean_face(datum/source, clean_types)
+	grad_color = dna.features["gradientcolor"]
+	grad_style = dna.features["gradientstyle"]
+	update_hair()
+
 	if(!is_mouth_covered() && clean_lips())
 		. = TRUE
 
@@ -873,17 +881,60 @@
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Make monkey"] = "?_src_=vars;[HrefToken()];makemonkey=[REF(src)]"
-	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
-	.["Make cyborg"] = "?_src_=vars;[HrefToken()];makerobot=[REF(src)]"
-	.["Make alien"] = "?_src_=vars;[HrefToken()];makealien=[REF(src)]"
-	.["Make slime"] = "?_src_=vars;[HrefToken()];makeslime=[REF(src)]"
-	.["Toggle Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
-	.["Copy outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
-	.["Add/Remove Quirks"] = "?_src_=vars;[HrefToken()];modquirks=[REF(src)]"
-	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=[REF(src)]" // yogs -- make cluwne
-	.["Make Pacman"] = "?_src_=vars;[HrefToken()];makepacman=[REF(src)]" //I LOVE PACMAN
+	VV_DROPDOWN_SEPERATOR
+	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
+	VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
+	VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
+	VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
+
+/mob/living/carbon/human/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_SET_SPECIES] && check_rights(R_SPAWN))
+		var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.species_list
+
+		if(result)
+			var/newtype = GLOB.species_list[result]
+			admin_ticket_log(src, "[key_name(usr)] has modified the species of [src] to [result]") // yogs - Yog Tickets
+			set_species(newtype)
+	if(href_list[VV_HK_PURRBATION] && check_rights(R_SPAWN))
+		if(!ishuman(src))
+			to_chat(usr, "Unfortunately xeno/monkey catgirls are not supported by the codebase yet.")
+			return
+
+		var/success = purrbation_toggle(src)
+		if(success)
+			to_chat(usr, "Put [src] on purrbation.")
+			log_admin("[key_name(usr)] has put [key_name(src)] on purrbation.")
+			var/msg = "[key_name(usr)] has put [key_name(src)] on purrbation." // yogs - Yog Tickets
+			message_admins(msg)
+			admin_ticket_log(src, msg)
+
+		else
+			to_chat(usr, "Removed [src] from purrbation.")
+			log_admin("[key_name(usr)] has removed [key_name(src)] from purrbation.")
+			var/msg = "[key_name(usr)] has removed [key_name(src)] from purrbation." // yogs - Yog Tickets
+			message_admins(msg)
+			admin_ticket_log(src, msg)
+	if(href_list[VV_HK_COPY_OUTFIT] && check_rights(R_SPAWN))
+		copy_outfit()
+	if(href_list[VV_HK_MOD_QUIRKS] && check_rights(R_SPAWN))
+		var/list/options = list("Clear"="Clear")
+		for(var/x in subtypesof(/datum/quirk))
+			var/datum/quirk/T = x
+			var/qname = initial(T.name)
+			options[has_quirk(T) ? "[qname] (Remove)" : "[qname] (Add)"] = T
+
+		var/result = input(usr, "Choose quirk to add/remove","Quirk Mod") as null|anything in options
+		if(result)
+			if(result == "Clear")
+				for(var/datum/quirk/q in roundstart_quirks)
+					remove_quirk(q.type)
+			else
+				var/T = options[result]
+				if(has_quirk(T))
+					remove_quirk(T)
+				else
+					add_quirk(T,TRUE)
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
 	if(pulling == target && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS)

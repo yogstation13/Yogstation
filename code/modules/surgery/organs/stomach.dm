@@ -1,3 +1,5 @@
+#define NUTRI_STASH_MAX 8 //8 nutriment = 300 nutrition
+
 /obj/item/organ/stomach
 	name = "stomach"
 	icon_state = "stomach"
@@ -83,6 +85,34 @@
 		H.clear_alert("disgust")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "disgust")
 	..()
+
+/obj/item/organ/stomach/cybernetic
+	name = "cybernetic stomach"
+	desc = "A cybernetic metabolic furnace that can be connected to a digestive system in place of a stomach."
+	icon_state = "stomach-c"
+	maxHealth = 1.2 * STANDARD_ORGAN_THRESHOLD
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC
+
+/obj/item/organ/stomach/cybernetic/upgraded
+	name = "upgraded cybernetic stomach"
+	desc = "An upgraded metabolic furnace that can be connected to a digestive system in place of a stomach. Both hardier and capable of storing excess nutrition if the body is already well sustained."
+	icon_state = "stomach-c-u"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	var/nutriment_stashed = 0
+
+/obj/item/organ/stomach/cybernetic/upgraded/on_life()
+	if(owner.nutrition >= NUTRITION_LEVEL_FULL && nutriment_stashed < NUTRI_STASH_MAX)
+		var/datum/reagent/nutri = locate(/datum/reagent/consumable/nutriment) in owner.reagents.reagent_list
+		if(nutri)
+			var/amt_stored = min(nutri.volume, NUTRI_STASH_MAX - nutriment_stashed)
+			nutriment_stashed += amt_stored
+			owner.reagents.remove_reagent(/datum/reagent/consumable/nutriment, amt_stored)
+	..()
+	if(owner.nutrition <= NUTRITION_LEVEL_HUNGRY && nutriment_stashed)
+		owner.reagents.add_reagent(/datum/reagent/consumable/nutriment, nutriment_stashed)
+		nutriment_stashed = 0
+		to_chat(owner, span_notice("You feel less hungry..."))
 
 /obj/item/organ/stomach/fly
 	name = "insectoid stomach"

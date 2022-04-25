@@ -26,6 +26,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/plain
 	tastes = list("bread" = 10)
 	foodtype = GRAIN
+	burns_in_oven = TRUE
 
 /obj/item/reagent_containers/food/snacks/breadslice/plain
 	name = "bread slice"

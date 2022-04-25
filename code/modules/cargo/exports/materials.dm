@@ -31,13 +31,13 @@
 
 /datum/export/material/bananium
 	cost = 2500
-	export_limit = 50
+	export_limit = 100 //250k
 	material_id = /datum/material/bananium
 	message = "cm3 of bananium"
 
 /datum/export/material/diamond
 	cost = 1000
-	export_limit = 100
+	export_limit = 150 //150k
 	material_id = /datum/material/diamond
 	message = "cm3 of diamonds"
 
@@ -49,29 +49,30 @@
 
 /datum/export/material/uranium
 	cost = 400
-	export_limit = 300
+	export_limit = 300 //120k
 	material_id = /datum/material/uranium
 	message = "cm3 of uranium"
 
 /datum/export/material/gold
 	cost = 250
-	export_limit = 500
+	export_limit = 500 //125k
 	material_id = /datum/material/gold
 	message = "cm3 of gold"
 
 /datum/export/material/silver
 	cost = 100
-	export_limit = 500
+	export_limit = 500 //50k
 	material_id = /datum/material/silver
 	message = "cm3 of silver"
 
 /datum/export/material/titanium
 	cost = 125
+	export_limit = 500 //62.5k
 	material_id = /datum/material/titanium
 	message = "cm3 of titanium"
 
 /datum/export/material/plastitanium
-	cost = 325 // plasma + titanium costs
+	cost = 325 // plasma + titanium costs, no export limit bc plasma :^
 	material_id = /datum/material/titanium // code can only check for one material_id; plastitanium is half plasma, half titanium
 	message = "cm3 of plastitanium"
 
@@ -92,18 +93,20 @@
 
 /datum/export/material/hot_ice
 	cost = 400
-	export_limit = 250
+	export_limit = 500 // 200k
 	message = "cm3 of Hot Ice"
 	material_id = /datum/material/hot_ice
 	export_types = list(/obj/item/stack/sheet/hot_ice)
 
 /datum/export/material/metal_hydrogen
 	cost = 550
+	export_limit = 1000 //500k
 	unit_name = "of metallic hydrogen"
 	material_id = /datum/material/metalhydrogen
 	export_types = list(/obj/item/stack/sheet/mineral/metal_hydrogen)
 
 /datum/export/material/zaukerite
 	cost = 900
+	export_limit = 1000 //900k if you somehow get that much which I don't doubt
 	material_id = /datum/material/zaukerite
 	export_types = list(/obj/item/stack/sheet/mineral/zaukerite)

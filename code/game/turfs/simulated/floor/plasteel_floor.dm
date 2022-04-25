@@ -17,7 +17,8 @@
 	if(!..())
 		return 0
 	if(!broken && !burnt)
-		icon_state = icon_regular_floor
+		icon = icon_regular_floor
+		icon_state = icon_state_regular_floor
 
 
 /turf/open/floor/plasteel/airless

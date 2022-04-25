@@ -90,6 +90,8 @@
 			H.undershirt = "Nude"
 			H.socks = "Nude"
 			H.faction |= "faithless"
+			for(var/datum/antagonist/shadowling/antag_datum in H.mind.antag_datums)
+				antag_datum.show_to_ghosts = TRUE
 			H.LoadComponent(/datum/component/walk/shadow)
 
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(H), SLOT_WEAR_SUIT)

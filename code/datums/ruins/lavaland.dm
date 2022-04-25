@@ -21,6 +21,13 @@
 	Includes a unique(*) laser pistol display case, and the recently introduced I.C.E(tm)."
 	suffix = "lavaland_surface_biodome_winter.dmm"
 
+/datum/map_template/ruin/lavaland/biodome/winter/inn
+	name = "Biodome Inn"
+	id = "biodome-inn"
+	description = "After spending years in a desolate ice planet, the legendary innkeeper managed to get enough cash to put his inn into a biodome and get out of there. \
+	Unfortunately, instead of going to Earth, the dome misfired and landed on another desolate wasteland instead."
+	suffix = "lavaland_surface_biodome_winter_inn"
+
 /datum/map_template/ruin/lavaland/biodome/clown
 	name = "Biodome Clown Planet"
 	id = "biodome-clown"

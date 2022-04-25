@@ -108,6 +108,7 @@ Class Procs:
 	var/wire_compatible = FALSE
 
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
+	var/works_with_rped_anyways = FALSE //whether it has special RPED behavior despite not having component parts
 	var/panel_open = FALSE
 	var/state_open = FALSE
 	var/critical_machine = FALSE //If this machine is critical to station operation and should have the area be excempted from power failures.
@@ -475,6 +476,9 @@ Class Procs:
 						break
 				for(var/obj/item/B in W.contents)
 					if(istype(B, P) && istype(A, P))
+						//won't replace beakers if they have reagents in them to prevent funny explosions
+						if(istype(B,/obj/item/reagent_containers) && !isemptylist(B.reagents?.reagent_list)) 
+							continue
 						// If it's a corrupt or rigged cell, attempting to send it through Bluespace could have unforeseen consequences.
 						if(istype(B, /obj/item/stock_parts/cell) && W.works_from_distance)
 							var/obj/item/stock_parts/cell/checked_cell = B
@@ -628,7 +632,13 @@ Class Procs:
 									"<span class='notice'>You climb onto [src].</span>")
 				log_combat(user, src, "climbed onto")
 				if(climb_stun)
+					var/mob/living/carbon/human/H = user
+					var/wagging = FALSE
+					if(H && H.dna.species.is_wagging_tail())
+						wagging = TRUE
 					user.Stun(climb_stun)
+					if(wagging)
+						H.dna.species.start_wagging_tail(H)
 				. = 1
 			else
 				to_chat(user, "<span class='warning'>You fail to climb onto [src].</span>")

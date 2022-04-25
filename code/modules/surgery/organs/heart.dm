@@ -1,7 +1,7 @@
 /obj/item/organ/heart
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
-	icon_state = "heart-on"
+	icon_state = "heart"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_HEART
 	healing_factor = STANDARD_ORGAN_HEALING
@@ -19,6 +19,11 @@
 	var/beat = BEAT_NONE//is this mob having a heatbeat sound played? if so, which?
 	var/failed = FALSE		//to prevent constantly running failing code
 	var/operated = FALSE	//whether the heart's been operated on to fix some of its damages
+
+/obj/item/organ/heart/Initialize()
+	. = ..()
+	icon_base = icon_state
+	update_icon()
 
 /obj/item/organ/heart/update_icon()
 	if(beating)
@@ -46,12 +51,12 @@
 /obj/item/organ/heart/proc/Stop()
 	beating = 0
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/organ/heart/proc/Restart()
 	beating = 1
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/organ/heart/prepare_eat()
 	var/obj/S = ..()
@@ -98,7 +103,7 @@
 /obj/item/organ/heart/cursed
 	name = "cursed heart"
 	desc = "A heart that, when inserted, will force you to pump it manually."
-	icon_state = "cursedheart-off"
+	icon_state = "cursedheart"
 	icon_base = "cursedheart"
 	decay_factor = 0
 	actions_types = list(/datum/action/item_action/organ_action/cursed_heart)
@@ -175,6 +180,42 @@
 	priority = 100 //it's an indicator you're dying, so it's very high priority
 	colour = "red"
 
+/obj/item/organ/heart/vampheart
+	beating = 0
+	///If a heartbeat is being faked.
+	var/fakingit = FALSE
+
+/obj/item/organ/heart/vampheart/Restart()
+	beating = FALSE
+	return FALSE
+
+/obj/item/organ/heart/vampheart/Stop()
+	fakingit = FALSE
+	return ..()
+
+/obj/item/organ/heart/vampheart/proc/FakeStart()
+	fakingit = TRUE // We're pretending to beat, to fool people.
+
+/// Bloodsuckers don't have a heartbeat at all when stopped (default is "an unstable")
+/obj/item/organ/heart/vampheart/HeartStrengthMessage()
+	if(fakingit)
+		return "a healthy"
+	return span_danger("no")
+
+/// Proc for the default (Non-Bloodsucker) Heart!
+/obj/item/organ/heart/proc/HeartStrengthMessage()
+	if(beating)
+		return "a healthy"
+	return span_danger("an unstable")
+
+/obj/item/organ/heart/ghetto
+	name = "so called 'maintenance heart'"
+	desc = "A haphazardly constructed device that can supposedly pump blood. Used by the desperate or insane."
+	icon_state = "heart-g"
+	maxHealth = 0.5 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 0.5
+	organ_flags = ORGAN_SYNTHETIC
+
 /obj/item/organ/heart/cybernetic
 	name = "cybernetic heart"
 	desc = "An electronic device designed to mimic the functions of an organic human heart."
@@ -189,8 +230,9 @@
 
 /obj/item/organ/heart/cybernetic/upgraded
 	name = "upgraded cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma, regenerates after use."
+	desc = "An electronic device designed to mimic the functions of an organic human heart. Fitted with a blood synthesizer, it also holds an emergency epinephrine synthesizer that supplies a dosage if the body is critically damaged."
 	icon_state = "heart-c-u"
+	organ_efficiency = 1.5
 	var/dose_available = TRUE
 	var/rid = /datum/reagent/medicine/epinephrine
 	var/ramount = 10
@@ -207,7 +249,7 @@
 
 /obj/item/organ/heart/cybernetic/upgraded/emp_act()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/Restart), 80) //Can restart itself after an EMP so it isnt an insta death
+	addtimer(CALLBACK(src, .proc/Restart), 8 SECONDS) //Can restart itself after an EMP so it isnt an insta death
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"

@@ -241,6 +241,10 @@
 	start_showpiece_type = /obj/item/clothing/mask/facehugger/lamarr
 	req_access = list(ACCESS_RD)
 
+/obj/structure/displaycase/cmo
+	start_showpiece_type = /obj/item/toy/rod_of_asclepius
+	req_access = list(ACCESS_CMO)
+
 /obj/structure/displaycase/noalert
 	alert = FALSE
 

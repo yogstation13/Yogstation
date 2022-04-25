@@ -84,7 +84,13 @@
 									span_notice("You climb onto [src]."))
 				log_combat(user, src, "climbed onto")
 				if(climb_stun)
+					var/mob/living/carbon/human/H = user
+					var/wagging = FALSE
+					if(H && H.dna.species.is_wagging_tail())
+						wagging = TRUE
 					user.Stun(climb_stun)
+					if(wagging)
+						H.dna.species.start_wagging_tail(H)
 				. = 1
 			else
 				to_chat(user, span_warning("You fail to climb onto [src]."))

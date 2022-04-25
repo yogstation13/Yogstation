@@ -5,11 +5,12 @@
 	name = "processor board"
 	desc = "A standard CPU board used in most computers. It can run up to three programs simultaneously."
 	icon_state = "cpuboard"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 	power_usage = 50
 	critical = 1
 	malfunction_probability = 1
 	var/max_idle_programs = 2 // 2 idle, + 1 active = 3 as said in description.
+	var/single_purpose = FALSE // If you can switch to other programs or only use the initial program
 	device_type = MC_CPU
 
 /obj/item/computer_hardware/processor_unit/on_remove(obj/item/modular_computer/MC, mob/user)
@@ -27,7 +28,7 @@
 	name = "photonic processor board"
 	desc = "An advanced experimental CPU board that uses photonic core instead of regular circuitry. It can run up to five programs simultaneously, but uses a lot of power."
 	icon_state = "cpuboard_super"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 	power_usage = 250
 	max_idle_programs = 4
 
@@ -38,3 +39,11 @@
 	w_class = WEIGHT_CLASS_TINY
 	power_usage = 75
 	max_idle_programs = 2
+
+/obj/item/computer_hardware/processor_unit/pda
+	name = "cheep microprocessor"
+	desc = "A cheep, massproduced miniaturised CPU used in pdas. It can only run one program at a time."
+	icon_state = "cpu"
+	w_class = WEIGHT_CLASS_TINY
+	power_usage = 25
+	max_idle_programs = 0

@@ -15,6 +15,13 @@
 
 	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
+	var/vampDesc = ReturnVampExamine(user) // Fulpstation Bloodsuckers edit STARTS
+	var/vassDesc = ReturnVassalExamine(user)
+	if(vampDesc != "")
+		. += vampDesc
+	if(vassDesc != "")
+		. += vassDesc // Fulpstation Bloodsucker edit ENDS
+
 	var/list/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
@@ -206,6 +213,8 @@
 	if(fire_stacks < 0)
 		msg += "[t_He] look[p_s()] a little soaked.\n"
 
+	if(visible_tumors)
+		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
 
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
@@ -225,7 +234,15 @@
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
-	switch(get_blood_state())
+
+	var/apparent_blood_volume = blood_volume
+	if(skin_tone == "albino")
+		apparent_blood_volume -= 150 // enough to knock you down one tier
+	// Fulp edit START - Bloodsuckers
+	var/bloodDesc = ShowAsPaleExamine(user, apparent_blood_volume)
+	if(bloodDesc != BLOODSUCKER_HIDE_BLOOD)
+		msg += bloodDesc
+	else switch(get_blood_state())
 		if(BLOOD_OKAY)
 			msg += "[t_He] [t_has] pale skin.\n"
 		if(BLOOD_BAD)
@@ -314,8 +331,11 @@
 					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "empath", /datum/mood_event/sad_empath, src)
 				if (HAS_TRAIT(src, TRAIT_BLIND))
 					msg += "[t_He] appear[p_s()] to be staring off into space.\n"
-				if (HAS_TRAIT(src, TRAIT_DEAF))
+				//Yogs -- Fixing being unable to detect some varieties of deafness
+				var/obj/item/organ/ears/ears = src.getorganslot(ORGAN_SLOT_EARS)
+				if (HAS_TRAIT(src, TRAIT_DEAF) || !istype(ears) || ears.deaf)
 					msg += "[t_He] appear[p_s()] to not be responding to noises.\n"
+				//Yogs end
 
 			msg += "</span>"
 
@@ -421,3 +441,119 @@
 			dat += "[new_text]\n" //dat.Join("\n") doesn't work here, for some reason
 	if(dat.len)
 		return dat.Join()
+
+
+
+/mob/living/carbon/human/proc/examine_simple(mob/user)
+//this is very slightly better than it was because you can use it more places. still can't do \his[src] though.
+	var/t_He = p_they(TRUE)
+	var/t_His = p_their(TRUE)
+	var/t_his = p_their()
+	var/t_has = p_have()
+	var/t_is = p_are()
+	
+	. = list("<span class='info'>*---------*\nThis is <EM>[name]</EM>!")
+
+	var/list/obscured = check_obscured_slots()
+
+	//uniform
+	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
+		//accessory
+		var/accessory_msg
+		if(istype(w_uniform, /obj/item/clothing/under))
+			var/obj/item/clothing/under/U = w_uniform
+			if(U.attached_accessory)
+				accessory_msg += " with [icon2html(U.attached_accessory, user)] \a [U.attached_accessory]"
+
+		. += "[t_He] [t_is] wearing [w_uniform.get_examine_string(user)][accessory_msg]."
+	//head
+	if(head)
+		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
+	//suit/armor
+	if(wear_suit)
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+	//back
+	if(back)
+		. += "[t_He] [t_has] [back.get_examine_string(user)] on [t_his] back."
+
+	//Hands
+	for(var/obj/item/I in held_items)
+		if(!(I.item_flags & ABSTRACT))
+			. += "[t_He] [t_is] holding a [weightclass2text(I.w_class)] item in [t_his] [get_held_index_name(get_held_index_of_item(I))]."
+
+	//gloves
+	if(gloves && !(SLOT_GLOVES in obscured))
+		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands."
+
+
+	//handcuffed?
+	if(handcuffed)
+		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
+			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!")
+		else
+			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!")
+
+	//belt
+	if(belt)
+		. += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist."
+
+	//shoes
+	if(shoes && !(SLOT_SHOES in obscured))
+		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet."
+
+	//mask
+	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
+		. += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face."
+
+	if(wear_neck && !(SLOT_NECK in obscured))
+		. += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck."
+
+	//eyes
+	if(!(SLOT_GLASSES in obscured))
+		if(glasses)
+			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
+		else if(eye_color == BLOODCULT_EYE && iscultist(src) && HAS_TRAIT(src, CULT_EYES))
+			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
+
+	//ears
+	if(ears && !(SLOT_EARS in obscured))
+		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
+
+
+	var/list/msg = list("")
+
+	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/body_part = X
+		missing -= body_part.body_zone
+
+
+	//stores missing limbs
+	var/l_limbs_missing = 0
+	var/r_limbs_missing = 0
+	for(var/t in missing)
+		if(t==BODY_ZONE_HEAD)
+			msg += "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B><span class='warning'>\n"
+			continue
+		if(t == BODY_ZONE_L_ARM || t == BODY_ZONE_L_LEG)
+			l_limbs_missing++
+		else if(t == BODY_ZONE_R_ARM || t == BODY_ZONE_R_LEG)
+			r_limbs_missing++
+
+		msg += "<B>[capitalize(t_his)] [parse_zone(t)] is missing!</B>\n"
+
+	if(l_limbs_missing >= 2 && r_limbs_missing == 0)
+		msg += "[t_He] look[p_s()] all right now.\n"
+	else if(l_limbs_missing == 0 && r_limbs_missing >= 2)
+		msg += "[t_He] really keeps to the left.\n"
+	else if(l_limbs_missing >= 2 && r_limbs_missing >= 2)
+		msg += "[t_He] [p_do()]n't seem all there.\n"
+
+
+	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
+		msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
+
+	if (length(msg))
+		. += span_warning("[msg.Join("")]")
+
+	. += "*---------*</span>"
