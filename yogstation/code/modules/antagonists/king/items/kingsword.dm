@@ -31,7 +31,7 @@
 		return
 	if(!IS_KING(user) && !IS_KNIGHT(user) && !IS_SERVANT(user) && !src.is_disguised)
 		name = "Toy sword"
-		desc = "A useless plastic sword. Perhaps it looks very realistic! "
+		desc = "A useless plastic sword. Although it looks very realistic..."
 		force = 4
 		throwforce = 4
 		is_disguised = TRUE
