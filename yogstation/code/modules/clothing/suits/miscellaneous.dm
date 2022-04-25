@@ -322,3 +322,102 @@
 	desc = "They seem very holy."
 	icon_state = "jesus"
 	allowed = list(/obj/item/storage/book/bible)
+
+/obj/item/clothing/suit/hooded/raincoat/red
+	name = "red raincoat"
+	desc = "Perfect for delivering sweets to the elderly, just keep an eye out for big bad space wolves."
+	icon_state = "raincoat_red"
+	item_state = "raincoat_red"
+
+/obj/item/clothing/head/hooded/raincoat/red
+	icon_state = "raincoat_red"
+
+/obj/item/clothing/suit/hooded/raincoat/yellow
+	name = "yellow raincoat"
+	desc = "The buttons on this coat are cute, but they seem to be looking at you, almost like eyes."
+	icon_state = "raincoat_yellow"
+	item_state = "raincoat_yellow"
+
+/obj/item/clothing/head/hooded/raincoat/yellow
+	item_state = "raincoat_yellow"
+
+/obj/item/clothing/suit/yogs/hunter_coat
+	name = "hunter's coat"
+	desc = "Just go out and kill a few beasts. It's for your own good."
+	icon_state = "hunter_coat"
+	item_state = "hunter_coat"
+
+/obj/item/clothing/suit/yogs/priest_robe
+	name = "priest robes"
+	desc = "The robes of a priest who has yet to determine their faith. It would be wise to find your conviction, before it's chosen for you."
+	icon_state = "priest_robe"
+	item_state = "priest_robe"
+	var/religious_color = FALSE
+	var/conversion_range = 1
+	var/recharge_time = 0
+	var/recharge_rate = 5 SECONDS
+	actions_types = list(/datum/action/item_action/priest_wololo)
+
+/obj/item/clothing/suit/yogs/priest_robe/ui_action_click(mob/user, action)
+	if(!ishuman(user))
+		to_chat(user, span_warning("You can't begin to fathom the intricacies of religion, nor do you wish to."))
+		return
+	var/mob/living/carbon/human/H = user
+	if(!religious_color)
+		var/new_color = input(user, "Choose the color of your faith that you wish to spread.", "Select Faith:") as null|anything in list("Red","Blue")
+		if(new_color)
+			var/s = "/obj/item/clothing/suit/yogs/priest_robe/[lowertext(new_color)]"
+			if(istype(H.get_item_by_slot(SLOT_WEAR_SUIT), /obj/item/clothing/suit/yogs/priest_robe))
+				H.dropItemToGround(H.get_item_by_slot(SLOT_WEAR_SUIT))
+				H.equip_to_slot_or_del(new s(H), SLOT_WEAR_SUIT)
+			else
+				H.dropItemToGround(H.get_active_held_item())
+				H.put_in_active_hand(new s)
+			qdel(src)
+		else
+			to_chat(user, span_warning("You reasonably decide you need more time to pick your faith."))
+		return
+	if(!istype(H.get_item_by_slot(SLOT_WEAR_SUIT), /obj/item/clothing/suit/yogs/priest_robe))
+		to_chat(user, span_warning("You must be wearing the robes to convince other priests to join you!"))
+		return
+	if(istype(action,/datum/action/item_action/priest_wololo))
+		if(recharge_time > world.time)
+			to_chat(user, span_warning("You still feel drained from your last sermon, rest a moment!"))
+			return
+		recharge_time = world.time + recharge_rate
+		user.visible_message(span_warning("[user] attempts to convert those around them to their religion!"))
+		user.emote("raises [user.p_their()] hand.")
+		user.say("Wololo!")
+		for(var/mob/living/carbon/human/L in range(conversion_range, user))
+			if(istype(L.wear_suit, /obj/item/clothing/suit/yogs/priest_robe))
+				if(H.get_item_by_slot(SLOT_WEAR_SUIT) != L.get_item_by_slot(SLOT_WEAR_SUIT))
+					var/obj/item = H.get_item_by_slot(SLOT_WEAR_SUIT).type
+					qdel(L.wear_suit)
+					L.equip_to_slot_or_del(new item(L), SLOT_WEAR_SUIT)
+					to_chat(L, span_boldwarning("[user] has made such a profound argument that you follow their beliefs now, and your robes shift to match!"))
+
+/obj/item/clothing/suit/yogs/priest_robe/red
+	name = "red priest robes"
+	desc = "You know deep in your heart that those priests wearing blue are wrong about their beliefs!"
+	icon_state = "priest_robe_red"
+	item_state = "priest_robe_red"
+	religious_color = TRUE
+
+/obj/item/clothing/suit/yogs/priest_robe/blue
+	name = "blue priest robes"
+	desc = "You know deep in your heart that those priests wearing red are wrong about their beliefs!"
+	icon_state = "priest_robe_blue"
+	item_state = "priest_robe_blue"
+	religious_color = TRUE
+
+/obj/item/clothing/suit/yogs/hermit
+	name = "scavenged hermit coat"
+	desc = "Appears to be the garb of a maintenance dweller, desperate for any amount of clothing."
+	icon_state = "hermit_coat"
+	item_state = "hermit_coat"
+
+/obj/item/clothing/suit/yogs/cleric_robe
+	name = "cleric robes"
+	desc = "Makes you look regal and divine, but does not grant you healing magic."
+	icon_state = "cleric_robe"
+	item_state = "cleric_robe"

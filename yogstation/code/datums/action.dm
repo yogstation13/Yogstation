@@ -12,3 +12,7 @@
 	name = "Activate Dusting Implant"
 	icon_icon = 'icons/effects/blood.dmi'
 	button_icon_state = "remains"
+
+/datum/action/item_action/priest_wololo
+	name = "Wololo"
+	desc = "Convert those damn heretics who aren't your color to the right belief!"
