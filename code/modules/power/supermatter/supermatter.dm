@@ -128,7 +128,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/temp_factor = 30
 	var/power = 0
 
-	/// Rad Modifier - Also Increases Power
+	/// Yogs - radiation modifier. After all power calculations, multiplies the intensity of the rad pulse by this value. Used for making engines more hugbox.
 	var/radmodifier = 1.1
 
 	/// Time in deciseconds since the last sent warning
