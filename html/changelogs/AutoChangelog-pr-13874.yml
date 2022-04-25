@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "stops dynamic giving a lucky latejoiner every valid latejoin antagonist"
