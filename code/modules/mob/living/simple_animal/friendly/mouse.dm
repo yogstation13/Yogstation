@@ -82,6 +82,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 				M.desc = "It's toast."
 		qdel(src)
 	else
+		SSmobs.cheeserats -= src
 		..(gibbed)
 
 /mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
@@ -89,6 +90,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		if(!stat)
 			var/mob/M = AM
 			to_chat(M, span_notice("[icon2html(src, M)] Squeak!"))
+	if(istype(AM, /obj/item/reagent_containers/food/snacks/royalcheese))
+		evolve()
+		qdel(AM)
 	..()
 
 /mob/living/simple_animal/mouse/handle_automated_action()
@@ -98,13 +102,46 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 			var/obj/structure/cable/C = locate() in F
 			if(C && prob(15))
 				if(C.avail())
-					visible_message(span_warning("[src] chews through the [C]. It's toast!"))
-					playsound(src, 'sound/effects/sparks2.ogg', 100, 1)
+					visible_message("<span class='warning'>[src] chews through the [C]. It's toast!</span>")
+					playsound(src, 'sound/effects/sparks2.ogg', 100, TRUE)
 					C.deconstruct()
 					death(toast=1)
 				else
 					C.deconstruct()
-					visible_message(span_warning("[src] chews through the [C]."))
+					visible_message("<span class='warning'>[src] chews through the [C].</span>")
+	for(var/obj/item/reagent_containers/food/snacks/cheesewedge/cheese in range(1, src))
+		if(prob(10))
+			be_fruitful()
+			qdel(cheese)
+			return
+	for(var/obj/item/reagent_containers/food/snacks/royalcheese/bigcheese in range(1, src))
+		qdel(bigcheese)
+		evolve()
+		return
+
+
+/**
+  *Checks the mouse cap, if it's above the cap, doesn't spawn a mouse. If below, spawns a mouse and adds it to cheeserats.
+  */
+/mob/living/simple_animal/mouse/proc/be_fruitful()
+	var/cap = CONFIG_GET(number/ratcap)
+	if(LAZYLEN(SSmobs.cheeserats) >= cap)
+		visible_message("<span class='warning'>[src] carefully eats the cheese, hiding it from the [cap] mice on the station!</span>")
+		return
+	var/mob/living/newmouse = new /mob/living/simple_animal/mouse(loc)
+	SSmobs.cheeserats += newmouse
+	visible_message("<span class='notice'>[src] nibbles through the cheese, attracting another mouse!</span>")
+
+/**
+  *Spawns a new regal rat, says some good jazz, and if sentient, transfers the relivant mind.
+  */
+/mob/living/simple_animal/mouse/proc/evolve()
+	var/mob/living/simple_animal/hostile/regalrat = new /mob/living/simple_animal/hostile/regalrat(loc)
+	visible_message("<span class='warning'>[src] devours the cheese! He morphs into something... greater!</span>")
+	regalrat.say("RISE, MY SUBJECTS! SCREEEEEEE!")
+	if(mind)
+		mind.transfer_to(regalrat)
+	qdel(src)
 
 /mob/living/simple_animal/mouse/Move()
 	. = ..()
@@ -189,7 +226,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 	GLOB.mouse_spawned += mice
 	GLOB.food_for_next_mouse = max(GLOB.food_for_next_mouse - FOODPERMOUSE * mice, 0)
-	SSminor_mapping.trigger_migration(mice)
+	SSminor_mapping.trigger_migration(mice,TRUE)
 
 /mob/living/simple_animal/mouse/proc/cheese_up()
 	regen_health(15)
@@ -235,7 +272,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 /obj/item/reagent_containers/food/snacks/cheesiehonkers/mouse_eat(mob/living/simple_animal/mouse/M)
 	M.cheese_up()
-	qdel(src)	
+	qdel(src)
 
 /obj/item/grown/bananapeel/bluespace/mouse_eat(mob/living/simple_animal/mouse/M)
 	var/teleport_radius = max(round(seed.potency / 10), 1)
@@ -294,3 +331,15 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	reagents.clear_reagents()
 
 
+/mob/living/simple_animal/mouse/Destroy()
+	SSmobs.cheeserats -= src
+	return ..()
+
+/mob/living/simple_animal/mouse/revive(full_heal = FALSE, admin_revive = FALSE)
+	var/cap = CONFIG_GET(number/ratcap)
+	if(!admin_revive && !ckey && LAZYLEN(SSmobs.cheeserats) >= cap)
+		visible_message(span_warning("[src] twitched but does not continue moving due to the overwhelming rodent population on the station!"))
+		return FALSE
+	. = ..()
+	if(.)
+		SSmobs.cheeserats += src
