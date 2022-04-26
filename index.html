@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(432 modules,
-    658/7131 macros, 9.2%)</aside></h3>
+<aside>(433 modules,
+    658/7134 macros, 9.2%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -476,6 +476,7 @@ transformations and other events that cause new languages to become available.</
     <li><a href="code/modules/mob/living/simple_animal/hostile/mining_mobs/elites/pandora.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;mining_mobs&#x2F;elites&#x2F;pandora">pandora</a></li>
     </ul></li>
     </ul></li>
+    <li><a href="code/modules/mob/living/simple_animal/hostile/regalrat.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;regalrat">regalrat</a></li>
     <li><a href="code/modules/mob/living/simple_animal/hostile/syndicate.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;syndicate">syndicate</a></li>
     <li><a href="code/modules/mob/living/simple_animal/hostile/venus_human_trap.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap">venus_human_trap</a></li>
     </ul></li>
@@ -673,7 +674,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(439 detailed/1032 documented/24329 total, 4.2%)</aside></h3>
+<aside>(442 detailed/1037 documented/24342 total, 4.3%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -779,6 +780,10 @@ Puts me inside.
 |<em><strong><strong><strong><strong><strong>COMBAT TENTACLES</strong></strong></strong></strong></strong></em></strong>|
 *</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>*</li>
     </ul></li>
+    </ul></li>
+    <li class="has-children"><span title="&#x2F;datum&#x2F;action&#x2F;cooldown">cooldown</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;coffer">Fill Coffers</span> - This action creates trash, money, dirt, and cheese.</li>
+    <li><a href="datum/action/cooldown/riot.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;riot">Raise Army</a> - This action checks all nearby mice, and converts them into hostile rats. If no mice are nearby, creates a new one.</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;drake_ollie">DRAGON Ollie</span> - dragon ollie, do I have to explain?</li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;action&#x2F;innate">innate</span><ul class="index-tree">
@@ -1198,6 +1203,7 @@ DRINKS BELOW, Beer is up there though, along with cola. Cap'n Pete's Cuban Spice
     <li><a href="datum/reagent/medicine/coagulant.html" title="&#x2F;datum&#x2F;reagent&#x2F;medicine&#x2F;coagulant">Sanguirite</a></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;plantnutriment">Generic nutriment</span> - Hydroponics stuff</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;rat_spit">Rat Spit</span> - Spittle; harmless reagent that is added by rat king, and makes you disgusted.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;toxin">Toxin</span> - Poison stuff (Toxins &amp; Acids)</li>
     </ul></li>
     <li><a href="datum/reagents.html" title="&#x2F;datum&#x2F;reagents">reagents</a> - Holder for a bunch of <a href="datum/reagent.html" title="/datum/reagent">/datum/reagent</a></li>
@@ -1426,6 +1432,7 @@ Found One: Closer than previous/max distance
 Stop searching through my antag datums and go to the next guy
 Found one!
 Will yield a &quot;?&quot;</li>
+    <li><a href="mob/living/simple_animal/hostile/regalrat.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;regalrat">feral regal rat</a></li>
     <li class="has-children"><a href="mob/living/simple_animal/hostile/swarmer.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;swarmer">Swarmer</a> - Tiny machines made by an ancient civilization, they seek only to consume materials and replicate.<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;swarmer&#x2F;melee">Swarmer Drone</span> - Melee subtype of swarmers, always AI-controlled under normal circumstances.  Cannot fire projectiles, but does double stamina damage on melee</li>
     </ul></li>
@@ -1437,6 +1444,7 @@ Will yield a &quot;?&quot;</li>
     <li><a href="mob/living/simple_animal/hostile/venus_human_trap.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap">venus human trap</a> - Venus Human Trap</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;imp">imp</span> - The Monster</li>
+    <li><a href="mob/living/simple_animal/mouse.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;mouse">mouse</a></li>
     <li><a href="mob/living/simple_animal/slaughter.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;slaughter">slaughter demon</a></li>
     <li><a href="mob/living/simple_animal/slime.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;slime">grey baby slime (123)</a></li>
     </ul></li>
@@ -2110,7 +2118,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/cae2a58a62bb8b882a4994b1204bca9bebbae78b">cae2a58</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/ea7992722def301a9bb07cfb9a9a046e1ade0ef4">ea79927</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
