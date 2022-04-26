@@ -58,8 +58,6 @@
 	update_explanation_text()
 	return target_amount
 
-
-
 /datum/objective/royalguard/update_explanation_text()
 	..()
 	explanation_text = "Have at least [target_amount] knights serving you at once."
