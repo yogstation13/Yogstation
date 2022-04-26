@@ -183,10 +183,11 @@
 
 	var/cooldown_check = 0 // Used interally, you don't want to modify
 
-	var/cooldown = 3 SECONDS // Default wait time until can stun again.
+	var/cooldown = 1 SECONDS // Default wait time until can stun again.
 	var/knockdown_time_carbon = 1.5 SECONDS // Knockdown length for carbons.
 	var/stun_time_silicon = 5 SECONDS // If enabled, how long do we stun silicons.
-	var/stamina_damage = 55 // Do we deal stamina damage.
+	var/stamina_damage = 60 // How much stamina damage we deal.
+	var/block_threshold = 60 // Threshold at which armor blocks special effects.
 	var/affect_silicon = FALSE // Does it stun silicons.
 	var/on_sound // "On" sound, played when switching between able to stun or not.
 	var/on_stun_sound = "sound/effects/woodhit.ogg" // Default path to sound for when we stun.
@@ -202,6 +203,71 @@
 
 	wound_bonus = 15
 
+// Handles all the effects if a successful strike
+/obj/item/melee/classic_baton/proc/stun(mob/living/target, mob/living/user)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+			playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
+			return
+		var/datum/martial_art/M = H.check_block()
+		if(M)
+			M.handle_counter(target, user)
+			return
+
+	var/list/desc = get_hit_description(target, user)
+
+	var/obj/item/bodypart/affecting = target.get_bodypart(user.zone_selected)
+	var/armor_block = target.run_armor_check(affecting, "melee")
+	target.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
+	var/current_stamina_damage = target.getStaminaLoss()
+
+	if(stun_animation)
+		user.do_attack_animation(target)
+
+	if(user)
+		target.lastattacker = user.real_name
+		target.lastattackerckey = user.ckey
+		log_combat(user, target, "stunned")
+
+	playsound(get_turf(src), on_stun_sound, 75, 1, -1)
+
+	if(current_stamina_damage >= 100)
+		desc = get_stun_description(target, user)
+		target.Knockdown(knockdown_time_carbon)
+		target.visible_message(desc["visible"], desc["local"])
+		return
+	
+	if(armor_block >= block_threshold)
+		target.visible_message(desc["visible"], desc["local"])
+		playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
+		return
+
+	// Special effects
+	if(affecting.stamina_dam >= 50 && (istype(affecting, /obj/item/bodypart/l_leg) || istype(affecting, /obj/item/bodypart/r_leg)))
+		desc = get_stun_description(target, user)
+		target.Knockdown(knockdown_time_carbon)
+
+	else if(istype(affecting, /obj/item/bodypart/l_arm) && target.held_items[LEFT_HANDS])
+		target.dropItemToGround(target.held_items[LEFT_HANDS])
+	else if(istype(affecting, /obj/item/bodypart/r_arm) && target.held_items[RIGHT_HANDS])
+		target.dropItemToGround(target.held_items[RIGHT_HANDS])
+	target.visible_message(desc["visible"], desc["local"])
+
+// Are we applying any special effects when we stun to silicon
+/obj/item/melee/classic_baton/proc/stun_silicon(mob/living/silicon/target, mob/living/user)
+	var/list/desc = get_silicon_stun_description(target, user)
+
+	target.flash_act(affect_silicon = TRUE)
+	target.Paralyze(stun_time_silicon)
+	additional_effects_silicon(target, user)
+
+	user.visible_message(desc["visible"], desc["local"])
+	playsound(get_turf(src), on_stun_sound, 100, TRUE, -1)
+
+	if (stun_animation)
+		user.do_attack_animation(target)
+
 // Description for trying to stun when still on cooldown.
 /obj/item/melee/classic_baton/proc/get_wait_description()
 	return
@@ -210,8 +276,17 @@
 /obj/item/melee/classic_baton/proc/get_on_description()
 	. = list()
 
-	.["local_on"] = "<span class ='warning'>You extend the baton.</span>"
-	.["local_off"] = "<span class ='notice'>You collapse the baton.</span>"
+	.["local_on"] = span_danger("You extend the baton.")
+	.["local_off"] = span_danger("You collapse the baton.")
+
+	return .
+
+// Default message for hitting mob.
+/obj/item/melee/classic_baton/proc/get_hit_description(mob/living/target, mob/living/user)
+	. = list()
+
+	.["visible"] =  span_danger("[user] struck [target] with [src]!")
+	.["local"] = span_danger("[user] struck [target] with [src]!")
 
 	return .
 
@@ -219,8 +294,8 @@
 /obj/item/melee/classic_baton/proc/get_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["visible"] =  "<span class ='danger'>[user] has knocked down [target] with [src]!</span>"
-	.["local"] = "<span class ='danger'>[user] has knocked down [target] with [src]!</span>"
+	.["visible"] =  span_danger("[user] has knocked down [target] with [src]!")
+	.["local"] = span_danger("[user] has knocked down [target] with [src]!")
 
 	return .
 
@@ -264,17 +339,7 @@
 		// We don't stun if we're on harm.
 		if (user.a_intent != INTENT_HARM)
 			if (affect_silicon)
-				var/list/desc = get_silicon_stun_description(target, user)
-
-				target.flash_act(affect_silicon = TRUE)
-				target.Paralyze(stun_time_silicon)
-				additional_effects_silicon(target, user)
-
-				user.visible_message(desc["visible"], desc["local"])
-				playsound(get_turf(src), on_stun_sound, 100, TRUE, -1)
-
-				if (stun_animation)
-					user.do_attack_animation(target)
+				stun_silicon(target, user)
 			else
 				..()
 		else
@@ -289,35 +354,7 @@
 			return
 	else
 		if(cooldown_check <= world.time)
-			if(ishuman(target))
-				var/mob/living/carbon/human/H = target
-				if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
-					return
-				var/datum/martial_art/M = H.check_block()
-				if(M)
-					M.handle_counter(target, user)
-					return
-
-			var/list/desc = get_stun_description(target, user)
-
-			if (stun_animation)
-				user.do_attack_animation(target)
-
-			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
-			target.Knockdown(knockdown_time_carbon)
-			target.adjustStaminaLoss(stamina_damage)
-			additional_effects_carbon(target, user)
-
-			log_combat(user, target, "stunned", src)
-			add_fingerprint(user)
-
-			target.visible_message(desc["visible"], desc["local"])
-
-			if(!iscarbon(user))
-				target.LAssailant = null
-			else
-				target.LAssailant = user
-			cooldown_check = world.time + cooldown
+			stun(target, user)
 		else
 			var/wait_desc = get_wait_description()
 			if (wait_desc)
@@ -342,6 +379,8 @@
 	on_item_state = "nullrod"
 	force_on = 10
 	force_off = 0
+	stamina_damage = 40
+	block_threshold = 50
 	weight_class_on = WEIGHT_CLASS_BULKY
 	bare_wound_bonus = 5
 
@@ -373,6 +412,7 @@
 		item_state = on_item_state
 		w_class = weight_class_on
 		force = force_on
+		stamina_damage = initial(stamina_damage)
 		attack_verb = list("smacked", "struck", "cracked", "beaten")
 	else
 		to_chat(user, desc["local_off"])
@@ -381,6 +421,7 @@
 		slot_flags = ITEM_SLOT_BELT
 		w_class = WEIGHT_CLASS_SMALL
 		force = force_off
+		stamina_damage = 0
 		attack_verb = list("hit", "poked")
 
 	playsound(src.loc, on_sound, 50, 1)
@@ -411,6 +452,38 @@
 	force_on = 16
 	force_off = 5
 	weight_class_on = WEIGHT_CLASS_NORMAL
+
+/obj/item/melee/classic_baton/telescopic/contractor_baton/stun(mob/living/target, mob/living/user)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+			playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
+			return
+		var/datum/martial_art/M = H.check_block()
+		if(M)
+			M.handle_counter(target, user)
+			return
+
+	var/list/desc = get_stun_description(target, user)
+
+	if (stun_animation)
+		user.do_attack_animation(target)
+
+	playsound(get_turf(src), on_stun_sound, 75, 1, -1)
+	target.Knockdown(knockdown_time_carbon)
+	target.adjustStaminaLoss(stamina_damage)
+	additional_effects_carbon(target, user)
+
+	log_combat(user, target, "stunned", src)
+	add_fingerprint(user)
+
+	target.visible_message(desc["visible"], desc["local"])
+
+	if(!iscarbon(user))
+		target.LAssailant = null
+	else
+		target.LAssailant = user
+	cooldown_check = world.time + cooldown
 
 /obj/item/melee/classic_baton/telescopic/contractor_baton/get_wait_description()
 	return span_danger("The baton is still charging!")

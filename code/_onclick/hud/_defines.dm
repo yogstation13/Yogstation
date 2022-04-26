@@ -139,7 +139,7 @@
 #define ui_ai_view_images "CENTER+7:-32,SOUTH:6"
 #define ui_ai_sensor "CENTER+7,SOUTH:6"
 #define ui_ai_multicam "CENTER+6,SOUTH+1:6"
-#define ui_ai_add_multicam "CENTER+6,SOUTH+1:6"
+#define ui_ai_add_multicam "CENTER+7,SOUTH+1:6"
 #define ui_ai_language_menu "CENTER+5,SOUTH+1:9"
 #define ui_ai_dashboard_widescreen "CENTER-8,SOUTH:6"
 #define ui_ai_add_multicam_widescreen "CENTER+9,SOUTH:6"
