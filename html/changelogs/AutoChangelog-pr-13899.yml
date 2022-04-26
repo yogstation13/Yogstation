@@ -1,0 +1,6 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "regal rats no longer spawn roundstart"
+  - bugfix: "regal rats no longer occur 98% of the time instead of 2% like they should"
+  - bugfix: "regal rats haver a 5% chance to spawn and no longer cause an infinite loop"
