@@ -69,9 +69,7 @@
 
 /datum/outfit/plasmaman/prisoner
 	name = "Prisoner Plasmaman"
-
 	jobtype = /datum/job/prisoner
-	
 	head = /obj/item/clothing/head/helmet/space/plasmaman/prisoner
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
