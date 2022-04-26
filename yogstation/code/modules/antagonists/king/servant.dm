@@ -60,11 +60,6 @@
 	/// Message told to your King.
 	to_chat(master.owner, span_userdanger("[owner.current] has become your knight."))
 
-
-
-
-
-
 /**
  * # HUD
  */
