@@ -261,12 +261,14 @@
 		return
 	owner.dna.species.punchdamagelow += strength_punchpower
 	owner.dna.species.punchdamagehigh += strength_punchpower
+	owner.dna.species.punchstunthreshold += strength_punchpower //So we dont change the stun chance
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	owner.dna.species.punchdamagelow -= strength_punchpower
 	owner.dna.species.punchdamagehigh -= strength_punchpower
+	owner.dna.species.punchstunthreshold -= strength_punchpower
 //Yogs end
 
 /datum/mutation/human/insulated
