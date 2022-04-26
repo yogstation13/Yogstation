@@ -331,8 +331,11 @@
 					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "empath", /datum/mood_event/sad_empath, src)
 				if (HAS_TRAIT(src, TRAIT_BLIND))
 					msg += "[t_He] appear[p_s()] to be staring off into space.\n"
-				if (HAS_TRAIT(src, TRAIT_DEAF))
+				//Yogs -- Fixing being unable to detect some varieties of deafness
+				var/obj/item/organ/ears/ears = src.getorganslot(ORGAN_SLOT_EARS)
+				if (HAS_TRAIT(src, TRAIT_DEAF) || !istype(ears) || ears.deaf)
 					msg += "[t_He] appear[p_s()] to not be responding to noises.\n"
+				//Yogs end
 
 			msg += "</span>"
 
