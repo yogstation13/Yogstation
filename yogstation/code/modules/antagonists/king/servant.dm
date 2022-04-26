@@ -46,8 +46,6 @@
 	if(master && master.owner)
 		to_chat(master.owner, span_cultbold("You feel that [owner.current] has betrayed you, and no longer is your servant!"))
 
-
-
 /datum/antagonist/servant/knight
 	name = "\improper Knight"
 	roundend_category = "Knight"
