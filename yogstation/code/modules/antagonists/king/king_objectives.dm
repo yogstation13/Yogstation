@@ -120,9 +120,6 @@
 		target = pick(other_targets)
 	return target
 
-
-
-
 //Servant shit
 /datum/objective/servetheking
 
