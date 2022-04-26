@@ -1,4 +1,4 @@
-#define PROB_MOUSE_SPAWN 98
+#define REGAL_RAT_CHANCE 5
 SUBSYSTEM_DEF(minor_mapping)
 	name = "Minor Mapping"
 	init_order = INIT_ORDER_MINOR_MAPPING
@@ -12,24 +12,22 @@ SUBSYSTEM_DEF(minor_mapping)
 /datum/controller/subsystem/minor_mapping/proc/trigger_migration(num_mice=10)
 	var/list/exposed_wires = find_exposed_wires()
 
-	var/mob/living/simple_animal/mouse/mouse
-	var/turf/open/proposed_turf
+	var/mob/living/simple_animal/M
+	var/turf/proposed_turf
 
 
 	while((num_mice > 0) && exposed_wires.len)
 		proposed_turf = pick_n_take(exposed_wires)
-
-		if(!istype(proposed_turf))
-			continue
-
-		if(prob(PROB_MOUSE_SPAWN))
-			if(!mouse)
-				mouse = new(proposed_turf)
+		if(!M)
+			if(prob(REGAL_RAT_CHANCE))
+				M = new /mob/living/simple_animal/hostile/regalrat/controlled(proposed_turf)
 			else
-				mouse.forceMove(proposed_turf)
+				M = new /mob/living/simple_animal/mouse(proposed_turf)
 		else
-			mouse = new /mob/living/simple_animal/hostile/regalrat/controlled(proposed_turf)
-
+			M.forceMove(proposed_turf)
+		if(M.environment_is_safe())
+			num_mice -= 1
+			M = null
 
 /datum/controller/subsystem/minor_mapping/proc/place_satchels(amount=10)
 	var/list/turfs = find_satchel_suitable_turfs()
@@ -64,3 +62,5 @@ SUBSYSTEM_DEF(minor_mapping)
 				suitable += t
 
 	return shuffle(suitable)
+
+#undef REGAL_RAT_CHANCE 
