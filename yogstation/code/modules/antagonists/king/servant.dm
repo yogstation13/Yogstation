@@ -79,7 +79,6 @@
 	hud.join_hud(knight)
 	set_antag_hud(knight, icontype)
 
-
 /datum/antagonist/servant/update_servant_icons_removed(mob/living/knight)
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_KING]
 	hud.leave_hud(knight)
