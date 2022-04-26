@@ -566,11 +566,3 @@
 	desc = "A gentle and syrup like drink, tastes of almonds and apricots"
 	icon_state = "disaronno"
 	list_reagents = list(/datum/reagent/consumable/ethanol/amaretto = 100)
-
-
-/obj/item/reagent_containers/food/drinks/colocup/lean
-	name = "lean"
-	desc = "A cup of that purple drank, the stuff that makes you go WHEEZY BABY."
-	icon_state = "lean"
-	list_reagents = list(/datum/reagent/consumable/lean = 50)
-	random_sprite = FALSE
