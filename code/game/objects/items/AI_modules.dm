@@ -65,6 +65,12 @@ AI MODULES
 	else
 		to_chat(user, span_notice("Upload complete."))
 
+	if(law_datum.owner?.mind)
+		for(var/a in law_datum.owner.mind.antag_datums)	//Makes sure all antag datums effects are applied in the new body
+			var/datum/antagonist/A = a
+			A.on_body_transfer(law_datum.owner, law_datum.owner)
+
+
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	var/ainame = law_datum.owner ? law_datum.owner.name : "an MMI object"
 	var/aikey = law_datum.owner ? law_datum.owner.ckey : "null"
@@ -510,14 +516,14 @@ AI MODULES
 	name = "'Druid' Core AI Module"
 	law_id = "druid"
 
-	
+
 /******************** Detective *********************/
 
 /obj/item/aiModule/core/full/detective
 	name = "'Detective' Core AI Module"
 	law_id = "detective"
 
-	
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore

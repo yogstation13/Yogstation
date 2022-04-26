@@ -74,3 +74,11 @@
 /obj/item/pen/uplink/Initialize(mapload, owner, tc_amount = 20)
 	. = ..()
 	AddComponent(/datum/component/uplink, owner, TRUE, FALSE, null, tc_amount)
+
+//Incursion uplink
+/obj/item/uplink/incursion/Initialize(mapload, owner, tc_amount = 20)
+	. = ..()
+	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
+	hidden_uplink.set_gamemode(/datum/game_mode/incursion)
+	hidden_uplink.non_traitor_allowed = FALSE
+

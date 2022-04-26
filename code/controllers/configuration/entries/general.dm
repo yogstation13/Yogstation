@@ -65,6 +65,8 @@
 
 /datum/config_entry/flag/log_cloning // log cloning actions.
 
+/datum/config_entry/flag/log_objective // log antag objectives
+
 /datum/config_entry/flag/log_vote	// log voting
 
 /datum/config_entry/flag/log_whisper	// log client whisper

@@ -31,6 +31,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 
 	var/list/previous_attempts
 
+	var/non_traitor_allowed = TRUE
+
 /datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, datum/game_mode/_gamemode, starting_tc = 20)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -114,6 +116,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 
 /datum/component/uplink/proc/interact(datum/source, mob/user)
 	if(locked)
+		return
+	if(!non_traitor_allowed && !user.mind.special_role)
 		return
 	active = TRUE
 	if(user)
@@ -218,7 +222,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		if(telecrystals < CEILING(U.cost*0.8, 1) || U.limited_stock == 0)
 			return
 		telecrystals -= CEILING(U.cost*0.8, 1)
-	else 
+	else
 		if(telecrystals < U.cost || U.limited_stock == 0)
 			return
 		telecrystals -= U.cost

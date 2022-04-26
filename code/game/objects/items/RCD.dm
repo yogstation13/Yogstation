@@ -732,6 +732,9 @@ RLD
 	materials = list(/datum/material/iron=48000, /datum/material/glass=32000)
 	var/ammoamt = 160
 
+/obj/item/rcd_ammo/large
+	materials = list(/datum/material/iron=48000, /datum/material/glass=32000)
+	ammoamt = 160
 
 /obj/item/construction/rcd/combat/admin
 	name = "admin RCD"

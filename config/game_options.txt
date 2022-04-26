@@ -122,6 +122,7 @@ PROBABILITY REVOLUTION 8
 PROBABILITY GANG 6
 PROBABILITY CULT 5
 PROBABILITY CLOCKWORK_CULT 5
+PROBABILITY INCURSION 4
 
 # Snowflakes
 PROBABILITY SHADOWLING 6
@@ -164,6 +165,7 @@ CONTINUOUS SHADOWLING
 CONTINUOUS VAMPIRE
 CONTINUOUS DYNAMIC
 CONTINUOUS HERESY
+CONTINUOUS INCURSION
 
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 
@@ -176,6 +178,7 @@ CONTINUOUS SECRET_EXTENDED
 
 MIDROUND_ANTAG TRAITOR
 #MIDROUND_ANTAG TRAITORBRO
+#MIDROUND_ANTAG INCURSION
 MIDROUND_ANTAG TRAITORCHAN
 MIDROUND_ANTAG INTERNAL_AFFAIRS
 #MIDROUND_ANTAG  NUCLEAR
@@ -186,6 +189,7 @@ MIDROUND_ANTAG CHANGELING
 MIDROUND_ANTAG WIZARD
 #MIDROUND_ANTAG  MONKEY
 MIDROUND_ANTAG MALF
+MIDROUND_ANTAG INCURSION
 
 ## Uncomment these for overrides of the minimum / maximum number of players in a round type.
 ## If you set any of these occasionally check to see if you still need them as the modes
@@ -234,6 +238,9 @@ MIDROUND_ANTAG MALF
 
 #MIN_POP DEVIL_AGENTS 25
 #MAX_POP DEVIL_AGENTS -1
+
+MIN_POP INCURSION 22
+MAX_POP INCURSION -1
 
 ## Setting at least one mode to be playable at 0/1 players is required.
 #MIN_POP EXTENDED 0
@@ -667,3 +674,14 @@ DYNAMIC_CONFIG_ENABLED
 
 ## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for TEG
 ENGINE_TYPE 3
+
+
+## Incursion Rules
+## The more incursion-traitors spawn, the most pop is required to spawn the next
+## Values of 6 and 2 will be 6 for 1 then (6) + (6 + 2) for 2
+## 6, 14, 24, 36, 50, 66, 84
+INCURSION_COST_BASE 6
+INCURSION_COST_INCREMENT 0.25
+INCURSION_COUNT_MAX 6
+INCURSION_COUNT_MIN 2
+INCURSION_OBJECTIVE_AMOUNT 4
