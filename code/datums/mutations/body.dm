@@ -254,7 +254,7 @@
 	instability = 10
 //Yogs start - more strength means you punch harder
 	power_coeff = 1
-	var/strength_punchpower = GET_MUTATION_POWER * 2 - 1 //Normally +1, strength chromosome increases it to +2
+	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1 //Normally +1, strength chromosome increases it to +2
 
 /datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
