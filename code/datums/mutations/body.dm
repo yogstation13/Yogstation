@@ -252,6 +252,22 @@
 	text_lose_indication = span_notice("You feel fairly weak.")
 	difficulty = 12
 	instability = 10
+//Yogs start - more strength means you punch harder
+	power_coeff = 1
+	var/strength_punchpower = GET_MUTATION_POWER * 2 - 1 //Normally +1, strength chromosome increases it to +2
+
+/datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.dna.species.punchdamagelow += strength_punchpower
+	owner.dna.species.punchdamagehigh += strength_punchpower
+
+/datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.dna.species.punchdamagelow -= strength_punchpower
+	owner.dna.species.punchdamagehigh -= strength_punchpower
+//Yogs end
 
 /datum/mutation/human/insulated
 	name = "Insulated"
