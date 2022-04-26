@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(all_scripture)
 
 //Eminence defines
 /// How many walls can be superheated at once
-#define SUPERHEATED_CLOCKWORK_WALL_LIMIT 20
+#define SUPERHEATED_CLOCKWORK_WALL_LIMIT 30
 
 //misc clockcult stuff
 

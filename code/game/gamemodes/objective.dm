@@ -213,7 +213,11 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/assassinate/update_explanation_text()
 	..()
 	if(target && target.current)
-		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
+		if(ishuman(target.current))
+			var/mob/living/carbon/human/H = target.current
+			explanation_text = "Assassinate [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role]."
+		else
+			explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
 	else
 		explanation_text = "Free Objective"
 
@@ -226,7 +230,11 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/assassinate/once/update_explanation_text()
 	START_PROCESSING(SSprocessing, src)
 	if(target && target.current)
-		explanation_text = "Ensure [target.name], the [!target_role_type ? target.assigned_role : target.special_role] has died at least once."
+		if(ishuman(target.current))
+			var/mob/living/carbon/human/H = target.current
+			explanation_text = "Ensure [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role] has died at least once."
+		else
+			explanation_text = "Ensure [target.name], the [!target_role_type ? target.assigned_role : target.special_role] has died at least once."
 	else
 		explanation_text = "Free Objective"
 
@@ -241,7 +249,11 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/assassinate/cloned/update_explanation_text()
 	if(target && target.current)
-		explanation_text = "Ensure the [!target_role_type ? target.assigned_role : target.special_role] [target.name]'s original body is dead."
+		if(ishuman(target.current))
+			var/mob/living/carbon/human/H = target.current
+			explanation_text = "Ensure the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role] [target.name]'s original body is dead."
+		else
+			explanation_text = "Ensure the [!target_role_type ? target.assigned_role : target.special_role] [target.name]'s original body is dead."
 		original = target.current
 	else
 		explanation_text = "Free Objective"
@@ -303,7 +315,11 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/maroon/update_explanation_text()
 	if(target && target.current)
-		explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role : target.special_role], from escaping alive."
+		if(ishuman(target.current))
+			var/mob/living/carbon/human/H = target.current
+			explanation_text = "Prevent [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role], from escaping alive."
+		else
+			explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role : target.special_role], from escaping alive."
 	else
 		explanation_text = "Free Objective"
 
