@@ -183,7 +183,7 @@
 /obj/item/multitool/makeshift/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	..()
 	if(prob(5))
-		to_chat(user, "<span class='danger'>[src] crumbles apart in your hands!</span>")
+		to_chat(user, span_danger("[src] crumbles apart in your hands!"))
 		qdel(src)
 		return
 	else if(prob(5))
