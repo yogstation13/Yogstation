@@ -312,6 +312,26 @@
 		C.spin(6,1)
 	..(targets, user, 60)
 
+/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
+	name = "Ground Smash"
+	desc = "Smash the ground to throw your enemies back!"
+	sound = 'sound/magic/Repulse.ogg'
+	charge_max = 300
+	clothes_req = FALSE
+	range = 1
+	cooldown_min = 300
+	invocation = "HULK SMASH!!"
+	action_icon = 'icons/mob/actions.dmi'
+	action_icon_state = "green_hand"
+	action_background_icon_state = "bg_default"
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk/cast(list/targets,mob/user = usr)
+	var/turf/open/floor/T = get_turf(usr)
+	if(istype(T))
+		T.break_tile()
+	playsound(usr.loc, 'sound/effects/meteorimpact.ogg', 30, 1, 2)
+	..(targets, user, 0)
+
 /obj/effect/proc_holder/spell/targeted/sacred_flame
 	name = "Sacred Flame"
 	desc = "Makes everyone around you more flammable, and lights yourself on fire."
@@ -369,23 +389,3 @@
 	if(ishuman(thrower))
 		var/mob/living/carbon/human/H = thrower
 		H.say("LIGHTNINGBOLT!!", forced = "spell")
-
-/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
-	name = "Ground Smash"
-	desc = "Smash the ground to throw your enemies back!"
-	sound = 'sound/magic/Repulse.ogg'
-	charge_max = 150
-	clothes_req = FALSE
-	range = 1
-	cooldown_min = 150
-	invocation = "HULK SMASH!!"
-	action_icon = 'icons/mob/actions.dmi'
-	action_icon_state = "green_hand"
-	action_background_icon_state = "bg_default"
-
-/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk/cast(list/targets,mob/user = usr)
-	var/turf/open/floor/T = get_turf(usr)
-	if(istype(T))
-		T.break_tile()
-	playsound(usr.loc, 'sound/effects/meteorimpact.ogg', 30, 1, 2)
-	..()
