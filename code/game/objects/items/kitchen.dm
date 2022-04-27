@@ -129,9 +129,22 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/kitchen/knife/ritual/holy
-	name = "ruinous knife"
-	desc = "The runes inscribed on the knife radiate a strange power."
-	force = 12
+	name = "ruinous knife" 
+	desc = "The runes inscribed on the knife radiate a strange power. It looks like it could have more runes inscribed upon it..."
+
+/obj/item/kitchen/knife/ritual/holy/strong
+	name = "great ruinous knife" 
+	desc = "A heavy knife inscribed with dozens of runes."
+	force = 15
+
+/obj/item/kitchen/knife/ritual/holy/strong/blood
+	name = "blood-soaked ruinous knife" 
+	desc = "Runes stretch across the surface of the knife, seemingly endless."
+	wound_bonus = 20 //a bit better than a butcher cleaver, you've earned it for finding blood cult metal and doing the previous steps
+
+/obj/item/kitchen/knife/ritual/holy/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 70, 110) //the old gods demandeth more flesh output
 
 /obj/item/kitchen/knife/bloodletter
 	name = "bloodletter"
@@ -227,7 +240,7 @@
 /obj/item/kitchen/knife/shank
 	name = "shank"
 	desc = "A crude knife fashioned by securing a glass shard and a rod together with cables, and welding them together."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "shank"
 	item_state = "shank"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_EARS

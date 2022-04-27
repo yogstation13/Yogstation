@@ -82,6 +82,7 @@
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+	always_availible = FALSE 	//This was such a bad idea
 
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
@@ -166,6 +167,24 @@
 	result = /obj/item/melee/chainofcommand/tailwhip/kitty
 	reqs = list(/obj/item/organ/tail/cat = 1,
 	            /obj/item/stack/cable_coil = 1)
+	time = 4 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/greatruinousknife
+	name = "Great Ruinous Knife"
+	result = /obj/item/kitchen/knife/ritual/holy/strong
+	reqs = list(/obj/item/kitchen/knife/ritual/holy = 1,
+	            /obj/item/stack/sheet/ruinous_metal = 1)
+	time = 4 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/bloodyruinousknife
+	name = "Blood Soaked Ruinous Knife"
+	result = /obj/item/kitchen/knife/ritual/holy/strong/blood
+	reqs = list(/obj/item/kitchen/knife/ritual/holy/strong = 1,
+	            /obj/item/stack/sheet/runed_metal = 1)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

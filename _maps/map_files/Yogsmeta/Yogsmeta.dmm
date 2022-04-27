@@ -362,7 +362,7 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
-/area/janitor)
+/area/maintenance/starboard)
 "aaW" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -888,7 +888,7 @@
 "acd" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
-/area/janitor)
+/area/maintenance/starboard)
 "ace" = (
 /obj/machinery/vending/sustenance{
 	desc = "A vending machine normally reserved for work camps.";
@@ -25062,10 +25062,10 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/floorbot,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/mob/living/simple_animal/bot/floorbot,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bbA" = (
@@ -26518,13 +26518,13 @@
 	dir = 8;
 	pixel_x = 26
 	},
-/mob/living/simple_animal/bot/cleanbot,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bfa" = (
@@ -67387,16 +67387,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"gwI" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "gxv" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -78898,6 +78888,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"sTv" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "sTD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -82818,7 +82819,6 @@
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/secbot/pingsky,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -82828,6 +82828,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/mob/living/simple_animal/bot/secbot/pingsky,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "wMY" = (
@@ -118159,7 +118160,7 @@ aaa
 aaf
 cqs
 cRS
-gwI
+sTv
 bXP
 cyn
 ery
@@ -121459,7 +121460,7 @@ jqY
 alq
 hUl
 wqc
-bcd
+alq
 xLF
 xLF
 xLF
@@ -121716,7 +121717,7 @@ bvx
 alq
 hUl
 alq
-bcd
+alq
 dvg
 dvg
 wPs
@@ -121973,7 +121974,7 @@ bvy
 alq
 pHp
 vbc
-bcd
+alq
 dvg
 dvg
 dvg
@@ -122230,7 +122231,7 @@ nFy
 sZb
 joF
 apc
-bcd
+alq
 dvg
 dvg
 dvg
@@ -122487,7 +122488,7 @@ ukn
 jka
 xAq
 jNW
-bcd
+alq
 dvg
 dvg
 dvg
@@ -122744,7 +122745,7 @@ acd
 acd
 acd
 acd
-bcd
+alq
 dvg
 dvg
 dvg
