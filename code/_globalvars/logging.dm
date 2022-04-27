@@ -42,8 +42,6 @@ GLOBAL_VAR(world_paper_log)
 GLOBAL_PROTECT(world_paper_log)
 GLOBAL_VAR(tgui_log)
 GLOBAL_PROTECT(tgui_log)
-GLOBAL_VAR(world_objective_log)
-GLOBAL_PROTECT(world_objective_log)
 
 GLOBAL_VAR(demo_log)
 GLOBAL_PROTECT(demo_log)

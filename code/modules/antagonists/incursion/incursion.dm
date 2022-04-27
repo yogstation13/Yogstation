@@ -21,7 +21,6 @@
 	SSticker.mode.incursionists += owner
 	for(var/datum/objective/O in team.objectives)
 		objectives += O
-		log_objective(owner, O.explanation_text)
 	owner.special_role = special_role
 	finalize_incursion()
 	return ..()
@@ -142,8 +141,6 @@
 		O.find_target(dupe_search_range = list(src))
 	O.update_explanation_text()
 	objectives += O
-	for(var/datum/mind/member in members)
-		log_objective(member, O.explanation_text)
 
 /datum/team/incursion/proc/forge_team_objectives()
 	objectives = list()
