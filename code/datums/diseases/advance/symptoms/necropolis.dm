@@ -55,9 +55,9 @@
 				M.dna.species.punchdamagelow += 4
 				M.dna.species.punchdamagehigh += 4
 				M.dna.species.punchstunthreshold += 1 	//Makes standard punches 5-14 with higher stun chance (1-10, stun on 10 -> 5-14, stun on 11-14)
-				M.dna.species.brutemod *= 0.6			
-				M.dna.species.burnmod *= 0.6
-				M.dna.species.heatmod *= 0.6
+				M.physiology.brutemod *= 0.6			
+				M.physiology.burnmod *= 0.6
+				M.physiology.heatmod *= 0.6
 				M.add_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown=0.5)
 				ADD_TRAIT(M, TRAIT_PIERCEIMMUNE, DISEASE_TRAIT)
 				if(fireproof)
@@ -100,9 +100,9 @@
 		M.dna.species.punchdamagelow -= 4
 		M.dna.species.punchdamagehigh -= 4
 		M.dna.species.punchstunthreshold -= 1
-		M.dna.species.brutemod /= 0.6
-		M.dna.species.burnmod /= 0.6
-		M.dna.species.heatmod /= 0.6
+		M.physiology.brutemod /= 0.6
+		M.physiology.burnmod /= 0.6
+		M.physiology.heatmod /= 0.6
 		REMOVE_TRAIT(M, TRAIT_PIERCEIMMUNE, DISEASE_TRAIT)
 		if(fireproof)
 			REMOVE_TRAIT(M, TRAIT_RESISTHIGHPRESSURE, DISEASE_TRAIT)
