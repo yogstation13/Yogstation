@@ -15517,11 +15517,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
-"bmp" = (
-/obj/effect/spawner/structure/window,
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "bmr" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hop)
@@ -21961,10 +21956,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
-"bTN" = (
-/obj/effect/spawner/structure/solars/solar_96,
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/fore)
 "bUs" = (
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
@@ -26024,10 +26015,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"cVk" = (
-/obj/effect/spawner/structure/solars/solar_96,
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/aft)
 "cVx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -26949,6 +26936,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"dCs" = (
+/obj/effect/spawner/structure/solars/solar_96,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/aft)
 "dCD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -28169,6 +28161,20 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"ery" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_x = 32
+	},
+/obj/machinery/power/solar_control{
+	dir = 8;
+	id = "auxsolareast";
+	name = "Port Bow Solar Control"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/port/fore)
 "erQ" = (
 /obj/machinery/camera{
 	c_tag = "Port Hallway";
@@ -34970,6 +34976,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"hRI" = (
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/port/fore)
 "hSa" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -35369,17 +35393,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"ibn" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
-	},
-/obj/machinery/power/solar_control{
-	dir = 8;
-	id = "auxsolareast";
-	name = "Port Bow Solar Control"
-	},
-/turf/open/floor/plating,
-/area/maintenance/solars/port/fore)
 "ibt" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
@@ -48732,6 +48745,13 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
+"oKY" = (
+/obj/effect/spawner/structure/solars/solar_96,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/fore)
 "oLx" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -52508,6 +52528,11 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall,
 /area/quartermaster/storage)
+"qQe" = (
+/obj/effect/spawner/structure/solars/solar_96,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/fore)
 "qQi" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
@@ -57463,6 +57488,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"tkl" = (
+/obj/effect/spawner/structure/solars/solar_96,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/aft)
 "tkv" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 5;
@@ -65474,21 +65506,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"xAP" = (
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/solars/port/fore)
 "xAW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cloth_curtain{
@@ -83111,7 +83128,7 @@ tnK
 tNk
 tNk
 tNk
-xAP
+hRI
 aIo
 qai
 anj
@@ -83368,7 +83385,7 @@ tnK
 aaa
 aaa
 tNk
-ibn
+ery
 aIG
 aJD
 oOf
@@ -112905,17 +112922,17 @@ aaa
 aaa
 aaS
 aaa
-bTN
+oKY
 adS
-bTN
+qQe
 aaa
-bTN
+oKY
 adS
-bTN
+qQe
 aaa
-bTN
+oKY
 adS
-bTN
+qQe
 aaa
 aaS
 aaa
@@ -113162,17 +113179,17 @@ aaa
 aaa
 aaS
 aaf
-bTN
+oKY
 adT
-bTN
+qQe
 aaa
-bTN
+oKY
 adT
-bTN
+qQe
 aaa
-bTN
+oKY
 adT
-bTN
+qQe
 aaf
 aaf
 aaa
@@ -113419,17 +113436,17 @@ aaa
 aaa
 aaS
 aaa
-bTN
+oKY
 adT
-bTN
+qQe
 aaf
-bTN
+oKY
 adT
-bTN
+qQe
 aaf
-bTN
+oKY
 adT
-bTN
+qQe
 aaa
 aaf
 aaa
@@ -113676,17 +113693,17 @@ aaa
 aaa
 aaf
 aaf
-bTN
+oKY
 adT
-bTN
+qQe
 aaa
-bTN
+oKY
 adT
-bTN
+qQe
 aaa
-bTN
+oKY
 adT
-bTN
+qQe
 aaf
 aaf
 gXs
@@ -113933,17 +113950,17 @@ aaS
 aaS
 aaf
 aaa
-bTN
+oKY
 adT
-bTN
+qQe
 aaa
-bTN
+oKY
 adT
-bTN
+qQe
 aaa
-bTN
+oKY
 adT
-bTN
+qQe
 aaa
 gXs
 gXs
@@ -114961,17 +114978,17 @@ aba
 aaS
 acy
 aaa
-bTN
+oKY
 adW
-bTN
+qQe
 aaa
-bTN
+oKY
 adW
-bTN
+qQe
 aaa
-bTN
+oKY
 adW
-bTN
+qQe
 aaa
 gXs
 aaa
@@ -115218,17 +115235,17 @@ aaa
 aaa
 aaf
 aaf
-bTN
+oKY
 adW
-bTN
+qQe
 aaa
-bTN
+oKY
 adW
-bTN
+qQe
 aaa
-bTN
+oKY
 adW
-bTN
+qQe
 aaf
 aaf
 gXs
@@ -115475,17 +115492,17 @@ aaa
 aaa
 aaS
 aaa
-bTN
+oKY
 adW
-bTN
+qQe
 aaf
-bTN
+oKY
 adW
-bTN
+qQe
 aaf
-bTN
+oKY
 adW
-bTN
+qQe
 aaa
 aaf
 aaa
@@ -115732,17 +115749,17 @@ aaa
 aaa
 aaS
 aaf
-bTN
+oKY
 adW
-bTN
+qQe
 aaa
-bTN
+oKY
 adW
-bTN
+qQe
 aaa
-bTN
+oKY
 adW
-bTN
+qQe
 aaf
 aaf
 aaa
@@ -115989,17 +116006,17 @@ aaa
 aaa
 aaS
 aaa
-bTN
+oKY
 adY
-bTN
+qQe
 aaa
-bTN
+oKY
 adY
-bTN
+qQe
 aaa
-bTN
+oKY
 adY
-bTN
+qQe
 aaa
 aaS
 aaa
@@ -116864,7 +116881,7 @@ oGM
 oGM
 fXS
 cOe
-bmp
+gpq
 cOe
 frB
 iKq
@@ -117388,17 +117405,17 @@ cNW
 aaa
 aaS
 aaa
-cVk
+tkl
 crB
-cVk
+dCs
 aaa
-cVk
+tkl
 kyX
-cVk
+dCs
 aaa
-cVk
+tkl
 kyX
-cVk
+dCs
 aaa
 aaS
 aaa
@@ -117645,17 +117662,17 @@ gXs
 gXs
 aba
 aaf
-cVk
+tkl
 crC
-cVk
+dCs
 aaa
-cVk
+tkl
 rry
-cVk
+dCs
 aaa
-cVk
+tkl
 rry
-cVk
+dCs
 aaf
 aaS
 aaa
@@ -117902,17 +117919,17 @@ aaa
 aaa
 aaf
 aaa
-cVk
+tkl
 crC
-cVk
+dCs
 aaf
-cVk
+tkl
 rry
-cVk
+dCs
 aaf
-cVk
+tkl
 rry
-cVk
+dCs
 aaa
 aaS
 aaa
@@ -118159,17 +118176,17 @@ aaf
 aaf
 aaf
 aaf
-cVk
+tkl
 crC
-cVk
+dCs
 aaa
-cVk
+tkl
 rry
-cVk
+dCs
 aaa
-cVk
+tkl
 rry
-cVk
+dCs
 aaf
 aaf
 aaa
@@ -118416,17 +118433,17 @@ aaa
 aaa
 aaf
 aaa
-cVk
+tkl
 crC
-cVk
+dCs
 aaa
-cVk
+tkl
 rry
-cVk
+dCs
 aaa
-cVk
+tkl
 rry
-cVk
+dCs
 aaa
 aaf
 aaS
@@ -119444,17 +119461,17 @@ aaa
 aaa
 aaf
 aaa
-cVk
+tkl
 crE
-cVk
+dCs
 aaa
-cVk
+tkl
 crE
-cVk
+dCs
 aaa
-cVk
+tkl
 crE
-cVk
+dCs
 aaa
 aaf
 aaS
@@ -119701,17 +119718,17 @@ aaf
 aaf
 aaf
 aaf
-cVk
+tkl
 crE
-cVk
+dCs
 aaa
-cVk
+tkl
 crE
-cVk
+dCs
 aaa
-cVk
+tkl
 crE
-cVk
+dCs
 aaf
 aaf
 aaa
@@ -119958,17 +119975,17 @@ aaa
 aaa
 aaf
 aaa
-cVk
+tkl
 crE
-cVk
+dCs
 aaf
-cVk
+tkl
 crE
-cVk
+dCs
 aaf
-cVk
+tkl
 crE
-cVk
+dCs
 aaa
 aaS
 aaa
@@ -120215,17 +120232,17 @@ aaf
 aaf
 aaf
 aaf
-cVk
+tkl
 crE
-cVk
+dCs
 aaa
-cVk
+tkl
 crE
-cVk
+dCs
 aaa
-cVk
+tkl
 crE
-cVk
+dCs
 aaf
 aaS
 aaa
@@ -120472,17 +120489,17 @@ aaa
 aaa
 aba
 aaa
-cVk
+tkl
 crG
-cVk
+dCs
 aaa
-cVk
+tkl
 crG
-cVk
+dCs
 aaa
-cVk
+tkl
 crG
-cVk
+dCs
 aaa
 aaS
 aaa
