@@ -35,7 +35,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/carbon/M = A.affected_mob
+	var/mob/living/carbon/human/M = A.affected_mob
 	switch(A.stage)
 		if(2)
 			if(tendrils)
@@ -93,7 +93,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/carbon/M = A.affected_mob
+	var/mob/living/carbon/human/M = A.affected_mob
 	if(fullpower)								//undo the changes if we got the buff
 		to_chat(M, span_danger("You feel weakened as the necropolis' blessing leaves your body."))
 		M.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
