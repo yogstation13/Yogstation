@@ -198,8 +198,6 @@ God bless America.
 				the_nugget.nugget_man.name = the_nugget.name
 				the_nugget.nugget_man.stat = CONSCIOUS
 				the_guy.mind.transfer_to(the_nugget.nugget_man)
-			
-			
 			qdel(the_guy)
 			return
 		else
