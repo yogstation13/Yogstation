@@ -109,8 +109,8 @@ export const NtosSupermatterMonitorContent = (props, context) => {
                   bad: [logScale(1800), Infinity],
                 }}>
                 {toFixed(SM_moles) + ' moles'}
-                </ProgressBar>
-              </LabeledList.Item>
+              </ProgressBar>
+            </LabeledList.Item>
           </LabeledList>
         </Section>
       </Flex.Item>
