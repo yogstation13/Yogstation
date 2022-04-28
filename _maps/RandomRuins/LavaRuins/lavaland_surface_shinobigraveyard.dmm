@@ -43,7 +43,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
 "j" = (
-/obj/structure/katana_grave,
+/obj/structure/katana_grave/basalt,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
 "n" = (

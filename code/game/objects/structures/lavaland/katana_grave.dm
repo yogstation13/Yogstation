@@ -19,4 +19,6 @@
 	new /obj/structure/fluff/grave/empty(get_turf(src))
 	qdel(src)
 
-	
+/obj/structure/katana_grave/basalt
+	dropping_item = /obj/item/katana/cursed/basalt
+	icon_state = "grave_katana_basalt"
