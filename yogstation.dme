@@ -1400,6 +1400,7 @@
 #include "code\modules\antagonists\bloodsuckers\bloodsucker_flaws.dm"
 #include "code\modules\antagonists\bloodsuckers\bloodsucker_frenzy.dm"
 #include "code\modules\antagonists\bloodsuckers\bloodsucker_integration.dm"
+#include "code\modules\antagonists\bloodsuckers\bloodsucker_mobs.dm"
 #include "code\modules\antagonists\bloodsuckers\bloodsucker_objectives.dm"
 #include "code\modules\antagonists\bloodsuckers\bloodsuckers.dm"
 #include "code\modules\antagonists\bloodsuckers\bloodsuckers_objects.dm"

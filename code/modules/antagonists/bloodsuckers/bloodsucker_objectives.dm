@@ -217,7 +217,7 @@
 
 // GENERATE!
 /datum/objective/bloodsucker/gourmand/New()
-	target_amount = rand(1250,2000)
+	target_amount = rand(750, 1250)
 	..()
 
 // EXPLANATION

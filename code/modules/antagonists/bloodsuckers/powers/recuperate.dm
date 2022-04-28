@@ -27,11 +27,12 @@
 	. = ..()
 	to_chat(owner, span_notice("Your muscles clench as your master's immortal blood mixes with your own, knitting your wounds."))
 
-/datum/action/bloodsucker/recuperate/UsePower(mob/living/carbon/human/user)
+/datum/action/bloodsucker/recuperate/process(delta_time)
 	. = ..()
 	if(!.)
 		return
 
+	var/mob/living/carbon/user = owner
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(user)
 	vassaldatum.master.AddBloodVolume(-1)
 	user.Jitter(5)

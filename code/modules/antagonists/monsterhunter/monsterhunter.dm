@@ -2,8 +2,6 @@
 #define HUNTER_SCAN_MAX_DISTANCE 15
 /// 5s update time
 #define HUNTER_SCAN_PING_TIME 20
-/// Used for the pinpointer
-#define STATUS_EFFECT_HUNTERPINPOINTER /datum/status_effect/agent_pinpointer/hunter_edition
 
 /datum/antagonist/monsterhunter
 	name = "\improper Monster Hunter"
@@ -13,55 +11,66 @@
 	var/list/datum/action/powers = list()
 	var/datum/martial_art/hunterfu/my_kungfu = new
 	var/give_objectives = TRUE
-	var/datum/action/bloodsucker/trackvamp = new/datum/action/bloodsucker/trackvamp()
-	var/datum/action/bloodsucker/fortitude = new/datum/action/bloodsucker/fortitude/hunter()
+	var/datum/action/bloodsucker/trackvamp = new /datum/action/bloodsucker/trackvamp()
+	var/datum/action/bloodsucker/fortitude = new /datum/action/bloodsucker/fortitude/hunter()
+
+/datum/antagonist/monsterhunter/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/current_mob = mob_override || owner.current
+	ADD_TRAIT(current_mob, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
+	ADD_TRAIT(current_mob, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
+	owner.unconvertable = TRUE
+	my_kungfu.teach(current_mob, make_temporary = FALSE)
+
+/datum/antagonist/monsterhunter/remove_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/current_mob = mob_override || owner.current
+	REMOVE_TRAIT(current_mob, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
+	REMOVE_TRAIT(current_mob, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
+	owner.unconvertable = FALSE
+	if(my_kungfu)
+		my_kungfu.remove(current_mob)
+
 
 /datum/antagonist/monsterhunter/on_gain()
-	/// Buffs Monster Hunters
-	owner.unconvertable = TRUE
-	ADD_TRAIT(owner.current, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(owner.current, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
-	/// Give Monster Hunter powers
+	//Give Monster Hunter powers
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_MHUNTER]
 	trackvamp.Grant(owner.current)
 	fortitude.Grant(owner.current)
 	hud.join_hud(owner.current)
 	set_antag_hud(owner.current, "monsterhunter")
 	if(give_objectives)
-		/// Give Hunter Objective
+		//Give Hunter Objective
 		var/datum/objective/bloodsucker/monsterhunter/monsterhunter_objective = new
 		monsterhunter_objective.owner = owner
 		objectives += monsterhunter_objective
-		/// Give Theft Objective
+		//Give Theft Objective
 		var/datum/objective/steal/steal_objective = new
 		steal_objective.owner = owner
 		steal_objective.find_target()
 		objectives += steal_objective
 
-	/// Give Martial Arts
-	my_kungfu.teach(owner.current, 0)
-	/// Teach Stake crafting
+	//Teach Stake crafting
 	owner.teach_crafting_recipe(/datum/crafting_recipe/hardened_stake)
 	owner.teach_crafting_recipe(/datum/crafting_recipe/silver_stake)
-	. = ..()
+	return ..()
 
 /datum/antagonist/monsterhunter/on_removal()
-	/// Remove buffs
-	owner.unconvertable = FALSE
-	/// Remove ALL Traits, as long as its from BLOODSUCKER_TRAIT's source.
-	for(var/all_status_traits in owner.current.status_traits)
-		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
-	/// Remove Monster Hunter powers
+	//Remove Monster Hunter powers
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_MHUNTER]
 	trackvamp.Remove(owner.current)
 	fortitude.Remove(owner.current)
 	hud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
-	/// Remove Martial Arts
-	if(my_kungfu)
-		my_kungfu.remove(owner.current)
 	to_chat(owner.current, span_userdanger("Your hunt has ended: You enter retirement once again, and are no longer a Monster Hunter."))
 	return ..()
+
+/datum/antagonist/monsterhunter/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	. = ..()
+	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+		all_powers.Remove(old_body)
+		all_powers.Grant(new_body)
+
 	
 /// Mind version
 /datum/mind/proc/make_monsterhunter()
@@ -112,13 +121,13 @@
 
 /// TAKEN FROM: /datum/action/changeling/pheromone_receptors    // pheromone_receptors.dm    for a version of tracking that Changelings have!
 /datum/status_effect/agent_pinpointer/hunter_edition
-	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/hunter_edition
+	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/hunter_edition
 	minimum_range = HUNTER_SCAN_MIN_DISTANCE
 	tick_interval = HUNTER_SCAN_PING_TIME
 	duration = 10 SECONDS
 	range_fuzz_factor = 5 //PINPOINTER_EXTRA_RANDOM_RANGE
 
-/atom/movable/screen/alert/status_effect/agent_pinpointer/hunter_edition
+/obj/screen/alert/status_effect/agent_pinpointer/hunter_edition
 	name = "Monster Tracking"
 	desc = "You always know where the hellspawn are."
 

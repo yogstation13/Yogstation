@@ -1,4 +1,5 @@
 /obj/structure/bloodsucker
+	icon = 'icons/obj/vamp_obj.dmi'
 	///Who owns this structure?
 	var/mob/living/owner
 	/*
@@ -74,11 +75,12 @@
 			if("Yes")
 				unbolt(user)
 
+////////////////////////////////////////////////////
+
 #define ALTAR_RANKS_PER_DAY 2
 /obj/structure/bloodsucker/bloodaltar
 	name = "blood altar"
 	desc = "It is made of marble, lined with basalt, and radiates an unnerving chill that puts your skin on edge."
-	icon = 'icons/obj/vamp_obj.dmi'
 	icon_state = "bloodaltar"
 	density = TRUE
 	anchored = FALSE
@@ -87,14 +89,15 @@
 	can_buckle = FALSE
 	var/task_completed = FALSE
 	var/sacrifices = 0
-	var/taskheart = FALSE
+	var/sacrificialtask = FALSE
+	var/organ_name = ""
 	Ghost_desc = "This is a Blood Altar, where bloodsuckers can get two tasks per night to get more ranks."
 	Vamp_desc = "This is a Blood Altar, which allows you to do two tasks per day to advance your ranks.\n\
-		Interact with the Altar by clicking on it after it's bolted to get a a task.\n\
+		Interact with the Altar by clicking on it after it's bolted to get a task.\n\
 		By checking your notes or the chat you can see what task needs to be done.\n\
 		Remember you only get two tasks per night."
 	Vassal_desc = "This is the blood altar, where your master does bounties to advanced their bloodsucking powers.\n\
-		Aid your master by bringing them what they need for these bounties or by helping get them."
+		Aid your master by bringing them what they need for these bounties or help getting them."
 	Hunter_desc = "This is a blood altar, where monsters usually practice a sort of bounty system to advanced their powers.\n\
 		They normally sacrifice hearts or blood in exchange for these ranks, forcing them to move out of their lair.\n\
 		It can only be used twice per night and it needs to be interacted it to be claimed, making bloodsuckers come back twice a night."
@@ -118,7 +121,7 @@
 	if(bloodsuckerdatum.altar_uses >= ALTAR_RANKS_PER_DAY)
 		to_chat(user, span_notice("You have done all tasks for the night, come back tomorrow for more."))
 		return
-	var/task
+	var/task //just like amongus
 	var/suckamount = 0
 	var/heartamount = 0
 	switch(bloodsuckerdatum.bloodsucker_level + bloodsuckerdatum.bloodsucker_level_unspent)
@@ -142,7 +145,7 @@
 		sacrifices = 0
 		to_chat(user, span_notice("You have sucessfully done a task and gained a rank!"))
 		task_completed = FALSE
-		taskheart = FALSE
+		sacrificialtask = FALSE
 		return
 	if(bloodsuckerdatum.current_task)
 		to_chat(user, span_warning("You already have a rank up task!"))
@@ -158,35 +161,174 @@
 		C.blood_volume -= 100
 		switch(rand(1, 3))
 			if(1,2)
-				task = "suck [suckamount] units of blood."
+				task = "Suck [suckamount] units of pure blood."
 			if(3)
-				task = "sacrifice [heartamount] hearts by using them on the altar."
-				taskheart = TRUE
+				task = "Sacrifice [heartamount] hearts by using them on the altar."
+				sacrificialtask = TRUE
 		bloodsuckerdatum.task_memory += "<B>Current Rank Up Task</B>: [task]<br>"
 		bloodsuckerdatum.current_task = TRUE
-		to_chat(user, span_boldnotice("You have gained a new Task! Your task is to [task] Remember to collect it by using the blood altar!"))
+		to_chat(user, span_boldnotice("You have gained a new Task! [task] Remember to collect it by using the blood altar!"))
 
 /obj/structure/bloodsucker/bloodaltar/examine(mob/user)
 	. = ..()
-	if(taskheart)
-		. += span_boldnotice("It currently contains [sacrifices] hearts.")
+	if(sacrificialtask)
+		if(sacrifices > 0)
+			. += span_boldnotice("It currently contains [sacrifices] [organ_name].")
 	else 
 		return ..()
 
 /obj/structure/bloodsucker/bloodaltar/attackby(obj/item/H, mob/user, params)
 	if(!IS_BLOODSUCKER(user) && !IS_VASSAL(user))
 		return ..()
-	if(taskheart)
+	if(sacrificialtask)
 		if(istype(H, /obj/item/organ/heart))
 			if(istype(H, /obj/item/organ/heart/gland))
 				to_chat(usr, span_warning("This type of organ doesn't have blood to sustain the altar!"))
 				return ..()
+			organ_name = H.name
 			to_chat(usr, span_notice("You feed the heart to the altar!"))
 			qdel(H)
 			sacrifices++
 			return 
 	return ..()
 #undef ALTAR_RANKS_PER_DAY
+
+////////////////////////////////////////////////////
+
+/obj/structure/bloodsucker/bloodaltar/restingplace
+	name = "resting place"
+	desc = "This seem to hold a bit of significance."
+	icon_state = "restingplace"
+	var/awoken = FALSE
+	Ghost_desc = "This is a Resting Place, where lasombra bloodsucker can ascend their powers."
+	Vamp_desc = "This is a Resting Place, which allows you to ascend your powers by gaining points using your ranks or blood.\n\
+		Interact with the Altar by clicking on it after you have fed it a abyssal essence, acquirable through influences.\n\
+		Remember most ascended powers have benefits if used in the dark.\n\
+		It only seems to speak to elders of 4 or higher ranks."
+	Vassal_desc = "This is the resting place, where your master does rituals to ascend their bloodsucking powers.\n\
+		Aid your master by bringing them what they need for these or by help getting them."
+	Hunter_desc = "This is a blood altar, where monsters ascend their powers to shadowy levels.\n\
+		They normally need ranks or blood in exchange for power, forcing them to move out of their lair and weakening them."
+	
+/obj/item/abyssal_essence
+	name = "abyssal essence"
+	desc = "As you glare at the abyssal essence, you feel it glaring back."
+	icon = 'icons/obj/vamp_obj.dmi'
+	icon_state = "abyssal_essence"
+	item_state = "abyssal_essence"
+	throwforce = 0
+	w_class = WEIGHT_CLASS_TINY
+	throw_speed = 3
+	throw_range = 7
+	pressure_resistance = 10
+
+/obj/structure/bloodsucker/bloodaltar/restingplace/deconstruct(disassembled = TRUE)
+	. = ..()
+	new /obj/item/abyssal_essence(src.loc)
+	qdel(src)
+
+/obj/structure/bloodsucker/bloodaltar/restingplace/attackby(obj/item/H, mob/user, params)
+	if(!IS_BLOODSUCKER(user) && !IS_VASSAL(user))
+		return ..()
+	if(!awoken)
+		if(istype(H, /obj/item/abyssal_essence))
+			to_chat(usr, span_notice("As you touch [src] with the [H], you start sensing something different coming from [src]!"))
+			qdel(H)
+			awoken = TRUE
+			return
+		return to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
+	. = ..()
+
+/obj/effect/reality_smash/attack_hand(mob/user, list/modifiers) // this is important
+	if(!IS_BLOODSUCKER(user)) //only bloodsucker will attack this with their hand
+		return
+	if(INTERACTING_WITH(user, src))
+		return
+	if(user.mind in src.siphoners)
+		to_chat(user, span_danger("You have already harvested this shard!"))
+		return
+	to_chat(user, span_danger("You start to harvest the energy of [src]..."))
+	if(do_after(user,10 SECONDS,TRUE,src))
+		user.put_in_hands(new /obj/item/abyssal_essence)
+		to_chat(user, span_notice("You finish harvesting the energy of [src]!"))
+		src.siphoners |= user.mind
+
+/obj/structure/bloodsucker/bloodaltar/restingplace/attack_hand(mob/user, list/modifiers)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!IS_BLOODSUCKER(user))
+		return ..()
+	if(bloodsuckerdatum.my_clan == CLAN_LASOMBRA)
+		if(bloodsuckerdatum.clanpoints > 0)
+			var/list/upgradablepowers = list()
+			var/list/unupgradablepowers = list(/datum/action/bloodsucker/feed, /datum/action/bloodsucker/masquerade, /datum/action/bloodsucker/veil)
+			for(var/datum/action/bloodsucker/power as anything in bloodsuckerdatum.powers)
+				if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY)
+					upgradablepowers += power
+				if(is_type_in_list(power, unupgradablepowers))
+					upgradablepowers -= power
+			var/choice = input(usr, "What Power do you wish to ascend? This resets the powers level.", "Darkness Manager") in upgradablepowers
+			if(!choice)
+				return
+			if((locate(upgradablepowers[choice]) in bloodsuckerdatum.powers))
+				return
+			if(istype(choice, /datum/action/bloodsucker/targeted/brawn))
+				bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/brawn/shadow)
+			if(istype(choice, /datum/action/bloodsucker/targeted/haste))
+				bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/haste/shadow)
+			if(istype(choice, /datum/action/bloodsucker/fortitude))
+				bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/fortitude/shadow) // i hate this
+			if(istype(choice, /datum/action/bloodsucker/targeted/mesmerize))
+				bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/mesmerize/shadow)
+			if(istype(choice, /datum/action/bloodsucker/targeted/trespass))
+				bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/trespass/shadow)
+			if(istype(choice, /datum/action/bloodsucker/targeted/lunge))
+				bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/lunge/shadow)
+			if(istype(choice, /datum/action/bloodsucker/cloak/))
+				bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/cloak/shadow)
+			bloodsuckerdatum.powers -= choice
+			qdel(choice)
+			to_chat(user, span_boldnotice("You have ascended [choice]!"))
+			return
+		if(bloodsuckerdatum.bloodsucker_level >= 4 )
+			if(!awoken) //don't want this to affect power upgrading if you make another one
+				return
+			icon_state = initial(icon_state) + (awoken ? "_idle" : "_awaken")
+			update_icon()
+			var/rankspent
+			switch(bloodsuckerdatum.clanprogress)
+				if(0)
+					bloodsuckerdatum.clanprogress++
+					to_chat(user, span_notice("As you touch the [src] you feel the a slight abyssal pulse flow through you... You have gained a point!"))
+					return
+				if(1 to 3)
+					rankspent = 1
+				if(4 to 6)
+					rankspent = 2
+				if(7)
+					rankspent = 3
+				if(8 to INFINITY)
+					to_chat(user, span_notice("You have evolved all abilities possible."))
+					return
+			var/want_clantask = alert("Do you want to spend a rank to ascend an ability? This will cost [rankspent] ranks.", "Dark Manager", "Yes", "No")
+			if(want_clantask == "No" || QDELETED(src))
+				return
+			if(bloodsuckerdatum.bloodsucker_level_unspent < rankspent)
+				var/another_shot = alert("It seems like you don't have enough ranks, spend 550 blood instead?", "Dark Manager", "Yes", "No")
+				if(another_shot == "No" || QDELETED(src))
+					return
+				var/mob/living/carbon/C = user
+				if(C.blood_volume < 550)
+					to_chat(user, span_danger("You don't have enough blood to gain a task!"))
+					return
+				C.blood_volume -= 550
+			else
+				bloodsuckerdatum.bloodsucker_level_unspent -= rankspent
+			bloodsuckerdatum.clanpoints++
+			bloodsuckerdatum.clanprogress++
+			return
+	return ..()
+
+////////////////////////////////////////////////////
 
 /*/obj/structure/bloodsucker/bloodstatue
 	name = "bloody countenance"
@@ -201,10 +343,81 @@
 	name = "faded mirror"
 	desc = "You get the sense that the foggy reflection looking back at you has an alien intelligence to it."*/
 
+////////////////////////////////////////////////////
+
+/obj/structure/bloodsucker/possessedarmor
+	name = "knight's armor"
+	desc = "I swear i saw it's eyes move..."
+	icon_state = "posarmor"
+	anchored = FALSE
+	density = TRUE
+	var/active = FALSE
+	var/upgraded = FALSE
+
+/obj/structure/bloodsucker/possessedarmor/upgraded
+	name = "shiny knight's armor"
+	upgraded = TRUE
+
+/obj/structure/bloodsucker/possessedarmor/bolt()
+	. = ..()
+	anchored = TRUE
+
+/obj/structure/bloodsucker/possessedarmor/unbolt()
+	. = ..()
+	anchored = FALSE
+	active = FALSE
+	STOP_PROCESSING(SSprocessing, src)
+
+/obj/structure/bloodsucker/possessedarmor/AltClick(mob/user)
+	if(!anchored)
+		setDir(turn(dir,-90))
+	else
+		return ..()
+
+/obj/structure/bloodsucker/possessedarmor/attackby(obj/item/I, mob/user, params)
+	if(upgraded)
+		to_chat(user, span_warning("[src] is already reinforced!"))
+		return
+	if(istype(I, /obj/item/stack/sheet/mineral/silver))
+		var/obj/item/stack/sheet/mineral/silver/S = I
+		if(S.amount < 5)
+			to_chat(user, span_warning("You need at least five silver bars to reinforce [src]!"))
+			return
+		else
+			to_chat(user, span_notice("You start adding [I] to [src]..."))
+			if(do_after(user, 5 SECONDS, target=src))
+				S.use(5)
+				new /obj/structure/bloodsucker/possessedarmor/upgraded(src.loc)
+				qdel(src)
+				return
+	return ..()
+
+/obj/structure/bloodsucker/possessedarmor/attack_hand(mob/user, list/modifiers)
+	. = ..()
+	active = TRUE
+	START_PROCESSING(SSprocessing, src)
+
+/obj/structure/bloodsucker/possessedarmor/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSprocessing, src)
+
+/obj/structure/bloodsucker/possessedarmor/process()
+	if(active)
+		for(var/mob/living/passerby in dview(1, get_turf(src)))
+			if(IS_BLOODSUCKER(passerby) || IS_VASSAL(passerby))
+				continue
+			to_chat(passerby, span_warning("The armor starts moving!"))
+			if(upgraded)
+				new /mob/living/simple_animal/hostile/bloodsucker/possessedarmor/upgraded(src.loc)
+			else
+				new /mob/living/simple_animal/hostile/bloodsucker/possessedarmor(src.loc)
+			qdel(src)
+
+////////////////////////////////////////////////////
+
 /obj/structure/bloodsucker/vassalrack
 	name = "persuasion rack"
 	desc = "If this wasn't meant for torture, then someone has some fairly horrifying hobbies."
-	icon = 'icons/obj/vamp_obj.dmi'
 	icon_state = "vassalrack"
 	anchored = FALSE
 	/// Start dense. Once fixed in place, go non-dense.
@@ -534,7 +747,6 @@
 /obj/structure/bloodsucker/candelabrum
 	name = "candelabrum"
 	desc = "It burns slowly, but doesn't radiate any heat."
-	icon = 'icons/obj/vamp_obj.dmi'
 	icon_state = "candelabrum"
 	light_color = "#66FFFF"//LIGHT_COLOR_BLUEGREEN // lighting.dm
 	light_power = 3

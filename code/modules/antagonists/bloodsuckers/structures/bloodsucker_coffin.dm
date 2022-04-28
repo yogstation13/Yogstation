@@ -2,9 +2,9 @@
 	// ALREADY CLAIMED
 	if(claimed.resident)
 		if(claimed.resident == owner.current)
-			to_chat(owner, "This is your [src].")
+			to_chat(owner, "This is your [claimed].")
 		else
-			to_chat(owner, "This [src] has already been claimed by another.")
+			to_chat(owner, "This [claimed] has already been claimed by another.")
 		return FALSE
 	if(!(/datum/crafting_recipe/vassalrack in owner?.learned_recipes))
 		owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)
@@ -19,7 +19,7 @@
 	coffin = claimed
 	lair = get_area(claimed)
 	to_chat(owner, span_userdanger("You have claimed the [claimed] as your place of immortal rest! Your lair is now [lair]."))
-	to_chat(owner, span_announce("Bloodsucker Tip: Find new lair recipes in the tribal tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Vassals."))
+	to_chat(owner, span_announce("Bloodsucker Tip: Find new lair recipes in the structure tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Vassals and the <i>Blood Altar</i> which lets you gain two tasks per night to Rank Up."))
 	return TRUE
 
 /// From crate.dm

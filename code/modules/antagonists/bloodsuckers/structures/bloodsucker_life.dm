@@ -1,6 +1,8 @@
 /// Runs from COMSIG_LIVING_BIOLOGICAL_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick()
 
+	if(isbrain(owner.current))
+		return
 	if(!owner)
 		INVOKE_ASYNC(src, .proc/HandleDeath)
 		return
@@ -51,9 +53,11 @@
 	///////////
 	// Reduce Value Quantity
 	if(target.stat == DEAD) // Penalty for Dead Blood
-		blood_taken /= 3
+		blood_taken /= 4
 	if(!ishuman(target)) // Penalty for Non-Human Blood
-		blood_taken /= 2
+		blood_taken /= 3
+	if(!target.mind)
+		blood_taken /= 5 // Penalty for Catatonics / Braindead
 	//if (!iscarbon(target)) // Penalty for Animals (they're junk food)
 	// Apply to Volume
 	AddBloodVolume(blood_taken)
@@ -65,7 +69,8 @@
 	if(frenzied)
 		frenzy_blood_drank += blood_taken
 	if(current_task)
-		task_blood_drank += blood_taken
+		if(target.mind)
+			task_blood_drank += blood_taken
 	return blood_taken
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,15 +196,9 @@
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
 	// Not "Alive"?
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
-		if(!owner.current || !isliving(owner.current) || isbrain(owner.current) || !get_turf(owner.current))
-			FinalDeath()
-			return
-	else
-		if(!owner.current || !iscarbon(owner.current) || isbrain(owner.current) || !get_turf(owner.current))
-			FinalDeath()
-			return
+	if(!owner.current || !get_turf(owner.current))
+		FinalDeath()
+		return
 	// Fire Damage? (above double health)
 	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2.5)
 		FinalDeath()
@@ -225,9 +224,8 @@
 
 	// BLOOD_VOLUME_GOOD: [336] - Pale
 //	handled in bloodsucker_integration.dm
-
-	// BLOOD_VOLUME_EXIT: [250] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
-	if(owner.current.blood_volume >= FRENZY_THRESHOLD_EXIT && frenzied)
+	// BLOOD_VOLUME_EXIT: [560] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
+	if(owner.current.blood_volume >= FRENZY_THRESHOLD_EXIT || frenzied)
 		owner.current.remove_status_effect(STATUS_EFFECT_FRENZY)
 	// BLOOD_VOLUME_BAD: [224] - Jitter
 	if(owner.current.blood_volume < BLOOD_VOLUME_BAD(owner.current) && prob(0.5) && !HAS_TRAIT(owner.current, TRAIT_NODEATH) && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
@@ -239,6 +237,9 @@
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
 	if(owner.current.blood_volume < (FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)) && !frenzied)
 		if(!iscarbon(owner.current))
+			return
+		if(owner.current.stat == DEAD)
+			HandleDeath()
 			return
 		enter_frenzy()
 	else if(owner.current.blood_volume < BLOOD_VOLUME_BAD(owner.current))
@@ -253,6 +254,40 @@
 		additional_regen = 0.5
 
 /datum/antagonist/bloodsucker/proc/enter_frenzy()
+	if(my_clan == CLAN_GANGREL)
+		var/mob/living/carbon/user = owner.current
+		AddBloodVolume(560 - user.blood_volume) //so it doesn't happen multiple times and refills your blood when you get out again
+		if(!do_mob(user, user, 2 SECONDS, TRUE))
+			return
+		playsound(user.loc, 'sound/weapons/slash.ogg', 25, 1)
+		to_chat(user, span_warning("<i><b>You skin rips and tears.</b></i>"))
+		if(!do_mob(user, user,  1 SECONDS, TRUE))
+			return
+		playsound(user.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
+		to_chat(user, span_warning("<i><b>You heart pumps blackened blood into your veins as your skin turns into fur.</b></i>"))
+		if(!do_mob(user, user,  1 SECONDS, TRUE))
+			return
+		playsound(user.loc, 'sound/weapons/slice.ogg', 25, 1)
+		to_chat(user, span_boldnotice("<i><b><FONT size = 3>YOU HAVE AWOKEN.</b></i>"))
+		var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww
+		if(!ww || ww.stat == DEAD)
+			ww = new /mob/living/simple_animal/hostile/bloodsucker/werewolf(user.loc)
+			user.forceMove(ww)
+			ww.bloodsucker = user
+			user.mind.transfer_to(ww)
+			var/list/wolf_powers = list(new /datum/action/bloodsucker/targeted/feast,)
+			for(var/datum/action/bloodsucker/power in powers)
+				if(istype(power, /datum/action/bloodsucker/fortitude))
+					wolf_powers += new /datum/action/bloodsucker/gangrel/wolfortitude
+				if(istype(power, /datum/action/bloodsucker/targeted/lunge))
+					wolf_powers += new /datum/action/bloodsucker/targeted/pounce
+				if(istype(power, /datum/action/bloodsucker/cloak))
+					wolf_powers += new /datum/action/bloodsucker/gangrel/howl
+				if(istype(power, /datum/action/bloodsucker/targeted/trespass))
+					wolf_powers += new /datum/action/bloodsucker/gangrel/rabidism
+			for(var/datum/action/bloodsucker/power in wolf_powers) 
+				power.Grant(ww)
+		return
 	owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
 
 /**
@@ -317,6 +352,7 @@
 		Torpor_End()
 
 /datum/antagonist/bloodsucker/proc/Torpor_Begin()
+	var/mob/living/carbon/human/bloodsucker = owner.current
 	to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
 	/// Force them to go to sleep
 	REMOVE_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
@@ -325,15 +361,16 @@
 	ADD_TRAIT(owner.current, TRAIT_FAKEDEATH, BLOODSUCKER_TRAIT)
 	ADD_TRAIT(owner.current, TRAIT_DEATHCOMA, BLOODSUCKER_TRAIT)
 	ADD_TRAIT(owner.current, TRAIT_RESISTLOWPRESSURE, BLOODSUCKER_TRAIT)
-	//ADD_TRAIT(owner.current, TRAIT_BRUTEIMMUNE, BLOODSUCKER_TRAIT)
+	bloodsucker.physiology.brute_mod *= 0
 	owner.current.Jitter(0)
 	/// Disable ALL Powers
 	DisableAllPowers()
 
 /datum/antagonist/bloodsucker/proc/Torpor_End()
+	var/mob/living/carbon/human/bloodsucker = owner.current
 	owner.current.grab_ghost()
 	to_chat(owner.current, span_warning("You have recovered from Torpor."))
-	//REMOVE_TRAIT(owner.current, TRAIT_BRUTEIMMUNE, BLOODSUCKER_TRAIT)
+	bloodsucker.physiology.brute_mod = initial(bloodsucker.physiology.brute_mod)
 	REMOVE_TRAIT(owner.current, TRAIT_RESISTLOWPRESSURE, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(owner.current, TRAIT_DEATHCOMA, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(owner.current, TRAIT_FAKEDEATH, BLOODSUCKER_TRAIT)
@@ -396,7 +433,7 @@
 	timeout = 8 MINUTES
 
 /datum/mood_event/drankkilled
-	description = "<span class='boldwarning'>I drank from my victim until they died. I feel... less human.</span>\n"
+	description = "<span class='boldwarning'>I fed off of a dead person. I feel... less human.</span>\n"
 	mood_change = -15
 	timeout = 10 MINUTES
 

@@ -1,7 +1,7 @@
-/// 1 minute
-#define TIME_BLOODSUCKER_DAY 60
-/// 10 minutes
-#define TIME_BLOODSUCKER_NIGHT 600
+/// 45 seconds
+#define TIME_BLOODSUCKER_DAY 45
+/// 15 minutes
+#define TIME_BLOODSUCKER_NIGHT 900
 /// 1.5 minutes
 #define TIME_BLOODSUCKER_DAY_WARN 90
 /// 30 seconds
@@ -90,8 +90,6 @@
 						continue
 					if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
 						give_transform_power()
-					if(!iscarbon(bloodsucker_minds.current))
-						qdel(bloodsucker_minds.current)
 					if(bloodsuckerdatum.altar_uses > 0)
 						to_chat(bloodsuckerdatum, span_notice("Your Altar uses have been reset!"))
 						bloodsuckerdatum.altar_uses = 0
@@ -181,8 +179,7 @@
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
 		for(var/datum/action/bloodsucker/power in bloodsuckerdatum.powers)
 			if(istype(power, /datum/action/bloodsucker/gohome))
-				bloodsuckerdatum.powers -= power
-				power.Remove(bloodsucker_minds.current)
+				bloodsuckerdatum.RemovePower(power)
 
 /obj/effect/sunlight/proc/give_transform_power()
 	for(var/datum/mind/bloodsucker_minds as anything in get_antag_minds(/datum/antagonist/bloodsucker))

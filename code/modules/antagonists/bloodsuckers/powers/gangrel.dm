@@ -4,6 +4,10 @@
 	background_icon_state = "gangrel_power_off"
 	background_icon_state_on = "gangrel_power_on"
 	background_icon_state_off = "gangrel_power_off"
+	purchase_flags = GANGREL_CAN_BUY
+	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
+	check_flags = BP_AM_COSTLESS_UNCONSCIOUS
+	cooldown = 10 SECONDS
 
 /datum/action/bloodsucker/gangrel/transform
 	name = "Transform"
@@ -15,125 +19,64 @@
 		Some forms have special abilites to them depending on what abilites you have.\n\
 		Be wary of your blood status when using it, takes 10 seconds of standing still to transform!"
 	power_flags = BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_AM_COSTLESS_UNCONSCIOUS
-	purchase_flags = NONE
 	bloodcost = 100
-	cooldown = 10 SECONDS
-
-/mob/living/simple_animal/hostile/bloodsucker
-	var/mob/living/controller
-
-/mob/living/simple_animal/hostile/bloodsucker/werewolf
-	name = "werewolf"
-	desc = "Who could imagine this things 'were' actually real?"
-	icon = 'icons/mob/bloodsucker_mobs.dmi'
-	icon_state = "wolfform"
-	icon_living = "wolfform"
-	icon_dead = "batform"
-	icon_gib = "batform"
-	speed = -2
-	response_help = "touches"
-	response_disarm = "flails at"
-	response_harm = "punches"
-	speak_chance = 0
-	maxHealth = 800
-	health = 800
-	see_in_dark = 10
-	harm_intent_damage = 20
-	melee_damage_lower = 20
-	melee_damage_upper = 20
-	attacktext = "violently mawls"
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 5)
-	faction = list("hostile", "bloodhungry")
-	attack_sound = 'sound/weapons/slash.ogg'
-	obj_damage = 50
-	environment_smash = ENVIRONMENT_SMASH_WALLS
-	mob_size = MOB_SIZE_LARGE
-	movement_type = GROUND
-	gold_core_spawnable = FALSE
-	speak_emote = list("gnashes")
-
-/mob/living/simple_animal/hostile/bloodsucker/giantbat
-	name = "giant bat"
-	desc = "That's a fat ass bat."
-	icon = 'icons/mob/bloodsucker_mobs.dmi'
-	icon_state = "batform"
-	icon_living = "batform"
-	icon_dead = "bat_dead"
-	icon_gib = "bat_dead"
-	move_to_delay = 2
-	response_help = "touches"
-	response_disarm = "flails at"
-	response_harm = "punches"
-	speak_chance = 0
-	maxHealth = 700
-	health = 700
-	see_in_dark = 10
-	harm_intent_damage = 20
-	melee_damage_lower = 20
-	melee_damage_upper = 20
-	attacktext = "bites"
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3)
-	faction = list("hostile", "bloodhungry")
-	attack_sound = 'sound/weapons/bite.ogg'
-	obj_damage = 35
-	pass_flags = PASSTABLE | PASSCOMPUTER
-	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
-	mob_size = MOB_SIZE_LARGE
-	movement_type = FLYING
-	gold_core_spawnable = FALSE
-	speak_emote = list("loudly squeaks")
-
-/mob/living/simple_animal/hostile/bloodsucker/Destroy() //makes us alive again
-	if(controller && mind)
-		visible_message(span_warning("[src] rapidly transforms into a humanoid figure!"), span_warning("You forcefully return to your normal form."))
-		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
-		if(mind)
-			mind.transfer_to(controller)
-		controller.forceMove(get_turf(src))
-	return ..()
-
-/mob/living/simple_animal/hostile/bloodsucker/death()
-	if(controller)
-		mind.transfer_to(controller)
-		controller.death()
-	addtimer(CALLBACK(src, .proc/gib), 20 SECONDS)
-	..()
 
 /datum/action/bloodsucker/gangrel/transform/ActivatePower()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/human/user = owner
 	var/datum/species/user_species = user.dna.species
+	var/minortransformdone = FALSE
+	var/mediumtransformdone = FALSE
 	user.Immobilize(10 SECONDS)
 	if(!do_mob(user, user, 10 SECONDS, 1))
 		return
 	switch(bloodsuckerdatum.total_blood_drank)
 		if(0 to 500)
-			if(iscatperson(user))
-				user.set_species(/datum/species/lizard)
-				playsound(user.loc, 'sound/voice/lizard/hiss.ogg', 50)
-			else
-				user.set_species(/datum/species/human/felinid)
-				playsound(user.loc, 'sound/voice/feline/meow1.ogg', 50)
+			if(!minortransformdone)
+				if(iscatperson(user))
+					user.set_species(/datum/species/lizard)
+					playsound(user.loc, 'sound/voice/lizard/hiss.ogg', 50)
+				else
+					user.set_species(/datum/species/human/felinid)
+					playsound(user.loc, 'sound/voice/feline/meow1.ogg', 50)
+					if(DIGITIGRADE in user_species.species_traits)
+						user_species.species_traits -= DIGITIGRADE
+				minortransformdone = TRUE
+				user_species.punchdamagelow += 5.0
+				user_species.punchdamagehigh += 5.0 //stronk
+				user_species.armor += 30
+				to_chat(user, span_notice("You aren't strong enough to morph into something stronger! But you do certainly feel more feral and stronger than before."))
+				return
+			if(minortransformdone)
+				user_species.punchdamagelow += 1
+				user_species.punchdamagehigh += 1
+				user_species.armor += 2.5
+				to_chat(user, span_notice("Using a bit more of blood you manage to get a tad stronger, but you still haven't evolved your ability yet."))
+				bloodsuckerdatum.AddBloodVolume(50)
+		if(500 to 1000)
+			if(!mediumtransformdone)
+				user.set_species(/datum/species/gorilla)
+				playsound(user.loc, 'sound/creatures/gorilla.ogg', 50)
 				if(DIGITIGRADE in user_species.species_traits)
 					user_species.species_traits -= DIGITIGRADE
-			user_species.punchdamagehigh += 5.0 //stronk
-			user_species.armor += 30
-			to_chat(user, span_notice("You aren't strong enough to morph into something stronger! But you do certainly feel more feral and stronger than before."))
-		if(500 to 1000)
-			user.set_species(/datum/species/gorilla)
-			to_chat(owner, span_notice("You transform into a gorrila-ey beast, you feel stronger!"))
-			playsound(user.loc, 'sound/creatures/gorilla.ogg', 50)
-			if(DIGITIGRADE in user_species.species_traits)
-				user_species.species_traits -= DIGITIGRADE
-			user_species.punchdamagehigh += 7.5 //very stronk
-			user_species.armor += 35
+				mediumtransformdone = TRUE
+				user_species.punchdamagelow += 7.5
+				user_species.punchdamagehigh += 7.5 //very stronk
+				user_species.armor += 35
+				to_chat(owner, span_notice("You transform into a gorrila-ey beast, you feel stronger!"))
+				return
+			if(mediumtransformdone)
+				user_species.punchdamagelow += 2
+				user_species.punchdamagehigh += 2
+				user_species.armor += 5
+				to_chat(owner, span_notice("Using a bit more of blood you manage to get a tad stronger, but you still haven't evolved your ability yet."))
+				bloodsuckerdatum.AddBloodVolume(25)
 		if(1500 to INFINITY)
 			var/mob/living/simple_animal/hostile/bloodsucker/giantbat/gb
 			if(!gb || gb.stat == DEAD)
 				gb = new /mob/living/simple_animal/hostile/bloodsucker/giantbat(user.loc)
 				user.forceMove(gb)
-				gb.controller = user
+				gb.bloodsucker = user
 				user.mind.transfer_to(gb)
 				var/list/bat_powers = list(new /datum/action/bloodsucker/gangrel/transform_back,)
 				for(var/datum/action/bloodsucker/power in bloodsuckerdatum.powers)
@@ -153,7 +96,7 @@
 			if(!ww || ww.stat == DEAD)
 				ww = new /mob/living/simple_animal/hostile/bloodsucker/werewolf(user.loc)
 				user.forceMove(ww)
-				ww.controller = user
+				ww.bloodsucker = user
 				user.mind.transfer_to(ww)
 				var/datum/action/bloodsucker/gangrel/transform_back/E = new
 				E.Grant(ww)
@@ -168,11 +111,7 @@
 	power_explanation = "<b>Transform</b>:\n\
 		Regress back to your humanoid form early, requires you to stand still.\n\
 		Beware you will not be able to transform again until the night passes!"
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_AM_COSTLESS_UNCONSCIOUS
-	purchase_flags = NONE
-	cooldown = 10 SECONDS
-
+		
 /datum/action/bloodsucker/gangrel/transform_back/ActivatePower()
 	var/mob/living/user = owner
 	if(!do_mob(user, user, 10 SECONDS))
@@ -181,7 +120,12 @@
 	qdel(owner)
 	qdel(bs)
 	. = ..()
-
+/*
+////////////////||\\\\\\\\\\\\\\\\
+\\	      	 Bat Only 			//
+//			  Powers			\\
+\\\\\\\\\\\\\\\\||////////////////
+*/
 /datum/action/bloodsucker/targeted/haste/batdash
 	name = "Flying Haste"
 	desc = "Propulse yourself into a position of advantage."
@@ -196,7 +140,7 @@
 		Created from your Immortal Haste ability."
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	check_flags = NONE
-	purchase_flags = NONE
+	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
 	cooldown = 15 SECONDS
 
@@ -224,7 +168,7 @@
 		Created from your Mesmerize ability."
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	check_flags = NONE
-	purchase_flags = NONE
+	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
 	cooldown = 12.5 SECONDS
 
@@ -236,7 +180,6 @@
 
 /datum/action/bloodsucker/targeted/bloodbolt/FireTargetedPower(atom/target_atom)
 	. = ..()
-
 	var/mob/living/user = owner
 	to_chat(user, span_warning("You fire a blood bolt!"))
 	user.changeNext_move(CLICK_CD_RANGE)
@@ -276,11 +219,8 @@
 		Knocksback and immobilizes people adjacent to you.\n\
 		Has a low recharge time and may be helpful in meelee situations!\n\
 		Created from your Brawn ability."
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	check_flags = NONE
-	purchase_flags = NONE
 	bloodcost = 0
-	cooldown = 10 SECONDS
 
 /datum/action/bloodsucker/gangrel/wingslam/ActivatePower()
 	var/mob/living/user = owner
@@ -308,3 +248,370 @@
 		var/send_dir = get_dir(user, M)
 		var/turf/turf_thrown_at = get_ranged_target_turf(M, send_dir, 5)
 		M.throw_at(turf_thrown_at, 5, TRUE, user)
+
+/*  //\\                  //\\    
+////////////////||\\\\\\\\\\\\\\\\
+\\	      	 Wolf Only 			//
+//			  Powers			\\
+\\\\\\\\\\\\\\\\||////////////////
+*/  
+
+/datum/action/bloodsucker/targeted/feast
+	name = "Feast"
+	desc = "DEVOUR THE WEAKLINGS, CAUSE THEM HARM. FEED. ME."
+	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	button_icon_state = "power_feast"
+	background_icon_state_on = "wolf_power_on"
+	background_icon_state_off = "wolf_power_off"
+	power_explanation = "<b>Fortitude</b>:\n\
+		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
+		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
+		While using Fortitude, attempting to run will crush you.\n\
+		At level 4, you gain complete stun immunity.\n\
+		Higher levels will increase Brute and Stamina resistance."
+	power_flags = BP_AM_TOGGLE
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
+	bloodcost = 0
+	cooldown = 10 SECONDS
+	target_range = 1
+	power_activates_immediately = TRUE
+	prefire_message = "WHOM SHALL BE DEVOURED."
+
+/datum/action/bloodsucker/targeted/feast/FireTargetedPower(atom/target_atom)
+	if(isturf(target_atom))
+		return
+	owner.face_atom(target_atom)
+	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/user = owner
+	var/mob/living/carbon/human/target = target_atom
+	if(target.stat == DEAD)
+		user.devour(target)
+		PowerActivatedSuccessfully()
+		return
+	user.do_attack_animation(target, ATTACK_EFFECT_BITE)
+	var/affecting = pick(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	playsound(get_turf(target), 'sound/weapons/bite.ogg', 60, 1, -1)
+	target.apply_damage(35, BRUTE, affecting, target.run_armor_check(affecting, "melee", armour_penetration = 10), sharpness = SHARP_EDGED)
+	target.visible_message(span_danger("[user] takes a large bite out of [target]!"), \
+					  span_userdanger("[user] takes a large bite out of you!"))
+	PowerActivatedSuccessfully()
+
+/datum/action/bloodsucker/gangrel/wolfortitude
+	name = "Wolftitude"
+	desc = "Withstand egregious physical wounds and walk away from attacks that would stun, pierce, and dismember lesser beings."
+	button_icon_state = "power_wort"
+	background_icon_state_on = "wolf_power_on"
+	background_icon_state_off = "wolf_power_off"
+	power_explanation = "<b>Fortitude</b>:\n\
+		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
+		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
+		While using Fortitude, attempting to run will crush you.\n\
+		At level 4, you gain complete stun immunity.\n\
+		Higher levels will increase Brute and Stamina resistance."
+	power_flags = BP_AM_TOGGLE
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
+	bloodcost = 0
+	cooldown = 8 SECONDS
+
+/datum/action/bloodsucker/gangrel/wolfortitude/ActivatePower()
+	. = ..()
+	to_chat(owner, span_notice("Your fur and claws harden, becoming as hard as steel."))
+	var/mob/living/simple_animal/hostile/A = owner
+	A.maxHealth = initial(A.maxHealth) * 1.2
+	A.health = min(initial(A.maxHealth), initial(A.health) * 1.2)
+	A.set_varspeed(initial(A.speed) + 2) // slower
+	A.harm_intent_damage = initial(A.harm_intent_damage) + 10
+	A.melee_damage_lower = initial(A.melee_damage_lower) + 10
+	A.melee_damage_upper = initial(A.melee_damage_upper) + 10
+
+/datum/action/bloodsucker/gangrel/wolfortitude/DeactivatePower()
+	. = ..()
+	var/mob/living/simple_animal/hostile/A = owner
+	A.maxHealth = initial(A.maxHealth) / 1.2
+	A.health = min(initial(A.maxHealth), initial(A.health) / 1.2)
+	A.set_varspeed(initial(A.speed))
+	A.harm_intent_damage = initial(A.harm_intent_damage) - 10
+	A.melee_damage_lower = initial(A.melee_damage_lower) - 10
+	A.melee_damage_upper = initial(A.melee_damage_upper) - 10
+
+/datum/action/bloodsucker/targeted/pounce
+	name = "Pounce"
+	desc = "GRAPPLE THEM TO THE GROUND AND BITE THEIR ORGANS OUT."
+	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	button_icon_state = "power_pounce"
+	background_icon_state_on = "wolf_power_on"
+	background_icon_state_off = "wolf_power_off"
+	power_explanation = "<b>Predatory Lunge</b>:\n\
+		Click any player to instantly dash at them if above power level 3, aggressively grabbing them.\n\
+		If not on level 3, you will have to charge your lunge for a while. During this time you'll have to stand still for lunge to work\n\
+		You cannot use the Power if you are aggressively grabbed.\n\
+		If the target is wearing riot gear or is a Monster Hunter, you will merely passively grab them.\n\
+		If grabbed from behind or from the darkness (Cloak of Darkness counts) with a power level at or above 4, will additionally knock the target down.\n\
+		Higher levels will increase the knockdown dealt to enemies."
+	power_flags = BP_AM_TOGGLE
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	bloodcost = 0
+	cooldown = 10 SECONDS
+	target_range = 6
+	power_activates_immediately = FALSE
+
+/datum/action/bloodsucker/targeted/pounce/ActivatePower()
+	. = ..()
+	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
+	A.icon_state = initial(A.icon_state) + "_pounce"
+	A.icon_living = initial(A.icon_state) + "_pounce"
+	A.update_body()
+
+/datum/action/bloodsucker/targeted/pounce/DeactivatePower()
+	. = ..()
+	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
+	A.icon_state = initial(A.icon_state)
+	A.icon_living = initial(A.icon_state)
+	A.update_body()
+
+/datum/action/bloodsucker/targeted/pounce/FireTargetedPower(atom/target_atom)
+	. = ..()
+	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/user = owner
+	owner.face_atom(target_atom)
+	if(iscarbon(target_atom))
+		var/mob/living/carbon/target = target_atom
+		var/turf/targeted_turf = get_turf(target)
+		var/safety = get_dist(user, targeted_turf) * 3 + 1
+		var/consequetive_failures = 0
+		while(--safety && !target.Adjacent(user))
+			if(!step_to(user, targeted_turf))
+				consequetive_failures++
+			if(consequetive_failures >= 3) // If 3 steps don't work, just stop.
+				break
+		if(target.stat == DEAD)
+			if(!user.Adjacent(target))
+				return
+			user.devour(target)
+			PowerActivatedSuccessfully()
+			return
+		target.Knockdown(8 SECONDS)
+		target.Paralyze(2 SECONDS)
+	PowerActivatedSuccessfully()
+
+/datum/action/bloodsucker/targeted/pounce/CheckValidTarget(atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
+	return isliving(target_atom)
+
+/datum/action/bloodsucker/targeted/pounce/CheckCanTarget(atom/target_atom)
+	// DEFAULT CHECKS (Distance)
+	. = ..()
+	// Target Type: Living
+	if(isliving(target_atom))
+		return TRUE
+	return FALSE
+
+/datum/action/bloodsucker/gangrel/howl
+	name = "Howl"
+	desc = "BREATHE IN AND BREATH OUT AS MUCH AS POSSIBLE. KNOCKDOWNS AND CONFUSES NEARBY WEAKLINGS."
+	button_icon_state = "power_howl"
+	background_icon_state_on = "wolf_power_on"
+	background_icon_state_off = "wolf_power_off"
+	power_explanation = "<b>Fortitude</b>:\n\
+		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
+		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
+		While using Fortitude, attempting to run will crush you.\n\
+		At level 4, you gain complete stun immunity.\n\
+		Higher levels will increase Brute and Stamina resistance."
+	power_flags = BP_AM_TOGGLE
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
+	bloodcost = 0
+	cooldown = 15 SECONDS
+
+/datum/action/bloodsucker/gangrel/howl/ActivatePower()
+	. = ..()
+	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
+	A.visible_message(span_danger("[A] inhales a ton of air!"), span_warning("You prepare to howl!"))
+	if(!do_mob(A, A, 2.5 SECONDS, TRUE))
+		return
+	playsound(A.loc, 'yogstation/sound/creatures/darkspawn_howl.ogg', 50, 1)
+	A.visible_message(span_userdanger("[A] let's out a chilling howl!"), span_boldwarning("You howl, confusing and deafening nearby mortals."))
+	for(var/mob/target in range(3, A))
+		if(target == A && target == A.bloodsucker)
+			continue
+		if(IS_BLOODSUCKER(target) || IS_VASSAL(target))
+			continue
+		if(iscarbon(target))
+			var/mob/living/carbon/M = target
+			M.confused += 15
+			M.adjustEarDamage(0, 50)
+			if(target.Adjacent(A))
+				M.Knockdown(4 SECONDS)
+				M.Paralyze(0.1)
+		DeactivatePower()
+
+/datum/action/bloodsucker/gangrel/rabidism
+	name = "Rabidism"
+	desc = "UNLEASHES YOUR POTENTIAL OF AREA DAMAGE, BUT HURTS YOURSELF IN THE PROCESS, DEALS MORE DAMAGE TO STRUCTURES."
+	button_icon_state = "power_rabid"
+	background_icon_state_on = "wolf_power_on"
+	background_icon_state_off = "wolf_power_off"
+	power_explanation = "<b>Rabidism</b>:\n\
+		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
+		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
+		While using Fortitude, attempting to run will crush you.\n\
+		At level 4, you gain complete stun immunity.\n\
+		Higher levels will increase Brute and Stamina resistance."
+	power_flags = BP_AM_TOGGLE
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
+	bloodcost = 0
+	cooldown = 20 SECONDS
+
+/datum/action/bloodsucker/gangrel/rabidism/ActivatePower()
+	. = ..()
+	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
+	A.environment_smash = ENVIRONMENT_SMASH_RWALLS
+	A.harm_intent_damage = initial(A.harm_intent_damage) - 10
+	A.melee_damage_lower = initial(A.melee_damage_lower) - 10
+	A.melee_damage_upper = initial(A.melee_damage_upper) - 10
+	A.obj_damage = initial(A.obj_damage) * 3
+	START_PROCESSING(SSprocessing, src)
+	spawn(10 SECONDS)
+	DeactivatePower()
+
+/datum/action/bloodsucker/gangrel/rabidism/process()
+	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
+	for(var/mob/living/all_targets in dview(1, get_turf(A)))
+		if(all_targets == A && all_targets == A.bloodsucker)
+			continue
+		A.UnarmedAttack(all_targets) //byongcontrol
+
+/datum/action/bloodsucker/gangrel/rabidism/DeactivatePower()
+	. = ..()
+	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
+	A.environment_smash = initial(A.environment_smash)
+	A.harm_intent_damage = initial(A.harm_intent_damage)
+	A.melee_damage_lower = initial(A.melee_damage_lower)
+	A.melee_damage_upper = initial(A.melee_damage_upper)
+	A.obj_damage = initial(A.obj_damage)
+	STOP_PROCESSING(SSprocessing, src)
+
+/datum/action/bloodsucker/targeted/tear
+	name = "Tear"
+	desc = "Tear in specific areas of a mortal's body and inflict great pain on them."
+	button_icon_state = "power_tear"
+	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	background_icon_state_on = "gangrel_power_on"
+	background_icon_state_off = "gangrel_power_off"
+	power_explanation = "<b>Tear</b>:\n\
+		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
+		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
+		While using Fortitude, attempting to run will crush you.\n\
+		At level 4, you gain complete stun immunity.\n\
+		Higher levels will increase Brute and Stamina resistance."
+	power_flags = BP_AM_TOGGLE
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
+	bloodcost = 6
+	cooldown = 20 SECONDS
+	var/mob/living/mauled
+
+/datum/action/bloodsucker/targeted/tear/FireTargetedPower(atom/target_atom)
+	. = ..()
+	var/mob/living/carbon/human/user = owner
+	mauled = target_atom
+	user.do_attack_animation(mauled, ATTACK_EFFECT_CLAW)
+	var/obj/item/bodypart/affecting = mauled.get_bodypart(ran_zone(user.zone_selected))
+	playsound(get_turf(mauled), 'sound/weapons/slash.ogg', 60, 1, -1)
+	mauled.apply_damage(15, BRUTE, affecting, mauled.run_armor_check(affecting, "melee", armour_penetration = 10), sharpness = SHARP_EDGED)
+	START_PROCESSING(SSprocessing, src)
+
+/datum/action/bloodsucker/targeted/tear/process()
+	var/mob/living/carbon/human/user = owner
+	for(var/mob/living/victims in dview(1, get_turf(user)))
+		spawn(10)
+		if(!(victims == mauled))
+			continue
+		if(IS_BLOODSUCKER(mauled))
+			continue
+		if(!do_mob(user, victims, 1 SECONDS))
+			STOP_PROCESSING(SSprocessing, src)
+			continue
+		var/datum/status_effect/saw_bleed/B = victims.has_status_effect(STATUS_EFFECT_SAWBLEED)
+		user.do_attack_animation(mauled, ATTACK_EFFECT_CLAW)
+		playsound(get_turf(mauled), 'sound/weapons/slash.ogg', 60, 1, -1)
+		if(!B)
+			victims.apply_status_effect(STATUS_EFFECT_SAWBLEED)
+		else
+			B.add_bleed(B.bleed_buildup)
+
+/datum/action/bloodsucker/targeted/tear/CheckValidTarget(atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
+	return isliving(target_atom)
+
+/datum/action/bloodsucker/targeted/tear/CheckCanTarget(atom/target_atom)
+	// DEFAULT CHECKS (Distance)
+	. = ..()
+	// Target Type: Living
+	if(isliving(target_atom))
+		return TRUE
+	return FALSE
+
+/obj/item/clothing/neck/wolfcollar
+	name = "Wolf Legs"
+	desc = "damn"
+	icon_state = "collar"
+	item_state = "collar"
+	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	alternate_worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
+	body_parts_covered = NECK
+
+/obj/item/clothing/ears/wolfears
+	name = "Wolf Legs"
+	desc = "damn"
+	icon_state = "ears"
+	item_state = "ears"
+	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	alternate_worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
+	flags_inv = HIDEHAIR|HIDEFACE
+	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
+	
+
+/obj/item/clothing/gloves/wolfclaws
+	name = "Wolf Legs"
+	desc = "damn"
+	icon_state = "claws"
+	item_state = "claws"
+	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	alternate_worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	body_parts_covered = ARMS|HANDS
+	flags_inv = HIDEJUMPSUIT
+	var/datum/action/bloodsucker/targeted/tear/tearaction = new
+
+/obj/item/clothing/shoes/wolflegs
+	name = "Wolf Legs"
+	desc = "damn"
+	icon_state = "legs"
+	item_state = "legs"
+	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	alternate_worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	slowdown = SHOES_SLOWDOWN - 0.5
+	body_parts_covered = GROIN|LEGS|FEET
+
+/obj/item/clothing/gloves/wolfclaws/equipped(mob/user, slot)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(slot == SLOT_GLOVES)
+		var/mob/living/carbon/human/H = user
+		tearaction.Grant(H)
+
+/obj/item/clothing/gloves/wolfclaws/dropped(mob/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(SLOT_GLOVES) == src)
+		tearaction.Remove(H)

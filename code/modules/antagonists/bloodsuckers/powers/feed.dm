@@ -225,7 +225,8 @@
 	ADD_TRAIT(user, TRAIT_MUTE, BLOODSUCKER_TRAIT) // My mouth is full!
 	user.Immobilize(10 SECONDS) // Prevents spilling blood accidentally.
 
-/datum/action/bloodsucker/feed/UsePower(mob/living/user)
+/datum/action/bloodsucker/feed/process(delta_time)
+	var/mob/living/user = owner
 	if(!ContinueActive(user, feed_target))
 		if(amSilent)
 			to_chat(user, span_warning("Your feeding has been interrupted... but [feed_target.p_they()] didn't seem to notice you."))

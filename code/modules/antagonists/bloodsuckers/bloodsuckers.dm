@@ -41,6 +41,10 @@
 	var/datum/martial_art/frenzygrab/frenzygrab = new
 	///You get assigned a Clan once you Rank up enough
 	var/my_clan = NONE
+	///How many clan points you have -> Used in clans in order to assert certain limits // Upgrades and stuff
+	var/clanpoints = 0
+	///How much progress have you done on your clan
+	var/clanprogress = 0
 
 	///Vassals under my control. Periodically remove the dead ones.
 	var/list/datum/antagonist/vassal/vassals = list()
@@ -186,7 +190,7 @@
 /datum/antagonist/bloodsucker/admin_add(datum/mind/new_owner, mob/admin)
 	var/levels = input("How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", bloodsucker_level_unspent) as null | num
 	var/msg = " made [key_name_admin(new_owner)] into \a [name]"
-	if(!isnull(levels))
+	if(levels > 1)
 		bloodsucker_level_unspent = levels
 		msg += " with [levels] extra unspent Ranks."
 	message_admins("[key_name_admin(usr)][msg]")
@@ -376,7 +380,7 @@
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(owner.current)
 	if(!owner || !owner.current || vassaldatum)
 		return
-	bloodsucker_level_unspent++ //same thing as below
+	bloodsucker_level_unspent++
 	passive_blood_drain -= 0.03 * bloodsucker_level //do something. It's here because if you are gaining points through other means you are doing good
 	// Spend Rank Immediately?
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
@@ -428,6 +432,10 @@
 		if(!choice || !options[choice])
 			to_chat(owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
 			return
+		if((locate(options[choice]) in powers))
+			to_chat(owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
+			return
+		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
 		if(!istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 			to_chat(owner.current, span_warning("You must be in your Coffin to purchase Powers."))
 			return

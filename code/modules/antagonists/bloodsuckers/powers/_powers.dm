@@ -22,7 +22,7 @@
 	/// Requirement flags for checks
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	/// Who can purchase the Power
-	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|TREMERE_CAN_BUY|VASSAL_CAN_BUY|HUNTER_CAN_BUY
+	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|LASOMBRA_CAN_BUY|VASSAL_CAN_BUY|HUNTER_CAN_BUY
 
 	// COOLDOWNS //
 	///Timer between Power uses.
@@ -39,6 +39,9 @@
 	var/bloodcost = 0
 	///The cost to MAINTAIN this Power - Only used for Constant Cost Powers
 	var/constant_bloodcost = 0
+	///If the Power has any additional descriptions coming from either 3rd partys or the power itself
+	var/additional_desc = FALSE
+	var/additional_text
 
 // Modify description to add cost.
 /datum/action/bloodsucker/New(Target)
@@ -47,6 +50,8 @@
 
 /datum/action/bloodsucker/proc/UpdateDesc()
 	desc = initial(desc)
+	if(additional_desc)
+		desc += "<br><br><b>ASCENDED</b>: [additional_text]"
 	if(bloodcost > 0)
 		desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)
@@ -55,6 +60,8 @@
 		desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
 	if(level_current > 0)
 		desc += "<br><br><b>LEVEL:</b><i> [name] is currently level [level_current].</i>"
+	if(cooldown > 0)
+		desc += "<br><br><b>COOLDOWN:</b><i> [name] has a cooldown of [cooldown / 10] seconds.</i>"
 
 /datum/action/bloodsucker/Destroy()
 	bloodsuckerdatum_power = null
@@ -178,33 +185,32 @@
 /datum/action/bloodsucker/proc/ActivatePower()
 	active = TRUE
 	if(power_flags & BP_AM_TOGGLE)
-		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/UsePower)
-	owner.log_message("used [src].", LOG_ATTACK, color="red")
+		START_PROCESSING(SSprocessing, src)
+	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
 	UpdateButtonIcon()
 
 /datum/action/bloodsucker/proc/DeactivatePower()
 	if(power_flags & BP_AM_TOGGLE)
-		UnregisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE)
+		STOP_PROCESSING(SSprocessing, src)
+	if(power_flags & BP_AM_SINGLEUSE)
+		RemoveAfterUse()
+		return
 	active = FALSE
 	UpdateButtonIcon()
 	StartCooldown()
 
 ///Used by powers that are continuously active (That have BP_AM_TOGGLE flag)
-/datum/action/bloodsucker/proc/UsePower(mob/living/user)
-	if(!active) // Power isn't active? Then stop here, so we dont keep looping UsePower for a non existent Power.
-		return FALSE
-	if(!ContinueActive(user)) // We can't afford the Power? Deactivate it.
+/datum/action/bloodsucker/process(delta_time)
+	if(!ContinueActive(owner)) // We can't afford the Power? Deactivate it.
 		DeactivatePower()
 		return FALSE
 	// We can keep this up (For now), so Pay Cost!
-	if(!(power_flags & BP_AM_COSTLESS_UNCONSCIOUS) && user.stat != CONSCIOUS)
+	if(!(power_flags & BP_AM_COSTLESS_UNCONSCIOUS) && owner.stat != CONSCIOUS)
 		bloodsuckerdatum_power?.AddBloodVolume(-constant_bloodcost)
 	return TRUE
 
 /// Checks to make sure this power can stay active
 /datum/action/bloodsucker/proc/ContinueActive(mob/living/user, mob/living/target)
-	if(!active)
-		return FALSE
 	if(!user)
 		return FALSE
 	if(!constant_bloodcost > 0 || user.blood_volume > 0)
