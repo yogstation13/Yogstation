@@ -15,7 +15,7 @@
 	name = "egg"
 	desc = "An egg!"
 	icon_state = "egg"
-	list_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/growthserum = 1)
+	list_reagents = list(/datum/reagent/consumable/eggyolk = 5)
 	cooked_type = /obj/item/reagent_containers/food/snacks/boiledegg
 	filling_color = "#F0E68C"
 	foodtype = MEAT | EGG
