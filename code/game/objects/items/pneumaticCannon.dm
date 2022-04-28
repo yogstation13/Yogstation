@@ -314,7 +314,7 @@
 	throw_amount = 1
 	maxWeightClass = 2 //a single magspear
 	spin_item = FALSE
-	var/static/list/magspear_typecache = typecacheof(/obj/item/throwing_star/magspear)
+	var/static/list/magspear_typecache = typecacheof(/obj/item/throwing_star/magspear, /obj/item/twohanded/clockwork/brass_spear)
 
 /obj/item/pneumatic_cannon/speargun/Initialize()
 	. = ..()

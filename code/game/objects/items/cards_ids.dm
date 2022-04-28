@@ -383,6 +383,11 @@ update_label("John Doe", "Clowny")
 	. = ..()
 	update_label()
 
+/obj/item/card/id/syndicate/ratvar
+	name = "servant ID card"
+	icon_state = "ratvar"
+	access = list(ACCESS_CLOCKCULT, ACCESS_MAINT_TUNNELS)
+
 // Returns true if new account was set.
 /obj/item/card/id/proc/set_new_account(mob/living/user)
 	. = FALSE
@@ -539,7 +544,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/occupying/Initialize()
     access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
     . = ..()
-    
+
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
 	. = ..()
