@@ -215,7 +215,6 @@ God bless America.
 		user.changeNext_move(CLICK_CD_MELEE)
 	return ..()
 
-
 /obj/item/syndicate_basket
 	name = "syndicate frying basket"
 	icon = 'icons/obj/kitchen.dmi' 
