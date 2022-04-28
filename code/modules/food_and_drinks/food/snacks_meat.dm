@@ -443,7 +443,8 @@
 	icon_state = "nugget_[shape]"
 
 /obj/item/reagent_containers/food/snacks/nugget/Destroy()
-	qdel(nugget_man)
+	if(nugget_man)
+		qdel(nugget_man)
 	. = ..()
 
 /obj/item/reagent_containers/food/snacks/pigblanket
