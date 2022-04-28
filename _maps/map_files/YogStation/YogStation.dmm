@@ -959,11 +959,11 @@
 /area/crew_quarters/heads/hos)
 "adh" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/mouse/brown/Tom,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
+/mob/living/simple_animal/mouse/brown/Tom,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adi" = (
@@ -12373,12 +12373,12 @@
 	pixel_y = -32
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /mob/living/simple_animal/hostile/lizard{
 	name = "Wags-His-Tail";
 	real_name = "Wags-His-Tail"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
@@ -19845,14 +19845,14 @@
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "bGO" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
 /mob/living/simple_animal/cockroach{
 	desc = "Virtually unkillable.";
 	name = "Becquerel";
 	sentience_type = 5;
 	status_flags = 16
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -32649,10 +32649,6 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/structure/noticeboard{
-	dir = 8;
-	pixel_x = 27
-	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "gNS" = (
@@ -38843,7 +38839,6 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
 "jKn" = (
-/mob/living/simple_animal/pet/dog/corgi/borgi,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
@@ -38853,6 +38848,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/mob/living/simple_animal/pet/dog/corgi/borgi,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "jKG" = (
@@ -40324,10 +40320,10 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/mob/living/simple_animal/spiffles,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/mob/living/simple_animal/spiffles,
 /turf/open/floor/plasteel,
 /area/clerk)
 "kBL" = (
@@ -47637,11 +47633,11 @@
 	pixel_x = 8;
 	pixel_y = -5
 	},
-/mob/living/simple_animal/pet/dog/corgi/Ian{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/mob/living/simple_animal/pet/dog/corgi/Ian{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
@@ -57292,9 +57288,6 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/mob/living/simple_animal/bot/cleanbot/medical{
-	on = 0
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -57303,6 +57296,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/mob/living/simple_animal/bot/cleanbot/medical{
+	on = 0
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
@@ -64077,6 +64073,10 @@
 	dir = 8
 	},
 /obj/item/twohanded/required/kirbyplants/random,
+/obj/structure/noticeboard{
+	dir = 8;
+	pixel_x = 27
+	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "wIS" = (
@@ -64108,10 +64108,10 @@
 	dir = 8
 	},
 /obj/item/toy/figure/ce,
-/mob/living/simple_animal/parrot/Poly,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/mob/living/simple_animal/parrot/Poly,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "wJG" = (
@@ -66587,8 +66587,8 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/mob/living/carbon/monkey,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/mob/living/carbon/monkey,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "yaD" = (
