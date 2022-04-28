@@ -75,6 +75,7 @@
 	desc = "A desolate and shallow grave for those who have fallen."
 	icon = 'icons/obj/lavaland/misc.dmi'
 	icon_state = "grave"
+	deconstructible = FALSE
 
 /obj/structure/fluff/grave/empty
 	name = "empty grave"

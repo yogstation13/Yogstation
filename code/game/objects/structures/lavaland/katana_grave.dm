@@ -8,11 +8,15 @@
 
 /obj/structure/katana_grave/attack_hand(mob/user)
 	. = ..()
+	activate()
+
+/obj/structure/katana_grave/proc/activate()
+	playsound(src, 'sound/effects/break_stone.ogg', 50, 1)
+	new dropping_item(get_turf(src))
+	for(var/obj/structure/fluff/grave/other_grave in orange(9,src))
+		new /mob/living/simple_animal/hostile/asteroid/hivelord/legion(get_turf(other_grave))
+		playsound(other_grave, 'sound/effects/break_stone.ogg', 50, 1)
+	new /obj/structure/fluff/grave/empty(get_turf(src))
 	qdel(src)
 
-/obj/structure/katana_grave/Destroy()
-	playsound(src, 'sound/effects/break_stone.ogg', 50, 1)
-	new /obj/structure/fluff/grave/empty(get_turf(src))
-	new dropping_item(get_turf(src))
-	. = ..()
 	
