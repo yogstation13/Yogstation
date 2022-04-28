@@ -364,6 +364,15 @@
 	materials = null
 	break_chance = 50
 
+/obj/structure/chair/brass/relaymove(mob/user, direction)
+	if(!direction)
+		return FALSE
+	if(direction == dir)
+		return
+	setDir(direction)
+	playsound(src, 'sound/effects/servostep.ogg', 50, FALSE)
+	return FALSE
+
 /obj/item/chair/wood/narsie_act()
 	return
 

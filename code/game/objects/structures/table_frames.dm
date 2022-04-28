@@ -119,7 +119,7 @@
 			return
 		to_chat(user, span_notice("You start adding [W] to [src]..."))
 		if(do_after(user, 2 SECONDS, target = src) && W.use(1))
-			make_new_table(/obj/structure/table/reinforced/brass)
+			make_new_table(make_new_table(/obj/structure/table/brass)
 	else
 		return ..()
 
