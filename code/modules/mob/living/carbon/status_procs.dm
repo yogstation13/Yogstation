@@ -45,12 +45,7 @@
 
 ////////////////////////////////////////TRAUMAS/////////////////////////////////////////
 
-/mob/living/carbon/proc/get_traumas()	
-	if(!mind)
-		return ..()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
-	if(bloodsuckerdatum && HAS_TRAIT(src, TRAIT_MASQUERADE))
-		return
+/mob/living/carbon/proc/get_traumas()
 	. = list()
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
 	if(B)
