@@ -73,6 +73,9 @@
 	return FALSE
 
 /obj/structure/window/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd)
+	if (resistance_flags & INDESTRUCTIBLE)
+		return FALSE
+
 	switch(the_rcd.mode)
 		if(RCD_DECONSTRUCT)
 			to_chat(user, span_notice("You deconstruct the window."))

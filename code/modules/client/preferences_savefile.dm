@@ -212,6 +212,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["tip_delay"], tip_delay)
 	READ_FILE(S["pda_style"], pda_style)
 	READ_FILE(S["pda_color"], pda_color)
+	READ_FILE(S["id_in_pda"], id_in_pda)
 
 	READ_FILE(S["skillcape"], skillcape)
 	READ_FILE(S["skillcape_id"], skillcape_id)
@@ -348,6 +349,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["tip_delay"], tip_delay)
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
+	WRITE_FILE(S["id_in_pda"], id_in_pda)
 	WRITE_FILE(S["skillcape"], skillcape)
 	WRITE_FILE(S["skillcape_id"], skillcape_id)
 	WRITE_FILE(S["show_credits"], show_credits)
@@ -440,6 +442,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_polysmorph_dome"], features["dome"])
 	READ_FILE(S["feature_polysmorph_dorsal_tubes"], features["dorsal_tubes"])
 	READ_FILE(S["feature_ethereal_mark"], features["ethereal_mark"])
+	READ_FILE(S["feature_pod_hair"], features["pod_hair"])
+	READ_FILE(S["feature_pod_flower"], features["pod_flower"])
 
 	READ_FILE(S["persistent_scars"], persistent_scars)
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
@@ -541,6 +545,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["dome"]	= sanitize_inlist(features["dome"], GLOB.dome_list)
 	features["dorsal_tubes"]	= sanitize_inlist(features["dorsal_tubes"], GLOB.dorsal_tubes_list)
 	features["ethereal_mark"]	= sanitize_inlist(features["ethereal_mark"], GLOB.ethereal_mark_list)
+	features["pod_hair"]	= sanitize_inlist(features["pod_hair"], GLOB.pod_hair_list)
+	features["pod_flower"]	= sanitize_inlist(features["pod_flower"], GLOB.pod_flower_list)
 
 	persistent_scars = sanitize_integer(persistent_scars)
 
@@ -602,6 +608,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_polysmorph_dome"]			, features["dome"])
 	WRITE_FILE(S["feature_polysmorph_dorsal_tubes"]			, features["dorsal_tubes"])
 	WRITE_FILE(S["feature_ethereal_mark"]			, features["ethereal_mark"])
+	WRITE_FILE(S["feature_pod_hair"]			, features["pod_hair"])
+	WRITE_FILE(S["feature_pod_flower"]			, features["pod_flower"])
 	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
 
 	//Custom names

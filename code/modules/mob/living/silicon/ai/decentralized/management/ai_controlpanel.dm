@@ -29,6 +29,10 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	if(mapload)
 		cleared_for_use = TRUE
 
+/obj/machinery/computer/ai_control_console/Destroy()
+	stop_download()
+	. = ..()
+
 /obj/machinery/computer/ai_control_console/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/aicard))
 		if(intellicard)
@@ -205,6 +209,9 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 /obj/machinery/computer/ai_control_console/proc/finish_download()
 	if(intellicard)
+		if(!isaicore(downloading.loc))
+			stop_download(TRUE)
+			return
 		downloading.transfer_ai(AI_TRANS_TO_CARD, user_downloading, null, intellicard)
 		intellicard.forceMove(get_turf(src))
 		intellicard.update_icon()

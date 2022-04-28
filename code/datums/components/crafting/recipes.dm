@@ -83,6 +83,19 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/pipebomb
+	name = "Pipe Bomb"
+	result = /obj/item/grenade/pipebomb
+	reqs = list(/datum/reagent/fuel = 50,
+				/obj/item/stack/cable_coil = 1,
+				/obj/item/assembly/igniter = 1,
+				/obj/item/pipe = 1,
+				/obj/item/assembly/mousetrap = 1)
+	tools = list(TOOL_WELDER, TOOL_WRENCH, TOOL_WIRECUTTER)
+	time = 1.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
 	result = /obj/item/shield/riot/flash

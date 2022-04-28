@@ -235,6 +235,8 @@
 		var/mob/living/carbon/human/H = user
 		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // yogs start -- vampire biting
 			return // yogs end
+		if(H.a_intent == INTENT_HARM)
+			last_damage = "fist"
 		dna.species.spec_attack_hand(H, src)
 
 /mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/M)

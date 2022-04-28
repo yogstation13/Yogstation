@@ -1203,9 +1203,15 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#4f4e3a"
 	airlock_wires = /datum/wires/airlock/ai
 /area/ai_monitored/secondarydatacore
-	name= "AI Secondary Datacore"
+	name = "AI Secondary Datacore Monitoring"
 	icon_state =  "ai"
 	minimap_color = "#00fff6"
+
+/area/ai_monitored/secondarydatacoreserver
+	name = "AI Secondary Datacore Servers"
+	icon_state = "ai"
+	minimap_color = "#00fff6"
+
 	//Turret_protected
 
 /area/ai_monitored/turret_protected

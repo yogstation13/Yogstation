@@ -19,6 +19,8 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 
 	var/max_cards = 2
 
+	var/hardware_synced = FALSE
+
 	var/was_valid_holder = FALSE
 	//Atmos hasn't run at the start so this has to be set to true if you map it in
 	var/roundstart = FALSE
@@ -56,11 +58,16 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 			T.air_update_turf()
 		
+		if(!hardware_synced)
+			GLOB.ai_os.update_hardware()
+			hardware_synced = TRUE
+		
 	else if(was_valid_holder)
 		if(valid_ticks > 0)
 			return
 		was_valid_holder = FALSE
 		cut_overlays()
+		hardware_synced = FALSE
 		GLOB.ai_os.update_hardware()
 	
 /obj/machinery/ai/expansion_card_holder/valid_holder()

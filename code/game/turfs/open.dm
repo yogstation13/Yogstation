@@ -346,23 +346,56 @@
 
 /turf/open/indestructible/brazil
 	name = ".."
-	desc = "it hurts to look at it hurts to see it hurts to think it hurts it hurts it hurts."
+	desc = "..."
+
+/turf/open/indestructible/brazil/Entered()
+	..()
+	START_PROCESSING(SSfastprocess, src)
+
+/turf/open/indestructible/brazil/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
+	. = ..()
+
+/turf/open/indestructible/brazil/process()
+	if(!gtfo())
+		STOP_PROCESSING(SSfastprocess, src)
+
+///teleports people back to a safe station turf in case they somehow manage to end up here without the status effect
+/turf/open/indestructible/brazil/proc/gtfo()
+	. = FALSE
+	for(var/mob/living/L in src)
+		if(!L.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE))
+			. = TRUE
+			to_chat(L, span_velvet("Get out of here, stalker."))
+			var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
+			if(safe_turf)
+				L.forceMove(safe_turf)
+				flash_color(L, flash_color = "#000000", flash_time = 10)
+
+/turf/open/indestructible/brazil/space
 	icon = 'icons/turf/space.dmi'
 
-/turf/open/indestructible/brazil/Initialize(mapload)
+/turf/open/indestructible/brazil/space/Initialize(mapload)
 	. = ..()
 	icon_state = "[rand(1,25)]"
 	add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), FIXED_COLOUR_PRIORITY)
 
-/turf/open/indestructible/brazil/Enter(atom/movable/AM, atom/old_loc)
-	if(isliving(AM))
-		var/mob/living/L = AM
-		if(!L.has_status_effect(STATUS_EFFECT_HERETIC_SACRIFICE))
-			var/turf/open/floor/safe_turf = find_safe_turf(zlevels = 2)
-			if(safe_turf)
-				to_chat(L, span_warning("You're not supposed to be here..."))
-				do_teleport(AM, safe_turf , 0, channel = TELEPORT_CHANNEL_FREE)
-	return FALSE //don't forget, you're here forever
+/turf/open/indestructible/brazil/narsie
+	icon_state = "cult"
+
+/turf/open/indestructible/brazil/necropolis
+	icon_state = "necro1"
+
+/turf/open/indestructible/brazil/necropolis/Initialize()
+	. = ..()
+	if(prob(12))
+		icon_state = "necro[rand(2,3)]"
+
+/turf/open/indestructible/brazil/lostit
+	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
+	canSmoothWith = list(/turf/open/indestructible/brazil/lostit)
+	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
+	icon_state = "smooth"
 
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)

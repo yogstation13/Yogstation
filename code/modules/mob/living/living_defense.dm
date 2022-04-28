@@ -48,6 +48,7 @@
 /mob/living/bullet_act(obj/item/projectile/P, def_zone)
 	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
 	if(!P.nodamage)
+		last_damage = P.name
 		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
@@ -78,6 +79,7 @@
 			if(isobj(AM))
 				var/obj/O = AM
 				if(O.damtype != STAMINA)
+					last_damage = I.name
 					apply_damage(I.throwforce, dtype, zone, armor, sharpness=I.get_sharpness())
 					if(I.thrownby)
 						log_combat(I.thrownby, src, "threw and hit", I)
@@ -90,6 +92,7 @@
 
 /mob/living/mech_melee_attack(obj/mecha/M)
 	if(M.occupant.a_intent == INTENT_HARM)
+		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
 			step_away(src,M,15)
@@ -115,6 +118,7 @@
 		visible_message(span_warning("[M] pushes [src] out of the way."), null, null, 5)
 
 /mob/living/fire_act()
+	last_damage = "fire"
 	adjust_fire_stacks(3)
 	IgniteMob()
 
@@ -184,6 +188,7 @@
 				if(!buckled && !density)
 					Move(user.loc)
 			if(GRAB_KILL)
+				last_damage = "grip marks on the neck"
 				log_combat(user, src, "strangled", addition="kill grab")
 				visible_message(span_danger("[user] is strangling [src]!"), \
 								span_userdanger("[user] is strangling you!"))
@@ -209,6 +214,7 @@
 		return FALSE
 
 	if (stat != DEAD)
+		last_damage = "goo"
 		log_combat(M, src, "attacked")
 		M.do_attack_animation(src)
 		visible_message(span_danger("The [M.name] glomps [src]!"), \
@@ -227,6 +233,7 @@
 
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 50, 1, 1)
+		last_damage = "lacerations"
 		M.do_attack_animation(src)
 		visible_message(span_danger("\The [M] [M.attacktext] [src]!"), \
 						span_userdanger("\The [M] [M.attacktext] [src]!"), null, COMBAT_MESSAGE_RANGE)
@@ -249,6 +256,7 @@
 			return FALSE
 		M.do_attack_animation(src, ATTACK_EFFECT_BITE)
 		if (prob(75))
+			last_damage = "minor laceration"
 			log_combat(M, src, "attacked")
 			playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
 			visible_message(span_danger("[M.name] bites [src]!"), \
@@ -272,6 +280,7 @@
 
 			L.do_attack_animation(src)
 			if(prob(90))
+				last_damage = "bite"
 				log_combat(L, src, "attacked")
 				visible_message(span_danger("[L.name] bites [src]!"), \
 					span_userdanger("[L.name] bites [src]!"), null, COMBAT_MESSAGE_RANGE)
@@ -294,20 +303,24 @@
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, span_notice("You don't want to hurt anyone!"))
 				return FALSE
+			last_damage = "deep lacerations"
 			M.do_attack_animation(src)
 			return TRUE
 		if("disarm")
+			last_damage = "minor blunt trauma"
 			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 			return TRUE
 
 /mob/living/ex_act(severity, target, origin)
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))
 		return
+	last_damage = "compression blast"
 	..()
 
 //Looking for irradiate()? It's been moved to radiation.dm under the rad_act() for mobs.
 
 /mob/living/acid_act(acidpwr, acid_volume)
+	last_damage = "acidic burns"
 	take_bodypart_damage(acidpwr * min(1, acid_volume * 0.1))
 	return 1
 
@@ -319,6 +332,7 @@
 		return FALSE
 	if(shock_damage > 0)
 		if(!illusion)
+			last_damage = "electricity burns"
 			adjustFireLoss(shock_damage)
 		visible_message(
 			span_danger("[src] was shocked by \the [source]!"), \

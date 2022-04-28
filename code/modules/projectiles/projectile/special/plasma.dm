@@ -15,7 +15,7 @@
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.gets_drilled(firer)
+		M.attempt_drill(firer)
 		if(mine_range)
 			mine_range--
 			range++
@@ -32,6 +32,10 @@
 	damage = 7
 	range = 5
 	mine_range = 5
+
+/obj/item/projectile/plasma/adv/mega
+	range = 7
+	mine_range = 7
 
 /obj/item/projectile/plasma/scatter
 	damage = 2

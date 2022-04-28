@@ -18,6 +18,7 @@
 	circuit = /obj/item/circuitboard/machine/mining_equipment_vendor
 	var/icon_deny = "mining-deny"
 	var/list/prize_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
+		new /datum/data/mining_equipment("Mining Charge",				/obj/item/grenade/plastic/miningcharge,								500, VENDING_EQUIPMENT), //only at the top for players to see it
 		new /datum/data/mining_equipment("Kinetic Accelerator",			/obj/item/gun/energy/kinetic_accelerator,							750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/twohanded/required/kinetic_crusher,						750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												800, VENDING_WEAPON),
@@ -34,6 +35,7 @@
 		new /datum/data/mining_equipment("KA Range Increase",			/obj/item/borg/upgrade/modkit/range,								1000, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA Damage Increase",			/obj/item/borg/upgrade/modkit/damage,								1000, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA Cooldown Decrease",		/obj/item/borg/upgrade/modkit/cooldown,								1000, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("KA Hardness Increase",		/obj/item/borg/upgrade/modkit/hardness,								1200, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("Shelter Capsule",				/obj/item/survivalcapsule,											400, VENDING_TOOL),
 		new /datum/data/mining_equipment("Luxury Shelter Capsule",		/obj/item/survivalcapsule/luxury,									3000, VENDING_TOOL),
@@ -63,7 +65,10 @@
 		new /datum/data/mining_equipment("Survival Medipen",			/obj/item/reagent_containers/hypospray/medipen/survival,			500, VENDING_MEDS),
 		new /datum/data/mining_equipment("Brute First-Aid Kit",			/obj/item/storage/firstaid/brute,									600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Tracking Implant Kit", 		/obj/item/storage/box/minertracker,									600, VENDING_MEDS),
-		new /datum/data/mining_equipment("Point Transfer Card",			/obj/item/card/mining_point_card,									500, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (500)",	/obj/item/card/mining_point_card,									500, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (1000)", 	/obj/item/card/mining_point_card/thousand,							1000, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (5000)", 	/obj/item/card/mining_point_card/fivethousand,						5000, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (10000)",	/obj/item/card/mining_point_card/tenthousand,						10000, VENDING_MISC),
 		new /datum/data/mining_equipment("Alien Toy",					/obj/item/clothing/mask/facehugger/toy,								300, VENDING_MISC),
 		new /datum/data/mining_equipment("Whiskey",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100, VENDING_MISC),
 		new /datum/data/mining_equipment("Absinthe",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100, VENDING_MISC),
@@ -310,7 +315,10 @@
 		new /datum/data/mining_equipment("Fire First-Aid Kit",			/obj/item/storage/firstaid/fire,								600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Toxin First-Aid Kit",			/obj/item/storage/firstaid/toxin,								600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Stimpack Bundle",				/obj/item/storage/box/medipens/utility,							200, VENDING_MEDS),
-		new /datum/data/mining_equipment("Point Transfer Card", 		/obj/item/card/mining_point_card,								500, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (500)", 	/obj/item/card/mining_point_card,								500, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (1000)", 	/obj/item/card/mining_point_card/thousand,						1000, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (5000)", 	/obj/item/card/mining_point_card/fivethousand,					5000, VENDING_MISC),
+		new /datum/data/mining_equipment("Point Transfer Card (10000)",	/obj/item/card/mining_point_card/tenthousand,					10000, VENDING_MISC),
 		new /datum/data/mining_equipment("Space Cash",    				/obj/item/stack/spacecash/c1000,								2000, VENDING_MISC),
 		new /datum/data/mining_equipment("R&D Starter Kit",  			/obj/item/storage/box/rndboards/miner,							2500, VENDING_TOOL)
 		)
@@ -377,6 +385,15 @@
 	desc = "A small card preloaded with mining points. Swipe your ID card over it to transfer the points, then discard."
 	icon_state = "data_1"
 	var/points = 500
+
+/obj/item/card/mining_point_card/thousand
+	points = 1000
+
+/obj/item/card/mining_point_card/fivethousand
+	points = 5000
+
+/obj/item/card/mining_point_card/tenthousand
+	points = 10000
 
 /obj/item/card/mining_point_card/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/card/id))

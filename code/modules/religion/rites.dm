@@ -320,6 +320,51 @@
 	playsound(altar_turf, 'sound/magic/fireball.ogg', 50, TRUE)
 	return TRUE
 
+/datum/religion_rites/candletransformation //in case you'd rather look like your lord than be flameproof
+	name = "Wax Conversion"
+	desc = "Convert a human-esque individual into a being of wax."
+	ritual_length = 30 SECONDS
+	ritual_invocations = list(
+	"Let us offer this unworthy being...",
+	"... Offered in hope to become something much more...",
+	"... And in hope to better suit your great image..."
+	)
+	invoke_msg = "... Rise, rise! Rise in your new form!!"
+	favor_cost = 2000
+
+/datum/religion_rites/candletransformation/perform_rite(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+		return FALSE
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool)
+		return FALSE
+	if(!LAZYLEN(movable_reltool.buckled_mobs))
+		. = FALSE
+		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
+			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+			return
+		to_chat(user, span_warning("This rite requires an individual to be buckled to [movable_reltool]."))
+		return
+	return ..()
+
+/datum/religion_rites/candletransformation/invoke_effect(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		CRASH("[name]'s perform_rite had a movable atom that has somehow turned into a non-movable!")
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool?.buckled_mobs?.len)
+		return FALSE
+	var/mob/living/carbon/human/human2wax
+	for(var/i in movable_reltool.buckled_mobs)
+		if(istype(i,/mob/living/carbon/human))
+			human2wax = i
+			break
+	if(!human2wax)
+		return FALSE
+	human2wax.set_species(/datum/species/golem/wax)
+	human2wax.visible_message(span_notice("[human2wax] has been converted by the rite of [name]!"))
+
+
 /*********Plant people**********/
 
 /datum/religion_rites/plantconversion

@@ -10,12 +10,6 @@
 	var/ghoul_amt = 1
 	var/list/spooky_scaries
 
-/datum/eldritch_knowledge/base_flesh/on_gain(mob/user)
-	..()
-	var/datum/antagonist/heretic/EC = user.mind?.has_antag_datum(/datum/antagonist/heretic)
-	var/datum/eldritch_transmutation/basic/B = EC.get_transmutation(1)
-	B.effect_path = STATUS_EFFECT_HERETIC_SACRIFICE_FLESH
-
 /datum/eldritch_knowledge/base_flesh/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!ishuman(target) || target == user)
