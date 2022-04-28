@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,24)
+	var/loot = rand(1,23)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
