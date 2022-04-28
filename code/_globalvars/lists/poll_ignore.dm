@@ -21,6 +21,7 @@
 #define POLL_IGNORE_SPLITPERSONALITY "split_personality"
 #define POLL_IGNORE_CONTRACTOR_SUPPORT "contractor_support"
 #define POLL_IGNORE_RAGINMAGES "raging_mages"
+#define POLL_IGNORE_CLOCKWORK "clockwork"
 
 
 GLOBAL_LIST_INIT(poll_ignore_desc, list(

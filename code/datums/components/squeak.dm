@@ -20,6 +20,7 @@
 	if(ismovable(parent))
 		RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT), .proc/play_squeak)
 		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, .proc/play_squeak_crossed)
+		RegisterSignal(parent, COMSIG_ATOM_EMINENCE_ACT, .proc/play_squeak_crossed)
 		RegisterSignal(parent, COMSIG_MOVABLE_DISPOSING, .proc/disposing_react)
 		if(isitem(parent))
 			RegisterSignal(parent, list(COMSIG_ITEM_ATTACK, COMSIG_ITEM_ATTACK_OBJ, COMSIG_ITEM_HIT_REACT), .proc/play_squeak)
@@ -33,7 +34,7 @@
 
 	override_squeak_sounds = custom_sounds
 	if(chance_override)
-		squeak_chance = chance_override
+		squeak_chance = chance_overridef
 	if(volume_override)
 		volume = volume_override
 	if(isnum(step_delay_override))

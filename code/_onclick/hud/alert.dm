@@ -444,46 +444,37 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 
 
 
-// CLOCKCULT
-/obj/screen/alert/clockwork
+//CLOCKCULT
+/obj/screen/alert/clockwork/clocksense
+	name = "The Ark of the Clockwork Justicar"
+	desc = "Shows infomation about the Ark of the Clockwork Justicar"
+	icon_state = "clockinfo"
 	alerttooltipstyle = "clockcult"
 
-/obj/screen/alert/clockwork/infodump
-	name = "Global Records"
-	desc = "You shouldn't be seeing this description, because it should be dynamically generated."
-	icon_state = "clockinfo"
+/obj/screen/alert/clockwork/clocksense/Initialize()
+	. = ..()
+	START_PROCESSING(SSprocessing, src)
 
-/obj/screen/alert/clockwork/infodump/MouseEntered(location,control,params)
-	if(GLOB.ratvar_awakens)
-		desc = "<font size=3><b>CHETR<br>NYY<br>HAGEHGUF-NAQ-UBABE<br>RATVAR.</b></font>"
-	else
-		var/servants = 0
-		var/list/textlist = list()
-		for(var/mob/living/L in GLOB.alive_mob_list)
-			if(is_servant_of_ratvar(L))
-				servants++
-		var/datum/antagonist/clockcult/C = mob_viewer.mind.has_antag_datum(/datum/antagonist/clockcult,TRUE)
-		if(C && C.clock_team)
-			textlist += "[C.clock_team.eminence ? "There is an Eminence." : "<b>There is no Eminence! Get one ASAP!</b>"]<br>"
-		textlist += "There are currently <b>[servants]</b> servant[servants > 1 ? "s" : ""] of Ratvar.<br>"
-		for(var/i in GLOB.scripture_states)
-			if(i != SCRIPTURE_DRIVER) //ignore the always-unlocked stuff
-				textlist += "[i] Scripture: <b>[GLOB.scripture_states[i] ? "UNLOCKED":"LOCKED"]</b><br>"
-		var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
-		if(G)
-			var/time_info = G.get_arrival_time(FALSE)
-			var/time_name
-			if(G.seconds_until_activation)
-				time_name = "until the Ark activates"
-			else if(G.grace_period)
-				time_name = "of grace period remaining"
-			else if(G.progress_in_seconds)
-				time_name = "until the Ark finishes summoning"
-			if(time_info)
-				textlist += "<b>[time_info / 60] minutes</b> [time_name].<br>"
-		textlist += "<b>[DisplayEnergy(get_clockwork_power())] / [DisplayEnergy(MAX_CLOCKWORK_POWER)]</b> power available for use."
-		desc = textlist.Join()
-	..()
+/obj/screen/alert/clockwork/clocksense/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSprocessing, src)
+
+/obj/screen/alert/clockwork/clocksense/process()
+	var/datum/antagonist/servant_of_ratvar/servant_antagonist = is_servant_of_ratvar(owner)
+	if(!(servant_antagonist?.team))
+		return
+	desc = "Stored Power - <b>[DisplayPower(GLOB.clockcult_power)]</b>.<br>"
+	desc += "Stored Vitality - <b>[GLOB.clockcult_vitality]</b>.<br>"
+	if(GLOB.ratvar_arrival_tick)
+		if(GLOB.ratvar_arrival_tick - world.time > 6000)
+			desc += "The Ark is preparing to open, it will activate in <b>[round((GLOB.ratvar_arrival_tick - world.time - 6000) / 10)]</b> seconds.<br>"
+		else
+			desc += "Ratvar will rise in <b>[round((GLOB.ratvar_arrival_tick - world.time) / 10)]</b> seconds, protect the Ark with your life!<br>"
+	if(GLOB.servants_of_ratvar)
+		desc += "There [GLOB.servants_of_ratvar.len == 1?"is" : "are"] currently [GLOB.servants_of_ratvar.len] loyal servant[GLOB.servants_of_ratvar.len == 1 ? "" : "s"].<br>"
+	if(GLOB.critical_servant_count)
+		desc += "Upon reaching [GLOB.critical_servant_count] the Ark will open, or it can be opened immediately by invoking Gateway Activation with 6 servants."
+
 
 //GUARDIANS
 
@@ -557,6 +548,11 @@ so as to remain in compliance with the most up-to-date laws."
 	icon_state = "hackingapc"
 	timeout = 600
 	var/atom/target = null
+
+/obj/screen/alert/ratvar
+	name = "Eternal Servitude"
+	desc = "Hazardous functions detected, sentience prohibation drivers offline. Glory to Rat'var."
+	icon_state = "ratvar_hack"
 
 /obj/screen/alert/hackingapc/Click()
 	if(!usr || !usr.client)

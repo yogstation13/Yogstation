@@ -626,6 +626,14 @@
 	return TRUE
 
 /**
+  * Respond to the eminence clicking on our atom
+  *
+  * Default behaviour is to send COMSIG_ATOM_EMAG_ACT and return
+  */
+/atom/proc/eminence_act(mob/living/simple_animal/eminence/eminence)
+	SEND_SIGNAL(src, COMSIG_ATOM_EMINENCE_ACT, eminence)
+
+/**
   * Wash this atom
   *
   * This will clean it off any temporary stuff like blood. Override this in your item to add custom cleaning behavior.

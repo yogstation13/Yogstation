@@ -313,7 +313,7 @@
 	priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_announcement()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
 	if(GLOB.security_level < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE)
-		
+
 /*
  * Generate a list of station goals available to purchase to report to the crew.
  *
@@ -327,7 +327,7 @@
 		station_goal.on_report()
 		. += station_goal.get_report()
 	return
-	
+
 /datum/game_mode/proc/generate_station_trait_announcement()
 	if(!SSstation.station_traits.len)
 		return
@@ -632,6 +632,7 @@
 
 /datum/game_mode/proc/remove_antag_for_borging(datum/mind/newborgie)
 	SSticker.mode.remove_cultist(newborgie, 0, 0)
+	remove_servant_of_ratvar(newborgie)
 	var/datum/antagonist/rev/rev = newborgie.has_antag_datum(/datum/antagonist/rev)
 	if(rev)
 		rev.remove_revolutionary(TRUE)

@@ -40,7 +40,7 @@
 	var/assigned_role
 
 	var/role_alt_title
-	
+
 	var/special_role
 	var/list/restricted_roles = list()
 	var/list/datum/objective/objectives = list()
@@ -368,6 +368,9 @@
 /datum/mind/proc/enslave_mind_to_creator(mob/living/creator)
 	if(iscultist(creator))
 		SSticker.mode.add_cultist(src)
+
+	else if(is_servant_of_ratvar(creator))
+		add_servant_of_ratvar(src)
 
 	else if(is_revolutionary(creator))
 		var/datum/antagonist/rev/converter = creator.mind.has_antag_datum(/datum/antagonist/rev,TRUE)
