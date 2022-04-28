@@ -200,9 +200,6 @@ God bless America.
 				the_guy.mind.transfer_to(the_nugget.nugget_man)
 			qdel(the_guy)
 			return
-		else
-			to_chat(user, span_warning("They still have limbs!"))
-			return
 				
 	if(user.pulling && user.a_intent == INTENT_GRAB && iscarbon(user.pulling) && reagents.total_volume && isliving(user.pulling))
 		var/mob/living/carbon/C = user.pulling
