@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_REVENANT,
 	ROLE_ABDUCTOR,
 	ROLE_DEVIL = /datum/game_mode/devil,
-	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
+	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockcult,
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // Yogs
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
 	ROLE_GANG = /datum/game_mode/gang, // yogs

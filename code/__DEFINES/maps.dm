@@ -90,7 +90,7 @@ require only minor tweaks.
     ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
     ZTRAIT_UP = -1, \
     ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
-#define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.60)
+#define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
 #define DL_NAME "name"
 #define DL_TRAITS "traits"

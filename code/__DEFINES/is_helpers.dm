@@ -203,7 +203,9 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define isaicamera(A) (istype(A, /mob/camera/aiEye))
 
-#define iseminence(A) (istype(A, /mob/camera/eminence))
+#define iseminence(A) (istype(A, /mob/living/simple_animal/eminence))
+
+#define iscogscarab(A) (istype(A, /mob/living/simple_animal/drone/cogscarab))
 
 //Footstep helpers
 #define isshoefoot(A) (is_type_in_typecache(A, GLOB.shoefootmob))

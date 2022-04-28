@@ -118,3 +118,7 @@
 #define RCD_WINDOW_DIRECTIONAL "directional"
 #define RCD_WINDOW_NORMAL "glass"
 #define RCD_WINDOW_REINFORCED "reinforced glass"
+
+// cwall construction states
+#define COG_COVER 1
+#define COG_EXPOSED 3

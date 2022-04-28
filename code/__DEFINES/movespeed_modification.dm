@@ -74,3 +74,7 @@
 #define MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN				"NECRO_VIRUS"
 
 #define MOVESPEED_ID_SWIMMING							"SWIMMING_SPEED_MOD"
+
+#define MOVESPEED_ID_SLOW_ARMOR		                    	"SLOW_ARMOR "
+
+#define MOVESPEED_ID_INTERDICTION						"interdiction"

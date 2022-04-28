@@ -219,7 +219,8 @@
 #define TRAIT_COAGULATING		"coagulating" //from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
 #define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
 #define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
-#define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp 
+#define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
+#define TRAIT_STARGAZED			"stargazed"	//Affected by a stargazer
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
@@ -326,6 +327,9 @@
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
 #define FRENZY_TRAIT "frenzy_trait"
 #define HORROR_TRAIT "horror"
+#define HOLYWATER_TRAIT "holywater"
+#define VANGUARD_TRAIT "vanguard"
+#define STARGAZER_TRAIT "stargazer"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
