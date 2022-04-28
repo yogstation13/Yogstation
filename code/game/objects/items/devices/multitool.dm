@@ -188,6 +188,6 @@
 		return
 	else if(prob(5))
 		user.rad_act(20)
-		to_chat(user, "<span class='userdanger'>[src] breaks down and emits dangerous rays!</span>")
+		to_chat(user, span_userdanger("[src] breaks down and emits dangerous rays!"))
 		src.tool_behaviour = 0
 		return
