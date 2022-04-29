@@ -129,7 +129,7 @@
 	parts += "(Syndicates used [TC_uses] TC) [purchases]"
 
 	if(win)
-		parts += "<span class='greentext'>The Syndicate were successful with their operation!</span>"
+		parts += span_greentext("The Syndicate were successful with their operation!")
 	else
 		parts += span_redtext("The Syndicate failed their incursion!")
 
