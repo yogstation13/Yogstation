@@ -1562,7 +1562,10 @@ obj/item/toy/turn_tracker
 
 /obj/item/toy/figure/traitor/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/pen/edagger))
-		icon_state += "_pen"
+		var/obj/item/pen/edagger/pen = I
+		if(pen.on)
+			icon_state += "_pen" // edagger buddies
+			playsound(I.loc, 'sound/weapons/saberon.ogg', 35, 1)
 	..()
 
 /obj/item/toy/figure/ling
