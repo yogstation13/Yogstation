@@ -158,7 +158,7 @@
 
 /obj/item/implant/radio/syndicate/selfdestruct/on_implanted(mob/living/user)
 	if(!user.mind.has_antag_datum(/datum/antagonist/incursion))
-		user.visible_message("<span class='warning'>[imp_in] starts beeping ominously!</span>", "<span class='userdanger'>You have a sudden feeling of dread. The implant is rigged to explode!</span>")
+		user.visible_message(span_warning("[imp_in] starts beeping ominously!"), span_userdanger("You have a sudden feeling of dread. The implant is rigged to explode!"))
 		playsound(user, 'sound/items/timer.ogg', 30, 0)
 		sleep(50)
 		playsound(user, 'sound/items/timer.ogg', 30, 0)
