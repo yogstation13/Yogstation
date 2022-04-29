@@ -104,7 +104,7 @@
 /datum/team/incursion/roundend_report()
 	var/list/parts = list()
 
-	parts += "<span class='header'>The members of the Syndicate incursion were:</span>"
+	parts += span_header("The members of the Syndicate incursion were:")
 	for(var/datum/mind/M in members)
 		parts += printplayer(M)
 	var/win = TRUE
