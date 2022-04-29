@@ -39,7 +39,19 @@
 		"left pocket" = SLOT_L_STORE,
 		"right pocket" = SLOT_R_STORE
 	)
-
+	
+	var/T = new item_path(H)
+	var/item_name = initial(item_path.name)
+	var/where = H.equip_in_one_of_slots(T, slots)
+	if(!where)
+		to_chat(H, span_userdanger("Unfortunately, you weren't able to get a [item_name]. This is very bad and you should adminhelp immediately (press F1)."))
+		return FALSE
+	else
+		to_chat(H, span_danger("You have a [item_name] in your [where]."))
+		if(where == "backpack")
+			SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
+		return TRUE
+		
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner
 	if(owner.current)
