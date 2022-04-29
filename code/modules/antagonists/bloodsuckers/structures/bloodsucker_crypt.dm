@@ -235,9 +235,9 @@
 			to_chat(usr, span_notice("As you touch [src] with the [H], you start sensing something different coming from [src]!"))
 			qdel(H)
 			awoken = TRUE
-			return
-		 to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
-		 return
+		else
+		 	to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
+		return
 	. = ..()
 
 /obj/effect/reality_smash/attack_hand(mob/user, list/modifiers) // this is important
