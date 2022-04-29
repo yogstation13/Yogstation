@@ -141,7 +141,7 @@
 	name = "tatorling branded cereal"
 	desc = "The most consumed brand of cereal! 8+ Only. (WARNING: CHOKING HAZARD.)"
 	icon_state = "tatorling"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/sodiumchloride = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/sugar = 6)
 	tastes = list("murderbone" = 1, "lime" = 3, "strawberry" = 3)
 	foodtype = GRAIN | FRUIT | BREAKFAST
 	var/opened = FALSE
