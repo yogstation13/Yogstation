@@ -32,7 +32,7 @@
 
 	pda_type = /obj/item/pda/roboticist
 
-	belt = /obj/item/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/full/no_tape
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/roboticist
 	uniform_skirt = /obj/item/clothing/under/rank/roboticist/skirt

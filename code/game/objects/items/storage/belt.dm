@@ -108,6 +108,7 @@
 	new /obj/item/extinguisher/mini(src)
 	new /obj/item/holosign_creator/multi/CE(src)
 
+
 /obj/item/storage/belt/utility/full/PopulateContents()
 	new /obj/item/screwdriver(src)
 	new /obj/item/wrench(src)
@@ -118,6 +119,15 @@
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
 	new /obj/item/barrier_taperoll/engineering(src)
 
+/obj/item/storage/belt/utility/full/no_tape/PopulateContents()
+	new /obj/item/screwdriver(src)
+	new /obj/item/wrench(src)
+	new /obj/item/weldingtool(src)
+	new /obj/item/crowbar(src)
+	new /obj/item/wirecutters(src)
+	new /obj/item/multitool(src)
+	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
+
 /obj/item/storage/belt/utility/full/engi/PopulateContents()
 	new /obj/item/screwdriver(src)
 	new /obj/item/wrench(src)
@@ -126,6 +136,7 @@
 	new /obj/item/wirecutters(src)
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
+	new /obj/item/barrier_taperoll/engineering(src)
 
 /obj/item/storage/belt/utility/atmostech/PopulateContents()
 	new /obj/item/screwdriver(src)
