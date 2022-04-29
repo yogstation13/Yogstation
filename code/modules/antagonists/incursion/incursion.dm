@@ -131,7 +131,7 @@
 	if(win)
 		parts += "<span class='greentext'>The Syndicate were successful with their operation!</span>"
 	else
-		parts += "<span class='redtext'>The Syndicate failed their incursion!</span>"
+		parts += span_redtext("The Syndicate failed their incursion!")
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
