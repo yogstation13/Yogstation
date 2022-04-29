@@ -28,7 +28,7 @@
 /datum/antagonist/incursion/on_removal()
 	SSticker.mode.incursionists -= owner
 	if(owner.current)
-		to_chat(owner.current,"<span class='userdanger'>The Syndicate plans have fallen apart, you are no longer a member of the incursion.</span>")
+		to_chat(owner.current, span_userdanger("The Syndicate plans have fallen apart, you are no longer a member of the incursion."))
 	owner.special_role = null
 	return ..()
 
