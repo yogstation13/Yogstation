@@ -365,6 +365,25 @@
 		return TRUE
 	return FALSE
 
+/datum/objective/bloodsucker/hierarchy
+	name = "hierarchy"
+
+/datum/objective/bloodsucker/hierarchy/New()
+	target_amount = rand(4,5)
+	..()
+
+/datum/objective/bloodsucker/hierarchy/update_explanation_text()
+	. = ..()
+	explanation_text = "Ascend [target_amount] abilities using a Resting Place altar."
+
+/datum/objective/bloodsucker/hierarchy/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!bloodsuckerdatum)
+		return FALSE
+	if(bloodsuckerdatum.clanprogress >= target_amount)
+		return TRUE
+	return FALSE
+
 //////////////////////////////////////////////////////////////////////////////////////
 
 /// Mutilate a certain amount of Vassals

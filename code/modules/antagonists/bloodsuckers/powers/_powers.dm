@@ -22,7 +22,7 @@
 	/// Requirement flags for checks
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	/// Who can purchase the Power
-	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|LASOMBRA_CAN_BUY|VASSAL_CAN_BUY|HUNTER_CAN_BUY
+	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|LASOMBRA_CAN_BUY|GANGREL_CAN_BUY|VASSAL_CAN_BUY|HUNTER_CAN_BUY
 
 	// COOLDOWNS //
 	///Timer between Power uses.
@@ -40,8 +40,7 @@
 	///The cost to MAINTAIN this Power - Only used for Constant Cost Powers
 	var/constant_bloodcost = 0
 	///If the Power has any additional descriptions coming from either 3rd partys or the power itself
-	var/additional_desc = FALSE
-	var/additional_text
+	var/additional_text = ""
 
 // Modify description to add cost.
 /datum/action/bloodsucker/New(Target)
@@ -50,7 +49,7 @@
 
 /datum/action/bloodsucker/proc/UpdateDesc()
 	desc = initial(desc)
-	if(additional_desc)
+	if(length(additional_text) > 0)
 		desc += "<br><br><b>ASCENDED</b>: [additional_text]"
 	if(bloodcost > 0)
 		desc += "<br><br><b>COST:</b> [bloodcost] Blood"

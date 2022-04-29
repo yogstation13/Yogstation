@@ -30,12 +30,17 @@
 			AddHumanityLost(16.8)
 			BuyPower(new /datum/action/bloodsucker/gangrel/transform)
 			bloodsucker.faction |= "bloodhungry" //i love animals i love animals
+			RemovePower(/datum/action/bloodsucker/masquerade)
+			var/datum/objective/bloodsucker/frenzy/gangrel_objective = new
+			gangrel_objective.owner = owner
+			objectives += gangrel_objective
 		if(CLAN_LASOMBRA)
 			my_clan = CLAN_LASOMBRA
 			to_chat(owner, span_announce("You have Ranked up enough to learn: You are part of the Lasombra Clan!\n\
-				* As part of the Lasombra Clan, your past teachings have taught you how to become in touch with the Abyss and practice it's prophecies.\n\
+				* As part of the Lasombra Clan, your past teachings have shown you how to become in touch with the Abyss and practice it's prophecies.\n\
 				* It'll take long before the Abyss can break through this plane's veil, but you'll try to salvage any of the energy that comes through,\n\
-				* To harness it's energy a ritual must be done each night to gain a shadowpoint, shadowpoints let's you upgrades normal abilities into upgraded ones.\n\
+				* To harness it's energy you must first find an influence and make a Resting Place altar to feed the harvested essence to.\n\
+				* On the Resting Place you can give ranks or blood in exchange for shadowpoints, that can be spent on the table to ascend your abilities.\n\
 				* The Abyss has blackened your veins and made you immune to brute damage but highly receptive to burn, so you might need to be extra careful when on Torpor.\n\
 				* Finally, your Favorite Vassal will gain the Lesser Glare and Shadow Walk abilities to help you in combat."))
 			bloodsucker.physiology.burn_mod *= 2
@@ -49,8 +54,10 @@
 			for(var/obj/item/light_eater/blade in bloodsucker.held_items)
 				QDEL_NULL(blade)
 			GLOB.reality_smash_track.AddMind(owner)
+			var/datum/objective/bloodsucker/hierarchy/lasombra_objective = new
+			lasombra_objective.owner = owner
+			objectives += lasombra_objective
+			to_chat(owner, span_notice("You have also learned how to channel the abyss's power into an iron knight's armor that can be build in the structure ta and activated as a trap for your lair."))
 			owner.teach_crafting_recipe(/datum/crafting_recipe/possessedarmor)
 			owner.teach_crafting_recipe(/datum/crafting_recipe/restingplace)
-
-			
 	owner.announce_objectives()

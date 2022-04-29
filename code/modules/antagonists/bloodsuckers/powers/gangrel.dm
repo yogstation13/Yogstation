@@ -122,8 +122,8 @@
 	. = ..()
 /*
 ////////////////||\\\\\\\\\\\\\\\\
-\\	      	 Bat Only 			//
-//			  Powers			\\
+\\           Bat Only           //
+//            Powers            \\
 \\\\\\\\\\\\\\\\||////////////////
 */
 /datum/action/bloodsucker/targeted/haste/batdash
@@ -251,8 +251,8 @@
 
 /*  //\\                  //\\    
 ////////////////||\\\\\\\\\\\\\\\\
-\\	      	 Wolf Only 			//
-//			  Powers			\\
+\\           Wolf Only          //
+//            Powers            \\
 \\\\\\\\\\\\\\\\||////////////////
 */  
 
@@ -264,14 +264,15 @@
 	button_icon_state = "power_feast"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
-	power_explanation = "<b>Fortitude</b>:\n\
-		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
-		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
-		While using Fortitude, attempting to run will crush you.\n\
-		At level 4, you gain complete stun immunity.\n\
-		Higher levels will increase Brute and Stamina resistance."
+	power_explanation = "<b>Feast</b>:\n\
+		Feasting on a dead person will give you a satiation point and gib them.\n\
+		Satiation points are essential for overcoming frenzy, after gathering 3 you'll turn back to normal.\n\
+		Feasting on someone while they are alive will bite them and make them bleed.\n\
+		Has a medium recharge time to be helpful in combat.\n\
+		There might be some consequences after coming back from frenzy though.." 
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
+	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
 	cooldown = 10 SECONDS
 	target_range = 1
@@ -303,13 +304,13 @@
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
 	power_explanation = "<b>Fortitude</b>:\n\
-		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
-		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
-		While using Fortitude, attempting to run will crush you.\n\
-		At level 4, you gain complete stun immunity.\n\
-		Higher levels will increase Brute and Stamina resistance."
+		Activating Wolftitude will provide more attack damage, and more overall health.\n\
+		It will give you a minor health buff while it stands, but slow you down severely.\n\
+		It has a decent cooldown time to allow yourself to turn it off and run away for a while.\n\
+		Created from your Fortitude ability."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
+	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
 	cooldown = 8 SECONDS
 
@@ -317,22 +318,22 @@
 	. = ..()
 	to_chat(owner, span_notice("Your fur and claws harden, becoming as hard as steel."))
 	var/mob/living/simple_animal/hostile/A = owner
-	A.maxHealth = initial(A.maxHealth) * 1.2
-	A.health = min(initial(A.maxHealth), initial(A.health) * 1.2)
+	A.maxHealth *= 1.2
+	A.health *= 1.2
 	A.set_varspeed(initial(A.speed) + 2) // slower
-	A.harm_intent_damage = initial(A.harm_intent_damage) + 10
-	A.melee_damage_lower = initial(A.melee_damage_lower) + 10
-	A.melee_damage_upper = initial(A.melee_damage_upper) + 10
+	A.harm_intent_damage += 10
+	A.melee_damage_lower += 10
+	A.melee_damage_upper += 10
 
 /datum/action/bloodsucker/gangrel/wolfortitude/DeactivatePower()
 	. = ..()
 	var/mob/living/simple_animal/hostile/A = owner
-	A.maxHealth = initial(A.maxHealth) / 1.2
-	A.health = min(initial(A.maxHealth), initial(A.health) / 1.2)
+	A.maxHealth /= 1.2
+	A.health /= 1.2
 	A.set_varspeed(initial(A.speed))
-	A.harm_intent_damage = initial(A.harm_intent_damage) - 10
-	A.melee_damage_lower = initial(A.melee_damage_lower) - 10
-	A.melee_damage_upper = initial(A.melee_damage_upper) - 10
+	A.harm_intent_damage -= 10
+	A.melee_damage_lower -= 10
+	A.melee_damage_upper -= 10
 
 /datum/action/bloodsucker/targeted/pounce
 	name = "Pounce"
@@ -342,16 +343,13 @@
 	button_icon_state = "power_pounce"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
-	power_explanation = "<b>Predatory Lunge</b>:\n\
-		Click any player to instantly dash at them if above power level 3, aggressively grabbing them.\n\
-		If not on level 3, you will have to charge your lunge for a while. During this time you'll have to stand still for lunge to work\n\
-		You cannot use the Power if you are aggressively grabbed.\n\
-		If the target is wearing riot gear or is a Monster Hunter, you will merely passively grab them.\n\
-		If grabbed from behind or from the darkness (Cloak of Darkness counts) with a power level at or above 4, will additionally knock the target down.\n\
-		Higher levels will increase the knockdown dealt to enemies."
+	power_explanation = "<b>Pounce</b>:\n\
+		Click any player to instantly dash at them, knocking them down and paralyzing them for a short while.\n\
+		Additionally if they are dead you'll consume their corpse to gain satiation and get closer to leaving frenzy.\n\
+		Created from your Predatory Lunge ability."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
 	cooldown = 10 SECONDS
 	target_range = 6
@@ -391,8 +389,8 @@
 			user.devour(target)
 			PowerActivatedSuccessfully()
 			return
-		target.Knockdown(8 SECONDS)
-		target.Paralyze(2 SECONDS)
+		target.Knockdown(6 SECONDS)
+		target.Paralyze(1 SECONDS)
 	PowerActivatedSuccessfully()
 
 /datum/action/bloodsucker/targeted/pounce/CheckValidTarget(atom/target_atom)
@@ -415,14 +413,14 @@
 	button_icon_state = "power_howl"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
-	power_explanation = "<b>Fortitude</b>:\n\
-		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
-		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
-		While using Fortitude, attempting to run will crush you.\n\
-		At level 4, you gain complete stun immunity.\n\
-		Higher levels will increase Brute and Stamina resistance."
+	power_explanation = "<b>Howl</b>:\n\
+		Activating Howl will start up a 2 and a half second charge up.\n\
+		After the charge up you'll knockdown anyone adjacent to you.\n\
+		Additionally, you'll confuse and deafen anyone in a 3 tile range.\n\
+		Created from your Cloak of Darkness ability."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
+	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
 	cooldown = 15 SECONDS
 
@@ -455,13 +453,13 @@
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
 	power_explanation = "<b>Rabidism</b>:\n\
-		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
-		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
-		While using Fortitude, attempting to run will crush you.\n\
-		At level 4, you gain complete stun immunity.\n\
-		Higher levels will increase Brute and Stamina resistance."
+		Rabidism will deal reduced damage to everyone in range including you.\n\
+		During Rabidism's ten second rage you'll deal alot more damage to structures.\n\
+		Be aware of it's long cooldown time.\n\
+		Created from your Tresspass ability"
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
+	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
 	cooldown = 20 SECONDS
 
@@ -469,13 +467,12 @@
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.environment_smash = ENVIRONMENT_SMASH_RWALLS
-	A.harm_intent_damage = initial(A.harm_intent_damage) - 10
-	A.melee_damage_lower = initial(A.melee_damage_lower) - 10
-	A.melee_damage_upper = initial(A.melee_damage_upper) - 10
-	A.obj_damage = initial(A.obj_damage) * 3
+	A.harm_intent_damage -= 10
+	A.melee_damage_lower -= 10
+	A.melee_damage_upper -= 10
+	A.obj_damage *= 3
 	START_PROCESSING(SSprocessing, src)
-	spawn(10 SECONDS)
-	DeactivatePower()
+	addtimer(CALLBACK(src, .proc/DeactivatePower), 10 SECONDS)
 
 /datum/action/bloodsucker/gangrel/rabidism/process()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
@@ -503,14 +500,13 @@
 	background_icon_state_on = "gangrel_power_on"
 	background_icon_state_off = "gangrel_power_off"
 	power_explanation = "<b>Tear</b>:\n\
-		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
-		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
-		While using Fortitude, attempting to run will crush you.\n\
-		At level 4, you gain complete stun immunity.\n\
-		Higher levels will increase Brute and Stamina resistance."
+		Tear will make your first attack start up a bleeding process.\n\
+		Bleeding process will only work if the target stands still.\n\
+		When it's done it will damage the target severely."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
-	bloodcost = 6
+	purchase_flags = GANGREL_CAN_BUY
+	bloodcost = 10
 	cooldown = 20 SECONDS
 	var/mob/living/mauled
 
@@ -558,8 +554,8 @@
 	return FALSE
 
 /obj/item/clothing/neck/wolfcollar
-	name = "Wolf Legs"
-	desc = "damn"
+	name = "Wolf Collar"
+	desc = "Hopefully no more neck snaps!"
 	icon_state = "collar"
 	item_state = "collar"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
@@ -567,9 +563,9 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
 	body_parts_covered = NECK
 
-/obj/item/clothing/ears/wolfears
-	name = "Wolf Legs"
-	desc = "damn"
+/obj/item/radio/headset/wolfears
+	name = "Wolf Ears"
+	desc = "If only you had a encoder to speak through the channels."
 	icon_state = "ears"
 	item_state = "ears"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
@@ -578,10 +574,9 @@
 	flags_inv = HIDEHAIR|HIDEFACE
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
 	
-
 /obj/item/clothing/gloves/wolfclaws
-	name = "Wolf Legs"
-	desc = "damn"
+	name = "Wolf Claws"
+	desc = "Tear them to shreds!"
 	icon_state = "claws"
 	item_state = "claws"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
@@ -592,7 +587,7 @@
 
 /obj/item/clothing/shoes/wolflegs
 	name = "Wolf Legs"
-	desc = "damn"
+	desc = "Atleast they make you go faster."
 	icon_state = "legs"
 	item_state = "legs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
@@ -600,9 +595,47 @@
 	slowdown = SHOES_SLOWDOWN - 0.5
 	body_parts_covered = GROIN|LEGS|FEET
 
+/obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
+	name = "Wolf Legs"
+	desc = "Atleast they make you go faster. Oh wait you probably didn't mind anyways..."
+	icon_state = "digilegs"
+	item_state = "digilegs"
+	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	alternate_worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	slowdown = SHOES_SLOWDOWN - 0.5
+	xenoshoe = YES_DIGIT
+	body_parts_covered = GROIN|LEGS|FEET
+
+/obj/item/clothing/neck/wolfcollar/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
+
+/obj/item/radio/headset/wolfears/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
+	make_syndie()
+
+/obj/item/radio/headset/wolfears/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+
+/obj/item/clothing/gloves/wolfclaws/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
+
+/obj/item/clothing/shoes/wolflegs/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
+
+/obj/item/clothing/shoes/xeno_wraps/wolfdigilegs/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
+
 /obj/item/clothing/gloves/wolfclaws/equipped(mob/user, slot)
 	. = ..()
 	if(!ishuman(user))
+		return
+	if(!IS_BLOODSUCKER(user))
 		return
 	if(slot == SLOT_GLOVES)
 		var/mob/living/carbon/human/H = user
@@ -611,6 +644,8 @@
 /obj/item/clothing/gloves/wolfclaws/dropped(mob/user)
 	. = ..()
 	if(!ishuman(user))
+		return
+	if(!IS_BLOODSUCKER(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.get_item_by_slot(SLOT_GLOVES) == src)

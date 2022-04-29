@@ -105,7 +105,6 @@
 	background_icon_state_off = "lasombra_power_off"
 	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_bomb"
-	additional_desc = TRUE
 	additional_text = "Additionally disables lightframes in range and confuses nearby mortals."
 	purchase_flags = LASOMBRA_CAN_BUY
 

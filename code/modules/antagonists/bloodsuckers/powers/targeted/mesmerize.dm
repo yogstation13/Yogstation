@@ -134,6 +134,7 @@
 	background_icon_state_off = "lasombra_power_off"
 	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_glare"
+	additional_text = "Additionally makes the stun downtime based on distance, being instant when adjacent."
 	purchase_flags = LASOMBRA_CAN_BUY
 
 /datum/action/bloodsucker/targeted/mesmerize/shadow/FireTargetedPower(atom/target_atom)

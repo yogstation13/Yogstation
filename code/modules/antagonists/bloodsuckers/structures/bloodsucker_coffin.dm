@@ -41,8 +41,6 @@
 	desc = "For those departed who are not so dear."
 	icon_state = "coffin"
 	icon = 'icons/obj/vamp_obj.dmi'
-	open_sound = 'sound/effects/coffin_open.ogg'
-	close_sound = 'sound/effects/coffin_close.ogg'
 	breakout_time = 30 SECONDS
 	pryLidTimer = 20 SECONDS
 	resistance_flags = NONE

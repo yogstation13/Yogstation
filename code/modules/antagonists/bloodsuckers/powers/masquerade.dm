@@ -42,8 +42,8 @@
 			if(istype(neckdrip, /obj/item/clothing/neck/wolfcollar))
 				theqdeld += neckdrip
 		if(bloodsuckerdatum.clanprogress >= 2)
-			var/obj/item/clothing/ears/earsdrip = user.get_item_by_slot(SLOT_EARS)
-			if(istype(earsdrip, /obj/item/clothing/ears/wolfears))
+			var/obj/item/earsdrip = user.get_item_by_slot(SLOT_EARS)
+			if(istype(earsdrip, /obj/item/radio/headset/wolfears))
 				theqdeld += earsdrip
 		if(bloodsuckerdatum.clanprogress >= 3)
 			var/obj/item/clothing/gloves/glovesdrip = user.get_item_by_slot(SLOT_GLOVES)
@@ -115,7 +115,7 @@
 		if(bloodsuckerdatum.clanprogress >= 2)
 			var/obj/item/clothing/ears/previousdrip = user.get_item_by_slot(SLOT_EARS)
 			user.dropItemToGround(previousdrip)
-			user.equip_to_slot_or_del(new /obj/item/clothing/ears/wolfears(user), SLOT_EARS)
+			user.equip_to_slot_or_del(new /obj/item/radio/headset/wolfears(user), SLOT_EARS)
 		if(bloodsuckerdatum.clanprogress >= 3)
 			var/obj/item/clothing/gloves/previousdrip = user.get_item_by_slot(SLOT_GLOVES)
 			user.dropItemToGround(previousdrip)

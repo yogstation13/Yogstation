@@ -90,7 +90,7 @@
 		if(mind)
 			mind.transfer_to(bloodsucker)
 		bloodsucker.forceMove(get_turf(src))
-		if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/werewolf) && istype(src, /mob/living/simple_animal/hostile/bloodsucker/possessedarmor))
+		if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/werewolf) || istype(src, /mob/living/simple_animal/hostile/bloodsucker/possessedarmor))
 			STOP_PROCESSING(SSprocessing, src)
 		return ..()
 
@@ -121,13 +121,14 @@
 
 /mob/living/simple_animal/hostile/bloodsucker/werewolf/process()
 	if(bloodsucker)
-		initial(health) -= 0.44444444 //3 minutes to die
+		health -= 0.44444444 //3 minutes to die
 	if(satiation == 3)
 		to_chat(src, span_notice("It has been fed. You turn back to normal."))
 		qdel(src)
 	return
 
 /mob/living/simple_animal/hostile/bloodsucker/werewolf/Destroy()
+	. = ..()
 	if(ishuman(bloodsucker))
 		var/mob/living/carbon/human/user = bloodsucker
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -144,7 +145,7 @@
 				slot = SLOT_NECK
 			if(2)
 				additionalmessage = "You have mutated werewolf ears!"
-				mutation = /obj/item/clothing/ears/wolfears
+				mutation = /obj/item/radio/headset/wolfears
 				slot = SLOT_EARS
 			if(3)
 				additionalmessage = "You have mutated werewolf claws!"
@@ -156,6 +157,8 @@
 				additionalmessage = "You have mutated werewolf legs!"
 				mutation = /obj/item/clothing/shoes/wolflegs
 				slot = SLOT_SHOES
+				if(DIGITIGRADE in user.dna.species.species_traits)
+					mutation = /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
 			if(5 to INFINITY)
 				to_chat(user, span_danger("The beast inside of you seems satisfied with your current form."))
 				return
@@ -163,7 +166,6 @@
 		var/obj/item/pastdrip = user.get_item_by_slot(slot)
 		user.dropItemToGround(pastdrip)
 		user.equip_to_slot_or_del(new mutation(user), slot)
-	return ..()
 
 ////////////////////////
 ///      Armor       ///

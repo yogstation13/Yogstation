@@ -90,6 +90,7 @@
 	background_icon_state_off = "lasombra_power_off"
 	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_armor"
+	additional_text = "Additionally gives you extra damage while fortitude'd and agro grab while in darkness."
 	purchase_flags = LASOMBRA_CAN_BUY
 	constant_bloodcost = 0.3
 	var/mutable_appearance/armor_overlay

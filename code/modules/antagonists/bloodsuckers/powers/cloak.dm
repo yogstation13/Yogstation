@@ -80,6 +80,7 @@
 	background_icon_state_off = "lasombra_power_off"
 	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_state"
+	additional_text = "Additionally allows you to run during cloak and gain a physical cloak while in darkness."
 	purchase_flags = LASOMBRA_CAN_BUY
 	constant_bloodcost = 0.3
 	runbound = FALSE

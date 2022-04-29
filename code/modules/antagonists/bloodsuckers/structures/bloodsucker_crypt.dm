@@ -200,7 +200,7 @@
 	desc = "This seem to hold a bit of significance."
 	icon_state = "restingplace"
 	var/awoken = FALSE
-	Ghost_desc = "This is a Resting Place, where lasombra bloodsucker can ascend their powers."
+	Ghost_desc = "This is a Resting Place, where Lasombra bloodsucker can ascend their powers."
 	Vamp_desc = "This is a Resting Place, which allows you to ascend your powers by gaining points using your ranks or blood.\n\
 		Interact with the Altar by clicking on it after you have fed it a abyssal essence, acquirable through influences.\n\
 		Remember most ascended powers have benefits if used in the dark.\n\
@@ -236,7 +236,8 @@
 			qdel(H)
 			awoken = TRUE
 			return
-		return to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
+		 to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
+		 return
 	. = ..()
 
 /obj/effect/reality_smash/attack_hand(mob/user, list/modifiers) // this is important
@@ -288,9 +289,11 @@
 			bloodsuckerdatum.powers -= choice
 			qdel(choice)
 			to_chat(user, span_boldnotice("You have ascended [choice]!"))
+			bloodsuckerdatum.clanpoints--
 			return
 		if(bloodsuckerdatum.bloodsucker_level >= 4 )
 			if(!awoken) //don't want this to affect power upgrading if you make another one
+				to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
 				return
 			icon_state = initial(icon_state) + (awoken ? "_idle" : "_awaken")
 			update_icon()
@@ -298,6 +301,7 @@
 			switch(bloodsuckerdatum.clanprogress)
 				if(0)
 					bloodsuckerdatum.clanprogress++
+					bloodsuckerdatum.clanpoints++
 					to_chat(user, span_notice("As you touch the [src] you feel the a slight abyssal pulse flow through you... You have gained a point!"))
 					return
 				if(1 to 3)
@@ -309,7 +313,7 @@
 				if(8 to INFINITY)
 					to_chat(user, span_notice("You have evolved all abilities possible."))
 					return
-			var/want_clantask = alert("Do you want to spend a rank to ascend an ability? This will cost [rankspent] ranks.", "Dark Manager", "Yes", "No")
+			var/want_clantask = alert("Do you want to spend a rank to gain a shadowpoint? This will cost [rankspent] ranks.", "Dark Manager", "Yes", "No")
 			if(want_clantask == "No" || QDELETED(src))
 				return
 			if(bloodsuckerdatum.bloodsucker_level_unspent < rankspent)
@@ -318,7 +322,7 @@
 					return
 				var/mob/living/carbon/C = user
 				if(C.blood_volume < 550)
-					to_chat(user, span_danger("You don't have enough blood to gain a task!"))
+					to_chat(user, span_danger("You don't have enough blood to gain a shadowpoint!"))
 					return
 				C.blood_volume -= 550
 			else

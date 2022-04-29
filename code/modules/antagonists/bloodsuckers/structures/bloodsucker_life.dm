@@ -225,7 +225,7 @@
 	// BLOOD_VOLUME_GOOD: [336] - Pale
 //	handled in bloodsucker_integration.dm
 	// BLOOD_VOLUME_EXIT: [560] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
-	if(owner.current.blood_volume >= FRENZY_THRESHOLD_EXIT || frenzied)
+	if(owner.current.blood_volume >= FRENZY_THRESHOLD_EXIT && frenzied)
 		owner.current.remove_status_effect(STATUS_EFFECT_FRENZY)
 	// BLOOD_VOLUME_BAD: [224] - Jitter
 	if(owner.current.blood_volume < BLOOD_VOLUME_BAD(owner.current) && prob(0.5) && !HAS_TRAIT(owner.current, TRAIT_NODEATH) && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
@@ -287,6 +287,7 @@
 					wolf_powers += new /datum/action/bloodsucker/gangrel/rabidism
 			for(var/datum/action/bloodsucker/power in wolf_powers) 
 				power.Grant(ww)
+		frenzies++
 		return
 	owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
 

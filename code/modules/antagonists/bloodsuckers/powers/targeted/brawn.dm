@@ -203,6 +203,7 @@
 	background_icon_state_off = "lasombra_power_off"
 	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_obliterate"
+	additional_text = "Additionally afflicts the target with a shadow curse while in darkness and disables any lights they may possess."
 	purchase_flags = LASOMBRA_CAN_BUY
 
 /datum/action/bloodsucker/targeted/brawn/shadow/FireTargetedPower(atom/target_atom)

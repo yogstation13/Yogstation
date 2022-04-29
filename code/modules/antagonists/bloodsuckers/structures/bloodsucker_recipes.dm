@@ -70,8 +70,9 @@
 	result = /obj/structure/bloodsucker/bloodaltar/restingplace
 	tools = list(TOOL_WRENCH, TOOL_SCREWDRIVER)
 	reqs = list(
-		/obj/structure/bloodsucker/bloodaltar,
-		/obj/structure/closet/crate/coffin/blackcoffin
+		/obj/item/stack/rods = 5,
+		/obj/item/stack/sheet/metal = 5,
+		/obj/item/stack/sheet/cloth = 2, //that's right it comes with bones FREE OF CHARGE
 	)
 	time = 15 SECONDS
 	category = CAT_STRUCTURES
