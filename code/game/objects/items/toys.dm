@@ -1555,6 +1555,20 @@ obj/item/toy/turn_tracker
 	icon_state = "warden"
 	toysay = "Seventeen minutes for coughing at an officer!"
 
+/obj/item/toy/figure/traitor
+	name = "Traitor action figure"
+	icon_state = "traitor"
+	toysay = "I got this scroll from a dead assistant!"
+
+/obj/item/toy/figure/traitor/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/pen/edagger))
+		icon_state += "_pen"
+	..()
+
+/obj/item/toy/figure/ling
+	name = "Changeling action figure"
+	icon_state = "ling"
+	toysay = ";g absorbing AI in traitor maint!"
 
 /obj/item/toy/dummy
 	name = "ventriloquist dummy"
