@@ -23,8 +23,22 @@
 	owner.special_role = special_role
 	if(owner.current)
 		give_pinpointer()
+		equip_brother()
 	finalize_brother()
 	return ..()
+
+/datum/antagonist/brother/proc/equip_brother()
+	var/mob/living/carbon/H = owner.current
+	if(!istype(H))
+		return
+	. += brother_give_item(/obj/item/book/granter/crafting_recipe/weapons, H)
+	
+/datum/antagonist/brother/proc/brother_give_item(obj/item/item_path, mob/living/carbon/human/H)
+	var/list/slots = list(
+		"backpack" = SLOT_IN_BACKPACK,
+		"left pocket" = SLOT_L_STORE,
+		"right pocket" = SLOT_R_STORE
+	)
 
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner
