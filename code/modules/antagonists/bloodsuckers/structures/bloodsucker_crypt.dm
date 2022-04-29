@@ -236,7 +236,7 @@
 			qdel(H)
 			awoken = TRUE
 		else
-		 	to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
+			to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
 		return
 	. = ..()
 
