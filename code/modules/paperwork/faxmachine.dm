@@ -191,7 +191,8 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	set name = "Send Fax"
 	set category = "Admin.RoundInteraction"
 
-	if(!check_rights(R_ADMIN)) return
+	if(!check_rights(R_ADMIN))
+		return
 	usr.client.send_admin_fax(src)
 
 /obj/machinery/photocopier/faxmachine/proc/recieve_admin_fax(customname, list/T)

@@ -2288,13 +2288,16 @@
 
 /client/proc/send_admin_fax(obj/machinery/photocopier/faxmachine/F)
 	var/inputsubject = input(src, "Please enter a subject", "Outgoing message from CentCom", "") as text|null
-	if(!inputsubject)	return
+	if(!inputsubject)	
+		return
 
 	var/inputmessage = input(src, "Please enter the message sent to [istype(F) ? F : "all fax machines"] via secure connection. Supports pen markdown.", "Outgoing message from CentCom", "") as message|null
-	if(!inputmessage)	return
+	if(!inputmessage)
+		return
 
 	var/inputsigned = input(src, "Please enter CentCom Official name.", "Outgoing message from CentCom", usr?.client?.holder?.admin_signature || "") as text|null
-	if(!inputsigned)	return
+	if(!inputsigned)
+		return
 
 	var/customname = input(src, "Pick a title for the report", "Title") as text|null
 	var/prefix = "<center><b>NanoTrasen Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>"
