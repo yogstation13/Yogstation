@@ -959,11 +959,11 @@
 /area/crew_quarters/heads/hos)
 "adh" = (
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/mouse/brown/Tom,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
-/mob/living/simple_animal/mouse/brown/Tom,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adi" = (
@@ -9391,6 +9391,9 @@
 	pixel_x = 32
 	},
 /obj/item/stamp/syndi,
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
 "aJJ" = (
@@ -12373,12 +12376,12 @@
 	pixel_y = -32
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /mob/living/simple_animal/hostile/lizard{
 	name = "Wags-His-Tail";
 	real_name = "Wags-His-Tail"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
@@ -19845,14 +19848,14 @@
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "bGO" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
 /mob/living/simple_animal/cockroach{
 	desc = "Virtually unkillable.";
 	name = "Becquerel";
 	sentience_type = 5;
 	status_flags = 16
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -21961,6 +21964,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"bTN" = (
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/fore)
 "bUs" = (
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
@@ -26020,6 +26027,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"cVk" = (
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/aft)
 "cVx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -26638,19 +26649,6 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
-"dtY" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/monkeycubes{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/item/storage/box/monkeycubes{
-	pixel_x = -1;
-	pixel_y = 2
-	},
-/obj/item/book/manual/wiki/xenobiology,
-/turf/open/floor/plasteel/dark,
-/area/science/xenobiology)
 "duk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -32649,6 +32647,10 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/structure/noticeboard{
+	dir = 8;
+	pixel_x = 27
+	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "gNS" = (
@@ -32954,9 +32956,6 @@
 /area/solar/port/aft)
 "gUM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/machinery/power/apc{
 	areastring = "/area/quartermaster/warehouse";
 	dir = 1;
@@ -35357,6 +35356,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"ibn" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_x = 32
+	},
+/obj/machinery/power/solar_control{
+	dir = 8;
+	id = "auxsolareast";
+	name = "Port Bow Solar Control"
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/port/fore)
 "ibt" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
@@ -38839,6 +38849,7 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
 "jKn" = (
+/mob/living/simple_animal/pet/dog/corgi/borgi,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
@@ -38848,7 +38859,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/mob/living/simple_animal/pet/dog/corgi/borgi,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "jKG" = (
@@ -40320,10 +40330,10 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/mob/living/simple_animal/spiffles,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/mob/living/simple_animal/spiffles,
 /turf/open/floor/plasteel,
 /area/clerk)
 "kBL" = (
@@ -40607,9 +40617,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "Psychiatristshutters"
-	},
+/obj/machinery/door/poddoor/shutters/preopen,
 /turf/open/floor/plating,
 /area/medical/psych)
 "kGQ" = (
@@ -42750,6 +42758,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"lOY" = (
+/obj/machinery/light_switch{
+	pixel_x = -23;
+	pixel_y = 7
+	},
+/obj/machinery/button/door{
+	id = "psych";
+	name = "Psych Office Shutters Control";
+	pixel_x = -25;
+	pixel_y = -8
+	},
+/obj/effect/landmark/start/yogs/psychiatrist,
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "lPO" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -44514,13 +44539,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
-"mGD" = (
-/obj/effect/spawner/structure/solars/solar_96,
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/fore)
 "mGG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -45555,20 +45573,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"ngE" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
-	},
-/obj/machinery/power/solar_control{
-	dir = 8;
-	id = "auxsolareast";
-	name = "Port Bow Solar Control"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/solars/port/fore)
 "ngI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -47618,11 +47622,11 @@
 	pixel_x = 8;
 	pixel_y = -5
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /mob/living/simple_animal/pet/dog/corgi/Ian{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
@@ -49409,11 +49413,6 @@
 /obj/item/camera_film,
 /turf/open/floor/wood,
 /area/library)
-"pga" = (
-/obj/effect/spawner/structure/solars/solar_96,
-/obj/structure/cable/yellow,
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/aft)
 "phv" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -50908,7 +50907,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "qaz" = (
-/obj/machinery/light,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -52246,11 +52244,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"qKT" = (
-/obj/effect/spawner/structure/solars/solar_96,
-/obj/structure/cable/yellow,
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/fore)
 "qKZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -52566,9 +52559,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "Psychiatristshutters"
-	},
+/obj/machinery/door/poddoor/shutters/preopen,
 /turf/open/floor/plating,
 /area/medical/psych)
 "qSU" = (
@@ -53380,13 +53371,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"rqO" = (
-/obj/effect/spawner/structure/solars/solar_96,
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/aft)
 "rqW" = (
 /obj/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -56354,6 +56338,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "sHf" = (
@@ -57275,6 +57260,9 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+/mob/living/simple_animal/bot/cleanbot/medical{
+	on = 0
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -57283,9 +57271,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
-	},
-/mob/living/simple_animal/bot/cleanbot/medical{
-	on = 0
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
@@ -59855,24 +59840,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/carpet,
 /area/medical/psych)
-"uqo" = (
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/solars/port/fore)
 "uqL" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -60735,6 +60702,18 @@
 /obj/effect/spawner/lootdrop/techstorage/security,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
+"uOl" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/xenobiology)
 "uOs" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 4
@@ -64060,10 +64039,6 @@
 	dir = 8
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/obj/structure/noticeboard{
-	dir = 8;
-	pixel_x = 27
-	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "wIS" = (
@@ -64095,10 +64070,10 @@
 	dir = 8
 	},
 /obj/item/toy/figure/ce,
+/mob/living/simple_animal/parrot/Poly,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/mob/living/simple_animal/parrot/Poly,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "wJG" = (
@@ -64402,24 +64377,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/hallway/primary/central)
-"wTW" = (
-/obj/machinery/light_switch{
-	pixel_x = -23;
-	pixel_y = 7
-	},
-/obj/machinery/button/door{
-	id = "Psychiatristshutters";
-	name = "Psych Office Shutters Control";
-	pixel_x = -25;
-	pixel_y = -8;
-	req_access_txt = "5"
-	},
-/obj/effect/landmark/start/yogs/psychiatrist,
-/obj/structure/chair/office/light{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "wUc" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
@@ -65516,6 +65473,21 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"xAP" = (
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/port/fore)
 "xAW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cloth_curtain{
@@ -66592,8 +66564,8 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /mob/living/carbon/monkey,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "yaD" = (
@@ -83138,7 +83110,7 @@ tnK
 tNk
 tNk
 tNk
-uqo
+xAP
 aIo
 qai
 anj
@@ -83395,7 +83367,7 @@ tnK
 aaa
 aaa
 tNk
-ngE
+ibn
 aIG
 aJD
 oOf
@@ -90868,7 +90840,7 @@ mtr
 nab
 dJr
 jcS
-wTW
+lOY
 fxA
 qSB
 klT
@@ -111988,7 +111960,7 @@ jXZ
 buu
 yeI
 dDE
-dtY
+uOl
 xrN
 pwx
 bDb
@@ -112932,17 +112904,17 @@ aaa
 aaa
 aaS
 aaa
-mGD
+bTN
 adS
-qKT
+bTN
 aaa
-mGD
+bTN
 adS
-qKT
+bTN
 aaa
-mGD
+bTN
 adS
-qKT
+bTN
 aaa
 aaS
 aaa
@@ -113189,17 +113161,17 @@ aaa
 aaa
 aaS
 aaf
-mGD
+bTN
 adT
-qKT
+bTN
 aaa
-mGD
+bTN
 adT
-qKT
+bTN
 aaa
-mGD
+bTN
 adT
-qKT
+bTN
 aaf
 aaf
 aaa
@@ -113446,17 +113418,17 @@ aaa
 aaa
 aaS
 aaa
-mGD
+bTN
 adT
-qKT
+bTN
 aaf
-mGD
+bTN
 adT
-qKT
+bTN
 aaf
-mGD
+bTN
 adT
-qKT
+bTN
 aaa
 aaf
 aaa
@@ -113703,17 +113675,17 @@ aaa
 aaa
 aaf
 aaf
-mGD
+bTN
 adT
-qKT
+bTN
 aaa
-mGD
+bTN
 adT
-qKT
+bTN
 aaa
-mGD
+bTN
 adT
-qKT
+bTN
 aaf
 aaf
 gXs
@@ -113960,17 +113932,17 @@ aaS
 aaS
 aaf
 aaa
-mGD
+bTN
 adT
-qKT
+bTN
 aaa
-mGD
+bTN
 adT
-qKT
+bTN
 aaa
-mGD
+bTN
 adT
-qKT
+bTN
 aaa
 gXs
 gXs
@@ -114988,17 +114960,17 @@ aba
 aaS
 acy
 aaa
-mGD
+bTN
 adW
-qKT
+bTN
 aaa
-mGD
+bTN
 adW
-qKT
+bTN
 aaa
-mGD
+bTN
 adW
-qKT
+bTN
 aaa
 gXs
 aaa
@@ -115245,17 +115217,17 @@ aaa
 aaa
 aaf
 aaf
-mGD
+bTN
 adW
-qKT
+bTN
 aaa
-mGD
+bTN
 adW
-qKT
+bTN
 aaa
-mGD
+bTN
 adW
-qKT
+bTN
 aaf
 aaf
 gXs
@@ -115502,17 +115474,17 @@ aaa
 aaa
 aaS
 aaa
-mGD
+bTN
 adW
-qKT
+bTN
 aaf
-mGD
+bTN
 adW
-qKT
+bTN
 aaf
-mGD
+bTN
 adW
-qKT
+bTN
 aaa
 aaf
 aaa
@@ -115759,17 +115731,17 @@ aaa
 aaa
 aaS
 aaf
-mGD
+bTN
 adW
-qKT
+bTN
 aaa
-mGD
+bTN
 adW
-qKT
+bTN
 aaa
-mGD
+bTN
 adW
-qKT
+bTN
 aaf
 aaf
 aaa
@@ -116016,17 +115988,17 @@ aaa
 aaa
 aaS
 aaa
-mGD
+bTN
 adY
-qKT
+bTN
 aaa
-mGD
+bTN
 adY
-qKT
+bTN
 aaa
-mGD
+bTN
 adY
-qKT
+bTN
 aaa
 aaS
 aaa
@@ -117415,17 +117387,17 @@ cNW
 aaa
 aaS
 aaa
-rqO
+cVk
 crB
-pga
+cVk
 aaa
-rqO
+cVk
 kyX
-pga
+cVk
 aaa
-rqO
+cVk
 kyX
-pga
+cVk
 aaa
 aaS
 aaa
@@ -117672,17 +117644,17 @@ gXs
 gXs
 aba
 aaf
-rqO
+cVk
 crC
-pga
+cVk
 aaa
-rqO
+cVk
 rry
-pga
+cVk
 aaa
-rqO
+cVk
 rry
-pga
+cVk
 aaf
 aaS
 aaa
@@ -117929,17 +117901,17 @@ aaa
 aaa
 aaf
 aaa
-rqO
+cVk
 crC
-pga
+cVk
 aaf
-rqO
+cVk
 rry
-pga
+cVk
 aaf
-rqO
+cVk
 rry
-pga
+cVk
 aaa
 aaS
 aaa
@@ -118186,17 +118158,17 @@ aaf
 aaf
 aaf
 aaf
-rqO
+cVk
 crC
-pga
+cVk
 aaa
-rqO
+cVk
 rry
-pga
+cVk
 aaa
-rqO
+cVk
 rry
-pga
+cVk
 aaf
 aaf
 aaa
@@ -118443,17 +118415,17 @@ aaa
 aaa
 aaf
 aaa
-rqO
+cVk
 crC
-pga
+cVk
 aaa
-rqO
+cVk
 rry
-pga
+cVk
 aaa
-rqO
+cVk
 rry
-pga
+cVk
 aaa
 aaf
 aaS
@@ -119471,17 +119443,17 @@ aaa
 aaa
 aaf
 aaa
-rqO
+cVk
 crE
-pga
+cVk
 aaa
-rqO
+cVk
 crE
-pga
+cVk
 aaa
-rqO
+cVk
 crE
-pga
+cVk
 aaa
 aaf
 aaS
@@ -119728,17 +119700,17 @@ aaf
 aaf
 aaf
 aaf
-rqO
+cVk
 crE
-pga
+cVk
 aaa
-rqO
+cVk
 crE
-pga
+cVk
 aaa
-rqO
+cVk
 crE
-pga
+cVk
 aaf
 aaf
 aaa
@@ -119985,17 +119957,17 @@ aaa
 aaa
 aaf
 aaa
-rqO
+cVk
 crE
-pga
+cVk
 aaf
-rqO
+cVk
 crE
-pga
+cVk
 aaf
-rqO
+cVk
 crE
-pga
+cVk
 aaa
 aaS
 aaa
@@ -120242,17 +120214,17 @@ aaf
 aaf
 aaf
 aaf
-rqO
+cVk
 crE
-pga
+cVk
 aaa
-rqO
+cVk
 crE
-pga
+cVk
 aaa
-rqO
+cVk
 crE
-pga
+cVk
 aaf
 aaS
 aaa
@@ -120499,17 +120471,17 @@ aaa
 aaa
 aba
 aaa
-rqO
+cVk
 crG
-pga
+cVk
 aaa
-rqO
+cVk
 crG
-pga
+cVk
 aaa
-rqO
+cVk
 crG
-pga
+cVk
 aaa
 aaS
 aaa
