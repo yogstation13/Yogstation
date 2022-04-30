@@ -14,7 +14,7 @@
 	if(!target)
 		to_chat(user,span_warning("No target could be found. Put the living heart on the rune and use the rune to recieve a target."))
 		return
-	var/userturf = get_turf(user)
+	var/turf/userturf = get_turf(user)
 	var/targetturf = get_turf(target)
 	var/dist = get_dist(userturf,targetturf)
 	var/dir = get_dir(userturf,targetturf)
