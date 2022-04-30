@@ -1,7 +1,7 @@
-#define WATER_VOLUME_MAXIMUM BLOOD_VOLUME_NORMAL
+#define WATER_VOLUME_MAXIMUM 560
 #define WATER_VOLUME_LIMB_LOSS (WATER_VOLUME_MAXIMUM / 4)
 #define WATER_VOLUME_LIMB_LOSS_THRESHOLD (WATER_VOLUME_MAXIMUM - WATER_VOLUME_LIMB_LOSS)
-
+#define WATER_VOLUME_SLIP_MOVE_AMOUNT 10
 /obj/item/organ/lungs/water
 	name = "vile sponge"
 	desc = "A spongy mass that looks like it is designed to carbonate water, what is it doing in a body?"
@@ -51,7 +51,9 @@
 	new_mob.name = H.real_name
 	new_mob.real_name = new_mob.name
 	new_mob.health = H.health
+
 	new_mob.prev_body = H
+	new_mob.water_volume = H.blood_volume
 	H.notransform = TRUE //This stops processing with Life() 
 	
 
@@ -150,6 +152,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE
 	mob_biotypes = list(MOB_ORGANIC)
 	var/mob/living/carbon/human/prev_body 
+	var/water_volume = 0
 
 /mob/living/simple_animal/waterblob/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -166,7 +169,7 @@
 					prev_body.adjustCloneLoss(damage_to_apply) 
 				prev_body.notransform = FALSE
 				prev_body.equip_to_appropriate_slot(scooper)
-
+				prev_body.blood_volume = water_volume
 				if(mind)
 					mind.transfer_to(prev_body)
 				else
@@ -180,3 +183,11 @@
 	else
 		gib()
 	
+/mob/living/simple_animal/waterblob/Moved(atom/OldLoc, Dir)
+	. = ..()
+	var/turf/open/T = get_turf(src)
+	if (istype(T) && !istype(T, /turf/open/floor/noslip))
+		if (water_volume >= WATER_VOLUME_SLIP_MOVE_AMOUNT)
+			T.MakeSlippery(TURF_WET_WATER, 40)
+			water_volume -= WATER_VOLUME_SLIP_MOVE_AMOUNT
+		
