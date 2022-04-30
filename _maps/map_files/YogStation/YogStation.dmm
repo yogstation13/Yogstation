@@ -40607,7 +40607,9 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "Psychiatristshutters"
+	},
 /turf/open/floor/plating,
 /area/medical/psych)
 "kGQ" = (
@@ -52564,7 +52566,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/shutters/preopen,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "Psychiatristshutters"
+	},
 /turf/open/floor/plating,
 /area/medical/psych)
 "qSU" = (
@@ -64404,7 +64408,7 @@
 	pixel_y = 7
 	},
 /obj/machinery/button/door{
-	id = "psych";
+	id = "Psychiatristshutters";
 	name = "Psych Office Shutters Control";
 	pixel_x = -25;
 	pixel_y = -8;
