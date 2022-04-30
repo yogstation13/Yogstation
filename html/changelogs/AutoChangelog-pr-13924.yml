@@ -1,0 +1,4 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - tweak: "cqc manual now tells you that the cqc kick mutes"
