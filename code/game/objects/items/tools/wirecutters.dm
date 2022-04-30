@@ -89,3 +89,18 @@
 	name = "wirecutters"
 	desc = "This cuts wires."
 	toolspeed = 0.5
+
+/obj/item/wirecutters/makeshift
+	name = "makeshift wirecutters"
+	desc = "Mind your fingers."
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "cutters_makeshift"
+	toolspeed = 0.5
+	random_color = FALSE
+
+/obj/item/wirecutters/makeshift/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	..()
+	if(prob(5))
+		to_chat(user, span_danger("[src] crumbles apart in your hands!"))
+		qdel(src)
+		return

@@ -118,7 +118,7 @@
 	if(type && frames)
 		cut_overlays()
 		if (suppressed)
-			add_overlay("[icon_state]_suppressor")
+			add_overlay("[icon_state]_[suppressed.icon_state]")
 		if(type == "fire")
 			if(!chambered)
 				return
@@ -192,7 +192,7 @@
 	if (bolt_type == BOLT_TYPE_OPEN && bolt_locked)
 		add_overlay("[icon_state]_bolt")
 	if (suppressed)
-		add_overlay("[icon_state]_suppressor")
+		add_overlay("[icon_state]_[suppressed.icon_state]")
 	if(!chambered && empty_indicator)
 		add_overlay("[icon_state]_empty")
 	if (magazine)
@@ -396,12 +396,11 @@
 		return
 	if(loc == user)
 		if(suppressed && can_unsuppress)
-			var/obj/item/suppressor/S = suppressed
 			if(!user.is_holding(src))
 				return ..()
 			to_chat(user, span_notice("You unscrew \the [suppressed] from \the [src]."))
 			user.put_in_hands(suppressed)
-			w_class -= S.w_class
+			w_class -= suppressed.w_class
 			suppressed = null
 			update_icon()
 			return
@@ -479,7 +478,7 @@
 	if (bolt_locked)
 		. += "The [bolt_wording] is locked back and needs to be released before firing."
 	if (suppressed)
-		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
+		. += "It has a [suppressed] attached that can be removed with <b>alt+click</b>."
 
 /obj/item/gun/ballistic/verb/set_reload()
 	set name = "Set Reload Speech"
@@ -595,6 +594,14 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY
+	var/break_chance = 0 // Chance per shot for the suppressor to fall apart
+
+/obj/item/suppressor/makeshift
+	name = "makeshift suppressor"
+	desc = "A poorly made small-arms suppressor for above average espionage on a budget."
+	icon_state = "suppressor_makeshift"
+	w_class = WEIGHT_CLASS_SMALL
+	break_chance = 10
 
 
 /obj/item/suppressor/specialoffer
