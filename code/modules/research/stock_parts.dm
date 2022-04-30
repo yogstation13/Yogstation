@@ -19,11 +19,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 		return ..()
 	if(user.Adjacent(T)) // no TK upgrading.
 		if(works_from_distance)
-			if(in_view_range(user, T))
-				user.Beam(T, icon_state = "rped_upgrade", time = 5)
-			else
-				to_chat(user, span_warning("Out of range!"))
-				return
+			user.Beam(T, icon_state = "rped_upgrade", time = 5)
 		T.exchange_parts(user, src)
 		return FALSE
 	return ..()
