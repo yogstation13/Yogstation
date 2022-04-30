@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "cauterizing and clamping a surgery that has had a saw step deal da,age will no longer try ro heal that damage off of a random limb rather than the target limb"
