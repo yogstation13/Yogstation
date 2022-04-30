@@ -25,6 +25,8 @@
 	var/datum/bank_account/linked_account
 	var/money_per_zap = 2 // This is tied to coil cooldown in the same way research points are.
 
+	var/powermodifier = 0.25 /// Flat amount to nerf/buff power by
+
 /obj/machinery/power/tesla_coil/power
 	circuit = /obj/item/circuitboard/machine/tesla_coil/power
 
@@ -81,7 +83,7 @@
 /obj/machinery/power/tesla_coil/tesla_act(power, tesla_flags, shocked_targets)
 	if(anchored && !panel_open)
 		obj_flags |= BEING_SHOCKED
-		add_avail((power * (1 - percentage_power_loss))*input_power_multiplier)
+		add_avail(((power * (1 - percentage_power_loss))*input_power_multiplier) * powermodifier)
 		flick("coilhit", src)
 		playsound(src.loc, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
 		if(istype(linked_account))
