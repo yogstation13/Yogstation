@@ -2284,16 +2284,16 @@
 
 	if(!check_rights(R_ADMIN)) 
 		return
-	send_admin_fax(null)
+	send_admin_fax()
 
 /client/proc/send_admin_fax(obj/machinery/photocopier/faxmachine/F)
-	var/inputsubject = input(src, "Please enter a Subject", "Outgoing message from Centcom", "") as text|null
+	var/inputsubject = input(src, "Please enter a subject", "Outgoing message from CentCom", "") as text|null
 	if(!inputsubject)	return
 
-	var/inputmessage = input(src, "Please enter a message send to [istype(F) ? F : "all fax machines"] via secure connection. Supports pen markdown.", "Outgoing message from Centcom", "") as message|null
+	var/inputmessage = input(src, "Please enter the message sent to [istype(F) ? F : "all fax machines"] via secure connection. Supports pen markdown.", "Outgoing message from CentCom", "") as message|null
 	if(!inputmessage)	return
 
-	var/inputsigned = input(src, "Please enter Centcom Offical name.", "Outgoing message from Centcom", usr?.client?.holder?.admin_signature || "") as text|null
+	var/inputsigned = input(src, "Please enter CentCom Official name.", "Outgoing message from CentCom", usr?.client?.holder?.admin_signature || "") as text|null
 	if(!inputsigned)	return
 
 	var/customname = input(src, "Pick a title for the report", "Title") as text|null
@@ -2309,7 +2309,7 @@
 	log_admin("[key_name(src)] sent a fax message to [istype(F) ? F : "all fax machines"]: [inputmessage]")
 	message_admins("[key_name_admin(src)] sent a fax message to [istype(F) ? F : "all fax machines"]")
 	if(!istype(F))
-		minor_announce("Central command has sent a fax message, this will be printed out at all fax machines")
+		minor_announce("Central Command has sent a fax message, it will be printed out at all fax machines.")
 
 	if(istype(F))
 		INVOKE_ASYNC(F, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, T)

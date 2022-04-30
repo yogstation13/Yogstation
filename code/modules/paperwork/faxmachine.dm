@@ -195,14 +195,15 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	usr.client.send_admin_fax(src)
 
 /obj/machinery/photocopier/faxmachine/proc/recieve_admin_fax(customname, list/T)
-	if(! (stat & (BROKEN|NOPOWER) ) )
+	if(stat & (BROKEN|NOPOWER))
+		return
 		// animate! it's alive!
 		flick("faxreceive", src)
 
 		// give the sprite some time to flick
 		spawn(20)
 			var/obj/item/paper/P = new /obj/item/paper( loc )
-			P.name = "[command_name()]- [customname]"
+			P.name = "[command_name()] - [customname]"
 			
 			var/list/templist = list() // All the stuff we're adding to $written
 			for(var/text in T)
@@ -222,7 +223,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 			if (isnull(P.stamps))
 				P.stamps = sheet.css_tag()
 			P.stamps += sheet.icon_tag("stamp-cent")
-			P.stamps += "<br><i>This paper has been stamped by the Central Command Quantum Relay.</i><br>"
+			P.stamps += "<br><i>This paper has been verified by the Central Command Quantum Relay.</i><br>"
 			var/mutable_appearance/stampoverlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_stamp-cent")
 			stampoverlay.pixel_x = rand(-2, 2)
 			stampoverlay.pixel_y = rand(-3, 2)
@@ -238,4 +239,4 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 /obj/machinery/photocopier/faxmachine/examine(mob/user)
 	. = ..()
 	if(IsAdminGhost(user))
-		.+= "You can send admin faxes via AltClick to this specific Fax Machine."
+		.+= span_notice("You can send admin faxes via Alt-Click to this specific fax machine.")
