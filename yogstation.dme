@@ -3363,6 +3363,7 @@
 #include "yogstation\code\game\machinery\doors\poddoor.dm"
 #include "yogstation\code\game\machinery\doors\spacepod.dm"
 #include "yogstation\code\game\machinery\pipe\construction.dm"
+#include "yogstation\code\game\machinery\telecomms\machine_interactions.dm"
 #include "yogstation\code\game\machinery\telecomms\computers\logbrowser.dm"
 #include "yogstation\code\game\machinery\telecomms\computers\telemonitor.dm"
 #include "yogstation\code\game\machinery\telecomms\computers\traffic_control.dm"
