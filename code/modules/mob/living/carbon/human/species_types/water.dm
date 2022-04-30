@@ -27,8 +27,6 @@
 	speedmod = 0.5
 	breathid = "co2"
 	var/falling_apart = FALSE
-	//var/water_volume = WATER_VOLUME_MAXIMUM 
-	var/water_blob = /mob/living/simple_animal/waterblob
 	exotic_blood = /datum/reagent/water
 	swimming_component = /datum/component/swimming/dissolve
 
@@ -39,7 +37,7 @@
 	for(var/obj/item/I in H.held_items)
 		H.dropItemToGround(I)
 
-	var/mob/living/new_mob = new water_blob(H.loc)
+	var/mob/living/simple_animal/waterblob/new_mob = new /mob/living/simple_animal/waterblob(H.loc)
 	if(istype(new_mob))
 		if(H.mind)
 			H.mind.transfer_to(new_mob)
@@ -99,7 +97,7 @@
 		INVOKE_ASYNC(src, .proc/fall_apart, H)
 	
 	if (H.blood_volume < WATER_VOLUME_LIMB_LOSS_THRESHOLD)
-		var/limb_to_remove = floor(H.blood_volume / WATER_VOLUME_LIMB_LOSS)
+		var/limb_to_remove = round(H.blood_volume / WATER_VOLUME_LIMB_LOSS)
 		var/list/limbs_to_consume = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 		
 		remove_limb(H)
