@@ -108,7 +108,6 @@
 	new /obj/item/extinguisher/mini(src)
 	new /obj/item/holosign_creator/multi/CE(src)
 
-
 /obj/item/storage/belt/utility/full/PopulateContents()
 	new /obj/item/screwdriver(src)
 	new /obj/item/wrench(src)
