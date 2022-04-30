@@ -1,0 +1,14 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "expanded security to have a bigger evidence room, armory, and security office"
+  - rscadd: "add canisters to atmos"
+  - bugfix: "add turbine control computer"
+  - bugfix: "restores power to atmos after it was rerouted in a previous pr"
+  - bugfix: "removes some erroneous trim around some walls"
+  - bugfix: "fixes xenobio freezer pipe"
+  - tweak: "changes the start of the filter network to not be as stupid"
+  - tweak: "moves science escape pod one to the left and reinforces secondary core"
+  - tweak: "expands bar, makes it more like box"
+  - tweak: "moves security office stuff"
+  - tweak: "gives a third beaker for cryo"
