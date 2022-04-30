@@ -95,7 +95,7 @@
 			var/obj/item/tank/internals/plasma/tank = locate() in src
 			if(tank && Adjacent(usr))
 				if(iscyborg(usr))
-					usr.dropItemToGround(tank)
+					usr.transferItemToLoc(tank, src.loc)
 				else
 					usr.put_in_hands(tank)
 				plasmatanks--
