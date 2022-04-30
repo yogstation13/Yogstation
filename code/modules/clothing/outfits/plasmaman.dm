@@ -352,7 +352,7 @@
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/robotics
-	belt = /obj/item/storage/belt/utility/full/no_tape
+	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/headset_sci
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	backpack = /obj/item/storage/backpack/science
