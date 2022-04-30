@@ -16,7 +16,7 @@
 	rare_say_mod = list("gushes" = 10, "slushes" = 10, "spits" = 10, "splutters" = 10, "slobbers" = 10)
 	default_color = "56CACE"
 	species_traits = list(MUTCOLORS, HAS_FLESH, NOSTOMACH, NOLIVER, TRAIT_NOHUNGER, NOTRANSSTING, NO_DNA_COPY, NOBLOOD) // "blood" will be handled seperately
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_HARDLY_WOUNDED, TRAIT_VIRUSIMMUNE, TRAIT_NODISMEMBER, TRAIT_RESISTHIGHPRESSURE) //can't compress water
+	inherent_traits = list(TRAIT_BADDNA,TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_HARDLY_WOUNDED, TRAIT_VIRUSIMMUNE, TRAIT_NODISMEMBER, TRAIT_RESISTHIGHPRESSURE) //can't compress water
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mutantlungs = /obj/item/organ/lungs/water
 	payday_modifier = 0.3
@@ -29,6 +29,10 @@
 	var/falling_apart = FALSE
 	exotic_blood = /datum/reagent/water
 	swimming_component = /datum/component/swimming/dissolve
+
+/datum/species/water/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	. = ..()
+	C.blood_volume = WATER_VOLUME_MAXIMUM
 
 /datum/species/water/proc/transform_into_blob(mob/living/carbon/human/H)
 
@@ -49,7 +53,7 @@
 	new_mob.health = H.health
 	new_mob.prev_body = H
 	H.notransform = TRUE //This stops processing with Life() 
-	qdel(H)
+	
 
 /datum/species/water/proc/fall_apart(mob/living/carbon/human/H)
 	falling_apart = TRUE
@@ -141,25 +145,33 @@
 	health = 200
 	minbodytemp = T0C
 	maxbodytemp = T0C + 100
-
+	density = FALSE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 5, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-
+	pass_flags = PASSTABLE | PASSGRILLE
+	mob_biotypes = list(MOB_ORGANIC)
 	var/mob/living/carbon/human/prev_body 
 
 /mob/living/simple_animal/waterblob/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	var/obj/item/clothing/under/scooper = I
-	if (istype(I))
-		if (istype(I.GetComponent(/datum/component/wetsuit_holder)))
-			user.visible_message(span_notice("[user] tries to scoop [src] into the [scooper]."), span_warning("You start getting scooped up!"))
-			if (do_after(user, 4 SECONDS, true, src))
-				user.visible_message(span_notice("[user] scoops up [src] into the [scooper]."), span_warning("You get scooped up!"))
+	if (istype(scooper))
+		var/datum/component/wetsuit_holder/shirt_component = scooper.GetComponent(/datum/component/wetsuit_holder)
+		if (istype(shirt_component))
+			src.visible_message(span_notice("[user] tries to scoop [src] into the [scooper]."), span_warning("You start getting scooped up!"))
+			if (do_after(user, 4 SECONDS, TRUE, src))
+				src.visible_message(span_notice("[user] scoops up [src] into the [scooper]."), span_warning("You get scooped up!"))
 				prev_body.forceMove(loc)
 				var/damage_to_apply = prev_body.health - health
 				if (damage_to_apply > 0)
 					prev_body.adjustCloneLoss(damage_to_apply) 
 				prev_body.notransform = FALSE
 				prev_body.equip_to_appropriate_slot(scooper)
+
+				if(mind)
+					mind.transfer_to(prev_body)
+				else
+					prev_body.key = key
+
 				qdel(src)
 
 /mob/living/simple_animal/waterblob/death(gibbed)
