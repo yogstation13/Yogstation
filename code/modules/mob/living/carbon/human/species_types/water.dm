@@ -27,37 +27,43 @@
 	speedmod = 0.5
 	breathid = "co2"
 	var/falling_apart = FALSE
-	var/water_volume = WATER_VOLUME_MAXIMUM 
+	//var/water_volume = WATER_VOLUME_MAXIMUM 
 	var/water_blob = /mob/living/simple_animal/waterblob
+	exotic_blood = /datum/reagent/water
+	swimming_component = /datum/component/swimming/dissolve
+
+/datum/species/water/proc/transform_into_blob(mob/living/carbon/human/H)
+
+	for(var/obj/item/W in H.get_equipped_items(TRUE))
+		H.dropItemToGround(W)
+	for(var/obj/item/I in H.held_items)
+		H.dropItemToGround(I)
+
+	var/mob/living/new_mob = new water_blob(H.loc)
+	if(istype(new_mob))
+		if(H.mind)
+			H.mind.transfer_to(new_mob)
+		else
+			new_mob.key = H.key
+
+	new_mob.name = H.real_name
+	new_mob.real_name = new_mob.name
+	new_mob.health = H.health
+	new_mob.prev_body = H
+	H.notransform = TRUE //This stops processing with Life() 
+	qdel(H)
 
 /datum/species/water/proc/fall_apart(mob/living/carbon/human/H)
-	. = ..()
 	falling_apart = TRUE
 	H.visible_message(span_danger("[H] begins to drip..."), span_danger("You can feel yourself dripping..."))
-	spawn(40)
+	spawn(60)
 		if (!should_fall_apart(H))
 			falling_apart = FALSE
 			return
 		//actually fall apart
 		H.visible_message(span_danger("[H] falls apart!"), span_danger("You fall apart!"))
 
-	
-		for(var/obj/item/W in H.get_equipped_items(TRUE))
-			H.dropItemToGround(W)
-		for(var/obj/item/I in H.held_items)
-			H.dropItemToGround(I)
-
-		var/mob/living/new_mob = new water_blob(H.loc)
-		if(istype(new_mob))
-			if(H.mind)
-				H.mind.transfer_to(new_mob)
-			else
-				new_mob.key = H.key
-
-		new_mob.name = H.real_name
-		new_mob.real_name = new_mob.name
-		
-		qdel(H)
+		transform_into_blob(H)
 
 		falling_apart = FALSE
 
@@ -72,8 +78,6 @@
 			if (H.head.clothing_flags & STOPSPRESSUREDAMAGE && H.wear_suit.clothing_flags & STOPSPRESSUREDAMAGE)
 				return FALSE
 		return TRUE
-
-
 	return FALSE
 
 /datum/species/water/proc/remove_limb(mob/living/carbon/human/H)
@@ -88,20 +92,19 @@
 	consumed_limb.drop_limb()
 	to_chat(H, span_userdanger("Your [consumed_limb] is subsumed into your body, unable to maintain its shape!"))
 	qdel(consumed_limb)
-	water_volume += 20
+	H.blood_volume += 20
 
 /datum/species/water/spec_life(mob/living/carbon/human/H)
 	if(should_fall_apart(H) && falling_apart == FALSE)
 		INVOKE_ASYNC(src, .proc/fall_apart, H)
 	
-	if (water_volume < WATER_VOLUME_LIMB_LOSS_THRESHOLD)
-		var/limb_to_remove = floor(water_volume / WATER_VOLUME_LIMB_LOSS)
+	if (H.blood_volume < WATER_VOLUME_LIMB_LOSS_THRESHOLD)
+		var/limb_to_remove = floor(H.blood_volume / WATER_VOLUME_LIMB_LOSS)
 		var/list/limbs_to_consume = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 		
-		
-
 		remove_limb(H)
 	
+	H.adjustCloneLoss(-0.1) //Slowly remove cloning loss as they really don't have any other ways
 
 /datum/species/water/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
@@ -136,3 +139,34 @@
 /mob/living/simple_animal/waterblob
 	name = "slobbery mess"
 	desc = "Something that can only be described as a bubbling viscous puddle extending tendrils to wherever it moves."
+	maxHealth = 200
+	health = 200
+	minbodytemp = T0C
+	maxbodytemp = T0C + 100
+
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 5, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+
+	var/mob/living/carbon/human/prev_body 
+
+/mob/living/simple_animal/waterblob/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	var/obj/item/clothing/under/scooper = I
+	if (istype(I))
+		if (istype(I.GetComponent(/datum/component/wetsuit_holder)))
+			user.visible_message(span_notice("[user] tries to scoop [src] into the [scooper]."), span_warning("You start getting scooped up!"))
+			if (do_after(user, 4 SECONDS, true, src))
+				user.visible_message(span_notice("[user] scoops up [src] into the [scooper]."), span_warning("You get scooped up!"))
+				prev_body.forceMove(loc)
+				var/damage_to_apply = prev_body.health - health
+				if (damage_to_apply > 0)
+					prev_body.adjustCloneLoss(damage_to_apply) 
+				prev_body.notransform = FALSE
+				prev_body.equip_to_appropriate_slot(scooper)
+				qdel(src)
+
+/mob/living/simple_animal/waterblob/death(gibbed)
+	if (gibbed)
+		. = ..()
+	else
+		gib()
+	
