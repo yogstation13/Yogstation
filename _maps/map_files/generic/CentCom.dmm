@@ -26066,6 +26066,11 @@
 "cgW" = (
 /turf/open/indestructible/wiki/whitescreen,
 /area/centcom/testchamber)
+"crH" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info29"
+	},
+/area/centcom/testchamber)
 "dbb" = (
 /turf/open/indestructible/wiki/greenscreen,
 /area/centcom/testchamber)
@@ -26082,6 +26087,11 @@
 "fka" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info2"
+	},
+/area/centcom/testchamber)
+"fok" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info23"
 	},
 /area/centcom/testchamber)
 "fwB" = (
@@ -26113,6 +26123,11 @@
 "gQd" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info20"
+	},
+/area/centcom/testchamber)
+"hpv" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info27"
 	},
 /area/centcom/testchamber)
 "hww" = (
@@ -26159,6 +26174,11 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"jMa" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info26"
+	},
+/area/centcom/testchamber)
 "kaB" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "64"
@@ -26187,6 +26207,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"kMR" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info28"
+	},
+/area/centcom/testchamber)
 "lVQ" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info5"
@@ -26366,9 +26391,19 @@
 	icon_state = "info15"
 	},
 /area/centcom/testchamber)
+"wdW" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info32"
+	},
+/area/centcom/testchamber)
 "wkC" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title4"
+	},
+/area/centcom/testchamber)
+"wnj" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info30"
 	},
 /area/centcom/testchamber)
 "wDa" = (
@@ -26390,12 +26425,22 @@
 	icon_state = "32"
 	},
 /area/centcom/testchamber)
+"xkU" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info24"
+	},
+/area/centcom/testchamber)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
 	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /turf/open/floor/plasteel,
+/area/centcom/testchamber)
+"xGe" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info31"
+	},
 /area/centcom/testchamber)
 "ydX" = (
 /turf/open/indestructible/wiki/info{
@@ -66194,9 +66239,9 @@ aNt
 cgW
 cgW
 cgW
-cgW
 vOA
 sSY
+fok
 cgW
 cgW
 cgW
@@ -66451,9 +66496,9 @@ aNt
 cgW
 cgW
 cgW
-cgW
 fka
 qhf
+xkU
 cgW
 cgW
 cgW
@@ -66708,9 +66753,9 @@ aNt
 cgW
 cgW
 cgW
-cgW
 kkU
 moB
+jMa
 cgW
 cgW
 kaB
@@ -66965,9 +67010,9 @@ aNt
 cgW
 cgW
 cgW
-cgW
 ydX
 nbn
+hpv
 cgW
 cgW
 cgW
@@ -67222,9 +67267,9 @@ aNt
 cgW
 cgW
 cgW
-cgW
 lVQ
 vMw
+kMR
 cgW
 cgW
 cgW
@@ -67479,9 +67524,9 @@ aNt
 cgW
 cgW
 cgW
-cgW
 tID
 vYN
+crH
 cgW
 wDH
 dbb
@@ -67736,9 +67781,9 @@ aNt
 cgW
 eDa
 cgW
-cgW
 rib
 bEO
+wnj
 cgW
 cgW
 dbb
@@ -67993,9 +68038,9 @@ aNt
 cgW
 nbv
 cgW
-cgW
 nNJ
 mFt
+xGe
 cgW
 cgW
 dbb
@@ -68250,9 +68295,9 @@ aNt
 cgW
 uaZ
 cgW
-cgW
 oCO
 dwq
+wdW
 cgW
 cgW
 cgW
@@ -68508,8 +68553,8 @@ cgW
 wkC
 cgW
 cgW
-cgW
 iCm
+cgW
 vUr
 dbb
 dbb
@@ -68765,8 +68810,8 @@ cgW
 fwB
 cgW
 cgW
-cgW
 gQd
+cgW
 cgW
 dbb
 dbb
@@ -69022,8 +69067,8 @@ cgW
 mbq
 cgW
 cgW
-cgW
 rEF
+cgW
 cgW
 dbb
 dbb
@@ -69279,8 +69324,8 @@ cgW
 hww
 cgW
 cgW
-cgW
 jqy
+cgW
 cgW
 dbb
 dbb
