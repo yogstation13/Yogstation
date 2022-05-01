@@ -13,7 +13,7 @@
 	tastes = list("candy" = 1)
 	foodtype = JUNKFOOD | SUGAR
 
-/obj/item/reagent_containers/food/snacks/sosjerky
+/obj/item/reagent_containers/food/snacks/canned/sosjerky
 	name = "\improper Scaredy's Private Reserve Beef Jerky"
 	icon_state = "sosjerky"
 	desc = "Beef jerky made from the finest space cows."
@@ -24,13 +24,13 @@
 	tastes = list("dried meat" = 1)
 	foodtype = JUNKFOOD | MEAT | SUGAR
 
-/obj/item/reagent_containers/food/snacks/sosjerky/healthy
+/obj/item/reagent_containers/food/snacks/canned/sosjerky/healthy
 	name = "homemade beef jerky"
 	desc = "Homemade beef jerky made from the finest space cows."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	junkiness = 0
 
-/obj/item/reagent_containers/food/snacks/chips
+/obj/item/reagent_containers/food/snacks/canned/chips
 	name = "chips"
 	desc = "Commander Riker's What-The-Crisps."
 	icon_state = "chips"
@@ -42,7 +42,7 @@
 	tastes = list("salt" = 1, "crisps" = 1)
 	foodtype = JUNKFOOD | FRIED
 
-/obj/item/reagent_containers/food/snacks/no_raisin
+/obj/item/reagent_containers/food/snacks/canned/no_raisin
 	name = "4no raisins"
 	icon_state = "4no_raisins"
 	desc = "Best raisins in the universe. Not sure why."
@@ -54,7 +54,7 @@
 	foodtype = JUNKFOOD | FRUIT | SUGAR
 	custom_price = 30
 
-/obj/item/reagent_containers/food/snacks/no_raisin/healthy
+/obj/item/reagent_containers/food/snacks/canned/no_raisin/healthy
 	name = "homemade raisins"
 	desc = "Homemade raisins, the best in all of spess."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -71,7 +71,7 @@
 	foodtype = JUNKFOOD | GRAIN | SUGAR
 	custom_price = 11
 
-/obj/item/reagent_containers/food/snacks/cheesiehonkers
+/obj/item/reagent_containers/food/snacks/canned/cheesiehonkers
 	name = "cheesie honkers"
 	desc = "Bite sized cheesie snacks that will honk all over your mouth."
 	icon_state = "cheesie_honkers"
@@ -83,7 +83,7 @@
 	foodtype = JUNKFOOD | DAIRY | SUGAR
 	custom_price = 16
 
-/obj/item/reagent_containers/food/snacks/syndicake
+/obj/item/reagent_containers/food/snacks/canned/syndicake
 	name = "syndi-cakes"
 	icon_state = "syndi_cakes"
 	desc = "An extremely moist snack cake that tastes just as good after being nuked."
@@ -93,7 +93,7 @@
 	tastes = list("sweetness" = 3, "cake" = 1)
 	foodtype = GRAIN | FRUIT | VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/energybar
+/obj/item/reagent_containers/food/snacks/canned/energybar
 	name = "High-power energy bars"
 	icon_state = "energybar"
 	desc = "An energy bar with a lot of punch, you probably shouldn't eat this if you're not an Ethereal."
@@ -103,7 +103,7 @@
 	tastes = list("pure electricity" = 3, "fitness" = 2)
 	foodtype = TOXIC
 
-/obj/item/reagent_containers/food/snacks/toritose
+/obj/item/reagent_containers/food/snacks/canned/toritose
 	name = "toritose"
 	desc = "An excellent snack when you need it, however they become salty real fast. Hopefully stands on it's own in the market."
 	icon_state = "toritose"
@@ -126,7 +126,7 @@
 	foodtype = JUNKFOOD | FRUIT | SUGAR
 	custom_price = 5
 
-/obj/item/reagent_containers/food/snacks/kakes
+/obj/item/reagent_containers/food/snacks/canned/kakes
 	name = "top kakes"
 	desc = "Sugary bitsized cake delights guaranteed to keep you up all night!"
 	trash = /obj/item/trash/topkakes

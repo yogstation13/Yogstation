@@ -77,7 +77,7 @@ datum/crafting_recipe/food/donut/meat
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/jelly/laugh
 	subcategory = CAT_PASTRY
-	
+
 /datum/crafting_recipe/food/donut/slimejelly/laugh
 	name = "Sweet Pea Jelly Donut"
 	reqs = list(
@@ -88,7 +88,7 @@ datum/crafting_recipe/food/donut/meat
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/donut/spaghetti
-	name = "Spagh-O-Nut"	
+	name = "Spagh-O-Nut"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
 		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1
@@ -379,7 +379,7 @@ datum/crafting_recipe/food/donut/meat
 /datum/crafting_recipe/food/raisincookie
 	name = "Raisin Cookie"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/no_raisin = 1,
+		/obj/item/reagent_containers/food/snacks/canned/no_raisin = 1,
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
 		/obj/item/reagent_containers/food/snacks/grown/oat = 1
 	)

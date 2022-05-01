@@ -6,7 +6,7 @@
 	name = "meat"
 	desc = "A slab of meat."
 	icon_state = "meat"
-	dried_type = /obj/item/reagent_containers/food/snacks/sosjerky/healthy
+	dried_type = /obj/item/reagent_containers/food/snacks/canned/sosjerky/healthy
 	bitesize = 3
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/cooking_oil = 2) //Meat has fats that a food processor can process into cooking oil
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain
@@ -435,7 +435,7 @@
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/initialize_cooked_food(obj/item/reagent_containers/food/snacks/S, cooking_efficiency)
 	..()
 	S.name = "[meat_type] cutlet"
-	
+
 
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain

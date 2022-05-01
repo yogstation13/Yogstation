@@ -64,7 +64,7 @@
 	name = "Bran Requests Cereal"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/wheat = 1,
-		/obj/item/reagent_containers/food/snacks/no_raisin = 1
+		/obj/item/reagent_containers/food/snacks/canned/no_raisin = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/branrequests
 	subcategory = CAT_MISCFOOD
@@ -187,7 +187,7 @@
 	name = "Dolphin and Chips"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/dolphinmeat = 3,
-		/obj/item/reagent_containers/food/snacks/chips = 1
+		/obj/item/reagent_containers/food/snacks/canned/chips = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/dolphinandchips
 	subcategory = CAT_MISCFOOD

@@ -407,9 +407,9 @@
 		rig_snacks = pick(list(
 		/obj/item/reagent_containers/food/snacks/candy,
 		/obj/item/reagent_containers/food/drinks/dry_ramen,
-		/obj/item/reagent_containers/food/snacks/chips,
-		/obj/item/reagent_containers/food/snacks/sosjerky,
-		/obj/item/reagent_containers/food/snacks/syndicake,
+		/obj/item/reagent_containers/food/snacks/canned/chips,
+		/obj/item/reagent_containers/food/snacks/canned/sosjerky,
+		/obj/item/reagent_containers/food/snacks/canned/syndicake,
 		/obj/item/reagent_containers/food/snacks/spacetwinkie,
 		/obj/item/reagent_containers/food/snacks/cheesiehonkers,
 		/obj/item/reagent_containers/food/snacks/nachos,
