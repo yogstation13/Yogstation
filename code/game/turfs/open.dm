@@ -456,7 +456,7 @@
 	icon_state = "smooth"
 
 /turf/open/indestructible/wiki/greenscreen
-	icon = 'yogstation/icons/turf/floors/wikifloor.dmi'
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
 	icon_state = "greenscreen"
 
 /turf/open/indestructible/wiki/bluescreen
@@ -465,7 +465,7 @@
 
 /turf/open/indestructible/wiki/whitescreen
 	icon = 'yogstation/icons/turf/floors/wiki.dmi'
-	icon_state = "whiteborder"
+	icon_state = "whitescreen"
 
 /turf/open/indestructible/wiki/greenscreen/border
 	icon = 'yogstation/icons/turf/floors/wiki.dmi'
