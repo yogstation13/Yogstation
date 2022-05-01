@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "fixes plasma shard spear setting the extra force to 1 instead of adding 1"

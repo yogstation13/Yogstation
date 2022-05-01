@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - rscadd: "The strength mutation now also makes you punch harder, because you're strong!"
-  - bugfix: "Removed superfluous variables that I forgot to delete like a year ago from thick skin"
