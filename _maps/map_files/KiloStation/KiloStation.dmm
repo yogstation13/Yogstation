@@ -40726,7 +40726,7 @@
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/canned/chips,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/atrium)
 "brl" = (
