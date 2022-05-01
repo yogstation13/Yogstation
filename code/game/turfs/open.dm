@@ -455,6 +455,10 @@
 	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
 	icon_state = "smooth"
 
+/turf/open/indestructible/wiki
+	icon = 'yogstation/icons/misc/wiki.dmi'
+	icon_state = "wiki"
+
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)
 	update_visuals()
