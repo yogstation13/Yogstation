@@ -467,6 +467,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	ruin_template = null
 	. = ..()
 
+/obj/effect/landmark/centcom
+	name = "centcomspawn"
+	icon_state = "x"
+	layer = HIGH_LANDMARK_LAYER
+
 /obj/effect/landmark/wiki
 	name = "wiki sprite room"
 	icon_state = "x"
