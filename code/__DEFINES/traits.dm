@@ -162,6 +162,7 @@
 #define TRAIT_NOLIMBDISABLE		"no_limb_disable"
 #define TRAIT_EASILY_WOUNDED		"easy_limb_wound"
 #define TRAIT_HARDLY_WOUNDED		"hard_limb_wound"
+#define TRAIT_NEVER_WOUNDED 	"never_wounded"
 #define TRAIT_TOXINLOVER		"toxinlover"
 #define TRAIT_TOXIMMUNE         "toxin_immune"
 #define TRAIT_NOBREATH			"no_breath"
