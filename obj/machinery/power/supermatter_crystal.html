@@ -16,7 +16,7 @@
 <h1>supermatter crystal <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power/supermatter_crystal.html">power/supermatter_crystal</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L87">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L87">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 87"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -39,131 +39,138 @@
             <tr><th><a href="obj/machinery/power/supermatter_crystal.html#var/moveable">moveable</a></th><td>Is it moveable. Used for SM shards</td></tr>
             <tr><th><a href="obj/machinery/power/supermatter_crystal.html#var/powerloss_dynamic_scaling">powerloss_dynamic_scaling</a></th><td>Makes the SM loose more power the higher it is</td></tr>
             <tr><th><a href="obj/machinery/power/supermatter_crystal.html#var/powerloss_inhibitor">powerloss_inhibitor</a></th><td>How much powerloss to reduce. Scale of 1-0</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter_crystal.html#var/radmodifier">radmodifier</a></th><td>Yogs - radiation modifier. After all power calculations, multiplies the intensity of the rad pulse by this value. Used for making engines more hugbox.</td></tr>
             <tr><th><a href="obj/machinery/power/supermatter_crystal.html#var/temp_factor">temp_factor</a></th><td>Factor for power generation. AirTemp*(temp_factor/(0C))</td></tr></table>
     <h2 id="var">Var Details</h2><h3 id="var/combined_gas"><aside class="declaration">var </aside>combined_gas
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L185">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 185"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L188">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 188"/></a></h3>
         <p>Used for normalizing/making a ratio of gasses</p><h3 id="var/config_bullet_energy"><aside class="declaration">var </aside>config_bullet_energy
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L138">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 138"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 141"/></a></h3>
         <p>How much the bullets damage should be multiplied by when it is added to the internal variables</p><h3 id="var/config_hallucination_power"><aside class="declaration">var </aside>config_hallucination_power
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L141">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 141"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 144"/></a></h3>
         <p>How much hallucination should it produce per unit of power?</p><h3 id="var/damage"><aside class="declaration">var </aside>damage
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L110">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L110">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 110"/></a></h3>
         <p>Health of the SM</p><h3 id="var/dynamic_heat_modifier"><aside class="declaration">var </aside>dynamic_heat_modifier
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L188">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 188"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 191"/></a></h3>
         <p>How much heat the SM produces</p><h3 id="var/dynamic_heat_resistance"><aside class="declaration">var </aside>dynamic_heat_resistance
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L191">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 191"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 194"/></a></h3>
         <p>How hot the SM can get before delaminating</p><h3 id="var/explosion_power"><aside class="declaration">var </aside>explosion_power
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L125">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L125">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 125"/></a></h3>
         <p>How much force the SM expldoes with</p><h3 id="var/final_countdown"><aside class="declaration">var </aside>final_countdown
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L107">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L107">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 107"/></a></h3>
         <p>This is set to true when the SM is about to explode and has the blue shields up</p><h3 id="var/gasefficency"><aside class="declaration">var </aside>gasefficency
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L104">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L104">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 104"/></a></h3>
         <p>Amount of gas that goes 'into' the SM</p><h3 id="var/gasmix_power_ratio"><aside class="declaration">var </aside>gasmix_power_ratio
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L182">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 182"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 185"/></a></h3>
         <p>Ratio of power reduction to power addition. Range is 0-1</p><h3 id="var/is_main_engine"><aside class="declaration">var </aside>is_main_engine
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L167">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 167"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 170"/></a></h3>
         <p>For antag sliver objective or for engineering goal</p><h3 id="var/last_accent_sound"><aside class="declaration">var </aside>last_accent_sound
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L173">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 173"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L176">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 176"/></a></h3>
         <p>Cooldown for sounds</p><h3 id="var/lastwarning"><aside class="declaration">var </aside>lastwarning
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L132">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 132"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 135"/></a></h3>
         <p>Time in deciseconds since the last sent warning</p><h3 id="var/matter_power"><aside class="declaration">var </aside>matter_power
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L135">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 135"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 138"/></a></h3>
         <p>Additonal power to add over time comes from sliver extraction(800) or consuming(200)</p><h3 id="var/messages_admins"><aside class="declaration">var </aside>messages_admins
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L176">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 176"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 179"/></a></h3>
         <p>Incase of clown(Colton) turn to false</p><h3 id="var/mole_heat_penalty"><aside class="declaration">var </aside>mole_heat_penalty
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L194">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 194"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 197"/></a></h3>
         <p>How much more heat damage to take based on moles</p><h3 id="var/moveable"><aside class="declaration">var </aside>moveable
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L170">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 170"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 173"/></a></h3>
         <p>Is it moveable. Used for SM shards</p><h3 id="var/powerloss_dynamic_scaling"><aside class="declaration">var </aside>powerloss_dynamic_scaling
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L179">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 179"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 182"/></a></h3>
         <p>Makes the SM loose more power the higher it is</p><h3 id="var/powerloss_inhibitor"><aside class="declaration">var </aside>powerloss_inhibitor
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L197">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 197"/></a></h3>
-        <p>How much powerloss to reduce. Scale of 1-0</p><h3 id="var/temp_factor"><aside class="declaration">var </aside>temp_factor
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 200"/></a></h3>
+        <p>How much powerloss to reduce. Scale of 1-0</p><h3 id="var/radmodifier"><aside class="declaration">var </aside>radmodifier
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d/code/modules/power/supermatter/supermatter.dm#L128">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 132"/></a></h3>
+        <p>Yogs - radiation modifier. After all power calculations, multiplies the intensity of the rad pulse by this value. Used for making engines more hugbox.</p><h3 id="var/temp_factor"><aside class="declaration">var </aside>temp_factor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9/code/modules/power/supermatter/supermatter.dm#L128">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 128"/></a></h3>
         <p>Factor for power generation. AirTemp*(temp_factor/(0C))</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/b8cc2c16ac69023bd8eb56158772d9e66dcb7b6d">b8cc2c1</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/e5de7de5d221e37f9ab8a4eb8c433cb5a7be5ce9">e5de7de</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
