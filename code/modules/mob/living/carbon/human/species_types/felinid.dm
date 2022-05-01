@@ -103,14 +103,14 @@
 		. = FALSE
 
 ///turns our poor spaceman into a CATGIRL. Point and laugh.
-/proc/purrbation_apply(mob/living/carbon/human/H, silent = FALSE)
+/proc/purrbation_apply(mob/living/carbon/human/H, silent = FALSE, onlyhumans = FALSE)
 	if(iscatperson(H))
 		return
 	if(!silent)
 		to_chat(H, "Something is nya~t right.")
 		playsound(get_turf(H), 'sound/effects/meow1.ogg', 50, 1, -1)
 
-	if(!ishumanbasic(H))
+	if(!ishumanbasic(H) || onlyhumans = FALSE)
 		var/obj/item/organ/cattification = new /obj/item/organ/tail/cat()
 		var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
 		cattification.Insert(H)
