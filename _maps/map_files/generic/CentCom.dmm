@@ -26074,6 +26074,11 @@
 "dbb" = (
 /turf/open/indestructible/wiki/greenscreen,
 /area/centcom/testchamber)
+"dgH" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info25"
+	},
+/area/centcom/testchamber)
 "dwq" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info18"
@@ -66755,7 +66760,7 @@ cgW
 cgW
 kkU
 moB
-jMa
+dgH
 cgW
 cgW
 kaB
@@ -67012,7 +67017,7 @@ cgW
 cgW
 ydX
 nbn
-hpv
+jMa
 cgW
 cgW
 cgW
@@ -67269,7 +67274,7 @@ cgW
 cgW
 lVQ
 vMw
-kMR
+hpv
 cgW
 cgW
 cgW
@@ -67526,7 +67531,7 @@ cgW
 cgW
 tID
 vYN
-crH
+kMR
 cgW
 wDH
 dbb
@@ -67783,7 +67788,7 @@ eDa
 cgW
 rib
 bEO
-wnj
+crH
 cgW
 cgW
 dbb
@@ -68040,7 +68045,7 @@ nbv
 cgW
 nNJ
 mFt
-xGe
+wnj
 cgW
 cgW
 dbb
@@ -68297,7 +68302,7 @@ uaZ
 cgW
 oCO
 dwq
-wdW
+xGe
 cgW
 cgW
 cgW
@@ -68554,7 +68559,7 @@ wkC
 cgW
 cgW
 iCm
-cgW
+wdW
 vUr
 dbb
 dbb
