@@ -21,6 +21,7 @@
 	SSticker.mode.brothers += owner
 	objectives += team.objectives
 	owner.special_role = special_role
+	equip_bloodbro()
 	if(owner.current)
 		give_pinpointer()
 	finalize_brother()
@@ -99,7 +100,7 @@
 
 	var/datum/antagonist/traitor/tot = new()
 	tot.give_objectives = FALSE
-	
+
 	for(var/datum/objective/obj in objectives)
 		var/obj_type = obj.type
 		var/datum/objective/new_obj = new obj_type()
@@ -108,7 +109,7 @@
 		tot.add_objective(new_obj)
 		qdel(obj)
 	objectives.Cut()
-	
+
 	owner.add_antag_datum(tot)
 	owner.remove_antag_datum(/datum/antagonist/brother)
 
@@ -192,3 +193,20 @@
 
 /datum/team/brother_team/antag_listing_name()
 	return "[name] blood brothers"
+
+/datum/antagonist/brother/proc/equip_bloodbro()
+	if(!owner || !owner.current || !ishuman(owner.current))
+		return
+	var/list/possible_items = list(/obj/item/soap/syndie,/obj/item/pen/sleepy,/obj/item/pen/edagger,/obj/item/codespeak_manual/unlimited,
+								   /obj/item/clothing/shoes/chameleon/noslip/syndicate, /obj/item/armorpolish, /obj/item/storage/box/syndie_kit/c4kit
+								   /obj/item/storage/box/syndie_kit/throwing_weapons, /obj/item/gun/ballistic/automatic/c20r/toy, /obj/item/storage/box/syndie_kit/emp,
+								   /obj/item/card/id/syndicate, /obj/item/syndicateReverseCard, /obj/item/multitool/ai_detect, /obj/item/storage/box/syndie_kit/chameleon,
+								   /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate)
+	var/obj/item/implant/storage/S = locate(/obj/item/implant/storage) in owner.current
+	if(!S)
+		S = new(owner.current)
+		S.implant(owner.current)
+	var/I = pick(possible_items)
+	if(ispath(I))
+		I = new I()
+		SEND_SIGNAL(S, COMSIG_TRY_STORAGE_INSERT, I, null, TRUE, TRUE)

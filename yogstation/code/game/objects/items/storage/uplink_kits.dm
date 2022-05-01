@@ -30,3 +30,12 @@
 	new /obj/item/autosurgeon/plasmavessel(src)
 	new /obj/item/organ/alien/resinspinner(src)
 	new /obj/item/organ/alien/acid(src)
+
+
+/obj/item/storage/box/syndie_kit/c4kit
+	name = "C4 Box"
+
+/obj/item/storage/box/syndie_kit/c4kit/PopulateContents()
+	new /obj/item/grenade/plastic/c4
+	new /obj/item/grenade/plastic/c4
+	new /obj/item/grenade/plastic/c4
