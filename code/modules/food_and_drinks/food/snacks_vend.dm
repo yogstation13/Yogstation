@@ -30,7 +30,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	junkiness = 0
 
-/obj/item/reagent_containers/food/snacks/chips
+/obj/item/reagent_containers/food/snacks/canned/chips
 	name = "chips"
 	desc = "Commander Riker's What-The-Crisps."
 	icon_state = "chips"

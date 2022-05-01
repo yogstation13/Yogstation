@@ -172,7 +172,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/snack{
 	product_slogans = "Use Getmore Chocolate to avoid starving to death on a crashed ship in the middle of a volcanic wasteland!";
-	products = list(/obj/item/reagent_containers/food/snacks/spacetwinkie = 0, /obj/item/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/reagent_containers/food/snacks/candy = 0, /obj/item/reagent_containers/food/snacks/chips = 0, /obj/item/reagent_containers/food/snacks/sosjerky = 0, /obj/item/reagent_containers/food/snacks/no_raisin = 0, /obj/item/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/reagent_containers/food/snacks/energybar = 0);
+	products = list(/obj/item/reagent_containers/food/snacks/spacetwinkie = 0, /obj/item/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/reagent_containers/food/snacks/candy = 0, /obj/item/reagent_containers/food/snacks/canned/chips = 0, /obj/item/reagent_containers/food/snacks/sosjerky = 0, /obj/item/reagent_containers/food/snacks/no_raisin = 0, /obj/item/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/reagent_containers/food/snacks/energybar = 0);
 	slogan_delay = 1000
 	},
 /turf/open/floor/plasteel/yellowsiding,
