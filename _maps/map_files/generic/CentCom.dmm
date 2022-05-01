@@ -26264,6 +26264,20 @@
 	icon_state = "info21"
 	},
 /area/centcom/testchamber)
+"rIC" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/landmark/centcom,
+/turf/open/floor/plasteel,
+/area/centcom/evac)
 "spc" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title9"
@@ -76647,7 +76661,7 @@ auB
 avh
 avg
 avY
-avY
+rIC
 avY
 ayB
 avh
