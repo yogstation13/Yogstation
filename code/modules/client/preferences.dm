@@ -887,7 +887,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					qdel(temp_item)
 				dat += "<b>Fancy PDA:</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[GLOB.donor_pdas[donor_pda]]</a><BR>"
-				dat += "<b>Purrbation (Humans only)</b> "
+				dat += "<b>Purrbation</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
 			else
 				dat += "<b><a href='http://www.yogstation.net/donate'>Donate here</b>"
