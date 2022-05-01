@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Necroseed uses physiology mods where possible rather than species mods."
