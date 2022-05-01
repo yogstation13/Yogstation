@@ -246,7 +246,7 @@
 /obj/structure/window{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/syndicake,
+/obj/item/reagent_containers/food/snacks/canned/syndicake,
 /obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/donut,
 /obj/item/reagent_containers/food/snacks/donut,
@@ -390,8 +390,8 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/chips,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/canned/chips,
+/obj/item/reagent_containers/food/snacks/canned/chips,
 /obj/item/reagent_containers/food/snacks/cheesiehonkers,
 /obj/structure/rack,
 /turf/open/floor/plasteel/white,
@@ -803,8 +803,8 @@
 /obj/structure/window{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/sosjerky,
-/obj/item/reagent_containers/food/snacks/sosjerky,
+/obj/item/reagent_containers/food/snacks/canned/sosjerky,
+/obj/item/reagent_containers/food/snacks/canned/sosjerky,
 /obj/structure/rack,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/gasstation)

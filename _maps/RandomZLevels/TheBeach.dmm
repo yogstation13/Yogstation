@@ -979,7 +979,7 @@
 /area/awaymission/beach)
 "cM" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/canned/chips,
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "cN" = (
