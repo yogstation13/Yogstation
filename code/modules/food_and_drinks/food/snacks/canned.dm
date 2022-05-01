@@ -19,7 +19,7 @@
 			to_chat(user, span_notice("You open the [src]."))
 		if(has_opened_icon)
 			icon_state += "_opened"
-		opened = TRUE
+		is_opened = TRUE
 	. = ..()
 
 
@@ -32,6 +32,6 @@
 /obj/item/reagent_containers/food/snacks/canned/examine(mob/user)
 	. = ..()
 	if(!is_opened)
-		+= "[src] isn't opened!"
+		. += "[src] isn't opened!"
 	else
-		+= "[src] is opened!"
+		. += "[src] is opened!"
