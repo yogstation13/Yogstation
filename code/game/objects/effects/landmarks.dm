@@ -466,3 +466,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	GLOB.ruin_landmarks -= src
 	ruin_template = null
 	. = ..()
+
+/obj/effect/landmark/wiki
+	name = "wiki sprite room"
+	icon_state = "x"
+	layer = HIGH_LANDMARK_LAYER
