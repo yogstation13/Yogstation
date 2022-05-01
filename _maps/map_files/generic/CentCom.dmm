@@ -26074,6 +26074,13 @@
 	icon_state = "info18"
 	},
 /area/centcom/testchamber)
+"ejM" = (
+/obj/effect/light_emitter{
+	light_range = 30
+	},
+/obj/effect/landmark/wiki,
+/turf/open/indestructible/wiki/greenscreen,
+/area/centcom/testchamber)
 "eDa" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title1"
@@ -26108,6 +26115,11 @@
 	icon_state = "info20"
 	},
 /area/centcom/testchamber)
+"hmN" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "128"
+	},
+/area/centcom/testchamber)
 "hww" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title7"
@@ -26118,6 +26130,11 @@
 	icon_state = "title11"
 	},
 /area/centcom/testchamber)
+"iAt" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "64"
+	},
+/area/centcom/testchamber)
 "iCm" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info19"
@@ -26126,6 +26143,11 @@
 "jqy" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info22"
+	},
+/area/centcom/testchamber)
+"jHN" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "32"
 	},
 /area/centcom/testchamber)
 "jJm" = (
@@ -26237,15 +26259,14 @@
 	icon_state = "info9"
 	},
 /area/centcom/testchamber)
-"pEC" = (
-/obj/effect/light_emitter{
-	light_range = 30
-	},
-/turf/open/indestructible/wiki/bluescreen,
-/area/centcom/testchamber)
 "qhf" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info11"
+	},
+/area/centcom/testchamber)
+"quD" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "96"
 	},
 /area/centcom/testchamber)
 "rib" = (
@@ -26256,6 +26277,11 @@
 "rEF" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info21"
+	},
+/area/centcom/testchamber)
+"rTd" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "256"
 	},
 /area/centcom/testchamber)
 "spc" = (
@@ -66154,15 +66180,15 @@ aNt
 cgW
 cgW
 cgW
+cgW
 vOA
 sSY
 cgW
 cgW
 cgW
-cgW
-cgW
-vci
+jHN
 dbb
+vci
 cgW
 cgW
 cgW
@@ -66411,9 +66437,9 @@ aNt
 cgW
 cgW
 cgW
+cgW
 fka
 qhf
-cgW
 cgW
 cgW
 cgW
@@ -66668,16 +66694,16 @@ aNt
 cgW
 cgW
 cgW
+cgW
 kkU
 moB
 cgW
 cgW
-cgW
-cgW
-vci
-vci
+iAt
 dbb
 dbb
+vci
+vci
 cgW
 cgW
 cgW
@@ -66925,16 +66951,16 @@ aNt
 cgW
 cgW
 cgW
+cgW
 ydX
 nbn
 cgW
 cgW
 cgW
-cgW
-vci
-vci
 dbb
 dbb
+vci
+vci
 cgW
 cgW
 cgW
@@ -67182,9 +67208,9 @@ aNt
 cgW
 cgW
 cgW
+cgW
 lVQ
 vMw
-cgW
 cgW
 cgW
 cgW
@@ -67439,17 +67465,17 @@ aNt
 cgW
 cgW
 cgW
+cgW
 tID
 vYN
 cgW
-cgW
-cgW
-vci
-vci
-vci
+quD
 dbb
 dbb
 dbb
+vci
+vci
+vci
 cgW
 cgW
 uEX
@@ -67696,17 +67722,17 @@ aNt
 cgW
 eDa
 cgW
+cgW
 rib
 bEO
 cgW
 cgW
-cgW
-vci
-vci
-vci
 dbb
 dbb
 dbb
+vci
+vci
+vci
 cgW
 cgW
 uEX
@@ -67953,17 +67979,17 @@ aNt
 cgW
 nbv
 cgW
+cgW
 nNJ
 mFt
 cgW
 cgW
-cgW
-vci
-vci
-vci
 dbb
 dbb
 dbb
+vci
+vci
+vci
 cgW
 cgW
 uEX
@@ -68210,9 +68236,9 @@ aNt
 cgW
 uaZ
 cgW
+cgW
 oCO
 dwq
-cgW
 cgW
 cgW
 cgW
@@ -68468,17 +68494,17 @@ cgW
 wkC
 cgW
 cgW
+cgW
 iCm
-cgW
-cgW
-vci
-vci
-vci
-vci
+hmN
 dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
 cgW
 cgW
 cgW
@@ -68725,17 +68751,17 @@ cgW
 fwB
 cgW
 cgW
+cgW
 gQd
 cgW
-cgW
+dbb
+dbb
+dbb
+ejM
 vci
 vci
 vci
-pEC
-dbb
-dbb
-dbb
-dbb
+vci
 cgW
 cgW
 cgW
@@ -68982,17 +69008,17 @@ cgW
 mbq
 cgW
 cgW
+cgW
 rEF
 cgW
-cgW
-vci
-vci
-vci
-vci
 dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
 cgW
 cgW
 cgW
@@ -69239,17 +69265,17 @@ cgW
 hww
 cgW
 cgW
+cgW
 jqy
 cgW
-cgW
-vci
-vci
-vci
-vci
 dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
 cgW
 cgW
 cgW
@@ -69751,15 +69777,7 @@ aRt
 aNt
 cgW
 spc
-cgW
-vci
-vci
-vci
-vci
-vci
-vci
-vci
-vci
+rTd
 dbb
 dbb
 dbb
@@ -69768,6 +69786,14 @@ dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
 cgW
 aNt
 aaa
@@ -70009,14 +70035,6 @@ aNt
 cgW
 vgL
 cgW
-vci
-vci
-vci
-vci
-vci
-vci
-vci
-vci
 dbb
 dbb
 dbb
@@ -70025,6 +70043,14 @@ dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
 cgW
 aNt
 aaa
@@ -70266,14 +70292,6 @@ aNt
 cgW
 ilg
 cgW
-vci
-vci
-vci
-vci
-vci
-vci
-vci
-vci
 dbb
 dbb
 dbb
@@ -70282,6 +70300,14 @@ dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
 cgW
 aNt
 aaa
@@ -70523,14 +70549,6 @@ aAF
 cgW
 cgW
 cgW
-vci
-vci
-vci
-vci
-vci
-vci
-vci
-vci
 dbb
 dbb
 dbb
@@ -70539,6 +70557,14 @@ dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
 cgW
 aNt
 aaa
@@ -70780,14 +70806,6 @@ aAF
 cgW
 cgW
 cgW
-vci
-vci
-vci
-vci
-vci
-vci
-vci
-vci
 dbb
 dbb
 dbb
@@ -70796,6 +70814,14 @@ dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
 cgW
 aNt
 aaa
@@ -71037,14 +71063,6 @@ aAF
 cgW
 cgW
 cgW
-vci
-vci
-vci
-vci
-vci
-vci
-vci
-vci
 dbb
 dbb
 dbb
@@ -71053,6 +71071,14 @@ dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
 cgW
 aNt
 aaa
@@ -71294,14 +71320,6 @@ aNt
 cgW
 cgW
 cgW
-vci
-vci
-vci
-vci
-vci
-vci
-vci
-vci
 dbb
 dbb
 dbb
@@ -71310,6 +71328,14 @@ dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
 cgW
 aNt
 aaa
@@ -71551,14 +71577,6 @@ aNt
 cgW
 cgW
 cgW
-vci
-vci
-vci
-vci
-vci
-vci
-vci
-vci
 dbb
 dbb
 dbb
@@ -71567,6 +71585,14 @@ dbb
 dbb
 dbb
 dbb
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
 cgW
 aNt
 aaa
