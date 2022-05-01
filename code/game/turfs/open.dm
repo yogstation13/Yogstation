@@ -455,6 +455,10 @@
 	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
 	icon_state = "smooth"
 
+/turf/open/indestructible/wiki
+	light_range = 2
+	light_power = 2
+
 /turf/open/indestructible/wiki/greenscreen
 	icon = 'yogstation/icons/turf/floors/wiki.dmi'
 	icon_state = "greenscreen"
