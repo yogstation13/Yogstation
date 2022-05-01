@@ -456,27 +456,27 @@
 	icon_state = "smooth"
 
 /turf/open/indestructible/wiki/greenscreen
-	icon = 'yogstation/icons/turf/wikifloor.dmi'
+	icon = 'yogstation/icons/turf/floors/wikifloor.dmi'
 	icon_state = "greenscreen"
 
 /turf/open/indestructible/wiki/bluescreen
-	icon = 'yogstation/icons/turf/wikifloor.dmi'
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
 	icon_state = "bluescreen"
 
 /turf/open/indestructible/wiki/whitescreen
-	icon = 'yogstation/icons/turf/wikifloor.dmi'
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
 	icon_state = "whiteborder"
 
 /turf/open/indestructible/wiki/greenscreen/border
-	icon = 'yogstation/icons/turf/wikifloor.dmi'
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
 	icon_state = "greenborder"
 
 /turf/open/indestructible/wiki/title
-	icon = 'yogstation/icons/turf/wikifloor.dmi'
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
 	icon_state = "title"
 
 /turf/open/indestructible/wiki/info
-	icon = 'yogstation/icons/turf/wikifloor.dmi'
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
 	icon_state = "info"
 
 /turf/open/Initalize_Atmos(times_fired)
