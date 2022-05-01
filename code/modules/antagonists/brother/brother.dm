@@ -198,10 +198,10 @@
 	if(!owner || !owner.current || !ishuman(owner.current))
 		return
 	var/list/possible_items = list(/obj/item/soap/syndie,/obj/item/pen/sleepy,/obj/item/pen/edagger,/obj/item/codespeak_manual/unlimited,
-								   /obj/item/clothing/shoes/chameleon/noslip/syndicate, /obj/item/armorpolish, /obj/item/storage/box/syndie_kit/c4kit
+								   /obj/item/clothing/shoes/chameleon/noslip/syndicate, /obj/item/armorpolish, /obj/item/storage/box/syndie_kit/c4kit,
 								   /obj/item/storage/box/syndie_kit/throwing_weapons, /obj/item/gun/ballistic/automatic/c20r/toy, /obj/item/storage/box/syndie_kit/emp,
 								   /obj/item/card/id/syndicate, /obj/item/syndicateReverseCard, /obj/item/multitool/ai_detect, /obj/item/storage/box/syndie_kit/chameleon,
-								   /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate)
+								   /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate,)
 	var/obj/item/implant/storage/S = locate(/obj/item/implant/storage) in owner.current
 	if(!S)
 		S = new(owner.current)
