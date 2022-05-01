@@ -25462,23 +25462,6 @@
 /obj/item/reagent_containers/pill/shadowtoxin,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aYU" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/item/his_grace,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "aYV" = (
 /obj/machinery/light{
 	dir = 8
@@ -26075,6 +26058,37 @@
 /obj/effect/penance_giver/eldritch,
 /turf/open/indestructible/brazil/necropolis,
 /area/brazil)
+"bEO" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info16"
+	},
+/area/centcom/testchamber)
+"cgW" = (
+/turf/open/indestructible/wiki/whitescreen,
+/area/centcom/testchamber)
+"dbb" = (
+/turf/open/indestructible/wiki/greenscreen,
+/area/centcom/testchamber)
+"dwq" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info18"
+	},
+/area/centcom/testchamber)
+"eDa" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title1"
+	},
+/area/centcom/testchamber)
+"fka" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info2"
+	},
+/area/centcom/testchamber)
+"fwB" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title5"
+	},
+/area/centcom/testchamber)
 "gDu" = (
 /obj/item/clothing/gloves/color/latex,
 /obj/item/clothing/mask/surgical,
@@ -26089,6 +26103,31 @@
 /obj/item/reagent_containers/medspray/sterilizine,
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
+"gQd" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info20"
+	},
+/area/centcom/testchamber)
+"hww" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title7"
+	},
+/area/centcom/testchamber)
+"ilg" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title11"
+	},
+/area/centcom/testchamber)
+"iCm" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info19"
+	},
+/area/centcom/testchamber)
+"jqy" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info22"
+	},
+/area/centcom/testchamber)
 "jJm" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
@@ -26113,6 +26152,11 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"kkU" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info3"
+	},
+/area/centcom/testchamber)
 "krq" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
@@ -26131,9 +26175,46 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"nAE" = (
-/turf/open/indestructible/wiki/bluescreen,
-/area/space)
+"lVQ" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info5"
+	},
+/area/centcom/testchamber)
+"mbq" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title6"
+	},
+/area/centcom/testchamber)
+"moB" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info12"
+	},
+/area/centcom/testchamber)
+"mFt" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info17"
+	},
+/area/centcom/testchamber)
+"nbn" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info13"
+	},
+/area/centcom/testchamber)
+"nbv" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title2"
+	},
+/area/centcom/testchamber)
+"nIM" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title8"
+	},
+/area/centcom/testchamber)
+"nNJ" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info8"
+	},
+/area/centcom/testchamber)
 "oAH" = (
 /obj/machinery/light{
 	dir = 1
@@ -26151,6 +26232,42 @@
 /obj/machinery/papershredder,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"oCO" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info9"
+	},
+/area/centcom/testchamber)
+"pEC" = (
+/obj/effect/light_emitter{
+	light_range = 30
+	},
+/turf/open/indestructible/wiki/bluescreen,
+/area/centcom/testchamber)
+"qhf" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info11"
+	},
+/area/centcom/testchamber)
+"rib" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info7"
+	},
+/area/centcom/testchamber)
+"rEF" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info21"
+	},
+/area/centcom/testchamber)
+"spc" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title9"
+	},
+/area/centcom/testchamber)
+"sSY" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info10"
+	},
+/area/centcom/testchamber)
 "tzM" = (
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4;
@@ -26160,6 +26277,16 @@
 	name = "Primary Hallway"
 	},
 /area/yogs/infiltrator_base)
+"tID" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info6"
+	},
+/area/centcom/testchamber)
+"uaZ" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title3"
+	},
+/area/centcom/testchamber)
 "uDo" = (
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/o2{
@@ -26183,6 +26310,37 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
+"uEX" = (
+/turf/open/indestructible/wiki/greenscreen/border,
+/area/centcom/testchamber)
+"vci" = (
+/turf/open/indestructible/wiki/bluescreen,
+/area/centcom/testchamber)
+"vgL" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title10"
+	},
+/area/centcom/testchamber)
+"vMw" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info14"
+	},
+/area/centcom/testchamber)
+"vOA" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info1"
+	},
+/area/centcom/testchamber)
+"vYN" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info15"
+	},
+/area/centcom/testchamber)
+"wkC" = (
+/turf/open/indestructible/wiki/title{
+	icon_state = "title4"
+	},
+/area/centcom/testchamber)
 "wDa" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/holodeck_effect/mobspawner{
@@ -26192,6 +26350,18 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"xuU" = (
+/obj/machinery/door/airlock/centcom{
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	name = "Test Chamber Blast Doors"
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
+"ydX" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "info4"
+	},
+/area/centcom/testchamber)
 
 (1,1,1) = {"
 azH
@@ -65467,27 +65637,27 @@ aNX
 aSr
 aGZ
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
 aaa
 aaa
 aaa
@@ -65724,27 +65894,27 @@ auh
 auf
 aNA
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -65981,27 +66151,27 @@ auh
 aVQ
 aTG
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+vOA
+sSY
+cgW
+cgW
+cgW
+cgW
+cgW
+vci
+dbb
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+uEX
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -66238,27 +66408,27 @@ auh
 aNt
 aNt
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+fka
+qhf
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -66495,27 +66665,27 @@ auh
 aWx
 aAC
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+kkU
+moB
+cgW
+cgW
+cgW
+cgW
+vci
+vci
+dbb
+dbb
+cgW
+cgW
+cgW
+cgW
+uEX
+uEX
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -66752,27 +66922,27 @@ aVN
 aWx
 aTS
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+ydX
+nbn
+cgW
+cgW
+cgW
+cgW
+vci
+vci
+dbb
+dbb
+cgW
+cgW
+cgW
+cgW
+uEX
+uEX
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -67009,27 +67179,27 @@ aQb
 aWx
 aAC
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+lVQ
+vMw
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -67266,27 +67436,27 @@ aBl
 aNt
 aNt
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-nAE
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+tID
+vYN
+cgW
+cgW
+cgW
+vci
+vci
+vci
+dbb
+dbb
+dbb
+cgW
+cgW
+uEX
+uEX
+uEX
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -67522,28 +67692,28 @@ aWx
 aNt
 aNt
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aNt
+cgW
+eDa
+cgW
+rib
+bEO
+cgW
+cgW
+cgW
+vci
+vci
+vci
+dbb
+dbb
+dbb
+cgW
+cgW
+uEX
+uEX
+uEX
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -67780,27 +67950,27 @@ aZr
 auH
 aNt
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+nbv
+cgW
+nNJ
+mFt
+cgW
+cgW
+cgW
+vci
+vci
+vci
+dbb
+dbb
+dbb
+cgW
+cgW
+uEX
+uEX
+uEX
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -68037,27 +68207,27 @@ awS
 aMk
 aSb
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+uaZ
+cgW
+oCO
+dwq
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -68292,29 +68462,29 @@ aOE
 aNX
 awS
 awS
-aYU
-aAF
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aZr
+xuU
+cgW
+wkC
+cgW
+cgW
+iCm
+cgW
+cgW
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+cgW
+cgW
+cgW
+cgW
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -68551,27 +68721,27 @@ aNX
 awS
 aVe
 aAF
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+fwB
+cgW
+cgW
+gQd
+cgW
+cgW
+vci
+vci
+vci
+pEC
+dbb
+dbb
+dbb
+dbb
+cgW
+cgW
+cgW
+cgW
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -68808,27 +68978,27 @@ auh
 awS
 aMk
 aAF
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+mbq
+cgW
+cgW
+rEF
+cgW
+cgW
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+cgW
+cgW
+cgW
+cgW
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -69065,27 +69235,27 @@ aRG
 awS
 aYr
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+hww
+cgW
+cgW
+jqy
+cgW
+cgW
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+cgW
+cgW
+cgW
+cgW
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -69322,27 +69492,27 @@ aVs
 awS
 aVe
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+nIM
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -69579,27 +69749,27 @@ aYz
 awS
 aRt
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+spc
+cgW
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -69836,27 +70006,27 @@ aFl
 awS
 aVe
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+vgL
+cgW
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -70093,27 +70263,27 @@ apU
 awS
 aYr
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+ilg
+cgW
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -70350,27 +70520,27 @@ auh
 awS
 aMk
 aAF
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -70607,27 +70777,27 @@ aVN
 awS
 aVe
 aAF
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -70864,27 +71034,27 @@ awS
 awS
 aQG
 aAF
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -71121,27 +71291,27 @@ awS
 aZr
 aSb
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -71378,27 +71548,27 @@ aZr
 ayT
 aNt
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cgW
+cgW
+cgW
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+vci
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+dbb
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -71634,28 +71804,28 @@ aWx
 aNt
 aNt
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aNt
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+cgW
+aNt
 aaa
 aaa
 aaa
@@ -71894,25 +72064,25 @@ aNt
 aNt
 aNt
 aNt
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
+aNt
 aaa
 aaa
 aaa
