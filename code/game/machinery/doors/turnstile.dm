@@ -48,7 +48,9 @@
 		for(var/mob/living/rider in mover.buckled_mobs)
 			if(allowed(rider) && !mover.pulledby) //defer to the above dragging code if we are being dragged
 				allowed = TRUE
-
+	var/mob/living/carbon/C = mover
+	if(C?.handcuffed)
+		allowed = FALSE
 	if(get_dir(loc, mover.loc) == dir || allowed) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
 		flick("operate", src)
 		playsound(src,'sound/items/ratchet.ogg',50,0,3)
