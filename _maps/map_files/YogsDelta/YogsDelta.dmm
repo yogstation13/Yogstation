@@ -9084,7 +9084,7 @@
 /area/security/checkpoint/customs)
 "aqm" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/canned/chips,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/secondary/entry)
 "aqn" = (
@@ -28965,7 +28965,7 @@
 /area/hallway/primary/fore)
 "aVr" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/canned/chips,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},

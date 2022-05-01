@@ -30594,7 +30594,7 @@
 /area/bridge)
 "bnQ" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/canned/chips,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/primary/port)
 "bnR" = (

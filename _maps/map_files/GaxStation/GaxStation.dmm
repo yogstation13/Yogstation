@@ -12650,7 +12650,7 @@
 /area/engine/atmos_distro)
 "gAq" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/canned/chips,
 /obj/item/reagent_containers/food/drinks/soda_cans/cola,
 /obj/machinery/airalarm{
 	dir = 4;

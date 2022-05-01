@@ -22760,7 +22760,7 @@
 /area/engine/atmos_distro)
 "aVi" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/canned/chips,
 /obj/item/reagent_containers/food/drinks/soda_cans/cola,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
