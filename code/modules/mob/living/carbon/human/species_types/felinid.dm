@@ -110,7 +110,7 @@
 		to_chat(H, "Something is nya~t right.")
 		playsound(get_turf(H), 'sound/effects/meow1.ogg', 50, 1, -1)
 
-	if(!ishumanbasic(H) || onlyhumans = FALSE)
+	if(!ishumanbasic(H) || onlyhumans == FALSE)
 		var/obj/item/organ/cattification = new /obj/item/organ/tail/cat()
 		var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
 		cattification.Insert(H)
