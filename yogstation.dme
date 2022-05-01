@@ -1985,6 +1985,7 @@
 #include "code\modules\food_and_drinks\food\snacks_soup.dm"
 #include "code\modules\food_and_drinks\food\snacks_spaghetti.dm"
 #include "code\modules\food_and_drinks\food\snacks_vend.dm"
+#include "code\modules\food_and_drinks\food\snacks\canned.dm"
 #include "code\modules\food_and_drinks\food\snacks\dough.dm"
 #include "code\modules\food_and_drinks\food\snacks\meat.dm"
 #include "code\modules\food_and_drinks\kitchen_machinery\deep_fryer.dm"
