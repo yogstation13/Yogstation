@@ -949,19 +949,19 @@
 	pixel_x = 6;
 	pixel_y = -9
 	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
+/obj/item/reagent_containers/food/snacks/canned/no_raisin{
 	pixel_x = -10;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
+/obj/item/reagent_containers/food/snacks/canned/no_raisin{
 	pixel_x = -9;
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
+/obj/item/reagent_containers/food/snacks/canned/no_raisin{
 	pixel_x = -7;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
+/obj/item/reagent_containers/food/snacks/canned/no_raisin{
 	pixel_x = -5;
 	pixel_y = 8
 	},

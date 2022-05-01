@@ -59587,7 +59587,7 @@
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "cMA" = (
-/obj/item/reagent_containers/food/snacks/sosjerky,
+/obj/item/reagent_containers/food/snacks/canned/sosjerky,
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
