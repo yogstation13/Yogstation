@@ -26074,13 +26074,6 @@
 	icon_state = "info18"
 	},
 /area/centcom/testchamber)
-"ejM" = (
-/obj/effect/light_emitter{
-	light_range = 30
-	},
-/obj/effect/landmark/wiki,
-/turf/open/indestructible/wiki/greenscreen,
-/area/centcom/testchamber)
 "eDa" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title1"
@@ -26095,6 +26088,13 @@
 /turf/open/indestructible/wiki/title{
 	icon_state = "title5"
 	},
+/area/centcom/testchamber)
+"gCx" = (
+/obj/effect/light_emitter{
+	light_range = 30
+	},
+/obj/effect/landmark/wiki,
+/turf/open/indestructible/wiki/greenscreen,
 /area/centcom/testchamber)
 "gDu" = (
 /obj/item/clothing/gloves/color/latex,
@@ -26115,11 +26115,6 @@
 	icon_state = "info20"
 	},
 /area/centcom/testchamber)
-"hmN" = (
-/turf/open/indestructible/wiki/info{
-	icon_state = "128"
-	},
-/area/centcom/testchamber)
 "hww" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title7"
@@ -26130,11 +26125,6 @@
 	icon_state = "title11"
 	},
 /area/centcom/testchamber)
-"iAt" = (
-/turf/open/indestructible/wiki/info{
-	icon_state = "64"
-	},
-/area/centcom/testchamber)
 "iCm" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info19"
@@ -26143,11 +26133,6 @@
 "jqy" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info22"
-	},
-/area/centcom/testchamber)
-"jHN" = (
-/turf/open/indestructible/wiki/info{
-	icon_state = "32"
 	},
 /area/centcom/testchamber)
 "jJm" = (
@@ -26174,6 +26159,11 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"kaB" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "64"
+	},
+/area/centcom/testchamber)
 "kkU" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info3"
@@ -26264,11 +26254,6 @@
 	icon_state = "info11"
 	},
 /area/centcom/testchamber)
-"quD" = (
-/turf/open/indestructible/wiki/info{
-	icon_state = "96"
-	},
-/area/centcom/testchamber)
 "rib" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info7"
@@ -26277,11 +26262,6 @@
 "rEF" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info21"
-	},
-/area/centcom/testchamber)
-"rTd" = (
-/turf/open/indestructible/wiki/info{
-	icon_state = "256"
 	},
 /area/centcom/testchamber)
 "spc" = (
@@ -26306,6 +26286,11 @@
 "tID" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info6"
+	},
+/area/centcom/testchamber)
+"tVg" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "256"
 	},
 /area/centcom/testchamber)
 "uaZ" = (
@@ -26357,6 +26342,11 @@
 	icon_state = "info1"
 	},
 /area/centcom/testchamber)
+"vUr" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "128"
+	},
+/area/centcom/testchamber)
 "vYN" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info15"
@@ -26376,6 +26366,16 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"wDH" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "96"
+	},
+/area/centcom/testchamber)
+"xjU" = (
+/turf/open/indestructible/wiki/info{
+	icon_state = "32"
+	},
+/area/centcom/testchamber)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
 	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
@@ -66186,7 +66186,7 @@ sSY
 cgW
 cgW
 cgW
-jHN
+xjU
 dbb
 vci
 cgW
@@ -66699,7 +66699,7 @@ kkU
 moB
 cgW
 cgW
-iAt
+kaB
 dbb
 dbb
 vci
@@ -67469,7 +67469,7 @@ cgW
 tID
 vYN
 cgW
-quD
+wDH
 dbb
 dbb
 dbb
@@ -68496,7 +68496,7 @@ cgW
 cgW
 cgW
 iCm
-hmN
+vUr
 dbb
 dbb
 dbb
@@ -68757,7 +68757,7 @@ cgW
 dbb
 dbb
 dbb
-ejM
+gCx
 vci
 vci
 vci
@@ -69777,7 +69777,7 @@ aRt
 aNt
 cgW
 spc
-rTd
+tVg
 dbb
 dbb
 dbb
