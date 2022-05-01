@@ -54,7 +54,7 @@
 	tastes = list("mushroom" = 1)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/popcorn
+/obj/item/reagent_containers/food/snacks/canned/popcorn
 	name = "popcorn"
 	desc = "Now let's find some cinema."
 	icon_state = "popcorn"
