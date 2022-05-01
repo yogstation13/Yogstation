@@ -52,10 +52,10 @@
 				tendril(A)
 			if(!(fullpower) && ishuman(M))							//if we haven't gotten the buff yet
 				var/mob/living/carbon/human/H = M
-				fullpower = TRUE					
+				fullpower = TRUE
 				H.dna.species.punchdamagelow += 4
 				H.dna.species.punchdamagehigh += 4
-				H.dna.species.punchstunthreshold += 1 				//Makes standard punches 5-14 with higher stun chance (1-10, stun on 10 -> 5-14, stun on 11-14)
+				H.dna.species.punchstunthreshold += 1				//Makes standard punches 5-14 with higher stun chance (1-10, stun on 10 -> 5-14, stun on 11-14)
 				H.physiology.brute_mod *= 0.6			
 				H.physiology.burn_mod *= 0.6
 				H.physiology.heat_mod *= 0.6
@@ -95,7 +95,7 @@
 	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	if(fullpower && ishuman(M))								//undo the changes if we got the buff
+	if(fullpower && ishuman(M))							//undo the changes if we got the buff
 		var/mob/living/carbon/human/H = M
 		to_chat(M, span_danger("You feel weakened as the necropolis' blessing leaves your body."))
 		H.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
