@@ -203,3 +203,62 @@
 	desc = "Toxins have built up in your system, they cause sustained toxin damage, and once they leave your system cause additional harm as your bodies adjustments to the toxicity backfire."
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
 	icon_state = "toxic_buildup"
+
+/datum/ore_patch
+	var/ore_type 
+	var/ore_quantity_lower
+	var/ore_quantity_upper
+	var/ore_color
+
+/datum/ore_patch/proc/spawn_at(turf/T)
+	var/i = 0
+	var/amt = rand(ore_quantity_lower,ore_quantity_upper)
+	for(i = 0; i < amt; i++)
+		new ore_type(T)
+/datum/ore_patch/iron
+	ore_type = /obj/item/stack/ore/iron
+	ore_quantity_upper = 5
+	ore_quantity_lower = 1
+	ore_color = "#878687" 
+
+/datum/ore_patch/plasma
+	ore_type = /obj/item/stack/ore/plasma
+	ore_quantity_upper = 3
+	ore_quantity_lower = 1
+	ore_color = "#c716b8"
+
+/datum/ore_patch/uranium
+	ore_type = /obj/item/stack/ore/uranium
+	ore_quantity_upper = 3
+	ore_quantity_lower = 1
+	ore_color = "#1fb83b"
+
+/datum/ore_patch/titanium
+	ore_type = /obj/item/stack/ore/titanium
+	ore_quantity_upper = 4
+	ore_quantity_lower = 1
+	ore_color = "#b3c0c7"
+
+/datum/ore_patch/gold
+	ore_type = /obj/item/stack/ore/gold
+	ore_quantity_upper = 3
+	ore_quantity_lower = 1
+	ore_color = "#f0972b"
+
+/datum/ore_patch/silver
+	ore_type = /obj/item/stack/ore/silver
+	ore_quantity_upper = 4
+	ore_quantity_lower = 1
+	ore_color = "#bdbebf"
+
+/datum/ore_patch/diamond
+	ore_type = /obj/item/stack/ore/diamond
+	ore_quantity_upper = 2
+	ore_quantity_lower = 1
+	ore_color = "#22c2d4"
+
+/datum/ore_patch/bluespace
+	ore_type = /obj/item/stack/sheet/bluespace_crystal
+	ore_quantity_upper = 2
+	ore_quantity_lower = 1
+	ore_color = "#506bc7"

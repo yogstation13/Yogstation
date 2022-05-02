@@ -102,10 +102,6 @@
 #define rustg_sql_disconnect_pool(handle) call(RUST_G, "sql_disconnect_pool")(handle)
 #define rustg_sql_check_query(job_id) call(RUST_G, "sql_check_query")("[job_id]")
 
-#define rustg_http_request_blocking(method, url, body, headers) call(RUST_G, "http_request_blocking")(method, url, body, headers)
-#define rustg_http_request_async(method, url, body, headers) call(RUST_G, "http_request_async")(method, url, body, headers)
-#define rustg_http_check_request(req_id) call(RUST_G, "http_check_request")(req_id)
-
 #define rustg_hash_string(algorithm, text) call(RUST_G, "hash_string")(algorithm, text)
 #define rustg_hash_file(algorithm, fname) call(RUST_G, "hash_file")(algorithm, fname)
 #define rustg_hash_generate_totp(seed) call(RUST_G, "generate_totp")(seed)

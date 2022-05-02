@@ -10,11 +10,11 @@
 #define ORE_EMPTY "empty"
 
 GLOBAL_LIST_INIT(jungle_ores, list( \
-		ORE_IRON = /obj/structure/ore_patch/iron, 
-		ORE_GOLD = /obj/structure/ore_patch/gold, 
-		ORE_SILVER = /obj/structure/ore_patch/silver, 
-		ORE_PLASMA = /obj/structure/ore_patch/plasma, 
-		ORE_DIAMOND = /obj/structure/ore_patch/diamond, 
-		ORE_TITANIUM = /obj/structure/ore_patch/titanium, 
-		ORE_URANIUM = /obj/structure/ore_patch/uranium 
+		ORE_IRON = new /datum/ore_patch/iron(), 
+		ORE_GOLD = new /datum/ore_patch/gold(), 
+		ORE_SILVER = new /datum/ore_patch/silver(), 
+		ORE_PLASMA = new /datum/ore_patch/plasma(), 
+		ORE_DIAMOND = new /datum/ore_patch/diamond(), 
+		ORE_TITANIUM = new /datum/ore_patch/titanium(), 
+		ORE_URANIUM = new /datum/ore_patch/uranium() 
 ))

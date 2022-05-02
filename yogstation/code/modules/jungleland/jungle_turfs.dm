@@ -20,8 +20,8 @@
 		return
 	can_spawn_ore = FALSE
 	add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
-	var/ore_type = GLOB.jungle_ores[ ore_present ]
-	new ore_type(src)
+	var/datum/ore_patch/ore = GLOB.jungle_ores[ ore_present ]
+	ore.spawn_at(src)
 
 /turf/open/floor/plating/dirt/jungleland/tool_act(mob/living/user, obj/item/I, tool_type)
 	if(tool_type != TOOL_MINING)
@@ -65,7 +65,8 @@
 
 /turf/open/water/toxic_pit
 	name = "sulphuric pit"
-	color = "#003a00"
+	color = "#00c167"
+	slowdown = 2
 
 /turf/open/water/toxic_pit/Entered(atom/movable/AM)
 	. = ..()
