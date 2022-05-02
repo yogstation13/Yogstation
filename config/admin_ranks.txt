@@ -31,16 +31,17 @@
 # +AUTOLOGIN = admin gains powers upon connect. This defaults to on, you can use -AUTOLOGIN to make a role require using the readmin verb to gain powers. (this does not effect the admin's ability to walk past bans or other on-connect limitations like panic bunker or pop limit.)
 # +DBRANKS = when sql-based admin loading is enabled, allows for non-temporary changes in the permissions panel to be saved (requires DB)
 # +EVERYTHING (or +HOST or +ALL) = Simply gives you everything without having to type every flag
+# +DEV = For potentially server ending procs
 # END_KEYWORDS
 
  
-Host	=	+EVERYTHING *EVERYTHING
+Host	=	+EVERYTHING *EVERYTHING +DEV
  
-Council Member	=	+EVERYTHING *EVERYTHING
+Council Member	=	+EVERYTHING *EVERYTHING +DEV
  
-Head Developer	=	+EVERYTHING *EVERYTHING
+Head Developer	=	+EVERYTHING *EVERYTHING +DEV
 
-SysOp	=	+EVERYTHING *EVERYTHING
+SysOp	=	+EVERYTHING *EVERYTHING +DEV
  
 #Senior Admin	=	+EVERYTHING *EVERYTHING
  
@@ -48,21 +49,19 @@ SysOp	=	+EVERYTHING *EVERYTHING
  
 #Primary Admin	=	+STEALTH +ADMIN +BASIC +BAN +SPAWN +VAREDIT +DEBUG +SERVER +FUN +POSSESS +BUILD +TICKET +SOUND
  
-#Administrator-Mainterino	=	+STEALTH +ADMIN +BASIC +BAN +SPAWN +VAREDIT +DEBUG +SERVER +FUN +TICKET +BUILD +POLL
+#Administrator-Mainterino	=	+STEALTH +ADMIN +BASIC +BAN +SPAWN +VAREDIT +DEBUG +SERVER +FUN +TICKET +BUILD +POLL +DEV
  
 #Administrator	=	+STEALTH +ADMIN +BASIC +BAN +SPAWN +VAREDIT +DEBUG +SERVER +FUN +TICKET +BUILD
  
-#Moderator-Mainterino	=	+STEALTH +ADMIN +VAREDIT +DEBUG +SERVER +BASIC +SPAWN +POLL +BAN
+#Moderator-Mainterino	=	+STEALTH +ADMIN +VAREDIT +DEBUG +SERVER +BASIC +SPAWN +POLL +BAN +DEV
  
 #Moderator	=	+STEALTH +ADMIN +BASIC +BAN +TICKET
  
 #Retired Admin	=	+ADMIN +STEALTH +BASIC +SERVER +BAN +TICKET +VAREDIT
  
 #Admin Observer	=	+STEALTH
- 
-#RetCoder	=	+EVERYTHING
- 
-#Maintainer	=	+STEALTH +ADMIN +VAREDIT +DEBUG +SERVER +BASIC +SPAWN +POLL -AUTOLOGIN
+  
+#Maintainer	=	+STEALTH +ADMIN +VAREDIT +DEBUG +SERVER +BASIC +SPAWN +POLL -AUTOLOGIN +DEV
  
 #LogDiver	=	
  

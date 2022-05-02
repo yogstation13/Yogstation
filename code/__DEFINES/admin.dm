@@ -41,7 +41,8 @@
 
 #define R_DEFAULT R_AUTOLOGIN
 
-#define R_EVERYTHING (1<<15)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_EVERYTHING (1<<15)-1 //the sum of all other rank permissions, used for +EVERYTHING Except for +DEV
+#define R_DEV			(1<<16) // Stuff NOONE should be touching except for head-dev/maints, I guess council too..
 
 #define ADMIN_QUE(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(user)]'>?</a>)"
 #define ADMIN_FLW(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(user)]'>FLW</a>)"
