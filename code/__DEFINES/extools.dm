@@ -1,6 +1,6 @@
 #define EXTOOLS_SUCCESS		"SUCCESS"
 #define EXTOOLS_FAILED		"FAIL"
-#define GLOBAL_VAR_INIT(enable_memdump, 0)
+GLOBAL_VAR_INIT(enable_memdump, 0)
 
 /*
 	Core - Provides necessary functionality for other modules.
