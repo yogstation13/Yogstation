@@ -108,7 +108,10 @@
 		
 		remove_limb(H)
 	
-	H.adjustCloneLoss(-0.1) //Slowly remove cloning loss as they really don't have any other ways
+	if (H.blood_volume > WATER_VOLUME_MAXIMUM)
+		H.adjustCloneLoss(-0.1) //Slowly remove cloning loss as they really don't have any other ways
+		H.adjustBruteLoss(-0.1)
+		H.adjustBurnLoss(-0.1)
 
 /datum/species/water/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
