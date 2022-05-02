@@ -1,0 +1,83 @@
+/mob/living/simple_animal/hostile/plaguerat
+	name = "rat"
+	desc = "It's a nasty, ugly, evil, disease-ridden rodent with anger issues."
+	icon_state = "mouse_gray"
+	icon_living = "mouse_gray"
+	icon_dead = "mouse_gray_dead"
+	speak = list("Skree!","SKREEE!","Squeak?")
+	speak_emote = list("squeaks")
+	emote_hear = list("Hisses.")
+	emote_see = list("runs in a circle.", "stands on its hind legs.")
+	melee_damage_lower = 5 //stronk
+	melee_damage_upper = 5
+	obj_damage = 5
+	speak_chance = 1
+	turns_per_move = 5
+	see_in_dark = 6
+	maxHealth = 20
+	health = 20
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/mouse = 1)
+	density = FALSE
+	ventcrawler = VENTCRAWLER_ALWAYS
+	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
+	mob_size = MOB_SIZE_TINY
+	mob_biotypes = list(MOB_ORGANIC,MOB_BEAST)
+	faction = list("rat")
+
+
+/mob/living/simple_animal/hostile/plaguerat/AttackingTarget()
+	..()
+	var/mob/living/L = target
+	if(isliving(target))
+		if(target.reagents)
+			L.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
+	if(L.stat == DEAD)
+		src.visible_message(span_warning("[src] starts biting into [L]!"),span_notice("You start eating [L]..."))
+		if(do_mob(src, target, 3 SECONDS))
+			to_chat(src, span_notice("You finish licking [L]."))
+			heal_bodypart_damage(5)
+			L.adjustBruteLoss(10)
+
+
+
+	if (target.reagents && target.is_injectable(src, allowmobs = TRUE))
+		src.visible_message(span_warning("[src] starts licking [target]!"),span_notice("You start licking [target]..."))
+		if (do_mob(src, target, 2 SECONDS))
+			target.reagents.add_reagent(/datum/reagent/plaguebacteria,rand(1,2),no_react = TRUE)
+			to_chat(src, span_notice("You finish licking [target]."))
+
+
+//Spawn Event
+
+/datum/round_event_control/plaguerat
+	name = "Spawn a Plague Rat"
+	typepath = /datum/round_event/ghost_role/plaguerat
+	weight = 5
+	max_occurrences = 1
+	earliest_start = 30 MINUTES
+
+/datum/round_event/ghost_role/plaguerat
+	minimum_required = 1
+	role_name = "plaguerat"
+
+/datum/round_event/ghost_role/plaguerat/spawn_role()
+	var/list/candidates = get_candidates(ROLE_SENTIENCE, null, ROLE_SENTIENCE)
+	if(!candidates.len)
+		return NOT_ENOUGH_PLAYERS
+
+	var/mob/dead/selected = pick_n_take(candidates)
+
+	var/datum/mind/player_mind = new /datum/mind(selected.key)
+	player_mind.active = 1
+	if(!GLOB.xeno_spawn)
+		return MAP_ERROR
+	var/mob/living/simple_animal/hostile/plaguerat/S = new /mob/living/simple_animal/hostile/plaguerat/(pick(GLOB.xeno_spawn))
+	player_mind.transfer_to(S)
+	player_mind.assigned_role = "Plague rat"
+	player_mind.special_role = "Plague rat"
+	to_chat(S, S.playstyle_string)
+	SEND_SOUND(S, sound('sound/magic/mutate.ogg'))
+	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a plague rat by an event.")
+	log_game("[key_name(S)] was spawned as a plague rat by an event.")
+	spawned_mobs += S
+	return SUCCESSFUL_SPAWN
