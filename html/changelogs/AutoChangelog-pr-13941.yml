@@ -1,9 +1,0 @@
-author: "bruhlookatthisdood"
-delete-after: true 
-changes: 
-  - bugfix: "fixed 2 lights in warehouse"
-  - bugfix: "fixed a light on a door in atomspherics"
-  - bugfix: "there is now a light in the vacant commisary"
-  - bugfix: "fixed some blindspots for ai"
-  - bugfix: "fixed a window with a great view of a wall.. somewhere in maints."
-  - tweak: "flipped the psychiatrist's tinted windows in their office"
