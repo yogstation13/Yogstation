@@ -1,0 +1,4 @@
+author: "Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Clown Ops (and clowns in general) no longer shoot themselves in the foot with the medical beamgun."
