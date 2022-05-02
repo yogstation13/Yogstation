@@ -28,3 +28,4 @@
 		return
 	for(var/obj/machinery/ai/data_core/core in GLOB.data_cores)
 		tesla_zap(core, 2, 15000, (TESLA_MOB_DAMAGE | TESLA_MOB_STUN))
+		core.use_power(5000)
