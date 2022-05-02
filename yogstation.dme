@@ -3724,6 +3724,7 @@
 #include "yogstation\code\modules\projectiles\ammunition\caseless\misc.dm"
 #include "yogstation\code\modules\projectiles\boxes_magazines\internal\misc.dm"
 #include "yogstation\code\modules\projectiles\guns\ballistic\launchers.dm"
+#include "yogstation\code\modules\projectiles\guns\misc\medbeam.dm"
 #include "yogstation\code\modules\projectiles\projectile\beams.dm"
 #include "yogstation\code\modules\projectiles\reusable\kineticspear.dm"
 #include "yogstation\code\modules\reagents\chemistry\reagents\alcohol_reagents.dm"
