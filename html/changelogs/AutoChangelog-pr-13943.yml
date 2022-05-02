@@ -1,0 +1,6 @@
+author: "Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed telecommunication machines not respecting your fancy holotool as being a real multitool."
+  - bugfix: "Fixed wires being discriminatory towards your fancy holotool."
+  - bugfix: "Holotools are much better at being multitools."
