@@ -11,7 +11,7 @@
 		"Warden", "Security Officer", "Detective", "Brig Physician",
 	)
 	required_players = 25
-	required_enemies = 2
+	required_enemies = 1
 	recommended_enemies = 4
 	reroll_friendly = 1
 	round_ends_with_antag_death = FALSE
