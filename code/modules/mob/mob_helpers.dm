@@ -201,6 +201,16 @@
 		message = stutter(message)
 	return message
 
+/proc/lizardspeech(message)
+	var/static/regex/lizard_hiss = new("s+", "g")
+	var/static/regex/lizard_hiSS = new("S+", "g")
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = lizard_hiss.Replace(message, "sss")
+		message = lizard_hiSS.Replace(message, "SSS")
+	speech_args[SPEECH_MESSAGE] = message
+	return message
+
 /**
   * Turn text into complete gibberish!
   *

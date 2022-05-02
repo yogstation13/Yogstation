@@ -354,6 +354,9 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	if(derpspeech)
 		message = derpspeech(message, stuttering)
 
+	if(lizardspeak)
+		message = lizardspeak(message)
+
 	if(stuttering)
 		message = stutter(message)
 
