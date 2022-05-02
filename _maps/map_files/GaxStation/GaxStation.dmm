@@ -4188,23 +4188,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
-"cgv" = (
-/obj/machinery/light,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner,
-/obj/effect/turf_decal/trimline/red/filled/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "cgw" = (
 /turf/closed/wall/r_wall,
 /area/bridge)
@@ -7637,13 +7620,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"ebj" = (
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "ebL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/structure/rack,
@@ -8234,6 +8210,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"esQ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner,
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "etb" = (
 /obj/machinery/camera{
 	c_tag = "Medbay North";
@@ -40017,6 +40009,14 @@
 "vqe" = (
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"vqN" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/security/main)
 "vqR" = (
 /obj/structure/closet/l3closet/janitor,
 /obj/effect/turf_decal/bot,
@@ -44415,6 +44415,14 @@
 "xGP" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hos)
+"xHf" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/security/main)
 "xHm" = (
 /obj/machinery/power/turbine{
 	dir = 8;
@@ -64847,7 +64855,7 @@ mec
 cvF
 etW
 eZT
-ebj
+xHf
 iBt
 iBt
 iBt
@@ -66132,7 +66140,7 @@ vry
 vry
 vry
 nvN
-cgv
+esQ
 tTq
 eAt
 uDS
@@ -66389,7 +66397,7 @@ ldq
 qrU
 vry
 jEn
-qQl
+vqN
 xGP
 eOj
 fxg
