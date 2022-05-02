@@ -185,10 +185,6 @@
 ///      Tzimisce       ///
 ///////////////////////////
 
-/mob/living/simple_animal/hostile/bloodsucker/tzimisce/calcium/Initialize()
-	. = ..()
-	new /datum/action/bloodsucker/targeted/bloodbolt.Grant(src)
-
 ////////////////////////////
 ///      Werewolf       ///
 ///////////////////////////
