@@ -8,10 +8,11 @@
 	spawn_positions = 1
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
+	exp_requirements = 180
+	exp_type = EXP_TYPE_CREW
+	alt_titles = list("NTSL Programmer", "Comms Tech", "Station IT Support")
 
 	outfit = /datum/outfit/job/signal_tech
-
-	alt_titles = list("NTSL Programmer", "Comms Tech", "Station IT Support")
 
 	access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP,
 					ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_NETWORK)
