@@ -36,24 +36,27 @@
 	to_chat(user, span_warning("Your vampiric healing is halted while imitating life."))
 	// Remove Clan-specific stuff
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
-		if(bloodsuckerdatum.clanprogress >= 1) // change this if we get more stuff to include other clans
-			var/obj/item/clothing/neck/neckdrip = user.get_item_by_slot(SLOT_NECK)
-			if(istype(neckdrip, /obj/item/clothing/neck/wolfcollar))
-				theqdeld += neckdrip
-		if(bloodsuckerdatum.clanprogress >= 2)
-			var/obj/item/earsdrip = user.get_item_by_slot(SLOT_EARS)
-			if(istype(earsdrip, /obj/item/radio/headset/wolfears))
-				theqdeld += earsdrip
-		if(bloodsuckerdatum.clanprogress >= 3)
-			var/obj/item/clothing/gloves/glovesdrip = user.get_item_by_slot(SLOT_GLOVES)
-			if(istype(glovesdrip, /obj/item/clothing/gloves/wolfclaws))
-				theqdeld += glovesdrip
-		if(bloodsuckerdatum.clanprogress >= 4)
-			var/obj/item/clothing/shoes/shoesdrip = user.get_item_by_slot(SLOT_SHOES)
-			if(istype(shoesdrip , /obj/item/clothing/shoes/wolflegs))
-				theqdeld += shoesdrip
-		QDEL_LIST(theqdeld)
+	switch(bloodsuckerdatum.my_clan)
+		if(CLAN_TZIMISCE)
+			set_antag_hud(user, "bloodsucker")
+		if(CLAN_GANGREL)
+			if(bloodsuckerdatum.clanprogress >= 1) // change this if we get more stuff to include other clans
+				var/obj/item/clothing/neck/neckdrip = user.get_item_by_slot(SLOT_NECK)
+				if(istype(neckdrip, /obj/item/clothing/neck/wolfcollar))
+					theqdeld += neckdrip
+			if(bloodsuckerdatum.clanprogress >= 2)
+				var/obj/item/earsdrip = user.get_item_by_slot(SLOT_EARS)
+				if(istype(earsdrip, /obj/item/radio/headset/wolfears))
+					theqdeld += earsdrip
+			if(bloodsuckerdatum.clanprogress >= 3)
+				var/obj/item/clothing/gloves/glovesdrip = user.get_item_by_slot(SLOT_GLOVES)
+				if(istype(glovesdrip, /obj/item/clothing/gloves/wolfclaws))
+					theqdeld += glovesdrip
+			if(bloodsuckerdatum.clanprogress >= 4)
+				var/obj/item/clothing/shoes/shoesdrip = user.get_item_by_slot(SLOT_SHOES)
+				if(istype(shoesdrip , /obj/item/clothing/shoes/wolflegs))
+					theqdeld += shoesdrip
+			QDEL_LIST(theqdeld)
 	// Remove Bloodsucker traits
 	REMOVE_TRAIT(user, TRAIT_NOHARDCRIT, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(user, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
@@ -107,23 +110,26 @@
 		disease.cure()
 	// Adds Clan-specific stuff
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
-		if(bloodsuckerdatum.clanprogress >= 1) // change this if we get more stuff to include other clans
-			var/obj/item/clothing/neck/previousdrip = user.get_item_by_slot(SLOT_NECK)
-			user.dropItemToGround(previousdrip)
-			user.equip_to_slot_or_del(new /obj/item/clothing/neck/wolfcollar(user), SLOT_NECK)
-		if(bloodsuckerdatum.clanprogress >= 2)
-			var/obj/item/clothing/ears/previousdrip = user.get_item_by_slot(SLOT_EARS)
-			user.dropItemToGround(previousdrip)
-			user.equip_to_slot_or_del(new /obj/item/radio/headset/wolfears(user), SLOT_EARS)
-		if(bloodsuckerdatum.clanprogress >= 3)
-			var/obj/item/clothing/gloves/previousdrip = user.get_item_by_slot(SLOT_GLOVES)
-			user.dropItemToGround(previousdrip)
-			user.equip_to_slot_or_del(new /obj/item/clothing/gloves/wolfclaws(user), SLOT_GLOVES)
-		if(bloodsuckerdatum.clanprogress >= 4)
-			var/obj/item/clothing/shoes/previousdrip = user.get_item_by_slot(SLOT_SHOES)
-			user.dropItemToGround(previousdrip)
-			user.equip_to_slot_or_del(new /obj/item/clothing/shoes/wolflegs(user), SLOT_SHOES)
+	switch(bloodsuckerdatum.my_clan)
+		if(CLAN_TZIMISCE)
+			set_antag_hud(user, "tzimisce")
+		if(CLAN_GANGREL)
+			if(bloodsuckerdatum.clanprogress >= 1) // change this if we get more stuff to include other clans
+				var/obj/item/clothing/neck/previousdrip = user.get_item_by_slot(SLOT_NECK)
+				user.dropItemToGround(previousdrip)
+				user.equip_to_slot_or_del(new /obj/item/clothing/neck/wolfcollar(user), SLOT_NECK)
+			if(bloodsuckerdatum.clanprogress >= 2)
+				var/obj/item/clothing/ears/previousdrip = user.get_item_by_slot(SLOT_EARS)
+				user.dropItemToGround(previousdrip)
+				user.equip_to_slot_or_del(new /obj/item/radio/headset/wolfears(user), SLOT_EARS)
+			if(bloodsuckerdatum.clanprogress >= 3)
+				var/obj/item/clothing/gloves/previousdrip = user.get_item_by_slot(SLOT_GLOVES)
+				user.dropItemToGround(previousdrip)
+				user.equip_to_slot_or_del(new /obj/item/clothing/gloves/wolfclaws(user), SLOT_GLOVES)
+			if(bloodsuckerdatum.clanprogress >= 4)
+				var/obj/item/clothing/shoes/previousdrip = user.get_item_by_slot(SLOT_SHOES)
+				user.dropItemToGround(previousdrip)
+				user.equip_to_slot_or_del(new /obj/item/clothing/shoes/wolflegs(user), SLOT_SHOES)
 	to_chat(user, span_notice("Your heart beats one final time, while your skin dries out and your icy pallor returns."))
 
 /**

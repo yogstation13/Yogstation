@@ -463,7 +463,7 @@
 	if(spend_rank)
 		bloodsucker_level_unspent--
 	// Ranked up enough? Let them join a Clan.
-	if(bloodsucker_level == 3)
+	if(bloodsucker_level == 3 && my_clan == NONE) //updated for tzimisce
 		AssignClanAndBane()
 
 	// Ranked up enough to get your true Reputation?

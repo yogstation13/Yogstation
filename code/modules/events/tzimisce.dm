@@ -1,0 +1,81 @@
+/datum/round_event_control/tzimisce/tzimiscebloodsucker
+	name = "Spawn Tzimisce - Bloodsucker"
+	max_occurrences = 1
+	weight = 2000
+	min_players = 10
+	earliest_start = 30 MINUTES
+	gamemode_whitelist = list("bloodsucker","traitorsucker","dynamic")
+
+
+/datum/round_event_control/tzimisce
+	name = "Spawn Tzimisce"
+	typepath = /datum/round_event/ghost_role/tzimisce
+	max_occurrences = 1
+	min_players = 15
+	earliest_start = 45 MINUTES
+
+/datum/round_event/ghost_role/tzimisce
+	var/success_spawn = 0
+	minimum_required = 1
+	role_name = "Tzimisce"
+	fakeable = FALSE
+
+/datum/round_event/ghost_role/tzimisce/kill()
+	if(!success_spawn && control)
+		control.occurrences--
+	return ..()
+
+/datum/round_event/ghost_role/tzimisce/spawn_role()
+	//selecting a spawn_loc
+	if(!SSjob.latejoin_trackers.len)
+		return MAP_ERROR
+
+	//selecting a candidate player
+	var/list/candidates = get_candidates(ROLE_BLOODSUCKER, null, ROLE_BLOODSUCKER)
+	if(!candidates.len)
+		return NOT_ENOUGH_PLAYERS
+
+	var/mob/dead/selected_candidate = pick_n_take(candidates)
+	var/key = selected_candidate.key
+
+	var/datum/mind/Mind = create_tzimisce_mind(key)
+	Mind.active = TRUE
+
+	var/mob/living/carbon/human/tzimisce = spawn_event_tzimisce()
+	Mind.transfer_to(tzimisce)
+	Mind.add_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = tzimisce.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	bloodsuckerdatum.bloodsucker_level_unspent += round(world.time / (15 MINUTES), 1)
+	bloodsuckerdatum.my_clan = CLAN_TZIMISCE
+	var/list/powerstoremove = list(/datum/action/bloodsucker/veil, /datum/action/bloodsucker/masquerade)
+	for(var/datum/action/bloodsucker/Forbidden in bloodsuckerdatum.powers)
+		if(is_type_in_list(Forbidden, powerstoremove))
+			bloodsuckerdatum.RemovePower(Forbidden)
+	bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/dice)
+
+	spawned_mobs += tzimisce
+	message_admins("[ADMIN_LOOKUPFLW(tzimisce)] has been made into a tzimisce bloodsucker an event.")
+	log_game("[key_name(tzimisce)] was spawned as a tzimisce bloodsucker by an event.")
+	var/datum/job/jobdatum = SSjob.GetJob(pick("Assistant", "Botanist", "Station Engineer", "Medical Doctor", "Scientist", "Cargo Technician", "Cook"))
+	set_antag_hud(tzimisce, "tzimisce")
+	tzimisce.job = jobdatum
+	tzimisce.update_internals_hud_icon(TRUE)
+	jobdatum.equip(tzimisce)
+	tzimisce.update_move_intent_slowdown() //prevents you from going super duper fast
+	return SUCCESSFUL_SPAWN
+
+
+/proc/spawn_event_tzimisce(spawn_loc)
+	var/mob/living/carbon/human/new_tzimisce = new(spawn_loc)
+	if(!spawn_loc)
+		SSjob.SendToLateJoin(new_tzimisce)
+	var/datum/preferences/A = new() //Randomize appearance for the demon.
+	A.copy_to(new_tzimisce)
+	new_tzimisce.dna.update_dna_identity()
+	return new_tzimisce
+
+/proc/create_tzimisce_mind(key)
+	var/datum/mind/Mind = new /datum/mind(key)
+	Mind.assigned_role = ROLE_BLOODSUCKER
+	Mind.special_role = ROLE_BLOODSUCKER
+	return Mind

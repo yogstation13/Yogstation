@@ -56,7 +56,7 @@
 		blood_taken /= 4
 	if(!ishuman(target)) // Penalty for Non-Human Blood
 		blood_taken /= 3
-	if(!target.mind)
+	if(!target.mind && !target.client)
 		blood_taken /= 5 // Penalty for Catatonics / Braindead
 	//if (!iscarbon(target)) // Penalty for Animals (they're junk food)
 	// Apply to Volume

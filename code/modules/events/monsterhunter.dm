@@ -17,7 +17,6 @@
 	weight = 2000
 	min_players = 10
 	earliest_start = 35 MINUTES
-	alert_observers = FALSE
 	gamemode_whitelist = list("bloodsucker","traitorsucker","dynamic")
 
 /datum/round_event/bloodsucker_hunters
@@ -63,7 +62,6 @@
 	weight = 7
 	min_players = 10
 	earliest_start = 25 MINUTES
-	alert_observers = TRUE
 	gamemode_whitelist = list("traitorchan","changeling","heresy","cult","clockwork_cult","dynamic")
 
 /datum/round_event/monster_hunters

@@ -355,6 +355,13 @@
 	icon_state = "posarmor"
 	anchored = FALSE
 	density = TRUE
+	Ghost_desc = "This Knight's armor will come alive once non-bloodsuckers get close to it."
+	Vamp_desc = "This is a possesed knight's armor, it will come alive once mortals get close to it.\n\
+		You don't care about it's attack's since you are brute immune.\n\
+		You can reinforce it with 5 silver bars.\n\
+		Good for immediate defense of your lair."
+	Vassal_desc = "This is a possesed knight's armor, it will protect your master if people get too close to it."
+	Hunter_desc = "This is a suspicious knight's armor. These things shouldn't be here, i shouldn't get too close."
 	var/active = FALSE
 	var/upgraded = FALSE
 
@@ -450,12 +457,28 @@
 	var/disloyalty_confirm = FALSE
 	/// Prevents popup spam.
 	var/disloyalty_offered = FALSE
+	/// For Tzimisce bloodsuckers' rituals
+	var/meat_points = 0
+	var/bigmeat = 0
+	var/intermeat = 0
+	var/mediummeat = 0
+	var/smallmeat = 0
+	var/meat_amount = 0
 
 /obj/structure/bloodsucker/vassalrack/deconstruct(disassembled = TRUE)
 	. = ..()
 	new /obj/item/stack/sheet/metal(src.loc, 4)
 	new /obj/item/stack/rods(loc, 4)
 	qdel(src)
+
+/obj/structure/bloodsucker/vassalrack/examine(mob/user)
+	. = ..()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum.my_clan == CLAN_TZIMISCE)
+		if(meat_amount > 0)
+			. += span_boldnotice("It currently contains [meat_points] points to use in rituals.")
+	else 
+		return ..()
 
 /obj/structure/bloodsucker/vassalrack/bolt()
 	. = ..()
@@ -558,16 +581,91 @@
 	/// If I'm not a Bloodsucker, try to unbuckle them.
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(buckled_carbons)
 	// Are they our Vassal, or Dead?
-	if(istype(vassaldatum) && vassaldatum.master == bloodsuckerdatum || buckled_carbons.stat >= DEAD)
+	if(buckled_carbons.stat == DEAD)
+		if(bloodsuckerdatum.my_clan != CLAN_TZIMISCE)
+			to_chat(user, span_warning("[buckled_carbons] is dead!"))
+			return
+		do_ritual(user, buckled_carbons)
+		return
+	if(istype(vassaldatum) && vassaldatum.master == bloodsuckerdatum)
 		// Can we assign a Favorite Vassal?
 		if(istype(vassaldatum) && !bloodsuckerdatum.has_favorite_vassal)
-			if(buckled_carbons.mind.can_make_bloodsucker(buckled_carbons.mind))
-				offer_favorite_vassal(user, buckled_carbons)
+			offer_favorite_vassal(user, buckled_carbons)
 		use_lock = FALSE
 		return
 
 	// Not our Vassal, but Alive & We're a Bloodsucker, good to torture!
 	torture_victim(user, buckled_carbons)
+
+#define MEATLIMIT 3
+/obj/structure/bloodsucker/vassalrack/attackby(obj/item/I, mob/user, params) //Tzimisce stuff
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum.my_clan != CLAN_TZIMISCE)
+		return ..() // only gamers
+	if(istype(I, /obj/item/muscle))
+		if(meat_amount >= MEATLIMIT)
+			to_chat(user, span_warning("You can't fit more meat into [src]"))
+			return
+		var/obj/item/muscle/M = I
+		meat_points += M.size
+		switch(M.size)
+			if(4)
+				bigmeat++
+			if(3)
+				intermeat++
+			if(2)
+				mediummeat++
+			if(1)
+				smallmeat++
+		meat_amount = bigmeat + intermeat + mediummeat + smallmeat
+		qdel(I)
+	update_icon()
+#undef MEATLIMIT
+
+/obj/structure/bloodsucker/vassalrack/update_icon()
+	cut_overlays()
+	if(bigmeat > 0)
+		add_overlay("bigmeat_[bigmeat]")
+	if(intermeat > 0)
+		add_overlay("mediummeat_[intermeat]")
+		add_overlay("smallmeat_[intermeat]")
+	if(mediummeat > 0)
+		add_overlay("mediummeat_[mediummeat]")
+	if(smallmeat > 0)
+		add_overlay("smallmeat_[smallmeat]")
+
+/obj/structure/bloodsucker/vassalrack/CtrlClick(mob/user)
+	if(!anchored)
+		return ..()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum.my_clan != CLAN_TZIMISCE)
+		return ..()
+	if(meat_amount > 0)
+		if(smallmeat > 0)
+			new /obj/item/muscle/small(user.drop_location())
+			smallmeat--
+			meat_points -= 1
+			return
+		if(mediummeat > 0)
+			new /obj/item/muscle/medium(user.drop_location())
+			mediummeat--
+			meat_points -= 2
+			return
+		if(intermeat > 0)
+			new /obj/item/muscle/medium(user.drop_location())
+			new /obj/item/muscle/small(user.drop_location())
+			intermeat--
+			meat_points -= 3
+			return
+		if(bigmeat > 0)
+			new /obj/item/muscle/big(user.drop_location())
+			bigmeat--
+			meat_points -= 4
+			return
+	else
+		to_chat(user, span_warning("There's no meat to retrieve in [src]"))
+	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
+	update_icon()
 
 /**
  *	Step One: Tick Down Conversion from 3 to 0
@@ -745,6 +843,136 @@
 			to_chat(user, span_danger("You decide not to turn [target] into your Favorite Vassal."))
 			use_lock = FALSE
 
+/obj/structure/bloodsucker/vassalrack/proc/do_ritual(mob/living/user, mob/living/target)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!target.mind)
+		to_chat(user, span_warning("[target] is braindead!"))
+	var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
+	/// To deal with Blood
+	var/mob/living/carbon/human/B = user
+	var/mob/living/carbon/human/H = target
+
+	/// Due to the checks leding up to this, if they fail this, they're dead & Not our vassal.
+	if(!vassaldatum)
+		to_chat(user, span_notice("Do you wish to rebuild this body? This will remove any restraints they might have, and will cost 150 Blood!"))
+		var/revive_response = alert(usr, "Would you like to revive [target]?", "Ghetto Medbay", "Yes", "No")
+		switch(revive_response)
+			if("Yes")
+				if(prob(15) && bloodsuckerdatum.bloodsucker_level <= 2)
+					to_chat(user, span_danger("Something has gone terribly wrong! You have accidentally turned [target] into a High-Functioning Zombie!"))
+					to_chat(target, span_announce("As Blood drips over your body, your heart fails to beat... But you still wake up."))
+					H.set_species(/datum/species/zombie)
+				else
+					to_chat(user, span_danger("You have brought [target] back from the Dead!"))
+					to_chat(target, span_announce("As Blood drips over your body, your heart begins to beat... You live again!"))
+				B.blood_volume -= 150
+				target.revive(full_heal = TRUE, admin_revive = TRUE)
+				return
+		to_chat(user, span_danger("You decide not to revive [target]."))
+		// Unbuckle them now.
+		unbuckle_mob(B)
+		use_lock = FALSE
+		return
+	var/list/races = list(HUSK_MONSTER)
+	switch(bloodsuckerdatum.bloodsucker_level)
+		if(1 to 3)
+			races += ARMMY_MONSTER
+		if(3 to 5)
+			races += ARMMY_MONSTER
+			races += CALCIUM_MONSTER
+		if(5 to INFINITY)
+			races += ARMMY_MONSTER
+			races += CALCIUM_MONSTER
+			races += TRIPLECHEST_MONSTER
+	var/list/options = list()
+	options = races
+	var/answer = input(user, "We have the chance to mutate our Vassal, how should we mutilate their corpse? This will cost us blood.", "What do we do with our Vassal?") in options
+	var/blood_gained
+	if(!answer)
+		to_chat(user, span_notice("You decide to leave your Vassal just the way they are."))
+		return
+	to_chat(user, span_warning("You start mutating your Vassal into a [answer]..."))
+	if(!do_mob(user, src, 5 SECONDS))
+		to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
+		return
+	switch(answer)
+		if(HUSK_MONSTER)
+			if(HAS_TRAIT(target, TRAIT_HUSK))
+				to_chat(user, span_warning("[target] is already a Husk!"))
+				return
+			if(!do_mob(user, target, 1 SECONDS))
+				return
+			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
+			if(!do_mob(user, target, 1 SECONDS))
+				return
+			to_chat(user, span_notice("You suck all the blood out of [target], turning them into a Living Husk!"))
+			to_chat(target, span_notice("Your master has mutated you into a Living Husk!"))
+			playsound(target.loc, 'sound/magic/mutate.ogg', 50, TRUE, -1)
+			/// Just take it all
+			blood_gained = 250
+			target.remove_all_languages()
+			target.grant_language(/datum/language/vampiric)
+			H.become_husk()
+			bloodsuckerdatum.bloodsucker_level_unspent++
+		if(ARMMY_MONSTER)
+			var/mob/living/simple_animal/hostile/bloodsucker/tzimisce/armmy/A
+			if(!(HAS_TRAIT(target, TRAIT_HUSK)))
+				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
+				return
+			if(meat_points < 4)
+				to_chat(user, span_warning("You need atleast [4 - meat_points] more meat points to do this."))
+				return
+			if(!do_mob(user, target, 1 SECONDS))
+				return
+			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
+			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh, leaving their body as a head and arm almalgam."))
+			to_chat(target, span_notice("Your master has mutated you into a tiny arm monster!"))
+			B.blood_volume -= 100
+			A = new /mob/living/simple_animal/hostile/bloodsucker/tzimisce/armmy(target.loc)
+			target.forceMove(A)
+			target.mind.transfer_to(A)
+			A.bloodsucker = target
+		/// Chance to give Bat form, or turn them into a bat.
+		if(CALCIUM_MONSTER)
+			var/mob/living/simple_animal/hostile/bloodsucker/tzimisce/calcium/C
+			if(!(HAS_TRAIT(target, TRAIT_HUSK)))
+				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
+				return
+			if(meat_points < 8)
+				to_chat(user, span_warning("You need atleast [8 - meat_points] more meat points to do this."))
+				return
+			if(!do_mob(user, target, 1 SECONDS))
+				return
+			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
+			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh and bones, leaving their body as a boney and flesh amalgam."))
+			to_chat(target, span_notice("Your master has mutated you into a fractured monster!"))
+			B.blood_volume -= 150
+			C = new /mob/living/simple_animal/hostile/bloodsucker/tzimisce/calcium(target.loc)
+			target.forceMove(C)
+			target.mind.transfer_to(C)
+			C.bloodsucker = target
+		if(TRIPLECHEST_MONSTER)
+			var/mob/living/simple_animal/hostile/bloodsucker/tzimisce/triplechest/T
+			if(!(HAS_TRAIT(target, TRAIT_HUSK)))
+				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
+				return
+			if(meat_points < 12)
+				to_chat(user, span_warning("You need atleast [12 - meat_points] more meat points to do this."))
+				return
+			if(!do_mob(user, target, 1 SECONDS))
+				return
+			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
+			if(!do_mob(user, target, 1 SECONDS))
+				return
+			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh and bones, leaving their body as a huge pile of flesh and organs."))
+			to_chat(target, span_notice("Your master has mutated you into a gigartuan monster!"))
+			B.blood_volume -= 300
+			T = new /mob/living/simple_animal/hostile/bloodsucker/tzimisce/triplechest(target.loc)
+			target.forceMove(T)
+			target.mind.transfer_to(T)
+			T.bloodsucker = target
+	if(blood_gained)
+		user.blood_volume += blood_gained
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -766,6 +994,12 @@
 		You can turn it on and off by clicking on it while you are next to it."
 	Hunter_desc = "This is a blue Candelabrum, which causes insanity to those near it while active."
 	var/lit = FALSE
+
+/obj/structure/bloodsucker/candelabrum/deconstruct(disassembled = TRUE)
+	. = ..()
+	new /obj/item/candle(loc, 1)
+	new /obj/item/stack/rods(loc, 4)
+	qdel(src)
 
 /obj/structure/bloodsucker/candelabrum/Destroy()
 	STOP_PROCESSING(SSobj, src)

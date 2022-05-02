@@ -93,10 +93,10 @@
 					if(bloodsuckerdatum.altar_uses > 0)
 						to_chat(bloodsuckerdatum, span_notice("Your Altar uses have been reset!"))
 						bloodsuckerdatum.altar_uses = 0
-				warn_daylight(4, span_userdanger("Solar flares bombard the station with deadly UV light!<br><span class = ''>Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk Final Death!"), \
+				warn_daylight(4, span_userdanger("Solar flares bombard the station with deadly UV light!<br><span class = ''>Stay in cover for the next [TIME_BLOODSUCKER_DAY] seconds or risk Final Death!"), \
 					span_userdanger("Solar flares bombard the station with UV light!"), \
 					span_userdanger("The sunlight is visible throughout the station, the Bloodsuckers must be asleep by now!"))
-				message_admins("BLOODSUCKER NOTICE: Daylight Beginning (Lasts for [TIME_BLOODSUCKER_DAY / 60] minutes.)")
+				message_admins("BLOODSUCKER NOTICE: Daylight Beginning (Lasts for [TIME_BLOODSUCKER_DAY] seconds.)")
 
 /obj/effect/sunlight/proc/warn_daylight(danger_level = 0, vampwarn = "", vassalwarn = "", hunteralert = "")
 	for(var/datum/mind/bloodsucker_minds as anything in get_antag_minds(/datum/antagonist/bloodsucker))

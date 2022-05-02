@@ -38,11 +38,7 @@
 		for(var/i = 0, i < recommended_enemies, i++)
 			if(!antag_candidates.len)
 				break
-			var/datum/mind/bloodsucker = pick(antag_candidates)
-			// Can we even BE a bloodsucker?
-			if(!bloodsucker.can_make_bloodsucker(bloodsucker))
-				antag_candidates -= bloodsucker
-				continue
+			var/datum/mind/bloodsucker = antag_pick(antag_candidates)
 			bloodsuckers += bloodsucker
 			bloodsucker.restricted_roles = restricted_jobs
 			log_game("[bloodsucker.key] (ckey) has been selected as a Bloodsucker.")

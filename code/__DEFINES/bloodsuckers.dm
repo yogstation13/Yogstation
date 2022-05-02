@@ -36,7 +36,12 @@
 #define CLAN_TOREADOR "Toreador Clan"
 #define CLAN_GANGREL "Gangrel Clan"
 #define CLAN_LASOMBRA "Lasombra Clan"
+#define CLAN_TZIMISCE "Tzimisce Clan"
 
+#define TRIPLECHEST_MONSTER "Triple Chest (300 Blood)"
+#define ARMMY_MONSTER "Armmy (100 Blood)"
+#define CALCIUM_MONSTER "Calcium (150 Blood)"
+#define HUSK_MONSTER "Husk"
 /**
  * Power defines
  */
@@ -61,6 +66,8 @@
 #define VASSAL_CAN_BUY (1<<3)
 /// This Power can be purchased by Monster Hunters
 #define HUNTER_CAN_BUY (1<<4)
+/// This Power can be purchased by Tzimisce Bloodsuckers
+#define TZIMISCE_CAN_BUY (1<<5)
 
 /// This Power is a Toggled Power
 #define BP_AM_TOGGLE (1<<0)

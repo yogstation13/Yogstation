@@ -23,8 +23,8 @@
 	icon_dead = "wolf_dead"
 	icon_gib = "wolf_dead"
 	speed = -1.5
-	maxHealth = 800
-	health = 800
+	maxHealth = 450
+	health = 450
 	harm_intent_damage = 25
 	melee_damage_lower = 20
 	melee_damage_upper = 25
@@ -42,8 +42,8 @@
 	icon_living = "batform"
 	icon_dead = "bat_dead"
 	icon_gib = "bat_dead"
-	maxHealth = 500
-	health = 500
+	maxHealth = 350
+	health = 350
 	attacktext = "bites"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3)
 	attack_sound = 'sound/weapons/bite.ogg'
@@ -79,6 +79,61 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 
+/////////////////////////////////////////////////////
+///          TZIMISCE BLOODSUCKER MOBS            ///
+/////////////////////////////////////////////////////
+
+/mob/living/simple_animal/hostile/bloodsucker/tzimisce
+
+/mob/living/simple_animal/hostile/bloodsucker/tzimisce/triplechest
+	name = "gigantous monstrosity"
+	desc = "You wouldn't think a being so messed up like this would be able to even breathe."
+	icon_state = "triplechest"
+	icon_living = "triplechest"
+	icon_dead = "triplechest_dead"
+	speed = 1
+	maxHealth = 175
+	health = 175
+	environment_smash = ENVIRONMENT_SMASH_WALLS
+	harm_intent_damage = 25
+	melee_damage_lower = 25
+	melee_damage_upper = 25
+	obj_damage = 50
+	
+/mob/living/simple_animal/hostile/bloodsucker/tzimisce/calcium
+	name = "boney monstrosity"
+	desc = "Heretical being beyond comprehesion, now with bones free of charge!"
+	icon_state = "calcium"
+	icon_living = "calcium"
+	icon_dead = "calcium_dead"
+	speed = -1
+	maxHealth = 110
+	health = 110
+	mob_size = MOB_SIZE_SMALL
+	ventcrawler = VENTCRAWLER_ALWAYS
+	harm_intent_damage = 7
+	melee_damage_lower = 7
+	melee_damage_upper = 7
+	obj_damage = 20
+
+/mob/living/simple_animal/hostile/bloodsucker/tzimisce/armmy
+	name = "tiny monstrosity"
+	desc = "Is that a head?!"
+	icon_state = "armmy"
+	icon_living = "armmy"
+	icon_dead = "armmy_dead"
+	speed = -2
+	maxHealth = 75
+	health = 75
+	mob_size = MOB_SIZE_TINY
+	ventcrawler = VENTCRAWLER_ALWAYS
+	pass_flags = PASSTABLE
+	harm_intent_damage = 5
+	melee_damage_lower = 5
+	melee_damage_upper = 5
+	attack_sound = 'sound/weapons/bite.ogg'
+	obj_damage = 10
+
 ///////////////////////////////
 ///      Inheritances       ///
 ///////////////////////////////
@@ -98,18 +153,41 @@
 	if(bloodsucker && mind)
 		mind.transfer_to(bloodsucker)
 		bloodsucker.death()
-	if(src)
+	if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/tzimisce))
+		return ..()
+	if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/possessedarmor))
+		qdel(src)
+	else
 		addtimer(CALLBACK(src, .proc/gib), 20 SECONDS)
 	..()
 
 /mob/living/simple_animal/hostile/bloodsucker/proc/devour(mob/living/target)
-	if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/werewolf))
-		var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww = src
-		ww.satiation++
-		src.visible_message(span_danger("[src] devours [target] whole!"), \
-		span_userdanger("You devour [target] and feel the beast inside you sedate itself a little, you'll need to feast [3 - ww.satiation] more times to become human again."))
-	health += target.maxHealth / 4
-	target.gib()
+	health += target.maxHealth / 2
+	var/mob/living/carbon/human/H = target
+	var/foundorgans = 0
+	for(var/obj/item/organ/O in H.internal_organs)
+		if(O.zone == "chest")
+			foundorgans++
+			qdel(O)
+		if(foundorgans)
+			if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/werewolf))
+				var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww = src
+				ww.satiation++
+				src.visible_message(span_danger("[src] devours [target]'s organs!"), \
+				span_userdanger("As you devour [target]'s organs you feel as if the beast inside you has calmed itself down, you'll need to feast [3 - ww.satiation] more times to become human again."))
+			for(var/obj/item/bodypart/B in H.bodyparts)
+				if(B.body_zone == "chest")
+					B.dismember()
+		else
+			to_chat(src, span_warning("There are no organs left in this corpse."))
+
+///////////////////////////
+///      Tzimisce       ///
+///////////////////////////
+
+/mob/living/simple_animal/hostile/bloodsucker/tzimisce/calcium/Initialize()
+	. = ..()
+	new /datum/action/bloodsucker/targeted/bloodbolt.Grant(src)
 
 ////////////////////////////
 ///      Werewolf       ///
@@ -121,7 +199,7 @@
 
 /mob/living/simple_animal/hostile/bloodsucker/werewolf/process()
 	if(bloodsucker)
-		health -= 0.44444444 //3 minutes to die
+		health -= 0.25 //3 minutes to die
 	if(satiation == 3)
 		to_chat(src, span_notice("It has been fed. You turn back to normal."))
 		qdel(src)
