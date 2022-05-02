@@ -4,6 +4,8 @@
 	desc = "A brave security cyborg gave its life to help you look like a complete tool."
 	icon_state = "secway"
 	key_type = /obj/item/key/security
+	///This stores a banana that, when used on the secway, prevents the vehicle from moving until it is removed.
+	var/obj/item/food/grown/banana/eddie_murphy
 
 /obj/vehicle/ridden/secway/Initialize()
 	. = ..()
@@ -58,7 +60,6 @@
 	if(is_key(inserted_key) && eddie_murphy)
 		if(stall_cooldown + 10 < world.time)
 			visible_message("<span class='warning'>[src] sputters and refuses to move!</span>")
-			playsound(src, 'sound/effects/stall.ogg', 70)
 			stall_cooldown = world.time
 		return FALSE
 	return ..()

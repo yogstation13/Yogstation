@@ -189,16 +189,6 @@
 			setSanity(sanity+0.4*delta_time, SANITY_NEUTRAL, SANITY_MAXIMUM)
 		if(9)
 			setSanity(sanity+0.6*delta_time, SANITY_NEUTRAL, SANITY_MAXIMUM)
-	HandleNutrition()
-
-	if(HAS_TRAIT(owner, TRAIT_DEPRESSION))
-		if(prob(0.05))
-			add_event(null, "depression", /datum/mood_event/depression_mild)
-			clear_event(null, "jolly")
-	if(HAS_TRAIT(owner, TRAIT_JOLLY))
-		if(prob(0.05))
-			add_event(null, "jolly", /datum/mood_event/jolly)
-			clear_event(null, "depression")
 
 	HandleNutrition(owner)
 

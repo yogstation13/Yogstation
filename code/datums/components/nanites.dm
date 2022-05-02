@@ -101,7 +101,7 @@
 
 /datum/component/nanites/process(delta_time)
 	if(!IS_IN_STASIS(host_mob))
-		adjust_nanites(null, (regen_rate + (SSresearch.science_tech.researched_nodes["nanite_harmonic"] ? HARMONIC_REGEN_BOOST : 0)) * delta_time)
+		adjust_nanites(null, regen_rate * delta_time)
 		add_research()
 		for(var/X in programs)
 			var/datum/nanite_program/NP = X

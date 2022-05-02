@@ -352,7 +352,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_off = "spliffoff"
 	type_butt = /obj/item/cigbutt/roach
 	throw_speed = 0.5
-	inhand_icon_state = "spliffoff"
 	smoketime = 4 * 60
 	chem_volume = 50
 	list_reagents = null
@@ -397,7 +396,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_off = "cigaroff" //make sure to add positional sprites in icons/obj/cigarettes.dmi if you add more.
 	type_butt = /obj/item/cigbutt/cigarbutt
 	throw_speed = 0.5
-	inhand_icon_state = "cigaroff"
 	smoketime = 11 * 60
 	chem_volume = 40
 	list_reagents = list(/datum/reagent/drug/nicotine = 25)
