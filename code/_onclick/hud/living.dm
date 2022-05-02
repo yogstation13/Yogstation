@@ -14,3 +14,4 @@
 	healths = new /obj/screen/healths/living()
 	healths.hud = src
 	infodisplay += healths
+
