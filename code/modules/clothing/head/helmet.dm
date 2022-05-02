@@ -363,12 +363,12 @@
 
 /obj/item/clothing/head/helmet/monkey_sentience/examine(mob/user)
 	. = ..()
-	. += "<span class='boldwarning'>---WARNING: REMOVAL OF HELMET ON SUBJECT MAY LEAD TO:---</span>"
-	. += "<span class='warning'>BLOOD RAGE</span>"
-	. += "<span class='warning'>BRAIN DEATH</span>"
-	. += "<span class='warning'>PRIMAL GENE ACTIVATION</span>"
-	. += "<span class='warning'>GENETIC MAKEUP MASS SUSCEPTIBILITY</span>"
-	. += "<span class='boldnotice'>Ask your CMO if mind magnification is right for you.</span>"
+	. += span_boldwarning("---WARNING: REMOVAL OF HELMET ON SUBJECT MAY LEAD TO:---")
+	. += span_warning("BLOOD RAGE")
+	. +=  span_warning("BRAIN DEATH")
+	. += span_warning("PRIMAL GENE ACTIVATION")
+	. +=  span_warning("GENETIC MAKEUP MASS SUSCEPTIBILITY")
+	. += span_boldnotice("Ask your CMO if mind magnification is right for you.")
 
 /obj/item/clothing/head/helmet/monkey_sentience/equipped(mob/user, slot)
 	. = ..()
@@ -376,7 +376,7 @@
 		return
 	if(!ismonkey(user) || user.ckey)
 		var/mob/living/something = user
-		to_chat(something, "<span class='boldnotice'>You feel a stabbing pain in the back of your head for a moment.</span>")
+		to_chat(something, span_boldnotice("You feel a stabbing pain in the back of your head for a moment."))
 		something.apply_damage(5,BRUTE,BODY_ZONE_HEAD,FALSE,FALSE,FALSE) //notably: no damage resist (it's in your helmet), no damage spread (it's in your helmet)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return
@@ -388,12 +388,12 @@
 	polling = FALSE
 	if(!candidates.len)
 		magnification = null
-		visible_message("<span class='notice'>[src] falls silent. Maybe you should try again later?</span>")
+		visible_message(span_notice("[src] falls silent. Maybe you should try again later?"))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 	var/mob/picked = pick(candidates)
 	magnification.key = picked.key
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
-	to_chat(magnification, "<span class='notice'>You're a mind magnified monkey! Protect your helmet with your life- if you lose it, your sentience goes with it!</span>")
+	to_chat(magnification, span_notice("You're a mind magnified monkey! Protect your helmet with your life- if you lose it, your sentience goes with it!"))
 	var/policy = get_policy(ROLE_MONKEY_HELMET)
 	if(policy)
 		to_chat(magnification, policy)
@@ -408,7 +408,7 @@
 		return
 	if(!polling)//put on a viable head, but taken off after polling finished.
 		if(magnification.client)
-			to_chat(magnification, "<span class='userdanger'>You feel your flicker of sentience ripped away from you, as everything becomes dim...</span>")
+			to_chat(magnification, span_userdanger("You feel your flicker of sentience ripped away from you, as everything becomes dim..."))
 			magnification.ghostize(FALSE)
 		if(prob(10))
 			switch(rand(1,4))
@@ -423,7 +423,7 @@
 	//either used up correctly or taken off before polling finished (punish this by destroying the helmet)
 	playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 	playsound(src, "sparks", 100, TRUE)
-	visible_message("<span class='warning'>[src] fizzles and breaks apart!</span>")
+	visible_message(span_warning("[src] fizzles and breaks apart!"))
 	magnification = null
 	new /obj/effect/decal/cleanable/ash/crematorium(drop_location()) //just in case they're in a locker or other containers it needs to use crematorium ash, see the path itself for an explanation
 
