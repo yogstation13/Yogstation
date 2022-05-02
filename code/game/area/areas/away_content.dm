@@ -9,7 +9,8 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	icon_state = "away"
 	has_gravity = STANDARD_GRAVITY
 	ambientsounds = AWAY_MISSION
-	area_flags = UNIQUE_AREA|NO_ALERTS
+	unique = TRUE
+
 
 /area/awaymission/beach
 	name = "Beach"
@@ -33,4 +34,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	var/death = FALSE // if when you enter this zone, you die
 
 /area/awaymission/secret
-	area_flags = UNIQUE_AREA|NOTELEPORT|HIDDEN_AREA|NO_ALERTS
+	noteleport = TRUE
+	unique = TRUE
+	hidden = TRUE
+

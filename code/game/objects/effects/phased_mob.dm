@@ -15,7 +15,7 @@
 		return ..()
 	var/area/destination_area = get_area(dest)
 	var/failed_areacheck = FALSE
-	if(destination_area.area_flags & NOTELEPORT)
+	if(destination_area.noteleport)
 		failed_areacheck = TRUE
 	for(var/_phasing_in in contents)
 		var/atom/movable/phasing_in = _phasing_in
@@ -57,12 +57,12 @@
 	if(newloc.flags_1 & NOJAUNT_1)
 		to_chat(user, span_warning("Some strange aura is blocking the way."))
 		return
-	if(destination_area.area_flags & NOTELEPORT || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
+	if(destination_area.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
 		to_chat(user, span_danger("Some dull, universal force is blocking the way. It's overwhelmingly oppressive force feels dangerous."))
 		return
 	return newloc
 
 /// React to signals by deleting the effect. Used for bloodcrawl.
 /obj/effect/dummy/phased_mob/proc/deleteself(mob/living/source, obj/effect/decal/cleanable/phase_in_decal)
-	SIGNAL_HANDLER
+	SHOULD_NOT_SLEEP(TRUE)
 	qdel(src)

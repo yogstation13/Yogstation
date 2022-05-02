@@ -662,7 +662,7 @@
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
 		return
 
-	if(newarea.flags_1 & NOTELEPORT || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
+	if(newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
 		return
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)

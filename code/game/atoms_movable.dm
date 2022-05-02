@@ -492,6 +492,12 @@
 /atom/movable/proc/forceMove(atom/destination)
 	. = FALSE
 	if(destination)
+		var/turf/new_turf = get_turf(destination)
+		if(ismob(src))
+			var/mob/M = src
+			if(SSmapping.level_trait(new_turf.z, ZTRAIT_SECRET) && !M.client?.holder)
+				return
+
 		. = doMove(destination)
 	else
 		CRASH("No valid destination passed into forceMove")

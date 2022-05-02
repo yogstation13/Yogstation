@@ -466,7 +466,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/away_name
 	var/datum/space_level/away_level
 	var/secret = FALSE
-	if(tgui_alert(usr, "Do you want your mission secret? (This will prevent ghosts from looking at your map in any way other than through a living player's eyes.)", "Are you $$$ekret?", list("Yes", "No")) == "Yes")
+	if(alert(usr, "Do you want your mission secret? (This will prevent ghosts from looking at your map in any way other than through a living player's eyes.)", "Are you $$$ekret?", list("Yes", "No")) == "Yes")
 		secret = TRUE
 	var/answer = input("What kind?","Away") as null|anything in possible_options
 	switch(answer)
