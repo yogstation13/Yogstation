@@ -71003,6 +71003,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
+"kus" = (
+/obj/machinery/camera{
+	c_tag = "Incinerator";
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/atmos_distro)
 "kuG" = (
 /obj/machinery/disposal/bin,
 /obj/structure/window/reinforced,
@@ -127371,7 +127378,7 @@ xrY
 hdi
 xrY
 fXM
-xrY
+kus
 uBz
 uBz
 uBz

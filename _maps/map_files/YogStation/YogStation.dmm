@@ -29122,6 +29122,13 @@
 	},
 /turf/open/space/basic,
 /area/solar/port/fore)
+"eNL" = (
+/obj/machinery/camera{
+	c_tag = "Incinerator";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "eOj" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel/dark,
@@ -47234,15 +47241,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"nYq" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "nYC" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
@@ -63170,6 +63168,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wif" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Incinerator";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "wil" = (
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -104811,7 +104822,7 @@ cmd
 edX
 fKW
 ctE
-fKW
+eNL
 qQF
 mtm
 ufD
@@ -107381,7 +107392,7 @@ cmd
 cmd
 vvV
 ozm
-nYq
+wif
 cmd
 cmd
 cmd
