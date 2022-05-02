@@ -1,0 +1,4 @@
+author: "monster860"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes regal rat not being able to pry open doors sometimes"
