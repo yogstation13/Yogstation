@@ -42,9 +42,9 @@
 /obj/item/storage/belt/utility/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 10
+	STR.max_items = 11
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
-	STR.max_combined_w_class = 21
+	STR.max_combined_w_class = 24
 	STR.set_holdable(list(
 		/obj/item/multitool/tricorder,			//yogs tricorder: 'cause making it into the yogs belt dm makes it the only thing a belt can hold
 		/obj/item/crowbar,
@@ -76,7 +76,8 @@
 		/obj/item/storage/bag/construction,
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
-		/obj/item/shuttle_creator //Yogs: Added this here cause I felt it fits
+		/obj/item/shuttle_creator, //Yogs: Added this here cause I felt it fits
+		/obj/item/barrier_taperoll/engineering
 		))
 
 /obj/item/storage/belt/utility/chief
@@ -115,6 +116,7 @@
 	new /obj/item/wirecutters(src)
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
+	new /obj/item/barrier_taperoll/engineering(src)
 
 /obj/item/storage/belt/utility/full/engi/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -124,7 +126,7 @@
 	new /obj/item/wirecutters(src)
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
-
+	new /obj/item/barrier_taperoll/engineering(src)
 
 /obj/item/storage/belt/utility/atmostech/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -134,6 +136,7 @@
 	new /obj/item/wirecutters(src)
 	new /obj/item/t_scanner(src)
 	new /obj/item/extinguisher/mini(src)
+	new /obj/item/barrier_taperoll/engineering()
 
 /obj/item/storage/belt/utility/servant/PopulateContents()
 	new /obj/item/screwdriver/brass(src)
@@ -149,6 +152,7 @@
 	desc = "Can hold various medical equipment."
 	icon_state = "medicalbelt"
 	item_state = "medical"
+	content_overlays = TRUE
 
 /obj/item/storage/belt/medical/ComponentInitialize()
 	. = ..()
@@ -205,6 +209,21 @@
 		/obj/item/holosign_creator/medical
 		))
 
+/obj/item/storage/belt/medical/chief
+	name = "\improper Chief Medical Officer's toolbelt"
+	desc = "Holds tools, looks snazzy."
+	icon_state = "medicalbelt_cmo"
+	item_state = "medical_cmo"
+
+/obj/item/storage/belt/medical/chief/full/PopulateContents()
+	new /obj/item/surgical_drapes(src)
+	new /obj/item/scalpel/advanced(src)
+	new /obj/item/retractor/advanced(src)
+	new /obj/item/cautery/advanced(src)
+	new /obj/item/pinpointer/crew(src)
+	new /obj/item/sensor_device(src)
+	new /obj/item/healthanalyzer/advanced(src)
+
 /obj/item/storage/belt/security
 	name = "security belt"
 	desc = "Can hold security gear like handcuffs and flashes."
@@ -216,7 +235,7 @@
 /obj/item/storage/belt/security/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 5
+	STR.max_items = 6
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.set_holdable(list(
 		/obj/item/melee/baton,
@@ -235,7 +254,8 @@
 		/obj/item/radio,
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
-		/obj/item/holosign_creator/security
+		/obj/item/holosign_creator/security,
+		/obj/item/barrier_taperoll/police
 		))
 
 /obj/item/storage/belt/security/full/PopulateContents()
@@ -244,6 +264,7 @@
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/melee/baton/loaded(src)
+	new /obj/item/barrier_taperoll/police(src)
 	update_icon()
 
 /obj/item/storage/belt/security/webbing

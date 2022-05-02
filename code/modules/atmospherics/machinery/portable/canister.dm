@@ -306,7 +306,8 @@
 	if(stat & BROKEN)
 		cut_overlays()
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-		icon_state = "[icon_state]-1"
+		if(!findtext(icon_state,"-1")) //A wise man once said, if it's already broke, don't break it more.
+			icon_state = "[icon_state]-1"
 		return
 
 	var/last_update = update
