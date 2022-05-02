@@ -84,7 +84,6 @@
 	if(target_turf.density)
 		to_chat(owner, "<span class='warning'>This spot is too dense to place a blob core on!</span>")
 		. = FALSE
-	var/area/target_area = get_area(target_turf)
 	if(isspaceturf(target_turf) || !is_station_level(target_turf.z))
 		to_chat(owner, "<span class='warning'>You cannot place your core here!</span>")
 		. = FALSE
