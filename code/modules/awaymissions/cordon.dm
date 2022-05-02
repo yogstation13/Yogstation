@@ -9,7 +9,7 @@
 	opacity = TRUE
 	density = TRUE
 	blocks_air = TRUE
-	always_lit = TRUE
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	bullet_bounce_sound = null
 
 /turf/cordon/AfterChange()
@@ -44,9 +44,11 @@
 /area/cordon
 	name = "CORDON"
 	icon_state = "cordon"
-	static_lighting = FALSE
-	base_lighting_alpha = 255
-	area_flags = UNIQUE_AREA|NOTELEPORT|HIDDEN_AREA|NO_ALERTS
+
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	unique = TRUE
+	noteleport = TRUE
+	hidden = TRUE 
 	requires_power = FALSE
 
 /area/cordon/Entered(atom/movable/arrived, area/old_area)

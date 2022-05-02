@@ -49,12 +49,11 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	has_gravity = FALSE
 
 /area/awaymission/secret/fullbright
-	static_lighting = FALSE
-	base_lighting_alpha = 255
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	
 
 /area/awaymission/secret/powered
 	requires_power = FALSE
 
 /area/awaymission/secret/powered/fullbright
-	static_lighting = FALSE
-	base_lighting_alpha = 255
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
