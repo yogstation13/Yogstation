@@ -13143,6 +13143,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"gNP" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner,
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 1;
+	sortType = 15
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "gNR" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -18247,6 +18265,28 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"jBc" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/command{
+	name = "Command Tool Storage";
+	req_access_txt = "19"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
 "jBm" = (
 /obj/machinery/light_switch{
 	pixel_y = 24
@@ -19822,6 +19862,24 @@
 "kpN" = (
 /turf/closed/wall,
 /area/medical/paramedic)
+"kpY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "kqt" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
@@ -30615,27 +30673,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"qdM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "qdV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -31291,31 +31328,6 @@
 "qsS" = (
 /turf/open/floor/grass,
 /area/medical/genetics)
-"qsV" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/airlock/command{
-	name = "Command Tool Storage";
-	req_access_txt = "19"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/eva)
 "qtV" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -37065,6 +37077,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
+"tMO" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "tMR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -37655,30 +37689,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/checkpoint/engineering)
-"uih" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/structure/disposalpipe/sorting/mail{
-	sortType = 15
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "uil" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Kitchen Maintenance";
@@ -44999,23 +45009,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"xWF" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner,
-/obj/structure/disposalpipe/sorting/mail{
-	sortType = 15
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "xWL" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -91854,7 +91847,7 @@ mtn
 mtn
 fnc
 kFN
-qsV
+jBc
 pps
 xdL
 xdL
@@ -92111,7 +92104,7 @@ jkh
 jwf
 cgw
 okh
-qdM
+kpY
 dRI
 xrh
 dRI
@@ -92368,12 +92361,12 @@ eGe
 eGe
 eVD
 gHm
-uih
+tMO
 tBq
 iAM
 gPc
 aAC
-xWF
+gNP
 aht
 gPq
 iUo
