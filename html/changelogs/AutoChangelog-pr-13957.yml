@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "health analyzers now make body temperature RED if you the patient is DYING from temperature issues"

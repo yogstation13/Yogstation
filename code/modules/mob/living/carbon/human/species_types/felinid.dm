@@ -102,6 +102,16 @@
 		purrbation_remove(H, silent)
 		. = FALSE
 
+/proc/purrbation_toggle_onlyhumans(mob/living/carbon/human/H, silent = FALSE) //same as above but doesn't work on nonhumans - used by donor purrbation to reduce *accidental* double-cursed double-mutants
+	if(!ishumanbasic(H))
+		return
+	if(!iscatperson(H))
+		purrbation_apply(H, silent)
+		. = TRUE
+	else
+		purrbation_remove(H, silent)
+		. = FALSE
+
 ///turns our poor spaceman into a CATGIRL. Point and laugh.
 /proc/purrbation_apply(mob/living/carbon/human/H, silent = FALSE)
 	if(iscatperson(H))

@@ -11,7 +11,7 @@
 		"Warden", "Security Officer", "Detective", "Brig Physician",
 	)
 	required_players = 25
-	required_enemies = 2
+	required_enemies = 1
 	recommended_enemies = 4
 	reroll_friendly = 1
 	round_ends_with_antag_death = FALSE
@@ -34,15 +34,14 @@
 
 	recommended_enemies = clamp(round(num_players()/10), 1, 6);
 
-	if(antag_candidates.len>0)
-		for(var/i = 0, i < recommended_enemies, i++)
-			if(!antag_candidates.len)
-				break
-			var/datum/mind/bloodsucker = antag_pick(antag_candidates)
-			bloodsuckers += bloodsucker
-			bloodsucker.restricted_roles = restricted_jobs
-			log_game("[bloodsucker.key] (ckey) has been selected as a Bloodsucker.")
-			antag_candidates -= bloodsucker// Apparently you can also write antag_candidates -= bloodsucker
+	for(var/i = 0, i < recommended_enemies, i++)
+		if(!antag_candidates.len)
+			break
+		var/datum/mind/bloodsucker = antag_pick(antag_candidates)
+		bloodsuckers += bloodsucker
+		bloodsucker.restricted_roles = restricted_jobs
+		log_game("[bloodsucker.key] (ckey) has been selected as a Bloodsucker.")
+		antag_candidates -= bloodsucker// Apparently you can also write antag_candidates -= bloodsucker
 
 	// Do we have enough vamps to continue?
 	return bloodsuckers.len >= required_enemies

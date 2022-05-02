@@ -1,0 +1,6 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new ruin to lavaland: Shinobi Graveyard"
+  - rscadd: "Adds new katana: Basalt Katana"
+  - tweak: "moves cursed katana out of lavaland loot into here"

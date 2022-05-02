@@ -1,0 +1,4 @@
+author: "YouCanBeBetterThanThat"
+delete-after: true 
+changes: 
+  - bugfix: "Default FPS is now 40"
