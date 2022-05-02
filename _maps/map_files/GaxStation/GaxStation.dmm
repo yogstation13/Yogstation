@@ -1605,6 +1605,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"aPU" = (
+/obj/machinery/airalarm/mixingchamber{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/purple/filled/corner,
+/turf/open/floor/plasteel/white,
+/area/science/mixing/chamber)
 "aQa" = (
 /obj/machinery/atmospherics/components/binary/pump/on/layer2{
 	dir = 8
@@ -7552,6 +7563,18 @@
 	},
 /turf/open/space/basic,
 /area/solar/starboard/aft)
+"dYQ" = (
+/obj/item/radio/intercom{
+	pixel_x = 29;
+	pixel_y = 0
+	},
+/obj/machinery/button/massdriver{
+	id = "toxinsdriver";
+	pixel_x = 23;
+	pixel_y = -8
+	},
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "dYS" = (
 /obj/machinery/status_display/ai{
 	pixel_y = -32
@@ -12630,17 +12653,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"gAB" = (
-/obj/item/radio/intercom{
-	pixel_x = 29;
-	pixel_y = 0
-	},
-/obj/machinery/button/massdriver{
-	id = "toxinsdriver";
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "gAG" = (
 /turf/closed/wall,
 /area/engine/atmos_distro)
@@ -15044,6 +15056,33 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/security/prison)
+"hLU" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "hMe" = (
 /turf/closed/wall,
 /area/maintenance/disposal)
@@ -17249,22 +17288,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
-"iZL" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/machinery/posialert{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "iZS" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -17552,33 +17575,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"jhu" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/modular_computer/telescreen/preset/medical{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "jhB" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/plasteel/showroomfloor,
@@ -31692,17 +31688,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/janitor)
-"qDj" = (
-/obj/machinery/airalarm/mixingchamber{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/trimline/purple/filled/corner,
-/turf/open/floor/plasteel/white,
-/area/science/mixing/chamber)
 "qDp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -36928,6 +36913,22 @@
 	},
 /turf/open/floor/plating,
 /area/library)
+"tJf" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/machinery/posialert{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "tJI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -74903,7 +74904,7 @@ rXw
 hkH
 nXR
 nXR
-jhu
+hLU
 aFU
 rOG
 nlg
@@ -80580,7 +80581,7 @@ eOy
 uMU
 aUB
 iLq
-qDj
+aPU
 unH
 ntD
 fDd
@@ -80844,7 +80845,7 @@ gPz
 uRi
 hbW
 bMS
-gAB
+dYQ
 emm
 dJP
 aCD
@@ -86737,7 +86738,7 @@ bBB
 kym
 dwL
 bcb
-iZL
+tJf
 aCi
 qhs
 sux
