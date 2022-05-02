@@ -381,7 +381,7 @@
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return
 	magnification = user //this polls ghosts
-	visible_message("<span class='warning'>[src] powers up!</span>")
+	visible_message(span_warning("[src] powers up!"))
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	polling = TRUE
 	var/list/candidates = pollCandidatesForMob("Do you want to play as a mind magnified monkey?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 50, magnification, POLL_IGNORE_SENTIENCE_POTION)
