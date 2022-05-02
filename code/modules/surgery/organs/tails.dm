@@ -6,6 +6,7 @@
 	icon_state = "severedtail"
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_TAIL
+	/// The sprite accessory this tail gives to the human it's attached to. If null, it will inherit its value from the human's DNA once attached.
 	var/tail_type = "None"
 
 /obj/item/organ/tail/Remove(mob/living/carbon/human/H,  special = 0)
@@ -21,15 +22,17 @@
 /obj/item/organ/tail/cat/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
 	..()
 	if(istype(H))
-		if(!("tail_human" in H.dna.species.mutant_bodyparts))
-			H.dna.species.mutant_bodyparts |= "tail_human"
-			H.dna.features["tail_human"] = tail_type
-			H.update_body()
+		var/default_part = H.dna.species.mutant_bodyparts["tail_human"]
+		if(!default_part || default_part == "None")
+			if(tail_type)
+				H.dna.features["tail_human"] = H.dna.species.mutant_bodyparts["tail_human"] = tail_type
+				H.dna.update_uf_block(DNA_HUMAN_TAIL_BLOCK)
+			else
+				H.dna.species.mutant_bodyparts["tail_human"] = H.dna.features["tail_human"]
 
 /obj/item/organ/tail/cat/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
 	if(istype(H))
-		H.dna.features["tail_human"] = "None"
 		H.dna.species.mutant_bodyparts -= "tail_human"
 		color = H.hair_color
 		H.update_body()
@@ -46,13 +49,21 @@
 	..()
 	if(istype(H))
 		// Checks here are necessary so it wouldn't overwrite the tail of a lizard it spawned in
-		if(!("tail_lizard" in H.dna.species.mutant_bodyparts))
-			H.dna.features["tail_lizard"] = tail_type
-			H.dna.species.mutant_bodyparts |= "tail_lizard"
-
-		if(!("spines" in H.dna.species.mutant_bodyparts))
-			H.dna.features["spines"] = spines
-			H.dna.species.mutant_bodyparts |= "spines"
+		var/default_part = H.dna.species.mutant_bodyparts["tail_lizard"]
+		if(!default_part || default_part == "None")
+			if(tail_type)
+				H.dna.features["tail_lizard"] = H.dna.species.mutant_bodyparts["tail_lizard"] = tail_type
+				H.dna.update_uf_block(DNA_LIZARD_TAIL_BLOCK)
+			else
+				H.dna.species.mutant_bodyparts["tail_lizard"] = H.dna.features["tail_lizard"]
+		
+		default_part = H.dna.species.mutant_bodyparts["spines"]
+		if(!default_part || default_part == "None")
+			if(spines)
+				H.dna.features["spines"] = H.dna.species.mutant_bodyparts["spines"] = spines
+				H.dna.update_uf_block(DNA_SPINES_BLOCK)
+			else
+				H.dna.species.mutant_bodyparts["spines"] = H.dna.features["spines"]
 		H.update_body()
 
 /obj/item/organ/tail/lizard/Remove(mob/living/carbon/human/H,  special = 0)
@@ -63,6 +74,8 @@
 		color = "#" + H.dna.features["mcolor"]
 		tail_type = H.dna.features["tail_lizard"]
 		spines = H.dna.features["spines"]
+		H.dna.update_uf_block(DNA_LIZARD_TAIL_BLOCK)
+		H.dna.update_uf_block(DNA_SPINES_BLOCK)
 		H.update_body()
 
 /obj/item/organ/tail/polysmorph
@@ -74,9 +87,13 @@
 /obj/item/organ/tail/polysmorph/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = FALSE)
 	..()
 	if(istype(H))
+		var/default_part = H.dna.species.mutant_bodyparts["tail_polysmorph"]
 		if(!("tail_polysmorph" in H.dna.species.mutant_bodyparts))
-			H.dna.features["tail_polysmorph"] = tail_type
-			H.dna.species.mutant_bodyparts |= "tail_polysmorph"
+			if(tail_type)
+				H.dna.features["tail_polysmorph"] = H.dna.species.mutant_bodyparts["tail_polysmorph"] = tail_type
+				H.dna.update_uf_block(DNA_POLY_TAIL_BLOCK)
+			else
+				H.dna.species.mutant_bodyparts["tail_polysmorph"] = H.dna.features["tail_polysmorph"]
 		H.update_body()
 
 /obj/item/organ/tail/polysmorph/Remove(mob/living/carbon/human/H,  special = 0)
@@ -84,4 +101,5 @@
 	if(istype(H))
 		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
 		tail_type = H.dna.features["tail_polysmorph"]
+		H.dna.update_uf_block(DNA_POLY_TAIL_BLOCK)
 		H.update_body()

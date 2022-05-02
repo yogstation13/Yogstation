@@ -100,7 +100,7 @@
 			. += "Energy Charge: [round(SN.cell.charge/100)]%"
 			. += "Smoke Bombs: \Roman [SN.s_bombs]"
 			//Ninja status
-			. += "Fingerprints: [md5(dna.uni_identity)]"
+			. += "Fingerprints: [md5(dna.unique_identity)]"
 			. += "Unique Identity: [dna.unique_enzymes]"
 			. += "Overall Status: [stat > 1 ? "dead" : "[health]% healthy"]"
 			. += "Nutrition Status: [nutrition]"

@@ -880,9 +880,9 @@
 		var/mob/living/carbon/X = target
 		X.randmuti()
 		if(prob(66))
-			X.easy_randmut(NEGATIVE)
+			X.easy_random_mutate(NEGATIVE)
 		else
-			X.easy_randmut(MINOR_NEGATIVE)
+			X.easy_random_mutate(MINOR_NEGATIVE)
 
 
 /obj/item/projectile/magic/runic_resizement

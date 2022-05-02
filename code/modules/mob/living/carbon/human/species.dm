@@ -1322,7 +1322,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(radiation > RAD_MOB_MUTATE)
 		if(prob(1))
 			to_chat(H, span_danger("You mutate!"))
-			H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+			H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 			H.emote("gasp")
 			H.domutcheck()
 
