@@ -8571,6 +8571,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"aHd" = (
+/obj/machinery/camera{
+	c_tag = "West Incinerator";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "aHf" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -29122,13 +29129,6 @@
 	},
 /turf/open/space/basic,
 /area/solar/port/fore)
-"eNL" = (
-/obj/machinery/camera{
-	c_tag = "Incinerator";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "eOj" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel/dark,
@@ -40348,6 +40348,19 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"kAj" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "East Incinerator";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "kBc" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/disposal/incinerator";
@@ -63168,19 +63181,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"wif" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Incinerator";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "wil" = (
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -104822,7 +104822,7 @@ cmd
 edX
 fKW
 ctE
-eNL
+aHd
 qQF
 mtm
 ufD
@@ -107392,7 +107392,7 @@ cmd
 cmd
 vvV
 ozm
-wif
+kAj
 cmd
 cmd
 cmd
