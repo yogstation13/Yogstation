@@ -1478,6 +1478,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"aLA" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner,
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "aLB" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -5238,6 +5254,14 @@
 /obj/effect/turf_decal/bot_white/right,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"cFJ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/security/main)
 "cFX" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -8366,23 +8390,6 @@
 	},
 /turf/open/floor/wood,
 /area/bridge)
-"evG" = (
-/obj/machinery/mineral/ore_redemption{
-	input_dir = 8;
-	output_dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "ewi" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -9309,22 +9316,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/janitor)
-"ePx" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner,
-/obj/effect/turf_decal/trimline/red/filled/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "ePC" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -11138,6 +11129,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"fNk" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 1;
+	sortType = 18
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "fNm" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /obj/structure/sign/departments/minsky/command/bridge{
@@ -13294,14 +13307,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"gSN" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/security/main)
 "gTq" = (
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /obj/machinery/computer/cargo{
@@ -18471,14 +18476,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"jFt" = (
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/security/main)
 "jFQ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -23114,6 +23111,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
+/area/security/main)
+"mdy" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/security/main)
 "mdF" = (
@@ -30205,6 +30210,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"pSC" = (
+/obj/machinery/mineral/ore_redemption{
+	input_dir = 8;
+	output_dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "pSD" = (
 /obj/structure/tank_dispenser/oxygen,
 /obj/structure/cable{
@@ -31966,6 +31988,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
+"qMh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 1;
+	sortType = 20
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "qMm" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -33948,28 +33981,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"rXf" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 2;
-	sortType = 18
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "rXh" = (
 /obj/structure/toilet{
 	dir = 4
@@ -39856,17 +39867,6 @@
 /obj/item/stock_parts/scanning_module,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"vmT" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 2;
-	sortType = 20
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "vnT" = (
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
@@ -64855,7 +64855,7 @@ mec
 cvF
 etW
 eZT
-jFt
+mdy
 iBt
 iBt
 iBt
@@ -66140,7 +66140,7 @@ vry
 vry
 vry
 nvN
-ePx
+aLA
 tTq
 eAt
 uDS
@@ -66397,7 +66397,7 @@ ldq
 qrU
 vry
 jEn
-gSN
+cFJ
 xGP
 eOj
 fxg
@@ -68244,7 +68244,7 @@ xut
 vKk
 nSB
 kjX
-evG
+pSC
 kjX
 rPz
 iNY
@@ -83622,7 +83622,7 @@ xsB
 cEQ
 xsB
 jfV
-rXf
+fNk
 xsB
 uUK
 gXT
@@ -85426,7 +85426,7 @@ uHB
 wDb
 akL
 eEd
-vmT
+qMh
 ueM
 bqR
 lix
