@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "places wire knots under NE and SE solars on box"
+  - bugfix: "add a wire knot under NW solar computer on box"
