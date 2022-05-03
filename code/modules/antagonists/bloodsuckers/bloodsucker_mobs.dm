@@ -169,15 +169,15 @@
 		if(O.zone == "chest")
 			foundorgans++
 			qdel(O)
-		if(foundorgans)
-			if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/werewolf))
-				var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww = src
-				ww.satiation++
-				src.visible_message(span_danger("[src] devours [target]'s organs!"), \
-				span_userdanger("As you devour [target]'s organs you feel as if the beast inside you has calmed itself down, you'll need to feast [3 - ww.satiation] more times to become human again."))
-			for(var/obj/item/bodypart/B in H.bodyparts)
-				if(B.body_zone == "chest")
-					B.dismember()
+	if(foundorgans)
+		if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/werewolf))
+			var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww = src
+			ww.satiation++
+			src.visible_message(span_danger("[src] devours [target]'s organs!"), \
+			span_userdanger("As you devour [target]'s organs you feel as if the beast inside you has calmed itself down, you'll need to feast [3 - ww.satiation] more times to become human again."))
+	for(var/obj/item/bodypart/B in H.bodyparts)
+		if(B.body_zone == "chest")
+			B.dismember()
 		else
 			to_chat(src, span_warning("There are no organs left in this corpse."))
 
