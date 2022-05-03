@@ -1,7 +1,7 @@
 #define WATER_VOLUME_MAXIMUM 560
 #define WATER_VOLUME_LIMB_LOSS (WATER_VOLUME_MAXIMUM / 5)
 #define WATER_VOLUME_LIMB_LOSS_THRESHOLD (WATER_VOLUME_MAXIMUM - WATER_VOLUME_LIMB_LOSS)
-#define WATER_VOLUME_SLIP_MOVE_AMOUNT 10
+#define WATER_VOLUME_SLIP_MOVE_AMOUNT 1
 
 #define WETSUIT_MAX_INTEGRITY 100
 /obj/item/organ/lungs/water
@@ -126,6 +126,15 @@
 
 	if (H.blood_volume / WATER_VOLUME_LIMB_LOSS < 1)
 		H.adjustCloneLoss(1) 
+	
+	if (H.blood_volume < (WATER_VOLUME_MAXIMUM / 5))
+		to_chat(H, span_danger("You feel dry."))
+	
+	if (H.blood_volume < (WATER_VOLUME_MAXIMUM / 20))
+		to_chat(H, span_danger("You dry out."))
+		H.visible_message(span_warning("[H] suddenly dries up!"))
+		H.death()
+
 
 /datum/species/water/spec_life(mob/living/carbon/human/H)
 	if(should_fall_apart(H) && falling_apart == FALSE)
@@ -239,6 +248,11 @@
 	mob_biotypes = list(MOB_ORGANIC)
 	var/mob/living/carbon/human/prev_body 
 	var/water_volume = 0
+
+/mob/living/simple_animal/waterblob/Life()
+	. = ..()
+	if (water_volume < (WATER_VOLUME_MAXIMUM / 5))
+		to_chat(H, span_danger("You feel dry."))
 
 /mob/living/simple_animal/waterblob/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
