@@ -24,7 +24,7 @@
 				to_chat(affected_mob, span_danger("Your head pounds."))
 		if(4)
 			if(prob(2))
-				to_chat(affected_mob, span_userdanger("You can't concentrate on your thoughts"))
+				to_chat(affected_mob, span_userdanger("You can't concentrate on your thoughts!"))
 				affected_mob.Dizzy(5)
 			if(prob(2))
 				to_chat(affected_mob, span_danger("You can barely breathe!"))
