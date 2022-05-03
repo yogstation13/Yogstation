@@ -123,8 +123,8 @@
 		if(QDELETED(A))
 			return
 		visible_message(span_danger("[src] finishes eating up [A]!"),span_notice("You finish up eating [A]."))
-		A.rat_eat(src)
-
+		heal_bodypart_damage(5)
+		qdel(src)
 	layer = BELOW_OPEN_DOOR_LAYER
 
 /mob/living/simple_animal/hostile/rat/proc/can_eat(atom/A)
@@ -134,13 +134,8 @@
 	if(istype(A, /obj/item/reagent_containers/food) && !(locate(/obj/structure/table) in get_turf(A)))
 		return TRUE
 
-/atom/proc/rat_eat(/mob/living/simple_animal/hostile/rat/R)
-	R.heal_bodypart_damage(5)
-	qdel(src)
 
-/obj/item/grown/bananapeel/bluespace/rat_eat(/mob/living/simple_animal/hostile/rat/R)
-	var/teleport_radius = max(round(seed.potency / 10), 1)
-	var/turf/T = get_turf(R)
-	do_teleport(R, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
+
+
 
 
