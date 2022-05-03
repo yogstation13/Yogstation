@@ -11268,6 +11268,10 @@
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"fRD" = (
+/obj/machinery/doppler_array/research/science,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "fRF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -38151,12 +38155,6 @@
 	},
 /turf/open/space/basic,
 /area/engine/atmos_distro)
-"uxl" = (
-/obj/machinery/doppler_array/research/science{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "uxw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -81123,7 +81121,7 @@ qhu
 hbW
 hbW
 hbW
-uxl
+fRD
 dJP
 aCD
 vRP
