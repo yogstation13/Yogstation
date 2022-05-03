@@ -1,7 +1,9 @@
 #define WATER_VOLUME_MAXIMUM 560
-#define WATER_VOLUME_LIMB_LOSS (WATER_VOLUME_MAXIMUM / 4)
+#define WATER_VOLUME_LIMB_LOSS (WATER_VOLUME_MAXIMUM / 5)
 #define WATER_VOLUME_LIMB_LOSS_THRESHOLD (WATER_VOLUME_MAXIMUM - WATER_VOLUME_LIMB_LOSS)
 #define WATER_VOLUME_SLIP_MOVE_AMOUNT 10
+
+#define WETSUIT_MAX_INTEGRITY 100
 /obj/item/organ/lungs/water
 	name = "vile sponge"
 	desc = "A spongy mass that looks like it is designed to carbonate water, what is it doing in a body?"
@@ -84,43 +86,67 @@
 		return TRUE
 	return FALSE
 
+/datum/species/water/proc/process_limbs(mob/living/carbon/human/H)
+	var/limb_to_remove = H.blood_volume / WATER_VOLUME_LIMB_LOSS
+	var/list/limbs_to_consume = list()
+	var/list/limbs_to_heal = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+		
+	if (limb_to_remove <= 4) 
+		limbs_to_consume += BODY_ZONE_R_ARM
+	if (limb_to_remove <= 3)
+		limbs_to_consume += BODY_ZONE_L_ARM
+	if (limb_to_remove <= 2)
+		limbs_to_consume += BODY_ZONE_R_LEG
+	if (limb_to_remove <= 1)
+		limbs_to_consume += BODY_ZONE_L_LEG
+
+	limbs_to_heal -= limbs_to_consume
+	var/missing = H.get_missing_limbs()
+	for (var/limb_zone in limbs_to_heal)
+		if (limb_zone in missing)
+			H.regenerate_limb(limb_zone)
+		
+	for (var/limb_zone in limbs_to_consume)
+		var/obj/item/bodypart/consumed_limb = H.get_bodypart(limb_zone)
+		consumed_limb.drop_limb()
+		qdel(consumed_limb)
+
+/datum/species/water/proc/process_blood(mob/living/carbon/human/H)
+	if (H.blood_volume > WATER_VOLUME_MAXIMUM)
+		H.adjustCloneLoss(-0.1) //Slowly remove cloning loss as they really don't have any other ways
+		H.adjustBruteLoss(-0.1)
+		H.adjustFireLoss(-0.1)
+		H.blood_volume -= 0.1
+
+	if (H.blood_volume / WATER_VOLUME_LIMB_LOSS < 1)
+		H.adjustCloneLoss(1) 
 
 /datum/species/water/spec_life(mob/living/carbon/human/H)
 	if(should_fall_apart(H) && falling_apart == FALSE)
 		INVOKE_ASYNC(src, .proc/fall_apart, H)
 	
-	if (H.blood_volume < WATER_VOLUME_LIMB_LOSS_THRESHOLD)
-		var/limb_to_remove = round(H.blood_volume / WATER_VOLUME_LIMB_LOSS)
-		var/list/limbs_to_consume = list()
-		var/list/limbs_to_heal = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
-		
-		if (limb_to_remove >= 1) 
-			limbs_to_consume += BODY_ZONE_R_ARM
-		if (limb_to_remove >= 2)
-			limbs_to_consume += BODY_ZONE_L_ARM
-		if (limb_to_remove >= 3)
-			limbs_to_consume += BODY_ZONE_R_LEG
-		if (limb_to_remove >= 4)
-			limbs_to_consume += BODY_ZONE_L_LEG
+	process_limbs(H)
+	process_blood(H)
 
-		limbs_to_heal -= limbs_to_consume
-		for (var/limb_zone in limbs_to_heal)
-			H.regenerate_limb(limb_zone)
-		
-		for (var/limb_zone in limbs_to_consume)
-			var/obj/item/bodypart/consumed_limb = H.get_bodypart(limb_zone)
-			consumed_limb.drop_limb()
-			qdel(consumed_limb)
-	
-	if (H.blood_volume > WATER_VOLUME_MAXIMUM)
-		H.adjustCloneLoss(-0.1) //Slowly remove cloning loss as they really don't have any other ways
-		H.adjustBruteLoss(-0.1)
-		H.adjustFireLoss(-0.1)
 
 /datum/species/water/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
 	H.visible_message(span_danger("[H] turns into a fine blue mist!"), span_danger("You evaporate!"))
 	return H.gib(TRUE, TRUE, TRUE) // HARD MODE: You're not coming back from this one
+
+/datum/species/water/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness)
+	if (damagetype == BRUTE)
+		if (istype(H.w_uniform))
+			var/datum/component/wetsuit_holder/body_component = H.w_uniform.GetComponent(/datum/component/wetsuit_holder)
+			if (istype(body_component))
+				var/total_damage = damage * brutemod * H.physiology.brute_mod
+				damage *= 0.5
+				body_component.integrity -= total_damage
+				
+
+
+
+	. = ..()
 
 /datum/species/water/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	if(prob(25))
@@ -140,7 +166,32 @@
 	return ..()
 
 /datum/component/wetsuit_holder
-	var/integrity = 100
+	var/integrity = WETSUIT_MAX_INTEGRITY
+	var/alert_message_sent = FALSE
+
+/datum/component/wetsuit_holder/Initialize()
+	START_PROCESSING(SSfastprocess, src)
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/on_examine)
+
+/datum/component/wetsuit_holder/proc/on_examine(datum/source, mob/user, list/examine_list)
+	examine_list += span_notice("This looks like it can be used as a wetsuit.")
+	examine_list += span_notice("The integrity holotag claims that it is at [integrity / WETSUIT_MAX_INTEGRITY]% integrity.")
+
+/datum/component/wetsuit_holder/process()
+	if (integrity < (WETSUIT_MAX_INTEGRITY / 2) && !alert_message_sent)
+		alert_message_sent = TRUE
+		if (isitem(parent))
+			parent.visible_message(span_danger("[parent] looks close to bursting!"))
+	else if (integrity > (WETSUIT_MAX_INTEGRITY / 2))
+		alert_message_sent = FALSE
+
+	if (integrity < 0)
+		parent.visible_message(span_danger("[parent] bursts!"))
+		qdel(parent)
+		
+
+/datum/component/wetsuit_holder/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
 
 /obj/item/clothing/under/wetsuit
 	name = "bodily integrity wetsuit"
