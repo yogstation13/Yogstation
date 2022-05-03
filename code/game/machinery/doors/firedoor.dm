@@ -349,7 +349,7 @@
 	if(!T || !T2)
 		return
 	var/status1 = check_door_side(T)
-	var/status2 = check_door_side(T2)	
+	var/status2 = check_door_side(T2)
 	if((status1 == 1 && status2 == -1) || (status1 == -1 && status2 == 1))
 		to_chat(user, span_warning("Access denied. Try closing another firedoor to minimize decompression, or using a crowbar."))
 		return FALSE
@@ -435,11 +435,8 @@
 
 /obj/structure/firelock_frame/border/ComponentInitialize()
 	. = ..()
-	AddComponent(
-		/datum/component/simple_rotation,
-		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS,
-		null
-		)
+	var/static/rotation_flags = ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS
+	AddComponent(/datum/component/simple_rotation, rotation_flags, after_rotation=CALLBACK(src,.proc/after_rotation))
 
 /obj/structure/firelock_frame/border/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -511,19 +508,19 @@
 							return //cancel construction
 					else //since we know there's a fulltile here we just cancel it then
 						to_chat(user, span_warning("There's already a firelock there."))
-						return    
+						return
 				C.play_tool_sound(src)
 				user.visible_message(span_notice("[user] starts bolting down [src]..."), \
 									 span_notice("You begin bolting [src]..."))
 				if(!C.use_tool(src, user, 30))
 					return
 				//sanity check time, do this dumb ass check again SOMEBODY FIX THIS
-				for(var/obj/machinery/door/firedoor/door in get_turf(src)) 
-					if(istype(door,/obj/machinery/door/firedoor/border_only)) 
-						if(door.dir == dir) 
-							return 
-					else 
-						return    
+				for(var/obj/machinery/door/firedoor/door in get_turf(src))
+					if(istype(door,/obj/machinery/door/firedoor/border_only))
+						if(door.dir == dir)
+							return
+					else
+						return
 				user.visible_message(span_notice("[user] finishes the firelock."), \
 									 span_notice("You finish the firelock."))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
@@ -666,7 +663,7 @@
 
 /obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if((constructionStep == CONSTRUCTION_NOCIRCUIT) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
-		return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 20, "cost" = 1)	
+		return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 20, "cost" = 1)
 	return FALSE
 
 /obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
