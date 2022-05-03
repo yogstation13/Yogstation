@@ -2,7 +2,7 @@
 	name = "Spawn Tzimisce - Bloodsucker"
 	max_occurrences = 1
 	typepath = /datum/round_event/ghost_role/tzimisce/bloodsucker
-	weight = 2000
+	weight = 5
 	min_players = 25
 	earliest_start = 30 MINUTES
 	gamemode_whitelist = list("bloodsucker","traitorsucker","dynamic")
