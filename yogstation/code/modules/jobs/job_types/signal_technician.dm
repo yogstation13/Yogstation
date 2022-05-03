@@ -33,7 +33,7 @@
 
 	pda_type = /obj/item/pda/signaltech
 
-	belt = /obj/item/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_eng
 	uniform = /obj/item/clothing/under/yogs/rank/signal_tech
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
