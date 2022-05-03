@@ -5,10 +5,6 @@
 ///From base of datum/controller/subsystem/Initialize: (start_timeofday)
 #define COMSIG_SUBSYSTEM_POST_INITIALIZE "subsystem_post_initialize"
 
-/// called by datum/cinematic/play() : (datum/cinematic/new_cinematic)
-#define COMSIG_GLOB_PLAY_CINEMATIC "!play_cinematic"
-#define COMPONENT_GLOB_BLOCK_CINEMATIC (1<<0)
-
 ///Called when an object is grilled ontop of a griddle
 #define COMSIG_ITEM_GRILLED "item_griddled"
 #define COMPONENT_HANDLED_GRILLING (1<<0)
