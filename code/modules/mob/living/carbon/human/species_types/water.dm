@@ -42,6 +42,12 @@
 /datum/species/water/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
 	C.blood_volume = WATER_VOLUME_MAXIMUM
+	AddComponent(C, /datum/component/slippery, 40)
+
+/datum/species/water/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	qdel(C.GetComponent(/datum/component/slippery))
+	
 
 /datum/species/water/proc/transform_into_blob(mob/living/carbon/human/H)
 
