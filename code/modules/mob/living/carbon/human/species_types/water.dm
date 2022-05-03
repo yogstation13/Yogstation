@@ -252,7 +252,7 @@
 /mob/living/simple_animal/waterblob/Life()
 	. = ..()
 	if (water_volume < (WATER_VOLUME_MAXIMUM / 5))
-		to_chat(H, span_danger("You feel dry."))
+		to_chat(src, span_danger("You feel dry."))
 
 /mob/living/simple_animal/waterblob/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
