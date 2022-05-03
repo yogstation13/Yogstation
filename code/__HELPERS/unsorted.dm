@@ -449,8 +449,10 @@ Turf and target are separate in case you want to teleport some distance from a t
 	Gets all contents of contents and returns them all in a list.
 */
 
-/atom/proc/GetAllContents(T, ignore_flag_1)
-	var/list/processing_list = list(src)
+/atom/proc/GetAllContents(T, ignore_flag_1, include_self = TRUE)
+	var/list/processing_list = list()
+	if(include_self)
+		processing_list += src
 	if(T)
 		. = list()
 		var/i = 0
