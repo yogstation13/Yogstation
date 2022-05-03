@@ -3,13 +3,13 @@
 
 /datum/component/squish
 
-/datum/component/squish/AddComponent(datum/target, duration)
+/datum/component/squish/AddComponent(datum/target, duration=20 SECONDS)
 	. = ..()
 	if(!iscarbon(target))
 		return ELEMENT_INCOMPATIBLE
 
 	var/mob/living/carbon/C = target
-	var/was_lying = (C.lying != 0)
+	var/was_lying = C.body_position == LYING_DOWN
 	addtimer(CALLBACK(src, .proc/RemoveComponent, C, was_lying), duration)
 
 	C.transform = C.transform.Scale(TALL, SHORT)
