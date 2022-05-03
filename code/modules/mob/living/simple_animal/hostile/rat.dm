@@ -138,26 +138,6 @@
 	R.heal_bodypart_damage(5)
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/cheesewedge/rat_eat(/mob/living/simple_animal/hostile/rat/R)
-	R.heal_bodypart_damage(5)
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/cheesewheel/rat_eat(/mob/living/simple_animal/hostile/rat/R)
-	R.heal_bodypart_damage(5)
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/store/cheesewheel/rat_eat(/mob/living/simple_animal/hostile/rat/R)
-	R.heal_bodypart_damage(5)
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/customizable/cheesewheel/rat_eat(/mob/living/simple_animal/hostile/rat/R)
-	R.heal_bodypart_damage(5)
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/cheesiehonkers/rat_eat(/mob/living/simple_animal/hostile/rat/R)
-	R.heal_bodypart_damage(5)
-	qdel(src)
-
 /obj/item/grown/bananapeel/bluespace/rat_eat(/mob/living/simple_animal/hostile/rat/R)
 	var/teleport_radius = max(round(seed.potency / 10), 1)
 	var/turf/T = get_turf(R)
