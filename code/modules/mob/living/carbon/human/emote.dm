@@ -102,16 +102,13 @@
 /datum/emote/living/carbon/human/rattle
 	key = "rattle"
 	key_third_person = "rattles"
-	message = "rattles their bones!."
+	message = "rattles their bones!"
 	message_param = "rattles %t bones!"
-	restraint_check = TRUE
 	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/voice/rattle.ogg'
 
-/datum/emote/living/carbon/human/rattle/can_run_emote(/mob/living/user, status_check = TRUE, intentional)
+/datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
 	return isskeleton(user)
-	
-/datum/emote/living/carbon/rattle/get_sound(mob/living/user)
-	return pick('sound/voice/feline/rattle.ogg')
 	
 /datum/emote/living/carbon/human/pale
 	key = "pale"
