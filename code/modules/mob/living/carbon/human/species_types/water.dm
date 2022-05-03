@@ -87,14 +87,13 @@
 		falling_apart = FALSE
 
 /datum/species/water/proc/should_fall_apart(mob/living/carbon/human/H)
-	if (!istype(H.w_uniform) || !istype(H.head))
+	if (!istype(H.w_uniform))
 		return TRUE
 
 	var/datum/component/wetsuit_holder/body_component = H.w_uniform.GetComponent(/datum/component/wetsuit_holder)
-	var/datum/component/wetsuit_holder/head_component = H.head.GetComponent(/datum/component/wetsuit_holder)
-	if(!istype(body_component) || !istype(head_component))
-		if (istype(H.wear_suit) && istype(H.head))
-			if (H.head.clothing_flags & STOPSPRESSUREDAMAGE && H.wear_suit.clothing_flags & STOPSPRESSUREDAMAGE)
+	if(!istype(body_component))
+		if (istype(H.wear_suit))
+			if (H.wear_suit.clothing_flags & STOPSPRESSUREDAMAGE)
 				return FALSE
 		return TRUE
 	return FALSE
@@ -125,6 +124,10 @@
 		qdel(consumed_limb)
 
 /datum/species/water/proc/process_blood(mob/living/carbon/human/H)
+
+	if (H.blood_volume < WATER_VOLUME_MAXIMUM)
+		H.blood_volume += 0.1
+
 	if (H.blood_volume > WATER_VOLUME_MAXIMUM)
 		H.adjustCloneLoss(-0.1) //Slowly remove cloning loss as they really don't have any other ways
 		H.adjustBruteLoss(-0.1)
@@ -298,3 +301,17 @@
 			T.MakeSlippery(TURF_WET_WATER, 40)
 			water_volume -= WATER_VOLUME_SLIP_MOVE_AMOUNT
 		
+/obj/item/wetsuit_applicator
+	name = "wetsuit applicator"
+	desc = "Some waterproofing paint combined with a nanomaterial to prevent pores combined with a special shaping material allows any uniform to be used as a wetsuit."
+	icon_state = "spraycan"
+
+/obj/item/wetsuit_applicator/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if (!istype(A, /obj/item/clothing/under))
+		to_chat(user, span_notice("You can't use this on something that isn't a uniform!"))
+	AddComponent(A, /datum/component/wetsuit_holder)
+	to_chat(user, span_notice("You use the applicator on [A]."))
+	qdel(src)
+	
+
