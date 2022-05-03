@@ -108,15 +108,15 @@ export const DnaConsole = (props, context) => {
         )}
         {consoleMode === CONSOLE_MODE_ENZYMES && (
           <DnaConsoleEnzymes
-          subjectBlock={subjectUNI}
-          type="ui"
-          name="Enzymes" />
-      )}
-      {consoleMode === CONSOLE_MODE_FEATURES && (
-        <DnaConsoleEnzymes
-          subjectBlock={subjectUF}
-          type="uf"
-          name="Features" />
+            subjectBlock={subjectUNI}
+            type="ui"
+            name="Enzymes" />
+        )}
+        {consoleMode === CONSOLE_MODE_FEATURES && (
+          <DnaConsoleEnzymes
+            subjectBlock={subjectUF}
+            type="uf"
+            name="Features" />
         )}
       </Window.Content>
     </Window>
@@ -1195,7 +1195,7 @@ const RadiationEmitterPulseBoard = (props, context) => {
   }
   return (
     <Section
-    title={"Unique " + name}
+      title={"Unique " + name}
       minHeight="100%"
       position="relative">
       <Box mx="-1px">

@@ -136,8 +136,6 @@
 		L[DNA_MUTANT_COLOR_BLOCK] = sanitize_hexcolor(features["mcolor"])
 	if(features["ethcolor"])
 		L[DNA_ETHEREAL_COLOR_BLOCK] = sanitize_hexcolor(features["ethcolor"])
-	if(features["ethereal_mark"])
-		L[DNA_ETHEREAL_MARK_BLOCK] = construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len)
 	if(features["body_markings"])
 		L[DNA_LIZARD_MARKINGS_BLOCK] = construct_block(GLOB.body_markings_list.Find(features["body_markings"]), GLOB.body_markings_list.len)
 	if(features["tail_lizard"])
@@ -166,6 +164,8 @@
 		L[DNA_POLY_DOME_BLOCK] = construct_block(GLOB.dome_list.Find(features["dome"]), GLOB.dome_list.len)
 	if(features["dorsal_tubes"])
 		L[DNA_POLY_DORSAL_BLOCK] = construct_block(GLOB.dorsal_tubes_list.Find(features["dorsal_tubes"]), GLOB.dorsal_tubes_list.len)
+	if(features["ethereal_mark"])
+		L[DNA_ETHEREAL_MARK_BLOCK] = construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len)
 	if(features["pod_hair"])
 		L[DNA_PLANT_HAIR_BLOCK] = construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len)
 	if(features["pod_flower"])
@@ -274,8 +274,6 @@
 			setblock(unique_features, blocknumber, sanitize_hexcolor(features["mcolor"]))
 		if(DNA_ETHEREAL_COLOR_BLOCK)
 			setblock(unique_features, blocknumber, sanitize_hexcolor(features["ethcolor"]))
-		if(DNA_ETHEREAL_MARK_BLOCK)
-			setblock(unique_features, blocknumber, construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len))
 		if(DNA_LIZARD_MARKINGS_BLOCK)
 			setblock(unique_features, blocknumber, construct_block(GLOB.body_markings_list.Find(features["body_markings"]), GLOB.body_markings_list.len))
 		if(DNA_LIZARD_TAIL_BLOCK)
@@ -303,7 +301,9 @@
 		if(DNA_POLY_DOME_BLOCK)
 			setblock(unique_features, blocknumber, construct_block(GLOB.dome_list.Find(features["dome"]), GLOB.dome_list.len))
 		if(DNA_POLY_DORSAL_BLOCK)
-			setblock(unique_features, blocknumber, construct_block(GLOB.caps_list.Find(features["caps"]), GLOB.caps_list.len))
+			setblock(unique_features, blocknumber, construct_block(GLOB.dorsal_tubes_list.Find(features["dorsal_tubes"]), GLOB.dorsal_tubes_list.len))
+		if(DNA_ETHEREAL_MARK_BLOCK)
+			setblock(unique_features, blocknumber, construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len))
 		if(DNA_PLANT_HAIR_BLOCK)
 			setblock(unique_features, blocknumber, construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len))
 		if(DNA_PLANT_FLOWER_BLOCK)
@@ -511,13 +511,13 @@
 	eye_color = sanitize_hexcolor(getblock(structure, DNA_EYE_COLOR_BLOCK))
 	facial_hair_style = GLOB.facial_hair_styles_list[deconstruct_block(getblock(structure, DNA_FACIAL_HAIR_STYLE_BLOCK), GLOB.facial_hair_styles_list.len)]
 	hair_style = GLOB.hair_styles_list[deconstruct_block(getblock(structure, DNA_HAIR_STYLE_BLOCK), GLOB.hair_styles_list.len)]
-		var/features = dna.unique_features
+	var/features = dna.unique_features
 	if(dna.features["mcolor"])
 		dna.features["mcolor"] = sanitize_hexcolor(getblock(features, DNA_MUTANT_COLOR_BLOCK))
 	if(dna.features["ethcolor"])
 		dna.features["ethcolor"] = sanitize_hexcolor(getblock(features, DNA_ETHEREAL_COLOR_BLOCK))
 	if(dna.features["ethereal_mark"])
-		dna.features["ethereal_mark"] = sanitize_hexcolor(getblock(features, DNA_ETHEREAL_MARK_BLOCK))
+		dna.features["ethereal_mark"] = GLOB.ethereal_mark_list[deconstruct_block(getblock(features, DNA_ETHEREAL_MARK_BLOCK), GLOB.ethereal_mark_list.len)]
 	if(dna.features["body_markings"])
 		dna.features["body_markings"] = GLOB.body_markings_list[deconstruct_block(getblock(features, DNA_LIZARD_MARKINGS_BLOCK), GLOB.body_markings_list.len)]
 	if(dna.features["tail_lizard"])
@@ -539,13 +539,6 @@
 		dna.features["original_moth_wings"] = genetic_value
 		if(dna.features["moth_wings"] != "Burnt Off")
 			dna.features["moth_wings"] = genetic_value
-	// if(dna.features["moth_antennae"])
-	// 	var/genetic_value = GLOB.moth_antennae_list[deconstruct_block(getblock(features, DNA_MOTH_ANTENNAE_BLOCK), GLOB.moth_antennae_list.len)]
-	// 	dna.features["original_moth_antennae"] = genetic_value
-	// 	if(dna.features["moth_antennae"] != "Burnt Off")
-	// 		dna.features["moth_antennae"] = genetic_value
-	// if(dna.features["moth_markings"])
-	// 	dna.features["moth_markings"] = GLOB.moth_markings_list[deconstruct_block(getblock(features, DNA_MOTH_MARKINGS_BLOCK), GLOB.moth_markings_list.len)]
 	if(dna.features["caps"])
 		dna.features["caps"] = GLOB.caps_list[deconstruct_block(getblock(features, DNA_MUSHROOM_CAPS_BLOCK), GLOB.caps_list.len)]
 

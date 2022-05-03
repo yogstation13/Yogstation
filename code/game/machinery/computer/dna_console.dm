@@ -34,6 +34,8 @@
 /// Flag for the mutation ref search system. Search will include advanced injector mutations
 #define SEARCH_ADV_INJ 8
 
+#define ENZYME_COPY_BASE_COOLDOWN (60 SECONDS)
+
 #define RAD_PULSE_UNIQUE_IDENTITY "ui"
 #define RAD_PULSE_UNIQUE_FEATURES "uf"
 
@@ -92,9 +94,11 @@
 	var/rad_pulse_index = 0
 	/// World time when the enzyme pulse should complete
 	var/rad_pulse_timer = 0
-
 	/// Which dna string to edit with the pulse
 	var/rad_pulse_type
+	/// Cooldown for the genetic makeup transfer actions.
+	COOLDOWN_DECLARE(enzyme_copy_timer)
+	
 	/// Used for setting tgui data - Whether the connected DNA Scanner is usable
 	var/can_use_scanner = FALSE
 	/// Used for setting tgui data - Whether the current DNA Scanner occupant is viable for genetic modification
@@ -143,7 +147,7 @@
 
 	// This is for pulsing the UI element with radiation as part of genetic makeup
 	// If rad_pulse_index > 0 then it means we're attempting a rad pulse
-	if((rad_pulse_index > 0) && (rad_pulse_timer <= world.time) && (rad_pulse_type == RAD_PULSE_UNIQUE_IDENTITY || rad_pulse_type == RAD_PULSE_UNIQUE_FEATURES)))
+	if(((rad_pulse_index > 0) && (rad_pulse_timer <= world.time) && (rad_pulse_type == RAD_PULSE_UNIQUE_IDENTITY || rad_pulse_type == RAD_PULSE_UNIQUE_FEATURES)))
 		rad_pulse()
 		return
 

@@ -445,7 +445,7 @@
 							newcolor += ascii2text(ascii+31)	//letters B to F - translates to lowercase
 						else
 							break
-				if(ReadHSV(newcolor)[3] >= ReadHSV("#7F7F7F")[3])
+				if(ReadHSV(newcolor)[3] >= ReadHSV("#777777")[3])
 					N.dna.features["mcolor"] = newcolor
 			N.regenerate_icons()
 

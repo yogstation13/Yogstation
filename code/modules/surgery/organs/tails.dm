@@ -74,8 +74,6 @@
 		color = "#" + H.dna.features["mcolor"]
 		tail_type = H.dna.features["tail_lizard"]
 		spines = H.dna.features["spines"]
-		H.dna.update_uf_block(DNA_LIZARD_TAIL_BLOCK)
-		H.dna.update_uf_block(DNA_SPINES_BLOCK)
 		H.update_body()
 
 /obj/item/organ/tail/polysmorph
@@ -88,7 +86,7 @@
 	..()
 	if(istype(H))
 		var/default_part = H.dna.species.mutant_bodyparts["tail_polysmorph"]
-		if(!("tail_polysmorph" in H.dna.species.mutant_bodyparts))
+		if(!default_part || default_part == "None")
 			if(tail_type)
 				H.dna.features["tail_polysmorph"] = H.dna.species.mutant_bodyparts["tail_polysmorph"] = tail_type
 				H.dna.update_uf_block(DNA_POLY_TAIL_BLOCK)
@@ -101,5 +99,4 @@
 	if(istype(H))
 		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
 		tail_type = H.dna.features["tail_polysmorph"]
-		H.dna.update_uf_block(DNA_POLY_TAIL_BLOCK)
 		H.update_body()

@@ -878,7 +878,6 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.randmuti()
 		if(prob(66))
 			X.easy_random_mutate(NEGATIVE)
 		else
