@@ -172,7 +172,7 @@ GLOBAL_VAR(restart_counter)
 			handler = topic_handlers[I]
 			break
 
-	if((!handler || initial(handler.log)) && config && CONFIG_GET(flag/log_world_topic))
+	if((!handler || initial(handler.log)) && config && CONFIG_LOADED && CONFIG_GET(flag/log_world_topic))
 		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
 	if(!handler)

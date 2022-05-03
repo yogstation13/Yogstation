@@ -90,7 +90,7 @@
 	lifespan = 30
 	endurance = 25
 	mutatelist = list()
-	genes = list(/datum/plant_gene/trait/glow/berry, /datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/trait/glow/white, /datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/uranium = 0.25, /datum/reagent/iodine = 0.2, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
 
@@ -122,7 +122,7 @@
 	icon_grow = "cherry-grow"
 	icon_dead = "cherry-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/cherry/blue)
+	mutatelist = list(/obj/item/seeds/cherry/blue, /obj/item/seeds/cherry/bulb)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.07, /datum/reagent/consumable/sugar = 0.07)
 
 /obj/item/reagent_containers/food/snacks/grown/cherries
@@ -160,6 +160,31 @@
 	foodtype = FRUIT
 	juice_results = list(/datum/reagent/consumable/bluecherryjelly = 0)
 	tastes = list("blue cherry" = 1)
+	wine_power = 50
+
+//Cherry Bulbs
+/obj/item/seeds/cherry/bulb
+	name = "pack of cherry bulb pits"
+	desc = "The glowy kind of cherries."
+	icon_state = "seed-cherrybulb"
+	species = "cherrybulb"
+	plantname = "Cherry Bulb Tree"
+	product = /obj/item/reagent_containers/food/snacks/grown/cherrybulbs
+	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/pink)
+	mutatelist = list()
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.07, /datum/reagent/consumable/sugar = 0.07)
+	rarity = 10
+
+/obj/item/reagent_containers/food/snacks/grown/cherrybulbs
+	seed = /obj/item/seeds/cherry/bulb
+	name = "cherry bulbs"
+	desc = "They're like little Space Christmas lights!"
+	icon_state = "cherry_bulb"
+	filling_color = "#FF0000"
+	bitesize_mod = 2
+	foodtype = FRUIT
+	grind_results = list(/datum/reagent/consumable/cherryjelly = 0)
+	tastes = list("cherry" = 1)
 	wine_power = 50
 
 // Grapes

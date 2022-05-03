@@ -101,3 +101,9 @@
 #define TIER_BLADE 5
 #define TIER_3 6
 #define TIER_ASCEND 7
+
+//Bloodsuckers
+#define IS_BLOODSUCKER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/bloodsucker))
+#define IS_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal))
+#define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))
+

@@ -215,6 +215,11 @@
 	desc = "A small bottle of potassium iodide."
 	list_reagents = list(/datum/reagent/medicine/potass_iodide = 30)
 
+/obj/item/reagent_containers/glass/bottle/radscrub
+	name = "Rad Scrub Plus bottle"
+	desc = "A small bottle of Donk Co's Rad Scrub Plus."
+	list_reagents = list(/datum/reagent/medicine/radscrub = 30)
+
 /obj/item/reagent_containers/glass/bottle/salglu_solution
 	name = "saline-glucose solution bottle"
 	desc = "A small bottle of saline-glucose solution."

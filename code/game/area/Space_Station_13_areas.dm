@@ -262,6 +262,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Central Primary Hallway"
 	icon_state = "hallC"
 
+/area/hallway/primary/aft_starboard
+	name="Aft Starboard Primary Hallway"
+	icon_state = "hallAS"
+
 /area/hallway/secondary/command
 	name = "Command Hallway"
 	icon_state = "bridge_hallway"
