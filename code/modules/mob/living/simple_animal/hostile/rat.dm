@@ -46,15 +46,15 @@
 	if(istype(user,/mob/living/simple_animal/hostile/rat))
 		var/mob/living/simple_animal/hostile/rat/ratself = user
 		if(ratself.faction_check_mob(src, TRUE))
-			. += "<span class='notice'>You both serve the same king.</span>"
+			. += span_notice("You both serve the same king.")
 		else
-			. += "<span class='warning'>This fool serves a different king!</span>"
+			. += span_warning("This fool serves a different king!")
 	else if(istype(user,/mob/living/simple_animal/hostile/regalrat))
 		var/mob/living/simple_animal/hostile/regalrat/ratking = user
 		if(ratking.faction_check_mob(src, TRUE))
-			. += "<span class='notice'>This rat serves under you.</span>"
+			. += span_notice("This rat serves under you.")
 		else
-			. += "<span class='warning'>This peasant serves a different king! Strike him down!</span>"
+			. += span_warning("This peasant serves a different king! Strike him down!")
 
 /mob/living/simple_animal/hostile/rat/CanAttack(atom/the_target)
 	if(istype(the_target,/mob/living/simple_animal))
