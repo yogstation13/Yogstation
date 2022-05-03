@@ -45,7 +45,7 @@
 
 
 
-	if (target.reagents && target.is_injectable(src, allowmobs = TRUE))
+	if (!isliving(target) && target.reagents && target.is_injectable(src, allowmobs = TRUE))
 		src.visible_message(span_warning("[src] starts licking [target]!"),span_notice("You start licking [target]..."))
 		if (do_mob(src, target, 2 SECONDS))
 			target.reagents.add_reagent(/datum/reagent/plaguebacteria,rand(1,2),no_react = TRUE)
