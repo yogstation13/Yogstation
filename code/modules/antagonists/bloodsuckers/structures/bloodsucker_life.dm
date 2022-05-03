@@ -71,6 +71,8 @@
 	if(current_task)
 		if(target.mind)
 			task_blood_drank += blood_taken
+		else
+			to_chat(owner, span_warning("[target] is catatonic and won't yield any usable blood for tasks!"))
 	return blood_taken
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
