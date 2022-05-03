@@ -16,7 +16,7 @@
 	see_in_dark = 6
 	maxHealth = 20
 	health = 20
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/mouse = 1)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/plagued = 1)
 	density = FALSE
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
@@ -24,7 +24,7 @@
 	mob_biotypes = list(MOB_ORGANIC,MOB_BEAST)
 	faction = list("rat")
 	var/playstyle_string = "<span class='big bold'>You are a plague rat,</span></b> \
-							You need to infect people with plague, by getting plague cells in their bloodstream. \
+							You need to infect people with The Plague, by getting plague cells in their bloodstream. \
 							You can do it by licking their food, or just biting them. \
 							Also you can bite dead bodies to slightly heal yourself. \
 							But remember that you are very fragile - after all, you are a small rat.</b>"
@@ -33,19 +33,18 @@
 /mob/living/simple_animal/hostile/plaguerat/AttackingTarget()
 	..()
 	var/mob/living/L = target
-	if(isliving(target))
+	if(isliving(target))          //It is for injecting plague reagent into people via biting them.
 		if(target.reagents)
 			L.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
-	if(L.stat == DEAD)
+
+	if(L.stat == DEAD)             //It is for biting dead bodies to heal.
 		src.visible_message(span_warning("[src] starts biting into [L]!"),span_notice("You start eating [L]..."))
 		if(do_mob(src, target, 3 SECONDS))
 			to_chat(src, span_notice("You finish licking [L]."))
 			heal_bodypart_damage(5)
-			L.adjustBruteLoss(10)
+			L.adjustBruteLoss(15)
 
-
-
-	if (!isliving(target) && target.reagents && target.is_injectable(src, allowmobs = TRUE))
+	if (!isliving(target) && target.reagents && target.is_injectable(src, allowmobs = TRUE))   //It is for injecting plague reagent into food and reagent containers by licking them. Not to be confused with biting people.
 		src.visible_message(span_warning("[src] starts licking [target]!"),span_notice("You start licking [target]..."))
 		if (do_mob(src, target, 2 SECONDS))
 			target.reagents.add_reagent(/datum/reagent/plaguebacteria,rand(1,2),no_react = TRUE)
