@@ -5739,18 +5739,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/aft)
-"cUe" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 1;
-	sortType = 13
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "cUB" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
@@ -7107,6 +7095,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"dNr" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 2;
+	sortType = 13
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "dNw" = (
 /obj/machinery/telecomms/server/presets/common,
 /obj/machinery/light,
@@ -82925,7 +82925,7 @@ lbr
 uLZ
 mfA
 kgy
-cUe
+dNr
 ccS
 kXD
 kXD
