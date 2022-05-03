@@ -84,19 +84,6 @@
 		return TRUE
 	return FALSE
 
-/datum/species/water/proc/remove_limb(mob/living/carbon/human/H)
-	var/list/limbs_to_consume = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG) - H.get_missing_limbs()
-	var/obj/item/bodypart/consumed_limb
-	if(!limbs_to_consume.len)
-		return FALSE
-
-	if(H.get_num_legs(FALSE)) //Legs go before arms
-		limbs_to_consume -= list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
-	consumed_limb = H.get_bodypart(pick(limbs_to_consume))
-	consumed_limb.drop_limb()
-	to_chat(H, span_userdanger("Your [consumed_limb] is subsumed into your body, unable to maintain its shape!"))
-	qdel(consumed_limb)
-	H.blood_volume += 20
 
 /datum/species/water/spec_life(mob/living/carbon/human/H)
 	if(should_fall_apart(H) && falling_apart == FALSE)
@@ -104,9 +91,26 @@
 	
 	if (H.blood_volume < WATER_VOLUME_LIMB_LOSS_THRESHOLD)
 		var/limb_to_remove = round(H.blood_volume / WATER_VOLUME_LIMB_LOSS)
-		var/list/limbs_to_consume = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+		var/list/limbs_to_consume = list()
+		var/list/limbs_to_heal = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 		
-		remove_limb(H)
+		if (limb_to_remove >= 1) 
+			limbs_to_consume += BODY_ZONE_R_ARM
+		if (limb_to_remove >= 2)
+			limbs_to_consume += BODY_ZONE_L_ARM
+		if (limb_to_remove >= 3)
+			limbs_to_consume += BODY_ZONE_R_LEG
+		if (limb_to_remove >= 4)
+			limbs_to_consume += BODY_ZONE_L_LEG
+
+		limbs_to_heal -= limbs_to_consume
+		for (var/limb_zone in limbs_to_heal)
+			H.regenerate_limb(limb_zone)
+		
+		for (var/limb_zone in limbs_to_consume)
+			var/obj/item/bodypart/consumed_limb = H.get_bodypart(limb_zone)
+			consumed_limb.drop_limb()
+			qdel(consumed_limb)
 	
 	if (H.blood_volume > WATER_VOLUME_MAXIMUM)
 		H.adjustCloneLoss(-0.1) //Slowly remove cloning loss as they really don't have any other ways
