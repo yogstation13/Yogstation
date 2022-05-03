@@ -111,12 +111,29 @@
 	if (H.blood_volume > WATER_VOLUME_MAXIMUM)
 		H.adjustCloneLoss(-0.1) //Slowly remove cloning loss as they really don't have any other ways
 		H.adjustBruteLoss(-0.1)
-		H.adjustBurnLoss(-0.1)
+		H.adjustFireLoss(-0.1)
 
 /datum/species/water/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
 	H.visible_message(span_danger("[H] turns into a fine blue mist!"), span_danger("You evaporate!"))
 	return H.gib(TRUE, TRUE, TRUE) // HARD MODE: You're not coming back from this one
+
+/datum/species/water/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	if(prob(25))
+		if(P.flag == "laser" || P.flag == "energy")
+			H.visible_message(span_danger("The [P.name] gets refracted by [H]!"), span_userdanger("The [P.name] gets refracted by [H]!"))
+			var/new_x = rand(1, world.maxx)
+			var/new_y = rand(1, world.maxy)
+
+			var/obj/item/projectile/copy = new P.type(H.loc)
+			copy.firer = H
+			copy.fired_from = H
+			copy.preparePixelProjectile(locate(clamp(new_x, 1, world.maxx), clamp(new_y, 1, world.maxy), H.z), H)
+			copy.damage *= 0.25
+			copy.transform.Scale(0.25, 0.25)
+			copy.name = "refracted " + copy.name
+			copy.fire()
+	return ..()
 
 /datum/component/wetsuit_holder
 	var/integrity = 100
