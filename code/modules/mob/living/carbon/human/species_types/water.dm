@@ -12,6 +12,11 @@
 	safe_co2_min = 16 
 	safe_co2_max = 0
 
+/obj/item/organ/lungs/water/Initialize()
+	. = ..()
+	if (prob(1))
+		name = "SodaStream"
+
 /datum/species/water
 	name = "placeholder water race"
 	id = "water"
@@ -31,6 +36,7 @@
 	var/falling_apart = FALSE
 	exotic_blood = /datum/reagent/water
 	swimming_component = /datum/component/swimming/dissolve
+	damage_overlay_type = ""
 
 /datum/species/water/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
@@ -175,10 +181,10 @@
 
 /datum/component/wetsuit_holder/proc/on_examine(datum/source, mob/user, list/examine_list)
 	examine_list += span_notice("This looks like it can be used as a wetsuit.")
-	examine_list += span_notice("The integrity holotag claims that it is at [integrity / WETSUIT_MAX_INTEGRITY]% integrity.")
+	examine_list += span_notice("The integrity holotag claims that it is at [(integrity / WETSUIT_MAX_INTEGRITY)*100]% integrity.")
 
 /datum/component/wetsuit_holder/process()
-	var/atom/P = parent
+	var/obj/item/P = parent
 	if (!istype(P))
 		return
 
