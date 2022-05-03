@@ -219,7 +219,7 @@
 			target.reagents.add_reagent(/datum/reagent/rat_spit,rand(1,3),no_react = TRUE)
 			to_chat(src, span_notice("You finish licking [target]."))
 	else if(istype(target, /obj/item/reagent_containers/food/snacks/cheesewedge))
-		to_chat(src, "<span class='green'>You eat [src], restoring some health.</span>")
+		to_chat(src, span_green("You eat [src], restoring some health."))
 		heal_bodypart_damage(30)
 		qdel(target)
 
