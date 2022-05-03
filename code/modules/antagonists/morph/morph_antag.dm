@@ -22,18 +22,22 @@
 	if(prob(33)) // Get both objectives
 		var/datum/objective/morph_eat_things/eat = new
 		eat.owner = owner
+		eat.update_explanation_text()
 		objectives += eat // Consume x objects
 		var/datum/objective/morph_eat_things/eatcorpses = new
 		eatcorpses.owner = owner
+		eatcorpses.update_explanation_text()
 		objectives += eatcorpses // Consume x corpses
 	else
 		if(prob(50))
 			var/datum/objective/morph_eat_things/eat = new
 			eat.owner = owner
+			eat.update_explanation_text()
 			objectives += eat // Consume x objects
 		else
 			var/datum/objective/morph_eat_things/eatcorpses = new
 			eatcorpses.owner = owner
+			eatcorpses.update_explanation_text()
 			objectives += eatcorpses // Consume x corpses
 
 	var/datum/objective/survive/survival = new
