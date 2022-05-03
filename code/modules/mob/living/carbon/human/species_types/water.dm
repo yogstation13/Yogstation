@@ -236,15 +236,7 @@
 /obj/item/clothing/under/wetsuit/Initialize()
 	AddComponent(/datum/component/wetsuit_holder)
 	. = ..()
-
-/obj/item/clothing/head/helmet/space/plasmaman/wetsuit
-	name = "bodily integrity wetsuit helmet"
-	desc = "The head for the wetsuit; one of the only things keeping a placeholder water race from disintegrating."
-
-/obj/item/clothing/head/helmet/space/plasmaman/wetsuit/Initialize()
-	AddComponent(/datum/component/wetsuit_holder)
-	. = ..()
-
+	
 /mob/living/simple_animal/waterblob
 	name = "slobbery mess"
 	desc = "Something that can only be described as a bubbling viscous puddle extending tendrils to wherever it moves."
