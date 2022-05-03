@@ -36,6 +36,7 @@
 	var/falling_apart = FALSE
 	exotic_blood = /datum/reagent/water
 	swimming_component = /datum/component/swimming/dissolve
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	damage_overlay_type = ""
 
 /datum/species/water/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
