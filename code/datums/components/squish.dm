@@ -3,7 +3,6 @@
 #define TALL 7/5
 
 /datum/element/squish
-	element_flags = ELEMENT_DETACH
 
 /datum/element/squish/Attach(datum/target, duration)
 	. = ..()
