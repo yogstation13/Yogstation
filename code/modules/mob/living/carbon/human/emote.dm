@@ -105,7 +105,7 @@
 	message = "rattles their bones!"
 	message_param = "rattles %t bones!"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/voice/rattle.ogg'
+	sound = 'sound/voice/rattled.ogg'
 
 /datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
 	return isskeleton(user)
