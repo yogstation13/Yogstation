@@ -178,20 +178,25 @@
 	examine_list += span_notice("The integrity holotag claims that it is at [integrity / WETSUIT_MAX_INTEGRITY]% integrity.")
 
 /datum/component/wetsuit_holder/process()
+	var/atom/P = parent
+	if (!istype(P))
+		return
+
 	if (integrity < (WETSUIT_MAX_INTEGRITY / 2) && !alert_message_sent)
 		alert_message_sent = TRUE
-		if (isitem(parent))
-			parent.visible_message(span_danger("[parent] looks close to bursting!"))
+		if (isitem(P))
+			P.visible_message(span_danger("[P] looks close to bursting!"))
 	else if (integrity > (WETSUIT_MAX_INTEGRITY / 2))
 		alert_message_sent = FALSE
 
 	if (integrity < 0)
-		parent.visible_message(span_danger("[parent] bursts!"))
-		qdel(parent)
+		P.visible_message(span_danger("[P] bursts!"))
+		qdel(P)
 		
 
 /datum/component/wetsuit_holder/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
+	. = ..()
 
 /obj/item/clothing/under/wetsuit
 	name = "bodily integrity wetsuit"
