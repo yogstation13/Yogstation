@@ -22,7 +22,7 @@
 	id = "water"
 	rare_say_mod = list("gushes" = 10, "slushes" = 10, "spits" = 10, "splutters" = 10, "slobbers" = 10)
 	default_color = "56CACE"
-	species_traits = list(MUTCOLORS,HAS_FLESH,NOSTOMACH,NOTRANSSTING,NO_DNA_COPY,NOBLOOD) // "blood" will be handled seperately
+	species_traits = list(AGENDER,MUTCOLORS,HAS_FLESH,NOSTOMACH,NOTRANSSTING,NO_DNA_COPY,NOBLOOD) // "blood" will be handled seperately
 	inherent_traits = list(TRAIT_BADDNA,TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_NEVER_WOUNDED,TRAIT_VIRUSIMMUNE,TRAIT_NODISMEMBER,TRAIT_RESISTHIGHPRESSURE) //can't compress water
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mutantlungs = /obj/item/organ/lungs/water
