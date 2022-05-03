@@ -23,6 +23,12 @@
  *	Level 3: Grapple 3 from Shadows
  */
 
+/datum/action/bloodsucker/targeted/lunge/ActivatePower(process = FALSE)
+	. = ..()
+
+/datum/action/bloodsucker/targeted/lunge/DeactivatePower(process = FALSE)
+	. = ..()
+
 /datum/action/bloodsucker/targeted/lunge/CheckCanUse(mob/living/carbon/user)
 	. = ..()
 	if(!.)

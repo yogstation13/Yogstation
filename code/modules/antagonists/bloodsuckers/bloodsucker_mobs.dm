@@ -162,7 +162,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/bloodsucker/proc/devour(mob/living/target)
-	health += target.maxHealth / 2
+	health += target.maxHealth / 4
 	var/mob/living/carbon/human/H = target
 	var/foundorgans = 0
 	for(var/obj/item/organ/O in H.internal_organs)
@@ -195,8 +195,13 @@
 
 /mob/living/simple_animal/hostile/bloodsucker/werewolf/process()
 	if(bloodsucker)
+		if(ishuman(bloodsucker))
+			var/mob/living/carbon/human/user = bloodsucker
+			var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+			if(user.blood_volume < 560)
+				bloodsuckerdatum.AddBloodVolume(10)
 		health -= 0.25 //3 minutes to die
-	if(satiation == 3)
+	if(satiation >= 3)
 		to_chat(src, span_notice("It has been fed. You turn back to normal."))
 		qdel(src)
 	return

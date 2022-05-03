@@ -88,7 +88,7 @@
 					var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
 					if(!istype(bloodsuckerdatum))
 						continue
-					if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
+					if(bloodsuckerdatum.my_clan == CLAN_GANGREL)	
 						give_transform_power()
 					if(bloodsuckerdatum.altar_uses > 0)
 						to_chat(bloodsuckerdatum, span_notice("Your Altar uses have been reset!"))
@@ -186,5 +186,7 @@
 		if(!istype(bloodsucker_minds) || !istype(bloodsucker_minds.current))
 			continue
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
+		if(bloodsuckerdatum.my_clan != CLAN_GANGREL)
+			continue
 		if(!(locate(/datum/action/bloodsucker/gangrel/transform) in bloodsuckerdatum.powers))
 			bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/gangrel/transform)

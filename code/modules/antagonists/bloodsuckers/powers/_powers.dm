@@ -181,15 +181,15 @@
 	user.blood_volume -= bloodcost
 	bloodsuckerdatum_power?.update_hud()
 
-/datum/action/bloodsucker/proc/ActivatePower()
+/datum/action/bloodsucker/proc/ActivatePower(process = TRUE)
 	active = TRUE
-	if(power_flags & BP_AM_TOGGLE)
+	if(power_flags & BP_AM_TOGGLE && process == TRUE)
 		START_PROCESSING(SSprocessing, src)
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
 	UpdateButtonIcon()
 
-/datum/action/bloodsucker/proc/DeactivatePower()
-	if(power_flags & BP_AM_TOGGLE)
+/datum/action/bloodsucker/proc/DeactivatePower(process = TRUE)
+	if(power_flags & BP_AM_TOGGLE && process == TRUE)
 		STOP_PROCESSING(SSprocessing, src)
 	if(power_flags & BP_AM_SINGLEUSE)
 		RemoveAfterUse()

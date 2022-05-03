@@ -846,18 +846,20 @@
 /obj/structure/bloodsucker/vassalrack/proc/do_ritual(mob/living/user, mob/living/target)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!target.mind)
-		to_chat(user, span_warning("[target] is braindead!"))
-	var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
+		to_chat(user, span_warning("[target] is catatonic!"))
 	/// To deal with Blood
 	var/mob/living/carbon/human/B = user
 	var/mob/living/carbon/human/H = target
 
 	/// Due to the checks leding up to this, if they fail this, they're dead & Not our vassal.
-	if(!vassaldatum)
+	if(!IS_VASSAL(target))
 		to_chat(user, span_notice("Do you wish to rebuild this body? This will remove any restraints they might have, and will cost 150 Blood!"))
 		var/revive_response = alert(usr, "Would you like to revive [target]?", "Ghetto Medbay", "Yes", "No")
 		switch(revive_response)
 			if("Yes")
+				if(!do_mob(user, src, 7 SECONDS))
+					to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
+					return
 				if(prob(15) && bloodsuckerdatum.bloodsucker_level <= 2)
 					to_chat(user, span_danger("Something has gone terribly wrong! You have accidentally turned [target] into a High-Functioning Zombie!"))
 					to_chat(target, span_announce("As Blood drips over your body, your heart fails to beat... But you still wake up."))
@@ -895,6 +897,7 @@
 	if(!do_mob(user, src, 5 SECONDS))
 		to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 		return
+	playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
 	switch(answer)
 		if(HUSK_MONSTER)
 			if(HAS_TRAIT(target, TRAIT_HUSK))

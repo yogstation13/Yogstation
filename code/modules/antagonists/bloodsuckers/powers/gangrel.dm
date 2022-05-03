@@ -91,17 +91,6 @@
 				QDEL_IN(gb, 2 MINUTES)
 				playsound(gb.loc, 'sound/items/toysqueak1.ogg', 50, 1)
 			to_chat(owner, span_notice("You transform into a fatty beast!"))
-		/*if(2000 to INFINITY)
-			var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww
-			if(!ww || ww.stat == DEAD)
-				ww = new /mob/living/simple_animal/hostile/bloodsucker/werewolf(user.loc)
-				user.forceMove(ww)
-				ww.bloodsucker = user
-				user.mind.transfer_to(ww)
-				var/datum/action/bloodsucker/gangrel/transform_back/E = new
-				E.Grant(ww)
-				playsound(ww.loc, 'sound/weapons/slash.ogg', 50, 1)
-			to_chat(owner, span_notice("You transform into a feral beast!"))*/
 	. = ..()
 
 /datum/action/bloodsucker/gangrel/transform_back
