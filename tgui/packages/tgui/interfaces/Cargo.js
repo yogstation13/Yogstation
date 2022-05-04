@@ -109,7 +109,7 @@ const CargoStatus = (props, context) => {
               <Box color="bad">
                 Loaned to Centcom
               </Box>
-          )}
+            )}
           </LabeledList.Item>
         )}
       </LabeledList>
@@ -368,7 +368,7 @@ const CargoCart = (props, context) => {
             <Box opacity={0.5}>
               Shuttle in {location}.
             </Box>
-        )}
+          )}
         </Box>
       )}
     </Section>
