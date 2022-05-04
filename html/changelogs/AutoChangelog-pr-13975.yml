@@ -1,0 +1,4 @@
+author: "Altoids"
+delete-after: true 
+changes: 
+  - tweak: "The Signal Technician job now requires 3 hours of experience in order to play, the same as Station Engineer."
