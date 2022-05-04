@@ -106,10 +106,10 @@ const CargoStatus = (props, context) => {
                 disabled={!(away && docked)}
                 onClick={() => act('loan')} />
             ) || (
-              <Box color="bad">
-                Loaned to Centcom
-              </Box>
-            )}
+                <Box color="bad">
+                  Loaned to Centcom
+                </Box>
+              )}
           </LabeledList.Item>
         )}
       </LabeledList>
@@ -189,6 +189,7 @@ export const CargoCatalog = (props, context) => {
                       tooltipPosition="left"
                       onClick={() => act('add', {
                         id: pack.id,
+                        self_paid: self_paid
                       })}>
                       {formatMoney(self_paid && !pack.goody
                         ? Math.round(pack.cost * 1.1)
@@ -279,7 +280,7 @@ const CargoCartButtons = (props, context) => {
     requestonly,
   } = data;
   const cart = data.cart || [];
-  const total = cart.reduce((total, entry) => total + entry.cost, 0);
+  const total = cart.reduce((total, entry) => total + (entry.paid == null ? entry.cost : 0), 0);
   if (requestonly) {
     return null;
   }
@@ -339,7 +340,7 @@ const CargoCart = (props, context) => {
                 )}
               </Table.Cell>
               <Table.Cell collapsing textAlign="right">
-                {formatMoney(entry.cost)} cr
+                {formatMoney(entry.paid ? Math.round(entry.cost * 1.1) : entry.cost)} cr
               </Table.Cell>
               <Table.Cell collapsing>
                 <Button
@@ -364,10 +365,10 @@ const CargoCart = (props, context) => {
               content="Confirm the order"
               onClick={() => act('send')} />
           ) || (
-            <Box opacity={0.5}>
-              Shuttle in {location}.
-            </Box>
-          )}
+              <Box opacity={0.5}>
+                Shuttle in {location}.
+              </Box>
+            )}
         </Box>
       )}
     </Section>
