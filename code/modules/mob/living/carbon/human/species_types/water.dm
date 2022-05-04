@@ -164,6 +164,11 @@
 		INVOKE_ASYNC(src, .proc/fall_apart, H)
 	. = ..()
 
+/datum/species/water/after_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
+	if (istype(H.w_uniform, /obj/item/clothing/under))
+		AddComponent(H.w_uniform, /datum/component/wetsuit_holder)
+
+
 /datum/species/water/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
 	H.visible_message(span_danger("[H] turns into a fine blue mist!"), span_danger("You evaporate!"))
