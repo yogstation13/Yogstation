@@ -103,7 +103,7 @@
 		"legs" = "Normal Legs",
 		"caps" = pick(GLOB.caps_list),
 		"moth_wings" = pick(GLOB.moth_wings_list),
-		"tail_polysmorph" = "Polys",
+		"tail_polysmorph" = pick(GLOB.tails_list_polysmorph),
 		"teeth" = pick(GLOB.teeth_list),
 		"dome" = pick(GLOB.dome_list),
 		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list),

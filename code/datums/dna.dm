@@ -516,8 +516,6 @@
 		dna.features["mcolor"] = sanitize_hexcolor(getblock(features, DNA_MUTANT_COLOR_BLOCK))
 	if(dna.features["ethcolor"])
 		dna.features["ethcolor"] = sanitize_hexcolor(getblock(features, DNA_ETHEREAL_COLOR_BLOCK))
-	if(dna.features["ethereal_mark"])
-		dna.features["ethereal_mark"] = GLOB.ethereal_mark_list[deconstruct_block(getblock(features, DNA_ETHEREAL_MARK_BLOCK), GLOB.ethereal_mark_list.len)]
 	if(dna.features["body_markings"])
 		dna.features["body_markings"] = GLOB.body_markings_list[deconstruct_block(getblock(features, DNA_LIZARD_MARKINGS_BLOCK), GLOB.body_markings_list.len)]
 	if(dna.features["tail_lizard"])
@@ -541,6 +539,20 @@
 			dna.features["moth_wings"] = genetic_value
 	if(dna.features["caps"])
 		dna.features["caps"] = GLOB.caps_list[deconstruct_block(getblock(features, DNA_MUSHROOM_CAPS_BLOCK), GLOB.caps_list.len)]
+	// if(features["tail_polysmorph"])
+	// 	dna.features["tail_polysmorph"] = GLOB.tails_list_polysmorph[deconstruct_block(getblock(features, DNA_POLY_TAIL_BLOCK), GLOB.tails_list_polysmorph.len)]
+	if(dna.features["teeth"])
+		dna.features["teeth"] = GLOB.teeth_list[deconstruct_block(getblock(features, DNA_POLY_TEETH_BLOCK), GLOB.teeth_list.len)]
+	if(dna.features["dome"])
+		dna.features["dome"] = GLOB.dome_list[deconstruct_block(getblock(features, DNA_POLY_DOME_BLOCK), GLOB.dome_list.len)]
+	if(dna.features["dorsal_tubes"])
+		dna.features["dorsal_tubes"] = GLOB.dorsal_tubes_list[deconstruct_block(getblock(features, DNA_POLY_DORSAL_BLOCK), GLOB.dorsal_tubes_list.len)]
+	if(dna.features["ethereal_mark"])
+		dna.features["ethereal_mark"] = GLOB.ethereal_mark_list[deconstruct_block(getblock(features, DNA_ETHEREAL_MARK_BLOCK), GLOB.ethereal_mark_list.len)]
+	if(dna.features["pod_hair"])
+		dna.features["pod_hair"] = GLOB.pod_hair_list[deconstruct_block(getblock(features, DNA_PLANT_HAIR_BLOCK), GLOB.pod_hair_list.len)]
+	if(dna.features["pod_flower"])
+		dna.features["pod_flower"] = GLOB.pod_flower_list[deconstruct_block(getblock(features, DNA_PLANT_FLOWER_BLOCK), GLOB.pod_flower_list.len)]
 
 	if(icon_update)
 		update_body()
