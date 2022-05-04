@@ -280,7 +280,7 @@ const CargoCartButtons = (props, context) => {
     requestonly,
   } = data;
   const cart = data.cart || [];
-  const total = cart.reduce((total, entry) => total + (entry.paid == null ? entry.cost : 0), 0);
+  const total = cart.reduce((total, entry) => total + (entry.paid ? entry.cost : 0), 0);
   if (requestonly) {
     return null;
   }
