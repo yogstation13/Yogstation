@@ -74,7 +74,7 @@
 				if(ispath(B, A))
 					if (R.blacklist.Find(B))
 						continue
-					if (HAS_TRAIT(B,TRAIT_NODROP)
+					if (HAS_TRAIT(B,TRAIT_NODROP) //yogs: no gun duplication
 						continue
 					if(contents[B] >= R.reqs[A])
 						continue main_loop
