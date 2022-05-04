@@ -1538,11 +1538,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
-/obj/structure/sign/departments/minsky/engineering/atmospherics{
-	pixel_y = 32
+/obj/effect/turf_decal/tile/red{
+	dir = 4
 	},
 /obj/machinery/computer/operating,
 /obj/machinery/flasher{
@@ -2917,11 +2914,11 @@
 	dir = 8;
 	name = "Station Intercom (Court)"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/courtroom)
@@ -2979,7 +2976,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/courtroom)
 "ajQ" = (
@@ -3001,19 +2997,7 @@
 	name = "Court Cell";
 	req_access_txt = "2"
 	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
-"ajJ" = (
-/obj/machinery/holopad,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/engine/foyer)
-"ajN" = (
-/turf/closed/wall/r_wall,
+/turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "ajV" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -4259,11 +4243,8 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aov" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
+/obj/effect/turf_decal/tile/red{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -5052,6 +5033,9 @@
 "arZ" = (
 /obj/machinery/status_display/evac{
 	pixel_x = 32
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -60507,9 +60491,6 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "uGQ" = (
@@ -92645,6 +92626,7 @@ aaa
 aaa
 aaa
 aaa
+pEf
 aaa
 aiT
 aVw
@@ -95212,6 +95194,7 @@ aaa
 aaa
 aaa
 aaa
+pEf
 aaa
 aiT
 aaM
@@ -97792,6 +97775,7 @@ aaa
 aaa
 aaa
 aaa
+aaf
 aaa
 aaZ
 atl
@@ -101642,11 +101626,6 @@ aaa
 aaa
 aaa
 aaa
-ajN
-gXs
-gXs
-blo
-gXs
 aaa
 aaa
 aaa
@@ -103975,6 +103954,7 @@ aaa
 aaa
 aaa
 aaa
+pFB
 aaa
 aaa
 aaa
