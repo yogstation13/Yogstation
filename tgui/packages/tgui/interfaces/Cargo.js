@@ -189,7 +189,7 @@ export const CargoCatalog = (props, context) => {
                       tooltipPosition="left"
                       onClick={() => act('add', {
                         id: pack.id,
-                        self_paid: self_paid
+                        self_paid: self_paid,
                       })}>
                       {formatMoney(self_paid && !pack.goody
                         ? Math.round(pack.cost * 1.1)
