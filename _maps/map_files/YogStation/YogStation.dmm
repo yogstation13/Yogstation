@@ -8315,16 +8315,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/bridge/meeting_room)
-"bfq" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "bfr" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -8514,30 +8504,6 @@
 "bgc" = (
 /turf/closed/wall/r_wall,
 /area/science/lab)
-"bgh" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "bgi" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -83274,7 +83240,7 @@ aaa
 aaa
 aaa
 aaa
-bfq
+arP
 vTj
 bfs
 aDR
@@ -88414,7 +88380,7 @@ aaa
 aaa
 aaa
 uGm
-bgh
+arP
 ayW
 ayW
 ayW
