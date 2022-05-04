@@ -76,7 +76,6 @@
 	
 
 /datum/species/water/proc/transform_into_blob(mob/living/carbon/human/H)
-
 	for(var/obj/item/W in H.get_equipped_items(TRUE))
 		H.dropItemToGround(W)
 	for(var/obj/item/I in H.held_items)
@@ -194,7 +193,6 @@
 	if (istype(H.w_uniform, /obj/item/clothing/under))
 		AddComponent(H.w_uniform, /datum/component/wetsuit_holder)
 
-
 /datum/species/water/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
 	H.visible_message(span_danger("[H] turns into a fine blue mist!"), span_userdanger("You evaporate!"))
@@ -208,10 +206,6 @@
 				var/total_damage = damage * brutemod * H.physiology.brute_mod
 				damage *= 0.5
 				body_component.integrity -= total_damage
-				
-
-
-
 	. = ..()
 
 /datum/species/water/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
@@ -333,7 +327,11 @@
 		if (water_volume >= WATER_VOLUME_SLIP_MOVE_AMOUNT)
 			T.MakeSlippery(TURF_WET_WATER, 40)
 			water_volume -= WATER_VOLUME_SLIP_MOVE_AMOUNT
-		
+
+/mob/living/simple_animal/waterblob/get_status_tab_items()
+	. = ..()
+	. += "Water volume: [water_volume]"
+
 /obj/item/wetsuit_applicator
 	name = "wetsuit applicator"
 	desc = "Some waterproofing paint combined with a nanomaterial to prevent pores combined with a special shaping material allows any uniform to be used as a wetsuit."
