@@ -1,4 +1,0 @@
-author: "Simplehorror"
-delete-after: true 
-changes: 
-  - bugfix: "delete the double job title in  ensure has died at least once"

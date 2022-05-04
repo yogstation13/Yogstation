@@ -1,9 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "large energy crossbow damage reduced to 30 from 40"
-  - tweak: "large energy crossbow cooldown increased from 2 seconds to 10 seconds"
-  - tweak: "large energy crossbow size increased from normal to bulky"
-  - tweak: "large energy crossbows can no longer be fired with items in the offhand"
-  - tweak: "large energy crossbows will lose charge if dropped"
-  - tweak: "large energy crossbows now get increased reload time for carrying several"
