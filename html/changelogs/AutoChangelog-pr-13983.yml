@@ -1,0 +1,7 @@
+author: " Mqiib, ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "Explosion epicenters no longer do double damage."
+  - tweak: "Indirectly makes the fireball spell deal roughly half as much damage"
+  - tweak: "Frag grenades and explosive holoparasites can longer instantly kill you"
+  - tweak: "Anything else that did its damage via small explosions significantly nerfed"
