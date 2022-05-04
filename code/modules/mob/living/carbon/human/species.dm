@@ -998,6 +998,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(flying_species)
 		HandleFlight(H)
 
+/datum/species/proc/spec_life_stasis(mob/living/carbon/human/H)
+	return TRUE
+
 //I wag in death
 /datum/species/proc/spec_death(gibbed, mob/living/carbon/human/H)
 	stop_wagging_tail(H)

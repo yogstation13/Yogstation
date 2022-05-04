@@ -114,17 +114,23 @@
 
 	limbs_to_heal -= limbs_to_consume
 	var/missing = H.get_missing_limbs()
+	limbs_to_consume -= missing
+	var/regenerated = FALSE
 	for (var/limb_zone in limbs_to_heal)
 		if (limb_zone in missing)
 			H.regenerate_limb(limb_zone)
-		
+			regenerated = TRUE
+
+	if (regenerated)
+		to_chat(H, span_notice("You feel refreshed."))
+
 	for (var/limb_zone in limbs_to_consume)
 		var/obj/item/bodypart/consumed_limb = H.get_bodypart(limb_zone)
 		consumed_limb.drop_limb()
+		to_chat(H, span_danger("Your [consumed_limb] loses form!"))
 		qdel(consumed_limb)
 
 /datum/species/water/proc/process_blood(mob/living/carbon/human/H)
-
 	if (H.blood_volume < WATER_VOLUME_MAXIMUM)
 		H.blood_volume += 0.1
 
@@ -153,6 +159,10 @@
 	process_limbs(H)
 	process_blood(H)
 
+/datum/species/water/spec_life_stasis(mob/living/carbon/human/H)
+	if(should_fall_apart(H) && falling_apart == FALSE)
+		INVOKE_ASYNC(src, .proc/fall_apart, H)
+	. = ..()
 
 /datum/species/water/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
@@ -236,7 +246,7 @@
 /obj/item/clothing/under/wetsuit/Initialize()
 	AddComponent(/datum/component/wetsuit_holder)
 	. = ..()
-	
+
 /mob/living/simple_animal/waterblob
 	name = "slobbery mess"
 	desc = "Something that can only be described as a bubbling viscous puddle extending tendrils to wherever it moves."

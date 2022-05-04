@@ -51,6 +51,7 @@
 		//yogs start - bandage memes
 		if(stat != DEAD)
 			handle_bandaged_limbs()
+		dna.species.spec_life_stasis(src)
 		//yogs end
 
 	//Update our name based on whether our face is obscured/disfigured
