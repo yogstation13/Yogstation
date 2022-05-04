@@ -1,7 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - tweak: "classic batons have a third the cooldown they had before, making it only 1 second"
-  - tweak: "classic batons no longer knock down on hit, only after the target has 100 stamina damage"
-  - tweak: "classic batons now have their stamina damage blocked by melee armor and only deal the damage to the targeted limb"
-  - tweak: "classic batons can now knock items out of people's hands or trip them if you target their arms or legs respectively"
