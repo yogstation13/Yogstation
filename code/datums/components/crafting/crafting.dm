@@ -74,6 +74,8 @@
 				if(ispath(B, A))
 					if (R.blacklist.Find(B))
 						continue
+					if (HAS_TRAIT(B,TRAIT_NODROP)
+						continue
 					if(contents[B] >= R.reqs[A])
 						continue main_loop
 					else
