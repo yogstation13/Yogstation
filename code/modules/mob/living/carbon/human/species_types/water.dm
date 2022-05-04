@@ -17,15 +17,41 @@
 	if (prob(1))
 		name = "SodaStream"
 
+/obj/item/organ/brain/water
+	name = "wetware processor"
+	desc = "An organic wetware processor, commonly known as a brain. This time, it's made out of water."
+
+/obj/item/organ/eyes/water
+	name = "waterlogged eyeballs"
+	desc = "Transparent eyeballs consisting of more water than aqueous humor."
+
+/obj/item/organ/ears/water
+	name = "wet ears"
+	desc = "A pair of translucent ears. You think you've heard this one before."	
+
+/obj/item/organ/tongue/water
+	name = "dripping tongue"
+	desc = "A tongue made of water. It is dripping. You look at it and feel disgusted."
+
+/obj/item/organ/liver/water
+	name = "chemical distributor"
+	desc = "Looks like something that distributes chemicals around the body."
+
+
 /datum/species/water
 	name = "placeholder water race"
 	id = "water"
-	rare_say_mod = list("gushes" = 10, "slushes" = 10, "spits" = 10, "splutters" = 10, "slobbers" = 10)
+	rare_say_mod = list("gushes" = 10, "slushes" = 10, "spits" = 10, "splutters" = 10, "slobbers" = 10, "drools" = 10)
 	default_color = "56CACE"
 	species_traits = list(AGENDER,MUTCOLORS,HAS_FLESH,NOSTOMACH,NOTRANSSTING,NO_DNA_COPY,NOBLOOD) // "blood" will be handled seperately
 	inherent_traits = list(TRAIT_BADDNA,TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_NEVER_WOUNDED,TRAIT_VIRUSIMMUNE,TRAIT_NODISMEMBER,TRAIT_RESISTHIGHPRESSURE) //can't compress water
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mutantlungs = /obj/item/organ/lungs/water
+	mutant_brain = /obj/item/organ/brain/water
+	mutanteyes = /obj/item/organ/eyes/water
+	mutantears = /obj/item/organ/ears/water
+	mutanttongue = /obj/item/organ/tongue/water
+	mutantliver = /obj/item/organ/liver/water
 	payday_modifier = 0.3
 	burnmod = 1.5 //Water heats easily
 	heatmod = 1.5 //Water heats easily
@@ -74,13 +100,13 @@
 
 /datum/species/water/proc/fall_apart(mob/living/carbon/human/H)
 	falling_apart = TRUE
-	H.visible_message(span_danger("[H] begins to drip..."), span_danger("You can feel yourself dripping..."))
+	H.visible_message(span_danger("[H] begins to drip..."), span_userdanger("You can feel yourself dripping..."))
 	spawn(60)
 		if (!should_fall_apart(H))
 			falling_apart = FALSE
 			return
 		//actually fall apart
-		H.visible_message(span_danger("[H] falls apart!"), span_danger("You fall apart!"))
+		H.visible_message(span_danger("[H] falls apart!"), span_userdanger("You fall apart!"))
 
 		transform_into_blob(H)
 
@@ -127,7 +153,7 @@
 	for (var/limb_zone in limbs_to_consume)
 		var/obj/item/bodypart/consumed_limb = H.get_bodypart(limb_zone)
 		consumed_limb.drop_limb()
-		to_chat(H, span_danger("Your [consumed_limb] loses form!"))
+		to_chat(H, span_userdanger("Your [consumed_limb] loses form!"))
 		qdel(consumed_limb)
 
 /datum/species/water/proc/process_blood(mob/living/carbon/human/H)
@@ -171,7 +197,7 @@
 
 /datum/species/water/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
-	H.visible_message(span_danger("[H] turns into a fine blue mist!"), span_danger("You evaporate!"))
+	H.visible_message(span_danger("[H] turns into a fine blue mist!"), span_userdanger("You evaporate!"))
 	return H.gib(TRUE, TRUE, TRUE) // HARD MODE: You're not coming back from this one
 
 /datum/species/water/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness)
