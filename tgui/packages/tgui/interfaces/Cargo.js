@@ -106,9 +106,9 @@ const CargoStatus = (props, context) => {
                 disabled={!(away && docked)}
                 onClick={() => act('loan')} />
             ) || (
-                <Box color="bad">
-                  Loaned to Centcom
-                </Box>
+              <Box color="bad">
+                Loaned to Centcom
+              </Box>
               )}
           </LabeledList.Item>
         )}
@@ -365,9 +365,9 @@ const CargoCart = (props, context) => {
               content="Confirm the order"
               onClick={() => act('send')} />
           ) || (
-              <Box opacity={0.5}>
-                Shuttle in {location}.
-              </Box>
+            <Box opacity={0.5}>
+              Shuttle in {location}.
+            </Box>
             )}
         </Box>
       )}
