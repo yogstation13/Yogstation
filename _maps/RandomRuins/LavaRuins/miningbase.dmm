@@ -412,15 +412,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
-"dj" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "Mining Vacant Room APC";
-	pixel_x = 24
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/mine/vacant)
 "dk" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance/two,
@@ -573,10 +564,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"es" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/mine/vacant)
 "ey" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
@@ -759,12 +746,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
-"gk" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/vacant)
 "gm" = (
 /obj/structure/mirror{
 	pixel_x = 28
@@ -795,13 +776,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"gV" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/vacant)
 "gW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -905,6 +879,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"is" = (
+/obj/machinery/light,
+/obj/machinery/biogenerator,
+/turf/open/floor/plasteel,
+/area/mine/vacant)
 "iy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -1095,13 +1074,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"kT" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/vacant)
 "ld" = (
 /obj/machinery/door/airlock{
 	name = "Restroom"
@@ -1536,12 +1508,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/vacant)
-"rv" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/vacant)
 "rB" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -1586,6 +1552,13 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
+"sv" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/mine/vacant)
 "sC" = (
 /obj/machinery/light{
 	dir = 4
@@ -1684,6 +1657,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"uj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel,
+/area/mine/vacant)
 "us" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	name = "Waste to Filters";
@@ -1983,6 +1963,13 @@
 /obj/machinery/telecomms/relay/preset/mining,
 /turf/open/floor/circuit/green/telecomms,
 /area/mine/maintenance)
+"zz" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -32
+	},
+/obj/machinery/seed_extractor,
+/turf/open/floor/plasteel,
+/area/mine/vacant)
 "zK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2123,6 +2110,10 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/mine/storage)
+"Bk" = (
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel,
+/area/mine/vacant)
 "Bo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -2699,6 +2690,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"Id" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "Mining Vacant Room APC";
+	pixel_x = 24
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/mine/vacant)
 "Ip" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -2973,6 +2973,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"MR" = (
+/obj/structure/table/glass,
+/obj/item/hatchet,
+/obj/item/cultivator,
+/obj/item/reagent_containers/glass/bottle/nutrient/ez,
+/obj/item/reagent_containers/glass/bottle/nutrient/ez,
+/obj/item/reagent_containers/glass/bottle/nutrient/ez,
+/obj/item/reagent_containers/glass/bottle/nutrient/rh,
+/obj/item/reagent_containers/glass/bottle/nutrient/rh,
+/obj/item/shovel/spade,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel,
+/area/mine/vacant)
 "Ng" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -2987,6 +3000,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
+"NB" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -32
+	},
+/obj/structure/table/glass,
+/obj/item/seeds/bamboo,
+/obj/item/plant_analyzer,
+/obj/item/seeds/watermelon,
+/obj/item/seeds/eggplant,
+/obj/item/seeds/chili,
+/obj/item/seeds/cotton,
+/obj/item/storage/bag/plants,
+/obj/item/storage/bag/plants,
+/turf/open/floor/plasteel,
+/area/mine/vacant)
 "ND" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/door/poddoor/preopen{
@@ -3272,9 +3301,6 @@
 /obj/structure/table,
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
-"Rl" = (
-/turf/open/floor/plasteel/dark,
-/area/mine/vacant)
 "Rq" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -3334,6 +3360,10 @@
 "Sg" = (
 /turf/closed/wall,
 /area/mine/break_room)
+"Sh" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel,
+/area/mine/vacant)
 "Si" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 4;
@@ -4823,11 +4853,11 @@ ab
 ab
 ab
 Uf
-Rl
-Rl
+Bk
+Hi
 cF
-Rl
-Rl
+Hi
+Sh
 zW
 zW
 jp
@@ -4865,11 +4895,11 @@ ab
 ab
 ab
 Bx
-Rl
+Bk
 Hi
 cF
 Hi
-rv
+zz
 zW
 pM
 AG
@@ -4907,11 +4937,11 @@ ab
 ab
 Ap
 Uf
-gk
+uj
 OG
 rq
 Ba
-es
+is
 zW
 qr
 At
@@ -4949,11 +4979,11 @@ ab
 ab
 Ap
 Bx
-Rl
+Bk
 Hi
 cZ
 Hi
-gV
+NB
 zW
 gm
 AG
@@ -4991,11 +5021,11 @@ ab
 ab
 Ap
 Uf
-Rl
-kT
+Bk
+sv
 dc
-dj
-Rl
+Id
+MR
 zW
 zW
 ld
