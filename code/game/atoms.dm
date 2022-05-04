@@ -339,7 +339,7 @@
 			var/atom/movable/M = A
 			if(isliving(M.loc))
 				var/mob/living/L = M.loc
-				L.transferItemToLoc(M, src, force = TRUE)
+				L.transferItemToLoc(M, src)
 			else
 				M.forceMove(src)
 
