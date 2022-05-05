@@ -3429,6 +3429,7 @@
 #include "yogstation\code\game\objects\items\storage\mre.dm"
 #include "yogstation\code\game\objects\items\storage\toolbox.dm"
 #include "yogstation\code\game\objects\items\storage\uplink_kits.dm"
+#include "yogstation\code\game\objects\items\tanks\tank_types.dm"
 #include "yogstation\code\game\objects\structures\bedsheet_bin.dm"
 #include "yogstation\code\game\objects\structures\fireaxe.dm"
 #include "yogstation\code\game\objects\structures\ghost_role_spawners.dm"
