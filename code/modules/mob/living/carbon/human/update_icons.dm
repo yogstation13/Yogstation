@@ -276,7 +276,7 @@ There are several things that need to be remembered:
 		var/obj/item/clothing/shoes/S = shoes
 		var/worn_shoes_icon = S.icon_state
 		if(S.adjusted == DIGITIGRADE_STYLE)
-			worn_shoes_icon = "[S.icon_state]_l" // Sets digitgrade version of a shoe if it has it
+			worn_shoes_icon = "[S.icon_state]_l" // Sets digitigrade version of a shoe if it has it
 
 		if(client && hud_used && hud_used.hud_shown)
 			if(hud_used.inventory_shown)            //if the inventory is open
@@ -368,7 +368,7 @@ There are several things that need to be remembered:
 		var/obj/item/clothing/suit/S = wear_suit
 		var/worn_suit_icon = S.icon_state
 		if(S.adjusted == DIGITIGRADE_STYLE)
-			worn_suit_icon = "[wear_suit.icon_state]_l" // Checks for digitgrade version of a suit if it has it
+			worn_suit_icon = "[wear_suit.icon_state]_l" // Checks for digitigrade version of a suit if it has it
 		if(client && hud_used && hud_used.hud_shown)
 			if(hud_used.inventory_shown)
 				client.screen += wear_suit

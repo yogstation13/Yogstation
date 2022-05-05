@@ -220,7 +220,7 @@
 	var/uniform_skirt = null
 
 	var/pda_slot = SLOT_BELT
-	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
+	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitigrade shoes assignment variable
 	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
 	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
 	var/alt_shoes_e = /obj/item/clothing/shoes/xeno_wraps/engineering // Engineering footwraps
