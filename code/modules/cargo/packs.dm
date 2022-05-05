@@ -2657,3 +2657,13 @@
 					/obj/item/wallframe/telescreen/preset,
 					/obj/item/wallframe/telescreen/preset)
 	crate_name = "telescreen crate"
+
+/datum/supply_pack/misc/wetsuit_applicator
+	name = "Wetsuit Applicator Crate"
+	desc = "What your placeholder water race cargotech needs to be useful."
+	cost = 1500
+	contains = list(/obj/item/wetsuit_applicator,
+					/obj/item/wetsuit_applicator,
+					/obj/item/wetsuit_applicator,
+					/obj/item/wetsuit_applicator)
+
