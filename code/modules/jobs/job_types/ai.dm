@@ -54,10 +54,12 @@
 /datum/job/ai/special_check_latejoin(client/C)
 	if(!do_special_check)
 		return TRUE
-	if(GLOB.ai_list.len)
+	if(GLOB.ai_list.len && !SSticker.triai)
+		return FALSE
+	if(SSticker.triai && GLOB.ai_list.len >= 3)
 		return FALSE
 	for(var/i in GLOB.data_cores)
-		var/obj/machinery/ai/data_core/datacores/core = i
+		var/obj/machinery/ai/data_core/core = i
 		if(istype(core))
 			if(core.valid_data_core())
 				return TRUE

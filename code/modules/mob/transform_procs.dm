@@ -370,21 +370,13 @@
 	return ..()
 
 /mob/proc/AIize(transfer_after = TRUE, client/preference_source)
-	var/list/turf/landmark_loc = list()
-	for(var/obj/effect/landmark/start/ai/sloc in GLOB.landmarks_list)
-		if(locate(/mob/living/silicon/ai) in sloc.loc)
-			continue
-		if(sloc.primary_ai)
-			LAZYCLEARLIST(landmark_loc)
-			landmark_loc += sloc.loc
+	var/valid_core = FALSE
+	for(var/obj/machinery/ai/data_core/core in GLOB.data_cores)
+		if(core.valid_data_core())
+			valid_core = TRUE
 			break
-		landmark_loc += sloc.loc
-	if(!landmark_loc.len)
-		for(var/obj/effect/landmark/start/ai/sloc in GLOB.landmarks_list)
-			landmark_loc += sloc.loc
-
-	if(!landmark_loc.len)
-		landmark_loc += loc
+	if(!valid_core)
+		message_admins("No valid data core for [src]. Yell at a mapper! The AI will die.")
 
 	if(client)
 		stop_sound_channel(CHANNEL_LOBBYMUSIC)
@@ -392,7 +384,7 @@
 	if(!transfer_after)
 		mind.active = FALSE
 
-	. = new /mob/living/silicon/ai(pick(landmark_loc), null, src)
+	. = new /mob/living/silicon/ai(loc, null, src)
 
 
 	if(preference_source)
