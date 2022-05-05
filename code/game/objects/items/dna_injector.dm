@@ -41,12 +41,10 @@
 				M.dna.blood_type = fields["blood_type"]
 			if(fields["UI"])	//UI+UE
 				M.dna.unique_identity = merge_text(M.dna.unique_identity, fields["UI"])
-				M.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
 			if(fields["UF"])
 				M.dna.unique_features = merge_text(M.dna.unique_features, fields["UF"])
+			if(fields["UI"] || fields["UF"])
 				M.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
-			// if(fields["UI"] || fields["UF"])
-			// 	M.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
 		log_attack("[log_msg] [loc_name(user)]")
 		return TRUE
 	return FALSE

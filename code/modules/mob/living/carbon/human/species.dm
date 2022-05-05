@@ -307,9 +307,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		tail.Remove(C,1)
 		QDEL_NULL(tail)
 	if(should_have_tail && !tail)
-		tail = new mutanttail()
-		if(iscatperson(C))
-			tail.tail_type = C.dna.features["tail_human"]
+		tail = new mutanttail
+		// message_admins("tail: [tail]")
+		// if(iscatperson(C))
+		// 	tail = C.species.mutant_tail
 		if(ispolysmorph(C))
 			tail.tail_type = C.dna.features["tail_polysmorph"]
 		if(islizard(C))
@@ -873,6 +874,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if("waggingtail_lizard")
 					S = GLOB.animated_tails_list_lizard[H.dna.features["tail_lizard"]]
 				if("tail_human")
+					message_admins("[bodypart]")
 					S = GLOB.tails_list_human[H.dna.features["tail_human"]]
 				if("tail_polysmorph")
 					S = GLOB.tails_list_polysmorph[H.dna.features["tail_polysmorph"]]

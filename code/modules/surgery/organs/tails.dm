@@ -29,6 +29,7 @@
 				H.dna.update_uf_block(DNA_HUMAN_TAIL_BLOCK)
 			else
 				H.dna.species.mutant_bodyparts["tail_human"] = H.dna.features["tail_human"]
+		H.update_body()
 
 /obj/item/organ/tail/cat/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
