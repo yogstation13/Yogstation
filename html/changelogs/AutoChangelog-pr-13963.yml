@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "gang leaders should no longer spawn as security/fail to spawn. if this fails ping theos on the discord"
