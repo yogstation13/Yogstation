@@ -20,6 +20,7 @@
 	var/button_icon_state = "default" //And this is the state for the action icon
 	var/mob/owner
 	var/syndicate = FALSE // are these buttons only for syndicates?
+	var/obj/screen/cooldown_overlay/cooldown_overlay
 
 /datum/action/New(Target)
 	link_to(Target)
