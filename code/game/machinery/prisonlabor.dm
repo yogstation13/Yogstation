@@ -41,8 +41,9 @@
 
 /obj/machinery/plate_press/attack_hand(mob/living/user)
 	. = ..()
-	if(!pressing && current_plate)
-		work_press(user)
+	if(pressing || !current_plate)
+		return
+	work_press(user)
 
 ///This proc attempts to create a plate. User cannot move during this process.
 /obj/machinery/plate_press/proc/work_press(mob/living/user)
