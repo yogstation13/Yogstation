@@ -3683,6 +3683,7 @@
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\jellypeople.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\lizard.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\plantpeople.dm"
+#include "yogstation/code/modules/mob/living/carbon/human/species_types/szlachta.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\preternis\organs.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\preternis\power_suck.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\preternis\preternis.dm"
