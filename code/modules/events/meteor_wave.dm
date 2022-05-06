@@ -5,7 +5,7 @@
 	typepath = /datum/round_event/meteor_wave
 	weight = 4
 	min_players = 10 //yogs
-	max_occurrences = 3
+	max_occurrences = 2 //yogs
 	//earliest_start = 25 MINUTES //yogs
 
 /datum/round_event/meteor_wave
@@ -23,9 +23,9 @@
 /datum/round_event/meteor_wave/proc/determine_wave_type()
 	if(!wave_name)
 		wave_name = pickweight(list(
-			"normal" = 50,
-			"threatening" = 40,
-			"catastrophic" = 10))
+			"normal" = 100,
+			"threatening" = 0,
+			"catastrophic" = 0))
 	switch(wave_name)
 		if("normal")
 			wave_type = GLOB.meteors_normal
@@ -56,7 +56,7 @@
 /datum/round_event_control/meteor_wave/threatening
 	name = "Meteor Wave: Threatening"
 	typepath = /datum/round_event/meteor_wave/threatening
-	weight = 2 //yogs
+	weight = 0 //yogs
 	min_players = 20
 	max_occurrences = 3
 	//earliest_start = 35 MINUTES //yogs
@@ -67,7 +67,7 @@
 /datum/round_event_control/meteor_wave/catastrophic
 	name = "Meteor Wave: Catastrophic"
 	typepath = /datum/round_event/meteor_wave/catastrophic
-	weight = 1 //yogs
+	weight = 0 //yogs
 	min_players = 25
 	max_occurrences = 3
 	//earliest_start = 45 MINUTES //yogs
