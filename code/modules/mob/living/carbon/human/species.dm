@@ -308,6 +308,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		QDEL_NULL(tail)
 	if(should_have_tail && !tail)
 		tail = new mutanttail()
+		if(iscatperson(C))
+			tail.tail_type = C.dna.features["tail_human"]
 		if(ispolysmorph(C))
 			tail.tail_type = C.dna.features["tail_polysmorph"]
 		if(islizard(C))
