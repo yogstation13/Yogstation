@@ -75,9 +75,9 @@
 
 			if(!(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKEDEATH))))
 				if(heart && istype(heart))
-					heart_strength = span_danger("an unstable")
+					heart_strength = heart.HeartStrengthMessage()
 					if(heart.beating)
-						heart_strength = "a healthy"
+						heart_strength = heart.HeartStrengthMessage()
 				if(lungs && istype(lungs))
 					lung_strength = span_danger("strained")
 					if(!(M.failed_last_breath || M.losebreath))

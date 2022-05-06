@@ -153,12 +153,7 @@
 	if(bloodsucker && mind)
 		mind.transfer_to(bloodsucker)
 		bloodsucker.death()
-	if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/tzimisce))
-		return ..()
-	if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/possessedarmor))
-		qdel(src)
-	else
-		addtimer(CALLBACK(src, .proc/gib), 20 SECONDS)
+	qdel(src)
 	..()
 
 /mob/living/simple_animal/hostile/bloodsucker/proc/devour(mob/living/target)
@@ -197,9 +192,8 @@
 	if(bloodsucker)
 		if(ishuman(bloodsucker))
 			var/mob/living/carbon/human/user = bloodsucker
-			var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 			if(user.blood_volume < 560)
-				bloodsuckerdatum.AddBloodVolume(10)
+				user.blood_volume += 10
 		health -= 0.25 //3 minutes to die
 	if(satiation >= 3)
 		to_chat(src, span_notice("It has been fed. You turn back to normal."))

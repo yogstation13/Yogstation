@@ -9,6 +9,7 @@
 	power_explanation = "<b>Dice</b>:\n\
 		Use on a dead corpse to extract muscle from it to be able to feed it to a vassalrack.\n\
 		This won't take long and is your primary source of muscle acquiring, necessary for future endeavours.\n\
+		This ability takes well to leveling up, higher levels will increase your mastery over a person's flesh while using the ability for it's combat purpose.\n\
 		You shouldn't use this on your allies.."
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	bloodcost = 10
@@ -100,7 +101,41 @@
 
 /datum/action/bloodsucker/targeted/dice/FireTargetedPower(atom/target_atom)
 	var/mob/living/target = target_atom
+	var/mob/living/carbon/user = owner
+	user.face_atom(target)
 	if(target.stat != DEAD)
+		if(iscarbon(target))
+			var/mob/living/carbon/Ctarget = target
+			var/selected_zone = user.zone_selected
+			var/list/viable_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+			if(!viable_zones.Find(selected_zone))
+				selected_zone = pick(viable_zones)
+			var/obj/item/bodypart/target_part = Ctarget.get_bodypart(selected_zone)
+			user.do_attack_animation(Ctarget, ATTACK_EFFECT_PUNCH)
+			playsound(usr.loc, "sound/weapons/slice.ogg", 50, TRUE)
+			if(!target_part)
+				to_chat(user, span_warning("[Ctarget] has no limb there!"))
+				Ctarget.adjustBruteLoss(15 * level_current / 2)
+				return
+			switch(level_current)
+				if(0 to 3)
+					Ctarget.apply_damage(50, STAMINA, selected_zone)
+					to_chat(user, span_warning("You swiftly disable the nerves in [Ctarget]'s [target_part] with a precise strike."))
+				if(3 to 6)
+					Ctarget.apply_damage(25, STAMINA, selected_zone)
+					Ctarget.apply_damage(25, BRUTE, selected_zone)
+					Ctarget.drop_all_held_items()
+					to_chat(user, span_warning("You hastly damage the ligaments in [Ctarget]'s [target_part] with a fierce blow."))
+				if(6 to INFINITY)
+					if(target_part.dismemberable)
+						target_part.dismember()
+						to_chat(user, span_warning("You sever [Ctarget]'s [target_part] with a clean swipe."))
+					else
+						Ctarget.apply_damage(30, BRUTE, selected_zone)
+						Ctarget.drop_all_held_items()
+						to_chat(user, span_warning("As [Ctarget]'s [target_part] is too tough to chop in a single action!"))
+		else
+			target.adjustBruteLoss(25)
 		return
 	playsound(usr.loc, "sound/weapons/slice.ogg", 50, TRUE)
 	if(!do_mob(usr, target, 2.5 SECONDS))
@@ -113,6 +148,8 @@
 					bodypart.dismember()
 					qdel(bodypart)
 					new /obj/item/muscle/medium(H.loc)
+				else
+					to_chat(user, span_warning("You can't dismember this [bodypart] of [target]"))
 		return
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target

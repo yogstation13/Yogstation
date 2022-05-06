@@ -1,7 +1,24 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // Any changes to clans have to be reflected in '/obj/item/book/kindred' /search proc. //
 /////////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/bloodsucker/proc/AssignClanAndBane()
+/datum/antagonist/bloodsucker/proc/AssignClanAndBane(tzimisce = FALSE)
+	var/mob/living/carbon/human/bloodsucker = owner.current
+	if(tzimisce)
+		my_clan = CLAN_TZIMISCE
+		to_chat(owner, span_announce("As you arrive near the station, you recall all you know and why you are here.\n\
+			* As a part of the Tzimisce Clan, you are able to <i>Dice</i> corpses into muscle pieces.\n\
+			* With muscles pieces you are able to mutilate dead husked vassals into greater beings,\n\
+			* The more you climb up the Ranks the more research you gather about fleshcrafting and beings you can make.\n\
+			* Remember to fuel a vassalrack with the muscles to be able to toy with those dead vassals, you are also able to ressurect people this way.\n\
+			* Finally, your Favorite Vassal will turn into a battle monster to help you in combat."))
+		AddHumanityLost(5.6)
+		BuyPower(new /datum/action/bloodsucker/targeted/dice)
+		bloodsucker.faction |= "bloodhungry" //flesh monster's clan
+		var/list/powerstoremove = list(/datum/action/bloodsucker/veil, /datum/action/bloodsucker/masquerade)
+		for(var/datum/action/bloodsucker/P in powers)
+			if(is_type_in_list(P, powerstoremove))
+				RemovePower(P)
+		return
 	var/static/list/clans = list(
 		CLAN_GANGREL,
 		CLAN_LASOMBRA,
@@ -17,7 +34,6 @@
 	if(!answer) 
 		to_chat(owner, span_warning("You have wilingfully decided to stay ignorant."))
 		return
-	var/mob/living/carbon/human/bloodsucker = owner.current
 	switch(answer)
 		if(CLAN_GANGREL)
 			my_clan = CLAN_GANGREL

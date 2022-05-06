@@ -18,10 +18,7 @@
 
 /// Prevents Bloodsuckers from naturally regenerating Blood - Even while on masquerade
 /mob/living/carbon/human/handle_blood(delta_time, times_fired)
-	if(mind && IS_BLOODSUCKER(src))
-		return
-	/// For Vassals -- Bloodsuckers get this removed while on Masquerade, so we don't want to remove the check above.
-	if(HAS_TRAIT(src, TRAIT_NOPULSE))
+	if(mind || IS_BLOODSUCKER(src))
 		return
 	. = ..()
 
@@ -53,6 +50,8 @@
 		if(bloodsuckerdatum)
 			. += ""
 			. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
+			if(bloodsuckerdatum.current_task)
+				. += "Task Blood Drank: [bloodsuckerdatum.task_blood_drank]"
 
 
 // INTEGRATION: Adding Procs and Datums to existing "classes" //

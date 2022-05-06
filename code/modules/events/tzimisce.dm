@@ -1,8 +1,8 @@
-/datum/round_event_control/tzimisce/tzimiscebloodsucker
+/datum/round_event_control/tzimisce/bloodsucker
 	name = "Spawn Tzimisce - Bloodsucker"
 	max_occurrences = 1
-	typepath = /datum/round_event/ghost_role/tzimisce/bloodsucker
 	weight = 5
+	typepath = /datum/round_event/ghost_role/tzimisce/bloodsucker
 	min_players = 25
 	earliest_start = 30 MINUTES
 	gamemode_whitelist = list("bloodsucker","traitorsucker","dynamic")
@@ -60,12 +60,7 @@
 	Mind.add_antag_datum(/datum/antagonist/bloodsucker)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = tzimisce.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	bloodsuckerdatum.bloodsucker_level_unspent += round(world.time / (15 MINUTES), 1)
-	bloodsuckerdatum.my_clan = CLAN_TZIMISCE
-	var/list/powerstoremove = list(/datum/action/bloodsucker/veil, /datum/action/bloodsucker/masquerade)
-	for(var/datum/action/bloodsucker/Forbidden in bloodsuckerdatum.powers)
-		if(is_type_in_list(Forbidden, powerstoremove))
-			bloodsuckerdatum.RemovePower(Forbidden)
-	bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/dice)
+	bloodsuckerdatum.AssignClanAndBane(tzimisce = TRUE)
 
 	spawned_mobs += tzimisce
 	message_admins("[ADMIN_LOOKUPFLW(tzimisce)] has been made into a tzimisce bloodsucker an event.")
@@ -83,7 +78,7 @@
 	var/mob/living/carbon/human/new_tzimisce = new(spawn_loc)
 	if(!spawn_loc)
 		SSjob.SendToLateJoin(new_tzimisce)
-	var/datum/preferences/A = new() //Randomize appearance for the demon.
+	var/datum/preferences/A = new() //Randomize appearance.
 	A.copy_to(new_tzimisce)
 	new_tzimisce.dna.update_dna_identity()
 	return new_tzimisce

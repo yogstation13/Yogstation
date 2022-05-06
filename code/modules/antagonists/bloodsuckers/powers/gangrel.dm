@@ -46,13 +46,9 @@
 				user_species.punchdamagehigh += 5.0 //stronk
 				user_species.armor += 30
 				to_chat(user, span_notice("You aren't strong enough to morph into something stronger! But you do certainly feel more feral and stronger than before."))
-				return
-			if(minortransformdone)
-				user_species.punchdamagelow += 1
-				user_species.punchdamagehigh += 1
-				user_species.armor += 2.5
-				to_chat(user, span_notice("Using a bit more of blood you manage to get a tad stronger, but you still haven't evolved your ability yet."))
-				bloodsuckerdatum.AddBloodVolume(50)
+			else
+				to_chat(user, span_notice("You still haven't evolved your ability yet."))
+				bloodsuckerdatum.AddBloodVolume(75)
 		if(500 to 1000)
 			if(!mediumtransformdone)
 				user.set_species(/datum/species/gorilla)
@@ -64,13 +60,9 @@
 				user_species.punchdamagehigh += 7.5 //very stronk
 				user_species.armor += 35
 				to_chat(owner, span_notice("You transform into a gorrila-ey beast, you feel stronger!"))
-				return
-			if(mediumtransformdone)
-				user_species.punchdamagelow += 2
-				user_species.punchdamagehigh += 2
-				user_species.armor += 5
-				to_chat(owner, span_notice("Using a bit more of blood you manage to get a tad stronger, but you still haven't evolved your ability yet."))
-				bloodsuckerdatum.AddBloodVolume(25)
+			else
+				to_chat(owner, span_notice("You still haven't evolved your ability yet."))
+				bloodsuckerdatum.AddBloodVolume(50)
 		if(1500 to INFINITY)
 			var/mob/living/simple_animal/hostile/bloodsucker/giantbat/gb
 			if(!gb || gb.stat == DEAD)

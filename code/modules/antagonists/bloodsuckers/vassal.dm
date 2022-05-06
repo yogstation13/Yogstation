@@ -15,7 +15,7 @@
 	var/datum/game_mode/blooodsucker
 	/// List of all Purchased Powers, like Bloodsuckers.
 	var/list/datum/action/powers = list()
-	/// The favorite vassal gets unique features, and Ventrue can upgrade theirs
+	/// The favorite vassal gets unique features.
 	var/favorite_vassal = FALSE
 	/// Bloodsucker levels, but for Vassals.
 	var/vassal_level
@@ -114,14 +114,26 @@
 	to_chat(master, span_danger("You have turned [owner.current] into your Favorite Vassal! They will no longer be deconverted upon Mindshielding!"))
 	to_chat(owner, span_notice("As Blood drips over your body, you feel closer to your Master... You are now the Favorite Vassal!"))
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = master.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/mob/living/carbon/human/vassal = owner.current
 	switch(bloodsuckerdatum.my_clan)
 		if(CLAN_GANGREL)
 			var/obj/effect/proc_holder/spell/targeted/shapeshift/bat/batform = new
-			owner.current.AddSpell(batform)
+			owner.AddSpell(batform)
 		if(CLAN_LASOMBRA)
+			if(ishuman(owner.current))
+				vassal.see_in_dark = 8
+				vassal.eye_color = "f00"
 			var/list/powers = list(new /obj/effect/proc_holder/spell/targeted/lesser_glare, new /obj/effect/proc_holder/spell/targeted/shadowwalk)
 			for(var/obj/effect/proc_holder/spell/targeted/power in powers)
-				owner.current.AddSpell(powers)
+				owner.AddSpell(power)
+		if(CLAN_TZIMISCE)
+			if(!do_mob(master, owner.current, 1 SECONDS, TRUE))
+				return
+			playsound(vassal.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
+			if(!do_mob(master, owner.current, 1 SECONDS, TRUE))
+				return
+			playsound(vassal.loc, 'sound/effects/splat.ogg', 50, TRUE)
+			vassal.set_species(/datum/species/szlachta)
 	
 /// If we weren't created by a bloodsucker, then we cannot be a vassal (assigned from antag panel)
 /datum/antagonist/vassal/can_be_owned(datum/mind/new_owner)

@@ -477,6 +477,7 @@
 	if(bloodsuckerdatum.my_clan == CLAN_TZIMISCE)
 		if(meat_amount > 0)
 			. += span_boldnotice("It currently contains [meat_points] points to use in rituals.")
+			. += span_boldnotice("You can add meat points to the rack by using muscle, acquired from <i>Dicing</i> corpses, on it.")
 	else 
 		return ..()
 
@@ -591,6 +592,8 @@
 		// Can we assign a Favorite Vassal?
 		if(istype(vassaldatum) && !bloodsuckerdatum.has_favorite_vassal)
 			offer_favorite_vassal(user, buckled_carbons)
+		else if(bloodsuckerdatum.my_clan == CLAN_TZIMISCE)
+			do_ritual(user, buckled_carbons)
 		use_lock = FALSE
 		return
 
@@ -630,9 +633,9 @@
 		add_overlay("mediummeat_[intermeat]")
 		add_overlay("smallmeat_[intermeat]")
 	if(mediummeat > 0)
-		add_overlay("mediummeat_[mediummeat]")
+		add_overlay("mediummeat_[mediummeat + intermeat]")
 	if(smallmeat > 0)
-		add_overlay("smallmeat_[smallmeat]")
+		add_overlay("smallmeat_[smallmeat + intermeat]")
 
 /obj/structure/bloodsucker/vassalrack/CtrlClick(mob/user)
 	if(!anchored)
@@ -645,23 +648,19 @@
 			new /obj/item/muscle/small(user.drop_location())
 			smallmeat--
 			meat_points -= 1
-			return
 		if(mediummeat > 0)
 			new /obj/item/muscle/medium(user.drop_location())
 			mediummeat--
 			meat_points -= 2
-			return
 		if(intermeat > 0)
 			new /obj/item/muscle/medium(user.drop_location())
 			new /obj/item/muscle/small(user.drop_location())
 			intermeat--
 			meat_points -= 3
-			return
 		if(bigmeat > 0)
 			new /obj/item/muscle/big(user.drop_location())
 			bigmeat--
 			meat_points -= 4
-			return
 	else
 		to_chat(user, span_warning("There's no meat to retrieve in [src]"))
 	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
@@ -889,6 +888,7 @@
 	var/list/options = list()
 	options = races
 	var/answer = input(user, "We have the chance to mutate our Vassal, how should we mutilate their corpse? This will cost us blood.", "What do we do with our Vassal?") in options
+	var/meat_cost = 0
 	var/blood_gained
 	if(!answer)
 		to_chat(user, span_notice("You decide to leave your Vassal just the way they are."))
@@ -918,12 +918,13 @@
 			H.become_husk()
 			bloodsuckerdatum.bloodsucker_level_unspent++
 		if(ARMMY_MONSTER)
+			meat_cost = 4
 			var/mob/living/simple_animal/hostile/bloodsucker/tzimisce/armmy/A
 			if(!(HAS_TRAIT(target, TRAIT_HUSK)))
 				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
 				return
-			if(meat_points < 4)
-				to_chat(user, span_warning("You need atleast [4 - meat_points] more meat points to do this."))
+			if(meat_points < meat_cost)
+				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
 				return
 			if(!do_mob(user, target, 1 SECONDS))
 				return
@@ -937,12 +938,13 @@
 			A.bloodsucker = target
 		/// Chance to give Bat form, or turn them into a bat.
 		if(CALCIUM_MONSTER)
+			meat_cost = 8
 			var/mob/living/simple_animal/hostile/bloodsucker/tzimisce/calcium/C
 			if(!(HAS_TRAIT(target, TRAIT_HUSK)))
 				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
 				return
-			if(meat_points < 8)
-				to_chat(user, span_warning("You need atleast [8 - meat_points] more meat points to do this."))
+			if(meat_points < meat_cost)
+				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
 				return
 			if(!do_mob(user, target, 1 SECONDS))
 				return
@@ -955,12 +957,13 @@
 			target.mind.transfer_to(C)
 			C.bloodsucker = target
 		if(TRIPLECHEST_MONSTER)
+			meat_cost = 12
 			var/mob/living/simple_animal/hostile/bloodsucker/tzimisce/triplechest/T
 			if(!(HAS_TRAIT(target, TRAIT_HUSK)))
 				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
 				return
-			if(meat_points < 12)
-				to_chat(user, span_warning("You need atleast [12 - meat_points] more meat points to do this."))
+			if(meat_points < meat_cost)
+				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
 				return
 			if(!do_mob(user, target, 1 SECONDS))
 				return
@@ -976,6 +979,25 @@
 			T.bloodsucker = target
 	if(blood_gained)
 		user.blood_volume += blood_gained
+	var/meatlost = 0
+	while(meat_cost)
+		meat_points--
+		meat_cost--
+		meatlost++
+		if(smallmeat && meatlost == 1)
+			smallmeat--
+			meatlost--
+		if(mediummeat && meatlost == 2)
+			mediummeat--
+			meatlost -= 2
+		if(intermeat && meatlost == 3)
+			intermeat--
+			meatlost -= 3
+		if(bigmeat && meatlost == 4)
+			bigmeat--
+			meatlost -= 4
+	update_icon()
+	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

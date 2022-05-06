@@ -715,6 +715,10 @@
 			no_update = FALSE
 
 	if(HAS_TRAIT(C, TRAIT_HUSK) && is_organic_limb())
+		if(ishuman(C))
+			var/mob/living/carbon/human/S = C
+			if(isszlachta(S))
+				return
 		species_id = "husk" //overrides species_id
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		should_draw_gender = FALSE
