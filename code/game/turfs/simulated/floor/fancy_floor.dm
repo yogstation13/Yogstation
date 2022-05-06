@@ -88,8 +88,11 @@
 
 /turf/open/floor/grass/Initialize()
 	. = ..()
-	icon_state = "grass[rand(1,4)]"
-	update_icon()
+	if(!istype(src,/turf/open/floor/grass))
+		return
+	else
+		icon_state = "grass[rand(1,4)]"
+		update_icon()
 
 /turf/open/floor/grass/attackby(obj/item/C, mob/user, params)
 	if((C.tool_behaviour == TOOL_SHOVEL) && params)
