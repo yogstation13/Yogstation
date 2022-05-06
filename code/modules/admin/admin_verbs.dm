@@ -99,6 +99,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/show_redeemable_antag_tokens,
 	/datum/admins/proc/cmd_create_centcom,
 	/datum/admins/proc/cmd_admin_fuckrads,
+	/datum/admins/proc/cmd_create_wiki,
   	/client/proc/admincryo,
 	/client/proc/cmd_admin_dress,
 	/client/proc/disconnect_panel

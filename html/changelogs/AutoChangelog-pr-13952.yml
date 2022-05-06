@@ -1,0 +1,4 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - bugfix: "Handcuffed people may no longer just walk through turnstiles"
