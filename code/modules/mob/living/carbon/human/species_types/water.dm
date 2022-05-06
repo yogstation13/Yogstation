@@ -193,6 +193,10 @@
 	if (istype(H.w_uniform, /obj/item/clothing/under))
 		AddComponent(H.w_uniform, /datum/component/wetsuit_holder)
 
+	H.r_hand = new /obj/item/tank/internals/co2/full
+	H.internal = H.get_item_for_held_index(2)
+	H.update_internals_hud_icon(1)
+
 /datum/species/water/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
 	H.visible_message(span_danger("[H] turns into a fine blue mist!"), span_userdanger("You evaporate!"))
