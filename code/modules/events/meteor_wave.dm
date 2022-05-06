@@ -3,7 +3,7 @@
 /datum/round_event_control/meteor_wave
 	name = "Meteor Wave: Normal"
 	typepath = /datum/round_event/meteor_wave
-	weight = 6
+	weight = 7
 	min_players = 10 //yogs
 	max_occurrences = 3 //yogs
 	//earliest_start = 25 MINUTES //yogs
