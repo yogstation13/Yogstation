@@ -166,7 +166,7 @@
 					return
 				message_admins("[key_name(usr)] spawned a blob with base resource gain [strength].")
 				log_admin("[key_name(usr)] spawned a blob with base resource gain [strength].")
-				new/datum/round_event/ghost_role/blob(TRUE, strength)
+				new/datum/round_event/ghost_role/blob(strength)
 			if("centcom")
 				message_admins("[key_name(usr)] is creating a CentCom response team...")
 				if(src.makeEmergencyresponseteam())
@@ -2315,6 +2315,13 @@
 				message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(H)]", 1)
 				return
 		to_chat(src.owner, span_danger("Unable to locate fax!"))
+	else if(href_list["checkAIDash"])
+		var/mob/living/silicon/ai/AI = locate(href_list["checkAIDash"])
+		if(!AI)
+			return
+		if(!AI.dashboard)
+			return
+		AI.dashboard.ui_interact(src.owner)
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

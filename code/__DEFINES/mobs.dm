@@ -341,3 +341,6 @@
 /// If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()
 #define EXAMINE_MORE_TIME	1 SECONDS
 #define INTERACTING_WITH(X, Y) (Y in X.do_afters)
+
+
+#define DOING_INTERACTION(user, interaction_key) (LAZYACCESS(user.do_afters, interaction_key))

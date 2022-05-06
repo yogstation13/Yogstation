@@ -1046,20 +1046,6 @@
 /obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"YC" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plating,
-/area/engine/engineering)
 
 (1,1,1) = {"
 ab
@@ -1269,7 +1255,7 @@ ad
 Jy
 co
 jA
-bu
+je
 ad
 ad
 ad
@@ -1794,7 +1780,7 @@ ab
 Mi
 wN
 Mi
-YC
+Jk
 gc
 kd
 zz

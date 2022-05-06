@@ -44,6 +44,7 @@
 /datum/action/bloodsucker/New(Target)
 	. = ..()
 	UpdateDesc()
+	START_PROCESSING(SSfastprocess, src)
 
 /datum/action/bloodsucker/proc/UpdateDesc()
 	desc = initial(desc)
@@ -58,7 +59,12 @@
 
 /datum/action/bloodsucker/Destroy()
 	bloodsuckerdatum_power = null
+	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
+
+/datum/action/bloodsucker/process()
+	cooldown_overlay?.tick()
+	
 
 /datum/action/bloodsucker/IsAvailable()
 	return TRUE
@@ -154,9 +160,12 @@
 
 	// Wait for cooldown
 	COOLDOWN_START(src, bloodsucker_power_cooldown, this_cooldown)
+	cooldown_overlay = start_cooldown(button,world.time + this_cooldown)
 	addtimer(CALLBACK(src, .proc/alpha_in), this_cooldown)
 
 /datum/action/bloodsucker/proc/alpha_in()
+	if(cooldown_overlay)
+		QDEL_NULL(cooldown_overlay)
 	button.color = rgb(255,255,255,255)
 	button.alpha = 255
 

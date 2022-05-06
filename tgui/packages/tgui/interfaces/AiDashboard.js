@@ -209,7 +209,11 @@ export const AiDashboard = (props, context) => {
                     <Box inline bold>&nbsp;THz</Box>
                   </Fragment>
                 )}>
-                <ProgressBar value={ability.progress / ability.cost} />
+                <ProgressBar value={ability.progress / ability.cost}>
+                  {Math.round((ability.progress / ability.cost * 100)* 100)
+                    / 100}%
+                  ({Math.round(ability.progress * 100) / 100}/{ability.cost} THz)
+                </ProgressBar>
               </Section>
             ))}
           </Section>

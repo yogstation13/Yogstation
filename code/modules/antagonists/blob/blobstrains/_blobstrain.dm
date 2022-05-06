@@ -24,6 +24,7 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 
 /datum/blobstrain/proc/on_gain()
 	overmind.color = complementary_color
+	point_rate = point_rate * overmind.basemodifier
 	for(var/BL in GLOB.blobs)
 		var/obj/structure/blob/B = BL
 		B.update_icon()

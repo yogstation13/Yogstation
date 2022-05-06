@@ -33140,19 +33140,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"bfj" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/item/crowbar/red,
-/obj/item/wrench,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/xenobiology)
 "bfk" = (
 /obj/structure/transit_tube/horizontal{
 	dir = 1;
@@ -86464,6 +86451,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"fSW" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/item/crowbar/red,
+/obj/item/wrench,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel/dark,
+/area/science/xenobiology)
 "fTc" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/red,
@@ -141704,7 +141705,7 @@ bfo
 aWN
 alB
 aeX
-bfj
+fSW
 pXw
 afF
 ars

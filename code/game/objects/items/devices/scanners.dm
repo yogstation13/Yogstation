@@ -378,7 +378,11 @@ GENE SCANNER
 			mutant = TRUE
 
 		to_chat(user, span_info("Species: [S.name][mutant ? "-derived mutant" : ""]"))
-	to_chat(user, span_info("Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)"))
+	var/temp_span = "notice"
+	if(M.bodytemperature <= BODYTEMP_HEAT_DAMAGE_LIMIT || M.bodytemperature >= BODYTEMP_COLD_DAMAGE_LIMIT)
+		temp_span = "warning"
+	
+	to_chat(user, "<span_class = '[temp_span]'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
 
 	// Time of death
 	if(M.tod && (M.stat == DEAD || ((HAS_TRAIT(M, TRAIT_FAKEDEATH)) && !advanced)))
