@@ -88,9 +88,7 @@
 
 /turf/open/floor/grass/Initialize()
 	. = ..()
-	if(!istype(src,/turf/open/floor/grass))
-		return
-	else
+	if(src.type == /turf/open/floor/grass) //don't want grass subtypes getting the icon state,
 		icon_state = "grass[rand(1,4)]"
 		update_icon()
 
