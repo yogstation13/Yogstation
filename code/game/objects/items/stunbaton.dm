@@ -16,14 +16,23 @@
 
 	var/cooldown_check = 0
 
-	var/cooldown = 2 SECONDS
-	var/stunforce = 100
+	///how long we can't use this baton for after slapping someone with it. Does not account for melee attack cooldown (default of 0.8 seconds).
+	var/cooldown = 1.2 SECONDS
+	///how long a clown stuns themself for, or someone is stunned for if they are hit to >90 stamina damage
+	var/stunforce = 10 SECONDS
+	///how much stamina damage we deal per hit, this is combatted by energy armor
 	var/stamina_damage = 70
-	var/status = 0
+	///are we turned on
+	var/status = TRUE
+	///the cell used by the baton
 	var/obj/item/stock_parts/cell/cell
+	///how much charge is deducted from the cell when we slap someone while on
 	var/hitcost = 1000
+	///% chance we hit someone with the correct side of the baton when thrown
 	var/throw_hit_chance = 35
-	var/preload_cell_type //if not empty the baton starts with this type of cell
+	///if not empty the baton starts with this type of cell
+	var/preload_cell_type
+	///used for passive discharge
 	var/cell_last_used = 0
 
 /obj/item/melee/baton/get_cell()
@@ -59,7 +68,7 @@
 		. = cell.use(chrgdeductamt)
 		if(status && cell.charge < hitcost)
 			//we're below minimum, turn off
-			status = 0
+			status = FALSE
 			update_icon()
 			playsound(loc, "sparks", 75, 1, -1)
 			STOP_PROCESSING(SSobj, src) // no more charge? stop checking for discharge
@@ -108,7 +117,7 @@
 			cell.forceMove(get_turf(src))
 			cell = null
 			to_chat(user, span_notice("You remove the cell from [src]."))
-			status = 0
+			status = FALSE
 			update_icon()
 			STOP_PROCESSING(SSobj, src) // no cell, no charge; stop processing for on because it cant be on
 	else
@@ -125,7 +134,7 @@
 		else
 			STOP_PROCESSING(SSobj, src)
 	else
-		status = 0
+		status = FALSE
 		if(!cell)
 			to_chat(user, span_warning("[src] does not have a power source!"))
 		else
@@ -190,16 +199,16 @@
 	if(iscyborg(loc))
 		var/mob/living/silicon/robot/R = loc
 		if(!R || !R.cell || !R.cell.use(hitcost))
-			return 0
+			return FALSE
 	else
 		if(!deductcharge(hitcost))
-			return 0
+			return FALSE
 
 	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
 
 	var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
-	var/armor_block = L.run_armor_check(affecting, "energy")
-	L.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
+	var/armor_block = L.run_armor_check(affecting, "energy") //check armor on the limb because that's where we are slapping...
+	L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 	var/current_stamina_damage = L.getStaminaLoss()
 
@@ -236,7 +245,7 @@
 
 	cooldown_check = world.time + cooldown
 
-	return 1
+	return TRUE
 
 /obj/item/melee/baton/emp_act(severity)
 	. = ..()

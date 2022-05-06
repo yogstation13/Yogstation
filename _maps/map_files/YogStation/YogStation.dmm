@@ -8571,6 +8571,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"aHd" = (
+/obj/machinery/camera{
+	c_tag = "West Incinerator";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "aHf" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -40366,6 +40373,19 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"kAj" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "East Incinerator";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "kBc" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/disposal/incinerator";
@@ -47264,15 +47284,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"nYq" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "nYC" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
@@ -104833,7 +104844,7 @@ cmd
 edX
 fKW
 ctE
-fKW
+aHd
 qQF
 mtm
 ufD
@@ -107403,7 +107414,7 @@ cmd
 cmd
 vvV
 ozm
-nYq
+kAj
 cmd
 cmd
 cmd

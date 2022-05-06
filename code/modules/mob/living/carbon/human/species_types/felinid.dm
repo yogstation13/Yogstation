@@ -144,6 +144,10 @@
 		qdel(old_part) //do this here since they potentially don't normally have a tail
 		if(decattification)
 			decattification = new decattification
+			if(istype(decattification, /obj/item/organ/tail/lizard))
+				var/obj/item/organ/tail/lizard/nyaamrrow = decattification
+				nyaamrrow.tail_type = H.dna.features["tail_lizard"]
+				nyaamrrow.spines = H.dna.features["spines"]
 			decattification.Insert(H)
 		decattification = H.dna?.species.mutantears
 		old_part = H.getorganslot(ORGAN_SLOT_EARS)

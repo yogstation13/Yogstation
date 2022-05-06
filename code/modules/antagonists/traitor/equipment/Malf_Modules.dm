@@ -36,8 +36,6 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	var/auto_use_uses = TRUE
 	/// If applicable, the time in deciseconds we have to wait before using any more modules
 	var/cooldown_period
-	//Can our uses be recharged using CPU in the reworked AI system?
-	var/can_be_recharged = FALSE
 
 /datum/action/innate/ai/New()
 	. = ..()

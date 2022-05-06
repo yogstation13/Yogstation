@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(user && user.ckey)
 		user.log_message(span_danger("cast the spell [name]."), LOG_ATTACK)
 	if(recharge)
-		recharging = TRUE
+		start_recharge()
 	if(sound)
 		playMagSound()
 	cast(targets,user=user)
