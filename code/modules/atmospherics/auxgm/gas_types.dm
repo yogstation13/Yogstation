@@ -46,7 +46,7 @@
 	flags = GAS_FLAG_DANGEROUS
 	fire_burn_rate = OXYGEN_BURN_RATE_BASE // named when plasma fires were the only fires, surely
 	fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
-	fire_products = "plasma_fire"
+	fire_products = FIRE_PRODUCT_PLASMA
 	enthalpy = FIRE_PLASMA_ENERGY_RELEASED // 3000000, 3 megajoules, 3000 kj
 
 /datum/gas/water_vapor
