@@ -1,0 +1,5 @@
+author: " Arkatos, ported to Yogstation by SuperSlayer"
+delete-after: true 
+changes: 
+  - rscadd: "Added generic living mob HUD, which contains health and pull indicators."
+  - rscadd: "Added pull indicator for Revenant, Lavaland Elite, Slime and Guardian."
