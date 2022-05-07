@@ -51,7 +51,7 @@
 
 	// Disable ALL Powers and notify their entry
 	bloodsuckerdatum.DisableAllPowers()
-	to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy!"))
+	to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy! Your skin starts sizzling...."))
 	to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you instantly Aggresively grab, have stun resistance, cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
 	// Stamina resistances
 	user.physiology.stamina_mod *= 0.4
