@@ -143,3 +143,11 @@
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
 	cant_discount = TRUE
+
+/datum/uplink_item/dangerous/wrestling_belt
+	name = "Wrestling Belt"
+	desc = "SNAP INTO A SLIM JIM!"
+	item = /obj/item/storage/belt/champion/wrestling/dna_locked
+	cost = 8
+	surplus = 20
+	exclude_modes = list(/datum/game_mode/infiltration)

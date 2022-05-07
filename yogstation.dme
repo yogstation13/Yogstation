@@ -3308,6 +3308,7 @@
 #include "yogstation\code\datums\diseases\advance\symptoms\confusion.dm"
 #include "yogstation\code\datums\diseases\advance\symptoms\heal.dm"
 #include "yogstation\code\datums\looping_sounds\darkspawn.dm"
+#include "yogstation\code\datums\martial\wrestling.dm"
 #include "yogstation\code\datums\mood_events\generic_positive_events.dm"
 #include "yogstation\code\datums\mutations\alcohol.dm"
 #include "yogstation\code\datums\mutations\extendoarm.dm"

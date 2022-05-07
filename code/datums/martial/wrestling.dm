@@ -448,9 +448,14 @@
 	name = "Wrestling Belt"
 	var/datum/martial_art/wrestling/style = new
 
+/obj/item/storage/belt/champion/wrestling/proc/can_learn(mob/user)
+	return TRUE
+
 /obj/item/storage/belt/champion/wrestling/equipped(mob/user, slot)
 	. = ..()
 	if(!ishuman(user))
+		return
+	if(!can_learn(user))
 		return
 	if(slot == SLOT_BELT)
 		var/mob/living/carbon/human/H = user
