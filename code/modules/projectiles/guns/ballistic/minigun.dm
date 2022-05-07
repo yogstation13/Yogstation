@@ -31,7 +31,6 @@
 	overheat = max(0, overheat - heat_diffusion)
 	if(overheat == 0 && heat_stage > 0)
 		heat_stage = 0
-		visible_message(span_notice("The minigun has cooled down to normal levels and is ready to use again."))
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/minigunbackpack/attack_hand(var/mob/living/carbon/user)
