@@ -444,7 +444,7 @@ LAW_WEIGHT robocop,0
 ION_LAW_WEIGHT robocop,2
 LAW_WEIGHT corporate,0
 ION_LAW_WEIGHT corporate,0
-LAW_WEIGHT ceo,5
+LAW_WEIGHT ceo,4
 ION_LAW_WEIGHT ceo,1
 
 ## Quirky laws. Shouldn't cause too much harm
