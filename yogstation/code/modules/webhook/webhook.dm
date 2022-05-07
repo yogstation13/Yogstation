@@ -29,7 +29,7 @@
 
 /proc/webhook_send_ticket_unclaimed(var/ckey, var/message, var/id)
 	var/list/query = webhook(ckey, message)
-	query.Add("id" = id)
+	query.Add(list("id" = id))
 	webhook_send("ticket_unclaimed", query)
 
 /////////////MENTORS/////////////

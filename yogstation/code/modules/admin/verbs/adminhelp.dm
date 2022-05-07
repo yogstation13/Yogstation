@@ -191,7 +191,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.ticketAmount += 1
 
 /datum/admin_help/proc/check_admins_online()
-	var/list/adm = get_admin_counts(requiredflags)
+	var/list/adm = get_admin_counts(R_BAN)
 	var/list/activemins = adm["present"]
 	. = activemins.len
 	if(. > 0)
@@ -209,12 +209,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			var/client = GLOB.directory[deadmin_ckey]
 			if(!client)
 				continue
-			if(X.prefs.toggles & SOUND_ADMINHELP)
-				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+			if(client.prefs.toggles & SOUND_ADMINHELP)
+				SEND_SOUND(client, sound('sound/effects/adminhelp.ogg'))
 			to_chat(client, span_notice("Ticket opened with no active admins. Ticket will be sent to discord in 30 seconds if not taken."), confidential=TRUE)
 			if(!found_deadmin)
 				found_deadmin = TRUE
-				add_timer(CALLBACK(src, .proc/send_to_discord), 30 SECONDS)
+				addtimer(CALLBACK(src, .proc/send_to_discord), 30 SECONDS)
 	if(!found_deadmin)
 		send_to_discord()
 
