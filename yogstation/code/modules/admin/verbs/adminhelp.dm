@@ -206,7 +206,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			var/datum/admins/A = GLOB.deadmins[deadmin_ckey]
 			if(!A.check_for_rights(R_BAN))
 				continue
-			var/client = GLOB.directory[deadmin_ckey]
+			var/client/client = GLOB.directory[deadmin_ckey]
 			if(!client)
 				continue
 			if(client.prefs.toggles & SOUND_ADMINHELP)
