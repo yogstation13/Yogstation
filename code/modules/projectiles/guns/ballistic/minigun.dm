@@ -56,6 +56,10 @@
 	else
 		..()
 
+/obj/item/minigunbackpack/examine(mob/user)
+	. = ..()
+	+= "Current heat level: [overheat] / [overheat_max]"
+
 /obj/item/minigunbackpack/dropped(mob/user)
 	. = ..()
 	if(armed)
