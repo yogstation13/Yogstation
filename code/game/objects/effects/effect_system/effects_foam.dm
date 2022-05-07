@@ -145,9 +145,11 @@
 				continue
 		if(lifetime % reagent_divisor)
 			reagents.reaction(O, VAPOR, fraction)
+		CHECK_TICK
 	var/hit = 0
 	for(var/mob/living/L in range(0,src))
 		hit += foam_mob(L)
+		CHECK_TICK
 	if(hit)
 		lifetime++ //this is so the decrease from mobs hit and the natural decrease don't cumulate.
 	var/T = get_turf(src)
@@ -156,6 +158,7 @@
 
 	if(--amount < 0)
 		return
+	CHECK_TICK
 	spread_foam()
 
 /obj/effect/particle_effect/foam/proc/foam_mob(mob/living/L)

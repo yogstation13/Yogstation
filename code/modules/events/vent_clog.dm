@@ -101,7 +101,7 @@
 /datum/round_event/vent_clog/beer/start()
 	for(var/obj/machinery/atmospherics/components/unary/vent in vents)
 		if(vent && vent.loc)
-			var/datum/reagents/R = new/datum/reagents(1000)
+			var/datum/reagents/R = new/datum/reagents(100)
 			R.my_atom = vent
 			R.add_reagent(/datum/reagent/consumable/ethanol/beer, reagentsAmount)
 
@@ -119,7 +119,7 @@
 /datum/round_event/vent_clog/cleaner/start()
 	for(var/obj/machinery/atmospherics/components/unary/vent in vents)
 		if(vent && vent.loc)
-			var/datum/reagents/R = new/datum/reagents(1000)
+			var/datum/reagents/R = new/datum/reagents(100)
 			R.my_atom = vent
 			R.add_reagent(/datum/reagent/space_cleaner, reagentsAmount)
 
