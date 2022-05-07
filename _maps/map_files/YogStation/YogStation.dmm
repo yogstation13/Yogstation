@@ -236,13 +236,10 @@
 	},
 /area/holodeck/perma)
 "abj" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/caution/stand_clear{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abn" = (
@@ -298,16 +295,13 @@
 /area/ai_monitored/storage/eva)
 "abu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
+/obj/effect/turf_decal/caution/stand_clear{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
-/turf/open/floor/plasteel/cafeteria,
+/turf/open/floor/plasteel,
 /area/security/prison)
 "aby" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -368,12 +362,16 @@
 /area/security/prison)
 "abG" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bookcase,
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
 	},
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abH" = (
 /obj/machinery/conveyor{
@@ -11896,9 +11894,11 @@
 /area/medical/medbay/lobby)
 "aVw" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/window/reinforced,
-/obj/machinery/computer/libraryconsole/bookmanagement,
-/obj/structure/table,
+/obj/structure/bookcase,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aVx" = (
@@ -12021,7 +12021,9 @@
 /area/maintenance/starboard/aft)
 "aWi" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/weightmachine/stacklifter,
+/obj/structure/window/reinforced,
+/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/structure/table,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aWj" = (
@@ -44577,7 +44579,7 @@
 /area/hallway/secondary/exit)
 "myf" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/weightmachine/weightlifter,
+/obj/structure/weightmachine/stacklifter,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "mym" = (
@@ -55195,6 +55197,11 @@
 /obj/structure/sign/warning/vacuum,
 /turf/closed/wall,
 /area/engine/engineering)
+"rWj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/weightmachine/weightlifter,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "rWs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -60837,13 +60844,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"uEA" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "uER" = (
 /obj/structure/table,
 /obj/machinery/light/small{
@@ -91111,7 +91111,7 @@ adD
 aYI
 aaw
 acd
-abu
+abG
 tcv
 nPD
 wTT
@@ -92137,12 +92137,12 @@ aao
 aax
 aSN
 bmp
-abj
+abu
 aSM
 aVz
 aat
 ajq
-aWi
+myf
 gfg
 aat
 acK
@@ -92396,10 +92396,10 @@ aat
 gRM
 aat
 aat
-abG
+aVw
 aat
 pLk
-aWi
+myf
 aat
 aat
 acK
@@ -92653,10 +92653,10 @@ aat
 gDP
 aat
 aat
-abG
+aVw
 aat
 pLk
-myf
+rWj
 aat
 aat
 acK
@@ -92910,10 +92910,10 @@ aat
 sON
 aat
 aat
-abG
+aVw
 aat
 pLk
-myf
+rWj
 uNu
 acj
 voo
@@ -93169,7 +93169,7 @@ aat
 aat
 hQX
 aat
-aVw
+aWi
 nCD
 uNu
 dxV
@@ -93935,9 +93935,9 @@ aaa
 aiT
 aiT
 aiT
-aiT
-aiT
-uEA
+abj
+aat
+aat
 aat
 aat
 aat
