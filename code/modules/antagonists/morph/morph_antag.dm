@@ -60,7 +60,7 @@
 	..()
 	if(!target_things)
 		target_things = rand(20,60)
-	explanation_text = "Eat [target_things] things."
+	explanation_text = "Eat at least [target_things] things."
 
 /datum/objective/morph_eat_things/check_completion()
 	if(..())
@@ -80,7 +80,7 @@
 	..()
 	if(!target_corpses)
 		target_corpses = rand(2,6)
-	explanation_text = "Eat [target_corpses] corpses."
+	explanation_text = "Eat at least [target_corpses] corpses."
 
 /datum/objective/morph_eat_corpses/check_completion()
 	if(..())
