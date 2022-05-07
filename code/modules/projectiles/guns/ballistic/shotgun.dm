@@ -192,6 +192,13 @@
 	var/slung = FALSE
 	can_bayonet = TRUE //STOP WATCHING THIS FILTH MY FELLOW CARGONIAN,WE MUST DEFEND OURSELVES
 
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/chamber_round(keep_bullet = FALSE)
+	if(prob(40))
+		playsound(src, dry_fire_sound, 30, TRUE)
+		update_icon()
+		return
+	return ..()
+
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/attackby(obj/item/A, mob/user, params)
 	..()
 	if(istype(A, /obj/item/stack/cable_coil) && !sawn_off)
