@@ -322,6 +322,9 @@
 	if (gibbed)
 		. = ..()
 	else
+		if (prev_body)
+			prev_body.forceMove(loc)
+			prev_body.gib(TRUE, TRUE, TRUE)
 		gib()
 	
 /mob/living/simple_animal/waterblob/Moved(atom/OldLoc, Dir)
