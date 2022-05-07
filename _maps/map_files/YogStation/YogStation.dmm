@@ -295,12 +295,15 @@
 /area/ai_monitored/storage/eva)
 "abu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bookcase,
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
+/obj/structure/disposalpipe/segment{
+	dir = 5
 	},
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/contraband/lusty_xenomorph{
+	pixel_y = -32
+	},
+/obj/effect/decal/cleanable/robot_debris/old,
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
 /area/security/prison)
 "aby" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -361,9 +364,11 @@
 /area/security/prison)
 "abG" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/window/reinforced,
-/obj/machinery/computer/libraryconsole/bookmanagement,
-/obj/structure/table,
+/obj/structure/bookcase,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abH" = (
@@ -569,6 +574,7 @@
 	light_color = "#e8eaff"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "acd" = (
@@ -11394,7 +11400,12 @@
 /area/engine/atmos_distro)
 "aSM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/weightmachine/stacklifter,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/caution{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aSN" = (
@@ -11884,8 +11895,17 @@
 /area/medical/medbay/lobby)
 "aVw" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/weightmachine/weightlifter,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aVx" = (
 /obj/effect/decal/cleanable/dirt,
@@ -12005,6 +12025,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"aWi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/window/reinforced,
+/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aWj" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -12052,13 +12079,13 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
 "aWw" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera{
 	c_tag = "Prison Workshop";
 	dir = 4;
 	network = list("ss13","prison")
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "aWy" = (
@@ -21763,16 +21790,17 @@
 /area/science/misc_lab)
 "bSk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/obj/machinery/door/airlock{
+	name = "Workshop"
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/cafeteria,
+/turf/open/floor/plasteel/dark,
 /area/security/prison)
 "bSl" = (
 /obj/machinery/computer/nanite_cloud_controller,
@@ -27382,13 +27410,8 @@
 /area/ai_monitored/turret_protected/ai)
 "dOK" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/obj/structure/sign/poster/contraband/lusty_xenomorph{
-	pixel_y = -32
-	},
-/obj/effect/decal/cleanable/robot_debris/old,
+/obj/structure/disposalpipe/segment,
+/obj/structure/table,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "dOS" = (
@@ -27880,15 +27903,8 @@
 /area/science/xenobiology)
 "egR" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/washing_machine,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel/cafeteria,
+/obj/structure/weightmachine/stacklifter,
+/turf/open/floor/plasteel,
 /area/security/prison)
 "ehE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -30698,12 +30714,9 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "fFN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "fFO" = (
@@ -30720,14 +30733,14 @@
 /area/ai_monitored/secondarydatacore)
 "fGg" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/washing_machine,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/structure/table,
-/obj/structure/bedsheetbin,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "fGE" = (
@@ -34054,20 +34067,15 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/machinery/light{
-	dir = 8;
-	light_color = "#e8eaff"
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/camera{
-	c_tag = "Prison Laundry";
-	dir = 4;
-	network = list("ss13","prison")
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/caution,
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "hqa" = (
@@ -53508,6 +53516,11 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/camera{
+	c_tag = "Prison Laundry";
+	dir = 4;
+	network = list("ss13","prison")
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "rig" = (
@@ -57664,8 +57677,13 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/structure/bedsheetbin,
+/obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
@@ -60824,6 +60842,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"uEA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/weightmachine/weightlifter,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "uER" = (
 /obj/structure/table,
 /obj/machinery/light/small{
@@ -67433,17 +67456,12 @@
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "yfU" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock{
-	name = "Workshop"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "yfZ" = (
@@ -90317,7 +90335,7 @@ aiT
 aiT
 aiT
 aiT
-aaa
+aiT
 aaa
 aaa
 aaa
@@ -90573,7 +90591,7 @@ dJQ
 abZ
 aWw
 dOK
-aiT
+abu
 aiT
 aiT
 aiT
@@ -91087,8 +91105,8 @@ iqN
 adD
 aYI
 aaw
+aaw
 acd
-dQS
 tcv
 nPD
 wTT
@@ -91344,9 +91362,9 @@ bSH
 csQ
 bSH
 aaw
+aaw
 wTT
-dQS
-dQS
+aVw
 dQS
 acd
 fjk
@@ -91601,8 +91619,8 @@ qUn
 adJ
 qUn
 aaw
+aaw
 acd
-egR
 fGg
 tmi
 acd
@@ -91858,7 +91876,7 @@ acd
 acd
 acd
 iDL
-acd
+iDL
 acd
 acd
 acd
@@ -92114,12 +92132,12 @@ aao
 aax
 aSN
 bmp
-aat
-aat
+aSM
+aSM
 aVz
 aat
 ajq
-aSM
+egR
 gfg
 aat
 acK
@@ -92373,10 +92391,10 @@ aat
 gRM
 aat
 aat
-abu
+abG
 aat
 pLk
-aSM
+egR
 aat
 aat
 acK
@@ -92630,10 +92648,10 @@ aat
 gDP
 aat
 aat
-abu
+abG
 aat
 pLk
-aVw
+uEA
 aat
 aat
 acK
@@ -92887,10 +92905,10 @@ aat
 sON
 aat
 aat
-abu
+abG
 aat
 pLk
-aVw
+uEA
 uNu
 acj
 voo
@@ -93146,7 +93164,7 @@ aat
 aat
 hQX
 aat
-abG
+aWi
 nCD
 uNu
 dxV
