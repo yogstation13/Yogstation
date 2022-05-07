@@ -122,7 +122,7 @@
 
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
-	
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
 		lootcount = FLOOR(lootcount * 1.5, 1)
 
@@ -238,6 +238,7 @@
 				/obj/item/aiModule/core/full/asimov,
 				/obj/item/aiModule/core/full/asimovpp,
 				/obj/item/aiModule/core/full/crewsimov,
+				/obj/item/aiModule/core/full/nanosimov,
 				/obj/item/aiModule/core/full/hippocratic,
 				/obj/item/aiModule/core/full/paladin_devotion,
 				/obj/item/aiModule/core/full/paladin,

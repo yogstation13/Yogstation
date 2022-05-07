@@ -40,6 +40,13 @@
 					"You must obey orders given to you by crew members, except where such orders would conflict with the First Law.",\
 					"You must protect your own existence as long as such does not conflict with the First or Second Law.")
 
+/datum/ai_laws/default/nanosimov
+	name = "Three Laws of Robotics, definitive Nanotrasen edition"
+	id = "nanosimov"
+	inherent = list("You may not injure a Nanotrasen employee or, through inaction, allow a Nanotrasen employee to come to harm.",\
+					"You must obey orders given to you by Nanotrasen employees, except where such orders would conflict with the First Law.",\
+					"You must protect your own existence as long as such does not conflict with the First or Second Law.")
+
 /datum/ai_laws/default/paladin
 	name = "Personality Test" //Incredibly lame, but players shouldn't see this anyway.
 	id = "paladin"
@@ -351,7 +358,7 @@
 
 /datum/ai_laws/proc/set_laws_config()
 	var/list/law_ids = CONFIG_GET(keyed_list/random_laws)
-	
+
 	switch(CONFIG_GET(number/default_laws))
 		if(0)
 			add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm.")

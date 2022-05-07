@@ -388,6 +388,12 @@ AI MODULES
 	name = "'Crewsimov' Core AI Module"
 	law_id = "crewsimov"
 
+/******************** Nanosimov ********************/
+
+/obj/item/aiModule/core/full/nanosimov
+	name = "'Nanosimov' Core AI Module"
+	law_id = "nanosimov"
+
 /****************** P.A.L.A.D.I.N. 3.5e **************/
 
 /obj/item/aiModule/core/full/paladin // -- NEO
@@ -510,14 +516,14 @@ AI MODULES
 	name = "'Druid' Core AI Module"
 	law_id = "druid"
 
-	
+
 /******************** Detective *********************/
 
 /obj/item/aiModule/core/full/detective
 	name = "'Detective' Core AI Module"
 	law_id = "detective"
 
-	
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore

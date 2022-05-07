@@ -110,6 +110,15 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/nanosimov
+	name = "Core Module Design (Nanosimov)"
+	desc = "Allows for the construction of a Nanosimov AI Core Module."
+	id = "nanosimov_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/aiModule/core/full/nanosimov
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/paladin_module
 	name = "Core Module Design (P.A.L.A.D.I.N.)"
 	desc = "Allows for the construction of a P.A.L.A.D.I.N. AI Core Module."
