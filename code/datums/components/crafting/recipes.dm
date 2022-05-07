@@ -1007,3 +1007,11 @@
 	time = 10
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/tape
+	name = "tape"
+	reqs = list(/obj/item/stack/sheet/cloth = 1,
+				/datum/reagent/consumable/caramel = 5)
+	result = /obj/item/stack/tape
+	time = 10
+	category = CAT_MISC
