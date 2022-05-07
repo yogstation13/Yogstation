@@ -100,6 +100,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	var/timerid = null
 	var/list/meteordrop = list(/obj/item/stack/ore/iron)
 	var/dropamt = 2
+	var/atom/meteor_target
 
 /obj/effect/meteor/Move()
 	if(z != z_original || loc == dest)
@@ -123,6 +124,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		deltimer(timerid)
 	GLOB.meteor_list -= src
 	SSaugury.unregister_doom(src)
+	STOP_PROCESSING(SSmeteor, src) //yogs
 	walk(src,0) //this cancels the walk_towards() proc
 	. = ..()
 
@@ -133,7 +135,11 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	SSaugury.register_doom(src, threat)
 	SpinAnimation()
 	timerid = QDEL_IN(src, lifetime)
-	chase_target(target)
+	//yogs start
+	meteor_target = target
+	START_PROCESSING(SSmeteor, src)
+	//yogs end
+	//chase_target(target)
 
 /obj/effect/meteor/Bump(atom/A)
 	if(A)
@@ -192,12 +198,15 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	for(var/throws = dropamt, throws > 0, throws--)
 		var/thing_to_spawn = pick(meteordrop)
 		new thing_to_spawn(get_turf(src))
+//yogs start
+/obj/effect/meteor/process()
+	step_towards(src, meteor_target)
 
-/obj/effect/meteor/proc/chase_target(atom/chasing, delay = 1)
+/*/obj/effect/meteor/proc/chase_target(atom/chasing, delay = 1)
 	set waitfor = FALSE
 	if(chasing)
-		walk_towards(src, chasing, delay)
-
+		walk_towards(src, chasing, delay)*/
+//yogs end
 /obj/effect/meteor/proc/meteor_effect()
 	if(heavy)
 		var/sound/meteor_sound = sound(meteorsound)
