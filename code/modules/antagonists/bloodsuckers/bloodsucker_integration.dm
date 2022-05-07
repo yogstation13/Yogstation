@@ -16,12 +16,6 @@
 		return
 	. = ..()
 
-/// Prevents Bloodsuckers from naturally regenerating Blood - Even while on masquerade
-/mob/living/carbon/human/handle_blood(delta_time, times_fired)
-	if(mind || IS_BLOODSUCKER(src))
-		return
-	. = ..()
-
 /mob/living/carbon/human/natural_bodytemperature_stabilization(datum/gas_mixture/environment, delta_time, times_fired)
 	// Return 0 as your natural temperature. Species proc handle_environment() will adjust your temperature based on this.
 	if(HAS_TRAIT(src, TRAIT_COLDBLOODED))

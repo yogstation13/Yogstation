@@ -47,7 +47,7 @@
 	resistance_flags = NONE
 	material_drop = /obj/item/stack/sheet/metal
 	material_drop_amount = 2
-	armor = list(MELEE = 50, BULLET = 20, LASER = 30, ENERGY = 0, BOMB = 50, BIO = 0, FIRE = 70, ACID = 60)
+	armor = list("melee" = 50, "bullet" = 20, "laser" = 30, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 
 /obj/structure/closet/crate/coffin/securecoffin
 	name = "secure coffin"
@@ -61,7 +61,7 @@
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 	material_drop = /obj/item/stack/sheet/metal
 	material_drop_amount = 2
-	armor = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 0, BOMB = 100, BIO = 0, FIRE = 100, ACID = 100)
+	armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 100, "fire" = 100, "acid" = 100)
 
 /obj/structure/closet/crate/coffin/meatcoffin
 	name = "meat coffin"
@@ -75,7 +75,7 @@
 	pryLidTimer = 20 SECONDS
 	material_drop = /obj/item/reagent_containers/food/snacks/meat/slab
 	material_drop_amount = 3
-	armor = list(MELEE = 70, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 70, BIO = 0, FIRE = 70, ACID = 60)
+	armor = list("melee" = 70, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 70, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 
 /obj/structure/closet/crate/coffin/metalcoffin
 	name = "metal coffin"
@@ -88,7 +88,7 @@
 	breakout_time = 25 SECONDS
 	pryLidTimer = 30 SECONDS
 	material_drop = /obj/item/stack/sheet/metal
-	armor = list(MELEE = 40, BULLET = 15, LASER = 50, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
+	armor = list("melee" = 40, "bullet" = 15, "laser" = 50, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 50, "fire" = 70, "acid" = 60)
 
 //////////////////////////////////////////////
 

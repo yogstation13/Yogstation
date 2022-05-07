@@ -495,19 +495,13 @@
 	switch(rand(1, 3))
 		if(1) // Protege and Drink Objective
 			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/gourmand)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
 		if(2) // Heart Thief and Protege Objective
 			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
-		if(3) // All of them
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief, new /datum/objective/bloodsucker/gourmand)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
+		if(3) // Heart Thief and Drink Objective
+			rolled_objectives = list(new /datum/objective/bloodsucker/heartthief, new /datum/objective/bloodsucker/gourmand)
+	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
+		objective.owner = owner
+		objectives += objective
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()

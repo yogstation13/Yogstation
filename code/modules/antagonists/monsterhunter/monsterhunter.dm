@@ -135,22 +135,16 @@
 	var/turf/my_loc = get_turf(owner)
 
 	var/list/mob/living/carbon/monsters = list()
-	for(var/mob/living/carbon/all_carbons in GLOB.alive_mob_list)
-		if(all_carbons != owner && all_carbons.mind)
-			var/datum/mind/carbon_minds = all_carbons.mind
-			if(IS_HERETIC(all_carbons) || IS_BLOODSUCKER(all_carbons) || iscultist(all_carbons) || is_servant_of_ratvar(all_carbons) || is_wizard(all_carbons))
-				monsters += carbon_minds
-			if(carbon_minds.has_antag_datum(/datum/antagonist/changeling))
-				monsters += carbon_minds
-			if(carbon_minds.has_antag_datum(/datum/antagonist/ashwalker))
-				monsters += carbon_minds
-			if(carbon_minds.has_antag_datum(/datum/antagonist/wizard/apprentice))
-				monsters += carbon_minds
-			if(istype(monsters))
-				var/their_loc = get_turf(all_carbons)
-				var/distance = get_dist_euclidian(my_loc, their_loc)
-				if(distance < HUNTER_SCAN_MAX_DISTANCE)
-					monsters[all_carbons] = (HUNTER_SCAN_MAX_DISTANCE ** 2) - (distance ** 2)
+	for(var/datum/antagonist/monster in GLOB.antagonists)
+		var/datum/mind/brain = monster.owner
+		if(brain == owner || !brain)
+			continue
+		if(IS_HERETIC(brain.current) || IS_BLOODSUCKER(brain.current) || iscultist(brain.current) || is_servant_of_ratvar(brain.current) || is_wizard(brain.current))
+			monsters += brain
+		if(brain.has_antag_datum(/datum/antagonist/changeling))
+			monsters += brain
+		if(brain.has_antag_datum(/datum/antagonist/ashwalker))
+			monsters += brain
 
 	if(monsters.len)
 		/// Point at a 'random' monster, biasing heavily towards closer ones.

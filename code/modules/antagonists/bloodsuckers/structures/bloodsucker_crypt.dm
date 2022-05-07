@@ -362,7 +362,6 @@
 		Good for immediate defense of your lair."
 	Vassal_desc = "This is a possesed knight's armor, it will protect your master if people get too close to it."
 	Hunter_desc = "This is a suspicious knight's armor. These things shouldn't be here, i shouldn't get too close."
-	var/active = FALSE
 	var/upgraded = FALSE
 
 /obj/structure/bloodsucker/possessedarmor/upgraded
@@ -372,11 +371,11 @@
 /obj/structure/bloodsucker/possessedarmor/bolt()
 	. = ..()
 	anchored = TRUE
+	START_PROCESSING(SSprocessing, src)
 
 /obj/structure/bloodsucker/possessedarmor/unbolt()
 	. = ..()
 	anchored = FALSE
-	active = FALSE
 	STOP_PROCESSING(SSprocessing, src)
 
 /obj/structure/bloodsucker/possessedarmor/AltClick(mob/user)
@@ -403,26 +402,20 @@
 				return
 	return ..()
 
-/obj/structure/bloodsucker/possessedarmor/attack_hand(mob/user, list/modifiers)
-	. = ..()
-	active = TRUE
-	START_PROCESSING(SSprocessing, src)
-
 /obj/structure/bloodsucker/possessedarmor/Destroy()
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 
 /obj/structure/bloodsucker/possessedarmor/process()
-	if(active)
-		for(var/mob/living/passerby in dview(1, get_turf(src)))
-			if(IS_BLOODSUCKER(passerby) || IS_VASSAL(passerby))
-				continue
-			to_chat(passerby, span_warning("The armor starts moving!"))
-			if(upgraded)
-				new /mob/living/simple_animal/hostile/bloodsucker/possessedarmor/upgraded(src.loc)
-			else
-				new /mob/living/simple_animal/hostile/bloodsucker/possessedarmor(src.loc)
-			qdel(src)
+	for(var/mob/living/passerby in dview(1, get_turf(src)))
+		if(IS_BLOODSUCKER(passerby) || IS_VASSAL(passerby))
+			continue
+		to_chat(passerby, span_warning("The armor starts moving!"))
+		if(upgraded)
+			new /mob/living/simple_animal/hostile/bloodsucker/possessedarmor/upgraded(src.loc)
+		else
+			new /mob/living/simple_animal/hostile/bloodsucker/possessedarmor(src.loc)
+		qdel(src)
 
 ////////////////////////////////////////////////////
 
@@ -867,7 +860,7 @@
 					to_chat(user, span_danger("You have brought [target] back from the Dead!"))
 					to_chat(target, span_announce("As Blood drips over your body, your heart begins to beat... You live again!"))
 				B.blood_volume -= 150
-				target.revive(full_heal = TRUE, admin_revive = TRUE)
+				target.revive(full_heal = TRUE, admin_revive = FALSE)
 				return
 		to_chat(user, span_danger("You decide not to revive [target]."))
 		// Unbuckle them now.
