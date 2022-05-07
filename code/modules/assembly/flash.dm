@@ -197,6 +197,9 @@
 		if(user.mind)
 			var/datum/antagonist/rev/head/converter = user.mind.has_antag_datum(/datum/antagonist/rev/head)
 			if(!converter)
+				var/datum/antagonist/rev/underling = user.mind.has_antag_datum(/datum/antagonist/rev)
+				if(underling)
+					to_chat(user, span_warning("Only head revolutionaries can convert with flashes!"))
 				return
 			if(!H.client)
 				to_chat(user, span_warning("This mind is so vacant that it is not susceptible to influence!"))
@@ -209,6 +212,12 @@
 			else
 				to_chat(user, span_warning("This mind seems resistant to the flash!"))
 
+/obj/item/assembly/flash/pickup(mob/user)
+	. = ..()
+	if(user.mind)
+		var/datum/antagonist/rev/head/converter = user.mind.has_antag_datum(/datum/antagonist/rev/head)
+		if(converter)
+			name = "revolutionary flash" // Anything you touch becomes part of the revolution. Viva
 
 /obj/item/assembly/flash/cyborg
 

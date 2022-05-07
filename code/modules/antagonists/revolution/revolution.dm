@@ -243,6 +243,7 @@
 
 	if(give_flash)
 		var/obj/item/assembly/flash/handheld/T = new(H)
+		T.name = "revolutionary flash"
 		var/list/slots = list (
 			"backpack" = SLOT_IN_BACKPACK,
 			"left pocket" = SLOT_L_STORE,
