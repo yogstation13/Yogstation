@@ -236,9 +236,10 @@
 	},
 /area/holodeck/perma)
 "abj" = (
-/obj/structure/window/reinforced,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/photocopier,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abn" = (
@@ -293,9 +294,12 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "abu" = (
-/obj/structure/window/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bookcase,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aby" = (
@@ -358,7 +362,8 @@
 "abG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/window/reinforced,
-/obj/structure/bookcase,
+/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/structure/table,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abH" = (
@@ -2711,7 +2716,8 @@
 /area/security/courtroom)
 "ajq" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/weightmachine/stacklifter,
+/obj/structure/window/reinforced,
+/obj/machinery/photocopier,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ajs" = (
@@ -11388,11 +11394,7 @@
 /area/engine/atmos_distro)
 "aSM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bookcase,
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
+/obj/structure/weightmachine/stacklifter,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aSN" = (
@@ -11882,12 +11884,7 @@
 /area/medical/medbay/lobby)
 "aVw" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/flashlight/lamp/green,
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
+/obj/structure/weightmachine/weightlifter,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aVx" = (
@@ -11907,6 +11904,11 @@
 /obj/machinery/light{
 	dir = 8;
 	light_color = "#e8eaff"
+	},
+/obj/structure/bookcase,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -12003,13 +12005,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"aWi" = (
-/obj/structure/window/reinforced,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/machinery/computer/libraryconsole/bookmanagement,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aWj" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -35149,6 +35144,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/table,
+/obj/item/flashlight/lamp/green,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "hRi" = (
@@ -50751,7 +50752,8 @@
 /area/medical/storage)
 "pLk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/weightmachine/weightlifter,
+/obj/structure/window/reinforced,
+/obj/structure/bookcase,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "pLs" = (
@@ -60822,13 +60824,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"uEA" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "uER" = (
 /obj/structure/table,
 /obj/machinery/light/small{
@@ -92120,11 +92115,11 @@ aax
 aSN
 bmp
 aat
-aSM
-aVz
-abj
-ajq
 aat
+aVz
+aat
+ajq
+aSM
 gfg
 aat
 acK
@@ -92377,11 +92372,11 @@ abS
 aat
 gRM
 aat
-aSM
 aat
 abu
-ajq
 aat
+pLk
+aSM
 aat
 aat
 acK
@@ -92634,11 +92629,11 @@ abT
 aat
 gDP
 aat
-aSM
 aat
 abu
-pLk
 aat
+pLk
+aVw
 aat
 aat
 acK
@@ -92891,11 +92886,11 @@ abU
 aat
 sON
 aat
-aSM
 aat
-abG
+abu
+aat
 pLk
-aat
+aVw
 uNu
 acj
 voo
@@ -93148,10 +93143,10 @@ abS
 nCD
 wQl
 aat
-aVw
-hQX
-aWi
 aat
+hQX
+aat
+abG
 nCD
 uNu
 dxV
@@ -93917,9 +93912,9 @@ aaa
 aiT
 aiT
 aiT
-aiT
-aiT
-uEA
+abj
+aat
+aat
 aat
 aat
 aat
