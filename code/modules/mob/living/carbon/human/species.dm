@@ -309,8 +309,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(should_have_tail && !tail)
 		tail = new mutanttail
 		// message_admins("tail: [tail]")
-		// if(iscatperson(C))
-		// 	tail = C.species.mutant_tail
+		if(iscatperson(C))
+			tail.tail_type = C.dna.features["tail_human"]
 		if(ispolysmorph(C))
 			tail.tail_type = C.dna.features["tail_polysmorph"]
 		if(islizard(C))
