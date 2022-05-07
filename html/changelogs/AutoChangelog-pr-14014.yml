@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "surgeries no longer cause damage they don't heal"
-  - bugfix: "surgeries done to robotic limbs no longer cause flinching damage if they are done on the eyes/groin/mouth"
