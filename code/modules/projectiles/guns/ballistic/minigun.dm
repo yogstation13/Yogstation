@@ -58,7 +58,7 @@
 
 /obj/item/minigunbackpack/examine(mob/user)
 	. = ..()
-	+= "Current heat level: [overheat] / [overheat_max]"
+	. += "<span class='notice'>Current heat level: [overheat] / [overheat_max]"
 
 /obj/item/minigunbackpack/dropped(mob/user)
 	. = ..()
