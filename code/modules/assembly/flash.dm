@@ -198,7 +198,7 @@
 			var/datum/antagonist/rev/head/converter = user.mind.has_antag_datum(/datum/antagonist/rev/head)
 			if(!converter)
 				var/datum/antagonist/rev/underling = user.mind.has_antag_datum(/datum/antagonist/rev)
-				if(underling)
+				if(underling || name == "revolutionary flash")
 					to_chat(user, span_warning("Only head revolutionaries can convert with flashes!"))
 				return
 			if(!H.client)
