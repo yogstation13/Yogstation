@@ -1,7 +1,7 @@
-/datum/hud/revenant
+/datum/hud/living
 	ui_style = 'icons/mob/screen_gen.dmi'
 
-/datum/hud/revenant/New(mob/owner)
+/datum/hud/living/New(mob/living/owner)
 	..()
 
 	pull_icon = new /obj/screen/pull()
@@ -11,5 +11,7 @@
 	pull_icon.hud = src
 	static_inventory += pull_icon
 
-	healths = new /obj/screen/healths/revenant()
+	healths = new /obj/screen/healths/living()
+	healths.hud = src
 	infodisplay += healths
+
