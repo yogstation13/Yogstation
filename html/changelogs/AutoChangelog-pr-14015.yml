@@ -1,0 +1,4 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "regenerate_organs no longer disappears cat tails. antag felinids rejoice."
