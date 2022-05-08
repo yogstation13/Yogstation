@@ -42,7 +42,7 @@
 	. = ..()
 	to_chat(owner, span_notice("You focus on separating your consciousness from your physical form..."))
 
-/datum/action/bloodsucker/gohome/process(delta_time)
+/datum/action/bloodsucker/gohome/UsePower(mob/living/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -57,7 +57,7 @@
 		if(GOHOME_FLICKER_TWO)
 			INVOKE_ASYNC(src, .proc/flicker_lights, 4, 60)
 		if(GOHOME_TELEPORT)
-			INVOKE_ASYNC(src, .proc/teleport_to_coffin, owner)
+			INVOKE_ASYNC(src, .proc/teleport_to_coffin, user)
 	teleporting_stage++
 
 /datum/action/bloodsucker/gohome/ContinueActive(mob/living/user, mob/living/target)

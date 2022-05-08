@@ -37,12 +37,11 @@
 	user.digitalcamo = 1
 	to_chat(user, span_notice("You put your Cloak of Darkness on."))
 
-/datum/action/bloodsucker/cloak/process(delta_time)
+/datum/action/bloodsucker/cloak/UsePower(mob/living/user)
 	// Checks that we can keep using this.
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/user = owner
 	animate(user, alpha = max(25, owner.alpha - min(75, 10 + 5 * level_current)), time = 1.5 SECONDS)
 	// Prevents running while on Cloak of Darkness
 	if(runbound)
