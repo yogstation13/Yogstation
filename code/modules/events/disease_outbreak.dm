@@ -23,11 +23,11 @@
 /datum/round_event/disease_outbreak/start()
 	var/advanced_virus = FALSE
 	max_severity = 3 + max(FLOOR((world.time - control.earliest_start)/6000, 1),0) //3 symptoms at 20 minutes, plus 1 per 10 minutes
-	if(prob(20 + (10 * max_severity)))
+	if(prob(10 * max_severity))
 		advanced_virus = TRUE
 
 	if(!virus_type && !advanced_virus)
-		virus_type = pick(/datum/disease/dnaspread, /datum/disease/advance/flu, /datum/disease/advance/cold, /datum/disease/sleepy, /datum/disease/brainrot, /datum/disease/magnitis, /datum/disease/jitters)
+		virus_type = pick(/datum/disease/dnaspread, /datum/disease/sleepy, /datum/disease/brainrot, /datum/disease/magnitis, /datum/disease/transformation/robot, /datum/disease/rhumba_beat, /datum/disease/gbs)
 
 	for(var/mob/living/carbon/human/H in shuffle(GLOB.alive_mob_list))
 		var/turf/T = get_turf(H)
@@ -62,6 +62,14 @@
 				D = new virus_type()
 		else
 			D = new /datum/disease/advance/random(max_severity, max_severity)
+			var/datum/disease/advance/adv = D 
+			switch (rand(1, 3))
+				if (1)
+					adv.AddSymptom(new /datum/symptom/asphyxiation)
+				if (2)
+					adv.AddSymptom(new /datum/symptom/alkali)
+				if (3)
+					adv.AddSymptom(new /datum/symptom/flesh_death)
 		D.carrier = TRUE
 		H.ForceContractDisease(D, FALSE, TRUE)
 
