@@ -59,7 +59,7 @@
 						name = "Range",
 						level = saved_stats.range
 					))
-	.["melee"] = !saved_stats.ranged
+	.[MELEE] = !saved_stats.ranged
 	.["abilities_major"] = list()
 	var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : ((subtypesof(/datum/guardian_ability/major)-/datum/guardian_ability/major/healing) - typesof(/datum/guardian_ability/major/special))
 	for (var/ability in types)
@@ -149,7 +149,7 @@
 		if ("ranged")
 			if (points >= 3)
 				saved_stats.ranged = TRUE
-		if ("melee")
+		if (MELEE)
 			saved_stats.ranged = FALSE
 
 /datum/guardianbuilder/proc/calc_points()

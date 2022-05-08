@@ -14,7 +14,7 @@
 /obj/structure/sign/warning/biohazard
 	name = "\improper BIOHAZARD"
 	desc = "A warning sign which reads 'BIOHAZARD'."
-	icon_state = "bio"
+	icon_state = BIO
 
 /obj/structure/sign/warning/electricshock
 	name = "\improper HIGH VOLTAGE"

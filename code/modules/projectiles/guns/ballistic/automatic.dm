@@ -12,7 +12,7 @@
 	rack_sound = "sound/weapons/smgrack.ogg"
 	feedback_fire_slide = TRUE
 	feedback_types = list(
-		"fire" = 2
+		FIRE = 2
 	)
 
 /obj/item/gun/ballistic/automatic/proto

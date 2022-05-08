@@ -318,7 +318,7 @@ Versioning
 		"laname" = L.lastattacker,
 		"lakey" = L.lastattackerckey,
 		"brute" = L.getBruteLoss(),
-		"fire" = L.getFireLoss(),
+		FIRE = L.getFireLoss(),
 		"brain" = L.getOrganLoss(ORGAN_SLOT_BRAIN) || BRAIN_DAMAGE_DEATH, //getOrganLoss returns null without a brain but a value is required for this column
 		"oxy" = L.getOxyLoss(),
 		"tox" = L.getToxLoss(),

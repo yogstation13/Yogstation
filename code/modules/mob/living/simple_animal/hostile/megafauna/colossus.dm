@@ -387,9 +387,9 @@ Difficulty: Very Hard
 #define ACTIVATE_TOUCH "touch"
 #define ACTIVATE_SPEECH "speech"
 #define ACTIVATE_HEAT "heat"
-#define ACTIVATE_BULLET "bullet"
-#define ACTIVATE_ENERGY "energy"
-#define ACTIVATE_BOMB "bomb"
+#define ACTIVATE_BULLET BULLET
+#define ACTIVATE_ENERGY ENERGY
+#define ACTIVATE_BOMB BOMB
 #define ACTIVATE_MOB_BUMP "bumping"
 #define ACTIVATE_WEAPON "weapon"
 #define ACTIVATE_MAGIC "magic"

@@ -36,14 +36,14 @@
 	
 
 /obj/item/laserlevel/proc/update_overlay(mob/user)
-	user.clear_fullscreen("laser",0)
+	user.clear_fullscreen(LASER,0)
 	if(lightlevel)
-		var/obj/screen/fullscreen/laser/laserscreen = user.overlay_fullscreen("laser", /obj/screen/fullscreen/laser)
+		var/obj/screen/fullscreen/laser/laserscreen = user.overlay_fullscreen(LASER, /obj/screen/fullscreen/laser)
 		laserscreen.alpha = 42 * lightlevel
 
 /obj/item/laserlevel/dropped(mob/user, silent)
 	. = ..()
-	user.clear_fullscreen("laser",0)
+	user.clear_fullscreen(LASER,0)
 
 /obj/item/laserlevel/pickup(mob/user)
 	. = ..()

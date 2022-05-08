@@ -1,5 +1,5 @@
 
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null, armour_penetration, penetrated_text)
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = MELEE, absorb_text = null, soften_text = null, armour_penetration, penetrated_text)
 	var/armor = getarmor(def_zone, attack_flag)
 
 	//the if "armor" check is because this is used for everything on /living, including humans
@@ -75,7 +75,7 @@
 		if(!blocked)
 			visible_message(span_danger("[src] has been hit by [I]."), \
 							span_userdanger("[src] has been hit by [I]."))
-			var/armor = run_armor_check(zone, "melee", "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].",I.armour_penetration)
+			var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].",I.armour_penetration)
 			if(isobj(AM))
 				var/obj/O = AM
 				if(O.damtype != STAMINA)
@@ -119,7 +119,7 @@
 		visible_message(span_warning("[M] pushes [src] out of the way."), null, null, 5)
 
 /mob/living/fire_act()
-	last_damage = "fire"
+	last_damage = FIRE
 	adjust_fire_stacks(3)
 	IgniteMob()
 

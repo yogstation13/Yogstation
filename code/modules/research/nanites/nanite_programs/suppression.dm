@@ -297,7 +297,7 @@
 					hal_details = hal_chat
 			if("Battle")
 				hal_type = "Battle"
-				var/sound_list = list("random","laser","disabler","esword","gun","stunprod","harmbaton","bomb")
+				var/sound_list = list("random",LASER,"disabler","esword","gun","stunprod","harmbaton",BOMB)
 				var/hal_choice = input("Choose the hallucination battle type", name) as null|anything in sound_list
 				if(!hal_choice || hal_choice == "random")
 					hal_details = null
@@ -343,7 +343,7 @@
 							hal_details = SCREWYHUD_HEALTHY
 			if("Alert")
 				hal_type = "Alert"
-				var/alert_list = list("random","not_enough_oxy","not_enough_tox","not_enough_co2","too_much_oxy","too_much_co2","too_much_tox","newlaw","nutrition","charge","gravity","fire","locked","hacked","temphot","tempcold","pressure")
+				var/alert_list = list("random","not_enough_oxy","not_enough_tox","not_enough_co2","too_much_oxy","too_much_co2","too_much_tox","newlaw","nutrition","charge","gravity",FIRE,"locked","hacked","temphot","tempcold","pressure")
 				var/hal_choice = input("Choose the alert", name) as null|anything in alert_list
 				if(!hal_choice || hal_choice == "random")
 					hal_details = null

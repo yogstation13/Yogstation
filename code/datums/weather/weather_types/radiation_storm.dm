@@ -29,7 +29,7 @@
 
 
 /datum/weather/rad_storm/weather_act(mob/living/L)
-	var/resist = L.getarmor(null, "rad")
+	var/resist = L.getarmor(null, RAD)
 	if(prob(40))
 		if(ishuman(L))
 			if (!HAS_TRAIT(L,TRAIT_RADIMMUNE)) //if they dont have radimmune, continue

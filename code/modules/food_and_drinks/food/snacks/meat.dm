@@ -226,7 +226,7 @@
 	filling_color = "#32CD32"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/xeno
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/xeno
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("meat" = 1, ACID = 1)
 	foodtype = RAW | MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/slab/xeno/MakeGrillable()
@@ -373,7 +373,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/steak/xeno
 	name = "xeno steak"
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("meat" = 1, ACID = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/spider
 	name = "spider steak"
@@ -472,7 +472,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/xeno
 	name = "raw xeno cutlet"
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("meat" = 1, ACID = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/xeno/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
@@ -530,7 +530,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno
 	name = "xeno cutlet"
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("meat" = 1, ACID = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/spider
 	name = "spider cutlet"

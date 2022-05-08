@@ -1,5 +1,5 @@
 /obj/item/onetankbomb
-	name = "bomb"
+	name = BOMB
 	icon = 'icons/obj/tank.dmi'
 	item_state = "assembly"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'

@@ -80,7 +80,7 @@
 	///Phrasing of the magazine in examine and notification messages; ex: magazine, box, etx
 	var/magazine_wording = "magazine"
 	///Phrasing of the cartridge in examine and notification messages; ex: bullet, shell, dart, etc.
-	var/cartridge_wording = "bullet"
+	var/cartridge_wording = BULLET
 	///length between individual racks
 	var/rack_delay = 5
 	///time of the most recent rack, used for cooldown purposes
@@ -93,7 +93,7 @@
 
 	// stores all types of feedback. Name of feedback + the amount of frames in the animation (must be more than 0) . Add to this list as more feedback is added. 
 	var/list/feedback_types = list(
-		"fire" = 0,
+		FIRE = 0,
 		"slide_open" = 0,
 		"slide_close" = 0,
 		"mag_out" = 0,
@@ -119,7 +119,7 @@
 		cut_overlays()
 		if (suppressed)
 			add_overlay("[icon_state]_[suppressed.icon_state]")
-		if(type == "fire")
+		if(type == FIRE)
 			if(!chambered)
 				return
 			if (magazine)
@@ -430,7 +430,7 @@
 	prefire_empty_checks()
 	. = ..() //The gun actually firing
 	if(can_shoot() && recent_shoot + 5 > world.time)
-		feedback("fire")
+		feedback(FIRE)
 	postfire_empty_checks()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE

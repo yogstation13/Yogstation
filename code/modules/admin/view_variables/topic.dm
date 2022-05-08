@@ -77,7 +77,7 @@
 				if("brute")
 					L.adjustBruteLoss(amount)
 					newamt = L.getBruteLoss()
-				if("fire")
+				if(FIRE)
 					L.adjustFireLoss(amount)
 					newamt = L.getFireLoss()
 				if("toxin")

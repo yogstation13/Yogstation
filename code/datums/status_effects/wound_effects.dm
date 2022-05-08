@@ -115,7 +115,7 @@
 
 // wound status effect base
 /datum/status_effect/wound
-	id = "wound"
+	id = WOUND
 	status_type = STATUS_EFFECT_MULTIPLE
 	var/obj/item/bodypart/linked_limb
 	var/datum/wound/linked_wound

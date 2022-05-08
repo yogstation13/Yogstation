@@ -337,10 +337,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	..()
 	var/turf/source = random_far_turf()
 	if(!battle_type)
-		battle_type = pick("laser","disabler","esword","gun","stunprod","harmbaton","bomb")
+		battle_type = pick(LASER,"disabler","esword","gun","stunprod","harmbaton",BOMB)
 	feedback_details += "Type: [battle_type]"
 	switch(battle_type)
-		if("laser")
+		if(LASER)
 			var/hits = 0
 			for(var/i in 1 to rand(5, 10))
 				target.playsound_local(source, 'sound/weapons/laser.ogg', 25, 1)
@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			for(var/i in 1 to rand(5, 12))
 				target.playsound_local(source, "swing_hit", 50, 1)
 				sleep(rand(CLICK_CD_MELEE, CLICK_CD_MELEE + 4))
-		if("bomb") // Tick Tock
+		if(BOMB) // Tick Tock
 			for(var/i in 1 to rand(3, 11))
 				target.playsound_local(source, 'sound/items/timer.ogg', 25, 0)
 				sleep(15)
@@ -924,7 +924,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /datum/hallucination/fake_alert/New(mob/living/carbon/C, forced = TRUE, specific, duration = 150)
 	set waitfor = FALSE
 	..()
-	var/alert_type = pick("not_enough_oxy","not_enough_tox","not_enough_co2","too_much_oxy","too_much_co2","too_much_tox","newlaw","nutrition","charge","gravity","fire","locked","hacked","temphot","tempcold","pressure")
+	var/alert_type = pick("not_enough_oxy","not_enough_tox","not_enough_co2","too_much_oxy","too_much_co2","too_much_tox","newlaw","nutrition","charge","gravity",FIRE,"locked","hacked","temphot","tempcold","pressure")
 	if(specific)
 		alert_type = specific
 	feedback_details += "Type: [alert_type]"
@@ -948,7 +948,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				target.throw_alert(alert_type, /obj/screen/alert/starving, override = TRUE)
 		if("gravity")
 			target.throw_alert(alert_type, /obj/screen/alert/weightless, override = TRUE)
-		if("fire")
+		if(FIRE)
 			target.throw_alert(alert_type, /obj/screen/alert/fire, override = TRUE)
 		if("temphot")
 			alert_type = "temp"
@@ -1177,7 +1177,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(target.client)
 		target.client.images += fire_overlay
 	to_chat(target, span_userdanger("You're set on fire!"))
-	target.throw_alert("fire", /obj/screen/alert/fire, override = TRUE)
+	target.throw_alert(FIRE, /obj/screen/alert/fire, override = TRUE)
 	sleep(20)
 	for(var/i in 1 to 3)
 		if(target.fire_stacks <= 0)
@@ -1205,7 +1205,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(!active)
 		return
 	active = FALSE
-	target.clear_alert("fire", clear_override = TRUE)
+	target.clear_alert(FIRE, clear_override = TRUE)
 	if(target.client)
 		target.client.images -= fire_overlay
 	QDEL_NULL(fire_overlay)

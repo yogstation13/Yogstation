@@ -46,7 +46,7 @@
 			to_chat(src, span_danger("<B>Your powers are on cooldown! You must wait 20 seconds between bombs.</B>"))
 
 /obj/guardian_bomb
-	name = "bomb"
+	name = BOMB
 	desc = "You shouldn't be seeing this!"
 	var/obj/stored_obj
 	var/mob/living/simple_animal/hostile/guardian/spawner
