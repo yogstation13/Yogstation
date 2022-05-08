@@ -861,7 +861,7 @@
 	description = "A comically-reactive chemical element. The universe does not want this stuff to exist in this form in the slightest."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
-	taste_description = ACID
+	taste_description = "acid"
 
 /datum/reagent/fluorine/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(1*REM, 0)
@@ -1078,7 +1078,7 @@
 	name = "EZ Clean"
 	description = "A powerful, acidic cleaner sold by Waffle Co. Affects organic matter while leaving other objects unaffected."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
-	taste_description = ACID
+	taste_description = "acid"
 	can_synth = FALSE
 
 /datum/reagent/space_cleaner/ez_clean/on_mob_life(mob/living/carbon/M)
@@ -1566,7 +1566,7 @@
 	description = "An aromatic ring of carbon with a hydroxyl group. A useful precursor to some medicines, but has no healing properties on its own."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	taste_description = ACID
+	taste_description = "acid"
 
 /datum/reagent/ash
 	name = "Ash"
@@ -1580,7 +1580,7 @@
 	description = "A slick, slightly carcinogenic liquid. Has a multitude of mundane uses in everyday life."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	taste_description = ACID
+	taste_description = "acid"
 
 /datum/reagent/colorful_reagent
 	name = "Colorful Reagent"
@@ -1669,7 +1669,7 @@
 	description = "Also known as sodium hydroxide. As a profession making this is somewhat underwhelming."
 	reagent_state = LIQUID
 	color = "#FFFFD6" // very very light yellow
-	taste_description = ACID
+	taste_description = "acid"
 
 /datum/reagent/drying_agent
 	name = "Drying agent"

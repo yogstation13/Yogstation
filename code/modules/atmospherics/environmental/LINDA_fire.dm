@@ -75,7 +75,7 @@
 	bypassing = !just_spawned && (volume > CELL_VOLUME*0.95)
 
 	if(bypassing)
-		volume = location.air.reaction_results[FIRE]*FIRE_GROWTH_RATE
+		volume = location.air.reaction_results["fire"]*FIRE_GROWTH_RATE
 		temperature = location.air.return_temperature()
 	else
 		var/datum/gas_mixture/affected = location.air.remove_ratio(volume/location.air.return_volume())
@@ -83,7 +83,7 @@
 			affected.set_temperature(temperature)
 			affected.react(src)
 			temperature = affected.return_temperature()
-			volume = affected.reaction_results[FIRE]*FIRE_GROWTH_RATE
+			volume = affected.reaction_results["fire"]*FIRE_GROWTH_RATE
 			location.assume_air(affected)
 
 	for(var/A in location)
@@ -236,7 +236,7 @@
 	return
 
 /obj/effect/dummy/lighting_obj/moblight/fire
-	name = FIRE
+	name = "fire"
 	light_color = LIGHT_COLOR_FIRE
 	light_range = LIGHT_RANGE_FIRE
 

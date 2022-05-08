@@ -1,5 +1,5 @@
 /obj/effect/particle_effect/expl_particles
-	name = FIRE
+	name = "fire"
 	icon_state = "explosion_particle"
 	opacity = 1
 	anchored = TRUE
@@ -20,7 +20,7 @@
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/_step, expl, direct), j) //yogs end
 
 /obj/effect/explosion
-	name = FIRE
+	name = "fire"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
 	opacity = 1

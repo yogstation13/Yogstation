@@ -119,7 +119,7 @@
 		visible_message(span_warning("[M] pushes [src] out of the way."), null, null, 5)
 
 /mob/living/fire_act()
-	last_damage = FIRE
+	last_damage = "fire"
 	adjust_fire_stacks(3)
 	IgniteMob()
 

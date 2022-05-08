@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			for(var/i in 1 to rand(5, 12))
 				target.playsound_local(source, "swing_hit", 50, 1)
 				sleep(rand(CLICK_CD_MELEE, CLICK_CD_MELEE + 4))
-		if(BOMB) // Tick Tock
+		if("bomb") // Tick Tock
 			for(var/i in 1 to rand(3, 11))
 				target.playsound_local(source, 'sound/items/timer.ogg', 25, 0)
 				sleep(15)
@@ -948,7 +948,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				target.throw_alert(alert_type, /obj/screen/alert/starving, override = TRUE)
 		if("gravity")
 			target.throw_alert(alert_type, /obj/screen/alert/weightless, override = TRUE)
-		if(FIRE)
+		if("fire")
 			target.throw_alert(alert_type, /obj/screen/alert/fire, override = TRUE)
 		if("temphot")
 			alert_type = "temp"
@@ -1177,7 +1177,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(target.client)
 		target.client.images += fire_overlay
 	to_chat(target, span_userdanger("You're set on fire!"))
-	target.throw_alert(FIRE, /obj/screen/alert/fire, override = TRUE)
+	target.throw_alert("fire", /obj/screen/alert/fire, override = TRUE)
 	sleep(20)
 	for(var/i in 1 to 3)
 		if(target.fire_stacks <= 0)

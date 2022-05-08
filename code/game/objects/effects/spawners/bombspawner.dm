@@ -4,7 +4,7 @@
 #define OPTIMAL_TEMP_K_PLA_BURN_RATIO(PRESSURE_P,PRESSURE_O,TEMP_O)	(CELSIUS_TO_KELVIN(TEMP_O) * PLASMA_OXYGEN_FULLBURN * (PRESSURE_P) / (PRESSURE_O))
 
 /obj/effect/spawner/newbomb
-	name = BOMB
+	name = "bomb"
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "x"
 	var/temp_p = 1500

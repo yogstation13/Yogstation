@@ -123,7 +123,7 @@ nobliumformation = 1001
 	var/old_heat_capacity = air.heat_capacity()
 	var/temperature = air.return_temperature()
 	var/list/cached_results = air.reaction_results
-	cached_results[FIRE] = 0
+	cached_results["fire"] = 0
 	var/turf/open/location = isturf(holder) ? holder : null
 	var/burned_fuel = 0
 	var/initial_trit = air.get_moles(/datum/gas/tritium)// Yogs
@@ -145,7 +145,7 @@ nobliumformation = 1001
 		//oxygen+more-or-less hydrogen=H2O
 		air.adjust_moles(/datum/gas/water_vapor, burned_fuel )// Yogs -- Conservation of Mass
 
-		cached_results[FIRE] += burned_fuel
+		cached_results["fire"] += burned_fuel
 
 	if(energy_released > 0)
 		var/new_heat_capacity = air.heat_capacity()
@@ -162,7 +162,7 @@ nobliumformation = 1001
 				item.temperature_expose(air, temperature, CELL_VOLUME)
 			location.temperature_expose(air, temperature, CELL_VOLUME)
 
-	return cached_results[FIRE] ? REACTING : NO_REACTION
+	return cached_results["fire"] ? REACTING : NO_REACTION
 
 //plasma combustion: combustion of oxygen and plasma (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/plasmafire
@@ -182,7 +182,7 @@ nobliumformation = 1001
 	var/old_heat_capacity = air.heat_capacity()
 	var/temperature = air.return_temperature()
 	var/list/cached_results = air.reaction_results
-	cached_results[FIRE] = 0
+	cached_results["fire"] = 0
 	var/turf/open/location = isturf(holder) ? holder : null
 
 	//Handle plasma burning
@@ -217,7 +217,7 @@ nobliumformation = 1001
 
 			energy_released += FIRE_PLASMA_ENERGY_RELEASED * (plasma_burn_rate)
 
-			cached_results[FIRE] += (plasma_burn_rate)*(1+oxygen_burn_rate)
+			cached_results["fire"] += (plasma_burn_rate)*(1+oxygen_burn_rate)
 
 	if(energy_released > 0)
 		var/new_heat_capacity = air.heat_capacity()
@@ -234,7 +234,7 @@ nobliumformation = 1001
 				item.temperature_expose(air, temperature, CELL_VOLUME)
 			location.temperature_expose(air, temperature, CELL_VOLUME)
 
-	return cached_results[FIRE] ? REACTING : NO_REACTION
+	return cached_results["fire"] ? REACTING : NO_REACTION
 
 //fusion: a terrible idea that was fun but broken. Now reworked to be less broken and more interesting. Again (and again, and again). Again!
 //Fusion Rework Counter: Please increment this if you make a major overhaul to this system again.
@@ -591,7 +591,7 @@ nobliumformation = 1001
  //this speeds things up because accessing datum vars is slow
 	var/temperature = air.return_temperature()
 	var/list/cached_results = air.reaction_results
-	cached_results[FIRE] = 0
+	cached_results["fire"] = 0
 	var/turf/open/location = isturf(holder) ? holder : null
 	var/burned_fuel = 0
 	if(air.get_moles(/datum/gas/oxygen) < air.get_moles(/datum/gas/hydrogen) || MINIMUM_H2_OXYBURN_ENERGY > air.thermal_energy())
@@ -606,7 +606,7 @@ nobliumformation = 1001
 		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
 		air.adjust_moles(/datum/gas/water_vapor, (burned_fuel / HYDROGEN_BURN_OXY_FACTOR))
 
-		cached_results[FIRE] += burned_fuel
+		cached_results["fire"] += burned_fuel
 
 	if(energy_released > 0)
 		var/new_heat_capacity = air.heat_capacity()
@@ -623,7 +623,7 @@ nobliumformation = 1001
 				item.temperature_expose(air, temperature, CELL_VOLUME)
 			location.temperature_expose(air, temperature, CELL_VOLUME)
 
-	return cached_results[FIRE] ? REACTING : NO_REACTION
+	return cached_results["fire"] ? REACTING : NO_REACTION
 	
 	
 /datum/gas_reaction/hexane_formation

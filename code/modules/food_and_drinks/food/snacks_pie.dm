@@ -131,7 +131,7 @@
 	desc = "A delicious meatpie. Probably heretical."
 	icon_state = "xenomeatpie"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("pie" = 1, "meat" = 1, ACID = 1)
+	tastes = list("pie" = 1, "meat" = 1, "acid" = 1)
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/pie/applepie

@@ -1,7 +1,7 @@
 /obj/structure/closet/l3closet
 	name = "level 3 biohazard gear closet"
 	desc = "It's a storage unit for level 3 biohazard gear."
-	icon_state = BIO
+	icon_state = "bio"
 
 /obj/structure/closet/l3closet/PopulateContents()
 	new /obj/item/storage/bag/bio(src)

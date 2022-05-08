@@ -25,7 +25,7 @@
 	icon = 'icons/obj/projectiles_tracer.dmi'
 
 /obj/effect/projectile/tracer/laser
-	name = LASER
+	name = "laser"
 	icon_state = "beam"
 
 /obj/effect/projectile/tracer/laser/blue

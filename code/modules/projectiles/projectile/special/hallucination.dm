@@ -1,5 +1,5 @@
 /obj/item/projectile/hallucination
-	name = BULLET
+	name = "bullet"
 	icon = null
 	icon_state = null
 	hitsound = ""

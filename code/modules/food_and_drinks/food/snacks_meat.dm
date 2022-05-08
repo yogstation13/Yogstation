@@ -246,7 +246,7 @@
 
 /obj/item/reagent_containers/food/snacks/meatball/xeno
 	name = "xenomorph meatball"
-	tastes = list("meat" = 1, ACID = 1)
+	tastes = list("meat" = 1, "acid" = 1)
 
 /obj/item/reagent_containers/food/snacks/meatball/chicken
 	name = "chicken meatball"
@@ -281,7 +281,7 @@
 
 /obj/item/reagent_containers/food/snacks/raw_patty/xeno
 	name = "raw xenomorph patty"
-	tastes = list("meat" = 1, ACID = 1)
+	tastes = list("meat" = 1,"acid" = 1)
 	patty_type = /obj/item/reagent_containers/food/snacks/patty/xeno
 
 /obj/item/reagent_containers/food/snacks/raw_patty/chicken
@@ -314,7 +314,7 @@
 
 /obj/item/reagent_containers/food/snacks/patty/xeno
 	name = "xenomorph patty"
-	tastes = list("meat" = 1, ACID = 1)
+	tastes = list("meat" = 1, "acid" = 1)
 
 /obj/item/reagent_containers/food/snacks/patty/chicken
 	name = "chicken patty"

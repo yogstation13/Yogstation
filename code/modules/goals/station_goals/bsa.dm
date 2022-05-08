@@ -249,7 +249,7 @@
 		if("build")
 			cannon = deploy()
 			. = TRUE
-		if(FIRE)
+		if("fire")
 			fire(usr)
 			. = TRUE
 		if("recalibrate")
