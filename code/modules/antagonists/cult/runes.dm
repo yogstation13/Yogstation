@@ -779,6 +779,11 @@ structure_check() searches for nearby cultist structures required for the invoca
 		fail_invoke()
 		log_game("Summon Cultist rune failed - target in away mission")
 		return
+	if(is_centcom_level(cultist_to_summon.z))
+		to_chat(user, "<span class='cult italic'>[cultist_to_summon] is too far from the station!</span>")
+		fail_invoke()
+		log_game("Summon Cultist rune failed - target in centcom Z")
+		return
 	if(istype(cultist_to_summon, /mob/living/simple_animal/shade) && (cultist_to_summon.status_flags & GODMODE))//yogs: fixes shades from being invincible after being summoned
 		cultist_to_summon.status_flags &= ~GODMODE //yogs end
 	cultist_to_summon.visible_message(span_warning("[cultist_to_summon] suddenly disappears in a flash of red light!"), \

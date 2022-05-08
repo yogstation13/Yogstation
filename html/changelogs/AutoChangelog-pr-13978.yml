@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "baton cooldown 1.2 seconds from 2"
-  - tweak: "baton stamina damage dealt to the chest ALWAYS rather than to the targeted limb/generally"

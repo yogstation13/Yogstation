@@ -1,5 +1,0 @@
-author: "Ethan4303"
-delete-after: true 
-changes: 
-  - rscadd: "added two cameras to box atmos"
-  - rscadd: "added one camera to meta atmos"
