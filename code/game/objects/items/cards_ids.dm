@@ -420,9 +420,10 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/makeshift
 	name = "makeshift ID"
 	desc = "a humble piece of cardboard with a name writen on it, will probably never fool anyone"
-	icon_state = "bruh"
-	item_state = "bruh"
-	registered_name = "Mclovin"
+	icon_state = "makeshift"
+	item_state = "makeshift"
+	registered_name = "John Doe"
+	var/bank_account = FALSE
 	var/forged = FALSE
 
 /obj/item/card/id/makeshift/attack_self(mob/user)
