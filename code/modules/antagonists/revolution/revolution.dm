@@ -242,17 +242,9 @@
 		H.dna.remove_mutation(CLOWNMUT)
 
 	if(give_flash)
-		var/obj/item/assembly/flash/handheld/T = new(H)
-		var/list/slots = list (
-			"backpack" = SLOT_IN_BACKPACK,
-			"left pocket" = SLOT_L_STORE,
-			"right pocket" = SLOT_R_STORE
-		)
-		var/where = H.equip_in_one_of_slots(T, slots)
-		if (!where)
-			to_chat(H, "The Syndicate were unfortunately unable to get you a flash.")
-		else
-			to_chat(H, "The flash in your [where] will help you to persuade the crew to join your cause.")
+		var/obj/item/organ/cyberimp/arm/flash/T = new(H)
+		T.Insert(H, special = FALSE, drop_if_replaced = FALSE)
+			to_chat(H, "The flash implant in your arm will help you to persuade the crew to join your cause.")
 
 	if(give_hud)
 		var/obj/item/organ/cyberimp/eyes/hud/security/syndicate/S = new(H)
