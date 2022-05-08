@@ -907,7 +907,8 @@
 	//We want an accurate reading of .len
 	listclearnulls(embedded_objects)
 	for(var/obj/item/embeddies in embedded_objects)
-		bleed_rate += 0.5
+		if(!embeddies.taped)
+			bleed_rate += 0.5
 
 	for(var/thing in wounds)
 		var/datum/wound/W = thing
