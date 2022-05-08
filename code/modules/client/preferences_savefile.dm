@@ -532,7 +532,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], default = FALSE)
 	features["gradientstyle"]			= sanitize_inlist(features["gradientstyle"], GLOB.hair_gradients_list)
 	features["gradientcolor"]		= sanitize_hexcolor(features["gradientcolor"], default = FALSE)
-	features["ethcolor"]	= sanitize_inlist(features["ethcolor"], GLOB.color_list_ethereal, "M Class (Red)")
+	features["ethcolor"]	= sanitize_hexcolor(sanitize_inlist(features["ethcolor"], GLOB.color_list_ethereal), include_crunch = FALSE,default = FALSE)
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_polysmorph"]	= sanitize_inlist(features["tail_polysmorph"], GLOB.tails_list_polysmorph)
 	features["tail_human"] 	= sanitize_inlist(features["tail_human"], GLOB.tails_list_human, "None")

@@ -21,7 +21,7 @@
 	// To prevent golem subtypes from overwhelming the odds when random species
 	// changes, only the Random Golem type can be chosen
 	limbs_id = "golem"
-	fixed_mut_color = "aaa"
+	fixed_mut_color = "#aaaaaa"
 	swimming_component = /datum/component/swimming/golem
 	var/info_text = "As an <span class='danger'>Iron Golem</span>, you don't have any special traits."
 	var/random_eligible = TRUE //If false, the golem subtype can't be made through golem mutation toxin
@@ -67,7 +67,7 @@
 	id = "adamantine golem"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/golem/adamantine
 	mutant_organs = list(/obj/item/organ/adamantine_resonator, /obj/item/organ/vocal_cords/adamantine)
-	fixed_mut_color = "4ed"
+	fixed_mut_color = "#44eedd"
 	info_text = "As an <span class='danger'>Adamantine Golem</span>, you possess special vocal cords allowing you to \"resonate\" messages to all golems. Your unique mineral makeup makes you immune to most types of magic."
 	prefix = "Adamantine"
 	special_names = null
@@ -84,7 +84,7 @@
 /datum/species/golem/plasma
 	name = "Plasma Golem"
 	id = "plasma golem"
-	fixed_mut_color = "a3d"
+	fixed_mut_color = "#aa33dd"
 	meat = /obj/item/stack/ore/plasma
 	//Can burn and takes damage from heat
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER) //no RESISTHEAT, NOFIRE
@@ -144,7 +144,7 @@
 	name = "Diamond Golem"
 	id = "diamond golem"
 	limbs_id = "cr_golem"
-	fixed_mut_color = "0ff"
+	fixed_mut_color = "#00ffff"
 	armor = 70 //up from 55
 	meat = /obj/item/stack/ore/diamond
 	info_text = "As a <span class='danger'>Diamond Golem</span>, you are more resistant than the average golem."
@@ -155,7 +155,7 @@
 /datum/species/golem/gold
 	name = "Gold Golem"
 	id = "gold golem"
-	fixed_mut_color = "cc0"
+	fixed_mut_color = "#cccc00"
 	speedmod = 1
 	armor = 25 //down from 55
 	meat = /obj/item/stack/ore/gold
@@ -167,7 +167,7 @@
 /datum/species/golem/silver
 	name = "Silver Golem"
 	id = "silver golem"
-	fixed_mut_color = "ddd"
+	fixed_mut_color = "#dddddd"
 	punchstunthreshold = 9 //60% chance, from 40%
 	meat = /obj/item/stack/ore/silver
 	info_text = "As a <span class='danger'>Silver Golem</span>, your attacks have a higher chance of stunning. Being made of silver, your body is immune to most types of magic."
@@ -186,7 +186,7 @@
 /datum/species/golem/plasteel
 	name = "Plasteel Golem"
 	id = "plasteel golem"
-	fixed_mut_color = "bbb"
+	fixed_mut_color = "#bbbbbb"
 	stunmod = 0.4
 	punchdamagelow = 12
 	punchdamagehigh = 21
@@ -214,7 +214,7 @@
 /datum/species/golem/titanium
 	name = "Titanium Golem"
 	id = "titanium golem"
-	fixed_mut_color = "fff"
+	fixed_mut_color = "#ffffff"
 	meat = /obj/item/stack/ore/titanium
 	info_text = "As a <span class='danger'>Titanium Golem</span>, you are immune to ash storms, and slightly more resistant to burn damage."
 	burnmod = 0.9
@@ -233,7 +233,7 @@
 /datum/species/golem/plastitanium
 	name = "Plastitanium Golem"
 	id = "plastitanium golem"
-	fixed_mut_color = "888"
+	fixed_mut_color = "#888888"
 	meat = /obj/item/stack/ore/titanium
 	info_text = "As a <span class='danger'>Plastitanium Golem</span>, you are immune to both ash storms and lava, and slightly more resistant to burn damage."
 	burnmod = 0.8
@@ -254,7 +254,7 @@
 /datum/species/golem/alloy
 	name = "Alien Alloy Golem"
 	id = "alloy golem"
-	fixed_mut_color = "333"
+	fixed_mut_color = "#333333"
 	meat = /obj/item/stack/sheet/mineral/abductor
 	mutanttongue = /obj/item/organ/tongue/abductor
 	speedmod = 1 //faster
@@ -274,7 +274,7 @@
 /datum/species/golem/wood
 	name = "Wood Golem"
 	id = "wood golem"
-	fixed_mut_color = "9E704B"
+	fixed_mut_color = "#9E704B"
 	meat = /obj/item/stack/sheet/mineral/wood
 	//Can burn and take damage from heat
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
@@ -332,7 +332,7 @@
 /datum/species/golem/uranium
 	name = "Uranium Golem"
 	id = "uranium golem"
-	fixed_mut_color = "7f0"
+	fixed_mut_color = "#77ff00"
 	meat = /obj/item/stack/ore/uranium
 	info_text = "As an <span class='danger'>Uranium Golem</span>, your very touch burns and irradiates organic lifeforms. You don't hit as hard as most golems, though."
 	attack_verb = "burn"
@@ -379,7 +379,7 @@
 /datum/species/golem/sand
 	name = "Sand Golem"
 	id = "sand golem"
-	fixed_mut_color = "ffdc8f"
+	fixed_mut_color = "#ffdc8f"
 	meat = /obj/item/stack/ore/glass //this is sand
 	armor = 0
 	burnmod = 3 //melts easily
@@ -411,7 +411,7 @@
 	name = "Glass Golem"
 	id = "glass golem"
 	limbs_id = "cr_golem"
-	fixed_mut_color = "5a96b4aa" //transparent body
+	fixed_mut_color = "#5a96b4aa" //transparent body
 	meat = /obj/item/shard
 	armor = 0
 	brutemod = 3 //very fragile
@@ -449,7 +449,7 @@
 	name = "Bluespace Golem"
 	id = "bluespace golem"
 	limbs_id = "cr_golem"
-	fixed_mut_color = "33f"
+	fixed_mut_color = "#3333ff"
 	meat = /obj/item/stack/ore/bluespace_crystal
 	info_text = "As a <span class='danger'>Bluespace Golem</span>, you are spatially unstable: You will teleport when hit, and you can teleport manually at a long distance."
 	attack_verb = "bluespace punch"
@@ -542,7 +542,7 @@
 /datum/species/golem/bananium
 	name = "Bananium Golem"
 	id = "bananium golem"
-	fixed_mut_color = "ff0"
+	fixed_mut_color = "#ffff00"
 	say_mod = "honks"
 	punchdamagelow = 0
 	punchdamagehigh = 1
@@ -849,7 +849,7 @@
 	id = "plastic golem"
 	prefix = "Plastic"
 	special_names = list("Sheet", "Bag", "Bottle")
-	fixed_mut_color = "fff"
+	fixed_mut_color = "#ffffff"
 	info_text = "As a <span class='danger'>Plastic Golem</span>, you are capable of ventcrawling and passing through plastic flaps as long as you are naked."
 
 /datum/species/golem/plastic/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -865,7 +865,7 @@
 	id = "bronze golem"
 	prefix = "Bronze"
 	special_names = list("Bell")
-	fixed_mut_color = "cd7f32"
+	fixed_mut_color = "#cd7f32"
 	info_text = "As a <span class='danger'>Bronze Golem</span>, you are very resistant to loud noises, and make loud noises if something hard hits you, however this ability does hurt your hearing."
 	special_step_sounds = list('sound/machines/clockcult/integration_cog_install.ogg', 'sound/magic/clockwork/fellowship_armory.ogg' )
 	mutantears = /obj/item/organ/ears/bronze
@@ -1033,7 +1033,7 @@
 	special_names = list("Face", "Man", "Belt") //Ah dude 4 strength 4 stam leather belt AHHH
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER, TRAIT_STRONG_GRABBER)
 	prefix = "Leather"
-	fixed_mut_color = "624a2e"
+	fixed_mut_color = "#624a2e"
 	info_text = "As a <span class='danger'>Leather Golem</span>, you are flammable, but you can grab things with incredible ease, allowing all your grabs to start at a strong level."
 	grab_sound = 'sound/weapons/whipgrab.ogg'
 	attack_sound = 'sound/weapons/whip.ogg'
@@ -1238,7 +1238,7 @@
 /datum/species/golem/cheese
 	name = "Cheese Golem"
 	id = "cheese golem"
-	fixed_mut_color = "F1D127"
+	fixed_mut_color = "#F1D127"
 	meat = /obj/item/stack/sheet/cheese
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
 	armor = 10
@@ -1271,7 +1271,7 @@
 /datum/species/golem/mhydrogen
 	name = "Metallic Hydrogen Golem"
 	id = "Metallic Hydrogen golem"
-	fixed_mut_color = "ddd"
+	fixed_mut_color = "#dddddd"
 	info_text = "As a <span class='danger'>Metallic Hydrogen Golem</span>, you were forged in the highest pressures and the highest heats. Your exotic makeup makes you tougher than diamond."
 	prefix = "Hydrogen"
 	stunmod = 0.6 //as opposed to plasteel's 0.4
@@ -1292,7 +1292,7 @@
 	name = "Telecrystal Golem"
 	id = "telecrystal golem"
 	limbs_id = "cr_golem"
-	fixed_mut_color = "e02828"
+	fixed_mut_color = "#e02828"
 	speedmod = 1 //same as golden golem
 	random_eligible = FALSE //too strong for a charged black extract
 	info_text = "As a <span class='danger'>Telecrystal Golem</span>, you are faster than an avarage golem. Being created out of telecrystal, a much stable but less powerful variation of bluespace, you possess the ability to make controlled short ranged phase jumps."

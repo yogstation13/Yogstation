@@ -93,7 +93,7 @@
 	name = "Draconid"
 	id = "draconid"
 	limbs_id = "lizard"
-	fixed_mut_color = "A02720" 	//Deep red
+	fixed_mut_color = "#A02720" 	//Deep red
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE)
 	inherent_traits = list(TRAIT_RESISTHEAT)	//Dragons like fire
 	burnmod = 0.8
