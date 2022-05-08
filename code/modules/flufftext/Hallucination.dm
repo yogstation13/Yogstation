@@ -924,7 +924,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /datum/hallucination/fake_alert/New(mob/living/carbon/C, forced = TRUE, specific, duration = 150)
 	set waitfor = FALSE
 	..()
-	var/alert_type = pick("not_enough_oxy","not_enough_tox","not_enough_co2","too_much_oxy","too_much_co2","too_much_tox","newlaw","nutrition","charge","gravity",FIRE,"locked","hacked","temphot","tempcold","pressure")
+	var/alert_type = pick("not_enough_oxy","not_enough_tox","not_enough_co2","too_much_oxy","too_much_co2","too_much_tox","newlaw","nutrition","charge","gravity","fire","locked","hacked","temphot","tempcold","pressure")
 	if(specific)
 		alert_type = specific
 	feedback_details += "Type: [alert_type]"
@@ -1205,7 +1205,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(!active)
 		return
 	active = FALSE
-	target.clear_alert(FIRE, clear_override = TRUE)
+	target.clear_alert("fire", clear_override = TRUE)
 	if(target.client)
 		target.client.images -= fire_overlay
 	QDEL_NULL(fire_overlay)
