@@ -124,7 +124,6 @@
 
 				else
 					dat += "<br>No servers detected. Scan for servers: <a href='?src=\ref[src];operation=scan'>\[Scan\]</a>"
-				
 				if(!issilicon(user))
 					dat += "<br>Access for silicons: <a href='?src=\ref[src];operation=toggle_silicon'>\[[silicons_allowed ? "Disable" : "Enable]\]</a>"
 
