@@ -41,6 +41,7 @@
 				R.add_reagent(pick(saferChems), reagentsAmount)
 
 			var/datum/effect_system/foam_spread/foam = new
+			foam.one_apply_per_object = TRUE
 			foam.set_up(200, get_turf(vent), R)
 			foam.start()
 
@@ -106,6 +107,7 @@
 			R.add_reagent(/datum/reagent/consumable/ethanol/beer, reagentsAmount)
 
 			var/datum/effect_system/foam_spread/foam = new
+			foam.one_apply_per_object = TRUE
 			foam.set_up(200, get_turf(vent), R)
 			foam.start()
 		CHECK_TICK

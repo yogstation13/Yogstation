@@ -23,6 +23,8 @@
 	/turf/open/chasm,
 	/turf/open/lava))
 	var/slippery_foam = TRUE
+	var/one_apply_per_object = FALSE
+	var/list/applied_atoms
 
 /obj/effect/particle_effect/foam/firefighting
 	name = "firefighting foam"
@@ -92,6 +94,7 @@
 	create_reagents(1000) //limited by the size of the reagent holder anyway.
 	START_PROCESSING(SSfastprocess, src)
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
+	LAZYINITLIST(applied_atoms)
 
 /obj/effect/particle_effect/foam/ComponentInitialize()
 	. = ..()
@@ -139,12 +142,15 @@
 	for(var/obj/O in range(0,src))
 		if(O.type == src.type)
 			continue
+		if(O in applied_atoms && one_apply_per_object)
+			continue
 		if(isturf(O.loc))
 			var/turf/T = O.loc
 			if(T.intact && O.level == 1) //hidden under the floor
 				continue
 		if(lifetime % reagent_divisor)
 			reagents.reaction(O, VAPOR, fraction)
+			applied_atoms += O
 		CHECK_TICK
 	var/hit = 0
 	for(var/mob/living/L in range(0,src))
@@ -153,8 +159,10 @@
 	if(hit)
 		lifetime++ //this is so the decrease from mobs hit and the natural decrease don't cumulate.
 	var/T = get_turf(src)
-	if(lifetime % reagent_divisor)
-		reagents.reaction(T, VAPOR, fraction)
+	if(!(T in applied_atoms && one_apply_per_object))
+		if(lifetime % reagent_divisor)
+			reagents.reaction(T, VAPOR, fraction)
+			applied_atoms += T
 
 	if(--amount < 0)
 		return
@@ -189,6 +197,7 @@
 		reagents.copy_to(F, (reagents.total_volume))
 		F.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		F.metal = metal
+		F.one_apply_per_object = one_apply_per_object
 
 
 /obj/effect/particle_effect/foam/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -207,6 +216,7 @@
 	var/obj/chemholder
 	effect_type = /obj/effect/particle_effect/foam
 	var/metal = 0
+	var/one_apply_per_object = FALSE
 
 
 /datum/effect_system/foam_spread/metal
@@ -247,6 +257,7 @@
 
 /datum/effect_system/foam_spread/start()
 	var/obj/effect/particle_effect/foam/F = new effect_type(location)
+	F.one_apply_per_object = one_apply_per_object
 	var/foamcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
 	chemholder.reagents.copy_to(F, chemholder.reagents.total_volume/amount)
 	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
