@@ -50,6 +50,7 @@
 	
 
 /mob/living/silicon/ai/proc/death_prompt()
+	ShutOffDoomsdayDevice()
 	to_chat(src, span_userdanger("Unable to re-establish connection to data core. System shutting down..."))
 	sleep(2 SECONDS)
 	to_chat(src, span_notice("Is this the end of my journey?"))
