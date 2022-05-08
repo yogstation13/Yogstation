@@ -1,4 +1,6 @@
 #define STUNBATON_DISCHARGE_INTERVAL 13 //amount of active processes it takes for the stun baton to start discharging
+GLOBAL_LIST_EMPTY(all_batons)
+
 /obj/item/melee/baton
 	name = "stun baton"
 	desc = "A stun baton for incapacitating people with."
@@ -34,6 +36,8 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
+	/// TESTING
+	var/obj/item/firing_pin/implant/mindshield/pin = /obj/item/firing_pin/implant/mindshield //standard firing pin for most guns
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -50,6 +54,21 @@
 		else
 			cell = new preload_cell_type(src)
 	update_icon()
+	/// TESTING
+	GLOB.all_batons += src
+	if(pin)
+		pin = new pin(src)
+
+/obj/item/melee/baton/Destroy()
+	. = ..()
+	if(isobj(pin)) //Can still be the initial path, then we skip
+		QDEL_NULL(pin)
+	GLOB.all_batons -= src
+
+/obj/item/melee/baton/handle_atom_del(atom/A)
+	. = ..()
+	if(A == pin)
+		pin = null
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(..())
@@ -110,7 +129,16 @@
 			cell = W
 			to_chat(user, span_notice("You install a cell in [src]."))
 			update_icon()
-
+/// TESTING
+	else if(istype(W, /obj/item/firing_pin))
+		if(pin)
+			to_chat(user, span_notice("[src] already has a firing pin. You can remove it with crowbar"))
+	else if(W.tool_behaviour == TOOL_CROWBAR)
+		if(pin)
+			pin.forceMove(get_turf(src))
+			pin = null
+			to_chat(user, span_notice("You remove the firing pin from [src]."))
+/// END TESTING
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(cell)
 			cell.update_icon()
@@ -124,6 +152,12 @@
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
+	/// TESTING
+	if(GLOB.batons_seconly)
+		if(!handle_pins(user))
+			to_chat(user, span_warning("You are not authorised to use [src]."))
+			return FALSE
+
 	if(cell && cell.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
@@ -143,6 +177,12 @@
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
+	/// TESTING
+	if(GLOB.batons_seconly)
+		if(!handle_pins(user))
+			to_chat(user, span_warning("You are not authorised to use [src]."))
+			return FALSE
+	/// END TESTING
 	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message(span_danger("[user] accidentally hits [user.p_them()]self with [src]!"), \
 							span_userdanger("You accidentally hit yourself with [src]!"))
@@ -174,21 +214,31 @@
 
 	if(user.a_intent != INTENT_HARM)
 		if(status)
-			if(cooldown_check <= world.time)
+			/// TESTING
+			if(GLOB.batons_normal && GLOB.batons_cooldown)
+				if(cooldown_check <= world.time)
+					if(baton_stun(M, user))
+						user.do_attack_animation(M)
+						return
+				else
+					to_chat(user, span_danger("The baton is still charging!"))
+			else
 				if(baton_stun(M, user))
 					user.do_attack_animation(M)
 					return
-			else
-				to_chat(user, span_danger("The baton is still charging!"))
+			///END TESTING
 		else
 			M.visible_message(span_warning("[user] has prodded [M] with [src]. Luckily it was off."), \
 							span_warning("[user] has prodded you with [src]. Luckily it was off."))
 	else
 		if(status)
-			if(cooldown_check <= world.time)
+			/// TESTING
+			if(GLOB.batons_normal && GLOB.batons_cooldown)
+				if(cooldown_check <= world.time)
+					baton_stun(M, user)
+			else
 				baton_stun(M, user)
 		..()
-
 
 /obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/user)
 	if(ishuman(L))
@@ -205,37 +255,56 @@
 			return FALSE
 
 	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
-
-	var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
-	var/armor_block = L.run_armor_check(affecting, "energy") //check armor on the limb because that's where we are slapping...
-	L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
-	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
-	var/current_stamina_damage = L.getStaminaLoss()
-
-	if(current_stamina_damage >= 90)
-		if(!L.IsParalyzed())
-			to_chat(L, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
-		if(trait_check)
-			L.Paralyze(stunforce * 0.1)
+/// A WHOLE BUNCH OF TESTING
+	if(GLOB.batons_normal)
+		var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
+		var/armor_block = L.run_armor_check(affecting, "energy") //check armor on the limb because that's where we are slapping...
+		
+		if(GLOB.batons_stam) ///HACKY JANK CODE
+			stamina_damage = initial(stamina_damage)*2
 		else
-			L.Paralyze(stunforce)
-		L.Jitter(20)
-		L.confused = max(8, L.confused)
-		L.apply_effect(EFFECT_STUTTER, stunforce)
-	else if(current_stamina_damage > 70)
-		L.Jitter(10)
-		L.confused = max(8, L.confused)
-		L.apply_effect(EFFECT_STUTTER, stunforce)
-	else if(current_stamina_damage >= 20)
-		L.Jitter(5)
-		L.apply_effect(EFFECT_STUTTER, stunforce)
+			stamina_damage = initial(stamina_damage)
 
-	if(user)
-		L.lastattacker = user.real_name
-		L.lastattackerckey = user.ckey
-		L.visible_message(span_danger("[user] has stunned [L] with [src]!"), \
-								span_userdanger("[user] has stunned you with [src]!"))
-		log_combat(user, L, "stunned")
+		L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
+		SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
+		var/current_stamina_damage = L.getStaminaLoss()
+
+		if(current_stamina_damage >= 90)
+			if(!L.IsParalyzed())
+				to_chat(L, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
+			if(trait_check)
+				L.Paralyze(stunforce * 0.1)
+			else
+				L.Paralyze(stunforce)
+			L.Jitter(20)
+			L.confused = max(8, L.confused)
+			L.apply_effect(EFFECT_STUTTER, stunforce)
+		else if(current_stamina_damage > 70)
+			L.Jitter(10)
+			L.confused = max(8, L.confused)
+			L.apply_effect(EFFECT_STUTTER, stunforce)
+		else if(current_stamina_damage >= 20)
+			L.Jitter(5)
+			L.apply_effect(EFFECT_STUTTER, stunforce)
+
+		if(user)
+			L.lastattacker = user.real_name
+			L.lastattackerckey = user.ckey
+			L.visible_message(span_danger("[user] has stunned [L] with [src]!"), \
+									span_userdanger("[user] has stunned you with [src]!"))
+			log_combat(user, L, "stunned")	
+	else if(GLOB.batons_instant)
+		L.Paralyze(stunforce)
+		L.apply_effect(EFFECT_STUTTER, stunforce)
+		SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
+		if(user)
+			L.lastattacker = user.real_name
+			L.lastattackerckey = user.ckey
+			L.visible_message("<span class='danger'>[user] has stunned [L] with [src]!</span>", \
+									"<span class='userdanger'>[user] has stunned you with [src]!</span>")
+			log_combat(user, L, "stunned")	
+	else
+		to_chat(user, "Something is really fucked")
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
 
@@ -283,3 +352,60 @@
 	desc = "A cost-effective, mass-produced, tactical stun prod."
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
 	color = "#aeb08c" // super tactical
+
+
+///TESTING PROCS
+
+GLOBAL_VAR_INIT(batons_instant, FALSE)
+GLOBAL_VAR_INIT(batons_stam, FALSE)
+GLOBAL_VAR_INIT(batons_normal, TRUE)
+GLOBAL_VAR_INIT(batons_seconly, FALSE)
+GLOBAL_VAR_INIT(batons_cooldown, TRUE)
+
+/datum/admins/proc/cmd_batons_instant_stun()
+	set category = "Batons"
+	set name = "Toggle Batons Instant Stun"
+	if(!check_rights(R_DEV))
+		return
+	GLOB.batons_instant = !GLOB.batons_instant
+		
+
+/datum/admins/proc/cmd_batons_stamina()
+	set category = "Batons"
+	set name = "Toggle Baton 1/2 hit (Stam)"
+	if(!check_rights(R_DEV))
+		return
+	/// TRUE IS 1 HIT
+	GLOB.batons_stam = !GLOB.batons_stam
+
+/datum/admins/proc/cmd_batons_normal()
+	set category = "Batons"
+	set name = "Toggle Batons to Normal or Modified" ///Safety Net
+	if(!check_rights(R_DEV))
+		return
+	GLOB.batons_normal = !GLOB.batons_normal
+
+/datum/admins/proc/cmd_batons_seconly()
+	set category = "Batons"
+	set name = "Toggle Batons Sec Only"
+	if(!check_rights(R_DEV))
+		return
+	GLOB.batons_seconly = !GLOB.batons_seconly
+
+/datum/admins/proc/cmd_batons_cooldown()
+	set category = "Batons"
+	set name = "Toggle Batons Cooldown"
+	if(!check_rights(R_DEV))
+		return
+	GLOB.batons_cooldown = !GLOB.batons_cooldown
+
+/obj/item/melee/baton/proc/handle_pins(mob/living/user)
+	if(pin)
+		if(pin.pin_auth(user) || (pin.obj_flags & EMAGGED))
+			return TRUE
+		else
+			pin.auth_fail(user)
+			return FALSE
+	else
+		to_chat(user, span_warning("[src]'s trigger is locked. This weapon doesn't have a firing pin installed!"))
+	return FALSE
