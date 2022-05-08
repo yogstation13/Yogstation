@@ -448,8 +448,7 @@ update_label("John Doe", "Clowny")
 
 			registered_name = input_name
 			forged = TRUE
-			to_chat(user, span_notice("You successfully forge the ID card."))
-			log_game("[key_name(user)] has forged \the [initial(name)] with name \"[registered_name]\".")
+			to_chat(user, span_notice("You scrible a new name into the makeshift ID."))
 
 /obj/item/card/id/syndicate/anyone
 	anyone = TRUE
