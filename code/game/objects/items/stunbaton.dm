@@ -303,11 +303,7 @@ GLOBAL_LIST_EMPTY(all_batons)
 			L.lastattackerckey = user.ckey
 			L.visible_message(span_danger("[user] has stunned [L] with [src]!"), \
 									span_userdanger("[user] has stunned you with [src]!"))
-			log_combat(user, L, "stunned")	
-
-	else
-		to_chat(user, "Something is really fucked, turn everyone off and try again")
-
+			log_combat(user, L, "stunned")
 	playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
 
 	if(ishuman(L))
