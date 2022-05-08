@@ -365,6 +365,7 @@
 /obj/item/organ/cyberimp/arm/flash/rev
 	name = "revolutionary brainwashing implant"
 	desc = "An integrated flash projector used alongside syndicate subliminal messaging training to convert loyal crew into violent syndicate activists."
+	contents = newlist(/obj/item/assembly/flash/armimplant/rev)
 	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/arm/baton
