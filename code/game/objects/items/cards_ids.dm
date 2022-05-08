@@ -417,6 +417,45 @@ update_label("John Doe", "Clowny")
 	to_chat(user, span_warning("The account ID number provided is invalid."))
 	return
 
+/obj/item/card/id/makeshift
+	name = "makeshift ID"
+	desc = "a humble peace of cardboard with a name writen on it, will probably never fool anyone"
+	icon_state = "bruh"
+	item_state = "bruh"
+	registered_name = "Mclovin"
+	var/forged = FALSE
+
+/obj/item/card/id/makeshift/attack_self(mob/user)
+	if(isliving(user) && user.mind)
+		var/popup_input = alert(user, "Choose Action", "ID", "Show", "Forge/Reset")
+		if(user.incapacitated())
+			return
+		if(popup_input == "Forge/Reset" && !forged)
+			var/input_name = stripped_input(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
+			input_name = reject_bad_name(input_name)
+			if(!input_name)
+				// Invalid/blank names give a randomly generated one.
+				if(user.gender == FEMALE)
+					input_name = "[pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
+				else
+					input_name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
+
+			var/target_occupation = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", assignment ? assignment : "Assistant", MAX_MESSAGE_LEN)
+			if(!target_occupation)
+				return
+
+			var/newAge = input(user, "Choose the ID's age:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
+			if(newAge)
+				registered_age = max(round(text2num(newAge)), 0)
+
+			registered_name = input_name
+			assignment = target_occupation
+			originalassignment = target_occupation
+			update_label()
+			forged = TRUE
+			to_chat(user, span_notice("You successfully forge the ID card."))
+			log_game("[key_name(user)] has forged \the [initial(name)] with name \"[registered_name]\" and occupation \"[assignment]\".")
+
 /obj/item/card/id/syndicate/anyone
 	anyone = TRUE
 
