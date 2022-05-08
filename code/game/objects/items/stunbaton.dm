@@ -366,7 +366,7 @@ GLOBAL_VAR_INIT(batons_cooldown, TRUE)
 	if(!check_rights(R_DEV))
 		return
 	GLOB.batons_instant = !GLOB.batons_instant
-	to_chat("Instant Batons are now set to [GLOB.batons_instant]")
+	to_chat(user, "Instant Batons are now set to [GLOB.batons_instant]")
 		
 
 /datum/admins/proc/cmd_batons_stamina()
@@ -376,7 +376,7 @@ GLOBAL_VAR_INIT(batons_cooldown, TRUE)
 		return
 	/// TRUE IS 1 HIT
 	GLOB.batons_stam = !GLOB.batons_stam
-	to_chat("Batons are now set to 1 hit TRUE/FALE - [GLOB.batons_stam]")
+	to_chat(user, "Batons are now set to 1 hit TRUE/FALE - [GLOB.batons_stam]")
 
 /datum/admins/proc/cmd_batons_normal()
 	set category = "Batons"
@@ -384,7 +384,7 @@ GLOBAL_VAR_INIT(batons_cooldown, TRUE)
 	if(!check_rights(R_DEV))
 		return
 	GLOB.batons_normal = !GLOB.batons_normal
-	to_chat("Batons are now set to NORMAL TRUE/FALSE [GLOB.batons_normal]")
+	to_chat(user, "Batons are now set to NORMAL TRUE/FALSE [GLOB.batons_normal]")
 
 /datum/admins/proc/cmd_batons_seconly()
 	set category = "Batons"
@@ -392,7 +392,7 @@ GLOBAL_VAR_INIT(batons_cooldown, TRUE)
 	if(!check_rights(R_DEV))
 		return
 	GLOB.batons_seconly = !GLOB.batons_seconly
-	to_chat("Batons are now set to Sec only - TRUE/FALE [GLOB.batons_seconly]")
+	to_chat(user, "Batons are now set to Sec only - TRUE/FALE [GLOB.batons_seconly]")
 
 /datum/admins/proc/cmd_batons_cooldown()
 	set category = "Batons"
