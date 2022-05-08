@@ -545,6 +545,9 @@ SUBSYSTEM_DEF(job)
 		job.give_bar_choice(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
+	for(var/datum/atom_hud/antag/H in GLOB.huds)
+		H.add_hud_to(living_mob)
+
 	return living_mob
 
 /datum/controller/subsystem/job/proc/irish_override()
