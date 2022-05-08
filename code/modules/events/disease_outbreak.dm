@@ -70,6 +70,7 @@
 					adv.AddSymptom(new /datum/symptom/alkali)
 				if (3)
 					adv.AddSymptom(new /datum/symptom/flesh_death)
+			adv.properties["transmittable"] += 4
 		D.carrier = TRUE
 		H.ForceContractDisease(D, FALSE, TRUE)
 
