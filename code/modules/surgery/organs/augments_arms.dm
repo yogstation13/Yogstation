@@ -362,6 +362,11 @@
 		var/obj/item/assembly/flash/armimplant/F = locate(/obj/item/assembly/flash/armimplant) in items_list
 		F.I = src
 
+/obj/item/organ/cyberimp/arm/flash/rev
+	name = "revolutionary brainwashing implant"
+	desc = "An integrated flash projector used alongside syndicate subliminal messaging training to convert loyal crew into violent syndicate activists."
+	syndicate_implant = TRUE
+
 /obj/item/organ/cyberimp/arm/baton
 	name = "arm electrification implant"
 	desc = "An illegal combat implant that allows the user to administer disabling shocks from their arm."
