@@ -37,8 +37,8 @@
 	showoff_overlay = mutable_appearance(icon,icon_state)
 	M.add_overlay(showoff_overlay)
 	showoffer = M
-	M.visible_message("[M] shows off \his [src]. It's [length] inches long and [weight] ounces!", \
-						 span_notice("You show off your [src]. It's [length] inches long and [weight] ounces!"))
+	M.visible_message("[M] shows off [M.p_their()] [src]. It's [length] inches long and weighs [weight] ounces!", \
+						 span_notice("You show off your [src]. It's [length] inches long and weighs [weight] ounces!"))
 	RegisterSignal(M,COMSIG_ATOM_DIR_CHANGE,.proc/stop_overlay,TRUE)
 
 /obj/item/reagent_containers/food/snacks/fish/proc/stop_overlay()

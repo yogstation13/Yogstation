@@ -23,4 +23,6 @@
 		/obj/item/reagent_containers/food/snacks/fish/tuna,
 		/obj/item/reagent_containers/food/snacks/fish/shrimp,
 		/obj/item/reagent_containers/food/snacks/fish/squid,
-		/obj/item/reagent_containers/food/snacks/fish/puffer)
+		/obj/item/reagent_containers/food/snacks/fish/puffer,
+		/obj/item/reagent_containers/food/snacks/bait/leech
+		)

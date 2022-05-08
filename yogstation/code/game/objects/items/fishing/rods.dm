@@ -1,6 +1,6 @@
 /obj/item/twohanded/fishingrod
 	name = "fishing rod"
-	desc = "A fishing rod used for fishing. Despite looking ordinary, fishing has evolved for the cosmos with features like auto-reeling."
+	desc = "A rod used for fishing. Despite ordinary appearances, fishing has evolved to suit the cosmos with various features, like auto-reeling."
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
 	icon_state = "fishing_rod"
 	lefthand_file = 'icons/mob/inhands/equipment/fishing_lefthand.dmi'
@@ -26,7 +26,7 @@
 
 /obj/item/twohanded/fishingrod/examine(mob/user)
 	. = ..()
-	. += "It's current fishing power is [fishing_power]."
+	. += "Its current fishing power is [fishing_power]."
 
 /obj/item/twohanded/fishingrod/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	var/datum/component/fishable/fc = target.GetComponent(/datum/component/fishable)
@@ -118,7 +118,7 @@
 		unwield(fisher,show_message = FALSE)
 		if(fisher.put_in_hands(reward_item))
 			return
-	reward_item.throw_at(get_step(fishing_component,get_dir(fishing_component,fisher)),2,3) //whip it at them!
+	reward_item.throw_at(get_step(fishing_component,get_dir(fishing_component,fisher)),2,3,fisher) //whip it at them!
 		
 
 /obj/item/twohanded/fishingrod/attackby(obj/item/B, mob/user, params)
@@ -133,7 +133,7 @@
 	bait = B
 	to_chat(user, span_notice("You attach the [bait] to the fishing rod."))
 	cut_overlays()
-	add_overlay(bait)
+	add_overlay("fishing_rod_[bait.icon_state]")
 	recalculate_power()
 
 /obj/item/twohanded/fishingrod/AltClick(mob/living/user)

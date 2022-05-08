@@ -16,13 +16,13 @@
 /obj/item/reagent_containers/food/snacks/bait/journeyman
 	name = "journeyman bait"
 	desc = "Advanced bait that only a skilled fisherman can use"
-	icon_state = "bait_3"
+	icon_state = "bait_2"
 	fishing_power = 20
 
 /obj/item/reagent_containers/food/snacks/bait/master
 	name = "master bait"
 	desc = "A masterfully crafted bait that only a master in fishing can harness"
-	icon_state = "bait_2"
+	icon_state = "bait_3"
 	fishing_power = 30
 
 /obj/item/reagent_containers/food/snacks/bait/master/Initialize(mapload) //HEE HEEE HAHAHAHAHH  HEEHEH E E EHEEE
@@ -35,6 +35,12 @@
 	desc = "Might be able to catch a lizard with this..."
 	icon_state = "bait_worm"
 	fishing_power = 15
+
+/obj/item/reagent_containers/food/snacks/bait/leech
+	name = "leech"
+	desc = "What isn't fun about a little recycling?"
+	icon_state = "leech"
+	fishing_power = 20
 
 /obj/item/reagent_containers/food/snacks/bait/type
 	name = "type bait"

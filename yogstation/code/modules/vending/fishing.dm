@@ -5,7 +5,7 @@
 	icon_state = "fishing"
 	icon_deny = "fishing-deny"
 	product_slogans = "Don't tell my wife which bank I went to!;Fish fear me. Women love me.;If you want me to listen to you... talk about FISHING!;Good things come to those who bait.;Why did the lizard cross the road?"
-	vend_reply = "Go get em, tiger!"
+	vend_reply = "Go get 'em, tiger!"
 	products = list(/obj/item/reagent_containers/food/snacks/bait/apprentice = 15,
 					/obj/item/reagent_containers/food/snacks/bait/journeyman = 10,
 					)
