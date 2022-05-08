@@ -746,6 +746,7 @@
 				species_color = S.fixed_mut_color
 			else
 				species_color = H.dna.features["mcolor"]
+				message_admins("bodypart mcolor: [H.dna.features["mcolor"]]")
 			should_draw_greyscale = TRUE
 		else
 			species_color = ""
@@ -857,9 +858,9 @@
 	if(should_draw_greyscale)
 		var/draw_color = mutation_color || species_color || (skin_tone && skintone2hex(skin_tone))
 		if(draw_color)
-			limb.color = "#[draw_color]"
+			limb.color = draw_color
 			if(aux_zone)
-				aux.color = "#[draw_color]"
+				aux.color = draw_color
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)
 	drop_organs()

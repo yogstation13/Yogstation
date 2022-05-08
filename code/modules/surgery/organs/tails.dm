@@ -72,7 +72,7 @@
 	if(istype(H))
 		H.dna.species.mutant_bodyparts -= "tail_lizard"
 		H.dna.species.mutant_bodyparts -= "spines"
-		color = "#" + H.dna.features["mcolor"]
+		color = H.dna.features["mcolor"]
 		tail_type = H.dna.features["tail_lizard"]
 		spines = H.dna.features["spines"]
 		H.update_body()

@@ -239,8 +239,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
 
 	//Sanitize
-	asaycolor			= sanitize_ooccolor(sanitize_hexcolor(asaycolor, 6, 1, initial(asaycolor)))
-	ooccolor			= sanitize_ooccolor(sanitize_hexcolor(ooccolor, 6, 1, initial(ooccolor)))
+	asaycolor			= sanitize_ooccolor(sanitize_hexcolor(asaycolor, DEFAULT_HEX_COLOR_LEN, FALSE, initial(asaycolor)))
+	ooccolor			= sanitize_ooccolor(sanitize_hexcolor(ooccolor, DEFAULT_HEX_COLOR_LEN, FALSE, initial(ooccolor)))
 	lastchangelog		= sanitize_text(lastchangelog, initial(lastchangelog))
 	UI_style			= sanitize_inlist(UI_style, GLOB.available_ui_styles, GLOB.available_ui_styles[1])
 	hotkeys				= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
@@ -268,7 +268,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	menuoptions			= SANITIZE_LIST(menuoptions)
 	be_special			= SANITIZE_LIST(be_special)
 	pda_style			= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
-	pda_color			= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
+	pda_color			= sanitize_hexcolor(pda_color, DEFAULT_HEX_COLOR_LEN, FALSE, initial(pda_color))
 	skillcape       	= sanitize_integer(skillcape, 1, 82, initial(skillcape))
 	skillcape_id		= sanitize_text(skillcape_id, initial(skillcape_id))
 
@@ -494,6 +494,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			custom_names[custom_name_id] = get_default_name(custom_name_id)
 
 	if(!features["mcolor"] || features["mcolor"] == "#000")
+		message_admins("random mcolor")
+
 		features["mcolor"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
 
 	if(!features["ethcolor"] || features["ethcolor"] == "#000")
@@ -521,16 +523,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	socks			= sanitize_inlist(socks, GLOB.socks_list)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
-	hair_color			= sanitize_hexcolor(hair_color, 3, 0)
-	facial_hair_color			= sanitize_hexcolor(facial_hair_color, 3, 0)
-	eye_color		= sanitize_hexcolor(eye_color, 3, 0)
+	hair_color			= sanitize_hexcolor(hair_color, default = FALSE)
+	facial_hair_color			= sanitize_hexcolor(facial_hair_color, default = FALSE)
+	eye_color		= sanitize_hexcolor(eye_color, default = FALSE)
 	skin_tone		= sanitize_inlist(skin_tone, GLOB.skin_tones)
 	backbag			= sanitize_inlist(backbag, GLOB.backbaglist, initial(backbag))
 	jumpsuit_style	= sanitize_inlist(jumpsuit_style, GLOB.jumpsuitlist, initial(jumpsuit_style))
 	uplink_spawn_loc = sanitize_inlist(uplink_spawn_loc, GLOB.uplink_spawn_loc_list, initial(uplink_spawn_loc))
-	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], 3, 0)
+	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], default = FALSE)
 	features["gradientstyle"]			= sanitize_inlist(features["gradientstyle"], GLOB.hair_gradients_list)
-	features["gradientcolor"]		= sanitize_hexcolor(features["gradientcolor"], 3, 0)
+	features["gradientcolor"]		= sanitize_hexcolor(features["gradientcolor"], default = FALSE)
 	features["ethcolor"]	= copytext_char(features["ethcolor"], 1, 7)
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_polysmorph"]	= sanitize_inlist(features["tail_polysmorph"], GLOB.tails_list_polysmorph)

@@ -29,7 +29,7 @@
 		return value
 	if(default)
 		return default
-	if(List && List.len)
+	if(List?.len)
 		return pick(List)
 
 
@@ -51,7 +51,7 @@
 				return default
 	return default
 
-/proc/sanitize_hexcolor(color, desired_format= DEFAULT_HEX_COLOR_LEN, include_crunch = TRUE, default)
+/proc/sanitize_hexcolor(color, desired_format = DEFAULT_HEX_COLOR_LEN, include_crunch = TRUE, default)
 	var/crunch = include_crunch ? "#" : ""
 	if(!istext(color))
 		color = ""
@@ -68,11 +68,11 @@
 		char = color[i]
 		i += length(char)
 		switch(text2ascii(char))
-			if(48 to 57)		//numbers 0 to 9
+			if(48 to 57) //numbers 0 to 9
 				. += char
-			if(97 to 102)		//letters a to f
+			if(97 to 102) //letters a to f
 				. += char
-			if(65 to 70)		//letters A to F
+			if(65 to 70) //letters A to F
 				char = lowertext(char)
 				. += char
 			else
@@ -87,9 +87,9 @@
 		return crunch + .
 	switch(format_input_ratio) //add or remove alpha channel depending on desired format.
 		if("3:8", "3:4", "6:4")
-			return copytext(., 1, desired_format+1)
+			return crunch + copytext(., 1, desired_format+1)
 		if("4:6", "4:3", "8:3")
-			return . + ((desired_format == 4) ? "f" : "ff")
+			return crunch + . + ((desired_format == 4) ? "f" : "ff")
 		else //not a supported hex color format.
 			return default ? default : crunch + repeat_string(desired_format, "0")
 

@@ -514,13 +514,13 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			if(!forced_colour)
 				if(hair_color)
 					if(hair_color == "mutcolor")
-						facial_overlay.color = "#" + H.dna.features["mcolor"]
+						facial_overlay.color =  H.dna.features["mcolor"]
 					else if(hair_color == "fixedmutcolor")
-						facial_overlay.color = "#[fixed_mut_color]"
+						facial_overlay.color = fixed_mut_color
 					else
-						facial_overlay.color = "#" + hair_color
+						facial_overlay.color = hair_color
 				else
-					facial_overlay.color = "#" + H.facial_hair_color
+					facial_overlay.color = H.facial_hair_color
 			else
 				facial_overlay.color = forced_colour
 
@@ -577,13 +577,13 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if(!forced_colour)
 					if(hair_color)
 						if(hair_color == "mutcolor")
-							hair_overlay.color = "#" + H.dna.features["mcolor"]
+							hair_overlay.color =  H.dna.features["mcolor"]
 						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = "#[fixed_mut_color]"
+							hair_overlay.color = fixed_mut_color
 						else
-							hair_overlay.color = "#" + hair_color
+							hair_overlay.color = hair_color
 					else
-						hair_overlay.color = "#" + H.hair_color
+						hair_overlay.color = H.hair_color
 
 					//Gradients
 					grad_style = H.grad_style
@@ -594,7 +594,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 						var/icon/temp_hair = icon(hair_file, hair_state)
 						temp.Blend(temp_hair, ICON_ADD)
 						gradient_overlay.icon = temp
-						gradient_overlay.color = "#" + grad_color
+						gradient_overlay.color = grad_color
 
 				else
 					hair_overlay.color = forced_colour
@@ -625,13 +625,13 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if(!forced_colour)
 					if(hair_color)
 						if(hair_color == "mutcolor")
-							hair_overlay.color = "#" + H.dna.features["mcolor"]
+							hair_overlay.color = H.dna.features["mcolor"]
 						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = "#[fixed_mut_color]"
+							hair_overlay.color = fixed_mut_color
 						else
-							hair_overlay.color = "#" + hair_color
+							hair_overlay.color = hair_color
 					else
-						hair_overlay.color = "#" + H.hair_color
+						hair_overlay.color = H.hair_color
 				hair_overlay.alpha = hair_alpha
 				standing+=hair_overlay
 				//var/mutable_appearance/pod_flower = mutable_appearance(GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon, GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon_state, -HAIR_LAYER)
@@ -645,13 +645,13 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					if(!forced_colour)
 						if(hair_color)
 							if(hair_color == "mutcolor")
-								flower_overlay.color = "#" + H.dna.features["mcolor"]
+								flower_overlay.color = H.dna.features["mcolor"]
 							else if(hair_color == "fixedmutcolor")
-								flower_overlay.color = "#[fixed_mut_color]"
+								flower_overlay.color = fixed_mut_color
 							else
-								flower_overlay.color = "#" + hair_color
+								flower_overlay.color = hair_color
 						else		
-							flower_overlay.color = "#" + H.facial_hair_color
+							flower_overlay.color = H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
 					standing += flower_overlay			
 	if(standing.len)
@@ -685,7 +685,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			else
 				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', E.eye_icon_state, -BODY_LAYER)
 			if((EYECOLOR in species_traits) && E)
-				eye_overlay.color = "#" + H.eye_color
+				eye_overlay.color = H.eye_color
 			if(OFFSET_FACE in H.dna.species.offset_features)
 				eye_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
 				eye_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
@@ -940,20 +940,20 @@ GLOBAL_LIST_EMPTY(mentor_races)
 							if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))			//HULK GO FIRST
 								accessory_overlay.color = "#00aa00"
 							else if(fixed_mut_color)													//Then fixed color if applicable
-								accessory_overlay.color = "#[fixed_mut_color]"
+								accessory_overlay.color = fixed_mut_color
 							else																		//Then snowflake color
-								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+								accessory_overlay.color = H.dna.features["mcolor"]
 						if(HAIR)
 							if(hair_color == "mutcolor")
-								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+								accessory_overlay.color = H.dna.features["mcolor"]
 							else if(hair_color == "fixedmutcolor")
-								accessory_overlay.color = "#[fixed_mut_color]"
+								accessory_overlay.color = fixed_mut_color
 							else
-								accessory_overlay.color = "#[H.hair_color]"
+								accessory_overlay.color = H.hair_color
 						if(FACEHAIR)
-							accessory_overlay.color = "#[H.facial_hair_color]"
+							accessory_overlay.color = H.facial_hair_color
 						if(EYECOLOR)
-							accessory_overlay.color = "#[H.eye_color]"
+							accessory_overlay.color = H.eye_color
 				else
 					accessory_overlay.color = forced_colour
 			standing += accessory_overlay
