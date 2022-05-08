@@ -24,3 +24,14 @@
 			to_chat(user, span_warning("You fail tape [M]'s mouth shut!"))
 			return
 		amount -= 1
+
+/obj/item/stack/tape/afterattack(atom/target, mob/user, proximity)
+	if(!proximity || !istype(target, /obj/item))
+		return
+	var/obj/item/I = target
+	if(I.is_sharp())
+		to_chat(user, span_warning("[I] would cut the tape if you tried to wrap it!"))
+		return
+	to_chat(user, span_info("You wrap [I] with [src]."))
+	I.embedding = I.embedding.setRating(100, 10, 0, 0, 0, 0, 0, 0, TRUE)
+	I.taped = TRUE
