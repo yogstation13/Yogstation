@@ -59,7 +59,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 20)
 		pda_color = "#808000"
 	if((current_version < 21) && features["ethcolor"] && (features["ethcolor"] == "#9c3030"))
-		features["ethcolor"] = "9c3030"
+		features["ethcolor"] = "#9c3030"
 	if(current_version < 22)
 		job_preferences = list() //It loaded null from nonexistant savefile field.
 		var/job_civilian_high = 0
@@ -494,9 +494,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			custom_names[custom_name_id] = get_default_name(custom_name_id)
 
 	if(!features["mcolor"] || features["mcolor"] == "#000")
-		message_admins("random mcolor")
 
-		features["mcolor"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
+		features["mcolor"] = "#[pick("7F","FF")][pick("7F","FF")][pick("7F","FF")]"
 
 	if(!features["ethcolor"] || features["ethcolor"] == "#000")
 		features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
@@ -533,7 +532,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], default = FALSE)
 	features["gradientstyle"]			= sanitize_inlist(features["gradientstyle"], GLOB.hair_gradients_list)
 	features["gradientcolor"]		= sanitize_hexcolor(features["gradientcolor"], default = FALSE)
-	features["ethcolor"]	= copytext_char(features["ethcolor"], 1, 7)
+	features["ethcolor"]	= sanitize_inlist(features["ethcolor"], GLOB.color_list_ethereal, "M Class (Red)")
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_polysmorph"]	= sanitize_inlist(features["tail_polysmorph"], GLOB.tails_list_polysmorph)
 	features["tail_human"] 	= sanitize_inlist(features["tail_human"], GLOB.tails_list_human, "None")

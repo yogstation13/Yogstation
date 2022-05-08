@@ -44,7 +44,28 @@ GLOBAL_LIST_EMPTY(moth_wingsopen_list)
 GLOBAL_LIST_EMPTY(caps_list)
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
-GLOBAL_LIST_INIT(color_list_ethereal, list("F Class(Green)" = "97ee63", "F2 Class (Light Green)" = "00fa9a", "F3 Class (Dark Green)" = "37835b", "M Class (Red)" = "9c3030", "M1 Class (Purple)" = "ee82ee", "G Class (Yellow)" = "fbdf56", "O Class (Blue)" = "3399ff", "A Class (Cyan)" = "00ffff"))
+GLOBAL_LIST_INIT(color_list_ethereal, list(
+	"F Class(Green)" = "#97ee63",
+	"F2 Class (Light Green)" = "#00fa9a",
+	"F3 Class (Dark Green)" = "#37835b",
+	"M Class (Red)" = "#9c3030",
+	"M1 Class (Purple)" = "#ee82ee",
+	"G Class (Yellow)" = "#fbdf56",
+	"G1 (Bright Yellow)" = "#ffff99",
+	"O Class (Blue)" = "#3399ff",
+	"O1 (Dark Blue)" = "#6666ff",
+	"A Class (Cyan)" = "#00ffff",
+	
+	"Burnt Orange" = "#cc4400",
+	
+	"Dark Fuschia" = "#cc0066",
+	"Faint Blue" = "#b3d9ff",
+	"Faint Green" = "#ddff99",
+	"Faint Red" = "#ffb3b3",
+	"Orange" = "#ffa64d",
+	"Pink" = "#ff99cc",
+	"Red" = "#ff4d4d",
+	"White Dwarf" = "#f2f2f2",))
 
 GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
 GLOBAL_LIST_EMPTY(pod_flower_list) //ethereal face marks
