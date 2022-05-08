@@ -1009,7 +1009,7 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/makeshiftid
-	name = "makeshift ID"
+	name = "Makeshift ID"
 	result = /obj/item/card/id/makeshift
 	reqs = list(/obj/item/stack/sheet/cardboard = 2,
 				/obj/item/stack/tape = 1,
