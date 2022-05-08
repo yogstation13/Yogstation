@@ -3230,6 +3230,7 @@
 #include "yogstation\code\datums\components\crawl.dm"
 #include "yogstation\code\datums\components\daniel.dm"
 #include "yogstation\code\datums\components\fishable.dm"
+#include "yogstation\code\datums\components\fishingbonus.dm"
 #include "yogstation\code\datums\components\radioactive.dm"
 #include "yogstation\code\datums\components\randomcrits.dm"
 #include "yogstation\code\datums\components\uplink.dm"
