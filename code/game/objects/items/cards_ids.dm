@@ -420,6 +420,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/makeshift
 	name = "makeshift ID"
 	desc = "a humble piece of cardboard with a name writen on it, will probably never fool anyone"
+	icon = 'icons/obj/card.dmi'
 	icon_state = "makeshift"
 	item_state = "makeshift"
 	registered_name = "John Doe"
