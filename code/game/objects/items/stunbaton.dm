@@ -48,6 +48,7 @@ GLOBAL_LIST_EMPTY(all_batons)
 
 /obj/item/melee/baton/Initialize()
 	. = ..()
+	status = FALSE
 	if(preload_cell_type)
 		if(!ispath(preload_cell_type,/obj/item/stock_parts/cell))
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
@@ -153,7 +154,7 @@ GLOBAL_LIST_EMPTY(all_batons)
 
 /obj/item/melee/baton/attack_self(mob/user)
 	/// TESTING
-	if(GLOB.batons_seconly)
+	if(GLOB.batons_seconly && !GLOB.batons_normal)
 		if(!handle_pins(user))
 			to_chat(user, span_warning("You are not authorised to use [src]."))
 			return FALSE
@@ -256,11 +257,21 @@ GLOBAL_LIST_EMPTY(all_batons)
 
 	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
 /// A WHOLE BUNCH OF TESTING
-	if(GLOB.batons_normal)
+	if(GLOB.batons_instant && !GLOB.batons_normal)
+		L.Paralyze(stunforce)
+		L.apply_effect(EFFECT_STUTTER, stunforce)
+		SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
+		if(user)
+			L.lastattacker = user.real_name
+			L.lastattackerckey = user.ckey
+			L.visible_message("<span class='danger'>[user] has stunned [L] with [src]!</span>", \
+									"<span class='userdanger'>[user] has stunned you with [src]!</span>")
+			log_combat(user, L, "stunned")
+	else
 		var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
 		var/armor_block = L.run_armor_check(affecting, "energy") //check armor on the limb because that's where we are slapping...
 		
-		if(GLOB.batons_stam) ///HACKY JANK CODE
+		if(GLOB.batons_stam && !GLOB.batons_normal) ///HACKY JANK CODE
 			stamina_damage = initial(stamina_damage)*2
 		else
 			stamina_damage = initial(stamina_damage)
@@ -293,18 +304,9 @@ GLOBAL_LIST_EMPTY(all_batons)
 			L.visible_message(span_danger("[user] has stunned [L] with [src]!"), \
 									span_userdanger("[user] has stunned you with [src]!"))
 			log_combat(user, L, "stunned")	
-	else if(GLOB.batons_instant)
-		L.Paralyze(stunforce)
-		L.apply_effect(EFFECT_STUTTER, stunforce)
-		SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
-		if(user)
-			L.lastattacker = user.real_name
-			L.lastattackerckey = user.ckey
-			L.visible_message("<span class='danger'>[user] has stunned [L] with [src]!</span>", \
-									"<span class='userdanger'>[user] has stunned you with [src]!</span>")
-			log_combat(user, L, "stunned")	
+
 	else
-		to_chat(user, "Something is really fucked")
+		to_chat(user, "Something is really fucked, turn everyone off and try again")
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
 
@@ -368,6 +370,7 @@ GLOBAL_VAR_INIT(batons_cooldown, TRUE)
 	if(!check_rights(R_DEV))
 		return
 	GLOB.batons_instant = !GLOB.batons_instant
+	to_chat("Instant Batons are now set to [GLOB.batons_instant]")
 		
 
 /datum/admins/proc/cmd_batons_stamina()
@@ -377,6 +380,7 @@ GLOBAL_VAR_INIT(batons_cooldown, TRUE)
 		return
 	/// TRUE IS 1 HIT
 	GLOB.batons_stam = !GLOB.batons_stam
+	to_chat("Batons are now set to 1 hit TRUE/FALE - [GLOB.batons_stam]")
 
 /datum/admins/proc/cmd_batons_normal()
 	set category = "Batons"
@@ -384,6 +388,7 @@ GLOBAL_VAR_INIT(batons_cooldown, TRUE)
 	if(!check_rights(R_DEV))
 		return
 	GLOB.batons_normal = !GLOB.batons_normal
+	to_chat("Batons are now set to NORMAL TRUE/FALSE [GLOB.batons_normal]")
 
 /datum/admins/proc/cmd_batons_seconly()
 	set category = "Batons"
@@ -391,6 +396,7 @@ GLOBAL_VAR_INIT(batons_cooldown, TRUE)
 	if(!check_rights(R_DEV))
 		return
 	GLOB.batons_seconly = !GLOB.batons_seconly
+	to_chat("Batons are now set to Sec only - TRUE/FALE [GLOB.batons_seconly]")
 
 /datum/admins/proc/cmd_batons_cooldown()
 	set category = "Batons"
@@ -398,6 +404,7 @@ GLOBAL_VAR_INIT(batons_cooldown, TRUE)
 	if(!check_rights(R_DEV))
 		return
 	GLOB.batons_cooldown = !GLOB.batons_cooldown
+	to_chat("Baton Cooldown is now set to TRUE/FALE [GLOB.batons_cooldown]")
 
 /obj/item/melee/baton/proc/handle_pins(mob/living/user)
 	if(pin)

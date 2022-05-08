@@ -178,6 +178,11 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/export_dynamic_json,
 	/client/proc/run_dynamic_simulations,
 	#endif
+	/datum/admins/proc/cmd_batons_instant_stun,
+	/datum/admins/proc/cmd_batons_stamina,
+	/datum/admins/proc/cmd_batons_normal,
+	/datum/admins/proc/cmd_batons_seconly,
+	/datum/admins/proc/cmd_batons_cooldown
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
@@ -253,7 +258,12 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/cmd_display_del_log,
 	/client/proc/toggle_combo_hud,
 	/client/proc/debug_huds,
-	/client/proc/admincryo
+	/client/proc/admincryo,
+	/datum/admins/proc/cmd_batons_instant_stun,
+	/datum/admins/proc/cmd_batons_stamina,
+	/datum/admins/proc/cmd_batons_normal,
+	/datum/admins/proc/cmd_batons_seconly,
+	/datum/admins/proc/cmd_batons_cooldown
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
 
