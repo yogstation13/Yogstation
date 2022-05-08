@@ -60,7 +60,7 @@
 	route = PATH_ASH
 	tier = TIER_MARK
 
-/datum/eldritch_knowledge/ash_mark/on_mansus_grasp(target,user,proximity_flag,click_parameters)
+/datum/eldritch_knowledge/ash_mark/on_mansus_grasp(atom/target,mob/user,proximity_flag,click_parameters)
 	. = ..()
 	if(isliving(target))
 		. = TRUE
