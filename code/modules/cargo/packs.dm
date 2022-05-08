@@ -1029,7 +1029,7 @@
 /datum/supply_pack/materials/license50
 	name = "50 Empty License Plates"
 	desc = "'Put those prisoners to work' - Jedi Yoda probably"
-	cost = 1000  // 50 * 25 + 700 - 1000 = 950 credits profit
+	cost = 1000  // 50 * 25 - 1000 = 250 credits profit
 	contains = list(/obj/item/stack/license_plates/empty/fifty)
 	crate_name = "empty license plate crate"
 

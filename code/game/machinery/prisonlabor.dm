@@ -31,7 +31,7 @@
 	if(pressing)
 		to_chat(user, "<span class='warning'>[src] already has a plate in it!</span>")
 		return FALSE
-	if(istype(I, /obj/item/stack/license_plates/empty))
+	if(!istype(I, /obj/item/stack/license_plates/empty))
 		var/obj/item/stack/license_plates/empty/plate = I
 		plate.use(1)
 		current_plate = new plate.type(src, 1) //Spawn a new single sheet in the machine
@@ -47,7 +47,6 @@
 
 ///This proc attempts to create a plate. User cannot move during this process.
 /obj/machinery/plate_press/proc/work_press(mob/living/user)
-
 	pressing = TRUE
 	update_icon()
 	to_chat(user, "<span class='notice'>You start pressing a new license plate!</span>")
