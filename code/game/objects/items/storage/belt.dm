@@ -116,7 +116,6 @@
 	new /obj/item/wirecutters(src)
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
-	new /obj/item/barrier_taperoll/engineering(src)
 
 /obj/item/storage/belt/utility/full/engi/PopulateContents()
 	new /obj/item/screwdriver(src)
