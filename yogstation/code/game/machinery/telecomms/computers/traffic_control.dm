@@ -19,6 +19,8 @@
 	var/list/access_log = list()
 	var/process = 0
 	circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic
+	
+	var/silicons_allowed = TRUE
 
 	req_access = list(ACCESS_TCOM_ADMIN)
 
@@ -42,7 +44,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		stop_editing()
 		return
-
+	
 	if(editingcode && editingcode.machine != src)
 		stop_editing()
 		return
@@ -60,6 +62,11 @@
 	// loop if there's someone manning the keyboard
 	if(!editingcode.client)
 		stop_editing()
+		return
+	//stop if they're a silicon and they're not allowed
+	if(!silicons_allowed && issilicon(editingcode))
+		stop_editing()
+		to_chat(editingcode, span_warning("Your connection has been severed!"))
 		return
 
 	// For the typer, the input is enabled. Buffer the typed text
@@ -117,7 +124,9 @@
 
 				else
 					dat += "<br>No servers detected. Scan for servers: <a href='?src=\ref[src];operation=scan'>\[Scan\]</a>"
-
+				
+				if(!issilicon(user))
+					dat += "<br>Access for silicons: <a href='?src=\ref[src];operation=toggle_silicon'>\[[silicons_allowed ? "Disable" : "Enable]\]</a>"
 
 		  // --- Viewing Server ---
 
@@ -169,6 +178,11 @@
 	if(..())
 		return
 
+
+	if(!silicons_allowed && issilicon(usr))
+		to_chat(usr, span_warning("This console has silicon interaction disabled!"))
+		return
+	
 
 	add_fingerprint(usr)
 	usr.set_machine(src)
@@ -262,6 +276,14 @@
 
 			if("togglerun")
 				SelectedServer.autoruncode = !(SelectedServer.autoruncode)
+			
+			if("toggle_silicon")
+				if(issilicon(usr))
+					to_chat(usr, span_warning("It is not possible for silicons to change this setting"))
+					return
+				silicons_allowed = !silicons_allowed
+				to_chat(usr, span_notice("You [silicons_allowed ? "enable" : "disable"] access for silicons"))
+				
 
 	if(href_list["network"])
 
