@@ -95,8 +95,8 @@
 	name = "laser buckshot"
 	desc = "An advanced shotgun shell that uses  micro lasers to replicate the effects of a laser weapon in a ballistic package."
 	icon_state = "lshell"
-	projectile_type = /obj/item/projectile/beam/laser
-	pellets = 4
+	projectile_type = /obj/item/projectile/beam/laser/buckshot
+	pellets = 5
 	variance = 35
 
 /obj/item/ammo_casing/shotgun/techshell
