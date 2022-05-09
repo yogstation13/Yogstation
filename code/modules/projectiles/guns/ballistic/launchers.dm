@@ -115,3 +115,22 @@
 	cartridge_wording = "cannonball"
 	fire_sound = 'sound/effects/bang.ogg'
 	pin = /obj/item/firing_pin
+
+/obj/item/gun/ballistic/gauss
+	name = "Gauss rifle"
+	desc = " rod goes brrr"
+	icon = 'icons/obj/guns/projectile.dmi'
+	icon_state = "gauss"
+	item_state = "gauss"
+	mag_type = /obj/item/stack/rods
+	w_class = WEIGHT_CLASS_HUGE
+	weapon_weight = WEAPON_HEAVY
+	casing_ejector = FALSE
+	bolt_type = BOLT_TYPE_NO_BOLT
+	internal_magazine = TRUE
+	empty_indicator = TRUE
+	can_suppress = FALSE
+	force = 10
+	cartridge_wording = "rod"
+	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	pin = /obj/item/firing_pin
