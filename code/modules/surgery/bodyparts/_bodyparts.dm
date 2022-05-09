@@ -746,7 +746,6 @@
 				species_color = S.fixed_mut_color
 			else
 				species_color = H.dna.features["mcolor"]
-				message_admins("bodypart mcolor: [H.dna.features["mcolor"]]")
 			should_draw_greyscale = TRUE
 		else
 			species_color = ""

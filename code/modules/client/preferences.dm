@@ -1385,11 +1385,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("age")
 					age = rand(AGE_MIN, AGE_MAX)
 				if("hair")
-					hair_color = random_short_color()
+					hair_color = "#[random_color()]"
 				if("hair_style")
 					hair_style = random_hair_style(gender)
 				if("facial")
-					facial_hair_color = random_short_color()
+					facial_hair_color = "#[random_color()]"
 				if("facial_hair_style")
 					facial_hair_style = random_facial_hair_style(gender)
 				if("underwear")

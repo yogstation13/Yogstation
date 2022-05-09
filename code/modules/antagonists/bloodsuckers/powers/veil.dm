@@ -67,7 +67,7 @@
 	user.skin_tone = random_skin_tone()
 	user.hair_style = random_hair_style(user.gender)
 	user.facial_hair_style = pick(random_facial_hair_style(user.gender), "Shaved")
-	user.hair_color = random_short_color()
+	user.hair_color = "#[random_color()]"
 	user.facial_hair_color = user.hair_color
 	user.underwear = random_underwear(user.gender)
 	user.undershirt = random_undershirt(user.gender)
