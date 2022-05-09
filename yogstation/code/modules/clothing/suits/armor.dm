@@ -57,9 +57,9 @@
 	icon_state = "warden_jacket"
 	item_state = "warden_item"
 
-/obj/item/clothing/suit/armor/hos/germancoat
-	name = "padded german coat"
-	desc = "for those cold german winters or for those head of securitys that want to show their true colors."
+/obj/item/clothing/suit/armor/hos/blackcoat
+	name = "padded black coat"
+	desc = "For those cold icebox winters."
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "german_coat"
