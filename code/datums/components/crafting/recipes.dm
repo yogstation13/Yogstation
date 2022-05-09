@@ -356,7 +356,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-	/datum/crafting_recipe/thundershot
+/datum/crafting_recipe/thundershot
 	name = "Thundershot Shell"
 	result = /obj/item/ammo_casing/shotgun/thundershot
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
