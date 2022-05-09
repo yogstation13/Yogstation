@@ -18,7 +18,7 @@
 	if(!random_locks["facial_hair_style"])
 		facial_hair_style = random_facial_hair_style(gender)
 	if(!random_locks["hair"])
-		hair_color = "#[random_color()]"
+		hair_color = random_short_color()
 	if(!random_locks["facial"])
 		facial_hair_color = hair_color
 	if(!random_locks["eye_color"])
