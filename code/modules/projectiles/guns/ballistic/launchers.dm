@@ -118,13 +118,13 @@
 
 /obj/item/gun/ballistic/gauss
 	name = "Gauss rifle"
-	desc = " rod goes brrr"
+	desc = "A makeshift gauss rifle, barely holding together with tape and cables"
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "gauss"
 	item_state = "gauss"
 	mag_type = /obj/item/ammo_box/magazine/internal/rods
 	w_class = WEIGHT_CLASS_HUGE
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_LIGHT
 	casing_ejector = FALSE
 	bolt_type = BOLT_TYPE_NO_BOLT
 	internal_magazine = TRUE
@@ -132,5 +132,10 @@
 	can_suppress = FALSE
 	force = 10
 	cartridge_wording = "rod"
-	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	pin = /obj/item/firing_pin
+
+/obj/item/gun/ballistic/gauss/afterattack()
+	. = ..()
+	playsound(loc, "sparks", 75, 1, -1)
+	do_sparks(5, 4, usr)
