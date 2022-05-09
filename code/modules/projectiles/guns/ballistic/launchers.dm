@@ -122,6 +122,8 @@
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "gauss"
 	item_state = "gauss"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	mag_type = /obj/item/ammo_box/magazine/internal/rods
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
@@ -135,6 +137,26 @@
 	cartridge_wording = "rod"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	pin = /obj/item/firing_pin
+	var/cell_type = /obj/item/stock_parts/cell/high
+
+/obj/item/gun/ballistic/gauss/Initialize()
+	. = ..()
+	if(!cell && cell_type)
+		cell = new cell_type
+
+/obj/item/inducer/get_cell()
+	return cell
+
+if(istype(W, /obj/item/stock_parts/cell))
+	if(!cell)
+	if(!user.transferItemToLoc(W, src))
+		return
+		to_chat(user, span_notice("You insert [W] into [src]."))
+		cell = W
+			return
+	else
+		to_chat(user, span_notice("[src] already has \a [cell] installed!"))
+		return
 
 /obj/item/gun/ballistic/gauss/afterattack()
 	. = ..()
