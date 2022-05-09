@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - rscadd: "AI latejoin depends on there not already being an active AI, and there being an active AI network. No longer requires an arbitrary latejoin core"
