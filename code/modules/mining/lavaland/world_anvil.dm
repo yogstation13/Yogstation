@@ -42,6 +42,35 @@
 	placed_objects -= I
 	UnregisterSignal(I, COMSIG_MOVABLE_MOVED)
 
+/obj/structure/world_anvil/proc/crafting_check()
+	if(!forge_charges)
+		return
+	for(var/obj/item/magmite/placed_magmite in placed_objects)
+		var/obj/item/upgrade_parts = new /obj/item/magmite_parts(src)
+		vis_contents += upgrade_parts
+		placed_objects += upgrade_parts
+		RegisterSignal(upgrade_parts, COMSIG_MOVABLE_MOVED, .proc/ItemMoved,TRUE)
+		placed_objects -= placed_magmite
+		qdel(placed_magmite)
+		forge_charges--
+		update_icon()
+		if(!forge_charges)
+			visible_message("The world anvil cools down.")
+			break
+
+/obj/structure/world_anvil/attack_hand(mob/user)
+	if(!LAZYLEN(placed_objects))
+		to_chat(user,"You must place plasma magmite on the anvil to forge it!")
+		return ..()
+	if(forge_charges <= 0)
+		to_chat(user,"The anvil is not heated enough to be usable!")
+		return ..()
+	if(do_after(user,10 SECONDS, target = src))
+		crafting_check()
+
+
+/*
+
 /obj/structure/world_anvil/attack_hand(mob/user)
 	if(!LAZYLEN(placed_objects))
 		to_chat(user,"You must place a piece of plasma magmite and either a kinetic accelerator or advanced plasma cutter on the anvil!")
@@ -103,4 +132,4 @@
 	if(!forge_charges)
 		to_chat(user,"The world anvil cools down.")
 	
-	
+*/

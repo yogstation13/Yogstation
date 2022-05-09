@@ -1,6 +1,7 @@
 /obj/item/grenade/plastic/miningcharge
 	name = "mining charge"
 	desc = "Used to make big holes in rocks. Only works on rocks!"
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "mining-charge"
 	det_time = 5 //uses real world seconds cause screw you i guess
 	boom_sizes = list(1,3,5)
