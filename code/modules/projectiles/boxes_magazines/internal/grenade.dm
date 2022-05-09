@@ -24,7 +24,7 @@
 
 /obj/item/ammo_box/magazine/internal/rods
 	name = "rods"
-	ammo_type = /obj/item/stack/rods
+	ammo_type = /obj/item/ammo_casing/caseless/bolts
 	caliber = null
 	max_ammo = 1
 

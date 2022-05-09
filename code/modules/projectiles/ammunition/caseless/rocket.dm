@@ -28,4 +28,11 @@
 	projectile_type = /obj/item/projectile/bullet/cball
 	w_class = WEIGHT_CLASS_NORMAL //cannonballs hefty
 
-
+/obj/item/ammo_casing/caseless/bolts
+	name = "bolts"
+	desc = "shorter, more gud rods"
+	caliber = null
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "bolt"
+	projectile_type = /obj/item/projectile/bullet/bolt
+	w_class = WEIGHT_CLASS_TINY
