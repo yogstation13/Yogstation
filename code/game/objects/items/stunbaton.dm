@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(all_batons)
 	///used for passive discharge
 	var/cell_last_used = 0
 	/// TESTING
-	var/obj/item/firing_pin/implant/mindshield/pin = /obj/item/firing_pin/implant/mindshield //standard firing pin for most guns
+	var/obj/item/firing_pin/pin = /obj/item/firing_pin/implant/mindshield //mindshield implant
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -179,7 +179,7 @@ GLOBAL_LIST_EMPTY(all_batons)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
 	/// TESTING
-	if(GLOB.batons_seconly)
+	if(GLOB.batons_seconly && !GLOB.batons_normal)
 		if(!handle_pins(user))
 			to_chat(user, span_warning("You are not authorised to use [src]."))
 			return FALSE
@@ -216,7 +216,7 @@ GLOBAL_LIST_EMPTY(all_batons)
 	if(user.a_intent != INTENT_HARM)
 		if(status)
 			/// TESTING
-			if(GLOB.batons_normal && GLOB.batons_cooldown)
+			if(GLOB.batons_normal || GLOB.batons_cooldown)
 				if(cooldown_check <= world.time)
 					if(baton_stun(M, user))
 						user.do_attack_animation(M)
@@ -234,7 +234,7 @@ GLOBAL_LIST_EMPTY(all_batons)
 	else
 		if(status)
 			/// TESTING
-			if(GLOB.batons_normal && GLOB.batons_cooldown)
+			if(GLOB.batons_normal || GLOB.batons_cooldown)
 				if(cooldown_check <= world.time)
 					baton_stun(M, user)
 			else
