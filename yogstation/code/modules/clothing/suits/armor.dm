@@ -57,19 +57,6 @@
 	icon_state = "warden_jacket"
 	item_state = "warden_item"
 
-/obj/item/clothing/suit/armor/hos/germancoat
-	name = "padded german coat"
-	desc = "for those cold german winters or for those head of securitys that want to show their true colors."
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
-	icon = 'yogstation/icons/obj/clothing/suits.dmi'
-	icon_state = "german_coat"
-	item_state = "german_item"
-	body_parts_covered = CHEST|GROIN|ARMS|LEGS
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 90)
-	cold_protection = CHEST|GROIN|LEGS|ARMS
-	heat_protection = CHEST|GROIN|LEGS|ARMS
-	strip_delay = 80
-
 /obj/item/clothing/suit/armor/vest/sovietcoat
 	name = "soviet coat"
 	desc = "Glory to Arstotzka! Now with padding protection!"
