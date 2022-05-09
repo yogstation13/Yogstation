@@ -130,6 +130,7 @@
 	internal_magazine = TRUE
 	empty_indicator = TRUE
 	can_suppress = FALSE
+	fire_delay = 5
 	force = 10
 	cartridge_wording = "rod"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
