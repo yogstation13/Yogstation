@@ -755,7 +755,7 @@
 	new /obj/item/clothing/under/rank/head_of_security/grey(src)
 	new /obj/item/clothing/under/yogs/lieutgeneral(src)
 	new /obj/item/clothing/under/yogs/dictatorhos(src)
-	new /obj/item/clothing/suit/armor/hos/blackcoat(src)
+	new /obj/item/clothing/suit/armor/hos/greencoat(src)
 	new /obj/item/clothing/under/yogs/hoslatenight(src)
 	new /obj/item/clothing/under/yogs/hoscasual(src)
 	new /obj/item/clothing/suit/armor/vest/hosjacket(src)
