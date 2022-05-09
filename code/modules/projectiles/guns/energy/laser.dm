@@ -183,4 +183,4 @@
 	damage = 5
 
 /obj/item/projectile/beam/laser/buckshot
-	damage = 12
+	damage = 10
