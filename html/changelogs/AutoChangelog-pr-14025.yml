@@ -1,0 +1,4 @@
+author: " Identification"
+delete-after: true 
+changes: 
+  - imagedel: "Common backpacks have had their straps removed on mob sprites to improve clarity."
