@@ -124,13 +124,13 @@
 	item_state = "gauss"
 	mag_type = /obj/item/ammo_box/magazine/internal/rods
 	w_class = WEIGHT_CLASS_HUGE
-	weapon_weight = WEAPON_LIGHT
+	weapon_weight = WEAPON_HEAVY
 	casing_ejector = FALSE
 	bolt_type = BOLT_TYPE_NO_BOLT
 	internal_magazine = TRUE
 	empty_indicator = TRUE
 	can_suppress = FALSE
-	fire_delay = 5
+	fire_delay = 10
 	force = 10
 	cartridge_wording = "rod"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
@@ -139,4 +139,4 @@
 /obj/item/gun/ballistic/gauss/afterattack()
 	. = ..()
 	playsound(loc, "sparks", 75, 1, -1)
-	do_sparks(5, 4, usr)
+	do_sparks(8, 3, usr)
