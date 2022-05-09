@@ -127,6 +127,6 @@
 
 /obj/item/projectile/bullet/pellet/shotgun_thundershot/on_hit(atom/target)
 	..()
-	tesla_zap(target, rand(2, 3), 5000, TESLA_MOB_DAMAGE)
+	tesla_zap(target, rand(2, 3), 17500, TESLA_MOB_DAMAGE)
 	return BULLET_ACT_HIT
 	
