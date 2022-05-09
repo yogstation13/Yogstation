@@ -385,7 +385,7 @@
 
 //singularity wakizashi
 /obj/item/toy/katana/singulo_wakizashi
-	name = "singularity wakizashi"
+	name = "replica singularity wakizashi"
 	desc = "The power of the singularity condensed into one short, cheap, and fake wakizashi!"
 	icon_state = "singulo_wakizashi"
 	item_state = "singulo_wakizashi"
