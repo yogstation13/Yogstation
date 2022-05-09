@@ -1,0 +1,5 @@
+author: "cuackles"
+delete-after: true 
+changes: 
+  - rscadd: "Added new tags for the pathfinder hat to hide mask and ears"
+  - imageadd: "added new pathfinder hat sprite"
