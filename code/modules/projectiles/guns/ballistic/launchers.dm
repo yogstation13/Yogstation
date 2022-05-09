@@ -122,7 +122,7 @@
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "gauss"
 	item_state = "gauss"
-	mag_type = /obj/item/stack/rods
+	mag_type = /obj/item/ammo_box/magazine/internal/rods
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
 	casing_ejector = FALSE
