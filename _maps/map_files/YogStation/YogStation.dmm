@@ -35003,13 +35003,6 @@
 "hRj" = (
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"hRk" = (
-/obj/item/stack/cable_coil,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/landmark/start/ai,
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "hRo" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -66896,6 +66889,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"yfy" = (
+/obj/item/stack/cable_coil,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "yfA" = (
 /obj/structure/closet/wardrobe/white,
 /obj/item/radio/headset,
@@ -109742,7 +109741,7 @@ pEf
 koy
 cva
 cva
-hRk
+yfy
 rjo
 rqW
 rjo
