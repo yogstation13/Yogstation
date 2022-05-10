@@ -700,9 +700,9 @@
 	name = "Pathfinder Kasa"
 	result = /obj/item/clothing/head/helmet/kasa
 	time = 5 SECONDS
-	reqs = list(/obj/item/stack/sheet/bone = 12,
-				/obj/item/stack/sheet/sinew = 12,
-				/obj/item/stack/sheet/animalhide/weaver_chitin = 12)
+	reqs = list(/obj/item/stack/sheet/bone = 8,
+				/obj/item/stack/sheet/sinew = 4,
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 10) //3 spiders assuming you get leather from one
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/pathcloak
@@ -710,7 +710,7 @@
 	result = /obj/item/clothing/suit/armor/pathfinder
 	time = 5 SECONDS
 	reqs = list(/obj/item/clothing/suit/hooded/cloak/goliath = 1,
-				/obj/item/stack/sheet/animalhide/goliath_hide = 4, //2 plates for the cloak plus 4 here plus 3 for plating the armor = 9 total
+				/obj/item/stack/sheet/animalhide/goliath_hide = 2, //2 plates for the cloak plus 2 here plus 3 for plating the armor = 7 total
 				/obj/item/stack/sheet/sinew = 6)
 	category = CAT_PRIMAL
 
@@ -718,8 +718,8 @@
 	name = "Pathfinder Treads"
 	result = /obj/item/clothing/shoes/pathtreads
 	time = 5 SECONDS
-	reqs = list(/obj/item/stack/sheet/sinew = 12,
-				/obj/item/stack/sheet/animalhide/weaver_chitin = 16)
+	reqs = list(/obj/item/stack/sheet/sinew = 2,
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 2)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonesword
