@@ -182,13 +182,14 @@
 
 /obj/item/reagent_containers/food/snacks/vermin
 	name = "Vermin bites"
-	desc = "yea"
-	icon = 'icon/obj/food/food'
+	desc = "Vermin bites for when you need a quick snack snack"
 	icon_state = "verminbites"
 	tastes = list("rats"=1 , "mouse"=2)
 	foodtype = MEAT
 	var/opened = FALSE
 
-/obj/item/reagent_containers/food/snack/vermin/attack_self(mob/user)
+/obj/item/reagent_containers/food/snacks/vermin/attack_self(mob/user)
 	. = ..()
-	new /mob/living/simple_animal/mouse
+	to_chat(user, span_warning("you crack open vermin bites, droping the mouse inside it"))
+	new /mob/living/simple_animal/mouse(get_turf(src))
+	qdel(src)
