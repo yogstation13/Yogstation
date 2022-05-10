@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		return
 
 	if(id)
-		. += span_notice("Alt-click to remove the id.")
+		. += span_notice("Alt-click to remove the ID.")
 
 	if(inserted_item && (!isturf(loc)))
 		. += span_notice("Ctrl-click to remove [inserted_item].")
