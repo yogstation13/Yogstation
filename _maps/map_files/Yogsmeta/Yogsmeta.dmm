@@ -64190,6 +64190,13 @@
 "dzB" = (
 /turf/open/indestructible/sound/pool/end,
 /area/crew_quarters/fitness/recreation)
+"dzJ" = (
+/obj/machinery/camera{
+	c_tag = "Incinerator";
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/atmos_distro)
 "dzP" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=10-Aft-To-Central";
@@ -67387,16 +67394,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"gwI" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "gxv" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -78898,6 +78895,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"sTv" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "sTD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -118159,7 +118167,7 @@ aaa
 aaf
 cqs
 cRS
-gwI
+sTv
 bXP
 cyn
 ery
@@ -127370,7 +127378,7 @@ xrY
 hdi
 xrY
 fXM
-xrY
+dzJ
 uBz
 uBz
 uBz

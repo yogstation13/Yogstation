@@ -408,7 +408,7 @@
 //Stun
 /obj/item/melee/blood_magic/stun
 	name = "Stunning Aura"
-	desc = "Will stun and mute a victim on contact. Effects become weaker as the cult grows."
+	desc = "Will stun and mute a victim on contact. Effects become weaker as the cult grows, and those with shielded minds are uneffected."
 	color = RUNE_COLOR_RED
 	invocation = "Fuu ma'jin!"
 
@@ -441,7 +441,7 @@
 			else
 				target.visible_message(span_warning("[L] starts to glow in a halo of light!"), \
 									   span_userdanger("A feeling of warmth washes over you, rays of holy light surround your body and protect you from the flash of light!"))
-		else
+		else if(!HAS_TRAIT(target, TRAIT_MINDSHIELD)) //&& !istype(L.get_item_by_slot(SLOT_HEAD), /obj/item/clothing/head/foilhat))
 			if(cult.cult_ascendent)
 				to_chat(user, span_cultitalic("[L] is dazed by a flash of red light!"))
 				L.Knockdown(100)
@@ -486,6 +486,9 @@
 					C.Jitter(15)
 				if(is_servant_of_ratvar(L))
 					L.adjustBruteLoss(15)
+		else
+			target.visible_message("<span class='warning'>[target] winces slightly as a red flash eminates from [user]'s hand</span>", \
+									   "<span class='userdanger'>You get a small headache as a red flash eminates from [user]'s hand!</span>")
 		uses--
 	..()
 

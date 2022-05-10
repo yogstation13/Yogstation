@@ -15,6 +15,7 @@
 	cooldown = 10 SECONDS
 	target_range = 6
 	power_activates_immediately = FALSE
+	var/casting = FALSE //yogs - special snowflake!!!
 
 /*
  *	Level 1: Grapple level 2
@@ -77,7 +78,7 @@
 	PowerActivatedSuccessfully()
 
 /datum/action/bloodsucker/targeted/lunge/proc/prepare_target_lunge(atom/target_atom)
-	START_PROCESSING(SSprocessing, src)
+	casting = TRUE;
 	to_chat(owner, span_notice("You prepare to lunge!"))
 	//animate them shake
 	var/base_x = owner.pixel_x
@@ -90,13 +91,16 @@
 
 	if(!do_after(owner, 4 SECONDS, extra_checks = CALLBACK(src, .proc/CheckCanTarget, target_atom)))
 		animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1)
-		STOP_PROCESSING(SSprocessing, src)
+		casting = FALSE
 		return FALSE
 	animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1)
-	STOP_PROCESSING(SSprocessing, src)
+	casting = FALSE
 	return TRUE
 
 /datum/action/bloodsucker/targeted/lunge/process()
+	..()
+	if(!casting) //snowflake code for cooldowns
+		return
 	if(prob(75))
 		owner.spin(8, 1)
 		owner.visible_message(

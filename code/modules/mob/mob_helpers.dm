@@ -112,6 +112,8 @@
 				newletter += "[newletter]"
 			if(20)
 				newletter += "[newletter][newletter]"
+			else
+				newletter += ""
 		. += "[newletter]"
 	return sanitize(.)
 
@@ -155,6 +157,8 @@
 				newletter = "nglu"
 			if(5)
 				newletter = "glor"
+			else
+				newletter += ""
 		. += newletter
 	return sanitize(.)
 
@@ -195,6 +199,14 @@
 		message += "[stutter(pick("!", "!!", "!!!"))]"
 	if(!stuttering && prob(15))
 		message = stutter(message)
+	return message
+
+/proc/lizardspeech(message)
+	var/static/regex/lizard_hiss = new("s+", "g")
+	var/static/regex/lizard_hiSS = new("S+", "g")
+	if(message[1] != "*")
+		message = lizard_hiss.Replace(message, "sss")
+		message = lizard_hiSS.Replace(message, "SSS")
 	return message
 
 /**

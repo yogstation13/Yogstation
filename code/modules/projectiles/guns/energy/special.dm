@@ -109,13 +109,17 @@
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow/large
 	name = "energy crossbow"
-	desc = "A reverse engineered weapon using syndicate technology."
+	desc = "A reverse engineered weapon using syndicate technology, substantially bulkier than its illegal counterpart."
 	icon_state = "crossbowlarge"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	materials = list(/datum/material/iron=4000)
 	suppressed = null
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/large)
 	pin = null
+	holds_charge = FALSE
+	unique_frequency = FALSE
+	weapon_weight = WEIGHT_CLASS_HUGE
+	overheat_time = 10 SECONDS
 
 
 /obj/item/gun/energy/plasmacutter

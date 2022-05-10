@@ -1101,7 +1101,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 									ADMIN_PUNISHMENT_BLEED,
 									ADMIN_PUNISHMENT_PERFORATE,
 									ADMIN_PUNISHMENT_SCARIFY,
-									ADMIN_PUNISHMENT_SMSPIDER
+									ADMIN_PUNISHMENT_SMSPIDER,
+									ADMIN_PUNISHMENT_FLASHBANG
 									)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1274,6 +1275,16 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/mob/living/carbon/C = target
 			C.generate_fake_scars(rand(1, 4))
 			to_chat(C, span_warning("You feel your body grow jaded and torn..."))
+
+		if(ADMIN_PUNISHMENT_FLASHBANG)
+			var/mob/living/carbon/chucklenuts = target
+			playsound(chucklenuts,'sound/misc/thinkfast.ogg',300 , FALSE)
+			to_chat(chucklenuts, span_warning("Think Fast!"))
+			sleep(15)
+			var/obj/item/grenade/flashbang/CB = new/obj/item/grenade/flashbang(target.loc)
+			CB.prime()
+			chucklenuts.flash_act()
+
 	punish_log(target, punishment)
 
 /**
@@ -1411,7 +1422,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Spawn on Centcom"
 	if(!check_rights(R_ADMIN))
 		return
-	var/turf/T = locate(196,82,1) // Magic number alert!
+	var/turf/T
+	for(var/obj/effect/landmark/centcom/centcomturf in GLOB.landmarks_list)
+		T = centcomturf.loc
 	if(ismob(usr))
 		var/mob/M = usr
 		if(isobserver(M))
@@ -1471,3 +1484,31 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	user.status_flags &= ~GODMODE
 	user.update_mobility()
 	sleep(40)
+
+/datum/admins/proc/cmd_create_wiki()
+	set category = "Misc"
+	set name = "Go to Wiki Room"
+	if(!check_rights(R_ADMIN))
+		return
+	var/turf/T
+	for(var/obj/effect/landmark/wiki/wikiturf in GLOB.landmarks_list)
+		T = wikiturf.loc
+	if(ismob(usr))
+		var/mob/M = usr
+		if(isobserver(M))
+			var/mob/living/carbon/human/H = new(T)
+			var/datum/preferences/A = new
+			A.copy_to(H)
+			H.dna.update_dna_identity()
+
+			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.
+			// For that reason, we're making a new one. This mimics the behavior of, say, lone operatives, and I believe other ghostroles.
+			Mind.active = 1
+			Mind.transfer_to(H)
+
+			var/msg = "[key_name_admin(H)] has spawned in the wiki room [ADMIN_VERBOSEJMP(H)]."
+			message_admins(msg)
+			log_admin(msg)
+			return
+		else
+			usr.forceMove(T)
