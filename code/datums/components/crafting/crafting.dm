@@ -74,9 +74,6 @@
 				if(ispath(B, A))
 					if (R.blacklist.Find(B))
 						continue
-					var/atom/thing = B
-					if (!HAS_TRAIT(thing,TRAIT_NODROP)) //yogs: no gun duplication
-						continue
 					if(contents[B] >= R.reqs[A])
 						continue main_loop
 					else
@@ -114,7 +111,7 @@
 	for(var/obj/item/I in get_environment(user))
 		if(I.flags_1 & HOLOGRAM_1)
 			continue
-		if(HAS_TRAIT(I,TRAIT_NODROP))
+		if(I.status_traits && HAS_TRAIT(I,TRAIT_NODROP))
 			continue
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
