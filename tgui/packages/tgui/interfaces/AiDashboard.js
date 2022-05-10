@@ -145,11 +145,10 @@ export const AiDashboard = (props, context) => {
               <Section key={index} title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.available ? "Available" : "Unavailable"}</Box>)} buttons={(
                 <Fragment>
                   <Box inline bold>Assigned CPU:&nbsp;</Box>
-                  <NumberInput value={project.assigned_cpu*100} minValue={0} maxValue={remaining_cpu + (project.assigned_cpu * 100)} onChange={(e, value) => act('allocate_cpu', {
+                  <NumberInput unit="%" value={project.assigned_cpu*100} minValue={0} maxValue={remaining_cpu + (project.assigned_cpu * 100)} onChange={(e, value) => act('allocate_cpu', {
                     project_name: project.name,
                     amount: Math.round((value / 100) * 100) / 100,
                   })} />
-                  <Box inline bold>%&nbsp;</Box>
                   <Button icon="arrow-up" disabled={data.current_cpu === data.used_cpu} onClick={(e, value) => act('max_cpu', {
                     project_name: project.name,
                   })}>Max

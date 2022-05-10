@@ -16,9 +16,7 @@ const MATERIAL_KEYS = {
 export const AiOverclocking = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const [modalStatus, setModalStatus] = useLocalState(context, 'modal', false);
-  const [ramIndex, setRamIndex] = useLocalState(context, 'ram', 0);
-
+  const [increment, setIncrement] = useLocalState(context, 'increment', 0.1);
 
   let upperCaseWords = function (string) {
     if (!string) return;
@@ -28,15 +26,7 @@ export const AiOverclocking = (props, context) => {
     }
     return words.join(" ");
   };
-
-  data.power_usage = 200
-  data.last_values = [
-    {"power": 2, "speed": 3, "valid": 0},
-    {"power": 10, "speed": 2, "valid": 0},
-    {"power": 10, "speed": 2, "valid": 0},
-    {"power": 10, "speed": 2, "valid": 0},
-    {"power": 10, "speed": 2, "valid": 0},
-  ]
+  data.overclocking = true
 
   let applyResult = function(index) {
     act('set_speed', {new_speed: data.last_values[index].speed});
@@ -48,7 +38,7 @@ export const AiOverclocking = (props, context) => {
       width={600}
       height={550}>
       <Window.Content scrollable>
-        {!data.overclocking && (
+        {!data.overclock_progress && (
           <Section title="Overclocking" buttons={(<Button color="good" icon="check" onClick={(e, value) => act('eject_cpu')}>Eject CPU</Button>)}>
             {data.has_cpu && (
                 <Fragment>
@@ -73,30 +63,33 @@ export const AiOverclocking = (props, context) => {
                       </Section>
                     ))}
                   </Collapsible>
-                  <Section title="Settings" buttons={(<Button color="good" icon="check" onClick={(e, value) => act('test_overclock')}>Test Overclock</Button>)}>
+                  <Section title="Settings" buttons={(<Button color="good" icon="vial" onClick={(e, value) => act('test_overclock')}>Test Overclock</Button>)}>
                       <LabeledList>
+                        <LabeledList.Item label="Increment">
+                          <NumberInput value={increment} minValue={0.1} maxValue={1} step="0.1" onChange={(e, value) => setIncrement(value)}/>
+                        </LabeledList.Item>
                         <LabeledList.Item label="Clock Speed">
                           {data.speed}THz &nbsp;
                           <Button icon="minus" onClick={(e, value) => act('set_speed', {
-                            new_speed: data.speed - 1,
+                            new_speed: data.speed - increment,
                           })}/>
                           <NumberInput value={data.speed} minValue={1} maxValue={10} onChange={(e, value) => act('set_speed', {
                             new_speed: value,
                           })}/>
                           <Button icon="plus" onClick={(e, value) => act('set_speed', {
-                            new_speed: data.speed + 1,
+                            new_speed: data.speed + increment,
                           })}/>
                         </LabeledList.Item>
                         <LabeledList.Item label="Power Multiplier">
                           {data.power_multiplier}x ({data.power_usage}W)&nbsp;
                           <Button icon="minus" onClick={(e, value) => act('set_power', {
-                            new_power: (data.power_multiplier - 1 > 0.5) ? data.power_multiplier - 1 : 0.5,
+                            new_power: (data.power_multiplier - increment > 0.5) ? data.power_multiplier - increment : 0.5,
                           })}/>
                           <NumberInput value={data.power_multiplier} minValue={0.5} maxValue={5} onChange={(e, value) => act('set_power', {
                             new_power: value,
                           })}/>
                           <Button icon="plus" onClick={(e, value) => act('set_power', {
-                            new_power: data.power_multiplier + 1,
+                            new_power: data.power_multiplier + increment,
                           })}/>
                         </LabeledList.Item>
                       </LabeledList>

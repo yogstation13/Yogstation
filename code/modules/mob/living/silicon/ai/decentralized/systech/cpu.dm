@@ -1,5 +1,9 @@
 #define OVERCLOCK_MIN_POWER_MULT -0.5
 
+#define SUCCESSFUL_OVERCLOCK "success"
+#define FAILED_OVERCLOCK_SPEED "Clockspeed too high"
+#define FAILED_OVERCLOCK_POWER "Power Multiplier too high"
+#define FAILED_OVERCLOCK_NO_POWER "Power Multiplier too low"
 
 /obj/item/ai_cpu
 	name = "neural processing unit"
@@ -37,8 +41,11 @@
 	return ..() 
 
 /obj/item/ai_cpu/proc/valid_overclock()
+	if(power_multiplier == initial(power_multiplier) && speed == initial(speed))
+		return SUCCESSFUL_OVERCLOCK
+
 	if((power_multiplier - 1) < OVERCLOCK_MIN_POWER_MULT)
-		return FALSE
+		return FAILED_OVERCLOCK_NO_POWER
 
 	//logistic formula:
 	//y = 2/1+e^(-growth_scale*x) where x = power_multiplier - 1. Maximum of 94% faster at 200% power multiplier. Minimum of 34% faster at 200% power multiplier
@@ -46,9 +53,12 @@
 	//41% faster at 25% power multiplier, growth = 3.5
 	var/optimal_speed_mult = 2 / (1 + NUM_E ** (-growth_scale*(power_multiplier - 1)))
 
+	if(power_multiplier > max_power_multiplier)
+		return FAILED_OVERCLOCK_POWER
+
 	if(speed >= initial(speed) * optimal_speed_mult)
-		return FALSE
-	return TRUE
+		return FAILED_OVERCLOCK_SPEED
+	return SUCCESSFUL_OVERCLOCK
 
 /obj/item/ai_cpu/proc/get_power_usage()
 	return base_power_usage * power_multiplier

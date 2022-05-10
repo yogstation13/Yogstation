@@ -14,8 +14,6 @@
 	var/obj/item/ai_cpu/inserted_cpu = null
 	var/overclocking = TRUE
 
-	var/last_stable = FALSE
-
 	COOLDOWN_DECLARE(overclocking_timer)
 
 /obj/machinery/computer/ai_overclocking/process()
@@ -31,17 +29,19 @@
 
 	if(overclocking && COOLDOWN_FINISHED(src, overclocking_timer))
 		overclocking = FALSE
-		if(inserted_cpu.valid_overclock())
-			inserted_cpu.forceMove(drop_location(src))
-			inserted_cpu = null
+		var/overclock_result = inserted_cpu.valid_overclock()
+		if(overclock_result == SUCCESSFUL_OVERCLOCK)
 			say("Overclock stable.")
-			last_stable = TRUE
 			if(inserted_cpu.last_overclocking_values.len + 1 >= 6)
 				pop(inserted_cpu.last_overclocking_values)
 			inserted_cpu.last_overclocking_values += list(list("speed" = inserted_cpu.speed, "power" = inserted_cpu.power_multiplier, "valid" = TRUE))
+			inserted_cpu.forceMove(drop_location(src))
+			inserted_cpu = null
 		else
 			if(inserted_cpu.last_overclocking_values.len + 1 >= 6)
 				pop(inserted_cpu.last_overclocking_values)
+			say("Unstable overclock.")
+			say("Possible reason: [overclock_result]")
 			inserted_cpu.last_overclocking_values += list(list("speed" = inserted_cpu.speed, "power" = inserted_cpu.power_multiplier, "valid" = FALSE))
 			inserted_cpu.speed = initial(inserted_cpu.speed)
 			inserted_cpu.power_multiplier = initial(inserted_cpu.power_multiplier)
@@ -59,7 +59,6 @@
 		var/obj/item/ai_cpu/CPU = I
 		inserted_cpu = CPU
 		CPU.forceMove(src)
-		last_stable = FALSE
 		return FALSE
 	
 	return ..()
@@ -75,13 +74,13 @@
 	var/list/data = list()
 
 	data["has_cpu"] = inserted_cpu
-	data["last_stable"] = last_stable
+	data["overclocking"] = overclocking
 
 	if(inserted_cpu)
 		data["speed"] = inserted_cpu.speed
 		data["power_multiplier"] = inserted_cpu.power_multiplier
 		data["power_usage"] = inserted_cpu.get_power_usage()
-		var/time_left_percent = round(COOLDOWN_TIMELEFT(src, overclocking_timer)/OVERCLOCKING_DURATION * 100)
+		var/time_left_percent = COOLDOWN_TIMELEFT(src, overclocking_timer)/OVERCLOCKING_DURATION
 		data["overclock_progress"] = overclocking ? time_left_percent : FALSE
 		data["last_values"] = inserted_cpu.last_overclocking_values
 		

@@ -258,7 +258,7 @@
 
 //Stuff is handled in here per tick :)
 /datum/ai_dashboard/proc/tick(seconds)
-	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
+	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.total_cpu * GLOB.ai_os.cpu_assigned[owner] : 0
 	var/current_ram = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
 
 	var/total_ram_used = 0
