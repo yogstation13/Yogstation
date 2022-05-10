@@ -37,3 +37,5 @@
 	projectile_type = /obj/item/projectile/bullet/bolt
 	firing_effect_type = /obj/effect/particle_effect/sparks/electricity
 	w_class = WEIGHT_CLASS_TINY
+	var/e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
+	var/select_name = "energy"
