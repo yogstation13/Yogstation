@@ -179,3 +179,15 @@
 		to_chat(user, span_warning("[src]'s lid hasn't been opened!"))
 		return FALSE
 	return ..()
+
+/obj/item/reagent_containers/food/snacks/vermin
+	name = "uhu"
+	desc = "yea"
+	icon_state = "cannedrat"
+	tastes = list("rats"=1 , "mouse"=2)
+	foodtype = MEAT
+	var/opened = FALSE
+
+/obj/item/reagent_containers/food/snack/vermin/attack_self(mob/user)
+	. = ..()
+	new /mob/living/simple_animal/mouse
