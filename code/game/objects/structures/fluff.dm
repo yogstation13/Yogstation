@@ -70,6 +70,18 @@
 	desc = "A towering basalt sculpture of a drake. Cracks run down its surface and parts of it have fallen off."
 	icon_state = "drake_statue_falling"
 
+/obj/structure/fluff/grave
+	name = "grave"
+	desc = "A desolate and shallow grave for those who have fallen."
+	icon = 'icons/obj/lavaland/misc.dmi'
+	icon_state = "grave"
+	deconstructible = FALSE
+
+/obj/structure/fluff/grave/empty
+	name = "empty grave"
+	desc = "A former grave."
+	icon_state = "grave_empty"
+
 
 /obj/structure/fluff/bus
 	name = "bus"

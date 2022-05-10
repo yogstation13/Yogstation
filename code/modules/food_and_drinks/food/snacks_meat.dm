@@ -434,12 +434,18 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("\"chicken\"" = 1)
 	foodtype = MEAT
+	var/mob/living/nugget_man
 
 /obj/item/reagent_containers/food/snacks/nugget/Initialize()
 	. = ..()
 	var/shape = pick("lump", "star", "lizard", "corgi")
 	desc = "A 'chicken' nugget vaguely shaped like a [shape]."
 	icon_state = "nugget_[shape]"
+
+/obj/item/reagent_containers/food/snacks/nugget/Destroy()
+	if(nugget_man)
+		qdel(nugget_man)
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/pigblanket
 	name = "pig in a blanket"

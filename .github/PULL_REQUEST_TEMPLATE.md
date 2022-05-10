@@ -1,5 +1,5 @@
 # If this is your first PR, or not, take the time to read our CONTRIBUTING.md file! You can see it here: https://github.com/yogstation13/Yogstation/blob/master/.github/CONTRIBUTING.md
-
+You can remove all headers (Document the changes and Wiki documentation) if there is no wiki documentation required
 
 # Document the changes in your pull request
 

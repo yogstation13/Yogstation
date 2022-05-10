@@ -322,3 +322,9 @@
 	desc = "They seem very holy."
 	icon_state = "jesus"
 	allowed = list(/obj/item/storage/book/bible)
+
+/obj/item/clothing/suit/yogs/keiki
+	name = "creator's dress"
+	desc = "This dress is oddly caked with soft clay and makes you want to create!"
+	icon_state = "keiki_dress"
+	item_state = "keiki_dress"

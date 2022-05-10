@@ -8,10 +8,11 @@
 	spawn_positions = 1
 	supervisors = "the chief engineer and research director"
 	selection_color = "#fff5cc"
+	exp_requirements = 180
+	exp_type = EXP_TYPE_CREW
+	alt_titles = list("AI Tech Support", "SysOp")
 
 	outfit = /datum/outfit/job/network_admin
-
-	alt_titles = list("AI Tech Support", "SysOp")
 
 	access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP,
 					ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_NETWORK, ACCESS_RESEARCH)
@@ -33,7 +34,7 @@
 
 	pda_type = /obj/item/pda/network_admin
 
-	belt = /obj/item/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_network
 	uniform = /obj/item/clothing/under/yogs/rank/network_admin
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
