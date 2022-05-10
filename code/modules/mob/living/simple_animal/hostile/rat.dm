@@ -133,9 +133,3 @@
 		return TRUE
 	if(istype(A, /obj/item/reagent_containers/food) && !(locate(/obj/structure/table) in get_turf(A)))
 		return TRUE
-
-
-
-
-
-

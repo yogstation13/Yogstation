@@ -223,8 +223,6 @@
 		heal_bodypart_damage(30)
 		qdel(target)
 
-
-
 	if (DOING_INTERACTION(src, REGALRAT_INTERACTION)) // check again in case we started interacting
 		return
 	return ..()
