@@ -801,6 +801,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/monastery/maint)
+"jS" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/fullycharged{
+	output_attempt = 0
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/monastery/maint)
 "jU" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen"
@@ -1834,11 +1841,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/monastery/office)
-"xq" = (
-/obj/machinery/power/smes/fullycharged,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/monastery/maint)
 "xt" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel/dark,
@@ -3153,6 +3155,16 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/monastery)
+"Nz" = (
+/obj/machinery/power/smes/fullycharged{
+	output_attempt = 0
+	},
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/monastery/maint)
 "NE" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
@@ -3783,14 +3795,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
-"Um" = (
-/obj/machinery/power/smes/fullycharged,
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/monastery/maint)
 "Un" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -6209,8 +6213,8 @@ DB
 gF
 gF
 zM
-Um
-xq
+Nz
+jS
 hu
 gZ
 gZ
