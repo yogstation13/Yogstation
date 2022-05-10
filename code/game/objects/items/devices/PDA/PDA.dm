@@ -501,13 +501,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					owner = id.registered_name
 				update_label()
 			if("Eject")//Ejects the cart, only done from hub.
-				if (!isnull(cartridge))
-					U.put_in_hands(cartridge)
-					to_chat(U, span_notice("You remove [cartridge] from [src]."))
-					scanmode = PDA_SCANNER_NONE
-					cartridge.host_pda = null
-					cartridge = null
-					update_icon()
+				eject_cart(U)	
 
 //MENU FUNCTIONS===================================
 
