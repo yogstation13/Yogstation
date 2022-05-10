@@ -42,10 +42,12 @@
 	placed_objects -= I
 	UnregisterSignal(I, COMSIG_MOVABLE_MOVED)
 
-/obj/structure/world_anvil/proc/crafting_check()
+/obj/structure/world_anvil/proc/crafting_check(mob/user)
 	if(!forge_charges)
 		return
+	var/crafted = FALSE
 	for(var/obj/item/magmite/placed_magmite in placed_objects)
+		crafted = TRUE
 		var/obj/item/upgrade_parts = new /obj/item/magmite_parts(src)
 		vis_contents += upgrade_parts
 		placed_objects += upgrade_parts
@@ -55,8 +57,11 @@
 		forge_charges--
 		update_icon()
 		if(!forge_charges)
-			visible_message("The world anvil cools down.")
 			break
+	if(crafted)
+		to_chat(user, "You forge the plasma magmite into plasma magmite upgrade parts.")
+	if(!forge_charges)
+		visible_message("The world anvil cools down.")
 
 /obj/structure/world_anvil/attack_hand(mob/user)
 	if(!LAZYLEN(placed_objects))
@@ -67,69 +72,3 @@
 		return ..()
 	if(do_after(user,10 SECONDS, target = src))
 		crafting_check()
-
-
-/*
-
-/obj/structure/world_anvil/attack_hand(mob/user)
-	if(!LAZYLEN(placed_objects))
-		to_chat(user,"You must place a piece of plasma magmite and either a kinetic accelerator or advanced plasma cutter on the anvil!")
-		return ..()
-	if(forge_charges <= 0)
-		to_chat(user,"The anvil is not heated enough to be usable!")
-		return ..()
-	var/magmite_amount = 0
-	var/used_magmite = 0
-	for(var/obj/item/magmite/placed_magmite in placed_objects)
-		magmite_amount++
-	if(magmite_amount <= 0)
-		to_chat(user,"The anvil does not have any plasma magmite on it!")
-		return ..()
-	for(var/obj/item/I in placed_objects)
-		if(istype(I,/obj/item/gun/energy/kinetic_accelerator) && forge_charges && used_magmite < magmite_amount)
-			var/obj/item/gun/energy/kinetic_accelerator/gun = I
-			if(gun.max_mod_capacity != 100)
-				to_chat(user,"This is not a base kinetic accelerator!")
-				break
-			if(gun.bayonet)
-				gun.remove_gun_attachment(item_to_remove = gun.bayonet)
-			if(gun.gun_light)
-				gun.remove_gun_attachment(item_to_remove = gun.gun_light)
-			for(var/obj/item/borg/upgrade/modkit/kit in gun.modkits)
-				kit.uninstall(gun)
-			var/obj/item/gun/energy/kinetic_accelerator/mega/newgun = new(src)
-			if(user.transferItemToLoc(newgun, src))
-				vis_contents += newgun
-				placed_objects += newgun
-				RegisterSignal(newgun, COMSIG_MOVABLE_MOVED, .proc/ItemMoved,TRUE)
-			ItemMoved(gun)
-			qdel(gun)
-			forge_charges--
-			used_magmite++
-			to_chat(user,"Harsh tendrils wrap around the kinetic accelerator, consuming the plasma magmite to form a mega kinetic accelerator.")
-		if(istype(I,/obj/item/gun/energy/plasmacutter/adv) && forge_charges && used_magmite < magmite_amount)
-			var/obj/item/gun/energy/plasmacutter/adv/gun = I
-			if(gun.name != "advanced plasma cutter")
-				to_chat(user,"This is not an advanced plasma cutter!")
-				break
-			var/obj/item/gun/energy/plasmacutter/adv/mega/newgun = new(src)
-			if(user.transferItemToLoc(newgun, src))
-				vis_contents += newgun
-				placed_objects += newgun
-				RegisterSignal(newgun, COMSIG_MOVABLE_MOVED, .proc/ItemMoved,TRUE)
-			ItemMoved(gun)
-			qdel(gun)
-			forge_charges--
-			used_magmite++
-			to_chat(user,"Harsh tendrils wrap around the plasma cutter, consuming the plasma magmite to form a mega plasma cutter.")
-	//time to clean up all the magmite we used
-	for(var/obj/item/magmite in placed_objects)
-		if(used_magmite)
-			used_magmite--
-			ItemMoved(magmite)
-			qdel(magmite)
-	update_icon()
-	if(!forge_charges)
-		to_chat(user,"The world anvil cools down.")
-	
-*/
