@@ -85,3 +85,9 @@
 /obj/effect/temp_visual/mining_overlay/Initialize()
 	. = ..()
 	animate(src, alpha = 0, time = duration, easing = EASE_IN)
+
+/obj/item/t_scanner/adv_mining_scanner/goat_scanner
+	desc = "An advanced scanner used by the goat king to sate his appetite for explosions; It allows the user to always receive high potency gibtonite after defusing them."
+	name = "goat king's scanner"
+	icon_state = "goat_mining0"
+	cooldown = 20

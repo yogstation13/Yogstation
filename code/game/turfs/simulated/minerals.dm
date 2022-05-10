@@ -695,6 +695,9 @@
 	. = ..()
 
 /turf/closed/mineral/gibtonite/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/t_scanner/adv_mining_scanner/goat_scanner))
+		user.visible_message(span_notice("[user] holds [I] to [src]..."), span_notice("[I] locates where to cut off the chain reaction and stops it."))
+		defuses()
 	if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner) && stage == 1)
 		user.visible_message(span_notice("[user] holds [I] to [src]..."), span_notice("You use [I] to locate where to cut off the chain reaction and attempt to stop it..."))
 		defuse()
@@ -815,3 +818,12 @@
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
 	hardness = 2
 
+/turf/closed/mineral/gibtonite/proc/defuses()
+	if(stage == GIBTONITE_ACTIVE)
+		cut_overlay(activated_overlay)
+		activated_overlay.icon_state = "rock_Gibtonite_inactive"
+		add_overlay(activated_overlay)
+		desc = "An inactive gibtonite reserve. The ore can be extracted."
+		stage = GIBTONITE_STABLE
+		det_time = 0
+		visible_message(span_notice("The chain reaction was stopped! The scanner ensured the gibtonite is at its highest potency!"))
