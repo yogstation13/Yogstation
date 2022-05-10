@@ -19943,17 +19943,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"kmH" = (
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = -29
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/machinery/papershredder,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "kmN" = (
 /obj/machinery/teleport/station,
 /turf/open/floor/plating,
@@ -41711,6 +41700,13 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/primary/central)
+"wde" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/papershredder,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "wdl" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -92402,7 +92398,7 @@ okh
 pka
 dRI
 iat
-kmH
+wde
 hQv
 mDF
 lGx
