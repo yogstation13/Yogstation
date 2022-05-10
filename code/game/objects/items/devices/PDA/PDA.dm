@@ -529,7 +529,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 //MAIN FUNCTIONS===================================
 
 			if("Light")
-				toggle_light()
+				toggle_light(U)
 			if("Medical Scan")
 				if(scanmode == PDA_SCANNER_MEDICAL)
 					scanmode = PDA_SCANNER_NONE
@@ -721,6 +721,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	. = id
 	id = null
+	updateSelfDialog()
 	update_icon()
 
 	if(ishuman(loc))
@@ -879,19 +880,20 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		remove_pen()
 
-/obj/item/pda/CtrlClick()
+/obj/item/pda/CtrlClick(mob/user)
 	..()
 
 	if(isturf(loc)) //stops the user from dragging the PDA by ctrl-clicking it.
 		return
 
-	remove_pen()
+	remove_pen(user)
 
 /obj/item/pda/verb/verb_toggle_light()
+	set name = "Toggle light"
 	set category = "Object"
-	set name = "Toggle Flashlight"
+	set src in oview(1)
 
-	toggle_light()
+	toggle_light(usr)
 
 /obj/item/pda/verb/verb_remove_id()
 	set category = "Object"
@@ -908,10 +910,17 @@ GLOBAL_LIST_EMPTY(PDAs)
 	set name = "Remove Pen"
 	set src in usr
 
-	remove_pen()
+	remove_pen(usr)
 
-/obj/item/pda/proc/toggle_light()
-	if(issilicon(usr) || !usr.canUseTopic(src, BE_CLOSE))
+/obj/item/pda/verb/verb_eject_cart()
+	set category = "Object"
+	set name = "Eject Cartridge"
+	set src in usr
+
+	eject_cart(usr)
+
+/obj/item/pda/proc/toggle_light(mob/user)
+	if(issilicon(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	if(fon)
 		fon = FALSE
@@ -920,19 +929,34 @@ GLOBAL_LIST_EMPTY(PDAs)
 		fon = TRUE
 		set_light(f_lum)
 	update_icon()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.UpdateButtonIcon()
 
-/obj/item/pda/proc/remove_pen()
+/obj/item/pda/proc/remove_pen(mob/user)
 
-	if(issilicon(usr) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(issilicon(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
 
 	if(inserted_item)
-		usr.put_in_hands(inserted_item)
-		to_chat(usr, span_notice("You remove [inserted_item] from [src]."))
+		user.put_in_hands(inserted_item)
+		to_chat(user, span_notice("You remove [inserted_item] from [src]."))
 		inserted_item = null
 		update_icon()
 	else
-		to_chat(usr, span_warning("This PDA does not have a pen in it!"))
+		to_chat(user, span_warning("This PDA does not have a pen in it!"))
+
+/obj/item/pda/proc/eject_cart(mob/user)
+	if(issilicon(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK)) //TK disabled to stop cartridge teleporting into hand
+		return
+	if (!isnull(cartridge))
+		user.put_in_hands(cartridge)
+		to_chat(user, "<span class='notice'>You eject [cartridge] from [src].</span>")
+		scanmode = PDA_SCANNER_NONE
+		cartridge.host_pda = null
+		cartridge = null
+		updateSelfDialog()
+		update_icon()
 
 //trying to insert or remove an id
 /obj/item/pda/proc/id_check(mob/user, obj/item/card/id/I)
@@ -969,12 +993,14 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 // access to status display signals
 /obj/item/pda/attackby(obj/item/C, mob/user, params)
-	if(istype(C, /obj/item/cartridge) && !cartridge)
+	if(istype(C, /obj/item/cartridge))
 		if(!user.transferItemToLoc(C, src))
 			return
+		eject_cart(user)
 		cartridge = C
 		cartridge.host_pda = src
 		to_chat(user, span_notice("You insert [cartridge] into [src]."))
+		updateSelfDialog()
 		update_icon()
 
 	else if(istype(C, /obj/item/card/id))
