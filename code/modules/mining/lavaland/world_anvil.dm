@@ -72,3 +72,5 @@
 		return ..()
 	if(do_after(user,10 SECONDS, target = src))
 		crafting_check()
+
+		//instead of doing it like this, make it so when you press on a heated anvil with a plasma magmite you wait 5-10 seconds and it will then be forged into parts. simpler.
