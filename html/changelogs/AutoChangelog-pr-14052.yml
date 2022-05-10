@@ -1,0 +1,5 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - tweak: "Rod and Duck minimum players and max occurrences"
+  - tweak: "Added small delay to meteors happening on station"
