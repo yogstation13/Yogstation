@@ -1013,5 +1013,5 @@
 	reqs = list(/obj/item/stack/sheet/cloth = 1,
 				/datum/reagent/consumable/caramel = 5)
 	result = /obj/item/stack/tape
-	time = 10
+	time = 1
 	category = CAT_MISC
