@@ -33,8 +33,7 @@
 	for(var/crafting_recipe_type in crafting_recipe_types)
 		var/datum/crafting_recipe/R = crafting_recipe_type
 		owner.teach_crafting_recipe(crafting_recipe_type)
-		to_chat(user,span_notice("You learned how to make [initial(R.name)]."))
-	span_userdanger("You know how to craft makeshift weapons due to your training.")
+		to_chat(owner,span_notice("You learned how to make [initial(R.name)]."))
 
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner
