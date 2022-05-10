@@ -10632,6 +10632,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "asR" = (
@@ -23120,20 +23121,12 @@
 /obj/structure/cable/white{
 	icon_state = "1-8"
 	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aMo" = (
-/obj/structure/cable/white{
-	icon_state = "1-8"
-	},
-/obj/structure/punching_bag,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -23917,6 +23910,7 @@
 	pixel_x = 24
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/punching_bag,
 /turf/open/floor/plating,
 /area/security/prison)
 "aNL" = (
@@ -74653,6 +74647,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"clp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "clq" = (
 /obj/structure/table/wood,
 /obj/item/storage/briefcase{
@@ -121136,6 +121135,11 @@
 /obj/structure/bodycontainer/morgue,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"hym" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/plate_press,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "hzl" = (
 /turf/closed/wall,
 /area/security/checkpoint/medical)
@@ -122207,6 +122211,13 @@
 /obj/structure/bodycontainer/morgue,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"kkh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "kmE" = (
 /obj/structure/table/glass,
 /obj/machinery/airalarm{
@@ -122297,6 +122308,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"kvN" = (
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "kwl" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -122545,6 +122559,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
+"kXV" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "kYA" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/plasteel,
@@ -123474,6 +123492,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/patients_rooms/room_b)
+"mHo" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/structure/cable/white{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "mHL" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -26
@@ -125402,6 +125428,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"rbR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/security/prison)
 "rdQ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -126342,6 +126377,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/patients_rooms/room_c)
+"sOB" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/license_plates/empty/fifty,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "sPa" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -126511,6 +126558,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/medbay/central)
+"tnz" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/white{
+	icon_state = "0-2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/security/prison)
 "top" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -126757,6 +126815,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
+"tEc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/security/prison)
 "tHs" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/atmospherics/miner/nitrogen,
@@ -127657,6 +127722,11 @@
 /obj/machinery/light/small,
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
+"vMy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "vMH" = (
 /obj/machinery/light{
 	dir = 1
@@ -127878,6 +127948,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/medbay/central)
+"vYD" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/security/prison)
 "wcs" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -128208,6 +128283,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage/locker)
+"wHY" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/security/prison)
 "wJG" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -183680,10 +183759,10 @@ aaa
 aaa
 ajr
 aad
-aad
-aad
-aaa
-aad
+aFm
+hym
+kXV
+clp
 aFm
 aMm
 azi
@@ -183937,11 +184016,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aad
-aad
-aad
-aFn
+tnz
+sOB
+kkh
+tEc
+rbR
 aMn
 azr
 aPr
@@ -184194,11 +184273,11 @@ aaa
 aaa
 aaa
 aaa
-ajr
-aad
-aaa
-aad
-aFn
+tnz
+mHo
+kXV
+vMy
+vYD
 aMo
 aNJ
 aPs
@@ -184451,10 +184530,10 @@ aaa
 aaa
 aaa
 aaa
-ajr
-aad
-aad
-aad
+aFm
+hym
+wHY
+kvN
 aFm
 aMp
 aNK
@@ -184708,10 +184787,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aad
-aaa
-aJD
+aFm
+aFm
+aFm
+aFm
 aKZ
 aKZ
 aKZ
