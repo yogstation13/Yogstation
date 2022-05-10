@@ -6851,6 +6851,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
+"dDm" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "dDy" = (
 /obj/machinery/power/tracker,
 /obj/structure/cable{
@@ -8143,6 +8152,12 @@
 /obj/structure/chair/office/dark,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"erb" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "erK" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -9565,6 +9580,18 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"eXp" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "13"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/fitness)
 "eXG" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -10578,13 +10605,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"fzO" = (
-/obj/machinery/door/poddoor{
-	id = "auxincineratorvent";
-	name = "Auxiliary Incinerator Vent"
-	},
-/turf/open/floor/engine/vacuum,
-/area/maintenance/disposal/incinerator)
 "fAz" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -18628,22 +18648,6 @@
 /obj/machinery/ai/expansion_card_holder/prefilled,
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"jIQ" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 8;
-	sortType = 13
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "jJp" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -18906,6 +18910,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"jQb" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 8;
+	sortType = 13
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "jQr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -19038,6 +19058,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"jTG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/trimline/purple/filled/corner{
+	dir = 8
+	},
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 8;
+	sortType = 13
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "jTL" = (
 /obj/machinery/camera{
 	c_tag = "Toxins Launch Room Access";
@@ -24188,13 +24227,6 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"mDl" = (
-/obj/structure/sign/warning/vacuum{
-	name = "EXTERNAL AIRLOCK";
-	pixel_x = 32
-	},
-/turf/open/space/basic,
-/area/space)
 "mDn" = (
 /obj/machinery/vending/boozeomat,
 /turf/closed/wall,
@@ -29920,15 +29952,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"pME" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "pMP" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
@@ -37246,12 +37269,6 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
-"tQJ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "tQK" = (
 /turf/open/floor/engine,
 /area/engine/supermatter)
@@ -37576,18 +37593,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"udh" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "13"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/fitness)
 "ueM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -38476,6 +38481,17 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
+"uFm" = (
+/obj/machinery/door/poddoor{
+	id = "auxincineratorvent";
+	name = "Auxiliary Incinerator Vent"
+	},
+/obj/structure/sign/warning/vacuum{
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = 32
+	},
+/turf/open/floor/engine/vacuum,
+/area/maintenance/disposal/incinerator)
 "uFR" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
@@ -43334,25 +43350,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"xdt" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/corner{
-	dir = 8
-	},
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 8;
-	sortType = 13
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "xdK" = (
 /turf/closed/wall/r_wall,
 /area/medical/genetics/cloning)
@@ -60788,7 +60785,7 @@ vRP
 vRP
 vRP
 vRP
-mDl
+vRP
 vRP
 orF
 xHm
@@ -61303,7 +61300,7 @@ vRP
 vRP
 vRP
 vRP
-fzO
+uFm
 bIz
 luE
 wJP
@@ -71277,7 +71274,7 @@ vRP
 vRP
 vPV
 vPV
-udh
+eXp
 vPV
 qAu
 drq
@@ -83673,8 +83670,8 @@ twz
 uLZ
 mfA
 kgy
-pME
-jIQ
+dDm
+jQb
 kXD
 kXD
 kXD
@@ -83930,8 +83927,8 @@ jRt
 ykr
 mqz
 tPJ
-tQJ
-xdt
+erb
+jTG
 jfN
 jfN
 qwg
