@@ -478,7 +478,7 @@ LAW_WEIGHT researcher,0
 ION_LAW_WEIGHT researcher,2
 LAW_WEIGHT clown,0
 ION_LAW_WEIGHT clown,2
-LAW_WEIGHT druid,3
+LAW_WEIGHT druid,2
 ION_LAW_WEIGHT druid,1
 LAW_WEIGHT detective,0
 ION_LAW_WEIGHT detective,2
