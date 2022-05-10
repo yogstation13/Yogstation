@@ -307,6 +307,7 @@
 	desc = "A helmet crafted from bones and sinew meant to protect its wearer from hazardous weather."
 	icon_state = "pathhead"
 	item_state = "pathhead"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEFACE
 	flags_cover = HEAD
 	resistance_flags = FIRE_PROOF
 	cold_protection = HEAD

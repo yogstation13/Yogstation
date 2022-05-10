@@ -382,6 +382,10 @@
 				H = M.current
 			return M.current.stat != DEAD && !issilicon(M.current) && !isbrain(M.current) && (!H || H.dna.species.id != "memezombies")
 		else if(isliving(M.current))
+			if(isAI(M.current))
+				var/mob/living/silicon/ai/AI = M.current
+				if(AI.is_dying)
+					return FALSE
 			return M.current.stat != DEAD
 	return FALSE
 

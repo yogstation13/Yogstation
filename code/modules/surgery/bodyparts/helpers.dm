@@ -5,7 +5,7 @@
 /mob/living/carbon/get_bodypart(zone)
 	if(!zone)
 		zone = BODY_ZONE_CHEST
-	if(zone == BODY_ZONE_PRECISE_MOUTH || BODY_ZONE_PRECISE_EYES) //yes this is required.
+	if(zone == BODY_ZONE_PRECISE_MOUTH || zone == BODY_ZONE_PRECISE_EYES) //yes this is required.
 		zone = BODY_ZONE_HEAD
 	if(zone == BODY_ZONE_PRECISE_GROIN)
 		zone = BODY_ZONE_CHEST
