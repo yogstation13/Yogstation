@@ -112,6 +112,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if(inserted_item && (!isturf(loc)))
 		. += span_notice("Ctrl-click to remove [inserted_item].")
 
+	if((!isnull(cartridge)))
+ 		. += "<span class='notice'>Ctrl+Shift-click to remove the cartridge.</span>"
+
+
 /obj/item/pda/Initialize()
 	. = ..()
 	if(fon)
