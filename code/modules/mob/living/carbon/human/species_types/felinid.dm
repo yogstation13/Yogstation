@@ -102,6 +102,16 @@
 		purrbation_remove(H, silent)
 		. = FALSE
 
+/proc/purrbation_toggle_onlyhumans(mob/living/carbon/human/H, silent = FALSE) //same as above but doesn't work on nonhumans - used by donor purrbation to reduce *accidental* double-cursed double-mutants
+	if(!ishumanbasic(H))
+		return
+	if(!iscatperson(H))
+		purrbation_apply(H, silent)
+		. = TRUE
+	else
+		purrbation_remove(H, silent)
+		. = FALSE
+
 ///turns our poor spaceman into a CATGIRL. Point and laugh.
 /proc/purrbation_apply(mob/living/carbon/human/H, silent = FALSE)
 	if(iscatperson(H))
@@ -134,6 +144,10 @@
 		qdel(old_part) //do this here since they potentially don't normally have a tail
 		if(decattification)
 			decattification = new decattification
+			if(istype(decattification, /obj/item/organ/tail/lizard))
+				var/obj/item/organ/tail/lizard/nyaamrrow = decattification
+				nyaamrrow.tail_type = H.dna.features["tail_lizard"]
+				nyaamrrow.spines = H.dna.features["spines"]
 			decattification.Insert(H)
 		decattification = H.dna?.species.mutantears
 		old_part = H.getorganslot(ORGAN_SLOT_EARS)

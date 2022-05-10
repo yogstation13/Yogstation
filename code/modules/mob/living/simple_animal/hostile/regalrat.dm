@@ -109,7 +109,8 @@
 	switch(loot)
 		if(1 to 5)
 			to_chat(owner, "<span class='notice'>Score! You find some cheese!</span>")
-			new /obj/item/reagent_containers/food/snacks/cheesewedge(T)
+			var/cheesetype = pick(subtypesof(/obj/item/reagent_containers/food/snacks/cheesewedge) - /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar/custom)
+			new cheesetype(T)
 		if(6 to 10)
 			var/pickedcoin = pick(GLOB.ratking_coins)
 			to_chat(owner, "<span class='notice'>You find some leftover coins. More for the royal treasury!</span>")
@@ -332,10 +333,10 @@
 /mob/living/simple_animal/hostile/regalrat/proc/pry_door(target)
 	if(opening_airlock)
 		return FALSE
-	opening_airlock = TRUE
 	var/obj/machinery/door/airlock/prying_door = target
 	if(!prying_door.density || prying_door.locked || prying_door.welded)
 		return FALSE
+	opening_airlock = TRUE
 	visible_message(
 		span_warning("[src] begins prying open the airlock..."),
 		span_notice("You begin digging your claws into the airlock..."),

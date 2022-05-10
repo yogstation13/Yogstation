@@ -33,7 +33,7 @@ TRICORDER
 	var/medicalTricorder = FALSE	//Set to TRUE for normal medical scanner, set to FALSE for a gutted version
 
 
-obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
+/obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] thinks today IS a good day to die!"))
 	return BRUTELOSS
 

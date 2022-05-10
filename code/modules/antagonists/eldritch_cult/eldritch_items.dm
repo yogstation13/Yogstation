@@ -14,10 +14,12 @@
 	if(!target)
 		to_chat(user,span_warning("No target could be found. Put the living heart on the rune and use the rune to recieve a target."))
 		return
-	var/dist = get_dist(get_turf(user),get_turf(target))
-	var/dir = get_dir(get_turf(user),get_turf(target))
+	var/turf/userturf = get_turf(user)
+	var/turf/targetturf = get_turf(target)
+	var/dist = get_dist(userturf,targetturf)
+	var/dir = get_dir(userturf,targetturf)
 
-	if(user.z != target.z)
+	if(userturf.z != targetturf.z)
 		to_chat(user,span_warning("[target.real_name] is ... vertical to you?"))
 	else
 		switch(dist)

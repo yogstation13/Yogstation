@@ -64190,6 +64190,13 @@
 "dzB" = (
 /turf/open/indestructible/sound/pool/end,
 /area/crew_quarters/fitness/recreation)
+"dzJ" = (
+/obj/machinery/camera{
+	c_tag = "Incinerator";
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/atmos_distro)
 "dzP" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=10-Aft-To-Central";
@@ -127371,7 +127378,7 @@ xrY
 hdi
 xrY
 fXM
-xrY
+dzJ
 uBz
 uBz
 uBz
