@@ -189,6 +189,6 @@
 
 /obj/item/reagent_containers/food/snacks/vermin/attack_self(mob/user)
 	. = ..()
-	to_chat(user, span_warning("you crack open vermin bites, droping the mouse inside it"))
+	to_chat(user, span_warning("You crack open [src], a mouse falling out from inside!"))
 	new /mob/living/simple_animal/mouse(get_turf(src))
 	qdel(src)
