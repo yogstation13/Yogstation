@@ -181,7 +181,7 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/vermin
-	name = "Vermin bites"
+	name = "vermin bites"
 	desc = "Vermin bites for when you need a quick snack snack"
 	icon_state = "verminbites"
 	tastes = list("rats" = 1 , "mouse" = 2, "cheese" = 1)
