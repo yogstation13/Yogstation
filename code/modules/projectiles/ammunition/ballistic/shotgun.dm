@@ -99,6 +99,22 @@
 	pellets = 5
 	variance = 35
 
+/obj/item/ammo_casing/shotgun/uraniumpenetrator
+	name = "depleted uranium slug"
+	desc = "A relatively low-tech shell that makes use of refined uraniums' unique ability to self sharpen upon impact, giving it \
+	very impressive armor penatration capabilites."
+	icon_state = "pshell" // to change once i am given the sprites
+	projectile_type = /obj/item/projectile/bullet/shotgun_uraniumslug
+
+/obj/item/ammo_casing/shotgun/cryoshot
+	name = "cryoshot shell"
+	desc = "A state of the art shell that uses the cooling power of Rhigoxane to chill a target to the bone, while leaving them \
+	relatively unharmed."
+	icon_state = "ionshell" // to change once i am given the sprites
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_cryoshot
+	pellets = 4
+	variance = 35
+
 /obj/item/ammo_casing/shotgun/techshell
 	name = "unloaded technological shell"
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
