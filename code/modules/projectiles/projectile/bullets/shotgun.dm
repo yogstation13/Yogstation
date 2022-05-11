@@ -92,9 +92,14 @@
 
 /obj/item/projectile/bullet/shotgun_uraniumslug
 	name = "depleted uranium slug"
-	damage = 46
+	damage = 65
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
+
+/obj/item/projectile/bullet/shotgun_uraniumslug/on_hit(atom/target)
+	. = ..()
+	if(isliving(target))
+		return BULLET_ACT_FORCE_PIERCE
 
 /obj/item/projectile/bullet/pellet/Range()
 	..()
