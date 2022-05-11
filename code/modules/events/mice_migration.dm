@@ -2,6 +2,7 @@
 	name = "Mice Migration"
 	typepath = /datum/round_event/mice_migration
 	weight = 10
+	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/mice_migration
 	var/minimum_mice = 5
@@ -24,4 +25,4 @@
 		'sound/effects/mousesqueek.ogg')
 
 /datum/round_event/mice_migration/start()
-	SSminor_mapping.trigger_migration(rand(minimum_mice, maximum_mice))
+	SSminor_mapping.trigger_migration(rand(minimum_mice, maximum_mice),TRUE)

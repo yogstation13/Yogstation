@@ -11,25 +11,25 @@
 	UnregisterSignal(guardian, COMSIG_MOVABLE_MOVED)
 
 /datum/guardian_ability/major/gravity/Attack(atom/target)
-	if(isliving(target) && target != guardian)
+	if (isliving(target) && target != guardian)
 		to_chat(guardian, span_bolddanger("Your punch has applied heavy gravity to [target]!"))
 		add_gravity(target, 2)
 		to_chat(target, span_userdanger("Everything feels really heavy!"))
 
 /datum/guardian_ability/major/gravity/Recall()
-	for(var/datum/component/C in gravito_targets)
-		if(get_dist(src, C.parent) > (master_stats.potential * 2))
+	for (var/datum/component/C in gravito_targets)
+		if (get_dist(src, C.parent) > (master_stats.potential * 2))
 			remove_gravity(C)
 
 /datum/guardian_ability/major/gravity/proc/recheck_distances()
-	for(var/datum/component/C in gravito_targets)
-		if(get_dist(src, C.parent) > (master_stats.potential * 2))
+	for (var/datum/component/C in gravito_targets)
+		if (get_dist(src, C.parent) > (master_stats.potential * 2))
 			remove_gravity(C)
 
 /datum/guardian_ability/major/gravity/AltClickOn(atom/A)
-	if(isopenturf(A) && guardian.is_deployed() && guardian.stat != DEAD && in_range(guardian, A) && !guardian.incapacitated())
+	if (isopenturf(A) && guardian.is_deployed() && guardian.stat != DEAD && in_range(guardian, A) && !guardian.incapacitated())
 		var/turf/T = A
-		if(isspaceturf(T))
+		if (isspaceturf(T))
 			to_chat(guardian, span_warning("You cannot add gravity to space!"))
 			return
 		guardian.visible_message(span_danger("[src] slams their fist into the [T]!"), span_notice("You modify the gravity of the [T]."))
@@ -48,5 +48,5 @@
 	qdel(C)
 
 /datum/guardian_ability/major/gravity/proc/__distance_check(atom/movable/AM, OldLoc, Dir, Forced)
-	if(get_dist(src, AM) > (master_stats.potential * 2))
+	if (get_dist(src, AM) > (master_stats.potential * 2))
 		remove_gravity(AM.GetComponent(/datum/component/forced_gravity))

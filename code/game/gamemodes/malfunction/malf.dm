@@ -9,6 +9,7 @@
 	recommended_enemies = 1
 	reroll_friendly = FALSE
 	title_icon = "ss13"
+	time_required = 600
 
 	announce_span = "danger"
 	announce_text = "The station's Artificial Intelligence is rogue!\n\
@@ -19,14 +20,20 @@
 	.=..()
 	var/datum/job/ai/job = SSjob.GetJob("AI")
 	for(var/datum/mind/candidate in .)
-		if(job.required_playtime_remaining(candidate.current.client))
+		if(is_banned_from(candidate.current.ckey, "AI") || QDELETED(candidate) || !job.player_old_enough(candidate.current.client) || job.required_playtime_remaining(candidate.current.client))
+			. -= candidate
+		if(candidate.current.client.prefs.exp["AI"] < time_required) // Cant play AI unless you are over 10 hours.
 			. -= candidate
 	return .
 
 /datum/game_mode/malf/pre_setup()
-	var/datum/mind/AI = antag_pick(antag_candidates)
-	SSjob.AssignRole(AI.current, "AI")
-	return TRUE
+	var/datum/mind/AI
+	var/did_assign = FALSE
+	while(!did_assign && antag_candidates.len > 0) {
+		AI = antag_pick(antag_candidates)
+		did_assign = SSjob.AssignRole(AI.current, "AI")
+	}
+	return did_assign
 
 /datum/game_mode/malf/post_setup()
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list) //triumvirate AIs ride for free. Oh well, it's basically an event in that case

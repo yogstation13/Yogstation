@@ -789,7 +789,7 @@
 	desc = "It emits a strange aura, as if there was still life within it..."
 	max_integrity = 50
 	armor = list("melee" = 90, "bullet" = 90, "laser" = 25, "energy" = 80, "bomb" = 50, "bio" = 100, "fire" = -50, "acid" = -50)
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "pile_bandages"
 	resistance_flags = FLAMMABLE
 
@@ -1387,3 +1387,80 @@
 /datum/species/golem/ruinous/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_CULTLARGE
 	playsound(source, 'sound/effects/curseattack.ogg', 100, 1, 1)
+
+/datum/species/golem/wax //has a love-hate relationship with fire
+	name = "Wax Golem"
+	id = "wax golem"
+	limbs_id = "waxgolem"
+	sexes = FALSE
+	info_text = "As a <span class='danger'>Wax Golem</span>, you are made of very resilient wax and wick. \
+	While you can burn, you take much less burn damage than other golems. You also have the ability to revive after death if you died while on fire."
+	species_traits = list(NOBLOOD,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING, NOEYESPRITES) //no mutcolors or eyesprites
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOGUNS) //no resistheat or nofire
+	armor = 10 // made of wax, tough wax but still wax
+	burnmod = 0.75
+	speedmod = 1 // not as heavy as stone
+	heatmod = 0.1 //very little damage, but still there. Its like how a candle doesn't melt in seconds but still melts.
+	punchstunthreshold = 7
+	punchdamagehigh = 9 // not as heavy as stone
+	prefix = "Wax"
+	special_names = list("Candelabra", "Candle")
+
+/datum/species/golem/wax/spec_life(mob/living/carbon/human/H)
+	if(H.fire_stacks < 1)
+		H.adjust_fire_stacks(1) //always prone to burning
+	..()
+
+/datum/species/golem/wax/spec_death(gibbed, mob/living/carbon/human/H)
+	if(gibbed)
+		return
+	if(H.on_fire)
+		H.visible_message(span_danger("[H] melts apart into wax!"))
+		new /obj/structure/wax_pile(get_turf(H), H)
+		return
+	else
+		return
+
+/obj/structure/wax_pile
+	name = "pile of wax"
+	desc = "It emits a strange aura, as if there was still life within it..."
+	max_integrity = 150
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 25, "energy" = 80, "bomb" = 50, "bio" = 100, "fire" = 95, "acid" = -50)
+	icon = 'icons/obj/misc.dmi'
+	icon_state = "pile_wax"
+
+	var/revive_time = 80 SECONDS
+	var/mob/living/carbon/human/wax_golem
+
+/obj/structure/wax_pile/Initialize(mapload, mob/living/carbon/human/H)
+	. = ..()
+	if(!QDELETED(H) && is_species(H, /datum/species/golem/wax))
+		H.unequip_everything()
+		H.forceMove(src)
+		wax_golem = H
+		to_chat(wax_golem, span_notice("You start gathering your life energy, preparing to rise again..."))
+		addtimer(CALLBACK(src, .proc/revive), revive_time)
+	else
+		return INITIALIZE_HINT_QDEL
+
+/obj/structure/wax_pile/Destroy()
+	if(wax_golem)
+		QDEL_NULL(wax_golem)
+	return ..()
+
+/obj/structure/wax_pile/proc/revive()
+	if(QDELETED(src) || QDELETED(wax_golem)) //QDELETED also checks for null, so if no wax golem is set this won't runtime
+		return
+	if(wax_golem.suiciding || wax_golem.hellbound)
+		QDEL_NULL(wax_golem)
+		return
+
+	invisibility = INVISIBILITY_MAXIMUM //disappear before the animation
+	new /obj/effect/temp_visual/wax_animation(get_turf(src))
+	if(wax_golem.revive(full_heal = TRUE, admin_revive = TRUE))
+		wax_golem.grab_ghost() //won't pull if it's a suicide
+	sleep(20)
+	wax_golem.forceMove(get_turf(src))
+	wax_golem.visible_message(span_danger("[src] rises and reforms into [wax_golem]!"),span_userdanger("You reform into yourself!"))
+	wax_golem = null
+	qdel(src)

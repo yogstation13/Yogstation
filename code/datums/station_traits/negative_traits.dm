@@ -86,3 +86,59 @@
 		/// The bot's language holder - so we can randomize and change their language
 		var/datum/language_holder/bot_languages = found_bot.get_language_holder()
 		bot_languages.selected_language = bot_languages.get_random_spoken_language()
+
+// Abstract station trait used for traits that modify a random event in some way (their weight or max occurrences).
+/datum/station_trait/random_event_weight_modifier
+	name = "Random Event Modifier"
+	report_message = "A random event has been modified this shift! Someone forgot to set this!"
+	show_in_report = TRUE
+	trait_flags = STATION_TRAIT_ABSTRACT
+	weight = 0
+
+	/// The path to the round_event_control that we modify.
+	var/event_control_path
+	/// Multiplier applied to the weight of the event.
+	var/weight_multiplier = 1
+	/// Flat modifier added to the amount of max occurances the random event can have.
+	var/max_occurrences_modifier = 0
+
+/datum/station_trait/random_event_weight_modifier/on_round_start()
+	. = ..()
+	var/datum/round_event_control/modified_event = locate(event_control_path) in SSevents.control
+	if(!modified_event)
+		CRASH("[type] could not find a round event controller to modify on round start (likely has an invalid event_control_path set)!")
+
+	modified_event.weight *= weight_multiplier
+	modified_event.max_occurrences += max_occurrences_modifier
+
+/datum/station_trait/random_event_weight_modifier/ion_storms
+	name = "Ionic Stormfront"
+	report_message = "An ionic stormfront is passing over your station's system. Expect an increased likelihood of ion storms afflicting your station's silicon units."
+	trait_type = STATION_TRAIT_NEGATIVE
+	trait_flags = NONE
+	weight = 3
+	event_control_path = /datum/round_event_control/ion_storm
+	weight_multiplier = 3
+
+/datum/station_trait/random_event_weight_modifier/rad_storms
+	name = "Radiation Stormfront"
+	report_message = "A radioactive stormfront is passing through your station's system. Expect an increased likelihood of radiation storms passing over your station, as well the potential for multiple radiation storms to occur during your shift."
+	trait_type = STATION_TRAIT_NEGATIVE
+	trait_flags = NONE
+	weight = 2
+	event_control_path = /datum/round_event_control/radiation_storm
+	weight_multiplier = 1.5
+	max_occurrences_modifier = 2
+
+/datum/station_trait/more_events
+	name = "Eventful"
+	report_message = "A nearby station has been attacked by a wizard, causing chaos throughout the system. Expect an eventful shift."
+	trait_type = STATION_TRAIT_NEGATIVE
+	trait_flags = NONE
+	weight = 5
+
+/datum/station_trait/more_events/on_round_start()
+	. = ..()
+	//Randomise the frequency of SSevents, overall making events likelier.
+	SSevents.frequency_lower = rand(1 MINUTES, 2 MINUTES)
+	SSevents.frequency_upper = rand(3 MINUTES, 6 MINUTES)

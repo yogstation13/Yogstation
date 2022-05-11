@@ -18,6 +18,10 @@
 		if (QDELETED(src))
 			return
 
+		// yogs start -- typing indicators, look in yogstation specific folder for proc
+		handle_typing_indicator()
+		//yogs end
+
 		if(.) //not dead
 			handle_blood()
 
@@ -54,9 +58,8 @@
 /mob/living/carbon/handle_breathing(times_fired)
 	var/next_breath = 4
 	var/obj/item/organ/lungs/L = getorganslot(ORGAN_SLOT_LUNGS)
-	if(L)
-		if(L.damage)
-			next_breath *= L.get_organ_efficiency()
+	if(L?.damage)
+		next_breath = max(next_breath * L.get_organ_efficiency(), 1)
 
 	if((times_fired % next_breath) == 0 || failed_last_breath)
 		breathe() //Breathe per 4 ticks if healthy, down to 1 based on lung damage, unless suffocating

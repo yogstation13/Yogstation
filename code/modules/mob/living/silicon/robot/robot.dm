@@ -95,6 +95,9 @@
 	var/obj/item/modular_computer/tablet/integrated/modularInterface
 	var/obj/screen/robot/modPC/interfaceButton
 
+	///Flash resistance
+	var/sensor_protection = FALSE
+
 	var/list/upgrades = list()
 
 	var/expansion_count = 0
@@ -205,6 +208,7 @@
 			to_chat(src, span_boldannounce("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
 			ghostize()
 			stack_trace("Borg MMI lacked a brainmob")
+		mmi.beginReboot()
 		mmi = null
 	if(modularInterface)
 		QDEL_NULL(modularInterface)
@@ -508,7 +512,7 @@
 			return
 		else
 			to_chat(user, span_notice("You start to unfasten [src]'s securing bolts..."))
-			if(W.use_tool(src, user, 50, volume=50) && !cell)
+			if(W.use_tool(src, user, 5 SECONDS, volume=50) && !cell)
 				user.visible_message("[user] deconstructs [src]!", span_notice("You unfasten the securing bolts, and [src] falls to pieces!"))
 				deconstruct()
 
@@ -594,13 +598,14 @@
 			return
 		if(!opened)
 			to_chat(user, span_warning("You need to open the panel to repair the headlamp!"))
-		else if(lamp_cooldown <= world.time)
+		else if(lamp_cooldown <= world.time && lamp_functional)
 			to_chat(user, span_warning("The headlamp is already functional!"))
 		else
 			if(!user.temporarilyRemoveItemFromInventory(B))
 				to_chat(user, span_warning("[B] seems to be stuck to your hand. You'll have to find a different light."))
 				return
 			lamp_cooldown = 0
+			lamp_functional = TRUE
 			qdel(B)
 			to_chat(user, span_notice("You replace the headlamp bulb.")) //yogs end
 	else
@@ -895,6 +900,8 @@
 	lawupdate = FALSE
 	scrambledcodes = TRUE // These are rogue borgs.
 	ionpulse = TRUE
+	sensor_protection = TRUE	//Your funny lightbulb won't save you now. Prepare to die!
+
 	var/playstyle_string = "<span class='big bold'>You are a Syndicate assault cyborg!</span><br>\
 							<b>You are armed with powerful offensive tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
 							Your cyborg LMG will slowly produce ammunition from your power supply, and your operative pinpointer will find and locate fellow nuclear operatives. \
@@ -922,6 +929,7 @@
 
 /mob/living/silicon/robot/modules/syndicate/medical
 	icon_state = "synd_medical"
+	sensor_protection = FALSE	//Not a direct combat module like the assault borg (usually)
 	playstyle_string = "<span class='big bold'>You are a Syndicate medical cyborg!</span><br>\
 						<b>You are armed with powerful medical tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
 						Your hypospray will produce Restorative Nanites, a wonder-drug that will heal most types of bodily damages, including clone and brain damage. It also produces morphine for offense. \
@@ -932,6 +940,7 @@
 
 /mob/living/silicon/robot/modules/syndicate/saboteur
 	icon_state = "synd_engi"
+	sensor_protection = FALSE	//DEFINITELY not a direct combat module
 	playstyle_string = "<span class='big bold'>You are a Syndicate saboteur cyborg!</span><br>\
 						<b>You are armed with robust engineering tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
 						Your destination tagger will allow you to stealthily traverse the disposal network across the station \
@@ -1356,3 +1365,6 @@
 	var/datum/computer_file/program/robotact/program = modularInterface.get_robotact()
 	if(program)
 		program.force_full_update()
+
+/mob/living/silicon/robot/get_eye_protection() 
+	return sensor_protection

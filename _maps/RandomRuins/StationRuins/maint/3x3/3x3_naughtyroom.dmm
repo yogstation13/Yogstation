@@ -25,9 +25,10 @@
 /obj/item/clothing/under/schoolgirl/red,
 /turf/open/floor/carpet/purple,
 /area/template_noop)
-"S" = (
+"K" = (
 /obj/structure/bed,
 /obj/item/bedsheet/random,
+/obj/effect/decal/cleanable/food/pie_smudge,
 /turf/open/floor/carpet/purple,
 /area/template_noop)
 
@@ -38,7 +39,7 @@ e
 "}
 (2,1,1) = {"
 b
-S
+K
 b
 "}
 (3,1,1) = {"

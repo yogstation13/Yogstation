@@ -138,6 +138,10 @@
 	name = "Supply Shuttle"
 	blob_allowed = FALSE
 
+/area/shuttle/ai
+	name = "AI Ship Shuttle"
+	blob_allowed = FALSE
+
 /area/shuttle/escape
 	name = "Emergency Shuttle"
 

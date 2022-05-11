@@ -174,6 +174,7 @@
 	user.visible_message(detailed_message, self_message, vision_distance = 1, ignored_mobs = target_detailed ? null : target)
 	user.visible_message(vague_message, "", ignored_mobs = detailed_mobs)
 
+///Attempts to deal damage if the patient isn't sedated or under painkillers
 /datum/surgery_step/proc/cause_ouchie(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, success)
 	var/ouchie_mod = 1
 	for(var/datum/reagent/R in ouchie_modifying_chems)

@@ -95,8 +95,23 @@
 			span_userdanger("You look around after realizing you're still here, then proceed to choke yourself to death with [src]!"))
 		sleep(20)
 		return OXYLOSS
-
-
-
-
-
+		
+/obj/item/gun/ballistic/handcannon
+	name = "hand cannon"
+	desc = "Since the times of shooting cannonballs from ships has long passed, pirate culture has moved onto making these ship-piercing weapons handheld."
+	icon = 'icons/obj/guns/projectile.dmi'
+	icon_state = "handcannon"
+	item_state = "handycannon"
+	mag_type = /obj/item/ammo_box/magazine/internal/cannonball
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
+	casing_ejector = FALSE
+	bolt_type = BOLT_TYPE_NO_BOLT
+	internal_magazine = TRUE
+	empty_indicator = TRUE
+	tac_reloads = FALSE
+	can_suppress = FALSE
+	force = 10
+	cartridge_wording = "cannonball"
+	fire_sound = 'sound/effects/bang.ogg'
+	pin = /obj/item/firing_pin

@@ -95,24 +95,6 @@
 	dyn_explosion(T, plasmaAmount/5)//20 plasma in a standard welder has a 4 power explosion. no breaches, but enough to kill/dismember holder
 	qdel(src)
 
-/obj/item/weldingtool/attack(mob/living/carbon/human/H, mob/user)
-	if(!istype(H))
-		return ..()
-
-	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
-
-	if(affecting && affecting.status == BODYPART_ROBOTIC && user.a_intent != INTENT_HARM)
-		if(src.use_tool(H, user, 0, volume=50, amount=1))
-			if(user == H)
-				user.visible_message(span_notice("[user] starts to fix some of the dents on [H]'s [affecting.name]."),
-					span_notice("You start fixing some of the dents on [H == user ? "your" : "[H]'s"] [affecting.name]."))
-				if(!do_mob(user, H, 50))
-					return
-			item_heal_robotic(H, user, 15, 0)
-	else
-		return ..()
-
-
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
 	if(!proximity)
@@ -323,7 +305,7 @@
 	name = "alien welding tool"
 	desc = "An alien welding tool. Whatever fuel it uses, it never runs out."
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "welder"
+	icon_state = "welder_alien"
 	toolspeed = 0.1
 	light_intensity = 0
 	change_icons = 0
@@ -368,5 +350,24 @@
 	if(get_fuel() < max_fuel && nextrefueltick < world.time)
 		nextrefueltick = world.time + 10
 		reagents.add_reagent(/datum/reagent/fuel, 1)
+
+/obj/item/weldingtool/makeshift
+	name = "makeshift welding tool"
+	desc = "A MacGyver-style welder."
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "welder_makeshift"
+	toolspeed = 2
+	max_fuel = 10
+	materials = list(MAT_METAL=140)
+
+/obj/item/weldingtool/makeshift/switched_on(mob/user)
+	..()
+	if(welding && get_fuel() >= 1 && prob(2))
+		var/datum/effect_system/reagents_explosion/e = new()
+		to_chat(user, span_userdanger("Shoddy construction causes [src] to blow the fuck up!"))
+		e.set_up(round(get_fuel() / 10, 1), get_turf(src), 0, 0)
+		e.start()
+		qdel(src)
+		return
 
 #undef WELDER_FUEL_BURN_INTERVAL

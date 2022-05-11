@@ -8,10 +8,11 @@
 	spawn_positions = 1
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
+	exp_requirements = 180
+	exp_type = EXP_TYPE_CREW
+	alt_titles = list("NTSL Programmer", "Comms Tech", "Station IT Support")
 
 	outfit = /datum/outfit/job/signal_tech
-
-	alt_titles = list("NTSL Programmer", "Comms Tech", "Station IT Support")
 
 	access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP,
 					ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_NETWORK)
@@ -31,8 +32,9 @@
 	name = "Signal Technician"
 	jobtype = /datum/job/signal_tech
 
-	belt = /obj/item/storage/belt/utility/full
-	l_pocket = /obj/item/pda/signaltech
+	pda_type = /obj/item/pda/signaltech
+
+	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_eng
 	uniform = /obj/item/clothing/under/yogs/rank/signal_tech
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
@@ -44,4 +46,5 @@
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
+
 	pda_slot = SLOT_L_STORE

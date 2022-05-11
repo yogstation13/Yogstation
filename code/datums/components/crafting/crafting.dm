@@ -20,9 +20,11 @@
 					CAT_WEAPON,
 					CAT_AMMO,
 				),
+				CAT_TOOLS = CAT_NONE,
 				CAT_ROBOT = CAT_NONE,
 				CAT_MISC = CAT_NONE,
 				CAT_PRIMAL = CAT_NONE,
+				CAT_STRUCTURES = CAT_NONE,
 				CAT_FOOD = list(
 					CAT_BREAD,
 					CAT_BURGER,
@@ -108,6 +110,8 @@
 	.["other"] = list()
 	for(var/obj/item/I in get_environment(user))
 		if(I.flags_1 & HOLOGRAM_1)
+			continue
+		if(I.status_traits && HAS_TRAIT(I,TRAIT_NODROP))
 			continue
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I

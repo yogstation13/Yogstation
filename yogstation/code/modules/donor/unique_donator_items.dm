@@ -130,11 +130,15 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "Mqiib"
 	unlock_path = /obj/item/clothing/accessory/sing_necklace
 
+/datum/donator_gear/cowbot
+	name = "Singularity Wakizashi"
+	ckey = "Cowbot93"
+	unlock_path = /obj/item/toy/katana/singulo_wakizashi
+
 /datum/donator_gear/marmio64
 	name = "Eldritch Cowl"
 	ckey = "Marmio64"
 	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl
-
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
@@ -437,6 +441,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/air_horn
 	name = "air horn"
 	unlock_path = /obj/item/bikehorn/airhorn
+/datum/donator_gear/sad_horn
+	name = "sad horn"
+	unlock_path = /obj/item/bikehorn/sad
 /datum/donator_gear/camera
 	name = "camera"
 	unlock_path = /obj/item/camera
@@ -461,6 +468,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/hardsuit_clown
 	name = "clown hardsuit"
 	unlock_path = /obj/item/clothing/suit/yogs/armor/hardsuit_clown
+/datum/donator_gear/orca_dress
+	name = "creator's dress"
+	unlock_path = /obj/item/clothing/suit/yogs/keiki
 /datum/donator_gear/oreo
 	name = "Black and white sneakers"
 	unlock_path = /obj/item/clothing/shoes/yogs/trainers

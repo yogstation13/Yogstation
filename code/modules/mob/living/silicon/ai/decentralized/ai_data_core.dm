@@ -43,14 +43,16 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		all_ais -= AI
 		if(!AI.is_dying)
 			AI.relocate()
+
     
 	for(var/mob/living/silicon/ai/AI in all_ais)
+		if(AI.is_dying)
+			continue
 		if(!AI.mind && AI.deployed_shell.mind)
-			all_ais += AI.deployed_shell
+			to_chat(AI.deployed_shell, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
+		else
+			to_chat(AI, span_userdanger("Warning! <A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data Core</A> brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 		
-
-	to_chat(all_ais, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
-	
 	..()
 
 /obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
@@ -94,9 +96,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
 	
 	if(valid_holder())
-		if(valid_ticks <= 0)
-			update_icon()
 		valid_ticks++
+		if(valid_ticks == 1)
+			update_icon()
 		use_power = ACTIVE_POWER_USE
 		warning_sent = FALSE
 	else
@@ -111,11 +113,14 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			warning_sent = TRUE
 			var/list/send_to = GLOB.ai_list.Copy()
 			for(var/mob/living/silicon/ai/AI in send_to)
+				if(AI.is_dying)
+					continue
 				if(!AI.mind && AI.deployed_shell.mind)
-					send_to += AI.deployed_shell
-			to_chat(send_to, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
-			for(var/mob/living/silicon/ai/AI in send_to)
+					to_chat(AI.deployed_shell, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+				else
+					to_chat(AI, span_userdanger("<A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data core</A> in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
 				AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
+			
 
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/turf/T = get_turf(src)
@@ -160,3 +165,40 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	name = "primary AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of a human at near-instantanous speeds. This one has a scrawny and faded note saying: 'Primary AI Data Core'"
 	primary = TRUE
+
+
+
+/*
+This is a good place for AI-related object verbs so I'm sticking it here.
+If adding stuff to this, don't forget that an AI need to cancel_camera() whenever it physically moves to a different location.
+That prevents a few funky behaviors.
+*/
+//The type of interaction, the player performing the operation, the AI itself, and the card object, if any.
+
+
+/atom/proc/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
+	if(istype(card))
+		if(card.flush)
+			to_chat(user, "[span_boldannounce("ERROR")]: AI flush is in progress, cannot execute transfer protocol.")
+			return FALSE
+	return TRUE
+
+/* Unused for now, just here for reference
+/obj/structure/AIcore/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
+	if(state != AI_READY_CORE || !..())
+		return
+ //Transferring a carded AI to a core.
+	if(interaction == AI_TRANS_FROM_CARD)
+		AI.control_disabled = FALSE
+		AI.radio_enabled = TRUE
+		AI.forceMove(loc) // to replace the terminal.
+		to_chat(AI, "You have been uploaded to a stationary terminal. Remote device connection restored.")
+		to_chat(user, "[span_boldnotice("Transfer successful")]: [AI.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
+		card.AI = null
+		AI.battery = circuit.battery
+		qdel(src)
+	else //If for some reason you use an empty card on an empty AI terminal.
+		to_chat(user, "There is no AI loaded on this terminal!")
+
+*/
+
