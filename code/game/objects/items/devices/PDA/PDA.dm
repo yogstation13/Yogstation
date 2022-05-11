@@ -888,12 +888,12 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	remove_pen(user)
 
-/obj/item/pda/verb/verb_toggle_light()
+/obj/item/pda/verb/toggle_light()
 	set name = "Toggle light"
 	set category = "Object"
 	set src in oview(1)
 
-	toggle_light(usr)
+	toggle_flashlight(usr)
 
 /obj/item/pda/verb/verb_remove_id()
 	set category = "Object"
@@ -919,7 +919,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	eject_cart(usr)
 
-/obj/item/pda/proc/toggle_light(mob/user)
+/obj/item/pda/proc/toggle_flashlight(mob/user)
 	if(issilicon(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	if(fon)
