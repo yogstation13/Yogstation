@@ -92,6 +92,7 @@
 
 /obj/item/projectile/bullet/shotgun_uraniumslug
 	name = "depleted uranium slug"
+	icon_state = "ubullet"
 	damage = 65
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
