@@ -172,7 +172,7 @@
 /turf/open/indestructible/grass
 	name = "grass patch"
 	desc = "Yep, it's grass."
-	icon_state = "grass1"
+	icon_state = "grass"
 	bullet_bounce_sound = null
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
