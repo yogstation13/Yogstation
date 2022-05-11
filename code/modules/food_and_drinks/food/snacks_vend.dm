@@ -184,7 +184,7 @@
 	name = "Vermin bites"
 	desc = "Vermin bites for when you need a quick snack snack"
 	icon_state = "verminbites"
-	tastes = list("rats"=1 , "mouse"=2)
+	tastes = list("rats" = 1 , "mouse" = 2, "cheese" = 1)
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/vermin/attack_self(mob/user)
