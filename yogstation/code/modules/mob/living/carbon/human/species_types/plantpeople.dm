@@ -28,7 +28,7 @@
 	species_language_holder = /datum/language_holder/pod
 
 	var/no_light_heal = FALSE
-	var/light_heal_multiplier = 0.5
+	var/light_heal_multiplier = 1
 	var/dark_damage_multiplier = 1
 	var/last_light_level = 0
 	var/last_light_message = -STATUS_MESSAGE_COOLDOWN
@@ -86,15 +86,15 @@
 				//low light
 				light_level = 2
 				light_msg = span_warning("The ambient light levels are too low. Your breath is coming more slowly as your insides struggle to keep up on their own.")
-				if(H.nutrition > NUTRITION_LEVEL_HUNGRY)
-					H.nutrition -= light_amount * 3
+				H.nutrition -= light_amount * 3
 				//not enough to faint but enough to slow you down
 				if(H.getOxyLoss() < 50)
 					H.adjustOxyLoss(min(3 * dark_damage_multiplier, 50 - H.getOxyLoss()), 1)
 			if (0.31 to 0.5)
 				//medium, average, doing nothing for now
 				light_level = 3
-				if(H.nutrition < NUTRITION_LEVEL_FED)				
+				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)	
+					//just enough to function			
 					H.nutrition += light_amount * 2
 			if (0.51 to 0.75)
 				//high light, regen here
@@ -110,7 +110,8 @@
 			if (0.76 to 1)
 				//super high light
 				light_level = 5
-				if(H.nutrition < NUTRITION_LEVEL_WELL_FED)
+				if(H.nutrition < NUTRITION_LEVEL_FED)
+					//this will give the positive fed moodlet instead of being stuck on "i'm so fat" for existing
 					H.nutrition += light_amount * 1.5
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
@@ -137,6 +138,9 @@
 			if(light_msg)
 				last_light_message = world.time
 				to_chat(H, light_msg)
+
+	if(H.nutrition > NUTRITION_LEVEL_FULL)
+		H.nutrition = NUTRITION_LEVEL_FULL
 
 	if(H.nutrition < NUTRITION_LEVEL_STARVING + 50)
 		if (H.stat != UNCONSCIOUS && H.stat != DEAD)
@@ -180,9 +184,9 @@
 		H.adjustToxLoss(1*REAGENTS_EFFECT_MULTIPLIER)
 		if(prob(10))
 			if(prob(95))
-				H.easy_random_mutate(NEGATIVE + MINOR_NEGATIVE)
+				H.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
 			else
-				H.easy_random_mutate(POSITIVE)
+				H.easy_randmut(POSITIVE)
 
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
@@ -267,11 +271,9 @@
 			H.adjustFireLoss(5)
 			H.visible_message(span_warning("[H] writhes in pain as [H.p_their()] vacuoles boil."), span_userdanger("You writhe in pain as your vacuoles boil!"), span_italics("You hear the crunching of leaves."))
 			if(prob(80))
-				H.easy_random_mutate(NEGATIVE + MINOR_NEGATIVE)
+				H.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
 			else
-				H.easy_random_mutate(POSITIVE)
-			H.random_mutate_unique_identity()
-			H.random_mutate_unique_features()
+				H.easy_randmut(POSITIVE)
 			H.domutcheck()
 		if(/obj/item/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
