@@ -132,19 +132,12 @@
 	internal_magazine = TRUE
 	empty_indicator = TRUE
 	can_suppress = FALSE
-	fire_delay = 10
 	force = 10
 	cartridge_wording = "rod"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	pin = /obj/item/firing_pin
-	var/charge = 0
-	var/maxcharge = 1000
 
 /obj/item/gun/ballistic/gauss/afterattack()
 	. = ..()
 	playsound(loc, "sparks", 75, 1, -1)
 	do_sparks(8, 3, usr)
-
-/obj/item/gun/ballistic/gauss/attackby(/obj/item/stock_parts/cell, mob/user)
-	to_chat(usr,span_notice("heho funny"))
-	proc/drain_power_from(/obj/item/stock_parts/cell)
