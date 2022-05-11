@@ -186,9 +186,11 @@
 	icon_state = "verminbites"
 	tastes = list("rats" = 1 , "mouse" = 2, "cheese" = 1)
 	foodtype = MEAT
+	/// What animal does the snack contain?
+	var/contained_animal = /mob/living/simple_animal/mouse
 
 /obj/item/reagent_containers/food/snacks/vermin/attack_self(mob/user)
 	. = ..()
-	to_chat(user, span_warning("You crack open [src], a mouse falling out from inside!"))
-	new /mob/living/simple_animal/mouse(get_turf(src))
+	to_chat(user, span_warning("You crack open [src], [contained_animal] falling out from inside!"))
+	new contained_animal(get_turf(src))
 	qdel(src)
