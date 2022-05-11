@@ -186,7 +186,6 @@
 	icon_state = "verminbites"
 	tastes = list("rats"=1 , "mouse"=2)
 	foodtype = MEAT
-	var/opened = FALSE
 
 /obj/item/reagent_containers/food/snacks/vermin/attack_self(mob/user)
 	. = ..()
