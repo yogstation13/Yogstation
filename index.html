@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(433 modules,
-    658/7140 macros, 9.2%)</aside></h3>
+<aside>(435 modules,
+    659/7156 macros, 9.2%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -260,11 +260,13 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li class="has-children"><span title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers">bloodsuckers</span><ul class="index-tree">
     <li><a href="code/modules/antagonists/bloodsuckers/bloodsucker_daylight.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsucker_daylight">bloodsucker_daylight</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/bloodsucker_frenzy.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsucker_frenzy">bloodsucker_frenzy</a></li>
+    <li><a href="code/modules/antagonists/bloodsuckers/bloodsucker_mobs.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsucker_mobs">bloodsucker_mobs</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/bloodsucker_objectives.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsucker_objectives">bloodsucker_objectives</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/bloodsuckers.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsuckers">bloodsuckers</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/bloodsuckers_objects.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsuckers_objects">bloodsuckers_objects</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers">powers</span><ul class="index-tree">
     <li><a href="code/modules/antagonists/bloodsuckers/powers/fortitude.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;fortitude">fortitude</a></li>
+    <li><a href="code/modules/antagonists/bloodsuckers/powers/gohome.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;gohome">gohome</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/powers/masquerade.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;masquerade">masquerade</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/powers/recuperate.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;recuperate">recuperate</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;targeted">targeted</span><ul class="index-tree">
@@ -674,7 +676,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(445 detailed/1040 documented/24396 total, 4.3%)</aside></h3>
+<aside>(453 detailed/1052 documented/24456 total, 4.3%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -696,8 +698,6 @@ Syndicate infiltrator</li>
     <li class="has-children"><a href="atom/movable.html" title="&#x2F;atom&#x2F;movable">movable</a><ul class="index-tree">
     <li><a href="atom/movable/emissive_blocker.html" title="&#x2F;atom&#x2F;movable&#x2F;emissive_blocker">emissive_blocker</a> - Internal atom that copies an appearance on to the blocker plane</li>
     <li><a href="atom/movable/lighting_object.html" title="&#x2F;atom&#x2F;movable&#x2F;lighting_object">lighting_object</a></li>
-    <li><span class="no-substance">screen&#x2F;alert&#x2F;status_effect&#x2F;agent_pinpointer&#x2F;</span><span class="no-substance" title="&#x2F;atom&#x2F;movable&#x2F;screen&#x2F;alert&#x2F;status_effect&#x2F;agent_pinpointer&#x2F;vassal_edition">Vassal Pinpointer</span> - Pinpointer that points to their Master's location at all times.
-Unlike the Monster hunter one, this one is permanently active, and has no power needed to activate it.</li>
     </ul></li>
     </ul></li>
     <li><a href="client.html" title="&#x2F;client">client</a></li>
@@ -737,20 +737,7 @@ See: <a href="datum/controller/subsystem/achievements.html" title="/datum/contro
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;fortitude&#x2F;hunter">Flow</span> - Monster Hunter version</li>
     </ul></li>
     <li><a href="datum/action/bloodsucker/gohome.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;gohome">Vanishing Act</a></li>
-    <li><a href="datum/action/bloodsucker/masquerade.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;masquerade">Masquerade</a> - STEP ONE: Flicker Lights
-STEP TWO: Lights OFF?
-CHECK: Still have Coffin?
-SEEN?: (effects ONLY if there are witnesses! Otherwise you just POOF)
-Do Effects (seen by anyone)
-Drop Stuff (seen by non-vamp)
-LOSE CUFFS
-SEEN!
-POOF EFFECTS
-STEP FIVE: Create animal at prev location
-TELEPORT: Move to Coffin &amp; Close it!
-CLOSE LID: If fail, force me in.
-Puts me inside.
-# WITHOUT THIS POWER:</li>
+    <li><a href="datum/action/bloodsucker/masquerade.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;masquerade">Masquerade</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;recuperate">Sanguine Recuperation</span> - Used by Vassals</li>
     <li class="has-children"><a href="datum/action/bloodsucker/targeted.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;targeted">targeted</a><ul class="index-tree">
     <li><a href="datum/action/bloodsucker/targeted/brawn.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;targeted&#x2F;brawn">Brawn</a></li>
@@ -783,6 +770,7 @@ Puts me inside.
     </ul></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;action&#x2F;cooldown">cooldown</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;coffer">Fill Coffers</span> - This action creates trash, money, dirt, and cheese.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;domain">Rat King&#x27;s Domain</span> - Increase the rat king's domain</li>
     <li><a href="datum/action/cooldown/riot.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;riot">Raise Army</a> - This action checks all nearby mice, and converts them into hostile rats. If no mice are nearby, creates a new one.</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;drake_ollie">DRAGON Ollie</span> - dragon ollie, do I have to explain?</li>
@@ -929,8 +917,9 @@ The total amount of loading points among all subsystems. Should be defined by MC
     <li class="has-children"><a href="datum/corporation.html" title="&#x2F;datum&#x2F;corporation">Corporations</a> - Companies with employees<ul class="index-tree">
     <li><a href="datum/corporation/nanotrasen.html" title="&#x2F;datum&#x2F;corporation&#x2F;nanotrasen">Nanotrasen</a></li>
     </ul></li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe">crafting_recipe</span><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;blackcoffin">Black Coffin</span> - From recipes.dm</li>
+    <li class="has-children"><span title="&#x2F;datum&#x2F;crafting_recipe">crafting_recipe</span><ul class="index-tree">
+    <li><a href="datum/crafting_recipe/blackcoffin.html" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;blackcoffin">Black Coffin</a> - From recipes.dm</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;bloodaltar">Blood Altar</span> - Structures</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food">food</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;aesirsalad">Aesir Salad</span> - SALADS</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;amanitajelly">Amanita Jelly</span> - SOUP</li>
@@ -955,6 +944,7 @@ The total amount of loading points among all subsystems. Should be defined by MC
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;sashimi">Carp Sashimi</span> - FISH</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;kong">Kong</span> - Booze &amp; Bottles</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;stake">Stake</span> - Stakes</li>
     </ul></li>
     <li><span class="no-substance">data&#x2F;</span><a href="datum/data/vending_product.html" title="&#x2F;datum&#x2F;data&#x2F;vending_product">vending record datum</a> - A datum that represents a product that is vendable</li>
     <li><a href="datum/department_goal.html" title="&#x2F;datum&#x2F;department_goal">Department goal</a> - Goals that a department can complete for monetary (or other) rewards.</li>
@@ -1040,10 +1030,14 @@ The total amount of loading points among all subsystems. Should be defined by MC
     <li><a href="datum/dynamic_snapshot.html" title="&#x2F;datum&#x2F;dynamic_snapshot">dynamic_snapshot</a> - A &quot;snapshot&quot; of dynamic at an important point in time.
 Exported to JSON in the dynamic.json log file.</li>
     <li><a href="datum/dynamic_snapshot_ruleset.html" title="&#x2F;datum&#x2F;dynamic_snapshot_ruleset">dynamic_snapshot_ruleset</a> - A ruleset chosen during a snapshot</li>
-    <li><span class="no-substance">effect_system&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;trail_follow">trail_follow</span> - ///// Attach a trail to any object, that spawns when it moves (like for the jetpack)
+    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;effect_system">effect_system</span><ul class="index-tree">
+    <li><span class="no-substance">steam_spread&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;steam_spread&#x2F;bloodsucker">bloodsucker</span> - STEP FIVE: Create animal at prev location
+TELEPORT: Move to Coffin &amp; Close it!</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;trail_follow">trail_follow</span> - ///// Attach a trail to any object, that spawns when it moves (like for the jetpack)
 just pass in the object to attach it to in set_up
 Then do start() to start it and stop() to stop it, obviously
 and don't call start() in a loop that will be repeated otherwise it'll get spammed!</li>
+    </ul></li>
     <li class="has-children"><a href="datum/eldritch_knowledge.html" title="&#x2F;datum&#x2F;eldritch_knowledge">Basic knowledge</a> - #Eldritch Knowledge<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;basic">Break of Dawn</span> - Base lore</li>
     </ul></li>
@@ -1407,6 +1401,11 @@ It's attacks are as follows:</li>
     <li><a href="mob/living/simple_animal/hostile/asteroid/elite/pandora.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;asteroid&#x2F;elite&#x2F;pandora">Pandora</a> - A box with a similar design to the Hierophant which trades large, single attacks for more frequent smaller ones.
 As it's health gets lower, the time between it's attacks decrease.
 It's attacks are as follows:</li>
+    </ul></li>
+    <li class="has-children"><a href="mob/living/simple_animal/hostile/bloodsucker.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;bloodsucker">bloodsucker</a><ul class="index-tree">
+    <li><a href="mob/living/simple_animal/hostile/bloodsucker/possessedarmor.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;bloodsucker&#x2F;possessedarmor">possessed armor</a></li>
+    <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;bloodsucker&#x2F;tzimisce">tzimisce</span> - TZIMISCE BLOODSUCKER MOBS</li>
+    <li><a href="mob/living/simple_animal/hostile/bloodsucker/werewolf.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;bloodsucker&#x2F;werewolf">werewolf</a></li>
     </ul></li>
     <li class="has-children"><a href="mob/living/simple_animal/hostile/construct.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;construct">Construct</a><ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;construct&#x2F;armored">Juggernaut</span> - Juggernaut<ul class="index-tree">
@@ -1878,6 +1877,7 @@ Given to Nuke Ops members.</li>
     <li><a href="obj/item/soulstone.html" title="&#x2F;obj&#x2F;item&#x2F;soulstone">soulstone shard</a></li>
     <li class="has-children"><a href="obj/item/stack.html" title="&#x2F;obj&#x2F;item&#x2F;stack">stack</a><ul class="index-tree">
     <li><a href="obj/item/stack/conveyor.html" title="&#x2F;obj&#x2F;item&#x2F;stack&#x2F;conveyor">conveyor belt assembly</a></li>
+    <li><span class="no-substance">license_plates&#x2F;</span><a href="obj/item/stack/license_plates/filled.html" title="&#x2F;obj&#x2F;item&#x2F;stack&#x2F;license_plates&#x2F;filled">license plate</a></li>
     <li class="has-children"><a href="obj/item/stack/medical.html" title="&#x2F;obj&#x2F;item&#x2F;stack&#x2F;medical">medical pack</a><ul class="index-tree">
     <li><a href="obj/item/stack/medical/mesh.html" title="&#x2F;obj&#x2F;item&#x2F;stack&#x2F;medical&#x2F;mesh">regenerative mesh</a></li>
     </ul></li>
@@ -1974,6 +1974,7 @@ Enables crew to create requests, crew can sign up to perform the request, and th
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;unloading_machine">unloading machine</span> - Unloading unit</li>
     </ul></li>
     <li><a href="obj/machinery/oven.html" title="&#x2F;obj&#x2F;machinery&#x2F;oven">oven</a></li>
+    <li><a href="obj/machinery/plate_press.html" title="&#x2F;obj&#x2F;machinery&#x2F;plate_press">license plate press</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;porta_turret_cover">turret</span> - PORTABLE TURRET COVER</li>
     <li class="has-children"><span class="no-substance">portable_atmospherics&#x2F;</span><span title="&#x2F;obj&#x2F;machinery&#x2F;portable_atmospherics&#x2F;canister">canister</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;portable_atmospherics&#x2F;canister&#x2F;fusion_test">Fusion Test Canister</span> - Canister 1 Kelvin below the fusion point. Is highly unoptimal, do not spawn to start fusion, only good for testing low instability mixes.</li>
@@ -2006,11 +2007,18 @@ then shoots (and detonates) them at Lavaland Z-level GPS coordinates provided.</
     </ul></li>
     <li><span class="no-substance">syndicatebomb&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;syndicatebomb&#x2F;training">training bomb</span> - Bomb Subtypes</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;the_singularitygen">Gravitational Singularity Generator</span> - SINGULARITY SPAWNER</li>
+    <li class="has-children"><a href="obj/machinery/turnstile.html" title="&#x2F;obj&#x2F;machinery&#x2F;turnstile">turnstile</a><ul class="index-tree">
+    <li><a href="obj/machinery/turnstile/brig.html" title="&#x2F;obj&#x2F;machinery&#x2F;turnstile&#x2F;brig">Brig turnstile</a></li>
+    </ul></li>
     <li><a href="obj/machinery/vending.html" title="&#x2F;obj&#x2F;machinery&#x2F;vending">vending machines</a> - Captalism in the year 2525, everything in a vending machine, even love</li>
     </ul></li>
     <li><a href="obj/mecha.html" title="&#x2F;obj&#x2F;mecha">mecha</a></li>
     <li class="has-children"><a href="obj/screen.html" title="&#x2F;obj&#x2F;screen">screen</a><ul class="index-tree">
-    <li><span class="no-substance">alert&#x2F;status_effect&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;alert&#x2F;status_effect&#x2F;wound">Wounded</span> - WOUNDS</li>
+    <li class="has-children"><span class="no-substance">alert&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;alert&#x2F;status_effect">status_effect</span><ul class="index-tree">
+    <li><span class="no-substance">agent_pinpointer&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;alert&#x2F;status_effect&#x2F;agent_pinpointer&#x2F;vassal_edition">Vassal Pinpointer</span> - Pinpointer that points to their Master's location at all times.
+Unlike the Monster hunter one, this one is permanently active, and has no power needed to activate it.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;alert&#x2F;status_effect&#x2F;wound">Wounded</span> - WOUNDS</li>
+    </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;background">background</span> - A generic background object.
 It is also implicitly used to allocate a rectangle on the map, which will
 be used for auto-scaling the map.</li>
@@ -2034,7 +2042,10 @@ you want to show on the map, which you usually attach to &quot;vis_contents&quot
     <li><span class="no-substance">barricade&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;barricade&#x2F;wooden">wooden barricade</span> - BARRICADE TYPES</li>
     <li class="has-children"><a href="obj/structure/bloodsucker.html" title="&#x2F;obj&#x2F;structure&#x2F;bloodsucker">bloodsucker</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;bloodsucker&#x2F;bloodthrone">wicked throne</span> - Blood Throne - Allows Bloodsuckers to remotely speak with their Vassals. - Code (Mostly) stolen from comfy chairs (armrests) and chairs (layers)</li>
-    <li><a href="obj/structure/bloodsucker/candelabrum.html" title="&#x2F;obj&#x2F;structure&#x2F;bloodsucker&#x2F;candelabrum">candelabrum</a></li>
+    <li><a href="obj/structure/bloodsucker/candelabrum.html" title="&#x2F;obj&#x2F;structure&#x2F;bloodsucker&#x2F;candelabrum">candelabrum</a> - To deal with Blood
+Due to the checks leding up to this, if they fail this, they're dead &amp; Not our vassal.
+Just take it all
+Chance to give Bat form, or turn them into a bat.</li>
     <li><a href="obj/structure/bloodsucker/vassalrack.html" title="&#x2F;obj&#x2F;structure&#x2F;bloodsucker&#x2F;vassalrack">persuasion rack</a></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;bonfire">bonfire</span> - BONFIRES</li>
@@ -2120,7 +2131,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/4205909ac22cad9c2d54007e591cadf39bd64bbb">4205909</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239">f68ba46</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>

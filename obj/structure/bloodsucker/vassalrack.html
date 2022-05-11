@@ -16,17 +16,19 @@
 <h1>persuasion rack <aside>/<a href="obj.html">obj</a>/<a href="obj/structure/bloodsucker.html">structure/bloodsucker</a>/<a href="obj/structure/bloodsucker/vassalrack.html">vassalrack</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L204">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 204"/></a></h1>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L422">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 422"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
             <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#var/convert_progress">convert_progress</a></th><td>Resets on each new character to be added to the chair. Some effects should lower it...</td></tr>
             <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#var/density">density</a></th><td>Start dense. Once fixed in place, go non-dense.</td></tr>
             <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#var/disloyalty_confirm">disloyalty_confirm</a></th><td>Mindshielded and Antagonists willingly have to accept you as their Master.</td></tr>
             <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#var/disloyalty_offered">disloyalty_offered</a></th><td>Prevents popup spam.</td></tr>
+            <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#var/meat_points">meat_points</a></th><td>For Tzimisce bloodsuckers' rituals</td></tr>
             <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#var/use_lock">use_lock</a></th><td>So we can't spam buckle people onto the rack</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#proc/RequireDisloyalty">RequireDisloyalty</a></th><td>Are we still torturing? Did we cancel? Are they still here?</td></tr>
             <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#proc/attach_victim">attach_victim</a></th><td>Attempt Release (Owner vs Non Owner)</td></tr>
+            <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#proc/attackby">attackby</a></th><td>If I'm not a Bloodsucker, try to unbuckle them.</td></tr>
             <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#proc/do_disloyalty">do_disloyalty</a></th><td>Fifteen seconds if you aren't using anything. Shorter with weapons and such.
 Get Bodypart
 Get Weapon
@@ -43,8 +45,7 @@ We're done? Let's see if they can be Vassal.
 Otherwise, we're not done, we need to persuade them some more.
 Check: Mindshield &amp; Antag
 Convert to Vassal!</td></tr>
-            <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#proc/torture_victim">torture_victim</a></th><td>If I'm not a Bloodsucker, try to unbuckle them.
-Step One: Tick Down Conversion from 3 to 0
+            <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#proc/torture_victim">torture_victim</a></th><td>Step One: Tick Down Conversion from 3 to 0
 Step Two: Break mindshielding/antag (on approve)
 Step Three: Blood Ritual</td></tr>
             <tr><th><a href="obj/structure/bloodsucker/vassalrack.html#proc/user_unbuckle_mob">user_unbuckle_mob</a></th><td>Attempt Unbuckle</td></tr></table>
@@ -52,49 +53,61 @@ Step Three: Blood Ritual</td></tr>
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L231">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 231"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L448">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 448"/></a></h3>
         <p>Resets on each new character to be added to the chair. Some effects should lower it...</p><h3 id="var/density">density
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L211">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 211"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L428">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 428"/></a></h3>
         <p>Start dense. Once fixed in place, go non-dense.</p><h3 id="var/disloyalty_confirm"><aside class="declaration">var </aside>disloyalty_confirm
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L233">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 233"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L450">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 450"/></a></h3>
         <p>Mindshielded and Antagonists willingly have to accept you as their Master.</p><h3 id="var/disloyalty_offered"><aside class="declaration">var </aside>disloyalty_offered
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L235">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 235"/></a></h3>
-        <p>Prevents popup spam.</p><h3 id="var/use_lock"><aside class="declaration">var </aside>use_lock
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L452">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 452"/></a></h3>
+        <p>Prevents popup spam.</p><h3 id="var/meat_points"><aside class="declaration">var </aside>meat_points
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L228">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 228"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L454">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 454"/></a></h3>
+        <p>For Tzimisce bloodsuckers' rituals</p><h3 id="var/use_lock"><aside class="declaration">var </aside>use_lock
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L445">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 445"/></a></h3>
         <p>So we can't spam buckle people onto the rack</p><h2 id="proc">Proc Details</h2><h3 id="proc/RequireDisloyalty"><aside class="declaration">proc </aside>RequireDisloyalty<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L497">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 497"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L804">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 804"/></a></aside>
         </h3>
         <p>Are we still torturing? Did we cancel? Are they still here?</p><h3 id="proc/attach_victim"><aside class="declaration">proc </aside>attach_victim<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L273">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 273"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L507">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 507"/></a></aside>
         </h3>
-        <p>Attempt Release (Owner vs Non Owner)</p><h3 id="proc/do_disloyalty"><aside class="declaration">proc </aside>do_disloyalty<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        <p>Attempt Release (Owner vs Non Owner)</p><h3 id="proc/attackby">attackby<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/user, params) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L473">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 473"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L597">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 597"/></a></aside>
+        </h3>
+        <p>If I'm not a Bloodsucker, try to unbuckle them.</p><h3 id="proc/do_disloyalty"><aside class="declaration">proc </aside>do_disloyalty<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L780">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 780"/></a></aside>
         </h3>
         <p>Fifteen seconds if you aren't using anything. Shorter with weapons and such.
 Get Bodypart
@@ -107,8 +120,8 @@ Success?
 Offer them the oppertunity to join now.</p><h3 id="proc/do_torture"><aside class="declaration">proc </aside>do_torture<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/target, mult) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L424">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 424"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L731">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 731"/></a></aside>
         </h3>
         <p>Prep...
 Conversion Process
@@ -119,22 +132,21 @@ Check: Mindshield &amp; Antag
 Convert to Vassal!</p><h3 id="proc/torture_victim"><aside class="declaration">proc </aside>torture_victim<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L361">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 361"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L668">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 668"/></a></aside>
         </h3>
-        <p>If I'm not a Bloodsucker, try to unbuckle them.
-Step One: Tick Down Conversion from 3 to 0
+        <p>Step One: Tick Down Conversion from 3 to 0
 Step Two: Break mindshielding/antag (on approve)
 Step Three: Blood Ritual</p><h3 id="proc/user_unbuckle_mob">user_unbuckle_mob<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/buckled_mob, /<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/4205909ac22cad9c2d54007e591cadf39bd64bbb/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L293">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 293"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239/code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.dm#L527">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt.dm 527"/></a></aside>
         </h3>
         <p>Attempt Unbuckle</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/4205909ac22cad9c2d54007e591cadf39bd64bbb">4205909</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/f68ba468bc78f2ed6aa4152e98f4bc4f6ed22239">f68ba46</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
