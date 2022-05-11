@@ -179,13 +179,13 @@
 			qdel(LO)
 
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
-		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
+		if(G.light_power > 0)
 			var/obj/structure/glowshroom/shadowshroom/S = new /obj/structure/glowshroom/shadowshroom(G.loc) //I CAN FEEL THE WARP OVERTAKING ME! IT IS A GOOD PAIN!
 			S.generation = G.generation
 			G.visible_message(span_warning("[G] suddenly turns dark!"))
 			qdel(G)
 	for(var/turf/open/floor/grass/fairy/F in view(7, user))
-		if(!istype(F, /turf/open/floor/grass/fairy/dark))
+		if(F.light_power > 0)
 			F.visible_message(span_warning("[F] suddenly turns dark!"))
 			F.ChangeTurf(/turf/open/floor/grass/fairy/dark, flags = CHANGETURF_INHERIT_AIR)
 	for(var/obj/structure/marker_beacon/M in view(7, user))

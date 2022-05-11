@@ -160,7 +160,7 @@
 	if(amount < 0)
 		return FALSE
   
-	if(has_completed_project(project.type) && !project.ability_recharge_cost)
+	if(has_completed_project(project.type))
 		if(!project.ability_recharge_cost)
 			return
 		var/datum/action/innate/ai/the_ability = locate(project.ability_path) in owner.actions
@@ -220,7 +220,7 @@
 		to_chat(owner, span_notice("[project] has been completed. User input required."))
 	
 /datum/ai_dashboard/proc/recharge_ability(datum/ai_project/project, notify_user = TRUE)
-	cpu_usage[project.name] = 0
+	
 	if(!project.ability_path)
 		return
 	var/datum/action/innate/ai/ability = locate(project.ability_path) in owner.actions
@@ -228,6 +228,8 @@
 		return
 	ability.uses++
 	project.ability_recharge_invested = 0
+	if(ability.uses >= ability.max_uses)
+		cpu_usage[project.name] = 0
 
 	if(notify_user)
 		to_chat(owner, span_notice("'[ability.name]' has been recharged."))

@@ -181,3 +181,6 @@
 /obj/item/projectile/beam/laser/makeshiftlasrifle/weak
 	name = "weak laser"
 	damage = 5
+
+/obj/item/projectile/beam/laser/buckshot
+	damage = 10

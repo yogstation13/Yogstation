@@ -184,8 +184,51 @@
 		return TRUE
 	// Target Type: Door
 	else if(istype(target_atom, /obj/machinery/door))
+		if(level_current < 4)
+			to_chat(owner, span_warning("You need [4 - level_current] more levels to be able to break open the [target_atom]!"))
+			return FALSE
 		return TRUE
 	// Target Type: Locker
 	else if(istype(target_atom, /obj/structure/closet))
+		if(level_current < 3)
+			to_chat(owner, span_warning("You need [3 - level_current] more levels to be able to break open the [target_atom]!"))
+			return FALSE
 		return TRUE
 	return FALSE
+
+/datum/action/bloodsucker/targeted/brawn/shadow
+	name = "Obliterate"
+	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	background_icon_state_on = "lasombra_power_on"
+	background_icon_state_off = "lasombra_power_off"
+	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	button_icon_state = "power_obliterate"
+	additional_text = "Additionally afflicts the target with a shadow curse while in darkness and disables any lights they may possess."
+	purchase_flags = LASOMBRA_CAN_BUY
+
+/datum/action/bloodsucker/targeted/brawn/shadow/FireTargetedPower(atom/target_atom)
+	var/mob/living/carbon/human/H = target_atom
+	H.apply_status_effect(STATUS_EFFECT_SHADOWAFFLICTED)
+	var/turf/T = get_turf(H)
+	for(var/datum/light_source/LS in T.affecting_lights)
+		var/atom/LO = LS.source_atom
+		if(isitem(LO))
+			var/obj/item/I = LO
+			if(istype(I, /obj/item/clothing/head/helmet/space/hardsuit))
+				var/obj/item/clothing/head/helmet/space/hardsuit/HA = I
+				if(HA.on)
+					HA.on = FALSE
+			if(istype(I, /obj/item/clothing/head/helmet/space/plasmaman))
+				var/obj/item/clothing/head/helmet/space/plasmaman/PA = I
+				if(PA.on)
+					PA.on = FALSE
+			if(istype(I, /obj/item/flashlight))
+				var/obj/item/flashlight/F = I
+				if(F.on)
+					F.on = FALSE
+					F.update_brightness()
+		if(istype(LO, /mob/living/silicon/robot))
+			var/mob/living/silicon/robot/borg = LO
+			if(!borg.lamp_cooldown)
+				borg.smash_headlamp()
+	. = ..()

@@ -52,7 +52,8 @@
 
 /datum/surgery_step/clamp_bleeders/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(locate(/datum/surgery_step/saw) in surgery.steps)
-		target.apply_damage(-20, BRUTE, "[target_zone]")
+		var/obj/item/bodypart/affecting = target.get_bodypart(target_zone)
+		affecting?.heal_damage(20,0)
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
@@ -94,7 +95,8 @@
 
 /datum/surgery_step/close/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(locate(/datum/surgery_step/saw) in surgery.steps)
-		target.apply_damage(-45, BRUTE, "[target_zone]")
+		var/obj/item/bodypart/affecting = target.get_bodypart(target_zone)
+		affecting?.heal_damage(45,0)
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)

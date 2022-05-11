@@ -1537,6 +1537,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/device_tools/roburger_recipe
+	name = "Roburger crafting recipe"
+	desc = "This book contains legendary knowledge about how to make roburgers. \
+			Roburgers turn people into cyborgs after a short while when eaten. \
+			This book doesn't dissaper after use, so consider hiding it somewhere."
+	item = /obj/item/book/granter/crafting_recipe/roburgers
+	cost = 14
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
+	exclude_modes = list(/datum/game_mode/infiltration)
+
 /datum/uplink_item/device_tools/supermatter_delaminator
 	name = "Antinoblium Shard"
 	desc = "A special variant of supermatter crystal reverse engineered by syndicate scientists using samples retrieved by agents. \
