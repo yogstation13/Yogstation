@@ -354,4 +354,4 @@
 	desc = "An aetherial halo that magically hovers above the head."
 	icon_state = "halo"
 	item_state = "halo"
-	layer = HAIR_LAYER
+	layer = EARS_LAYER
