@@ -135,6 +135,10 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "Cowbot93"
 	unlock_path = /obj/item/toy/katana/singulo_wakizashi
 
+/datum/donator_gear/manatee
+	name = "Peacekeeper Beret"
+	ckey = "Majesticmanateee"
+	unlock_path = /obj/item/clothing/head/peacekeeperberet
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
