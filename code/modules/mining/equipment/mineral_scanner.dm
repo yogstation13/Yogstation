@@ -54,6 +54,12 @@
 	range = 4
 	cooldown = 50
 
+/obj/item/t_scanner/adv_mining_scanner/goat_scanner
+	desc = "An advanced scanner used by the goat king to sate his appetite for explosions; It allows the user to always receive high potency gibtonite after defusing them."
+	name = "goat king's scanner"
+	icon_state = "goat_mining0"
+	cooldown = 20
+
 /obj/item/t_scanner/adv_mining_scanner/scan()
 	if(current_cooldown <= world.time)
 		current_cooldown = world.time + cooldown
@@ -86,8 +92,3 @@
 	. = ..()
 	animate(src, alpha = 0, time = duration, easing = EASE_IN)
 
-/obj/item/t_scanner/adv_mining_scanner/goat_scanner
-	desc = "An advanced scanner used by the goat king to sate his appetite for explosions; It allows the user to always receive high potency gibtonite after defusing them."
-	name = "goat king's scanner"
-	icon_state = "goat_mining0"
-	cooldown = 20

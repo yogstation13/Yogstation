@@ -22,7 +22,8 @@
 	var/scan_state = "" //Holder for the image we display when we're pinged by a mining scanner
 	var/defer_change = FALSE
 	var/hardness = 1 //how hard the material is, we'll have to have more powerful stuff if we want to blast harder materials.
-
+	var/forceperfect = FALSE
+	
 /turf/closed/mineral/Initialize()
 	if (!canSmoothWith)
 		canSmoothWith = list(/turf/closed/mineral, /turf/closed/indestructible)
@@ -697,10 +698,10 @@
 /turf/closed/mineral/gibtonite/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/t_scanner/adv_mining_scanner/goat_scanner))
 		user.visible_message(span_notice("[user] holds [I] to [src]..."), span_notice("[I] locates where to cut off the chain reaction and stops it."))
-		defuses()
+		defuse(forceperfect = TRUE)
 	if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner) && stage == 1)
 		user.visible_message(span_notice("[user] holds [I] to [src]..."), span_notice("You use [I] to locate where to cut off the chain reaction and attempt to stop it..."))
-		defuse()
+		defuse(forceperfect = FALSE)
 	..()
 
 /turf/closed/mineral/gibtonite/proc/explosive_reaction(mob/user = null, triggered_by_explosion = 0)
@@ -735,16 +736,19 @@
 			stage = GIBTONITE_DETONATE
 			explosion(bombturf,1,3,5, adminlog = notify_admins)
 
-/turf/closed/mineral/gibtonite/proc/defuse()
+/turf/closed/mineral/gibtonite/proc/defuse(forceperfect = FALSE)
 	if(stage == GIBTONITE_ACTIVE)
 		cut_overlay(activated_overlay)
 		activated_overlay.icon_state = "rock_Gibtonite_inactive"
 		add_overlay(activated_overlay)
 		desc = "An inactive gibtonite reserve. The ore can be extracted."
 		stage = GIBTONITE_STABLE
-		if(det_time < 0)
+		if(det_time < 0 && !forceperfect)
 			det_time = 0
-		visible_message(span_notice("The chain reaction was stopped! The gibtonite had [det_time] reactions left till the explosion!"))
+			visible_message(span_notice("The chain reaction was stopped! The gibtonite had [det_time] reactions left till the explosion!"))
+		if(forceperfect)
+			det_time = 0
+			visible_message(span_notice("The chain reaction was stopped! The scanner ensured the gibtonite is at its highest potency!"))
 
 /turf/closed/mineral/gibtonite/attempt_drill(mob/user, triggered_by_explosion = 0)
 	if(stage == GIBTONITE_UNSTRUCK && mineralAmt >= 1) //Gibtonite deposit is activated
@@ -817,13 +821,3 @@
 /turf/closed/mineral/magmite/volcanic/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
 	hardness = 2
-
-/turf/closed/mineral/gibtonite/proc/defuses()
-	if(stage == GIBTONITE_ACTIVE)
-		cut_overlay(activated_overlay)
-		activated_overlay.icon_state = "rock_Gibtonite_inactive"
-		add_overlay(activated_overlay)
-		desc = "An inactive gibtonite reserve. The ore can be extracted."
-		stage = GIBTONITE_STABLE
-		det_time = 0
-		visible_message(span_notice("The chain reaction was stopped! The scanner ensured the gibtonite is at its highest potency!"))
