@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/has_announced = FALSE
 	var/basemodifier = 1
 
-/mob/camera/blob/Initialize(mapload, starting_points = 60, pointmodifier)
+/mob/camera/blob/Initialize(mapload, starting_points = 60, pointmodifier = 1)
 	validate_location()
 	blob_points = starting_points
 	basemodifier = pointmodifier

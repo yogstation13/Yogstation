@@ -1,0 +1,4 @@
+author: "cuackles"
+delete-after: true 
+changes: 
+  - rscadd: "Added a chance for the improvised shotgun to not fire"

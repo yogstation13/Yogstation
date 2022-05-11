@@ -1,0 +1,5 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - rscadd: "Added warning info to lightning blast and tesla blast."
+  - tweak: "spellcard, lightning blast, and tesla blast buffed."
