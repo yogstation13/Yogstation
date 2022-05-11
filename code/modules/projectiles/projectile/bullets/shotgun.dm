@@ -93,14 +93,16 @@
 /obj/item/projectile/bullet/shotgun_uraniumslug
 	name = "depleted uranium slug"
 	icon_state = "ubullet"
-	damage = 65
+	damage = 20
 	sharpness = SHARP_POINTY
+	armour_penetration = 200 // he he funny round go through armor
 	wound_bonus = -30
+	dismemberment = 0
 
 /obj/item/projectile/bullet/shotgun_uraniumslug/on_hit(atom/target)
-	. = ..()
-	if(isliving(target))
-		return BULLET_ACT_FORCE_PIERCE
+	if(iscarbon(target))
+		. = BULLET_ACT_PENETRATE
+	..()
 
 /obj/item/projectile/bullet/pellet/Range()
 	..()
