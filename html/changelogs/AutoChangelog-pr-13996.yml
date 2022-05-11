@@ -1,8 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added a new morph objective, eat a certain number of things"
-  - rscadd: "Added a new morph objective, eat a certain number of corpses"
-  - rscadd: "Morphs can now see how many things & corpses they have eaten in their status bar"
-  - bugfix: "Morphs now have a proper greeting"
-  - tweak: "tweaked a few things"

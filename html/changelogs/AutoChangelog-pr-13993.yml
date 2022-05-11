@@ -1,8 +1,0 @@
-author: "TymurShatillo"
-delete-after: true 
-changes: 
-  - rscadd: "Rats and Regal rats can now eat food to heal"
-  - rscadd: "Rats now speak mouse language and are colored"
-  - rscadd: "Rats now can be possessed by ghosts"
-  - tweak: "Makes mouse CtrlClick code look less horrible"
-  - tweak: "Moves rat code into a new file"

@@ -1,8 +1,0 @@
-author: " JohnFulpWillard, SmoSmoSmoSmok, Tatax"
-delete-after: true 
-changes: 
-  - rscadd: "Two new bloodsucker clans (Lasombra & Tzimisce), Gangrel Clan's wolf form actual implementation"
-  - bugfix: "Maybe possibly fixed some bloodsucker bugs"
-  - tweak: "Gangrel Clan now has a refund system if you transform on the same blood level, also Day and Night Cycle's time and frenzy rebalances"
-  - imageadd: "New sprite for powers and traps!"
-  - spellcheck: "fixed the forck"
