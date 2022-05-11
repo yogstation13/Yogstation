@@ -182,7 +182,7 @@
 
 /obj/item/reagent_containers/food/snacks/vermin
 	name = "vermin bites"
-	desc = "Vermin bites for when you need a quick snack snack"
+	desc = "A small can with a cartoon mouse on the label. A noise that sounds suspiciously like squeaking can be heard coming from inside."
 	icon_state = "verminbites"
 	tastes = list("rats" = 1 , "mouse" = 2, "cheese" = 1)
 	foodtype = MEAT
