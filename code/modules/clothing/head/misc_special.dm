@@ -349,3 +349,8 @@
 	icon_state = "cowboy"
 	item_state = "cowboy"
 
+/obj/item/clothing/head/halo
+	name = "Transdimensional halo"
+	desc = "An aetherial halo that magically hovers above the head."
+	icon_state = "halo"
+	item_state = "halo"
