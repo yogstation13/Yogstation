@@ -349,3 +349,8 @@
 	icon_state = "cowboy"
 	item_state = "cowboy"
 
+/obj/item/clothing/head/hatgulo
+	name = "Singularity hat"
+	desc = "How did they manage to put it inside the hat, only the Wizard federation knows"
+	icon_state = "hatgulo"
+	item_state = "hatgulo"
