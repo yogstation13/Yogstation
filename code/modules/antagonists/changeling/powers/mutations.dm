@@ -142,7 +142,6 @@
 	button_icon_state = "armblade"
 	chemical_cost = 20
 	dna_cost = 2
-	req_human = 1
 	weapon_type = /obj/item/melee/arm_blade
 	weapon_name_simple = "blade"
 	xenoling_available = FALSE
@@ -207,7 +206,8 @@
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
 			if(!do_after(user, 10 SECONDS, target = A))
 				return
-		//user.say("Heeeeeeeeeerrre's Johnny!")
+		if(prob(1))
+			user.say("Heeeeeeeeeerrre's Johnny!")
 		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the airlock to open."), //yogs modified description
 		span_italics("You hear a metal screeching sound."))
 		A.open(2)
