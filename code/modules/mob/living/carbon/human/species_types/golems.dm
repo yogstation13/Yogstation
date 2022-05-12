@@ -1481,7 +1481,7 @@
 	var/bruteheal = 0.5
 	var/randexplode = FALSE
 
-/datum/species/golem/supermater/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
+/datum/species/golem/supermatter/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	..()
 	var/obj/item/I
 	I = AM
