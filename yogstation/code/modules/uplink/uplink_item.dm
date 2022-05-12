@@ -143,3 +143,10 @@
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
 	cant_discount = TRUE
+
+/datum/uplink_item/role_restricted/money_printer
+	name = "Money Printer"
+	desc = "A gigantic device that takes in nothing and puts out money. Sounds like a scam if you ask me. Don't get raided!"
+	item = /obj/item/money_printer
+	cost = 10
+	restricted_roles = list("Quartermaster", "Cargo Technician")
