@@ -87,7 +87,7 @@
 
 /obj/item/gun/ballistic/bow/energy
 	name = "Hardlight Bow"
-	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
+	desc = "A modern bow that can fabricate hardlight arrows using internal energy."
 	icon_state = "bow_hardlight"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy
 	var/recharge_time = 1.5 SECONDS
@@ -186,7 +186,7 @@
 
 /obj/item/gun/ballistic/bow/energy/syndicate
 	name = "Syndicate Hardlight Bow"
-	desc = "A modern bow that can fabricate hardlight arrows using an internal energy. This one is designed for silent takedowns of targets by the syndicate."
+	desc = "A modern bow that can fabricate hardlight arrows using internal energy. This one is designed by the Syndicate for silent takedowns."
 	icon_state = "bow_syndicate"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/syndicate
 	recharge_time = 2 SECONDS

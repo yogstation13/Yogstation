@@ -1118,7 +1118,7 @@
 
 /datum/status_effect/slowdown/watcherbola/on_apply()
 	if(ismegafauna(owner))
-		owner.visible_message(span_warning("[owner] easily brakes out of \the [original_legcuffs]"), span_warning("You easily brake out of \the [original_legcuffs]"))
+		owner.visible_message(span_warning("[owner] easily breaks out of \the [original_legcuffs]"), span_warning("You easily break out of \the [original_legcuffs]"))
 		qdel(original_legcuffs)
 		return FALSE
 	..()

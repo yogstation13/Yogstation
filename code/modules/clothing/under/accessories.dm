@@ -369,7 +369,7 @@
 
 /obj/item/clothing/accessory/skilt
 	name = "Sinew Skirt"
-	desc = "For the last time. IT'S A KILT not a skirt."
+	desc = "A revolting piece of clothing made from sinew. Arguably, it is a kilt, not a skirt."
 	icon_state = "skilt"
 	item_color = "skilt"
 	above_suit = TRUE
