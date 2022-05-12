@@ -4,7 +4,7 @@
 	helptext = "The transformation greatly reduces our size, allowing us to climb through vents."
 	button_icon_state = "lesser_form"
 	chemical_cost = 5
-	dna_cost = 1 //effectively a straight upgrade from biodegrade
+	dna_cost = 1
 	req_human = 1
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN
 
