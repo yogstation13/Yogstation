@@ -1500,7 +1500,7 @@
 
 /datum/species/golem/supermatter/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	..()
-	visible_message(span_danger("[user] attacks [H] with [I], and then [I] turns into dust in a flash of light!"))
+	H.visible_message(span_danger("[user] attacks [H] with [I], and then [I] turns into dust in a flash of light!"))
 	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
 	qdel(I)
 	
