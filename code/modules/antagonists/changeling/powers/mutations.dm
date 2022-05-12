@@ -569,7 +569,7 @@
 //	button_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "maul"
 	chemical_cost = 20
-	dna_cost = 2
+	dna_cost = 3
 	req_human = 1
 	weapon_type = /obj/item/melee/flesh_maul
 	weapon_name_simple = "maul"
@@ -637,7 +637,7 @@
 			make_sound = FALSE
 		if(istype(target, /obj/machinery) || istype(target, /obj/structure/door_assembly))
 			structure_damage *= 0.5
-		if(istype(target, /obj/structure/airlock))
+		if(istype(target, /obj/machinery/door/airlock))
 			structure_damage = 14
 		if(target)
 			S.take_damage(structure_damage, BRUTE, "melee", 0)
