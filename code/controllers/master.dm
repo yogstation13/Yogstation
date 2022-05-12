@@ -11,7 +11,7 @@
 //You might wonder why not just create the debugger datum global in its own file, since its loaded way earlier than this DM file
 //Well for whatever reason then the Master gets created first and then the debugger when doing that
 //So thats why this code lives here now, until someone finds out how Byond inits globals
-GLOBAL_REAL(Debugger, /datum/debugger) = new
+//GLOBAL_REAL(Debugger, /datum/debugger) = new  ///Disabled until Auxtools
 //This is the ABSOLUTE ONLY THING that should init globally like this
 //2019 update: the failsafe,config and Global controllers also do it
 GLOBAL_REAL(Master, /datum/controller/master) = new
@@ -102,8 +102,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			qdel(Master)
 			Master = src
 		else
-		//Code used for first master on game boot or if existing master got deleted
-		Master = src
+			//Code used for first master on game boot or if existing master got deleted
+			Master = src
 			var/list/subsystem_types = subtypesof(/datum/controller/subsystem)
 			sortTim(subsystem_types, /proc/cmp_subsystem_init)
 
@@ -132,7 +132,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master/Shutdown()
 	processing = FALSE
 	sortTim(subsystems, /proc/cmp_subsystem_init)
-	reverse_range(subsystems)
+	reverseRange(subsystems)
 	for(var/datum/controller/subsystem/ss in subsystems)
 		log_world("Shutting down [ss.name] subsystem...")
 		ss.Shutdown()
@@ -151,12 +151,12 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	Master.restart_timeout = world.time + delay
 	Master.restart_clear = world.time + (delay * 2)
 	if (Master) //Can only do this if master hasn't been deleted
-	Master.processing = FALSE //stop ticking this one
-	try
-		new/datum/controller/master()
-	catch
-		return -1
-	return 1
+		Master.processing = FALSE //stop ticking this one
+		try
+			new/datum/controller/master()
+		catch
+			return -1
+		return 1
 
 
 /datum/controller/master/Recover()
@@ -240,24 +240,20 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	sortTim(subsystems, /proc/cmp_subsystem_display)
 	var/start_timeofday = REALTIMEOFDAY
 	for (var/current_init_stage in 1 to INITSTAGE_MAX)
-
-	// Initialize subsystems.
-	current_ticklimit = CONFIG_GET(number/tick_limit_mc_init)
-
-	for (var/datum/controller/subsystem/subsystem in stage_sorted_subsystems[current_init_stage])
-		if (subsystem.flags & SS_NO_INIT || subsystem.initialized) //Don't init SSs with the correspondig flag or if they already are initialzized
-			continue
-			current_initializing_subsystem = subsystem
-			subsystem.Initialize(REALTIMEOFDAY)
-		CHECK_TICK
-		current_initializing_subsystem = null
-		init_stage_completed = current_init_stage
-		if (!mc_started)
-			mc_started = TRUE
-			if (!current_runlevel)
-				SetRunLevel(1)
-			// Loop.
-			Master.StartProcessing(0)
+		for (var/datum/controller/subsystem/subsystem in stage_sorted_subsystems[current_init_stage])
+			if (subsystem.flags & SS_NO_INIT || subsystem.initialized) //Don't init SSs with the correspondig flag or if they already are initialzized
+				continue
+				current_initializing_subsystem = subsystem
+				subsystem.Initialize(REALTIMEOFDAY)
+			CHECK_TICK
+			current_initializing_subsystem = null
+			init_stage_completed = current_init_stage
+			if (!mc_started)
+				mc_started = TRUE
+				if (!current_runlevel)
+					SetRunLevel(1)
+				// Loop.
+				Master.StartProcessing(0)
 		
 
 	current_ticklimit = TICK_LIMIT_RUNNING
@@ -505,8 +501,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		if (init_stage != INITSTAGE_MAX)
 			current_ticklimit = TICK_LIMIT_RUNNING * 2
 		else
-		current_ticklimit = TICK_LIMIT_RUNNING
-		if (processing * sleep_delta <= world.tick_lag)
+			current_ticklimit = TICK_LIMIT_RUNNING
+			if (processing * sleep_delta <= world.tick_lag)
 				current_ticklimit -= (TICK_LIMIT_RUNNING * 0.25) //reserve the tail 1/4 of the next tick for the mc if we plan on running next tick
 
 		sleep(world.tick_lag * (processing * sleep_delta))

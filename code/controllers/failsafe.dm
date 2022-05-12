@@ -50,6 +50,16 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 		// Only poke it if overrides are not in effect.
 		if(processing_interval > 0)
 			if(Master.processing && Master.iteration)
+				if (defcon > 1 && (!Master.stack_end_detector || !Master.stack_end_detector.check()))
+					to_chat(GLOB.admins, "<span class='boldannounce'>ERROR: The Master Controller code stack has exited unexpectedly, Restarting...</span>")
+					defcon = 0
+					var/rtn = Recreate_MC()
+					if(rtn > 0)
+						master_iteration = 0
+						to_chat(GLOB.admins, "<span class='adminnotice'>MC restarted successfully</span>")
+					else if(rtn < 0)
+						log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
+						to_chat(GLOB.admins, "<span class='boldannounce'>ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying.</span>")
 				// Check if processing is done yet.
 				if(Master.iteration == master_iteration)
 					switch(defcon)
