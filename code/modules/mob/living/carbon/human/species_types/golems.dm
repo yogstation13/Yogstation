@@ -1478,6 +1478,9 @@
 	attack_sound = 'sound/effects/supermatter.ogg'
 	brutemod = 1.5
 	burnmod = 3
+	var/burnheal = 1
+	var/bruteheal = 0.5
+	var/randexplode = FALSE
 
 /datum/species/golem/supermater/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	..()
@@ -1510,6 +1513,24 @@
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
 		return BULLET_ACT_FORCE_PIERCE 
 
+/datum/species/golem/supermater/spec_life(mob/living/carbon/C)
+	. = ..()
+	C.adjustBurnLoss(-src.burnheal)
+	C.adjustBruteLoss(-src.bruteheal)
+	if(C.InCritical() && prob(1.5))
+		randexplode = TRUE
+		visible_message(span_danger("[C]'s body violently explodes!"))
+		explosion(get_turf(holder.my_atom), 1 ,3, 6)
+		qdel(C)
+
+/datum/species/golem/supermater/spec_death(gibbed, mob/living/carbon/human/H)
+	if(gibbed)
+		return
+	if(randexplode) //No double explosions
+		return
+	visible_message(span_danger("[H]'s body violently explodes!"))
+	explosion(get_turf(holder.my_atom), 1 ,3, 6)
+	qdel(C)
 
 /obj/item/melee/supermatter_sword/hand
 	name = "supermatter hand"
