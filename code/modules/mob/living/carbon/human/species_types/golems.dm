@@ -1472,6 +1472,7 @@
 	limbs_id = "sm_golem"
 	mutanthands = /obj/item/melee/supermatter_sword/hand
 	inherent_traits = list(TRAIT_NOHARDCRIT,TRAIT_NOSOFTCRIT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC
 	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical objects that interact with you. However, you take half more brute damage, three more burn damage and explode on death."
 	attack_verb = "bluespace punch"
 	attack_sound = 'sound/effects/supermatter.ogg'
