@@ -1522,7 +1522,7 @@
 		explosion(get_turf(C), 1 ,3, 6)
 		qdel(C)
 
-/datum/species/golem/supermater/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/golem/supermatter/spec_death(gibbed, mob/living/carbon/human/H)
 	if(gibbed)
 		return
 	if(src.randexplode) //No double explosions
