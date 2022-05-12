@@ -1464,3 +1464,44 @@
 	wax_golem.visible_message(span_danger("[src] rises and reforms into [wax_golem]!"),span_userdanger("You reform into yourself!"))
 	wax_golem = null
 	qdel(src)
+
+//Teleports when hit or when it wants to
+/datum/species/golem/supermater
+	name = "Supermater Golem"
+	id = "supermater golem"
+	limbs_id = "sm_golem"
+	fixed_mut_color = "33f"
+	info_text = "As a <span class='danger'>Supermater Golem</span>, you dust almost any physical objects that interact with you. However, you take half more brute damage, three more burn damage and explode on death."
+	attack_verb = "bluespace punch"
+	attack_sound = 'sound/effects/supermatter.ogg'
+
+/datum/species/golem/supermater/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
+	..()
+	var/obj/item/I
+	I = AM
+	if(I)
+		H.AdjustFireLoss(2)
+		playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
+		visible_message(span_danger("[I] knocks into [target], and then turns into dust in a flash of light!"))
+		qdel(I)
+	
+
+/datum/species/golem/supermater/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+	..()
+	visible_message(span_danger("[M] puches [H], but then turns into dust in a brilliant flash of light!"))
+	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
+	dust(H)
+
+/datum/species/golem/supermater/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+	..()
+	visible_message(span_danger("[user] attacks [H] with [I], and then [I] turns into dust in a flash of light!"))
+	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
+	qdel(I)
+	
+
+/datum/species/golem/supermater/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	..()
+	if(!istype(P, /obj/item/projectile/ion/) && !istype(P, /obj/item/ammo_casing/energy/laser/))
+		H.visible_message(span_danger("[P] melts on collision with [H]!"))
+		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
+		return BULLET_ACT_FORCE_PIERCE 
