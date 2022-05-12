@@ -61,12 +61,12 @@
 		if(HEATING)
 			icon_state += "_hot"
 
-/obj/machinery/plumbing/acclimator/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/plumbing/acclimator/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ChemAcclimator", name, 300, 260, master_ui, state)
+		ui = new(user, src, "ChemAcclimator", name)
 		ui.open()
-
+		
 /obj/machinery/plumbing/acclimator/ui_data(mob/user)
 	var/list/data = list()
 
