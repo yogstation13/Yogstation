@@ -1529,7 +1529,7 @@
 		return
 	visible_message(span_danger("[H]'s body violently explodes!"))
 	explosion(get_turf(H), 1 ,3, 6)
-	qdel(C)
+	qdel(H)
 
 /obj/item/melee/supermatter_sword/hand
 	name = "supermatter hand"
