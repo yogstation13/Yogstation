@@ -159,8 +159,8 @@
 
 			//AI / Cyborg
 			if(isAI(M))
-				body += "<B>Is an AI</B> "
-				body += "<A href='?_src_=holder;[HrefToken()];checkAIDash=[REF(M)]'>Access AI Dashboard</A>"
+				body += "<B>Is an AI | </B> "
+				body += "<A href='?_src_=holder;[HrefToken()];checkAIDash=[REF(M)]'>Access AI Dashboard | </A>"
 			else if(ishuman(M))
 				body += "<A href='?_src_=holder;[HrefToken()];makeai=[REF(M)]'>Make AI</A> | "
 				body += "<A href='?_src_=holder;[HrefToken()];makerobot=[REF(M)]'>Make Robot</A> | "

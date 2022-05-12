@@ -41,6 +41,10 @@
 	var/datum/martial_art/frenzygrab/frenzygrab = new
 	///You get assigned a Clan once you Rank up enough
 	var/my_clan = NONE
+	///How many clan points you have -> Used in clans in order to assert certain limits // Upgrades and stuff
+	var/clanpoints = 0
+	///How much progress have you done on your clan
+	var/clanprogress = 0
 
 	///Vassals under my control. Periodically remove the dead ones.
 	var/list/datum/antagonist/vassal/vassals = list()
@@ -186,7 +190,7 @@
 /datum/antagonist/bloodsucker/admin_add(datum/mind/new_owner, mob/admin)
 	var/levels = input("How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", bloodsucker_level_unspent) as null | num
 	var/msg = " made [key_name_admin(new_owner)] into \a [name]"
-	if(!isnull(levels))
+	if(levels > 1)
 		bloodsucker_level_unspent = levels
 		msg += " with [levels] extra unspent Ranks."
 	message_admins("[key_name_admin(usr)][msg]")
@@ -376,7 +380,7 @@
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(owner.current)
 	if(!owner || !owner.current || vassaldatum)
 		return
-	bloodsucker_level_unspent++ //same thing as below
+	bloodsucker_level_unspent++
 	passive_blood_drain -= 0.03 * bloodsucker_level //do something. It's here because if you are gaining points through other means you are doing good
 	// Spend Rank Immediately?
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
@@ -428,6 +432,10 @@
 		if(!choice || !options[choice])
 			to_chat(owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
 			return
+		if((locate(options[choice]) in powers))
+			to_chat(owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
+			return
+		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
 		if(!istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 			to_chat(owner.current, span_warning("You must be in your Coffin to purchase Powers."))
 			return
@@ -455,7 +463,7 @@
 	if(spend_rank)
 		bloodsucker_level_unspent--
 	// Ranked up enough? Let them join a Clan.
-	if(bloodsucker_level == 3)
+	if(bloodsucker_level == 3 && my_clan == NONE) //updated for tzimisce
 		AssignClanAndBane()
 
 	// Ranked up enough to get your true Reputation?
@@ -487,19 +495,13 @@
 	switch(rand(1, 3))
 		if(1) // Protege and Drink Objective
 			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/gourmand)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
 		if(2) // Heart Thief and Protege Objective
 			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
-		if(3) // All of them
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief, new /datum/objective/bloodsucker/gourmand)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
+		if(3) // Heart Thief and Drink Objective
+			rolled_objectives = list(new /datum/objective/bloodsucker/heartthief, new /datum/objective/bloodsucker/gourmand)
+	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
+		objective.owner = owner
+		objectives += objective
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()

@@ -111,6 +111,8 @@
 	for(var/obj/item/I in get_environment(user))
 		if(I.flags_1 & HOLOGRAM_1)
 			continue
+		if(I.status_traits && HAS_TRAIT(I,TRAIT_NODROP))
+			continue
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			.["other"][I.type] += S.amount

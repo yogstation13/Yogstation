@@ -80,3 +80,52 @@
 	name = "Flow"
 	desc = "Use the arts to Flow, giving shove and stun immunity, as well as brute, burn, dismember and pierce resistance. You cannot run while this is active."
 	purchase_flags = HUNTER_CAN_BUY
+
+/datum/action/bloodsucker/fortitude/shadow
+	name = "Shadow Armor"
+	desc = "Empowered to the abyss, fortitude will now grant you a shadow armor, making your grip harder to escape and reduce projectile damage while in darkness."
+	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	background_icon_state_on = "lasombra_power_on"
+	background_icon_state_off = "lasombra_power_off"
+	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	button_icon_state = "power_armor"
+	additional_text = "Additionally gives you extra damage while fortitude'd and agro grab while in darkness."
+	purchase_flags = LASOMBRA_CAN_BUY
+	constant_bloodcost = 0.3
+	var/mutable_appearance/armor_overlay
+
+/datum/action/bloodsucker/fortitude/shadow/ActivatePower()
+	. = ..()
+	var/mob/living/carbon/human/user = owner
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	armor_overlay = mutable_appearance('icons/obj/vamp_obj.dmi', "fortarmor")
+	var/turf/T = get_turf(owner)
+	var/light_amount = T.get_lumcount()
+	if(light_amount <= 0.2)
+		owner.add_overlay(armor_overlay)
+		bloodsuckerdatum.frenzygrab.teach(user, TRUE)
+		to_chat(user, span_notice("Shadow tentacles form and attach themselves to your body, you feel as if your muscles have merged with the shadows!"))
+	var/datum/species/user_species = user.dna.species
+	user_species.punchdamagelow += 0.5 * level_current
+	user_species.punchdamagehigh += 0.5 * level_current
+
+/datum/action/bloodsucker/fortitude/shadow/process()
+	. = ..()
+	var/turf/T = owner.loc
+	var/light_amount = T.get_lumcount()
+	var/mob/living/carbon/user = owner
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(light_amount > 0.2)
+		owner.cut_overlay(armor_overlay)
+		bloodsuckerdatum.frenzygrab.remove(user)
+		to_chat(user, span_warning("As you enter in contact with the light, the tentacles dissipate!"))
+
+/datum/action/bloodsucker/fortitude/shadow/DeactivatePower()
+	. = ..()
+	var/mob/living/carbon/human/user = owner
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	owner.cut_overlay(armor_overlay)
+	bloodsuckerdatum.frenzygrab.remove(user)
+	var/datum/species/user_species = user.dna.species
+	user_species.punchdamagelow -= 0.5 / level_current
+	user_species.punchdamagehigh -= 0.5 / level_current

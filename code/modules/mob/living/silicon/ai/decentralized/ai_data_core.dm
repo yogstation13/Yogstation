@@ -165,3 +165,40 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	name = "primary AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of a human at near-instantanous speeds. This one has a scrawny and faded note saying: 'Primary AI Data Core'"
 	primary = TRUE
+
+
+
+/*
+This is a good place for AI-related object verbs so I'm sticking it here.
+If adding stuff to this, don't forget that an AI need to cancel_camera() whenever it physically moves to a different location.
+That prevents a few funky behaviors.
+*/
+//The type of interaction, the player performing the operation, the AI itself, and the card object, if any.
+
+
+/atom/proc/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
+	if(istype(card))
+		if(card.flush)
+			to_chat(user, "[span_boldannounce("ERROR")]: AI flush is in progress, cannot execute transfer protocol.")
+			return FALSE
+	return TRUE
+
+/* Unused for now, just here for reference
+/obj/structure/AIcore/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
+	if(state != AI_READY_CORE || !..())
+		return
+ //Transferring a carded AI to a core.
+	if(interaction == AI_TRANS_FROM_CARD)
+		AI.control_disabled = FALSE
+		AI.radio_enabled = TRUE
+		AI.forceMove(loc) // to replace the terminal.
+		to_chat(AI, "You have been uploaded to a stationary terminal. Remote device connection restored.")
+		to_chat(user, "[span_boldnotice("Transfer successful")]: [AI.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
+		card.AI = null
+		AI.battery = circuit.battery
+		qdel(src)
+	else //If for some reason you use an empty card on an empty AI terminal.
+		to_chat(user, "There is no AI loaded on this terminal!")
+
+*/
+
