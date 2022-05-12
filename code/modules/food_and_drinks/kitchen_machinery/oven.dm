@@ -65,27 +65,32 @@
 
 /obj/machinery/oven/process(delta_time)
 	..()
-	if(!used_tray) //Are we actually working?
+	if(!used_tray && !occupant) //Are we actually working?
 		set_smoke_state(OVEN_SMOKE_STATE_NONE)
 		return
 	///We take the worst smoke state, so if something is burning we always know.
 	var/worst_cooked_food_state = 0
-	for(var/obj/item/baked_item in used_tray.contents)
+	if(used_tray)
+		for(var/obj/item/baked_item in used_tray.contents)
 
-		var/signal_result = SEND_SIGNAL(baked_item, COMSIG_ITEM_BAKED, src, delta_time)
+			var/signal_result = SEND_SIGNAL(baked_item, COMSIG_ITEM_BAKED, src, delta_time)
 
-		if(signal_result & COMPONENT_HANDLED_BAKING) //This means something responded to us baking!
-			if(signal_result & COMPONENT_BAKING_GOOD_RESULT && worst_cooked_food_state < OVEN_SMOKE_STATE_GOOD)
-				worst_cooked_food_state = OVEN_SMOKE_STATE_GOOD
-			else if(signal_result & COMPONENT_BAKING_BAD_RESULT && worst_cooked_food_state < OVEN_SMOKE_STATE_NEUTRAL)
-				worst_cooked_food_state = OVEN_SMOKE_STATE_NEUTRAL
-			continue
+			if(signal_result & COMPONENT_HANDLED_BAKING) //This means something responded to us baking!
+				if(signal_result & COMPONENT_BAKING_GOOD_RESULT && worst_cooked_food_state < OVEN_SMOKE_STATE_GOOD)
+					worst_cooked_food_state = OVEN_SMOKE_STATE_GOOD
+				else if(signal_result & COMPONENT_BAKING_BAD_RESULT && worst_cooked_food_state < OVEN_SMOKE_STATE_NEUTRAL)
+					worst_cooked_food_state = OVEN_SMOKE_STATE_NEUTRAL
+				continue
 
-		worst_cooked_food_state = OVEN_SMOKE_STATE_BAD
-		baked_item.fire_act(1000) //Hot hot hot!
+			worst_cooked_food_state = OVEN_SMOKE_STATE_BAD
+			baked_item.fire_act(1000) //Hot hot hot!
 
-		if(prob(10))
-			visible_message(span_danger("You smell a burnt smell coming from [src]!"))
+			if(prob(10))
+				visible_message(span_danger("You smell a burnt smell coming from [src]!"))
+	if(occupant)
+		var/mob/living/O = occupant
+		O.apply_damage(1,damagetype = BURN)
+		worst_cooked_food_state = OVEN_SMOKE_STATE_GOOD
 	set_smoke_state(worst_cooked_food_state)
 	update_icon()
 
@@ -138,15 +143,57 @@
 		end_processing()
 		if(used_tray)
 			used_tray.vis_flags &= ~VIS_HIDE
+		if(occupant)
+			occupant.forceMove(src.loc)
+			occupant = null
 	else
 		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
 		to_chat(user, span_notice("You close [src]."))
-		if(used_tray)
+		if(used_tray || occupant)
 			begin_processing()
 			used_tray.vis_flags |= VIS_HIDE
 	update_icon()
 	update_baking_audio()
 	return TRUE
+
+/obj/machinery/oven/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(stat & (NOPOWER|BROKEN))
+		return
+	if(!open)
+		to_chat(user,span_danger("The oven has to be open!"))
+		return
+	if(used_tray)
+		to_chat(user,span_danger("You can't have a tray in while shoving someone in!"))
+		return
+	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+		var/mob/living/L = user.pulling
+		if(!iscarbon(L))
+			to_chat(user, span_danger("This item is not suitable for the oven!"))
+			return
+		var/mob/living/carbon/C = L
+		if(!C.dna?.check_mutation(DWARFISM))
+			to_chat(user, span_warning("[C] is not a dwarf!"))
+			return
+		if(C.buckled ||C.has_buckled_mobs())
+			to_chat(user, span_warning("[C] is attached to something!"))
+			return
+		user.visible_message(span_danger("[user] starts to put [C] into the oven!"))
+
+		add_fingerprint(user)
+
+		if(do_after(user, 5 SECONDS, target = src))
+			if(!open)
+				to_chat(user,span_danger("The oven has to be open!"))
+				return
+			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
+				user.visible_message(span_danger("[user] stuffs [C] into the oven!"))
+				C.forceMove(src)
+				occupant = C
+				attack_hand(user) //close the oven
+
 
 /obj/machinery/oven/proc/update_baking_audio()
 	if(!open && used_tray?.contents.len)
