@@ -1466,14 +1466,16 @@
 	qdel(src)
 
 //Teleports when hit or when it wants to
-/datum/species/golem/supermater
-	name = "Supermater Golem"
-	id = "supermater golem"
+/datum/species/golem/supermatter
+	name = "Supermatter Golem"
+	id = "supermatter golem"
 	limbs_id = "sm_golem"
-	fixed_mut_color = "33f"
-	info_text = "As a <span class='danger'>Supermater Golem</span>, you dust almost any physical objects that interact with you. However, you take half more brute damage, three more burn damage and explode on death."
+	mutanthands = /obj/item/melee/supermatter_sword/hand
+	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical objects that interact with you. However, you take half more brute damage, three more burn damage and explode on death."
 	attack_verb = "bluespace punch"
 	attack_sound = 'sound/effects/supermatter.ogg'
+	brutemod = 1.5
+	burnmod = 3
 
 /datum/species/golem/supermater/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	..()
@@ -1516,3 +1518,7 @@
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	color = "#ffff00"
+
+/obj/item/melee/supermatter_sword/hand/Initialize(mapload,silent,synthetic)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
