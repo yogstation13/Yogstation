@@ -1465,7 +1465,6 @@
 	wax_golem = null
 	qdel(src)
 
-//Teleports when hit or when it wants to
 /datum/species/golem/supermatter
 	name = "Supermatter Golem"
 	id = "supermatter golem"
