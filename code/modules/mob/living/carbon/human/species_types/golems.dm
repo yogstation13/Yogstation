@@ -1514,7 +1514,7 @@
 
 /datum/species/golem/supermatter/spec_life(mob/living/carbon/C)
 	. = ..()
-	C.adjustBurnLoss(-src.burnheal)
+	C.adjustFireLoss(-src.burnheal)
 	C.adjustBruteLoss(-src.bruteheal)
 	if(C.InCritical() && prob(1.5))
 		src.randexplode = TRUE
