@@ -21,9 +21,7 @@
 	alt_covers_chest = TRUE
 	sensor_mode = 3
 	random_sensor = FALSE
-	mutantrace_variation = MUTANTRACE_VARIATION //I need to clean this code
-	digiversion = TRUE
-	digiadjusted = TRUE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/yogs/rank/physician/white
 	name = "white brig physician's jumpsuit"
@@ -33,8 +31,6 @@
 	item_color = "secwhite"
 	alt_covers_chest = FALSE
 	random_sensor = TRUE
-	can_adjust = TRUE
-	digiadjusted = TRUE
 
 /obj/item/clothing/under/yogs/rank/physician/white/skirt
 	name = "white brig physician's jumpskirt"
@@ -45,5 +41,4 @@
 	can_adjust = FALSE
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
-	digiversion = FALSE
-	digiadjusted = FALSE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
