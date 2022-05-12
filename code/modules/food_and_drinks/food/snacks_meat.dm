@@ -45,7 +45,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("rat meat" = 1, "metal" = 1)
-	foodtype = MEAT | GROSS
+	foodtype = MICE
 
 /obj/item/reagent_containers/food/snacks/kebab/rat/double
 	name = "double rat kebab"
@@ -434,12 +434,18 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("\"chicken\"" = 1)
 	foodtype = MEAT
+	var/mob/living/nugget_man
 
 /obj/item/reagent_containers/food/snacks/nugget/Initialize()
 	. = ..()
 	var/shape = pick("lump", "star", "lizard", "corgi")
 	desc = "A 'chicken' nugget vaguely shaped like a [shape]."
 	icon_state = "nugget_[shape]"
+
+/obj/item/reagent_containers/food/snacks/nugget/Destroy()
+	if(nugget_man)
+		qdel(nugget_man)
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/pigblanket
 	name = "pig in a blanket"

@@ -357,5 +357,16 @@
 		<b>Favorite Vassal</b>: Unknown. \
 		<b>Strength</b>: Unknown.<br> \
 		<b>Weakness</b>: Unknown."
+	if(clan == CLAN_LASOMBRA)
+		dat += "This Clan seems to adore living in the <i>Shadows</i> and worshipping it's secrets.<br> \
+		They take their research and vanity seriously, they are always very proud of themselves after even minor achievements.<br> \
+		They appear to be in search of a station with a veil weakness to be able to channel their shadow's abyssal powers.<br> \
+		Their research into this sector has lead them to adopt <i>red eyes</i> as to view better in the shadows, which leads unmasked Lasombras to be easily identifiable.<br> \
+		Homewer they have appeared to have also evolved a hard chintin in their veins, which makes them <i>invulnerable</i> to brute damage.<br> \
+		<b>Favorite Vassal</b>: Their Favorite Vassal appears to have been imbued with abyssal essence and is able to blend in with the shadows. \
+		<b>Strength</b>: They are able to slowly advance their abilities.<br> \
+		<b>Weakness</b>: Immensely weak to burn damage."
+	if(clan == CLAN_TZIMISCE)
+		dat += "The page is covered in blood. It seems like it will need time to vanish..."
 
 	reader << browse("<meta charset=UTF-8><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")

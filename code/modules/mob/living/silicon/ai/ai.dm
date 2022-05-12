@@ -30,7 +30,7 @@
 	d_hud = DATA_HUD_DIAGNOSTIC_BASIC
 	mob_size = MOB_SIZE_LARGE
 
-	invisibility = INVISIBILITY_OBSERVER 
+	invisibility = INVISIBILITY_MAXIMUM  
 
 	var/battery = 200 //emergency power if the AI's APC is off
 	var/list/network = list("ss13")
@@ -914,7 +914,7 @@
 	return 0
 
 /mob/living/silicon/ai/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
-	if(aiRestorePowerRoutine)
+	if(aiRestorePowerRoutine && !available_ai_cores())
 		return TRUE
 	return ..()
 

@@ -14,7 +14,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
 	liked_food = VEGETABLES | DAIRY | CLOTH
 	disliked_food = FRUIT | GROSS
-	toxic_food = MEAT | RAW | SEAFOOD
+	toxic_food = MEAT | RAW | SEAFOOD | MICE
 	burnmod = 1.25 //Fluffy and flammable
 	brutemod = 0.9 //Evasive buggers
 	punchdamagehigh = 9 //Weird fluffy bug fist

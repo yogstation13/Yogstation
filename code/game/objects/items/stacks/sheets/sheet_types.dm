@@ -509,7 +509,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 		new /datum/stack_recipe("light bulbs box", /obj/item/storage/box/lights/bulbs),			\
 		new /datum/stack_recipe("light tubes box", /obj/item/storage/box/lights/tubes),			\
 		new /datum/stack_recipe("mixed lights box", /obj/item/storage/box/lights/mixed),		\
-		new /datum/stack_recipe("mouse traps box", /obj/item/storage/box/mousetraps),			
+		new /datum/stack_recipe("mouse traps box", /obj/item/storage/box/mousetraps),
 		)),
 
 	null,																						\
@@ -550,7 +550,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 			to_chat(user, span_notice("You stamp the cardboard in a sinister way"))
 			if (amount >= 0)
 				new/obj/item/storage/box/syndie_kit(droploc)
-	
+
 	if(istype(I, /obj/item/stamp/syndiround) && !istype(loc, /obj/item/storage))
 		var/atom/droploc = drop_location()
 		if(use(1))
@@ -767,6 +767,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("plastic flaps", /obj/structure/plasticflaps, 5, one_per_turf = TRUE, on_floor = TRUE, time = 40), \
 	new /datum/stack_recipe("water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/empty), \
 	new /datum/stack_recipe("large water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/large/empty,3), \
+	new /datum/stack_recipe("colo cups", /obj/item/reagent_containers/food/drinks/colocup, 1), \
 	new /datum/stack_recipe("wet floor sign", /obj/item/clothing/suit/caution, 2)))
 
 /obj/item/stack/sheet/plastic
@@ -879,7 +880,7 @@ GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
 	novariants = TRUE
 	grind_results = list(/datum/reagent/consumable/ashresin = 5)
 	merge_type = /obj/item/stack/sheet/ashresin
-	
+
 GLOBAL_LIST_INIT(ashresin_recipes, list (
 	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40), \
 	new/datum/stack_recipe("resin candle", /obj/item/candle/resin )))

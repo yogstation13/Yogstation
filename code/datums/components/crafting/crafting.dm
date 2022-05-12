@@ -20,6 +20,7 @@
 					CAT_WEAPON,
 					CAT_AMMO,
 				),
+				CAT_TOOLS = CAT_NONE,
 				CAT_ROBOT = CAT_NONE,
 				CAT_MISC = CAT_NONE,
 				CAT_PRIMAL = CAT_NONE,
@@ -125,7 +126,7 @@
 	.["other"] = list()
 	.["instances"] = list()
 	for(var/obj/item/I in get_environment(user))
-		if(I.flags_1 & HOLOGRAM_1)
+		if(I.status_traits && HAS_TRAIT(I,TRAIT_NODROP) || I.flags_1 & HOLOGRAM_1)
 			continue
 		if(.["instances"][I.type])
 			.["instances"][I.type] += I

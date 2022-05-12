@@ -136,3 +136,46 @@
 	tastes = list("sweetness" = 3, "cake" = 1)
 	foodtype = JUNKFOOD | GRAIN | SUGAR
 	custom_price = 20
+
+/obj/item/reagent_containers/food/snacks/tatorling
+	name = "tatorling branded cereal"
+	desc = "The most consumed brand of cereal! 8+ Only. (WARNING: CHOKING HAZARD.)"
+	icon_state = "tatorling"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/sugar = 6)
+	tastes = list("murderbone" = 1, "lime" = 3, "strawberry" = 3)
+	foodtype = GRAIN | FRUIT | BREAKFAST
+	var/opened = FALSE
+	var/searched = FALSE
+
+/obj/item/reagent_containers/food/snacks/tatorling/attack_self(mob/living/user)
+	if(!opened)
+		playsound(src.loc, 'sound/items/poster_ripped.ogg', 50, 1)
+		if(HAS_TRAIT(user, TRAIT_CLUMSY))
+			to_chat(user, span_warning("You rip open the [src]!"))
+		else
+			to_chat(user, span_notice("You open the [src]."))
+		icon_state += "_open"
+		opened = TRUE
+	else
+		if(!searched)
+			to_chat(user, span_warning("You start searching for the toy..."))
+			if(!do_mob(user, user, 1.5 SECONDS))
+				return
+			if(prob(50))
+				switch(rand(1,2))
+					if(1)
+						new /obj/item/toy/figure/ling(get_turf(src))
+					if(2)
+						new /obj/item/toy/figure/traitor(get_turf(src))
+				to_chat(user, span_notice("You found a toy! Yay!"))
+			else
+				to_chat(user, span_warning("You didn't find anything..."))
+				user.emote("cry")
+			return searched = TRUE
+	. = ..()
+
+/obj/item/reagent_containers/food/snacks/tatorling/attack(mob/living/M, mob/user, def_zone)
+	if(!opened)
+		to_chat(user, span_warning("[src]'s lid hasn't been opened!"))
+		return FALSE
+	return ..()

@@ -49,6 +49,7 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/airlock_painter = 1,
 	/obj/item/stack/cable_coil/random = 4,
 	/obj/item/stack/cable_coil/random/five = 6,
+	/obj/item/stack/tape = 1,
 	/obj/item/stack/medical/suture = 1,
 	/obj/item/stack/rods/ten = 9,
 	/obj/item/stack/rods/twentyfive = 1,
@@ -113,3 +114,21 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/storage/box/mre = 3, //Yogs end
 	"" = 3
 	))
+
+
+
+GLOBAL_LIST_INIT(ratking_trash, list(//Garbage: used by the regal rat mob when spawning garbage.
+			/obj/item/cigbutt,
+			/obj/item/trash/cheesie,
+			/obj/item/trash/candy,
+			/obj/item/trash/chips,
+			/obj/item/trash/pistachios,
+			/obj/item/trash/plate,
+			/obj/item/trash/popcorn,
+			/obj/item/trash/raisins,
+			/obj/item/trash/sosjerky,
+			/obj/item/trash/syndi_cakes))
+
+GLOBAL_LIST_INIT(ratking_coins, list(//Coins: Used by the regal rat mob when spawning coins.
+			/obj/item/coin/iron,
+			/obj/item/coin/silver,))

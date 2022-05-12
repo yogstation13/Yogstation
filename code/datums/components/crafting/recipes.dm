@@ -50,19 +50,6 @@
 	subcategory = CAT_WEAPON
 	always_availible = FALSE
 
-/datum/crafting_recipe/makeshiftlasrifle
-	name = "makeshift laser rifle"
-	result = /obj/item/gun/energy/laser/makeshiftlasrifle
-	reqs = list(/obj/item/stack/cable_coil = 15,
-				/obj/item/weaponcrafting/stock = 1,
-				/obj/item/pipe = 1,
-				/obj/item/light/bulb = 1,
-				/obj/item/stock_parts/cell = 1)
-	tools = list(/obj/item/screwdriver)
-	time = 12 SECONDS
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
 /datum/crafting_recipe/knifeboxing
 	name = "Knife-boxing Gloves"
 	result = /obj/item/clothing/gloves/knifeboxing
@@ -202,6 +189,24 @@
 	result = /obj/item/melee/chainofcommand/tailwhip/kitty
 	reqs = list(/obj/item/organ/tail/cat = 1,
 	            /obj/item/stack/cable_coil = 1)
+	time = 4 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/greatruinousknife
+	name = "Great Ruinous Knife"
+	result = /obj/item/kitchen/knife/ritual/holy/strong
+	reqs = list(/obj/item/kitchen/knife/ritual/holy = 1,
+	            /obj/item/stack/sheet/ruinous_metal = 1)
+	time = 4 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/bloodyruinousknife
+	name = "Blood Soaked Ruinous Knife"
+	result = /obj/item/kitchen/knife/ritual/holy/strong/blood
+	reqs = list(/obj/item/kitchen/knife/ritual/holy/strong = 1,
+	            /obj/item/stack/sheet/runed_metal = 1)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -382,12 +387,12 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/laserslug
-	name = "Laser Slug Shell"
-	result = /obj/item/ammo_casing/shotgun/laserslug
+/datum/crafting_recipe/laserbuckshot
+	name = "Laser Buckshot Shell"
+	result = /obj/item/ammo_casing/shotgun/laserbuckshot
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
 				/obj/item/stock_parts/capacitor/adv = 1,
-				/obj/item/stock_parts/micro_laser/high = 1)
+				/obj/item/stock_parts/micro_laser/high = 2)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
@@ -982,3 +987,11 @@
 	time = 1 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/tape
+	name = "tape"
+	reqs = list(/obj/item/stack/sheet/cloth = 1,
+				/datum/reagent/consumable/caramel = 5)
+	result = /obj/item/stack/tape
+	time = 1
+	category = CAT_MISC
