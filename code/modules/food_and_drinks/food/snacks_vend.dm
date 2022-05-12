@@ -191,6 +191,6 @@
 
 /obj/item/reagent_containers/food/snacks/vermin/attack_self(mob/user)
 	. = ..()
-	to_chat(user, span_warning("You crack open [src], [contained_animal] falling out from inside!"))
+	to_chat(user, span_warning("You pry open the [src]. A [contained_animal] falls out from inside!"))
 	new contained_animal(get_turf(src))
 	qdel(src)
