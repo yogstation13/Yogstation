@@ -89,18 +89,11 @@
 	switch(action)
 		if("change_pill_style")
 			pill_number = clamp(text2num(params["id"]), 1 , PILL_STYLE_COUNT)
-		if("change_current_volume")
-			current_volume = clamp(text2num(params["volume"]), min_volume, max_volume)
-		if("change_product_name")
-			product_name = html_encode(params["name"])
-		if("change_product")
-			product = params["product"]
-			if (product == "pill")
-				max_volume = max_pill_volume
-			else if (product == "patch")
-				max_volume = max_patch_volume
-			else if (product == "bottle")
-				max_volume = max_bottle_volume
-			current_volume = clamp(current_volume, min_volume, max_volume)
-		if("change_patch_style")
-			patch_style = params["patch_style"]
+		if("change_pill_size")
+			pill_size = clamp(text2num(params["volume"]), minimum_pill, maximum_pill)
+		if("change_pill_name")
+			var/new_name = html_encode(params["name"])
+			if(findtext(new_name, "pill")) //names like pillatron and Pilliam are thus valid
+				pill_name = new_name
+			else
+				pill_name = new_name + " pill"
