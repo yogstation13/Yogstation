@@ -388,8 +388,8 @@
 	break_strength = 4
 
 /obj/item/restraints/legcuffs/bola/watcher //tribal bola for tribal lizards
-	name = "watcher bola"
-	desc = "A bola made from the stretchy sinew of fallen watchers."
+	name = "watcher Bola"
+	desc = "A Bola made from the stretchy sinew of fallen watchers."
 	icon_state = "bola_watcher"
 	item_state = "bola_watcher"
 	breakouttime = 45

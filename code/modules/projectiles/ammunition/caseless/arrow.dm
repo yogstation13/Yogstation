@@ -31,7 +31,7 @@
 
 /obj/item/ammo_casing/caseless/arrow/bola
 	name = "bola arrow"
-	desc = "An arrow made from wood, with a bola wrapped around it."
+	desc = "An arrow made from wood. a bola is wrapped around it."
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bola
 
 /obj/item/ammo_casing/caseless/arrow/bola/Initialize()
@@ -58,7 +58,7 @@
 
 /obj/item/ammo_casing/caseless/arrow/explosive
 	name = "explosive arrow"
-	desc = "An arrow made from wood. An explosive is attached to it."
+	desc = "An arrow made from wood. an explosive is attached to it."
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/explosive
 
 /obj/item/ammo_casing/caseless/arrow/explosive/Initialize()
@@ -107,28 +107,28 @@
 
 /obj/item/ammo_casing/caseless/arrow/energy
 	name = "energy bolt"
-	desc = "A hardlight arrow."
+	desc = "An arrow made from hardlight."
 	icon_state = "arrow_energy"
 	projectile_type = /obj/item/projectile/energy/arrow
 	var/overlay_state = "redlight"
 
 /obj/item/ammo_casing/caseless/arrow/energy/disabler
 	name = "disabler bolt"
-	desc = "A modified hardlight arrow. This one stuns the victim non-lethally."
+	desc = "An arrow made from hardlight. This one stuns the victim in a non-lethal way."
 	icon_state = "arrow_disable"
 	overlay_state = "disable"
 	projectile_type = /obj/item/projectile/energy/arrow/disabler
 
 /obj/item/ammo_casing/caseless/arrow/energy/pulse
 	name = "pulse bolt"
-	desc = "A modified hardlight arrow. This one is extremely powerful, and can destroy most obstructions in a single shot."
+	desc = "An arrow made from hardlight. This one can destroy most obstructions in one hit."
 	icon_state = "arrow_pulse"
 	overlay_state = "pulse"
 	projectile_type = /obj/item/projectile/energy/arrow/pulse
 
 /obj/item/ammo_casing/caseless/arrow/energy/xray
 	name = "X-ray bolt"
-	desc = "A modified hardlight arrow. This one can pass right through obstructions."
+	desc = "An arrow made from hardlight. This one can pass through obstructions."
 	icon_state = "arrow_xray"
 	overlay_state = "xray"
 	projectile_type = /obj/item/projectile/energy/arrow/xray

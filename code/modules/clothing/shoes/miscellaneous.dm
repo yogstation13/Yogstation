@@ -487,7 +487,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/goliath
 	name = "goliath hide footwraps"
-	desc = "These make your feet feel well protected and plated."
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
 	icon_state = "footwraps_goliath"
 	item_state = "footwraps_goliath"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 0)
@@ -498,7 +498,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/dragon
 	name = "ash drake hide footwraps"
-	desc = "These make your feet feel like they're wrapped in sandpaper. Positively draconian!"
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
 	icon_state = "footwraps_dragon"
 	item_state = "footwraps_dragon"
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 0)
@@ -510,7 +510,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/carpdragon
 	name = "carp dragon hide footwraps"
-	desc = "These make your feet feel like they're wrapped in wet oily sandpaper. Disgusting, but oddly comfortable."
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
 	icon_state = "footwraps_carpdragon"
 	item_state = "footwraps_carpdragon"
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 0)
