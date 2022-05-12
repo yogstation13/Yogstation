@@ -1508,7 +1508,7 @@
 
 /datum/species/golem/supermater/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	..()
-	if(!istype(P, /obj/item/projectile/ion/) && !istype(P, /obj/item/ammo_casing/energy/laser/))
+	if(!istype(P, /obj/item/projectile/ion/) && !istype(P, /obj/item/ammo_casing/energy/laser/) && !istype(P, /obj/item/projectile/magic))
 		H.visible_message(span_danger("[P] melts on collision with [H]!"))
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
 		return BULLET_ACT_FORCE_PIERCE 
