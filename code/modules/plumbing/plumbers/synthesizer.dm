@@ -47,10 +47,6 @@
 		/datum/reagent/water,
 		/datum/reagent/fuel
 	)
-
-	ui_x = 300
-	ui_y = 435
-
 /obj/machinery/plumbing/synthesizer/Initialize(mapload, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_supply, bolt)

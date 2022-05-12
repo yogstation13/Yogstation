@@ -41,8 +41,8 @@
 			var/direction = params["target"]
 			switch(direction)
 				if("straight")
-					transfer_straight = CLAMP(input("New target transfer:", name, transfer_straight) as num|null, 1 , max_transfer)
+					transfer_straight = clamp(input("New target transfer:", name, transfer_straight) as num|null, 1 , max_transfer)
 				if("side")
-					transfer_side = CLAMP(input("New target transfer:", name, transfer_side) as num|null, 1 , max_transfer)
+					transfer_side = clamp(input("New target transfer:", name, transfer_side) as num|null, 1 , max_transfer)
 				else
 					return FALSE

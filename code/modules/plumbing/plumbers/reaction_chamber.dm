@@ -57,6 +57,6 @@
 		if("add")
 			var/input_reagent = get_chem_id(input("Enter the name of the reagent", "Input") as text|null)
 			if(input_reagent && !required_reagents.Find(input_reagent))
-				var/input_amount = CLAMP(round(input("Enter amount", "Input") as num|null), 1, 100)
+				var/input_amount = clamp(round(input("Enter amount", "Input") as num|null), 1, 100)
 				if(input_amount)
 					required_reagents[input_reagent] = input_amount

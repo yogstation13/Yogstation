@@ -25,10 +25,6 @@
 	and you get nasty leftovers
 	*/
 	var/emptying = FALSE
-
-	ui_x = 320
-	ui_y = 300
-
 /obj/machinery/plumbing/acclimator/Initialize(mapload, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/acclimator, bolt)
@@ -90,10 +86,10 @@
 	switch(action)
 		if("set_target_temperature")
 			var/target = input("New target temperature:", name, target_temperature) as num|null
-			target_temperature = CLAMP(target, 0, 1000)
+			target_temperature = clamp(target, 0, 1000)
 		if("set_allowed_temperature_difference")
 			var/target = input("New acceptable difference:", name, allowed_temperature_difference) as num|null
-			allowed_temperature_difference = CLAMP(target, 0, 1000)
+			allowed_temperature_difference = clamp(target, 0, 1000)
 		if("toggle_power")
 			enabled = !enabled
 		if("change_volume")
@@ -103,7 +99,7 @@
 			if(reagents.total_volume > target)
 				to_chat(usr, "<span class='warning'>You can't set the maximum volume lower than the current total reagent volume! Empty it first!</span>")
 				return
-			reagents.maximum_volume = CLAMP(round(target), 1, buffer)
+			reagents.maximum_volume = clamp(round(target), 1, buffer)
 
 #undef COOLING
 #undef HEATING

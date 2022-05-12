@@ -63,9 +63,10 @@
 			AM.forceMove(drop_location())
 			
 
-/obj/machinery/plumbing/pill_press/ui_base_html(html)
-	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
-	. = replacetext(html, "<!--customheadhtml-->", assets.css_tag())
+/obj/machinery/plumbing/pill_press/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/simple/pills),
+	)
 
 /obj/machinery/plumbing/pill_press/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -89,9 +90,9 @@
 	. = TRUE
 	switch(action)
 		if("change_pill_style")
-			pill_number = CLAMP(text2num(params["id"]), 1 , PILL_STYLE_COUNT)
+			pill_number = clamp(text2num(params["id"]), 1 , PILL_STYLE_COUNT)
 		if("change_pill_size")
-			pill_size = round(CLAMP(input("New target volume", name, pill_size) as num|null, minimum_pill, maximum_pill))
+			pill_size = round(clamp(input("New target volume", name, pill_size) as num|null, minimum_pill, maximum_pill))
 		if("change_pill_name")
 			var/new_name = stripped_input(usr, "Enter a pill name.", name, pill_name)
 			if(findtext(new_name, "pill")) //names like pillatron and Pilliam are thus valid
