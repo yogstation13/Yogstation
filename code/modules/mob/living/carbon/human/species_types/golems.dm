@@ -1505,7 +1505,7 @@
 	qdel(I)
 	
 
-/datum/species/golem/supermater/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/supermatter/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	..()
 	if(!istype(P, /obj/item/projectile/ion/) && !istype(P, /obj/item/ammo_casing/energy/laser/) && !istype(P, /obj/item/projectile/magic))
 		H.visible_message(span_danger("[P] melts on collision with [H]!"))
