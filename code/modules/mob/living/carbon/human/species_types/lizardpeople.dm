@@ -62,6 +62,24 @@
 		stunmod *= heat_stun_mult 	//however many times, and if it goes down we multiply by 1.1
 						//This gets us an effective stunmod of 0.91, 1, 1.1, 1.21, 1.33, based on temp
 
+/datum/species/lizard/spec_life(mob/living/carbon/human/H)
+	. = ..()
+	if(!is_wagging_tail() && H.mood_enabled)
+		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
+		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2)) 
+			return
+		var/chance = 0
+		switch(mood.shown_mood)
+			if(MOOD_LEVEL_HAPPY2 to MOOD_LEVEL_HAPPY3)
+				chance = 0.001
+			if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL_HAPPY4)
+				chance = 0.1
+			if(MOOD_LEVEL_HAPPY4 to INFINITY)
+				chance = 1
+		if(prob(chance))
+			H.emote("wag")
+	
+
 /*
  Lizard subspecies: ASHWALKERS
 */

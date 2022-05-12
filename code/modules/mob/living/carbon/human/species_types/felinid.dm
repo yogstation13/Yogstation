@@ -166,3 +166,20 @@
 
 /datum/species/human/felinid/get_scream_sound(mob/living/carbon/human/H)
 	return pick(screamsound)
+
+/datum/species/human/felinid/spec_life(mob/living/carbon/human/H)
+	. = ..()
+	if(!is_wagging_tail() && H.mood_enabled)
+		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
+		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2)) 
+			return
+		var/chance = 0
+		switch(mood.shown_mood)
+			if(MOOD_LEVEL_HAPPY2 to MOOD_LEVEL_HAPPY3)
+				chance = 0.001
+			if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL_HAPPY4)
+				chance = 0.1
+			if(MOOD_LEVEL_HAPPY4 to INFINITY)
+				chance = 1
+		if(prob(chance))
+			H.emote("wag")
