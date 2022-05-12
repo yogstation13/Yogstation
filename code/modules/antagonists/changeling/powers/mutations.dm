@@ -615,7 +615,7 @@
 	if(istype(target, /mob/living/carbon))
 		var/mob/living/carbon/C = target
 		C.add_movespeed_modifier("flesh maul", update=TRUE, priority=101, multiplicative_slowdown=1)						//Slows the target because big whack
-		addtimer(CALLBACK(C, /mob.proc/remove_movespeed_modifier, "flesh maul"), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)	//Half the swing time
+		addtimer(CALLBACK(C, /mob.proc/remove_movespeed_modifier, "flesh maul"), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)	
 		to_chat(target, span_danger("You are staggered from the blow!"))
 
 	else if(istype(target, /mob/living/silicon/robot))
