@@ -1520,7 +1520,7 @@
 	if(C.InCritical() && prob(1.5))
 		randexplode = TRUE
 		visible_message(span_danger("[C]'s body violently explodes!"))
-		explosion(get_turf(holder.my_atom), 1 ,3, 6)
+		explosion(get_turf(H), 1 ,3, 6)
 		qdel(C)
 
 /datum/species/golem/supermater/spec_death(gibbed, mob/living/carbon/human/H)
@@ -1529,7 +1529,7 @@
 	if(randexplode) //No double explosions
 		return
 	visible_message(span_danger("[H]'s body violently explodes!"))
-	explosion(get_turf(holder.my_atom), 1 ,3, 6)
+	explosion(get_turf(H), 1 ,3, 6)
 	qdel(C)
 
 /obj/item/melee/supermatter_sword/hand
