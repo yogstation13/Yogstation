@@ -351,6 +351,6 @@
 
 /obj/item/clothing/head/hatgulo
 	name = "Singularity hat"
-	desc = "How did they manage to put it inside the hat, only the Wizard federation knows"
+	desc = "How does a singularity fit in a hat? Only the Wizard Federation knows..."
 	icon_state = "hatgulo"
 	item_state = "hatgulo"
