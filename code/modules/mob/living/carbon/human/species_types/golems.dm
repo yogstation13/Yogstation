@@ -1525,7 +1525,7 @@
 /datum/species/golem/supermater/spec_death(gibbed, mob/living/carbon/human/H)
 	if(gibbed)
 		return
-	if(randexplode) //No double explosions
+	if(src.randexplode) //No double explosions
 		return
 	visible_message(span_danger("[H]'s body violently explodes!"))
 	explosion(get_turf(H), 1 ,3, 6)
