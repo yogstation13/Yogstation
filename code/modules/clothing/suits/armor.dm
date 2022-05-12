@@ -156,7 +156,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat/bone, /obj/item/kitchen/knife/combat/survival)
 	icon_state = "pathcloak"
 	item_state = "pathcloak"
-	armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 15)
+	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 15)
 	resistance_flags = FIRE_PROOF
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
@@ -167,7 +167,7 @@
 
 /obj/item/clothing/suit/armor/pathfinder/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate, null, null, list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5)) //maximum armor 65/35/35/25
+	AddComponent(/datum/component/armor_plate, null, null, list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5)) //maximum armor 65/40/40/25
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof armor"

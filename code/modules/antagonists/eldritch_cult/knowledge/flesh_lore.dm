@@ -15,15 +15,6 @@
 	if(!ishuman(target) || target == user)
 		return
 	var/mob/living/carbon/human/human_target = target
-	var/datum/status_effect/eldritch/eldritch_effect = human_target.has_status_effect(/datum/status_effect/eldritch/rust) || human_target.has_status_effect(/datum/status_effect/eldritch/ash) || human_target.has_status_effect(/datum/status_effect/eldritch/flesh)
-	if(eldritch_effect)
-		. = TRUE
-		eldritch_effect.on_effect()
-		if(iscarbon(target))
-			var/mob/living/carbon/carbon_target = target
-			var/obj/item/bodypart/bodypart = pick(carbon_target.bodyparts)
-			var/datum/wound/slash/severe/crit_wound = new
-			crit_wound.apply_wound(bodypart)
 
 	if(QDELETED(human_target) || human_target.stat != DEAD)
 		return
@@ -61,12 +52,25 @@
 	heretic_monster.set_owner(master)
 	return
 
-
 /datum/eldritch_knowledge/base_flesh/proc/remove_ghoul(datum/source)
 	var/mob/living/carbon/human/humie = source
 	spooky_scaries -= humie
 	humie.mind.remove_antag_datum(/datum/antagonist/heretic_monster)
 	UnregisterSignal(source, COMSIG_MOB_DEATH)
+
+/datum/eldritch_knowledge/base_flesh/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/human_target = target
+	var/datum/status_effect/eldritch/eldritch_effect = human_target.has_status_effect(/datum/status_effect/eldritch/rust) || human_target.has_status_effect(/datum/status_effect/eldritch/ash) || human_target.has_status_effect(/datum/status_effect/eldritch/flesh)
+	if(eldritch_effect)
+		eldritch_effect.on_effect()
+		if(iscarbon(target))
+			var/mob/living/carbon/carbon_target = target
+			var/obj/item/bodypart/bodypart = pick(carbon_target.bodyparts)
+			var/datum/wound/slash/severe/crit_wound = new
+			crit_wound.apply_wound(bodypart)
 
 /datum/eldritch_knowledge/flesh_ghoul
 	name = "Imperfect Ritual"
@@ -80,15 +84,16 @@
 /datum/eldritch_knowledge/flesh_mark
 	name = "Mark of flesh"
 	gain_text = "I saw them, the Marked ones. The screams.. the silence."
-	desc = "Your sickly blade now applies mark of flesh status effect. To activate the mark, use your mansus grasp on the marked. Mark of flesh when procced causeds additional bleeding."
+	desc = "Your mansus grasp now applies ash mark on hit. Use your sickly blade to detonate the mark. Mark of flesh when procced causeds additional bleeding."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/ash_mark)
 	route = PATH_FLESH
 	tier = TIER_MARK
 
-/datum/eldritch_knowledge/flesh_mark/on_eldritch_blade(target,user,proximity_flag,click_parameters)
+/datum/eldritch_knowledge/flesh_mark/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(isliving(target))
+		. = TRUE
 		var/mob/living/living_target = target
 		living_target.apply_status_effect(/datum/status_effect/eldritch/flesh)
 
