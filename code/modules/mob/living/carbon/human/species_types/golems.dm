@@ -1488,7 +1488,7 @@
 	if(I)
 		H.AdjustFireLoss(2)
 		playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
-		H.visible_message(span_danger("[I] knocks into [target], and then turns into dust in a flash of light!"))
+		H.visible_message(span_danger("[I] knocks into [H], and then turns into dust in a flash of light!"))
 		qdel(I)
 	
 
