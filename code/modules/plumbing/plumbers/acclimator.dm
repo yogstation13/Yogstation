@@ -25,13 +25,6 @@
 	and you get nasty leftovers
 	*/
 	var/emptying = FALSE
-<<<<<<< HEAD
-=======
-
-	ui_x = 320
-	ui_y = 271
-
->>>>>>> 874ec7515a1 (Plumbing Machines tgui-next (#47476))
 /obj/machinery/plumbing/acclimator/Initialize(mapload, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/acclimator, bolt)
