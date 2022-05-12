@@ -1512,7 +1512,7 @@
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
 		return BULLET_ACT_FORCE_PIERCE 
 
-/datum/species/golem/supermater/spec_life(mob/living/carbon/C)
+/datum/species/golem/supermatter/spec_life(mob/living/carbon/C)
 	. = ..()
 	C.adjustBurnLoss(-src.burnheal)
 	C.adjustBruteLoss(-src.bruteheal)
