@@ -1494,7 +1494,7 @@
 
 /datum/species/golem/supermatter/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
 	..()
-	visible_message(span_danger("[M] puches [H], but then turns into dust in a brilliant flash of light!"))
+	H.visible_message(span_danger("[M] puches [H], but then turns into dust in a brilliant flash of light!"))
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
 	H.dust()
 
