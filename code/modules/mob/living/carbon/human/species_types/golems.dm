@@ -1505,3 +1505,14 @@
 		H.visible_message(span_danger("[P] melts on collision with [H]!"))
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
 		return BULLET_ACT_FORCE_PIERCE 
+
+
+/obj/item/melee/supermatter_sword/hand
+	name = "supermatter hand"
+	desc = "A hand of a robust supermatter golem."
+	icon = 'icons/obj/wizard.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+	color = "#ffff00"
