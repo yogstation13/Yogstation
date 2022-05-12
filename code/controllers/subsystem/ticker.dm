@@ -28,8 +28,8 @@ SUBSYSTEM_DEF(ticker)
 	var/admin_delay_notice = ""				//a message to display to anyone who tries to restart the world after a delay
 	var/ready_for_reboot = FALSE			//all roundend preparation done with, all that's left is reboot
 
-	var/triai = 0							//Global holder for Triumvirate
-	var/tipped = 0							//Did we broadcast the tip of the day yet?
+	var/triai = FALSE							//Global holder for Triumvirate
+	var/tipped = FALSE							//Did we broadcast the tip of the day yet?
 	var/selected_tip						// What will be the tip of the day?
 
 	var/timeLeft						//pregame timer
@@ -94,6 +94,8 @@ SUBSYSTEM_DEF(ticker)
 				if((use_rare_music && L[1] == "rare") || (L[1] == SSmapping.config.map_name))
 					music += S
 			if(1) //sound.ogg -- common sound
+				if(L[1] == "exclude")
+					continue
 				music += S
 
 	var/old_login_music = trim(file2text("data/last_round_lobby_music.txt"))
@@ -547,13 +549,14 @@ SUBSYSTEM_DEF(ticker)
 	queued_players = SSticker.queued_players
 	maprotatechecked = SSticker.maprotatechecked
 
-	switch (current_state)
-		if(GAME_STATE_SETTING_UP)
-			Master.SetRunLevel(RUNLEVEL_SETUP)
-		if(GAME_STATE_PLAYING)
-			Master.SetRunLevel(RUNLEVEL_GAME)
-		if(GAME_STATE_FINISHED)
-			Master.SetRunLevel(RUNLEVEL_POSTGAME)
+	if (Master) //Set Masters run level if it exists
+		switch (current_state)
+			if(GAME_STATE_SETTING_UP)
+				Master.SetRunLevel(RUNLEVEL_SETUP)
+			if(GAME_STATE_PLAYING)
+				Master.SetRunLevel(RUNLEVEL_GAME)
+			if(GAME_STATE_FINISHED)
+				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 /datum/controller/subsystem/ticker/proc/send_news_report()
 	var/news_message
