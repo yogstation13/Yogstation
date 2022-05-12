@@ -1497,7 +1497,7 @@
 	..()
 	visible_message(span_danger("[M] puches [H], but then turns into dust in a brilliant flash of light!"))
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
-	dust(H)
+	H.dust
 
 /datum/species/golem/supermater/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	..()
