@@ -453,3 +453,11 @@
 	suffix = "lavaland_surface_doorstuck.dmm"
 	allow_duplicates = FALSE
 	cost = 5
+
+/datum/map_template/ruin/lavaland/shinobigraveyard
+	name = "Shinobi Graveyard"
+	id = "shinobigraveyard"
+	description = "The space ninjas left a grave of someone powerful."
+	suffix = "lavaland_surface_shinobigraveyard.dmm"
+	allow_duplicates = FALSE
+	cost = 5

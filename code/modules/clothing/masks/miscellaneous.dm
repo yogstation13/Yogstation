@@ -16,6 +16,16 @@
 			return
 	..()
 
+/obj/item/clothing/mask/muzzle/tape
+	name = "tape muzzle"
+	icon_state = "tape"
+	
+/obj/item/clothing/mask/muzzle/tape/attack_self(mob/user)
+	..()
+	user.visible_message(span_notice("You take apart [src]."), span_notice("[user] takes apart [src]."))
+	new /obj/item/stack/tape(user.drop_location())
+	qdel(src)
+
 /obj/item/clothing/mask/surgical
 	name = "sterile mask"
 	desc = "A sterile mask designed to help prevent the spread of diseases."

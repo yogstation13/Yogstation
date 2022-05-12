@@ -1,3 +1,11 @@
+/obj/item/clothing/under/plasmaman/research_director
+	name = "scientific envirosuit"
+	desc = "A plasmaman envirosuit worn by those with the know-how to achieve the position of \"Research Director\"."
+	icon_state = "rd_envirosuit"
+	item_state = "rd_envirosuit"
+	item_color = "rd_envirosuit"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 10, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 35)
+
 /obj/item/clothing/under/plasmaman/medical
 	name = "medical envirosuit"
 	desc = "A suit designed for the station's more plasma-based doctors."

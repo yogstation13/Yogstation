@@ -29,7 +29,6 @@
 /obj/item/organ/tail/cat/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
 	if(istype(H))
-		H.dna.features["tail_human"] = "None"
 		H.dna.species.mutant_bodyparts -= "tail_human"
 		color = H.hair_color
 		H.update_body()

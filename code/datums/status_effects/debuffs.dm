@@ -358,6 +358,41 @@
 	if(owner.reagents)
 		owner.reagents.del_reagent(/datum/reagent/water/holywater) //can't be deconverted
 
+/datum/status_effect/the_shadow
+	id = "the_shadow"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+	duration = -1
+	var/mutable_appearance/shadow
+
+/datum/status_effect/the_shadow/on_apply()
+	if(ishuman(owner))
+		shadow = mutable_appearance('icons/effects/effects.dmi', "curse")
+		shadow.pixel_x = -owner.pixel_x
+		shadow.pixel_y = -owner.pixel_y
+		owner.add_overlay(shadow)
+		to_chat(owner, span_boldwarning("The shadows invade your mind, MUST. GET. THEM. OUT"))
+		return TRUE
+	return FALSE
+
+/datum/status_effect/the_shadow/tick()
+	var/turf/T = get_turf(owner)
+	var/light_amount = T.get_lumcount()
+	if(light_amount > 0.2)
+		to_chat(owner, span_notice("As the light reaches the shadows, they dissipate!"))
+		qdel(src)
+	if(owner.stat == DEAD)
+		qdel(src)
+	owner.hallucination += 2
+	owner.confused += 2
+	owner.adjustEarDamage(0, 5)
+
+/datum/status_effect/the_shadow/Destroy()
+	if(owner)
+		owner.cut_overlay(shadow)
+	QDEL_NULL(shadow)
+	return ..()
+
 /datum/status_effect/crusher_mark
 	id = "crusher_mark"
 	duration = 300 //if you leave for 30 seconds you lose the mark, deal with it
