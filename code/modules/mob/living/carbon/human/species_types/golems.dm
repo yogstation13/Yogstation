@@ -1519,7 +1519,7 @@
 	if(C.InCritical() && prob(1.5))
 		src.randexplode = TRUE
 		visible_message(span_danger("[C]'s body violently explodes!"))
-		explosion(get_turf(H), 1 ,3, 6)
+		explosion(get_turf(C), 1 ,3, 6)
 		qdel(C)
 
 /datum/species/golem/supermater/spec_death(gibbed, mob/living/carbon/human/H)
