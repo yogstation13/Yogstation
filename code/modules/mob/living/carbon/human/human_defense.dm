@@ -390,8 +390,7 @@
 	if(M.occupant.a_intent == INTENT_HARM)
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
-			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
-			src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
+			step_away(src,M,15)
 		var/obj/item/bodypart/temp = get_bodypart(pick(BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_HEAD))
 		if(temp)
 			var/update = 0
@@ -400,6 +399,8 @@
 				if("brute")
 					if(M.force > 20)
 						Knockdown(1.5 SECONDS)//the victim could get up before getting hit again
+						var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
+						src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 					update |= temp.receive_damage(dmg, 0)
 					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 				if("fire")
