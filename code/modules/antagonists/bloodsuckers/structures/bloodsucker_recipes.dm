@@ -1,5 +1,8 @@
 /// From recipes.dm
 
+/////////////////////////
+///      Coffins      ///
+/////////////////////////
 /datum/crafting_recipe/blackcoffin
 	name = "Black Coffin"
 	result = /obj/structure/closet/crate/coffin/blackcoffin
@@ -46,17 +49,32 @@
 	time = 10 SECONDS
 	category = CAT_STRUCTURES
 
+////////////////////////////
+///      Structures      ///
+////////////////////////////
 /datum/crafting_recipe/bloodaltar
 	name = "Blood Altar"
 	result = /obj/structure/bloodsucker/bloodaltar
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
+	tools = list(TOOL_WELDER, TOOL_WRENCH)
 	reqs = list(
 		/obj/item/stack/rods = 5,
-		/obj/item/stack/sheet/metal = 2,
-		/obj/item/stack/sheet/plasteel = 5,
+		/obj/item/stack/sheet/metal = 5,
 		/datum/reagent/ash = 30,
 	)
 	time = 13 SECONDS
+	category = CAT_STRUCTURES
+	always_availible = FALSE
+
+/datum/crafting_recipe/restingplace
+	name = "Resting Place"
+	result = /obj/structure/bloodsucker/bloodaltar/restingplace
+	tools = list(TOOL_WRENCH, TOOL_SCREWDRIVER)
+	reqs = list(
+		/obj/item/stack/rods = 5,
+		/obj/item/stack/sheet/metal = 5,
+		/obj/item/stack/sheet/cloth = 2, //that's right it comes with bones FREE OF CHARGE
+	)
+	time = 15 SECONDS
 	category = CAT_STRUCTURES
 	always_availible = FALSE
 
@@ -79,7 +97,6 @@
 	tools = list(TOOL_SCREWDRIVER, TOOL_HATCHET)
 	reqs = list(
 		/obj/item/stake = 2,
-		/obj/item/reagent_containers/blood = 1,
 		/obj/item/stack/sheet/mineral/wood = 2,
 		/obj/item/restraints/handcuffs/cable = 1,
 	)
@@ -113,6 +130,21 @@
 	category = CAT_STRUCTURES
 	always_availible = FALSE
 
+/datum/crafting_recipe/possessedarmor
+	name = "Subservent Armor"
+	result = /obj/structure/bloodsucker/possessedarmor
+	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_SCREWDRIVER)
+	reqs = list(
+		/obj/item/stack/rods = 5,
+		/obj/item/stack/sheet/metal = 15,
+	)
+	time = 10 SECONDS
+	category = CAT_STRUCTURES
+	always_availible = FALSE
+
+////////////////////////
+///      Stakes      ///
+////////////////////////
 /datum/crafting_recipe/stake
 	name = "Stake"
 	result = /obj/item/stake

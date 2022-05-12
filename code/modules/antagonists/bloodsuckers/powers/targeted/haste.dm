@@ -97,3 +97,31 @@
 				all_targets.confused = max(8, all_targets.confused)
 				all_targets.stuttering = max(8, all_targets.stuttering)
 				all_targets.Knockdown(10 + level_current * 5) // Re-knock them down, the first one didn't work due to stunimmunity
+
+/datum/action/bloodsucker/targeted/haste/shadow
+	name = "Blow"
+	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	background_icon_state_on = "lasombra_power_on"
+	background_icon_state_off = "lasombra_power_off"
+	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	button_icon_state = "power_bomb"
+	additional_text = "Additionally disables lightframes in range and confuses nearby mortals."
+	purchase_flags = LASOMBRA_CAN_BUY
+
+/datum/action/bloodsucker/targeted/haste/shadow/on_move()
+	. = ..()
+	var/mob/living/carbon/human/user = owner
+	for(var/obj/machinery/light/L in range(5, user))
+		L.on = FALSE
+		L.update(0)
+		L.set_light(0)
+	for(var/mob/target in range(5, user))
+		if(target == user)
+			continue
+		if(IS_BLOODSUCKER(target) || IS_VASSAL(target))
+			continue
+		if(iscarbon(target))
+			var/mob/living/carbon/M = target
+			to_chat(M, span_danger("<b>As a figure passes by, you feel your head spike up!</b>"))
+			M.confused += 4
+			M.adjustEarDamage(0, 15)
