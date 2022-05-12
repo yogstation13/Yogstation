@@ -1517,7 +1517,7 @@
 	C.adjustBurnLoss(-src.burnheal)
 	C.adjustBruteLoss(-src.bruteheal)
 	if(C.InCritical() && prob(1.5))
-		randexplode = TRUE
+		src.randexplode = TRUE
 		visible_message(span_danger("[C]'s body violently explodes!"))
 		explosion(get_turf(H), 1 ,3, 6)
 		qdel(C)
