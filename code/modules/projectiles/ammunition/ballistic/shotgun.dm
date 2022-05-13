@@ -109,7 +109,7 @@
 /obj/item/ammo_casing/shotgun/cryoshot
 	name = "cryoshot shell"
 	desc = "A state-of-the-art shell which uses the cooling power of Rhigoxane to snap freeze a target, without causing  \
-	relatively unharmed."
+	them much harm."
 	icon_state = "fshell" 
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_cryoshot
 	pellets = 4
