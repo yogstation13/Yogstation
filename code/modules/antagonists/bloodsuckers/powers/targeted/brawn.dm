@@ -9,7 +9,7 @@
 		At level 4, you get the ability to bash airlocks open, as long as they aren't bolted.\n\
 		Higher levels will increase the damage and knockdown when punching someone."
 	power_flags = BP_AM_TOGGLE
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 8
 	cooldown = 9 SECONDS

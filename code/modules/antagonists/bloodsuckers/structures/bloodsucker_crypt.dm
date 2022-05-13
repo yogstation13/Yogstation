@@ -1005,9 +1005,9 @@
 	can_buckle = TRUE
 	anchored = FALSE
 	Ghost_desc = "This is a magical candle which drains at the sanity of non Bloodsuckers and Vassals.\n\
-		Vassals can turn the candle on manually, while Bloodsuckers can do it from a distance."
+		Vassals can also turn the candle on, which slowly drains anyone near it."
 	Vamp_desc = "This is a magical candle which drains at the sanity of mortals who are not under your command while it is active.\n\
-		You can click on it from any range to turn it on remotely, clicking on it with a mindshielded individual buckled will start to disable their mindshields."
+		You can click on it to turn it on, clicking on it with a mindshielded individual buckled will start to disable their mindshields."
 	Vassal_desc = "This is a magical candle which drains at the sanity of the fools who havent yet accepted your master, as long as it is active.\n\
 		You can turn it on and off by clicking on it while you are next to it."
 	Hunter_desc = "This is a blue Candelabrum, which causes insanity to those near it while active."
@@ -1067,15 +1067,8 @@
 			nearly_people.adjustStaminaLoss(10)
 		SEND_SIGNAL(nearly_people, COMSIG_ADD_MOOD_EVENT, "vampcandle", /datum/mood_event/vampcandle)
 		to_chat(nearly_people, span_warning("<i>You start to feel extremely weak and drained.</i>"))
-/*
- *	# Candelabrum Ventrue Stuff
- *
- *	Ventrue Bloodsuckers can buckle Vassals onto the Candelabrum to "Upgrade" them.
- *	This is limited to a Single vassal, called 'My Favorite Vassal'.
- *
- *	Most of this is just copied over from Persuasion Rack.
- */
 
+/// Mindshield breaking
 /obj/structure/bloodsucker/candelabrum/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!.)
@@ -1083,10 +1076,7 @@
 	if(!anchored)
 		return
 	// Checks: They're Buckled & Alive.
-	if(IS_BLOODSUCKER(user))
-		if(!has_buckled_mobs())
-			toggle()
-			return
+	if(IS_BLOODSUCKER(user) && has_buckled_mobs())
 		var/mob/living/carbon/target = pick(buckled_mobs)
 		if(target.stat >= DEAD || user.a_intent == INTENT_HELP)
 			unbuckle_mob(target)
@@ -1104,8 +1094,7 @@
 		else
 			to_chat(user, span_danger("You don't have enough Blood to deactivate [target]'s mindshield."))
 			return
-
-	if(IS_BLOODSUCKER(user) || IS_VASSAL(user))
+	if(IS_VASSAL(user) || IS_BLOODSUCKER(user))
 		toggle()
 
 /// Buckling someone in

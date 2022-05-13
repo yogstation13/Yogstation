@@ -2,9 +2,9 @@
 	// ALREADY CLAIMED
 	if(claimed.resident)
 		if(claimed.resident == owner.current)
-			to_chat(owner, "This is your [claimed].")
+			to_chat(owner, "This is your [claimed.name].")
 		else
-			to_chat(owner, "This [claimed] has already been claimed by another.")
+			to_chat(owner, "This [claimed.name] has already been claimed by another.")
 		return FALSE
 	if(!(/datum/crafting_recipe/vassalrack in owner?.learned_recipes))
 		owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)

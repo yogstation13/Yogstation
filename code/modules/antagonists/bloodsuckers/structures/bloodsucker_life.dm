@@ -288,6 +288,7 @@
 					ww = new /mob/living/simple_animal/hostile/bloodsucker/werewolf(user.loc)
 					user.forceMove(ww)
 					ww.bloodsucker = user
+					user.status_flags |= GODMODE
 					user.mind.transfer_to(ww)
 					var/list/wolf_powers = list(new /datum/action/bloodsucker/targeted/feast,)
 					for(var/datum/action/bloodsucker/power in powers)
