@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a mining medic belt showing overlays"
