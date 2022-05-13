@@ -608,37 +608,37 @@
 	if(synthetic)
 		can_drop = TRUE
 
-/obj/item/melee/flesh_maul/afterattack(atom/target, mob/user, proximity)	//I'm so sorry
+/obj/item/melee/flesh_maul/afterattack(atom/target, mob/user, proximity)	
 	. = ..()
 	if(!proximity)
 		return
-	if(istype(target, /mob/living/carbon))
+	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		C.add_movespeed_modifier("flesh maul", update=TRUE, priority=101, multiplicative_slowdown=1)						//Slows the target because big whack
 		addtimer(CALLBACK(C, /mob.proc/remove_movespeed_modifier, "flesh maul"), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)	
 		to_chat(target, span_danger("You are staggered from the blow!"))
 
-	else if(istype(target, /mob/living/silicon/robot))
+	else if(iscyborg(target))
 		var/mob/living/silicon/robot/R = target
-		R.Paralyze(1 SECONDS)											//One second stun
+		R.Paralyze(1 SECONDS)						//One second stun on borgs because they get their circuits rattled or something
 
-	else if(istype(target, /obj/structure/table))						//Crush the tables!!!
+	else if(istype(target, /obj/structure/table))	//Hate tables
 		var/obj/structure/table/T = target
 		T.deconstruct(FALSE)
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 		return
 
-	else if(istype(target, /obj/structure) || istype(target, /obj/machinery))	
-		var/obj/structure/S = target
-		var/structure_damage = S.max_integrity
+	else if(isstructure(target) || ismachinery(target))	
+		var/obj/structure/S = target			//Works for machinery because they have the same variable that does the same thing
+		var/structure_damage = S.max_integrity		
 		var/make_sound = TRUE
 		if(istype(target, /obj/structure/window) || istype(target, /obj/structure/grille))
-			structure_damage *= 2 // Because of melee armor
+			structure_damage *= 2 				// Because of melee armor
 			make_sound = FALSE
-		if(istype(target, /obj/machinery) || istype(target, /obj/structure/door_assembly))
+		if(ismachinery(target) || istype(target, /obj/structure/door_assembly))
 			structure_damage *= 0.5
 		if(istype(target, /obj/machinery/door/airlock))
-			structure_damage = 14
+			structure_damage = 14				//Won't get bonus damage vs reinforced airlocks but still does the base damage
 		if(target)
 			S.take_damage(structure_damage, BRUTE, "melee", 0)
 		if(make_sound)
