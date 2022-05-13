@@ -448,7 +448,7 @@ update_label("John Doe", "Clowny")
 
 			registered_name = input_name
 			forged = TRUE
-			to_chat(user, span_notice("You scrible a new name into the makeshift ID."))
+			to_chat(user, span_notice("You scribble a new name onto the makeshift ID."))
 
 /obj/item/card/id/syndicate/anyone
 	anyone = TRUE
