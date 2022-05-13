@@ -24,7 +24,7 @@
 	mob_biotypes = list(MOB_ORGANIC,MOB_BEAST)
 	faction = list("rat")
 	var/playstyle_string = "<span class='big bold'>You are a Plague Rat,</span></b> \
-							You need to infect people with The Plague, by getting plague cells in their bloodstream. \
+							Your goal is to spread The Plague as much as possible, by infecting anyone you can. \
 							You can do it by licking their food, or just biting them. \
 							Also you can bite dead bodies to slightly heal yourself. \
 							But remember that you are very fragile - after all, you are a small rat.</b>"
