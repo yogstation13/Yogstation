@@ -47,7 +47,7 @@
 				to_chat(affected_mob, span_danger("You feel very weak!"))
 				affected_mob.adjustStaminaLoss(100)
 			if(prob(6))
-				to_chat(affected_mob, span_danger("Your lungs feel like they're full of fluid, you struggle to breathe!"))
+				to_chat(affected_mob, span_danger("Your lungs feel full of fluid! You're unable to breathe!"))
 				affected_mob.adjustOxyLoss(35)
 				affected_mob.emote("gasp")
 	return
