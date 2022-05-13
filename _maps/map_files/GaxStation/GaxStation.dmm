@@ -6932,9 +6932,6 @@
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/aft)
-"dDK" = (
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "dEG" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/security/wooden_tv,
@@ -41725,6 +41722,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
+"wdr" = (
+/obj/structure/displaycase/captain,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "wdu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -91383,7 +91384,7 @@ ohc
 sFo
 nUD
 xcX
-dDK
+wdr
 hVM
 khF
 aHf
