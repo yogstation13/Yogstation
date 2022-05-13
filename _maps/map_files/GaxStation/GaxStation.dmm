@@ -10395,16 +10395,6 @@
 "ftY" = (
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"fuc" = (
-/obj/machinery/power/solar_control{
-	dir = 4;
-	force_auto = 1;
-	id = "aisolar";
-	name = "AI Ship Solar Controller"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ai_monitored/storage/satellite)
 "fuJ" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder/kitchen{
@@ -12409,6 +12399,22 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"gtp" = (
+/obj/machinery/door/airlock/atmos/glass{
+	name = "Incinerator Access";
+	req_access_txt = "24"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "gtx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -13011,6 +13017,15 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"gIZ" = (
+/obj/machinery/power/solar_control{
+	dir = 4;
+	id = "aisolar";
+	name = "AI Ship Solar Controller"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ai_monitored/storage/satellite)
 "gJz" = (
 /obj/machinery/air_sensor{
 	id_tag = "co2_sensor"
@@ -24766,6 +24781,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"mOi" = (
+/obj/machinery/shieldwallgen,
+/obj/effect/turf_decal/bot,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel,
+/area/teleporter)
 "mOj" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -26456,15 +26480,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"nJV" = (
-/obj/machinery/shieldwallgen,
-/obj/effect/turf_decal/bot,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -28
-	},
-/turf/open/floor/plasteel,
-/area/teleporter)
 "nKj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -45566,18 +45581,6 @@
 "ydG" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/security/prison)
-"ydI" = (
-/obj/machinery/door/airlock/atmos/glass{
-	name = "Incinerator Access";
-	req_access_txt = "24"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "ydU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	external_pressure_bound = 120;
@@ -59339,7 +59342,7 @@ tkl
 nkX
 qaS
 gpb
-fuc
+gIZ
 uog
 mBV
 bEq
@@ -63643,7 +63646,7 @@ boz
 cqd
 gHA
 vBr
-ydI
+gtp
 iZk
 chs
 lJm
@@ -89339,7 +89342,7 @@ rXh
 osl
 hVM
 mKZ
-nJV
+mOi
 bWR
 xPv
 tjK
