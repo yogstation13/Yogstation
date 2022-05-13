@@ -433,7 +433,7 @@ update_label("John Doe", "Clowny")
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset")
-			var/input_name = stripped_input(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
+			var/input_name = stripped_input(user, "What name would you like to write on this card? Leave blank to randomize.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
 			input_name = reject_bad_name(input_name)
 			if(!input_name)
 				// Invalid/blank names give a randomly generated one.
