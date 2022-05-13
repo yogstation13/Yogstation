@@ -342,7 +342,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/slab/plagued
 	name = "meat"
-	desc = "A slab of meat. Eating it will be a VERY GOOD idea(actually not)."
+	desc = "A slab of disease-ridden meat. Eating it is a questionable idea."
 	icon_state = "meat"
 	dried_type = /obj/item/reagent_containers/food/snacks/sosjerky/
 	bitesize = 3
