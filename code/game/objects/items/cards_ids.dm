@@ -442,7 +442,7 @@ update_label("John Doe", "Clowny")
 				else
 					input_name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
 
-			var/newAge = input(user, "Choose the ID's age:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
+			var/newAge = input(user, "Choose an age to display:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
 			if(newAge)
 				registered_age = max(round(text2num(newAge)), 0)
 
