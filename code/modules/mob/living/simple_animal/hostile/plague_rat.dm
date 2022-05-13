@@ -27,7 +27,7 @@
 							Your goal is to spread The Plague as much as possible, by infecting anyone you can. \
 							You can do this by licking their food, or by directly biting them. \
 							You can also nibble on dead bodies to slightly heal yourself! \
-							But remember that you are very fragile - after all, you are a small rat.</b>"
+							However, you are still very fragile! You're just are a small rat, after all.</b>"
 
 
 /mob/living/simple_animal/hostile/plaguerat/AttackingTarget()
