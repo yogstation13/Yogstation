@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/plaguerat
 	name = "rat"
-	desc = "It's a nasty, ugly, evil, disease-ridden rodent with anger issues."
+	desc = "It's a large black rodent, afflicted with both anger issues and a terrible disease."
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
