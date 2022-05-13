@@ -10395,6 +10395,16 @@
 "ftY" = (
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"fuc" = (
+/obj/machinery/power/solar_control{
+	dir = 4;
+	force_auto = 1;
+	id = "aisolar";
+	name = "AI Ship Solar Controller"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ai_monitored/storage/satellite)
 "fuJ" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder/kitchen{
@@ -25659,16 +25669,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
-"npT" = (
-/obj/machinery/power/solar_control{
-	dir = 4;
-	force_auto = 1;
-	id = "aisolar";
-	name = "AI Ship Solar Controller"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ai_monitored/storage/satellite)
 "npU" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -26456,6 +26456,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"nJV" = (
+/obj/machinery/shieldwallgen,
+/obj/effect/turf_decal/bot,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel,
+/area/teleporter)
 "nKj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -59330,7 +59339,7 @@ tkl
 nkX
 qaS
 gpb
-npT
+fuc
 uog
 mBV
 bEq
@@ -89330,7 +89339,7 @@ rXh
 osl
 hVM
 mKZ
-mKZ
+nJV
 bWR
 xPv
 tjK
