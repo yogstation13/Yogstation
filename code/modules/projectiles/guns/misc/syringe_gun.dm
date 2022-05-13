@@ -78,7 +78,7 @@
 	if(!has_syringe_overlay)
 		return
 	var/syringe_count = syringes.len
-	. += "[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]"
+	add_overlay("[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]")
 
 /obj/item/gun/syringe/rapidsyringe
 	name = "rapid syringe gun"
@@ -129,7 +129,6 @@
 	icon_state = "blowgun"
 	item_state = "blowgun"
 	fire_sound = 'sound/items/syringeproj.ogg'
-	has_syringe_overlay = FALSE
 	no_pin_required = TRUE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //it's a fucking blowgun it shouldn't even have a triggerguard
 
