@@ -6,6 +6,8 @@
 	icon_state = "arrow"
 	throwforce = 3 //good luck hitting someone with the pointy end of the arrow
 	throw_speed = 3
+	sharpness = SHARP_POINTY
+	embedding = list("embed_chance" = 25, "embedded_fall_chance" = 0)
 
 /obj/item/ammo_casing/caseless/arrow/wood
 	name = "wooden arrow"
@@ -16,18 +18,21 @@
 	desc = "An arrow made from wood, hardened by fire"
 	icon_state = "ashenarrow"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/ash
+	embedding = list("embed_chance" = 30, "embedded_fall_chance" = 0)
 
 /obj/item/ammo_casing/caseless/arrow/bone
 	name = "bone arrow"
 	desc = "An arrow made of bone and sinew. The tip is sharp enough to pierce goliath hide."
 	icon_state = "bonearrow"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bone
+	embedding = list("embed_chance" = 10, "embedded_fall_chance" = 0)
 
 /obj/item/ammo_casing/caseless/arrow/bronze
 	name = "bronze arrow"
 	desc = "An arrow made from wood. tipped with bronze."
 	icon_state = "bronzearrow"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bronze
+	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
 
 /obj/item/ammo_casing/caseless/arrow/bola
 	name = "bola arrow"
@@ -40,11 +45,12 @@
 	if(istype(A))
 		icon = A.icon
 		icon_state = A.icon_state
-		var/obj/item/projectile/bullet/reusable/AA = A.BB
-		var/obj/item/projectile/bullet/reusable/BBB = BB
+		var/obj/item/projectile/bullet/reusable/arrow/AA = A.BB
+		var/obj/item/projectile/bullet/reusable/arrow/BBB = BB
 		if(istype(AA) && istype(BBB))
 			BBB.damage = AA.damage * 0.5
 			BBB.armour_penetration = AA.armour_penetration * 0.5
+			BBB.embed_chance = AA.embed_chance * 0.5
 			BBB.ammo_type = AA.ammo_type
 
 	var/obj/item/restraints/legcuffs/bola/bola = locate(/obj/item/restraints/legcuffs/bola) in contents
@@ -94,11 +100,12 @@
 	if(istype(A))
 		icon = A.icon
 		icon_state = A.icon_state
-		var/obj/item/projectile/bullet/reusable/AA = A.BB
-		var/obj/item/projectile/bullet/reusable/BBB = BB
+		var/obj/item/projectile/bullet/reusable/arrow/AA = A.BB
+		var/obj/item/projectile/bullet/reusable/arrow/BBB = BB
 		if(istype(AA) && istype(BBB))
 			BBB.damage = AA.damage * 0.5
 			BBB.armour_penetration = AA.armour_penetration * 0.5
+			BBB.embed_chance = AA.embed_chance * 0.5
 			BBB.ammo_type = AA.ammo_type
 	
 	add_overlay(mutable_appearance(icon, "arrow_fire"), TRUE)

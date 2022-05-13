@@ -4,11 +4,28 @@
 	damage = 20
 	icon_state = "arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/wood
+	var/embed_chance = 0.5
+
+/obj/item/projectile/bullet/reusable/arrow/handle_drop(atom/target)
+	var/obj/item/dropping = new ammo_type()
+	if(ishuman(target))
+		var/mob/living/carbon/human/embede = target
+		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
+		message_admins("[embed_chance * (100 - embede.checkarmor(part, flag))]")
+		if(prob(embed_chance * (100 - embede.checkarmor(part, flag))))
+			embede.embed_object(dropping, part, TRUE)
+			dropped = TRUE
+	
+	// Icky code, but i dont want to create a new obj, delete it, then make a new one
+	if(!dropped)
+		dropping.forceMove(get_turf(src))
+		dropped = TRUE
 
 /obj/item/projectile/bullet/reusable/arrow/ash
 	name = "Ashen arrow"
 	desc = "Fire Hardened arrow."
 	damage = 30
+	embed_chance = 0.6
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/ash
 
 /obj/item/projectile/bullet/reusable/arrow/bone //AP for ashwalkers
@@ -16,6 +33,7 @@
 	desc = "An arrow made from bone and sinew."
 	damage = 30
 	armour_penetration = 40
+	embed_chance = 0.2
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
 
 /obj/item/projectile/bullet/reusable/arrow/bronze
@@ -23,6 +41,7 @@
 	desc = "Bronze tipped arrow"
 	damage = 25
 	armour_penetration = 10
+	embed_chance = 0.3
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bronze
 
 /obj/item/projectile/bullet/reusable/arrow/bola
