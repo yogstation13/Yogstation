@@ -334,10 +334,9 @@
 	H.do_jitter_animation(1000)
 	var/processed_message = span_velvet("<b>\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.</b>")
 	for(var/mob/M in GLOB.player_list)
-		if(M.stat == DEAD)
-			deadchat_broadcast(processed_message, null, H)
-		else if(isdarkspawn(M))
+		if(M.stat != DEAD && isdarkspawn(M))
 			to_chat(M, processed_message)
+	deadchat_broadcast(processed_message, null, H)
 	addtimer(CALLBACK(src, .proc/divulge), 25)
 	addtimer(CALLBACK(/atom/.proc/visible_message, H, span_boldwarning("[H]'s skin sloughs off, revealing black flesh covered in symbols!"), \
 	span_userdanger("You have forcefully divulged!")), 25)
