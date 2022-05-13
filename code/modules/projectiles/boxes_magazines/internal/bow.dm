@@ -11,7 +11,7 @@
 	var/list/selectable_types = list(/obj/item/ammo_casing/caseless/arrow/energy, /obj/item/ammo_casing/caseless/arrow/energy/disabler)
 
 /obj/item/ammo_box/magazine/internal/bow/energy/advanced
-	selectable_types = list(/obj/item/ammo_casing/caseless/arrow/energy, /obj/item/ammo_casing/caseless/arrow/energy/disabler, /obj/item/ammo_casing/caseless/arrow/energy/pulse, /obj/item/ammo_casing/caseless/arrow/energy/xray)
+	selectable_types = list(/obj/item/ammo_casing/caseless/arrow/energy, /obj/item/ammo_casing/caseless/arrow/energy/disabler, /obj/item/ammo_casing/caseless/arrow/energy/xray)
 
 /obj/item/ammo_box/magazine/internal/bow/energy/syndicate
 	selectable_types = list(/obj/item/ammo_casing/caseless/arrow/energy, /obj/item/ammo_casing/caseless/arrow/energy/xray)

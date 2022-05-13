@@ -123,7 +123,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 6)
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
-
+/*
 /datum/crafting_recipe/heavybonearmor
 	name = "Heavy Bone Armor"
 	result = /obj/item/clothing/suit/hooded/cloak/bone
@@ -132,7 +132,7 @@
 				/obj/item/stack/sheet/sinew = 3)
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
-
+*/
 /datum/crafting_recipe/tribalcoat
 	name = "Tribal Coat"
 	result = /obj/item/clothing/suit/armor/tribalcoat

@@ -55,7 +55,7 @@
 		bola_arrow.bola = bola
 	
 	add_overlay(mutable_appearance(icon, "arrow_bola"), TRUE)
-
+/*
 /obj/item/ammo_casing/caseless/arrow/explosive
 	name = "explosive arrow"
 	desc = "An arrow made from wood. an explosive is attached to it."
@@ -82,7 +82,7 @@
 		explosive_arrow.explosive = explosive
 	
 	add_overlay(mutable_appearance(icon, "arrow_explosive"), TRUE)
-
+*/
 /obj/item/ammo_casing/caseless/arrow/flaming
 	name = "flaming arrow"
 	desc = "An arrow made from wood. lit on fire."
@@ -118,14 +118,14 @@
 	icon_state = "arrow_disable"
 	overlay_state = "disable"
 	projectile_type = /obj/item/projectile/energy/arrow/disabler
-
+/*
 /obj/item/ammo_casing/caseless/arrow/energy/pulse
 	name = "pulse bolt"
 	desc = "An arrow made from hardlight. This one can destroy most obstructions in one hit."
 	icon_state = "arrow_pulse"
 	overlay_state = "pulse"
 	projectile_type = /obj/item/projectile/energy/arrow/pulse
-
+*/
 /obj/item/ammo_casing/caseless/arrow/energy/xray
 	name = "X-ray bolt"
 	desc = "An arrow made from hardlight. This one can pass through obstructions."

@@ -640,7 +640,6 @@
 		/obj/item/ammo_casing/caseless/arrow/bone,
 		/obj/item/ammo_casing/caseless/arrow/bronze,
 		/obj/item/ammo_casing/caseless/arrow/bola,
-		/obj/item/ammo_casing/caseless/arrow/explosive,
 		/obj/item/ammo_casing/caseless/arrow/flaming
 		))
 

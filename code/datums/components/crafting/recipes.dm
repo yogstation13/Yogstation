@@ -449,6 +449,7 @@
 	subcategory = CAT_AMMO
 	always_availible = FALSE
 
+/*
 /datum/crafting_recipe/explosive_arrow
 	name = "Explosive arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/explosive
@@ -460,6 +461,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 	always_availible = FALSE
+*/
 
 /datum/crafting_recipe/flaming_arrow
 	name = "Flaming arrow"
