@@ -95,8 +95,8 @@
 
 /datum/status_effect/frenzy/tick()
 	var/mob/living/carbon/human/user = owner
-	var/obj/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
-	var/obj/legcuffs = user.get_item_by_slot(SLOT_LEGCUFFED)
+	var/obj/item/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
+	var/obj/item/legcuffs = user.get_item_by_slot(SLOT_LEGCUFFED)
 	if(user.handcuffed || user.legcuffed)
 		user.clear_cuffs(cuffs, TRUE)
 		user.clear_cuffs(legcuffs, TRUE)

@@ -6,7 +6,7 @@
 	icon_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	background_icon_state = "vamp_power_off"
 	button_icon_state = "power_hunter"
-	power_flags = BP_AM_TOGGLE
+	power_flags = NONE
 	check_flags = BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = NONE
 	cooldown = 30 SECONDS
@@ -20,7 +20,6 @@
 	to_chat(owner, span_notice("You look around, scanning your environment and discerning signs of any filthy, wretched affronts to the natural order..."))
 	if(!do_mob(owner, owner, 6 SECONDS))
 		to_chat(owner, span_warning("You moved and lost the tracks!"))
-		DeactivatePower()
 		return
 	if(give_pinpointer)
 		var/mob/living/user = owner

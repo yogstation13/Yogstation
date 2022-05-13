@@ -1005,7 +1005,7 @@
 	can_buckle = TRUE
 	anchored = FALSE
 	Ghost_desc = "This is a magical candle which drains at the sanity of non Bloodsuckers and Vassals.\n\
-		Vassals can also turn the candle on, which slowly drains anyone near it."
+		Vassals can also turn the candle on."
 	Vamp_desc = "This is a magical candle which drains at the sanity of mortals who are not under your command while it is active.\n\
 		You can click on it to turn it on, clicking on it with a mindshielded individual buckled will start to disable their mindshields."
 	Vassal_desc = "This is a magical candle which drains at the sanity of the fools who havent yet accepted your master, as long as it is active.\n\

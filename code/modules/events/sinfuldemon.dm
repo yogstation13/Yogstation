@@ -40,16 +40,8 @@
 	message_admins("[ADMIN_LOOKUPFLW(sinfuldemon)] has been made into a demon of sin by an event.")
 	log_game("[key_name(sinfuldemon)] was spawned as a demon of sin by an event.")
 	var/datum/job/jobdatum = SSjob.GetJob("Assistant")
-	if(SSshuttle.arrivals)
-		SSshuttle.arrivals.QueueAnnounce(sinfuldemon, jobdatum.title)
-	Mind.assigned_role = jobdatum.title //sets up the manifest properly
+	sinfuldemon.job = jobdatum.title
 	jobdatum.equip(sinfuldemon)
-	var/obj/item/card/id/id = sinfuldemon.get_item_by_slot(SLOT_WEAR_ID)
-	id.assignment = jobdatum.title
-	id.originalassignment = jobdatum.title
-	id.update_label()
-	GLOB.data_core.manifest_inject(sinfuldemon, force = TRUE)
-	sinfuldemon.update_move_intent_slowdown() //prevents you from going super duper fast
 	return SUCCESSFUL_SPAWN
 
 
@@ -64,5 +56,6 @@
 
 /proc/create_sinfuldemon_mind(key)
 	var/datum/mind/Mind = new /datum/mind(key)
+	Mind.assigned_role = ROLE_SINFULDEMON
 	Mind.special_role = ROLE_SINFULDEMON
 	return Mind
