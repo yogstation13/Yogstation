@@ -8,7 +8,7 @@
 	agent = "Plague rats"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	cure_chance = 20
-	desc = "A deadly disease, spread by infected animals and insects. It causes feaver, weakness, headache and choking."
+	desc = "A deadly disease, spread by infected animals and insects. It causes fever, weakness, headache and choking."
 	required_organs = list(/obj/item/organ/lungs)
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	bypasses_immunity = TRUE
