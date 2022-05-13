@@ -3,7 +3,8 @@
 	desc = "Spring at a humanoid to grapple them without warning, or tear the dead's heart out. Attacks from concealment or the rear may even knock them down if strong enough."
 	button_icon_state = "power_lunge"
 	power_explanation = "<b>Predatory Lunge</b>:\n\
-		Click any player to instantly dash at them, aggressively grabbing them.\n\
+		Click any player to instantly dash at them if above power level 3, aggressively grabbing them.\n\
+		If not on level 3, you will have to charge your lunge for a while. During this time you'll have to stand still for lunge to work\n\
 		You cannot use the Power if you are aggressively grabbed.\n\
 		If the target is wearing riot gear or is a Monster Hunter, you will merely passively grab them.\n\
 		If grabbed from behind or from the darkness (Cloak of Darkness counts) with a power level at or above 4, will additionally knock the target down.\n\
@@ -15,12 +16,19 @@
 	cooldown = 10 SECONDS
 	target_range = 6
 	power_activates_immediately = FALSE
+	var/casting = FALSE //yogs - special snowflake!!!
 
 /*
  *	Level 1: Grapple level 2
  *	Level 2: Grapple 3 from Behind
  *	Level 3: Grapple 3 from Shadows
  */
+
+/datum/action/bloodsucker/targeted/lunge/ActivatePower(process = FALSE)
+	. = ..()
+
+/datum/action/bloodsucker/targeted/lunge/DeactivatePower(process = FALSE)
+	. = ..()
 
 /datum/action/bloodsucker/targeted/lunge/CheckCanUse(mob/living/carbon/user)
 	. = ..()
@@ -77,7 +85,7 @@
 	PowerActivatedSuccessfully()
 
 /datum/action/bloodsucker/targeted/lunge/proc/prepare_target_lunge(atom/target_atom)
-	START_PROCESSING(SSprocessing, src)
+	casting = TRUE;
 	to_chat(owner, span_notice("You prepare to lunge!"))
 	//animate them shake
 	var/base_x = owner.pixel_x
@@ -90,13 +98,16 @@
 
 	if(!do_after(owner, 4 SECONDS, extra_checks = CALLBACK(src, .proc/CheckCanTarget, target_atom)))
 		animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1)
-		STOP_PROCESSING(SSprocessing, src)
+		casting = FALSE
 		return FALSE
 	animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1)
-	STOP_PROCESSING(SSprocessing, src)
+	casting = FALSE
 	return TRUE
 
 /datum/action/bloodsucker/targeted/lunge/process()
+	..()
+	if(!casting) //snowflake code for cooldowns
+		return
 	if(prob(75))
 		owner.spin(8, 1)
 		owner.visible_message(
@@ -152,3 +163,19 @@
 	var/mob/living/O = owner
 	O.SetImmobilized(0)
 	return ..()
+
+/datum/action/bloodsucker/targeted/lunge/shadow
+	name = "Dark Embrace"
+	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	background_icon_state_on = "lasombra_power_on"
+	background_icon_state_off = "lasombra_power_off"
+	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	button_icon_state = "power_embrace"
+	additional_text = "Additionally makes the target walk."
+	purchase_flags = LASOMBRA_CAN_BUY
+
+/datum/action/bloodsucker/targeted/lunge/shadow/lunge_end(atom/hit_atom)
+	. = ..()
+	var/mob/living/carbon/target = hit_atom
+	if(target.m_intent != MOVE_INTENT_WALK)
+		target.toggle_move_intent()

@@ -48,6 +48,6 @@
 #_maps/RandomRuins/SpaceRuins/whiteshipdock.dmm
 #_maps/RandomRuins/SpaceRuins/whiteshipruin_box.dmm
 #_maps/RandomRuins/SpaceRuins/gameroom.dmm
-_maps/RandomRuins/SpaceRuins/pubby_monastery.dmm
+#_maps/RandomRuins/SpaceRuins/pubby_monastery.dmm
 #_maps/RandomRuins/SpaceRuins/bigape.dmm
 #_maps/RandomRuins/SpaceRuins/nicelittlenest.dmm

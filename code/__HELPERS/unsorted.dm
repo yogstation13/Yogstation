@@ -760,6 +760,8 @@ GLOBAL_LIST_INIT(can_embed_types, typecacheof(list(
 	if(is_type_in_typecache(W, GLOB.can_embed_types))
 		return TRUE
 
+	if(W.taped)
+		return TRUE
 
 /*
 Checks if that loc and dir has an item on the wall

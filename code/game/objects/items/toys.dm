@@ -383,6 +383,16 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
+//singularity wakizashi
+/obj/item/toy/katana/singulo_wakizashi
+	name = "replica singularity wakizashi"
+	desc = "The power of the singularity condensed into one short, cheap, and fake wakizashi!"
+	icon_state = "singulo_wakizashi"
+	item_state = "singulo_wakizashi"
+	force = 0 //sorry, no
+	throwforce = 0 
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 /*
  * Snap pops
  */
@@ -1555,6 +1565,23 @@ obj/item/toy/turn_tracker
 	icon_state = "warden"
 	toysay = "Seventeen minutes for coughing at an officer!"
 
+/obj/item/toy/figure/traitor
+	name = "Traitor action figure"
+	icon_state = "traitor"
+	toysay = "I got this scroll from a dead assistant!"
+
+/obj/item/toy/figure/traitor/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/pen/edagger))
+		var/obj/item/pen/edagger/pen = I
+		if(pen.on)
+			icon_state += "_pen" // edagger buddies
+			playsound(I.loc, 'sound/weapons/saberon.ogg', 35, 1)
+	..()
+
+/obj/item/toy/figure/ling
+	name = "Changeling action figure"
+	icon_state = "ling"
+	toysay = ";g absorbing AI in traitor maint!"
 
 /obj/item/toy/dummy
 	name = "ventriloquist dummy"

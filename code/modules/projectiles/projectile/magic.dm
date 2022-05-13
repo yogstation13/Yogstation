@@ -616,7 +616,7 @@
 /obj/item/projectile/magic/aoe/lightning
 	name = "lightning bolt"
 	icon_state = "tesla_projectile"	//Better sprites are REALLY needed and appreciated!~
-	damage = 15
+	damage = 25
 	damage_type = BURN
 	nodamage = FALSE
 	speed = 0.3

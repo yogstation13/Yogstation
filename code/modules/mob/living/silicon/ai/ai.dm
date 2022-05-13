@@ -30,7 +30,7 @@
 	d_hud = DATA_HUD_DIAGNOSTIC_BASIC
 	mob_size = MOB_SIZE_LARGE
 
-	invisibility = INVISIBILITY_OBSERVER 
+	invisibility = INVISIBILITY_MAXIMUM  
 
 	var/battery = 200 //emergency power if the AI's APC is off
 	var/list/network = list("ss13")
