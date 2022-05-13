@@ -26,7 +26,7 @@
 	var/playstyle_string = "<span class='big bold'>You are a Plague Rat,</span></b> \
 							Your goal is to spread The Plague as much as possible, by infecting anyone you can. \
 							You can do this by licking their food, or by directly biting them. \
-							Also you can bite dead bodies to slightly heal yourself. \
+							You can also nibble on dead bodies to slightly heal yourself! \
 							But remember that you are very fragile - after all, you are a small rat.</b>"
 
 
