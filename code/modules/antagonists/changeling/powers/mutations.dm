@@ -626,7 +626,6 @@
 		var/obj/structure/table/T = target
 		T.deconstruct(FALSE)
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
-		return
 
 	else if(isstructure(target) || ismachinery(target))	
 		var/obj/structure/S = target			//Works for machinery because they have the same variable that does the same thing
