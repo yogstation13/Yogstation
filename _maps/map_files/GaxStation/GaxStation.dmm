@@ -13001,15 +13001,6 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"gIZ" = (
-/obj/machinery/power/solar_control{
-	dir = 4;
-	id = "aisolar";
-	name = "AI Ship Solar Controller"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ai_monitored/storage/satellite)
 "gJz" = (
 /obj/machinery/air_sensor{
 	id_tag = "co2_sensor"
@@ -25668,6 +25659,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
+"npT" = (
+/obj/machinery/power/solar_control{
+	dir = 4;
+	force_auto = 1;
+	id = "aisolar";
+	name = "AI Ship Solar Controller"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ai_monitored/storage/satellite)
 "npU" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -59329,7 +59330,7 @@ tkl
 nkX
 qaS
 gpb
-gIZ
+npT
 uog
 mBV
 bEq
