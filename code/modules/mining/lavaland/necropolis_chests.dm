@@ -483,9 +483,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/effect/immortality_talisman/Initialize(mapload, mob/new_user)
 	. = ..()
-	// if(new_user && isliving(new_user))
-	// 	var/mob/living/L = new_user
-	// 	L.apply_status_effect(STATUS_EFFECT_VOIDED)
 
 /obj/effect/immortality_talisman/proc/vanish(mob/user)
 	user.visible_message(span_danger("[user] [vanish_description], leaving a hole in [user.p_their()] place!"))
@@ -498,8 +495,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	user.status_flags |= GODMODE
 
 	can_destroy = FALSE
-
-	//addtimer(CALLBACK(src, .proc/unvanish, user), 10 SECONDS)
 
 /obj/effect/immortality_talisman/proc/unvanish(mob/user)
 	user.status_flags &= ~GODMODE
