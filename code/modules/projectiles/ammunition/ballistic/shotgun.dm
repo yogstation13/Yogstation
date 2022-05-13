@@ -101,7 +101,7 @@
 
 /obj/item/ammo_casing/shotgun/uraniumpenetrator
 	name = "depleted uranium slug"
-	desc = "A relatively low-tech shell, utilizing the unique properties of Uranium, and possessing /
+	desc = "A relatively low-tech shell, utilizing the unique properties of Uranium, and possessing \
 	very impressive armor penetration capabilities."
 	icon_state = "dushell" 
 	projectile_type = /obj/item/projectile/bullet/shotgun_uraniumslug
