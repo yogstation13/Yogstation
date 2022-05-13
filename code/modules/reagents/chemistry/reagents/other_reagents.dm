@@ -2047,7 +2047,7 @@
 
 /datum/reagent/plaguebacteria
 	name = "Yersinia pestis"
-	description = "It is a VERY bad idea to drink this."
+	description = "A horrible plague, in a container. It is a TERRIBLE idea to drink this."
 	color = "#7CFC00"
 	taste_description = "death"
 	can_synth = FALSE
