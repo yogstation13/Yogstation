@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	. = ..()
 	var/datum/space_level/level = SSmapping.get_level(z)
 	if (!level)
-		to_chat(world, "uh oh, stinky!!")
+		debug_world("uh oh, stinky!!")
 		return INITIALIZE_HINT_QDEL
 	GLOB.pocket_corners[level.name] = list(
 		"bl-corner" = get_turf(src), // Bottom left corner

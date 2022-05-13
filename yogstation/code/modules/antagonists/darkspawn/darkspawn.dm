@@ -368,8 +368,7 @@
 		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
 	for(var/V in abilities)
 		remove_ability(abilities[V], TRUE)
-	for(var/mob/M in GLOB.player_list)
-		M.playsound_local(M, 'yogstation/sound/magic/sacrament_complete.ogg', 70, FALSE, pressure_affected = FALSE)
+	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 70, FALSE, pressure_affected = FALSE)
 	psi = 9999
 	psi_cap = 9999
 	psi_regen = 9999
