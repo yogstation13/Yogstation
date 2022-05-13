@@ -622,11 +622,6 @@
 		var/mob/living/silicon/robot/R = target
 		R.Paralyze(1 SECONDS)						//One second stun on borgs because they get their circuits rattled or something
 
-	else if(istype(target, /obj/structure/table))	//Hate tables
-		var/obj/structure/table/T = target
-		T.deconstruct(FALSE)
-		playsound(src, 'sound/effects/bang.ogg', 50, 1)
-
 	else if(isstructure(target) || ismachinery(target))	
 		var/obj/structure/S = target			//Works for machinery because they have the same variable that does the same thing
 		var/structure_damage = S.max_integrity		
@@ -638,7 +633,10 @@
 			structure_damage *= 0.5
 		if(istype(target, /obj/machinery/door/airlock))
 			structure_damage = 14				//Won't get bonus damage vs reinforced airlocks but still does the base damage
-		if(target)
+		if(istype(target, /obj/structure/table))	//Hate tables
+			var/obj/structure/table/T = target
+			T.deconstruct(FALSE)
+		if(!isnull(target))
 			S.take_damage(structure_damage, BRUTE, "melee", 0)
 		if(make_sound)
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)
