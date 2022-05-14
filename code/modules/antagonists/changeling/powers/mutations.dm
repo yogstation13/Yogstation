@@ -577,7 +577,7 @@
 
 /obj/item/melee/flesh_maul
 	name = "flesh maul"
-	desc = "A horrifying mass of pulsing flesh and glistening bone capable of crushing anyone unfortunate enough to be hit by it."
+	desc = "A horrifying mass of pulsing flesh and glistening bone. More than capable of crushing anyone unfortunate enough to be hit by it."
 	icon = 'icons/obj/changeling.dmi'
 	icon_state = "flesh_mail"
 	item_state = "flesh_maul"
