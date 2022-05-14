@@ -513,3 +513,13 @@
 /datum/config_entry/flag/disable_gc_failure_hard_deletes
 
 /datum/config_entry/flag/disable_all_hard_deletes
+
+/datum/config_entry/number/hard_deletes_overrun_threshold
+	integer = FALSE
+	min_val = 0
+	config_entry_value = 0.5
+
+/datum/config_entry/number/hard_deletes_overrun_limit
+	config_entry_value = 0
+	min_val = 0
+
