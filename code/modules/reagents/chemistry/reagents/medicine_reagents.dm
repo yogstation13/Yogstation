@@ -227,7 +227,7 @@
 //Goon Chems. Ported mainly from Goonstation. Easily mixable (or not so easily) and provide a variety of effects.
 /datum/reagent/medicine/silver_sulfadiazine
 	name = "Silver Sulfadiazine"
-	description = "If used in touch-based applications, immediately restores burn wounds as well as restoring more over time. The chemical will heal up to 30 points of damage at 30 units applied. If ingested through other means or overdosed, deals minor toxin damage."
+	description = "If used in touch-based applications, immediately restores burn wounds as well as restoring more over time. The chemical will heal up to 45 points of damage at 45 units applied. If ingested through other means, deals minor toxin damage."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 
@@ -285,7 +285,7 @@
 
 /datum/reagent/medicine/styptic_powder
 	name = "Styptic Powder"
-	description = "If used in touch-based applications, immediately restores bruising as well as restoring more over time. The chemical will heal up to 30 points of damage at 30 units applied. If ingested through other means or overdosed, deals minor toxin damage."
+	description = "If used in touch-based applications, immediately restores bruising as well as restoring more over time. The chemical will heal up to 45 points of damage at 45 units applied. If ingested through other means, deals minor toxin damage."
 	reagent_state = LIQUID
 	color = "#FF9696"
 
