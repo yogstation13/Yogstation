@@ -1,6 +1,8 @@
 #define PERF_BASE_DAMAGE		0.5
 /// Required strange reagent for revival.
 #define REQUIRED_STRANGE_REAGENT_FOR_REVIVAL 2
+///maximum volume for touch chemicals to heal with
+#define TOUCH_CHEM_MAX 60
 
 /////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
@@ -225,10 +227,9 @@
 //Goon Chems. Ported mainly from Goonstation. Easily mixable (or not so easily) and provide a variety of effects.
 /datum/reagent/medicine/silver_sulfadiazine
 	name = "Silver Sulfadiazine"
-	description = "If used in touch-based applications, immediately restores burn wounds as well as restoring more over time. If ingested through other means or overdosed, deals minor toxin damage."
+	description = "If used in touch-based applications, immediately restores burn wounds as well as restoring more over time. The chemical will heal up to 30 points of damage at 30 units applied. If ingested through other means or overdosed, deals minor toxin damage."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	overdose_threshold = 45
 
 /datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
@@ -237,20 +238,25 @@
 			if(show_message)
 				to_chat(M, span_warning("You don't feel so good..."))
 		else if(M.getFireLoss())
-			M.adjustFireLoss(-reac_volume)
+			var/datum/reagent/S = M.reagents?.get_reagent(/datum/reagent/medicine/silver_sulfadiazine)
+			var/heal_amt = clamp(reac_volume, 0, TOUCH_CHEM_CAP * .75 - S?.volume)
+			M.adjustFireLoss(-heal_amt)
 			if(show_message)
 				to_chat(M, span_danger("You feel your burns healing! It stings like hell!"))
 			M.emote("scream")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+			if(method == TOUCH)
+				M.reagents.add_reagent(/datum/reagent/medicine/silver_sulfadiazine, reac_volume)
 	..()
 
 /datum/reagent/medicine/silver_sulfadiazine/on_mob_life(mob/living/carbon/M)
-	M.adjustFireLoss(-2*REM, 0)
+	if(
+	M.adjustFireLoss(-0.5*REM, 0)
 	..()
 	. = 1
 
 /datum/reagent/medicine/silver_sulfadiazine/overdose_process(mob/living/M)
-	M.adjustFireLoss(2.5*REM, 0)
+	M.adjustFireLoss(1.5*REM, 0)
 	M.adjustToxLoss(0.5, 0)
 	..()
 	. = 1
@@ -279,10 +285,9 @@
 
 /datum/reagent/medicine/styptic_powder
 	name = "Styptic Powder"
-	description = "If used in touch-based applications, immediately restores bruising as well as restoring more over time. If ingested through other means or overdosed, deals minor toxin damage."
+	description = "If used in touch-based applications, immediately restores bruising as well as restoring more over time. The chemical will heal up to 30 points of damage at 30 units applied. If ingested through other means or overdosed, deals minor toxin damage."
 	reagent_state = LIQUID
 	color = "#FF9696"
-	overdose_threshold = 45
 
 /datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
@@ -291,22 +296,20 @@
 			if(show_message)
 				to_chat(M, span_warning("You don't feel so good..."))
 		else if(M.getBruteLoss())
-			M.adjustBruteLoss(-reac_volume)
+			var/datum/reagent/S = M.reagents?.get_reagent(/datum/reagent/medicine/styptic_powder)
+			var/heal_amt = clamp(reac_volume, 0, TOUCH_CHEM_CAP * .75 - S?.volume)
+			M.adjustBruteLoss(heal_amt)
 			if(show_message)
 				to_chat(M, span_danger("You feel your bruises healing! It stings like hell!"))
 			M.emote("scream")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+			if(method == TOUCH)
+				M.reagents.add_reagent(/datum/reagent/medicine/styptic_powder, reac_volume)
 	..()
 
 
 /datum/reagent/medicine/styptic_powder/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(-2*REM, 0)
-	..()
-	. = 1
-
-/datum/reagent/medicine/styptic_powder/overdose_process(mob/living/M)
-	M.adjustBruteLoss(2.5*REM, 0)
-	M.adjustToxLoss(0.5, 0)
+	M.adjustBruteLoss(-0.5*REM, 0)
 	..()
 	. = 1
 
