@@ -156,10 +156,7 @@
 	update_baking_audio()
 	return TRUE
 
-/obj/machinery/oven/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
+/obj/machinery/oven/MouseDrop_T(atom/movable/O, mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(!open)
@@ -168,7 +165,7 @@
 	if(used_tray)
 		to_chat(user,span_danger("You can't have a tray in while shoving someone in!"))
 		return
-	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	if(user.pulling && O == user.pulling && isliving(user.pulling))
 		var/mob/living/L = user.pulling
 		if(!iscarbon(L))
 			to_chat(user, span_danger("This item is not suitable for the oven!"))
