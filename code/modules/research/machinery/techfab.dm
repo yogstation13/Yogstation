@@ -28,7 +28,8 @@
 								"Misc. Machinery",
 								"Computer Parts",
 								"Spacepod Designs", // yogs
-								"Service" //yogs
+								"Service",
+								"Circuitry"
 								)
 	console_link = FALSE
 	production_animation = "protolathe_n"

@@ -1,25 +1,11 @@
-import { classes } from 'common/react';
 import { uniqBy } from 'common/collections';
 import { useBackend, useSharedState } from '../backend';
 import { formatSiUnit, formatMoney } from '../format';
-import { Flex, Section, Tabs, Box, Button, Fragment, ProgressBar, NumberInput, Icon, Input } from '../components';
+import { Section, Tabs, Box, Button, Fragment, ProgressBar, NumberInput, Icon, Input, Stack } from '../components';
+import { Materials, MaterialAmount, MaterialFormatting } from './common/Materials';
+import { formatMoney } from '../format';
 import { Window } from '../layouts';
 import { createSearch } from 'common/string';
-
-const MATERIAL_KEYS = {
-  "iron": "sheet-metal_3",
-  "glass": "sheet-glass_3",
-  "silver": "sheet-silver_3",
-  "gold": "sheet-gold_3",
-  "diamond": "sheet-diamond",
-  "plasma": "sheet-plasma_3",
-  "uranium": "sheet-uranium",
-  "bananium": "sheet-bananium",
-  "titanium": "sheet-titanium_3",
-  "bluespace crystal": "polycrystal",
-  "dilithium crystal": "dilithium_polycrystal", // Yogs: added dilithium to the list
-  "plastic": "sheet-plastic_3",
-};
 
 const COLOR_NONE = 0;
 const COLOR_AVERAGE = 1;
@@ -162,7 +148,15 @@ export const ExosuitFabricator = (props, context) => {
               grow={1}>
               <Section
                 title="Materials">
-                <Materials />
+                  <Materials
+                    materials={data.materials || []}
+                    onEject={(ref, amount) => {
+                      act("remove_mat", {
+                        ref: ref,
+                        amount: amount,
+                      });
+                    }}
+                  />
               </Section>
             </Flex.Item>
             <Flex.Item
@@ -223,116 +217,6 @@ export const ExosuitFabricator = (props, context) => {
         </Flex>
       </Window.Content>
     </Window>
-  );
-};
-
-const EjectMaterial = (props, context) => {
-  const { act } = useBackend(context);
-
-  const { material } = props;
-
-  const {
-    name,
-    removable,
-    sheets,
-    ref,
-  } = material;
-
-  const [
-    removeMaterials,
-    setRemoveMaterials,
-  ] = useSharedState(context, "remove_mats_" + name, 1);
-
-  if ((removeMaterials > 1) && (sheets < removeMaterials)) {
-    setRemoveMaterials(sheets || 1);
-  }
-
-  return (
-    <Fragment>
-      <NumberInput
-        width="30px"
-        animated
-        value={removeMaterials}
-        minValue={1}
-        maxValue={sheets || 1}
-        initial={1}
-        onDrag={(e, val) => {
-          const newVal = parseInt(val, 10);
-          if (Number.isInteger(newVal)) {
-            setRemoveMaterials(newVal);
-          }
-        }} />
-      <Button
-        icon="eject"
-        disabled={!removable}
-        onClick={() => act("remove_mat", {
-          ref: ref,
-          amount: removeMaterials,
-        })} />
-    </Fragment>
-  );
-};
-
-const Materials = (props, context) => {
-  const { data } = useBackend(context);
-
-  const materials = data.materials || [];
-
-  return (
-    <Flex
-      wrap="wrap">
-      {materials.map(material => (
-        <Flex.Item
-          width="80px"
-          key={material.name}>
-          <MaterialAmount
-            name={material.name}
-            amount={material.amount}
-            formatsi />
-          <Box
-            mt={1}
-            style={{ "text-align": "center" }}>
-            <EjectMaterial
-              material={material} />
-          </Box>
-        </Flex.Item>
-      ))}
-    </Flex>
-  );
-};
-
-const MaterialAmount = (props, context) => {
-  const {
-    name,
-    amount,
-    formatsi,
-    formatmoney,
-    color,
-    style,
-  } = props;
-
-  return (
-    <Flex
-      direction="column"
-      align="center">
-      <Flex.Item>
-        <Box
-          className={classes([
-            'sheetmaterials32x32',
-            MATERIAL_KEYS[name],
-          ])}
-          style={style} />
-      </Flex.Item>
-      <Flex.Item>
-        <Box
-          textColor={color}
-          style={{ "text-align": "center" }}>
-          {(formatsi && formatSiUnit(amount, 0))
-          || (formatmoney && formatMoney(amount))
-          || (amount)}
-        </Box>
-      </Flex.Item>
-    </Flex>
   );
 };
 
@@ -559,7 +443,7 @@ const PartCategory = (props, context) => {
                     key={material}
                     color={COLOR_KEYS[part.format[material].color]}>
                     <MaterialAmount
-                      formatmoney
+                       formatting={MaterialFormatting.Money}
                       style={{
                         transform: 'scale(0.75) translate(0%, 10%)',
                       }}
@@ -665,7 +549,7 @@ const QueueMaterials = (props, context) => {
           width="12%"
           key={material}>
           <MaterialAmount
-            formatmoney
+            formatting={MaterialFormatting.Money}
             name={material}
             amount={queueMaterials[material]} />
           {(!!missingMaterials[material] && (
