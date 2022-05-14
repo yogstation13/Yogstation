@@ -14,15 +14,15 @@
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
 	var/has_fine_manipulation = 0
-	var/move_delay_add = 0 // movement delay to add
-
 	status_flags = CANUNCONSCIOUS|CANPUSH
 
 	var/heat_protection = 0.5
-	var/leaping = 0
 	gib_type = /obj/effect/decal/cleanable/xenoblood/xgibs
 	unique_name = 1
 
+	/// Determines whether or not the alien is leaping.  Currently only used by the hunter.
+	var/leaping = FALSE
+	/// Used to detmine how to name the alien.
 	var/static/regex/alien_name_regex = new("alien (larva|sentinel|drone|hunter|praetorian|queen)( \\(\\d+\\))?")
 	blood_volume = BLOOD_VOLUME_XENO //Yogs -- Makes monkeys/xenos have different amounts of blood from normal carbonbois
 
@@ -98,36 +98,63 @@
 		return pick (list("xltrails_1", "xltrails2"))
 	else
 		return pick (list("xttrails_1", "xttrails2"))
-/*----------------------------------------
-Proc: AddInfectionImages()
-Des: Gives the client of the alien an image on each infected mob.
-----------------------------------------*/
-/mob/living/carbon/alien/proc/AddInfectionImages()
-	if (client)
-		for (var/i in GLOB.mob_living_list)
-			var/mob/living/L = i
-			if(HAS_TRAIT(L, TRAIT_XENO_HOST))
-				var/obj/item/organ/body_egg/alien_embryo/A = L.getorgan(/obj/item/organ/body_egg/alien_embryo)
-				if(A)
-					var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[A.stage]")
-					client.images += I
-	return
-
-
-/*----------------------------------------
-Proc: RemoveInfectionImages()
-Des: Removes all infected images from the alien.
-----------------------------------------*/
-/mob/living/carbon/alien/proc/RemoveInfectionImages()
-	if (client)
-		for(var/image/I in client.images)
-			var/searchfor = "infected"
-			if(findtext(I.icon_state, searchfor, 1, length(searchfor) + 1))
-				qdel(I)
-	return
 
 /mob/living/carbon/alien/canBeHandcuffed()
 	return 1
+
+/mob/living/carbon/alien/can_hold_items(obj/item/I)
+	return (ISADVANCEDTOOLUSER(src) && ..())
+
+/mob/living/carbon/alien/on_lying_down(new_lying_angle)
+	. = ..()
+	update_icons()
+
+/mob/living/carbon/alien/on_standing_up()
+	. = ..()
+	update_icons()
+
+/**
+ * Renders an icon on mobs with alien embryos inside them.
+ *
+ * Renders an icon on mobs with alien embryos inside them for the client.
+ * Only aliens can see these, with others not seeing anything at all.
+ */
+/mob/living/carbon/alien/proc/AddInfectionImages()
+	if(!client)
+		return
+	for(var/lb in GLOB.mob_living_list)
+		var/mob/living/livingbeing = lb
+		if(!HAS_TRAIT(livingbeing, TRAIT_XENO_HOST))
+			return
+		var/obj/item/organ/body_egg/alien_embryo/embryo = livingbeing.getorgan(/obj/item/organ/body_egg/alien_embryo)
+		if(!embryo)
+			return
+		var/embryo_image = image('icons/mob/alien.dmi', loc = livingbeing, icon_state = "infected[embryo.stage]")
+		client.images += embryo_image
+
+/**
+ * Removes all client embryo displays.
+ *
+ * Removes the embryo icon visuals from the client controlling the alien.
+ */
+/mob/living/carbon/alien/proc/RemoveInfectionImages()
+	if(!client)
+		return
+	for(var/i in client.images)
+		var/image/image = i
+		var/searchfor = "infected"
+		if(findtext(image.icon_state, searchfor, 1, length(searchfor) + 1))
+			qdel(image)
+
+/**
+ * Handles the transformations of one alien type to another.
+ *
+ * Handles the transformation of an alien into another type of alien.
+ * Gives them some message fluff, transfers their mind (important as to transfer other antag statuses)
+ * and then also transfers their nanites should the original body have them.
+ * Arguments:
+ * * new_xeno - The new body of the alien.
+ */
 
 /mob/living/carbon/alien/get_standard_pixel_y_offset(lying = 0)
 	return initial(pixel_y)

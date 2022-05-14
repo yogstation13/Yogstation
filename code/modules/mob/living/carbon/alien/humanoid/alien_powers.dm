@@ -156,7 +156,7 @@ Doesn't work on other aliens/AI.*/
 
 /obj/effect/proc_holder/alien/acid/proc/corrode(atom/target,mob/living/carbon/user = usr)
 	if(target in oview(1,user))
-		if(target.acid_act(200, 100))
+		if(target.acid_act(400, 100))
 			user.visible_message(span_alertalien("[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!"))
 			return 1
 		else
@@ -190,7 +190,7 @@ Doesn't work on other aliens/AI.*/
 
 /obj/effect/proc_holder/alien/neurotoxin
 	name = "Spit Neurotoxin"
-	desc = "Spits neurotoxin at someone, paralyzing them for a short time."
+	desc = "Spits neurotoxin at someone, dealing large amounts of stamina damage."
 	action_icon_state = "alien_neurotoxin_0"
 	active = FALSE
 
@@ -295,16 +295,40 @@ Doesn't work on other aliens/AI.*/
 
 /obj/effect/proc_holder/alien/sneak/fire(mob/living/carbon/alien/humanoid/user)
 	if(!active)
-		user.alpha = 75 //Still easy to see in lit areas with bright tiles, almost invisible on resin.
-		user.sneaking = 1
-		active = 1
+		user.alpha = 25
+		user.sneaking = TRUE
+		active = TRUE
 		to_chat(user, span_noticealien("You blend into the shadows..."))
 	else
 		user.alpha = initial(user.alpha)
-		user.sneaking = 0
-		active = 0
+		user.sneaking = FALSE
+		active = FALSE
 		to_chat(user, span_noticealien("You reveal yourself!"))
 
+
+#define QUEEN_CALL_TIME 15 MINUTES
+
+/obj/effect/proc_holder/alien/call_shuttle
+	name = "Summon Shuttle"
+	desc = "Sends a fake message which will beckon an emergency shuttle to the station."
+	action_icon_state = "alien_sneak"
+	var/time_created
+
+/obj/effect/proc_holder/alien/call_shuttle/Initialize()
+	. = ..()
+	time_created = world.time
+
+/obj/effect/proc_holder/alien/call_shuttle/fire(mob/living/carbon/alien/humanoid/user)
+	if(world.time < time_created + QUEEN_CALL_TIME)
+		to_chat(user, "<span class='noticealien'>You can't call the shuttle just yet!</span>")
+		return
+	if(SSshuttle.canEvac() != TRUE)
+		to_chat(user, "<span class='noticealien'>Something is preventing you from calling the shuttle right now.</span>")
+		return
+	sleep(50)
+	SSshuttle.emergency.request(null, set_coefficient = 1.0)
+
+#undef QUEEN_CALL_TIME
 
 /mob/living/carbon/proc/getPlasma()
 	var/obj/item/organ/alien/plasmavessel/vessel = getorgan(/obj/item/organ/alien/plasmavessel)

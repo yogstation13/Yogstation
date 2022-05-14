@@ -4,6 +4,7 @@
 	maxHealth = 300
 	health = 300
 	icon_state = "alienp"
+	speed = 1
 
 /mob/living/carbon/alien/humanoid/royal/praetorian/Initialize()
 	real_name = name
@@ -30,6 +31,10 @@
 	if(!node) //Just in case this particular Praetorian gets violated and kept by the RD as a replacement for Lamarr.
 		to_chat(user, span_danger("Without the hivemind, you would be unfit to rule as queen!"))
 		return 0
+	var/datum/antagonist/xeno/xeno_datum = user.mind.has_antag_datum(/datum/antagonist/xeno)
+	if(xeno_datum?.xeno_team && xeno_datum.xeno_team.queen_deaths >= xeno_datum.xeno_team.max_queen_deaths)
+		to_chat(user, "<span class='warning'>Too many queens have died today already!  The hivemind can't take any more pain!</span>")
+		return FALSE
 	if(node.recent_queen_death)
 		to_chat(user, span_danger("You are still too burdened with guilt to evolve into a queen."))
 		return 0

@@ -4,6 +4,7 @@
 	maxHealth = 150
 	health = 150
 	icon_state = "aliens"
+	speed = 0.2
 
 /mob/living/carbon/alien/humanoid/sentinel/Initialize()
 	AddAbility(new /obj/effect/proc_holder/alien/sneak)

@@ -1,3 +1,12 @@
+/**
+ * # Alien Royal
+ *
+ * A subtype of alien which is used for the larger alien castes (queen and praetorian)
+ *
+ * A subtype of alien used for the larger types of alien, which currently only includes praetorians and queens.
+ * This subtype essentially just has them inherit proper sprite alignment, no ventcrawling, and large amounts of
+ * pressure resistance and more butcher results than a normal alien.
+ */
 /mob/living/carbon/alien/humanoid/royal
 	//Common stuffs for Praetorian and Queen
 	icon = 'icons/mob/alienqueen.dmi'
@@ -16,12 +25,26 @@
 /mob/living/carbon/alien/humanoid/royal/can_inject()
 	return 0
 
+/**
+ * # Alien Queen
+ *
+ * The most important alien caste, the queen is the only reproductive member of the set.
+ *
+ * A subtype of alien which acts as the sole reproductive member of the alien castes.  The queen
+ * boasts the most health and damage of all the xeno types, but is also the slowest.  She can
+ * lay eggs which will create facehuggers, promote other xenos to praetorians, and also call_shuttle
+ * the emergency shuttle after 15 minutes of being alive.
+ */
 /mob/living/carbon/alien/humanoid/royal/queen
 	name = "alien queen"
 	caste = "q"
-	maxHealth = 400
-	health = 400
+	maxHealth = 500
+	health = 500
 	icon_state = "alienq"
+	melee_damage_lower = 40
+	melee_damage_upper = 40
+	speed = 2.5
+	/// The queen's small sprite action.
 	var/datum/action/small_sprite/smallsprite = new/datum/action/small_sprite/queen()
 
 /mob/living/carbon/alien/humanoid/royal/queen/Initialize()
@@ -38,11 +61,25 @@
 			break
 
 	real_name = src.name
+	RegisterSignal(SSshuttle, COMSIG_SHUTTLE_STRANDED, .proc/add_gps)
 
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno(src))
 	AddAbility(new/obj/effect/proc_holder/alien/royal/queen/promote())
+	AddAbility(new/obj/effect/proc_holder/alien/call_shuttle())
 	smallsprite.Grant(src)
+	SSshuttle.registerHostileEnvironment(src)
 	return ..()
+
+/**
+ * Adds a GPS signal to the queen and has Centcom tell the crew about it.
+ *
+ * Registers a GPS component to the queen with Regal Signal being the signal name.
+ * Then, it alerts the crew via Centcom announcement that the signal is available and that the threat must be killed before they can leave.
+ */
+/mob/living/carbon/alien/humanoid/royal/queen/proc/add_gps()
+	AddComponent(/datum/component/gps, "Regal Signal")
+	priority_announce("Attention crew, we were able to register a GPS signal to the threat preventing your departure.  You are expected to elimate the threat before leaving.", "[command_name()] High-Priority Update", 'sound/misc/notice1.ogg', "Priority")
+
 
 /mob/living/carbon/alien/humanoid/royal/queen/create_internal_organs()
 	internal_organs += new /obj/item/organ/alien/plasmavessel/large/queen

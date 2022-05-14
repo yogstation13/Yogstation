@@ -631,6 +631,16 @@
 	. = ..()
 	initiate_docking(SSshuttle.getDock("emergency_home"))
 
+/obj/machinery/computer/emergency_shuttle/AltClick(user)
+	if(isliving(user))
+		xeno_hijack_check(user)
+
+/obj/machinery/computer/emergency_shuttle/proc/xeno_hijack_check(mob/living/user)
+	if(isalien(user) && user.mind?.has_antag_datum(/datum/antagonist/xeno/queen) && (user in SSshuttle.hostileEnvironments))
+		sleep(50)
+		SSshuttle.clearHostileEnvironment(user)
+		return
+
 #undef TIME_LEFT
 #undef ENGINES_START_TIME
 #undef ENGINES_STARTED

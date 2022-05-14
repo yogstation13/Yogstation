@@ -65,6 +65,9 @@
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
 
+///from the shuttle subsystem, occurs when the shuttle is stranded
+#define COMSIG_SHUTTLE_STRANDED "shuttle_stranded"
+
 // /atom signals
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living, params)
 #define COMPONENT_NO_AFTERATTACK 1								//Return this in response if you don't want afterattack to be called
