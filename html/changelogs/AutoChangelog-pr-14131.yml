@@ -1,0 +1,6 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "new status effect \"Voided\" (it's just the void magnet and immortality amulet void out effect)"
+  - bugfix: "the icon is fixed for the genetics mutation spell"
+  - tweak: "the voiding out starts and ends based on a status effect rather than a timer."
