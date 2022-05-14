@@ -565,7 +565,7 @@
 /datum/action/changeling/weapon/flesh_maul
 	name = "Flesh Maul"
 	desc = "We reform one of our arms into a dense mass of flesh and bone. Costs 20 chemicals."
-	helptext = "We may reabsorb the mass in the same way we formed it. It is too heavy to be used in lesser form."
+	helptext = "We may reabsorb the mass in the same way it was formed. It is too heavy to be used in our lesser form."
 //	button_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "maul"
 	chemical_cost = 20
