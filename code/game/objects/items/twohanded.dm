@@ -677,6 +677,14 @@
 		return 1
 	return 0
 
+/obj/item/twohanded/required/chainsaw/demon
+	name = "demon chainsaw"
+	desc = "anime reference here"
+	item_state = "demon"
+	armour_penetration = 100
+	force_on = 30
+	AddComponent(/datum/component/lifesteal, 50)
+
 //GREY TIDE
 /obj/item/twohanded/spear/grey_tide
 	icon_state = "spearglass0"
