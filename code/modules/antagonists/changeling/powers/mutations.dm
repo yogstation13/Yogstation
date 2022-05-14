@@ -565,7 +565,7 @@
 /datum/action/changeling/weapon/flesh_maul
 	name = "Flesh Maul"
 	desc = "We reform one of our arms into a dense mass of flesh and bone. Costs 20 chemicals."
-	helptext = "We may reabsorb the mass in the same way we formed it. It is too heavy to be used in lesser form."
+	helptext = "We may reabsorb the mass in the same way it was formed. It is too heavy to be used in our lesser form."
 //	button_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "flesh_maul"
 	chemical_cost = 20
@@ -577,7 +577,7 @@
 
 /obj/item/melee/flesh_maul
 	name = "flesh maul"
-	desc = "A horrifying mass of pulsing flesh and glistening bone capable of crushing anyone unfortunate enough to be hit by it."
+	desc = "A horrifying mass of pulsing flesh and glistening bone. More than capable of crushing anyone unfortunate enough to be hit by it."
 	icon = 'icons/obj/changeling.dmi'
 	icon_state = "flesh_maul"
 	item_state = "flesh_maul"
@@ -604,7 +604,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 	if(ismob(loc) && !silent)
-		loc.visible_message(span_warning("A grotesque blade forms around [loc.name]\'s arm!"), span_warning("Our arm twists and mutates, transforming it into a deadly blade."), span_italics("You hear organic matter ripping and tearing!"))
+		loc.visible_message(span_warning("[loc.name]\'s arm snaps and shifts into a grisly maul!"), span_warning("Our arm twists and mutates, transforming into a powerful maul."), span_italics("You hear organic matter ripping and tearing!"))
 	if(synthetic)
 		can_drop = TRUE
 
