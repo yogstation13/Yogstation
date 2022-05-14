@@ -364,8 +364,8 @@
 	gender = PLURAL
 	singular_name = "advanced regenerative mesh"
 	icon_state = "aloe_mesh"
-	amount = 30
-	max_amount = 30
+	amount = 25
+	max_amount = 25
 	heal_burn = 15
 	sanitization = 1.25
 	flesh_regeneration = 3.5
