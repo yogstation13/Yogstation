@@ -567,7 +567,7 @@
 	desc = "We reform one of our arms into a dense mass of flesh and bone. Costs 20 chemicals."
 	helptext = "We may reabsorb the mass in the same way we formed it. It is too heavy to be used in lesser form."
 //	button_icon = 'icons/obj/changeling.dmi'
-	button_icon_state = "maul"
+	button_icon_state = "flesh_maul"
 	chemical_cost = 20
 	dna_cost = 3
 	req_human = 1
@@ -579,7 +579,7 @@
 	name = "flesh maul"
 	desc = "A horrifying mass of pulsing flesh and glistening bone capable of crushing anyone unfortunate enough to be hit by it."
 	icon = 'icons/obj/changeling.dmi'
-	icon_state = "flesh_mail"
+	icon_state = "flesh_maul"
 	item_state = "flesh_maul"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
@@ -632,7 +632,7 @@
 		if(ismachinery(target) || istype(target, /obj/structure/door_assembly))
 			structure_damage *= 0.5
 		if(istype(target, /obj/machinery/door/airlock))
-			structure_damage = 14				//Won't get bonus damage vs reinforced airlocks but still does the base damage
+			structure_damage = 24				//Should make it better than armblades for airlock smashing. No bonus vs plasteel-reinforced airlocks, though.
 		if(istype(target, /obj/structure/table))	//Hate tables
 			var/obj/structure/table/T = target
 			T.deconstruct(FALSE)
