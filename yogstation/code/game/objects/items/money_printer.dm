@@ -17,11 +17,10 @@
 /obj/item/money_printer/proc/print()
 	addtimer(CALLBACK(src, .proc/print), cooldown_per_cycle)
 
-	if(isturf(loc))
-		visible_message(span_warning("\The [src] spits out money!"))
-	else
+	if(!isturf(loc))
 		visible_message(span_warning("\The [src] violently whirrs and rumbles as it tries to spit out money, but can't!"))
 		return
+	visible_message(span_warning("\The [src] spits out money!"))
 	var/obj/item/stack/spacecash/printed_cash = new money_typepath_to_print(loc)
 	if(istype(printed_cash))
 		printed_cash.amount = money_stacks_per_cycle
