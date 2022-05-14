@@ -33,6 +33,8 @@
 	var/absorption_capacity
 	/// How quickly we lower the blood flow on a cut wound we're bandaging. Expected lifetime of this bandage in ticks is thus absorption_capacity/absorption_rate, or until the cut heals, whichever comes first
 	var/absorption_rate
+	/// Coefficient for applying this stack to a wound
+	var/treatment_speed = 1
 
 /obj/item/stack/medical/attack(mob/living/M, mob/user)
 	. = ..()
@@ -232,8 +234,11 @@
 	name = "medicated suture"
 	icon_state = "suture_purp"
 	desc = "A suture infused with drugs that speed up wound healing of the treated laceration."
+	amount = 20
+	max_amount = 20
 	heal_brute = 15
 	stop_bleeding = 0.75
+	treatment_speed = 0.5
 	grind_results = list(/datum/reagent/medicine/polypyr = 2)
 
 /obj/item/stack/medical/suture/heal(mob/living/M, mob/user)
@@ -270,7 +275,6 @@
 	max_amount = 8
 	self_delay = 40
 	other_delay = 20
-
 	heal_burn = 5
 	flesh_regeneration = 2.5
 	sanitization = 0.25
@@ -297,8 +301,8 @@
 	self_delay = 30
 	other_delay = 10
 	amount = 15
-	heal_burn = 10
 	max_amount = 15
+	heal_burn = 10
 	repeating = TRUE
 	sanitization = 0.75
 	flesh_regeneration = 3
@@ -357,10 +361,11 @@
 /obj/item/stack/medical/mesh/advanced
 	name = "advanced regenerative mesh"
 	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used to treat burns."
-
 	gender = PLURAL
 	singular_name = "advanced regenerative mesh"
 	icon_state = "aloe_mesh"
+	amount = 30
+	max_amount = 30
 	heal_burn = 15
 	sanitization = 1.25
 	flesh_regeneration = 3.5
@@ -374,7 +379,6 @@
 /obj/item/stack/medical/aloe
 	name = "aloe cream"
 	desc = "A healing paste you can apply on wounds."
-
 	icon_state = "aloe_paste"
 	apply_sounds = list('sound/effects/ointment.ogg')
 	self_delay = 20
