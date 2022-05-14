@@ -102,8 +102,6 @@
 /mob/living/carbon/alien/canBeHandcuffed()
 	return 1
 
-/mob/living/carbon/alien/can_hold_items(obj/item/I)
-	return (ISADVANCEDTOOLUSER(src) && ..())
 
 /mob/living/carbon/alien/on_lying_down(new_lying_angle)
 	. = ..()
