@@ -604,7 +604,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 	if(ismob(loc) && !silent)
-		loc.visible_message(span_warning("A grotesque blade forms around [loc.name]\'s arm!"), span_warning("Our arm twists and mutates, transforming it into a deadly blade."), span_italics("You hear organic matter ripping and tearing!"))
+		loc.visible_message(span_warning("[loc.name]\'s arm snaps and shifts into a grisly maul!"), span_warning("Our arm twists and mutates, transforming into a powerful maul."), span_italics("You hear organic matter ripping and tearing!"))
 	if(synthetic)
 		can_drop = TRUE
 
