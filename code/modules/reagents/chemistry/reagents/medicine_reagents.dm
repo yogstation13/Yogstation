@@ -291,7 +291,7 @@
 		else if(M.getBruteLoss())
 			var/datum/reagent/S = M.reagents?.get_reagent(/datum/reagent/medicine/styptic_powder)
 			var/heal_amt = clamp(reac_volume, 0, TOUCH_CHEM_MAX * 0.75 - S?.volume)
-			M.adjustBruteLoss(heal_amt)
+			M.adjustBruteLoss(-heal_amt)
 			if(show_message)
 				to_chat(M, span_danger("You feel your bruises healing! It stings like hell!"))
 			M.emote("scream")
