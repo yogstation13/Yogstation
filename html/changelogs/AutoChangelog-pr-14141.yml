@@ -1,0 +1,6 @@
+author: " ToasterBiome, Tbanner"
+delete-after: true 
+changes: 
+  - rscadd: "Adds weight requirement to taping things"
+  - rscadd: "Blacklists grenades from being taped"
+  - rscadd: "Adds visible messaging for when your mouth is getting taped"
