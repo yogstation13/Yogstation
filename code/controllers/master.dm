@@ -480,8 +480,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 /// RunQueue - Run thru the queue of subsystems to run, running them while balancing out their allocated tick precentage
 /// Returns 0 if runtimed, a negitive number for logic errors, and a positive number if the operation completed without errors
-/// RunQueue - Run thru the queue of subsystems to run, running them while balancing out their allocated tick precentage
-/// Returns 0 if runtimed, a negitive number for logic errors, and a positive number if the operation completed without errors
 /datum/controller/master/proc/RunQueue()
 	. = 0
 	var/datum/controller/subsystem/queue_node

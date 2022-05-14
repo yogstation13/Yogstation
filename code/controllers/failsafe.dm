@@ -131,8 +131,6 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 			. = Recreate_MC()
 
 	if (. == 1) //We were able to create a new master
-Gamer025 marked this conversation as resolved.
-Show resolved
 		master_iteration = 0
 		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
 		Master.Initialize(10, FALSE, TRUE) //Need to manually start the MC, normally world.new would do this
