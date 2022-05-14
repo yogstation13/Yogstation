@@ -681,9 +681,12 @@
 	name = "demon chainsaw"
 	desc = "anime reference here"
 	item_state = "demon"
-	armour_penetration = 100
+	icon_state = "demon"
 	force_on = 30
-	AddComponent(/datum/component/lifesteal, 50)
+
+/obj/item/twohanded/required/chainsaw/demon/Initialize()
+	. = ..()
+	AddComponent(/datum/component/lifesteal, 30)
 
 //GREY TIDE
 /obj/item/twohanded/spear/grey_tide
