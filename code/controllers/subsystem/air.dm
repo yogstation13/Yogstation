@@ -466,3 +466,26 @@ SUBSYSTEM_DEF(air)
 		qdel(temp)
 
 	return pipe_init_dirs_cache[type]["[dir]"]
+
+/datum/controller/subsystem/air/Recover()
+	cached_cost = SSair.cached_cost
+	cost_turfs = SSair.cost_turfs
+	cost_groups = SSair.cost_groups
+	cost_highpressure = SSair.cost_highpressure
+	cost_hotspots = SSair.cost_hotspots
+	cost_superconductivity = SSair.cost_superconductivity
+	cost_pipenets = SSair.cost_pipenets
+	cost_rebuilds = SSair.cost_rebuilds
+	cost_atmos_machinery = SSair.cost_atmos_machinery
+	cost_equalize = SSair.cost_equalize
+	active_turfs = SSair.active_turfs
+	hotspots = SSair.hotspots
+	networks = SSair.networks
+	pipenets_needing_rebuilt = SSair.pipenets_needing_rebuilt
+	atmos_machinery = SSair.atmos_machinery
+	pipe_init_dirs_cache = SSair.pipe_init_dirs_cache
+	gas_reactions = SSair.gas_reactions
+	active_super_conductivity = SSair.active_super_conductivity
+	high_pressure_delta = SSair.high_pressure_delta
+	currentrun  = SSair.currentrun 
+	queued_for_activation = SSair.queued_for_activation

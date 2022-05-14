@@ -23,8 +23,6 @@ SUBSYSTEM_DEF(assets)
 		transport = newtransport
 	transport.Load()
 
-
-
 /datum/controller/subsystem/assets/Initialize(timeofday)
 	for(var/type in typesof(/datum/asset))
 		var/datum/asset/A = type
@@ -34,3 +32,7 @@ SUBSYSTEM_DEF(assets)
 	transport.Initialize(cache)
 
 	..()
+
+/datum/controller/subsystem/assets/Recover()
+	cache = SSassets.cache
+	preload = SSassets.preload
