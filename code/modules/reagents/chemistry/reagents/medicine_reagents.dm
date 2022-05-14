@@ -250,14 +250,7 @@
 	..()
 
 /datum/reagent/medicine/silver_sulfadiazine/on_mob_life(mob/living/carbon/M)
-	if(
 	M.adjustFireLoss(-0.5*REM, 0)
-	..()
-	. = 1
-
-/datum/reagent/medicine/silver_sulfadiazine/overdose_process(mob/living/M)
-	M.adjustFireLoss(1.5*REM, 0)
-	M.adjustToxLoss(0.5, 0)
 	..()
 	. = 1
 
