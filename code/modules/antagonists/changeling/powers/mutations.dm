@@ -636,6 +636,7 @@
 		if(istype(target, /obj/structure/table))	//Hate tables
 			var/obj/structure/table/T = target
 			T.deconstruct(FALSE)
+			return
 		if(!isnull(target))
 			S.take_damage(structure_damage, BRUTE, "melee", 0)
 		if(make_sound)
