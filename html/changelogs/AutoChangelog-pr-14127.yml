@@ -1,0 +1,4 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "sinful demon now sets it's job properly on arrival"
