@@ -200,8 +200,11 @@
 ///////////////////////////////////////////////
 //FOAM EFFECT DATUM
 /datum/effect_system/foam_spread
-	var/amount = 10		// the size of the foam spread.
-	var/obj/chemholder
+	/// Stupid hack alertm exists to hold chems for us
+	/// the size of the foam spread.
+	var/amount = 10
+	/// Stupid hack alertm exists to hold chems for us
+	var/obj/item/chem_holder/chemholder
 	effect_type = /obj/effect/particle_effect/foam
 	var/metal = 0
 
@@ -225,8 +228,7 @@
 	R.my_atom = chemholder
 
 /datum/effect_system/foam_spread/Destroy()
-	qdel(chemholder)
-	chemholder = null
+	QDEL_NULL(chemholder)
 	return ..()
 
 /datum/effect_system/foam_spread/set_up(amt=5, loca, datum/reagents/carry = null)

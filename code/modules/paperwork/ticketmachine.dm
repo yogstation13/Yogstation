@@ -20,6 +20,12 @@
 	. = ..()
 	update_icon()
 
+/obj/machinery/ticket_machine/Destroy()
+	for(var/obj/item/ticket_machine_ticket/ticket in tickets)
+		ticket.source = null
+	tickets.Cut()
+	return ..()
+
 /obj/machinery/ticket_machine/update_icon()
 	var/Temp = screenNum //This whole thing breaks down a 3 digit number into 3 seperate digits, aka "69" becomes "0","6" and "9"
 	var/Digit1 = round(Temp%10)//The remainder of any number/10 is always that number's rightmost digit

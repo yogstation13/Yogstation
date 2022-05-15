@@ -4,6 +4,8 @@
 
 #define isatom(A) (isloc(A))
 
+#define isdatum(thing) (istype(thing, /datum))
+
 #define isweakref(D) (istype(D, /datum/weakref))
 
 #define isappearance(A) (!isnum(A) && copytext("\ref[A]", 4, 6) == "3a")

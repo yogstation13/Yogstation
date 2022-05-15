@@ -22,6 +22,10 @@
 		opened = TRUE
 	update_icon()
 
+/obj/structure/closet/crate/Destroy()
+	QDEL_NULL(manifest)
+	return ..()
+
 /obj/structure/closet/crate/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(!istype(mover, /obj/structure/closet))
@@ -48,7 +52,7 @@
 
 /obj/structure/closet/crate/open(mob/living/user)
 	. = ..()
-	if(. && manifest)
+	if(. && !QDELETED(manifest))
 		to_chat(user, span_notice("The manifest is torn off [src]."))
 		playsound(src, 'sound/items/poster_ripped.ogg', 75, 1)
 		manifest.forceMove(get_turf(src))

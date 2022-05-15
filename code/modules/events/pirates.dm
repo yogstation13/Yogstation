@@ -288,7 +288,7 @@
 /obj/machinery/computer/piratepad_control
 	name = "cargo hold control terminal"
 	var/status_report = "Ready for delivery."
-	var/obj/machinery/piratepad/pad
+	var/datum/weakref/pad_ref
 	var/warmup_time = 100
 	var/sending = FALSE
 	var/points = 0
@@ -303,7 +303,7 @@
 /obj/machinery/computer/piratepad_control/multitool_act(mob/living/user, obj/item/multitool/I)
 	if (istype(I) && istype(I.buffer,/obj/machinery/piratepad))
 		to_chat(user, span_notice("You link [src] with [I.buffer] in [I] buffer."))
-		pad = I.buffer
+		pad_ref = WEAKREF(I.buffer)
 		return TRUE
 
 /obj/machinery/computer/piratepad_control/LateInitialize()
@@ -311,10 +311,11 @@
 	if(cargo_hold_id)
 		for(var/obj/machinery/piratepad/P in GLOB.machines)
 			if(P.cargo_hold_id == cargo_hold_id)
-				pad = P
+				pad_ref = WEAKREF(P)
 				return
 	else
-		pad = locate() in range(4,src)
+		var/obj/machinery/piratepad/pad = locate() in range(4, src)
+		pad_ref = WEAKREF(pad)
 
 /obj/machinery/computer/piratepad_control/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -325,7 +326,7 @@
 /obj/machinery/computer/piratepad_control/ui_data(mob/user)
 	var/list/data = list()
 	data["points"] = points
-	data["pad"] = pad ? TRUE : FALSE
+	data["pad"] = pad_ref?.resolve() ? TRUE : FALSE
 	data["sending"] = sending
 	data["status_report"] = status_report
 	return data
@@ -333,7 +334,7 @@
 /obj/machinery/computer/piratepad_control/ui_act(action, params)
 	if(..())
 		return
-	if(!pad)
+	if(!pad_ref?.resolve())
 		return
 
 	switch(action)
@@ -354,6 +355,7 @@
 	status_report = "Predicted value: "
 	var/value = 0
 	var/datum/export_report/ex = new
+	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
 	for(var/atom/movable/AM in get_turf(pad))
 		if(AM == pad)
 			continue
@@ -372,7 +374,7 @@
 		return
 
 	var/datum/export_report/ex = new
-
+	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
 	for(var/atom/movable/AM in get_turf(pad))
 		if(AM == pad)
 			continue
@@ -412,6 +414,7 @@
 		return
 	sending = TRUE
 	status_report = "Sending..."
+	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
 	pad.visible_message(span_notice("[pad] starts charging up."))
 	pad.icon_state = pad.warmup_state
 	sending_timer = addtimer(CALLBACK(src,.proc/send),warmup_time, TIMER_STOPPABLE)
@@ -421,6 +424,7 @@
 		return
 	sending = FALSE
 	status_report = "Ready for delivery."
+	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
 	pad.icon_state = pad.idle_state
 	deltimer(sending_timer)
 

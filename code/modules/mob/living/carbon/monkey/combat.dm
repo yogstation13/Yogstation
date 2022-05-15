@@ -369,7 +369,7 @@
 	mode = MONKEY_HUNT
 	target = L
 	if(L != src)
-		enemies[L] += MONKEY_HATRED_AMOUNT
+		enemies[WEAKREF(L)] += MONKEY_HATRED_AMOUNT
 
 	if(a_intent != INTENT_HARM)
 		battle_screech()

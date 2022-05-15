@@ -23,6 +23,17 @@
 /obj/item/assembly_holder/IsAssemblyHolder()
 	return TRUE
 
+/obj/item/assembly_holder/Destroy()
+	QDEL_NULL(a_left)
+	QDEL_NULL(a_right)
+	return ..()
+
+/obj/item/assembly_holder/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(gone == a_left)
+		a_left = null
+	else if(gone == a_right)
+		a_right = null
 
 /obj/item/assembly_holder/proc/assemble(obj/item/assembly/A, obj/item/assembly/A2, mob/user)
 	attach(A,user)

@@ -35,8 +35,7 @@
 
 /obj/item/gun/medbeam/proc/LoseTarget()
 	if(active)
-		qdel(current_beam)
-		current_beam = null
+		QDEL_NULL(current_beam)
 		active = 0
 		on_beam_release(current_target)
 	current_target = null
