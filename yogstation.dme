@@ -3220,7 +3220,6 @@
 #include "code\modules\tgui_panel\tgui_panel.dm"
 #include "code\modules\tooltip\tooltip.dm"
 #include "code\modules\unit_tests\_unit_tests.dm"
-#include "code\modules\unit_tests\create_and_destroy.dm"
 #include "code\modules\unit_tests\find_reference_sanity.dm"
 #include "code\modules\uplink\uplink_devices.dm"
 #include "code\modules\uplink\uplink_items.dm"
