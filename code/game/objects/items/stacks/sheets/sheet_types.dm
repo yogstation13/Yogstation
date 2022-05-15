@@ -371,6 +371,8 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cloth
+	is_fabric = TRUE
+	pull_effort = 2 SECONDS
 	loom_result = /obj/item/stack/sheet/silk
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
