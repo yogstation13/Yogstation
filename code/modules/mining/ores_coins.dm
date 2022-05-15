@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			if(det_timer)
 				deltimer(det_timer)
 			user.visible_message("The chain reaction was stopped... the ore's quality seems to have improved!", span_notice("You stopped the chain reaction... the ore's quality seems to have improved!"))
-			icon_state = "Gibtonite ore"
+			icon_state = "Gibtonite ore 3"
 			quality = GIBTONITE_QUALITY_HIGH
 			return
 		if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner) || I.tool_behaviour == TOOL_MULTITOOL)
