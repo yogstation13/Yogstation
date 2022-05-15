@@ -128,7 +128,6 @@
 					done_any = TRUE
 					cell.use(totransfer*coefficient)
 					preternis.charge = clamp(preternis.charge + (powertransfer*coefficient), PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
-					//H.adjustFireLoss(totransfer*coefficient)
 					H.apply_damage(totransfer*coefficient, BURN, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 					user.visible_message("Smoke rises off of [A]'s body!",span_notice("You smell something burning as [A] is charged by the [src]!"))
 					do_sparks(1, FALSE, A)
