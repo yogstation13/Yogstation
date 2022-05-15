@@ -8381,6 +8381,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"esp" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/service)
 "esr" = (
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -13300,6 +13307,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"gMP" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "gMU" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
@@ -21934,6 +21947,29 @@
 "lnE" = (
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"loA" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 1
+	},
+/obj/structure/table/glass,
+/obj/item/seeds/wheat,
+/obj/item/seeds/sugarcane,
+/obj/item/seeds/potato,
+/obj/item/seeds/apple,
+/obj/item/grown/corncob,
+/obj/item/reagent_containers/food/snacks/grown/carrot,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/pumpkin{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/snacks/grown/pumpkin{
+	pixel_y = 5
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "loU" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 6
@@ -23726,26 +23762,6 @@
 /obj/machinery/vending/wardrobe/chem_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"mic" = (
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 1
-	},
-/obj/structure/table/glass,
-/obj/item/seeds/wheat,
-/obj/item/seeds/sugarcane,
-/obj/item/seeds/potato,
-/obj/item/seeds/apple,
-/obj/item/grown/corncob,
-/obj/item/reagent_containers/food/snacks/grown/carrot,
-/obj/item/reagent_containers/food/snacks/grown/wheat,
-/obj/item/reagent_containers/food/snacks/grown/pumpkin{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/snacks/grown/pumpkin{
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "mir" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -24048,13 +24064,6 @@
 /obj/structure/closet,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"moa" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/service)
 "moe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -30348,6 +30357,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"pGP" = (
+/obj/machinery/griddle,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "pGX" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -30721,12 +30739,6 @@
 /obj/effect/turf_decal/trimline/brown/filled/corner,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"pRr" = (
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "pRL" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
@@ -84205,7 +84217,7 @@ nYO
 miR
 oqQ
 nYO
-mic
+loA
 vqe
 wrC
 wrC
@@ -85224,7 +85236,7 @@ bXa
 jAP
 qjL
 mQt
-moa
+esp
 lKR
 xzu
 nPb
@@ -86517,7 +86529,7 @@ lIQ
 rny
 gar
 jut
-pRr
+pGP
 gia
 aBg
 jYF
@@ -88322,7 +88334,7 @@ vKU
 mCt
 eZN
 mDn
-bfP
+gMP
 fbz
 vMr
 pns
