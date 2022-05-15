@@ -16,9 +16,23 @@
 
 //#define FIND_REF_NO_CHECK_TICK	//Sets world.loop_checks to false and prevents find references from sleeping
 
+///Used to find the sources of harddels, quite laggy, don't be surpised if it freezes your client for a good while
+//#define REFERENCE_TRACKING
+#ifdef REFERENCE_TRACKING
+
+///Run a lookup on things hard deleting by default.
+
+//#define GC_FAILURE_HARD_LOOKUP
+#ifdef GC_FAILURE_HARD_LOOKUP
+#define FIND_REF_NO_CHECK_TICK
+#endif //ifdef GC_FAILURE_HARD_LOOKUP
+
+//#define REFERENCE_TRACKING		//Enables extools-powered reference tracking system, letting you see what is
+									//referencing objects that refuse to hard delete
+#endif //ifdef REFERENCE_TRACKING
 
 //#define VISUALIZE_ACTIVE_TURFS	//Highlights atmos active turfs in green
-#endif
+#endif //ifdef TESTING
 
 //#define UNIT_TESTS			//Enables unit tests via TEST_RUN_PARAMETER
 
