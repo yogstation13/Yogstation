@@ -461,12 +461,17 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "Immortality"
 
 /obj/item/immortality_talisman/attack_self(mob/user)
-	if(cooldown < world.time)
-		SSblackbox.record_feedback("amount", "immortality_talisman_uses", 1)
-		cooldown = world.time + 600
-		new /obj/effect/immortality_talisman(get_turf(user), user)
+	if(isliving(user))
+		var/mob/living/L = user
+		if(cooldown < world.time)
+			SSblackbox.record_feedback("amount", "immortality_talisman_uses", 1)
+			cooldown = world.time + 600
+			L.apply_status_effect(STATUS_EFFECT_VOIDED)
+
+		else
+			to_chat(L, span_warning("[src] is not ready yet!"))
 	else
-		to_chat(user, span_warning("[src] is not ready yet!"))
+		to_chat(user, span_warning("Only the living can attain this power!"))
 
 /obj/effect/immortality_talisman
 	name = "hole in reality"
@@ -478,8 +483,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/effect/immortality_talisman/Initialize(mapload, mob/new_user)
 	. = ..()
-	if(new_user)
-		vanish(new_user)
 
 /obj/effect/immortality_talisman/proc/vanish(mob/user)
 	user.visible_message(span_danger("[user] [vanish_description], leaving a hole in [user.p_their()] place!"))
@@ -493,12 +496,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 	can_destroy = FALSE
 
-	addtimer(CALLBACK(src, .proc/unvanish, user), 10 SECONDS)
-
 /obj/effect/immortality_talisman/proc/unvanish(mob/user)
 	user.status_flags &= ~GODMODE
 	user.notransform = FALSE
-	user.forceMove(get_turf(src))
+	user.forceMove(get_turf(user))
 
 	user.visible_message(span_danger("[user] pops back into reality!"))
 	can_destroy = TRUE
