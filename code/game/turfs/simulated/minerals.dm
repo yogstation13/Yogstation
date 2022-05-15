@@ -742,7 +742,7 @@
 		add_overlay(activated_overlay)
 		desc = "An inactive gibtonite reserve. The ore can be extracted."
 		stage = GIBTONITE_STABLE
-		if(det_time < 0 && !forceperfect)
+		if(det_time < 0 && !force_perfect)
 			det_time = 0
 			visible_message(span_notice("The chain reaction was stopped! The gibtonite had [det_time] reactions left till the explosion!"))
 		if(force_perfect)
