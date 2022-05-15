@@ -697,7 +697,7 @@
 /turf/closed/mineral/gibtonite/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/t_scanner/adv_mining_scanner/goat_scanner))
 		user.visible_message(span_notice("[user] holds [I] to [src]..."), span_notice("[I] locates where to cut off the chain reaction and stops it."))
-		defuse(forceperfect = TRUE)
+		defuse(force_perfect = TRUE)
 	if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner) && stage == 1)
 		user.visible_message(span_notice("[user] holds [I] to [src]..."), span_notice("You use [I] to locate where to cut off the chain reaction and attempt to stop it..."))
 		defuse(force_perfect = FALSE)
