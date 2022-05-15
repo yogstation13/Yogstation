@@ -41,8 +41,8 @@
 	maxHealth = 500
 	health = 500
 	icon_state = "alienq"
-	melee_damage_lower = 40
-	melee_damage_upper = 40
+	melee_damage_lower = 35
+	melee_damage_upper = 50
 	speed = 2.5
 	/// The queen's small sprite action.
 	var/datum/action/small_sprite/smallsprite = new/datum/action/small_sprite/queen()
