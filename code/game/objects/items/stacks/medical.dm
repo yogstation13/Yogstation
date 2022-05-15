@@ -216,8 +216,8 @@
 	icon_state = "suture"
 	self_delay = 30
 	other_delay = 10
-	amount = 10
-	max_amount = 10
+	amount = 15
+	max_amount = 15
 	repeating = TRUE
 	heal_brute = 10
 	stop_bleeding = 0.6
@@ -234,8 +234,8 @@
 	name = "medicated suture"
 	icon_state = "suture_purp"
 	desc = "A suture infused with drugs that speed up wound healing of the treated laceration."
-	amount = 20
-	max_amount = 20
+	amount = 25
+	max_amount = 25
 	heal_brute = 15
 	stop_bleeding = 0.75
 	treatment_speed = 0.5
