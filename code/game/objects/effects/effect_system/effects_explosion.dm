@@ -4,9 +4,20 @@
 	opacity = 1
 	anchored = TRUE
 
-/obj/effect/particle_effect/expl_particles/Initialize() //yogs start: reverts harddel stuff so it doesn't break horribly
-	. = ..()
-	QDEL_IN(src, 15) //end of part 1
+/obj/effect/particle_effect/expl_particles/Initialize(mapload)
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/particle_effect/expl_particles/LateInitialize()
+	var/step_amt = pick(25;1,50;2,100;3,200;4)
+
+	var/datum/move_loop/loop = SSmove_manager.move(src, pick(GLOB.alldirs), 1, timeout = step_amt, priority = MOVEMENT_ABOVE_SPACE_PRIORITY)
+	RegisterSignal(loop, COMSIG_PARENT_QDELETING, .proc/end_particle)
+
+/obj/effect/particle_effect/expl_particles/proc/end_particle(datum/source)
+	SIGNAL_HANDLER
+	if(QDELETED(src))
+		return
 
 /datum/effect_system/expl_particles
 	number = 10
@@ -35,11 +46,8 @@
 
 /datum/effect_system/explosion
 
-/datum/effect_system/explosion/set_up(loca)
-	if(isturf(loca))
-		location = loca
-	else
-		location = get_turf(loca)
+/datum/effect_system/explosion/set_up(location)
+	src.location = get_turf(location)
 
 /datum/effect_system/explosion/start()
 	new/obj/effect/explosion( location )

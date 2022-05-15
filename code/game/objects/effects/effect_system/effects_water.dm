@@ -19,6 +19,17 @@
 		return 0
 	.=..()
 
+///Extinguisher snowflake
+/obj/effect/particle_effect/water/extinguisher
+
+/obj/effect/particle_effect/water/extinguisher/Move()
+	. = ..()
+	if(!reagents)
+		return
+	reagents.expose(get_turf(src))
+	for(var/atom/thing as anything in get_turf(src))
+		reagents.expose(thing)
+
 /obj/effect/particle_effect/water/Bump(atom/A)
 	if(reagents)
 		reagents.reaction(A)

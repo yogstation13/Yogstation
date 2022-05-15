@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/user_loc = user.loc
 
 	var/drifting = 0
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
+	if(SSmove_manager.processing_on(user, SSspacedrift))
 		drifting = 1
 
 	var/target_loc = target.loc
@@ -257,7 +257,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(uninterruptible)
 			continue
 
-		if(drifting && !user.inertia_dir)
+		if(drifting && !SSmove_manager.processing_on(user, SSspacedrift))
 			drifting = 0
 			user_loc = user.loc
 
@@ -296,7 +296,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/atom/Uloc = user.loc
 
 	var/drifting = 0
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
+	if(SSmove_manager.processing_on(user, SSspacedrift))
 		drifting = 1
 
 	var/holding = user.get_active_held_item()
@@ -319,7 +319,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		if (progress)
 			progbar.update(world.time - starttime)
 
-		if(drifting && !user.inertia_dir)
+		if(drifting && !SSmove_manager.processing_on(user, SSspacedrift))
 			drifting = 0
 			Uloc = user.loc
 
@@ -371,7 +371,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/user_loc = user.loc
 
 	var/drifting = 0
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
+	if(SSmove_manager.processing_on(user, SSspacedrift))
 		drifting = 1
 
 	var/list/originalloc = list()
@@ -401,7 +401,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			if(uninterruptible)
 				continue
 
-			if(drifting && !user.inertia_dir)
+			if(drifting && !SSmove_manager.processing_on(user, SSspacedrift))
 				drifting = 0
 				user_loc = user.loc
 

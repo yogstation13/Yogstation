@@ -165,7 +165,7 @@
 /datum/proximity_monitor/advanced/timestop/proc/freeze_mob(mob/living/L)
 	frozen_mobs += L
 	L.Stun(20, 1, 1)
-	walk(L, 0) //stops them mid pathing even if they're stunimmune
+	SSmove_manager.stop_looping(src) //stops them mid pathing even if they're stunimmune //This is really dumb
 	if(isanimal(L))
 		var/mob/living/simple_animal/S = L
 		S.toggle_ai(AI_OFF)

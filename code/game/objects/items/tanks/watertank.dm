@@ -216,7 +216,7 @@
 	var/obj/item/watertank/tank
 	var/nozzle_mode = 0
 	var/metal_synthesis_cooldown = 0
-	var/resin_cooldown = 0
+	COOLDOWN_DECLARE(resin_cooldown)
 
 /obj/item/extinguisher/mini/nozzle/Initialize()
 	. = ..()
@@ -267,21 +267,18 @@
 		if(R.total_volume < 100)
 			to_chat(user, span_warning("You need at least 100 units of water to use the resin launcher!"))
 			return
-		if(resin_cooldown)
+		if(!COOLDOWN_FINISHED(src, resin_cooldown))
 			to_chat(user, span_warning("Resin launcher is still recharging..."))
 			return
-		resin_cooldown = TRUE
+		COOLDOWN_START(src, resin_cooldown, 10 SECONDS)
 		R.remove_any(100)
-		var/obj/effect/resin_container/A = new (get_turf(src))
+		var/obj/effect/resin_container/resin = new (get_turf(src))
 		log_game("[key_name(user)] used Resin Launcher at [AREACOORD(user)].")
-		playsound(src,'sound/items/syringeproj.ogg',40,1)
-		for(var/a=0, a<5, a++)
-			step_towards(A, target)
-			sleep(2)
-		A.Smoke()
-		spawn(100)
-			if(src)
-				resin_cooldown = FALSE
+		playsound(src,'sound/items/syringeproj.ogg',40,TRUE)
+		var/delay = 2
+		var/datum/move_loop/loop = SSmove_manager.move_towards(resin, target, delay, timeout = delay * 5, priority = MOVEMENT_ABOVE_SPACE_PRIORITY)
+		RegisterSignal(loop, COMSIG_MOVELOOP_POSTPROCESS, .proc/resin_stop_check)
+		RegisterSignal(loop, COMSIG_PARENT_QDELETING, .proc/resin_landed)
 		return
 	if(nozzle_mode == RESIN_FOAM)
 		if(!Adj|| !isturf(target))
@@ -300,6 +297,20 @@
 			to_chat(user, span_warning("Resin foam mix is still being synthesized..."))
 			return
 
+/obj/item/extinguisher/mini/nozzle/proc/resin_stop_check(datum/move_loop/source, succeeded)
+	SIGNAL_HANDLER
+	if(succeeded)
+		return
+	resin_landed(source)
+	qdel(source)
+
+/obj/item/extinguisher/mini/nozzle/proc/resin_landed(datum/move_loop/source)
+	SIGNAL_HANDLER
+	if(!istype(source.moving, /obj/effect/resin_container) || QDELETED(source.moving))
+		return
+	var/obj/effect/resin_container/resin = source.moving
+	resin.Smoke()
+
 /obj/effect/resin_container
 	name = "resin container"
 	desc = "A compacted ball of expansive resin, used to repair the atmosphere in a room, or seal off breaches."
@@ -314,6 +325,9 @@
 	S.amount = 4
 	playsound(src,'sound/effects/bamf.ogg',100,1)
 	qdel(src)
+
+/obj/effect/resin_container/newtonian_move() // Please don't spacedrift thanks
+	return TRUE
 
 #undef EXTINGUISHER
 #undef RESIN_LAUNCHER
