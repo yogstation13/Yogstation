@@ -695,7 +695,7 @@
 	. = ..()
 
 /turf/closed/mineral/gibtonite/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/t_scanner/adv_mining_scanner/goat_scanner))
+	if(istype(I, /obj/item/t_scanner/adv_mining_scanner/goat_scanner) && stage == 1)
 		user.visible_message(span_notice("[user] holds [I] to [src]..."), span_notice("[I] locates where to cut off the chain reaction and stops it."))
 		defuse(force_perfect = TRUE)
 	if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner) && stage == 1)
@@ -747,7 +747,7 @@
 			visible_message(span_notice("The chain reaction was stopped! The gibtonite had [det_time] reactions left till the explosion!"))
 		if(force_perfect)
 			det_time = 0
-			visible_message(span_notice("The chain reaction was stopped! The scanner ensured the gibtonite is at its highest potency!"))
+			visible_message(span_notice("The chain reaction was stopped [det_time]! The scanner ensured the gibtonite is at its highest potency!"))
 
 /turf/closed/mineral/gibtonite/attempt_drill(mob/user, triggered_by_explosion = 0)
 	if(stage == GIBTONITE_UNSTRUCK && mineralAmt >= 1) //Gibtonite deposit is activated
