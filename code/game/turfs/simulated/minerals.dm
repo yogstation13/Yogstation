@@ -735,7 +735,7 @@
 			stage = GIBTONITE_DETONATE
 			explosion(bombturf,1,3,5, adminlog = notify_admins)
 
-/turf/closed/mineral/gibtonite/proc/defuse(forceperfect = FALSE)
+/turf/closed/mineral/gibtonite/proc/defuse(force_perfect = FALSE)
 	if(stage == GIBTONITE_ACTIVE)
 		cut_overlay(activated_overlay)
 		activated_overlay.icon_state = "rock_Gibtonite_inactive"
