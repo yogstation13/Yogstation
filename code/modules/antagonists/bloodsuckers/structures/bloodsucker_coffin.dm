@@ -9,7 +9,7 @@
 	if(!(/datum/crafting_recipe/vassalrack in owner?.learned_recipes))
 		owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
-		owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
+		//owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/staketrap)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/woodenducky)

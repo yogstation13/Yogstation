@@ -1081,18 +1081,18 @@
 		if(target.stat >= DEAD || user.a_intent == INTENT_HELP)
 			unbuckle_mob(target)
 			return
-		if(user.blood_volume >= 150)
-			switch(input("Do you wish to spend 150 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
-				if("Yes")
-					user.blood_volume -= 150
-					if(!do_mob(user, target, 60 SECONDS))
-						to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
-						return FALSE
-					remove_loyalties(target)
-					to_chat(user, span_notice("You deactivated [target]'s mindshield!"))
-					return
-		else
-			to_chat(user, span_danger("You don't have enough Blood to deactivate [target]'s mindshield."))
+		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+			if(user.blood_volume >= 150)
+				switch(input("Do you wish to spend 150 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
+					if("Yes")
+						user.blood_volume -= 150
+						if(!do_mob(user, target, 60 SECONDS))
+							to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
+							return FALSE
+						remove_loyalties(target)
+						to_chat(user, span_boldnotice("You deactivated [target]'s mindshield!"))
+			else
+				to_chat(user, span_danger("You don't have enough Blood to deactivate [target]'s mindshield."))
 			return
 	if(IS_VASSAL(user) || IS_BLOODSUCKER(user))
 		toggle()
@@ -1107,6 +1107,7 @@
 		return
 	/// Are they mindshielded or a bloodsucker/vassal?
 	if(!HAS_TRAIT(target, TRAIT_MINDSHIELD))
+		to_chat(user, span_warning("[target] doesn't have a mindshield for you to turn off!"))
 		return
 	/// Good to go - Buckle them!
 	if(do_mob(user, target, 5 SECONDS))
@@ -1138,6 +1139,7 @@
 	update_icon()
 
 /// Blood Throne - Allows Bloodsuckers to remotely speak with their Vassals. - Code (Mostly) stolen from comfy chairs (armrests) and chairs (layers)
+/* broken currently
 /obj/structure/bloodsucker/bloodthrone
 	name = "wicked throne"
 	desc = "Twisted metal shards jut from the arm rests. Very uncomfortable looking. It would take a masochistic sort to sit on this jagged piece of furniture."
@@ -1251,3 +1253,4 @@
 		to_chat(dead_mob, "[link] [rendered]")
 
 	speech_args[SPEECH_MESSAGE] = ""
+*/

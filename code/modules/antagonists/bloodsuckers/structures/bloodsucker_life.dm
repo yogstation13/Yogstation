@@ -171,6 +171,7 @@
 		if(my_clan == CLAN_LASOMBRA && ishuman(bloodsuckeruser))
 			var/mob/living/carbon/human/bloodsucker = bloodsuckeruser
 			bloodsucker.eye_color = "f00"
+			bloodsuckeruser.update_body()
 	bloodsuckeruser.update_sight()
 
 	// Step 3
@@ -397,9 +398,8 @@
 /// Gibs the Bloodsucker, roundremoving them.
 /datum/antagonist/bloodsucker/proc/FinalDeath()
 	FreeAllVassals()
-	var/dust_timer
 	// If we have no body, end here.
-	if(!owner.current || dust_timer)
+	if(!owner.current)
 		return
 
 	DisableAllPowers()
@@ -418,13 +418,13 @@
 			span_warning("[owner.current]'s skin crackles and dries, their skin and bones withering to dust. A hollow cry whips from what is now a sandy pile of remains."),
 			span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
 			span_hear("You hear a dry, crackling sound."))
-		dust_timer = addtimer(CALLBACK(owner.current, /mob/living.proc/dust), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
-		return
-	owner.current.visible_message(
-		span_warning("[owner.current]'s skin bursts forth in a spray of gore and detritus. A horrible cry echoes from what is now a wet pile of decaying meat."),
-		span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
-		span_hear("<span class='italics'>You hear a wet, bursting sound."))
-	owner.current.gib(TRUE, FALSE, FALSE)
+		addtimer(CALLBACK(owner.current, /mob/living.proc/dust), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
+	else
+		owner.current.visible_message(
+			span_warning("[owner.current]'s skin bursts forth in a spray of gore and detritus. A horrible cry echoes from what is now a wet pile of decaying meat."),
+			span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
+			span_hear("<span class='italics'>You hear a wet, bursting sound."))
+		owner.current.gib(TRUE, FALSE, FALSE)
 
 
 // Bloodsuckers moodlets //
