@@ -1,5 +1,14 @@
 //defines that give qdel hints. these can be given as a return in destory() or by calling
 
+#ifdef REFERENCE_TRACKING
+/** If REFERENCE_TRACKING is enabled, qdel will call this object's find_references() verb.
+  *
+  * Functionally identical to QDEL_HINT_QUEUE if GC_FAILURE_HARD_LOOKUP is not enabled in _compiler_options.dm.
+*/
+#define QDEL_HINT_FINDREFERENCE	5
+/// Behavior as QDEL_HINT_FINDREFERENCE, but only if the GC fails and a hard delete is forced.
+#define QDEL_HINT_IFFAIL_FINDREFERENCE 6
+#endif
 
 #define QDEL_HINT_QUEUE 		0 //qdel should queue the object for deletion.
 #define QDEL_HINT_LETMELIVE		1 //qdel should let the object live after calling destory.
