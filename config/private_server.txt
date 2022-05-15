@@ -72,10 +72,6 @@ BANAPPEALS https://forums.yogstation.net/form/2/select
 ## The default value assumes youtube-dl is in your system PATH
 INVOKE_YOUTUBEDL youtube-dl
 
-## Defines the ticklimit for subsystem initialization (In percents of a byond tick). Lower makes world start smoother. Higher makes it faster.
-##This is currently a testing optimized setting. A good value for production would be 98.
-TICK_LIMIT_MC_INIT 98
-
 ## Should SQL be enabled? Uncomment to enable
 SQL_ENABLED
 

@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(server_maint)
 	priority = FIRE_PRIORITY_SERVER_MAINT
 	init_order = INIT_ORDER_SERVER_MAINT
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
+	init_stage = INITSTAGE_EARLY
 	var/list/currentrun
 	var/cleanup_ticker = 0
 
