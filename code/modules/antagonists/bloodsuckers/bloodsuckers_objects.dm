@@ -347,7 +347,7 @@
 			<b>Favorite Vassal</b>: Their Favorite Vassal gains the ability to ventcrawl while naked and becomes disfigured. \
 			<b>Strength</b>: Ventcrawl.<br> \
 			<b>Weakness</b>: Can't disguise themselves, permanently pale, can easily be discovered by their DNA or Blood Level."
-		if( CLAN_TREMERE)
+		if(CLAN_TREMERE)
 			dat += "This Clan seems to hate entering the <i>Chapel</i>.<br> \
 			They are a secluded Clan, they are Vampires who've mastered the power of blood, and seek knowledge.<br> \
 			They appear to be focused more on their Blood Magic than their other Powers, getting stronger faster the more Vassals they have.<br> \
