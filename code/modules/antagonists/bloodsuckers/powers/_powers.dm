@@ -99,9 +99,6 @@
 	ActivatePower()
 	if(power_flags & BP_AM_SINGLEUSE)
 		RemoveAfterUse()
-		return TRUE
-	if(!(power_flags & BP_AM_TOGGLE) || !active)
-		StartCooldown() // Must come AFTER UpdateButtonIcon(), otherwise icon will revert!
 	return TRUE
 
 /datum/action/bloodsucker/proc/CheckCanPayCost()
@@ -166,6 +163,8 @@
 
 	// Wait for cooldown
 	COOLDOWN_START(src, bloodsucker_power_cooldown, this_cooldown)
+	//if(cooldown_overlay)
+		//QDEL_NULL(cooldown_overlay)
 	cooldown_overlay = start_cooldown(button,world.time + this_cooldown)
 	addtimer(CALLBACK(src, .proc/alpha_in), this_cooldown)
 
