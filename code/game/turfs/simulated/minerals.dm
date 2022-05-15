@@ -742,12 +742,13 @@
 		add_overlay(activated_overlay)
 		desc = "An inactive gibtonite reserve. The ore can be extracted."
 		stage = GIBTONITE_STABLE
-		if(det_time < 0 && !force_perfect)
-			det_time = 0
-			visible_message(span_notice("The chain reaction was stopped! The gibtonite had [det_time] reactions left till the explosion!"))
 		if(force_perfect)
 			det_time = 0
-			visible_message(span_notice("The chain reaction was stopped [det_time]! The scanner ensured the gibtonite is at its highest potency!"))
+			visible_message(span_notice("The chain reaction was stopped at its highest potency!"))
+			return
+		if(det_time < 0)
+			det_time = 0
+		visible_message(span_notice("The chain reaction was stopped! The gibtonite had [det_time] reactions left till the explosion!"))
 
 /turf/closed/mineral/gibtonite/attempt_drill(mob/user, triggered_by_explosion = 0)
 	if(stage == GIBTONITE_UNSTRUCK && mineralAmt >= 1) //Gibtonite deposit is activated
