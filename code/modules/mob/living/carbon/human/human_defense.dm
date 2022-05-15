@@ -288,7 +288,7 @@
 		if(M.a_intent == INTENT_HARM)
 			if (w_uniform)
 				w_uniform.add_fingerprint(M)
-			var/damage = prob(90) ? rand(melee_damage_lower,melee_damage_upper) : 0
+			var/damage = prob(90) ? rand(M.melee_damage_lower,M.melee_damage_upper) : 0
 			if(!damage)
 				playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
 				visible_message(span_danger("[M] has lunged at [src]!"), \
