@@ -407,7 +407,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				iteration++
 			error_level++
 			current_ticklimit = TICK_LIMIT_RUNNING
-			sleep(10)
+			sleep((1 SECONDS) * error_level)
 			continue
 
 		if (queue_head)
@@ -419,9 +419,10 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 					iteration++
 				error_level++
 				current_ticklimit = TICK_LIMIT_RUNNING
-				sleep(10)
+				sleep((1 SECONDS) * error_level)
 				continue
-		error_level--
+		if (error_level > 0)
+			error_level--
 		if (!queue_head) //reset the counts if the queue is empty, in the off chance they get out of sync
 			queue_priority_count = 0
 			queue_priority_count_bg = 0
@@ -500,19 +501,33 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			if (!(queue_node_flags & SS_TICKER) && skip_ticks)
 				queue_node = queue_node.queue_next
 				continue
+/// REEEEE
+			if ((queue_node_flags & SS_BACKGROUND))
+				if (!bg_calc)
+					current_tick_budget = queue_priority_count_bg
+					bg_calc = TRUE
+				else
+					//error state, do sane fallback behavior
+					if (. == 0)
+						log_world("MC: Queue logic failure, non-background subsystem queued to run after a background subsystem: [queue_node] queue_prev:[queue_node.queue_prev]")
+					. = -1
+					current_tick_budget = queue_priority_count //this won't even be right, but is the closet we have.
+					bg_calc = FALSE
 
-			if (!bg_calc && (queue_node_flags & SS_BACKGROUND))
-				current_tick_budget = queue_priority_count_bg
-				bg_calc = TRUE
-
-
+///REEEEE
 			tick_remaining = TICK_LIMIT_RUNNING - TICK_USAGE
 
 			if (current_tick_budget > 0 && queue_node_priority > 0)
 				//Give the subsystem a precentage of the remaining tick based on the remaning priority
 				tick_precentage = tick_remaining * (queue_node_priority / current_tick_budget)
 			else
-				tick_precentage = tick_remaining
+				//error state
+				if (. == 0)
+					log_world("MC: tick_budget sync error. [json_encode(list(current_tick_budget, queue_priority_count, queue_priority_count_bg, bg_calc, queue_node, queue_node_priority))]")
+				. = -1
+				tick_precentage = tick_remaining //just because we lost track of priority calculations doesn't mean we can't try to finish off the run, if the error state persists, we don't want to stop ticks from happening
+			
+			
 			tick_precentage = max(tick_precentage*0.5, tick_precentage-queue_node.tick_overrun)
 
 			current_ticklimit = round(TICK_USAGE + tick_precentage)
@@ -554,7 +569,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 			queue_node = queue_node.queue_next
 
-	. = 1
+	if (. == 0)
+		. = 1
 
 //resets the queue, and all subsystems, while filtering out the subsystem lists
 // called if any mc's queue procs runtime or exit improperly.
