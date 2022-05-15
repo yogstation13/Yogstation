@@ -745,7 +745,7 @@
 		if(det_time < 0 && !forceperfect)
 			det_time = 0
 			visible_message(span_notice("The chain reaction was stopped! The gibtonite had [det_time] reactions left till the explosion!"))
-		if(forceperfect)
+		if(force_perfect)
 			det_time = 0
 			visible_message(span_notice("The chain reaction was stopped! The scanner ensured the gibtonite is at its highest potency!"))
 
