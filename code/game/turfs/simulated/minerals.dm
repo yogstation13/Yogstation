@@ -22,7 +22,6 @@
 	var/scan_state = "" //Holder for the image we display when we're pinged by a mining scanner
 	var/defer_change = FALSE
 	var/hardness = 1 //how hard the material is, we'll have to have more powerful stuff if we want to blast harder materials.
-	var/forceperfect = FALSE
 	
 /turf/closed/mineral/Initialize()
 	if (!canSmoothWith)
