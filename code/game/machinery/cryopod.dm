@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 
 /obj/machinery/computer/cryopod/Destroy()
 	GLOB.cryopod_computers -= src
-	..()
+	return ..()
 
 /obj/machinery/computer/cryopod/attack_ai()
 	attack_hand()

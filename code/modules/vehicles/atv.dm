@@ -38,25 +38,28 @@
 	. = ..()
 	turret = new(loc)
 	turret.base = src
-
 /obj/vehicle/ridden/atv/turret/Moved()
 	. = ..()
-	if(turret)
-		turret.forceMove(get_turf(src))
-		switch(dir)
-			if(NORTH)
-				turret.pixel_x = 0
-				turret.pixel_y = 4
-				turret.layer = ABOVE_MOB_LAYER
-			if(EAST)
-				turret.pixel_x = -12
-				turret.pixel_y = 4
-				turret.layer = OBJ_LAYER
-			if(SOUTH)
-				turret.pixel_x = 0
-				turret.pixel_y = 4
-				turret.layer = OBJ_LAYER
-			if(WEST)
-				turret.pixel_x = 12
-				turret.pixel_y = 4
-				turret.layer = OBJ_LAYER
+	if(!turret)
+		return
+	var/turf/our_turf = get_turf(src)
+	if(!our_turf)
+		return
+	turret.forceMove(our_turf)
+	switch(dir)
+		if(NORTH)
+			turret.pixel_x = 0
+			turret.pixel_y = 4
+			turret.layer = ABOVE_MOB_LAYER
+		if(EAST)
+			turret.pixel_x = -12
+			turret.pixel_y = 4
+			turret.layer = OBJ_LAYER
+		if(SOUTH)
+			turret.pixel_x = 0
+			turret.pixel_y = 4
+			turret.layer = OBJ_LAYER
+		if(WEST)
+			turret.pixel_x = 12
+			turret.pixel_y = 4
+			turret.layer = OBJ_LAYER

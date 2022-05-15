@@ -28,6 +28,8 @@
 
 	var/turf/T = loc
 	hide(T.intact)
+	if(!codes)
+		return
 	if(codes["patrol"])
 		if(!GLOB.navbeacons["[z]"])
 			GLOB.navbeacons["[z]"] = list()

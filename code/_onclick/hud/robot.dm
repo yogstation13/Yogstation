@@ -289,6 +289,12 @@
 	else
 		icon_state = "lamp_off"
 
+/obj/screen/robot/lamp/Destroy()
+	if(robot)
+		robot.lampButton = null
+		robot = null
+	return ..()
+
 /obj/screen/robot/modPC
 	name = "Modular Interface"
 	icon_state = "template"
@@ -299,3 +305,9 @@
 	if(.)
 		return
 	robot.modularInterface?.interact(robot)
+
+/obj/screen/robot/modPC/Destroy()
+	if(robot)
+		robot.interfaceButton = null
+		robot = null
+	return ..()

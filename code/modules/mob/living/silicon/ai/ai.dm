@@ -126,9 +126,11 @@
 
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
-	. = ..()
+	
 	if(!target_ai) //If there is no player/brain inside.
 		return INITIALIZE_HINT_QDEL //Delete AI.
+	
+	. = ..()
 
 	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
 		relocate(TRUE)

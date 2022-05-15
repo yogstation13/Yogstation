@@ -17,8 +17,12 @@
 	var/obj/machinery/field/generator/FG2 = null
 
 /obj/machinery/field/containment/Destroy()
-	FG1.fields -= src
-	FG2.fields -= src
+	if(FG1)
+		FG1.fields -= src
+		FG1 = null
+	if(FG2)
+		FG2.fields -= src
+		FG2 = null
 	return ..()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
