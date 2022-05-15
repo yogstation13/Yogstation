@@ -268,7 +268,7 @@ SUBSYSTEM_DEF(garbage)
 		if (overrun_limit && I.hard_deletes_over_threshold >= overrun_limit)
 			I.qdel_flags |= QDEL_ITEM_SUSPENDED_FOR_LAG
 
-/datum/controller/subsystem/garbage/
+/datum/controller/subsystem/garbage/Recover()
 	InitQueues() //We first need to create the queues before recovering data
 	if (istype(SSgarbage.queues))
 		for (var/i in 1 to SSgarbage.queues.len)
