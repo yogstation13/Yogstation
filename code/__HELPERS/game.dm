@@ -731,6 +731,8 @@
 /proc/power_fail(duration_min, duration_max)
 	var/list/data_core_areas = list()
 	for(var/obj/machinery/ai/data_core/core as anything in GLOB.data_cores)
+		if(!core.valid_data_core())
+			continue
 		if(!isarea(core.loc))
 			continue
 		var/area/A = core.loc
