@@ -1,0 +1,6 @@
+author: " ToasterBiome, tatax"
+delete-after: true 
+changes: 
+  - tweak: "Add Vampire to Track Monster"
+  - bugfix: "Stops double cooldown overlay bug on Track Monster"
+  - bugfix: "Fixes incorrect Track Monster cooldown"

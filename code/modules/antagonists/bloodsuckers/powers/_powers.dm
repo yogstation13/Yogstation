@@ -99,9 +99,6 @@
 	ActivatePower()
 	if(power_flags & BP_AM_SINGLEUSE)
 		RemoveAfterUse()
-		return TRUE
-	if(!(power_flags & BP_AM_TOGGLE) || !active)
-		StartCooldown() // Must come AFTER UpdateButtonIcon(), otherwise icon will revert!
 	return TRUE
 
 /datum/action/bloodsucker/proc/CheckCanPayCost()
