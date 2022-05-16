@@ -4250,6 +4250,18 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"aiR" = (
+/obj/machinery/light/small,
+/obj/machinery/camera{
+	c_tag = "Telecomms - Control Room";
+	dir = 1;
+	network = list("ss13","tcomms")
+	},
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "aiT" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Paramedic Staging Area Maintenance";
@@ -55779,6 +55791,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"cxi" = (
+/obj/machinery/status_display/ai{
+	pixel_y = 31
+	},
+/obj/machinery/computer/message_monitor,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "cxm" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -59300,6 +59319,14 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/science/research)
+"cKN" = (
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/obj/structure/table/wood,
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "cKP" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/solars/starboard/aft)
@@ -65368,11 +65395,6 @@
 /obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
 /area/maintenance/starboard)
-"esH" = (
-/obj/machinery/light/small,
-/obj/machinery/rnd/production/circuit_imprinter/department/netmin,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "euk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -66868,6 +66890,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/cryopods)
+"fWZ" = (
+/obj/machinery/announcement_system,
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/tcommsat/server)
 "fXh" = (
 /obj/structure/chair,
 /obj/item/cigbutt,
@@ -68832,18 +68858,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"igD" = (
-/obj/machinery/light/small,
-/obj/machinery/camera{
-	c_tag = "Telecomms - Control Room";
-	dir = 1;
-	network = list("ss13","tcomms")
-	},
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "igM" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "N2 to Pure"
@@ -68964,14 +68978,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"iqW" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/rack_creator,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "irs" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/hor";
@@ -69496,6 +69502,20 @@
 /obj/item/clothing/mask/gas,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"iVt" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/turretid{
+	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
+	name = "Antechamber Turret Control";
+	pixel_y = 30;
+	req_access = null;
+	req_one_access_txt = "61;65"
+	},
+/obj/machinery/modular_computer/console/preset/tcomms,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "iWl" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -70174,10 +70194,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"jHh" = (
-/obj/machinery/announcement_system,
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/tcommsat/server)
 "jHL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -72558,6 +72574,11 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
+"lWe" = (
+/obj/machinery/light/small,
+/obj/machinery/rnd/production/circuit_imprinter/department/netmin,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "lWf" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/cable/yellow{
@@ -72673,6 +72694,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"mdL" = (
+/obj/machinery/computer/ai_overclocking{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "meu" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -73146,14 +73173,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/atmos_distro)
-"mHh" = (
-/obj/machinery/microwave{
-	pixel_y = 4
-	},
-/obj/structure/table/wood,
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "mHl" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -73802,6 +73821,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"nyH" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/rack_creator,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "nzY" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -74348,6 +74375,12 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"oay" = (
+/obj/machinery/computer/ai_control_console{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "obX" = (
 /obj/docking_port/stationary{
 	area_type = /area/construction/mining/aux_base;
@@ -75180,6 +75213,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"oZR" = (
+/obj/structure/frame/machine{
+	anchored = 1;
+	state = 2
+	},
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/tcommsat/server)
 "pai" = (
 /obj/machinery/camera{
 	c_tag = "Research Director's Office";
@@ -77854,13 +77894,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"rGG" = (
-/obj/machinery/status_display/ai{
-	pixel_y = 31
-	},
-/obj/machinery/computer/message_monitor,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "rHS" = (
 /obj/machinery/camera{
 	c_tag = "Brig Physicians Office";
@@ -79956,13 +79989,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"tZA" = (
-/obj/structure/frame/machine{
-	anchored = 1;
-	state = 2
-	},
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/tcommsat/server)
 "uaz" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/atmospherics/miner/nitrogen,
@@ -82729,12 +82755,6 @@
 	dir = 1
 	},
 /area/hallway/primary/starboard)
-"wHl" = (
-/obj/machinery/computer/ai_overclocking{
-	dir = 4
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "wHp" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Brig Maintenance";
@@ -83107,6 +83127,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"xbl" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/machinery/computer/ai_server_console,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "xbB" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plating,
@@ -83553,12 +83580,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"xAH" = (
-/obj/machinery/computer/ai_control_console{
-	dir = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "xAK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -83935,20 +83956,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"ycC" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/obj/machinery/turretid{
-	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
-	name = "Antechamber Turret Control";
-	pixel_y = 30;
-	req_access = null;
-	req_one_access_txt = "61;65"
-	},
-/obj/machinery/modular_computer/console/preset/tcomms,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "ycD" = (
 /obj/item/radio/intercom{
 	pixel_x = 29
@@ -84104,13 +84111,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
-"ymm" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/obj/machinery/computer/ai_server_console,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 
 (1,1,1) = {"
 aaa
@@ -138207,9 +138207,9 @@ bok
 rYW
 btL
 qdY
-wHl
-iqW
-mHh
+mdL
+nyH
+cKN
 bCD
 bEg
 bGd
@@ -138466,10 +138466,10 @@ btL
 qlO
 bfH
 boa
-esH
+lWe
 bCD
 bEh
-jHh
+fWZ
 vuI
 bKL
 bNY
@@ -138720,7 +138720,7 @@ aXG
 boS
 bbA
 btL
-ymm
+xbl
 bxq
 bxq
 bAY
@@ -139234,10 +139234,10 @@ aXI
 dFq
 bbI
 btL
-ycC
+iVt
 bxq
 bgM
-xAH
+oay
 bCE
 bCE
 bCE
@@ -139491,13 +139491,13 @@ aXJ
 bpA
 beZ
 btL
-rGG
+cxi
 bxr
 bgN
-igD
+aiR
 bCD
 bEj
-tZA
+oZR
 vuI
 bKP
 bOb

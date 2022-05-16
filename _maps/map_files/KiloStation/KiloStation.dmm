@@ -88685,17 +88685,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/bridge)
-"iiQ" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "ijA" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -89788,12 +89777,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"jae" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "jan" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -90523,21 +90506,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"jPL" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/space_heater,
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "jQv" = (
 /obj/structure/fans/tiny/invisible,
 /obj/docking_port/stationary{
@@ -92873,6 +92841,30 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet/restrooms)
+"lZy" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/announcement_system,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
+"lZz" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/computer/ai_overclocking,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "lZB" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -94342,6 +94334,13 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/aft)
+"nqL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/rack_creator,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "nqP" = (
 /obj/structure/sign/warning/radiation,
 /turf/closed/wall,
@@ -102280,15 +102279,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
-"vLQ" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/announcement_system,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "vLS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line,
@@ -103739,6 +103729,18 @@
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/circuit/green/telecomms,
 /area/tcommsat/server)
+"xpJ" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/rnd/production/circuit_imprinter/department/netmin,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "xpS" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = -30
@@ -134795,7 +134797,7 @@ uHA
 jpx
 iST
 sIM
-iiQ
+xpJ
 cfM
 aRv
 aOQ
@@ -135052,7 +135054,7 @@ pJL
 gul
 gul
 faW
-jae
+nqL
 cfM
 aRw
 aOS
@@ -135307,7 +135309,7 @@ fNP
 iZu
 skc
 cgu
-vLQ
+lZz
 lhw
 lWm
 cfM
@@ -135564,7 +135566,7 @@ hRS
 ltJ
 fUZ
 cgu
-jPL
+lZy
 iBL
 kDT
 cfM
