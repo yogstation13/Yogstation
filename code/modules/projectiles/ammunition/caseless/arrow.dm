@@ -4,7 +4,7 @@
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow
 	caliber = "arrow"
 	icon_state = "arrow"
-	throwforce = 3 //good luck hitting someone with the pointy end of the arrow
+	throwforce = 5 //good luck hitting someone with the pointy end of the arrow
 	throw_speed = 3
 	sharpness = SHARP_POINTY
 	embedding = list("embed_chance" = 25, "embedded_fall_chance" = 0)
@@ -33,6 +33,20 @@
 	icon_state = "bronzearrow"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bronze
 	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
+
+/obj/item/ammo_casing/caseless/arrow/glass
+	name = "glass arrow"
+	desc = "An arrow made from a metal rod, wrapped in wires, and tipped with glass."
+	icon_state = "glassarrow"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/glass
+	variance = 10
+
+/obj/item/ammo_casing/caseless/arrow/glass/plasma
+	name = "plasma glass arrow"
+	desc = "An arrow made from a metal rod, wrapped in wires, and tipped with plasma glass."
+	icon_state = "plasmaglassarrow"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/glass/plasma
+	variance = 10
 
 /obj/item/ammo_casing/caseless/arrow/bola
 	name = "bola arrow"
@@ -125,6 +139,7 @@
 	icon_state = "arrow_disable"
 	overlay_state = "disable"
 	projectile_type = /obj/item/projectile/energy/arrow/disabler
+	harmful = TRUE
 /*
 /obj/item/ammo_casing/caseless/arrow/energy/pulse
 	name = "pulse bolt"

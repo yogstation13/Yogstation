@@ -79,6 +79,13 @@
 	name = "magic crystal shard"
 	desc = "A small enchanted shard which allows magical weapons to fire."
 
+/obj/item/firing_pin/clockie
+	name = "clockwork crystal shard"
+	desc = "A small enchanted shard which allows followers of Ratvar to use their weapons."
+
+///can the pin be used by whoever is firing its gun
+/obj/item/firing_pin/clockie/pin_auth(mob/living/user)
+	return is_clockcult(user)
 
 // Test pin, works only near firing range.
 /obj/item/firing_pin/test_range

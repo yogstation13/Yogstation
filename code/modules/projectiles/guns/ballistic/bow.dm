@@ -9,15 +9,17 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/bow
 	fire_sound = 'sound/weapons/sound_weapons_bowfire.ogg'
 	slot_flags = ITEM_SLOT_BACK
-	item_flags = NEEDS_PERMIT
+	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
 	casing_ejector = FALSE
 	internal_magazine = TRUE
 	pin = null
 	no_pin_required = TRUE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //so ashwalkers can use it
 
-	var/draw_time = 1 SECONDS
-	var/draw_slowdown = 1 SECONDS
+	var/drawing = FALSE
+	var/draw_time = 0.5 SECONDS
+	var/draw_slowdown = 1.5
+	var/draw_sound = 'sound/weapons/sound_weapons_bowdraw.ogg'
 	var/mutable_appearance/arrow_overlay
 
 /obj/item/gun/ballistic/bow/shoot_with_empty_chamber()
@@ -25,6 +27,22 @@
 
 /obj/item/gun/ballistic/bow/chamber_round()
 	chambered = magazine.get_round(1)
+	update_icon()
+
+/obj/item/gun/ballistic/bow/dropped()
+	. = ..()
+	if(!QDELING(src))
+		addtimer(CALLBACK(src, .proc/release_draw_if_not_held))
+
+/obj/item/gun/ballistic/bow/proc/release_draw_if_not_held()
+	if(!ismob(loc))
+		release_draw()
+
+/obj/item/gun/ballistic/bow/proc/release_draw()
+	var/old_chambered = chambered
+	chambered = null
+	magazine.give_round(old_chambered)
+	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/process_chamber()
@@ -40,11 +58,16 @@
 		chambered = null
 		to_chat(user, span_notice("You gently release the bowstring, removing the arrow."))
 	else if(get_ammo())
-		var/obj/item/I = user.get_active_held_item()
-		if (do_mob(user, I, draw_time))
-			to_chat(user, span_notice("You draw back the bowstring."))
-			playsound(src, 'sound/weapons/sound_weapons_bowdraw.ogg', 75, 0) //gets way too high pitched if the freq varies
-			chamber_round()
+		drawing = TRUE
+		update_slowdown()
+		if (!do_after(user, draw_time, TRUE, src, stayStill = FALSE))
+			drawing = FALSE
+			update_slowdown()
+			return
+		drawing = FALSE
+		to_chat(user, span_notice("You draw back the bowstring."))
+		playsound(src, draw_sound, 75, 0, falloff = 3) //gets way too high pitched if the freq varies
+		chamber_round()
 	update_slowdown()
 	update_icon()
 
@@ -63,7 +86,7 @@
 		add_overlay(arrow_overlay, TRUE)
 
 /obj/item/gun/ballistic/bow/proc/update_slowdown()
-	if(chambered)
+	if(chambered || drawing)
 		slowdown = draw_slowdown
 	else
 		slowdown = initial(slowdown)
@@ -84,12 +107,23 @@
 	icon_state = "pipebow"
 	item_state = "pipebow"
 	force = 7
+	draw_time = 1 SECONDS
+
+/obj/item/gun/ballistic/bow/maint
+	name = "Makeshift Bow"
+	desc = "A crude projectile weapon made from cables, pipe, tape and lots of bending."
+	icon_state = "makeshift_bow"
+	item_state = "makeshift_bow"
+	force = 7
+	spread = 10
+	draw_time = 2 SECONDS
 
 /obj/item/gun/ballistic/bow/energy
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
 	icon_state = "bow_hardlight"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy
+	no_pin_required = FALSE
 	var/recharge_time = 1.5 SECONDS
 
 /obj/item/gun/ballistic/bow/energy/update_icon()
@@ -103,8 +137,9 @@
 	. = ..()
 	if(recharge_time)
 		TIMER_COOLDOWN_START(src, "arrow_recharge", recharge_time)
+		addtimer(CALLBACK(src, .proc/end_cooldown), recharge_time)
 
-/obj/item/gun/ballistic/bow/energy/proc/end_cooldown(source, index)
+/obj/item/gun/ballistic/bow/energy/proc/end_cooldown()
 	playsound(src, 'sound/effects/sparks4.ogg', 25, 0)
 
 /obj/item/gun/ballistic/bow/energy/attack_self(mob/living/user)
@@ -169,7 +204,7 @@
 		var/obj/item/ammo_casing/caseless/arrow/energy/arrow = new arrow_type()
 		choice_list[arrow] = image(arrow)
 	var/obj/item/ammo_casing/caseless/arrow/energy/choice = show_radial_menu(user, user, choice_list, tooltips = TRUE)
-	if(!choice || (choice.type in M.selectable_types))
+	if(!choice || !(choice.type in M.selectable_types))
 		return
 	M.ammo_type = choice.type
 	to_chat(user, span_notice("You switch \the [src]'s firing mode to \"[choice]\"."))
@@ -183,6 +218,7 @@
 	name = "Advanced Hardlight Bow"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/advanced
 	recharge_time = 0
+	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/bow/energy/syndicate
 	name = "Syndicate Hardlight Bow"
@@ -193,9 +229,13 @@
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 5
+	pin = /obj/item/firing_pin/implant/pindicate
+	fire_sound = null
+	draw_sound = null
 
 /obj/item/gun/ballistic/bow/energy/clockwork
 	name = "Brass Bow"
 	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and frabricates arrows by itself."
 	icon_state = "bow_clockwork"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/clockcult
+	pin = /obj/item/firing_pin/clockie

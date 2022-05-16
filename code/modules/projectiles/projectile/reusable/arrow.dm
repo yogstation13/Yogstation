@@ -11,9 +11,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
-		message_admins("[embed_chance * (100 - embede.checkarmor(part, flag))]")
-		if(prob(embed_chance * (100 - embede.checkarmor(part, flag))))
-			embede.embed_object(dropping, part, TRUE)
+		if(prob(embed_chance * (100 - embede.checkarmor(part, flag))) && embede.embed_object(dropping, part, TRUE))
 			dropped = TRUE
 	
 	// Icky code, but i dont want to create a new obj, delete it, then make a new one
@@ -44,6 +42,21 @@
 	embed_chance = 0.3
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bronze
 
+/obj/item/projectile/bullet/reusable/arrow/glass
+	name = "Glass arrow"
+	desc = "Glass tipped arrow"
+	damage = 15
+	embed_chance = 0.3
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass
+
+/obj/item/projectile/bullet/reusable/arrow/glass/plasma
+	name = "Plasma Glass arrow"
+	desc = "Plasma Glass tipped arrow"
+	damage = 10
+	armour_penetration = 10
+	embed_chance = 0.3
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass/plasma
+
 /obj/item/projectile/bullet/reusable/arrow/bola
 	name = "Bola arrow"
 	desc = "An arrow with a bola wrapped around it"
@@ -72,8 +85,6 @@
 /obj/item/projectile/bullet/reusable/arrow/flaming
 	name = "Flaming arrow"
 	desc = "A burning arrow"
-	damage = 20
-	armour_penetration = 10
 
 /obj/item/projectile/bullet/reusable/arrow/flaming/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -94,7 +105,6 @@
 	light_color = LIGHT_COLOR_BLUE
 	damage = 40
 	damage_type = STAMINA
-	nodamage = TRUE
 
 /*
 /obj/item/projectile/energy/arrow/pulse
@@ -119,7 +129,7 @@
 	light_color = LIGHT_COLOR_GREEN
 	damage = 20
 	irradiate = 300
-	range = 15
+	range = 20
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
 
 /obj/item/projectile/energy/arrow/clockbolt

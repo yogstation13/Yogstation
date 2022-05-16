@@ -179,10 +179,8 @@
 
 /mob/living/carbon/human/proc/embed_object(obj/item/embedding, part, deal_damage, silent, forced)
 	if(!(forced || (can_embed(embedding) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))))
-		message_admins("A")
 		return FALSE
 	var/obj/item/bodypart/body_part = part
-	message_admins("[part]")
 	// In case its a zone
 	if(!istype(body_part) && body_part)
 		body_part = get_bodypart(body_part)
@@ -191,10 +189,7 @@
 		body_part = pick(bodyparts)
 		// Thats probably not good
 		if(!istype(body_part))
-			message_admins("B")
 			return FALSE
-
-	message_admins("[body_part]")
 	
 	body_part.embedded_objects |= embedding
 	embedding.add_mob_blood(src)//it embedded itself in you, of course it's bloody!

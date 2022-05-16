@@ -473,6 +473,7 @@
 #include "code\datums\components\crafting\makeshift.dm"
 #include "code\datums\components\crafting\recipes.dm"
 #include "code\datums\components\crafting\tailoring.dm"
+#include "code\datums\components\crafting\weapons.dm"
 #include "code\datums\components\decals\blood.dm"
 #include "code\datums\components\fantasy\_fantasy.dm"
 #include "code\datums\components\fantasy\affix.dm"

@@ -195,6 +195,25 @@
 	desc = "Calls a Ratvarian spear into your hands to fight your enemies."
 	weapon_type = /obj/item/clockwork/weapon/ratvarian_spear
 
+//Judicial Visor: Creates a judicial visor, which can smite an area.
+/datum/clockwork_scripture/create_object/brass_bow
+	descname = "Self Recharging Ranged Weapon"
+	name = "Brass Bow"
+	desc = "Creates a bow capable of firing redlight arrows, doing moderate damage but recharges after use. The bow will recharge after 1 1/2 seconds."
+	invocations = list("Grant me armaments...", "...from the forge of Armorer!") // Temp text
+	channel_time = 10
+	power_cost = 400
+	whispered = TRUE
+	object_path = /obj/item/gun/ballistic/bow/energy/clockwork
+	creator_message = span_brass("You form a Brass Bow, which is capable of firing redlight arrows.")
+	usage_tip = "The bow will recharge after 1 1/2 seconds."
+	tier = SCRIPTURE_SCRIPT
+	space_allowed = TRUE
+	primary_component = BELLIGERENT_EYE
+	sort_priority = 6
+	quickbind = TRUE
+	quickbind_desc = "Creates a Judicial Visor, which can smite an area, applying Belligerent and briefly stunning."
+
 
 //Spatial Gateway: Allows the invoker to teleport themselves and any nearby allies to a conscious servant or clockwork obelisk.
 /datum/clockwork_scripture/spatial_gateway
@@ -210,7 +229,7 @@
 	usage_tip = "This gateway is strictly one-way and will only allow things through the invoker's portal."
 	tier = SCRIPTURE_SCRIPT
 	primary_component = GEIS_CAPACITOR
-	sort_priority = 6
+	sort_priority = 7
 	quickbind = TRUE
 	quickbind_desc = "Allows you to create a one-way Spatial Gateway to a living Servant or Clockwork Obelisk."
 

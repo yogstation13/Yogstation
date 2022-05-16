@@ -566,6 +566,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 10
 
+/datum/uplink_item/dangerous/hardlightbow
+	name = "Hardlight Bow"
+	desc = "A modern bow that can fabricate hardlight arrows, designed for silent takedowns of targets."
+	item = /obj/item/gun/ballistic/bow/energy/syndicate
+	cost = 12
+	surplus = 25
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
+
 // Stealthy Weapons
 /datum/uplink_item/stealthy_weapons
 	category = "Stealthy Weapons"

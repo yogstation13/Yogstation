@@ -75,6 +75,31 @@
 	category = CAT_APPAREL
 	subcategory = CAT_CLOTHING
 
+/datum/crafting_recipe/lizardhat
+	name = "Lizard Cloche Hat"
+	result = /obj/item/clothing/head/lizard
+	time = 1 SECONDS
+	reqs = list(/obj/item/organ/tail/lizard = 1)
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
+
+/datum/crafting_recipe/lizardhat_alternate
+	name = "Lizard Cloche Hat"
+	result = /obj/item/clothing/head/lizard
+	time = 1 SECONDS
+	reqs = list(/obj/item/stack/sheet/animalhide/lizard = 1)
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
+
+/datum/crafting_recipe/kittyears
+	name = "Kitty Ears"
+	result = /obj/item/clothing/head/kitty/genuine
+	time = 1 SECONDS
+	reqs = list(/obj/item/organ/tail/cat = 1,
+				/obj/item/organ/ears/cat = 1)
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
+
 /datum/crafting_recipe/footwrapsgoliath
 	name = "Goliath Hide Footwraps"
 	result = /obj/effect/spawner/lootdrop/lizardboots

@@ -634,13 +634,10 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 15
 	STR.display_numerical_stacking = TRUE
-	STR.can_hold = typecacheof(list(
-		/obj/item/ammo_casing/caseless/arrow/wood,
-		/obj/item/ammo_casing/caseless/arrow/ash,
-		/obj/item/ammo_casing/caseless/arrow/bone,
-		/obj/item/ammo_casing/caseless/arrow/bronze,
-		/obj/item/ammo_casing/caseless/arrow/bola,
-		/obj/item/ammo_casing/caseless/arrow/flaming
+	STR.set_holdable(list(
+		/obj/item/ammo_casing/caseless/arrow,
+		/obj/item/stand_arrow,
+		/obj/item/throwing_star/magspear
 		))
 
 /obj/item/storage/belt/quiver/admin
@@ -650,8 +647,6 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 100
-	STR.display_numerical_stacking = TRUE
-	STR.can_hold = list(/obj/item/ammo_casing/caseless/arrow)
 
 /obj/item/storage/belt/quiver/admin/full/PopulateContents()
 	for(var/arrow in typesof(/obj/item/ammo_casing/caseless/arrow))
