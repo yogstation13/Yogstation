@@ -71,7 +71,7 @@
 /obj/mecha/attack_alien(mob/living/user)
 	var/mob/living/carbon/alien/humanoid/M = user
 	if(!M)
-		 return
+		return
 	var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 	log_message("Attack by alien. Attacker - [user].", LOG_MECHA, color="red")
 	playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
