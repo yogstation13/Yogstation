@@ -268,7 +268,7 @@ GLOBAL_LIST_EMPTY(all_batons)
 									"<span class='userdanger'>[user] has stunned you with [src]!</span>")
 			log_combat(user, L, "stunned")
 	else
-    var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
+    	var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
 		var/armor_block = L.run_armor_check(affecting, ENERGY) //check armor on the limb because that's where we are slapping...
 		if(GLOB.batons_stam && !GLOB.batons_normal) ///HACKY JANK CODE
 			stamina_damage = initial(stamina_damage)*2
