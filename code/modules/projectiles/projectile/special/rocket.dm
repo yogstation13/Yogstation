@@ -100,4 +100,4 @@
 	name = "bolt"
 	icon_state = "bolt"
 	desc = "smaller and faster rod"
-	damage = 35
+	damage = 25
