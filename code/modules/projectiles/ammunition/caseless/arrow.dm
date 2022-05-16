@@ -4,6 +4,7 @@
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow
 	caliber = "arrow"
 	icon_state = "arrow"
+	force = 15
 	throwforce = 5 //good luck hitting someone with the pointy end of the arrow
 	throw_speed = 3
 	sharpness = SHARP_POINTY
