@@ -40,18 +40,6 @@
 	else
 		efficiency_coeff = 1/total_rating
 
-/obj/machinery/rack_creator/proc/get_total_cost()
-	var/list/materials = list()
-	materials[/datum/material/iron] = (inserted_cpus.len * 2000) / efficiency_coeff
-	materials[/datum/material/glass] = (inserted_cpus.len * 1000) / efficiency_coeff
-	for(var/RAM in ram_expansions)
-		for(var/mat in RAM["cost"])
-			if(materials[mat])
-				materials[mat] += RAM["cost"][mat] / efficiency_coeff
-			else
-				materials[mat] = RAM["cost"][mat] / efficiency_coeff
-	
-	return materials
 
 /obj/machinery/rack_creator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -118,7 +106,6 @@
 				materials_string += ", [M.name]: [D.materials[mat] / efficiency_coeff]"
 		data["possible_ram"] += list(list("name" = D.name, "capacity" = D.capacity, "cost" = materials_string,"id" = D.id, "unlocked" = SSresearch.science_tech.isDesignResearchedID(D.id) ? TRUE : FALSE))
 
-	data["total_cost"] = get_total_cost()
 	data["unlocked_ram"] = 1
 	data["unlocked_cpu"] = 1
 	for(var/i in 2 to 4)
@@ -137,8 +124,6 @@
 
 /obj/machinery/rack_creator/proc/check_resources()
 	var/list/total_cost = list()
-	total_cost[/datum/material/iron] = (inserted_cpus.len * 2000) / efficiency_coeff
-	total_cost[/datum/material/glass] = (inserted_cpus.len * 1000) / efficiency_coeff
 	for(var/RAM in ram_expansions)
 		for(var/mat in RAM["cost"])
 			var/datum/material/M = mat
