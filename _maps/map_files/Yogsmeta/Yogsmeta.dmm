@@ -7372,13 +7372,6 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"aqT" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/obj/machinery/announcement_system,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "aqU" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -35058,16 +35051,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"bzn" = (
-/obj/machinery/computer/message_monitor{
-	dir = 4
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "bzp" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -35551,19 +35534,6 @@
 	},
 /turf/open/space,
 /area/space/nearstation)
-"bAU" = (
-/obj/machinery/microwave{
-	pixel_y = 4
-	},
-/obj/structure/table/wood,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
-"bAV" = (
-/obj/machinery/light/small,
-/obj/item/storage/box/donkpockets,
-/obj/structure/table/wood,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "bAX" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/components/binary/pump/on{
@@ -37656,9 +37626,6 @@
 /area/tcommsat/server)
 "bGd" = (
 /turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
-"bGe" = (
-/turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
 "bGf" = (
 /obj/machinery/telecomms/bus/preset_three,
@@ -65401,6 +65368,11 @@
 /obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
 /area/maintenance/starboard)
+"esH" = (
+/obj/machinery/light/small,
+/obj/machinery/rnd/production/circuit_imprinter/department/netmin,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "euk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -68860,6 +68832,18 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"igD" = (
+/obj/machinery/light/small,
+/obj/machinery/camera{
+	c_tag = "Telecomms - Control Room";
+	dir = 1;
+	network = list("ss13","tcomms")
+	},
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "igM" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "N2 to Pure"
@@ -68980,6 +68964,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"iqW" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/rack_creator,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "irs" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/hor";
@@ -70182,6 +70174,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"jHh" = (
+/obj/machinery/announcement_system,
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/tcommsat/server)
 "jHL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -73150,6 +73146,14 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/atmos_distro)
+"mHh" = (
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/obj/structure/table/wood,
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "mHl" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -76294,12 +76298,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"qgg" = (
-/obj/machinery/modular_computer/console/preset/tcomms{
-	dir = 4
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "qhm" = (
 /obj/structure/sign/warning/biohazard{
 	pixel_y = 32
@@ -77856,6 +77854,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"rGG" = (
+/obj/machinery/status_display/ai{
+	pixel_y = 31
+	},
+/obj/machinery/computer/message_monitor,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "rHS" = (
 /obj/machinery/camera{
 	c_tag = "Brig Physicians Office";
@@ -78407,19 +78412,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"syj" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/obj/machinery/turretid{
-	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
-	name = "Antechamber Turret Control";
-	pixel_y = 30;
-	req_access = null;
-	req_one_access_txt = "61;65"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "sys" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -79964,6 +79956,13 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"tZA" = (
+/obj/structure/frame/machine{
+	anchored = 1;
+	state = 2
+	},
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/tcommsat/server)
 "uaz" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/atmospherics/miner/nitrogen,
@@ -81338,12 +81337,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"vjL" = (
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "vkS" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -82736,6 +82729,12 @@
 	dir = 1
 	},
 /area/hallway/primary/starboard)
+"wHl" = (
+/obj/machinery/computer/ai_overclocking{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "wHp" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Brig Maintenance";
@@ -83538,18 +83537,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"xzj" = (
-/obj/machinery/light/small,
-/obj/machinery/camera{
-	c_tag = "Telecomms - Control Room";
-	dir = 1;
-	network = list("ss13","tcomms")
-	},
-/obj/machinery/computer/ai_control_console{
-	dir = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "xAf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -83566,6 +83553,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"xAH" = (
+/obj/machinery/computer/ai_control_console{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "xAK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -83942,11 +83935,18 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"ybe" = (
-/obj/machinery/status_display/ai{
-	pixel_y = 31
+"ycC" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
 	},
-/obj/machinery/computer/ai_server_console,
+/obj/machinery/turretid{
+	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
+	name = "Antechamber Turret Control";
+	pixel_y = 30;
+	req_access = null;
+	req_one_access_txt = "61;65"
+	},
+/obj/machinery/modular_computer/console/preset/tcomms,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "ycD" = (
@@ -84104,6 +84104,13 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"ymm" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/machinery/computer/ai_server_console,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 
 (1,1,1) = {"
 aaa
@@ -138200,9 +138207,9 @@ bok
 rYW
 btL
 qdY
-qgg
-bzn
-bAU
+wHl
+iqW
+mHh
 bCD
 bEg
 bGd
@@ -138459,10 +138466,10 @@ btL
 qlO
 bfH
 boa
-bAV
+esH
 bCD
 bEh
-bGe
+jHh
 vuI
 bKL
 bNY
@@ -138713,7 +138720,7 @@ aXG
 boS
 bbA
 btL
-aqT
+ymm
 bxq
 bxq
 bAY
@@ -139227,10 +139234,10 @@ aXI
 dFq
 bbI
 btL
-syj
+ycC
 bxq
 bgM
-vjL
+xAH
 bCE
 bCE
 bCE
@@ -139484,13 +139491,13 @@ aXJ
 bpA
 beZ
 btL
-ybe
+rGG
 bxr
 bgN
-xzj
+igD
 bCD
 bEj
-bGe
+tZA
 vuI
 bKP
 bOb
