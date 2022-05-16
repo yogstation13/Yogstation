@@ -20,7 +20,7 @@ export const AiOverclocking = (props, context) => {
       height={550}>
       <Window.Content scrollable>
         {!data.overclock_progress && (
-          <Section title="Overclocking" buttons={(<Button color="good" icon="check" onClick={(e, value) => act('eject_cpu')}>Eject CPU</Button>)}>
+          <Section title="Overclocking" buttons={(<Button color="bad" icon="eject" onClick={(e, value) => act('eject_cpu')}>Eject CPU</Button>)}>
             {data.has_cpu && (
               <Fragment>
                 <Collapsible title="Past Results">
