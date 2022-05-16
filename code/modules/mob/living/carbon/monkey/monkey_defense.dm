@@ -79,9 +79,9 @@
 		if (M.a_intent == INTENT_HARM)
 			if ((prob(95) && health > 0))
 				playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
-				var/damage = rand(15, 30)
+				var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 				if (damage >= 25)
-					damage = rand(20, 40)
+					damage = damage + 10
 					if(AmountUnconscious() < 300)
 						Unconscious(rand(200, 300))
 					visible_message(span_danger("[M] has wounded [name]!"), \
