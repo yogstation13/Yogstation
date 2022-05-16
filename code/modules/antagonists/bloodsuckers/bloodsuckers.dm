@@ -717,7 +717,7 @@
  *	Also deals with Vassalization status.
  */
 
-/datum/mind/proc/can_make_bloodsucker(datum/mind/convertee, datum/mind/converter)
+/datum/mind/proc/prepare_bloodsucker(datum/mind/convertee, datum/mind/converter)
 	// Species Must have a HEART (Sorry Plasmamen)
 	var/mob/living/carbon/human/user = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
@@ -730,8 +730,9 @@
 	return TRUE
 
 /datum/mind/proc/make_bloodsucker(datum/mind/bloodsucker)
-	if(!can_make_bloodsucker(bloodsucker))
-		return FALSE
+	var/mob/living/carbon/human/user = bloodsucker.current
+	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
+		prepare_bloodsucker(bloodsucker)
 	add_antag_datum(/datum/antagonist/bloodsucker)
 	return TRUE
 

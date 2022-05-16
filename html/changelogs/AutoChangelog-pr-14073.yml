@@ -1,5 +1,0 @@
-author: "MajManatee"
-delete-after: true 
-changes: 
-  - rscadd: "Adds laser buckshot, a much cooler ammo type."
-  - rscdel: "Removes laser slug, nobody used it anyway."

@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "boxing now knocks people out if it is done at 100 stamina damage rather than rolling a % chance to knock out based on the already high stamina damage present"
-  - bugfix: "you should now properly GLORF when knocked out by boxing"
