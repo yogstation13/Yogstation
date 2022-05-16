@@ -43,9 +43,9 @@
 	icon_state = "alienq"
 	melee_damage_lower = 35
 	melee_damage_upper = 50
-	speed = 2.5
 	/// The queen's small sprite action.
 	var/datum/action/small_sprite/smallsprite = new/datum/action/small_sprite/queen()
+	var/obj/item/gps/internal/
 
 /mob/living/carbon/alien/humanoid/royal/queen/Initialize()
 	SSshuttle.registerHostileEnvironment(src) //yogs: aliens delay shuttle
@@ -77,9 +77,14 @@
  * Then, it alerts the crew via Centcom announcement that the signal is available and that the threat must be killed before they can leave.
  */
 /mob/living/carbon/alien/humanoid/royal/queen/proc/add_gps()
-	AddComponent(/datum/component/gps, "Regal Signal")
 	priority_announce("Attention crew, we were able to register a GPS signal to the threat preventing your departure.  You are expected to elimate the threat before leaving.", "[command_name()] High-Priority Update", 'sound/misc/notice1.ogg', "Priority")
+	internal = new /obj/item/gps/internal/queen(src)
 
+/obj/item/gps/internal/queen
+	icon_state = null
+	gpstag = "Regal Signal"
+	desc = "An alien queen emmiting a strange signal."
+	invisibility = 100
 
 /mob/living/carbon/alien/humanoid/royal/queen/create_internal_organs()
 	internal_organs += new /obj/item/organ/alien/plasmavessel/large/queen
