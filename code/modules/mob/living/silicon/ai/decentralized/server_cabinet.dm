@@ -158,8 +158,3 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	cached_power_usage += rack.get_power_usage()
 	installed_racks += rack
 	GLOB.ai_os.update_hardware()
-
-	
-
-
-

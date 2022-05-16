@@ -13,10 +13,7 @@
 
 	ai.research_point_booster += 0.25
 	
-
-
 /datum/ai_project/research_booster/stop()
 	ai.research_point_booster -= 0.25
 	..()
 
-research_point_booster
