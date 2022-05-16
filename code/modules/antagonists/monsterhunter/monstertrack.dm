@@ -46,6 +46,8 @@
 			monsters += carbon_minds
 		if(carbon_minds.has_antag_datum(/datum/antagonist/changeling))
 			monsters += carbon_minds
+		if(carbon_minds.has_antag_datum(/datum/antagonist/sinfuldemon))
+			monsters += carbon_minds
 		if(carbon_minds.has_antag_datum(/datum/antagonist/ashwalker))
 			monsters += carbon_minds
 		if(carbon_minds.has_antag_datum(/datum/antagonist/vampire)) //yogs, still supporting vampires!
