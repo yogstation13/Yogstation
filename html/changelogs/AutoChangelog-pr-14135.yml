@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "touch healing chems (silver sulf/styptic) now heal 75% less damage passively (no change to on touch healing), and can only heal on touch for up to 45 points of damage/chemical"
+  - tweak: "touch healing chems (silver sulf/styptic) now apply their reagent to the bloodstream when splashed"
