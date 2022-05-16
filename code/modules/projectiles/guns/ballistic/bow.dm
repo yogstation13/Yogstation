@@ -144,7 +144,6 @@
 	playsound(src, 'sound/effects/sparks4.ogg', 25, 0)
 
 /obj/item/gun/ballistic/bow/energy/attack_self(mob/living/user)
-	to_chat(user, magazine.get_round(TRUE))
 	if(chambered)
 		chambered = null
 		to_chat(user, span_notice("You disperse the arrow."))
