@@ -482,6 +482,8 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
+	if(user == occupant && !issilicon(user))
+		return
 	if(on)
 		on = FALSE
 	else if(!state_open)
@@ -490,6 +492,8 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(user == occupant && !issilicon(user))
 		return
 	if(state_open)
 		close_machine()
