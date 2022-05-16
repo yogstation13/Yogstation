@@ -8,7 +8,6 @@
 	icon_screen = "ai-fixer"
 	light_color = LIGHT_COLOR_PINK
 
-	//TODO
 	circuit = /obj/item/circuitboard/computer/ai_server_overview
 
 	var/obj/item/ai_cpu/inserted_cpu = null
