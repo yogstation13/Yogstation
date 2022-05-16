@@ -13,6 +13,7 @@ export const AiDashboard = (props, context) => {
   const [activeProjectsOnly, setActiveProjectsOnly] = useSharedState(context, 'activeProjectsOnly', true);
 
   let remaining_cpu = (1 - data.used_cpu) * 100;
+  let amount_of_cpu = data.current_cpu ? data.current_cpu * amount_of_cpu : 0
 
   return (
     <Window
@@ -68,14 +69,14 @@ export const AiDashboard = (props, context) => {
             <LabeledControls.Item>
               <ProgressBar
                 ranges={{
-                  good: [data.current_cpu * 0.7, Infinity],
-                  average: [data.current_cpu * 0.3, data.current_cpu * 0.7],
-                  bad: [0, data.current_cpu * 0.3],
+                  good: [data.used_cpu * 0.7, Infinity],
+                  average: [data.used_cpu * 0.3, data.used_cpu * 0.7],
+                  bad: [0, data.used_cpu * 0.3],
                 }}
-                value={data.used_cpu * data.current_cpu}
-                maxValue={data.current_cpu}>
+                value={data.used_cpu * amount_of_cpu}
+                maxValue={amount_of_cpu}>
                 {data.used_cpu ? data.used_cpu * 100 : 0}%
-                ({data.used_cpu ? data.used_cpu * data.current_cpu : 0}/{data.current_cpu} THz)
+                ({data.used_cpu ? data.used_cpu * amount_of_cpu : 0}/{amount_of_cpu} THz)
               </ProgressBar>
               Utilized CPU Power
             </LabeledControls.Item>
@@ -149,7 +150,7 @@ export const AiDashboard = (props, context) => {
                     project_name: project.name,
                     amount: Math.round((value / 100) * 100) / 100,
                   })} />
-                  <Button icon="arrow-up" disabled={data.current_cpu === data.used_cpu} onClick={(e, value) => act('max_cpu', {
+                  <Button icon="arrow-up" disabled={data.used_cpu === 1} onClick={(e, value) => act('max_cpu', {
                     project_name: project.name,
                   })}>Max
                   </Button>
@@ -236,9 +237,9 @@ export const AiDashboard = (props, context) => {
                 buttons={(
                   <Fragment>
                     <Box inline bold>Assigned CPU:&nbsp;</Box>
-                    <NumberInput value={ability.assigned_cpu} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_recharge_cpu', {
+                    <NumberInput value={ability.assigned_cpu} minValue={0} maxValue={remaining_cpu + (ability.assigned_cpu * 100)} onChange={(e, value) => act('allocate_recharge_cpu', {
                       project_name: ability.project_name,
-                      amount: value,
+                      amount: Math.round((value / 100) * 100) / 100,
                     })} />
                     <Box inline bold>&nbsp;THz</Box>
                   </Fragment>
@@ -256,8 +257,8 @@ export const AiDashboard = (props, context) => {
           <Section title="Computing Resources">
             <Section title="CPU Resources">
               <ProgressBar
-                value={data.current_cpu}
-                maxValue={data.max_cpu}>{data.current_cpu ? data.current_cpu : 0}/{data.max_cpu} THz
+                value={data.amount_of_cpu}
+                maxValue={data.max_cpu}>{amount_of_cpu}/{data.max_cpu} THz
               </ProgressBar>
             </Section>
             <Section title="RAM Resources">
