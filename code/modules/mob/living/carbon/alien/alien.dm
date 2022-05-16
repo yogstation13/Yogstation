@@ -107,14 +107,6 @@
 	return 1
 
 
-/mob/living/carbon/alien/on_lying_down(new_lying_angle)
-	. = ..()
-	update_icons()
-
-/mob/living/carbon/alien/on_standing_up()
-	. = ..()
-	update_icons()
-
 /**
  * Renders an icon on mobs with alien embryos inside them.
  *
