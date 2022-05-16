@@ -118,3 +118,15 @@
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
 	..()
+
+/obj/item/projectile/bullet/pellet/shotgun_thundershot
+	name = "thundershot pellet"
+	damage = 3
+	sharpness = SHARP_NONE
+	hitsound = 'sound/magic/lightningbolt.ogg'
+
+/obj/item/projectile/bullet/pellet/shotgun_thundershot/on_hit(atom/target)
+	..()
+	tesla_zap(target, rand(2, 3), 17500, TESLA_MOB_DAMAGE)
+	return BULLET_ACT_HIT
+	

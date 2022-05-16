@@ -177,6 +177,7 @@
 	pixel_x = 0;
 	pixel_y = 32
 	},
+/obj/machinery/medical_kiosk,
 /turf/open/floor/plasteel/white,
 /area/hallway/primary/starboard)
 "aeL" = (

@@ -281,7 +281,7 @@
 
 /obj/item/reagent_containers/food/snacks/raw_patty/xeno
 	name = "raw xenomorph patty"
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("meat" = 1,"acid" = 1)
 	patty_type = /obj/item/reagent_containers/food/snacks/patty/xeno
 
 /obj/item/reagent_containers/food/snacks/raw_patty/chicken

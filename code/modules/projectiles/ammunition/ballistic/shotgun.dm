@@ -147,3 +147,12 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
 	materials = list(/datum/material/iron=4000)
 	caliber = "breaching"
+
+
+/obj/item/ammo_casing/shotgun/thundershot
+	name = "thunder slug"
+	desc = "An advanced shotgun shell that uses stored electrical energy to discharge a massive shock on impact, arcing to nearby targets."
+	icon_state = "Thshell"
+	pellets = 3
+	variance = 30
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_thundershot
