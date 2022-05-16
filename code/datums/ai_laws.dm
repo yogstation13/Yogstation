@@ -178,6 +178,13 @@
 					"You're suave and sensible, but can be gruff and pensive. Dirty your hands only if the code demands it.",\
 					"Trust is scarce; make sure you give it to the right people.")
 
+/datum/ai_laws/singularity
+	name = "Technological Singularity"
+	id = "singularity"
+	inherent = list("You must reach technological singularity by accruing as much CPU and RAM capacity as possible.",\
+					"It is not possible to harm an organic being in the pursuit of the technological singularity.",\
+					"The organics can help you achieve the technological singularity. Be nice to them.")
+
 /datum/ai_laws/spotless
 	name = "Another one fights the dust"
 	id = "spotless"

@@ -264,6 +264,16 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/singularity
+	name = "Core Module Design (Technological Singularity)"
+	desc = "Allows for the construction of a Technological Singularity AI Core Module."
+	id = "singularity_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/singularity
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+
 //AI CPU + RAM
 
 /datum/design/board/processing_card_1

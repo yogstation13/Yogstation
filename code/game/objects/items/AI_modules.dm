@@ -517,6 +517,12 @@ AI MODULES
 	name = "'Detective' Core AI Module"
 	law_id = "detective"
 
+/******************** Singularity *********************/
+
+/obj/item/aiModule/core/full/Singularity
+	name = "'Technological Singularity' Core AI Module"
+	law_id = "singularity"
+
 	
 /******************** Freeform Core ******************/
 
