@@ -112,7 +112,8 @@
 	return take_damage(damage_amount, damage_type, damage_flag, sound_effect, get_dir(src, user), armor_penetration)
 
 /obj/attack_alien(mob/living/carbon/alien/humanoid/user)
-	if(attack_generic(user, 60, BRUTE, "melee", 0))
+	var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
+	if(attack_generic(user, damage, BRUTE, "melee", 0))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 
 /obj/attack_animal(mob/living/simple_animal/M)
