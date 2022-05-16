@@ -114,6 +114,9 @@
 		if(hurt)
 			Paralyze(20)
 			take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
+			visible_message(span_danger("[src] crashes into [hit_atom][extra_speed ? " really hard" : ""]!"),\
+				span_userdanger("You violently crash into [hit_atom][extra_speed ? " extra hard" : ""]!"))
+			playsound(src,'sound/weapons/punch2.ogg',50,1)
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
