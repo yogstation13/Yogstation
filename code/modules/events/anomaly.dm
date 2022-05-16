@@ -19,8 +19,6 @@
 		var/list/safe_area_types = typecacheof(list(
 		/area/ai_monitored/turret_protected/ai,
 		/area/ai_monitored/turret_protected/ai_upload,
-		/area/ai_monitored/secondarydatacoreserver,
-		/area/ai_monitored/secondarydatacore,
 		/area/engine,
 		/area/solar,
 		/area/holodeck,
