@@ -44,7 +44,8 @@ export const AiResources = (props, context) => {
                       average: [0.4, 0.8],
                       bad: [-Infinity, 0.4],
                     }}
-                    maxValue={1}>{data.total_cpu * data.total_assigned_cpu}/{data.total_cpu} THz ({data.total_assigned_cpu * 100}%)
+                    maxValue={1}>{data.total_cpu * data.total_assigned_cpu}/{data.total_cpu} THz
+                    ({data.total_assigned_cpu * 100}%)
                   </ProgressBar>
                 </Section>
                 <Section title="Cloud RAM Resources">
@@ -80,7 +81,8 @@ export const AiResources = (props, context) => {
                               })} />
                               <Button height={1.75} icon="arrow-up" onClick={() => act("max_cpu", {
                                 targetAI: ai.ref,
-                              })}>Max</Button>
+                              })}>Max
+                              </Button>
                             </Flex>
 
                           </LabeledList.Item>

@@ -994,6 +994,14 @@
 		/obj/item/stack/sheet/glass = 2,
 		/obj/item/stack/cable_coil = 2)
 
+/obj/item/circuitboard/machine/rack_creator
+	name = "Rack Creator (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/rack_creator
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/reagent_containers/glass/beaker = 2)
+
 
 //Security
 

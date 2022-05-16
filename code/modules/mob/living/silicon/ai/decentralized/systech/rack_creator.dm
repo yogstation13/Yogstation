@@ -14,28 +14,42 @@
 
 	var/list/ram_expansions = list() //List containing numbers corresponding to the amount of RAM that stick adds. 
 
-	//TODO
-	//circuit = /obj/item/circuitboard/machine/circuit_imprinter
+	circuit = /obj/item/circuitboard/machine/rack_creator
 
 	var/datum/component/remote_materials/rmat
+	var/efficiency_coeff = 1
 
 
 /obj/machinery/rack_creator/Initialize(mapload)
 	rmat = AddComponent(/datum/component/remote_materials, "rackcreator", mapload)
 	rmat.set_local_size(200000)
+	RefreshParts()
 	return ..()
 
 
+/obj/machinery/rack_creator/RefreshParts()
+	calculate_efficiency()
+
+/obj/machinery/rack_creator/proc/calculate_efficiency()
+	efficiency_coeff = 1
+	var/total_rating = 1.2
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
+		total_rating = clamp(total_rating - (M.rating * 0.1), 0, 1)
+	if(total_rating == 0)
+		efficiency_coeff = INFINITY
+	else
+		efficiency_coeff = 1/total_rating
+
 /obj/machinery/rack_creator/proc/get_total_cost()
 	var/list/materials = list()
-	materials[/datum/material/iron] = inserted_cpus.len * 2000
-	materials[/datum/material/glass] = inserted_cpus.len * 1000
+	materials[/datum/material/iron] = (inserted_cpus.len * 2000) / efficiency_coeff
+	materials[/datum/material/glass] = (inserted_cpus.len * 1000) / efficiency_coeff
 	for(var/RAM in ram_expansions)
 		for(var/mat in RAM["cost"])
 			if(materials[mat])
-				materials[mat] += RAM["cost"][mat]
+				materials[mat] += RAM["cost"][mat] / efficiency_coeff
 			else
-				materials[mat] = RAM["cost"][mat]
+				materials[mat] = RAM["cost"][mat] / efficiency_coeff
 	
 	return materials
 
@@ -80,9 +94,9 @@
 		for(var/mat in RAM["cost"])
 			var/datum/material/M = mat
 			if(!materials_string)
-				materials_string += "[M.name]: [RAM["cost"][mat]]"
+				materials_string += "[M.name]: [RAM["cost"][mat] / efficiency_coeff]"
 			else
-				materials_string += ", [M.name]: [RAM["cost"][mat]]"
+				materials_string += ", [M.name]: [RAM["cost"][mat] / efficiency_coeff]"
 
 		var/ram_list = list(list("capacity" = RAM["capacity"], "name" = RAM["name"], "cost" = materials_string))
 		data["ram"] += ram_list
@@ -99,9 +113,9 @@
 		for(var/mat in D.materials)
 			var/datum/material/M = mat
 			if(!materials_string)
-				materials_string += "[M.name]: [D.materials[mat]]"
+				materials_string += "[M.name]: [D.materials[mat] / efficiency_coeff]"
 			else
-				materials_string += ", [M.name]: [D.materials[mat]]"
+				materials_string += ", [M.name]: [D.materials[mat] / efficiency_coeff]"
 		data["possible_ram"] += list(list("name" = D.name, "capacity" = D.capacity, "cost" = materials_string,"id" = D.id, "unlocked" = SSresearch.science_tech.isDesignResearchedID(D.id) ? TRUE : FALSE))
 
 	data["total_cost"] = get_total_cost()
@@ -123,10 +137,12 @@
 
 /obj/machinery/rack_creator/proc/check_resources()
 	var/list/total_cost = list()
+	total_cost[/datum/material/iron] = (inserted_cpus.len * 2000) / efficiency_coeff
+	total_cost[/datum/material/glass] = (inserted_cpus.len * 1000) / efficiency_coeff
 	for(var/RAM in ram_expansions)
 		for(var/mat in RAM["cost"])
 			var/datum/material/M = mat
-			total_cost[M] += RAM["cost"][M]
+			total_cost[M] += RAM["cost"][M] / efficiency_coeff
 
 	if(!total_cost.len)
 		return -1

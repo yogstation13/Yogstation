@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Dropdown, Modal, Section, Flex, Icon, Dimmer } from '../components';
+import { Box, Button, Modal, Section, Flex, Dimmer } from '../components';
 import { Window } from '../layouts';
 import { formatPower, formatSiUnit } from '../format';
 import { classes } from 'common/react';
@@ -17,7 +17,6 @@ export const AiRackCreator = (props, context) => {
   const { act, data } = useBackend(context);
 
   const [modalStatus, setModalStatus] = useLocalState(context, 'modal', false);
-  const [ramIndex, setRamIndex] = useLocalState(context, 'ram', 0);
 
 
   let upperCaseWords = function (string) {
