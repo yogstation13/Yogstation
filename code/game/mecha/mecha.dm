@@ -657,7 +657,12 @@
 
 /obj/mecha/Bump(var/atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
+	var/area/newarea = newloc.loc
 	if(newloc.flags_1 & NOJAUNT_1)
+		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
+		return
+
+	if(newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
 		return
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
