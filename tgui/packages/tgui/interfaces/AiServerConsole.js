@@ -26,7 +26,7 @@ export const AiServerConsole = (props, context) => {
             AI Data Cores
           </Tabs.Tab>
         </Tabs>
-        {tab == 1 && (
+        {tab === 1 && (
           <Section title="Server Overview">
             {data.servers.map((server, index) => {
               return (
@@ -51,7 +51,7 @@ export const AiServerConsole = (props, context) => {
             })}
           </Section>
         )}
-        {tab == 2 && (
+        {tab === 2 && (
           <Section title="Core Overview">
             {data.cores.map((server, index) => {
               return (
