@@ -50,8 +50,6 @@
 		ui.open()
 
 /datum/ai_dashboard/ui_data(mob/user)
-	if(!owner || user != owner)
-		return
 	var/list/data = list()
 
 	data["current_cpu"] = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
