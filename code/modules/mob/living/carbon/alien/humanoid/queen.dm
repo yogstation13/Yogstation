@@ -45,7 +45,7 @@
 	melee_damage_upper = 50
 	/// The queen's small sprite action.
 	var/datum/action/small_sprite/smallsprite = new/datum/action/small_sprite/queen()
-	var/obj/item/gps/internal/
+	var/obj/item/gps/internal
 
 /mob/living/carbon/alien/humanoid/royal/queen/Initialize()
 	SSshuttle.registerHostileEnvironment(src) //yogs: aliens delay shuttle
