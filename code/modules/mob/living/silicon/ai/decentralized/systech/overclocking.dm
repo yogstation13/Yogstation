@@ -12,7 +12,7 @@
 	circuit = /obj/item/circuitboard/computer/ai_server_overview
 
 	var/obj/item/ai_cpu/inserted_cpu = null
-	var/overclocking = TRUE
+	var/overclocking = FALSE
 
 	COOLDOWN_DECLARE(overclocking_timer)
 
@@ -29,6 +29,8 @@
 
 	if(overclocking && COOLDOWN_FINISHED(src, overclocking_timer))
 		overclocking = FALSE
+		if(!inserted_cpu)
+			return
 		var/overclock_result = inserted_cpu.valid_overclock()
 		if(overclock_result == SUCCESSFUL_OVERCLOCK)
 			say("Overclock stable.")
