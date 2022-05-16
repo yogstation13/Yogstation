@@ -155,22 +155,6 @@
 
 			GLOB.ai_os.set_cpu(target_ai, amount)
 			. = TRUE
-		/*
-		if("remove_cpu")
-			var/mob/living/silicon/ai/target_ai = locate(params["targetAI"])
-			if(!istype(target_ai))
-				return
-			if(human_only && !is_human)
-				to_chat(usr, span_warning("CAPTCHA check failed. This console is NOT silicon operable. Please call for human assistance."))
-				return 
-
-			var/current_cpu = GLOB.ai_os.cpu_assigned[target_ai]
-
-			if(current_cpu <= 0)
-				return
-			GLOB.ai_os.remove_cpu(target_ai, 1)
-			. = TRUE
-		*/
 		if("add_ram")
 			var/mob/living/silicon/ai/target_ai = locate(params["targetAI"])
 			if(!istype(target_ai))
