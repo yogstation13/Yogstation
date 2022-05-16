@@ -109921,7 +109921,7 @@
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/landmark/start/yogs/signal_technician,
+/obj/effect/landmark/start/yogs/network_admin,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "drV" = (

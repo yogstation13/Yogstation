@@ -683,11 +683,11 @@
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/board/expansion_card_holder
-	name = "Machine Design (Expansion Card Bus Board)"
-	desc = "The circuit board for an expansion card bus."
-	id = "expansion_card_holder"
-	build_path = /obj/item/circuitboard/machine/expansion_card_holder
+/datum/design/board/server_cabinet
+	name = "Machine Design (Server Cabinet Board)"
+	desc = "The circuit board for a server cabinet."
+	id = "server_cabinet"
+	build_path = /obj/item/circuitboard/machine/server_cabinet
 	category = list("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
@@ -706,4 +706,12 @@
 	id = "ai_core_display"
 	build_path = /obj/item/circuitboard/machine/ai_core_display
 	category = list("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/rack_creator
+	name = "Machine Design (Rack Creator Board)"
+	desc = "The circuit board for a rack creator."
+	id = "rack_creator"
+	build_path = /obj/item/circuitboard/machine/rack_creator
+	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
