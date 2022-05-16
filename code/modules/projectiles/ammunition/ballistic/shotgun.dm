@@ -91,11 +91,13 @@
 	pellets = 4
 	variance = 35
 
-/obj/item/ammo_casing/shotgun/laserslug
-	name = "laser slug"
-	desc = "An advanced shotgun shell that uses a micro laser to replicate the effects of a laser weapon in a ballistic package."
+/obj/item/ammo_casing/shotgun/laserbuckshot
+	name = "laser buckshot"
+	desc = "An advanced shotgun shell that uses  micro lasers to replicate the effects of a laser weapon in a ballistic package."
 	icon_state = "lshell"
-	projectile_type = /obj/item/projectile/beam/laser
+	projectile_type = /obj/item/projectile/beam/laser/buckshot
+	pellets = 5
+	variance = 35
 
 /obj/item/ammo_casing/shotgun/techshell
 	name = "unloaded technological shell"
@@ -145,3 +147,12 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
 	materials = list(/datum/material/iron=4000)
 	caliber = "breaching"
+
+
+/obj/item/ammo_casing/shotgun/thundershot
+	name = "thunder slug"
+	desc = "An advanced shotgun shell that uses stored electrical energy to discharge a massive shock on impact, arcing to nearby targets."
+	icon_state = "Thshell"
+	pellets = 3
+	variance = 30
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_thundershot

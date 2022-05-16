@@ -183,22 +183,23 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 /mob/living/simple_animal/mouse/CtrlClickOn(atom/A)
 	face_atom(A)
-	if(!isturf(loc)) return
-	if(next_move > world.time) return
-	if(!A.Adjacent(src)) return
+	if(!isturf(loc))
+		return
+	if(next_move > world.time)
+		return
+	if(!A.Adjacent(src))
+		return
 
 	if(!can_eat(A))
 		return FALSE
 
 	eating = TRUE
 	layer = MOB_LAYER
-	visible_message(span_danger("[src] starts eating away [A]..."),
-						 span_notice("You start eating the [A]..."))
+	visible_message(span_danger("[src] starts eating away [A]..."),span_notice("You start eating the [A]..."))
 	if(do_after(src, 3 SECONDS, FALSE, A))
 		if(QDELETED(A))
 			return
-		visible_message(span_danger("[src] finishes eating up [A]!"),
-						 span_notice("You finish up eating [A]."))
+		visible_message(span_danger("[src] finishes eating up [A]!"),span_notice("You finish up eating [A]."))
 		A.mouse_eat(src)
 		playsound(A.loc,'sound/effects/mousesqueek.ogg', 100) // i have no idea how loud this is, 100 seems to be used for the squeak component
 		GLOB.mouse_food_eaten++

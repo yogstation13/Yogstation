@@ -1,0 +1,5 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - rscadd: "Adds cool new electrical buckshot ammo"
+  - imageadd: "adds a new yellow, electrically charged shell"

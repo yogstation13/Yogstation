@@ -287,7 +287,7 @@
 	desc = "A torn, dust-caked hood. Strange letters line the inside."
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEEARS
 	flags_cover = HEADCOVERSEYES
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 40,"energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 10)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 40,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
 	cold_protection = HEAD
 	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
 	heat_protection = HEAD
@@ -300,7 +300,7 @@
 	item_state = "cultrobes"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 40,"energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 10)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 40,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
 	flags_inv = HIDEJUMPSUIT
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
@@ -341,7 +341,7 @@
 	item_state = "magus"
 	desc = "A helm worn by the followers of Nar-Sie."
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEEARS|HIDEEYES
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30,"energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	armor = list(MELEE = 30, BULLET = 30, LASER = 30,ENERGY = 20, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 10)
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
 /obj/item/clothing/suit/magusred
@@ -351,7 +351,7 @@
 	item_state = "magusred"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
-	armor = list("melee" = 50, "bullet" = 30, "laser" = 50,"energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 10)
+	armor = list(MELEE = 50, BULLET = 30, LASER = 50,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/head/helmet/space/hardsuit/cult
@@ -359,7 +359,7 @@
 	desc = "A heavily-armored helmet worn by warriors of the Nar-Sien cult. It can withstand hard vacuum."
 	icon_state = "cult_helmet"
 	item_state = "cult_helmet"
-	armor = list("melee" = 60, "bullet" = 50, "laser" = 30,"energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 75)
+	armor = list(MELEE = 60, BULLET = 50, LASER = 30,ENERGY = 15, BOMB = 30, BIO = 30, RAD = 30, FIRE = 40, ACID = 75)
 	brightness_on = 0
 	actions_types = list()
 
@@ -370,7 +370,7 @@
 	desc = "A heavily-armored exosuit worn by warriors of the Nar-Sien cult. It can withstand hard vacuum."
 	w_class = WEIGHT_CLASS_BULKY
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade, /obj/item/tank/internals/)
-	armor = list("melee" = 70, "bullet" = 50, "laser" = 30,"energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 75)
+	armor = list(MELEE = 70, BULLET = 50, LASER = 30,ENERGY = 15, BOMB = 30, BIO = 30, RAD = 30, FIRE = 40, ACID = 75)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/cult
 
 /obj/item/sharpener/cult
@@ -391,7 +391,7 @@
 	icon_state = "cult_armor"
 	item_state = "cult_armor"
 	w_class = WEIGHT_CLASS_BULKY
-	armor = list("melee" = 50, "bullet" = 40, "laser" = 50,"energy" = 30, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 50, "acid" = 60)
+	armor = list(MELEE = 50, BULLET = 40, LASER = 50,ENERGY = 30, BOMB = 50, BIO = 30, RAD = 30, FIRE = 50, ACID = 60)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
 	var/current_charges = 3
@@ -401,7 +401,7 @@
 	name = "empowered cultist armor"
 	desc = "Empowered garb which creates a powerful shield around the user."
 	icon_state = "cult_hoodalt"
-	armor = list("melee" = 50, "bullet" = 40, "laser" = 50,"energy" = 30, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 50, BULLET = 40, LASER = 50,ENERGY = 30, BOMB = 50, BIO = 30, RAD = 30, FIRE = 50, ACID = 50)
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 
@@ -445,7 +445,7 @@
 	flags_inv = HIDEJUMPSUIT
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	armor = list("melee" = -45, "bullet" = -45, "laser" = -45,"energy" = -45, "bomb" = -45, "bio" = -45, "rad" = -45, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = -45, BULLET = -45, LASER = -45,ENERGY = -45, BOMB = -45, BIO = -45, RAD = -45, FIRE = 0, ACID = 0)
 	slowdown = -0.6
 	hoodtype = /obj/item/clothing/head/hooded/berserkerhood
 
@@ -455,7 +455,7 @@
 	icon_state = "culthood"
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
-	armor = list("melee" = -50, "bullet" = -50, "laser" = -50, "energy" = -50, "bomb" = -50, "bio" = -50, "rad" = -50, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = -50, BULLET = -50, LASER = -50, ENERGY = -50, BOMB = -50, BIO = -50, RAD = -50, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/suit/hooded/cultrobes/berserker/equipped(mob/living/user, slot)
 	..()

@@ -345,12 +345,23 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/laserslug
-	name = "Laser Slug Shell"
-	result = /obj/item/ammo_casing/shotgun/laserslug
+/datum/crafting_recipe/laserbuckshot
+	name = "Laser Buckshot Shell"
+	result = /obj/item/ammo_casing/shotgun/laserbuckshot
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
 				/obj/item/stock_parts/capacitor/adv = 1,
-				/obj/item/stock_parts/micro_laser/high = 1)
+				/obj/item/stock_parts/micro_laser/high = 2)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/thundershot
+	name = "Thundershot Shell"
+	result = /obj/item/ammo_casing/shotgun/thundershot
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/obj/item/stock_parts/capacitor/super = 1,
+				/datum/reagent/teslium = 5)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
@@ -708,9 +719,9 @@
 	name = "Pathfinder Kasa"
 	result = /obj/item/clothing/head/helmet/kasa
 	time = 5 SECONDS
-	reqs = list(/obj/item/stack/sheet/bone = 12,
-				/obj/item/stack/sheet/sinew = 12,
-				/obj/item/stack/sheet/animalhide/weaver_chitin = 12)
+	reqs = list(/obj/item/stack/sheet/bone = 8,
+				/obj/item/stack/sheet/sinew = 4,
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 10) //3 spiders assuming you get leather from one
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/pathcloak
@@ -718,7 +729,7 @@
 	result = /obj/item/clothing/suit/armor/pathfinder
 	time = 5 SECONDS
 	reqs = list(/obj/item/clothing/suit/hooded/cloak/goliath = 1,
-				/obj/item/stack/sheet/animalhide/goliath_hide = 4, //2 plates for the cloak plus 4 here plus 3 for plating the armor = 9 total
+				/obj/item/stack/sheet/animalhide/goliath_hide = 2, //2 plates for the cloak plus 2 here plus 3 for plating the armor = 7 total
 				/obj/item/stack/sheet/sinew = 6)
 	category = CAT_PRIMAL
 
@@ -726,8 +737,8 @@
 	name = "Pathfinder Treads"
 	result = /obj/item/clothing/shoes/pathtreads
 	time = 5 SECONDS
-	reqs = list(/obj/item/stack/sheet/sinew = 12,
-				/obj/item/stack/sheet/animalhide/weaver_chitin = 16)
+	reqs = list(/obj/item/stack/sheet/sinew = 2,
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 2)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonesword
@@ -1015,3 +1026,21 @@
 	time = 10
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/makeshiftid
+	name = "Makeshift ID"
+	result = /obj/item/card/id/makeshift
+	reqs = list(/obj/item/stack/sheet/cardboard = 2,
+				/obj/item/stack/tape = 1,
+				/obj/item/pen = 1)
+	tools = list(TOOL_WIRECUTTER)
+	time = 30
+	category = CAT_MISC
+	
+/datum/crafting_recipe/tape
+	name = "tape"
+	reqs = list(/obj/item/stack/sheet/cloth = 1,
+				/datum/reagent/consumable/caramel = 5)
+	result = /obj/item/stack/tape
+	time = 1
+	category = CAT_MISC
