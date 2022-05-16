@@ -15,9 +15,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -218,25 +215,12 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaF" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
+/obj/structure/lattice,
+/turf/closed/wall/r_wall,
 /area/security/prison)
 "aaG" = (
 /obj/machinery/hydroponics/constructable,
 /obj/item/seeds/ambrosia,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaH" = (
@@ -502,48 +486,45 @@
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
 "abj" = (
+/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
-	icon_state = "4-8"
+	icon_state = "0-2"
 	},
-/obj/structure/easel,
-/obj/item/canvas/twentythreeXtwentythree,
-/obj/item/canvas/twentythreeXtwentythree,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/security/prison)
 "abk" = (
-/obj/structure/table,
-/obj/item/folder,
-/obj/item/book/manual/wiki/hydroponicsplants,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/item/pen,
-/obj/item/storage/crayons,
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abl" = (
-/obj/structure/table,
-/obj/machinery/computer/libraryconsole/bookmanagement,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/storage/crayons,
+/obj/item/book/manual/wiki/hydroponicsplants,
+/obj/item/pen,
+/obj/item/folder,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abm" = (
-/obj/machinery/computer/arcade,
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = 32
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/machinery/computer/libraryconsole/bookmanagement,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abn" = (
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
+/obj/machinery/computer/arcade,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abo" = (
@@ -632,7 +613,8 @@
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
 "aby" = (
-/obj/structure/chair/stool,
+/obj/structure/table,
+/obj/item/storage/pill_bottle/dice,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abz" = (
@@ -697,16 +679,8 @@
 /turf/open/floor/wood,
 /area/library)
 "abH" = (
-/obj/structure/table,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -717,6 +691,7 @@
 	icon_state = "2-4"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abJ" = (
@@ -873,7 +848,7 @@
 /area/security/execution/education)
 "acb" = (
 /obj/structure/table,
-/obj/item/storage/pill_bottle/dice,
+/obj/item/toy/cards/deck,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "acc" = (
@@ -944,12 +919,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aco" = (
-/obj/structure/table,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/item/toy/cards/deck,
-/obj/item/toy/cards/deck,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -63712,6 +63684,14 @@
 	},
 /turf/open/floor/plating,
 /area/chapel/main)
+"dlk" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "dlu" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -67101,6 +67081,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"ggI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "gjI" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -70094,6 +70081,11 @@
 /obj/machinery/air_sensor/atmos/mix_tank,
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos_distro)
+"jDR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "jEh" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -71060,6 +71052,15 @@
 /obj/effect/landmark/start/head_of_security,
 /turf/open/floor/carpet,
 /area/bridge)
+"kCw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/table,
+/obj/item/stack/license_plates/empty/fifty,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "kCO" = (
 /obj/structure/table,
 /obj/item/paper/fluff/holodeck/disclaimer,
@@ -72693,6 +72694,13 @@
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"mgf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/robot_debris/old,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/security/prison)
 "mgv" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -73035,6 +73043,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"mDl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/plate_press,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "mDz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -75351,6 +75364,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"pkB" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/security/prison)
 "pkQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -75932,6 +75950,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"pRi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/canvas/twentythreeXtwentythree,
+/obj/item/canvas/twentythreeXtwentythree,
+/obj/structure/easel,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "pSk" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -75946,6 +75971,10 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"pSL" = (
+/obj/machinery/plate_press,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "pSX" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 6
@@ -77159,6 +77188,15 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"raA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/security/prison)
 "rcv" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -77631,6 +77669,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"rxm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/obj/item/toy/cards/deck,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "ryM" = (
 /obj/item/cigbutt,
 /turf/open/floor/plating,
@@ -78043,9 +78088,13 @@
 /area/medical/chemistry)
 "scU" = (
 /obj/structure/table,
-/obj/item/toy/cards/deck,
-/obj/item/toy/cards/deck,
-/obj/item/instrument/harmonica,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "seq" = (
@@ -80089,6 +80138,11 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"uhL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "uhM" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 1
@@ -105701,9 +105755,9 @@ aaa
 aai
 aaa
 aaf
-aaf
-aaf
-aaf
+aaF
+aaF
+aaF
 aax
 abi
 abB
@@ -105958,11 +106012,11 @@ aaa
 aaf
 aaa
 aaa
-aaa
-aaf
-aaa
 aax
-abj
+pSL
+uhL
+pkB
+aaI
 aaR
 abZ
 acq
@@ -106215,10 +106269,10 @@ aaa
 aaf
 aaf
 aaf
-aaf
-aaf
-aaf
-aay
+abj
+kCw
+ggI
+raA
 abk
 abC
 abC
@@ -106472,10 +106526,10 @@ aaa
 aaf
 aaa
 aaa
-aaf
-aaa
-aaa
-aax
+aaF
+mDl
+jDR
+mgf
 abl
 abD
 abE
@@ -106730,11 +106784,11 @@ aaa
 aaa
 aax
 aax
-aaF
+aax
 aax
 aax
 abm
-abE
+pRi
 aaR
 aaI
 acm
@@ -107762,7 +107816,7 @@ aaJ
 abE
 gLX
 acw
-abD
+rxm
 aby
 aaI
 abE
@@ -108020,7 +108074,7 @@ aaT
 aax
 abq
 abI
-abC
+dlk
 acw
 acH
 abe

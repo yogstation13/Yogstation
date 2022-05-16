@@ -202,8 +202,11 @@
 	if(!ishuman(user))
 		return ..()
 	var/mob/living/carbon/human/human_user = user
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(IS_HERETIC(human_user))
-		to_chat(human_user,span_boldwarning("You know better than to tempt forces out of your control!"))
+		to_chat(human_user, span_boldwarning("You know better than to tempt forces out of your control!"))
+	if(IS_BLOODSUCKER(human_user) || bloodsuckerdatum.my_clan == CLAN_LASOMBRA)
+		to_chat(human_user, span_boldwarning("This shard has already been harvested!"))
 	else
 		var/obj/item/bodypart/arm = human_user.get_active_hand()
 		if(prob(25))
