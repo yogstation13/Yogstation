@@ -122,6 +122,7 @@
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
 	icon_state = "bow_hardlight"
+	item_state = "bow_hardlight"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy
 	no_pin_required = FALSE
 	var/recharge_time = 1.5 SECONDS
@@ -224,6 +225,7 @@
 	name = "Syndicate Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy. This one is designed for silent takedowns of targets by the syndicate."
 	icon_state = "bow_syndicate"
+	item_state = "bow_syndicate"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/syndicate
 	recharge_time = 2 SECONDS
 	zoomable = TRUE
@@ -237,5 +239,6 @@
 	name = "Brass Bow"
 	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and frabricates arrows by itself."
 	icon_state = "bow_clockwork"
+	item_state = "bow_clockwork"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/clockcult
 	pin = /obj/item/firing_pin/clockie

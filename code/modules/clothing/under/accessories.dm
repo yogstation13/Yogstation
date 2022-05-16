@@ -8,6 +8,7 @@
 	slot_flags = 0
 	w_class = WEIGHT_CLASS_SMALL
 	var/above_suit = FALSE
+	var/above_suit_adjustable = FALSE
 	var/minimize_when_attached = TRUE // TRUE if shown as a small icon in corner, FALSE if overlayed
 	var/datum/component/storage/detached_pockets
 	var/attachment_slot = CHEST
@@ -75,7 +76,7 @@
 
 /obj/item/clothing/accessory/AltClick(mob/user)
 	if(istype(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
-		if(initial(above_suit))
+		if(above_suit_adjustable)
 			above_suit = !above_suit
 			to_chat(user, "[src] will be worn [above_suit ? "above" : "below"] your suit.")
 
@@ -117,6 +118,7 @@
 	var/medaltype = "medal" //Sprite used for medalbox
 	var/commended = FALSE
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 
 //Pinning medals on people
 /obj/item/clothing/accessory/medal/attack(mob/living/carbon/human/M, mob/living/user)
@@ -252,6 +254,7 @@
 	item_color = "redband"
 	attachment_slot = null
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "security deputy armband"
@@ -357,6 +360,7 @@
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = null
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 
 /obj/item/clothing/accessory/skullcodpiece
 	name = "skull codpiece"
@@ -364,6 +368,7 @@
 	icon_state = "skull"
 	item_color = "skull"
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = GROIN
 
@@ -372,7 +377,7 @@
 	desc = "For the last time. IT'S A KILT not a skirt."
 	icon_state = "skilt"
 	item_color = "skilt"
-	above_suit = TRUE
+	above_suit_adjustable = TRUE
 	minimize_when_attached = FALSE
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = GROIN
@@ -385,6 +390,7 @@
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = null
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 
 
 /////////////
@@ -408,6 +414,7 @@
 	icon_state = "sing_necklace"
 	item_color = "sing_necklace"
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = -5, "fire" = 0, "acid" = 0) //It IS radioactive after all. Watch me get yelled at for powergaming because I'm making this my """donator""" item - Mqiib
 	attachment_slot = null
 	light_power = 2

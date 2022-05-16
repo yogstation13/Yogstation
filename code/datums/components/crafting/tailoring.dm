@@ -102,7 +102,7 @@
 
 /datum/crafting_recipe/footwrapsgoliath
 	name = "Goliath Hide Footwraps"
-	result = /obj/effect/spawner/lootdrop/lizardboots
+	result = /obj/item/clothing/shoes/xeno_wraps/goliath
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 1, /obj/item/stack/sheet/leather = 1)
 	time = 6 SECONDS
 	category = CAT_APPAREL
@@ -110,7 +110,7 @@
 
 /datum/crafting_recipe/footwrapsdragon
 	name = "Ash Drake Hide Footwraps"
-	result = /obj/effect/spawner/lootdrop/lizardboots
+	result = /obj/item/clothing/shoes/xeno_wraps/dragon
 	reqs = list(/obj/item/stack/sheet/animalhide/ashdrake = 1, /obj/item/stack/sheet/leather = 1)
 	time = 6 SECONDS
 	category = CAT_APPAREL
@@ -118,7 +118,7 @@
 
 /datum/crafting_recipe/footwrapscarpdragon
 	name = "Carp Dragon Hide Footwraps"
-	result = /obj/effect/spawner/lootdrop/lizardboots
+	result = /obj/item/clothing/shoes/xeno_wraps/carpdragon
 	reqs = list(/obj/item/stack/sheet/animalhide/carpdragon = 1, /obj/item/stack/sheet/leather = 1)
 	time = 6 SECONDS
 	category = CAT_APPAREL

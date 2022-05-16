@@ -195,7 +195,7 @@
 	desc = "Calls a Ratvarian spear into your hands to fight your enemies."
 	weapon_type = /obj/item/clockwork/weapon/ratvarian_spear
 
-//Judicial Visor: Creates a judicial visor, which can smite an area.
+//Brass Bow: Creates a brass bow, which is capable of firing redlight arrows.
 /datum/clockwork_scripture/create_object/brass_bow
 	descname = "Self Recharging Ranged Weapon"
 	name = "Brass Bow"
@@ -212,7 +212,7 @@
 	primary_component = BELLIGERENT_EYE
 	sort_priority = 6
 	quickbind = TRUE
-	quickbind_desc = "Creates a Judicial Visor, which can smite an area, applying Belligerent and briefly stunning."
+	quickbind_desc = "Creates a brass bow capable of firing redlight arrows, doing moderate damage but recharges after use."
 
 
 //Spatial Gateway: Allows the invoker to teleport themselves and any nearby allies to a conscious servant or clockwork obelisk.
