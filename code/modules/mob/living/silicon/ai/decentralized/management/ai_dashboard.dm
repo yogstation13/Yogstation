@@ -26,6 +26,8 @@
 
 
 /datum/ai_dashboard/proc/is_interactable(mob/user)
+	if(IsAdminGhost(user))
+		return TRUE
 	if(user != owner || owner.incapacitated())
 		return FALSE
 	if(owner.control_disabled)
@@ -48,8 +50,6 @@
 		ui.open()
 
 /datum/ai_dashboard/ui_data(mob/user)
-	if(!owner || user != owner)
-		return
 	var/list/data = list()
 
 	data["current_cpu"] = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
