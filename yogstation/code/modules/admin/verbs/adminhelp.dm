@@ -197,7 +197,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(. > 0)
 		return
 	send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
-	if(adm["stealth"] > 0) // If there are stealthmins, do nothing
+	var/list/stealthmins = adm["stealth"]
+	if(stealthmins.len > 0) // If there are stealthmins, do nothing
 		return
 	// There are no admins online, try deadmins
 	var/found_deadmin = FALSE
@@ -211,7 +212,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				continue
 			if(client.prefs.toggles & SOUND_ADMINHELP)
 				SEND_SOUND(client, sound('sound/effects/adminhelp.ogg'))
-			to_chat(client, span_notice("Ticket opened with no active admins. Ticket will be sent to discord in 30 seconds if not taken."), confidential=TRUE)
+			to_chat(client, span_danger("Ticket opened with no active admins. Ticket will be sent to discord in 30 seconds if not taken."), confidential=TRUE)
 			if(!found_deadmin)
 				found_deadmin = TRUE
 				addtimer(CALLBACK(src, .proc/send_to_discord), 30 SECONDS)
@@ -220,7 +221,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/send_to_discord()
 	if(state == AHELP_ACTIVE && !handling_admin)
-		webhook_send_ticket_unclaimed(id, initiator_ckey, name)
+		webhook_send_ticket_unclaimed(initiator_ckey, name, id)
 
 /datum/admin_help/Destroy()
 	GLOB.ahelp_tickets.tickets_list -= src
