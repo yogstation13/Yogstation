@@ -4,7 +4,6 @@
 	maxHealth = 300
 	health = 300
 	icon_state = "alienp"
-	speed = 1
 
 /mob/living/carbon/alien/humanoid/royal/praetorian/Initialize()
 	real_name = name
