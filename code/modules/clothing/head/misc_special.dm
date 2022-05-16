@@ -349,3 +349,8 @@
 	icon_state = "cowboy"
 	item_state = "cowboy"
 
+/obj/item/clothing/head/peacekeeperberet
+	name = "Peacekeeper Beret"
+	desc = "A relic from the past. Its effectiveness as a stylish hat was never debated."
+	icon_state = "unberet"
+	item_state = "unberet"
