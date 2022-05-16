@@ -1219,7 +1219,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/check_species_weakness(obj/item, mob/living/attacker)
 	return 0 //This is not a boolean, it's the multiplier for the damage that the user takes from the item.It is added onto the check_weakness value of the mob, and then the force of the item is multiplied by this value
 
-////////
+	////////
 	//LIFE//
 	////////
 
