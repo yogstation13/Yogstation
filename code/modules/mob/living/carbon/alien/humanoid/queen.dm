@@ -45,7 +45,7 @@
 	melee_damage_upper = 50
 	/// The queen's small sprite action.
 	var/datum/action/small_sprite/smallsprite = new/datum/action/small_sprite/queen()
-	var/obj/item/gps/internal
+	var/obj/item/gps/internal/queengps
 
 /mob/living/carbon/alien/humanoid/royal/queen/Initialize()
 	SSshuttle.registerHostileEnvironment(src) //yogs: aliens delay shuttle
@@ -78,7 +78,7 @@
  */
 /mob/living/carbon/alien/humanoid/royal/queen/proc/add_gps()
 	priority_announce("Attention crew, we were able to register a GPS signal to the threat preventing your departure.  You are expected to elimate the threat before leaving.", "[command_name()] High-Priority Update", 'sound/misc/notice1.ogg', "Priority")
-	internal = new /obj/item/gps/internal/queen(src)
+	queengps = new /obj/item/gps/internal/queen(src)
 
 /obj/item/gps/internal/queen
 	icon_state = null
