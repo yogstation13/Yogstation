@@ -1,0 +1,6 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - rscadd: "Adds Depleted Uranium Slugs"
+  - rscadd: "Adds Cryoshot buckshot shells"
+  - imageadd: "adds unique shells and projectiles for both ammo types"

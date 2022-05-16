@@ -55,12 +55,12 @@
 				infect_modifier = clamp(infect_modifier, 0, 100)
 
 				if(prob(infect_modifier))
-					if(prob(infect_chance - H.getarmor(flesh_wound, "melee")))
+					if(prob(infect_chance - H.getarmor(flesh_wound, MELEE)))
 						if(!H.stat)
 							try_to_zombie_infect(target, inserted_organ)
 
 			else
-				if(prob(infect_chance - H.getarmor(flesh_wound, "melee")))
+				if(prob(infect_chance - H.getarmor(flesh_wound, MELEE)))
 					try_to_zombie_infect(target, inserted_organ)
 		else
 			check_feast(target, user)

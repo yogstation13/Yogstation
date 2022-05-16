@@ -2321,7 +2321,7 @@
 			return
 		if(!AI.dashboard)
 			return
-		AI.dashboard.ui_interact(src.owner)
+		AI.dashboard.ui_interact(src.owner.mob)
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

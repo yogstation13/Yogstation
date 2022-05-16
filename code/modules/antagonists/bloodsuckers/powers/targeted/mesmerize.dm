@@ -30,6 +30,7 @@
 	target_range = 8
 	power_activates_immediately = FALSE
 	prefire_message = "Whom will you subvert to your will?"
+	var/mesmerizingtime = 5 SECONDS
 
 /datum/action/bloodsucker/targeted/mesmerize/CheckCanUse(mob/living/carbon/user)
 	. = ..()
@@ -90,8 +91,9 @@
 	var/mob/living/target = target_atom
 	var/mob/living/user = owner
 	to_chat(owner, span_notice("Attempting to hypnotically gaze [target]..."))
-	if(!do_mob(user, target, 5 SECONDS, NONE, TRUE))
-		return
+	if(!power_activates_immediately)
+		if(!do_mob(user, target, mesmerizingtime, NONE, TRUE))
+			return
 
 	PowerActivatedSuccessfully() // PAY COST! BEGIN COOLDOWN!
 	var/power_time = 90 + level_current * 15
@@ -125,3 +127,22 @@
 	if(istype(user) && target.stat == CONSCIOUS && (target in view(6, get_turf(user))))
 		to_chat(owner, span_warning("[target] snapped out of their trance."))
 
+/datum/action/bloodsucker/targeted/mesmerize/shadow
+	name = "Glare"
+	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	background_icon_state_on = "lasombra_power_on"
+	background_icon_state_off = "lasombra_power_off"
+	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	button_icon_state = "power_glare"
+	additional_text = "Additionally makes the stun downtime based on distance, being instant when adjacent."
+	purchase_flags = LASOMBRA_CAN_BUY
+
+/datum/action/bloodsucker/targeted/mesmerize/shadow/FireTargetedPower(atom/target_atom)
+	var/mob/living/target = target_atom
+	var/mob/living/user = owner
+	if(target.Adjacent(user))
+		power_activates_immediately = TRUE
+	else
+		mesmerizingtime = initial(mesmerizingtime) - ((-get_dist(target, user) + 8 )/2) SECONDS //won't screw you up that bad if you miss it barely
+		power_activates_immediately = FALSE
+	. = ..()

@@ -78,6 +78,31 @@
 	stamina = 11
 	sharpness = SHARP_NONE
 
+/obj/item/projectile/bullet/pellet/shotgun_cryoshot
+	name = "cryoshot pellet"
+	damage = 6
+	sharpness = SHARP_NONE
+	var/temperature = 100
+
+/obj/item/projectile/bullet/pellet/shotgun_cryoshot/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/M = target
+		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
+
+/obj/item/projectile/bullet/shotgun_uraniumslug
+	name = "depleted uranium slug"
+	icon_state = "ubullet"
+	damage = 35
+	armour_penetration = 200 // he he funny round go through armor
+	wound_bonus = -30
+
+/obj/item/projectile/bullet/shotgun_uraniumslug/on_hit(atom/target)
+	. = ..()
+	if(ismob(target))
+		return BULLET_ACT_FORCE_PIERCE
+
+
 /obj/item/projectile/bullet/pellet/Range()
 	..()
 	if(damage > 0)
@@ -118,3 +143,15 @@
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
 	..()
+
+/obj/item/projectile/bullet/pellet/shotgun_thundershot
+	name = "thundershot pellet"
+	damage = 3
+	sharpness = SHARP_NONE
+	hitsound = 'sound/magic/lightningbolt.ogg'
+
+/obj/item/projectile/bullet/pellet/shotgun_thundershot/on_hit(atom/target)
+	..()
+	tesla_zap(target, rand(2, 3), 17500, TESLA_MOB_DAMAGE)
+	return BULLET_ACT_HIT
+	

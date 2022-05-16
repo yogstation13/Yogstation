@@ -1,6 +1,7 @@
 /obj/item/deployablemine
 	name = "deployable mine"
 	desc = "An unarmed landmine. It can be planted to arm it."
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "uglymine"
 	var/mine_type = /obj/effect/mine
 	var/arming_time = 3 SECONDS
