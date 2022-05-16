@@ -92119,6 +92119,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
+"lhW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/rack_creator,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "lig" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment{
@@ -92841,30 +92848,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet/restrooms)
-"lZy" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/announcement_system,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
-"lZz" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/computer/ai_overclocking,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "lZB" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -94334,13 +94317,6 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/aft)
-"nqL" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/rack_creator,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "nqP" = (
 /obj/structure/sign/warning/radiation,
 /turf/closed/wall,
@@ -96025,6 +96001,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/cryopods)
+"por" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/rnd/production/circuit_imprinter/department/netmin,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "pqh" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -96297,6 +96285,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard/fore)
+"pGh" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/computer/ai_overclocking,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "pGA" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12";
@@ -103729,16 +103726,19 @@
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/circuit/green/telecomms,
 /area/tcommsat/server)
-"xpJ" = (
+"xpm" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
 /obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 8;
+	pixel_x = 24
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/rnd/production/circuit_imprinter/department/netmin,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/announcement_system,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "xpS" = (
@@ -134797,7 +134797,7 @@ uHA
 jpx
 iST
 sIM
-xpJ
+por
 cfM
 aRv
 aOQ
@@ -135054,7 +135054,7 @@ pJL
 gul
 gul
 faW
-nqL
+lhW
 cfM
 aRw
 aOS
@@ -135309,7 +135309,7 @@ fNP
 iZu
 skc
 cgu
-lZz
+pGh
 lhw
 lWm
 cfM
@@ -135566,7 +135566,7 @@ hRS
 ltJ
 fUZ
 cgu
-lZy
+xpm
 iBL
 kDT
 cfM
