@@ -67,17 +67,22 @@
 	log_game("[key_name(tzimisce)] was spawned as a tzimisce bloodsucker by an event.")
 	var/datum/job/jobdatum = SSjob.GetJob(pick("Assistant", "Botanist", "Station Engineer", "Medical Doctor", "Scientist", "Cargo Technician", "Cook"))
 	set_antag_hud(tzimisce, "tzimisce")
-	tzimisce.job = jobdatum
-	tzimisce.update_internals_hud_icon(TRUE)
+	if(SSshuttle.arrivals)
+		SSshuttle.arrivals.QueueAnnounce(tzimisce, jobdatum.title)
+	Mind.assigned_role = jobdatum.title //sets up the manifest properly
 	jobdatum.equip(tzimisce)
+	var/obj/item/card/id/id = tzimisce.get_item_by_slot(SLOT_WEAR_ID)
+	id.assignment = jobdatum.title
+	id.originalassignment = jobdatum.title
+	id.update_label()
+	GLOB.data_core.manifest_inject(tzimisce, force = TRUE)
 	tzimisce.update_move_intent_slowdown() //prevents you from going super duper fast
 	return SUCCESSFUL_SPAWN
 
 
-/proc/spawn_event_tzimisce(spawn_loc)
-	var/mob/living/carbon/human/new_tzimisce = new(spawn_loc)
-	if(!spawn_loc)
-		SSjob.SendToLateJoin(new_tzimisce)
+/proc/spawn_event_tzimisce()
+	var/mob/living/carbon/human/new_tzimisce = new()
+	SSjob.SendToLateJoin(new_tzimisce)
 	var/datum/preferences/A = new() //Randomize appearance.
 	A.copy_to(new_tzimisce)
 	new_tzimisce.dna.update_dna_identity()
@@ -85,6 +90,5 @@
 
 /proc/create_tzimisce_mind(key)
 	var/datum/mind/Mind = new /datum/mind(key)
-	Mind.assigned_role = ROLE_BLOODSUCKER
 	Mind.special_role = ROLE_BLOODSUCKER
 	return Mind

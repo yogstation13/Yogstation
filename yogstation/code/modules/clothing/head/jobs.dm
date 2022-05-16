@@ -30,4 +30,4 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "beret_corporate_phys"
-	armor = list("bio" = 20) //So it isnt a direct upgrade over the normal berret
+	armor = list(BIO = 20) //So it isnt a direct upgrade over the normal berret

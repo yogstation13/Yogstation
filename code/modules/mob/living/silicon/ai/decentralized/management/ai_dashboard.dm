@@ -10,6 +10,8 @@
 	var/completed_projects
 
 	var/running_projects
+	///Should we be contributing spare CPU to generate research points?
+	var/contribute_spare_cpu = TRUE
 
 /datum/ai_dashboard/New(mob/living/silicon/ai/new_owner)
 	if(!istype(new_owner))
@@ -26,6 +28,8 @@
 
 
 /datum/ai_dashboard/proc/is_interactable(mob/user)
+	if(IsAdminGhost(user))
+		return TRUE
 	if(user != owner || owner.incapacitated())
 		return FALSE
 	if(owner.control_disabled)
@@ -48,8 +52,6 @@
 		ui.open()
 
 /datum/ai_dashboard/ui_data(mob/user)
-	if(!owner || user != owner)
-		return
 	var/list/data = list()
 
 	data["current_cpu"] = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
@@ -62,6 +64,8 @@
 	var/total_ram_used = 0
 	for(var/I in ram_usage)
 		total_ram_used += ram_usage[I]
+
+	data["contribute_spare_cpu"] = contribute_spare_cpu
 
 	data["used_cpu"] = total_cpu_used
 	data["used_ram"] = total_ram_used
@@ -140,6 +144,25 @@
 			if(!project || !set_project_cpu(project, text2num(params["amount"])))
 				to_chat(owner, span_warning("Unable to add CPU to [params["project_name"]]. Either not enough free CPU or ability recharge is unavailable."))
 			. = TRUE
+		if("max_cpu")
+			var/datum/ai_project/project = get_project_by_name(params["project_name"], TRUE)
+			if(!project)
+				to_chat(owner, span_warning("Unable to add CPU to [params["project_name"]]. Either not enough free CPU or project is unavailable."))
+				return
+
+			var/total_cpu_used = 0
+			for(var/I in cpu_usage)
+				if(I == project.name)
+					continue
+				total_cpu_used += cpu_usage[I]
+
+			var/amount_to_add = 1 - total_cpu_used
+			if(!set_project_cpu(project, amount_to_add))
+				to_chat(owner, span_warning("Unable to add CPU to [params["project_name"]]. Either not enough free CPU or project is unavailable."))
+			. = TRUE
+		if("toggle_contribute_cpu")
+			contribute_spare_cpu = !contribute_spare_cpu
+			to_chat(owner, span_notice("You now[contribute_spare_cpu ? "" : " DO NOT"] contribute spare CPU to generating research points."))
 			
 /datum/ai_dashboard/proc/get_project_by_name(project_name, only_available = FALSE)
 	for(var/datum/ai_project/AP as anything in available_projects)
@@ -153,7 +176,6 @@
 	return FALSE
 
 /datum/ai_dashboard/proc/set_project_cpu(datum/ai_project/project, amount)
-	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
 	if(!project.canResearch())
 		return FALSE
 	
@@ -170,7 +192,6 @@
 			return
 	
 	
-
 	var/total_cpu_used = 0
 	for(var/I in cpu_usage)
 		if(I == project.name)
@@ -178,7 +199,7 @@
 		total_cpu_used += cpu_usage[I]
 
 
-	if((current_cpu - total_cpu_used) >= amount)
+	if((1 - total_cpu_used) >= amount)
 		cpu_usage[project.name] = amount
 		return TRUE
 	return FALSE
@@ -237,15 +258,12 @@
 
 //Stuff is handled in here per tick :)
 /datum/ai_dashboard/proc/tick(seconds)
-	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
+	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.total_cpu * GLOB.ai_os.cpu_assigned[owner] : 0
 	var/current_ram = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
 
 	var/total_ram_used = 0
 	for(var/I in ram_usage)
 		total_ram_used += ram_usage[I]
-	var/total_cpu_used = 0
-	for(var/I in cpu_usage)
-		total_cpu_used += cpu_usage[I]
 
 	var/reduction_of_resources = FALSE
 
@@ -257,37 +275,25 @@
 			reduction_of_resources = TRUE
 			if(total_ram_used <= current_ram)
 				break
-		if(total_ram_used > current_ram)
-			message_admins("this is still broken. dashboard-ram")
 
-	if(total_cpu_used > current_cpu)
-		var/amount_needed = total_cpu_used - current_cpu
-		for(var/I in cpu_usage)
-
-			if(cpu_usage[I] >= amount_needed)
-				cpu_usage[I] -= amount_needed
-				reduction_of_resources = TRUE
-				total_cpu_used -= amount_needed
-				break
-			if(cpu_usage[I])
-				total_cpu_used -= cpu_usage[I]
-				amount_needed -= cpu_usage[I]
-				cpu_usage[I] = 0
-				reduction_of_resources = TRUE
-				if(total_cpu_used <= current_cpu)
-					break
-		if(total_cpu_used > current_cpu)
-			message_admins("this is still broken. dashboard-cpu")
 
 	if(reduction_of_resources)
 		to_chat(owner, span_warning("Lack of computational capacity. Some programs may have been stopped."))
 
 
+	var/remaining_cpu = 1
+	for(var/I in cpu_usage)
+		remaining_cpu -= cpu_usage[I]
+
+	if(remaining_cpu > 0)
+		var/points = round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu) * owner.research_point_booster)
+		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = points))
+
 	for(var/project_being_researched in cpu_usage)
 		if(!cpu_usage[project_being_researched])
 			continue
 		
-		var/used_cpu = round(cpu_usage[project_being_researched] * seconds, 1)
+		var/used_cpu = round(cpu_usage[project_being_researched] * seconds * current_cpu, 1)
 		var/datum/ai_project/project = get_project_by_name(project_being_researched)
 		if(!project)
 			cpu_usage[project_being_researched] = 0
@@ -303,4 +309,3 @@
 		if(project.research_progress > project.research_cost)
 			owner.playsound_local(owner, 'sound/machines/ping.ogg', 50, 0)
 			finish_project(project)
-

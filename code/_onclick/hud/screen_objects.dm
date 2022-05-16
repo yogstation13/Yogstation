@@ -593,10 +593,6 @@
 	icon_state = "health0"
 	screen_loc = ui_health
 
-/obj/screen/healths/living
-	screen_loc = ui_living_health
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
 /obj/screen/healths/alien
 	icon = 'icons/mob/screen_alien.dmi'
 	screen_loc = ui_alien_health
@@ -672,6 +668,11 @@
 	if (ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.check_self_for_injuries()
+
+/obj/screen/healthdoll/living
+	icon_state = "fullhealth0"
+	screen_loc = ui_living_healthdoll
+	var/filtered = FALSE //so we don't repeatedly create the mask of the mob every update
 
 /obj/screen/mood
 	name = "mood"
