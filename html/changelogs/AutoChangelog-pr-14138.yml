@@ -1,0 +1,4 @@
+author: " stobarico"
+delete-after: true 
+changes: 
+  - imageadd: "added 3/4ths crate sprites and mulebot sprites"
