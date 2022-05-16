@@ -386,6 +386,31 @@
 
 // Ammo
 
+/datum/crafting_recipe/improvised_pneumatic_cannon //Pretty easy to obtain but
+	name = "Pneumatic Cannon"
+	result = /obj/item/pneumatic_cannon/ghetto
+	tools = list(TOOL_WELDER, TOOL_WRENCH)
+	reqs = list(/obj/item/stack/sheet/metal = 4,
+				/obj/item/stack/packageWrap = 8,
+				/obj/item/pipe = 2)
+	time = 5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/flamethrower
+	name = "Flamethrower"
+	result = /obj/item/flamethrower
+	reqs = list(/obj/item/weldingtool = 1,
+				/obj/item/assembly/igniter = 1,
+				/obj/item/stack/rods = 1)
+	parts = list(/obj/item/assembly/igniter = 1,
+				/obj/item/weldingtool = 1)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 1 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
 /datum/crafting_recipe/pulseslug
 	name = "Pulse Slug Shell"
 	result = /obj/item/ammo_casing/shotgun/pulseslug
@@ -435,6 +460,39 @@
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
 				/obj/item/stock_parts/capacitor/adv = 1,
 				/obj/item/stock_parts/micro_laser/high = 2)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/thundershot
+	name = "Thundershot Shell"
+	result = /obj/item/ammo_casing/shotgun/thundershot
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/obj/item/stock_parts/capacitor/super = 1,
+				/datum/reagent/teslium = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/depleteduraniumslug
+	name = "Depleted Uranium Slug Shell"
+	result = /obj/item/ammo_casing/shotgun/uraniumpenetrator
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/datum/material/uranium = 3,
+				/obj/item/stack/rods = 2,
+				/datum/reagent/thermite = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/cryoshot
+	name = "Cryoshot Shell"
+	result = /obj/item/ammo_casing/shotgun/cryoshot
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/datum/reagent/medicine/c2/rhigoxane = 5)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY

@@ -140,3 +140,13 @@
 	time = 12 SECONDS
 	category = CAT_TOOLS
 	always_availible = FALSE
+
+/datum/crafting_recipe/makeshiftid
+	name = "Makeshift ID"
+	result = /obj/item/card/id/makeshift
+	reqs = list(/obj/item/stack/sheet/cardboard = 2,
+				/obj/item/stack/tape = 1,
+				/obj/item/pen = 1)
+	tools = list(TOOL_WIRECUTTER)
+	time = 30
+	category = CAT_MISC
