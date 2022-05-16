@@ -364,7 +364,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		M.adjustBruteLoss(damage)
 		M.Unconscious(damage * 4)
 	for(var/obj/mecha/M in src)
-		M.take_damage(damage*2, BRUTE, "melee", 1)
+		M.take_damage(damage*2, BRUTE, MELEE, 1)
 
 /turf/proc/Bless()
 	new /obj/effect/blessing(src)

@@ -73,7 +73,7 @@
 /turf/open/floor/grass
 	name = "grass patch"
 	desc = "You can't tell if this is real grass or just cheap plastic imitation."
-	icon_state = "grass"
+	icon_state = "grass1"
 	floor_tile = /obj/item/stack/tile/grass
 	broken_states = list("sand")
 	flags_1 = NONE
@@ -88,7 +88,9 @@
 
 /turf/open/floor/grass/Initialize()
 	. = ..()
-	update_icon()
+	if(src.type == /turf/open/floor/grass) //don't want grass subtypes getting the icon state,
+		icon_state = "grass[rand(1,4)]"
+		update_icon()
 
 /turf/open/floor/grass/attackby(obj/item/C, mob/user, params)
 	if((C.tool_behaviour == TOOL_SHOVEL) && params)

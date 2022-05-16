@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, Tabs, ProgressBar, Section, Flex, Icon, NoticeBox } from '../components';
+import { Box, Button, LabeledList, Tabs, ProgressBar, Section, Flex, Icon, NoticeBox, NumberInput } from '../components';
 import { Window } from '../layouts';
 
 export const AiResources = (props, context) => {
@@ -9,6 +9,8 @@ export const AiResources = (props, context) => {
   const { username, has_access } = data;
 
   const [tab, setTab] = useLocalState(context, 'tab', 1);
+
+  let remaining_cpu = (1 - data.total_assigned_cpu) * 100;
 
   return (
     <Window
@@ -38,11 +40,12 @@ export const AiResources = (props, context) => {
                   <ProgressBar
                     value={data.total_assigned_cpu}
                     ranges={{
-                      good: [data.total_cpu * 0.8, Infinity],
-                      average: [data.total_cpu * 0.4, data.total_cpu * 0.8],
-                      bad: [-Infinity, data.total_cpu * 0.4],
+                      good: [0.8, Infinity],
+                      average: [0.4, 0.8],
+                      bad: [-Infinity, 0.4],
                     }}
-                    maxValue={data.total_cpu}>{data.total_assigned_cpu}/{data.total_cpu} THz
+                    maxValue={1}>{data.total_cpu * data.total_assigned_cpu}/{data.total_cpu} THz
+                    ({data.total_assigned_cpu * 100}%)
                   </ProgressBar>
                 </Section>
                 <Section title="Cloud RAM Resources">
@@ -69,15 +72,17 @@ export const AiResources = (props, context) => {
                           <LabeledList.Item>
                             CPU Capacity:
                             <Flex>
-                              <ProgressBar minValue={0} value={ai.assigned_cpu}
-                                maxValue={data.total_cpu} >{ai.assigned_cpu} THz
+                              <ProgressBar minValue={0} value={data.total_cpu * ai.assigned_cpu}
+                                maxValue={data.total_cpu} >{data.total_cpu * ai.assigned_cpu} THz
                               </ProgressBar>
-                              <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_cpu", {
+                              <NumberInput width="60px" unit="%" value={ai.assigned_cpu * 100} minValue={0} maxValue={remaining_cpu + (ai.assigned_cpu * 100)} onChange={(e, value) => act('set_cpu', {
                                 targetAI: ai.ref,
+                                amount_cpu: Math.round((value / 100) * 100) / 100,
                               })} />
-                              <Button height={1.75} icon="minus" onClick={() => act("remove_cpu", {
+                              <Button height={1.75} icon="arrow-up" onClick={() => act("max_cpu", {
                                 targetAI: ai.ref,
-                              })} />
+                              })}>Max
+                              </Button>
                             </Flex>
 
                           </LabeledList.Item>

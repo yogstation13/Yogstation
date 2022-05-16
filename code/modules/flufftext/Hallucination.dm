@@ -337,10 +337,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	..()
 	var/turf/source = random_far_turf()
 	if(!battle_type)
-		battle_type = pick("laser","disabler","esword","gun","stunprod","harmbaton","bomb")
+		battle_type = pick(LASER,"disabler","esword","gun","stunprod","harmbaton",BOMB)
 	feedback_details += "Type: [battle_type]"
 	switch(battle_type)
-		if("laser")
+		if(LASER)
 			var/hits = 0
 			for(var/i in 1 to rand(5, 10))
 				target.playsound_local(source, 'sound/weapons/laser.ogg', 25, 1)

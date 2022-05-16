@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscadd: "Added more notification methods for tickets with no present admins"
