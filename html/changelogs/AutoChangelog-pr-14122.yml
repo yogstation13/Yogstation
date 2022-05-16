@@ -1,0 +1,7 @@
+author: " Mqiib, Nmajask"
+delete-after: true 
+changes: 
+  - rscadd: "The hivemind has found DNA blueprints for a devastating new weapon: the flesh maul!"
+  - imageadd: "Fixes the changeling tentacle arm sprites being backwards"
+  - imageadd: "Sprites for new ling item"
+  - wip: "Balance decisions pending"

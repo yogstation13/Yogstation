@@ -267,21 +267,21 @@
 	desc = "A red padded pauldron signifying the rank of Major; offers a small amount of protection to the wearer."
 	w_class = WEIGHT_CLASS_SMALL
 	body_parts_covered = CHEST
-	armor = list("melee" = 15, "bullet" = 25, "laser" = 10, "energy" = 10, "bomb" = 5, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = 15, BULLET = 25, LASER = 10, ENERGY = 10, BOMB = 5, BIO = 10, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/neck/pauldron/commander
 	name = "commodore's pauldron"
 	desc = "A gold alloy reinforced pauldron signifying the rank of Commodore;offers a moderate amount of protection to the wearer."
 	icon_state = "commodore"
 	item_state = "commodore"
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 20, "energy" = 20, "bomb" = 5, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 20, ENERGY = 20, BOMB = 5, BIO = 10, RAD = 0, FIRE = 0, ACID = 50)
 
 /obj/item/clothing/neck/pauldron/colonel
 	name = "colonel's pauldrons"
 	desc = "Gold alloy reinforced pauldrons signifying the rank of Colonel; offers slightly more protection than the Commander's pauldron to the wearer."
 	icon_state = "colonel"
 	item_state = "colonel"
-	armor = list("melee" = 35, "bullet" = 30, "laser" = 35, "energy" = 35, "bomb" = 5, "bio" = 20, "rad" = 0, "fire" = 0, "acid" = 90)
+	armor = list(MELEE = 35, BULLET = 30, LASER = 35, ENERGY = 35, BOMB = 5, BIO = 20, RAD = 0, FIRE = 0, ACID = 90)
 
 /obj/item/clothing/neck/cape
 	name = "admiral's cape"
