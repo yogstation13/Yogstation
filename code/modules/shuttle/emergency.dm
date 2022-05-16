@@ -637,6 +637,7 @@
 
 /obj/machinery/computer/emergency_shuttle/proc/xeno_hijack_check(mob/living/user)
 	if(isalien(user) && user.mind?.has_antag_datum(/datum/antagonist/xeno/queen) && (user in SSshuttle.hostileEnvironments))
+		sound_to_playing_players('sound/voice/alien_queen_roar.ogg')
 		sleep(50)
 		SSshuttle.clearHostileEnvironment(user)
 		return
