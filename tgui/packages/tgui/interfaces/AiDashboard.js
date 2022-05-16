@@ -13,7 +13,7 @@ export const AiDashboard = (props, context) => {
   const [activeProjectsOnly, setActiveProjectsOnly] = useSharedState(context, 'activeProjectsOnly', true);
 
   let remaining_cpu = (1 - data.used_cpu) * 100;
-  let amount_of_cpu = data.current_cpu ? data.current_cpu * amount_of_cpu : 0
+  let amount_of_cpu = data.current_cpu ? data.current_cpu * amount_of_cpu : 0;
 
   return (
     <Window
