@@ -30,5 +30,6 @@
 /proc/techweb_point_display_rdconsole(pointlist, last_pointlist)
 	var/list/ret = list()
 	for(var/i in pointlist)
-		ret += "[SSresearch.point_types[i] || "ERRORED POINT TYPE"]: [pointlist[i]] (+[(last_pointlist[i]) * ((SSresearch.flags & SS_TICKER)? (600 / (world.tick_lag * SSresearch.wait)) : (600 / SSresearch.wait))]/ minute)"
+		var/point_count = (last_pointlist[i]) * ((SSresearch.flags & SS_TICKER)? (600 / (world.tick_lag * SSresearch.wait)) : (600 / SSresearch.wait))
+		ret += "[SSresearch.point_types[i] || "ERRORED POINT TYPE"]: [pointlist[i]] [point_count ? "(+[point_count]/ minute)" : ""]"
 	return ret.Join("<BR>")

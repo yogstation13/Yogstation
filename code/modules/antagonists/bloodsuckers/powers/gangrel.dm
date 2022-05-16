@@ -69,6 +69,7 @@
 				gb = new /mob/living/simple_animal/hostile/bloodsucker/giantbat(user.loc)
 				user.forceMove(gb)
 				gb.bloodsucker = user
+				user.status_flags |= GODMODE //sad!
 				user.mind.transfer_to(gb)
 				var/list/bat_powers = list(new /datum/action/bloodsucker/gangrel/transform_back,)
 				for(var/datum/action/bloodsucker/power in bloodsuckerdatum.powers)
@@ -83,6 +84,8 @@
 				QDEL_IN(gb, 2 MINUTES)
 				playsound(gb.loc, 'sound/items/toysqueak1.ogg', 50, 1)
 			to_chat(owner, span_notice("You transform into a fatty beast!"))
+			return ..() //early to not mess with vampire organs proc
+	bloodsuckerdatum.HealVampireOrgans() //regives you the stuff
 	. = ..()
 
 /datum/action/bloodsucker/gangrel/transform_back

@@ -1,0 +1,5 @@
+author: " @cuackles, MajesticManateee"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new donor beret for myself"
+  - imageadd: "added sprites for said beret"

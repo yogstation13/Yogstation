@@ -1,0 +1,4 @@
+author: " TemporalOroboros"
+delete-after: true 
+changes: 
+  - tweak: "Added defines for the damage flags. Please use them!"
