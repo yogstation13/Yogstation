@@ -64,20 +64,28 @@
 
 /datum/species/lizard/spec_life(mob/living/carbon/human/H)
 	. = ..()
-	if(!is_wagging_tail() && H.mood_enabled)
+	if((H.client && H.client.prefs.mood_tail_wagging) && !is_wagging_tail() && H.mood_enabled)
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2)) 
 			return
 		var/chance = 0
 		switch(mood.shown_mood)
+			if(0 to MOOD_LEVEL_SAD4)
+				chance = -0.1
+			if(MOOD_LEVEL_SAD4 to MOOD_LEVEL_SAD3)
+				chance = -0.01
 			if(MOOD_LEVEL_HAPPY2 to MOOD_LEVEL_HAPPY3)
 				chance = 0.001
 			if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL_HAPPY4)
 				chance = 0.1
 			if(MOOD_LEVEL_HAPPY4 to INFINITY)
 				chance = 1
-		if(prob(chance))
-			H.emote("wag")
+		if(prob(abs(chance)))
+			switch(SIGN(chance))
+				if(1)
+					H.emote("wag")
+				if(-1)
+					stop_wagging_tail(H)
 	
 
 /*
