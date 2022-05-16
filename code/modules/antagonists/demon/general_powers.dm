@@ -43,7 +43,7 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	loot = (/obj/effect/decal/cleanable/blood)
-	del_on_death = 1
+	del_on_death = TRUE
 
 /mob/living/simple_animal/lesserdemon/attackby(obj/item/W, mob/living/user, params)
 	. = ..()

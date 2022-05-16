@@ -313,14 +313,14 @@
 		var/obj/item/bodypart/BP = X
 		for(var/obj/item/I in BP.embedded_objects)
 			var/pain_chance_current = I.embedding.embedded_pain_chance
-			if(mobility_flags & ~MOBILITY_STAND)
+			if(!(mobility_flags & MOBILITY_STAND))
 				pain_chance_current *= 0.2
 			if(prob(pain_chance_current))
 				BP.receive_damage(I.w_class*I.embedding.embedded_pain_multiplier, wound_bonus = CANT_WOUND)
 				to_chat(src, span_userdanger("[I] embedded in your [BP.name] hurts!"))
 
 			var/fall_chance_current = I.embedding.embedded_fall_chance
-			if(mobility_flags & ~MOBILITY_STAND)
+			if(!(mobility_flags & MOBILITY_STAND))
 				fall_chance_current *= 0.2
 
 			if(prob(fall_chance_current))
