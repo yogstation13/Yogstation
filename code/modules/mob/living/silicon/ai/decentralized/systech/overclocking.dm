@@ -22,8 +22,8 @@
 			overclocking = FALSE
 			inserted_cpu.speed = initial(inserted_cpu.speed)
 			inserted_cpu.power_multiplier = initial(inserted_cpu.power_multiplier)
+			inserted_cpu.last_overclocking_values += list(list("speed" = inserted_cpu.speed, "power" = inserted_cpu.power_multiplier, "valid" = FALSE))
 			inserted_cpu = null
-			inserted_cpu.last_overclocking_values = list()
 		return
 
 	if(overclocking && COOLDOWN_FINISHED(src, overclocking_timer))

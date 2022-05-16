@@ -57,28 +57,23 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 			T.air_update_turf()
 		
+		valid_ticks++
+		if(!was_valid_holder)
+			update_icon()
+		was_valid_holder = TRUE
+
 		if(!hardware_synced)
 			GLOB.ai_os.update_hardware()
 			hardware_synced = TRUE
-		
-	else if(was_valid_holder)
-		if(valid_ticks > 0)
-			return
-		was_valid_holder = FALSE
-		cut_overlays()
-		hardware_synced = FALSE
-		GLOB.ai_os.update_hardware()
-	
-/obj/machinery/ai/server_cabinet/valid_holder()
-	. = ..()
-	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
-	if(!.)
+	else 
 		valid_ticks--
-		return .
-	valid_ticks++
-	if(!was_valid_holder)
-		update_icon()
-	was_valid_holder = TRUE
+		if(was_valid_holder)
+			if(valid_ticks > 0)
+				return
+			was_valid_holder = FALSE
+			cut_overlays()
+			hardware_synced = FALSE
+			GLOB.ai_os.update_hardware()
 
 
 /obj/machinery/ai/server_cabinet/update_icon()
@@ -93,6 +88,8 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "expansion_bus_on")
 		add_overlay(on_overlay)
+		if(!valid_ticks)
+			return
 		if(installed_racks.len > 0)
 			var/mutable_appearance/on_top_overlay = mutable_appearance(icon, "expansion_bus_top_on")
 			add_overlay(on_top_overlay)
@@ -141,7 +138,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 /obj/machinery/ai/server_cabinet/examine()
 	. = ..()
-	if(!valid_holder())
+	if(!valid_ticks)
 		. += "A small screen is displaying the words 'OFFLINE.'"
 	. += "The machine has [installed_racks.len] racks out of a maximum of [max_racks] installed."
 
