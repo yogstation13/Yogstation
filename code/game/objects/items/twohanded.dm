@@ -680,7 +680,7 @@
 /obj/item/twohanded/required/chainsaw/demon
 	name = "demon chainsaw"
 	desc = "anime reference here"
-	item_state = "demon"
+	item_state = "demon_on"
 	icon_state = "demon"
 	force_on = 30
 
