@@ -436,9 +436,9 @@
 
 /datum/spellbook_entry/item/demon_chainsaw
 	name = "Demonic Chainsaw"
-	desc = "A hammer that creates an intensely powerful field of gravity where it strikes, pulling everything nearby to the point of impact."
+	desc = "A demon with the form of a chainsaw,this demon desires to see you fufill your wishes, so they shall give you ethernal life as long as you feed them blood."
 	item_path = /obj/item/twohanded/required/chainsaw/demon
-	cost = 1
+	cost = 3
 /datum/spellbook_entry/item/battlemage
 	name = "Battlemage Armour"
 	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted. It is not protected against the void of space."
