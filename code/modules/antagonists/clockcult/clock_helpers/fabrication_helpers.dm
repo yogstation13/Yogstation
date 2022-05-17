@@ -236,7 +236,7 @@
 	span_alloy("You start repairing [src]..."))
 	fabricator.repairing = src
 	while(fabricator && user && src)
-		if(!do_after(user, repair_values["healing_for_cycle"] * fabricator.speed_multiplier, target = src, \
+		if(!do_after(user, repair_values["healing_for_cycle"] * fabricator.speed_multiplier, src, \
 			extra_checks = CALLBACK(fabricator, /obj/item/clockwork/replica_fabricator.proc/fabricator_repair_checks, repair_values, src, user, TRUE)))
 			break
 		obj_integrity = clamp(obj_integrity + repair_values["healing_for_cycle"], 0, max_integrity)
@@ -258,7 +258,7 @@
 	span_alloy("You start repairing [src == user ? "yourself" : "[src]"]..."))
 	fabricator.repairing = src
 	while(fabricator && user && src)
-		if(!do_after(user, repair_values["healing_for_cycle"] * fabricator.speed_multiplier, target = src, \
+		if(!do_after(user, repair_values["healing_for_cycle"] * fabricator.speed_multiplier, src, \
 			extra_checks = CALLBACK(fabricator, /obj/item/clockwork/replica_fabricator.proc/fabricator_repair_checks, repair_values, src, user, TRUE)))
 			break
 		fabricator_heal_tick(repair_values["healing_for_cycle"])
@@ -307,7 +307,7 @@
 		user.visible_message(span_notice("[user]'s [fabricator.name] starts covering [src == user ? "[user.p_them()]" : "[src]"] in glowing orange energy..."), \
 		span_alloy("You start repairing [src == user ? "yourself" : "[src]"]..."))
 		fabricator.repairing = src
-		if(do_after(user, (maxHealth - health)*2, target=src))
+		if(do_after(user, (maxHealth - health)*2, src))
 			adjustHealth(-maxHealth)
 			user.visible_message(span_notice("[user]'s [fabricator.name] stops covering [src == user ? "[user.p_them()]" : "[src]"] with glowing orange energy."), \
 			span_alloy("You finish repairing [src == user ? "yourself" : "[src]"]."))

@@ -961,7 +961,7 @@
 						to_chat(user, span_warning("You need at least 2 metal sheets to reinforce [src]."))
 						return
 					to_chat(user, span_notice("You start reinforcing [src]."))
-					if(do_after(user, 2 SECONDS, TRUE, src))
+					if(do_after(user, 2 SECONDS, src))
 						if(!panel_open || !S.use(2))
 							return
 						user.visible_message(span_notice("[user] reinforces \the [src] with metal."),
@@ -975,7 +975,7 @@
 						to_chat(user, span_warning("You need at least 2 plasteel sheets to reinforce [src]."))
 						return
 					to_chat(user, span_notice("You start reinforcing [src]."))
-					if(do_after(user, 2 SECONDS, TRUE, src))
+					if(do_after(user, 2 SECONDS, src))
 						if(!panel_open || !S.use(2))
 							return
 						user.visible_message(span_notice("[user] reinforces \the [src] with plasteel."),
@@ -1141,10 +1141,10 @@
 				user.visible_message(span_warning("[user] starts forcing open [src]!"), span_velvet("<b>ueahz</b><br>You begin forcing open [src]..."))
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
 				if(!T.twin)
-					if(!do_after(user, 7.5 SECONDS, target = src))
+					if(!do_after(user, 7.5 SECONDS, src))
 						return
 				else
-					if(!do_after(user, 5 SECONDS, target = src))
+					if(!do_after(user, 5 SECONDS, src))
 						return
 				open(2)
 				if(density && !open(2))
@@ -1158,12 +1158,12 @@
 				"<span class='velvet italics'>You loudly begin smashing down [src].</span>")
 				while(obj_integrity > max_integrity * 0.25)
 					if(T.twin)
-						if(!do_after(user, rand(4, 6), target = src))
+						if(!do_after(user, rand(4, 6), src))
 							T.darkspawn.use_psi(30)
 							qdel(T)
 							return
 					else
-						if(!do_after(user, rand(8, 10), target = src))
+						if(!do_after(user, rand(8, 10), src))
 							T.darkspawn.use_psi(30)
 							qdel(T)
 							return
@@ -1288,7 +1288,7 @@
 
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
-				if(do_after(user, time_to_open, TRUE, src))
+				if(do_after(user, time_to_open, src))
 					open(2)
 					if(density && !open(2))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
@@ -1322,7 +1322,7 @@
 
 		if(hasPower())
 			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
-			if(do_after(user, time_to_open, TRUE, src))
+			if(do_after(user, time_to_open, src))
 				open(2)
 				if(density && !open(2))
 					to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
@@ -1500,7 +1500,7 @@
 		playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
 
 
-	if(do_after(user, time_to_open, TRUE, src))
+	if(do_after(user, time_to_open, src))
 		if(density && !open(2)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
 			to_chat(user, span_warning("Despite your efforts, [src] managed to resist your attempts to open it!"))
 

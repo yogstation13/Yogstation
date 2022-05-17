@@ -180,7 +180,7 @@
 			to_chat(user, span_warning(" You can't shave this corgi, it doesn't have a fur coat!"))
 			return
 		user.visible_message("[user] starts to shave [src] using \the [O].", span_notice("You start to shave [src] using \the [O]..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			user.visible_message("[user] shaves [src]'s hair using \the [O].")
 			playsound(loc, 'sound/items/welder2.ogg', 20, 1)
 			shaved = TRUE

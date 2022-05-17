@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	if(chant_slowdown)
 		invoker.add_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT, update=TRUE, priority=100, multiplicative_slowdown=chant_slowdown)
 	chant()
-	if(!do_after(invoker, channel_time, target = invoker, extra_checks = CALLBACK(src, .proc/check_special_requirements), stayStill = no_mobility))
+	if(!do_after(invoker, channel_time, invoker, extra_checks = CALLBACK(src, .proc/check_special_requirements), stayStill = no_mobility))
 		slab.busy = null
 		invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
 		chanting = FALSE
@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 
 /datum/clockwork_scripture/channeled/scripture_effects()
 	for(var/i in 1 to chant_amount)
-		if(!do_after(invoker, chant_interval, target = invoker, extra_checks = CALLBACK(src, .proc/can_recite)))
+		if(!do_after(invoker, chant_interval, invoker, extra_checks = CALLBACK(src, .proc/can_recite)))
 			break
 		clockwork_say(invoker, text2ratvar(pick(chant_invocations)), whispered)
 		if(!chant_effects(i))

@@ -67,7 +67,7 @@
 
 		user.visible_message(span_danger("[user] starts to put [L] into the engine!"))
 		add_fingerprint(user)
-		if(do_after(user, gibtime, target = src))
+		if(do_after(user, gibtime, src))
 			if(L && user.pulling == L && !L.buckled && !L.has_buckled_mobs())
 				user.visible_message(span_danger("[user] stuffs [L] into the engine!"))
 				process_mob(L, user)

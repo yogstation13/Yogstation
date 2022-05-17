@@ -71,7 +71,7 @@
 		to_chat(user, span_warning("You can't plant the mine here!"))
 		return
 	to_chat(user, span_notice("You start arming the [src]..."))
-	if(do_after(user, arming_time, target = src))
+	if(do_after(user, arming_time, src))
 		new mine_type(plantspot)
 		to_chat(user, span_notice("You plant and arm the [src]."))
 		log_combat(user, src, "planted and armed")
@@ -91,7 +91,7 @@
 /obj/effect/mine/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/multitool))
 		to_chat(user, span_notice("You begin to disarm the [src]..."))
-		if(do_after(user, disarm_time, target = src))
+		if(do_after(user, disarm_time, src))
 			to_chat(user, span_notice("You disarm the [src]."))
 			new disarm_product(src.loc)
 			qdel(src)

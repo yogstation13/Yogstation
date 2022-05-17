@@ -564,7 +564,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		user.visible_message(span_danger("\The [src] goes off!"), span_danger("\The [src] goes off in your face!"))
 		return
 
-	if(do_after(user, 3 SECONDS, target = src))
+	if(do_after(user, 3 SECONDS, src))
 		if(sawn_off)
 			return
 		user.visible_message("[user] shortens \the [src]!", span_notice("You shorten \the [src]."))

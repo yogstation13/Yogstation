@@ -460,7 +460,7 @@
 		return
 
 	to_chat(src, span_warning("You grasp at your [grasped_part.name], trying to stop the bleeding..."))
-	if(!do_after(src, 1.5 SECONDS, target = src))
+	if(!do_after(src, 1.5 SECONDS, src))
 		to_chat(src, span_danger("You can't get a good enough grip to slow the bleeding on [grasped_part.name]."))
 		return
 

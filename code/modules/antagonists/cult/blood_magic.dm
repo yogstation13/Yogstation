@@ -74,7 +74,7 @@
 	else
 		to_chat(owner, span_cultitalic("You are already invoking blood magic!"))
 		return
-	if(do_after(owner, 100 - rune*60, target = owner))
+	if(do_after(owner, 10 SECONDS - rune*60, owner))
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			H.bleed(40 - rune*32)
@@ -628,7 +628,7 @@
 		else if(istype(target,/obj/machinery/door/airlock))
 			playsound(T, 'sound/machines/airlockforced.ogg', 50, 1)
 			do_sparks(5, TRUE, target)
-			if(do_after(user, 5 SECONDS, target = user))
+			if(do_after(user, 5 SECONDS, user))
 				target.narsie_act()
 				uses--
 				user.visible_message(span_warning("Black ribbons suddenly eminate from [user]'s hand and cling to the airlock - twisting and corrupting it!"))

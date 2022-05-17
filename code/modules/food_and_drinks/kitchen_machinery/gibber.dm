@@ -94,7 +94,7 @@
 
 		add_fingerprint(user)
 
-		if(do_after(user, gibtime, target = src))
+		if(do_after(user, gibtime, src))
 			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
 				user.visible_message(span_danger("[user] stuffs [C] into the gibber!"))
 				C.forceMove(src)

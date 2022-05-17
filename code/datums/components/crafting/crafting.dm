@@ -165,7 +165,7 @@
 		R.time *= 0.75
 	if(check_contents(R, contents))
 		if(check_tools(user, R, contents))
-			if(do_after(user, R.time, target = user))
+			if(do_after(user, R.time, user))
 				contents = get_surroundings(user)
 				if(!check_contents(R, contents))
 					return ", missing component."

@@ -90,7 +90,7 @@
 		var/y_offset = base_y + rand(-3, 3)
 		animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
 
-	if(!do_after(owner, 4 SECONDS, extra_checks = CALLBACK(src, .proc/CheckCanTarget, target_atom)))
+	if(!do_after(owner, 4 SECONDS, target_atom, extra_checks = CALLBACK(src, .proc/CheckCanTarget, target_atom)))
 		animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1)
 		casting = FALSE
 		return FALSE

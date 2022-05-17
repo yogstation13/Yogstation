@@ -188,7 +188,7 @@
 			return
 		if (R.time)
 			usr.visible_message(span_notice("[usr] starts building \a [R.title]."), span_notice("You start building \a [R.title]..."))
-			if (!do_after(usr, R.time, target = usr))
+			if (!do_after(usr, R.time, usr))
 				return
 			if(!building_checks(R, multiplier))
 				return

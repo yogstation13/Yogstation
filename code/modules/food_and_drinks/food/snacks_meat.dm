@@ -188,7 +188,7 @@
 /obj/item/reagent_containers/food/snacks/raw_meatball/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/rollingpin))
 		if(isturf(loc))
-			if(!do_after(user,1 SECONDS,target = src)) {
+			if(!do_after(user, 1 SECONDS, src)) {
 				return
 			}
 			new patty_type(loc)
@@ -355,7 +355,7 @@
 
 /obj/item/reagent_containers/food/snacks/sausage/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/knife))
-		if(!do_after(user,1 SECONDS, target = src)) {
+		if(!do_after(user, 1 SECONDS, src)) {
 			return
 		}
 		new /obj/item/reagent_containers/food/snacks/sausage/american(loc)
@@ -511,7 +511,7 @@
 
 /obj/item/reagent_containers/food/snacks/monkeycube/suicide_act(mob/living/M)
 	M.visible_message(span_suicide("[M] is putting [src] in [M.p_their()] mouth! It looks like [M.p_theyre()] trying to commit suicide!"))
-	var/eating_success = do_after(M, 1 SECONDS, TRUE, src, TRUE)
+	var/eating_success = do_after(M, 1 SECONDS, src)
 	if(QDELETED(M)) //qdeletion: the nuclear option of self-harm
 		return SHAME
 	if(!eating_success || QDELETED(src)) //checks if src is gone or if they failed to wait for a second

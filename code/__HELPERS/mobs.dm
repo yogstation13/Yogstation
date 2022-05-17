@@ -282,28 +282,28 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, stayStill = TRUE)
+/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, datum/callback/extra_checks = null, stayStill = TRUE)
 	if(!user)
-		return 0
-	var/atom/Tloc = null
+		return FALSE
+	var/atom/target_loc = null
 	if(target && !isturf(target))
-		Tloc = target.loc
+		target_loc = target.loc
 
 	if(target)
 		LAZYADD(user.do_afters, target)
 		LAZYADD(target.targeted_by, user)
 
-	var/atom/Uloc = user.loc
+	var/atom/user_loc = user.loc
 
-	var/drifting = 0
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = 1
+	var/drifting = FALSE
+	if(!user.Process_Spacemove() && user.inertia_dir)
+		drifting = TRUE
 
 	var/holding = user.get_active_held_item()
 
-	var/holdingnull = 1 //User's hand started out empty, check for an empty hand
+	var/holdingnull = TRUE //User's hand started out empty, check for an empty hand
 	if(holding)
-		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
+		holdingnull = FALSE //Users hand started holding something, check to see if it's still holding that
 
 	delay = ((delay + user.action_speed_adjust) * user.action_speed_modifier * user.do_after_coefficent()) //yogs: darkspawn
 
@@ -313,33 +313,33 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
-	. = 1
+	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 
 		if(drifting && !user.inertia_dir)
-			drifting = 0
-			Uloc = user.loc
+			drifting = FALSE
+			user_loc = user.loc
 
-		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc && stayStill) || (extra_checks && !extra_checks.Invoke()))
-			. = 0
+		if(QDELETED(user) || user.stat || (!drifting && user.loc != user_loc && stayStill) || (extra_checks && !extra_checks.Invoke()))
+			. = FALSE
 			break
 
 		if(isliving(user))
 			var/mob/living/L = user
 			if(L.IsStun() || L.IsParalyzed())
-				. = 0
+				. = FALSE
 				break
 
-		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if((Uloc != Tloc || Tloc != user) && !drifting && stayStill)
-				. = 0
+		if(!QDELETED(target_loc) && (QDELETED(target) || target_loc != target.loc))
+			if((user_loc != target_loc || target_loc != user) && !drifting && stayStill)
+				. = FALSE
 				break
 
 		if(target && !(target in user.do_afters))
-			. = 0
+			. = FALSE
 			break
 
 		if(needhand)
@@ -347,10 +347,10 @@ GLOBAL_LIST_EMPTY(species_list)
 			//i.e the hand is used to pull some item/tool out of the construction
 			if(!holdingnull)
 				if(!holding)
-					. = 0
+					. = FALSE
 					break
 			if(user.get_active_held_item() != holding)
-				. = 0
+				. = FALSE
 				break
 	if (progress)
 		qdel(progbar)

@@ -264,7 +264,7 @@
 
 	else if(istype(I, /obj/item/kitchen/knife) || I.tool_behaviour == TOOL_WIRECUTTER)
 		to_chat(user, span_notice("You begin to carve out [title]..."))
-		if(do_after(user, 3 SECONDS, target = src))
+		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, span_notice("You carve out the pages from [title]! You didn't want to read it anyway."))
 			var/obj/item/storage/book/B = new
 			B.name = src.name
