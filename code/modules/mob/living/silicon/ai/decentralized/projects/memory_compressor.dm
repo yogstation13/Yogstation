@@ -10,18 +10,21 @@
 	. = ..(force_run)
 	if(!.)
 		return .
-	ai.free_ram += 3
-	ai.cpu_usage[name] = 0.15
+	dashboard.free_ram += 3
+	dashboard.cpu_usage[name] = 0.15
 
 /datum/ai_project/memory_compressor/stop()
-	ai.free_ram -= 3
-	ai.cpu_usage[name] = 0
+	dashboard.free_ram -= 3
+	dashboard.cpu_usage[name] = 0
 	..()
 
 /datum/ai_project/memory_compressor/canRun()
+	. = ..()
+	if(!.)
+		return
 	var/total_cpu_used = 0
-	for(var/I in ai.cpu_usage)
-		total_cpu_used += ai.cpu_usage[I]
+	for(var/I in dashboard.cpu_usage)
+		total_cpu_used += dashboard.cpu_usage[I]
 	if(total_cpu_used < 0.85)
 		return TRUE
 	to_chat(ai, span_warning("Unable to run this program. You require 15% free CPU!"))
