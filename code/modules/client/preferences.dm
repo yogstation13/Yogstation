@@ -86,6 +86,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Quirk list
 	var/list/all_quirks = list()
 
+	var/mood_tail_wagging = TRUE
+
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
 
@@ -753,6 +755,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			//yogs start -- Mood preference toggling
 			if(CONFIG_GET(flag/disable_human_mood))
 				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[yogtoggles & PREF_MOOD ? "Enabled" : "Disabled"]</a><br>"
+				dat += "<b>Mood Tail Wagging:</b> <a href='?_src_=prefs;preference=moodtailwagging'>[mood_tail_wagging  ? "Enabled" : "Disabled"] </a><br>"
 			//yogs end
 
 			dat += "</td><td width='300px' height='300px' valign='top'>"
@@ -2084,6 +2087,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("mood")
 					yogtoggles ^= PREF_MOOD
+
+				if("moodtailwagging")
+					mood_tail_wagging = !mood_tail_wagging
 				// yogs end
 
 	ShowChoices(user)

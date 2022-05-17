@@ -12,7 +12,7 @@
 	throwforce = 7
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("beaten")
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
 
 	var/cooldown_check = 0
 
@@ -207,7 +207,7 @@
 	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
 
 	var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
-	var/armor_block = L.run_armor_check(affecting, "energy") //check armor on the limb because that's where we are slapping...
+	var/armor_block = L.run_armor_check(affecting, ENERGY) //check armor on the limb because that's where we are slapping...
 	L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 	var/current_stamina_damage = L.getStaminaLoss()

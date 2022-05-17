@@ -43,10 +43,11 @@
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
 		if(bloodsuckerdatum)
 			. += ""
+			. += "Current Frenzy Enter: [FRENZY_THRESHOLD_ENTER + (bloodsuckerdatum.humanity_lost * 10)]"
+			. += "Current Frenzy Leave: [FRENZY_THRESHOLD_EXIT + (bloodsuckerdatum.humanity_lost * 10)]"
 			. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
 			if(bloodsuckerdatum.current_task)
 				. += "Task Blood Drank: [bloodsuckerdatum.task_blood_drank]"
-
 
 // INTEGRATION: Adding Procs and Datums to existing "classes" //
 

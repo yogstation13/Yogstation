@@ -142,8 +142,9 @@
 	if(bloodsucker && mind)
 		visible_message(span_warning("[src] rapidly transforms into a humanoid figure!"), span_warning("You forcefully return to your normal form."))
 		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
-		if(mind)
-			mind.transfer_to(bloodsucker)
+		mind.transfer_to(bloodsucker)
+		if(bloodsucker.status_flags & GODMODE)
+			bloodsucker.status_flags -= GODMODE
 		bloodsucker.forceMove(get_turf(src))
 		if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/werewolf) || istype(src, /mob/living/simple_animal/hostile/bloodsucker/possessedarmor))
 			STOP_PROCESSING(SSprocessing, src)
@@ -153,11 +154,16 @@
 	if(bloodsucker && mind)
 		mind.transfer_to(bloodsucker)
 		bloodsucker.death()
+		if(bloodsucker.status_flags & GODMODE)
+			bloodsucker.status_flags -= GODMODE
 	qdel(src)
 	..()
 
 /mob/living/simple_animal/hostile/bloodsucker/proc/devour(mob/living/target)
-	health += target.maxHealth / 4
+	if(maxHealth > target.maxHealth / 4 + health)
+		health += target.maxHealth / 4
+	else
+		health += maxHealth - health
 	var/mob/living/carbon/human/H = target
 	var/foundorgans = 0
 	for(var/obj/item/organ/O in H.internal_organs)

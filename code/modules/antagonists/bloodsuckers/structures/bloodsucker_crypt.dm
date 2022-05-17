@@ -1005,9 +1005,9 @@
 	can_buckle = TRUE
 	anchored = FALSE
 	Ghost_desc = "This is a magical candle which drains at the sanity of non Bloodsuckers and Vassals.\n\
-		Vassals can turn the candle on manually, while Bloodsuckers can do it from a distance."
+		Vassals can also turn the candle on."
 	Vamp_desc = "This is a magical candle which drains at the sanity of mortals who are not under your command while it is active.\n\
-		You can click on it from any range to turn it on remotely, clicking on it with a mindshielded individual buckled will start to disable their mindshields."
+		You can click on it to turn it on, clicking on it with a mindshielded individual buckled will start to disable their mindshields."
 	Vassal_desc = "This is a magical candle which drains at the sanity of the fools who havent yet accepted your master, as long as it is active.\n\
 		You can turn it on and off by clicking on it while you are next to it."
 	Hunter_desc = "This is a blue Candelabrum, which causes insanity to those near it while active."
@@ -1067,15 +1067,8 @@
 			nearly_people.adjustStaminaLoss(10)
 		SEND_SIGNAL(nearly_people, COMSIG_ADD_MOOD_EVENT, "vampcandle", /datum/mood_event/vampcandle)
 		to_chat(nearly_people, span_warning("<i>You start to feel extremely weak and drained.</i>"))
-/*
- *	# Candelabrum Ventrue Stuff
- *
- *	Ventrue Bloodsuckers can buckle Vassals onto the Candelabrum to "Upgrade" them.
- *	This is limited to a Single vassal, called 'My Favorite Vassal'.
- *
- *	Most of this is just copied over from Persuasion Rack.
- */
 
+/// Mindshield breaking
 /obj/structure/bloodsucker/candelabrum/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!.)
@@ -1083,29 +1076,25 @@
 	if(!anchored)
 		return
 	// Checks: They're Buckled & Alive.
-	if(IS_BLOODSUCKER(user))
-		if(!has_buckled_mobs())
-			toggle()
-			return
+	if(IS_BLOODSUCKER(user) && has_buckled_mobs())
 		var/mob/living/carbon/target = pick(buckled_mobs)
 		if(target.stat >= DEAD || user.a_intent == INTENT_HELP)
 			unbuckle_mob(target)
 			return
-		if(user.blood_volume >= 150)
-			switch(input("Do you wish to spend 150 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
-				if("Yes")
-					user.blood_volume -= 150
-					if(!do_mob(user, target, 60 SECONDS))
-						to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
-						return FALSE
-					remove_loyalties(target)
-					to_chat(user, span_notice("You deactivated [target]'s mindshield!"))
-					return
-		else
-			to_chat(user, span_danger("You don't have enough Blood to deactivate [target]'s mindshield."))
+		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+			if(user.blood_volume >= 150)
+				switch(input("Do you wish to spend 150 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
+					if("Yes")
+						user.blood_volume -= 150
+						if(!do_mob(user, target, 60 SECONDS))
+							to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
+							return FALSE
+						remove_loyalties(target)
+						to_chat(user, span_boldnotice("You deactivated [target]'s mindshield!"))
+			else
+				to_chat(user, span_danger("You don't have enough Blood to deactivate [target]'s mindshield."))
 			return
-
-	if(IS_BLOODSUCKER(user) || IS_VASSAL(user))
+	if(IS_VASSAL(user) || IS_BLOODSUCKER(user))
 		toggle()
 
 /// Buckling someone in
@@ -1118,6 +1107,7 @@
 		return
 	/// Are they mindshielded or a bloodsucker/vassal?
 	if(!HAS_TRAIT(target, TRAIT_MINDSHIELD))
+		to_chat(user, span_warning("[target] doesn't have a mindshield for you to turn off!"))
 		return
 	/// Good to go - Buckle them!
 	if(do_mob(user, target, 5 SECONDS))
@@ -1149,6 +1139,7 @@
 	update_icon()
 
 /// Blood Throne - Allows Bloodsuckers to remotely speak with their Vassals. - Code (Mostly) stolen from comfy chairs (armrests) and chairs (layers)
+/* broken currently
 /obj/structure/bloodsucker/bloodthrone
 	name = "wicked throne"
 	desc = "Twisted metal shards jut from the arm rests. Very uncomfortable looking. It would take a masochistic sort to sit on this jagged piece of furniture."
@@ -1262,3 +1253,4 @@
 		to_chat(dead_mob, "[link] [rendered]")
 
 	speech_args[SPEECH_MESSAGE] = ""
+*/
