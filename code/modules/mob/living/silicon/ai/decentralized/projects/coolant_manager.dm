@@ -9,3 +9,4 @@
 /datum/ai_project/coolant_manager/finish()
 	if(GLOB.ai_os.temp_limit == AI_TEMP_LIMIT) //Limit to only 1 AI doing it.
 		GLOB.ai_os.temp_limit += 10
+	
