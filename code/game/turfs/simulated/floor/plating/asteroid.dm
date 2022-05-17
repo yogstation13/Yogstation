@@ -131,7 +131,6 @@
 	turf_type = /turf/open/floor/plating/asteroid/airless
 
 
-#define SPAWN_MEGAFAUNA "bluh bluh huge boss"
 #define SPAWN_BUBBLEGUM 6
 
 /turf/open/floor/plating/asteroid/airless/cave
@@ -359,8 +358,6 @@
 		if(randumb)
 			new randumb(T)
 	return
-
-#undef SPAWN_MEGAFAUNA
 #undef SPAWN_BUBBLEGUM
 
 /turf/open/floor/plating/asteroid/airless/cave/proc/SpawnFlora(turf/T)

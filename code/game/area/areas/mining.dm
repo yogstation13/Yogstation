@@ -32,6 +32,7 @@
 	flags_1 = NONE
 	ambientsounds = MINING
 	tunnel_allowed = TRUE
+	area_flags = CAVES_ALLOWED
 
 /area/mine/lobby
 	name = "Mining Station"
@@ -134,10 +135,12 @@
 	icon_state = "unexplored"
 	tunnel_allowed = TRUE
 	mob_spawn_allowed = TRUE
+	area_flags = CAVES_ALLOWED
 
 /area/lavaland/surface/outdoors/unexplored/danger //megafauna will also spawn here
 	icon_state = "danger"
 	megafauna_spawn_allowed = TRUE
+	map_generator = /datum/map_generator/cave_generator/lavaland
 
 /area/lavaland/surface/outdoors/explored
 	name = "Lavaland Labor Camp"
