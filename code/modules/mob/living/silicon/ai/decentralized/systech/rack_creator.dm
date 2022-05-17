@@ -180,7 +180,10 @@
 			to_chat(user, span_warning("This socket has not been researched!"))
 			return ..()
 		
-
+	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]_t", initial(icon_state), O))
+		return
+	if(default_deconstruction_crowbar(O))
+		return
 
 	return ..()
 
