@@ -35,12 +35,14 @@
 	var/mob/living/L = target
 	if(isliving(target))          //It is for injecting plague reagent into people via biting them.
 		if(target.reagents)
-			L.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
+			var/obj/item/I = target.get_item_by_slot(SLOT_W_SUIT)
+			if(!istype(I, /obj/item/clothing/suit/space/hardsuit) && !istype(I, /obj/item/clothing/suit/armor))
+				L.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
 
 	if(L.stat == DEAD)             //It is for biting dead bodies to heal.
 		src.visible_message(span_warning("[src] starts biting into [L]!"),span_notice("You start eating [L]..."))
 		if(do_mob(src, target, 3 SECONDS))
-			to_chat(src, span_notice("You finish licking [L]."))
+			to_chat(src, span_notice ("You finish licking [L]."))
 			heal_bodypart_damage(5)
 			L.adjustBruteLoss(15)
 
@@ -56,7 +58,7 @@
 /datum/round_event_control/plaguerat
 	name = "Spawn a Plague Rat"
 	typepath = /datum/round_event/ghost_role/plaguerat
-	weight = 5
+	weight = 6
 	max_occurrences = 1
 	earliest_start = 30 MINUTES
 
