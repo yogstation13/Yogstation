@@ -538,6 +538,14 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
+/datum/crafting_recipe/bamboo_arrow
+	name = "Bamboo Arrow"
+	result = /obj/item/ammo_casing/caseless/arrow/bamboo
+	time = 3 SECONDS
+	reqs = list(/obj/item/stack/sheet/mineral/bamboo = 2)
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
 /datum/crafting_recipe/ashen_arrow
 	name = "Fire hardened arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/ash

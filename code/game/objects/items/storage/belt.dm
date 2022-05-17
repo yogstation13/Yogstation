@@ -640,6 +640,10 @@
 		/obj/item/throwing_star/magspear
 		))
 
+/obj/item/storage/belt/quiver/ashwalker/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/caseless/arrow/bone(src)
+
 /obj/item/storage/belt/quiver/admin
 	w_class = WEIGHT_CLASS_TINY
 

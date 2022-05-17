@@ -1435,10 +1435,10 @@
 	pixel_x = -6;
 	pixel_y = 6
 	},
-/obj/item/storage/belt/quiver{
+/obj/item/storage/belt/quiver/ashwalker{
 	pixel_y = 2
 	},
-/obj/item/storage/belt/quiver{
+/obj/item/storage/belt/quiver/ashwalker{
 	pixel_y = -2
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
