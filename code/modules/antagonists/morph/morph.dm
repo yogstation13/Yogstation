@@ -37,6 +37,8 @@
 	var/eat_while_disguised = FALSE
 	var/atom/movable/form = null
 	var/morph_time = 0
+	var/eat_count = 0
+	var/corpse_eat_count = 0
 	var/static/list/blacklist_typecache = typecacheof(list(
 	/obj/screen,
 	/obj/singularity,
@@ -199,15 +201,23 @@
 		if(L.stat == DEAD)
 			if(do_after(src, 3 SECONDS, target = L))
 				if(eat(L))
+					eat_count++
+					corpse_eat_count++
 					adjustHealth(-50)
 			return
 	else if(isitem(target)) //Eat items just to be annoying
 		var/obj/item/I = target
 		if(!I.anchored)
 			if(do_after(src, 2 SECONDS, target = I))
-				eat(I)
+				if(eat(I))
+					eat_count++
 			return
 	return ..()
+
+/mob/living/simple_animal/hostile/morph/get_status_tab_items()
+	. = ..()
+	. += "Things eaten: [eat_count]"
+	. += "Corpses eaten: [corpse_eat_count]"
 
 //Spawn Event
 

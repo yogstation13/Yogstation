@@ -37,7 +37,7 @@
 		return
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(A.zone_selected))
-	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 50)
+	var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 50)
 	var/slam_staminadamage = A.dna.species.punchdamagehigh * 1.5 + 10	//25 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	playsound(D, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
@@ -70,7 +70,7 @@
 			return
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(A.zone_selected))
-	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 50)
+	var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 50)
 	var/slap_staminadamage = A.dna.species.punchdamagehigh * 1.5 + 10	//25 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 	D.apply_damage(slap_staminadamage, STAMINA, selected_zone, armor_block)
@@ -90,7 +90,7 @@
 	if((D.mobility_flags & MOBILITY_STAND))
 		return harm_act(A,D)
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(BODY_ZONE_HEAD))
-	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 30)
+	var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 30)
 	var/chomp_damage = A.dna.species.punchdamagehigh * 2 + 10	//30 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_BITE)
 	playsound(D, 'sound/weapons/bite.ogg', 50, TRUE, -1)
@@ -116,7 +116,7 @@
 	if(!can_use(A))
 		return
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(BODY_ZONE_HEAD))
-	var/armor_block = D.run_armor_check(affecting, "melee")
+	var/armor_block = D.run_armor_check(affecting, MELEE)
 	var/disarm_damage = A.dna.species.punchdamagehigh / 2 	//5 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 	playsound(D, 'sound/weapons/genhit1.ogg', 50, TRUE, -1)
@@ -144,7 +144,7 @@
 		return TRUE
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
-	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 10)
+	var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 10)
 	A.do_attack_animation(D, ATTACK_EFFECT_CLAW)
 	playsound(D, 'sound/weapons/slash.ogg', 50, TRUE, -1)
 	D.apply_damage(A.dna.species.punchdamagehigh + 2, A.dna.species.attack_type, selected_zone, armor_block, sharpness = SHARP_EDGED) //+2 unarmed damage and sharp

@@ -763,6 +763,30 @@
 	build_path = /obj/machinery/harvester
 	req_components = list(/obj/item/stock_parts/micro_laser = 4)
 
+/obj/item/circuitboard/machine/medical_kiosk
+	name = "Medical Kiosk (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/medical_kiosk
+	var/custom_cost = 10
+	req_components = list(
+		/obj/item/healthanalyzer = 1,
+		/obj/item/stock_parts/scanning_module = 1)
+
+/obj/item/circuitboard/machine/medical_kiosk/multitool_act(mob/living/user)
+	. = ..()
+	var/new_cost = input(user, "New cost for using this medical kiosk", "Pricing", custom_cost) as num|null
+	if(!new_cost || QDELETED(user) || QDELETED(src) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		return
+	if(loc != user)
+		to_chat(user, span_warning("You must hold the circuitboard to change its cost!"))
+		return
+	custom_cost = clamp(round(new_cost, 1), 10, 1000)
+	to_chat(user, span_notice("The cost is now set to [custom_cost]."))
+
+/obj/item/circuitboard/machine/medical_kiosk/examine(mob/user)
+	. = ..()
+	. += "The cost to use this kiosk is set to [custom_cost]."
+
 /obj/item/circuitboard/machine/limbgrower
 	name = "Limb Grower (Machine Board)"
 	icon_state = "medical"
@@ -828,6 +852,11 @@
 	name = "Departmental Circuit Imprinter - Science (Machine Board)"
 	icon_state = "science"
 	build_path = /obj/machinery/rnd/production/circuit_imprinter/department/science
+
+/obj/item/circuitboard/machine/circuit_imprinter/department/netmin
+	name = "Departmental Circuit Imprinter - Netmin (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/rnd/production/circuit_imprinter/department/netmin
 
 /obj/item/circuitboard/machine/cyborgrecharger
 	name = "Cyborg Recharger (Machine Board)"
@@ -965,10 +994,10 @@
 	icon_state = "science"
 	build_path = /obj/machinery/rnd/production/techfab/department/science
 
-/obj/item/circuitboard/machine/expansion_card_holder
-	name = "Expansion Card Bus (Machine Board)"
+/obj/item/circuitboard/machine/server_cabinet
+	name = "Server Cabinet (Machine Board)"
 	icon_state = "science"
-	build_path = /obj/machinery/ai/expansion_card_holder
+	build_path = /obj/machinery/ai/server_cabinet
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 4,
 		/obj/item/stock_parts/manipulator = 2,
@@ -988,6 +1017,14 @@
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stack/sheet/glass = 2,
 		/obj/item/stack/cable_coil = 2)
+
+/obj/item/circuitboard/machine/rack_creator
+	name = "Rack Creator (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/rack_creator
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/reagent_containers/glass/beaker = 2)
 
 
 //Security

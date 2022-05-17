@@ -24950,7 +24950,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/landmark/start/yogs/signal_technician,
+/obj/effect/landmark/start/yogs/network_admin,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
@@ -59680,7 +59680,7 @@
 /area/storage/tech)
 "lYq" = (
 /obj/structure/chair/office/dark,
-/obj/effect/landmark/start/yogs/signal_technician,
+/obj/effect/landmark/start/yogs/network_admin,
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "lZq" = (

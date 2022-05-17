@@ -270,6 +270,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/box,
+/obj/machinery/medical_kiosk,
 /turf/open/floor/plasteel/dark,
 /area/medical/medbay/central)
 "aaF" = (
@@ -88685,17 +88686,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/bridge)
-"iiQ" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "ijA" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -89788,12 +89778,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"jae" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "jan" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -90523,21 +90507,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"jPL" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/space_heater,
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "jQv" = (
 /obj/structure/fans/tiny/invisible,
 /obj/docking_port/stationary{
@@ -92149,6 +92118,13 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
+"lhW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/rack_creator,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "lig" = (
@@ -96026,6 +96002,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/cryopods)
+"por" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/rnd/production/circuit_imprinter/department/netmin,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "pqh" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -96298,6 +96286,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard/fore)
+"pGh" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/computer/ai_overclocking,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "pGA" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12";
@@ -100698,7 +100695,7 @@
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
 "umc" = (
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/circuit/red/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "umJ" = (
@@ -101802,7 +101799,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/effect/landmark/start/yogs/signal_technician,
+/obj/effect/landmark/start/yogs/network_admin,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
@@ -102280,15 +102277,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
-"vLQ" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/announcement_system,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "vLS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line,
@@ -103739,6 +103727,21 @@
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/circuit/green/telecomms,
 /area/tcommsat/server)
+"xpm" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/announcement_system,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "xpS" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = -30
@@ -134795,7 +134798,7 @@ uHA
 jpx
 iST
 sIM
-iiQ
+por
 cfM
 aRv
 aOQ
@@ -135052,7 +135055,7 @@ pJL
 gul
 gul
 faW
-jae
+lhW
 cfM
 aRw
 aOS
@@ -135307,7 +135310,7 @@ fNP
 iZu
 skc
 cgu
-vLQ
+pGh
 lhw
 lWm
 cfM
@@ -135564,7 +135567,7 @@ hRS
 ltJ
 fUZ
 cgu
-jPL
+xpm
 iBL
 kDT
 cfM

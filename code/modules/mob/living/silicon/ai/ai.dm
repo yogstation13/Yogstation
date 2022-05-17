@@ -122,6 +122,8 @@
 
 	//Did we get the death prompt?
 	var/is_dying = FALSE 
+	///Multiplier for amount of points gained when passively using CPU for science
+	var/research_point_booster = 1
 
 
 
