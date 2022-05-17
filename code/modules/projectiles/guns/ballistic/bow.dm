@@ -125,6 +125,7 @@
 	item_state = "bow_hardlight"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy
 	no_pin_required = FALSE
+	draw_slowdown = 0
 	var/recharge_time = 1.5 SECONDS
 
 /obj/item/gun/ballistic/bow/energy/update_icon()
@@ -147,17 +148,21 @@
 	if(chambered)
 		chambered = null
 		to_chat(user, span_notice("You disperse the arrow."))
-	else if(magazine.get_round(TRUE))
-		var/obj/item/I = user.get_active_held_item()
-		if (do_mob(user, I, draw_time))
-			to_chat(user, span_notice("You draw back the bowstring."))
-			playsound(src, 'sound/weapons/sound_weapons_bowdraw.ogg', 75, 0) //gets way too high pitched if the freq varies
-			chamber_round()
+	else if(get_ammo())
+		drawing = TRUE
+		update_slowdown()
+		if (!do_after(user, draw_time, TRUE, src, stayStill = FALSE))
+			drawing = FALSE
+			update_slowdown()
+			return
+		drawing = FALSE
+		to_chat(user, span_notice("You draw back the bowstring."))
+		playsound(src, draw_sound, 75, 0, falloff = 3) //gets way too high pitched if the freq varies
+		chamber_round()
 	else if(!recharge_time || !TIMER_COOLDOWN_CHECK(src, "arrow_recharge"))
 		to_chat(user, span_notice("You fabricate an arrow."))
 		recharge_bolt()
-	else
-		to_chat(user, span_warning("\the [src] is still recharing!"))
+	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/energy/proc/recharge_bolt()
