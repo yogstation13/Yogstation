@@ -18,6 +18,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	var/valid_ticks = MAX_AI_DATA_CORE_TICKS //Limited to MAX_AI_DATA_CORE_TICKS. Decrement by 1 every time we have an invalid tick, opposite when valid 
 
 	var/warning_sent = FALSE
+	COOLDOWN_DECLARE(warning_cooldown)
 
 	var/TimerID //party time
 
@@ -109,8 +110,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			for(var/mob/living/silicon/ai/AI in contents)
 				if(!AI.is_dying)
 					AI.relocate()
-		if(!warning_sent)
+		if(!warning_sent && COOLDOWN_CHECK(src, warning_cooldown))
 			warning_sent = TRUE
+			COOLDOWN_START(src, warning_cooldown, AI_DATA_CORE_WARNING_COOLDOWN)
 			var/list/send_to = GLOB.ai_list.Copy()
 			for(var/mob/living/silicon/ai/AI in send_to)
 				if(AI.is_dying)
