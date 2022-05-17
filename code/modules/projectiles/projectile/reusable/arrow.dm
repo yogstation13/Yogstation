@@ -37,7 +37,7 @@
 	embed_chance = 0.2
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone_tipped
 
-/obj/item/projectile/bullet/reusable/arrow/bone //AP for ashwalkers
+/obj/item/projectile/bullet/reusable/arrow/bone
 	name = "Bone arrow"
 	desc = "An arrow made from bone and sinew."
 	damage = 20
@@ -45,13 +45,21 @@
 	break_chance = 20
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
 
-/obj/item/projectile/bullet/reusable/arrow/chitin //AP for ashwalkers
+/obj/item/projectile/bullet/reusable/arrow/chitin
 	name = "Chitin tipped arrow"
 	desc = "An arrow made from chitin, bone, and sinew."
 	damage = 20
 	armour_penetration = 30
 	embed_chance = 0.8
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/chitin
+
+/obj/item/projectile/bullet/reusable/arrow/bamboo
+	name = "Bamboo arrow"
+	desc = "An arrow made from bamboo."
+	damage = 10
+	embed_chance = 0.5
+	break_chance = 30
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
 
 /obj/item/projectile/bullet/reusable/arrow/bronze
 	name = "Bronze arrow"

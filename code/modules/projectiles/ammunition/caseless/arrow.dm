@@ -38,6 +38,13 @@
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/chitin
 	embedding = list("embed_chance" = 10, "embedded_fall_chance" = 0)
 
+/obj/item/ammo_casing/caseless/arrow/bamboo
+	name = "bamboo arrow"
+	desc = "A flimsy arrow made of bamboo. Not strong or durable, but is easy to make."
+	icon_state = "bambooarrow"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bamboo
+	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
+
 /obj/item/ammo_casing/caseless/arrow/bronze
 	name = "bronze arrow"
 	desc = "An arrow made from wood. tipped with bronze."
