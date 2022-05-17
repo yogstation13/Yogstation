@@ -1,6 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "Both advanced stack healing items (adv mesh + medicated suture) have had their stack size increased by 10"
-  - tweak: "Advanced sutures are applied to wounds twice as fast as normal sutures"
-  - tweak: "sutures now have 15 items in each stack isntead of 10 because why 10 when mesh has 15"
