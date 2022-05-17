@@ -38,11 +38,11 @@
 /mob/living/carbon/alien/humanoid/royal/queen
 	name = "alien queen"
 	caste = "q"
-	maxHealth = 500
-	health = 500
+	maxHealth = 400
+	health = 400
 	icon_state = "alienq"
-	melee_damage_lower = 35
-	melee_damage_upper = 50
+	melee_damage_lower = 20
+	melee_damage_upper = 35
 	/// The queen's small sprite action.
 	var/datum/action/small_sprite/smallsprite = new/datum/action/small_sprite/queen()
 	var/obj/item/gps/internal/queengps
