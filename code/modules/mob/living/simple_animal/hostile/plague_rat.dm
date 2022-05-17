@@ -33,8 +33,6 @@
 /mob/living/simple_animal/hostile/plaguerat/AttackingTarget()
 	..()
 	var/mob/living/L = target
-	if(!L)
-		return
 	if(isliving(target))          //It is for injecting plague reagent into people via biting them.
 		if(target.reagents)
 			var/obj/item/I = L.get_item_by_slot(SLOT_W_SUIT)
