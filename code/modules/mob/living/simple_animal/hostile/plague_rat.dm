@@ -33,9 +33,11 @@
 /mob/living/simple_animal/hostile/plaguerat/AttackingTarget()
 	..()
 	var/mob/living/L = target
+	if(!L)
+		return
 	if(isliving(target))          //It is for injecting plague reagent into people via biting them.
 		if(target.reagents)
-			var/obj/item/I = target.get_item_by_slot(SLOT_W_SUIT)
+			var/obj/item/I = L.get_item_by_slot(SLOT_W_SUIT)
 			if(!istype(I, /obj/item/clothing/suit/space/hardsuit) && !istype(I, /obj/item/clothing/suit/armor))
 				L.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
 
