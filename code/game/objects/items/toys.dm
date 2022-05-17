@@ -1575,13 +1575,19 @@ obj/item/toy/turn_tracker
 		var/obj/item/pen/edagger/pen = I
 		if(pen.on)
 			icon_state += "_pen" // edagger buddies
-			playsound(I.loc, 'sound/weapons/saberon.ogg', 35, 1)
+			playsound(I.loc, 'sound/weapons/saberon.ogg', 35, TRUE)
 	..()
 
 /obj/item/toy/figure/ling
 	name = "Changeling action figure"
 	icon_state = "ling"
 	toysay = ";g absorbing AI in traitor maint!"
+
+/obj/item/toy/figure/ling/Initialize()
+	. = ..()
+	if(prob(25))
+		icon_state = "ling[rand(1,3)]"
+		playsound(src.loc, 'sound/effects/blobattack.ogg', 30, TRUE)
 
 /obj/item/toy/dummy
 	name = "ventriloquist dummy"
