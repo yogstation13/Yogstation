@@ -21,6 +21,11 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	COOLDOWN_DECLARE(warning_cooldown)
 
 	var/TimerID //party time
+	//Heat production multiplied by this
+	var/heat_modifier = 1
+	//Power modifier, power modified by this. Be aware this indirectly changes heat since power => heat
+	var/power_modifier = 1
+
 
 /obj/machinery/ai/data_core/Initialize()
 	. = ..()
@@ -28,6 +33,20 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(primary && !GLOB.primary_data_core)
 		GLOB.primary_data_core = src
 	update_icon()
+	RefreshParts()
+
+/obj/machinery/ai/data_core/RefreshParts()
+	var/new_heat_mod = 1
+	var/new_power_mod = 1
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
+		new_power_mod -= (C.rating - 1) / 50 //Max -24% at tier 4 parts, min -0% at tier 1
+
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
+		new_heat_mod -= (C.rating - 1) / 15 //Max -40% at tier 4 parts, min -0% at tier 1
+	
+	heat_modifier = new_heat_mod
+	power_modifier = new_power_mod
+	active_power_usage = AI_DATA_CORE_POWER_USAGE * power_modifier
 
 /obj/machinery/ai/data_core/process()
 	calculate_validity()
@@ -93,6 +112,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		return TRUE
 	return FALSE
 
+
 /obj/machinery/ai/data_core/proc/calculate_validity()
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
 	
@@ -128,7 +148,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env.heat_capacity())
-			var/temperature_increase = active_power_usage / env.heat_capacity() //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+			var/temperature_increase = (active_power_usage / env.heat_capacity()) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 			T.air_update_turf()
 	
