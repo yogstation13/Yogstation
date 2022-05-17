@@ -122,7 +122,7 @@
 
 /datum/antagonist/rev/head/proc/admin_take_flash(mob/admin)
 	var/list/L = owner.current.get_contents()
-	var/obj/item/assembly/flash/flash = locate() in L
+	var/obj/item/assembly/flash/armimplant/rev/flash = locate() in L
 	if (!flash)
 		to_chat(admin, span_danger("Deleting flash failed!"))
 		return
