@@ -329,7 +329,7 @@
 			visible_message("<span class='danger'>[M] slams [src] into the floor!</span>", \
 							"<span class='userdanger'>[M] slams you into the ground!</span>", "<span class='hear'>You hear something slam loudly onto the floor!</span>", null, M)
 			to_chat(M, "<span class='danger'>You slam [src] into the floor beneath you!</span>")
-			log_combat(M, src, "slammed 
+			log_combat(M, src, "slammed ")
 
 /mob/living/carbon/human/attack_larva(mob/living/carbon/alien/larva/L)
 
