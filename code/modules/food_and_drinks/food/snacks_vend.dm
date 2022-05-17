@@ -188,7 +188,6 @@
 	icon_state = "verminbites"
 	tastes = list("rats" = 1 , "mouse" = 2, "cheese" = 1)
 	foodtype = MEAT
-	var/opened = FALSE
 	/// What animal does the snack contain?
 	var/mob/living/simple_animal/mouse/contained_animal
 
@@ -199,7 +198,5 @@
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/vermin/attack(mob/living/M, mob/user, def_zone)
-	if(!opened)
-		to_chat(user, span_warning("You need to open [src]'s lid first."))
-		return FALSE
-	return ..()
+	to_chat(user, span_warning("You need to open [src]'s lid first."))
+	return FALSE
