@@ -122,7 +122,7 @@
 
 /datum/antagonist/rev/head/proc/admin_take_flash(mob/admin)
 	var/list/L = owner.current.get_contents()
-	var/obj/item/assembly/flash/armimplant/rev/flash = locate() in L
+	var/obj/item/organ/cyberimp/arm/flash/rev/flash = locate() in L
 	if (!flash)
 		to_chat(admin, span_danger("Deleting flash failed!"))
 		return
@@ -242,7 +242,7 @@
 		H.dna.remove_mutation(CLOWNMUT)
 
 	if(give_flash)
-		var/obj/item/assembly/flash/armimplant/rev/T = new(H)
+		var/obj/item/organ/cyberimp/arm/flash/rev/T = new(H)
 		T.Insert(H, special = FALSE, drop_if_replaced = FALSE)
 		to_chat(H, "The flash implant in your arm will help you to persuade the crew to join your cause.")
 
