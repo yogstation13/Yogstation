@@ -79,7 +79,7 @@
 		if (M.a_intent == INTENT_HARM)
 			if ((prob(95) && health > 0))
 				playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
-				var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+				var/damage = rand(M.melee_damage_lower, (M.melee_damage_upper + 5))
 				if (damage >= 25)
 					damage = damage + 10
 					if(AmountUnconscious() < 300)
