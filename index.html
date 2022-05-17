@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(435 modules,
-    659/7157 macros, 9.2%)</aside></h3>
+<aside>(436 modules,
+    686/7188 macros, 9.5%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -64,6 +64,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/interaction_flags.html" title="code&#x2F;__DEFINES&#x2F;interaction_flags">interaction_flags</a></li>
     <li><a href="code/__DEFINES/inventory.html" title="code&#x2F;__DEFINES&#x2F;inventory">inventory</a></li>
     <li><a href="code/__DEFINES/lighting.html" title="code&#x2F;__DEFINES&#x2F;lighting">lighting</a></li>
+    <li><a href="code/__DEFINES/maps.html" title="code&#x2F;__DEFINES&#x2F;maps">maps</a></li>
     <li><a href="code/__DEFINES/materials.html" title="code&#x2F;__DEFINES&#x2F;materials">materials</a></li>
     <li><a href="code/__DEFINES/maths.html" title="code&#x2F;__DEFINES&#x2F;maths">maths</a></li>
     <li><a href="code/__DEFINES/misc.html" title="code&#x2F;__DEFINES&#x2F;misc">misc</a></li>
@@ -676,7 +677,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(453 detailed/1052 documented/24457 total, 4.3%)</aside></h3>
+<aside>(458 detailed/1058 documented/24524 total, 4.3%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -760,6 +761,9 @@ See: <a href="datum/controller/subsystem/achievements.html" title="/datum/contro
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;changeling&#x2F;weapon&#x2F;arm_blade">Arm Blade</span> - *<em><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><br />
 |<em><strong><strong><strong><strong><strong><strong><strong>ARM BLADE</strong></strong></strong></strong></strong></strong></strong></em>|
 *</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></em></li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;changeling&#x2F;weapon&#x2F;flesh_maul">Flesh Maul</span> - **<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><br />
+|<em><strong><strong><strong><strong><strong><strong><strong>FLESH MAUL</strong></strong></strong></strong></strong></strong></strong>|
+*</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;changeling&#x2F;weapon&#x2F;shield">Organic Shield</span> - <em><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em><br />
 |<strong><strong><strong><strong><strong><strong><strong><strong>SHIELD</strong></strong></strong></strong></strong></strong></strong></strong></em>|
 *</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></em></li>
@@ -789,6 +793,7 @@ See: <a href="datum/controller/subsystem/achievements.html" title="/datum/contro
     </ul></li>
     </ul></li>
     <li><a href="datum/admins.html" title="&#x2F;datum&#x2F;admins">nobody&#x27;s admin datum (no rank)</a></li>
+    <li><a href="datum/ai_dashboard.html" title="&#x2F;datum&#x2F;ai_dashboard">ai_dashboard</a></li>
     <li><a href="datum/ai_project.html" title="&#x2F;datum&#x2F;ai_project">DEBUG</a></li>
     <li class="has-children"><a href="datum/antagonist.html" title="&#x2F;datum&#x2F;antagonist">Antagonist</a><ul class="index-tree">
     <li><a href="datum/antagonist/bloodsucker.html" title="&#x2F;datum&#x2F;antagonist&#x2F;bloodsucker">Bloodsucker</a> - Mutilate a certain amount of Vassals</li>
@@ -1325,6 +1330,7 @@ None of this should appear in game, we are using it JUST for Sol. All Bloodsucke
     </ul></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node">techweb_node</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node&#x2F;adv_mecha">adv_mecha</span> - mech technology</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node&#x2F;ai_cpu_advanced">ai_cpu_advanced</span> - AI Hardware</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node&#x2F;alientech">alientech</span> - Alien technology</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node&#x2F;basic_mining">basic_mining</span> - Tools</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node&#x2F;basic_plasma">basic_plasma</span> - plasma tech</li>
@@ -1380,7 +1386,10 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="mob/living/carbon/human.html" title="&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human">Unknown</a></li>
     <li><a href="mob/living/carbon/monkey.html" title="&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;monkey">monkey</a></li>
     </ul></li>
-    <li><span class="no-substance">silicon&#x2F;</span><a href="mob/living/silicon/robot.html" title="&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot">Cyborg</a></li>
+    <li class="has-children"><span title="&#x2F;mob&#x2F;living&#x2F;silicon">silicon</span><ul class="index-tree">
+    <li><a href="mob/living/silicon/ai.html" title="&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai">AI</a></li>
+    <li><a href="mob/living/silicon/robot.html" title="&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot">Cyborg</a></li>
+    </ul></li>
     <li class="has-children"><a href="mob/living/simple_animal.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal">animal</a><ul class="index-tree">
     <li class="has-children"><a href="mob/living/simple_animal/bot.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;bot">bot</a><ul class="index-tree">
     <li><a href="mob/living/simple_animal/bot/medbot.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;bot&#x2F;medbot">Medibot</a></li>
@@ -1462,6 +1471,7 @@ Will yield a &quot;?&quot;</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;effect">effect</span><ul class="index-tree">
     <li><span class="no-substance">beam&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;beam&#x2F;i_beam">infrared beam</span> - IBeam</li>
     <li><a href="obj/effect/custom_portal.html" title="&#x2F;obj&#x2F;effect&#x2F;custom_portal">portal</a></li>
+    <li><span class="no-substance">dummy&#x2F;</span><a href="obj/effect/dummy/phased_mob.html" title="&#x2F;obj&#x2F;effect&#x2F;dummy&#x2F;phased_mob">water</a></li>
     <li><a href="obj/effect/eldritch.html" title="&#x2F;obj&#x2F;effect&#x2F;eldritch">Generic rune</a></li>
     <li><span class="no-substance">forcefield&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;forcefield&#x2F;mime">invisible wall</span> - Mimewalls</li>
     <li><span class="no-substance">gluttony&#x2F;</span><a href="obj/effect/gluttony/timed.html" title="&#x2F;obj&#x2F;effect&#x2F;gluttony&#x2F;timed">timed</a></li>
@@ -1469,6 +1479,7 @@ Will yield a &quot;?&quot;</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;light_emitter">Light emitter</span> - Light<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;light_emitter&#x2F;red_energy_sword">red_energy_sword</span> - Base mob</li>
     </ul></li>
+    <li><span class="no-substance">mapping_helpers&#x2F;</span><a href="obj/effect/mapping_helpers/ztrait_injector.html" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;ztrait_injector">ztrait injector</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;meatgrinder">Meat Grinder</span> - Meatgrinder</li>
     <li class="has-children"><span class="no-substance">mob_spawn&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human">human</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human&#x2F;bridgeofficer">Bridge Officer</span> - Officers+Nanotrasen Security</li>
@@ -1849,6 +1860,7 @@ Given to Nuke Ops members.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;store&#x2F;cheesewheel">cheese wheel or block</span> - CHEESE</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;tofu">tofu</span> - MEATS AND ALIKE</li>
+    <li><a href="obj/item/reagent_containers/food/snacks/vermin.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;vermin">vermin bites</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;waffles">waffles</span> - WAFFLES</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;watermelonslice">watermelon slice</span> - OTHER</li>
     </ul></li>
@@ -1914,7 +1926,7 @@ Given to Nuke Ops members.</li>
     <li><a href="obj/machinery/abductor/console.html" title="&#x2F;obj&#x2F;machinery&#x2F;abductor&#x2F;console">abductor console</a></li>
     <li><a href="obj/machinery/abductor/experiment.html" title="&#x2F;obj&#x2F;machinery&#x2F;abductor&#x2F;experiment">experimentation machine</a></li>
     </ul></li>
-    <li><span class="no-substance">ai&#x2F;</span><a href="obj/machinery/ai/expansion_card_holder.html" title="&#x2F;obj&#x2F;machinery&#x2F;ai&#x2F;expansion_card_holder">Expansion Card Bus</a></li>
+    <li><span class="no-substance">ai&#x2F;</span><a href="obj/machinery/ai/server_cabinet.html" title="&#x2F;obj&#x2F;machinery&#x2F;ai&#x2F;server_cabinet">Server Cabinet</a></li>
     <li class="has-children"><a href="obj/machinery/atmospherics.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics">atmospherics</a><ul class="index-tree">
     <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components">components</span><ul class="index-tree">
     <li class="has-children"><a href="obj/machinery/atmospherics/components/binary.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;binary">binary</a><ul class="index-tree">
@@ -2041,7 +2053,6 @@ you want to show on the map, which you usually attach to &quot;vis_contents&quot
     <li><a href="obj/structure/altar_of_gods.html" title="&#x2F;obj&#x2F;structure&#x2F;altar_of_gods">Altar of the Gods</a></li>
     <li><span class="no-substance">barricade&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;barricade&#x2F;wooden">wooden barricade</span> - BARRICADE TYPES</li>
     <li class="has-children"><a href="obj/structure/bloodsucker.html" title="&#x2F;obj&#x2F;structure&#x2F;bloodsucker">bloodsucker</a><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;bloodsucker&#x2F;bloodthrone">wicked throne</span> - Blood Throne - Allows Bloodsuckers to remotely speak with their Vassals. - Code (Mostly) stolen from comfy chairs (armrests) and chairs (layers)</li>
     <li><a href="obj/structure/bloodsucker/candelabrum.html" title="&#x2F;obj&#x2F;structure&#x2F;bloodsucker&#x2F;candelabrum">candelabrum</a> - To deal with Blood
 Due to the checks leding up to this, if they fail this, they're dead &amp; Not our vassal.
 Just take it all
@@ -2131,7 +2142,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/d95d1352da521c9f490f22767018aa0f15687d56">d95d135</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/701f0667c7cdc2c581422fde4712542cf854da60">701f066</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
