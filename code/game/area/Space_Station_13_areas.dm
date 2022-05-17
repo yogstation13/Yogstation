@@ -853,6 +853,14 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/main
 	name = "Security Office"
 	icon_state = "security"
+	
+/area/security/interrogation
+	name = "Interrogation"
+	icon_state = "security"
+
+/area/security/main
+	name = "Security Office"
+	icon_state = "security"
 
 /area/security/brig
 	name = "Brig"
@@ -866,6 +874,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Prison Wing"
 	icon_state = "sec_prison"
 	minimap_color = "#530505"
+
+/area/security/prison/hallway
+	name = "Prison Wing Hallway"
 
 /area/security/processing
 	name = "Labor Shuttle Dock"
