@@ -242,7 +242,7 @@
 		H.dna.remove_mutation(CLOWNMUT)
 
 	if(give_flash)
-		var/obj/item/organ/cyberimp/arm/flash/T = new(H)
+		var/obj/item/assembly/flash/armimplant/rev/T = new(H)
 		T.Insert(H, special = FALSE, drop_if_replaced = FALSE)
 		to_chat(H, "The flash implant in your arm will help you to persuade the crew to join your cause.")
 
