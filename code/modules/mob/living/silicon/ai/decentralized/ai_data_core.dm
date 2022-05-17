@@ -4,8 +4,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core
 	name = "AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of an organic being at near-instantanous speeds."
-	icon = 'icons/obj/machines/telecomms.dmi'
-	icon_state = "hub"
+	icon = 'icons/obj/machines/ai_core.dmi'
+	icon_state = "core-offline"
 
 	circuit = /obj/item/circuitboard/machine/ai_data_core
 	
@@ -86,6 +86,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 //NOTE: See /obj/machinery/status_display/examine in ai_core_display.dm
 /obj/machinery/ai/data_core/examine(mob/user)
 	. = ..()
+	var/holder_status = get_holder_status()
+	if(holder_status)
+		. += span_warning("Machinery non-functional. Reason: [holder_status]")
 	if(!isobserver(user))
 		return
 	. += "<b>Networked AI Laws:</b>"
@@ -170,8 +173,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		if(!valid_data_core())
 			return
-		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
-		add_overlay(on_overlay)
+		icon_state = "core"
+	else
+		icon_state = "core-offline"
 
 /obj/machinery/ai/data_core/proc/partytime()
 	var/current_color = random_color()

@@ -124,3 +124,6 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	cpu_assigned[AI] = 0
 
 	update_allocations()
+
+/datum/ai_os/proc/get_temp_limit()
+	AI_TEMP_LIMIT
