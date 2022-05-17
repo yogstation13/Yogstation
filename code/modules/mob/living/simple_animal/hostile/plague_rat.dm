@@ -35,7 +35,7 @@
 	var/mob/living/L = target
 	if(isliving(target) && (L.stat != DEAD))          //It is for injecting plague reagent into people via biting them.
 		if(target.reagents)
-			var/obj/item/I = L.get_item_by_slot(SLOT_W_SUIT)
+			var/obj/item/I = L.get_item_by_slot(SLOT_SUIT)
 			if(!istype(I, /obj/item/clothing/suit/space/hardsuit) && !istype(I, /obj/item/clothing/suit/armor))
 				L.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
 
