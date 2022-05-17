@@ -42,7 +42,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		new_power_mod -= (C.rating - 1) / 50 //Max -24% at tier 4 parts, min -0% at tier 1
 
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
-		new_heat_mod -= (C.rating - 1) / 15 //Max -40% at tier 4 parts, min -0% at tier 1
+		new_heat_mod -= (M.rating - 1) / 15 //Max -40% at tier 4 parts, min -0% at tier 1
 	
 	heat_modifier = new_heat_mod
 	power_modifier = new_power_mod
@@ -133,7 +133,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			for(var/mob/living/silicon/ai/AI in contents)
 				if(!AI.is_dying)
 					AI.relocate()
-		if(!warning_sent && COOLDOWN_CHECK(src, warning_cooldown))
+		if(!warning_sent && COOLDOWN_FINISHED(src, warning_cooldown))
 			warning_sent = TRUE
 			COOLDOWN_START(src, warning_cooldown, AI_DATA_CORE_WARNING_COOLDOWN)
 			var/list/send_to = GLOB.ai_list.Copy()

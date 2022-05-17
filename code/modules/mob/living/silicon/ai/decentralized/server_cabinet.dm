@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		new_power_mod -= (C.rating - 1) / 40 //Max -15% at tier 4 parts, min -0% at tier 1
 
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
-		new_heat_mod -= (C.rating - 1) / 30 //Max -20% at tier 4 parts, min -0% at tier 1
+		new_heat_mod -= (M.rating - 1) / 30 //Max -20% at tier 4 parts, min -0% at tier 1
 	//68% total heat reduction in total at tier 4
 
 	heat_modifier = new_heat_mod
@@ -164,8 +164,8 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	if(!valid_ticks)
 		. += span_notice("A small screen is displaying the words 'OFFLINE.'")
 	. += span_notice("The machine has [installed_racks.len] racks out of a maximum of [max_racks] installed.")
-	. += span_notice("Current Power Usage Multiplier: [span_bold("[power_modifier * 100]%"")]")
-	. += span_notice("Current Heat Multiplier: [span_bold("[heat_modifier * 100]%"")]")
+	. += span_notice("Current Power Usage Multiplier: [span_bold("[power_modifier * 100]%")]")
+	. += span_notice("Current Heat Multiplier: [span_bold("[heat_modifier * 100]%")]")
 
 	for(var/obj/item/server_rack/R in installed_racks)
 		. += span_notice("There is a rack installed with a processing capacity of [R.get_cpu()]THz and a memory capacity of [R.get_ram()]TB. Uses [R.get_power_usage()]W")
