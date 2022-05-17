@@ -46,9 +46,11 @@
 	if(I.w_class > maximum_weight_class)
 		to_chat(user, span_warning("[I] is too big!"))
 		return
-	if(is_type_in_typecache(I,tape_blacklist))
-		to_chat(user, span_warning("The [src] doesn't seem to stick to [I]!"))
-		return
+	var/list/item_contents = GetAllContents(I)
+	for(var/C in item_contents)
+		if(is_type_in_typecache(C,tape_blacklist))
+			to_chat(user, span_warning("The [src] doesn't seem to stick to [I]!"))
+			return
 	to_chat(user, span_info("You wrap [I] with [src]."))
 	use(1)
 	I.embedding = I.embedding.setRating(100, 10, 0, 0, 0, 0, 0, 0, TRUE)

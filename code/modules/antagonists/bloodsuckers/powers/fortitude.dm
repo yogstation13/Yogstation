@@ -109,9 +109,9 @@
 	user_species.punchdamagelow += 0.5 * level_current
 	user_species.punchdamagehigh += 0.5 * level_current
 
-/datum/action/bloodsucker/fortitude/shadow/process()
+/datum/action/bloodsucker/fortitude/shadow/UsePower()
 	. = ..()
-	var/turf/T = owner.loc
+	var/turf/T = get_turf(owner)
 	var/light_amount = T.get_lumcount()
 	var/mob/living/carbon/user = owner
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)

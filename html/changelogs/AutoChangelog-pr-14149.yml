@@ -1,0 +1,4 @@
+author: "maxion12345"
+delete-after: true 
+changes: 
+  - rscadd: "Added new airlock to secondary datacore and added secondary datacore to event blacklist for APC failure and anomalies."

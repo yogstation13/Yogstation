@@ -99,6 +99,22 @@
 	pellets = 5
 	variance = 35
 
+/obj/item/ammo_casing/shotgun/uraniumpenetrator
+	name = "depleted uranium slug"
+	desc = "A relatively low-tech shell, utilizing the unique properties of Uranium, and possessing \
+	very impressive armor penetration capabilities."
+	icon_state = "dushell" 
+	projectile_type = /obj/item/projectile/bullet/shotgun_uraniumslug
+
+/obj/item/ammo_casing/shotgun/cryoshot
+	name = "cryoshot shell"
+	desc = "A state-of-the-art shell which uses the cooling power of Rhigoxane to snap freeze a target, without causing \
+	them much harm."
+	icon_state = "fshell" 
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_cryoshot
+	pellets = 4
+	variance = 35
+
 /obj/item/ammo_casing/shotgun/techshell
 	name = "unloaded technological shell"
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
@@ -147,3 +163,12 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
 	materials = list(/datum/material/iron=4000)
 	caliber = "breaching"
+
+
+/obj/item/ammo_casing/shotgun/thundershot
+	name = "thunder slug"
+	desc = "An advanced shotgun shell that uses stored electrical energy to discharge a massive shock on impact, arcing to nearby targets."
+	icon_state = "Thshell"
+	pellets = 3
+	variance = 30
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_thundershot

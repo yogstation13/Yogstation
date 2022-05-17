@@ -9,13 +9,8 @@
 #define MAX_AI_DATA_CORE_TICKS 45
 ///How much power does the AI date core use while being in a valid state. This is also the base heat output. (Divide by heat capacity to get actual temperature increase)
 #define AI_DATA_CORE_POWER_USAGE 7500
-
 ///How many ticks can an expanion bus store. If it reaches 0  the resources will no longer be available.
 #define MAX_AI_EXPANSION_TICKS 15
-///How much power does a CPU card consume per tick?
-#define AI_BASE_POWER_PER_CPU 1500
-///Multiplied by number of cards to see power consumption per tick. Added to by powerconsumption of CPUs
-#define AI_POWER_PER_CARD 750
 
 
 //AI Project Categories.
@@ -37,3 +32,17 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 #define AI_DOWNLOAD_PER_PROCESS 0.75
 ///Check for tracked individual coming into view every X ticks
 #define AI_CAMERA_MEMORY_TICKS 15
+
+
+//AI hardware
+#define AI_CPU_BASE_POWER_USAGE 1500
+
+#define AI_RAM_POWER_USAGE 750
+
+//Needs UI change to properly work!
+#define AI_MAX_CPUS_PER_RACK 4
+//Needs UI change to properly work!
+#define AI_MAX_RAM_PER_RACK 4
+
+///How many AI research points does 1 THz generate?
+#define AI_RESEARCH_PER_CPU 10
