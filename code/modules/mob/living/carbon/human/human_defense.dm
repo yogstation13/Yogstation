@@ -317,7 +317,7 @@
 			playsound(loc, 'sound/weapons/pierce.ogg', 25, TRUE, -1)
 			var/shovetarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
 			Knockdown(0.3 SECONDS)
-			throw_at(shovetarget, 4, 2, M, force = MOVE_FORCE_OVERPOWERING)
+			throw_at(shovetarget, 4, 2, M)
 			log_combat(M, src, "shoved")
 			visible_message("<span class='danger'>[M] tackles [src] down!</span>", \
 							"<span class='userdanger'>[M] shoves you with great force!</span>", "<span class='hear'>You hear aggressive shuffling followed by a loud thud!</span>", null, M)
