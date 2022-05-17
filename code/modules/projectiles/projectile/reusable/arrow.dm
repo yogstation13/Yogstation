@@ -3,10 +3,13 @@
 	desc = "Woosh!"
 	damage = 20
 	icon_state = "arrow"
-	ammo_type = /obj/item/ammo_casing/caseless/arrow/wood
+	ammo_type = /obj/item/ammo_casing/caseless/arrow
 	var/embed_chance = 0.5
+	var/break_chance = 0
 
 /obj/item/projectile/bullet/reusable/arrow/handle_drop(atom/target)
+	if(prob(break_chance))
+		return
 	var/obj/item/dropping = new ammo_type()
 	if(ishuman(target))
 		var/mob/living/carbon/human/embede = target
@@ -26,13 +29,29 @@
 	embed_chance = 0.6
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/ash
 
-/obj/item/projectile/bullet/reusable/arrow/bone //AP for ashwalkers
-	name = "Bone arrow"
-	desc = "An arrow made from bone and sinew."
+/obj/item/projectile/bullet/reusable/arrow/bone_tipped //AP for ashwalkers
+	name = "Bone tipped arrow"
+	desc = "An arrow made from bone, wood, and sinew."
 	damage = 30
 	armour_penetration = 40
 	embed_chance = 0.2
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone_tipped
+
+/obj/item/projectile/bullet/reusable/arrow/bone //AP for ashwalkers
+	name = "Bone arrow"
+	desc = "An arrow made from bone and sinew."
+	damage = 20
+	embed_chance = 0.2
+	break_chance = 20
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
+
+/obj/item/projectile/bullet/reusable/arrow/chitin //AP for ashwalkers
+	name = "Chitin tipped arrow"
+	desc = "An arrow made from chitin, bone, and sinew."
+	damage = 20
+	armour_penetration = 30
+	embed_chance = 0.8
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/chitin
 
 /obj/item/projectile/bullet/reusable/arrow/bronze
 	name = "Bronze arrow"
@@ -47,6 +66,7 @@
 	desc = "Glass tipped arrow"
 	damage = 15
 	embed_chance = 0.3
+	break_chance = 20
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass
 
 /obj/item/projectile/bullet/reusable/arrow/glass/plasma
@@ -55,6 +75,7 @@
 	damage = 10
 	armour_penetration = 10
 	embed_chance = 0.3
+	break_chance = 10
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass/plasma
 
 /obj/item/projectile/bullet/reusable/arrow/bola

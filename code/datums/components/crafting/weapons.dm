@@ -215,8 +215,8 @@
 	name = "Pipe Bow"
 	result = /obj/item/gun/ballistic/bow/pipe
 	reqs = list(/obj/item/pipe = 5,
-				/obj/item/stack/sheet/plastic = 15,
-				/obj/item/weaponcrafting/silkstring = 10)
+				/obj/item/stack/sheet/plastic = 5,
+				/obj/item/weaponcrafting/silkstring = 1)
 	time = 45 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -236,7 +236,7 @@
 	result = /obj/item/gun/ballistic/bow
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 8,
 				/obj/item/stack/sheet/metal = 2,
-				/obj/item/weaponcrafting/silkstring = 4)
+				/obj/item/weaponcrafting/silkstring = 1)
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -500,11 +500,21 @@
 
 /datum/crafting_recipe/arrow
 	name = "Arrow"
-	result = /obj/item/ammo_casing/caseless/arrow/wood
+	result = /obj/item/ammo_casing/caseless/arrow
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1,
 				/obj/item/stack/sheet/silk = 1,
 				/obj/item/stack/rods = 1) //1 metal sheet = 2 rods= 2 arrows
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/bone_tipped_arrow
+	name = "Bone Tipped Arrow"
+	result = /obj/item/ammo_casing/caseless/arrow/bone_tipped
+	time = 3 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 1,
+				/obj/item/stack/sheet/sinew = 1,
+				/obj/item/ammo_casing/caseless/arrow/ash = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
@@ -513,8 +523,18 @@
 	result = /obj/item/ammo_casing/caseless/arrow/bone
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 1,
-				/obj/item/stack/sheet/sinew = 1,
-				/obj/item/ammo_casing/caseless/arrow/ash = 1)
+				/obj/item/stack/sheet/sinew = 1)
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/chitin_arrow
+	name = "Chitin Arrow"
+	result = /obj/item/ammo_casing/caseless/arrow/chitin
+	time = 3 SECONDS
+	reqs = list(/obj/item/ammo_casing/caseless/arrow/bone = 1,
+				/obj/item/stack/sheet/sinew = 2,
+				/obj/item/stack/sheet/ashresin = 1,
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 3)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
@@ -523,7 +543,7 @@
 	result = /obj/item/ammo_casing/caseless/arrow/ash
 	tools = list(TOOL_WELDER)
 	time = 3 SECONDS
-	reqs = list(/obj/item/ammo_casing/caseless/arrow/wood = 1)
+	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 

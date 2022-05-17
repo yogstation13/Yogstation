@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/caseless/arrow
-	name = "arrow of questionable material"
-	desc = "You shouldnt be seeing this arrow"
+	name = "wooden arrow"
+	desc = "An arrow made of wood, typically fired from a bow."
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow
 	caliber = "arrow"
 	icon_state = "arrow"
@@ -10,10 +10,6 @@
 	sharpness = SHARP_POINTY
 	embedding = list("embed_chance" = 25, "embedded_fall_chance" = 0)
 
-/obj/item/ammo_casing/caseless/arrow/wood
-	name = "wooden arrow"
-	desc = "An arrow made of wood, typically fired from a bow."
-
 /obj/item/ammo_casing/caseless/arrow/ash
 	name = "ashen arrow"
 	desc = "An arrow made from wood, hardened by fire"
@@ -21,11 +17,25 @@
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/ash
 	embedding = list("embed_chance" = 30, "embedded_fall_chance" = 0)
 
+/obj/item/ammo_casing/caseless/arrow/bone_tipped
+	name = "bone tipped arrow"
+	desc = "An arrow made of bone, wood, and sinew. The tip is sharp enough to pierce goliath hide."
+	icon_state = "bonetippedarrowarrow"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bone_tipped
+	embedding = list("embed_chance" = 10, "embedded_fall_chance" = 0)
+
 /obj/item/ammo_casing/caseless/arrow/bone
 	name = "bone arrow"
-	desc = "An arrow made of bone and sinew. The tip is sharp enough to pierce goliath hide."
+	desc = "A flimsy arrow made of bone. Not strong or durable, but is easy to make."
 	icon_state = "bonearrow"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bone
+	embedding = list("embed_chance" = 10, "embedded_fall_chance" = 0)
+
+/obj/item/ammo_casing/caseless/arrow/chitin
+	name = "chitin tipped arrow"
+	desc = "A sharp arrow made of the guts of lavaland monsters. The tip is sharp and jagged, making it easier to get stuck into your target."
+	icon_state = "chitinarrow"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/chitin
 	embedding = list("embed_chance" = 10, "embedded_fall_chance" = 0)
 
 /obj/item/ammo_casing/caseless/arrow/bronze
