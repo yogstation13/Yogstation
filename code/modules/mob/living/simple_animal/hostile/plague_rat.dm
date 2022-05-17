@@ -33,7 +33,7 @@
 /mob/living/simple_animal/hostile/plaguerat/AttackingTarget()
 	..()
 	var/mob/living/L = target
-	if(isliving(target))          //It is for injecting plague reagent into people via biting them.
+	if(isliving(target) && (L.stat != DEAD))          //It is for injecting plague reagent into people via biting them.
 		if(target.reagents)
 			var/obj/item/I = L.get_item_by_slot(SLOT_W_SUIT)
 			if(!istype(I, /obj/item/clothing/suit/space/hardsuit) && !istype(I, /obj/item/clothing/suit/armor))
@@ -45,13 +45,14 @@
 			to_chat(src, span_notice ("You finish licking [L]."))
 			heal_bodypart_damage(5)
 			L.adjustBruteLoss(15)
+			return
 
 	if (!isliving(target) && target.reagents && target.is_injectable(src, allowmobs = TRUE))   //It is for injecting plague reagent into food and reagent containers by licking them. Not to be confused with biting people.
 		src.visible_message(span_warning("[src] starts licking [target]!"),span_notice("You start licking [target]..."))
 		if (do_mob(src, target, 2 SECONDS))
 			target.reagents.add_reagent(/datum/reagent/plaguebacteria,rand(1,2),no_react = TRUE)
 			to_chat(src, span_notice("You finish licking [target]."))
-
+			return
 
 //Spawn Event
 
