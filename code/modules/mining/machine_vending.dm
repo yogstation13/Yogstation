@@ -18,7 +18,7 @@
 	circuit = /obj/item/circuitboard/machine/mining_equipment_vendor
 	var/icon_deny = "mining-deny"
 	var/list/prize_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
-		new /datum/data/mining_equipment("Lesser Mining Charge",				/obj/item/grenade/plastic/miningcharge/lesser,				300, VENDING_EQUIPMENT), //only at the top for players to see it
+		new /datum/data/mining_equipment("Lesser Mining Charge",		/obj/item/grenade/plastic/miningcharge/lesser,						300, VENDING_EQUIPMENT), //only at the top for players to see it
 		new /datum/data/mining_equipment("Kinetic Accelerator",			/obj/item/gun/energy/kinetic_accelerator,							750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/twohanded/required/kinetic_crusher,						750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												800, VENDING_WEAPON),
