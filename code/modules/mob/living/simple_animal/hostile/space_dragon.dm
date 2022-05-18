@@ -1,3 +1,6 @@
+/// The darkness threshold for space dragon when choosing a color
+ #define DARKNESS_THRESHOLD		0.5
+
 /**
   * # Space Dragon
   *
@@ -71,6 +74,9 @@
 	/// The innate ability to summon rifts
 	var/datum/action/innate/space_dragon/summonRift/rift
 
+	/// The color of the space dragon.
+ 	var/chosen_color
+
 /mob/living/simple_animal/hostile/space_dragon/Initialize(mapload)
 	. = ..()
 	if(small_sprite_type)
@@ -81,9 +87,23 @@
 	rift = new
 	rift.Grant(src)
 
+/mob/living/simple_animal/hostile/space_dragon/Login()
+ 	. = ..()
+ 	if(!chosen_color)
+ 		dragon_name()
+ 		color_selection()
+
 /mob/living/simple_animal/hostile/space_dragon/Life(mapload)
 	. = ..()
 	tiredness = max(tiredness - 1, 0)
+	for(var/mob/living/consumed_mob in src)
+ 		if(consumed_mob.stat == DEAD)
+ 			continue
+ 		playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
+ 		visible_message("<span class='danger'>[src] vomits up [consumed_mob]!</span>")
+ 		consumed_mob.forceMove(loc)
+ 		consumed_mob.Paralyze(50)
+
 	if(rifts_charged == 3 && !objective_complete)
 		victory()
 	if(riftTimer == -1)
@@ -95,6 +115,8 @@
 	if(riftTimer == maxRiftTimer)
 		to_chat(src, "<span class='boldwarning'>You've failed to summon the rift in a timely manner!  You're being pulled back from whence you came!</span>")
 		destroy_rifts()
+	 add_overlay()
+
 		QDEL_NULL(src)
 
 /mob/living/simple_animal/hostile/space_dragon/AttackingTarget()
@@ -529,3 +551,62 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 	to_chat(newcarp, "<span class='boldwarning'>You have arrived in order to assist the space dragon with securing the rift.  Do not jeopardize the mission, and protect the rift at all costs!</span>")
 	carp_stored -= 1
 	return TRUE
+
+/**
+   * Allows space dragon to choose its own name.
+   *
+   * Prompts the space dragon to choose a name, which it will then apply to itself.
+   * If the name is invalid, will re-prompt the dragon until a proper name is chosen.
+   */
+ /mob/living/simple_animal/hostile/space_dragon/proc/dragon_name()
+ 	var/chosen_name = sanitize_name(reject_bad_text(stripped_input(src, "What would you like your name to be?", "Choose Your Name", real_name, MAX_NAME_LEN)))
+ 	if(!chosen_name)
+ 		to_chat(src, "<span class='warning'>Not a valid name, please try again.</span>")
+ 		dragon_name()
+ 		return
+ 	visible_message("<span class='notice'>Your name is now <span class='name'>[chosen_name]</span>, the feared Space Dragon.</span>")
+ 	fully_replace_character_name(null, chosen_name)
+
+ /**
+   * Allows space dragon to choose a color for itself.
+   *
+   * Prompts the space dragon to choose a color, from which it will then apply to itself.
+   * If an invalid color is given, will re-prompt the dragon until a proper color is chosen.
+   */
+ /mob/living/simple_animal/hostile/space_dragon/proc/color_selection()
+ 	chosen_color = input(src,"What would you like your color to be?","Choose Your Color", COLOR_WHITE) as color|null
+ 	if(!chosen_color) //redo proc until we get a color
+ 		to_chat(src, "<span class='warning'>Not a valid color, please try again.</span>")
+ 		color_selection()
+ 		return
+ 	var/temp_hsv = RGBtoHSV(chosen_color)
+ 	if(chosen_color == COLOR_BLACK)
+ 		chosen_color = COLOR_WHITE
+ 	else if(ReadHSV(temp_hsv)[3] < DARKNESS_THRESHOLD)
+ 		to_chat(src, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
+ 		color_selection()
+ 		return
+ 	add_atom_colour(chosen_color, FIXED_COLOUR_PRIORITY)
+ 	add_dragon_overlay()
+
+ /**
+   * Adds the proper overlay to the space dragon.
+   *
+   * Clears the current overlay on space dragon and adds a proper one for whatever animation he's in.
+   */
+ /mob/living/simple_animal/hostile/space_dragon/proc/add_dragon_overlay()
+ 	cut_overlays()
+ 	if(stat == DEAD)
+ 		var/mutable_appearance/overlay = mutable_appearance(icon, "overlay_dead")
+ 		overlay.appearance_flags = RESET_COLOR
+ 		add_overlay(overlay)
+ 		return
+ 	if(!using_special)
+ 		var/mutable_appearance/overlay = mutable_appearance(icon, "overlay_base")
+ 		overlay.appearance_flags = RESET_COLOR
+ 		add_overlay(overlay)
+ 		return
+ 	if(using_special)
+ 		var/mutable_appearance/overlay = mutable_appearance(icon, "overlay_gust")
+ 		overlay.appearance_flags = RESET_COLOR
+ 		add_overlay(overlay)
