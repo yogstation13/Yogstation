@@ -4,6 +4,7 @@
 	maxHealth = 125
 	health = 125
 	icon_state = "alienh"
+	speed = -0.6
 	///The mouse icon for when the hunter is ready to leap.
 	var/obj/screen/leap_icon = null
 
