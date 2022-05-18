@@ -7,4 +7,7 @@
 /obj/item/projectile/bullet/neurotoxin/on_hit(atom/target, blocked = FALSE)
 	if(isalien(target))
 		nodamage = TRUE
+	else if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		C.Knockdown(2 SECONDS) 
 	return ..()
