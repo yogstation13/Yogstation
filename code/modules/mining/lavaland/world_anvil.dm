@@ -52,7 +52,7 @@
 			return
 		var/obj/item/magmite/ore_using = I
 		if(do_after(user,10 SECONDS, target = src))
-			var/obj/item/upgrade_parts = new /obj/item/magmite_parts(src)
+			var/obj/item/magmite_parts/upgrade_parts = new /obj/item/magmite_parts(src)
 			to_chat(user, "You forge the plasma magmite into plasma magmite upgrade parts.")
 			if(!forge_charges)
 				visible_message("The world anvil cools down.")
