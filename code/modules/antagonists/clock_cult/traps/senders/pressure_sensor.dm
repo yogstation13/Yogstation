@@ -1,6 +1,6 @@
 /obj/item/clockwork/trap_placer/pressure_sensor
 	name = "pressure plate"
-	desc = "I wonder what happens if you step on it."
+	desc = "I wonder what happens if you step on it?"
 	icon_state = "pressure_sensor"
 	result_path = /obj/structure/destructible/clockwork/trap/pressure_sensor
 
