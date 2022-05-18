@@ -324,7 +324,7 @@
 	ui_y = -448
 
 /datum/techweb_node/magmite_mining
-	ui_x = 96
+	ui_x = 160
 	ui_y = -512
 
 /datum/techweb_node/janitor
