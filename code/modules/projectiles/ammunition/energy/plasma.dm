@@ -23,6 +23,9 @@
 /obj/item/ammo_casing/energy/plasma/scatter/adv
 	projectile_type = /obj/item/projectile/plasma/scatter/adv
 
+/obj/item/ammo_casing/energy/plasma/scatter/adv/mega
+	projectile_type = /obj/item/projectile/plasma/scatter/adv/mega
+
 /obj/item/ammo_casing/energy/plasma/adv/cyborg
 	projectile_type = /obj/item/projectile/plasma/adv
 	delay = 10

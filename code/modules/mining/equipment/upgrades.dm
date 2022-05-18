@@ -27,11 +27,17 @@
 		user.put_in_hand(newgun)
 		to_chat(user,"Harsh tendrils wrap around the kinetic accelerator, merging the parts and kinetic accelerator to form a mega kinetic accelerator.")
 	if(target.type == /obj/item/gun/energy/plasmacutter/adv)
-		var/obj/item/gun/energy/plasmacutter/adv/gun = I
+		var/obj/item/gun/energy/plasmacutter/adv/gun = target
 		qdel(gun)
 		var/obj/item/gun/energy/plasmacutter/adv/mega/newgun = new(src)
 		user.put_in_hand(newgun)
 		to_chat(user,"Harsh tendrils wrap around the plasma cutter, merging the parts and cutter to form a mega plasma cutter.")
+	if(target.type == /obj/item/gun/energy/plasmacutter/scatter) //holy fuck make a new system bro do a /datum/worldanvilrecipe DAMN
+		var/obj/item/gun/energy/plasmacutter/scatter/gun = target
+		qdel(gun)
+		var/obj/item/gun/energy/plasmacutter/scatter/mega/newgun = new(src)
+		user.put_in_hand(newgun)
+		to_chat(user,"Harsh tendrils wrap around the plasma cutter shotgun, merging the parts and cutter to form a mega plasma cutter shotgun.")
 
 
 	

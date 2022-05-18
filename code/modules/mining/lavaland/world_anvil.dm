@@ -50,9 +50,9 @@
 		if(forge_charges <= 0)
 			to_chat(user,"The anvil is not heated enough to be usable!")
 			return
-		var/obj/item/magmite/ore_using = I
 		if(do_after(user,10 SECONDS, target = src))
-			var/obj/item/magmite_parts/upgrade_parts = new /obj/item/magmite_parts(src)
+			new /obj/item/magmite_parts(src)
+			qdel(I)
 			to_chat(user, "You forge the plasma magmite into plasma magmite upgrade parts.")
 			if(!forge_charges)
 				visible_message("The world anvil cools down.")
