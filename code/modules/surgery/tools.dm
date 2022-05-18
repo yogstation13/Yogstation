@@ -27,7 +27,7 @@
 	name = "bone retractor"
 	desc = "Kinda looks like a chicken bone."
 	icon_state = "retractor_bone"
-	toolspeed = 0.85
+	toolspeed = 1.25
 
 
 /obj/item/hemostat
@@ -61,7 +61,7 @@
 	name = "hemostat"
 	desc = "Bones that are strapped together with sinews. Used to stop bleeding."
 	icon_state = "hemostat_bone"
-	toolspeed = 0.85
+	toolspeed = 1.25
 
 
 /obj/item/cautery
@@ -95,7 +95,7 @@
 	name = "bone cautery"
 	desc = "A heated chuck of plasma strapped to a bone. It can close wounds."
 	icon_state = "cautery_bone"
-	toolspeed = 0.85
+	toolspeed = 1.25
 
 
 /obj/item/surgicaldrill
@@ -192,8 +192,8 @@
 	name = "bone scalpel"
 	desc = "Bones and a Diamond tied together to make a scalpel."
 	icon_state = "scalpel_bone"
-	force = 12
-	toolspeed = 0.85
+	force = 5
+	toolspeed = 1.25
 
 /obj/item/circular_saw
 	name = "circular saw"
@@ -241,8 +241,8 @@
 	name = "bone bonesaw"
 	desc = "A bone with diamond teeth strapped to cut through bones."
 	icon_state = "saw_bone"
-	force = 12
-	toolspeed = 0.85
+	force = 5
+	toolspeed = 1.25
 
 /obj/item/bonesetter
 	name = "bonesetter"
@@ -262,7 +262,7 @@
 	name = "bone bonesetter"
 	desc = "A bonesetter made of bones... for setting bones with... bones?"
 	icon_state = "bone setter_bone"
-	toolspeed = 0.85
+	toolspeed = 1.25
 
 /obj/item/surgical_drapes
 	name = "surgical drapes"
