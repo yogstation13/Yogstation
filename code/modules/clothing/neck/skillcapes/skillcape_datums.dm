@@ -138,16 +138,16 @@
     job = "Brig Physician"
     path = /obj/item/clothing/neck/skillcape/trimmed/physician
 
-/datum/skillcape/signaltech
-	name = "cape of the signal technician"
-	job = "Signal Technician"
-	path = /obj/item/clothing/neck/skillcape/signaltech
-	id = "signaltech"
+/datum/skillcape/network_admin
+	name = "cape of the network admin"
+	job = "Network Admin"
+	path = /obj/item/clothing/neck/skillcape/network_admin
+	id = "network_admin"
 
-/datum/skillcape/trimmed/signaltech
-	name = "cape of the grand signal technician"
-	job = "Signal Technician"
-	path = /obj/item/clothing/neck/skillcape/trimmed/signaltech
+/datum/skillcape/trimmed/network_admin
+	name = "cape of the grand network admin"
+	job = "Network Admin"
+	path = /obj/item/clothing/neck/skillcape/trimmed/network_admin
 	id = "signaltech_trimmed"
 
 /datum/skillcape/atmos

@@ -117,6 +117,7 @@
 	category = CAT_STRUCTURES
 	always_availible = FALSE
 
+/*
 /datum/crafting_recipe/bloodthrone
 	name = "Blood Throne"
 	result = /obj/structure/bloodsucker/bloodthrone
@@ -129,6 +130,7 @@
 	time = 5 SECONDS
 	category = CAT_STRUCTURES
 	always_availible = FALSE
+*/
 
 /datum/crafting_recipe/possessedarmor
 	name = "Subservent Armor"
