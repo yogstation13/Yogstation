@@ -47,6 +47,10 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin PM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_ahelp_reply(whom)
+	if(isliving(mob) && !mob.can_speak_vocal())
+		to_chat(usr, span_danger("You are unable to reach out to god"), confidential=TRUE)
+		return
+
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
@@ -81,6 +85,10 @@
 //takes input from cmd_admin_pm_context, cmd_admin_pm_panel or /client/Topic and sends them a PM.
 //Fetching a message if needed. src is the sender and C is the target client
 /client/proc/cmd_admin_pm(whom, msg)
+	if(isliving(mob) && !mob.can_speak_vocal())
+		to_chat(usr, span_danger("You are unable to reach out to god"), confidential=TRUE)
+		return
+		
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
@@ -148,6 +156,10 @@
 			msg = input(src,"Message:", "Private message to [recipient.holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)].") as message|null
 			msg = trim(msg)
 			if(!msg)
+				return
+				
+			if(isliving(mob) && !mob.can_speak_vocal())
+				to_chat(usr, span_danger("You are unable to reach out to god"), confidential=TRUE)
 				return
 
 			if(prefs.muted & MUTE_ADMINHELP)
