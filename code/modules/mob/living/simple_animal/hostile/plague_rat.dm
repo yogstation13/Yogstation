@@ -29,7 +29,6 @@
 							You can also nibble on dead bodies to slightly heal yourself! \
 							However, you are still very fragile! You're just are a small rat, after all.</b>"
 
-
 /mob/living/simple_animal/hostile/plaguerat/AttackingTarget()
 	..()
 	var/mob/living/carbon/C = target
