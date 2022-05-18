@@ -35,16 +35,16 @@
 	var/mob/living/carbon/C = target
 	if(isliving(С) && (С.stat != DEAD))          //It is for injecting plague reagent into people via biting them.
 		if(С.reagents)
-			var/obj/item/I = С.get_item_by_slot(SLOT_SUIT)
+			var/obj/item/I = С.get_item_by_slot(SLOT_W_SUIT)
 			if(!istype(I, /obj/item/clothing/suit/space/hardsuit) && !istype(I, /obj/item/clothing/suit/armor))
 				С.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
 
-	if(L.stat == DEAD)             //It is for biting dead bodies to heal.
-		src.visible_message(span_warning("[src] starts biting into [L]!"),span_notice("You start eating [L]..."))
+	if(С.stat == DEAD)             //It is for biting dead bodies to heal.
+		src.visible_message(span_warning("[src] starts biting into [С]!"),span_notice("You start eating [С]..."))
 		if(do_mob(src, target, 3 SECONDS))
-			to_chat(src, span_notice ("You finish licking [L]."))
+			to_chat(src, span_notice ("You finish eating [С]."))
 			heal_bodypart_damage(5)
-			L.adjustBruteLoss(15)
+			С.adjustBruteLoss(15)
 			return
 
 	if (!isliving(target) && target.reagents && target.is_injectable(src, allowmobs = TRUE))   //It is for injecting plague reagent into food and reagent containers by licking them. Not to be confused with biting people.
