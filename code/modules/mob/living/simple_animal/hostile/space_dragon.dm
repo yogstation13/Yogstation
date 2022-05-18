@@ -51,7 +51,6 @@
 	maxbodytemp = 1500
 	faction = list("carp")
 	pressure_resistance = 200
-	/// The color of the space dragon.dragon.
  	var/chosen_color
 	/// Current time since the the last rift was activated.  If set to -1, does not increment.
 	var/riftTimer = 0
