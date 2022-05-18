@@ -89,7 +89,7 @@ GLOBAL_VAR(clockcult_eminence)
 
 /datum/game_mode/clockcult/generate_report()
 	return "Central Command's Higher Dimensional Affairs division has recently been investigating a huge, anomalous energy spike \
-	emanating from a neutron star close to your sector. It is currently theorised that an ancient group of fanatics praising an \
+	emanating from a neutron star close to your sector. It is currently theorized that an ancient group of fanatics praising an \
 	eldritch deity made from brass and other outdated materials are abusing the energy of the dying star to breach dimensional \
 	boundaries. The bluespace veil is faltering at your current location, making it a prime target for dangerous individuals to \
 	abuse dimensional interdiction. Any evidence of tampering with bluespace fields should be reported to your local chaplain and \
