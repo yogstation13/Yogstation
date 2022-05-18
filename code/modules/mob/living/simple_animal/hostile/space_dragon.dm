@@ -51,6 +51,8 @@
 	maxbodytemp = 1500
 	faction = list("carp")
 	pressure_resistance = 200
+	/// The color of the space dragon.dragon.
+ 	var/chosen_color
 	/// Current time since the the last rift was activated.  If set to -1, does not increment.
 	var/riftTimer = 0
 	/// Maximum amount of time which can pass without a rift before Space Dragon despawns.
@@ -67,10 +69,6 @@
 	var/rifts_charged = 0
 	/// Whether or not Space Dragon has completed their objective, and thus triggered the ending sequence.
 	var/objective_complete = FALSE
-
-	/// The color of the space dragon.dragon.
- 	var/chosen_color
-
 	/// The togglable small sprite action
 	var/small_sprite_type = /datum/action/small_sprite/megafauna/spacedragon
 	/// The innate ability to use wing gust
