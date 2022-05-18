@@ -3,6 +3,7 @@
 	caste = "p"
 	maxHealth = 300
 	health = 300
+	speed = 1
 	icon_state = "alienp"
 
 /mob/living/carbon/alien/humanoid/royal/praetorian/Initialize()
