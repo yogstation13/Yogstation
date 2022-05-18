@@ -13,6 +13,22 @@
 	var/forge_charges = 0
 	var/list/placed_objects = list()
 
+	var/obj/item/gps/internal
+
+/obj/item/gps/internal/world_anvil
+	icon_state = null
+	gpstag = "Tempered Signal"
+	desc = "An ancient anvil rests at this location."
+	invisibility = 100
+
+/obj/structure/world_anvil/Initialize()
+	. = ..()
+	internal = new /obj/item/gps/internal/world_anvil(src)
+
+/obj/structure/world_anvil/Destroy()
+	QDEL_NULL(internal)
+	. = ..()
+
 /obj/structure/world_anvil/update_icon()
 	icon_state = forge_charges > 0 ? "anvil_a" : "anvil"
 	if(forge_charges > 0)
