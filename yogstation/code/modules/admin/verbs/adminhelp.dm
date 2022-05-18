@@ -874,6 +874,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		to_chat(usr, span_danger("Speech is currently admin-disabled."), confidential=TRUE)
 		return
 
+	if(isliving(mob) && !mob.can_speak_vocal())
+		to_chat(usr, span_danger("You are unable to reach out to god"), confidential=TRUE)
+		return
+
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src, span_danger("Error: Admin-PM: You cannot send adminhelps (Muted)."), confidential=TRUE)
