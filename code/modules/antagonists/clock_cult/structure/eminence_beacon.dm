@@ -41,7 +41,7 @@
 	else
 		eminence.dust()
 	if(!(eminence?.client))
-		hierophant_message("The Eminence remains in slumber, for now, try waking it again soon.")
+		hierophant_message("The Eminence remains in slumber, for now. Try waking it again soon!")
 		used = FALSE
 		return
 	var/mob/new_mob = new /mob/living/simple_animal/eminence(get_turf(src))
