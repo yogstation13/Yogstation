@@ -74,7 +74,7 @@
 	else
 		to_chat(owner, span_cultitalic("You are already invoking blood magic!"))
 		return
-	if(do_after(owner, 10 SECONDS - rune*60, owner))
+	if(do_after(owner, (10 - rune*6) SECONDS, owner))
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			H.bleed(40 - rune*32)
