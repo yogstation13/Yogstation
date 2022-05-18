@@ -120,7 +120,7 @@ GLOBAL_VAR(clockcult_eminence)
 	if(GLOB.ratvar_risen)
 		round_credits += "<center><h1>Ratvar has been released from his prison!</h1>"
 	else
-		round_credits += "<center><h1>The clock cultists failed to summon Ratvar, he will remain trapped forever to rust!</h1>"
+		round_credits += "<center><h1>The clock cultists have failed to summon Ratvar! He will remain trapped in his prison forever!</h1>"
 	round_credits += "<center><h1>The Servants of Ratvar:</h1>"
 	len_before_addition = round_credits.len
 	for(var/datum/mind/operative in GLOB.servants_of_ratvar)
