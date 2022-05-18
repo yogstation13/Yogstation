@@ -2,7 +2,7 @@
 	name = "mining charge"
 	desc = "Used to make big holes in rocks. Only works on rocks!"
 	icon = 'icons/obj/mining.dmi'
-	icon_state = "mining-charge"
+	icon_state = "mining-charge-2"
 	det_time = 5 //uses real world seconds cause screw you i guess
 	boom_sizes = list(1,3,5)
 	alert_admins = FALSE
@@ -44,3 +44,19 @@
 /obj/item/grenade/plastic/miningcharge/deconstruct(disassembled = TRUE) //no gibbing a miner with pda bombs
 	if(!QDELETED(src))
 		qdel(src)
+
+/obj/item/grenade/plastic/miningcharge/lesser
+	name = "lesser mining charge"
+	desc = "A lesser version of our boys in green. Used to make big holes. Only works on rocks!"
+	icon_state = "mining-charge-1"
+	boom_sizes = list(1,1,1)
+
+/obj/item/grenade/plastic/miningcharge/mega
+	name = "mega mining charge"
+	desc = "A lesser version of our boys in green. Used to make big holes. Only works on rocks!"
+	icon_state = "mining-charge-3"
+	boom_sizes = list(2,4,7)
+
+/obj/item/storage/backpack/duffelbag/miningcharges/PopulateContents()
+	for(var/i in 1 to 3)
+		new /obj/item/grenade/plastic/miningcharge/lesser(src)

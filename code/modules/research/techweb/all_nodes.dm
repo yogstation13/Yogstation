@@ -576,9 +576,20 @@
 	display_name = "Advanced Mining Technology"
 	description = "Efficiency Level 127"	//dumb mc references
 	prereq_ids = list("basic_mining", "adv_engi", "adv_power", "adv_plasma")
-	design_ids = list("drill_diamond", "jackhammer", "hypermod", "plasmacutter_adv", "borg_upgrade_plasmacutter")
+	design_ids = list("drill_diamond", "jackhammer", "hypermod", "plasmacutter_adv", "borg_upgrade_plasmacutter","miningcharge")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
+
+/datum/techweb_node/magmite_mining
+	id = "magmite_mining"
+	display_name = "Magmite Technology"
+	description = "Who needs a pickaxe when you have a nuke?"
+	prereq_ids = list("adv_mining")
+	design_ids = list("miningcharge_mega")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
+	export_price = 5000
+	hidden = TRUE
+	boost_item_paths = list(/obj/item/magmite)
 
 /datum/techweb_node/camera_theory
 	id = "cam_theory"

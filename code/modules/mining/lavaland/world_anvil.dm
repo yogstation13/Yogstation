@@ -56,3 +56,18 @@
 			to_chat(user, "You forge the plasma magmite into plasma magmite upgrade parts.")
 			if(!forge_charges)
 				visible_message("The world anvil cools down.")
+	if(istype(I,/obj/item/magmite_parts))
+		if(forge_charges <= 0)
+			to_chat(user,"The anvil is not heated enough to be usable!")
+			return
+		var/obj/item/magmite_parts/parts = I
+		if(!parts.inert)
+			to_chat(user,"The magmite upgrade parts are already glowing!")
+			return
+		if(do_after(user,5 SECONDS, target = src))
+			parts.restore()
+			to_chat(user, "You restore the magmite upgrade parts' magma-like glow. They are now usable again.")
+			if(!forge_charges)
+				visible_message("The world anvil cools down.")
+			
+

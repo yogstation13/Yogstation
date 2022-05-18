@@ -12,8 +12,33 @@
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "upgrade_parts"
 	w_class = WEIGHT_CLASS_NORMAL
+	var/inert = FALSE
+
+/obj/item/magmite_parts/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/go_inert), 10 MINUTES)
+
+/obj/item/magmite_parts/proc/go_inert()
+	if(inert)
+		return
+	visible_message(span_warning("The [src] loses it's glow!"))
+	inert = TRUE
+	name = "inert plasma magmite upgrade parts"
+	icon_state = "upgrade_parts_inert"
+	desc += " This one has lost it's magma-like glow."
+
+/obj/item/magmite_parts/proc/restore()
+	if(!inert)
+		return
+	inert = FALSE
+	name = initial(name)
+	icon_state = initial(icon_state)
+	desc = initial(desc)
+	addtimer(CALLBACK(src, .proc/go_inert), 10 MINUTES)
 
 /obj/item/magmite_parts/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(inert)
+		to_chat(span_warning("[src] is inert! Restore its glow at the world anvil!"))
 	if(target.type == /obj/item/gun/energy/kinetic_accelerator) //basic kinetic accelerator
 		var/obj/item/gun/energy/kinetic_accelerator/gun = target
 		if(gun.bayonet)
