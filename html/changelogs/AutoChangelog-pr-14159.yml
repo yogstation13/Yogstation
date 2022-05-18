@@ -1,0 +1,4 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - bugfix: "The crafting recipe for the Uranium Slugs actually works now"
