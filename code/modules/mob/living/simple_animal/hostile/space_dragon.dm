@@ -1,5 +1,5 @@
 /// The darkness threshold for space dragon when choosing a color
- #define DARKNESS_THRESHOLD		0.5
+#define DARKNESS_THRESHOLD		0.5
 
 /**
   * # Space Dragon
