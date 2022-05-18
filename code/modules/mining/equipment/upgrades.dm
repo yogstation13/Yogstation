@@ -1,7 +1,7 @@
 //plasma magmite is exclusively used to upgrade mining equipment, by using it on a heated world anvil to make upgradeparts.
 /obj/item/magmite
 	name = "plasma magmite"
-	desc = "A chunk of plasma magmite, crystallized deep under lavaland's surface. Its strength seems to fluctuate depending on the distance to the planet."
+	desc = "A chunk of plasma magmite, crystallized deep under the planet's surface. It seems to lose strength as it gets further from the planet!"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "Magmite ore"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -25,7 +25,7 @@
 	inert = TRUE
 	name = "inert plasma magmite upgrade parts"
 	icon_state = "upgrade_parts_inert"
-	desc += " This one has lost it's magma-like glow."
+	desc += "It appears to have lost its magma-like glow."
 
 /obj/item/magmite_parts/proc/restore()
 	if(!inert)

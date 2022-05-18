@@ -231,7 +231,7 @@
 	name = "plasma cutter shotgun"
 	icon_state = "miningshotgun"
 	item_state = "miningshotgun"
-	desc = "An industrial-grade heavy-duty mining shotgun."
+	desc = "An industrial-grade, heavy-duty mining shotgun."
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter)
 
@@ -248,7 +248,7 @@
 	name = "mega plasma cutter shotgun"
 	icon_state = "miningshotgun_mega"
 	item_state = "miningshotgun_mega"
-	desc = "An industrial-grade heavy-duty mining shotgun. This one seems... mega!"
+	desc = "An industrial-grade, heavy-duty mining shotgun. This one seems... mega!"
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter/adv/mega)
 
 /obj/item/gun/energy/plasmacutter/adv/cyborg

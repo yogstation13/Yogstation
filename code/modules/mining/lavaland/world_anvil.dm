@@ -48,25 +48,25 @@
 		return
 	if(istype(I,/obj/item/magmite))
 		if(forge_charges <= 0)
-			to_chat(user,"The anvil is not heated enough to be usable!")
+			to_chat(user,"The anvil is not hot enough to be usable!")
 			return
 		if(do_after(user,10 SECONDS, target = src))
 			new /obj/item/magmite_parts(src)
 			qdel(I)
-			to_chat(user, "You forge the plasma magmite into plasma magmite upgrade parts.")
+			to_chat(user, "You carefully forge the rough plasma magmite into plasma magmite upgrade parts.")
 			if(!forge_charges)
 				visible_message("The world anvil cools down.")
 	if(istype(I,/obj/item/magmite_parts))
 		if(forge_charges <= 0)
-			to_chat(user,"The anvil is not heated enough to be usable!")
+			to_chat(user,"The anvil is not hot enough to be usable!")
 			return
 		var/obj/item/magmite_parts/parts = I
 		if(!parts.inert)
-			to_chat(user,"The magmite upgrade parts are already glowing!")
+			to_chat(user,"The magmite upgrade parts are already glowing and usable!")
 			return
 		if(do_after(user,5 SECONDS, target = src))
 			parts.restore()
-			to_chat(user, "You restore the magmite upgrade parts' magma-like glow. They are now usable again.")
+			to_chat(user, "You successfully reheat the magmite upgrade parts. They are now glowing and usable again.")
 			if(!forge_charges)
 				visible_message("The world anvil cools down.")
 			

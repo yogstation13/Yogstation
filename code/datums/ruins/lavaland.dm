@@ -233,7 +233,7 @@
 /datum/map_template/ruin/lavaland/worldanvil //Plasma magmite upgrading area... always place.
 	name = "World Anvil"
 	id = "worldanvil"
-	description = "An ancient anvil stands untained for millenia."
+	description = "An ancient anvil, standing untainted for millennia. Wonders were once forged here."
 	suffix = "lavaland_surface_worldanvil.dmm"
 	always_place = TRUE
 	unpickable = TRUE

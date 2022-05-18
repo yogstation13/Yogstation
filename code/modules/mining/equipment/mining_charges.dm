@@ -53,7 +53,7 @@
 
 /obj/item/grenade/plastic/miningcharge/mega
 	name = "mega mining charge"
-	desc = "A lesser version of our boys in green. Used to make big holes. Only works on rocks!"
+	desc = "A mining charge. This one seems much more powerful than normal!"
 	icon_state = "mining-charge-3"
 	boom_sizes = list(2,4,7)
 
