@@ -32,16 +32,16 @@
 /mob/living/simple_animal/hostile/plaguerat/AttackingTarget()
 	..()
 	var/mob/living/carbon/C = target
-	if(isliving(С) && (С.stat != DEAD))          //It is for injecting plague reagent into people via biting them.
-		if(С.reagents)
-			var/obj/item/I = С.get_item_by_slot(SLOT_W_SUIT)
+	if(isliving(C) && (C.stat != DEAD))          //It is for injecting plague reagent into people via biting them.
+		if(C.reagents)
+			var/obj/item/I = C.get_item_by_slot(SLOT_W_SUIT)
 			if(!istype(I, /obj/item/clothing/suit/space/hardsuit) && !istype(I, /obj/item/clothing/suit/armor))
-				С.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
+				C.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
 
-	if(С.stat == DEAD)             //It is for biting dead bodies to heal.
-		src.visible_message(span_warning("[src] starts biting into [С]!"),span_notice("You start eating [С]..."))
+	if(C.stat == DEAD)             //It is for biting dead bodies to heal.
+		src.visible_message(span_warning("[src] starts biting into [C]!"),span_notice("You start eating [C]..."))
 		if(do_mob(src, target, 3 SECONDS))
-			to_chat(src, span_notice ("You finish eating [С]."))
+			to_chat(src, span_notice ("You finish eating [C]."))
 			heal_bodypart_damage(5)
 			С.adjustBruteLoss(15)
 			return
