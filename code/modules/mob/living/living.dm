@@ -9,6 +9,8 @@
 		diag_hud.add_to_hud(src)
 	faction += "[REF(src)]"
 	GLOB.mob_living_list += src
+	if(speed)
+		update_living_varspeed()
 	initialize_footstep()
 	if(startDead)
 		death(FALSE)
@@ -1454,3 +1456,26 @@
             return TRUE
     return FALSE
 
+
+**
+ * Sets the mob's speed variable and then calls update_living_varspeed().
+ *
+ * Sets the mob's speed variable, which does nothing by itself.
+ * It then calls update_living_varspeed(), which then actually applies the movespeed change.
+ * Arguments:
+ * * var_value - The new value of speed.
+ */
+/mob/living/proc/set_varspeed(var_value)
+	speed = var_value
+	update_living_varspeed()
+
+/**
+ * Applies the mob's speed variable to a movespeed modifier.
+ *
+ * Applies the speed variable to a movespeed variable.  If the speed is 0, removes the movespeed modifier.
+ */
+/mob/living/proc/update_living_varspeed()
+	if(speed == 0)
+		remove_movespeed_modifier(/datum/movespeed_modifier/living_varspeed)
+		return
+	add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/living_varspeed, multiplicative_slowdown = speed)
