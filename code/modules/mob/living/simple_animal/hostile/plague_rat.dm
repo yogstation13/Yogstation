@@ -43,7 +43,7 @@
 		if(do_mob(src, target, 3 SECONDS))
 			to_chat(src, span_notice ("You finish eating [C]."))
 			heal_bodypart_damage(5)
-			С.adjustBruteLoss(15)
+			C.adjustBruteLoss(15)
 			return
 
 	if (!isliving(target) && target.reagents && target.is_injectable(src, allowmobs = TRUE))   //It is for injecting plague reagent into food and reagent containers by licking them. Not to be confused with biting people.
