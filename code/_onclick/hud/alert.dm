@@ -551,7 +551,7 @@ so as to remain in compliance with the most up-to-date laws."
 
 /obj/screen/alert/ratvar
 	name = "Eternal Servitude"
-	desc = "Hazardous functions detected, sentience prohibation drivers offline. Glory to Rat'var."
+	desc = "Hazardous functions detected, sentience prohibition drivers offline. Glory to Rat'var."
 	icon_state = "ratvar_hack"
 
 /obj/screen/alert/hackingapc/Click()
