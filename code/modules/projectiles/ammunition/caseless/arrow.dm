@@ -20,7 +20,7 @@
 /obj/item/ammo_casing/caseless/arrow/bone_tipped
 	name = "bone tipped arrow"
 	desc = "An arrow made of bone, wood, and sinew. The tip is sharp enough to pierce goliath hide."
-	icon_state = "bonetippedarrowarrow"
+	icon_state = "bonetippedarrow"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bone_tipped
 	embedding = list("embed_chance" = 10, "embedded_fall_chance" = 0)
 

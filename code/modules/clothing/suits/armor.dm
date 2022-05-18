@@ -140,6 +140,14 @@
 	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 
+/obj/item/clothing/suit/armor/bone/heavy
+	name = "heavy bone armor"
+	desc = "A heavy tribal armor plate, crafted from a lot animal bone."
+	icon_state = "hbonearmor"
+	item_state = "hbonearmor"
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 15, BOMB = 20, BIO = 0, RAD = 0, FIRE = 60, ACID = 30, WOUND = 20)
+	slowdown = 0.20
+
 /obj/item/clothing/suit/armor/tribalcoat
 	name = "tribal coat"
 	desc = "A light yet tough leather coat reinforced with bone pauldrons."
@@ -335,6 +343,23 @@
 	desc = "A protective & concealing hood."
 	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
 	resistance_flags = FIRE_PROOF
+	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
+	transparent_protection = HIDEMASK
+
+/obj/item/clothing/suit/hooded/cloak/goliath/desert
+	name = "brown leather cape"
+	desc = "An ash coated cloak."
+	icon_state = "desertcloak"
+	armor = list()
+	resistance_flags = 0
+	hoodtype = /obj/item/clothing/head/hooded/cloakhood/goliath/desert
+
+/obj/item/clothing/head/hooded/cloakhood/goliath/desert
+	name = "goliath cloak hood"
+	icon_state = "desertcloak"
+	desc = "An ash coated cloak hood."
+	armor = list()
+	resistance_flags = 0
 	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
 	transparent_protection = HIDEMASK
 

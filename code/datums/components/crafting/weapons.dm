@@ -552,6 +552,15 @@
 	tools = list(TOOL_WELDER)
 	time = 3 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1)
+	blacklist = list(/obj/item/ammo_casing/caseless/arrow/bone_tipped,
+					/obj/item/ammo_casing/caseless/arrow/bone,
+					/obj/item/ammo_casing/caseless/arrow/chitin,
+					/obj/item/ammo_casing/caseless/arrow/bamboo,
+					/obj/item/ammo_casing/caseless/arrow/glass,
+					/obj/item/ammo_casing/caseless/arrow/bola,
+					/obj/item/ammo_casing/caseless/arrow/flaming,
+					/obj/item/ammo_casing/caseless/arrow/energy
+					)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 

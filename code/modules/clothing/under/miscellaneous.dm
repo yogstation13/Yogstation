@@ -923,3 +923,72 @@
 	item_state = "weiner"
 	item_color = "weiner"
 	can_adjust = FALSE
+
+// Ashwalker Clothes
+/obj/item/clothing/under/raider_leather
+	name = "scavenged rags"
+	desc = "A porly made outfit made of scrapped materials."
+	icon_state = "raider_leather"
+	item_state = "raider_leather"
+	item_color = "raider_leather"
+	armor = list(MELEE = 5, FIRE = 5)
+	has_sensor = NO_SENSORS
+	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/tribal
+	name = "metal plated rags"
+	desc = "Thin metal bolted over poorly tanned leather."
+	icon_state = "tribal"
+	item_state = "tribal"
+	item_color = "tribal"
+	body_parts_covered = CHEST|GROIN|ARMS
+	armor = list(MELEE = 5)
+	has_sensor = NO_SENSORS
+	can_adjust = FALSE
+
+/obj/item/clothing/under/ash_robe
+	name = "tribal robes"
+	desc = "A robe from the ashlands. This one seems to be for common tribespeople."
+	icon_state = "robe_liz"
+	item_state = "robe_liz"
+	item_color = "robe_liz"
+	body_parts_covered = CHEST|GROIN
+	has_sensor = NO_SENSORS
+	can_adjust = FALSE
+
+/obj/item/clothing/under/ash_robe/young
+	name = "tribal rags"
+	desc = "Rags from Lavaland, coated with light ash. This one seems to be for the juniors of a tribe."
+	icon_state = "tribalrags"
+	item_state = "tribalrags"
+	item_color = "tribalrags"
+
+/obj/item/clothing/under/ash_robe/chief
+	name = "chief tribal rags"
+	desc = "Rags from Lavaland, coated with heavy ash. This one seems to be for the elders of a tribe."
+	icon_state = "chiefrags"
+	item_state = "chiefrags"
+	item_color = "chiefrags"
+
+/obj/item/clothing/under/ash_robe/shaman
+	name = "shaman tribal rags"
+	desc = "Rags from Lavaland, drenched with ash, it has fine jewel coated bones sewn around the neck. This one seems to be for the shaman of a tribe."
+	icon_state = "shamanrags"
+	item_state = "shamanrags"
+	item_color = "shamanrags"
+
+/obj/item/clothing/under/ash_robe/tunic
+	name = "tribal tunic"
+	desc = "A tattered red tunic of reddened fabric."
+	icon_state = "caesar_clothes"
+	item_state = "caesar_clothes"
+	item_color = "caesar_clothes"
+
+/obj/item/clothing/under/chestwrap
+	name = "loincloth and chestwrap"
+	desc = "A poorly sewn dress made of leather."
+	icon_state = "chestwrap"
+	has_sensor = NO_SENSORS
+	body_parts_covered = CHEST|GROIN
+	can_adjust = FALSE

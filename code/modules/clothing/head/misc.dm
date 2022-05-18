@@ -446,3 +446,8 @@
 			return
 		playsound(loc, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
 		recharge_time = world.time + recharge_rate
+
+/obj/item/clothing/head/shamanash
+	name = "shaman skull"
+	desc = "The skull of a long dead animal bolted to the front of a repurposed pan."
+	icon_state = "shamskull"

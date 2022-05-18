@@ -672,3 +672,8 @@
 	w_class = WEIGHT_CLASS_TINY
 	flags_inv = HIDEGLOVES|HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	alternate_worn_layer = UNDER_HEAD_LAYER
+
+/obj/item/clothing/suit/leather_mantle
+	name = "hide mantle"
+	desc = "The tanned hide of some brown furred creature."
+	icon_state = "mantle_liz"

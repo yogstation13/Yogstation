@@ -351,3 +351,8 @@
 	name = "head of personnel's cloak"
 	desc = "Worn by the right hand of the captain. It smells faintly of bureaucracy."
 	icon_state = "hopcloak"
+
+/obj/item/clothing/neck/cloak/tribalmantle
+	name = "ornate mantle"
+	desc = "An ornate mantle commonly worn by a shaman or chieftain."
+	icon_state = "tribal-mantle"

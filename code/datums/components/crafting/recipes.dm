@@ -287,14 +287,14 @@
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/sheet/sinew = 2)
-	category = CAT_PRIMAL
+	category = CAT_TOOLS
 
 /datum/crafting_recipe/firebrand
 	name = "Firebrand"
 	result = /obj/item/match/firebrand
 	time = 10 SECONDS //Long construction time. Making fire is hard work.
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 2)
-	category = CAT_PRIMAL
+	category = CAT_TOOLS
 
 /datum/crafting_recipe/gold_horn
 	name = "Golden Bike Horn"
@@ -311,19 +311,19 @@
 	result = /obj/structure/bonfire
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/rake //Category resorting incoming
+/datum/crafting_recipe/rake
 	name = "Rake"
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 5)
 	result = /obj/item/cultivator/rake
-	category = CAT_PRIMAL
+	category = CAT_TOOLS
 
 /datum/crafting_recipe/woodbucket
 	name = "Wooden Bucket"
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 3)
 	result = /obj/item/reagent_containers/glass/bucket/wooden
-	category = CAT_PRIMAL
+	category = CAT_TOOLS
 
 /datum/crafting_recipe/cleanleather
 	name = "Clean Leather"
@@ -387,7 +387,7 @@
 	time = 4 SECONDS
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
 	reqs = list(/obj/item/stack/sheet/metal = 15)
-	category = CAT_MISC
+	category = CAT_TOOLS
 
 /datum/crafting_recipe/guillotine
 	name = "Guillotine"
@@ -473,3 +473,87 @@
 	result = /obj/item/stack/tape
 	time = 1
 	category = CAT_MISC
+
+/datum/crafting_recipe/goliath_drapes
+	name = "Goliath Drapes"
+	result = /obj/item/surgical_drapes/goliath
+	time = 8 SECONDS
+	reqs = list(/obj/item/stack/sheet/sinew = 1,
+				 /obj/item/stack/sheet/animalhide/goliath_hide = 1)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/bone_scalpel
+	name = "Bone Scalpel"
+	result = /obj/item/scalpel/bone
+	time = 8 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 2,
+				 /obj/item/stack/sheet/sinew = 1,
+				 /obj/item/stack/sheet/mineral/diamond = 1)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/bone_retractor
+	name = "Bone Retractor"
+	result = /obj/item/retractor/bone
+	time = 8 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 2,
+				 /obj/item/stack/sheet/sinew = 1)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/bone_bonesaw
+	name = "Bone Bonesaw"
+	result = /obj/item/circular_saw/bone
+	time = 8 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 2,
+				 /obj/item/stack/sheet/sinew = 1,
+				 /obj/item/organ/regenerative_core = 1,
+				 /obj/item/stack/sheet/mineral/diamond = 2)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/bone_hemostat
+	name = "Bone Hemostat"
+	result = /obj/item/hemostat/bone
+	time = 8 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 2,
+				 /obj/item/stack/sheet/sinew = 1)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/bone_bonesetter
+	name = "Bone Bonersetter"
+	result = /obj/item/bonesetter/bone
+	time = 8 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 2,
+				 /obj/item/stack/sheet/sinew = 1)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/bone_cautery
+	name = "Bone Cautery"
+	result = /obj/item/cautery/bone
+	time = 8 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 1,
+				 /obj/item/stack/sheet/animalhide/goliath_hide = 1,
+				 /obj/item/stack/sheet/mineral/plasma = 1)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/bone_spade
+	name = "Bone Spade"
+	result = /obj/item/shovel/spade/bone
+	time = 80
+	reqs = list(/obj/item/stack/sheet/bone = 1,
+				 /obj/item/stack/sheet/sinew = 1)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/bone_hatchet
+	name = "Bone Hatchet"
+	result = /obj/item/hatchet/bone
+	time = 80
+	reqs = list(/obj/item/stack/sheet/bone = 1,
+				 /obj/item/stack/sheet/sinew = 1)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/bone_cultivator
+	name = "Bone Cultivator"
+	result = /obj/item/cultivator/bone
+	time = 80
+	reqs = list(/obj/item/stack/sheet/bone = 2,
+				 /obj/item/stack/sheet/sinew = 1)
+	category = CAT_TOOLS

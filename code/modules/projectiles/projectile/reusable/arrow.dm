@@ -6,6 +6,14 @@
 	ammo_type = /obj/item/ammo_casing/caseless/arrow
 	var/embed_chance = 0.5
 	var/break_chance = 0
+	var/fauna_damage_bonus = 20
+
+/obj/item/projectile/bullet/reusable/arrow/on_hit(atom/target, blocked = FALSE)
+    . = ..()
+    if(isliving(target))
+        var/mob/living/L = target
+        if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+            L.apply_damage(fauna_damage_bonus)
 
 /obj/item/projectile/bullet/reusable/arrow/handle_drop(atom/target)
 	if(prob(break_chance))
@@ -40,7 +48,8 @@
 /obj/item/projectile/bullet/reusable/arrow/bone
 	name = "Bone arrow"
 	desc = "An arrow made from bone and sinew."
-	damage = 20
+	damage = 10
+	fauna_damage_bonus = 50
 	embed_chance = 0.2
 	break_chance = 20
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
@@ -59,7 +68,7 @@
 	damage = 10
 	embed_chance = 0.5
 	break_chance = 30
-	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/bamboo
 
 /obj/item/projectile/bullet/reusable/arrow/bronze
 	name = "Bronze arrow"
