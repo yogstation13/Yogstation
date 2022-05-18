@@ -3,6 +3,7 @@
 	caste = "s"
 	maxHealth = 150
 	health = 150
+	speed = 0.2
 	icon_state = "aliens"
 
 
