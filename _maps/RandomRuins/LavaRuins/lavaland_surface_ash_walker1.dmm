@@ -451,14 +451,6 @@
 /obj/item/construction/rcd/loaded,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
-"bo" = (
-/obj/structure/stone_tile/block{
-	dir = 8
-	},
-/obj/item/pickaxe,
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "bp" = (
 /obj/structure/stone_tile,
 /obj/structure/stone_tile{
@@ -921,14 +913,6 @@
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"cJ" = (
-/obj/item/shovel,
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "cK" = (
 /obj/machinery/hydroponics/soil,
 /obj/structure/stone_tile/block/cracked{
@@ -1291,7 +1275,7 @@
 /obj/item/seeds/bamboo,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"xp" = (
+"wi" = (
 /obj/structure/stone_tile,
 /obj/structure/stone_tile{
 	dir = 8
@@ -1299,6 +1283,12 @@
 /obj/structure/stone_tile/cracked{
 	dir = 1
 	},
+/obj/structure/closet/crate/wooden,
+/obj/item/clothing/head/helmet/shaman,
+/obj/item/clothing/neck/cloak/tribalmantle,
+/obj/item/clothing/neck/cloak/tribalmantle,
+/obj/item/clothing/under/ash_robe/chief,
+/obj/item/clothing/under/ash_robe/shaman,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "zF" = (
@@ -1315,6 +1305,14 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"Kk" = (
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/no_lava,
+/obj/item/shovel/spade/bone,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "NA" = (
 /obj/structure/stone_tile,
 /obj/structure/stone_tile{
@@ -1372,6 +1370,14 @@
 /obj/item/clothing/head/helmet/roman/legionnaire,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
+"Sr" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/no_lava,
+/obj/item/pickaxe/bonepickaxe,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "ST" = (
 /obj/structure/stone_tile{
 	dir = 4
@@ -1624,7 +1630,7 @@ co
 bO
 dq
 bZ
-cJ
+Kk
 ah
 ah
 "}
@@ -1658,7 +1664,7 @@ at
 aF
 aR
 aR
-bo
+Sr
 bA
 cZ
 dd
@@ -1798,7 +1804,7 @@ cd
 bX
 dj
 as
-xp
+wi
 CB
 NA
 as
