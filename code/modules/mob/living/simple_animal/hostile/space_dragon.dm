@@ -67,15 +67,14 @@
 	var/rifts_charged = 0
 	/// Whether or not Space Dragon has completed their objective, and thus triggered the ending sequence.
 	var/objective_complete = FALSE
+	/// The color of the space dragon.
+ 	var/chosen_color
 	/// The togglable small sprite action
 	var/small_sprite_type = /datum/action/small_sprite/megafauna/spacedragon
 	/// The innate ability to use wing gust
 	var/datum/action/innate/space_dragon/gustAttack/gust
 	/// The innate ability to summon rifts
 	var/datum/action/innate/space_dragon/summonRift/rift
-
-	/// The color of the space dragon.
- 	var/chosen_color
 
 /mob/living/simple_animal/hostile/space_dragon/Initialize(mapload)
 	. = ..()
