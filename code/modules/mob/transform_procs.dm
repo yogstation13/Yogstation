@@ -89,7 +89,7 @@
 		O.setOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
 		O.radiation = radiation
-		O.blood_volume = blood_volume
+		O.blood_volume = blood_volume * MONKIFY_BLOOD_COEFFICIENT
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)
@@ -266,7 +266,7 @@
 		O.adjustOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
 		O.radiation = radiation
-		O.blood_volume = blood_volume
+		O.blood_volume = blood_volume / MONKIFY_BLOOD_COEFFICIENT
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)
