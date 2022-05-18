@@ -93,7 +93,7 @@ GLOBAL_VAR(clockcult_eminence)
 	eldritch deity made from brass and other outdated materials are using the energy of this dying star to breach dimensional \
 	boundaries. The bluespace veil is faltering at your current location, making it a prime target for dangerous individuals to \
 	abuse dimensional interdiction. Any evidence of tampering with dimensional fields should be reported to your local Chaplain and \
-	Central Command if a connection is still available at the time of discovery."
+	Central Command, if a connection is still available at the time of discovery."
 
 /datum/game_mode/clockcult/set_round_result()
 	..()
