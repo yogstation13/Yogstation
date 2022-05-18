@@ -1457,7 +1457,7 @@
     return FALSE
 
 
-**
+/**
  * Sets the mob's speed variable and then calls update_living_varspeed().
  *
  * Sets the mob's speed variable, which does nothing by itself.
@@ -1476,6 +1476,7 @@
  */
 /mob/living/proc/update_living_varspeed()
 	if(speed == 0)
-		remove_movespeed_modifier(/datum/movespeed_modifier/living_varspeed)
+		remove_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE)
 		return
-	add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/living_varspeed, multiplicative_slowdown = speed)
+	add_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE, 100, multiplicative_slowdown = speed, override = TRUE)
+
