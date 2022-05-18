@@ -37,24 +37,8 @@
 						span_userdanger("[M] has attempted to punch [src]!"), null, COMBAT_MESSAGE_RANGE)
 
 			if (INTENT_DISARM)
-				if (!(mobility_flags & MOBILITY_STAND))
-					if (prob(5))
-						Unconscious(40)
-						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-						log_combat(M, src, "pushed")
-						visible_message(span_danger("[M] has pushed down [src]!"), \
-							span_userdanger("[M] has pushed down [src]!"))
-					else
-						if (prob(50))
-							dropItemToGround(get_active_held_item())
-							playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-							visible_message(span_danger("[M] has disarmed [src]!"), \
-							span_userdanger("[M] has disarmed [src]!"), null, COMBAT_MESSAGE_RANGE)
-						else
-							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-							visible_message(span_userdanger("[M] has attempted to disarm [src]!"),\
-								span_userdanger("[M] has attempted to disarm [src]!"), null, COMBAT_MESSAGE_RANGE)
-
+				if(stat < UNCONSCIOUS)
+					M.disarm(src)
 
 
 /mob/living/carbon/alien/humanoid/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
