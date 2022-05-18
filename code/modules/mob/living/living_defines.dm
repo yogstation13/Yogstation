@@ -35,6 +35,9 @@
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 
+	///Adjusts the mob's speed.  0 is default human speed.
+	var/speed = 0
+
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/timeofdeath = 0
 
