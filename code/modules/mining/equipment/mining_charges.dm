@@ -47,7 +47,7 @@
 
 /obj/item/grenade/plastic/miningcharge/lesser
 	name = "lesser mining charge"
-	desc = "A lesser version of our boys in green. Used to make big holes. Only works on rocks!"
+	desc = "A mining charge. This one seems less powerful than normal. Only works on rocks!"
 	icon_state = "mining-charge-1"
 	boom_sizes = list(1,1,1)
 

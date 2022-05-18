@@ -8,7 +8,7 @@
 
 /obj/item/magmite_parts
 	name = "plasma magmite upgrade parts"
-	desc = "Forged on the lavaland anvil, these parts can be used to upgrade many kinds of mining equipment."
+	desc = "Forged on the legendary World Anvil, these parts can be used to upgrade many kinds of mining equipment."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "upgrade_parts"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -38,7 +38,7 @@
 
 /obj/item/magmite_parts/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(inert)
-		to_chat(span_warning("[src] is inert! Restore its glow at the world anvil!"))
+		to_chat(span_warning("[src] appears inert! Perhaps the World Anvil can restore it!"))
 	if(target.type == /obj/item/gun/energy/kinetic_accelerator) //basic kinetic accelerator
 		var/obj/item/gun/energy/kinetic_accelerator/gun = target
 		if(gun.bayonet)
