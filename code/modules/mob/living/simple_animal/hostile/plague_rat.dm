@@ -32,12 +32,12 @@
 
 /mob/living/simple_animal/hostile/plaguerat/AttackingTarget()
 	..()
-	var/mob/living/L = target
-	if(isliving(target) && (L.stat != DEAD))          //It is for injecting plague reagent into people via biting them.
-		if(target.reagents)
-			var/obj/item/I = L.get_item_by_slot(SLOT_SUIT)
+	var/mob/living/carbon/C = target
+	if(isliving(С) && (С.stat != DEAD))          //It is for injecting plague reagent into people via biting them.
+		if(С.reagents)
+			var/obj/item/I = С.get_item_by_slot(SLOT_SUIT)
 			if(!istype(I, /obj/item/clothing/suit/space/hardsuit) && !istype(I, /obj/item/clothing/suit/armor))
-				L.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
+				С.reagents.add_reagent(/datum/reagent/plaguebacteria, 3)
 
 	if(L.stat == DEAD)             //It is for biting dead bodies to heal.
 		src.visible_message(span_warning("[src] starts biting into [L]!"),span_notice("You start eating [L]..."))
