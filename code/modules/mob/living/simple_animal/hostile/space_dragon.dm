@@ -556,7 +556,7 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
    * Prompts the space dragon to choose a name, which it will then apply to itself.
    * If the name is invalid, will re-prompt the dragon until a proper name is chosen.
    */
- /mob/living/simple_animal/hostile/space_dragon/proc/dragon_name()
+/mob/living/simple_animal/hostile/space_dragon/proc/dragon_name()
  	var/chosen_name = reject_bad_text(stripped_input(src, "What would you like your name to be?", "Choose Your Name", real_name, MAX_NAME_LEN))
  	if(!chosen_name)
  		to_chat(src, "<span class='warning'>Not a valid name, please try again.</span>")
