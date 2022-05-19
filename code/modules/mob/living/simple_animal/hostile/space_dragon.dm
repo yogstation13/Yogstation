@@ -1,5 +1,5 @@
 /// The darkness threshold for space dragon when choosing a color
-#define DARKNESS_THRESHOLD		0.5
+///#define DARKNESS_THRESHOLD		0.5
 
 /**
   * # Space Dragon
@@ -52,7 +52,7 @@
 	faction = list("carp")
 	pressure_resistance = 200
 
- 	var/picked_color
+ 	///var/picked_color
 	/// Current time since the the last rift was activated.  If set to -1, does not increment.
 	var/riftTimer = 0
 	/// Maximum amount of time which can pass without a rift before Space Dragon despawns.
@@ -88,9 +88,9 @@
 
 /mob/living/simple_animal/hostile/space_dragon/Login()
  	. = ..()
- 	if(!picked_color)
- 		dragon_name()
- 		color_selection()
+ 	///if(!picked_color)
+ 	dragon_name()
+ 		///color_selection()
 
 /mob/living/simple_animal/hostile/space_dragon/Life(mapload)
 	. = ..()
@@ -571,21 +571,22 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
    * Prompts the space dragon to choose a color, from which it will then apply to itself.
    * If an invalid color is given, will re-prompt the dragon until a proper color is chosen.
    */
- /mob/living/simple_animal/hostile/space_dragon/proc/color_selection()
- 	picked_color = input(src,"What would you like your color to be?","Choose Your Color", COLOR_WHITE) as color|null
- 	if(!picked_color) //redo proc until we get a color
- 		to_chat(src, "<span class='warning'>Not a valid color, please try again.</span>")
- 		color_selection()
- 		return
- 	var/temp_hsv = RGBtoHSV(chosen_color)
- 	if(picked_color == COLOR_BLACK)
- 		picked_color = COLOR_WHITE
- 	else if(ReadHSV(temp_hsv)[3] < DARKNESS_THRESHOLD)
- 		to_chat(src, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
- 		color_selection()
- 		return
- 	add_atom_colour(picked_color, FIXED_COLOUR_PRIORITY)
- 	add_dragon_overlay()
+///Commented untill i will find the way to fucking fix this shit
+/// /mob/living/simple_animal/hostile/space_dragon/proc/color_selection()
+ 	///picked_color = input(src,"What would you like your color to be?","Choose Your Color", COLOR_WHITE) as color|null
+ 	///if(!picked_color) //redo proc until we get a color
+ 		///to_chat(src, "<span class='warning'>Not a valid color, please try again.</span>")
+ 		///color_selection()
+ 		///return
+ 	///var/temp_hsv = RGBtoHSV(chosen_color)
+ 	///if(picked_color == COLOR_BLACK)
+ 		///picked_color = COLOR_WHITE
+ 	///else if(ReadHSV(temp_hsv)[3] < DARKNESS_THRESHOLD)
+ 		///to_chat(src, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
+ 		///color_selection()
+ 		///return
+ 	///add_atom_colour(picked_color, FIXED_COLOUR_PRIORITY)
+ 	///add_dragon_overlay()
 
  /**
    * Adds the proper overlay to the space dragon.
@@ -610,4 +611,4 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
  		add_overlay(overlay)
 
 
-#undefine DARKNESS_THRESHOLD
+///#undefine DARKNESS_THRESHOLD
