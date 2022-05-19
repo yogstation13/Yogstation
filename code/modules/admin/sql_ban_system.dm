@@ -74,6 +74,7 @@
 			player_cid = null
 		if(bound_ip == player_ip)
 			player_ip = null
+	qdel(query_get_bypass_creds)
 
 	if(!player_ckey && !player_ip && !player_cid)
 		return
