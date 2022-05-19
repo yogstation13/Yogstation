@@ -52,7 +52,7 @@
 	faction = list("carp")
 	pressure_resistance = 200
 
- 	var/chosen_color
+ 	var/picked_color
 	/// Current time since the the last rift was activated.  If set to -1, does not increment.
 	var/riftTimer = 0
 	/// Maximum amount of time which can pass without a rift before Space Dragon despawns.
@@ -572,19 +572,19 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
    * If an invalid color is given, will re-prompt the dragon until a proper color is chosen.
    */
  /mob/living/simple_animal/hostile/space_dragon/proc/color_selection()
- 	chosen_color = input(src,"What would you like your color to be?","Choose Your Color", COLOR_WHITE) as color|null
- 	if(!chosen_color) //redo proc until we get a color
+ 	picked_color = input(src,"What would you like your color to be?","Choose Your Color", COLOR_WHITE) as color|null
+ 	if(!picked_color) //redo proc until we get a color
  		to_chat(src, "<span class='warning'>Not a valid color, please try again.</span>")
  		color_selection()
  		return
  	var/temp_hsv = RGBtoHSV(chosen_color)
- 	if(chosen_color == COLOR_BLACK)
- 		chosen_color = COLOR_WHITE
+ 	if(picked_color == COLOR_BLACK)
+ 		picked_color = COLOR_WHITE
  	else if(ReadHSV(temp_hsv)[3] < DARKNESS_THRESHOLD)
  		to_chat(src, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
  		color_selection()
  		return
- 	add_atom_colour(chosen_color, FIXED_COLOUR_PRIORITY)
+ 	add_atom_colour(picked_color, FIXED_COLOUR_PRIORITY)
  	add_dragon_overlay()
 
  /**
