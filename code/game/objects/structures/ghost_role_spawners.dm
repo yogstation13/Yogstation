@@ -57,11 +57,6 @@
 
 	new_spawn.mind.add_antag_datum(/datum/antagonist/ashwalker, team)
 
-	if(ishuman(new_spawn))
-		var/mob/living/carbon/human/H = new_spawn
-		H.underwear = "Nude"
-		H.update_body()
-
 /obj/effect/mob_spawn/human/ash_walker/Initialize(mapload, datum/team/ashwalkers/ashteam)
 	. = ..()
 	var/area/A = get_area(src)
@@ -72,6 +67,52 @@
 /datum/outfit/ashwalker
 	name = "Ashwalker"
 	uniform = /obj/item/clothing/under/chestwrap
+
+/datum/outfit/ashwalker/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	H.underwear = "Nude"
+	H.update_body()
+
+/datum/outfit/ashwalker/tribesperson
+	name = "Ashwalker Tribesperson"
+	uniform = /obj/item/clothing/under/ash_robe
+
+/datum/outfit/ashwalker/hunter
+	name = "Ashwalker Hunter"
+	uniform = /obj/item/clothing/under/ash_robe/hunter
+	suit = /obj/item/clothing/suit/hooded/cloak/goliath/desert
+	back = /obj/item/gun/ballistic/bow/ashen
+	belt = /obj/item/storage/belt/quiver/ashwalker
+	shoes = /obj/item/clothing/shoes/xeno_wraps
+
+/datum/outfit/ashwalker/warrior
+	name = "Ashwalker Warrior"
+	uniform = /obj/item/clothing/under/tribal
+	head = /obj/item/clothing/head/helmet/skull
+	suit = /obj/item/clothing/suit/armor/bone/heavy
+	back = /obj/item/twohanded/bonespear
+	gloves = /obj/item/clothing/gloves/bracer
+	belt = /obj/item/storage/belt/mining/primitive
+	shoes = /obj/item/clothing/shoes/xeno_wraps
+	r_hand = /obj/item/shield/riot/goliath
+	l_hand = /obj/item/claymore/bone
+
+/datum/outfit/ashwalker/chief
+	name = "Ashwalker Chief"
+	uniform = /obj/item/clothing/under/ash_robe/chief
+	head = /obj/item/clothing/head/crown/resin
+	suit = /obj/item/clothing/suit/armor/bone
+	back = /obj/item/twohanded/bonespear/chitinspear
+	gloves = /obj/item/clothing/gloves/color/black/goliath
+	shoes = /obj/item/clothing/shoes/xeno_wraps/goliath
+	neck = /obj/item/clothing/neck/cloak/tribalmantle
+
+/datum/outfit/ashwalker/shaman
+	name = "Ashwalker Shaman"
+	uniform = /obj/item/clothing/under/ash_robe/shaman
+	head = /obj/item/clothing/head/shamanash
+	suit = /obj/item/clothing/suit/leather_mantle
+	belt = /obj/item/storage/bag/medpouch
+	gloves = /obj/item/clothing/gloves/color/black/goliath
 
 
 //Timeless prisons: Spawns in Wish Granter prisons in lavaland. Ghosts become age-old users of the Wish Granter and are advised to seek repentance for their past.

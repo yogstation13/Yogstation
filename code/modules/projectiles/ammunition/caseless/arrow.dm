@@ -1,7 +1,19 @@
 /obj/item/ammo_casing/caseless/arrow
+	name = "arrow"
+	desc = "An arrow, typically fired from a bow."
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow
+	caliber = "arrow"
+	icon_state = "arrow"
+	force = 10
+	throwforce = 5 //good luck hitting someone with the pointy end of the arrow
+	throw_speed = 3
+	sharpness = SHARP_POINTY
+	embedding = list("embed_chance" = 25, "embedded_fall_chance" = 0)
+
+/obj/item/ammo_casing/caseless/arrow/wood
 	name = "wooden arrow"
 	desc = "An arrow made of wood, typically fired from a bow."
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/wood
 	caliber = "arrow"
 	icon_state = "arrow"
 	force = 15

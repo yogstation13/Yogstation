@@ -138,6 +138,14 @@
 	result = /obj/item/clothing/under/mummy
 	reqs = list(/obj/item/stack/sheet/cloth = 5)
 
+/datum/crafting_recipe/chestwrap
+	name = "Loincloth and Chestwrap"
+	result = /obj/item/clothing/under/chestwrap
+	time = 3 SECONDS
+	reqs = list(/obj/item/stack/sheet/leather = 1)
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
+
 /datum/crafting_recipe/raider_leather
 	name = "Scavenged Rags"
 	result = /obj/item/clothing/under/raider_leather
@@ -172,6 +180,10 @@
 	name = "Tribal Rags"
 	result = /obj/item/clothing/under/ash_robe/young
 
+/datum/crafting_recipe/ash_robe/hunter
+	name = "Hunter Tribal Rags"
+	result = /obj/item/clothing/under/ash_robe/hunter
+
 /datum/crafting_recipe/ash_robe/chief
 	name = "Chief Tribal Rags"
 	result = /obj/item/clothing/under/ash_robe/chief
@@ -183,21 +195,23 @@
 /datum/crafting_recipe/ash_robe/tunic
 	name = "Tribal Tunic"
 	result = /obj/item/clothing/under/ash_robe/tunic
-	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/cloth = 2,
 				/obj/item/stack/sheet/leather = 1)
-	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
-	always_availible = FALSE
 
-/datum/crafting_recipe/chestwrap
-	name = "Loincloth and Chestwrap"
-	result = /obj/item/clothing/under/chestwrap
-	time = 3 SECONDS
-	reqs = list(/obj/item/stack/sheet/leather = 1)
+/datum/crafting_recipe/ash_robe/dress
+	name = "Tribal Dress"
+	result = /obj/item/clothing/under/ash_robe/dress
+	reqs = list(/obj/item/stack/sheet/cloth = 3)
+
+/*
+/datum/crafting_recipe/shamanash
+	name = "Shaman Skull"
+	result = /obj/item/clothing/head/shamanash
+	reqs = list(/obj/item/stack/sheet/cloth = 1)
 	category = CAT_APPAREL
 	subcategory = CAT_CLOTHING
 	always_availible = FALSE
+*/
 
 /datum/crafting_recipe/tribalmantle
 	name = "Ornate Mantle"

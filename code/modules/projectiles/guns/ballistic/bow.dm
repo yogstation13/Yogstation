@@ -6,6 +6,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY //need both hands to fire
 	force = 5
+	spread = 1
 	mag_type = /obj/item/ammo_box/magazine/internal/bow
 	fire_sound = 'sound/weapons/sound_weapons_bowfire.ogg'
 	slot_flags = ITEM_SLOT_BACK
@@ -17,6 +18,8 @@
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //so ashwalkers can use it
 
 	var/drawing = FALSE
+	var/drop_release_draw = TRUE
+	var/move_drawing = TRUE
 	var/draw_time = 0.5 SECONDS
 	var/draw_slowdown = 1.5
 	var/draw_sound = 'sound/weapons/sound_weapons_bowdraw.ogg'
@@ -31,7 +34,7 @@
 
 /obj/item/gun/ballistic/bow/dropped()
 	. = ..()
-	if(!QDELING(src))
+	if(drop_release_draw && !QDELING(src))
 		addtimer(CALLBACK(src, .proc/release_draw_if_not_held))
 
 /obj/item/gun/ballistic/bow/proc/release_draw_if_not_held()
@@ -60,7 +63,7 @@
 	else if(get_ammo())
 		drawing = TRUE
 		update_slowdown()
-		if (!do_after(user, draw_time, TRUE, src, stayStill = FALSE))
+		if (!do_after(user, draw_time, TRUE, src, stayStill = !move_drawing))
 			drawing = FALSE
 			update_slowdown()
 			return
@@ -99,6 +102,7 @@
 	desc = "Some sort of primitive projectile weapon made of bone and wrapped sinew."
 	icon_state = "ashenbow"
 	item_state = "ashenbow"
+	spread = 3
 	force = 8
 
 /obj/item/gun/ballistic/bow/pipe
@@ -107,6 +111,7 @@
 	icon_state = "pipebow"
 	item_state = "pipebow"
 	force = 7
+	spread = 5
 	draw_time = 1 SECONDS
 
 /obj/item/gun/ballistic/bow/maint
@@ -117,6 +122,35 @@
 	force = 7
 	spread = 10
 	draw_time = 2 SECONDS
+	
+/obj/item/gun/ballistic/bow/crossbow
+	name = "wooden crossbow"
+	desc = "A bow with a locing mechanism that more closly resembles a modern gun."
+	icon_state = "crossbow"
+	spread = 0
+	draw_time = 3 SECONDS
+	draw_slowdown = 0
+	drop_release_draw = FALSE
+	move_drawing = FALSE
+	
+/obj/item/gun/ballistic/bow/crossbow/magfed
+	name = "wooden magfed crossbow"
+	desc = "A bow with a locing mechanism that more closly resembles a modern gun. This one seems to be outfited with a automatic loading mechanism."
+	mag_type = /obj/item/ammo_box/magazine/arrow
+	internal_magazine = FALSE
+
+/obj/item/gun/ballistic/bow/attackby(obj/item/I, mob/user, params)
+	if (!internal_magazine && istype(I, /obj/item/ammo_box/magazine))
+		var/obj/item/ammo_box/magazine/AM = I
+		if (!magazine)
+			insert_magazine(user, AM)
+		else
+			if (tac_reloads)
+				eject_magazine(user, FALSE, AM)
+			else
+				to_chat(user, span_notice("There's already a [magazine_wording] in \the [src]."))
+		return
+	..()
 
 /obj/item/gun/ballistic/bow/energy
 	name = "Hardlight Bow"

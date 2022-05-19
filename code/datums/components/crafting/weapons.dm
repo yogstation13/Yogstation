@@ -498,13 +498,22 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/arrow
-	name = "Arrow"
-	result = /obj/item/ammo_casing/caseless/arrow
+/datum/crafting_recipe/wood_arrow
+	name = "Wood Arrow"
+	result = /obj/item/ammo_casing/caseless/arrow/wood
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1,
 				/obj/item/stack/sheet/silk = 1,
 				/obj/item/stack/rods = 1) //1 metal sheet = 2 rods= 2 arrows
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/ashen_arrow
+	name = "Fire hardened arrow"
+	result = /obj/item/ammo_casing/caseless/arrow/ash
+	tools = list(TOOL_WELDER)
+	time = 3 SECONDS
+	reqs = list(/obj/item/ammo_casing/caseless/arrow/wood = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
@@ -543,24 +552,6 @@
 	result = /obj/item/ammo_casing/caseless/arrow/bamboo
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/bamboo = 2)
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
-
-/datum/crafting_recipe/ashen_arrow
-	name = "Fire hardened arrow"
-	result = /obj/item/ammo_casing/caseless/arrow/ash
-	tools = list(TOOL_WELDER)
-	time = 3 SECONDS
-	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1)
-	blacklist = list(/obj/item/ammo_casing/caseless/arrow/bone_tipped,
-					/obj/item/ammo_casing/caseless/arrow/bone,
-					/obj/item/ammo_casing/caseless/arrow/chitin,
-					/obj/item/ammo_casing/caseless/arrow/bamboo,
-					/obj/item/ammo_casing/caseless/arrow/glass,
-					/obj/item/ammo_casing/caseless/arrow/bola,
-					/obj/item/ammo_casing/caseless/arrow/flaming,
-					/obj/item/ammo_casing/caseless/arrow/energy
-					)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 

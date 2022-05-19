@@ -925,6 +925,13 @@
 	can_adjust = FALSE
 
 // Ashwalker Clothes
+/obj/item/clothing/under/chestwrap
+	name = "loincloth and chestwrap"
+	desc = "A poorly sewn dress made of leather."
+	icon_state = "chestwrap"
+	has_sensor = NO_SENSORS
+	body_parts_covered = CHEST|GROIN
+
 /obj/item/clothing/under/raider_leather
 	name = "scavenged rags"
 	desc = "A porly made outfit made of scrapped materials."
@@ -964,6 +971,13 @@
 	item_state = "tribalrags"
 	item_color = "tribalrags"
 
+/obj/item/clothing/under/ash_robe/hunter
+	name = "hunter tribal rags"
+	desc = "A robe from the ashlands. This one seems to be for hunters."
+	icon_state = "hhunterrags"
+	item_state = "hhunterrags"
+	item_color = "hhunterrags"
+
 /obj/item/clothing/under/ash_robe/chief
 	name = "chief tribal rags"
 	desc = "Rags from Lavaland, coated with heavy ash. This one seems to be for the elders of a tribe."
@@ -985,10 +999,9 @@
 	item_state = "caesar_clothes"
 	item_color = "caesar_clothes"
 
-/obj/item/clothing/under/chestwrap
-	name = "loincloth and chestwrap"
-	desc = "A poorly sewn dress made of leather."
-	icon_state = "chestwrap"
-	has_sensor = NO_SENSORS
-	body_parts_covered = CHEST|GROIN
-	can_adjust = FALSE
+/obj/item/clothing/under/ash_robe/dress
+	name = "tribal dress"
+	desc = "A tattered dress of white fabric."
+	icon_state = "cheongsam_s"
+	item_state = "cheongsam_s"
+	item_color = "cheongsam_s"

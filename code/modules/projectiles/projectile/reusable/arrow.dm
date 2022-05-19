@@ -1,5 +1,5 @@
 /obj/item/projectile/bullet/reusable/arrow
-	name = "Wooden arrow"
+	name = "Arrow"
 	desc = "Woosh!"
 	damage = 20
 	flag = MELEE
@@ -7,7 +7,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/arrow
 	var/embed_chance = 0.5
 	var/break_chance = 0
-	var/fauna_damage_bonus = 20
+	var/fauna_damage_bonus = 0
 
 /obj/item/projectile/bullet/reusable/arrow/on_hit(atom/target, blocked = FALSE)
     . = ..()
@@ -23,13 +23,18 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
-		if(prob(embed_chance * (100 - embede.checkarmor(part, flag))) && embede.embed_object(dropping, part, TRUE))
+		if(prob(embed_chance * clamp((100 - (embede.checkarmor(part, flag) - armour_penetration)), 0, 100)) && embede.embed_object(dropping, part, TRUE))
 			dropped = TRUE
 	
 	// Icky code, but i dont want to create a new obj, delete it, then make a new one
 	if(!dropped)
 		dropping.forceMove(get_turf(src))
 		dropped = TRUE
+
+/obj/item/projectile/bullet/reusable/arrow/wood
+	name = "Wooden arrow"
+	desc = "Wooden arrow."
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/wood
 
 /obj/item/projectile/bullet/reusable/arrow/ash
 	name = "Ashen arrow"
@@ -42,7 +47,7 @@
 	name = "Bone tipped arrow"
 	desc = "An arrow made from bone, wood, and sinew."
 	damage = 30
-	armour_penetration = 40
+	armour_penetration = 20
 	embed_chance = 0.2
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone_tipped
 
@@ -50,7 +55,7 @@
 	name = "Bone arrow"
 	desc = "An arrow made from bone and sinew."
 	damage = 10
-	fauna_damage_bonus = 50
+	fauna_damage_bonus = 20
 	embed_chance = 0.2
 	break_chance = 20
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
@@ -59,6 +64,7 @@
 	name = "Chitin tipped arrow"
 	desc = "An arrow made from chitin, bone, and sinew."
 	damage = 20
+	fauna_damage_bonus = 40
 	armour_penetration = 30
 	embed_chance = 0.8
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/chitin
@@ -67,6 +73,7 @@
 	name = "Bamboo arrow"
 	desc = "An arrow made from bamboo."
 	damage = 10
+	fauna_damage_bonus = 25
 	embed_chance = 0.5
 	break_chance = 30
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bamboo
