@@ -127,7 +127,7 @@ CREATE TABLE `bound_credentials` (
   KEY `idx_ckey_lookup` (`ckey`),
   KEY `idx_cid_lookup` (`computerid`),
   KEY `idx_ip_lookup` (`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `connection_log`;
 CREATE TABLE IF NOT EXISTS `connection_log` (

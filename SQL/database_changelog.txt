@@ -21,7 +21,7 @@ CREATE TABLE `bound_credentials` (
   KEY `idx_ckey_lookup` (`ckey`),
   KEY `idx_cid_lookup` (`computerid`),
   KEY `idx_ip_lookup` (`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 version 5.9 23 November 2021, by adamsogm
 
