@@ -338,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `misc` (
 DROP TABLE IF EXISTS `player`;
 CREATE TABLE IF NOT EXISTS `player` (
   `ckey` varchar(32) NOT NULL,
-`byond_key` varchar(32) DEFAULT NULL,
+  `byond_key` varchar(32) DEFAULT NULL,
   `firstseen` datetime NOT NULL,
   `firstseen_round_id` int(10) unsigned NOT NULL,
   `lastseen` datetime NOT NULL,
