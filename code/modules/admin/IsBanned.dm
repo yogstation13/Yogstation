@@ -134,6 +134,8 @@ Yogs End*/
 					log_access("Failed Login: [key] [computer_id] [address] - Bound [cause]")
 					key_cache[key] = 0
 					return list("reason" = "bound [cause]", "desc" = msg)
+				
+				qdel(query_get_bound_creds)
 
 			var/list/ban_details = is_banned_from_with_details(ckey, address, computer_id, "Server")
 			for(var/i in ban_details)
