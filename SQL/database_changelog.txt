@@ -15,7 +15,7 @@ version 5.11 19 May 2022, by JamieD12
 Adds the antagrounds column to the player table
 
 ALTER TABLE ss13_player
-    ADD COLUMN `antagrounds` TINYINT NULL DEFAULT 0 AFTER `mfa_backup`;
+    ADD COLUMN `antagrounds` TINYINT NOTNULL DEFAULT 0 AFTER `mfa_backup`;
 
 -----------------------------------------------------------------
 
