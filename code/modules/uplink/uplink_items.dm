@@ -1761,6 +1761,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/implants/knuckleblaster
+	name = "Knuckleblaster Arm"
+	desc = "A powerful robotic arm capable of delivering a shotgun's force in a single punch. Comes with a free autosurgeon. Extremely obvious."
+	item = /obj/item/autosurgeon/knuckleblaster
+	cost = 10
+	player_minimum = 40
+	manufacturer = /datum/corporation/traitor/cybersun
+
+/datum/uplink_item/implants/feedbacker
+	name = "Feedbacker Arm"
+	desc = "A slim mechanical arm capable of deflecting projectiles back at the sender. Comes with a free autosurgeon. Extremely obvious."
+	item = /obj/item/autosurgeon/feedbacker
+	cost = 8
+	player_minimum = 40
+	manufacturer = /datum/corporation/traitor/cybersun
+
+
 /datum/uplink_item/implants/uplink
 	name = "Uplink Implant"
 	desc = "An implant injected into the body, and later activated at the user's will. Has no telecrystals and must be charged by the use of physical telecrystals. \
