@@ -54,20 +54,6 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
-/obj/item/bodypart/r_arm/robot/feedbacker
-	name = "feedbacker"
-	desc = "The arm of a blood-fueled robot, capable of deflecting projectiles."
-	attack_verb = list("disrespected")
-	icon_state = "feedbacker"
-	item_state = "feedbacker"
-	
-/obj/item/bodypart/l_arm/robot/knuckleblaster
-	name = "knuckleblaster"
-	desc = "A heavy, plated robotic arm severed from a powerful machine, with a powerful punch and a slot to insert shotgun shells."
-	attack_verb = list("disrespected", "blasted", "crushed")
-	icon_state = "knuckleblaster"
-	item_state = "knuckleblaster"
-
 /obj/item/bodypart/l_leg/robot
 	name = "cyborg left leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."

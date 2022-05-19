@@ -384,6 +384,15 @@
 	contents = newlist(/obj/item/mantis/blade/syndicate)
 	syndicate_implant = TRUE
 
+/obj/item/organ/cyberimp/arm/knuckleblaster
+	name = "knuckleblaster"
+	desc = "A heavy, plated robotic arm severed from a powerful machine, with a powerful punch and a slot to insert shotgun shells."
+	zone = BODY_ZONE_L_ARM
+	icon = 'icons/mob/augmentation/augments.dmi'
+	icon_state = "knuckleblaster"
+	syndicate_implant= TRUE
+	contents = newlist(/obj/item/gun/ballistic/shotgun/doublebarrel/knuckleblasterinhand)
+
 /obj/item/organ/cyberimp/arm/syndie_mantis/l
 	zone = BODY_ZONE_L_ARM
 	syndicate_implant = TRUE
