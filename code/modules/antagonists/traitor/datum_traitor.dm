@@ -16,7 +16,7 @@
 	var/malf = FALSE //whether or not the AI is malf (in case it's a traitor)
 	var/datum/contractor_hub/contractor_hub
 	can_hijack = HIJACK_HIJACKER
-	restrictmultiplerounds = TRUE
+	restrict_multiple_rounds = TRUE
 
 /datum/antagonist/traitor/on_gain()
 	if(owner.current && iscyborg(owner.current))

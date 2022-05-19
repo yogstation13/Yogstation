@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/show_to_ghosts = FALSE // Should this antagonist be shown as antag to ghosts? Shouldn't be used for stealthy antagonists like traitors
 	/// The corporation employing us
 	var/datum/corporation/company
-	var/restrictmultiplerounds = FALSE
+	var/restrict_multiple_rounds = FALSE
 
 
 /datum/antagonist/New()

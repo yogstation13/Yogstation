@@ -725,7 +725,7 @@
 			if(antagdatums)
 				if(!antagdatum.owner)
 					continue
-				if(!antagdatum.restrictmultiplerounds)
+				if(!antagdatum.restrict_multiple_rounds)
 					continue
 				antagckeys += antagdatum.owner.key
 			nonantagckeys += antagdatum.owner.key
@@ -739,6 +739,6 @@
 		numberofrounds = numberofrounds + 1
 	if(numberofrounds > 2)
 		numberofrounds = 2
-	var/datum/DBQuery/Q2 = SSdbcore.New("UPDATE [format_table_name("player")] SET `antag_rounds` = LEAST('antag_rounds' + `[numberofrounds], 2) WHERE `key` IN ([nonantagckeys])")
+	var/datum/DBQuery/Q2 = SSdbcore.New("UPDATE [format_table_name("player")] SET `antag_rounds` = LEAST('antag_rounds' + [numberofrounds], 2) WHERE `key` IN ([nonantagckeys])")
 	Q2.Execute()
 	qdel(Q2)

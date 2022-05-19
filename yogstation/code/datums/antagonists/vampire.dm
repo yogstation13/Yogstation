@@ -7,7 +7,7 @@
 	antagpanel_category = "Vampire"
 	roundend_category = "vampires"
 	job_rank = ROLE_VAMPIRE
-	restrictmultiplerounds = TRUE
+	restrict_multiple_rounds = TRUE
 
 	var/usable_blood = 0
 	var/total_blood = 0
