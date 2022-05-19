@@ -42,23 +42,23 @@
 	if(istype(I,/obj/item/twohanded/required/gibtonite))
 		var/obj/item/twohanded/required/gibtonite/placed_ore = I
 		forge_charges = forge_charges + placed_ore.quality
-		to_chat(user,"You place down the gibtonite on the world anvil, and watch as the gibtonite melts into it. The world anvil is now heated enough for [forge_charges] forge[forge_charges > 1 ? "s" : ""].")
+		to_chat(user,"You place down the gibtonite on the World Anvil, and watch as the gibtonite melts into it. The World Anvil is now heated enough for [forge_charges] forge[forge_charges > 1 ? "s" : ""].")
 		qdel(placed_ore)
 		update_icon()
 		return
 	if(istype(I,/obj/item/magmite))
 		if(forge_charges <= 0)
-			to_chat(user,"The anvil is not hot enough to be usable!")
+			to_chat(user,"The World Anvil is not hot enough to be usable!")
 			return
 		if(do_after(user,10 SECONDS, target = src))
 			new /obj/item/magmite_parts(src)
 			qdel(I)
 			to_chat(user, "You carefully forge the rough plasma magmite into plasma magmite upgrade parts.")
 			if(!forge_charges)
-				visible_message("The world anvil cools down.")
+				visible_message("The World Anvil cools down.")
 	if(istype(I,/obj/item/magmite_parts))
 		if(forge_charges <= 0)
-			to_chat(user,"The anvil is not hot enough to be usable!")
+			to_chat(user,"The World Anvil is not hot enough to be usable!")
 			return
 		var/obj/item/magmite_parts/parts = I
 		if(!parts.inert)
@@ -68,6 +68,6 @@
 			parts.restore()
 			to_chat(user, "You successfully reheat the magmite upgrade parts. They are now glowing and usable again.")
 			if(!forge_charges)
-				visible_message("The world anvil cools down.")
+				visible_message("The World Anvil cools down.")
 			
 
