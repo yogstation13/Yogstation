@@ -312,6 +312,7 @@
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
 		for(var/obj/item/I in BP.embedded_objects)
+			I.embed_tick(src, BP)
 			var/pain_chance_current = I.embedding.embedded_pain_chance
 			if(!(mobility_flags & MOBILITY_STAND))
 				pain_chance_current *= 0.2
