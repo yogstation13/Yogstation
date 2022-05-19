@@ -1,6 +1,8 @@
 /obj/item/clothing/mask
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
+	sprite_sheets_file = "mask.dmi"
+	worn_type = CLOTHING_FACEMASK
 	body_parts_covered = HEAD
 	slot_flags = ITEM_SLOT_MASK
 	strip_delay = 40

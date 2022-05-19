@@ -1,22 +1,22 @@
 /obj/item/clothing/head/helmet/space/space_ninja
-	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	modular_sprite_sheets = TRUE
 	icon_state = "s-ninja"
 
 /obj/item/clothing/mask/gas/space_ninja
-	alternate_worn_icon = 'yogstation/icons/mob/mask.dmi'
+	modular_sprite_sheets = TRUE
 	icon = 'yogstation/icons/obj/clothing/masks.dmi'
 	icon_state = "s-ninja"
 	var/lights_on = FALSE
 	var/lights_colour = "16be00"
 
 /obj/item/clothing/shoes/space_ninja
-	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
+	modular_sprite_sheets = TRUE
 	icon_state = "s-ninja"
 	var/lights_on = FALSE
 	var/lights_colour = "16be00"
 
 /obj/item/clothing/suit/space/space_ninja
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	modular_sprite_sheets = TRUE
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "s-ninja"
 	var/lights_on = FALSE
@@ -30,14 +30,14 @@
 /obj/item/clothing/suit/space/space_ninja/worn_overlays(isinhands = FALSE)
 	.=..()
 	if(!isinhands && lights_on)
-		var/mutable_appearance/M = mutable_appearance('yogstation/icons/mob/suit.dmi', "s-ninja-overlay")
+		var/mutable_appearance/M = mutable_appearance(get_worn_file(), "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 
 /obj/item/clothing/mask/gas/space_ninja/worn_overlays(isinhands = FALSE)
 	.=..()
 	if(!isinhands && lights_on)
-		var/mutable_appearance/M = mutable_appearance('yogstation/icons/mob/mask.dmi', "s-ninja-overlay")
+		var/mutable_appearance/M = mutable_appearance(get_worn_file(), "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 
@@ -45,14 +45,14 @@
 /obj/item/clothing/shoes/space_ninja/worn_overlays(isinhands = FALSE)
 	.=..()
 	if(!isinhands && lights_on)
-		var/mutable_appearance/M = mutable_appearance('yogstation/icons/mob/feet.dmi', "s-ninja-overlay")
+		var/mutable_appearance/M = mutable_appearance(get_worn_file(), "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 
 /obj/item/clothing/gloves/space_ninja/worn_overlays(isinhands = FALSE)
 	.=..()
 	if(!isinhands && lights_on)
-		var/mutable_appearance/M = mutable_appearance('yogstation/icons/mob/hands.dmi', "s-ninja-overlay")
+		var/mutable_appearance/M = mutable_appearance(get_worn_file(), "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 

@@ -4,6 +4,7 @@
 	icon_state = "breath"
 	item_state = "m_mask"
 	body_parts_covered = 0
+	sprite_sheets = FLAG_LIZARD
 	clothing_flags = MASKINTERNALS
 	visor_flags = MASKINTERNALS
 	w_class = WEIGHT_CLASS_SMALL

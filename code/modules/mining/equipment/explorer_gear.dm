@@ -60,6 +60,7 @@
 	name = "explorer gas mask"
 	desc = "A military-grade gas mask that can be connected to an air supply."
 	icon_state = "gas_mining"
+	sprite_sheets = null
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	visor_flags_inv = HIDEFACIALHAIR
 	visor_flags_cover = MASKCOVERSMOUTH
@@ -134,6 +135,6 @@
 /obj/item/clothing/head/helmet/space/hostile_environment/worn_overlays(isinhands)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/M = mutable_appearance('icons/mob/head.dmi', "hostile_env_glass")
+		var/mutable_appearance/M = mutable_appearance(get_worn_file(), "hostile_env_glass")
 		M.appearance_flags = RESET_COLOR
 		. += M

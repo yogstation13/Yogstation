@@ -2,6 +2,8 @@
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
+	sprite_sheets_file = "eyes.dmi"
+	worn_type = CLOTHING_GLASSES
 	w_class = WEIGHT_CLASS_SMALL
 	flags_cover = GLASSESCOVERSEYES
 	slot_flags = ITEM_SLOT_EYES
@@ -322,7 +324,7 @@
 	. = list()
 	if(!isinhands && ishuman(loc) && !colored_before)
 		var/mob/living/carbon/human/H = loc
-		var/mutable_appearance/M = mutable_appearance('icons/mob/eyes.dmi', "blindfoldwhite")
+		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/default/eyes.dmi', "blindfoldwhite")
 		M.appearance_flags |= RESET_COLOR
 		M.color = "#[H.eye_color]"
 		. += M

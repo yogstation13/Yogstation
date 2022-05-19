@@ -1,5 +1,7 @@
 /obj/item/clothing/under
 	icon = 'icons/obj/clothing/uniforms.dmi'
+	sprite_sheets_file = "uniform.dmi"
+	worn_type = CLOTHING_UNIFORM
 	name = "under"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.9
@@ -140,7 +142,7 @@
 			var/accessory_color = attached_accessory.item_color
 			if(!accessory_color)
 				accessory_color = attached_accessory.icon_state
-			accessory_overlay = mutable_appearance('icons/mob/accessories.dmi', "[accessory_color]")
+			accessory_overlay = mutable_appearance(DEFAULTFILE_ACCESSORIES, "[accessory_color]")
 			accessory_overlay.alpha = attached_accessory.alpha
 			accessory_overlay.color = attached_accessory.color
 

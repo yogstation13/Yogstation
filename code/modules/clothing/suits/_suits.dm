@@ -1,5 +1,7 @@
 /obj/item/clothing/suit
 	icon = 'icons/obj/clothing/suits.dmi'
+	sprite_sheets_file = "suit.dmi"
+	worn_type = CLOTHING_SUIT
 	name = "suit"
 	var/fire_resist = T0C+100
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)

@@ -10,13 +10,15 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/limbs_id
 	/// this is the fluff name. these will be left generic (such as 'Lizardperson' for the lizard race) so servers can change them to whatever
 	var/name
+	//Species flags currently used for species restriction on items
+	var/bodyflag = FLAG_HUMAN
 	/// if alien colors are disabled, this is the color that will be used by that race
 	var/default_color = "#FFF"
 	/// whether or not the race has sexual characteristics. at the moment this is only FALSE for skeletons and shadows
 	var/sexes = TRUE
 
 	///A list that contains pixel offsets for various clothing features, if your species is a different shape
-	var/list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
+	var/list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0), OFFSET_RIGHT_HAND = list(0,0), OFFSET_LEFT_HAND = list(0,0))
 
 	/// this allows races to have specific hair colors... if null, it uses the H's hair/facial hair colors. if "mutcolor", it uses the H's mutant_color
 	var/hair_color
@@ -50,6 +52,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/list/extra_no_equip = list()
 	/// this is sorta... weird. it basically lets you equip stuff that usually needs jumpsuits without one, like belts and pockets and ids
 	var/nojumpsuit = FALSE
+	/// sprite sheets for different clothing types, index is the clothing type and value is the name of the folder its in, leave it blank to use the default folder
+	var/list/clothing_spritesheets
 	/// affects the speech message
 	var/say_mod = "says"
 	/// Weighted list. NOTE: Picks one of the list component and then does a prob() on it, since we can't do a proper weighted pick, since we need to take into account the regular say_mod.
@@ -1007,6 +1011,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if((slot in no_equip) || (slot in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
+	if(I.species_restricted & H.dna?.species.bodyflag)
+		to_chat(H, "<span class='warning'>Your species cannot wear this item!</span>")
+		return FALSE
 
 	var/num_arms = H.get_num_arms(FALSE)
 	var/num_legs = H.get_num_legs(FALSE)
@@ -2196,3 +2203,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(islist(screamsound))
 		return pick(screamsound)
 	return screamsound
+
+/datum/species/proc/get_item_offsets_for_index(i)
+	return

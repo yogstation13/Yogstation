@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	modular_sprite_sheets = TRUE
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "signal technician's winter coat"
 	icon_state = "coatsignaltech"
@@ -7,7 +7,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
 
 /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
-	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	modular_sprite_sheets = TRUE
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	icon_state = "winterhood_signaltech"
 
@@ -22,17 +22,17 @@
 	icon_state = "blackwhitesweat"
 
 /obj/item/clothing/suit/hooded/wintercoat/bluecoat
-    alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
-    icon = 'yogstation/icons/obj/clothing/suits.dmi'
-    name = "Blue winter coat"
-    icon_state = "coatwinterblue"
-    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
-    hoodtype = /obj/item/clothing/head/hooded/winterhood/bluecoat
+	modular_sprite_sheets = TRUE
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	name = "Blue winter coat"
+	icon_state = "coatwinterblue"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/bluecoat
 
 /obj/item/clothing/head/hooded/winterhood/bluecoat
-    alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
-    icon = 'yogstation/icons/obj/clothing/hats.dmi'
-    icon_state = "winterhood_blue"
+	modular_sprite_sheets = TRUE
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	icon_state = "winterhood_blue"
 
 /obj/item/clothing/suit/yogs/gothic
 	name = "gothic suit"
@@ -53,20 +53,20 @@
 	item_state = "hamiltoncoat"
 
 /obj/item/clothing/suit/hooded/sandsuit
-    alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
-    icon = 'yogstation/icons/obj/clothing/suits.dmi'
-    name = "sand suit"
-    desc = "A suit often worn by desert nomads."
-    icon_state = "sandsuit"
-    item_state = "sandsuit"
-    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
-    hoodtype = /obj/item/clothing/head/hooded/sandsuit
+	modular_sprite_sheets = TRUE
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	name = "sand suit"
+	desc = "A suit often worn by desert nomads."
+	icon_state = "sandsuit"
+	item_state = "sandsuit"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
+	hoodtype = /obj/item/clothing/head/hooded/sandsuit
 
 /obj/item/clothing/head/hooded/sandsuit
-    alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
-    icon = 'yogstation/icons/obj/clothing/hats.dmi'
-    icon_state = "sandsuit"
-    flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	modular_sprite_sheets = TRUE
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	icon_state = "sandsuit"
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/yogs/beaker
 	name = "beakerman costume"
@@ -126,7 +126,7 @@
 	name = "robotics steampunk labcoat"
 	desc = "A labcoat with a steampunk design to it for a roboticist."
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	modular_sprite_sheets = TRUE
 	icon_state = "wardt_lab"
 	item_state = "wardt_lab"
 
@@ -134,7 +134,7 @@
 	name = "robotics fancy labcoat"
 	desc = "A labcoat with a few markings denoting it as a labcoat for a roboticist."
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	modular_sprite_sheets = TRUE
 	icon_state = "aeneasrinil"
 	item_state = "aeneasrinil"
 
@@ -190,7 +190,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/hooded/fiendcowl
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	modular_sprite_sheets = TRUE
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "fiend cowl"
 	desc = "Only a really evil person would wear such a fiendish cowl!"
@@ -200,10 +200,10 @@
 	hoodtype = /obj/item/clothing/head/hooded/fiendhood
 
 /obj/item/clothing/head/hooded/fiendhood
-    alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
-    icon = 'yogstation/icons/obj/clothing/hats.dmi'
-    icon_state = "fiendhood"
-    flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	modular_sprite_sheets = TRUE
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	icon_state = "fiendhood"
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/yogs/infsuit
 	name = "russian gangster suit"
@@ -212,7 +212,7 @@
 	item_state = "infsuit"
 
 /obj/item/clothing/suit/hooded/caretakercloak
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	modular_sprite_sheets = TRUE
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "caretaker cloak"
 	desc = "Yeah, he will 'take care' of you alright."
@@ -222,10 +222,10 @@
 	hoodtype = /obj/item/clothing/head/hooded/caretakerhood
 
 /obj/item/clothing/head/hooded/caretakerhood
-    alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
-    icon = 'yogstation/icons/obj/clothing/hats.dmi'
-    icon_state = "caretakerhood"
-    flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	modular_sprite_sheets = TRUE
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	icon_state = "caretakerhood"
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/yogs/golddetective
 	name = "gold detective jacket"
@@ -290,20 +290,20 @@
 
 
 /obj/item/clothing/suit/hooded/spesshoodie
-    alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
-    icon = 'yogstation/icons/obj/clothing/suits.dmi'
-    name = "spess hoodie"
-    desc = "A hoodie...IN SPESS!!!"
-    icon_state = "spesshoodie"
-    item_state = "spesshoodie"
-    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman)
-    hoodtype = /obj/item/clothing/head/hooded/spesshoodie
+	modular_sprite_sheets = TRUE
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	name = "spess hoodie"
+	desc = "A hoodie...IN SPESS!!!"
+	icon_state = "spesshoodie"
+	item_state = "spesshoodie"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman)
+	hoodtype = /obj/item/clothing/head/hooded/spesshoodie
 
 /obj/item/clothing/head/hooded/spesshoodie
-    alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
-    icon = 'yogstation/icons/obj/clothing/hats.dmi'
-    icon_state = "spesshoodie"
-    flags_inv = HIDEEARS|HIDEHAIR
+	modular_sprite_sheets = TRUE
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	icon_state = "spesshoodie"
+	flags_inv = HIDEEARS|HIDEHAIR
 
 /obj/item/clothing/suit/yogs/bikerjacket
 	name = "biker jacket"

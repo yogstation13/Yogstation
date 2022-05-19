@@ -6,7 +6,7 @@
 	name = "amber medic beret"
 	desc = "A white beret for the mundane life of an amber task force medic."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	modular_sprite_sheets = TRUE
 	icon_state = "beret_ce"
 
 

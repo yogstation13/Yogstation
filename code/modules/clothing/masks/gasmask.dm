@@ -2,6 +2,7 @@
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. While good for concealing your identity, it isn't good for blocking gas flow." //More accurate
 	icon_state = "gas_alt"
+	sprite_sheets = FLAG_LIZARD
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	w_class = WEIGHT_CLASS_NORMAL
@@ -17,6 +18,7 @@
 	name = "welding mask"
 	desc = "A gas mask with built-in welding goggles and a face shield. Looks like a skull - clearly designed by a nerd."
 	icon_state = "weldingmask"
+	sprite_sheets = null
 	materials = list(/datum/material/iron=4000, /datum/material/glass=2000)
 	flash_protect = 2
 	tint = 2
@@ -40,12 +42,14 @@
 	desc = "A modernised version of the classic design, this mask will not only filter out toxins but it can also be connected to an air supply."
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
+	sprite_sheets = null
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 2,"energy" = 2, "bomb" = 0, "bio" = 75, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "syndicate"
+	sprite_sheets = null
 	strip_delay = 60
 
 /obj/item/clothing/mask/gas/clown_hat
@@ -54,6 +58,7 @@
 	clothing_flags = MASKINTERNALS
 	icon_state = "clown"
 	item_state = "clown_hat"
+	sprite_sheets = null
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 	actions_types = list(/datum/action/item_action/adjust)
@@ -100,6 +105,7 @@
 	clothing_flags = MASKINTERNALS
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
+	sprite_sheets = null
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 
@@ -109,6 +115,7 @@
 	clothing_flags = MASKINTERNALS
 	icon_state = "mime"
 	item_state = "mime"
+	sprite_sheets = null
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 	actions_types = list(/datum/action/item_action/adjust)
@@ -152,6 +159,7 @@
 	clothing_flags = MASKINTERNALS
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
+	sprite_sheets = null
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 
@@ -161,6 +169,7 @@
 	clothing_flags = MASKINTERNALS
 	icon_state = "sexymime"
 	item_state = "sexymime"
+	sprite_sheets = null
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 
@@ -168,17 +177,20 @@
 	name = "Death Commando Mask"
 	icon_state = "death_commando_mask"
 	item_state = "death_commando_mask"
+	sprite_sheets = null
 
 /obj/item/clothing/mask/gas/cyborg
 	name = "cyborg visor"
 	desc = "Beep boop."
 	icon_state = "death"
+	sprite_sheets = null
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/mask/gas/owl_mask
 	name = "owl mask"
 	desc = "Twoooo!"
 	icon_state = "owl"
+	sprite_sheets = null
 	clothing_flags = MASKINTERNALS
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
@@ -187,12 +199,14 @@
 	name = "carp mask"
 	desc = "Gnash gnash."
 	icon_state = "carp_mask"
+	sprite_sheets = null
 
 /obj/item/clothing/mask/gas/tiki_mask
 	name = "tiki mask"
 	desc = "A creepy wooden mask. Surprisingly expressive for a poorly carved bit of wood."
 	icon_state = "tiki_eyebrow"
 	item_state = "tiki_eyebrow"
+	sprite_sheets = null
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
 	actions_types = list(/datum/action/item_action/adjust)

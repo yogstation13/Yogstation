@@ -1,7 +1,8 @@
 /datum/species/lizard
 	// Reptilian humanoids with scaled skin and tails.
 	name = "Lizardperson"
-	id = "lizard"
+	id = SPECIES_LIZARD
+	bodyflag = FLAG_LIZARD
 	say_mod = "hisses"
 	default_color = "00FF00"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE)
@@ -23,6 +24,7 @@
 	disliked_food = GRAIN | DAIRY
 	liked_food = GROSS | MEAT | GRILLED | SEAFOOD | MICE
 	inert_mutation = FIREBREATH
+	clothing_spritesheets = list(CLOTHING_FACEMASK = "lizardperson", CLOTHING_HEAD = "lizardperson")
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
 	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
 	wings_icon = "Dragon"

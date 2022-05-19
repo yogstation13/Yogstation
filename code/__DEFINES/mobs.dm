@@ -93,6 +93,49 @@
 #define DEVIL_BODYPART "devil"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 
+//Species ID defines
+#define SPECIES_HUMAN			"human"
+#define SPECIES_ETHEREAL 		"ethereal"
+#define SPECIES_PLASMAMAN 		"plasmaman"
+#define SPECIES_PHYTOSIAN 		"phytosian"
+#define SPECIES_MOTH			"moth"
+#define SPECIES_LIZARD			"lizard"
+#define SPECIES_FELINID			"felinid"
+#define SPECIES_SLIMEPERSON		"slimeperson"
+#define SPECIES_FLY 			"fly"
+#define SPECIES_PRETERNIS 		"preternis"
+#define SPECIES_POLYSMORPH 		"polysmorph"
+
+//Species bitflags, used for species_restricted. If this somehow ever gets above 23 Yogs has larger problems.
+
+#define FLAG_HUMAN			(1<<0)
+#define FLAG_ETHEREAL		(1<<1)
+#define FLAG_PLASMAMAN		(1<<2)
+#define	FLAG_PHYTOSIAN		(1<<3)
+#define FLAG_MOTH			(1<<4)
+#define FLAG_LIZARD			(1<<5)
+#define FLAG_FELINID		(1<<6)
+#define FLAG_SLIMEPERSON	(1<<7)
+#define FLAG_FLY			(1<<8)
+#define FLAG_PRETERNIS		(1<<9)
+#define FLAG_POLYSMORPH		(1<<10)
+
+/*
+GLOBAL_LIST_INIT(flag2speciesid, list(
+	FLAG_HUMAN = SPECIES_HUMAN,
+	FLAG_ETHEREAL = SPECIES_ETHEREAL,
+	FLAG_PLASMAMAN = SPECIES_PLASMAMAN,
+	FLAG_PHYTOSIAN = SPECIES_PHYTOSIAN,
+	FLAG_MOTH = SPECIES_MOTH,
+	FLAG_LIZARD = SPECIES_LIZARD,
+	FLAG_FELINID = SPECIES_FELINID,
+	FLAG_SLIMEPERSON = SPECIES_SLIMEPERSON,
+	FLAG_FLY = SPECIES_FLY,
+	FLAG_PRETERNIS = SPECIES_PRETERNIS,
+	FLAG_POLYSMORPH = SPECIES_POLYSMORPH
+	))
+*/
+
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3
 #define HUMAN_CRIT_MAX_OXYLOSS (SSmobs.wait/30)
@@ -266,6 +309,56 @@
 
 #define SHADOW_SPECIES_LIGHT_THRESHOLD 0.2
 
+// Clothing type defines
+
+#define CLOTHING_GENERIC "generic"
+#define CLOTHING_UNIFORM "uniform"
+#define CLOTHING_GLOVES "gloves"
+#define CLOTHING_GLASSES "glasses"
+#define CLOTHING_EARS "ears"
+#define CLOTHING_SHOES "shoes"
+#define CLOTHING_HEAD "head"
+#define CLOTHING_BELT "belt"
+#define CLOTHING_SUIT "suit"
+#define CLOTHING_FACEMASK "mask"
+#define CLOTHING_BACK "back"
+#define CLOTHING_NECK "neck"
+
+#define DEFAULTFILE_CLOTHING_EFFECTS 'icons/effects/clothing.dmi'
+#define DEFAULTFILE_GENERIC 'icons/mob/mob.dmi'
+#define DEFAULTFILE_UNIFORM 'icons/mob/clothing/default/uniform.dmi'
+#define DEFAULTFILE_GLOVES 'icons/mob/clothing/default/hands.dmi'
+#define DEFAULTFILE_GLASSES 'icons/mob/clothing/default/eyes.dmi'
+#define DEFAULTFILE_EARS 'icons/mob/clothing/default/ears.dmi'
+#define DEFAULTFILE_SHOES 'icons/mob/clothing/default/feet.dmi'
+#define DEFAULTFILE_HEAD 'icons/mob/clothing/default/head.dmi'
+#define DEFAULTFILE_BELT 'icons/mob/clothing/default/belt.dmi'
+#define DEFAULTFILE_BELT_MIRROR 'icons/mob/clothing/default/belt_mirror.dmi'
+#define DEFAULTFILE_SUIT 'icons/mob/clothing/default/suit.dmi'
+#define DEFAULTFILE_FACEMASK 'icons/mob/clothing/default/mask.dmi'
+#define DEFAULTFILE_BACK 'icons/mob/clothing/default/back.dmi'
+#define DEFAULTFILE_NECK 'icons/mob/clothing/default/neck.dmi'
+#define DEFAULTFILE_UNDERWEAR 'icons/mob/clothing/default/underwear.dmi'
+#define DEFAULTFILE_ACCESSORIES 'icons/mob/clothing/default/accessories.dmi'
+
+GLOBAL_LIST_INIT(clothing_default_files, list(
+	"effects" = DEFAULTFILE_CLOTHING_EFFECTS,
+	"underwear" = DEFAULTFILE_UNDERWEAR,
+	"accessories" = DEFAULTFILE_ACCESSORIES,
+	CLOTHING_GENERIC = DEFAULTFILE_GENERIC,
+	CLOTHING_UNIFORM = DEFAULTFILE_UNIFORM,
+	CLOTHING_GLOVES = DEFAULTFILE_GLOVES,
+	CLOTHING_GLASSES = DEFAULTFILE_GLASSES,
+	CLOTHING_EARS = DEFAULTFILE_EARS,
+	CLOTHING_SHOES = DEFAULTFILE_SHOES,
+	CLOTHING_HEAD = DEFAULTFILE_HEAD,
+	CLOTHING_BELT = DEFAULTFILE_BELT,
+	CLOTHING_SUIT = DEFAULTFILE_SUIT,
+	CLOTHING_FACEMASK = DEFAULTFILE_FACEMASK,
+	CLOTHING_BACK = DEFAULTFILE_BACK,
+	CLOTHING_NECK = DEFAULTFILE_NECK,
+	))
+
 // Offsets defines
 
 #define OFFSET_UNIFORM "uniform"
@@ -282,6 +375,8 @@
 #define OFFSET_BACK "back"
 #define OFFSET_SUIT "suit"
 #define OFFSET_NECK "neck"
+#define OFFSET_LEFT_HAND "l_hand"
+#define OFFSET_RIGHT_HAND "r_hand"
 
 //MINOR TWEAKS/MISC
 #define AGE_MIN				18	//youngest a character can be

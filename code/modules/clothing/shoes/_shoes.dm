@@ -1,6 +1,8 @@
 /obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
+	sprite_sheets_file = "feet.dmi"
+	worn_type = CLOTHING_SHOES
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	var/chained = 0

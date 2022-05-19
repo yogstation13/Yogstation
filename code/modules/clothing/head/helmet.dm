@@ -107,6 +107,7 @@
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	item_state = "helmet"
+	sprite_sheets = FLAG_LIZARD
 	toggle_message = "You pull the visor down on"
 	alt_toggle_message = "You push the visor up on"
 	can_toggle = 1

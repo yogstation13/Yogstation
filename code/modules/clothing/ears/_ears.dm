@@ -2,6 +2,8 @@
 //Ears: currently only used for headsets and earmuffs
 /obj/item/clothing/ears
 	name = "ears"
+	sprite_sheets_file = "ears.dmi"
+	worn_type = CLOTHING_EARS
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	slot_flags = ITEM_SLOT_EARS

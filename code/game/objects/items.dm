@@ -80,6 +80,17 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/list/species_exception = null	// list() of species types, if a species cannot put items in a certain slot, but species type is in list, it will be able to wear that item
 
+	///Used to determin which alt spritesheets this item should use.
+	var/worn_type = CLOTHING_GENERIC
+	///A bitfield of a species to use as an alternative sprite for any given item. DMIs are stored in the species datum and called via proc in update_icons.
+	var/sprite_sheets = null
+	///The file within the species folder that contains the alt sprites.
+	var/sprite_sheets_file = null
+	///YOGS - If the file is contained in the modular folder.
+	var/modular_sprite_sheets = FALSE
+	///A bitfield of species that the item cannot be worn by.
+	var/species_restricted = null
+
 	var/mob/thrownby = null
 
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER //the icon to indicate this object is being dragged
@@ -878,3 +889,17 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
+
+/obj/item/proc/get_worn_file(var/mob/living/carbon/wearer, type)
+	if(alternate_worn_icon)
+		return alternate_worn_icon
+	if(!istype(wearer) && ismob(loc))
+		wearer = loc
+	var/default_file = GLOB.clothing_default_files?[type ? type : worn_type]
+	if(!istype(wearer))
+		return default_file
+	var/spritesheet_folder = "default"
+	if(wearer?.dna && sprite_sheets & (wearer?.dna.species.bodyflag) && ((type ? type : worn_type) in wearer?.dna.species.clothing_spritesheets))
+		spritesheet_folder = wearer?.dna.species.clothing_spritesheets[type ? type : worn_type]
+	var/new_file = file("[modular_sprite_sheets ? "yogstation/" : ""]icons/mob/clothing/[spritesheet_folder]/[sprite_sheets_file]")
+	return isfile(new_file) ? new_file : default_file

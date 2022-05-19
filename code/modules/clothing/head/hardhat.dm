@@ -124,9 +124,9 @@
 /obj/item/clothing/head/hardhat/weldhat/worn_overlays(isinhands)
 	. = ..()
 	if(!isinhands)
-		. += mutable_appearance('icons/mob/head.dmi', "weldhelmet")
+		. += mutable_appearance(get_worn_file(), "weldhelmet")
 		if(!up)
-			. += mutable_appearance('icons/mob/head.dmi', "weldvisor")
+			. += mutable_appearance(get_worn_file(), "weldvisor")
 
 /obj/item/clothing/head/hardhat/weldhat/update_icon()
 	cut_overlays()

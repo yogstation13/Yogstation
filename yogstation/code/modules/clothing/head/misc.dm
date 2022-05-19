@@ -29,7 +29,7 @@
 /obj/item/clothing/head/helmet/juggernaut
 	name = "Juggernaut Helmet"
 	desc = "I...am...the...JUGGERNAUT!!!."
-	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	modular_sprite_sheets = TRUE
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	icon_state = "juggernauthelm"
 	item_state = "juggernauthelm"

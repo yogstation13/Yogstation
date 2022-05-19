@@ -1,6 +1,8 @@
 /obj/item/clothing/head
 	name = BODY_ZONE_HEAD
 	icon = 'icons/obj/clothing/hats.dmi'
+	sprite_sheets_file = "head.dmi"
+	worn_type = CLOTHING_HEAD
 	icon_state = "top_hat"
 	item_state = "that"
 	body_parts_covered = HEAD
