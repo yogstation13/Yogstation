@@ -88,7 +88,7 @@
 
 /mob/living/simple_animal/hostile/space_dragon/Login()
  	. = ..()
- 	if(!chosen_color)
+ 	if(!picked_color)
  		dragon_name()
  		color_selection()
 
