@@ -608,3 +608,6 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
  		var/mutable_appearance/overlay = mutable_appearance(icon, "overlay_gust")
  		overlay.appearance_flags = RESET_COLOR
  		add_overlay(overlay)
+
+
+#undefine DARKNESS_THRESHOLD
