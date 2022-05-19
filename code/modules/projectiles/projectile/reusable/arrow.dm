@@ -2,6 +2,7 @@
 	name = "Wooden arrow"
 	desc = "Woosh!"
 	damage = 20
+	flag = MELEE
 	icon_state = "arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow
 	var/embed_chance = 0.5
