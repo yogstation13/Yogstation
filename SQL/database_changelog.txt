@@ -12,10 +12,11 @@ In any query remember to add a prefix to the table names if you use one.
 
 version 5.11 19 May 2022, by JamieD12
 
-Adds the antagrounds column to the player table
+Adds the antag_rounds column to the player table
 
 ALTER TABLE ss13_player
     ADD COLUMN `antagrounds` TINYINT NOTNULL DEFAULT 0 AFTER `mfa_backup`;
+
 
 -----------------------------------------------------------------
 

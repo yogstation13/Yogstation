@@ -355,7 +355,7 @@ CREATE TABLE IF NOT EXISTS `player` (
   `job_whitelisted` tinyint(3) unsigned NOT NULL DEFAULT 0,
   `totp_seed` varchar(20),
   `mfa_backup` varchar(128),
-  `antagrounds` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `antag_rounds` tinyint(3) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`ckey`),
   KEY `idx_player_cid_ckey` (`computerid`,`ckey`),
   KEY `idx_player_ip_ckey` (`ip`,`ckey`)

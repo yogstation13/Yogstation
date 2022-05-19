@@ -364,22 +364,22 @@
 
 	
 	for(var/datum/mind/mind in candidates)
-		var/antagrounds = 0
+		var/antag_rounds = 0
 		var/antagckey = mind.key
 		if(!SSdbcore.Connect())
 			log_world("Failed to connect to database in load_antaground().")
 			WRITE_FILE(GLOB.world_game_log, "Failed to connect to database in load_antaground().")
 			continue
 
-		var/datum/DBQuery/query_load_antagrounds = SSdbcore.NewQuery("SELECT antagrounds FROM [format_table_name("player")] WHERE ckey = :antagckey", list("antagckey" = antagckey))
+		var/datum/DBQuery/query_load_antagrounds = SSdbcore.NewQuery("SELECT antag_rounds FROM [format_table_name("player")] WHERE ckey = :antagckey", list("antagckey" = antagckey))
 		if(!query_load_antagrounds.Execute())
 			qdel(query_load_antagrounds)
 			continue
 
 		while(query_load_antagrounds.NextRow())
-			antagrounds = query_load_antagrounds.item[1]
+			antag_rounds = query_load_antagrounds.item[1]
 		
-		if(antagrounds > 0)
+		if(antag_rounds > 0)
 			candidates -= mind
 
 		qdel(query_load_antagrounds)
