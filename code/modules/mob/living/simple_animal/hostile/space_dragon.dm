@@ -113,8 +113,7 @@
 	if(riftTimer == maxRiftTimer)
 		to_chat(src, "<span class='boldwarning'>You've failed to summon the rift in a timely manner!  You're being pulled back from whence you came!</span>")
 		destroy_rifts()
-	 add_overlay()
-
+	add_overlay()
 		QDEL_NULL(src)
 
 /mob/living/simple_animal/hostile/space_dragon/AttackingTarget()
