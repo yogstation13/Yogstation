@@ -43,6 +43,7 @@
 
 	var/static/list/all_powers = typecacheof(/datum/action/changeling,TRUE)
 	var/list/stored_snapshots = list() //list of stored snapshots
+	restrictmultiplerounds = TRUE
 
 /datum/antagonist/changeling/New()
 	. = ..()

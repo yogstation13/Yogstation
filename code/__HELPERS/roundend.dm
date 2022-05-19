@@ -228,6 +228,9 @@
 	if(mode.allow_persistence_save)
 		SSpersistence.CollectData()
 
+	///Collect Antag data
+	antagrounds()
+
 	//stop collecting feedback during grifftime
 	SSblackbox.Seal()
 
@@ -711,3 +714,23 @@
 		Q.Execute()
 		qdel(Q)
 
+/datum/controller/subsystem/ticker/proc/antagrounds()
+	var/list/viableminds = list()
+	var/numberofrounds = 1
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.restrictmultiplerounds)
+			continue
+		if(!A.owner)
+			continue
+		viableminds += A.owner
+	
+	if(GLOB.startingminds < CONFIG_GET(number/minimal_access_threshold)) /// Low pop check
+		numberofrounds = numberofrounds + 1
+
+	if(numberofrounds > 2)
+		numberofrounds = 2
+
+	for(var/datum/mind/antagmind in viableminds)
+		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("player")] SET `antagrounds` = '[numberofrounds]' WHERE `key` = '[antagmind.key]'")
+		Q.Execute()
+		qdel(Q)

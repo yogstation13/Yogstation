@@ -362,6 +362,28 @@
 					player.mind.token_picked = TRUE
 					return player.mind
 
+	
+	for(var/datum/mind/mind in candidates)
+		var/antagrounds = 0
+		var/antagckey = mind.key
+		if(!SSdbcore.Connect())
+			log_world("Failed to connect to database in load_antaground().")
+			WRITE_FILE(GLOB.world_game_log, "Failed to connect to database in load_antaground().")
+			continue
+
+		var/datum/DBQuery/query_load_antagrounds = SSdbcore.NewQuery("SELECT antagrounds FROM [format_table_name("player")] WHERE ckey = :antagckey", list("antagckey" = antagckey))
+		if(!query_load_antagrounds.Execute())
+			qdel(query_load_antagrounds)
+			continue
+
+		while(query_load_antagrounds.NextRow())
+			antagrounds = query_load_antagrounds.item[1]
+		
+		if(antagrounds > 0)
+			candidates -= mind
+
+		qdel(query_load_antagrounds)
+
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
 		return pick(candidates)
 
@@ -611,6 +633,10 @@
 	for (var/C in GLOB.admins)
 		to_chat(C, msg.Join())
 		log_admin(msg.Join())
+
+	///Cheeky little hook
+	GLOB.startingminds = GLOB.data_core.general.len
+
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/game_mode/proc/age_check(client/C)
 	if(get_remaining_days(C) == 0)

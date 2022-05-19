@@ -6,6 +6,7 @@
 	job_rank = ROLE_BLOODSUCKER
 	show_name_in_check_antagonists = TRUE
 	can_coexist_with_others = FALSE
+	restrictmultiplerounds = TRUE
 
 	// TIMERS //
 	///Timer between alerts for Burn messages

@@ -338,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `misc` (
 DROP TABLE IF EXISTS `player`;
 CREATE TABLE IF NOT EXISTS `player` (
   `ckey` varchar(32) NOT NULL,
-  `byond_key` varchar(32) DEFAULT NULL,
+`byond_key` varchar(32) DEFAULT NULL,
   `firstseen` datetime NOT NULL,
   `firstseen_round_id` int(10) unsigned NOT NULL,
   `lastseen` datetime NOT NULL,
@@ -355,6 +355,7 @@ CREATE TABLE IF NOT EXISTS `player` (
   `job_whitelisted` tinyint(3) unsigned NOT NULL DEFAULT 0,
   `totp_seed` varchar(20),
   `mfa_backup` varchar(128),
+  `antagrounds` tinyint(3) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`ckey`),
   KEY `idx_player_cid_ckey` (`computerid`,`ckey`),
   KEY `idx_player_ip_ckey` (`ip`,`ckey`)
