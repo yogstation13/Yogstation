@@ -97,7 +97,7 @@
 	tiredness = max(tiredness - 1, 0)
 	for(var/mob/living/consumed_mob in src)
  		if(consumed_mob.stat == DEAD)
- 			 continue
+ 			continue
  		playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
  		visible_message("<span class='danger'>[src] vomits up [consumed_mob]!</span>")
  		consumed_mob.forceMove(loc)
