@@ -229,7 +229,7 @@
 		SSpersistence.CollectData()
 
 	///Collect Antag data
-	antagrounds()
+	antag_rounds()
 
 	//stop collecting feedback during grifftime
 	SSblackbox.Seal()
@@ -714,23 +714,31 @@
 		Q.Execute()
 		qdel(Q)
 
-/datum/controller/subsystem/ticker/proc/antagrounds()
-	var/list/viableminds = list()
+/datum/controller/subsystem/ticker/proc/antag_rounds()
+	var/list/antagckeys = list()
+	var/list/nonantagckeys = list()
 	var/numberofrounds = 1
-	for(var/datum/antagonist/A in GLOB.antagonists)
-		if(!A.restrictmultiplerounds)
-			continue
-		if(!A.owner)
-			continue
-		viableminds += A.owner
 	
-	if(GLOB.startingminds < CONFIG_GET(number/minimal_access_threshold)) /// Low pop check
-		numberofrounds = numberofrounds + 1
+	for(var/datum/mind/allminds in GLOB.startingminds)
+		var/list/antagdatums = allminds.antag_datums
+		for(var/datum/antagonist/antagdatum in antagdatums)
+			if(antagdatums)
+				if(!antagdatum.owner)
+					continue
+				if(!antagdatum.restrictmultiplerounds)
+					continue
+				antagckeys += antagdatum.owner.key
+			nonantagckeys += antagdatum.owner.key
+	
 
+	var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("player")] SET `antag_rounds` = GREATEST('antag_rounds` -1, 0) WHERE `key` IN ([antagckeys])")
+	Q.Execute()
+	qdel(Q)
+
+	if(GLOB.startingminds.len < CONFIG_GET(number/minimal_access_threshold)) /// Low pop check
+		numberofrounds = numberofrounds + 1
 	if(numberofrounds > 2)
 		numberofrounds = 2
-
-	for(var/datum/mind/antagmind in viableminds)
-		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("player")] SET `antagrounds` = '[numberofrounds]' WHERE `key` = '[antagmind.key]'")
-		Q.Execute()
-		qdel(Q)
+	var/datum/DBQuery/Q2 = SSdbcore.New("UPDATE [format_table_name("player")] SET `antag_rounds` = LEAST('antag_rounds' + `[numberofrounds], 2) WHERE `key` IN ([nonantagckeys])")
+	Q2.Execute()
+	qdel(Q2)
