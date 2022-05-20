@@ -87,6 +87,7 @@
 	damage = 25
 	armour_penetration = 10
 	embed_chance = 0.3
+	break_chance = 10
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bronze
 
 /obj/item/projectile/bullet/reusable/arrow/glass
