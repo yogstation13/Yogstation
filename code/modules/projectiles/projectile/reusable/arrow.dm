@@ -103,7 +103,7 @@
 	desc = "Plasma Glass tipped arrow"
 	damage = 10
 	armour_penetration = 40
-	embed_chance = 0.3
+	embed_chance = 0.5
 	break_chance = 10
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass/plasma
 
