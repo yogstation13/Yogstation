@@ -94,7 +94,7 @@
 	name = "Glass arrow"
 	desc = "Glass tipped arrow"
 	damage = 15
-	embed_chance = 0.3
+	embed_chance = 0.5
 	break_chance = 20
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass
 
