@@ -1293,21 +1293,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"aGg" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 6
-	},
-/obj/item/storage/belt{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "aGk" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -13954,6 +13939,21 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/checkpoint/supply)
+"heo" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 6
+	},
+/obj/item/storage/belt/utility{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "heV" = (
 /obj/machinery/atmospherics/components/trinary/mixer/flipped{
 	dir = 4;
@@ -16180,6 +16180,23 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
+"ikB" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Conference Room Maintenance";
+	req_access_txt = "19"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/bridge/meeting_room)
 "ilc" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 8
@@ -16462,23 +16479,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/nanite)
-"ius" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Conference Room Maintenance";
-	req_access_txt = "19"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/bridge/meeting_room)
 "iuF" = (
 /obj/machinery/door/window/westleft{
 	base_state = "right";
@@ -25583,6 +25583,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
+"nbd" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/four,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/item/storage/belt/utility,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "nbo" = (
 /obj/machinery/teleport/station,
 /turf/open/floor/circuit,
@@ -26739,6 +26748,13 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"nGl" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/landmark/start/head_of_personnel,
+/turf/open/floor/carpet/blue,
+/area/bridge/meeting_room)
 "nGY" = (
 /obj/machinery/computer/security{
 	dir = 4
@@ -28082,16 +28098,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/security/prison)
-"oos" = (
-/obj/structure/closet/crate,
-/obj/item/storage/belt/utility,
-/obj/effect/spawner/lootdrop/maintenance/four,
-/obj/item/storage/belt,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "ooF" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -33489,17 +33495,6 @@
 	},
 /turf/closed/wall,
 /area/hallway/secondary/exit)
-"rmZ" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -28
-	},
-/obj/machinery/camera{
-	c_tag = "Bridge South";
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/bridge/meeting_room)
 "rnf" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/trimline/neutral/filled/line{
@@ -44291,13 +44286,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"xfu" = (
-/obj/structure/chair/comfy/black{
-	dir = 1
-	},
-/obj/effect/landmark/start/head_of_personnel,
-/turf/open/floor/carpet/blue,
-/area/bridge/meeting_room)
 "xfT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -44632,6 +44620,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"xmr" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/machinery/camera{
+	c_tag = "Bridge South";
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "xmw" = (
 /obj/machinery/door/airlock/external{
 	name = "External Access";
@@ -70630,7 +70629,7 @@ eKF
 eKF
 mTK
 gYF
-aGg
+heo
 oyB
 dCg
 nEp
@@ -80684,7 +80683,7 @@ rJw
 miF
 rJw
 jSO
-oos
+nbd
 kju
 xwO
 agt
@@ -93264,7 +93263,7 @@ jBz
 dfJ
 uwo
 tHh
-ius
+ikB
 hmy
 rzN
 vRP
@@ -93519,8 +93518,8 @@ qvo
 bFj
 ozw
 evC
-xfu
-rmZ
+nGl
+xmr
 fGy
 rzN
 rzN
