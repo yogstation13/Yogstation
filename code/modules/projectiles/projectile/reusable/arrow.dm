@@ -39,7 +39,7 @@
 /obj/item/projectile/bullet/reusable/arrow/ash
 	name = "Ashen arrow"
 	desc = "Fire Hardened arrow."
-	damage = 30
+	damage = 25
 	embed_chance = 0.6
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/ash
 
