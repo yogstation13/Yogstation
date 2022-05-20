@@ -85,7 +85,10 @@
 
 	else if(istype(O, /obj/item/aiModule))
 		var/obj/item/aiModule/M = O
-		M.install(laws, user)
+		if(override_cyborg_laws)
+			M.install(laws, user)
+		else
+			to_chat(user, span_warning("[src]'s indicator light flashes red: it does not allow law changes."))
 	else if(brainmob)
 		O.attack(brainmob, user) //Oh noooeeeee
 	else
