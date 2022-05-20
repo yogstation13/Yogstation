@@ -7,7 +7,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/arrow
 	var/embed_chance = 0.5
 	var/break_chance = 0
-	var/fauna_damage_bonus = 0
+	var/fauna_damage_bonus = 20
 
 /obj/item/projectile/bullet/reusable/arrow/on_hit(atom/target, blocked = FALSE)
     . = ..()
