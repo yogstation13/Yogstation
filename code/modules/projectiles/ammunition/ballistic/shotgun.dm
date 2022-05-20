@@ -125,12 +125,30 @@
 	name = "shotgun dart"
 	desc = "A dart for use in shotguns. Can be injected with up to 30 units of any chemical."
 	icon_state = "cshell"
-	projectile_type = /obj/item/projectile/bullet/dart
+	projectile_type = /obj/item/projectile/bullet/reusable/dart
 	var/reagent_amount = 30
+	var/no_react = FALSE
 
 /obj/item/ammo_casing/shotgun/dart/Initialize()
 	. = ..()
 	create_reagents(reagent_amount, OPENCONTAINER)
+	if(no_react)
+		ENABLE_BITFIELD(reagents.flags, NO_REACT)
+
+/obj/item/ammo_casing/shotgun/dart/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
+	if(!BB)
+		return
+	if(reagents.total_volume < 0)
+		return
+	var/obj/item/projectile/bullet/reusable/dart/D = BB
+	var/obj/item/reagent_containers/syringe/dart/temp/new_dart = new(D)
+
+	new_dart.volume = reagents.total_volume
+	if(no_react)
+		new_dart.reagent_flags |= NO_REACT
+	reagents.trans_to(new_dart, reagents.total_volume, transfered_by = user)
+	D.add_dart(new_dart)
+	..()
 
 /obj/item/ammo_casing/shotgun/dart/attackby()
 	return
@@ -140,10 +158,10 @@
 	desc = "A dart for use in shotguns, using similar technology as cryostatis beakers to keep internal reagents from reacting. Can be injected with up to 10 units of any chemical."
 	icon_state = "cnrshell"
 	reagent_amount = 10
+	no_react = TRUE
 
 /obj/item/ammo_casing/shotgun/dart/noreact/Initialize()
 	. = ..()
-	ENABLE_BITFIELD(reagents.flags, NO_REACT)
 
 /obj/item/ammo_casing/shotgun/dart/bioterror
 	desc = "A shotgun dart filled with deadly toxins."
