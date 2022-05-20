@@ -58,7 +58,7 @@
 	desc = "An arrow made from bone and sinew."
 	damage = 10
 	fauna_damage_bonus = 30
-	embed_chance = 0.2
+	embed_chance = 0.6
 	break_chance = 20
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
 
