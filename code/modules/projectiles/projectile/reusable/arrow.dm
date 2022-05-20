@@ -78,7 +78,7 @@
 	damage = 8
 	fauna_damage_bonus = 27
 	embed_chance = 0.7
-	break_chance = 30
+	break_chance = 67
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bamboo
 
 /obj/item/projectile/bullet/reusable/arrow/bronze
