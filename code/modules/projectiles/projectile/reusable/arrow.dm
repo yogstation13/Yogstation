@@ -76,7 +76,7 @@
 	name = "Bamboo arrow"
 	desc = "An arrow made from bamboo."
 	damage = 8
-	fauna_damage_bonus = 25
+	fauna_damage_bonus = 27
 	embed_chance = 0.5
 	break_chance = 30
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bamboo
