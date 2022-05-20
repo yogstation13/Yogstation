@@ -476,6 +476,13 @@
 	id = "admin_trimmed"
 	special = TRUE
 
+/datum/skillcape/mentor
+	name = "cape of the sage"
+	job = "Mentor"
+	path = /obj/item/clothing/neck/skillcape/mentor
+	id = "mentor"
+	special = TRUE
+
 /datum/skillcape/ghost
 	name = "cape of invisible skill"
 	job = "Ghost"
