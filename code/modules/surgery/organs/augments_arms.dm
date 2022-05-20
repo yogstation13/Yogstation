@@ -386,7 +386,7 @@
 
 /obj/item/organ/cyberimp/arm/gun/knuckleblaster
 	name = "knuckleblaster"
-	desc = "A heavy, plated robotic arm severed from a powerful machine, with a powerful punch and a slot to insert shotgun shells."
+	desc = "A robotic arm severed from a powerful machine, with a powerful punch and a slot to insert shotgun shells."
 	zone = BODY_ZONE_L_ARM
 	icon = 'icons/mob/augmentation/augments.dmi'
 	icon_state = "knuckleblaster"

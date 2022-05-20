@@ -394,7 +394,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A robotic arm capable of shooting shotgun shells as well as devastating melee attacks. Comes with a free autosurgeon."
 	item = /obj/item/autosurgeon/organ/knuckleblaster
 	cost = 10
-	player_minimum = 25
 	manufacturer = /datum/corporation/traitor/cybersun
 	include_modes = list(/datum/game_mode/nuclear)
 

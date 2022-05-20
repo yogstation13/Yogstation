@@ -206,7 +206,6 @@
 	var/slung = FALSE
 	can_be_sawn_off  = FALSE
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
-	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
 	if(prob(40))
 		playsound(src, dry_fire_sound, 30, TRUE)
