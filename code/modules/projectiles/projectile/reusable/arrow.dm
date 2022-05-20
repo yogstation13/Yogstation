@@ -75,7 +75,7 @@
 /obj/item/projectile/bullet/reusable/arrow/bamboo
 	name = "Bamboo arrow"
 	desc = "An arrow made from bamboo."
-	damage = 10
+	damage = 8
 	fauna_damage_bonus = 25
 	embed_chance = 0.5
 	break_chance = 30
