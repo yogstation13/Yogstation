@@ -49,7 +49,8 @@
 	desc = "An arrow made from bone, wood, and sinew."
 	damage = 30
 	armour_penetration = 20
-	embed_chance = 0.2
+	embed_chance = 0.4
+	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone_tipped
 
 /obj/item/projectile/bullet/reusable/arrow/bone
