@@ -203,7 +203,7 @@
 	can_bayonet = FALSE
 	unique_reskin = null
 	slot_flags = null
-	var/slung = FALSE
+	slung = FALSE
 	can_be_sawn_off  = FALSE
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
