@@ -384,7 +384,7 @@
 	contents = newlist(/obj/item/mantis/blade/syndicate)
 	syndicate_implant = TRUE
 
-/obj/item/organ/cyberimp/arm/knuckleblaster
+/obj/item/organ/cyberimp/arm/gun/knuckleblaster
 	name = "knuckleblaster"
 	desc = "A heavy, plated robotic arm severed from a powerful machine, with a powerful punch and a slot to insert shotgun shells."
 	zone = BODY_ZONE_L_ARM

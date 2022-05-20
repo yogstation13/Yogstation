@@ -195,19 +195,18 @@
 /obj/item/gun/ballistic/shotgun/doublebarrel/knuckleblasterinhand
 	name = "knuckleblaster"
 	desc = "load this with shotgun shells and shoot to kill, or punch with amazing force."
-	item_flags = ABSTRACT | DROPDEL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	icon = 'icons/mob/augmentation/augments.dmi'
-	icon_state = "knucklehand"
-	force = 20
+	icon_state = "knuckleblaster"
+	force = 15
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
 	can_bayonet = FALSE
 	unique_reskin = null
 	slot_flags = null
 	var/slung = FALSE
-	sawn = FALSE
+	can_be_sawn_off  = FALSE
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
-	
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
 	if(prob(40))
 		playsound(src, dry_fire_sound, 30, TRUE)
