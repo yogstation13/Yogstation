@@ -11,6 +11,7 @@
 	icon_state = "hunter_daemon"
 	icon_living = "hunter_daemon"
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	damage_coeff = list(BRUTE = 1, BURN = 0.75, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	speed = 0
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
