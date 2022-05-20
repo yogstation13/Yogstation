@@ -390,7 +390,7 @@
 	zone = BODY_ZONE_L_ARM
 	icon = 'icons/mob/augmentation/augments.dmi'
 	icon_state = "knuckleblaster"
-	syndicate_implant= TRUE
+	syndicate_implant = TRUE
 	contents = newlist(/obj/item/gun/ballistic/shotgun/doublebarrel/knuckleblasterinhand)
 
 /obj/item/organ/cyberimp/arm/syndie_mantis/l
