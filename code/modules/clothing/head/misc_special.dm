@@ -358,7 +358,6 @@
 /obj/item/clothing/head/halo
 	name = "Transdimensional halo"
 	desc = "An aetherial halo that magically hovers above the head."
-	icon  = 'yogstation/icons/mob/head.dmi'
 	icon_state = "halo"
 	item_state = "halo"
 	layer = EARS_LAYER
