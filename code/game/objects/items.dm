@@ -878,3 +878,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
+
+// Called every life tick when the object is embedded in a human	
+/obj/item/proc/embed_tick(/mob/living/carbon/human/embedde, /obj/item/bodypart/part)
+	return
