@@ -68,7 +68,8 @@
 	damage = 20
 	fauna_damage_bonus = 40
 	armour_penetration = 30
-	embed_chance = 0.8
+	embed_chance = 0.5
+	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/chitin
 
 /obj/item/projectile/bullet/reusable/arrow/bamboo
