@@ -40,7 +40,8 @@
 	name = "Ashen arrow"
 	desc = "Fire Hardened arrow."
 	damage = 25
-	embed_chance = 0.6
+	embed_chance = 0.3
+	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/ash
 
 /obj/item/projectile/bullet/reusable/arrow/bone_tipped //AP for ashwalkers
