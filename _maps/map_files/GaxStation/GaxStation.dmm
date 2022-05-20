@@ -7139,9 +7139,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
-"dDa" = (
-/turf/closed/wall,
-/area/space)
 "dDm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -16465,6 +16462,23 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/nanite)
+"ius" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Conference Room Maintenance";
+	req_access_txt = "19"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/bridge/meeting_room)
 "iuF" = (
 /obj/machinery/door/window/westleft{
 	base_state = "right";
@@ -17045,10 +17059,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"iIY" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/plating,
-/area/space)
 "iIZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -20722,17 +20732,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
-"kGX" = (
-/obj/machinery/camera{
-	c_tag = "Bridge South";
-	dir = 1
-	},
-/obj/structure/chair/comfy/black{
-	dir = 1
-	},
-/obj/effect/landmark/start/head_of_personnel,
-/turf/open/floor/carpet/blue,
-/area/bridge/meeting_room)
 "kHe" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/bot,
@@ -33490,6 +33489,17 @@
 	},
 /turf/closed/wall,
 /area/hallway/secondary/exit)
+"rmZ" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/machinery/camera{
+	c_tag = "Bridge South";
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "rnf" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/trimline/neutral/filled/line{
@@ -38241,13 +38251,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"tXj" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -28
-	},
-/turf/open/floor/wood,
-/area/bridge/meeting_room)
 "tXV" = (
 /obj/machinery/light_switch{
 	pixel_y = 24
@@ -39859,17 +39862,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
-"uRX" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Conference Room Maintenance";
-	req_access_txt = "19"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bridge/meeting_room)
 "uSD" = (
 /obj/effect/turf_decal/trimline/neutral/filled/corner{
 	dir = 1
@@ -44299,6 +44291,13 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"xfu" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/landmark/start/head_of_personnel,
+/turf/open/floor/carpet/blue,
+/area/bridge/meeting_room)
 "xfT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -93265,7 +93264,7 @@ jBz
 dfJ
 uwo
 tHh
-uRX
+ius
 hmy
 rzN
 vRP
@@ -93520,8 +93519,8 @@ qvo
 bFj
 ozw
 evC
-kGX
-tXj
+xfu
+rmZ
 fGy
 rzN
 rzN
@@ -93751,8 +93750,8 @@ vRP
 vRP
 vRP
 vRP
-dDa
-iIY
+xqU
+itB
 cgw
 eiM
 rcq
@@ -94008,8 +94007,8 @@ vRP
 vRP
 vRP
 vRP
-dDa
-dDa
+xqU
+xqU
 cgw
 cgw
 lmR
