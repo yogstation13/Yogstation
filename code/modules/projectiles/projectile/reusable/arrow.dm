@@ -77,7 +77,7 @@
 	desc = "An arrow made from bamboo."
 	damage = 8
 	fauna_damage_bonus = 27
-	embed_chance = 0.5
+	embed_chance = 0.7
 	break_chance = 30
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bamboo
 
