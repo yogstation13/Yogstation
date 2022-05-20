@@ -1,3 +1,10 @@
+/// The carp rift is currently charging.
+#define CHARGE_ONGOING			0
+/// The carp rift is currently charging and has output a final warning.
+#define CHARGE_FINALWARNING		1
+/// The carp rift is now fully charged.
+#define CHARGE_COMPLETED		2
+
 /**
   * # Space Dragon
   *
@@ -24,6 +31,7 @@
 	a_intent = INTENT_HARM
 	speed = 0
 	attacktext = "chomps"
+	mob_size = MOB_SIZE_LARGE
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	deathsound = 'sound/magic/demon_dies.ogg'
 	icon = 'icons/mob/spacedragon.dmi'
@@ -347,7 +355,7 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 			main_objective.completed = TRUE
 	sound_to_playing_players('sound/machines/alarm.ogg')
 	sleep(100)
-	priority_announce("A large amount of lifeforms have been detected approaching [station_name()] at extreme speeds.  Evacuation of the remamining crew will begin immediately.", "Central Command Spacial Corps")
+	priority_announce("A large amount of lifeforms have been detected approaching [station_name()] at extreme speeds.  Evacuation of the remamining crew will begin immediately.", "Central Command Spatial Corps")
 	sleep(50)
 	SSshuttle.emergency.request(null, set_coefficient = 0.3)
 
@@ -415,23 +423,36 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 	max_integrity = 300
 	icon = 'icons/obj/carp_rift.dmi'
 	icon_state = "carp_rift"
-	light_color = LIGHT_COLOR_BLUE
+	light_color = LIGHT_COLOR_PURPLE
 	light_range = 10
 	anchored = TRUE
 	density = FALSE
 	/// The amount of time the rift has charged for.
 	var/time_charged = 0
-	/// The maximum charge the rift can have.  It actually goes to max_charge + 1, as to prevent constantly retriggering the effects on full charge.
+	/// The maximum charge the rift can have.
 	var/max_charge = 240
 	/// How many carp spawns it has available.
-	var/carp_stored = 0
+	var/carp_stored = 1
 	/// A reference to the Space Dragon that created it.
 	var/mob/living/simple_animal/hostile/space_dragon/dragon
+	/// Current charge state of the rift.
+	var/charge_state = CHARGE_ONGOING
+	/// The time since an extra carp was added to the ghost role spawning pool.
+	var/last_carp_inc = 0
+
+/obj/structure/carp_rift/examine(mob/user)
+	. = ..()
+	if(time_charged < max_charge)
+		. += "<span class='notice'>It seems to be [(time_charged / max_charge) * 100]% charged.</span>"
+	else
+		. += "<span class='warning'>This one is fully charged, and is capable of bringing many carp to the station's location.</span>"
+
+	if(isobserver(user))
+		. += "<span class='notice'>It has [carp_stored] carp available to spawn as.</span>"
+
 
 /obj/structure/carp_rift/Initialize(mapload)
 	. = ..()
-	carp_stored = 1
-	time_charged = 1
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/carp_rift/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
@@ -448,25 +469,20 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 	return ..()
 
 /obj/structure/carp_rift/process()
-	time_charged = min(time_charged + 1, max_charge + 1)
-	update_check()
 	for(var/mob/living/simple_animal/hostile/hostilehere in loc)
 		if("carp" in hostilehere.faction)
 			hostilehere.adjustHealth(-10)
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(hostilehere))
 			H.color = "#0000FF"
-	if(time_charged < max_charge)
-		desc = "A rift akin to the ones space carp use to travel long distances.  It seems to be [(time_charged / max_charge) * 100]% charged."
-		if(carp_stored == 0)
-			icon_state = "carp_rift"
-			light_color = LIGHT_COLOR_BLUE
-		else
-			icon_state = "carp_rift_carpspawn"
-			light_color = LIGHT_COLOR_PURPLE
-	else
-		var/spawncarp = rand(1,40)
-		if(spawncarp == 1)
-			new /mob/living/simple_animal/hostile/carp(loc)
+	// If we're fully charged, just start mass spawning carp.
+	if(charge_state == CHARGE_COMPLETED && DT_PROB(1.25, delta_time))
+		new /mob/living/simple_animal/hostile/carp(loc)
+		return
+
+	// Increase time trackers and check for any updated states.
+	time_charged = min(time_charged + delta_time, max_charge)
+	last_carp_inc += delta_time
+	update_check()
 
 /obj/structure/carp_rift/attack_ghost(mob/user)
 	. = ..()
@@ -481,19 +497,28 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
   * If we're fully charged, tell the crew we are, change our color to yellow, become invulnerable, and give Space Dragon the ability to make another rift, if he hasn't summoned 3 total.
   */
 /obj/structure/carp_rift/proc/update_check()
-	if(time_charged % 40 == 0 && time_charged != max_charge)
+	// If the rift is fully charged, there's nothing to do here anymore.
+	if(charge_state == CHARGE_COMPLETED)
+		return
+	// Can we increase the carp spawn pool size?
+	if(last_carp_inc >= 40)
 		carp_stored++
+		icon_state = "carp_rift_carpspawn"
+		if(light_color != LIGHT_COLOR_PURPLE)
+			set_light_color(LIGHT_COLOR_PURPLE)
+			update_light()
 		notify_ghosts("The carp rift can summon an additional carp!", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Carp Spawn Available")
-	if(time_charged == (max_charge - 120))
-		var/area/A = get_area(src)
-		priority_announce("A rift is causing an unnaturally large energy flux in [A.map_name].  Stop it at all costs!", "Central Command Spacial Corps", 'sound/ai/spanomalies.ogg')
-	if(time_charged == max_charge)
+		last_carp_inc -= 40
+
+	// Is the rift now fully charged?
+	if(time_charged >= max_charge)
+		charge_state = CHARGE_COMPLETED
 		var/area/A = get_area(src)
 		priority_announce("Spatial object has reached peak energy charge in [A.map_name], please stand-by.", "Central Command Spacial Corps")
 		obj_integrity = INFINITY
-		desc = "A rift akin to the ones space carp use to travel long distances.  This one is fully charged, and is capable of bringing many carp to the station's location."
 		icon_state = "carp_rift_charged"
-		light_color = LIGHT_COLOR_YELLOW
+		set_light_color(LIGHT_COLOR_YELLOW)
+		update_light()
 		armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 		resistance_flags = INDESTRUCTIBLE
 		dragon.rifts_charged += 1
@@ -502,6 +527,15 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 			dragon.rift.Grant(dragon)
 			dragon.riftTimer = 0
 			dragon.rift_empower(TRUE)
+		// Early return, nothing to do after this point.
+		return
+
+	// Do we need to give a final warning to the station at the halfway mark?
+	if(charge_state < CHARGE_FINALWARNING && time_charged >= (max_charge * 0.5))
+		charge_state = CHARGE_FINALWARNING
+		var/area/A = get_area(src)
+		priority_announce("A rift is causing an unnaturally large energy flux in [initial(A.name)].  Stop it at all costs!", "Central Command Spatial Corps", 'sound/ai/spanomalies.ogg')
+
 
 /**
   * Used to create carp controlled by ghosts when the option is available.
@@ -513,12 +547,12 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
   * * mob/user - The ghost which will take control of the carp.
   */
 /obj/structure/carp_rift/proc/summon_carp(mob/user)
-	if(carp_stored == 0)//Not enough carp points
+	if(carp_stored <= 0)//Not enough carp points
 		return FALSE
 	var/carp_ask = alert("Become a carp?", "Help bring forth the horde?", "Yes", "No")
 	if(carp_ask == "No" || !src || QDELETED(src) || QDELETED(user))
 		return FALSE
-	if(carp_stored == 0)
+	if(carp_stored <= 0)
 		to_chat(user, "<span class='warning'>The rift already summoned enough carp!</span>")
 		return FALSE
 	var/mob/living/simple_animal/hostile/carp/newcarp = new /mob/living/simple_animal/hostile/carp(loc)
@@ -527,5 +561,13 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 	if(S)
 		S.carp += newcarp.mind
 	to_chat(newcarp, "<span class='boldwarning'>You have arrived in order to assist the space dragon with securing the rift.  Do not jeopardize the mission, and protect the rift at all costs!</span>")
-	carp_stored -= 1
+	carp_stored--
+	if(carp_stored <= 0 && charge_state < CHARGE_COMPLETED)
+		icon_state = "carp_rift"
+		set_light_color(LIGHT_COLOR_BLUE)
+		update_light()
 	return TRUE
+
+#undef CHARGE_ONGOING
+#undef CHARGE_FINALWARNING
+#undef CHARGE_COMPLETED
