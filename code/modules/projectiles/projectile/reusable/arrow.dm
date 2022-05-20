@@ -59,7 +59,7 @@
 	damage = 10
 	fauna_damage_bonus = 30
 	embed_chance = 0.6
-	break_chance = 20
+	break_chance = 50
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
 
 /obj/item/projectile/bullet/reusable/arrow/chitin
