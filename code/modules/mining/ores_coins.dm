@@ -226,11 +226,19 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		GibtoniteReaction(user)
 		return
 	if(primed)
+		if(istype(I, /obj/item/t_scanner/adv_mining_scanner/goat_scanner))
+			primed = FALSE
+			if(det_timer)
+				deltimer(det_timer)
+			user.visible_message("The chain reaction was stopped... the ore's quality seems to have improved!", span_notice("You stopped the chain reaction... the ore's quality seems to have improved!"))
+			icon_state = "Gibtonite ore 3"
+			quality = GIBTONITE_QUALITY_HIGH
+			return
 		if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner) || I.tool_behaviour == TOOL_MULTITOOL)
 			primed = FALSE
 			if(det_timer)
 				deltimer(det_timer)
-			user.visible_message("The chain reaction was stopped! ...The ore's quality looks diminished.", span_notice("You stopped the chain reaction. ...The ore's quality looks diminished."))
+			user.visible_message("The chain reaction was stopped! ...The ore's quality looks diminished.", span_notice("You stopped the chain reaction... the ore's quality looks diminished."))
 			icon_state = "Gibtonite ore"
 			quality = GIBTONITE_QUALITY_LOW
 			return
