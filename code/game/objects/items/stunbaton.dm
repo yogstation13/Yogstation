@@ -382,7 +382,6 @@ GLOBAL_VAR_INIT(batons_cooldown, TRUE)
 	set name = "Toggle Batons to Normal or Modified" ///Safety Net
 	if(!check_rights(R_DEV))
 		return
-	GLOB.batons_normal = !GLOB.batons_normal
 	if(GLOB.batons_normal == FALSE)
 		GLOB.batons_normal = TRUE
 		GLOB.batons_stam = FALSE
