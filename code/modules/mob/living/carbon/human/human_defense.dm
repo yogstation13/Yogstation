@@ -169,12 +169,6 @@
 		hitpush = FALSE
 		skipcatch = TRUE
 		blocked = TRUE
-	else if(I)
-		if(((throwingdatum ? throwingdatum.speed : I.throw_speed) >= EMBED_THROWSPEED_THRESHOLD) || I.embedding.embedded_ignore_throwspeed_threshold)
-			if(prob(I.embedding.embed_chance) && embed_object(I, deal_damage = TRUE))
-				hitpush = FALSE
-				skipcatch = TRUE //can't catch the now embedded item
-
 	return ..()
 	
 /mob/living/carbon/human/proc/embed_object(obj/item/embedding, part, deal_damage, silent, forced)
