@@ -241,9 +241,9 @@ If you're feeling frisky, examine yourself and click the underlined item to pull
 	icon_state = "embeddedobject"
 
 /obj/screen/alert/embeddedobject/Click()
-	if(isliving(usr))
-		var/mob/living/carbon/human/M = usr
-		return M.help_shake_act(M)
+	if(iscarbon(usr))
+		var/mob/living/carbon/C = usr
+		return C.remove_embedded_object(C)
 
 /obj/screen/alert/weightless
 	name = "Weightless"
