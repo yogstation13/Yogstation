@@ -47,6 +47,9 @@
 	var/attack_streak
 
 /mob/living/simple_animal/hunter/AttackingTarget()
+	if(isliving(target))
+		if(last_target == target)
+			var/attack_streak++
 	if(ishuman(target))
 		var/mob/living/carbon/human/dude = target
 		if(prey == dude)
