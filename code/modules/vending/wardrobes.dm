@@ -141,7 +141,7 @@
 
 /obj/machinery/vending/wardrobe/sig_wardrobe
 	name = "SigDrobe"
-	desc = "A rarely used vending machine that provides clothing for Signal Technicians."
+	desc = "A rarely used vending machine that provides clothing for Network Admins."
 	icon_state = "sigdrobe"
 	product_ads = "Dress to impress yourself!;The drones will love you!;Get your clothing here!"
 	vend_reply = "Thank you for using the SigDrobe!"
@@ -149,9 +149,9 @@
 					/obj/item/storage/backpack/industrial = 1,
 					/obj/item/storage/backpack/satchel/eng = 1,
 					/obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms = 1,
-					/obj/item/clothing/under/yogs/rank/signal_tech = 1,
+					/obj/item/clothing/under/yogs/rank/network_admin = 1,
 					/obj/item/clothing/shoes/workboots = 1,
-					/obj/item/clothing/under/yogs/rank/signal_tech/skirt = 1)
+					/obj/item/clothing/under/yogs/rank/network_admin/skirt = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/sig_wardrobe
 	payment_department = ACCOUNT_ENG
 /obj/item/vending_refill/wardrobe/sig_wardrobe

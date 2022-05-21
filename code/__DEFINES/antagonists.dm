@@ -32,10 +32,17 @@
 /// blob gets a free reroll every X time
 #define BLOB_REROLL_TIME 2400
 #define BLOB_SPREAD_COST 4
+#define OVERMIND_STARTING_AUTO_PLACE_TIME 6 MINUTES
 /// blob refunds this much if it attacks and doesn't spread
 #define BLOB_ATTACK_REFUND 2
 #define BLOB_REFLECTOR_COST 15
 
+/// Forces the blob to place the core where they currently are, ignoring any checks.
+#define BLOB_FORCE_PLACEMENT -1
+/// Normal blob placement, does the regular checks to make sure the blob isn't placing itself in an invalid location
+#define BLOB_NORMAL_PLACEMENT 0
+/// Selects a random location for the blob to be placed.
+#define BLOB_RANDOM_PLACEMENT 1
 
 //ERT Types
 #define ERT_BLUE "Blue"

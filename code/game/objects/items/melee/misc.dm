@@ -218,7 +218,7 @@
 	var/list/desc = get_hit_description(target, user)
 
 	var/obj/item/bodypart/affecting = target.get_bodypart(user.zone_selected)
-	var/armor_block = target.run_armor_check(affecting, "melee")
+	var/armor_block = target.run_armor_check(affecting, MELEE)
 	target.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
 	var/current_stamina_damage = target.getStaminaLoss()
 
