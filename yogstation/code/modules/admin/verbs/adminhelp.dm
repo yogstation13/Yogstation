@@ -220,7 +220,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		send_to_discord()
 
 /datum/admin_help/proc/send_to_discord()
-	if(state == AHELP_ACTIVE && !handling_admin)
+	return
+	//if(state == AHELP_ACTIVE && !handling_admin)
 		//webhook_send_ticket_unclaimed(initiator_ckey, name, id)
 
 /datum/admin_help/Destroy()
