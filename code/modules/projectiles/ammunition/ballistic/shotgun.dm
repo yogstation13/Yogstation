@@ -160,9 +160,6 @@
 	reagent_amount = 10
 	no_react = TRUE
 
-/obj/item/ammo_casing/shotgun/dart/noreact/Initialize()
-	. = ..()
-
 /obj/item/ammo_casing/shotgun/dart/bioterror
 	desc = "A shotgun dart filled with deadly toxins."
 

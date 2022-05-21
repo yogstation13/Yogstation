@@ -170,31 +170,6 @@
 		skipcatch = TRUE
 		blocked = TRUE
 	return ..()
-	
-/mob/living/carbon/human/proc/embed_object(obj/item/embedding, part, deal_damage, silent, forced)
-	if(!(forced || (can_embed(embedding) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))))
-		return FALSE
-	var/obj/item/bodypart/body_part = part
-	// In case its a zone
-	if(!istype(body_part) && body_part)
-		body_part = get_bodypart(body_part)
-	// Otherwise pick one
-	if(!istype(body_part))
-		body_part = pick(bodyparts)
-		// Thats probably not good
-		if(!istype(body_part))
-			return FALSE
-
-	body_part.embedded_objects |= embedding
-	embedding.add_mob_blood(src)//it embedded itself in you, of course it's bloody!
-	embedding.forceMove(src)
-	SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "embedded", /datum/mood_event/embedded)
-	if(deal_damage)
-		body_part.receive_damage(embedding.w_class*embedding.embedding.embedded_impact_pain_multiplier, wound_bonus=-30, sharpness = TRUE)
-	if(!silent)
-		throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
-		visible_message(span_danger("[embedding] embeds itself in [src]'s [body_part.name]!"), span_userdanger("[embedding] embeds itself in your [body_part.name]!"))
-	return TRUE
 
 /mob/living/carbon/human/grippedby(mob/living/user, instant = FALSE)
 	if(w_uniform)
