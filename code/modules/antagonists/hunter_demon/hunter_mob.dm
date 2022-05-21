@@ -45,3 +45,15 @@
 	var/mob/living/carbon/human/prey
 	var/mob/living/last_target
 	var/attack_streak
+
+/mob/living/simple_animal/hunter/AttackingTarget()
+	if(ishuman(target))
+		var/mob/living/carbon/human = target
+	.=..()
+	if((isliving(target)))
+			heal_bodypart_damage(5)
+	
+
+
+
+
