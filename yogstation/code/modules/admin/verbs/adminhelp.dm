@@ -221,7 +221,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/send_to_discord()
 	if(state == AHELP_ACTIVE && !handling_admin)
-		webhook_send_ticket_unclaimed(initiator_ckey, name, id)
+		//webhook_send_ticket_unclaimed(initiator_ckey, name, id)
 
 /datum/admin_help/Destroy()
 	GLOB.ahelp_tickets.tickets_list -= src
