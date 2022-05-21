@@ -1768,6 +1768,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"aSd" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "aSz" = (
 /obj/structure/table,
 /obj/structure/cable{
@@ -6438,11 +6445,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/engine/atmos_distro)
-"din" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/structure/bed/roller,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "diI" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -13393,15 +13395,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"gKg" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "gKj" = (
 /obj/structure/lattice/catwalk,
 /turf/closed/wall/r_wall,
@@ -29431,6 +29424,11 @@
 	},
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
+"peJ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "peO" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/machinery/atmospherics/components/binary/pump{
@@ -37280,6 +37278,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"tva" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "tvh" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -43956,6 +43964,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/gravity_generator)
+"wSu" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/structure/bed/roller,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "wSH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -46163,13 +46178,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"xYR" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 6
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "xYS" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -77997,7 +78005,7 @@ oGQ
 vlx
 cMM
 aVF
-vlx
+wSu
 aCJ
 lfC
 sTx
@@ -78255,7 +78263,7 @@ kHQ
 bEB
 rOI
 kHQ
-din
+peJ
 fqH
 pdQ
 jJL
@@ -78511,8 +78519,8 @@ qkc
 qkc
 hoZ
 cDe
-gKg
-xYR
+tva
+aSd
 lfC
 wji
 ibl
