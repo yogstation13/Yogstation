@@ -134,6 +134,9 @@
 		for(var/obj/item/embedded in part.embedded_objects)
 			choice_list[embedded] = image(embedded)
 	var/obj/item/choice = show_radial_menu(user, src, choice_list, tooltips = TRUE)
+	for(var/obj/item/bodypart/part in bodyparts)
+		if(choice in part.embedded_objects)
+			body_part = part
 	if(!istype(choice) || !(choice in choice_list))
 		return
 	var/time_taken = choice.embedding.embedded_unsafe_removal_time * choice.w_class

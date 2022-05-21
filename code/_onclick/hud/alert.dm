@@ -243,7 +243,7 @@ If you're feeling frisky, examine yourself and click the underlined item to pull
 /obj/screen/alert/embeddedobject/Click()
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
-		return C.remove_embedded_object(C)
+		return C.try_remove_embedded_object(C)
 
 /obj/screen/alert/weightless
 	name = "Weightless"
