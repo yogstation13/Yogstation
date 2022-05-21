@@ -22,8 +22,9 @@
 
 /datum/ai_project/induction_cyborg/finish()
 	var/datum/action/innate/ai/ranged/charge_borg_or_apc/ability = add_ability(/datum/action/innate/ai/ranged/charge_borg_or_apc)
-	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect = ability.linked_ability
+	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect
 	if(ability)
+		effect = ability.linked_ability
 		effect.works_on_borgs = TRUE
 		effect.attached_action.button.name = "Charge cyborg"
 		effect.attached_action.button.desc = "Click a cyborg to charge it by 33%"
@@ -50,8 +51,9 @@
 
 /datum/ai_project/induction_apc/finish()
 	var/datum/action/innate/ai/ranged/charge_borg_or_apc/ability = add_ability(/datum/action/innate/ai/ranged/charge_borg_or_apc)
-	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect = ability.linked_ability
+	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect
 	if(ability)
+		effect = ability.linked_ability
 		effect.works_on_apcs = TRUE
 		effect.attached_action.button.name = "Charge APC"
 		effect.attached_action.button.desc = "Click an APC to charge it by 33%"

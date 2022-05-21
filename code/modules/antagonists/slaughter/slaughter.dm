@@ -50,7 +50,7 @@
 	..()
 	var/obj/effect/proc_holder/spell/bloodcrawl/bloodspell = new
 	AddSpell(bloodspell)
-	if(istype(loc, /obj/effect/dummy/phased_mob/slaughter))
+	if(istype(loc, /obj/effect/dummy/phased_mob))
 		bloodspell.phased = TRUE
 
 /obj/effect/decal/cleanable/blood/innards

@@ -77,6 +77,7 @@
 	var/obj/item/bodypart/affecting = get_bodypart(check_zone(user.zone_selected))
 
 	if(user.a_intent != INTENT_HARM && I.tool_behaviour == TOOL_WELDER && affecting?.status == BODYPART_ROBOTIC)
+		user.changeNext_move(CLICK_CD_MELEE)
 		if(I.use_tool(src, user, 0, volume=50, amount=1))
 			if(user == src)
 				user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.name]."),
@@ -114,6 +115,9 @@
 		if(hurt)
 			Paralyze(20)
 			take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
+			visible_message(span_danger("[src] crashes into [hit_atom][extra_speed ? " really hard" : ""]!"),\
+				span_userdanger("You violently crash into [hit_atom][extra_speed ? " extra hard" : ""]!"))
+			playsound(src,'sound/weapons/punch2.ogg',50,1)
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
@@ -593,7 +597,12 @@
 	if(!client)
 		return
 	if(stat == DEAD)
-		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		if(SSmapping.level_trait(z, ZTRAIT_NOXRAY))
+			sight = null
+		else if(is_secret_level(z))
+			sight = initial(sight)
+		else
+			sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_OBSERVER
 		return
@@ -636,7 +645,11 @@
 
 	if(see_override)
 		see_invisible = see_override
-	. = ..()
+
+	if(SSmapping.level_trait(z, ZTRAIT_NOXRAY))
+		sight = null
+
+	return ..()
 
 
 //to recalculate and update the mob's total tint from tinted equipment it's wearing.

@@ -289,7 +289,8 @@ Difficulty: Insanely Hard
 		visible_message(span_cult("\The [src] shrieks as the seal on his power breaks and he starts to break apart!"))
 		new /obj/structure/ladder/unbreakable/goat(loc)
 		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
-
+		new /obj/item/t_scanner/adv_mining_scanner/goat_scanner(loc)
+		
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
 	OnDeath()
