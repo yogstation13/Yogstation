@@ -9,6 +9,22 @@
 	var/bloody_mess = 0
 	var/obj/item/color_source
 	var/max_wash_capacity = 5
+	/// used for narcing on money launderers
+	var/obj/item/radio/alertradio
+	var/moneylaundering = FALSE //have we alerted sec this wash cycle?
+	var/mob/launderer = null //WHO IS LAUNDERING MONEY
+
+/obj/machinery/washing_machine/Initialize()
+	. = ..()
+	if(isnull(alertradio))
+		alertradio = new(src)
+	alertradio.listening = 0
+	alertradio.set_frequency(FREQ_SECURITY)
+
+/obj/machinery/washing_machine/Destroy()
+	QDEL_NULL(alertradio)
+	. = ..()
+	
 
 /obj/machinery/washing_machine/examine(mob/user)
 	. = ..()
@@ -31,6 +47,7 @@
 
 	busy = TRUE
 	update_icon()
+	launderer = user
 	addtimer(CALLBACK(src, .proc/wash_cycle), 200)
 
 	START_PROCESSING(SSfastprocess, src)
@@ -38,6 +55,7 @@
 /obj/machinery/washing_machine/process()
 	if(!busy)
 		animate(src, transform=matrix(), time=2)
+		launderer = null
 		return PROCESS_KILL
 	if(anchored)
 		if(prob(5))
@@ -64,7 +82,11 @@
 		var/atom/movable/AM = X
 		AM.wash(CLEAN_WASH)
 		AM.machine_wash(src)
-
+		if(istype(X,/obj/item/stack/spacecash) && !moneylaundering && launderer) 
+			moneylaundering = TRUE
+			alertradio.set_frequency(FREQ_SECURITY)
+			alertradio.talk_into(src, "SECURITY ALERT: Crewmember [launderer] recorded attempting to launder space cash in [get_area(src)]. Please watch for embezzlement.", FREQ_SECURITY)
+	moneylaundering = FALSE
 	busy = FALSE
 	if(color_source)
 		qdel(color_source)
