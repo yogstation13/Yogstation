@@ -47507,6 +47507,28 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
+"nVL" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/prison/hallway";
+	dir = 4;
+	name = "Prison Wing APC";
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison/hallway)
 "nWl" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -59226,6 +59248,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"tPi" = (
+/obj/item/cigbutt,
+/obj/machinery/power/apc{
+	areastring = "/area/security/interrogation";
+	dir = 1;
+	name = "Interrogation APC";
+	pixel_y = 23
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "tPj" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -61505,28 +61540,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"uXb" = (
-/obj/machinery/power/apc{
-	areastring = "/area/security/prison";
-	dir = 4;
-	name = "Prison Wing APC";
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison/hallway)
 "uXZ" = (
 /obj/machinery/vending/cola/random,
 /obj/effect/turf_decal/tile/blue{
@@ -62195,19 +62208,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"vre" = (
-/obj/item/cigbutt,
-/obj/machinery/power/apc{
-	areastring = "/area/security/prison";
-	dir = 1;
-	name = "Interrogation APC";
-	pixel_y = 23
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/interrogation)
 "vrl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -94279,7 +94279,7 @@ wSc
 fsi
 gjs
 jAS
-vre
+tPi
 vyK
 vyK
 bQS
@@ -96331,7 +96331,7 @@ agJ
 qZY
 bAL
 acd
-uXb
+nVL
 wKR
 gUZ
 apU
