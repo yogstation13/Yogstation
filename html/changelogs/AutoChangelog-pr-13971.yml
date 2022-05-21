@@ -1,4 +1,0 @@
-author: " [IndieanaJones](https://github.com/IndieanaJones) and [Watermelon914](https://github.com/Watermelon914), ported to Yogstation by SuperSlayer"
-delete-after: true 
-changes: 
-  - rscadd: "Ports some PR's from TG that add some midround rulesets for dynamic"
