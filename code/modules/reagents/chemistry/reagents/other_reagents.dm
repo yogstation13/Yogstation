@@ -283,8 +283,8 @@
 			if(13 to INFINITY)
 				M.visible_message("<span class='danger'>[M] suddenly ignites in a brilliant flash of white!<span>", span_userdanger("You suddenly ignite in a holy fire!"))
 				M.adjust_fire_stacks(3)
-				M.IgniteMob()           
-				M.adjustFireLoss(4)        
+				M.IgniteMob()
+				M.adjustFireLoss(4)
 	holder.remove_reagent(type, 0.4)	//fixed consumption to prevent balancing going out of whack
 
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
@@ -2043,3 +2043,14 @@
 			wounded_part.heal_damage(0.25, 0.25)
 		M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
 	..()
+
+
+/datum/reagent/plaguebacteria
+	name = "Yersinia pestis"
+	description = "A horrible plague, in a container. It is a TERRIBLE idea to drink this."
+	color = "#7CFC00"
+	taste_description = "death"
+	can_synth = FALSE
+
+/datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+	L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)

@@ -25012,6 +25012,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"cCz" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/suit_storage_unit/captain,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "cCF" = (
 /obj/machinery/air_sensor{
 	id_tag = "n2o_sensor"
@@ -29005,6 +29012,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"eGj" = (
+/obj/item/radio/intercom{
+	dir = 8;
+	freerange = 1;
+	name = "Station Intercom (Command)";
+	pixel_x = -28
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "eGz" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -31087,16 +31104,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"fNu" = (
-/obj/item/radio/intercom{
-	dir = 8;
-	freerange = 1;
-	name = "Station Intercom (Command)";
-	pixel_x = -28
-	},
-/obj/machinery/suit_storage_unit/captain,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "fNw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -39967,6 +39974,14 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
+"kgY" = (
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = -21;
+	pixel_y = -3
+	},
+/obj/machinery/papershredder,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "khm" = (
 /obj/effect/turf_decal/stripes,
 /obj/structure/railing/corner,
@@ -60467,14 +60482,6 @@
 /obj/item/book/manual/wiki/surgery,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"urw" = (
-/obj/structure/filingcabinet,
-/obj/machinery/recharger/wallrecharger{
-	pixel_x = -21;
-	pixel_y = -3
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "urG" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer2{
@@ -62673,13 +62680,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"vCQ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/papershredder,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "vCX" = (
 /obj/structure/janitorialcart,
 /obj/effect/turf_decal/delivery,
@@ -98907,10 +98907,10 @@ aZV
 fqv
 ruZ
 nCL
-vCQ
+cCz
 wxL
-urw
-fNu
+kgY
+eGj
 aZV
 aZV
 aZV

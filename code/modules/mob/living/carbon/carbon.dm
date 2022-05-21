@@ -77,6 +77,7 @@
 	var/obj/item/bodypart/affecting = get_bodypart(check_zone(user.zone_selected))
 
 	if(user.a_intent != INTENT_HARM && I.tool_behaviour == TOOL_WELDER && affecting?.status == BODYPART_ROBOTIC)
+		user.changeNext_move(CLICK_CD_MELEE)
 		if(I.use_tool(src, user, 0, volume=50, amount=1))
 			if(user == src)
 				user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.name]."),
