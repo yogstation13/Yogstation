@@ -48,7 +48,8 @@
 
 /mob/living/simple_animal/hunter/AttackingTarget()
 	if(ishuman(target))
-		var/mob/living/carbon/human = target
+		var/mob/living/carbon/human/dude = target
+		if(prey == dude)
 	.=..()
 	if((isliving(target)))
 			heal_bodypart_damage(5)
