@@ -58,6 +58,22 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"abE" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/machinery/camera{
+	c_tag = "Security Post - Service";
+	dir = 1;
+	network = list("ss13","chpt")
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 5;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "abN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
@@ -15231,6 +15247,19 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"hEW" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/obj/machinery/modular_computer/console/preset/mining{
+	dir = 8
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 32;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel,
+/area/security/checkpoint/supply)
 "hFa" = (
 /obj/structure/table/wood,
 /obj/item/pen/red,
@@ -21360,15 +21389,6 @@
 "kYf" = (
 /turf/open/floor/engine/plasma,
 /area/engine/atmos_distro)
-"kYh" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 6
-	},
-/obj/machinery/modular_computer/console/preset/mining{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/supply)
 "kYl" = (
 /turf/closed/wall,
 /area/science/robotics/lab)
@@ -29941,18 +29961,6 @@
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
-"pst" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/machinery/camera{
-	c_tag = "Security Post - Service";
-	dir = 1;
-	network = list("ss13","chpt")
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "psE" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/effect/turf_decal/bot,
@@ -36369,13 +36377,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
-"sVo" = (
-/obj/structure/filingcabinet,
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "sVE" = (
 /obj/machinery/modular_computer/console/preset/engineering{
 	dir = 4
@@ -39135,6 +39136,9 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
+"uBb" = (
+/turf/closed/wall/r_wall,
+/area/security/checkpoint/supply)
 "uBc" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
@@ -39938,6 +39942,17 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
+"uSi" = (
+/obj/structure/filingcabinet,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 32;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel,
+/area/security/checkpoint/medical)
 "uSD" = (
 /obj/effect/turf_decal/trimline/neutral/filled/corner{
 	dir = 1
@@ -70564,8 +70579,8 @@ thP
 snb
 xTt
 lBF
-xEn
-xEn
+uBb
+uBb
 xEn
 hei
 hei
@@ -70821,7 +70836,7 @@ vWk
 crf
 xTt
 cNu
-xEn
+uBb
 dIH
 rwo
 iyv
@@ -71078,7 +71093,7 @@ xnG
 mup
 kgb
 bQv
-xEn
+uBb
 aGk
 gLP
 bHA
@@ -71335,7 +71350,7 @@ lqS
 jww
 gwb
 are
-xEn
+uBb
 lfS
 hwx
 fsa
@@ -71592,10 +71607,10 @@ wvU
 maX
 kgb
 kvN
-xEn
+uBb
 jNq
 kGD
-kYh
+hEW
 hei
 gJE
 euF
@@ -74664,7 +74679,7 @@ jNW
 ipY
 xED
 vvN
-sVo
+uSi
 twa
 twa
 vpW
@@ -88263,7 +88278,7 @@ wqT
 pqb
 pQh
 gOQ
-pst
+abE
 mks
 icQ
 uMT
