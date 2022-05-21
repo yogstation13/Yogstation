@@ -707,7 +707,7 @@
 
 	var/list/turfs_to_check = list()
 
-	if(has_limbs)
+	if(!has_limbs)
 		var/turf/T = get_step(src, angle2dir(dir2angle(direction)+90))
 		if (T)
 			turfs_to_check += T
@@ -725,8 +725,7 @@
 				if (AM.density && AM.anchored)
 					pressure_resistance_prob_delta -= 5
 					break
-	if(!force_moving)
-		..(pressure_difference, direction, pressure_resistance_prob_delta)
+	..(pressure_difference, direction, pressure_resistance_prob_delta)
 
 /mob/living/can_resist()
 	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
@@ -782,7 +781,7 @@
 			adjustStaminaLoss(rand(8,15))//8 is from 7.5 rounded up
 			visible_message(span_danger("[src] struggles as they fail to break free of [pulledby]'s grip!"))
 		if(moving_resist && client) //we resisted by trying to move
-			client.move_delay = world.time + 20
+			client.move_delay = world.time + 2 SECONDS
 	else
 		pulledby.stop_pulling()
 		return FALSE

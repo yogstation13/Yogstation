@@ -109,26 +109,27 @@
 					occupant_message("Lock on [locked] disengaged.")
 					send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
 		if(2)
-			var/list/atoms = list()
+			var/list/atomstothrow = list()
 			if(isturf(target))
-				atoms = range(3, target)
+				atomstothrow = range(3, target)
 			else
-				atoms = orange(3, target)
-			for(var/atom/movable/A in atoms)
-				if(A.anchored || A.move_resist >= MOVE_FORCE_EXTREMELY_STRONG)
+				atomstothrow = orange(3, target)
+			for(var/atom/movable/scatter in atomstothrow)
+				if(scatter.anchored || scatter.move_resist >= MOVE_FORCE_EXTREMELY_STRONG)
 					continue
-				if(ismob(A))
-					var/mob/M = A
-					if(M.mob_negates_gravity())
+				if(ismob(scatter))
+					var/mob/scatter_mob = scatter
+					if(scatter_mob.mob_negates_gravity())
 						continue
-				spawn(0)
-					var/iter = 5-get_dist(A,target)
-					for(var/i=0 to iter)
-						step_away(A,target)
-						sleep(2)
-			var/turf/T = get_turf(target)
-			log_game("[key_name(chassis.occupant)] used a Gravitational Catapult repulse wave on [AREACOORD(T)]")
-			return TRUE
+				do_scatter(scatter, target)
+			var/turf/targetturf = get_turf(target)
+			log_game("[key_name(source)] used a Gravitational Catapult repulse wave on [AREACOORD(targetturf)]")
+			return ..()
+
+/obj/item/mecha_parts/mecha_equipment/gravcatapult/proc/do_scatter(atom/movable/scatter, atom/movable/target)
+	var/dist = 5 - get_dist(scatter, target)
+	var/delay = 2
+	SSmove_manager.move_away(scatter, target, delay = delay, timeout = delay * dist, flags = MOVEMENT_LOOP_START_FAST, priority = MOVEMENT_ABOVE_SPACE_PRIORITY)
 
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult/get_equip_info()

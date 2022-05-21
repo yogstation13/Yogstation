@@ -451,7 +451,7 @@
 		else
 			mobility_flags = NONE
 	if(!(mobility_flags & MOBILITY_MOVE))
-		walk(src, 0) //stop mid walk
+		SSmove_manager.stop_looping(src) //stop mid walk
 
 	update_transform()
 	update_action_buttons_icon()

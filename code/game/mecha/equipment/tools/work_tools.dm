@@ -204,36 +204,35 @@
 	else
 		if(reagents.total_volume > 0)
 			playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
-			var/direction = get_dir(chassis,target)
-			var/turf/T = get_turf(target)
-			var/turf/T1 = get_step(T,turn(direction, 90))
-			var/turf/T2 = get_step(T,turn(direction, -90))
+			sprays_left += 5
+			add_hiddenprint(source) //log prints so admins can figure out who touched it last.
+			log_combat(source, target, "fired an extinguisher at")
+			spray_extinguisher(target)
+			return ..()
 
-			var/list/the_targets = list(T,T1,T2)
-			spawn(0)
-				for(var/a=0, a<5, a++)
-					var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(chassis))
-					if(!W)
-						return
-					var/turf/my_target = pick(the_targets)
-					var/datum/reagents/R = new/datum/reagents(5)
-					W.reagents = R
-					R.my_atom = W
-					reagents.trans_to(W,1, transfered_by = chassis.occupant)
-					for(var/b=0, b<4, b++)
-						if(!W)
-							return
-						step_towards(W,my_target)
-						if(!W)
-							return
-						var/turf/W_turf = get_turf(W)
-						W.reagents.reaction(W_turf)
-						for(var/atom/atm in W_turf)
-							W.reagents.reaction(atm)
-						if(W.loc == my_target)
-							break
-						sleep(2)
-		return 1
+/obj/item/mecha_parts/mecha_equipment/extinguisher/proc/spray_extinguisher(atom/target)
+	var/direction = get_dir(chassis, target)
+	var/turf/T1 = get_turf(target)
+	var/turf/T2 = get_step(T1,turn(direction, 90))
+	var/turf/T3 = get_step(T1,turn(direction, -90))
+	var/list/targets = list(T1,T2,T3)
+
+	var/obj/effect/particle_effect/water/extinguisher/water = new /obj/effect/particle_effect/water/extinguisher(get_turf(chassis))
+	var/datum/reagents/water_reagents = new /datum/reagents(5)
+	water.reagents = water_reagents
+	water_reagents.my_atom = water
+	reagents.trans_to(water, 1)
+
+	var/delay = 2
+	var/datum/move_loop/our_loop = SSmove_manager.move_towards_legacy(water, pick(targets), delay, timeout = delay * 4, priority = MOVEMENT_ABOVE_SPACE_PRIORITY)
+	RegisterSignal(our_loop, COMSIG_PARENT_QDELETING, .proc/water_finished_moving)
+
+/obj/item/mecha_parts/mecha_equipment/extinguisher/proc/water_finished_moving(datum/move_loop/has_target/source)
+	SIGNAL_HANDLER
+	sprays_left--
+	if(!sprays_left)
+		return
+	extinguish(source.target)
 
 /obj/item/mecha_parts/mecha_equipment/extinguisher/get_equip_info()
 	return "[..()] \[[src.reagents.total_volume]\]"

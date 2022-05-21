@@ -247,7 +247,7 @@
 			Goto(pick(urange(20, src, 1)), move_to_delay)
 			spawn(50)
 				stop_automated_movement = 0
-				walk(src,0)
+				SSmove_manager.stop_looping(src)
 		return 1
 
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/proc/GiveUp(C)
@@ -320,7 +320,7 @@
 		busy = SPINNING_COCOON
 		visible_message(span_notice("[src] begins to secrete a sticky substance around [cocoon_target]."),span_notice("You begin wrapping [cocoon_target] into a cocoon."))
 		stop_automated_movement = TRUE
-		walk(src,0)
+		SSmove_manager.stop_looping(src)
 		if(do_after(src, 5 SECONDS, target = cocoon_target))
 			if(busy == SPINNING_COCOON)
 				log_admin("[src] spun a cocoon around [cocoon_target]")

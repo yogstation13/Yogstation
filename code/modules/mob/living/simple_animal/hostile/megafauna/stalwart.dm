@@ -106,14 +106,14 @@
 	charging = TRUE
 	revving_charge = TRUE
 	telegraph(src)
-	walk(src, 0)
+	SSmove_manager.stop_looping(src)
 	setDir(dir)
 	SLEEP_CHECK_DEATH(delay)
 	revving_charge = FALSE
 	var/movespeed = 1
 	walk_towards(src, T, movespeed)
 	SLEEP_CHECK_DEATH(get_dist(src, T) * movespeed)
-	walk(src, 0) // cancel the movement
+	SSmove_manager.stop_looping(src) // cancel the movement
 	charging = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/Move()

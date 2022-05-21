@@ -73,9 +73,9 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		if(T.z == z_original)
 			special_target_valid = TRUE
 	if(special_target_valid)
-		walk_towards(src, special_target, 1)
+		SSmove_manager.home_onto(src, special_target)
 	else if(end && end.z==z_original)
-		walk_towards(src, destination, 1)
+		SSmove_manager.move_towards(src, destination)
 
 /obj/effect/immovablerod/Topic(href, href_list)
 	if(href_list["orbit"])
@@ -98,8 +98,8 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	//We hit what we wanted to hit, time to go
 	special_target = null
 	destination = get_edge_target_turf(src, dir)
-	walk(src,0)
-	walk_towards(src, destination, 1)
+	SSmove_manager.stop_looping(src)
+	SSmove_manager.home_onto(src, destination)
 
 /obj/effect/immovablerod/ex_act(severity, target)
 	return 0
@@ -109,6 +109,9 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 
 /obj/effect/immovablerod/singularity_pull()
 	return
+
+/obj/effect/immovablerod/Process_Spacemove()
+	return TRUE
 
 /obj/effect/immovablerod/Bump(atom/clong)
 	if(prob(10))

@@ -16,7 +16,7 @@
 				if(on_fire || buckled || restrained())
 					if(!resisting && prob(MONKEY_RESIST_PROB))
 						resisting = TRUE
-						walk_to(src,0)
+						SSmove_manager.stop_looping(src)
 						resist()
 				else if(resisting)
 					resisting = FALSE
@@ -26,7 +26,7 @@
 					else if(prob(1))
 						emote(pick("scratch","jump","roll","tail"))
 			else
-				walk_to(src,0)
+				SSmove_manager.stop_looping(src)
 
 /mob/living/carbon/monkey/handle_mutations_and_radiation()
 	if(radiation)

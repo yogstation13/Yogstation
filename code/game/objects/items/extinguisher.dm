@@ -164,7 +164,7 @@
 			var/turf/T4 = get_step(T2,turn(direction, -90))
 			the_targets.Add(T3,T4)
 
-				var/list/water_particles = list()
+		var/list/water_particles = list()
 		for(var/a in 1 to 5)
 			var/obj/effect/particle_effect/water/extinguisher/water = new /obj/effect/particle_effect/water/extinguisher(get_turf(src))
 			var/my_target = pick(the_targets)

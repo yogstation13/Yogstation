@@ -522,7 +522,7 @@
 		if(L.bodytemperature <= 50)
 			L.apply_status_effect(/datum/status_effect/freon)
 	MakeSlippery(TURF_WET_PERMAFROST, 50)
-	return 1
+	return TRUE
 
 /turf/open/proc/water_vapor_gas_act()
 	MakeSlippery(TURF_WET_WATER, min_wet_time = 100, wet_time_to_add = 50)
@@ -540,18 +540,18 @@
 
 /turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, stun_amount, force_drop)
 	if(C.movement_type & FLYING)
-		return 0
+		return FALSE
 	if(has_gravity(src))
 		var/obj/buckled_obj
 		if(C.buckled)
 			buckled_obj = C.buckled
 			if(!(lube&GALOSHES_DONT_HELP)) //can't slip while buckled unless it's lube.
-				return 0
+				return FALSE
 		else
 			if(!(lube&SLIP_WHEN_CRAWLING) && (!(C.mobility_flags & MOBILITY_STAND) || !(C.status_flags & CANKNOCKDOWN))) // can't slip unbuckled mob if they're lying or can't fall.
-				return 0
+				return FALSE
 			if(C.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
-				return 0
+				return FALSE
 		if(!(lube&SLIDE_ICE))
 			to_chat(C, span_notice("You slipped[ O ? " on the [O.name]" : ""]!"))
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
@@ -573,13 +573,13 @@
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE
 
-		if(lube&SLIDE)
-			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 4), 1, FALSE, CALLBACK(C, /mob/living/carbon/.proc/spin, 1, 1))
+		var/turf/target = get_ranged_target_turf(C, olddir, 4)
+		if(lube & SLIDE)
+			C.AddComponent(/datum/component/force_move, target, TRUE)
 		else if(lube&SLIDE_ICE)
-			if(C.force_moving) //If we're already slipping extend it
-				qdel(C.force_moving)
-			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
-		return 1
+			C.AddComponent(/datum/component/force_move, target, FALSE)//spinning would be bad for ice, fucks up the next dir
+		
+		return TRUE
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)
 	AddComponent(/datum/component/wet_floor, wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)

@@ -44,7 +44,7 @@
 	// failed to path correctly so just try to head straight for a bit
 	walk_to(src,get_turf(target),0,5)
 	sleep(1)
-	walk_to(src,0)
+	SSmove_manager.stop_looping(src)
 
 	return 0
 
@@ -333,7 +333,7 @@
 	target = null
 	a_intent = INTENT_HELP
 	frustration = 0
-	walk_to(src,0)
+	SSmove_manager.stop_looping(src)
 
 // attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
 /mob/living/carbon/monkey/proc/monkey_attack(mob/living/L)
