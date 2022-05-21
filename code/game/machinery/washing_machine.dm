@@ -85,7 +85,7 @@
 		if(istype(X,/obj/item/stack/spacecash) && !moneylaundering && launderer) 
 			moneylaundering = TRUE
 			alertradio.set_frequency(FREQ_SECURITY)
-			alertradio.talk_into(src, "SECURITY ALERT: Crewmember [launderer] recorded attempting to launder space cash in [get_area(src)]. Please watch for embezzlement.", FREQ_SECURITY)
+			alertradio.talk_into(src, "SECURITY ALERT: Crewmember [launderer] recorded attempting to launder space cash in [get_area(src)]. Please watch for misuse.", FREQ_SECURITY)
 	moneylaundering = FALSE
 	busy = FALSE
 	if(color_source)
