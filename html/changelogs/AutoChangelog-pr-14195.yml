@@ -1,0 +1,5 @@
+author: "cuackles"
+delete-after: true 
+changes: 
+  - rscadd: "Added new ckey donor exclusive item"
+  - imageadd: "added some icons and images  for said donor item"
