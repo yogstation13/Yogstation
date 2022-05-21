@@ -20387,6 +20387,25 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"kwH" = (
+/obj/structure/table/glass,
+/obj/machinery/cell_charger,
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/machinery/vending/wallmed{
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "kxF" = (
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
@@ -27933,22 +27952,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"ojl" = (
-/obj/structure/table/glass,
-/obj/machinery/cell_charger,
-/obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = -5;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/glass/bottle/charcoal{
-	pixel_x = 6;
-	pixel_y = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "ojo" = (
 /obj/machinery/atmospherics/pipe/manifold/green/visible,
 /turf/open/floor/plasteel,
@@ -76489,7 +76492,7 @@ xTy
 uVe
 sca
 cwL
-ojl
+kwH
 kEF
 kEF
 lbU
@@ -77247,7 +77250,7 @@ oWT
 oWT
 oWT
 oWT
-iJQ
+dog
 dog
 uWZ
 qEq
@@ -77504,7 +77507,7 @@ sKY
 sKY
 sKY
 sKY
-iJQ
+dog
 obj
 vwk
 gdB
@@ -77761,7 +77764,7 @@ ffR
 lbB
 fvM
 sKY
-iJQ
+dog
 fZb
 tiZ
 kXG
@@ -78018,7 +78021,7 @@ tfw
 pjx
 xjR
 sKY
-iJQ
+dog
 dog
 dog
 ufp
