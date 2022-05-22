@@ -52,6 +52,10 @@
 		cool_name()
 
 /mob/living/simple_animal/hunter/AttackingTarget()
+	if(istype(target, /obj/machinery/door/airlock))
+		pry_door(target)
+		return
+
 	if(isliving(target))
 		if(last_target != target)
 			attack_streak = 0
@@ -138,3 +142,15 @@
 
 #undefine DEMONSHIT_RANGE
 
+/mob/living/simple_animal/hunter/proc/pry_door(target)
+	var/obj/machinery/door/airlock/prying_door = target
+	visible_message(span_warning("[src] begins prying open the airlock..."),
+		span_notice("You begin digging your claws into the airlock..."),
+		span_warning("You hear groaning metal..."),)
+	playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, vary = TRUE)
+	if(!prying_door.density || prying_door.locked || prying_door.welded)
+		prying_door.open()
+	else
+		prying_door. take_damage(500, BRUTE, MELEE, 1) ///Die!!!
+		visible_message(span_danger("[src] destroys [prying_door]!"), \
+		span_userdanger("[src] destroys [prying_door]!"), null, COMBAT_MESSAGE_RANGE)
