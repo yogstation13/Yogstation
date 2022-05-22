@@ -47507,11 +47507,11 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
-"nVL" = (
+"nWg" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/prison/hallway";
 	dir = 4;
-	name = "Prison Wing APC";
+	name = "Prison Wing Hallway APC";
 	pixel_x = 24
 	},
 /obj/effect/turf_decal/tile/red{
@@ -96331,7 +96331,7 @@ agJ
 qZY
 bAL
 acd
-nVL
+nWg
 wKR
 gUZ
 apU
