@@ -151,6 +151,7 @@
 	if(!prying_door.density || prying_door.locked || prying_door.welded)
 		prying_door.open()
 	else
-		prying_door. take_damage(500, BRUTE, MELEE, 1) ///Die!!!
-		visible_message(span_danger("[src] destroys [prying_door]!"), \
-		span_userdanger("[src] destroys [prying_door]!"), null, COMBAT_MESSAGE_RANGE)
+		if(do_after(src, 2 SECONDS, prying_door))
+			prying_door. take_damage(666, BRUTE, MELEE, 1) ///Die!!!
+				visible_message(span_danger("[src] destroys [prying_door]!"), \
+			span_userdanger("[src] destroys [prying_door]!"), null, COMBAT_MESSAGE_RANGE)
