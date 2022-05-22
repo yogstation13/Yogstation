@@ -26243,6 +26243,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"dpI" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/prison/hallway";
+	dir = 4;
+	name = "Prison Wing Hallway APC";
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison/hallway)
 "dpO" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -47507,28 +47529,6 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
-"nWg" = (
-/obj/machinery/power/apc{
-	areastring = "/area/security/prison/hallway";
-	dir = 4;
-	name = "Prison Wing Hallway APC";
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison/hallway)
 "nWl" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -96331,7 +96331,7 @@ agJ
 qZY
 bAL
 acd
-nWg
+dpI
 wKR
 gUZ
 apU
