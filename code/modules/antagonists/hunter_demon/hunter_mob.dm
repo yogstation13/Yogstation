@@ -48,14 +48,12 @@
 
 /mob/living/simple_animal/hunter/AttackingTarget()
 	if(isliving(target))
-		if(last_target == target)
-			attack_streak++
-		else
+		if(last_target != target)
 			attack_streak = 0
-		last_target = target
-	if(ishuman(target))
+	if(prey==target)
 		var/mob/living/carbon/human/dude = target
-		if(prey == dude)
+		if(dude.stat != UNCONSCIOUS && dude.stat != DEAD)
+		
 	.=..()
 	if((isliving(target)))
 			heal_bodypart_damage(5)
