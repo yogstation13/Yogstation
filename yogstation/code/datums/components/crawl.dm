@@ -1,5 +1,3 @@
-GLOBAL_LIST_EMPTY(puke)
-
 /obj/effect/dummy/crawling
 	name = "THESE WOUNDS, THEY WILL NOT HEAL"
 	icon = 'icons/effects/effects.dmi'
