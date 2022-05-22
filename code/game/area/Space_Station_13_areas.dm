@@ -850,10 +850,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#b12527"
 	airlock_wires = /datum/wires/airlock/security
 
-/area/security/main
-	name = "Security Office"
-	icon_state = "security"
-	
 /area/security/interrogation
 	name = "Interrogation"
 	icon_state = "security"
