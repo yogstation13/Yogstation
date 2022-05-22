@@ -1,0 +1,6 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "Carbons can now be embedded with objects."
+  - tweak: "Removing embedded objects now uses a radial menu."
+  - tweak: "Embeds now respect armor."
