@@ -878,3 +878,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
+/**
+  *	Called when this object is first embedded into a carbon
+  */
+/obj/item/proc/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	return TRUE
+
+/**
+  *	Called when this object is no longer embedded into a carbon	
+  */
+/obj/item/proc/on_embed_removal(mob/living/carbon/human/embedde)
+	return TRUE
+
+/**
+  *	Called every life tick when the object is embedded in a carbon	
+  */
+/obj/item/proc/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	return
