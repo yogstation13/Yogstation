@@ -73,7 +73,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		return FALSE
 	if(istype(M.current, /mob/living/carbon))
 		var/mob/living/carbon/C = M.current
-		if(C.handcuffed)
+		if(C.handcuffed && (C.buckled || C.pulledby)) // If handcuffed and being pulled/buckled
 			return FALSE
 	return location.onCentCom() || location.onSyndieBase()
 
