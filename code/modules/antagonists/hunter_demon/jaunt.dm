@@ -8,7 +8,6 @@
 
 /mob/living/simple_animal/hunter/bloodpool_sink()
 	var/turf/mobloc = get_turf(src.loc)
-
 	src.visible_message(span_warning("[src] warps out of the reality!"))
 	playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 50, 1, -1)
 	var/obj/effect/dummy/phased_mob/holder = new /obj/effect/dummy/phased_mob(mobloc)
@@ -25,8 +24,6 @@
 		return 0
 	var/turf/turfo = get_turf(src)
 	B.visible_message(span_warning("The reality begins to shatter around you!"))
-	if(!do_after(src, 2 SECONDS, target = turfo))
-		return
 	forceMove(turfo)
 	src.client.eye = src
 	src.visible_message(span_warning("<B>[src] warps into reality!</B>"))
