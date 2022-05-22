@@ -105,9 +105,11 @@
 	.=..()
 	if((isliving(target)))
 			heal_bodypart_damage(10)
-			if(prob(20 + attack_streak*10))
+			if(prob(20 + attack_streak*5))
 				var/mob/living/guy = target
 				guy.adjustBruteLoss(10)
+				var/atom/throw_target = get_edge_target_turf(guy, dir)
+				guy.throw_at(throw_target, rand(1,2), 7, src)
 				attack_streak = 0
 			else
 				attack_streak++
