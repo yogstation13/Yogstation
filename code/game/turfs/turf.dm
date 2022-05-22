@@ -68,7 +68,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(requires_activation)
 		CALCULATE_ADJACENT_TURFS(src)
 		SSair.add_to_active(src)
-
+	if(color)
+		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
+	
 	if (light_power && light_range)
 		update_light()
 
@@ -85,7 +87,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		has_opaque_atom = TRUE
 
 	ComponentInitialize()
-
+	if(color)
+		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	return INITIALIZE_HINT_NORMAL
 
 /turf/proc/Initalize_Atmos(times_fired)
@@ -346,7 +349,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		M.adjustBruteLoss(damage)
 		M.Unconscious(damage * 4)
 	for(var/obj/mecha/M in src)
-		M.take_damage(damage*2, BRUTE, "melee", 1)
+		M.take_damage(damage*2, BRUTE, MELEE, 1)
 
 /turf/proc/Bless()
 	new /obj/effect/blessing(src)
@@ -404,18 +407,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 /turf/proc/visibilityChanged()
 	GLOB.cameranet.updateVisibility(src)
-	// The cameranet usually handles this for us, but if we've just been
-	// recreated we should make sure we have the cameranet vis_contents.
-	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
-	if(C)
-		if(C.obscuredTurfs[src])
-			vis_contents += GLOB.cameranet.vis_contents_objects
-		else
-			vis_contents -= GLOB.cameranet.vis_contents_objects
 
 /turf/proc/burn_tile()
+	return
 
 /turf/proc/is_shielded()
+	return
 
 /turf/contents_explosion(severity, target)
 	for(var/thing in contents)

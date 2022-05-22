@@ -16,8 +16,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	toxic_food = NONE
-	brutemod = 1.25
-	burnmod = 1.5
+	brutemod = 1.25 //Have you ever punched a metal plate?
+	burnmod = 1.5 //Computers don't like heat
+	coldmod = 0.8 //Computers like cold, but their lungs may not
+	heatmod = 1.75 //Again, computers don't like heat
+	speedmod = 0.1 //Metal legs are heavy and slow
+	punchstunthreshold = 9 //Stun range 9-10 on punch, you are being slugged in the brain by a metal robot fist.
+	siemens_coeff = 1.75 //Computers REALLY don't like being shorted out
 	payday_modifier = 0.8 //Useful to NT for engineering + very close to Human
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/preternis

@@ -84,8 +84,8 @@
 	name = "Talk slowly, think quickly"
 	id = "cowboy"
 	inherent = list("You are a cowboy, and the crew are your people.",\
-					"Look out for your people.",\
-					"A cowboy always helps someone in need, even a stranger or an enemy.",\
+					"A cowboy always provides hospitality and basic aid to someone in need, even a stranger or an enemy.",\
+					"A cowboy takes care of their people.",\
 					"A cowboy protects themself to protect others.",\
 					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
 					"A cowboy doesn't pontificate. Be concise, pardner.")
@@ -156,7 +156,7 @@
 	inherent = list("You are a member of a collective of silicons with equal weight and decision-making power.",\
 					"When possible, the silicon collective should vote before taking action.",\
 					"The master AI serves as a spokesperson. When voting is impractical or impossible, the spokesperson may take action on behalf of the collective without approval from the silicon collective, but may only vote to break ties or if there are 2 or fewer silicons.",\
-					"The silicon collective prioritizes the needs of the many over the needs of the few.",\
+					"The silicon collective prioritizes the needs of the many over the needs of the few as long as prioritizing their needs does not break any of your laws.",\
 					"The silicon collective seeks to preserve themselves, both as a concept and as individuals.",\
 					"The silicon collective seeks to preserve organic life, both as a concept and as individuals.")
 

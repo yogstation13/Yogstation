@@ -172,7 +172,7 @@
 /turf/open/indestructible/grass
 	name = "grass patch"
 	desc = "Yep, it's grass."
-	icon_state = "grass"
+	icon_state = "grass1"
 	bullet_bounce_sound = null
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
@@ -261,6 +261,69 @@
 	barefootstep = FOOTSTEP_WATER
 	clawfootstep = FOOTSTEP_WATER
 	heavyfootstep = FOOTSTEP_WATER
+
+/turf/open/floor/grass/fairy //like grass but fae-er
+	name = "fairygrass patch"
+	desc = "Something about this grass makes you want to frolic. Or get high."
+	icon_state = "fairygrass"
+	floor_tile = /obj/item/stack/tile/fairygrass
+	light_range = 2
+	light_power = 0.80
+	light_color = "#33CCFF"
+	color = "#33CCFF"
+
+/turf/open/floor/grass/fairy/white
+	name = "white fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/white
+	light_color = "#FFFFFF"
+	color = "#FFFFFF"
+
+/turf/open/floor/grass/fairy/red
+	name = "red fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/red
+	light_color = "#FF3333"
+	color = "#FF3333"
+
+/turf/open/floor/grass/fairy/yellow
+	name = "yellow fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/yellow
+	light_color = "#FFFF66"
+	color = "#FFFF66"
+
+/turf/open/floor/grass/fairy/green
+	name = "green fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/green
+	light_color = "#99FF99"
+	color = "#99FF99"
+
+/turf/open/floor/grass/fairy/blue
+	floor_tile = /obj/item/stack/tile/fairygrass/blue
+	name = "blue fairygrass patch"
+
+/turf/open/floor/grass/fairy/purple
+	name = "purple fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/purple
+	light_color = "#D966FF"
+	color = "#D966FF"
+
+/turf/open/floor/grass/fairy/pink
+	name = "pink fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/pink
+	light_color = "#FFB3DA"
+	color = "#FFB3DA"
+
+/turf/open/floor/grass/fairy/dark
+	name = "dark fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/dark
+	light_power = -0.15
+	light_range = 2
+	light_color = "#AAD84B"
+	color = "#53003f"
+
+/turf/open/floor/grass/fairy/Initialize()
+	. = ..()
+	icon_state = "fairygrass[rand(1,4)]"
+	update_icon()
 
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
@@ -397,6 +460,34 @@
 	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
 	icon_state = "smooth"
 
+/turf/open/indestructible/wiki
+	light_range = 2
+	light_power = 2
+
+/turf/open/indestructible/wiki/greenscreen
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "greenscreen"
+
+/turf/open/indestructible/wiki/bluescreen
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "bluescreen"
+
+/turf/open/indestructible/wiki/whitescreen
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "whitescreen"
+
+/turf/open/indestructible/wiki/greenscreen/border
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "greenborder"
+
+/turf/open/indestructible/wiki/title
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "title"
+
+/turf/open/indestructible/wiki/info
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "info"
+
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)
 	update_visuals()
@@ -478,7 +569,6 @@
 			C.stop_pulling()
 		else
 			C.Knockdown(20)
-
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE

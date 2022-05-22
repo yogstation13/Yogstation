@@ -13,7 +13,7 @@
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 70, "acid" = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 10, RAD = 0, FIRE = 70, ACID = 50)
 	strip_delay = 70
 	resistance_flags = NONE
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
@@ -28,7 +28,7 @@
 	desc = "High speed, no drag combat boots."
 	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 50)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 30, RAD = 30, FIRE = 90, ACID = 50)
 
 /obj/item/clothing/shoes/sandal
 	desc = "A pair of rather plain wooden sandals."
@@ -59,7 +59,7 @@
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 75)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 75)
 	can_be_bloody = FALSE
 	custom_price = 100
 
@@ -431,7 +431,7 @@
 	name = "lizard skin boots"
 	desc = "You can hear a faint hissing from inside the boots; you hope it is just a mournful ghost."
 	icon_state = "lizardboots_green"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 0) //lizards like to stay warm
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 0) //lizards like to stay warm
 
 /obj/item/clothing/shoes/cowboy/lizard/masterwork
 	name = "\improper Hugs-The-Feet lizard skin boots"
@@ -488,6 +488,39 @@
 	item_state = "footwraps_c"
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
 	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+
+/obj/item/clothing/shoes/xeno_wraps/engineering
+	name = "engineering footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, specially made for the frequent glass treader."
+	icon_state = "footwraps_e"
+	item_state = "footwraps_e"
+	xenoshoe = YES_DIGIT 
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/shoes/xeno_wraps/science
+	name = "science footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, to reduce fatigue when standing at a console all day."
+	icon_state = "footwraps_sc"
+	item_state = "footwraps_sc"
+	xenoshoe = YES_DIGIT 
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/shoes/xeno_wraps/medical
+	name = "medical footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, for when you dont want other people's blood all over your feet."
+	icon_state = "footwraps_m"
+	item_state = "footwraps_m"
+	xenoshoe = YES_DIGIT
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/shoes/xeno_wraps/cargo
+	name = "cargo footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, with reinforcment to protect against falling crates."
+	icon_state = "footwraps_ca"
+	item_state = "footwraps_ca"
+	xenoshoe = YES_DIGIT 
+	mutantrace_variation = MUTANTRACE_VARIATION
+
 
 /obj/item/clothing/shoes/airshoes
 	name = "air shoes"

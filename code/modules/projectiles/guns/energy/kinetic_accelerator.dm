@@ -177,7 +177,7 @@
 	icon_state = null
 	damage = 40
 	damage_type = BRUTE
-	flag = "bomb"
+	flag = BOMB
 	range = 3
 	log_override = TRUE
 	var/power = 1
@@ -408,7 +408,10 @@
 	if(modifier)
 		for(var/mob/living/L in range(1, target_turf) - K.firer - target)
 			var/armor = L.run_armor_check(K.def_zone, K.flag, "", "", K.armour_penetration)
-			L.apply_damage(K.damage*modifier, K.damage_type, K.def_zone, armor)
+			var/effective_modifier = modifier
+			if(K.pressure_decrease_active)
+				effective_modifier *= K.pressure_decrease
+			L.apply_damage(K.damage*effective_modifier, K.damage_type, K.def_zone, armor)
 			to_chat(L, span_userdanger("You're struck by a [K.name]!"))
 
 /obj/item/borg/upgrade/modkit/aoe/turfs
@@ -439,7 +442,7 @@
 	name = "rapid repeater"
 	desc = "Quarters the kinetic accelerator's cooldown on striking a living target, but greatly increases the base cooldown."
 	denied_type = /obj/item/borg/upgrade/modkit/cooldown/repeater
-	modifier = -14 //Makes the cooldown 3 seconds(with no cooldown mods) if you miss. Don't miss.
+	modifier = 1.875 //Makes the cooldown 3 seconds(with no cooldown mods) if you miss. Don't miss.
 	cost = 50
 
 /obj/item/borg/upgrade/modkit/cooldown/repeater/projectile_strike_predamage(obj/item/projectile/kinetic/K, turf/target_turf, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
@@ -490,7 +493,7 @@
 	name = "death syphon"
 	desc = "Killing or assisting in killing a creature permanently increases your damage against that type of creature."
 	denied_type = /obj/item/borg/upgrade/modkit/bounty
-	modifier = 1.25
+	modifier = 5
 	cost = 30
 	var/maximum_bounty = 25
 	var/list/bounties_reaped = list()
@@ -519,7 +522,7 @@
 /obj/item/borg/upgrade/modkit/bounty/proc/get_kill(mob/living/L)
 	var/bonus_mod = 1
 	if(ismegafauna(L)) //megafauna reward
-		bonus_mod = 4
+		bonus_mod = 5
 	if(!bounties_reaped[L.type])
 		bounties_reaped[L.type] = min(modifier * bonus_mod, maximum_bounty)
 	else

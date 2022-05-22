@@ -10,7 +10,13 @@
 	mutantstomach = /obj/item/organ/stomach/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
-	brutemod = 1.25 //They're weak to punches
+	brutemod = 1.5 //Don't rupture their membranes
+	burnmod = 0.8 //Bodies are resilient to heat and energy
+	heatmod = 0.5 //Bodies are resilient to heat and energy
+	coldmod = 2.0 //Don't extinguish the stars
+	speedmod = -0.1 //Light and energy move quickly
+	punchdamagehigh  = 11 //Fire hand more painful
+	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
 	payday_modifier = 0.7 //Neutrally useful to NT
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays

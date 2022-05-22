@@ -722,12 +722,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"fG" = (
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "fJ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -964,6 +958,13 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance)
+"iP" = (
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/machinery/papershredder,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "iQ" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -1066,22 +1067,6 @@
 	icon_state = "panelscorched"
 	},
 /area/mine/storage)
-"kj" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "kA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
@@ -1191,6 +1176,15 @@
 "lN" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"lO" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/railing/corner,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "lP" = (
@@ -1690,14 +1684,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"ur" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "us" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	name = "Waste to Filters";
@@ -1749,16 +1735,6 @@
 "vl" = (
 /turf/closed/wall,
 /area/mine/eva)
-"vn" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "vC" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 30
@@ -1894,6 +1870,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
+"xx" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "xD" = (
 /obj/machinery/atmospherics/components/trinary/mixer/on{
 	dir = 4;
@@ -3247,16 +3242,7 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"QP" = (
-/obj/structure/table,
-/obj/item/book/random,
-/turf/open/floor/plasteel/freezer,
-/area/mine/living_quarters)
-"QQ" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
-"QU" = (
+"QH" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
@@ -3272,8 +3258,20 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+/obj/structure/railing/corner{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"QP" = (
+/obj/structure/table,
+/obj/item/book/random,
+/turf/open/floor/plasteel/freezer,
+/area/mine/living_quarters)
+"QQ" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
 "Rl" = (
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
@@ -3478,6 +3476,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"Ux" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "Uy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -4443,7 +4454,7 @@ wV
 fD
 iy
 ft
-ur
+lO
 ba
 ba
 ba
@@ -4451,7 +4462,7 @@ Qc
 cr
 ba
 ba
-kj
+xx
 Vp
 zW
 VP
@@ -4695,7 +4706,7 @@ tQ
 Xo
 sU
 zK
-vn
+Ux
 OU
 OU
 pk
@@ -4703,7 +4714,7 @@ fC
 OU
 OU
 OU
-QU
+QH
 WT
 zW
 VP
@@ -4788,7 +4799,7 @@ Yj
 kD
 iC
 vS
-fG
+iP
 zW
 kD
 mr

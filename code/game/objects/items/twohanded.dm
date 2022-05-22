@@ -245,7 +245,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 	max_integrity = 200
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
 	wound_bonus = -15
 	bare_wound_bonus = 20
@@ -269,10 +269,10 @@
 	if(wielded) //destroys windows and grilles in one hit
 		if(istype(A, /obj/structure/window))
 			var/obj/structure/window/W = A
-			W.take_damage(W.max_integrity*2, BRUTE, "melee", 0)
+			W.take_damage(W.max_integrity*2, BRUTE, MELEE, 0)
 		else if(istype(A, /obj/structure/grille))
 			var/obj/structure/grille/G = A
-			G.take_damage(G.max_integrity*2, BRUTE, "melee", 0)
+			G.take_damage(G.max_integrity*2, BRUTE, MELEE, 0)
 
 /*
  * Metal Hydrogen Axe
@@ -291,6 +291,7 @@
  * Double-Bladed Energy Swords - Cheridan
  */
 /obj/item/twohanded/dualsaber
+	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "dualsaber0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -312,7 +313,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	block_chance = 75
 	max_integrity = 200
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 70)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
 	resistance_flags = FIRE_PROOF
 	wound_bonus = -10
 	bare_wound_bonus = 20
@@ -481,6 +482,7 @@
 
 //spears
 /obj/item/twohanded/spear
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "spearglass0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -502,7 +504,7 @@
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
 	sharpness = SHARP_EDGED
 	max_integrity = 200
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 	break_message = "%SRC's cable binding suddenly snaps"
 	var/war_cry = "AAAAARGH!!!"
 	var/icon_prefix = "spearglass"
@@ -537,9 +539,9 @@
 /obj/item/twohanded/spear/CheckParts(list/parts_list)
 	var/obj/item/shard/tip = locate() in parts_list
 	if (istype(tip, /obj/item/shard/plasma))
-		force_wielded = 1
+		force_wielded += 1
 		force += 1
-		throwforce = 21
+		throwforce += 1
 		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
 		alternate_worn_icon = 'yogstation/icons/mob/back.dmi' //yogs
 		icon_prefix = "spearplasma"
@@ -704,6 +706,7 @@
 			M.GiveTarget(L)
 
 /obj/item/twohanded/pitchfork
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "pitchfork0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -717,7 +720,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_POINTY
 	max_integrity = 200
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
 
 /obj/item/twohanded/pitchfork/trident
@@ -789,6 +792,7 @@
 //HF blade
 
 /obj/item/twohanded/vibro_weapon
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "hfrequency0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -843,6 +847,7 @@
  * Bone Spear
  */
 /obj/item/twohanded/bonespear	//Blatant imitation of spear, but made out of bone. Not valid for explosive modification.
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "bone_spear0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -867,6 +872,7 @@
 	icon_state = "bone_spear[wielded]"
 
 /obj/item/twohanded/bonespear/chitinspear //like a mix of a bone spear and bone axe, but more like a bone spear. And better.
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "chitin_spear0"
 	name = "chitin spear"
 	desc = "A well constructed spear with a sharpened edge akin to a naginata, making it equally great for slicing and throwing."
@@ -924,6 +930,7 @@
 		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
 
 /obj/item/twohanded/bamboospear
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "bamboo_spear0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'

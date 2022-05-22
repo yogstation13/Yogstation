@@ -6,7 +6,7 @@
 	layer = SHUTTER_LAYER
 	closingLayer = SHUTTER_LAYER
 	damage_deflection = 20
-	armor = list("melee" = 50, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
+	armor = list(MELEE = 50, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 70)
 
 /obj/machinery/door/poddoor/shutters/preopen
 	icon_state = "open"

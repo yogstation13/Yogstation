@@ -202,8 +202,11 @@
 	if(!ishuman(user))
 		return ..()
 	var/mob/living/carbon/human/human_user = user
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(IS_HERETIC(human_user))
-		to_chat(human_user,span_boldwarning("You know better than to tempt forces out of your control!"))
+		to_chat(human_user, span_boldwarning("You know better than to tempt forces out of your control!"))
+	if(IS_BLOODSUCKER(human_user) || bloodsuckerdatum.my_clan == CLAN_LASOMBRA)
+		to_chat(human_user, span_boldwarning("This shard has already been harvested!"))
 	else
 		var/obj/item/bodypart/arm = human_user.get_active_hand()
 		if(prob(25))
@@ -349,7 +352,7 @@
 	return TRUE
 
 /datum/status_effect/brazil_penance/tick()
-	if(!penance_left)
+	if(penance_left <= 0)
 		apply_effects()
 		qdel(src)
 
@@ -399,7 +402,7 @@
 
 /datum/status_effect/brazil_penance/on_remove()
 	. = ..()
-	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar.</span>")
+	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar, with no recollection of your death prior to entering that strange place.</span>")
 	owner.Unconscious(2 SECONDS, ignore_canstun = TRUE)
 	var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
 	if(safe_turf)

@@ -225,6 +225,8 @@
 		. += "[seperator]AUTOLOGIN"
 	if(rights & R_DBRANKS)
 		. += "[seperator]DBRANKS"
+	if(rights & R_DEV)
+		. += "[seperator]DEV"
 	if(!.)
 		. = "NONE"
 	return .
@@ -581,9 +583,9 @@
 		switch(child)
 			if(/datum)
 				return null
-			if(/obj || /mob)
+			if(/obj, /mob)
 				return /atom/movable
-			if(/area || /turf)
+			if(/area, /turf)
 				return /atom
 			else
 				return /datum

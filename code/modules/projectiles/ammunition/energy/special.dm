@@ -5,7 +5,7 @@
 
 /obj/item/ammo_casing/energy/ion/hos
 	projectile_type = /obj/item/projectile/ion/weak
-	e_cost = 300
+	e_cost = 250
 
 /obj/item/ammo_casing/energy/declone
 	projectile_type = /obj/item/projectile/energy/declone

@@ -262,6 +262,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Central Primary Hallway"
 	icon_state = "hallC"
 
+/area/hallway/primary/aft_starboard
+	name="Aft Starboard Primary Hallway"
+	icon_state = "hallAS"
+
 /area/hallway/secondary/command
 	name = "Command Hallway"
 	icon_state = "bridge_hallway"
@@ -1215,7 +1219,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	//Turret_protected
 
 /area/ai_monitored/turret_protected
-	ambientsounds = list('sound/ambience/ambimalf.ogg', 'sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg')
+	ambientsounds = list('sound/ambience/ambimalf.ogg', 'sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg', 'sound/ambience/ambimalf2.ogg')
 	minimap_color = "#00fff6"
 	airlock_wires = /datum/wires/airlock/ai
 

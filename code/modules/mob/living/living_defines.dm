@@ -5,6 +5,8 @@
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	pressure_resistance = 10
 
+	hud_type = /datum/hud/living
+
 	var/resize = 1 //Badminnery resize
 	var/lastattacker = null
 	var/lastattackerckey = null
@@ -102,6 +104,7 @@
 	var/slurring = 0
 	var/cultslurring = 0
 	var/derpspeech = 0
+	var/lizardspeech = 0
 
 	var/list/implants = null
 
@@ -126,3 +129,6 @@
 
 	//Allergies
 	var/allergies
+
+	//Last item/projectile that damaged this mob, not including surgery
+	var/last_damage = ""

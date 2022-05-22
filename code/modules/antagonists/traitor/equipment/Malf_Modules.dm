@@ -36,8 +36,6 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	var/auto_use_uses = TRUE
 	/// If applicable, the time in deciseconds we have to wait before using any more modules
 	var/cooldown_period
-	//Can our uses be recharged using CPU in the reworked AI system?
-	var/can_be_recharged = FALSE
 
 /datum/action/innate/ai/New()
 	. = ..()
@@ -195,6 +193,9 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		to_chat(owner, span_warning("You must be in your core to do this!"))
 		return
 	if(alert(owner, "Send arming signal? (true = arm, false = cancel)", "purge_all_life()", "confirm = TRUE;", "confirm = FALSE;") != "confirm = TRUE;")
+		return
+	if(!isaicore(owner.loc))
+		to_chat(owner, span_warning("You must be in your core to do this!"))
 		return
 	if (active)
 		return //prevent the AI from activating an already active doomsday
