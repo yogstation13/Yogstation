@@ -126,4 +126,15 @@
  	visible_message("<span class='notice'>Your name is now <span class='name'>[cool_demon_name]</span>.</span>")
  	fully_replace_character_name(null, cool_demon_name)
 
+#define DEMONSHIT_RANGE 4
+
+/mob/living/simple_animal/hunter/proc/check_shit()
+	var/sex = FALSE
+	if(get_dist(get_turf(src), get_turf(orb)) <= DEMONSHIT_RANGE)
+		sex = TRUE
+	if(get_dist(get_turf(src), get_turf(target)) <= DEMONSHIT_RANGE)
+		sex = TRUE
+	return sex
+
+#undefine DEMONSHIT_RANGE
 
