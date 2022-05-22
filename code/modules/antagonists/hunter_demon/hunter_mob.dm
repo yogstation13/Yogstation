@@ -80,7 +80,11 @@
 				dude.adjustBruteLoss(10)
 				playsound(loc, "punch", 25, 1, -1)
 				visible_message(span_danger("[src] has punched [dude]!"), \
-				span_userdanger("[src] has punched [dude]!"), null, COMBAT_MESSAGE_RANGE)
+					span_userdanger("[src] has punched [dude]!"), null, COMBAT_MESSAGE_RANGE)
+		else
+			///jaunt out related shit here. I didn't do that ability yet, so yeah...
+			visible_message(span_danger("[src] grabs [dude], and prepares to jaunt out!"), \
+				span_userdanger("[src] grabs [dude], preparing to jaunt out!"), null, COMBAT_MESSAGE_RANGE)
 
 	.=..()
 	if((isliving(target)))
