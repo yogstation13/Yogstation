@@ -1465,10 +1465,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	playsound(T,'sound/magic/warpwhistle.ogg', 200, 1)
 	user.mobility_flags &= ~MOBILITY_MOVE
 	new /obj/effect/temp_visual/tornado(T)
-	sleep(20)
+	sleep(2 SECONDS)
 	user.invisibility = INVISIBILITY_MAXIMUM
 	user.status_flags |= GODMODE
-	sleep(20)
+	sleep(2 SECONDS)
 	var/breakout = 0
 	while(breakout < 50)
 		var/turf/potential_T = find_safe_turf()
@@ -1479,11 +1479,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			break
 		breakout += 1
 	new /obj/effect/temp_visual/tornado(T)
-	sleep(20)
+	sleep(2 SECONDS)
 	user.invisibility = initial(user.invisibility)
 	user.status_flags &= ~GODMODE
 	user.update_mobility()
-	sleep(40)
+	sleep(4 SECONDS)
 
 /datum/admins/proc/cmd_create_wiki()
 	set category = "Misc"
