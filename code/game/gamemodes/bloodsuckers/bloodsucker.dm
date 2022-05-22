@@ -28,6 +28,7 @@
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
+
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
@@ -54,8 +55,8 @@
 
 /datum/game_mode/bloodsucker/generate_report()
 	return "There's been a report of the undead roaming around the sector, especially those that display Vampiric abilities.\
-			They've displayed the ability to disguise themselves as anyone and brainwash the minds of people they capture alive.\
-			Please take care of the crew and their health, as it is impossible to tell if one is lurking in the darkness behind."
+			 They've displayed the ability to disguise themselves as anyone and brainwash the minds of people they capture alive.\
+			 Please take care of the crew and their health, as it is impossible to tell if one is lurking in the darkness behind."
 
 /datum/game_mode/bloodsucker/make_antag_chance(mob/living/carbon/human/character)
 	var/bloodsuckercap = min(round(GLOB.joined_player_list.len / (3 * 4)) + 2, round(GLOB.joined_player_list.len / 2))

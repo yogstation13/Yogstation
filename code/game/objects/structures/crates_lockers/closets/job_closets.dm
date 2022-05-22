@@ -310,7 +310,7 @@
 	new /obj/item/storage/backpack/satchel/explorer(src)
 
 /obj/structure/closet/wardrobe/tcomms
-	name = "signal tech wardrobe"
+	name = "network admin wardrobe"
 	icon = 'yogstation/icons/obj/closet.dmi'
 	icon_state = "sigtech"
 	icon_door = "sigtech"
@@ -322,6 +322,6 @@
 	new /obj/item/storage/backpack/industrial(src)
 	new /obj/item/storage/backpack/satchel/eng(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms(src)
-	new /obj/item/clothing/under/yogs/rank/signal_tech(src)
+	new /obj/item/clothing/under/yogs/rank/network_admin(src)
 	new /obj/item/clothing/shoes/workboots(src)
-	new /obj/item/clothing/under/yogs/rank/signal_tech/skirt(src)
+	new /obj/item/clothing/under/yogs/rank/network_admin/skirt(src)

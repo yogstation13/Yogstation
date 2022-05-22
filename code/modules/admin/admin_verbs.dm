@@ -157,7 +157,7 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
 	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
-	///client/proc/dump_memory_usage,
+	/client/proc/dump_memory_usage,
 	/client/proc/release_queue, // Yogs -- Adds some queue-manipulation verbs
 	/client/proc/toggle_cdn
 	)
@@ -768,13 +768,15 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
 
-/*/client/proc/dump_memory_usage()
+/client/proc/dump_memory_usage()
 	set name = "Dump Server Memory Usage"
 	set category = "Server"
 
-	if(!check_rights(R_SERVER))
+	if(!check_rights(R_DEV))
 		return
-
+	if(GLOB.enable_memdump == 0)
+		to_chat(world, span_userdanger("You should not be touching this without contacting developers!"))
+		return
 	if(alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", "Yes", "No") != "Yes")
 		return
 
@@ -793,7 +795,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!fexists("data/logs/memory/[fname]"))
 		to_chat(usr, span_warning("File creation failed. Please check to see if the data/logs/memory folder actually exists."))
 	else
-		to_chat(usr, span_notice("Memory dump completed."))*/
+		to_chat(usr, span_notice("Memory dump completed."))
 
 
 /client/proc/debugstatpanel()

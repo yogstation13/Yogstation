@@ -1,0 +1,4 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - tweak: "losebreath stacks are cleared on revival in addition to death for fringe cases in which they stacked despite dying. resulting in someone reviving and choking to death immediately again (coniine)"
