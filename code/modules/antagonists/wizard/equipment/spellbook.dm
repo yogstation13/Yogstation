@@ -436,7 +436,7 @@
 
 /datum/spellbook_entry/item/demon_chainsaw
 	name = "Demonic Chainsaw"
-	desc = "A demon with the form of a chainsaw, this demon desires to see you fulfill your wishes, so they shall give you eternal life as long as you feed them blood."
+	desc = "A demon that has taken the form of a chainsaw! This demon will grant you eternal life, so long as you feed it blood!"
 	item_path = /obj/item/twohanded/required/chainsaw/demon
 	cost = 3
 /datum/spellbook_entry/item/battlemage
