@@ -102,6 +102,16 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/dartsyringe
+	name = "Reagent Dart"
+	desc = "A specialized syringe that quickly inject reagent. It can hold up to 15 units."
+	id = "dartsyringe"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/glass = 2500)
+	build_path = /obj/item/reagent_containers/syringe/dart
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/bluespacebodybag
 	name = "Bluespace Body Bag"
 	desc = "A bluespace body bag, powered by experimental bluespace technology. It can hold loads of bodies and the largest of creatures."
