@@ -22,7 +22,7 @@
 			var/mob/living/simple_animal/hunter/hunterd = user
 			hunterd.attack_streak = 0
 			if(phased)	
-       				if(!hunterd.check_shit())
+				if(!hunterd.check_shit())
 					to_chat(user, span_warning("You can only warp in while near your target or your blood orb!"))
 					revert_cast()
 					return
