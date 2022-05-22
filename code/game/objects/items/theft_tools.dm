@@ -201,7 +201,7 @@
 	icon = 'icons/obj/nuke_tools.dmi'
 	icon_state = "supermatter_scalpel"
 	toolspeed = 0.5
-	damtype = FIRE
+	damtype = BURN
 	usesound = 'sound/weapons/bladeslice.ogg'
 	var/usesLeft
 
@@ -215,7 +215,7 @@
 	icon = 'icons/obj/nuke_tools.dmi'
 	icon_state = "supermatter_tongs"
 	toolspeed = 0.75
-	damtype = FIRE
+	damtype = BURN
 	var/obj/item/nuke_core/supermatter_sliver/sliver
 
 /obj/item/hemostat/supermatter/Destroy()

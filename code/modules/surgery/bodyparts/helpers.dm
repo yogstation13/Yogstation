@@ -161,6 +161,7 @@
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/L = X
 		for(var/obj/item/I in L.embedded_objects)
+			remove_embedded_object(I, T, TRUE, TRUE)
 			L.embedded_objects -= I
 			I.forceMove(T)
 
@@ -168,11 +169,11 @@
 	SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
 /mob/living/carbon/proc/has_embedded_objects()
-	. = 0
+	. = FALSE
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/L = X
 		for(var/obj/item/I in L.embedded_objects)
-			return 1
+			return TRUE
 
 
 //Helper for quickly creating a new limb - used by augment code in species.dm spec_attacked_by
