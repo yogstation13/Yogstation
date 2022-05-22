@@ -76,6 +76,11 @@
 				var/obj/item/bodypart/BP = pick(parts)
 				BP.dismember()
 				return FALSE
+			else
+				dude.adjustBruteLoss(10)
+				playsound(loc, "punch", 25, 1, -1)
+				visible_message(span_danger("[src] has punched [dude]!"), \
+				span_userdanger("[src] has punched [dude]!"), null, COMBAT_MESSAGE_RANGE)
 
 	.=..()
 	if((isliving(target)))
