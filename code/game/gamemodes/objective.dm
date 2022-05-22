@@ -71,6 +71,10 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/turf/location = get_turf(M.current)
 	if(!location || istype(location, /turf/open/floor/plasteel/shuttle/red) || istype(location, /turf/open/floor/mineral/plastitanium/red/brig)) // Fails if they are in the shuttle brig
 		return FALSE
+	if(istype(M.current, /mob/living/carbon))
+		var/mob/living/carbon/C = M.current
+		if(C.handcuffed)
+			return FALSE
 	return location.onCentCom() || location.onSyndieBase()
 
 /datum/objective/proc/check_completion()
