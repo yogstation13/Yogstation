@@ -53,7 +53,19 @@
 	if(prey==target)
 		var/mob/living/carbon/human/dude = target
 		if(dude.stat != UNCONSCIOUS && dude.stat != DEAD)
-		
+			if(HAS_TRAIT(dude, TRAIT_NODISMEMBER))
+				return ..()
+			if(prob(20) + attack_streak*10)
+				var/list/parts = list()
+				var/undismembermerable_limbs = 0
+				for(var/X in C.bodyparts)
+					var/obj/item/bodypart/BP = X
+					if(BP.body_part != HEAD && BP.body_part != CHEST)
+						if(BP.dismemberable)
+							parts += BP
+						else
+							undismembermerable_limbs++
+
 	.=..()
 	if((isliving(target)))
 			heal_bodypart_damage(5)
