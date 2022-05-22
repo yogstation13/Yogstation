@@ -1,0 +1,4 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "glowy mutation is no longer always red"
