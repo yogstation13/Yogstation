@@ -198,5 +198,5 @@
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/vermin/attack(mob/living/M, mob/user, def_zone)
-	to_chat(user, span_warning("You need to open [src]'s lid first."))
+	to_chat(user, span_warning("You need to open [src]' lid first."))
 	return FALSE
