@@ -1,6 +1,6 @@
 /obj/item/mmi
 	name = "\improper Man-Machine Interface"
-	desc = "The bland acronym- 'MMI', cloaks the true nature of this infernal machine. Nonetheless, its presense has worked its way into many Nanotrasen stations.
+	desc = "The bland acronym- 'MMI', cloaks the true nature of this infernal machine. Nonetheless, its presense has worked its way into many Nanotrasen stations."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
