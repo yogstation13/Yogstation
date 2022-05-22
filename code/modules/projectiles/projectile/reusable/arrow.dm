@@ -20,10 +20,10 @@
 	if(prob(break_chance))
 		return
 	var/obj/item/dropping = new ammo_type()
-	if(ishuman(target))
-		var/mob/living/carbon/human/embede = target
+	if(iscarbon(target))
+		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
-		if(prob(embed_chance * clamp((100 - (embede.checkarmor(part, flag) - armour_penetration)), 0, 100)) && embede.embed_object(dropping, part, TRUE))
+		if(prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)) && embede.embed_object(dropping, part, TRUE))
 			dropped = TRUE
 	
 	// Icky code, but i dont want to create a new obj, delete it, then make a new one
@@ -146,41 +146,37 @@
 /obj/item/projectile/energy/arrow
 	name = "energy bolt"
 	icon_state = "arrow_energy"
-	damage = 30
+	damage = 20
 	damage_type = BURN
+	var/embed_chance = 0.5
+	var/obj/item/embed_type = /obj/item/ammo_casing/caseless/arrow/energy
+	
+/obj/item/projectile/energy/arrow/on_hit(atom/target, blocked = FALSE)
+	..()
+	if(!blocked && ishuman(target))
+		var/mob/living/carbon/embede = target
+		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
+		if(prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)))
+			embede.embed_object(new embed_type(), part, FALSE)
 
 /obj/item/projectile/energy/arrow/disabler
 	name = "disabler bolt"
 	icon_state = "arrow_disable"
 	light_color = LIGHT_COLOR_BLUE
-	damage = 40
+	damage = 20
 	damage_type = STAMINA
-
-/*
-/obj/item/projectile/energy/arrow/pulse
-	name = "pulse bolt"
-	icon_state = "arrow_pulse"
-	light_color = LIGHT_COLOR_BLUE
-	damage = 50
-	damage_type = BURN
-
-/obj/item/projectile/energy/arrow/pulse/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
-		if(isobj(target))
-			SSexplosions.med_mov_atom += target
-		else
-			SSexplosions.medturf += target
-*/
+	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/disabler
 
 /obj/item/projectile/energy/arrow/xray
 	name = "X-ray bolt"
 	icon_state = "arrow_xray"
 	light_color = LIGHT_COLOR_GREEN
-	damage = 20
+	damage = 10
 	irradiate = 300
 	range = 20
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
+	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/xray
 
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"
+	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/clockbolt

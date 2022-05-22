@@ -241,6 +241,19 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/woodencrossbow
+	name = "Wooden Crossbow"
+	result = /obj/item/gun/ballistic/bow/crossbow
+	reqs = list(/obj/item/gun/ballistic/bow = 1,
+				/obj/item/stack/sheet/mineral/wood = 2,
+				/obj/item/stack/sheet/metal = 1,
+				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/weaponcrafting/stock = 1)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 16 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
 	result = /obj/item/gun/ballistic/shotgun/doublebarrel/improvised

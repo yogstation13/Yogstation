@@ -128,8 +128,8 @@
 	desc = "A bow with a locing mechanism that more closly resembles a modern gun."
 	icon_state = "crossbow"
 	spread = 0
-	draw_time = 3 SECONDS
-	draw_slowdown = 0
+	draw_time = 2 SECONDS
+	draw_slowdown = FALSE
 	drop_release_draw = FALSE
 	move_drawing = FALSE
 	

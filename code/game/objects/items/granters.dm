@@ -466,6 +466,7 @@
 								/datum/crafting_recipe/ash_robe/shaman,
 								/datum/crafting_recipe/ash_robe/tunic,
 								/datum/crafting_recipe/ash_robe/dress,
+								/datum/crafting_recipe/shamanash,
 								/datum/crafting_recipe/tribalmantle,
 								/datum/crafting_recipe/leathercape,
 								/datum/crafting_recipe/hidemantle)

@@ -650,10 +650,13 @@
 /obj/item/storage/belt/quiver/admin/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 100
 	STR.max_items = 100
 
 /obj/item/storage/belt/quiver/admin/full/PopulateContents()
 	for(var/arrow in typesof(/obj/item/ammo_casing/caseless/arrow))
+		if(istype(arrow, /obj/item/ammo_casing/caseless/arrow/energy))
+			continue
 		for(var/i in 1 to 10)
 			new arrow(src)
 

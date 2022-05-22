@@ -160,8 +160,21 @@
 	name = "energy bolt"
 	desc = "An arrow made from hardlight."
 	icon_state = "arrow_energy"
+	item_flags = DROPDEL
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_pain_multiplier" = 0, "embedded_pain_chance" = 0, "embedded_fall_chance" = 0)
 	projectile_type = /obj/item/projectile/energy/arrow
 	var/overlay_state = "redlight"
+
+	var/tick_damage = 1
+	var/tick_damage_type = FIRE
+	var/tick_sound = 'sound/effects/sparks4.ogg'
+
+/obj/item/ammo_casing/caseless/arrow/energy/on_embed_removal(mob/living/carbon/human/embedde)
+	qdel(src)
+
+/obj/item/ammo_casing/caseless/arrow/energy/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	playsound(embedde, tick_sound , 10, 0)
+	embedde.apply_damage(tick_damage, BB.damage_type, part.body_zone)
 
 /obj/item/ammo_casing/caseless/arrow/energy/disabler
 	name = "disabler bolt"
@@ -169,21 +182,16 @@
 	icon_state = "arrow_disable"
 	overlay_state = "disable"
 	projectile_type = /obj/item/projectile/energy/arrow/disabler
-	harmful = TRUE
-/*
-/obj/item/ammo_casing/caseless/arrow/energy/pulse
-	name = "pulse bolt"
-	desc = "An arrow made from hardlight. This one can destroy most obstructions in one hit."
-	icon_state = "arrow_pulse"
-	overlay_state = "pulse"
-	projectile_type = /obj/item/projectile/energy/arrow/pulse
-*/
+	harmful = FALSE
+	tick_damage_type = STAMINA
+	
 /obj/item/ammo_casing/caseless/arrow/energy/xray
 	name = "X-ray bolt"
 	desc = "An arrow made from hardlight. This one can pass through obstructions."
 	icon_state = "arrow_xray"
 	overlay_state = "xray"
 	projectile_type = /obj/item/projectile/energy/arrow/xray
+	tick_damage_type = TOX
 
 /obj/item/ammo_casing/caseless/arrow/energy/clockbolt
 	name = "redlight bolt"

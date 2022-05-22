@@ -28,8 +28,8 @@
 
 /datum/antagonist/ashwalker/on_gain()
 	. = ..()
-	for(var/crafting_recipe_type in list(/datum/crafting_recipe/bola_arrow, /datum/crafting_recipe/flaming_arrow, /datum/crafting_recipe/raider_leather, /datum/crafting_recipe/tribal_wraps, /datum/crafting_recipe/ash_robe, /datum/crafting_recipe/ash_robe/young, /datum/crafting_recipe/ash_robe/hunter, /datum/crafting_recipe/ash_robe/chief, /datum/crafting_recipe/ash_robe/shaman, /datum/crafting_recipe/ash_robe/tunic, /datum/crafting_recipe/ash_robe/dress, /datum/crafting_recipe/tribalmantle, /datum/crafting_recipe/leathercape, /datum/crafting_recipe/hidemantle))
-		var/datum/crafting_recipe/R = crafting_recipe_type
+	var/obj/item/book/granter/crafting_recipe/ashwalker/crafting_book
+	for(var/datum/crafting_recipe/R in crafting_book.crafting_recipe_types)
 		owner.teach_crafting_recipe(R)
 	RegisterSignal(owner.current, COMSIG_MOB_EXAMINATE, .proc/on_examinate)
 

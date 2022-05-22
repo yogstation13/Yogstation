@@ -203,15 +203,14 @@
 	result = /obj/item/clothing/under/ash_robe/dress
 	reqs = list(/obj/item/stack/sheet/cloth = 3)
 
-/*
 /datum/crafting_recipe/shamanash
 	name = "Shaman Skull"
 	result = /obj/item/clothing/head/shamanash
-	reqs = list(/obj/item/stack/sheet/cloth = 1)
+	reqs = list(/obj/item/stack/sheet/cloth = 1, 
+				/obj/item/stack/sheet/bone = 2)
 	category = CAT_APPAREL
 	subcategory = CAT_CLOTHING
 	always_availible = FALSE
-*/
 
 /datum/crafting_recipe/tribalmantle
 	name = "Ornate Mantle"
