@@ -91,10 +91,11 @@
 	if(!computer || !hard_drive || !hard_drive.store_file(downloaded_file))
 		// The download failed
 		downloaderror = "I/O ERROR - Unable to save file. Check whether you have enough free space on your hard drive and whether your hard drive is properly connected. If the issue persists contact your system administrator for assistance."
-		if(computer.active_program != src)
-			computer.alert_call(src, "Aborted download of file [downloaded_file.filename].[downloaded_file.filetype].")
-	else if(computer.active_program != src)
+		computer.alert_call(src, "Aborted download of file [downloaded_file.filename].[downloaded_file.filetype].")
+	else 
 		computer.alert_call(src, "Completed download of file [downloaded_file.filename].[downloaded_file.filetype].")
+	
+	if(computer.active_program != src)
 		alert_pending = TRUE
 	downloaded_file = null
 	download_completion = 0
