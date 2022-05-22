@@ -28,8 +28,8 @@
 	return ..()
 
 /datum/antagonist/brother/proc/equip_brother()
-    var/obj/item/book/granter/crafting_recipe/weapons/W = new
-    W.on_reading_finished(owner.current)
+	var/obj/item/book/granter/crafting_recipe/weapons/W = new
+	W.on_reading_finished(owner.current)
 	qdel(W)
 
 /datum/antagonist/brother/on_removal()
