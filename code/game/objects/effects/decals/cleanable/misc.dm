@@ -117,6 +117,14 @@
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 
+/obj/effect/decal/cleanable/vomit/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	GLOB.vomit_spots += src
+
+/obj/effect/decal/cleanable/vomit/Destroy(force)
+	. = ..()
+	GLOB.vomit_spots -= src
+
 /obj/effect/decal/cleanable/vomit/attack_hand(mob/user)
 	. = ..()
 	if(.)
@@ -200,3 +208,11 @@
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "xfloor1"
 	random_icon_states = list("xfloor1", "xfloor2", "xfloor3", "xfloor4", "xfloor5", "xfloor6", "xfloor7")
+
+/obj/effect/decal/cleanable/insectguts/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	GLOB.vomit_spots += src
+
+/obj/effect/decal/cleanable/insectguts/Destroy(force)
+	. = ..()
+	GLOB.vomit_spots -= src
