@@ -246,23 +246,21 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-
-//AI CPU + RAM
-
-/datum/design/board/processing_card_1
-	name = "AI CPU board (Tier 1)"
-	desc = "Allows for the construction of a basic AI processing board."
-	id = "ai_cpu_1"
-	materials = list(/datum/material/glass = 2000, /datum/material/gold = 4000)
-	build_path = /obj/item/processing_card
+/datum/design/board/druid
+	name = "Core Module Design (Druid)"
+	desc = "Allows for the construction of a Druid AI Core Module."
+	id = "druid_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/druid
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/board/memory_card_1
-	name = "AI Memory board (Tier 1)"
-	desc = "Allows for the construction of a basic AI memory board."
-	id = "ai_memory_1"
-	materials = list(/datum/material/glass = 2000, /datum/material/gold = 4000)
-	build_path = /obj/item/memory_card
+/datum/design/board/detective
+	name = "Core Module Design (Detective)"
+	desc = "Allows for the construction of a Detective AI Core Module."
+	id = "detective_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/detective
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+

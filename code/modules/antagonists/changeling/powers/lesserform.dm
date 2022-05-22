@@ -1,11 +1,12 @@
 /datum/action/changeling/lesserform
 	name = "Lesser Form"
-	desc = "We debase ourselves and become lesser. We become a monkey. Costs 5 chemicals."
-	helptext = "The transformation greatly reduces our size, allowing us to slip out of cuffs and climb through vents."
+	desc = "We debase ourselves and become lesser. We become a monkey. Cannot be used while cuffed or stunned. Costs 5 chemicals."
+	helptext = "The transformation greatly reduces our size, allowing us to climb through vents."
 	button_icon_state = "lesser_form"
 	chemical_cost = 5
 	dna_cost = 1
 	req_human = 1
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN
 
 //Transform into a monkey.
 /datum/action/changeling/lesserform/sting_action(mob/living/carbon/human/user)

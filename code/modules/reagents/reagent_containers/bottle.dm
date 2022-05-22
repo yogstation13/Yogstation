@@ -215,6 +215,11 @@
 	desc = "A small bottle of potassium iodide."
 	list_reagents = list(/datum/reagent/medicine/potass_iodide = 30)
 
+/obj/item/reagent_containers/glass/bottle/radscrub
+	name = "Rad Scrub Plus bottle"
+	desc = "A small bottle of Donk Co's Rad Scrub Plus."
+	list_reagents = list(/datum/reagent/medicine/radscrub = 30)
+
 /obj/item/reagent_containers/glass/bottle/salglu_solution
 	name = "saline-glucose solution bottle"
 	desc = "A small bottle of saline-glucose solution."
@@ -250,6 +255,11 @@
 	name = "Flu virion culture bottle"
 	desc = "A small bottle. Contains H13N1 flu virion culture in synthblood medium."
 	spawned_disease = /datum/disease/advance/flu
+
+/obj/item/reagent_containers/glass/bottle/tumor
+	name = "tumor culture bottle"
+	desc = "A small bottle. Contains tumor culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/tumor
 
 /obj/item/reagent_containers/glass/bottle/retrovirus
 	name = "Retrovirus culture bottle"

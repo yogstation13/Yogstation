@@ -8,17 +8,14 @@
 	route = PATH_RUST
 	tier = TIER_PATH
 
-/datum/eldritch_knowledge/base_rust/on_gain(mob/user)
-	..()
-	var/datum/antagonist/heretic/EC = user.mind?.has_antag_datum(/datum/antagonist/heretic)
-	var/datum/eldritch_transmutation/basic/B = EC.get_transmutation(1)
-	B.effect_path = STATUS_EFFECT_HERETIC_SACRIFICE_RUST
-
 /datum/eldritch_knowledge/base_rust/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
+	target.rust_heretic_act()
+	return TRUE
+
+/datum/eldritch_knowledge/base_rust/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
 	if(ishuman(target))
-		. = TRUE
-		target.rust_heretic_act()
 		var/mob/living/carbon/human/H = target
 		var/datum/status_effect/eldritch/E = H.has_status_effect(/datum/status_effect/eldritch/rust) || H.has_status_effect(/datum/status_effect/eldritch/ash) || H.has_status_effect(/datum/status_effect/eldritch/flesh)
 		if(E)
@@ -66,14 +63,14 @@
 
 /datum/eldritch_knowledge/rust_mark
 	name = "Mark of Rust"
-	desc = "Your eldritch blade now applies a rust mark. The Rust Mark has a chance to deal between 0 to 200 damage to 75% of enemies items. To Detonate the Mark use your mansus grasp on it."
+	desc = "Your mansus grasp now applies a rust mark. To Detonate the mark use your eldritch blade on it. The rust mark has a chance to deal between 0 to 200 damage to 75% of enemies items."
 	gain_text = "Lords of the depths help those in dire need at a cost."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark)
 	route = PATH_RUST
 	tier = TIER_MARK
 
-/datum/eldritch_knowledge/rust_mark/on_eldritch_blade(target,user,proximity_flag,click_parameters)
+/datum/eldritch_knowledge/rust_mark/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/living_target = target

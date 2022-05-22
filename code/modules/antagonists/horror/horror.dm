@@ -85,6 +85,16 @@
 	victim = null
 	return ..()
 
+//Yogs -- slightly fancier examine
+/mob/living/simple_animal/horror/examine(mob/user) // Return a more... positive description when the examiner is themselves an eldritch horror.
+	if(user == src) // Hey, that's me!
+		return list("[icon2html(src, user)] That's [src.real_name], \a [initial(src.name)].","I'm so beautiful!")
+	else if(ishorror(user))
+		return list("[get_examine_string(user, TRUE)].","What a handsome rogue.")
+	else
+		return ..()
+//Yogs end
+	
 /mob/living/simple_animal/horror/AltClickOn(atom/A)
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
@@ -94,7 +104,7 @@
 			to_chat(src, span_warning("You are already within a host."))
 			return
 
-		to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at their ear canal..."))
+		to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at [C.p_their()] ear canal...")) // Yogs -- pronouns
 
 		if(!do_mob(src, C, 4 SECONDS))
 			to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
@@ -174,7 +184,7 @@
 		target = pick(selected_targets)
 
 	if(target)
-		to_chat(src, span_warning("You caught their scent. Go and consume [target.current.real_name], the [target.assigned_role]'s soul!"))
+		to_chat(src, span_warning("You caught [target.p_their()] scent. Go and consume [target.current.real_name], the [target.assigned_role]'s soul!"))//Yogs -- pronoun police, open up
 		apply_status_effect(/datum/status_effect/agent_pinpointer/horror)
 		for(var/datum/status_effect/agent_pinpointer/horror/status in status_effects)
 			status.scan_target = target.current
@@ -497,7 +507,7 @@
 		to_chat(src, span_danger("You decide against leaving your host."))
 		return
 
-	to_chat(src, span_danger("You begin disconnecting from [victim]'s synapses and prodding at their internal ear canal."))
+	to_chat(src, span_danger("You begin disconnecting from [victim]'s synapses and prodding at [victim.p_their()] internal ear canal.")) //Yogs -- pronouns
 
 	if(victim.stat != DEAD && !has_upgrade("invisible_exit"))
 		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
@@ -610,7 +620,7 @@
 		return
 
 	if(victim.stat == DEAD)
-		to_chat(src, span_warning("Your host brain is unresponsive. They are dead!"))
+		to_chat(src, span_warning("Your host brain is unresponsive. [victim.p_they(TRUE)] are dead!")) // Yogs -- pronouns
 		return
 
 	if(prob(20))
@@ -712,7 +722,7 @@
 	else
 		RegisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE, .proc/hit_detatch)
 		log_game("[src]/([src.ckey]) assumed control of [victim]/([victim.ckey] with eldritch powers.")
-		to_chat(src, span_warning("You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system."))
+		to_chat(src, span_warning("You plunge your probosci deep into the cortex of the host brain, interfacing directly with [victim.p_their()] nervous system.")) // Yogs -- pronouns
 		to_chat(victim, span_userdanger("You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours."))
 
 		clothing = victim.get_equipped_items()
@@ -833,4 +843,3 @@
 	else
 		RemoveInfestActions()
 		GrantHorrorActions()
-		

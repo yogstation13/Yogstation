@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,24)
+	var/loot = rand(1,23)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -22,54 +22,52 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(3)
 			new /obj/item/soulstone/anybody(src)
 		if(4)
-			new /obj/item/katana/cursed(src)
-		if(5)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
-		if(6)
+		if(5)
 			new /obj/item/stack/sheet/mineral/mythril(src)
-		if(7)
+		if(6)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
-		if(8)
+		if(7)
 			new /obj/item/rod_of_asclepius(src)
-		if(9)
+		if(8)
 			new /obj/item/organ/heart/cursed/wizard(src)
-		if(10)
+		if(9)
 			new /obj/item/ship_in_a_bottle(src)
-		if(11)
+		if(10)
 			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
-		if(12)
+		if(11)
 			new /obj/item/jacobs_ladder(src)
-		if(13)
+		if(12)
 			new /obj/item/nullrod/scythe/talking(src)
-		if(14)
+		if(13)
 			new /obj/item/nullrod/armblade(src)
-		if(15)
+		if(14)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-		if(16)
+		if(15)
 			new /obj/item/warp_cube/red(src)
-		if(17)
+		if(16)
 			new /obj/item/organ/heart/gland/heals(src)
-		if(18)
+		if(17)
 			new /obj/item/immortality_talisman(src)
-		if(19)
+		if(18)
 			new /obj/item/voodoo(src)
-		if(20)
+		if(19)
 			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
 			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor(src)
-		if(21)
+		if(20)
 			new /obj/item/book_of_babel(src)
-		if(22)
+		if(21)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(23)
+		if(22)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(24)
+		if(23)
 			new /obj/item/rune_scimmy(src)
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -218,6 +216,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/list/hasholos = user.hasparasites()
 	if(hasholos.len)
 		to_chat(user, span_warning("The pendant refuses to work with a guardian spirit..."))
+		return
+	if(IS_BLOODSUCKER(user))
+		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))
 		return
 	to_chat(user, span_warning("You feel your life being drained by the pendant..."))
 	if(do_after(user, 4 SECONDS, target = user))
@@ -460,12 +461,17 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "Immortality"
 
 /obj/item/immortality_talisman/attack_self(mob/user)
-	if(cooldown < world.time)
-		SSblackbox.record_feedback("amount", "immortality_talisman_uses", 1)
-		cooldown = world.time + 600
-		new /obj/effect/immortality_talisman(get_turf(user), user)
+	if(isliving(user))
+		var/mob/living/L = user
+		if(cooldown < world.time)
+			SSblackbox.record_feedback("amount", "immortality_talisman_uses", 1)
+			cooldown = world.time + 600
+			L.apply_status_effect(STATUS_EFFECT_VOIDED)
+
+		else
+			to_chat(L, span_warning("[src] is not ready yet!"))
 	else
-		to_chat(user, span_warning("[src] is not ready yet!"))
+		to_chat(user, span_warning("Only the living can attain this power!"))
 
 /obj/effect/immortality_talisman
 	name = "hole in reality"
@@ -477,8 +483,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/effect/immortality_talisman/Initialize(mapload, mob/new_user)
 	. = ..()
-	if(new_user)
-		vanish(new_user)
 
 /obj/effect/immortality_talisman/proc/vanish(mob/user)
 	user.visible_message(span_danger("[user] [vanish_description], leaving a hole in [user.p_their()] place!"))
@@ -492,12 +496,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 	can_destroy = FALSE
 
-	addtimer(CALLBACK(src, .proc/unvanish, user), 10 SECONDS)
-
 /obj/effect/immortality_talisman/proc/unvanish(mob/user)
 	user.status_flags &= ~GODMODE
 	user.notransform = FALSE
-	user.forceMove(get_turf(src))
+	user.forceMove(get_turf(user))
 
 	user.visible_message(span_danger("[user] pops back into reality!"))
 	can_destroy = TRUE
@@ -791,6 +793,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/melee/ghost_sword
 	name = "\improper spectral blade"
 	desc = "A rusted and dulled blade. It doesn't look like it'd do much damage. It glows weakly."
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "spectral"
 	item_state = "spectral"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -899,9 +902,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities."))
-			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard)
+			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
+			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+			H.set_species(/datum/species/lizard/draconid)
 			H.eye_color = "fee5a3"
 			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 			H.updateappearance()
@@ -1041,7 +1044,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(2)
 			new /obj/item/blood_contract(src)
 		if(3)
-			new /obj/item/gun/magic/staff/spellblade/weak(src)
+			new /obj/item/melee/knuckles(src)
 		if(4)
 			new /obj/item/organ/stomach/cursed(src)
 
@@ -1112,6 +1115,73 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	log_combat(user, L, "took out a blood contract on", src)
 	qdel(src)
 
+#define COOLDOWN 150
+#define COOLDOWN_HUMAN 100
+#define COOLDOWN_ANIMAL 60
+/obj/item/melee/knuckles
+	name = "bloody knuckles"
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "bloodyknuckle"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	item_state = "knuckles"
+	w_class = WEIGHT_CLASS_SMALL
+	force = 18
+	var/next_reach = 0
+	var/next_grip = 0
+	var/next_knuckle = 0
+	attack_verb = list("thrashed", "pummeled", "walloped")
+	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
+
+/obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
+	var/mob/living/L = target
+	if (proximity)
+		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+			L.apply_status_effect(/datum/status_effect/roots)
+			return
+		if(next_knuckle > world.time)
+			to_chat(user, span_warning("The knuckles aren't ready to mark yet."))
+			return
+		else
+			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+			if(ishuman(L))
+				next_knuckle = world.time + COOLDOWN_HUMAN
+				return
+			next_knuckle = world.time + COOLDOWN_ANIMAL
+
+/obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
+	var/mob/living/U = user
+	if(istype(action, /datum/action/item_action/reach))
+		if(next_reach > world.time)
+			to_chat(U, span_warning("You can't do that yet!"))
+			return
+		var/valid_reaching = FALSE
+		for(var/mob/living/L in view(7, U))
+			for(var/obj/effect/decal/cleanable/B in range(0,L))
+				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
+					valid_reaching = TRUE
+					L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+		if(!valid_reaching)
+			to_chat(U, span_warning("There's nobody to use this on!"))
+			return
+		next_reach = world.time + COOLDOWN
+	else if(istype(action, /datum/action/item_action/visegrip))
+		if(next_grip > world.time)
+			to_chat(U, span_warning("You can't do that yet!"))
+			return
+		var/valid_casting = FALSE
+		for(var/mob/living/L in view(8, U))
+			if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+				valid_casting = TRUE
+				L.apply_status_effect(/datum/status_effect/roots)
+		if(!valid_casting)
+			to_chat(U, span_warning("There's nobody to use this on!"))
+			return
+		next_grip = world.time + COOLDOWN
+		#undef COOLDOWN
+		#undef COOLDOWN_HUMAN
+		#undef COOLDOWN_ANIMAL
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
@@ -1476,19 +1546,20 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		Insert(user)
 
 /obj/item/organ/grandcore/Insert(mob/living/carbon/H, special = 0)
-	H.faction = list("blooded")
+	..()
+	H.faction |= "blooded"
 	H.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/raise)
 	H.AddSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
-	..()
 	if(NOBLOOD in H.dna.species.species_traits)
 		to_chat(owner, "<span class ='userdanger'>Despite lacking blood, you were able to take in the grand core. You will pay for your power in killer headaches!</span>")
 	else
 		to_chat(owner, "<span class ='userdanger'>You've taken in the grand core, allowing you to control minions at the cost of your blood!</span>")
 
 /obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
+	H.faction -= "blooded"
 	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise, /obj/effect/proc_holder/spell/aoe_turf/horde)
 	H.RemoveSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
-	return ..()
+	..()
 
 /datum/action/item_action/organ_action/threebloodlings
 	name = "Summon bloodlings"

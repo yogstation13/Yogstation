@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
 	materials = list(/datum/material/iron=75000, /datum/material/glass=37500)
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
 	var/datum/effect_system/spark_spread/spark_system
 	var/working = 0
@@ -474,7 +474,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 				if(!can_make_pipe)
 					return ..()
 				A = get_turf(A)
-				if(isclosedturf(A))
+				if(is_blocked_turf(A))
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a disposals pipe..."))
@@ -499,7 +499,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 				if(!can_make_pipe)
 					return ..()
 				A = get_turf(A)
-				if(isclosedturf(A))
+				if(is_blocked_turf(A))
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a transit tube..."))
@@ -528,7 +528,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 				if(!can_make_pipe)
 					return ..()
 				A = get_turf(A)
-				if(isclosedturf(A))
+				if(is_blocked_turf(A))
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a fluid duct..."))

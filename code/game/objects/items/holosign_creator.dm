@@ -29,9 +29,9 @@
 			to_chat(user, span_notice("You use [src] to deactivate [H]."))
 			qdel(H)
 		else
-			if(!is_blocked_turf(T, TRUE)) //can't put holograms on a tile that has dense stuff
+			if(!is_blocked_turf(T, TRUE)) //can't put hard light on a tile that has dense stuff
 				if(holocreator_busy)
-					to_chat(user, span_notice("[src] is busy creating a hologram."))
+					to_chat(user, span_notice("[src] is busy creating a hard light barrier."))
 					return
 				if(signs.len < max_signs)
 					playsound(src.loc, 'sound/machines/click.ogg', 20, 1)
@@ -57,7 +57,7 @@
 	if(signs.len)
 		for(var/H in signs)
 			qdel(H)
-		to_chat(user, span_notice("You clear all active holograms."))
+		to_chat(user, span_notice("You clear all active hard light barriers."))
 
 /obj/item/holosign_creator/janibarrier
 	name = "custodial holobarrier projector"
@@ -68,7 +68,7 @@
 
 /obj/item/holosign_creator/security
 	name = "security holobarrier projector"
-	desc = "A holographic projector that creates holographic security barriers."
+	desc = "A holographic projector that creates hard light security barriers."
 	icon_state = "signmaker_sec"
 	holosign_type = /obj/structure/holosign/barrier
 	creation_time = 30
@@ -76,7 +76,7 @@
 
 /obj/item/holosign_creator/engineering
 	name = "engineering holobarrier projector"
-	desc = "A holographic projector that creates holographic engineering barriers."
+	desc = "A holographic projector that creates hard light engineering barriers."
 	icon_state = "signmaker_engi"
 	holosign_type = /obj/structure/holosign/barrier/engineering
 	creation_time = 30
@@ -84,7 +84,7 @@
 
 /obj/item/holosign_creator/atmos
 	name = "ATMOS holofan projector"
-	desc = "A holographic projector that creates holographic barriers that prevent changes in atmosphere conditions."
+	desc = "A holographic projector that creates hard light barriers that prevent changes in atmosphere conditions."
 	icon_state = "signmaker_atmos"
 	holosign_type = /obj/structure/holosign/barrier/atmos
 	creation_time = 0
@@ -92,7 +92,7 @@
 
 /obj/item/holosign_creator/medical
 	name = "\improper PENLITE barrier projector"
-	desc = "A holographic projector that creates PENLITE holobarriers. Useful during quarantines since they halt those with malicious diseases."
+	desc = "A holographic projector that creates PENLITE hard light barriers. Useful during quarantines since they halt those with malicious diseases."
 	icon_state = "signmaker_med"
 	holosign_type = /obj/structure/holosign/barrier/medical
 	creation_time = 30
@@ -111,7 +111,7 @@
 		var/mob/living/silicon/robot/R = user
 
 		if(shock)
-			to_chat(user, span_notice("You clear all active holograms, and reset your projector to normal."))
+			to_chat(user, span_notice("You clear all active hard light barriers, and reset your projector to normal."))
 			holosign_type = /obj/structure/holosign/barrier/cyborg
 			creation_time = 5
 			if(signs.len)
@@ -120,7 +120,7 @@
 			shock = 0
 			return
 		else if(R.emagged&&!shock)
-			to_chat(user, span_warning("You clear all active holograms, and overload your energy projector!"))
+			to_chat(user, span_warning("You clear all active hard light barriers, and overload your energy projector!"))
 			holosign_type = /obj/structure/holosign/barrier/cyborg/hacked
 			creation_time = 30
 			if(signs.len)
@@ -132,11 +132,11 @@
 			if(signs.len)
 				for(var/H in signs)
 					qdel(H)
-				to_chat(user, span_notice("You clear all active holograms."))
+				to_chat(user, span_notice("You clear all active hard light barriers."))
 	if(signs.len)
 		for(var/H in signs)
 			qdel(H)
-		to_chat(user, span_notice("You clear all active holograms."))
+		to_chat(user, span_notice("You clear all active hard light barriers."))
 
 /obj/item/holosign_creator/multi
 	name = "multiple holosign projector"  //Fork from this to make multiple barriers
@@ -146,14 +146,14 @@
 	if(signs.len)
 		for(var/H in signs)
 			qdel(H)
-		to_chat(user, span_notice("You clear all active holograms."))
+		to_chat(user, span_notice("You clear all active hard light barriers."))
 	else
 		holosign_type = next_list_item(holosign_type, holodesigns)
 		to_chat(user, span_notice("You switch to [holosign_type]"))
 
 /obj/item/holosign_creator/multi/CE
 	name = "CE holofan projector"
-	desc = "A holographic projector that creates holographic barriers that prevent changes in atmosphere conditions or engineering barriers."
+	desc = "A holographic projector that creates hard light barriers that prevent changes in atmosphere conditions or engineering barriers."
 	icon_state = "signmaker_atmos"
 	holosign_type = /obj/structure/holosign/barrier/atmos
 	max_signs = 5

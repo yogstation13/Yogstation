@@ -504,6 +504,20 @@ AI MODULES
 	law_id = "metaexperiment"
 
 
+/******************** Druid *********************/
+
+/obj/item/aiModule/core/full/druid
+	name = "'Druid' Core AI Module"
+	law_id = "druid"
+
+	
+/******************** Detective *********************/
+
+/obj/item/aiModule/core/full/detective
+	name = "'Detective' Core AI Module"
+	law_id = "detective"
+
+	
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore

@@ -28,7 +28,7 @@
 	var/trait_check = HAS_TRAIT(M, TRAIT_STUNRESISTANCE)
 
 	var/obj/item/bodypart/affecting = M.get_bodypart(user.zone_selected)
-	var/armor_block = M.run_armor_check(affecting, "energy")
+	var/armor_block = M.run_armor_check(affecting, ENERGY)
 	M.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
 	SEND_SIGNAL(M, COMSIG_LIVING_MINOR_SHOCK)
 	var/current_stamina_damage = M.getStaminaLoss()
@@ -102,7 +102,7 @@
 					user.do_attack_animation(M, ATTACK_EFFECT_BOOP)
 					playsound(loc, 'sound/weapons/tap.ogg', 50, 1, -1)
 				else if(ishuman(M))
-					if(!(user.mobility_flags & MOBILITY_STAND))
+					if(!(M.mobility_flags & MOBILITY_STAND))
 						user.visible_message(span_notice("[user] shakes [M] trying to get [M.p_them()] up!"), \
 										span_notice("You shake [M] trying to get [M.p_them()] up!"))
 					else

@@ -384,7 +384,7 @@
 	force = 10
 	greet = "<span class='sciradio'>You have learned the ancient martial art of Flying Fang! Your unarmed attacks have become somewhat more effective,  \
 	and you are more resistant to damage and stun-based weaponry. However, you are also unable to use any ranged weaponry or armor. You can learn more about your newfound art by using the Recall Teachings verb in the Flying Fang tab.</span>"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/library.dmi'
 	icon_state = "stone_tablet"
 	remarks = list("Feasting on the insides of your enemies...", "Some of these techniques look a bit dizzying...", "Not like I need armor anyways...", "Don't get shot, whatever that means...")
 
@@ -439,6 +439,13 @@
 /obj/item/book/granter/crafting_recipe/weapons
 	name = "makeshift weapons 101"
 	desc = "A book filled with directions on how to make various weaponry."
-	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/flamethrower)
+	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/flamethrower, /datum/crafting_recipe/pipebomb, /datum/crafting_recipe/makeshiftpistol, /datum/crafting_recipe/makeshiftmagazine, /datum/crafting_recipe/makeshiftsuppressor, /datum/crafting_recipe/makeshiftcrowbar, /datum/crafting_recipe/makeshiftwrench, /datum/crafting_recipe/makeshiftwirecutters, /datum/crafting_recipe/makeshiftweldingtool, /datum/crafting_recipe/makeshiftmultitool, /datum/crafting_recipe/makeshiftscrewdriver, /datum/crafting_recipe/makeshiftknife, /datum/crafting_recipe/makeshiftpickaxe, /datum/crafting_recipe/makeshiftradio)
 	icon_state = "bookCrafting"
 	oneuse = TRUE
+
+/obj/item/book/granter/crafting_recipe/roburgers
+	name = "roburger crafting recipe"
+	desc = "A book containing knowledge how to make roburgers."
+	crafting_recipe_types = list(/datum/crafting_recipe/food/roburger)
+	icon_state = "bookCrafting"
+	oneuse = FALSE

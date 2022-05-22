@@ -11,7 +11,8 @@
 	if(!.)
 		return .
 	for(var/obj/machinery/ai/data_core/datacores in GLOB.data_cores)
-		datacores.partytime()
+		if(!datacores.TimerID)
+			datacores.partytime()
 
 
 /datum/ai_project/rgb/stop()

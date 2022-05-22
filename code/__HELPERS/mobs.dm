@@ -80,6 +80,10 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
 	if(!GLOB.ethereal_mark_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ethereal_mark, GLOB.ethereal_mark_list)
+	if(!GLOB.pod_hair_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list)
+	if(!GLOB.pod_flower_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_flower, GLOB.pod_flower_list)
 
 	//For now we will always return none for tail_human and ears.		this shit was unreadable if you do somethign like this make it at least readable
 	return(list(
@@ -103,7 +107,8 @@
 		"teeth" = pick(GLOB.teeth_list),
 		"dome" = pick(GLOB.dome_list),
 		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list),
-		"ethereal_mark" = pick(GLOB.ethereal_mark_list)
+		"ethereal_mark" = pick(GLOB.ethereal_mark_list),
+		"pod_hair" = pick(GLOB.pod_hair_list)
 	))
 
 /proc/random_hair_style(gender)

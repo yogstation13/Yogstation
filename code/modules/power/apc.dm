@@ -161,7 +161,7 @@
 	//if (!req_access)
 		//req_access = list(ACCESS_ENGINE_EQUIP) // Yogs -- Commented out to allow for use of req_one_access. Also this is just generally bad and the guy who wrote this doesn't get OOP
 	if (!armor)
-		armor = list("melee" = 20, "bullet" = 20, "laser" = 10, "energy" = 100, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
+		armor = list(MELEE = 20, BULLET = 20, LASER = 10, ENERGY = 100, BOMB = 30, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)
 	..()
 	GLOB.apcs_list += src
 
@@ -834,7 +834,7 @@
 	set_nightshift(!nightshift_lights)
 
 /obj/machinery/power/apc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
-	if(damage_flag == "melee" && damage_amount < 10 && (!(stat & BROKEN) || malfai))
+	if(damage_flag == MELEE && damage_amount < 10 && (!(stat & BROKEN) || malfai))
 		return 0
 	. = ..()
 
@@ -1528,7 +1528,7 @@
 
 /*Power module, used for APC construction*/
 /obj/item/electronics/apc
-	name = "power control module"
+	name = "APC module"
 	icon_state = "power_mod"
 	custom_price = 5
 	desc = "Heavy-duty switching circuits for power control."

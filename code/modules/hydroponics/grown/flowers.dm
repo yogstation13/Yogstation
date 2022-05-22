@@ -151,7 +151,7 @@
 	icon_state = "sunflower"
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/plants_righthand.dmi'
-	damtype = "fire"
+	damtype = BURN
 	force = 0
 	slot_flags = ITEM_SLOT_HEAD
 	throwforce = 0
@@ -175,6 +175,7 @@
 	icon_grow = "moonflower-grow"
 	icon_dead = "sunflower-dead"
 	product = /obj/item/reagent_containers/food/snacks/grown/moonflower
+	genes = list(/datum/plant_gene/trait/glow/purple)
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/ethanol/moonshine = 0.2, /datum/reagent/consumable/nutriment = 0.02)
 	rarity = 15
@@ -210,7 +211,7 @@
 	icon_state = "novaflower"
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/plants_righthand.dmi'
-	damtype = "fire"
+	damtype = FIRE
 	force = 0
 	slot_flags = ITEM_SLOT_HEAD
 	throwforce = 0

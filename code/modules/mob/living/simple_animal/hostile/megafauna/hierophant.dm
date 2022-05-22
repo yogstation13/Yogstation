@@ -509,7 +509,7 @@ Difficulty: Hard
 	. = ..()
 	if(ismineralturf(loc))
 		var/turf/closed/mineral/M = loc
-		M.gets_drilled(caster)
+		M.attempt_drill(caster)
 
 /obj/effect/temp_visual/hierophant/wall //smoothing and pooling were not friends, but pooling is dead.
 	name = "vortex wall"
@@ -646,7 +646,7 @@ Difficulty: Hard
 		hit_things += new_caster
 	if(ismineralturf(loc)) //drill mineral turfs
 		var/turf/closed/mineral/M = loc
-		M.gets_drilled(caster)
+		M.attempt_drill(caster)
 	INVOKE_ASYNC(src, .proc/blast)
 
 /obj/effect/temp_visual/hierophant/blast/proc/blast()
@@ -677,7 +677,7 @@ Difficulty: Hard
 		playsound(L,'sound/weapons/sear.ogg', 50, 1, -4)
 		to_chat(L, span_userdanger("You're struck by a [name]!"))
 		var/limb_to_hit = L.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
-		var/armor = L.run_armor_check(limb_to_hit, "melee", "Your armor absorbs [src]!", "Your armor blocks part of [src]!", 50, "Your armor was penetrated by [src]!")
+		var/armor = L.run_armor_check(limb_to_hit, MELEE, "Your armor absorbs [src]!", "Your armor blocks part of [src]!", 50, "Your armor was penetrated by [src]!")
 		L.apply_damage(damage, BURN, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L //mobs find and damage you...

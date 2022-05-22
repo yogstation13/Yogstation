@@ -7,8 +7,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	name = "Mining Medic"
 	icon_state = "Mining Medic"
 
-/obj/effect/landmark/start/yogs/signal_technician
-	name = "Signal Technician"
+/obj/effect/landmark/start/yogs/network_admin
+	name = "Network Admin"
 	icon_state = "Signal Technician"
 
 /obj/effect/landmark/start/yogs/clerk
@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM", "Engine Singulo And Tesla", "Engine TEG")
+	template_names = list("Engine SM" = 50, "Engine Singulo And Tesla" = 30, "Engine TEG" = 20)
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/engine/choose()
@@ -106,12 +106,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(2)
 			return "Engine Singulo And Tesla"
 		if(3)
-			if(prob(33))
-				return "Engine SM"
-			if(prob(33))
-				return "Engine Singulo And Tesla"
-			if(prob(33))
-				return "Engine TEG"
+			return . //We let the normal choose() do the work if we want to have all of them in play
 		if(4)
 			return "Engine TEG"
 

@@ -25,26 +25,15 @@
 
 /datum/job/ai/after_spawn(mob/H, mob/M, latejoin)
 	. = ..()
-	
-	if(latejoin)
-		var/obj/structure/AIcore/latejoin_inactive/lateJoinCore
-		for(var/obj/structure/AIcore/latejoin_inactive/P in GLOB.latejoin_ai_cores)
-			if(P.is_available())
-				lateJoinCore = P
-				GLOB.latejoin_ai_cores -= P
-				break
-		if(lateJoinCore)
-			lateJoinCore.available = FALSE
-			qdel(lateJoinCore)
 			
 	var/mob/living/silicon/ai/AI = H
 
 	AI.relocate(TRUE)
 
-	var/total_available_cpu = GLOB.ai_os.total_cpu - GLOB.ai_os.total_cpu_assigned()
+	var/total_available_cpu = 1 - GLOB.ai_os.total_cpu_assigned()
 	var/total_available_ram = GLOB.ai_os.total_ram - GLOB.ai_os.total_ram_assigned()
 
-	GLOB.ai_os.add_cpu(AI, total_available_cpu)
+	GLOB.ai_os.set_cpu(AI, total_available_cpu)
 	GLOB.ai_os.add_ram(AI, total_available_ram)
 
 	AI.apply_pref_name("ai", M.client)			//If this runtimes oh well jobcode is fucked.
@@ -65,17 +54,21 @@
 /datum/job/ai/special_check_latejoin(client/C)
 	if(!do_special_check)
 		return TRUE
-	for(var/i in GLOB.latejoin_ai_cores)
-		var/obj/structure/AIcore/latejoin_inactive/LAI = i
-		if(istype(LAI))
-			if(LAI.is_available())
+	if(GLOB.ai_list.len && !SSticker.triai)
+		return FALSE
+	if(SSticker.triai && GLOB.ai_list.len >= 3)
+		return FALSE
+	for(var/i in GLOB.data_cores)
+		var/obj/machinery/ai/data_core/core = i
+		if(istype(core))
+			if(core.valid_data_core())
 				return TRUE
 	return FALSE
 
+
 /datum/job/ai/announce(mob/living/silicon/ai/AI)
 	. = ..()
-	var/area/A = get_area(AI)//yogs
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to an empty bluespace-networked AI core in [A.name].")) //YOGS - removed the co-ordinates
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to the central AI network.")) //YOGS - removed the co-ordinates
 
 /datum/job/ai/config_check()
 	return CONFIG_GET(flag/allow_ai)
