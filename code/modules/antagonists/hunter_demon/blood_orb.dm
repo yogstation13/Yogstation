@@ -13,4 +13,8 @@
 	var/sacrificed_blood = 0
 
 /obj/structure/bloody_orb/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/kitchen/knife) &&
+	if(istype(I, /obj/item/kitchen/knife) && user.a_intent != INTENT_HARM)
+		if(!demon)
+			visible_message(span_danger("[user] begins to spill his blood on the [src]!"), \
+				span_userdanger("You begin to spill your blood on the [src], trying to summon a demon!"))
+
