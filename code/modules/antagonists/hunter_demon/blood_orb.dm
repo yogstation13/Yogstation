@@ -12,3 +12,5 @@
 	var/blood_pool_summary = 0
 	var/sacrificed_blood = 0
 
+/obj/structure/bloody_orb/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/kitchen/knife) &&
