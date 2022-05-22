@@ -104,6 +104,10 @@
 				attack_streak++
 	
 /proc/OutOfBrazil(mob/living/carbon/human/guy, turf/turfo)
+	if(!turfo)
+		return
+	if(!guy)
+		return
 	guy.forceMove(turfo)
 	visible_message(span_danger("[guy]'s body suddenly appears out of nowhere!"), \
 		span_userdanger("[guy]'s body suddenly appears out of nowhere!"), null, COMBAT_MESSAGE_RANGE)
