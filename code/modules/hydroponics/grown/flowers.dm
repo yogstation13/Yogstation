@@ -201,7 +201,7 @@
 	icon_dead = "sunflower-dead"
 	product = /obj/item/grown/novaflower
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/consumable/condensedcapsaicin = 0.25, /datum/reagent/consumable/capsaicin = 0.3, /datum/reagent/consumable/nutriment = 0)
+	reagents_add = list(/datum/reagent/consumable/condensedcapsaicin = 0.25, /datum/reagent/consumable/capsaicin = 0.3, /datum/reagent/consumable/nutriment = 0.03)
 	rarity = 20
 
 /obj/item/grown/novaflower
