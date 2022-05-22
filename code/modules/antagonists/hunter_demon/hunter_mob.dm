@@ -58,13 +58,24 @@
 			if(prob(20) + attack_streak*10)
 				var/list/parts = list()
 				var/undismembermerable_limbs = 0
-				for(var/X in C.bodyparts)
+				for(var/X in dude.bodyparts)
 					var/obj/item/bodypart/BP = X
 					if(BP.body_part != HEAD && BP.body_part != CHEST)
 						if(BP.dismemberable)
 							parts += BP
 						else
 							undismembermerable_limbs++
+
+				if(!LAZYLEN(parts))
+					if(undismembermerable_limbs)
+						return ..()
+					dude.Paralyze(100)
+					visible_message(span_danger("[src] knocks [dude] down!"))
+					return FALSE
+				do_attack_animation(dude)
+				var/obj/item/bodypart/BP = pick(parts)
+				BP.dismember()
+				return FALSE
 
 	.=..()
 	if((isliving(target)))
