@@ -22,20 +22,20 @@
 			var/mob/living/simple_animal/hunter/hunterd = user
 			hunterd.attack_streak = 0
 			if(phased)	
-       			if(!hunterd.check_shit())
+       				if(!hunterd.check_shit())
 					to_chat(user, span_warning("You can only warp in while near your target or your blood orb!"))
+					revert_cast()
 					return
 				if(user.phasein(target))
 			  		phased = FALSE
 	  		else
-				var/phaseouttime = 20
-       			if(hunterd.check_shit())
-					phaseouttime = 30
+				var/phaseouttime = 30
+       				if(hunterd.check_shit())
+					phaseouttime = 50
 				if(do_after(src, phaseout))	
 		  			if(user.phaseout(target))
 			  			phased = TRUE
 			start_recharge()
 			return
 	revert_cast()
-	///to_chat(user, span_warning("FUCK YOU BITCH"))
-  to_chat(user, span_warning("You are not a hunter demon, you can't do this!"))
+	to_chat(user, span_warning("You are not a hunter demon, you can't do this!"))
