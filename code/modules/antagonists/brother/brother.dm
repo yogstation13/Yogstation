@@ -28,12 +28,10 @@
 	return ..()
 
 /datum/antagonist/brother/proc/equip_brother()
-	var/list/crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/flamethrower, /datum/crafting_recipe/pipebomb, /datum/crafting_recipe/makeshiftpistol, /datum/crafting_recipe/makeshiftmagazine, /datum/crafting_recipe/makeshiftsuppressor, /datum/crafting_recipe/makeshiftcrowbar, /datum/crafting_recipe/makeshiftwrench, /datum/crafting_recipe/makeshiftwirecutters, /datum/crafting_recipe/makeshiftweldingtool, /datum/crafting_recipe/makeshiftmultitool, /datum/crafting_recipe/makeshiftscrewdriver, /datum/crafting_recipe/makeshiftknife, /datum/crafting_recipe/makeshiftpickaxe, /datum/crafting_recipe/makeshiftradio)
-	
-	for(var/crafting_recipe_type in crafting_recipe_types)
-		var/datum/crafting_recipe/R = crafting_recipe_type
-		owner.teach_crafting_recipe(crafting_recipe_type)
-		to_chat(owner,span_notice("You learned how to make [initial(R.name)]."))
+	/datum/antagonist/brother/proc/equip_brother()
+    var/obj/item/book/granter/crafting_recipe/weapons/W = new
+    W.on_reading_finished(owner.current)
+	qdel(W)
 
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner
