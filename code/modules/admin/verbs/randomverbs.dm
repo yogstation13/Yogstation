@@ -1280,7 +1280,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/mob/living/carbon/chucklenuts = target
 			playsound(chucklenuts,'sound/misc/thinkfast.ogg',300 , FALSE)
 			to_chat(chucklenuts, span_warning("Think Fast!"))
-			sleep(15)
+			sleep(1.5 SECONDS)
 			var/obj/item/grenade/flashbang/CB = new/obj/item/grenade/flashbang(target.loc)
 			CB.prime()
 			chucklenuts.flash_act()
@@ -1388,7 +1388,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/obj/item/reagent_containers/food/snacks/pie/cream/admin/p = new (get_turf(pick(oview(3,user))))
 	p.item_flags = UNCATCHABLE
 	p.throw_at(user, 10, 0.5, usr)
-	sleep(5)
+	sleep(0.5 SECONDS)
 	var/mob/living/carbon/human/T = user
 	if(!T.IsParalyzed())
 		var/obj/item/reagent_containers/food/snacks/pie/cream/admin/pie = new (get_turf(pick(oview(1,user))))

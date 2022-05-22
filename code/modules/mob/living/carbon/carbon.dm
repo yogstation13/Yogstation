@@ -309,11 +309,11 @@
 
 /mob/living/carbon/resist_fire()
 	fire_stacks -= 5
-	Paralyze(60, TRUE, TRUE)
+	Paralyze(6 SECONDS, TRUE, TRUE)
 	spin(32,2)
 	visible_message(span_danger("[src] rolls on the floor, trying to put [p_them()]self out!"), \
 		span_notice("You stop, drop, and roll!"))
-	sleep(30)
+	sleep(3 SECONDS)
 	if(fire_stacks <= 0)
 		visible_message(span_danger("[src] has successfully extinguished [p_them()]self!"), \
 			span_notice("You extinguish yourself."))

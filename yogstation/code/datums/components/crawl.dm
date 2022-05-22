@@ -167,7 +167,7 @@
 		sound = 'sound/magic/demon_consume.ogg'
 	for(var/i=1 to 3)
 		playsound(get_turf(user), sound, 100, 1)
-		sleep(30)
+		sleep(3 SECONDS)
 	if(!victim)
 		to_chat(user, span_danger("You happily devour... nothing? Your meal vanished at some point!"))
 		return

@@ -8,11 +8,11 @@
 	invocation = "none"
 	invocation_type = "none"
 	range = -1
-	cooldown_min = 100 //50 deciseconds reduction per rank
+	cooldown_min = 10 SECONDS //5 seconds reduction per rank
 	include_user = TRUE
 	nonabstract_req = TRUE
-	var/jaunt_duration = 50 //in deciseconds
-	var/jaunt_in_time = 5
+	var/jaunt_duration = 5 SECONDS //in seconds
+	var/jaunt_in_time = 0.5 SECONDS
 	var/jaunt_in_type = /obj/effect/temp_visual/wizard
 	var/jaunt_out_type = /obj/effect/temp_visual/wizard/out
 	action_icon_state = "jaunt"
@@ -43,7 +43,7 @@
 	target.mobility_flags &= ~MOBILITY_MOVE
 	holder.reappearing = 1
 	play_sound("exit",target)
-	sleep(25 - jaunt_in_time)
+	sleep(2.5 SECONDS - jaunt_in_time)
 	new jaunt_in_type(mobloc, holder.dir)
 	target.setDir(holder.dir)
 	sleep(jaunt_in_time)
