@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		. += span_notice("Ctrl-click to remove [inserted_item].")
 
 	if((!isnull(cartridge)))
-		. += span_notice("Ctrl+Shift-click to remove the cartridge.")
+		. += span_notice("Ctrl+shift-click to remove the cartridge.")
 
 
 /obj/item/pda/Initialize()
