@@ -95,8 +95,8 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	desc = "A specialized tachyon-doppler bomb detection array that uses the results of the highest yield of explosions for research."
 	var/datum/techweb/linked_techweb
 
-
-/obj/machinery/doppler_array/research/sense_explosion(datum/source, turf/epicenter, dev, heavy, light, time, orig_dev, orig_heavy, orig_light)	//probably needs a way to ignore admin explosives later on
+/obj/machinery/doppler_array/research/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range,
+		took, orig_dev_range, orig_heavy_range, orig_light_range) //probably needs a way to ignore admin explosives later on
 	. = ..()
 	if(!.)
 		return
@@ -108,13 +108,15 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 
 	/*****The Point Calculator*****/
 
-	if(orig_light < 5)
+	if(orig_light_range < 10)
 		say("Explosion not large enough for research calculations.")
 		return
-	else if(orig_light < BOMB_TARGET_SIZE) // we want to give fewer points if below the target; this curve does that
-		point_gain = (BOMB_TARGET_POINTS * orig_light ** BOMB_SUB_TARGET_EXPONENT) / (BOMB_TARGET_SIZE**BOMB_SUB_TARGET_EXPONENT)
-	else // once we're at the target, switch to a hyperbolic function so we can't go too far above it, but bigger bombs always get more points
-		point_gain = (BOMB_TARGET_POINTS * 2 * orig_light) / (orig_light + BOMB_TARGET_SIZE)
+	else if(orig_light_range >= INFINITY) // Colton-proofs the doppler array
+		say("WARNING: INFINITE DENSITY OF TACHYONS DETECTED.")
+		point_gain = TOXINS_RESEARCH_MAX
+	else
+		point_gain = (TOXINS_RESEARCH_MAX * orig_light_range) / (orig_light_range + TOXINS_RESEARCH_LAMBDA)//New yogs function has the limit built into it because l'Hopital's rule
+
 
 	/*****The Point Capper*****/
 	if(point_gain > linked_techweb.largest_bomb_value)
@@ -124,8 +126,8 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
 			D.adjust_money(point_gain)
-		linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
-		say("Explosion details and mixture analyzed and sold to the highest bidder for [point_gain], with a reward of [point_gain] points.")
+			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
+			say("Explosion details and mixture analyzed and sold to the highest bidder for $[point_gain], with a reward of [point_gain] points.")
 
 	else //you've made smaller bombs
 		say("Data already captured. Aborting.")

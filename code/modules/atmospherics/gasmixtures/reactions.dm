@@ -77,58 +77,21 @@ nobliumformation = 1001
 /datum/gas_reaction/water_vapor/init_reqs()
 	min_requirements = list(
 		GAS_H2O = MOLES_GAS_VISIBLE, 
-		"MAX_TEMP" = T0C + 40
 	)
 
 /datum/gas_reaction/water_vapor/react(datum/gas_mixture/air, datum/holder)
-	var/turf/open/location = holder
-	if(!istype(location))
-		return NO_REACTION
+	var/turf/open/location = isturf(holder) ? holder : null
+	. = NO_REACTION
 	if (air.return_temperature() <= WATER_VAPOR_FREEZE)
 		if(location && location.freon_gas_act())
-			return REACTING
+			. = REACTING
 	else if(location && location.water_vapor_gas_act())
-		air.adjust_moles(GAS_H2O,-MOLES_GAS_VISIBLE)
-		return REACTING
-
-/datum/gas_reaction/nitrous_decomp
-	priority = 0
-	exclude = TRUE // generic fire now takes care of this
-	name = "Nitrous Oxide Decomposition"
-	id = "nitrous_decomp"
-
-/datum/gas_reaction/nitrous_decomp/init_reqs()
-	min_requirements = list(
-		"TEMP" = N2O_DECOMPOSITION_MIN_ENERGY,
-		GAS_NITROUS = MINIMUM_MOLE_COUNT
-	)
-
-/datum/gas_reaction/nitrous_decomp/react(datum/gas_mixture/air, datum/holder)
-	var/energy_released = 0
-	var/old_heat_capacity = air.heat_capacity() //this speeds things up because accessing datum vars is slow
-	var/temperature = air.return_temperature()
-	var/burned_fuel = 0
-
-
-	burned_fuel = max(0,0.00002*(temperature-(0.00001*(temperature**2))))*air.get_moles(GAS_NITROUS)
-	air.set_moles(GAS_NITROUS, air.get_moles(GAS_NITROUS) - burned_fuel)
-
-	if(burned_fuel)
-		energy_released += (N2O_DECOMPOSITION_ENERGY_RELEASED * burned_fuel)
-
-		air.set_moles(GAS_O2, air.get_moles(GAS_O2) + burned_fuel/2)
-		air.set_moles(GAS_N2, air.get_moles(GAS_N2) + burned_fuel)
-
-		var/new_heat_capacity = air.heat_capacity()
-		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature((temperature*old_heat_capacity + energy_released)/new_heat_capacity)
-		return REACTING
-	return NO_REACTION
+		air.adjust_moles(GAS_H2O, -MOLES_GAS_VISIBLE)
+		. = REACTING
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/tritfire
-	priority = -1 //fire should ALWAYS be last, but tritium fires happen before plasma fires
-	exclude = TRUE // generic fire now takes care of this
+	priority = -2 //fire should ALWAYS be last, but tritium fires happen before plasma fires
 	name = "Tritium Combustion"
 	id = "tritfire"
 
@@ -138,34 +101,6 @@ nobliumformation = 1001
 		GAS_TRITIUM = MINIMUM_MOLE_COUNT,
 		GAS_O2 = MINIMUM_MOLE_COUNT
 	)
-
-// Called from auxmos internals
-/proc/fire_expose(turf/open/location, datum/gas_mixture/air, temperature)
-	if(istype(location) && temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
-		location.hotspot_expose(temperature, CELL_VOLUME)
-		for(var/I in location)
-			var/atom/movable/item = I
-			item.temperature_expose(air, temperature, CELL_VOLUME)
-		location.temperature_expose(air, temperature, CELL_VOLUME)
-
-// Called from auxmos internals
-/proc/radiation_burn(turf/open/location, energy_released)
-	if(istype(location) && prob(10))
-		radiation_pulse(location, energy_released/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
-
-/proc/fusion_ball(datum/holder, reaction_energy, instability)
-	var/turf/open/location
-	if (istype(holder,/datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.
-		var/datum/pipeline/fusion_pipenet = holder
-		location = get_turf(pick(fusion_pipenet.members))
-	else
-		location = get_turf(holder)
-	if(location)
-		var/particle_chance = ((PARTICLE_CHANCE_CONSTANT)/(reaction_energy-PARTICLE_CHANCE_CONSTANT)) + 1//Asymptopically approaches 100% as the energy of the reaction goes up.
-		if(prob(PERCENT(particle_chance)))
-			location.fire_nuclear_particle()
-		var/rad_power = max((FUSION_RAD_COEFFICIENT/instability) + FUSION_RAD_MAX,0)
-		radiation_pulse(location,rad_power)
 
 /datum/gas_reaction/tritfire/react(datum/gas_mixture/air, datum/holder)
 	var/energy_released = 0
@@ -215,10 +150,9 @@ nobliumformation = 1001
 
 //plasma combustion: combustion of oxygen and plasma (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/plasmafire
-	priority = -2 //fire should ALWAYS be last, but plasma fires happen after tritium fires
+	priority = -4 //fire should ALWAYS be last, but plasma fires happen after tritium fires
 	name = "Plasma Combustion"
 	id = "plasmafire"
-	exclude = TRUE // generic fire now takes care of this
 
 /datum/gas_reaction/plasmafire/init_reqs()
 	min_requirements = list(
@@ -284,84 +218,6 @@ nobliumformation = 1001
 				item.temperature_expose(air, temperature, CELL_VOLUME)
 			location.temperature_expose(air, temperature, CELL_VOLUME)
 
-	return cached_results["fire"] ? REACTING : NO_REACTION
-
-/datum/gas_reaction/genericfire
-	priority = -3 // very last reaction
-	name = "Combustion"
-	id = "genericfire"
-
-/datum/gas_reaction/genericfire/init_reqs()
-	var/lowest_fire_temp = INFINITY
-	var/list/fire_temperatures = GLOB.gas_data.fire_temperatures
-	for(var/gas in fire_temperatures)
-		lowest_fire_temp = min(lowest_fire_temp, fire_temperatures[gas])
-	var/lowest_oxi_temp = INFINITY
-	var/list/oxidation_temperatures = GLOB.gas_data.oxidation_temperatures
-	for(var/gas in oxidation_temperatures)
-		lowest_oxi_temp = min(lowest_oxi_temp, oxidation_temperatures[gas])
-	min_requirements = list(
-		"TEMP" = max(lowest_oxi_temp, lowest_fire_temp),
-		"FIRE_REAGENTS" = MINIMUM_MOLE_COUNT
-	)
-
-// no requirements, always runs
-// bad idea? maybe
-// this is overridden by auxmos but, hey, good idea to have it readable
-
-/datum/gas_reaction/genericfire/react(datum/gas_mixture/air, datum/holder)
-	var/temperature = air.return_temperature()
-	var/list/oxidation_temps = GLOB.gas_data.oxidation_temperatures
-	var/list/oxidation_rates = GLOB.gas_data.oxidation_rates
-	var/oxidation_power = 0
-	var/list/burn_results = list()
-	var/list/fuels = list()
-	var/list/oxidizers = list()
-	var/list/fuel_rates = GLOB.gas_data.fire_burn_rates
-	var/list/fuel_temps = GLOB.gas_data.fire_temperatures
-	var/total_fuel = 0
-	var/energy_released = 0
-	for(var/G in air.get_gases())
-		var/oxidation_temp = oxidation_temps[G]
-		if(oxidation_temp && oxidation_temp > temperature)
-			var/temperature_scale = max(0, 1-(temperature / oxidation_temp))
-			var/amt = air.get_moles(G) * temperature_scale
-			oxidizers[G] = amt
-			oxidation_power += amt * oxidation_rates[G]
-		else
-			var/fuel_temp = fuel_temps[G]
-			if(fuel_temp && fuel_temp > temperature)
-				var/amt = (air.get_moles(G) / fuel_rates[G]) * max(0, 1-(temperature / fuel_temp))
-				fuels[G] = amt // we have to calculate the actual amount we're using after we get all oxidation together
-				total_fuel += amt
-	if(oxidation_power <= 0 || total_fuel <= 0)
-		return NO_REACTION
-	var/oxidation_ratio = oxidation_power / total_fuel
-	if(oxidation_ratio > 1)
-		for(var/oxidizer in oxidizers)
-			oxidizers[oxidizer] /= oxidation_ratio
-	else if(oxidation_ratio < 1)
-		for(var/fuel in fuels)
-			fuels[fuel] *= oxidation_ratio
-	fuels += oxidizers
-	var/list/fire_products = GLOB.gas_data.fire_products
-	var/list/fire_enthalpies = GLOB.gas_data.enthalpies
-	for(var/fuel in fuels + oxidizers)
-		var/amt = fuels[fuel]
-		if(!burn_results[fuel])
-			burn_results[fuel] = 0
-		burn_results[fuel] -= amt
-		energy_released += amt * fire_enthalpies[fuel]
-		for(var/product in fire_products[fuel])
-			if(!burn_results[product])
-				burn_results[product] = 0
-			burn_results[product] += amt
-	var/final_energy = air.thermal_energy() + energy_released
-	for(var/result in burn_results)
-		air.adjust_moles(result, burn_results[result])
-	air.set_temperature(final_energy / air.heat_capacity())
-	var/list/cached_results = air.reaction_results
-	cached_results["fire"] = min(total_fuel, oxidation_power) * 2
 	return cached_results["fire"] ? REACTING : NO_REACTION
 
 //fusion: a terrible idea that was fun but broken. Now reworked to be less broken and more interesting. Again (and again, and again). Again!
@@ -704,7 +560,6 @@ nobliumformation = 1001
 /datum/gas_reaction/h2fire
 	priority = -3 //fire should ALWAYS be last, but tritium fires happen before plasma fires
 	name = "Hydrogen Combustion"
-	exclude = TRUE // generic fire now takes care of this
 	id = "h2fire"
 
 /datum/gas_reaction/h2fire/init_reqs()
