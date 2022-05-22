@@ -6125,10 +6125,6 @@
 "aOp" = (
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
-"aOq" = (
-/obj/machinery/ai/expansion_card_holder,
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/secondarydatacore)
 "aOD" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance/three,
@@ -12127,6 +12123,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"cMI" = (
+/obj/item/stack/cable_coil,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "cMP" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical/virology,
@@ -13523,10 +13523,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
-"dvA" = (
-/obj/machinery/ai/expansion_card_holder/prefilled,
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
 "dvD" = (
 /obj/machinery/light{
 	dir = 8
@@ -15720,6 +15716,13 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"erD" = (
+/obj/structure/frame/machine{
+	anchored = 1;
+	state = 2
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "erJ" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -25322,6 +25325,19 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"izB" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/effect/landmark/start/yogs/network_admin,
+/turf/open/floor/plasteel/grimy,
+/area/maintenance/department/tcoms)
 "izC" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -35633,6 +35649,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"mYG" = (
+/obj/machinery/ai/server_cabinet,
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "mYJ" = (
 /obj/machinery/portable_atmospherics/canister/bz,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -39552,19 +39572,6 @@
 	},
 /turf/open/floor/wood,
 /area/chapel/office)
-"oPg" = (
-/obj/structure/chair/office/dark{
-	dir = 1
-	},
-/obj/effect/landmark/start/yogs/signal_technician,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/plasteel/grimy,
-/area/maintenance/department/tcoms)
 "oPG" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -39610,10 +39617,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"oQA" = (
-/obj/effect/landmark/start/ai,
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
 "oQN" = (
 /turf/open/floor/plasteel/freezer,
 /area/ruin/unpowered/russianbunker)
@@ -48505,6 +48508,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"sSc" = (
+/obj/machinery/ai/server_cabinet/prefilled,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "sTh" = (
 /obj/structure/table/wood,
 /obj/item/radio/intercom{
@@ -84594,7 +84601,7 @@ eiq
 ams
 akp
 kUI
-oPg
+izB
 csJ
 pOh
 kHN
@@ -95382,7 +95389,7 @@ dbx
 nES
 jPv
 amR
-aOq
+mYG
 vGH
 mIq
 jBI
@@ -116529,7 +116536,7 @@ sjG
 sjG
 aYj
 aYj
-dvA
+sSc
 sQV
 mAn
 hVW
@@ -116786,7 +116793,7 @@ sjG
 sjG
 aYj
 aYj
-oQA
+cMI
 sQV
 mAn
 rkQ
@@ -117043,7 +117050,7 @@ sjG
 aNg
 aYj
 aYj
-hVW
+erD
 xcx
 jwC
 pUx
@@ -117051,7 +117058,7 @@ pam
 jDN
 bzt
 sMB
-dvA
+sSc
 aYj
 aYj
 sjG
