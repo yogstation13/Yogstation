@@ -1,1 +1,14 @@
+/obj/structure/bloody_orb
+	name = "bloody orb"
+	desc = "A magic orb, that emmits bright red light."
+	icon = 'icons/obj/wallmounts.dmi'
+	icon_state = "extinguisher_closed"
+	anchored = TRUE
+	density = FALSE
+	max_integrity = 200
+	var/mob/living/simple_animal/hunter/demon 
+	var/mob/living/carbon/human/target
+	var/mob/living/carbon/human/master
+	var/blood_pool_summary = 0
+	var/sacrificed_blood = 0
 
