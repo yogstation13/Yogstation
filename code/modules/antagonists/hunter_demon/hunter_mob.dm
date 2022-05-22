@@ -85,10 +85,15 @@
 			///jaunt out related shit here. I didn't do that ability yet, so yeah...
 			visible_message(span_danger("[src] grabs [dude], and prepares to jaunt out!"), \
 				span_userdanger("[src] grabs [dude], preparing to jaunt out!"), null, COMBAT_MESSAGE_RANGE)
-
 	.=..()
 	if((isliving(target)))
-			heal_bodypart_damage(5)
+			heal_bodypart_damage(10)
+			if(prob(20 + attack_streak*10))
+				var/mob/living/guy = target
+				guy.adjustBruteLoss(10)
+				attack_streak = 0
+			else
+				attack_streak++
 	
 
 
