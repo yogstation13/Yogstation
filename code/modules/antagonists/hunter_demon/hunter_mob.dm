@@ -83,8 +83,16 @@
 					span_userdanger("[src] has punched [dude]!"), null, COMBAT_MESSAGE_RANGE)
 		else
 			///jaunt out related shit here. I didn't do that ability yet, so yeah...
+			dude.forceMove(src)
 			visible_message(span_danger("[src] grabs [dude], and prepares to jaunt out!"), \
 				span_userdanger("[src] grabs [dude], preparing to jaunt out!"), null, COMBAT_MESSAGE_RANGE)
+			if(do_after(src, 30, target = dude))
+				playsound(src, 'sound/magic/demon_attack1.ogg', 100, TRUE)
+				dude.forceMove(src) ///demon "eats" him
+				for(var/obj/item/organ/O in dude.internal_organs) ///His organs get qdeleted... rest in peace bro
+					qdel(O)
+				var/turf/turfo = gey_turf(src)
+				dude.addtimer(CALLBACK(src, .proc/OutOfBrazil(dude, turfo), TRUE), 120 SECONDS)
 	.=..()
 	if((isliving(target)))
 			heal_bodypart_damage(10)
@@ -95,7 +103,10 @@
 			else
 				attack_streak++
 	
-
+/proc/OutOfBrazil(mob/living/carbon/human/guy, turf/turfo)
+	guy.forceMove(turfo)
+	visible_message(span_danger("[guy]'s body suddenly appears out of nowhere!"), \
+		span_userdanger("[guy]'s body suddenly appears out of nowhere!"), null, COMBAT_MESSAGE_RANGE)
 
 
 
