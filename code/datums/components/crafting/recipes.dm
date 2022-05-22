@@ -481,14 +481,15 @@
 /datum/crafting_recipe/motorized_wheelchair
 	name = "Motorized Wheelchair"
 	result = /obj/vehicle/ridden/wheelchair/motorized
-	reqs = list(/obj/item/stack/sheet/metal = 10,
-		/obj/item/stack/rods = 8,
+	reqs = list(/obj/item/stack/sheet/metal = 6,
+		/obj/item/stack/rods = 2,
+		/obj/item/wheelchair = 1,
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stock_parts/capacitor = 1)
 	parts = list(/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stock_parts/capacitor = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
-	time = 200
+	time = 20 SECONDS
 	category = CAT_MISC
 
 /datum/crafting_recipe/ghetto_heart
