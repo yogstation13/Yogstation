@@ -23,15 +23,14 @@
 	maxbodytemp = INFINITY
 	faction = list("slaughter")
 	attacktext = "rips and tears"
-	maxHealth = 125
-	health = 125
+	maxHealth = 150
+	health = 150
 	healable = 0
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	obj_damage = 40
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	see_in_dark = 4
-	bloodcrawl = BLOODCRAWL_EAT
 	var/playstyle_string = "<span class='big bold'>You are a hunter demon,</span><B> a terrible creature from another realm.  \
 							You may use the \"Jaunt\" ability to dissapear from reality and allow you to move to almost any place. \
 							You can return to the mortal plane only near the bloody orb that summonned you or near your target. \
