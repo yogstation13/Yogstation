@@ -172,8 +172,7 @@
 	reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 20)
 	reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 15)
 	reagents.add_reagent(/datum/reagent/toxin/staminatoxin, 10)
-	reagents.add_reagent(/datum/reagent/toxin/pancuronium, 7)
-	reagents.add_reagent(/datum/reagent/toxin/sodium_thiopental, 23)
+	reagents.add_reagent(/datum/reagent/toxin/sodium_thiopental, 30)
 
 /*
  * (Alan) Edaggers

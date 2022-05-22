@@ -115,3 +115,4 @@
 	)
 	result = /obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
 	category = CAT_DRINK
+

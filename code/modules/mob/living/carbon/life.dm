@@ -18,6 +18,10 @@
 		if (QDELETED(src))
 			return
 
+		// yogs start -- typing indicators, look in yogstation specific folder for proc
+		handle_typing_indicator()
+		//yogs end
+
 		if(.) //not dead
 			handle_blood()
 
@@ -32,6 +36,10 @@
 
 		if(stat != DEAD)
 			handle_liver()
+
+		if(stat != DEAD)
+			//Stuff jammed in your limbs hurts
+			handle_embedded_objects()
 
 	else
 		. = ..()
@@ -645,6 +653,35 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	for(var/T in get_traumas())
 		var/datum/brain_trauma/BT = T
 		BT.on_life()
+
+
+////////////
+// EMBEDS //
+////////////
+
+/mob/living/carbon/proc/handle_embedded_objects()
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/BP = X
+		for(var/obj/item/I in BP.embedded_objects)
+			I.embed_tick(src, BP)
+			var/pain_chance_current = I.embedding.embedded_pain_chance
+			if(!(mobility_flags & MOBILITY_STAND))
+				pain_chance_current *= 0.2
+			if(prob(pain_chance_current))
+				BP.receive_damage(I.w_class*I.embedding.embedded_pain_multiplier, wound_bonus = CANT_WOUND)
+				to_chat(src, span_userdanger("[I] embedded in your [BP.name] hurts!"))
+
+			var/fall_chance_current = I.embedding.embedded_fall_chance
+			if(!(mobility_flags & MOBILITY_STAND))
+				fall_chance_current *= 0.2
+
+			if(prob(fall_chance_current))
+				BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier, wound_bonus = CANT_WOUND) // can wound
+				remove_embedded_object(I, drop_location(), FALSE)
+				visible_message(span_danger("[I] falls out of [name]'s [BP.name]!"), span_userdanger("[I] falls out of your [BP.name]!"))
+				if(!has_embedded_objects())
+					clear_alert("embeddedobject")
+					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
 /////////////////////////////////////
 //MONKEYS WITH TOO MUCH CHOLOESTROL//

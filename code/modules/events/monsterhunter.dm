@@ -17,7 +17,6 @@
 	weight = 2000
 	min_players = 10
 	earliest_start = 35 MINUTES
-	alert_observers = FALSE
 	gamemode_whitelist = list("bloodsucker","traitorsucker","dynamic")
 
 /datum/round_event/bloodsucker_hunters
@@ -35,6 +34,8 @@
 		return
 	for(var/mob/living/carbon/human/all_players in shuffle(GLOB.player_list))
 		if(!all_players.client || !all_players.mind || !(ROLE_MONSTERHUNTER in all_players.client.prefs.be_special))
+			continue
+		if(all_players.client.prefs.yogtoggles & QUIET_ROUND)
 			continue
 		if(all_players.stat == DEAD)
 			continue
@@ -61,7 +62,6 @@
 	weight = 7
 	min_players = 10
 	earliest_start = 25 MINUTES
-	alert_observers = TRUE
 	gamemode_whitelist = list("traitorchan","changeling","heresy","cult","clockwork_cult","dynamic")
 
 /datum/round_event/monster_hunters

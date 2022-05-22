@@ -378,7 +378,11 @@ GENE SCANNER
 			mutant = TRUE
 
 		to_chat(user, span_info("Species: [S.name][mutant ? "-derived mutant" : ""]"))
-	to_chat(user, span_info("Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)"))
+	var/temp_span = "notice"
+	if(M.bodytemperature <= BODYTEMP_HEAT_DAMAGE_LIMIT || M.bodytemperature >= BODYTEMP_COLD_DAMAGE_LIMIT)
+		temp_span = "warning"
+	
+	to_chat(user, "<span_class = '[temp_span]'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
 
 	// Time of death
 	if(M.tod && (M.stat == DEAD || ((HAS_TRAIT(M, TRAIT_FAKEDEATH)) && !advanced)))
@@ -929,6 +933,46 @@ GENE SCANNER
 		return  "[HM.name] ([HM.alias])"
 	else
 		return HM.alias
+
+/obj/item/scanner_wand
+	name = "kiosk scanner wand"
+	icon = 'icons/obj/device.dmi'
+	icon_state = "scanner_wand"
+	item_state = "healthanalyzer"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	desc = "A wand that medically scans people. Inserting it into a medical kiosk makes it able to perform a health scan on the patient."
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_BULKY
+	var/selected_target = null
+
+/obj/item/scanner_wand/attack(mob/living/M, mob/living/carbon/human/user)
+	flick("[icon_state]_active", src) //nice little visual flash when scanning someone else.
+
+	if((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(25))
+		user.visible_message(span_warning("[user] targets himself for scanning."), \
+		to_chat(user, span_info("You try scanning [M], before realizing you're holding the scanner backwards. Whoops.")))
+		selected_target = user
+		return
+
+	if(!ishuman(M))
+		to_chat(user, span_info("You can only scan human-like, non-robotic beings."))
+		selected_target = null
+		return
+
+	user.visible_message(span_notice("[user] targets [M] for scanning."), \
+						span_notice("You target [M] vitals."))
+	selected_target = M
+	return
+
+/obj/item/scanner_wand/attack_self(mob/user)
+	to_chat(user, span_info("You clear the scanner's target."))
+	selected_target = null
+
+/obj/item/scanner_wand/proc/return_patient()
+	var/returned_target = selected_target
+	return returned_target
 
 #undef SCANMODE_HEALTH
 #undef SCANMODE_CHEMICAL

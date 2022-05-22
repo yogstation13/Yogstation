@@ -22,7 +22,7 @@
 	/// Requirement flags for checks
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	/// Who can purchase the Power
-	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|TREMERE_CAN_BUY|VASSAL_CAN_BUY|HUNTER_CAN_BUY
+	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|LASOMBRA_CAN_BUY|GANGREL_CAN_BUY|VASSAL_CAN_BUY|HUNTER_CAN_BUY
 
 	// COOLDOWNS //
 	///Timer between Power uses.
@@ -39,14 +39,19 @@
 	var/bloodcost = 0
 	///The cost to MAINTAIN this Power - Only used for Constant Cost Powers
 	var/constant_bloodcost = 0
+	///If the Power has any additional descriptions coming from either 3rd partys or the power itself
+	var/additional_text = ""
 
 // Modify description to add cost.
 /datum/action/bloodsucker/New(Target)
 	. = ..()
 	UpdateDesc()
+	START_PROCESSING(SSfastprocess, src)
 
 /datum/action/bloodsucker/proc/UpdateDesc()
 	desc = initial(desc)
+	if(length(additional_text) > 0)
+		desc += "<br><br><b>ASCENDED</b>: [additional_text]"
 	if(bloodcost > 0)
 		desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)
@@ -55,10 +60,17 @@
 		desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
 	if(level_current > 0)
 		desc += "<br><br><b>LEVEL:</b><i> [name] is currently level [level_current].</i>"
+	if(cooldown > 0)
+		desc += "<br><br><b>COOLDOWN:</b><i> [name] has a cooldown of [cooldown / 10] seconds.</i>"
 
 /datum/action/bloodsucker/Destroy()
 	bloodsuckerdatum_power = null
+	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
+
+/datum/action/bloodsucker/process()
+	cooldown_overlay?.tick()
+	
 
 /datum/action/bloodsucker/IsAvailable()
 	return TRUE
@@ -87,9 +99,6 @@
 	ActivatePower()
 	if(power_flags & BP_AM_SINGLEUSE)
 		RemoveAfterUse()
-		return TRUE
-	if(!(power_flags & BP_AM_TOGGLE) || !active)
-		StartCooldown() // Must come AFTER UpdateButtonIcon(), otherwise icon will revert!
 	return TRUE
 
 /datum/action/bloodsucker/proc/CheckCanPayCost()
@@ -154,9 +163,12 @@
 
 	// Wait for cooldown
 	COOLDOWN_START(src, bloodsucker_power_cooldown, this_cooldown)
+	cooldown_overlay = start_cooldown(button,world.time + this_cooldown)
 	addtimer(CALLBACK(src, .proc/alpha_in), this_cooldown)
 
 /datum/action/bloodsucker/proc/alpha_in()
+	if(cooldown_overlay)
+		QDEL_NULL(cooldown_overlay)
 	button.color = rgb(255,255,255,255)
 	button.alpha = 255
 
@@ -179,12 +191,15 @@
 	active = TRUE
 	if(power_flags & BP_AM_TOGGLE)
 		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/UsePower)
-	owner.log_message("used [src].", LOG_ATTACK, color="red")
+	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
 	UpdateButtonIcon()
 
 /datum/action/bloodsucker/proc/DeactivatePower()
 	if(power_flags & BP_AM_TOGGLE)
 		UnregisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE)
+	if(power_flags & BP_AM_SINGLEUSE)
+		RemoveAfterUse()
+		return
 	active = FALSE
 	UpdateButtonIcon()
 	StartCooldown()
@@ -203,8 +218,6 @@
 
 /// Checks to make sure this power can stay active
 /datum/action/bloodsucker/proc/ContinueActive(mob/living/user, mob/living/target)
-	if(!active)
-		return FALSE
 	if(!user)
 		return FALSE
 	if(!constant_bloodcost > 0 || user.blood_volume > 0)

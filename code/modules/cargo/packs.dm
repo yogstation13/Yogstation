@@ -1026,6 +1026,13 @@
 	contains = list(/obj/item/stack/sheet/cardboard/fifty)
 	crate_name = "cardboard sheets crate"
 
+/datum/supply_pack/materials/license50
+	name = "50 Empty License Plates"
+	desc = "'Put those prisoners to work' - Jedi Yoda probably"
+	cost = 1000  // 50 * 25 - 1000 = 250 credits profit
+	contains = list(/obj/item/stack/license_plates/empty/fifty)
+	crate_name = "empty license plate crate"
+
 /datum/supply_pack/materials/glass50
 	name = "50 Glass Sheets"
 	desc = "Let some nice light in with fifty glass sheets!"

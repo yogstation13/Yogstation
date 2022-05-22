@@ -166,7 +166,7 @@
 					return
 				message_admins("[key_name(usr)] spawned a blob with base resource gain [strength].")
 				log_admin("[key_name(usr)] spawned a blob with base resource gain [strength].")
-				new/datum/round_event/ghost_role/blob(TRUE, strength)
+				new/datum/round_event/ghost_role/blob(strength)
 			if("centcom")
 				message_admins("[key_name(usr)] is creating a CentCom response team...")
 				if(src.makeEmergencyresponseteam())
@@ -2264,6 +2264,14 @@
 	else if(href_list["beakerpanel"])
 		beaker_panel_act(href_list)
 
+	else if(href_list["checkAIDash"])
+		var/mob/living/silicon/ai/AI = locate(href_list["checkAIDash"])
+		if(!AI)
+			return
+		if(!AI.dashboard)
+			return
+		AI.dashboard.ui_interact(src.owner.mob)
+
 	else if(href_list["AdminFaxView"])
 		var/obj/info = locate(href_list["AdminFaxView"]) in GLOB.adminfaxes
 		if(info)
@@ -2274,14 +2282,11 @@
 		if(!istype(F)) 
 			to_chat(src.owner, span_danger("Unable to locate fax!"))
 			return
-
 		owner.send_admin_fax(F)
-		
 
 /client/proc/send_global_fax()
 	set category = "Admin.Round Interaction"
 	set name = "Send Global Fax"
-
 	if(!check_rights(R_ADMIN)) 
 		return
 	send_admin_fax()
@@ -2320,7 +2325,6 @@
 	
 	for(var/obj/machinery/photocopier/faxmachine/fax in GLOB.allfaxes)
 		INVOKE_ASYNC(fax, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, T)
-	
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

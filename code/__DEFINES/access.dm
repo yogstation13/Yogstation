@@ -81,7 +81,7 @@
 #define ACCESS_CLONING 68
 ///Paramedic Office
 #define ACCESS_PARAMEDIC 69
-///Access to the Signal Tech monitoring room
+///Access to the Network admins monitoring room
 #define ACCESS_TCOM_ADMIN 70
 #define ACCESS_FREEMINER 71
 #define ACCESS_FREEMINER_CAPTAIN 72
