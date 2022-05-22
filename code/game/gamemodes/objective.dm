@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/turf/location = get_turf(M.current)
 	if(!location || istype(location, /turf/open/floor/plasteel/shuttle/red) || istype(location, /turf/open/floor/mineral/plastitanium/red/brig)) // Fails if they are in the shuttle brig
 		return FALSE
-	if(istype(M.current, /mob/living/carbon))
+	if(iscarbon(M.current))
 		var/mob/living/carbon/C = M.current
 		if(C.handcuffed && (C.buckled || C.pulledby)) // If handcuffed and being pulled/buckled
 			return FALSE
