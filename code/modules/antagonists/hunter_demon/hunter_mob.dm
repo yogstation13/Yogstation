@@ -45,6 +45,12 @@
 	var/mob/living/carbon/human/prey
 	var/mob/living/last_target
 	var/attack_streak
+	var/cool_demon_name
+
+/mob/living/simple_animal/hunter/Login()
+	. = ..()
+	if(!cool_demon_name)
+		cool_name()
 
 /mob/living/simple_animal/hunter/AttackingTarget()
 	if(isliving(target))
@@ -112,5 +118,13 @@
 	visible_message(span_danger("[guy]'s body suddenly appears out of nowhere!"), \
 		span_userdanger("[guy]'s body suddenly appears out of nowhere!"), null, COMBAT_MESSAGE_RANGE)
 
+/mob/living/simple_animal/hunter/proc/cool_name()
+	cool_demon_name = stripped_input(src, "What would you like your name to be?", "Choose Your Name", real_name, MAX_NAME_LEN)
+ 	if(ool_demon_name)
+ 		to_chat(src, "<span class='warning'>Not a valid name, please try again.</span>")
+ 		cool_name()
+ 		return
+ 	visible_message("<span class='notice'>Your name is now <span class='name'>[cool_demon_name]</span>.</span>")
+ 	fully_replace_character_name(null, cool_demon_name)
 
 
