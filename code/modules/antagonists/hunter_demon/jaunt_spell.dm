@@ -30,7 +30,7 @@
 			  		phased = FALSE
 	  		else
 				var/phaseouttime = 30
-       				if(hunterd.check_shit())
+				if(hunterd.check_shit())
 					phaseouttime = 50
 				if(do_after(src, phaseout))	
 		  			if(user.phaseout(target))
