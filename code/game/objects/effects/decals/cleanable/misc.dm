@@ -122,8 +122,8 @@
 	GLOB.vomit_spots += src
 
 /obj/effect/decal/cleanable/vomit/Destroy(force)
-	. = ..()
 	GLOB.vomit_spots -= src
+	. = ..()
 
 /obj/effect/decal/cleanable/vomit/attack_hand(mob/user)
 	. = ..()
@@ -214,5 +214,5 @@
 	GLOB.vomit_spots += src
 
 /obj/effect/decal/cleanable/insectguts/Destroy(force)
-	. = ..()
 	GLOB.vomit_spots -= src
+	. = ..()
