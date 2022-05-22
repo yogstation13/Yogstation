@@ -24,6 +24,8 @@
 		return 0
 	var/turf/turfo = get_turf(src)
 	B.visible_message(span_warning("The reality begins to shatter around you!"))
+	if(!do_after(src, 3 SECONDS, target = turfo))
+		return
 	forceMove(turfo)
 	src.client.eye = src
 	src.visible_message(span_warning("<B>[src] warps into reality!</B>"))
