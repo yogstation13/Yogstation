@@ -551,6 +551,7 @@
 		set_suicide(FALSE)
 		stat = UNCONSCIOUS //the mob starts unconscious,
 		blind_eyes(1)
+		losebreath = 0 //losebreath stacks were persisting beyond death, immediately killing again after revival until they ran out natureally from time
 		updatehealth() //then we check if the mob should wake up.
 		update_mobility()
 		update_sight()
@@ -595,6 +596,7 @@
 	hallucination = 0
 	heal_overall_damage(INFINITY, INFINITY, INFINITY, null, TRUE) //heal brute and burn dmg on both organic and robotic limbs, and update health right away.
 	ExtinguishMob()
+	losebreath = 0
 	fire_stacks = 0
 	confused = 0
 	dizziness = 0

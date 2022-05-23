@@ -105,8 +105,8 @@
 		return
 	clashing = TRUE
 	GLOB.cult_narsie.clashing = TRUE
-	to_chat(world, "<span class='bold brass'><font size=5>\"YOU.\"</font></span>")
-	to_chat(world, "<span class='bold cult'><font size=5>\"Ratvar?!\"</font></span>")
+	send_to_playing_players("<span class='bold brass'><font size=5>\"YOU.\"</font></span>")
+	send_to_playing_players("<span class='bold cult'><font size=5>\"Ratvar?!\"</font></span>")
 	clash_of_the_titans(GLOB.cult_narsie) // >:(
 	return TRUE
 

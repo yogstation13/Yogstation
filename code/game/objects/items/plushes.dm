@@ -215,7 +215,7 @@
 
 /obj/item/toy/plush/proc/heartbreak(obj/item/toy/plush/Brutus)
 	if(lover != Brutus)
-		to_chat(world, "lover != Brutus")
+		debug_admins("lover != Brutus")
 		return	//why are we considering someone we don't love?
 
 	scorned.Add(Brutus)
