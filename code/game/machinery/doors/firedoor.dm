@@ -343,7 +343,7 @@
 	check_pulls()
 	. = ..()
 
-/obj/machinery/door/firedoor/border_only/check_pulls()
+/obj/machinery/door/firedoor/border_only/proc/check_pulls()
 	var/turf/T1 = get_turf(src)
 	var/turf/T2 = get_step(T1, dir)
 	for(var/mob/living/M in T1)
