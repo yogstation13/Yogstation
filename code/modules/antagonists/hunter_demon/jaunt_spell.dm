@@ -33,7 +33,7 @@
 				if(hunterd.check_shit())
 					phaseouttime = 50
 				if(do_after(src, phaseout))	
-					if(user.phaseout(target))
+					if(user.phaseout())
 						phased = TRUE
 			start_recharge()
 			return
