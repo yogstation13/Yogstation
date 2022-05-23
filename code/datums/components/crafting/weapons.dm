@@ -554,9 +554,9 @@
 	result = /obj/item/ammo_casing/caseless/arrow/chitin
 	time = 3 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow/bone = 1,
-				/obj/item/stack/sheet/sinew = 2,
+				/obj/item/stack/sheet/sinew = 1,
 				/obj/item/stack/sheet/ashresin = 1,
-				/obj/item/stack/sheet/animalhide/weaver_chitin = 3)
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 2)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
@@ -629,7 +629,7 @@
 	result = /obj/item/ammo_casing/caseless/arrow/flaming
 	time = 3 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
-				/obj/item/stack/sheet/silk = 1,
+				/obj/item/stack/sheet/cloth = 1,
 				/datum/reagent/fuel = 10)
 	parts = list(/obj/item/ammo_casing/caseless/arrow = 1)
 	category = CAT_WEAPONRY
