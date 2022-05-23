@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hunter
+/mob/living/simple_animal/hostile/hunter
 	name = "hunter demon"
 	real_name = "hunter demon"
 	desc = "A large, armored creature emmitting unholy energies."
@@ -46,12 +46,12 @@
 	var/attack_streak
 	var/cool_demon_name
 
-/mob/living/simple_animal/hunter/Login()
+/mob/living/simple_animal/hostile/hunter/Login()
 	. = ..()
 	if(!cool_demon_name)
 		cool_name()
 
-/mob/living/simple_animal/hunter/AttackingTarget()
+/mob/living/simple_animal/hostile/hunter/AttackingTarget()
 	if(istype(target, /obj/machinery/door/airlock))
 		pry_door(target)
 		return
@@ -123,7 +123,7 @@
 	guy.visible_message(span_danger("[guy]'s body suddenly appears out of nowhere!"), \
 		span_userdanger("[guy]'s body suddenly appears out of nowhere!"), null, COMBAT_MESSAGE_RANGE)
 
-/mob/living/simple_animal/hunter/proc/cool_name()
+/mob/living/simple_animal/hostile/hunter/proc/cool_name()
 	cool_demon_name = stripped_input(src, "What would you like your name to be?", "Choose Your Name", real_name, MAX_NAME_LEN)
  	if(!cool_demon_name)
  		to_chat(src, "<span class='warning'>Not a valid name, please try again.</span>")
@@ -134,7 +134,7 @@
 
 #define DEMONSHIT_RANGE 4
 
-/mob/living/simple_animal/hunter/proc/check_shit()
+/mob/living/simple_animal/hostile/hunter/proc/check_shit()
 	var/sex = FALSE
 	if(get_dist(get_turf(src), get_turf(orb)) <= DEMONSHIT_RANGE)
 		sex = TRUE
@@ -144,7 +144,7 @@
 
 #undef DEMONSHIT_RANGE
 
-/mob/living/simple_animal/hunter/proc/pry_door(target)
+/mob/living/simple_animal/hostile/hunter/proc/pry_door(target)
 	var/obj/machinery/door/airlock/prying_door = target
 	visible_message(span_warning("[src] begins prying open the airlock..."),
 		span_notice("You begin digging your claws into the airlock..."),
