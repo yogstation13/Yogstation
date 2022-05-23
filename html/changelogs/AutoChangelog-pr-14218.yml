@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - tweak: "punching the spare id/fireaxe cabinets to destruction will drop the things inside them"
