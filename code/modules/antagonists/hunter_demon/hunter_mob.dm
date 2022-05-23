@@ -138,7 +138,7 @@
 	var/sex = FALSE
 	if(get_dist(get_turf(src), get_turf(orb)) <= DEMONSHIT_RANGE)
 		sex = TRUE
-	if(get_dist(get_turf(src), get_turf(target)) <= DEMONSHIT_RANGE)
+	if(get_dist(get_turf(src), get_turf(prey)) <= DEMONSHIT_RANGE)
 		sex = TRUE
 	return sex
 
