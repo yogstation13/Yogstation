@@ -1,12 +1,11 @@
-///W.I.P
-/mob/living/simple_animal/hunter/phaseout()
+/mob/living/simple_animal/hostile/hunter/phaseout()
 	src.notransform = TRUE
 	spawn(0)
 		bloodpool_sink()
 		src.notransform = FALSE
 	return 1
 
-/mob/living/simple_animal/hunter/bloodpool_sink()
+/mob/living/simple_animal/hostile/hunter/bloodpool_sink()
 	var/turf/mobloc = get_turf(src.loc)
 	src.visible_message(span_warning("[src] warps out of the reality!"))
 	playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 50, 1, -1)
@@ -16,10 +15,10 @@
 	src.forceMove(holder)
 	return 1
 
-/mob/living/simple_animal/hunter/exit_blood_effect()
+/mob/living/simple_animal/hostile/hunter/exit_blood_effect()
 	playsound(get_turf(src), 'sound/magic/exit_blood.ogg', 50, 1, -1)
 
-/mob/living/simple_animal/hunter/phasein()
+/mob/living/simple_animal/hostile/hunter/phasein()
 	if(src.notransform)
 		return 0
 	var/turf/turfo = get_turf(src)
