@@ -99,9 +99,9 @@
 				playsound(src, 'sound/magic/demon_attack1.ogg', 100, TRUE)
 				dude.forceMove(src) ///demon "eats" him
 				for(var/obj/item/organ/O in dude.internal_organs) ///His organs get qdeleted... rest in peace bro
-				qdel(O)
+					qdel(O)
 				var/turf/turfo = get_turf(src)
-				dude.addtimer(CALLBACK(dude, .proc/OutOfBrazil(dude, turfo)), 120 SECONDS)
+				addtimer(CALLBACK(dude, .proc/OutOfBrazil(dude, turfo)), 120 SECONDS)
 	.=..()
 	if((isliving(target)))
 		heal_bodypart_damage(6)
