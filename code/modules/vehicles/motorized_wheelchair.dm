@@ -112,7 +112,7 @@
 /obj/vehicle/ridden/wheelchair/motorized/wrench_act(mob/living/user, obj/item/I)
 	to_chat(user, span_notice("You begin to detach the wheels..."))
 	if(I.use_tool(src, user, 4 SECONDS, volume = 50))
-		to_chat(user, span_notice"You detach the wheels and deconstruct the chair.")
+		to_chat(user, span_notice("You detach the wheels and deconstruct the chair."))
 		new /obj/item/stack/rods(drop_location(), 8)
 		new /obj/item/stack/sheet/metal(drop_location(), 10)
 		var/turf/T = get_turf(src)
