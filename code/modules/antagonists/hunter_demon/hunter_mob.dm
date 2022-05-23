@@ -97,7 +97,7 @@
 				for(var/obj/item/organ/O in dude.internal_organs) ///His organs get qdeleted... rest in peace bro
 					qdel(O)
 				var/turf/turfo = get_turf(src)
-				addtimer(CALLBACK(dude, .proc/OutOfBrazil(dude, turfo), 120 SECONDS)
+				addtimer(CALLBACK(dude, .proc/OutOfBrazil(dude, turfo), 120 SECONDS))
 			return FALSE
 
 
