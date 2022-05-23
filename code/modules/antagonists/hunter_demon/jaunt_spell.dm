@@ -34,7 +34,7 @@
 					phaseouttime = 50
 				if(do_after(src, phaseout))	
 					if(user.phaseout(target))
-			  			phased = TRUE
+						phased = TRUE
 			start_recharge()
 			return
 	revert_cast()
