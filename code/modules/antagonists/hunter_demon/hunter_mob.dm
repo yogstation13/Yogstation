@@ -99,7 +99,7 @@
 				playsound(src, 'sound/magic/demon_attack1.ogg', 100, TRUE)
 				dude.forceMove(src) ///demon "eats" him
 				for(var/obj/item/organ/O in dude.internal_organs) ///His organs get qdeleted... rest in peace bro
-					qdel(O)
+				qdel(O)
 				var/turf/turfo = get_turf(src)
 				dude.addtimer(CALLBACK(dude, .proc/OutOfBrazil(dude, turfo)), 120 SECONDS)
 	.=..()
@@ -124,7 +124,7 @@
 		span_userdanger("[guy]'s body suddenly appears out of nowhere!"), null, COMBAT_MESSAGE_RANGE)
 
 /mob/living/simple_animal/hostile/hunter/proc/cool_name()
-	cool_demon_name = stripped_input(src, "What would you like your name to be?", "Choose Your Name", real_name, MAX_NAME_LEN)
+	cool_demon_name = stripped_input(src, "What would you like your name to be?")
  	if(!cool_demon_name)
  		to_chat(src, "<span class='warning'>Not a valid name, please try again.</span>")
  		cool_name()
