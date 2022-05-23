@@ -1,8 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "adds more loot to gax"
-  - tweak: "redoes the gax bridge"
-  - bugfix: "actually adds antique laser"
-  - bugfix: "remove wall from being in the fitness airlock on gax"
-  - bugfix: "hopefully fixes gax disposals by science"
