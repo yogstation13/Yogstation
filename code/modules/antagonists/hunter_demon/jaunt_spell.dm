@@ -26,7 +26,7 @@
 					to_chat(user, span_warning("You can only warp in while near your target or your blood orb!"))
 					revert_cast()
 					return
-				if(user.phasein(target))
+				if(user.phasein())
 					phased = FALSE
 	  		else
 				var/phaseouttime = 30
