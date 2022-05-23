@@ -104,7 +104,7 @@
 				dude.addtimer(CALLBACK(src, proc/OutOfBrazil(dude, turfo), TRUE), 120 SECONDS)
 	.=..()
 	if((isliving(target)))
-		heal_bodypart_damage(10)
+		heal_bodypart_damage(6)
 			if(prob(20 + attack_streak*5))
 				var/mob/living/guy = target
 				guy.adjustBruteLoss(10)
