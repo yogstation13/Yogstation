@@ -231,7 +231,6 @@
 	latetoggle()
 
 /obj/machinery/door/firedoor/proc/whack_a_mole(reconsider_immediately = FALSE)
-	set waitfor = 0
 	for(var/cdir in GLOB.cardinals)
 		if((flags_1 & ON_BORDER_1) && cdir != dir)
 			continue
@@ -240,7 +239,6 @@
 		whack_a_mole_part(get_turf(src), reconsider_immediately)
 
 /obj/machinery/door/firedoor/proc/whack_a_mole_part(turf/start_point, reconsider_immediately)
-	set waitfor = 0
 	var/list/doors_to_close = list()
 	var/list/turfs = list()
 	turfs[start_point] = 1
@@ -284,6 +282,7 @@
 	if(world.time >= emergency_close_timer || !consider_timer)
 		emergency_pressure_close()
 
+//this is here to prevent sleeps from messing with decomp, by closing firedoors instantly
 /obj/machinery/door/firedoor/proc/emergency_pressure_close()
 	if(density)
 		return
@@ -297,7 +296,6 @@
 	update_freelook_sight()
 	if(!(flags_1 & ON_BORDER_1))
 		crush()
-
 
 /obj/machinery/door/firedoor/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1) && disassembled)
@@ -334,6 +332,18 @@
 		return TRUE
 	if(operating || welded)
 		return
+	check_pulls()
+	. = ..()
+
+/obj/machinery/door/firedoor/border_only/emergency_pressure_close()
+	if(density)
+		return TRUE
+	if(operating || welded)
+		return
+	check_pulls()
+	. = ..()
+
+/obj/machinery/door/firedoor/border_only/check_pulls()
 	var/turf/T1 = get_turf(src)
 	var/turf/T2 = get_step(T1, dir)
 	for(var/mob/living/M in T1)
@@ -351,7 +361,6 @@
 				to_chat(M, span_notice("You pull [M.pulling] through [src] right as it closes"))
 				M.pulling.forceMove(T2)
 				M.start_pulling(M2)
-	. = ..()
 
 /obj/machinery/door/firedoor/border_only/allow_hand_open(mob/user)
 	var/area/A = get_area(src)
