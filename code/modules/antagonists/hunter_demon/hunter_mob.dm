@@ -101,7 +101,7 @@
 				for(var/obj/item/organ/O in dude.internal_organs) ///His organs get qdeleted... rest in peace bro
 					qdel(O)
 				var/turf/turfo = get_turf(src)
-				dude.addtimer(CALLBACK(src, /proc/OutOfBrazil(dude, turfo), TRUE), 120 SECONDS)
+				dude.addtimer(CALLBACK(dude, .proc/OutOfBrazil(dude, turfo)), 120 SECONDS)
 	.=..()
 	if((isliving(target)))
 		heal_bodypart_damage(6)
