@@ -27,7 +27,7 @@
 					revert_cast()
 					return
 				if(user.phasein(target))
-			  		phased = FALSE
+				phased = FALSE
 	  		else
 				var/phaseouttime = 30
 				if(hunterd.check_shit())
