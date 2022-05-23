@@ -100,8 +100,6 @@
 				addtimer(CALLBACK(dude, .proc/OutOfBrazil(dude, turfo), 120 SECONDS)
 			return FALSE
 
-	else
-		return ..()
 
 	. = ..()
 
