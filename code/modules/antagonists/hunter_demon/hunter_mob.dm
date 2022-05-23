@@ -124,17 +124,13 @@
 	guy.visible_message(span_danger("[guy]'s body suddenly appears out of nowhere!"), \
 		span_userdanger("[guy]'s body suddenly appears out of nowhere!"), null, COMBAT_MESSAGE_RANGE)
 
-#define DEMONSHIT_RANGE 4
-
-/mob/living/simple_animal/hostile/hunter/proc/check_shit()
+/mob/living/simple_animal/hostile/hunter/proc/check_shit(range, wdwc = ORB_AND_PREY) ///wdwc - What Do We Check
 	var/sex = FALSE
-	if(get_dist(get_turf(src), get_turf(orb)) <= DEMONSHIT_RANGE)
+	if((get_dist(get_turf(src), get_turf(orb)) <= range) && wdwc != ONLY_PREY)
 		sex = TRUE
-	if(get_dist(get_turf(src), get_turf(prey)) <= DEMONSHIT_RANGE)
+	if((get_dist(get_turf(src), get_turf(prey)) <= range) && wdwc != ONLY_ORB)
 		sex = TRUE
 	return sex
-
-#undef DEMONSHIT_RANGE
 
 /mob/living/simple_animal/hostile/hunter/proc/pry_door(target)
 	var/obj/machinery/door/airlock/prying_door = target
