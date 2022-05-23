@@ -8,7 +8,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/bodypart/l_arm
-	category = list("initial","human","lizard","fly","moth","plasmaman")
+	category = list("initial","Human","Lizard","Fly","Moth","Plasmaman")
 
 /datum/design/rightarm
 	name = "Right Arm"
@@ -16,7 +16,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/bodypart/r_arm
-	category = list("initial","human","lizard","fly","moth","plasmaman")
+	category = list("initial","Human","Lizard","Fly","Moth","Plasmaman")
 
 /datum/design/leftleg
 	name = "Left Leg"
@@ -24,7 +24,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/bodypart/l_leg
-	category = list("initial","human","lizard","fly","moth","plasmaman")
+	category = list("initial","Human","Lizard","Fly","Moth","Plasmaman")
 
 /datum/design/rightleg
 	name = "Right Leg"
@@ -32,7 +32,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/bodypart/r_leg
-	category = list("initial","human","lizard","fly","moth","plasmaman")
+	category = list("initial","Human","Lizard","Fly","Moth","Plasmaman")
 
 /datum/design/digi_leftleg
 	name = "Digitigrade Left Leg"
@@ -40,7 +40,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
 	build_path = /obj/item/bodypart/l_leg/digitigrade
-	category = list("lizard")
+	category = list("Lizard")
 
 /datum/design/digi_rightleg
 	name = "Digitigrade Right Leg"
@@ -48,7 +48,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
 	build_path = /obj/item/bodypart/r_leg/digitigrade
-	category = list("lizard")
+	category = list("Lizard")
 
 //Non-limb limb designs
 
@@ -58,7 +58,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
 	build_path = /obj/item/organ/heart
-	category = list("human","initial")
+	category = list("Human","initial")
 
 /datum/design/lungs
 	name = "Lungs"
@@ -66,7 +66,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
 	build_path = /obj/item/organ/lungs
-	category = list("human","initial")
+	category = list("Human","initial")
 
 /datum/design/liver
 	name = "Liver"
@@ -74,7 +74,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
 	build_path = /obj/item/organ/liver
-	category = list("human","initial")
+	category = list("Human","initial")
 
 /datum/design/stomach
 	name = "Stomach"
@@ -82,7 +82,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 15)
 	build_path = /obj/item/organ/stomach
-	category = list("human","initial")
+	category = list("Human","initial")
 
 /datum/design/appendix
 	name = "Appendix"
@@ -90,7 +90,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 5) //why would you need this
 	build_path = /obj/item/organ/appendix
-	category = list("human","initial")
+	category = list("Human","initial")
 
 /datum/design/eyes
 	name = "Eyes"
@@ -98,7 +98,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10)
 	build_path = /obj/item/organ/eyes
-	category = list("human","initial")
+	category = list("Human","initial")
 
 /datum/design/ears
 	name = "Ears"
@@ -106,7 +106,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10)
 	build_path = /obj/item/organ/ears
-	category = list("human","initial")
+	category = list("Human","initial")
 
 /datum/design/tongue
 	name = "Tongue"
@@ -114,7 +114,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10)
 	build_path = /obj/item/organ/tongue
-	category = list("human","initial")
+	category = list("Human","initial")
 
 // Grows a fake lizard tail - not usable in lizard wine and other similar recipes.
 /datum/design/lizard_tail
@@ -123,7 +123,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
 	build_path = /obj/item/organ/tail/lizard/fake
-	category = list("lizard")
+	category = list("Lizard")
 
 /datum/design/lizard_tongue
 	name = "Forked Tongue"
@@ -131,7 +131,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
 	build_path = /obj/item/organ/tongue/lizard
-	category = list("lizard")
+	category = list("Lizard")
 
 //  someday this will get uncommented
 // /datum/design/monkey_tail
@@ -148,7 +148,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 20)
 	build_path = /obj/item/organ/tail/cat
-	category = list("human")
+	category = list("Human")
 
 /datum/design/cat_ears
 	name = "Cat Ears"
@@ -156,7 +156,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10)
 	build_path = /obj/item/organ/ears/cat
-	category = list("human")
+	category = list("Human")
 
 /datum/design/plasmaman_lungs
 	name = "Plasma Filter"
@@ -164,7 +164,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
 	build_path = /obj/item/organ/lungs/plasmaman
-	category = list("plasmaman")
+	category = list("Plasmaman")
 
 /datum/design/plasmaman_tongue
 	name = "Plasma Bone Tongue"
@@ -172,7 +172,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
 	build_path = /obj/item/organ/tongue/bone/plasmaman
-	category = list("plasmaman")
+	category = list("Plasmaman")
 
 /datum/design/plasmaman_liver
 	name = "Reagent Processing Crystal"
@@ -180,7 +180,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
 	build_path = /obj/item/organ/liver/plasmaman
-	category = list("plasmaman")
+	category = list("Plasmaman")
 
 /datum/design/plasmaman_stomach
 	name = "Digestive Crystal"
@@ -188,7 +188,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
 	build_path = /obj/item/organ/stomach/plasmaman
-	category = list("plasmaman")
+	category = list("Plasmaman")
 
 /datum/design/ethereal_stomach
 	name = "Biological Battery"
@@ -196,7 +196,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/liquidelectricity = 20)
 	build_path = /obj/item/organ/stomach/ethereal
-	category = list("ethereal")
+	category = list("Ethereal")
 
 /datum/design/armblade
 	name = "Arm Blade"
@@ -204,7 +204,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 75)
 	build_path = /obj/item/melee/synthetic_arm_blade
-	category = list("other","emagged")
+	category = list("Other","emagged")
 
 /// Design disks and designs - for adding limbs and organs to the limbgrower.
 /obj/item/disk/design_disk/limbs
