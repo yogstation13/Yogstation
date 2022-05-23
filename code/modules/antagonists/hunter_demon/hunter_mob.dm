@@ -98,7 +98,7 @@
 					qdel(O)
 				var/turf/turfo = get_turf(src)
 				addtimer(CALLBACK(dude, .proc/OutOfBrazil(dude, turfo), 120 SECONDS)
-				return FALSE
+			return FALSE
 
 	else
 		return ..()
