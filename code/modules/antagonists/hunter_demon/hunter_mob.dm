@@ -85,6 +85,7 @@
 				playsound(loc, "punch", 25, 1, -1)
 				visible_message(span_danger("[src] has punched [dude]!"), \
 					span_userdanger("[src] has punched [dude]!"), null, COMBAT_MESSAGE_RANGE)
+				return FALSE
 		else
 			///jaunt out related shit here. I didn't do that ability yet, so yeah...
 			dude.forceMove(src)
@@ -97,10 +98,14 @@
 					qdel(O)
 				var/turf/turfo = get_turf(src)
 				addtimer(CALLBACK(dude, .proc/OutOfBrazil(dude, turfo), 120 SECONDS)
+				return FALSE
+
+	else
+		return ..()
 
 	. = ..()
 
-	if((. && isliving(target)))
+	if(. && isliving(target))
 		heal_bodypart_damage(6)
 		if(prob(20 + (src.attack_streak*5)))
 			var/mob/living/guy = target
