@@ -100,7 +100,7 @@
 
 	. = ..()
 
-	if((isliving(target)))
+	if((. && isliving(target)))
 		heal_bodypart_damage(6)
 		if(prob(20 + (src.attack_streak*5)))
 			var/mob/living/guy = target
