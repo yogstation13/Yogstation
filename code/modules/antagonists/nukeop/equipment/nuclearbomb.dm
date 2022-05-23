@@ -654,12 +654,12 @@ This is here to make the tiles around the station mininuke change when it's arme
 		CRASH("A fake nuke disk tried to call process(). Who the fuck and how the fuck")
 	var/turf/newturf = get_turf(src)
 	if(newturf && lastlocation == newturf)
-		if(last_disk_move < world.time - 5000 && prob((world.time - 5000 - last_disk_move)*0.0001))
+		if(last_disk_move < world.time - 300 SECONDS && world.time > 30 MINUTES)
 			var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
 			if(istype(loneop) && loneop.occurrences < loneop.max_occurrences)
-				loneop.weight += 1
-				if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
-					message_admins("[src] is stationary in [ADMIN_VERBOSEJMP(newturf)]. The weight of Lone Operative is now [loneop.weight].")
+				loneop.weight += 5
+ 				last_disk_move = world.time
+ 				message_admins("[src] is stationary in [ADMIN_VERBOSEJMP(newturf)]. The weight of Lone Operative is now [loneop.weight].")
 				log_game("[src] is stationary for too long in [loc_name(newturf)], and has increased the weight of the Lone Operative event to [loneop.weight].")
 
 	else
