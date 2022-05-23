@@ -1576,6 +1576,7 @@
 #include "code\modules\antagonists\horror\horror_datums.dm"
 #include "code\modules\antagonists\horror\horror_html.dm"
 #include "code\modules\antagonists\horror\horror_mutate.dm"
+#include "code\modules\antagonists\hunter_demon\_demon_defines.dm"
 #include "code\modules\antagonists\hunter_demon\blood_orb.dm"
 #include "code\modules\antagonists\hunter_demon\hunter_mob.dm"
 #include "code\modules\antagonists\hunter_demon\jaunt.dm"
