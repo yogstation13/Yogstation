@@ -1037,7 +1037,12 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	new /obj/item/melee/knuckles(src)
+	var/loot = rand(1,2)
+	switch(loot)
+		if(1)
+			new /obj/item/organ/stomach/cursed(src)
+		if(2)
+			new /obj/item/melee/knuckles(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher
 	name = "bloody bubblegum chest"
