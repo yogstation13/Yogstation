@@ -18,8 +18,8 @@
 
 /obj/effect/proc_holder/spell/hunterjaunt/perform(recharge = 1, mob/living/user = usr)
 	if(istype(user))
-		if(istype(user, /mob/living/simple_animal/hunter))
-			var/mob/living/simple_animal/hunter/hunterd = user
+		if(istype(user, /mob/living/simple_animal/hostile/hunter))
+			var/mob/living/simple_animal/hostile/hunter/hunterd = user
 			hunterd.attack_streak = 0
 			if(phased)	
 				if(!hunterd.check_shit())
