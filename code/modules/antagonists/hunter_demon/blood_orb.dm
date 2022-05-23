@@ -6,7 +6,7 @@
 	anchored = TRUE
 	density = FALSE
 	max_integrity = 200
-	var/mob/living/simple_animal/hunter/demon 
+	var/mob/living/simple_animal/hostile/hunter/demon 
 	var/mob/living/carbon/human/target
 	var/mob/living/carbon/human/master
 	var/blood_pool_summary = 0
