@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hunter/phaseout()
 	src.notransform = TRUE
 	spawn(0)
-		bloodpool_sink(B)
+		bloodpool_sink()
 		src.notransform = FALSE
 	return 1
 
