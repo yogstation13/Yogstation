@@ -97,7 +97,9 @@
 					qdel(O)
 				var/turf/turfo = get_turf(src)
 				addtimer(CALLBACK(dude, .proc/OutOfBrazil(dude, turfo), 120 SECONDS)
-	.=..()
+
+	. = ..()
+
 	if((isliving(target)))
 		heal_bodypart_damage(6)
 		if(prob(20 + (src.attack_streak*5)))
