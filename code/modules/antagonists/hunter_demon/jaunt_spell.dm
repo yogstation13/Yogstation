@@ -28,7 +28,7 @@
 					return
 				if(user.phasein())
 					phased = FALSE
-	  		else
+				else
 				var/phaseouttime = 30
 				if(hunterd.check_shit())
 					phaseouttime = 50
