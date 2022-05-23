@@ -125,7 +125,7 @@
 
 /mob/living/simple_animal/hunter/proc/cool_name()
 	cool_demon_name = stripped_input(src, "What would you like your name to be?", "Choose Your Name", real_name, MAX_NAME_LEN)
- 	if(ool_demon_name)
+ 	if(cool_demon_name)
  		to_chat(src, "<span class='warning'>Not a valid name, please try again.</span>")
  		cool_name()
  		return
