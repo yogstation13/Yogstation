@@ -142,7 +142,7 @@
 		sex = TRUE
 	return sex
 
-#undefine DEMONSHIT_RANGE
+#undef DEMONSHIT_RANGE
 
 /mob/living/simple_animal/hunter/proc/pry_door(target)
 	var/obj/machinery/door/airlock/prying_door = target
