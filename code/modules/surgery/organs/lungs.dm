@@ -78,6 +78,11 @@
 		max = safe_breath_dam_max,
 		damage_type = safe_damage_type
 	)
+	if(ispath(breathing_class))
+		var/datum/breathing_class/class = GLOB.gas_data.breathing_classes[breathing_class]
+		for(var/g in class.gases)
+			if(class.gases[g] > 0)
+				gas_min -= g
 
 /obj/item/organ/lungs/proc/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
 //TODO: add lung damage = less oxygen gains
@@ -157,14 +162,13 @@
 			mole_adjustments[entry] = -required_moles
 			mole_adjustments[breath_results[entry]] = required_moles
 		if(required_pp < safe_min)
-			var/multiplier = 0
+			var/multiplier = handle_too_little_breath(H, required_pp, safe_min, required_moles)
 			if(required_moles > 0)
-				multiplier = handle_too_little_breath(H, required_pp, safe_min, required_moles) / required_moles
+				multiplier /= required_moles
 			for(var/adjustment in mole_adjustments)
 				mole_adjustments[adjustment] *= multiplier
 			if(alert_category)
 				H.throw_alert(alert_category, alert_type)
-			H.throw_alert(alert_category, alert_type)
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
@@ -180,12 +184,10 @@
 		var/alert_type = null
 		if(ispath(breathing_class))
 			breathing_class = breathing_classes[breathing_class]
-			var/list/gases = breathing_class.gases
 			alert_category = breathing_class.high_alert_category
 			alert_type = breathing_class.high_alert_datum
 			danger_reagent = breathing_class.danger_reagent
-			for(var/gas in gases)
-				found_pp += PP(breath, gas)
+			found_pp = breathing_class.get_effective_pp(breath)
 		else
 			danger_reagent = danger_reagents[entry]
 			if(entry in breath_alert_info)
@@ -207,7 +209,7 @@
 	for(var/gas in breath.get_gases())
 		if(gas in breath_reagents)
 			var/datum/reagent/R = breath_reagents[gas]
-			H.reagents.add_reagent(R, PP(breath,gas))
+			H.reagents.add_reagent(R, breath.get_moles(gas)*eff)
 			mole_adjustments[gas] = (gas in mole_adjustments) ? mole_adjustments[gas] - breath.get_moles(gas) : -breath.get_moles(gas)
 
 	for(var/gas in mole_adjustments)
