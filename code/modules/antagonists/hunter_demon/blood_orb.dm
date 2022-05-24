@@ -18,6 +18,7 @@
 			visible_message(span_danger("[user] begins to spill his blood on the [src]!"), \
 				span_userdanger("You begin to spill your blood on the [src], trying to summon a demon!"))
 			if(do_after(user, 30, target = src))
+				user.blood_volume -= 50
 				to_chat(user, "<span class='warning'>You finish spilling your blood on the [src].</span>")
 				var/list/candidates = pollCandidatesForMob("Do you want to play as a hunter demon?", ROLE_ALIEN, null, ROLE_ALIEN, 150, src)
 				if(!candidates.len)
@@ -33,9 +34,7 @@
 				message_admins("[ADMIN_LOOKUPFLW(hd)] has been summoned as a Hunter Demon by [user].")
 				log_game("[key_name(hd)] has been summoned as a Hunter Demon by [user].")
 				demon = hd
-				if(istype(user, /mob/living/carbon/human/))
-					var/mob/living/carbon/human/sussybaka = user
-					var/master = sussybaka
+				master = user
 				sacrificed_blood += 100
 				blood_pool_summary += 200
 				
