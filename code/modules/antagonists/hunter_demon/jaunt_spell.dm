@@ -22,7 +22,7 @@
 			var/mob/living/simple_animal/hostile/hunter/hunterd = user
 			hunterd.attack_streak = 0
 			if(phased)	
-				if(!hunterd.check_shit())
+				if(!hunterd.check_shit(MAX_WARP_DISTANCE, ORB_AND_PREY))
 					to_chat(user, span_warning("You can only warp in while near your target or your blood orb!"))
 					revert_cast()
 					return
@@ -30,8 +30,8 @@
 					phased = FALSE
 			else
 				var/phaseouttime = 30
-				if(hunterd.check_shit())
-					phaseouttime = 50
+				if(hunterd.check_shit(BOUND_DISTANCE, ONLY_PREY)) ///Warping out while near your target takes longer
+					phaseouttime = 50 
 				if(do_after(src, phaseouttime))	
 					if(user.phaseout())
 						phased = TRUE
