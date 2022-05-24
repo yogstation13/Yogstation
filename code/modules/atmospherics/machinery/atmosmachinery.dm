@@ -219,6 +219,11 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		if(unsafe_wrenching)
 			unsafe_pressure_release(user, internal_pressure)
 		deconstruct(TRUE)
+
+	if(istype(get_area(src), /area/engine/atmos_distro ))
+		if(!LAZYLEN(user.mind.antag_datums))
+			user.mind.shitter_score += GLOB.shitter_scores[SHITTER_ATMOS]
+
 	return TRUE
 
 /obj/machinery/atmospherics/proc/can_unwrench(mob/user)

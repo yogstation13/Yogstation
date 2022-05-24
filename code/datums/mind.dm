@@ -88,6 +88,8 @@
 	var/afk_verb_used = FALSE
 	/// The timer for the afk verb
 	var/afk_verb_timer
+	/// How much of a shitter we think they are
+	var/shitter_score = 0
 
 /datum/mind/New(key)
 	src.key = key

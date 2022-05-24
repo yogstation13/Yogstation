@@ -444,6 +444,9 @@
 				. = TRUE
 		if("mode")
 			mode = text2num(params["mode"])
+			if(mode != AALARM_MODE_SCRUBBING && !danger_level)
+				if(!LAZYLEN(usr.mind.antag_datums))
+					usr.mind.shitter_score += GLOB.shitter_scores[SHITTER_ATMOS_ALARM]
 			investigate_log("was turned to [get_mode_name(mode)] mode by [key_name(usr)]",INVESTIGATE_ATMOS)
 			investigate_log("was turned to [get_mode_name(mode)] mode by [key_name(usr)]",INVESTIGATE_SUPERMATTER) // yogs - Makes supermatter invest useful
 			apply_mode(usr)

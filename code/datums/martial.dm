@@ -131,6 +131,10 @@
 	D.last_damage = "masterful fist"
 	D.apply_damage(damage, A.dna.species.attack_type, affecting, armor_block)
 
+	if(!LAZYLEN(D.mind.antag_datums))
+		if(!LAZYLEN(A.mind.antag_datums))
+			D.mind.shitter_score += GLOB.shitter_scores[SHITTER_ATTACK]
+
 	log_combat(A, D, "punched")
 
 	if((D.stat != DEAD) && damage >= A.dna.species.punchstunthreshold)

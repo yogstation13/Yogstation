@@ -14,6 +14,7 @@
 		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
 		message_admins(log_message)
 		log_say(log_message)
+		src.mind.shitter_score += GLOB.shitter_scores[SHITTER_PRETTY_FILTER]
 		return
 	if(isliving(src))
 		message = minor_filter(to_utf8(message)) //yogs end - pretty filter

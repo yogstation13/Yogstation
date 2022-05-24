@@ -1507,6 +1507,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
 			log_combat(user, target, "punched")
 
+		if(!LAZYLEN(user.mind.antag_datums))
+			if(!LAZYLEN(target.mind.antag_datums))
+				user.mind.shitter_score += GLOB.shitter_scores[SHITTER_ATTACK]
+
 		if((target.stat != DEAD) && damage >= user.dna.species.punchstunthreshold)
 			target.visible_message(span_danger("[user] has knocked  [target] down!"), \
 							span_userdanger("[user] has knocked [target] down!"), null, COMBAT_MESSAGE_RANGE)

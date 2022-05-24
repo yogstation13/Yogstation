@@ -98,6 +98,11 @@
 	user.do_attack_animation(M)
 	M.attacked_by(src, user)
 
+	if(!LAZYLEN(user.mind.antag_datums))
+		if(!LAZYLEN(M.mind.antag_datums))
+			user.mind.shitter_score += GLOB.shitter_scores[SHITTER_ATTACK]
+
+
 	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
 
