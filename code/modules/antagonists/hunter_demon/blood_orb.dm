@@ -24,10 +24,10 @@
 			else 
 				visible_message(span_danger("[usr] begins to stab himself with [I]!"), \
 					span_userdanger("You begin to torture yourself, trying to summon a attract demons with your pain!"))
-			if(do_after(usr, 30, target = src))
+			if(do_after(usr, 50, target = src))
 				if(!(NOBLOOD in usr.dna.species.species_traits))
 					to_chat(usr, "<span class='warning'>You finish spilling your blood on the [src].</span>")
-					usr.blood_volume -= 50
+					usr.blood_volume -= ORB_BLOOD_SACAMOUNT / 2   
 				else
 					to_chat(usr, "<span class='warning'>You finish torturing yourself.</span>")
 					usr.adjustBruteLoss(20)
@@ -46,8 +46,22 @@
 				log_game("[key_name(hd)] has been summoned as a Hunter Demon by [usr].")
 				demon = hd
 				master = usr
-				sacrificed_blood += 100
-				blood_pool_summary += 200
+				sacrificed_blood += ORB_BLOOD_SACAMOUNT
+				blood_pool_summary += ORB_BLOOD_SACAMOUNT
+		else
+			if(!(NOBLOOD in usr.dna.species.species_traits))
+				visible_message(span_danger("[usr] begins to spill his blood on the [src]!"), \
+					span_userdanger("You begin to spill your blood on the [src], performing a bound rite!"))
+			else 
+				visible_message(span_danger("[usr] begins to stab himself with [I]!"), \
+					span_userdanger("You begin to torture yourself, performing a bound rite!"))
+			if(do_after(usr, 30, target = src))
+				if(!(NOBLOOD in usr.dna.species.species_traits))
+					to_chat(usr, "<span class='warning'>You finish spilling your blood on the [src].</span>")
+					usr.blood_volume -= ORB_BLOOD_SACAMOUNT / 2                                              ///dying from bloodloss is not cool
+				else
+					to_chat(usr, "<span class='warning'>You finish torturing yourself.</span>")
+			master = usr
 				
 
 				
