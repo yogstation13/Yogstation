@@ -15,11 +15,19 @@
 /obj/structure/bloody_orb/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/knife) && user.a_intent != INTENT_HARM)
 		if(!demon)
-			visible_message(span_danger("[user] begins to spill his blood on the [src]!"), \
-				span_userdanger("You begin to spill your blood on the [src], trying to summon a demon!"))
+			if(!HAS_TRAIT(user, TRAIT_NOBREATH))
+				visible_message(span_danger("[user] begins to spill his blood on the [src]!"), \
+					span_userdanger("You begin to spill your blood on the [src], trying to summon a demon!"))
+			else 
+				visible_message(span_danger("[user] begins to stab himself with [I]!"), \
+					span_userdanger("You begin to torture yourself, trying to summon a attract demons with your pain!"))
 			if(do_after(user, 30, target = src))
-				user.blood_volume -= 50
-				to_chat(user, "<span class='warning'>You finish spilling your blood on the [src].</span>")
+				if(!HAS_TRAIT(user, TRAIT_NOBREATH))
+					to_chat(user, "<span class='warning'>You finish spilling your blood on the [src].</span>")
+					user.blood_volume -= 50
+				else
+					to_chat(user, "<span class='warning'>You finish torturing yourself.</span>")
+					user.AdjustBruteLoss(20)
 				var/list/candidates = pollCandidatesForMob("Do you want to play as a hunter demon?", ROLE_ALIEN, null, ROLE_ALIEN, 150, src)
 				if(!candidates.len)
 					to_chat(user, "<span class='warning'>No demons did answer your call! Perhaps try again later...</span>")
