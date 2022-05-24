@@ -237,7 +237,7 @@
 								span_userdanger("[user] has stunned you with [src]!"))
 		log_combat(user, L, "stunned")
 		if(!LAZYLEN(user.mind.antag_datums))
-			if(!LAZYLEN(M.mind.antag_datums))
+			if(!LAZYLEN(L.mind.antag_datums))
 				user.mind.shitter_score += GLOB.shitter_scores[SHITTER_STUN]
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
