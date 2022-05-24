@@ -61,7 +61,9 @@
 					H.blood_volume -= ORB_BLOOD_SACAMOUNT / 2                                              ///dying from bloodloss is not cool
 				else
 					to_chat(H, "<span class='warning'>You finish torturing yourself.</span>")
-			master = H
+			if(master != H)
+				master = H
+				to_chat(demon, "<span class='warning'>[H] is now your new master!</span>")
 				
 
 				
