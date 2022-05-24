@@ -61,6 +61,11 @@
 					H.blood_volume -= ORB_BLOOD_SACAMOUNT / 2                                              ///dying from bloodloss is not cool
 				else
 					to_chat(H, "<span class='warning'>You finish torturing yourself.</span>")
+			if(target == H)
+				to_chat(H, "<span class='warning'>You feel your blood boiling!</span>")
+				to_chat(demon, "<span class='warning'>Your target has tried to perform a bounding ritual near your orb!</span>")
+				H.Paralyze(60)
+				return
 			if(master != H)
 				master = H
 				to_chat(demon, "<span class='warning'>[H] is now your new master!</span>")
