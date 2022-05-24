@@ -18,5 +18,5 @@
 			visible_message(span_danger("[user] begins to spill his blood on the [src]!"), \
 				span_userdanger("You begin to spill your blood on the [src], trying to summon a demon!"))
 			if(do_after(user, 30, target = src))
-				user.to_chat(src, "<span class='warning'>You finish spilling your blood on the [src].</span>")
+				to_chat(user, "<span class='warning'>You finish spilling your blood on the [src].</span>")
 				
