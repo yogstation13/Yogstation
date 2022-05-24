@@ -493,7 +493,7 @@
 	. = FALSE
 	if(destination)
 		var/turf/new_turf = get_turf(destination)
-		if(ismob(src))
+		if(new_turf && ismob(src))
 			var/mob/M = src
 			if(is_secret_level(new_turf.z) && !M.client?.holder)
 				return

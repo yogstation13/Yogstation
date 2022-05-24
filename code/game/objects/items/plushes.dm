@@ -133,6 +133,9 @@
 		if(grenade)
 			to_chat(user, span_warning("[src] already has a grenade!"))
 			return
+		if(taped) //yogs - no
+			to_chat(user, span_warning("[src] is too sticky to add a grenade!"))
+			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		user.visible_message(span_warning("[user] slides [grenade] into [src]."), \
@@ -215,7 +218,7 @@
 
 /obj/item/toy/plush/proc/heartbreak(obj/item/toy/plush/Brutus)
 	if(lover != Brutus)
-		to_chat(world, "lover != Brutus")
+		debug_admins("lover != Brutus")
 		return	//why are we considering someone we don't love?
 
 	scorned.Add(Brutus)
