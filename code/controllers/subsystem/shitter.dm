@@ -6,7 +6,12 @@ SUBSYSTEM_DEF(shitter)
 	wait = 10 SECONDS
 
 
+
 /datum/controller/subsystem/shitter/fire(resumed = 0)
+	var/lowpop_count = CONFIG_GET(number/minimal_access_threshold)
+	if(GLOB.player_list.len > lowpop_count)
+		return
+
 	for(var/mob/M in GLOB.player_list)
 		if(!M.mind)
 			continue
