@@ -101,7 +101,6 @@
 					qdel(O)
 				var/turf/turfo = get_turf(src)
 				if(src.phaseout())
-					phased = TRUE
 				sleep(1200) //When i was trying to use a timer github was showing me unexisting errors, so fuck it
 				OutOfBrazil(dude, turfo)
 			return FALSE
