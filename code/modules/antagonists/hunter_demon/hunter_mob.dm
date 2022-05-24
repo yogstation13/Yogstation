@@ -79,6 +79,8 @@
 				do_attack_animation(dude)
 				var/obj/item/bodypart/BP = pick(parts)
 				BP.dismember()
+				if(attack_streak > 0)
+					attack_streak--
 				return FALSE
 			else
 				dude.adjustBruteLoss(10)
