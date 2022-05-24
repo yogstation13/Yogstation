@@ -1,0 +1,5 @@
+author: " ToasterBiome, Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "no more taping grenades (for real)"
+  - rscadd: "No grenading taped plushies"
