@@ -151,12 +151,11 @@ While using this makes the system rely on OnFire, it still gives options for tim
 				INVOKE_ASYNC(src, .proc/arena_checks)
 			if(TUMOR_INACTIVE)
 				activity = TUMOR_ACTIVE
-				var/mob/dead/observer/elitemind = null
 				visible_message(span_boldwarning("[src] begins to convulse.  Your instincts tell you to step back."))
 				activator = user
 				addtimer(CALLBACK(src, .proc/spawn_elite), 30)
 
-obj/structure/elite_tumor/proc/spawn_elite(var/mob/dead/observer/elitemind)
+obj/structure/elite_tumor/proc/spawn_elite()
 	var/selectedspawn = pick(potentialspawns)
 	mychild = new selectedspawn(loc)
 	visible_message(span_boldwarning("[mychild] emerges from [src]!"))
@@ -235,7 +234,7 @@ obj/structure/elite_tumor/proc/onEliteLoss()
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, 0, 50, TRUE, TRUE)
 	visible_message(span_boldwarning("[src] begins to convulse violently before beginning to dissipate."))
 	visible_message(span_boldwarning("As [src] closes, something is forced up from down below."))
-	var/obj/structure/closet/crate/necropolis/tendril/lootbox = new /obj/structure/closet/crate/necropolis/tendril(loc)
+	new /obj/structure/closet/crate/necropolis/tendril(loc)
 	/*if(mychild.loot_drop) //holding this to check if the herald's loot needs to be nerfed/reworked
 		new mychild.loot_drop(lootbox)*/
 	mychild = null
