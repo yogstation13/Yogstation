@@ -451,15 +451,15 @@
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.environment_smash = ENVIRONMENT_SMASH_RWALLS
-	A.harm_intent_damage -= 10
-	A.melee_damage_lower -= 10
-	A.melee_damage_upper -= 10
 	A.obj_damage *= 3
-	START_PROCESSING(SSprocessing, src)
 	addtimer(CALLBACK(src, .proc/DeactivatePower), 10 SECONDS)
 
-/datum/action/bloodsucker/gangrel/rabidism/process()
-	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
+/datum/action/bloodsucker/gangrel/rabidism/ContinueActive()
+	return TRUE
+
+/datum/action/bloodsucker/gangrel/rabidism/UsePower(mob/living/user)
+	. = ..()
+	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = user
 	for(var/mob/living/all_targets in dview(1, get_turf(A)))
 		if(all_targets == A && all_targets == A.bloodsucker)
 			continue
@@ -469,11 +469,7 @@
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.environment_smash = initial(A.environment_smash)
-	A.harm_intent_damage = initial(A.harm_intent_damage)
-	A.melee_damage_lower = initial(A.melee_damage_lower)
-	A.melee_damage_upper = initial(A.melee_damage_upper)
 	A.obj_damage = initial(A.obj_damage)
-	STOP_PROCESSING(SSprocessing, src)
 
 /datum/action/bloodsucker/targeted/tear
 	name = "Tear"
@@ -491,37 +487,38 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
 	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 10
-	cooldown = 20 SECONDS
+	cooldown = 7 SECONDS
 	var/mob/living/mauled
 
 /datum/action/bloodsucker/targeted/tear/FireTargetedPower(atom/target_atom)
 	. = ..()
 	var/mob/living/carbon/human/user = owner
-	mauled = target_atom
-	user.do_attack_animation(mauled, ATTACK_EFFECT_CLAW)
-	var/obj/item/bodypart/affecting = mauled.get_bodypart(ran_zone(user.zone_selected))
-	playsound(get_turf(mauled), 'sound/weapons/slash.ogg', 60, 1, -1)
-	mauled.apply_damage(15, BRUTE, affecting, mauled.run_armor_check(affecting, "melee", armour_penetration = 10), sharpness = SHARP_EDGED)
-	START_PROCESSING(SSprocessing, src)
+	var/mob/living/target = target_atom
+	user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
+	if(iscarbon(target))
+		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
+		playsound(get_turf(target), 'sound/weapons/slash.ogg', 60, TRUE, -1)
+		target.apply_damage(15, BRUTE, affecting, target.run_armor_check(affecting, "melee", armour_penetration = 10), sharpness = SHARP_EDGED)
+	mauled = target
+	Mawl(target)
 
-/datum/action/bloodsucker/targeted/tear/process()
-	var/mob/living/carbon/human/user = owner
-	for(var/mob/living/victims in dview(1, get_turf(user)))
-		spawn(10)
-		if(!(victims == mauled))
-			continue
-		if(IS_BLOODSUCKER(mauled))
-			continue
-		if(!do_mob(user, victims, 1 SECONDS))
-			STOP_PROCESSING(SSprocessing, src)
-			continue
-		var/datum/status_effect/saw_bleed/B = victims.has_status_effect(STATUS_EFFECT_SAWBLEED)
-		user.do_attack_animation(mauled, ATTACK_EFFECT_CLAW)
-		playsound(get_turf(mauled), 'sound/weapons/slash.ogg', 60, 1, -1)
-		if(!B)
-			victims.apply_status_effect(STATUS_EFFECT_SAWBLEED)
-		else
-			B.add_bleed(B.bleed_buildup)
+/datum/action/bloodsucker/targeted/tear/proc/Mawl(mob/living/target)
+	var/mob/living/carbon/user = owner
+	if(!do_mob(user, target, 1 SECONDS))
+		return
+	var/datum/status_effect/saw_bleed/B = target.has_status_effect(STATUS_EFFECT_SAWBLEED)
+	user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
+	playsound(get_turf(target), 'sound/weapons/slash.ogg', 60, TRUE, -1)
+	if(!B)
+		target.apply_status_effect(STATUS_EFFECT_SAWBLEED)
+	else
+		B.add_bleed(B.bleed_buildup)
+	spawn(1 SECONDS)
+	if(!target.Adjacent(user))
+		return
+	user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
+	playsound(get_turf(target), 'sound/weapons/slash.ogg', 60, TRUE, -1)
+	B.add_bleed(B.bleed_buildup)
 
 /datum/action/bloodsucker/targeted/tear/CheckValidTarget(atom/target_atom)
 	. = ..()

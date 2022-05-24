@@ -33,6 +33,7 @@
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	speak_emote = list("gnashes")
+	del_on_death = TRUE
 	var/satiation = 0
 
 /mob/living/simple_animal/hostile/bloodsucker/giantbat
@@ -146,18 +147,15 @@
 		if(bloodsucker.status_flags & GODMODE)
 			bloodsucker.status_flags -= GODMODE
 		bloodsucker.forceMove(get_turf(src))
-		if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/werewolf) || istype(src, /mob/living/simple_animal/hostile/bloodsucker/possessedarmor))
+		if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/possessedarmor))
 			STOP_PROCESSING(SSprocessing, src)
 		return ..()
 
 /mob/living/simple_animal/hostile/bloodsucker/death()
+	. = ..()
 	if(bloodsucker && mind)
 		mind.transfer_to(bloodsucker)
-		bloodsucker.death()
-		if(bloodsucker.status_flags & GODMODE)
-			bloodsucker.status_flags -= GODMODE
-	qdel(src)
-	..()
+		bloodsucker.adjustBruteLoss(200)
 
 /mob/living/simple_animal/hostile/bloodsucker/proc/devour(mob/living/target)
 	if(maxHealth > target.maxHealth / 4 + health)
@@ -190,17 +188,16 @@
 ///      Werewolf       ///
 ///////////////////////////
 
-/mob/living/simple_animal/hostile/bloodsucker/werewolf/Initialize()
+/mob/living/simple_animal/hostile/bloodsucker/werewolf/Life(delta_time = (SSmobs.wait/10), times_fired)
 	. = ..()
-	START_PROCESSING(SSprocessing, src)
-
-/mob/living/simple_animal/hostile/bloodsucker/werewolf/process()
+	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
 	if(bloodsucker)
 		if(ishuman(bloodsucker))
 			var/mob/living/carbon/human/user = bloodsucker
 			if(user.blood_volume < 560)
 				user.blood_volume += 10
-		health -= 0.25 //3 minutes to die
+		adjustFireLoss(2.5)
+		updatehealth() //3 minutes to die
 	if(satiation >= 3)
 		to_chat(src, span_notice("It has been fed. You turn back to normal."))
 		qdel(src)
@@ -251,9 +248,9 @@
 ////////////////////////
 
 /mob/living/simple_animal/hostile/bloodsucker/possessedarmor/death()
+	. = ..()
 	if(upgraded)
 		new /obj/structure/bloodsucker/possessedarmor/upgraded(src.loc)
 	else
 		new /obj/structure/bloodsucker/possessedarmor(src.loc)
 	qdel(src)
-	..()
