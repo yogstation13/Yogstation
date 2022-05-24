@@ -13,27 +13,27 @@
 	var/sacrificed_blood = 0
 
 /obj/structure/bloody_orb/attackby(obj/item/I, mob/user, params)
-	var/mob/living/carbon/human/usr = user
-	if(!usr)
+	var/mob/living/carbon/human/H = user
+	if(!H)
 		return
-	if(istype(I, /obj/item/kitchen/knife) && usr.a_intent != INTENT_HARM)
+	if(istype(I, /obj/item/kitchen/knife) && H.a_intent != INTENT_HARM)
 		if(!demon)
-			if(!(NOBLOOD in usr.dna.species.species_traits))
-				visible_message(span_danger("[usr] begins to spill his blood on the [src]!"), \
+			if(!(NOBLOOD in H.dna.species.species_traits))
+				visible_message(span_danger("[H] begins to spill his blood on the [src]!"), \
 					span_userdanger("You begin to spill your blood on the [src], trying to summon a demon!"))
 			else 
-				visible_message(span_danger("[usr] begins to stab himself with [I]!"), \
+				visible_message(span_danger("[H] begins to stab himself with [I]!"), \
 					span_userdanger("You begin to torture yourself, trying to summon a attract demons with your pain!"))
-			if(do_after(usr, 50, target = src))
-				if(!(NOBLOOD in usr.dna.species.species_traits))
-					to_chat(usr, "<span class='warning'>You finish spilling your blood on the [src].</span>")
-					usr.blood_volume -= ORB_BLOOD_SACAMOUNT / 2   
+			if(do_after(H, 50, target = src))
+				if(!(NOBLOOD in H.dna.species.species_traits))
+					to_chat(H, "<span class='warning'>You finish spilling your blood on the [src].</span>")
+					H.blood_volume -= ORB_BLOOD_SACAMOUNT / 2   
 				else
-					to_chat(usr, "<span class='warning'>You finish torturing yourself.</span>")
-					usr.adjustBruteLoss(20)
+					to_chat(H, "<span class='warning'>You finish torturing yourself.</span>")
+					H.adjustBruteLoss(20)
 				var/list/candidates = pollCandidatesForMob("Do you want to play as a hunter demon?", ROLE_ALIEN, null, ROLE_ALIEN, 150, src)
 				if(!candidates.len)
-					to_chat(usr, "<span class='warning'>No demons did answer your call! Perhaps try again later...</span>")
+					to_chat(H, "<span class='warning'>No demons did answer your call! Perhaps try again later...</span>")
 					return
 				var/mob/dead/selected = pick(candidates)
 				var/datum/mind/player_mind = new /datum/mind(selected.key)
@@ -42,26 +42,26 @@
 				player_mind.assigned_role = "Hunter Demon"
 				player_mind.special_role = "Hunter Demon"
 				playsound(hd, 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
-				message_admins("[ADMIN_LOOKUPFLW(hd)] has been summoned as a Hunter Demon by [usr].")
-				log_game("[key_name(hd)] has been summoned as a Hunter Demon by [usr].")
+				message_admins("[ADMIN_LOOKUPFLW(hd)] has been summoned as a Hunter Demon by [H].")
+				log_game("[key_name(hd)] has been summoned as a Hunter Demon by [H].")
 				demon = hd
-				master = usr
+				master = H
 				sacrificed_blood += ORB_BLOOD_SACAMOUNT
 				blood_pool_summary += ORB_BLOOD_SACAMOUNT
 		else
-			if(!(NOBLOOD in usr.dna.species.species_traits))
-				visible_message(span_danger("[usr] begins to spill his blood on the [src]!"), \
+			if(!(NOBLOOD in H.dna.species.species_traits))
+				visible_message(span_danger("[H] begins to spill his blood on the [src]!"), \
 					span_userdanger("You begin to spill your blood on the [src], performing a bound rite!"))
 			else 
-				visible_message(span_danger("[usr] begins to stab himself with [I]!"), \
+				visible_message(span_danger("[H] begins to stab himself with [I]!"), \
 					span_userdanger("You begin to torture yourself, performing a bound rite!"))
-			if(do_after(usr, 30, target = src))
-				if(!(NOBLOOD in usr.dna.species.species_traits))
-					to_chat(usr, "<span class='warning'>You finish spilling your blood on the [src].</span>")
-					usr.blood_volume -= ORB_BLOOD_SACAMOUNT / 2                                              ///dying from bloodloss is not cool
+			if(do_after(H, 30, target = src))
+				if(!(NOBLOOD in H.dna.species.species_traits))
+					to_chat(H, "<span class='warning'>You finish spilling your blood on the [src].</span>")
+					H.blood_volume -= ORB_BLOOD_SACAMOUNT / 2                                              ///dying from bloodloss is not cool
 				else
-					to_chat(usr, "<span class='warning'>You finish torturing yourself.</span>")
-			master = usr
+					to_chat(H, "<span class='warning'>You finish torturing yourself.</span>")
+			master = H
 				
 
 				
