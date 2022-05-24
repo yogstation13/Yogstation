@@ -26,11 +26,11 @@
 				var/mob/dead/selected = pick(candidates)
 				var/datum/mind/player_mind = new /datum/mind(selected.key)
 				var/mob/living/simple_animal/hostile/hunter/hd = new(get_turf(src))
-				player_mind.transfer_to(S)
+				player_mind.transfer_to(hd)
 				player_mind.assigned_role = "Hunter Demon"
 				player_mind.special_role = "Hunter Demon"
-				playsound(S, 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
-				message_admins("[ADMIN_LOOKUPFLW(S)] has been summoned as a Hunter Demon by [user].")
-				log_game("[key_name(S)] has been summoned as a Hunter Demon by [user].")
+				playsound(hd, 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
+				message_admins("[ADMIN_LOOKUPFLW(hd)] has been summoned as a Hunter Demon by [user].")
+				log_game("[key_name(hd)] has been summoned as a Hunter Demon by [user].")
 
 				
