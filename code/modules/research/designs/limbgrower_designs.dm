@@ -40,7 +40,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
 	build_path = /obj/item/bodypart/l_leg/digitigrade
-	category = list("lizard","polysmorph")
+	category = list("initial","lizard","polysmorph")
 
 /datum/design/digi_rightleg
 	name = "Digitigrade Right Leg"
@@ -48,7 +48,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
 	build_path = /obj/item/bodypart/r_leg/digitigrade
-	category = list("lizard","polysmorph")
+	category = list("initial","lizard","polysmorph")
 
 //Non-limb limb designs
 
@@ -283,11 +283,11 @@
 
 /obj/item/disk/design_disk/limbs/lizard
 	name = "Lizard Limb Design Disk"
-	limb_designs = list(/datum/design/lizard_tail, /datum/design/lizard_tongue, /datum/design/digi_leftleg, /datum/design/digi_rightleg)
+	limb_designs = list(/datum/design/lizard_tail, /datum/design/lizard_tongue)
 
 /datum/design/limb_disk/lizard
 	name = "Lizard Limb Design Disk"
-	desc = "Contains designs for lizard bodyparts for the limbgrower - Lizard tongue, tail, and digitigrade legs."
+	desc = "Contains designs for lizard bodyparts for the limbgrower - Lizard tongue, and tail"
 	id = "limbdesign_lizard"
 	build_path = /obj/item/disk/design_disk/limbs/lizard
 
@@ -313,10 +313,10 @@
 
 /obj/item/disk/design_disk/limbs/polysmorph
 	name = "Polysmorph Limb Design Disk"
-	limb_designs = list(/datum/design/polysmorph_tail, /datum/design/polysmorph_tongue, /datum/design/polysmorph_eyes, /datum/design/polysmorph_liver, /datum/design/polysmorph_lungs, /datum/design/digi_leftleg, /datum/design/digi_rightleg)
+	limb_designs = list(/datum/design/polysmorph_tail, /datum/design/polysmorph_tongue, /datum/design/polysmorph_eyes, /datum/design/polysmorph_liver, /datum/design/polysmorph_lungs)
 
 /datum/design/limb_disk/polysmorph
 	name = "Polysmorph Limb Design Disk"
-	desc = "Contains designs for polysmorph organs for the limbgrower - Polysmorph tail, tongue, eyes, liver, lungs, and digitigrade legs."
+	desc = "Contains designs for polysmorph organs for the limbgrower - Polysmorph tail, tongue, eyes, liver, and lungs."
 	id = "limbdesign_polysmorph"
 	build_path = /obj/item/disk/design_disk/limbs/polysmorph
