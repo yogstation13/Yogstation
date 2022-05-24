@@ -3,7 +3,7 @@
 
 #define MAX_SHITTER_SCORE 75
 
-#define SHITTER_PLAYTIME_CUTOFF 50
+#define SHITTER_PLAYTIME_CUTOFF 25
 
 GLOBAL_LIST_INIT(shitter_scores, list(
 	"[SHITTER_ATTACK]" = 5,
