@@ -595,7 +595,7 @@
 			to_chat(src, span_warning("You fail to perform CPR on [C]!"))
 			return 0
 
-		var/they_breathe = !HAS_TRAIT_FROM(src, TRAIT_NOBREATH, SPECIES_TRAIT)
+		var/they_breathe = !HAS_TRAIT_FROM(C, TRAIT_NOBREATH, SPECIES_TRAIT)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 		var/they_ashlung = C.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
 		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?

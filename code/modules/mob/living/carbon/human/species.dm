@@ -1420,7 +1420,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			log_combat(user, target, "shaken")
 		return 1
 	else
-		var/we_breathe = !HAS_TRAIT(user, TRAIT_NOBREATH)
+		var/we_breathe = !HAS_TRAIT_FROM(user, TRAIT_NOBREATH, SPECIES_TRAIT)
 		var/we_lung = user.getorganslot(ORGAN_SLOT_LUNGS)
 
 		if(we_breathe && we_lung)
