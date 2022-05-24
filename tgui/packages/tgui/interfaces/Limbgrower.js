@@ -1,5 +1,6 @@
 import { useBackend, useSharedState } from '../backend';
 import { Box, Button, Dimmer, Icon, LabeledList, Section, Tabs } from '../components';
+import { capitalize } from "common/string";
 import { Window } from '../layouts';
 
 export const Limbgrower = (props, context) => {
@@ -20,7 +21,7 @@ export const Limbgrower = (props, context) => {
   return (
     <Window
       title="Limb Grower"
-      width={400}
+      width={500}
       height={550}>
       {!!busy && (
         <Dimmer fontSize="32px">
@@ -58,10 +59,10 @@ export const Limbgrower = (props, context) => {
             {categories.map(category => (
               <Tabs.Tab
                 fluid
-                key={category.name}
+                key={(category.name)}
                 selected={tab === category.name}
                 onClick={() => setTab(category.name)}>
-                {category.name}
+                {capitalize(category.name)}
               </Tabs.Tab>
             ))}
           </Tabs>

@@ -72,7 +72,7 @@
 	display_name = "Xeno-organ Biology"
 	description = "Plasmaman, Ethereals, Lizardpeople... What makes our non-human crewmembers tick?"
 	prereq_ids = list("adv_biotech")
-	design_ids = list("limbdesign_felinid", "limbdesign_lizard", "limbdesign_plasmaman", "limbdesign_ethereal")
+	design_ids = list("limbdesign_felinid", "limbdesign_lizard", "limbdesign_plasmaman", "limbdesign_ethereal", "limbdesign_polysmorph")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
