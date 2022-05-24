@@ -59,7 +59,7 @@
 		if(dude.stat != UNCONSCIOUS && dude.stat != DEAD)
 			if(HAS_TRAIT(dude, TRAIT_NODISMEMBER))
 				return ..()
-			if(prob(20) + attack_streak*10)
+			if(prob(DEMON_SPECIAL_CHANCE + attack_streak*10))
 				var/list/parts = list()
 				var/undismembermerable_limbs = 0
 				for(var/X in dude.bodyparts)
@@ -107,8 +107,8 @@
 	. = ..()
 
 	if(. && isliving(target))
-		heal_bodypart_damage(6)
-		if(prob(20 + (src.attack_streak*5)))
+		heal_bodypart_damage(DEMON_LIFESTEAL)
+		if(prob(DEMON_SPECIAL_CHANCE + (src.attack_streak*5)))
 			var/mob/living/guy = target
 			guy.adjustBruteLoss(10)
 			var/atom/throw_target = get_edge_target_turf(guy, dir)
