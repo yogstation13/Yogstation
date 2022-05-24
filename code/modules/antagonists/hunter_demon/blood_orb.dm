@@ -19,7 +19,7 @@
 				span_userdanger("You begin to spill your blood on the [src], trying to summon a demon!"))
 			if(do_after(user, 30, target = src))
 				to_chat(user, "<span class='warning'>You finish spilling your blood on the [src].</span>")
-				var/list/candidates = get_candidates(ROLE_ALIEN, null, ROLE_ALIEN)
+				var/list/candidates = pollCandidatesForMob("Do you want to play as a hunter demon?", ROLE_ALIEN, null, ROLE_ALIEN, 150, src)
 				if(!candidates.len)
 					to_chat(user, "<span class='warning'>No demons did answer your call! Perhaps try again later...</span>")
 					return
