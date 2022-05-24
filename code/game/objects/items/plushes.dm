@@ -133,6 +133,9 @@
 		if(grenade)
 			to_chat(user, span_warning("[src] already has a grenade!"))
 			return
+		if(taped) //yogs - no
+			to_chat(user, span_warning("[src] is too sticky to add a grenade!"))
+			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		user.visible_message(span_warning("[user] slides [grenade] into [src]."), \
