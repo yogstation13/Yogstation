@@ -32,5 +32,12 @@
 				playsound(hd, 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
 				message_admins("[ADMIN_LOOKUPFLW(hd)] has been summoned as a Hunter Demon by [user].")
 				log_game("[key_name(hd)] has been summoned as a Hunter Demon by [user].")
+				demon = hd
+				if(istype(user, /mob/living/carbon/human/))
+					var/mob/living/carbon/human/sussybaka = user
+					var/master = sussybaka
+				sacrificed_blood += 100
+				blood_pool_summary += 200
+				
 
 				
