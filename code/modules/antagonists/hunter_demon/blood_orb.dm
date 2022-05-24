@@ -18,19 +18,19 @@
 		return
 	if(istype(I, /obj/item/kitchen/knife) && usr.a_intent != INTENT_HARM)
 		if(!demon)
-			if(!HAS_TRAIT(usr, TRAIT_NOBLOOD))
+			if(!(NOBLOOD in usr.dna.species.species_traits))
 				visible_message(span_danger("[usr] begins to spill his blood on the [src]!"), \
 					span_userdanger("You begin to spill your blood on the [src], trying to summon a demon!"))
 			else 
 				visible_message(span_danger("[usr] begins to stab himself with [I]!"), \
 					span_userdanger("You begin to torture yourself, trying to summon a attract demons with your pain!"))
 			if(do_after(usr, 30, target = src))
-				if(!HAS_TRAIT(usr, TRAIT_NOBLOOD))
+				if(!(NOBLOOD in usr.dna.species.species_traits))
 					to_chat(usr, "<span class='warning'>You finish spilling your blood on the [src].</span>")
 					usr.blood_volume -= 50
 				else
 					to_chat(usr, "<span class='warning'>You finish torturing yourself.</span>")
-					usr.AdjustBruteLoss(20)
+					usr.adjustBruteLoss(20)
 				var/list/candidates = pollCandidatesForMob("Do you want to play as a hunter demon?", ROLE_ALIEN, null, ROLE_ALIEN, 150, src)
 				if(!candidates.len)
 					to_chat(usr, "<span class='warning'>No demons did answer your call! Perhaps try again later...</span>")
