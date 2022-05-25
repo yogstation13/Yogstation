@@ -32,5 +32,5 @@
 	exit_blood_effect()
 	qdel(src.holder)
 	src.holder = null
-	phased = TRUE
+	phased = FALSE
 	return 1
