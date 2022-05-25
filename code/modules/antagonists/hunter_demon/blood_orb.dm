@@ -74,7 +74,7 @@
 	if(M == master && (target.stat == DEAD || !target))
 		pick_target()
 
-/obj/structure/bloody_orb/pick_target()
+/obj/structure/bloody_orb/proc/pick_target()
 	var/list/possible_targets = list()
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		if(!H.mind)
