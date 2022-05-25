@@ -230,15 +230,15 @@
 	. = ..()
 	latetoggle()
 
-/obj/machinery/door/firedoor/proc/whack_a_mole(reconsider_immediately = FALSE)
+/obj/machinery/door/firedoor/proc/whack_a_mole()
 	for(var/cdir in GLOB.cardinals)
 		if((flags_1 & ON_BORDER_1) && cdir != dir)
 			continue
-		whack_a_mole_part(get_step(src, cdir), reconsider_immediately)
+		whack_a_mole_part(get_step(src, cdir))
 	if(flags_1 & ON_BORDER_1)
-		whack_a_mole_part(get_turf(src), reconsider_immediately)
+		whack_a_mole_part(get_turf(src))
 
-/obj/machinery/door/firedoor/proc/whack_a_mole_part(turf/start_point, reconsider_immediately)
+/obj/machinery/door/firedoor/proc/whack_a_mole_part(turf/start_point)
 	var/list/doors_to_close = list()
 	var/list/turfs = list()
 	turfs[start_point] = 1
@@ -271,10 +271,6 @@
 		return // too big, don't bother
 	for(var/obj/machinery/door/firedoor/FD in doors_to_close)
 		FD.emergency_pressure_stop(FALSE)
-		if(reconsider_immediately)
-			var/turf/open/T = FD.loc
-			if(istype(T))
-				T.ImmediateCalculateAdjacentTurfs()
 
 /obj/machinery/door/firedoor/proc/emergency_pressure_stop(consider_timer = TRUE)
 	if(density || operating || welded)
@@ -284,10 +280,6 @@
 
 //this is here to prevent sleeps from messing with decomp, by closing firedoors instantly
 /obj/machinery/door/firedoor/proc/emergency_pressure_close()
-	if(density)
-		return
-	if(operating || welded)
-		return
 	density = TRUE
 	air_update_turf(1)
 	update_icon()
@@ -336,10 +328,6 @@
 	. = ..()
 
 /obj/machinery/door/firedoor/border_only/emergency_pressure_close()
-	if(density)
-		return TRUE
-	if(operating || welded)
-		return
 	check_pulls()
 	. = ..()
 
