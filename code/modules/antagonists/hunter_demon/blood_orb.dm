@@ -83,6 +83,12 @@
 			continue 
 		possible_targets[H.mind.current.real_name] = H
 	target = possible_targets[input(master,"Choose next target for the demon","Target") in possible_targets]
+	if(target)
+		to_chat(master,span_warning("New target for the demon is selected!"))
+		to_chat(demon,span_warning("Your new target has been selected, go and kill [target.mind.real_name]!"))
+
+	else
+		to_chat(master,span_warning("A target could not be found for the demon."))
 
 				
 
