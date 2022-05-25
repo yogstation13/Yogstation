@@ -7,7 +7,6 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "gsensor1"
 	resistance_flags = FIRE_PROOF
-	interacts_with_air = TRUE
 
 	var/on = TRUE
 

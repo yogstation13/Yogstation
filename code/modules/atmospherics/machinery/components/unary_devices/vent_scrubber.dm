@@ -16,8 +16,6 @@
 	shift_underlay_only = FALSE
 	showpipe = FALSE
 
-	interacts_with_air = TRUE
-
 	var/id_tag = null
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
 

@@ -133,7 +133,6 @@ Class Procs:
 
 	//Stuff for machines that interact with atmos
 	var/atmos_processing = FALSE
-	var/interacts_with_air = FALSE
 
 /obj/machinery/Initialize()
 	if(!armor)

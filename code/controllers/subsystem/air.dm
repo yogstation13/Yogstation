@@ -33,7 +33,6 @@ SUBSYSTEM_DEF(air)
 	var/list/deferred_airs = list()
 	var/max_deferred_airs = 0
 	var/list/obj/machinery/atmos_machinery = list()
-	var/list/obj/machinery/atmos_air_machinery = list()
 	var/list/pipe_init_dirs_cache = list()
 
 	//atmos singletons
@@ -128,8 +127,11 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/fire(resumed = 0)
 	if(thread_running())
+		cur_thread_wait_ticks++
 		pause()
 		return
+	thread_wait_ticks = MC_AVERAGE(thread_wait_ticks, cur_thread_wait_ticks)
+	cur_thread_wait_ticks = 0
 
 	var/timer = TICK_USAGE_REAL
 
@@ -182,26 +184,14 @@ SUBSYSTEM_DEF(air)
 	if(currentpart == SSAIR_FINALIZE_TURFS)
 		finish_turf_processing(resumed)
 		if(state != SS_RUNNING)
-			cur_thread_wait_ticks++
 			return
 		resumed = 0
-		thread_wait_ticks = MC_AVERAGE(thread_wait_ticks, cur_thread_wait_ticks)
-		cur_thread_wait_ticks = 0
 		currentpart = SSAIR_DEFERRED_AIRS
 
 	if(currentpart == SSAIR_DEFERRED_AIRS)
 		timer = TICK_USAGE_REAL
 		process_deferred_airs(resumed)
 		cost_deferred_airs = MC_AVERAGE(cost_deferred_airs, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-		if(state != SS_RUNNING)
-			return
-		resumed = 0
-		currentpart = SSAIR_ATMOSMACHINERY_AIR
-
-	if(currentpart == SSAIR_ATMOSMACHINERY_AIR)
-		timer = TICK_USAGE_REAL
-		process_atmos_air_machinery(resumed)
-		cost_atmos_machinery = MC_AVERAGE(cost_atmos_machinery, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
@@ -258,26 +248,18 @@ SUBSYSTEM_DEF(air)
 	if(machine.atmos_processing)
 		return
 	machine.atmos_processing = TRUE
-	if(machine.interacts_with_air)
-		atmos_air_machinery += machine
-	else
-		atmos_machinery += machine
+	atmos_machinery += machine
 
 /datum/controller/subsystem/air/proc/stop_processing_machine(obj/machinery/machine)
 	if(!machine.atmos_processing)
 		return
 	machine.atmos_processing = FALSE
-	if(machine.interacts_with_air)
-		atmos_air_machinery -= machine
-	else
-		atmos_machinery -= machine
+	atmos_machinery -= machine
 
 	// If we're currently processing atmos machines, there's a chance this machine is in
 	// the currentrun list, which is a cache of atmos_machinery. Remove it from that list
 	// as well to prevent processing qdeleted objects in the cache.
 	if(currentpart == SSAIR_ATMOSMACHINERY)
-		currentrun -= machine
-	if(machine.interacts_with_air && currentpart == SSAIR_ATMOSMACHINERY_AIR)
 		currentrun -= machine
 
 /datum/controller/subsystem/air/proc/add_to_rebuild_queue(atmos_machine)
@@ -319,21 +301,7 @@ SUBSYSTEM_DEF(air)
 		currentrun.len--
 		if(M == null)
 			atmos_machinery.Remove(M)
-		if(!M || (M.process_atmos() == PROCESS_KILL))
-			stop_processing_machine(M)
-		if(MC_TICK_CHECK)
-			return
-
-/datum/controller/subsystem/air/proc/process_atmos_air_machinery(resumed = 0)
-	var/seconds = wait * 0.1
-	if (!resumed)
-		src.currentrun = atmos_air_machinery.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/obj/machinery/M = currentrun[currentrun.len]
-		currentrun.len--
-		if(!M || (M.process_atmos(seconds) == PROCESS_KILL))
+		if(!M || (M.process_atmos(wait) == PROCESS_KILL))
 			stop_processing_machine(M)
 		if(MC_TICK_CHECK)
 			return
@@ -454,7 +422,7 @@ SUBSYSTEM_DEF(air)
 		CHECK_TICK
 
 /datum/controller/subsystem/air/proc/setup_atmos_machinery()
-	for (var/obj/machinery/atmospherics/AM in atmos_machinery + atmos_air_machinery)
+	for (var/obj/machinery/atmospherics/AM in atmos_machinery)
 		AM.atmosinit()
 		CHECK_TICK
 
@@ -462,7 +430,7 @@ SUBSYSTEM_DEF(air)
 //	all atmos machinery has to initalize before the first
 //	pipenet can be built.
 /datum/controller/subsystem/air/proc/setup_pipenets()
-	for (var/obj/machinery/atmospherics/AM in atmos_machinery + atmos_air_machinery)
+	for (var/obj/machinery/atmospherics/AM in atmos_machinery)
 		AM.build_network()
 		CHECK_TICK
 

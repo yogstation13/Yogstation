@@ -59,7 +59,7 @@
 	if(panel_open)
 		add_overlay("electrolyzer-open")
 
-/obj/machinery/electrolyzer/process(delta_time)
+/obj/machinery/electrolyzer/process_atmos(delta_time)
 	if(!is_operational() && on)
 		on = FALSE
 	if(!on)
@@ -170,7 +170,7 @@
 			usr.visible_message(span_notice("[usr] switches [on ? "on" : "off"] \the [src]."), span_notice("You switch [on ? "on" : "off"] \the [src]."))
 			update_icon()
 			if (on)
-				START_PROCESSING(SSmachines, src)
+				SSair.start_processing_machine(src)
 			. = TRUE
 		if("eject")
 			if(panel_open && cell)
