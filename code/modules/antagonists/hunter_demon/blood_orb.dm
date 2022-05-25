@@ -1,6 +1,6 @@
 /obj/structure/bloody_orb
 	name = "bloody orb"
-	desc = "A magic orb, that emmits bright red light."
+	desc = "A sinister looking red orb."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "extinguisher_closed"
 	anchored = TRUE
@@ -71,7 +71,7 @@
 				to_chat(demon, "<span class='warning'>[H] is now your new master!</span>")
 
 /obj/structure/bloody_orb/attack_hand(mob/living/carbon/human/M)
-	if(M == master)
+	if(M == master && (target.stat == DEAD || !target))
 		pick_target()
 
 /obj/structure/bloody_orb/pick_target()
@@ -81,6 +81,8 @@
 			continue				
 		if(!SSjob.GetJob(H.mind.assigned_role) || H == master)
 			continue 
+		possible_targets[H.mind.current.real_name] = H
+	target = possible_targets[input(user,"Choose next target for the demon","Target") in possible_targets]
 
 				
 
