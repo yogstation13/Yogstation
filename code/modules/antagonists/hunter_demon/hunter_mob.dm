@@ -45,6 +45,7 @@
 	var/mob/living/last_target
 	var/attack_streak
 	var/cool_demon_name
+	var/phased = FALSE
 
 /mob/living/simple_animal/hostile/hunter/AttackingTarget()
 	if(target == orb.master)
