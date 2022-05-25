@@ -231,10 +231,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/check_owner() // Handles unclaimed tickets; returns TRUE if no longer unclaimed
 	if(!handling_admin && state == AHELP_ACTIVE)
 		var/msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\"><font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font></span>")
-		to_chat(GLOB.admins,
-			type = MESSAGE_TYPE_ADMINLOG,
-			html = msg,
-			confidential = TRUE)
 		for(var/client/X in GLOB.admins)
 			if(check_rights_for(X,R_BAN))
 				to_chat(X,
