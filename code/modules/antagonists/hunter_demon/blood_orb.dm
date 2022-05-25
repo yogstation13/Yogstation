@@ -71,6 +71,8 @@
 				to_chat(demon, "<span class='warning'>[H] is now your new master!</span>")
 
 /obj/structure/bloody_orb/attack_hand(mob/living/carbon/human/M)
+	if(!demon)
+		return
 	if(M == master && (target.stat == DEAD || !target))
 		pick_target()
 
@@ -83,9 +85,10 @@
 			continue 
 		possible_targets[H.mind.current.real_name] = H
 	target = possible_targets[input(master,"Choose next target for the demon","Target") in possible_targets]
+	demon.prey = target
 	if(target)
 		to_chat(master,span_warning("New target for the demon is selected!"))
-		to_chat(demon,span_warning("Your new target has been selected, go and kill [target.mind.real_name]!"))
+		to_chat(demon,span_warning("Your new target has been selected, go and kill [target.real_name]!"))
 
 	else
 		to_chat(master,span_warning("A target could not be found for the demon."))
