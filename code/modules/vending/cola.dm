@@ -39,7 +39,7 @@
 
 /obj/machinery/vending/cola/random/Initialize()
 	..()
-	var/T = pick(subtypesof(/obj/machinery/vending/cola) - /obj/machinery/vending/cola/random)
+	var/T = pick(subtypesof(/obj/machinery/vending/cola) - (/obj/machinery/vending/cola/random + /obj/machinery/vending/cola/shamblers/prison))
 	new T(loc)
 	return INITIALIZE_HINT_QDEL
 
