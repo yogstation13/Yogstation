@@ -243,7 +243,7 @@ nobliumformation = 1001
 	if(air.return_temperature() < (FUSION_TEMPERATURE_THRESHOLD - FUSION_TEMPERATURE_THRESHOLD_MINIMUM) * NUM_E**( - air.get_moles(GAS_DILITHIUM) * DILITHIUM_LAMBDA) + FUSION_TEMPERATURE_THRESHOLD_MINIMUM)
 		// This is an exponential decay equation, actually. Horizontal Asymptote is FUSION_TEMPERATURE_THRESHOLD_MINIMUM.
 		return NO_REACTION
-	return fusion_react(air, holder)
+	return fusion_react(air, holder, id)
 
 /datum/gas_reaction/fusion
 	exclude = FALSE
@@ -259,9 +259,9 @@ nobliumformation = 1001
 		GAS_CO2 = FUSION_MOLE_THRESHOLD)
 
 /datum/gas_reaction/fusion/react(datum/gas_mixture/air, datum/holder)
-	return fusion_react(air, holder)
+	return fusion_react(air, holder, id)
 
-/proc/fusion_react(datum/gas_mixture/air, datum/holder)
+/proc/fusion_react(datum/gas_mixture/air, datum/holder, id)
 	var/turf/open/location
 	if (istype(holder,/datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.
 		var/datum/pipeline/fusion_pipenet = holder
