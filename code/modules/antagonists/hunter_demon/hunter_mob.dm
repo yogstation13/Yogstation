@@ -51,6 +51,10 @@
 	. = ..()
 	if(orb.sacrificed_blood)
 		orb.sacrificed_blood -= BLOODORB_PAS_BLOODUSE
+
+	if(orb.blood_pool_summary)
+		orb.blood_pool_summary -= BLOODORB_PAS_BLOODUSE
+
 	if(health < maxHealth)
 		heal_bodypart_damage(2)
 		if(orb.sacrificed_blood)
@@ -59,6 +63,7 @@
 			heal_bodypart_damage(2)
 			if(blood_pool_summary)
 				heal_bodypart_damage(3)
+				orb.blood_pool_summary -= DREGEN_BOOST_COST
 
 
 /mob/living/simple_animal/hostile/hunter/AttackingTarget()
