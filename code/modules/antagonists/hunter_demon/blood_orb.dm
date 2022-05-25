@@ -69,6 +69,18 @@
 			if(master != H)
 				master = H
 				to_chat(demon, "<span class='warning'>[H] is now your new master!</span>")
-				
+
+/obj/structure/bloody_orb/attack_hand(mob/living/carbon/human/M)
+	if(M == master)
+		pick_target()
+
+/obj/structure/bloody_orb/pick_target()
+	var/list/possible_targets = list()
+	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+		if(!H.mind)
+			continue				
+		if(!SSjob.GetJob(H.mind.assigned_role) || H == master)
+			continue 
 
 				
+
