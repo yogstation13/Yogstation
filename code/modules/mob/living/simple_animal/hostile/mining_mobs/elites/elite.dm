@@ -153,7 +153,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 				activity = TUMOR_ACTIVE
 				visible_message(span_boldwarning("[src] begins to convulse.  Your instincts tell you to step back."))
 				activator = user
-				addtimer(CALLBACK(src, .proc/spawn_elite), 30)
+				addtimer(CALLBACK(src, .proc/spawn_elite), 3 SECONDS)
 
 obj/structure/elite_tumor/proc/spawn_elite()
 	var/selectedspawn = pick(potentialspawns)
