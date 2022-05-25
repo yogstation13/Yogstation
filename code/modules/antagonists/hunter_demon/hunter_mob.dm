@@ -48,7 +48,7 @@
 
 /mob/living/simple_animal/hostile/hunter/AttackingTarget()
 	if(target == orb.master)
-		to_chat(src,span_warning([target] is protected by a bounding rite! You can't attack them!"))
+		to_chat(src,span_warning("[target] is protected by a bounding rite! You can't attack them!"))
 		return
 	if(istype(target, /obj/machinery/door/airlock))
 		pry_door(target)
