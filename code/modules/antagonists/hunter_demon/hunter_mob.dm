@@ -47,6 +47,20 @@
 	var/cool_demon_name
 	var/phased = FALSE
 
+/mob/living/simple_animal/hostile/hunter/Life()
+	. = ..()
+	if(orb.sacrificed_blood)
+		orb.sacrificed_blood -= BLOODORB_PAS_BLOODUSE
+	if(health < maxHealth)
+		heal_bodypart_damage(2)
+		if(orb.sacrificed_blood)
+			orb.sacrificed_blood -= DREGEN_BOOST_COST 2
+		if(phased)
+			heal_bodypart_damage(2)
+			if(blood_pool_summary)
+				heal_bodypart_damage(3)
+
+
 /mob/living/simple_animal/hostile/hunter/AttackingTarget()
 	if(target == orb.master)
 		to_chat(src,span_warning("[target] is protected by a bounding rite! You can't attack them!"))
