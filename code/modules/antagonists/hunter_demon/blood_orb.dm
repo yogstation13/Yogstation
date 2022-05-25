@@ -82,7 +82,7 @@
 		if(!SSjob.GetJob(H.mind.assigned_role) || H == master)
 			continue 
 		possible_targets[H.mind.current.real_name] = H
-	target = possible_targets[input(user,"Choose next target for the demon","Target") in possible_targets]
+	target = possible_targets[input(master,"Choose next target for the demon","Target") in possible_targets]
 
 				
 
