@@ -94,4 +94,13 @@
 		to_chat(master,span_warning("A target could not be found for the demon."))
 
 				
-
+/obj/structure/bloody_orb/examine(mob/user)
+	. = ..()
+	if(!demon)
+		. += "<span class='notice'>This orb looks empty.</span>"
+	else
+		. += "<span class='notice'>This orb looks like it contains pure madness inside.</span>"
+	if(user == master)
+		. += "<span class='notice'>There is [sacrificed_blood]/[BLOODORB_MAXBLOOD] blood supporting the bounding rite.</span>"
+	if(user == master || user == demon)
+		. += "<span class='notice'>You see in it a blurry image of [target].</span>"
