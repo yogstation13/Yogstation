@@ -224,6 +224,27 @@ nobliumformation = 1001
 //Fusion Rework Counter: Please increment this if you make a major overhaul to this system again.
 //6 reworks
 
+/datum/gas_reaction/cold_fusion
+	exclude = FALSE
+	priority = 2
+	name = "Cold Plasmic Fusion"
+	id = "coldfusion"
+
+/datum/gas_reaction/cold_fusion/init_reqs()
+	min_requirements = list(
+		"TEMP" = FUSION_TEMPERATURE_THRESHOLD_MINIMUM,
+		"MAX_TEMP" = FUSION_TEMPERATURE_THRESHOLD,
+		GAS_DILITHIUM = MINIMUM_MOLE_COUNT,
+		GAS_TRITIUM = FUSION_TRITIUM_MOLES_USED,
+		GAS_PLASMA = FUSION_MOLE_THRESHOLD,
+		GAS_CO2 = FUSION_MOLE_THRESHOLD)
+
+/datum/gas_reaction/cold_fusion/react(datum/gas_mixture/air, datum/holder)
+	if(air.return_temperature() < (FUSION_TEMPERATURE_THRESHOLD - FUSION_TEMPERATURE_THRESHOLD_MINIMUM) * NUM_E**( - air.get_moles(GAS_DILITHIUM) * DILITHIUM_LAMBDA) + FUSION_TEMPERATURE_THRESHOLD_MINIMUM)
+		// This is an exponential decay equation, actually. Horizontal Asymptote is FUSION_TEMPERATURE_THRESHOLD_MINIMUM.
+		return NO_REACTION
+	return fusion_react(air, holder)
+
 /datum/gas_reaction/fusion
 	exclude = FALSE
 	priority = 2
@@ -232,20 +253,15 @@ nobliumformation = 1001
 
 /datum/gas_reaction/fusion/init_reqs()
 	min_requirements = list(
-		"TEMP" = FUSION_TEMPERATURE_THRESHOLD_MINIMUM, // Yogs -- Cold Fusion
+		"TEMP" = FUSION_TEMPERATURE_THRESHOLD, 
 		GAS_TRITIUM = FUSION_TRITIUM_MOLES_USED,
 		GAS_PLASMA = FUSION_MOLE_THRESHOLD,
 		GAS_CO2 = FUSION_MOLE_THRESHOLD)
 
 /datum/gas_reaction/fusion/react(datum/gas_mixture/air, datum/holder)
-	//Yogs start -- Cold Fusion
-	if(air.return_temperature() < FUSION_TEMPERATURE_THRESHOLD)
-		if(!air.get_moles(GAS_DILITHIUM))
-			return
-		if(air.return_temperature() < (FUSION_TEMPERATURE_THRESHOLD - FUSION_TEMPERATURE_THRESHOLD_MINIMUM) * NUM_E**( - air.get_moles(GAS_DILITHIUM) * DILITHIUM_LAMBDA) + FUSION_TEMPERATURE_THRESHOLD_MINIMUM)
-			// This is an exponential decay equation, actually. Horizontal Asymptote is FUSION_TEMPERATURE_THRESHOLD_MINIMUM.
-			return
-	//Yogs End
+	return fusion_react(air, holder)
+
+/proc/fusion_react(datum/gas_mixture/air, datum/holder)
 	var/turf/open/location
 	if (istype(holder,/datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.
 		var/datum/pipeline/fusion_pipenet = holder
@@ -458,7 +474,7 @@ nobliumformation = 1001
 	air.set_temperature(air.return_temperature() + cleaned_air * 0.002)
 	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp(cleaned_air*MIASMA_RESEARCH_AMOUNT,0.01, MIASMA_RESEARCH_MAX_AMOUNT))//Turns out the burning of miasma is kinda interesting to scientists
 	return REACTING
-  
+
 /datum/gas_reaction/stim_ball
 	priority = 7
 	name ="Stimulum Energy Ball"
