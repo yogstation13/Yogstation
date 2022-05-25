@@ -3,6 +3,7 @@
 	spawn(0)
 		bloodpool_sink()
 		src.notransform = FALSE
+	phased = TRUE
 	return 1
 
 /mob/living/simple_animal/hostile/hunter/bloodpool_sink()
@@ -31,4 +32,5 @@
 	exit_blood_effect()
 	qdel(src.holder)
 	src.holder = null
+	phased = TRUE
 	return 1
