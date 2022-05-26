@@ -1581,7 +1581,6 @@
 #include "code\modules\antagonists\hunter_demon\demon_spells.dm"
 #include "code\modules\antagonists\hunter_demon\hunter_mob.dm"
 #include "code\modules\antagonists\hunter_demon\jaunt.dm"
-#include "code\modules\antagonists\hunter_demon\jaunt_spell.dm"
 #include "code\modules\antagonists\kudzu\kudzu.dm"
 #include "code\modules\antagonists\magic_servant\servant.dm"
 #include "code\modules\antagonists\malf\malf.dm"
