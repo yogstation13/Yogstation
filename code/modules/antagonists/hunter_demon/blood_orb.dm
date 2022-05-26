@@ -79,6 +79,8 @@
 					to_chat(demon, "<span class='warning'>[H] is now your new master!</span>")
 				return
 	. = ..()
+	if(demon)
+		to_chat(demon,span_warning("Your orb has been attacked!"))
 
 
 /obj/structure/bloody_orb/attack_hand(mob/living/carbon/human/M)
@@ -118,7 +120,9 @@
 
 /obj/structure/bloody_orb/Destroy()
 	. = ..()
+	if(!demon)
+		return
 	to_chat(demon,span_warning("With your orb destroyed, your bound with this thing plain is breaked, and your body perishes in dust."))
-	if(demon.phased)
+	if(demon.phased )
 		demon.instaphasein()
 	demon.dust()
