@@ -60,9 +60,9 @@
 		if(orb.sacrificed_blood)
 			orb.sacrificed_blood -= DREGEN_BOOST_COST 
 		if(phased)
-			heal_bodypart_damage(2)
-			if(blood_pool_summary)
-				heal_bodypart_damage(3)
+			heal_bodypart_damage(3)
+			if(orb.blood_pool_summary)
+				heal_bodypart_damage(5)
 				orb.blood_pool_summary -= DREGEN_BOOST_COST
 
 
