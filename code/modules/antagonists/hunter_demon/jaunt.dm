@@ -35,7 +35,7 @@
 	phased = FALSE
 	return 1
 
-/mob/living/simple_animal/hostile/hunter/instaphasein()
+/mob/living/simple_animal/hostile/hunter/proc/instaphasein()
 	var/turf/turfo = get_turf(src)
 	forceMove(turfo)
 	src.client.eye = src
