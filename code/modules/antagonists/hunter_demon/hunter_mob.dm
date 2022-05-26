@@ -179,3 +179,7 @@
 			prying_door.take_damage(666, BRUTE, MELEE, 1) ///Die!!!
 			visible_message(span_danger("[src] destroys [prying_door]!"), \
 			span_userdanger("[src] destroys [prying_door]!"), null, COMBAT_MESSAGE_RANGE)
+
+/mob/living/simple_animal/hostile/hunter/Destroy()
+	if(orb)
+		orb.Destroy()
