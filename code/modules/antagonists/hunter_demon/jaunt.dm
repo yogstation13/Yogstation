@@ -34,3 +34,14 @@
 	src.holder = null
 	phased = FALSE
 	return 1
+
+/mob/living/simple_animal/hostile/hunter/instaphasein()
+	var/turf/turfo = get_turf(src)
+	forceMove(turfo)
+	src.client.eye = src
+	src.visible_message(span_warning("<B>[src] warps into reality!</B>"))
+	exit_blood_effect()
+	qdel(src.holder)
+	src.holder = null
+	phased = FALSE
+	return 1
