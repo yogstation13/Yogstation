@@ -48,6 +48,7 @@
 				master = H
 				sacrificed_blood += ORB_BLOOD_SACAMOUNT
 				blood_pool_summary += ORB_BLOOD_SACAMOUNT
+				handle_bloodchange()
 				return
 		else
 			if(!(NOBLOOD in H.dna.species.species_traits))
@@ -65,10 +66,7 @@
 					H.adjustBruteLoss(20)
 				sacrificed_blood += ORB_BLOOD_SACAMOUNT
 				blood_pool_summary += ORB_BLOOD_SACAMOUNT
-				if(sacrificed_blood > BLOODORB_MAXBLOOD)
-					sacrificed_blood = BLOODORB_MAXBLOOD
-				if(blood_pool_summary > BLOODORB_MAXBLOOD)
-					blood_pool_summary = BLOODORB_MAXBLOOD
+				handle_bloodchange()
 				if(target == H)
 					to_chat(H, "<span class='warning'>You feel your blood boiling!</span>")
 					to_chat(demon, "<span class='warning'>Your target has tried to perform a bounding ritual near your orb!</span>")
