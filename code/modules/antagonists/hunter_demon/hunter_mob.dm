@@ -11,8 +11,8 @@
 	icon_state = "hunter_daemon"
 	icon_living = "hunter_daemon"
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
-	damage_coeff = list(BRUTE = 1, BURN = 0.75, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
-	speed = 0
+	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	speed = -0.15
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	status_flags = CANPUSH
@@ -65,6 +65,14 @@
 				heal_bodypart_damage(5)
 				orb.blood_pool_summary -= DREGEN_BOOST_COST
 
+	if(!check_shit(BOUND_DISTANCE, ORB_AND_PREY))
+		speed = 1
+		adjustFireLoss(8)
+		if(prob(25))
+			to_chat(src, "<span class='warning'>You are not near your orb or your target! You start taking damage and move more slowly!</span>")
+		else
+			speed = -0.15
+		
 
 /mob/living/simple_animal/hostile/hunter/AttackingTarget()
 	if(target == orb.master)
