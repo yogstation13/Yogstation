@@ -239,7 +239,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 					confidential = TRUE)
 			else
 				if(world.time > last_unclaimed_notification)
-					last_unlcaimed_notification = world.time + 1 SECONDS
+					last_unclaimed_notification = world.time + 1 SECONDS
 					msg = "<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\"><font color='blue'>Unclaimed Tickets!</font></span>"
 					to_chat(X,
 						type = MESSAGE_TYPE_ADMINLOG,
