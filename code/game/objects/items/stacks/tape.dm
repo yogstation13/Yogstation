@@ -44,7 +44,6 @@
 		return
 	var/list/item_contents = I.GetAllContents()
 	for(var/obj/item/C in item_contents)
-		world.log << C.type
 		if(is_type_in_typecache(C,tape_blacklist))
 			to_chat(user, span_warning("The [src] doesn't seem to stick to [I]!"))
 			return
