@@ -48,7 +48,7 @@
 	name = "neural processing unit"
 	id = "basic_ai_cpu"
 	build_type = IMPRINTER
-	materials = list(/datum/material/glass = 8000, /datum/material/iron = 2000)
+	materials = list(/datum/material/glass = 2000, /datum/material/iron = 2000)
 	build_path = /obj/item/ai_cpu
 	category = list("Computer Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_NETMIN
@@ -57,7 +57,7 @@
 	name = "advanced neural processing unit"
 	id = "advanced_ai_cpu"
 	build_type = IMPRINTER
-	materials = list(/datum/material/glass = 10000, /datum/material/iron = 4000, /datum/material/gold = 2000)
+	materials = list(/datum/material/glass = 4000, /datum/material/iron = 4000, /datum/material/gold = 2000)
 	build_path = /obj/item/ai_cpu/advanced
 	category = list("Computer Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_NETMIN
@@ -66,7 +66,7 @@
 	name = "bluespace neural processing unit"
 	id = "bluespace_ai_cpu"
 	build_type = IMPRINTER
-	materials = list(/datum/material/glass = 14000, /datum/material/iron = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 2000)
+	materials = list(/datum/material/glass = 8000, /datum/material/iron = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 2000)
 	build_path = /obj/item/ai_cpu/bluespace
 	category = list("Computer Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_NETMIN
@@ -75,7 +75,7 @@
 	name = "experimental neural processing unit"
 	id = "experimental_ai_cpu"
 	build_type = IMPRINTER
-	materials = list(/datum/material/glass = 12000, /datum/material/iron = 4000, /datum/material/gold = 6000)
+	materials = list(/datum/material/glass = 6000, /datum/material/iron = 4000, /datum/material/gold = 6000)
 	build_path = /obj/item/ai_cpu/experimental
 	category = list("Computer Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_NETMIN
