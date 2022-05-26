@@ -598,6 +598,8 @@
 	if(I)
 		I.attack_self(src)
 		update_inv_hands()
+	else
+		attack_empty_hand(active_hand_index)
 
 /**
   * Get the notes of this mob

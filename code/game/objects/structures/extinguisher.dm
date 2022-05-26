@@ -103,6 +103,16 @@
 	else
 		toggle_cabinet(user)
 
+/obj/structure/extinguisher_cabinet/do_simple_ranged_interaction(var/mob/user)
+	if(stored_extinguisher)
+		stored_extinguisher.forceMove(loc)
+		stored_extinguisher = null
+		opened = 1
+		playsound(loc, 'sound/machines/click.ogg', 15, 1, -3)
+		update_icon()
+	else
+		toggle_cabinet(user)
+
 
 /obj/structure/extinguisher_cabinet/attack_paw(mob/user)
 	return attack_hand(user)

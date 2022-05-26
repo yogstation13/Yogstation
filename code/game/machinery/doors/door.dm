@@ -181,6 +181,14 @@
 		return
 	..()
 
+/obj/machinery/door/do_simple_ranged_interaction(var/mob/user)
+	if(!requiresID() || allowed(null))
+		if(density)
+			open()
+		else
+			close()
+	return TRUE
+
 /obj/machinery/door/proc/try_to_activate_door(mob/user)
 	add_fingerprint(user)
 	if(operating || (obj_flags & EMAGGED))

@@ -384,6 +384,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			R.activate_module(src)
 			R.hud_used.update_robot_modules_display()
 
+/obj/item/do_simple_ranged_interaction(var/mob/user)
+	if(user)
+		attack_self(user)
+	return TRUE
+
 /obj/item/proc/GetDeconstructableContents()
 	return GetAllContents() - src
 

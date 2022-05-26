@@ -44,6 +44,9 @@
 	if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)
 		. = _try_interact(user)
 
+/mob/proc/attack_empty_hand(var/hand)
+	return
+
 //Return a non FALSE value to cancel whatever called this from propagating, if it respects it.
 /atom/proc/_try_interact(mob/user)
 	if(IsAdminGhost(user))		//admin abuse

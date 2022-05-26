@@ -1,13 +1,13 @@
 GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/spell/self/lesser_shadowling_hivemind, /obj/effect/proc_holder/spell/targeted/lesser_glare, /obj/effect/proc_holder/spell/self/lesser_shadow_walk, /obj/effect/proc_holder/spell/self/thrall_night_vision)))
 
-/datum/antagonist/thrall
+/datum/antagonist/thrall/shadowling
 	name = "Shadowling Thrall"
 	job_rank = ROLE_SHADOWLING
 	roundend_category = "thralls"
 	antagpanel_category = "Shadowlings"
 	antag_moodlet = /datum/mood_event/thrall
 	
-/datum/antagonist/thrall/can_be_owned(datum/mind/new_owner)
+/datum/antagonist/thrall/shadowling/can_be_owned(datum/mind/new_owner)
 	. = ..()
 	if(.)
 		var/list/no_team_antag = list(
@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 			if(NTA.type in no_team_antag)
 				return FALSE
 
-/datum/antagonist/thrall/on_gain()
+/datum/antagonist/thrall/shadowling/on_gain()
 	. = ..()
 	SSticker.mode.update_shadow_icons_added(owner)
 	SSticker.mode.thralls += owner
@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/lesser_shadow_walk(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/thrall_night_vision(null))
 
-/datum/antagonist/thrall/on_removal()
+/datum/antagonist/thrall/shadowling/on_removal()
 	SSticker.mode.update_shadow_icons_removed(owner)
 	SSticker.mode.thralls -= owner
 	message_admins("[key_name_admin(owner.current)] was dethralled!")
@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 	M.update_sight()
 	return ..()
 
-/datum/antagonist/thrall/greet()
+/datum/antagonist/thrall/shadowling/greet()
 	to_chat(owner, span_shadowling("<b>You see the truth. Reality has been torn away and you realize what a fool you've been.</b>"))
 	to_chat(owner, span_shadowling("<b>The shadowlings are your masters.</b> Serve them above all else and ensure they complete their goals.</b>"))
 	to_chat(owner, span_shadowling("You may not harm other thralls or the shadowlings. However, you do not need to obey other thralls."))
@@ -62,5 +62,5 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 	to_chat(owner, span_shadowling("You may communicate with your allies by using the Lesser Commune ability."))
 	SEND_SOUND(owner.current, sound('yogstation/sound/ambience/antag/thrall.ogg'))
 
-/datum/antagonist/thrall/roundend_report()
+/datum/antagonist/thrall/shadowling/roundend_report()
 	return "[printplayer(owner)]"

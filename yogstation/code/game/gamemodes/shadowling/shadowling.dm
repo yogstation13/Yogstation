@@ -242,7 +242,7 @@ Made by Xhuis
 /mob/living/proc/add_thrall()
 	if(!istype(mind))
 		return FALSE
-	return mind.add_antag_datum(ANTAG_DATUM_THRALL)
+	return mind.add_antag_datum(ANTAG_DATUM_SHADOWTHRALL)
 
 /mob/living/proc/add_sling()
 	if(!istype(mind))
@@ -252,7 +252,7 @@ Made by Xhuis
 /mob/living/proc/remove_thrall()
 	if(!istype(mind))
 		return FALSE
-	return mind.remove_antag_datum(ANTAG_DATUM_THRALL)
+	return mind.remove_antag_datum(ANTAG_DATUM_SHADOWTHRALL)
 
 /mob/living/proc/remove_sling()
 	if(!istype(mind))

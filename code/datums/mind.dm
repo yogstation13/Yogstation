@@ -428,6 +428,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
+	if(current && isliving(current))
+		if(href_list["set_psi_faculty"] && href_list["set_psi_faculty_rank"])
+			current.set_psi_rank(href_list["set_psi_faculty"], text2num(href_list["set_psi_faculty_rank"]))
+			return TRUE
+
 	var/self_antagging = usr == current
 
 	if(href_list["add_antag"])

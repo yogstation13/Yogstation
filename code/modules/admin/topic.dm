@@ -950,6 +950,20 @@
 		Game() // updates the main game menu
 		HandleFSecret()
 
+	else if(href_list["remove_psionics"])
+		var/datum/psi_complexus/psi = locate(href_list["remove_psionics"])
+		if(psi && psi.owner && !QDELETED(psi))
+			to_chat(psi.owner, span_notice("<b>Your psionic powers vanish abruptly, leaving you cold and empty.</b>"))
+			log_admin("[key_name(usr)] removed all psionics from [key_name(psi.owner)].")
+			message_admins(span_adminnotice("[key_name_admin(usr)] removed all psionics from [key_name(psi.owner)]."))
+			QDEL_NULL(psi)
+
+	else if(href_list["trigger_psi_latencies"])
+		var/datum/psi_complexus/psi = locate(href_list["trigger_psi_latencies"])
+		log_admin("[key_name(usr)] triggered psi latencies for [key_name(psi.owner)].")
+		message_admins(span_adminnotice("[key_name_admin(usr)] triggered psi latencies for [key_name(psi.owner)]."))
+		psi.check_latency_trigger(100, "outside intervention", redactive = TRUE)
+
 	else if(href_list["monkeyone"])
 		if(!check_rights(R_SPAWN))
 			return

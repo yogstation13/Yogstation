@@ -46,7 +46,7 @@
 	C.faction -= "vines"
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
-	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_THRALL)))
+	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_SHADOWTHRALL)))
 		return
 	var/turf/T = get_turf(H)
 	if(!T)

@@ -474,6 +474,29 @@ LINEN BINS
 
 	add_fingerprint(user)
 
+/obj/structure/bedsheetbin/do_simple_ranged_interaction(var/mob/user)
+	if(amount >= 1)
+		amount--
+
+		var/obj/item/bedsheet/B
+		if(sheets.len > 0)
+			B = sheets[sheets.len]
+			sheets.Remove(B)
+
+		else
+			B = new /obj/item/bedsheet(loc)
+
+		B.forceMove(drop_location())
+		to_chat(user, span_notice("You telekinetically remove [B] from [src]."))
+		update_icon()
+
+		if(hidden)
+			hidden.forceMove(drop_location())
+			hidden = null
+
+
+	add_fingerprint(user)
+
 /obj/item/bedsheet/adjusted
 	slot_flags = ITEM_SLOT_HEAD
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEGLOVES|HIDEJUMPSUIT|HIDENECK|HIDEFACIALHAIR|HIDESUITSTORAGE
