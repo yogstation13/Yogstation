@@ -111,3 +111,9 @@
 		. += "<span class='notice'>There is [sacrificed_blood]/[BLOODORB_MAXBLOOD] blood supporting the bounding rite.</span>"
 	if(user == master || user == demon)
 		. += "<span class='notice'>You see in it a blurry image of [target].</span>"
+
+/obj/structure/bloody_orb/Destroy()
+	to_chat(demon,span_warning("With your orb destroyed, your bound with this thing plain is breaked, and your body perishes in dust."))
+	if(phased)
+		instaphasein()
+	demon.dust()
