@@ -53,3 +53,11 @@
 	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	action_icon_state = "moneybag"
 	phase_allowed = TRUE
+
+/obj/effect/proc_holder/spell/targeted/cast(list/targets,mob/user = usr)
+	if(istype(user,/mob/living/simple_animal/hostile/hunter))
+		var/mob/living/simple_animal/hostile/hunter/demon = user
+		if(!target)
+			to_chat(user,span_warning("You don't have a target! It should be chosen by your master, or you can choose it yourself if you are not bounded by a bounding rite."))
+		return
+	return
