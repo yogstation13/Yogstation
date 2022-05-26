@@ -72,7 +72,7 @@
 	icon_state = "cpuboard_adv"
 
 	speed = 2
-	base_power_usage = 2 * AI_CPU_BASE_POWER_USAGE
+	base_power_usage = 1.75 * AI_CPU_BASE_POWER_USAGE
 
 
 /obj/item/ai_cpu/bluespace
@@ -81,7 +81,7 @@
 	icon_state = "cpuboard_super"
 
 	speed = 3
-	base_power_usage = 3 * AI_CPU_BASE_POWER_USAGE
+	base_power_usage = 2.5 * AI_CPU_BASE_POWER_USAGE
 
 /obj/item/ai_cpu/experimental
 	name = "experimental neural processing unit"
@@ -89,7 +89,7 @@
 	icon_state = "cpuboard_adv"
 
 	speed = 2
-	base_power_usage = 2.5 * AI_CPU_BASE_POWER_USAGE
+	base_power_usage = 2 * AI_CPU_BASE_POWER_USAGE
 
 	minimum_max_power = 1.1
 	maximum_max_power = 2.5

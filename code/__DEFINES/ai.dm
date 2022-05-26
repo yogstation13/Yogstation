@@ -1,6 +1,6 @@
 
 ///All AI machinery heat production is multiplied by this value
-#define AI_TEMPERATURE_MULTIPLIER 6 //Thermodynamics? No... No I don't think that's a thing. Balance so we don't use an insane amount of power to produce noticeable heat
+#define AI_TEMPERATURE_MULTIPLIER 5 //Thermodynamics? No... No I don't think that's a thing. Balance so we don't use an insane amount of power to produce noticeable heat
 ///Temperature limit of all AI machinery
 #define AI_TEMP_LIMIT 288.15 //15C, much hotter than a normal server room for leniency :)
 
@@ -37,9 +37,9 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 
 
 //AI hardware
-#define AI_CPU_BASE_POWER_USAGE 2000
+#define AI_CPU_BASE_POWER_USAGE 1250
 
-#define AI_RAM_POWER_USAGE 750
+#define AI_RAM_POWER_USAGE 500
 
 //Needs UI change to properly work!
 #define AI_MAX_CPUS_PER_RACK 4
