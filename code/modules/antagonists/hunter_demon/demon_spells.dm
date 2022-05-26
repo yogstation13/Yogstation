@@ -60,14 +60,6 @@
 		if(!demon.target)
 			to_chat(user,span_warning("You don't have a target! It should be chosen by your master, or you can choose it yourself if you are not bounded by a bounding rite."))
 			return
-		var/turf/userturf = get_turf(demon)
-		var/turf/targetturf = get_turf(demon.target)
-		var/dist = get_dist(userturf,targetturf)
-		var/dir = get_dir(userturf,targetturf)
-		if(userturf.z != targetturf.z)
-			to_chat(user,span_warning("Your target isn't on the station z-level, you need to get a new one."))
-			complete_assasination(killed = FALSE)
-			return
 		if(!istype(demon.target, /mob/living/carbon/human))
 			to_chat(user,span_warning("Your target isn't no more a human, so you aren't no more interested in it. Get a new one."))
 			complete_assasination(killed = FALSE)
@@ -76,6 +68,14 @@
 			to_chat(user,span_warning("Your target is dead, so your mission is completed. Get a new one."))
 			complete_assasination(killed = TRUE)
 			return	
+		var/turf/userturf = get_turf(demon)
+		var/turf/targetturf = get_turf(demon.target)
+		var/dist = get_dist(userturf,targetturf)
+		var/dir = get_dir(userturf,targetturf)
+		if(userturf.z != targetturf.z)
+			to_chat(user,span_warning("Your target isn't on the station z-level, you need to get a new one."))
+			complete_assasination(killed = FALSE)
+			return
 		switch(dist)         ///Taken from living heart code
 			if(0 to 15)
 				to_chat(user,span_warning("[target.real_name] is near you. They are to the [dir2text(dir)] of you!"))
