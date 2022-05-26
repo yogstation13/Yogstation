@@ -48,6 +48,7 @@
 				master = H
 				sacrificed_blood += ORB_BLOOD_SACAMOUNT
 				blood_pool_summary += ORB_BLOOD_SACAMOUNT
+				return
 		else
 			if(!(NOBLOOD in H.dna.species.species_traits))
 				visible_message(span_danger("[H] begins to spill his blood on the [src]!"), \
@@ -76,6 +77,9 @@
 				if(master != H)
 					master = H
 					to_chat(demon, "<span class='warning'>[H] is now your new master!</span>")
+				return
+	. = ..()
+
 
 /obj/structure/bloody_orb/attack_hand(mob/living/carbon/human/M)
 	if(!demon)
