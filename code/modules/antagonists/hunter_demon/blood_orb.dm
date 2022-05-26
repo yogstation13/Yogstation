@@ -127,7 +127,7 @@
 		demon.instaphasein()
 	demon.dust()
 
-/obj/structure/bloody_orb/proc/handle_bloodchange
+/obj/structure/bloody_orb/proc/handle_bloodchange()
 	if(sacrificed_blood > BLOODORB_MAXBLOOD)
 		sacrificed_blood = BLOODORB_MAXBLOOD
 	if(blood_pool_summary > BLOODORB_MAXBLOOD)
