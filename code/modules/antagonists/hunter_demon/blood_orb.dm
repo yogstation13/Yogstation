@@ -118,6 +118,6 @@
 
 /obj/structure/bloody_orb/Destroy()
 	to_chat(demon,span_warning("With your orb destroyed, your bound with this thing plain is breaked, and your body perishes in dust."))
-	if(phased)
-		instaphasein()
+	if(demon.phased)
+		demon.instaphasein()
 	demon.dust()
