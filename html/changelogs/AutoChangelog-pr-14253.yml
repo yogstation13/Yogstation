@@ -1,0 +1,4 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "taped items no longer send themselves and contents to world.log"
