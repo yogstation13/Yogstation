@@ -1,11 +1,16 @@
 /// Runs from COMSIG_LIVING_BIOLOGICAL_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick()
 
-	if(isbrain(owner.current))
-		return
 	if(!owner && !owner.current)
 		INVOKE_ASYNC(src, .proc/HandleDeath)
 		return
+
+	if(istype(owner.current, /mob/living/simple_animal/hostile/bloodsucker))
+		return
+
+	if(isbrain(owner.current))
+		return
+
 	// Deduct Blood
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		INVOKE_ASYNC(src, .proc/AddBloodVolume, passive_blood_drain) // -.1 currently

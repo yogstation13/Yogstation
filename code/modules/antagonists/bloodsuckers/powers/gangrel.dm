@@ -82,7 +82,7 @@
 				for(var/datum/action/bloodsucker/power in bat_powers) 
 					power.Grant(gb)
 				QDEL_IN(gb, 2 MINUTES)
-				playsound(gb.loc, 'sound/items/toysqueak1.ogg', 50, 1)
+				playsound(gb.loc, 'sound/items/toysqueak1.ogg', 50, TRUE)
 			to_chat(owner, span_notice("You transform into a fatty beast!"))
 			return ..() //early to not mess with vampire organs proc
 	bloodsuckerdatum.HealVampireOrgans() //regives you the stuff
@@ -414,10 +414,10 @@
 	A.visible_message(span_danger("[A] inhales a ton of air!"), span_warning("You prepare to howl!"))
 	if(!do_mob(A, A, 2.5 SECONDS, TRUE))
 		return
-	playsound(A.loc, 'yogstation/sound/creatures/darkspawn_howl.ogg', 50, 1)
+	playsound(A.loc, 'yogstation/sound/creatures/darkspawn_howl.ogg', 50, TRUE)
 	A.visible_message(span_userdanger("[A] let's out a chilling howl!"), span_boldwarning("You howl, confusing and deafening nearby mortals."))
 	for(var/mob/target in range(3, A))
-		if(target == A && target == A.bloodsucker)
+		if(target == (A || A.bloodsucker))
 			continue
 		if(IS_BLOODSUCKER(target) || IS_VASSAL(target))
 			continue

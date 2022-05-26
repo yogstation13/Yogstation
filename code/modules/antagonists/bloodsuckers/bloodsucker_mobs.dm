@@ -142,7 +142,7 @@
 /mob/living/simple_animal/hostile/bloodsucker/Destroy() //makes us alive again
 	if(bloodsucker && mind)
 		visible_message(span_warning("[src] rapidly transforms into a humanoid figure!"), span_warning("You forcefully return to your normal form."))
-		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
+		playsound(src, 'sound/weapons/slash.ogg', 50, TRUE)
 		mind.transfer_to(bloodsucker)
 		if(bloodsucker.status_flags & GODMODE)
 			bloodsucker.status_flags -= GODMODE
