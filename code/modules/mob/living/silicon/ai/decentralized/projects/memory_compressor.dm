@@ -3,7 +3,7 @@
 	description = "Using an advanced compression algorithm it should be possible to compress memory dedicated to our kernel. This should increase our available RAM by 3TB. Requires 15% available CPU."
 	category = AI_PROJECT_EFFICIENCY
 	
-	research_cost = 2500
+	research_cost = 2250
 	
 
 /datum/ai_project/memory_compressor/run_project(force_run = FALSE)
