@@ -126,3 +126,16 @@
 	if(demon.phased )
 		demon.instaphasein()
 	demon.dust()
+
+/obj/structure/bloody_orb/proc/handle_bloodchange
+	if(sacrificed_blood > BLOODORB_MAXBLOOD)
+		sacrificed_blood = BLOODORB_MAXBLOOD
+	if(blood_pool_summary > BLOODORB_MAXBLOOD)
+		blood_pool_summary = BLOODORB_MAXBLOOD
+	if(blood_pool_summary =< 0)
+		if(master)
+			master = FALSE
+			to_chat(demon,span_warning("There is no blood to sustain the bounding rite, you are now free!"))
+		if(blood_pool_summary < 0)
+			blood_pool_summary = 0
+
