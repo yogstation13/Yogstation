@@ -49,25 +49,21 @@
 
 /mob/living/simple_animal/hostile/hunter/Life()
 	. = ..()
-	if(orb.sacrificed_blood)
-		orb.sacrificed_blood -= BLOODORB_PAS_BLOODUSE
-
-	if(orb.blood_pool_summary)
-		orb.blood_pool_summary -= BLOODORB_PAS_BLOODUSE
-
+	orb.sacrificed_blood -= BLOODORB_PAS_BLOODUSE
+	orb.blood_pool_summary -= BLOODORB_PAS_BLOODUSE
 	if(health < maxHealth)
 		heal_bodypart_damage(2)
-		if(orb.sacrificed_blood)
-			orb.sacrificed_blood -= DREGEN_BOOST_COST 
+		orb.sacrificed_blood -= DREGEN_BOOST_COST 
 		if(phased)
 			heal_bodypart_damage(3)
 			if(orb.blood_pool_summary)
-				heal_bodypart_damage(5)
-				orb.blood_pool_summary -= DREGEN_BOOST_COST
+				heal_bodypart_damage(8)
+				orb.blood_pool_summary -= DREGEN_BOOST_COST*2
+	handle_bloodchange()
 
 	if(!check_shit(BOUND_DISTANCE, ORB_AND_PREY))
 		speed = 1
-		adjustFireLoss(8)
+		adjustFireLoss(10)
 		if(prob(25))
 			to_chat(src, "<span class='warning'>You are not near your orb or your target! You start taking damage and move more slowly!</span>")
 		else
@@ -127,7 +123,7 @@
 			if(do_after(src, 30, target = dude))
 				playsound(src, 'sound/magic/demon_attack1.ogg', 100, TRUE)
 				dude.forceMove(src) ///demon "eats" him
-				for(var/obj/item/organ/O in dude.internal_organs) ///His organs get qdeleted... rest in peace bro
+				for(var/obj/item/organ/O in dude.internal_organs) 
 					qdel(O)
 				var/turf/turfo = get_turf(src)
 				src.phaseout()
@@ -140,12 +136,14 @@
 
 	if(. && isliving(target))
 		heal_bodypart_damage(DEMON_LIFESTEAL)
+		orb.blood_pool_summary += 6
 		if(prob(DEMON_SPECIAL_CHANCE + (src.attack_streak*5)))
 			var/mob/living/guy = target
 			guy.adjustBruteLoss(10)
 			var/atom/throw_target = get_edge_target_turf(guy, dir)
 			guy.throw_at(throw_target, rand(1,2), 7, src)
-			attack_streak = 0
+			if(attack_streak)
+				attack_streak--
 		else
 			attack_streak++
 	
