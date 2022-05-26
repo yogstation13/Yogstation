@@ -127,6 +127,7 @@
 					qdel(O)
 				var/turf/turfo = get_turf(src)
 				src.phaseout()
+				complete_assasination(TRUE)
 				sleep(1200) //When i was trying to use a timer github was showing me unexisting errors, so fuck it
 				OutOfBrazil(dude, turfo)
 			return FALSE
@@ -179,5 +180,19 @@
 			span_userdanger("[src] destroys [prying_door]!"), null, COMBAT_MESSAGE_RANGE)
 
 /mob/living/simple_animal/hostile/hunter/Destroy()
+	. = ..()
 	if(orb)
 		orb.Destroy()
+
+/mob/living/simple_animal/hostile/hunter/proc/complete_assasination(killed = TRUE)
+	if(master)
+		if(killed)
+			to_chat(orb.master, "<span class='warning'>The demon has killed it's target. Go and choose a new one.</span>")
+		else
+			to_chat(orb.master, "<span class='warning'>The demon can't reach your target, go and choose a new one.</span>")
+	target = null
+	orb.target = null
+	return
+
+	
+
