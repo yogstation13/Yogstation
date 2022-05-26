@@ -75,5 +75,14 @@
 		if(demon.target.stat == DEAD)
 			to_chat(user,span_warning("Your target is dead, so your mission is completed. Get a new one."))
 			complete_assasination(killed = TRUE)
-			return			
+			return	
+		switch(dist)         ///Taken from living heart code
+			if(0 to 15)
+				to_chat(user,span_warning("[target.real_name] is near you. They are to the [dir2text(dir)] of you!"))
+			if(16 to 31)
+				to_chat(user,span_warning("[target.real_name] is somewhere in your vicinty. They are to the [dir2text(dir)] of you!"))
+			if(32 to 127)
+				to_chat(user,span_warning("[target.real_name] is far away from you. They are to the [dir2text(dir)] of you!"))
+			else
+				to_chat(user,span_warning("[target.real_name] is beyond your reach."))		
 	return
