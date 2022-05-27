@@ -47,6 +47,10 @@
 	var/cool_demon_name
 	var/phased = FALSE
 
+/mob/living/simple_animal/hostile/hunter/Initialize()
+	. = ..()
+	name = "[pick(GLOB.hdemon_first_names)], The [pick(GLOB.hdemon_last_names)]"
+
 /mob/living/simple_animal/hostile/hunter/Life()
 	. = ..()
 	orb.sacrificed_blood -= BLOODORB_PAS_BLOODUSE
