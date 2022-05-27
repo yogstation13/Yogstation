@@ -130,7 +130,7 @@
 		sacrificed_blood = BLOODORB_MAXBLOOD
 	if(blood_pool_summary > BLOODORB_MAXBLOOD)
 		blood_pool_summary = BLOODORB_MAXBLOOD
-	if(sacrificed_blood=< 0)
+	if(sacrificed_blood <= 0)
 		if(master)
 			master = FALSE
 			to_chat(demon,span_warning("There is no blood to sustain the bounding rite, you are now free!"))
