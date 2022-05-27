@@ -100,6 +100,8 @@
 	if(target)
 		to_chat(master,span_warning("New target for the demon is selected!"))
 		to_chat(demon,span_warning("Your new target has been selected, go and kill [target.real_name]!"))
+		message_admins("[key_name(H)] has chosen [target] as a target for a hunter demon.")
+		log_game("[key_name(H)] has chosen [target] as a target for a hunter demon.")       
 
 	else
 		to_chat(master,span_warning("A target could not be found for the demon."))
