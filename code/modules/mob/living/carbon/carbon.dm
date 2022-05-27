@@ -289,7 +289,7 @@
 				return
 			var/damage_amount = I.embedding.embedded_unsafe_removal_pain_multiplier * I.w_class
 			L.receive_damage(damage_amount, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
-			if(remove_embedded_object(I, get_turf(src), damage_amount = 0))
+			if(remove_embedded_object(I, get_turf(src), (damage_amount == 0)))
 				usr.put_in_hands(I)
 				usr.visible_message("[usr] successfully rips [I] out of [usr.p_their()] [L.name]!", span_notice("You successfully remove [I] from your [L.name]."))
 		return
