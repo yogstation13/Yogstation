@@ -85,26 +85,26 @@
 	if(!demon)
 		return
 	if(M == master && (target.stat == DEAD || !target))
-		if(pick_target())
+		if(pick_target(M))
 			message_admins("[key_name(M)] has chosen [target] as a target for a hunter demon.")
 			log_game("[key_name(M)] has chosen [target] as a target for a hunter demon.")       
 
-/obj/structure/bloody_orb/proc/pick_target()
+/obj/structure/bloody_orb/proc/pick_target(mob/dude)
 	var/list/possible_targets = list()
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		if(!H.mind)
 			continue				
-		if(!SSjob.GetJob(H.mind.assigned_role) || H == master)
+		if(!SSjob.GetJob(H.mind.assigned_role) || H == master || H == dude)
 			continue 
 		possible_targets[H.mind.current.real_name] = H
-	target = possible_targets[input(master,"Choose next target for the demon","Target") in possible_targets]
+	target = possible_targets[input(dude,"Choose next target for the demon","Target") in possible_targets]
 	if(target)
 		demon.prey = target
-		to_chat(master,span_warning("New target for the demon is selected!"))
+		to_chat(dude,span_warning("New target for the demon is selected!"))
 		to_chat(demon,span_warning("Your new target has been selected, go and kill [target.real_name]!"))
 		return TRUE
 	else
-		to_chat(master,span_warning("A target could not be found for the demon."))
+		to_chat(dude,span_warning("A target could not be found for the demon."))
 		return FALSE
 
 				
