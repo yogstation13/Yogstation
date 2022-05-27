@@ -189,7 +189,7 @@
 		orb.Destroy()
 
 /mob/living/simple_animal/hostile/hunter/proc/complete_assasination(killed = TRUE)
-	if(master)
+	if(orb.master)
 		if(killed)
 			to_chat(orb.master, "<span class='warning'>The demon has killed it's target. Go and choose a new one.</span>")
 		else
