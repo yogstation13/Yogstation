@@ -3714,6 +3714,7 @@
 #include "yogstation\code\modules\mob\living\silicon\robot\robot.dm"
 #include "yogstation\code\modules\mob\living\silicon\robot\robot_modules.dm"
 #include "yogstation\code\modules\mob\living\simple_animal\constructs.dm"
+#include "yogstation\code\modules\mob\living\simple_animal\parrot.dm"
 #include "yogstation\code\modules\mob\living\simple_animal\friendly\chocobo.dm"
 #include "yogstation\code\modules\mob\living\simple_animal\friendly\clowncat.dm"
 #include "yogstation\code\modules\mob\living\simple_animal\friendly\clownfox.dm"
