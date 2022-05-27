@@ -62,27 +62,27 @@
 			return
 		if(!istype(demon.target, /mob/living/carbon/human))
 			to_chat(user,span_warning("Your target isn't no more a human, so you aren't no more interested in it. Get a new one."))
-			complete_assasination(killed = FALSE)
+			demon.complete_assasination(killed = FALSE)
 			return
 		if(demon.target.stat == DEAD)
 			to_chat(user,span_warning("Your target is dead, so your mission is completed. Get a new one."))
-			complete_assasination(killed = TRUE)
+			demon.complete_assasination(killed = TRUE)
 			return	
 		var/turf/userturf = get_turf(demon)
-		var/turf/targetturf = get_turf(demon.target)
+		var/turf/targetturf = get_turf(demon.prey)
 		var/dist = get_dist(userturf,targetturf)
 		var/dir = get_dir(userturf,targetturf)
 		if(userturf.z != targetturf.z)
 			to_chat(user,span_warning("Your target isn't on the station z-level, you need to get a new one."))
-			complete_assasination(killed = FALSE)
+			demon.complete_assasination(killed = FALSE)
 			return
 		switch(dist)         ///Taken from living heart code
 			if(0 to 15)
-				to_chat(user,span_warning("[target.real_name] is near you. They are to the [dir2text(dir)] of you!"))
+				to_chat(user,span_warning("[demon.prey.real_name] is near you. They are to the [dir2text(dir)] of you!"))
 			if(16 to 31)
-				to_chat(user,span_warning("[target.real_name] is somewhere in your vicinty. They are to the [dir2text(dir)] of you!"))
+				to_chat(user,span_warning("[demon.prey.real_name] is somewhere in your vicinty. They are to the [dir2text(dir)] of you!"))
 			if(32 to 127)
-				to_chat(user,span_warning("[target.real_name] is far away from you. They are to the [dir2text(dir)] of you!"))
+				to_chat(user,span_warning("[demon.prey.real_name] is far away from you. They are to the [dir2text(dir)] of you!"))
 			else
-				to_chat(user,span_warning("[target.real_name] is beyond your reach."))		
+				to_chat(user,span_warning("[demon.prey.real_name] is beyond your reach."))		
 	return
