@@ -200,10 +200,10 @@
 
 /mob/living/simple_animal/hostile/hunter/get_status_tab_items() 
 	. = ..()
-	. += "Bounding blood amount: [orb.sacrificed_blood]"
-	. += "Summary blood amount: [orb.blood_pool_summary]"
-	. += "Attack streak: [attack_streak]"
+	. += "Bounding blood amount: [orb.sacrificed_blood]"
+	. += "Summary blood amount: [orb.blood_pool_summary]"
+	. += "Attack streak: [attack_streak]"
 	if(prey)
-		. += "Your target name: [prey.real_name]"
+		. += "Your target name: [prey.real_name]"
 
 
