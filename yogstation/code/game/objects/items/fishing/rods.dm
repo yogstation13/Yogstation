@@ -22,8 +22,6 @@
 	var/mob/fisher
 	var/bite = FALSE
 
-	
-
 /obj/item/twohanded/fishingrod/examine(mob/user)
 	. = ..()
 	. += "Its current fishing power is [fishing_power]."

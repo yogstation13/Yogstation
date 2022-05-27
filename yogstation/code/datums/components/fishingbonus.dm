@@ -6,7 +6,20 @@
 	if(!isclothing(parent))
 		return COMPONENT_INCOMPATIBLE
 	src.fishing_bonus = fishing_bonus
-	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/equippedChanged)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/OnEquip)
+	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/OnUnequip)
 
-/datum/component/fishingbonus/proc/equippedChanged(datum/source, mob/living/carbon/user, slot)
+/datum/component/fishingbonus/proc/OnEquip(datum/source, mob/living/carbon/equipper, slot)
+	var/obj/item/parent_item = parent
+	if(!parent_item)
+		return
+	if(parent_item.slot_flags == slotdefine2slotbit(slot))
+		equipper.fishing_power += fishing_bonus
+
+/datum/component/fishingbonus/proc/OnUnequip(datum/source, mob/living/carbon/equipper, slot)
+	var/obj/item/parent_item = parent
+	if(!parent_item)
+		return
+	if(parent_item.slot_flags == slotdefine2slotbit(slot))
+		equipper.fishing_power -= fishing_bonus
 
