@@ -4,7 +4,7 @@
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow
 	caliber = "arrow"
 	icon_state = "arrow"
-	force = 10
+	force = 5
 	throwforce = 5 //good luck hitting someone with the pointy end of the arrow
 	throw_speed = 3
 	sharpness = SHARP_POINTY
@@ -14,13 +14,6 @@
 	name = "wooden arrow"
 	desc = "An arrow made of wood, typically fired from a bow."
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/wood
-	caliber = "arrow"
-	icon_state = "arrow"
-	force = 15
-	throwforce = 5 //good luck hitting someone with the pointy end of the arrow
-	throw_speed = 3
-	sharpness = SHARP_POINTY
-	embedding = list("embed_chance" = 25, "embedded_fall_chance" = 0)
 
 /obj/item/ammo_casing/caseless/arrow/ash
 	name = "ashen arrow"
@@ -165,6 +158,8 @@
 	projectile_type = /obj/item/projectile/energy/arrow
 	var/overlay_state = "redlight"
 
+	var/ticks = 0
+	var/tick_max = 10
 	var/tick_damage = 1
 	var/tick_damage_type = FIRE
 	var/tick_sound = 'sound/effects/sparks4.ogg'
@@ -173,6 +168,10 @@
 	qdel(src)
 
 /obj/item/ammo_casing/caseless/arrow/energy/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	if(ticks >= tick_max)
+		embedde.remove_embedded_object(src, , TRUE, TRUE)
+		return
+	ticks++
 	playsound(embedde, tick_sound , 10, 0)
 	embedde.apply_damage(tick_damage, BB.damage_type, part.body_zone)
 
