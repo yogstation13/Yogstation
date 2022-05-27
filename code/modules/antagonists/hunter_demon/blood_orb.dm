@@ -85,7 +85,9 @@
 	if(!demon)
 		return
 	if(M == master && (target.stat == DEAD || !target))
-		pick_target()
+		if(pick_target())
+			message_admins("[key_name(M)] has chosen [target] as a target for a hunter demon.")
+			log_game("[key_name(M)] has chosen [target] as a target for a hunter demon.")       
 
 /obj/structure/bloody_orb/proc/pick_target()
 	var/list/possible_targets = list()
@@ -96,15 +98,14 @@
 			continue 
 		possible_targets[H.mind.current.real_name] = H
 	target = possible_targets[input(master,"Choose next target for the demon","Target") in possible_targets]
-	demon.prey = target
 	if(target)
+		demon.prey = target
 		to_chat(master,span_warning("New target for the demon is selected!"))
 		to_chat(demon,span_warning("Your new target has been selected, go and kill [target.real_name]!"))
-		message_admins("[key_name(H)] has chosen [target] as a target for a hunter demon.")
-		log_game("[key_name(H)] has chosen [target] as a target for a hunter demon.")       
-
+		return TRUE
 	else
 		to_chat(master,span_warning("A target could not be found for the demon."))
+		return FALSE
 
 				
 /obj/structure/bloody_orb/examine(mob/user)
