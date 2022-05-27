@@ -103,7 +103,7 @@
 /obj/item/organ/heart/cursed
 	name = "cursed heart"
 	desc = "A heart that, when inserted, will force you to pump it manually."
-	icon_state = "cursedheart-off"
+	icon_state = "cursedheart"
 	icon_base = "cursedheart"
 	decay_factor = 0
 	actions_types = list(/datum/action/item_action/organ_action/cursed_heart)
@@ -179,6 +179,34 @@
 /datum/client_colour/cursed_heart_blood
 	priority = 100 //it's an indicator you're dying, so it's very high priority
 	colour = "red"
+
+/obj/item/organ/heart/vampheart
+	beating = 0
+	///If a heartbeat is being faked.
+	var/fakingit = FALSE
+
+/obj/item/organ/heart/vampheart/Restart()
+	beating = FALSE
+	return FALSE
+
+/obj/item/organ/heart/vampheart/Stop()
+	fakingit = FALSE
+	return ..()
+
+/obj/item/organ/heart/vampheart/proc/FakeStart()
+	fakingit = TRUE // We're pretending to beat, to fool people.
+
+/// Bloodsuckers don't have a heartbeat at all when stopped (default is "an unstable")
+/obj/item/organ/heart/vampheart/HeartStrengthMessage()
+	if(fakingit)
+		return "a healthy"
+	return span_danger("no")
+
+/// Proc for the default (Non-Bloodsucker) Heart!
+/obj/item/organ/heart/proc/HeartStrengthMessage()
+	if(beating)
+		return "a healthy"
+	return span_danger("an unstable")
 
 /obj/item/organ/heart/ghetto
 	name = "so called 'maintenance heart'"

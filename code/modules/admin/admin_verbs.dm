@@ -99,6 +99,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/show_redeemable_antag_tokens,
 	/datum/admins/proc/cmd_create_centcom,
 	/datum/admins/proc/cmd_admin_fuckrads,
+	/datum/admins/proc/cmd_create_wiki,
   	/client/proc/admincryo,
 	/client/proc/cmd_admin_dress,
 	/client/proc/disconnect_panel
@@ -156,7 +157,7 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
 	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
-	///client/proc/dump_memory_usage,
+	/client/proc/dump_memory_usage,
 	/client/proc/release_queue, // Yogs -- Adds some queue-manipulation verbs
 	/client/proc/toggle_cdn
 	)
@@ -481,11 +482,6 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(holder)
 		if(holder.fakekey)
 			holder.fakekey = null
-			if(isobserver(mob))
-				mob.invisibility = initial(mob.invisibility)
-				mob.alpha = initial(mob.alpha)
-				mob.name = initial(mob.name)
-				mob.mouse_opacity = initial(mob.mouse_opacity)
 		else
 			var/new_key = ckeyEx(stripped_input(usr, "Enter your desired display name.", "Fake Key", key, 26))
 			if(!new_key)
@@ -493,11 +489,6 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			holder.fakekey = new_key
 			holder.fakename = random_unique_name(prob(50) ? MALE : FEMALE)
 			createStealthKey()
-			if(isobserver(mob))
-				mob.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
-				mob.alpha = 0 //JUUUUST IN CASE
-				mob.name = " "
-				mob.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		log_admin("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 		message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Stealth Mode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -777,13 +768,15 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
 
-/*/client/proc/dump_memory_usage()
+/client/proc/dump_memory_usage()
 	set name = "Dump Server Memory Usage"
 	set category = "Server"
 
-	if(!check_rights(R_SERVER))
+	if(!check_rights(R_DEV))
 		return
-
+	if(GLOB.enable_memdump == 0)
+		to_chat(world, span_userdanger("You should not be touching this without contacting developers!"))
+		return
 	if(alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", "Yes", "No") != "Yes")
 		return
 
@@ -802,7 +795,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!fexists("data/logs/memory/[fname]"))
 		to_chat(usr, span_warning("File creation failed. Please check to see if the data/logs/memory folder actually exists."))
 	else
-		to_chat(usr, span_notice("Memory dump completed."))*/
+		to_chat(usr, span_notice("Memory dump completed."))
 
 
 /client/proc/debugstatpanel()

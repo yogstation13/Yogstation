@@ -1,6 +1,7 @@
 /obj/item/mantis/blade
 	name = "mantis blade"
 	desc = "A blade designed to be hidden just beneath the skin. The brain is directly linked to this bad boy, allowing it to spring into action."
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "mantis"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -8,6 +9,7 @@
 	flags_1 = CONDUCT_1
 	force = 20
 	w_class = WEIGHT_CLASS_NORMAL
+	sharpness = SHARP_EDGED
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "lacerated", "ripped", "diced", "cut")
 
 /obj/item/mantis/blade/equipped(mob/user, slot, initial)
@@ -32,7 +34,6 @@
 /obj/item/mantis/blade/syndicate
 	name = "G.O.R.L.E.X. mantis blade"
 	icon_state = "syndie_mantis"
-	force = 20
 	block_chance = 20
 
 /obj/item/mantis/blade/NT

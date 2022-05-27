@@ -430,3 +430,32 @@
 /area/ruin/space/has_grav/powered/ancient_shuttle
 	name = "Ancient Shuttle"
 	icon_state = "yellow"
+
+//PUBBY MONASTERY
+
+/area/ruin/space/has_grav/monastery
+	name = "Monastery"
+	icon_state = "chapel"
+
+/area/ruin/space/has_grav/monastery/dock
+	name = "Monastery Dock"
+	icon_state = "construction"
+
+/area/ruin/space/has_grav/monastery/garden
+	name = "Monastery Garden"
+	icon_state = "hydro"
+
+/area/ruin/space/has_grav/monastery/office
+	name = "Monastery Office"
+	icon_state = "chapeloffice"
+
+/area/ruin/space/has_grav/monastery/maint
+	name = "Monastery Maintenance"
+	icon_state = "maint_monastery"
+
+/area/ruin/space/has_grav/monastery/library
+	name = "Monastery Library"
+	icon_state = "library"
+
+/area/ruin/space/has_grav/monastery/library/lounge
+	name = "Monastery Library Lounge"

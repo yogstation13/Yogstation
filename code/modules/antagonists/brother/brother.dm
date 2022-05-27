@@ -23,8 +23,14 @@
 	owner.special_role = special_role
 	if(owner.current)
 		give_pinpointer()
+		equip_brother()
 	finalize_brother()
 	return ..()
+
+/datum/antagonist/brother/proc/equip_brother()
+	var/obj/item/book/granter/crafting_recipe/weapons/W = new
+	W.on_reading_finished(owner.current)
+	qdel(W)
 
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner
@@ -88,6 +94,29 @@
 	T.update_name()
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] and [key_name_admin(bro)] into blood brothers.")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] and [key_name(bro)] into blood brothers.")
+
+/datum/antagonist/brother/get_admin_commands()
+	. = ..()
+	.["Convert To Traitor"] = CALLBACK(src, .proc/make_traitor)
+
+/datum/antagonist/brother/proc/make_traitor()
+	if(alert("Are you sure? This will turn the blood brother into a traitor with the same objectives!",,"Yes","No") != "Yes")
+		return
+
+	var/datum/antagonist/traitor/tot = new()
+	tot.give_objectives = FALSE
+	
+	for(var/datum/objective/obj in objectives)
+		var/obj_type = obj.type
+		var/datum/objective/new_obj = new obj_type()
+		new_obj.owner = owner
+		new_obj.copy_target(obj)
+		tot.add_objective(new_obj)
+		qdel(obj)
+	objectives.Cut()
+	
+	owner.add_antag_datum(tot)
+	owner.remove_antag_datum(/datum/antagonist/brother)
 
 /datum/antagonist/brother/proc/give_pinpointer()
 	if(owner && owner.current)

@@ -144,8 +144,8 @@
 	icon_state = "etherealmeat"
 	desc = "So shiny you feel like ingesting it might make you shine too"
 	filling_color = "#97ee63"
-	list_reagents = list(/datum/reagent/consumable/liquidelectricity = 3)
-	tastes = list("pure electrictiy" = 2, "meat" = 1)
+	list_reagents = list(/datum/reagent/consumable/liquidelectricity = 3, /datum/reagent/consumable/tinlux = 3)
+	tastes = list("pure electricity" = 2, "meat" = 1)
 	foodtype = RAW | MEAT | TOXIC
 
 ////////////////////////////////////// OTHER MEATS ////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@
 	name = "synthmeat"
 	icon_state = "meat_old"
 	desc = "A synthetic slab of meat."
-	foodtype = RAW | MEAT //hurr durr chemicals we're harmed in the production of this meat thus its non-vegan.
+	foodtype = RAW | MEAT //hurr durr chemicals were harmed in the production of this meat thus its non-vegan.
 
 /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat/MakeGrillable()
 	AddComponent(/datum/component/grillable,/obj/item/reagent_containers/food/snacks/meat/steak/synth, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
@@ -177,7 +177,7 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/mouse
 	name = "mouse meat"
 	desc = "A slab of mouse meat. Best not eat it raw."
-	foodtype = RAW | MEAT | GROSS
+	foodtype = MICE
 
 /obj/item/reagent_containers/food/snacks/meat/slab/corgi
 	name = "corgi meat"
@@ -340,6 +340,19 @@
 	icon_state = "shadowmeat"
 	desc = "It is covered in a strange darkness. This slab's magical properties appear to be drastically weakened due to the synthetic nature of the meat."
 
+/obj/item/reagent_containers/food/snacks/meat/slab/plagued
+	name = "meat"
+	desc = "A slab of disease-ridden meat. Eating it is a questionable idea."
+	icon_state = "meat"
+	dried_type = /obj/item/reagent_containers/food/snacks/sosjerky/
+	bitesize = 3
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/cooking_oil = 2, /datum/reagent/plaguebacteria = 3) //It is infected by plague
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain
+	slices_num = 3
+	filling_color = "#FF0000"
+	tastes = list("meat" = 2, "decay" = 1)
+	foodtype = MEAT | RAW
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 
@@ -435,7 +448,7 @@
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/initialize_cooked_food(obj/item/reagent_containers/food/snacks/S, cooking_efficiency)
 	..()
 	S.name = "[meat_type] cutlet"
-	
+
 
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain

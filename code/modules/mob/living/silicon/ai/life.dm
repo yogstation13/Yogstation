@@ -69,7 +69,7 @@
 				if(name == cameraMemoryTarget)
 					target += src
 				if(target.len)
-					to_chat(src, span_notice("Tracked target [cameraMemoryTarget] found visible on cameras. Tracking disabled."))
+					to_chat(src, span_userdanger("Tracked target [cameraMemoryTarget] found visible on cameras. Tracking disabled."))
 					cameraMemoryTarget = 0
 				
 			cameraMemoryTickCount++
@@ -112,7 +112,7 @@
 	see_invisible = initial(see_invisible)
 	see_in_dark = initial(see_in_dark)
 	sight = initial(sight)
-	if(aiRestorePowerRoutine)
+	if(aiRestorePowerRoutine && !available_ai_cores())
 		sight = sight&~SEE_TURFS
 		sight = sight&~SEE_MOBS
 		sight = sight&~SEE_OBJS
@@ -127,8 +127,8 @@
 	to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
 	end_multicam()
 	sleep(50)
-	var/turf/T = get_turf(src)
-	var/area/AIarea = get_area(src)
+	var/turf/T = get_turf(loc)
+	var/area/AIarea = get_area(loc)
 	if(AIarea && AIarea.power_equip)
 		if(!isspaceturf(T))
 			ai_restore_power()
@@ -137,7 +137,7 @@
 	sleep(20)
 	to_chat(src, "Emergency control system online. Verifying connection to power network.")
 	sleep(50)
-	T = get_turf(src)
+	T = get_turf(loc)
 	if(isspaceturf(T))
 		to_chat(src, "Unable to verify! No power connection detected!")
 		aiRestorePowerRoutine = POWER_RESTORATION_SEARCH_APC
@@ -148,8 +148,8 @@
 
 	var/PRP //like ERP with the code, at least this stuff is no more 4x sametext
 	for (PRP=1, PRP<=4, PRP++)
-		T = get_turf(src)
-		AIarea = get_area(src)
+		T = get_turf(loc)
+		AIarea = get_area(loc)
 		if(AIarea)
 			for (var/obj/machinery/power/apc/APC in AIarea)
 				if (!(APC.stat & BROKEN))
@@ -199,7 +199,9 @@
 /mob/living/silicon/ai/proc/ai_lose_power()
 	disconnect_shell()
 	aiRestorePowerRoutine = POWER_RESTORATION_START
-	blind_eyes(1)
+	if(!available_ai_cores())
+		blind_eyes(1)
+	
 	update_sight()
 	to_chat(src, "You've lost power!")
 	addtimer(CALLBACK(src, .proc/start_RestorePowerRoutine), 20)

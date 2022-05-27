@@ -47,11 +47,13 @@
 		qdel(I)
 	if(!isplasmaman(H)) //no killing plasmies
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt/highlander(H), SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/highlander(H), SLOT_HEAD)
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmaman(H), SLOT_W_UNIFORM)
-		H.equip_to_slot_or_del(new /obj/item/tank/internals/plasmaman(H), SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/tank/internals/plasmaman/belt/full(H), SLOT_BELT)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmaman(H), SLOT_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), SLOT_WEAR_MASK)
 	H.equip_to_slot_or_del(new /obj/item/radio/headset/heads/captain(H), SLOT_EARS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/highlander(H), SLOT_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), SLOT_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/pinpointer/nuke(H), SLOT_L_STORE)
 	//Yogs Start: Pacifists want to play too

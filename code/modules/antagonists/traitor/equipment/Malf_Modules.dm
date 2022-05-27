@@ -36,8 +36,6 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	var/auto_use_uses = TRUE
 	/// If applicable, the time in deciseconds we have to wait before using any more modules
 	var/cooldown_period
-	//Can our uses be recharged using CPU in the reworked AI system?
-	var/can_be_recharged = FALSE
 
 /datum/action/innate/ai/New()
 	. = ..()
@@ -182,7 +180,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 
 /datum/action/innate/ai/nuke_station
 	name = "Doomsday Device"
-	desc = "Activates the doomsday device. This is not reversible."
+	desc = "Activates the doomsday device. This is not reversible and you must be in your core to start the process."
 	button_icon_state = "doomsday_device"
 	auto_use_uses = FALSE
 
@@ -191,7 +189,13 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(!istype(T) || !is_station_level(T.z))
 		to_chat(owner, span_warning("You cannot activate the doomsday device while off-station!"))
 		return
+	if(!isaicore(owner.loc))
+		to_chat(owner, span_warning("You must be in your core to do this!"))
+		return
 	if(alert(owner, "Send arming signal? (true = arm, false = cancel)", "purge_all_life()", "confirm = TRUE;", "confirm = FALSE;") != "confirm = TRUE;")
+		return
+	if(!isaicore(owner.loc))
+		to_chat(owner, span_warning("You must be in your core to do this!"))
 		return
 	if (active)
 		return //prevent the AI from activating an already active doomsday
@@ -260,6 +264,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	owner.playsound_local(owner, 'sound/misc/server-ready.ogg', 50, 0)
 	sleep(30)
 	if(!owner || QDELETED(owner))
+		return
+	if(owner.stat == DEAD)
 		return
 	priority_announce("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert", ANNOUNCER_AIMALF)
 	set_security_level("delta")

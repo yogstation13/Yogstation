@@ -507,16 +507,16 @@ nobliumformation = 1001
 	air.adjust_moles(/datum/gas/pluoxium, -reaction_rate)
 	air.adjust_moles(/datum/gas/nitryl, reaction_rate*5)
 	air.adjust_moles(/datum/gas/plasma, -plasma_burned)
-	if(energy_released)
-		var/new_heat_capacity = air.heat_capacity()
-		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature(clamp((air.return_temperature()*old_heat_capacity + energy_released)/new_heat_capacity,TCMB,INFINITY))
-		return REACTING
 	if(balls_shot && !isnull(location))
 		var/angular_increment = 360/balls_shot
 		var/random_starting_angle = rand(0,360)
 		for(var/i in 1 to balls_shot)
 			location.fire_nuclear_particle((i*angular_increment+random_starting_angle))
+	if(energy_released)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.set_temperature(clamp((air.return_temperature()*old_heat_capacity + energy_released)/new_heat_capacity,TCMB,INFINITY))
+		return REACTING
 
 //freon reaction (is not a fire yet)
 /datum/gas_reaction/freonfire

@@ -34,3 +34,24 @@
 
 /datum/job/cyborg/radio_help_message(mob/M)
 	to_chat(M, "<b>Prefix your message with :b to speak with other cyborgs and AI.</b>")
+
+/datum/job/cyborg/give_donor_stuff(mob/living/silicon/robot/H, mob/M)
+	if(!istype(H))
+		return
+
+	var/client/C = M.client
+	if(!C)
+		C = H.client
+		if(!C)
+			return // nice
+
+	if(!is_donator(C))
+		return
+
+	if(C.prefs.donor_hat && C.prefs.borg_hat)
+		var/type = C.prefs.donor_hat
+		if(type)
+			var/obj/item/hat = new type()
+			if(istype(hat) && hat.slot_flags & ITEM_SLOT_HEAD && H.hat_offset != INFINITY && !is_type_in_typecache(hat, H.blacklisted_hats))
+				H.place_on_head(hat)
+

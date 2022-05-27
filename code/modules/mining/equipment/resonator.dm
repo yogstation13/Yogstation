@@ -71,7 +71,6 @@
 	transform = matrix()*0.75
 	animate(src, transform = matrix()*1.5, time = duration)
 	deltimer(timerid)
-	addtimer(CALLBACK(src, .proc/replicate, get_turf(src), creator, duration), duration, TIMER_STOPPABLE)//yogs: adds field replication
 	timerid = addtimer(CALLBACK(src, .proc/burst), duration, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/resonance/Destroy()
@@ -97,7 +96,8 @@
 	new /obj/effect/temp_visual/resonance_crush(T)
 	if(ismineralturf(T))
 		var/turf/closed/mineral/M = T
-		M.gets_drilled(creator)
+		replicate(M)
+		M.attempt_drill(creator)
 	check_pressure(T)
 	playsound(T,'sound/weapons/resonator_blast.ogg',50,1)
 	for(var/mob/living/L in T)
@@ -117,10 +117,9 @@
 	transform = matrix()*1.5
 	animate(src, transform = matrix()*0.1, alpha = 50, time = 4)
 
-/obj/effect/temp_visual/resonance/proc/replicate(turf/closed/mineral/M, creator, timetoburst)	//yogs start: adds replication to resonator fields
-	if(!istype(M))
+/obj/effect/temp_visual/resonance/proc/replicate(turf/closed/mineral/M)	//yogs start: adds replication to resonator fields
+	if(!istype(M) || !M.mineralType) // so we don't end up in the ultimate chain reaction
 		return
 	for(var/turf/closed/mineral/T in orange(1, M))
-		if(istype(T))
-			if(M.mineralType == T.mineralType && M.mineralType != null) // so we don't end up in the ultimate chain reaction
-				new /obj/effect/temp_visual/resonance(T, creator, null, timetoburst)	//yogs end
+		if(istype(T) && M.mineralType == T.mineralType)
+			new /obj/effect/temp_visual/resonance(T, creator, null, duration)	//yogs end

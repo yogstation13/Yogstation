@@ -23,7 +23,7 @@
 	var/vary_fire_sound = TRUE
 	var/fire_sound_volume = 50
 	var/dry_fire_sound = 'sound/weapons/gun_dry_fire.ogg'
-	var/suppressed = null					//whether or not a message is displayed when fired
+	var/obj/item/suppressor/suppressed	//whether or not a message is displayed when fired
 	var/can_suppress = FALSE
 	var/suppressed_sound = 'sound/weapons/gunshot_silenced.ogg'
 	var/suppressed_volume = 10
@@ -168,6 +168,13 @@
 
 	if(suppressed)
 		playsound(user, suppressed_sound, suppressed_volume, vary_fire_sound)
+		if(suppressed.break_chance && prob(suppressed.break_chance))
+			to_chat(user, span_warning("\the [suppressed] falls apart!"))
+			w_class -= suppressed.w_class
+			qdel(suppressed)
+			suppressed = null
+			update_icon()
+
 	else
 		playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
 		if(message)
@@ -498,7 +505,7 @@
 			set_light(gun_light.brightness_on)
 		else
 			set_light(0)
-		cut_overlays(flashlight_overlay, TRUE)
+		cut_overlay(flashlight_overlay, TRUE)
 		var/state = "flight[gun_light.on? "_on":""]"	//Generic state.
 		if(gun_light.icon_state in icon_states('icons/obj/guns/flashlights.dmi'))	//Snowflake state?
 			state = gun_light.icon_state
@@ -508,7 +515,7 @@
 		add_overlay(flashlight_overlay, TRUE)
 	else
 		set_light(0)
-		cut_overlays(flashlight_overlay, TRUE)
+		cut_overlay(flashlight_overlay, TRUE)
 		flashlight_overlay = null
 	update_icon(TRUE)
 	for(var/X in actions)

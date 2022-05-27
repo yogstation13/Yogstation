@@ -627,7 +627,7 @@
 /obj/screen/healths/clock
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "bg_clock"
-	screen_loc = ui_health
+	screen_loc = ui_living_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/healths/clock/gear
@@ -657,7 +657,7 @@
 /obj/screen/healths/lavaland_elite
 	icon = 'icons/mob/screen_elite.dmi'
 	icon_state = "elite_health0"
-	screen_loc = ui_health
+	screen_loc = ui_living_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/healthdoll
@@ -668,6 +668,11 @@
 	if (ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.check_self_for_injuries()
+
+/obj/screen/healthdoll/living
+	icon_state = "fullhealth0"
+	screen_loc = ui_living_healthdoll
+	var/filtered = FALSE //so we don't repeatedly create the mask of the mob every update
 
 /obj/screen/mood
 	name = "mood"
