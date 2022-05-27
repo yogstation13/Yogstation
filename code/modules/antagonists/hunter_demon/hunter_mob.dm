@@ -49,7 +49,7 @@
 
 /mob/living/simple_animal/hostile/hunter/Initialize()
 	. = ..()
-	name = "[pick(GLOB.hdemon_first_names)], The [pick(GLOB.hdemon_last_names)]"
+	name = "[pick(GLOB.hunter_demon_first_names)], The [pick(GLOB.hunter_demon_last_names)]"
 
 /mob/living/simple_animal/hostile/hunter/Life()
 	. = ..()
