@@ -63,7 +63,7 @@
 			if(orb.blood_pool_summary)
 				heal_bodypart_damage(8)
 				orb.blood_pool_summary -= DREGEN_BOOST_COST*2
-	handle_bloodchange()
+	orb.handle_bloodchange()
 
 	if(!check_shit(BOUND_DISTANCE, ORB_AND_PREY))
 		speed = 1
