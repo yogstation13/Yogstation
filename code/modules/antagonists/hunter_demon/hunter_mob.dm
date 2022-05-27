@@ -199,7 +199,7 @@
 	return
 
 /mob/living/simple_animal/hostile/hunter/get_status_tab_items() 
-	. = ..()
+	. = ..()
 	. += "Bounding blood amount: [orb.sacrificed_blood]"
 	. += "Summary blood amount: [orb.sacrificed_blood]"
 	. += "Attack streak: [attack_streak]"
