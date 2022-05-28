@@ -86,7 +86,6 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
  */
 /mob/living/proc/move_into_vent(obj/machinery/atmospherics/components/ventcrawl_target)
 	forceMove(ventcrawl_target)
-	ADD_TRAIT(src, TRAIT_MOVE_VENTCRAWLING, VENTCRAWLING_TRAIT)
 	update_pipe_vision()
 
 
