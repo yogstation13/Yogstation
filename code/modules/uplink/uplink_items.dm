@@ -2146,7 +2146,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/hierophant_antenna
 	name = "Hierophant's Antenna"
 	desc = "Amplifies the reception signals of the hierophant staff, allows the herald's power to reach the station!"
-	cost = 14
+	cost = 7
 	manufacturer = /datum/corporation/traitor/cybersun
 	item = /obj/item/hierophant_antenna
 	restricted_roles = list("Shaft Miner")

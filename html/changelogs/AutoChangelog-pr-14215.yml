@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - tweak: "changes the way that vomit crawling movement works (no more noclip through the entire station)"

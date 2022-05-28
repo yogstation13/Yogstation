@@ -999,9 +999,10 @@
 	icon_state = "science"
 	build_path = /obj/machinery/ai/server_cabinet
 	req_components = list(
-		/obj/item/stock_parts/matter_bin = 4,
-		/obj/item/stock_parts/manipulator = 2,
-		/obj/item/stack/sheet/glass = 2)
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stock_parts/capacitor = 2,
+		/obj/item/stack/sheet/glass = 2,
+		/obj/item/stack/cable_coil = 1)
 		
 /obj/item/circuitboard/machine/ai_core_display
 	name = "AI Core Display (Machine Board)"
