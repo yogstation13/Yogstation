@@ -18,7 +18,7 @@
 	var/list/data = list()
 
 	data["servers"] = list()
-	for(var/obj/machinery/ai/server_cabinet/holder in GLOB.expansion_card_holders)
+	for(var/obj/machinery/ai/server_cabinet/holder in GLOB.server_cabinets)
 		var/turf/current_turf = get_turf(holder)
 		var/datum/gas_mixture/env = current_turf.return_air()
 		data["servers"] += list(list("area" = get_area(holder), "working" = holder.valid_holder(), "total_cpu" = holder.total_cpu, "ram" = holder.total_ram, "card_capacity" = "[holder.installed_cards.len]/[holder.max_cards]", "temp" = env.return_temperature()))
