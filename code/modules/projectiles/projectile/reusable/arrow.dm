@@ -153,7 +153,7 @@
 	
 /obj/item/projectile/energy/arrow/on_hit(atom/target, blocked = FALSE)
 	..()
-	if(!blocked && ishuman(target))
+	if(!blocked && iscarbon(target))
 		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
 		if(prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)))
