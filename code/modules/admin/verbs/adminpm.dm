@@ -186,8 +186,13 @@
 		ircreplyamount--
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
 	else
-		if(recipient.holder)
-			if(holder)
+		if(holder)	//sender is an admin
+			if(!recipient.current_ticket)
+				new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
+			if(!recipient.current_ticket.handling_admin)
+				recipient.current_ticket.Administer() // yogs - Yog Tickets
+
+			if(recipient.holder)
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
 					html = span_danger("Admin PM from-<b>[key_name(src, recipient, 1)]</b>: [span_linkify("[keywordparsedmsg]")]"),
@@ -196,17 +201,31 @@
 					type = MESSAGE_TYPE_ADMINPM,
 					html = span_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [span_linkify("[keywordparsedmsg]")]"),
 					confidential = TRUE)
+			else
+				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>", confidential=TRUE)
+				to_chat(recipient, span_adminsay("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [span_linkify("[msg]")]"), confidential=TRUE)
+				to_chat(recipient, span_adminsay("<i>Click on the administrator's name to reply.</i>"), confidential=TRUE)
+				to_chat(src, span_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [span_linkify("[msg]")]"), confidential=TRUE)
 
-				//omg this is dumb, just fill in both their tickets
-				// yogs start - Yog Tickets
-				admin_ticket_log(src, msg, FALSE)
-				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
-					recipient.current_ticket.Administer()
-				// yogs end - Yog Tickets
-				if(recipient != src)	//reeee
-					admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
+			admin_ticket_log(recipient, "PM From [src]: [msg]", FALSE)// yogs - Yog Tickets
 
-			else		//recipient is an admin but sender is not
+			//play the sound if not admin or they have it enabled
+			if(!recipient.holder || recipient.prefs.toggles & SOUND_ADMINHELP)
+				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+
+			//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
+			if(CONFIG_GET(flag/popup_admin_pm) || recipient.current_ticket.popups_enabled) //Yogs (or apparently Apoc I guess) -- ticket popups.
+				spawn()	//so we don't hold the caller proc up
+					var/sender = src
+					var/sendername = key
+					var/reply = input(recipient, msg,"Admin PM from-[sendername]", "") as message|null	//show message and await a reply
+					if(recipient && reply)
+						if(sender)
+							recipient.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them
+						else
+							adminhelp(reply)													//sender has left, adminhelp instead
+					return
+		else if(recipient.holder) //recipient is an admin but sender is not
 				//YOGS START -- Yogs Tickets
 				if(!current_ticket)
 					to_chat(src, span_notice("Ticket closed, please make a new one before trying to contact admins!"), confidential=TRUE)
@@ -215,47 +234,12 @@
 				to_chat(recipient, span_danger("Reply PM from-<b>[key_name(src, recipient, 1)]</b>: [span_linkify("[keywordparsedmsg]")]"), confidential=TRUE)
 				to_chat(src, span_notice("-- [key_name(src, null, 0)] -> <b>Admins</b>: [span_linkify("[msg]")]"), confidential=TRUE)
 				//YOGS END
-
-			//play the receiving admin the adminhelp sound (if they have them enabled)
-			if(recipient.prefs.toggles & SOUND_ADMINHELP)
-				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
-
 		else
-			if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
-				if(!recipient.current_ticket)
-					new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
-				if(!recipient.current_ticket.handling_admin)
-					recipient.current_ticket.Administer() // yogs - Yog Tickets
-
-				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>", confidential=TRUE)
-				to_chat(recipient, span_adminsay("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [span_linkify("[msg]")]"), confidential=TRUE)
-				to_chat(recipient, span_adminsay("<i>Click on the administrator's name to reply.</i>"), confidential=TRUE)
-				to_chat(src, span_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [span_linkify("[msg]")]"), confidential=TRUE)
-
-				admin_ticket_log(recipient, "PM From [src]: [msg]", FALSE)// yogs - Yog Tickets
-
-				//always play non-admin recipients the adminhelp sound
-				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
-
-				//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
-				if(CONFIG_GET(flag/popup_admin_pm) || recipient.current_ticket.popups_enabled) //Yogs (or apparently Apoc I guess) -- ticket popups.
-					spawn()	//so we don't hold the caller proc up
-						var/sender = src
-						var/sendername = key
-						var/reply = input(recipient, msg,"Admin PM from-[sendername]", "") as message|null	//show message and await a reply
-						if(recipient && reply)
-							if(sender)
-								recipient.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them
-							else
-								adminhelp(reply)													//sender has left, adminhelp instead
-						return
-
-			else		//neither are admins
-				to_chat(src,
-					type = MESSAGE_TYPE_ADMINPM,
-					html = span_danger("Error: Admin-PM: Non-admin to non-admin PM communication is forbidden."),
-					confidential = TRUE)
-				return
+			to_chat(src,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = span_danger("Error: Admin-PM: Non-admin to non-admin PM communication is forbidden."),
+				confidential = TRUE)
+			return
 
 	if(irc)
 		log_admin_private("PM: [key_name(src)]->IRC: [rawmsg]")
