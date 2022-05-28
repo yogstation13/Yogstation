@@ -72,9 +72,12 @@
 		var/turf/targetturf = get_turf(demon.prey)
 		var/dist = get_dist(userturf,targetturf)
 		var/dir = get_dir(userturf,targetturf)
-		if(userturf.z != targetturf.z)
+		if(!is_station_level(targetturf.z))
 			to_chat(user,span_warning("Your target isn't on the station z-level, you need to get a new one."))
 			demon.complete_assasination(killed = FALSE)
+			return
+		if(userturf.z != targetturf.z)
+			to_chat(user,span_warning("[demon.prey.real_name] is... vertical to you?"))
 			return
 		switch(dist)         ///Taken from living heart code
 			if(0 to 15)
