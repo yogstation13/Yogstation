@@ -278,7 +278,7 @@
 
 /mob/living/simple_animal/waterblob
 	name = "slobbery mess"
-	desc = "Something that can only be described as a bubbling viscous puddle extending tendrils to wherever it moves."
+	desc = "Something that can only be described as a bubbling viscous puddle, extending tendrils to wherever it moves."
 	maxHealth = 200
 	health = 200
 	minbodytemp = T0C
