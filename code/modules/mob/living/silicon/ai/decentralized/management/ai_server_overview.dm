@@ -18,17 +18,10 @@
 	var/list/data = list()
 
 	data["servers"] = list()
-	for(var/obj/machinery/ai/server_cabinet/holder in GLOB.server_cabinets)
+	for(var/obj/machinery/ai/expansion_card_holder/holder in GLOB.expansion_card_holders)
 		var/turf/current_turf = get_turf(holder)
 		var/datum/gas_mixture/env = current_turf.return_air()
-		data["servers"] += list(list("area" = get_area(holder), "working" = holder.valid_holder(), "total_cpu" = holder.total_cpu, "ram" = holder.total_ram, "card_capacity" = "[holder.installed_racks.len]/[holder.max_racks]", "temp" = env.return_temperature()))
-
-	data["cores"] = list()
-	for(var/obj/machinery/ai/data_core/holder in GLOB.data_cores)
-		var/turf/current_turf = get_turf(holder)
-		var/coords = "([current_turf.x], [current_turf.y], [current_turf.z])"
-		var/datum/gas_mixture/env = current_turf.return_air()
-		data["cores"] += list(list("area" = get_area(holder), "coords" = coords, "working" = holder.valid_holder(), "temp" = env.return_temperature()))
+		data["servers"] += list(list("area" = get_area(holder), "working" = holder.valid_holder(), "total_cpu" = holder.total_cpu, "ram" = holder.total_ram, "card_capacity" = "[holder.installed_cards.len]/[holder.max_cards]", "temp" = env.return_temperature()))
 
 	return data
 
