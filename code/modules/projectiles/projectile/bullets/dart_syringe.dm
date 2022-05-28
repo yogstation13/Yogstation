@@ -9,10 +9,10 @@
 	. = ..()
 
 /obj/item/projectile/bullet/reusable/dart/on_hit(atom/target, blocked = FALSE)
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
 		if(blocked != 100) // not completely blocked
-			if(H.embed_object(container, def_zone, FALSE))
+			if(C.embed_object(container, def_zone, FALSE))
 				dropped = TRUE
 				..()
 				return BULLET_ACT_HIT
