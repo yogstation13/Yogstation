@@ -97,6 +97,9 @@
 			continue				
 		if(!SSjob.GetJob(H.mind.assigned_role) || H == master || H == dude)
 			continue 
+		var/turf/turfy = get_turf(H)
+		if(!is_station_level(turfy.z))
+			continue
 		possible_targets[H.mind.current.real_name] = H
 	target = possible_targets[input(dude,"Choose next target for the demon","Target") in possible_targets]
 	if(target)
