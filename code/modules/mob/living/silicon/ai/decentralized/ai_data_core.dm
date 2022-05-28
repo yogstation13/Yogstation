@@ -4,8 +4,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core
 	name = "AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of an organic being at near-instantanous speeds."
-	icon = 'icons/obj/machines/telecomms.dmi'
-	icon_state = "hub"
+	icon = 'icons/obj/machines/ai_core.dmi'
+	icon_state = "core-offline"
 
 	circuit = /obj/item/circuitboard/machine/ai_data_core
 	
@@ -18,8 +18,14 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	var/valid_ticks = MAX_AI_DATA_CORE_TICKS //Limited to MAX_AI_DATA_CORE_TICKS. Decrement by 1 every time we have an invalid tick, opposite when valid 
 
 	var/warning_sent = FALSE
+	COOLDOWN_DECLARE(warning_cooldown)
 
 	var/TimerID //party time
+	//Heat production multiplied by this
+	var/heat_modifier = 1
+	//Power modifier, power modified by this. Be aware this indirectly changes heat since power => heat
+	var/power_modifier = 1
+
 
 /obj/machinery/ai/data_core/Initialize()
 	. = ..()
@@ -27,6 +33,20 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(primary && !GLOB.primary_data_core)
 		GLOB.primary_data_core = src
 	update_icon()
+	RefreshParts()
+
+/obj/machinery/ai/data_core/RefreshParts()
+	var/new_heat_mod = 1
+	var/new_power_mod = 1
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
+		new_power_mod -= (C.rating - 1) / 50 //Max -24% at tier 4 parts, min -0% at tier 1
+
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
+		new_heat_mod -= (M.rating - 1) / 15 //Max -40% at tier 4 parts, min -0% at tier 1
+	
+	heat_modifier = new_heat_mod
+	power_modifier = new_power_mod
+	active_power_usage = AI_DATA_CORE_POWER_USAGE * power_modifier
 
 /obj/machinery/ai/data_core/process()
 	calculate_validity()
@@ -66,6 +86,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 //NOTE: See /obj/machinery/status_display/examine in ai_core_display.dm
 /obj/machinery/ai/data_core/examine(mob/user)
 	. = ..()
+	var/holder_status = get_holder_status()
+	if(holder_status)
+		. += span_warning("Machinery non-functional. Reason: [holder_status]")
 	if(!isobserver(user))
 		return
 	. += "<b>Networked AI Laws:</b>"
@@ -92,6 +115,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		return TRUE
 	return FALSE
 
+
 /obj/machinery/ai/data_core/proc/calculate_validity()
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
 	
@@ -109,8 +133,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			for(var/mob/living/silicon/ai/AI in contents)
 				if(!AI.is_dying)
 					AI.relocate()
-		if(!warning_sent)
+		if(!warning_sent && COOLDOWN_FINISHED(src, warning_cooldown))
 			warning_sent = TRUE
+			COOLDOWN_START(src, warning_cooldown, AI_DATA_CORE_WARNING_COOLDOWN)
 			var/list/send_to = GLOB.ai_list.Copy()
 			for(var/mob/living/silicon/ai/AI in send_to)
 				if(AI.is_dying)
@@ -126,7 +151,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env.heat_capacity())
-			var/temperature_increase = active_power_usage / env.heat_capacity() //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+			var/temperature_increase = (active_power_usage / env.heat_capacity()) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 			T.air_update_turf()
 	
@@ -148,8 +173,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		if(!valid_data_core())
 			return
-		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
-		add_overlay(on_overlay)
+		icon_state = "core"
+	else
+		icon_state = "core-offline"
 
 /obj/machinery/ai/data_core/proc/partytime()
 	var/current_color = random_color()

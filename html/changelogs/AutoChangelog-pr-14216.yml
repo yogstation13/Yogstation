@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Flesh maul damage reduced from 36 to 30"
+  - tweak: "Flesh maul now also slows the user on attack"
