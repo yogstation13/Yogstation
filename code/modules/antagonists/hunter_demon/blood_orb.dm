@@ -48,6 +48,7 @@
 				master = H
 				sacrificed_blood += ORB_BLOOD_SACAMOUNT
 				blood_pool_summary += ORB_BLOOD_SACAMOUNT
+				demon.orb = src
 				handle_bloodchange()
 				return
 		else
