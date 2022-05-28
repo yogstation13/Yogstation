@@ -264,7 +264,7 @@
 
 /obj/item/clothing/under/wetsuit
 	name = "bodily integrity wetsuit"
-	desc = "The suit that holds placeholder water races together. Without a suit compatible of contorting them, they would quickly fall apart."
+	desc = "The suit that holds the placeholder water races together. Without a suit capable of containing them, they would quickly fall apart."
 	icon_state = "plasmaman"
 	item_state = "plasmaman"
 	item_color = "plasmaman"
