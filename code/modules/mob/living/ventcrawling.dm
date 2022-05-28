@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 					return
 
 			visible_message(span_notice("[src] scrambles into the ventilation ducts!"),span_notice("You climb into the ventilation ducts."))
-			move_into_vent(ventcrawl_target)
+			move_into_vent(vent_found)
 	else
 		to_chat(src, span_warning("This ventilation duct is not connected to anything!"))
 
