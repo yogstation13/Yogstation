@@ -90,7 +90,7 @@
 			message_admins("[key_name(M)] has chosen [target] as a target for a hunter demon.")
 			log_game("[key_name(M)] has chosen [target] as a target for a hunter demon.")       
 
-/obj/structure/bloody_orb/proc/pick_target(mob/dude)
+/obj/structure/bloody_orb/proc/pick_target(mob/dude)   ///is_station_level(z)
 	var/list/possible_targets = list()
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		if(!H.mind)
