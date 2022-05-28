@@ -199,10 +199,8 @@
 #define COMSIG_MOB_THROW "mob_throw"							//from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_TABLING "mob_tabling"						//form base of /obj/structure/table_place() and table_push(): (mob/living/user, mob/living/pushed_mob)
 #define COMSIG_MOB_EXAMINATE "mob_examinate"					//from base of /mob/verb/examinate(): (atom/target)
-///from /mob/living/handle_eye_contact(): (mob/living/other_mob)
-#define COMSIG_MOB_EYECONTACT "mob_eyecontact"
-	/// return this if you want to block printing this message to this person, if you want to print your own (does not affect the other person's message)
-	#define COMSIG_BLOCK_EYECONTACT (1<<0)
+#define COMSIG_MOB_EYECONTACT "mob_eyecontact"					///from /mob/living/handle_eye_contact(): (mob/living/other_mob)
+#define COMSIG_BLOCK_EYECONTACT (1<<0)							/// return this if you want to block printing this message to this person, if you want to print your own (does not affect the other person's message)
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_SAY "mob_say" // from /mob/living/say(): ()
 #define COMPONENT_UPPERCASE_SPEECH 1
