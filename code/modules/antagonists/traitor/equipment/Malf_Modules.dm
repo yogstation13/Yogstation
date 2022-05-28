@@ -1,6 +1,6 @@
-#define DEFAULT_DOOMSDAY_TIMER (7.5 MINUTES)
+#define DEFAULT_DOOMSDAY_TIMER (6 MINUTES)
 #define DOOMSDAY_ANNOUNCE_INTERVAL (60 SECONDS)
-#define DOOMSDAY_DATACORE_TIME (1.5 MINUTES)
+#define DOOMSDAY_DATACORE_TIME (1 MINUTES)
 
 GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		/obj/machinery/field/containment,
