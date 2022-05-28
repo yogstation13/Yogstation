@@ -1,0 +1,4 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "novaflower damage type switched to burn so it actually deals damage like it's supposed to"
