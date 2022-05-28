@@ -1945,7 +1945,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
 	Insert into an Operating Console to enable the procedure."
 	item = /obj/item/disk/surgery/brainwashing
-	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Paramedic", "Roboticist") //yogs
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist") //yogs
 	player_minimum = 30
 	cost = 5
 	manufacturer = /datum/corporation/traitor/cybersun
