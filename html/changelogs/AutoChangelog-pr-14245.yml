@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - tweak: "People without +BAN only see a singular unclaimed ticket notification"
