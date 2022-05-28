@@ -52,8 +52,33 @@
 //checks DB ban table if a ckey, ip and/or cid is banned from a specific role
 //returns an associative nested list of each matching row's ban id, bantime, ban round id, expiration time, ban duration, applies to admins, reason, key, ip, cid and banning admin's key in that order
 /proc/is_banned_from_with_details(player_ckey, player_ip, player_cid, role)
+	var/datum/DBQuery/query_get_bypass_creds = SSdbcore.NewQuery({"
+		SELECT
+			computerid,
+			INET_NTOA(ip)
+		FROM [format_table_name("bound_credentials")]
+		WHERE
+			ckey = :ckey AND 
+			FIND_IN_SET('bypass_bans', [format_table_name("bound_credentials")].flags) 
+	"}, list("ckey" = player_ckey));
+	if(!query_get_bypass_creds.warn_execute())
+		qdel(query_get_bypass_creds)
+		return
+
+	while(query_get_bypass_creds.NextRow())
+		var/bound_cid = query_get_bypass_creds.item[1]
+		var/bound_ip = query_get_bypass_creds.item[2]
+
+		//If we bypass, set the thing to null so that we can not check it
+		if(bound_cid == player_cid)
+			player_cid = null
+		if(bound_ip == player_ip)
+			player_ip = null
+	qdel(query_get_bypass_creds)
+
 	if(!player_ckey && !player_ip && !player_cid)
 		return
+
 	var/datum/DBQuery/query_check_ban = SSdbcore.NewQuery({"
 		SELECT
 			id,
@@ -266,11 +291,11 @@
 				break_counter++
 			output += "</div></div>"
 		var/list/long_job_lists = list("Civilian" = GLOB.original_civilian_positions,
-									"Ghost and Other Roles" = list(ROLE_BRAINWASHED, ROLE_DEATHSQUAD, ROLE_DRONE, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_HORROR, ROLE_LAVALAND, ROLE_MIND_TRANSFER, ROLE_POSIBRAIN, ROLE_SENTIENCE),
+									"Ghost and Other Roles" = list(ROLE_BRAINWASHED, ROLE_DEATHSQUAD, ROLE_DRONE, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_HORROR, ROLE_LAVALAND, ROLE_MIND_TRANSFER, ROLE_POSIBRAIN, ROLE_SENTIENCE, ROLE_GOLEM),
 									"Antagonist Positions" = list(ROLE_ABDUCTOR, ROLE_ALIEN, ROLE_BLOB,
-									ROLE_BROTHER, ROLE_CHANGELING, ROLE_CULTIST,
-									ROLE_DEVIL, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_HORROR, ROLE_INTERNAL_AFFAIRS, ROLE_MALF,
-									ROLE_MONKEY, ROLE_NINJA, ROLE_OPERATIVE,
+									ROLE_BLOODSUCKER, ROLE_BROTHER, ROLE_CHANGELING, ROLE_CULTIST,
+									ROLE_DEVIL, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_INTERNAL_AFFAIRS, ROLE_MALF,
+									ROLE_MONKEY, ROLE_MONSTERHUNTER, ROLE_NINJA, ROLE_OPERATIVE,
 									ROLE_REV, ROLE_REVENANT,
 									ROLE_REV_HEAD, ROLE_SERVANT_OF_RATVAR, ROLE_SYNDICATE,
 									ROLE_TRAITOR, ROLE_WIZARD, ROLE_GANG, ROLE_VAMPIRE,

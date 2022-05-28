@@ -60,6 +60,11 @@
 	suffix = "bar_cheese.dmm"
 	name = "Bar Cheese"
 
+/datum/map_template/ruin/station/box/bar/grassy
+	id = "bar_grassy"
+	suffix = "bar_grassy.dmm"
+	name = "Bar Grassy"
+
 /datum/map_template/ruin/station/box/bar/clock
 	id = "bar_clock"
 	suffix = "bar_clock.dmm"
@@ -287,6 +292,16 @@
 	id = "ebar_casino"
 	suffix = "ebar_casino.dmm"
 	name = "Eclipse Bar Casino"
+
+//GaxStation
+
+/datum/map_template/ruin/station/gax
+	prefix = "_maps/RandomRuins/StationRuins/GaxStation/"
+
+/datum/map_template/ruin/station/gax/ai_whale
+	id = "ai_whale"
+	suffix = "ai_whale.dmm"
+	name = "AI Whale"
 
 //The following are maint templates. See https://github.com/yogstation13/Yogstation/pull/9806
 ///Base for all station ruins.

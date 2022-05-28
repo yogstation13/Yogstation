@@ -163,6 +163,7 @@
 #define TRAIT_EASILY_WOUNDED		"easy_limb_wound"
 #define TRAIT_HARDLY_WOUNDED		"hard_limb_wound"
 #define TRAIT_TOXINLOVER		"toxinlover"
+#define TRAIT_TOXIMMUNE         "toxin_immune"
 #define TRAIT_NOBREATH			"no_breath"
 #define TRAIT_ANTIMAGIC			"anti_magic"
 #define TRAIT_HOLY				"holy"
@@ -214,6 +215,9 @@
 #define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
 #define TRAIT_BLOODY_MESS		"bloody_mess" //from heparin, makes open bleeding wounds rapidly spill more blood
 #define TRAIT_COAGULATING		"coagulating" //from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
+#define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
+#define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
+#define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp 
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
@@ -317,6 +321,8 @@
 #define GUARDIAN_TRAIT "guardian_trait"
 #define RANDOM_BLACKOUTS "random_blackouts"
 #define MADE_UNCLONEABLE "made-uncloneable"
+#define BLOODSUCKER_TRAIT "bloodsucker_trait"
+#define FRENZY_TRAIT "frenzy_trait"
 #define HORROR_TRAIT "horror"
 
 ///Traits given by station traits

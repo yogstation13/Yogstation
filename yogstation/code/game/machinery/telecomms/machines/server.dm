@@ -49,7 +49,7 @@
 			rawcode = t
 
 /obj/machinery/telecomms/server/proc/compile(mob/user = usr)
-	if(is_banned_from(user.ckey, "Signal Technician"))
+	if(is_banned_from(user.ckey, "Network Admin"))
 		to_chat(user, span_warning("You are banned from using NTSL."))
 		return
 	if(Compiler)
@@ -57,7 +57,7 @@
 		if(!compileerrors.len && (compiledcode != rawcode))
 			user.log_message(rawcode, LOG_NTSL)
 			compiledcode = rawcode
-		if(user.mind.assigned_role == "Signal Technician") //achivement description says only Signal Technician gets the achivement
+		if(user.mind.assigned_role == "Network Admin") //achivement description says only Network Admin gets the achivement
 			var/freq
 			if(freq_listening.len > 0)
 				freq = freq_listening[1]

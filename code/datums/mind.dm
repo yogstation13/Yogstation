@@ -410,6 +410,7 @@
 
 	var/list/all_objectives = list()
 	for(var/datum/antagonist/A in antag_datums)
+		output += A.task_memory
 		output += A.antag_memory
 		all_objectives |= A.objectives
 

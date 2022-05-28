@@ -10,6 +10,9 @@
 #define MARTIALART_CQC_COOK "CQC cook"
 #define MARTIALART_PLASMAFIST "plasma fist"
 #define MARTIALART_FLYINGFANG "flying fang"
+#define MARTIALART_HUNTERFU "hunterfu"
+#define MARTIALART_FRENZYGRAB "frenzy grabbing"
+
 
 //Weapon stat defines
 #define SWING_SPEED 		"swing_speed"

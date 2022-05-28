@@ -257,13 +257,13 @@
 	cost = 10
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/mimingdrill
+/*/datum/map_template/ruin/lavaland/mimingdrill
 	name = "Miming Drill"
 	id = "mimingdrill"
 	description = "A silent mining operation, its workers died as they lived."
 	suffix = "lavaland_surface_mimingdrill.dmm"
 	cost = 5
-	allow_duplicates = FALSE
+	allow_duplicates = FALSE*/
 
 /datum/map_template/ruin/lavaland/cugganscove
 	name = "Cuggans Cove"
@@ -451,5 +451,13 @@
 	id = "doorstuck"
 	description = "A sad tale of inability to move on."
 	suffix = "lavaland_surface_doorstuck.dmm"
+	allow_duplicates = FALSE
+	cost = 5
+
+/datum/map_template/ruin/lavaland/shinobigraveyard
+	name = "Shinobi Graveyard"
+	id = "shinobigraveyard"
+	description = "The space ninjas left a grave of someone powerful."
+	suffix = "lavaland_surface_shinobigraveyard.dmm"
 	allow_duplicates = FALSE
 	cost = 5

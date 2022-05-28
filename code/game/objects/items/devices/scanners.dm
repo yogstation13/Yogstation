@@ -94,6 +94,7 @@ GENE SCANNER
 	materials = list(/datum/material/iron=200)
 	var/scanmode = 0
 	var/advanced = FALSE
+	var/beep_cooldown = 0
 
 /obj/item/healthanalyzer/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!"))
@@ -114,9 +115,11 @@ GENE SCANNER
   
 	if(!do_after(user, 10, target = M, required_skill = SKILL_MEDICINE, required_skill_level = SKILLLEVEL_BASIC, skill_delay_mult_scaling = list(SKILLLEVEL_UNSKILLED = 2, SKILLLEVEL_BASIC = 1, SKILLLEVEL_TRAINED = 0.5, SKILLLEVEL_EXPERIENCED = 0, SKILLLEVEL_MASTER = 0)))
 		return
-    
-	playsound(src, 'sound/effects/fastbeep.ogg', 20)
-  
+
+	if(beep_cooldown<world.time)
+		playsound(src, 'sound/effects/fastbeep.ogg', 20)
+		beep_cooldown = world.time+40
+
 	// Clumsiness/brain damage check
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
 		to_chat(user, span_notice("You stupidly try to analyze the floor's vitals!"))
@@ -379,7 +382,11 @@ GENE SCANNER
 			mutant = TRUE
 
 		to_chat(user, span_info("Species: [S.name][mutant ? "-derived mutant" : ""]"))
-	to_chat(user, span_info("Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)"))
+	var/temp_span = "notice"
+	if(M.bodytemperature <= BODYTEMP_HEAT_DAMAGE_LIMIT || M.bodytemperature >= BODYTEMP_COLD_DAMAGE_LIMIT)
+		temp_span = "warning"
+	
+	to_chat(user, "<span_class = '[temp_span]'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
 
 	// Time of death
 	if(M.tod && (M.stat == DEAD || ((HAS_TRAIT(M, TRAIT_FAKEDEATH)) && !advanced)))
@@ -423,7 +430,9 @@ GENE SCANNER
 					blood_type = R.name
 				else
 					blood_type = blood_id
-			if(C.blood_volume <= BLOOD_VOLUME_SAFE(C) && C.blood_volume > BLOOD_VOLUME_OKAY(C))
+			if(HAS_TRAIT(M, TRAIT_MASQUERADE)) //bloodsuckers
+				to_chat(user, span_info("Blood level 100%, 560 cl, type: [blood_type]"))
+			else if(C.blood_volume <= BLOOD_VOLUME_SAFE(C) && C.blood_volume > BLOOD_VOLUME_OKAY(C))
 				to_chat(user, "[span_danger("LOW blood level [blood_percent] %, [C.blood_volume] cl,")] [span_info("type: [blood_type]")]")
 			else if(C.blood_volume <= BLOOD_VOLUME_OKAY(C))
 				to_chat(user, "[span_danger("CRITICAL blood level [blood_percent] %, [C.blood_volume] cl,")] [span_info("type: [blood_type]")]")
@@ -928,6 +937,46 @@ GENE SCANNER
 		return  "[HM.name] ([HM.alias])"
 	else
 		return HM.alias
+
+/obj/item/scanner_wand
+	name = "kiosk scanner wand"
+	icon = 'icons/obj/device.dmi'
+	icon_state = "scanner_wand"
+	item_state = "healthanalyzer"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	desc = "A wand that medically scans people. Inserting it into a medical kiosk makes it able to perform a health scan on the patient."
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_BULKY
+	var/selected_target = null
+
+/obj/item/scanner_wand/attack(mob/living/M, mob/living/carbon/human/user)
+	flick("[icon_state]_active", src) //nice little visual flash when scanning someone else.
+
+	if((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(25))
+		user.visible_message(span_warning("[user] targets himself for scanning."), \
+		to_chat(user, span_info("You try scanning [M], before realizing you're holding the scanner backwards. Whoops.")))
+		selected_target = user
+		return
+
+	if(!ishuman(M))
+		to_chat(user, span_info("You can only scan human-like, non-robotic beings."))
+		selected_target = null
+		return
+
+	user.visible_message(span_notice("[user] targets [M] for scanning."), \
+						span_notice("You target [M] vitals."))
+	selected_target = M
+	return
+
+/obj/item/scanner_wand/attack_self(mob/user)
+	to_chat(user, span_info("You clear the scanner's target."))
+	selected_target = null
+
+/obj/item/scanner_wand/proc/return_patient()
+	var/returned_target = selected_target
+	return returned_target
 
 #undef SCANMODE_HEALTH
 #undef SCANMODE_CHEMICAL

@@ -203,7 +203,7 @@
 	name = "Cilk"
 	description = "A mixture of milk and.... cola? Who the fuck would do this?"
 	color = "#EAC7A4"
-	taste_description = "dairy and caffiene"
+	taste_description = "dairy and caffeine"
 	glass_icon_state = "glass_cilk"
 	glass_name = "glass of cilk"
 	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
@@ -1009,3 +1009,5 @@
 	if(prob(25))
 		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "Ideal of the worker drone", "A Hive of Flavour", "Sap back that missing energy!", "Got Honey?", "The Queen approved it!")]</span>")
 	..()
+
+

@@ -37,3 +37,12 @@
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/card_slot/secondary)
+
+/obj/item/modular_computer/tablet/phone/preset/advanced/command/atmos
+	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
+								/obj/item/stock_parts/cell/computer,
+								/obj/item/computer_hardware/hard_drive/small,
+								/obj/item/computer_hardware/network_card,
+								/obj/item/computer_hardware/card_slot,
+								/obj/item/computer_hardware/card_slot/secondary,
+								/obj/item/computer_hardware/sensorpackage)

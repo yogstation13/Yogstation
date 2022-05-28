@@ -1,7 +1,7 @@
 /datum/ai_project/rgb
 	name = "RGB Lighting"
 	description = "By varying the current levels in the lighting subsystems of your servers, you can make pretty colors."
-	research_cost = 250
+	research_cost = 500
 	ram_required = 0
 	research_requirements_text = "None"
 	category = AI_PROJECT_MISC
@@ -11,7 +11,8 @@
 	if(!.)
 		return .
 	for(var/obj/machinery/ai/data_core/datacores in GLOB.data_cores)
-		datacores.partytime()
+		if(!datacores.TimerID)
+			datacores.partytime()
 
 
 /datum/ai_project/rgb/stop()

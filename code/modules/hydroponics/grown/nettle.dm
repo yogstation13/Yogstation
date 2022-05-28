@@ -32,11 +32,11 @@
 	seed = /obj/item/seeds/nettle
 	name = "nettle"
 	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "nettle"
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/plants_righthand.dmi'
-	damtype = "fire"
+	damtype = BURN
 	force = 15
 	wound_bonus = CANT_WOUND
 	hitsound = 'sound/weapons/bladeslice.ogg'

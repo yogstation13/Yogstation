@@ -92,14 +92,18 @@
 /datum/mutation/human/dwarfism/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.transform = owner.transform.Scale(1, 0.8)
+	var/matrix/new_transform = matrix()
+	new_transform.Scale(1, 0.8)
+	owner.transform = new_transform.Multiply(owner.transform)
 	passtable_on(owner, GENETIC_MUTATION)
 	owner.visible_message(span_danger("[owner] suddenly shrinks!"), span_notice("Everything around you seems to grow.."))
 
 /datum/mutation/human/dwarfism/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.transform = owner.transform.Scale(1, 1.25)
+	var/matrix/new_transform = matrix()
+	new_transform.Scale(1, 1.25)
+	owner.transform = new_transform.Multiply(owner.transform)
 	passtable_off(owner, GENETIC_MUTATION)
 	owner.visible_message(span_danger("[owner] suddenly grows!"), span_notice("Everything around you seems to shrink.."))
 
@@ -190,6 +194,7 @@
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
 	var/glow = 2.5
 	var/range = 2.5
+	var/color 
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
 
@@ -204,7 +209,15 @@
 	if(!glowth)
 		return
 	var/power = GET_MUTATION_POWER(src)
-	glowth.set_light(range * power, glow * power, dna.features["mcolor"])
+	if(owner.dna.features["mcolor"][1] != "#")
+		//if it doesn't start with a pound, it needs that for the color
+		color += "#"
+	if(length(owner.dna.features["mcolor"]) < 6)
+		//this atrocity converts shorthand hex rgb back into full hex that's required for light to be given a functional value
+		color += owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][3] + owner.dna.features["mcolor"][3]
+	else
+		color += owner.dna.features["mcolor"]
+	glowth.set_light(range * power, glow * power, color)
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
 	. = ..()
@@ -228,8 +241,6 @@
 	text_lose_indication = span_notice("Your skin feels soft again...")
 	difficulty = 18
 	instability = 30
-	var/brutemodbefore
-	var/burnmodbefore
 
 /datum/mutation/human/thickskin/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -252,20 +263,24 @@
 	text_lose_indication = span_notice("You feel fairly weak.")
 	difficulty = 12
 	instability = 10
-	var/original_strength
+	power_coeff = 1		//Yogs start - Strength makes you punch harder
 
 /datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
-	. = ..()
-	if(usesSkills(owner))
-		var/datum/skillset/target_skillset = find_skillset(owner)
-		original_strength = find_skill_level(owner, SKILL_STRENGTH)
-		target_skillset.set_skill_level(SKILL_STRENGTH, SKILLLEVEL_MASTER)
+	if(..())
+		return
+	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1 //Normally +1, strength chromosome increases it to +2
+	owner.dna.species.punchdamagelow += strength_punchpower
+	owner.dna.species.punchdamagehigh += strength_punchpower
+	owner.dna.species.punchstunthreshold += strength_punchpower //So we dont change the stun chance
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
-	. = ..()
-	if(usesSkills(owner))
-		var/datum/skillset/target_skillset = find_skillset(owner)
-		target_skillset.set_skill_level(SKILL_STRENGTH, original_strength)
+	if(..())
+		return
+	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1
+	owner.dna.species.punchdamagelow -= strength_punchpower
+	owner.dna.species.punchdamagehigh -= strength_punchpower
+	owner.dna.species.punchstunthreshold -= strength_punchpower
+//Yogs end
 
 /datum/mutation/human/insulated
 	name = "Insulated"

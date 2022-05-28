@@ -38,6 +38,8 @@
 
 	var/syndicate_module = FALSE /// If the borg should blow emag size regardless of emag state
 
+	var/obj/item/hat // Keeps track of the hat while transforming, to attempt to place back on the borg's head
+
 /obj/item/robot_module/Initialize()
 	. = ..()
 	for(var/i in basic_modules)
@@ -213,8 +215,10 @@
 /obj/item/robot_module/proc/do_transform_animation()
 	var/mob/living/silicon/robot/R = loc
 	if(R.hat)
-		R.hat.forceMove(get_turf(R))
+		hat = R.hat
 		R.hat = null
+		hat.moveToNullspace()
+
 	R.cut_overlays()
 	R.setDir(SOUTH)
 	do_transform_delay()
@@ -342,7 +346,8 @@
 		/obj/item/stack/sheet/rglass/cyborg,
 		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/tile/plasteel/cyborg,
-		/obj/item/stack/cable_coil/cyborg)
+		/obj/item/stack/cable_coil/cyborg,
+		/obj/item/barrier_taperoll/engineering)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(/obj/item/borg/stun)
 	ratvar_modules = list(
@@ -362,7 +367,8 @@
 		/obj/item/gun/energy/disabler/cyborg,
 		/obj/item/clothing/mask/gas/sechailer/cyborg,
 		/obj/item/wantedposterposter,
-		/obj/item/donutsynth)
+		/obj/item/donutsynth,
+		/obj/item/barrier_taperoll/police)
 	radio_channels = list(RADIO_CHANNEL_SECURITY)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/security,

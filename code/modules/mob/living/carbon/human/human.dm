@@ -231,29 +231,6 @@
 	spreadFire(AM)
 
 /mob/living/carbon/human/Topic(href, href_list)
-	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
-		var/obj/item/bodypart/L = locate(href_list["embedded_limb"]) in bodyparts
-		if(!L)
-			return
-		var/obj/item/I = locate(href_list["embedded_object"]) in L.embedded_objects
-		if(!I || I.loc != src) //no item, no limb, or item is not in limb or in the person anymore
-			return
-		var/time_taken = I.embedding.embedded_unsafe_removal_time*I.w_class
-		usr.visible_message(span_warning("[usr] attempts to remove [I] from [usr.p_their()] [L.name]."),span_notice("You attempt to remove [I] from your [L.name]... (It will take [DisplayTimeText(time_taken)].)"))
-		if(do_after(usr, time_taken, needhand = 1, target = src))
-			if(!I || !L || I.loc != src || !(I in L.embedded_objects))
-				return
-			L.embedded_objects -= I
-			L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class, sharpness=SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
-			I.forceMove(get_turf(src))
-			usr.put_in_hands(I)
-			usr.emote("scream")
-			usr.visible_message("[usr] successfully rips [I] out of [usr.p_their()] [L.name]!",span_notice("You successfully remove [I] from your [L.name]."))
-			if(!has_embedded_objects())
-				clear_alert("embeddedobject")
-				SEND_SIGNAL(usr, COMSIG_CLEAR_MOOD_EVENT, "embedded")
-		return
-
 	if(href_list["item"]) //canUseTopic check for this is handled by mob/Topic()
 		var/slot = text2num(href_list["item"])
 		if(slot in check_obscured_slots(TRUE))
@@ -881,17 +858,60 @@
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Make monkey"] = "?_src_=vars;[HrefToken()];makemonkey=[REF(src)]"
-	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
-	.["Make cyborg"] = "?_src_=vars;[HrefToken()];makerobot=[REF(src)]"
-	.["Make alien"] = "?_src_=vars;[HrefToken()];makealien=[REF(src)]"
-	.["Make slime"] = "?_src_=vars;[HrefToken()];makeslime=[REF(src)]"
-	.["Toggle Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
-	.["Copy outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
-	.["Add/Remove Quirks"] = "?_src_=vars;[HrefToken()];modquirks=[REF(src)]"
-	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=[REF(src)]" // yogs -- make cluwne
-	.["Make Pacman"] = "?_src_=vars;[HrefToken()];makepacman=[REF(src)]" //I LOVE PACMAN
+	VV_DROPDOWN_SEPERATOR
+	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
+	VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
+	VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
+	VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
+
+/mob/living/carbon/human/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_SET_SPECIES] && check_rights(R_SPAWN))
+		var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.species_list
+
+		if(result)
+			var/newtype = GLOB.species_list[result]
+			admin_ticket_log(src, "[key_name(usr)] has modified the species of [src] to [result]") // yogs - Yog Tickets
+			set_species(newtype)
+	if(href_list[VV_HK_PURRBATION] && check_rights(R_SPAWN))
+		if(!ishuman(src))
+			to_chat(usr, "Unfortunately xeno/monkey catgirls are not supported by the codebase yet.")
+			return
+
+		var/success = purrbation_toggle(src)
+		if(success)
+			to_chat(usr, "Put [src] on purrbation.")
+			log_admin("[key_name(usr)] has put [key_name(src)] on purrbation.")
+			var/msg = "[key_name(usr)] has put [key_name(src)] on purrbation." // yogs - Yog Tickets
+			message_admins(msg)
+			admin_ticket_log(src, msg)
+
+		else
+			to_chat(usr, "Removed [src] from purrbation.")
+			log_admin("[key_name(usr)] has removed [key_name(src)] from purrbation.")
+			var/msg = "[key_name(usr)] has removed [key_name(src)] from purrbation." // yogs - Yog Tickets
+			message_admins(msg)
+			admin_ticket_log(src, msg)
+	if(href_list[VV_HK_COPY_OUTFIT] && check_rights(R_SPAWN))
+		copy_outfit()
+	if(href_list[VV_HK_MOD_QUIRKS] && check_rights(R_SPAWN))
+		var/list/options = list("Clear"="Clear")
+		for(var/x in subtypesof(/datum/quirk))
+			var/datum/quirk/T = x
+			var/qname = initial(T.name)
+			options[has_quirk(T) ? "[qname] (Remove)" : "[qname] (Add)"] = T
+
+		var/result = input(usr, "Choose quirk to add/remove","Quirk Mod") as null|anything in options
+		if(result)
+			if(result == "Clear")
+				for(var/datum/quirk/q in roundstart_quirks)
+					remove_quirk(q.type)
+			else
+				var/T = options[result]
+				if(has_quirk(T))
+					remove_quirk(T)
+				else
+					add_quirk(T,TRUE)
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
 	if(pulling == target && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS)
@@ -1184,6 +1204,9 @@
 
 /mob/living/carbon/human/species/lizard/ashwalker
 	race = /datum/species/lizard/ashwalker
+
+/mob/living/carbon/human/species/lizard/draconid
+	race = /datum/species/lizard/draconid
 
 /mob/living/carbon/human/species/moth
 	race = /datum/species/moth

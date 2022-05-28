@@ -1,10 +1,11 @@
 /obj/item/projectile/temp
 	name = "freeze beam"
 	icon_state = "ice_2"
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 0
 	damage_type = BURN
 	nodamage = FALSE
-	flag = "energy"
+	flag = ENERGY
 	var/temperature = 100
 
 /obj/item/projectile/temp/on_hit(atom/target, blocked = 0)

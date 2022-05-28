@@ -1,4 +1,4 @@
-GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/effects/fire.dmi', "fire"))
+GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/effects/fire.dmi', FIRE))
 
 GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 // if true, everyone item when created will have its name changed to be
@@ -6,7 +6,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item
 	name = "item"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/misc.dmi'
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	var/item_state = null
 	var/lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -120,16 +120,21 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/list/grind_results //A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
 	var/list/juice_results //A reagent list containing blah blah... but when JUICED in a grinder!
 
-	
-	var/required_skill = SKILL_STRENGTH // Skill that allows people to use this obj
-	var/required_skill_level = SKILLLEVEL_UNSKILLED // Skill level of required_skill that allows people to use this obj
+	// Skill that allows people to use this obj
+	var/required_skill = SKILL_STRENGTH
+	// Skill level of required_skill that allows people to use this obj
+	var/required_skill_level = SKILLLEVEL_UNSKILLED
+	// Time modifier dependent on the rank of required_skill
 	var/list/use_speed_by_skill = list(
 		SKILLLEVEL_UNSKILLED = 1.5,
 		SKILLLEVEL_BASIC = 1.25,
 		SKILLLEVEL_TRAINED = 1,
 		SKILLLEVEL_EXPERIENCED = 0.75,
 		SKILLLEVEL_MASTER = 0.5
-	)// Time modifier dependent on the rank of required_skill
+	)
+
+	//Tape vars
+	var/taped = FALSE
 
 /obj/item/Initialize()
 
@@ -161,7 +166,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		item_flags |= FORCE_STRING_OVERRIDE
 
 	if(!hitsound)
-		if(damtype == "fire")
+		if(damtype == BURN)
 			hitsound = 'sound/items/welder.ogg'
 		if(damtype == "brute")
 			hitsound = "swing_hit"
@@ -883,3 +888,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
+/**
+  *	Called when this object is first embedded into a carbon
+  */
+/obj/item/proc/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	return TRUE
+
+/**
+  *	Called when this object is no longer embedded into a carbon	
+  */
+/obj/item/proc/on_embed_removal(mob/living/carbon/human/embedde)
+	return TRUE
+
+/**
+  *	Called every life tick when the object is embedded in a carbon	
+  */
+/obj/item/proc/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	return

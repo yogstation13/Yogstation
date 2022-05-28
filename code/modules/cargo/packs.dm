@@ -520,6 +520,7 @@
 	name = "Hellgun Single-Pack"
 	desc = "Contains one hellgun, an old pattern of laser gun infamous for its ability to horribly disfigure targets with burns. Technically violates the Space Geneva Convention when used on humanoids."
 	cost = 1500
+	small_item = TRUE
 	contains = list(/obj/item/gun/energy/laser/hellgun)
 
 /datum/supply_pack/security/armory/energy
@@ -1025,6 +1026,13 @@
 	cost = 1000
 	contains = list(/obj/item/stack/sheet/cardboard/fifty)
 	crate_name = "cardboard sheets crate"
+
+/datum/supply_pack/materials/license50
+	name = "50 Empty License Plates"
+	desc = "'Put those prisoners to work' - Jedi Yoda probably"
+	cost = 1000  // 50 * 25 - 1000 = 250 credits profit
+	contains = list(/obj/item/stack/license_plates/empty/fifty)
+	crate_name = "empty license plate crate"
 
 /datum/supply_pack/materials/glass50
 	name = "50 Glass Sheets"
@@ -2370,7 +2378,7 @@
 		if(prob(50))
 			the_toy = pickweight(GLOB.arcade_prize_pool)
 		else
-			the_toy = pick(subtypesof(/obj/item/toy/plush))
+			the_toy = pick(subtypesof(/obj/item/toy/plush) - typesof(/obj/item/toy/plush/goatplushie/angry/kinggoat))
 			if(istype(the_toy, /obj/item/toy/plush/lizard/azeel/snowflake))
 				the_toy = /obj/item/toy/plush/lizard/azeel
 		new the_toy(.)

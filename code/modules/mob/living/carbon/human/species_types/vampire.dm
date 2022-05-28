@@ -135,7 +135,7 @@
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/bat
 	name = "Bat Form"
-	desc = "Take on the shape a space bat."
+	desc = "Take on the shape of a space bat."
 	invocation = "Squeak!"
 	charge_max = 50
 	cooldown_min = 50
