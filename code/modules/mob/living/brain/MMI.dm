@@ -1,6 +1,6 @@
 /obj/item/mmi
 	name = "\improper Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
+	desc = "The bland acronym- 'MMI', cloaks the true nature of this infernal machine. Nonetheless, its presense has worked its way into many Nanotrasen stations."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -85,7 +85,10 @@
 
 	else if(istype(O, /obj/item/aiModule))
 		var/obj/item/aiModule/M = O
-		M.install(laws, user)
+		if(can_update_laws)
+			M.install(laws, user)
+		else
+			to_chat(user, span_warning("[src]'s indicator light flashes red: it does not allow law changes."))
 	else if(brainmob)
 		O.attack(brainmob, user) //Oh noooeeeee
 	else

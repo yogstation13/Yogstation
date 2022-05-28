@@ -1,5 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - rscadd: "Added chance for felinids and lizards to wag their tail when they are happy and if they aren't doing so already"
-  - rscadd: "Added human subtypes for some species that were missing them, making it posable to spawn them in with spawn"

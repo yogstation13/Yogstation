@@ -16,7 +16,9 @@
 
 /obj/structure/fireaxecabinet/Destroy()//<-- mirrored/overwritten proc
 	if(fireaxe)
-		QDEL_NULL(fireaxe)
+		fireaxe.forceMove(get_turf(src))
+	if(spareid)
+		spareid.forceMove(get_turf(src))
 	QDEL_NULL(spark_system)
 	return ..()
 
