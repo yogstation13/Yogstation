@@ -1,5 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "make Spawn Tzimisce - Bloodsucker occur only twice per round (down from infinite)"
-  - tweak: "make Spawn Tzimisce require 25 minimum pop (up from 15)"
