@@ -142,7 +142,7 @@
 	for(var/obj/O in range(0,src))
 		if(O.type == src.type)
 			continue
-		if(O in applied_atoms && one_apply_per_object)
+		if(one_apply_per_object && (O in applied_atoms))
 			continue
 		if(isturf(O.loc))
 			var/turf/T = O.loc
