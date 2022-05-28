@@ -4,7 +4,7 @@
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "extinguisher_closed"
 	anchored = TRUE
-	density = FALSE
+	density = TRUE
 	max_integrity = 200
 	var/mob/living/simple_animal/hostile/hunter/demon 
 	var/mob/living/carbon/human/target
