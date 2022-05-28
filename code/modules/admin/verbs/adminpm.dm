@@ -124,12 +124,6 @@
 
 		if(!msg)
 			return
-		if(holder)
-			to_chat(src,
-				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Use the admin IRC/Discord channel, nerd."),
-				confidential = TRUE)
-			return
 
 
 	else
@@ -368,6 +362,8 @@
 		html = span_adminsay("<i>Click on the administrator's name to reply.</i>"),
 		confidential = TRUE) // yogs - Yog Tickets
 
+	if(!C.current_ticket)
+		new /datum/admin_help(msg, C, TRUE)
 	admin_ticket_log(C, "PM From [irc_tagged]: [msg]") // yogs - Yog Tickets
 
 	window_flash(C, ignorepref = TRUE)

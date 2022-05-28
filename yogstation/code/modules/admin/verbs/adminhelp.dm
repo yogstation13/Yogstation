@@ -17,18 +17,16 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help_tickets/proc/TicketByID(id)
 	for(var/I in tickets_list)
-		for(var/J in I)
-			var/datum/admin_help/AH = J
-			if(AH.id == id)
-				return J
+		var/datum/admin_help/AH = I
+		if(AH.id == id)
+			return J
 
 /datum/admin_help_tickets/proc/TicketsByCKey(ckey)
 	. = list()
 	for(var/I in tickets_list)
-		for(var/J in I)
-			var/datum/admin_help/AH = J
-			if(AH.initiator_ckey == ckey)
-				. += AH
+		var/datum/admin_help/AH = I
+		if(AH.initiator_ckey == ckey)
+			. += AH
 
 //opens the ticket listings for one of the 3 states
 /datum/admin_help_tickets/proc/BrowseTickets(state)
