@@ -286,7 +286,7 @@ Difficulty: Medium
 				continue
 			hit_list += M
 			M.take_damage(45, BRUTE, MELEE, 1)
-		sleep(1.5)
+		sleep(0.15 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/swoop_attack(lava_arena = FALSE, atom/movable/manual_target, var/swoop_cooldown = 30)
 	if(stat || swooping)
@@ -315,16 +315,16 @@ Difficulty: Medium
 
 	var/oldtransform = transform
 	alpha = 255
-	animate(src, alpha = 204, transform = matrix()*0.9, time = 3, easing = BOUNCE_EASING)
+	animate(src, alpha = 204, transform = matrix()*0.9, time = 0.3 SECONDS, easing = BOUNCE_EASING)
 	for(var/i in 1 to 3)
-		sleep(1)
+		sleep(0.1 SECONDS)
 		if(QDELETED(src) || stat == DEAD) //we got hit and died, rip us
 			qdel(F)
 			if(stat == DEAD)
 				swooping &= ~SWOOP_DAMAGEABLE
-				animate(src, alpha = 255, transform = oldtransform, time = 0, flags = ANIMATION_END_NOW) //reset immediately
+				animate(src, alpha = 255, transform = oldtransform, time = 0 SECONDS, flags = ANIMATION_END_NOW) //reset immediately
 			return
-	animate(src, alpha = 100, transform = matrix()*0.7, time = 7)
+	animate(src, alpha = 100, transform = matrix()*0.7, time = 0.7 SECONDS)
 	swooping |= SWOOP_INVULNERABLE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	SLEEP_CHECK_DEATH(7)
@@ -334,7 +334,7 @@ Difficulty: Medium
 		SLEEP_CHECK_DEATH(0.5)
 
 	// Ash drake flies onto its target and rains fire down upon them
-	var/descentTime = 10
+	var/descentTime = 1 SECONDS
 	var/lava_success = TRUE
 	if(lava_arena)
 		lava_success = lava_arena()
@@ -429,12 +429,12 @@ Difficulty: Medium
 	icon_state = "lavastaff_warn"
 	layer = BELOW_MOB_LAYER
 	light_range = 2
-	duration = 13
+	duration = 1.3 SECONDS
 
 /obj/effect/temp_visual/lava_warning/ex_act()
 	return
 
-/obj/effect/temp_visual/lava_warning/Initialize(mapload, var/reset_time = 10)
+/obj/effect/temp_visual/lava_warning/Initialize(mapload, var/reset_time = 1 SECONDS)
 	. = ..()
 	INVOKE_ASYNC(src, .proc/fall, reset_time)
 	src.alpha = 63.75
@@ -473,7 +473,7 @@ Difficulty: Medium
 	opacity = 0
 	density = TRUE
 	CanAtmosPass = ATMOS_PASS_DENSITY
-	duration = 82
+	duration = 8.2 SECONDS
 	color = COLOR_DARK_ORANGE
 
 /obj/effect/temp_visual/lava_safe
@@ -481,7 +481,7 @@ Difficulty: Medium
 	icon_state = "trap-earth"
 	layer = BELOW_MOB_LAYER
 	light_range = 2
-	duration = 13
+	duration = 1.3 SECONDS
 
 /obj/effect/temp_visual/dragon_swoop
 	name = "certain death"
@@ -492,14 +492,14 @@ Difficulty: Medium
 	pixel_x = -32
 	pixel_y = -32
 	color = "#FF0000"
-	duration = 10
+	duration = 1 SECONDS
 
 /obj/effect/temp_visual/dragon_flight
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	icon_state = "dragon"
 	layer = ABOVE_ALL_MOB_LAYER
 	pixel_x = -16
-	duration = 10
+	duration = 1 SECONDS
 	randomdir = FALSE
 
 /obj/effect/temp_visual/dragon_flight/Initialize(mapload, negative)
@@ -508,27 +508,27 @@ Difficulty: Medium
 
 /obj/effect/temp_visual/dragon_flight/proc/flight(negative)
 	if(negative)
-		animate(src, pixel_x = -DRAKE_SWOOP_HEIGHT*0.1, pixel_z = DRAKE_SWOOP_HEIGHT*0.15, time = 3, easing = BOUNCE_EASING)
+		animate(src, pixel_x = -DRAKE_SWOOP_HEIGHT*0.1, pixel_z = DRAKE_SWOOP_HEIGHT*0.15, time = 0.3 SECONDS, easing = BOUNCE_EASING)
 	else
-		animate(src, pixel_x = DRAKE_SWOOP_HEIGHT*0.1, pixel_z = DRAKE_SWOOP_HEIGHT*0.15, time = 3, easing = BOUNCE_EASING)
-	sleep(3)
+		animate(src, pixel_x = DRAKE_SWOOP_HEIGHT*0.1, pixel_z = DRAKE_SWOOP_HEIGHT*0.15, time = 0.3 SECONDS, easing = BOUNCE_EASING)
+	sleep(0.3 SECONDS)
 	icon_state = "swoop"
 	if(negative)
-		animate(src, pixel_x = -DRAKE_SWOOP_HEIGHT, pixel_z = DRAKE_SWOOP_HEIGHT, time = 7)
+		animate(src, pixel_x = -DRAKE_SWOOP_HEIGHT, pixel_z = DRAKE_SWOOP_HEIGHT, time = 0.7 SECONDS)
 	else
-		animate(src, pixel_x = DRAKE_SWOOP_HEIGHT, pixel_z = DRAKE_SWOOP_HEIGHT, time = 7)
+		animate(src, pixel_x = DRAKE_SWOOP_HEIGHT, pixel_z = DRAKE_SWOOP_HEIGHT, time = 0.7 SECONDS)
 
 /obj/effect/temp_visual/dragon_flight/end
 	pixel_x = DRAKE_SWOOP_HEIGHT
 	pixel_z = DRAKE_SWOOP_HEIGHT
-	duration = 10
+	duration = 1 SECONDS
 
 /obj/effect/temp_visual/dragon_flight/end/flight(negative)
 	if(negative)
 		pixel_x = -DRAKE_SWOOP_HEIGHT
-		animate(src, pixel_x = -16, pixel_z = 0, time = 5)
+		animate(src, pixel_x = -16, pixel_z = 0, time = 0.5 SECONDS)
 	else
-		animate(src, pixel_x = -16, pixel_z = 0, time = 5)
+		animate(src, pixel_x = -16, pixel_z = 0, time = 0.5 SECONDS)
 
 obj/effect/temp_visual/fireball
 	icon = 'icons/obj/wizard.dmi'
@@ -537,7 +537,7 @@ obj/effect/temp_visual/fireball
 	desc = "Get out of the way!"
 	layer = FLY_LAYER
 	randomdir = FALSE
-	duration = 9
+	duration = 0.9 SECONDS
 	pixel_z = 270
 
 /obj/effect/temp_visual/fireball/Initialize()
@@ -549,7 +549,7 @@ obj/effect/temp_visual/fireball
 	icon_state = "sniper_zoom"
 	layer = BELOW_MOB_LAYER
 	light_range = 2
-	duration = 9
+	duration = 0.9 SECONDS
 
 /obj/effect/temp_visual/target/ex_act()
 	return

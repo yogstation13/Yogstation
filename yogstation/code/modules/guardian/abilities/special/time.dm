@@ -30,4 +30,4 @@
 	. = ..()
 	var/matrix/ntransform = matrix(transform)
 	ntransform.Scale(2)
-	animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
+	animate(src, transform = ntransform, time = 0.2 SECONDS, easing = EASE_IN|EASE_OUT)

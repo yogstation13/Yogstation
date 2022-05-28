@@ -13,14 +13,14 @@
 	tube_construction = /obj/structure/c_transit_tube/station
 	var/open_status = STATION_TUBE_CLOSED
 	var/pod_moving = 0
-	var/cooldown_delay = 50
+	var/cooldown_delay = 5 SECONDS
 	var/launch_cooldown = 0
 	var/reverse_launch = FALSE
 	var/base_icon = "station0"
 	var/boarding_dir //from which direction you can board the tube
 
-	var/const/OPEN_DURATION = 6
-	var/const/CLOSE_DURATION = 6
+	var/const/OPEN_DURATION = 0.6 SECONDS
+	var/const/CLOSE_DURATION = 0.6 SECONDS
 
 /obj/structure/transit_tube/station/New()
 	..()
@@ -174,7 +174,7 @@
 		if (pod.cargo)
 			launch_cooldown = cooldown_delay * 0.5 + world.time //Cargo pods spend half as long at the station
 		open_animation()
-		sleep(OPEN_DURATION + 2)
+		sleep(OPEN_DURATION + 0.2 SECONDS)
 		pod_moving = FALSE
 		if(!QDELETED(pod))
 			var/datum/gas_mixture/floor_mixture = loc.return_air()
