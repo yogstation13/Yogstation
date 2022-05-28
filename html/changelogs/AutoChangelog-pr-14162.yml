@@ -1,0 +1,10 @@
+author: " TheGamerdk. (Toasterbiome did the sprites)"
+delete-after: true 
+changes: 
+  - rscadd: "AI data cores and server cabinets can be upgraded to reduce their power consumption and heat production. Uses matterbins and capactiors"
+  - rscadd: "New AI Upgrade, Enhanced Coolant Management: Increase AI hardware tolerance by 10C"
+  - rscadd: "New AI Upgrade, Memory Compressor: Dedicate 15% of your CPU to increase your RAM by 3TB"
+  - tweak: "Reduced AI hardware heat production and increased their heat tolerance"
+  - tweak: "There is now a 5 minute cooldown for warnings after a data core fails. No more spam"
+  - imageadd: "Added a new sprite for the AI data cores, so they're no longer tcomms hubs - Baiomu"
+  - experiment: "AI control console board is now locked in secure storage and can no longer be printed."
