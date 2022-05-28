@@ -257,6 +257,8 @@
 #define TRAIT_EAT_LESS			"eat_less"
 #define TRAIT_CRAFTY			"crafty"
 #define TRAIT_ANOREXIC			"anorexic"
+#define TRAIT_SHIFTY_EYES		"shifty_eyes"
+#define TRAIT_ANXIOUS			"anxious"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
