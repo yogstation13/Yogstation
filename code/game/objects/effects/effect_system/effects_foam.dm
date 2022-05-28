@@ -159,7 +159,7 @@
 	if(hit)
 		lifetime++ //this is so the decrease from mobs hit and the natural decrease don't cumulate.
 	var/T = get_turf(src)
-	if(!(T in applied_atoms && one_apply_per_object))
+	if(!(one_apply_per_object && (T in applied_atoms)))
 		if(lifetime % reagent_divisor)
 			reagents.reaction(T, VAPOR, fraction)
 			applied_atoms += T
