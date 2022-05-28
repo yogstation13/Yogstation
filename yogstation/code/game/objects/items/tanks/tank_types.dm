@@ -1,6 +1,6 @@
 /obj/item/tank/internals/co2
 	name = "CO2 internals tank"
-	desc = "A tank of CO2 gas designed specifically for use as internals. You don't want to use it unless you breathe CO2!"
+	desc = "A tank of CO2 gas, designed specifically for breathing use by placeholder water race. Exercise caution before use!"
 	icon_state = "plasmaman_tank"
 	item_state = "plasmaman_tank"
 	force = 10

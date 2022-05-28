@@ -6,7 +6,7 @@
 #define WETSUIT_MAX_INTEGRITY 100
 /obj/item/organ/lungs/water
 	name = "vile sponge"
-	desc = "A spongy mass that looks like it is designed to carbonate water, what is it doing in a body?"
+	desc = "A spongy mass that looks like it is designed to carbonate water. What is it doing in a body?"
 
 	safe_oxygen_min = 0
 	safe_co2_min = 16 
@@ -35,7 +35,7 @@
 
 /obj/item/organ/liver/water
 	name = "chemical distributor"
-	desc = "Looks like something that distributes chemicals around the body."
+	desc = "Looks like something that filters toxic chemicals from the body."
 
 
 /datum/species/water
@@ -199,7 +199,7 @@
 
 /datum/species/water/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
-	H.visible_message(span_danger("[H] turns into a fine blue mist!"), span_userdanger("You evaporate!"))
+	H.visible_message(span_danger("[H] evaporates into a fine blue mist!"), span_userdanger("You evaporate!"))
 	return H.gib(TRUE, TRUE, TRUE) // HARD MODE: You're not coming back from this one
 
 /datum/species/water/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness)
@@ -341,7 +341,7 @@
 
 /obj/item/wetsuit_applicator
 	name = "wetsuit applicator"
-	desc = "Some waterproofing paint combined with a nanomaterial to prevent pores combined with a special shaping material allows any uniform to be used as a wetsuit."
+	desc = "Some extremely powerful waterproofing paint combined with nanomaterials. Allows any uniform to be used as a wetsuit for placeholder water race!"
 	icon_state = "spraycan"
 
 /obj/item/wetsuit_applicator/afterattack(atom/A, mob/user, proximity)
@@ -349,7 +349,7 @@
 	if (!istype(A, /obj/item/clothing/under))
 		to_chat(user, span_notice("You can't use this on something that isn't a uniform!"))
 	AddComponent(A, /datum/component/wetsuit_holder)
-	to_chat(user, span_notice("You use the applicator on [A]."))
+	to_chat(user, span_notice("You apply waterproofing materials on the [A]."))
 	qdel(src)
 	
 
