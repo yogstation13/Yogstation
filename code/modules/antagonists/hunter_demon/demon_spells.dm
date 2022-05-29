@@ -44,8 +44,6 @@
 	name = "Seek prey"
 	desc = "It says where is your target, or marks the assasination as completed if the target is dead, isn't no more a human, or is off the station z-level."
 	invocation_type = "none"
-	include_user = FALSE
-	range = -1
 	clothes_req = FALSE
 	school = "evocation"
 	charge_max = 100
@@ -54,19 +52,22 @@
 	action_icon_state = "moneybag"
 	phase_allowed = TRUE
 
-/obj/effect/proc_holder/spell/targeted/cast(list/targets,mob/user = usr)
+/obj/effect/proc_holder/spell/hd_seek_prey/perform(recharge = 1, mob/living/user = usr)
 	if(istype(user,/mob/living/simple_animal/hostile/hunter))
 		var/mob/living/simple_animal/hostile/hunter/demon = user
 		if(!demon.prey)
 			to_chat(user,span_warning("You don't have a target! It should be chosen by your master, or you can choose it yourself if you are not bounded by a bounding rite."))
+			start_recharge()
 			return
 		if(!istype(demon.prey, /mob/living/carbon/human))
 			to_chat(user,span_warning("Your target isn't no more a human, so you aren't no more interested in it. Get a new one."))
 			demon.complete_assasination(killed = FALSE)
+			start_recharge()
 			return
 		if(demon.prey.stat == DEAD)
 			to_chat(user,span_warning("Your target is dead, so your mission is completed. Get a new one."))
 			demon.complete_assasination(killed = TRUE)
+			start_recharge()
 			return	
 		var/turf/userturf = get_turf(demon)
 		var/turf/targetturf = get_turf(demon.prey)
@@ -75,9 +76,11 @@
 		if(!is_station_level(targetturf.z))
 			to_chat(user,span_warning("Your target isn't on the station z-level, you need to get a new one."))
 			demon.complete_assasination(killed = FALSE)
+			start_recharge()
 			return
 		if(userturf.z != targetturf.z)
 			to_chat(user,span_warning("[demon.prey.real_name] is... vertical to you?"))
+			start_recharge()
 			return
 		switch(dist)         ///Taken from living heart code
 			if(0 to 15)
@@ -87,5 +90,6 @@
 			if(32 to 127)
 				to_chat(user,span_warning("[demon.prey.real_name] is far away from you. They are to the [dir2text(dir)] of you!"))
 			else
-				to_chat(user,span_warning("[demon.prey.real_name] is beyond your reach."))		
+				to_chat(user,span_warning("[demon.prey.real_name] is beyond your reach."))
+	start_recharge()		
 	return
