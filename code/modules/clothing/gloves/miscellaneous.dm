@@ -92,3 +92,96 @@
 		to_chat(M, span_warning("You don't want to hurt anyone, just give them hugs!"))
 		M.a_intent = INTENT_HELP
 	.= FALSE
+
+/obj/item/clothing/gloves/bracer/cuffs
+	name = "rabid cuffs"
+	desc = "Chainless manacles fashioned after the hungriest of slaughter demons. Grants the wearer a similar hunger that can be sated in a similar way."
+	icon_state = "cuff"
+	item_state = "cuff"
+	var/obj/effect/proc_holder/swipe/swipe_ability
+
+/obj/item/clothing/gloves/bracer/cuffs/Initialize()
+	. = ..()
+	swipe_ability = new(swipe_ability)
+
+/obj/item/clothing/gloves/bracer/cuffs/equipped(mob/living/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_GLOVES)
+		user.AddAbility(swipe_ability)
+
+/obj/item/clothing/gloves/bracer/cuffs/dropped(mob/living/user)
+	. = ..()
+	user.RemoveAbility(swipe_ability)
+
+obj/effect/proc_holder/swipe
+	name = "swipe"
+	desc = "Swipe at a target area, dealing damage and consuming dead creatures to heal yourself. People are ineligible for total consumption unless thoroughly mangled. Creatures take 30 damage and heal the most while people and cyborgs take 10 damage and heal for the least.Totally mangled people heal for a bit more than those that aren't."
+	action_background_icon_state = "bg_demon"
+	action_icon = 'icons/mob/actions/actions_items.dmi'
+	action_icon_state = "cuff"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_target.dmi'
+	var/cooldown = 15 SECONDS
+	COOLDOWN_DECLARE(scan_cooldown)
+
+/obj/effect/proc_holder/swipe/on_lose(mob/living/user)
+	remove_ranged_ability()
+	
+/obj/effect/proc_holder/swipe/Click(location, control, params)
+	. = ..()
+	if(!isliving(usr))
+		return TRUE
+	var/mob/living/user = usr
+	fire(user)
+
+/obj/effect/proc_holder/swipe/fire(mob/living/carbon/user)
+	if(active)
+		remove_ranged_ability(span_notice("You relax your arms."))
+	else
+		add_ranged_ability(user, span_notice("You ready your cuffs. <B>Left-click a creature or floor to swipe at it!</B>"), TRUE)
+
+/obj/effect/proc_holder/swipe/InterceptClickOn(mob/living/caller, params, atom/target)
+	. = ..()
+	var/turf/open/T = get_turf(target)
+	var/mob/living/L = target
+	if(.)
+		return
+	if(ranged_ability_user.stat)
+		remove_ranged_ability()
+		return
+	if(!COOLDOWN_FINISHED(src, scan_cooldown))
+		to_chat(ranged_ability_user, span_warning("Your cuffs aren't ready to do that yet. Give them some time to recharge!"))
+		return
+	if(!istype(T))
+		return
+	new /obj/effect/temp_visual/bubblegum_hands/rightpaw(T)
+	new /obj/effect/temp_visual/bubblegum_hands/rightthumb(T)
+	to_chat(L, span_userdanger("A claw swipes at you!"))
+	to_chat(ranged_ability_user, "You summon claws at [L]'s location!")
+	for(L in range(0,T))
+		if(isanimal(L))
+			L.adjustBruteLoss(30)
+			if(L.stat == DEAD)
+				L.gib()
+				caller.adjustBruteLoss(-20)
+				caller.adjustFireLoss(-20)
+				caller.adjustToxLoss(-20)
+				caller.blood_volume = BLOOD_VOLUME_NORMAL(caller)*1.10
+		L.adjustBruteLoss(10)
+		if(L.getBruteLoss() >= 499)
+			L.gib()
+			caller.adjustBruteLoss(-10)
+			caller.adjustFireLoss(-10)
+			caller.adjustToxLoss(-10)
+			caller.blood_volume = BLOOD_VOLUME_NORMAL(caller)*1.05
+		if(L.stat == DEAD)
+			caller.adjustBruteLoss(-5)
+			caller.adjustFireLoss(-5)
+			caller.adjustToxLoss(-5)
+			caller.blood_volume = BLOOD_VOLUME_NORMAL(caller)*1.01
+	COOLDOWN_START(src, scan_cooldown, cooldown)
+	addtimer(CALLBACK(src, .proc/cooldown_over, ranged_ability_user), cooldown)
+	remove_ranged_ability()
+	return TRUE
+
+/obj/effect/proc_holder/swipe/proc/cooldown_over()
+	to_chat(usr, (span_notice("You're ready to swipe again!")))
