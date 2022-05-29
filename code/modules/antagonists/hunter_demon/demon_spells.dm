@@ -40,7 +40,7 @@
 	revert_cast()
 	to_chat(user, span_warning("You are not a hunter demon, you can't do this!"))
 
-/obj/effect/proc_holder/spell/targeted/hd_seek_prey
+/obj/effect/proc_holder/spell/hd_seek_prey
 	name = "Seek prey"
 	desc = "It says where is your target, or marks the assasination as completed if the target is dead, isn't no more a human, or is off the station z-level."
 	invocation_type = "none"
@@ -93,3 +93,23 @@
 				to_chat(user,span_warning("[demon.prey.real_name] is beyond your reach."))
 	start_recharge()		
 	return
+
+/obj/effect/proc_holder/spell/recall
+	name = "Recall"
+	desc = "Returns you to your orb position if you are jaunting."
+	invocation_type = "none"
+	clothes_req = FALSE
+	school = "evocation"
+	charge_max = 100
+	cooldown_min = 30
+	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	action_icon_state = "moneybag"
+	phase_allowed = TRUE
+
+/obj/effect/proc_holder/spell/recall(recharge = 1, mob/living/user = usr)
+	if(istype(user, /mob/living/simple_animal/hostile/hunter)
+	
+
+
+
+
