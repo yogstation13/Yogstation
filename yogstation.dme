@@ -386,7 +386,6 @@
 #include "code\controllers\subsystem\vis_overlays.dm"
 #include "code\controllers\subsystem\vote.dm"
 #include "code\controllers\subsystem\weather.dm"
-#include "code\controllers\subsystem\movement\ai_movement.dm"
 #include "code\controllers\subsystem\movement\move_handler.dm"
 #include "code\controllers\subsystem\movement\movement.dm"
 #include "code\controllers\subsystem\movement\movement_types.dm"
