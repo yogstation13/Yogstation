@@ -129,8 +129,8 @@
 	owner.fully_heal()
 	owner.add_stun_absorption("inathneq", 150, 2, "'s flickering blue aura momentarily intensifies!", "Inath-neq's power absorbs the stun!", " glowing with a flickering blue light!")
 	owner.status_flags |= GODMODE
-	animate(owner, color = oldcolor, time = 150, easing = EASE_IN)
-	addtimer(CALLBACK(owner, /atom/proc/update_atom_colour), 150)
+	animate(owner, color = oldcolor, time = 15 SECONDS, easing = EASE_IN)
+	addtimer(CALLBACK(owner, /atom/proc/update_atom_colour), 15 SECONDS)
 	playsound(owner, 'sound/magic/ethereal_enter.ogg', 50, 1)
 	return ..()
 
@@ -306,7 +306,7 @@
 
 /datum/status_effect/sword_spin
 	id = "Bastard Sword Spin"
-	duration = 50
+	duration = 5 SECONDS
 	tick_interval = 8
 	alert_type = null
 

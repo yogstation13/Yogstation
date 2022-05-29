@@ -510,7 +510,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "jaunt"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
-	var/cooldown = 150
+	var/cooldown = 15 SECONDS
 	var/last_teleport = 0
 
 /datum/action/innate/unstable_teleport/IsAvailable()
@@ -534,7 +534,7 @@
 	do_teleport(H, get_turf(H), 12, asoundin = 'sound/weapons/emitter2.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 	last_teleport = world.time
 	UpdateButtonIcon() //action icon looks unavailable
-	sleep(cooldown + 5)
+	sleep(cooldown + 0.5 SECONDS)
 	UpdateButtonIcon() //action icon looks available again
 
 
@@ -828,7 +828,7 @@
 	new /obj/effect/temp_visual/mummy_animation(get_turf(src))
 	if(cloth_golem.revive(full_heal = TRUE, admin_revive = TRUE))
 		cloth_golem.grab_ghost() //won't pull if it's a suicide
-	sleep(20)
+	sleep(2 SECONDS)
 	cloth_golem.forceMove(get_turf(src))
 	cloth_golem.visible_message(span_danger("[src] rises and reforms into [cloth_golem]!"),span_userdanger("You reform into yourself!"))
 	cloth_golem = null
@@ -1459,7 +1459,7 @@
 	new /obj/effect/temp_visual/wax_animation(get_turf(src))
 	if(wax_golem.revive(full_heal = TRUE, admin_revive = TRUE))
 		wax_golem.grab_ghost() //won't pull if it's a suicide
-	sleep(20)
+	sleep(2 SECONDS)
 	wax_golem.forceMove(get_turf(src))
 	wax_golem.visible_message(span_danger("[src] rises and reforms into [wax_golem]!"),span_userdanger("You reform into yourself!"))
 	wax_golem = null
@@ -1471,6 +1471,7 @@
 	mutanthands = /obj/item/melee/supermatter_sword/hand
 	inherent_traits = list(TRAIT_NOHARDCRIT,TRAIT_NOSOFTCRIT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
 	changesource_flags = MIRROR_BADMIN 
+	random_eligible = FALSE // Hell no
 	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical objects that interact with you. However, you take half more brute damage, three more burn damage and explode on death."
 	attack_verb = "dusting punch"
 	attack_sound = 'sound/effects/supermatter.ogg'

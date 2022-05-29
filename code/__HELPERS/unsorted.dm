@@ -1226,7 +1226,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 #undef DELTA_CALC
 
-/proc/flash_color(mob_or_client, flash_color="#960000", flash_time=20)
+/proc/flash_color(mob_or_client, flash_color="#960000", flash_time=2 SECONDS)
 	var/client/C
 	if(ismob(mob_or_client))
 		var/mob/M = mob_or_client
@@ -1258,7 +1258,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	var/initialpixely = pixel_y
 	var/shiftx = rand(-pixelshiftx,pixelshiftx)
 	var/shifty = rand(-pixelshifty,pixelshifty)
-	animate(src, pixel_x = pixel_x + shiftx, pixel_y = pixel_y + shifty, time = 0.2, loop = duration)
+	animate(src, pixel_x = pixel_x + shiftx, pixel_y = pixel_y + shifty, time = 0.02 SECONDS, loop = duration)
 	pixel_x = initialpixelx
 	pixel_y = initialpixely
 

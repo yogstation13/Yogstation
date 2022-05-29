@@ -245,7 +245,7 @@
 		psi = min(psi + 1, psi_cap)
 		total_regen--
 		update_psi_hud()
-		sleep(0.5)
+		sleep(0.05 SECONDS)
 	psi_used_since_regen = 0
 	psi_regen_ticks = psi_regen_delay
 	psi_regenerating = FALSE

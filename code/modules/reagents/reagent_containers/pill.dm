@@ -48,7 +48,7 @@
 
 	var/makes_me_think = pick(strings(REDPILL_FILE, "redpill_questions"))
 	if(icon_state == "pill4" && prob(5)) //you take the red pill - you stay in Wonderland, and I show you how deep the rabbit hole goes
-		sleep(50)
+		sleep(5 SECONDS)
 		to_chat(M, span_notice("[makes_me_think]"))
 
 	if(reagents.total_volume)

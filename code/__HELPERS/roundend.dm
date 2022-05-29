@@ -233,7 +233,7 @@
 
 	toggle_all_ctf()
 
-	sleep(50)
+	sleep(5 SECONDS)
 	ready_for_reboot = TRUE
 	standard_reboot()
 

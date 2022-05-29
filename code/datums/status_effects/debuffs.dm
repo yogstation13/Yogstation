@@ -560,7 +560,7 @@
 		wasting_effect.setDir(owner.dir)
 		wasting_effect.transform = owner.transform //if the owner has been stunned the overlay should inherit that position
 		wasting_effect.alpha = 255
-		animate(wasting_effect, alpha = 0, time = 32)
+		animate(wasting_effect, alpha = 0, time = 3.2 SECONDS)
 		playsound(owner, 'sound/effects/curse5.ogg', 20, 1, -1)
 		owner.adjustFireLoss(0.75)
 	if(effect_last_activation <= world.time)

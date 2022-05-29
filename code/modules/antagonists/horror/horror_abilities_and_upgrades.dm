@@ -337,7 +337,7 @@
 		for(var/turf/open/t in range(1, B))
 			if(prob(60) && B.Adjacent(t))
 				t.MakeSlippery(TURF_WET_LUBE, 100)
-		sleep(5)
+		sleep(0.5 SECONDS)
 		spins_remaining--
 		if(!B.can_use_ability())
 			return TRUE

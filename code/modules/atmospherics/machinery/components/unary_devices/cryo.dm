@@ -197,7 +197,7 @@
 		src.visible_message(span_warning("[src] is unable to treat [mob_occupant] as they cannot be treated with conventional medicine."))
 		playsound(src,'sound/machines/cryo_warning_ignore.ogg',60,1)
 		on = FALSE
-		sleep(2)// here for timing. Shuts off right at climax of the effect before falloff.
+		sleep(0.2 SECONDS)// here for timing. Shuts off right at climax of the effect before falloff.
 		update_icon()
 		return
 

@@ -53,8 +53,8 @@
 /datum/component/radioactive/proc/glow_loop(atom/movable/master)
 	var/filter = master.get_filter("rad_glow")
 	if(filter)
-		animate(filter, alpha = 110, time = 15, loop = -1)
-		animate(alpha = 40, time = 25)
+		animate(filter, alpha = 110, time = 1.5 SECONDS, loop = -1)
+		animate(alpha = 40, time = 2.5 SECONDS)
 
 /datum/component/radioactive/InheritComponent(datum/component/C, i_am_original, list/arguments)
 	if(!i_am_original)
