@@ -49,7 +49,11 @@
 		bite = FALSE
 		return
 
-	if(prob(50))
+	var/power = 0
+	if(iscarbon(fisher)) //sorry, non-carbons don't get to wear cool fishing outfits
+		var/mob/living/carbon/carbonfisher = fisher
+		power = carbonfisher.fishing_power
+	if(prob(fishing_power + power))
 		to_chat(fisher, span_boldnotice("Something bites! Reel it in!"))
 		bite = TRUE
 		do_fishing_alert(fisher)
@@ -75,6 +79,11 @@
 	if(!forced && bite) // we got something!!!
 		playsound(fishing_component, 'sound/effects/water_emerge.ogg', 50, FALSE, -5)
 		spawn_reward()
+		if(bait && prob(max(50 - bait.fishing_power,0))) //50 - bait.fishing_power% chance to lose your bait
+			to_chat(fisher, span_notice("Your [bait] is lost!"))
+			cut_overlays()
+			QDEL_NULL(bait)
+			recalculate_power()
 	else
 		playsound(fishing_component, 'sound/effects/splash.ogg', 50, FALSE, -5)
 		if(forced)
