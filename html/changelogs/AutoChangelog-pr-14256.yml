@@ -1,8 +1,0 @@
-author: "tattax"
-delete-after: true 
-changes: 
-  - rscadd: "plagued rat reworked"
-  - rscdel: "moved plague rat files to the rat folder"
-  - bugfix: "fixed mouse prompt not working // cucking examine for ghosts // rats qdeling themselves // plague not working"
-  - tweak: "plague rat buff and moved to mice migration for balance reasons, plague also tweaked"
-  - imageadd: "new black rat sprite for plaguerats"
