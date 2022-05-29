@@ -25,4 +25,4 @@
 		qdel(L)
 
 /datum/component/swimming/dissolve/exit_pool()
-	animate(parent, alpha=start_alpha, time=20)
+	animate(parent, alpha=start_alpha, time=2 SECONDS)

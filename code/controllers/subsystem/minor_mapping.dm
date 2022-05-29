@@ -1,4 +1,5 @@
 #define REGAL_RAT_CHANCE 2
+#define PLAGUE_RAT_CHANCE 5
 SUBSYSTEM_DEF(minor_mapping)
 	name = "Minor Mapping"
 	init_order = INIT_ORDER_MINOR_MAPPING
@@ -21,6 +22,9 @@ SUBSYSTEM_DEF(minor_mapping)
 		if(!M)
 			if(regal && prob(REGAL_RAT_CHANCE))
 				M = new /mob/living/simple_animal/hostile/regalrat/controlled(proposed_turf)
+			else if(prob(PLAGUE_RAT_CHANCE))
+				M = new /mob/living/simple_animal/hostile/rat/plaguerat(proposed_turf)
+				notify_ghosts("A plague \a [M] has migrated into the station!", source = M, action=NOTIFY_ORBIT, header="Something Interesting!")
 			else
 				M = new /mob/living/simple_animal/mouse(proposed_turf)
 		else
@@ -64,3 +68,4 @@ SUBSYSTEM_DEF(minor_mapping)
 	return shuffle(suitable)
 
 #undef REGAL_RAT_CHANCE 
+#undef PLAGUE_RAT_CHANCE

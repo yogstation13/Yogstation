@@ -232,7 +232,7 @@
 							W.reagents.reaction(atm)
 						if(W.loc == my_target)
 							break
-						sleep(2)
+						sleep(0.2 SECONDS)
 		return 1
 
 /obj/item/mecha_parts/mecha_equipment/extinguisher/get_equip_info()

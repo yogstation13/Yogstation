@@ -128,7 +128,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		remove_verb(src, /mob/dead/observer/verb/boo)
 		remove_verb(src, /mob/dead/observer/verb/possess)
 
-	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(src, pixel_y = 2, time = 1 SECONDS, loop = -1)
 
 	add_to_dead_mob_list()
 
@@ -151,13 +151,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/narsie_act()
 	var/old_color = color
 	color = "#960000"
-	animate(src, color = old_color, time = 10, flags = ANIMATION_PARALLEL)
+	animate(src, color = old_color, time = 1 SECONDS, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 10)
 
 /mob/dead/observer/ratvar_act()
 	var/old_color = color
 	color = "#FAE48C"
-	animate(src, color = old_color, time = 10, flags = ANIMATION_PARALLEL)
+	animate(src, color = old_color, time = 1 SECONDS, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 10)
 
 /mob/dead/observer/Destroy()
@@ -476,7 +476,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	. = ..()
 	//restart our floating animation after orbit is done.
 	pixel_y = 0
-	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(src, pixel_y = 2, time = 1 SECONDS, loop = -1)
 
 /mob/dead/observer/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"

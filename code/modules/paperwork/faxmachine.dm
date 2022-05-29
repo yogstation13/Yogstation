@@ -127,7 +127,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	playsound(loc, "sound/items/polaroid1.ogg", 50, 1)
 	
 	// give the sprite some time to flick
-	sleep(23)
+	sleep(2.3 SECONDS)
 	
 	if (istype(incoming, /obj/item/paper))
 		copy(incoming)
@@ -172,7 +172,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 		if ("Central Command")
 			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
 	sendcooldown = world.time + 1 MINUTES
-	sleep(50)
+	sleep(5 SECONDS)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
 	
 
