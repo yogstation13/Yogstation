@@ -333,7 +333,7 @@ Doesn't work on other aliens/AI.*/
 	last_time_used = world.time
 	addtimer(CALLBACK(src, .proc/callshutle), 50)
 
-/obj/effect/proc_holder/alien/call_shuttle/callshutle()
+/obj/effect/proc_holder/alien/call_shuttle/proc/callshutle()
 	SSshuttle.emergency.request(null, set_coefficient = 1.0)	
 
 
