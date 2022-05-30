@@ -71,7 +71,7 @@
 				h_g = 64 + (h_g - 64) * scale
 				h_b = 64 + (h_b - 64) * scale
 
-			animate(src, color = rgb(h_r, h_g, h_b), time = 20, easing = SINE_EASING)
+			animate(src, color = rgb(h_r, h_g, h_b), time = 2 SECONDS, easing = SINE_EASING)
 
 	//burn any mobs buckled based on temperature
 	if(has_buckled_mobs())

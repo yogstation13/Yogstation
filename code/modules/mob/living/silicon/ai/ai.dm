@@ -265,7 +265,7 @@
 		var/obj/machinery/ai/data_core/core = loc
 		forceMove(get_turf(loc))
 		view_core()
-		sleep(1)
+		sleep(0.1 SECONDS)
 		forceMove(core)
 
 /mob/living/silicon/ai/verb/pick_icon()

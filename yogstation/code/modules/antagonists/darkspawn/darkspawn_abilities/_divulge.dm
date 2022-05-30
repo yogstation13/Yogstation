@@ -54,29 +54,29 @@
 			if(3)
 				user.visible_message(span_userdanger("Sigils form along [user]'s body. \His skin blackens as \he glows a blinding purple."), \
 									span_velvet("Your body begins to warp. Sigils etch themselves upon your flesh."))
-				animate(user, color = list(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0)), time = 150) //Produces a slow skin-blackening effect
+				animate(user, color = list(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0)), time = 15 SECONDS) //Produces a slow skin-blackening effect
 				playsound(user, 'yogstation/sound/magic/divulge_03.ogg', 50, 0)
 		if(!do_after(user, 15 SECONDS, target = user))
 			user.visible_message(span_warning("[user] falls to the ground!"), span_userdanger("Your transformation was interrupted!"))
-			animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 10)
+			animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 1 SECONDS)
 			in_use = FALSE
 			return
 	playsound(user, 'yogstation/sound/magic/divulge_ending.ogg', 50, 0)
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), "<span class='velvet bold'>Your mind...! can't--- THINK--</span>")
-	animate(user, pixel_y = user.pixel_y + 8, time = 60)
-	sleep(45)
-	user.Shake(5, 5, 110)
+	animate(user, pixel_y = user.pixel_y + 8, time = 6 SECONDS)
+	sleep(4.5 SECONDS)
+	user.Shake(5, 5, 11 SECONDS)
 	for(var/i in 1 to 20)
 		to_chat(user, "<span class='velvet bold'>[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-")]</span>")
-		sleep(1.1) //Spooky flavor message spam
+		sleep(0.11 SECONDS) //Spooky flavor message spam
 	user.visible_message(span_userdanger("A tremendous shockwave emanates from [user]!"), "<span class='velvet big'><b>YOU ARE FREE!!</b></span>")
 	playsound(user, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
-	animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 30)
+	animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 3 SECONDS)
 	for(var/mob/living/L in view(7, user))
 		if(L == user)
 			continue
 		L.flash_act(1, 1)
-		L.Knockdown(50)
+		L.Knockdown(5 SECONDS)
 	var/old_name = user.real_name
 	darkspawn.divulge()
 	var/processed_message = span_velvet("<b>\[Mindlink\] [old_name] has removed their human disguise and is now [user.real_name].</b>")

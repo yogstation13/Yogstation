@@ -81,7 +81,7 @@
 	visible_message(span_italics("You hear a loud squelchy grinding sound."))
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, 1)
 	var/offset = prob(50) ? -2 : 2
-	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
+	animate(src, pixel_x = pixel_x + offset, time = 0.02 SECONDS, loop = 200) //start shaking
 	
 	var/do_gib = FALSE
 	var/emagged = obj_flags & EMAGGED
