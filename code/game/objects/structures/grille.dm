@@ -187,7 +187,7 @@
 				to_chat(user, span_warning("There is already a window there!"))
 				return
 			to_chat(user, span_notice("You start placing the window..."))
-			if(do_after(user, 2 SECONDS, target = src))
+			if(do_after(user, 2 SECONDS, src))
 				if(!src.loc || !anchored) //Grille broken or unanchored while waiting
 					return
 				for(var/obj/structure/window/WINDOW in loc) //Another window already installed on grille
@@ -326,8 +326,8 @@
 	if(src)
 		var/previouscolor = color
 		color = "#960000"
-		animate(src, color = previouscolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
+		animate(src, color = previouscolor, time = 0.8 SECONDS)
+		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
 /obj/structure/grille/ratvar/ratvar_act()
 	return

@@ -1493,14 +1493,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	exclude_modes = list(/datum/game_mode/infiltration)
 
-/datum/uplink_item/device_tools/brainwash_disk
-	name = "Brainwashing Surgery Program"
-	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
-	Insert into an Operating Console to enable the procedure."
-	item = /obj/item/disk/surgery/brainwashing
-	cost = 5
-	manufacturer = /datum/corporation/traitor/cybersun
-
 /datum/uplink_item/device_tools/hypnotic_flash
 	name = "Hypnotic Flash"
 	desc = "A modified flash able to hypnotize targets. If the target is not in a mentally vulnerable state, it will only confuse and pacify them temporarily."
@@ -1948,6 +1940,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	manufacturer = /datum/corporation/traitor/cybersun
 
+/datum/uplink_item/role_restricted/brainwash_disk
+	name = "Brainwashing Surgery Program"
+	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
+	Insert into an Operating Console to enable the procedure."
+	item = /obj/item/disk/surgery/brainwashing
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist", "Research Director") //yogs
+	player_minimum = 28
+	cost = 5
+	manufacturer = /datum/corporation/traitor/cybersun
+
 /datum/uplink_item/role_restricted/cat_grenade
 	name = "Feral Cat Delivery Grenade"
 	desc = "The feral cat delivery grenade contains 5 dehydrated feral cats in a similar manner to dehydrated monkeys, which, upon detonation, will be rehydrated by a small reservoir of water contained within the grenade. These cats will then attack anything in sight."
@@ -2138,7 +2140,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/hierophant_antenna
 	name = "Hierophant's Antenna"
 	desc = "Amplifies the reception signals of the hierophant staff, allows the herald's power to reach the station!"
-	cost = 14
+	cost = 7
 	manufacturer = /datum/corporation/traitor/cybersun
 	item = /obj/item/hierophant_antenna
 	restricted_roles = list("Shaft Miner")

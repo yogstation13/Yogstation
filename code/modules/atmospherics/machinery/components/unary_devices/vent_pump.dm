@@ -341,7 +341,7 @@
 	return !welded
 
 /obj/machinery/atmospherics/components/unary/vent_pump/attack_alien(mob/user)
-	if(!welded || !(do_after(user, 2 SECONDS, target = src)))
+	if(!welded || !(do_after(user, 2 SECONDS, src)))
 		return
 	user.visible_message("[user] furiously claws at [src]!", "You manage to clear away the stuff blocking the vent", "You hear loud scraping noises.")
 	welded = FALSE

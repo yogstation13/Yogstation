@@ -94,6 +94,49 @@ Yogs End*/
 			if (message)
 				message_admins(msg)
 		else
+			if(!real_bans_only)
+				var/datum/DBQuery/query_get_bound_creds = SSdbcore.NewQuery({"
+					SELECT
+						ckey,
+						ip,
+						computerid
+					FROM [format_table_name("bound_credentials")]
+					WHERE
+						(ip = INET_ATON(:ip) OR computerid = :computerid)
+				"}, list("ckey" = ckey, "ip" = address, "computerid" = computer_id))
+				if(!query_get_bound_creds.warn_execute())
+					qdel(query_get_bound_creds)
+					return
+				
+				//Null = unchecked, false = verified, true = reject
+				var/reject_bound_cid
+				var/reject_bound_ip
+
+				while(query_get_bound_creds.NextRow())
+					var/bound_ckey = query_get_bound_creds.item[1]
+					var/bound_ip = query_get_bound_creds.item[2]
+					var/bound_cid = query_get_bound_creds.item[3]
+
+					//We have yet to confirm the ip and this entry specifies one
+					if(bound_ip && (reject_bound_ip != FALSE))
+						//If it matches, we set it to false and we stop checking bound ips
+						// Otherwise, we set it to true and it will reject the login if no bound ip is found
+						reject_bound_ip = (bound_ckey != ckey)
+					
+					//Same logic but for cids
+					if(bound_cid && (reject_bound_cid != FALSE))
+						reject_bound_cid = (bound_ckey != ckey)
+
+				if(reject_bound_cid || reject_bound_ip)
+					var/cause = reject_bound_cid ? "computer ID" : "IP address"
+					var/msg = {"This [cause] has been bound to another account.
+					Please visit [CONFIG_GET(string/banappeals) || "the forums"] if this was done in error or if you have recently changed BYOND accounts."}
+					log_access("Failed Login: [key] [computer_id] [address] - Bound [cause]")
+					key_cache[key] = 0
+					return list("reason" = "bound [cause]", "desc" = msg)
+				
+				qdel(query_get_bound_creds)
+
 			var/list/ban_details = is_banned_from_with_details(ckey, address, computer_id, "Server")
 			for(var/i in ban_details)
 				if(admin)
@@ -198,7 +241,7 @@ Yogs End*/
 				//do not convert to timer.
 				spawn (5)
 					world.SetConfig("ban", bannedckey, null)
-					sleep(1)
+					sleep(0.1 SECONDS)
 					world.SetConfig("ban", bannedckey, null)
 					if (!ban["fromdb"])
 						cachedban = cachedban.Copy() //so old references to the list still see the ban as reverting

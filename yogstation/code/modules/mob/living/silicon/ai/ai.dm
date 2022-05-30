@@ -15,7 +15,7 @@
 /mob/living/silicon/ai/attack_hand(mob/user)
 	if(hijacking)
 		user.visible_message(span_danger("[user] attempts to disconnect the circuit board from [src]"), span_notice("There appears to be something connected to [src]'s ports! You attempt to disconnect it..."))
-		if (do_after(user,100,target = src))
+		if (do_after(user, 10 SECONDS, src))
 			hijacking.forceMove(loc)
 			hijacking = null
 			hijack_start = 0

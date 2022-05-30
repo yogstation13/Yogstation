@@ -48,7 +48,7 @@
 			return
 		visible_message(span_warning("[L] starts picking up [src]."), \
 						span_userdanger("[L] starts picking you up!"))
-		if(!do_after(L, 20, target = src))
+		if(!do_after(L, 2 SECONDS, src))
 			return
 		visible_message(span_warning("[L] picks up [src]!"), \
 						span_userdanger("[L] picks you up!"))

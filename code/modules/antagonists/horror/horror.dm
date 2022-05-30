@@ -210,7 +210,7 @@
 		return
 
 	to_chat(src, "You begin consuming [victim.name]'s soul!")
-	if(do_after(src, 30 SECONDS, target = victim, stayStill = FALSE))
+	if(do_after(src, 30 SECONDS, victim, stayStill = FALSE))
 		consume()
 
 /mob/living/simple_animal/horror/proc/consume()
@@ -335,7 +335,7 @@
 			return
 		visible_message(span_warning("[src] slips their tentacles into the airlock and starts prying it open!"), span_warning("You start moving onto the airlock."))
 		playsound(A, 'sound/misc/splort.ogg', 50, 1)
-		if(do_after(src, 5 SECONDS, target = A))
+		if(do_after(src, 5 SECONDS, A))
 			if(door.welded)
 				to_chat(src, span_danger("The door is welded shut!"))
 				return
@@ -513,7 +513,7 @@
 		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	leaving = TRUE
-	if(do_after(src, 300, target = victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE)) //Enough time to do quick surgery
+	if(do_after(src, 30 SECONDS, victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE)) //Enough time to do quick surgery
 		release_host()
 
 /mob/living/simple_animal/horror/proc/release_host()
@@ -705,7 +705,7 @@
 	var/delay = 20 SECONDS
 	if(has_upgrade("fast_control"))
 		delay -= 12 SECONDS
-	if(do_after(src, delay, target = victim, extra_checks = CALLBACK(src, .proc/is_bonding), stayStill = FALSE))
+	if(do_after(src, delay, victim, extra_checks = CALLBACK(src, .proc/is_bonding), stayStill = FALSE))
 		assume_control()
 
 /mob/living/simple_animal/horror/proc/assume_control()

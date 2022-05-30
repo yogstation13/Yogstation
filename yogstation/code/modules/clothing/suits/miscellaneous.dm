@@ -205,6 +205,22 @@
     icon_state = "fiendhood"
     flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
+/obj/item/clothing/suit/hooded/eldritchcowl
+	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	name = "eldritch cowl"
+	desc = "A tattered heretical cloak from a time long passed."
+	icon_state = "eldritchcowl"
+	item_state = "eldritchcowl"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
+	hoodtype = /obj/item/clothing/head/hooded/eldritchhood
+
+/obj/item/clothing/head/hooded/eldritchhood
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	icon_state = "eldritchhood"
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR|HIDEMASK
+
 /obj/item/clothing/suit/yogs/infsuit
 	name = "russian gangster suit"
 	desc = "So you wanna be a fancy gangster, ay?"

@@ -1,11 +1,16 @@
 /// Runs from COMSIG_LIVING_BIOLOGICAL_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick()
 
-	if(isbrain(owner.current))
-		return
-	if(!owner)
+	if(!owner && !owner.current)
 		INVOKE_ASYNC(src, .proc/HandleDeath)
 		return
+
+	if(istype(owner.current, /mob/living/simple_animal/hostile/bloodsucker))
+		return
+
+	if(isbrain(owner.current))
+		return
+
 	// Deduct Blood
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		INVOKE_ASYNC(src, .proc/AddBloodVolume, passive_blood_drain) // -.1 currently
@@ -387,7 +392,10 @@
 	var/mob/living/carbon/human/bloodsucker = owner.current
 	owner.current.grab_ghost()
 	to_chat(owner.current, span_warning("You have recovered from Torpor."))
-	bloodsucker.physiology.brute_mod = initial(bloodsucker.physiology.brute_mod)
+	if(my_clan == CLAN_LASOMBRA)
+		bloodsucker.physiology.brute_mod *= 0
+	else
+		bloodsucker.physiology.brute_mod = initial(bloodsucker.physiology.brute_mod)
 	REMOVE_TRAIT(owner.current, TRAIT_RESISTLOWPRESSURE, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(owner.current, TRAIT_DEATHCOMA, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(owner.current, TRAIT_FAKEDEATH, BLOODSUCKER_TRAIT)

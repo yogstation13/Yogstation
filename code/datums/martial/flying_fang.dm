@@ -224,7 +224,7 @@
 			L.Immobilize(6 SECONDS)
 			A.SetKnockdown(0)
 			A.SetImmobilized(10 SECONDS) //due to our stun resistance this is actually about 6.6 seconds
-			sleep(2)//Runtime prevention (infinite bump() calls on hulks)
+			sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
 			step_towards(src,L)
 		else if(hit_atom.density && !hit_atom.CanPass(A))
 			A.visible_message("<span class ='danger'>[A] smashes into [hit_atom]!</span>", "<span class ='danger'>You smash into [hit_atom]!</span>")

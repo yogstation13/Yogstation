@@ -454,7 +454,7 @@
 	if(!resting)
 		set_resting(TRUE, FALSE)
 	else
-		if(do_after(src, 1 SECONDS, target = src))
+		if(do_after(src, 1 SECONDS, src))
 			set_resting(FALSE, FALSE)
 		else
 			to_chat(src, span_notice("You fail to get up."))
@@ -551,6 +551,7 @@
 		set_suicide(FALSE)
 		stat = UNCONSCIOUS //the mob starts unconscious,
 		blind_eyes(1)
+		losebreath = 0 //losebreath stacks were persisting beyond death, immediately killing again after revival until they ran out natureally from time
 		updatehealth() //then we check if the mob should wake up.
 		update_mobility()
 		update_sight()
@@ -595,6 +596,7 @@
 	hallucination = 0
 	heal_overall_damage(INFINITY, INFINITY, INFINITY, null, TRUE) //heal brute and burn dmg on both organic and robotic limbs, and update health right away.
 	ExtinguishMob()
+	losebreath = 0
 	fire_stacks = 0
 	confused = 0
 	dizziness = 0
@@ -830,12 +832,12 @@
 	if(anchored || (buckled && buckled.anchored))
 		fixed = 1
 	if(on && !(movement_type & FLOATING) && !fixed)
-		animate(src, pixel_y = pixel_y + 2, time = 10, loop = -1)
-		sleep(10)
-		animate(src, pixel_y = pixel_y - 2, time = 10, loop = -1)
+		animate(src, pixel_y = pixel_y + 2, time = 1 SECONDS, loop = -1)
+		sleep(1 SECONDS)
+		animate(src, pixel_y = pixel_y - 2, time = 1 SECONDS, loop = -1)
 		setMovetype(movement_type | FLOATING)
 	else if(((!on || fixed) && (movement_type & FLOATING)))
-		animate(src, pixel_y = get_standard_pixel_y_offset(lying), time = 10)
+		animate(src, pixel_y = get_standard_pixel_y_offset(lying), time = 1 SECONDS)
 		setMovetype(movement_type & ~FLOATING)
 
 // The src mob is trying to strip an item from someone
@@ -912,8 +914,8 @@
 	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
 	var/final_pixel_x = get_standard_pixel_x_offset(lying)
 	var/final_pixel_y = get_standard_pixel_y_offset(lying)
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
-	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 0.2 SECONDS, loop = 6)
+	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 0.2 SECONDS)
 	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
 
 /mob/living/proc/get_temperature(datum/gas_mixture/environment)
@@ -1358,7 +1360,7 @@
 		to_chat(user, span_warning("[src] is buckled to something!"))
 		return FALSE
 	user.visible_message(span_notice("[user] starts trying to scoop up [src]!"))
-	if(!do_after(user, 2 SECONDS, target = src))
+	if(!do_after(user, 2 SECONDS, src))
 		return FALSE
 	mob_pickup(user)
 	return TRUE

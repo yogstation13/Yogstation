@@ -195,7 +195,7 @@
 			to_chat(user, span_warning("You need at least six metal sheets to make good enough weights!"))
 			return
 		to_chat(user, span_notice("You begin to apply [I] to [src]..."))
-		if(do_after(user, 3.5 SECONDS, target = src))
+		if(do_after(user, 3.5 SECONDS, src))
 			if(M.get_amount() < 6 || !M)
 				return
 			var/obj/item/restraints/legcuffs/bola/S = new /obj/item/restraints/legcuffs/bola

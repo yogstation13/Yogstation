@@ -77,6 +77,7 @@
 	var/obj/item/bodypart/affecting = get_bodypart(check_zone(user.zone_selected))
 
 	if(user.a_intent != INTENT_HARM && I.tool_behaviour == TOOL_WELDER && affecting?.status == BODYPART_ROBOTIC)
+		user.changeNext_move(CLICK_CD_MELEE)
 		if(I.use_tool(src, user, 0, volume=50, amount=1))
 			if(user == src)
 				user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.name]."),
@@ -316,7 +317,7 @@
 			buckle_cd = O.breakouttime
 		visible_message(span_warning("[src] attempts to unbuckle [p_them()]self!"), \
 					span_notice("You attempt to unbuckle yourself... (This will take around [round(buckle_cd/10,1)] second\s, and you need to stay still.)"))
-		if(do_after(src, buckle_cd, 0, target = src))
+		if(do_after(src, buckle_cd, src, FALSE))
 			if(!buckled)
 				return
 			buckled.user_unbuckle_mob(src,src)
@@ -328,11 +329,11 @@
 
 /mob/living/carbon/resist_fire()
 	fire_stacks -= 5
-	Paralyze(60, TRUE, TRUE)
+	Paralyze(6 SECONDS, TRUE, TRUE)
 	spin(32,2)
 	visible_message(span_danger("[src] rolls on the floor, trying to put [p_them()]self out!"), \
 		span_notice("You stop, drop, and roll!"))
-	sleep(30)
+	sleep(3 SECONDS)
 	if(fire_stacks <= 0)
 		visible_message(span_danger("[src] has successfully extinguished [p_them()]self!"), \
 			span_notice("You extinguish yourself."))
@@ -367,7 +368,7 @@
 	if(!cuff_break)
 		visible_message(span_warning("[src] attempts to remove [I]!"))
 		to_chat(src, span_notice("You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
-		if(do_after(src, breakouttime, 0, target = src))
+		if(do_after(src, breakouttime, src, FALSE))
 			clear_cuffs(I, cuff_break)
 		else
 			to_chat(src, span_warning("You fail to remove [I]!"))
@@ -376,7 +377,7 @@
 		breakouttime = 50
 		visible_message(span_warning("[src] is trying to break [I]!"))
 		to_chat(src, span_notice("You attempt to break [I]... (This will take around 5 seconds and you need to stand still.)"))
-		if(do_after(src, breakouttime, 0, target = src))
+		if(do_after(src, breakouttime, src, FALSE))
 			clear_cuffs(I, cuff_break)
 		else
 			to_chat(src, span_warning("You fail to break [I]!"))

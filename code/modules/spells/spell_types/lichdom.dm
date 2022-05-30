@@ -49,7 +49,7 @@
 
 		playsound(user, 'sound/effects/pope_entry.ogg', 100)
 
-		if(!do_after(M, 5 SECONDS, needhand=FALSE, target=marked_item))
+		if(!do_after(M, 5 SECONDS, marked_item, FALSE))
 			to_chat(M, span_warning("Your soul snaps back to your body as you stop ensouling [marked_item]!"))
 			return
 

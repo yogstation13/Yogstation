@@ -66,7 +66,7 @@
 				if(toner > 0 && !busy && copy)
 					copy(copy)
 					busy = TRUE
-					sleep(15)
+					sleep(1.5 SECONDS)
 					busy = FALSE
 				else
 					break
@@ -76,7 +76,7 @@
 				if(toner >= 5 && !busy && photocopy)  //Was set to = 0, but if there was say 3 toner left and this ran, you would get -2 which would be weird for ink
 					new /obj/item/photo (loc, photocopy.picture.Copy(greytoggle == "Greyscale"? TRUE : FALSE))
 					busy = TRUE
-					sleep(15)
+					sleep(1.5 SECONDS)
 					busy = FALSE
 				else
 					break
@@ -86,7 +86,7 @@
 					new /obj/item/documents/photocopy(loc, doccopy)
 					toner-= 6 // the sprite shows 6 papers, yes I checked
 					busy = TRUE
-					sleep(15)
+					sleep(1.5 SECONDS)
 					busy = FALSE
 				else
 					break
@@ -109,7 +109,7 @@
 					else
 						break
 					busy = TRUE
-					sleep(15)
+					sleep(1.5 SECONDS)
 					var/obj/item/photo/p = new /obj/item/photo (loc)
 					var/datum/picture/toEmbed = new(name = "[ass]'s Ass", desc = "You see [ass]'s ass on the photo.", image = temp_img)
 					p.pixel_x = rand(-10, 10)
@@ -157,7 +157,7 @@
 			photo.pixel_y = rand(-10, 10)
 			toner -= 5	 //AI prints color pictures only, thus they can do it more efficiently
 			busy = TRUE
-			sleep(15)
+			sleep(1.5 SECONDS)
 			busy = FALSE
 		updateUsrDialog()
 	else if(href_list["colortoggle"])
@@ -248,7 +248,7 @@
 	else
 		user.visible_message(span_warning("[user] starts putting [target] onto the photocopier!"), span_notice("You start putting [target] onto the photocopier..."))
 
-	if(do_after(user, 2 SECONDS, target = src))
+	if(do_after(user, 2 SECONDS, src))
 		if(!target || QDELETED(target) || QDELETED(src) || !Adjacent(target)) //check if the photocopier/target still exists.
 			return
 

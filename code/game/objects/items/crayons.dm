@@ -350,7 +350,7 @@
 	if(gang) //yogs
 		instant = FALSE // yogs -- gang spraying must not be instant, balance reasons
 	if(!instant)
-		if(!do_after(user, 5 SECONDS, target = target))
+		if(!do_after(user, 5 SECONDS, target))
 			return
 
 	if(length(text_buffer))
