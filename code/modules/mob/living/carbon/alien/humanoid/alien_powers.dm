@@ -313,18 +313,24 @@ Doesn't work on other aliens/AI.*/
 	desc = "Sends a fake message which will beckon an emergency shuttle to the station."
 	action_icon_state = "alien_sneak"
 	var/time_created
+	var/last_time_used
+	var/cooldown = 30 SECONDS
 
 /obj/effect/proc_holder/alien/call_shuttle/Initialize()
 	. = ..()
 	time_created = world.time
 
 /obj/effect/proc_holder/alien/call_shuttle/fire(mob/living/carbon/alien/humanoid/user)
+	if(world.time < last_time_used + cooldown)
+		to_chat(user, "<span class='noticealien'>This ability is on a cooldown!</span>")
+		return
 	if(world.time < time_created + QUEEN_CALL_TIME)
 		to_chat(user, "<span class='noticealien'>You can't call the shuttle just yet!</span>")
 		return
 	if(SSshuttle.canEvac() != TRUE)
 		to_chat(user, "<span class='noticealien'>Something is preventing you from calling the shuttle right now.</span>")
 		return
+	last_time_used = world.time
 	sleep(50)
 	SSshuttle.emergency.request(null, set_coefficient = 1.0)
 
