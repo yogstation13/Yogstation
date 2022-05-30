@@ -1,0 +1,6 @@
+author: "Lovebird-Frungy"
+delete-after: true 
+changes: 
+  - rscdel: "Removed the extra camera in genetics on Yogstation."
+  - bugfix: "Fixes the disposals loop on Yogstation."
+  - bugfix: "Fixes toxin storage apc on Yogstation."
