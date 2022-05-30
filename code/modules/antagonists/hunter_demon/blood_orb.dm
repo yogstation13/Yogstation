@@ -146,3 +146,5 @@
 	if(blood_pool_summary < 0)
 		blood_pool_summary = 0
 
+/obj/item/sinister_orb
+	name = "sinister orb"
