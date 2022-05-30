@@ -78,11 +78,11 @@
 	var/obj/item/twohanded/required/pool/helditem = L.get_active_held_item()
 	if(istype(helditem) && helditem.wielded)
 		bob_tick ++
-		animate(L, time=9.5, pixel_y = (L.pixel_y == bob_height_max) ? bob_height_min : bob_height_max)
+		animate(L, time=0.95 SECONDS, pixel_y = (L.pixel_y == bob_height_max) ? bob_height_min : bob_height_max)
 		floating = TRUE
 	else
 		if(bob_tick)
-			animate(L, time=5, pixel_y = 0)
+			animate(L, time=0.5 SECONDS, pixel_y = 0)
 			bob_tick = 0
 	if(!floating && is_drowning(L))
 		if(!drowning)

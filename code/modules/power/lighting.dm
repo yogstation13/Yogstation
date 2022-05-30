@@ -626,7 +626,7 @@
 				break
 			on = !on
 			update(0)
-			sleep(rand(5, 15))
+			sleep(rand(0.5, 1.5) SECONDS)
 		on = (status == LIGHT_OK) && !forced_off
 		update(0)
 	flickering = 0
@@ -772,9 +772,9 @@
 	set waitfor = 0
 	var/turf/T = get_turf(src.loc)
 	break_light_tube()	// break it first to give a warning
-	sleep(2)
+	sleep(0.2 SECONDS)
 	explosion(T, 0, 1, 2, 4)
-	sleep(1)
+	sleep(0.1 SECONDS)
 	qdel(src)
 
 // the light item

@@ -120,7 +120,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	flick("faxreceive", src)
 	playsound(loc, "sound/items/polaroid1.ogg", 50, 1)
 	// give the sprite some time to flick
-	sleep(23)
+	sleep(2.3 SECONDS)
 	if (istype(incoming, /obj/item/paper))
 		copy(incoming)
 	else if (istype(incoming, /obj/item/photo))
@@ -161,7 +161,8 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	switch(destination)
 		if ("Central Command")
 			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
-	sleep(50)
+	sendcooldown = world.time + 1 MINUTES
+	sleep(5 SECONDS)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
 
 /obj/machinery/photocopier/faxmachine/proc/send_adminmessage(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")

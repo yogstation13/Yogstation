@@ -111,10 +111,10 @@
 		to_chat(user, span_notice("You [active ? "deactivate": "activate"] [src]."))
 	active = !active
 	if(active)
-		animate(src, pixel_y = 2, time = 10, loop = -1)
+		animate(src, pixel_y = 2, time = 1 SECONDS, loop = -1)
 		anchored = TRUE
 	else
-		animate(src, pixel_y = 0, time = 10)
+		animate(src, pixel_y = 0, time = 1 SECONDS)
 		anchored = FALSE
 	update_icon()
 

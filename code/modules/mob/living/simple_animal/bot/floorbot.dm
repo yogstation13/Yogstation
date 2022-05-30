@@ -320,7 +320,7 @@
 		icon_state = "[toolbox_color]floorbot-c"
 		visible_message(span_notice("[targetdirection ? "[src] begins installing a bridge plating." : "[src] begins to repair the hole."] "))
 		mode = BOT_REPAIRING
-		sleep(50)
+		sleep(5 SECONDS)
 		if(mode == BOT_REPAIRING && src.loc == target_turf)
 			if(autotile) //Build the floor and include a tile.
 				target_turf.PlaceOnTop(/turf/open/floor/plasteel, flags = CHANGETURF_INHERIT_AIR)
@@ -335,7 +335,7 @@
 			icon_state = "[toolbox_color]floorbot-c"
 			mode = BOT_REPAIRING
 			visible_message(span_notice("[src] begins repairing the floor."))
-			sleep(50)
+			sleep(5 SECONDS)
 			if(mode == BOT_REPAIRING && F && src.loc == F)
 				F.broken = FALSE
 				F.burnt = FALSE
@@ -346,7 +346,7 @@
 			icon_state = "[toolbox_color]floorbot-c"
 			mode = BOT_REPAIRING
 			visible_message(span_notice("[src] begins replacing the floor tiles."))
-			sleep(50)
+			sleep(5 SECONDS)
 			if(mode == BOT_REPAIRING && F && src.loc == F)
 				F.broken = FALSE
 				F.burnt = FALSE

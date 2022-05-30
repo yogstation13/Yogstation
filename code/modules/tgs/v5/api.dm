@@ -83,7 +83,7 @@
 
 /datum/tgs_api/v5/proc/RequireInitialBridgeResponse()
 	while(!version)
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 /datum/tgs_api/v5/OnInitializationComplete()
 	Bridge(DMAPI5_BRIDGE_COMMAND_PRIME)
@@ -91,7 +91,7 @@
 	var/tgs4_secret_sleep_offline_sauce = 29051994
 	var/old_sleep_offline = world.sleep_offline
 	world.sleep_offline = tgs4_secret_sleep_offline_sauce
-	sleep(1)
+	sleep(0.1 SECONDS)
 	if(world.sleep_offline == tgs4_secret_sleep_offline_sauce)	//if not someone changed it
 		world.sleep_offline = old_sleep_offline
 
