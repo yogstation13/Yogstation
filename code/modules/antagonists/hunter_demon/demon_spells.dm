@@ -108,8 +108,16 @@
 
 /obj/effect/proc_holder/spell/recall(recharge = 1, mob/living/user = usr)
 	if(istype(user, /mob/living/simple_animal/hostile/hunter)
-	
-
+		var/mob/living/simple_animal/hostile/hunter/demon = user
+		if(!demon.phased)
+			to_chat(user,span_warning("You can use this ability only while phased!"))
+			revert_cast()
+			return
+		if(demon.orb)
+			demon.ForceMove(get_turf(demon.orb))
+			start_recharge()
+	revert_cast()
+	return
 
 
 
