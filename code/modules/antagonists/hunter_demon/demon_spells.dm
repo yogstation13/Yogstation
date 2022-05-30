@@ -106,7 +106,7 @@
 	action_icon_state = "moneybag"
 	phase_allowed = TRUE
 
-/obj/effect/proc_holder/spell/recall(recharge = 1, mob/living/user = usr)
+/obj/effect/proc_holder/spell/recall/perform(recharge = 1, mob/living/user = usr)
 	if(istype(user, /mob/living/simple_animal/hostile/hunter))
 		var/mob/living/simple_animal/hostile/hunter/demon = user
 		if(!demon.phased)
