@@ -38,7 +38,7 @@
 
 	pda_type = /obj/item/pda/quartermaster
 
-	ears = /obj/item/radio/headset/headset_cargo
+	ears = /obj/item/radio/headset/heads/qm
 	uniform = /obj/item/clothing/under/rank/cargo
 	uniform_skirt = /obj/item/clothing/under/rank/cargo/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
