@@ -157,6 +157,10 @@
 	if(!is_station_level(turfo.z))
 		to_chat(user,span_warning("You can summon the orb only at the station z-level!"))
 		return
+	var/datum/gas_mixture/env = turfo.return_air()
+	if(!env)
+		to_chat(user,span_warning("You can summon the orb only at a room that has air!"))
+		return
 	to_chat(user,span_warning("You begin activating the orb!"))
 	if(do_after(user, 30, target = turfo))
 		to_chat(user,span_warning("You activate the orb!"))
