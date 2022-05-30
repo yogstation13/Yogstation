@@ -114,7 +114,7 @@
 			revert_cast()
 			return
 		if(demon.orb)
-			demon.ForceMove(get_turf(demon.orb))
+			demon.forceMove(get_turf(demon.orb))
 			start_recharge()
 	revert_cast()
 	return
