@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - experiment: "Every additional AI data core adds 1.5 minutes to the AI doomsday timer"
