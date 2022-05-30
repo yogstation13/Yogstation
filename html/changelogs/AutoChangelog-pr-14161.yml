@@ -1,0 +1,6 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "fixed prog bars for TG ported stuff such as regal rats and other things that were supposed to have prog bars"
+  - tweak: "moves target in do_after so it can now be typed without target="
+  - spellcheck: "cleans up unused args in do_after()s and code cleaning"
