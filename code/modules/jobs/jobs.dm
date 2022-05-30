@@ -30,12 +30,12 @@ GLOBAL_LIST_INIT(original_science_positions, list(
 	"Roboticist"))
 
 GLOBAL_LIST_INIT(original_supply_positions, list(
-	"Head of Personnel",
 	"Quartermaster",
 	"Cargo Technician",
 	"Shaft Miner"))
 
 GLOBAL_LIST_INIT(original_civilian_positions, list(
+	"Head of Personnel",
 	"Bartender",
 	"Botanist",
 	"Cook",
@@ -93,12 +93,12 @@ GLOBAL_LIST_INIT(alt_science_positions, list(
 	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer"))
 
 GLOBAL_LIST_INIT(alt_supply_positions, list(
-	"Chief of Staff", "Head of Internal Affairs",
 	"Stock Controller", "Cargo Coordinator", "Shipping Overseer",
 	"Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher",
 	"Lavaland Scout", "Prospector", "Junior Miner", "Major Miner"))
 
 GLOBAL_LIST_INIT(alt_civilian_positions, list(
+	"Chief of Staff", "Head of Internal Affairs",
 	"Barkeep", "Tapster", "Barista", "Mixologist",
 	"Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist",
 	"Chef", "Hash Slinger", "Sous-chef", "Culinary Artist",
