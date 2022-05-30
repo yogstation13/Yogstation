@@ -10,6 +10,7 @@
 	icon_keyboard = "tech_key"
 	var/auth_need = 3
 	var/list/authorized = list()
+	var/last_xeno_hijack
 
 /obj/machinery/computer/emergency_shuttle/attackby(obj/item/I, mob/user,params)
 	if(istype(I, /obj/item/card/id))
@@ -631,8 +632,13 @@
 	. = ..()
 	initiate_docking(SSshuttle.getDock("emergency_home"))
 
+#define XENO_HIJACK_CD 100
+
 /obj/machinery/computer/emergency_shuttle/AltClick(user)
+	if(world.time < last_xeno_hijack + XENO_HIJACK_CD)
+		return
 	if(isliving(user))
+		last_xeno_hijack = world.time
 		xeno_hijack_check(user)
 
 /obj/machinery/computer/emergency_shuttle/proc/xeno_hijack_check(mob/living/user)
