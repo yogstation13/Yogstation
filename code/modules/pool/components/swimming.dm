@@ -53,7 +53,7 @@
 	if(istype(clicked_turf, /turf/open/indestructible/sound/pool))
 		return
 	to_chat(parent, "<span class='notice'>You start to climb out of the pool...</span>")
-	if(do_after(parent, 1 SECONDS, target=clicked_turf))
+	if(do_after(parent, 1 SECONDS, clicked_turf))
 		L.forceMove(clicked_turf)
 		L.visible_message("<span class='notice'>[parent] climbs out of the pool.</span>")
 		RemoveComponent()

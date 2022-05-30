@@ -58,7 +58,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 /obj/effect/rune/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user))
 		SEND_SOUND(user,'sound/items/sheath.ogg')
-		if(do_after(user, 1.5 SECONDS, target = src))
+		if(do_after(user, 1.5 SECONDS, src))
 			to_chat(user, span_notice("You carefully erase the [lowertext(cultist_name)] rune."))
 			qdel(src)
 	else if(istype(I, /obj/item/nullrod))
@@ -550,7 +550,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 /obj/effect/rune/narsie/attackby(obj/I, mob/user, params)	//Since the narsie rune takes a long time to make, add logging to removal.
 	if((istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user)))
 		user.visible_message(span_warning("[user.name] begins erasing [src]..."), span_notice("You begin erasing [src]..."))
-		if(do_after(user, 5 SECONDS, target = src))	//Prevents accidental erasures.
+		if(do_after(user, 5 SECONDS, src))	//Prevents accidental erasures.
 			log_game("Summon Narsie rune erased by [key_name(user)] with [I.name]")
 			message_admins("[ADMIN_LOOKUPFLW(user)] erased a Narsie rune with [I.name]")
 			..()

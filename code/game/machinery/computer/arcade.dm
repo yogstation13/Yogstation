@@ -1153,7 +1153,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	if(!c_user.get_bodypart(BODY_ZONE_L_ARM) && !c_user.get_bodypart(BODY_ZONE_R_ARM))
 		return
 	to_chat(c_user, span_warning("You move your hand towards the machine, and begin to hesitate as a bloodied guillotine emerges from inside of it..."))
-	if(do_after(c_user, 5 SECONDS, target = src))
+	if(do_after(c_user, 5 SECONDS, src))
 		to_chat(c_user, span_userdanger("The guillotine drops on your arm, and the machine sucks it in!"))
 		playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 		var/which_hand = BODY_ZONE_L_ARM

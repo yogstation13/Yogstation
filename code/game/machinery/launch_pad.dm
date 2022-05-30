@@ -245,7 +245,7 @@
 		if(!usr.canUseTopic(src, BE_CLOSE, ismonkey(usr)))
 			return
 		usr.visible_message(span_notice("[usr] starts closing [src]..."), span_notice("You start closing [src]..."))
-		if(do_after(usr, 3 SECONDS, target = usr))
+		if(do_after(usr, 3 SECONDS, usr))
 			usr.put_in_hands(briefcase)
 			moveToNullspace() //hides it from suitcase contents
 			closed = TRUE
@@ -285,7 +285,7 @@
 		return
 	add_fingerprint(user)
 	user.visible_message(span_notice("[user] starts setting down [src]..."), span_notice("You start setting up [pad]..."))
-	if(do_after(user, 3 SECONDS, target = user))
+	if(do_after(user, 3 SECONDS, user))
 		pad.forceMove(get_turf(src))
 		pad.update_indicator()
 		pad.closed = FALSE

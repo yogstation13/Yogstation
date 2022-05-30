@@ -26,7 +26,7 @@
 	"<span class='velvet bold'>[pick("Oknnu. Pda ywlpwej swo hkccaz ej.", "Pda aiancajyu eo kran. Oknnu bkn swopejc ukqn peia.", "We swo knzanaz xu Hws Psk. Whh ckkz jks.")]</span><br>\
 	[span_velvet("You begin transmitting a recall message to Central Command...")]")
 	play_recall_sounds(C)
-	if(!do_after(owner, 8 SECONDS, target = C))
+	if(!do_after(owner, 8 SECONDS, C))
 		in_use = FALSE
 		return
 	if(!C)

@@ -454,7 +454,7 @@
 	if(!resting)
 		set_resting(TRUE, FALSE)
 	else
-		if(do_after(src, 1 SECONDS, target = src))
+		if(do_after(src, 1 SECONDS, src))
 			set_resting(FALSE, FALSE)
 		else
 			to_chat(src, span_notice("You fail to get up."))
@@ -1360,7 +1360,7 @@
 		to_chat(user, span_warning("[src] is buckled to something!"))
 		return FALSE
 	user.visible_message(span_notice("[user] starts trying to scoop up [src]!"))
-	if(!do_after(user, 2 SECONDS, target = src))
+	if(!do_after(user, 2 SECONDS, src))
 		return FALSE
 	mob_pickup(user)
 	return TRUE
