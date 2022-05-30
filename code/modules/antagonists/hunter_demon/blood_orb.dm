@@ -160,5 +160,5 @@
 	to_chat(user,span_warning("You begin activating the orb!"))
 	if(do_after(user, 30, target = turfo))
 		to_chat(user,span_warning("You activate the orb!"))
-		/obj/structure/bloody_orb/morb = new /obj/structure/bloody_orb (turfo)
+		var/obj/structure/bloody_orb/morb = new /obj/structure/bloody_orb (turfo)
 		qdel(src)
