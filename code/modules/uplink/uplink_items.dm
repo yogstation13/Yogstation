@@ -2044,6 +2044,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Chaplain")
 	surplus = 5 //Very low chance to get it in a surplus crate even without being the chaplain
 
+/datum/uplink_item/role_restricted/hunter_demon_kit
+	name = "Demonologist kit"
+	desc = "A kit, containing a blood orb and a ritual dagger. You need to activate "
+	item = /obj/item/his_grace
+	cost = 20
+	restricted_roles = list("Chaplain")
+	surplus = 0
+
 /datum/uplink_item/role_restricted/horror
 	name = "Horror-in-a-box"
 	desc = "When dissecting the head of a dead Nanotrasen scientist, our surgeons noticed an incredibly peculiar creature inside and managed to extract it into safe containment. \
