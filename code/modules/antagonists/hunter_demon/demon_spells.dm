@@ -107,7 +107,7 @@
 	phase_allowed = TRUE
 
 /obj/effect/proc_holder/spell/recall(recharge = 1, mob/living/user = usr)
-	if(istype(user, /mob/living/simple_animal/hostile/hunter)
+	if(istype(user, /mob/living/simple_animal/hostile/hunter))
 		var/mob/living/simple_animal/hostile/hunter/demon = user
 		if(!demon.phased)
 			to_chat(user,span_warning("You can use this ability only while phased!"))
