@@ -1946,7 +1946,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	Insert into an Operating Console to enable the procedure."
 	item = /obj/item/disk/surgery/brainwashing
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist", "Research Director") //yogs
-	player_minimum = 30
+	player_minimum = 28
 	cost = 5
 	manufacturer = /datum/corporation/traitor/cybersun
 
