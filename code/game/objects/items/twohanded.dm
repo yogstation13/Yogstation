@@ -336,7 +336,7 @@
 				user.emote("spin")
 				if (i == 3 && myhead)
 					myhead.drop_limb()
-				sleep(3)
+				sleep(0.3 SECONDS)
 			else
 				user.visible_message(span_suicide("[user] panics and starts choking to death!"))
 				return OXYLOSS
@@ -389,7 +389,7 @@
 		user.setDir(i)
 		if(i == WEST)
 			user.emote("flip")
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 /obj/item/twohanded/dualsaber/proc/impale(mob/living/user)
 	to_chat(user, span_warning("You twirl around a bit before losing your balance and impaling yourself on [src]."))

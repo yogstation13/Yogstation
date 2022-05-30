@@ -110,6 +110,38 @@
 	weather_immunities -= WEATHER_LAVA
 	update_icons()
 
+/mob/living/carbon/alien/humanoid/hunter/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+
+	if(!leaping)
+		return ..()
+
+	pounce_cooldown = world.time + pounce_cooldown_time
+	if(hit_atom)
+		if(isliving(hit_atom))
+			var/mob/living/L = hit_atom
+			var/blocked = FALSE
+			if(ishuman(hit_atom))
+				var/mob/living/carbon/human/H = hit_atom
+				if(H.check_shields(src, 0, "the [name]", attack_type = LEAP_ATTACK))
+					blocked = TRUE
+			if(!blocked)
+				L.visible_message("<span class ='danger'>[src] pounces on [L]!</span>", "<span class ='userdanger'>[src] pounces on you!</span>")
+				L.Paralyze(10 SECONDS)
+				sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
+				step_towards(src,L)
+			else
+				Paralyze(4 SECONDS, 1, 1)
+
+			toggle_leap(0)
+		else if(hit_atom.density && !hit_atom.CanPass(src))
+			visible_message("<span class ='danger'>[src] smashes into [hit_atom]!</span>", "<span class ='alertalien'>[src] smashes into [hit_atom]!</span>")
+			Paralyze(4 SECONDS, 1, 1)
+
+		if(leaping)
+			leaping = FALSE
+			update_icons()
+			update_mobility()
+
 /mob/living/carbon/alien/humanoid/float(on)
 	if(leaping)
 		return

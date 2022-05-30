@@ -18,11 +18,7 @@ It may summon clones charging from all sides, one of these charges being bubbleg
 It can charge at its target, and also heavily damaging anything directly hit in the charge.
 If at half health it will start to charge from all sides with clones.
 
-When Bubblegum dies, it leaves behind a H.E.C.K. mining suit as well as a chest that can contain three things:
- 1. A bottle that, when activated, drives everyone nearby into a frenzy
- 2. A contract that marks for death the chosen target
- 3. A set of knuckles that can trap victims where they stand
- 4. A cursed stomach allowing the user to travel via puddles of vomit
+When Bubblegum dies, it leaves behind a H.E.C.K. mining suit as well as a set of knuckles that can trap victims where they stand
 
 Difficulty: Hard
 
@@ -191,7 +187,7 @@ Difficulty: Hard
 	walk(src, 0)
 	setDir(dir)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc,src)
-	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 3)
+	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 0.3 SECONDS)
 	SLEEP_CHECK_DEATH(delay)
 	revving_charge = FALSE
 	var/movespeed = 0.7
@@ -298,7 +294,7 @@ Difficulty: Hard
 	DA.color = "#FF0000"
 	var/oldtransform = DA.transform
 	DA.transform = matrix()*2
-	animate(DA, alpha = 255, color = initial(DA.color), transform = oldtransform, time = 3)
+	animate(DA, alpha = 255, color = initial(DA.color), transform = oldtransform, time = 0.3 SECONDS)
 	SLEEP_CHECK_DEATH(3)
 	qdel(DA)
 

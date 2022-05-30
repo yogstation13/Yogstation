@@ -510,7 +510,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "jaunt"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
-	var/cooldown = 150
+	var/cooldown = 15 SECONDS
 	var/last_teleport = 0
 
 /datum/action/innate/unstable_teleport/IsAvailable()
@@ -534,7 +534,7 @@
 	do_teleport(H, get_turf(H), 12, asoundin = 'sound/weapons/emitter2.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 	last_teleport = world.time
 	UpdateButtonIcon() //action icon looks unavailable
-	sleep(cooldown + 5)
+	sleep(cooldown + 0.5 SECONDS)
 	UpdateButtonIcon() //action icon looks available again
 
 
@@ -828,7 +828,7 @@
 	new /obj/effect/temp_visual/mummy_animation(get_turf(src))
 	if(cloth_golem.revive(full_heal = TRUE, admin_revive = TRUE))
 		cloth_golem.grab_ghost() //won't pull if it's a suicide
-	sleep(20)
+	sleep(2 SECONDS)
 	cloth_golem.forceMove(get_turf(src))
 	cloth_golem.visible_message(span_danger("[src] rises and reforms into [cloth_golem]!"),span_userdanger("You reform into yourself!"))
 	cloth_golem = null
@@ -1459,8 +1459,89 @@
 	new /obj/effect/temp_visual/wax_animation(get_turf(src))
 	if(wax_golem.revive(full_heal = TRUE, admin_revive = TRUE))
 		wax_golem.grab_ghost() //won't pull if it's a suicide
-	sleep(20)
+	sleep(2 SECONDS)
 	wax_golem.forceMove(get_turf(src))
 	wax_golem.visible_message(span_danger("[src] rises and reforms into [wax_golem]!"),span_userdanger("You reform into yourself!"))
 	wax_golem = null
 	qdel(src)
+
+/datum/species/golem/supermatter
+	name = "Supermatter Golem"
+	id = "supermatter golem"
+	mutanthands = /obj/item/melee/supermatter_sword/hand
+	inherent_traits = list(TRAIT_NOHARDCRIT,TRAIT_NOSOFTCRIT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
+	changesource_flags = MIRROR_BADMIN 
+	random_eligible = FALSE // Hell no
+	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical objects that interact with you. However, you take half more brute damage, three more burn damage and explode on death."
+	attack_verb = "dusting punch"
+	attack_sound = 'sound/effects/supermatter.ogg'
+	fixed_mut_color = "ff0"
+	brutemod = 1.5
+	burnmod = 3
+	var/burnheal = 1
+	var/bruteheal = 0.5
+	var/randexplode = FALSE
+
+/datum/species/golem/supermatter/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
+	..()
+	var/obj/item/I
+	I = AM
+	if(I)
+		H.adjustFireLoss(2)
+		playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
+		H.visible_message(span_danger("[I] knocks into [H], and then turns into dust in a flash of light!"))
+		qdel(I)
+	
+
+/datum/species/golem/supermatter/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+	..()
+	H.visible_message(span_danger("[M] puches [H], but then turns into dust in a brilliant flash of light!"))
+	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
+	H.dust()
+
+/datum/species/golem/supermatter/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+	..()
+	H.visible_message(span_danger("[user] attacks [H] with [I], and then [I] turns into dust in a flash of light!"))
+	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
+	qdel(I)
+	
+
+/datum/species/golem/supermatter/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	..()
+	if(!istype(P, /obj/item/projectile/ion/) && !istype(P, /obj/item/ammo_casing/energy/laser/) && !istype(P, /obj/item/projectile/magic))
+		H.visible_message(span_danger("[P] melts on collision with [H]!"))
+		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
+		return BULLET_ACT_FORCE_PIERCE 
+
+/datum/species/golem/supermatter/spec_life(mob/living/carbon/C)
+	. = ..()
+	C.adjustFireLoss(-src.burnheal)
+	C.adjustBruteLoss(-src.bruteheal)
+	if(C.InCritical() && prob(1.5))
+		src.randexplode = TRUE
+		C.visible_message(span_danger("[C]'s body violently explodes!"))
+		explosion(get_turf(C), 1 ,3, 6)
+		qdel(C)
+
+/datum/species/golem/supermatter/spec_death(gibbed, mob/living/carbon/human/H)
+	if(gibbed)
+		return
+	if(src.randexplode) //No double explosions
+		return
+	H.visible_message(span_danger("[H]'s body violently explodes!"))
+	explosion(get_turf(H), 1 ,3, 6)
+	qdel(H)
+
+/obj/item/melee/supermatter_sword/hand
+	name = "supermatter hand"
+	desc = "A hand of a robust supermatter golem."
+	icon = 'icons/obj/wizard.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+	color = "#ffff00"
+
+/obj/item/melee/supermatter_sword/hand/Initialize(mapload,silent,synthetic)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
