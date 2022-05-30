@@ -37,8 +37,8 @@
 /obj/item/clothing/shoes/fishing
 	name = "fishing sandals"
 	desc = "We livin' the life, if we ain't going fishing then don't waste my time."
-	icon_state = "fishing_gloves"
-	item_state = "fishing_gloves"
+	icon_state = "fishing_sandals"
+	item_state = "fishing_sandals"
 	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
 	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
 

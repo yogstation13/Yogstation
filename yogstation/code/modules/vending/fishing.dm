@@ -8,6 +8,10 @@
 	vend_reply = "Go get 'em, tiger!"
 	products = list(/obj/item/reagent_containers/food/snacks/bait/apprentice = 15,
 					/obj/item/reagent_containers/food/snacks/bait/journeyman = 10,
+					/obj/item/clothing/head/fishing = 3,
+					/obj/item/clothing/suit/fishing = 3,
+					/obj/item/clothing/gloves/fishing = 3,
+					/obj/item/clothing/shoes/fishing = 3
 					)
 	contraband = list(/obj/item/reagent_containers/food/snacks/bait/type = 3)
 	premium = list(/obj/item/reagent_containers/food/snacks/bait/master = 5)
