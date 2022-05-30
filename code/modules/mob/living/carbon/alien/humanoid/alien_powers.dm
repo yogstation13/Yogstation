@@ -331,8 +331,11 @@ Doesn't work on other aliens/AI.*/
 		to_chat(user, "<span class='noticealien'>Something is preventing you from calling the shuttle right now.</span>")
 		return
 	last_time_used = world.time
-	sleep(50)
-	SSshuttle.emergency.request(null, set_coefficient = 1.0)
+	addtimer(CALLBACK(src, .proc/callshutle), 50)
+
+/obj/effect/proc_holder/alien/call_shuttle/callshutle()
+	SSshuttle.emergency.request(null, set_coefficient = 1.0)	
+
 
 #undef QUEEN_CALL_TIME
 
