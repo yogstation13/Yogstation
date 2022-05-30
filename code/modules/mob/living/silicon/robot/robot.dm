@@ -813,7 +813,7 @@
 
 /mob/living/silicon/robot/proc/deconstruct()
 	var/turf/T = get_turf(src)
-	if(istype(module, /obj/item/robot_module/janitor) && )
+	if(istype(module, /obj/item/robot_module/janitor))
 		new /obj/vehicle/ridden/janicart(T) // Janiborg deconstructs into a janicart. So brave.
 		new /obj/item/key/janitor(T)
 	else
