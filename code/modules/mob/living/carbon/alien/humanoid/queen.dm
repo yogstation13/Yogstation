@@ -103,12 +103,10 @@
 			SSshuttle.emergency.request(null, set_coefficient=0.5)
 
 /mob/living/carbon/alien/humanoid/royal/queen/death()//yogs start: dead queen doesnt stop shuttle
-	SSshuttle.clearHostileEnvironment(src)
 	QDEL_NULL(queengps)
 	..()
 
 /mob/living/carbon/alien/humanoid/royal/queen/Destroy()
-	SSshuttle.clearHostileEnvironment(src)
 	QDEL_NULL(queengps)
 	..() //yogs end
 
