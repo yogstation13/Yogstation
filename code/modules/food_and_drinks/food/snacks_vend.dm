@@ -158,8 +158,10 @@
 		opened = TRUE
 	else
 		if(!searched)
+			if(INTERACTING_WITH(user, src))
+				return
 			to_chat(user, span_warning("You start searching for the toy..."))
-			if(!do_mob(user, user, 1.5 SECONDS))
+			if(!do_after(user, 1.5 SECONDS, target = src))
 				return
 			if(prob(50))
 				switch(rand(1,2))
@@ -179,3 +181,22 @@
 		to_chat(user, span_warning("[src]'s lid hasn't been opened!"))
 		return FALSE
 	return ..()
+
+/obj/item/reagent_containers/food/snacks/vermin
+	name = "vermin bites"
+	desc = "A small can with a cartoon mouse on the label. A noise that sounds suspiciously like squeaking can be heard coming from inside."
+	icon_state = "verminbites"
+	tastes = list("rats" = 1 , "mouse" = 2, "cheese" = 1)
+	foodtype = MEAT
+	/// What animal does the snack contain?
+	var/mob/living/simple_animal/mouse/contained_animal
+
+/obj/item/reagent_containers/food/snacks/vermin/attack_self(mob/user)
+	. = ..()
+	contained_animal = new /mob/living/simple_animal/mouse(get_turf(src))
+	to_chat(user, span_warning("You pry open the [src]. A [contained_animal.name] falls out from inside!"))
+	qdel(src)
+
+/obj/item/reagent_containers/food/snacks/vermin/attack(mob/living/M, mob/user, def_zone)
+	to_chat(user, span_warning("You need to open [src]' lid first."))
+	return FALSE

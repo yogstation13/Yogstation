@@ -180,7 +180,7 @@
 			to_chat(user, span_warning(" You can't shave this corgi, it doesn't have a fur coat!"))
 			return
 		user.visible_message("[user] starts to shave [src] using \the [O].", span_notice("You start to shave [src] using \the [O]..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			user.visible_message("[user] shaves [src]'s hair using \the [O].")
 			playsound(loc, 'sound/items/welder2.ogg', 20, 1)
 			shaved = TRUE
@@ -285,7 +285,7 @@
 							step_rand(item_to_add)
 						for(var/i in list(1,2,4,8,4,8,4,dir))
 							setDir(i)
-							sleep(1)
+							sleep(0.1 SECONDS)
 						return
 
 					item_to_add.forceMove(src)
@@ -347,7 +347,7 @@
 			step_rand(item_to_add)
 		for(var/i in list(1,2,4,8,4,8,4,dir))
 			setDir(i)
-			sleep(1)
+			sleep(0.1 SECONDS)
 
 	return valid
 
@@ -481,9 +481,9 @@
 			if(movement_target)
 				stop_automated_movement = 1
 				step_to(src,movement_target,1)
-				sleep(3)
+				sleep(0.3 SECONDS)
 				step_to(src,movement_target,1)
-				sleep(3)
+				sleep(0.3 SECONDS)
 				step_to(src,movement_target,1)
 
 				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
@@ -515,7 +515,7 @@
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					setDir(i)
-					sleep(1)
+					sleep(0.1 SECONDS)
 
 /mob/living/simple_animal/pet/dog/corgi/Ian/narsie_act()
 	playsound(src, 'sound/magic/demon_dies.ogg', 75, TRUE)
@@ -676,7 +676,7 @@
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					setDir(i)
-					sleep(1)
+					sleep(0.1 SECONDS)
 
 /mob/living/simple_animal/pet/dog/pug/Life()
 	..()
@@ -687,7 +687,7 @@
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					setDir(i)
-					sleep(1)
+					sleep(0.1 SECONDS)
 
 /mob/living/simple_animal/pet/dog/attack_hand(mob/living/carbon/human/M)
 	. = ..()

@@ -375,6 +375,30 @@
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/depleteduraniumslug
+	name = "Depleted Uranium Slug Shell"
+	result = /obj/item/ammo_casing/shotgun/uraniumpenetrator
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/obj/item/stack/sheet/mineral/uranium = 3,
+				/obj/item/stack/rods = 2,
+				/datum/reagent/thermite = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/cryoshot
+	name = "Cryoshot Shell"
+	result = /obj/item/ammo_casing/shotgun/cryoshot
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/datum/reagent/medicine/c2/rhigoxane = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
 	result = /obj/item/gun/ballistic/shotgun/doublebarrel/improvised

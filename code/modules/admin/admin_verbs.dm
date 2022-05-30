@@ -786,7 +786,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	log_admin("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
 	message_admins("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
 
-	sleep(20)
+	sleep(2 SECONDS)
 
 	if(!dump_memory_profile("data/logs/memory/[fname]"))
 		to_chat(usr, span_warning("Dumping memory failed at dll call."))

@@ -8,7 +8,7 @@
 	description = "NT default research technologies."
 	// Default research tech, prevents bricking
 	design_ids = list("basic_matter_bin", "basic_cell", "basic_scanning", "basic_capacitor", "basic_micro_laser", "micro_mani", "desttagger", "handlabel", "packagewrap",
-	"destructive_analyzer", "circuit_imprinter", "experimentor", "rdconsole", "design_disk", "tech_disk", "rdserver", "rdservercontrol", "mechfab", "paystand", "ticket_machine", "ticket_remote",
+	"destructive_analyzer", "circuit_imprinter", "rack_creator", "experimentor", "rdconsole", "design_disk", "tech_disk", "rdserver", "rdservercontrol", "mechfab", "paystand", "ticket_machine", "ticket_remote",
 	"space_heater", "beaker", "large_beaker", "bucket", "fork", "tray","plate", "bowl", "mixing_bowl", "drinking_glass", "shot_glass", "shaker", "xlarge_beaker", "sec_rshot", "sec_beanbag_slug", "sec_bshot", "sec_slug", "sec_Islug", "sec_Brslug", "sec_dart", "sec_38",
 	"rglass","plasteel","plastitanium","plasmaglass","plasmareinforcedglass","titaniumglass","plastitaniumglass","wallframe/flasher", "rsf", "oven_tray")
 
@@ -377,7 +377,7 @@
 	display_name = "Artificial Intelligence"
 	description = "AI unit research."
 	prereq_ids = list("robotics", "posibrain")
-	design_ids = list("expansion_card_holder", "ai_data_core", "ai_core_display", "ai_control", "ai_server_overview", "ai_resource_distribution", "ai_memory_1", "ai_cpu_1", "aifixer", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
+	design_ids = list("server_cabinet", "ai_data_core", "ai_core_display", "ai_server_overview", "ram1", "basic_ai_cpu", "ai_resource_distribution", "aifixer", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -1125,6 +1125,117 @@
 		if(!UI.item || !UI.illegal_tech)
 			continue
 		boost_item_paths |= UI.item	//allows deconning to unlock.
+
+
+////////////////////////AI Hardware////////////////////////
+/datum/techweb_node/ai_cpu_advanced
+	id = "ai_cpu_advanced"
+	display_name = "Advanced Neural Processing"
+	description = "Using breakthroughs in high-efficiency fabrication it should be possible to drastically increase the speed of Neural Processing Units, at the cost of increased power consumption."
+	design_ids = list("advanced_ai_cpu")
+	prereq_ids = list("high_efficiency", "ai")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 3000)
+
+/datum/techweb_node/ai_cpu_experimental
+	id = "ai_cpu_experimental"
+	display_name = "Experimental Neural Processing"
+	description = "Previously discarded NPUs could be repurposed with minor tweaks. This comes at the expense of increased powerconsumption, but enhanced overclocking capabilities."
+	design_ids = list("experimental_ai_cpu")
+	prereq_ids = list("ai_cpu_advanced")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 5000)
+
+/datum/techweb_node/ai_cpu_bluespace
+	id = "ai_cpu_bluespace"
+	display_name = "Bluespace Neural Processing"
+	description = "Breakthroughts in bluespace allows the fabrication of ultra fast NPUs. This however comes at the expense of greatly higher power consumption."
+	design_ids = list("bluespace_ai_cpu")
+	prereq_ids = list("ai_cpu_advanced", "practical_bluespace")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 10000)
+
+/datum/techweb_node/ai_ram_high_cap
+	id = "ai_ram_high_cap"
+	display_name = "High Capacity Memory Sticks"
+	description = "Further advances in memory production should allow higher density sticks."
+	design_ids = list("ram2")
+	prereq_ids = list("high_efficiency", "ai")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 3000)
+
+/datum/techweb_node/ai_ram_hyper
+	id = "ai_ram_hyper"
+	display_name = "Hyper Capacity Memory Sticks"
+	description = "Further refinement of memory technology allows previously unimaginable data-density."
+	design_ids = list("ram3")
+	prereq_ids = list("ai_ram_high_cap")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 5000)
+
+/datum/techweb_node/ai_ram_bluespace
+	id = "ai_ram_bluespace"
+	display_name = "Bluespace Memory Sticks"
+	description = "Breakthroughs in bluespace technology allows memory chips to store data in special bluespace pockets. Greatly improves data density at the cost of higher fabrication costs."
+	design_ids = list("ram4")
+	prereq_ids = list("ai_ram_hyper", "practical_bluespace")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 7500)
+
+
+
+/datum/techweb_node/ai_cpu_1
+	id = "ai_cpu_2"
+	display_name = "Improved CPU Sockets"
+	description = "Refinements in general data theory should allow the mounting of an extra CPU core in each AI server rack."
+	prereq_ids = list("ai")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 5000)
+
+/datum/techweb_node/ai_ram_1
+	id = "ai_ram_2"
+	display_name = "Improved Memory Bus"
+	description = "Refinements in general data theory should allow the addition of another memory stick in each AI server rack."
+	prereq_ids = list("ai")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 5000)
+
+/datum/techweb_node/ai_architecture_256
+	id = "ai_arch_256"
+	display_name = "256bit Computing"
+	description = "Experience with creating computer hardware highlights the need for additional CPU cores and memory sticks in each rack. This acts as a gateway to those technologies."
+	prereq_ids = list("ai_ram_2", "ai_cpu_2")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 5000)
+
+/datum/techweb_node/ai_architecture_bluespace
+	id = "ai_arch_bluespace"
+	display_name = "Bluespace Computing"
+	description = "Bluespace advances allow the instant teleportation of data across a server rack. This acts as a gateway to the final tier of computing."
+	prereq_ids = list("ai_arch_256", "practical_bluespace")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 7500)
+
+
+/datum/techweb_node/ai_cpu_2
+	id = "ai_cpu_3"
+	display_name = "Advanced CPU Sockets"
+	description = "256 bit computing allows the introduction of another CPU core."
+	prereq_ids = list("ai_arch_256", "ai_cpu_2")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 5000)
+
+/datum/techweb_node/ai_cpu_3
+	id = "ai_cpu_4"
+	display_name = "Bluespace CPU Sockets"
+	description = "Instant teleportation of data across CPU caches allows the installation of a fourth CPU core."
+	prereq_ids = list("ai_arch_bluespace", "ai_cpu_3")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 10000)
+
+/datum/techweb_node/ai_ram_2
+	id = "ai_ram_3"
+	display_name = "Advanced Memory Bus"
+	description = "256 bit computing allows the introduction of another memory module."
+	prereq_ids = list("ai_arch_256", "ai_ram_2")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 4000)
+
+/datum/techweb_node/ai_ram_3
+	id = "ai_ram_4"
+	display_name = "Bluespace Memory Bus"
+	description = "Bluespace teleportation allows the removal of all bottlenecks. Allows for the introduction of a fourth memory module."
+	prereq_ids = list("ai_ram_3", "ai_arch_bluespace")
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 8000)
+
+
 
 //Helpers for debugging/balancing the techweb in its entirety!
 /proc/total_techweb_exports()

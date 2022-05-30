@@ -110,7 +110,6 @@
 
 /// These handles the application of antag huds/special abilities
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
-	. = ..()
 	RegisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/LifeTick)
 	if((owner.assigned_role == "Clown"))
 		var/mob/living/carbon/H = owner.current
@@ -120,7 +119,6 @@
 				to_chat(owner, "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
-	. = ..()
 	UnregisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE)
 	if(owner.assigned_role == "Clown")
 		var/mob/living/carbon/human/H = owner.current
@@ -164,6 +162,39 @@
 	update_bloodsucker_icons_removed(owner.current)
 	ClearAllPowersAndStats()
 	return ..()
+
+/datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	. = ..()
+	if(istype(new_body, /mob/living/simple_animal/hostile/bloodsucker) || istype(old_body, /mob/living/simple_animal/hostile/bloodsucker))
+		return
+	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+		all_powers.Remove(old_body)
+		all_powers.Grant(new_body)
+	var/old_punchdamagelow
+	var/old_punchdamagehigh
+	if(ishuman(old_body))
+		var/mob/living/carbon/human/old_user = old_body
+		var/datum/species/old_species = old_user.dna.species
+		old_species.species_traits -= DRINKSBLOOD
+		//Keep track of what they were
+		old_punchdamagelow = old_species.punchdamagelow
+		old_punchdamagehigh = old_species.punchdamagehigh
+		//Then reset them
+		old_species.punchdamagelow = initial(old_species.punchdamagelow)
+		old_species.punchdamagehigh = initial(old_species.punchdamagehigh)
+	if(ishuman(new_body))
+		var/mob/living/carbon/human/new_user = new_body
+		var/datum/species/new_species = new_user.dna.species
+		new_species.species_traits += DRINKSBLOOD
+		//Give old punch damage values
+		new_species.punchdamagelow = old_punchdamagelow
+		new_species.punchdamagehigh = old_punchdamagehigh
+
+	//Give Bloodsucker Traits
+	for(var/all_traits in bloodsucker_traits)
+		REMOVE_TRAIT(old_body, all_traits, BLOODSUCKER_TRAIT)
+		ADD_TRAIT(new_body, all_traits, BLOODSUCKER_TRAIT)
+
 
 /datum/antagonist/bloodsucker/greet()
 	. = ..()
@@ -717,7 +748,7 @@
  *	Also deals with Vassalization status.
  */
 
-/datum/mind/proc/can_make_bloodsucker(datum/mind/convertee, datum/mind/converter)
+/datum/mind/proc/prepare_bloodsucker(datum/mind/convertee, datum/mind/converter)
 	// Species Must have a HEART (Sorry Plasmamen)
 	var/mob/living/carbon/human/user = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
@@ -730,8 +761,9 @@
 	return TRUE
 
 /datum/mind/proc/make_bloodsucker(datum/mind/bloodsucker)
-	if(!can_make_bloodsucker(bloodsucker))
-		return FALSE
+	var/mob/living/carbon/human/user = bloodsucker.current
+	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
+		prepare_bloodsucker(bloodsucker)
 	add_antag_datum(/datum/antagonist/bloodsucker)
 	return TRUE
 

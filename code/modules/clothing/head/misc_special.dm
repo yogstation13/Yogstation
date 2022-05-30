@@ -349,3 +349,15 @@
 	icon_state = "cowboy"
 	item_state = "cowboy"
 
+/obj/item/clothing/head/peacekeeperberet
+	name = "Peacekeeper Beret"
+	desc = "A relic from the past. Its effectiveness as a stylish hat was never debated."
+	icon_state = "unberet"
+	item_state = "unberet"
+
+/obj/item/clothing/head/halo
+	name = "Transdimensional halo"
+	desc = "An aetherial halo that magically hovers above the head."
+	icon_state = "halo"
+	item_state = "halo"
+	layer = EARS_LAYER

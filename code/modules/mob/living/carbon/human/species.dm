@@ -1201,7 +1201,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(!I.equip_delay_self || bypass_equip_delay_self)
 		return TRUE
 	H.visible_message(span_notice("[H] start putting on [I]..."), span_notice("You start putting on [I]..."))
-	return do_after(H, I.equip_delay_self, target = H)
+	return do_after(H, I.equip_delay_self, H)
 
 /datum/species/proc/before_equip_job(datum/job/J, mob/living/carbon/human/H)
 	return
@@ -1219,7 +1219,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/check_species_weakness(obj/item, mob/living/attacker)
 	return 0 //This is not a boolean, it's the multiplier for the damage that the user takes from the item.It is added onto the check_weakness value of the mob, and then the force of the item is multiplied by this value
 
-////////
+	////////
 	//LIFE//
 	////////
 
@@ -1420,7 +1420,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			log_combat(user, target, "shaken")
 		return 1
 	else
-		var/we_breathe = !HAS_TRAIT(user, TRAIT_NOBREATH)
+		var/we_breathe = !HAS_TRAIT_FROM(user, TRAIT_NOBREATH, SPECIES_TRAIT)
 		var/we_lung = user.getorganslot(ORGAN_SLOT_LUNGS)
 
 		if(we_breathe && we_lung)

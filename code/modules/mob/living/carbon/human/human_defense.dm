@@ -169,21 +169,6 @@
 		hitpush = FALSE
 		skipcatch = TRUE
 		blocked = TRUE
-	else if(I)
-		if(((throwingdatum ? throwingdatum.speed : I.throw_speed) >= EMBED_THROWSPEED_THRESHOLD) || I.embedding.embedded_ignore_throwspeed_threshold)
-			if(can_embed(I))
-				if(prob(I.embedding.embed_chance) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
-					throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
-					var/obj/item/bodypart/L = pick(bodyparts)
-					L.embedded_objects |= I
-					I.add_mob_blood(src)//it embedded itself in you, of course it's bloody!
-					I.forceMove(src)
-					L.receive_damage(I.w_class*I.embedding.embedded_impact_pain_multiplier, wound_bonus=-30, sharpness = TRUE)
-					visible_message(span_danger("[I] embeds itself in [src]'s [L.name]!"),span_userdanger("[I] embeds itself in your [L.name]!"))
-					SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "embedded", /datum/mood_event/embedded)
-					hitpush = FALSE
-					skipcatch = TRUE //can't catch the now embedded item
-
 	return ..()
 
 /mob/living/carbon/human/grippedby(mob/living/user, instant = FALSE)
@@ -390,8 +375,7 @@
 	if(M.occupant.a_intent == INTENT_HARM)
 		M.do_attack_animation(src)
 		if(M.damtype == BRUTE)
-			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
-			src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
+			step_away(src,M,15)
 		var/obj/item/bodypart/temp = get_bodypart(pick(BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_CHEST, BODY_ZONE_HEAD))
 		if(temp)
 			var/update = 0
@@ -400,6 +384,8 @@
 				if(BRUTE)
 					if(M.force > 20)
 						Knockdown(1.5 SECONDS)//the victim could get up before getting hit again
+						var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
+						src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 					update |= temp.receive_damage(dmg, 0)
 					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 				if(BURN)
@@ -722,7 +708,7 @@
 	if(src == M)
 		if(has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 			to_chat(src, span_notice("You attempt to remove the durathread strand from around your neck."))
-			if(do_after(src, 3.5 SECONDS, null, src))
+			if(do_after(src, 3.5 SECONDS, src, FALSE))
 				to_chat(src, span_notice("You succesfuly remove the durathread strand."))
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return

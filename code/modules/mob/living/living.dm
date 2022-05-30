@@ -454,7 +454,7 @@
 	if(!resting)
 		set_resting(TRUE, FALSE)
 	else
-		if(do_after(src, 1 SECONDS, target = src))
+		if(do_after(src, 1 SECONDS, src))
 			set_resting(FALSE, FALSE)
 		else
 			to_chat(src, span_notice("You fail to get up."))
@@ -504,34 +504,42 @@
 	update_health_hud()
 
 /mob/living/update_health_hud()
-	if(hud_used?.healths)
-		var/severity = 0
-		var/healthpercent = (health/maxHealth) * 100
+	var/severity = 0
+	var/healthpercent = (health/maxHealth) * 100
+	if(hud_used?.healthdoll) //to really put you in the boots of a simplemob
+		var/obj/screen/healthdoll/living/livingdoll = hud_used.healthdoll
 		switch(healthpercent)
 			if(100 to INFINITY)
-				hud_used.healths.icon_state = "health0"
+				livingdoll.icon_state = "living0"
 			if(80 to 100)
-				hud_used.healths.icon_state = "health1"
+				livingdoll.icon_state = "living1"
 				severity = 1
 			if(60 to 80)
-				hud_used.healths.icon_state = "health2"
+				livingdoll.icon_state = "living2"
 				severity = 2
 			if(40 to 60)
-				hud_used.healths.icon_state = "health3"
+				livingdoll.icon_state = "living3"
 				severity = 3
 			if(20 to 40)
-				hud_used.healths.icon_state = "health4"
+				livingdoll.icon_state = "living4"
 				severity = 4
 			if(1 to 20)
-				hud_used.healths.icon_state = "health5"
+				livingdoll.icon_state = "living5"
 				severity = 5
 			else
-				hud_used.healths.icon_state = "health7"
+				livingdoll.icon_state = "living6"
 				severity = 6
-		if(severity > 0)
-			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
-		else
-			clear_fullscreen("brute")
+		if(!livingdoll.filtered)
+			livingdoll.filtered = TRUE
+			var/icon/mob_mask = icon(icon, icon_state)
+			if(mob_mask.Height() > world.icon_size || mob_mask.Width() > world.icon_size)
+				mob_mask = icon('icons/mob/screen_gen.dmi', "megasprite") //swap to something that fits if they wont
+			UNLINT(livingdoll.filters += filter(type="alpha", icon = mob_mask))
+			livingdoll.filters += filter(type="drop_shadow", size = -1)
+	if(severity > 0)
+		overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
+	else
+		clear_fullscreen("brute")
 
 //proc used to ressuscitate a mob
 /mob/living/proc/revive(full_heal = 0, admin_revive = 0)
@@ -543,6 +551,7 @@
 		set_suicide(FALSE)
 		stat = UNCONSCIOUS //the mob starts unconscious,
 		blind_eyes(1)
+		losebreath = 0 //losebreath stacks were persisting beyond death, immediately killing again after revival until they ran out natureally from time
 		updatehealth() //then we check if the mob should wake up.
 		update_mobility()
 		update_sight()
@@ -587,6 +596,7 @@
 	hallucination = 0
 	heal_overall_damage(INFINITY, INFINITY, INFINITY, null, TRUE) //heal brute and burn dmg on both organic and robotic limbs, and update health right away.
 	ExtinguishMob()
+	losebreath = 0
 	fire_stacks = 0
 	confused = 0
 	dizziness = 0
@@ -822,12 +832,12 @@
 	if(anchored || (buckled && buckled.anchored))
 		fixed = 1
 	if(on && !(movement_type & FLOATING) && !fixed)
-		animate(src, pixel_y = pixel_y + 2, time = 10, loop = -1)
-		sleep(10)
-		animate(src, pixel_y = pixel_y - 2, time = 10, loop = -1)
+		animate(src, pixel_y = pixel_y + 2, time = 1 SECONDS, loop = -1)
+		sleep(1 SECONDS)
+		animate(src, pixel_y = pixel_y - 2, time = 1 SECONDS, loop = -1)
 		setMovetype(movement_type | FLOATING)
 	else if(((!on || fixed) && (movement_type & FLOATING)))
-		animate(src, pixel_y = get_standard_pixel_y_offset(lying), time = 10)
+		animate(src, pixel_y = get_standard_pixel_y_offset(lying), time = 1 SECONDS)
 		setMovetype(movement_type & ~FLOATING)
 
 // The src mob is trying to strip an item from someone
@@ -904,8 +914,8 @@
 	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
 	var/final_pixel_x = get_standard_pixel_x_offset(lying)
 	var/final_pixel_y = get_standard_pixel_y_offset(lying)
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
-	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 0.2 SECONDS, loop = 6)
+	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 0.2 SECONDS)
 	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
 
 /mob/living/proc/get_temperature(datum/gas_mixture/environment)
@@ -1350,7 +1360,7 @@
 		to_chat(user, span_warning("[src] is buckled to something!"))
 		return FALSE
 	user.visible_message(span_notice("[user] starts trying to scoop up [src]!"))
-	if(!do_after(user, 2 SECONDS, target = src))
+	if(!do_after(user, 2 SECONDS, src))
 		return FALSE
 	mob_pickup(user)
 	return TRUE

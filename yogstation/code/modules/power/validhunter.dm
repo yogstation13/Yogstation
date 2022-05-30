@@ -67,7 +67,7 @@
 
 		user.visible_message(span_danger("[user] starts to put [L] into the engine!"))
 		add_fingerprint(user)
-		if(do_after(user, gibtime, target = src))
+		if(do_after(user, gibtime, src))
 			if(L && user.pulling == L && !L.buckled && !L.has_buckled_mobs())
 				user.visible_message(span_danger("[user] stuffs [L] into the engine!"))
 				process_mob(L, user)
@@ -81,7 +81,7 @@
 	visible_message(span_italics("You hear a loud squelchy grinding sound."))
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, 1)
 	var/offset = prob(50) ? -2 : 2
-	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
+	animate(src, pixel_x = pixel_x + offset, time = 0.02 SECONDS, loop = 200) //start shaking
 	
 	var/do_gib = FALSE
 	var/emagged = obj_flags & EMAGGED

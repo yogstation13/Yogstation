@@ -140,13 +140,13 @@
 		user.anchored = TRUE
 		user.Stun(INFINITY)
 
-		animate(user, color = "#00ccee", time = 3)
+		animate(user, color = "#00ccee", time = 0.3 SECONDS)
 		phase_timer_id = addtimer(CALLBACK(src, .proc/phase_2, user, to_turf, phase_in_ds), 3, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/space/chronos/proc/phase_2(mob/living/carbon/human/user, turf/to_turf, phase_in_ds)
 	if(teleporting && activated && user)
-		animate(user, color = list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 1,1,1,0), time = 2)
-		phase_timer_id = addtimer(CALLBACK(src, .proc/phase_3, user, to_turf, phase_in_ds), 2, TIMER_STOPPABLE)
+		animate(user, color = list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 1,1,1,0), time = 0.2 SECONDS)
+		phase_timer_id = addtimer(CALLBACK(src, .proc/phase_3, user, to_turf, phase_in_ds), 0.2 SECONDS, TIMER_STOPPABLE)
 	else
 		finish_chronowalk(user, to_turf)
 
@@ -160,7 +160,7 @@
 
 /obj/item/clothing/suit/space/chronos/proc/phase_4(mob/living/carbon/human/user, turf/to_turf)
 	if(teleporting && activated && user)
-		animate(user, color = "#ffffff", time = 3)
+		animate(user, color = "#ffffff", time = 0.3 SECONDS)
 		phase_timer_id = addtimer(CALLBACK(src, .proc/finish_chronowalk, user, to_turf), 3, TIMER_STOPPABLE)
 	else
 		finish_chronowalk(user, to_turf)

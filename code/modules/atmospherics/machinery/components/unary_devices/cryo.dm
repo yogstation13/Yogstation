@@ -197,7 +197,7 @@
 		src.visible_message(span_warning("[src] is unable to treat [mob_occupant] as they cannot be treated with conventional medicine."))
 		playsound(src,'sound/machines/cryo_warning_ignore.ogg',60,1)
 		on = FALSE
-		sleep(2)// here for timing. Shuts off right at climax of the effect before falloff.
+		sleep(0.2 SECONDS)// here for timing. Shuts off right at climax of the effect before falloff.
 		update_icon()
 		return
 
@@ -301,7 +301,7 @@
 	user.visible_message(span_notice("You see [user] kicking against the glass of [src]!"), \
 		span_notice("You struggle inside [src], kicking the release with your foot... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear a thump from [src]."))
-	if(do_after(user, breakout_time, target = src))
+	if(do_after(user, breakout_time, src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src )
 			return
 		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
@@ -327,7 +327,7 @@
 			close_machine(target)
 	else
 		user.visible_message("<b>[user]</b> starts shoving [target] inside [src].", span_notice("You start shoving [target] inside [src]."))
-		if (do_after(user, 25, target=target))
+		if (do_after(user, 2.5 SECONDS, target))
 			close_machine(target)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
@@ -482,6 +482,8 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
+	if(user == occupant && !issilicon(user))
+		return
 	if(on)
 		on = FALSE
 	else if(!state_open)
@@ -490,6 +492,8 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(user == occupant && !issilicon(user))
 		return
 	if(state_open)
 		close_machine()

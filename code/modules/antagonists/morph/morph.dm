@@ -199,7 +199,7 @@
 	if(isliving(target)) //Eat Corpses to regen health
 		var/mob/living/L = target
 		if(L.stat == DEAD)
-			if(do_after(src, 3 SECONDS, target = L))
+			if(do_after(src, 3 SECONDS, L))
 				if(eat(L))
 					eat_count++
 					corpse_eat_count++
@@ -208,7 +208,7 @@
 	else if(isitem(target)) //Eat items just to be annoying
 		var/obj/item/I = target
 		if(!I.anchored)
-			if(do_after(src, 2 SECONDS, target = I))
+			if(do_after(src, 2 SECONDS, I))
 				if(eat(I))
 					eat_count++
 			return
