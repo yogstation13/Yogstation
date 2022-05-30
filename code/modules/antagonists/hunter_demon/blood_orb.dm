@@ -152,3 +152,7 @@
 	icon_state = "scroll2"
 	desc = "A sinisterly looking red ball."
 
+/obj/item/sinister_orb/attack_self(mob/living/user)
+	var/turf/turfo = get_turf(src)
+	if(!is_station_level(turfo.z))
+		return
