@@ -14,7 +14,7 @@
 /obj/structure/emergency_shield/Initialize()
 	. = ..()
 	setDir(pick(GLOB.cardinals))
-	air_update_turf(1)
+	air_update_turf()
 
 /obj/structure/emergency_shield/Move()
 	var/turf/T = loc

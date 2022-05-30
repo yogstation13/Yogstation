@@ -125,7 +125,6 @@
 // called to vent all gas in holder to a location
 /obj/structure/disposalholder/proc/vent_gas(turf/T)
 	T.assume_air(gas)
-	T.air_update_turf()
 
 /obj/structure/disposalholder/AllowDrop()
 	return TRUE

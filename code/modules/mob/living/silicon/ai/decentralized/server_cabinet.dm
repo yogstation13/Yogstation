@@ -75,7 +75,6 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		if(env.heat_capacity())
 			var/temperature_increase = (total_usage / env.heat_capacity()) * heat_modifier
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
-			T.air_update_turf()
 		
 		valid_ticks++
 		if(!was_valid_holder)

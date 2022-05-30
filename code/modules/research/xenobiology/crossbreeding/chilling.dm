@@ -109,7 +109,6 @@ Chilling extracts:
 		if(istype(G))
 			G.set_moles(GAS_PLASMA, 0)
 			filtered = TRUE
-			T.air_update_turf()
 	if(filtered)
 		user.visible_message(span_notice("Cracks spread throughout [src], and some air is sucked in!"))
 	else

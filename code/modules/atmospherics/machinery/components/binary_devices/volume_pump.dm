@@ -72,7 +72,6 @@
 		if(istype(T))
 			var/datum/gas_mixture/leaked = air1.remove_ratio(VOLUME_PUMP_LEAK_AMOUNT)
 			T.assume_air(leaked)
-			T.air_update_turf()
 
 	var/transfer_ratio = transfer_rate / air1.return_volume()
 	air1.transfer_ratio_to(air2,transfer_ratio)

@@ -53,7 +53,7 @@
 		state = RWINDOW_SECURE
 
 	ini_dir = dir
-	air_update_turf(1)
+	air_update_turf()
 
 	if(fulltile)
 		setDir()
@@ -233,7 +233,7 @@
 
 /obj/structure/window/setAnchored(anchorvalue)
 	..()
-	air_update_turf(TRUE)
+	air_update_turf()
 	update_nearby_icons()
 
 /obj/structure/window/proc/check_state(checked_state)
@@ -309,13 +309,13 @@
 	return TRUE
 
 /obj/structure/window/proc/after_rotation(mob/user,rotation_type)
-	air_update_turf(1)
+	air_update_turf()
 	ini_dir = dir
 	add_fingerprint(user)
 
 /obj/structure/window/Destroy()
 	density = FALSE
-	air_update_turf(1)
+	air_update_turf()
 	update_nearby_icons()
 	return ..()
 

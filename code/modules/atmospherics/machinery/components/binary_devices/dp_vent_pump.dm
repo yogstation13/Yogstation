@@ -76,7 +76,7 @@
 
 				loc.assume_air_moles(air1, transfer_moles)
 
-				air_update_turf()
+				
 
 				var/datum/pipeline/parent1 = parents[1]
 				parent1.update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
@@ -92,7 +92,7 @@
 
 			if(moles_delta > 0)
 				loc.transfer_air(air2, moles_delta)
-				air_update_turf()
+				
 
 				var/datum/pipeline/parent2 = parents[2]
 				parent2.update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED

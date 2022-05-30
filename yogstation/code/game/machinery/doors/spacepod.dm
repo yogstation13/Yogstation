@@ -10,10 +10,10 @@
 
 /obj/structure/spacepoddoor/Initialize()
 	..()
-	air_update_turf(1)
+	air_update_turf()
 
 /obj/structure/spacepoddoor/Destroy()
-	air_update_turf(1)
+	air_update_turf()
 	return ..()
 
 /obj/structure/spacepoddoor/CanAllowThrough(atom/movable/A)

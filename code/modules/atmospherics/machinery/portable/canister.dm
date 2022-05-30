@@ -439,7 +439,6 @@
 	disconnect()
 	var/turf/T = get_turf(src)
 	T.assume_air(air_contents)
-	air_update_turf()
 
 	obj_break()
 	density = FALSE
@@ -473,8 +472,7 @@
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/target_air = holding ? holding.air_contents : T.return_air()
 
-		if(air_contents.release_gas_to(target_air, release_pressure) && !holding)
-			air_update_turf()
+		air_contents.release_gas_to(target_air, release_pressure)
 	update_icon()
 
 

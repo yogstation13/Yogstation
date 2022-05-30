@@ -281,7 +281,7 @@
 //this is here to prevent sleeps from messing with decomp, by closing firedoors instantly
 /obj/machinery/door/firedoor/proc/emergency_pressure_close()
 	density = TRUE
-	air_update_turf(1)
+	air_update_turf()
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)
