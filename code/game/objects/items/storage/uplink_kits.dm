@@ -597,3 +597,11 @@
 /obj/item/storage/box/syndie_kit/bee_grenades/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/grenade/spawnergrenade/buzzkill(src)
+
+/obj/item/storage/box/syndie_kit/hunter_demon_kit
+	name = "demonologist starter kit"
+	desc = "A box with some funny magical items."
+
+/obj/item/storage/box/syndie_kit/hunter_demon_kit/PopulateContents()
+	new /obj/item/sinister_orb(src)
+	new /obj/item/kitchen/knife/ritual(src)
