@@ -641,13 +641,14 @@
 		last_xeno_hijack = world.time
 		xeno_hijack_check(user)
 
+#undef XENO_HIJACK_CD
+
 /obj/machinery/computer/emergency_shuttle/proc/xeno_hijack_check(mob/living/user)
 	if(isalien(user) && user.mind?.has_antag_datum(/datum/antagonist/xeno/queen) && (user in SSshuttle.hostileEnvironments))
 		priority_announce("Corruption detected in \
 						shuttle control protocols. Please contact your \
 						supervisor.", 
 	"SYSTEM ERROR", 'sound/voice/alien_queen_roar.ogg')
-		sleep(50)
 		SSshuttle.clearHostileEnvironment(user)
 		return
 
