@@ -157,3 +157,8 @@
 	if(!is_station_level(turfo.z))
 		to_chat(user,span_warning("You can summon the orb only at the station z-level!"))
 		return
+	to_chat(user,span_warning("You begin activating the orb!"))
+	if(do_after(H, 30, target = src))
+		to_chat(user,span_warning("You activate the orb!"))
+		/obj/structure/bloody_orb/morb = new /obj/structure/bloody_orb (turfo)
+		qdel(src)
