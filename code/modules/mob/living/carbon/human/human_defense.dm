@@ -298,23 +298,23 @@
 				playsound(loc, 'sound/weapons/slash.ogg', 25, 1, -1)
 				visible_message(span_danger("[M] disarmed [src]!"), \
 						span_userdanger("[M] disarmed [src]!"))
-		else if(get_dist(src, M) != 0)
-			playsound(loc, 'sound/weapons/pierce.ogg', 25, TRUE, -1)
-			var/shovetarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
-			Knockdown(0.3 SECONDS)
-			throw_at(shovetarget, 4, 2, M)
-			log_combat(M, src, "shoved")
-			visible_message("<span class='danger'>[M] tackles [src] down!</span>", \
+			else if(get_dist(src, M) != 0)
+				playsound(loc, 'sound/weapons/pierce.ogg', 25, TRUE, -1)
+				var/shovetarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
+				Knockdown(0.3 SECONDS)
+				throw_at(shovetarget, 4, 2, M)
+				log_combat(M, src, "shoved")
+				visible_message("<span class='danger'>[M] tackles [src] down!</span>", \
 							"<span class='userdanger'>[M] shoves you with great force!</span>", "<span class='hear'>You hear aggressive shuffling followed by a loud thud!</span>", null, M)
-			to_chat(M, "<span class='danger'>You shove [src] with great force!</span>")
-		else
-			Paralyze(3 SECONDS)
-			adjustBruteLoss(5)
-			playsound(loc, 'sound/weapons/punch3.ogg', 25, TRUE, -1)
-			visible_message("<span class='danger'>[M] slams [src] into the floor!</span>", \
+				to_chat(M, "<span class='danger'>You shove [src] with great force!</span>")
+			else
+				Paralyze(3 SECONDS)
+				adjustBruteLoss(5)
+				playsound(loc, 'sound/weapons/punch3.ogg', 25, TRUE, -1)
+				visible_message("<span class='danger'>[M] slams [src] into the floor!</span>", \
 							"<span class='userdanger'>[M] slams you into the ground!</span>", "<span class='hear'>You hear something slam loudly onto the floor!</span>", null, M)
-			to_chat(M, "<span class='danger'>You slam [src] into the floor beneath you!</span>")
-			log_combat(M, src, "slammed ")
+				to_chat(M, "<span class='danger'>You slam [src] into the floor beneath you!</span>")
+				log_combat(M, src, "slammed ")
 
 /mob/living/carbon/human/attack_larva(mob/living/carbon/alien/larva/L)
 
