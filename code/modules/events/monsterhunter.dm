@@ -17,7 +17,7 @@
 	weight = 2000
 	min_players = 10
 	earliest_start = 35 MINUTES
-	gamemode_whitelist = list("bloodsucker","traitorsucker","dynamic")
+	gamemode_whitelist = list("bloodsucker","traitorsucker")
 
 /datum/round_event/bloodsucker_hunters
 	fakeable = FALSE
@@ -62,7 +62,7 @@
 	weight = 7
 	min_players = 10
 	earliest_start = 25 MINUTES
-	gamemode_whitelist = list("traitorchan","changeling","heresy","cult","clockwork_cult","dynamic")
+	gamemode_whitelist = list("traitorchan","changeling","heresy","cult","clockwork_cult")
 
 /datum/round_event/monster_hunters
 	fakeable = FALSE
