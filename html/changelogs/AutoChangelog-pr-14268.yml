@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "defibbing someone via uncontrolled shock will now heal them of oxygen and toxin damage before actually trying to revive them"
