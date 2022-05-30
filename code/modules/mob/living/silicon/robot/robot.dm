@@ -813,45 +813,49 @@
 
 /mob/living/silicon/robot/proc/deconstruct()
 	var/turf/T = get_turf(src)
-	if (robot_suit)
-		robot_suit.forceMove(T)
-		robot_suit.l_leg.forceMove(T)
-		robot_suit.l_leg = null
-		robot_suit.r_leg.forceMove(T)
-		robot_suit.r_leg = null
-		new /obj/item/stack/cable_coil(T, robot_suit.chest.wired)
-		robot_suit.chest.forceMove(T)
-		robot_suit.chest.wired = 0
-		robot_suit.chest = null
-		robot_suit.l_arm.forceMove(T)
-		robot_suit.l_arm = null
-		robot_suit.r_arm.forceMove(T)
-		robot_suit.r_arm = null
-		robot_suit.head.forceMove(T)
-		robot_suit.head.flash1.forceMove(T)
-		robot_suit.head.flash1.burn_out()
-		robot_suit.head.flash1 = null
-		robot_suit.head.flash2.forceMove(T)
-		robot_suit.head.flash2.burn_out()
-		robot_suit.head.flash2 = null
-		robot_suit.head = null
-		robot_suit.update_icon()
+	if(istype(module, /obj/item/robot_module/janitor) && )
+		new /obj/vehicle/ridden/janicart(T) // Janiborg deconstructs into a janicart. So brave.
+		new /obj/item/key/janitor(T)
 	else
-		new /obj/item/robot_suit(T)
-		new /obj/item/bodypart/l_leg/robot(T)
-		new /obj/item/bodypart/r_leg/robot(T)
-		new /obj/item/stack/cable_coil(T, 1)
-		new /obj/item/bodypart/chest/robot(T)
-		new /obj/item/bodypart/l_arm/robot(T)
-		new /obj/item/bodypart/r_arm/robot(T)
-		new /obj/item/bodypart/head/robot(T)
-		var/b
-		for(b=0, b!=2, b++)
-			var/obj/item/assembly/flash/handheld/F = new /obj/item/assembly/flash/handheld(T)
-			F.burn_out()
-	if (cell) //Sanity check.
-		cell.forceMove(T)
-		cell = null
+		if (robot_suit)
+			robot_suit.forceMove(T)
+			robot_suit.l_leg.forceMove(T)
+			robot_suit.l_leg = null
+			robot_suit.r_leg.forceMove(T)
+			robot_suit.r_leg = null
+			new /obj/item/stack/cable_coil(T, robot_suit.chest.wired)
+			robot_suit.chest.forceMove(T)
+			robot_suit.chest.wired = 0
+			robot_suit.chest = null
+			robot_suit.l_arm.forceMove(T)
+			robot_suit.l_arm = null
+			robot_suit.r_arm.forceMove(T)
+			robot_suit.r_arm = null
+			robot_suit.head.forceMove(T)
+			robot_suit.head.flash1.forceMove(T)
+			robot_suit.head.flash1.burn_out()
+			robot_suit.head.flash1 = null
+			robot_suit.head.flash2.forceMove(T)
+			robot_suit.head.flash2.burn_out()
+			robot_suit.head.flash2 = null
+			robot_suit.head = null
+			robot_suit.update_icon()
+		else
+			new /obj/item/robot_suit(T)
+			new /obj/item/bodypart/l_leg/robot(T)
+			new /obj/item/bodypart/r_leg/robot(T)
+			new /obj/item/stack/cable_coil(T, 1)
+			new /obj/item/bodypart/chest/robot(T)
+			new /obj/item/bodypart/l_arm/robot(T)
+			new /obj/item/bodypart/r_arm/robot(T)
+			new /obj/item/bodypart/head/robot(T)
+			var/b
+			for(b=0, b!=2, b++)
+				var/obj/item/assembly/flash/handheld/F = new /obj/item/assembly/flash/handheld(T)
+				F.burn_out()
+		if (cell) //Sanity check.
+			cell.forceMove(T)
+			cell = null
 	qdel(src)
 
 /mob/living/silicon/robot/modules
