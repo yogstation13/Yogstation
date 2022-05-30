@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(air)
 
 
 	var/list/currentrun = list()
-	var/currentpart = SSAIR_REBUILD_PIPENETS
+	var/currentpart = SSAIR_FINALIZE_TURFS
 
 	var/map_loading = TRUE
 
@@ -135,6 +135,16 @@ SUBSYSTEM_DEF(air)
 
 	var/timer = TICK_USAGE_REAL
 
+	// This literally just waits for the turf processing thread to finish, doesn't do anything else.
+	// this is necessary cause the next step after this interacts with the air--we get consistency
+	// issues if we don't wait for it, disappearing gases etc.
+	if(currentpart == SSAIR_FINALIZE_TURFS)
+		finish_turf_processing(resumed)
+		if(state != SS_RUNNING)
+			return
+		resumed = 0
+		currentpart = SSAIR_REBUILD_PIPENETS
+
 	if(currentpart == SSAIR_REBUILD_PIPENETS)
 		timer = TICK_USAGE_REAL
 		var/list/pipenet_rebuilds = pipenets_needing_rebuilt
@@ -173,16 +183,6 @@ SUBSYSTEM_DEF(air)
 		timer = TICK_USAGE_REAL
 		process_high_pressure_delta(resumed)
 		cost_highpressure = MC_AVERAGE(cost_highpressure, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-		if(state != SS_RUNNING)
-			return
-		resumed = 0
-		currentpart = SSAIR_FINALIZE_TURFS
-
-	// This literally just waits for the turf processing thread to finish, doesn't do anything else.
-	// this is necessary cause the next step after this interacts with the air--we get consistency
-	// issues if we don't wait for it, disappearing gases etc.
-	if(currentpart == SSAIR_FINALIZE_TURFS)
-		finish_turf_processing(resumed)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
@@ -227,7 +227,7 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
-	currentpart = SSAIR_REBUILD_PIPENETS
+	currentpart = SSAIR_FINALIZE_TURFS
 
 /datum/controller/subsystem/air/proc/process_pipenets(resumed = FALSE)
 	if (!resumed)
