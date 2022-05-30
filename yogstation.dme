@@ -2428,6 +2428,7 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\management\ai_server_overview.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\resource_distribution.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\_ai_project.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\projects\ai_dab.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\ai_huds.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\camera_mobility.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\coolant_manager.dm"
