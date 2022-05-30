@@ -76,7 +76,7 @@
 
 	for(var/i in 1 to 3)
 		playsound(get_turf(src),sound, 50, 1)
-		sleep(30)
+		sleep(3 SECONDS)
 
 	if(!victim)
 		return FALSE

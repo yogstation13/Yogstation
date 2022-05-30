@@ -484,7 +484,7 @@
 	if(req_defib)
 		defib.cooldowncheck(user)
 	else
-		recharge(60)
+		recharge(6 SECONDS)
 
 /obj/item/twohanded/shockpaddles/proc/do_harm(mob/living/carbon/H, mob/living/user)
 	if(req_defib && defib.safety)
@@ -535,7 +535,7 @@
 			busy = FALSE
 			update_icon()
 			if(!req_defib)
-				recharge(60)
+				recharge(6 SECONDS)
 			if(req_defib && (defib.cooldowncheck(user)))
 				return
 	busy = FALSE
@@ -632,7 +632,7 @@
 				if(req_defib)
 					defib.cooldowncheck(user)
 				else
-					recharge(60)
+					recharge(6 SECONDS)
 			else if (!H.getorgan(/obj/item/organ/heart))
 				user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Patient's heart is missing. Operation aborted."))
 				playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)

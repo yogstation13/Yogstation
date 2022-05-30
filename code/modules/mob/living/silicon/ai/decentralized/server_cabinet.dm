@@ -28,6 +28,10 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	var/roundstart = FALSE
 	///How many ticks we can go without fulfilling the criteria before shutting off
 	var/valid_ticks = MAX_AI_EXPANSION_TICKS
+	///Heat production multiplied by this
+	var/heat_modifier = 1
+	///Power modifier, power modified by this. Be aware this indirectly changes heat since power => heat
+	var/power_modifier = 1
 
 
 /obj/machinery/ai/server_cabinet/Initialize(mapload)
@@ -36,6 +40,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	installed_racks = list()
 	GLOB.server_cabinets += src
 	update_icon()
+	RefreshParts()
 
 /obj/machinery/ai/server_cabinet/Destroy()
 	installed_racks = list()
@@ -44,16 +49,31 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	GLOB.ai_os.update_hardware()
 	..()
 
+/obj/machinery/ai/server_cabinet/RefreshParts()
+	var/new_heat_mod = 1
+	var/new_power_mod = 1
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
+		new_power_mod -= (C.rating - 1) / 40 //Max -15% at tier 4 parts, min -0% at tier 1
+
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
+		new_heat_mod -= (M.rating - 1) / 30 //Max -20% at tier 4 parts, min -0% at tier 1
+	//68% total heat reduction in total at tier 4
+
+	heat_modifier = new_heat_mod
+	power_modifier = new_power_mod
+
+	idle_power_usage = initial(idle_power_usage) * power_modifier
+
 /obj/machinery/ai/server_cabinet/process()
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
 	if(valid_holder())
-		var/total_usage = cached_power_usage
+		var/total_usage = (cached_power_usage * power_modifier)
 		use_power(total_usage)
 
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env.heat_capacity())
-			var/temperature_increase = total_usage / env.heat_capacity()
+			var/temperature_increase = (total_usage / env.heat_capacity()) * heat_modifier
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 			T.air_update_turf()
 		
@@ -138,13 +158,18 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 /obj/machinery/ai/server_cabinet/examine()
 	. = ..()
+	var/holder_status = get_holder_status()
+	if(holder_status)
+		. += span_warning("Machinery non-functional. Reason: [holder_status]")
 	if(!valid_ticks)
-		. += "A small screen is displaying the words 'OFFLINE.'"
-	. += "The machine has [installed_racks.len] racks out of a maximum of [max_racks] installed."
+		. += span_notice("A small screen is displaying the words 'OFFLINE.'")
+	. += span_notice("The machine has [installed_racks.len] racks out of a maximum of [max_racks] installed.")
+	. += span_notice("Current Power Usage Multiplier: [span_bold("[power_modifier * 100]%")]")
+	. += span_notice("Current Heat Multiplier: [span_bold("[heat_modifier * 100]%")]")
 
 	for(var/obj/item/server_rack/R in installed_racks)
-		. += "There is a rack installed with a processing capacity of [R.get_cpu()]THz and a memory capacity of [R.get_ram()]TB" 
-	. += "Use a crowbar to remove all currently inserted racks."
+		. += span_notice("There is a rack installed with a processing capacity of [R.get_cpu()]THz and a memory capacity of [R.get_ram()]TB. Uses [R.get_power_usage()]W")
+	. += span_notice("Use a crowbar to remove all currently inserted racks.")
 
 
 /obj/machinery/ai/server_cabinet/prefilled/Initialize()

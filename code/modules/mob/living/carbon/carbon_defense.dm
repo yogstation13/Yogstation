@@ -368,6 +368,8 @@
 	if(stat == DEAD && can_defib()) //yogs: ZZAPP
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(80))
 			set_heartattack(FALSE)
+			adjustOxyLoss(-50)
+			adjustToxLoss(-50)
 			revive()
 			INVOKE_ASYNC(src, .proc/emote, "gasp")
 			Jitter(100)

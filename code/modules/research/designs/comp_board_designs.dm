@@ -302,13 +302,6 @@
 	category = list("Computer Boards", "Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/board/ai_upload_download
-	name = "Computer Design (AI Control Console)"
-	desc = "Allows for the construction of circuit boards used to build an AI Control console."
-	id = "ai_control"
-	build_path = /obj/item/circuitboard/computer/ai_upload_download
-	category = list("Computer Boards")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/ai_server_overview
 	name = "Computer Design (AI Server Overview Console)"

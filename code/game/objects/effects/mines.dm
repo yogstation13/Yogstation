@@ -249,7 +249,7 @@
 
 /obj/effect/mine/pickup/Initialize()
 	. = ..()
-	animate(src, pixel_y = 4, time = 20, loop = -1)
+	animate(src, pixel_y = 4, time = 2 SECONDS, loop = -1)
 
 /obj/effect/mine/pickup/triggermine(mob/victim)
 	if(triggered)
@@ -290,8 +290,8 @@
 	to_chat(victim, span_warning("KILL, KILL, KILL! YOU HAVE NO ALLIES ANYMORE, KILL THEM ALL!"))
 
 	victim.client.color = pure_red
-	animate(victim.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
-	sleep(10)
+	animate(victim.client,color = red_splash, time = 1 SECONDS, easing = SINE_EASING|EASE_OUT)
+	sleep(1 SECONDS)
 	animate(victim.client,color = old_color, time = duration)//, easing = SINE_EASING|EASE_OUT)
 	sleep(duration)
 	to_chat(victim, span_notice("Your bloodlust seeps back into the bog of your subconscious and you regain self control."))

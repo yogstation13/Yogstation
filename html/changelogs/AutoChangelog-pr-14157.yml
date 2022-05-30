@@ -1,6 +1,0 @@
-author: "tattax"
-delete-after: true 
-changes: 
-  - rscadd: "rare ling action figure variations"
-  - bugfix: "vermin bites deletion on trying to eat it"
-  - bugfix: "mice names now display properly"

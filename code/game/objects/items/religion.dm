@@ -33,7 +33,7 @@
 		user.say("[warcry]", forced="banner")
 	var/old_transform = user.transform
 	user.transform *= 1.2
-	animate(user, transform = old_transform, time = 10)
+	animate(user, transform = old_transform, time = 1 SECONDS)
 	morale_time = world.time + morale_cooldown
 
 	var/list/inspired = list()

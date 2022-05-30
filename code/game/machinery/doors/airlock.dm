@@ -527,7 +527,7 @@
 /obj/machinery/door/airlock/proc/handlePowerRestore()
 	var/cont = TRUE
 	while (cont)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 		cont = FALSE
@@ -641,7 +641,7 @@
 					part.transform = T
 				if(AIRLOCK_CLOSING)
 					part.transform = T
-					animate(part, transform = T, time = 5 - part.move_end_time, flags = ANIMATION_LINEAR_TRANSFORM)
+					animate(part, transform = T, time = 0.5 SECONDS - part.move_end_time, flags = ANIMATION_LINEAR_TRANSFORM)
 					animate(transform = matrix(), time = part.move_end_time - part.move_start_time, flags = ANIMATION_LINEAR_TRANSFORM)
 				if(AIRLOCK_OPENING)
 					part.transform = matrix()
@@ -658,7 +658,7 @@
 				if(AIRLOCK_CLOSING)
 					part.pixel_x = part.open_px
 					part.pixel_y = part.open_py
-					animate(part, pixel_x = part.open_px, pixel_y = part.open_py, time = 5 - part.move_end_time)
+					animate(part, pixel_x = part.open_px, pixel_y = part.open_py, time = 0.5 SECONDS - part.move_end_time)
 					animate(pixel_x = 0, pixel_y = 0, time = part.move_end_time - part.move_start_time)
 				if(AIRLOCK_OPENING)
 					part.pixel_x = 0
@@ -763,7 +763,7 @@
 			if(!stat)
 				update_icon(AIRLOCK_DENY)
 				playsound(src,doorDeni,50,0,3)
-				sleep(6)
+				sleep(0.6 SECONDS)
 				update_icon(AIRLOCK_CLOSED)
 
 /obj/machinery/door/airlock/examine(mob/user)
@@ -830,7 +830,7 @@
 	if(!aiHacking)
 		aiHacking = TRUE
 		to_chat(user, "Airlock AI control has been blocked. Beginning fault-detection.")
-		sleep(50)
+		sleep(5 SECONDS)
 		if(canAIControl(user))
 			to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
 			aiHacking = FALSE
@@ -840,9 +840,9 @@
 			aiHacking = FALSE
 			return
 		to_chat(user, "Fault confirmed: airlock control wire disabled or cut.")
-		sleep(20)
+		sleep(2 SECONDS)
 		to_chat(user, "Attempting to hack into airlock. This may take some time.")
-		sleep(200)
+		sleep(20 SECONDS)
 		if(canAIControl(user))
 			to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
 			aiHacking = FALSE
@@ -852,7 +852,7 @@
 			aiHacking = FALSE
 			return
 		to_chat(user, "Upload access confirmed. Loading control program into airlock software.")
-		sleep(170)
+		sleep(17 SECONDS)
 		if(canAIControl(user))
 			to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
 			aiHacking = FALSE
@@ -862,11 +862,11 @@
 			aiHacking = FALSE
 			return
 		to_chat(user, "Transfer complete. Forcing airlock to execute program.")
-		sleep(50)
+		sleep(5 SECONDS)
 		//disable blocked control
 		aiControlDisabled = AI_WIRE_HACKED
 		to_chat(user, "Receiving control information from airlock.")
-		sleep(10)
+		sleep(1 SECONDS)
 		//bring up airlock dialog
 		aiHacking = FALSE
 		if(user)
@@ -913,7 +913,7 @@
 
 /obj/machinery/door/airlock/proc/electrified_loop()
 	while (secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 
@@ -1358,14 +1358,14 @@
 			welded = !welded
 	operating = TRUE
 	update_icon(AIRLOCK_OPENING, 1)
-	sleep(1)
+	sleep(0.1 SECONDS)
 	set_opacity(0)
 	update_freelook_sight()
-	sleep(1)
+	sleep(0.1 SECONDS)
 	density = FALSE
-	sleep(3)
+	sleep(0.3 SECONDS)
 	air_update_turf(1)
-	sleep(1)
+	sleep(0.1 SECONDS)
 	layer = OPEN_DOOR_LAYER
 	update_icon(AIRLOCK_OPEN, 1)
 	operating = FALSE
@@ -1407,17 +1407,17 @@
 	if(air_tight)
 		density = TRUE
 		air_update_turf(1)
-	sleep(1)
+	sleep(0.1 SECONDS)
 	density = TRUE
 	if(!air_tight)
 		air_update_turf(1)
-	sleep(4)
+	sleep(0.4 SECONDS)
 	if(!safe)
 		crush()
 	if(visible && !glass)
 		set_opacity(1)
 	update_freelook_sight()
-	sleep(1)
+	sleep(0.1 SECONDS)
 	update_icon(AIRLOCK_CLOSED, 1)
 	operating = FALSE
 	delayed_close_requested = FALSE
@@ -1469,7 +1469,7 @@
 	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
 		operating = TRUE
 		update_icon(AIRLOCK_EMAG, 1)
-		sleep(6)
+		sleep(0.6 SECONDS)
 		if(QDELETED(src))
 			return
 		operating = FALSE

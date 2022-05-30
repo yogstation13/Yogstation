@@ -48,6 +48,8 @@
 		shred_amount = 3
 	else if(istype(W, /obj/item/card/id))
 		shred_amount = 3
+	else if(istype(W, /obj/item/station_charter))
+		shred_amount = 3
 	else if(istype(W, /obj/item/paper_bundle))
 		shred_amount = 3
 	else if(istype(W, /obj/item/book))

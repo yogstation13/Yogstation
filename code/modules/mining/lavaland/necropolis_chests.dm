@@ -349,7 +349,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	new /obj/effect/temp_visual/warp_cube(get_turf(linked), user, linked.teleport_color, FALSE)
 	var/obj/effect/warp_cube/link_holder = new /obj/effect/warp_cube(T)
 	user.forceMove(link_holder) //mess around with loc so the user can't wander around
-	sleep(2.5)
+	sleep(0.25 SECONDS)
 	if(QDELETED(user))
 		qdel(link_holder)
 		return
@@ -358,7 +358,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		qdel(link_holder)
 		return
 	link_holder.forceMove(get_turf(linked))
-	sleep(2.5)
+	sleep(0.25 SECONDS)
 	if(QDELETED(user))
 		qdel(link_holder)
 		return
@@ -960,9 +960,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/transform_string = "lava"
 	var/reset_turf_type = /turf/open/floor/plating/asteroid/basalt
 	var/reset_string = "basalt"
-	var/create_cooldown = 100
-	var/create_delay = 30
-	var/reset_cooldown = 50
+	var/create_cooldown = 10 SECONDS
+	var/create_delay = 3 SECONDS
+	var/reset_cooldown = 5 SECONDS
 	var/timer = 0
 	var/static/list/banned_turfs = typecacheof(list(/turf/open/space/transit, /turf/closed))
 
@@ -1037,16 +1037,12 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	var/loot = rand(1,4)
+	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
-			new /obj/item/mayhem(src)
-		if(2)
-			new /obj/item/blood_contract(src)
-		if(3)
-			new /obj/item/melee/knuckles(src)
-		if(4)
 			new /obj/item/organ/stomach/cursed(src)
+		if(2)
+			new /obj/item/melee/knuckles(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher
 	name = "bloody bubblegum chest"
@@ -1325,7 +1321,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(isturf(user.loc))
 			user.visible_message("[span_hierophant_warning("[user] starts fiddling with [src]'s pommel...")]", \
 			span_notice("You start detaching the hierophant beacon..."))
-			timer = world.time + 51
+			timer = world.time + 5.1 SECONDS
 			INVOKE_ASYNC(src, .proc/prepare_icon_update)
 			if(do_after(user, 5 SECONDS, user) && !beacon)
 				var/turf/T = get_turf(user)
@@ -1354,7 +1350,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	teleporting = TRUE //start channel
 	user.update_action_buttons_icon()
 	user.visible_message("[span_hierophant_warning("[user] starts to glow faintly...")]")
-	timer = world.time + 50
+	timer = world.time + 5 SECONDS
 	INVOKE_ASYNC(src, .proc/prepare_icon_update)
 	beacon.icon_state = "hierophant_tele_on"
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/TE1 = new /obj/effect/temp_visual/hierophant/telegraph/edge(user.loc)
@@ -1402,7 +1398,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			B.damage = 30
 		for(var/mob/living/L in range(1, source))
 			INVOKE_ASYNC(src, .proc/teleport_mob, source, L, T, user) //regardless, take all mobs near us along
-		sleep(6) //at this point the blasts detonate
+		sleep(0.6 SECONDS) //at this point the blasts detonate
 		if(beacon)
 			beacon.icon_state = "hierophant_tele_off"
 	else
@@ -1420,20 +1416,20 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/turf/turf_to_teleport_to = get_step(target, get_dir(source, M)) //get position relative to caster
 	if(!turf_to_teleport_to || is_blocked_turf(turf_to_teleport_to, TRUE))
 		return
-	animate(M, alpha = 0, time = 2, easing = EASE_OUT) //fade out
-	sleep(1)
+	animate(M, alpha = 0, time = 0.2 SECONDS, easing = EASE_OUT) //fade out
+	sleep(0.1 SECONDS)
 	if(!M)
 		return
 	M.visible_message("[span_hierophant_warning("[M] fades out!")]")
-	sleep(2)
+	sleep(0.2 SECONDS)
 	if(!M)
 		return
 	M.forceMove(turf_to_teleport_to)
-	sleep(1)
+	sleep(0.1 SECONDS)
 	if(!M)
 		return
-	animate(M, alpha = 255, time = 2, easing = EASE_IN) //fade IN
-	sleep(1)
+	animate(M, alpha = 255, time = 0.2 SECONDS, easing = EASE_IN) //fade IN
+	sleep(0.1 SECONDS)
 	if(!M)
 		return
 	M.visible_message("[span_hierophant_warning("[M] fades in!")]")
@@ -1445,7 +1441,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 	new /obj/effect/temp_visual/hierophant/telegraph/cardinal(T, user)
 	playsound(T,'sound/effects/bin_close.ogg', 200, 1)
-	sleep(2)
+	sleep(0.2 SECONDS)
 	var/obj/effect/temp_visual/hierophant/blast/B = new(T, user, friendly_fire_check)
 	B.damage = HIEROPHANT_CLUB_CARDINAL_DAMAGE
 	B.monster_damage_boost = FALSE
@@ -1472,7 +1468,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 	new /obj/effect/temp_visual/hierophant/telegraph(T, user)
 	playsound(T,'sound/effects/bin_close.ogg', 200, 1)
-	sleep(2)
+	sleep(0.2 SECONDS)
 	for(var/t in RANGE_TURFS(1, T))
 		var/obj/effect/temp_visual/hierophant/blast/B = new(t, user, friendly_fire_check)
 		B.damage = 15 //keeps monster damage boost due to lower damage

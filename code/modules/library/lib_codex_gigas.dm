@@ -54,7 +54,7 @@
 			usedName += "x"
 		var/datum/antagonist/devil/devil = devilInfo(usedName)
 		display_devil(devil, user, usedName)
-	sleep(10)
+	sleep(1 SECONDS)
 	onclose(user, "book")
 	inUse = FALSE
 

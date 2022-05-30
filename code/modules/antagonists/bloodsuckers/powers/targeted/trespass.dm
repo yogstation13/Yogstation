@@ -15,7 +15,7 @@
 	//target_range = 2
 	var/turf/target_turf // We need to decide where we're going based on where we clicked. It's not actually the tile we clicked.
 	var/wallbound = TRUE
-	var/soliddelay = 1
+	var/soliddelay = 0.1 SECONDS
 
 /datum/action/bloodsucker/targeted/trespass/CheckCanUse(mob/living/carbon/user)
 	. = ..()

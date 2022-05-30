@@ -240,7 +240,7 @@
 	add_overlay("juicer_blend")
 	var/offset = prob(50) ? -2 : 2
 	var/old_pixel_x = pixel_x
-	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = -1) //start shaking
+	animate(src, pixel_x = pixel_x + offset, time = 0.02 SECONDS, loop = -1) //start shaking
 	addtimer(CALLBACK(src, .proc/stop_shaking, old_pixel_x), duration)
 
 /obj/machinery/reagentgrinder/proc/stop_shaking(old_px)
@@ -265,7 +265,7 @@
 	power_change()
 	if(!container || stat & (NOPOWER|BROKEN) || container.reagents.total_volume >= container.reagents.maximum_volume)
 		return
-	operate_for(50, juicing = TRUE)
+	operate_for(5 SECONDS, juicing = TRUE)
 	for(var/obj/item/i in holdingitems)
 		if(container.reagents.total_volume >= container.reagents.maximum_volume)
 			break
@@ -285,7 +285,7 @@
 	power_change()
 	if(!container || stat & (NOPOWER|BROKEN) || container.reagents.total_volume >= container.reagents.maximum_volume)
 		return
-	operate_for(60)
+	operate_for(6 SECONDS)
 	for(var/i in holdingitems)
 		if(container.reagents.total_volume >= container.reagents.maximum_volume)
 			break
@@ -314,8 +314,8 @@
 	power_change()
 	if(!container || stat & (NOPOWER|BROKEN))
 		return
-	operate_for(50, juicing = TRUE)
-	addtimer(CALLBACK(src, /obj/machinery/reagentgrinder/proc/mix_complete), 50)
+	operate_for(5 SECONDS, juicing = TRUE)
+	addtimer(CALLBACK(src, /obj/machinery/reagentgrinder/proc/mix_complete), 5 SECONDS)
 
 /obj/machinery/reagentgrinder/proc/mix_complete()
 	if(container?.reagents.total_volume)

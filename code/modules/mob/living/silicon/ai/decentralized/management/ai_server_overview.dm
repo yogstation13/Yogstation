@@ -1,7 +1,6 @@
 /obj/machinery/computer/ai_server_console
 	name = "\improper AI server overview console"
 	desc = "Used for monitoring the various servers assigned to the AI network."
-	req_access = list(ACCESS_RD)
 
 	icon_keyboard = "tech_key"
 	icon_screen = "ai-fixer"

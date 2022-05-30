@@ -27,7 +27,7 @@
 	. = ..()
 	var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
 	if(istype(secondsword, /obj/item/mantis/blade) && !secondattack)
-		sleep(2)
+		sleep(0.2 SECONDS)
 		secondsword.attack(M, user, TRUE)
 	return
 

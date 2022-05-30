@@ -586,8 +586,8 @@
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	tool_behaviour = TOOL_MINING
-	weapon_stats = list(SWING_SPEED = 2, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)	//Heavy and slow
-	force = 36					//SHATTER BONE
+	weapon_stats = list(SWING_SPEED = 2, ENCUMBRANCE = 1, ENCUMBRANCE_TIME = 20, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)	//Heavy and slow
+	force = 30					//SHATTER BONE
 	throwforce = 0 				//Just to be on the safe side
 	throw_range = 0
 	throw_speed = 0
@@ -632,7 +632,7 @@
 		if(ismachinery(target) || istype(target, /obj/structure/door_assembly))
 			structure_damage *= 0.5
 		if(istype(target, /obj/machinery/door/airlock))
-			structure_damage = 24				//Should make it better than armblades for airlock smashing. No bonus vs plasteel-reinforced airlocks, though.
+			structure_damage = 29				//Should make it better than armblades for airlock smashing. No bonus vs plasteel-reinforced airlocks, though.
 		if(istype(target, /obj/structure/table))	//Hate tables
 			var/obj/structure/table/T = target
 			T.deconstruct(FALSE)

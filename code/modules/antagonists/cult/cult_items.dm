@@ -115,7 +115,7 @@
 	var/datum/action/innate/dash/cult/jaunt
 	var/datum/action/innate/cult/spin2win/linked_action
 	var/spinning = FALSE
-	var/spin_cooldown = 250
+	var/spin_cooldown = 25 SECONDS
 	var/dash_toggled = TRUE
 
 /obj/item/twohanded/required/cult_bastard/Initialize()
@@ -537,7 +537,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		to_chat(user, span_danger("You shatter the orb! A dark essence spirals into the air, then disappears."))
 		playsound(user.loc, 'sound/effects/glassbr1.ogg', 50, 1)
 		qdel(src)
-		sleep(20)
+		sleep(2 SECONDS)
 		var/curses = list("A fuel technician just slit his own throat and begged for death.",
 			"The shuttle's navigation programming was replaced by a file containing just two words: IT COMES.",
 			"The shuttle's custodian was found washing the windows with their own blood.",
@@ -859,7 +859,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		if(!charging)
 			break
 		if(i > 1)
-			sleep(15)
+			sleep(1.5 SECONDS)
 		if(i < 4)
 			O = new /obj/effect/temp_visual/cult/rune_spawn/rune1/inner(user.loc, 30, "#ff0000")
 		else
@@ -878,7 +878,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			set_angle = angle - spread
 			spread -= 8
 		else
-			sleep(15)
+			sleep(1.5 SECONDS)
 			set_angle = angle + spread
 		second = !second //Handles beam firing in pairs
 		if(!firing)
