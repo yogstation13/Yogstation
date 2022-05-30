@@ -434,6 +434,11 @@
 	desc = "A hammer that creates an intensely powerful field of gravity where it strikes, pulling everything nearby to the point of impact."
 	item_path = /obj/item/twohanded/singularityhammer
 
+/datum/spellbook_entry/item/demon_chainsaw
+	name = "Demonic Chainsaw"
+	desc = "A demon that has taken the form of a chainsaw! This demon will grant you eternal life, so long as you feed it blood!"
+	item_path = /obj/item/twohanded/required/chainsaw/demon
+	cost = 3
 /datum/spellbook_entry/item/battlemage
 	name = "Battlemage Armour"
 	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted. It is not protected against the void of space."
