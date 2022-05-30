@@ -1,5 +1,6 @@
-#define DEFAULT_DOOMSDAY_TIMER 4500
-#define DOOMSDAY_ANNOUNCE_INTERVAL 600
+#define DEFAULT_DOOMSDAY_TIMER (6 MINUTES)
+#define DOOMSDAY_ANNOUNCE_INTERVAL (60 SECONDS)
+#define DOOMSDAY_DATACORE_TIME (1 MINUTES)
 
 GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		/obj/machinery/field/containment,
@@ -305,7 +306,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	return ..()
 
 /obj/machinery/doomsday_device/proc/start()
-	detonation_timer = world.time + DEFAULT_DOOMSDAY_TIMER
+	detonation_timer = world.time + DEFAULT_DOOMSDAY_TIMER + (GLOB.data_cores.len - 1) * DOOMSDAY_DATACORE_TIME
 	next_announce = world.time + DOOMSDAY_ANNOUNCE_INTERVAL
 	timing = TRUE
 	countdown.start()
