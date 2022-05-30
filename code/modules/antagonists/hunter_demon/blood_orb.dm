@@ -148,3 +148,7 @@
 
 /obj/item/sinister_orb
 	name = "sinister orb"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "scroll2"
+	desc = "A sinisterly looking red ball."
+
