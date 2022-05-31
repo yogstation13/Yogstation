@@ -165,3 +165,26 @@
 		qdel(src)
 		user.blood_volume -= 50 // 9% blood cost, cheaper than the other spell because its not like you can stop near a corpse or find one near you in a fight 
 		to_chat(user, "<span class ='userdanger'>You curse the body with your blood, leaving you feeling a bit light-headed.</span>")
+
+
+/obj/item/melee/touch_attack/pacifism
+    name = "\improper pacifism touch"
+    desc = "Yes"
+    catchphrase = "PAC'FY"
+    on_use_sound = 'sound/magic/wandodeath.ogg'
+    icon_state = "flagellation"
+    item_state = "hivehand"
+    color = "#FF0000"
+
+/obj/item/melee/touch_attack/gondolatouch/afterattack(atom/target, mob/living/carbon/user, proximity)
+    if(!proximity || target == user || !isliving(target) || !iscarbon(user))
+        return
+	var/mob/living/carbon/human/H = target
+	if(!H)
+		return
+	if(H.anti_magic_check())
+		return
+	H.reagents.add_reagent(/datum/reagent/pax, 5)
+	H.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
+	to_chat(M, span_notice("You feel calm..."))
+    return ..()
