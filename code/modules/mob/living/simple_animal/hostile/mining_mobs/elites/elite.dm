@@ -282,8 +282,7 @@ obj/structure/elite_tumor/proc/onEliteLoss()
 		activator = null
 		qdel(src)
 		return
-	var/lootpick = rand(1, 2)
-	if(lootpick == 1 && mychild.loot_drop != null)
+	if(prob(75))
 		new mychild.loot_drop(lootbox)
 	else
 		new /obj/item/tumor_shard(lootbox)
