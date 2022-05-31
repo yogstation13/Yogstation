@@ -50,6 +50,12 @@
 /mob/living/simple_animal/hostile/hunter/Initialize()
 	. = ..()
 	name = "[pick(GLOB.hunter_demon_first_names)], The [pick(GLOB.hunter_demon_last_names)]"
+	var/obj/effect/proc_holder/spell/hunterjaunt/jaunt = new
+	AddSpell(jaunt)
+	var/obj/effect/proc_holder/spell/hd_seek_prey/seekprey = new
+	AddSpell(seekprey)
+	var/obj/effect/proc_holder/spell/recall/rec = new
+	AddSpell(rec)
 
 /mob/living/simple_animal/hostile/hunter/Life()
 	. = ..()
