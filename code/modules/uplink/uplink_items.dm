@@ -2050,7 +2050,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	You need to spill your blood on the orb when it is activated to summon a demon. Then you need to periodically choose targets for the demon,\
 	and spill additional blood in the orb, or he can become uncontrollable. \
 	To spill your blood on the orb you need to click it with a knife while not on harm intent, and to choose a target you need to click it with your hand."
-	item = /obj/item/sinister_orb
+	item = /obj/item/storage/box/syndie_kit/hunter_demon_kit
 	cost = 15
 	restricted_roles = list("Chaplain", "Curator")
 	surplus = 0
