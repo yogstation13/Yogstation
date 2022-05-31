@@ -128,6 +128,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	var/mob/living/simple_animal/hostile/asteroid/elite/mychild = null
 	var/potentialspawns = list(/mob/living/simple_animal/hostile/asteroid/elite/broodmother,
 								/mob/living/simple_animal/hostile/asteroid/elite/legionnaire,
+								/mob/living/simple_animal/hostile/asteroid/elite/pandora,
 								/mob/living/simple_animal/hostile/asteroid/elite/herald)
 	var/boosted = FALSE
 	icon = 'icons/obj/lavaland/tumor.dmi'
@@ -218,6 +219,7 @@ obj/structure/elite_tumor/proc/return_elite()
 		boosted = TRUE
 		light_range = 6
 		desc = "[desc]  This one seems to glow with a strong intensity."
+		potentialspawns -= /mob/living/simple_animal/hostile/asteroid/elite/pandora ///This one is too strong to be player controlled
 		qdel(core)
 		return TRUE
 
