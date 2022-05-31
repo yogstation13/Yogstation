@@ -423,6 +423,17 @@
 	limit = 3
 	category = "Assistance"
 
+/datum/spellbook_entry/item/demonogistkit
+	name = "Demonologist kit"
+	desc = "A kit, containing a blood orb and a ritual dagger. You need to activate the blood orb in a place with air and on the station z-level.\
+	You need to spill your blood on the orb when it is activated to summon a demon. Then you need to periodically choose targets for the demon,\
+	and spill additional blood in the orb, or he can become uncontrollable. \
+	To spill your blood on the orb you need to click it with a knife while not on harm intent, and to choose a target you need to click it with your hand."
+	item_path = /obj/item/storage/box/syndie_kit/hunter_demon_kit
+	cost = 2
+	limit = 1
+	category = "Assistance"
+
 /datum/spellbook_entry/item/mjolnir
 	name = "Mjolnir"
 	desc = "A mighty hammer on loan from Thor, God of Thunder. It crackles with barely contained power."
