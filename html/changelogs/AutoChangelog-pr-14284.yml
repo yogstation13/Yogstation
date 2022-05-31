@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed anyone being able to load the title splash screen onto any observer"
