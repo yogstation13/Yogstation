@@ -179,13 +179,13 @@
 /obj/item/melee/touch_attack/pacifism/afterattack(atom/target, mob/living/carbon/user, proximity)
     if(!proximity || target == user || !isliving(target) || !iscarbon(user))
         return
-	var/mob/living/carbon/human/H = target
-	if(!H)
-		return
-	if(H.anti_magic_check())
-		return
-	H.reagents.add_reagent(/datum/reagent/pax, 5)
-	H.reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 5)
-	H.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
-	to_chat(H, span_notice("You feel calm..."))
+    var/mob/living/carbon/human/H = target
+    if(!H)
+        return
+    if(H.anti_magic_check())
+	return
+    H.reagents.add_reagent(/datum/reagent/pax, 5)
+    H.reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 5)
+    H.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
+    to_chat(H, span_notice("You feel calm..."))
     return ..()
