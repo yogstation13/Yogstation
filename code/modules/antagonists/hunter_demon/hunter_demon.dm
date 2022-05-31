@@ -25,7 +25,20 @@
 	survival.owner = owner
 	objectives += survival 
 
-
-
+/mob/living/proc/what_am_i()
+	set name = "Hunter Demon Help"
+	set category = "Mentor"
+	var/datum/antagonist/hunter/hunterdatum = mind.has_antag_datum(/datum/antagonist/hunter)
+	if(!hunterdatum)
+		return
+	to_chat(usr, span_warning("As a hunter demon, you:\
+	1. Need to hunt and kill targets, chosen in your blood orb by your master.\
+	2. Can warp out of reality to move faster and through walls, but you can warp into reality only near your target or blood orb.\
+	3. Are bound by a bounding rite: while your orb has blood gained from your master spilling it on the orb, you can't attack him.\
+	4. Can choose targets for yourself, if you don't have a master, or there is no blood sacrificed by him.\
+	5. Passivly regenerate health while not in the mortal reality at the cost of sacrificed blood, and blood gained from attacking people\
+	6. Attacking people gives you some blood, and regenerates you some health. Attacking the same person multiple times increases the chance of a special attack.\
+	7. Loose health while not near your orb or your target, and move slower.\
+	8. Die, if your orb is destroyed.\"))
 
 
