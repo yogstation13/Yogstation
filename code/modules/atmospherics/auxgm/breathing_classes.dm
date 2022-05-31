@@ -30,6 +30,17 @@
 		GAS_CO2 = 1,
 	)
 
+/datum/breathing_class/oxygen_plas
+	gases = list(
+		GAS_O2 = 1,
+		GAS_PLUOXIUM = 8,
+		GAS_CO2 = -0.7, // CO2 isn't actually toxic, just an asphyxiant
+		GAS_PLASMA = 1
+	)
+	products = list(
+		GAS_CO2 = 1,
+	)
+
 /datum/breathing_class/plasma
 	gases = list(
 		GAS_PLASMA = 1

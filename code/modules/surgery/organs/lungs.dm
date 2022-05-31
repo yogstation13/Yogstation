@@ -472,10 +472,16 @@
 	name = "devolved plasma vessel"
 	desc = "A lung-shaped organ vaguely similar to a plasma vessel, restructured from a storage system to a respiratory one."
 	icon_state = "lungs-x"
+	breathing_class = /datum/breathing_class/oxygen_plas
 
 	heat_level_1_threshold = 313
 	heat_level_2_threshold = 353
 	heat_level_3_threshold = 600
+
+/obj/item/organ/lungs/xeno/populate_gas_info()
+	..()
+	gas_max -= GAS_PLASMA
+	gas_damage -= GAS_PLASMA
 
 /obj/item/organ/lungs/xeno/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H) //handling this externally so I don't have to nerf pluoxium, can't handle it internally without removing perpetual pluox or requiring plasma for breathing
 	. = ..()
