@@ -127,9 +127,9 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	var/mob/living/carbon/human/activator = null
 	var/mob/living/simple_animal/hostile/asteroid/elite/mychild = null
 	var/potentialspawns = list(/mob/living/simple_animal/hostile/asteroid/elite/broodmother,
-								/mob/living/simple_animal/hostile/asteroid/elite/pandora,
 								/mob/living/simple_animal/hostile/asteroid/elite/legionnaire,
 								/mob/living/simple_animal/hostile/asteroid/elite/herald)
+	var/boosted = FALSE
 	icon = 'icons/obj/lavaland/tumor.dmi'
 	icon_state = "tumor"
 	pixel_x = -16
@@ -147,19 +147,41 @@ While using this makes the system rely on OnFire, it still gives options for tim
 				activity = TUMOR_ACTIVE
 				visible_message(span_boldwarning("[src] convulses as your arm enters its radius.  Your instincts tell you to step back."))
 				activator = user
+				if(boosted)
+					mychild.playsound_local(get_turf(mychild), 'sound/effects/magic.ogg', 40, 0)
+					to_chat(mychild, "<b>Someone has activated your tumor.  You will be returned to fight shortly, get ready!</b>")
 				addtimer(CALLBACK(src, .proc/return_elite), 30)
 				INVOKE_ASYNC(src, .proc/arena_checks)
 			if(TUMOR_INACTIVE)
 				activity = TUMOR_ACTIVE
+				var/mob/dead/observer/elitemind = null
 				visible_message(span_boldwarning("[src] begins to convulse.  Your instincts tell you to step back."))
 				activator = user
-				addtimer(CALLBACK(src, .proc/spawn_elite), 3 SECONDS)
+				if(!boosted)
+					addtimer(CALLBACK(src, .proc/spawn_elite), 30)
+					return
+				visible_message(span_boldwarning("Something within [src] stirs..."))
+				var/list/candidates = pollCandidatesForMob("Do you want to play as a lavaland elite?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 50, src, POLL_IGNORE_SENTIENCE_POTION)
+				if(candidates.len)
+					audible_message(span_boldwarning("The stirring sounds increase in volume!"))
+					elitemind = pick(candidates)
+					elitemind.playsound_local(get_turf(elitemind), 'sound/effects/magic.ogg', 40, 0)
+					to_chat(elitemind, "<b>You have been chosen to play as a Lavaland Elite.\nIn a few seconds, you will be summoned on Lavaland as a monster to fight your activator, in a fight to the death.\nYour attacks can be switched using the buttons on the top left of the HUD, and used by clicking on targets or tiles similar to a gun.\nWhile the opponent might have an upper hand with  powerful mining equipment and tools, you have great power normally limited by AI mobs.\nIf you want to win, you'll have to use your powers in creative ways to ensure the kill.  It's suggested you try using them all as soon as possible.\nShould you win, you'll receive extra information regarding what to do after.  Good luck!</b>")
+					addtimer(CALLBACK(src, .proc/spawn_elite, elitemind), 100)
+				else
+					visible_message(span_boldwarning("The stirring stops, and nothing emerges.  Perhaps try again later."))
+					activity = TUMOR_INACTIVE
+					activator = null
+				
 
 obj/structure/elite_tumor/proc/spawn_elite()
 	var/selectedspawn = pick(potentialspawns)
 	mychild = new selectedspawn(loc)
 	visible_message(span_boldwarning("[mychild] emerges from [src]!"))
 	playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
+	if(boosted)
+		mychild.key = elitemind.key
+		mychild.sentience_act()
 	icon_state = "tumor_popped"
 	INVOKE_ASYNC(src, .proc/arena_checks)
 
@@ -168,6 +190,10 @@ obj/structure/elite_tumor/proc/return_elite()
 	visible_message(span_boldwarning("[mychild] emerges from [src]!"))
 	playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 	mychild.revive(full_heal = TRUE, admin_revive = TRUE)
+	if(boosted)
+		mychild.maxHealth = mychild.maxHealth * 2
+		mychild.health = mychild.maxHealth
+
 
 /obj/structure/elite_tumor/Initialize(mapload)
 	. = ..()
@@ -180,6 +206,20 @@ obj/structure/elite_tumor/proc/return_elite()
 	gpstag = "Menacing Signal"
 	desc = "Something strange sleeps beneath the planet."
 	invisibility = 100
+
+/obj/structure/elite_tumor/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/organ/regenerative_core) && activity == TUMOR_INACTIVE && !boosted)
+		var/obj/item/organ/regenerative_core/core = I
+		if(!core.preserved)
+			return
+		visible_message(span_boldwarning("As [user] drops the core into [src], [src] appears to swell."))
+		icon_state = "advanced_tumor"
+		boosted = TRUE
+		light_range = 6
+		desc = "[desc]  This one seems to glow with a strong intensity."
+		qdel(core)
+		return TRUE
 
 /obj/structure/elite_tumor/Destroy()
 	STOP_PROCESSING(SSobj, src)
