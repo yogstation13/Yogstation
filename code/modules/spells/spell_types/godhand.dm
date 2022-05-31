@@ -185,6 +185,7 @@
 	if(H.anti_magic_check())
 		return
 	H.reagents.add_reagent(/datum/reagent/pax, 5)
+	H.reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 5)
 	H.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
-	to_chat(M, span_notice("You feel calm..."))
+	to_chat(H, span_notice("You feel calm..."))
     return ..()
