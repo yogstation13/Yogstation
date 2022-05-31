@@ -483,14 +483,6 @@
 	gas_max -= GAS_PLASMA
 	gas_damage -= GAS_PLASMA
 
-/obj/item/organ/lungs/xeno/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H) //handling this externally so I don't have to nerf pluoxium, can't handle it internally without removing perpetual pluox or requiring plasma for breathing
-	. = ..()
-	if(!breath.total_moles())
-		return .
-	var/breath_amt = breath.get_moles(GAS_PLASMA)
-	breath.adjust_moles(GAS_PLASMA, -breath_amt)
-	breath.adjust_moles(GAS_O2, breath_amt)
-
 /obj/item/organ/lungs/slime
 	name = "vacuole"
 	desc = "A large organelle designed to store oxygen and other important gasses."
