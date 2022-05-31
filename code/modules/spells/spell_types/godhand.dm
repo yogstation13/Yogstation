@@ -176,7 +176,7 @@
     item_state = "hivehand"
     color = "#FF0000"
 
-/obj/item/melee/touch_attack/gondolatouch/afterattack(atom/target, mob/living/carbon/user, proximity)
+/obj/item/melee/touch_attack/pacifism/afterattack(atom/target, mob/living/carbon/user, proximity)
     if(!proximity || target == user || !isliving(target) || !iscarbon(user))
         return
 	var/mob/living/carbon/human/H = target
