@@ -115,7 +115,7 @@
 
 obj/effect/proc_holder/swipe
 	name = "swipe"
-	desc = "Swipe at a target area, dealing damage and consuming dead creatures to heal yourself. People are ineligible for total consumption unless thoroughly mangled. Creatures take 30 damage and heal the most while people and cyborgs take 10 damage and heal for the least.Totally mangled people heal for a bit more than those that aren't."
+	desc = "Swipe at a target area, dealing damage and consuming dead creatures to heal yourself. People are ineligible for total consumption. Creatures take 30 damage and heal the most while people and cyborgs take 10 damage and heal for the least. People that have been thoroughly burned and bruised heal you for a bit more than those that aren't."
 	action_background_icon_state = "bg_demon"
 	action_icon = 'icons/mob/actions/actions_items.dmi'
 	action_icon_state = "cuff"
@@ -167,11 +167,11 @@ obj/effect/proc_holder/swipe
 				caller.adjustToxLoss(-20)
 				caller.blood_volume = BLOOD_VOLUME_NORMAL(caller)*1.10
 		L.adjustBruteLoss(10)
-		if(L.getBruteLoss() >= 499)
-			L.gib()
-			caller.adjustBruteLoss(-10)
-			caller.adjustFireLoss(-10)
-			caller.adjustToxLoss(-10)
+		if(L.getBruteLoss()+L.getFireLoss() >= 299)
+			to_chat(caller, span_notice("You're able to consume a bit more as the body has been softened up!"))
+			caller.adjustBruteLoss(-15)
+			caller.adjustFireLoss(-15)
+			caller.adjustToxLoss(-15)
 			caller.blood_volume = BLOOD_VOLUME_NORMAL(caller)*1.05
 		if(L.stat == DEAD)
 			caller.adjustBruteLoss(-5)
