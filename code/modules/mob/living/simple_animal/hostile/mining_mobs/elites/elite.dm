@@ -11,7 +11,7 @@
 	robust_searching = TRUE
 	ranged_ignores_vision = TRUE
 	ranged = TRUE
-	obj_damage = 5
+	obj_damage = 15
 	vision_range = 6
 	aggro_vision_range = 18
 	environment_smash = ENVIRONMENT_SMASH_NONE  //This is to prevent elites smashing up the mining station, we'll make sure they can smash minerals fine below.
@@ -19,6 +19,7 @@
 	stat_attack = UNCONSCIOUS
 	layer = LARGE_MOB_LAYER
 	sentience_type = SENTIENCE_BOSS
+	mob_size = MOB_SIZE_LARGE
 	hud_type = /datum/hud/lavaland_elite
 	var/chosen_attack = 1
 	var/list/attack_action_types = list()
