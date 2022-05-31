@@ -235,8 +235,8 @@ obj/structure/elite_tumor/proc/onEliteLoss()
 	visible_message(span_boldwarning("[src] begins to convulse violently before beginning to dissipate."))
 	visible_message(span_boldwarning("As [src] closes, something is forced up from down below."))
 	new /obj/structure/closet/crate/necropolis/tendril(loc)
-	/*if(mychild.loot_drop) //holding this to check if the herald's loot needs to be nerfed/reworked
-		new mychild.loot_drop(lootbox)*/
+	if(mychild.loot_drop) //holding this to check if the herald's loot needs to be nerfed/reworked
+		new mychild.loot_drop(lootbox)
 	mychild = null
 	activator = null
 	qdel(src)
