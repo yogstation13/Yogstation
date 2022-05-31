@@ -2046,10 +2046,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/role_restricted/hunter_demon_kit
 	name = "Demonologist kit"
-	desc = "A kit, containing a blood orb and a ritual dagger. You need to activate "
-	item = /obj/item/his_grace
-	cost = 20
-	restricted_roles = list("Chaplain")
+	desc = "A kit, containing a blood orb and a ritual dagger. You need to activate the blood orb in a place with air and on the station z-level.\
+	You need to spill your blood on the orb when it is activated to summon a demon. Then you need to periodically choose targets for the demon,\
+	and spill additional blood in the orb, or he can become uncontrollable. \
+	To spill your blood on the orb you need to click it with a knife while not on harm intent, and to choose a target you need to click it with your hand."
+	item = /obj/item/sinister_orb
+	cost = 15
+	restricted_roles = list("Chaplain", "Curator")
 	surplus = 0
 
 /datum/uplink_item/role_restricted/horror
