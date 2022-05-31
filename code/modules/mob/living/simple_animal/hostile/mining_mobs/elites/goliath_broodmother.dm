@@ -39,7 +39,8 @@
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	mouse_opacity = MOUSE_OPACITY_ICON
 	deathmessage = "explodes into gore!"
-	loot_drop = /obj/item/crusher_trophy/broodmother_tongue
+	loot_drop = null // nothing untill i will code the tentacle
+	crusher_loot = /obj/item/crusher_trophy/broodmother_tongue
 
 	attack_action_types = list(/datum/action/innate/elite_attack/tentacle_patch,
 								/datum/action/innate/elite_attack/spawn_children,
