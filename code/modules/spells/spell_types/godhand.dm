@@ -183,7 +183,7 @@
     if(!H)
         return
     if(H.anti_magic_check())
-	   return
+        return
     H.reagents.add_reagent(/datum/reagent/pax, 5)
     H.reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 5)
     H.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
