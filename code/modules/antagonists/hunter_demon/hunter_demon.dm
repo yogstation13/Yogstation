@@ -39,6 +39,6 @@
 	5. Passivly regenerate health while not in the mortal reality at the cost of sacrificed blood, and blood gained from attacking people\
 	6. Attacking people gives you some blood, and regenerates you some health. Attacking the same person multiple times increases the chance of a special attack.\
 	7. Loose health while not near your orb or your target, and move slower.\
-	8. Die, if your orb is destroyed.\"))
+	8. Die, if your orb is destroyed."))
 
 
