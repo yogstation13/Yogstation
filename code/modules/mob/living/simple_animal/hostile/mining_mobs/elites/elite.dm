@@ -293,6 +293,16 @@ obj/structure/elite_tumor/proc/onEliteWon()
 	activity = TUMOR_PASSIVE
 	activator = null
 	mychild.revive(full_heal = TRUE, admin_revive = TRUE)
+	if(boosted)
+		times_won++
+		mychild.maxHealth = mychild.maxHealth * 0.5
+		mychild.health = mychild.maxHealth
+	if(times_won == 1)
+		mychild.playsound_local(get_turf(mychild), 'sound/effects/magic.ogg', 40, 0)
+		to_chat(mychild, span_boldwarning("As the life in the activator's eyes fade, the forcefield around you dies out and you feel your power subside.\nDespite this inferno being your home, you feel as if you aren't welcome here anymore.\nWithout any guidance, your purpose is now for you to decide."))
+		to_chat(mychild, "<b>Your max health has been halved, but can now heal by standing on your tumor.  Note, it's your only way to heal.\nBear in mind, if anyone interacts with your tumor, you'll be resummoned here to carry out another fight.  In such a case, you will regain your full max health.\nAlso, be weary of your fellow inhabitants, they likely won't be happy to see you!</b>")
+		to_chat(mychild, "<span class='big bold'>Note that you are a lavaland monster, and thus not allied to the station.  You should not cooperate or act friendly with any station crew unless under extreme circumstances!</span>")
+
 
 /obj/item/tumor_shard
 	name = "tumor shard"
