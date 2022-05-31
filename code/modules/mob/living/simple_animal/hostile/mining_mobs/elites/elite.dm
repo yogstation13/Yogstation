@@ -175,7 +175,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 					activator = null
 				
 
-obj/structure/elite_tumor/proc/spawn_elite()
+obj/structure/elite_tumor/proc/spawn_elite(var/mob/dead/observer/elitemind)
 	var/selectedspawn = pick(potentialspawns)
 	mychild = new selectedspawn(loc)
 	visible_message(span_boldwarning("[mychild] emerges from [src]!"))
