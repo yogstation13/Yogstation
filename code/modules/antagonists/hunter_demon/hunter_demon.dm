@@ -12,12 +12,18 @@
 /datum/antagonist/hunter/greet()
 	. = ..()
 	owner.announce_objectives()
-	to_chat(owner, span_warning("Go fuck yourself, i will setup antag datum only after setting up the mob and the orb!"))
+	SEND_SOUND(owner.current, sound('sound/magic/ethereal_exit.ogg'))
+	to_chat(owner, span_warning("It's morbin' time!"))
 
-/datum/antagonist/hunter/forge_objectives()
-	var/datum/objective/new_objective2 = new /datum/objective
-	new_objective2.owner = owner
-	objectives += new_objective2
+/datum/antagonist/hunter/proc/forge_objectives()
+	var/datum/objective/new_objective = new
+	new_objective.owner = owner
+	new_objective.completed = TRUE
+	objectives += new_objective
+	new_objective.explanation_text = "Kill as many people as you can"
+	var/datum/objective/survive/survival = new
+	survival.owner = owner
+	objectives += survival 
 
 
 
