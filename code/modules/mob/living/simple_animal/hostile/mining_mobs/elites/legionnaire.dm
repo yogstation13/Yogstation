@@ -37,7 +37,8 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	deathsound = 'sound/magic/curse.ogg'
 	deathmessage = "'s arms reach out before it falls apart onto the floor, lifeless."
-	loot_drop = /obj/item/crusher_trophy/legionnaire_spine
+	loot_drop = null ///temporary null!
+	crusher_loot = /obj/item/crusher_trophy/legionnaire_spine
 
 	attack_action_types = list(/datum/action/innate/elite_attack/legionnaire_charge,
 								/datum/action/innate/elite_attack/head_detach,
