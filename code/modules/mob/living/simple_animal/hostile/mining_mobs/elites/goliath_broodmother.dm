@@ -249,6 +249,7 @@
 	name = "goliath tentacle"
 	desc = "A big brown tentacle."
 	force = 15
+	sharpness = SHARP_EDGED
 	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
 	icon_state = "umbral_tendrils"
 	item_state = "umbral_tendrils"
@@ -256,7 +257,10 @@
 	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
 	attack_verb = list("impaled", "tentacled", "torn")
-	item_flags = ABSTRACT | DROPDEL
+	item_flags = ABSTRACT
+	w_class = WEIGHT_CLASS_HUGE
+	tool_behaviour = TOOL_MINING
+	resistance_flags = ACID_PROOF
 	var/last_time_tentacled
 
 /obj/item/goliath_tendril/Initialize(mapload, new_darkspawn)
