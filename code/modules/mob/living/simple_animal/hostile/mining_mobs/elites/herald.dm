@@ -325,8 +325,22 @@
 /obj/structure/guardian_mirror/Initialize()
 	. = ..()
 	last_action = world.time
+	START_PROCESSING(SSobj, src)
 
-/obj/structure/girder/CanAllowThrough(atom/movable/mover, turf/target)
+/obj/structure/guardian_mirror/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover, /obj/item/projectile))
 		return TRUE
+
+#define LIVESPAWN 10 SECONDS
+
+/obj/structure/guardian_mirror/process()
+	if(world.time < last_action + LIVESPAWN)
+		qdel(src)
+		STOP_PROCESSING(SSobj, src)
+
+#undef LIVESPAWN
+
+/obj/structure/guardian_mirror/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
