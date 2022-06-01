@@ -257,8 +257,32 @@
 	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
 	attack_verb = list("impaled", "tentacled", "torn")
 	item_flags = ABSTRACT | DROPDEL
+	var/last_time_tentacled
 
 /obj/item/goliath_tendril/Initialize(mapload, new_darkspawn)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	last_time_tentacled = world.time
+
+#define TENTACLEATTACK_CD 10 SECONDS
+
+/obj/item/goliath_tendrill/afterattack(atom/target, mob/living/user, proximity)
+	if(proximity)
+		return
+	if(user.intent != DISARM)
+		return
+	if(world.time < last_time_tentacled + TENTACLEATTACK_CD)
+		return
+	new /obj/effect/temp_visual/goliath_tentacle/broodmother/patch(get_turf(target), user)
+	last_time_tentacled = world.time
+	return
+
+#undef TENTACLEATTACK_CD
+
+
+
+
+
+
+
 
