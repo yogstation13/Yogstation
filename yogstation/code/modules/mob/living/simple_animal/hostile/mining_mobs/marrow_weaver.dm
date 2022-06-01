@@ -56,8 +56,8 @@
 
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/AttackingTarget()
 	..()
-	var/mob/living/L = target
 	if(isliving(target))
+		var/mob/living/L = target
 		if(target.reagents)
 			L.reagents.add_reagent(poison_type, poison_per_bite)
 		if((L.stat == DEAD) && (health < maxHealth) && ishuman(L))
@@ -79,11 +79,13 @@
 			else
 				to_chat(src, span_warning("There are no organs left in this corpse."))
 
-/mob/living/simple_animal/hostile/asteroid/marrowweaver/CanAttack(atom/A)
+/mob/living/simple_animal/hostile/asteroid/marrowweaver/CanAttack(mob/user, atom/A)
 	if(..())
 		return TRUE
 	if((health < maxHealth) && ishuman(A))
 		var/mob/living/carbon/human/H = A
+		if(user.faction == H.faction)
+			return FALSE
 		for(var/obj/item/organ/O in H.internal_organs)
 			if(O.zone == "chest")
 				return TRUE
