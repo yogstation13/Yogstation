@@ -69,8 +69,8 @@
 	desc = "This feels a little light for a buckshot shell."
 	icon_state = "gshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_clownshot
-	pellets = 6
-	variance = 25
+	pellets = 20
+	variance = 40
 
 /obj/item/ammo_casing/shotgun/rubbershot
 	name = "rubber shot"
