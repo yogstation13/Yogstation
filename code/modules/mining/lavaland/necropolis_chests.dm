@@ -672,7 +672,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/emberflowers
 	name ="emberflower bouqet"
-	desc ="A charming bunch of flowers, most animals seem to find it very calming after a bit more than a second of contact with it. A tag on the bottom reads 'results not guaranteed with marrow weavers as they lack noses.'"//dont know why marrow weavers keep fucking attacking sometimes
+	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. A tag on the bottom reads 'results not guaranteed with marrow weavers as they lack noses.'"//dont know why marrow weavers keep fucking attacking sometimes
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "emberflower"
 
