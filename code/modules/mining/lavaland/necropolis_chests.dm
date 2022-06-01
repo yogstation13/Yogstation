@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(16)
 			new /obj/item/organ/heart/gland/heals(src)
 		if(17)
-			new /obj/item/immortality_talisman(src)
+			new /obj/item/emberflowers(src)
 		if(18)
 			new /obj/item/voodoo(src)
 		if(19)
@@ -670,6 +670,28 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "jacob's ladder"
 	desc = "An indestructible celestial ladder that violates the laws of physics."
 
+/obj/item/emberflowers
+	name ="emberflower bouqet"
+	desc ="A charming bunch of flowers, most animals seem to find it very calming after a bit more than a second of contact with it. A tag on the bottom reads 'results not guaranteed with marrow weavers as they lack noses.'"//dont know why marrow weavers keep fucking attacking sometimes
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "emberflower"
+
+/obj/item/emberflowers/attack(mob/living/simple_animal/M, mob/user)
+	if(M.ckey)
+		to_chat(user, span_warning("[M] is too intelligent to charm!"))
+		return
+	if(M.stat)
+		to_chat(user, span_warning("[M] is dead!"))
+		return
+	if(M.sentience_type != SENTIENCE_ORGANIC)
+		to_chat(user, span_warning("[M] cannot be charmed!"))
+		return
+	if(!do_after(user, 1.5 SECONDS,M))
+		return
+	M.visible_message(span_notice("[M] seems happy with the emberflower offering!"))
+	M.add_atom_colour("#fcff57", FIXED_COLOUR_PRIORITY)
+	M.faction = user.faction.Copy()
+	
 ///Bosses
 
 //Miniboss Miner
