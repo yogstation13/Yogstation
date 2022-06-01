@@ -227,7 +227,7 @@
 		T = get_step(T, i)
 		new /obj/effect/temp_visual/goliath_tentacle/broodmother(T, spawner)
 
-// Broodmother's loot: Broodmother Tongue
+// Broodmother's KC loot: Broodmother Tongue
 /obj/item/crusher_trophy/broodmother_tongue
 	name = "broodmother tongue"
 	desc = "The tongue of a broodmother.  If attached a certain way, makes for a suitable crusher trophy."
@@ -242,3 +242,23 @@
 /obj/item/crusher_trophy/broodmother_tongue/on_mark_detonation(mob/living/target, mob/living/user)
 	if(rand(1, 100) <= bonus_value && target.stat != DEAD)
 		new /obj/effect/temp_visual/goliath_tentacle/broodmother/patch(get_turf(target), user)
+
+///Actuall loot
+
+/obj/item/goliath_tendrill
+	name = "goliath tentacle"
+	desc = "A big brown tentacle."
+	force = 15
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "umbral_tendrils"
+	item_state = "umbral_tendrils"
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
+	attack_verb = list("impaled", "tentacled", "torn")
+	item_flags = ABSTRACT | DROPDEL
+
+/obj/item/goliath_tendril/Initialize(mapload, new_darkspawn)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+
