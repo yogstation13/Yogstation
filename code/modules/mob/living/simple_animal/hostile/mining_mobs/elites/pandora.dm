@@ -207,4 +207,11 @@
 
 /obj/item/crusher_trophy/pandoraswraith/on_mark_detonation(mob/living/target, mob/living/user)
 	if(rand(1, 100) <= bonus_value && target.stat != DEAD)
+		var/turf/T = get_turf(target)
+		new /obj/effect/temp_visual/hierophant/telegraph(T, user)
+		playsound(T,'sound/effects/bin_close.ogg', 200, 1)
+		sleep(2)
+		for(var/t in RANGE_TURFS(1, T))
+			var/obj/effect/temp_visual/hierophant/blast/B = new(t, user, TRUE)
+			B.damage = 15
  
