@@ -690,7 +690,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 	M.visible_message(span_notice("[M] seems happy with you after exposure to the emberflowers!"))
 	M.add_atom_colour("#fcff57", FIXED_COLOUR_PRIORITY)
-	M.faction = user.faction.Copy()
+	M.faction = user.faction
 	
 ///Bosses
 
