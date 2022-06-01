@@ -128,6 +128,14 @@
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
 	icon_state = "cshell"
 	projectile_type = null
+	
+/obj/item/ammo_casing/shotgun/techshell(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/stamp/clown) && !istype(loc, /obj/item/storage))
+		var/atom/droploc = drop_location()
+		if(use(1))
+			playsound(I, 'sound/items/bikehorn.ogg', 50, 1, -1)
+			to_chat(user, span_notice("You create a Clownshot shell."))
+			/obj/item/ammo_casing/shotgun/clownshot
 
 /obj/item/ammo_casing/shotgun/dart
 	name = "shotgun dart"
