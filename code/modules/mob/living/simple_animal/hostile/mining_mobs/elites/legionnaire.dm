@@ -278,7 +278,7 @@
 	. = ..()
 	transform *= 0.33
 
-// Legionnaire's loot: Legionnaire Spine
+// Legionnaire's KC loot: Legionnaire Spine
 
 /obj/item/crusher_trophy/legionnaire_spine
 	name = "legionnaire spine"
@@ -298,3 +298,12 @@
 		A.GiveTarget(target)
 		A.friends = user
 		A.faction = user.faction.Copy()
+
+// Loot
+
+/obj/item/lesser_necromancy_staff
+	name = "lesser necromancy staff"
+	desc = "An artifact that allows to summon dead on your side."
+	icon = 'icons/obj/lavaland/elite_trophies.dmi'
+	icon_state = "hope"
+	resistance_flags = FIRE_PROOF
