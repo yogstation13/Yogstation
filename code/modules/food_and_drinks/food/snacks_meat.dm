@@ -124,6 +124,52 @@
 	tastes = list("fish" = 1, "hot peppers" = 1)
 	foodtype = SEAFOOD | TOXIC
 
+/obj/item/reagent_containers/food/snacks/fishtaco
+	name = "fish taco"
+	desc = "A taco with fish, cheese, and cabbage."
+	icon_state = "fishtaco"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("taco" = 4, "fish" = 2, "cheese" = 2, "cabbage" = 1)
+	foodtype = SEAFOOD | DAIRY | GRAIN | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/vegetariansushiroll
+	name = "vegetarian sushi roll"
+	desc = "A roll of simple vegetarian sushi with rice, carrots, and potatoes. Sliceable into pieces!"
+	icon_state = "vegetariansushiroll"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("boiled rice" = 4, "carrots" = 2, "potato" = 2)
+	foodtype = VEGETABLES
+	slice_path = /obj/item/reagent_containers/food/snacks/vegetariansushislice
+	slices_num = 4
+
+/obj/item/reagent_containers/food/snacks/vegetariansushislice
+	name = "vegetarian sushi slice"
+	desc = "A slice of simple vegetarian sushi with rice, carrots, and potatoes."
+	icon_state = "vegetariansushislice"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("boiled rice" = 4, "carrots" = 2, "potato" = 2)
+	foodtype = VEGETABLES
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/reagent_containers/food/snacks/spicyfiletsushiroll
+	name = "spicy filet sushi roll"
+	desc = "A roll of tasty, spicy sushi made with fish and vegetables. Sliceable into pieces!"
+	icon_state = "spicyfiletroll"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/capsaicin = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("boiled rice" = 4, "fish" = 2, "spicyness" = 2)
+	foodtype = VEGETABLES | SEAFOOD
+	slice_path = /obj/item/reagent_containers/food/snacks/spicyfiletsushislice
+	slices_num = 4
+
+/obj/item/reagent_containers/food/snacks/spicyfiletsushislice
+	name = "spicy filet sushi slice"
+	desc = "A slice of tasty, spicy sushi made with fish and vegetables. Don't eat it too fast!."
+	icon_state = "spicyfiletslice"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("boiled rice" = 4, "fish" = 2, "spicyness" = 2)
+	foodtype = VEGETABLES | SEAFOOD
+	w_class = WEIGHT_CLASS_SMALL
+
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 
 /obj/item/reagent_containers/food/snacks/tofu
@@ -401,6 +447,14 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/capsaicin = 6)
 	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "sour cream" = 1)
 	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/chipsandsalsa
+	name = "chips and salsa"
+	desc = "Some tortilla chips with a cup of zesty salsa. Highly addictive!"
+	icon_state = "chipsandsalsa"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("peppers" = 1, "salsa" = 3, "tortilla chips" = 1, "onion" = 1)
+	foodtype = VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/stewedsoymeat
 	name = "stewed soymeat"

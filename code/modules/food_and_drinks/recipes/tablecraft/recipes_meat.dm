@@ -97,6 +97,40 @@
 	result = /obj/item/reagent_containers/food/snacks/fishfingers
 	subcategory = CAT_MEAT
 
+/datum/crafting_recipe/food/fishtaco
+	name ="Fish taco"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/tortilla = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/carpmeat = 1,
+		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/fishtaco
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/vegetariansushiroll
+	name ="Vegetarian sushi roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/seaweedsheet = 1,
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,
+		/obj/item/reagent_containers/food/snacks/grown/potato = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/vegetariansushiroll
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/spicyfiletroll
+	name ="Spicy filet sushi roll"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/seaweedsheet = 1,
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/carpmeat = 1,
+		/obj/item/reagent_containers/food/snacks/grown/chili = 1,
+		/obj/item/reagent_containers/food/snacks/grown/onion = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/spicyfiletsushiroll
+	subcategory = CAT_MEAT
+
 ////////////////////////////////////////////////OTHER////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/nugget

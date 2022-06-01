@@ -236,6 +236,24 @@
 	tastes = list("mint" = 1, "pie" = 1)
 	foodtype = GRAIN | FRUIT | SUGAR
 
+/obj/item/reagent_containers/food/snacks/pie/frenchsilkpie
+	name = "french silk pie"
+	desc = "A decadent pie made of a creamy chocolate mousse filling topped with a layer of whipped cream and chocolate shavings. Sliceable."
+	icon_state = "frenchsilkpie"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("pie" = 1, "smooth chocolate" = 1, "whipped cream" = 1)
+	foodtype = GRAIN | DAIRY | SUGAR
+	slice_path = /obj/item/reagent_containers/food/snacks/frenchsilk
+	slices_num = 5
+
+/obj/item/reagent_containers/food/snacks/frenchsilk
+	name = "french silk pie slice"
+	desc = "A slice of french silk pie, filled with a chocolate mousse and topped with a layer of whipped cream and chocolate shavings. Delicious enough to make you cry."
+	icon_state = "frenchsilkpieslice"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	tastes = list("pie" = 1, "smooth chocolate" = 1, "whipped cream" = 1)
+	foodtype = GRAIN | DAIRY | SUGAR
+
 /obj/item/reagent_containers/food/snacks/pie/buttcinnpie
 	name = "butterscotch cinnamon pie"
 	desc = "Just like goat mom used to make!"
