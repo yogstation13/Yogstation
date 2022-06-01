@@ -323,3 +323,8 @@
 
 /obj/structure/guardian_mirror/Initialize()
 	last_action = world.time
+
+/obj/structure/girder/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover, /obj/item/projectile))
+		return TRUE
