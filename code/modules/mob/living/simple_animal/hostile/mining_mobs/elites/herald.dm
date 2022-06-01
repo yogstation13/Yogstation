@@ -271,3 +271,19 @@
 		var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
 		playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
 		addtimer(CALLBACK(src, .proc/reactionshot, owner), 10)
+
+
+//KC loot
+
+/obj/item/crusher_trophy/prophets_guard
+	name = "prophet's guard"
+	desc = "A trophy, that attracts unknown powers to guard you."
+	icon = 'icons/obj/lavaland/elite_trophies.dmi'
+	icon_state = "broodmother_tongue"
+	denied_type = /obj/item/crusher_trophy/broodmother_tongue
+	bonus_value = 25
+/obj/item/crusher_trophy/prophets_guard/effect_desc()
+	return "mark detonation to have a <b>[bonus_value]%</b> chance to summon a guardian mirror under you."
+
+/obj/item/crusher_trophy/prophets_guard/on_mark_detonation(mob/living/target, mob/living/user)
+	///Sussy baka
