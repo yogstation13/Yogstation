@@ -269,7 +269,7 @@
 /obj/item/goliath_tendrill/afterattack(atom/target, mob/living/user, proximity)
 	if(proximity)
 		return
-	if(user.intent != DISARM)
+	if(user.a_intent != INTENT_DISARM)
 		return
 	if(world.time < last_time_tentacled + TENTACLEATTACK_CD)
 		return
