@@ -283,12 +283,17 @@
 	denied_type = /obj/item/crusher_trophy/broodmother_tongue
 	bonus_value = 25
 	var/obj/structure/guardian_mirror/mirror
+	var/max_dist = 8
 
 /obj/item/crusher_trophy/prophets_guard/effect_desc()
 	return "mark detonation to have a <b>[bonus_value]%</b> chance to summon a guardian mirror under you."
 
 /obj/item/crusher_trophy/prophets_guard/on_mark_detonation(mob/living/target, mob/living/user)
 	if(mirror)
+		if(get_dist(get_turf(user), get_turf(mirror)) > max_dist)
+			qdel(mirror)
+			mirror = new /obj/structure/guardian_mirror(get_turf(user))
+			return
 		if(target.stat != DEAD)
 			mirror.last_action = world.time
 			var/turf/startloc = get_turf(mirror)
@@ -299,7 +304,10 @@
 			H.preparePixelProjectile(startloc, startloc)
 			H.firer = user
 			H.fire(angle_to_target)
+		return
 	if(rand(1, 100) <= bonus_value && target.stat != DEAD)
+		mirror = new /obj/structure/guardian_mirror(get_turf(user))		
+		
 			
 		
 
