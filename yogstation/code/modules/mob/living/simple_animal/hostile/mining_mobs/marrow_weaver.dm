@@ -79,13 +79,11 @@
 			else
 				to_chat(src, span_warning("There are no organs left in this corpse."))
 
-/mob/living/simple_animal/hostile/asteroid/marrowweaver/CanAttack(mob/user, atom/A)
+/mob/living/simple_animal/hostile/asteroid/marrowweaver/CanAttack(atom/A)
 	if(..())
 		return TRUE
-	if((health < maxHealth) && ishuman(A))
+	if((health < maxHealth) && ishuman(A) && !faction_check_mob(A))
 		var/mob/living/carbon/human/H = A
-		if(user.faction == H.faction)
-			return FALSE
 		for(var/obj/item/organ/O in H.internal_organs)
 			if(O.zone == "chest")
 				return TRUE
