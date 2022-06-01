@@ -191,3 +191,20 @@
 	var/mob/living/L = user
 	if(L && L.mind)
 		SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "hope_lavaland")
+
+///Crusher drop
+
+/obj/item/crusher_trophy/pandoraswraith
+	name = "pandora's wraith"
+	desc = "A weapon, used by Pandora."
+	icon = 'icons/obj/lavaland/elite_trophies.dmi'
+	icon_state = "legionnaire_spine" ///E
+	denied_type = /obj/item/crusher_trophy/pandoraswraith
+	bonus_value = 20
+
+/obj/item/crusher_trophy/pandoraswraith/effect_desc()
+	return "mark detonation to have a <b>[bonus_value]%</b> chance to summon 3x3 hierophant blasts"
+
+/obj/item/crusher_trophy/pandoraswraith/on_mark_detonation(mob/living/target, mob/living/user)
+	if(rand(1, 100) <= bonus_value && target.stat != DEAD)
+ 
