@@ -677,7 +677,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	icon_state = "emberflower"
 
 /obj/item/emberflowers/attack(mob/living/simple_animal/M, mob/user)
-	if(M.ckey)
+	if(M.client)
 		to_chat(user, span_warning("[M] is too intelligent to charm!"))
 		return
 	if(M.stat)
