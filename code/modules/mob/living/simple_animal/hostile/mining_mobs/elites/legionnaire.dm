@@ -311,7 +311,7 @@
 	var/time_sussed
 
 /mob/living/simple_animal/hostile/skeleton/templar/lesser
-	loot = null
+	loot = list()
 	maxHealth = 80
 	health = 80
 	obj_damage = 35
@@ -319,3 +319,6 @@
 	melee_damage_upper = 20
 	var/obj/item/lesser_necromancy_staff/staff
 
+/obj/item/lesser_necromancy_staff/attack_self(mob/living/user)
+	if(deadinside)
+		return ///WIP
