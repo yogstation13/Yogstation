@@ -282,17 +282,36 @@
 	icon_state = "broodmother_tongue"
 	denied_type = /obj/item/crusher_trophy/broodmother_tongue
 	bonus_value = 25
+	var/obj/structure/guardian_mirror/mirror
+
 /obj/item/crusher_trophy/prophets_guard/effect_desc()
 	return "mark detonation to have a <b>[bonus_value]%</b> chance to summon a guardian mirror under you."
 
 /obj/item/crusher_trophy/prophets_guard/on_mark_detonation(mob/living/target, mob/living/user)
-	///Sussy baka
+	if(mirror)
+		if(target.stat != DEAD)
+			mirror.last_action = world.time
+			var/turf/startloc = get_turf(mirror)
+			var/obj/item/projectile/herald/H = null
+			var/target_turf = get_turf(target)
+			var/angle_to_target = Get_Angle(mirror, target_turf)
+			H = new /obj/item/projectile/herald(startloc)
+			H.preparePixelProjectile(startloc, startloc)
+			H.firer = user
+			H.fire(angle_to_target)
+	if(rand(1, 100) <= bonus_value && target.stat != DEAD)
+			
+		
 
 
 /obj/structure/guardian_mirror
 	name = "guardian mirror"
 	icon_state = "girder"
-	desc = "A large structural assembly made out of metal; It requires a layer of metal before it can be considered a wall."
+	desc = "A large mirror with a image of a strange entity in it."
 	anchored = TRUE
 	density = FALSE
 	max_integrity = 70
+	var/last_action
+
+/obj/structure/guardian_mirror/Initialize()
+	last_action = world.time
