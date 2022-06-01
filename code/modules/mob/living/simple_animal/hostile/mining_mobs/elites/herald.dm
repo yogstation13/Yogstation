@@ -38,6 +38,7 @@
 	deathsound = 'sound/magic/demon_dies.ogg'
 	deathmessage = "begins to shudder as it becomes transparent..."
 	loot_drop = /obj/item/clothing/neck/cloak/herald_cloak
+	crusher_loot = /obj/item/crusher_trophy/prophets_guard
 
 	can_talk = 1
 
@@ -322,6 +323,7 @@
 	var/last_action
 
 /obj/structure/guardian_mirror/Initialize()
+	. = ..()
 	last_action = world.time
 
 /obj/structure/girder/CanAllowThrough(atom/movable/mover, turf/target)
