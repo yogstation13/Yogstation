@@ -263,7 +263,7 @@
 	resistance_flags = ACID_PROOF
 	var/last_time_tentacled
 
-/obj/item/goliath_tendril/Initialize(mapload, new_darkspawn)
+/obj/item/goliath_tendrill/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	last_time_tentacled = world.time
