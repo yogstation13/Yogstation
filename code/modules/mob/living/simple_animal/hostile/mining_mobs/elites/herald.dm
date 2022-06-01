@@ -287,3 +287,12 @@
 
 /obj/item/crusher_trophy/prophets_guard/on_mark_detonation(mob/living/target, mob/living/user)
 	///Sussy baka
+
+
+/obj/structure/guardian_mirror
+	name = "guardian mirror"
+	icon_state = "girder"
+	desc = "A large structural assembly made out of metal; It requires a layer of metal before it can be considered a wall."
+	anchored = TRUE
+	density = FALSE
+	max_integrity = 70
