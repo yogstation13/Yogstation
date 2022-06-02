@@ -25,6 +25,8 @@
 	var/list/attack_action_types = list()
 	var/can_talk = FALSE
 	var/obj/loot_drop = null
+	var/obj/item/gps/internal/elitegps 
+	var/gpsname = "Dungeon Master Signal"
 
 
 //Gives player-controlled variants the ability to swap attacks
@@ -115,6 +117,15 @@ While using this makes the system rely on OnFire, it still gives options for tim
 			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
 		else
 			clear_fullscreen("brute")
+
+/mob/living/simple_animal/hostile/asteroid/elite/proc/add_gps()
+	priority_announce("Attention crew, it seems that a dangerous hostile entity is on it's way to your station.", "[command_name()] Lifesign Update", 'sound/misc/notice1.ogg', "Priority")
+	elitegps = new /obj/item/gps/internal/elite(src)
+	elitegps.gpstag = gpsname
+
+/obj/item/gps/internal/elite
+	gpstag = "Signal"
+	invisibility = 100
 
 //The Pulsing Tumor, the actual "spawn-point" of elites, handles the spawning, arena, and procs for dealing with basic scenarios.
 
@@ -299,6 +310,8 @@ obj/structure/elite_tumor/proc/onEliteWon()
 		times_won++
 		mychild.maxHealth = mychild.maxHealth * 0.5
 		mychild.health = mychild.maxHealth
+		if(!mychild.elitegps)
+			addtimer(CALLBACK(src, .proc/add_gps), 2 MINUTES)
 	if(times_won == 1)
 		mychild.playsound_local(get_turf(mychild), 'sound/effects/magic.ogg', 40, 0)
 		to_chat(mychild, span_boldwarning("As the life in the activator's eyes fade, the forcefield around you dies out and you feel your power subside.\nDespite this inferno being your home, you feel as if you aren't welcome here anymore.\nWithout any guidance, your purpose is now for you to decide."))
