@@ -323,12 +323,12 @@
 
 /obj/item/lesser_necromancy_staff/attack_self(mob/living/user)
 	if(world.time < time_sussed + NECROMANCY_CD)
-		to_chat(H, "<span class='warning'>The staff isn't ready yet!</span>")
+		to_chat(user, "<span class='warning'>The staff isn't ready yet!</span>")
 		return
 	if(!deadinside || deadinside.stat == DEAD)
 		var/list/candidates = pollCandidatesForMob("Do you want to play as an undead servant?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 150, src)
 		if(!candidates.len)
-			to_chat(H, "<span class='warning'>The staff fizzless in your hands. Perhaps try again later...</span>")
+			to_chat(user, "<span class='warning'>The staff fizzless in your hands. Perhaps try again later...</span>")
 			return
 		var/mob/dead/selected = pick(candidates)
 		var/datum/mind/player_mind = new /datum/mind(selected.key)
@@ -339,9 +339,9 @@
 		deadinside.staff = src
 		deadinside.mind.enslave_mind_to_creator(user)
 		time_sussed = world.time
-		to_chat(H, "<span class='warning'>You sucessfully sumon your servant!</span>")
+		to_chat(user, "<span class='warning'>You sucessfully sumon your servant!</span>")
 	else 
-		to_chat(H, "<span class='warning'>The staff can sustain only one servant at time!</span>")
+		to_chat(user, "<span class='warning'>The staff can sustain only one servant at time!</span>")
 		
 #undef NECROMANCY_CD 	
 
@@ -352,8 +352,8 @@
 		return
 	. = ..()
 
-/mob/living/simple_animal/hostile/skeleton/templar/lesser/Death()
+/mob/living/simple_animal/hostile/skeleton/templar/lesser/death()
 	staff.time_sussed = world.time
 	to_chat(staff.owner, "<span class='warning'>The staff suddenly heats up, but then returns to it normal temperature.</span>")
 	. = ..()
-	Dust()
+	qdel(src)
