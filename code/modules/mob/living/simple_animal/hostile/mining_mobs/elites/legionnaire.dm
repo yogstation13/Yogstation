@@ -40,6 +40,8 @@
 	loot_drop = /obj/item/lesser_necromancy_staff
 	crusher_loot = /obj/item/crusher_trophy/legionnaire_spine
 
+	gpsname = "Skeletal Signal"
+
 	attack_action_types = list(/datum/action/innate/elite_attack/legionnaire_charge,
 								/datum/action/innate/elite_attack/head_detach,
 								/datum/action/innate/elite_attack/bonfire_teleport,
