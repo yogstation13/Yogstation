@@ -241,8 +241,9 @@
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.assigned_role == "Assistant" && user.a_intent == INTENT_HARM)
-			var/datum/bank_account/D = get_dep_account(ACCOUNT_SEC)
+		var/datum/mind/M = H.mind
+		if(M?.assigned_role == "Assistant" && user.a_intent == INTENT_HARM)
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_SEC)
 			if(D)
 				D.adjust_money(1)
 		H.forcesay(GLOB.hit_appends)
