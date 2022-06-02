@@ -128,6 +128,15 @@
 	else if(istype(W, /obj/item/firing_pin))
 		if(pin)
 			to_chat(user, span_notice("[src] already has a firing pin. You can remove it with crowbar"))
+		else
+			W.forceMove(src)
+			pin = W
+	else if(istype(W, upgrade))
+		if(upgrade)
+			to_chat(user, span_notice("[src] already has an upgrade installed. You can remove it with crowbar"))
+		else
+			W.forceMove(src)
+			upgrade = W	
 	else if(W.tool_behaviour == TOOL_CROWBAR)
 		if(pin)
 			pin.forceMove(get_turf(src))
