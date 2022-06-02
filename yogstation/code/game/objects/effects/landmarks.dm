@@ -191,9 +191,3 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return INITIALIZE_HINT_QDEL 
 
 #undef EMPTY_SPAWN
-
-/proc/main()
-	var/list/swag = list("A","B","B","B")
-	swag -= "B"
-	for(var/i in swag)
-		world.log << i
