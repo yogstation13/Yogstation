@@ -193,6 +193,9 @@ GLOBAL_PROTECT(exp_to_update)
 	else if(minutes && !is_afk())	//Let "refresh" checks go through
 		return
 
+	if(prefs.exp["Signal Technician"] > prefs.exp["Network Admin"])
+		play_records["Network Admin"] += prefs.exp["Signal Technician"]
+
 	for(var/jtype in play_records)
 		var/jvalue = play_records[jtype]
 		if (!jvalue)
