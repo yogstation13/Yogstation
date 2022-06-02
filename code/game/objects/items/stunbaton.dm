@@ -34,6 +34,8 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
+	var/obj/item/firing_pin/pin = /obj/item/firing_pin
+	var/obj/item/batonupgrade/upgrade
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -44,12 +46,25 @@
 
 /obj/item/melee/baton/Initialize()
 	. = ..()
+	status = FALSE
 	if(preload_cell_type)
 		if(!ispath(preload_cell_type,/obj/item/stock_parts/cell))
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
+	if(pin)
+		pin = new pin(src)
 	update_icon()
+
+/obj/item/melee/baton/Destroy()
+	. = ..()
+	if(isobj(pin)) //Can still be the initial path, then we skip
+		QDEL_NULL(pin)
+
+/obj/item/melee/baton/handle_atom_del(atom/A)
+	. = ..()
+	if(A == pin)
+		pin = null
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(..())
@@ -110,7 +125,20 @@
 			cell = W
 			to_chat(user, span_notice("You install a cell in [src]."))
 			update_icon()
-
+	else if(istype(W, /obj/item/firing_pin))
+		if(pin)
+			to_chat(user, span_notice("[src] already has a firing pin. You can remove it with crowbar"))
+	else if(W.tool_behaviour == TOOL_CROWBAR)
+		if(pin)
+			pin.forceMove(get_turf(src))
+			pin = null
+			status = FALSE
+			to_chat(user, span_notice("You remove the firing pin from [src]."))
+		if(upgrade)
+			upgrade.forceMove(get_turf(src))
+			upgrade = null
+			status = FALSE
+			to_chat(user, span_notice("You remove the upgrade from [src]."))
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(cell)
 			cell.update_icon()
@@ -124,6 +152,11 @@
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
+	if(!pin)
+		to_chat("There is no firing pin installed!")
+	if(!handle_pins(user))
+		to_chat(user, span_warning("You are not authorised to use [src]."))
+		return FALSE
 	if(cell && cell.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
@@ -143,6 +176,12 @@
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
+	if(!pin)
+		to_chat("There is no firing pin installed!")
+		return FALSE
+	if(!handle_pins(user))
+		to_chat(user, span_warning("You are not authorised to use [src]."))
+		return FALSE
 	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message(span_danger("[user] accidentally hits [user.p_them()]self with [src]!"), \
 							span_userdanger("You accidentally hit yourself with [src]!"))
@@ -163,7 +202,6 @@
 	if(iscyborg(M))
 		..()
 		return
-
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/L = M
@@ -191,6 +229,11 @@
 
 
 /obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/user)
+	if(upgrade)
+		stamina_damage = initial(stamina_damage)*2
+		hitcost = initial(hitcost)*1.5
+	else
+		stamina_damage = initial(stamina_damage)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
@@ -209,6 +252,8 @@
 	var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
 	var/armor_block = L.run_armor_check(affecting, ENERGY) //check armor on the limb because that's where we are slapping...
 	L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
+	
+	
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 	var/current_stamina_damage = L.getStaminaLoss()
 
@@ -283,3 +328,20 @@
 	desc = "A cost-effective, mass-produced, tactical stun prod."
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
 	color = "#aeb08c" // super tactical
+
+/obj/item/melee/baton/proc/handle_pins(mob/living/user)
+	if(pin)
+		if(pin.pin_auth(user) || (pin.obj_flags & EMAGGED))
+			return TRUE
+		else
+			pin.auth_fail(user)
+			return FALSE
+	else
+		to_chat(user, span_warning("[src]'s trigger is locked. This weapon doesn't have a firing pin installed!"))
+	return FALSE
+
+/obj/item/batonupgrade
+	name = "Baton power upgrade"
+	desc = "A new power management circuit which enables double the power drain to instant stun."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade3"
