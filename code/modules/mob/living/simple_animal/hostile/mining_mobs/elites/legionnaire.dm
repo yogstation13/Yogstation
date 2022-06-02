@@ -37,7 +37,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	deathsound = 'sound/magic/curse.ogg'
 	deathmessage = "'s arms reach out before it falls apart onto the floor, lifeless."
-	loot_drop = null ///temporary null!
+	loot_drop = /obj/item/lesser_necromancy_staff
 	crusher_loot = /obj/item/crusher_trophy/legionnaire_spine
 
 	attack_action_types = list(/datum/action/innate/elite_attack/legionnaire_charge,
@@ -354,6 +354,5 @@
 
 /mob/living/simple_animal/hostile/skeleton/templar/lesser/death()
 	staff.time_sussed = world.time
-	to_chat(staff.owner, "<span class='warning'>The staff suddenly heats up, but then returns to it normal temperature.</span>")
 	. = ..()
 	qdel(staff.deadinside)
