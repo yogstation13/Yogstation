@@ -137,3 +137,7 @@
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))
 		shuttleId = port.id
+
+/obj/machinery/computer/shuttle/AltClick(user)
+	if(istype(user, /mob/living/carbon) || istype(user, /mob/living/simple_animal/hostile/asteroid/elite))
+		ui_interact(user, null)
