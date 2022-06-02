@@ -243,9 +243,12 @@
 		var/mob/living/carbon/human/H = L
 		var/datum/mind/M = H.mind
 		if(M?.assigned_role == "Assistant" && user.a_intent == INTENT_HARM)
+			var/amount_given = 1
+			if(M.assigned_role == "Clown")
+				amount_given = 5
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_SEC)
 			if(D)
-				D.adjust_money(1)
+				D.adjust_money(amount_given)
 		H.forcesay(GLOB.hit_appends)
 
 	cooldown_check = world.time + cooldown
