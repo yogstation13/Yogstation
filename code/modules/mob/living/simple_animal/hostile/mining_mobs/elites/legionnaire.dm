@@ -320,5 +320,15 @@
 	var/obj/item/lesser_necromancy_staff/staff
 
 /obj/item/lesser_necromancy_staff/attack_self(mob/living/user)
-	if(deadinside)
-		return ///WIP
+	if(deadinside || deadinside.stat == DEAD)
+		var/list/candidates = pollCandidatesForMob("Do you want to play as an undead servant?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 150, src)
+		if(!candidates.len)
+			to_chat(H, "<span class='warning'>The staff fizzless in your hands. Perhaps try again later...</span>")
+			return
+		var/mob/dead/selected = pick(candidates)
+		var/datum/mind/player_mind = new /datum/mind(selected.key)
+		deadinside = new(get_turf(user))
+		player_mind.transfer_to(deadinside)
+		player_mind.assigned_role = "Undead Servant"
+		player_mind.special_role = "Undead Servant"
+		
