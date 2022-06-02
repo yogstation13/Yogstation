@@ -344,3 +344,9 @@
 		to_chat(H, "<span class='warning'>The staff can sustain only one servant at time!</span>")
 		
 #undef NECROMANCY_CD 	
+
+/mob/living/simple_animal/hostile/skeleton/templar/lesser/Death()
+	staff.time_sussed = world.time
+	to_chat(staff.owner, "<span class='warning'>The staff suddenly heats up, but then returns to it normal temperature.</span>")
+	Dust()
+	. = ..()
