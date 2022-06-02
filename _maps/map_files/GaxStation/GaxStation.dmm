@@ -18724,6 +18724,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"kbd" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/library)
 "kbt" = (
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/carpet,
@@ -30873,6 +30877,10 @@
 	},
 /turf/open/space/basic,
 /area/solar/starboard/aft)
+"qPr" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/chapel/main)
 "qPV" = (
 /obj/machinery/shower{
 	dir = 1
@@ -31138,10 +31146,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/dorms)
-"qZM" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/engine/cult,
-/area/chapel/main)
 "qZT" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -32247,10 +32251,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"rFJ" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/engine/cult,
-/area/library)
 "rGc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -72037,8 +72037,8 @@ kYy
 kYy
 kYy
 mAC
-qZM
-qZM
+qPr
+qPr
 mAC
 rDI
 ikb
@@ -73328,7 +73328,7 @@ pDY
 wbM
 nUm
 mxm
-qZM
+qPr
 aEv
 tEo
 fhh
@@ -73585,7 +73585,7 @@ mAC
 tKu
 nUm
 cKf
-qZM
+qPr
 aEv
 ptM
 lkI
@@ -74613,7 +74613,7 @@ hFa
 xIl
 xIl
 eup
-rFJ
+kbd
 aEv
 bal
 meF
@@ -75127,7 +75127,7 @@ gMh
 xIl
 xIl
 eML
-rFJ
+kbd
 aEv
 ewA
 pQK
@@ -75641,7 +75641,7 @@ xtq
 xIl
 xIl
 lZL
-rFJ
+kbd
 aEv
 ewA
 eSn
