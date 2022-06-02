@@ -270,7 +270,7 @@
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	last_time_tentacled = world.time
 
-#define TENTACLEATTACK_CD 10 SECONDS
+#define TENTACLEATTACK_CD 15 SECONDS
 
 /obj/item/goliath_tendrill/afterattack(atom/target, mob/living/user, proximity)
 	if(proximity)
