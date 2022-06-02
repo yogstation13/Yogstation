@@ -40,6 +40,8 @@
 	loot_drop = /obj/item/clothing/neck/cloak/herald_cloak
 	crusher_loot = /obj/item/crusher_trophy/prophets_guard
 
+	gpsname = "Prophet Signal"
+
 	can_talk = 1
 
 	attack_action_types = list(/datum/action/innate/elite_attack/herald_trishot,
