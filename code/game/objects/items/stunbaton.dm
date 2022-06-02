@@ -126,12 +126,20 @@
 			to_chat(user, span_notice("You install a cell in [src]."))
 			update_icon()
 	else if(istype(W, /obj/item/firing_pin))
+		if(upgrade)
+			if(W.type != /obj/item/firing_pin)
+				to_chat("You are unable to add a non default firing pin whilst it has an upgrade, remove it first with a crowbar")
+				return
 		if(pin)
 			to_chat(user, span_notice("[src] already has a firing pin. You can remove it with crowbar"))
 		else
 			W.forceMove(src)
 			pin = W
 	else if(istype(W, upgrade))
+		if(pin)
+			if(pin.type != /obj/item/firing_pin)
+				to_chat("You are unable to upgrade the baton whilst it has a non default pin")
+				return
 		if(upgrade)
 			to_chat(user, span_notice("[src] already has an upgrade installed. You can remove it with crowbar"))
 		else
