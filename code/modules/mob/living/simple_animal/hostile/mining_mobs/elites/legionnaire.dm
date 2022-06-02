@@ -323,8 +323,9 @@
 
 /obj/item/lesser_necromancy_staff/attack_self(mob/living/user)
 	if(world.time < time_sussed + NECROMANCY_CD)
+		to_chat(H, "<span class='warning'>The staff isn't ready yet!</span>")
 		return
-	if(deadinside || deadinside.stat == DEAD)
+	if(!deadinside || deadinside.stat == DEAD)
 		var/list/candidates = pollCandidatesForMob("Do you want to play as an undead servant?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 150, src)
 		if(!candidates.len)
 			to_chat(H, "<span class='warning'>The staff fizzless in your hands. Perhaps try again later...</span>")
@@ -338,5 +339,8 @@
 		deadinside.staff = src
 		deadinside.mind.enslave_mind_to_creator(user)
 		time_sussed = world.time
+		to_chat(H, "<span class='warning'>You sucessfully sumon your servant!</span>")
+	else 
+		to_chat(H, "<span class='warning'>The staff can sustain only one servant at time!</span>")
 		
 #undef NECROMANCY_CD 	
