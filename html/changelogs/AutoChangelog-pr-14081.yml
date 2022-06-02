@@ -1,0 +1,5 @@
+author: "cuackles"
+delete-after: true 
+changes: 
+  - rscadd: "Adds makeshift magnetic rifle"
+  - rscdel: "Removed makeshift laser rifle"

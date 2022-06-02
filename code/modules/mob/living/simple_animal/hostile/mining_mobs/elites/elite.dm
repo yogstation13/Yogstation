@@ -289,6 +289,7 @@ obj/structure/elite_tumor/proc/onEliteLoss()
 	visible_message(span_boldwarning("[src] begins to convulse violently before beginning to dissipate."))
 	visible_message(span_boldwarning("As [src] closes, something is forced up from down below."))
 	var/obj/structure/closet/crate/necropolis/tendril/lootbox = new /obj/structure/closet/crate/necropolis/tendril(loc)
+
 	if(!boosted)
 		mychild = null
 		activator = null

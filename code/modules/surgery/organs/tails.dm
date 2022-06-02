@@ -64,6 +64,10 @@
 		spines = H.dna.features["spines"]
 		H.update_body()
 
+/obj/item/organ/tail/lizard/fake
+	name = "fabricated lizard tail"
+	desc = "A fabricated severed lizard tail. This one's made of synthflesh. Probably not usable for lizard wine."
+
 /obj/item/organ/tail/polysmorph
 	name = "polysmorph tail"
 	desc = "A severed polysmorph tail."

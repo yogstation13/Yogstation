@@ -1,0 +1,6 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - tweak: "Made admin capes unlockable"
+  - tweak: "Made mentor cape unlockable"
+  - tweak: "Made ghost cape unlockable"

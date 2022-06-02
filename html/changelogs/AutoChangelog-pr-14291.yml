@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "prophet cloak from herald no longer actually BLOCKS bullets, it just reacts to them"
+  - tweak: "elites now drop their specific loot"
