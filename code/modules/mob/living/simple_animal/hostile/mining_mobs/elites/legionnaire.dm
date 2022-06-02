@@ -319,7 +319,11 @@
 	melee_damage_upper = 20
 	var/obj/item/lesser_necromancy_staff/staff
 
+#define NECROMANCY_CD 60 SECONDS
+
 /obj/item/lesser_necromancy_staff/attack_self(mob/living/user)
+	if(world.time < time_sussed + NECROMANCY_CD)
+		return
 	if(deadinside || deadinside.stat == DEAD)
 		var/list/candidates = pollCandidatesForMob("Do you want to play as an undead servant?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 150, src)
 		if(!candidates.len)
@@ -331,4 +335,8 @@
 		player_mind.transfer_to(deadinside)
 		player_mind.assigned_role = "Undead Servant"
 		player_mind.special_role = "Undead Servant"
+		deadinside.staff = src
+		deadinside.mind.enslave_mind_to_creator(user)
+		time_sussed = world.time
 		
+#undef NECROMANCY_CD 	
