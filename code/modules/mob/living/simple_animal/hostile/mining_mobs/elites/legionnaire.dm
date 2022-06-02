@@ -312,10 +312,10 @@
 
 /mob/living/simple_animal/hostile/skeleton/templar/lesser
 	loot = list()
-	maxHealth = 80
-	health = 80
+	maxHealth = 60
+	health = 60
 	obj_damage = 35
-	melee_damage_lower = 20
+	melee_damage_lower = 15
 	melee_damage_upper = 20
 	var/obj/item/lesser_necromancy_staff/staff
 
