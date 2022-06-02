@@ -162,8 +162,8 @@
 			cell = null
 			to_chat(user, span_notice("You remove the cell from [src]."))
 			status = FALSE
-			update_icon()
 			STOP_PROCESSING(SSobj, src) // no cell, no charge; stop processing for on because it cant be on
+	update_icon()
 	else
 		return ..()
 
