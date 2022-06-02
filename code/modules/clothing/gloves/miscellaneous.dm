@@ -137,7 +137,7 @@ obj/effect/proc_holder/swipe
 	if(active)
 		remove_ranged_ability(span_notice("You relax your arms."))
 	else
-		add_ranged_ability(user, span_notice("You ready your cuffs. <B>Left-click a creature or floor to swipe at it!</B>"), TRUE)
+		add_ranged_ability(user, span_notice("You ready your cuffs. <B>Left-click a creature or nearby location to swipe at it!</B>"), TRUE)
 
 /obj/effect/proc_holder/swipe/InterceptClickOn(mob/living/caller, params, atom/target)
 	. = ..()
