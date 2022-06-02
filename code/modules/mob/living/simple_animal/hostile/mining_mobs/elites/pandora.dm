@@ -40,6 +40,8 @@
 	loot_drop = /obj/item/clothing/accessory/pandora_hope
 	crusher_loot = /obj/item/crusher_trophy/pandoraswraith
 
+	gpsname = "Evil Signal"
+
 	attack_action_types = list(/datum/action/innate/elite_attack/singular_shot,
 								/datum/action/innate/elite_attack/magic_box,
 								/datum/action/innate/elite_attack/pandora_teleport,
