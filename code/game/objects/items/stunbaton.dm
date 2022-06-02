@@ -23,7 +23,7 @@
 	///how much stamina damage we deal per hit, this is combatted by energy armor
 	var/stamina_damage = 70
 	///are we turned on
-	var/status = TRUE
+	var/status = FALSE
 	///the cell used by the baton
 	var/obj/item/stock_parts/cell/cell
 	///how much charge is deducted from the cell when we slap someone while on
@@ -46,7 +46,6 @@
 
 /obj/item/melee/baton/Initialize()
 	. = ..()
-	status = FALSE
 	if(preload_cell_type)
 		if(!ispath(preload_cell_type,/obj/item/stock_parts/cell))
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
