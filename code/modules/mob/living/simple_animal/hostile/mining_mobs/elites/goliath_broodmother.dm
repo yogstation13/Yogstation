@@ -283,7 +283,12 @@
 
 #undef TENTACLEATTACK_CD
 
-
+/obj/item/goliath_tendrill/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(istype(target, /mob/living/simple_animal/hostile/asteroid/elite/) || istype(target, /mob/living/simple_animal/hostile/megafauna))
+		target.adjustBruteLoss(30)
+	else if(istype(target, /mob/living/simple_animal/hostile/asteroid))
+		target.adjustBruteLoss(15)
 
 
 
