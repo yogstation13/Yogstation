@@ -115,7 +115,7 @@
 
 obj/effect/proc_holder/swipe
 	name = "swipe"
-	desc = "Swipe at a target area, dealing damage and consuming dead creatures to heal yourself. People are ineligible for total consumption. Creatures take 30 damage and heal the most while people and cyborgs take 10 damage and heal for the least. People that have been thoroughly burned and bruised heal you for a bit more than those that aren't."
+	desc = "Swipe at a target area, dealing damage and consuming dead entities to heal yourself. People are ineligible for total consumption. Creatures take 30 damage, and give the most healing, while people and cyborgs take 10 damage and heal for the least. People who have been thoroughly burned and bruised heal you for slightly more!"
 	action_background_icon_state = "bg_demon"
 	action_icon = 'icons/mob/actions/actions_items.dmi'
 	action_icon_state = "cuff"
