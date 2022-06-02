@@ -95,7 +95,7 @@
 
 /obj/item/clothing/gloves/bracer/cuffs
 	name = "rabid cuffs"
-	desc = "Chainless manacles, fashioned in the form of the hungriest of slaughter demons. Wearing these invokes a hunger in the wearer that can only be sated by bloodshed."
+	desc = "Chainless manacles fashioned after one of the hungriest of slaughter demons. Wearing these invokes a hunger in the wearer that can only be sated by bloodshed."
 	icon_state = "cuff"
 	item_state = "cuff"
 	var/obj/effect/proc_holder/swipe/swipe_ability
@@ -114,8 +114,8 @@
 	user.RemoveAbility(swipe_ability)
 
 obj/effect/proc_holder/swipe
-	name = "swipe"
-	desc = "Swipe at a target area, dealing damage and consuming dead entities to heal yourself. People are ineligible for total consumption. Creatures take 30 damage, and give the most healing, while people and cyborgs take 10 damage and heal for the least. People who have been thoroughly burned and bruised heal you for slightly more!"
+	name = "Swipe"
+	desc = "Swipe at a target area, dealing damage and consuming dead entities to heal yourself. Creatures take 30 damage while people and cyborgs take 10 damage. Consumed creatures explode into gibs and give the most healing, and people and cyborgs heal for the least. People and cyborgs who have been thoroughly burned and bruised heal you for slightly more! People are ineligible for total consumption." 
 	action_background_icon_state = "bg_demon"
 	action_icon = 'icons/mob/actions/actions_items.dmi'
 	action_icon_state = "cuff"
@@ -158,6 +158,7 @@ obj/effect/proc_holder/swipe
 	to_chat(L, span_userdanger("A claw swipes at you!"))
 	to_chat(ranged_ability_user, "You summon claws at [L]'s location!")
 	for(L in range(0,T))
+		playsound(T, 'sound/magic/demon_attack1.ogg', 80, 5, -1)
 		if(isanimal(L))
 			L.adjustBruteLoss(30)
 			if(L.stat == DEAD)
