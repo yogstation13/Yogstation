@@ -30,7 +30,7 @@
 	var/mob/living/carbon/human/user = usr
 	user.visible_message(span_warning("[user]'s sigils flare as energy swirls around them..."), span_velvet("You begin creating a psychic barrier around yourself..."))
 	playsound(user, 'yogstation/sound/magic/sacrament_begin.ogg', 50, FALSE)
-	if(!do_after(user, 3 SECONDS, target = user))
+	if(!do_after(user, 3 SECONDS, user))
 		in_use = FALSE
 		return
 	var/image/alert_overlay = image('yogstation/icons/mob/actions/actions_darkspawn.dmi', "sacrament")
@@ -57,7 +57,7 @@
 				for(var/mob/M in GLOB.player_list)
 					M.playsound_local(M, 'yogstation/sound/magic/sacrament_02.ogg', 20, FALSE, pressure_affected = FALSE)
 				animate(user, transform = matrix() * 2, time = 15 SECONDS)
-		if(!do_after(user, 15 SECONDS, target = user))
+		if(!do_after(user, 15 SECONDS, user))
 			user.visible_message(span_warning("[user] falls to the ground!"), span_userdanger("Your transformation was interrupted!"))
 			animate(user, transform = matrix(), pixel_y = initial(user.pixel_y), time = 3 SECONDS)
 			in_use = FALSE
