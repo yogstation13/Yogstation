@@ -155,7 +155,6 @@
 	if(!pin)
 		to_chat("There is no firing pin installed!")
 	if(!handle_pins(user))
-		to_chat(user, span_warning("You are not authorised to use [src]."))
 		return FALSE
 	if(cell && cell.charge > hitcost)
 		status = !status
@@ -176,11 +175,7 @@
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
-	if(!pin)
-		to_chat("There is no firing pin installed!")
-		return FALSE
 	if(!handle_pins(user))
-		to_chat(user, span_warning("You are not authorised to use [src]."))
 		return FALSE
 	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message(span_danger("[user] accidentally hits [user.p_them()]self with [src]!"), \
