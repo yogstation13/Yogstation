@@ -348,7 +348,7 @@
 
 /obj/item/lesser_necromancy_staff/attack(mob/living/target)
 	if(target == deadinside)
-		deadinside.heal_bodypartdamage(5)
+		deadinside.heal_bodypart_damage(5)
 		return
 	. = ..()
 
@@ -356,4 +356,4 @@
 	staff.time_sussed = world.time
 	to_chat(staff.owner, "<span class='warning'>The staff suddenly heats up, but then returns to it normal temperature.</span>")
 	. = ..()
-	qdel(src)
+	qdel(staff.deadinside)
