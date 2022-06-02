@@ -42,6 +42,8 @@
 	loot_drop = null // nothing untill i will code the tentacle
 	crusher_loot = /obj/item/crusher_trophy/broodmother_tongue
 
+	gpsname = "Brood Signal"
+
 	attack_action_types = list(/datum/action/innate/elite_attack/tentacle_patch,
 								/datum/action/innate/elite_attack/spawn_children,
 								/datum/action/innate/elite_attack/rage,
