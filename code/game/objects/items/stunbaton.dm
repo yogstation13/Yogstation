@@ -34,6 +34,7 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
+	var/makeshift = FALSE
 	var/obj/item/firing_pin/pin = /obj/item/firing_pin
 	var/obj/item/batonupgrade/upgrade
 
@@ -59,11 +60,15 @@
 	. = ..()
 	if(isobj(pin)) //Can still be the initial path, then we skip
 		QDEL_NULL(pin)
+	if(isobj(upgrade)) //Can still be the initial path, then we skip
+		QDEL_NULL(upgrade)
 
 /obj/item/melee/baton/handle_atom_del(atom/A)
 	. = ..()
 	if(A == pin)
 		pin = null
+	if(A == upgrade)
+		upgrade = null
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(..())
@@ -125,19 +130,23 @@
 			to_chat(user, span_notice("You install a cell in [src]."))
 			update_icon()
 	else if(istype(W, /obj/item/firing_pin))
+		if(makeshift == TRUE)
+			return
 		if(upgrade)
 			if(W.type != /obj/item/firing_pin)
-				to_chat("You are unable to add a non default firing pin whilst it has an upgrade, remove it first with a crowbar")
+				to_chat("You are unable to add a non default firing pin whilst [src] has an upgrade. Remove the upgrade first with a crowbar.")
 				return
 		if(pin)
-			to_chat(user, span_notice("[src] already has a firing pin. You can remove it with crowbar"))
+			to_chat(user, span_notice("[src] already has a firing pin. You can remove it with crowbar."))
 		else
 			W.forceMove(src)
 			pin = W
 	else if(istype(W, upgrade))
+		if(makeshift == TRUE)
+			return
 		if(pin)
 			if(pin.type != /obj/item/firing_pin)
-				to_chat("You are unable to upgrade the baton whilst it has a non default pin")
+				to_chat("You are unable to upgrade the baton whilst it has a non default firing pin.")
 				return
 		if(upgrade)
 			to_chat(user, span_notice("[src] already has an upgrade installed. You can remove it with crowbar"))
@@ -145,6 +154,8 @@
 			W.forceMove(src)
 			upgrade = W	
 	else if(W.tool_behaviour == TOOL_CROWBAR)
+		if(makeshift == TRUE)
+			return
 		if(pin)
 			pin.forceMove(get_turf(src))
 			pin = null
@@ -155,6 +166,7 @@
 			upgrade = null
 			status = FALSE
 			to_chat(user, span_notice("You remove the upgrade from [src]."))
+		update_icon()
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(cell)
 			cell.update_icon()
@@ -163,13 +175,11 @@
 			to_chat(user, span_notice("You remove the cell from [src]."))
 			status = FALSE
 			STOP_PROCESSING(SSobj, src) // no cell, no charge; stop processing for on because it cant be on
-	update_icon()
+			update_icon()
 	else
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
-	if(!pin)
-		to_chat("There is no firing pin installed!")
 	if(!handle_pins(user))
 		return FALSE
 	if(cell && cell.charge > hitcost)
@@ -324,6 +334,7 @@
 	hitcost = 2000
 	throw_hit_chance = 10
 	slot_flags = ITEM_SLOT_BACK
+	makeshift = TRUE
 	var/obj/item/assembly/igniter/sparkler = 0
 
 /obj/item/melee/baton/cattleprod/Initialize()
@@ -352,7 +363,7 @@
 	return FALSE
 
 /obj/item/batonupgrade
-	name = "Baton power upgrade"
-	desc = "A new power management circuit which enables double the power drain to instant stun."
+	name = "baton power upgrade"
+	desc = "A new power management circuit which enables stun batons to instantly stun, at the cost of double power usage."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade3"
