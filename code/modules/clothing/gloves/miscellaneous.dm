@@ -168,7 +168,7 @@ obj/effect/proc_holder/swipe
 				caller.blood_volume = BLOOD_VOLUME_NORMAL(caller)*1.10
 		L.adjustBruteLoss(10)
 		if(L.getBruteLoss()+L.getFireLoss() >= 299)
-			to_chat(caller, span_notice("You're able to consume a bit more as the body has been softened up!"))
+			to_chat(caller, span_notice("You're able to consume a bit more of the body, as it was previously softened up!"))
 			caller.adjustBruteLoss(-15)
 			caller.adjustFireLoss(-15)
 			caller.adjustToxLoss(-15)
