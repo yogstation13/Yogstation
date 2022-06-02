@@ -31,7 +31,7 @@
 	var/mob/living/simple_animal/mouse/movement_target
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "cat"
-
+	can_be_held = TRUE
 	do_footstep = TRUE
 
 /mob/living/simple_animal/pet/cat/Initialize()
@@ -76,6 +76,7 @@
 	icon_state = "kitten"
 	icon_living = "kitten"
 	icon_dead = "kitten_dead"
+	held_state = "cat2"
 	density = FALSE
 	pass_flags = PASSMOB
 	mob_size = MOB_SIZE_SMALL

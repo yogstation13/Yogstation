@@ -18,7 +18,7 @@
 	speak_chance = 1
 	turns_per_move = 10
 	gold_core_spawnable = FRIENDLY_SPAWN
-
+	can_be_held = TRUE
 	do_footstep = TRUE
 
 //Corgis and pugs are now under one dog subtype
@@ -34,7 +34,6 @@
 	childtype = list(/mob/living/simple_animal/pet/dog/corgi/puppy = 95, /mob/living/simple_animal/pet/dog/corgi/puppy/void = 5)
 	animal_species = /mob/living/simple_animal/pet/dog
 	gold_core_spawnable = FRIENDLY_SPAWN
-	can_be_held = TRUE
 	collar_type = "corgi"
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
@@ -193,13 +192,6 @@
 		return
 	..()
 	update_corgi_fluff()
-
-/mob/living/simple_animal/pet/dog/corgi/mob_pickup(mob/living/L)
-	var/obj/item/clothing/head/mob_holder/holder = new(get_turf(src), src, "corgi", null, 'icons/mob/pets_held_lh.dmi', 'icons/mob/pets_held_rh.dmi', FALSE)
-	if(!L.put_in_hands(holder))
-		qdel(holder)
-	else
-		L.visible_message(span_warning("[L] scoops up [src]!"))
 
 /mob/living/simple_animal/pet/dog/corgi/Topic(href, href_list)
 	if(!(iscarbon(usr) || iscyborg(usr)) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))

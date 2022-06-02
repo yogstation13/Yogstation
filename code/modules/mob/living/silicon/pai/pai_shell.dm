@@ -74,6 +74,7 @@
 	if(!choice)
 		return FALSE
 	chassis = choice
+	icon_state = "[chassis]"
 	update_resting()
 	to_chat(src, span_boldnotice("You switch your holochassis projection composite to [chassis]."))
 
@@ -96,13 +97,6 @@
 	else
 		set_light(0)
 		to_chat(src, span_notice("You disable your integrated light."))
-
-/mob/living/silicon/pai/mob_pickup(mob/living/L)
-	var/obj/item/clothing/head/mob_holder/holder = new(get_turf(src), src, chassis, item_head_icon, item_lh_icon, item_rh_icon)
-	if(!L.put_in_hands(holder))
-		qdel(holder)
-	else
-		L.visible_message(span_warning("[L] scoops up [src]!"))
 
 /mob/living/silicon/pai/mob_try_pickup(mob/living/user)
 	if(!possible_chassis[chassis])
