@@ -312,7 +312,7 @@ obj/structure/elite_tumor/proc/onEliteWon()
 		mychild.maxHealth = mychild.maxHealth * 0.5
 		mychild.health = mychild.maxHealth
 		if(!mychild.elitegps)
-			addtimer(CALLBACK(mychild, .proc/add_gps), 2 MINUTES)
+			mychild.addtimer(CALLBACK(mychild, .proc/add_gps), 2 MINUTES)
 	if(times_won == 1)
 		mychild.playsound_local(get_turf(mychild), 'sound/effects/magic.ogg', 40, 0)
 		to_chat(mychild, span_boldwarning("As the life in the activator's eyes fade, the forcefield around you dies out and you feel your power subside.\nDespite this inferno being your home, you feel as if you aren't welcome here anymore.\nWithout any guidance, your purpose is now for you to decide."))
