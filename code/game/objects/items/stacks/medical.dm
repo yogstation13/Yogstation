@@ -168,7 +168,7 @@
 
 	user.visible_message(span_warning("[user] begins wrapping the wounds on [M]'s [limb.name] with [src]..."), span_warning("You begin wrapping the wounds on [user == M ? "your" : "[M]'s"] [limb.name] with [src]..."))
 
-	if(!do_after(user, (user == M ? self_delay : other_delay), target=M))
+	if(!do_after(user, (user == M ? self_delay : other_delay), M))
 		return
 
 	user.visible_message(span_green("[user] applies [src] to [M]'s [limb.name]."), span_green("You bandage the wounds on [user == M ? "yourself" : "[M]'s"] [limb.name]."))

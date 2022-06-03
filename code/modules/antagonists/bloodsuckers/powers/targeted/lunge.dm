@@ -84,17 +84,16 @@
 	//animate them shake
 	var/base_x = owner.pixel_x
 	var/base_y = owner.pixel_y
-	animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1, loop = -1)
+	animate(owner, pixel_x = base_x, pixel_y = base_y, time = 0.1 SECONDS, loop = -1)
 	for(var/i in 1 to 25)
 		var/x_offset = base_x + rand(-3, 3)
 		var/y_offset = base_y + rand(-3, 3)
-		animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
-
-	if(!do_after(owner, 4 SECONDS, extra_checks = CALLBACK(src, .proc/CheckCanTarget, target_atom)))
-		animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1)
+		animate(pixel_x = x_offset, pixel_y = y_offset, time = 0.1 SECONDS)
+	if(!do_after(owner, 4 SECONDS, target_atom, extra_checks = CALLBACK(src, .proc/CheckCanTarget, target_atom)))
+		animate(owner, pixel_x = base_x, pixel_y = base_y, time = 0.1 SECONDS)
 		casting = FALSE
 		return FALSE
-	animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1)
+	animate(owner, pixel_x = base_x, pixel_y = base_y, time = 0.1 SECONDS)
 	casting = FALSE
 	return TRUE
 

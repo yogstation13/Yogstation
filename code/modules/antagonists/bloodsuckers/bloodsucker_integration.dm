@@ -16,12 +16,6 @@
 		return
 	. = ..()
 
-/mob/living/carbon/human/natural_bodytemperature_stabilization(datum/gas_mixture/environment, delta_time, times_fired)
-	// Return 0 as your natural temperature. Species proc handle_environment() will adjust your temperature based on this.
-	if(HAS_TRAIT(src, TRAIT_COLDBLOODED))
-		return 0
-	. = ..()
-
 // Overwrites mob/living/life.dm instead of doing handle_changeling
 /mob/living/carbon/human/Life(delta_time = (SSmobs.wait/10), times_fired)
 	. = ..()

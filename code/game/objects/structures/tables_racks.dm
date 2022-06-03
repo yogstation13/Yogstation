@@ -104,12 +104,12 @@
 				if(user.grab_state < GRAB_AGGRESSIVE)
 					to_chat(user, span_warning("You need a better grip to do that!"))
 					return
-				if(do_after(user, 3.5 SECONDS, target = pushed_mob))
+				if(do_after(user, 3.5 SECONDS, pushed_mob))
 					tablepush(user, pushed_mob)
 			if(user.a_intent == INTENT_HELP)
 				pushed_mob.visible_message(span_notice("[user] begins to place [pushed_mob] onto [src]..."), \
 									span_userdanger("[user] begins to place [pushed_mob] onto [src]..."))
-				if(do_after(user, 3.5 SECONDS, target = pushed_mob))
+				if(do_after(user, 3.5 SECONDS,pushed_mob))
 					tableplace(user, pushed_mob)
 				else
 					return
@@ -488,8 +488,8 @@
 	if(src) //do we still exist?
 		var/previouscolor = color
 		color = "#960000"
-		animate(src, color = previouscolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
+		animate(src, color = previouscolor, time = 0.8 SECONDS)
+		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
 /obj/structure/table/reinforced/brass/ratvar_act()
 	obj_integrity = max_integrity
@@ -670,7 +670,7 @@
 		return
 	building = TRUE
 	to_chat(user, span_notice("You start constructing a rack..."))
-	if(do_after(user, 5 SECONDS, target = user, progress=TRUE))
+	if(do_after(user, 5 SECONDS, user))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/rack/R = new /obj/structure/rack(user.loc)

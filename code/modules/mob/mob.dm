@@ -497,7 +497,7 @@
 	else if(ismob(examined_thing) && examined_thing != src)
 		examine_delay_length *= 2
 
-	if(examine_delay_length > 0 && !do_after(src, examine_delay_length, target = examined_thing))
+	if(examine_delay_length > 0 && !do_after(src, examine_delay_length, examined_thing))
 		to_chat(src, span_notice("You can't get a good feel for what is there."))
 		return FALSE
 
@@ -538,7 +538,7 @@
 
 	var/turf/our_tile = get_turf(src)
 	var/obj/visual = new /obj/effect/temp_visual/point(our_tile, invisibility)
-	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
+	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 0.17 SECONDS, easing = EASE_OUT)
 
 	return TRUE
 

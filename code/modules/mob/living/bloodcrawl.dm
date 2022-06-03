@@ -76,7 +76,7 @@
 
 	for(var/i in 1 to 3)
 		playsound(get_turf(src),sound, 50, 1)
-		sleep(30)
+		sleep(3 SECONDS)
 
 	if(!victim)
 		return FALSE
@@ -136,7 +136,7 @@
 		to_chat(src, span_warning("Finish eating first!"))
 		return 0
 	B.visible_message(span_warning("[B] starts to bubble..."))
-	if(!do_after(src, 2 SECONDS, target = B))
+	if(!do_after(src, 2 SECONDS, B))
 		return
 	if(!B)
 		return

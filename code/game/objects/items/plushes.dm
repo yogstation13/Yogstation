@@ -412,7 +412,7 @@
 			P.clashing = FALSE
 			return
 		playsound(src, 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE, frequency = 2)
-		sleep(2.4)
+		sleep(0.24 SECONDS)
 		if(QDELETED(src))
 			P.clashing = FALSE
 			return
@@ -423,7 +423,7 @@
 			a_winnar_is = src
 			break
 		P.SpinAnimation(5, 0)
-		sleep(5)
+		sleep(0.5 SECONDS)
 		if(QDELETED(src))
 			P.clashing = FALSE
 			return
@@ -431,7 +431,7 @@
 			clash_target = null
 			return
 		playsound(P, 'sound/magic/clockwork/narsie_attack.ogg', 50, TRUE, frequency = 2)
-		sleep(3.3)
+		sleep(0.33 SECONDS)
 		if(QDELETED(src))
 			P.clashing = FALSE
 			return
@@ -443,7 +443,7 @@
 			break
 		SpinAnimation(5, 0)
 		victory_chance += 10
-		sleep(5)
+		sleep(0.5 SECONDS)
 	if(!a_winnar_is)
 		a_winnar_is = pick(src, P)
 	if(a_winnar_is == src)

@@ -95,3 +95,9 @@
 				if(istype(M))
 					C.throw_at(throw_target, 2, 4, H, 3)
 					return BULLET_ACT_HIT
+
+/obj/item/projectile/bullet/bolt
+	name = "bolt"
+	icon_state = "bolt"
+	desc = "smaller and faster rod"
+	damage = 25

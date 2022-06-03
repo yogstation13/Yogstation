@@ -147,7 +147,7 @@
 /obj/screen/alert/status_effect/strandling/Click(location, control, params)
 	. = ..()
 	to_chat(mob_viewer, span_notice("You attempt to remove the durathread strand from around your neck."))
-	if(do_after(mob_viewer, 3.5 SECONDS, null, mob_viewer))
+	if(do_after(mob_viewer, 3.5 SECONDS, mob_viewer, FALSE))
 		if(isliving(mob_viewer))
 			var/mob/living/L = mob_viewer
 			to_chat(mob_viewer, span_notice("You succesfuly remove the durathread strand."))
@@ -560,7 +560,7 @@
 		wasting_effect.setDir(owner.dir)
 		wasting_effect.transform = owner.transform //if the owner has been stunned the overlay should inherit that position
 		wasting_effect.alpha = 255
-		animate(wasting_effect, alpha = 0, time = 32)
+		animate(wasting_effect, alpha = 0, time = 3.2 SECONDS)
 		playsound(owner, 'sound/effects/curse5.ogg', 20, 1, -1)
 		owner.adjustFireLoss(0.75)
 	if(effect_last_activation <= world.time)

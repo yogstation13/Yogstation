@@ -34,7 +34,7 @@
 	var/is_global = FALSE //Global cinematics will override mob-specific ones
 	var/obj/screen/cinematic/screen
 	var/datum/callback/special_callback //For special effects synced with animation (explosions after the countdown etc)
-	var/cleanup_time = 300 //How long for the final screen to remain
+	var/cleanup_time = 30 SECONDS //How long for the final screen to remain
 	var/stop_ooc = TRUE //Turns off ooc when played globally.
 
 /datum/cinematic/New()
@@ -117,7 +117,7 @@
 
 //Actual cinematic goes in here
 /datum/cinematic/proc/content()
-	sleep(50)
+	sleep(5 SECONDS)
 
 /datum/cinematic/proc/replacement_cinematic(datum/source, datum/cinematic/other)
 	if(!is_global && other.is_global) //Allow it to play if we're local and it's global
@@ -129,7 +129,7 @@
 
 /datum/cinematic/nuke_win/content()
 	flick("intro_nuke",screen)
-	sleep(35)
+	sleep(3.5 SECONDS)
 	flick("station_explode_fade_red",screen)
 	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
 	special()
@@ -140,7 +140,7 @@
 
 /datum/cinematic/nuke_miss/content()
 	flick("intro_nuke",screen)
-	sleep(35)
+	sleep(3.5 SECONDS)
 	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
 	special()
 	flick("station_intact_fade_red",screen)
@@ -152,7 +152,7 @@
 
 /datum/cinematic/nuke_selfdestruct/content()
 	flick("intro_nuke",screen)
-	sleep(35)
+	sleep(3.5 SECONDS)
 	flick("station_explode_fade_red", screen)
 	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
 	special()
@@ -163,7 +163,7 @@
 
 /datum/cinematic/nuke_selfdestruct_miss/content()
 	flick("intro_nuke",screen)
-	sleep(35)
+	sleep(3.5 SECONDS)
 	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
 	special()
 	screen.icon_state = "station_intact"
@@ -173,7 +173,7 @@
 
 /datum/cinematic/malf/content()
 	flick("intro_malf",screen)
-	sleep(76)
+	sleep(7.6 SECONDS)
 	flick("station_explode_fade_red",screen)
 	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
 	special()
@@ -185,14 +185,14 @@
 /datum/cinematic/cult/content()
 	screen.icon_state = null
 	flick("intro_cult",screen)
-	sleep(25)
+	sleep(2.5 SECONDS)
 	cinematic_sound(sound('sound/magic/enter_blood.ogg'))
-	sleep(28)
+	sleep(2.8 SECONDS)
 	cinematic_sound(sound('sound/machines/terminal_off.ogg'))
-	sleep(20)
+	sleep(2 SECONDS)
 	flick("station_corrupted",screen)
 	cinematic_sound(sound('sound/effects/ghost.ogg'))
-	sleep(70)
+	sleep(7 SECONDS)
 	special()
 
 /datum/cinematic/cult_nuke
@@ -200,7 +200,7 @@
 
 /datum/cinematic/cult_nuke/content()
 	flick("intro_nuke",screen)
-	sleep(35)
+	sleep(3.5 SECONDS)
 	flick("station_explode_fade_red",screen)
 	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
 	special()
@@ -211,7 +211,7 @@
 
 /datum/cinematic/nuke_annihilation/content()
 	flick("intro_nuke",screen)
-	sleep(35)
+	sleep(3.5 SECONDS)
 	flick("station_explode_fade_red",screen)
 	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
 	special()
@@ -219,29 +219,29 @@
 
 /datum/cinematic/fake
 	id = CINEMATIC_NUKE_FAKE
-	cleanup_time = 100
+	cleanup_time = 10 SECONDS
 
 /datum/cinematic/fake/content()
 	flick("intro_nuke",screen)
-	sleep(35)
+	sleep(3.5 SECONDS)
 	cinematic_sound(sound('sound/items/bikehorn.ogg'))
 	flick("summary_selfdes",screen) //???
 	special()
 
 /datum/cinematic/no_core
 	id = CINEMATIC_NUKE_NO_CORE
-	cleanup_time = 100
+	cleanup_time = 10 SECONDS
 
 /datum/cinematic/no_core/content()
 	flick("intro_nuke",screen)
-	sleep(35)
+	sleep(3.5 SECONDS)
 	flick("station_intact",screen)
 	cinematic_sound(sound('sound/ambience/signal.ogg'))
-	sleep(100)
+	sleep(10 SECONDS)
 
 /datum/cinematic/nuke_far
 	id = CINEMATIC_NUKE_FAR
-	cleanup_time = 0
+	cleanup_time = 0 SECONDS
 
 /datum/cinematic/nuke_far/content()
 	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
@@ -249,11 +249,11 @@
 
 /datum/cinematic/clownop
 	id = CINEMATIC_NUKE_CLOWNOP
-	cleanup_time = 100
+	cleanup_time = 10 SECONDS
 
 /datum/cinematic/clownop/content()
 	flick("intro_nuke",screen)
-	sleep(35)
+	sleep(3.5 SECONDS)
 	cinematic_sound(sound('sound/items/airhorn.ogg'))
 	flick("summary_selfdes",screen) //???
 	special()

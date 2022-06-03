@@ -600,8 +600,8 @@
 	if(src)
 		var/previouscolor = color
 		color = "#960000"
-		animate(src, color = previouscolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
+		animate(src, color = previouscolor, time = 0.8 SECONDS)
+		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
 /obj/machinery/door/airlock/clockwork/attackby(obj/item/I, mob/living/user, params)
 	if(!attempt_construction(I, user))

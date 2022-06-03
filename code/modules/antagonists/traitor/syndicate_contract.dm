@@ -134,7 +134,7 @@
 			priority_announce("One of your crew was captured by a rival organisation - we've needed to pay their ransom to bring them back. \
 							As is policy we've taken a portion of the station's funds to offset the overall cost.", null, null, null, "Nanotrasen Asset Protection")
 
-			sleep(30)
+			sleep(3 SECONDS)
 
 			// Pay contractor their portion of ransom
 			if (status == CONTRACT_STATUS_COMPLETE)
@@ -154,7 +154,7 @@
 /datum/syndicate_contract/proc/handleVictimExperience(var/mob/living/M)
 	// Ship 'em back - dead or alive, 4 minutes wait.
 	// Even if they weren't the target, we're still treating them the same.
-	addtimer(CALLBACK(src, .proc/returnVictim, M), (60 * 10) * 4)
+	addtimer(CALLBACK(src, .proc/returnVictim, M), (6 SECONDS * 10) * 4)
 
 	if (M.stat != DEAD)
 		// Heal them up - gets them out of crit/soft crit. If omnizine is removed in the future, this needs to be replaced with a
@@ -163,26 +163,26 @@
 
 		M.flash_act()
 		M.confused += 10
-		M.blur_eyes(5)
+		M.blur_eyes(0.5 SECONDS)
 		to_chat(M, span_warning("You feel strange..."))
-		sleep(60)
+		sleep(6 SECONDS)
 		to_chat(M, span_warning("That pod did something to you..."))
-		M.Dizzy(35)
-		sleep(65)
+		M.Dizzy(3.5 SECONDS)
+		sleep(6.5 SECONDS)
 		to_chat(M, span_warning("Your head pounds... It feels like it's going to burst out your skull!"))
 		M.flash_act()
 		M.confused += 20
 		M.blur_eyes(3)
-		sleep(30)
+		sleep(3 SECONDS)
 		to_chat(M, span_warning("Your head pounds..."))
-		sleep(100)
+		sleep(10 SECONDS)
 		M.flash_act()
-		M.Unconscious(200)
+		M.Unconscious(20 SECONDS)
 		to_chat(M, "<span class='reallybig hypnophrase'>A million voices echo in your head... <i>\"Your mind held many valuable secrets - \
 					we thank you for providing them. Your value is expended, and you will be ransomed back to your station. We always get paid, \
 					so it's only a matter of time before we ship you back...\"</i></span>")
-		M.blur_eyes(10)
-		M.Dizzy(15)
+		M.blur_eyes(1 SECONDS)
+		M.Dizzy(1.5 SECONDS)
 		M.confused += 20
 
 // We're returning the victim

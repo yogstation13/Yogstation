@@ -7,13 +7,13 @@
 	cures = list(/datum/reagent/medicine/spaceacillin)
 	agent = "Plague rats"
 	viable_mobtypes = list(/mob/living/carbon/human)
-	cure_chance = 20
+	cure_chance = 10
 	desc = "A deadly disease, spread by infected animals and insects. It causes fever, weakness, headache and choking."
 	required_organs = list(/obj/item/organ/lungs)
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	bypasses_immunity = TRUE
 
-/datum/disease/tuberculosis/stage_act()
+/datum/disease/plague/stage_act()
 	..()
 	if(istype(affected_mob, /mob/living/carbon/alien))
 		return
@@ -47,7 +47,7 @@
 				to_chat(affected_mob, span_danger("You feel hot!"))
 			if(prob(2))
 				to_chat(affected_mob, span_danger("You feel very weak!"))
-				affected_mob.adjustStaminaLoss(100)
+				affected_mob.adjustStaminaLoss(60)
 			if(prob(6))
 				to_chat(affected_mob, span_danger("Your lungs feel full of fluid! You're unable to breathe!"))
 				affected_mob.adjustOxyLoss(35)

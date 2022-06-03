@@ -75,6 +75,10 @@
 	ui_x = 288
 	ui_y = -96
 
+/datum/techweb_node/xenoorgan_biotech
+	ui_x = 256
+	ui_y = -64
+
 /datum/techweb_node/bio_process
 	ui_x = 224
 	ui_y = -224
