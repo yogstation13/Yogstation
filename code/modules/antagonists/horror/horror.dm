@@ -488,7 +488,8 @@
 		if(has_upgrade("paralysis"))
 			playsound(loc, "sound/effects/sparks4.ogg", 30, 1, -1)
 			M.Stun(50)
-			M.SetSleeping(70)  //knocked out cold
+			M.SetSleeping(50)  //knocked out cold
+			M.Knockdown(70)
 			M.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, 1, FALSE)
 		else
 			to_chat(M, span_userdanger("You feel something wrapping around your leg, pulling you down!"))
