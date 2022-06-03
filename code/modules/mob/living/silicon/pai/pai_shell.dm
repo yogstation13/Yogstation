@@ -36,6 +36,7 @@
 		client.eye = src
 	set_light(0)
 	icon_state = "[chassis]"
+	held_state = "[chassis]"
 	visible_message(span_boldnotice("[src] folds out its holochassis emitter and forms a holoshell around itself!"))
 	holoform = TRUE
 
@@ -75,6 +76,7 @@
 		return FALSE
 	chassis = choice
 	icon_state = "[chassis]"
+	held_state = "[chassis]"
 	update_resting()
 	to_chat(src, span_boldnotice("You switch your holochassis projection composite to [chassis]."))
 
