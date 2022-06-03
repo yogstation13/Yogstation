@@ -2060,13 +2060,31 @@
 	..()
 
 
-/datum/reagent/plaguebacteria
+/datum/reagent/bacteria
+	name = "Bacteria"
+	description = "bad thingy."
+	color = "#7CFC00"
+	taste_description = "death"
+	can_synth = FALSE
+	var/datum/disease/infection
+	
+
+/datum/reagent/bacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)
+	if(method == INGEST || method == TOUCH || method == INJECT)
+		L.ForceContractDisease(new infection(), FALSE, TRUE)
+
+/datum/reagent/bacteria/plague
 	name = "Yersinia pestis"
 	description = "A horrible plague, in a container. It is a TERRIBLE idea to drink this."
 	color = "#7CFC00"
 	taste_description = "death"
 	can_synth = FALSE
+	infection = /datum/disease/plague
 
-/datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)
-	if(method == INGEST || method == TOUCH || method == INJECT)
-		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
+/datum/reagent/bacteria/honk
+	name = "Honkia Honkus"
+	description = "Insert here a stupid joke about honking."
+	color = "#FFFF00"
+	taste_description = "banana"
+	can_synth = FALSE
+	infection = /datum/disease/honkrot
