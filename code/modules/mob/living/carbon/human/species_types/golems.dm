@@ -1014,7 +1014,7 @@
 			to_chat(H, span_warning("You do not have enough cardboard!"))
 			return FALSE
 		to_chat(H, span_notice("You attempt to create a new cardboard brother."))
-		if(do_after(user, 3 SECONDS, target = user))
+		if(do_after(user, 3 SECONDS, user))
 			if(last_creation + brother_creation_cooldown > world.time) //no cheesing dork
 				return
 			if(!C.use(10))
@@ -1484,41 +1484,38 @@
 
 /datum/species/golem/supermatter/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	..()
-	var/obj/item/I
-	I = AM
-	if(I)
-		H.adjustFireLoss(2)
-		playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
-		H.visible_message(span_danger("[I] knocks into [H], and then turns into dust in a flash of light!"))
-		qdel(I)
+	H.adjustFireLoss(2)
+	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
+	H.visible_message(span_danger("[AM] knocks into [H], and then turns into dust in a flash of light!"))
+	qdel(AM)
 	
-
 /datum/species/golem/supermatter/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
 	..()
-	H.visible_message(span_danger("[M] puches [H], but then turns into dust in a brilliant flash of light!"))
+	M.visible_message(span_danger("[M] tries to punch [H], but turns into dust in a brilliant flash of light!"))
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
-	H.dust()
+	M.dust()
 
 /datum/species/golem/supermatter/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	..()
-	H.visible_message(span_danger("[user] attacks [H] with [I], and then [I] turns into dust in a flash of light!"))
+	H.visible_message(span_danger("[user] tries to attack [H] with [I], but in a brilliant flash of light [I] turns into dust!"))
 	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
 	qdel(I)
 	
 
 /datum/species/golem/supermatter/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
-	..()
-	if(!istype(P, /obj/item/projectile/ion/) && !istype(P, /obj/item/ammo_casing/energy/laser/) && !istype(P, /obj/item/projectile/magic))
-		H.visible_message(span_danger("[P] melts on collision with [H]!"))
-		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
-		return BULLET_ACT_FORCE_PIERCE 
+	. = ..()
+	if(istype(P, /obj/item/projectile/magic) || P.flag == LASER || P.flag == ENERGY)
+		return .
+	H.visible_message(span_danger("[P] melts on collision with [H]!"))
+	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
+	return BULLET_ACT_FORCE_PIERCE 
 
 /datum/species/golem/supermatter/spec_life(mob/living/carbon/C)
 	. = ..()
-	C.adjustFireLoss(-src.burnheal)
-	C.adjustBruteLoss(-src.bruteheal)
+	C.adjustFireLoss(-burnheal)
+	C.adjustBruteLoss(-bruteheal)
 	if(C.InCritical() && prob(1.5))
-		src.randexplode = TRUE
+		randexplode = TRUE
 		C.visible_message(span_danger("[C]'s body violently explodes!"))
 		explosion(get_turf(C), 1 ,3, 6)
 		qdel(C)
@@ -1526,7 +1523,7 @@
 /datum/species/golem/supermatter/spec_death(gibbed, mob/living/carbon/human/H)
 	if(gibbed)
 		return
-	if(src.randexplode) //No double explosions
+	if(randexplode) //No double explosions
 		return
 	H.visible_message(span_danger("[H]'s body violently explodes!"))
 	explosion(get_turf(H), 1 ,3, 6)

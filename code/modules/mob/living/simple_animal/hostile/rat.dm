@@ -126,7 +126,7 @@
 		return FALSE
 	layer = MOB_LAYER
 	visible_message(span_danger("[src] starts eating away [A]..."),span_notice("You start eating the [A]..."))
-	if(do_after(src, 3 SECONDS, FALSE, A))
+	if(do_after(src, 3 SECONDS, A, FALSE))
 		if(QDELETED(A))
 			return
 		visible_message(span_danger("[src] finishes eating up [A]!"),span_notice("You finish up eating [A]."))

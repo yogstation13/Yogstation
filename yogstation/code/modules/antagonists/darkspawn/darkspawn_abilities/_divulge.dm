@@ -27,7 +27,7 @@
 		to_chat(user, span_notice("Your bones harden to protect you from the atmosphere..."))
 		user.set_species(/datum/species/skeleton)
 	user.visible_message("<b>[user]</b> flaps their wings.", span_velvet("You begin creating a psychic barrier around yourself..."))
-	if(!do_after(user, 3 SECONDS, target = user))
+	if(!do_after(user, 3 SECONDS, user))
 		in_use = FALSE
 		return
 	var/image/alert_overlay = image('yogstation/icons/mob/actions/actions_darkspawn.dmi', "divulge")
@@ -56,7 +56,7 @@
 									span_velvet("Your body begins to warp. Sigils etch themselves upon your flesh."))
 				animate(user, color = list(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0)), time = 15 SECONDS) //Produces a slow skin-blackening effect
 				playsound(user, 'yogstation/sound/magic/divulge_03.ogg', 50, 0)
-		if(!do_after(user, 15 SECONDS, target = user))
+		if(!do_after(user, 15 SECONDS, user))
 			user.visible_message(span_warning("[user] falls to the ground!"), span_userdanger("Your transformation was interrupted!"))
 			animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 1 SECONDS)
 			in_use = FALSE

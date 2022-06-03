@@ -2,7 +2,7 @@
 	if(I.slot_flags & ITEM_SLOT_HEAD && hat_offset != INFINITY && user.a_intent == INTENT_HELP && !is_type_in_typecache(I, blacklisted_hats))
 		to_chat(user, span_notice("You begin to place [I] on [src]'s head..."))
 		to_chat(src, span_notice("[user] is placing [I] on your head..."))
-		if(do_after(user, 3 SECONDS, target = src))
+		if(do_after(user, 3 SECONDS, src))
 			if (user.temporarilyRemoveItemFromInventory(I, TRUE))
 				place_on_head(I)
 		return

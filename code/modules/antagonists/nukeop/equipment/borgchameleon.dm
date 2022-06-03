@@ -75,9 +75,9 @@
 			user.filters += filter(type="wave", x=X, y=Y, size=rand()*2.5+0.5, offset=rand())
 		for(i=1, i<=7, ++i)
 			f = user.filters[start+i]
-			animate(f, offset=f:offset, time=0 SECONDS, loop=3, flags=ANIMATION_PARALLEL)
+			animate(f, offset=f:offset, time=0, loop=3, flags=ANIMATION_PARALLEL)
 			animate(offset=f:offset-1, time=rand()*20+(1 SECONDS))
-		if (do_after(user, 5 SECONDS, target=user) && user.cell.use(activationCost))
+		if (do_after(user, 5 SECONDS, user) && user.cell.use(activationCost))
 			playsound(src, 'sound/effects/bamf.ogg', 100, 1, -6)
 			to_chat(user, span_notice("You are now disguised as the Nanotrasen engineering borg \"[friendlyName]\"."))
 			activate(user)

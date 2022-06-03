@@ -662,7 +662,7 @@
 			var/datum/species/ethereal/eth_species = H.dna?.species
 			if(istype(eth_species))
 				to_chat(H, span_notice("You start channeling some power through the [fitting] into your body."))
-				if(do_after(user, 5 SECONDS, target = src))
+				if(do_after(user, 5 SECONDS, src))
 					var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 					if(istype(stomach))
 						to_chat(H, span_notice("You receive some charge from the [fitting]."))

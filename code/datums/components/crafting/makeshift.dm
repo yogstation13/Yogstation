@@ -2,19 +2,6 @@
 // GUNS //
 //////////
 
-/datum/crafting_recipe/makeshiftlasrifle
-	name = "Makeshift Laser Rifle"
-	result = /obj/item/gun/energy/laser/makeshiftlasrifle
-	reqs = list(/obj/item/stack/cable_coil = 15,
-				/obj/item/weaponcrafting/stock = 1,
-				/obj/item/pipe = 1,
-				/obj/item/light/bulb = 1,
-				/obj/item/stock_parts/cell = 1)
-	tools = list(TOOL_SCREWDRIVER)
-	time = 12 SECONDS
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
 /datum/crafting_recipe/makeshiftpistol
 	name = "Makeshift Pistol"
 	result = /obj/item/gun/ballistic/automatic/pistol/makeshift
@@ -49,6 +36,20 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 	always_availible = FALSE
+
+/datum/crafting_recipe/gauss
+	name = "Makeshift gauss rifle"
+	reqs = list(/obj/item/stock_parts/cell = 1,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/stack/tape = 1,
+				/obj/item/stack/rods = 4,
+				/obj/item/stack/cable_coil = 10)
+	tools = list(TOOL_SCREWDRIVER,TOOL_WELDER,TOOL_WRENCH)
+	result = /obj/item/gun/ballistic/gauss
+	time = 12
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
 
 
 ///////////

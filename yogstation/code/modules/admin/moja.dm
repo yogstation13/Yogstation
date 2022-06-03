@@ -26,7 +26,7 @@
 									span_velvet("Your body begins to warp. Sigils etch themselves upon your flesh."))
 				animate(src, color = list(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0)), time = 15 SECONDS) //Produces a slow skin-blackening effect
 				playsound(src, 'yogstation/sound/magic/divulge_03.ogg', 50, 0)
-		if(!do_after(src, 15 SECONDS, target = src))
+		if(!do_after(src, 15 SECONDS, src))
 			visible_message(span_warning("[src] falls to the ground!"), span_userdanger("Your transformation was interrupted!"))
 			animate(src, color = initial(src.color), pixel_y = initial(src.pixel_y), time = 1 SECONDS)
 			return

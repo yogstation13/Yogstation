@@ -102,7 +102,7 @@
 				"[user] tries to pull [M] free of [src]!",\
 				span_notice("[user] is trying to pull you off [src], opening up fresh wounds!"),\
 				span_italics("You hear a squishy wet noise."))
-			if(!do_after(user, 30 SECONDS, target = src))
+			if(!do_after(user, 30 SECONDS, src))
 				if(M && M.buckled)
 					M.visible_message(\
 					"[user] fails to free [M]!",\
@@ -115,7 +115,7 @@
 			span_notice("You struggle to break free from [src], exacerbating your wounds! (Stay still for two minutes.)"),\
 			span_italics("You hear a wet squishing noise.."))
 			M.adjustBruteLoss(30)
-			if(!do_after(M, 2 MINUTES, target = src))
+			if(!do_after(M, 2 MINUTES, src))
 				if(M && M.buckled)
 					to_chat(M, span_warning("You fail to free yourself!"))
 				return

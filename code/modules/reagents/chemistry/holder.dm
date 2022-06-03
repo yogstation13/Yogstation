@@ -945,6 +945,12 @@
 	reagents = new /datum/reagents(max_vol, flags)
 	reagents.my_atom = src
 
+/proc/find_reagent_object_from_type(input)
+	if(GLOB.chemical_reagents_list[input]) //prefer IDs!
+		return GLOB.chemical_reagents_list[input]
+	else
+		return null
+
 /proc/get_random_reagent_id()	// Returns a random reagent ID minus blacklisted reagents
 	var/static/list/random_reagents = list()
 	if(!random_reagents.len)
