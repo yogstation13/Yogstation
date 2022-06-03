@@ -44,6 +44,16 @@
 /// Selects a random location for the blob to be placed.
 #define BLOB_RANDOM_PLACEMENT 1
 
+
+/// How many telecrystals a normal traitor starts with
+#define TELECRYSTALS_DEFAULT 20
+/// How many telecrystals mapper/admin only "precharged" uplink implant
+#define TELECRYSTALS_PRELOADED_IMPLANT 10
+/// The normal cost of an uplink implant; used for calcuating how many
+/// TC to charge someone if they get a free implant through choice or
+/// because they have nothing else that supports an implant.
+#define UPLINK_IMPLANT_TELECRYSTAL_COST 4
+
 //ERT Types
 #define ERT_BLUE "Blue"
 #define ERT_RED  "Red"
