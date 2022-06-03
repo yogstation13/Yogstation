@@ -15,7 +15,7 @@
 
 /datum/disease/plague/stage_act()
 	..()
-	if(istype(affected_mob, /mob/living/carbon/alien))
+	if(isalien(affected_mob))
 		return
 	switch(stage)
 		if(2)
