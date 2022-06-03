@@ -54,6 +54,9 @@
 		if(prob(10))
 			affected_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1, 170)
 			to_chat(affected_mob, span_danger("You feel stupid!"))
+		if(prob(20)
+			affected_mob.Knockdown(30)
+			to_chat(affected_mob, span_danger("You slip suddenly!"))			
 
 	return
 
