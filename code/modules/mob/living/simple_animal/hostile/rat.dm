@@ -156,8 +156,20 @@
 	see_in_dark = 8
 	maxHealth = 40
 	health = 40
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/plagued = 1)
 	body_color = "black"
+	var/disease
+	var/reagent
+
+/mob/living/simple_animal/hostile/rat/plaguerat/Initialize()
+	. = ..()
+	if(!disease)
+		var/list/possiblediseases = list("Brain Honk", "Plague")
+		disease = pick(possiblediseases)
+	switch(disease)
+		if("Plague")
+			reagent = /datum/reagent/plaguebacteria	
+		if("Brain Honk")
+			reagent = null //Not coded yet
 
 /mob/living/simple_animal/hostile/rat/plaguerat/AttackingTarget()
 	. = ..()
@@ -167,9 +179,9 @@
 			if(C.reagents)
 				var/obj/item/I = C.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 				if(!istype(I, /obj/item/clothing/suit/space/hardsuit) && !istype(I, /obj/item/clothing/suit/armor) && !istype(I, /obj/item/clothing/suit/bio_suit/plaguedoctorsuit))
-					var/datum/reagent/plaguebacteria/plague = new /datum/reagent/plaguebacteria
-					C.reagents.add_reagent(/datum/reagent/plaguebacteria, 3) //gets caught up in blood transfers
-					plague.reaction_mob(C, INJECT) //making sure we stay winning
+					var/datum/reagent/diseaseshit = new reagent
+					C.reagents.add_reagent(reagent, 3) //gets caught up in blood transfers
+					diseaseshit.reaction_mob(C, INJECT) //making sure we stay winning
 
 		else //It is for biting dead bodies to heal.
 			if(C.getBruteLoss_nonProsthetic() >= 100)
@@ -185,7 +197,7 @@
 		if(!isitem(target))
 			return
 		if(target.reagents && target.is_injectable(src, allowmobs = TRUE)) //It is for injecting plague reagent into reagent containers by licking them. Not to be confused with biting people.
-			if(target.reagents.has_reagent(/datum/reagent/plaguebacteria))
+			if(target.reagents.has_reagent(reagent))
 				to_chat(src, span_warning("[target] is already infected!"))
 				return
 			if(INTERACTING_WITH(src, target))
@@ -194,6 +206,6 @@
 			if(!do_after(src, 2 SECONDS, FALSE, target))
 				to_chat(src, span_warning("You stop licking [target]."))
 				return
-			target.reagents.add_reagent(/datum/reagent/plaguebacteria, rand(1,2), no_react = TRUE)
+			target.reagents.add_reagent(reagent, rand(1,2), no_react = TRUE)
 			to_chat(src, span_notice("You finish licking [target]."))
 
