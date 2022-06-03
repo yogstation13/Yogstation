@@ -158,7 +158,7 @@
 	health = 40
 	body_color = "black"
 	var/disease
-	var/reagent
+	var/datum/reagent/reagent
 
 /mob/living/simple_animal/hostile/rat/plaguerat/Initialize()
 	. = ..()
@@ -167,9 +167,9 @@
 		disease = pick(possiblediseases)
 	switch(disease)
 		if("Plague")
-			reagent = /datum/reagent/plaguebacteria	
+			reagent = /datum/reagent/bacteria/plague
 		if("Brain Honk")
-			reagent = null //Not coded yet
+			reagent = /datum/reagent/bacteria/honk
 
 /mob/living/simple_animal/hostile/rat/plaguerat/AttackingTarget()
 	. = ..()
