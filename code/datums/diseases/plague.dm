@@ -15,6 +15,8 @@
 
 /datum/disease/tuberculosis/stage_act()
 	..()
+	if(istype(affected_mob, /mob/living/carbon/alien))
+		return
 	switch(stage)
 		if(2)
 			if(prob(2))
