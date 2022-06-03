@@ -1902,6 +1902,21 @@
 	REMOVE_TRAIT(L, TRAIT_PACIFISM, type)
 	..()
 
+/datum/reagent/honkpax
+	name = "Honkpax"
+	description = "A colorless liquid that makes subjects act clumsy."
+	color = "#FFFF00"
+	taste_description = "banana"
+	metabolization_rate = 0.2 * REAGENTS_METABOLISM
+
+/datum/reagent/honkpax/on_mob_metabolize(mob/living/L)
+	..()
+	ADD_TRAIT(L, TRAIT_CLUMSY, type) //Honk!
+
+/datum/reagent/honkpax/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_CLUMSY, type)
+	..()
+
 /datum/reagent/bz_metabolites
 	name = "BZ metabolites"
 	description = "A harmless metabolite of BZ gas"
