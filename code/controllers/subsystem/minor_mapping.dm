@@ -1,5 +1,5 @@
 #define REGAL_RAT_CHANCE 2
-#define PLAGUE_RAT_CHANCE 5
+#define PLAGUE_RAT_CHANCE 3
 SUBSYSTEM_DEF(minor_mapping)
 	name = "Minor Mapping"
 	init_order = INIT_ORDER_MINOR_MAPPING
