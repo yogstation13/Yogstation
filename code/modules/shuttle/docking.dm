@@ -141,10 +141,11 @@
 
 /obj/docking_port/mobile/proc/takeoff(list/old_turfs, list/new_turfs, list/moved_atoms, rotation, movement_direction, old_dock, area/underlying_old_area)
 
-	for(var/turf/old_terf as anything in old_turfs)
-		old_terf.set_sleeping(TRUE)
-	for(var/turf/new_terf as anything in new_turfs)
-		new_terf.set_sleeping(TRUE)
+	for(var/turf/terf as anything in old_turfs + new_turfs)
+		terf.blocks_air = TRUE
+	for(var/turf/terf as anything in old_turfs + new_turfs)
+		terf.ImmediateCalculateAdjacentTurfs()
+
 
 	for(var/i in 1 to old_turfs.len)
 		var/turf/oldT = old_turfs[i]
