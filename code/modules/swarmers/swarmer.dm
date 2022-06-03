@@ -270,7 +270,7 @@
 		dismantle_time = 30 SECONDS
 		if(last_alert < world.time)
 			last_alert = world.time + 5 SECONDS
-			priority_announce("Connection encryption violation in machine: [target]. Deconstruction ETA: 30 SECONDS")
+			priority_announce("Connection encryption violation in machine: [target]! Deconstruction projected to complete in: 30 SECONDS")
 	if(do_mob(src, target, dismantle_time))
 		to_chat(src, span_info("Dismantling complete."))
 		var/atom/target_loc = target.drop_location()
