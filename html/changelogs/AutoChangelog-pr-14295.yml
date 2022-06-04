@@ -1,0 +1,6 @@
+author: "LazennG"
+delete-after: true 
+changes: 
+  - rscadd: "adds emberflower bouqet"
+  - rscdel: "Removes immortality talisman from tendril loot"
+  - imageadd: "added emberflower sprite"
