@@ -64,6 +64,7 @@
 	dropcheck = TRUE
 	status = FALSE
 	visible_message(span_warning("The safety strap on [src] is pulled as it is dropped, triggering its emergency shutoff!"))
+	update_icon()
 	addtimer(CALLBACK(src, .proc/recalibrate), 8 SECONDS)
 
 /obj/item/melee/baton/proc/recalibrate()
