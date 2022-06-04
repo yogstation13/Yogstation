@@ -1337,18 +1337,21 @@
 	..()
 	update_z(new_z)
 
-/mob/living/MouseDrop(mob/over)
+/mob/living/MouseDrop_T(atom/pickable, atom/user)
+	var/mob/living/U = user
+	if(isliving(pickable))
+		var/mob/living/M = pickable
+		if(M.can_be_held && U.pulling == M)
+			M.mob_try_pickup(U)
+			return //dont open the mobs inventory if you are picking them up
 	. = ..()
-	var/mob/living/user = usr
-	if(!istype(over) || !istype(user))
-		return
-	if(!over.Adjacent(src) || (user != src) || !canUseTopic(over))
-		return
-	if(can_be_held)
-		mob_try_pickup(over)
 
 /mob/living/proc/mob_pickup(mob/living/L)
-	return
+	if(!held_state)
+		held_state = icon_state
+	var/obj/item/clothing/mob_holder/holder = new(get_turf(src), src, held_state, held_icon, held_lh, held_rh, worn_slot_flags, worn_layer)
+	L.visible_message(span_warning("[L] scoops up [src]!"))
+	L.put_in_hands(holder)
 
 /mob/living/proc/mob_try_pickup(mob/living/user)
 	if(!ishuman(user))
