@@ -15,7 +15,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
 
 	var/cooldown_check = 0
-
+	var/dropcheck = FALSE
 	///how long we can't use this baton for after slapping someone with it. Does not account for melee attack cooldown (default of 0.8 seconds).
 	var/cooldown = 1.2 SECONDS
 	///how long a clown stuns themself for, or someone is stunned for if they are hit to >90 stamina damage
@@ -57,6 +57,16 @@
 	//Only mob/living types have stun handling
 	if(status && prob(throw_hit_chance) && iscarbon(hit_atom))
 		baton_stun(hit_atom)
+
+/obj/item/melee/baton/dropped(mob/user, silent)
+	. = ..()
+	status = FALSE
+	dropcheck = TRUE
+	addtimer(CALLBACK(src, .proc/reclibrate), 8 SECONDS)
+
+/obj/item/baton/recalibrate()
+	dropcheck = FALSE
+	status = TRUE
 
 /obj/item/melee/baton/loaded //this one starts with a cell pre-installed.
 	preload_cell_type = /obj/item/stock_parts/cell/high
@@ -124,6 +134,8 @@
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
+	if(dropcheck == TRUE)
+		to_chat("Baton has been dropped and needs to recalibrate!")
 	if(cell && cell.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
