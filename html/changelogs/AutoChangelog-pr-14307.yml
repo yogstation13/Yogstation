@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - rscadd: "Using a baton with harm intent on an assistant will give the security budget 1 credit. Clowns give 5"

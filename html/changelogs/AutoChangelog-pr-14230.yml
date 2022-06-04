@@ -1,0 +1,4 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - rscdel: "Monster Hunters are no longer a guaranteed spawn on all bloodsucker rounds"

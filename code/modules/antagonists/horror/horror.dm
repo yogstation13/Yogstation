@@ -394,6 +394,7 @@
 	Update_Invisibility_Button()
 
 	victim = C
+	victim.visible_message(span_warning("[src] enters [victim]'s head!"), span_notice("Something enters your head!"))
 	forceMove(victim)
 	RefreshAbilities()
 	log_game("[src]/([src.ckey]) has infested [victim]/([victim.ckey]")
@@ -484,6 +485,12 @@
 	for (var/mob/living/carbon/M in range(1, src))
 		if(!M || !Adjacent(M))
 			return
+		if(has_upgrade("paralysis"))
+			playsound(loc, "sound/effects/sparks4.ogg", 30, 1, -1)
+			M.Stun(50)
+			M.SetSleeping(50)  //knocked out cold
+			M.Knockdown(70)
+			M.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, 1, FALSE)
 		else
 			to_chat(M, span_userdanger("You feel something wrapping around your leg, pulling you down!"))
 			playsound(loc, "sound/weapons/whipgrab.ogg", 30, 1, -1)
@@ -507,13 +514,13 @@
 		to_chat(src, span_danger("You decide against leaving your host."))
 		return
 
-	to_chat(src, span_danger("You begin disconnecting from [victim]'s synapses and prodding at [victim.p_their()] internal ear canal.")) //Yogs -- pronouns
+	to_chat(src, span_danger("You begin disconnecting from [victim]'s synapses and prodding at [victim.p_their()] internal ear canal.")) //Yogs -- pronouns ~~holy shit dude this is yogs exclusive antag already, why #Chester
 
 	if(victim.stat != DEAD && !has_upgrade("invisible_exit"))
 		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	leaving = TRUE
-	if(do_after(src, 30 SECONDS, victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE)) //Enough time to do quick surgery
+	if(do_after(src, 10 SECONDS, victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE))
 		release_host()
 
 /mob/living/simple_animal/horror/proc/release_host()

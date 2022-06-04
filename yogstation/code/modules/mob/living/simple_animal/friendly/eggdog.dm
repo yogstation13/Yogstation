@@ -1,4 +1,4 @@
-/mob/living/simple_animal/pet/eggdog //E G G R P
+/mob/living/simple_animal/pet/dog/eggdog //E G G R P
 	name = "Egg Dog"
 	desc = "It's a egg that is also a dog."
 	icon = 'yogstation/icons/mob/pets.dmi'
@@ -12,10 +12,10 @@
 	attacked_sound = 'sound/items/eatfood.ogg'
 	deathmessage = "loses its false life and collapses back into a egg!"
 	deathsound = "bodyfall"
-	del_on_death = 1
+	del_on_death = TRUE
 	loot = list(/obj/item/reagent_containers/food/snacks/egg)
 
-/mob/living/simple_animal/pet/cat/cak/CheckParts(list/parts)
+/mob/living/simple_animal/pet/dog/eggdog/CheckParts(list/parts)
 	..()
 	var/obj/item/organ/brain/B = locate(/obj/item/organ/brain) in contents
 	if(!B || !B.brainmob || !B.brainmob.mind)
@@ -29,14 +29,14 @@
 		to_chat(src, span_notice("Your name is now <b>\"new_name\"</b>!"))
 		name = new_name
 
-/mob/living/simple_animal/pet/eggdog/Life()
+/mob/living/simple_animal/pet/dog/eggdog/Life()
 	..()
 	if(stat)
 		return
 	if(health < maxHealth)
 		adjustBruteLoss(-8) //Fast life regen
 
-/mob/living/simple_animal/pet/eggdog/attack_hand(mob/living/L)
+/mob/living/simple_animal/pet/dog/eggdog/attack_hand(mob/living/L)
 	..()
 	if(L.a_intent == INTENT_HARM && L.reagents && !stat)
 		L.reagents.add_reagent(/datum/reagent/consumable/eggyolk, 0.4)

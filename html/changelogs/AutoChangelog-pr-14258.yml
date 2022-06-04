@@ -1,0 +1,7 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Eye contact: when two people examine each other and have unobscured faces, you'll each see that you made eye contact. Look deeply into one another's eyes while you're actually just assessing wounds."
+  - rscadd: "Those with the social anxiety quirk have a chance to suffer negative effects from making eye contact"
+  - rscadd: "Obsessed can potentially give themselves away through eye contact"
+  - rscadd: "New quirk Shifty Eyes: 0 cost quirk that gives a small chance for people examining them to see a that they made eye contact when they actually didn't"
