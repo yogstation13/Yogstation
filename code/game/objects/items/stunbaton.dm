@@ -62,7 +62,7 @@
 	. = ..()
 	status = FALSE
 	dropcheck = TRUE
-	addtimer(CALLBACK(src, .proc/reclibrate), 8 SECONDS)
+	addtimer(CALLBACK(src, .proc/recalibrate), 8 SECONDS)
 
 /obj/item/baton/proc/recalibrate()
 	dropcheck = FALSE
