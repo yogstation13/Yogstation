@@ -1461,4 +1461,4 @@
 
 /// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
 /mob/living/proc/is_face_visible()
-	return TRUE
+	return isturf(loc) // Yogs -- forbids making eye contact with things hidden within objects
