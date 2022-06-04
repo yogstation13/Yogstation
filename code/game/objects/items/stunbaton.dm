@@ -45,6 +45,7 @@
 
 /obj/item/melee/baton/Initialize()
 	. = ..()
+	status = FALSE
 	if(preload_cell_type)
 		if(!ispath(preload_cell_type,/obj/item/stock_parts/cell))
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
@@ -64,15 +65,7 @@
 	dropcheck = TRUE
 	status = FALSE
 	visible_message(span_warning("The safety strap on [src] is pulled as it is dropped, triggering its emergency shutoff!"))
-	update_icon()
-	addtimer(CALLBACK(src, .proc/recalibrate), 8 SECONDS)
-
-/obj/item/melee/baton/proc/recalibrate()
-	dropcheck = FALSE
-	status = TRUE
-	playsound(loc, "sparks", 75, 1, -1)
-	cell_last_used = 0
-	START_PROCESSING(SSobj, src)
+	addtimer(VARSET_CALLBACK(src, dropcheck, FALSE), 8 SECONDS)
 	update_icon()
 
 /obj/item/melee/baton/loaded //this one starts with a cell pre-installed.
@@ -142,7 +135,8 @@
 
 /obj/item/melee/baton/attack_self(mob/user)
 	if(dropcheck)
-		to_chat("[src]'s emergency shutoff is still active!")
+		to_chat(users, "[src]'s emergency shutoff is still active!")
+		return
 	if(cell && cell.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
