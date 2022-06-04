@@ -209,3 +209,22 @@
 			target.reagents.add_reagent(reagent, rand(1,2), no_react = TRUE)
 			to_chat(src, span_notice("You finish licking [target]."))
 
+
+/obj/effect/proc_holder/spell/rat_rage
+	name = "Adrenal rush"
+	desc = "Deals you 10 damage, and temporary speeds you up."
+	charge_max = 0
+	clothes_req = FALSE
+	selection_type = "range"
+	range = 1
+	cooldown_min = 30
+	overlay = null
+	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	action_icon_state = "bloodcrawl"
+	action_background_icon_state = "bg_demon"
+
+/obj/effect/proc_holder/spell/rat_rage/perform(recharge = 1, mob/living/user = usr)
+	if(user.speed < 1)
+		to_chat(src, span_notice("You finish licking [target]."))
+
+	start_recharge()
