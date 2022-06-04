@@ -1,7 +1,0 @@
-author: " imsxz, Twaticus, tattax"
-delete-after: true 
-changes: 
-  - rscadd: "you can now grab animals by dragging them to you while they're grabbed"
-  - bugfix: "carrying and carrying sprites now work,  cats and dogs now ACTUALLY see in the dark and eggdogs can now choose their name on sentience"
-  - tweak: "plaguerat doesn't spawn roundstart anymore"
-  - imageadd: "added new icons for holding and equipping certain animals"
