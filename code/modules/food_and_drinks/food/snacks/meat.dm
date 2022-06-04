@@ -340,18 +340,6 @@
 	icon_state = "shadowmeat"
 	desc = "It is covered in a strange darkness. This slab's magical properties appear to be drastically weakened due to the synthetic nature of the meat."
 
-/obj/item/reagent_containers/food/snacks/meat/slab/plagued
-	name = "meat"
-	desc = "A slab of disease-ridden meat. Eating it is a questionable idea."
-	icon_state = "meat"
-	dried_type = /obj/item/reagent_containers/food/snacks/sosjerky/
-	bitesize = 3
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/cooking_oil = 2, /datum/reagent/plaguebacteria = 3) //It is infected by plague
-	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain
-	slices_num = 3
-	filling_color = "#FF0000"
-	tastes = list("meat" = 2, "decay" = 1)
-	foodtype = MEAT | RAW
 
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
