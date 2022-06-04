@@ -14,7 +14,7 @@
 		to_chat(user, span_notice("You place your hands firmly around the handle of the hammer and begin to pull with all your might!"))
 	else
 		to_chat(user, span_notice("You place your hands firmly around the handle of the hammer but feel it resist the pull of a nonmagical host! This will take a while."))
-	if(do_after(user, pull_time * (user.mind.assigned_role == ROLE_WIZARD || user.mind.special_role == ROLE_WIZARD ? 1 : 2), target = src)) //if it is a wizard, it takes normal time
+	if(do_after(user, pull_time * (user.mind.assigned_role == ROLE_WIZARD || user.mind.special_role == ROLE_WIZARD ? 1 : 2), src)) //if it is a wizard, it takes normal time
 		to_chat(user, span_userdanger("You successfully free Mjolnir from the ground and can feel its power returning once more!")) //if it's crew, it takes twice as long
 		var/obj/item/twohanded/mjollnir/M = new /obj/item/twohanded/mjollnir
 		playsound(user, 'sound/magic/lightningbolt.ogg', 50, 1) //keep this at 50 for half volume it's so fucking loud

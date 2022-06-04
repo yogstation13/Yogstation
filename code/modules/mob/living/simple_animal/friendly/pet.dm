@@ -48,7 +48,7 @@
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2))
 					setDir(i)
-					sleep(1)
+					sleep(0.1 SECONDS)
 	else
 		..()
 

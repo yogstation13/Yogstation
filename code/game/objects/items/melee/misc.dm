@@ -394,7 +394,7 @@
 	else
 		playsound(src, on_sound, 50, 1)
 		add_fingerprint(user)
-	sleep(3)
+	sleep(0.3 SECONDS)
 	if (!QDELETED(H))
 		if(!QDELETED(B))
 			H.internal_organs -= B
@@ -733,7 +733,7 @@
 			playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
 		else
 			return
-		if(do_after(user, 10 SECONDS, target = user))
+		if(do_after(user, 10 SECONDS, user))
 			finish_roasting(user, target)
 		else
 			QDEL_NULL(beam)

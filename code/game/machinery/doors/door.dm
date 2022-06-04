@@ -316,9 +316,9 @@
 	operating = TRUE
 	do_animate("opening")
 	set_opacity(0)
-	sleep(5)
+	sleep(0.5 SECONDS)
 	density = FALSE
-	sleep(5)
+	sleep(0.5 SECONDS)
 	layer = initial(layer)
 	update_icon()
 	set_opacity(0)
@@ -348,9 +348,9 @@
 	layer = closingLayer
 	if(air_tight)
 		density = TRUE
-	sleep(5)
+	sleep(0.5 SECONDS)
 	density = TRUE
-	sleep(5)
+	sleep(0.5 SECONDS)
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)
@@ -365,7 +365,7 @@
 
 /obj/machinery/door/proc/CheckForMobs()
 	if(locate(/mob/living) in get_turf(src))
-		sleep(1)
+		sleep(0.1 SECONDS)
 		open()
 
 /obj/machinery/door/proc/crush()

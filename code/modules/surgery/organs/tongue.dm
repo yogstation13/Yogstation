@@ -137,7 +137,7 @@
 		to_chat(H, span_notice("[src] is already attuned to the same channel as your own."))
 
 	H.visible_message(span_notice("[H] holds [src] in their hands, and concentrates for a moment."), span_notice("You attempt to modify the attunation of [src]."))
-	if(do_after(H, 1.5 SECONDS, target=src))
+	if(do_after(H, 1.5 SECONDS, src))
 		to_chat(H, span_notice("You attune [src] to your own channel."))
 		mothership = T.mothership
 

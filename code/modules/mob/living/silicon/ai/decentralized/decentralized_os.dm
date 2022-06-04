@@ -11,6 +11,8 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	var/list/cpu_assigned
 	var/list/ram_assigned
 
+	var/temp_limit = AI_TEMP_LIMIT
+
 /datum/ai_os/New()
 	update_hardware()
 	cpu_assigned = list()
@@ -124,3 +126,6 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	cpu_assigned[AI] = 0
 
 	update_allocations()
+
+/datum/ai_os/proc/get_temp_limit()
+	return temp_limit

@@ -47,7 +47,7 @@
 	var/datum/beam/D = starting.Beam(T, icon_state = "curse[handedness]", time = 32, maxdistance = INFINITY, beam_type=/obj/effect/ebeam/curse_arm, beam_sleep_time = 1)
 	for(var/b in D.elements)
 		var/obj/effect/ebeam/B = b
-		animate(B, alpha = 0, time = 32)
+		animate(B, alpha = 0, time = 3.2 SECONDS)
 	return ..()
 
 /obj/item/projectile/curse_hand/progenitor

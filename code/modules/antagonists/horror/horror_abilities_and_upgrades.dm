@@ -265,7 +265,7 @@
 				delay = 3 SECONDS
 
 	transferring = TRUE
-	if(!do_after(B.victim, delay, target = C, extra_checks = CALLBACK(src, .proc/is_transferring, C), stayStill = FALSE))
+	if(!do_after(B.victim, delay, C, extra_checks = CALLBACK(src, .proc/is_transferring, C), stayStill = FALSE))
 		to_chat(owner, span_warning("As [C] moves away, your transfer gets interrupted!"))
 		transferring = FALSE
 		return
@@ -337,7 +337,7 @@
 		for(var/turf/open/t in range(1, B))
 			if(prob(60) && B.Adjacent(t))
 				t.MakeSlippery(TURF_WET_LUBE, 100)
-		sleep(5)
+		sleep(0.5 SECONDS)
 		spins_remaining--
 		if(!B.can_use_ability())
 			return TRUE

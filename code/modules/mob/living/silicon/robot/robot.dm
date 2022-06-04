@@ -447,7 +447,7 @@
 		if (getFireLoss() > 0 || getToxLoss() > 0)
 			if(src == user)
 				to_chat(user, span_notice("You start fixing yourself..."))
-				if(!do_after(user, 5 SECONDS, target = src))
+				if(!do_after(user, 5 SECONDS, src))
 					return
 			if (coil.use(1))
 				adjustFireLoss(-30)
@@ -1288,7 +1288,7 @@
 			return
 	M.visible_message(span_warning("[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]..."))
 	var/_target = usr == M ? src : M
-	if(!do_after(usr, 0.75 SECONDS, target = _target))
+	if(!do_after(usr, 0.75 SECONDS, _target))
 		M.visible_message(span_boldwarning("[M] was prevented from buckling to [src]!"))
 		return
 
