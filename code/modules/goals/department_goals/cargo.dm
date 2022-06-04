@@ -7,7 +7,6 @@
 	name = "Have 50 of every ore sheet"
 	desc = "Store 50 of every ore sheet in the ore silo"
 	reward = 5000
-	continuous = 3000 // rewards every 5 minutes
 
 /datum/department_goal/car/sheets/check_complete()
 	var/obj/machinery/ore_silo/O = GLOB.ore_silo_default
