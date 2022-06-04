@@ -64,7 +64,7 @@
 	dropcheck = TRUE
 	addtimer(CALLBACK(src, .proc/reclibrate), 8 SECONDS)
 
-/obj/item/baton/recalibrate()
+/obj/item/baton/proc/recalibrate()
 	dropcheck = FALSE
 	status = TRUE
 
