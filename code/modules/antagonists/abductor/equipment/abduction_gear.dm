@@ -523,7 +523,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		L.visible_message(span_danger("[user] has induced sleep in [L] with [src]!"), \
 							span_userdanger("You suddenly feel very drowsy!"))
 		playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)
-		L.Sleeping(30 SECONDS)
+		L.Sleeping(1200)
 		log_combat(user, L, "put to sleep")
 	else
 		if(L.anti_magic_check(FALSE, FALSE, TRUE, 0))
