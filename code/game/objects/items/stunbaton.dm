@@ -61,6 +61,8 @@
 		baton_stun(hit_atom)
 
 /obj/item/melee/baton/dropped(mob/user, silent)
+	if(z == 0)
+		return
 	. = ..()
 	dropcheck = TRUE
 	status = FALSE
