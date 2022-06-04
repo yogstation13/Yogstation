@@ -76,7 +76,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	..()
 
 /obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "hub_o", "hub", O))
+	if(default_deconstruction_screwdriver(user, "core-open", "core", O))
 		return TRUE
 
 	if(default_deconstruction_crowbar(O))
