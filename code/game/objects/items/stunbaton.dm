@@ -135,7 +135,7 @@
 
 /obj/item/melee/baton/attack_self(mob/user)
 	if(dropcheck)
-		to_chat(users, "[src]'s emergency shutoff is still active!")
+		to_chat(user, "[src]'s emergency shutoff is still active!")
 		return
 	if(cell && cell.charge > hitcost)
 		status = !status
