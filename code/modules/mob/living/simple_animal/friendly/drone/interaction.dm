@@ -49,7 +49,7 @@
 			return
 		to_chat(user, span_notice("You pick [src] up."))
 		drop_all_held_items()
-		var/obj/item/clothing/head/mob_holder/drone/DH = new(get_turf(src), src)
+		var/obj/item/clothing/mob_holder/drone/DH = new(get_turf(src), src)
 		user.put_in_hands(DH)
 
 /mob/living/simple_animal/drone/proc/try_reactivate(mob/living/user)
