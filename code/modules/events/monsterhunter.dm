@@ -14,10 +14,10 @@
 	name = "Spawn Monster Hunter - Bloodsucker"
 	typepath = /datum/round_event/bloodsucker_hunters
 	max_occurrences = 1 // We have to see how Bloodsuckers are in game to decide if having more than 1 is beneficial.
-	weight = 2000
+	weight = 20
 	min_players = 10
 	earliest_start = 35 MINUTES
-	gamemode_whitelist = list("bloodsucker","traitorsucker","dynamic")
+	gamemode_whitelist = list("bloodsucker","traitorsucker")
 
 /datum/round_event/bloodsucker_hunters
 	fakeable = FALSE
