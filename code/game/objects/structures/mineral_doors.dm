@@ -332,7 +332,7 @@
 
 	if((user.a_intent != INTENT_HARM) && istype(I, /obj/item/paper) && (obj_integrity < max_integrity))
 		user.visible_message("[user] starts to patch the holes in [src].", span_notice("You start patching some of the holes in [src]!"))
-		if(do_after(user, 2 SECONDS, TRUE, src))
+		if(do_after(user, 2 SECONDS, src))
 			obj_integrity = min(obj_integrity+4,max_integrity)
 			qdel(I)
 			user.visible_message("[user] patches some of the holes in [src].", span_notice("You patch some of the holes in [src]!"))

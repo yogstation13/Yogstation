@@ -51,7 +51,7 @@
 	update_icon()
 	to_chat(user, "<span class='notice'>You start pressing a new license plate!</span>")
 
-	if(!do_after(user, 40, target = src))
+	if(!do_after(user, 4 SECONDS, src))
 		pressing = FALSE
 		update_icon()
 		return FALSE

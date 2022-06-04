@@ -17,7 +17,7 @@
 				if("Cannibalize")
 					if(D.health < D.maxHealth)
 						D.visible_message(span_notice("[D] begins to cannibalize parts from [src]."), span_notice("You begin to cannibalize parts from [src]..."))
-						if(do_after(D, 60, 0, target = src))
+						if(do_after(D, 6 SECONDS, src, FALSE))
 							D.visible_message(span_notice("[D] repairs itself using [src]'s remains!"), span_notice("You repair yourself using [src]'s remains."))
 							D.adjustBruteLoss(-src.maxHealth)
 							new /obj/effect/decal/cleanable/oil/streak(get_turf(src))
@@ -40,7 +40,7 @@
 			return
 		visible_message(span_warning("[user] starts picking up [src]."), \
 						span_userdanger("[user] starts picking you up!"))
-		if(!do_after(user, 2 SECONDS, target = src))
+		if(!do_after(user, 2 SECONDS, src))
 			return
 		visible_message(span_warning("[user] picks up [src]!"), \
 						span_userdanger("[user] picks you up!"))
@@ -67,7 +67,7 @@
 		to_chat(user, span_warning("You can't seem to find the [pick(faux_gadgets)]! Without it, [src] [pick(faux_problems)]."))
 		return
 	user.visible_message(span_notice("[user] begins to reactivate [src]."), span_notice("You begin to reactivate [src]..."))
-	if(do_after(user, 3 SECONDS, 1, target = src))
+	if(do_after(user, 3 SECONDS, src))
 		revive(full_heal = 1)
 		grab_ghost()
 		user.visible_message(span_notice("[user] reactivates [src]!"), span_notice("You reactivate [src]."))

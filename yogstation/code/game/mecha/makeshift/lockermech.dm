@@ -59,7 +59,7 @@
 
 /obj/mecha/makeshift/relay_container_resist(mob/living/user, obj/O)
 	to_chat(user, span_notice("You lean on the back of [O] and start pushing so it falls out of [src]."))
-	if(do_after(user, 1 SECONDS, target = O))//Its a fukken locker
+	if(do_after(user, 1 SECONDS, O))//Its a fukken locker
 		if(!user || user.stat != CONSCIOUS || user.loc != src || O.loc != src )
 			return
 		to_chat(user, span_notice("You successfully pushed [O] out of [src]!"))

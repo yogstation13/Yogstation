@@ -368,6 +368,8 @@
 	if(stat == DEAD && can_defib()) //yogs: ZZAPP
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(80))
 			set_heartattack(FALSE)
+			adjustOxyLoss(-50)
+			adjustToxLoss(-50)
 			revive()
 			INVOKE_ASYNC(src, .proc/emote, "gasp")
 			Jitter(100)
@@ -542,7 +544,7 @@
 		return
 
 	to_chat(src, span_warning("You grasp at your [grasped_part.name], trying to stop the bleeding..."))
-	if(!do_after(src, 1.5 SECONDS, target = src))
+	if(!do_after(src, 1.5 SECONDS, src))
 		to_chat(src, span_danger("You can't get a good enough grip to slow the bleeding on [grasped_part.name]."))
 		return
 

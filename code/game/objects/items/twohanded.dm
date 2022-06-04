@@ -677,6 +677,28 @@
 		return 1
 	return 0
 
+/obj/item/twohanded/required/chainsaw/demon
+	name = "demon chainsaw"
+	desc = "anime reference here"
+	item_state = "demon_off"
+	icon_state = "demon_off"
+	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
+	force = 13
+	force_on = 30
+
+
+/obj/item/twohanded/required/chainsaw/demon/attack_self(mob/user)
+	on = !on
+	to_chat(user, "As you pull the starting cord dangling from [src], [on ? "it begins to whirr." : "the chain stops moving."]")
+	force = on ? force_on : initial(force)
+	throwforce = on ? force_on : initial(force)
+	icon_state = "demon_[on ? "on" : "off"]"
+
+/obj/item/twohanded/required/chainsaw/demon/Initialize()
+	. = ..()
+	AddComponent(/datum/component/lifesteal, 30)
+
 //GREY TIDE
 /obj/item/twohanded/spear/grey_tide
 	icon_state = "spearglass0"

@@ -125,6 +125,7 @@
 
 /datum/world_topic/server_hop
 	keyword = "server_hop"
+	require_comms_key = TRUE
 
 /datum/world_topic/server_hop/Run(list/input)
 	var/expected_key = input[keyword]

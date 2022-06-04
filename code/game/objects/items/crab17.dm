@@ -62,7 +62,7 @@
 		if(!card.registered_account.being_dumped)
 			to_chat(user, span_warning("It appears that your funds are safe from draining!"))
 			return
-		if(do_after(user, 4 SECONDS, target = src))
+		if(do_after(user, 4 SECONDS, src))
 			if(!card.registered_account.being_dumped)
 				return
 			to_chat(user, span_warning("You quickly cash out your funds to a more secure banking location. Funds are safu."))

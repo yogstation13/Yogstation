@@ -244,7 +244,7 @@
 			user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("You start forcing the airlock open."),
 			span_italics("You hear a metal screeching sound."))
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 150, 1)
-			if(!do_after(user, 10 SECONDS, target = A))
+			if(!do_after(user, 10 SECONDS, A))
 				return
 		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("You force the airlock to open."),
 		span_italics("You hear a metal screeching sound."))
