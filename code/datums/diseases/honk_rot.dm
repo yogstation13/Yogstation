@@ -11,14 +11,14 @@
 	desc = "A funny disease, that forces it's victims to act like clowns."
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	bypasses_immunity = TRUE
-  var/honkshot = 0
+	var/honkshot = 0
 
 /datum/disease/honkrot/stage_act()
 	..()
 	switch(stage)
-    if(1)
-		if(prob(20))
-			to_chat(affected_mob, span_danger("You feel HONK!"))
+		if(1)
+			if(prob(20))
+				to_chat(affected_mob, span_danger("You feel HONK!"))
 			playsound(source, 'sound/items/bikehorn.ogg', 50, TRUE) //Henk
 	if(2)
 		if(prob(25))
