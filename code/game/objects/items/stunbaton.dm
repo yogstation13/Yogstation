@@ -206,7 +206,7 @@
 
 	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
 
-	var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
+	var/obj/item/bodypart/affecting = L.get_bodypart(user?.zone_selected : BODY_ZONE_CHEST)
 	var/armor_block = L.run_armor_check(affecting, ENERGY) //check armor on the limb because that's where we are slapping...
 	L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
