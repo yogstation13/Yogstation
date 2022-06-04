@@ -15,6 +15,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
 
 	var/cooldown_check = 0
+	/// if the baton is on cooldown from being  dropped
 	var/dropcheck = FALSE
 	///how long we can't use this baton for after slapping someone with it. Does not account for melee attack cooldown (default of 0.8 seconds).
 	var/cooldown = 1.2 SECONDS
