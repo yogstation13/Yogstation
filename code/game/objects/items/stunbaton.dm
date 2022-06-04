@@ -60,13 +60,16 @@
 
 /obj/item/melee/baton/dropped(mob/user, silent)
 	. = ..()
-	status = FALSE
-	dropcheck = TRUE
+	visible_message(span_warning("The safety strap on [src] is pulled as it is dropped, triggering its emergency shutoff!"))
 	addtimer(CALLBACK(src, .proc/recalibrate), 8 SECONDS)
 
-/obj/item/baton/proc/recalibrate()
+/obj/item/melee/baton/proc/recalibrate()
 	dropcheck = FALSE
 	status = TRUE
+	playsound(loc, "sparks", 75, 1, -1)
+	cell_last_used = 0
+	START_PROCESSING(SSobj, src)
+	update_icon()
 
 /obj/item/melee/baton/loaded //this one starts with a cell pre-installed.
 	preload_cell_type = /obj/item/stock_parts/cell/high
@@ -134,8 +137,8 @@
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
-	if(dropcheck == TRUE)
-		to_chat("Baton has been dropped and needs to recalibrate!")
+	if(dropcheck)
+		to_chat("[src]'s emergency shutoff is still active!")
 	if(cell && cell.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
