@@ -134,7 +134,7 @@
 
 /obj/item/reagent_containers/food/snacks/vegetariansushiroll
 	name = "vegetarian sushi roll"
-	desc = "A roll of simple vegetarian sushi with rice, carrots, and potatoes. Sliceable into pieces!"
+	desc = "A roll of simple vegetarian sushi, made with rice, carrots, and potatoes. Able to be sliced into pieces!"
 	icon_state = "vegetariansushiroll"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("boiled rice" = 4, "carrots" = 2, "potato" = 2)
@@ -144,7 +144,7 @@
 
 /obj/item/reagent_containers/food/snacks/vegetariansushislice
 	name = "vegetarian sushi slice"
-	desc = "A slice of simple vegetarian sushi with rice, carrots, and potatoes."
+	desc = "A slice of simple vegetarian sushi, made with rice, carrots, and potatoes."
 	icon_state = "vegetariansushislice"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("boiled rice" = 4, "carrots" = 2, "potato" = 2)
@@ -153,7 +153,7 @@
 
 /obj/item/reagent_containers/food/snacks/spicyfiletsushiroll
 	name = "spicy filet sushi roll"
-	desc = "A roll of tasty, spicy sushi made with fish and vegetables. Sliceable into pieces!"
+	desc = "A roll of tasty, spicy sushi, made with fish and vegetables. Able to be sliced into pieces!"
 	icon_state = "spicyfiletroll"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/capsaicin = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("boiled rice" = 4, "fish" = 2, "spicyness" = 2)
@@ -163,7 +163,7 @@
 
 /obj/item/reagent_containers/food/snacks/spicyfiletsushislice
 	name = "spicy filet sushi slice"
-	desc = "A slice of tasty, spicy sushi made with fish and vegetables. Don't eat it too fast!."
+	desc = "A slice of tasty, spicy sushi, made with fish and vegetables. Don't eat it too fast!"
 	icon_state = "spicyfiletslice"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("boiled rice" = 4, "fish" = 2, "spicyness" = 2)
@@ -450,7 +450,7 @@
 
 /obj/item/reagent_containers/food/snacks/chipsandsalsa
 	name = "chips and salsa"
-	desc = "Some tortilla chips with a cup of zesty salsa. Highly addictive!"
+	desc = "A handful of tortilla chips, paired with a cup of zesty salsa. Highly addictive!"
 	icon_state = "chipsandsalsa"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("peppers" = 1, "salsa" = 3, "tortilla chips" = 1, "onion" = 1)

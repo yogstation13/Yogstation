@@ -43,7 +43,7 @@
 	subcategory = CAT_BREAD
 
 /datum/crafting_recipe/food/frenchtoast
-	name = "Raw French Toast"
+	name = "raw French toast"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 1,

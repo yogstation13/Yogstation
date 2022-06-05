@@ -218,8 +218,8 @@
 	AddComponent(/datum/component/slippery, 80)
 
 /obj/item/reagent_containers/food/snacks/frenchtoast
-	name = "french toast"
-	desc = "A slice of bread soaked in an egg mixture and grilled until golden-brown. Drizzled with syrup!."
+	name = "French toast"
+	desc = "A slice of bread soaked in an egg mixture and grilled until golden-brown. Drizzled with syrup!"
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "frenchtoast"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cinnamon = 2, /datum/reagent/consumable/sugar = 2) //yogs, values differ from tg
@@ -228,8 +228,8 @@
 	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/frenchtoast/raw
-	name = "raw french toast"
-	desc = "A slice of bread soaked in a beaten egg mixture. Put it on a griddle to start cooking!."
+	name = "raw French toast"
+	desc = "A slice of bread soaked in a beaten egg mixture. Put it on a griddle to start cooking!"
 	icon_state = "raw_frenchtoast"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cinnamon = 2, /datum/reagent/consumable/sugar = 2)  //yogs, values differ from tg
 	tastes = list("raw egg" = 2, "soaked bread" = 1)
