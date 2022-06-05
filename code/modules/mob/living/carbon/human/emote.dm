@@ -218,4 +218,12 @@
 		var/turf/T = loc
 		T.Entered(src)
 
+/datum/emote/living/carbon/human/lick
+	key = "lick"
+	key_third_person = "licks"
+	message = "licks their eyes!"
+
+/datum/emote/living/carbon/lick/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	return islizard(user)
+
 //Ayy lmao
