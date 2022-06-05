@@ -224,7 +224,11 @@
 	action_background_icon_state = "bg_demon"
 
 /obj/effect/proc_holder/spell/rat_rage/perform(recharge = 1, mob/living/user = usr)
-	if(user.speed < 1)
-		to_chat(src, span_notice("You finish licking [target]."))
-
+	var/mob/living/simple_animal/rattt = user
+	if(rattt.speed < 1)
+		to_chat(user, span_notice("You are alredy fast enough."))
+		revert_cast()
+	if(rattt.health < 11)
+		to_chat(user, span_notice("You will not survive this!"))
+		revert_cast()
 	start_recharge()
