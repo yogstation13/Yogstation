@@ -67,6 +67,7 @@
 
 //MINING CHARGE HACKER
 /obj/item/t_scanner/adv_mining_scanner/syndicate
+	var/charges = 6
 
 /obj/item/t_scanner/adv_mining_scanner/syndicate/examine(mob/user)
 	. = ..()
@@ -82,9 +83,15 @@
 		if(charge.hacked)
 			to_chat(span_notice("[src] is already overridden!"))
 			return
+		if(charges <= 0)
+			to_chat(span_notice("Its overriding function is depleted."))
+			return
 		charge.override_safety()
 		visible_message(span_warning("Sparks fly out of [src]!"), span_notice("You override [src], disabling its safeties."))
 		playsound(src, "sparks", 50, 1)
+		charges--
+		if(charges <= 0)
+			to_chat(span_warning("[src]'s internal battery for overriding mining charges has run dry!"))
 	
 
 	
