@@ -87,6 +87,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of beer"
 	glass_desc = "A freezing pint of beer."
 
+/datum/reagent/consumable/ethanol/beer/stout
+	name = "Stout Beer"
+	description = "a darker colored beer, made of barley and roast malt."
+	color = "#221915" // rgb: 34, 25, 21
+	taste_description = "malt and chocolate"
+	glass_name = "glass of stout"
+	glass_desc = "a cold pint of 'genius' brand stout."
+
 /datum/reagent/consumable/ethanol/beer/light
 	name = "Light Beer"
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety has reduced calorie and alcohol content."
@@ -2358,4 +2366,3 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Glass of Amber Moon"
 	glass_desc = "A strange cocktail with a cracked egg believed to treat hangovers."
 	shot_glass_icon_state = "ambermoonshotglass"
-
