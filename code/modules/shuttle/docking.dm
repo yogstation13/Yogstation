@@ -77,14 +77,6 @@
 			remove_ripples()
 			return DOCKING_IMMOBILIZED
 
-	for(var/turf/old_terf in old_turfs)
-		old_terf.set_sleeping(TRUE)
-	for(var/turf/new_terf in new_turfs)
-		new_terf.set_sleeping(TRUE)
-
-	if(SSair.initialized)
-		sleep(1)
-
 	// Moving to the new location will trample the ripples there at the exact
 	// same time any mobs there are trampled, to avoid any discrepancy where
 	// the ripples go away before it is safe.
@@ -145,7 +137,6 @@
 		terf.blocks_air = TRUE
 	for(var/turf/terf as anything in old_turfs + new_turfs)
 		terf.ImmediateCalculateAdjacentTurfs()
-
 
 	for(var/i in 1 to old_turfs.len)
 		var/turf/oldT = old_turfs[i]
