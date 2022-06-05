@@ -59,9 +59,10 @@
 
 /obj/item/grenade/plastic/miningcharge/proc/override_safety()
 	hacked = TRUE
-	boom_sizes[1] = max(boom_sizes[1]/2, 1) //sorry, too powerful otherwise.
-	boom_sizes[2] = max(boom_sizes[2]/2, 1)
-	boom_sizes[3] = max(boom_sizes[3]/2, 1)
+	boom_sizes[1] = max(boom_sizes[1]/3, 1) //sorry, too powerful otherwise.
+	boom_sizes[2] = max(boom_sizes[2]/3, 1)
+	boom_sizes[3] = max(boom_sizes[3]/3, 1)
+	alert_admins = TRUE //i'm telling teacher you're gibbing clown!
 
 
 //MINING CHARGE HACKER
