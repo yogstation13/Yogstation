@@ -1236,6 +1236,9 @@
 		scaries.fake = TRUE
 		QDEL_NULL(phantom_wound)
 
+/mob/living/carbon/is_face_visible()
+	return ..() && !(wear_mask?.flags_inv & HIDEFACE) && !(head?.flags_inv & HIDEFACE) // Yogs -- you can no longer make eye contact with a cigarette butt that contains a tator
+
 /**
   * get_biological_state is a helper used to see what kind of wounds we roll for. By default we just assume carbons (read:monkeys) are flesh and bone, but humans rely on their species datums
   *
