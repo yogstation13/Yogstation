@@ -2145,6 +2145,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/hierophant_antenna
 	restricted_roles = list("Shaft Miner")
 
+/datum/uplink_item/role_restricted/mining_charge_hacker
+	name = "Mining Charge Hacker"
+	desc = "Looks and functions like an advanced mining scanner, but allows mining charges to be placed anywhere and destroy more than rocks. \
+	Use it on a mining charge to override its safeties. Reduces explosive power of mining charges due to the modification of their internals."
+	cost = 6
+	manufacturer = /datum/corporation/traitor/cybersun
+	item = /obj/item/t_scanner/adv_mining_scanner/syndicate
+	restricted_roles = list("Shaft Miner","Quartermaster","Mining Medic")
+
 // Pointless
 /datum/uplink_item/badass
 	category = "(Pointless) Badassery"
