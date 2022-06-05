@@ -567,8 +567,8 @@
 	icon_state = "disaronno"
 	list_reagents = list(/datum/reagent/consumable/ethanol/amaretto = 100)
 
-/obj/item/reagent_containers/food/drinks/bottle/beer/stout
+/obj/item/reagent_containers/food/drinks/beer/stout
 	name = "Genius Dry Stout"
 	desc = "A fresh bottle of stout, popularized by inhabitants of Space Ireland."
-	icon_state = "Guinness"
-	list_reagents = list(/datum/reagent/consumable/ethanol/beer/stout = 50)
+	icon_state = "beer" //remember to replace!!
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/stout = 40)
