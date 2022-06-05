@@ -247,7 +247,7 @@
 	slices_num = 5
 
 /obj/item/reagent_containers/food/snacks/frenchsilk
-	name = "french silk pie slice"
+	name = "French silk pie slice"
 	desc = "A slice of French silk pie, filled with a chocolate mousse, and topped with a layer of whipped cream and chocolate shavings. Decadent and delectable!"
 	icon_state = "frenchsilkpieslice"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
