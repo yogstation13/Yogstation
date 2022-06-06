@@ -225,15 +225,15 @@
 	var/mob/living/simple_animal/rattt = owner
 	if(rattt.speed < 1)
 		to_chat(rattt, span_notice("You are alredy fast enough."))
-		revert_cast()
+		return
 	if(rattt.health < 11)
 		to_chat(rattt, span_notice("You will not survive this!"))
-		revert_cast()
+		return
 	rattt.adjustBruteLoss(10)
 	rattt.speed = rattt.speed - 2
 	to_chat(rattt, span_notice("You fill adrenaline filling your body!"))
 	addtimer(CALLBACK(src, rattt, .proc/return_speed), 10 SECONDS)
-	start_recharge()
+
 
 /datum/action/innate/plaguerat_adrenal/proc/return_speed(var/mob/living/simple_animal/user)
 	user.speed = user.speed + 2
