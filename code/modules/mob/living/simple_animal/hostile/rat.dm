@@ -171,6 +171,9 @@
 			reagent = /datum/reagent/bacteria/plague
 		if("Brain Honk")
 			reagent = /datum/reagent/bacteria/honk
+	adrenal = new
+	adrenal.Grant(src)
+		
 
 /mob/living/simple_animal/hostile/rat/plaguerat/AttackingTarget()
 	. = ..()
