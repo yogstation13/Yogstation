@@ -1,10 +1,4 @@
 
-
-/mob/living/carbon/monkey
-	can_be_held = TRUE
-	worn_slot_flags = ITEM_SLOT_HEAD
-	held_state = "monkey"
-
 /mob/living/carbon/monkey/Life()
 	set invisibility = 0
 

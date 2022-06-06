@@ -57,7 +57,7 @@
 			return
 		to_chat(L, span_notice("You pick [src] up."))
 		drop_all_held_items()
-		var/obj/item/clothing/mob_holder/cheese/P = new(get_turf(src), src, null, null, null, null, ITEM_SLOT_HEAD)
+		var/obj/item/clothing/mob_holder/cheese/P = new(get_turf(src), src, null, null, null, ITEM_SLOT_HEAD, mob_size, null)
 		L.put_in_hands(P)
 
 /mob/living/simple_animal/cheese/death(gibbed)
