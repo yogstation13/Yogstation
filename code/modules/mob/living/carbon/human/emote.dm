@@ -223,6 +223,7 @@
 	key_third_person = "licks"
 	message = "licks their eyes!"
 	cooldown = 10 SECONDS
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/lick/run_emote(mob/user, params)
 	. = ..()
