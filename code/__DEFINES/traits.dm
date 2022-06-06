@@ -330,7 +330,7 @@
 #define FRENZY_TRAIT "frenzy_trait"
 #define HORROR_TRAIT "horror"
 #define HOLDER_TRAIT "holder_trait"
-#define sinfuldemon_TRAIT "sinfuldemon"
+#define SINFULDEMON_TRAIT "sinfuldemon"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
