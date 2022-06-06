@@ -94,7 +94,7 @@
 	create_reagents(1000) //limited by the size of the reagent holder anyway.
 	START_PROCESSING(SSfastprocess, src)
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
-	LAZYINITLIST(applied_atoms)
+	applied_atoms = list()
 
 /obj/effect/particle_effect/foam/ComponentInitialize()
 	. = ..()
