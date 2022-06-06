@@ -51,7 +51,7 @@
 			to_chat(user,"The World Anvil is not hot enough to be usable!")
 			return
 		if(do_after(user,10 SECONDS, target = src))
-			new /obj/item/magmite_parts(src)
+			new /obj/item/magmite_parts(get_turf(src))
 			qdel(I)
 			to_chat(user, "You carefully forge the rough plasma magmite into plasma magmite upgrade parts.")
 			if(!forge_charges)
