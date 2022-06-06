@@ -1250,6 +1250,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			hunger_rate *= max(0.5, 1 - 0.002 * mood.sanity) //0.85 to 0.75
 		if(HAS_TRAIT(H, TRAIT_EAT_LESS))
 			hunger_rate *= 0.75 //hunger rate reduced by about 25%
+		if(HAS_TRAIT(H, TRAIT_EAT_MORE))
+			hunger_rate *= 3 //hunger rate tripled
 		// Whether we cap off our satiety or move it towards 0
 		if(H.satiety > MAX_SATIETY)
 			H.satiety = MAX_SATIETY

@@ -5,8 +5,8 @@
 /mob/living/simple_animal/lesserdemon/wrath //slightly more damage.
 	name = "wrathful demon"
 	real_name = "wrathful demon"
-	melee_damage_lower = 28
-	melee_damage_upper = 28
+	melee_damage_lower = 24
+	melee_damage_upper = 24
 	icon_state = "lesserdaemon_wrath"
 	icon_living = "lesserdaemon_wrath"
 
