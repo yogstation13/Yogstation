@@ -89,12 +89,6 @@
 				objectives += kill_objective
 		if(SIN_ENVY)
 			O = new /datum/objective/demon/envy
-			if(prob(50))
-				var/datum/objective/escape/escape_with_identity/identity_theft = new
-				identity_theft.owner = owner
-				identity_theft.find_target()
-				identity_theft.update_explanation_text()
-				objectives += identity_theft
 		if(SIN_PRIDE)
 			O = new /datum/objective/demon/pride
 	objectives += O
