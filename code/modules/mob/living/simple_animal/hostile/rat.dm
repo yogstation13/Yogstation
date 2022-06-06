@@ -231,12 +231,12 @@
 	if(rattt.health < 11)
 		to_chat(user, span_notice("You will not survive this!"))
 		revert_cast()
-	rattt.adjustBruteDamage(10)
-	rattt.speed = speed - 2
+	rattt.adjustBruteLoss(10)
+	rattt.speed = rattt.speed - 2
 	to_chat(user, span_notice("You fill adrenaline filling your body!"))
 	addtimer(CALLBACK(src, rattt, .proc/return_speed), 10 SECONDS)
 	start_recharge()
 
 /obj/effect/proc_holder/spell/rat_rage/proc/return_speed(var/mob/living/simple_animal/user)
-	user.speed = speed + 2
+	user.speed = user.speed + 2
 	to_chat(user, span_notice("Your adrenaline rush dies off."))
