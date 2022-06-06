@@ -95,7 +95,7 @@
 
 /obj/item/clothing/gloves/bracer/cuffs
 	name = "rabid cuffs"
-	desc = "Chainless manacles fashioned after one of the hungriest of slaughter demons. Wearing these invokes a hunger in the wearer that can only be sated by bloodshed."
+	desc = "Chainless manacles fashioned after one of the hungriest slaughter demons. Wearing these invokes a hunger in the wearer that can only be sated by bloodshed."
 	icon_state = "cuff"
 	item_state = "cuff"
 	var/obj/effect/proc_holder/swipe/swipe_ability
