@@ -186,6 +186,8 @@
 					var/datum/reagent/diseaseshit = new reagent
 					C.reagents.add_reagent(reagent, 3) //gets caught up in blood transfers
 					diseaseshit.reaction_mob(C, INJECT) //making sure we stay winning
+				if(disease == "Brain Honk")
+					playsound(get_turf(affected_mob), 'sound/items/bikehorn.ogg', 50, TRUE)
 
 		else //It is for biting dead bodies to heal.
 			if(C.getBruteLoss_nonProsthetic() >= 100)
