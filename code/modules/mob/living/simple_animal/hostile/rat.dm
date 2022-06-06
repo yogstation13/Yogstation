@@ -159,6 +159,7 @@
 	body_color = "black"
 	var/disease
 	var/datum/reagent/reagent
+	var/datum/action/innate/plaguerat_adrenal/adrenal
 
 /mob/living/simple_animal/hostile/rat/plaguerat/Initialize()
 	. = ..()
@@ -214,8 +215,8 @@
 	name = "Adrenal rush"
 	desc = "Deals you 10 damage, and temporary speeds you up."
 	background_icon_state = "bg_default"
-	icon_icon = 'icons/mob/actions/actions_space_dragon.dmi'
-	button_icon_state = "gust_attack"
+	icon_icon = 'icons/mob/animal.dmi'
+	button_icon_state = "mouse_black"
 
 /datum/action/innate/plaguerat_adrenal/Activate()
 	var/mob/living/simple_animal/rattt = owner
@@ -231,6 +232,6 @@
 	addtimer(CALLBACK(src, rattt, .proc/return_speed), 10 SECONDS)
 	start_recharge()
 
-/obj/effect/proc_holder/spell/rat_rage/proc/return_speed(var/mob/living/simple_animal/user)
+/datum/action/innate/plaguerat_adrenal/proc/return_speed(var/mob/living/simple_animal/user)
 	user.speed = user.speed + 2
 	to_chat(user, span_notice("Your adrenaline rush dies off."))
