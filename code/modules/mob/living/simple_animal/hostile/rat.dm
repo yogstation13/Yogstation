@@ -210,30 +210,24 @@
 			to_chat(src, span_notice("You finish licking [target]."))
 
 
-/obj/effect/proc_holder/spell/rat_rage
+/datum/action/innate/plaguerat_adrenal
 	name = "Adrenal rush"
 	desc = "Deals you 10 damage, and temporary speeds you up."
-	charge_max = 0
-	clothes_req = FALSE
-	selection_type = "range"
-	range = 1
-	cooldown_min = 30
-	overlay = null
-	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	action_icon_state = "bloodcrawl"
-	action_background_icon_state = "bg_demon"
+	background_icon_state = "bg_default"
+	icon_icon = 'icons/mob/actions/actions_space_dragon.dmi'
+	button_icon_state = "gust_attack"
 
-/obj/effect/proc_holder/spell/rat_rage/perform(recharge = 1, mob/living/user = usr)
-	var/mob/living/simple_animal/rattt = user
+/datum/action/innate/plaguerat_adrenal/Activate()
+	var/mob/living/simple_animal/rattt = owner
 	if(rattt.speed < 1)
-		to_chat(user, span_notice("You are alredy fast enough."))
+		to_chat(rattt, span_notice("You are alredy fast enough."))
 		revert_cast()
 	if(rattt.health < 11)
-		to_chat(user, span_notice("You will not survive this!"))
+		to_chat(rattt, span_notice("You will not survive this!"))
 		revert_cast()
 	rattt.adjustBruteLoss(10)
 	rattt.speed = rattt.speed - 2
-	to_chat(user, span_notice("You fill adrenaline filling your body!"))
+	to_chat(rattt, span_notice("You fill adrenaline filling your body!"))
 	addtimer(CALLBACK(src, rattt, .proc/return_speed), 10 SECONDS)
 	start_recharge()
 
