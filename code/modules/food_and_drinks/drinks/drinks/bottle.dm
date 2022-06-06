@@ -570,5 +570,5 @@
 /obj/item/reagent_containers/food/drinks/beer/stout
 	name = "Genius Dry Stout"
 	desc = "A fresh bottle of stout, popularized by inhabitants of Space Ireland."
-	icon_state = "beer" //remember to replace!!
+	icon_state = "stout_bottle" 
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/stout = 40)

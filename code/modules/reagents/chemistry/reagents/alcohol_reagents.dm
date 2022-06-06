@@ -87,6 +87,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of beer"
 	glass_desc = "A freezing pint of beer."
 
+//////////STOUT AND ITS COCKTAILS//////////
 /datum/reagent/consumable/ethanol/beer/stout
 	name = "Stout Beer"
 	description = "a darker colored beer, made of barley and roast malt."
@@ -95,6 +96,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of stout"
 	glass_desc = "a cold pint of 'genius' brand stout."
 
+/datum/reagent/consumable/ethanol/beer/stout/irishflip
+	name = "Irish Flip"
+	description = "A creamy stout drink with... an egg?"
+	color = "#deaf57" // rgb: 222, 175, 87
+	taste_description = "chocolate cream and egg"
+	glass_icon_state = "irish_flip"
+	glass_name = "glass of irish flip"
+	glass_desc = "a fancy glass of creamy cocktail."
+///////////////////////////////////////////
 /datum/reagent/consumable/ethanol/beer/light
 	name = "Light Beer"
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety has reduced calorie and alcohol content."
