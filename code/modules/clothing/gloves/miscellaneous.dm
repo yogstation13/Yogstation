@@ -99,6 +99,7 @@
 	icon_state = "cuff"
 	item_state = "cuff"
 	var/obj/effect/proc_holder/swipe/swipe_ability
+	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
 
 /obj/item/clothing/gloves/bracer/cuffs/Initialize()
 	. = ..()
