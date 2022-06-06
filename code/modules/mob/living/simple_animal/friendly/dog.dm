@@ -15,10 +15,11 @@
 	emote_see = list("shakes its head.", "chases its tail.","shivers.")
 	faction = list("neutral")
 	see_in_dark = 5
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	speak_chance = 1
 	turns_per_move = 10
 	gold_core_spawnable = FRIENDLY_SPAWN
-
+	can_be_held = TRUE
 	do_footstep = TRUE
 
 //Corgis and pugs are now under one dog subtype
@@ -33,8 +34,6 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 3, /obj/item/stack/sheet/animalhide/corgi = 1)
 	childtype = list(/mob/living/simple_animal/pet/dog/corgi/puppy = 95, /mob/living/simple_animal/pet/dog/corgi/puppy/void = 5)
 	animal_species = /mob/living/simple_animal/pet/dog
-	gold_core_spawnable = FRIENDLY_SPAWN
-	can_be_held = TRUE
 	collar_type = "corgi"
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
@@ -105,7 +104,6 @@
 	icon_living = "pug"
 	icon_dead = "pug_dead"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/pug = 3)
-	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "pug"
 
 /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
@@ -193,13 +191,6 @@
 		return
 	..()
 	update_corgi_fluff()
-
-/mob/living/simple_animal/pet/dog/corgi/mob_pickup(mob/living/L)
-	var/obj/item/clothing/head/mob_holder/holder = new(get_turf(src), src, "corgi", null, 'icons/mob/pets_held_lh.dmi', 'icons/mob/pets_held_rh.dmi', FALSE)
-	if(!L.put_in_hands(holder))
-		qdel(holder)
-	else
-		L.visible_message(span_warning("[L] scoops up [src]!"))
 
 /mob/living/simple_animal/pet/dog/corgi/Topic(href, href_list)
 	if(!(iscarbon(usr) || iscyborg(usr)) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -693,20 +684,9 @@
 	. = ..()
 	switch(M.a_intent)
 		if(INTENT_HELP)
-			wuv(1,M)
+			wuv(M)
 		if(INTENT_HARM)
-			wuv(-1,M)
-
-/mob/living/simple_animal/pet/dog/proc/wuv(change, mob/M)
-	if(change)
-		if(change > 0)
-			if(M && stat != DEAD) // Added check to see if this mob (the dog) is dead to fix issue 2454
-				new /obj/effect/temp_visual/heart(loc)
-				emote("me", 1, "yaps happily!", TRUE)
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
-		else
-			if(M && stat != DEAD) // Same check here, even though emote checks it as well (poor form to check it only in the help case)
-				emote("me", 1, "growls!", TRUE)
+			wuv(M, FALSE)
 
 /mob/living/simple_animal/pet/dog/bullterrier
 	name = "\improper bull terrier"
@@ -717,5 +697,4 @@
 	icon_living = "bullterrier"
 	icon_dead = "bullterrier_dead"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 3) // Would feel redundant to add more new dog meats.
-	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "bullterrier"

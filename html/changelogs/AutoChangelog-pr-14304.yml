@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscdel: "Plague rats can no longer spawn"
