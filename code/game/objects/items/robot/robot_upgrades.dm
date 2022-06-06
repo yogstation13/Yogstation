@@ -778,10 +778,10 @@
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(1, R.loc)
 		smoke.start()
-		sleep(2)
+		sleep(0.2 SECONDS)
 		for(var/i in 1 to 4)
 			playsound(R, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
-			sleep(12)
+			sleep(1.2 SECONDS)
 		if(!prev_lockcharge)
 			R.SetLockdown(0)
 		R.anchored = FALSE

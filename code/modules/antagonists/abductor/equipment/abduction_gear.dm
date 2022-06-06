@@ -230,7 +230,7 @@
 		to_chat(user, span_warning("You need to be next to the specimen to prepare it for transport!"))
 		return
 	to_chat(user, span_notice("You begin preparing [target] for transport..."))
-	if(do_after(user, 10 SECONDS, target = target))
+	if(do_after(user, 10 SECONDS, target))
 		marked = target
 		to_chat(user, span_notice("You finish preparing [target] for transport."))
 
@@ -523,7 +523,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		L.visible_message(span_danger("[user] has induced sleep in [L] with [src]!"), \
 							span_userdanger("You suddenly feel very drowsy!"))
 		playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)
-		L.Sleeping(1200)
+		L.Sleeping(30 SECONDS)
 		log_combat(user, L, "put to sleep")
 	else
 		if(L.anti_magic_check(FALSE, FALSE, TRUE, 0))
@@ -752,7 +752,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			to_chat(user, span_warning("You need one alien alloy sheet to do this!"))
 			return
 		to_chat(user, span_notice("You start adding [P] to [src]..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			P.use(1)
 			new /obj/structure/table/abductor(src.loc)
 			qdel(src)
@@ -763,7 +763,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			to_chat(user, span_warning("You need one sheet of silver to do	this!"))
 			return
 		to_chat(user, span_notice("You start adding [P] to [src]..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			P.use(1)
 			new /obj/structure/table/optable/abductor(src.loc)
 			qdel(src)

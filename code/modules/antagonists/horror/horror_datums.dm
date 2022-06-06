@@ -101,7 +101,7 @@
 		to_chat(user, span_bold("[H.real_name]</b> has awoken into your service!"))
 		used = TRUE
 		icon_state = "pet_carrier_open"
-		sleep(5)
+		sleep(0.5 SECONDS)
 		var/obj/item/horrorsummonhorn/horn = new /obj/item/horrorsummonhorn(get_turf(src))
 		horn.summoner = user.mind
 		horn.horror = H
@@ -144,7 +144,7 @@
 		sleep(5 SECONDS)
 		if(prob(20)) //yeah you're summoning an eldritch horror allright
 			new /obj/effect/temp_visual/summon(summonplace)
-			sleep(10)
+			sleep(1 SECONDS)
 			var/type = pick(typesof(/mob/living/simple_animal/hostile/abomination))
 			var/mob/R = new type(summonplace)
 			playsound(summonplace, "sound/effects/phasein.ogg", 30)
@@ -154,7 +154,7 @@
 				summonplace.visible_message(span_danger("But nothing responds to the call!"))
 			else
 				new /obj/effect/temp_visual/summon(summonplace)
-				sleep(10)
+				sleep(1 SECONDS)
 				horror.leave_victim()
 				horror.forceMove(summonplace)
 				playsound(summonplace, "sound/effects/phasein.ogg", 30)
@@ -244,7 +244,7 @@
 			user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("You start forcing the airlock open."),
 			span_italics("You hear a metal screeching sound."))
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 150, 1)
-			if(!do_after(user, 10 SECONDS, target = A))
+			if(!do_after(user, 10 SECONDS, A))
 				return
 		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("You force the airlock to open."),
 		span_italics("You hear a metal screeching sound."))

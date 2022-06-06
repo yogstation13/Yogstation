@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 	if(.)
 		return
 	to_chat(user, span_notice("You start picking [src] up..."))
-	if(do_after(user, remove_speed, target = src))
+	if(do_after(user, remove_speed, src))
 		var/obj/item/stack/marker_beacon/M = new(loc)
 		M.picked_color = picked_color
 		M.update_icon()
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 	if(istype(I, /obj/item/stack/marker_beacon))
 		var/obj/item/stack/marker_beacon/M = I
 		to_chat(user, span_notice("You start picking [src] up..."))
-		if(do_after(user, remove_speed, target = src) && M.amount + 1 <= M.max_amount)
+		if(do_after(user, remove_speed, src) && M.amount + 1 <= M.max_amount)
 			M.add(1)
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			qdel(src)

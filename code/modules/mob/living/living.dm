@@ -454,7 +454,7 @@
 	if(!resting)
 		set_resting(TRUE, FALSE)
 	else
-		if(do_after(src, 1 SECONDS, target = src))
+		if(do_after(src, 1 SECONDS, src))
 			set_resting(FALSE, FALSE)
 		else
 			to_chat(src, span_notice("You fail to get up."))
@@ -832,12 +832,12 @@
 	if(anchored || (buckled && buckled.anchored))
 		fixed = 1
 	if(on && !(movement_type & FLOATING) && !fixed)
-		animate(src, pixel_y = pixel_y + 2, time = 10, loop = -1)
-		sleep(10)
-		animate(src, pixel_y = pixel_y - 2, time = 10, loop = -1)
+		animate(src, pixel_y = pixel_y + 2, time = 1 SECONDS, loop = -1)
+		sleep(1 SECONDS)
+		animate(src, pixel_y = pixel_y - 2, time = 1 SECONDS, loop = -1)
 		setMovetype(movement_type | FLOATING)
 	else if(((!on || fixed) && (movement_type & FLOATING)))
-		animate(src, pixel_y = get_standard_pixel_y_offset(lying), time = 10)
+		animate(src, pixel_y = get_standard_pixel_y_offset(lying), time = 1 SECONDS)
 		setMovetype(movement_type & ~FLOATING)
 
 // The src mob is trying to strip an item from someone
@@ -914,8 +914,8 @@
 	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
 	var/final_pixel_x = get_standard_pixel_x_offset(lying)
 	var/final_pixel_y = get_standard_pixel_y_offset(lying)
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
-	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 0.2 SECONDS, loop = 6)
+	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 0.2 SECONDS)
 	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
 
 /mob/living/proc/get_temperature(datum/gas_mixture/environment)
@@ -1337,18 +1337,21 @@
 	..()
 	update_z(new_z)
 
-/mob/living/MouseDrop(mob/over)
+/mob/living/MouseDrop_T(atom/pickable, atom/user)
+	var/mob/living/U = user
+	if(isliving(pickable))
+		var/mob/living/M = pickable
+		if(M.can_be_held && U.pulling == M)
+			M.mob_try_pickup(U)
+			return //dont open the mobs inventory if you are picking them up
 	. = ..()
-	var/mob/living/user = usr
-	if(!istype(over) || !istype(user))
-		return
-	if(!over.Adjacent(src) || (user != src) || !canUseTopic(over))
-		return
-	if(can_be_held)
-		mob_try_pickup(over)
 
 /mob/living/proc/mob_pickup(mob/living/L)
-	return
+	if(!held_state)
+		held_state = icon_state
+	var/obj/item/clothing/mob_holder/holder = new(get_turf(src), src, held_state, held_icon, held_lh, held_rh, worn_slot_flags, worn_layer)
+	L.visible_message(span_warning("[L] scoops up [src]!"))
+	L.put_in_hands(holder)
 
 /mob/living/proc/mob_try_pickup(mob/living/user)
 	if(!ishuman(user))
@@ -1360,7 +1363,7 @@
 		to_chat(user, span_warning("[src] is buckled to something!"))
 		return FALSE
 	user.visible_message(span_notice("[user] starts trying to scoop up [src]!"))
-	if(!do_after(user, 2 SECONDS, target = src))
+	if(!do_after(user, 2 SECONDS, src))
 		return FALSE
 	mob_pickup(user)
 	return TRUE
@@ -1456,3 +1459,6 @@
             return TRUE
     return FALSE
 
+/// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
+/mob/living/proc/is_face_visible()
+	return isturf(loc) // Yogs -- forbids making eye contact with things hidden within objects

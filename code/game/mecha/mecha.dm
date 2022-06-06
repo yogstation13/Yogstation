@@ -933,7 +933,7 @@
 
 	visible_message("[user] starts to climb into [name].")
 
-	if(do_after(user, enter_delay, target = src))
+	if(do_after(user, enter_delay, src))
 		if(obj_integrity <= 0)
 			to_chat(user, span_warning("You cannot get in the [name], it has been destroyed!"))
 		else if(occupant)
@@ -982,7 +982,7 @@
 
 	visible_message(span_notice("[user] starts to insert an MMI into [name]."))
 
-	if(do_after(user, 4 SECONDS, target = src))
+	if(do_after(user, 4 SECONDS, src))
 		if(!occupant)
 			return mmi_moved_inside(mmi_as_oc, user)
 		else
@@ -1029,7 +1029,7 @@
 /obj/mecha/container_resist(mob/living/user)
 	is_currently_ejecting = TRUE
 	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
-	if(do_after(occupant,exit_delay, target = src))
+	if(do_after(occupant, exit_delay, src))
 		to_chat(occupant, "<span class='notice'>You exit the mech.<span>")
 		go_out()
 	else

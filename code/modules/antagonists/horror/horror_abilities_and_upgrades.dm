@@ -265,7 +265,7 @@
 				delay = 3 SECONDS
 
 	transferring = TRUE
-	if(!do_after(B.victim, delay, target = C, extra_checks = CALLBACK(src, .proc/is_transferring, C), stayStill = FALSE))
+	if(!do_after(B.victim, delay, C, extra_checks = CALLBACK(src, .proc/is_transferring, C), stayStill = FALSE))
 		to_chat(owner, span_warning("As [C] moves away, your transfer gets interrupted!"))
 		transferring = FALSE
 		return
@@ -337,7 +337,7 @@
 		for(var/turf/open/t in range(1, B))
 			if(prob(60) && B.Adjacent(t))
 				t.MakeSlippery(TURF_WET_LUBE, 100)
-		sleep(5)
+		sleep(0.5 SECONDS)
 		spins_remaining--
 		if(!B.can_use_ability())
 			return TRUE
@@ -366,6 +366,21 @@
 /datum/horror_upgrade/proc/apply_effects()
 	return
 
+//Upgrades the knockdown ability
+/datum/horror_upgrade/paralysis
+	name = "Electrocharged tentacle"
+	id = "paralysis"
+	desc = "Empowers your tentacle knockdown ability by giving it extra charge, knocking your victim down unconcious."
+	soul_price = 3
+
+/datum/horror_upgrade/paralysis/apply_effects()
+	var/datum/action/innate/horror/A = B.has_ability(/datum/action/innate/horror/freeze_victim)
+	if(A)
+		A.name = "Paralyze Victim"
+		A.desc = "Shock a victim with an electrically charged tentacle."
+		A.button_icon_state = "paralyze"
+		B.update_action_buttons()
+
 //Increases chemical regeneration rate by 2
 /datum/horror_upgrade/chemical_regen
 	name = "Efficient chemical glands"
@@ -374,7 +389,7 @@
 	soul_price = 2
 
 /datum/horror_upgrade/chemical_regen/apply_effects()
-	B.chem_regen_rate += 2
+	B.chem_regen_rate += 3
 
 //Lets horror regenerate chemicals outside of a host
 /datum/horror_upgrade/nohost_regen

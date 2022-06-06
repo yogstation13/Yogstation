@@ -149,6 +149,7 @@
 	result = /obj/item/tailclub
 	reqs = list(/obj/item/organ/tail/lizard = 1,
 	            /obj/item/stack/sheet/metal = 1)
+	blacklist = list(/obj/item/organ/tail/lizard/fake)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -158,6 +159,7 @@
 	result = /obj/item/melee/chainofcommand/tailwhip
 	reqs = list(/obj/item/organ/tail/lizard = 1,
 	            /obj/item/stack/cable_coil = 1)
+	blacklist = list(/obj/item/organ/tail/lizard/fake)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -367,6 +369,15 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
+/datum/crafting_recipe/laserslug
+	name = "Bolts"
+	result = /obj/item/ammo_casing/caseless/bolts
+	reqs = list(/obj/item/stack/rods = 1)
+	tools = list(TOOL_WIRECUTTER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
 /datum/crafting_recipe/depleteduraniumslug
 	name = "Depleted Uranium Slug Shell"
 	result = /obj/item/ammo_casing/shotgun/uraniumpenetrator
@@ -388,6 +399,7 @@
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+
 
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"

@@ -1,5 +1,7 @@
 GLOBAL_LIST_EMPTY(chosen_station_templates)
 
+#define EMPTY_SPAWN "empty_spawn"
+
 /obj/effect/landmark/start/yogs
 	icon = 'yogstation/icons/mob/landmarks.dmi'
 
@@ -52,11 +54,11 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		return FALSE
 	if(!template_name)
 		for(var/t in template_names)
-			if(!SSmapping.station_room_templates[t])
+			if(!SSmapping.station_room_templates[t] && t != EMPTY_SPAWN)
 				stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) has invalid ruin name of \"[t]\" in its list")
 				template_names -= t
 		template_name = choose()
-	if(!template_name)
+	if(!template_name || template_name == EMPTY_SPAWN)
 		GLOB.stationroom_landmarks -= src
 		qdel(src)
 		return FALSE
@@ -75,14 +77,20 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 // Examples where this would be useful, would be choosing certain templates depending on conditions such as holidays,
 // Or co-dependent templates, such as having a template for the core and one for the satelite, and swapping AI and comms.git
 /obj/effect/landmark/stationroom/proc/choose()
+	var/list/current_templates = template_names
 	if(unique)
-		var/list/current_templates = template_names
 		for(var/i in GLOB.chosen_station_templates)
 			template_names -= i
 		if(!template_names.len)
 			stack_trace("Station room spawner (type: [type]) has run out of ruins, unique will be ignored")
 			template_names = current_templates
-	return pickweight(template_names)
+	var/chosen_template = pickweight(template_names)
+	if(unique && chosen_template == EMPTY_SPAWN)
+		template_names -= EMPTY_SPAWN
+		if(!template_names.len)
+			stack_trace("Station room spawner (type: [type]) has run out of ruins from an EMPTY_SPAWN, unique will be ignored")
+			template_names = current_templates
+	return chosen_template
 
 /obj/effect/landmark/stationroom/box/bar
 	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Arcade")
@@ -158,6 +166,10 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("Maint aquarium", "Maint bigconstruction", "Maint bigtheatre", "Maint deltalibrary", "Maint graffitiroom", "Maint junction", "Maint podrepairbay", "Maint pubbybar", "Maint roosterdome", "Maint sanitarium", "Maint snakefighter", "Maint vault", "Maint ward", "Maint assaultpod", "Maint maze", "Maint maze2", "Maint boxfactory",
 	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops")
 
+/obj/effect/landmark/stationroom/gax/ai_whale
+	unique = TRUE
+	template_names = list("AI Whale",EMPTY_SPAWN,EMPTY_SPAWN,EMPTY_SPAWN)
+
 /obj/effect/landmark/start/infiltrator
 	name = "infiltrator"
 	icon = 'icons/effects/landmarks_static.dmi'
@@ -177,3 +189,5 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	..()
 	GLOB.infiltrator_objective_items += loc
 	return INITIALIZE_HINT_QDEL 
+
+#undef EMPTY_SPAWN

@@ -64,6 +64,14 @@
 	pellets = 6
 	variance = 25
 
+/obj/item/ammo_casing/shotgun/clownshot
+	name = "buckshot shell..?"
+	desc = "This feels a little light for a buckshot shell."
+	icon_state = "gshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_clownshot
+	pellets = 20
+	variance = 40
+
 /obj/item/ammo_casing/shotgun/rubbershot
 	name = "rubber shot"
 	desc = "A shotgun casing filled with densely-packed rubber balls, used to incapacitate crowds from a distance."
@@ -120,7 +128,7 @@
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
 	icon_state = "cshell"
 	projectile_type = null
-
+	
 /obj/item/ammo_casing/shotgun/dart
 	name = "shotgun dart"
 	desc = "A dart for use in shotguns. Can be injected with up to 30 units of any chemical."

@@ -230,7 +230,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Reset_View(screens, colour, mob/living/carbon/human/H)
 	if(screens)
 		for(var/whole_screen in screens)
-			animate(whole_screen, transform = matrix(), time = 5, easing = QUAD_EASING)
+			animate(whole_screen, transform = matrix(), time = 0.5 SECONDS, easing = QUAD_EASING)
 	if(colour && H)
 		H.client.color = colour
 
@@ -367,7 +367,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Grab(mob/living/carbon/human/H)
 	to_chat(H, span_userdanger("You feel a cold, gloved hand clamp down on your ankle!"))
 	for(var/I in 1 to get_dist(src, H))
-		if(do_after(src, 0.5 SECONDS, target = H))
+		if(do_after(src, 0.5 SECONDS, H))
 			Found_You()
 			step_towards(H, src)
 			playsound(H, pick('yogstation/sound/effects/bodyscrape-01.ogg', 'yogstation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
@@ -379,7 +379,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 	if(get_dist(src,H) <= 1)
 		visible_message(span_danger("[src] begins dragging [H] under the floor!"))
-		if(do_after(src, 5 SECONDS, target = H) && eating)
+		if(do_after(src, 5 SECONDS, H) && eating)
 			H.become_blind()
 			H.layer = GAME_PLANE
 			H.invisibility = INVISIBILITY_OBSERVER
@@ -405,10 +405,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	var/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
 	var/pure_red = list(0,0,0,0,0,0,0,0,0,1,0,0)
 	H.client.color = pure_red
-	animate(H.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
+	animate(H.client,color = red_splash, time = 1 SECONDS, easing = SINE_EASING|EASE_OUT)
 	for(var/turf/T in orange(H, 4))
 		H.add_splatter_floor(T)
-	if(do_after(src, 5 SECONDS, target = H))
+	if(do_after(src, 5 SECONDS, H))
 		H.unequip_everything()//more runtime prevention
 		if(prob(75))
 			H.gib(FALSE)
@@ -422,7 +422,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			H.density = initial(H.density)
 			H.anchored = initial(H.anchored)
 			H.blur_eyes(10)
-			animate(H.client,color = old_color, time = 20)
+			animate(H.client,color = old_color, time = 2 SECONDS)
 
 	eating = FALSE
 	switch_stage = switch_stage * 0.75 //he gets faster after each feast

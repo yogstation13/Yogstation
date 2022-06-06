@@ -21,7 +21,7 @@
 			return
 		playsound(user, 'sound/effects/tape.ogg', 25)
 		M.visible_message(span_danger("[user] is trying to put [tape_muzzle.name] on [M]!"), span_userdanger("[user] is trying to put [tape_muzzle.name] on [M]!"))
-		if(!do_after(user, 2 SECONDS, target = M))
+		if(!do_after(user, 2 SECONDS, M))
 			qdel(tape_muzzle)
 			return
 		if(!M.equip_to_slot_or_del(tape_muzzle, SLOT_WEAR_MASK, user))
@@ -44,7 +44,6 @@
 		return
 	var/list/item_contents = I.GetAllContents()
 	for(var/obj/item/C in item_contents)
-		world.log << C.type
 		if(is_type_in_typecache(C,tape_blacklist))
 			to_chat(user, span_warning("The [src] doesn't seem to stick to [I]!"))
 			return

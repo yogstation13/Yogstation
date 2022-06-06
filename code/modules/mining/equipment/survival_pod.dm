@@ -42,7 +42,7 @@
 	if(!used)
 		loc.visible_message(span_warning("\The [src] begins to shake. Stand back!"))
 		used = TRUE
-		sleep(50)
+		sleep(5 SECONDS)
 		var/turf/deploy_location = get_turf_global(src)
 		var/status = template.check_deploy(deploy_location)
 		switch(status)

@@ -107,7 +107,7 @@
 /turf/closed/mineral/attack_alien(mob/living/carbon/alien/M)
 	to_chat(M, span_notice("You start digging into the rock..."))
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1)
-	if(do_after(M, 4 SECONDS, target = src))
+	if(do_after(M, 4 SECONDS, src))
 		to_chat(M, span_notice("You tunnel into the rock."))
 		attempt_drill(M)
 
@@ -727,7 +727,7 @@
 	set waitfor = 0
 	while(istype(src, /turf/closed/mineral/gibtonite) && stage == GIBTONITE_ACTIVE && det_time > 0 && mineralAmt >= 1)
 		det_time--
-		sleep(5)
+		sleep(0.5 SECONDS)
 	if(istype(src, /turf/closed/mineral/gibtonite))
 		if(stage == GIBTONITE_ACTIVE && det_time <= 0 && mineralAmt >= 1)
 			var/turf/bombturf = get_turf(src)
