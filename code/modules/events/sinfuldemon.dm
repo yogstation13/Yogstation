@@ -4,7 +4,6 @@
 	max_occurrences = 2 //misery loves company
 	min_players = 15
 	earliest_start = 20 MINUTES
-	weight = 0
 
 /datum/round_event/ghost_role/sinfuldemon
 	var/success_spawn = 0
