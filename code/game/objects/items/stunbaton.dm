@@ -35,6 +35,7 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
+	var/thrown = FALSE
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -51,6 +52,7 @@
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, .proc/throwbaton)
 	update_icon()
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -60,15 +62,21 @@
 	if(status && prob(throw_hit_chance) && iscarbon(hit_atom))
 		baton_stun(hit_atom)
 
+/obj/item/melee/baton/proc/throwbaton()
+	thrown = TRUE
+
 /obj/item/melee/baton/dropped(mob/user, silent)
-	if(z == 0)
+	if(loc != user.loc)
 		return
 	. = ..()
-	dropcheck = TRUE
-	status = FALSE
-	visible_message(span_warning("The safety strap on [src] is pulled as it is dropped, triggering its emergency shutoff!"))
-	addtimer(VARSET_CALLBACK(src, dropcheck, FALSE), 8 SECONDS)
-	update_icon()
+	if(!thrown)
+		dropcheck = TRUE
+		status = FALSE
+		visible_message(span_warning("The safety strap on [src] is pulled as it is dropped, triggering its emergency shutoff!"))
+		addtimer(VARSET_CALLBACK(src, dropcheck, FALSE), 8 SECONDS)
+		update_icon()
+	else
+		thrown = FALSE
 
 /obj/item/melee/baton/loaded //this one starts with a cell pre-installed.
 	preload_cell_type = /obj/item/stock_parts/cell/high
