@@ -872,13 +872,13 @@
 	required_reagents = list(/datum/reagent/consumable/eggyolk = 1, /datum/reagent/consumable/ethanol/beer/stout = 1,/datum/reagent/consumable/ethanol/irish_cream = 3 )
 
 /datum/chemical_reaction/blackvelvet
- name = "Black Velvet"
- id = /datum/reagent/consumable/ethanol/beer/stout/blackvelvet 
- results = list(/datum/reagent/consumable/ethanol/beer/stout/blackvelvet = 2)
- required_reagents = list(/datum/reagent/consumable/ethanol/champagne = 1, /datum/reagent/consumable/ethanol/beer/stout = 1)
+	name = "Black Velvet"
+	id = /datum/reagent/consumable/ethanol/beer/stout/blackvelvet 
+	results = list(/datum/reagent/consumable/ethanol/beer/stout/blackvelvet = 2)
+	required_reagents = list(/datum/reagent/consumable/ethanol/champagne = 1, /datum/reagent/consumable/ethanol/beer/stout = 1)
 
- /datum/chemical_reaction/espressomartini
- name = "Espresso Martini"
- id = /datum/reagent/consumable/ethanol/beer/stout/espressomartini
- results = list(/datum/reagent/consumable/ethanol/beer/stout/espressomartini = 5)
- required_reagents = list(/datum/reagent/consumable/ethanol/irishcoffee = 2, /datum/reagent/consumable/ethanol/kahlua = 1, /datum/reagent/consumable/ethanol/beer/stout = 1,/datum/reagent/consumable/grenadine = 1)
+/datum/chemical_reaction/espressomartini
+	name = "Espresso Martini"
+	id = /datum/reagent/consumable/ethanol/beer/stout/espressomartini
+	results = list(/datum/reagent/consumable/ethanol/beer/stout/espressomartini = 3)
+	required_reagents = list(/datum/reagent/consumable/ethanol/irishcoffee = 2, /datum/reagent/consumable/ethanol/beer/stout = 1)
