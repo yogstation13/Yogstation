@@ -121,7 +121,7 @@ obj/effect/proc_holder/swipe
 	action_icon = 'icons/mob/actions/actions_items.dmi'
 	action_icon_state = "cuff"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_target.dmi'
-	var/cooldown = 15 SECONDS
+	var/cooldown = 10 SECONDS
 	COOLDOWN_DECLARE(scan_cooldown)
 
 /obj/effect/proc_holder/swipe/on_lose(mob/living/user)
