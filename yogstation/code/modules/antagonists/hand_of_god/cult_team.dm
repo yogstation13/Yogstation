@@ -9,7 +9,8 @@
 	var/state = HOG_TEAM_EXISTING
 	var/color = "black" 
 
-
+/datum/team/hog_cult/proc/on_god_name_change()
+	
 	
 
 
