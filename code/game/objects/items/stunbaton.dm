@@ -201,8 +201,6 @@
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
-	if(!handle_pins(user))
-		return FALSE
 	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message(span_danger("[user] accidentally hits [user.p_them()]self with [src]!"), \
 							span_userdanger("You accidentally hit yourself with [src]!"))
@@ -250,6 +248,8 @@
 
 
 /obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/user)
+	if(!handle_pins(user))
+		return FALSE
 	if(upgrade)
 		stamina_damage = initial(stamina_damage)*2
 		hitcost = initial(hitcost)*1.5
