@@ -98,7 +98,7 @@
 		var/obj/mecha/M = N
 		if(M.occupant)
 			cultie = IS_HOG_CULTIST(L)
-		if(get_dist(M, src) <= sight_range && M.occupant && !(cultie && cultie.cult == src.cult)
+		if(get_dist(M, src) <= sight_range && M.occupant && !(cultie && cultie.cult == src.cult))
 			if(!length(viewcache))
 				for (var/obj/Z in view(sight_range, src))
 					viewcache += Z
@@ -106,7 +106,7 @@
 				possible_targets += M
 	for(var/N in GLOB.hog_structures)
 		var/obj/structure/hog_structure/S = N
-		if(get_dist(S, src) <= sight_range && S.cult != src.cult && S.cult
+		if(get_dist(S, src) <= sight_range && S.cult != src.cult && S.cult)
 			if(!length(viewcache))
 				for(var/obj/Z in view(sight_range, src))
 					viewcache += Z
