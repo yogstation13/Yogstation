@@ -25,4 +25,16 @@
 		qdel(weapon)
 	cult = new_cult
 	update_icons()
+
+/obj/structure/hog_structure/proc/special_interaction(mob/user)
+	return
+	
+/obj/structure/hog_structure/attack_hand(mob/user)
+	. = ..()
+	if(iscyborg(user) || isalien(user))
+		return
+	var/datum/antagonist/cultie = IS_HOG_CULTIST(user)
+	if(cultie && (cultie.cult = src.cult))
+		special_interaction(user)
+		
 	
