@@ -11,20 +11,20 @@
 	var/obj/item/hog_item/prismatic_lance/weapon = null
 	var/shield_integrity = 0
 
-/obj/structure/hog_structure/proc/update_icons()
+/obj/structure/hog_structure/proc/update_hog_icons()
 	cut_overlays()
-	icon_state = "[icon_originalname]_[cult.color]"
+	icon_state = "[icon_originalname]_[cult.cult_color]"
 	if(weapon && !istype(weapon, /obj/item/hog_item/prismatic_lance/guardian))
-		add_overlay("overchange_[cult.color]")
+		add_overlay("overchange_[cult.cult_color]")
 	if(shield_integrity > 0)
-		add_overlay("shield_[cult.color]")
+		add_overlay("shield_[cult.cult_color]")
 	
-/obj/structure/hog_structure/proc/handle_owner_change(var/datum/team/hog_team/new_cult)
+/obj/structure/hog_structure/proc/handle_team_change(var/datum/team/hog_team/new_cult)
 	shield_integrity = 0 
 	if(weapon && !istype(weapon, /obj/item/hog_item/prismatic_lance/guardian))
 		qdel(weapon)
 	cult = new_cult
-	update_icons()
+	update_hog_icons()
 
 /obj/structure/hog_structure/proc/special_interaction(mob/user)
 	return
