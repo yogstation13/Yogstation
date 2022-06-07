@@ -33,7 +33,7 @@
 	. = ..()
 	if(iscyborg(user) || isalien(user))
 		return
-	var/datum/antagonist/cultie = IS_HOG_CULTIST(user)
+	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
 	if(cultie && (cultie.cult = src.cult))
 		special_interaction(user)
 		
