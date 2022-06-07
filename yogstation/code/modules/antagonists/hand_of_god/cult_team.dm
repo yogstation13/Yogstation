@@ -7,9 +7,9 @@
 	var/permanent_regen = 10 // 10 per ~2 seconds seems ok
 	var/nexus 
 	var/state = HOG_TEAM_EXISTING
-	var/color = "black" 
+	var/cult_color = "black" 
 
-/datum/team/hog_cult/proc/on_god_name_change()
+
 	
 	
 
