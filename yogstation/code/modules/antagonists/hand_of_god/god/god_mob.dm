@@ -14,6 +14,8 @@
 	pass_flags = PASSBLOB
 	faction = list(ROLE_HOG_CULTIST)
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-  var/datum/team/hog_cult/cult
-  var/list/clickaction_servant = list()
+	var/datum/team/hog_cult/cult
+	var/is_recall_on_cooldown = FALSE
+	var/cool_name = "God"
+	
  
