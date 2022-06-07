@@ -36,9 +36,9 @@
 							else
 								R.reveal(10)
 						if(prob(50))
-							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot1.ogg',75 * get_efficiency_mod(),1)
+							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot1.ogg',75,1)
 						else
-							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot2.ogg',75 * get_efficiency_mod(),1)
+							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot2.ogg',75,1)
 						L.adjustFireLoss(damage_per_shot) 
 						Beam(L, icon_state = "warden_beam", time = 10)	
 						last_process = world.time
@@ -50,7 +50,7 @@
 				else if(istype(/obj/structure/hog_structure))
 					var/obj/structure/S = target
 					Beam(S, icon_state = "warden_beam", time = 10)	
-					S.take_damage(damage_per_shot, BURN, MELEE, 1, get_dir(src, M)) ///Enjoy cannon rush
+					S.take_damage(damage_per_shot, BURN, MELEE, 1, get_dir(src, S)) ///Enjoy cannon rush
 					last_process = world.time 
 	if(!target)
 		get_target()
