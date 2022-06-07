@@ -116,12 +116,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/beer/stout/espressomartini
 	name = "Espresso Martini"
-	description = "A interesting mix of Champagne and Stout, made for the mourning of Prince Albert."
-	color = "#963900"  // rgb: 150, 57, 0
-	taste_description = "Champagne with a hint of chocolate."
-	glass_icon_state = "black_velvet"
-	glass_name = "glass of black velvet"
-	glass_desc = "a fancy drink with a melancholic past."
+	description = "A wake-me-the-fuck-up cocktail mix, guaranteed strong."
+	color = "#652a05"  
+	taste_description = "bitterness, chocolate, and cream."
+	glass_icon_state = "espresso_martini"
+	glass_name = "glass of espresso martini"
+	glass_desc = "a cocktail guaranteed to keep you awake."
 ///////////////////////////////////////////
 /datum/reagent/consumable/ethanol/beer/light
 	name = "Light Beer"
