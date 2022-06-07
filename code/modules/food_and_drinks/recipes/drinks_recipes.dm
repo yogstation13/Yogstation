@@ -869,7 +869,7 @@
 	name = "Irish Flip"
 	id = /datum/reagent/consumable/ethanol/beer/stout/irishflip
 	results = list(/datum/reagent/consumable/ethanol/beer/stout/irishflip = 5)
-	required_reagents = list(/datum/reagent/consumable/eggyolk = 1, /datum/reagent/consumable/ethanol/beer/stout = 1,/datum/reagent/consumable/ethanol/irish_cream = 3 )
+	required_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/consumable/ethanol/beer/stout = 1,/datum/reagent/consumable/ethanol/irish_cream = 3 )
 
 /datum/chemical_reaction/blackvelvet
 	name = "Black Velvet"
