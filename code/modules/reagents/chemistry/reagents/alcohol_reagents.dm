@@ -104,6 +104,24 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "irish_flip"
 	glass_name = "glass of irish flip"
 	glass_desc = "a fancy glass of creamy cocktail."
+
+/datum/reagent/consumable/ethanol/beer/stout/blackvelvet
+	name = "Black Velvet"
+	description = "A interesting mix of Champagne and Stout, made for the mourning of Prince Albert."
+	color = "#963900"  // rgb: 150, 57, 0
+	taste_description = "Champagne with a hint of chocolate."
+	glass_icon_state = "black_velvet"
+	glass_name = "glass of black velvet"
+	glass_desc = "a fancy drink with a melancholic past."
+
+/datum/reagent/consumable/ethanol/beer/stout/espressomartini
+	name = "Espresso Martini"
+	description = "A interesting mix of Champagne and Stout, made for the mourning of Prince Albert."
+	color = "#963900"  // rgb: 150, 57, 0
+	taste_description = "Champagne with a hint of chocolate."
+	glass_icon_state = "black_velvet"
+	glass_name = "glass of black velvet"
+	glass_desc = "a fancy drink with a melancholic past."
 ///////////////////////////////////////////
 /datum/reagent/consumable/ethanol/beer/light
 	name = "Light Beer"
