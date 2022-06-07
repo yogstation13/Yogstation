@@ -1,0 +1,6 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "monkeys now do not die on holding"
+  - tweak: "held mob item weight depends on mob weight (monkeys are now human sized)"
+  - tweak: "deleted some stuff that did absolutely nothing"
