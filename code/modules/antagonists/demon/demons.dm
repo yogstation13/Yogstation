@@ -113,7 +113,7 @@
 
 /datum/antagonist/sinfuldemon/greet()
 	to_chat(owner.current, span_warning("<b>You remember your link to the infernal. You are a demon of [demonsin] released from hell to spread sin amongst the living.</b>"))
-	to_chat(owner.current, span_warning("<b>Your half demon and half human form grants you increased fortitude.</b>"))
+	to_chat(owner.current, span_warning("<b>Your half demon, half human form grants you increased fortitude, allowing you to resist more damage before going down.</b>"))
 	to_chat(owner.current, span_warning("<b>However, your infernal form is not without weaknesses.</b>"))
 	to_chat(owner.current, "You are incredibly vulnerable to holy artifacts and influence.")
 	to_chat(owner.current, "While blessed with the unholy ability to transform into your true form, this form is extremely obvious and vulnerable to holy weapons.")
