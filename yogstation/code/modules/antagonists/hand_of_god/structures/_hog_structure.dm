@@ -36,5 +36,11 @@
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
 	if(cultie && (cultie.cult = src.cult))
 		special_interaction(user)
-		
+
+/obj/structure/hog_structure/Initialize()	
+	GLOB.hog_structures += src
+	. = ..()
 	
+/obj/structure/hog_structure/Destroy()
+	GLOB.hog_structures -= src
+	. = ..()
