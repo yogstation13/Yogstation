@@ -5,7 +5,7 @@
 	icon_state = "sacrificealtar"
 	icon_originalname = "sex"
 	anchored = TRUE
-	density = FALSE
+	density = TRUE
 	var/datum/team/hog_team/cult
 	var/list/god_actions = list()
 	var/obj/item/prismatic_lance/weapon = null
