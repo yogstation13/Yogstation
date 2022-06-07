@@ -3530,7 +3530,7 @@
 #include "yogstation\code\modules\antagonists\hand_of_god\structure\god_interaction\_god_action.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structure\_hog_structure.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structure\lance.dm"
-#include "yogstation\code\modules\antagonists\hand_of_god\colors.dm
+#include "yogstation\code\modules\antagonists\hand_of_god\colors.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\cult_team.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\hog_servant_datum.dm"
 #include "yogstation\code\modules\antagonists\hijacked_ai\hijacked_ai.dm"
