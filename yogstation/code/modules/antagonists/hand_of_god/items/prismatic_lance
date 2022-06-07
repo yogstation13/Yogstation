@@ -114,3 +114,5 @@
 				possible_targets += M
 	target = pick(possible_targets)
 	
+/obj/item/hog_item/prismatic_lance/proc/discharge()
+	damage_per_shot = 15
