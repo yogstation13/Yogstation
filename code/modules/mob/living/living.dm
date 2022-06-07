@@ -1349,7 +1349,7 @@
 /mob/living/proc/mob_pickup(mob/living/L)
 	if(!held_state)
 		held_state = icon_state
-	var/obj/item/clothing/mob_holder/holder = new(get_turf(src), src, held_state, held_icon, held_lh, held_rh, worn_slot_flags, worn_layer)
+	var/obj/item/clothing/mob_holder/holder = new(get_turf(src), src, held_state, held_icon, held_lh, held_rh, worn_layer, mob_size, worn_slot_flags)
 	L.visible_message(span_warning("[L] scoops up [src]!"))
 	L.put_in_hands(holder)
 
@@ -1461,4 +1461,4 @@
 
 /// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
 /mob/living/proc/is_face_visible()
-	return TRUE
+	return isturf(loc) // Yogs -- forbids making eye contact with things hidden within objects
