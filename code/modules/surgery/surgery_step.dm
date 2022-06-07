@@ -193,3 +193,17 @@
 	//if(ishuman(target) &&fuckup_damage_type == BRUTE && prob(final_ouchie_chance/2))
 		//var/mob/living/carbon/human/H = target
 		//H.bleed_rate += min(fuckup_damage/4, 10)
+
+/**
+ * Sends a pain message to the target, including a chance of screaming.
+ *
+ * Arguments:
+ * * target - Who the message will be sent to
+ * * pain_message - The message to be displayed
+ * * mechanical_surgery - Boolean flag that represents if a surgery step is done on a mechanical limb (therefore does not force scream)
+ */
+/datum/surgery_step/proc/display_pain(mob/living/target, pain_message, mechanical_surgery = FALSE)
+	if(target.stat < UNCONSCIOUS)
+		to_chat(target, span_userdanger(pain_message))
+		if(prob(30) && !mechanical_surgery)
+			target.emote("scream")
