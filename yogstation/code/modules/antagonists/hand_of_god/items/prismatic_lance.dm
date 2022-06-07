@@ -97,7 +97,7 @@
 	for(var/N in GLOB.mechas_list)
 		var/obj/mecha/M = N
 		if(M.occupant)
-			cultie = IS_HOG_CULTIST(L)
+			cultie = IS_HOG_CULTIST(M.occupant)
 		if(get_dist(M, src) <= sight_range && M.occupant && !(cultie && cultie.cult == src.cult))
 			if(!length(viewcache))
 				for (var/obj/Z in view(sight_range, src))
