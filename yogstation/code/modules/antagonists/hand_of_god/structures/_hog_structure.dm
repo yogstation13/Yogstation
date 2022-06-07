@@ -14,7 +14,7 @@
 /obj/structure/hog_structure/proc/update_icons()
 	cut_overlays()
 	icon_state = "[icon_originalname]_[cult.color]"
-	if(weapon)
+	if(weapon && !istype(weapon, /obj/item/prismatic_lance/guardian))
 		add_overlay("overchange_[cult.color]")
 	if(shield_integrity > 0)
 		add_overlay("shield_[cult.color]")
