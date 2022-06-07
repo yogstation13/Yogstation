@@ -12,10 +12,22 @@
 	color = "#00a7ff"
 
 	pass_flags = PASSBLOB
-	faction = list(ROLE_HOG_CULTIST)
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	var/datum/team/hog_cult/cult
 	var/is_recall_on_cooldown = FALSE
 	var/cool_name = "God"
+
+/mob/camera/hog_god/proc/select_name()
+	var/new_name = input(src, "Choose your new name", "Name")
+	if(!name)
+		to_chat(src, span_notice("Not a valid name."))
+		select_name()
+		return
+	name = new_name
+	real_name = new_name
+	cult.name = "[new_name]'s Cult"
+	cult.member_name = "Servant of [new_name]" ///Zamn they serve new_name, cool guys
+	
+
 	
  
