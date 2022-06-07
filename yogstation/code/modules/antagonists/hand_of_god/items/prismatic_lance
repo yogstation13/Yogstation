@@ -23,7 +23,7 @@
 /obj/item/hog_item/prismatic_lance/process()
 	if(target)
 		if(get_dist(get_turf(target), get_turf(src)) > sight_range)
-			lose_target()
+			target = null
 		else
 			if(last_process + coldown < world.time)
 				if(isliving(target))
@@ -112,6 +112,5 @@
 					viewcache += Z
 			if(S in viewcache)
 				possible_targets += M
-			
 	target = pick(possible_targets)
 	
