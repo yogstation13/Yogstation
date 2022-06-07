@@ -397,7 +397,7 @@
 		if(is_thrall(M))
 			thralls++
 			to_chat(M, span_shadowling("You feel hooks sink into your mind and pull."))
-	if(!do_after(user, 3 SECONDS, target = user))
+	if(!do_after(user, 3 SECONDS, user))
 		to_chat(user, span_warning("Your concentration has been broken. The mental hooks you have sent out now retract into your mind."))
 		return
 	if(thralls >= CEILING(3 * SSticker.mode.thrall_ratio, 1) && !screech_acquired)
@@ -472,7 +472,7 @@
 	target_apc.visible_message(span_warning("The [target_apc] flickers and begins to grow dark."))
 
 	to_chat(user, span_shadowling("You dim the APC's screen and carefully begin siphoning its power into the void."))
-	if(!do_after(user, 15 SECONDS, target=target_apc))
+	if(!do_after(user, 15 SECONDS, target_apc))
 		//Whoops!  The APC's light turns back on
 		to_chat(user, span_shadowling("Your concentration breaks and the APC suddenly repowers!"))
 		target_apc.set_light(2)
@@ -710,7 +710,7 @@
 						  span_notice("You begin to draw [M]'s life force."))
 		M.visible_message(span_warning("[M]'s face falls slack, their jaw slightly distending."), \
 						  span_boldannounce("You are suddenly transported... far, far away..."))
-		if(!do_after(user, 5 SECONDS, target = M))
+		if(!do_after(user, 5 SECONDS, M))
 			to_chat(M, span_warning("You are snapped back to reality, your haze dissipating!"))
 			to_chat(user, span_warning("You have been interrupted. The draw has failed."))
 			return

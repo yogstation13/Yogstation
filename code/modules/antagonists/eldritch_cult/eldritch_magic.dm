@@ -357,8 +357,8 @@
 			if(M in hit_list)
 				continue
 			hit_list += M
-			M.take_damage(45, BURN, "melee", 1)
-		sleep(1.5)
+			M.take_damage(45, BURN, MELEE, 1)
+		sleep(0.15 SECONDS)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/eldritch
 	invocation = "BEND MY FORM"
@@ -411,7 +411,7 @@
 			for(var/mob/living/livies in T.contents - centre)
 				livies.adjustFireLoss(5)
 		_range++
-		sleep(3)
+		sleep(0.3 SECONDS)
 
 /obj/effect/proc_holder/spell/aoe_turf/fire_cascade/big
 	range = 6

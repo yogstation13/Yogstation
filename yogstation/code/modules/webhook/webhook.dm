@@ -27,6 +27,10 @@
 	var/list/query = webhook(ckey, message)
 	webhook_send("oocmessage", query)
 
+/proc/webhook_send_ticket_unclaimed(var/ckey, var/message, var/id)
+	var/list/query = webhook(ckey, message)
+	query.Add(list("id" = id))
+	webhook_send("ticket_unclaimed", query)
 
 /////////////MENTORS/////////////
 /proc/webhook_send_msay(var/ckey, var/message)

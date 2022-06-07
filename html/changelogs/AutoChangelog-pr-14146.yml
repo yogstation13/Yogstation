@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "makes tape recursively check contents to make sure theres no grenades or explosives in the taped item"

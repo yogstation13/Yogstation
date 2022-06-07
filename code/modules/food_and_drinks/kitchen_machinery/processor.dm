@@ -107,7 +107,7 @@
 		span_italics("You hear a food processor."))
 	playsound(src.loc, 'sound/machines/blender.ogg', 50, 1)
 	use_power(500)
-	var/total_time = 0
+	var/total_time = 0 SECONDS
 	for(var/O in src.contents)
 		var/datum/food_processor_process/P = select_recipe(O)
 		if (!P)
@@ -115,7 +115,7 @@
 			continue
 		total_time += P.time
 	var/offset = prob(50) ? -2 : 2
-	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = (total_time / rating_speed)*5) //start shaking
+	animate(src, pixel_x = pixel_x + offset, time = 0.02 SECONDS, loop = (total_time / rating_speed)*5) //start shaking
 	sleep(total_time / rating_speed)
 	for(var/atom/movable/O in src.contents)
 		var/datum/food_processor_process/P = select_recipe(O)

@@ -83,7 +83,7 @@
 				else if(ismecha(target))
 					var/obj/mecha/M = target
 					Beam(M, icon_state = "warden_beam", time = 10)		//yogs: gives a beam
-					M.take_damage(damage_per_tick * get_efficiency_mod(), BURN, "melee", 1, get_dir(src, M))
+					M.take_damage(damage_per_tick * get_efficiency_mod(), BURN, MELEE, 1, get_dir(src, M))
 					last_process = world.time //yogs end
 
 			new /obj/effect/temp_visual/ratvar/ocular_warden(get_turf(target))

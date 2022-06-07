@@ -240,7 +240,7 @@
 			return
 		var/time_taken = I.embedding.embedded_unsafe_removal_time*I.w_class
 		usr.visible_message(span_warning("[usr] attempts to remove [I] from [usr.p_their()] [L.name]."),span_notice("You attempt to remove [I] from your [L.name]... (It will take [DisplayTimeText(time_taken)].)"))
-		if(do_after(usr, time_taken, needhand = 1, target = src))
+		if(do_after(usr, time_taken, src))
 			if(!I || !L || I.loc != src || !(I in L.embedded_objects))
 				return
 			L.embedded_objects -= I
@@ -618,7 +618,7 @@
 			to_chat(src, span_warning("You fail to perform CPR on [C]!"))
 			return 0
 
-		var/they_breathe = !HAS_TRAIT(C, TRAIT_NOBREATH)
+		var/they_breathe = !HAS_TRAIT_FROM(C, TRAIT_NOBREATH, SPECIES_TRAIT)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 		var/they_ashlung = C.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
 		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?
@@ -969,7 +969,7 @@
 		//Joe Medic starts quickly/expertly lifting Grey Tider onto their back..
 		span_notice("[carrydelay < 35 ? "Using your gloves' nanochips, you" : "You"] [skills_space] start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]"))
 		//(Using your gloves' nanochips, you/You) ( /quickly/expertly) start to lift Grey Tider onto your back(, while assisted by the nanochips in your gloves../...)
-		if(do_after(src, carrydelay, TRUE, target))
+		if(do_after(src, carrydelay, target))
 			//Second check to make sure they're still valid to be carried
 			if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE) && !target.buckled)
 				if(target.loc != loc)
@@ -989,7 +989,7 @@
 /mob/living/carbon/human/proc/piggyback(mob/living/carbon/target)
 	if(can_piggyback(target))
 		visible_message(span_notice("[target] starts to climb onto [src]..."))
-		if(do_after(target, 3 SECONDS, target = src))
+		if(do_after(target, 3 SECONDS, src))
 			if(can_piggyback(target))
 				if(target.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
 					target.visible_message(span_warning("[target] can't hang onto [src]!"))
@@ -1234,6 +1234,9 @@
 
 /mob/living/carbon/human/species/lizard/ashwalker
 	race = /datum/species/lizard/ashwalker
+
+/mob/living/carbon/human/species/lizard/draconid
+	race = /datum/species/lizard/draconid
 
 /mob/living/carbon/human/species/moth
 	race = /datum/species/moth

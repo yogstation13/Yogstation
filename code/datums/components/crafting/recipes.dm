@@ -149,6 +149,7 @@
 	result = /obj/item/tailclub
 	reqs = list(/obj/item/organ/tail/lizard = 1,
 	            /obj/item/stack/sheet/metal = 1)
+	blacklist = list(/obj/item/organ/tail/lizard/fake)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -158,6 +159,7 @@
 	result = /obj/item/melee/chainofcommand/tailwhip
 	reqs = list(/obj/item/organ/tail/lizard = 1,
 	            /obj/item/stack/cable_coil = 1)
+	blacklist = list(/obj/item/organ/tail/lizard/fake)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -356,6 +358,49 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
+/datum/crafting_recipe/thundershot
+	name = "Thundershot Shell"
+	result = /obj/item/ammo_casing/shotgun/thundershot
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/obj/item/stock_parts/capacitor/super = 1,
+				/datum/reagent/teslium = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/laserslug
+	name = "Bolts"
+	result = /obj/item/ammo_casing/caseless/bolts
+	reqs = list(/obj/item/stack/rods = 1)
+	tools = list(TOOL_WIRECUTTER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/depleteduraniumslug
+	name = "Depleted Uranium Slug Shell"
+	result = /obj/item/ammo_casing/shotgun/uraniumpenetrator
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/obj/item/stack/sheet/mineral/uranium = 3,
+				/obj/item/stack/rods = 2,
+				/datum/reagent/thermite = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/cryoshot
+	name = "Cryoshot Shell"
+	result = /obj/item/ammo_casing/shotgun/cryoshot
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/datum/reagent/medicine/c2/rhigoxane = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
 	result = /obj/item/gun/ballistic/shotgun/doublebarrel/improvised
@@ -443,6 +488,20 @@
 	reqs = list(/obj/item/stack/sheet/metal = 4,
 				/obj/item/stack/rods = 6)
 	time = 10 SECONDS
+	category = CAT_MISC
+	
+/datum/crafting_recipe/motorized_wheelchair
+	name = "Motorized Wheelchair"
+	result = /obj/vehicle/ridden/wheelchair/motorized
+	reqs = list(/obj/item/stack/sheet/metal = 6,
+		/obj/item/stack/rods = 2,
+		/obj/item/wheelchair = 1,
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/capacitor = 1)
+	parts = list(/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/capacitor = 1)
+	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
+	time = 20 SECONDS
 	category = CAT_MISC
 
 /datum/crafting_recipe/ghetto_heart
@@ -1008,6 +1067,16 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/makeshiftid
+	name = "Makeshift ID"
+	result = /obj/item/card/id/makeshift
+	reqs = list(/obj/item/stack/sheet/cardboard = 2,
+				/obj/item/stack/tape = 1,
+				/obj/item/pen = 1)
+	tools = list(TOOL_WIRECUTTER)
+	time = 30
+	category = CAT_MISC
+	
 /datum/crafting_recipe/tape
 	name = "tape"
 	reqs = list(/obj/item/stack/sheet/cloth = 1,

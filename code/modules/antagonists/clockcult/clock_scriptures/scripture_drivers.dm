@@ -195,7 +195,7 @@
 
 /datum/clockwork_scripture/abscond/recital()
 	client_color = invoker.client.color
-	animate(invoker.client, color = "#AF0AAF", time = 50)
+	animate(invoker.client, color = "#AF0AAF", time = 5 SECONDS)
 	. = ..()
 
 /datum/clockwork_scripture/abscond/scripture_effects()
@@ -213,11 +213,11 @@
 		invoker.pulling.forceMove(T)
 	invoker.forceMove(T)
 	if(invoker.client)
-		animate(invoker.client, color = client_color, time = 25)
+		animate(invoker.client, color = client_color, time = 2.5 SECONDS)
 
 /datum/clockwork_scripture/abscond/scripture_fail()
 	if(invoker && invoker.client)
-		animate(invoker.client, color = client_color, time = 10)
+		animate(invoker.client, color = client_color, time = 1 SECONDS)
 
 
 //Replicant: Creates a new clockwork slab.

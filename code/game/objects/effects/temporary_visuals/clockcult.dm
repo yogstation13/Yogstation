@@ -2,7 +2,7 @@
 /obj/effect/temp_visual/ratvar
 	name = "ratvar's light"
 	icon = 'icons/effects/clockwork_effects.dmi'
-	duration = 8
+	duration = 0.8 SECONDS
 	randomdir = 0
 	layer = ABOVE_NORMAL_TURF_LAYER
 
@@ -67,7 +67,7 @@
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "belligerent_eye"
 	pixel_y = 20
-	duration = 20
+	duration = 2 SECONDS
 
 /obj/effect/temp_visual/ratvar/belligerent_cast/Initialize()
 	. = ..()
@@ -75,7 +75,7 @@
 
 /obj/effect/temp_visual/ratvar/mending_mantra
 	layer = ABOVE_MOB_LAYER
-	duration = 20
+	duration = 2 SECONDS
 	alpha = 200
 	icon_state = "mending_mantra"
 	light_range = 1.5
@@ -93,7 +93,7 @@
 	name = "warden's gaze"
 	layer = ABOVE_MOB_LAYER
 	icon_state = "warden_gaze"
-	duration = 3
+	duration = 0.3 SECONDS
 
 /obj/effect/temp_visual/ratvar/ocular_warden/Initialize()
 	. = ..()
@@ -107,7 +107,7 @@
 	layer = RIPPLE_LAYER
 	pixel_y = -16
 	pixel_x = -16
-	duration = 30
+	duration = 3 SECONDS
 
 /obj/effect/temp_visual/ratvar/prolonging_prism/Initialize(mapload, set_appearance)
 	. = ..()
@@ -132,14 +132,14 @@
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "belligerent_eye"
 	layer = ABOVE_MOB_LAYER
-	duration = 10
+	duration = 1 SECONDS
 
 /obj/effect/temp_visual/ratvar/component/Initialize()
 	. = ..()
 	transform = matrix()*0.75
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, -2)
-	animate(src, pixel_y = pixel_y + 10, alpha = 50, time = 10, easing = EASE_OUT)
+	animate(src, pixel_y = pixel_y + 10, alpha = 50, time = 1 SECONDS, easing = EASE_OUT)
 
 /obj/effect/temp_visual/ratvar/component/cogwheel
 	icon_state = "vanguard_cogwheel"
@@ -160,7 +160,7 @@
 /obj/effect/temp_visual/ratvar/sigil/transgression
 	color = "#FAE48C"
 	layer = ABOVE_MOB_LAYER
-	duration = 70
+	duration = 7 SECONDS
 	light_range = 5
 	light_power = 2
 	light_color = "#FAE48C"
@@ -168,13 +168,13 @@
 /obj/effect/temp_visual/ratvar/sigil/transgression/Initialize()
 	. = ..()
 	var/oldtransform = transform
-	animate(src, transform = matrix()*2, time = 5)
-	animate(transform = oldtransform, alpha = 0, time = 65)
+	animate(src, transform = matrix()*2, time = 0.5 SECONDS)
+	animate(transform = oldtransform, alpha = 0, time = 6.5 SECONDS)
 
 /obj/effect/temp_visual/ratvar/sigil/transmission
 	color = "#EC8A2D"
 	layer = ABOVE_MOB_LAYER
-	duration = 20
+	duration = 2 SECONDS
 	light_range = 3
 	light_power = 1
 	light_color = "#EC8A2D"
@@ -183,7 +183,7 @@
 	. = ..()
 	var/oldtransform = transform
 	transform = matrix()*transform_multiplier
-	animate(src, transform = oldtransform, alpha = 0, time = 20)
+	animate(src, transform = oldtransform, alpha = 0, time = 2 SECONDS)
 
 /obj/effect/temp_visual/ratvar/sigil/vitality
 	color = "#1E8CE1"
@@ -196,7 +196,7 @@
 /obj/effect/temp_visual/ratvar/sigil/submission
 	color = "#AF0AAF"
 	layer = ABOVE_MOB_LAYER
-	duration = 80
+	duration = 8 SECONDS
 	icon_state = "sigilactiveoverlay"
 	alpha = 0
 
@@ -204,7 +204,7 @@
 	name = "steam"
 	desc = "Steam! It's hot. It also serves as a game distribution platform."
 	icon_state = "smoke"
-	duration = 15
+	duration = 1.5 SECONDS
 
 /obj/effect/temp_visual/steam/Initialize(mapload, steam_direction)
 	. = ..()
@@ -222,7 +222,7 @@
 		if(WEST)
 			x_offset = -4
 			y_offset = 4
-	animate(src, pixel_x = x_offset, pixel_y = y_offset, alpha = 50, time = 15)
+	animate(src, pixel_x = x_offset, pixel_y = y_offset, alpha = 50, time = 1.5 SECONDS)
 
 /obj/effect/temp_visual/steam_release
 	name = "all the steam"
@@ -247,9 +247,9 @@
 	light_color = "#FFE48E"
 	light_range = 2
 	light_power = 0.7
-	duration = 50
+	duration = 5 SECONDS
 
-/obj/effect/temp_visual/ratvar/warp_marker/Initialize(mapload, mob/living/servant, _duration = 50)
+/obj/effect/temp_visual/ratvar/warp_marker/Initialize(mapload, mob/living/servant, _duration = 5 SECONDS)
 	duration = _duration
 	. = ..()
 	animate(src, alpha = 255, time = duration)
@@ -263,7 +263,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	resistance_flags = INDESTRUCTIBLE
 	layer = MASSIVE_OBJ_LAYER
-	duration = 300
+	duration = 30 SECONDS
 
 /obj/effect/temp_visual/ratvar/command_point/Initialize(mapload, appearance)
 	. = ..()

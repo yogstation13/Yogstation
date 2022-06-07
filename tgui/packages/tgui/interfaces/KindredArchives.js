@@ -47,6 +47,16 @@ export const KindredArchives = (props, context) => {
                 content="Malkavian"
                 onClick={() => act('Malkavian Clan')} />
             </LabeledList.Item>
+            <LabeledList.Item label="Lasombra Clan">
+              <Button
+                content="Lasombra"
+                onClick={() => act('Lasombra Clan')} />
+            </LabeledList.Item>
+            <LabeledList.Item label="Tzimisce Clan">
+              <Button
+                content="Tzimisce"
+                onClick={() => act('Tzimisce Clan')} />
+            </LabeledList.Item>
           </LabeledList>
         </Section>
       </Window.Content>

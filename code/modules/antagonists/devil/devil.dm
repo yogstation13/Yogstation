@@ -11,7 +11,7 @@
 
 #define SOULVALUE soulsOwned.len-reviveNumber
 
-#define DEVILRESURRECTTIME 600
+#define DEVILRESURRECTTIME 60 SECONDS
 
 GLOBAL_LIST_EMPTY(allDevils)
 GLOBAL_LIST_INIT(lawlorify, list (
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		H.set_species(/datum/species/human, 1)
 		H.regenerate_icons()
 	give_appropriate_spells()
-	if(istype(owner.current.loc, /obj/effect/dummy/phased_mob/slaughter/))
+	if(istype(owner.current.loc, /obj/effect/dummy/phased_mob))
 		owner.current.forceMove(get_turf(owner.current))//Fixes dying while jaunted leaving you permajaunted.
 	form = BASIC_DEVIL
 
@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 
 /datum/antagonist/devil/proc/increase_blood_lizard()
 	to_chat(owner.current, span_warning("You feel as though your humanoid form is about to shed.  You will soon turn into a blood lizard."))
-	sleep(50)
+	sleep(5 SECONDS)
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
 		H.set_species(/datum/species/lizard, 1)
@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 
 /datum/antagonist/devil/proc/increase_true_devil()
 	to_chat(owner.current, span_warning("You feel as though your current form is about to shed.  You will soon turn into a true devil."))
-	sleep(50)
+	sleep(5 SECONDS)
 	var/mob/living/carbon/true_devil/A = new /mob/living/carbon/true_devil(owner.current.loc)
 	A.faction |= "hell"
 	owner.current.forceMove(A)
@@ -269,46 +269,46 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		return
 	var/mob/living/carbon/true_devil/D = owner.current
 	to_chat(D, span_warning("You feel as though your form is about to ascend."))
-	sleep(50)
+	sleep(5 SECONDS)
 	if(!D)
 		return
 	D.visible_message(span_warning("[D]'s skin begins to erupt with spikes."), \
 		span_warning("Your flesh begins creating a shield around yourself."))
-	sleep(100)
+	sleep(10 SECONDS)
 	if(!D)
 		return
 	D.visible_message(span_warning("The horns on [D]'s head slowly grow and elongate."), \
 		span_warning("Your body continues to mutate. Your telepathic abilities grow."))
-	sleep(90)
+	sleep(9 SECONDS)
 	if(!D)
 		return
 	D.visible_message(span_warning("[D]'s body begins to violently stretch and contort."), \
 		span_warning("You begin to rend apart the final barriers to ultimate power."))
-	sleep(40)
+	sleep(4 SECONDS)
 	if(!D)
 		return
 	to_chat(D, "<i><b>Yes!</b></i>")
-	sleep(10)
+	sleep(1 SECONDS)
 	if(!D)
 		return
 	to_chat(D, "<i><b>[span_big("YES!!")]</b></i>")
-	sleep(10)
+	sleep(1 SECONDS)
 	if(!D)
 		return
 	to_chat(D, "<i><b>[span_reallybig("YE--")]</b></i>")
-	sleep(1)
+	sleep(0.1 SECONDS)
 	if(!D)
 		return
 	send_to_playing_players("<font size=5><span class='danger'><b>\"SLOTH, WRATH, GLUTTONY, ACEDIA, ENVY, GREED, PRIDE! FIRES OF HELL AWAKEN!!\"</font></span>")
 	sound_to_playing_players('sound/hallucinations/veryfar_noise.ogg')
 	give_appropriate_spells()
 	D.convert_to_archdevil()
-	if(istype(D.loc, /obj/effect/dummy/phased_mob/slaughter/))
+	if(istype(D.loc, /obj/effect/dummy/phased_mob))
 		D.forceMove(get_turf(D))//Fixes dying while jaunted leaving you permajaunted.
 	var/area/A = get_area(owner.current)
 	if(A)
 		notify_ghosts("An arch devil has ascended in \the [A.name]. Reach out to the devil to be given a new shell for your soul.", source = owner.current, action=NOTIFY_ATTACK)
-	sleep(50)
+	sleep(5 SECONDS)
 	if(!SSticker.mode.devil_ascended)
 		SSshuttle.emergency.request(null, set_coefficient = 0.3)
 	SSticker.mode.devil_ascended++
@@ -429,7 +429,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		update_hud()
 	if(body)
 		body.revive(TRUE, TRUE) //Adminrevive also recovers organs, preventing someone from resurrecting without a heart.
-		if(istype(body.loc, /obj/effect/dummy/phased_mob/slaughter/))
+		if(istype(body.loc, /obj/effect/dummy/phased_mob))
 			body.forceMove(get_turf(body))//Fixes dying while jaunted leaving you permajaunted.
 		if(istype(body, /mob/living/carbon/true_devil))
 			var/mob/living/carbon/true_devil/D = body
@@ -510,7 +510,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		var/mob/living/silicon/robot_devil = owner.current
 		var/laws = list("You may not use violence to coerce someone into selling their soul.", "You may not directly and knowingly physically harm a devil, other than yourself.", GLOB.lawlorify[LAW][ban], GLOB.lawlorify[LAW][obligation], "Accomplish your objectives at all costs.")
 		robot_devil.set_law_sixsixsix(laws)
-	sleep(10)
+	sleep(1 SECONDS)
 	if(owner.assigned_role == "Clown" && ishuman(owner.current))
 		var/mob/living/carbon/human/S = owner.current
 		to_chat(S, span_notice("Your infernal nature has allowed you to overcome your clownishness."))

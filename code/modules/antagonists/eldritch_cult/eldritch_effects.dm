@@ -231,7 +231,7 @@
 			human_user.safe_throw_at(throwtarget, rand(1,20), 1, src, force = MOVE_FORCE_OVERPOWERING , quickstart = TRUE)
 			human_user.Shake(rand(-100,100), rand(-100,100), 110) //oh we are TOTALLY stacking these //turns out we are not in fact stacking these
 			to_chat(user, span_userdanger("[pick("I- I- I-", "NO-", "IT HURTS-", "GETOUTOFMYHEADGETOUTOFMY-", "<i>POD-</i>","<i>COVE-</i>", "AAAAAAAAA-")]"))
-			sleep(1.1) //Spooky flavor message spam
+			sleep(0.11 SECONDS) //Spooky flavor message spam
 		to_chat(user, span_cultbold("That was a really bad idea..."))
 		human_user.ghostize()
 		var/obj/item/bodypart/head/head = locate() in human_user.bodyparts
@@ -398,7 +398,7 @@
 					owner.blood_volume = 0
 					owner.death()
 			penance_sources[P] --
-			sleep(2)
+			sleep(0.2 SECONDS)
 
 /datum/status_effect/brazil_penance/on_remove()
 	. = ..()

@@ -442,17 +442,17 @@
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
 /datum/outfit/job/plasmaman/sigtech
-	name = "Plasmaman Signal Technician"
+	name = "Plasmaman Network Admin"
 	
-	jobtype = /datum/job/signal_tech
+	jobtype = /datum/job/network_admin
 
-	pda_type = /obj/item/pda/signaltech
+	pda_type = /obj/item/pda/network_admin
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/radio/headset/headset_eng
+	ears = /obj/item/radio/headset/headset_network
 	uniform = /obj/item/clothing/under/plasmaman/engineering
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
 	gloves = /obj/item/clothing/gloves/color/black

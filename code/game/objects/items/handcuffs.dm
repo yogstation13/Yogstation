@@ -37,7 +37,7 @@
 	throw_range = 5
 	materials = list(/datum/material/iron=500)
 	breakouttime = 600 //Deciseconds = 60s = 1 minute
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	break_strength = 4
 	var/cuffsound = 'sound/weapons/handcuffs.ogg'
 	var/trashtype = null //for disposable cuffs
@@ -195,7 +195,7 @@
 			to_chat(user, span_warning("You need at least six metal sheets to make good enough weights!"))
 			return
 		to_chat(user, span_notice("You begin to apply [I] to [src]..."))
-		if(do_after(user, 3.5 SECONDS, target = src))
+		if(do_after(user, 3.5 SECONDS, src))
 			if(M.get_amount() < 6 || !M)
 				return
 			var/obj/item/restraints/legcuffs/bola/S = new /obj/item/restraints/legcuffs/bola

@@ -5,7 +5,7 @@
 	icon_state = "fireaxe"
 	anchored = TRUE
 	density = FALSE
-	armor = list("melee" = 50, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
+	armor = list(MELEE = 50, BULLET = 20, LASER = 0, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)
 	max_integrity = 200//yogs - increase durability to 200
 	integrity_failure = 50
 	var/locked = TRUE
@@ -55,7 +55,7 @@
 			to_chat(user, span_warning("You need two reinforced glass sheets to fix [src]!"))//yogs - change to reinforced glass
 			return
 		to_chat(user, span_notice("You start fixing [src]..."))
-		if(do_after(user, 2 SECONDS, target = src) && G.use(2))
+		if(do_after(user, 2 SECONDS, src) && G.use(2))
 			broken = 0
 			obj_integrity = max_integrity
 			update_icon()
@@ -211,7 +211,7 @@
 /obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)
 	to_chat(user, "<span class = 'caution'> Resetting circuitry...</span>")
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, 1)
-	if(do_after(user, 2 SECONDS, target = src))
+	if(do_after(user, 2 SECONDS, src))
 		to_chat(user, span_caution("You [locked ? "disable" : "re-enable"] the locking modules."))
 		locked = !locked
 		update_icon()
@@ -246,7 +246,7 @@
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "spareid"
 	alert = TRUE
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
+	armor = list(MELEE = 30, BULLET = 20, LASER = 0, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)
 	axe = FALSE
 
 /obj/structure/fireaxecabinet/bridge/spare/Initialize()
@@ -264,7 +264,7 @@
 		to_chat(user, "<span class = 'caution'>Resetting circuitry...</span>")
 		if(alert)
 			to_chat(user, span_danger("This will trigger the built in burglary alarm!"))
-		if(do_after(user, 15 SECONDS, target = src))
+		if(do_after(user, 15 SECONDS, src))
 			to_chat(user, span_caution("You [locked ? "disable" : "re-enable"] the locking modules."))
 			src.add_fingerprint(user)
 			if(locked)

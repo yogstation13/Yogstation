@@ -33,6 +33,7 @@
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	speak_emote = list("gnashes")
+	del_on_death = TRUE
 	var/satiation = 0
 
 /mob/living/simple_animal/hostile/bloodsucker/giantbat
@@ -141,23 +142,28 @@
 /mob/living/simple_animal/hostile/bloodsucker/Destroy() //makes us alive again
 	if(bloodsucker && mind)
 		visible_message(span_warning("[src] rapidly transforms into a humanoid figure!"), span_warning("You forcefully return to your normal form."))
-		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
-		if(mind)
-			mind.transfer_to(bloodsucker)
+		playsound(src, 'sound/weapons/slash.ogg', 50, TRUE)
+		mind.transfer_to(bloodsucker)
+		if(bloodsucker.status_flags & GODMODE)
+			bloodsucker.status_flags -= GODMODE
 		bloodsucker.forceMove(get_turf(src))
-		if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/werewolf) || istype(src, /mob/living/simple_animal/hostile/bloodsucker/possessedarmor))
+		if(istype(src, /mob/living/simple_animal/hostile/bloodsucker/possessedarmor))
 			STOP_PROCESSING(SSprocessing, src)
 		return ..()
 
 /mob/living/simple_animal/hostile/bloodsucker/death()
+	. = ..()
 	if(bloodsucker && mind)
 		mind.transfer_to(bloodsucker)
-		bloodsucker.death()
-	qdel(src)
-	..()
+		bloodsucker.adjustBruteLoss(200)
+		if(bloodsucker.status_flags & GODMODE)
+			bloodsucker.status_flags -= GODMODE
 
 /mob/living/simple_animal/hostile/bloodsucker/proc/devour(mob/living/target)
-	health += target.maxHealth / 4
+	if(maxHealth > target.maxHealth / 4 + health)
+		health += target.maxHealth / 4
+	else
+		health += maxHealth - health
 	var/mob/living/carbon/human/H = target
 	var/foundorgans = 0
 	for(var/obj/item/organ/O in H.internal_organs)
@@ -184,17 +190,16 @@
 ///      Werewolf       ///
 ///////////////////////////
 
-/mob/living/simple_animal/hostile/bloodsucker/werewolf/Initialize()
+/mob/living/simple_animal/hostile/bloodsucker/werewolf/Life(delta_time = (SSmobs.wait/10), times_fired)
 	. = ..()
-	START_PROCESSING(SSprocessing, src)
-
-/mob/living/simple_animal/hostile/bloodsucker/werewolf/process()
+	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
 	if(bloodsucker)
 		if(ishuman(bloodsucker))
 			var/mob/living/carbon/human/user = bloodsucker
 			if(user.blood_volume < 560)
 				user.blood_volume += 10
-		health -= 0.25 //3 minutes to die
+		adjustFireLoss(2.5)
+		updatehealth() //3 minutes to die
 	if(satiation >= 3)
 		to_chat(src, span_notice("It has been fed. You turn back to normal."))
 		qdel(src)
@@ -245,9 +250,9 @@
 ////////////////////////
 
 /mob/living/simple_animal/hostile/bloodsucker/possessedarmor/death()
+	. = ..()
 	if(upgraded)
 		new /obj/structure/bloodsucker/possessedarmor/upgraded(src.loc)
 	else
 		new /obj/structure/bloodsucker/possessedarmor(src.loc)
 	qdel(src)
-	..()
