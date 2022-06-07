@@ -156,7 +156,7 @@
 #define COMSIG_MOVABLE_BUCKLE "buckle"							//from base of atom/movable/buckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_UNBUCKLE "unbuckle"						//from base of atom/movable/unbuckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_PRE_THROW "movable_pre_throw"			//from base of atom/movable/throw_at(): (list/args)
-#define COMSIG_MOVABLE_PRE_DROPTHROW "movable_pre_dropthrow"	//from base of atom/movable/throw_at(): (list/args)
+#define COMSIG_MOVABLE_PRE_DROPTHROW "movable_pre_dropthrow"	//from base of atom/movable/throw_at(): Triggers before throw just before the item is dropped
 #define COMPONENT_CANCEL_THROW 1
 #define COMSIG_MOVABLE_POST_THROW "movable_post_throw"			//from base of atom/movable/throw_at(): (datum/thrownthing, spin)
 #define COMSIG_MOVABLE_Z_CHANGED "movable_ztransit" 			//from base of atom/movable/onTransitZ(): (old_z, new_z)
