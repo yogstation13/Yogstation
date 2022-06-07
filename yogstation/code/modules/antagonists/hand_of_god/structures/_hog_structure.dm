@@ -3,7 +3,7 @@
 	desc = "Cry at SuperSlayer if you see this."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "sacrificealtar"
-	icon_originalname = "sex"
+	var/icon_originalname = "sex"
 	anchored = TRUE
 	density = TRUE
 	var/datum/team/hog_team/cult
